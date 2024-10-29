@@ -93,8 +93,8 @@ class Markers {
      */
     public function draw(Image $image, MapData $mapData): Markers {
         $imageMarginLeft = $this->horizontalAnchor;
-        $offsetX = 0;
-        $offsetY = 5;
+        $offsetX = 1;
+        $offsetY = 6;
 
         switch ($imageMarginLeft) {
             case Markers::ANCHOR_LEFT:

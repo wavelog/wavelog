@@ -82,11 +82,11 @@ class Line implements Draw
             $this->points
         );
 
-        foreach ($cPoints as $k => $point) {
+        foreach ((array) $cPoints as $k => $point) {
             if (isset($cPoints[$k - 1])) {
                 $image->drawLine($cPoints[$k - 1]->getX(), $cPoints[$k - 1]->getY(), $point->getX(), $point->getY(), $this->weight, $this->color);
 
-                // do the same left and right if $wrap is disabled. Lines are special here
+                // do the same left and right if $wrap is disabled. 'Lines' are special here
                 if ($this->wrap) {
                     $image->drawLine($cPoints[$k - 1]->getX() + $image->getWidth(), $cPoints[$k - 1]->getY(), $point->getX() + $image->getWidth(), $point->getY(), $this->weight, $this->color);
                     $image->drawLine($cPoints[$k - 1]->getX() - $image->getWidth(), $cPoints[$k - 1]->getY(), $point->getX() - $image->getWidth(), $point->getY(), $this->weight, $this->color);
@@ -116,7 +116,7 @@ class Line implements Draw
     public function geodesicPoints(LatLng $start, LatLng $end): array {
         $points = [$start];
         $totalDistance = GeographicConverter::latLngToMeters($start, $end);
-        $distanceInterval = 100000;
+        $distanceInterval = 10000;
         $currentDistance = 0;
     
         while ($currentDistance + $distanceInterval < $totalDistance) {

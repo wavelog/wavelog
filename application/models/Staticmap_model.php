@@ -56,7 +56,7 @@ class Staticmap_model extends CI_Model {
             } elseif ($thememode == 'dark') {
                 $server_url = $this->optionslib->get_option('option_map_tile_server_dark') ?? '';
                 if ($server_url == '') {
-                    $server_url = 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png';
+                    $server_url = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
                     $this->optionslib->update('map_tile_server_dark', $server_url, 'yes');
                 }
                 $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
@@ -71,82 +71,79 @@ class Staticmap_model extends CI_Model {
         $centerMapLat = 25; // Needs to be a fix value as we can't wrap Latitude. Latitude of 25 is a good value to display all necessary places from north to south
         $centerMapLng = $centerMap[1];
         $centerMap = $centerMapLat . $centerMapLng; // used for cached tiles
-        $zoom = 2;
-        $width = 1024;
-        $height = 768;
-        $marker_size = 9;
-        $fontSize = 12;
-        $fontPosX = 758;
-        $fontPosY = 178;
-        $contFontPosX = 30;
-        $contFontPosY = 20;
-        $watermarkPosX = DantSu\PHPImageEditor\Image::ALIGN_RIGHT;
-        $watermarkPosY = DantSu\PHPImageEditor\Image::ALIGN_BOTTOM;
+        $zoom = 3;
+        $width = 2048;
+        $height = round(($width * 3.3) / 4);
+        $marker_size = 18;
+        $line_pxsize = 1;
+        $fontSize = 20;
+        $fontPosX = $height - 20;
+        $fontPosY = 300;
+        $contFontPosX = $width - ($width - 50);
+        $contFontPosY = $height - ($height - 30);
+        $watermarkPosX = DantSu\PHPImageEditor\Image::ALIGN_CENTER;
+        $watermarkPosY = DantSu\PHPImageEditor\Image::ALIGN_MIDDLE;
         $continentEnabled = false;
 
         // Continent Option
-        if ($continent != null) {
+        if ($continent != 'nC' || $continent != null || $continent != '') {
             if ($continent == 'AF') {
                 $continentEnabled = true;
                 $continentText = 'Africa';
                 $centerMapLat = 2;
                 $centerMapLng = 20;
-                $zoom = 4;
-                $height = 950;
-                $fontPosX = 940;
-                $watermarkPosY = 50;
+                $zoom = 5;
+                $height = round(($width * 4) / 4);
+                $fontPosX = $height - 20;
             } elseif ($continent == 'AS') {
                 $continentEnabled = true;
                 $continentText = 'Asia';
                 $centerMapLat = 45;
                 $centerMapLng = 100;
-                $zoom = 3;
-                $contFontPosX = 24;
+                $zoom = 4;
+                $contFontPosX = $width - ($width - 50);
             } elseif ($continent == 'EU') {
                 $continentEnabled = true;
                 $continentText = 'Europe';
-                $centerMapLat = 57;
+                $centerMapLat = 65;
                 $centerMapLng = 15;
-                $zoom = 4;
-                $contFontPosX = 34;
+                $height = round(($width * 5) / 4);
+                $zoom = 5;
+                $fontPosX = $height - 20;
+                $contFontPosX = $width - ($width - 50);
             } elseif ($continent == 'NA') {
                 $continentEnabled = true;
                 $continentText = 'North America';
                 $centerMapLat = 55;
                 $centerMapLng = -100;
-                $zoom = 3;
-                $contFontPosX = 60;
+                $zoom = 4;
+                $contFontPosX = $width - ($width - 110);
             } elseif ($continent == 'OC') {
                 $continentEnabled = true;
                 $continentText = 'Oceania';
                 $centerMapLat = -25;
                 $centerMapLng = 140;
-                $zoom = 4;
-                $contFontPosX = 38;
+                $zoom = 5;
+                $contFontPosX = $width - ($width - 70);
             } elseif ($continent == 'SA') {
                 $continentEnabled = true;
                 $continentText = 'South America';
                 $centerMapLat = -26;
                 $centerMapLng = -60;
-                $zoom = 4;
-                $height = 990;
-                $width = 700;
-                $fontPosX = 980;
-                $contFontPosX = 60;
-                $watermarkPosY = 80;
-                $watermarkPosX = -180;
+                $zoom = 5;
+                $width = 1570;
+                $height = round(($width * 5) / 4);
+                $fontPosX = $height - 20;
+                $contFontPosX = $width - ($width - 110);
             } elseif ($continent == 'AN') {
                 $continentEnabled = true;
                 $continentText = 'Antarctica';
                 $centerMapLat = -73;
                 $centerMapLng = 0;
-                $zoom = 2;
-                $width = 1024;
-                $height = 400;
-                $fontPosX = 390;
-                $fontPosY = 178;
-                $watermarkPosY = -180;
-                $contFontPosX = 45;
+                $zoom = 3;
+                $height = round(($width * 1.5) / 4);
+                $fontPosX = $height - 20;
+                $contFontPosX = $width - ($width - 90);
             } else {
                 // we don't want to change the default values in this case
             }
@@ -186,7 +183,7 @@ class Staticmap_model extends CI_Model {
                 if ($pathlines) {
                     $station_grid = $this->stations->profile($qso['station_id'])->row()->station_gridsquare;
                     $station_latlng = $this->qra->qra2latlong($station_grid);
-                    $paths_cnfd[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, '04A90227'); // Green
+                    $paths_cnfd[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, '04A902', $line_pxsize); // Green
                 }
                 $markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
                 continue;
@@ -194,7 +191,7 @@ class Staticmap_model extends CI_Model {
                 if ($pathlines) {
                     $station_grid = $this->stations->profile($qso['station_id'])->row()->station_gridsquare;
                     $station_latlng = $this->qra->qra2latlong($station_grid);
-                    $paths[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, 'ff000027'); // Red
+                    $paths[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, 'ff0000', $line_pxsize); // Red
                 }
                 $markerQsos[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
                 continue;
@@ -318,6 +315,7 @@ class Staticmap_model extends CI_Model {
 
         // Add Wavelog watermark
         $watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
+        $watermark->resize($width, round(($width * 3) / 4));
         $image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
 
         // Add "Created with Wavelog" text

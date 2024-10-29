@@ -43,8 +43,10 @@ class Staticmap extends CI_Controller {
         }
 
         // Night shadow
-        $night_shadow = $this->input->get('ns', TRUE) == 1 ? true : false;
+        $night_shadow = $this->input->get('ns', TRUE) == '1' ? true : false;
+        log_message('error', 'Night shadow: ' . $night_shadow);
         if ($night_shadow == false || $night_shadow == '') {
+            log_message('error', 'Night shadow: ' . $night_shadow);
             $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'nightshadow_layer', 'option_key' => $slug), $uid)->row()->option_value ?? false;
             $night_shadow = $r == 'true' ? true : false;
         }
