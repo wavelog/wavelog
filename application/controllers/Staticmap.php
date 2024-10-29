@@ -43,15 +43,15 @@ class Staticmap extends CI_Controller {
         }
 
         // Night shadow
-        $night_shadow = $this->input->get('ns', TRUE) == '1' ? true : false;
-        if ($night_shadow == false || $night_shadow == '') {
+        $night_shadow = $this->input->get('ns', TRUE) ?? '';
+        if ($night_shadow == '' || ($night_shadow != 1 && $night_shadow != 0)) {
             $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'nightshadow_layer', 'option_key' => $slug), $uid)->row()->option_value ?? false;
             $night_shadow = $r == 'true' ? true : false;
         }
 
         // Pathlines
-        $pathlines = $this->input->get('pl', TRUE) == 1 ? true : false;
-        if ($pathlines == false || $pathlines == '') {
+        $pathlines = $this->input->get('pl', TRUE) ?? '';
+        if ($pathlines == '' || ($pathlines != 1 && $pathlines != 0)) {
             $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'path_lines', 'option_key' => $slug), $uid)->row()->option_value ?? false;
             $pathlines = $r == 'true' ? true : false;
         }
