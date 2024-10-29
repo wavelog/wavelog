@@ -60,7 +60,6 @@ class Staticmap_model extends CI_Model {
         $zoom = 3;
         $width = 2048;
         $height = round(($width * 3.3) / 4);
-        $marker_size = 18;
         $line_pxsize = 1;
         $fontSize = 20;
         $fontPosX = $height - 20;
@@ -133,6 +132,16 @@ class Staticmap_model extends CI_Model {
             } else {
                 // we don't want to change the default values in this case
             }
+        }
+
+        if ($zoom == 3) {
+            $marker_size = 22;
+        } elseif ($zoom == 4) {
+            $marker_size = 24;
+        } elseif ($zoom == 5) {
+            $marker_size = 28;
+        } else {
+            $marker_size = 20;
         }
 
         //===============================================================================================================================
