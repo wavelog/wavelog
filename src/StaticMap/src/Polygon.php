@@ -84,31 +84,66 @@ class Polygon implements Draw
             $this->points
         );
 
-        $image->pasteOn(
-            Image::newCanvas($image->getWidth(), $image->getHeight())
-                ->drawPolygon(
-                    \array_reduce(
-                        $cPoints,
-                        function (array $acc, XY $p) {
-                            $acc[] = $p->getX();
-                            $acc[] = $p->getY();
-                            return $acc;
-                        },
-                        []
+        // Funktion zum Zeichnen des Polygons, um Wiederholungen zu reduzieren
+        $drawPolygon = function (array $points) use ($image) {
+            $image->pasteOn(
+                Image::newCanvas($image->getWidth(), $image->getHeight())
+                    ->drawPolygon(
+                        \array_reduce(
+                            $points,
+                            function (array $acc, XY $p) {
+                                $acc[] = $p->getX();
+                                $acc[] = $p->getY();
+                                return $acc;
+                            },
+                            []
+                        ),
+                        $this->fillColor
                     ),
-                    $this->fillColor
-                ),
-            0,
-            0
-        );
+                0,
+                0
+            );
+        };
+
+        // Zeichne das ursprüngliche Polygon
+        $drawPolygon($cPoints);
+
+        if ($this->wrap) {
+            // Zeichne das Polygon links und rechts des Bildes
+            $width = $image->getWidth();
+            $shiftedLeft = \array_map(function (XY $p) use ($width) {
+                return new XY($p->getX() - $width, $p->getY());
+            }, $cPoints);
+            
+            $shiftedRight = \array_map(function (XY $p) use ($width) {
+                return new XY($p->getX() + $width, $p->getY());
+            }, $cPoints);
+            
+            $drawPolygon($shiftedLeft);
+            $drawPolygon($shiftedRight);
+        }
 
         if ($this->strokeWeight > 0) {
+            // Zeichne die Linien zwischen den Punkten für das Hauptpolygon
             foreach ($cPoints as $k => $point) {
                 $pK = $k - 1;
                 if (!isset($cPoints[$pK])) {
                     $pK = \count($cPoints) - 1;
                 }
                 $image->drawLine($cPoints[$pK]->getX(), $cPoints[$pK]->getY(), $point->getX(), $point->getY(), $this->strokeWeight, $this->strokeColor);
+            }
+
+            // Zeichne die Linien für die linken und rechten Kopien des Polygons, falls Wrap aktiv ist
+            if ($this->wrap) {
+                foreach ([$shiftedLeft, $shiftedRight] as $shiftedPoints) {
+                    foreach ($shiftedPoints as $k => $point) {
+                        $pK = $k - 1;
+                        if (!isset($shiftedPoints[$pK])) {
+                            $pK = \count($shiftedPoints) - 1;
+                        }
+                        $image->drawLine($shiftedPoints[$pK]->getX(), $shiftedPoints[$pK]->getY(), $point->getX(), $point->getY(), $this->strokeWeight, $this->strokeColor);
+                    }
+                }
             }
         }
 

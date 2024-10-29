@@ -354,8 +354,8 @@ class MapData {
         $y = static::latToYTile($latLng->getLat(), $this->zoom, $this->tileSize);
 
         return new XY(
-            ($x['id'] - $this->tileTopLeft->getX()) * $this->tileSize - $this->mapCropTopLeft->getX() + $x['position'],
-            ($y['id'] - $this->tileTopLeft->getY()) * $this->tileSize - $this->mapCropTopLeft->getY() + $y['position']
+            (int)(($x['id'] - $this->tileTopLeft->getX()) * $this->tileSize - $this->mapCropTopLeft->getX() + $x['position']),
+            (int)(($y['id'] - $this->tileTopLeft->getY()) * $this->tileSize - $this->mapCropTopLeft->getY() + $y['position'])
         );
     }
 }

@@ -19,7 +19,7 @@ class Staticmap_model extends CI_Model {
      * @return bool  True if the image was rendered successfully, false if not
      */
 
-    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false) {
+    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false, $cqzones = false) {
 
         //===============================================================================================================================
         //=============================================== PREPARE AND LOAD DEPENDENCIES =================================================
@@ -48,6 +48,8 @@ class Staticmap_model extends CI_Model {
         foreach ($requiredClasses as $class) {
             require_once($class);
         }
+
+        $fontPath = 'src/StaticMap/src/resources/font.ttf';
 
         //===============================================================================================================================
         //===================================================== CONFIGURE GRAPHICS ======================================================
@@ -235,7 +237,7 @@ class Staticmap_model extends CI_Model {
         }
 
         //===============================================================================================================================
-        //====================================================== PROCESS THE QSOs =======================================================
+        //========================================= PROCESS THE QSOs AND PREPARE THE PATHLINES ==========================================
         //===============================================================================================================================
 
         // Get all QSOs with gridsquares and set markers for confirmed and unconfirmed QSOs
@@ -339,6 +341,47 @@ class Staticmap_model extends CI_Model {
 
 
         //===============================================================================================================================
+        //==================================================== PREPARE THE CQ ZONES =====================================================
+        //===============================================================================================================================
+        if ($cqzones) {
+            $geojsonFile = 'assets/json/geojson/cqzones.geojson';
+            $geojsonData = file_get_contents($geojsonFile);
+
+            $data = json_decode($geojsonData, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                log_message("error", "Failed to read geojson data for cqzones" . json_last_error_msg());
+            }
+
+            $lcolor = '195619'; // 195619 = green
+            $lweight = 1;
+            $pcolor = '195619FF'; // 195619 = green, FF = 100% opacity as hex
+
+            if (isset($data['features'])) {
+                $cqzones_polygon_array = [];
+                foreach ($data['features'] as $feature) {
+                    $polygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor, !$continentEnabled);
+                    $coordinates = $feature['geometry']['coordinates'];
+                    
+                    foreach ($coordinates as $zone) {
+                        foreach ($zone as $point) {
+                            $polygon->addPoint(new Wavelog\StaticMapImage\LatLng($point[1], $point[0]));
+                        }
+                    }
+                    
+                    $zone_number = $feature['properties']['cq_zone_number'];
+                    $zone_name_loc = $feature['properties']['cq_zone_name_loc'];
+                    $cqzones_polygon_array[$zone_number]['polygon'] = $polygon;
+                    $cqzones_polygon_array[$zone_number]['number'] = $zone_number;
+                    $cqzones_polygon_array[$zone_number]['name_loc'] = $zone_name_loc;
+                }
+            } else {
+                log_message("error", "Failed to read geojson data for cqzones. No features found.");
+            }
+        }
+
+
+        //===============================================================================================================================
         //==================================================== CREATE THE IMAGE =========================================================
         //===============================================================================================================================
 
@@ -363,6 +406,21 @@ class Staticmap_model extends CI_Model {
             }
         }
 
+        // CQ Zones
+        if ($cqzones) {
+            foreach ($cqzones_polygon_array as $cqzones_polygon) {
+                $polygon = $cqzones_polygon['polygon'];
+                $polygon->draw($image, $map->getMapData());
+
+                $zone_number = $cqzones_polygon['number'];
+                $color = '195619'; // Green
+                $cqz_fontsize = 33;
+                $position = new \Wavelog\StaticMapImage\LatLng($cqzones_polygon['name_loc'][0], $cqzones_polygon['name_loc'][1]);
+                $positionXY = $map->getMapData()->convertLatLngToPxPosition($position);
+                $image->writeText($zone_number, $fontPath, $cqz_fontsize, $color, $positionXY->getX(), $positionXY->getY());
+            }
+        }
+
         // Add markers
         if (!$hide_home) {
             $markersStation->draw($image, $map->getMapData());
@@ -380,7 +438,6 @@ class Staticmap_model extends CI_Model {
         $custom_date_format = $user->user_date_format;
         $dateTime = date($custom_date_format . ' - H:i');
         $text = "Created with Wavelog on " . $dateTime . " UTC";
-        $fontPath = 'src/StaticMap/src/resources/font.ttf';
         $color = 'ff0000'; // Red
         $image->writeText($text, $fontPath, $fontSize, $color, $fontPosY, $fontPosX);
 

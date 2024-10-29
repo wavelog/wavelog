@@ -56,6 +56,13 @@ class Staticmap extends CI_Controller {
             $pathlines = $r == 'true' ? true : false;
         }
 
+        // CQ Zones
+        $cqzones = $this->input->get('cqz', TRUE) ?? '';
+        if ($cqzones == '' || ($cqzones != 1 && $cqzones != 0)) {
+            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'cqzones_layer', 'option_key' => $slug), $uid)->row()->option_value ?? false;
+            $cqzones = $r == 'true' ? true : false;
+        }
+
         // handling the theme mode
         $this->load->model('themes_model');
         if ($thememode == null || $thememode == '' || ($thememode != 'dark' && $thememode != 'light')) {
@@ -74,7 +81,7 @@ class Staticmap extends CI_Controller {
         $cacheDir = realpath($cachepath . "staticmap_images/");
 
         // create a unique filename for the cache
-        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . $night_shadow . $pathlines;
+        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . $night_shadow . $pathlines . $cqzones;
         $filename = crc32('staticmap_' . $slug) . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
         $filepath = $cacheDir . '/' . $filename;
 
@@ -130,7 +137,7 @@ class Staticmap extends CI_Controller {
 
                 $qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent); // TODO: Allow 'all' option
 
-                $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines);
+                $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones);
 
                 header('Content-Type: image/png');
                 // echo $image;
