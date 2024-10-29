@@ -13,6 +13,8 @@ class Staticmap_model extends CI_Model {
      * @param $continent  			Continent to display
      * @param $thememode  			Theme mode ('light' or 'dark')
      * @param $hide_home  			Whether to hide the home station
+     * @param $night_shadow  		Whether to display the night shadow
+     * @param $pathlines  			Whether to display pathlines
      * 
      * @return bool  True if the image was rendered successfully, false if not
      */
