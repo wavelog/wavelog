@@ -217,6 +217,7 @@ class Staticmap_model extends CI_Model {
                 }
             }
         } else {
+            // Default values
             $user_icondata['user_map_qso_icon'] = "fas fa-dot-circle";
             $user_icondata['user_map_qso_color'] = "#FF0000";
             $user_icondata['user_map_station_icon'] = "fas fa-home";
@@ -286,6 +287,16 @@ class Staticmap_model extends CI_Model {
 
         $image = $map->getImage($centerMap);
 
+        // Pathlines
+        if ($pathlines) {
+            foreach ($paths as $path) {
+                $path->draw($image, $map->getMapData());
+            }
+            foreach ($paths_cnfd as $path) {
+                $path->draw($image, $map->getMapData());
+            }
+        }
+
         // Add day/night overlay
         if ($night_shadow) {
             $terminator = new Terminator();
@@ -302,15 +313,6 @@ class Staticmap_model extends CI_Model {
             }
 
             $polygon->draw($image, $map->getMapData());
-        }
-
-        if ($pathlines) {
-            foreach ($paths as $path) {
-                $path->draw($image, $map->getMapData());
-            }
-            foreach ($paths_cnfd as $path) {
-                $path->draw($image, $map->getMapData());
-            }
         }
 
         // Add Wavelog watermark
