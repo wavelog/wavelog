@@ -257,8 +257,8 @@ class adif extends CI_Controller {
 			}
 
 			// Lets clean up static maps cache for this station
-			if (!$this->load->is_loaded('visitor_model')) {
-				$this->load->model('visitor_model');
+			if (!$this->load->is_loaded('staticmap_model')) {
+				$this->load->model('staticmap_model');
 			}
 			$this->staticmap_model->remove_static_map_image($this->input->post('station_profile', TRUE));
 

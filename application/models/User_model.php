@@ -361,7 +361,7 @@ class User_Model extends CI_Model {
 
 				// Remove static map images in cache to make sure they are updated
 				$this->load->model('Stations');
-				$this->load->model('visitor_model');
+				$this->load->model('staticmap_model');
 				$stations = $this->Stations->all_station_ids_of_user($fields['id']);
 				$station_ids = explode(',', $stations);
 				foreach ($station_ids as $station_id) {

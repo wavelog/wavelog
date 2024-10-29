@@ -384,6 +384,8 @@ class Staticmap_model extends CI_Model {
 
     function remove_static_map_image($station_id = null, $logbook_id = null) {
 
+        $this->load->model('stationsetup_model');
+
         if ($station_id == null && $logbook_id == null) {
             log_message('error', "Can't remove static map image cache. Neither a station ID nor a logbook ID was provided. Exiting...");
             return false;

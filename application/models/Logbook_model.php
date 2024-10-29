@@ -384,8 +384,8 @@ class Logbook_model extends CI_Model {
 			$data['COL_MY_ITU_ZONE'] = strtoupper(trim($station['station_itu']));
 
 			// if there are any static map images for this station, remove them so they can be regenerated
-			if (!$this->load->is_loaded('visitor_model')) {
-				$this->load->model('visitor_model');
+			if (!$this->load->is_loaded('staticmap_model')) {
+				$this->load->model('staticmap_model');
 			}
 			$this->staticmap_model->remove_static_map_image($station_id);
 		}

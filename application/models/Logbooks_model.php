@@ -65,8 +65,8 @@ class Logbooks_model extends CI_Model {
 		}
 
 		// Also clean up static map images first
-		if (!$this->load->is_loaded('visitor_model')) {
-			$this->load->model('visitor_model');
+		if (!$this->load->is_loaded('staticmap_model')) {
+			$this->load->model('staticmap_model');
 		}
 		$this->staticmap_model->remove_static_map_image(null, $clean_id);
 
