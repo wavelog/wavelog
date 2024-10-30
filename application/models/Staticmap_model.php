@@ -137,7 +137,7 @@ class Staticmap_model extends CI_Model {
         }
 
         if ($zoom == 3) {
-            $marker_size = 22;
+            $marker_size = 18;
         } elseif ($zoom == 4) {
             $marker_size = 24;
         } elseif ($zoom == 5) {
@@ -332,10 +332,10 @@ class Staticmap_model extends CI_Model {
             $lweight = 0;
             $pcolor = '000000AA'; // 000000 = black, AA = 66% opacity as hex
 
-            $polygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor);
+            $night_shadow_polygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor);
 
             foreach ($terminatorLine as $coordinate) {
-                $polygon->addPoint(new Wavelog\StaticMapImage\LatLng($coordinate[0], $coordinate[1]));
+                $night_shadow_polygon->addPoint(new Wavelog\StaticMapImage\LatLng($coordinate[0], $coordinate[1]));
             }
         }
 
@@ -360,18 +360,18 @@ class Staticmap_model extends CI_Model {
             if (isset($data['features'])) {
                 $cqzones_polygon_array = [];
                 foreach ($data['features'] as $feature) {
-                    $polygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor, !$continentEnabled);
+                    $one_cqzpolygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor, !$continentEnabled);
                     $coordinates = $feature['geometry']['coordinates'];
                     
                     foreach ($coordinates as $zone) {
                         foreach ($zone as $point) {
-                            $polygon->addPoint(new Wavelog\StaticMapImage\LatLng($point[1], $point[0]));
+                            $one_cqzpolygon->addPoint(new Wavelog\StaticMapImage\LatLng($point[1], $point[0]));
                         }
                     }
                     
                     $zone_number = $feature['properties']['cq_zone_number'];
                     $zone_name_loc = $feature['properties']['cq_zone_name_loc'];
-                    $cqzones_polygon_array[$zone_number]['polygon'] = $polygon;
+                    $cqzones_polygon_array[$zone_number]['polygon'] = $one_cqzpolygon;
                     $cqzones_polygon_array[$zone_number]['number'] = $zone_number;
                     $cqzones_polygon_array[$zone_number]['name_loc'] = $zone_name_loc;
                 }
@@ -393,7 +393,7 @@ class Staticmap_model extends CI_Model {
 
         // Add night shadow
         if ($night_shadow) {
-            $polygon->draw($image, $map->getMapData());
+            $night_shadow_polygon->draw($image, $map->getMapData());
         }
 
         // Pathlines
@@ -409,8 +409,8 @@ class Staticmap_model extends CI_Model {
         // CQ Zones
         if ($cqzones) {
             foreach ($cqzones_polygon_array as $cqzones_polygon) {
-                $polygon = $cqzones_polygon['polygon'];
-                $polygon->draw($image, $map->getMapData());
+                $cqz_polygon = $cqzones_polygon['polygon'];
+                $cqz_polygon->draw($image, $map->getMapData());
 
                 $zone_number = $cqzones_polygon['number'];
                 $color = '195619'; // Green
