@@ -97,18 +97,6 @@ function updateRow(qso) {
 	if (user_options.pota.show == "true"){
 		cells.eq(c++).html(qso.pota);
 	}
-	if ( (user_options.operator) && (user_options.operator.show == "true")){
-		cells.eq(c++).html(qso.operator);
-	}
-	if ( (user_options.comment) && (user_options.comment.show == "true")){
-		cells.eq(c++).html(qso.comment);
-	}
-	if ( (user_options.propagation) && (user_options.propagation.show == "true")){
-		cells.eq(c++).html(qso.propagation);
-	}
-	if ( (user_options.contest) && (user_options.contest.show == "true")){
-		cells.eq(c++).html(qso.contest);
-	}
 	if ( (user_options.sota) && (user_options.sota.show == "true")){
 		cells.eq(c++).html(qso.sota);
 	}
@@ -120,6 +108,18 @@ function updateRow(qso) {
 	}
 	if ( (user_options.sig) && (user_options.sig.show == "true")){
 		cells.eq(c++).html(qso.sig);
+	}
+	if ( (user_options.operator) && (user_options.operator.show == "true")){
+		cells.eq(c++).html(qso.operator);
+	}
+	if ( (user_options.comment) && (user_options.comment.show == "true")){
+		cells.eq(c++).html(qso.comment);
+	}
+	if ( (user_options.propagation) && (user_options.propagation.show == "true")){
+		cells.eq(c++).html(qso.propagation);
+	}
+	if ( (user_options.contest) && (user_options.contest.show == "true")){
+		cells.eq(c++).html(qso.contest);
 	}
 	if (user_options.myrefs.show == "true"){
 		cells.eq(c++).text(qso.deRefs);
@@ -251,18 +251,6 @@ function loadQSOTable(rows) {
 		if (user_options.pota.show == "true"){
 			data.push(qso.pota);
 		}
-		if (user_options.operator.show == "true"){
-			data.push(qso.operator);
-		}
-		if (user_options.comment.show == "true"){
-			data.push(qso.comment);
-		}
-		if (user_options.propagation.show == "true"){
-			data.push(qso.propagation);
-		}
-		if (user_options.contest.show == "true"){
-			data.push(qso.contest);
-		}
 		if (user_options.sota.show == "true"){
 			data.push(qso.sota);
 		}
@@ -274,6 +262,18 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.sig.show == "true"){
 			data.push(qso.sig);
+		}
+		if (user_options.operator.show == "true"){
+			data.push(qso.operator);
+		}
+		if (user_options.comment.show == "true"){
+			data.push(qso.comment);
+		}
+		if (user_options.propagation.show == "true"){
+			data.push(qso.propagation);
+		}
+		if (user_options.contest.show == "true"){
+			data.push(qso.contest);
 		}
 		if (user_options.myrefs.show == "true"){
 			data.push(qso.deRefs);
