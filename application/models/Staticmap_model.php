@@ -15,6 +15,8 @@ class Staticmap_model extends CI_Model {
      * @param $hide_home  			Whether to hide the home station
      * @param $night_shadow  		Whether to display the night shadow
      * @param $pathlines  			Whether to display pathlines
+     * @param $cqzones  			Whether to display CQ zones
+     * @param $ituzones  			Whether to display ITU zones
      * 
      * @return bool  True if the image was rendered successfully, false if not
      */
