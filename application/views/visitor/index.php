@@ -259,7 +259,7 @@ if ($public_maps_option == 'true') { ?>
 
 				<table class="table table-striped">
 					<tr class="titles">
-						<td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("Countries Breakdown"); ?></td>
+						<td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("DXCCs Breakdown"); ?></td>
 					</tr>
 
 					<tr>
