@@ -68,6 +68,7 @@ class Staticmap_model extends CI_Model {
         $fontPosY = 300;
         $contFontPosX = $width - ($width - 50);
         $contFontPosY = $height - ($height - 30);
+        $watermark_size_mutiplier = 1.5;
         $watermarkPosX = DantSu\PHPImageEditor\Image::ALIGN_CENTER;
         $watermarkPosY = DantSu\PHPImageEditor\Image::ALIGN_MIDDLE;
         $continentEnabled = false;
@@ -128,6 +129,7 @@ class Staticmap_model extends CI_Model {
                 $centerMapLat = -73;
                 $centerMapLng = 0;
                 $zoom = 3;
+                $watermark_size_mutiplier = 1;
                 $height = round(($width * 1.5) / 4);
                 $fontPosX = $height - 20;
                 $contFontPosX = $width - ($width - 90);
@@ -430,7 +432,7 @@ class Staticmap_model extends CI_Model {
 
         // Add Wavelog watermark
         $watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
-        $watermark->resize($width, round(($width * 3) / 4));
+        $watermark->resize(round($width * $watermark_size_mutiplier), round((($width * 3) / 4) * $watermark_size_mutiplier));
         $image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
 
         // Add "Created with Wavelog" text
