@@ -147,7 +147,6 @@ class Staticmap extends CI_Controller {
                 $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones);
 
                 header('Content-Type: image/png');
-                // echo $image;
 
                 if ($image == false) {
                     $msg = "Can't create static map image. Something went wrong.";
