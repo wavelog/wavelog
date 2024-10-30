@@ -45,28 +45,28 @@ class Staticmap extends CI_Controller {
         // Night shadow
         $night_shadow = $this->input->get('ns', TRUE) ?? '';
         if ($night_shadow == '' || ($night_shadow != 1 && $night_shadow != 0)) {
-            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'nightshadow_layer', 'option_key' => $slug), $uid)->row()->option_value ?? false;
+            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'nightshadow_layer', 'option_key' => $slug), $uid)->row()->option_value ?? '';
             $night_shadow = $r == 'true' ? true : false;
         }
 
         // Pathlines
         $pathlines = $this->input->get('pl', TRUE) ?? '';
         if ($pathlines == '' || ($pathlines != 1 && $pathlines != 0)) {
-            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'path_lines', 'option_key' => $slug), $uid)->row()->option_value ?? false;
+            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'path_lines', 'option_key' => $slug), $uid)->row()->option_value ?? '';
             $pathlines = $r == 'true' ? true : false;
         }
 
         // CQ Zones
         $cqzones = $this->input->get('cqz', TRUE) ?? '';
         if ($cqzones == '' || ($cqzones != 1 && $cqzones != 0)) {
-            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'cqzones_layer', 'option_key' => $slug), $uid)->row()->option_value ?? false;
+            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'cqzones_layer', 'option_key' => $slug), $uid)->row()->option_value ?? '';
             $cqzones = $r == 'true' ? true : false;
         }
 
         // ITU Zones
         $ituzones = $this->input->get('ituz', TRUE) ?? '';
         if ($ituzones == '' || ($ituzones != 1 && $ituzones != 0)) {
-            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'ituzones_layer', 'option_key' => $slug), $uid)->row()->option_value ?? false;
+            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'ituzones_layer', 'option_key' => $slug), $uid)->row()->option_value ?? '';
             $ituzones = $r == 'true' ? true : false;
         }
 
@@ -88,7 +88,7 @@ class Staticmap extends CI_Controller {
         $cacheDir = realpath($cachepath . "staticmap_images/");
 
         // create a unique filename for the cache
-        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . $night_shadow . $pathlines . $cqzones . $ituzones;
+        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . ($night_shadow == false ? 0 : 1) . ($pathlines == false ? 0 : 1) . ($cqzones == false ? 0 : 1) . ($ituzones == false ? 0 : 1);
         $filename = crc32('staticmap_' . $slug) . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
         $filepath = $cacheDir . '/' . $filename;
 
