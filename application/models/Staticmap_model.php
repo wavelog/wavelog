@@ -464,7 +464,7 @@ class Staticmap_model extends CI_Model {
                 $cqz_fontsize = 33;
                 $position = new \Wavelog\StaticMapImage\LatLng($cqzones_polygon['name_loc'][0], $cqzones_polygon['name_loc'][1]);
                 $positionXY = $map->getMapData()->convertLatLngToPxPosition($position);
-                $image->writeText($zone_number, $fontPath, $cqz_fontsize, $color, $positionXY->getX(), $positionXY->getY(), $image::ALIGN_CENTER, $image::ALIGN_MIDDLE, 0, 0, true);
+                $image->writeText($zone_number, $fontPath, $cqz_fontsize, $color, $positionXY->getX(), $positionXY->getY(), $image::ALIGN_CENTER, $image::ALIGN_MIDDLE, 0, 0, !$continentEnabled);
             }
         }
 
@@ -479,7 +479,7 @@ class Staticmap_model extends CI_Model {
                 $itu_fontsize = 33;
                 $position = new \Wavelog\StaticMapImage\LatLng($ituzones_polygon['name_loc'][0], $ituzones_polygon['name_loc'][1]);
                 $positionXY = $map->getMapData()->convertLatLngToPxPosition($position);
-                $image->writeText($zone_number, $fontPath, $itu_fontsize, $color, $positionXY->getX(), $positionXY->getY(), $image::ALIGN_CENTER, $image::ALIGN_MIDDLE, 0, 0, true);
+                $image->writeText($zone_number, $fontPath, $itu_fontsize, $color, $positionXY->getX(), $positionXY->getY(), $image::ALIGN_CENTER, $image::ALIGN_MIDDLE, 0, 0, !$continentEnabled);
             }
         }
 
