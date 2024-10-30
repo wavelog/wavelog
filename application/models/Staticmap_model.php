@@ -29,8 +29,12 @@ class Staticmap_model extends CI_Model {
         $this->load->model('user_model');
         $this->load->model('stationsetup_model');
 
-        $this->load->library('Qra');
-        $this->load->library('genfunctions');
+        if (!$this->load->is_loaded('Qra')) {
+            $this->load->library('Qra');
+        }
+        if (!$this->load->is_loaded('genfunctions')) {
+            $this->load->library('genfunctions');
+        }
 
         $requiredClasses = [
             './src/StaticMap/src/OpenStreetMap.php',
@@ -72,6 +76,8 @@ class Staticmap_model extends CI_Model {
         $watermarkPosX = DantSu\PHPImageEditor\Image::ALIGN_CENTER;
         $watermarkPosY = DantSu\PHPImageEditor\Image::ALIGN_MIDDLE;
         $continentEnabled = false;
+        $cqz_color = '195619'; // Green
+        $ituz_color = '2c3e5f'; // Blue
 
         // Continent Option
         if ($continent != 'nC' || $continent != null || $continent != '') {
@@ -343,87 +349,155 @@ class Staticmap_model extends CI_Model {
 
 
         //===============================================================================================================================
-        //==================================================== PREPARE THE CQ ZONES =====================================================
+        //============================================ PREPARE THE CQ ZONES OVERLAY =====================================================
         //===============================================================================================================================
 
+        /**
+         * Due to the long rendering times we cache the CQ Zones overlay and just paste it on the map
+         */
+
         if ($cqzones) {
-            $geojsonFile = 'assets/json/geojson/cqzones.geojson';
-            $geojsonData = file_get_contents($geojsonFile);
 
-            $data = json_decode($geojsonData, true);
-
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                log_message("error", "Failed to read geojson data for cqzones" . json_last_error_msg());
+            $cqz_cachedir = dirname($filepath) . '/cqz_overlays';
+            if (!is_dir($cqz_cachedir)) {
+                mkdir($cqz_cachedir, 0777, true);
             }
+            $cqz_filename = crc32($centerMap . $continent . $zoom . $width . $height . $cqz_color) . '.png';
 
-            $lcolor = '195619'; // 195619 = green
-            $lweight = 1;
-            $pcolor = '195619FF'; // 195619 = green, FF = 100% opacity as hex
+            if (!file_exists($cqz_cachedir . '/' . $cqz_filename)) {
 
-            if (isset($data['features'])) {
-                $cqzones_polygon_array = [];
-                foreach ($data['features'] as $feature) {
-                    $one_cqzpolygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor, !$continentEnabled);
-                    $coordinates = $feature['geometry']['coordinates'];
+                log_message('info', "No cached CQ Zone Overlay found. Creating new CQ Zones overlay...");
 
-                    foreach ($coordinates as $zone) {
-                        foreach ($zone as $point) {
-                            $one_cqzpolygon->addPoint(new Wavelog\StaticMapImage\LatLng($point[1], $point[0]));
-                        }
-                    }
+                $geojsonFile = 'assets/json/geojson/cqzones.geojson';
+                $geojsonData = file_get_contents($geojsonFile);
 
-                    $zone_number = $feature['properties']['cq_zone_number'];
-                    $zone_name_loc = $feature['properties']['cq_zone_name_loc'];
-                    $cqzones_polygon_array[$zone_number]['polygon'] = $one_cqzpolygon;
-                    $cqzones_polygon_array[$zone_number]['number'] = $zone_number;
-                    $cqzones_polygon_array[$zone_number]['name_loc'] = $zone_name_loc;
+                $data = json_decode($geojsonData, true);
+
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    log_message("error", "Failed to read geojson data for cqzones" . json_last_error_msg());
                 }
+
+                $lcolor = $cqz_color;
+                $lweight = 1;
+                $pcolor = $cqz_color . 'FF'; // FF = 100% opacity as hex
+
+                if (isset($data['features'])) {
+                    $cqzones_polygon_array = [];
+                    foreach ($data['features'] as $feature) {
+                        $one_cqzpolygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor, !$continentEnabled);
+                        $coordinates = $feature['geometry']['coordinates'];
+
+                        foreach ($coordinates as $zone) {
+                            foreach ($zone as $point) {
+                                $one_cqzpolygon->addPoint(new Wavelog\StaticMapImage\LatLng($point[1], $point[0]));
+                            }
+                        }
+
+                        $zone_number = $feature['properties']['cq_zone_number'];
+                        $zone_name_loc = $feature['properties']['cq_zone_name_loc'];
+                        $cqzones_polygon_array[$zone_number]['polygon'] = $one_cqzpolygon;
+                        $cqzones_polygon_array[$zone_number]['number'] = $zone_number;
+                        $cqzones_polygon_array[$zone_number]['name_loc'] = $zone_name_loc;
+                    }
+                } else {
+                    log_message("error", "Failed to read geojson data for cqzones. No features found.");
+                }
+
+                $cqz_tl = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+                $cqz_tl = $cqz_tl->setOpacity(0);
+                $cqz_map = new \Wavelog\StaticMapImage\OpenStreetMap(new \Wavelog\StaticMapImage\LatLng($centerMapLat, $centerMapLng), $zoom, $width, $height, $cqz_tl);
+                $cqz_image = $cqz_map->getImage($centerMap);
+
+                foreach ($cqzones_polygon_array as $cqzones_polygon) {
+                    $polygon = $cqzones_polygon['polygon'];
+                    $polygon->draw($cqz_image, $cqz_map->getMapData());
+        
+                    $zone_number = $cqzones_polygon['number'];
+                    $cqz_fontsize = 33;
+                    $position = new \Wavelog\StaticMapImage\LatLng($cqzones_polygon['name_loc'][0], $cqzones_polygon['name_loc'][1]);
+                    $positionXY = $cqz_map->getMapData()->convertLatLngToPxPosition($position);
+                    $cqz_image->writeText($zone_number, $fontPath, $cqz_fontsize, $lcolor, $positionXY->getX(), $positionXY->getY(), $cqz_image::ALIGN_CENTER, $cqz_image::ALIGN_MIDDLE, 0, 0, !$continentEnabled);
+                }
+        
+                $cqz_image->savePNG($cqz_cachedir . '/' . $cqz_filename);
             } else {
-                log_message("error", "Failed to read geojson data for cqzones. No features found.");
+                log_message('info', "Found cached CQ Zone Overlay. Using cached overlay...");
             }
         }
 
 
         //===============================================================================================================================
-        //==================================================== PREPARE THE ITU ZONES ====================================================
+        //============================================ PREPARE THE ITU ZONES OVERLAY ====================================================
         //===============================================================================================================================
 
         if ($ituzones) {
-            $geojsonFile = 'assets/json/geojson/ituzones.geojson';
-            $geojsonData = file_get_contents($geojsonFile);
 
-            $data = json_decode($geojsonData, true);
-
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                log_message("error", "Failed to read geojson data for ituzones" . json_last_error_msg());
+            $ituz_cachedir = dirname($filepath) . '/ituz_overlays';
+            if (!is_dir($ituz_cachedir)) {
+                mkdir($ituz_cachedir, 0777, true);
             }
+            $ituz_filename = crc32($centerMap . $continent . $zoom . $width . $height . $ituz_color) . '.png';
 
-            $lcolor = '2c3e5f'; // 2c3e5f = blue
-            $lweight = 1;
-            $pcolor = '2c3e5fFF'; // 2c3e5f = blue, FF = 100% opacity as hex
+            if (!file_exists($ituz_cachedir . '/' . $ituz_filename)) {
 
-            if (isset($data['features'])) {
-                $ituzones_polygon_array = [];
-                foreach ($data['features'] as $feature) { // one zone
-                    $one_ituzpolygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor, !$continentEnabled);
-                    $coordinates = $feature['geometry']['coordinates'];
-                    
-                    foreach ($coordinates as $zone) {
-                        $ituz_points = [];
-                        foreach ($zone as $point) {
-                            $ituz_points[] = [$point[1], $point[0]];
-                            $one_ituzpolygon->addPoint(new Wavelog\StaticMapImage\LatLng($point[1], $point[0]));
-                        }
-                    }
-                        
-                    $zone_number = $feature['properties']['itu_zone_number'];
-                    $zone_name_loc = $feature['properties']['itu_zone_name_loc'];
-                    $ituzones_polygon_array[$zone_number]['polygon'] = $one_ituzpolygon;
-                    $ituzones_polygon_array[$zone_number]['number'] = $zone_number;
-                    $ituzones_polygon_array[$zone_number]['name_loc'] = $zone_name_loc;
+                log_message('info', "No cached ITU Zone Overlay found. Creating new ITU Zones overlay...");
+
+                $geojsonFile = 'assets/json/geojson/ituzones.geojson';
+                $geojsonData = file_get_contents($geojsonFile);
+
+                $data = json_decode($geojsonData, true);
+
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    log_message("error", "Failed to read geojson data for ituzones" . json_last_error_msg());
                 }
+
+                $lcolor = $ituz_color;
+                $lweight = 1;
+                $pcolor = $ituz_color . 'FF'; // FF = 100% opacity as hex
+
+                if (isset($data['features'])) {
+                    $ituzones_polygon_array = [];
+                    foreach ($data['features'] as $feature) { // one zone
+                        $one_ituzpolygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor, !$continentEnabled);
+                        $coordinates = $feature['geometry']['coordinates'];
+
+                        foreach ($coordinates as $zone) {
+                            $ituz_points = [];
+                            foreach ($zone as $point) {
+                                $ituz_points[] = [$point[1], $point[0]];
+                                $one_ituzpolygon->addPoint(new Wavelog\StaticMapImage\LatLng($point[1], $point[0]));
+                            }
+                        }
+
+                        $zone_number = $feature['properties']['itu_zone_number'];
+                        $zone_name_loc = $feature['properties']['itu_zone_name_loc'];
+                        $ituzones_polygon_array[$zone_number]['polygon'] = $one_ituzpolygon;
+                        $ituzones_polygon_array[$zone_number]['number'] = $zone_number;
+                        $ituzones_polygon_array[$zone_number]['name_loc'] = $zone_name_loc;
+                    }
+                } else {
+                    log_message("error", "Failed to read geojson data for ituzones. No features found.");
+                }
+
+                $ituz_tl = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+                $ituz_tl = $ituz_tl->setOpacity(0);
+                $ituz_map = new \Wavelog\StaticMapImage\OpenStreetMap(new \Wavelog\StaticMapImage\LatLng($centerMapLat, $centerMapLng), $zoom, $width, $height, $ituz_tl);
+                $ituz_image = $ituz_map->getImage($centerMap);
+
+                foreach ($ituzones_polygon_array as $ituzones_polygon) {
+                    $polygon = $ituzones_polygon['polygon'];
+                    $polygon->draw($ituz_image, $ituz_map->getMapData());
+
+                    $zone_number = $ituzones_polygon['number'];
+                    $ituz_fontsize = 33;
+                    $position = new \Wavelog\StaticMapImage\LatLng($ituzones_polygon['name_loc'][0], $ituzones_polygon['name_loc'][1]);
+                    $positionXY = $ituz_map->getMapData()->convertLatLngToPxPosition($position);
+                    $ituz_image->writeText($zone_number, $fontPath, $ituz_fontsize, $ituz_color, $positionXY->getX(), $positionXY->getY(), $ituz_image::ALIGN_CENTER, $ituz_image::ALIGN_MIDDLE, 0, 0, !$continentEnabled);
+                }
+
+                $ituz_image->savePNG($ituz_cachedir . '/' . $ituz_filename);
             } else {
-                log_message("error", "Failed to read geojson data for ituzones. No features found.");
+                log_message('info', "Found cached ITU Zone Overlay. Using cached overlay...");
             }
         }
 
@@ -455,32 +529,14 @@ class Staticmap_model extends CI_Model {
 
         // CQ Zones
         if ($cqzones) {
-            foreach ($cqzones_polygon_array as $cqzones_polygon) {
-                $cqz_polygon = $cqzones_polygon['polygon'];
-                $cqz_polygon->draw($image, $map->getMapData());
-
-                $zone_number = $cqzones_polygon['number'];
-                $color = '195619'; // Green
-                $cqz_fontsize = 33;
-                $position = new \Wavelog\StaticMapImage\LatLng($cqzones_polygon['name_loc'][0], $cqzones_polygon['name_loc'][1]);
-                $positionXY = $map->getMapData()->convertLatLngToPxPosition($position);
-                $image->writeText($zone_number, $fontPath, $cqz_fontsize, $color, $positionXY->getX(), $positionXY->getY(), $image::ALIGN_CENTER, $image::ALIGN_MIDDLE, 0, 0, !$continentEnabled);
-            }
+            $cqz_image = DantSu\PHPImageEditor\Image::fromPath($cqz_cachedir . '/' . $cqz_filename);
+            $image->pasteOn($cqz_image, 0, 0);
         }
 
         // ITU Zones
         if ($ituzones) {
-            foreach ($ituzones_polygon_array as $ituzones_polygon) {
-                $ituzpolygon = $ituzones_polygon['polygon'];
-                $ituzpolygon->draw($image, $map->getMapData());
-
-                $zone_number = $ituzones_polygon['number'];
-                $color = '2c3e5f'; // Blue
-                $itu_fontsize = 33;
-                $position = new \Wavelog\StaticMapImage\LatLng($ituzones_polygon['name_loc'][0], $ituzones_polygon['name_loc'][1]);
-                $positionXY = $map->getMapData()->convertLatLngToPxPosition($position);
-                $image->writeText($zone_number, $fontPath, $itu_fontsize, $color, $positionXY->getX(), $positionXY->getY(), $image::ALIGN_CENTER, $image::ALIGN_MIDDLE, 0, 0, !$continentEnabled);
-            }
+            $ituz_image = DantSu\PHPImageEditor\Image::fromPath($ituz_cachedir . '/' . $ituz_filename);
+            $image->pasteOn($ituz_image, 0, 0);
         }
 
         // Add markers
