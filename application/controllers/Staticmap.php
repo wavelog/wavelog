@@ -63,6 +63,13 @@ class Staticmap extends CI_Controller {
             $cqzones = $r == 'true' ? true : false;
         }
 
+        // ITU Zones
+        $ituzones = $this->input->get('ituz', TRUE) ?? '';
+        if ($ituzones == '' || ($ituzones != 1 && $ituzones != 0)) {
+            $r = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'ituzones_layer', 'option_key' => $slug), $uid)->row()->option_value ?? false;
+            $ituzones = $r == 'true' ? true : false;
+        }
+
         // handling the theme mode
         $this->load->model('themes_model');
         if ($thememode == null || $thememode == '' || ($thememode != 'dark' && $thememode != 'light')) {
@@ -137,7 +144,7 @@ class Staticmap extends CI_Controller {
 
                 $qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent); // TODO: Allow 'all' option
 
-                $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones);
+                $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones);
 
                 header('Content-Type: image/png');
                 // echo $image;

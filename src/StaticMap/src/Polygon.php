@@ -64,6 +64,16 @@ class Polygon implements Draw
     }
 
     /**
+     * Get all Points of the polygon
+     * @return array of points
+     */
+
+    public function getPoints(): array
+    {
+        return $this->points;
+    }
+
+    /**
      * Draw the polygon on the map image.
      *
      * @see https://github.com/DantSu/php-image-editor See more about DantSu\PHPImageEditor\Image

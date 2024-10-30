@@ -783,8 +783,8 @@ class Image {
      * @param float $letterSpacing add space between letters
      * @return $this Fluent interface
      */
-    public function writeText(string $string, string $fontPath, float $fontSize, string $color = 'ffffff', $posX = 0, $posY = 0, $anchorX = Image::ALIGN_CENTER, $anchorY = Image::ALIGN_MIDDLE, float $rotation = 0, float $letterSpacing = 0): Image {
-        $this->writeTextAndGetBoundingBox($string, $fontPath, $fontSize, $color, $posX, $posY, $anchorX, $anchorY, $rotation, $letterSpacing);
+    public function writeText(string $string, string $fontPath, float $fontSize, string $color = 'ffffff', $posX = 0, $posY = 0, $anchorX = Image::ALIGN_CENTER, $anchorY = Image::ALIGN_MIDDLE, float $rotation = 0, float $letterSpacing = 0, bool $wrap = false): Image {
+        $this->writeTextAndGetBoundingBox($string, $fontPath, $fontSize, $color, $posX, $posY, $anchorX, $anchorY, $rotation, $letterSpacing, $wrap);
         return $this;
     }
 
@@ -803,7 +803,7 @@ class Image {
      * @param float $letterSpacing add space between letters
      * @return array Bounding box positions of the text
      */
-    public function writeTextAndGetBoundingBox(string $string, string $fontPath, float $fontSize, string $color = 'ffffff', $posX = 0, $posY = 0, $anchorX = Image::ALIGN_CENTER, $anchorY = Image::ALIGN_MIDDLE, float $rotation = 0, float $letterSpacing = 0): array {
+    public function writeTextAndGetBoundingBox(string $string, string $fontPath, float $fontSize, string $color = 'ffffff', $posX = 0, $posY = 0, $anchorX = Image::ALIGN_CENTER, $anchorY = Image::ALIGN_MIDDLE, float $rotation = 0, float $letterSpacing = 0, bool $wrap = false): array {
         if (!$this->isImageDefined()) {
             return [];
         }
@@ -887,6 +887,12 @@ class Image {
         if ($posText === false) {
             return [];
         }
+
+        if ($wrap) {
+            $imageWidth = \imagesx($this->image);
+            $posTextLeft = $this->imagettftextWithSpacing($this->image, $fontSize, $rotation, $posX - $imageWidth, $posY, $color, $fontPath, $string, $letterSpacing);
+            $posTextRight = $this->imagettftextWithSpacing($this->image, $fontSize, $rotation, $posX + $imageWidth, $posY, $color, $fontPath, $string, $letterSpacing);
+        }   
 
         \imagealphablending($this->image, false);
         \imagesavealpha($this->image, true);

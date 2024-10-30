@@ -19,7 +19,7 @@ class Staticmap_model extends CI_Model {
      * @return bool  True if the image was rendered successfully, false if not
      */
 
-    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false, $cqzones = false) {
+    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false, $cqzones = false, $ituzones = false) {
 
         //===============================================================================================================================
         //=============================================== PREPARE AND LOAD DEPENDENCIES =================================================
@@ -57,7 +57,7 @@ class Staticmap_model extends CI_Model {
 
         // Map data and default values
         $centerMapLat = 25; // Needs to be a fix value as we can't wrap Latitude. Latitude of 25 is a good value to display all necessary places from north to south
-        $centerMapLng = $centerMap[1];
+        $centerMapLng = 120;
         $centerMap = $centerMapLat . $centerMapLng; // used for cached tiles
         $zoom = 3;
         $width = 2048;
@@ -345,6 +345,7 @@ class Staticmap_model extends CI_Model {
         //===============================================================================================================================
         //==================================================== PREPARE THE CQ ZONES =====================================================
         //===============================================================================================================================
+
         if ($cqzones) {
             $geojsonFile = 'assets/json/geojson/cqzones.geojson';
             $geojsonData = file_get_contents($geojsonFile);
@@ -364,13 +365,13 @@ class Staticmap_model extends CI_Model {
                 foreach ($data['features'] as $feature) {
                     $one_cqzpolygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor, !$continentEnabled);
                     $coordinates = $feature['geometry']['coordinates'];
-                    
+
                     foreach ($coordinates as $zone) {
                         foreach ($zone as $point) {
                             $one_cqzpolygon->addPoint(new Wavelog\StaticMapImage\LatLng($point[1], $point[0]));
                         }
                     }
-                    
+
                     $zone_number = $feature['properties']['cq_zone_number'];
                     $zone_name_loc = $feature['properties']['cq_zone_name_loc'];
                     $cqzones_polygon_array[$zone_number]['polygon'] = $one_cqzpolygon;
@@ -379,6 +380,50 @@ class Staticmap_model extends CI_Model {
                 }
             } else {
                 log_message("error", "Failed to read geojson data for cqzones. No features found.");
+            }
+        }
+
+
+        //===============================================================================================================================
+        //==================================================== PREPARE THE ITU ZONES ====================================================
+        //===============================================================================================================================
+
+        if ($ituzones) {
+            $geojsonFile = 'assets/json/geojson/ituzones.geojson';
+            $geojsonData = file_get_contents($geojsonFile);
+
+            $data = json_decode($geojsonData, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                log_message("error", "Failed to read geojson data for ituzones" . json_last_error_msg());
+            }
+
+            $lcolor = '195619'; // 195619 = green
+            $lweight = 1;
+            $pcolor = '195619FF'; // 195619 = green, FF = 100% opacity as hex
+
+            if (isset($data['features'])) {
+                $ituzones_polygon_array = [];
+                foreach ($data['features'] as $feature) { // one zone
+                    $one_ituzpolygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor, !$continentEnabled);
+                    $coordinates = $feature['geometry']['coordinates'];
+                    
+                    foreach ($coordinates as $zone) {
+                        $ituz_points = [];
+                        foreach ($zone as $point) {
+                            $ituz_points[] = [$point[1], $point[0]];
+                            $one_ituzpolygon->addPoint(new Wavelog\StaticMapImage\LatLng($point[1], $point[0]));
+                        }
+                    }
+                        
+                    $zone_number = $feature['properties']['itu_zone_number'];
+                    $zone_name_loc = $feature['properties']['itu_zone_name_loc'];
+                    $ituzones_polygon_array[$zone_number]['polygon'] = $one_ituzpolygon;
+                    $ituzones_polygon_array[$zone_number]['number'] = $zone_number;
+                    $ituzones_polygon_array[$zone_number]['name_loc'] = $zone_name_loc;
+                }
+            } else {
+                log_message("error", "Failed to read geojson data for ituzones. No features found.");
             }
         }
 
@@ -419,7 +464,22 @@ class Staticmap_model extends CI_Model {
                 $cqz_fontsize = 33;
                 $position = new \Wavelog\StaticMapImage\LatLng($cqzones_polygon['name_loc'][0], $cqzones_polygon['name_loc'][1]);
                 $positionXY = $map->getMapData()->convertLatLngToPxPosition($position);
-                $image->writeText($zone_number, $fontPath, $cqz_fontsize, $color, $positionXY->getX(), $positionXY->getY());
+                $image->writeText($zone_number, $fontPath, $cqz_fontsize, $color, $positionXY->getX(), $positionXY->getY(), $image::ALIGN_CENTER, $image::ALIGN_MIDDLE, 0, 0, true);
+            }
+        }
+
+        // ITU Zones
+        if ($ituzones) {
+            foreach ($ituzones_polygon_array as $ituzones_polygon) {
+                $ituzpolygon = $ituzones_polygon['polygon'];
+                $ituzpolygon->draw($image, $map->getMapData());
+
+                $zone_number = $ituzones_polygon['number'];
+                $color = '195619'; // Green
+                $itu_fontsize = 33;
+                $position = new \Wavelog\StaticMapImage\LatLng($ituzones_polygon['name_loc'][0], $ituzones_polygon['name_loc'][1]);
+                $positionXY = $map->getMapData()->convertLatLngToPxPosition($position);
+                $image->writeText($zone_number, $fontPath, $itu_fontsize, $color, $positionXY->getX(), $positionXY->getY(), $image::ALIGN_CENTER, $image::ALIGN_MIDDLE, 0, 0, true);
             }
         }
 
