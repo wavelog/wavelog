@@ -398,9 +398,9 @@ class Staticmap_model extends CI_Model {
                 log_message("error", "Failed to read geojson data for ituzones" . json_last_error_msg());
             }
 
-            $lcolor = '195619'; // 195619 = green
+            $lcolor = '2c3e5f'; // 2c3e5f = blue
             $lweight = 1;
-            $pcolor = '195619FF'; // 195619 = green, FF = 100% opacity as hex
+            $pcolor = '2c3e5fFF'; // 2c3e5f = blue, FF = 100% opacity as hex
 
             if (isset($data['features'])) {
                 $ituzones_polygon_array = [];
@@ -475,7 +475,7 @@ class Staticmap_model extends CI_Model {
                 $ituzpolygon->draw($image, $map->getMapData());
 
                 $zone_number = $ituzones_polygon['number'];
-                $color = '195619'; // Green
+                $color = '2c3e5f'; // Blue
                 $itu_fontsize = 33;
                 $position = new \Wavelog\StaticMapImage\LatLng($ituzones_polygon['name_loc'][0], $ituzones_polygon['name_loc'][1]);
                 $positionXY = $map->getMapData()->convertLatLngToPxPosition($position);
