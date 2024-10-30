@@ -63,7 +63,7 @@ class Staticmap_model extends CI_Model {
 
         // Map data and default values
         $centerMapLat = 25; // Needs to be a fix value as we can't wrap Latitude. Latitude of 25 is a good value to display all necessary places from north to south
-        $centerMapLng = 120;
+        $centerMapLng = $centerMap[1];
         $centerMap = $centerMapLat . $centerMapLng; // used for cached tiles
         $zoom = 3;
         $width = 2048;
