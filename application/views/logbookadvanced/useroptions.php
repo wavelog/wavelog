@@ -47,8 +47,8 @@
 			<td><div class="form-check"><input class="form-check-input" name="band" type="checkbox" <?php if (($options->band->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?= __("My Refs"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="myrefs" type="checkbox" <?php if (($options->myrefs->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+			<td><?= __("Gridsquare"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="gridsquare" type="checkbox" <?php if (($options->gridsquare->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("Name"); ?></td>
@@ -59,20 +59,24 @@
 			<td><div class="form-check"><input class="form-check-input" name="qslvia" type="checkbox" <?php if (($options->qslvia->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?= __("QSL"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="qsl" type="checkbox" <?php if (($options->qsl->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+			<td><?= __("Clublog"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="clublog" type="checkbox" <?php if (($options->clublog->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?= __("LoTW"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="lotw" type="checkbox" <?php if (($options->lotw->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+			<td><?= __("QSL"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="qsl" type="checkbox" <?php if (($options->qsl->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("eQSL"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="eqsl" type="checkbox" <?php if (($options->eqsl->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?= __("Clublog"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="clublog" type="checkbox" <?php if (($options->clublog->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+			<td><?= __("LoTW"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="lotw" type="checkbox" <?php if (($options->lotw->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td><?= __("QRZ"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="qrz" type="checkbox" <?php if (($options->qrz->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("QSL Msg"); ?></td>
@@ -95,16 +99,28 @@
 			<td><div class="form-check"><input class="form-check-input" name="ituzone" type="checkbox" <?php if (($options->ituzone->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?= __("SOTA"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="sota" type="checkbox" <?php if (($options->sota->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
-		</tr>
-		<tr>
 			<td><?= __("IOTA"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="iota" type="checkbox" <?php if (($options->iota->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("POTA"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="pota" type="checkbox" <?php if (($options->pota->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td><?= __("SOTA"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="sota" type="checkbox" <?php if (($options->sota->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td><?= __("DOK"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="dok" type="checkbox" <?php if (($options->dok->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td><?= __("WWFF"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="wwff" type="checkbox" <?php if (($options->wwff->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td><?= __("SIG"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="sig" type="checkbox" <?php if (($options->sig->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("Operator"); ?></td>
@@ -123,28 +139,12 @@
 			<td><div class="form-check"><input class="form-check-input" name="contest" type="checkbox" <?php if (($options->contest->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?= __("Gridsquare"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="gridsquare" type="checkbox" <?php if (($options->gridsquare->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
-		</tr>
-		<tr>
-			<td><?= __("DOK"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="dok" type="checkbox" <?php if (($options->dok->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
-		</tr>
-		<tr>
-			<td><?= __("WWFF"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="wwff" type="checkbox" <?php if (($options->wwff->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
-		</tr>
-		<tr>
-			<td><?= __("SIG"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="sig" type="checkbox" <?php if (($options->sig->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+			<td><?= __("My Refs"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="myrefs" type="checkbox" <?php if (($options->myrefs->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("Continent"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="continent" type="checkbox" <?php if (($options->continent->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
-		</tr>
-		<tr>
-			<td><?= __("QRZ"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="qrz" type="checkbox" <?php if (($options->qrz->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("Profile name"); ?></td>
