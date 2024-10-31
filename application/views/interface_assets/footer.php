@@ -50,6 +50,7 @@
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
     var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
+    var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>"
 </script>
 
 <!-- General JS Files used across Wavelog -->
