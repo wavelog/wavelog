@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-31 07:32+0000\n"
+"POT-Creation-Date: 2024-10-31 09:27+0000\n"
 "PO-Revision-Date: 2024-10-30 21:08+0000\n"
 "Last-Translator: utkuyalcin <utkyalcn@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -198,16 +198,16 @@ msgstr "ADIF İçe Aktarma başarısız!"
 msgid "Station Profile not valid for User"
 msgstr "Kullanıcı için İstasyon Profili geçerli değil"
 
-#: application/controllers/Adif.php:263
+#: application/controllers/Adif.php:269
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF İçe Aktarıldı"
 
-#: application/controllers/Adif.php:274
+#: application/controllers/Adif.php:280
 msgid "DCL Import"
 msgstr "DCL İçe Aktarma"
 
-#: application/controllers/Adif.php:332
+#: application/controllers/Adif.php:338
 msgid "DCL Data Imported"
 msgstr "DCL Verileri İçe Aktarıldı"
 
@@ -1066,7 +1066,7 @@ msgstr ""
 #: application/views/contesting/index.php:255
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
-#: application/views/debug/index.php:562
+#: application/views/debug/index.php:573
 #: application/views/distancerecords/index.php:19
 #: application/views/dxatlas/index.php:42
 #: application/views/eqsl/analysis.php:39
@@ -1344,7 +1344,7 @@ msgstr ""
 #: application/views/contesting/index.php:254
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
-#: application/views/debug/index.php:563 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:574 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:10 application/views/kml/index.php:19
@@ -1922,6 +1922,28 @@ msgid ""
 "date"
 msgstr ""
 
+#: application/controllers/Staticmap.php:20
+#: application/controllers/Staticmap.php:25
+#: application/controllers/Staticmap.php:122
+#: application/controllers/Visitor.php:50
+#: application/controllers/Visitor.php:81
+#: application/controllers/Visitor.php:148
+#: application/controllers/Visitor.php:175
+#: application/controllers/Visitor.php:210
+#: application/controllers/Visitor.php:471
+#: application/controllers/Widgets.php:40
+msgid "Unknown Public Page."
+msgstr ""
+
+#: application/controllers/Staticmap.php:118
+#: application/controllers/Visitor.php:76
+#: application/controllers/Visitor.php:171
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:467
+#: application/controllers/Widgets.php:36
+msgid "Empty Logbook"
+msgstr ""
+
 #: application/controllers/Station.php:37
 #: application/controllers/Stationsetup.php:226
 msgid "Create Station Location"
@@ -1946,7 +1968,7 @@ msgstr ""
 msgid "Station Location"
 msgstr "İstasyon Konumu"
 
-#: application/controllers/Station.php:75
+#: application/controllers/Station.php:80
 msgid "Duplicate Station Location:"
 msgstr ""
 
@@ -2312,24 +2334,6 @@ msgstr ""
 msgid "The requested user to impersonate does not exist"
 msgstr ""
 
-#: application/controllers/Visitor.php:50
-#: application/controllers/Visitor.php:81
-#: application/controllers/Visitor.php:148
-#: application/controllers/Visitor.php:175
-#: application/controllers/Visitor.php:210
-#: application/controllers/Visitor.php:472
-#: application/controllers/Widgets.php:40
-msgid "Unknown Public Page."
-msgstr ""
-
-#: application/controllers/Visitor.php:76
-#: application/controllers/Visitor.php:171
-#: application/controllers/Visitor.php:206
-#: application/controllers/Visitor.php:468
-#: application/controllers/Widgets.php:36
-msgid "Empty Logbook"
-msgstr ""
-
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
 msgstr ""
@@ -2471,75 +2475,75 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:3678
+#: application/models/Logbook_model.php:3684
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:3679
+#: application/models/Logbook_model.php:3685
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 
-#: application/models/Logbook_model.php:3691
+#: application/models/Logbook_model.php:3697
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:3691
+#: application/models/Logbook_model.php:3697
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:3987
+#: application/models/Logbook_model.php:3993
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:3998
+#: application/models/Logbook_model.php:4004
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4049
+#: application/models/Logbook_model.php:4055
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4069
+#: application/models/Logbook_model.php:4075
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4088
+#: application/models/Logbook_model.php:4094
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4352
+#: application/models/Logbook_model.php:4358
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:4413
+#: application/models/Logbook_model.php:4419
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4419
+#: application/models/Logbook_model.php:4425
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4424
+#: application/models/Logbook_model.php:4430
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4427
+#: application/models/Logbook_model.php:4433
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4430
+#: application/models/Logbook_model.php:4436
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4433
+#: application/models/Logbook_model.php:4439
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4436
+#: application/models/Logbook_model.php:4442
 msgid "unknown"
 msgstr ""
 
@@ -3207,7 +3211,7 @@ msgstr ""
 #: application/views/contesting/index.php:98
 #: application/views/contesting/index.php:252
 #: application/views/dashboard/index.php:170
-#: application/views/debug/index.php:559
+#: application/views/debug/index.php:570
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -3251,7 +3255,7 @@ msgstr "Tarih"
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:252
 #: application/views/dashboard/index.php:173
-#: application/views/debug/index.php:560
+#: application/views/debug/index.php:571
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -3279,7 +3283,7 @@ msgstr "Saat"
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:114
 #: application/views/contesting/index.php:253
-#: application/views/debug/index.php:561 application/views/debug/index.php:596
+#: application/views/debug/index.php:572 application/views/debug/index.php:607
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -3330,7 +3334,7 @@ msgstr ""
 
 #: application/views/adif/import.php:56 application/views/adif/import.php:231
 #: application/views/adif/import.php:269 application/views/debug/index.php:189
-#: application/views/debug/index.php:206 application/views/debug/index.php:551
+#: application/views/debug/index.php:206 application/views/debug/index.php:562
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:34
@@ -5839,10 +5843,10 @@ msgid "disabled"
 msgstr ""
 
 #: application/views/cron/index.php:83 application/views/cron/index.php:85
-#: application/views/cron/index.php:87 application/views/debug/index.php:508
-#: application/views/debug/index.php:514 application/views/debug/index.php:519
-#: application/views/debug/index.php:524 application/views/debug/index.php:529
-#: application/views/debug/index.php:534 application/views/debug/index.php:539
+#: application/views/cron/index.php:87 application/views/debug/index.php:519
+#: application/views/debug/index.php:525 application/views/debug/index.php:530
+#: application/views/debug/index.php:535 application/views/debug/index.php:540
+#: application/views/debug/index.php:545 application/views/debug/index.php:550
 #: application/views/user/index.php:138
 msgid "never"
 msgstr ""
@@ -6329,106 +6333,106 @@ msgstr ""
 
 #: application/views/debug/index.php:244 application/views/debug/index.php:255
 #: application/views/debug/index.php:266 application/views/debug/index.php:277
-#: application/views/debug/index.php:288
+#: application/views/debug/index.php:288 application/views/debug/index.php:299
 msgid "Installed"
 msgstr "Kurulmuş"
 
 #: application/views/debug/index.php:246 application/views/debug/index.php:257
 #: application/views/debug/index.php:268 application/views/debug/index.php:279
-#: application/views/debug/index.php:290
+#: application/views/debug/index.php:290 application/views/debug/index.php:301
 msgid "Not Installed"
 msgstr "Kurulu Değil"
 
-#: application/views/debug/index.php:297 application/views/qso/index.php:673
+#: application/views/debug/index.php:308 application/views/qso/index.php:673
 msgid "Settings"
 msgstr ""
 
-#: application/views/debug/index.php:426
+#: application/views/debug/index.php:437
 msgid "Git Information"
 msgstr ""
 
-#: application/views/debug/index.php:430
+#: application/views/debug/index.php:441
 msgid "Branch"
 msgstr ""
 
-#: application/views/debug/index.php:441 application/views/debug/index.php:452
-#: application/views/debug/index.php:462
+#: application/views/debug/index.php:452 application/views/debug/index.php:463
+#: application/views/debug/index.php:473
 msgid "n/a"
 msgstr ""
 
-#: application/views/debug/index.php:447
+#: application/views/debug/index.php:458
 msgid "Commit"
 msgstr ""
 
-#: application/views/debug/index.php:457
+#: application/views/debug/index.php:468
 msgid "Tag"
 msgstr ""
 
-#: application/views/debug/index.php:467
+#: application/views/debug/index.php:478
 msgid "Last Fetch"
 msgstr ""
 
-#: application/views/debug/index.php:479
+#: application/views/debug/index.php:490
 msgid "Check for new version"
 msgstr ""
 
-#: application/views/debug/index.php:480
+#: application/views/debug/index.php:491
 msgid "Update now"
 msgstr ""
 
-#: application/views/debug/index.php:498
+#: application/views/debug/index.php:509
 msgid "File download date"
 msgstr ""
 
-#: application/views/debug/index.php:502
+#: application/views/debug/index.php:513
 msgid "File"
 msgstr ""
 
-#: application/views/debug/index.php:503
+#: application/views/debug/index.php:514
 msgid "Last update"
 msgstr ""
 
-#: application/views/debug/index.php:507
+#: application/views/debug/index.php:518
 msgid "DXCC update from Club Log"
 msgstr ""
 
-#: application/views/debug/index.php:509 application/views/debug/index.php:515
-#: application/views/debug/index.php:520 application/views/debug/index.php:525
-#: application/views/debug/index.php:530 application/views/debug/index.php:535
-#: application/views/debug/index.php:540
+#: application/views/debug/index.php:520 application/views/debug/index.php:526
+#: application/views/debug/index.php:531 application/views/debug/index.php:536
+#: application/views/debug/index.php:541 application/views/debug/index.php:546
+#: application/views/debug/index.php:551
 #: application/views/station_profile/edit.php:49
 msgid "Update"
 msgstr ""
 
-#: application/views/debug/index.php:513
+#: application/views/debug/index.php:524
 msgid "DOK file download"
 msgstr ""
 
-#: application/views/debug/index.php:518
+#: application/views/debug/index.php:529
 msgid "LoTW users download"
 msgstr ""
 
-#: application/views/debug/index.php:523
+#: application/views/debug/index.php:534
 msgid "POTA file download"
 msgstr ""
 
-#: application/views/debug/index.php:528
+#: application/views/debug/index.php:539
 msgid "SCP file download"
 msgstr ""
 
-#: application/views/debug/index.php:533
+#: application/views/debug/index.php:544
 msgid "SOTA file download"
 msgstr ""
 
-#: application/views/debug/index.php:538
+#: application/views/debug/index.php:549
 msgid "WWFF file download"
 msgstr ""
 
-#: application/views/debug/index.php:547
+#: application/views/debug/index.php:558
 msgid "QSO-DB Maintenance"
 msgstr ""
 
-#: application/views/debug/index.php:551
+#: application/views/debug/index.php:562
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -6436,7 +6440,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: application/views/debug/index.php:564
+#: application/views/debug/index.php:575
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
@@ -6445,120 +6449,120 @@ msgstr[1] ""
 msgid "Station Callsign"
 msgstr ""
 
-#: application/views/debug/index.php:589
+#: application/views/debug/index.php:600
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
 
-#: application/views/debug/index.php:597
+#: application/views/debug/index.php:608
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr ""
 
-#: application/views/debug/index.php:598 application/views/debug/index.php:609
+#: application/views/debug/index.php:609 application/views/debug/index.php:620
 msgid "Reassign"
 msgstr ""
 
-#: application/views/debug/index.php:618
+#: application/views/debug/index.php:629
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 
-#: application/views/debug/index.php:618
+#: application/views/debug/index.php:629
 msgid "Everything ok"
 msgstr ""
 
-#: application/views/debug/index.php:643
+#: application/views/debug/index.php:654
 msgid "Albanian"
 msgstr "Arnavutça"
 
-#: application/views/debug/index.php:644
+#: application/views/debug/index.php:655
 msgid "Bosnian"
 msgstr "Boşnakça"
 
-#: application/views/debug/index.php:645
+#: application/views/debug/index.php:656
 msgid "Bulgarian"
 msgstr "Bulgarca"
 
-#: application/views/debug/index.php:646
+#: application/views/debug/index.php:657
 msgid "Chinese (Simplified)"
 msgstr "Çince (Basitleştirilmiş)"
 
-#: application/views/debug/index.php:647
+#: application/views/debug/index.php:658
 msgid "Croatian"
 msgstr "Hırvatça"
 
-#: application/views/debug/index.php:648
+#: application/views/debug/index.php:659
 msgid "Czech"
 msgstr "Çekçe"
 
-#: application/views/debug/index.php:649
+#: application/views/debug/index.php:660
 msgid "Dutch"
 msgstr "Flemenkçe"
 
-#: application/views/debug/index.php:650
+#: application/views/debug/index.php:661
 msgid "English"
 msgstr "İngilizce"
 
-#: application/views/debug/index.php:651
+#: application/views/debug/index.php:662
 msgid "Estonian"
 msgstr "Estonca"
 
-#: application/views/debug/index.php:652
+#: application/views/debug/index.php:663
 msgid "Finnish"
 msgstr "Fince"
 
-#: application/views/debug/index.php:653
+#: application/views/debug/index.php:664
 msgid "French"
 msgstr "Fransızca"
 
-#: application/views/debug/index.php:654
+#: application/views/debug/index.php:665
 msgid "German"
 msgstr "Almanca"
 
-#: application/views/debug/index.php:655
+#: application/views/debug/index.php:666
 msgid "Greek"
 msgstr "Yunanca"
 
-#: application/views/debug/index.php:656
+#: application/views/debug/index.php:667
 msgid "Italian"
 msgstr "İtalyanca"
 
-#: application/views/debug/index.php:657
+#: application/views/debug/index.php:668
 msgid "Latvian"
 msgstr "Letonca"
 
-#: application/views/debug/index.php:658
+#: application/views/debug/index.php:669
 msgid "Lithuanian"
 msgstr "Litvanca"
 
-#: application/views/debug/index.php:659
+#: application/views/debug/index.php:670
 msgid "Montenegrin"
 msgstr "Karadağca"
 
-#: application/views/debug/index.php:660
+#: application/views/debug/index.php:671
 msgid "Polish"
 msgstr "Lehçe"
 
-#: application/views/debug/index.php:661
+#: application/views/debug/index.php:672
 msgid "Portuguese"
 msgstr "Portekizce"
 
-#: application/views/debug/index.php:662
+#: application/views/debug/index.php:673
 msgid "Russian"
 msgstr "Rusça"
 
-#: application/views/debug/index.php:663
+#: application/views/debug/index.php:674
 msgid "Serbian"
 msgstr "Sırpça"
 
-#: application/views/debug/index.php:664
+#: application/views/debug/index.php:675
 msgid "Spanish"
 msgstr "İspanyolca"
 
-#: application/views/debug/index.php:665
+#: application/views/debug/index.php:676
 msgid "Swedish"
 msgstr "İsveççe"
 
-#: application/views/debug/index.php:666
+#: application/views/debug/index.php:677
 msgid "Turkish"
 msgstr "Türkçe"
 
