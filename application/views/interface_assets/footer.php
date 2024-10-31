@@ -30,6 +30,7 @@
     var lang_general_word_qso_data = "<?= __("QSO Data"); ?>";
     var lang_general_edit_qso = "<?= __("Edit QSO"); ?>";
     var lang_general_word_danger = "<?= __("DANGER"); ?>";
+    var lang_general_word_error = "<?= __("ERROR"); ?>";
     var lang_general_word_attention = "<?= __("Attention"); ?>";
     var lang_general_word_warning = "<?= __("Warning"); ?>";
     var lang_general_word_cancel = "<?= __("Cancel"); ?>";
