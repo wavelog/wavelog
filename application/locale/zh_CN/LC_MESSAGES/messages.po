@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-30 07:36+0000\n"
+"POT-Creation-Date: 2024-10-31 09:27+0000\n"
 "PO-Revision-Date: 2024-10-31 07:32+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -201,17 +201,16 @@ msgstr "ADIF 导入失败！"
 msgid "Station Profile not valid for User"
 msgstr "用户台站信息无效"
 
-#: application/controllers/Adif.php:263
-#: application/views/adif/import_success.php:12
 #: application/controllers/Adif.php:269
+#: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF 已导入"
 
-#: application/controllers/Adif.php:274 application/controllers/Adif.php:280
+#: application/controllers/Adif.php:280
 msgid "DCL Import"
 msgstr "导入 DCL"
 
-#: application/controllers/Adif.php:332 application/controllers/Adif.php:338
+#: application/controllers/Adif.php:338
 msgid "DCL Data Imported"
 msgstr "DCL 数据已导入"
 
@@ -1067,7 +1066,7 @@ msgstr "Clublog"
 #: application/views/contesting/index.php:255
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
-#: application/views/debug/index.php:562
+#: application/views/debug/index.php:573
 #: application/views/distancerecords/index.php:19
 #: application/views/dxatlas/index.php:42
 #: application/views/eqsl/analysis.php:39
@@ -1114,7 +1113,7 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:107 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:30 application/views/debug/index.php:573
+#: application/views/widgets/qsos.php:30
 msgid "Mode"
 msgstr "模式"
 
@@ -1345,7 +1344,7 @@ msgstr "距离"
 #: application/views/contesting/index.php:254
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
-#: application/views/debug/index.php:563 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:574 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:10 application/views/kml/index.php:19
@@ -1389,7 +1388,7 @@ msgstr "距离"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:33 application/views/debug/index.php:574
+#: application/views/widgets/qsos.php:33
 msgid "Band"
 msgstr "频段"
 
@@ -1922,6 +1921,28 @@ msgid ""
 "date"
 msgstr "QSO 尚未在 LoTW 确认，但已在 QSO 日期后上传呼号"
 
+#: application/controllers/Staticmap.php:20
+#: application/controllers/Staticmap.php:25
+#: application/controllers/Staticmap.php:122
+#: application/controllers/Visitor.php:50
+#: application/controllers/Visitor.php:81
+#: application/controllers/Visitor.php:148
+#: application/controllers/Visitor.php:175
+#: application/controllers/Visitor.php:210
+#: application/controllers/Visitor.php:471
+#: application/controllers/Widgets.php:40
+msgid "Unknown Public Page."
+msgstr "公开页面未知。"
+
+#: application/controllers/Staticmap.php:118
+#: application/controllers/Visitor.php:76
+#: application/controllers/Visitor.php:171
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:467
+#: application/controllers/Widgets.php:36
+msgid "Empty Logbook"
+msgstr "日志为空"
+
 #: application/controllers/Station.php:37
 #: application/controllers/Stationsetup.php:226
 msgid "Create Station Location"
@@ -1946,7 +1967,6 @@ msgstr "修改台站地址： "
 msgid "Station Location"
 msgstr "电台站地址"
 
-#: application/controllers/Station.php:75
 #: application/controllers/Station.php:80
 msgid "Duplicate Station Location:"
 msgstr "台站地址重复："
@@ -2314,30 +2334,6 @@ msgstr "会话出现问题，请重试。"
 msgid "The requested user to impersonate does not exist"
 msgstr "切换的用户不存在"
 
-#: application/controllers/Visitor.php:50
-#: application/controllers/Visitor.php:81
-#: application/controllers/Visitor.php:148
-#: application/controllers/Visitor.php:175
-#: application/controllers/Visitor.php:210
-#: application/controllers/Visitor.php:472
-#: application/controllers/Widgets.php:40
-#: application/controllers/Staticmap.php:20
-#: application/controllers/Staticmap.php:25
-#: application/controllers/Staticmap.php:122
-#: application/controllers/Visitor.php:471
-msgid "Unknown Public Page."
-msgstr "公开页面未知。"
-
-#: application/controllers/Visitor.php:76
-#: application/controllers/Visitor.php:171
-#: application/controllers/Visitor.php:206
-#: application/controllers/Visitor.php:468
-#: application/controllers/Widgets.php:36
-#: application/controllers/Staticmap.php:118
-#: application/controllers/Visitor.php:467
-msgid "Empty Logbook"
-msgstr "日志为空"
-
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
 msgstr "卫星网格地图"
@@ -2479,91 +2475,74 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:3678
 #: application/models/Logbook_model.php:3684
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:3679
 #: application/models/Logbook_model.php:3685
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
-#: application/models/Logbook_model.php:3691
 #: application/models/Logbook_model.php:3697
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:3691
 #: application/models/Logbook_model.php:3697
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
 
-#: application/models/Logbook_model.php:3987
 #: application/models/Logbook_model.php:3993
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:3998
 #: application/models/Logbook_model.php:4004
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4049
 #: application/models/Logbook_model.php:4055
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4069
 #: application/models/Logbook_model.php:4075
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4088
 #: application/models/Logbook_model.php:4094
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4352
 #: application/models/Logbook_model.php:4358
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4413
 #: application/models/Logbook_model.php:4419
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4419
 #: application/models/Logbook_model.php:4425
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4424
 #: application/models/Logbook_model.php:4430
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4427
 #: application/models/Logbook_model.php:4433
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4430
 #: application/models/Logbook_model.php:4436
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4433
 #: application/models/Logbook_model.php:4439
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4436
 #: application/models/Logbook_model.php:4442
 msgid "unknown"
 msgstr "未知"
@@ -3232,7 +3211,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/contesting/index.php:98
 #: application/views/contesting/index.php:252
 #: application/views/dashboard/index.php:170
-#: application/views/debug/index.php:559
+#: application/views/debug/index.php:570
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -3264,7 +3243,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:151
-#: application/views/widgets/qsos.php:25 application/views/debug/index.php:570
+#: application/views/widgets/qsos.php:25
 msgid "Date"
 msgstr "日期"
 
@@ -3276,7 +3255,7 @@ msgstr "日期"
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:252
 #: application/views/dashboard/index.php:173
-#: application/views/debug/index.php:560
+#: application/views/debug/index.php:571
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -3296,7 +3275,7 @@ msgstr "日期"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/visitor/index.php:154
-#: application/views/widgets/qsos.php:27 application/views/debug/index.php:571
+#: application/views/widgets/qsos.php:27
 msgid "Time"
 msgstr "时间"
 
@@ -3304,7 +3283,7 @@ msgstr "时间"
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:114
 #: application/views/contesting/index.php:253
-#: application/views/debug/index.php:561 application/views/debug/index.php:596
+#: application/views/debug/index.php:572 application/views/debug/index.php:607
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -3316,8 +3295,7 @@ msgstr "时间"
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:63
 #: application/views/visitor/index.php:156
-#: application/views/widgets/qsos.php:29 application/views/debug/index.php:572
-#: application/views/debug/index.php:607
+#: application/views/widgets/qsos.php:29
 msgid "Call"
 msgstr "呼号"
 
@@ -3356,7 +3334,7 @@ msgstr "最大上传文件大小是 "
 
 #: application/views/adif/import.php:56 application/views/adif/import.php:231
 #: application/views/adif/import.php:269 application/views/debug/index.php:189
-#: application/views/debug/index.php:206 application/views/debug/index.php:551
+#: application/views/debug/index.php:206 application/views/debug/index.php:562
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:34
@@ -3365,7 +3343,6 @@ msgstr "最大上传文件大小是 "
 #: application/views/view_log/qso.php:638
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
-#: application/views/debug/index.php:562
 msgid "Warning"
 msgstr "注意"
 
@@ -5963,14 +5940,11 @@ msgid "disabled"
 msgstr "禁用"
 
 #: application/views/cron/index.php:83 application/views/cron/index.php:85
-#: application/views/cron/index.php:87 application/views/debug/index.php:508
-#: application/views/debug/index.php:514 application/views/debug/index.php:519
-#: application/views/debug/index.php:524 application/views/debug/index.php:529
-#: application/views/debug/index.php:534 application/views/debug/index.php:539
-#: application/views/user/index.php:138 application/views/debug/index.php:525
-#: application/views/debug/index.php:530 application/views/debug/index.php:535
-#: application/views/debug/index.php:540 application/views/debug/index.php:545
-#: application/views/debug/index.php:550
+#: application/views/cron/index.php:87 application/views/debug/index.php:519
+#: application/views/debug/index.php:525 application/views/debug/index.php:530
+#: application/views/debug/index.php:535 application/views/debug/index.php:540
+#: application/views/debug/index.php:545 application/views/debug/index.php:550
+#: application/views/user/index.php:138
 msgid "never"
 msgstr "从不"
 
@@ -6470,232 +6444,225 @@ msgstr "已安装"
 msgid "Not Installed"
 msgstr "未安装"
 
-#: application/views/debug/index.php:297 application/views/qso/index.php:673
-#: application/views/debug/index.php:308
+#: application/views/debug/index.php:308 application/views/qso/index.php:673
 msgid "Settings"
 msgstr "设置"
 
-#: application/views/debug/index.php:426 application/views/debug/index.php:437
+#: application/views/debug/index.php:437
 msgid "Git Information"
 msgstr "Git信息"
 
-#: application/views/debug/index.php:430 application/views/debug/index.php:441
+#: application/views/debug/index.php:441
 msgid "Branch"
 msgstr "分支"
 
-#: application/views/debug/index.php:441 application/views/debug/index.php:452
-#: application/views/debug/index.php:462 application/views/debug/index.php:463
+#: application/views/debug/index.php:452 application/views/debug/index.php:463
 #: application/views/debug/index.php:473
 msgid "n/a"
 msgstr "n/a"
 
-#: application/views/debug/index.php:447 application/views/debug/index.php:458
+#: application/views/debug/index.php:458
 msgid "Commit"
 msgstr "Commit"
 
-#: application/views/debug/index.php:457 application/views/debug/index.php:468
+#: application/views/debug/index.php:468
 msgid "Tag"
 msgstr "标签"
 
-#: application/views/debug/index.php:467 application/views/debug/index.php:478
+#: application/views/debug/index.php:478
 msgid "Last Fetch"
 msgstr "上次抓取"
 
-#: application/views/debug/index.php:479 application/views/debug/index.php:490
+#: application/views/debug/index.php:490
 msgid "Check for new version"
 msgstr "检查新版本"
 
-#: application/views/debug/index.php:480 application/views/debug/index.php:491
+#: application/views/debug/index.php:491
 msgid "Update now"
 msgstr "现在升级"
 
-#: application/views/debug/index.php:498 application/views/debug/index.php:509
+#: application/views/debug/index.php:509
 msgid "File download date"
 msgstr "文件下载日期"
 
-#: application/views/debug/index.php:502 application/views/debug/index.php:513
+#: application/views/debug/index.php:513
 msgid "File"
 msgstr "文件"
 
-#: application/views/debug/index.php:503 application/views/debug/index.php:514
+#: application/views/debug/index.php:514
 msgid "Last update"
 msgstr "上次更新"
 
-#: application/views/debug/index.php:507 application/views/debug/index.php:518
+#: application/views/debug/index.php:518
 msgid "DXCC update from Club Log"
 msgstr "DXCC 更新（ClubLog）"
 
-#: application/views/debug/index.php:509 application/views/debug/index.php:515
-#: application/views/debug/index.php:520 application/views/debug/index.php:525
-#: application/views/debug/index.php:530 application/views/debug/index.php:535
-#: application/views/debug/index.php:540
+#: application/views/debug/index.php:520 application/views/debug/index.php:526
+#: application/views/debug/index.php:531 application/views/debug/index.php:536
+#: application/views/debug/index.php:541 application/views/debug/index.php:546
+#: application/views/debug/index.php:551
 #: application/views/station_profile/edit.php:49
-#: application/views/debug/index.php:526 application/views/debug/index.php:531
-#: application/views/debug/index.php:536 application/views/debug/index.php:541
-#: application/views/debug/index.php:546 application/views/debug/index.php:551
 msgid "Update"
 msgstr "更新"
 
-#: application/views/debug/index.php:513 application/views/debug/index.php:524
+#: application/views/debug/index.php:524
 msgid "DOK file download"
 msgstr "下载 DOK 文件"
 
-#: application/views/debug/index.php:518 application/views/debug/index.php:529
+#: application/views/debug/index.php:529
 msgid "LoTW users download"
 msgstr "下载 LoTW 用户状态"
 
-#: application/views/debug/index.php:523 application/views/debug/index.php:534
+#: application/views/debug/index.php:534
 msgid "POTA file download"
 msgstr "下载 POTA 文件"
 
-#: application/views/debug/index.php:528 application/views/debug/index.php:539
+#: application/views/debug/index.php:539
 msgid "SCP file download"
 msgstr "下载 SCP 文件"
 
-#: application/views/debug/index.php:533 application/views/debug/index.php:544
+#: application/views/debug/index.php:544
 msgid "SOTA file download"
 msgstr "下载 SOTA 文件"
 
-#: application/views/debug/index.php:538 application/views/debug/index.php:549
+#: application/views/debug/index.php:549
 msgid "WWFF file download"
 msgstr "下载 WWFF 文件"
 
-#: application/views/debug/index.php:547 application/views/debug/index.php:558
+#: application/views/debug/index.php:558
 msgid "QSO-DB Maintenance"
 msgstr "QSO-DB 维护"
 
-#: application/views/debug/index.php:551 application/views/debug/index.php:562
+#: application/views/debug/index.php:562
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
 msgstr[0] "数据库中共有%d个没有台站信息（位置）的QSO"
 
-#: application/views/debug/index.php:564
+#: application/views/debug/index.php:575
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:123
-#: application/views/debug/index.php:575
 msgid "Station Callsign"
 msgstr "电台呼号"
 
-#: application/views/debug/index.php:589 application/views/debug/index.php:600
+#: application/views/debug/index.php:600
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr "请标记 QSO 并将其重新分配到现有的电台位置："
 
-#: application/views/debug/index.php:597 application/views/debug/index.php:608
+#: application/views/debug/index.php:608
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr "目标位置"
 
-#: application/views/debug/index.php:598 application/views/debug/index.php:609
-#: application/views/debug/index.php:620
+#: application/views/debug/index.php:609 application/views/debug/index.php:620
 msgid "Reassign"
 msgstr "重新分配"
 
-#: application/views/debug/index.php:618 application/views/debug/index.php:629
+#: application/views/debug/index.php:629
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr "数据库中的所有 QSO 都有台站相关联"
 
-#: application/views/debug/index.php:618 application/views/debug/index.php:629
+#: application/views/debug/index.php:629
 msgid "Everything ok"
 msgstr "一切正常"
 
-#: application/views/debug/index.php:643 application/views/debug/index.php:654
+#: application/views/debug/index.php:654
 msgid "Albanian"
 msgstr "阿尔巴尼亚语"
 
-#: application/views/debug/index.php:644 application/views/debug/index.php:655
+#: application/views/debug/index.php:655
 msgid "Bosnian"
 msgstr "波斯尼亚语"
 
-#: application/views/debug/index.php:645 application/views/debug/index.php:656
+#: application/views/debug/index.php:656
 msgid "Bulgarian"
 msgstr "保加利亚语"
 
-#: application/views/debug/index.php:646 application/views/debug/index.php:657
+#: application/views/debug/index.php:657
 msgid "Chinese (Simplified)"
 msgstr "简体中文"
 
-#: application/views/debug/index.php:647 application/views/debug/index.php:658
+#: application/views/debug/index.php:658
 msgid "Croatian"
 msgstr "克罗地亚语"
 
-#: application/views/debug/index.php:648 application/views/debug/index.php:659
+#: application/views/debug/index.php:659
 msgid "Czech"
 msgstr "捷克语"
 
-#: application/views/debug/index.php:649 application/views/debug/index.php:660
+#: application/views/debug/index.php:660
 msgid "Dutch"
 msgstr "荷兰语"
 
-#: application/views/debug/index.php:650 application/views/debug/index.php:661
+#: application/views/debug/index.php:661
 msgid "English"
 msgstr "英语"
 
-#: application/views/debug/index.php:651 application/views/debug/index.php:662
+#: application/views/debug/index.php:662
 msgid "Estonian"
 msgstr "爱沙尼亚语"
 
-#: application/views/debug/index.php:652 application/views/debug/index.php:663
+#: application/views/debug/index.php:663
 msgid "Finnish"
 msgstr "芬兰语"
 
-#: application/views/debug/index.php:653 application/views/debug/index.php:664
+#: application/views/debug/index.php:664
 msgid "French"
 msgstr "法语"
 
-#: application/views/debug/index.php:654 application/views/debug/index.php:665
+#: application/views/debug/index.php:665
 msgid "German"
 msgstr "德语"
 
-#: application/views/debug/index.php:655 application/views/debug/index.php:666
+#: application/views/debug/index.php:666
 msgid "Greek"
 msgstr "希腊语"
 
-#: application/views/debug/index.php:656 application/views/debug/index.php:667
+#: application/views/debug/index.php:667
 msgid "Italian"
 msgstr "意大利语"
 
-#: application/views/debug/index.php:657 application/views/debug/index.php:668
+#: application/views/debug/index.php:668
 msgid "Latvian"
 msgstr "拉脱维亚语"
 
-#: application/views/debug/index.php:658 application/views/debug/index.php:669
+#: application/views/debug/index.php:669
 msgid "Lithuanian"
 msgstr "立陶宛语"
 
-#: application/views/debug/index.php:659 application/views/debug/index.php:670
+#: application/views/debug/index.php:670
 msgid "Montenegrin"
 msgstr "黑山语"
 
-#: application/views/debug/index.php:660 application/views/debug/index.php:671
+#: application/views/debug/index.php:671
 msgid "Polish"
 msgstr "波兰语"
 
-#: application/views/debug/index.php:661 application/views/debug/index.php:672
+#: application/views/debug/index.php:672
 msgid "Portuguese"
 msgstr "葡萄牙语"
 
-#: application/views/debug/index.php:662 application/views/debug/index.php:673
+#: application/views/debug/index.php:673
 msgid "Russian"
 msgstr "俄语"
 
-#: application/views/debug/index.php:663 application/views/debug/index.php:674
+#: application/views/debug/index.php:674
 msgid "Serbian"
 msgstr "塞尔维亚语"
 
-#: application/views/debug/index.php:664 application/views/debug/index.php:675
+#: application/views/debug/index.php:675
 msgid "Spanish"
 msgstr "西班牙语"
 
-#: application/views/debug/index.php:665 application/views/debug/index.php:676
+#: application/views/debug/index.php:676
 msgid "Swedish"
 msgstr "瑞典语"
 
-#: application/views/debug/index.php:666 application/views/debug/index.php:677
+#: application/views/debug/index.php:677
 msgid "Turkish"
 msgstr "土耳其语"
 
@@ -11879,10 +11846,6 @@ msgstr "标记 已收到卡片(电子)"
 msgid "eQSL picture"
 msgstr "eQSL 图片"
 
-#: application/views/visitor/index.php:262
-msgid "Countries Breakdown"
-msgstr "DXCC 实体分析"
-
 #: application/views/visitor/layout/footer.php:242
 msgid "CSV"
 msgstr "CSV"
@@ -11985,6 +11948,9 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "Countries Breakdown"
+#~ msgstr "DXCC 实体分析"
 
 #~ msgid "Mark selected QSOs as printed"
 #~ msgstr "标记选中的 QSL 信息为'已打印'"
