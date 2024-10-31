@@ -3,12 +3,13 @@
 # This file is distributed under the MIT licence.
 #
 # Halil AYYILDIZ <ta2lghalil@gmail.com>, 2024.
+# utkuyalcin <utkyalcn@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-10-17 14:22+0000\n"
-"PO-Revision-Date: 2024-07-26 09:13+0000\n"
-"Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
+"PO-Revision-Date: 2024-10-30 21:08+0000\n"
+"Last-Translator: utkuyalcin <utkyalcn@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "installer/tr/>\n"
 "Language: tr_TR\n"
@@ -16,35 +17,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: install/includes/core/database_class.php:59
 msgid "Connection Error: "
-msgstr ""
+msgstr "Bağlantı Hatası: "
 
 #: install/includes/core/database_class.php:63
 msgid "Unable to create database: "
-msgstr ""
+msgstr "Veri tabanı oluşturulamıyor: "
 
 #: install/includes/core/database_class.php:68
 msgid "Unable to select database: "
-msgstr ""
+msgstr "Veri tabanı seçilemiyor: "
 
 #: install/includes/core/database_class.php:74
 msgid "Database is not empty."
-msgstr ""
+msgstr "Veri tabanı boş değil."
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
-msgstr ""
+msgstr "tespit edilemedi"
 
 #: install/includes/interface_assets/footer.php:54
 msgid "Albanian"
-msgstr ""
+msgstr "Arnavutça"
 
 #: install/includes/interface_assets/footer.php:55
 msgid "Bosnian"
-msgstr ""
+msgstr "Boşnakça"
 
 #: install/includes/interface_assets/footer.php:56
 msgid "Bulgarian"
@@ -56,11 +57,11 @@ msgstr "Çince (Basitleştirilmiş)"
 
 #: install/includes/interface_assets/footer.php:58
 msgid "Croatian"
-msgstr ""
+msgstr "Hırvatça"
 
 #: install/includes/interface_assets/footer.php:59
 msgid "Czech"
-msgstr "Çek"
+msgstr "Çekçe"
 
 #: install/includes/interface_assets/footer.php:60
 msgid "Dutch"
@@ -72,7 +73,7 @@ msgstr "İngilizce"
 
 #: install/includes/interface_assets/footer.php:62
 msgid "Estonian"
-msgstr ""
+msgstr "Estonca"
 
 #: install/includes/interface_assets/footer.php:63
 msgid "Finnish"
@@ -96,19 +97,19 @@ msgstr "İtalyanca"
 
 #: install/includes/interface_assets/footer.php:68
 msgid "Latvian"
-msgstr ""
+msgstr "Letonca"
 
 #: install/includes/interface_assets/footer.php:69
 msgid "Lithuanian"
-msgstr ""
+msgstr "Litvanca"
 
 #: install/includes/interface_assets/footer.php:70
 msgid "Montenegrin"
-msgstr ""
+msgstr "Karadağca"
 
 #: install/includes/interface_assets/footer.php:71
 msgid "Polish"
-msgstr "Polonyaca"
+msgstr "Lehçe"
 
 #: install/includes/interface_assets/footer.php:72
 msgid "Portuguese"
@@ -120,7 +121,7 @@ msgstr "Rusça"
 
 #: install/includes/interface_assets/footer.php:74
 msgid "Serbian"
-msgstr ""
+msgstr "Sırpça"
 
 #: install/includes/interface_assets/footer.php:75
 msgid "Spanish"
@@ -152,7 +153,7 @@ msgstr "3. Yapılandırma"
 
 #: install/index.php:39
 msgid "4. Database"
-msgstr "4. Veritabanı"
+msgstr "4. Veri tabanı"
 
 #: install/index.php:42
 msgid "5. First User"
@@ -209,7 +210,7 @@ msgstr "Bir dil seç"
 
 #: install/index.php:91 install/index.php:421
 msgid "Close"
-msgstr "Kapalı"
+msgstr "Kapat"
 
 #: install/index.php:101
 msgid "PHP Modules"
@@ -223,7 +224,7 @@ msgstr "Sürüm"
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
-msgstr ""
+msgstr "min. %s (önerilen %s+)"
 
 #: install/index.php:136
 msgid "Installed"
@@ -239,35 +240,37 @@ msgstr "PHP Ayarları"
 
 #: install/index.php:234
 msgid "Folder Write Permissions"
-msgstr ""
+msgstr "Dosya Yazma İzinleri"
 
 #: install/index.php:240 install/index.php:251 install/index.php:262
 #: install/index.php:273 install/index.php:284
 msgid "Success"
-msgstr ""
+msgstr "Başarılı"
 
 #: install/index.php:243 install/index.php:254 install/index.php:265
 #: install/index.php:276 install/index.php:287
 msgid "Failed"
-msgstr ""
+msgstr "Başarısız"
 
 #: install/index.php:294
 msgid "Web Server"
-msgstr ""
+msgstr "Web Sunucusu"
 
 #: install/index.php:297
 msgid "Version:"
-msgstr ""
+msgstr "Sürüm:"
 
 #: install/index.php:304
 msgid "Important note for nginx users!"
-msgstr ""
+msgstr "Nginx kullanıcıları için önemli not!"
 
 #: install/index.php:305
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
 msgstr ""
+"Nginx'i web sunucusu olarak kullandığınız için lütfen devam etmeden önce "
+"Wiki'de açıklanan değişiklikleri yaptığınızdan emin olun."
 
 #: install/index.php:314
 msgid "Some Checks have failed!"
@@ -290,6 +293,8 @@ msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
 "target='_blank'>here</a>."
 msgstr ""
+"'Klasör Yazma İzinleri'nin başarısız olması durumunda <a href='%s' "
+"target='_blank'>buradan</a> Wiki'mize göz atın."
 
 #: install/index.php:323
 msgid "You have some warnings!"
@@ -300,7 +305,7 @@ msgid ""
 "Some of the settings are not optimal. You can proceed with the installer but "
 "be aware that you could run into problems while using Wavelog."
 msgstr ""
-"Bazı ayarlar optimum değil. Yükleyiciyle devam edebilirsiniz ancak Wavelog "
+"Bazı ayarlar optimal değil. Yükleyiciyle devam edebilirsiniz ancak Wavelog "
 "kullanırken sorunlarla karşılaşabileceğinizi unutmayın."
 
 #: install/index.php:331
@@ -312,8 +317,8 @@ msgid ""
 "Configure some basic parameters for your wavelog instance. You can change "
 "them later in 'application/config/config.php'"
 msgstr ""
-"wavelog örneğiniz için bazı temel parametreleri yapılandırın. Bunları daha "
-"sonra 'application/config/config.php'de değiştirebilirsiniz"
+"Wavelog örneğiniz için bazı temel parametreleri yapılandırın. Bunları daha "
+"sonra 'application/config/config.php'den değiştirebilirsiniz"
 
 #: install/index.php:347
 msgid "Directory"
@@ -339,10 +344,10 @@ msgid ""
 "Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). "
 "Don't forget to include the directory from above."
 msgstr ""
-"Bu, Wavelog Instance'ınızın mevcut olacağı tam URL'dir. Bu yükleyiciyi yerel "
+"Bu, Wavelog örneğinizin mevcut olacağı tam URL'dir. Bu yükleyiciyi yerel "
 "olarak çalıştırıyorsanız ancak Wavelog'u SSL'li bir Ters Proxy'nin arkasına "
-"yerleştirmek istiyorsanız buraya yeni URL'yi yazmalısınız (ör. %s yerine "
-"%s). Yukarıdaki dizini eklemeyi unutmayın."
+"yerleştirmek istiyorsanız buraya yeni URL'yi yazmalısınız (ör. %s yerine %s)"
+". Yukarıdaki dizini eklemeyi unutmayın."
 
 #: install/index.php:357
 msgid "Website URL"
@@ -394,45 +399,48 @@ msgstr "Çağrı Defteri Şifresi"
 #: install/index.php:389
 #, php-format
 msgid "Password can't contain %s or be empty"
-msgstr ""
+msgstr "Şifre %s içeremez ve boş bırakılamaz"
 
 #: install/index.php:394 install/index.php:399
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Gelişmiş Ayarlar"
 
 #: install/index.php:402
 msgid "These settings should only be set if you know what you're doing."
-msgstr ""
+msgstr "Bu ayarlar yalnızca ne yaptığınızı biliyorsanız yapılmalıdır."
 
 #: install/index.php:405
 msgid "Error Logs"
-msgstr ""
+msgstr "Hata Kayıtları"
 
 #: install/index.php:406
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
 msgstr ""
+"İsteğe bağlı: Kayıt eşiğini 0'dan büyük bir değere ayarlayarak Hata "
+"Kayıtlarını etkinleştirin. Bunu yalnızca gerçekten ihtiyacınız varsa "
+"etkinleştirin."
 
 #: install/index.php:411
 msgid "0 - No logs"
-msgstr ""
+msgstr "0 - Kayıt yok"
 
 #: install/index.php:412
 msgid "1 - Error messages"
-msgstr ""
+msgstr "1 - Hata mesajları"
 
 #: install/index.php:413
 msgid "2 - Debug messages"
-msgstr ""
+msgstr "2 - Hata ayıklama mesajları"
 
 #: install/index.php:414
 msgid "3 - Info messages"
-msgstr ""
+msgstr "3 - Bilgi mesajları"
 
 #: install/index.php:415
 msgid "4 - All messages"
-msgstr ""
+msgstr "4 - Tüm mesajlar"
 
 #: install/index.php:437
 msgid ""
@@ -458,17 +466,17 @@ msgstr "Veri tabanı ismi"
 
 #: install/index.php:447
 msgid "Name of the Database"
-msgstr "Veritabanının Adı"
+msgstr "Veri tabanının Adı"
 
 #: install/index.php:453
 msgid "Username of the Database User which has full access to the database."
 msgstr ""
-"Veritabanına tam erişim yetkisine sahip olan Veritabanı Kullanıcısının "
-"Kullanıcı Adı."
+"Veri tabanına tam erişim yetkisine sahip olan veri tabanı kullanıcısının "
+"kullanıcı adı."
 
 #: install/index.php:457
 msgid "Password of the Database User"
-msgstr "Veritabanı Kullanıcısının Şifresi"
+msgstr "Veri tabanı Kullanıcısının Şifresi"
 
 #: install/index.php:461
 msgid "Connection Test"
