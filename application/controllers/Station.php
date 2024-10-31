@@ -44,8 +44,8 @@ class Station extends CI_Controller
 		}
 	}
 
-	public function edit($id)
-	{
+	public function edit($id) {
+		$id = $this->security->xss_clean($id);
 		$this->load->model('stations');
 		if ($this->stations->check_station_is_accessible($id)) {
 			$data = $this->load_station_for_editing($id);
@@ -60,6 +60,11 @@ class Station extends CI_Controller
 				if ($this->stations->edit()) {
 					$data['notice'] = __("Station Location") . $this->security->xss_clean($this->input->post('station_profile_name', true)) . " Updated";
 				}
+				// Also clean up static map images first
+				if (!$this->load->is_loaded('staticmap_model')) {
+					$this->load->model('staticmap_model');
+				}
+				$this->staticmap_model->remove_static_map_image($id);
 				redirect('stationsetup');
 			}
 		} else {
@@ -67,8 +72,8 @@ class Station extends CI_Controller
 		}
 	}
 
-	public function copy($id)
-	{
+	public function copy($id) {
+		$id = $this->security->xss_clean($id);
 		$this->load->model('stations');
 		if ($this->stations->check_station_is_accessible($id)) {
 			$data = $this->load_station_for_editing($id);
@@ -93,16 +98,16 @@ class Station extends CI_Controller
 		}
 	}
 
-	public function edit_favourite($id)
-	{
+	public function edit_favourite($id) {
+		$id = $this->security->xss_clean($id);
 		$this->load->model('stations');
 		$this->stations->edit_favourite($id);
 
 		redirect('stationsetup');
 	}
 
-	function load_station_for_editing($id): array
-	{
+	function load_station_for_editing($id): array {
+		$id = $this->security->xss_clean($id);
 		$this->load->library('form_validation');
 
 		$this->load->model('stations');
@@ -123,8 +128,8 @@ class Station extends CI_Controller
 	}
 
 
-	function reassign_profile($id)
-	{
+	function reassign_profile($id) {
+		$id = $this->security->xss_clean($id);
 		// $id is the profile that needs reassigned to QSOs // ONLY Admin can do that!
 		$this->load->model('stations');
 		if ($this->user_model->authorize(99)) {
@@ -135,8 +140,9 @@ class Station extends CI_Controller
 		redirect('stationsetup');
 	}
 
-	function set_active($current, $new, $is_ajax = null)
-	{
+	function set_active($current, $new, $is_ajax = null) {
+		$current = $this->security->xss_clean($current);
+		$new = $this->security->xss_clean($new);
 		$this->load->model('stations');
 		$this->stations->set_active($current, $new);
 
@@ -147,8 +153,8 @@ class Station extends CI_Controller
 		redirect('stationsetup');
 	}
 
-	public function delete($id)
-	{
+	public function delete($id) {
+		$id = $this->security->xss_clean($id);
 		$this->load->model('stations');
 		if ($this->stations->check_station_is_accessible($id)) {
 			$this->stations->delete($id);
@@ -156,8 +162,8 @@ class Station extends CI_Controller
 		redirect('stationsetup');
 	}
 
-	public function deletelog($id)
-	{
+	public function deletelog($id) {
+		$id = $this->security->xss_clean($id);
 		$this->load->model('stations');
 		if ($this->stations->check_station_is_accessible($id)) {
 			$this->stations->deletelog($id);

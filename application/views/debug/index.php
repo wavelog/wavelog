@@ -291,6 +291,17 @@
                                         <?php } ?>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <td>php-gd</td>
+                                    <td>
+                                        <?php if (in_array('gd', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success"><?= __("Installed"); ?></span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger"><?= __("Not Installed"); ?></span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                         <div class="col">

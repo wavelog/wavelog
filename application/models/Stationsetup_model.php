@@ -2,11 +2,13 @@
 
 class Stationsetup_model extends CI_Model {
 
-	function getContainer($id) {
+	function getContainer($id, $session = true) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+		if ($session) {
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+		} 
 		$this->db->where('logbook_id', $clean_id);
 		return $this->db->get('station_logbooks');
 	}
@@ -22,6 +24,12 @@ class Stationsetup_model extends CI_Model {
 	}
 
 	function remove_public_slug($logbook_id) {
+		// Also clean up static map images first
+		if (!$this->load->is_loaded('staticmap_model')) {
+			$this->load->model('staticmap_model');
+		}
+		$this->staticmap_model->remove_static_map_image(null, $logbook_id);
+
 		$this->db->set('public_slug', null);
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('logbook_id', xss_clean($logbook_id));
@@ -126,13 +134,15 @@ class Stationsetup_model extends CI_Model {
 		$this->db->where('public_slug', $this->security->xss_clean($slug));
 		$query = $this->db->get('station_logbooks');
 
-		if ($query->num_rows() > 0){
-			foreach ($query->result() as $row) {
-				return $row->logbook_id;
-			}
+		if ($query->num_rows() == 1){
+			return $query->row()->logbook_id;
+		} elseif ($query->num_rows() > 1) {
+			log_message('error', 'Multiple logbooks with same public_slug found!');
+			return false;
 		} else {
 			return false;
 		}
+
 	}
 
 	function is_public_slug_available($slug) {
@@ -148,6 +158,19 @@ class Stationsetup_model extends CI_Model {
 		}
 	}
 
+	// Get public slug for a logbook
+	function get_slug($logbook_id) {
+		$this->db->where('logbook_id', $logbook_id);
+		$this->db->where('public_slug !=', null);
+		$query = $this->db->get('station_logbooks');
+
+		if ($query->num_rows() == 1){
+			return $query->row()->public_slug;
+		} else {
+			return false;
+		}
+	}
+
 	function locationInfo($id) {
 		$userid = $this->session->userdata('user_id'); // Fallback to session-uid, if userid is omitted
 		$this->db->select('station_profile.station_profile_name, station_profile.station_callsign, dxcc_entities.name as station_country, dxcc_entities.end as dxcc_end');
@@ -157,16 +180,26 @@ class Stationsetup_model extends CI_Model {
 		return $this->db->get('station_profile');
 	}
 
-	function get_container_relations($logbook_id) {
+	function get_container_relations($id, $reverse = false) {
+
+		if ($reverse == false) {
+			$searchIn = 'station_logbook_id';
+		} else {
+			$searchIn = 'station_location_id';
+		}
 
 		$relationships_array = array();
 
-		$this->db->where('station_logbook_id', $logbook_id);
+		$this->db->where($searchIn, $id);
 		$query = $this->db->get('station_logbooks_relationship');
 
 		if ($query->num_rows() > 0){
 			foreach ($query->result() as $row) {
-				array_push($relationships_array, $row->station_location_id);
+				if ($reverse == false) {
+					array_push($relationships_array, $row->station_location_id);
+				} else {
+					array_push($relationships_array, $row->station_logbook_id);
+				}
 			}
 
 			return $relationships_array;
