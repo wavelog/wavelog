@@ -75,5 +75,29 @@ class SimpleFLE extends CI_Controller {
 
 		return $modes;
 	}
+
+	public function save_qsos() {
+		$qsos = $this->input->post('qsos', TRUE);
+
+		$this->load->model('logbook_model');
+
+		$qsos = json_decode($qsos, true);
+		$result = [];
+		foreach ($qsos as $qso) {
+			$one_result = $this->logbook_model->import($qso, $qso['station_id']);
+
+			// if the returner is not empty we have an error and should log it
+			if ($result != '' && strpos(json_encode($one_result), 'Duplicate for') == false) {
+				log_message('error', 'SimpleFLE, save_qsos(); For QSO: ' . $qso['call'] . ' on ' . $qso['qso_date'] . ' Error: ' . json_encode($result));
+			}
+			if (strpos(json_encode($one_result), 'Duplicate for') !== false) {
+				log_message('debug', 'SimpleFLE, save_qsos(); For QSO: ' . $qso['call'] . ' on ' . $qso['qso_date'] . ' Warning: ' . json_encode($result));
+			}
+
+			$result[] = $one_result;
+		}
+
+		echo json_encode($result);
+	}
 	
 }

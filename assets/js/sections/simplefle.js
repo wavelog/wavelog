@@ -913,6 +913,8 @@ $(".js-save-to-log").click(function () {
 			callback: function (result) {
 				if (result) {
 
+					qsos = [];
+
 					qsoList.forEach((item) => {
 						var callsign = item[2];
 						var gridsquare = item[6];
@@ -927,7 +929,7 @@ $(".js-save-to-log").click(function () {
 							item[1][3];
 						var band = item[4];
 						var mode = item[5];
-						var freq_display = item[3] * 1000000;
+						var freq_display = item[3];
 						var station_profile = $(".station_id").val();
 						var operator = $("#operator").val().toUpperCase();
 						var contest = $("#contest").val();
@@ -945,36 +947,61 @@ $(".js-save-to-log").click(function () {
 							wwff_ref = item[9];
 						}
 
-						$.ajax({
-							url: base_url + "index.php/qso/saveqso",
-							type: "post",
-							data: {
-								callsign: callsign,
-								locator: gridsquare,
-								rst_rcvd: rst_rcvd,
-								rst_sent: rst_sent,
-								start_date: start_date,
-								band: band,
-								mode: mode,
-								operator_callsign: operator,
-								freq_display: freq_display,
-								start_time: start_time,
-								station_profile: station_profile,
-								contestname: contest,
-								sota_ref: sota_ref,
-								iota_ref: iota_ref,
-								pota_ref: pota_ref,
-								wwff_ref: wwff_ref,
-								isSFLE: true,
-							},
-							success: function (result) {},
+						qsos.push({
+							call: callsign,
+							gridsquare: gridsquare,
+							rst_sent: rst_sent,
+							rst_rcvd: rst_rcvd,
+							qso_date: start_date,
+							time_on: start_time,
+							band: band,
+							mode: mode,
+							freq: freq_display,
+							station_id: station_profile,
+							operator: operator,
+							contest_id: contest,
+							sota_ref: sota_ref,
+							iota: iota_ref,
+							pota_ref: pota_ref,
+							wwff_ref: wwff_ref,
 						});
 					});
 
-					clearSession();
-					BootstrapDialog.alert({
-						title: lang_qso_simplefle_success_save_to_log_header,
-						message: lang_qso_simplefle_success_save_to_log,
+					$.ajax({
+						url: base_url + "index.php/simplefle/save_qsos",
+						type: "post",
+						data: { qsos: JSON.stringify(qsos) },
+						success: function (result) {
+							if (result == '' || result.includes("Duplicate for")) {
+								BootstrapDialog.alert({
+									title: lang_qso_simplefle_success_save_to_log_header,
+									message: lang_qso_simplefle_success_save_to_log,
+									type: BootstrapDialog.TYPE_SUCCESS,
+									btnOKLabel: lang_general_word_ok,
+									btnOKClass: "btn-info",
+									callback: function (result) {
+										clearSession();
+									}
+								});
+							} else {
+								BootstrapDialog.alert({
+									title: lang_general_word_error,
+									message: lang_qso_simplefle_error_save_to_log + "<br><br><code><pre>" + JSON.stringify(result) + "</pre></code>",
+									size: BootstrapDialog.SIZE_WIDE,
+									type: BootstrapDialog.TYPE_DANGER,
+								});
+								console.error(result);
+							}
+						},
+						error: function (result) {
+							BootstrapDialog.alert({
+								title: lang_general_word_error,
+								message: lang_qso_simplefle_error_save_to_log + "<br><br><code><pre>" + JSON.stringify(result) + "</pre></code>",
+								size: BootstrapDialog.SIZE_WIDE,
+								type: BootstrapDialog.TYPE_DANGER,
+							});
+							console.error(result);
+						},
 					});
 				}
 			},
