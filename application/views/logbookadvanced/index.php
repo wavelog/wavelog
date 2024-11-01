@@ -53,7 +53,8 @@
 			\"sig\":{\"show\":\"true\"},
 			\"continent\":{\"show\":\"true\"},
 			\"qrz\":{\"show\":\"true\"},
-			\"profilename\":{\"show\":\"true\"}
+			\"profilename\":{\"show\":\"true\"},
+			\"stationpower\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
@@ -116,6 +117,10 @@
     }
 	if (!isset($current_opts->profilename)) {
         echo "\nvar o_template = { profilename: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->stationpower)) {
+        echo "\nvar o_template = { stationpower: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -673,6 +678,9 @@ $options = json_decode($options);
                     } ?>
 					<?php if (($options->profilename->show ?? "true") == "true") {
                         echo '<th>' . __("Profile name") . '</th>';
+                    } ?>
+					<?php if (($options->stationpower->show ?? "true") == "true") {
+                        echo '<th>' . __("Station power") . '</th>';
                     } ?>
                 </tr>
             </thead>

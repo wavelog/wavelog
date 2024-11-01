@@ -150,6 +150,10 @@
 			<td><?= __("Profile name"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="profilename" type="checkbox" <?php if (($options->profilename->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
+		<tr>
+			<td><?= __("Station power"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="stationpower" type="checkbox" <?php if (($options->stationpower->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
 	</tbody>
 </table>
 </div>

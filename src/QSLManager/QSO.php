@@ -19,7 +19,11 @@ class QSO
 	private ?string $band;
 	private string $bandRX;
 	private string $rstR;
+	private string $srx;
+	private string $srxstring;
 	private string $rstS;
+	private string $stx;
+	private string $stxstring;
 	private string $propagationMode;
 	private string $satelliteMode;
 	private string $satelliteName;
@@ -75,6 +79,8 @@ class QSO
 	private string $contest;
 	/** Orbit type **/
 	private string $orbit;
+
+	private string $stationpower;
 
 	/**
 	 * @param array $data Does no validation, it's assumed to be a row from the database in array format
@@ -159,6 +165,10 @@ class QSO
 		$this->bandRX = $data['COL_BAND_RX'] ?? '';
 		$this->rstR = $data['COL_RST_RCVD'];
 		$this->rstS = $data['COL_RST_SENT'];
+		$this->srx = $data['COL_SRX'] ?? '';
+		$this->srxstring = $data['COL_SRX_STRING'] ?? '';
+		$this->stx = $data['COL_STX'] ?? '';
+		$this->stxstring = $data['COL_STX_STRING'] ?? '';
 		$this->propagationMode = $data['COL_PROP_MODE'] ?? '';
 		$this->satelliteMode = $data['COL_SAT_MODE'] != '' ? (strlen($data['COL_SAT_MODE']) == 2 ? (strtoupper($data['COL_SAT_MODE'][0]).'/'.strtoupper($data['COL_SAT_MODE'][1])) : strtoupper($data['COL_SAT_MODE'])) : '';
 		$this->satelliteName = $data['COL_SAT_NAME'] != '' ? (isset($data['orbit']) && $data['orbit'] != '' ? $data['COL_SAT_NAME']." (".$data['orbit'].") " : $data['COL_SAT_NAME']) : '';
@@ -230,6 +240,8 @@ class QSO
 		$this->contest = $data['contestname'] ?? '';
 
 		$this->profilename = $data['station_profile_name'] ?? '';
+
+		$this->stationpower = $data['COL_TX_PWR'] ?? '';
 	}
 
 	/**
@@ -646,7 +658,22 @@ class QSO
 	 */
 	public function getRstR(): string
 	{
-		return $this->rstR;
+		$returnstring = '';
+		if ($this->srx != '' || $this->srxstring != '') {
+			$returnstring = '<span data-bs-toggle="tooltip" title="'. $this->contest .'" class="badge text-bg-light">';
+
+			if ($this->srx != '') {
+				$returnstring .= sprintf("%03d", $this->srx);
+			}
+
+			if ($this->srxstring != '') {
+				$returnstring .= $this->srxstring;
+			}
+
+			$returnstring .= '</span>';
+		}
+
+		return $this->rstR . $returnstring;
 	}
 
 	/**
@@ -654,7 +681,22 @@ class QSO
 	 */
 	public function getRstS(): string
 	{
-		return $this->rstS;
+		$returnstring = '';
+		if ($this->stx != '' || $this->stxstring != '') {
+			$returnstring = '<span data-bs-toggle="tooltip" title="'. $this->contest .'" class="badge text-bg-light">';
+
+			if ($this->stx != '') {
+				$returnstring .= sprintf("%03d", $this->stx);
+			}
+
+			if ($this->stxstring != '') {
+				$returnstring .= $this->stxstring;
+			}
+
+			$returnstring .= '</span>';
+		}
+
+		return $this->rstS . $returnstring;
 	}
 
 	/**
@@ -965,8 +1007,8 @@ class QSO
 			'de' => $this->de,
 			'dx' => $this->getDx(),
 			'mode' => $this->getFormattedMode(),
-			'rstS' => $this->rstS,
-			'rstR' => $this->rstR,
+			'rstS' => $this->getRstS(),
+			'rstR' => $this->getRstR(),
 			'band' => $this->getFormattedBand(),
 			'deRefs' => $this->getFormattedDeRefs(),
 			'qslVia' => $this->QSLVia,
@@ -998,7 +1040,8 @@ class QSO
 			'wwff' => $this->getFormattedWwff(),
 			'sig' => $this->getFormattedSig(),
 			'continent' => $this->continent,
-			'profilename' => $this->profilename
+			'profilename' => $this->profilename,
+			'stationpower' => $this->stationpower
 		];
 	}
 
