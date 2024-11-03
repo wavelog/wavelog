@@ -27,6 +27,7 @@ class Staticmap extends CI_Controller {
 
         // Optional override-parameters
         $band = $this->input->get('band', TRUE) ?? 'nbf';
+        $orbit = $this->input->get('orbit', TRUE) ?? '';
         $continent = $this->input->get('continent', TRUE) ?? 'nC';
         $thememode = $this->input->get('theme', TRUE) ?? null;
         $hide_home = $this->input->get('hide_home', TRUE) == 1 ? true : false;
@@ -142,7 +143,7 @@ class Staticmap extends CI_Controller {
                 }
                 $centerMap = $this->qra->getCenterLatLng($coordinates);
 
-                $qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent); // TODO: Allow 'all' option
+                $qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent, $orbit); // TODO: Allow 'all' option
 
                 $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones);
 
