@@ -978,7 +978,7 @@ $(".js-save-to-log").click(function () {
 						data: { qsos: JSON.stringify(qsos) },
 						success: function (result) {
 							wait_dialog.close();
-							if (result == '' || result.includes("Duplicate for")) {
+							if (result == 'success' || result.includes("Duplicate for")) {
 								BootstrapDialog.alert({
 									title: lang_qso_simplefle_success_save_to_log_header,
 									message: lang_qso_simplefle_success_save_to_log,
@@ -990,6 +990,7 @@ $(".js-save-to-log").click(function () {
 									}
 								});
 							} else {
+								wait_dialog.close();
 								BootstrapDialog.alert({
 									title: lang_general_word_error,
 									message: lang_qso_simplefle_error_save_to_log + "<br><br><code><pre>" + JSON.stringify(result) + "</pre></code>",

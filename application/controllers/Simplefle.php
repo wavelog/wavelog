@@ -94,10 +94,16 @@ class SimpleFLE extends CI_Controller {
 				log_message('debug', 'SimpleFLE, save_qsos(); For QSO: ' . $qso['call'] . ' on ' . $qso['qso_date'] . ' Warning: ' . json_encode($result));
 			}
 
-			$result[] = $one_result;
+			if ($one_result != '') {
+				$result[] = $one_result;
+			}
 		}
 
-		echo json_encode($result);
+		if (empty($result)) {
+			echo "success";
+		} else {
+			echo json_encode($result);
+		}
 	}
 	
 }
