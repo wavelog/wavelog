@@ -1004,6 +1004,13 @@ $("#locator").on("input focus", function () {
 	}
 });
 
+$("#locator").on("focusout", function () {
+	if ($(this).val().length == 0) {
+		$('#locator_info').text("");
+		document.getElementById("distance").value = null;
+	}
+});
+
 // Change report based on mode
 $('.mode').on('change', function () {
 	setRst($('.mode').val());
