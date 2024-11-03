@@ -27,6 +27,7 @@
 			<option value="continent"><?= __("Continent"); ?></option>
 			<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
 			<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
+			<option value="stationpower"><?= __("Station power"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 

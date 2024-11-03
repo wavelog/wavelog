@@ -182,7 +182,7 @@ class API extends CI_Controller {
 
 		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
 		   http_response_code(401);
-		   echo json_encode(['status' => 'failed', 'reason' => "missing api key"]);
+		   echo json_encode(['status' => 'failed', 'reason' => "missing or wrong api key"]);
 		   die();
 		}
 

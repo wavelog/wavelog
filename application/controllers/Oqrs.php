@@ -197,9 +197,9 @@ class Oqrs extends CI_Controller {
 			$this->load->model('user_model');
 
 			$email = $this->user_model->get_email_address($id);
-
+			
 			$this->load->model('oqrs_model');
-
+			
 			$sendEmail = $this->oqrs_model->getOqrsEmailSetting($id);
 
 			if($email != "" && $sendEmail == "1") {
@@ -224,19 +224,21 @@ class Oqrs extends CI_Controller {
 				$data['callsign'] = $this->security->xss_clean($postdata['callsign']);
 				$data['usermessage'] = $this->security->xss_clean($postdata['message']);
 
-				$message = $this->load->view('email/oqrs_request', $data,  TRUE);
+				$this->load->model('Stations');
+				$uid = $this->Stations->profile($id)->row()->user_id;
+				$message = $this->email->load('email/oqrs_request', $data,  $this->user_model->get_by_id($uid)->row()->user_language);
 
 				$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 				$this->email->to($email);
 				$this->email->reply_to($this->security->xss_clean($postdata['email']), strtoupper($data['callsign']));
 
-				$this->email->subject('Wavelog OQRS from ' . strtoupper($data['callsign']));
-				$this->email->message($message);
+				$this->email->subject($message['subject']);
+				$this->email->message($message['body']);
 
 				if (! $this->email->send()) {
 					log_message('error', 'OQRS Alert! Email settings are incorrect.');
 				} else {
-					log_message('info', 'An OQRS request is made.');
+					log_message('debug', 'An OQRS request is made.');
 				}
 			}
 		}

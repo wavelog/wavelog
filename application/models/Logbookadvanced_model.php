@@ -624,6 +624,7 @@ class Logbookadvanced_model extends CI_Model {
 			case "continent": $column = 'COL_CONT'; break;
 			case "qrzsent": $column = 'COL_QRZCOM_QSO_UPLOAD_STATUS'; break;
 			case "qrzreceived": $column = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS'; break;
+			case "stationpower": $column = 'COL_TX_PWR'; break;
 			default: return;
 		}
 
@@ -781,7 +782,14 @@ class Logbookadvanced_model extends CI_Model {
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
-		} else {
+		} else if ($column == 'COL_TX_PWR') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_TX_PWR = ? " .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		}else {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".".$column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 

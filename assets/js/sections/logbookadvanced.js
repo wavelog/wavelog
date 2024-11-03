@@ -130,6 +130,9 @@ function updateRow(qso) {
 	if (user_options.profilename.show == "true"){
 		cells.eq(c++).text(qso.profilename);
 	}
+	if (user_options.stationpower.show == "true"){
+		cells.eq(c++).text(qso.stationpower);
+	}
 
 	$('[data-bs-toggle="tooltip"]').tooltip();
 	return row;
@@ -291,6 +294,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.profilename.show == "true"){
 			data.push(qso.profilename);
+		}
+		if (user_options.stationpower.show == "true"){
+			data.push(qso.stationpower);
 		}
 
 		let createdRow = table.row.add(data).index();
@@ -1151,6 +1157,7 @@ function saveOptions() {
 			continent: $('input[name="continent"]').is(':checked') ? true : false,
 			qrz: $('input[name="qrz"]').is(':checked') ? true : false,
 			profilename: $('input[name="profilename"]').is(':checked') ? true : false,
+			stationpower: $('input[name="stationpower"]').is(':checked') ? true : false,
 			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
 			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
 			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,

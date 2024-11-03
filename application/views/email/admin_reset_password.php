@@ -1,16 +1,19 @@
-Hello <?php echo $user_firstname . ", " . $user_callsign ?>
+<?php
 
+$message['subject'] = __("Wavelog Account Password Reset");
 
-An admin initiated a password reset for your Wavelog account.
+$message['body'] = sprintf(__("Hello %s"), $user_firstname . ", " . $user_callsign) . "\n\n" .
 
-Your username is:    <?php echo $user_name; ?>
+__("An admin initiated a password reset for your Wavelog account.") . "\n\n" . 
 
+sprintf(__("Your username is: %s"), $user_name) . "\n\n" . 
 
-Click here to reset your password: <?php echo site_url('user/reset_password/').$reset_code; ?>
+sprintf(__("Click here to reset your password: %s"), site_url('user/reset_password/') . $reset_code) . "\n\n" . 
 
-
-If you didn't request any password reset, just ignore this email and talk to an admin of your Wavelog instance.
+__("If you didn't request any password reset, just ignore this email and talk to an admin of your Wavelog instance.
 
 Regards,
 
-Wavelog
+Wavelog");
+
+echo json_encode($message);

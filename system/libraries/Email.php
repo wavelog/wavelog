@@ -462,6 +462,41 @@ class CI_Email {
 
 	// --------------------------------------------------------------------
 
+	/** 
+	 * Load Email Message
+	 * 
+	 * @param	string	$view
+	 * @param	array	$data = array()
+	 * @param 	string  language
+	 * 
+	 * @return	string  message in json format
+	 */
+
+	public function load($view, $data = array(), $language = NULL) {
+		$CI =& get_instance();
+		$gettext = new Gettext;
+
+		$origin_lang = $gettext->find_by('folder', $CI->input->cookie('language'))['gettext'];
+
+		if ($language != NULL) {
+			// log_message('error', 'Email Class: Language is set to ' . $language);
+			$language = $gettext->find_by('folder', $language)['gettext'];
+			putenv('LANGUAGE=' . $language);
+			_setlocale(LC_ALL, $language);
+		}
+
+		$message = $CI->load->view($view, $data, TRUE);
+
+		if ($language != NULL) {
+			putenv('LANGUAGE=' . $origin_lang);
+			_setlocale(LC_ALL, $origin_lang);
+		}
+
+		return json_decode(html_entity_decode($message), true);
+	}
+
+	// --------------------------------------------------------------------
+
 	/**
 	 * Set FROM
 	 *
