@@ -30,6 +30,7 @@
     var lang_general_word_qso_data = "<?= __("QSO Data"); ?>";
     var lang_general_edit_qso = "<?= __("Edit QSO"); ?>";
     var lang_general_word_danger = "<?= __("DANGER"); ?>";
+    var lang_general_word_error = "<?= __("ERROR"); ?>";
     var lang_general_word_attention = "<?= __("Attention"); ?>";
     var lang_general_word_warning = "<?= __("Warning"); ?>";
     var lang_general_word_cancel = "<?= __("Cancel"); ?>";
@@ -49,6 +50,7 @@
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
     var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
+    var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>"
 </script>
 
 <!-- General JS Files used across Wavelog -->
