@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-31 09:27+0000\n"
+"POT-Creation-Date: 2024-11-03 12:40+0000\n"
 "PO-Revision-Date: 2024-10-18 12:15+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -11451,13 +11451,16 @@ msgstr ""
 msgid "Club Log Email/Callsign"
 msgstr "Correo/Indicativo de Club Log"
 
-#: application/views/user/edit.php:762
-msgid "The Email or Callsign you use to login to Club Log"
-msgstr "El Correo o el Indicativo que utiliza para iniciar sesión en Club Log"
-
-#: application/views/user/edit.php:767
+#: application/views/user/edit.php:766
 msgid "Club Log Password"
 msgstr "Contraseña de Club Log"
+
+#: application/views/user/edit.php:771
+#, php-format
+msgid ""
+"If you have 2FA enabled at Clublog, you have to generate an App. Password to "
+"use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
+msgstr ""
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
@@ -11926,6 +11929,10 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "The Email or Callsign you use to login to Club Log"
+#~ msgstr ""
+#~ "El Correo o el Indicativo que utiliza para iniciar sesión en Club Log"
 
 #~ msgid "Countries Breakdown"
 #~ msgstr "Desglose por Países"

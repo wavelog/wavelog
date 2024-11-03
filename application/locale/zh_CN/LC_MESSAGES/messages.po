@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-31 09:27+0000\n"
+"POT-Creation-Date: 2024-11-03 12:40+0000\n"
 "PO-Revision-Date: 2024-10-31 07:32+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -11468,13 +11468,16 @@ msgstr "Clublog"
 msgid "Club Log Email/Callsign"
 msgstr "Clublog 邮件地址/呼号"
 
-#: application/views/user/edit.php:762
-msgid "The Email or Callsign you use to login to Club Log"
-msgstr "登录Clublog的电子邮件或呼号"
-
-#: application/views/user/edit.php:767
+#: application/views/user/edit.php:766
 msgid "Club Log Password"
 msgstr "Clublog 密码"
+
+#: application/views/user/edit.php:771
+#, php-format
+msgid ""
+"If you have 2FA enabled at Clublog, you have to generate an App. Password to "
+"use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
+msgstr ""
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
@@ -11948,6 +11951,9 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "The Email or Callsign you use to login to Club Log"
+#~ msgstr "登录Clublog的电子邮件或呼号"
 
 #~ msgid "Countries Breakdown"
 #~ msgstr "DXCC 实体分析"

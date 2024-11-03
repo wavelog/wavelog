@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-31 09:27+0000\n"
+"POT-Creation-Date: 2024-11-03 12:40+0000\n"
 "PO-Revision-Date: 2024-10-28 06:28+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -11863,13 +11863,16 @@ msgstr "Clublog"
 msgid "Club Log Email/Callsign"
 msgstr "Емэйл/позывной"
 
-#: application/views/user/edit.php:762
-msgid "The Email or Callsign you use to login to Club Log"
-msgstr "Емэйл или позывной, которые вы используете для логина в ClubLog"
-
-#: application/views/user/edit.php:767
+#: application/views/user/edit.php:766
 msgid "Club Log Password"
 msgstr "Пароль"
+
+#: application/views/user/edit.php:771
+#, php-format
+msgid ""
+"If you have 2FA enabled at Clublog, you have to generate an App. Password to "
+"use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
+msgstr ""
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
@@ -12368,6 +12371,9 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
+
+#~ msgid "The Email or Callsign you use to login to Club Log"
+#~ msgstr "Емэйл или позывной, которые вы используете для логина в ClubLog"
 
 #~ msgid "Countries Breakdown"
 #~ msgstr "Статистика по странам"

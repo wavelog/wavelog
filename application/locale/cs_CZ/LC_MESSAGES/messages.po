@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-31 09:27+0000\n"
+"POT-Creation-Date: 2024-11-03 12:40+0000\n"
 "PO-Revision-Date: 2024-09-23 14:46+0000\n"
 "Last-Translator: Filip Melik <filip@melik.cz>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -11320,15 +11320,16 @@ msgstr ""
 msgid "Club Log Email/Callsign"
 msgstr "Email nebo značka volacího znaku Club Logu"
 
-#: application/views/user/edit.php:762
-msgid "The Email or Callsign you use to login to Club Log"
-msgstr ""
-"E-mail nebo značka volacího znaku, kterou používáte pro přihlášení do Club "
-"Logu"
-
-#: application/views/user/edit.php:767
+#: application/views/user/edit.php:766
 msgid "Club Log Password"
 msgstr "Heslo Club Logu"
+
+#: application/views/user/edit.php:771
+#, php-format
+msgid ""
+"If you have 2FA enabled at Clublog, you have to generate an App. Password to "
+"use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
+msgstr ""
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
@@ -11797,6 +11798,11 @@ msgstr "Tvoje značka:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "The Email or Callsign you use to login to Club Log"
+#~ msgstr ""
+#~ "E-mail nebo značka volacího znaku, kterou používáte pro přihlášení do "
+#~ "Club Logu"
 
 #~ msgid "Countries Breakdown"
 #~ msgstr "Počet zemí"

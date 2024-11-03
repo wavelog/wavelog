@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-31 09:27+0000\n"
+"POT-Creation-Date: 2024-11-03 12:40+0000\n"
 "PO-Revision-Date: 2024-11-01 08:53+0000\n"
 "Last-Translator: Plamen Panteleev <lz1ppl@abv.bg>\n"
 "Language-Team: Bulgarian <https://translate.wavelog.org/projects/wavelog/"
@@ -11286,12 +11286,15 @@ msgstr ""
 msgid "Club Log Email/Callsign"
 msgstr ""
 
-#: application/views/user/edit.php:762
-msgid "The Email or Callsign you use to login to Club Log"
+#: application/views/user/edit.php:766
+msgid "Club Log Password"
 msgstr ""
 
-#: application/views/user/edit.php:767
-msgid "Club Log Password"
+#: application/views/user/edit.php:771
+#, php-format
+msgid ""
+"If you have 2FA enabled at Clublog, you have to generate an App. Password to "
+"use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
 
 #: application/views/user/edit.php:788
