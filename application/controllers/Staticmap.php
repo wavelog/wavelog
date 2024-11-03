@@ -89,7 +89,7 @@ class Staticmap extends CI_Controller {
         $cacheDir = realpath($cachepath . "staticmap_images/");
 
         // create a unique filename for the cache
-        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . ($night_shadow == false ? 0 : 1) . ($pathlines == false ? 0 : 1) . ($cqzones == false ? 0 : 1) . ($ituzones == false ? 0 : 1);
+        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . ($night_shadow == false ? 0 : 1) . ($pathlines == false ? 0 : 1) . ($cqzones == false ? 0 : 1) . ($ituzones == false ? 0 : 1) . ($orbit ?? 'none');
         $filename = crc32('staticmap_' . $slug) . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
         $filepath = $cacheDir . '/' . $filename;
 
