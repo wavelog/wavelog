@@ -2531,7 +2531,7 @@ class Logbook_model extends CI_Model {
 		  OR q.COL_LOTW_QSL_RCVD = 'Y'
 		  OR q.COL_EQSL_QSL_RCVD = 'Y')
 		  AND q.station_id in (" . $location_list . ")
-		  AND (b.bandgroup='hf' or b.band = '6m') " . ($from ?? '') . " " . ($till ?? '') . "
+		  AND (b.bandgroup='hf' or b.band = '6m' or b.band = '160m') " . ($from ?? '') . " " . ($till ?? '') . "
 		  GROUP BY dx.prefix,dx.name , CASE
 		  WHEN q.col_mode = 'CW' THEN 'C'
 		  WHEN mo.qrgmode = 'DATA' THEN 'R'
