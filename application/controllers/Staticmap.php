@@ -27,10 +27,15 @@ class Staticmap extends CI_Controller {
 
         // Optional override-parameters
         $band = $this->input->get('band', TRUE) ?? 'nbf';
-        $orbit = $this->input->get('orbit', TRUE) ?? '';
+        $orbit = $this->input->get('orbit', TRUE) ?? 'nOrb';
         $continent = $this->input->get('continent', TRUE) ?? 'nC';
         $thememode = $this->input->get('theme', TRUE) ?? null;
         $hide_home = $this->input->get('hide_home', TRUE) == 1 ? true : false;
+
+        // if the user defines an Satellite Orbit, we need to set the band to SAT
+        if ($orbit != 'nOrb') {
+            $band = 'SAT';
+        }
 
         /**
          * Based on Export Settings -> Overlays and QSO Count
@@ -89,7 +94,7 @@ class Staticmap extends CI_Controller {
         $cacheDir = realpath($cachepath . "staticmap_images/");
 
         // create a unique filename for the cache
-        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . ($night_shadow == false ? 0 : 1) . ($pathlines == false ? 0 : 1) . ($cqzones == false ? 0 : 1) . ($ituzones == false ? 0 : 1) . ($orbit ?? 'none');
+        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . ($night_shadow == false ? 0 : 1) . ($pathlines == false ? 0 : 1) . ($cqzones == false ? 0 : 1) . ($ituzones == false ? 0 : 1) . $orbit;
         $filename = crc32('staticmap_' . $slug) . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
         $filepath = $cacheDir . '/' . $filename;
 
@@ -143,7 +148,7 @@ class Staticmap extends CI_Controller {
                 }
                 $centerMap = $this->qra->getCenterLatLng($coordinates);
 
-                $qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent, $orbit); // TODO: Allow 'all' option
+                $qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent, $orbit == 'nOrb' ? '' : $orbit); // TODO: Allow 'all' option
 
                 $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones);
 
