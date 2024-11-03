@@ -1,14 +1,26 @@
-Hi,
+<?php
 
-You got an OQRS request from <?php echo strtoupper($callsign); ?>.
-<?php if ($usermessage != "") { ?>
-The user entered the following message:
+$message['subject'] = sprintf(__("Wavelog OQRS from %s"), strtoupper($callsign));
 
-<?php echo $usermessage."\n"; ?>
-<?php } ?>
+if ($usermessage != '') {
+    $um_formatted = __("The user entered the following message: ") . "\n\n";
+    $um_formatted .= "------------" . "\n";
+    $um_formatted .= $usermessage . "\n";
+    $um_formatted .= "------------" . "\n\n";
+} else {
+    $um_formatted = __("The user did not enter any additional message.") . "\n\n";
+}
 
-Please log into your Wavelog and process it.
+$message['body'] = sprintf( __("Hi,
+
+You got an OQRS request from %s."), strtoupper($callsign)) . "\n\n" .
+
+$um_formatted .
+
+__("Please log into your Wavelog and process it.
 
 Regards,
 
-Wavelog
+Wavelog");
+
+echo json_encode($message);
