@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-11-03 13:15+0000\n"
-"PO-Revision-Date: 2024-10-31 07:32+0000\n"
+"PO-Revision-Date: 2024-11-03 16:00+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -6731,27 +6731,27 @@ msgstr "来源"
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
 msgid "Wavelog Account Password Reset"
-msgstr ""
+msgstr "重置 Wavelog 账户密码"
 
 #: application/views/email/admin_reset_password.php:5
 #, php-format
 msgid "Hello %s"
-msgstr ""
+msgstr "您好 %s"
 
 #: application/views/email/admin_reset_password.php:7
 msgid "An admin initiated a password reset for your Wavelog account."
-msgstr ""
+msgstr "系统管理员已将您的密码重置。"
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr ""
+msgstr "您的用户名：%s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr ""
+msgstr "点击链接重置密码：%s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -6762,6 +6762,11 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"如您未申请过重置密码，请忽略此邮件并向本站管理员报告。\n"
+"\n"
+"向您致意\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -6769,6 +6774,9 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"您好，\n"
+"\n"
+"有人请求重置您的 Wavelog 账户密码。"
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -6778,19 +6786,24 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"如您未申请重置，请忽略。\n"
+"\n"
+"向您致意，\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
 msgid "Wavelog OQRS from %s"
-msgstr ""
+msgstr "Wavelog OQRS 来自 %s"
 
 #: application/views/email/oqrs_request.php:6
 msgid "The user entered the following message: "
-msgstr ""
+msgstr "用户输入了如下信息： "
 
 #: application/views/email/oqrs_request.php:11
 msgid "The user did not enter any additional message."
-msgstr ""
+msgstr "用户未提供附加信息。"
 
 #: application/views/email/oqrs_request.php:14
 #, php-format
@@ -6799,6 +6812,9 @@ msgid ""
 "\n"
 "You got an OQRS request from %s."
 msgstr ""
+"您好，\n"
+"\n"
+"您收到来自 %s 的 OQRS 请求。"
 
 #: application/views/email/oqrs_request.php:20
 msgid ""
@@ -6808,10 +6824,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"请登录 Wavelog 网站处理该请求。\n"
+"\n"
+"向您致意，\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
-msgstr ""
+msgstr "Wavelog 测试邮件"
 
 #: application/views/email/testmail.php:5
 msgid ""
@@ -6825,6 +6846,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"您好，\n"
+"\n"
+"此邮件是 Wavelog 测试邮件。\n"
+"\n"
+"如果此邮件成功发送，意味着 Wavelog 邮件配置一切正常。\n"
+"\n"
+"向您致意，\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
@@ -7847,7 +7877,7 @@ msgstr "QRZ 已接收"
 #: application/views/logbookadvanced/index.php:683
 #: application/views/logbookadvanced/useroptions.php:154
 msgid "Station power"
-msgstr ""
+msgstr "台站功率"
 
 #: application/views/logbookadvanced/edit.php:80
 msgid "SAT Mode"
@@ -11582,6 +11612,8 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"如在 Clublog 启用了双因素验证，则需要在 Clublog 为 Wavelog 创建一个 App. "
+"Password，创建地址 %s %s。"
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
