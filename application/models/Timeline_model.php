@@ -29,7 +29,7 @@ class Timeline_model extends CI_Model {
 		$sql = "select min(date(COL_TIME_ON)) date, prefix, col_country, end, adif from "
 			.$this->config->item('table_name'). " thcv
 			join dxcc_entities on thcv.col_dxcc = dxcc_entities.adif
-			where station_id in (" . $location_list . ")";
+			where station_id in (" . $location_list . ") and col_dxcc > 0";
 
 		if ($band == 'SAT') {				// Left for compatibility reasons
 			$sql .= " and col_prop_mode = ?";
@@ -38,7 +38,7 @@ class Timeline_model extends CI_Model {
 			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
-			}	
+			}
 			if ( $propmode == 'NoSAT' ) {		// All without SAT
 				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propmode == 'None') {	// Empty Propmode
@@ -79,7 +79,7 @@ class Timeline_model extends CI_Model {
 			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
-			}	
+			}
 			if ( $propmode == 'NoSAT' ) {		// All without SAT
 				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propmode == 'None') {	// Empty Propmode
@@ -123,7 +123,7 @@ class Timeline_model extends CI_Model {
 			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
-			}	
+			}
 			if ( $propmode == 'NoSAT' ) {		// All without SAT
 				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propmode == 'None') {	// Empty Propmode
@@ -168,7 +168,7 @@ class Timeline_model extends CI_Model {
 			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
-			}	
+			}
 			if ( $propmode == 'NoSAT' ) {		// All without SAT
 				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propmode == 'None') {	// Empty Propmode
@@ -210,7 +210,7 @@ class Timeline_model extends CI_Model {
 			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
-			}	
+			}
 			if ( $propmode == 'NoSAT' ) {		// All without SAT
 				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propmode == 'None') {	// Empty Propmode
@@ -262,7 +262,7 @@ class Timeline_model extends CI_Model {
 				$sql .= " col_clublog_qso_download_status = 'Y' or";
 			}
 			$sql.=' 1=0)';
-		} 
+		}
 		return $sql;
 	}
 
@@ -279,7 +279,7 @@ class Timeline_model extends CI_Model {
 		} else {					// Not SAT
 			if ($band != 'All') {			// Band set? Take care of it
 				$this->db->where('col_band', $band);
-			}	
+			}
 			if ( $propmode == 'NoSAT' ) {		// All without SAT
 				$this->db->where('col_prop_mode !=', 'SAT');
 			} elseif ($propmode == 'None') {	// Empty Propmode
@@ -358,7 +358,7 @@ class Timeline_model extends CI_Model {
 			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
-			}	
+			}
 			if ( $propmode == 'NoSAT' ) {		// All without SAT
 				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propmode == 'None') {	// Empty Propmode
@@ -399,7 +399,7 @@ class Timeline_model extends CI_Model {
 			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
-			}	
+			}
 			if ( $propmode == 'NoSAT' ) {		// All without SAT
 				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propmode == 'None') {	// Empty Propmode
