@@ -21,10 +21,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-11-03 13:15+0000\n"
-"PO-Revision-Date: 2024-10-28 07:47+0000\n"
+"PO-Revision-Date: 2024-11-03 13:52+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6962,27 +6962,29 @@ msgstr "Quelle"
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
 msgid "Wavelog Account Password Reset"
-msgstr ""
+msgstr "Wavelog Benutzerkonto Passwort zurücksetzen"
 
 #: application/views/email/admin_reset_password.php:5
 #, php-format
 msgid "Hello %s"
-msgstr ""
+msgstr "Hallo %s"
 
 #: application/views/email/admin_reset_password.php:7
 msgid "An admin initiated a password reset for your Wavelog account."
 msgstr ""
+"Ein Admin hat eine Passwortzurücksetzung für dein Wavelog-Benutzerkonto "
+"initiiert."
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr ""
+msgstr "Dein Benutzername lautet: %s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr ""
+msgstr "Klicke hier, um dein Passwort zurückzusetzen: %s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -6993,6 +6995,12 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Wenn du kein Passwort-Reset angefordert hast, ignoriere einfach diese E-Mail "
+"und sprich mit einem Admin deiner Wavelog-Instanz.\n"
+"\n"
+"Gruss,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -7000,6 +7008,10 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"Hi,\n"
+"\n"
+"Du oder jemand anderes hat eine Passwortzurücksetzung für dein Wavelog-Konto "
+"angefordert."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -7009,19 +7021,24 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Wenn du das nicht angefordert hast, einfach ignorieren.\n"
+"\n"
+"Gruss,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
 msgid "Wavelog OQRS from %s"
-msgstr ""
+msgstr "Wavelog OQRS von %s"
 
 #: application/views/email/oqrs_request.php:6
 msgid "The user entered the following message: "
-msgstr ""
+msgstr "Der Benutzer hat die folgende Nachricht eingegeben: "
 
 #: application/views/email/oqrs_request.php:11
 msgid "The user did not enter any additional message."
-msgstr ""
+msgstr "Der Benutzer hat keine zusätzliche Nachricht eingegeben."
 
 #: application/views/email/oqrs_request.php:14
 #, php-format
@@ -7030,6 +7047,9 @@ msgid ""
 "\n"
 "You got an OQRS request from %s."
 msgstr ""
+"Hi,\n"
+"\n"
+"Du hast eine OQRS-Anfrage von %s erhalten."
 
 #: application/views/email/oqrs_request.php:20
 msgid ""
@@ -7039,10 +7059,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Bitte logge dich in dein Wavelog-Konto ein und bearbeite die Anfrage.\n"
+"\n"
+"Gruss,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
-msgstr ""
+msgstr "Wavelog Test-Mail"
 
 #: application/views/email/testmail.php:5
 msgid ""
@@ -7056,6 +7081,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Hi,\n"
+"\n"
+"Dies ist eine Test-E-Mail von deiner Wavelog-Instanz.\n"
+"\n"
+"Wenn du diese E-Mail erhalten hast, sind deine Mail-Einstellungen korrekt.\n"
+"\n"
+"Gruss,\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
@@ -8114,7 +8148,7 @@ msgstr "QRZ empfangen"
 #: application/views/logbookadvanced/index.php:683
 #: application/views/logbookadvanced/useroptions.php:154
 msgid "Station power"
-msgstr ""
+msgstr "Sendeleistung"
 
 #: application/views/logbookadvanced/edit.php:80
 msgid "SAT Mode"
@@ -12038,6 +12072,9 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Wenn du 2FA bei Clublog aktiviert hast, musst du ein App-Passwort "
+"generieren, um Clublog in Wavelog zu nutzen. Besuche %sdeine Clublog-"
+"Einstellungsseite%s, um dies zu tun."
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
