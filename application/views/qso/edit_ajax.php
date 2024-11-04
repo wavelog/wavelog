@@ -183,7 +183,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div>
+                                        <div class="col-sm-6">
                                             <label for="prop_mode"><?= __("Propagation Mode"); ?></label>
                                             <select class="form-select" id="prop_mode" name="prop_mode">
                                                 <option value="" <?php if ($qso->COL_PROP_MODE == "") { echo "selected=\"selected\""; } ?>></option>
@@ -215,6 +215,16 @@
                                             </small>
                                         </div>
                                         <input type="hidden" class="form-control" id="country" name="country" value="<?php echo $qso->COL_COUNTRY; ?>">
+                                        <div class="mb-3 col-sm-6">
+                                            <label for="ant_path"><?= __("Antenna Path"); ?></label>
+                                            <select class="form-select" id="ant_path" name="ant_path">
+                                                <option value=""></option>
+                                                <option value="G" <?php if ($qso->COL_ANT_PATH == "G") { echo "selected=\"selected\""; } ?>><?= __("Greyline"); ?></option>
+                                                <option value="O" <?php if ($qso->COL_ANT_PATH == "O") { echo "selected=\"selected\""; } ?>><?= __("Other"); ?></option>
+                                                <option value="S" <?php if ($qso->COL_ANT_PATH == "S") { echo "selected=\"selected\""; } ?>><?= __("Short Path"); ?></option>
+                                                <option value="L" <?php if ($qso->COL_ANT_PATH == "L") { echo "selected=\"selected\""; } ?>><?= __("Long Path"); ?></option>
+                                            </select>
+                                        </div>
                                     </div>
 
                                     <div class="row mb-3">

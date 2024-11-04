@@ -1427,6 +1427,7 @@ class Logbook_model extends CI_Model {
 			'COL_DARC_DOK' => strtoupper($this->input->post('darc_dok')),
 			'COL_QTH' => $this->input->post('qth'),
 			'COL_PROP_MODE' => $this->input->post('prop_mode'),
+			'COL_ANT_PATH' => $this->input->post('ant_path'),
 			'COL_FREQ_RX' => $this->parse_frequency($this->input->post('freq_display_rx')),
 			'COL_STX_STRING' => strtoupper(trim($this->input->post('stx_string'))),
 			'COL_SRX_STRING' => strtoupper(trim($this->input->post('srx_string'))),
@@ -3975,7 +3976,7 @@ class Logbook_model extends CI_Model {
 			}
 
 			if (isset($record['ant_path'])) {
-				$input_ant_path = mb_strimwidth($record['ant_path'], 0, 1);
+				$input_ant_path = strtoupper(mb_strimwidth($record['ant_path'], 0, 1));
 			} else {
 				$input_ant_path = NULL;
 			}
