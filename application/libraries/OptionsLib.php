@@ -201,4 +201,16 @@ class OptionsLib {
         return json_encode($jsonout);
     }
 
+    function get_callbook_password() {
+        $CI =& get_instance();
+        if (!$CI->load->is_loaded('encryption')) {
+			$CI->load->library('encryption');
+		}
+
+        $pwd_encrypted = $this->get_option('callbook_password');
+        $pwd_decrypted = $CI->encryption->decrypt($pwd_encrypted);
+
+        return $pwd_decrypted;
+    }
+
 }

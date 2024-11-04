@@ -824,18 +824,18 @@ class Logbook extends CI_Controller {
 			$html .= "</div>";
 			return $html;
 		} else {
-			if ($this->optionslib->get_option('callbook_provider') == "qrz" && $this->optionslib->get_option('callbook_username') != null && $this->optionslib->get_option('callbook_password') != null) {
+			if ($this->optionslib->get_option('callbook_provider') == "qrz" && $this->optionslib->get_option('callbook_username') != null && $this->optionslib->get_callbook_password() != null) {
 				// Lookup using QRZ
 				$this->load->library('qrz');
 
 				if(!$this->session->userdata('qrz_session_key')) {
-					$qrz_session_key = $this->qrz->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_option('callbook_password'));
+					$qrz_session_key = $this->qrz->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_callbook_password());
 					$this->session->set_userdata('qrz_session_key', $qrz_session_key);
 				}
 				$callsign['callsign'] = $this->qrz->search($id, $this->session->userdata('qrz_session_key'), $this->optionslib->get_option('callbook_fullname'));
 
 				if (empty($callsign['callsign']['callsign'])) {
-					$qrz_session_key = $this->qrz->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_option('callbook_password'));
+					$qrz_session_key = $this->qrz->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_callbook_password());
 					$this->session->set_userdata('qrz_session_key', $qrz_session_key);
 					$callsign['callsign'] = $this->qrz->search($id, $this->session->userdata('qrz_session_key'), $this->optionslib->get_option('callbook_fullname'));
 				}
@@ -844,12 +844,12 @@ class Logbook extends CI_Controller {
 					$entity = $this->logbook_model->get_entity($callsign['callsign']['dxcc']);
 					$callsign['callsign']['dxcc_name'] = $entity['name'];
 				}
-			} else if ($this->optionslib->get_option('callbook_provider') == "hamqth" && $this->optionslib->get_option('callbook_username') != null && $this->optionslib->get_option('callbook_password') != null) {
+			} else if ($this->optionslib->get_option('callbook_provider') == "hamqth" && $this->optionslib->get_option('callbook_username') != null && $this->optionslib->get_callbook_password() != null) {
 				// Load the HamQTH library
 				$this->load->library('hamqth');
 
 				if(!$this->session->userdata('hamqth_session_key')) {
-					$hamqth_session_key = $this->hamqth->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_option('callbook_password'));
+					$hamqth_session_key = $this->hamqth->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_callbook_password());
 					$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
 				}
 
@@ -857,7 +857,7 @@ class Logbook extends CI_Controller {
 
 				// If HamQTH session has expired, start a new session and retry the search.
 				if($callsign['callsign']['error'] == "Session does not exist or expired") {
-					$hamqth_session_key = $this->hamqth->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_option('callbook_password'));
+					$hamqth_session_key = $this->hamqth->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_callbook_password());
 					$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
 					$callsign['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
 				}
@@ -924,12 +924,12 @@ class Logbook extends CI_Controller {
 					$data['results'] = $iota_search;
 					$this->load->view('view_log/partial/log_ajax.php', $data);
 				} else {
-					if ($this->optionslib->get_option('callbook_provider') == "qrz" && $this->optionslib->get_option('callbook_username') != null && $this->optionslib->get_option('callbook_password') != null) {
+					if ($this->optionslib->get_option('callbook_provider') == "qrz" && $this->optionslib->get_option('callbook_username') != null && $this->optionslib->get_callbook_password() != null) {
 						// Lookup using QRZ
 						$this->load->library('qrz');
 
 						if(!$this->session->userdata('qrz_session_key')) {
-							$qrz_session_key = $this->qrz->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_option('callbook_password'));
+							$qrz_session_key = $this->qrz->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_callbook_password());
 							$this->session->set_userdata('qrz_session_key', $qrz_session_key);
 						}
 
@@ -944,12 +944,12 @@ class Logbook extends CI_Controller {
 						if (isset($data['callsign']['error'])) {
 							$data['error'] = $data['callsign']['error'];
 						}
-					} else if ($this->optionslib->get_option('callbook_provider') == "hamqth" && $this->optionslib->get_option('callbook_username') != null && $this->optionslib->get_option('callbook_password') != null) {
+					} else if ($this->optionslib->get_option('callbook_provider') == "hamqth" && $this->optionslib->get_option('callbook_username') != null && $this->optionslib->get_callbook_password() != null) {
 						// Load the HamQTH library
 						$this->load->library('hamqth');
 
 						if(!$this->session->userdata('hamqth_session_key')) {
-							$hamqth_session_key = $this->hamqth->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_option('callbook_password'));
+							$hamqth_session_key = $this->hamqth->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_callbook_password());
 							$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
 						}
 
@@ -957,7 +957,7 @@ class Logbook extends CI_Controller {
 
 						// If HamQTH session has expired, start a new session and retry the search.
 						if($data['callsign']['error'] == "Session does not exist or expired") {
-							$hamqth_session_key = $this->hamqth->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_option('callbook_password'));
+							$hamqth_session_key = $this->hamqth->session($this->optionslib->get_option('callbook_username'), $this->optionslib->get_callbook_password());
 							$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
 							$data['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
 						}
