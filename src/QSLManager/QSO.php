@@ -83,6 +83,8 @@ class QSO
 	private string $stationpower;
 	private float $distance;
 
+	private string $measurement_base;
+
 	/**
 	 * @param array $data Does no validation, it's assumed to be a row from the database in array format
 	 */
@@ -244,6 +246,15 @@ class QSO
 
 		$this->stationpower = $data['COL_TX_PWR'] ?? '';
 		$this->distance = (float)$data['COL_DISTANCE'] ?? 0;
+
+		if ($CI->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $CI->config->item('measurement_base');
+		}
+		else {
+			$measurement_base = $CI->session->userdata('user_measurement_base');
+		}
+
+		$this->measurement_base = $measurement_base;
 	}
 
 	/**
@@ -1001,7 +1012,7 @@ class QSO
 		return '<span id="operator">' . $this->operator . '</span>';
 	}
 
-	public function toArray($measurement_base): array
+	public function toArray(): array
 	{
 		return [
 			'qsoID' => $this->qsoID,
@@ -1044,15 +1055,15 @@ class QSO
 			'continent' => $this->continent,
 			'profilename' => $this->profilename,
 			'stationpower' => $this->stationpower,
-			'distance' => $this->getFormattedDistance($measurement_base)
+			'distance' => $this->getFormattedDistance()
 		];
 	}
 
-	private function getFormattedDistance($measurement_base): string
+	private function getFormattedDistance(): string
 	{
 		if ($this->distance == 0) return '';
 
-		switch ($measurement_base) {
+		switch ($this->measurement_base) {
 			case 'M':
 				$unit = "mi";
 				break;

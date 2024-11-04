@@ -149,15 +149,8 @@ class Logbookadvanced extends CI_Controller {
 
 		$qsos = [];
 
-		if ($this->session->userdata('user_measurement_base') == NULL) {
-			$measurement_base = $this->config->item('measurement_base');
-		}
-		else {
-			$measurement_base = $this->session->userdata('user_measurement_base');
-		}
-
 		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
-			$qsos[] = $qso->toArray($measurement_base);
+			$qsos[] = $qso->toArray();
 		}
 
 		header("Content-Type: application/json");
@@ -183,17 +176,10 @@ class Logbookadvanced extends CI_Controller {
 			$qso = $this->logbook_model->qso_info($qsoID)->row_array();
 		}
 
-		if ($this->session->userdata('user_measurement_base') == NULL) {
-			$measurement_base = $this->config->item('measurement_base');
-		}
-		else {
-			$measurement_base = $this->session->userdata('user_measurement_base');
-		}
-
 		$qsoObj = new QSO($qso);
 
 		header("Content-Type: application/json");
-		echo json_encode($qsoObj->toArray($measurement_base));
+		echo json_encode($qsoObj->toArray());
 	}
 
 	function export_to_adif() {
@@ -243,16 +229,9 @@ class Logbookadvanced extends CI_Controller {
             $qsos[] = new QSO($data);
         }
 
-		if ($this->session->userdata('user_measurement_base') == NULL) {
-			$measurement_base = $this->config->item('measurement_base');
-		}
-		else {
-			$measurement_base = $this->session->userdata('user_measurement_base');
-		}
-
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray($measurement_base);
+			$q[] = $qso->toArray();
 		}
 
 		header("Content-Type: application/json");
@@ -278,16 +257,9 @@ class Logbookadvanced extends CI_Controller {
             $qsos[] = new QSO($data);
         }
 
-		if ($this->session->userdata('user_measurement_base') == NULL) {
-			$measurement_base = $this->config->item('measurement_base');
-		}
-		else {
-			$measurement_base = $this->session->userdata('user_measurement_base');
-		}
-
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray($measurement_base);
+			$q[] = $qso->toArray();
 		}
 
 		header("Content-Type: application/json");
@@ -643,15 +615,8 @@ class Logbookadvanced extends CI_Controller {
 			$custom_date_format = $this->config->item('qso_date_format');
 		}
 
-		if ($this->session->userdata('user_measurement_base') == NULL) {
-			$measurement_base = $this->config->item('measurement_base');
-		}
-		else {
-			$measurement_base = $this->session->userdata('user_measurement_base');
-		}
-
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray($measurement_base);
+			$q[] = $qso->toArray();
 		}
 
 		header("Content-Type: application/json");
