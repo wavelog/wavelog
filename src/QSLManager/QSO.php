@@ -81,6 +81,7 @@ class QSO
 	private string $orbit;
 
 	private string $stationpower;
+	private float $distance;
 
 	/**
 	 * @param array $data Does no validation, it's assumed to be a row from the database in array format
@@ -242,6 +243,7 @@ class QSO
 		$this->profilename = $data['station_profile_name'] ?? '';
 
 		$this->stationpower = $data['COL_TX_PWR'] ?? '';
+		$this->distance = (float)$data['COL_DISTANCE'] ?? 0;
 	}
 
 	/**
@@ -999,7 +1001,7 @@ class QSO
 		return '<span id="operator">' . $this->operator . '</span>';
 	}
 
-	public function toArray(): array
+	public function toArray($measurement_base): array
 	{
 		return [
 			'qsoID' => $this->qsoID,
@@ -1041,8 +1043,37 @@ class QSO
 			'sig' => $this->getFormattedSig(),
 			'continent' => $this->continent,
 			'profilename' => $this->profilename,
-			'stationpower' => $this->stationpower
+			'stationpower' => $this->stationpower,
+			'distance' => $this->getFormattedDistance($measurement_base)
 		];
+	}
+
+	private function getFormattedDistance($measurement_base): string
+	{
+		if ($this->distance == 0) return '';
+
+		switch ($measurement_base) {
+			case 'M':
+				$unit = "mi";
+				break;
+			case 'K':
+				$unit = "km";
+				break;
+			case 'N':
+				$unit = "nmi";
+				break;
+			default:
+				$unit = "km";
+			}
+
+		if ($unit == 'mi') {
+			$this->distance = round($this->distance * 0.621371, 1);
+		}
+		if ($unit == 'nmi') {
+			$this->distance = round($this->distance * 0.539957, 1);
+		}
+
+		return $this->distance . ' ' . $unit;
 	}
 
 	private function getFormattedDok(): string

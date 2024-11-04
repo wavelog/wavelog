@@ -127,6 +127,9 @@ function updateRow(qso) {
 	if (user_options.continent.show == "true"){
 		cells.eq(c++).text(qso.continent);
 	}
+	if (user_options.distance.show == "true"){
+		cells.eq(c++).text(qso.distance);
+	}
 	if (user_options.profilename.show == "true"){
 		cells.eq(c++).text(qso.profilename);
 	}
@@ -291,6 +294,9 @@ function loadQSOTable(rows) {
 				// Continent is valid
 				data.push(qso.continent);
 			}
+		}
+		if (user_options.distance.show == "true"){
+			data.push(qso.distance);
 		}
 		if (user_options.profilename.show == "true"){
 			data.push(qso.profilename);
@@ -1155,6 +1161,7 @@ function saveOptions() {
 			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
 			sig: $('input[name="sig"]').is(':checked') ? true : false,
 			continent: $('input[name="continent"]').is(':checked') ? true : false,
+			distance: $('input[name="distance"]').is(':checked') ? true : false,
 			qrz: $('input[name="qrz"]').is(':checked') ? true : false,
 			profilename: $('input[name="profilename"]').is(':checked') ? true : false,
 			stationpower: $('input[name="stationpower"]').is(':checked') ? true : false,

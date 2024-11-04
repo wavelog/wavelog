@@ -147,6 +147,10 @@
 			<td><div class="form-check"><input class="form-check-input" name="continent" type="checkbox" <?php if (($options->continent->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
+			<td><?= __("Distance"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="distance" type="checkbox" <?php if (($options->distance->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
 			<td><?= __("Profile name"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="profilename" type="checkbox" <?php if (($options->profilename->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>

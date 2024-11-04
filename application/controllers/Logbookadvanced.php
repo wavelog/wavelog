@@ -148,8 +148,16 @@ class Logbookadvanced extends CI_Controller {
 		);
 
 		$qsos = [];
+
+		if ($this->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $this->config->item('measurement_base');
+		}
+		else {
+			$measurement_base = $this->session->userdata('user_measurement_base');
+		}
+
 		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
-			$qsos[] = $qso->toArray();
+			$qsos[] = $qso->toArray($measurement_base);
 		}
 
 		header("Content-Type: application/json");
@@ -175,10 +183,17 @@ class Logbookadvanced extends CI_Controller {
 			$qso = $this->logbook_model->qso_info($qsoID)->row_array();
 		}
 
+		if ($this->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $this->config->item('measurement_base');
+		}
+		else {
+			$measurement_base = $this->session->userdata('user_measurement_base');
+		}
+
 		$qsoObj = new QSO($qso);
 
 		header("Content-Type: application/json");
-		echo json_encode($qsoObj->toArray());
+		echo json_encode($qsoObj->toArray($measurement_base));
 	}
 
 	function export_to_adif() {
@@ -228,9 +243,16 @@ class Logbookadvanced extends CI_Controller {
             $qsos[] = new QSO($data);
         }
 
+		if ($this->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $this->config->item('measurement_base');
+		}
+		else {
+			$measurement_base = $this->session->userdata('user_measurement_base');
+		}
+
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$q[] = $qso->toArray($measurement_base);
 		}
 
 		header("Content-Type: application/json");
@@ -256,9 +278,16 @@ class Logbookadvanced extends CI_Controller {
             $qsos[] = new QSO($data);
         }
 
+		if ($this->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $this->config->item('measurement_base');
+		}
+		else {
+			$measurement_base = $this->session->userdata('user_measurement_base');
+		}
+
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$q[] = $qso->toArray($measurement_base);
 		}
 
 		header("Content-Type: application/json");
@@ -557,6 +586,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['qrz']['show'] = $this->input->post('qrz');
 		$json_string['profilename']['show'] = $this->input->post('profilename');
 		$json_string['stationpower']['show'] = $this->input->post('stationpower');
+		$json_string['distance']['show'] = $this->input->post('distance');
 
 		$obj['column_settings']= json_encode($json_string);
 
@@ -604,8 +634,24 @@ class Logbookadvanced extends CI_Controller {
         }
 
 		$q = [];
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		if ($this->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $this->config->item('measurement_base');
+		}
+		else {
+			$measurement_base = $this->session->userdata('user_measurement_base');
+		}
+
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$q[] = $qso->toArray($measurement_base);
 		}
 
 		header("Content-Type: application/json");
