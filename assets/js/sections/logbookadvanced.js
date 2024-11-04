@@ -159,6 +159,12 @@ function loadQSOTable(rows) {
 			"language": {
 				url: getDataTablesLanguageUrl(),
 			},
+			"columnDefs": [
+            {
+                "targets": $(".distance-column-sort").index(),
+                "type": "distance", // use the custom sort type from the previous example
+            }
+        ]
 			// colReorder: {
 			// 	order: [0, 2,1,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18]
 			// 	// order: [0, customsortorder]
@@ -312,6 +318,11 @@ function loadQSOTable(rows) {
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
 }
+
+$.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+    var num = parseFloat(data);
+    return isNaN(num) ? 0 : num;
+};
 
 function processNextCallbookItem() {
 	if (!inCallbookProcessing) return;

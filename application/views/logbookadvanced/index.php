@@ -682,7 +682,7 @@ $options = json_decode($options);
                         echo '<th>' . __("Continent") . '</th>';
                     } ?>
 					<?php if (($options->distance->show ?? "true") == "true") {
-                        echo '<th>' . __("Distance") . '</th>';
+                        echo '<th class="distance-column-sort">' . __("Distance") . '</th>';
                     } ?>
 					<?php if (($options->profilename->show ?? "true") == "true") {
                         echo '<th>' . __("Profile name") . '</th>';
