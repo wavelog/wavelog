@@ -27,7 +27,7 @@
 
                     <?php if(validation_errors()) { ?>
                     <div class="alert alert-danger">
-                        <a class="btn-close" data-bs-dismiss="alert">x</a>
+                        <a class="btn-close" data-bs-dismiss="alert"></a>
                         <?php echo validation_errors(); ?>
                     </div>
                     <?php } ?>
@@ -44,6 +44,11 @@
                                         <option value="disabled" <?php if($callbook_provider == '') { echo "selected"; } ?>><?= __("Disabled"); ?></option>
                                         <option value="qrz" <?php if($callbook_provider == "qrz") { echo "selected"; } ?>>QRZ.com</option>
                                         <option value="hamqth" <?php if($callbook_provider == "hamqth") { echo "selected"; } ?>>HamQTH.com</option>
+                                    </select>
+                                    <label class="mt-3" for="callbook_fullname"><?= __("Use Full Name"); ?> <i id="fullname_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This defines whether you want to retrieve the operator's full name, including first and last names. In some countries, this may not be legal due to data protection laws."); ?>"></i></label>
+                                    <select class="form-select" name="callbook_fullname" id="callbook_fullname">
+                                        <option value="0" <?php if($callbook_fullname == "0" || $callbook_fullname == '') { echo "selected"; } ?>><?= __("No"); ?></option>
+                                        <option value="1" <?php if($callbook_fullname == "1") { echo "selected"; } ?>><?= __("Yes"); ?></option>
                                     </select>
                                 </div>
                                 <div class="col">

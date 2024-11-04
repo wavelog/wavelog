@@ -134,6 +134,7 @@ class Options extends CI_Controller {
 		$data['sub_heading'] = __("Callbook");
 
 		$data['callbook_provider'] = $this->optionslib->get_option('callbook_provider') == '' ? 'disabled' : $this->optionslib->get_option('callbook_provider');
+		$data['callbook_fullname'] = $this->optionslib->get_option('callbook_fullname') ?? '0';
 		$data['callbook_username'] = $this->optionslib->get_option('callbook_username') ?? '';
 		$data['callbook_password'] = $this->optionslib->get_option('callbook_password') ?? '';
 
@@ -152,7 +153,7 @@ class Options extends CI_Controller {
 		$this->load->library('form_validation');
 
 		$fvalidate = TRUE;
-		if ($this->input->post('callbook', TRUE) != "disabled") {
+		if ($this->input->post('callbook_provider', TRUE) != "disabled") {
 			$this->form_validation->set_rules('callbook_username', 'Username', 'required');
 			$this->form_validation->set_rules('callbook_password', 'Password', 'required');
 			$fvalidate = $this->form_validation->run();
@@ -164,6 +165,7 @@ class Options extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 		} else {
 			$success = $this->optionslib->update('callbook_provider', $this->input->post('callbook_provider', true), 'yes');
+			$success = $this->optionslib->update('callbook_fullname', $this->input->post('callbook_fullname', true), 'yes');
 			$success = $this->optionslib->update('callbook_username', $this->input->post('callbook_username', true), 'yes');
 			$success = $this->optionslib->update('callbook_password', $this->input->post('callbook_password', true), 'yes');
 			if($success == TRUE) {
