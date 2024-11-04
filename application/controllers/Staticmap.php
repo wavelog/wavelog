@@ -33,6 +33,9 @@ class Staticmap extends CI_Controller {
         $hide_home = $this->input->get('hide_home', TRUE) == 1 ? true : false;
         $contest = $this->input->get('contest', TRUE) ?? 'nContest';
 
+        $start_date = $this->input->get('start_date', TRUE) ?? 'noStart';   // Format YYYY-MM-DD
+        $end_date = $this->input->get('end_date', TRUE) ?? 'noEnd';          // Format YYYY-MM-DD
+
         // if the user defines an Satellite Orbit, we need to set the band to SAT
         if ($orbit != 'nOrb') {
             $band = 'SAT';
@@ -95,7 +98,7 @@ class Staticmap extends CI_Controller {
         $cacheDir = realpath($cachepath . "staticmap_images/");
 
         // create a unique filename for the cache
-        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . ($night_shadow == false ? 0 : 1) . ($pathlines == false ? 0 : 1) . ($cqzones == false ? 0 : 1) . ($ituzones == false ? 0 : 1) . $orbit . $contest;   
+        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . ($night_shadow == false ? 0 : 1) . ($pathlines == false ? 0 : 1) . ($cqzones == false ? 0 : 1) . ($ituzones == false ? 0 : 1) . $orbit . $contest . $start_date . $end_date;   
         $filename = crc32('staticmap_' . $slug) . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
         $filepath = $cacheDir . '/' . $filename;
 
@@ -149,7 +152,16 @@ class Staticmap extends CI_Controller {
                 }
                 $centerMap = $this->qra->getCenterLatLng($coordinates);
 
-                $qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent, $orbit == 'nOrb' ? '' : $orbit, $contest == 'nContest' ? '' : $contest);
+                $qsos = $this->visitor_model->get_qsos(
+                    $qsocount, 
+                    $logbooks_locations_array, 
+                    $band == 'nbf' ? '' : $band, 
+                    $continent == 'nC' ? '' : $continent, 
+                    $orbit == 'nOrb' ? '' : $orbit, 
+                    $contest == 'nContest' ? '' : $contest,
+                    $start_date == 'noStart' ? '' : $start_date,
+                    $end_date == 'noEnd' ? '' : $end_date
+                );
 
                 $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones);
 

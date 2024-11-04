@@ -2,13 +2,22 @@
 
 class Visitor_model extends CI_Model {
 
-	function get_qsos($num, $StationLocationsArray, $band = '', $continent = '', $orbit = '', $contest = '') {
+	function get_qsos($num, $StationLocationsArray, $band = '', $continent = '', $orbit = '', $contest = '', $start_date = '', $end_date = '') {
 		$this->db->select($this->config->item('table_name').'.*, station_profile.*');
 		$this->db->from($this->config->item('table_name'));
 
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		if ($band == 'SAT') {
 			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME', 'left');
+		}
+
+		if ($start_date != '') {
+			$start_date = date('Y-m-d', strtotime($start_date));
+			$this->db->where($this->config->item('table_name').'.COL_TIME_ON >=', $start_date);
+		}
+		if ($end_date != '') {
+			$end_date = date('Y-m-d', strtotime($end_date));
+			$this->db->where($this->config->item('table_name').'.COL_TIME_ON <=', $end_date);
 		}
 
 		if ($band != '') {
