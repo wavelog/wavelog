@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-11-04 13:50+0000\n"
-"PO-Revision-Date: 2024-10-28 06:28+0000\n"
+"PO-Revision-Date: 2024-11-05 08:16+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6942,27 +6942,27 @@ msgstr "Источник"
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
 msgid "Wavelog Account Password Reset"
-msgstr ""
+msgstr "Сброс пароля учетной записи Wavelog"
 
 #: application/views/email/admin_reset_password.php:5
 #, php-format
 msgid "Hello %s"
-msgstr ""
+msgstr "Привет %s"
 
 #: application/views/email/admin_reset_password.php:7
 msgid "An admin initiated a password reset for your Wavelog account."
-msgstr ""
+msgstr "Администратор инициировал сброс пароля для вашего аккаунта Wavelog."
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr ""
+msgstr "Ваше имя пользователя: %s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr ""
+msgstr "Нажмите здесь, чтобы сбросить ваш пароль: %s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -6973,6 +6973,12 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Если вы не запрашивали сброс пароля, просто проигнорируйте это письмо и "
+"поговорите с администратором вашей Wavelog-установки.\n"
+"\n"
+"С уважением,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -6980,6 +6986,9 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"Привет,\n"
+"\n"
+"Вы или кто-то другой запросили сброс пароля для вашей учетной записи Wavelog."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -6989,19 +6998,24 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Если вы этого не запрашивали, просто проигнорируйте.\n"
+"\n"
+"С уважением,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
 msgid "Wavelog OQRS from %s"
-msgstr ""
+msgstr "Wavelog OQRS от %s"
 
 #: application/views/email/oqrs_request.php:6
 msgid "The user entered the following message: "
-msgstr ""
+msgstr "Пользователь ввел следующее сообщение: "
 
 #: application/views/email/oqrs_request.php:11
 msgid "The user did not enter any additional message."
-msgstr ""
+msgstr "Пользователь не ввел дополнительного сообщения."
 
 #: application/views/email/oqrs_request.php:14
 #, php-format
@@ -7010,6 +7024,9 @@ msgid ""
 "\n"
 "You got an OQRS request from %s."
 msgstr ""
+"Привет,\n"
+"\n"
+"Вы получили запрос OQRS от %s."
 
 #: application/views/email/oqrs_request.php:20
 msgid ""
@@ -7019,10 +7036,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Пожалуйста, войдите в свой Wavelog и обработайте его.\n"
+"\n"
+"С уважением,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
-msgstr ""
+msgstr "Тестовое письмо Wavelog"
 
 #: application/views/email/testmail.php:5
 msgid ""
@@ -7036,6 +7058,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Привет,\n"
+"\n"
+"Это тестовое письмо от вашего сервера Wavelog.\n"
+"\n"
+"Если вы получили это письмо, то почта настроена правильно.\n"
+"\n"
+"С уважением,\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
@@ -7357,7 +7388,7 @@ msgstr "Редактировать QSO"
 
 #: application/views/interface_assets/footer.php:33
 msgid "ERROR"
-msgstr ""
+msgstr "ОШИБКА"
 
 #: application/views/interface_assets/footer.php:34
 msgid "Attention"
@@ -8096,7 +8127,7 @@ msgstr "QRZ получено"
 #: application/views/logbookadvanced/index.php:691
 #: application/views/logbookadvanced/useroptions.php:158
 msgid "Station power"
-msgstr ""
+msgstr "Выходная мощность"
 
 #: application/views/logbookadvanced/edit.php:80
 msgid "SAT Mode"
@@ -10621,11 +10652,11 @@ msgstr "QSO записаны!"
 
 #: application/views/simplefle/index.php:37
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
-msgstr ""
+msgstr "QSO были успешно занесены в журнал! Дубликаты пропущены."
 
 #: application/views/simplefle/index.php:39
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr ""
+msgstr "При сохранении QSO в журнал произошла ошибка! Ошибка: "
 
 #: application/views/simplefle/index.php:42
 msgid "What is that?"
@@ -11991,6 +12022,9 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Если у вас включена двухфакторная аутентификация на Clublog, вам нужно "
+"сгенерировать пароль приложения для использования Clublog в Wavelog. "
+"Посетите %sстраницу настроек вашего Clublog%s, чтобы сделать это."
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
