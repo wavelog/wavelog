@@ -148,6 +148,7 @@ class Logbookadvanced extends CI_Controller {
 		);
 
 		$qsos = [];
+
 		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
 			$qsos[] = $qso->toArray();
 		}
@@ -557,6 +558,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['qrz']['show'] = $this->input->post('qrz');
 		$json_string['profilename']['show'] = $this->input->post('profilename');
 		$json_string['stationpower']['show'] = $this->input->post('stationpower');
+		$json_string['distance']['show'] = $this->input->post('distance');
 
 		$obj['column_settings']= json_encode($json_string);
 
@@ -604,6 +606,15 @@ class Logbookadvanced extends CI_Controller {
         }
 
 		$q = [];
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
 		foreach ($qsos as $qso) {
 			$q[] = $qso->toArray();
 		}

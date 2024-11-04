@@ -81,6 +81,9 @@ class QSO
 	private string $orbit;
 
 	private string $stationpower;
+	private float $distance;
+
+	private string $measurement_base;
 
 	/**
 	 * @param array $data Does no validation, it's assumed to be a row from the database in array format
@@ -242,6 +245,16 @@ class QSO
 		$this->profilename = $data['station_profile_name'] ?? '';
 
 		$this->stationpower = $data['COL_TX_PWR'] ?? '';
+		$this->distance = (float)$data['COL_DISTANCE'] ?? 0;
+
+		if ($CI->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $CI->config->item('measurement_base');
+		}
+		else {
+			$measurement_base = $CI->session->userdata('user_measurement_base');
+		}
+
+		$this->measurement_base = $measurement_base;
 	}
 
 	/**
@@ -1041,8 +1054,37 @@ class QSO
 			'sig' => $this->getFormattedSig(),
 			'continent' => $this->continent,
 			'profilename' => $this->profilename,
-			'stationpower' => $this->stationpower
+			'stationpower' => $this->stationpower,
+			'distance' => $this->getFormattedDistance()
 		];
+	}
+
+	private function getFormattedDistance(): string
+	{
+		if ($this->distance == 0) return '';
+
+		switch ($this->measurement_base) {
+			case 'M':
+				$unit = "mi";
+				break;
+			case 'K':
+				$unit = "km";
+				break;
+			case 'N':
+				$unit = "nmi";
+				break;
+			default:
+				$unit = "km";
+			}
+
+		if ($unit == 'mi') {
+			$this->distance = round($this->distance * 0.621371, 1);
+		}
+		if ($unit == 'nmi') {
+			$this->distance = round($this->distance * 0.539957, 1);
+		}
+
+		return $this->distance . ' ' . $unit;
 	}
 
 	private function getFormattedDok(): string
