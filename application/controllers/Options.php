@@ -134,7 +134,7 @@ class Options extends CI_Controller {
 		$data['sub_heading'] = __("Callbook");
 
 		$data['callbook_provider'] = $this->optionslib->get_option('callbook_provider') == '' ? 'disabled' : $this->optionslib->get_option('callbook_provider');
-		$data['callbook_fullname'] = $this->optionslib->get_option('callbook_fullname') ?? '0';
+		$data['callbook_fullname'] = $this->optionslib->get_option('callbook_fullname') == '' ? '0' : $this->optionslib->get_option('callbook_fullname');
 		$data['callbook_username'] = $this->optionslib->get_option('callbook_username') ?? '';
 		$data['callbook_password'] = $this->optionslib->get_option('callbook_password') ?? '';
 
