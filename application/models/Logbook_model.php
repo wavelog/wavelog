@@ -3977,6 +3977,9 @@ class Logbook_model extends CI_Model {
 
 			if (isset($record['ant_path'])) {
 				$input_ant_path = strtoupper(mb_strimwidth($record['ant_path'], 0, 1));
+				if ($input_ant_path != 'G' && $input_ant_path != 'O' && $input_ant_path != 'S' && $input_ant_path != 'L') {
+					$input_ant_path = NULL;
+				}
 			} else {
 				$input_ant_path = NULL;
 			}
