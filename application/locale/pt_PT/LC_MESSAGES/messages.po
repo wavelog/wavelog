@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-11-03 20:45+0000\n"
-"PO-Revision-Date: 2024-10-27 19:03+0000\n"
+"PO-Revision-Date: 2024-11-04 01:09+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -6947,27 +6947,28 @@ msgstr "Fonte"
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
 msgid "Wavelog Account Password Reset"
-msgstr ""
+msgstr "Redefinição de Senha da Conta Wavelog"
 
 #: application/views/email/admin_reset_password.php:5
 #, php-format
 msgid "Hello %s"
-msgstr ""
+msgstr "Olá %s"
 
 #: application/views/email/admin_reset_password.php:7
 msgid "An admin initiated a password reset for your Wavelog account."
 msgstr ""
+"Um administrador iniciou uma redefinição de senha para a sua conta Wavelog."
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr ""
+msgstr "O seu nome de utilizador é: %s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr ""
+msgstr "Clique aqui para redefinir a sua palavra-passe: %s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -6978,6 +6979,12 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Se não solicitou a redefinição de senha, basta ignorar este email e falar "
+"com um administrador da sua instância do Wavelog.\n"
+"\n"
+"Cumprimentos,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -6985,6 +6992,9 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"Olá,\n"
+"\n"
+"Você ou outra pessoa solicitou uma redefinição de senha na sua conta Wavelog."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -6994,19 +7004,24 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Se não solicitou isto, basta ignorar.\n"
+"\n"
+"Cumprimentos,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
 msgid "Wavelog OQRS from %s"
-msgstr ""
+msgstr "OQRS Wavelog de %s"
 
 #: application/views/email/oqrs_request.php:6
 msgid "The user entered the following message: "
-msgstr ""
+msgstr "O utilizador inseriu a seguinte mensagem: "
 
 #: application/views/email/oqrs_request.php:11
 msgid "The user did not enter any additional message."
-msgstr ""
+msgstr "O utilizador não introduziu nenhuma mensagem adicional."
 
 #: application/views/email/oqrs_request.php:14
 #, php-format
@@ -7015,6 +7030,9 @@ msgid ""
 "\n"
 "You got an OQRS request from %s."
 msgstr ""
+"Olá,\n"
+"\n"
+"Recebeu um pedido OQRS de %s."
 
 #: application/views/email/oqrs_request.php:20
 msgid ""
@@ -7024,10 +7042,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Por favor, faça login no seu Wavelog e processe-o.\n"
+"\n"
+"Cumprimentos,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
-msgstr ""
+msgstr "E-mail teste do Wavelog"
 
 #: application/views/email/testmail.php:5
 msgid ""
@@ -7041,6 +7064,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Olá,\n"
+"\n"
+"Este é um email de teste da sua instância do Wavelog.\n"
+"\n"
+"Se recebeu este email, as suas definições de email estão corretas.\n"
+"\n"
+"Cumprimentos,\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
@@ -7363,7 +7395,7 @@ msgstr "Editar contacto"
 
 #: application/views/interface_assets/footer.php:33
 msgid "ERROR"
-msgstr ""
+msgstr "ERRO"
 
 #: application/views/interface_assets/footer.php:34
 msgid "Attention"
@@ -8106,7 +8138,7 @@ msgstr "QRZ recebido"
 #: application/views/logbookadvanced/index.php:683
 #: application/views/logbookadvanced/useroptions.php:154
 msgid "Station power"
-msgstr ""
+msgstr "Potência da estação"
 
 #: application/views/logbookadvanced/edit.php:80
 msgid "SAT Mode"
@@ -10647,10 +10679,12 @@ msgstr "Contacto registado!"
 #: application/views/simplefle/index.php:37
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
 msgstr ""
+"Os contactos foram registados com sucesso no logbook! Duplicados foram "
+"ignorados."
 
 #: application/views/simplefle/index.php:39
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr ""
+msgstr "Ocorreu um erro ao guardar o contacto no logbook! Erro: "
 
 #: application/views/simplefle/index.php:42
 msgid "What is that?"
@@ -12031,6 +12065,9 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Se tiver a autenticação de dois fatores ativada no Clublog, tem de gerar uma "
+"senha de aplicação para usar o Clublog no Wavelog. Visite %sa sua página de "
+"definições do Clublog%s para o fazer."
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
