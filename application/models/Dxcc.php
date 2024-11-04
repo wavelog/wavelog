@@ -488,7 +488,7 @@ class DXCC extends CI_Model {
 		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
 		$sql .= " join dxcc_entities d on thcv.col_dxcc = d.adif";
 
-		$sql .= " where station_id in (" . $location_list . ")";
+		$sql .= " where station_id in (" . $location_list . ") and col_dxcc > 0";
 
 		if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode = ?";
