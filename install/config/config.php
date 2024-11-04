@@ -9,12 +9,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 |	'app_name'		Name of the App 'Wavelog'
 |	'directory'		directory where wavelog is installed eg "logger"
-|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but supports "qrz"
 */
 
 $config['app_name'] = 'Wavelog';
 $config['directory'] = '/%directory%';
-$config['callbook'] = '%callbook%'; // Options are hamqth or qrz
 
 $config['datadir'] = null; // default to install directory
 
@@ -31,31 +29,6 @@ $config['datadir'] = null; // default to install directory
 $config['table_name'] = 'TABLE_HRD_CONTACTS_V01';
 $config['locator'] = '%baselocator%';
 $config['display_freq'] = true;
-
-/*
-|--------------------------------------------------------------------------
-| QRZ Login Options
-|--------------------------------------------------------------------------
-|
-| 	'qrz_username'	QRZ.com user login
-|	'qrz_password'	QRZ.com user password
-|	'use_fullname'  Get full names from QRZ, may not be GDPR compliant
-*/
-
-$config['qrz_username'] = '%qrz_username%';
-$config['qrz_password'] = '%qrz_password%';
-$config['use_fullname'] = false;
-
-/*
-|--------------------------------------------------------------------------
-| HamQTH Login Options
-|--------------------------------------------------------------------------
-|
-| 	'hamqth_username'	HamQTH user login
-|	'hamqth_password'	HamQTH user password
-*/
-$config['hamqth_username'] = '%hamqth_username%';
-$config['hamqth_password'] = '%hamqth_password%';
 
 /*
 |--------------------------------------------------------------------------
