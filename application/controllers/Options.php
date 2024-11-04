@@ -6,15 +6,12 @@
 
 class Options extends CI_Controller {
 
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-
-
 	}
 
 
@@ -22,10 +19,7 @@ class Options extends CI_Controller {
 
 	// Default /options view just gives some text to explain the options area
     function index() {
-
-
         //echo $this->config->item('option_theme');
-
 		//echo $this->optionslib->get_option('theme');
 
 		$data['page_title'] = __("Wavelog Options");
@@ -37,7 +31,6 @@ class Options extends CI_Controller {
 
 	// function used to display the /appearance url
 	function appearance() {
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Appearance");
 
@@ -52,7 +45,6 @@ class Options extends CI_Controller {
 
 	// Handles saving the appreance options to the options system.
 	function appearance_save() {
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Appearance");
 
@@ -62,14 +54,11 @@ class Options extends CI_Controller {
 
 		$this->form_validation->set_rules('theme', 'theme', 'required');
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('options/appearance');
 			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
+		} else {
 			// Update theme choice within the options system
 			$theme_update_status = $this->optionslib->update('theme', $this->input->post('theme'), 'yes');
 
@@ -139,19 +128,65 @@ class Options extends CI_Controller {
 		}
     }
 
+	// function used to display the /callbook url
+	function callbook() {
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("Callbook");
+
+		$data['callbook_provider'] = $this->optionslib->get_option('callbook_provider') == '' ? 'disabled' : $this->optionslib->get_option('callbook_provider');
+		$data['callbook_username'] = $this->optionslib->get_option('callbook_username') ?? '';
+		$data['callbook_password'] = $this->optionslib->get_option('callbook_password') ?? '';
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('options/callbook');
+		$this->load->view('interface_assets/footer');
+	}
+
+	// Handles saving the callbook options to the options system.
+	function callbook_save() {
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("Callbook");
+
+		$this->load->helper(array('form', 'url'));
+
+		$this->load->library('form_validation');
+
+		$fvalidate = TRUE;
+		if ($this->input->post('callbook', TRUE) != "disabled") {
+			$this->form_validation->set_rules('callbook_username', 'Username', 'required');
+			$this->form_validation->set_rules('callbook_password', 'Password', 'required');
+			$fvalidate = $this->form_validation->run();
+		}
+
+		if ($fvalidate == FALSE) {
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('options/callbook');
+			$this->load->view('interface_assets/footer');
+		} else {
+			$success = $this->optionslib->update('callbook_provider', $this->input->post('callbook_provider', true), 'yes');
+			$success = $this->optionslib->update('callbook_username', $this->input->post('callbook_username', true), 'yes');
+			$success = $this->optionslib->update('callbook_password', $this->input->post('callbook_password', true), 'yes');
+			if($success == TRUE) {
+				$this->session->set_flashdata('success', __("Callbook settings saved"));
+			} else {
+				$this->session->set_flashdata('danger', __("Callbook settings not saved. Something went wrong."));
+			}
+			redirect('/options/callbook');
+		}
+	}
+
 	// function used to display the /dxcluster url
 	function dxcluster() {
-			$data['page_title'] = __("Wavelog Options");
-			$data['sub_heading'] = __("DXCluster");
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("DXCluster");
 
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('options/dxcluster');
-			$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('options/dxcluster');
+		$this->load->view('interface_assets/footer');
 	}
 
 	// Handles saving the DXCluster options to the options system.
 	function dxcluster_save() {
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("DXCluster");
 
@@ -186,20 +221,18 @@ class Options extends CI_Controller {
 		}
 	}
 
-		// function used to display the /radio url
-		function radio() {
+	// function used to display the /radio url
+	function radio() {
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("Radio Settings");
 
-			$data['page_title'] = __("Wavelog Options");
-			$data['sub_heading'] = __("Radio Settings");
-
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('options/radios');
-			$this->load->view('interface_assets/footer');
-		}
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('options/radios');
+		$this->load->view('interface_assets/footer');
+	}
 
 	// Handles saving the radio options to the options system.
 	function radio_save() {
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Radio Settings");
 
@@ -209,14 +242,11 @@ class Options extends CI_Controller {
 
 		$this->form_validation->set_rules('radioTimeout', 'radioTimeout', 'required');
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('options/radios');
 			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
+		} else {
 			// Update theme choice within the options system
 			$radioTimeout_update = $this->optionslib->update('cat_timeout_interval', $this->input->post('radioTimeout'), 'yes');
 
@@ -232,7 +262,6 @@ class Options extends CI_Controller {
 
 	// function used to display the /appearance url
 	function email() {
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Email");
 
@@ -243,87 +272,80 @@ class Options extends CI_Controller {
 
 	// Handles saving the radio options to the options system.
 	function email_save() {
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("Email");
 
-			$data['page_title'] = __("Wavelog Options");
-			$data['sub_heading'] = __("Email");
-	
-			$this->load->helper(array('form', 'url'));
-	
-			$this->load->library('form_validation');
-	
-			$this->form_validation->set_rules('emailProtocol', 'Email Protocol', 'required');
-	
-			if ($this->form_validation->run() == FALSE)
-			{
-				$this->load->view('interface_assets/header', $data);
-				$this->load->view('options/email');
-				$this->load->view('interface_assets/footer');
-			}
-			else
-			{
+		$this->load->helper(array('form', 'url'));
 
-				// Update emailProtocol choice within the options system
-				$emailProtocolupdate = $this->optionslib->update('emailProtocol', $this->input->post('emailProtocol'), 'yes');
+		$this->load->library('form_validation');
 
-				// Update smtpEncryption choice within the options system
-				$smtpEncryptionupdate = $this->optionslib->update('smtpEncryption', $this->input->post('smtpEncryption'), 'yes');
+		$this->form_validation->set_rules('emailProtocol', 'Email Protocol', 'required');
 
-				// Update email sender name within the options system
-				$emailSenderName_value = $this->input->post('emailSenderName');
-				if (empty($emailSenderName_value)) {
-					$emailSenderName_value = 'Wavelog';
-				}
-				$emailSenderNameupdate = $this->optionslib->update('emailSenderName', $emailSenderName_value, 'yes');
-
-				// Update email address choice within the options system
-				$emailAddressupdate = $this->optionslib->update('emailAddress', $this->input->post('emailAddress'), 'yes');
-
-				// Update smtpHost choice within the options system
-				$smtpHostupdate = $this->optionslib->update('smtpHost', $this->input->post('smtpHost'), 'yes');
-
-				// Update smtpPort choice within the options system
-				$smtpPortupdate = $this->optionslib->update('smtpPort', $this->input->post('smtpPort'), 'yes');
-	
-				// Update smtpUsername choice within the options system
-				$smtpUsernameupdate = $this->optionslib->update('smtpUsername', $this->input->post('smtpUsername'), 'yes');
-
-				// Update smtpPassword choice within the options system
-				$smtpPasswordupdate = $this->optionslib->update('smtpPassword', $this->input->post('smtpPassword'), 'yes');
-	
-				// Check if all updates are successful
-				$updateSuccessful = $emailProtocolupdate &&
-									$smtpEncryptionupdate &&
-									$emailSenderNameupdate &&
-									$emailAddressupdate &&
-									$smtpHostupdate &&
-									$smtpPortupdate &&
-									$smtpUsernameupdate &&
-									$smtpPasswordupdate;
-
-				// Set flash session based on update success
-				if ($updateSuccessful) {
-					$this->session->set_flashdata('success', __("The settings were saved successfully."));
-				} else {
-					$this->session->set_flashdata('saveFailed', __("Something went wrong with saving the settings. Try again."));
-				}
-	
-				// Redirect back to /email
-				redirect('/options/email');
-			}
-		}
-
-		function oqrs() {
-
-			$data['page_title'] = __("Wavelog Options");
-			$data['sub_heading'] = __("OQRS Options");
-
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('interface_assets/header', $data);
-			$this->load->view('options/oqrs');
+			$this->load->view('options/email');
 			$this->load->view('interface_assets/footer');
+		} else {
+			// Update emailProtocol choice within the options system
+			$emailProtocolupdate = $this->optionslib->update('emailProtocol', $this->input->post('emailProtocol'), 'yes');
+
+			// Update smtpEncryption choice within the options system
+			$smtpEncryptionupdate = $this->optionslib->update('smtpEncryption', $this->input->post('smtpEncryption'), 'yes');
+
+			// Update email sender name within the options system
+			$emailSenderName_value = $this->input->post('emailSenderName');
+			if (empty($emailSenderName_value)) {
+				$emailSenderName_value = 'Wavelog';
+			}
+			$emailSenderNameupdate = $this->optionslib->update('emailSenderName', $emailSenderName_value, 'yes');
+
+			// Update email address choice within the options system
+			$emailAddressupdate = $this->optionslib->update('emailAddress', $this->input->post('emailAddress'), 'yes');
+
+			// Update smtpHost choice within the options system
+			$smtpHostupdate = $this->optionslib->update('smtpHost', $this->input->post('smtpHost'), 'yes');
+
+			// Update smtpPort choice within the options system
+			$smtpPortupdate = $this->optionslib->update('smtpPort', $this->input->post('smtpPort'), 'yes');
+
+			// Update smtpUsername choice within the options system
+			$smtpUsernameupdate = $this->optionslib->update('smtpUsername', $this->input->post('smtpUsername'), 'yes');
+
+			// Update smtpPassword choice within the options system
+			$smtpPasswordupdate = $this->optionslib->update('smtpPassword', $this->input->post('smtpPassword'), 'yes');
+
+			// Check if all updates are successful
+			$updateSuccessful = $emailProtocolupdate &&
+								$smtpEncryptionupdate &&
+								$emailSenderNameupdate &&
+								$emailAddressupdate &&
+								$smtpHostupdate &&
+								$smtpPortupdate &&
+								$smtpUsernameupdate &&
+								$smtpPasswordupdate;
+
+			// Set flash session based on update success
+			if ($updateSuccessful) {
+				$this->session->set_flashdata('success', __("The settings were saved successfully."));
+			} else {
+				$this->session->set_flashdata('saveFailed', __("Something went wrong with saving the settings. Try again."));
+			}
+
+			// Redirect back to /email
+			redirect('/options/email');
 		}
+	}
 
-		function oqrs_save() {
+	function oqrs() {
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("OQRS Options");
 
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('options/oqrs');
+		$this->load->view('interface_assets/footer');
+	}
+
+	function oqrs_save() {
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("OQRS Options");
 
@@ -391,7 +413,6 @@ class Options extends CI_Controller {
 
 	// function used to display the /version_dialog url
 	function version_dialog() {
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Version Info Settings");
 
@@ -401,7 +422,6 @@ class Options extends CI_Controller {
     }
 
 	function version_dialog_save() {
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Version Info Settings");
 

@@ -2,6 +2,7 @@
 	<div class="card">
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/appearance'); ?>"><?= __("Appearance"); ?></a></li>
+			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/callbook'); ?>"><?= __("Callbook"); ?></a></li>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/radio'); ?>"><?= __("Radios"); ?></a></li>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/email'); ?>"><?= __("Email"); ?></a></li>
       <?php if (!($this->config->item('disable_oqrs') ?? false)) { ?>
