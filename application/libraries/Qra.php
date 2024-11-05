@@ -39,7 +39,7 @@ class Qra {
 	*	Inputs are QRA's TX and TX and the unit
 	*
 	*/
-	function distance($tx, $rx, $unit = 'M') {
+	function distance($tx, $rx, $unit = 'M', $ant_path = null) {
 		// Calc LatLongs
 		$my = qra2latlong($tx);
 		$stn = qra2latlong($rx);
@@ -48,7 +48,7 @@ class Qra {
 		if ($my && $stn) {
 			// Feed in Lat Longs plus the unit type
 			try {
-				$total_distance = calc_distance($my[0], $my[1], $stn[0], $stn[1], $unit);
+				$total_distance = calc_distance($my[0], $my[1], $stn[0], $stn[1], $unit, $ant_path);
 			} catch (Exception $e) {
 				$total_distance = 0;
 			}
@@ -202,12 +202,18 @@ class Qra {
 }
 
 
-function calc_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
+function calc_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M', $ant_path = null) {
 	$theta = $lon1 - $lon2;
 	$dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
 	$dist = acos($dist);
 	$dist = rad2deg($dist);
 	$dist = $dist * 60 * 1.1515;
+
+	if ($ant_path != null) {
+		if ($ant_path == "L") {    // we only need to calculate the distance for long paths, all other paths are the same
+			$dist = 24880 - $dist;
+		}
+	}
 
 	if ($unit == "K") {
 		$dist *= 1.609344;
