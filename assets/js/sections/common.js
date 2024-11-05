@@ -268,6 +268,9 @@ function qso_edit(id) {
                 nl2br: false,
                 message: html,
                 onshown: function(dialog) {
+
+                    $('[data-bs-toggle="tooltip"]').tooltip();
+
                     var state = $("#stateDropdown option:selected").text();
                     if (state != "") {
                         $("#stationCntyInputEdit").prop('disabled', false);
