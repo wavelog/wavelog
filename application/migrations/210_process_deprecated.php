@@ -5,7 +5,7 @@ class Migration_process_deprecated extends CI_Migration
 {
    public function up() {
 
-      if (file_exists('.git')) {
+      if (file_exists('.git') && file_exists('install/.lock')) {
 
          try {
             if (function_usable('exec')) {
@@ -25,7 +25,7 @@ class Migration_process_deprecated extends CI_Migration
 
 			}
       } else {
-			log_message("info","Mig 210: No .git found. Skipping processing of txt files.");
+			log_message("info","Mig 210: No .git found or installer not locked yet. Skipping processing of txt files.");
 		}
 
    }
