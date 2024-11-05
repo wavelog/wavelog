@@ -215,8 +215,8 @@ class cron extends CI_Controller {
 			$single->cron_description = $cron->description;
 			$single->cron_status = $this->cronStatus2html($cron->enabled, $cron->status);
 			$single->cron_expression = $this->cronExpression2html($cron->expression);
-			$single->cron_last_run = $cron->last_run ?? 'never';
-			$single->cron_next_run = ($cron->enabled == '1') ? ($cron->next_run ?? 'calculating..') : 'never';
+			$single->cron_last_run = $cron->last_run ?? __("never");
+			$single->cron_next_run = ($cron->enabled == '1') ? ($cron->next_run ?? __("calculating...")) : __("never");
 			$single->cron_edit = $this->cronEdit2html($cron->id);
 			$single->cron_enabled = $this->cronEnabled2html($cron->id, $cron->enabled);
 			array_push($hres, $single);
@@ -227,12 +227,16 @@ class cron extends CI_Controller {
 	private function cronStatus2html($enabled, $status) {
 		if ($enabled == '1') {
 			if ($status == 'healthy') {
-				$htmlret = '<span class="badge text-bg-success">healthy</span>';
+				$htmlret = '<span class="badge text-bg-success">' . __("healthy") . '</span>';
+			} else if ($status == 'failed') {
+				$htmlret = '<span class="badge text-bg-danger">' . __("failed") . '</span>';
+			} else if ($status == 'pending') {
+				$htmlret = '<span class="badge text-bg-warning">' . __("pending") . '</span>';
 			} else {
 				$htmlret = '<span class="badge text-bg-warning">' . $status . '</span>';
 			}
 		} else {
-			$htmlret = '<span class="badge text-bg-secondary">disabled</span>';
+			$htmlret = '<span class="badge text-bg-secondary">' . __("disabled") . '</span>';
 		}
 		return $htmlret;
 	}
