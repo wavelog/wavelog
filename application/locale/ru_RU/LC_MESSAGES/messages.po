@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2024-11-04 13:50+0000\n"
 "PO-Revision-Date: 2024-11-05 08:16+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -596,10 +596,11 @@ msgstr "Редактирование задачи"
 
 #: application/controllers/Cron.php:274
 #: application/views/interface_assets/footer.php:37
+#: application/controllers/Cron.php:278
 msgid "OK"
 msgstr "ОК"
 
-#: application/controllers/Cron.php:278
+#: application/controllers/Cron.php:278 application/controllers/Cron.php:282
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -608,7 +609,7 @@ msgstr ""
 "Последний запуск произошел более %s секунд назад.%sПроверьте ваш основной "
 "cron! Он должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:281
+#: application/controllers/Cron.php:281 application/controllers/Cron.php:285
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -618,6 +619,7 @@ msgstr ""
 "работает!%sОн должен запускаться каждую минуту (* * * * *)."
 
 #: application/controllers/Cron.php:286 application/views/cron/index.php:29
+#: application/controllers/Cron.php:290
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Не работает"
@@ -6101,19 +6103,19 @@ msgstr "Последний запуск"
 msgid "Next Run"
 msgstr "Следующий запуск"
 
-#: application/views/cron/index.php:70
+#: application/views/cron/index.php:70 application/controllers/Cron.php:230
 msgid "healthy"
 msgstr "норма"
 
-#: application/views/cron/index.php:72
+#: application/views/cron/index.php:72 application/controllers/Cron.php:232
 msgid "failed"
 msgstr "ошибка"
 
-#: application/views/cron/index.php:74
+#: application/views/cron/index.php:74 application/controllers/Cron.php:234
 msgid "pending"
 msgstr "в ожидании"
 
-#: application/views/cron/index.php:79
+#: application/views/cron/index.php:79 application/controllers/Cron.php:239
 msgid "disabled"
 msgstr "отключено"
 
@@ -6122,7 +6124,8 @@ msgstr "отключено"
 #: application/views/debug/index.php:525 application/views/debug/index.php:530
 #: application/views/debug/index.php:535 application/views/debug/index.php:540
 #: application/views/debug/index.php:545 application/views/debug/index.php:550
-#: application/views/user/index.php:136
+#: application/views/user/index.php:136 application/controllers/Cron.php:218
+#: application/controllers/Cron.php:219
 msgid "never"
 msgstr "никогда"
 
@@ -12519,6 +12522,10 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
+
+#: application/controllers/Cron.php:219
+msgid "calculating..."
+msgstr ""
 
 #~ msgid "The QSO were successfully logged in the logbook!"
 #~ msgstr "QSO были успешно записаны в журнал!"
