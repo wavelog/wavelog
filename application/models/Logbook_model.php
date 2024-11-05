@@ -4954,7 +4954,7 @@ class Logbook_model extends CI_Model {
 	public function update_distances($all) {
 		ini_set('memory_limit', '-1');	// This consumes a much of Memory!
 		$this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
-		$this->db->select("COL_PRIMARY_KEY, COL_GRIDSQUARE, station_gridsquare");
+		$this->db->select("COL_PRIMARY_KEY, COL_GRIDSQUARE, COL_ANT_PATH, station_gridsquare");
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		if (!$all) {
 			$this->db->where("((COL_DISTANCE is NULL) or (COL_DISTANCE = 0))");
@@ -4971,7 +4971,8 @@ class Logbook_model extends CI_Model {
 				$this->load->library('Qra');
 			}
 			foreach ($query->result() as $row) {
-				$distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K');
+				$ant_path = $row->COL_ANT_PATH ?? null;
+				$distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K', $ant_path);
 				$data = array(
 					'COL_DISTANCE' => $distance,
 				);
