@@ -205,6 +205,69 @@
                     <?php } ?>
                     <?php } ?>
 
+                    <?php if($row->COL_PROP_MODE != null) { ?>
+                    <tr>
+                        <td><?= __("Propagation"); ?></td>
+                        <td><?php switch ($row->COL_PROP_MODE) {
+                                      case 'AS':
+                                          echo __("Aircraft Scatter");
+                                          break;
+                                      case 'AUR':
+                                          echo __("Aurora");
+                                          break;
+                                      case 'AUE':
+                                          echo __("Aurora-E");
+                                          break;
+                                      case 'BS':
+                                          echo __("Back scatter");
+                                          break;
+                                      case 'ECH':
+                                          echo __("EchoLink");
+                                          break;
+                                      case 'EME':
+                                          echo __("Earth-Moon-Earth");
+                                          break;
+                                      case 'ES':
+                                          echo __("Sporadic E");
+                                          break;
+                                      case 'FAI':
+                                          echo __("Field Aligned Irregularities");
+                                          break;
+                                      case 'F2':
+                                          echo __("F2 Reflection");
+                                          break;
+                                      case 'INTERNET':
+                                          echo __("Internet-assisted");
+                                          break;
+                                      case 'ION':
+                                          echo __("Ionoscatter");
+                                          break;
+                                      case 'IRL':
+                                          echo __("IRLP");
+                                          break;
+                                      case 'MS':
+                                          echo __("Meteor scatter");
+                                          break;
+                                      case 'RPT':
+                                          echo __("Terrestrial or atmospheric repeater or transponder");
+                                          break;
+                                      case 'RS':
+                                          echo __("Rain scatter");
+                                          break;
+                                      case 'SAT':
+                                          echo __("Satellite");
+                                          break;
+                                      case 'TEP':
+                                          echo __("Trans-equatorial");
+                                          break;
+                                      case 'TR':
+                                          echo __("Tropospheric ducting");
+                                          break;
+                                  }
+                            ?></td>
+                    </tr>
+                    <?php } ?>
+
                     <?php if($row->COL_SAT_NAME != null) { ?>
                     <tr>
                         <td><?= __("Satellite Name"); ?></td>
