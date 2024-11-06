@@ -205,7 +205,7 @@
                     <?php } ?>
                     <?php } ?>
 
-                    <?php if($row->COL_PROP_MODE != null) { ?>
+                    <?php if($row->COL_PROP_MODE != null and $row->COL_PROP_MODE != '') { ?>
                     <tr>
                         <td><?= __("Propagation"); ?></td>
                         <td><?php switch ($row->COL_PROP_MODE) {
@@ -262,6 +262,9 @@
                                           break;
                                       case 'TR':
                                           echo __("Tropospheric ducting");
+                                          break;
+                                      default:
+                                          echo __("unknown");
                                           break;
                                   }
                             ?></td>
