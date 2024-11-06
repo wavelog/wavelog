@@ -136,7 +136,7 @@ class Options extends CI_Controller {
 		$data['callbook_provider'] = $this->optionslib->get_option('callbook_provider') == '' ? 'disabled' : $this->optionslib->get_option('callbook_provider');
 		$data['callbook_fullname'] = $this->optionslib->get_option('callbook_fullname') == '' ? '0' : $this->optionslib->get_option('callbook_fullname');
 		$data['callbook_username'] = $this->optionslib->get_option('callbook_username') ?? '';
-		$data['callbook_password'] = $this->optionslib->get_callbook_password() ?? '';
+		$data['callbook_password'] = '********';
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('options/callbook');
@@ -163,7 +163,7 @@ class Options extends CI_Controller {
 			$data['callbook_provider'] = $this->optionslib->get_option('callbook_provider') == '' ? 'disabled' : $this->optionslib->get_option('callbook_provider');
 			$data['callbook_fullname'] = $this->optionslib->get_option('callbook_fullname') == '' ? '0' : $this->optionslib->get_option('callbook_fullname');
 			$data['callbook_username'] = $this->optionslib->get_option('callbook_username') ?? '';
-			$data['callbook_password'] = $this->optionslib->get_callbook_password() ?? '';
+			$data['callbook_password'] = '********';
 			
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('options/callbook');
@@ -172,11 +172,15 @@ class Options extends CI_Controller {
 			if (!$this->load->is_loaded('encryption')) {
 				$this->load->library('encryption');
 			}
-			$pwd = $this->input->post('callbook_password', true) == '' ? '' : $this->encryption->encrypt($this->input->post('callbook_password', true));
 			$success = $this->optionslib->update('callbook_provider', $this->input->post('callbook_provider', true), 'yes');
 			$success = $this->optionslib->update('callbook_fullname', $this->input->post('callbook_fullname', true), 'yes');
 			$success = $this->optionslib->update('callbook_username', $this->input->post('callbook_username', true), 'yes');
-			$success = $this->optionslib->update('callbook_password', $pwd, 'yes');
+
+			if ($this->input->post('callbook_password', true) != '********') {
+				$pwd = $this->input->post('callbook_password', true) == '' ? '' : $this->encryption->encrypt($this->input->post('callbook_password', true));
+				$success = $this->optionslib->update('callbook_password', $pwd, 'yes');
+			}
+			
 			if($success == TRUE) {
 				$this->session->set_flashdata('success', __("Callbook settings saved"));
 			} else {
