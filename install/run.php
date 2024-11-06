@@ -23,6 +23,9 @@
                 <div class="mb-3" id="database_migrations" style="opacity: 50%;">
                     <i id="database_migrations_spinner" class="ld-ext-right"><?= __("Running database migrations") ?><div class="ld ld-ring ld-spin"></div></i><i id="database_migrations_check" class="ms-2 fas fa-check-circle" style="display: none;"></i>
                 </div>
+                <div class="mb-3" id="postmigration_steps" style="opacity: 50%;">
+                    <i id="postmigration_steps_spinner" class="ld-ext-right"><?= __("Running post migration steps") ?><div class="ld ld-ring ld-spin"></div></i><i id="postmigration_steps_check" class="ms-2 fas fa-check-circle" style="display: none;"></i>
+                </div>
                 <div class="mb-3" id="update_dxcc" style="opacity: 50%;">
                     <i id="update_dxcc_spinner" class="ld-ext-right"><?= __("Updating DXCC data") ?><div class="ld ld-ring ld-spin"></div></i><i id="update_dxcc_check" class="ms-2 fas fa-check-circle" style="display: none;"></i>
                 </div>
@@ -43,7 +46,7 @@
                 </div>
                 <div id="error_message"></div>
                 <div class="container mt-5">
-                    <button id="toggleLogButton" class="btn btn-sm btn-secondary mb-3"><?= __("Show detailled debug log"); ?></button>
+                    <button id="toggleLogButton" class="btn btn-sm btn-secondary mb-3"><?= __("Show detailed debug log"); ?></button>
                     <div id="logContainer">
                         <pre>
                             <code id="debuglog">
@@ -59,6 +62,7 @@
 
 <script>
     let _POST = <?php echo json_encode($_POST); ?>;
+    let log_read_int;
 
     $(document).ready(async function() {
         init_read_log();
@@ -69,10 +73,12 @@
             await database_file();
             await database_tables();
             await database_migrations();
+            await postmigration_steps();
             await update_dxcc();
             await installer_lock();
 
             await log_message('info', 'Finish. Installer went through successfully.');
+            clearInterval(log_read_int);
 
             if ($('#logContainer').css('display') == 'none') {
                 // after all install steps went through we can show a success message and redirect to the user/login
@@ -99,12 +105,13 @@
             } else {
                 errormsg = error;
             }
+            clearInterval(log_read_int);
             $("#error_message").text("Installation failed: " + errormsg).show();
         }
     });
 
     function init_read_log() {
-        setInterval(function() {
+        log_read_int = setInterval(function() {
             $.ajax({
                 type: 'POST',
                 url: 'ajax.php',
@@ -178,12 +185,12 @@
                         resolve();
                     } else {
                         running(field, false, true);
-                        await log_message('error', 'File: Could not write file. Check Permissions.');
+                        await log_message('error', 'File: Could not write file. Check Permissions. Response: ' + response);
                         reject("<?= __("Could not create application/config/config.php"); ?>");
                     }
                 },
                 error: async function(error) {
-                    await log_message('error', 'File: Could not write file. Ajax failed.');
+                    await log_message('error', 'File: Could not write file. Ajax failed. Response: ' + JSON.stringify(error));
                     running(field, false, true);
                     reject(error);
                 }
@@ -213,12 +220,12 @@
                         resolve();
                     } else {
                         running(field, false, true);
-                        await log_message('error', 'File: Could not write file. Check Permissions.');
+                        await log_message('error', 'File: Could not write file. Check Permissions. Response: ' + response);
                         reject("<?= __("Could not create application/config/database.php"); ?>");
                     }
                 },
                 error: async function(error) {
-                    await log_message('error', 'File: Could not write file. Ajax failed.');
+                    await log_message('error', 'File: Could not write file. Ajax failed. Response: ' + JSON.stringify(error));
                     running(field, false, true);
                     reject(error);
                 }
@@ -253,7 +260,7 @@
                 },
                 error: async function(error) {
                     running(field, false, true);
-                    await log_message('error', 'Creating database tables failed. Ajax crashed.');
+                    await log_message('error', 'Creating database tables failed. Ajax crashed. Response: ' + JSON.stringify(error));
                     reject(error);
                 }
             });
@@ -283,12 +290,46 @@
                 },
                 error: async function(error) {
                     running(field, false, true);
-                    await log_message('error', 'Could not migrate database. Ajax crashed.');
+                    await log_message('error', 'Could not migrate database. Ajax crashed. Response: ' + JSON.stringify(error));
                     reject(error);
                 }
             });
         });
     }
+
+    async function postmigration_steps() {
+        var field = '#postmigration_steps';
+
+        running(field, true);
+        await log_message('debug', 'Start post migration steps');
+
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'ajax.php',
+                data: {
+                    data: _POST,
+                    run_postmig_steps: 1
+                },
+                success: async function(response) {
+                    if (response == 'success') {
+                        await log_message('debug', 'Post migration steps successfully done');
+                        running(field, false);
+                        resolve();
+                    } else {
+                        running(field, false, true);
+                        await log_message('error', 'Post migration steps failed. Response: ' + response);
+                        reject("<?= __("Could not run post migration steps"); ?>");
+                    }
+                },
+                error: async function(error) {
+                    running(field, false, true);
+                    await log_message('error', 'Post migration steps failed. Ajax crashed. Response: ' + JSON.stringify(error));
+                    reject(error);
+                }
+            });
+        });
+    }   
 
     async function update_dxcc() {
         var field = '#update_dxcc';
@@ -305,13 +346,13 @@
                         resolve();
                     } else {
                         running(field, false, true);
-                        await log_message('error', 'Could not update DXCC data.');
+                        await log_message('error', 'Could not update DXCC data. Response: ' + response);
                         reject("<?= __("Could not update DXCC data"); ?>");
                     }
                 },
                 error: async function(error) {
                     running(field, false, true);
-                    await log_message('error', 'Could not update DXCC data. Ajax crashed.');
+                    await log_message('error', 'Could not update DXCC data. Ajax crashed. Response: ' + JSON.stringify(error));
                     reject(error);
                 }
             });
@@ -337,13 +378,13 @@
                         resolve();
                     } else {
                         running(field, false, true);
-                        await log_message('error', 'Could not create .lock file.');
+                        await log_message('error', 'Could not create .lock file. Response: ' + response);
                         reject("<?= __("Could not create install/.lock file"); ?>");
                     }
                 },
                 error: async function(error) {
                     running(field, false, true);
-                    await log_message('error', 'Could not create .lock file. Ajax crashed');
+                    await log_message('error', 'Could not create .lock file. Ajax crashed. Response: ' + JSON.stringify(error));
                     reject(error);
                 }
             });

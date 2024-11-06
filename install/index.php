@@ -364,10 +364,11 @@ if (!file_exists('.lock')) {
 												</div>
 											</div>
 											<div class="mb-3">
-												<label for="global_call_lookup" class="form-label"><?= __("Optional: Global Callbook Lookup"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."); ?>"></i></label>
-												<select id="global_call_lookup" class="form-select" name="global_call_lookup">
-													<option value="hamqth" selected>HamQTH</option>
+												<label for="callbook_provider" class="form-label"><?= __("Optional: Global Callbook Lookup"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."); ?>"></i></label>
+												<select id="callbook_provider" class="form-select" name="callbook_provider">
+													<option value="disabled" selected><?= __("Disabled"); ?></option>
 													<option value="qrz">QRZ.com</option>
+													<option value="hamqth">HamQTH</option>
 												</select>
 											</div>
 											<div class="row">

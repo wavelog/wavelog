@@ -101,7 +101,7 @@ class Core
 		}
 	}
 
-	// Function to write the config file
+	// Function to write the database.php config file
 	function write_config($data) {
 
 		$template_path 	= 'config/database.php';
@@ -146,7 +146,7 @@ class Core
 		}
 	}
 
-	// Function to write the config file
+	// Function to write the config.php file
 	function write_configfile($data) {
 
 		$template_path 	= 'config/config.php';
@@ -159,25 +159,13 @@ class Core
 		$database_file = file_get_contents($template_path);
 
 		// creating a unique encryption key
-		$encryptionkey = uniqid(bin2hex(random_bytes(8)), false);
+		$encryptionkey = hash('sha256', uniqid(bin2hex(random_bytes(8))));
 
 		$new  = str_replace("%baselocator%", strtoupper($data['userlocator']), $database_file);
 		$new  = str_replace("%websiteurl%", $data['websiteurl'], $new);
 		$new  = str_replace("%directory%", $data['directory'], $new);
-		$new  = str_replace("%callbook%", $data['global_call_lookup'], $new);
-		if ($data['global_call_lookup'] == 'qrz') {
-			$new  = str_replace("%qrz_username%", $data['callbook_username'], $new);
-			$new  = str_replace("%qrz_password%", $data['callbook_password'], $new);
-			$new  = str_replace("%hamqth_username%", '', $new);
-			$new  = str_replace("%hamqth_password%", '', $new);
-		} else {
-			$new  = str_replace("%qrz_username%", '', $new);
-			$new  = str_replace("%qrz_password%", '', $new);
-			$new  = str_replace("%hamqth_username%", $data['callbook_username'], $new);
-			$new  = str_replace("%hamqth_password%", $data['callbook_password'], $new);
-		}
-		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
-		$new = str_replace("'%log_threshold%'", $data['log_threshold'], $new);
+		$new  = str_replace("%encryptionkey%", $encryptionkey, $new);
+		$new  = str_replace("'%log_threshold%'", $data['log_threshold'], $new);
 
 		// Write the new config.php file
 		$handle = fopen($output_path, 'w+');
@@ -198,5 +186,28 @@ class Core
 		} else {
 			return false;
 		}
+	}
+
+	// Function to get encryptred data with codeigniter
+	function encrypt($url, $string) {
+		$ch = curl_init();
+		
+		curl_setopt($ch, CURLOPT_URL, $url . 'index.php/migrate/encrypt');
+		
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, [
+			'string' => $string 
+		]);
+		
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Installer');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+	
+		$response = curl_exec($ch);
+		
+		curl_close($ch);
+		
+		return $response;
 	}
 }

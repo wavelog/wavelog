@@ -99,6 +99,17 @@ if ($_POST['run_database_tables'] ?? false == true) {
 	exit;
 }
 
+if ($_POST['run_postmig_steps'] ?? false == true) {
+	$data = $_POST['data'];
+	if ($core->validate_post($data)) {
+		$result = $database->post_mig_steps($data);
+	} else {
+		$result = 'error';
+	}
+	echo $result ? 'success' : 'error';
+	exit;
+}
+
 if ($_POST['run_installer_lock'] ?? false == true) {
 	if (touch('.lock')) {
 		echo 'success';
