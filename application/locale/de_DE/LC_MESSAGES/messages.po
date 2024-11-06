@@ -23,8 +23,8 @@ msgstr ""
 "POT-Creation-Date: 2024-11-04 13:50+0000\n"
 "PO-Revision-Date: 2024-11-05 22:15+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -287,6 +287,7 @@ msgstr "Diplome – %s"
 #: application/views/qso/index.php:524 application/views/user/edit.php:603
 #: application/views/view_log/qso.php:367
 #: application/views/qso/edit_ajax.php:383
+#: application/views/view_log/qso.php:433
 msgid "DOK"
 msgstr "DOK"
 
@@ -1018,6 +1019,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:563
 #: application/views/user/edit.php:659 application/views/view_log/qso.php:424
 #: application/views/qso/edit_ajax.php:407
+#: application/views/view_log/qso.php:490
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1066,6 +1068,7 @@ msgstr "eQSL"
 #: application/views/user/edit.php:683
 #: application/views/view_log/partial/log_ajax.php:85
 #: application/views/view_log/qso.php:439
+#: application/views/view_log/qso.php:505
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1219,6 +1222,8 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:238
 #: application/views/view_log/qso.php:544
 #: application/views/visitor/index.php:15
+#: application/views/view_log/qso.php:304
+#: application/views/view_log/qso.php:610
 msgid "Country"
 msgstr "Land"
 
@@ -1318,6 +1323,7 @@ msgstr "Staat"
 #: application/views/view_log/qso.php:531
 #: application/views/visitor/index.php:27
 #: application/views/qso/edit_ajax.php:155
+#: application/views/view_log/qso.php:597
 msgid "Gridsquare"
 msgstr "Locator"
 
@@ -1463,6 +1469,7 @@ msgstr "Frequenz"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:551
 #: application/views/visitor/index.php:39
+#: application/views/view_log/qso.php:617
 msgid "Operator"
 msgstr "Operator"
 
@@ -1490,6 +1497,8 @@ msgstr "Operator"
 #: application/views/view_log/qso.php:242
 #: application/views/view_log/qso.php:545
 #: application/views/qso/edit_ajax.php:250
+#: application/views/view_log/qso.php:308
+#: application/views/view_log/qso.php:611
 msgid "Deleted DXCC"
 msgstr "Gelöschtes DXCC"
 
@@ -1581,6 +1590,7 @@ msgstr "Bearbeite Mode"
 #: application/views/qso/index.php:566 application/views/view_log/qso.php:14
 #: application/views/view_log/qso.php:606
 #: application/views/qso/edit_ajax.php:391
+#: application/views/view_log/qso.php:672
 msgid "Notes"
 msgstr "Notizen"
 
@@ -1878,6 +1888,7 @@ msgstr "Standardgerät (klicken zum freigeben)"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:55
 #: application/views/view_log/qso.php:629
+#: application/views/view_log/qso.php:695
 msgid "Delete"
 msgstr "Löschen"
 
@@ -2634,6 +2645,7 @@ msgstr "nicht bestätigt"
 
 #: application/models/Logbook_model.php:4442
 #: application/models/Logbook_model.php:4446
+#: application/views/view_log/qso.php:267
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -2834,6 +2846,7 @@ msgstr "Zeitraum"
 #: application/views/logbookadvanced/index.php:673
 #: application/views/logbookadvanced/useroptions.php:134
 #: application/views/timeline/index.php:74
+#: application/views/view_log/qso.php:210
 msgid "Propagation"
 msgstr "Ausbreitungsart"
 
@@ -3110,6 +3123,7 @@ msgstr "Anzeigen"
 #: application/views/satellite/passtable.php:5
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:112
+#: application/views/view_log/qso.php:258
 msgid "Satellite"
 msgstr "Satellit"
 
@@ -3258,6 +3272,7 @@ msgstr "Nichts gefunden!"
 #: application/views/user/edit.php:123 application/views/user/index.php:4
 #: application/views/user/index.php:45 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:523
+#: application/views/view_log/qso.php:589
 msgid "Callsign"
 msgstr "Rufzeichen"
 
@@ -3437,6 +3452,7 @@ msgid "Log Files must have the file type *.adi"
 msgstr "Die Logdatei muss im *.adi Format vorliegen"
 
 #: application/views/adif/import.php:56 application/views/view_log/qso.php:638
+#: application/views/view_log/qso.php:704
 msgid "Maximum file upload size is "
 msgstr "Die max. Dateigröße für Uploads beträgt "
 
@@ -3451,6 +3467,7 @@ msgstr "Die max. Dateigröße für Uploads beträgt "
 #: application/views/view_log/qso.php:638
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/view_log/qso.php:704
 msgid "Warning"
 msgstr "Warnung"
 
@@ -4362,6 +4379,7 @@ msgstr "Inklusive gelöschte"
 #: application/views/qso/edit_ajax.php:251 application/views/qso/index.php:387
 #: application/views/view_log/qso.php:257
 #: application/views/qso/edit_ajax.php:264
+#: application/views/view_log/qso.php:323
 msgid "Antarctica"
 msgstr "Antarktis"
 
@@ -4374,6 +4392,7 @@ msgstr "Antarktis"
 #: application/views/qso/edit_ajax.php:250 application/views/qso/index.php:386
 #: application/views/view_log/qso.php:254
 #: application/views/qso/edit_ajax.php:263
+#: application/views/view_log/qso.php:320
 msgid "Africa"
 msgstr "Afrika"
 
@@ -4386,6 +4405,7 @@ msgstr "Afrika"
 #: application/views/qso/edit_ajax.php:252 application/views/qso/index.php:388
 #: application/views/view_log/qso.php:260
 #: application/views/qso/edit_ajax.php:265
+#: application/views/view_log/qso.php:326
 msgid "Asia"
 msgstr "Asien"
 
@@ -4398,6 +4418,7 @@ msgstr "Asien"
 #: application/views/qso/edit_ajax.php:253 application/views/qso/index.php:389
 #: application/views/view_log/qso.php:263
 #: application/views/qso/edit_ajax.php:266
+#: application/views/view_log/qso.php:329
 msgid "Europe"
 msgstr "Europa"
 
@@ -4410,6 +4431,7 @@ msgstr "Europa"
 #: application/views/qso/edit_ajax.php:254 application/views/qso/index.php:390
 #: application/views/view_log/qso.php:266
 #: application/views/qso/edit_ajax.php:267
+#: application/views/view_log/qso.php:332
 msgid "North America"
 msgstr "Nordamerika"
 
@@ -4422,6 +4444,7 @@ msgstr "Nordamerika"
 #: application/views/qso/edit_ajax.php:256 application/views/qso/index.php:392
 #: application/views/view_log/qso.php:272
 #: application/views/qso/edit_ajax.php:269
+#: application/views/view_log/qso.php:338
 msgid "South America"
 msgstr "Südamerika"
 
@@ -4434,6 +4457,7 @@ msgstr "Südamerika"
 #: application/views/qso/edit_ajax.php:255 application/views/qso/index.php:391
 #: application/views/view_log/qso.php:269
 #: application/views/qso/edit_ajax.php:268
+#: application/views/view_log/qso.php:335
 msgid "Oceania"
 msgstr "Ozeanien"
 
@@ -4691,6 +4715,7 @@ msgstr "Zeige IOTA Karte"
 #: application/views/view_log/qso.php:194
 #: application/views/view_log/qso.php:527
 #: application/views/qso/edit_ajax.php:170
+#: application/views/view_log/qso.php:593
 msgid "Name"
 msgstr "Name"
 
@@ -4792,6 +4817,7 @@ msgstr "Nummer"
 #: application/views/awards/jcc/index.php:152
 #: application/views/search/result.php:21
 #: application/views/view_log/qso.php:537
+#: application/views/view_log/qso.php:603
 msgid "City"
 msgstr "Stadt"
 
@@ -4842,6 +4868,8 @@ msgstr ""
 #: application/views/station_profile/edit.php:272
 #: application/views/user/edit.php:595 application/views/view_log/qso.php:310
 #: application/views/view_log/qso.php:586
+#: application/views/view_log/qso.php:376
+#: application/views/view_log/qso.php:652
 msgid "POTA Reference(s)"
 msgstr "POTA Referenznummer(n)"
 
@@ -5050,6 +5078,7 @@ msgstr "Diplome - Worked All Continents (WAC)"
 #: application/views/qso/edit_ajax.php:247 application/views/qso/index.php:383
 #: application/views/view_log/qso.php:249
 #: application/views/qso/edit_ajax.php:260
+#: application/views/view_log/qso.php:315
 msgid "Continent"
 msgstr "Kontinent"
 
@@ -5176,6 +5205,8 @@ msgstr ""
 #: application/views/station_profile/edit.php:259
 #: application/views/user/edit.php:591 application/views/view_log/qso.php:303
 #: application/views/view_log/qso.php:579
+#: application/views/view_log/qso.php:369
+#: application/views/view_log/qso.php:645
 msgid "WWFF Reference"
 msgstr "WWFF Referenznummer"
 
@@ -5336,6 +5367,8 @@ msgstr ""
 #: application/views/user/edit.php:599 application/views/view_log/qso.php:332
 #: application/views/view_log/qso.php:593
 #: application/views/qso/edit_ajax.php:374
+#: application/views/view_log/qso.php:398
+#: application/views/view_log/qso.php:659
 msgid "Sig"
 msgstr "Sig"
 
@@ -5897,6 +5930,7 @@ msgstr "Erstelle"
 #: application/views/qso/edit_ajax.php:610
 #: application/views/view_log/qso.php:282
 #: application/views/qso/edit_ajax.php:601
+#: application/views/view_log/qso.php:348
 msgid "Contest Name"
 msgstr "Contest-Name"
 
@@ -7055,6 +7089,7 @@ msgstr "Datum bis"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:382
+#: application/views/view_log/qso.php:448
 msgid "QSL Info"
 msgstr "QSL-Info"
 
@@ -7397,6 +7432,7 @@ msgstr "QSL-Datum"
 #: application/views/interface_assets/footer.php:2425
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:630
+#: application/views/view_log/qso.php:696
 msgid "View"
 msgstr "Ansicht"
 
@@ -7508,6 +7544,7 @@ msgstr "Die QSOs wurden als zu HRDLog exportiert markiert."
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:320
 #: application/views/view_log/qso.php:450
+#: application/views/view_log/qso.php:516
 msgid "Edit QSO"
 msgstr "QSO bearbeiten"
 
@@ -7708,6 +7745,7 @@ msgstr "eQSL-Karte für "
 #: application/views/interface_assets/footer.php:2379
 #: application/views/interface_assets/footer.php:2418
 #: application/views/view_log/qso.php:620
+#: application/views/view_log/qso.php:686
 msgid "QSL image file"
 msgstr "QSL-Bilddatei"
 
@@ -8856,6 +8894,7 @@ msgstr "Ablaufdatum"
 
 #: application/views/lotw_views/index.php:42
 #: application/views/view_log/qso.php:420
+#: application/views/view_log/qso.php:486
 msgid "Last Upload"
 msgstr "Letzter Upload"
 
@@ -9531,6 +9570,19 @@ msgstr "Sende eine 'Nicht im Log'-Anfrage"
 #: application/views/view_log/qso.php:586
 #: application/views/view_log/qso.php:593
 #: application/views/view_log/qso.php:598
+#: application/views/view_log/qso.php:585
+#: application/views/view_log/qso.php:589
+#: application/views/view_log/qso.php:597
+#: application/views/view_log/qso.php:603
+#: application/views/view_log/qso.php:610
+#: application/views/view_log/qso.php:617
+#: application/views/view_log/qso.php:624
+#: application/views/view_log/qso.php:631
+#: application/views/view_log/qso.php:638
+#: application/views/view_log/qso.php:645
+#: application/views/view_log/qso.php:652
+#: application/views/view_log/qso.php:659
+#: application/views/view_log/qso.php:664
 msgid "Station"
 msgstr "Station"
 
@@ -9887,6 +9939,7 @@ msgstr "RX-Band"
 #: application/views/qso/edit_ajax.php:134 application/views/qso/index.php:349
 #: application/views/reg1test/index.php:114
 #: application/views/view_log/qso.php:558
+#: application/views/view_log/qso.php:624
 msgid "Transmit Power (W)"
 msgstr "Sendeleistung (W)"
 
@@ -9936,6 +9989,8 @@ msgstr "Elevation der Antenne in Dezimalgrad."
 #: application/views/view_log/qso.php:348
 #: application/views/view_log/qso.php:598
 #: application/views/qso/edit_ajax.php:378
+#: application/views/view_log/qso.php:414
+#: application/views/view_log/qso.php:664
 msgid "Sig Info"
 msgstr "Sig Info"
 
@@ -10085,6 +10140,8 @@ msgstr "Suche im DX-Cluster nach letztem Spot"
 #: application/views/station_profile/edit.php:218
 #: application/views/user/edit.php:583 application/views/view_log/qso.php:289
 #: application/views/view_log/qso.php:565
+#: application/views/view_log/qso.php:355
+#: application/views/view_log/qso.php:631
 msgid "IOTA Reference"
 msgstr "IOTA-Referenznummer"
 
@@ -10093,6 +10150,8 @@ msgstr "IOTA-Referenznummer"
 #: application/views/station_profile/edit.php:246
 #: application/views/user/edit.php:587 application/views/view_log/qso.php:296
 #: application/views/view_log/qso.php:572
+#: application/views/view_log/qso.php:362
+#: application/views/view_log/qso.php:638
 msgid "SOTA Reference"
 msgstr "SOTA-Referenznummer"
 
@@ -10129,10 +10188,12 @@ msgid "For example: Q03"
 msgstr "Zum Beispiel: Q03"
 
 #: application/views/qso/index.php:535 application/views/view_log/qso.php:210
+#: application/views/view_log/qso.php:276
 msgid "Satellite Name"
 msgstr "Satellit"
 
 #: application/views/qso/index.php:543 application/views/view_log/qso.php:217
+#: application/views/view_log/qso.php:283
 msgid "Satellite Mode"
 msgstr "Satellitenmodus"
 
@@ -10684,6 +10745,7 @@ msgstr "Markiere QSL gesendet (Direkt)"
 #: application/views/view_log/partial/log.php:148
 #: application/views/view_log/partial/log_ajax.php:336
 #: application/views/view_log/qso.php:668
+#: application/views/view_log/qso.php:734
 msgid "Mark QSL Received (Bureau)"
 msgstr "Markiere QSL erhalten (Büro)"
 
@@ -10691,6 +10753,7 @@ msgstr "Markiere QSL erhalten (Büro)"
 #: application/views/view_log/partial/log.php:149
 #: application/views/view_log/partial/log_ajax.php:337
 #: application/views/view_log/qso.php:670
+#: application/views/view_log/qso.php:736
 msgid "Mark QSL Received (Direct)"
 msgstr "Markiere QSL erhalten (Direkt)"
 
@@ -10698,6 +10761,7 @@ msgstr "Markiere QSL erhalten (Direkt)"
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:327
 #: application/views/view_log/qso.php:678
+#: application/views/view_log/qso.php:744
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "Markiere QSL-Karte als angefragt (Büro)"
 
@@ -10705,6 +10769,7 @@ msgstr "Markiere QSL-Karte als angefragt (Büro)"
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:328
 #: application/views/view_log/qso.php:680
+#: application/views/view_log/qso.php:746
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "Markiere QSL-Karte als angefragt (Direkt)"
 
@@ -10712,6 +10777,7 @@ msgstr "Markiere QSL-Karte als angefragt (Direkt)"
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:329
 #: application/views/view_log/qso.php:682
+#: application/views/view_log/qso.php:748
 msgid "Mark QSL Card Not Required"
 msgstr "Markiere QSL-Karte als nicht notwendig"
 
@@ -12533,54 +12599,67 @@ msgid "Total Distance"
 msgstr "Entfernung"
 
 #: application/views/view_log/qso.php:224
+#: application/views/view_log/qso.php:290
 msgid "Antenna Azimuth"
 msgstr "Antennenazimut"
 
 #: application/views/view_log/qso.php:231
+#: application/views/view_log/qso.php:297
 msgid "Antenna Elevation"
 msgstr "Antennenelevation"
 
 #: application/views/view_log/qso.php:386
+#: application/views/view_log/qso.php:452
 msgid "QSL Card has been sent via the bureau"
 msgstr "QSL-Karte wurde via Büro gesendet"
 
 #: application/views/view_log/qso.php:388
+#: application/views/view_log/qso.php:454
 msgid "QSL Card has been sent via direct"
 msgstr "QSL-Karte wurde direkt gesendet"
 
 #: application/views/view_log/qso.php:390
+#: application/views/view_log/qso.php:456
 msgid "QSL Card has been sent electronically"
 msgstr "QSL-Karte wurde elektronisch gesendet"
 
 #: application/views/view_log/qso.php:392
+#: application/views/view_log/qso.php:458
 msgid "QSL Card has been sent via manager"
 msgstr "QSL-Karte wurde via Manager gesendet"
 
 #: application/views/view_log/qso.php:394
+#: application/views/view_log/qso.php:460
 msgid "QSL Card has been sent"
 msgstr "QSL-Karte wurde gesendet"
 
 #: application/views/view_log/qso.php:403
+#: application/views/view_log/qso.php:469
 msgid "QSL Card has been received via the bureau"
 msgstr "QSL-Karte wurde via Büro empfangen"
 
 #: application/views/view_log/qso.php:405
+#: application/views/view_log/qso.php:471
 msgid "QSL Card has been received via direct"
 msgstr "QSL-Karte wurde direkt empfangen"
 
 #: application/views/view_log/qso.php:407
+#: application/views/view_log/qso.php:473
 msgid "QSL Card has been received electronically"
 msgstr "QSL-Karte wurde elektronisch empfangen"
 
 #: application/views/view_log/qso.php:409
+#: application/views/view_log/qso.php:475
 msgid "QSL Card has been received via manager"
 msgstr "QSL-Karte wurde via Manager empfangen"
 
 #: application/views/view_log/qso.php:411
+#: application/views/view_log/qso.php:477
 msgid "QSL Card has been received"
 msgstr "QSL-Karte wurde empfangen"
 
 #: application/views/view_log/qso.php:420
+#: application/views/view_log/qso.php:486
 msgid "This station uses LoTW."
 msgstr "Diese Station nutzt LoTW."
 
@@ -12588,34 +12667,45 @@ msgstr "Diese Station nutzt LoTW."
 #: application/views/view_log/qso.php:430
 #: application/views/view_log/qso.php:435
 #: application/views/view_log/qso.php:440
+#: application/views/view_log/qso.php:491
+#: application/views/view_log/qso.php:496
+#: application/views/view_log/qso.php:501
+#: application/views/view_log/qso.php:506
 msgid "This QSO was confirmed on"
 msgstr "Dieses QSO wurde bestätigt am"
 
 #: application/views/view_log/qso.php:451
+#: application/views/view_log/qso.php:517
 msgid "More QSOs"
 msgstr "Mehr QSOs"
 
 #: application/views/view_log/qso.php:519
+#: application/views/view_log/qso.php:585
 msgid "Details"
 msgstr "Details"
 
 #: application/views/view_log/qso.php:646
+#: application/views/view_log/qso.php:712
 msgid "Uploaded QSL Card front image"
 msgstr "QSL-Kartenfront hochgeladen"
 
 #: application/views/view_log/qso.php:651
+#: application/views/view_log/qso.php:717
 msgid "Upload QSL Card image"
 msgstr "Bild der QSL-Karte hochladen"
 
 #: application/views/view_log/qso.php:656
+#: application/views/view_log/qso.php:722
 msgid "Uploaded QSL Card back image"
 msgstr "QSL-Kartenrückseite hochgeladen"
 
 #: application/views/view_log/qso.php:672
+#: application/views/view_log/qso.php:738
 msgid "Mark QSL Received (Electronic)"
 msgstr "Markiere QSL erhalten (Elektronisch)"
 
 #: application/views/view_log/qso.php:695
+#: application/views/view_log/qso.php:761
 msgid "eQSL picture"
 msgstr "eQSL Bild"
 
@@ -12757,6 +12847,74 @@ msgstr "Short Path"
 #: application/views/qso/edit_ajax.php:225
 msgid "Long Path"
 msgstr "Long Path"
+
+#: application/views/view_log/qso.php:213
+msgid "Aircraft Scatter"
+msgstr ""
+
+#: application/views/view_log/qso.php:216
+msgid "Aurora"
+msgstr ""
+
+#: application/views/view_log/qso.php:219
+msgid "Aurora-E"
+msgstr ""
+
+#: application/views/view_log/qso.php:222
+msgid "Back scatter"
+msgstr ""
+
+#: application/views/view_log/qso.php:225
+msgid "EchoLink"
+msgstr ""
+
+#: application/views/view_log/qso.php:228
+msgid "Earth-Moon-Earth"
+msgstr ""
+
+#: application/views/view_log/qso.php:231
+msgid "Sporadic E"
+msgstr ""
+
+#: application/views/view_log/qso.php:234
+msgid "Field Aligned Irregularities"
+msgstr ""
+
+#: application/views/view_log/qso.php:237
+msgid "F2 Reflection"
+msgstr ""
+
+#: application/views/view_log/qso.php:240
+msgid "Internet-assisted"
+msgstr ""
+
+#: application/views/view_log/qso.php:243
+msgid "Ionoscatter"
+msgstr ""
+
+#: application/views/view_log/qso.php:246
+msgid "IRLP"
+msgstr ""
+
+#: application/views/view_log/qso.php:249
+msgid "Meteor scatter"
+msgstr ""
+
+#: application/views/view_log/qso.php:252
+msgid "Terrestrial or atmospheric repeater or transponder"
+msgstr ""
+
+#: application/views/view_log/qso.php:255
+msgid "Rain scatter"
+msgstr ""
+
+#: application/views/view_log/qso.php:261
+msgid "Trans-equatorial"
+msgstr ""
+
+#: application/views/view_log/qso.php:264
+msgid "Tropospheric ducting"
+msgstr ""
 
 #~ msgid "The QSO were successfully logged in the logbook!"
 #~ msgstr "Die QSO wurden erfolgreich im Logbuch gespeichert!"
