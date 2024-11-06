@@ -1,9 +1,9 @@
 <div class="card-body">
-<h2><?= sprintf(__("Results for %s"), $id); ?></h2>
+<h2><?= sprintf(__("Results for %s"), str_replace('0', 'Ø', $id)); ?></h2>
 
-<p><?= sprintf(__("Sorry, but we didn't find any past QSOs with %s"), $id); ?></p>
+<p><?= sprintf(__("Sorry, but we didn't find any past QSOs with %s"), str_replace('0', 'Ø', $id)); ?></p>
 
-<h3><?= sprintf(__("Callbook Search for %s"), $id); ?></h3>
+<h3><?= sprintf(__("Callbook Search for %s"), str_replace('0', 'Ø', $id)); ?></h3>
 <?php if(isset($callsign['callsign'])) { ?>
 <table>
 
