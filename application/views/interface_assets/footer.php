@@ -174,6 +174,13 @@ if($this->session->userdata('user_id') != null) {
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>
+    // Replace all Ø in the searchbar
+    $('#nav-bar-search-input').on('input', function () {
+        $(this).val($(this).val().replace(/0/g, 'Ø'));
+    });
+</script>
+
+<script>
     var current_active_location = "<?php echo $this->stations->find_active(); ?>";
     quickswitcher_show_activebadge(current_active_location);
 </script>
