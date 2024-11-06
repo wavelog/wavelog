@@ -205,6 +205,72 @@
                     <?php } ?>
                     <?php } ?>
 
+                    <?php if($row->COL_PROP_MODE != null and $row->COL_PROP_MODE != '') { ?>
+                    <tr>
+                        <td><?= __("Propagation"); ?></td>
+                        <td><?php switch ($row->COL_PROP_MODE) {
+                            case 'AS':
+                                echo _pgettext("Propagation Mode", "Aircraft Scatter");
+                                break;
+                            case 'AUR':
+                                echo _pgettext("Propagation Mode", "Aurora");
+                                break;
+                            case 'AUE':
+                                echo _pgettext("Propagation Mode", "Aurora-E");
+                                break;
+                            case 'BS':
+                                echo _pgettext("Propagation Mode", "Back scatter");
+                                break;
+                            case 'ECH':
+                                echo _pgettext("Propagation Mode", "EchoLink");
+                                break;
+                            case 'EME':
+                                echo _pgettext("Propagation Mode", "Earth-Moon-Earth");
+                                break;
+                            case 'ES':
+                                echo _pgettext("Propagation Mode", "Sporadic E");
+                                break;
+                            case 'FAI':
+                                echo _pgettext("Propagation Mode", "Field Aligned Irregularities");
+                                break;
+                            case 'F2':
+                                echo _pgettext("Propagation Mode", "F2 Reflection");
+                                break;
+                            case 'INTERNET':
+                                echo _pgettext("Propagation Mode", "Internet-assisted");
+                                break;
+                            case 'ION':
+                                echo _pgettext("Propagation Mode", "Ionoscatter");
+                                break;
+                            case 'IRL':
+                                echo _pgettext("Propagation Mode", "IRLP");
+                                break;
+                            case 'MS':
+                                echo _pgettext("Propagation Mode", "Meteor scatter");
+                                break;
+                            case 'RPT':
+                                echo _pgettext("Propagation Mode", "Terrestrial or atmospheric repeater or transponder");
+                                break;
+                            case 'RS':
+                                echo _pgettext("Propagation Mode", "Rain scatter");
+                                break;
+                            case 'SAT':
+                                echo _pgettext("Propagation Mode", "Satellite");
+                                break;
+                            case 'TEP':
+                                echo _pgettext("Propagation Mode", "Trans-equatorial");
+                                break;
+                            case 'TR':
+                                echo _pgettext("Propagation Mode", "Tropospheric ducting");
+                                break;
+                            default:
+                                echo __("unknown");
+                                break;
+                            }
+                        ?></td>
+                    </tr>
+                    <?php } ?>
+
                     <?php if($row->COL_SAT_NAME != null) { ?>
                     <tr>
                         <td><?= __("Satellite Name"); ?></td>
