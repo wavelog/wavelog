@@ -2633,6 +2633,15 @@ function viewEqsl(picture, callsign) {
                var num = parseFloat(data);
                return isNaN(num) ? 0 : num;
             };
+            $('#distrectable').on('order.dt search.dt', function() {
+               var disttable = $('#distrectable').DataTable();
+               let i = 1;
+               disttable
+                  .cells(null, 0, { search: 'applied', order: 'applied' })
+                  .every(function (cell) {
+                     this.data(i++);
+                  });
+            });
             $('#distrectable').DataTable({
                 "pageLength": 25,
                 responsive: false,
