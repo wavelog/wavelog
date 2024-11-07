@@ -2629,6 +2629,10 @@ function viewEqsl(picture, callsign) {
                    dt.search('').draw();
                 }
             };
+            $.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+               var num = parseFloat(data);
+               return isNaN(num) ? 0 : num;
+            };
             $('#distrectable').DataTable({
                 "pageLength": 25,
                 responsive: false,
@@ -2660,10 +2664,6 @@ function viewEqsl(picture, callsign) {
                    }
                 ]
             });
-            $.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
-               var num = parseFloat(data);
-               return isNaN(num) ? 0 : num;
-            };
             // change color of csv-button if dark mode is chosen
             if (isDarkModeTheme()) {
                $('[class*="buttons"]').css("color", "white");
