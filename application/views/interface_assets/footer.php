@@ -2633,7 +2633,15 @@ function viewEqsl(picture, callsign) {
                 "pageLength": 25,
                 responsive: false,
                 ordering: true,
-                "columnDefs": [ 2, 'num' ],
+                "columnDefs": [
+                   {
+                      2: 'num'
+                   },
+                   {
+                      "targets": $(".distance-column-sort").index(),
+                      "type": "distance",
+                   }
+                ],
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
@@ -2652,6 +2660,10 @@ function viewEqsl(picture, callsign) {
                    }
                 ]
             });
+            $.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+               var num = parseFloat(data);
+               return isNaN(num) ? 0 : num;
+            };
             // change color of csv-button if dark mode is chosen
             if (isDarkModeTheme()) {
                $('[class*="buttons"]').css("color", "white");
