@@ -4358,6 +4358,13 @@ class Logbook_model extends CI_Model {
 			} else {
 				$this->add_qso($data, $skipexport);
 			}
+
+			// if there are any static map images for this station, remove them so they can be regenerated
+			if (!$this->load->is_loaded('staticmap_model')) {
+				$this->load->model('staticmap_model');
+			}
+			$this->staticmap_model->remove_static_map_image($station_id);
+			
 		} else {
 			$my_error .= "Date/Time: " . ($time_on ?? 'N/A') . " Callsign: " . ($record['call'] ?? 'N/A') . " Band: " . ($band ?? 'N/A') . " ".__("Duplicate for")." ". ($station_profile_call ?? 'N/A') . "<br>";
 		}
