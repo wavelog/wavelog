@@ -33,6 +33,31 @@ class Distancerecords extends CI_Controller {
             case 'M d, y': $usethisformat = 'MMM D, YY';break;
         }
 
+        if ($this->session->userdata('user_measurement_base') == NULL) {
+            $measurement_base = $this->config->item('measurement_base');
+        } else {
+            $measurement_base = $this->session->userdata('user_measurement_base');
+        }
+
+        switch ($measurement_base) {
+            case 'M':
+               $unit = "mi";
+               $factor = 0.621371;
+               break;
+            case 'K':
+               $unit = "km";
+               $factor = 1;
+               break;
+            case 'N':
+               $unit = "nmi";
+               $factor = 0.539957;
+               break;
+            default:
+               $unit = "km";
+               $factor = 1;
+               break;
+        }
+
         $data['scripts'] = [
             'assets/js/sections/distancerecords.js',
         ];
@@ -41,6 +66,8 @@ class Distancerecords extends CI_Controller {
         $data['custom_date_format'] = $custom_date_format;
         $data['page_title'] = __("Satellite Distance Records");
         $data['distances'] = $this->distancerecords_model->get_records();
+        $data['factor'] = $factor;
+        $data['unit'] = $unit;
 
         $footerData['usethisformat'] = $usethisformat;
 
