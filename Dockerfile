@@ -1,18 +1,25 @@
 FROM php:8.3-apache
 ENV CI_ENV=docker
 
+ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
 # Install dependencies
 RUN set -e; \
     \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         libzip-dev \
+        libpng-dev \
+        libjpeg-dev \
+        libfreetype6-dev \
         cron \
     ; \
+    docker-php-ext-configure gd --with-freetype --with-jpeg; \
     \
     docker-php-ext-install -j "$(nproc)" \
         mysqli \
         zip \
+        gd \
     ; \
     \
     a2enmod rewrite; \
