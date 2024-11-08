@@ -13,6 +13,7 @@ RUN set -e; \
     docker-php-ext-install -j "$(nproc)" \
         mysqli \
         zip \
+        gd \
     ; \
     \
     a2enmod rewrite; \
