@@ -2629,11 +2629,32 @@ function viewEqsl(picture, callsign) {
                    dt.search('').draw();
                 }
             };
+            $.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+               var num = parseFloat(data);
+               return isNaN(num) ? 0 : num;
+            };
+            $('#distrectable').on('order.dt search.dt', function() {
+               var disttable = $('#distrectable').DataTable();
+               let i = 1;
+               disttable
+                  .cells(null, 0, { search: 'applied', order: 'applied' })
+                  .every(function (cell) {
+                     this.data(i++);
+                  });
+            });
             $('#distrectable').DataTable({
                 "pageLength": 25,
                 responsive: false,
                 ordering: true,
-                "columnDefs": [ 2, 'num' ],
+                "columnDefs": [
+                   {
+                      2: 'num'
+                   },
+                   {
+                      "targets": $(".distance-column-sort").index(),
+                      "type": "distance",
+                   }
+                ],
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,

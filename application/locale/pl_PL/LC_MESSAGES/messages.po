@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2024-11-07 09:36+0000\n"
 "PO-Revision-Date: 2024-11-08 08:04+0000\n"
 "Last-Translator: Bartek <achtachtel@gmail.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -327,6 +327,7 @@ msgstr "Podgląd Logu - VUCC"
 #: application/controllers/Timeline.php:114
 #: application/controllers/Timeline.php:117
 #: application/controllers/Timeline.php:120
+#: application/controllers/Distancerecords.php:86
 msgid "Log View"
 msgstr "Podgląd Logu"
 
@@ -704,6 +705,8 @@ msgstr ""
 #: application/controllers/Distancerecords.php:42
 #: application/controllers/Distancerecords.php:59
 #: application/views/interface_assets/header.php:146
+#: application/controllers/Distancerecords.php:67
+#: application/controllers/Distancerecords.php:86
 msgid "Satellite Distance Records"
 msgstr ""
 
@@ -3174,6 +3177,7 @@ msgstr ""
 #: application/views/distancerecords/index.php:50
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:135
+#: application/views/distancerecords/index.php:52
 msgid "Nothing found!"
 msgstr "Nie znaleziono!"
 
@@ -11964,6 +11968,14 @@ msgstr "Twój znak:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Prześlij prośbę"
+
+#: application/views/distancerecords/index.php:20
+msgid "My Gridsquare"
+msgstr ""
+
+#: application/views/distancerecords/index.php:21
+msgid "DX Gridsquare"
+msgstr ""
 
 #~ msgid "The Email or Callsign you use to login to Club Log"
 #~ msgstr ""

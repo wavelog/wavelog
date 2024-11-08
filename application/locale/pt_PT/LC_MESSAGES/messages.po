@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-07 09:36+0000\n"
+"POT-Creation-Date: 2024-11-08 08:04+0000\n"
 "PO-Revision-Date: 2024-11-05 22:15+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -319,7 +319,7 @@ msgid "Log View - VUCC"
 msgstr "Visualização do log - VUCC"
 
 #: application/controllers/Awards.php:456
-#: application/controllers/Distancerecords.php:59
+#: application/controllers/Distancerecords.php:86
 #: application/controllers/Timeline.php:105
 #: application/controllers/Timeline.php:108
 #: application/controllers/Timeline.php:111
@@ -708,8 +708,8 @@ msgstr ""
 msgid "File Migration failed. Please check the Error Log."
 msgstr "A migração de ficheiros falhou. Verifique o registo de erros."
 
-#: application/controllers/Distancerecords.php:42
-#: application/controllers/Distancerecords.php:59
+#: application/controllers/Distancerecords.php:67
+#: application/controllers/Distancerecords.php:86
 #: application/views/interface_assets/header.php:146
 msgid "Satellite Distance Records"
 msgstr "Recordes de distância de satélite"
@@ -1294,7 +1294,6 @@ msgstr "Estado"
 #: application/views/contesting/index.php:21
 #: application/views/contesting/index.php:262
 #: application/views/dashboard/index.php:13
-#: application/views/distancerecords/index.php:20
 #: application/views/gridmap/index.php:152
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/edit.php:10
@@ -3204,7 +3203,7 @@ msgstr "Contagem mínima"
 #: application/views/awards/waja/index.php:202
 #: application/views/awards/was/index.php:200
 #: application/views/awards/wwff/index.php:64
-#: application/views/distancerecords/index.php:50
+#: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:135
 msgid "Nothing found!"
@@ -6909,6 +6908,14 @@ msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
 "Esta página lista os recordes de distância por satélite com base em "
 "quadrículas."
+
+#: application/views/distancerecords/index.php:20
+msgid "My Gridsquare"
+msgstr ""
+
+#: application/views/distancerecords/index.php:21
+msgid "DX Gridsquare"
+msgstr ""
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:30
