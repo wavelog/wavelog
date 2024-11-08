@@ -27,7 +27,7 @@ function editCatUrlDialog(e) {
 		},
 		success: function (data) {
 			BootstrapDialog.show({
-				title: 'Edit Callback-URL for CAT',
+				title: 'Edit CAT Settings',
 				size: BootstrapDialog.SIZE_NORMAL,
 				cssClass: 'options',
 				id: "CatUrlModal",
