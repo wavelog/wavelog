@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-07 09:36+0000\n"
+"POT-Creation-Date: 2024-11-08 08:04+0000\n"
 "PO-Revision-Date: 2024-11-08 10:43+0000\n"
 "Last-Translator: Bartek <achtachtel@gmail.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -320,14 +320,13 @@ msgid "Log View - VUCC"
 msgstr "Podgląd Logu - VUCC"
 
 #: application/controllers/Awards.php:456
-#: application/controllers/Distancerecords.php:59
+#: application/controllers/Distancerecords.php:86
 #: application/controllers/Timeline.php:105
 #: application/controllers/Timeline.php:108
 #: application/controllers/Timeline.php:111
 #: application/controllers/Timeline.php:114
 #: application/controllers/Timeline.php:117
 #: application/controllers/Timeline.php:120
-#: application/controllers/Distancerecords.php:86
 msgid "Log View"
 msgstr "Podgląd Logu"
 
@@ -428,18 +427,15 @@ msgstr "CQ Magazyn WAZ"
 #: application/controllers/Awards.php:655
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
-#, fuzzy
 msgid "Worked All States (WAS)"
 msgstr "Pracował we wszystkich stanach (WAS)"
 
 #: application/controllers/Awards.php:717 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:192
-#, fuzzy
 msgid "RAC"
 msgstr "RAC"
 
 #: application/controllers/Awards.php:779 application/views/bands/index.php:49
-#, fuzzy
 msgid "H26"
 msgstr "H26"
 
@@ -477,14 +473,12 @@ msgid "Gridsquares confirmed by paper QSL"
 msgstr "Lokatory potwierdzone kartą QSL"
 
 #: application/controllers/Awards.php:942
-#, fuzzy
 msgid "Fred Fish Memorial Award (FFMA)"
 msgstr "Nagroda Pamięci Freda Fisha (FFMA)"
 
 #: application/controllers/Awards.php:1143
 #: application/views/interface_assets/header.php:170
 #: application/views/logbookadvanced/useroptions.php:122
-#, fuzzy
 msgid "SIG"
 msgstr "SIG"
 
@@ -500,7 +494,6 @@ msgstr "Strefy ITU"
 #: application/controllers/Awards.php:1914
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:174
-#, fuzzy
 msgid "Worked All Continents (WAC)"
 msgstr "Pracował na wszystkich kontynentach (WAC)"
 
@@ -514,7 +507,6 @@ msgid "ADIF - Backup"
 msgstr "Kopia zapasowa - ADIF"
 
 #: application/controllers/Backup.php:84
-#, fuzzy
 msgid "Notes - Backup"
 msgstr "Notatki - Kopia zapasowa"
 
@@ -555,13 +547,11 @@ msgstr "Eksport CFD"
 #: application/controllers/Eqsl.php:13 application/controllers/Hrdlog.php:19
 #: application/controllers/Lotw.php:27 application/controllers/Qrz.php:14
 #: application/controllers/Update.php:16
-#, fuzzy
 msgid "Maintenance Mode is active. Try again later."
 msgstr "Tryb konserwacji jest aktywny. Spróbuj ponownie później."
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
-#, fuzzy
 msgid "No user has configured Clublog."
 msgstr "Żaden użytkownik nie skonfigurował Clublog."
 
@@ -571,7 +561,6 @@ msgid "Contest Calendar"
 msgstr "Kalendarz zawodów"
 
 #: application/controllers/Contestcalendar.php:47
-#, fuzzy
 msgid "Contestcalendar not reachable. Try again later"
 msgstr "Kalendarz konkursów jest niedostępny. Spróbuj ponownie później."
 
@@ -586,7 +575,6 @@ msgid "Contests"
 msgstr "Zawody"
 
 #: application/controllers/Contesting.php:137
-#, fuzzy
 msgid "Update Contest"
 msgstr "Aktualizacja konkursu"
 
@@ -599,12 +587,10 @@ msgstr "Kontynenty"
 
 #: application/controllers/Cron.php:38
 #: application/views/interface_assets/header.php:288
-#, fuzzy
 msgid "Cron Manager"
 msgstr "Menedżer Cron"
 
 #: application/controllers/Cron.php:154 application/views/cron/edit.php:5
-#, fuzzy
 msgid "Edit Cronjob"
 msgstr "Edytuj Cronjob"
 
@@ -615,27 +601,22 @@ msgstr "Edytuj Cronjob"
 #: application/views/debug/index.php:535 application/views/debug/index.php:540
 #: application/views/debug/index.php:545 application/views/debug/index.php:550
 #: application/views/user/index.php:136
-#, fuzzy
 msgid "never"
 msgstr "nigdy"
 
 #: application/controllers/Cron.php:219
-#, fuzzy
 msgid "calculating..."
 msgstr "obliczanie..."
 
 #: application/controllers/Cron.php:230 application/views/cron/index.php:70
-#, fuzzy
 msgid "healthy"
 msgstr "zdrowy"
 
 #: application/controllers/Cron.php:232 application/views/cron/index.php:72
-#, fuzzy
 msgid "failed"
 msgstr "nieudany"
 
 #: application/controllers/Cron.php:234 application/views/cron/index.php:74
-#, fuzzy
 msgid "pending"
 msgstr "oczekujący"
 
@@ -727,11 +708,9 @@ msgstr ""
 msgid "File Migration failed. Please check the Error Log."
 msgstr "Migracja plików nie powiodła się. Sprawdź dziennik błędów."
 
-#: application/controllers/Distancerecords.php:42
-#: application/controllers/Distancerecords.php:59
-#: application/views/interface_assets/header.php:146
 #: application/controllers/Distancerecords.php:67
 #: application/controllers/Distancerecords.php:86
+#: application/views/interface_assets/header.php:146
 msgid "Satellite Distance Records"
 msgstr "Rekordy odległości satelitarnych"
 
@@ -1315,7 +1294,6 @@ msgstr "Stan"
 #: application/views/contesting/index.php:21
 #: application/views/contesting/index.php:262
 #: application/views/dashboard/index.php:13
-#: application/views/distancerecords/index.php:20
 #: application/views/gridmap/index.php:152
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/edit.php:10
@@ -3208,10 +3186,9 @@ msgstr ""
 #: application/views/awards/waja/index.php:202
 #: application/views/awards/was/index.php:200
 #: application/views/awards/wwff/index.php:64
-#: application/views/distancerecords/index.php:50
+#: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:135
-#: application/views/distancerecords/index.php:52
 msgid "Nothing found!"
 msgstr "Nie znaleziono!"
 
@@ -6688,6 +6665,14 @@ msgstr ""
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
+msgstr ""
+
+#: application/views/distancerecords/index.php:20
+msgid "My Gridsquare"
+msgstr ""
+
+#: application/views/distancerecords/index.php:21
+msgid "DX Gridsquare"
 msgstr ""
 
 #: application/views/distances/index.php:7
@@ -12040,14 +12025,6 @@ msgstr "Twój znak:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Prześlij prośbę"
-
-#: application/views/distancerecords/index.php:20
-msgid "My Gridsquare"
-msgstr ""
-
-#: application/views/distancerecords/index.php:21
-msgid "DX Gridsquare"
-msgstr ""
 
 #~ msgid "The Email or Callsign you use to login to Club Log"
 #~ msgstr ""
