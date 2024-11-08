@@ -26,6 +26,8 @@ class Distancerecords_model extends CI_Model {
 					FROM '.$this->config->item('table_name').'
 					WHERE station_id IN ('.implode(', ', $logbooks_locations_array).')
 					AND COALESCE(COL_SAT_NAME, "") <> ""
+					AND COL_DISTANCE IS NOT NULL
+					AND COL_GRIDSQUARE IS NOT NULL
 					GROUP BY col_sat_name
 			) t1
 			LEFT JOIN (
@@ -56,6 +58,8 @@ class Distancerecords_model extends CI_Model {
 			FROM '.$this->config->item('table_name').'
 			WHERE station_id IN ('.implode(', ', $logbooks_locations_array).')
 			AND COALESCE(COL_SAT_NAME, "") <> ""
+			AND COL_DISTANCE IS NOT NULL
+			AND COL_GRIDSQUARE IS NOT NULL
 			GROUP BY col_sat_name
 			ORDER BY distance DESC;';
 		$query = $this->db->query($sql);
