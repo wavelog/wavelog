@@ -943,13 +943,13 @@ class Logbook extends CI_Controller {
 
 						$data['callsign'] = $this->qrz->search($id, $this->session->userdata('qrz_session_key'), $this->config->item('use_fullname'));
 						if (isset($data['callsign']['gridsquare'])) {
-							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
+							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), null, $this->session->userdata('user_default_band'))->num_rows();
 						}
 						if (isset($data['callsign']['dxcc'])) {
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
-							$data['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($data['callsign']['dxcc']);
-							$data['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($data['callsign']['dxcc']);
+							$data['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($data['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+							$data['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($data['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 						}
 						if (isset($data['callsign']['error'])) {
 							$data['error'] = $data['callsign']['error'];
@@ -972,13 +972,13 @@ class Logbook extends CI_Controller {
 							$data['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
 						}
 						if (isset($data['callsign']['gridsquare'])) {
-							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
+							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), null, $this->session->userdata('user_default_band'))->num_rows();
 						}
 						if (isset($data['callsign']['dxcc'])) {
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
-							$data['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($data['callsign']['dxcc']);
-							$data['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($data['callsign']['dxcc']);
+							$data['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($data['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+							$data['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($data['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 						}
 						if (isset($data['callsign']['error'])) {
 							$data['error'] = $data['callsign']['error'];
