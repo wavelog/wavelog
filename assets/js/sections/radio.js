@@ -14,7 +14,7 @@ $(document).ready(function () {
 
 });
 
-$(document).on('click', '.editCatUrl', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+$(document).on('click', '.editCatSettings', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
 	editCatUrlDialog(e);
 });
 
