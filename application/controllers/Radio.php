@@ -116,10 +116,10 @@ class Radio extends CI_Controller {
 	}
 
 	public function saveCatUrl() {
-		$name = xss_clean($this->input->post('name', true));
+		$url = xss_clean($this->input->post('caturl', true));
 		$id = xss_clean($this->input->post('id', true));
 		$this->load->model('cat');
-		$this->cat->updateCatUrl($id,$name);
+		$this->cat->updateCatUrl($id,$url);
 	}
 
 	public function editCatUrl() {
