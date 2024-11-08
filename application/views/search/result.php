@@ -25,7 +25,23 @@
 <?php if(isset($callsign['dxcc_name'])) { ?>
 <tr>
 	<td style="padding: 0 0.3em 0 0;" align="left"><?= __("DXCC"); ?></td>
-	<td style="padding: 0.3em 0 0.3em 0.5em;" align="left"><?php echo $callsign['dxcc_name']; ?></td>
+	<td style="padding: 0.3em 0 0.3em 0.5em;" align="left">
+	<?php 
+	 	if ($dxcc_worked != 0) {
+			if ($dxcc_confirmed != 0) {
+				$title_text = __("Confirmed");
+				$badge_class = "badge text-bg-success";
+			} else {
+				$title_text = __("Worked");
+				$badge_class = "badge text-bg-warning";
+			}
+		} else {
+			$title_text = __("Not Worked");
+			$badge_class = "badge text-bg-danger";
+		}
+		echo ' <span data-bs-toggle=\"tooltip" title="' . $title_text . '" class="' . $badge_class . '" style="padding-left: 0.2em; padding-right: 0.2em;">'.strtoupper($callsign['dxcc_name']).'</span>';
+	?>
+	</td>
 </tr>
 <?php } ?>
 

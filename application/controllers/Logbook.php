@@ -948,6 +948,8 @@ class Logbook extends CI_Controller {
 						if (isset($data['callsign']['dxcc'])) {
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
+							$data['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($data['callsign']['dxcc']);
+							$data['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($data['callsign']['dxcc']);
 						}
 						if (isset($data['callsign']['error'])) {
 							$data['error'] = $data['callsign']['error'];
@@ -975,6 +977,8 @@ class Logbook extends CI_Controller {
 						if (isset($data['callsign']['dxcc'])) {
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
+							$data['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($data['callsign']['dxcc']);
+							$data['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($data['callsign']['dxcc']);
 						}
 						if (isset($data['callsign']['error'])) {
 							$data['error'] = $data['callsign']['error'];
