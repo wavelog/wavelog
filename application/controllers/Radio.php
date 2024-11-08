@@ -50,7 +50,7 @@ class Radio extends CI_Controller {
 			echo "<th>" . __("Timestamp") . "</th>";
 			echo "<th></th>";
 			echo "<th>" . __("Options") . "</th>";
-			echo "<th>" . __("CAT-URL") . "</th>";
+			echo "<th>" . __("Settings") . "</th>";
 			echo "<th></th>";
 			echo "</tr></thead><tbody>";
 			foreach ($query->result() as $row) {
@@ -103,7 +103,7 @@ class Radio extends CI_Controller {
 						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
 					}
 				}
-				echo "<td><button id='".$row->id."' \" class=\"editCatUrl btn btn-sm btn-primary\"> " . __("Edit") . "</button></td>";
+				echo "<td><button id='".$row->id."' \" class=\"editCatSettings btn btn-sm btn-primary\"> " . __("Edit") . "</button></td>";
 				echo "<td><a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
 				echo "</tr>";
 			}
