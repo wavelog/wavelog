@@ -27,11 +27,11 @@ class Staticmap extends CI_Controller {
 
         // Optional override-parameters
         $band = $this->input->get('band', TRUE) ?? 'nbf';
-        $orbit = $this->input->get('orbit', TRUE) ?? 'nOrb';
-        $continent = $this->input->get('continent', TRUE) ?? 'nC';
-        $thememode = $this->input->get('theme', TRUE) ?? null;
+        $orbit = ($this->input->get('orbit', TRUE) ?? '') == '' ? 'nOrb' : strtoupper($this->input->get('orbit', TRUE));
+        $continent = ($this->input->get('continent', TRUE) ?? '') == '' ? 'nC' : strtoupper($this->input->get('continent', TRUE));
+        $thememode = ($this->input->get('theme', TRUE) ?? '') == '' ? '' : strtolower($this->input->get('theme', TRUE));
         $hide_home = $this->input->get('hide_home', TRUE) == 1 ? true : false;
-        $contest = $this->input->get('contest', TRUE) ?? 'nContest';
+        $contest = ($this->input->get('contest', TRUE) ?? '') == '' ? 'nContest' : strtoupper($this->input->get('contest', TRUE));
 
         $start_date = $this->input->get('start_date', TRUE) ?? 'noStart';   // Format YYYY-MM-DD
         $end_date = $this->input->get('end_date', TRUE) ?? 'noEnd';          // Format YYYY-MM-DD
