@@ -843,6 +843,8 @@ class Logbook extends CI_Controller {
 						$this->load->model('logbook_model');
 						$entity = $this->logbook_model->get_entity($callsign['callsign']['dxcc']);
 						$callsign['callsign']['dxcc_name'] = $entity['name'];
+						$callsign['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+						$callsign['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 					}
 				} else if ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null) {
 					// Load the HamQTH library
@@ -863,12 +865,14 @@ class Logbook extends CI_Controller {
 					}
 					if (isset($data['callsign']['gridsquare'])) {
 						$this->load->model('logbook_model');
-						$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
+						$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), null, $this->session->userdata('user_default_band'))->num_rows();
 					}
 					if (isset($callsign['callsign']['dxcc'])) {
 						$this->load->model('logbook_model');
 						$entity = $this->logbook_model->get_entity($callsign['callsign']['dxcc']);
 						$callsign['callsign']['dxcc_name'] = $entity['name'];
+						$callsign['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+						$callsign['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 					}
 					if (isset($callsign['callsign']['error'])) {
 						$callsign['error'] = $callsign['callsign']['error'];
@@ -887,7 +891,7 @@ class Logbook extends CI_Controller {
 
 				if (isset($callsign['callsign']['gridsquare'])) {
 					$this->load->model('logbook_model');
-					$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsign['callsign']['gridsquare'],0,4)), 0, $band)->num_rows();
+					$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsign['callsign']['gridsquare'],0,4)), null, $band)->num_rows();
 				}
 				if (isset($callsign['callsign']['error'])) {
 					$callsign['error'] = $callsign['callsign']['error'];
