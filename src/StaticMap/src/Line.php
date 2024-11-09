@@ -130,10 +130,10 @@ class Line implements Draw
             $nextPoint = GeographicConverter::metersToLatLng($lastPoint, $distanceInterval, $angle);
 
             if ($wrapping) {
-                if ($nextPoint->getLng() < 0 && $lastPoint->getLng() > 0) {
+                if ($nextPoint->getLng() < 1 && $lastPoint->getLng() > 1) {
                     $nextPoint->setLng($nextPoint->getLng() + 360);
                 }
-                if ($nextPoint->getLng() > 0 && $lastPoint->getLng() < 0) {
+                if ($nextPoint->getLng() > 1 && $lastPoint->getLng() < 1) {
                     $nextPoint->setLng($nextPoint->getLng() - 360);
                 }
 
@@ -145,10 +145,10 @@ class Line implements Draw
         }
 
         if ($endpoint_correction) {
-            if ($lastPoint && $end->getLng() < 0 && $lastPoint->getLng() > 0) {
+            if ($lastPoint && $end->getLng() < 1 && $lastPoint->getLng() > 1) {
                 $end->setLng($end->getLng() + 360);
             }
-            if ($lastPoint && $end->getLng() > 0 && $lastPoint->getLng() < 0) {
+            if ($lastPoint && $end->getLng() > 1 && $lastPoint->getLng() < 1) {
                 $end->setLng($end->getLng() - 360);
             }
         }
@@ -157,7 +157,7 @@ class Line implements Draw
 
         // free memory
         unset($lastPoint, $nextPoint);
-        
+
         return $points;
     }
 }
