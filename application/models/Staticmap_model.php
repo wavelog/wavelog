@@ -603,14 +603,12 @@ class Staticmap_model extends CI_Model {
      */
 
     function draw_pathline($start, $end, $continent, $color = 'ffffff', $weight = 1) {
-        // Start in Berlin 
-        $start = new \Wavelog\StaticMapImage\LatLng($start[0], $start[1]);
 
-        // End in honkong
+        $start = new \Wavelog\StaticMapImage\LatLng($start[0], $start[1]);
         $end = new \Wavelog\StaticMapImage\LatLng($end[0], $end[1]);
 
         $path = new \Wavelog\StaticMapImage\Line($color, $weight, !$continent);
-        $points = $path->geodesicPoints($start, $end);
+        $points = $path->geodesicPoints($start, $end, $continent);
 
         foreach ($points as $point) {
             $path->addPoint($point);
