@@ -116,7 +116,7 @@ class Line implements Draw
     public function geodesicPoints(LatLng $start, LatLng $end): array {
         $points = [$start];
         $totalDistance = GeographicConverter::latLngToMeters($start, $end);
-        $distanceInterval = 10000;
+        $distanceInterval = 100000;
         $currentDistance = 0;
     
         while ($currentDistance + $distanceInterval < $totalDistance) {
