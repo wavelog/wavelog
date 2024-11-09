@@ -220,6 +220,9 @@ class Staticmap_model extends CI_Model {
             $user_icondata['user_map_gridsquare_show'] = "0";
         }
 
+        // free memory
+        unset($options_object);
+
         // Map all available icons to the unicode
         $unicode_map = array(
             '0' => 'f192', // dot-circle is default
@@ -347,6 +350,9 @@ class Staticmap_model extends CI_Model {
             foreach ($terminatorLine as $coordinate) {
                 $night_shadow_polygon->addPoint(new Wavelog\StaticMapImage\LatLng($coordinate[0], $coordinate[1]));
             }
+
+            // free memory
+            unset($terminator);
         }
 
 
@@ -422,6 +428,10 @@ class Staticmap_model extends CI_Model {
                 }
         
                 $cqz_image->savePNG($cqz_cachedir . '/' . $cqz_filename);
+
+                // free memory
+                unset($cqzones_polygon_array);
+
             } else {
                 log_message('info', "Found cached CQ Zone Overlay. Using cached overlay...");
             }
@@ -498,6 +508,10 @@ class Staticmap_model extends CI_Model {
                 }
 
                 $ituz_image->savePNG($ituz_cachedir . '/' . $ituz_filename);
+
+                // free memory
+                unset($ituzones_polygon_array);
+                
             } else {
                 log_message('info', "Found cached ITU Zone Overlay. Using cached overlay...");
             }
