@@ -145,10 +145,10 @@ class Line implements Draw
         }
 
         if ($endpoint_correction) {
-            if ($lastPoint && $end->getLng() < 1 && $lastPoint->getLng() > 1) {
+            if ($lastPoint && $end->getLng() < -1 && $lastPoint->getLng() > 1) {
                 $end->setLng($end->getLng() + 360);
             }
-            if ($lastPoint && $end->getLng() > 1 && $lastPoint->getLng() < 1) {
+            if ($lastPoint && $end->getLng() > 1 && $lastPoint->getLng() < -1) {
                 $end->setLng($end->getLng() - 360);
             }
         }
