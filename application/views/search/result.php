@@ -39,7 +39,7 @@
 			$title_text = __("Not Worked");
 			$badge_class = "badge text-bg-danger";
 		}
-		echo ' <span data-bs-toggle=\"tooltip" title="' . $title_text . '" class="' . $badge_class . '" style="padding-left: 0.2em; padding-right: 0.2em;">'.strtoupper($callsign['dxcc_name']).'</span>';
+		echo ' <span data-bs-toggle="tooltip" title="' . $title_text . '" class="' . $badge_class . '" style="padding-left: 0.2em; padding-right: 0.2em;">'.strtoupper($callsign['dxcc_name']).'</span>';
 	?>
 	</td>
 </tr>
