@@ -2219,6 +2219,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_CALL', $callsign);
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
@@ -2249,6 +2250,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_CALL', $callsign);
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
@@ -2274,6 +2276,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_DXCC', $dxcc);
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
@@ -2327,6 +2330,7 @@ class Logbook_model extends CI_Model {
 		$sql="SELECT count(1) as CNT from ".$this->config->item('table_name')." where station_id in (".$station_ids.") and (".$extrawhere.") and COL_DXCC=?";
 		$binding[]=$dxcc;
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$sql.=" AND COL_BAND = ?";
 			$binding[]=$band;
@@ -2389,6 +2393,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_DXCC', $dxcc);
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
@@ -2442,6 +2447,7 @@ class Logbook_model extends CI_Model {
 		$this->db->or_like('COL_VUCC_GRIDS', $grid);
 		$this->db->group_end();
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
