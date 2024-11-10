@@ -121,5 +121,13 @@
 
 			return true;
 		}
+
+		function updateCatUrl($id,$caturl) {
+			$this->db->where('id', $id);
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$this->db->update('cat',array('cat_url' => $caturl));
+
+			return true;
+		}
 	}
 ?>
