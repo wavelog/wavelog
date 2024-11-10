@@ -608,9 +608,8 @@ class Staticmap_model extends CI_Model {
         $end = new \Wavelog\StaticMapImage\LatLng($end[0], $end[1]);
 
         $path = new \Wavelog\StaticMapImage\Line($color, $weight, !$continent);
-        $points = $path->geodesicPoints($start, $end, $continent);
 
-        foreach ($points as $point) {
+        foreach ($path->geodesicPoints($start, $end, $continent) as $point) {
             $path->addPoint($point);
         }
 

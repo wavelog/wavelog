@@ -114,15 +114,14 @@ class Line implements Draw
      * 
      * @return LatLng[]
      */
-    public function geodesicPoints(LatLng $start, LatLng $end, bool $wrapping): array {
-        $points = [$start];
+    public function geodesicPoints(LatLng $start, LatLng $end, bool $wrapping): \Generator {
         $totalDistance = GeographicConverter::latLngToMeters($start, $end);
         $distanceInterval = 100000;
         $currentDistance = 0;
 
         $lastPoint = $start;
-        $endpoint_correction = true;
-        
+        yield $start;
+
         while ($currentDistance + $distanceInterval < $totalDistance) {
             $currentDistance += $distanceInterval;
             
@@ -136,28 +135,20 @@ class Line implements Draw
                 if ($nextPoint->getLng() > 1 && $lastPoint->getLng() < 1) {
                     $nextPoint->setLng($nextPoint->getLng() - 360);
                 }
-
-                $endpoint_correction = true;
             }
+
+            yield $nextPoint;
 
             $lastPoint = $nextPoint;
-            $points[] = $nextPoint;
         }
 
-        if ($endpoint_correction) {
-            if ($lastPoint && $end->getLng() < -1 && $lastPoint->getLng() > 1) {
-                $end->setLng($end->getLng() + 360);
-            }
-            if ($lastPoint && $end->getLng() > 1 && $lastPoint->getLng() < -1) {
-                $end->setLng($end->getLng() - 360);
-            }
+        if ($lastPoint && $end->getLng() < -1 && $lastPoint->getLng() > 1) {
+            $end->setLng($end->getLng() + 360);
+        }
+        if ($lastPoint && $end->getLng() > 1 && $lastPoint->getLng() < -1) {
+            $end->setLng($end->getLng() - 360);
         }
 
-        $points[] = $end;
-
-        // free memory
-        unset($lastPoint, $nextPoint);
-
-        return $points;
+        yield $end;
     }
 }
