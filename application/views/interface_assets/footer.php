@@ -174,6 +174,13 @@ if($this->session->userdata('user_id') != null) {
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>
+    // Replace all Ø in the searchbar
+    $('#nav-bar-search-input').on('input', function () {
+        $(this).val($(this).val().replace(/0/g, 'Ø'));
+    });
+</script>
+
+<script>
     var current_active_location = "<?php echo $this->stations->find_active(); ?>";
     quickswitcher_show_activebadge(current_active_location);
 </script>
@@ -2622,11 +2629,32 @@ function viewEqsl(picture, callsign) {
                    dt.search('').draw();
                 }
             };
+            $.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+               var num = parseFloat(data);
+               return isNaN(num) ? 0 : num;
+            };
+            $('#distrectable').on('order.dt search.dt', function() {
+               var disttable = $('#distrectable').DataTable();
+               let i = 1;
+               disttable
+                  .cells(null, 0, { search: 'applied', order: 'applied' })
+                  .every(function (cell) {
+                     this.data(i++);
+                  });
+            });
             $('#distrectable').DataTable({
                 "pageLength": 25,
                 responsive: false,
                 ordering: true,
-                "columnDefs": [ 2, 'num' ],
+                "columnDefs": [
+                   {
+                      2: 'num'
+                   },
+                   {
+                      "targets": $(".distance-column-sort").index(),
+                      "type": "distance",
+                   }
+                ],
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,

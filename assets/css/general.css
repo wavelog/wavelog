@@ -452,8 +452,12 @@ TD.lotw {
 	text-transform: uppercase;
 }
 
-#nav-bar-search-input:focus {
-	text-transform: uppercase;
+#nav-bar-search-input {
+    text-transform: uppercase;
+}
+
+#nav-bar-search-input::placeholder {
+    text-transform: none;
 }
 
 .settings {

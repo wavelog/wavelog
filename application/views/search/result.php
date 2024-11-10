@@ -1,9 +1,9 @@
 <div class="card-body">
-<h2><?= sprintf(__("Results for %s"), $id); ?></h2>
+<h2><?= sprintf(__("Results for %s"), str_replace('0', 'Ø', $id)); ?></h2>
 
-<p><?= sprintf(__("Sorry, but we didn't find any past QSOs with %s"), $id); ?></p>
+<p><?= sprintf(__("Sorry, but we didn't find any past QSOs with %s"), str_replace('0', 'Ø', $id)); ?></p>
 
-<h3><?= sprintf(__("Callbook Search for %s"), $id); ?></h3>
+<h3><?= sprintf(__("Callbook Search for %s"), str_replace('0', 'Ø', $id)); ?></h3>
 <?php if(isset($callsign['callsign'])) { ?>
 <table>
 
@@ -25,7 +25,23 @@
 <?php if(isset($callsign['dxcc_name'])) { ?>
 <tr>
 	<td style="padding: 0 0.3em 0 0;" align="left"><?= __("DXCC"); ?></td>
-	<td style="padding: 0.3em 0 0.3em 0.5em;" align="left"><?php echo $callsign['dxcc_name']; ?></td>
+	<td style="padding: 0.3em 0 0.3em 0.5em;" align="left">
+	<?php 
+	 	if ($dxcc_worked != 0) {
+			if ($dxcc_confirmed != 0) {
+				$title_text = __("Confirmed");
+				$badge_class = "badge text-bg-success";
+			} else {
+				$title_text = __("Worked");
+				$badge_class = "badge text-bg-warning";
+			}
+		} else {
+			$title_text = __("Not Worked");
+			$badge_class = "badge text-bg-danger";
+		}
+		echo ' <span data-bs-toggle="tooltip" title="' . $title_text . '" class="' . $badge_class . '" style="padding-left: 0.2em; padding-right: 0.2em;">'.strtoupper($callsign['dxcc_name']).'</span>';
+	?>
+	</td>
 </tr>
 <?php } ?>
 
