@@ -1178,12 +1178,21 @@ class Logbook_model extends CI_Model {
 		} else {
 			$sat_name = $data['COL_SAT_NAME'];
 		}
-		$datearray = date_parse_from_format("Y-m-d H:i:s", $data['COL_TIME_ON']);
-		$url = 'https://amsat.org/status/submit.php?SatSubmit=yes&Confirm=yes&SatName=' . $sat_name . '&SatYear=' . $datearray['year'] . '&SatMonth=' . str_pad($datearray['month'], 2, '0', STR_PAD_LEFT) . '&SatDay=' . str_pad($datearray['day'], 2, '0', STR_PAD_LEFT) . '&SatHour=' . str_pad($datearray['hour'], 2, '0', STR_PAD_LEFT) . '&SatPeriod=' . (intdiv(($datearray['minute'] - 1), 15)) . '&SatCall=' . $data['COL_STATION_CALLSIGN'] . '&SatReport=Heard&SatGridSquare=' . $data['COL_MY_GRIDSQUARE'];
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_exec($ch);
+		$amsat_source_grid = '';
+		if (array_key_exists('COL_MY_GRIDSQUARE', $data)) {
+			$amsat_source_grid = $data['COL_MY_GRIDSQUARE'];
+		} else if (array_key_exists('COL_MY_VUCC_GRIDS', $data)) {
+			$amsat_source_grid = strtok($data['COL_MY_VUCC_GRIDS'], ',');
+		}
+		if ($amsat_source_grid != '') {
+			$datearray = date_parse_from_format("Y-m-d H:i:s", $data['COL_TIME_ON']);
+			$url = 'https://amsat.org/status/submit.php?SatSubmit=yes&Confirm=yes&SatName=' . $sat_name . '&SatYear=' . $datearray['year'] . '&SatMonth=' . str_pad($datearray['month'], 2, '0', STR_PAD_LEFT) . '&SatDay=' . str_pad($datearray['day'], 2, '0', STR_PAD_LEFT) . '&SatHour=' . str_pad($datearray['hour'], 2, '0', STR_PAD_LEFT) . '&SatPeriod=' . (intdiv(($datearray['minute'] - 1), 15)) . '&SatCall=' . $data['COL_STATION_CALLSIGN'] . '&SatReport=Heard&SatGridSquare=' . $amsat_source_grid;
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_exec($ch);
+		}
 	}
 
 	/* Edit QSO */
@@ -2210,6 +2219,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_CALL', $callsign);
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
@@ -2240,6 +2250,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_CALL', $callsign);
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
@@ -2265,6 +2276,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_DXCC', $dxcc);
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
@@ -2318,6 +2330,7 @@ class Logbook_model extends CI_Model {
 		$sql="SELECT count(1) as CNT from ".$this->config->item('table_name')." where station_id in (".$station_ids.") and (".$extrawhere.") and COL_DXCC=?";
 		$binding[]=$dxcc;
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$sql.=" AND COL_BAND = ?";
 			$binding[]=$band;
@@ -2380,6 +2393,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_DXCC', $dxcc);
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
@@ -2433,6 +2447,7 @@ class Logbook_model extends CI_Model {
 		$this->db->or_like('COL_VUCC_GRIDS', $grid);
 		$this->db->group_end();
 
+		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
 			$this->db->where('COL_BAND', $band);
 		} else if ($band == 'SAT') {
@@ -4358,6 +4373,13 @@ class Logbook_model extends CI_Model {
 			} else {
 				$this->add_qso($data, $skipexport);
 			}
+
+			// if there are any static map images for this station, remove them so they can be regenerated
+			if (!$this->load->is_loaded('staticmap_model')) {
+				$this->load->model('staticmap_model');
+			}
+			$this->staticmap_model->remove_static_map_image($station_id);
+			
 		} else {
 			$my_error .= "Date/Time: " . ($time_on ?? 'N/A') . " Callsign: " . ($record['call'] ?? 'N/A') . " Band: " . ($band ?? 'N/A') . " ".__("Duplicate for")." ". ($station_profile_call ?? 'N/A') . "<br>";
 		}

@@ -44,10 +44,10 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.mode);
 	}
 	if (user_options.rsts.show == "true"){
-		cells.eq(c++).text(qso.rstS);
+		cells.eq(c++).html(qso.rstS);
 	}
 	if (user_options.rstr.show == "true"){
-		cells.eq(c++).text(qso.rstR);
+		cells.eq(c++).html(qso.rstR);
 	}
 	if (user_options.band.show == "true"){
 		cells.eq(c++).text(qso.band);

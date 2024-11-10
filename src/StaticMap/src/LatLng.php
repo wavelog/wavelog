@@ -51,4 +51,26 @@ class LatLng
     {
         return $this->lng;
     }
+
+    /**
+     * Set latitude
+     * @param float $lat Latitude
+     * @return $this Fluent interface
+     */
+    public function setLat(float $lat): LatLng
+    {
+        $this->lat = $lat;
+        return $this;
+    }
+
+    /**
+     * Set longitude
+     * @param float $lng Longitude
+     * @return $this Fluent interface
+     */
+    public function setLng(float $lng): LatLng
+    {
+        $this->lng = $lng;
+        return $this;
+    }
 }

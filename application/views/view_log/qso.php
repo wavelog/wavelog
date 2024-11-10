@@ -234,58 +234,58 @@
                         <td><?= __("Propagation"); ?></td>
                         <td><?php switch ($row->COL_PROP_MODE) {
                             case 'AS':
-                                echo __("Aircraft Scatter");
+                                echo _pgettext("Propagation Mode", "Aircraft Scatter");
                                 break;
                             case 'AUR':
-                                echo __("Aurora");
+                                echo _pgettext("Propagation Mode", "Aurora");
                                 break;
                             case 'AUE':
-                                echo __("Aurora-E");
+                                echo _pgettext("Propagation Mode", "Aurora-E");
                                 break;
                             case 'BS':
-                                echo __("Back scatter");
+                                echo _pgettext("Propagation Mode", "Back scatter");
                                 break;
                             case 'ECH':
-                                echo __("EchoLink");
+                                echo _pgettext("Propagation Mode", "EchoLink");
                                 break;
                             case 'EME':
-                                echo __("Earth-Moon-Earth");
+                                echo _pgettext("Propagation Mode", "Earth-Moon-Earth");
                                 break;
                             case 'ES':
-                                echo __("Sporadic E");
+                                echo _pgettext("Propagation Mode", "Sporadic E");
                                 break;
                             case 'FAI':
-                                echo __("Field Aligned Irregularities");
+                                echo _pgettext("Propagation Mode", "Field Aligned Irregularities");
                                 break;
                             case 'F2':
-                                echo __("F2 Reflection");
+                                echo _pgettext("Propagation Mode", "F2 Reflection");
                                 break;
                             case 'INTERNET':
-                                echo __("Internet-assisted");
+                                echo _pgettext("Propagation Mode", "Internet-assisted");
                                 break;
                             case 'ION':
-                                echo __("Ionoscatter");
+                                echo _pgettext("Propagation Mode", "Ionoscatter");
                                 break;
                             case 'IRL':
-                                echo __("IRLP");
+                                echo _pgettext("Propagation Mode", "IRLP");
                                 break;
                             case 'MS':
-                                echo __("Meteor scatter");
+                                echo _pgettext("Propagation Mode", "Meteor scatter");
                                 break;
                             case 'RPT':
-                                echo __("Terrestrial or atmospheric repeater or transponder");
+                                echo _pgettext("Propagation Mode", "Terrestrial or atmospheric repeater or transponder");
                                 break;
                             case 'RS':
-                                echo __("Rain scatter");
+                                echo _pgettext("Propagation Mode", "Rain scatter");
                                 break;
                             case 'SAT':
-                                echo __("Satellite");
+                                echo _pgettext("Propagation Mode", "Satellite");
                                 break;
                             case 'TEP':
-                                echo __("Trans-equatorial");
+                                echo _pgettext("Propagation Mode", "Trans-equatorial");
                                 break;
                             case 'TR':
-                                echo __("Tropospheric ducting");
+                                echo _pgettext("Propagation Mode", "Tropospheric ducting");
                                 break;
                             default:
                                 echo __("unknown");

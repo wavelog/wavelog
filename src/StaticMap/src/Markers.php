@@ -123,13 +123,24 @@ class Markers {
 
         foreach ($this->coordinates as $coordinate) {
             $xy = $mapData->convertLatLngToPxPosition($coordinate);
+
+            if ($this->wrap) {
+                $coordinate_west = new LatLng($coordinate->getLat(), $coordinate->getLng() - 360);
+                $coordinate_east = new LatLng($coordinate->getLat(), $coordinate->getLng() + 360);
+                $xy_west = $mapData->convertLatLngToPxPosition($coordinate_west);
+                $xy_east = $mapData->convertLatLngToPxPosition($coordinate_east);
+            }
+
             $image->pasteOn($this->image, $xy->getX() + $offsetX - $imageMarginLeft, $xy->getY() + $offsetY - $imageMarginTop);
 
             // pasteOn again for wrapping left and right
             if ($this->wrap) {
-                $image->pasteOn($this->image, $xy->getX() + $offsetX - $imageMarginLeft + $image->getWidth(), $xy->getY() + $offsetY - $imageMarginTop);
-                $image->pasteOn($this->image, $xy->getX() + $offsetX - $imageMarginLeft - $image->getWidth(), $xy->getY() + $offsetY - $imageMarginTop);
+                $image->pasteOn($this->image, $xy_west->getX() + $offsetX - $imageMarginLeft, $xy_west->getY() + $offsetY - $imageMarginTop);
+                $image->pasteOn($this->image, $xy_east->getX() + $offsetX - $imageMarginLeft, $xy_east->getY() + $offsetY - $imageMarginTop);
             }
+
+            // free memory
+            unset($xy, $coordinate_west, $coordinate_east, $xy_west, $xy_east);
         }
 
         return $this;

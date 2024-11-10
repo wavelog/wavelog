@@ -126,7 +126,7 @@
                 <div class="mb-3 col-md-12">
                   <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i>
                   <div class="input-group">
-                    <input tabindex="7" type="text" class="form-control" id="callsign" name="callsign" required>
+                    <input tabindex="7" type="text" class="form-control" id="callsign" name="callsign" autocomplete="off" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>

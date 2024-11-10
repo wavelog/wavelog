@@ -52,7 +52,8 @@ class Visitor_model extends CI_Model {
 		$this->db->where_in($this->config->item('table_name').'.station_id', $StationLocationsArray);
 		$this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
 
-		if ($num == 'all') {
+		if ($num == 'all' || $num > 5000) {
+			$this->db->limit('5000');
 			return $this->db->get();
 		} else {
 			$this->db->limit($num);
