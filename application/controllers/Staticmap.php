@@ -180,5 +180,7 @@ class Staticmap extends CI_Controller {
                 echo $msg;
             }
         }
+
+        log_message('debug', 'Static map image generator took ' . round((memory_get_peak_usage() / 1024 / 1024)) . " MB of memory");
     }
 }
