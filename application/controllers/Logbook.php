@@ -845,8 +845,6 @@ class Logbook extends CI_Controller {
 					$callsign['callsign']['dxcc_name'] = $entity['name'];
 					$callsign['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 					$callsign['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
-					$callsign['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
-					$callsign['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 				}
 			} else if ($this->optionslib->get_option('callbook_provider') == "hamqth" && $this->optionslib->get_option('callbook_username') != null && $this->optionslib->get_callbook_password() != null) {
 				// Load the HamQTH library
