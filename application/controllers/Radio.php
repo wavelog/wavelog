@@ -103,7 +103,7 @@ class Radio extends CI_Controller {
 						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
 					}
 				}
-				echo "<td><button id='".$row->id."' \" class=\"editCatSettings btn btn-sm btn-primary\"> " . __("Edit") . "</button></td>";
+				echo "<td><button id='edit_cat_settings_".$row->id."' \" class=\"editCatSettings btn btn-sm btn-primary\"> " . __("Edit") . "</button></td>";
 				echo "<td><a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
 				echo "</tr>";
 			}
@@ -116,16 +116,16 @@ class Radio extends CI_Controller {
 	}
 
 	public function saveCatUrl() {
-		$url = xss_clean($this->input->post('caturl', true));
-		$id = xss_clean($this->input->post('id', true));
+		$url = $this->input->post('caturl', true);
+		$id = $this->input->post('id', true);
 		$this->load->model('cat');
 		$this->cat->updateCatUrl($id,$url);
 	}
 
 	public function editCatUrl() {
 		$this->load->model('cat');
-		$data['container'] = $this->cat->radio_status(xss_clean($this->input->post('id', true)))->row();
-		$data['page_title'] = __("Edit container name");
+		$data['container'] = $this->cat->radio_status($this->input->post('id', true))->row();
+		$data['page_title'] = __("Edit CAT Settings");
 		$this->load->view('radio/edit', $data);
 	}
 

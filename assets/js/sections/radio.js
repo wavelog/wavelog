@@ -23,11 +23,11 @@ function editCatUrlDialog(e) {
 		url: base_url + 'index.php/radio/editCatUrl',
 		type: 'post',
 		data: {
-			id: e.currentTarget.id,
+			id: e.currentTarget.id.replace('edit_cat_settings_', '')
 		},
 		success: function (data) {
 			BootstrapDialog.show({
-				title: 'Edit CAT Settings',
+				title: lang_edit_cat_settings,
 				size: BootstrapDialog.SIZE_NORMAL,
 				cssClass: 'options',
 				id: "CatUrlModal",
@@ -36,7 +36,7 @@ function editCatUrlDialog(e) {
 				onshown: function(dialog) {
 				},
 				buttons: [{
-					label: 'Save',
+					label: lang_admin_save,
 					cssClass: 'btn-primary btn-sm saveContainerName',
 					action: function (dialogItself) {
 						saveCatUrl();
