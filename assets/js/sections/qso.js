@@ -201,7 +201,7 @@ $(document).on("click", "#fav_recall", function (event) {
 	$('#band_rx').val(favs[this.innerText].band_rx);
 	$('#band').val(favs[this.innerText].band);
 	$('#frequency_rx').val(favs[this.innerText].frequency_rx);
-	$('#frequency').val(favs[this.innerText].frequency);
+	$('#frequency').val(favs[this.innerText].frequency).trigger("change");
 	$('#selectPropagation').val(favs[this.innerText].prop_mode);
 	$('#mode').val(favs[this.innerText].mode).on("change");
 });
@@ -284,7 +284,7 @@ bc.onmessage = function (ev) {
 			}
 			setTimeout(() => {
 				if (ev.data.frequency != null) {
-					$('#frequency').val(ev.data.frequency);
+					$('#frequency').val(ev.data.frequency).trigger("change");
 					$("#band").val(frequencyToBand(ev.data.frequency));
 				}
 				if (ev.data.frequency_rx != "") {
@@ -868,7 +868,7 @@ $('#start_date').on('change', function () {
 $('.mode').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 		});
 	}
 	$('#frequency_rx').val("");
@@ -879,7 +879,7 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 		});
 	}
 	$('#frequency_rx').val("");
@@ -887,6 +887,7 @@ $('#band').on('change', function () {
 	$("#selectPropagation").val("");
 	$("#sat_name").val("");
 	$("#sat_mode").val("");
+	set_qrg();
 });
 
 /* On Key up Calculate Bearing and Distance */
@@ -1177,32 +1178,104 @@ function testTimeOffConsistency() {
 	return true;
 }
 
-function set_qrg_unit(band) {
+function set_qrg() {
+
+	frequency = $('#frequency').val();
+	band = $('#band').val();
+
+	console.log(frequency, band);
+
 	$.ajax({
 		url: base_url + 'index.php/user_options/get_qrg_unit',
 		type: 'post',
 		data: {
-			band: $('#band').val(),
+			band: band,
 		},
 		success: function (data) {
 			$("#qrg_unit").html(data);
+
+			if (data == 'Hz') {
+				$("#freq_calculated").val(frequency);
+			} else if (data == 'kHz') {
+				$("#freq_calculated").val(frequency / 1000);
+			} else if (data == 'MHz') {
+				$("#freq_calculated").val(frequency / 1000000);
+			} else if (data == 'GHz') {
+				$("#freq_calculated").val(frequency / 1000000000);
+			}
 		},
 		error: function () {
 			$("#qrg_unit").html('n/a');
+			$("#freq_calculated").val('0');
 		},
 	});
 }
 
-$('#band').on('change', function () {
-	set_qrg_unit($(this).val());
+$('#frequency').on('change', function () {
+	set_qrg();
 });
+
+$('#freq_calculated').on('keydown', function (e) {
+    if (e.which === 13) {
+        e.preventDefault();
+
+        let new_qrg = $('#freq_calculated').val().trim();
+        let parsed_qrg = parseFloat(new_qrg);
+        let unit = $('#qrg_unit').html();
+
+        // check if the input contains a unit and parse the qrg
+        if (/^\d+(\.\d+)?\s*hz$/i.test(new_qrg)) {
+            unit = 'Hz';
+            parsed_qrg = parseFloat(new_qrg);
+        } else if (/^\d+(\.\d+)?\s*khz$/i.test(new_qrg)) {
+            unit = 'kHz';
+            parsed_qrg = parseFloat(new_qrg);
+        } else if (/^\d+(\.\d+)?\s*mhz$/i.test(new_qrg)) {
+            unit = 'MHz';
+            parsed_qrg = parseFloat(new_qrg);
+        } else if (/^\d+(\.\d+)?\s*ghz$/i.test(new_qrg)) {
+            unit = 'GHz';
+            parsed_qrg = parseFloat(new_qrg);
+        }
+
+        // update the unit if there was any change
+        $('#qrg_unit').html(unit);
+
+        // calculate the other stuff
+        let qrg_hz;
+        switch (unit) {
+            case 'Hz':
+                qrg_hz = parsed_qrg;
+                break;
+            case 'kHz':
+                qrg_hz = parsed_qrg * 1000;
+                break;
+            case 'MHz':
+                qrg_hz = parsed_qrg * 1000000;
+                break;
+            case 'GHz':
+                qrg_hz = parsed_qrg * 1000000000;
+                break;
+            default:
+                qrg_hz = 0;
+                console.error('Invalid unit');
+        }
+
+        $('#frequency').val(qrg_hz);
+        $('#freq_calculated').val(parsed_qrg);
+        $('#band').val(frequencyToBand(qrg_hz));
+
+		$("#callsign").trigger("focus");
+    }
+});
+
 
 $(document).ready(function () {
 	clearTimeout();
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 
-	set_qrg_unit($('#band').val());
+	set_qrg();
 
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
 	.focus(function () {
@@ -1421,9 +1494,9 @@ $(document).ready(function () {
 	// Only set the frequency when not set by userdata/PHP.
 	if ($('#frequency').val() == "") {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 			$('#frequency_rx').val("");
-			set_qrg_unit($('#band').val());
+			set_qrg();
 		});
 	}
 

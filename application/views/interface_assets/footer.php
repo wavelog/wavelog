@@ -1209,6 +1209,7 @@ $($('#callsign')).on('keypress',function(e) {
 							    $(".radio_login_error" ).remove();
 						    }
 						    cat2UI($('#frequency'),data.frequency,false,true,function(d){
+                                $('#frequency').trigger('change');
 							    if ($("#band").val() != frequencyToBand(d)) {
 								    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
 							    }
