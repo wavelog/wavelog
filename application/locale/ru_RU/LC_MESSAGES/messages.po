@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-10 12:04+0000\n"
+"POT-Creation-Date: 2024-11-10 13:02+0000\n"
 "PO-Revision-Date: 2024-11-05 22:15+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -71,8 +71,8 @@ msgstr ""
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:175 application/controllers/Qso.php:274
 #: application/controllers/Qso.php:294 application/controllers/Qso.php:303
-#: application/controllers/Qso.php:599 application/controllers/Radio.php:261
-#: application/controllers/Radio.php:287 application/controllers/Radio.php:303
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:282
+#: application/controllers/Radio.php:308 application/controllers/Radio.php:324
 #: application/controllers/Reg1test.php:18
 #: application/controllers/Reg1test.php:63
 #: application/controllers/Reg1test.php:102
@@ -1850,21 +1850,43 @@ msgstr "Метка времени"
 msgid "Options"
 msgstr "Опции"
 
-#: application/controllers/Radio.php:90
+#: application/controllers/Radio.php:53 application/views/debug/index.php:308
+#: application/views/qso/index.php:673
+msgid "Settings"
+msgstr "Настройки"
+
+#: application/controllers/Radio.php:91
 #: application/views/contesting/index.php:152
 #: application/views/qso/index.php:319
 msgid "last updated"
 msgstr "последнее обновление"
 
-#: application/controllers/Radio.php:97 application/controllers/Radio.php:100
+#: application/controllers/Radio.php:98 application/controllers/Radio.php:101
 msgid "Set as default radio"
 msgstr "Установить как радиостанцию по умолчанию"
 
-#: application/controllers/Radio.php:102
+#: application/controllers/Radio.php:103
 msgid "Default (click to release)"
 msgstr "По умолчанию (нажмите, чтобы освободить)"
 
-#: application/controllers/Radio.php:105
+#: application/controllers/Radio.php:106
+#: application/controllers/Stationsetup.php:359
+#: application/views/api/help.php:57 application/views/contesting/add.php:59
+#: application/views/cron/index.php:58
+#: application/views/interface_assets/footer.php:550
+#: application/views/interface_assets/footer.php:559
+#: application/views/labels/index.php:47 application/views/labels/index.php:83
+#: application/views/logbookadvanced/index.php:567
+#: application/views/mode/index.php:64 application/views/satellite/edit.php:39
+#: application/views/satellite/index.php:25
+#: application/views/search/stored_queries.php:21
+#: application/views/stationsetup/stationsetup.php:128
+#: application/views/stationsetup/stationsetup.php:165
+#: application/views/themes/index.php:104 application/views/user/index.php:50
+msgid "Edit"
+msgstr "Редактировать"
+
+#: application/controllers/Radio.php:107
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:2374
@@ -1888,9 +1910,13 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 msgid "Delete"
 msgstr "Удалить"
 
-#: application/controllers/Radio.php:111
+#: application/controllers/Radio.php:113
 msgid "No CAT interfaced radios found."
 msgstr "CAT-интерфейсные радиостанции не найдены."
+
+#: application/controllers/Radio.php:128 application/views/radio/index.php:2
+msgid "Edit CAT Settings"
+msgstr ""
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
@@ -2137,22 +2163,6 @@ msgstr "Активный профиль QTH"
 #: application/views/user/index.php:88 application/views/user/index.php:90
 msgid "QSO"
 msgstr "QSO"
-
-#: application/controllers/Stationsetup.php:359
-#: application/views/api/help.php:57 application/views/contesting/add.php:59
-#: application/views/cron/index.php:58
-#: application/views/interface_assets/footer.php:550
-#: application/views/interface_assets/footer.php:559
-#: application/views/labels/index.php:47 application/views/labels/index.php:83
-#: application/views/logbookadvanced/index.php:567
-#: application/views/mode/index.php:64 application/views/satellite/edit.php:39
-#: application/views/satellite/index.php:25
-#: application/views/search/stored_queries.php:21
-#: application/views/stationsetup/stationsetup.php:128
-#: application/views/stationsetup/stationsetup.php:165
-#: application/views/themes/index.php:104 application/views/user/index.php:50
-msgid "Edit"
-msgstr "Редактировать"
 
 #: application/controllers/Stationsetup.php:363
 #: application/views/stationsetup/stationsetup.php:185
@@ -3772,7 +3782,7 @@ msgid "The API URL for this Wavelog instance is"
 msgstr "URL API для этого инстанса Wavelog"
 
 #: application/views/api/help.php:20 application/views/dxcalendar/index.php:15
-#: application/views/eqsl/export.php:33 application/views/radio/index.php:22
+#: application/views/eqsl/export.php:33 application/views/radio/index.php:26
 #: application/views/sattimers/index.php:67
 #: application/views/sattimers/index.php:69
 #: application/views/sattimers/index.php:71
@@ -6673,10 +6683,6 @@ msgstr "Установленные"
 #: application/views/debug/index.php:290 application/views/debug/index.php:301
 msgid "Not Installed"
 msgstr "Не установленные"
-
-#: application/views/debug/index.php:308 application/views/qso/index.php:673
-msgid "Settings"
-msgstr "Настройки"
 
 #: application/views/debug/index.php:437
 msgid "Git Information"
@@ -10059,15 +10065,26 @@ msgstr "Перенаправление на страницу добавлени�
 msgid "The data was redirected. You can close this window."
 msgstr "Данные были перенаправлены, можно закрыть это окно."
 
-#: application/views/radio/index.php:16
+#: application/views/radio/edit.php:18
+msgid "CAT URL"
+msgstr ""
+
+#: application/views/radio/edit.php:20
+#, php-format
+msgid ""
+"Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
+"(/) and QRG is added automatically. Default is %s"
+msgstr ""
+
+#: application/views/radio/index.php:20
 msgid "Active Radios"
 msgstr "Активные радиостанции"
 
-#: application/views/radio/index.php:19
+#: application/views/radio/index.php:23
 msgid "Below is a list of active radios that are connected to Wavelog."
 msgstr "Ниже приведен список активных радиостанций, подключенных к Wavelog."
 
-#: application/views/radio/index.php:20
+#: application/views/radio/index.php:24
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
@@ -10075,16 +10092,16 @@ msgstr ""
 "Если вы еще не подключили ни одной радиостанции, посмотрите страницу API, "
 "чтобы сгенерировать ключи API."
 
-#: application/views/radio/index.php:22 application/views/search/filter.php:72
+#: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
 msgstr "О том, как использовать %s, вы можете узнать в вики."
 
-#: application/views/radio/index.php:22
+#: application/views/radio/index.php:26
 msgid "radio functions"
 msgstr "интерфейс радиостанции"
 
-#: application/views/radio/index.php:27
+#: application/views/radio/index.php:31
 msgid "Please wait..."
 msgstr "Пожалуйста, подождите..."
 
