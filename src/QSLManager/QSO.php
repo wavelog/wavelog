@@ -166,8 +166,8 @@ class QSO
 		$this->submode = $data['COL_SUBMODE'] ?? '';
 		$this->band = $data['COL_BAND'];
 		$this->bandRX = $data['COL_BAND_RX'] ?? '';
-		$this->rstR = $data['COL_RST_RCVD'];
-		$this->rstS = $data['COL_RST_SENT'];
+		$this->rstR = $data['COL_RST_RCVD'] ?? '';
+		$this->rstS = $data['COL_RST_SENT'] ?? '';
 		$this->srx = $data['COL_SRX'] ?? '';
 		$this->srxstring = $data['COL_SRX_STRING'] ?? '';
 		$this->stx = $data['COL_STX'] ?? '';
