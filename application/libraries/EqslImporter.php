@@ -163,6 +163,13 @@ class EqslImporter
 				$record['qsl_sent'] = $config['eqsl_rcvd_mark'];
 			}
 
+			// eQSL now provides EQSL_QSLRDATE so we can use it if it is present
+			if ((array_key_exists('eqsl_qslrdate', $record)) && ($record['eqsl_qslrdate'] != '')) {
+				$eqsl_qslrdate = $record['eqsl_qslrdate'];
+			} else {
+				$eqsl_qslrdate = date('Y-m-d');
+			}
+
 			$status = $this->CI->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $station_callsign, $station_id);
 			$qsoid = 0;
 			if ($status[0] == "Found") {
@@ -170,7 +177,7 @@ class EqslImporter
 				$dupe = $this->CI->eqslmethods_model->eqsl_dupe_check($time_on, $record['call'], $record['band'], $record['mode'], $config['eqsl_rcvd_mark'], $station_callsign, $station_id);
 				if ($dupe == false) {
 					$updated += 1;
-					$eqsl_status = $this->CI->eqslmethods_model->eqsl_update($time_on, $record['call'], $record['band'], $record['mode'], $config['eqsl_rcvd_mark'], $station_callsign, $station_id);
+					$eqsl_status = $this->CI->eqslmethods_model->eqsl_update($time_on, $record['call'], $record['band'], $record['mode'], $config['eqsl_rcvd_mark'], $station_callsign, $station_id, $eqsl_qslrdate);
 				} else {
 					$dupes += 1;
 					$eqsl_status = "Already received an eQSL for this QSO.";
@@ -185,6 +192,7 @@ class EqslImporter
 				'call' => str_replace("0", "&Oslash;", $record['call']),
 				'mode' => $record['mode'],
 				'submode' => $record['submode'] ?? null,
+				'eqsl_qslrdate' => $eqsl_qslrdate ?? null,
 				'status' => $status[0],
 				'eqsl_status' => $eqsl_status,
 				'qsoid' => $qsoid,

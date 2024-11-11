@@ -759,7 +759,6 @@
 									<div class="mb-3">
 										<label><?= __("Club Log Email/Callsign"); ?></label>
 										<input class="form-control" type="text" name="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
-										<small class="form-text text-muted"><?= __("The Email or Callsign you use to login to Club Log"); ?></small>
 										<?php if(isset($userclublogname_error)) { echo "<small class=\"badge bg-danger\">".$userclublogname_error."</small>"; } ?>
 									</div>
 
@@ -769,6 +768,7 @@
 											<input class="form-control" type="password" name="user_clublog_password" value="<?php if(isset($user_clublog_password)) { echo $user_clublog_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
+										<small class="form-text text-muted"><?= sprintf(__("If you have 2FA enabled at Clublog, you have to generate an App. Password to use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."), '<a target="_blank" href="https://clublog.org/edituser.php?tab=7">', '</a>'); ?></small>
 										<?php if(isset($clublogpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$clublogpassword_error."</small>";
 											} else if (!isset($user_add)) { ?>

@@ -34,7 +34,9 @@
 				var lang_qso_simplefle_warning_example_data = "<?= __("Attention! The Data Field containes example data. First Clear Logging Session!"); ?>";
 				var lang_qso_simplefle_confirm_save_to_log = "<?= __("Are you sure that you want to add these QSO to the Log and clear the session?"); ?>";
 				var lang_qso_simplefle_success_save_to_log_header = "<?= __("QSO Logged!"); ?>";
-				var lang_qso_simplefle_success_save_to_log = "<?= __("The QSO were successfully logged in the logbook!"); ?>";
+				var lang_qso_simplefle_success_save_to_log = "<?= __("The QSO were successfully logged in the logbook! Dupes were skipped."); ?>";
+				var lang_qso_simplefle_error_save_to_log_header = "<?= __("Error"); ?>";
+				var lang_qso_simplefle_error_save_to_log = "<?= __("An error occurred while saving the QSO to the logbook! Error: "); ?>";
 			</script>
 			<h2><?php echo $page_title; ?></h2>
 			<button type="button" class="btn btn-sm btn-primary me-1" id="simpleFleInfoButton"><?= __("What is that?"); ?></button>

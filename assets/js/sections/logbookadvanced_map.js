@@ -356,7 +356,10 @@ function loadMap(data, iconsList) {
 	maidenhead = L.maidenheadqrb().addTo(map);
 	nightlayer = L.terminator().addTo(map);
 
-	map.fitBounds(bounds);
+
+	if (bounds && bounds._southWest && bounds._northEast) {
+        map.fitBounds(bounds);
+    }
 
 	$.each(iconsList, function (icon, data) {
 		$('#advancedmap' + ' .cspot_' + icon).addClass(data.icon).css("color", data.color);
@@ -544,6 +547,7 @@ function mapQsos(form) {
 					wwff: form.wwff.value,
 					qslimages: form.qslimages.value,
 					continent: form.continent.value,
+					contest: form.contest.value,
 				},
 				success: function(data) {
 					loadMapOptions(data);
@@ -632,6 +636,7 @@ function mapGlobeQsos(form) {
 					wwff: form.wwff.value,
 					qslimages: form.qslimages.value,
 					continent: form.continent.value,
+					contest: form.contest.value,
 				},
 				success: function(data) {
 					globemap(data);
@@ -678,7 +683,7 @@ function renderGlobe(arcsData,labelData) {
 	.arcsData(arcsData)
 	.arcColor('color')
 	//.arcAltitude('altitude')
-	.arcAltitudeAutoScale(.3)
+	.arcAltitudeAutoScale(.37)
 	.arcStroke(.2)
 	.arcDashLength(() => .1)
 	.arcDashGap(() => 0.01)

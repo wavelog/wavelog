@@ -975,15 +975,16 @@ class User extends CI_Controller {
 			{
 				// Check email address exists
 				$this->load->model('user_model');
+				$email = $this->input->post('email', TRUE);
 
-				$check_email = $this->user_model->check_email_address($this->input->post('email', true));
+				$check_email = $this->user_model->check_email_address($email);
 
 				if($check_email == TRUE) {
 					// Generate password reset code 50 characters long
 					$this->load->helper('string');
 					$reset_code = random_string('alnum', 50);
 
-					$this->user_model->set_password_reset_code($this->input->post('email', true), $reset_code);
+					$this->user_model->set_password_reset_code($email, $reset_code);
 
 					// Send email with reset code
 
@@ -1005,13 +1006,13 @@ class User extends CI_Controller {
 						$this->email->initialize($config);
 					}
 
-					$message = $this->load->view('email/forgot_password', $this->data,  TRUE);
+					$message = $this->email->load('email/forgot_password', $this->data, $this->user_model->get_by_email($email)->row()->user_language);
 
 					$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-					$this->email->to($this->input->post('email', true));
+					$this->email->to($email);
 
-					$this->email->subject('Wavelog Account Password Reset');
-					$this->email->message($message);
+					$this->email->subject($message['subject']);
+					$this->email->message($message['body']);
 
 					if (! $this->email->send())
 					{
@@ -1093,12 +1094,12 @@ class User extends CI_Controller {
 							$this->email->initialize($config);
 						}
 
-						$message = $this->load->view('email/admin_reset_password', $this->data,  TRUE);
+						$message = $this->email->load('email/admin_reset_password', $this->data,  $data->user_language);
 
 						$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 						$this->email->to($data->user_email);
-						$this->email->subject('Wavelog Account Password Reset');
-						$this->email->message($message);
+						$this->email->subject($message['subject']);
+						$this->email->message($message['body']);
 
 						if (! $this->email->send())
 						{

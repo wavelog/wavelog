@@ -262,6 +262,12 @@ class Stations extends CI_Model {
 		}
 		// Delete QSOs
 		$this->db->query("DELETE FROM ".$this->config->item('table_name')." WHERE station_id = ?",$clean_id);
+		
+		// Also clean up static map images
+		if (!$this->load->is_loaded('staticmap_model')) {
+			$this->load->model('staticmap_model');
+		}
+		$this->staticmap_model->remove_static_map_image($clean_id);
 	}
 
 	function set_active($current, $new) {

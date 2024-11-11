@@ -6,6 +6,8 @@
   var lang_qso_title_times_worked_before = "<?= __("times worked before"); ?>";
   var lang_qso_title_not_worked_before = "<?= __("Not worked before"); ?>";
   var lang_dxccsummary_for = "<?= __("DXCC Summary for "); ?>";
+  var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
+  var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days
 </script>
 
 <div class="row qsopane">
@@ -124,7 +126,7 @@
                 <div class="mb-3 col-md-12">
                   <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i>
                   <div class="input-group">
-                    <input tabindex="7" type="text" class="form-control" id="callsign" name="callsign" required>
+                    <input tabindex="7" type="text" class="form-control" id="callsign" name="callsign" autocomplete="off" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>
@@ -361,14 +363,17 @@
               <div class="mb-3">
                   <label for="dxcc_id"><?= __("DXCC"); ?></label>
                   <select class="form-control" id="dxcc_id" name="dxcc_id" required>
-                      <option value="0">- NONE -</option>
                       <?php
-                      foreach($dxcc as $d){
-                          echo '<option value=' . $d->adif . '>' . $d->prefix . ' - ' . ucwords(strtolower(($d->name)));
-                          if ($d->Enddate != null) {
-                              echo ' ('.__("Deleted DXCC").')';
+                      foreach($dxcc as $d) {
+                          if ($d->adif == '0') {
+                              echo '<option value='.$d->adif.'>'.$d->name.'</option>';
+                          } else {
+                              echo '<option value=' . $d->adif . '>' . $d->prefix . ' - ' . ucwords(strtolower(($d->name)));
+                              if ($d->Enddate != null) {
+                                  echo ' ('.__("Deleted DXCC").')';
+                              }
+                              echo '</option>';
                           }
-                          echo '</option>';
                       }
                       ?>
 

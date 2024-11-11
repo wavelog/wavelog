@@ -77,6 +77,18 @@ class Update extends CI_Controller {
 			if ($count % 10  == 0)
 				$this->update_status(__("Preparing DXCC-Entries: ").$count);
 		}
+		array_push($a_data, array(
+					'adif' => 0,
+					'name' => '- NONE - (e.g. /MM, /AM)',
+					'prefix' => '',
+					'ituz' => 0,
+					'cqz' => 0,
+					'cont' => '',
+					'long' => 0,
+					'lat' => 0,
+					'start' => null,
+					'end' => null
+				));
 		$this->db->insert_batch('dxcc_entities', $a_data);
 
 		$this->update_status();

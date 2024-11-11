@@ -3,8 +3,6 @@
 	var lang_admin_user = "<?= __("User"); ?>";
 	var lang_gen_hamradio_callsign = "<?= __("Callsign"); ?>";
 
-	var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>"
-
 	var lang_admin_email_settings_incorrect = "<?= __("Email settings are incorrect."); ?>";
 	var lang_admin_password_reset_processed = "<?= __("Password-reset e-mail sent to user:"); ?>";
 </script>

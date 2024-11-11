@@ -15,13 +15,16 @@ foreach ($result as $mode => $value) {
 			<td>'. strtoupper($mode) .'</td>';
 	foreach ($value as $key => $val) {
 		switch($type) {
+			// function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl) {
+
 			case 'dxcc': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $dxcc).'","' . $key . '","All","All","' . $mode . '","DXCC2")\'>'  . $val . '</a>'; break;
-			case 'iota': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $iota).'","' . $key . '","' . $mode . '","All","All","IOTA")\'>'   . $val . '</a>'; break;
-			case 'vucc': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $grid).'","' . $key . '","' . $mode . '","All","All","VUCC")\'>'   . $val . '</a>'; break;
-			case 'cq':  $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $cqz).'","'  . $key . '","' . $mode . '","All","All","CQZone")\'>' . $val . '</a>'; break;
-			case 'was':  $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $was).'","'  . $key . '","' . $mode . '","All","All","WAS")\'>'    . $val . '</a>'; break;
-			case 'sota': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $sota).'","' . $key . '","' . $mode . '","All","All","SOTA")\'>'   . $val . '</a>'; break;
-			case 'wwff': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $wwff).'","' . $key . '","' . $mode . '","All","All","WWFF")\'>'   . $val . '</a>'; break;
+			case 'iota': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $iota).'","' . $key . '","All","All","' . $mode . '","IOTA")\'>'   . $val . '</a>'; break;
+			case 'vucc': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $grid).'","' . $key . '","All","All","' . $mode . '","VUCC")\'>'   . $val . '</a>'; break;
+			case 'cq':  $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $cqz).'","'  . $key . '","All","All","' . $mode . '","CQZone")\'>' . $val . '</a>'; break;
+			case 'was':  $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $was).'","'  . $key . '","All","All","' . $mode . '","WAS")\'>'    . $val . '</a>'; break;
+			case 'sota': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $sota).'","' . $key . '","All","All","' . $mode . '","SOTA")\'>'   . $val . '</a>'; break;
+			case 'wwff': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $wwff).'","' . $key . '","All","All","' . $mode . '","WWFF")\'>'   . $val . '</a>'; break;
+			case 'itu': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $ituz).'","' . $key . '","All","All","' . $mode . '","ITU")\'>'   . $val . '</a>'; break;
 		}
 
 		$info = '<td>';

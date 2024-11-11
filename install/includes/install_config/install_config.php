@@ -34,6 +34,7 @@ $required_php_modules = [
 	'php-mbstring' 	=> ['condition' => isExtensionInstalled('mbstring')],
 	'php-xml' 		=> ['condition' => isExtensionInstalled('xml')],
 	'php-zip' 		=> ['condition' => isExtensionInstalled('zip')],
+	'php-gd' 		=> ['condition' => isExtensionInstalled('gd')],
 ];
 
 // MariaDB / MySQL

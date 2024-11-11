@@ -51,20 +51,42 @@ function addQsoToPrintQueue(id) {
 		type: 'post',
 		data: {'id': id},
 		success: function(html) {
+			var callSign = $("#qsolist_"+id).find("td:eq(0)").text();
+			var formattedCallSign = callSign.replace(/0/g, "Ø").toUpperCase();
 			var line = '<tr id="qslprint_'+id+'">';
-			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(0)").text()+'</td>';
+			line += '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
+			line += '<td style="text-align: center">';
+			line += '<span class="qso_call">';
+			line += '<a id="edit_qso" href="javascript:displayQso(' + id + ');">';
+			line += formattedCallSign;
+			line += '</a>';
+			line += '<a target="_blank" href="https://www.qrz.com/db/' + formattedCallSign + '">';
+			line += '<img width="16" height="16" src="' + base_url + 'images/icons/qrz.png" alt="Lookup ' + formattedCallSign + ' on QRZ.com">';
+			line += '</a> ';
+			line += '<a target="_blank" href="https://www.hamqth.com/' + formattedCallSign + '">';
+			line += '<img width="16" height="16" src="' + base_url + 'images/icons/hamqth.png" alt="Lookup ' + formattedCallSign + ' on HamQTH">';
+			line += '</a> ';
+			line += '<a target="_blank" href="http://www.eqsl.cc/Member.cfm?' + formattedCallSign + '">';
+			line += '<img width="16" height="16" src="' + base_url + 'images/icons/eqsl.png" alt="Lookup ' + formattedCallSign + ' on eQSL.cc">';
+			line += '</a>';
+			line += '</span>';
+			line += '</td>';
+
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(1)").text()+'</td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(2)").text()+'</td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(3)").text()+'</td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
+			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(6)").text()+'</td>';
-			line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(5)").text()+'</span></td>';
-			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(7)").text()+'</td>';
+			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(9)").text()+'</td>';
+			line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(7)").text()+'</span></td>';
+			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(8)").text()+'</td>';
+			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(10)").text()+'</td>';
 			line += '<td style=\'text-align: center\'><button onclick="mark_qsl_sent('+id+', \'B\')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></button></td>';
 			line += '<td style=\'text-align: center\'><button onclick="deleteFromQslQueue('+id+')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td></td>';
 			line += '<td style=\'text-align: center\'><button onclick="openQsoList(\''+$("#qsolist_"+id).find("td:eq(0)").text()+'\')" class="btn btn-sm btn-success"><i class="fas fa-search"></i></button></td>';
 			line += '</tr>';
-			$('.table tr:last').after(line);
+			$('#qslprint_table tr:last').after(line);
 			$("#qsolist_"+id).remove();''
 		}
 	});
@@ -221,4 +243,57 @@ function removeSelectedQsos() {
 			$('.removeall').prop("disabled", false);
 		}
 	});
+}
+
+function exportSelectedQsos() {
+	var elements = $('.qslprint tbody input:checked');
+	var nElements = elements.length;
+	if (nElements == 0) {
+		return;
+	}
+	$('.exportselected').prop("disabled", true);
+
+	var id_list=[];
+	elements.each(function() {
+		let id = $(this).first().closest('tr').attr('id');
+		id = id.match(/\d/g);
+		id = id.join("");
+		id_list.push(id);
+	});
+
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		var a;
+		if (xhttp.readyState === 4 && xhttp.status === 200) {
+			// Trick for making downloadable link
+			a = document.createElement('a');
+			a.href = window.URL.createObjectURL(xhttp.response);
+			// Give filename you wish to download
+			// Get the current date and time
+			const now = new Date();
+
+			// Format the date and time as UTC Ymd-Hi
+			const year = now.getUTCFullYear();
+			const month = String(now.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-based
+			const day = String(now.getUTCDate()).padStart(2, '0');
+			const hours = String(now.getUTCHours()).padStart(2, '0');
+			const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+
+			// Create the formatted filename
+			const filename = `${my_call}-${year}${month}${day}-${hours}${minutes}.adi`;
+			a.download = filename;
+			a.style.display = 'none';
+			document.body.appendChild(a);
+			a.click();
+		}
+	};
+
+	// Post data to URL which handles post request
+	xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif', true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// You should set responseType as blob for binary responses
+	xhttp.responseType = 'blob';
+	xhttp.send("id=" + JSON.stringify(id_list, null, 2));
+
+	$('.exportselected').prop("disabled", false);
 }

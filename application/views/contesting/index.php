@@ -159,7 +159,7 @@
                             <div class="col-md-2">
                                 <div>
                                     <label for="callsign"><?= __("Callsign"); ?></label>
-                                    <input type="text" class="form-control form-control-sm" id="callsign" name="callsign" required>
+                                    <input type="text" class="form-control form-control-sm" id="callsign" name="callsign" autocomplete="off" required>
                                     <small id="callsign_info" class="badge text-bg-danger"></small><br/>
                                     <small id="bearing_info" class="form-text text-muted"></small>
                                 </div>

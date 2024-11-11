@@ -54,6 +54,9 @@ class eqsl extends CI_Controller {
 		$station_profile = $this->stations->profile($active_station_id);
 		$data['active_station_info'] = $station_profile->row();
 
+		$this->load->model('cron_model');
+		$data['next_run'] = $this->cron_model->get_next_run("eqsl_sync");
+
 		// Check if eQSL Nicknames have been defined
 		$this->load->model('eqslmethods_model');
 		$eqsl_locations = $this->eqslmethods_model->all_of_user_with_eqsl_nick_defined();

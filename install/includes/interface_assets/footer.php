@@ -25,6 +25,10 @@
 			var inputValue = $(this).val();
 			localStorage.setItem(inputId, inputValue);
 		});
+		$('#dxcc_id').change(function() {
+			var dxcc_id = $(this).val();
+			localStorage.setItem('dxcc_id', dxcc_id);
+		});
 
 		// delete all data in localStorage and reload page
 		$('#resetInstaller').click(function() {
@@ -55,11 +59,14 @@
 		<?= __("Czech"); ?>
 		<?= __("Dutch"); ?>
 		<?= __("English"); ?>
+		<?= __("Estonian"); ?>
 		<?= __("Finnish"); ?>
 		<?= __("French"); ?>
 		<?= __("German"); ?>
 		<?= __("Greek"); ?>
 		<?= __("Italian"); ?>
+		<?= __("Latvian"); ?>
+		<?= __("Lithuanian"); ?>
 		<?= __("Montenegrin"); ?>
 		<?= __("Polish"); ?>
 		<?= __("Portuguese"); ?>

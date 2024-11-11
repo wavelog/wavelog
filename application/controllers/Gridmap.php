@@ -46,15 +46,15 @@ class Gridmap extends CI_Controller {
     }
 
 	public function getGridsjs() {
-		$band = $this->security->xss_clean($this->input->post('band'));
-		$mode = $this->security->xss_clean($this->input->post('mode'));
-		$qsl = $this->security->xss_clean($this->input->post('qsl'));
-		$lotw = $this->security->xss_clean($this->input->post('lotw'));
-		$eqsl = $this->security->xss_clean($this->input->post('eqsl'));
-		$qrz = $this->security->xss_clean($this->input->post('qrz'));
-		$sat = $this->security->xss_clean($this->input->post('sat'));
-		$orbit = $this->security->xss_clean($this->input->post('orbit'));
-		$propagation = $this->security->xss_clean($this->input->post('propagation'));
+		$band = $this->input->post('band', TRUE);
+		$mode = $this->input->post('mode', TRUE);
+		$qsl = $this->input->post('qsl', TRUE);
+		$lotw = $this->input->post('lotw', TRUE);
+		$eqsl = $this->input->post('eqsl', TRUE);
+		$qrz = $this->input->post('qrz', TRUE);
+		$sat = $this->input->post('sat', TRUE);
+		$orbit = $this->input->post('orbit', TRUE);
+		$propagation = $this->input->post('propagation', TRUE);
 		$this->load->model('gridmap_model');
 
 		$array_grid_2char = array();

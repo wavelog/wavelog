@@ -149,7 +149,7 @@ class ADIF_Parser
 				$len_str = "";
 				$len = 0;
 				$a++; //go past the <
-				while(mb_substr($record, $a, 1, "UTF-8") != ':') //get the tag
+				while((mb_substr($record, $a, 1, "UTF-8") != ':') && ($a<=mb_strlen($record, "UTF-8"))) //get the tag
 				{
 					$tag_name = $tag_name.mb_substr($record, $a, 1, "UTF-8"); //append this char to the tag name
 					$a++;
@@ -159,14 +159,14 @@ class ADIF_Parser
 					}
 				};
 				$a++; //iterate past the colon
-				while(mb_substr($record, $a, 1, "UTF-8") != '>' && mb_substr($record, $a, 1, "UTF-8") != ':')
+				while(mb_substr($record, $a, 1, "UTF-8") != '>' && mb_substr($record, $a, 1, "UTF-8") != ':' && ($a<=mb_strlen($record, "UTF-8")))
 				{
 					$len_str = $len_str.mb_substr($record, $a, 1, "UTF-8");
 					$a++;
 				};
 				if(mb_substr($record, $a, 1, "UTF-8") == ':')
 				{
-					while(mb_substr($record, $a, 1, "UTF-8") != '>')
+					while((mb_substr($record, $a, 1, "UTF-8") != '>') && ($a<=mb_strlen($record, "UTF-8")))
 					{
 						$a++;
 					};

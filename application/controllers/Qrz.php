@@ -199,6 +199,9 @@ class Qrz extends CI_Controller {
 		$data['station_profile'] = $this->stations->stations_with_qrz_api_key();
 		$this->load->model('Stations');
 		$data['callsigns'] = $this->Stations->callsigns_of_user($this->session->userdata('user_id'));
+		$this->load->model('cron_model');
+		$data['next_run_up'] = $this->cron_model->get_next_run("qrz_upload");
+		$data['next_run_down'] = $this->cron_model->get_next_run("qrz_download");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('qrz/export');
