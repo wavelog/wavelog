@@ -7,7 +7,8 @@ class Migration_add_cat_url extends CI_Migration {
 	public function up() {
 		$fields = array(
 			'cat_url' => array(
-				'type' => 'TEXT',
+				'type' => 'VARCHAR',
+				'constraint' => '255',
 				'null' => FALSE,
 				'default' => 'http://127.0.0.1:54321'
 			),
