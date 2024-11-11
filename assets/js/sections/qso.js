@@ -1177,10 +1177,32 @@ function testTimeOffConsistency() {
 	return true;
 }
 
+function set_qrg_unit(band) {
+	$.ajax({
+		url: base_url + 'index.php/user_options/get_qrg_unit',
+		type: 'post',
+		data: {
+			band: $('#band').val(),
+		},
+		success: function (data) {
+			$("#qrg_unit").html(data);
+		},
+		error: function () {
+			$("#qrg_unit").html('n/a');
+		},
+	});
+}
+
+$('#band').on('change', function () {
+	set_qrg_unit($(this).val());
+});
+
 $(document).ready(function () {
 	clearTimeout();
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
+
+	set_qrg_unit($('#band').val());
 
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
 	.focus(function () {
@@ -1401,6 +1423,7 @@ $(document).ready(function () {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result);
 			$('#frequency_rx').val("");
+			set_qrg_unit($('#band').val());
 		});
 	}
 

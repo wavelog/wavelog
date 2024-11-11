@@ -50,6 +50,14 @@ class User_Options extends CI_Controller {
 	public function dismissVersionDialog() {
 		$this->user_options_model->set_option('version_dialog', 'confirmed', array('boolean' => 'true'));
 	}
+
+	public function get_qrg_unit() {
+		$band = $this->input->post('band', true);
+		$this->load->library('frequency');
+		$unit = $this->frequency->qrg_unit($band);
+		header('Content-Type: application/json');
+		echo json_encode($unit);
+	}
 }
 
 

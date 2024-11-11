@@ -170,7 +170,10 @@
                 </div>
                 <div class="mb-3 col">
                   <label for="frequency"><?= __("Frequency"); ?></label>
-                  <input type="text" tabindex="3" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
+                  <div class="input-group input-group-sm">
+                    <input type="text" tabindex="3" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
+                    <small class="input-group-text" id="qrg_unit"></small>
+                  </div>
                 </div>
               </div>
 
