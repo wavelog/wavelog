@@ -20,6 +20,19 @@
 				<input type="text" class="form-control" name="orbit" id="orbit" aria-describedby="orbitHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->orbit; } ?>" required>
 				<small id="sorbitHelp" class="form-text text-muted"><?= __("Enter which orbit the satellite has (LEO, MEO, GEO)"); ?></small>
 			</div>
+			<div class="mb-3 col-md-6">
+				<label for="lotwAccepted"><?= __("Accepted by LoTW"); ?></label>
+				<select id="lotwAccepted" class="form-select" name="lotwAccepted">
+					<?php if ($satellite->lotw == 'Y') { ?>
+						<option value="Y" selected="selected"><?= __("Yes"); ?></option>
+						<option value="N"><?= __("No"); ?></option>
+					<?php } else { ?>
+						<option value="Y"><?= __("Yes"); ?></option>
+						<option value="N" selected="selected"><?= __("No"); ?></option>
+					<?php } ?>
+				</select>
+				<small id="exportNameInputHelp" class="form-text text-muted"><?= __("Set to yes only if satellite is accepted my LoTW"); ?></small>
+			</div>
 		</div>
 
 		<button type="button" onclick="saveUpdatedSatellite(this.form);" class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i> <?= __("Save satellite"); ?></button>

@@ -38,19 +38,15 @@ class Satellite_model extends CI_Model {
 	}
 
 	function saveupdatedsatellite($id, $satellite) {
-        $this->db->where('satellite.id', $id);
-
-        $this->db->update('satellite', $satellite);
-
-        return true;
+		$this->db->where('satellite.id', $id);
+		$this->db->update('satellite', $satellite);
+		return true;
 	}
 
 	function saveSatelliteMode($id, $satmode) {
 		$this->db->where('satellitemode.id', $id);
-
-        $this->db->update('satellitemode', $satmode);
-
-        return true;
+		$this->db->update('satellitemode', $satmode);
+		return true;
 	}
 
 	function add() {
@@ -59,6 +55,11 @@ class Satellite_model extends CI_Model {
 			'exportname' 	=> xss_clean($this->input->post('exportname', true)),
 			'orbit' 		=> xss_clean($this->input->post('orbit', true)),
 		);
+		if (xss_clean($this->input->post('lotw', true)) == 'Y') {
+			$data['lotw'] = 'Y';
+		} else {
+			$data['lotw'] = 'N';
+		}
 
 		$this->db->where('name', xss_clean($this->input->post('name', true)));
 		$result = $this->db->get('satellite');

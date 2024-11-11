@@ -65,6 +65,14 @@
 				<input type="text" class="form-control" name="downlinkFrequency" id="downlinkFrequency" aria-describedby="downlinkFrequency" required>
 				<small id="downlinkFrequencyHelp" class="form-text text-muted"><?= __("Enter frequency (in Hz) used for downlink"); ?></small>
 			</div>
+			<div class="mb-3 col-md-6">
+				<label for="lotwAccepted"><?= __("Accepted by LoTW"); ?></label>
+				<select id="lotwAccepted" class="form-select" name="lotwAccepted">
+					<option value="Y"><?= __("Yes"); ?></option>
+					<option value="N" selected="selected"><?= __("No"); ?></option>
+				</select>
+				<small id="exportNameInputHelp" class="form-text text-muted"><?= __("Set to yes only if satellite is accepted my LoTW"); ?></small>
+			</div>
 		</div>
 
 			<button type="button" onclick="createSatellite(this.form);" class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i> <?= __("Save"); ?></button>

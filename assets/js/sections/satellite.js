@@ -71,6 +71,7 @@ function createSatellite(form) {
 				'uplinkfrequency': form.uplinkFrequency.value,
 				'downlinkmode': form.downlinkMode.value,
 				'downlinkfrequency': form.downlinkFrequency.value,
+				'lotw': form.lotwAccepted.value,
 			},
 			success: function (html) {
 				location.reload();
@@ -117,6 +118,7 @@ function saveUpdatedSatellite(form) {
 			data: {'id': form.id.value,
 					'name': form.nameInput.value,
 					'exportname': form.exportNameInput.value,
+					'lotw': form.lotwAccepted.value,
 					'orbit': form.orbit.value,
 			},
 			success: function (html) {
