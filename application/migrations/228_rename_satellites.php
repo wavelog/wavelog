@@ -136,7 +136,8 @@ class Migration_rename_satellites extends CI_Migration {
 		}
 
 		$this->set_lotw($this->lotw_sats);
-		$this->insert_sat("SONATE", "LEO", "V/V", "PKT", "145825000", "PKT", "145825000");
+		$this->insert_sat("SONATE", "SONATE-2", "LEO", "V/V", "PKT", "145825000", "PKT", "145825000");
+		$this->insert_sat("MO-122", "MESAT1", "LEO", "V/U", "LSB", "145925000", "USB", "435825000");
 	}
 
 	public function down() {
@@ -152,6 +153,7 @@ class Migration_rename_satellites extends CI_Migration {
 			$this->dbforge->drop_column('satellite', 'lotw');
 		}
 		$this->remove_sat("SONATE");
+		$this->remove_sat("MO-122");
 	}
 
 	function update_sat_table($from, $to) {
@@ -169,9 +171,10 @@ class Migration_rename_satellites extends CI_Migration {
 		$this->db->query($sql);
 	}
 
-	function insert_sat($name, $orbit, $modename, $uplink_mode, $uplink_freq, $downlink_mode, $downlink_freq) {
+	function insert_sat($name, $exportname, $orbit, $modename, $uplink_mode, $uplink_freq, $downlink_mode, $downlink_freq) {
 		$data = array(
 			'name' => $name,
+			'exportname' => $exportname,
 			'orbit' => $orbit,
 		);
 		$this->db->where('name', $name);
