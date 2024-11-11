@@ -60,7 +60,7 @@ class Station extends CI_Controller
 				if ($this->stations->edit()) {
 					$data['notice'] = __("Station Location") . $this->security->xss_clean($this->input->post('station_profile_name', true)) . " Updated";
 				}
-				// Also clean up static map images first
+				// Also clean up static map images
 				if (!$this->load->is_loaded('staticmap_model')) {
 					$this->load->model('staticmap_model');
 				}
