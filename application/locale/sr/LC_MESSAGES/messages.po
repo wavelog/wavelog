@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-10 12:04+0000\n"
+"POT-Creation-Date: 2024-11-10 13:02+0000\n"
 "PO-Revision-Date: 2024-09-17 12:24+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -71,8 +71,8 @@ msgstr ""
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:175 application/controllers/Qso.php:274
 #: application/controllers/Qso.php:294 application/controllers/Qso.php:303
-#: application/controllers/Qso.php:599 application/controllers/Radio.php:261
-#: application/controllers/Radio.php:287 application/controllers/Radio.php:303
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:282
+#: application/controllers/Radio.php:308 application/controllers/Radio.php:324
 #: application/controllers/Reg1test.php:18
 #: application/controllers/Reg1test.php:63
 #: application/controllers/Reg1test.php:102
@@ -1850,21 +1850,43 @@ msgstr "Vremenska oznaka"
 msgid "Options"
 msgstr "Opcije"
 
-#: application/controllers/Radio.php:90
+#: application/controllers/Radio.php:53 application/views/debug/index.php:308
+#: application/views/qso/index.php:673
+msgid "Settings"
+msgstr "Podešavanja"
+
+#: application/controllers/Radio.php:91
 #: application/views/contesting/index.php:152
 #: application/views/qso/index.php:319
 msgid "last updated"
 msgstr "posljednje ažuriranje"
 
-#: application/controllers/Radio.php:97 application/controllers/Radio.php:100
+#: application/controllers/Radio.php:98 application/controllers/Radio.php:101
 msgid "Set as default radio"
 msgstr "Postavite podrazumevani radio"
 
-#: application/controllers/Radio.php:102
+#: application/controllers/Radio.php:103
 msgid "Default (click to release)"
 msgstr "Podrazumevano (kliknite za objavu)"
 
-#: application/controllers/Radio.php:105
+#: application/controllers/Radio.php:106
+#: application/controllers/Stationsetup.php:359
+#: application/views/api/help.php:57 application/views/contesting/add.php:59
+#: application/views/cron/index.php:58
+#: application/views/interface_assets/footer.php:550
+#: application/views/interface_assets/footer.php:559
+#: application/views/labels/index.php:47 application/views/labels/index.php:83
+#: application/views/logbookadvanced/index.php:567
+#: application/views/mode/index.php:64 application/views/satellite/edit.php:39
+#: application/views/satellite/index.php:25
+#: application/views/search/stored_queries.php:21
+#: application/views/stationsetup/stationsetup.php:128
+#: application/views/stationsetup/stationsetup.php:165
+#: application/views/themes/index.php:104 application/views/user/index.php:50
+msgid "Edit"
+msgstr "Uredite"
+
+#: application/controllers/Radio.php:107
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:2374
@@ -1888,9 +1910,13 @@ msgstr "Podrazumevano (kliknite za objavu)"
 msgid "Delete"
 msgstr "Obrišite"
 
-#: application/controllers/Radio.php:111
+#: application/controllers/Radio.php:113
 msgid "No CAT interfaced radios found."
 msgstr "Nisu pronađeni radio uređaji sa CAT interfejsom."
+
+#: application/controllers/Radio.php:128 application/views/radio/index.php:2
+msgid "Edit CAT Settings"
+msgstr ""
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
@@ -2138,22 +2164,6 @@ msgstr "Aktivna stanica"
 #: application/views/user/index.php:88 application/views/user/index.php:90
 msgid "QSO"
 msgstr "QSO"
-
-#: application/controllers/Stationsetup.php:359
-#: application/views/api/help.php:57 application/views/contesting/add.php:59
-#: application/views/cron/index.php:58
-#: application/views/interface_assets/footer.php:550
-#: application/views/interface_assets/footer.php:559
-#: application/views/labels/index.php:47 application/views/labels/index.php:83
-#: application/views/logbookadvanced/index.php:567
-#: application/views/mode/index.php:64 application/views/satellite/edit.php:39
-#: application/views/satellite/index.php:25
-#: application/views/search/stored_queries.php:21
-#: application/views/stationsetup/stationsetup.php:128
-#: application/views/stationsetup/stationsetup.php:165
-#: application/views/themes/index.php:104 application/views/user/index.php:50
-msgid "Edit"
-msgstr "Uredite"
 
 #: application/controllers/Stationsetup.php:363
 #: application/views/stationsetup/stationsetup.php:185
@@ -3765,7 +3775,7 @@ msgid "The API URL for this Wavelog instance is"
 msgstr "API URL za ovu verziju Waveloga je"
 
 #: application/views/api/help.php:20 application/views/dxcalendar/index.php:15
-#: application/views/eqsl/export.php:33 application/views/radio/index.php:22
+#: application/views/eqsl/export.php:33 application/views/radio/index.php:26
 #: application/views/sattimers/index.php:67
 #: application/views/sattimers/index.php:69
 #: application/views/sattimers/index.php:71
@@ -6635,10 +6645,6 @@ msgstr "Instalirano"
 #: application/views/debug/index.php:290 application/views/debug/index.php:301
 msgid "Not Installed"
 msgstr "Nije instalirano"
-
-#: application/views/debug/index.php:308 application/views/qso/index.php:673
-msgid "Settings"
-msgstr "Podešavanja"
 
 #: application/views/debug/index.php:437
 msgid "Git Information"
@@ -9972,15 +9978,26 @@ msgstr ""
 msgid "The data was redirected. You can close this window."
 msgstr ""
 
-#: application/views/radio/index.php:16
+#: application/views/radio/edit.php:18
+msgid "CAT URL"
+msgstr ""
+
+#: application/views/radio/edit.php:20
+#, php-format
+msgid ""
+"Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
+"(/) and QRG is added automatically. Default is %s"
+msgstr ""
+
+#: application/views/radio/index.php:20
 msgid "Active Radios"
 msgstr "Aktivni radio-uređaji"
 
-#: application/views/radio/index.php:19
+#: application/views/radio/index.php:23
 msgid "Below is a list of active radios that are connected to Wavelog."
 msgstr "Ispod je lista aktivnih radio-uređaja koji su povezani na Wavelog."
 
-#: application/views/radio/index.php:20
+#: application/views/radio/index.php:24
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
@@ -9988,16 +10005,16 @@ msgstr ""
 "Ako do sada niste spojili nijedan radio, pogledajte API stranicu za "
 "generaisanje API ključeva."
 
-#: application/views/radio/index.php:22 application/views/search/filter.php:72
+#: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
 msgstr "Možete naći kako se ovo koristi %s na wikiju."
 
-#: application/views/radio/index.php:22
+#: application/views/radio/index.php:26
 msgid "radio functions"
 msgstr "funkcije radija"
 
-#: application/views/radio/index.php:27
+#: application/views/radio/index.php:31
 msgid "Please wait..."
 msgstr "Molimo sačekajte..."
 
