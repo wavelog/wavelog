@@ -1158,6 +1158,7 @@ $($('#callsign')).on('keypress',function(e) {
 
 <?php } ?>
 <?php if ( $this->uri->segment(1) == "qso" || ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) != "add")) { ?>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/qrg_handler.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
 

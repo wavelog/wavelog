@@ -7,6 +7,10 @@ $(document).ready(async function () {
 	await restoreContestSession(sessiondata);	// wait for restoring until finished
 	setRst($("#mode").val());
 	$('#contestname').val($('#contestname_select').val());
+
+	// Clear the localStorage for the qrg units
+	localStorage.clear();
+	set_qrg();
 });
 
 // Always update the contestname
@@ -471,8 +475,9 @@ function highlight(term, base) {
 // Only set the frequency when not set by userdata/PHP.
 if ($('#frequency').val() == "") {
 	$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-		$('#frequency').val(result);
+		$('#frequency').val(result).trigger("change");
 		$('#frequency_rx').val("");
+		set_qrg();
 	});
 }
 
@@ -480,7 +485,7 @@ if ($('#frequency').val() == "") {
 $('#mode').change(function () {
 		if ($('#radio').val() == '0') {
 	$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-		$('#frequency').val(result);
+		$('#frequency').val(result).trigger("change");
 		$('#frequency_rx').val("");
 	});
 	}
@@ -491,12 +496,13 @@ $('#mode').change(function () {
 /* Calculate Frequency */
 /* on band change */
 $('#band').change(function () {
-		if ($('#radio').val() == '0') {
-	$.get('qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
-		$('#frequency').val(result);
-		$('#frequency_rx').val("");
-	});
+	if ($('#radio').val() == '0') {
+		$.get('qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
+			$('#frequency').val(result).trigger("change");
+			$('#frequency_rx').val("");
+		});
 	}
+	set_qrg();
 	checkIfWorkedBefore();
 });
 
@@ -507,7 +513,7 @@ $('#band').change(function () {
 $('#radio').change(function () {
 	if ($('#radio').val() == '0') {
 		$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 			$('#frequency_rx').val("");
 		});
 	}
@@ -767,7 +773,7 @@ async function restoreContestSession(data) {
 				$("#frequency").val(settings.freq_display);
 			} else {
 				$.get('qso/band_to_freq/' + settings.band + '/' + settings.mode, function (result) {
-					$('#frequency').val(result);
+					$('#frequency').val(result).trigger("change");
 				});
 			}
 		}
