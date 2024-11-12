@@ -446,7 +446,7 @@
                     <?php if($row->COL_EMAIL != null) { ?>
                     <tr>
                         <td><?= __("eMail"); ?></td>
-                        <td><a href="mailto: "<?php echo $row->COL_EMAIL.'">'.$row->COL_EMAIL.'</a>'; ?></td>
+                        <td><a href="mailto:<?php echo $row->COL_EMAIL; ?>"><?php echo $row->COL_EMAIL; ?></a></td>
                     </tr>
                     <?php } ?>
 
