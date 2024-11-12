@@ -1243,6 +1243,12 @@ class Logbook_model extends CI_Model {
 			$txpower = null;
 		}
 
+		if ($this->input->post('email')) {
+			$email = $this->input->post('email',TRUE);
+		} else {
+			$email = null;
+		}
+
 		if ($this->input->post('stx')) {
 			$stx_string = $this->input->post('stx');
 		} else {
@@ -1463,7 +1469,8 @@ class Logbook_model extends CI_Model {
 			'COL_MY_WWFF_REF' => $wwffRef,
 			'COL_MY_POTA_REF' => $potaRef,
 			'COL_MY_SIG' => $sig,
-			'COL_MY_SIG_INFO' => $sigInfo
+			'COL_MY_SIG_INFO' => $sigInfo,
+			'COL_EMAIL' => $email ?? '',
 		);
 
 		if ($this->exists_hrdlog_credentials($data['station_id']) && !$qrz_modified) {
