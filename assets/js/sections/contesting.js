@@ -675,7 +675,7 @@ function logQso() {
 				serialr = $("#exch_serial_r").val();
 			break;
 
-			case 'Serialgridsquare':
+			case 'SerialGridExchange':
 				gridr = gridsquare;
 				vuccr = vucc;
 				exchsent = $("#exch_sent").val();
