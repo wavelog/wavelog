@@ -1178,6 +1178,22 @@ function testTimeOffConsistency() {
 	return true;
 }
 
+$('#qrg_unit').on('click', function () {
+	if ($(this).html() == 'Hz') {
+		$(this).html('kHz');
+		$("#freq_calculated").val($("#frequency").val() / 1000);
+	} else if ($(this).html() == 'kHz') {
+		$(this).html('MHz');
+		$("#freq_calculated").val($("#frequency").val() / 1000000);
+	} else if ($(this).html() == 'MHz') {
+		$(this).html('GHz');
+		$("#freq_calculated").val($("#frequency").val() / 1000000000);
+	} else if ($(this).html() == 'GHz') {
+		$(this).html('Hz');
+		$("#freq_calculated").val($("#frequency").val());
+	}
+});
+
 function set_qrg() {
 
 	frequency = $('#frequency').val();

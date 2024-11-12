@@ -172,7 +172,7 @@
                   <label for="frequency"><?= __("Frequency"); ?></label>
                   <div class="input-group input-group-sm">
                     <input type="text" tabindex="3" class="form-control form-control-sm" id="freq_calculated" name="freq_calculated" value="0" />
-                    <small class="input-group-text" id="qrg_unit"></small>
+                    <small class="input-group-text btn-included-on-field" id="qrg_unit"></small>
                   </div>
                   <input style="display: none;" type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
                 </div>
