@@ -40,7 +40,11 @@ foreach ($result as $mode => $value) {
 				case 'itu': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $ituz).'","' . $key . '","All","All","' . $mode . '","ITU")\'>'   . $val . '</a>'; break;
 			}
 
-			$info = '<td>';
+			if ($current_band == $key && strtoupper($current_mode )== strtoupper($mode)) {
+				$info = '<td class=\'border-3 border-danger\'>';
+			} else {
+				$info = '<td>';
+			}
 
 			if ($val == 'W') {
 				$info .= '<div class=\'bg-danger awardsBgDanger\'>' . $linkinfo . '</div>';
