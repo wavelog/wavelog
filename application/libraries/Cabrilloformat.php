@@ -121,12 +121,19 @@ class Cabrilloformat {
          }
       }
 
-      if($qso->COL_MODE == "SSB") {
+      // based on the official cabrillo documentation
+      // https://wwrof.org/cabrillo/cabrillo-qso-data/
+      
+      if($qso->COL_MODE == "CW") {
+         $mode = "CW";
+      } elseif($qso->COL_MODE == "SSB" || $qso->COL_MODE == "AM") {
          $mode = "PH";
+      } elseif($qso->COL_MODE == "FM") {
+         $mode = "FM";
       } elseif($qso->COL_MODE == "RTTY") {
          $mode = "RY";
       } else {
-         $mode = $qso->COL_MODE;
+         $mode = "DG";
       }
 
       $time = substr($qso->COL_TIME_ON, 0, -3);
