@@ -815,6 +815,7 @@ function getDxccResult(dxcc, name) {
 		data: {
 			type: 'dxcc',
 			dxcc: dxcc,
+            reduced_mode: true,
 		},
 		success: function (html) {
             $('.dxccsummary').remove();
