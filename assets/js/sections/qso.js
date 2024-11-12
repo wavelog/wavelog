@@ -657,7 +657,7 @@ $("#callsign").on("focusout", function () {
 					} else if (result.lotw_days > 7) {
 						$('#lotw_info').addClass('lotw_info_yellow');
 					}
-					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign);
+					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign.replace('Ø', '0'));
 					$('#lotw_link').attr('target', "_blank");
 					$('#lotw_info').attr('data-bs-toggle', "tooltip");
 					if (result.lotw_days == 1) { 
@@ -667,11 +667,11 @@ $("#callsign").on("focusout", function () {
 					}
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
-				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
-				$('#qrz_info').attr('title', 'Lookup ' + callsign + ' info on qrz.com').removeClass('d-none');
+				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign.replace('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
+				$('#qrz_info').attr('title', 'Lookup ' + callsign.replace('Ø', '0') + ' info on qrz.com').removeClass('d-none');
 				$('#qrz_info').show();
-				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
-				$('#hamqth_info').attr('title', 'Lookup ' + callsign + ' info on hamqth.com').removeClass('d-none');
+				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign.replace('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
+				$('#hamqth_info').attr('title', 'Lookup ' + callsign.replace('Ø', '0') + ' info on hamqth.com').removeClass('d-none');
 				$('#hamqth_info').show();
 
 				var $dok_select = $('#darc_dok').selectize();
