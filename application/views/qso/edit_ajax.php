@@ -269,6 +269,10 @@
                                                 <option value="SA" <?php if ($qso->COL_CONT == "SA") { echo "selected=\"selected\""; } ?>><?= __("South America"); ?></option>
                                             </select>
                                         </div>
+                                    	<div class="mb-3">
+                                       		<label for="email"><?= __("eMail"); ?></label>
+                                       		<input type="text" class="form-control" id="email_edit" name="email" value="<?php echo $qso->COL_EMAIL; ?>">
+                                    	</div>
                                     </div>
                                 </div>
 

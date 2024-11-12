@@ -37,6 +37,12 @@ class Logbook_model extends CI_Model {
 			$prop_mode = "";
 		}
 
+		if ($this->input->post('email')) {
+			$email = $this->input->post('email',TRUE);
+		} else {
+			$email = '';
+		}
+
 		if ($this->input->post('sat_name')) {
 			$prop_mode = "SAT";
 		}
@@ -329,6 +335,7 @@ class Logbook_model extends CI_Model {
 			'COL_SIG_INFO' => $this->input->post('sig_info') == null ? '' : trim($this->input->post('sig_info')),
 			'COL_DARC_DOK' => $darc_dok  == null ? '' : strtoupper(trim($darc_dok)),
 			'COL_NOTES' => $this->input->post('notes'),
+			'COL_EMAIL' => $email ?? '',
 		);
 
 		$station_id = $this->input->post('station_profile');
@@ -1236,6 +1243,12 @@ class Logbook_model extends CI_Model {
 			$txpower = null;
 		}
 
+		if ($this->input->post('email')) {
+			$email = $this->input->post('email',TRUE);
+		} else {
+			$email = null;
+		}
+
 		if ($this->input->post('stx')) {
 			$stx_string = $this->input->post('stx');
 		} else {
@@ -1456,7 +1469,8 @@ class Logbook_model extends CI_Model {
 			'COL_MY_WWFF_REF' => $wwffRef,
 			'COL_MY_POTA_REF' => $potaRef,
 			'COL_MY_SIG' => $sig,
-			'COL_MY_SIG_INFO' => $sigInfo
+			'COL_MY_SIG_INFO' => $sigInfo,
+			'COL_EMAIL' => $email ?? '',
 		);
 
 		if ($this->exists_hrdlog_credentials($data['station_id']) && !$qrz_modified) {
