@@ -1570,6 +1570,9 @@ class Logbook_model extends CI_Model {
 
 	/* Callsign QRA */
 	function call_qra($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_GRIDSQUARE, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1657,6 +1660,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_state($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_STATE');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1678,6 +1684,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_us_county($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_CNTY');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1700,6 +1709,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_ituzone($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_ITUZ');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1721,6 +1733,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_cqzone($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_CQZ');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1742,6 +1757,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_qth($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_QTH, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1763,6 +1781,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_iota($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_IOTA, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);

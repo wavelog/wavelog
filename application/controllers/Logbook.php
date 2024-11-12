@@ -165,7 +165,7 @@ class Logbook extends CI_Controller {
 			}
 		}
 
-		if ($return['callsign_qra'] != "") {
+		if ($return['callsign_qra'] != "" || $return['callsign_qra'] != null) {
 			$return['latlng'] = $this->qralatlng($return['callsign_qra']);
 			$return['bearing'] = $this->bearing($return['callsign_qra'], $measurement_base, $station_id);
 		}
