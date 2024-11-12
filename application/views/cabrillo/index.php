@@ -198,6 +198,13 @@
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
+					<div class="col-md-3 control-label" for="grid_export"><?= __("Include logged grids?") ?>: <i class="fas fa-question-circle col-md-1" data-bs-toggle="contestinfo" data-bs-placement="right" title="<?= __("If the gridsquare was part of the exchange, you should select YES.") ?>"></i></div>
+					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="grid_export" name="grid_export">
+						<option value="0" selected><?= __("No"); ?></option>
+						<option value="1"><?= __("Yes"); ?></option>
+					</select>
+				</div>
+				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="button1id"></div>
 					<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary w-auto"> <?= __("Export") ?></button>
 				</div>
