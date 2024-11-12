@@ -55,11 +55,10 @@ $('.qso_panel .qso_eqsl_qslmsg_update').off('click').on('click', function () {
 });
 
 $(document).on("keydown", function (e) {
-	if (e.key === "Escape") { // escape key maps to keycode `27`
+	if (e.key === "Escape" && $('#callsign').val() != '') { // escape key maps to keycode `27`
+		// console.log("Escape key pressed");
 		reset_fields();
-		resetTimers(qso_manual)
-		$('#callsign').val("");
-		$("#callsign").trigger("focus");
+		$('#callsign').trigger("focus");
 	}
 });
 
