@@ -1204,7 +1204,11 @@ function set_qrg() {
 
 	let qrgunit = localStorage.getItem('qrgunit_' + band);
 
-	$('#qrg_unit').html(localStorage.getItem('qrgunit_' + band));
+	if (qrgunit != null) {
+		$('#qrg_unit').html(localStorage.getItem('qrgunit_' + band));
+	} else {
+		$('#qrg_unit').html('...');
+	}
 
 	if (qrgunit == 'Hz') {
 		$("#freq_calculated").val(frequency);
