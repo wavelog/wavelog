@@ -147,7 +147,7 @@ class Cabrilloformat {
       }
 
       if ($grid_export == true) {
-         $returnstring .= substr($qso->station_gridsquare, 0, 4) ." ";
+         $returnstring .= substr($qso->station_gridsquare, 0, 4) ?? '' ." ";
       }
 
       if ($qso->COL_STX_STRING != "") {
@@ -161,7 +161,7 @@ class Cabrilloformat {
       }  
 
       if ($grid_export == true) {
-         $returnstring .= substr($qso->COL_GRIDSQUARE, 0, 4) ." ";
+         $returnstring .= substr($qso->COL_GRIDSQUARE, 0, 4) ?? '' ." ";
       }
       
       if ($qso->COL_SRX_STRING != "") {
