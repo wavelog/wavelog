@@ -119,6 +119,7 @@ class QSO extends CI_Controller {
 				'start_time' => $this->input->post('start_time', TRUE),
 				'end_time' => $this->input->post('end_time'),
 				'time_stamp' => time(),
+				'mail' => $this->input->post('mail', TRUE),
 				'band' => $this->input->post('band', TRUE),
 				'band_rx' => $this->input->post('band_rx', TRUE),
 				'freq' => $this->input->post('freq_display', TRUE),

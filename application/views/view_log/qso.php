@@ -443,6 +443,13 @@
                     </tr>
                     <?php } ?>
 
+                    <?php if($row->COL_EMAIL != null) { ?>
+                    <tr>
+                        <td><?= __("eMail"); ?></td>
+                        <td><a href="mailto:<?php echo $row->COL_EMAIL; ?>"><?php echo $row->COL_EMAIL; ?></a></td>
+                    </tr>
+                    <?php } ?>
+
                 </table>
                 <?php if($row->COL_QSL_SENT == "Y" || $row->COL_QSL_RCVD == "Y") { ?>
                     <h3><?= __("QSL Info"); ?></h3>
