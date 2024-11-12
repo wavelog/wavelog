@@ -20,11 +20,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-10 12:04+0000\n"
+"POT-Creation-Date: 2024-11-10 13:02+0000\n"
 "PO-Revision-Date: 2024-11-11 04:41+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,8 +82,8 @@ msgstr ""
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:175 application/controllers/Qso.php:274
 #: application/controllers/Qso.php:294 application/controllers/Qso.php:303
-#: application/controllers/Qso.php:599 application/controllers/Radio.php:261
-#: application/controllers/Radio.php:287 application/controllers/Radio.php:303
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:282
+#: application/controllers/Radio.php:308 application/controllers/Radio.php:324
 #: application/controllers/Reg1test.php:18
 #: application/controllers/Reg1test.php:63
 #: application/controllers/Reg1test.php:102
@@ -123,8 +123,6 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1046
 #: application/controllers/User.php:1248
 #: application/controllers/User_options.php:9
-#: application/controllers/Radio.php:282 application/controllers/Radio.php:308
-#: application/controllers/Radio.php:324
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
@@ -1859,22 +1857,43 @@ msgstr "Zeitstempel"
 msgid "Options"
 msgstr "Optionen"
 
-#: application/controllers/Radio.php:90
+#: application/controllers/Radio.php:53 application/views/debug/index.php:308
+#: application/views/qso/index.php:673
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: application/controllers/Radio.php:91
 #: application/views/contesting/index.php:152
-#: application/views/qso/index.php:319 application/controllers/Radio.php:91
+#: application/views/qso/index.php:319
 msgid "last updated"
 msgstr "zuletzt aktualisiert"
 
-#: application/controllers/Radio.php:97 application/controllers/Radio.php:100
 #: application/controllers/Radio.php:98 application/controllers/Radio.php:101
 msgid "Set as default radio"
 msgstr "Setze als Standardgerät"
 
-#: application/controllers/Radio.php:102 application/controllers/Radio.php:103
+#: application/controllers/Radio.php:103
 msgid "Default (click to release)"
 msgstr "Standardgerät (klicken zum freigeben)"
 
-#: application/controllers/Radio.php:105
+#: application/controllers/Radio.php:106
+#: application/controllers/Stationsetup.php:359
+#: application/views/api/help.php:57 application/views/contesting/add.php:59
+#: application/views/cron/index.php:58
+#: application/views/interface_assets/footer.php:550
+#: application/views/interface_assets/footer.php:559
+#: application/views/labels/index.php:47 application/views/labels/index.php:83
+#: application/views/logbookadvanced/index.php:567
+#: application/views/mode/index.php:64 application/views/satellite/edit.php:39
+#: application/views/satellite/index.php:25
+#: application/views/search/stored_queries.php:21
+#: application/views/stationsetup/stationsetup.php:128
+#: application/views/stationsetup/stationsetup.php:165
+#: application/views/themes/index.php:104 application/views/user/index.php:50
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: application/controllers/Radio.php:107
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
 #: application/views/interface_assets/footer.php:2374
@@ -1894,13 +1913,17 @@ msgstr "Standardgerät (klicken zum freigeben)"
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:55
-#: application/views/view_log/qso.php:695 application/controllers/Radio.php:107
+#: application/views/view_log/qso.php:695
 msgid "Delete"
 msgstr "Löschen"
 
-#: application/controllers/Radio.php:111 application/controllers/Radio.php:113
+#: application/controllers/Radio.php:113
 msgid "No CAT interfaced radios found."
 msgstr "Keine CAT-verbundenen Funkgeräte gefunden."
+
+#: application/controllers/Radio.php:128 application/views/radio/index.php:2
+msgid "Edit CAT Settings"
+msgstr "CAT-Einstellungen bearbeiten"
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
@@ -2150,23 +2173,6 @@ msgstr "Aktive Station"
 #: application/views/user/index.php:88 application/views/user/index.php:90
 msgid "QSO"
 msgstr "QSO"
-
-#: application/controllers/Stationsetup.php:359
-#: application/views/api/help.php:57 application/views/contesting/add.php:59
-#: application/views/cron/index.php:58
-#: application/views/interface_assets/footer.php:550
-#: application/views/interface_assets/footer.php:559
-#: application/views/labels/index.php:47 application/views/labels/index.php:83
-#: application/views/logbookadvanced/index.php:567
-#: application/views/mode/index.php:64 application/views/satellite/edit.php:39
-#: application/views/satellite/index.php:25
-#: application/views/search/stored_queries.php:21
-#: application/views/stationsetup/stationsetup.php:128
-#: application/views/stationsetup/stationsetup.php:165
-#: application/views/themes/index.php:104 application/views/user/index.php:50
-#: application/controllers/Radio.php:106
-msgid "Edit"
-msgstr "Bearbeiten"
 
 #: application/controllers/Stationsetup.php:363
 #: application/views/stationsetup/stationsetup.php:185
@@ -3793,14 +3799,14 @@ msgid "The API URL for this Wavelog instance is"
 msgstr "Die API-URL für diese Wavelog-Instanz ist"
 
 #: application/views/api/help.php:20 application/views/dxcalendar/index.php:15
-#: application/views/eqsl/export.php:33 application/views/radio/index.php:22
+#: application/views/eqsl/export.php:33 application/views/radio/index.php:26
 #: application/views/sattimers/index.php:67
 #: application/views/sattimers/index.php:69
 #: application/views/sattimers/index.php:71
 #: application/views/sattimers/index.php:73
 #: application/views/sattimers/index.php:75
 #: application/views/sattimers/index.php:77
-#: application/views/search/filter.php:72 application/views/radio/index.php:26
+#: application/views/search/filter.php:72
 msgid "Info"
 msgstr "Info"
 
@@ -6701,11 +6707,6 @@ msgstr "Installiert"
 #: application/views/debug/index.php:290 application/views/debug/index.php:301
 msgid "Not Installed"
 msgstr "Nicht installiert"
-
-#: application/views/debug/index.php:308 application/views/qso/index.php:673
-#: application/controllers/Radio.php:53
-msgid "Settings"
-msgstr "Einstellungen"
 
 #: application/views/debug/index.php:437
 msgid "Git Information"
@@ -10100,17 +10101,31 @@ msgstr "Weiterleitung zur QSO-Logging Seite..."
 msgid "The data was redirected. You can close this window."
 msgstr "Die Daten wurden weitergeleitet. Du kannst dieses Fenster schliessen."
 
-#: application/views/radio/index.php:16 application/views/radio/index.php:20
+#: application/views/radio/edit.php:18
+msgid "CAT URL"
+msgstr "CAT URL"
+
+#: application/views/radio/edit.php:20
+#, php-format
+msgid ""
+"Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
+"(/) and QRG is added automatically. Default is %s"
+msgstr ""
+"Aufgerufene URL, wenn ein Spot im DXCluster angeklickt wird. Hinweis: Der "
+"abschliessende Schrägstrich (/) und die QRG werden automatisch hinzugefügt. "
+"Standardwert ist %s"
+
+#: application/views/radio/index.php:20
 msgid "Active Radios"
 msgstr "Aktive Funkgeräte"
 
-#: application/views/radio/index.php:19 application/views/radio/index.php:23
+#: application/views/radio/index.php:23
 msgid "Below is a list of active radios that are connected to Wavelog."
 msgstr ""
 "Unten findest du eine Liste mit allen aktiven Funkgeräten, welche mit "
 "Wavelog verbunden sind."
 
-#: application/views/radio/index.php:20 application/views/radio/index.php:24
+#: application/views/radio/index.php:24
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
@@ -10118,17 +10133,16 @@ msgstr ""
 "Falls du bis jetzt keine Funkgeräte verbunden hast, geh zur API Seite und "
 "generiere API Schlüssel."
 
-#: application/views/radio/index.php:22 application/views/search/filter.php:72
-#: application/views/radio/index.php:26
+#: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
 msgstr "Wie du die %s verwendest, findest du im Wiki."
 
-#: application/views/radio/index.php:22 application/views/radio/index.php:26
+#: application/views/radio/index.php:26
 msgid "radio functions"
 msgstr "Funkgerät-Funktionen"
 
-#: application/views/radio/index.php:27 application/views/radio/index.php:31
+#: application/views/radio/index.php:31
 msgid "Please wait..."
 msgstr "Bitte warten..."
 
@@ -12650,24 +12664,6 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
-
-#: application/controllers/Radio.php:128 application/views/radio/index.php:2
-msgid "Edit CAT Settings"
-msgstr "CAT-Einstellungen bearbeiten"
-
-#: application/views/radio/edit.php:18
-msgid "CAT URL"
-msgstr "CAT URL"
-
-#: application/views/radio/edit.php:20
-#, php-format
-msgid ""
-"Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
-"(/) and QRG is added automatically. Default is %s"
-msgstr ""
-"Aufgerufene URL, wenn ein Spot im DXCluster angeklickt wird. Hinweis: Der "
-"abschliessende Schrägstrich (/) und die QRG werden automatisch hinzugefügt. "
-"Standardwert ist %s"
 
 #~ msgid "The QSO were successfully logged in the logbook!"
 #~ msgstr "Die QSO wurden erfolgreich im Logbuch gespeichert!"
