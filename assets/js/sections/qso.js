@@ -1171,49 +1171,50 @@ $('#qrg_unit').on('click', function () {
 	if ($(this).html() == 'Hz') {
 		$(this).html('kHz');
 		$("#freq_calculated").val($("#frequency").val() / 1000);
+		localStorage.setItem('qrgunit_' + $('#band').val(), 'kHz');
 	} else if ($(this).html() == 'kHz') {
 		$(this).html('MHz');
 		$("#freq_calculated").val($("#frequency").val() / 1000000);
+		localStorage.setItem('qrgunit_' + $('#band').val(), 'MHz');
 	} else if ($(this).html() == 'MHz') {
 		$(this).html('GHz');
 		$("#freq_calculated").val($("#frequency").val() / 1000000000);
+		localStorage.setItem('qrgunit_' + $('#band').val(), 'GHz');
 	} else if ($(this).html() == 'GHz') {
 		$(this).html('Hz');
 		$("#freq_calculated").val($("#frequency").val());
+		localStorage.setItem('qrgunit_' + $('#band').val(), 'Hz');
 	}
 });
 
 function set_qrg() {
 
-	frequency = $('#frequency').val();
-	band = $('#band').val();
+	let frequency = $('#frequency').val();
+	let band = $('#band').val();
 
-	console.log(frequency, band);
+	// check if there are qrgunits in the localStorage
+	if (!localStorage.getItem('qrgunit_' + band)) {
+		console.log('fetching qrg units');
+		$.getJSON(base_url + 'index.php/user_options/get_qrg_units', async function (result) {
+			$.each(result, function(key, value) {
+				localStorage.setItem('qrgunit_' + key, value);
+			});
+		});
+	}
 
-	$.ajax({
-		url: base_url + 'index.php/user_options/get_qrg_unit',
-		type: 'post',
-		data: {
-			band: band,
-		},
-		success: function (data) {
-			$("#qrg_unit").html(data);
+	let qrgunit = localStorage.getItem('qrgunit_' + band);
 
-			if (data == 'Hz') {
-				$("#freq_calculated").val(frequency);
-			} else if (data == 'kHz') {
-				$("#freq_calculated").val(frequency / 1000);
-			} else if (data == 'MHz') {
-				$("#freq_calculated").val(frequency / 1000000);
-			} else if (data == 'GHz') {
-				$("#freq_calculated").val(frequency / 1000000000);
-			}
-		},
-		error: function () {
-			$("#qrg_unit").html('n/a');
-			$("#freq_calculated").val('0');
-		},
-	});
+	$('#qrg_unit').html(localStorage.getItem('qrgunit_' + band));
+
+	if (qrgunit == 'Hz') {
+		$("#freq_calculated").val(frequency);
+	} else if (qrgunit == 'kHz') {
+		$("#freq_calculated").val(frequency / 1000);
+	} else if (qrgunit == 'MHz') {
+		$("#freq_calculated").val(frequency / 1000000);
+	} else if (qrgunit == 'GHz') {
+		$("#freq_calculated").val(frequency / 1000000000);
+	}
 }
 
 $('#frequency').on('change', function () {
@@ -1251,15 +1252,19 @@ $('#freq_calculated').on('keydown', function (e) {
         switch (unit) {
             case 'Hz':
                 qrg_hz = parsed_qrg;
+				localStorage.setItem('qrgunit_' + $('#band').val(), 'Hz');
                 break;
             case 'kHz':
                 qrg_hz = parsed_qrg * 1000;
+				localStorage.setItem('qrgunit_' + $('#band').val(), 'kHz');
                 break;
             case 'MHz':
                 qrg_hz = parsed_qrg * 1000000;
+				localStorage.setItem('qrgunit_' + $('#band').val(), 'MHz');
                 break;
             case 'GHz':
                 qrg_hz = parsed_qrg * 1000000000;
+				localStorage.setItem('qrgunit_' + $('#band').val(), 'GHz');
                 break;
             default:
                 qrg_hz = 0;
@@ -1280,6 +1285,8 @@ $(document).ready(function () {
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 
+	// Clear the localStorage for the qrg units
+	localStorage.clear();
 	set_qrg();
 
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })

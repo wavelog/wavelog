@@ -51,12 +51,19 @@ class User_Options extends CI_Controller {
 		$this->user_options_model->set_option('version_dialog', 'confirmed', array('boolean' => 'true'));
 	}
 
-	public function get_qrg_unit() {
-		$band = $this->input->post('band', true);
-		$this->load->library('frequency');
-		$unit = $this->frequency->qrg_unit($band);
+	public function get_qrg_units() {
+
+		$qrg_units = [];
+
+		foreach($this->session->get_userdata() as $key => $value) {
+			if (strpos($key, 'qrgunit_') === 0) {
+				$band = str_replace('qrgunit_', '', $key);
+				$qrg_units[$band] = $value;
+			}
+		}
+
 		header('Content-Type: application/json');
-		echo json_encode($unit);
+		echo json_encode($qrg_units);
 	}
 }
 
