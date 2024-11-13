@@ -110,6 +110,10 @@ $('#frequency').on('change', function () {
 	set_qrg();
 });
 
+$('#freq_calculated').on('input', function () {
+    $(this).val($(this).val().replace(',', '.'));
+});
+
 $('#freq_calculated').on('change', function () {
 	// console.log('freq_calculated changed');
 	set_new_qrg();
