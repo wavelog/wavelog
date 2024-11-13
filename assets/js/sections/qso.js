@@ -568,6 +568,8 @@ function reset_fields() {
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
+		$("#noticer").fadeOut(1000);
+
 		// Temp store the callsign
 		var temp_callsign = $(this).val();
 
