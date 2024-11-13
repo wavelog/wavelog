@@ -813,11 +813,12 @@ $("#callsign").on("focusout", function () {
 
 				// Get DXX Summary
 				getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
-			} else {
-				console.log("Callsigns do not match, skipping lookup");
-				console.log("Typed Callsign: " + $('#callsign').val());
-				console.log("Returned Callsign: " + result.callsign);
-			}
+			} 
+			// else {
+			// 	console.log("Callsigns do not match, skipping lookup");
+			// 	console.log("Typed Callsign: " + $('#callsign').val());
+			// 	console.log("Returned Callsign: " + result.callsign);
+			// }
 		});
 	} else {
 		// Reset QSO fields
