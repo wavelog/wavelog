@@ -1983,6 +1983,7 @@ class Logbook_model extends CI_Model {
 
 		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
 		$this->db->order_by('' . $this->config->item('table_name') . '.COL_TIME_ON', "desc");
+		$this->db->order_by('' . $this->config->item('table_name') . '.COL_PRIMARY_KEY', "desc");
 
 		$this->db->limit($num);
 		$this->db->offset($offset);
