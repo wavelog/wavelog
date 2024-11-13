@@ -591,7 +591,7 @@ $("#callsign").on("focusout", function () {
 		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
 
 			// Make sure the typed callsign and json result match
-			if ($('#callsign').val() == result.callsign) {
+			if ($('#callsign').val().toUpperCase().replace('Ø', '0') == result.callsign) {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
@@ -813,6 +813,10 @@ $("#callsign").on("focusout", function () {
 
 				// Get DXX Summary
 				getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
+			} else {
+				console.log("Callsigns do not match, skipping lookup");
+				console.log("Typed Callsign: " + $('#callsign').val());
+				console.log("Returned Callsign: " + result.callsign);
 			}
 		});
 	} else {
