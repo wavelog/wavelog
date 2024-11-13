@@ -25,7 +25,7 @@ async function set_qrg() {
 
 	// check if there are qrgunits in the localStorage
 	if (!localStorage.getItem('qrgunit_' + band)) {
-		console.log('fetching qrg units');
+		// console.log('fetching qrg units');
 		await $.getJSON(base_url + 'index.php/user_options/get_qrg_units', async function (result) {
 			$.each(result, function(key, value) {
 				localStorage.setItem('qrgunit_' + key, value);
@@ -52,7 +52,7 @@ async function set_qrg() {
 	}
 }
 
-function set_new_qrg() {
+async function set_new_qrg() {
 	let new_qrg = $('#freq_calculated').val().trim();
 	let parsed_qrg = parseFloat(new_qrg);
 	let unit = $('#qrg_unit').html();
@@ -118,7 +118,8 @@ $('#freq_calculated').on('change', function () {
 $('#freq_calculated').on('keydown', function (e) {
 	if (e.which === 13) {
 		e.preventDefault();
-		set_new_qrg();      
-		$("#callsign").trigger("focus");
+		set_new_qrg().then(() => {
+            $("#qso_input").trigger('submit');
+        });
     }
 });
