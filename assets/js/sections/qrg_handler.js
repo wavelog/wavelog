@@ -106,12 +106,12 @@ function set_new_qrg() {
 }
 
 $('#frequency').on('change', function () {
-	console.log('frequency changed');
+	// console.log('frequency changed');
 	set_qrg();
 });
 
 $('#freq_calculated').on('change', function () {
-	console.log('freq_calculated changed');
+	// console.log('freq_calculated changed');
 	set_new_qrg();
 });
 
