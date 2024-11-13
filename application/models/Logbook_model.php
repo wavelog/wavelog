@@ -5415,6 +5415,16 @@ class Logbook_model extends CI_Model {
 
 		return $row->user_id;
 	}
+
+	function getContinent($dxcc) {
+		$sql = "SELECT cont FROM dxcc_entities WHERE adif = ?";
+		$query = $this->db->query($sql, $dxcc);
+
+		if ($query->num_rows() == 1) {
+			return $query->row()->cont;
+		}
+		return '';
+	}
 }
 
 function validateADIFDate($date, $format = 'Ymd') {
