@@ -365,7 +365,7 @@ $(document).on('change', 'input', function () {
 								}
 								$("#band").val(frequencyToBand(val2[0].Uplink_Freq));
 								$("#band_rx").val(frequencyToBand(val2[0].Downlink_Freq));
-								$("#frequency").val(val2[0].Uplink_Freq);
+								$("#frequency").val(val2[0].Uplink_Freq).trigger("change");
 								$("#frequency_rx").val(val2[0].Downlink_Freq);
 								$("#selectPropagation").val('SAT');
 							}
