@@ -591,7 +591,7 @@ $("#callsign").on("focusout", function () {
 		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
 
 			// Make sure the typed callsign and json result match
-			if ($('#callsign').val = result.callsign) {
+			if ($('#callsign').val == result.callsign) {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
