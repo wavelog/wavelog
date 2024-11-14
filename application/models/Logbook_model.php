@@ -643,6 +643,7 @@ class Logbook_model extends CI_Model {
 			$this->db->group_end();
 		}
 		$this->db->order_by("COL_TIME_ON", "desc");
+		$this->db->order_by("COL_PRIMARY_KEY", "desc");
 
 		$this->db->limit(500);
 
@@ -1983,6 +1984,7 @@ class Logbook_model extends CI_Model {
 
 		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
 		$this->db->order_by('' . $this->config->item('table_name') . '.COL_TIME_ON', "desc");
+		$this->db->order_by('' . $this->config->item('table_name') . '.COL_PRIMARY_KEY', "desc");
 
 		$this->db->limit($num);
 		$this->db->offset($offset);
@@ -2199,13 +2201,13 @@ class Logbook_model extends CI_Model {
 		if ($logbooks_locations_array) {
 			$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
 
-			$sql = "SELECT * FROM ( select * from " . $this->config->item('table_name') . "
+			$sql = "SELECT * FROM ( SELECT * FROM " . $this->config->item('table_name') . "
 			    WHERE station_id IN(" . $location_list . ")
-			    order by col_time_on desc
-			    limit ?) hrd
+			    ORDER BY col_time_on DESC, col_primary_key DESC
+			    LIMIT ?) hrd
 			    JOIN station_profile ON station_profile.station_id = hrd.station_id
 			    LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
-			    order by col_time_on desc";
+			    ORDER BY col_time_on DESC";
 			$binding[] = $num * 1;
 			$query = $this->db->query($sql, $binding);
 
