@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-14 15:38+0000\n"
+"POT-Creation-Date: 2024-11-15 15:56+0000\n"
 "PO-Revision-Date: 2024-08-17 10:47+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -28,7 +28,7 @@ msgstr ""
 #: application/controllers/Cabrillo.php:16
 #: application/controllers/Cabrillo.php:53
 #: application/controllers/Cabrillo.php:80
-#: application/controllers/Cabrillo.php:138
+#: application/controllers/Cabrillo.php:139
 #: application/controllers/Calltester.php:11
 #: application/controllers/Cfdexport.php:18
 #: application/controllers/Cfdexport.php:29
@@ -4573,7 +4573,7 @@ msgid "Show JCC Map"
 msgstr ""
 
 #: application/views/awards/jcc/index.php:116
-#: application/views/cabrillo/index.php:202 application/views/cfd/index.php:25
+#: application/views/cabrillo/index.php:209 application/views/cfd/index.php:25
 #: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
 #: application/views/kml/index.php:113 application/views/reg1test/index.php:145
 msgid "Export"
@@ -5290,6 +5290,7 @@ msgid ""
 msgstr ""
 
 #: application/views/cabrillo/index.php:196
+#: application/views/cabrillo/index.php:204
 #: application/views/logbookadvanced/edit.php:139
 #: application/views/logbookadvanced/edit.php:147
 #: application/views/logbookadvanced/index.php:353
@@ -5333,6 +5334,7 @@ msgid "Yes"
 msgstr ""
 
 #: application/views/cabrillo/index.php:197
+#: application/views/cabrillo/index.php:203
 #: application/views/logbookadvanced/edit.php:140
 #: application/views/logbookadvanced/edit.php:148
 #: application/views/logbookadvanced/index.php:354
@@ -5376,7 +5378,15 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: application/views/cabrillo/index.php:208
+#: application/views/cabrillo/index.php:201
+msgid "If the gridsquare was part of the exchange, you should select YES."
+msgstr ""
+
+#: application/views/cabrillo/index.php:201
+msgid "Include logged grids?"
+msgstr ""
+
+#: application/views/cabrillo/index.php:215
 #: application/views/reg1test/index.php:150
 msgid "No contests were found in your log."
 msgstr ""

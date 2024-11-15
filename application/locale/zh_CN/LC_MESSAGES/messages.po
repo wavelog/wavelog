@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-14 15:38+0000\n"
+"POT-Creation-Date: 2024-11-15 15:56+0000\n"
 "PO-Revision-Date: 2024-11-13 14:20+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -33,7 +33,7 @@ msgstr ""
 #: application/controllers/Cabrillo.php:16
 #: application/controllers/Cabrillo.php:53
 #: application/controllers/Cabrillo.php:80
-#: application/controllers/Cabrillo.php:138
+#: application/controllers/Cabrillo.php:139
 #: application/controllers/Calltester.php:11
 #: application/controllers/Cfdexport.php:18
 #: application/controllers/Cfdexport.php:29
@@ -4638,7 +4638,7 @@ msgid "Show JCC Map"
 msgstr "显示 JCC 地图"
 
 #: application/views/awards/jcc/index.php:116
-#: application/views/cabrillo/index.php:202 application/views/cfd/index.php:25
+#: application/views/cabrillo/index.php:209 application/views/cfd/index.php:25
 #: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
 #: application/views/kml/index.php:113 application/views/reg1test/index.php:145
 msgid "Export"
@@ -5396,6 +5396,7 @@ msgstr ""
 "此标牌。"
 
 #: application/views/cabrillo/index.php:196
+#: application/views/cabrillo/index.php:204
 #: application/views/logbookadvanced/edit.php:139
 #: application/views/logbookadvanced/edit.php:147
 #: application/views/logbookadvanced/index.php:353
@@ -5439,6 +5440,7 @@ msgid "Yes"
 msgstr "是"
 
 #: application/views/cabrillo/index.php:197
+#: application/views/cabrillo/index.php:203
 #: application/views/logbookadvanced/edit.php:140
 #: application/views/logbookadvanced/edit.php:148
 #: application/views/logbookadvanced/index.php:354
@@ -5482,7 +5484,15 @@ msgstr "是"
 msgid "No"
 msgstr "否"
 
-#: application/views/cabrillo/index.php:208
+#: application/views/cabrillo/index.php:201
+msgid "If the gridsquare was part of the exchange, you should select YES."
+msgstr ""
+
+#: application/views/cabrillo/index.php:201
+msgid "Include logged grids?"
+msgstr ""
+
+#: application/views/cabrillo/index.php:215
 #: application/views/reg1test/index.php:150
 msgid "No contests were found in your log."
 msgstr "在日志中未发现任何竞赛。"
