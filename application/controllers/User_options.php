@@ -50,6 +50,21 @@ class User_Options extends CI_Controller {
 	public function dismissVersionDialog() {
 		$this->user_options_model->set_option('version_dialog', 'confirmed', array('boolean' => 'true'));
 	}
+
+	public function get_qrg_units() {
+
+		$qrg_units = [];
+
+		foreach($this->session->get_userdata() as $key => $value) {
+			if (strpos($key, 'qrgunit_') === 0) {
+				$band = str_replace('qrgunit_', '', $key);
+				$qrg_units[$band] = $value;
+			}
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($qrg_units);
+	}
 }
 
 

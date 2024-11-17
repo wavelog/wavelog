@@ -190,7 +190,7 @@ $(document).on("click", "#fav_recall", function (event) {
 	$('#band_rx').val(favs[this.innerText].band_rx);
 	$('#band').val(favs[this.innerText].band);
 	$('#frequency_rx').val(favs[this.innerText].frequency_rx);
-	$('#frequency').val(favs[this.innerText].frequency);
+	$('#frequency').val(favs[this.innerText].frequency).trigger("change");
 	$('#selectPropagation').val(favs[this.innerText].prop_mode);
 	$('#mode').val(favs[this.innerText].mode).on("change");
 });
@@ -273,7 +273,7 @@ bc.onmessage = function (ev) {
 			}
 			setTimeout(() => {
 				if (ev.data.frequency != null) {
-					$('#frequency').val(ev.data.frequency);
+					$('#frequency').val(ev.data.frequency).trigger("change");
 					$("#band").val(frequencyToBand(ev.data.frequency));
 				}
 				if (ev.data.frequency_rx != "") {
@@ -365,7 +365,7 @@ $(document).on('change', 'input', function () {
 								}
 								$("#band").val(frequencyToBand(val2[0].Uplink_Freq));
 								$("#band_rx").val(frequencyToBand(val2[0].Downlink_Freq));
-								$("#frequency").val(val2[0].Uplink_Freq);
+								$("#frequency").val(val2[0].Uplink_Freq).trigger("change");
 								$("#frequency_rx").val(val2[0].Downlink_Freq);
 								$("#selectPropagation").val('SAT');
 							}
@@ -568,6 +568,8 @@ function reset_fields() {
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
+		$("#noticer").fadeOut(1000);
+
 		// Temp store the callsign
 		var temp_callsign = $(this).val();
 
@@ -591,7 +593,7 @@ $("#callsign").on("focusout", function () {
 		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
 
 			// Make sure the typed callsign and json result match
-			if ($('#callsign').val = result.callsign) {
+			if ($('#callsign').val().toUpperCase().replace('Ø', '0') == result.callsign) {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
@@ -813,7 +815,12 @@ $("#callsign").on("focusout", function () {
 
 				// Get DXX Summary
 				getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
-			}
+			} 
+			// else {
+			// 	console.log("Callsigns do not match, skipping lookup");
+			// 	console.log("Typed Callsign: " + $('#callsign').val());
+			// 	console.log("Returned Callsign: " + result.callsign);
+			// }
 		});
 	} else {
 		// Reset QSO fields
@@ -857,7 +864,7 @@ $('#start_date').on('change', function () {
 $('.mode').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 		});
 	}
 	$('#frequency_rx').val("");
@@ -868,7 +875,7 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 		});
 	}
 	$('#frequency_rx').val("");
@@ -876,6 +883,7 @@ $('#band').on('change', function () {
 	$("#selectPropagation").val("");
 	$("#sat_name").val("");
 	$("#sat_mode").val("");
+	set_qrg();
 });
 
 /* On Key up Calculate Bearing and Distance */
@@ -1171,6 +1179,10 @@ $(document).ready(function () {
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 
+	// Clear the localStorage for the qrg units
+	localStorage.clear();
+	set_qrg();
+
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
 	.focus(function () {
 		$('#locator').popover('show');
@@ -1388,8 +1400,9 @@ $(document).ready(function () {
 	// Only set the frequency when not set by userdata/PHP.
 	if ($('#frequency').val() == "") {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 			$('#frequency_rx').val("");
+			set_qrg();
 		});
 	}
 
