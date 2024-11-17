@@ -22,15 +22,11 @@ function resetTimers(qso_manual) {
 
 function getUTCTimeStamp(el) {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
 	$(el).attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 }
 
 function getUTCDateStamp(el) {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
 	$(el).attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
 }
 
@@ -59,11 +55,10 @@ $('.qso_panel .qso_eqsl_qslmsg_update').off('click').on('click', function () {
 });
 
 $(document).on("keydown", function (e) {
-	if (e.key === "Escape") { // escape key maps to keycode `27`
+	if (e.key === "Escape" && $('#callsign').val() != '') { // escape key maps to keycode `27`
+		// console.log("Escape key pressed");
 		reset_fields();
-		resetTimers(qso_manual)
-		$('#callsign').val("");
-		$("#callsign").trigger("focus");
+		$('#callsign').trigger("focus");
 	}
 });
 
@@ -153,9 +148,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 
 $('#reset_time').on("click", function () {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$('#start_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 	$("[id='start_time']").each(function () {
 		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 	});
@@ -163,25 +156,21 @@ $('#reset_time').on("click", function () {
 
 $('#reset_start_time').on("click", function () {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$('#start_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='start_time']").each(function () {
 		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 	});
-	$('#end_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
 		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 	});
 	// update date (today, for "post qso") //
-	$('#start_date').val(("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
+	$('#start_date').attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
 });
 
 $('#reset_end_time').on("click", function () {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$('#end_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
 		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 	});
@@ -668,7 +657,7 @@ $("#callsign").on("focusout", function () {
 					} else if (result.lotw_days > 7) {
 						$('#lotw_info').addClass('lotw_info_yellow');
 					}
-					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign);
+					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign.replace('Ø', '0'));
 					$('#lotw_link').attr('target', "_blank");
 					$('#lotw_info').attr('data-bs-toggle', "tooltip");
 					if (result.lotw_days == 1) { 
@@ -678,11 +667,11 @@ $("#callsign").on("focusout", function () {
 					}
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
-				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
-				$('#qrz_info').attr('title', 'Lookup ' + callsign + ' info on qrz.com').removeClass('d-none');
+				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign.replace('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
+				$('#qrz_info').attr('title', 'Lookup ' + callsign.replace('Ø', '0') + ' info on qrz.com').removeClass('d-none');
 				$('#qrz_info').show();
-				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
-				$('#hamqth_info').attr('title', 'Lookup ' + callsign + ' info on hamqth.com').removeClass('d-none');
+				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign.replace('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
+				$('#hamqth_info').attr('title', 'Lookup ' + callsign.replace('Ø', '0') + ' info on hamqth.com').removeClass('d-none');
 				$('#hamqth_info').show();
 
 				var $dok_select = $('#darc_dok').selectize();

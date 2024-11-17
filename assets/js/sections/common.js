@@ -815,6 +815,9 @@ function getDxccResult(dxcc, name) {
 		data: {
 			type: 'dxcc',
 			dxcc: dxcc,
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
 		},
 		success: function (html) {
             $('.dxccsummary').remove();

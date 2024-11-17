@@ -37,6 +37,12 @@ class Logbook_model extends CI_Model {
 			$prop_mode = "";
 		}
 
+		if ($this->input->post('email')) {
+			$email = $this->input->post('email',TRUE);
+		} else {
+			$email = '';
+		}
+
 		if ($this->input->post('sat_name')) {
 			$prop_mode = "SAT";
 		}
@@ -329,6 +335,7 @@ class Logbook_model extends CI_Model {
 			'COL_SIG_INFO' => $this->input->post('sig_info') == null ? '' : trim($this->input->post('sig_info')),
 			'COL_DARC_DOK' => $darc_dok  == null ? '' : strtoupper(trim($darc_dok)),
 			'COL_NOTES' => $this->input->post('notes'),
+			'COL_EMAIL' => $email ?? '',
 		);
 
 		$station_id = $this->input->post('station_profile');
@@ -636,6 +643,7 @@ class Logbook_model extends CI_Model {
 			$this->db->group_end();
 		}
 		$this->db->order_by("COL_TIME_ON", "desc");
+		$this->db->order_by("COL_PRIMARY_KEY", "desc");
 
 		$this->db->limit(500);
 
@@ -1236,6 +1244,12 @@ class Logbook_model extends CI_Model {
 			$txpower = null;
 		}
 
+		if ($this->input->post('email')) {
+			$email = $this->input->post('email',TRUE);
+		} else {
+			$email = null;
+		}
+
 		if ($this->input->post('stx')) {
 			$stx_string = $this->input->post('stx');
 		} else {
@@ -1456,7 +1470,8 @@ class Logbook_model extends CI_Model {
 			'COL_MY_WWFF_REF' => $wwffRef,
 			'COL_MY_POTA_REF' => $potaRef,
 			'COL_MY_SIG' => $sig,
-			'COL_MY_SIG_INFO' => $sigInfo
+			'COL_MY_SIG_INFO' => $sigInfo,
+			'COL_EMAIL' => $email ?? '',
 		);
 
 		if ($this->exists_hrdlog_credentials($data['station_id']) && !$qrz_modified) {
@@ -1556,6 +1571,9 @@ class Logbook_model extends CI_Model {
 
 	/* Callsign QRA */
 	function call_qra($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_GRIDSQUARE, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1643,6 +1661,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_state($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_STATE');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1664,6 +1685,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_us_county($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_CNTY');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1686,6 +1710,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_ituzone($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_ITUZ');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1707,6 +1734,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_cqzone($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_CQZ');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1728,6 +1758,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_qth($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_QTH, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1749,6 +1782,9 @@ class Logbook_model extends CI_Model {
 	}
 
 	function call_iota($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
 		$this->db->select('COL_CALL, COL_IOTA, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
@@ -1948,6 +1984,7 @@ class Logbook_model extends CI_Model {
 
 		$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
 		$this->db->order_by('' . $this->config->item('table_name') . '.COL_TIME_ON', "desc");
+		$this->db->order_by('' . $this->config->item('table_name') . '.COL_PRIMARY_KEY', "desc");
 
 		$this->db->limit($num);
 		$this->db->offset($offset);
@@ -2164,13 +2201,13 @@ class Logbook_model extends CI_Model {
 		if ($logbooks_locations_array) {
 			$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
 
-			$sql = "SELECT * FROM ( select * from " . $this->config->item('table_name') . "
+			$sql = "SELECT * FROM ( SELECT * FROM " . $this->config->item('table_name') . "
 			    WHERE station_id IN(" . $location_list . ")
-			    order by col_time_on desc
-			    limit ?) hrd
+			    ORDER BY col_time_on DESC, col_primary_key DESC
+			    LIMIT ?) hrd
 			    JOIN station_profile ON station_profile.station_id = hrd.station_id
 			    LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
-			    order by col_time_on desc";
+			    ORDER BY col_time_on DESC";
 			$binding[] = $num * 1;
 			$query = $this->db->query($sql, $binding);
 
@@ -5380,6 +5417,16 @@ class Logbook_model extends CI_Model {
 		$row = $result->row();
 
 		return $row->user_id;
+	}
+
+	function getContinent($dxcc) {
+		$sql = "SELECT cont FROM dxcc_entities WHERE adif = ?";
+		$query = $this->db->query($sql, $dxcc);
+
+		if ($query->num_rows() == 1) {
+			return $query->row()->cont;
+		}
+		return '';
 	}
 }
 

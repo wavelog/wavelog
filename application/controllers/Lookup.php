@@ -51,6 +51,9 @@ class Lookup extends CI_Controller {
 				$data['bands'] = $this->bands->get_worked_bands(xss_clean($this->input->post('type')));
 			}
 
+			$data['reduced_mode'] = xss_clean($this->input->post('reduced_mode')) == 'true' ? true : false;
+			$data['current_band'] = xss_clean($this->input->post('current_band')) ?? '';
+			$data['current_mode'] = xss_clean($this->input->post('current_mode')) ?? '';
 
 			$data['dxcc'] = xss_clean($this->input->post('dxcc'));
 			$data['was']  = xss_clean($this->input->post('was'));
