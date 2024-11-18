@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-11-18 17:48+0000\n"
-"PO-Revision-Date: 2024-11-17 16:50+0000\n"
+"PO-Revision-Date: 2024-11-19 01:03+0000\n"
 "Last-Translator: Stanisław Korzeń <stasiek.linux@outlook.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3648,7 +3648,7 @@ msgstr ""
 
 #: application/views/adif/import.php:278
 msgid "Ignore QSOs that cannot be matched."
-msgstr ""
+msgstr "Ignoruj QSO, które nie mogą być dopasowane."
 
 #: application/views/adif/import.php:280
 msgid ""
@@ -3685,20 +3685,22 @@ msgstr "Duplikaty zostały pominięte."
 
 #: application/views/adif/import_success.php:24
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Szczegóły opisu / możliwe problemy"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"Możliwe błędy w pliku ADIF, QSO wciąż zostały zaimportowane. Sprawdź "
+"poniższe informacje:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
 #: application/views/qrz/mark_qrz.php:12
 #: application/views/webadif/mark_webadif.php:12
 msgid "QSOs marked"
-msgstr ""
+msgstr "QSO oznaczone"
 
 #: application/views/adif/mark_lotw.php:15
 msgid "Yay, its done!"
@@ -3706,15 +3708,15 @@ msgstr "Hura, wszystko gotowe!"
 
 #: application/views/adif/mark_lotw.php:16
 msgid "The QSOs are marked as exported to LoTW."
-msgstr ""
+msgstr "QSO zostały oznaczone jako wyeksportowane do LoTW."
 
 #: application/views/api/description.php:15
 msgid "Editing Description for API Key"
-msgstr ""
+msgstr "Edycja opisu klucza API"
 
 #: application/views/api/description.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr ""
+msgstr "Prosta nazwa opisująca do czego używany jest ten klucz API."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
@@ -3744,6 +3746,8 @@ msgid ""
 "access Wavelog in a controlled way. Access to the API is managed via API "
 "keys."
 msgstr ""
+"API Wavelog umożliwia systemom firm trzecim dostęp do Wavelog w sposób "
+"kontrolowany. Dostęp do API jest zarządzany przez klucze API."
 
 #: application/views/api/help.php:18
 msgid ""
@@ -3782,7 +3786,7 @@ msgstr "Informacja"
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
-msgstr ""
+msgstr "Dobrym nawykiem jest usunięcie klucza, jeżeli nie jest już w użyciu."
 
 #: application/views/api/help.php:27
 msgid "API Key"
@@ -3910,6 +3914,9 @@ msgid ""
 "magazine, is issued for confirmed two-way radio contacts with specified "
 "numbers of U.S. counties under rules and conditions you can find %s."
 msgstr ""
+"Nagroda hrabstw Stanów Zjednoczonych, sponsorowana przez magazyn CQ, jest "
+"wydawana za potwierdzone obu stronne łączności z określonymi numerami "
+"hrabstw zgodnie z dostępnym regulaminem %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -3980,7 +3987,7 @@ msgstr "Strefa CQ"
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "Najedź kursorem na strefę CQ / ITU"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ Magazine WAZ Award"
@@ -3992,12 +3999,19 @@ msgid ""
 "radio magazines in the world. The magazine first appeared in January 1945 "
 "and focuses on awards and the practical aspects of amateur radio."
 msgstr ""
+"Magazyn CQ jest zlokalizowany w USA i jest jednym z najpopularniejszych "
+"czasopism o radioamatorstwie na świecie. Pierwszy numer został wydany w "
+"styczniu 1945 i skupia się na nagrodach i praktycznych aspektach "
+"radioamatorstwa."
 
 #: application/views/awards/cq/index.php:22
 msgid ""
 "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to "
 "all 40 CQ Zones along with the corresponding confirmation."
 msgstr ""
+"Nagroda WAZ oznacza „Zaliczone wszystkie strefy” i wymaga nawiązania "
+"łączności radiowej ze wszystkimi 40 strefami CQ wraz z odpowiednim "
+"potwierdzeniem."
 
 #: application/views/awards/cq/index.php:23
 #, php-format
@@ -4007,7 +4021,7 @@ msgstr "Możesz znaleźć wszystkie informacje i zasady na stronie %s."
 
 #: application/views/awards/cq/index.php:25
 msgid "Awards - CQ Magazine WAZ"
-msgstr ""
+msgstr "Nagrody - WAZ Magazyn CQ"
 
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
@@ -4085,7 +4099,7 @@ msgstr "Pokaż nie zaliczone"
 #: application/views/awards/waja/index.php:51
 #: application/views/awards/was/index.php:51
 msgid "Show QSO with QSL Type"
-msgstr ""
+msgstr "Pokaż QSO z typem QSL"
 
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
@@ -4186,11 +4200,11 @@ msgstr "Suma zaliczonych"
 #: application/views/awards/waja/index.php:191
 #: application/views/awards/was/index.php:190
 msgid "Total confirmed"
-msgstr ""
+msgstr "Suma potwierdzonych"
 
 #: application/views/awards/dok/index.php:7
 msgid "DOK Award"
-msgstr ""
+msgstr "Nagroda DOK"
 
 #: application/views/awards/dok/index.php:8
 msgid ""
@@ -4201,6 +4215,12 @@ msgid ""
 "'Deutscher Ortsverband Kenner' (English: 'German Local Association "
 "Identifier')."
 msgstr ""
+"Niemcy rozciągają się na ponad 630 km ze wschodu na zachód i prawie 900 km z "
+"północy na południe. Około 70 000 z 82 milionów mieszkańców Niemiec to "
+"licencjonowani krótkofalowcy, z czego ponad 40 000 jest członkami DARC. DOK "
+"to system, który zapewnia poszczególnym lokalnym oddziałom identyfikator i "
+"oznacza „Deutscher Ortsverband Kenner” (po polski: „niemiecki identyfikator "
+"stowarzyszenia lokalnego”)."
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -4209,6 +4229,10 @@ msgid ""
 "or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK "
 "is a common mistake, often being logged as the letter O."
 msgstr ""
+"DOK składa się z litery oznaczającej dystrykt i dwucyfrowego numeru "
+"oznaczającego lokalny oddział, np. P03 Friedrichshafen (miasto „wystawy "
+"radioamatorskiej”) lub F41 Baunatal (miejsce siedziby DARC). Uwaga: Zero w "
+"DOK to częsty błąd, często zapisywany jako litera O."
 
 #: application/views/awards/dok/index.php:10
 msgid "DARC website"
@@ -4221,14 +4245,16 @@ msgid ""
 "This information is provided by the %s. Information about the DOK Awards and "
 "its rules can be found %s."
 msgstr ""
+"Ta informacja jest dostarczana przez %s. Informacje o nagrodach DOK i ich "
+"zasadach można znaleźć %s."
 
 #: application/views/awards/dok/index.php:20
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:23
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK + SDOK"
 
 #: application/views/awards/dok/index.php:37
 #: application/views/awards/dxcc/index.php:39
@@ -4260,6 +4286,7 @@ msgstr "Nagroda DXCC"
 #: application/views/awards/dxcc/index.php:15
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
 msgstr ""
+"„Jak liczyć kraje, w których prowadzono łączności, nowy system punktacji DX”"
 
 #: application/views/awards/dxcc/index.php:15
 #, php-format
@@ -4268,6 +4295,9 @@ msgid ""
 "DXCC List is based on an article created in 1935 by Clinton B. DeSoto, "
 "W1CBD, titled %s."
 msgstr ""
+"DXCC to skrót od „DX Century Club”, nagrody przyznawanej na podstawie "
+"krajów, w z którymi nawiązano łączność. Lista DXCC jest oparta na artykule "
+"stworzonym w 1935 r. przez Clintona B. DeSoto, W1CBD, zatytułowanym %s."
 
 #: application/views/awards/dxcc/index.php:16
 #: application/views/awards/wac/index.php:11
@@ -4278,7 +4308,7 @@ msgstr "Strona ARRL"
 #: application/views/awards/wac/index.php:11
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
-msgstr ""
+msgstr "Wszystkie informacje o nagrodzie DXCC znajdziesz na %s."
 
 #: application/views/awards/dxcc/index.php:17
 msgid ""
@@ -4288,11 +4318,16 @@ msgid ""
 "will find Deleted DXCC entities also in the lists on Wavelog. Be aware that "
 "these DXCC entities are outdated and no longer valid."
 msgstr ""
+"Ważna uwaga: Z biegiem czasu kryteria listy DXCC uległy zmianie. Lista "
+"pozostaje niezmieniona, dopóki jednostka nie spełnia kryteriów, na podstawie "
+"których została dodana, w którym to momencie zostaje przeniesiona na listę "
+"usuniętych jednostek. Usunięte jednostki DXCC znajdziesz również na listach "
+"w Wavelog. Pamiętaj, że te jednostki DXCC są nieaktualne i nie są już ważne."
 
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/iota/index.php:33
 msgid "Include deleted"
-msgstr ""
+msgstr "Licz usunięte"
 
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:61
@@ -4389,7 +4424,7 @@ msgstr "Prefiks"
 #: application/views/awards/ffma/index.php:8
 #: application/views/interface_assets/header.php:240
 msgid "Fred Fish Memorial Award"
-msgstr ""
+msgstr "Nagroda Pamięci Freda Fisha"
 
 #: application/views/awards/ffma/index.php:9
 msgid ""
@@ -4397,17 +4432,20 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
+"Nagrodę im. Freda Fisha ustanowiono na cześć Freda Fisha, W5FF (SK), który "
+"był pierwszym amatorem, który wykonał i potwierdził wszystkie 488 kwadratów "
+"siatki Maidenhead w 48 sąsiadujących ze sobą stanach USA na paśmie 6 metrów."
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
-msgstr ""
+msgstr "Nagrodę otrzyma każdy , który powtórzy osiągnięcie W5FF."
 
 #: application/views/awards/ffma/index.php:11
 #, php-format
 msgid "For more information, you can visit this link: %s."
-msgstr ""
+msgstr "Więcej informacji znajdziesz pod tym linkiem: %s."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
