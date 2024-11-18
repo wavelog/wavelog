@@ -80,6 +80,12 @@ class Staticmap extends CI_Controller {
             $ituzones = $r == 'true' ? true : false;
         }
 
+        // Watermark
+        $watermark = $this->input->get('wm', TRUE) ?? '';
+        if ($watermark == '' || ($watermark != 1 && $watermark != 0)) {
+            $watermark = true;
+        }
+
         // handling the theme mode
         $this->load->model('themes_model');
         if ($thememode == null || $thememode == '' || ($thememode != 'dark' && $thememode != 'light')) {
@@ -97,8 +103,24 @@ class Staticmap extends CI_Controller {
         // we need the realpath later for validation
         $cacheDir = realpath($cachepath . "staticmap_images/");
 
-        // create a unique filename for the cache
-        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . ($night_shadow == false ? 0 : 1) . ($pathlines == false ? 0 : 1) . ($cqzones == false ? 0 : 1) . ($ituzones == false ? 0 : 1) . $orbit . $contest . $start_date . $end_date;   
+        // create a unique filename for the cacheund e
+        $filenameRaw = $uid
+                     . $logbook_id
+                     . $qsocount
+                     . $band
+                     . $thememode
+                     . $continent
+                     . $hide_home
+                     . ($night_shadow == false ? 0 : 1)
+                     . ($pathlines == false ? 0 : 1)
+                     . ($cqzones == false ? 0 : 1)
+                     . ($ituzones == false ? 0 : 1)
+                     . $orbit
+                     . $contest
+                     . $start_date
+                     . $end_date
+                     . $watermark;   
+
         $filename = crc32('staticmap_' . $slug) . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
         $filepath = $cacheDir . '/' . $filename;
 
@@ -163,7 +185,7 @@ class Staticmap extends CI_Controller {
                     $end_date == 'noEnd' ? '' : $end_date
                 );
 
-                $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones);
+                $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones, $watermark);
 
                 header('Content-Type: image/png');
 

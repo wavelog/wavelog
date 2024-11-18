@@ -21,7 +21,7 @@ class Staticmap_model extends CI_Model {
      * @return bool  True if the image was rendered successfully, false if not
      */
 
-    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false, $cqzones = false, $ituzones = false) {
+    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false, $cqzones = false, $ituzones = false, $watermark = true) {
 
         //===============================================================================================================================
         //=============================================== PREPARE AND LOAD DEPENDENCIES =================================================
@@ -563,9 +563,11 @@ class Staticmap_model extends CI_Model {
         $markersConfirmed->draw($image, $map->getMapData());
 
         // Add Wavelog watermark
-        $watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
-        $watermark->resize(round($width * $watermark_size_mutiplier), round((($width * 3) / 4) * $watermark_size_mutiplier));
-        $image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
+        if ($watermark) {
+            $watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
+            $watermark->resize(round($width * $watermark_size_mutiplier), round((($width * 3) / 4) * $watermark_size_mutiplier));
+            $image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
+        }
 
         // Add "Created with Wavelog" text
         $user = $this->user_model->get_by_id($uid)->row();
