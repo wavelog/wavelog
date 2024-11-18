@@ -260,7 +260,7 @@ class Cabrillo extends CI_Controller {
 				{
 					$stxstring = $qso["SENT_EXCH_" . $i];
 				}else{
-					$stxstring += ' ' . $qso["SENT_EXCH_" . $i];
+					$stxstring = $stxstring . ' ' . $qso["SENT_EXCH_" . $i];
 				}
 			}
 
@@ -270,7 +270,7 @@ class Cabrillo extends CI_Controller {
 				{
 					$srxstring = $qso["RCVD_EXCH_" . $i];
 				}else{
-					$srxstring += ' ' . $qso["RCVD_EXCH_" . $i];
+					$srxstring = $srxstring . ' ' . $qso["RCVD_EXCH_" . $i];
 				}
 			}
 
