@@ -4111,7 +4111,9 @@ class Logbook_model extends CI_Model {
 				$input_clublog_qsl_sent = NULL;
 			}
 
-			if (isset($record['clublog_qso_upload_date'])) {
+			if ($markClublog != NULL) {
+				$input_clublog_qslsdate = $date = date("Y-m-d H:i:s", strtotime("now"));
+			} elseif (isset($record['clublog_qso_upload_date'])) {
 				if (validateADIFDate($record['clublog_qso_upload_date']) == true) {
 					$input_clublog_qslsdate = $record['clublog_qso_upload_date'];
 				} else {
