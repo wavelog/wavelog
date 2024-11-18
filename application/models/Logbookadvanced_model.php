@@ -102,10 +102,14 @@ class Logbookadvanced_model extends CI_Model {
 			}
 			$conditions[] = "qsos.station_id in (".$stationids.")";
 		}
-		if ($searchCriteria['dx'] !== '') {
+		if ($searchCriteria['dx'] !== '*') {
 			$conditions[] = "COL_CALL LIKE ?";
 			$binding[] = '%' . trim($searchCriteria['dx']) . '%';
 		}
+		if ($searchCriteria['dx'] == '') {
+			$conditions[] = "coalesce(COL_CALL, '') = ''";
+		}
+
 		if ($searchCriteria['mode'] !== '') {
 			$conditions[] = "(COL_MODE = ? or COL_SUBMODE = ?)";
 			$binding[] = $searchCriteria['mode'];
@@ -224,9 +228,12 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['dxcc'];
 		}
 
-        if ($searchCriteria['state'] !== '') {
+        if ($searchCriteria['state'] !== '*') {
 			$conditions[] = "COL_STATE = ?";
 			$binding[] = $searchCriteria['state'];
+		}
+		if ($searchCriteria['state'] == '') {
+			$conditions[] = "coalesce(COL_STATE, '') = ''";
 		}
 
 		if ($searchCriteria['cqzone'] !== '') {
@@ -239,53 +246,77 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['ituzone'];
 		}
 
-		if ($searchCriteria['qslvia'] !== '') {
+		if ($searchCriteria['qslvia'] !== '*') {
 			$conditions[] = "COL_QSL_VIA like ?";
 			$binding[] = $searchCriteria['qslvia'].'%';
 		}
 
-		if ($searchCriteria['sota'] !== '') {
+		if ($searchCriteria['qslvia'] == '') {
+			$conditions[] = "coalesce(COL_QSL_VIA, '') = ''";
+		}
+
+		if ($searchCriteria['sota'] !== '*') {
 			$conditions[] = "COL_SOTA_REF like ?";
 			$binding[] = $searchCriteria['sota'].'%';
 		}
+		if ($searchCriteria['sota'] == '') {
+			$conditions[] = "coalesce(COL_SOTA_REF, '') = ''";
+		}
 
-		if ($searchCriteria['pota'] !== '') {
+		if ($searchCriteria['pota'] !== '*') {
 			$conditions[] = "COL_POTA_REF like ?";
 			$binding[] = $searchCriteria['pota'].'%';
 		}
+		if ($searchCriteria['pota'] == '') {
+			$conditions[] = "coalesce(COL_POTA_REF, '') = ''";
+		}
 
-		if ($searchCriteria['wwff'] !== '') {
+		if ($searchCriteria['wwff'] !== '*') {
 			$conditions[] = "COL_WWFF_REF like ?";
 			$binding[] = $searchCriteria['wwff'].'%';
 		}
+		if ($searchCriteria['wwff'] == '') {
+			$conditions[] = "coalesce(COL_WWFF_REF, '') = ''";
+		}
 
-		if ($searchCriteria['operator'] !== '') {
+		if ($searchCriteria['operator'] !== '*') {
 			$conditions[] = "COL_OPERATOR like ?";
 			$binding[] = $searchCriteria['operator'].'%';
 		}
+		if ($searchCriteria['operator'] == '') {
+			$conditions[] = "coalesce(COL_OPERATOR, '') = ''";
+		}
 
-        if ($searchCriteria['gridsquare'] !== '') {
+        if ($searchCriteria['gridsquare'] !== '*') {
                 $conditions[] = "(COL_GRIDSQUARE like ? or COL_VUCC_GRIDS like ?)";
                 $binding[] = '%' . $searchCriteria['gridsquare'] . '%';
                 $binding[] = '%' . $searchCriteria['gridsquare'] . '%';
         }
 
-	if (($searchCriteria['propmode'] ?? '') == 'None') {
-                $conditions[] = "(trim(COL_PROP_MODE) = '' OR COL_PROP_MODE is null)";
-	} elseif ($searchCriteria['propmode'] !== '') {
-                $conditions[] = "COL_PROP_MODE = ?";
-                $binding[] = $searchCriteria['propmode'];
-                if($searchCriteria['propmode'] == "SAT") {
-                        if ($searchCriteria['sats'] !== 'All') {
-                                $conditions[] = "COL_SAT_NAME = ?";
-                                $binding[] = trim($searchCriteria['sats']);
-                        }
-                }
+		if ($searchCriteria['gridsquare'] == '') {
+			$conditions[] = "(coalesce(COL_GRIDSQUARE, '') = '' and coalesce(COL_VUCC_GRIDS, '') = '')";
 		}
 
-		if ($searchCriteria['contest'] !== '') {
+		if (($searchCriteria['propmode'] ?? '') == 'None') {
+			$conditions[] = "(trim(COL_PROP_MODE) = '' OR COL_PROP_MODE is null)";
+		} elseif ($searchCriteria['propmode'] !== '') {
+			$conditions[] = "COL_PROP_MODE = ?";
+			$binding[] = $searchCriteria['propmode'];
+			if($searchCriteria['propmode'] == "SAT") {
+				if ($searchCriteria['sats'] !== 'All') {
+					$conditions[] = "COL_SAT_NAME = ?";
+					$binding[] = trim($searchCriteria['sats']);
+				}
+			}
+		}
+
+		if ($searchCriteria['contest'] !== '*') {
 			$conditions[] = "COL_CONTEST_ID like ?";
 			$binding[] = '%'.$searchCriteria['contest'].'%';
+		}
+
+		if ($searchCriteria['contest'] == '') {
+			$conditions[] = "coalesce(COL_CONTEST_ID, '') = ''";
 		}
 
 		if ($searchCriteria['continent'] !== '') {
