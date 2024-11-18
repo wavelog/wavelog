@@ -187,6 +187,9 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'qrzsent' || column == 'qrzreceived') {
 		value = $("#editQrz").val();
 	}
+	if (column == 'eqslsent' || column == 'eqslreceived') {
+		value = $("#editEqsl").val();
+	}
 	if (column == 'continent') {
 		value = $("#editContinent").val();
 	}
@@ -273,6 +276,8 @@ function changeEditType(type) {
 		$('#editLoTW').show();
 	} else if (type == "qrzsent" || type == "qrzreceived") {
 		$('#editQrz').show();
+	} else if (type == "eqslsent" || type == "eqslreceived") {
+		$('#editEqsl').show();
 	} else if (type == "continent") {
 		$('#editContinent').show();
 	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == "stationpower") {
