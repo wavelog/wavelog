@@ -4150,15 +4150,15 @@ class Logbook_model extends CI_Model {
 				$input_lotw_qsl_sent = NULL;
 			}
 
-			if (isset($record['lotw_qslsdate'])) {
+			if ($markLotw != NULL) {
+				$input_lotw_qslsdate = $date = date("Y-m-d H:i:s", strtotime("now"));
+			} elseif (isset($record['lotw_qslsdate'])) {
 				if (validateADIFDate($record['lotw_qslsdate']) == true) {
 					$input_lotw_qslsdate = $record['lotw_qslsdate'];
 				} else {
 					$input_lotw_qslsdate = NULL;
 					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the lotw_qslsdate is invalid (YYYYMMDD)").": " . $record['lotw_qslsdate'] . "<br>";
 				}
-			} else if ($markLotw != NULL) {
-				$input_lotw_qslsdate = $date = date("Y-m-d H:i:s", strtotime("now"));
 			} else {
 				$input_lotw_qslsdate = NULL;
 			}
