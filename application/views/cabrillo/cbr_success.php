@@ -24,11 +24,11 @@
     <?php if($cbr_error_count > 0) { ?>
       <h3><?= __("CBR errors")?></h3>
       <table width="100%">
-         <tr>
          <?php foreach ($cbr_errors as $error) { ?>
+         <tr>
             <td><?php echo $error; ?></td>
-         <?php } ?>
          </tr>
+         <?php } ?>
       </table>
    <?php } ?>
   </div>
