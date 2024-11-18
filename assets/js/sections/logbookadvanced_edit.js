@@ -242,6 +242,7 @@ function changeEditType(type) {
 	$('#editContinent').hide();
 	$('#editQrz').hide();
 	$('#saveButton').prop("disabled", false);
+	$('#editEqsl').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
