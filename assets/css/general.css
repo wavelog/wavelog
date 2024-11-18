@@ -769,6 +769,15 @@ div#station_logbooks_linked_table_paginate {
 	text-transform: uppercase;
 }
 
+#dx::placeholder,
+#state::placeholder,
+#gridsquare::placeholder,
+#sota::placeholder,
+#wwff::placeholder,
+#pota::placeholder {
+    text-transform: none;
+}
+
 #awardInfoButton {
 	display: flex;
 	align-items: center;
