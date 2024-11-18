@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-11-18 09:09+0000\n"
-"PO-Revision-Date: 2024-10-03 21:11+0000\n"
+"PO-Revision-Date: 2024-11-18 14:41+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -563,7 +563,7 @@ msgstr "Calendrier des concours"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr ""
+msgstr "Le calendrier des concours n'est pas accessible. Réessayez plus tard"
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:7
@@ -603,27 +603,27 @@ msgstr "Modifier les traitements Cron"
 #: application/views/debug/index.php:545 application/views/debug/index.php:550
 #: application/views/user/index.php:136
 msgid "never"
-msgstr ""
+msgstr "jamais"
 
 #: application/controllers/Cron.php:219
 msgid "calculating..."
-msgstr ""
+msgstr "calcul en cours..."
 
 #: application/controllers/Cron.php:230 application/views/cron/index.php:70
 msgid "healthy"
-msgstr ""
+msgstr "sain"
 
 #: application/controllers/Cron.php:232 application/views/cron/index.php:72
 msgid "failed"
-msgstr ""
+msgstr "échoué"
 
 #: application/controllers/Cron.php:234 application/views/cron/index.php:74
 msgid "pending"
-msgstr ""
+msgstr "en attente"
 
 #: application/controllers/Cron.php:239 application/views/cron/index.php:79
 msgid "disabled"
-msgstr ""
+msgstr "désactivé"
 
 #: application/controllers/Cron.php:278
 #: application/views/interface_assets/footer.php:37
@@ -1727,7 +1727,7 @@ msgstr "Recherche de journaux et OQRS"
 
 #: application/controllers/Oqrs.php:67
 msgid "Invalid Station ID"
-msgstr ""
+msgstr "ID de station invalide"
 
 #: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:419
@@ -1816,15 +1816,15 @@ msgstr "Ajouter QSO"
 
 #: application/controllers/Qso.php:661
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "Vous devez être connecté pour accéder à ce URL"
 
 #: application/controllers/Qso.php:667
 msgid "Call Transfer"
-msgstr ""
+msgstr "Transfert d'appel"
 
 #: application/controllers/Qso.php:674
 msgid "No callsign provided."
-msgstr ""
+msgstr "Aucun indicatif fourni."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:438
@@ -1856,7 +1856,7 @@ msgstr "Options"
 #: application/controllers/Radio.php:53 application/views/debug/index.php:308
 #: application/views/qso/index.php:684
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: application/controllers/Radio.php:91
 #: application/views/contesting/index.php:156
@@ -1919,7 +1919,7 @@ msgstr "Aucune radio avec interface CAT trouvée."
 
 #: application/controllers/Radio.php:128 application/views/radio/index.php:2
 msgid "Edit CAT Settings"
-msgstr ""
+msgstr "Modifier les paramètres CAT"
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
@@ -2200,7 +2200,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:99
 #: application/views/stationsetup/stationsetup.php:150
 msgid "Please select one"
-msgstr ""
+msgstr "Veuillez en choisir un"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -5015,14 +5015,16 @@ msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
 msgstr ""
+"Peut être revendiqué pour avoir contacté une station amateur située dans le "
+"nombre requis de carrés, décrit sur la page liée ci-dessous."
 
 #: application/views/awards/wab/index.php:109
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr ""
+msgstr "Carré WAB"
 
 #: application/views/awards/wac/index.php:9
 msgid ""
@@ -5030,10 +5032,14 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"Parrainé par l'Union internationale des radioamateurs (IARU), le diplome "
+"Worked All Continents est décerné pour avoir contacté et confirmé les six "
+"continents. Ceux-ci sont l'Amérique du Nord, l'Amérique du Sud, l'Océanie, "
+"l'Asie, l'Europe et l'Afrique."
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "Diplome - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:151
 #: application/views/continents/index.php:62
@@ -5044,26 +5050,29 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:260 application/views/qso/index.php:387
 #: application/views/view_log/qso.php:315
 msgid "Continent"
-msgstr ""
+msgstr "Continent"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
 msgid "Prefecture"
-msgstr ""
+msgstr "Préfecture"
 
 #: application/views/awards/waja/index.php:4
 msgid "Hover over a prefecture"
-msgstr ""
+msgstr "Survoler une préfecture"
 
 #: application/views/awards/waja/index.php:19
 msgid "WAJA - Worked All Japan prefectures Award"
-msgstr ""
+msgstr "WAJA - Diplôme pour avoir contacté toutes les préfectures du Japon"
 
 #: application/views/awards/waja/index.php:20
 msgid ""
 "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham "
 "radio operators to work all the prefectures in Japan."
 msgstr ""
+"WAJA, contacté dans toutes les préfectures du Japon en radio amateur, "
+"encourage les opérateurs radio amateurs licenciés à contacter toutes les "
+"préfectures du Japon."
 
 #: application/views/awards/waja/index.php:21
 msgid ""
@@ -5072,28 +5081,32 @@ msgid ""
 "QSL cards should be arranged in order of WAJA (HAJA) reference number, "
 "however names of prefectures may be omitted."
 msgstr ""
+"Peut être revendiqué pour avoir contacté (entendu) et reçu une carte QSL "
+"d'une station amateur située dans chacune des 47 préfectures du Japon. Une "
+"liste des cartes QSL doit être organisée selon le numéro de référence WAJA "
+"(HAJA), cependant les noms des préfectures peuvent être omis."
 
 #: application/views/awards/waja/index.php:118
 msgid "Show WAJA Map"
-msgstr ""
+msgstr "Afficher la carte WAJA"
 
 #: application/views/awards/waja/index.php:154
 #: application/views/timeline/index.php:185
 msgid "Prefecture"
-msgstr ""
+msgstr "Préfecture"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
 msgid "State"
-msgstr ""
+msgstr "État"
 
 #: application/views/awards/was/index.php:4
 msgid "Hover over a state"
-msgstr ""
+msgstr "Survoler un état"
 
 #: application/views/awards/was/index.php:20
 msgid "WAS Award"
-msgstr ""
+msgstr "Diplome WAS"
 
 #: application/views/awards/was/index.php:21
 msgid ""
