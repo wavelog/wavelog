@@ -3981,7 +3981,7 @@ class Logbook_model extends CI_Model {
 			if (isset($record['tx_pwr'])) {
 				$tx_pwr = filter_var($record['tx_pwr'], FILTER_VALIDATE_FLOAT);
 			} else {
-				$tx_pwr = NULL;
+				$tx_pwr = $station_profile->station_power ?? NULL;
 			}
 
 			// Sanitise RX Power
