@@ -4103,10 +4103,10 @@ class Logbook_model extends CI_Model {
 			}
 
 			// Validate Clublog-Fields
-			if (isset($record['clublog_qso_upload_status'])) {
-				$input_clublog_qsl_sent = mb_strimwidth($record['clublog_qso_upload_status'], 0, 1);
-			} else if ($markClublog != NULL) {
+			if ($markClublog != NULL) {
 				$input_clublog_qsl_sent = "Y";
+			} elseif (isset($record['clublog_qso_upload_status'])) {
+				$input_clublog_qsl_sent = mb_strimwidth($record['clublog_qso_upload_status'], 0, 1);
 			} else {
 				$input_clublog_qsl_sent = NULL;
 			}
@@ -4142,10 +4142,10 @@ class Logbook_model extends CI_Model {
 				$input_lotw_qslrdate = NULL;
 			}
 
-			if (isset($record['lotw_qsl_sent'])) {
-				$input_lotw_qsl_sent = mb_strimwidth($record['lotw_qsl_sent'], 0, 1);
-			} else if ($markLotw != NULL) {
+			if ($markLotw != NULL) {
 				$input_lotw_qsl_sent = "Y";
+			} elseif (isset($record['lotw_qsl_sent'])) {
+				$input_lotw_qsl_sent = mb_strimwidth($record['lotw_qsl_sent'], 0, 1);
 			} else {
 				$input_lotw_qsl_sent = NULL;
 			}
