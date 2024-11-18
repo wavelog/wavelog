@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-18 09:09+0000\n"
+"POT-Creation-Date: 2024-11-18 14:40+0000\n"
 "PO-Revision-Date: 2024-11-16 17:03+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -210,16 +210,16 @@ msgstr "ADIF-Import fehlgeschlagen!"
 msgid "Station Profile not valid for User"
 msgstr "Stations-Standort ist nicht gültig für diesen Benutzer"
 
-#: application/controllers/Adif.php:269
+#: application/controllers/Adif.php:263
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF importiert"
 
-#: application/controllers/Adif.php:280
+#: application/controllers/Adif.php:274
 msgid "DCL Import"
 msgstr "DCL Import"
 
-#: application/controllers/Adif.php:338
+#: application/controllers/Adif.php:332
 msgid "DCL Data Imported"
 msgstr "DCL-Daten importiert"
 
@@ -1147,7 +1147,7 @@ msgstr "Clublog"
 #: application/views/search/ituzones_result.php:10
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/search_result_ajax.php:4
-#: application/views/simplefle/index.php:152
+#: application/views/simplefle/index.php:153
 #: application/views/statistics/custom.php:60
 #: application/views/statistics/custom_result.php:62
 #: application/views/statistics/custom_result.php:88
@@ -1181,7 +1181,7 @@ msgstr "Mode"
 #: application/views/qso/components/previous_contacts.php:78
 #: application/views/qso/edit_ajax.php:141 application/views/qso/index.php:184
 #: application/views/search/search_result_ajax.php:5
-#: application/views/simplefle/index.php:153
+#: application/views/simplefle/index.php:154
 #: application/views/user/edit.php:230 application/views/user/edit.php:252
 #: application/views/user/edit.php:274 application/views/user/edit.php:296
 #: application/views/user/edit.php:319
@@ -1208,7 +1208,7 @@ msgstr "RST (S)"
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:146 application/views/qso/index.php:189
 #: application/views/search/search_result_ajax.php:6
-#: application/views/simplefle/index.php:154
+#: application/views/simplefle/index.php:155
 #: application/views/user/edit.php:231 application/views/user/edit.php:253
 #: application/views/user/edit.php:275 application/views/user/edit.php:297
 #: application/views/user/edit.php:320
@@ -1325,7 +1325,7 @@ msgstr "Staat"
 #: application/views/search/ituzones_result.php:12
 #: application/views/search/result.php:49
 #: application/views/search/search_result_ajax.php:13
-#: application/views/simplefle/index.php:155
+#: application/views/simplefle/index.php:156
 #: application/views/stationsetup/stationsetup.php:125
 #: application/views/timeline/index.php:290 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
@@ -1422,7 +1422,7 @@ msgstr "Distanz"
 #: application/views/search/ituzones_result.php:11
 #: application/views/search/lotw_unconfirmed_result.php:9
 #: application/views/search/search_result_ajax.php:15
-#: application/views/simplefle/index.php:151
+#: application/views/simplefle/index.php:152
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/custom.php:53
 #: application/views/statistics/custom_result.php:55
@@ -1472,7 +1472,7 @@ msgstr "Frequenz"
 #: application/views/qslcard/searchresult.php:87
 #: application/views/qso/components/previous_contacts.php:90
 #: application/views/search/search_result_ajax.php:17
-#: application/views/simplefle/index.php:114
+#: application/views/simplefle/index.php:115
 #: application/views/user/edit.php:240 application/views/user/edit.php:262
 #: application/views/user/edit.php:284 application/views/user/edit.php:306
 #: application/views/user/edit.php:329
@@ -1850,7 +1850,7 @@ msgstr "Zeitstempel"
 #: application/views/logbookadvanced/index.php:576
 #: application/views/lotw_views/index.php:43
 #: application/views/simplefle/index.php:20
-#: application/views/simplefle/index.php:179
+#: application/views/simplefle/index.php:180
 #: application/views/stationsetup/exportmapoptions.php:5
 #: application/views/statistics/custom.php:31
 #: application/views/statistics/custom_result.php:33
@@ -2002,6 +2002,13 @@ msgid ""
 msgstr ""
 "Unbestätigte QSOs auf LoTW, bei denen das Rufzeichen nach dem QSO-Datum "
 "Daten zu LoTW hochgeladen hat"
+
+#: application/controllers/Simplefle.php:90
+#: application/controllers/Simplefle.php:93
+#: application/models/Logbook_model.php:4423
+#: application/views/simplefle/index.php:40
+msgid "Duplicate for"
+msgstr "Doublette zu"
 
 #: application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
@@ -2567,23 +2574,23 @@ msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
-#: application/models/Logbook_model.php:3737
+#: application/models/Logbook_model.php:3745
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Falscher Stationscall %s im QSO mit %s für das Stationsprofil %s: Nicht "
 "importiert"
 
-#: application/models/Logbook_model.php:3738
+#: application/models/Logbook_model.php:3746
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Schaue im %s für Tipps zu möglichen Fehlern in der ADIF-Datei."
 
-#: application/models/Logbook_model.php:3750
+#: application/models/Logbook_model.php:3758
 msgid "QSO on"
 msgstr "QSO am"
 
-#: application/models/Logbook_model.php:3750
+#: application/models/Logbook_model.php:3758
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2591,55 +2598,51 @@ msgstr ""
 "Du hast versucht, ein QSO ohne angegebenes Rufzeichen zu importieren. Dieses "
 "QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:4049
+#: application/models/Logbook_model.php:4057
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4060
+#: application/models/Logbook_model.php:4068
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4111
+#: application/models/Logbook_model.php:4119
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4131
+#: application/models/Logbook_model.php:4139
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4150
+#: application/models/Logbook_model.php:4158
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4421
-msgid "Duplicate for"
-msgstr "Doublette zu"
-
-#: application/models/Logbook_model.php:4482
+#: application/models/Logbook_model.php:4484
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:4488
+#: application/models/Logbook_model.php:4490
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4493
+#: application/models/Logbook_model.php:4495
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:4496
+#: application/models/Logbook_model.php:4498
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:4499
+#: application/models/Logbook_model.php:4501
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:4502
+#: application/models/Logbook_model.php:4504
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:4505
+#: application/models/Logbook_model.php:4507
 #: application/views/view_log/qso.php:267
 msgid "unknown"
 msgstr "unbekannt"
@@ -3260,7 +3263,7 @@ msgstr "Nichts gefunden!"
 #: application/views/search/lotw_unconfirmed.php:36
 #: application/views/search/lotw_unconfirmed_result.php:6
 #: application/views/search/result.php:11
-#: application/views/simplefle/index.php:150
+#: application/views/simplefle/index.php:151
 #: application/views/station_profile/edit.php:63
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/user/edit.php:123 application/views/user/index.php:4
@@ -3346,7 +3349,7 @@ msgstr "Die Informationen zum DOK im Logbuch weichen von denen im DCL ab"
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/ituzones_result.php:7
 #: application/views/search/search_result_ajax.php:89
-#: application/views/simplefle/index.php:148
+#: application/views/simplefle/index.php:149
 #: application/views/statistics/custom.php:38
 #: application/views/statistics/custom_result.php:40
 #: application/views/statistics/custom_result.php:85
@@ -3384,7 +3387,7 @@ msgstr "Datum"
 #: application/views/search/cqzones_result.php:8
 #: application/views/search/ituzones_result.php:8
 #: application/views/search/search_result_ajax.php:91
-#: application/views/simplefle/index.php:149
+#: application/views/simplefle/index.php:150
 #: application/views/statistics/custom_result.php:86
 #: application/views/timeline/index.php:289
 #: application/views/timeplotter/index.php:5
@@ -3475,7 +3478,7 @@ msgid "Add QSOs to Contest"
 msgstr "QSOs zu Contest hinzufügen"
 
 #: application/views/adif/import.php:71
-#: application/views/simplefle/index.php:84
+#: application/views/simplefle/index.php:85
 msgid "No Contest"
 msgstr "Kein Contest"
 
@@ -5756,7 +5759,7 @@ msgstr "Keine Conteste"
 #: application/views/logbookadvanced/index.php:676
 #: application/views/logbookadvanced/useroptions.php:138
 #: application/views/qso/edit_ajax.php:39
-#: application/views/simplefle/index.php:82
+#: application/views/simplefle/index.php:83
 msgid "Contest"
 msgstr "Contest"
 
@@ -6955,7 +6958,7 @@ msgstr "DX Locator"
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:30
-#: application/views/simplefle/index.php:70
+#: application/views/simplefle/index.php:71
 msgid "QSO Data"
 msgstr "QSO-Daten"
 
@@ -9587,7 +9590,7 @@ msgid "Time of request"
 msgstr "Zeit der Anfrage"
 
 #: application/views/oqrs/showrequests.php:81
-#: application/views/simplefle/index.php:76
+#: application/views/simplefle/index.php:77
 msgid "QSO Date"
 msgstr "QSO-Datum"
 
@@ -9733,7 +9736,7 @@ msgid "Remove"
 msgstr "Entfernen"
 
 #: application/views/qslprint/qslprint.php:34
-#: application/views/simplefle/index.php:141
+#: application/views/simplefle/index.php:142
 msgid "QSO List"
 msgstr "QSO Liste"
 
@@ -10726,7 +10729,7 @@ msgstr ""
 "die Syntax und wie FLE funktioniert findest du %s."
 
 #: application/views/simplefle/index.php:17
-#: application/views/simplefle/index.php:178
+#: application/views/simplefle/index.php:179
 msgid "Syntax Help"
 msgstr "Syntax-Hilfe"
 
@@ -10810,27 +10813,27 @@ msgstr ""
 msgid "An error occurred while saving the QSO to the logbook! Error: "
 msgstr "Ein Fehler ist aufgetreten beim Speichern der QSO im Logbuch! Fehler: "
 
-#: application/views/simplefle/index.php:42
+#: application/views/simplefle/index.php:43
 msgid "What is that?"
 msgstr "Was ist das?"
 
-#: application/views/simplefle/index.php:45
+#: application/views/simplefle/index.php:46
 msgid "Current UTC Time"
 msgstr "Aktuelle UTC-Zeit"
 
-#: application/views/simplefle/index.php:78
+#: application/views/simplefle/index.php:79
 msgid "If you don't choose a date, today's date will be used."
 msgstr "Wenn du kein Datum auswählst, wird das heutige Datum verwendet."
 
-#: application/views/simplefle/index.php:90
+#: application/views/simplefle/index.php:91
 msgid "You can add the entered QSOs to a contest."
 msgstr "Füge die eingegebenen QSO zu seinem Contest hinzu."
 
-#: application/views/simplefle/index.php:97
+#: application/views/simplefle/index.php:98
 msgid "Station Call/Location"
 msgstr "Stationsstandort"
 
-#: application/views/simplefle/index.php:109
+#: application/views/simplefle/index.php:110
 #, php-format
 msgid ""
 "If you did operate from a new location, first create a new %sStation "
@@ -10839,38 +10842,38 @@ msgstr ""
 "Wenn du von einem neuen Standort aus operierst, erstelle zuerst einen neuen "
 "%sStationsstandort%s"
 
-#: application/views/simplefle/index.php:114
+#: application/views/simplefle/index.php:115
 msgid "e.g. OK2CQR"
 msgstr "z.B. OK2CQR"
 
-#: application/views/simplefle/index.php:117
+#: application/views/simplefle/index.php:118
 msgid "This is callsign of the operator. Without any pre- or suffixes."
 msgstr ""
 "Dies ist das Rufzeichen des Operators. Ohne irgendwelche Prä- oder Suffixe."
 
-#: application/views/simplefle/index.php:127
+#: application/views/simplefle/index.php:128
 msgid "Enter the Data"
 msgstr "Gibt hier die Daten ein"
 
-#: application/views/simplefle/index.php:156
+#: application/views/simplefle/index.php:157
 msgid "Refs"
 msgstr "Refs"
 
-#: application/views/simplefle/index.php:168
+#: application/views/simplefle/index.php:169
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 msgstr ""
 "Die Refs können entweder %sS%sOTA, %sI%sOTA, %sP%sOTA oder %sW%sWFF sein"
 
-#: application/views/simplefle/index.php:175
+#: application/views/simplefle/index.php:176
 msgid "Reload QSO List"
 msgstr "Aktualisiere QSO-Liste"
 
-#: application/views/simplefle/index.php:176
+#: application/views/simplefle/index.php:177
 msgid "Save in Wavelog"
 msgstr "Speichere in Wavelog"
 
-#: application/views/simplefle/index.php:177
+#: application/views/simplefle/index.php:178
 msgid "Clear Logging Session"
 msgstr "Lösche QSO-Daten"
 

@@ -256,12 +256,6 @@ class adif extends CI_Controller {
 				$custom_errors=__("Station Profile not valid for User");
 			}
 
-			// Lets clean up static maps cache for this station
-			if (!$this->load->is_loaded('staticmap_model')) {
-				$this->load->model('staticmap_model');
-			}
-			$this->staticmap_model->remove_static_map_image($this->input->post('station_profile', TRUE));
-
 			log_message("Error","ADIF End");
 			$data['adif_errors'] = $custom_errors;
 			$data['skip_dupes'] = $this->input->post('skipDuplicate');

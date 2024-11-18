@@ -912,7 +912,7 @@ $(".js-save-to-log").click(function () {
 			btnOKClass: "btn-info",
 			callback: function (result) {
 				if (result) {
-					var wait_dialog = BootstrapDialog.show({
+					const wait_dialog = BootstrapDialog.show({
                         title: lang_general_word_please_wait,
                         message: '<div class="text-center"><i class="fas fa-spinner fa-spin fa-3x"></i></div>',
                         closable: false,
@@ -977,8 +977,7 @@ $(".js-save-to-log").click(function () {
 						type: "post",
 						data: { qsos: JSON.stringify(qsos) },
 						success: function (result) {
-							wait_dialog.close();
-							if (result == 'success' || result.includes("Duplicate for")) {
+							if (result == 'success' || result.includes(lang_duplicate_for)) {
 								BootstrapDialog.alert({
 									title: lang_qso_simplefle_success_save_to_log_header,
 									message: lang_qso_simplefle_success_save_to_log,
@@ -986,27 +985,32 @@ $(".js-save-to-log").click(function () {
 									btnOKLabel: lang_general_word_ok,
 									btnOKClass: "btn-info",
 									callback: function (result) {
+										wait_dialog.close();
 										clearSession();
 									}
 								});
 							} else {
-								wait_dialog.close();
 								BootstrapDialog.alert({
 									title: lang_general_word_error,
 									message: lang_qso_simplefle_error_save_to_log + "<br><br><code><pre>" + JSON.stringify(result) + "</pre></code>",
 									size: BootstrapDialog.SIZE_WIDE,
 									type: BootstrapDialog.TYPE_DANGER,
+									callback: function (result) {
+										wait_dialog.close();
+									}
 								});
 								console.error(result);
 							}
 						},
 						error: function (result) {
-							wait_dialog.close();
 							BootstrapDialog.alert({
 								title: lang_general_word_error,
 								message: lang_qso_simplefle_error_save_to_log + "<br><br><code><pre>" + JSON.stringify(result) + "</pre></code>",
 								size: BootstrapDialog.SIZE_WIDE,
 								type: BootstrapDialog.TYPE_DANGER,
+								callback: function (result) {
+									wait_dialog.close();
+								}
 							});
 							console.error(result);
 						},
