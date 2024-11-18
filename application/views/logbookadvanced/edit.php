@@ -27,6 +27,8 @@
 			<option value="continent"><?= __("Continent"); ?></option>
 			<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
 			<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
+			<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
+			<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 			<option value="stationpower"><?= __("Station power"); ?></option>
 		</select>
 		<div>&nbsp;</div>
@@ -144,6 +146,12 @@
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQrz"  name="qrz">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editEqsl"  name="eqsl">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
 			<option value="I"><?= __("Invalid"); ?></option>
