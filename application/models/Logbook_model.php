@@ -5427,9 +5427,70 @@ class Logbook_model extends CI_Model {
 		}
 		return '';
 	}
+
+	function getContestQSO(array $station_ids, string $station_callsign, string $contest_id, string $callsign, string $band, string $mode, string $date, string $time)
+	{
+		
+		//load QSO table
+		$this->db->select('*');
+		$this->db->from($this->config->item('table_name'));
+
+		//load only for given station_ids
+		$this->db->where_in('station_id', $station_ids);
+
+		//load only for the station_callsign given
+		$this->db->where('COL_STATION_CALLSIGN', xss_clean($station_callsign));
+
+		//load only for the given contest id
+		$this->db->where('COL_CONTEST_ID', xss_clean($contest_id));
+
+		//load only for this qso partners callsign
+		$this->db->where('COL_CALL', xss_clean($callsign));
+
+		//load only for given band (no cleaning necessary because provided by wavelog itself)
+		$this->db->where('COL_BAND', $band);
+
+		//load only for specific mode if the mode is determinate. If not, omit it. In most cases, that should be fine. Also provided by wavelog itself, so no cleaning.
+		if($mode != '')
+		{
+			$this->db->where('COL_MODE', $mode);
+		}
+
+		//prepare datetime from format '2099-12-31 13:47' to be usable in a performant query
+		$datetime_raw = $date . ' ' . substr($time, 0, 2) . ':' . substr($time, 2, 2);
+		$datetime = new DateTime($datetime_raw,new DateTimeZone('UTC'));
+		$synthetic_endtime = $datetime->add(new DateInterval('PT1M'));
+
+		//load only for specific date and time. Since 
+		$this->db->where('COL_TIME_ON >=', $datetime->format('Y-m-d H:i:s'));
+		$this->db->where('COL_TIME_ON <', $synthetic_endtime->format('Y-m-d H:i:s'));
+
+		//return whatever is left
+		return $this->db->get();
+	}
+
+	function set_contest_fields($qso_primary_key, ?int $stx, ?string $stxstring, ?int $srx, ?string $srxstring) {
+		
+		//assemble data fields from input
+		$data = $data = array(
+			'COL_STX' => $stx,
+			'COL_STX_STRING' => $stxstring == null ? null : substr($stxstring, 0, 32),
+			'COL_SRX' => $srx,
+			'COL_SRX_STRING' => $srxstring == null ? null : substr($srxstring, 0, 32)
+		);
+	
+		//narrow db operation down to 1 QSO
+		$this->db->where(array('COL_PRIMARY_KEY' => $qso_primary_key));
+		
+		//update data and return
+		$this->db->update($this->config->item('table_name'), $data);
+		return;
+	}
+	
 }
 
 function validateADIFDate($date, $format = 'Ymd') {
 	$d = DateTime::createFromFormat($format, $date);
 	return $d && $d->format($format) == $date;
 }
+
