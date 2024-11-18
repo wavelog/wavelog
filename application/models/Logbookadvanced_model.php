@@ -579,10 +579,7 @@ class Logbookadvanced_model extends CI_Model {
 			if ($mode->col_submode == null || $mode->col_submode == "") {
 				array_push($modes, $mode->col_mode);
 			} else {
-				// Make sure we don't add LSB or USB as submodes in the array list
-				if ($mode->col_mode != "SSB") {
-					array_push($modes, $mode->col_submode);
-				}
+				array_push($modes, $mode->col_submode);
 			}
 		}
 
@@ -628,6 +625,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "continent": $column = 'COL_CONT'; break;
 			case "qrzsent": $column = 'COL_QRZCOM_QSO_UPLOAD_STATUS'; break;
 			case "qrzreceived": $column = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS'; break;
+			case "eqslsent": $column = 'COL_EQSL_QSL_SENT'; break;
+			case "eqslreceived": $column = 'COL_EQSL_QSL_RCVD'; break;
 			case "stationpower": $column = 'COL_TX_PWR'; break;
 			default: return;
 		}
@@ -768,6 +767,23 @@ class Logbookadvanced_model extends CI_Model {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_DOWNLOAD_STATUS = ?, " . $this->config->item('table_name').".COL_QRZCOM_QSO_DOWNLOAD_DATE = now()" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+
+		} else if ($column == 'COL_EQSL_QSL_SENT') {
+			$skipqrzupdate = true;
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_EQSL_QSL_SENT = ?, " . $this->config->item('table_name').".COL_EQSL_QSLSDATE = now()" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_EQSL_QSL_RCVD') {
+			$skipqrzupdate = true;
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_EQSL_QSL_RCVD = ?, " . $this->config->item('table_name').".COL_EQSL_QSLRDATE = now()" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));

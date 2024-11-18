@@ -87,17 +87,23 @@ class SimpleFLE extends CI_Controller {
 			$one_result = $this->logbook_model->import($qso, $qso['station_id']);
 
 			// if the returner is not empty we have an error and should log it
-			if ($result != '' && strpos(json_encode($one_result), 'Duplicate for') == false) {
-				log_message('error', 'SimpleFLE, save_qsos(); For QSO: ' . $qso['call'] . ' on ' . $qso['qso_date'] . ' Error: ' . json_encode($result));
+			if (json_encode($result) != '[]' && strpos(json_encode($one_result), __("Duplicate for")) == false) {
+				log_message('error', 'SimpleFLE, save_qsos(); For QSO: ' . $qso['call'] . ' on ' . $qso['qso_date'] . ' Error: ' . json_encode($one_result));
 			}
-			if (strpos(json_encode($one_result), 'Duplicate for') !== false) {
-				log_message('debug', 'SimpleFLE, save_qsos(); For QSO: ' . $qso['call'] . ' on ' . $qso['qso_date'] . ' Warning: ' . json_encode($result));
+			if (strpos(json_encode($one_result), __("Duplicate for")) !== false) {
+				log_message('debug', 'SimpleFLE, save_qsos(); For QSO: ' . $qso['call'] . ' on ' . $qso['qso_date'] . ' Warning: ' . json_encode($one_result));
 			}
 
 			if ($one_result != '') {
 				$result[] = $one_result;
 			}
 		}
+
+		// Also clean up static map images
+		if (!$this->load->is_loaded('staticmap_model')) {
+			$this->load->model('staticmap_model');
+		}
+		$this->staticmap_model->remove_static_map_image($qso['station_id']);
 
 		if (empty($result)) {
 			echo "success";
