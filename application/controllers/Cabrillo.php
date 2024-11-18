@@ -9,8 +9,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Cabrillo extends CI_Controller {
 
-	function __construct() {
-		parent::__construct();
+	public function __construct() {
+        parent::__construct();
 
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
@@ -152,7 +152,7 @@ class Cabrillo extends CI_Controller {
 
 		//configure upload
 		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'cbr|CBR';
+		$config['allowed_types'] = 'cbr|CBR|log|LOG';
 
 		//load upload library
 		$this->load->library('upload', $config);
@@ -184,8 +184,11 @@ class Cabrillo extends CI_Controller {
 			$this->load->library('cbr_parser');
 		}
 
+		//get flag about the presence of the serial number
+		$serial_number_present = ($this->input->post('serial_number_present', true) == 1);
+
 		//parse the uploaded file
-		$parsed_cbr = $this->cbr_parser->parse_from_file('./uploads/'.$data['upload_data']['file_name']);
+		$parsed_cbr = $this->cbr_parser->parse_from_file('./uploads/'.$data['upload_data']['file_name'], $serial_number_present);
 
 		//return with error, reset upload filesize
 		if(count($parsed_cbr["QSOS"]) < 1)
@@ -200,13 +203,10 @@ class Cabrillo extends CI_Controller {
 			return;
 		}
 
-		//get flag about the presence of the serial number
-		$serial_number_present = ($this->input('serial_number_present', true) == 1);
-
 		//get all station ids for the active user
 		$this->load->model('stations');
 		$station_ids = [];
-		foreach ($this->stations->all_of_user() as $station) {
+		foreach ($this->stations->all_of_user()->result() as $station) {
 			array_push($station_ids, $station->station_id);
 		}
 

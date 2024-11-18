@@ -312,7 +312,7 @@
                         <div class="mb-3 row">
                             <div class="col-md-10">
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="serial_number_present" value="0" id="serial_number_present" unchecked>
+                                    <input class="form-check-input" type="checkbox" name="serial_number_present" value="1" id="serial_number_present" unchecked>
                                     <label class="form-check-label" for="serial_number_present"><?= __("A Serial Number is part of the Exchange of this contest.") ?></label>
                                 </div>
                                 <div class="small form-text text-muted"><?= __("If unchecked, this will erase the default serial number that (for example) N1MM+ produces. If checked, it will correct the serial number if necessary.") ?></div>

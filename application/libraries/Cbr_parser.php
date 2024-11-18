@@ -1,10 +1,10 @@
 <?php
 class CBR_Parser
 {
-    public function parse_from_file($filename) : array
+    public function parse_from_file($filename, $serial_number_present = false) : array
 	{
 		//load file, call parser
-        return $this->parse(mb_convert_encoding(file_get_contents($filename), "UTF-8"));
+        return $this->parse(mb_convert_encoding(file_get_contents($filename), "UTF-8"), $serial_number_present);
 	}
 
     public function parse(string $input, $serial_number_present = false) : array
@@ -47,7 +47,7 @@ class CBR_Parser
                 $parts = explode(': ', $line, 2);
 
                 //collect header information
-                $header[$parts[0]] = $parts[1];
+                $header[$parts[0]] = preg_replace('/\s+/', '', $parts[1]);
 
                 //skip to next line
                 continue;
@@ -104,7 +104,7 @@ class CBR_Parser
 
         //abort if basic things (Callsign and Contest ID) are not included in the header
         $header_fields = array_keys($header);
-        if(!in_array('CALLSIGN', $header_fields) or !in_array('CONTEST', $header)){
+        if(!in_array('CALLSIGN', $header_fields) or !in_array('CONTEST', $header_fields)){
             $result = [];
             $result["HEADER"] = $header;
             $result["QSOS"] = [];

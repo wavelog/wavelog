@@ -5459,11 +5459,13 @@ class Logbook_model extends CI_Model {
 		//prepare datetime from format '2099-12-31 13:47' to be usable in a performant query
 		$datetime_raw = $date . ' ' . substr($time, 0, 2) . ':' . substr($time, 2, 2);
 		$datetime = new DateTime($datetime_raw,new DateTimeZone('UTC'));
-		$synthetic_endtime = $datetime->add(new DateInterval('PT1M'));
-
-		//load only for specific date and time. Since 
-		$this->db->where('COL_TIME_ON >=', $datetime->format('Y-m-d H:i:s'));
-		$this->db->where('COL_TIME_ON <', $synthetic_endtime->format('Y-m-d H:i:s'));
+		$from_datetime = $datetime->format('Y-m-d H:i:s');
+		$datetime->add(new DateInterval('PT1M'));
+		$to_datetime = $datetime->format('Y-m-d H:i:s');
+		
+		//load only QSOs during this minute
+		$this->db->where('COL_TIME_ON >=', $from_datetime);
+		$this->db->where('COL_TIME_ON <', $to_datetime);
 
 		//return whatever is left
 		return $this->db->get();
