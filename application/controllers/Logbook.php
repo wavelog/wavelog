@@ -1184,6 +1184,7 @@ class Logbook extends CI_Controller {
 	/* return station bearing */
 	function searchbearing() {
 			$locator = xss_clean($this->input->post('grid'));
+			$ant_path = xss_clean($this->input->post('ant_path')) == '' ? NULL : xss_clean($this->input->post('ant_path'));
 			$station_id = xss_clean($this->input->post('stationProfile'));
 			if(!$this->load->is_loaded('Qra')) {
 			    $this->load->library('Qra');
@@ -1215,7 +1216,7 @@ class Logbook extends CI_Controller {
 					$measurement_base = $this->session->userdata('user_measurement_base');
 				}
 
-				$bearing = $this->qra->bearing($mylocator, $locator, $measurement_base);
+				$bearing = $this->qra->bearing($mylocator, $locator, $measurement_base, $ant_path);
 
 				echo $bearing;
 			}
@@ -1225,6 +1226,7 @@ class Logbook extends CI_Controller {
 	/* return distance */
 	function searchdistance() {
 			$locator = xss_clean($this->input->post('grid'));
+			$ant_path = xss_clean($this->input->post('ant_path')) == '' ? NULL : xss_clean($this->input->post('ant_path'));
 			$station_id = xss_clean($this->input->post('stationProfile'));
 			if(!$this->load->is_loaded('Qra')) {
 			    $this->load->library('Qra');
@@ -1249,7 +1251,7 @@ class Logbook extends CI_Controller {
 					$mylocator = $this->config->item('locator');
 				}
 
-				$distance = $this->qra->distance($mylocator, $locator, 'K');
+				$distance = $this->qra->distance($mylocator, $locator, 'K', $ant_path);
 
 				echo $distance;
 			}

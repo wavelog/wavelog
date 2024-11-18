@@ -414,28 +414,42 @@
               </div>
 
             <div class="mb-3">
-              <label for="selectPropagation"><?= __("Propagation Mode"); ?></label>
-              <select class="form-select" id="selectPropagation" name="prop_mode">
-                <option value="" <?php if(!empty($this->session->userdata('prop_mode'))) { echo "selected=\"selected\""; } ?>></option>
-                <option value="AS" <?php if($this->session->userdata('prop_mode') == "AS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
-                <option value="AUR" <?php if($this->session->userdata('prop_mode') == "AUR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aurora"); ?></option>
-                <option value="AUE" <?php if($this->session->userdata('prop_mode') == "AUE") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
-                <option value="BS" <?php if($this->session->userdata('prop_mode') == "BS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Back scatter"); ?></option>
-                <option value="ECH" <?php if($this->session->userdata('prop_mode') == "ECH") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","EchoLink"); ?></option>
-                <option value="EME" <?php if($this->session->userdata('prop_mode') == "EME") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Earth-Moon-Earth"); ?></option>
-                <option value="ES" <?php if($this->session->userdata('prop_mode') == "ES") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
-                <option value="FAI" <?php if($this->session->userdata('prop_mode') == "FAI") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
-                <option value="F2" <?php if($this->session->userdata('prop_mode') == "F2") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
-                <option value="INTERNET" <?php if($this->session->userdata('prop_mode') == "INTERNET") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
-                <option value="ION" <?php if($this->session->userdata('prop_mode') == "ION") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
-                <option value="IRL" <?php if($this->session->userdata('prop_mode') == "IRL") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","IRLP"); ?></option>
-                <option value="MS" <?php if($this->session->userdata('prop_mode') == "MS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
-                <option value="RPT" <?php if($this->session->userdata('prop_mode') == "RPT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
-                <option value="RS" <?php if($this->session->userdata('prop_mode') == "RS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
-                <option value="SAT" <?php if($this->session->userdata('prop_mode') == "SAT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
-                <option value="TEP" <?php if($this->session->userdata('prop_mode') == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
-                <option value="TR" <?php if($this->session->userdata('prop_mode') == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
-              </select>
+              <div class="row">
+                <div class="col">
+                  <label for="selectPropagation"><?= __("Propagation Mode"); ?></label>
+                  <select class="form-select" id="selectPropagation" name="prop_mode">
+                    <option value="" <?php if(!empty($this->session->userdata('prop_mode'))) { echo "selected=\"selected\""; } ?>></option>
+                    <option value="AS" <?php if($this->session->userdata('prop_mode') == "AS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
+                    <option value="AUR" <?php if($this->session->userdata('prop_mode') == "AUR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aurora"); ?></option>
+                    <option value="AUE" <?php if($this->session->userdata('prop_mode') == "AUE") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
+                    <option value="BS" <?php if($this->session->userdata('prop_mode') == "BS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Back scatter"); ?></option>
+                    <option value="ECH" <?php if($this->session->userdata('prop_mode') == "ECH") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","EchoLink"); ?></option>
+                    <option value="EME" <?php if($this->session->userdata('prop_mode') == "EME") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Earth-Moon-Earth"); ?></option>
+                    <option value="ES" <?php if($this->session->userdata('prop_mode') == "ES") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
+                    <option value="FAI" <?php if($this->session->userdata('prop_mode') == "FAI") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
+                    <option value="F2" <?php if($this->session->userdata('prop_mode') == "F2") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
+                    <option value="INTERNET" <?php if($this->session->userdata('prop_mode') == "INTERNET") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
+                    <option value="ION" <?php if($this->session->userdata('prop_mode') == "ION") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
+                    <option value="IRL" <?php if($this->session->userdata('prop_mode') == "IRL") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","IRLP"); ?></option>
+                    <option value="MS" <?php if($this->session->userdata('prop_mode') == "MS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
+                    <option value="RPT" <?php if($this->session->userdata('prop_mode') == "RPT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
+                    <option value="RS" <?php if($this->session->userdata('prop_mode') == "RS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
+                    <option value="SAT" <?php if($this->session->userdata('prop_mode') == "SAT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
+                    <option value="TEP" <?php if($this->session->userdata('prop_mode') == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
+                    <option value="TR" <?php if($this->session->userdata('prop_mode') == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="ant_path"><?= __("Antenna Path"); ?></label>
+                  <select class="form-select" id="ant_path" name="ant_path">
+                      <option value=""></option>
+                      <option value="G"><?= __("Greyline"); ?></option>
+                      <option value="O"><?= __("Other"); ?></option>
+                      <option value="S"><?= __("Short Path"); ?></option>
+                      <option value="L"><?= __("Long Path"); ?></option>
+                  </select>
+                </div>
+              </div>
             </div>
 
             <div class="mb-3">

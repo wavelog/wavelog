@@ -505,6 +505,7 @@ function reset_fields() {
 	$('#name').val("");
 	$('#qth').val("");
 	$('#locator').val("");
+	$('#ant_path').val("");
 	$('#iota_ref').val("");
 	$("#locator").removeClass("confirmedGrid");
 	$("#locator").removeClass("workedGrid");
@@ -966,6 +967,7 @@ $("#locator").on("input focus", function () {
 				type: 'post',
 				data: {
 					grid: $(this).val(),
+					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
@@ -980,6 +982,7 @@ $("#locator").on("input focus", function () {
 				type: 'post',
 				data: {
 					grid: $(this).val(),
+					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
@@ -997,6 +1000,41 @@ $("#locator").on("focusout", function () {
 	if ($(this).val().length == 0) {
 		$('#locator_info').text("");
 		document.getElementById("distance").value = null;
+	}
+});
+
+$("#ant_path").on("change", function () {
+	if ($("#locator").val().length > 0) {
+		$.ajax({
+			url: base_url + 'index.php/logbook/searchbearing',
+			type: 'post',
+			data: {
+				grid: $('#locator').val(),
+				ant_path: $('#ant_path').val(),
+				stationProfile: $('#stationProfile').val()
+			},
+			success: function (data) {
+				$('#locator_info').html(data).fadeIn("slow");
+			},
+			error: function () {
+				$('#locator_info').text("Error loading bearing!").fadeIn("slow");
+			},
+		});
+		$.ajax({
+			url: base_url + 'index.php/logbook/searchdistance',
+			type: 'post',
+			data: {
+				grid: $('#locator').val(),
+				ant_path: $('#ant_path').val(),
+				stationProfile: $('#stationProfile').val()
+			},
+			success: function (data) {
+				$('#distance').val(data);
+			},
+			error: function () {
+				$('#distance').val("");
+			},
+		});
 	}
 });
 

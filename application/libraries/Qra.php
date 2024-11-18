@@ -21,12 +21,12 @@ class Qra {
 	}
 
 	// calculate  the bearing between two squares
-	function bearing($tx, $rx, $unit = 'M') {
+	function bearing($tx, $rx, $unit = 'M', $ant_path = null) {
 		$my = qra2latlong($tx);
 		$stn = qra2latlong($rx);
 
 		if ($my !== false && $stn !== false) {
-			$bearing = bearing($my[0], $my[1], $stn[0], $stn[1], $unit);
+			$bearing = bearing($my[0], $my[1], $stn[0], $stn[1], $unit, $ant_path);
 			return $bearing;
 		} else {
 			return false;
@@ -65,10 +65,10 @@ class Qra {
 	* Function returns just the bearing
 	*  Input locator1 and locator2
 	*/
-	function get_bearing($tx, $rx) {
+	function get_bearing($tx, $rx, $ant_path = null) {
 		$my = qra2latlong($tx);
 		$stn = qra2latlong($rx);
-		return get_bearing($my[0], $my[1], $stn[0], $stn[1]);
+		return get_bearing($my[0], $my[1], $stn[0], $stn[1], $ant_path);
 	}
 
 	/*
@@ -209,10 +209,8 @@ function calc_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M', $ant_path = null
 	$dist = rad2deg($dist);
 	$dist = $dist * 60 * 1.1515;
 
-	if ($ant_path != null) {
-		if ($ant_path == "L") {    // we only need to calculate the distance for long paths, all other paths are the same
-			$dist = 24880 - $dist;
-		}
+	if ($ant_path == "L") { // we only need to calculate the distance for long paths, all other paths are the same
+		$dist = 24880 - $dist;
 	}
 
 	if ($unit == "K") {
@@ -226,11 +224,14 @@ function calc_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M', $ant_path = null
 	return round($dist, 1);
 }
 
-function bearing($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
-	$dist = calc_distance($lat1, $lon1, $lat2, $lon2, $unit);
+function bearing($lat1, $lon1, $lat2, $lon2, $unit = 'M', $ant_path = null) {
+	$dist = calc_distance($lat1, $lon1, $lat2, $lon2, $unit, $ant_path);
 	$dist = round($dist, 0);
 
 	$bearing = get_bearing($lat1, $lon1, $lat2, $lon2);
+	if ($ant_path == 'L') {
+		$bearing = ($bearing + 180) % 360;
+	}
 
 	$dirs = array("N", "E", "S", "W");
 
