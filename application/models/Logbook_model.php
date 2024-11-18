@@ -3702,7 +3702,6 @@ class Logbook_model extends CI_Model {
 			$this->load->model('staticmap_model');
 		}
 		$this->staticmap_model->remove_static_map_image($station_id);
-		log_message('error', 'Cache-Clearing called in ' . $this->router->class.'_'.$this->router->method);
 
 		$records = '';
 		gc_collect_cycles();
