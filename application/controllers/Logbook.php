@@ -168,6 +168,7 @@ class Logbook extends CI_Controller {
 		if ($return['callsign_qra'] != "" || $return['callsign_qra'] != null) {
 			$return['latlng'] = $this->qralatlng($return['callsign_qra']);
 			$return['bearing'] = $this->bearing($return['callsign_qra'], $measurement_base, $station_id);
+			$return['local_time'] = $this->logbook_model->getTimeByGrid($return['callsign_qra']);
 		}
 
 		echo json_encode($return, JSON_PRETTY_PRINT);

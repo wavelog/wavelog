@@ -6,6 +6,7 @@
   var lang_qso_title_times_worked_before = "<?= __("times worked before"); ?>";
   var lang_qso_title_not_worked_before = "<?= __("Not worked before"); ?>";
   var lang_dxccsummary_for = "<?= __("DXCC Summary for "); ?>";
+  var lang_local_time = "<?= __("Local Time: "); ?>";
   var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
   var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days
 </script>
@@ -131,6 +132,7 @@
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>
                   <small id="callsign_info" class="badge text-bg-secondary"></small> <a id="lotw_link"><small id="lotw_info" class="badge text-bg-success"></small></a>
+                  <small id="local_time_info" class="text-muted"></small>
                 </div>
               </div>
 

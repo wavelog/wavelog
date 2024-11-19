@@ -521,6 +521,7 @@ function reset_fields() {
 	$("#operator_callsign").val(activeStationOP);
 	$('#qsl_via').val("");
 	$('#callsign_info').text("");
+	$('#local_time_info').text("");
 	$('#stateDropdown').val("");
 	$('#qso-last-table').show();
 	$('#partial_view').hide();
@@ -601,6 +602,10 @@ $("#callsign").on("focusout", function () {
 				if (result.dxcc.entity != undefined) {
 					$('#country').val(convert_case(result.dxcc.entity));
 					$('#callsign_info').text(convert_case(result.dxcc.entity));
+
+					if (result.local_time != undefined) {
+						$('#local_time_info').text(lang_local_time + ' ' + result.local_time);
+					}
 
 					if ($("#sat_name").val() != "") {
 						//logbook/jsonlookupgrid/io77/SAT/0/0

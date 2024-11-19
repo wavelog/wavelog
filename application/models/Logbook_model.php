@@ -5428,6 +5428,26 @@ class Logbook_model extends CI_Model {
 		}
 		return '';
 	}
+
+	// returns the local time of a given grid as string
+	function getTimeByGrid($grid) {
+
+		include './src/TimezoneMapper/TimezoneMapper.php';
+		
+		if (!$this->load->is_loaded('qra')) {
+			$this->load->library('qra');
+		}
+
+		$mapper = new TimezoneMapper();
+
+		$timezone = $mapper->latLngToTimezoneString($this->qra->qra2latlong($grid)[0], $this->qra->qra2latlong($grid)[1]) ?? null;
+
+		$currentDateTime = new DateTime("now", new DateTimeZone($timezone));
+
+		return $currentDateTime->format('H:i');
+
+	}
+
 }
 
 function validateADIFDate($date, $format = 'Ymd') {
