@@ -197,6 +197,9 @@ class Cabrillo extends CI_Controller {
 
 			$data['max_upload'] = ini_get('upload_max_filesize');
 
+			//delete uploaded file
+			unlink('./uploads/' . $data['upload_data']['file_name']);
+
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import', $data);
 			$this->load->view('interface_assets/footer');
