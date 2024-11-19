@@ -313,8 +313,9 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="serial_number_present" value="1" id="serial_number_present" unchecked>
-                                    <label class="form-check-label" for="serial_number_present"><?= __("A Serial Number is part of the Exchange of this contest.") ?></label>
+                                    <label class="form-check-label" for="serial_number_present"><?= __("A serial number is ALWAYS part of the exchange for both parties in this contest.") ?></label>
                                 </div>
+                                <div class="small form-text text-muted"><?= __("If you or your partner only sometimes exchange serial numbers, please leave this unchecked.") ?></div>
                                 <div class="small form-text text-muted"><?= __("If unchecked, this will erase the default serial number that (for example) N1MM+ produces. If checked, it will correct the serial number if necessary.") ?></div>
                             </div>
                         </div>
