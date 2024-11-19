@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-18 17:48+0000\n"
+"POT-Creation-Date: 2024-11-19 01:10+0000\n"
 "PO-Revision-Date: 2024-11-11 16:35+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2304,17 +2304,9 @@ msgid "Edit User"
 msgstr "Редактировать пользователя"
 
 #: application/controllers/User.php:689 application/controllers/User.php:692
-#: application/views/debug/index.php:77 application/views/user/index.php:3
-#: application/views/user/index.php:44
-msgid "User"
-msgid_plural "Users"
-msgstr[0] "Пользователь"
-msgstr[1] "Пользователь"
-msgstr[2] "Пользователь"
-
-#: application/controllers/User.php:689 application/controllers/User.php:692
-msgid "edited"
-msgstr "отредактирован"
+#, php-format
+msgid "User %s edited"
+msgstr ""
 
 #: application/controllers/User.php:746
 msgid "Profile"
@@ -6566,6 +6558,14 @@ msgstr "Всего QSO на этом инстансе"
 #: application/views/debug/index.php:76
 msgid "Total User"
 msgstr "Всего пользователей"
+
+#: application/views/debug/index.php:77 application/views/user/index.php:3
+#: application/views/user/index.php:44
+msgid "User"
+msgid_plural "Users"
+msgstr[0] "Пользователь"
+msgstr[1] "Пользователь"
+msgstr[2] "Пользователь"
 
 #: application/views/debug/index.php:84
 msgid "Server Information"
@@ -12629,6 +12629,9 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
+
+#~ msgid "edited"
+#~ msgstr "отредактирован"
 
 #~ msgid "The QSO were successfully logged in the logbook!"
 #~ msgstr "QSO были успешно записаны в журнал!"

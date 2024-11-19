@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-18 17:48+0000\n"
+"POT-Creation-Date: 2024-11-19 01:10+0000\n"
 "PO-Revision-Date: 2024-10-21 06:05+0000\n"
 "Last-Translator: tviitkar <tambet@viitkar.ee>\n"
 "Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2273,15 +2273,8 @@ msgid "Edit User"
 msgstr ""
 
 #: application/controllers/User.php:689 application/controllers/User.php:692
-#: application/views/debug/index.php:77 application/views/user/index.php:3
-#: application/views/user/index.php:44
-msgid "User"
-msgid_plural "Users"
-msgstr[0] ""
-msgstr[1] ""
-
-#: application/controllers/User.php:689 application/controllers/User.php:692
-msgid "edited"
+#, php-format
+msgid "User %s edited"
 msgstr ""
 
 #: application/controllers/User.php:746
@@ -6262,6 +6255,13 @@ msgstr ""
 #: application/views/debug/index.php:76
 msgid "Total User"
 msgstr ""
+
+#: application/views/debug/index.php:77 application/views/user/index.php:3
+#: application/views/user/index.php:44
+msgid "User"
+msgid_plural "Users"
+msgstr[0] ""
+msgstr[1] ""
 
 #: application/views/debug/index.php:84
 msgid "Server Information"

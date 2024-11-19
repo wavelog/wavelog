@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-18 17:48+0000\n"
+"POT-Creation-Date: 2024-11-19 01:10+0000\n"
 "PO-Revision-Date: 2024-09-23 14:46+0000\n"
 "Last-Translator: Filip Melik <filip@melik.cz>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2281,16 +2281,8 @@ msgid "Edit User"
 msgstr ""
 
 #: application/controllers/User.php:689 application/controllers/User.php:692
-#: application/views/debug/index.php:77 application/views/user/index.php:3
-#: application/views/user/index.php:44
-msgid "User"
-msgid_plural "Users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: application/controllers/User.php:689 application/controllers/User.php:692
-msgid "edited"
+#, php-format
+msgid "User %s edited"
 msgstr ""
 
 #: application/controllers/User.php:746
@@ -6272,6 +6264,14 @@ msgstr "Celkový počet QSO v této instanci"
 #: application/views/debug/index.php:76
 msgid "Total User"
 msgstr "Počet uživatelů"
+
+#: application/views/debug/index.php:77 application/views/user/index.php:3
+#: application/views/user/index.php:44
+msgid "User"
+msgid_plural "Users"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: application/views/debug/index.php:84
 msgid "Server Information"

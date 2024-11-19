@@ -20,11 +20,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-18 17:48+0000\n"
+"POT-Creation-Date: 2024-11-19 01:10+0000\n"
 "PO-Revision-Date: 2024-11-19 01:03+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2316,16 +2316,9 @@ msgid "Edit User"
 msgstr "Bearbeite Benutzer"
 
 #: application/controllers/User.php:689 application/controllers/User.php:692
-#: application/views/debug/index.php:77 application/views/user/index.php:3
-#: application/views/user/index.php:44
-msgid "User"
-msgid_plural "Users"
-msgstr[0] "Benutzer"
-msgstr[1] "Benutzer"
-
-#: application/controllers/User.php:689 application/controllers/User.php:692
-msgid "edited"
-msgstr "bearbeitet"
+#, php-format
+msgid "User %s edited"
+msgstr ""
 
 #: application/controllers/User.php:746
 msgid "Profile"
@@ -6588,6 +6581,13 @@ msgstr "QSOs auf dieser Instanz"
 #: application/views/debug/index.php:76
 msgid "Total User"
 msgstr "Gesamtanzahl Benutzer"
+
+#: application/views/debug/index.php:77 application/views/user/index.php:3
+#: application/views/user/index.php:44
+msgid "User"
+msgid_plural "Users"
+msgstr[0] "Benutzer"
+msgstr[1] "Benutzer"
 
 #: application/views/debug/index.php:84
 msgid "Server Information"
@@ -12697,6 +12697,9 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
+
+#~ msgid "edited"
+#~ msgstr "bearbeitet"
 
 #~ msgid "The QSO were successfully logged in the logbook!"
 #~ msgstr "Die QSO wurden erfolgreich im Logbuch gespeichert!"
