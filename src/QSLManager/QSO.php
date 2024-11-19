@@ -472,8 +472,8 @@ class QSO
 				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
 				$clublogstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
 			}
-
 			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
+			$clublogstring .= ' class="clublog-green';
 		} elseif ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "M") {
 			$clublogstring .= "title=\"".__("Modified");
 
@@ -481,8 +481,8 @@ class QSO
 				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
 				$clublogstring .=  "<br />(".__("last sent")." ".($timestamp!=''?date($custom_date_format, $timestamp):'').")";
 			}
-
 			$clublogstring .= "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\"";
+			$clublogstring .= ' class="clublog-yellow';
 		} else {
 			$clublogstring .= ' class="clublog-red';
 		}
