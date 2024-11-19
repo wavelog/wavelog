@@ -301,7 +301,7 @@ function echo_table_col($row, $name) {
 					echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")".'" data-bs-toggle="tooltip" data-bs-html="true"'; 
 				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') { 
 					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"'; 
-				}?> class="qrz-<?php 
+				}?> class="clublog-<?php 
 
 				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'Y') { 
 					echo 'green'; 
