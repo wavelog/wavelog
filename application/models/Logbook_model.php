@@ -5098,7 +5098,7 @@ class Logbook_model extends CI_Model {
 				}
 
 				// If the callsign contains a slash we have a pre- or suffix. If then the result is "Not found" we can try again with the plain call
-				if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
+				if (array_key_exists('error',$callbook) && strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
 					$plaincall = $this->get_plaincall($callsign);
 					// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
 					$callbook = $this->qrz->search($plaincall, $this->session->userdata('qrz_session_key'), $use_fullname, true);
