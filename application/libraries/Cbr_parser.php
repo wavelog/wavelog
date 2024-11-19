@@ -88,8 +88,7 @@ class CBR_Parser
         }
 
         //abort further processing if no qso lines were found, return header only
-        if(count($qso_lines_raw) < 1)
-        {
+        if(count($qso_lines_raw) < 1) {
             $result = [];
             $result["HEADER"] = $header;
             $result["QSOS"] = [];
@@ -147,8 +146,7 @@ class CBR_Parser
             $qso_line["SENT_59"] = $line[$sent_59_pos];
            
             //set serial if requested
-            if($serial_number_present)
-            {
+            if($serial_number_present) {
                 $qso_line["SENT_SERIAL"] = $line[$sent_59_pos + 1];
             }
 
@@ -166,8 +164,7 @@ class CBR_Parser
             $qso_line["RCVD_59"] = $line[$rcvd_59_pos];
 
             //set serial if requested
-            if($serial_number_present)
-            {
+            if($serial_number_present) {
                 $qso_line["RCVD_SERIAL"] = $line[$rcvd_59_pos + 1];
             }
 

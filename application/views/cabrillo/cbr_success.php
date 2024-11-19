@@ -13,7 +13,7 @@
   </div>
   <div class="card-body">
     <?php if($cbr_update_count > 0) { ?>
-       <h3 class="card-title">Yay, its updated!</h3>
+       <h3 class="card-title"><?= __("Yay, its updated!"); ?></h3>
        <p class="card-text"><?= __("Your contest QSOs have been updated using the values of your Cabrillo file.")?></p>
     <?php } else { ?>
        <h3 class="card-title"><?= __("No QSOs were updated by your Cabrillo file.")?></h3>

@@ -5451,8 +5451,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where('COL_BAND', $band);
 
 		//load only for specific mode if the mode is determinate. If not, omit it. In most cases, that should be fine. Also provided by wavelog itself, so no cleaning.
-		if($mode != '')
-		{
+		if($mode != '') {
 			$this->db->where('COL_MODE', $mode);
 		}
 

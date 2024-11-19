@@ -305,8 +305,8 @@
                         </div>
                     <?php } ?>
 
-                    <p class="card-text"><span class="badge text-bg-info">Information</span> <?= __("If you imported an ADIF file of a contest, provided by another logging software, sometimes, depending on that software, your exchanges will not be imported properly from that softwares ADIF. If you like to correct that, you can provide the Cabrillo file that this software also provides to rewrite that data in Wavelog.") ?></p>
-                    <p class="card-text"><span class="badge text-bg-warning">Important</span> <?= __("Please use this function before changing anything about the QSOs in Wavelog, as this function uses the Contest ID, as well as date and time information from both your already imported ADIF file, as well as the CBR file you are about to upload to match the QSOs and only correct relevant data.") ?></p>
+                    <p class="card-text"><span class="badge text-bg-info"><?= __("Information"); ?></span> <?= __("If you imported an ADIF file of a contest, provided by another logging software, sometimes, depending on that software, your exchanges will not be imported properly from that softwares ADIF. If you like to correct that, you can provide the Cabrillo file that this software also provides to rewrite that data in Wavelog.") ?></p>
+                    <p class="card-text"><span class="badge text-bg-warning"><?= __("Important"); ?></span> <?= __("Please use this function before changing anything about the QSOs in Wavelog, as this function uses the Contest ID, as well as date and time information from both your already imported ADIF file, as well as the CBR file you are about to upload to match the QSOs and only correct relevant data.") ?></p>
                     <form class="form" action="<?php echo site_url('cabrillo/cbrimport'); ?>" method="post" enctype="multipart/form-data">
 
                         <div class="mb-3 row">
