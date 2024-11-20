@@ -297,15 +297,19 @@ function echo_table_col($row, $name) {
                         <span <?php 
 				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") { 
 					echo 'title="'.__("Sent").($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null ? " ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"'; 
-				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M' && $row->COL_CLUBLOG_QSO_UPLOAD_DATE != NULL) { 
-					echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")".'" data-bs-toggle="tooltip" data-bs-html="true"'; 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
+					echo 'title="'.__("Modified");
+					if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) {
+						echo "<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")";
+					}
+					echo '" data-bs-toggle="tooltip" data-bs-html="true"'; 
 				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') { 
 					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"'; 
 				}?> class="clublog-<?php 
 
 				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'Y') { 
 					echo 'green'; 
-				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M' && $row->COL_CLUBLOG_QSO_UPLOAD_DATE != NULL) { 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
 					echo 'yellow'; 
 				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') { 
 					echo 'grey'; 
