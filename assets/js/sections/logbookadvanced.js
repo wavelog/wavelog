@@ -80,7 +80,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.qslMessage);
 	}
 	if (user_options.dxcc.show == "true"){
-		cells.eq(c++).html(qso.dxccname);
+		cells.eq(c++).html(qso.dxcc);
 	}
 	if (user_options.state.show == "true"){
 		cells.eq(c++).html(qso.state);

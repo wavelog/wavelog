@@ -172,7 +172,7 @@ $options = json_decode($options);
                         </div>
                         <div <?php if (($options->dx->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="dx"><?= __("Dx"); ?></label>
-                            <input type="text" name="dx" id="dx" class="form-control form-control-sm" value="">
+                            <input type="text" name="dx" id="dx" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->dxcc->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="dxcc"><?= __("DXCC"); ?></label>
@@ -197,11 +197,11 @@ $options = json_decode($options);
                         </div>
                         <div <?php if (($options->state->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="state"><?= __("State"); ?></label>
-                            <input type="text" name="state" id="state" class="form-control form-control-sm" value="">
+                            <input type="text" name="state" id="state" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->gridsquare->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="gridsquare"><?= __("Gridsquare"); ?></label>
-                            <input type="text" name="gridsquare" id="gridsquare" class="form-control form-control-sm" value="">
+                            <input type="text" name="gridsquare" id="gridsquare" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->mode->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="mode"><?= __("Mode"); ?></label>
@@ -294,11 +294,11 @@ $options = json_decode($options);
                     <div class="row">
                         <div <?php if (($options->sota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="sota"><?= __("SOTA"); ?></label>
-                            <input type="text" name="sota" id="sota" class="form-control form-control-sm" value="">
+                            <input type="text" name="sota" id="sota" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->pota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="pota"><?= __("POTA"); ?></label>
-                            <input type="text" name="pota" id="pota" class="form-control form-control-sm" value="">
+                            <input type="text" name="pota" id="pota" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->iota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="iota"><?= __("IOTA"); ?></label>
@@ -314,16 +314,16 @@ $options = json_decode($options);
                         </div>
                         <div <?php if (($options->wwff->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="wwff"><?= __("WWFF"); ?></label>
-                            <input type="text" name="wwff" id="wwff" class="form-control form-control-sm" value="">
+                            <input type="text" name="wwff" id="wwff" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->operator->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="operator"><?= __("Operator"); ?></label>
-                            <input type="text" name="operator" id="operator" class="form-control form-control-sm" value="">
+                            <input type="text" name="operator" id="operator" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
 
                         <div <?php if (($options->contest->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="contest"><?= __("Contest"); ?></label>
-                            <input type="text" name="contest" id="contest" class="form-control form-control-sm" value="">
+                            <input type="text" name="contest" id="contest" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
 
 						<div <?php if (($options->continent->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
@@ -456,7 +456,7 @@ $options = json_decode($options);
                 </div>
                 <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="qslvia"><?= __("QSL via"); ?></label>
-                    <input type="search" name="qslvia" class="form-control form-control-sm">
+                    <input type="search" name="qslvia" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                 </div>
                 <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="qslimages"><?= __("QSL Images"); ?></label>
@@ -538,12 +538,12 @@ $options = json_decode($options);
             </div>
         </div>
         <div class="row pt-2">
-            <div class="mb-3 d-flex align-items-center col-lg d-flex flex-row justify-content-center align-items-center">
+            <div class="mb-2 btn-group w-auto mx-auto">
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".quickfilterbody"><?= __("Quickfilters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody"><?= __("QSL Filters"); ?></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody" style="white-space: nowrap;"><?= __("QSL Filters"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".filterbody"><?= __("Filters"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody"><?= __("Actions"); ?></button>
-                <label for="qsoResults" class="me-2"><?= __("# Results"); ?></label>
+                <label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
                 <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
                     <option value="250">250</option>
                     <option value="1000">1000</option>
@@ -561,13 +561,13 @@ $options = json_decode($options);
                         </option>
                     <?php } ?>
                 </select>
-                <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton"><?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
+                <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton" style="white-space: nowrap;"><i class="fas fa-search"></i> <?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="invalidButton"><?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton"><?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos"><?= __("Delete"); ?></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton" style="white-space: nowrap;"><i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
+                <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos" style="white-space: nowrap;"><i class="fas fa-trash-alt"></i> <?= __("Delete"); ?></button>
                 <div class="btn-group me-1" role="group">
-                    <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?= __("Map"); ?><div class="ld ld-ring ld-spin"></div></button>
+                    <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="mapButton" onclick="mapQsos(this.form);" style="white-space: nowrap;"><i class="fas fa-globe-europe"></i> <?= __("Map"); ?><div class="ld ld-ring ld-spin"></div></button>
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>

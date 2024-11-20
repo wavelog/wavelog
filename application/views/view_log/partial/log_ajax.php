@@ -294,8 +294,38 @@ function echo_table_col($row, $name) {
 
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false ) { ?>
                     <td class="clublog">
-                        <span <?php if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") { echo "title=\"".__("Sent"); if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"".__("Received"); if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
+                        <span <?php 
+				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") { 
+					echo 'title="'.__("Sent").($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null ? " ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"'; 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
+					echo 'title="'.__("Modified");
+					if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) {
+						echo "<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")";
+					}
+					echo '" data-bs-toggle="tooltip" data-bs-html="true"'; 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') { 
+					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"'; 
+				}?> class="clublog-<?php 
+
+				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'Y') { 
+					echo 'green'; 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
+					echo 'yellow'; 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') { 
+					echo 'grey'; 
+				} else { 
+					echo 'red'; 
+				} ?>">&#9650;</span>
+                        <span <?php 
+				if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") { 
+					echo "title=\"".__("Received"); 
+					if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { 
+						$timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); 
+						echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); 
+					} 
+					echo "\" data-bs-toggle=\"tooltip\""; 
+				} ?> class="clublog-<?php 
+					echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
 

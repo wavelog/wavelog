@@ -161,8 +161,8 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbook_model');
 		$this->load->model('logbookadvanced_model');
 
-		$qsoID = xss_clean($this->input->post('qsoID'));
-		$qso = $this->logbook_model->qso_info($qsoID)->row_array();
+		$qsoID[] = xss_clean($this->input->post('qsoID'));
+		$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
 		if ($qso === null) {
 			header("Content-Type: application/json");
 			echo json_encode([]);
@@ -172,8 +172,8 @@ class Logbookadvanced extends CI_Controller {
 		$callbook = $this->logbook_model->loadCallBook($qso['COL_CALL'], $this->config->item('use_fullname'));
 
 		if ($callbook['callsign'] ?? "" !== "") {
-			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qsoID, $qso, $callbook);
-			$qso = $this->logbook_model->qso_info($qsoID)->row_array();
+			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook);
+			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
 		}
 
 		$qsoObj = new QSO($qso);

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-18 17:48+0000\n"
+"POT-Creation-Date: 2024-11-20 14:40+0000\n"
 "PO-Revision-Date: 2024-08-17 10:49+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Albanian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1971,14 +1971,14 @@ msgstr ""
 
 #: application/controllers/Simplefle.php:90
 #: application/controllers/Simplefle.php:93
-#: application/models/Logbook_model.php:4422
+#: application/models/Logbook_model.php:4424
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr ""
 
 #: application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
-#: application/controllers/Staticmap.php:132
+#: application/controllers/Staticmap.php:154
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:81
 #: application/controllers/Visitor.php:148
@@ -1989,7 +1989,7 @@ msgstr ""
 msgid "Unknown Public Page."
 msgstr ""
 
-#: application/controllers/Staticmap.php:128
+#: application/controllers/Staticmap.php:150
 #: application/controllers/Visitor.php:76
 #: application/controllers/Visitor.php:171
 #: application/controllers/Visitor.php:206
@@ -2273,15 +2273,8 @@ msgid "Edit User"
 msgstr ""
 
 #: application/controllers/User.php:689 application/controllers/User.php:692
-#: application/views/debug/index.php:77 application/views/user/index.php:3
-#: application/views/user/index.php:44
-msgid "User"
-msgid_plural "Users"
-msgstr[0] ""
-msgstr[1] ""
-
-#: application/controllers/User.php:689 application/controllers/User.php:692
-msgid "edited"
+#, php-format
+msgid "User %s edited"
 msgstr ""
 
 #: application/controllers/User.php:746
@@ -2541,43 +2534,43 @@ msgstr ""
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4118
+#: application/models/Logbook_model.php:4120
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4138
+#: application/models/Logbook_model.php:4140
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4157
+#: application/models/Logbook_model.php:4161
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4483
+#: application/models/Logbook_model.php:4485
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4489
+#: application/models/Logbook_model.php:4491
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4494
+#: application/models/Logbook_model.php:4496
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4497
+#: application/models/Logbook_model.php:4499
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4500
+#: application/models/Logbook_model.php:4502
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4503
+#: application/models/Logbook_model.php:4505
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4506
+#: application/models/Logbook_model.php:4508
 #: application/views/view_log/qso.php:267
 msgid "unknown"
 msgstr ""
@@ -6044,19 +6037,19 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:332
-#: application/views/search/search_result_ajax.php:362
+#: application/views/search/search_result_ajax.php:368
 #: application/views/statistics/custom_result.php:89
 #: application/views/view_log/partial/log_ajax.php:142
 #: application/views/view_log/partial/log_ajax.php:219
 #: application/views/view_log/partial/log_ajax.php:239
 #: application/views/view_log/partial/log_ajax.php:289
-#: application/views/view_log/partial/log_ajax.php:297
+#: application/views/view_log/partial/log_ajax.php:299
 #: application/views/visitor/index.php:291
 #: application/views/visitor/index.php:314
 #: application/views/visitor/index.php:332
 #: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:314
 #: src/QSLManager/QSO.php:417 src/QSLManager/QSO.php:469
-#: src/QSLManager/QSO.php:507 src/QSLManager/QSO.php:570
+#: src/QSLManager/QSO.php:524 src/QSLManager/QSO.php:587
 msgid "Sent"
 msgstr ""
 
@@ -6076,18 +6069,18 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:222
 #: application/views/search/search_result_ajax.php:273
 #: application/views/search/search_result_ajax.php:313
-#: application/views/search/search_result_ajax.php:345
-#: application/views/search/search_result_ajax.php:375
+#: application/views/search/search_result_ajax.php:351
+#: application/views/search/search_result_ajax.php:387
 #: application/views/view_log/partial/log_ajax.php:180
 #: application/views/view_log/partial/log_ajax.php:220
 #: application/views/view_log/partial/log_ajax.php:265
 #: application/views/view_log/partial/log_ajax.php:290
-#: application/views/view_log/partial/log_ajax.php:298
+#: application/views/view_log/partial/log_ajax.php:321
 #: application/views/visitor/index.php:296
 #: application/views/visitor/index.php:319
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:359
-#: src/QSLManager/QSO.php:440 src/QSLManager/QSO.php:482
-#: src/QSLManager/QSO.php:546 src/QSLManager/QSO.php:583
+#: src/QSLManager/QSO.php:440 src/QSLManager/QSO.php:492
+#: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:600
 msgid "Received"
 msgstr ""
 
@@ -6262,6 +6255,13 @@ msgstr ""
 #: application/views/debug/index.php:76
 msgid "Total User"
 msgstr ""
+
+#: application/views/debug/index.php:77 application/views/user/index.php:3
+#: application/views/user/index.php:44
+msgid "User"
+msgid_plural "Users"
+msgstr[0] ""
+msgstr[1] ""
 
 #: application/views/debug/index.php:84
 msgid "Server Information"
@@ -7050,9 +7050,9 @@ msgid "The QSOs are marked as exported to HRDLog Logbook."
 msgstr ""
 
 #: application/views/interface_assets/footer.php:31
-#: application/views/search/search_result_ajax.php:404
+#: application/views/search/search_result_ajax.php:416
 #: application/views/view_log/partial/log.php:135
-#: application/views/view_log/partial/log_ajax.php:320
+#: application/views/view_log/partial/log_ajax.php:350
 #: application/views/view_log/qso.php:523
 msgid "Edit QSO"
 msgstr ""
@@ -7868,6 +7868,18 @@ msgstr ""
 msgid "Dx"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:175
+#: application/views/logbookadvanced/index.php:200
+#: application/views/logbookadvanced/index.php:204
+#: application/views/logbookadvanced/index.php:297
+#: application/views/logbookadvanced/index.php:301
+#: application/views/logbookadvanced/index.php:317
+#: application/views/logbookadvanced/index.php:321
+#: application/views/logbookadvanced/index.php:326
+#: application/views/logbookadvanced/index.php:459
+msgid "Empty"
+msgstr ""
+
 #: application/views/logbookadvanced/index.php:250
 msgctxt "Propagation Mode"
 msgid "None/Empty"
@@ -7928,9 +7940,10 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:244
 #: application/views/view_log/partial/log_ajax.php:270
 #: application/views/view_log/partial/log_ajax.php:289
+#: application/views/view_log/partial/log_ajax.php:307
 #: src/QSLManager/QSO.php:323 src/QSLManager/QSO.php:368
 #: src/QSLManager/QSO.php:421 src/QSLManager/QSO.php:444
-#: src/QSLManager/QSO.php:529
+#: src/QSLManager/QSO.php:546
 msgid "Invalid (Ignore)"
 msgstr ""
 
@@ -9426,7 +9439,8 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:555
 #: application/views/view_log/partial/log_ajax.php:289
-#: src/QSLManager/QSO.php:518
+#: application/views/view_log/partial/log_ajax.php:301
+#: src/QSLManager/QSO.php:478 src/QSLManager/QSO.php:535
 msgid "Modified"
 msgstr ""
 
@@ -9443,9 +9457,9 @@ msgid "Exchange (S)"
 msgstr ""
 
 #: application/views/qso/edit_ajax.php:642
-#: application/views/search/search_result_ajax.php:433
+#: application/views/search/search_result_ajax.php:445
 #: application/views/view_log/partial/log.php:157
-#: application/views/view_log/partial/log_ajax.php:349
+#: application/views/view_log/partial/log_ajax.php:379
 msgid "Delete QSO"
 msgstr ""
 
@@ -10091,60 +10105,60 @@ msgstr ""
 msgid "Not Worked"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:409
+#: application/views/search/search_result_ajax.php:421
 #: application/views/view_log/partial/log.php:140
-#: application/views/view_log/partial/log_ajax.php:325
+#: application/views/view_log/partial/log_ajax.php:355
 msgid "Mark QSL Sent (Bureau)"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:410
+#: application/views/search/search_result_ajax.php:422
 #: application/views/view_log/partial/log.php:141
-#: application/views/view_log/partial/log_ajax.php:326
+#: application/views/view_log/partial/log_ajax.php:356
 msgid "Mark QSL Sent (Direct)"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:417
+#: application/views/search/search_result_ajax.php:429
 #: application/views/view_log/partial/log.php:148
-#: application/views/view_log/partial/log_ajax.php:336
+#: application/views/view_log/partial/log_ajax.php:366
 #: application/views/view_log/qso.php:741
 msgid "Mark QSL Received (Bureau)"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:418
+#: application/views/search/search_result_ajax.php:430
 #: application/views/view_log/partial/log.php:149
-#: application/views/view_log/partial/log_ajax.php:337
+#: application/views/view_log/partial/log_ajax.php:367
 #: application/views/view_log/qso.php:743
 msgid "Mark QSL Received (Direct)"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:419
+#: application/views/search/search_result_ajax.php:431
 #: application/views/view_log/partial/log.php:150
-#: application/views/view_log/partial/log_ajax.php:327
+#: application/views/view_log/partial/log_ajax.php:357
 #: application/views/view_log/qso.php:751
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:420
+#: application/views/search/search_result_ajax.php:432
 #: application/views/view_log/partial/log.php:151
-#: application/views/view_log/partial/log_ajax.php:328
+#: application/views/view_log/partial/log_ajax.php:358
 #: application/views/view_log/qso.php:753
 msgid "Mark QSL Card Requested (Direct)"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:421
+#: application/views/search/search_result_ajax.php:433
 #: application/views/view_log/partial/log.php:152
-#: application/views/view_log/partial/log_ajax.php:329
+#: application/views/view_log/partial/log_ajax.php:359
 #: application/views/view_log/qso.php:755
 msgid "Mark QSL Card Not Required"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:427
-#: application/views/view_log/partial/log_ajax.php:343
+#: application/views/search/search_result_ajax.php:439
+#: application/views/view_log/partial/log_ajax.php:373
 msgid "Lookup on QRZ.com"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:429
-#: application/views/view_log/partial/log_ajax.php:345
+#: application/views/search/search_result_ajax.php:441
+#: application/views/view_log/partial/log_ajax.php:375
 msgid "Lookup on HamQTH"
 msgstr ""
 
@@ -11775,7 +11789,8 @@ msgid ""
 msgstr ""
 
 #: application/views/view_log/partial/log_ajax.php:289
-#: src/QSLManager/QSO.php:522
+#: application/views/view_log/partial/log_ajax.php:303
+#: src/QSLManager/QSO.php:482 src/QSLManager/QSO.php:539
 msgid "last sent"
 msgstr ""
 
