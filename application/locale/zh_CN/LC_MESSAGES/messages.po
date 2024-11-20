@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-19 01:10+0000\n"
+"POT-Creation-Date: 2024-11-19 15:29+0000\n"
 "PO-Revision-Date: 2024-11-19 15:29+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -1987,7 +1987,7 @@ msgstr "内容重复"
 
 #: application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
-#: application/controllers/Staticmap.php:132
+#: application/controllers/Staticmap.php:154
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:81
 #: application/controllers/Visitor.php:148
@@ -1995,17 +1995,15 @@ msgstr "内容重复"
 #: application/controllers/Visitor.php:210
 #: application/controllers/Visitor.php:471
 #: application/controllers/Widgets.php:40
-#: application/controllers/Staticmap.php:154
 msgid "Unknown Public Page."
 msgstr "公开页面未知。"
 
-#: application/controllers/Staticmap.php:128
+#: application/controllers/Staticmap.php:150
 #: application/controllers/Visitor.php:76
 #: application/controllers/Visitor.php:171
 #: application/controllers/Visitor.php:206
 #: application/controllers/Visitor.php:467
 #: application/controllers/Widgets.php:36
-#: application/controllers/Staticmap.php:150
 msgid "Empty Logbook"
 msgstr "日志为空"
 
@@ -8024,6 +8022,18 @@ msgstr "截止日期"
 msgid "Dx"
 msgstr "对方呼号(Dx)"
 
+#: application/views/logbookadvanced/index.php:175
+#: application/views/logbookadvanced/index.php:200
+#: application/views/logbookadvanced/index.php:204
+#: application/views/logbookadvanced/index.php:297
+#: application/views/logbookadvanced/index.php:301
+#: application/views/logbookadvanced/index.php:317
+#: application/views/logbookadvanced/index.php:321
+#: application/views/logbookadvanced/index.php:326
+#: application/views/logbookadvanced/index.php:459
+msgid "Empty"
+msgstr "空"
+
 #: application/views/logbookadvanced/index.php:250
 msgctxt "Propagation Mode"
 msgid "None/Empty"
@@ -12209,18 +12219,6 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
-
-#: application/views/logbookadvanced/index.php:175
-#: application/views/logbookadvanced/index.php:200
-#: application/views/logbookadvanced/index.php:204
-#: application/views/logbookadvanced/index.php:297
-#: application/views/logbookadvanced/index.php:301
-#: application/views/logbookadvanced/index.php:317
-#: application/views/logbookadvanced/index.php:321
-#: application/views/logbookadvanced/index.php:326
-#: application/views/logbookadvanced/index.php:459
-msgid "Empty"
-msgstr "空"
 
 #~ msgid "edited"
 #~ msgstr "已编辑"
