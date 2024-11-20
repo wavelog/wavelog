@@ -215,7 +215,7 @@ async function fill_if_empty(field, data) {
     // catch special case for distance
     if (field == "#distance" && $(field).val() == 0) {
         $(field).val(data).css('border', border_color);
-        // $('#locator_info').html(data);
+        // $('#locator_info_edit').html(data);
     }
 
     if ($(field).val() == '' && data != '') {
@@ -287,8 +287,8 @@ function qso_edit(id) {
                        },
                     });
 
-                    $('#prop_mode').change(function(){
-                       if (unsupported_lotw_prop_modes.includes($('#prop_mode').val())) {
+                    $('#prop_mode_edit').change(function(){
+                       if (unsupported_lotw_prop_modes.includes($('#prop_mode_edit').val())) {
                           $('#lotw_sent').prop('disabled', true);
                           $('#lotw_rcvd').prop('disabled', true);
                           $('*[id=lotw_propmode_hint]').each(function() {
@@ -316,21 +316,21 @@ function qso_edit(id) {
                         }
                     });
 
-                    $('#locator_edit, #ant_path').on('change', function(){
+                    $('#locator_edit, #ant_path_edit').on('change', function(){
                         if ($('#locator_edit').val().length >= 4) {
                             $.ajax({
                                url: base_url + 'index.php/logbook/searchbearing',
                                type: 'post',
                                data: {
                                   grid: $('#locator_edit').val(),
-                                  ant_path: $('#ant_path').val(),
+                                  ant_path: $('#ant_path_edit').val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  $('#locator_info').html(data).fadeIn("slow");
+                                  $('#locator_info_edit').html(data).fadeIn("slow");
                                },
                                error: function() {
-                                  $('#locator_info').text("Error loading bearing!").fadeIn("slow");
+                                  $('#locator_info_edit').text("Error loading bearing!").fadeIn("slow");
                                },
                             });
                             $.ajax({
@@ -338,20 +338,19 @@ function qso_edit(id) {
                                type: 'post',
                                data: {
                                   grid: $('#locator_edit').val(),
-                                  ant_path: $('#ant_path').val(),
+                                  ant_path: $('#ant_path_edit').val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  $("#distance").val(data);
-
+                                  $("#distance").val(parseFloat(data));
                                },
                                error: function() {
-                                  $("#distance").val('');
+                                  $('#distance').val('');
                                },
                             });
                         } else if ($('#locator_edit').val().length == 0) {
-                           $('#locator_info').fadeOut("slow");
-                           $("#distance").val('');
+                           $('#locator_info_edit').fadeOut("slow");
+                           $('#distance').val('');
                         }
                     }).trigger('change'); // we also run this when the dom is ready, Trick 17 ;-)
 
@@ -365,10 +364,10 @@ function qso_edit(id) {
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  $('#locator_info').html(data).fadeIn("slow");
+                                  $('#locator_info_edit').html(data).fadeIn("slow");
                                },
                                error: function() {
-                                  $('#locator_info').text("Error loading bearing!").fadeIn("slow");
+                                  $('#locator_info_edit').text("Error loading bearing!").fadeIn("slow");
                                },
                             });
                             $.ajax({
@@ -379,15 +378,15 @@ function qso_edit(id) {
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  document.getElementById("distance").value = data;
+                                  $("#distance").val(parseFloat(data));
                                },
                                error: function() {
-                                  document.getElementById("distance").value = null;
+                                  $("#distance").val('');
                                },
                             });
                         } else if ($(this).val().length == 0) {
-                           $('#locator_info').fadeOut("slow");
-                           document.getElementById("distance").value = null;
+                           $('#locator_info_edit').fadeOut("slow");
+                           $("#distance").val('');
                         }
                     });
 

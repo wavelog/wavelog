@@ -162,7 +162,7 @@
                                             $distance .= ' <span class="badge bg-secondary">' . __("Other Path") . "</span>";
                                             break;
                                         case "G":
-                                            $distance .= ' <span class="badge bg-secondary">' . __("Gray Line") . "</span>";
+                                            $distance .= ' <span class="badge bg-secondary">' . __("Greyline") . "</span>";
                                             break;
                                         default:
                                             break;
