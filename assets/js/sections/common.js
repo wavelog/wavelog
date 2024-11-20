@@ -207,7 +207,7 @@ async function fill_if_empty(field, data) {
     }
 
     if (field == 'select[name="input_state_edit"]') {
-        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit', '#stateDropdownEdit');
+        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabel', '#location_us_county_edit', '#stationCntyInputEdit', '#stateDropdownEdit');
         $(field).val(data).css('border', border_color);
         return;
     }
@@ -272,7 +272,13 @@ function qso_edit(id) {
 
                     $('[data-bs-toggle="tooltip"]').tooltip();
 
-                    var state = $("#stateDropdown option:selected").text();
+                    if ($('#dxcc_id_edit').val() == '291' || $('#dxcc_id_edit').val() == '110' || $('#dxcc_id_edit').val() == '6') {
+                        $('#location_us_county_edit').show();
+                    } else {    
+                        $('#location_us_county_edit').hide();    
+                    }
+
+                    var state = $("#stateDropdownEdit option:selected").text();
                     if (state != "") {
                         $("#stationCntyInputEdit").prop('disabled', false);
                         selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
@@ -304,12 +310,12 @@ function qso_edit(id) {
                        }
                     });
 
-                    $('#stateDropdown').change(function(){
-                        var state = $("#stateDropdown option:selected").text();
+                    $('#stateDropdownEdit').change(function(){
+                        var state = $("#stateDropdownEdit option:selected").text();
                         if (state != "") {
                             $("#stationCntyInputEdit").prop('disabled', false);
 
-                            selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
+                            selectize_usa_county('#stateDropdownEdit', '#stationCntyInputEdit');
 
                         } else {
                             $("#stationCntyInputEdit").prop('disabled', true);
@@ -514,8 +520,8 @@ function qso_edit(id) {
                         calcRemainingChars(event, '.modal-content');
                     });
 
-                    $("#dxcc_id").change(async function () {
-                        await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
+                    $("#dxcc_id_edit").change(async function () {
+                        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabel', '#location_us_county_edit', '#stationCntyInputEdit', '#stateDropdownEdit');
                     });
                 },
             });
