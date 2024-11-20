@@ -538,12 +538,12 @@ $options = json_decode($options);
             </div>
         </div>
         <div class="row pt-2">
-            <div class="mb-3 d-flex align-items-center col-lg d-flex flex-row justify-content-center align-items-center">
+            <div class="mb-2 btn-group w-auto mx-auto">
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".quickfilterbody"><?= __("Quickfilters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody"><?= __("QSL Filters"); ?></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody" style="white-space: nowrap;"><?= __("QSL Filters"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".filterbody"><?= __("Filters"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody"><?= __("Actions"); ?></button>
-                <label for="qsoResults" class="me-2"><?= __("# Results"); ?></label>
+                <label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
                 <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
                     <option value="250">250</option>
                     <option value="1000">1000</option>
