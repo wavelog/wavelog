@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-19 15:29+0000\n"
-"PO-Revision-Date: 2024-11-11 16:35+0000\n"
+"POT-Creation-Date: 2024-11-19 13:45+0000\n"
+"PO-Revision-Date: 2024-11-19 15:29+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.8.3\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -2005,7 +2005,7 @@ msgstr "Дубликат для"
 
 #: application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
-#: application/controllers/Staticmap.php:154
+#: application/controllers/Staticmap.php:132
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:81
 #: application/controllers/Visitor.php:148
@@ -2013,15 +2013,17 @@ msgstr "Дубликат для"
 #: application/controllers/Visitor.php:210
 #: application/controllers/Visitor.php:471
 #: application/controllers/Widgets.php:40
+#: application/controllers/Staticmap.php:154
 msgid "Unknown Public Page."
 msgstr "Неизвестная публичная страница."
 
-#: application/controllers/Staticmap.php:150
+#: application/controllers/Staticmap.php:128
 #: application/controllers/Visitor.php:76
 #: application/controllers/Visitor.php:171
 #: application/controllers/Visitor.php:206
 #: application/controllers/Visitor.php:467
 #: application/controllers/Widgets.php:36
+#: application/controllers/Staticmap.php:150
 msgid "Empty Logbook"
 msgstr "Пустой журнал"
 
@@ -2306,7 +2308,7 @@ msgstr "Редактировать пользователя"
 #: application/controllers/User.php:689 application/controllers/User.php:692
 #, php-format
 msgid "User %s edited"
-msgstr ""
+msgstr "Аккаунт пользователя %s отредактирован"
 
 #: application/controllers/User.php:746
 msgid "Profile"
@@ -5641,11 +5643,11 @@ msgstr "Нет"
 
 #: application/views/cabrillo/index.php:201
 msgid "If the gridsquare was part of the exchange, you should select YES."
-msgstr ""
+msgstr "Если квадрат был частью контрольного номера, то выберите ДА."
 
 #: application/views/cabrillo/index.php:201
 msgid "Include logged grids?"
-msgstr ""
+msgstr "Включить записанные в лог квадраты?"
 
 #: application/views/cabrillo/index.php:215
 #: application/views/reg1test/index.php:150
@@ -8180,11 +8182,11 @@ msgstr "QRZ получено"
 
 #: application/views/logbookadvanced/edit.php:30
 msgid "eQSL Sent"
-msgstr ""
+msgstr "eQSL отправлено"
 
 #: application/views/logbookadvanced/edit.php:31
 msgid "eQSL Received"
-msgstr ""
+msgstr "eQSL получено"
 
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:691
@@ -8272,7 +8274,7 @@ msgstr "DX"
 #: application/views/logbookadvanced/index.php:326
 #: application/views/logbookadvanced/index.php:459
 msgid "Empty"
-msgstr ""
+msgstr "Пусто"
 
 #: application/views/logbookadvanced/index.php:250
 msgctxt "Propagation Mode"
@@ -9840,7 +9842,7 @@ msgstr "Длинный путь"
 #: application/views/qso/edit_ajax.php:273 application/views/qso/index.php:535
 #: application/views/view_log/qso.php:448
 msgid "eMail"
-msgstr ""
+msgstr "электронная почта"
 
 #: application/views/qso/edit_ajax.php:282
 msgid "Sat Name"
@@ -10048,7 +10050,7 @@ msgstr "Например: Q03"
 
 #: application/views/qso/index.php:537
 msgid "eMail-Adress of QSO-Partner"
-msgstr ""
+msgstr "Адрес электронной почты корреспондента (в QSO)"
 
 #: application/views/qso/index.php:546 application/views/view_log/qso.php:276
 msgid "Satellite Name"
