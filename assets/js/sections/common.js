@@ -316,13 +316,14 @@ function qso_edit(id) {
                         }
                     });
 
-                    $('#locator').change(function(){
-                        if ($(this).val().length >= 4) {
+                    $('#locator_edit, #ant_path').on('change', function(){
+                        if ($('#locator_edit').val().length >= 4) {
                             $.ajax({
                                url: base_url + 'index.php/logbook/searchbearing',
                                type: 'post',
                                data: {
-                                  grid: $(this).val(),
+                                  grid: $('#locator_edit').val(),
+                                  ant_path: $('#ant_path').val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
@@ -336,21 +337,23 @@ function qso_edit(id) {
                                url: base_url + 'index.php/logbook/searchdistance',
                                type: 'post',
                                data: {
-                                  grid: $(this).val(),
+                                  grid: $('#locator_edit').val(),
+                                  ant_path: $('#ant_path').val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  document.getElementById("distance").value = data;
+                                  $("#distance").val(data);
+
                                },
                                error: function() {
-                                  document.getElementById("distance").value = null;
+                                  $("#distance").val('');
                                },
                             });
-                        } else if ($(this).val().length == 0) {
+                        } else if ($('#locator_edit').val().length == 0) {
                            $('#locator_info').fadeOut("slow");
-                           document.getElementById("distance").value = null;
+                           $("#distance").val('');
                         }
-                    });
+                    }).trigger('change'); // we also run this when the dom is ready, Trick 17 ;-)
 
                     $('#vucc_grids').change(function(){
                         if ($(this).val().length >= 9) {
