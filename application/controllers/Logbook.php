@@ -129,7 +129,7 @@ class Logbook extends CI_Controller {
 
 		$lookupcall=$this->logbook_model->get_plaincall($callsign);
 
-		$return['partial'] = $this->partial($lookupcall, $band);
+		$return['partial'] = $this->partial($callsign, $band);
 
 		$callbook = $this->logbook_model->loadCallBook($callsign, $this->config->item('use_fullname'));
 
@@ -616,13 +616,14 @@ class Logbook extends CI_Controller {
 	function partial($id, $band = null) {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
-
+		$this->load->model('logbook_model');
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$html = "";
 
 		if(!empty($logbooks_locations_array)) {
+			$id_plain=$this->logbook_model->get_plaincall($id);
 			$this->db->select(''.$this->config->item('table_name').'.COL_CALL, '.$this->config->item('table_name').'.COL_BAND, '.$this->config->item('table_name').'.COL_FREQ, '.$this->config->item('table_name').'.COL_TIME_ON, '.$this->config->item('table_name').'.COL_RST_RCVD, '.$this->config->item('table_name').'.COL_RST_SENT, '.$this->config->item('table_name').'.COL_MODE, '.$this->config->item('table_name').'.COL_SUBMODE, '.$this->config->item('table_name').'.COL_PRIMARY_KEY, '.$this->config->item('table_name').'.COL_SAT_NAME, '.$this->config->item('table_name').'.COL_GRIDSQUARE, '.$this->config->item('table_name').'.COL_QSL_RCVD, '.$this->config->item('table_name').'.COL_EQSL_QSL_RCVD, '.$this->config->item('table_name').'.COL_EQSL_QSL_SENT, '.$this->config->item('table_name').'.COL_QSL_SENT, '.$this->config->item('table_name').'.COL_STX, '.$this->config->item('table_name').'.COL_STX_STRING, '.$this->config->item('table_name').'.COL_SRX, '.$this->config->item('table_name').'.COL_SRX_STRING, '.$this->config->item('table_name').'.COL_LOTW_QSL_SENT, '.$this->config->item('table_name').'.COL_LOTW_QSL_RCVD, '.$this->config->item('table_name').'.COL_VUCC_GRIDS, '.$this->config->item('table_name').'.COL_MY_GRIDSQUARE, '.$this->config->item('table_name').'.COL_CONTEST_ID, '.$this->config->item('table_name').'.COL_STATE, '.$this->config->item('table_name').'.COL_QRZCOM_QSO_UPLOAD_STATUS, '.$this->config->item('table_name').'.COL_QRZCOM_QSO_DOWNLOAD_STATUS, '.$this->config->item('table_name').'.COL_CLUBLOG_QSO_UPLOAD_STATUS, '.$this->config->item('table_name').'.COL_CLUBLOG_QSO_DOWNLOAD_STATUS, '.$this->config->item('table_name').'.COL_POTA_REF, '.$this->config->item('table_name').'.COL_IOTA, '.$this->config->item('table_name').'.COL_SOTA_REF, '.$this->config->item('table_name').'.COL_WWFF_REF, '.$this->config->item('table_name').'.COL_OPERATOR, '.$this->config->item('table_name').'.COL_COUNTRY, station_profile.*');
 			$this->db->from($this->config->item('table_name'));
 
@@ -630,10 +631,10 @@ class Logbook extends CI_Controller {
 			$this->db->where_in('station_profile.station_id', $logbooks_locations_array);
 
 			$this->db->group_start();
-			$this->db->where($this->config->item('table_name').'.COL_CALL', $id);
-			$this->db->or_like($this->config->item('table_name').'.COL_CALL', '/'.$id,'before');
-			$this->db->or_like($this->config->item('table_name').'.COL_CALL', $id.'/','after');
-			$this->db->or_like($this->config->item('table_name').'.COL_CALL', '/'.$id.'/');
+			$this->db->where($this->config->item('table_name').'.COL_CALL', $id_plain);
+			$this->db->or_like($this->config->item('table_name').'.COL_CALL', '/'.$id_plain,'before');
+			$this->db->or_like($this->config->item('table_name').'.COL_CALL', $id_plain.'/','after');
+			$this->db->or_like($this->config->item('table_name').'.COL_CALL', '/'.$id_plain.'/');
 			$this->db->group_end();
 
 			$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "desc");
@@ -824,11 +825,9 @@ class Logbook extends CI_Controller {
 			$html .= "</div>";
 			return $html;
 		} else {
-				$this->load->model('logbook_model');
 				if (($this->config->item('callbook') == "qrz" && $this->config->item('qrz_username') != null && $this->config->item('qrz_password') != null) ||
 				   ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null)) {
 					$callsign['callsign']=$this->logbook_model->loadCallBook($id);
-				
 					if (isset($callsign['callsign']['dxcc'])) {
 						$entity = $this->logbook_model->get_entity($callsign['callsign']['dxcc']);
 						$callsign['callsign']['dxcc_name'] = $entity['name'];

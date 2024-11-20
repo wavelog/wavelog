@@ -5102,6 +5102,9 @@ class Logbook_model extends CI_Model {
 					$plaincall = $this->get_plaincall($callsign);
 					// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
 					$callbook = $this->qrz->search($plaincall, $this->session->userdata('qrz_session_key'), $use_fullname, true);
+					// We're in "reduced mode". Let's try at least derivating a DXCC out of the original callsign (doesn't matter if it's MM or AM, would return none in that case)
+					$dxcc_l = $this->dxcc_lookup($callsign,date("Y-m-d"));
+					$callbook['dxcc']=$dxcc_l['adif'];
 				}
 			}
 
