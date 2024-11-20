@@ -154,7 +154,7 @@
                                         <div class="mb-3 col-sm-6">
                                             <label for="locator"><?= __("Gridsquare"); ?></label>
                                             <input type="text" class="form-control" id="locator_edit" name="locator" value="<?php echo $qso->COL_GRIDSQUARE; ?>">
-                                            <small id="locator_info" class="form-text text-muted"><?php if ($qso->COL_DISTANCE != "") echo $qso->COL_DISTANCE . " km"; ?></small>
+                                            <small id="locator_info_edit" class="form-text text-muted"><?php if ($qso->COL_DISTANCE != "") echo $qso->COL_DISTANCE . " km"; ?></small>
                                         </div>
 
                                         <input type="hidden" name="distance" id="distance" value="<?php print ($qso->COL_DISTANCE != "") ? $qso->COL_DISTANCE : "0"; ?>">
@@ -185,7 +185,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label for="prop_mode"><?= __("Propagation Mode"); ?></label>
-                                            <select class="form-select" id="prop_mode" name="prop_mode">
+                                            <select class="form-select" id="prop_mode_edit" name="prop_mode">
                                                 <option value="" <?php if ($qso->COL_PROP_MODE == "") { echo "selected=\"selected\""; } ?>></option>
                                                 <option value="AS" <?php if ($qso->COL_PROP_MODE == "AS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Aircraft Scatter"); ?></option>
                                                 <option value="AUR" <?php if ($qso->COL_PROP_MODE == "AUR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Aurora"); ?></option>
@@ -217,7 +217,7 @@
                                         <input type="hidden" class="form-control" id="country" name="country" value="<?php echo $qso->COL_COUNTRY; ?>">
                                         <div class="mb-3 col-sm-6">
                                             <label for="ant_path"><?= __("Antenna Path"); ?></label>
-                                            <select class="form-select" id="ant_path" name="ant_path">
+                                            <select class="form-select" id="ant_path_edit" name="ant_path">
                                                 <option value=""></option>
                                                 <option value="G" <?php if ($qso->COL_ANT_PATH == "G") { echo "selected=\"selected\""; } ?>><?= __("Greyline"); ?></option>
                                                 <option value="O" <?php if ($qso->COL_ANT_PATH == "O") { echo "selected=\"selected\""; } ?>><?= __("Other"); ?></option>

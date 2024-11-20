@@ -191,6 +191,14 @@ class Logbook_model extends CI_Model {
 			$ant_el = null;
 		}
 
+		$ant_path_input = $this->input->post('ant_path') ?? '';
+		$possible_ant_paths = ['G', 'O', 'S', 'L'];
+		if (!empty($ant_path_input) && in_array($ant_path_input, $possible_ant_paths)) {
+			$ant_path = trim(xss_clean($ant_path_input));
+		} else {
+			$ant_path = null;
+		}
+
 		$darc_dok = trim(xss_clean($this->input->post('darc_dok')));
 		$qso_locator = strtoupper(trim(xss_clean($this->input->post('locator')) ?? ''));
 		$qso_qth = trim(xss_clean($this->input->post('qth')));
@@ -306,6 +314,7 @@ class Logbook_model extends CI_Model {
 			'COL_FREQ_RX' => $this->parse_frequency($this->input->post('freq_display_rx')),
 			'COL_ANT_AZ' => $ant_az,
 			'COL_ANT_EL' => $ant_el,
+			'COL_ANT_PATH' => $ant_path,
 			'COL_A_INDEX' => null,
 			'COL_AGE' => $qso_age,
 			'COL_TEN_TEN' => null,
@@ -5016,7 +5025,7 @@ class Logbook_model extends CI_Model {
 	public function update_distances($all) {
 		ini_set('memory_limit', '-1');	// This consumes a much of Memory!
 		$this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
-		$this->db->select("COL_PRIMARY_KEY, COL_GRIDSQUARE, station_gridsquare");
+		$this->db->select("COL_PRIMARY_KEY, COL_GRIDSQUARE, COL_ANT_PATH, station_gridsquare");
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		if (!$all) {
 			$this->db->where("((COL_DISTANCE is NULL) or (COL_DISTANCE = 0))");
@@ -5033,7 +5042,8 @@ class Logbook_model extends CI_Model {
 				$this->load->library('Qra');
 			}
 			foreach ($query->result() as $row) {
-				$distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K');
+				$ant_path = $row->COL_ANT_PATH ?? null;
+				$distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K', $ant_path);
 				$data = array(
 					'COL_DISTANCE' => $distance,
 				);
