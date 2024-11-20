@@ -824,51 +824,21 @@ class Logbook extends CI_Controller {
 			$html .= "</div>";
 			return $html;
 		} else {
-				if ($this->config->item('callbook') == "qrz" && $this->config->item('qrz_username') != null && $this->config->item('qrz_password') != null) {
-					// Lookup using QRZ
-					$this->load->library('qrz');
-
-					if(!$this->session->userdata('qrz_session_key')) {
-						$qrz_session_key = $this->qrz->session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
-						$this->session->set_userdata('qrz_session_key', $qrz_session_key);
-					}
-					$callsign['callsign'] = $this->qrz->search($id, $this->session->userdata('qrz_session_key'), $this->config->item('use_fullname'));
-
-					if (empty($callsign['callsign']['callsign'])) {
-						$qrz_session_key = $this->qrz->session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
-						$this->session->set_userdata('qrz_session_key', $qrz_session_key);
-						$callsign['callsign'] = $this->qrz->search($id, $this->session->userdata('qrz_session_key'), $this->config->item('use_fullname'));
-					}
+				$this->load->model('logbook_model');
+				if (($this->config->item('callbook') == "qrz" && $this->config->item('qrz_username') != null && $this->config->item('qrz_password') != null) ||
+				   ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null)) {
+					$callsign['callsign']=$this->logbook_model->loadCallBook($id);
+				
 					if (isset($callsign['callsign']['dxcc'])) {
-						$this->load->model('logbook_model');
 						$entity = $this->logbook_model->get_entity($callsign['callsign']['dxcc']);
 						$callsign['callsign']['dxcc_name'] = $entity['name'];
 						$callsign['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 						$callsign['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 					}
-				} else if ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null) {
-					// Load the HamQTH library
-					$this->load->library('hamqth');
-
-					if(!$this->session->userdata('hamqth_session_key')) {
-						$hamqth_session_key = $this->hamqth->session($this->config->item('hamqth_username'), $this->config->item('hamqth_password'));
-						$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
-					}
-
-					$callsign['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
-
-					// If HamQTH session has expired, start a new session and retry the search.
-					if($callsign['callsign']['error'] == "Session does not exist or expired") {
-						$hamqth_session_key = $this->hamqth->session($this->config->item('hamqth_username'), $this->config->item('hamqth_password'));
-						$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
-						$callsign['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
-					}
 					if (isset($data['callsign']['gridsquare'])) {
-						$this->load->model('logbook_model');
 						$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), null, $this->session->userdata('user_default_band'))->num_rows();
 					}
 					if (isset($callsign['callsign']['dxcc'])) {
-						$this->load->model('logbook_model');
 						$entity = $this->logbook_model->get_entity($callsign['callsign']['dxcc']);
 						$callsign['callsign']['dxcc_name'] = $entity['name'];
 						$callsign['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
