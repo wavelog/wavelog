@@ -320,7 +320,7 @@ function echo_table_col($row, $name) {
 						echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); 
 					} 
 					echo "\" data-bs-toggle=\"tooltip\""; 
-				} ?> class="qrz-<?php 
+				} ?> class="clublog-<?php 
 					echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
