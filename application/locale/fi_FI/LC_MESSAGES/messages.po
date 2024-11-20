@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-20 12:47+0000\n"
+"POT-Creation-Date: 2024-11-20 14:40+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -6037,19 +6037,19 @@ msgstr "Tarvittu"
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:332
-#: application/views/search/search_result_ajax.php:362
+#: application/views/search/search_result_ajax.php:368
 #: application/views/statistics/custom_result.php:89
 #: application/views/view_log/partial/log_ajax.php:142
 #: application/views/view_log/partial/log_ajax.php:219
 #: application/views/view_log/partial/log_ajax.php:239
 #: application/views/view_log/partial/log_ajax.php:289
-#: application/views/view_log/partial/log_ajax.php:297
+#: application/views/view_log/partial/log_ajax.php:299
 #: application/views/visitor/index.php:291
 #: application/views/visitor/index.php:314
 #: application/views/visitor/index.php:332
 #: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:314
 #: src/QSLManager/QSO.php:417 src/QSLManager/QSO.php:469
-#: src/QSLManager/QSO.php:507 src/QSLManager/QSO.php:570
+#: src/QSLManager/QSO.php:524 src/QSLManager/QSO.php:587
 msgid "Sent"
 msgstr "Lähetetyt"
 
@@ -6069,18 +6069,18 @@ msgstr "Lähetetyt"
 #: application/views/search/search_result_ajax.php:222
 #: application/views/search/search_result_ajax.php:273
 #: application/views/search/search_result_ajax.php:313
-#: application/views/search/search_result_ajax.php:345
-#: application/views/search/search_result_ajax.php:375
+#: application/views/search/search_result_ajax.php:351
+#: application/views/search/search_result_ajax.php:387
 #: application/views/view_log/partial/log_ajax.php:180
 #: application/views/view_log/partial/log_ajax.php:220
 #: application/views/view_log/partial/log_ajax.php:265
 #: application/views/view_log/partial/log_ajax.php:290
-#: application/views/view_log/partial/log_ajax.php:298
+#: application/views/view_log/partial/log_ajax.php:321
 #: application/views/visitor/index.php:296
 #: application/views/visitor/index.php:319
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:359
-#: src/QSLManager/QSO.php:440 src/QSLManager/QSO.php:482
-#: src/QSLManager/QSO.php:546 src/QSLManager/QSO.php:583
+#: src/QSLManager/QSO.php:440 src/QSLManager/QSO.php:492
+#: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:600
 msgid "Received"
 msgstr "Vastaanotetut"
 
@@ -7050,9 +7050,9 @@ msgid "The QSOs are marked as exported to HRDLog Logbook."
 msgstr ""
 
 #: application/views/interface_assets/footer.php:31
-#: application/views/search/search_result_ajax.php:404
+#: application/views/search/search_result_ajax.php:416
 #: application/views/view_log/partial/log.php:135
-#: application/views/view_log/partial/log_ajax.php:320
+#: application/views/view_log/partial/log_ajax.php:350
 #: application/views/view_log/qso.php:523
 msgid "Edit QSO"
 msgstr "Muokkaa QSO:a"
@@ -7940,9 +7940,10 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:244
 #: application/views/view_log/partial/log_ajax.php:270
 #: application/views/view_log/partial/log_ajax.php:289
+#: application/views/view_log/partial/log_ajax.php:307
 #: src/QSLManager/QSO.php:323 src/QSLManager/QSO.php:368
 #: src/QSLManager/QSO.php:421 src/QSLManager/QSO.php:444
-#: src/QSLManager/QSO.php:529
+#: src/QSLManager/QSO.php:546
 msgid "Invalid (Ignore)"
 msgstr "Virheellinen (Ohita)"
 
@@ -9450,7 +9451,8 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:555
 #: application/views/view_log/partial/log_ajax.php:289
-#: src/QSLManager/QSO.php:518
+#: application/views/view_log/partial/log_ajax.php:301
+#: src/QSLManager/QSO.php:478 src/QSLManager/QSO.php:535
 msgid "Modified"
 msgstr ""
 
@@ -9467,9 +9469,9 @@ msgid "Exchange (S)"
 msgstr ""
 
 #: application/views/qso/edit_ajax.php:642
-#: application/views/search/search_result_ajax.php:433
+#: application/views/search/search_result_ajax.php:445
 #: application/views/view_log/partial/log.php:157
-#: application/views/view_log/partial/log_ajax.php:349
+#: application/views/view_log/partial/log_ajax.php:379
 msgid "Delete QSO"
 msgstr "Poista QSO"
 
@@ -10115,60 +10117,60 @@ msgstr ""
 msgid "Not Worked"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:409
+#: application/views/search/search_result_ajax.php:421
 #: application/views/view_log/partial/log.php:140
-#: application/views/view_log/partial/log_ajax.php:325
+#: application/views/view_log/partial/log_ajax.php:355
 msgid "Mark QSL Sent (Bureau)"
 msgstr "Merkitse QSL lähetetyksi (Bureau)"
 
-#: application/views/search/search_result_ajax.php:410
+#: application/views/search/search_result_ajax.php:422
 #: application/views/view_log/partial/log.php:141
-#: application/views/view_log/partial/log_ajax.php:326
+#: application/views/view_log/partial/log_ajax.php:356
 msgid "Mark QSL Sent (Direct)"
 msgstr "Merkitse QSL lähetetyksi (Direct)"
 
-#: application/views/search/search_result_ajax.php:417
+#: application/views/search/search_result_ajax.php:429
 #: application/views/view_log/partial/log.php:148
-#: application/views/view_log/partial/log_ajax.php:336
+#: application/views/view_log/partial/log_ajax.php:366
 #: application/views/view_log/qso.php:741
 msgid "Mark QSL Received (Bureau)"
 msgstr "Merkitse QSL vastaanotetuksi (Bureau)"
 
-#: application/views/search/search_result_ajax.php:418
+#: application/views/search/search_result_ajax.php:430
 #: application/views/view_log/partial/log.php:149
-#: application/views/view_log/partial/log_ajax.php:337
+#: application/views/view_log/partial/log_ajax.php:367
 #: application/views/view_log/qso.php:743
 msgid "Mark QSL Received (Direct)"
 msgstr "Merkitse QSL vastaanotetuksi (Direct)"
 
-#: application/views/search/search_result_ajax.php:419
+#: application/views/search/search_result_ajax.php:431
 #: application/views/view_log/partial/log.php:150
-#: application/views/view_log/partial/log_ajax.php:327
+#: application/views/view_log/partial/log_ajax.php:357
 #: application/views/view_log/qso.php:751
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "Merkitse QSL-kortti pyydetyksi (Bureau)"
 
-#: application/views/search/search_result_ajax.php:420
+#: application/views/search/search_result_ajax.php:432
 #: application/views/view_log/partial/log.php:151
-#: application/views/view_log/partial/log_ajax.php:328
+#: application/views/view_log/partial/log_ajax.php:358
 #: application/views/view_log/qso.php:753
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "Merkitse QSL-kortti pyydetyksi (Direct)"
 
-#: application/views/search/search_result_ajax.php:421
+#: application/views/search/search_result_ajax.php:433
 #: application/views/view_log/partial/log.php:152
-#: application/views/view_log/partial/log_ajax.php:329
+#: application/views/view_log/partial/log_ajax.php:359
 #: application/views/view_log/qso.php:755
 msgid "Mark QSL Card Not Required"
 msgstr "Merkitse QSL-kortti tarpeettomaksi"
 
-#: application/views/search/search_result_ajax.php:427
-#: application/views/view_log/partial/log_ajax.php:343
+#: application/views/search/search_result_ajax.php:439
+#: application/views/view_log/partial/log_ajax.php:373
 msgid "Lookup on QRZ.com"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:429
-#: application/views/view_log/partial/log_ajax.php:345
+#: application/views/search/search_result_ajax.php:441
+#: application/views/view_log/partial/log_ajax.php:375
 msgid "Lookup on HamQTH"
 msgstr ""
 
@@ -11807,7 +11809,8 @@ msgid ""
 msgstr ""
 
 #: application/views/view_log/partial/log_ajax.php:289
-#: src/QSLManager/QSO.php:522
+#: application/views/view_log/partial/log_ajax.php:303
+#: src/QSLManager/QSO.php:482 src/QSLManager/QSO.php:539
 msgid "last sent"
 msgstr ""
 
