@@ -170,22 +170,21 @@ function single_callbook_update() {
         dataType: 'json',
         success: function (data) {
             // console.log(data);
-            fill_if_empty('#qth', data.callsign_qth);
-            fill_if_empty('#dxcc_id', data.dxcc.adif);
-            fill_if_empty('#continent', data.dxcc.cont);
-            fill_if_empty('#cqz', data.dxcc.cqz);
+            fill_if_empty('#qth_edit', data.callsign_qth);
+            fill_if_empty('#dxcc_id_edit', data.dxcc.adif);
+            fill_if_empty('#continent_edit', data.dxcc.cont);
+            fill_if_empty('#cqz_edit', data.dxcc.cqz);
             if (data.callsign_ituz != '') {
-                fill_if_empty('#ituz', data.callsign_ituz);
+                fill_if_empty('#ituz_edit', data.callsign_ituz);
             } else {
-                fill_if_empty('#ituz', data.dxcc.ituz);
+                fill_if_empty('#ituz_edit', data.dxcc.ituz);
             }
-            fill_if_empty('#distance', data.callsign_distance);
-            fill_if_empty('#locator', data.callsign_qra);
+            fill_if_empty('#locator_edit', data.callsign_qra);
             // fill_if_empty('#image', data.image);  Not in use yet, but may in future
-            fill_if_empty('#iota_ref', data.callsign_iota);
-            fill_if_empty('#name', data.callsign_name);
+            fill_if_empty('#iota_ref_edit', data.callsign_iota);
+            fill_if_empty('#name_edit', data.callsign_name);
             fill_if_empty('#qsl-via', data.qsl_manager);
-            fill_if_empty('#stateDropdown', data.callsign_state);
+            fill_if_empty('select[name="input_state_edit"]', data.callsign_state);
             fill_if_empty('#stationCntyInputEdit', data.callsign_us_county);
 
             $('#update_from_callbook').prop("disabled", false).removeClass("running");
@@ -202,24 +201,26 @@ async function fill_if_empty(field, data) {
     var border_color = '2px solid green';
 
     // catch special case for dxcc
-    if (field == "#dxcc_id" && $(field).val() == 0) {
+    if (field == "#dxcc_id_edit" && $(field).val() == 0) {
         $(field).val(data).css('border', border_color);
+        return;
     }
 
-    // catch special case for state
-    if (field == '#stateDropdown') {
-        await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
+    if (field == 'select[name="input_state_edit"]') {
+        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit', '#stateDropdownEdit');
         $(field).val(data).css('border', border_color);
+        return;
     }
 
-    // catch special case for distance
-    if (field == "#distance" && $(field).val() == 0) {
-        $(field).val(data).css('border', border_color);
-        // $('#locator_info_edit').html(data);
+    // catch special case for grid
+    if (field == "#locator_edit") {
+        $(field).val(data.toUpperCase()).css('border', border_color).trigger('change');
+        return;
     }
 
     if ($(field).val() == '' && data != '') {
         $(field).val(data).css('border', border_color);
+        return;
     }
 }
 
@@ -579,7 +580,7 @@ function selectize_usa_county(state_field, county_field) {
     });
 }
 
-async function updateStateDropdown(dxcc_field, state_label, county_div, county_input) {
+async function updateStateDropdown(dxcc_field, state_label, county_div, county_input, dropdown = '#stateDropdown') {
     var selectedDxcc = $(dxcc_field);
 
     if (selectedDxcc.val() !== "") {
@@ -589,7 +590,7 @@ async function updateStateDropdown(dxcc_field, state_label, county_div, county_i
             data: { dxcc: selectedDxcc.val() },
             success: function (response) {
                 if (response.status === "ok") {
-                    statesDropdown(response, set_state);
+                    statesDropdown(response, set_state, dropdown);
                     $(state_label).html(response.subdivision_name);
                 } else {
                     statesDropdown(response);
@@ -934,8 +935,8 @@ if ($('.table-responsive .dropdown-toggle').length>0) {
 }
 
 var set_state;
-function statesDropdown(states, set_state = null) {
-    var dropdown = $('#stateDropdown');
+function statesDropdown(states, set_state = null, dropdown = '#stateDropdown') {
+    var dropdown = $(dropdown);
     dropdown.empty();
     dropdown.append($('<option>', {
         value: ''

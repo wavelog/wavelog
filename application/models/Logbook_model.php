@@ -173,8 +173,8 @@ class Logbook_model extends CI_Model {
 			$submode = $this->input->post('mode');
 		}
 
-		if ($this->input->post('county') && $this->input->post('input_state_edit')) {
-			$clean_county_input = trim($this->input->post('input_state_edit')) . "," . trim($this->input->post('county'));
+		if ($this->input->post('county') && $this->input->post('input_state')) {
+			$clean_county_input = trim($this->input->post('input_state')) . "," . trim($this->input->post('county'));
 		} else {
 			$clean_county_input = null;
 		}
@@ -204,7 +204,7 @@ class Logbook_model extends CI_Model {
 		$qso_qth = trim(xss_clean($this->input->post('qth')));
 		$qso_name = trim(xss_clean($this->input->post('name')));
 		$qso_age = null;
-		$qso_state = $this->input->post('input_state_edit') == null ? '' : trim(xss_clean($this->input->post('input_state_edit')));
+		$qso_state = $this->input->post('input_state') == null ? '' : trim(xss_clean($this->input->post('input_state')));
 		$qso_rx_power = null;
 
 		if ($this->input->post('copyexchangeto')) {

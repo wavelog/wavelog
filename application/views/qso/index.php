@@ -458,7 +458,7 @@
 
             <div class="mb-3">
               <label for="stateInput" id="stateInputLabel"></label>
-                <select class="form-select" name="input_state_edit" id="stateDropdown">
+                <select class="form-select" name="input_state" id="stateDropdown">
                   <option value=""></option>
                 </select>
             </div>
