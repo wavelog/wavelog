@@ -207,7 +207,7 @@ async function fill_if_empty(field, data) {
     }
 
     if (field == 'select[name="input_state_edit"]') {
-        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabel', '#location_us_county_edit', '#stationCntyInputEdit', '#stateDropdownEdit');
+        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabelEdit', '#location_us_county_edit', '#stationCntyInputEdit', '#stateDropdownEdit');
         $(field).val(data).css('border', border_color);
         return;
     }
@@ -521,7 +521,7 @@ function qso_edit(id) {
                     });
 
                     $("#dxcc_id_edit").change(async function () {
-                        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabel', '#location_us_county_edit', '#stationCntyInputEdit', '#stateDropdownEdit');
+                        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabelEdit', '#location_us_county_edit', '#stationCntyInputEdit', '#stateDropdownEdit');
                     });
                 },
             });

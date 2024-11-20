@@ -330,7 +330,7 @@
                                             $state_list = $CI->subdivisions->get_state_list($qso->COL_DXCC);
                                             ?>
 
-                                            <label for="stateDropdown" id="stateInputLabel"><?php echo $subdivision_name; ?></label>
+                                            <label for="stateDropdown" id="stateInputLabelEdit"><?php echo $subdivision_name; ?></label>
                                             <select class="form-select" id="stateDropdownEdit" name="input_state_edit">
                                                 <option value=""></option>
                                                 <?php foreach ($state_list->result() as $state) {
