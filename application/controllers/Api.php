@@ -128,7 +128,7 @@ class API extends CI_Controller {
 		}
 	}
 
-	function station_info($key) {
+	function station_info($key = '') {
 		$this->load->model('api_model');
 		$this->load->model('stations');
 		header("Content-type: application/json");
