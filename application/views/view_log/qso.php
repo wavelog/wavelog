@@ -151,7 +151,6 @@
                                 }
 
                                 if ($ant_path != null) {
-                                    log_message('error', 'Ant Path: '.$ant_path);
                                     switch ($row->COL_ANT_PATH) {
                                         case "S":
                                             $distance .= ' <span class="badge bg-secondary">' . __("Short Path") . "</span>";
