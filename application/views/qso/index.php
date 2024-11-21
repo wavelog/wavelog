@@ -548,7 +548,7 @@
             <div class="mb-3">
               <label for="email"><?= __("E-mail"); ?></label>
               <input class="form-control" id="email" type="text" name="email" value="" />
-              <small id="MailHelp" class="form-text text-muted"><?= __("E-mail address of QSO-Partner"); ?></small>
+              <small id="MailHelp" class="form-text text-muted"><?= __("E-mail address of QSO-partner"); ?></small>
             </div>
 
 
