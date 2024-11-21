@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-21 08:42+0000\n"
+"POT-Creation-Date: 2024-11-21 10:31+0000\n"
 "PO-Revision-Date: 2024-09-17 12:24+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -662,9 +662,11 @@ msgstr "Izvoz SOTA CSV"
 msgid "Dashboard"
 msgstr "Kontrolna tabla"
 
-#: application/controllers/Dayswithqso.php:18
-msgid "Number of days with QSOs each year"
-msgstr "Broj dana sa QSO-om za svaku godinu"
+#: application/controllers/Dayswithqso.php:17
+#: application/views/dayswithqso/index.php:2
+#: application/views/interface_assets/header.php:148
+msgid "Days with QSOs"
+msgstr "Dana sa QSO-ima"
 
 #: application/controllers/Debug.php:106
 msgid "Debug"
@@ -2658,7 +2660,7 @@ msgstr "Ukupan broj rađenih WAJA"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:245
-#: application/views/dayswithqso/index.php:16
+#: application/views/dayswithqso/index.php:35
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -2666,6 +2668,7 @@ msgstr "Godina"
 
 #: application/views/accumulate/index.php:9
 #: application/views/accumulate/index.php:67
+#: application/views/dayswithqso/index.php:14
 msgid "Yearly"
 msgstr "Godišnje"
 
@@ -6383,55 +6386,70 @@ msgstr "Logbook of the World"
 msgid "VUCC-Grids"
 msgstr "VUCC-polja"
 
-#: application/views/dayswithqso/index.php:2
-#: application/views/interface_assets/header.php:148
-msgid "Days with QSOs"
-msgstr "Dana sa QSO-ima"
+#: application/views/dayswithqso/index.php:3
+msgid "Number of QSOs for this day of the week"
+msgstr ""
 
-#: application/views/dayswithqso/index.php:25
+#: application/views/dayswithqso/index.php:17
+msgid "Days of the week"
+msgstr ""
+
+#: application/views/dayswithqso/index.php:20
+msgid "Streaks"
+msgstr ""
+
+#: application/views/dayswithqso/index.php:28
+msgid "Number of days with QSOs each year"
+msgstr "Broj dana sa QSO-om za svaku godinu"
+
+#: application/views/dayswithqso/index.php:44
 msgid "Days"
 msgstr "Dani"
 
-#: application/views/dayswithqso/index.php:37
+#: application/views/dayswithqso/index.php:60
+msgid "QSOs breakdown by day of the week"
+msgstr ""
+
+#: application/views/dayswithqso/index.php:66
 msgid "Longest streak with QSOs in the log"
 msgstr "Najduži niz sa QSO u dnevniku"
 
-#: application/views/dayswithqso/index.php:38
+#: application/views/dayswithqso/index.php:67
 msgid "A maximum of the 10 longest streaks are shown!"
 msgstr "Prikazano je maksimalno 10 najdužih nizova!"
 
-#: application/views/dayswithqso/index.php:56
+#: application/views/dayswithqso/index.php:85
 msgid "Streak (continuous days with QSOs)"
 msgstr "Niz (kontinuitet dana sa vezama)"
 
-#: application/views/dayswithqso/index.php:57
-#: application/views/dayswithqso/index.php:85
-#: application/views/dayswithqso/index.php:107
+#: application/views/dayswithqso/index.php:86
+#: application/views/dayswithqso/index.php:114
+#: application/views/dayswithqso/index.php:136
 msgid "Start Date"
 msgstr "Početni datum"
 
-#: application/views/dayswithqso/index.php:58
-#: application/views/dayswithqso/index.php:86
-#: application/views/dayswithqso/index.php:108
+#: application/views/dayswithqso/index.php:87
+#: application/views/dayswithqso/index.php:115
+#: application/views/dayswithqso/index.php:137
 #: application/views/timeline/index.php:153
 msgid "End Date"
 msgstr "Krajnji datum"
 
-#: application/views/dayswithqso/index.php:74
+#: application/views/dayswithqso/index.php:103
 msgctxt "Days with QSOs"
 msgid "No streak found!"
 msgstr "Nije pronađen niz!"
 
-#: application/views/dayswithqso/index.php:78
+#: application/views/dayswithqso/index.php:107
 msgid "Current streak with QSOs in the log"
 msgstr "Trenutni niz sa vezama u dnevniku"
 
-#: application/views/dayswithqso/index.php:84
-#: application/views/dayswithqso/index.php:106
+#: application/views/dayswithqso/index.php:113
+#: application/views/dayswithqso/index.php:135
 msgid "Current streak (continuous days with QSOs)"
 msgstr "Trenutni niz (kontinuitet dana sa vezama)"
 
-#: application/views/dayswithqso/index.php:101
+#: application/views/dayswithqso/index.php:130
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
@@ -6439,7 +6457,7 @@ msgstr ""
 "Ako održite vezu dana, možete nastaviti da produžujete vaš niz... ili će vaš "
 "trenutni niz biti prekinut!"
 
-#: application/views/dayswithqso/index.php:122
+#: application/views/dayswithqso/index.php:151
 msgid "No current streak found!"
 msgstr "Nije pronađen tekući niz!"
 

@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-21 08:42+0000\n"
+"POT-Creation-Date: 2024-11-21 10:31+0000\n"
 "PO-Revision-Date: 2024-11-20 09:12+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -673,9 +673,11 @@ msgstr "SOTA CSV-Export"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: application/controllers/Dayswithqso.php:18
-msgid "Number of days with QSOs each year"
-msgstr "Anzahl der Tage mit QSOs pro Jahr"
+#: application/controllers/Dayswithqso.php:17
+#: application/views/dayswithqso/index.php:2
+#: application/views/interface_assets/header.php:148
+msgid "Days with QSOs"
+msgstr "Tage mit QSOs"
 
 #: application/controllers/Debug.php:106
 msgid "Debug"
@@ -2673,7 +2675,7 @@ msgstr "Kumulierte Anzahl gearbeiteter WAJA"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:245
-#: application/views/dayswithqso/index.php:16
+#: application/views/dayswithqso/index.php:35
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -2681,6 +2683,7 @@ msgstr "Jahr"
 
 #: application/views/accumulate/index.php:9
 #: application/views/accumulate/index.php:67
+#: application/views/dayswithqso/index.php:14
 msgid "Yearly"
 msgstr "jährlich"
 
@@ -6445,55 +6448,70 @@ msgstr "Logbook of the World"
 msgid "VUCC-Grids"
 msgstr "VUCC-Locator"
 
-#: application/views/dayswithqso/index.php:2
-#: application/views/interface_assets/header.php:148
-msgid "Days with QSOs"
-msgstr "Tage mit QSOs"
+#: application/views/dayswithqso/index.php:3
+msgid "Number of QSOs for this day of the week"
+msgstr ""
 
-#: application/views/dayswithqso/index.php:25
+#: application/views/dayswithqso/index.php:17
+msgid "Days of the week"
+msgstr ""
+
+#: application/views/dayswithqso/index.php:20
+msgid "Streaks"
+msgstr ""
+
+#: application/views/dayswithqso/index.php:28
+msgid "Number of days with QSOs each year"
+msgstr "Anzahl der Tage mit QSOs pro Jahr"
+
+#: application/views/dayswithqso/index.php:44
 msgid "Days"
 msgstr "Tage"
 
-#: application/views/dayswithqso/index.php:37
+#: application/views/dayswithqso/index.php:60
+msgid "QSOs breakdown by day of the week"
+msgstr ""
+
+#: application/views/dayswithqso/index.php:66
 msgid "Longest streak with QSOs in the log"
 msgstr "Längste Serie mit QSOs im Logbuch"
 
-#: application/views/dayswithqso/index.php:38
+#: application/views/dayswithqso/index.php:67
 msgid "A maximum of the 10 longest streaks are shown!"
 msgstr "Es werden maximal die 10 längsten Serien angezeigt!"
 
-#: application/views/dayswithqso/index.php:56
+#: application/views/dayswithqso/index.php:85
 msgid "Streak (continuous days with QSOs)"
 msgstr "Serie (fortlaufende Tage mit QSOs)"
 
-#: application/views/dayswithqso/index.php:57
-#: application/views/dayswithqso/index.php:85
-#: application/views/dayswithqso/index.php:107
+#: application/views/dayswithqso/index.php:86
+#: application/views/dayswithqso/index.php:114
+#: application/views/dayswithqso/index.php:136
 msgid "Start Date"
 msgstr "Startdatum"
 
-#: application/views/dayswithqso/index.php:58
-#: application/views/dayswithqso/index.php:86
-#: application/views/dayswithqso/index.php:108
+#: application/views/dayswithqso/index.php:87
+#: application/views/dayswithqso/index.php:115
+#: application/views/dayswithqso/index.php:137
 #: application/views/timeline/index.php:153
 msgid "End Date"
 msgstr "Enddatum"
 
-#: application/views/dayswithqso/index.php:74
+#: application/views/dayswithqso/index.php:103
 msgctxt "Days with QSOs"
 msgid "No streak found!"
 msgstr "Keine Serie gefunden!"
 
-#: application/views/dayswithqso/index.php:78
+#: application/views/dayswithqso/index.php:107
 msgid "Current streak with QSOs in the log"
 msgstr "Aktuelle Serie mit QSOs im Logbuch"
 
-#: application/views/dayswithqso/index.php:84
-#: application/views/dayswithqso/index.php:106
+#: application/views/dayswithqso/index.php:113
+#: application/views/dayswithqso/index.php:135
 msgid "Current streak (continuous days with QSOs)"
 msgstr "Aktuelle Serie (fortlaufende Tage mit QSOs)"
 
-#: application/views/dayswithqso/index.php:101
+#: application/views/dayswithqso/index.php:130
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
@@ -6501,7 +6519,7 @@ msgstr ""
 "Wenn du heute ein QSO machst, kannst du deine Serie verlängern... "
 "Andernfalls wird deine aktuelle Serie unterbrochen!"
 
-#: application/views/dayswithqso/index.php:122
+#: application/views/dayswithqso/index.php:151
 msgid "No current streak found!"
 msgstr "Keine aktuelle Serie gefunden!"
 
