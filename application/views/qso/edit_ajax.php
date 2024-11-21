@@ -168,12 +168,12 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="name"><?= __("Name"); ?></label>
-                                            <input type="text" class="form-control" id="name" name="name" value="<?php echo $qso->COL_NAME; ?>">
+                                            <input type="text" class="form-control" id="name_edit" name="name" value="<?php echo $qso->COL_NAME; ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="qth"><?= __("QTH"); ?></label>
-                                            <input type="text" class="form-control" id="qth" name="qth" value="<?php echo $qso->COL_QTH; ?>">
+                                            <input type="text" class="form-control" id="qth_edit" name="qth" value="<?php echo $qso->COL_QTH; ?>">
                                         </div>
                                     </div>
 
@@ -230,7 +230,7 @@
                                     <div class="row mb-3">
                                         <div class="mb-3 col-sm-6">
                                             <label for="dxcc_id"><?= __("DXCC"); ?></label>
-                                            <select class="form-select" id="dxcc_id" name="dxcc_id" required>
+                                            <select class="form-select" id="dxcc_id_edit" name="dxcc_id" required>
                                                 <option value=""><?= __("Please select one"); ?></option>
                                                 <?php
                                                 foreach ($dxcc as $d) {
@@ -258,7 +258,7 @@
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="continent"><?= __("Continent"); ?></label>
-                                            <select class="form-select" id="continent" name="continent">
+                                            <select class="form-select" id="continent_edit" name="continent">
                                                 <option value=""></option>
                                                 <option value="AF" <?php if ($qso->COL_CONT == "AF") { echo "selected=\"selected\""; } ?>><?= __("Africa"); ?></option>
                                                 <option value="AN" <?php if ($qso->COL_CONT == "AN") { echo "selected=\"selected\""; } ?>><?= __("Antarctica"); ?></option>
@@ -304,7 +304,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="cqz"><?= __("CQ Zone"); ?></label>
-                                            <select class="form-select" id="cqz" name="cqz" required>
+                                            <select class="form-select" id="cqz_edit" name="cqz" required>
                                                 <?php for ($i = 1; $i <= 40; $i++) { ?>
                                                     <option value="<?= $i; ?>" <?php if ($qso->COL_CQZ == $i) echo "selected=\"selected\""; ?>><?= $i; ?></option>
                                                 <?php } ?>
@@ -312,7 +312,7 @@
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="ituz"><?= __("ITU Zone"); ?></label>
-                                            <select class="form-select" id="ituz" name="ituz">
+                                            <select class="form-select" id="ituz_edit" name="ituz">
                                                 <option value=''></option>
                                                 <?php for ($i = 1; $i <= 90; $i++) { ?>
                                                     <option value="<?= $i; ?>" <?php if ($qso->COL_ITUZ == $i) echo "selected=\"selected\""; ?>><?= $i; ?></option>
@@ -330,8 +330,8 @@
                                             $state_list = $CI->subdivisions->get_state_list($qso->COL_DXCC);
                                             ?>
 
-                                            <label for="stateDropdown" id="stateInputLabel"><?php echo $subdivision_name; ?></label>
-                                            <select class="form-select" id="stateDropdown" name="input_state_edit">
+                                            <label for="stateDropdown" id="stateInputLabelEdit"><?php echo $subdivision_name; ?></label>
+                                            <select class="form-select" id="stateDropdownEdit" name="input_state_edit">
                                                 <option value=""></option>
                                                 <?php foreach ($state_list->result() as $state) {
                                                     $selected = ($qso->COL_STATE == $state->state) ? 'selected="selected"' : ''; ?>
@@ -341,17 +341,15 @@
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <?php if ($qso->COL_DXCC == '291' || $qso->COL_DXCC == '110'  || $qso->COL_DXCC == '006') { ?>
-                                            <div class="mb-3 col-sm-6" id="location_us_county">
-                                                <label for="stationCntyInput"><?= __("USA County"); ?></label>
-                                                <input class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo $qso->COL_CNTY; ?>" />
-                                            </div>
-                                        <?php } ?>
+                                        <div style="display: none;" class="mb-3 col-sm-6" id="location_us_county_edit">
+                                            <label for="stationCntyInput"><?= __("USA County"); ?></label>
+                                            <input class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo $qso->COL_CNTY; ?>" />
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="iota_ref"><?= __("IOTA"); ?></label>
-                                            <select class="form-select" id="iota_ref" name="iota_ref">
+                                            <select class="form-select" id="iota_ref_edit" name="iota_ref">
                                                 <option value=""></option>
                                                 <?php foreach ($iota as $i) { ?>
                                                     <option value="<?= $i->tag; ?>" <?php if ($qso->COL_IOTA == $i->tag) echo "selected=\"selected\""; ?>><?= $i->tag . ' - ' . $i->name; ?></option>
