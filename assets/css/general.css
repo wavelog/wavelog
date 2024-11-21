@@ -369,6 +369,11 @@ TD.clublog {
 	font-size: 1.1em;
 }
 
+.clublog-yellow {
+	color: #d39e00 !important;
+	font-size: 1.1em;
+}
+
 .clublog-red {
 	color: #f00 !important;
 	font-size: 1.1em;
@@ -386,6 +391,16 @@ TD.qrz {
 
 .qrz-red {
 	color: #f00 !important;
+	font-size: 1.1em;
+}
+
+.qrz-yellow {
+	color: #d39e00 !important;
+	font-size: 1.1em;
+}
+
+.qrz-grey {
+	color: #dddddd !important;
 	font-size: 1.1em;
 }
 
@@ -442,8 +457,12 @@ TD.lotw {
 	text-transform: uppercase;
 }
 
-#nav-bar-search-input:focus {
-	text-transform: uppercase;
+#nav-bar-search-input {
+    text-transform: uppercase;
+}
+
+#nav-bar-search-input::placeholder {
+    text-transform: none;
 }
 
 .settings {
@@ -657,7 +676,7 @@ div#station_logbooks_linked_table_paginate {
 }
 
 .activeRow a {
-	color: #fff !important;
+	color: #fff;
 }
 
 .w-qsl {
@@ -753,6 +772,15 @@ div#station_logbooks_linked_table_paginate {
 #wwff,
 #pota {
 	text-transform: uppercase;
+}
+
+#dx::placeholder,
+#state::placeholder,
+#gridsquare::placeholder,
+#sota::placeholder,
+#wwff::placeholder,
+#pota::placeholder {
+    text-transform: none;
 }
 
 #awardInfoButton {
@@ -937,7 +965,7 @@ label {
 #latDeg, #lngDeg {
     width: 170px;
 }
-#locator, #distance, #bearing {
+#locator, #distance, #bearing, #ituzonedisplay, #cqzonedisplay{
     width: 120px;
 }
 

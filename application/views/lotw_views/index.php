@@ -5,10 +5,7 @@
 	</div>
 <?php } ?>
 <br>
-	<?php
-	if (!($this->config->item('disable_manual_lotw'))) { ?>
 	<a class="btn btn-outline-primary btn-sm float-end" href="<?php echo site_url('/lotw/import'); ?>" role="button"><i class="fas fa-cloud-download-alt"></i> <?= __("LoTW Import"); ?></a>
-	<?php } ?>
 	<h2><?= __("Logbook of the World"); ?></h2>
 
 	<!-- Card Starts -->
@@ -100,7 +97,7 @@
 										if ($last_upload_fail_ts > $last_upload_ts) { ?>
 											<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. <?= sprintf(__("Last success: %s"), $last_upload); ?>" class="badge text-bg-danger"><?php echo $last_upload_fail; ?></span>
 										<?php } else {
-											if ($last_upload_fail && $row->last_upload_status)  { ?>
+											if ($row->last_upload_fail && $last_upload_fail && $row->last_upload_status)  { ?>
 												<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. <?= sprintf(__("Last fail: %s"), $last_upload_fail); ?>" class="badge text-bg-success"><?php echo $last_upload; ?></span>
 											<?php } else { ?>
 												<span class="badge text-bg-success"><?php echo $last_upload; ?></span>
@@ -141,6 +138,7 @@
 		</div>
 
 		<div class="card-body">
+            		<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with LoTW will happen at: ").$next_run."</p>"; } ?>
 			<button class="btn btn-outline-success" hx-get="<?php echo site_url('lotw/lotw_upload'); ?>"  hx-target="#lotw_manual_results">
 				<?= __("Manual Sync"); ?>
 			</button>

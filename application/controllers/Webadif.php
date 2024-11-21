@@ -51,7 +51,9 @@ class Webadif extends CI_Controller {
 		$data['qsos'] = $this->logbook_model->get_webadif_qsos($station_id, null, null, $trusted);
 		$errormessages=array();
 
-		$this->load->library('AdifHelper');
+		if (!$this->load->is_loaded('AdifHelper')) {
+			$this->load->library('AdifHelper');
+		}
 
 		if ($data['qsos']) {
 			foreach ($data['qsos']->result() as $qso) {

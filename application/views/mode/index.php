@@ -1,3 +1,15 @@
+<script>
+	var lang_create_mode = "<?= __("Create mode"); ?>";
+	var lang_mode_deletion_confirm = "<?= __("Warning! Are you sure you want to delete the following mode?:"); ?>";
+	var lang_active_all_confirm = "<?= __("Warning! Are you sure you want to activate all modes?"); ?>";
+	var lang_deactive_all_confirm = "<?= __("Warning! Are you sure you want to deactivate all modes?"); ?>";
+	var lang_deactivate_mode = "<?= __("Deactivate"); ?>";
+	var lang_activate_mode = "<?= __("Activate"); ?>";
+	var lang_mode_active = "<?= __("Active"); ?>";
+	var lang_mode_not_active = "<?= __("Not active"); ?>";
+</script>
+
+
 <div class="container">
 
 <br>

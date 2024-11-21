@@ -161,6 +161,12 @@ class Debug_model extends CI_Model
 		return $query->row()->total;
 	}
 
+    function count_users() {
+        $sql = 'SELECT COUNT(*) AS total FROM users;';
+        $query = $this->db->query($sql);
+        return $query->row()->total;
+    }
+
 	function getMigrationVersion() {
         $this->db->select_max('version');
         $query = $this->db->get('migrations');

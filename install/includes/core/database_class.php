@@ -15,16 +15,16 @@ class Database {
 		$query = file_get_contents('assets/install.sql');
 
 		$newpw = password_hash($data['password'], PASSWORD_DEFAULT);
-		$newquery  = str_replace("%%FIRSTUSER_NAME%%", $data['username'], $query);
+		$newquery  = str_replace("%%FIRSTUSER_NAME%%", str_replace("'", "\\'", $data['username']), $query);
 		$newquery  = str_replace("%%FIRSTUSER_PASS%%", $newpw, $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_MAIL%%", $data['user_email'], $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_CALL%%", strtoupper($data['callsign']), $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_LOCATOR%%", strtoupper($data['userlocator']), $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_FIRSTNAME%%", $data['firstname'], $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_LASTNAME%%", $data['lastname'], $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_FIRSTNAME%%", str_replace("'", "\\'", $data['firstname']), $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_LASTNAME%%", str_replace("'", "\\'", $data['lastname']), $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_TIMEZONE%%", $data['timezone'], $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_DXCC%%", $data['dxcc'], $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_CITY%%", $data['city'], $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_CITY%%", str_replace("'", "\\'", $data['city']), $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_USERLANGUAGE%%", $data['userlanguage'], $newquery);
 
 

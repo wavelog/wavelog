@@ -27,10 +27,10 @@ class Logbook extends CI_Controller {
 		$config['cur_tag_close'] = '</a></strong>';
 
 		$this->pagination->initialize($config);
-		
+
 		//load the model and get results
 		$data['results'] = $this->logbook_model->get_qsos($config['per_page'],$this->uri->segment(3));
-		
+
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		if(!$data['results']) {
@@ -165,7 +165,7 @@ class Logbook extends CI_Controller {
 			}
 		}
 
-		if ($return['callsign_qra'] != "") {
+		if ($return['callsign_qra'] != "" || $return['callsign_qra'] != null) {
 			$return['latlng'] = $this->qralatlng($return['callsign_qra']);
 			$return['bearing'] = $this->bearing($return['callsign_qra'], $measurement_base, $station_id);
 		}
@@ -843,6 +843,8 @@ class Logbook extends CI_Controller {
 						$this->load->model('logbook_model');
 						$entity = $this->logbook_model->get_entity($callsign['callsign']['dxcc']);
 						$callsign['callsign']['dxcc_name'] = $entity['name'];
+						$callsign['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+						$callsign['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 					}
 				} else if ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null) {
 					// Load the HamQTH library
@@ -863,12 +865,14 @@ class Logbook extends CI_Controller {
 					}
 					if (isset($data['callsign']['gridsquare'])) {
 						$this->load->model('logbook_model');
-						$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
+						$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), null, $this->session->userdata('user_default_band'))->num_rows();
 					}
 					if (isset($callsign['callsign']['dxcc'])) {
 						$this->load->model('logbook_model');
 						$entity = $this->logbook_model->get_entity($callsign['callsign']['dxcc']);
 						$callsign['callsign']['dxcc_name'] = $entity['name'];
+						$callsign['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+						$callsign['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 					}
 					if (isset($callsign['callsign']['error'])) {
 						$callsign['error'] = $callsign['callsign']['error'];
@@ -887,7 +891,7 @@ class Logbook extends CI_Controller {
 
 				if (isset($callsign['callsign']['gridsquare'])) {
 					$this->load->model('logbook_model');
-					$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsign['callsign']['gridsquare'],0,4)), 0, $band)->num_rows();
+					$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsign['callsign']['gridsquare'],0,4)), null, $band)->num_rows();
 				}
 				if (isset($callsign['callsign']['error'])) {
 					$callsign['error'] = $callsign['callsign']['error'];
@@ -943,11 +947,13 @@ class Logbook extends CI_Controller {
 
 						$data['callsign'] = $this->qrz->search($id, $this->session->userdata('qrz_session_key'), $this->config->item('use_fullname'));
 						if (isset($data['callsign']['gridsquare'])) {
-							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
+							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), null, $this->session->userdata('user_default_band'))->num_rows();
 						}
 						if (isset($data['callsign']['dxcc'])) {
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
+							$data['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($data['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+							$data['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($data['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 						}
 						if (isset($data['callsign']['error'])) {
 							$data['error'] = $data['callsign']['error'];
@@ -970,11 +976,13 @@ class Logbook extends CI_Controller {
 							$data['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
 						}
 						if (isset($data['callsign']['gridsquare'])) {
-							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
+							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), null, $this->session->userdata('user_default_band'))->num_rows();
 						}
 						if (isset($data['callsign']['dxcc'])) {
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
+							$data['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($data['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+							$data['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($data['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 						}
 						if (isset($data['callsign']['error'])) {
 							$data['error'] = $data['callsign']['error'];
@@ -1016,20 +1024,30 @@ class Logbook extends CI_Controller {
   }
 
 	function search_lotw_unconfirmed($station_id) {
-		$station_id = $this->security->xss_clean($station_id);
+		$clean_station_id = $this->security->xss_clean($station_id);
+
+		if (!is_numeric($clean_station_id) && $clean_station_id !== 'All') {
+			show_404();
+		}
 
 		$this->load->model('user_model');
 
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('stations');
+		$logbooks_locations_array = $this->stations->all_of_user();
 
-		if (!$logbooks_locations_array) {
+		$station_ids = array();
+
+		if ($logbooks_locations_array->num_rows() > 0){
+			foreach ($logbooks_locations_array->result() as $row) {
+				array_push($station_ids, $row->station_id);
+			}
+		} else {
 			return null;
 		}
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$station_ids)."'";
 
 		$sql = 'select COL_CALL, COL_MODE, COL_SUBMODE, station_callsign, COL_SAT_NAME, COL_BAND, COL_TIME_ON, lotw_users.lastupload from ' . $this->config->item('table_name') .
 		' join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
@@ -1061,14 +1079,20 @@ class Logbook extends CI_Controller {
 
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('stations');
+		$logbooks_locations_array = $this->stations->all_of_user();
 
-		if (!$logbooks_locations_array) {
+		$station_ids = array();
+
+		if ($logbooks_locations_array->num_rows() > 0){
+			foreach ($logbooks_locations_array->result() as $row) {
+				array_push($station_ids, $row->station_id);
+			}
+		} else {
 			return null;
 		}
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$station_ids)."'";
 
 		$sql = 'select *, (select group_concat(distinct cqzone order by cqzone) from dxcc_master where countrycode = thcv.col_dxcc and cqzone <> \'\' order by cqzone asc) as correctcqzone from ' . $this->config->item('table_name') .
 		' thcv join station_profile on thcv.station_id = station_profile.station_id where thcv.station_id in ('. $location_list . ')
@@ -1087,6 +1111,54 @@ class Logbook extends CI_Controller {
 		$data['qsos'] = $query;
 
 		$this->load->view('search/cqzones_result.php', $data);
+	}
+
+	function search_incorrect_itu_zones($station_id) {
+		$clean_station_id = $this->security->xss_clean($station_id);
+
+		if (!is_numeric($clean_station_id) && $clean_station_id !== 'All') {
+			show_404();
+		}
+
+		$this->load->model('user_model');
+
+		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
+
+		$this->load->model('stations');
+		$logbooks_locations_array = $this->stations->all_of_user();
+
+		$station_ids = array();
+
+		if ($logbooks_locations_array->num_rows() > 0){
+			foreach ($logbooks_locations_array->result() as $row) {
+				array_push($station_ids, $row->station_id);
+			}
+		} else {
+			return null;
+		}
+
+		$location_list = "'".implode("','",$station_ids)."'";
+
+		$sql = "select *, (select group_concat(distinct ituzone order by ituzone) from dxcc_master where countrycode = thcv.col_dxcc and ituzone <> '' order by ituzone asc) as correctituzone from " . $this->config->item('table_name') .
+		" thcv join station_profile on thcv.station_id = station_profile.station_id where thcv.station_id in (". $location_list . ")
+		and not exists (select 1 from dxcc_master where countrycode = thcv.col_dxcc and ituzone = col_ituz) and col_dxcc > 0
+		";
+
+		$params = [];
+
+		if ($clean_station_id != 'All') {
+			$sql .= ' and station_profile.station_id = ?';
+			$params[] = $clean_station_id;
+		}
+
+		$sql .= " order by thcv.col_time_on desc
+		limit 1000";
+
+		$query = $this->db->query($sql, $params);
+
+		$data['qsos'] = $query;
+
+		$this->load->view('search/ituzones_result.php', $data);
 	}
 
 	/*
@@ -1112,6 +1184,7 @@ class Logbook extends CI_Controller {
 	/* return station bearing */
 	function searchbearing() {
 			$locator = xss_clean($this->input->post('grid'));
+			$ant_path = xss_clean($this->input->post('ant_path')) == '' ? NULL : xss_clean($this->input->post('ant_path'));
 			$station_id = xss_clean($this->input->post('stationProfile'));
 			if(!$this->load->is_loaded('Qra')) {
 			    $this->load->library('Qra');
@@ -1143,7 +1216,7 @@ class Logbook extends CI_Controller {
 					$measurement_base = $this->session->userdata('user_measurement_base');
 				}
 
-				$bearing = $this->qra->bearing($mylocator, $locator, $measurement_base);
+				$bearing = $this->qra->bearing($mylocator, $locator, $measurement_base, $ant_path);
 
 				echo $bearing;
 			}
@@ -1153,6 +1226,7 @@ class Logbook extends CI_Controller {
 	/* return distance */
 	function searchdistance() {
 			$locator = xss_clean($this->input->post('grid'));
+			$ant_path = xss_clean($this->input->post('ant_path')) == '' ? NULL : xss_clean($this->input->post('ant_path'));
 			$station_id = xss_clean($this->input->post('stationProfile'));
 			if(!$this->load->is_loaded('Qra')) {
 			    $this->load->library('Qra');
@@ -1177,7 +1251,7 @@ class Logbook extends CI_Controller {
 					$mylocator = $this->config->item('locator');
 				}
 
-				$distance = $this->qra->distance($mylocator, $locator, 'K');
+				$distance = $this->qra->distance($mylocator, $locator, 'K', $ant_path);
 
 				echo $distance;
 			}

@@ -77,6 +77,18 @@ class Update extends CI_Controller {
 			if ($count % 10  == 0)
 				$this->update_status(__("Preparing DXCC-Entries: ").$count);
 		}
+		array_push($a_data, array(
+					'adif' => 0,
+					'name' => '- NONE - (e.g. /MM, /AM)',
+					'prefix' => '',
+					'ituz' => 0,
+					'cqz' => 0,
+					'cont' => '',
+					'long' => 0,
+					'lat' => 0,
+					'start' => null,
+					'end' => null
+				));
 		$this->db->insert_batch('dxcc_entities', $a_data);
 
 		$this->update_status();
@@ -131,7 +143,7 @@ class Update extends CI_Controller {
      * Load the dxcc prefixes
      */
 	public function dxcc_prefixes() {
-		
+
 		// Load the cty file
         if(!$this->load->is_loaded('Paths')) {
         	$this->load->library('Paths');
@@ -225,6 +237,10 @@ class Update extends CI_Controller {
         $this->dxcc_entities();
         $this->dxcc_exceptions();
         $this->dxcc_prefixes();
+		$sql = "update dxcc_entities
+		join dxcc_temp on dxcc_entities.adif = dxcc_temp.adif
+		set dxcc_entities.ituz = dxcc_temp.ituz;";
+		$this->db->query($sql);
         $this->db->trans_complete();
 
         $this->update_status(__("DONE"));
@@ -339,7 +355,7 @@ class Update extends CI_Controller {
         $this->load->model('Update_model');
         $result = $this->Update_model->dok();
         echo $result;
-        
+
     }
 
     /*
@@ -350,7 +366,7 @@ class Update extends CI_Controller {
         $this->load->model('Update_model');
         $result = $this->Update_model->sota();
         echo $result;
-        
+
     }
 
     /*
@@ -369,7 +385,7 @@ class Update extends CI_Controller {
         $this->load->model('Update_model');
         $result = $this->Update_model->pota();
         echo $result;
-        
+
     }
 
 	public function update_tle() {
@@ -427,5 +443,13 @@ class Update extends CI_Controller {
         $this->optionslib->update('tle_update', $datetime , 'no');
 	}
 
+	function version_check() {
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+		
+		$this->load->model('Update_model');
+		$this->Update_model->update_check();
+	}
 }
 ?>

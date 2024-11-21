@@ -6,7 +6,36 @@ $(document).ready(async function () {
 	sessiondata=await getSession();			// save sessiondata global (we need it later, when adding qso)
 	await restoreContestSession(sessiondata);	// wait for restoring until finished
 	setRst($("#mode").val());
+	$('#contestname').val($('#contestname_select').val());
+
+	// Clear the localStorage for the qrg units
+	localStorage.clear();
+	set_qrg();
 });
+
+// Always update the contestname
+$('#contestname_select').change(function () {
+	$('#contestname').val($('#contestname_select').val());
+});
+
+function disabledContestnameSelect(disabled) {
+	if (disabled) {
+		$("#contestname_select")
+			.prop('disabled', true)
+			.attr({
+				'title': lang_contestname_warning,
+				'data-bs-toggle': 'tooltip',
+				'data-bs-html': 'true',
+				'data-bs-placement': 'top'
+			})
+			.tooltip();
+	} else {
+		$("#contestname_select")
+			.prop('disabled', false)
+			.removeAttr('title data-bs-toggle data-bs-html data-bs-placement')
+			.tooltip('dispose');
+	}
+}
 
 // Resets the logging form and deletes session from database
 async function reset_contest_session() {
@@ -17,6 +46,9 @@ async function reset_contest_session() {
 
 		}
 	});
+	// the user is now allowed again to change the contest name
+	disabledContestnameSelect(false);
+	// reset the form
 	$('#name').val("");
 	$('.callsign-suggestions').text("");
 	$('#callsign').val("");
@@ -32,7 +64,7 @@ async function reset_contest_session() {
 	setRst($("#mode").val());
 	$("#exchangetype").val("None");
 	setExchangetype("None");
-	$("#contestname").val("Other").change();
+	$("#contestname_select").val("Other").change();
 	$(".contest_qso_table_contents").empty();
  	$('#copyexchangeto').val("None");
 
@@ -72,8 +104,17 @@ async function reset_contest_session() {
 }
 
 function sort_exchange() {
+
+	// Get the selected sequence
+	let exchangeSelect = $('#exchangesequence_select');
+
+	// If the sequence is not set, we need to set one to prevent errors
+	if (!exchangeSelect.val()) {
+		exchangeSelect.val('s-g-e');
+	}
+
 	// Split the squence into an array
-	var selectedOrder = $('#exchangesequence_select').val().split('-'); 
+	let selectedOrder = exchangeSelect.val().split('-');
 
 	// Map sequence to corresponding SENT elements
 	let mapping = {
@@ -218,7 +259,7 @@ document.onkeyup = function (e) {
 			$("#callsign").focus();
 			return false;
 		}
-        
+
 		if (exchangetype == 'Exchange') {
 			if ($(document.activeElement).attr("id") == "callsign") {
 				$("#exch_rcvd").focus();
@@ -248,7 +289,7 @@ document.onkeyup = function (e) {
 		}
 		else if (exchangetype == 'Serialexchange') {
 			let filteredSequence = sequence.filter(key => key !== 'g');
-		
+
 			if ($(document.activeElement).attr("id") == "callsign") {
 				$(`#${mapping[filteredSequence[0]]}`).focus();
 				return false;
@@ -434,8 +475,9 @@ function highlight(term, base) {
 // Only set the frequency when not set by userdata/PHP.
 if ($('#frequency').val() == "") {
 	$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-		$('#frequency').val(result);
+		$('#frequency').val(result).trigger("change");
 		$('#frequency_rx').val("");
+		set_qrg();
 	});
 }
 
@@ -443,7 +485,7 @@ if ($('#frequency').val() == "") {
 $('#mode').change(function () {
 		if ($('#radio').val() == '0') {
 	$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-		$('#frequency').val(result);
+		$('#frequency').val(result).trigger("change");
 		$('#frequency_rx').val("");
 	});
 	}
@@ -454,12 +496,13 @@ $('#mode').change(function () {
 /* Calculate Frequency */
 /* on band change */
 $('#band').change(function () {
-		if ($('#radio').val() == '0') {
-	$.get('qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
-		$('#frequency').val(result);
-		$('#frequency_rx').val("");
-	});
+	if ($('#radio').val() == '0') {
+		$.get('qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
+			$('#frequency').val(result).trigger("change");
+			$('#frequency_rx').val("");
+		});
 	}
+	set_qrg();
 	checkIfWorkedBefore();
 });
 
@@ -470,7 +513,7 @@ $('#band').change(function () {
 $('#radio').change(function () {
 	if ($('#radio').val() == '0') {
 		$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 			$('#frequency_rx').val("");
 		});
 	}
@@ -583,6 +626,10 @@ function setExchangetype(exchangetype) {
 function logQso() {
 	if ($("#callsign").val().length > 0) {
 
+		// To prevent changing the contest name while logging we disable the select
+		// Only "Start a new contest session" will enable it again
+		disabledContestnameSelect(true);
+
 		$('.callsign-suggestions').text("");
 		$('#callsign_info').text("");
 
@@ -634,7 +681,7 @@ function logQso() {
 				serialr = $("#exch_serial_r").val();
 			break;
 
-			case 'Serialgridsquare':
+			case 'SerialGridExchange':
 				gridr = gridsquare;
 				vuccr = vucc;
 				exchsent = $("#exch_sent").val();
@@ -698,7 +745,7 @@ async function restoreContestSession(data) {
 		}
 
 		if (data.contestid != "") {
-			$("#contestname").val(data.contestid);
+			$("#contestname_select").val(data.contestid);
 		}
 
 		if (settings.exchangetype != "") {
@@ -726,13 +773,17 @@ async function restoreContestSession(data) {
 				$("#frequency").val(settings.freq_display);
 			} else {
 				$.get('qso/band_to_freq/' + settings.band + '/' + settings.mode, function (result) {
-					$('#frequency').val(result);
+					$('#frequency').val(result).trigger("change");
 				});
 			}
 		}
 
 		if (data.qso != "") {
+			disabledContestnameSelect(true);
 			await refresh_qso_table(data);
+		} else {
+			disabledContestnameSelect(false);
+			$("#contestname_select").val("Other").change();
 		}
 	} else {
 		$("#exch_serial_s").val("1");
@@ -789,8 +840,8 @@ async function refresh_qso_table(data) {
                     }
 
                     data.push([
-                        this.col_time_on,
-                        this.col_call,
+						this.col_time_on,
+						'<a href="javascript:displayQso(' + this.col_primary_key + ');">'+this.col_call + '</a>',
                         this.col_band,
                         mode,
                         this.col_rst_sent,

@@ -18,6 +18,9 @@
 	        <a class="nav-link" href="<?php echo site_url('search/incorrect_cq_zones'); ?>"><?= __("Incorrect CQ Zones"); ?></a>
 	      </li>
 		  <li class="nav-item">
+	        <a class="nav-link" href="<?php echo site_url('search/incorrect_itu_zones'); ?>"><?= __("Incorrect ITU Zones"); ?></a>
+	      </li>
+		  <li class="nav-item">
 	        <a class="nav-link" href="<?php echo site_url('search/lotw_unconfirmed'); ?>"><?= __("QSOs unconfirmed on LoTW"); ?></a>
 	      </li>
 	    </ul>

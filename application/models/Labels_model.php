@@ -7,14 +7,14 @@ class Labels_model extends CI_Model {
             'label_name' 	=> xss_clean($this->input->post('label_name', true)),
             'paper_type_id' 	=> xss_clean($this->input->post('paper_type_id', true)),
             'metric' 		=> xss_clean($this->input->post('measurementType', true)),
-            'marginleft' 	=> xss_clean($this->input->post('marginLeft', true)),
-            'margintop' 	=> xss_clean($this->input->post('marginTop', true)),
+            'marginleft' 	=> str_replace(',', '.',( xss_clean($this->input->post('marginLeft', true)))),
+            'margintop' 	=> str_replace(',', '.',( xss_clean($this->input->post('marginTop', true)))),
             'nx' 		    => xss_clean($this->input->post('NX', true)),
             'ny' 		    => xss_clean($this->input->post('NY', true)),
-            'spacex' 		=> xss_clean($this->input->post('SpaceX', true)),
-            'spacey' 		=> xss_clean($this->input->post('SpaceY', true)),
-            'width' 		=> xss_clean($this->input->post('width', true)),
-            'height' 		=> xss_clean($this->input->post('height', true)),
+            'spacex' 		=> str_replace(',', '.', (xss_clean($this->input->post('SpaceX', true)))),
+            'spacey' 		=> str_replace(',', '.', (xss_clean($this->input->post('SpaceY', true)))),
+            'width' 		=> str_replace(',', '.', (xss_clean($this->input->post('width', true)))),
+            'height' 		=> str_replace(',', '.', (xss_clean($this->input->post('height', true)))),
             'font_size' 	=> xss_clean($this->input->post('font_size', true)),
             'qsos' 		    => xss_clean($this->input->post('label_qsos', true)),
             'font' 		    => xss_clean($this->input->post('font', true)),
@@ -30,8 +30,8 @@ class Labels_model extends CI_Model {
 			'user_id' 		=> $this->session->userdata('user_id'),
             'paper_name' 	=> xss_clean($this->input->post('paper_name', true)),
             'metric' 		=> xss_clean($this->input->post('measurementType', true)),
-            'width' 		=> xss_clean($this->input->post('width', true)),
-            'height' 		=> xss_clean($this->input->post('height', true)),
+            'width' 		=> str_replace(',', '.', (xss_clean($this->input->post('width', true)))),
+            'height' 		=> str_replace(',', '.', (xss_clean($this->input->post('height', true)))),
             'orientation'	=> xss_clean($this->input->post('orientation', true)),
             'last_modified' => date('Y-m-d H:i:s'),
 		);
@@ -54,14 +54,14 @@ class Labels_model extends CI_Model {
             'label_name' 	=> xss_clean($this->input->post('label_name', true)),
             'paper_type_id' 	=> xss_clean($this->input->post('paper_type_id', true)),
             'metric' 		=> xss_clean($this->input->post('measurementType', true)),
-            'marginleft' 	=> xss_clean($this->input->post('marginLeft', true)),
-            'margintop' 	=> xss_clean($this->input->post('marginTop', true)),
+            'marginleft' 	=> str_replace(',', '.', (xss_clean($this->input->post('marginLeft', true)))),
+            'margintop' 	=> str_replace(',', '.', (xss_clean($this->input->post('marginTop', true)))),
             'nx' 		    => xss_clean($this->input->post('NX', true)),
             'ny' 		    => xss_clean($this->input->post('NY', true)),
-            'spacex' 		=> xss_clean($this->input->post('SpaceX', true)),
-            'spacey' 		=> xss_clean($this->input->post('SpaceY', true)),
-            'width' 		=> xss_clean($this->input->post('width', true)),
-            'height' 		=> xss_clean($this->input->post('height', true)),
+            'spacex' 		=> str_replace(',', '.', (xss_clean($this->input->post('SpaceX', true)))),
+            'spacey' 		=> str_replace(',', '.', (xss_clean($this->input->post('SpaceY', true)))),
+            'width' 		=> str_replace(',', '.', (xss_clean($this->input->post('width', true)))),
+            'height' 		=> str_replace(',', '.', (xss_clean($this->input->post('height', true)))),
             'font_size' 	=> xss_clean($this->input->post('font_size', true)),
             'qsos' 		    => xss_clean($this->input->post('label_qsos', true)),
             'font' 		    => xss_clean($this->input->post('font', true)),
@@ -169,6 +169,12 @@ class Labels_model extends CI_Model {
         $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
         $this->db->where_in('COL_PRIMARY_KEY', $ids);
         $this->db->order_by("COL_DXCC", "ASC");
+		$this->db->order_by("COL_CALL", "ASC");
+        $this->db->order_by("COL_SAT_NAME", "ASC");
+        $this->db->order_by("COL_SAT_MODE", "ASC");
+        $this->db->order_by("COL_BAND_RX", "ASC");
+        $this->db->order_by("COL_TIME_ON", "ASC");
+        $this->db->order_by("COL_MODE", "ASC");
         $query = $this->db->get($this->config->item('table_name'));
 
         return $query;
@@ -179,8 +185,8 @@ class Labels_model extends CI_Model {
 			'user_id' 		=> $this->session->userdata('user_id'),
             'paper_name' 	=> xss_clean($this->input->post('paper_name', true)),
             'metric' 		=> xss_clean($this->input->post('measurementType', true)),
-            'width' 		=> xss_clean($this->input->post('width', true)),
-            'height' 		=> xss_clean($this->input->post('height', true)),
+            'width' 		=> str_replace(',', '.', (xss_clean($this->input->post('width', true)))),
+            'height' 		=> str_replace(',', '.', (xss_clean($this->input->post('height', true)))),
             'orientation'	=> xss_clean($this->input->post('orientation', true)),
             'last_modified' => date('Y-m-d H:i:s'),
 		);

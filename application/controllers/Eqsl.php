@@ -54,6 +54,9 @@ class eqsl extends CI_Controller {
 		$station_profile = $this->stations->profile($active_station_id);
 		$data['active_station_info'] = $station_profile->row();
 
+		$this->load->model('cron_model');
+		$data['next_run'] = $this->cron_model->get_next_run("eqsl_sync");
+
 		// Check if eQSL Nicknames have been defined
 		$this->load->model('eqslmethods_model');
 		$eqsl_locations = $this->eqslmethods_model->all_of_user_with_eqsl_nick_defined();
@@ -148,7 +151,7 @@ class eqsl extends CI_Controller {
 		// Check if eQSL Nicknames have been defined
 		$this->load->model('stations');
 		if ($this->stations->are_eqsl_nicks_defined() == 0) {
-			$this->session->set_flashdata('error', 'eQSL Nicknames in Station Profiles aren\'t defined!');
+			$this->session->set_flashdata('error', __('eQSL Nicknames in Station Profiles aren\'t defined!'));
 		}
 
 		ini_set('memory_limit', '-1');
@@ -167,7 +170,7 @@ class eqsl extends CI_Controller {
 
 			// Validate that eQSL credentials are not empty
 			if ($data['user_eqsl_name'] == '' || $data['user_eqsl_password'] == '') {
-				$this->session->set_flashdata('warning', 'You have not defined your eQSL.cc credentials!');
+				$this->session->set_flashdata('warning', __('You have not defined your eQSL.cc credentials!'));
 				redirect('eqsl/import');
 			}
 
@@ -185,6 +188,11 @@ class eqsl extends CI_Controller {
 				$adif = $this->eqslmethods_model->generateAdif($qsl, $data);
 
 				$status = $this->eqslmethods_model->uploadQso($adif, $qsl);
+
+				if ($status == 'Login Error') {
+					log_message('error', 'eQSL Credentials-Error for '.$data['user_eqsl_name'].' Login will be disabled!');
+					$this->eqslmethods_model->disable_eqsl_uid($this->session->userdata('user_id'));
+				}
 
 				if($status == 'Error') {
 					redirect('eqsl/export');
@@ -319,7 +327,7 @@ class eqsl extends CI_Controller {
 
 			if (!isset($images) || count($images) == 0) {
 				$h3 = $dom->getElementsByTagName('h3');
-				if (isset($h3)) {
+				if (isset($h3) && ($h3->item(0) !== null)) {
 					echo $h3->item(0)->nodeValue;
 				} else {
 					echo "Rate Limited";

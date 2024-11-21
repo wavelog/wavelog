@@ -90,4 +90,14 @@ class Cron_model extends CI_Model
 		
 		$this->set_modified($id);
 	}
+
+	function get_next_run($what) {
+		$crons=$this->get_crons();
+		$one_cron = $crons[array_search($what,array_column($crons,'id'),true)];
+		if (property_exists($one_cron,'next_run')) {
+			return $one_cron->next_run;
+		} else {
+			return null;
+		}
+	}
 }

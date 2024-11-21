@@ -4,8 +4,8 @@
 class Cabrilloformat {
 
    public function header($contest_id, $callsign, $claimed_score, 
-      $operators, $club, $name, $address, $addresscity, $addressstateprovince, $addresspostalcode, $addresscountry, $soapbox, $gridlocator, 
-      $categoryoverlay, $categorytransmitter, $categorystation, $categorypower, $categorymode, $categoryband, $categoryassisted, $categoryoperator, $email) {
+      $operators, $club, $location, $name, $address, $addresscity, $addressstateprovince, $addresspostalcode, $addresscountry, $soapbox, $gridlocator, 
+      $categoryoverlay, $categorytransmitter, $categorytime, $categorystation, $categorypower, $categorymode, $categoryband, $categoryassisted, $categoryoperator, $email, $certificate) {
       $cab_header = "";
       $cab_header .= "START-OF-LOG: 3.0"."\r\n";
       $cab_header .= "CONTEST: ".$contest_id."\r\n";
@@ -21,6 +21,10 @@ class Cabrilloformat {
          $cab_header .= "CLUB: ".$club."\r\n";
       }
 
+      if($location != null) {
+         $cab_header .= "LOCATION: ".$location."\r\n";
+      }
+
       $cab_header .= "CATEGORY-OPERATOR: ".$categoryoperator."\r\n";
       $cab_header .= "CATEGORY-BAND: ".$categoryband."\r\n";
       $cab_header .= "CATEGORY-ASSISTED: ".$categoryassisted."\r\n";
@@ -28,6 +32,7 @@ class Cabrilloformat {
       $cab_header .= "CATEGORY-POWER: ".$categorypower."\r\n";
       $cab_header .= "CATEGORY-STATION: ".$categorystation."\r\n";
       $cab_header .= "CATEGORY-TRANSMITTER: ".$categorytransmitter."\r\n";
+      $cab_header .= "CATEGORY-TIME: ".$categorytime."\r\n";
       $cab_header .= "CATEGORY-OVERLAY: ".$categoryoverlay."\r\n";
 
       $cab_header .= "NAME: ".$name."\r\n";
@@ -38,6 +43,10 @@ class Cabrilloformat {
       $cab_header .= "ADDRESS-COUNTRY: ".$addresscountry."\r\n";
       $cab_header .= "EMAIL: ".$email."\r\n";
       $cab_header .= "SOAPBOX: ".$soapbox."\r\n";
+      
+      if ($certificate != null || $certificate != "") {
+         $cab_header .= "CERTIFICATE: ".$certificate."\r\n";
+      }
 
       if($gridlocator != null) {
          $cab_header .= "GRID-LOCATOR: ".$gridlocator."\r\n";
@@ -53,7 +62,7 @@ class Cabrilloformat {
       return "END-OF-LOG:";
    }
 
-   public function qso($qso) {
+   public function qso($qso, $grid_export) {
       $freq =  substr($qso->COL_FREQ, 0, -3);
       if ($freq > 30000) {
          if ($freq > 250000000) {
@@ -112,12 +121,19 @@ class Cabrilloformat {
          }
       }
 
-      if($qso->COL_MODE == "SSB") {
+      // based on the official cabrillo documentation
+      // https://wwrof.org/cabrillo/cabrillo-qso-data/
+
+      if($qso->COL_MODE == "CW") {
+         $mode = "CW";
+      } elseif($qso->COL_MODE == "SSB" || $qso->COL_MODE == "AM") {
          $mode = "PH";
+      } elseif($qso->COL_MODE == "FM") {
+         $mode = "FM";
       } elseif($qso->COL_MODE == "RTTY") {
          $mode = "RY";
       } else {
-         $mode = $qso->COL_MODE;
+         $mode = "DG";
       }
 
       $time = substr($qso->COL_TIME_ON, 0, -3);
@@ -130,6 +146,10 @@ class Cabrilloformat {
          $returnstring .= sprintf("%-6s", sprintf("%03d", $qso->COL_STX)) ." ";
       }
 
+      if ($grid_export == true) {
+         $returnstring .= substr($qso->station_gridsquare, 0, 4) ?? '' ." ";
+      }
+
       if ($qso->COL_STX_STRING != "") {
          $returnstring .= $qso->COL_STX_STRING ." ";
       }
@@ -139,6 +159,10 @@ class Cabrilloformat {
       if ($qso->COL_SRX != NULL) {
          $returnstring .= sprintf("%-6s", sprintf("%03d", $qso->COL_SRX)) ." ";
       }  
+
+      if ($grid_export == true) {
+         $returnstring .= substr($qso->COL_GRIDSQUARE, 0, 4) ?? '' ." ";
+      }
       
       if ($qso->COL_SRX_STRING != "") {
          $returnstring .= $qso->COL_SRX_STRING ." ";

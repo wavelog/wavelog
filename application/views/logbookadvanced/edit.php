@@ -1,5 +1,7 @@
+<?= __("Please choose the column to be edited:"); ?><br/><br/>
 <form method="post" class="d-flex align-items-center">
 		<select id="editColumn" name="type" class="form-select form-select-sm w-auto me-2">
+			<option value="">-</option>
 			<option value="band"><?= __("Band"); ?></option>
 			<option value="date"><?= __("Date"); ?></option>
 			<option value="comment"><?= __("Comment"); ?></option>
@@ -13,7 +15,7 @@
 			<option value="pota"><?= __("POTA"); ?></option>
 			<option value="propagation"><?= __("Propagation"); ?></option>
 			<option value="qslvia"><?= __("QSL via"); ?></option>
-			<option value="qslmsg">QSLMSG</option>
+			<option value="qslmsg"><?= __("QSLMSG"); ?></option>
 			<option value="satellite"><?= __("Satellite"); ?></option>
 			<option value="sota"><?= __("SOTA"); ?></option>
 			<option value="station"><?= __("Station Location"); ?></option>
@@ -23,6 +25,11 @@
 			<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
 			<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
 			<option value="continent"><?= __("Continent"); ?></option>
+			<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
+			<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
+			<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
+			<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
+			<option value="stationpower"><?= __("Station power"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -75,7 +82,7 @@
 		<label style="display:none" id="editSatelliteModeLabel" class="mx-2 w-auto" for="editSatelliteMode"><?= __("SAT Mode"); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editSatelliteMode" type="text" name="editSatelliteMode" placeholder="" aria-label="editSatelliteMode">
 
-		<select id="editBand" class="form-select w-auto form-select-sm" name="editBand">
+		<select style="display:none" id="editBand" class="form-select w-auto form-select-sm" name="editBand">
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';
 					foreach($bandgroup as $band) {
@@ -86,8 +93,8 @@
 			?>
 		</select>
 
-		<label id="editBandRxLabel" class="mx-2 w-auto" for="gridlabel"><?= __("Band RX"); ?></label>
-		<select id="editBandRx" class="form-select w-auto form-select-sm" name="editBandRx">
+		<label style="display:none" id="editBandRxLabel" class="mx-2 w-auto" for="gridlabel"><?= __("Band RX"); ?></label>
+		<select style="display:none" id="editBandRx" class="form-select w-auto form-select-sm" name="editBandRx">
 			<option value="">-</option>
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';
@@ -131,11 +138,23 @@
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editLoTW"  name="lotw">
-			<option value="Y">Yes</option>
-			<option value="N">No</option>
-			<option value="R">Requested</option>
-			<option value="I">Invalid</option>
-			<option value="V">Verified</option>
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="R"><?= __("Requested"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="V"><?= __("Verified"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQrz"  name="qrz">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editEqsl"  name="eqsl">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
 		</select>
 
 		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">

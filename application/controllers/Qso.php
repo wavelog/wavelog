@@ -94,7 +94,6 @@ class QSO extends CI_Controller {
 		$this->form_validation->set_rules('locator', 'Locator', 'callback_check_locator');
 
 		// [eQSL default msg] GET user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id) //
-		$this->load->model('user_options_model');
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg',array('option_name'=>'key_station_id','option_key'=>$data['active_station_profile']))->result();
 		$data['qslmsg'] = (isset($options_object[0]->option_value))?$options_object[0]->option_value:'';
 
@@ -120,6 +119,7 @@ class QSO extends CI_Controller {
 				'start_time' => $this->input->post('start_time', TRUE),
 				'end_time' => $this->input->post('end_time'),
 				'time_stamp' => time(),
+				'mail' => $this->input->post('mail', TRUE),
 				'band' => $this->input->post('band', TRUE),
 				'band_rx' => $this->input->post('band_rx', TRUE),
 				'freq' => $this->input->post('freq_display', TRUE),
@@ -151,7 +151,7 @@ class QSO extends CI_Controller {
 			$actstation=$this->stations->find_active() ?? '';
 			$returner['activeStationId'] = $actstation;
 			$profile_info = $this->stations->profile($actstation)->row();
-			$returner['activeStationTXPower'] = xss_clean($profile_info->station_power);
+			$returner['activeStationTXPower'] = xss_clean($profile_info->station_power ?? '');
 			$returner['activeStationOP'] = xss_clean($this->session->userdata('operator_callsign'));
 			$returner['message']='success';
 
@@ -645,4 +645,34 @@ class QSO extends CI_Controller {
          return false;
       }
    }
+
+   /**
+	 * Open the API url which causes the browser to open the QSO live logging and populate the callsign with the data from the API
+	 * 
+	 * Usage example:
+	 * 			https://<URL to Wavelog>/index.php/qso/log_qso?callsign=4W7EST
+	 */
+
+	function log_qso() {
+		// Check if users logged in
+		$this->load->model('user_model');
+		if ($this->user_model->validate_session() == 0) {
+			// user is not logged in
+			$this->session->set_flashdata('warning', __("You have to be logged in to access this URL."));
+			redirect('user/login');
+		}
+
+		// get the data from the API
+		$data['callsign'] = $this->input->get('callsign', TRUE);
+        $data['page_title'] = __("Call Transfer");
+
+		// load the QSO redirect page
+		if ($data['callsign'] != "") {
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('qso/log_qso');
+		} else {
+			$this->session->set_flashdata('warning', __("No callsign provided."));
+			redirect('dashboard');
+		}
+	}
 }

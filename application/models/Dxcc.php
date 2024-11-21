@@ -71,7 +71,11 @@ class DXCC extends CI_Model {
 
 		foreach ($bands as $band) {             	// Looping through bands and entities to generate the array needed for display
 			foreach ($dxccArray as $dxcc) {
-				$dxccMatrix[$dxcc->adif]['name'] = ucwords(strtolower($dxcc->name), "- (/");
+				if ($dxcc->adif == '0') {
+					$dxccMatrix[$dxcc->adif]['name'] = $dxcc->name;
+				} else {
+					$dxccMatrix[$dxcc->adif]['name'] = ucwords(strtolower($dxcc->name), "- (/");
+				}
 				$dxccMatrix[$dxcc->adif]['Dxccprefix'] = $dxcc->prefix;
 				if ($postdata['includedeleted'])
 					$dxccMatrix[$dxcc->adif]['Deleted'] = isset($dxcc->Enddate) ? 1 : 0;
@@ -484,7 +488,7 @@ class DXCC extends CI_Model {
 		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
 		$sql .= " join dxcc_entities d on thcv.col_dxcc = d.adif";
 
-		$sql .= " where station_id in (" . $location_list . ")";
+		$sql .= " where station_id in (" . $location_list . ") and col_dxcc > 0";
 
 		if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode = ?";

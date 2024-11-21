@@ -131,9 +131,13 @@
                         <td><?= __("Total Distance"); //Total distance ?></td>
                         <td>
                             <?php
-                                // Cacluate Distance
-                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base);
-
+                                // Cacluate Distance if COL_DISTANCE is not set
+                                $ant_path = $row->COL_ANT_PATH ?? null;
+                                if ($row->COL_DISTANCE != null) {
+                                    $distance = $row->COL_DISTANCE;
+                                } else {
+                                    $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $ant_path);
+                                }
                                 switch ($measurement_base) {
                                     case 'M':
                                         $distance .= " mi";
@@ -144,6 +148,25 @@
                                     case 'N':
                                         $distance .= " nmi";
                                         break;
+                                }
+
+                                if ($ant_path != null) {
+                                    switch ($row->COL_ANT_PATH) {
+                                        case "S":
+                                            $distance .= ' <span class="badge bg-secondary">' . __("Short Path") . "</span>";
+                                            break;
+                                        case "L":
+                                            $distance .= ' <span class="badge bg-secondary">' . __("Long Path") . "</span>";
+                                            break;
+                                        case "O":
+                                            $distance .= ' <span class="badge bg-secondary">' . __("Other Path") . "</span>";
+                                            break;
+                                        case "G":
+                                            $distance .= ' <span class="badge bg-secondary">' . __("Greyline") . "</span>";
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                                 echo $distance;
                             ?>
@@ -205,6 +228,72 @@
                     <?php } ?>
                     <?php } ?>
 
+                    <?php if($row->COL_PROP_MODE != null and $row->COL_PROP_MODE != '') { ?>
+                    <tr>
+                        <td><?= __("Propagation"); ?></td>
+                        <td><?php switch ($row->COL_PROP_MODE) {
+                            case 'AS':
+                                echo _pgettext("Propagation Mode", "Aircraft Scatter");
+                                break;
+                            case 'AUR':
+                                echo _pgettext("Propagation Mode", "Aurora");
+                                break;
+                            case 'AUE':
+                                echo _pgettext("Propagation Mode", "Aurora-E");
+                                break;
+                            case 'BS':
+                                echo _pgettext("Propagation Mode", "Back scatter");
+                                break;
+                            case 'ECH':
+                                echo _pgettext("Propagation Mode", "EchoLink");
+                                break;
+                            case 'EME':
+                                echo _pgettext("Propagation Mode", "Earth-Moon-Earth");
+                                break;
+                            case 'ES':
+                                echo _pgettext("Propagation Mode", "Sporadic E");
+                                break;
+                            case 'FAI':
+                                echo _pgettext("Propagation Mode", "Field Aligned Irregularities");
+                                break;
+                            case 'F2':
+                                echo _pgettext("Propagation Mode", "F2 Reflection");
+                                break;
+                            case 'INTERNET':
+                                echo _pgettext("Propagation Mode", "Internet-assisted");
+                                break;
+                            case 'ION':
+                                echo _pgettext("Propagation Mode", "Ionoscatter");
+                                break;
+                            case 'IRL':
+                                echo _pgettext("Propagation Mode", "IRLP");
+                                break;
+                            case 'MS':
+                                echo _pgettext("Propagation Mode", "Meteor scatter");
+                                break;
+                            case 'RPT':
+                                echo _pgettext("Propagation Mode", "Terrestrial or atmospheric repeater or transponder");
+                                break;
+                            case 'RS':
+                                echo _pgettext("Propagation Mode", "Rain scatter");
+                                break;
+                            case 'SAT':
+                                echo _pgettext("Propagation Mode", "Satellite");
+                                break;
+                            case 'TEP':
+                                echo _pgettext("Propagation Mode", "Trans-equatorial");
+                                break;
+                            case 'TR':
+                                echo _pgettext("Propagation Mode", "Tropospheric ducting");
+                                break;
+                            default:
+                                echo __("unknown");
+                                break;
+                            }
+                        ?></td>
+                    </tr>
+                    <?php } ?>
+
                     <?php if($row->COL_SAT_NAME != null) { ?>
                     <tr>
                         <td><?= __("Satellite Name"); ?></td>
@@ -236,7 +325,11 @@
                     <?php if($row->name != null) { ?>
                     <tr>
                         <td><?= __("Country"); ?></td>
-                        <td><?php echo ucwords(strtolower(($row->name)), "- (/"); if ($dxccFlag != null) { echo " ".$dxccFlag; } if ($row->end != null) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
+                        <td><?php if ($row->adif == '0') {
+                                     echo $row->name;
+                                  } else {
+                                     echo ucwords(strtolower(($row->name)), "- (/"); if ($dxccFlag != null) { echo " ".$dxccFlag; } if ($row->end != null) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; }
+                                  } ?></td>
                     </tr>
                     <?php } ?>
 
@@ -308,14 +401,14 @@
                             <?php
                             $pota_refs = explode(',', $row->COL_POTA_REF);
                             $link_output = '';
-                            
+
                             foreach ($pota_refs as $pota_ref) {
                                 $pota_ref = trim($pota_ref);
                                 if (!empty($pota_ref)) {
                                     $link_output .= '<a href="https://pota.app/#/park/' . $pota_ref . '" target="_blank">' . $pota_ref . '</a>, ';
                                 }
                             }
-                            
+
                             $link_output = rtrim($link_output, ', ');
                             echo $link_output;
                             ?>
@@ -326,7 +419,16 @@
                     <?php if($row->COL_SIG != null) { ?>
                     <tr>
                         <td><?= __("Sig"); ?></td>
-                        <td><?php echo $row->COL_SIG; ?></td>
+                        <?php
+                        switch ($row->COL_SIG) {
+                        case "GMA":
+                           echo "<td><a href=\"https://cqgma.org/\" target=\"_blank\">".$row->COL_SIG."</a></td>";
+                           break;
+                        default:
+                           echo "<td>".$row->COL_SIG."</td>";
+                           break;
+                        }
+                        ?>
                     </tr>
                     <?php } ?>
 
@@ -361,6 +463,13 @@
                         <?php } else { ?>
                         <td><?php echo $row->COL_DARC_DOK; ?></td>
                         <?php } ?>
+                    </tr>
+                    <?php } ?>
+
+                    <?php if($row->COL_EMAIL != null) { ?>
+                    <tr>
+                        <td><?= __("eMail"); ?></td>
+                        <td><a href="mailto:<?php echo $row->COL_EMAIL; ?>"><?php echo $row->COL_EMAIL; ?></a></td>
                     </tr>
                     <?php } ?>
 
@@ -691,7 +800,7 @@
 
 <?php
 	if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) {
-		$stn_loc = $this->qra->qra2latlong(trim($row->COL_GRIDSQUARE));	
+		$stn_loc = $this->qra->qra2latlong(trim($row->COL_GRIDSQUARE));
         if($stn_loc[0] != 0) {
 		    $lat = $stn_loc[0];
 		    $lng = $stn_loc[1];
@@ -703,7 +812,7 @@
             $grid2 = $this->qra->qra2latlong(trim($grids[1]));
 
             $coords[]=array('lat' => $grid1[0],'lng'=> $grid1[1]);
-            $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);    
+            $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);
 
             $midpoint = $this->qra->get_midpoint($coords);
             $lat = $midpoint[0];
@@ -716,9 +825,9 @@
             $grid4 = $this->qra->qra2latlong(trim($grids[3]));
 
             $coords[]=array('lat' => $grid1[0],'lng'=> $grid1[1]);
-            $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);    
-            $coords[]=array('lat' => $grid3[0],'lng'=> $grid3[1]);    
-            $coords[]=array('lat' => $grid4[0],'lng'=> $grid4[1]);    
+            $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);
+            $coords[]=array('lat' => $grid3[0],'lng'=> $grid3[1]);
+            $coords[]=array('lat' => $grid4[0],'lng'=> $grid4[1]);
 
             $midpoint = $this->qra->get_midpoint($coords);
             $lat = $midpoint[0];

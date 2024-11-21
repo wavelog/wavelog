@@ -6,13 +6,17 @@ $('#band').change(function(){
 		$("#sat").val('All');
 		$("#orbits").val('All');
 		$("#sats_div").hide();
+        $("#sats").hide(); // used in activated_gridmap
 		$("#orbits_div").hide();
+        $("#orbits").hide(); // used in activated_gridmap
 		$("#satslabel").hide();
 		$("#orbitslabel").hide();
         $('#propagation').val('').prop('disabled', false);
 	} else {
 		$("#sats_div").show();
+        $("#sats").show(); // used in activated_gridmap
 		$("#orbits_div").show();
+        $("#orbits").show(); // used in activated_gridmap
 		$("#orbitslabel").show();
 		$("#satslabel").show();
         $('#propagation').val('SAT').prop('disabled', true);
@@ -192,6 +196,9 @@ function spawnGridsquareModal(loc_4char) {
                             showQsoActionsMenu($(this).closest('.dropdown'));
                         });
 					},
+                    onhide: function(dialog) {
+                        enableMap();
+                    },
 					buttons: [{
 						label: lang_admin_close,
 						action: function(dialogItself) {
@@ -200,9 +207,10 @@ function spawnGridsquareModal(loc_4char) {
 					}]
 				});
 			    dialog.realize();
-		    		$("#gridsquare_map").append(dialog.getModal());
+                    $('#gridsquare_map').append(dialog.getModal());
+                    disableMap();
 		    		dialog.open();
-},
+                },
 			error: function(e) {
 				modalloading=false;
 			}

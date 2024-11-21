@@ -1,3 +1,7 @@
+<script>
+    var lang_contestname_warning = "<?= __("You need to start a new session before you can change the contest name!"); ?>";
+</script>
+
 <div class="container qso_panel contesting">
     <button type="button" class="btn btn-sm btn-warning float-end" onclick="reset_contest_session()"><i class="fas fa-sync-alt"></i> <?= __("Start new Contest Session"); ?></button>
     <h2 style="display:inline"><?= __("Contest Logging"); ?> </h2> <?php echo ($manual_mode == 0 ? " <span style='display:inline' class='align-text-top badge text-bg-success'>LIVE</span>" : " <span style='display:inline' class='align-text-top badge text-bg-danger'>POST</span>");  ?>
@@ -22,14 +26,15 @@
 								</select>
 							</div>
 
-                            <label class="col-auto control-label" for="contestname"><?= __("Contest Name"); ?></label>
+                            <label class="col-auto control-label" for="contestname_select"><?= __("Contest Name"); ?></label>
 
                             <div class="col-auto">
-                                <select class="form-select form-select-sm" id="contestname" name="contestname">
+                                <select class="form-select form-select-sm" id="contestname_select" name="contestname_select">
 									<?php foreach($contestnames as $contest) {
 										echo "<option value='" . $contest['adifname'] . "'>" . $contest['name'] . "</option>";
 									} ?>
                                 </select>
+                                <input type="hidden" id="contestname" name="contestname" />
                             </div>
 
                             <label class="col-auto control-label" for="operatorcall"><?= __("Operator Callsign"); ?></label>
@@ -136,7 +141,11 @@
 
                             <div class="mb-3 col-md-2">
                                 <label for="frequency"><?= __("Frequency"); ?></label>
-                                <input type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control form-control-sm" id="freq_calculated" name="freq_calculated" value="0" />
+                                    <small class="input-group-text btn-included-on-field" id="qrg_unit">...</small>
+                                </div>
+                                <input style="display: none;" type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
                             </div>
 
                             <div class="mb-3 col-md-2">
@@ -154,7 +163,7 @@
                             <div class="col-md-2">
                                 <div>
                                     <label for="callsign"><?= __("Callsign"); ?></label>
-                                    <input type="text" class="form-control form-control-sm" id="callsign" name="callsign" required>
+                                    <input type="text" class="form-control form-control-sm" id="callsign" name="callsign" autocomplete="off" required>
                                     <small id="callsign_info" class="badge text-bg-danger"></small><br/>
                                     <small id="bearing_info" class="form-text text-muted"></small>
                                 </div>

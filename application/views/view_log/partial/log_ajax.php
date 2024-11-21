@@ -285,8 +285,8 @@ function echo_table_col($row, $name) {
                 <?php } ?>
 
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
-                    <td class="qrz">
-                        <span <?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo "title=\"".__("Sent"); if ($row->COL_QRZCOM_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
+                    <td id="qrz_<?php echo $row->COL_PRIMARY_KEY; ?>" class="qrz">
+                        <span <?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo 'title="'.__("Sent").($row->COL_QRZCOM_QSO_UPLOAD_DATE != null ? " ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'M' && $row->COL_QRZCOM_QSO_UPLOAD_DATE != NULL) { echo 'title="'.__("Modified")."<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)).")".'" data-bs-toggle="tooltip" data-bs-html="true"'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'I') { echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"'; }?> class="qrz-<?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'Y') { echo 'green'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'M' && $row->COL_QRZCOM_QSO_UPLOAD_DATE != NULL) { echo 'yellow'; } elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'I') { echo 'grey'; } else { echo 'red'; } ?>">&#9650;</span>
                         <span <?php if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"".__("Received"); if ($row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
@@ -294,8 +294,38 @@ function echo_table_col($row, $name) {
 
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false ) { ?>
                     <td class="clublog">
-                        <span <?php if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") { echo "title=\"".__("Sent"); if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"".__("Received"); if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
+                        <span <?php 
+				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") { 
+					echo 'title="'.__("Sent").($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null ? " ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"'; 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
+					echo 'title="'.__("Modified");
+					if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) {
+						echo "<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")";
+					}
+					echo '" data-bs-toggle="tooltip" data-bs-html="true"'; 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') { 
+					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"'; 
+				}?> class="clublog-<?php 
+
+				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'Y') { 
+					echo 'green'; 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
+					echo 'yellow'; 
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') { 
+					echo 'grey'; 
+				} else { 
+					echo 'red'; 
+				} ?>">&#9650;</span>
+                        <span <?php 
+				if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") { 
+					echo "title=\"".__("Received"); 
+					if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { 
+						$timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); 
+						echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); 
+					} 
+					echo "\" data-bs-toggle=\"tooltip\""; 
+				} ?> class="clublog-<?php 
+					echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
 
@@ -324,7 +354,8 @@ function echo_table_col($row, $name) {
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Bureau)"); ?></a>
                                     <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Direct)"); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Bureau)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Direct)"); ?></a>
                                     <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Not Required"); ?></a>
                                 </div>
                             <?php } ?>
