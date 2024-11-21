@@ -664,7 +664,7 @@ class Lotw extends CI_Controller {
 				}
 
 				$config['upload_path'] = './uploads/';
-				$file = $config['upload_path'] . 'lotwreport_download.adi';
+				$file = $config['upload_path'] . 'lotwreport_download_'.$sync_user_id.'_auto.adi';
 				if (file_exists($file) && ! is_writable($file)) {
 					$result = "Temporary download file ".$file." is not writable. Aborting!";
 					continue;
@@ -736,7 +736,7 @@ class Lotw extends CI_Controller {
 		$this->load->model('logbook_model');
 
 		if (($this->input->post('lotwimport') == 'fetch') && (!($this->config->item('disable_manual_lotw')))) {
-			$file = $config['upload_path'] . 'lotwreport_download.adi';
+			$file = $config['upload_path'] . 'lotwreport_download_'.$this->session->userdata('user_id').'.adi';
 
 			// Get credentials for LoTW
 			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
