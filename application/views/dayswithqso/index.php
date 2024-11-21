@@ -11,13 +11,13 @@
 	<div class="tabs">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><?php echo __("Yearly"); ?></a>
+				<a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><?= __("Yearly"); ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="daysofweek-tab" data-bs-toggle="tab" href="#daysofweek" role="tab" aria-controls="daysofweek" aria-selected="false"><?php echo __("Days of the week"); ?></a>
+				<a class="nav-link" id="daysofweek-tab" data-bs-toggle="tab" href="#daysofweek" role="tab" aria-controls="daysofweek" aria-selected="false"><?= __("Days of the week"); ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="streaks-tab" data-bs-toggle="tab" href="#streaks" role="tab" aria-controls="streaks" aria-selected="false"><?php echo __("Streaks"); ?></a>
+				<a class="nav-link" id="streaks-tab" data-bs-toggle="tab" href="#streaks" role="tab" aria-controls="streaks" aria-selected="false"><?= __("Streaks"); ?></a>
 			</li>
 		</ul>
 	</div>
@@ -25,7 +25,7 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <br/>
-            <h3><?php echo __('Number of days with QSOs each year'); ?></h3>
+            <h3><?= __('Number of days with QSOs each year'); ?></h3>
             <br/>
             <?php
             if (is_array($result)) {
@@ -57,14 +57,14 @@
 
         <div class="tab-pane fade" id="daysofweek" role="tabpanel" aria-labelledby="daysofweek-tab">
             <br/>
-            <h3><?php echo __('QSOs breakdown by day of the week'); ?></h3>
+            <h3><?= __('QSOs breakdown by day of the week'); ?></h3>
             <canvas id="weekdaysChart" width="400" height="150"></canvas>
         </div>
 
         <div class="tab-pane fade" id="streaks" role="tabpanel" aria-labelledby="streaks-tab">
             <br/>
             <h2><?= __("Longest streak with QSOs in the log"); ?></h2>
-            <p><?php echo __('A maximum of the 10 longest streaks are shown!'); ?></p>
+            <p><?= __('A maximum of the 10 longest streaks are shown!'); ?></p>
 
             <?php
             // Get Date format
