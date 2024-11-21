@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-21 10:31+0000\n"
+"POT-Creation-Date: 2024-11-21 14:12+0000\n"
 "PO-Revision-Date: 2024-11-20 09:12+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -9451,7 +9451,9 @@ msgstr "Há alguma informação adicional que seja necessário conhecer?"
 #: application/views/oqrs/request.php:60
 #: application/views/oqrs/request_grouped.php:64
 #: application/views/oqrs/showrequests.php:87
+#: application/views/qso/edit_ajax.php:273 application/views/qso/index.php:549
 #: application/views/user/index.php:46 application/views/user/profile.php:24
+#: application/views/view_log/qso.php:471
 msgid "E-mail"
 msgstr "E-mail"
 
@@ -9880,11 +9882,6 @@ msgstr "Caminho Curto"
 msgid "Long Path"
 msgstr "Caminho Longo"
 
-#: application/views/qso/edit_ajax.php:273 application/views/qso/index.php:549
-#: application/views/view_log/qso.php:471
-msgid "eMail"
-msgstr "e-mail"
-
 #: application/views/qso/edit_ajax.php:282
 msgid "Sat Name"
 msgstr "Nome do Satélite"
@@ -10091,8 +10088,8 @@ msgid "For example: Q03"
 msgstr "Por exemplo: Q03"
 
 #: application/views/qso/index.php:551
-msgid "eMail-Adress of QSO-Partner"
-msgstr "Endereço de correio eletrónico do parceiro QSO"
+msgid "E-mail address of QSO-partner"
+msgstr ""
 
 #: application/views/qso/index.php:560 application/views/view_log/qso.php:299
 msgid "Satellite Name"
@@ -12716,6 +12713,12 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#~ msgid "eMail"
+#~ msgstr "e-mail"
+
+#~ msgid "eMail-Adress of QSO-Partner"
+#~ msgstr "Endereço de correio eletrónico do parceiro QSO"
 
 #~ msgid "edited"
 #~ msgstr "editado"

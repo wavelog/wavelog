@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-21 10:31+0000\n"
+"POT-Creation-Date: 2024-11-21 14:12+0000\n"
 "PO-Revision-Date: 2024-11-19 15:29+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -9133,7 +9133,9 @@ msgstr "有额外的信息需要记录吗？"
 #: application/views/oqrs/request.php:60
 #: application/views/oqrs/request_grouped.php:64
 #: application/views/oqrs/showrequests.php:87
+#: application/views/qso/edit_ajax.php:273 application/views/qso/index.php:549
 #: application/views/user/index.php:46 application/views/user/profile.php:24
+#: application/views/view_log/qso.php:471
 msgid "E-mail"
 msgstr "电子邮件"
 
@@ -9546,11 +9548,6 @@ msgstr "短路径"
 msgid "Long Path"
 msgstr "长路径"
 
-#: application/views/qso/edit_ajax.php:273 application/views/qso/index.php:549
-#: application/views/view_log/qso.php:471
-msgid "eMail"
-msgstr "Email"
-
 #: application/views/qso/edit_ajax.php:282
 msgid "Sat Name"
 msgstr "卫星名称"
@@ -9757,8 +9754,8 @@ msgid "For example: Q03"
 msgstr "例如: Q03"
 
 #: application/views/qso/index.php:551
-msgid "eMail-Adress of QSO-Partner"
-msgstr "对方 Email"
+msgid "E-mail address of QSO-partner"
+msgstr ""
 
 #: application/views/qso/index.php:560 application/views/view_log/qso.php:299
 msgid "Satellite Name"
@@ -12246,6 +12243,12 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "eMail"
+#~ msgstr "Email"
+
+#~ msgid "eMail-Adress of QSO-Partner"
+#~ msgstr "对方 Email"
 
 #~ msgid "edited"
 #~ msgstr "已编辑"
