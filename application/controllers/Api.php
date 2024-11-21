@@ -3,13 +3,11 @@
 class API extends CI_Controller {
 
 	// Do absolutely nothing
-	function index()
-	{
+	function index() {
 		echo "nothing to see";
 	}
 
-	function help()
-	{
+	function help() {
 		$this->load->model('user_model');
 
 		// Check if users logged in
@@ -112,7 +110,7 @@ class API extends CI_Controller {
 	}
 
 	// Example of authing
-	function auth($key) {
+	function auth($key = '') {
 		$this->load->model('api_model');
 			header("Content-type: text/xml");
 		if($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
@@ -128,7 +126,7 @@ class API extends CI_Controller {
 		}
 	}
 
-	function station_info($key) {
+	function station_info($key = '') {
 		$this->load->model('api_model');
 		$this->load->model('stations');
 		header("Content-type: application/json");
