@@ -144,6 +144,7 @@ class Logbook extends CI_Controller {
 		$return['callsign_distance'] 	= $this->distance($return['callsign_qra'], $station_id);
 		$return['callsign_qth'] 		= $this->nval($callbook['city'] ?? '', $this->logbook_model->call_qth($callsign));
 		$return['callsign_iota'] 		= $this->nval($callbook['iota'] ?? '', $this->logbook_model->call_iota($callsign));
+		$return['callsign_email'] 		= $this->nval($callbook['email'] ?? '', $this->logbook_model->call_email($callsign));
 		$return['qsl_manager'] 			= $this->nval($callbook['qslmgr'] ?? '', $this->logbook_model->call_qslvia($callsign));
 		$return['callsign_state'] 		= $this->nval($callbook['state'] ?? '', $this->logbook_model->call_state($callsign));
 		$return['callsign_us_county'] 	= $this->nval($callbook['us_county'] ?? '', $this->logbook_model->call_us_county($callsign));
