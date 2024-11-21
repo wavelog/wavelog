@@ -3624,10 +3624,10 @@ class Logbook_model extends CI_Model {
 			}
 			if ($qsl_gridsquare != "") {
 				$data['COL_GRIDSQUARE'] = $qsl_gridsquare;
-				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_gridsquare, 'K');
+				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_gridsquare, 'K', $data['COL_ANT_PATH']);
 			} elseif ($qsl_vucc_grids != "") {
 				$data['COL_VUCC_GRIDS'] = $qsl_vucc_grids;
-				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K');
+				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K', $data['COL_ANT_PATH']);
 			}
 
 			$this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ', $datetime);
