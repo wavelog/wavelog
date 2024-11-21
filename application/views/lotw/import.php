@@ -18,7 +18,7 @@
       <?php echo form_open_multipart('lotw/import'); ?>
 
       <div class="form-check">
-        <input type="radio" id="lotwimport" name="lotwimport" class="form-check-input">
+        <input type="radio" id="lotwimport" name="lotwimport" class="form-check-input"<?php if ($this->config->item('disable_manual_lotw')) { echo ' checked="checked"'; } ?>>
         <label class="form-check-label" for="lotwimport"><?= __("Upload a File"); ?></label>
         <br><br>
         <p><?= sprintf(__("Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as confirmed on LoTW."), "<a href='https://p1k.arrl.org/lotwuser/qsos?qsoscmd=adif' target='_blank'>".__("Download Report")."</a>"); ?></p>
@@ -30,6 +30,7 @@
 
       <br><br>
 
+<?php if (!$this->config->item('disable_manual_lotw')) { ?>
       <div>
         <div class="form-check">
           <input type="radio" name="lotwimport" id="fetch" class="form-check-input" value="fetch" checked="checked" />
@@ -60,6 +61,7 @@
 
           <p class="form-text text-muted"><?= __("Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."); ?></p>
         </div>
+<?php } ?>
 
         <input class="btn btn-primary" type="submit" value="<?= __("Import LoTW Matches"); ?>" />
 
