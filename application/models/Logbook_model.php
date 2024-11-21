@@ -1624,6 +1624,26 @@ class Logbook_model extends CI_Model {
 		return $name;
 	}
 
+	function call_email($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
+		$this->db->select('COL_CALL, COL_EMAIL, COL_TIME_ON');
+		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
+		$this->db->where('COL_CALL', $callsign);
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->order_by("COL_TIME_ON", "desc");
+		$this->db->limit(1);
+		$query = $this->db->get($this->config->item('table_name'));
+		$email = "";
+		if ($query->num_rows() > 0) {
+			$data = $query->row();
+			$email = $data->COL_EMAIL;
+		}
+
+		return $email;
+	}
+
 	function times_worked($callsign) {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 		$this->db->select('count(1) as TWKED');

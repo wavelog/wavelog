@@ -81,6 +81,7 @@ class Hamqth {
 			// we always want to return name and callsign
 			$data['callsign'] 	= (string)$xml->search->callsign;
 			$data['name'] 		= (string)$xml->search->nick;
+			$data['email'] 		= (string)$xml->search->email;
 
 			// only return certain data of a callsign which does not contain a pre- or suffix (see https://github.com/wavelog/wavelog/issues/452)
 			if ($reduced == false) {
