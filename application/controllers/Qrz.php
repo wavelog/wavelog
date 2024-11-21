@@ -345,7 +345,7 @@ class Qrz extends CI_Controller {
 
 	function mass_download_qsos($qrz_api_key = '', $lastqrz = '1900-01-01', $station_ids = '', $trusted = false) {
 		$config['upload_path'] = './uploads/';
-		$file = $config['upload_path'] . 'qrzcom_download_report.adi';
+		$file = $config['upload_path'] . 'qrzcom_download_report_'.md5($qrz_api_key).'.adi';
 		if (file_exists($file) && ! is_writable($file)) {
 			$result = "Temporary download file ".$file." is not writable. Aborting!";
 			return false;
