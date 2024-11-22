@@ -22,7 +22,7 @@ echo json_encode($azelarray);
 		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br />
 		<form class="form">
         <!-- Select Basic -->
-                <div class="mb-3 row">
+		<div class="mb-3 d-flex align-items-center gap-3">
                     <label class="w-auto control-label" for="band"><?= __("Band") ?></label>
                     <div class="w-auto">
                         <select id="band" name="band" class="form-select">
@@ -48,32 +48,37 @@ echo json_encode($azelarray);
                             ?>
                         </select>
                     </div>
-					<label class="w-auto control-label" for="mode"><?= __("Sat") ?></label>
-                    <div class="w-auto">
-                        <select id="sat" name="sat" class="form-select">
-                            <option value="All" <?php if ($this->input->post('sat') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
-                            <?php
-                            foreach($sats as $sat){
-                                    echo '<option value="' . $sat . '"';
-                                    if ($this->input->post('sat') == $sat) echo ' selected';
-                                    echo '>' . $sat . '</option>'."\n";
-                            }
-                            ?>
-                        </select>
+					<div hidden class="sats_dropdown d-flex align-items-center gap-3">
+						<label class="w-auto control-label" for="sat"><?= __("Sat") ?></label>
+						<div class="w-auto">
+							<select id="sat" name="sat" class="form-select">
+								<option value="All" <?php if ($this->input->post('sat') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
+								<?php
+								foreach($sats as $sat){
+										echo '<option value="' . $sat . '"';
+										if ($this->input->post('sat') == $sat) echo ' selected';
+										echo '>' . $sat . '</option>'."\n";
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div hidden class="orbits_dropdown  d-flex align-items-center gap-3">
+						<label class="w-auto control-label" for="orbit"><?= __("Orbit") ?></label>
+						<div class="w-auto">
+							<select id="orbit" name="orbit" class="form-select">
+								<option value="All" <?php if ($this->input->post('orbit') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
+								<?php
+								foreach($orbits as $orbit){
+										echo '<option value="' . $orbit . '"';
+										if ($this->input->post('orbit') == $orbit) echo ' selected';
+										echo '>' . $orbit . '</option>'."\n";
+								}
+								?>
+							</select>
+						</div>
                     </div>
-					<label class="w-auto control-label" for="mode"><?= __("Orbit") ?></label>
-                    <div class="w-auto">
-                        <select id="orbit" name="orbit" class="form-select">
-                            <option value="All" <?php if ($this->input->post('orbit') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
-                            <?php
-                            foreach($orbits as $orbit){
-                                    echo '<option value="' . $orbit . '"';
-                                    if ($this->input->post('orbit') == $orbit) echo ' selected';
-                                    echo '>' . $orbit . '</option>'."\n";
-                            }
-                            ?>
-                        </select>
-                    </div>
+
 
                 <div class="w-auto">
                     <button id="button1id" type="button" name="button1id" class="btn btn-primary" onclick="plot_azimuth()"><?= __("Show") ?></button>

@@ -1,10 +1,24 @@
-//makeChart();
+var azimuthChart;
+
+$('#band').change(function () {
+	var band = $("#band option:selected").text();
+	if (band != "SAT") {
+		$(".sats_dropdown").attr("hidden", true);
+		$(".orbits_dropdown").attr("hidden", true);
+	} else {
+		$(".sats_dropdown").removeAttr("hidden");
+		$(".orbits_dropdown").removeAttr("hidden");
+	}
+});
 
 function plot_sat() {
 	alert ('Yeah right');
 }
 
 function plot_azimuth() {
+	if (azimuthChart) {
+		azimuthChart.destroy();
+	}
 	$.ajax({
 		url: base_url+'index.php/statistics/get_azimuth_data',
 		type: 'post',
@@ -25,7 +39,7 @@ function plot_azimuth() {
 			// using this to change color of legend and label according to background color
 			var color = ifDarkModeThemeReturn('white', 'grey');
 			var ctx = document.getElementById("azimuthchart").getContext('2d');
-			var myChart = new Chart(ctx, {
+			azimuthChart = new Chart(ctx, {
 				type: 'radar',
 				data: {
 					labels: labels,
