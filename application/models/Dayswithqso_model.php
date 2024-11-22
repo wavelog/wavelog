@@ -200,4 +200,30 @@ class Dayswithqso_model extends CI_Model
         return $query->result();
     }
 
+	/*
+     * Returns the total number of QSOs made for each month of the year
+     */
+    function getMonthsOfYear() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        if (!$logbooks_locations_array) {
+            return null;
+        }
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+        $sql = "SELECT MONTHNAME(col_time_off) AS month, COUNT(*) AS qsos
+        FROM " . $this->config->item('table_name') . "
+					WHERE MONTH(col_time_off) BETWEEN 1 AND 12
+					AND station_id IN (" . $location_list . ")
+					GROUP BY month
+					ORDER BY FIELD(month, 'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December')";
+
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
+
 }

@@ -2706,6 +2706,7 @@ msgstr "Número acumulado de WAJA contactados"
 #: application/views/dayswithqso/index.php:35
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:250
+#: application/views/dayswithqso/index.php:38
 msgid "Year"
 msgstr "Ano"
 
@@ -6476,10 +6477,12 @@ msgid "Streaks"
 msgstr "Sequências"
 
 #: application/views/dayswithqso/index.php:28
+#: application/views/dayswithqso/index.php:31
 msgid "Number of days with QSOs each year"
 msgstr "Número de dias com QSOs por ano"
 
 #: application/views/dayswithqso/index.php:44
+#: application/views/dayswithqso/index.php:47
 msgid "Days"
 msgstr "Dias"
 
@@ -6488,20 +6491,26 @@ msgid "QSOs breakdown by day of the week"
 msgstr "Contactos por dia da semana"
 
 #: application/views/dayswithqso/index.php:66
+#: application/views/dayswithqso/index.php:75
 msgid "Longest streak with QSOs in the log"
 msgstr "Maior série de contactos no log"
 
 #: application/views/dayswithqso/index.php:67
+#: application/views/dayswithqso/index.php:76
 msgid "A maximum of the 10 longest streaks are shown!"
 msgstr "São apresentadas, no máximo, as 10 sequências mais longas!"
 
 #: application/views/dayswithqso/index.php:85
+#: application/views/dayswithqso/index.php:94
 msgid "Streak (continuous days with QSOs)"
 msgstr "Streak (dias contínuos com contactos)"
 
 #: application/views/dayswithqso/index.php:86
 #: application/views/dayswithqso/index.php:114
 #: application/views/dayswithqso/index.php:136
+#: application/views/dayswithqso/index.php:95
+#: application/views/dayswithqso/index.php:123
+#: application/views/dayswithqso/index.php:145
 msgid "Start Date"
 msgstr "Data de Início"
 
@@ -6509,24 +6518,32 @@ msgstr "Data de Início"
 #: application/views/dayswithqso/index.php:115
 #: application/views/dayswithqso/index.php:137
 #: application/views/timeline/index.php:153
+#: application/views/dayswithqso/index.php:96
+#: application/views/dayswithqso/index.php:124
+#: application/views/dayswithqso/index.php:146
 msgid "End Date"
 msgstr "Data de Fim"
 
 #: application/views/dayswithqso/index.php:103
+#: application/views/dayswithqso/index.php:112
 msgctxt "Days with QSOs"
 msgid "No streak found!"
 msgstr "Não foi encontrada nenhuma série!"
 
 #: application/views/dayswithqso/index.php:107
+#: application/views/dayswithqso/index.php:116
 msgid "Current streak with QSOs in the log"
 msgstr "Sequência atual com contactos no registo"
 
 #: application/views/dayswithqso/index.php:113
 #: application/views/dayswithqso/index.php:135
+#: application/views/dayswithqso/index.php:122
+#: application/views/dayswithqso/index.php:144
 msgid "Current streak (continuous days with QSOs)"
 msgstr "Sequência atual (dias contínuos com contactos)"
 
 #: application/views/dayswithqso/index.php:130
+#: application/views/dayswithqso/index.php:139
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
@@ -6535,6 +6552,7 @@ msgstr ""
 "então a sua série atual será quebrada!"
 
 #: application/views/dayswithqso/index.php:151
+#: application/views/dayswithqso/index.php:160
 msgid "No current streak found!"
 msgstr "Não foi encontrada nenhuma série atual!"
 
@@ -12749,6 +12767,14 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#: application/views/dayswithqso/index.php:20
+msgid "Months of the year"
+msgstr ""
+
+#: application/views/dayswithqso/index.php:69
+msgid "QSOs breakdown by month of the year"
+msgstr ""
 
 #~ msgid "eMail"
 #~ msgstr "e-mail"
