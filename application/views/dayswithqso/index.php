@@ -17,6 +17,9 @@
 				<a class="nav-link" id="daysofweek-tab" data-bs-toggle="tab" href="#daysofweek" role="tab" aria-controls="daysofweek" aria-selected="false"><?= __("Days of the week"); ?></a>
 			</li>
 			<li class="nav-item">
+				<a class="nav-link" id="monthsofyear-tab" data-bs-toggle="tab" href="#monthsofyear" role="tab" aria-controls="monthsofyear" aria-selected="false"><?= __("Months of the year"); ?></a>
+			</li>
+			<li class="nav-item">
 				<a class="nav-link" id="streaks-tab" data-bs-toggle="tab" href="#streaks" role="tab" aria-controls="streaks" aria-selected="false"><?= __("Streaks"); ?></a>
 			</li>
 		</ul>
@@ -59,6 +62,12 @@
             <br/>
             <h3><?= __('QSOs breakdown by day of the week'); ?></h3>
             <canvas id="weekdaysChart" width="400" height="150"></canvas>
+        </div>
+
+		<div class="tab-pane fade" id="monthsofyear" role="tabpanel" aria-labelledby="monthsofyear-tab">
+            <br/>
+            <h3><?= __('QSOs breakdown by month of the year'); ?></h3>
+            <canvas id="monthChart" width="400" height="150"></canvas>
         </div>
 
         <div class="tab-pane fade" id="streaks" role="tabpanel" aria-labelledby="streaks-tab">
