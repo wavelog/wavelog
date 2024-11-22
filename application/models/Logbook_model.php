@@ -5464,20 +5464,24 @@ class Logbook_model extends CI_Model {
 	// returns the local time of a given grid as string
 	function getTimeByGrid($grid) {
 
-		include './src/TimezoneMapper/TimezoneMapper.php';
-		
-		if (!$this->load->is_loaded('qra')) {
-			$this->load->library('qra');
+		if (!$this->load->is_loaded('Dataservice')) {
+			$this->load->library('Dataservice', ['geocalc']);
 		}
 
-		$mapper = new TimezoneMapper();
+		$data = [
+			'grid' => $grid,
+		];
 
-		$timezone = $mapper->latLngToTimezoneString($this->qra->qra2latlong($grid)[0], $this->qra->qra2latlong($grid)[1]) ?? null;
+		$response = $this->dataservice->request($data);
 
-		$currentDateTime = new DateTime("now", new DateTimeZone($timezone));
+		unset($this->dataservice);
 
-		return $currentDateTime->format('H:i');
-
+		if ($response['status'] ?? '' == 'success') {
+			$localtime = new DateTime($response['data']['local_time']);
+			return $localtime->format('H:i');
+		} else {
+			return false;
+		}
 	}
 
 }
