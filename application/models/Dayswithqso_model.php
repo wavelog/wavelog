@@ -201,7 +201,7 @@ class Dayswithqso_model extends CI_Model
     }
 
 	/*
-     * Returns the total number of QSOs made for each day of the week (Monday to Sunday)
+     * Returns the total number of QSOs made for each month of the year
      */
     function getMonthsOfYear() {
 		$this->load->model('logbooks_model');
@@ -220,7 +220,6 @@ class Dayswithqso_model extends CI_Model
 					GROUP BY month
 					ORDER BY FIELD(month, 'January', 'February', 'March', 'April', 'May', 'June',
                     'July', 'August', 'September', 'October', 'November', 'December')";
-
 
         $query = $this->db->query($sql);
 
