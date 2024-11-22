@@ -193,8 +193,9 @@ class Distances_model extends CI_Model
 			foreach ($qsoArray as $qso) {
 				$qrb['Qsos']++;                                                        // Counts up number of qsos
 				$bearingdistance = $this->qra->distance($stationgrid, $qso['grid'], $measurement_base);
-				if ($bearingdistance != $qso['COL_DISTANCE']) {
-					$data = array('COL_DISTANCE' => $bearingdistance);
+				$bearingdistance_km = $this->qra->distance($stationgrid, $qso['grid'], 'K');
+				if ($bearingdistance_km != $qso['COL_DISTANCE']) {
+					$data = array('COL_DISTANCE' => $bearingdistance_km);
 					$this->db->where('COL_PRIMARY_KEY', $qso['COL_PRIMARY_KEY']);
 					$this->db->update($this->config->item('table_name'), $data);
 				}

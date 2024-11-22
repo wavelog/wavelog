@@ -337,7 +337,13 @@ $ci =& get_instance();
                    echo "\" data-bs-toggle=\"tooltip\"";
                 }
                 echo ' class="qrz-';
-                echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y')?'green':'red';
+		if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y') {
+			echo "green";
+		} elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='M') {
+			echo "yellow";
+		} else {
+			echo "red";
+		}
                 echo '">&#9650;</span>';
 
                 echo '<span ';
@@ -367,7 +373,13 @@ $ci =& get_instance();
                    echo "\" data-bs-toggle=\"tooltip\"";
                 }
                 echo ' class="clublog-';
-                echo ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y')?'green':'red';
+       		if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y') {
+			echo "green";
+		} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='M') {
+			echo "yellow";
+		} else {
+			echo "red";
+		}
                 echo '">&#9650;</span>';
 
                 echo '<span ';

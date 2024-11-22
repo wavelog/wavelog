@@ -131,9 +131,13 @@
                         <td><?= __("Total Distance"); //Total distance ?></td>
                         <td>
                             <?php
-                                // Cacluate Distance
-                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base);
-
+                                // Cacluate Distance if COL_DISTANCE is not set
+                                $ant_path = $row->COL_ANT_PATH ?? null;
+                                if ($row->COL_DISTANCE != null) {
+                                    $distance = $row->COL_DISTANCE;
+                                } else {
+                                    $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $ant_path);
+                                }
                                 switch ($measurement_base) {
                                     case 'M':
                                         $distance .= " mi";
@@ -144,6 +148,25 @@
                                     case 'N':
                                         $distance .= " nmi";
                                         break;
+                                }
+
+                                if ($ant_path != null) {
+                                    switch ($row->COL_ANT_PATH) {
+                                        case "S":
+                                            $distance .= ' <span class="badge bg-secondary">' . __("Short Path") . "</span>";
+                                            break;
+                                        case "L":
+                                            $distance .= ' <span class="badge bg-secondary">' . __("Long Path") . "</span>";
+                                            break;
+                                        case "O":
+                                            $distance .= ' <span class="badge bg-secondary">' . __("Other Path") . "</span>";
+                                            break;
+                                        case "G":
+                                            $distance .= ' <span class="badge bg-secondary">' . __("Greyline") . "</span>";
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                                 echo $distance;
                             ?>
@@ -445,7 +468,7 @@
 
                     <?php if($row->COL_EMAIL != null) { ?>
                     <tr>
-                        <td><?= __("eMail"); ?></td>
+                        <td><?= __("E-mail"); ?></td>
                         <td><a href="mailto:<?php echo $row->COL_EMAIL; ?>"><?php echo $row->COL_EMAIL; ?></a></td>
                     </tr>
                     <?php } ?>

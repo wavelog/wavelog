@@ -170,22 +170,21 @@ function single_callbook_update() {
         dataType: 'json',
         success: function (data) {
             // console.log(data);
-            fill_if_empty('#qth', data.callsign_qth);
-            fill_if_empty('#dxcc_id', data.dxcc.adif);
-            fill_if_empty('#continent', data.dxcc.cont);
-            fill_if_empty('#cqz', data.dxcc.cqz);
+            fill_if_empty('#qth_edit', data.callsign_qth);
+            fill_if_empty('#dxcc_id_edit', data.dxcc.adif);
+            fill_if_empty('#continent_edit', data.dxcc.cont);
+            fill_if_empty('#cqz_edit', data.dxcc.cqz);
             if (data.callsign_ituz != '') {
-                fill_if_empty('#ituz', data.callsign_ituz);
+                fill_if_empty('#ituz_edit', data.callsign_ituz);
             } else {
-                fill_if_empty('#ituz', data.dxcc.ituz);
+                fill_if_empty('#ituz_edit', data.dxcc.ituz);
             }
-            fill_if_empty('#distance', data.callsign_distance);
-            fill_if_empty('#locator', data.callsign_qra);
+            fill_if_empty('#locator_edit', data.callsign_qra);
             // fill_if_empty('#image', data.image);  Not in use yet, but may in future
-            fill_if_empty('#iota_ref', data.callsign_iota);
-            fill_if_empty('#name', data.callsign_name);
+            fill_if_empty('#iota_ref_edit', data.callsign_iota);
+            fill_if_empty('#name_edit', data.callsign_name);
             fill_if_empty('#qsl-via', data.qsl_manager);
-            fill_if_empty('#stateDropdown', data.callsign_state);
+            fill_if_empty('select[name="input_state_edit"]', data.callsign_state);
             fill_if_empty('#stationCntyInputEdit', data.callsign_us_county);
 
             $('#update_from_callbook').prop("disabled", false).removeClass("running");
@@ -202,24 +201,26 @@ async function fill_if_empty(field, data) {
     var border_color = '2px solid green';
 
     // catch special case for dxcc
-    if (field == "#dxcc_id" && $(field).val() == 0) {
+    if (field == "#dxcc_id_edit" && $(field).val() == 0) {
         $(field).val(data).css('border', border_color);
+        return;
     }
 
-    // catch special case for state
-    if (field == '#stateDropdown') {
-        await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
+    if (field == 'select[name="input_state_edit"]') {
+        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabelEdit', '#location_us_county_edit', '#stationCntyInputEdit', '#stateDropdownEdit');
         $(field).val(data).css('border', border_color);
+        return;
     }
 
-    // catch special case for distance
-    if (field == "#distance" && $(field).val() == 0) {
-        $(field).val(data).css('border', border_color);
-        // $('#locator_info').html(data);
+    // catch special case for grid
+    if (field == "#locator_edit") {
+        $(field).val(data.toUpperCase()).css('border', border_color).trigger('change');
+        return;
     }
 
     if ($(field).val() == '' && data != '') {
         $(field).val(data).css('border', border_color);
+        return;
     }
 }
 
@@ -271,7 +272,13 @@ function qso_edit(id) {
 
                     $('[data-bs-toggle="tooltip"]').tooltip();
 
-                    var state = $("#stateDropdown option:selected").text();
+                    if ($('#dxcc_id_edit').val() == '291' || $('#dxcc_id_edit').val() == '110' || $('#dxcc_id_edit').val() == '6') {
+                        $('#location_us_county_edit').show();
+                    } else {    
+                        $('#location_us_county_edit').hide();    
+                    }
+
+                    var state = $("#stateDropdownEdit option:selected").text();
                     if (state != "") {
                         $("#stationCntyInputEdit").prop('disabled', false);
                         selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
@@ -287,8 +294,8 @@ function qso_edit(id) {
                        },
                     });
 
-                    $('#prop_mode').change(function(){
-                       if (unsupported_lotw_prop_modes.includes($('#prop_mode').val())) {
+                    $('#prop_mode_edit').change(function(){
+                       if (unsupported_lotw_prop_modes.includes($('#prop_mode_edit').val())) {
                           $('#lotw_sent').prop('disabled', true);
                           $('#lotw_rcvd').prop('disabled', true);
                           $('*[id=lotw_propmode_hint]').each(function() {
@@ -303,12 +310,12 @@ function qso_edit(id) {
                        }
                     });
 
-                    $('#stateDropdown').change(function(){
-                        var state = $("#stateDropdown option:selected").text();
+                    $('#stateDropdownEdit').change(function(){
+                        var state = $("#stateDropdownEdit option:selected").text();
                         if (state != "") {
                             $("#stationCntyInputEdit").prop('disabled', false);
 
-                            selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
+                            selectize_usa_county('#stateDropdownEdit', '#stationCntyInputEdit');
 
                         } else {
                             $("#stationCntyInputEdit").prop('disabled', true);
@@ -316,41 +323,43 @@ function qso_edit(id) {
                         }
                     });
 
-                    $('#locator').change(function(){
-                        if ($(this).val().length >= 4) {
+                    $('#locator_edit, #ant_path_edit').on('change', function(){
+                        if ($('#locator_edit').val().length >= 4) {
                             $.ajax({
                                url: base_url + 'index.php/logbook/searchbearing',
                                type: 'post',
                                data: {
-                                  grid: $(this).val(),
+                                  grid: $('#locator_edit').val(),
+                                  ant_path: $('#ant_path_edit').val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  $('#locator_info').html(data).fadeIn("slow");
+                                  $('#locator_info_edit').html(data).fadeIn("slow");
                                },
                                error: function() {
-                                  $('#locator_info').text("Error loading bearing!").fadeIn("slow");
+                                  $('#locator_info_edit').text("Error loading bearing!").fadeIn("slow");
                                },
                             });
                             $.ajax({
                                url: base_url + 'index.php/logbook/searchdistance',
                                type: 'post',
                                data: {
-                                  grid: $(this).val(),
+                                  grid: $('#locator_edit').val(),
+                                  ant_path: $('#ant_path_edit').val(),
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  document.getElementById("distance").value = data;
+                                  $("#distance").val(parseFloat(data));
                                },
                                error: function() {
-                                  document.getElementById("distance").value = null;
+                                  $('#distance').val('');
                                },
                             });
-                        } else if ($(this).val().length == 0) {
-                           $('#locator_info').fadeOut("slow");
-                           document.getElementById("distance").value = null;
+                        } else if ($('#locator_edit').val().length == 0) {
+                           $('#locator_info_edit').fadeOut("slow");
+                           $('#distance').val('');
                         }
-                    });
+                    }).trigger('change'); // we also run this when the dom is ready, Trick 17 ;-)
 
                     $('#vucc_grids').change(function(){
                         if ($(this).val().length >= 9) {
@@ -362,10 +371,10 @@ function qso_edit(id) {
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  $('#locator_info').html(data).fadeIn("slow");
+                                  $('#locator_info_edit').html(data).fadeIn("slow");
                                },
                                error: function() {
-                                  $('#locator_info').text("Error loading bearing!").fadeIn("slow");
+                                  $('#locator_info_edit').text("Error loading bearing!").fadeIn("slow");
                                },
                             });
                             $.ajax({
@@ -376,15 +385,15 @@ function qso_edit(id) {
                                   stationProfile: $('#stationProfile').val()
                                },
                                success: function(data) {
-                                  document.getElementById("distance").value = data;
+                                  $("#distance").val(parseFloat(data));
                                },
                                error: function() {
-                                  document.getElementById("distance").value = null;
+                                  $("#distance").val('');
                                },
                             });
                         } else if ($(this).val().length == 0) {
-                           $('#locator_info').fadeOut("slow");
-                           document.getElementById("distance").value = null;
+                           $('#locator_info_edit').fadeOut("slow");
+                           $("#distance").val('');
                         }
                     });
 
@@ -511,8 +520,8 @@ function qso_edit(id) {
                         calcRemainingChars(event, '.modal-content');
                     });
 
-                    $("#dxcc_id").change(async function () {
-                        await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
+                    $("#dxcc_id_edit").change(async function () {
+                        await updateStateDropdown('#dxcc_id_edit', '#stateInputLabelEdit', '#location_us_county_edit', '#stationCntyInputEdit', '#stateDropdownEdit');
                     });
                 },
             });
@@ -577,7 +586,7 @@ function selectize_usa_county(state_field, county_field) {
     });
 }
 
-async function updateStateDropdown(dxcc_field, state_label, county_div, county_input) {
+async function updateStateDropdown(dxcc_field, state_label, county_div, county_input, dropdown = '#stateDropdown') {
     var selectedDxcc = $(dxcc_field);
 
     if (selectedDxcc.val() !== "") {
@@ -587,7 +596,7 @@ async function updateStateDropdown(dxcc_field, state_label, county_div, county_i
             data: { dxcc: selectedDxcc.val() },
             success: function (response) {
                 if (response.status === "ok") {
-                    statesDropdown(response, set_state);
+                    statesDropdown(response, set_state, dropdown);
                     $(state_label).html(response.subdivision_name);
                 } else {
                     statesDropdown(response);
@@ -932,8 +941,8 @@ if ($('.table-responsive .dropdown-toggle').length>0) {
 }
 
 var set_state;
-function statesDropdown(states, set_state = null) {
-    var dropdown = $('#stateDropdown');
+function statesDropdown(states, set_state = null, dropdown = '#stateDropdown') {
+    var dropdown = $(dropdown);
     dropdown.empty();
     dropdown.append($('<option>', {
         value: ''

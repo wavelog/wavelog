@@ -538,12 +538,12 @@ $options = json_decode($options);
             </div>
         </div>
         <div class="row pt-2">
-            <div class="mb-3 d-flex align-items-center col-lg d-flex flex-row justify-content-center align-items-center">
+            <div class="mb-2 btn-group w-auto mx-auto">
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".quickfilterbody"><?= __("Quickfilters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody"><?= __("QSL Filters"); ?></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody" style="white-space: nowrap;"><?= __("QSL Filters"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".filterbody"><?= __("Filters"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody"><?= __("Actions"); ?></button>
-                <label for="qsoResults" class="me-2"><?= __("# Results"); ?></label>
+                <label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
                 <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
                     <option value="250">250</option>
                     <option value="1000">1000</option>
@@ -561,13 +561,13 @@ $options = json_decode($options);
                         </option>
                     <?php } ?>
                 </select>
-                <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton"><?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
+                <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton" style="white-space: nowrap;"><i class="fas fa-search"></i> <?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="invalidButton"><?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton"><?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos"><?= __("Delete"); ?></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton" style="white-space: nowrap;"><i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
+                <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos" style="white-space: nowrap;"><i class="fas fa-trash-alt"></i> <?= __("Delete"); ?></button>
                 <div class="btn-group me-1" role="group">
-                    <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?= __("Map"); ?><div class="ld ld-ring ld-spin"></div></button>
+                    <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="mapButton" onclick="mapQsos(this.form);" style="white-space: nowrap;"><i class="fas fa-globe-europe"></i> <?= __("Map"); ?><div class="ld ld-ring ld-spin"></div></button>
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
