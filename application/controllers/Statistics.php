@@ -239,13 +239,18 @@ class Statistics extends CI_Controller {
 
 	public function antennaanalytics() {
 		$this->load->model('stats');
+		$this->load->model('logbookadvanced_model');
+		$this->load->model('bands');
 
 		$data = array();
 
 		$data['azelarray'] = $this->stats->azeldata();
 
 		$data['satellites'] = $this->stats->get_sats();
-
+		$data['bands'] = $this->bands->get_worked_bands();
+		$data['modes'] = $this->logbookadvanced_model->get_modes();
+		$data['sats'] = $this->bands->get_worked_sats();
+		$data['orbits'] = $this->bands->get_worked_orbits();
 
 		$footerData = [];
 		$footerData['scripts'] = [
@@ -257,5 +262,18 @@ class Statistics extends CI_Controller {
 		$this->load->view('interface_assets/header');
 		$this->load->view('statistics/antennaanalytics', $data);
 		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	public function get_azimuth_data() {
+		$band = xss_clean($this->input->post('band'));
+		$mode = xss_clean($this->input->post('mode'));
+		$sat = xss_clean($this->input->post('sat'));
+		$orbit = xss_clean($this->input->post('orbit'));
+
+		$this->load->model('stats');
+		$azimutharray = $this->stats->azimuthdata($band, $mode, $sat, $orbit);
+
+		header('Content-Type: application/json');
+		echo json_encode($azimutharray);
 	}
 }

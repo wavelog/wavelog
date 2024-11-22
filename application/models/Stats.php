@@ -703,6 +703,59 @@
 		$result = $this->db->query($sql);
 		return $result->result();
 	}
+
+	function azimuthdata($band, $mode, $sat, $orbit) {
+		$conditions = [];
+		$binding = [];
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+
+
+		if ($band !== 'All') {
+			if($band != "SAT") {
+				$conditions[] = "COL_BAND = ? and COL_PROP_MODE != 'SAT'";
+				$binding[] = trim($band);
+			} else {
+				$conditions[] = "COL_PROP_MODE = 'SAT'";
+				if ($sat !== 'All') {
+					$conditions[] = "COL_SAT_NAME = ?";
+					$binding[] = trim($sat);
+				}
+			}
+		}
+
+		if ($mode !== 'All') {
+			$conditions[] = "(COL_MODE = ? or COL_SUBMODE = ?)";
+			$binding[] = $mode;
+			$binding[] = $mode;
+		}
+
+		if ($orbit !== 'All' && $orbit !== '') {
+			$conditions[] = "orbit = ?";
+			$binding[] = $orbit;
+		}
+
+		$where = trim(implode(" AND ", $conditions));
+		if ($where != "") {
+			$where = "AND $where";
+		}
+
+		$sql = "SELECT count(*) qsos, round(COL_ANT_AZ) azimuth
+		FROM logbook
+		where station_id in (" . implode(',',$logbooks_locations_array) . ")
+		and coalesce(col_ant_az, '') <> ''
+		$where
+		group by round(col_ant_az)";
+
+		$result = $this->db->query($sql, $binding);
+		return $result->result();
+	}
 }
 
 ?>
