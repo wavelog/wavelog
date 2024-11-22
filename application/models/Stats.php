@@ -718,7 +718,7 @@
 			$where = "AND $where";
 		}
 
-		$sql = "SELECT count(*) qsos, round(COL_ANT_EL) elevation FROM logbook where station_id in (" . implode(',',$logbooks_locations_array) . ") and coalesce(col_ant_el, '') <> ''
+		$sql = "SELECT count(*) qsos, round(COL_ANT_EL) elevation FROM ".$this->config->item('table_name')." where station_id in (" . implode(',',$logbooks_locations_array) . ") and coalesce(col_ant_el, '') <> ''
 		$where
 		group by round(col_ant_el)";
 
@@ -767,7 +767,7 @@
 		}
 
 		$sql = "SELECT count(*) qsos, round(COL_ANT_AZ) azimuth
-		FROM logbook
+		FROM ".$this->config->item('table_name')."
 		where station_id in (" . implode(',',$logbooks_locations_array) . ")
 		and coalesce(col_ant_az, '') <> ''
 		$where
