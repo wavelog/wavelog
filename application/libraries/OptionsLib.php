@@ -201,4 +201,25 @@ class OptionsLib {
         return json_encode($jsonout);
     }
 
+    function get_wlid() {
+        $wavelog_id = $this->get_option('wavelog_id');
+
+        if ($wavelog_id == NULL) {
+            $wavelog_id = $this->create_wlid();
+        }
+
+        return $wavelog_id;
+    }
+
+    function create_wlid() {
+        $CI =& get_instance();
+
+        $wavelog_id = bin2hex('wavelog') . md5(uniqid(rand(), true)) . bin2hex(substr($CI->config->item('locator'), 0, 4));
+
+        $CI->session->set_userdata('wavelog_id', $wavelog_id);
+        $this->update('wavelog_id', $wavelog_id, 'yes');
+
+        return $wavelog_id;
+    }
+
 }

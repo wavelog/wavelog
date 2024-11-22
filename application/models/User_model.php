@@ -474,6 +474,7 @@ class User_Model extends CI_Model {
 			'user_language' => isset($u->row()->user_language) ? $u->row()->user_language: 'english',
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
+			'wavelog_id' => ((($this->session->userdata('wavelog_id') ?? '') == '') ? $this->optionslib->get_wlid() : $this->session->userdata('wavelog_id')),
 			'impersonate' => $this->session->userdata('impersonate') ?? false,
 		);
 
