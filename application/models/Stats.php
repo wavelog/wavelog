@@ -690,7 +690,10 @@
 		return $modes;
 	}
 
-	function azeldata() {
+	function elevationdata($sat, $orbit) {
+		$conditions = [];
+		$binding = [];
+
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -698,9 +701,28 @@
 			return null;
 		}
 
-		$sql = "SELECT count(*) qsos, round(COL_ANT_EL) elevation FROM logbook where station_id in (" . implode(',',$logbooks_locations_array) . ") and col_ant_el > 0 group by round(col_ant_el)";
+		$conditions[] = "COL_PROP_MODE = 'SAT'";
 
-		$result = $this->db->query($sql);
+		if($sat != "All") {
+			$conditions[] = "COL_SAT_NAME = ? ";
+			$binding[] = trim($sat);
+		}
+
+		if ($orbit !== 'All' && $orbit !== '') {
+			$conditions[] = "orbit = ?";
+			$binding[] = $orbit;
+		}
+
+		$where = trim(implode(" AND ", $conditions));
+		if ($where != "") {
+			$where = "AND $where";
+		}
+
+		$sql = "SELECT count(*) qsos, round(COL_ANT_EL) elevation FROM logbook where station_id in (" . implode(',',$logbooks_locations_array) . ") and coalesce(col_ant_el, '') <> ''
+		$where
+		group by round(col_ant_el)";
+
+		$result = $this->db->query($sql, $binding);
 		return $result->result();
 	}
 
@@ -714,8 +736,6 @@
 		if (!$logbooks_locations_array) {
 			return null;
 		}
-
-
 
 		if ($band !== 'All') {
 			if($band != "SAT") {

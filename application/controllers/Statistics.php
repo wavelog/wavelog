@@ -244,8 +244,6 @@ class Statistics extends CI_Controller {
 
 		$data = array();
 
-		$data['azelarray'] = $this->stats->azeldata();
-
 		$data['satellites'] = $this->stats->get_sats();
 		$data['bands'] = $this->bands->get_worked_bands();
 		$data['modes'] = $this->logbookadvanced_model->get_modes();
@@ -275,5 +273,16 @@ class Statistics extends CI_Controller {
 
 		header('Content-Type: application/json');
 		echo json_encode($azimutharray);
+	}
+
+	public function get_elevation_data() {
+		$sat = xss_clean($this->input->post('sat'));
+		$orbit = xss_clean($this->input->post('orbit'));
+
+		$this->load->model('stats');
+		$elevationarray = $this->stats->elevationdata($sat, $orbit);
+
+		header('Content-Type: application/json');
+		echo json_encode($elevationarray);
 	}
 }
