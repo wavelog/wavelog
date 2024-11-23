@@ -17,6 +17,11 @@ class Dataservice {
     protected $wavelog_id;
 
     /**
+     * Wavelog Version
+     */
+    protected $wavelog_version;
+
+    /**
      * URL of the Dataservice
      */
     protected $url;
@@ -41,6 +46,7 @@ class Dataservice {
     function __construct($api) {
         $this->CI =& get_instance();
         $this->wavelog_id = ((($this->CI->session->userdata('wavelog_id') ?? '') == '') ? $this->CI->optionslib->get_wlid() : $this->CI->session->userdata('wavelog_id'));
+        $this->wavelog_version = $this->CI->optionslib->get_option('version');
         $this->url = rtrim($this->CI->optionslib->get_option('dataservice_url') ?? 'https://data.wavelog.org', '/') . '/';
         $this->api = $api[0];
         $this->insecure = $this->CI->optionslib->get_option('dataservice_insecure') ?? false;
@@ -57,6 +63,7 @@ class Dataservice {
         }
         
         $data['wl_id'] = $this->wavelog_id;
+        $data['wl_version'] = $this->wavelog_version;
         
         $response = $this->make_request($data);
         
@@ -85,7 +92,7 @@ class Dataservice {
         if (curl_errno($ch)) {
             $error_msg = curl_error($ch);
             curl_close($ch);
-            log_message('error', 'Dataservice make_request cURL error: ' . $error_msg);
+            log_message('error', 'Dataservice make_request curl error: ' . $error_msg);
             return false;
         }
     
