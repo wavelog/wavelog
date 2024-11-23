@@ -60,9 +60,21 @@
                             </div>
                             <div class="mb-3">
                                 <label for="dataservice_url"><?= __("Dataservice URL"); ?></label>
-                                <div class="input-group w-50">
-                                    <input type="text" name="dataservice_url" class="form-control" id="dataservice_url" aria-describedby="dataservice_urlHelp" value="<?php echo $dataservice_url; ?>">
-                                    <button class="btn btn-secondary w-25" type="button" id="dataservice_url_tester" onclick="test_dataservice($('#dataservice_url').val(), '<?php echo $wavelog_id; ?>')"><?= __("Test"); ?></button>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <input type="text" name="dataservice_url" class="form-control" id="dataservice_url" aria-describedby="dataservice_urlHelp" value="<?php echo $dataservice_url; ?>">
+                                            <button class="btn btn-secondary w-25" type="button" id="dataservice_url_tester" onclick="test_dataservice($('#dataservice_url').val(), '<?php echo $wavelog_id; ?>', '<?php echo $wavelog_version; ?>')"><?= __("Test"); ?></button>
+                                        </div>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <small class="text-muted d-flex align-items-center">
+                                            <i id="ds_testresult"></i>
+                                            <span class="ms-2" id="ds_testresult_text"></span>
+                                        </small>
+                                        <input type="hidden" name="wavelog_id" id="wavelog_id" value="<?php echo $wavelog_id; ?>">
+                                        <input type="hidden" name="wavelog_version" id="wavelog_version" value="<?php echo $wavelog_version; ?>">
+                                    </div>
                                 </div>
                                 <small id="dataservice_urlHelp" class="form-text text-muted"><?= sprintf(__("URL of the Dataservice Server, Default: %s"), $default_dataservice_url); ?></small>
                             </div>

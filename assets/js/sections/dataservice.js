@@ -1,32 +1,45 @@
-function test_dataservice(url, wl_id) {
+function test_dataservice(url, wl_id, wl_version) {
 
     let ds_url = url.endsWith('/') ? url : url + '/';
-    let ds_test_btn = $('#dataservice_url_tester');
     let testvalue = Date.now();
+    let result_el = $('#ds_testresult');
+    let result_text = $('#ds_testresult_text');
+
+    result_text.text("");
+    result_el.removeClass();
+    result_el.addClass('fas fa-spinner fa-spin');
+    result_el.show();
 
     $.ajax({
         url: ds_url + 'test',
         type: 'POST',
         data: {
-            testvalue: Date.now(),
-            wl_id: wl_id
+            testvalue: testvalue,
+            wl_id: wl_id,
+            wl_version: wl_version
         },
         success: function (r) {
             if (r.status == 'success' && r.data.testvalue == testvalue) {
-                ds_test_btn.removeClass('btn-secondary btn-danger').addClass('btn-success');
+                result_el.removeClass();
+                result_el.addClass('fas fa-check text-success');
+                result_text.text(lang_general_word_available);
             } else {
-                ds_test_btn.removeClass('btn-secondary btn-success').addClass('btn-danger');
+                result_el.removeClass();
+                result_el.addClass('fas fa-times text-danger');
+                result_text.text(lang_general_word_unavailable);
             }
         },
         error: function (r) {
-            console.error('Test error: ' + r);
-            ds_test_btn.removeClass('btn-secondary btn-success').addClass('btn-danger');
+            result_el.removeClass();
+            result_el.addClass('fas fa-times text-danger');
+            result_text.text(lang_general_word_unavailable);
         }
     });
 }
 
 $('#dataservice_url').on('change input focus', function () {
-    $('#dataservice_url_tester').removeClass('btn-success btn-danger').addClass('btn-secondary');
+    $('#ds_testresult').hide();
+    $('#ds_testresult_text').text("");
 });
 
 $('#dataservice_enabled').on('change', function () {
@@ -39,5 +52,8 @@ $('#dataservice_enabled').on('change', function () {
 
 $(document).ready(function () {
     $('#dataservice_enabled').trigger('change');
+    if ($('#dataservice_enabled').is(':checked')) {
+        test_dataservice($('#dataservice_url').val(), $('#wavelog_id').val(), $('#wavelog_version').val());
+    }
     $('[data-bs-toggle="insecureinfo"]').tooltip();
 });
