@@ -604,7 +604,7 @@ $("#callsign").on("focusout", function () {
 					$('#country').val(convert_case(result.dxcc.entity));
 					$('#callsign_info').text(convert_case(result.dxcc.entity));
 
-					if (result.local_time != 'error') {
+					if (result.local_time != 'error' && result.local_time != undefined) {
 						$('#local_time_info').text(lang_local_time + ' ' + result.local_time);
 					}
 
