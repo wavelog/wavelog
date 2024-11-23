@@ -20,8 +20,8 @@ function plot_satel() {
 		url: base_url + 'index.php/statistics/get_elevation_data',
 		type: 'post',
 		data: {
-			'sat': $('#sat').val(),
-			'orbit': $('#orbit').val()
+			'sat': $('#satel').val(),
+			'orbit': $('#orbitel').val()
 		},
 		success: function (tmp) {
 			var labels = [];
