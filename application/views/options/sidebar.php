@@ -4,10 +4,11 @@
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/appearance'); ?>"><?= __("Appearance"); ?></a></li>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/radio'); ?>"><?= __("Radios"); ?></a></li>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/email'); ?>"><?= __("Email"); ?></a></li>
-      <?php if (!($this->config->item('disable_oqrs') ?? false)) { ?>
-			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/oqrs'); ?>"><?= __("OQRS Options"); ?></a></li>
-      <?php } ?>
+			<?php if (!($this->config->item('disable_oqrs') ?? false)) { ?>
+				<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/oqrs'); ?>"><?= __("OQRS Options"); ?></a></li>
+			<?php } ?>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/dxcluster'); ?>"><?= __("DXCluster"); ?></a></li>
+			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/dataservice'); ?>"><?= __("Dataservice"); ?></a></li>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/version_dialog'); ?>"><?= __("Version Info"); ?></a></li>
 		</ul>
 	</div>

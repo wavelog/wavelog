@@ -186,16 +186,16 @@ class Options extends CI_Controller {
 		}
 	}
 
-		// function used to display the /radio url
-		function radio() {
+	// function used to display the /radio url
+	function radio() {
 
-			$data['page_title'] = __("Wavelog Options");
-			$data['sub_heading'] = __("Radio Settings");
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("Radio Settings");
 
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('options/radios');
-			$this->load->view('interface_assets/footer');
-		}
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('options/radios');
+		$this->load->view('interface_assets/footer');
+	}
 
 	// Handles saving the radio options to the options system.
 	function radio_save() {
@@ -387,6 +387,52 @@ class Options extends CI_Controller {
 		}
 		
 		redirect('/options/email');
+	}
+
+	// function used to display the /version_dialog url
+	function dataservice() {
+
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("Dataservice");
+
+		$data['default_dataservice_url'] = 'https://data.wavelog.org/';
+		$data['dataservice_url'] = $this->optionslib->get_option('dataservice_url') ?? $data['default_dataservice_url'];
+		$data['dataservice_enabled'] = $this->optionslib->get_option('dataservice_enabled') ?? 1;
+		$data['dataservice_insecure'] = $this->optionslib->get_option('dataservice_insecure') ?? 0;
+		$data['wavelog_id'] = $this->optionslib->get_wlid();
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/dataservice.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/dataservice.js")),
+		];
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('options/dataservice');
+		$this->load->view('interface_assets/footer', $footerData);
+    }
+
+	function dataservice_save() {
+
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("Dataservice");
+
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('dataservice_url', 'URL of Dataservice', 'valid_url');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('danger', __("Could not save Dataservice Settings. Please check the URL"));
+			redirect('/options/dataservice');
+		} else {
+			$updated = $this->optionslib->update('dataservice_enabled', $this->input->post('dataservice_enabled') == 'on' ? true : false, 'yes');
+			$updated = $this->optionslib->update('dataservice_url', $this->input->post('dataservice_url'), 'yes');
+			$updated = $this->optionslib->update('dataservice_insecure', $this->input->post('dataservice_insecure') == 'on' ? true : false, 'yes');
+			if($updated) {
+				$this->session->set_flashdata('success', __("Dataservice Settings saved"));
+			}
+			redirect('/options/dataservice');
+		}
 	}
 
 	// function used to display the /version_dialog url
