@@ -1261,7 +1261,7 @@ class Logbook extends CI_Controller {
 	}
 
 	/* return station bearing */
-	function bearing($locator, $unit = 'M', $station_id = null) {
+	function bearing($locator, $unit = 'M', $station_id = null, $ant_path = null) {
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
@@ -1285,7 +1285,7 @@ class Logbook extends CI_Controller {
 				$mylocator = $this->config->item('locator');
 			}
 
-			$bearing = $this->qra->bearing($mylocator, $locator, $unit);
+			$bearing = $this->qra->bearing($mylocator, $locator, $unit, $ant_path);
 
 			return $bearing;
 		}
@@ -1293,7 +1293,7 @@ class Logbook extends CI_Controller {
 	}
 
 	/* return distance */
-	function distance($locator, $station_id = null) {
+	function distance($locator, $station_id = null, $ant_path = null) {
 			$distance = 0;
 			if(!$this->load->is_loaded('Qra')) {
 			    $this->load->library('Qra');
@@ -1318,7 +1318,7 @@ class Logbook extends CI_Controller {
 					$mylocator = $this->config->item('locator');
 				}
 
-				$distance = $this->qra->distance($mylocator, $locator, 'K');
+				$distance = $this->qra->distance($mylocator, $locator, 'K', $ant_path);
 
 			}
 			return $distance;
