@@ -244,6 +244,8 @@ class Statistics extends CI_Controller {
 
 		$data = array();
 
+		$headerData['page_title'] = __("Antenna Analytics");
+
 		$data['satellites'] = $this->stats->get_sats();
 		$data['bands'] = $this->bands->get_worked_bands();
 		$data['modes'] = $this->logbookadvanced_model->get_modes();
@@ -257,7 +259,7 @@ class Statistics extends CI_Controller {
 		];
 
 		// Load Views
-		$this->load->view('interface_assets/header');
+		$this->load->view('interface_assets/header', $headerData);
 		$this->load->view('statistics/antennaanalytics', $data);
 		$this->load->view('interface_assets/footer', $footerData);
 	}
