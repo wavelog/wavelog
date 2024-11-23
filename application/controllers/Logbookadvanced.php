@@ -448,8 +448,8 @@ class Logbookadvanced extends CI_Controller {
 		}
 		$this->load->model('logbook_model');
 
-		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base) . $var_dist;
-		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2) . "&#186;";
+		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
+		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
 		$latlng1 = $this->qra->qra2latlong($locator1);
 		$latlng2 = $this->qra->qra2latlong($locator2);
 		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
