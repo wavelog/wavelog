@@ -14,7 +14,7 @@
     <img alt="Translation Status" src="https://translate.wavelog.org/widget/wavelog/main-translation/svg-badge.svg">
   </a>
   <a href="https://github.com/wavelog/wavelog/graphs/contributors" >
-   <img alt="Commit Activity" src="https://img.shields.io/github/commit-activity/m/wavelog/wavelog">
+   <img alt="Commit Activity" src="https://img.shields.io/github/commit-activity/m/wavelog/wavelog/dev">
  </a>
 </h1>
 
