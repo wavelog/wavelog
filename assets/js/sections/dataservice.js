@@ -1,7 +1,7 @@
 function test_dataservice(url, wl_id, wl_version) {
 
     let ds_url = url.endsWith('/') ? url : url + '/';
-    let testvalue = Date.now();
+    let testvalue = '1706745600';
     let result_el = $('#ds_testresult');
     let result_text = $('#ds_testresult_text');
 
@@ -19,7 +19,7 @@ function test_dataservice(url, wl_id, wl_version) {
             wl_version: wl_version
         },
         success: function (r) {
-            if (r.status == 'success' && r.data.testvalue == testvalue) {
+            if (r.status == 'success' && r.data.testvalue == true) {
                 result_el.removeClass();
                 result_el.addClass('fas fa-check text-success');
                 result_text.text(lang_general_word_available);
