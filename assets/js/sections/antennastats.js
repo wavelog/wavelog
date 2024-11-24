@@ -145,7 +145,14 @@ function plot_azimuth() {
 							labels: {
 								color: color
 							}
-						}
+						},
+						tooltip: {
+							callbacks: {
+								title: function(context) {
+									return context[0].label+"°";
+								}
+							}
+						},
 					},
 					scales: {
 						r: { // Radial scale (angle and radius)
