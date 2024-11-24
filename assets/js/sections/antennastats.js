@@ -83,7 +83,14 @@ function plot_satel() {
 							labels: {
 								color: color
 							}
-						}
+						},
+						tooltip: {
+							callbacks: {
+								title: function(context) {
+									return context[0].label+"° elevation";
+								}
+							}
+						},
 
 					}
 				}
@@ -149,7 +156,7 @@ function plot_azimuth() {
 						tooltip: {
 							callbacks: {
 								title: function(context) {
-									return context[0].label+"°";
+									return context[0].label+"° azimuth";
 								}
 							}
 						},
