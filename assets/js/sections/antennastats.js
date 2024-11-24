@@ -115,9 +115,11 @@ function plot_azimuth() {
 		success: function (tmp) {
 			var dataQso = [];
 			var labels = [];
+			for (let i=0; i<360; i++) {
+				labels.push(i);
+			}
 			$.each(tmp, function () {
 				// labels.push('Azimuth ' + this.azimuth + '°');
-				labels.push(this.azimuth);
 				dataQso.push(this.qsos);
 			});
 
