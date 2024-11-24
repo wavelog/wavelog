@@ -689,6 +689,98 @@
 
 		return $modes;
 	}
+
+	function elevationdata($sat, $orbit) {
+		$conditions = [];
+		$binding = [];
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$conditions[] = "COL_PROP_MODE = 'SAT'";
+
+		if($sat != "All") {
+			$conditions[] = "COL_SAT_NAME = ? ";
+			$binding[] = trim($sat);
+		}
+
+		if ($orbit !== 'All' && $orbit !== '') {
+			$conditions[] = "orbit = ?";
+			$binding[] = $orbit;
+		}
+
+		$where = trim(implode(" AND ", $conditions));
+		if ($where != "") {
+			$where = "AND $where";
+		}
+
+		$sql = "SELECT count(*) qsos, round(COL_ANT_EL) elevation FROM ".$this->config->item('table_name')."
+		LEFT JOIN satellite ON satellite.name = ".$this->config->item('table_name').".COL_SAT_NAME
+		where station_id in (" . implode(',',$logbooks_locations_array) . ") and coalesce(col_ant_el, '') <> ''
+		$where
+		group by round(col_ant_el)
+		order by elevation asc";
+
+		$result = $this->db->query($sql, $binding);
+		return $result->result();
+	}
+
+	function azimuthdata($band, $mode, $sat, $orbit) {
+		$conditions = [];
+		$binding = [];
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		if ($band !== 'All') {
+			if($band != "SAT") {
+				$conditions[] = "COL_BAND = ? and COL_PROP_MODE != 'SAT'";
+				$binding[] = trim($band);
+			} else {
+				$conditions[] = "COL_PROP_MODE = 'SAT'";
+				if ($sat !== 'All') {
+					$conditions[] = "COL_SAT_NAME = ?";
+					$binding[] = trim($sat);
+				}
+			}
+		}
+
+		if ($mode !== 'All') {
+			$conditions[] = "(COL_MODE = ? or COL_SUBMODE = ?)";
+			$binding[] = $mode;
+			$binding[] = $mode;
+		}
+
+		if ($orbit !== 'All' && $orbit !== '') {
+			$conditions[] = "orbit = ?";
+			$binding[] = $orbit;
+		}
+
+		$where = trim(implode(" AND ", $conditions));
+		if ($where != "") {
+			$where = "AND $where";
+		}
+
+		$sql = "SELECT count(*) qsos, round(COL_ANT_AZ) azimuth
+		FROM ".$this->config->item('table_name')."
+		LEFT JOIN satellite ON satellite.name = ".$this->config->item('table_name').".COL_SAT_NAME
+		where station_id in (" . implode(',',$logbooks_locations_array) . ")
+		and coalesce(col_ant_az, '') <> ''
+		$where
+		group by round(col_ant_az)
+		order by azimuth asc";
+
+		$result = $this->db->query($sql, $binding);
+		return $result->result();
+	}
 }
 
 ?>
