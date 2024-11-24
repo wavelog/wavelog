@@ -44,6 +44,17 @@ function echo_table_col($row, $name) {
 		case 'Name': echo '<td>' . ($row->COL_NAME) . '</td>'; break;
 	}
 }
+//Note to reviewer: This function is used a few times in the different views
+//Not sure if it can be moved to a central file to only be used once
+
+//Converts UTC time to local time using PHP's timezones.
+//This accounts for Daylight Savings (apparently)
+function UTCtoLocal($timestamp, $timezone){
+	$utc_date = (new DateTime('@' . $timestamp))->setTimezone(new DateTimeZone('UTC'));
+	$local_date = $utc_date;
+	$local_date->setTimeZone(new DateTimeZone($timezone));
+	return $local_date;
+}
 ?>
 
 <script>
@@ -167,10 +178,10 @@ function echo_table_col($row, $name) {
 
     		<thead>
 				<tr class="titles">
-					<th><?= __("Date"); ?></th>
-
+					<!-- Display UTC or Local in header based on settings -->
+					<th><?= __("Date"); ?><?php if($this->session->userdata('user_show_log_utc') == 1){ echo __(" (UTC)"); }else{ echo __(" (Local)"); } ?></th>
 					<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-					<th><?= __("Time"); ?></th>
+					<th><?= __("Time"); ?><?php if($this->session->userdata('user_show_log_utc') == 1){ echo __(" (UTC)"); }else{ echo __(" (Local)"); } ?></th>
 					<?php } ?>
 					<th><?= __("Callsign"); ?></th>
 					<?php
@@ -200,10 +211,21 @@ function echo_table_col($row, $name) {
 					}
 
 					?>
+					<?php
+					//Change what tooltip is shown based on user setting
+					if($this->session->userdata('user_show_log_utc') == 1){?>
 
-					<td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date($custom_date_format, $timestamp); ?></td>
-					<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-					<td><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></td>
+						<td><span data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="<?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo UTCtoLocal($timestamp, $this->session->userdata('user_timezone'))->format($custom_date_format); ?> (Local)"><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date($custom_date_format, $timestamp); ?></span></td>
+						<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
+							<td><span data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="<?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo UTCtoLocal($timestamp, $this->session->userdata('user_timezone'))->format('H:i'); ?> (Local)"><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?></span></td>
+						<?php } ?>
+
+					<?php }else{ ?>
+					
+						<td><span data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="<?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date($custom_date_format, $timestamp); ?> (UTC)"><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo UTCtoLocal($timestamp, $this->session->userdata('user_timezone'))->format($custom_date_format); ?></span></td>
+						<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
+							<td><span data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="<?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo date('H:i', $timestamp); ?> (UTC)"><?php $timestamp = strtotime($row->COL_TIME_ON ?? '1970-01-01 00:00:00'); echo UTCtoLocal($timestamp, $this->session->userdata('user_timezone'))->format('H:i'); ?></span></td>
+						<?php } ?>	
 
 					<?php } ?>
 					<td>

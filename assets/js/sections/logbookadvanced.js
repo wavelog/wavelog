@@ -27,6 +27,25 @@ $('#selectPropagation').change(function () {
 	}
 });
 
+//Converts UTC time to local time.
+//This accounts for Daylight Savings (apparently)
+function UTCtoLocal(datetime, timezone) {
+    const [datePart, timePart] = datetime.split(' ');
+    const [day, month, year] = datePart.split('/').map(Number);
+    const [hour, minute] = timePart.split(':').map(Number);
+    const fullYear = year < 100 ? 2000 + year : year;
+    const utcDate = new Date(Date.UTC(fullYear, month - 1, day, hour, minute));
+    const localDate = new Date(utcDate.toLocaleString('en-US', { timeZone: timezone }));
+    const formattedDate = [
+        String(localDate.getDate()).padStart(2, '0'),  // Day
+        String(localDate.getMonth() + 1).padStart(2, '0'),  // Month
+        String(localDate.getFullYear()).slice(-2),  // Year
+    ].join('/') + ' ' + [
+        String(localDate.getHours()).padStart(2, '0'),  // Hours
+        String(localDate.getMinutes()).padStart(2, '0'),  // Minutes
+    ].join(':');
+    return formattedDate;
+}
 function updateRow(qso) {
 	let row = $('#qsoID-' + qso.qsoID);
 	let cells = row.find('td');
@@ -185,7 +204,12 @@ function loadQSOTable(rows) {
 			if (qso.datetime === '') {
 				data.push('<span class="bg-danger">Missing date</span>');
 			} else {
-				data.push(qso.qsoDateTime);
+				// Change tooltip and time based on UTC display settings
+				if (user_options.datetime.showutc == "true") {
+					data.push('<span data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="'+UTCtoLocal(qso.qsoDateTime, user_options.timezone.value)+' (Local)">'+qso.qsoDateTime+'</span>');
+				}else{
+					data.push('<span data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="'+qso.qsoDateTime+' (UTC)">'+UTCtoLocal(qso.qsoDateTime, user_options.timezone.value)+'</span>');
+				}
 			}
 		}
 		if (user_options.de.show == "true"){

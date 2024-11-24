@@ -1,3 +1,16 @@
+<?php
+//Note to reviewer: This function is used a few times in the different views
+//Not sure if it can be moved to a central file to only be used once
+
+//Converts UTC time to local time using PHP's timezones.
+//This accounts for Daylight Savings (apparently)
+function UTCtoLocal($timestamp, $timezone){
+	$utc_date = (new DateTime('@' . $timestamp))->setTimezone(new DateTimeZone('UTC'));
+	$local_date = $utc_date;
+	$local_date->setTimeZone(new DateTimeZone($timezone));
+	return $local_date;
+}
+?>
 <script type="text/javascript">
     /*
      * Custom user settings
@@ -20,9 +33,17 @@
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
+		//Set userdata for display settings to pass to JS functions
+		if($this->session->userdata('user_show_log_utc') == 1){
+			$showUTC = "true";
+		}else{
+			$showUTC = "false";
+		}
+		$timezone = $this->session->userdata('user_timezone');
         $options = "{
             \"datetime\":{\"show\":\"true\"},
-            \"de\":{\"show\":\"true\"},
+			\"showutc\":{\"show\":\"$showUTC\"},
+			\"timezone\":{\"value\":\"$timezone\"},            \"de\":{\"show\":\"true\"},
             \"dx\":{\"show\":\"true\"},
             \"mode\":{\"show\":\"true\"},
             \"rstr\":{\"show\":\"true\"},
@@ -586,8 +607,9 @@ $options = json_decode($options);
                         <div class="form-check" style="margin-top: -1.5em"><input class="form-check-input" type="checkbox" id="checkBoxAll" /></div>
                     </th>
                     <?php if (($options->datetime->show ?? "true") == "true") {
-                        echo '<th>' . __("Date/Time") . '</th>';
-                    } ?>
+                        //Change header to show UTC / Local based on user settings
+                        echo '<th>' . __("Date/Time"); if($this->session->userdata('user_show_log_utc') == 1){ echo __(" (UTC)"); }else{ echo __(" (Local)"); } echo '</th>';                    } ?>
+					} ?>
                     <?php if (($options->de->show ?? "true") == "true") {
                         echo '<th>' . __("De") . '</th>';
                     } ?>

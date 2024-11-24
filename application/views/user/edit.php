@@ -183,6 +183,16 @@
 										?>
 									</div>
 
+									<!-- Add new option to menu -->
+									<div class="mb-3">
+										<label for="ShowLogUTC"><?= __("Show Log times in UTC or Local time"); ?></label>
+										<?php if(!isset($user_show_log_utc)) { $user_show_log_utc='1'; }?>
+										<select class="form-select" id="ShowLogUTC" name="user_show_log_utc">
+											<option value="1" <?php if ($user_show_log_utc == 1) { echo " selected =\"selected\""; } ?>><?= __("UTC"); ?></option>
+											<option value="0" <?php if ($user_show_log_utc == 0) { echo " selected =\"selected\""; } ?>><?= __("Local"); ?></option>
+										</select>
+										<small id="ShowLogUTCHelp" class="form-text text-muted"><?= __("This only affects the local view of your logs. Any logs being uploaded to third party services will still upload in UTC."); ?></small>
+									</div>
 									<div class="mb-3">
 										<label for="SelectDateFormat"><?= __("Date Format"); ?></label>
 										<?php if(!isset($user_date_format)) { $user_date_format='d/m/y'; }?>

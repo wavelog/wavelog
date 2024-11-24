@@ -164,7 +164,7 @@ class User_Model extends CI_Model {
 		$user_language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
 		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab,
 		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
-		$user_winkey) {
+		$user_winkey, $user_show_log_utc) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -197,6 +197,7 @@ class User_Model extends CI_Model {
 				'user_default_band' => xss_clean($user_default_band),
 				'user_default_confirmation' => xss_clean($user_default_confirmation),
 				'user_qso_end_times' => xss_clean($user_qso_end_times),
+				'user_show_log_utc' => xss_clean($user_show_log_utc),
 				'user_quicklog' => xss_clean($user_quicklog),
 				'user_quicklog_enter' => xss_clean($user_quicklog_enter),
 				'user_language' => xss_clean($user_language),
@@ -282,6 +283,7 @@ class User_Model extends CI_Model {
 					'user_default_band' => xss_clean($fields['user_default_band']),
 					'user_default_confirmation' => (isset($fields['user_default_confirmation_qsl']) ? 'Q' : '').(isset($fields['user_default_confirmation_lotw']) ? 'L' : '').(isset($fields['user_default_confirmation_eqsl']) ? 'E' : '').(isset($fields['user_default_confirmation_qrz']) ? 'Z' : '').(isset($fields['user_default_confirmation_clublog']) ? 'C' : ''),
 					'user_qso_end_times' => xss_clean($fields['user_qso_end_times']),
+					'user_show_log_utc' => xss_clean($fields['user_show_log_utc']),
 					'user_quicklog' => xss_clean($fields['user_quicklog']),
 					'user_quicklog_enter' => xss_clean($fields['user_quicklog_enter']),
 					'user_language' => xss_clean($fields['user_language']),
@@ -468,6 +470,8 @@ class User_Model extends CI_Model {
 			'user_default_band'	 => $u->row()->user_default_band,
 			'user_default_confirmation'	 => $u->row()->user_default_confirmation,
 			'user_qso_end_times' => isset($u->row()->user_qso_end_times) ? $u->row()->user_qso_end_times : 1,
+			'user_timezone' => $this->getTimezone($u->row()->user_timezone),
+			'user_show_log_utc' => isset($u->row()->user_show_log_utc) ? $u->row()->user_show_log_utc : 1,
 			'user_quicklog' => isset($u->row()->user_quicklog) ? $u->row()->user_quicklog : 1,
 			'user_quicklog_enter' => isset($u->row()->user_quicklog_enter) ? $u->row()->user_quicklog_enter : 1,
 			'active_station_logbook' => $u->row()->active_station_logbook,
@@ -609,12 +613,20 @@ class User_Model extends CI_Model {
 	// FUNCTION: array timezones()
 	// Returns a list of timezones
 	function timezones() {
-		$r = $this->db->query('SELECT id, name FROM timezones ORDER BY `offset`');
+		$r = $this->db->query('SELECT id, name FROM timezones');
 		$ts = array();
 		foreach ($r->result_array() as $t) {
 			$ts[$t['id']] = $t['name'];
 		}
 		return $ts;
+	// FUNCTION: string getTimezone()
+	// Returns the timezone name from the ID
+	function getTimezone($id) {
+		$query = $this->db->query('SELECT name FROM timezones WHERE id = ?', array($id));
+		if ($query->num_rows() > 0) {
+			return $query->row()->name;
+		}
+		return null;
 	}
 
 	// FUNCTION: array getThemes()

@@ -1,3 +1,16 @@
+<?php
+//Note to reviewer: This function is used a few times in the different views
+//Not sure if it can be moved to a central file to only be used once
+
+//Converts UTC time to local time using PHP's timezones.
+//This accounts for Daylight Savings (apparently)
+function UTCtoLocal($timestamp, $timezone){
+	$utc_date = (new DateTime('@' . $timestamp))->setTimezone(new DateTimeZone('UTC'));
+	$local_date = $utc_date;
+	$local_date->setTimeZone(new DateTimeZone($timezone));
+	return $local_date;
+}
+?>
 <?php if ($query->num_rows() > 0) {  foreach ($query->result() as $row) { ?>
 <div class="container-fluid">
 
@@ -69,15 +82,32 @@
                         ?>
 
                         <td><?= __("Date/Time"); ?></td>
+						<!-- if display is set to local, will show UTC next to the UTC time -->
                         <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-                        <td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); $timestamp = strtotime($row->COL_TIME_ON); $time_on = date('H:i', $timestamp); echo " at ".$time_on; ?>
-                        <?php $timestamp = strtotime($row->COL_TIME_OFF); $time_off = date('H:i', $timestamp); if ($time_on != $time_off) { echo " - ".$time_off; } ?>
+							<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); $timestamp = strtotime($row->COL_TIME_ON); $time_on = date('H:i', $timestamp); echo " at ".$time_on; ?>
+							<?php $timestamp = strtotime($row->COL_TIME_OFF); $time_off = date('H:i', $timestamp); if ($time_on != $time_off) { echo " - ".$time_off; } ?> <?php if($this->session->userdata('user_show_log_utc') == 0){ echo " (UTC)"; } ?>
                         </td>
                         <?php } else { ?>
-                        <td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?></td>
+							<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?> <?php if($this->session->userdata('user_show_log_utc') == 0){ echo " (UTC)"; } ?></td>
                         <?php } ?>
                     </tr>
 
+					<!-- if display is set to local then will show a local time under the UTC time -->
+					<?php if($this->session->userdata('user_show_log_utc') == 0){?>
+						<tr>
+							<!-- Display empty row as uses row above -->
+							<td></td>
+							
+							<!-- Display local time following same formatting as UTC time -->
+							<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
+								<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo UTCtoLocal($timestamp, $this->session->userdata('user_timezone'))->format($custom_date_format); $timestamp = strtotime($row->COL_TIME_ON); $time_on = UTCtoLocal($timestamp, $this->session->userdata('user_timezone'))->format('H:i'); echo " at ".$time_on; ?>
+								<?php $timestamp = strtotime($row->COL_TIME_OFF); $time_off = UTCtoLocal($timestamp, $this->session->userdata('user_timezone'))->format('H:i'); if ($time_on != $time_off) { echo " - ".$time_off; } ?> (Local)
+							</td>
+							<?php } else { ?>
+								<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo UTCtoLocal($timestamp, $this->session->userdata('user_timezone'))->format($custom_date_format); ?> (Local)</td>
+							<?php } ?>
+						</tr>
+					<?php }; ?>
                     <tr>
                         <td><?= __("Callsign"); ?></td>
                         <td><b><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></b> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="http://www.eqsl.cc/Member.cfm?<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($row->COL_CALL); ?>&call=<?php echo strtoupper($row->station_callsign); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a></td>
