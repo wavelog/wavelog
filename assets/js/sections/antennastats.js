@@ -117,10 +117,10 @@ function plot_azimuth() {
 			var labels = [];
 			for (let i=0; i<360; i++) {
 				labels.push(i);
+				dataQso.push(0);
 			}
 			$.each(tmp, function () {
-				// labels.push('Azimuth ' + this.azimuth + '°');
-				dataQso.push(this.qsos);
+				dataQso[this.azimuth] = this.qsos;
 			});
 
 			// using this to change color of legend and label according to background color
