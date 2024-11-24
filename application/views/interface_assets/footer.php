@@ -1035,7 +1035,7 @@ $($('#callsign')).on('keypress',function(e) {
 				data: {'sota': sota},
 				success: function(res) {
 					$('#qth').val(res.name);
-					$('#locator').val(res.locator);
+					$('#locator').val(res.locator).trigger('input');
 				},
 				error: function() {
 					$('#qth').val('');
@@ -1056,7 +1056,7 @@ $($('#callsign')).on('keypress',function(e) {
 				data: {'wwff': wwff},
 				success: function(res) {
 					$('#qth').val(res.name);
-					$('#locator').val(res.locator);
+					$('#locator').val(res.locator).trigger('input');
 				},
 				error: function() {
 					$('#qth').val('');
@@ -1077,7 +1077,7 @@ $($('#callsign')).on('keypress',function(e) {
 				data: {'pota': pota},
 				success: function(res) {
 					$('#qth').val(res.name);
-					$('#locator').val(res.grid6);
+					$('#locator').val(res.grid6).trigger('input');
 				},
 				error: function() {
 					$('#qth').val('');

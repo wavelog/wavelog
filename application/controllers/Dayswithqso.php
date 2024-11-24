@@ -48,4 +48,14 @@ class Dayswithqso extends CI_Controller {
         echo json_encode($data);
     }
 
+	public function get_months() {
+        //load model
+        $this->load->model('dayswithqso_model');
+
+        // get data
+        $data = $this->dayswithqso_model->getMonthsOfYear();
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+
 }

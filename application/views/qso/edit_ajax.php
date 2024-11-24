@@ -270,7 +270,7 @@
                                             </select>
                                         </div>
                                     	<div class="mb-3">
-                                       		<label for="email"><?= __("eMail"); ?></label>
+                                       		<label for="email"><?= __("E-mail"); ?></label>
                                        		<input type="text" class="form-control" id="email_edit" name="email" value="<?php echo $qso->COL_EMAIL; ?>">
                                     	</div>
                                     </div>

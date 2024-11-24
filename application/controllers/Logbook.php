@@ -144,6 +144,7 @@ class Logbook extends CI_Controller {
 		$return['callsign_distance'] 	= $this->distance($return['callsign_qra'], $station_id);
 		$return['callsign_qth'] 		= $this->nval($callbook['city'] ?? '', $this->logbook_model->call_qth($callsign));
 		$return['callsign_iota'] 		= $this->nval($callbook['iota'] ?? '', $this->logbook_model->call_iota($callsign));
+		$return['callsign_email'] 		= $this->nval($callbook['email'] ?? '', $this->logbook_model->call_email($callsign));
 		$return['qsl_manager'] 			= $this->nval($callbook['qslmgr'] ?? '', $this->logbook_model->call_qslvia($callsign));
 		$return['callsign_state'] 		= $this->nval($callbook['state'] ?? '', $this->logbook_model->call_state($callsign));
 		$return['callsign_us_county'] 	= $this->nval($callbook['us_county'] ?? '', $this->logbook_model->call_us_county($callsign));
@@ -1259,7 +1260,7 @@ class Logbook extends CI_Controller {
 	}
 
 	/* return station bearing */
-	function bearing($locator, $unit = 'M', $station_id = null) {
+	function bearing($locator, $unit = 'M', $station_id = null, $ant_path = null) {
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
@@ -1283,7 +1284,7 @@ class Logbook extends CI_Controller {
 				$mylocator = $this->config->item('locator');
 			}
 
-			$bearing = $this->qra->bearing($mylocator, $locator, $unit);
+			$bearing = $this->qra->bearing($mylocator, $locator, $unit, $ant_path);
 
 			return $bearing;
 		}
@@ -1291,7 +1292,7 @@ class Logbook extends CI_Controller {
 	}
 
 	/* return distance */
-	function distance($locator, $station_id = null) {
+	function distance($locator, $station_id = null, $ant_path = null) {
 			$distance = 0;
 			if(!$this->load->is_loaded('Qra')) {
 			    $this->load->library('Qra');
@@ -1316,7 +1317,7 @@ class Logbook extends CI_Controller {
 					$mylocator = $this->config->item('locator');
 				}
 
-				$distance = $this->qra->distance($mylocator, $locator, 'K');
+				$distance = $this->qra->distance($mylocator, $locator, 'K', $ant_path);
 
 			}
 			return $distance;

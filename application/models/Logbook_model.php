@@ -1624,6 +1624,26 @@ class Logbook_model extends CI_Model {
 		return $name;
 	}
 
+	function call_email($callsign) {
+		if ($callsign !== $this->get_plaincall($callsign)) {
+			return null;
+		}
+		$this->db->select('COL_CALL, COL_EMAIL, COL_TIME_ON');
+		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
+		$this->db->where('COL_CALL', $callsign);
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->order_by("COL_TIME_ON", "desc");
+		$this->db->limit(1);
+		$query = $this->db->get($this->config->item('table_name'));
+		$email = "";
+		if ($query->num_rows() > 0) {
+			$data = $query->row();
+			$email = $data->COL_EMAIL;
+		}
+
+		return $email;
+	}
+
 	function times_worked($callsign) {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 		$this->db->select('count(1) as TWKED');
@@ -3479,7 +3499,7 @@ class Logbook_model extends CI_Model {
 		$binding = [];
 		$mode = $this->get_main_mode_from_mode($mode);
 
-		$sql = 'SELECT  COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND, COL_GRIDSQUARE from ' . $this->config->item('table_name') . '
+		$sql = 'SELECT  COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND, COL_GRIDSQUARE, COL_ANT_PATH from ' . $this->config->item('table_name') . '
 		    WHERE COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, \'%Y-%m-%d %H:%i\' ), INTERVAL -15 MINUTE )
 		    AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, \'%Y-%m-%d %H:%i\' ), INTERVAL 15 MINUTE )
 		    AND COL_CALL=?
@@ -3503,9 +3523,9 @@ class Logbook_model extends CI_Model {
 
 		if ($query->num_rows() > 0) {
 			$ret = $query->row();
-			return ["Found", $ret->COL_PRIMARY_KEY, $ret->COL_GRIDSQUARE];
+			return ["Found", $ret->COL_PRIMARY_KEY, $ret->COL_GRIDSQUARE, $ret->COL_ANT_PATH];
 		} else {
-			return ["No Match", 0, ''];
+			return ["No Match", 0, '', ''];
 		}
 	}
 
@@ -3550,7 +3570,7 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid, $station_ids) {
+	function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid, $station_ids, $ant_path = null) {
 
 		$data = array(
 			'COL_LOTW_QSLRDATE' => $qsl_date,
@@ -3624,10 +3644,10 @@ class Logbook_model extends CI_Model {
 			}
 			if ($qsl_gridsquare != "") {
 				$data['COL_GRIDSQUARE'] = $qsl_gridsquare;
-				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_gridsquare, 'K');
+				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_gridsquare, 'K', $ant_path);
 			} elseif ($qsl_vucc_grids != "") {
 				$data['COL_VUCC_GRIDS'] = $qsl_vucc_grids;
-				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K');
+				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K', $ant_path);
 			}
 
 			$this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ', $datetime);

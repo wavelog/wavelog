@@ -764,6 +764,11 @@ $("#callsign").on("focusout", function () {
 					$('#name').val(result.callsign_name);
 				}
 
+				/* Find Operators E-mail */
+				if ($('#email').val() == "") {
+					$('#email').val(result.callsign_email);
+				}
+
 				if ($('#continent').val() == "") {
 					$('#continent').val(result.dxcc.cont);
 				}

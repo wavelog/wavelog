@@ -541,6 +541,8 @@ class Lotw extends CI_Controller {
 					}
 				}
 
+				$ant_path = $status[3] ?? '';
+
 				if (isset($record['vucc_grids'])) {
 					$qsl_vucc_grids = $record['vucc_grids'];
 				} else {
@@ -571,7 +573,7 @@ class Lotw extends CI_Controller {
 					$ituz = "";
 				}
 
-				$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign'],$qso_id4lotw, $station_ids);
+				$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign'],$qso_id4lotw, $station_ids, $ant_path);
 
 				$table .= "<tr>";
 				$table .= "<td>".$record['station_callsign']."</td>";
@@ -664,7 +666,7 @@ class Lotw extends CI_Controller {
 				}
 
 				$config['upload_path'] = './uploads/';
-				$file = $config['upload_path'] . 'lotwreport_download.adi';
+				$file = $config['upload_path'] . 'lotwreport_download_'.$sync_user_id.'_auto.adi';
 				if (file_exists($file) && ! is_writable($file)) {
 					$result = "Temporary download file ".$file." is not writable. Aborting!";
 					continue;
@@ -736,7 +738,7 @@ class Lotw extends CI_Controller {
 		$this->load->model('logbook_model');
 
 		if (($this->input->post('lotwimport') == 'fetch') && (!($this->config->item('disable_manual_lotw')))) {
-			$file = $config['upload_path'] . 'lotwreport_download.adi';
+			$file = $config['upload_path'] . 'lotwreport_download_'.$this->session->userdata('user_id').'.adi';
 
 			// Get credentials for LoTW
 			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));

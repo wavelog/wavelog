@@ -96,6 +96,8 @@ class Qrz {
 				$data['name'] = (string)$xml->Callsign->fname;
 			}
 
+			$data['email'] = (string)$xml->Callsign->email;
+
 			// we always give back the name, no matter if reduced data or not
 			$data['name'] = trim($data['name']);
 

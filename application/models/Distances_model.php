@@ -26,7 +26,7 @@ class Distances_model extends CI_Model
 			if ($station_gridsquare != null) {
 				$gridsquare = explode(',', $station_gridsquare); // We need to convert to an array, since a user can enter several gridsquares
 
-				$this->db->select('COL_PRIMARY_KEY,COL_DISTANCE,col_call callsign, col_gridsquare grid');
+				$this->db->select('COL_PRIMARY_KEY,COL_DISTANCE,COL_ANT_PATH,col_call callsign, col_gridsquare grid');
 				$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME', 'left outer');
 				$this->db->where('LENGTH(col_gridsquare) >', 0);
 
@@ -192,9 +192,10 @@ class Distances_model extends CI_Model
 
 			foreach ($qsoArray as $qso) {
 				$qrb['Qsos']++;                                                        // Counts up number of qsos
-				$bearingdistance = $this->qra->distance($stationgrid, $qso['grid'], $measurement_base);
-				if ($bearingdistance != $qso['COL_DISTANCE']) {
-					$data = array('COL_DISTANCE' => $bearingdistance);
+				$bearingdistance = $this->qra->distance($stationgrid, $qso['grid'], $measurement_base, $qso['COL_ANT_PATH']);
+				$bearingdistance_km = $this->qra->distance($stationgrid, $qso['grid'], 'K', $qso['COL_ANT_PATH']);
+				if ($bearingdistance_km != $qso['COL_DISTANCE']) {
+					$data = array('COL_DISTANCE' => $bearingdistance_km);
 					$this->db->where('COL_PRIMARY_KEY', $qso['COL_PRIMARY_KEY']);
 					$this->db->update($this->config->item('table_name'), $data);
 				}

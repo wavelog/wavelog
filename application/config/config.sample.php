@@ -725,6 +725,10 @@ $config['disable_version_check'] = false;
 | trx-control Configuration
 |--------------------------------------------------------------------------
 |
+| ***
+| No Features implemented yet, Nothing is going to happen if you set this.
+| ***
+|
 | This defines server and port of your personal trx-control server.
 | If you don't have a trx-control server, you can ignore this.
 |

@@ -180,7 +180,7 @@
                         <td><?php echo $row->COL_VUCC_GRIDS; ?> <a href="javascript:spawnQrbCalculator('<?php echo $row->station_gridsquare . '\',\'' . $row->COL_VUCC_GRIDS; ?>')"><i class="fas fa-globe"></i></a></td>
                             <?php
                                 // Cacluate Distance
-                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_VUCC_GRIDS, $measurement_base);
+                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_VUCC_GRIDS, $measurement_base, $row->COL_ANT_PATH ?? null);
 
                                 switch ($measurement_base) {
                                     case 'M':
@@ -468,7 +468,7 @@
 
                     <?php if($row->COL_EMAIL != null) { ?>
                     <tr>
-                        <td><?= __("eMail"); ?></td>
+                        <td><?= __("E-mail"); ?></td>
                         <td><a href="mailto:<?php echo $row->COL_EMAIL; ?>"><?php echo $row->COL_EMAIL; ?></a></td>
                     </tr>
                     <?php } ?>
