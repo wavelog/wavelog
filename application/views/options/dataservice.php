@@ -64,7 +64,7 @@
                                     <div class="col">
                                         <div class="input-group">
                                             <input type="text" name="dataservice_url" class="form-control" id="dataservice_url" aria-describedby="dataservice_urlHelp" value="<?php echo $dataservice_url; ?>">
-                                            <button class="btn btn-secondary w-25" type="button" id="dataservice_url_tester" onclick="test_dataservice($('#dataservice_url').val(), '<?php echo $wavelog_id; ?>', '<?php echo $wavelog_version; ?>')"><?= __("Test"); ?></button>
+                                            <button class="btn btn-secondary w-25" type="button" id="dataservice_url_tester" onclick="test_dataservice($('#dataservice_url').val())"><?= __("Test"); ?></button>
                                         </div>
                                     </div>
                                     <div class="col d-flex align-items-center">

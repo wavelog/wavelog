@@ -1,4 +1,4 @@
-function test_dataservice(url, wl_id, wl_version) {
+function test_dataservice(url) {
 
     let ds_url = url.endsWith('/') ? url : url + '/';
     let testvalue = '1706745600';
