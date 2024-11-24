@@ -133,7 +133,7 @@
 							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item" href="<?php echo site_url('statistics'); ?>" title="Statistics"><i class="fas fa-chart-area"></i> <?= __("Statistics"); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('statistics/antennaanalytics'); ?>" title="Antenna analytics"><i class="fas fa-chart-area"></i> <?= __("Antenna analytics"); ?></a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('statistics/antennaanalytics'); ?>" title="Antenna Analytics"><i class="fas fa-chart-area"></i> <?= __("Antenna Analytics"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('statistics/qslstats'); ?>" title="QSL Statistics"><i class="fas fa-chart-area"></i> <?= __("QSL Statistics"); ?></a></li>
 								<div class="dropdown-divider"></div>
