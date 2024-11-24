@@ -45,7 +45,7 @@
                         </p>
                         <p>
                             <?= __("The official Wavelog Dataservice also allows us to count active Wavelog installations. It's inspiring to see how many users are running Wavelog!"); ?>
-                            <?= __("Rest assured, we do not store any personal data. The only information collected includes the Wavelog ID (an anonymous, non-traceable hash), the 4-character Maidenhead grid (e.g., HA44), and the Wavelog version. We do not collect IP addresses or any other data that could identify users."); ?>
+                            <?= __("Rest assured, we do not store any personal data. The only information collected includes next to a timestamp the Wavelog ID (an anonymous, non-traceable hash), the 4-character Maidenhead grid (e.g., HA44), and the Wavelog version. We do not collect IP addresses or any other data that could identify users."); ?>
                             <?= __("If you prefer not to participate, you can either self-host the Dataservice or disable it entirely. However, please note that disabling the Dataservice will impact some features, such as displaying the local time information of the QSO partner's location in the currently logged QSO."); ?>
                         </p>
                         <div class="mb-2">
