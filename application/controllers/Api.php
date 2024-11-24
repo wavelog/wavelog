@@ -930,4 +930,42 @@ class API extends CI_Controller {
 		$latlng = $this->qra->qra2latlong($qra);
 		return $latlng;
 	}
+
+	function dataservice_request() {
+		$this->load->model('user_model');
+		if($this->user_model->validate_session() == 0) {
+			http_response_code(400);
+			header('Content-type: application/json');
+			echo json_encode(['status' => 'error', 'status_msg' => "no valid session"]);
+			die();
+		}
+
+		$method = $this->input->post('method', true) ?? '';
+		if ($method == '') {
+			http_response_code(400);
+			header('Content-type: application/json');
+			echo json_encode(['status' => 'error', 'status_msg' => "missing method"]);
+			die();
+		}
+		
+		if ($this->load->is_loaded('Dataservice')) {
+			unset($this->dataservice);
+			$this->dataservice_request();
+		} else {
+			$this->load->library('Dataservice', [$method]);
+		}
+
+		$param = [];
+		foreach ($this->input->post() as $key => $value) {
+			if ($key != 'method') {
+				$param[$key] = $value;
+			}
+		}
+
+		$url = $this->input->post('url', true) ?? '';
+
+		http_response_code(200);
+		header('Content-type: application/json');
+		echo json_encode($this->dataservice->request($param, $url));
+	}
 }

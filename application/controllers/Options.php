@@ -399,8 +399,6 @@ class Options extends CI_Controller {
 		$data['dataservice_url'] = $this->optionslib->get_option('dataservice_url') ?? $data['default_dataservice_url'];
 		$data['dataservice_enabled'] = $this->optionslib->get_option('dataservice_enabled') ?? 1;
 		$data['dataservice_insecure'] = $this->optionslib->get_option('dataservice_insecure') ?? 0;
-		$data['wavelog_id'] = $this->optionslib->get_wlid();
-		$data['wavelog_version'] = $this->optionslib->get_option('version');
 
 		$footerData = [];
 		$footerData['scripts'] = [

@@ -72,8 +72,6 @@
                                             <i id="ds_testresult"></i>
                                             <span class="ms-2" id="ds_testresult_text"></span>
                                         </small>
-                                        <input type="hidden" name="wavelog_id" id="wavelog_id" value="<?php echo $wavelog_id; ?>">
-                                        <input type="hidden" name="wavelog_version" id="wavelog_version" value="<?php echo $wavelog_version; ?>">
                                     </div>
                                 </div>
                                 <small id="dataservice_urlHelp" class="form-text text-muted"><?= sprintf(__("URL of the Dataservice Server, Default: %s"), $default_dataservice_url); ?></small>

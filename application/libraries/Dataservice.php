@@ -57,9 +57,13 @@ class Dataservice {
         }
     }
 
-    function request($data = []) {
+    function request($data = [], $url = '') {
         if (!$this->dataservice_enabled) {
             return false;
+        }
+
+        if ($url != '') {
+            $this->url = rtrim($url, '/') . '/';
         }
         
         $data['wl_id'] = $this->wavelog_id;

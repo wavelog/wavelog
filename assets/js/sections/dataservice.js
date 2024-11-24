@@ -11,12 +11,12 @@ function test_dataservice(url, wl_id, wl_version) {
     result_el.show();
 
     $.ajax({
-        url: ds_url + 'test',
+        url: base_url + 'index.php/api/dataservice_request',
         type: 'POST',
         data: {
+            method: 'test',
             testvalue: testvalue,
-            wl_id: wl_id,
-            wl_version: wl_version
+            url: ds_url
         },
         success: function (r) {
             if (r.status == 'success' && r.data.testvalue == true) {
