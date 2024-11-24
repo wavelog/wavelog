@@ -5462,21 +5462,23 @@ class Logbook_model extends CI_Model {
 	}
 
 	// returns the local time of a given grid as string
-	function getTimeByGrid($grid) {
+	function getTimeByCoordinates($lat, $long, $qra_depth = 4) {
 
 		if (!$this->load->is_loaded('Dataservice')) {
 			$this->load->library('Dataservice', ['geocalc']);
 		}
 
 		$data = [
-			'grid' => $grid,
+			'lat' => $lat,
+			'lon' => $long,
+			'qra_depth' => $qra_depth,
 		];
 
 		$response = $this->dataservice->request($data);
 
 		unset($this->dataservice);
 
-		if ($response['status'] ?? '' == 'success') {
+		if (($response['status'] ?? '') === 'success') {
 			$localtime = new DateTime($response['data']['local_time']);
 			return $localtime->format('H:i');
 		} else {

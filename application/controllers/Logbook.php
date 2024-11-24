@@ -166,12 +166,17 @@ class Logbook extends CI_Controller {
 			}
 		}
 
+		$localtime_qra = [];
+		$localtime_qra = [$return['dxcc']['lat'], $return['dxcc']['long']];
+
 		if ($return['callsign_qra'] != "" || $return['callsign_qra'] != null) {
 			$return['latlng'] = $this->qralatlng($return['callsign_qra']);
+			$localtime_qra = [$return['latlng'][0], $return['latlng'][1]]; // Update the array with the new values as they are more accurate
 			$return['bearing'] = $this->bearing($return['callsign_qra'], $measurement_base, $station_id);
-			$time_at_grid = $this->logbook_model->getTimeByGrid($return['callsign_qra']);
-			$return['local_time'] = $time_at_grid == false ? "error" : $time_at_grid;
 		}
+
+		$time_at_grid = $this->logbook_model->getTimeByCoordinates($localtime_qra[0], $localtime_qra[1]);
+		$return['local_time'] = $time_at_grid == false ? "error" : $time_at_grid;
 
 		echo json_encode($return, JSON_PRETTY_PRINT);
 
