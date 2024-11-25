@@ -61,7 +61,7 @@ class Qrzcq {
 	}
 
 
-	public function search($callsign, $key, $use_fullname = false, $reduced = false) {
+	public function search($callsign, $key, $reduced = false) {
 		$data = null;
 		$ci = & get_instance();
 		try {
