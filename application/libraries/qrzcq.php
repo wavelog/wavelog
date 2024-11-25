@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
-	Controls the interaction with the QRZ.com Subscription based XML API.
+	Controls the interaction with the QRZcq.com Subscription based XML API.
 */
 
 
