@@ -90,11 +90,7 @@ class Qrzcq {
 			// Return Required Fields
 			$data['callsign'] = (string)$xml->Callsign->call;
 
-			if ($use_fullname === true) {
-				$data['name'] =  (string)$xml->Callsign->fname. ' ' . (string)$xml->Callsign->name;
-			} else {
-				$data['name'] = (string)$xml->Callsign->fname;
-			}
+			$data['name'] = (string)$xml->Callsign->fname;
 
 			// we always give back the name, no matter if reduced data or not
 			$data['name'] = trim($data['name']);
