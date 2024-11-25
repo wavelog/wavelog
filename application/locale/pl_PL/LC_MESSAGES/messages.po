@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-24 20:17+0000\n"
-"PO-Revision-Date: 2024-11-19 01:03+0000\n"
+"POT-Creation-Date: 2024-11-24 23:05+0000\n"
+"PO-Revision-Date: 2024-11-24 17:28+0000\n"
 "Last-Translator: Stanisław Korzeń <stasiek.linux@outlook.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.8.4\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -667,7 +667,7 @@ msgstr "Dashboard"
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:150
 msgid "Days with QSOs"
-msgstr ""
+msgstr "Dni z wykonanymi QSO"
 
 #: application/controllers/Debug.php:106
 msgid "Debug"
@@ -2231,6 +2231,7 @@ msgid "QSL Statistics"
 msgstr "Statystyki QSL"
 
 #: application/controllers/Statistics.php:247
+#: application/views/interface_assets/header.php:136
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr ""
@@ -3598,11 +3599,11 @@ msgstr "Eksportuj QSO nieprzesłane do LoTW"
 
 #: application/views/adif/import.php:211
 msgid "Export QSO's"
-msgstr "Eksportuj QSO."
+msgstr "Eksportuj QSO"
 
 #: application/views/adif/import.php:216
 msgid "Export Satellite-Only QSOs"
-msgstr "Eksportuj tylko QSOs satelitarne"
+msgstr "Eksportuj tylko QSO satelitarne"
 
 #: application/views/adif/import.php:217
 msgid "Export All Satellite QSOs"
@@ -4460,7 +4461,7 @@ msgstr "Więcej informacji znajdziesz pod tym linkiem: %s."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
-msgstr ""
+msgstr "Nagroda US Gridmaster"
 
 #: application/views/awards/gridmaster/index.php:9
 msgid ""
@@ -6865,7 +6866,7 @@ msgstr ""
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
 msgid "Wavelog Account Password Reset"
-msgstr ""
+msgstr "Reset hasła konta Wavelog"
 
 #: application/views/email/admin_reset_password.php:5
 #, php-format
@@ -6875,11 +6876,12 @@ msgstr ""
 #: application/views/email/admin_reset_password.php:7
 msgid "An admin initiated a password reset for your Wavelog account."
 msgstr ""
+"Administrator zainicjował proces resetu hasła do twojego konta Wavelog."
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr ""
+msgstr "Twoja nazwa użytkownika to: %s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
@@ -6903,6 +6905,9 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"Cześć,\n"
+"\n"
+"Ty lub ktoś inny właśnie poprosił o reset hasła do twojego konta Wavelog."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -7498,10 +7503,6 @@ msgstr ""
 msgid "Analytics"
 msgstr ""
 
-#: application/views/interface_assets/header.php:136
-msgid "Antenna analytics"
-msgstr ""
-
 #: application/views/interface_assets/header.php:142
 msgid "Activated Gridsquares"
 msgstr ""
@@ -7624,7 +7625,7 @@ msgstr "Wyszukaj znak wywoławczy"
 #: application/views/interface_assets/header.php:377
 #: application/views/user/edit.php:49
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #: application/views/interface_assets/header.php:392
 msgid "Other Export Options"
@@ -8975,11 +8976,11 @@ msgstr ""
 
 #: application/views/options/email.php:104
 msgid "SMTP Password"
-msgstr ""
+msgstr "Hasło SMTP"
 
 #: application/views/options/email.php:107
 msgid "The password to log in to the mail server."
-msgstr ""
+msgstr "Hasło używane do połączenia z serwerem mailowym."
 
 #: application/views/options/email.php:116
 msgid "Send Test-Mail"
@@ -8988,6 +8989,8 @@ msgstr ""
 #: application/views/options/email.php:117
 msgid "The email will be sent to the address defined in your account settings."
 msgstr ""
+"Ten email zostanie wysłany na adres zdefiniowany w ustawieniach twojego "
+"konta."
 
 #: application/views/options/index.php:13
 msgid ""
@@ -11818,7 +11821,7 @@ msgstr ""
 
 #: application/views/user/edit.php:873
 msgid "Save Account"
-msgstr ""
+msgstr "Zapisz ustawienia konta"
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
