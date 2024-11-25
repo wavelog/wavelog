@@ -37,7 +37,7 @@ class Qrzcq {
 		$ci = & get_instance();
 
 		// URL to the XML Source
-		$xml_feed_url = 'https://ssl.qrzcq.com/?username='.$username.';password='.urlencode($password).';agent=wavelog';
+		$xml_feed_url = 'https://ssl.qrzcq.com/xml/?username='.$username.';password='.urlencode($password).';agent=wavelog';
 
 		// CURL Functions
 		$ch = curl_init();
@@ -66,7 +66,7 @@ class Qrzcq {
 		$ci = & get_instance();
 		try {
 			// URL to the XML Source
-			$xml_feed_url = 'https://ssl.qrzcq.com/current/?s=' . $key . ';callsign=' . $callsign . '';
+			$xml_feed_url = 'https://ssl.qrzcq.com/xml/?s=' . $key . ';callsign=' . $callsign . '';
 
 			// CURL Functions
 			$ch = curl_init();
