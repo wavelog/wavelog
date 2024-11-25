@@ -112,6 +112,7 @@ class Qrzcq {
 				$data['ituz'] 		= (string)$xml->Callsign->itu;
 				$data['cqz'] 		= (string)$xml->Callsign->cq;
 				$data['continent'] 	= (string)$xml->Callsign->continent;
+				$data['county'] 	= (string)$xml->Callsign->county;
 
 				if ($xml->Callsign->country == "United States") {
 					$data['us_county'] = (string)$xml->Callsign->county;
@@ -128,9 +129,8 @@ class Qrzcq {
 				$data['dxcc'] 	= '';
 				$data['state'] 	= '';
 				$data['iota'] 	= '';
-				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
-				$data['image'] 	= (string)$xml->Callsign->image;
-				$data['us_county'] = '';
+				$data['image'] = (string)$xml->Callsign->qslpic;
+				$data['county'] = '';
 				$data['ituz'] = '';
 				$data['cqz'] = '';
 
