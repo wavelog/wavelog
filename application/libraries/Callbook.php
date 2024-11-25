@@ -46,6 +46,9 @@ class Callbook {
 				}
 				return $this->hamqth($this->ci->config->item('hamqth_username'), $this->ci->config->item('hamqth_password'), $callsign, $reduced);
 				break;
+			default:
+				$callbook['error'] = 'No callbook defined. Please review configuration.';
+				return $callbook;
 		}
 	}
 
