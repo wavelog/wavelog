@@ -112,12 +112,12 @@ class Qrzcq {
 				$data['ituz'] 		= (string)$xml->Callsign->itu;
 				$data['cqz'] 		= (string)$xml->Callsign->cq;
 				$data['continent'] 	= (string)$xml->Callsign->continent;
-				$data['county'] 	= (string)$xml->Callsign->county;
 
 				if ($xml->Callsign->country == "United States") {
 					$data['us_county'] = (string)$xml->Callsign->county;
 				} else {
 					$data['us_county'] = null;
+					$data['county']    = (string)$xml->Callsign->county;
 				}
 
 			} else {
@@ -131,6 +131,7 @@ class Qrzcq {
 				$data['iota'] 	= '';
 				$data['image'] = (string)$xml->Callsign->qslpic;
 				$data['county'] = '';
+				$data['us_county'] = '';
 				$data['ituz'] = '';
 				$data['cqz'] = '';
 
