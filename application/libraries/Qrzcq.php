@@ -27,6 +27,10 @@ class Qrzcq {
 		// Create XML object
 		$xml = simplexml_load_string($xml);
 
+		if (isset($xml->Session->Error)) {
+			log_message('debug', 'Error: '.$xml->Session->Error);
+		}
+
 		// Return Session Key
 		return (string) $xml->Session->Key;
 	}
