@@ -90,28 +90,28 @@ class Qrzcq {
 			// Return Required Fields
 			$data['callsign'] = (string)$xml->Callsign->call;
 
-			$data['name'] = (string)$xml->Callsign->fname;
+			$data['name'] = (string)$xml->Callsign->name;
 
 			// we always give back the name, no matter if reduced data or not
 			$data['name'] = trim($data['name']);
 
 			// Sanitize gridsquare to allow only up to 8 characters
-			$unclean_gridsquare = (string)$xml->Callsign->grid; // Get the gridsquare from QRZ convert to string
+			$unclean_gridsquare = (string)$xml->Callsign->locator; // Get the gridsquare from QRZ convert to string
 			$clean_gridsquare = strlen($unclean_gridsquare) > 8 ? substr($unclean_gridsquare,0,8) : $unclean_gridsquare; // Trim gridsquare to 8 characters max
 
 			if ($reduced == false) {
 
 				$data['gridsquare'] = $clean_gridsquare;
-				$data['city'] 	= (string)$xml->Callsign->addr2;
-				$data['lat'] 	= (string)$xml->Callsign->lat;
-				$data['long'] 	= (string)$xml->Callsign->lon;
-				$data['dxcc'] 	= (string)$xml->Callsign->dxcc;
-				$data['state'] 	= (string)$xml->Callsign->state;
-				$data['iota'] 	= (string)$xml->Callsign->iota;
-				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
-				$data['image'] 	= (string)$xml->Callsign->image;
-				$data['ituz'] 	= (string)$xml->Callsign->ituzone;
-				$data['cqz'] 	= (string)$xml->Callsign->cqzone;
+				$data['city'] 		= (string)$xml->Callsign->city;
+				$data['lat'] 		= (string)$xml->Callsign->latitude;
+				$data['long'] 		= (string)$xml->Callsign->longitude;
+				$data['dxcc'] 		= (string)$xml->Callsign->dxcc;
+				$data['state'] 		= (string)$xml->Callsign->state;
+				$data['iota'] 		= (string)$xml->Callsign->iota;
+				$data['image'] 		= (string)$xml->Callsign->qslpic;
+				$data['ituz'] 		= (string)$xml->Callsign->itu;
+				$data['cqz'] 		= (string)$xml->Callsign->cq;
+				$data['continent'] 	= (string)$xml->Callsign->continent;
 
 				if ($xml->Callsign->country == "United States") {
 					$data['us_county'] = (string)$xml->Callsign->county;
