@@ -55,7 +55,7 @@ class Qrzcq {
 
 		$key = (string) $xml->Session->Key;
 
-		$ci->session->set_userdata('qrz_session_key', $key);
+		$ci->session->set_userdata('qrzcq_session_key', $key);
 
 		return true;
 	}

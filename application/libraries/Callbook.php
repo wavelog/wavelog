@@ -21,19 +21,22 @@ class Callbook {
 		switch ($this->ci->config->item('callbook')) {
 			case 'qrz':
 				if ($this->ci->config->item('qrz_username') == null || $this->ci->config->item('qrz_password') == null) {
-					return 'Lookup not configured. Please review configuration.';
+					$callbook['error'] = 'Lookup not configured. Please review configuration.';
+					return $callbook;
 				}
 				return $this->qrz($this->ci->config->item('qrz_username'), $this->ci->config->item('qrz_password'), $callsign, $this->ci->config->item('use_fullname'));
 				break;
 			case 'qrzcq':
 				if ($this->ci->config->item('qrzcq_username') == null || $this->ci->config->item('qrzcq_password') == null) {
-					return 'Lookup not configured. Please review configuration.';
+					$callbook['error'] = 'Lookup not configured. Please review configuration.';
+					return $callbook;
 				}
 				return $this->qrzcq($this->ci->config->item('qrzcq_username'), $this->ci->config->item('qrzcq_password'), $callsign);
 				break;
 			case 'hamqth':
 				if ($this->ci->config->item('hamqth_username') == null || $this->ci->config->item('hamqth_password') == null) {
-					return 'Lookup not configured. Please review configuration.';
+					$callbook['error'] = 'Lookup not configured. Please review configuration.';
+					return $callbook;
 				}
 				return $this->hamqth($this->ci->config->item('hamqth_username'), $this->ci->config->item('hamqth_password'), $callsign);
 				break;
