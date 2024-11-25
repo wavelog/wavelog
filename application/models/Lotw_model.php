@@ -103,10 +103,6 @@ class Lotw_model extends CI_Model {
 		}
 	}
 
-	function empty_table($table) {
-		$this->db->empty_table($table);
-	}
-
    function lotw_cert_expired($user_id, $date) {
       $array = array('user_id' => $user_id, 'date_expires <' => $date);
       $this->db->where($array);
