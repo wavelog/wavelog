@@ -127,11 +127,11 @@ class Logbook extends CI_Controller {
 
 		$return['dxcc'] = $this->dxcheck($callsign,$date);
 
-		$lookupcall=$this->logbook_model->get_plaincall($callsign);
-
-		$return['partial'] = $this->partial($lookupcall, $band);
+		$lookupcall = $this->logbook_model->get_plaincall($callsign);
 
 		$callbook = $this->logbook_model->loadCallBook($callsign, $this->config->item('use_fullname'));
+
+		$return['partial'] = $this->partial($lookupcall, $callbook, $callsign, $band);
 
 		if ($this->session->userdata('user_measurement_base') == NULL) {
 			$measurement_base = $this->config->item('measurement_base');
@@ -614,7 +614,7 @@ class Logbook extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	function partial($id, $band = null) {
+	function partial($lookupcall, $callbook, $callsign, $band = null) {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
@@ -631,10 +631,10 @@ class Logbook extends CI_Controller {
 			$this->db->where_in('station_profile.station_id', $logbooks_locations_array);
 
 			$this->db->group_start();
-			$this->db->where($this->config->item('table_name').'.COL_CALL', $id);
-			$this->db->or_like($this->config->item('table_name').'.COL_CALL', '/'.$id,'before');
-			$this->db->or_like($this->config->item('table_name').'.COL_CALL', $id.'/','after');
-			$this->db->or_like($this->config->item('table_name').'.COL_CALL', '/'.$id.'/');
+			$this->db->where($this->config->item('table_name').'.COL_CALL', $lookupcall);
+			$this->db->or_like($this->config->item('table_name').'.COL_CALL', '/'.$lookupcall,'before');
+			$this->db->or_like($this->config->item('table_name').'.COL_CALL', $lookupcall.'/','after');
+			$this->db->or_like($this->config->item('table_name').'.COL_CALL', '/'.$lookupcall.'/');
 			$this->db->group_end();
 
 			$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "desc");
@@ -825,33 +825,29 @@ class Logbook extends CI_Controller {
 			$html .= "</div>";
 			return $html;
 		} else {
+			$callsigninfo['callsign'] = $callbook;
 
-			if (!$this->load->is_loaded('callbook')) {
-				$this->load->library('callbook');
-			}
-
-			$callsign['callsign'] = $this->callbook->getCallbookData($id);
-
-			if (isset($callsign['callsign']['dxcc'])) {
+			if (isset($callsigninfo['callsign']['dxcc'])) {
 				$this->load->model('logbook_model');
-				$entity = $this->logbook_model->get_entity($callsign['callsign']['dxcc']);
-				$callsign['callsign']['dxcc_name'] = $entity['name'];
-				$callsign['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
-				$callsign['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsign['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+				$entity = $this->logbook_model->get_entity($callsigninfo['callsign']['dxcc']);
+				$callsigninfo['callsign']['dxcc_name'] = $entity['name'];
+				$callsigninfo['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsigninfo['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+				$callsigninfo['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsigninfo['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 			}
 
-			if (isset($callsign['callsign']['gridsquare'])) {
+			if (isset($callsigninfo['callsign']['gridsquare'])) {
 				$this->load->model('logbook_model');
-				$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsign['callsign']['gridsquare'],0,4)), null, $band)->num_rows();
+				$callsigninfo['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsigninfo['callsign']['gridsquare'],0,4)), null, $band)->num_rows();
 			}
 
-			if (isset($callsign['callsign']['error'])) {
-				$callsign['error'] = $callsign['callsign']['error'];
+			if (isset($callsigninfo['callsign']['error'])) {
+				$callsigninfo['error'] = $callsigninfo['callsign']['error'];
 			}
 
-			$callsign['id'] = strtoupper($id);
-			$callsign['lotw_lastupload'] = $this->logbook_model->check_last_lotw($id);
-			return $this->load->view('search/result', $callsign, true);
+			$callsigninfo['lookupcall'] = strtoupper($lookupcall);
+			$callsigninfo['realcall'] = strtoupper($callsign);
+			$callsigninfo['lotw_lastupload'] = $this->logbook_model->check_last_lotw($callsign);
+			return $this->load->view('search/result', $callsigninfo, true);
 		}
 	}
 

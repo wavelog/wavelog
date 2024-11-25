@@ -18,33 +18,27 @@ class Callbook {
 	// Implement the following:
 	// - Implement callsign reduced logic
 	public function getCallbookData($callsign) {
-		$reduced = false;
-
-		if (strpos($callsign, "/") !== false) {
-			$reduced = true;
-		}
-
 		switch ($this->ci->config->item('callbook')) {
 			case 'qrz':
 				if ($this->ci->config->item('qrz_username') == null || $this->ci->config->item('qrz_password') == null) {
 					$callbook['error'] = 'Lookup not configured. Please review configuration.';
 					return $callbook;
 				}
-				return $this->qrz($this->ci->config->item('qrz_username'), $this->ci->config->item('qrz_password'), $callsign, $this->ci->config->item('use_fullname'), $reduced);
+				return $this->qrz($this->ci->config->item('qrz_username'), $this->ci->config->item('qrz_password'), $callsign, $this->ci->config->item('use_fullname'));
 				break;
 			case 'qrzcq':
 				if ($this->ci->config->item('qrzcq_username') == null || $this->ci->config->item('qrzcq_password') == null) {
 					$callbook['error'] = 'Lookup not configured. Please review configuration.';
 					return $callbook;
 				}
-				return $this->qrzcq($this->ci->config->item('qrzcq_username'), $this->ci->config->item('qrzcq_password'), $callsign, $reduced);
+				return $this->qrzcq($this->ci->config->item('qrzcq_username'), $this->ci->config->item('qrzcq_password'), $callsign);
 				break;
 			case 'hamqth':
 				if ($this->ci->config->item('hamqth_username') == null || $this->ci->config->item('hamqth_password') == null) {
 					$callbook['error'] = 'Lookup not configured. Please review configuration.';
 					return $callbook;
 				}
-				return $this->hamqth($this->ci->config->item('hamqth_username'), $this->ci->config->item('hamqth_password'), $callsign, $reduced);
+				return $this->hamqth($this->ci->config->item('hamqth_username'), $this->ci->config->item('hamqth_password'), $callsign);
 				break;
 			default:
 				$callbook['error'] = 'No callbook defined. Please review configuration.';
@@ -52,7 +46,7 @@ class Callbook {
 		}
 	}
 
-	function qrz($username, $password, $callsign, $fullname, $reduced) {
+	function qrz($username, $password, $callsign, $fullname) {
 		if (!$this->ci->load->is_loaded('qrz')) {
 			$this->ci->load->library('qrz');
 		}
@@ -62,12 +56,12 @@ class Callbook {
 			$this->ci->session->set_userdata('qrz_session_key', $qrz_session_key);
 		}
 
-		$callbook = $this->ci->qrz->search($callsign, $this->ci->session->userdata('qrz_session_key'), $fullname, $reduced);
+		$callbook = $this->ci->qrz->search($callsign, $this->ci->session->userdata('qrz_session_key'), $fullname);
 
 		if ($callbook['error'] ?? '' == 'Invalid session key') {
 			$qrz_session_key = $this->ci->qrz->session($username, $password);
 			$this->ci->session->set_userdata('qrz_session_key', $qrz_session_key);
-			$callbook = $this->ci->qrz->search($callsign, $this->ci->session->userdata('qrz_session_key'), $fullname, $reduced);
+			$callbook = $this->ci->qrz->search($callsign, $this->ci->session->userdata('qrz_session_key'), $fullname);
 		}
 
 		if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
@@ -79,7 +73,7 @@ class Callbook {
 		return $callbook;
 	}
 
-	function qrzcq($username, $password, $callsign, $reduced) {
+	function qrzcq($username, $password, $callsign) {
 		if (!$this->ci->load->is_loaded('qrzcq')) {
 			$this->ci->load->library('qrzcq');
 		}
@@ -94,12 +88,12 @@ class Callbook {
 			}
 		}
 
-		$callbook = $this->ci->qrzcq->search($callsign, $this->ci->session->userdata('qrzcq_session_key'), $reduced);
+		$callbook = $this->ci->qrzcq->search($callsign, $this->ci->session->userdata('qrzcq_session_key'));
 
 		if ($callbook['error'] ?? '' == 'Invalid session key') {
 			$qrzcq_session_key = $this->ci->qrzcq->session($username, $password);
 			$this->ci->session->set_userdata('qrzcq_session_key', $qrzcq_session_key);
-			$callbook = $this->ci->qrzcq->search($callsign, $this->ci->session->userdata('qrzcq_session_key'), $reduced);
+			$callbook = $this->ci->qrzcq->search($callsign, $this->ci->session->userdata('qrzcq_session_key'));
 		}
 
 		if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
@@ -111,7 +105,7 @@ class Callbook {
 		return $callbook;
 	}
 
-	function hamqth($username, $password, $callsign, $reduced) {
+	function hamqth($username, $password, $callsign) {
 		// Load the HamQTH library
 		if (!$this->ci->load->is_loaded('hamqth')) {
 			$this->ci->load->library('hamqth');
@@ -122,13 +116,13 @@ class Callbook {
 			$this->ci->session->set_userdata('hamqth_session_key', $hamqth_session_key);
 		}
 
-		$callbook = $this->ci->hamqth->search($callsign, $this->ci->session->userdata('hamqth_session_key'), $reduced);
+		$callbook = $this->ci->hamqth->search($callsign, $this->ci->session->userdata('hamqth_session_key'));
 
 		// If HamQTH session has expired, start a new session and retry the search.
 		if ($callbook['error'] == "Session does not exist or expired") {
 			$hamqth_session_key = $this->ci->hamqth->session($username, $password);
 			$this->ci->session->set_userdata('hamqth_session_key', $hamqth_session_key);
-			$callbook = $this->ci->hamqth->search($callsign, $this->ci->session->userdata('hamqth_session_key'), $reduced);
+			$callbook = $this->ci->hamqth->search($callsign, $this->ci->session->userdata('hamqth_session_key'));
 		}
 
 		if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
