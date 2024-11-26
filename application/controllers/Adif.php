@@ -236,10 +236,12 @@ class adif extends CI_Controller {
 						//check if contest_id exists in record and extract all found contest_ids
 						if(array_key_exists('contest_id', $record)){
 							$contest_id = $record['contest_id'];
-							if(array_key_exists($contest_id, $contest_qso_infos)){
-								$contest_qso_infos[$contest_id] += 1;
-							}else{
-								$contest_qso_infos[$contest_id] = 1;
+							if($contest_id != ''){
+								if(array_key_exists($contest_id, $contest_qso_infos)){
+									$contest_qso_infos[$contest_id] += 1;
+								}else{
+									$contest_qso_infos[$contest_id] = 1;
+								}
 							}
 						}
 
