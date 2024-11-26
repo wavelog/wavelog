@@ -158,11 +158,19 @@ $('#reset_start_time').on("click", function () {
 	var now = new Date();
 	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='start_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$starttime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$starttime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $starttime);
 	});
 	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $endtime);
 	});
 	// update date (today, for "post qso") //
 	$('#start_date').attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
@@ -172,7 +180,11 @@ $('#reset_end_time').on("click", function () {
 	var now = new Date();
 	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $endtime);
 	});
 });
 
