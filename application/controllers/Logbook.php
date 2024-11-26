@@ -827,12 +827,18 @@ class Logbook extends CI_Controller {
 		} else {
 			$callsigninfo['callsign'] = $callbook;
 
-			if (isset($callsigninfo['callsign']['dxcc'])) {
+			if ($callsigninfo['callsign']['dxcc'] !== "") {
 				$this->load->model('logbook_model');
 				$entity = $this->logbook_model->get_entity($callsigninfo['callsign']['dxcc']);
 				$callsigninfo['callsign']['dxcc_name'] = $entity['name'];
 				$callsigninfo['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsigninfo['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
 				$callsigninfo['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsigninfo['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
+			} else {
+				$this->load->model('logbook_model');
+				$dxcc = $this->logbook_model->check_dxcc_table($callsign, date('Ymd', time()));
+				$callsigninfo['callsign']['dxcc_name'] = $dxcc[1];
+				$callsigninfo['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($dxcc[0], null, $this->session->userdata('user_default_band'));
+				$callsigninfo['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($dxcc[0], null, $this->session->userdata('user_default_band'));
 			}
 
 			if (isset($callsigninfo['callsign']['gridsquare'])) {
