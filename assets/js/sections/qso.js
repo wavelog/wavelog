@@ -170,7 +170,7 @@ $('#reset_start_time').on("click", function () {
 		if (qso_manual != 1) {
 			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
 		}
-		$(this).attr($stoptime);
+		$(this).attr("value", $endtime);
 	});
 	// update date (today, for "post qso") //
 	$('#start_date').attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
@@ -184,7 +184,7 @@ $('#reset_end_time').on("click", function () {
 		if (qso_manual != 1) {
 			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
 		}
-		$(this).attr($stoptime);
+		$(this).attr("value", $endtime);
 	});
 });
 
