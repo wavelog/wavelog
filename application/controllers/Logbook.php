@@ -97,7 +97,8 @@ class Logbook extends CI_Controller {
 		// Check Database for all other data
 		$this->load->model('logbook_model');
 
-		$lotw_days=$this->logbook_model->check_last_lotw($callsign);
+		$lotw_days = $this->logbook_model->check_last_lotw($callsign);
+
 		if ($lotw_days != null) {
 			$lotw_member="active";
 		} else {
@@ -131,7 +132,7 @@ class Logbook extends CI_Controller {
 
 		$callbook = $this->logbook_model->loadCallBook($callsign, $this->config->item('use_fullname'));
 
-		$return['partial'] = $this->partial($lookupcall, $callbook, $callsign, $band);
+		$return['partial'] = $this->partial($lookupcall, $callbook, $callsign, $return['dxcc'], $lotw_days, $band);
 
 		if ($this->session->userdata('user_measurement_base') == NULL) {
 			$measurement_base = $this->config->item('measurement_base');
@@ -614,7 +615,7 @@ class Logbook extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	function partial($lookupcall, $callbook, $callsign, $band = null) {
+	function partial($lookupcall, $callbook, $callsign, $dxcc, $lotw_days, $band = null) {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
@@ -827,18 +828,11 @@ class Logbook extends CI_Controller {
 		} else {
 			$callsigninfo['callsign'] = $callbook;
 
-			if ($callsigninfo['callsign']['dxcc'] !== "") {
+			if ($dxcc['adif'] !== 0) {
 				$this->load->model('logbook_model');
-				$entity = $this->logbook_model->get_entity($callsigninfo['callsign']['dxcc']);
-				$callsigninfo['callsign']['dxcc_name'] = $entity['name'];
-				$callsigninfo['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($callsigninfo['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
-				$callsigninfo['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($callsigninfo['callsign']['dxcc'], null, $this->session->userdata('user_default_band'));
-			} else {
-				$this->load->model('logbook_model');
-				$dxcc = $this->logbook_model->check_dxcc_table($callsign, date('Ymd', time()));
-				$callsigninfo['callsign']['dxcc_name'] = $dxcc[1];
-				$callsigninfo['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($dxcc[0], null, $this->session->userdata('user_default_band'));
-				$callsigninfo['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($dxcc[0], null, $this->session->userdata('user_default_band'));
+				$callsigninfo['callsign']['dxcc_name'] = $dxcc['entity'];
+				$callsigninfo['dxcc_worked'] = $this->logbook_model->check_if_dxcc_worked_in_logbook($dxcc['adif'], null, $this->session->userdata('user_default_band'));
+				$callsigninfo['dxcc_confirmed'] = $this->logbook_model->check_if_dxcc_cnfmd_in_logbook($dxcc['adif'], null, $this->session->userdata('user_default_band'));
 			}
 
 			if (isset($callsigninfo['callsign']['gridsquare'])) {
@@ -852,7 +846,7 @@ class Logbook extends CI_Controller {
 
 			$callsigninfo['lookupcall'] = strtoupper($lookupcall);
 			$callsigninfo['realcall'] = strtoupper($callsign);
-			$callsigninfo['lotw_lastupload'] = $this->logbook_model->check_last_lotw($callsign);
+			$callsigninfo['lotw_lastupload'] = $lotw_days;
 			return $this->load->view('search/result', $callsigninfo, true);
 		}
 	}
@@ -909,7 +903,8 @@ class Logbook extends CI_Controller {
 						$data['error'] = $data['callsign']['error'];
 					}
 
-					$data['id'] = strtoupper($id);
+					$data['lookupcall'] = strtoupper($id);
+					$data['realcall'] = strtoupper($id);
 					$data['lotw_lastupload'] = $this->logbook_model->check_last_lotw($id);
 
 					$this->load->view('search/result', $data);
