@@ -58,16 +58,16 @@ async function set_new_qrg() {
 	let unit = $('#qrg_unit').html();
 
 	// check if the input contains a unit and parse the qrg
-	if (/^\d+(\.\d+)?\s*hz$/i.test(new_qrg)) {
+	if (/^\d+(\.\d+)?\s*(hz|h)$/i.test(new_qrg)) {
 		unit = 'Hz';
 		parsed_qrg = parseFloat(new_qrg);
-	} else if (/^\d+(\.\d+)?\s*khz$/i.test(new_qrg)) {
+	} else if (/^\d+(\.\d+)?\s*(khz|k)$/i.test(new_qrg)) {
 		unit = 'kHz';
 		parsed_qrg = parseFloat(new_qrg);
-	} else if (/^\d+(\.\d+)?\s*mhz$/i.test(new_qrg)) {
+	} else if (/^\d+(\.\d+)?\s*(mhz|m)$/i.test(new_qrg)) {
 		unit = 'MHz';
 		parsed_qrg = parseFloat(new_qrg);
-	} else if (/^\d+(\.\d+)?\s*ghz$/i.test(new_qrg)) {
+	} else if (/^\d+(\.\d+)?\s*(ghz|g)$/i.test(new_qrg)) {
 		unit = 'GHz';
 		parsed_qrg = parseFloat(new_qrg);
 	}
