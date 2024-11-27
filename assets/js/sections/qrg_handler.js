@@ -119,7 +119,9 @@ $('#frequency').on('change', function () {
 });
 
 $('#freq_calculated').on('input', function () {
-    $(this).val($(this).val().replace(',', '.'));
+	if (window.innerWidth > 768) {
+    	$(this).val($(this).val().replace(',', '.'));
+	}
 });
 
 $('#freq_calculated').on('change', function () {
@@ -130,8 +132,12 @@ $('#freq_calculated').on('change', function () {
 $('#freq_calculated').on('keydown', function (e) {
 	if (e.which === 13) {
 		e.preventDefault();
-		set_new_qrg().then(() => {
-            $("#qso_input").trigger('submit');
-        });
+		if ($('#callsign').val() != '') {
+			set_new_qrg().then(() => {
+				$("#qso_input").trigger('submit');
+			});
+		} else {
+			set_new_qrg();
+		}
     }
 });
