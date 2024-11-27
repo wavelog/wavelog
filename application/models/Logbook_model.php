@@ -278,8 +278,8 @@ class Logbook_model extends CI_Model {
 		$distance=null;
 		if ( (($this->input->post('distance') ?? '') != '') && (is_numeric($this->input->post('distance'))) ) {
  			$distance=$this->input->post('distance');
-		} 
-			
+		}
+
 		// Create array with QSO Data
 		$data = array(
 			'COL_TIME_ON' => $datetime,
@@ -2389,7 +2389,7 @@ class Logbook_model extends CI_Model {
 		$binding=[];
 		if ($station_ids == null) {
 			return [];
-		} 
+		}
 
 		$extrawhere = $this->qsl_default_where($user_default_confirmation);
 
@@ -4270,7 +4270,7 @@ class Logbook_model extends CI_Model {
 				'COL_CREDIT_GRANTED' => (!empty($record['credit_granted'])) ? $record['credit_granted'] : '',
 				'COL_CREDIT_SUBMITTED' => (!empty($record['credit_submitted'])) ? $record['credit_submitted'] : '',
 				'COL_DARC_DOK' => (!empty($record['darc_dok'])) ? strtoupper($record['darc_dok']) : '',
-				'COL_DISTANCE' => $distance, 
+				'COL_DISTANCE' => $distance,
 				'COL_DXCC' => $dxcc[0],
 				'COL_EMAIL' => (!empty($record['email'])) ? $record['email'] : '',
 				'COL_EQ_CALL' => (!empty($record['eq_call'])) ? $record['eq_call'] : '',
@@ -4448,7 +4448,7 @@ class Logbook_model extends CI_Model {
 			} else {
 				$this->add_qso($data, $skipexport);
 			}
-			
+
 		} else {
 			$my_error .= "Date/Time: " . ($time_on ?? 'N/A') . " Callsign: " . ($record['call'] ?? 'N/A') . " Band: " . ($band ?? 'N/A') . " ".__("Duplicate for")." ". ($station_profile_call ?? 'N/A') . "<br>";
 		}
@@ -4983,40 +4983,12 @@ class Logbook_model extends CI_Model {
 		if ($r->num_rows() > 0) {
 			foreach ($r->result_array() as $row) {
 				$callsign = $row['COL_CALL'];
-				if ($this->config->item('callbook') == "qrz" && $this->config->item('qrz_username') != null && $this->config->item('qrz_password') != null) {
-					// Lookup using QRZ
-					if (!$this->load->is_loaded('qrz')) {
-						$this->load->library('qrz');
-					}
-
-					if (!$this->session->userdata('qrz_session_key')) {
-						$qrz_session_key = $this->qrz->session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
-						$this->session->set_userdata('qrz_session_key', $qrz_session_key);
-					}
-
-					$callbook = $this->qrz->search($callsign, $this->session->userdata('qrz_session_key'));
+				if (!$this->load->is_loaded('callbook')) {
+					$this->load->library('callbook');
 				}
 
-				if ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null) {
-					// Load the HamQTH library
-					if (!$this->load->is_loaded('hamqth')) {
-						$this->load->library('hamqth');
-					}
+				$callbook = $this->callbook->getCallbookData($callsign);
 
-					if (!$this->session->userdata('hamqth_session_key')) {
-						$hamqth_session_key = $this->hamqth->session($this->config->item('hamqth_username'), $this->config->item('hamqth_password'));
-						$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
-					}
-
-					$callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'));
-
-					// If HamQTH session has expired, start a new session and retry the search.
-					if ($callbook['error'] == "Session does not exist or expired") {
-						$hamqth_session_key = $this->hamqth->session($this->config->item('hamqth_username'), $this->config->item('hamqth_password'));
-						$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
-						$callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'));
-					}
-				}
 				if (isset($callbook)) {
 					if (isset($callbook['error'])) {
 						printf("Error: " . $callbook['error'] . "<br />");
@@ -5112,55 +5084,12 @@ class Logbook_model extends CI_Model {
 	public function loadCallBook($callsign, $use_fullname = false) {
 		$callbook = null;
 		try {
-			if ($this->config->item('callbook') == "qrz" && $this->config->item('qrz_username') != null && $this->config->item('qrz_password') != null) {
-				// Lookup using QRZ
-				$this->load->library('qrz');
-
-				if (!$this->session->userdata('qrz_session_key')) {
-					$qrz_session_key = $this->qrz->session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
-					$this->session->set_userdata('qrz_session_key', $qrz_session_key);
-				}
-
-				$callbook = $this->qrz->search($callsign, $this->session->userdata('qrz_session_key'), $use_fullname);
-
-				// We need to handle, if the sessionkey is invalid
-				if ($callbook['error'] ?? '' == 'Invalid session key') {
-					$this->qrz->set_session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
-					$callbook = $this->qrz->search($callsign, $this->session->userdata('qrz_session_key'), $use_fullname);
-				}
-
-				// If the callsign contains a slash we have a pre- or suffix. If then the result is "Not found" we can try again with the plain call
-				if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
-					$plaincall = $this->get_plaincall($callsign);
-					// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
-					$callbook = $this->qrz->search($plaincall, $this->session->userdata('qrz_session_key'), $use_fullname, true);
-				}
+			if (!$this->load->is_loaded('callbook')) {
+				$this->load->library('callbook');
 			}
 
-			if ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null) {
-				// Load the HamQTH library
-				$this->load->library('hamqth');
+			$callbook = $this->callbook->getCallbookData($callsign);
 
-				if (!$this->session->userdata('hamqth_session_key')) {
-					$hamqth_session_key = $this->hamqth->session($this->config->item('hamqth_username'), $this->config->item('hamqth_password'));
-					$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
-				}
-
-				// if the callsign contains a pre- or suffix we only give back reduced data to avoid wrong data (location and other things are not valid then)
-				if (strpos($callsign, "/") !== false) {
-					$reduced = true;
-				} else {
-					$reduced = false;
-				}
-				$callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'), $reduced);
-
-				// If HamQTH session has expired, start a new session and retry the search.
-				if ($callbook['error'] == "Session does not exist or expired") {
-					$hamqth_session_key = $this->hamqth->session($this->config->item('hamqth_username'), $this->config->item('hamqth_password'));
-					$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
-					$callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'));
-				}
-			}
 		} finally {
 			return $callbook;
 		}
