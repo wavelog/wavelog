@@ -351,7 +351,7 @@
 
             <div class="mb-3">
               <label for="transmit_power"><?= __("Transmit Power (W)"); ?></label>
-              <input type="number" step="0.001" class="form-control" id="transmit_power" name="transmit_power" value="<?php if ($this->session->userdata('transmit_power')) { echo $this->session->userdata('transmit_power'); } else { echo $power; } ?>" />
+              <input type="number" inputmode="decimal" step="0.001" pattern="[0-9]*" class="form-control" id="transmit_power" name="transmit_power" value="<?php if ($this->session->userdata('transmit_power')) { echo $this->session->userdata('transmit_power'); } else { echo $power; } ?>" />
               <small id="powerHelp" class="form-text text-muted"><?= __("Give power value in Watts. Include only numbers in the input."); ?></small>
             </div>
 
@@ -574,13 +574,13 @@
 
             <div class="mb-3">
               <label for="ant_az"><?= __("Antenna Azimuth (°)"); ?></label>
-              <input type="number" step="0.1" min="0" max="360" class="form-control" id="ant_az" name="ant_az" />
+              <input type="number" inputmode="decimal" step="0.1" min="0" max="359.9" class="form-control" id="ant_az" name="ant_az" />
               <small id="azHelp" class="form-text text-muted"><?= __("Antenna azimuth in decimal degrees."); ?></small>
             </div>
 
             <div class="mb-3">
               <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
-              <input type="number" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" />
+              <input type="number" inputmode="decimal" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" />
               <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
             </div>
           </div>
