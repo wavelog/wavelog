@@ -170,6 +170,7 @@ class Cabrillo extends CI_Controller {
 		} 
 
 		//get data from upload
+		$contest_id = $this->input->post('contest_id', false) ?? '';
 		$data = array('upload_data' => $this->upload->data());
 
 		//set memory limit to allow big files
@@ -211,6 +212,11 @@ class Cabrillo extends CI_Controller {
 		$station_ids = [];
 		foreach ($this->stations->all_of_user()->result() as $station) {
 			array_push($station_ids, $station->station_id);
+		}
+
+		//overwrite contest id if chosen during upload
+		if($contest_id != ''){
+			$parsed_cbr["HEADER"]["CONTEST"] = $contest_id;
 		}
 
 		//create helper variables

@@ -311,6 +311,14 @@
 
                         <div class="mb-3 row">
                             <div class="col-md-10">
+                            <div class="small form-text text-muted"><span class="badge text-bg-success"><?= __("Optional"); ?></span><?= __(" Contest Name, only if Contest ID in CBR is different") ?></div>
+                                <select name="contest_id" id="contest_id" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
+                                    <option value="" selected><?= __("No Contest"); ?></option>
+                                    <?php
+                                    foreach ($contests as $contest) {
+                                        echo '<option value="' . $contest['adifname'] . '">' . $contest['name'] . '</option>';
+                                    } ?>
+                                </select>
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="serial_number_present" value="1" id="serial_number_present" unchecked>
                                     <label class="form-check-label" for="serial_number_present"><?= __("A serial number is ALWAYS part of the exchange for both parties in this contest.") ?></label>
