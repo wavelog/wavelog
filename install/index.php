@@ -368,6 +368,7 @@ if (!file_exists('.lock')) {
 												<select id="global_call_lookup" class="form-select" name="global_call_lookup">
 													<option value="hamqth" selected>HamQTH</option>
 													<option value="qrz">QRZ.com</option>
+													<option value="qrzcq">QRZCQ.com</option>
 												</select>
 											</div>
 											<div class="row">

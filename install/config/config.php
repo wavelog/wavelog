@@ -9,12 +9,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 |	'app_name'		Name of the App 'Wavelog'
 |	'directory'		directory where wavelog is installed eg "logger"
-|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but supports "qrz"
+|	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but supports "qrz" and "qrzcq"
 */
 
 $config['app_name'] = 'Wavelog';
 $config['directory'] = '/%directory%';
-$config['callbook'] = '%callbook%'; // Options are hamqth or qrz
+$config['callbook'] = '%callbook%'; // Options are hamqth, qrz or qrzcq
 
 $config['datadir'] = null; // default to install directory
 
@@ -24,8 +24,8 @@ $config['datadir'] = null; // default to install directory
 |--------------------------------------------------------------------------
 |
 | 	'table_name'	SQL table where log can be found
-|	'locator'	Default locator used to calculate bearings/distance
-|	'display_freq'	Show or Hide frequnecy info
+|	'locator'	    Default locator used to calculate bearings/distance
+|	'display_freq'	Show or Hide frequency info
 */
 
 $config['table_name'] = 'TABLE_HRD_CONTACTS_V01';
@@ -56,6 +56,17 @@ $config['use_fullname'] = false;
 */
 $config['hamqth_username'] = '%hamqth_username%';
 $config['hamqth_password'] = '%hamqth_password%';
+
+/*
+|--------------------------------------------------------------------------
+| QRZcq Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrzcq_username'	QRZcq.com user login
+|	'qrzcq_password'	QRZcq.com user password
+*/
+$config['qrzcq_username'] = '%qrzcq_username%';
+$config['qrzcq_password'] = '%qrzcq_password%';
 
 /*
 |--------------------------------------------------------------------------
