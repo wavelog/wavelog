@@ -171,10 +171,10 @@
                 <div class="mb-3 col">
                   <label for="frequency"><?= __("Frequency"); ?></label>
                   <div class="input-group input-group-sm">
-                    <input type="number" inputmode="decimal" tabindex="3" class="form-control form-control-sm" id="freq_calculated" name="freq_calculated" value="0" />
+                    <input type="text" tabindex="3" class="form-control form-control-sm" id="freq_calculated" name="freq_calculated" value="0" />
                     <small class="input-group-text btn-included-on-field" id="qrg_unit">...</small>
                   </div>
-                  <input style="display: none;" type="number" inputmode="deciaml" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
+                  <input style="display: none;" type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
                 </div>
               </div>
 
@@ -327,7 +327,7 @@
 
             <div class="mb-3">
               <label for="frequency_rx"><?= __("Frequency (RX)"); ?></label>
-              <input type="number" inputmode="decimal" class="form-control" id="frequency_rx" name="freq_display_rx" value="<?php echo $this->session->userdata('freq_rx'); ?>" />
+              <input type="text" class="form-control" id="frequency_rx" name="freq_display_rx" value="<?php echo $this->session->userdata('freq_rx'); ?>" />
             </div>
 
             <div class="mb-3">
