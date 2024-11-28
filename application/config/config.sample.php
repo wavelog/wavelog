@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['app_name'] = 'Wavelog';
 $config['directory'] = 'logbook';
-$config['callbook'] = 'hamqth'; // Options are hamqth or qrz
+$config['callbook'] = 'hamqth'; // Options are hamqth, qrz or qrzcq
 
 $config['datadir'] = null; // default to install directory
 
@@ -56,6 +56,17 @@ $config['use_fullname'] = false;
 */
 $config['hamqth_username'] = '';
 $config['hamqth_password'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| QRZcq Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrzcq_username'	QRZcq.com user login
+|	'qrzcq_password'	QRZcq.com user password
+*/
+$config['qrzcq_username'] = '';
+$config['qrzcq_password'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -460,7 +471,7 @@ $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
-/* 
+/*
  * To make sure we do not collect infinite session we set some garbage collection settings
  * see https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability
  * and https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
@@ -642,7 +653,7 @@ $config['disable_manual_qrz'] = false;
 | Disables QSL-Image-Feature
 |--------------------------------------------------------------------------
 |
-| This disabled the whole QSL image feature if you don't need it and want to hide it. 
+| This disabled the whole QSL image feature if you don't need it and want to hide it.
 | Set to true will hide all QSL image related stuff in Wavelog
 |
 */
@@ -654,7 +665,7 @@ $config['disable_qsl'] = false;
 | Disables OQRS-Feature
 |--------------------------------------------------------------------------
 |
-| This disabled the whole OQRS feature if you don't need it and want to hide it. 
+| This disabled the whole OQRS feature if you don't need it and want to hide it.
 | Set to true will hide all OQRS related stuff in Wavelog
 |
 */
@@ -669,18 +680,18 @@ $config['disable_oqrs'] = false;
 | This config switch is meant to use for Special Callsign operations in a dedicated Wavelog Installation
 | If this switch is set to true it will enable a dialog which pops up for each operator after login
 | to ask for his personal callsign. This causes the QSOs to get saved with the correct operator data.
-| Example:      Special Callsign:   DL250CDF 
+| Example:      Special Callsign:   DL250CDF
 |               Operator:           DF2TG
-| 
-| It is recommend to enable also "Disable Syncing to 3rd party-Services at UI" 
-| More Information about this feature and how to use it, you can find here: 
+|
+| It is recommend to enable also "Disable Syncing to 3rd party-Services at UI"
+| More Information about this feature and how to use it, you can find here:
 | https://github.com/wavelog/wavelog/wiki/Recommended-Setup-for-Special-Callsigns-and-Clubs
 */
 
 $config['special_callsign'] = false;
 
 // hides the usermenu; takes action only if "special_callsign" is true
-$config['sc_hide_usermenu'] = true;   
+$config['sc_hide_usermenu'] = true;
 
 
 /*
@@ -690,10 +701,10 @@ $config['sc_hide_usermenu'] = true;
 |
 | This config switch disables the impersonate feature. This feauture is used to impersonate another user.
 | Impersonate is enabled by default. To disable it, set the value to false.
-| 
+|
 */
 
-$config['disable_impersonate'] = false;   
+$config['disable_impersonate'] = false;
 
 
 /*
@@ -703,7 +714,7 @@ $config['disable_impersonate'] = false;
 |
 | The cronmanager needs http or https with a valid certificate to work.
 | If you want to use it with https and a self-signed certificate, you need to set this to true.
-| 
+|
 */
 
 $config['cron_allow_insecure'] = false;
