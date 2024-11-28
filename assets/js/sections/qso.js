@@ -1238,7 +1238,9 @@ $(document).ready(function () {
 	// Clear the localStorage for the qrg units, except the quicklogCallsign
 	let quicklogCallsign = localStorage.getItem('quicklogCallsign');
 	localStorage.clear();
-	localStorage.setItem('quicklogCallsign', quicklogCallsign);
+	if (quicklogCallsign) {
+		localStorage.setItem('quicklogCallsign', quicklogCallsign);
+	}
 	set_qrg();
 
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
