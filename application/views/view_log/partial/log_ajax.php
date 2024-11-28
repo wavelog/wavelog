@@ -325,7 +325,7 @@ function echo_table_col($row, $name) {
 					} 
 					echo "\" data-bs-toggle=\"tooltip\""; 
 				} ?> class="clublog-<?php 
-					echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE=='Y')?'green':'red'?>">&#9660;</span>
+					echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
 
