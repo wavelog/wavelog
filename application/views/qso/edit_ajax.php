@@ -34,7 +34,7 @@
                                     <a class="nav-item nav-link" id="nav-satellites-tab" data-bs-toggle="tab" href="#nav-satellites" role="tab" aria-controls="nav-awards" aria-selected="true"><?= __("Sats"); ?></a>
                                     <a class="nav-item nav-link" id="nav-awards-tab" data-bs-toggle="tab" href="#nav-awards" role="tab" aria-controls="nav-awards" aria-selected="true"><?= __("Awards"); ?></a>
                                     <a class="nav-item nav-link" id="nav-qso-notes-tab" data-bs-toggle="tab" href="#nav-qso-notes" role="tab" aria-controls="nav-qso-notes" aria-selected="false"><?= __("Notes"); ?></a>
-                                    <a class="nav-item nav-link" id="nav-qsl-tab" data-bs-toggle="tab" href="#nav-qsl" role="tab" aria-controls="nav-qsl" aria-selected="false"><?= __("QSL"); ?></a>
+                                    <a class="nav-item nav-link" id="nav-qsl-edit-tab" data-bs-toggle="tab" href="#nav-qsl-edit" role="tab" aria-controls="nav-qsl-edit" aria-selected="false"><?= __("QSL"); ?></a>
                                     <a class="nav-item nav-link" id="nav-station-tab" data-bs-toggle="tab" href="#nav-station" role="tab" aria-controls="nav-station" aria-selected="false"><?= __("Station"); ?></a>
                                     <a class="nav-item nav-link" id="nav-contest-tab" data-bs-toggle="tab" href="#nav-contest" role="tab" aria-controls="nav-contest" aria-selected="false"><?= __("Contest"); ?></a>
                                 </div>
@@ -397,10 +397,10 @@
                                 </div>
 
                                 <!-- QSL Panel Contents -->
-                                <div class="tab-pane fade" id="nav-qsl" role="tabpanel" aria-labelledby="nav-qsl-tab">
+                                <div class="tab-pane fade" id="nav-qsl-edit" role="tabpanel" aria-labelledby="nav-qsl-edit-tab">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="qsl-tab" data-bs-toggle="tab" href="#qsl" role="tab" aria-controls="qsl" aria-selected="true"><?= __("QSL Card"); ?></a>
+                                            <a class="nav-link active" id="qsl-edit-tab" data-bs-toggle="tab" href="#qsl-edit" role="tab" aria-controls="qsl-edit" aria-selected="true"><?= __("QSL Card"); ?></a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="eqsl-tab" data-bs-toggle="tab" href="#eqsl" role="tab" aria-controls="eqsl" aria-selected="false"><?= __("eQSL"); ?></a>
@@ -413,7 +413,7 @@
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="qsl" role="tabpanel" aria-labelledby="qsl-tab">
+                                        <div class="tab-pane fade show active" id="qsl-edit" role="tabpanel" aria-labelledby="qsl-edit-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
