@@ -11,6 +11,7 @@ $(document).ready(async function () {
 	// Clear the localStorage for the qrg units
 	localStorage.clear();
 	set_qrg();
+	qrg_inputtype();
 });
 
 // Always update the contestname

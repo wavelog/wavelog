@@ -1230,6 +1230,7 @@ function testTimeOffConsistency() {
 }
 
 $(document).ready(function () {
+	qrg_inputtype();
 	clearTimeout();
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
