@@ -165,17 +165,29 @@ class Core
 		$new  = str_replace("%websiteurl%", $data['websiteurl'], $new);
 		$new  = str_replace("%directory%", $data['directory'], $new);
 		$new  = str_replace("%callbook%", $data['global_call_lookup'], $new);
-		if ($data['global_call_lookup'] == 'qrz') {
-			$new  = str_replace("%qrz_username%", $data['callbook_username'], $new);
-			$new  = str_replace("%qrz_password%", $data['callbook_password'], $new);
-			$new  = str_replace("%hamqth_username%", '', $new);
-			$new  = str_replace("%hamqth_password%", '', $new);
+
+		$callbooks = ['qrz', 'hamqth', 'qrzcq'];
+		
+		if (in_array($data['global_call_lookup'], $callbooks)) {
+			$c_username = '%' . $data['global_call_lookup'] . '_username%';
+			$c_password = '%' . $data['global_call_lookup'] . '_password%';
+
+			$rest_callbooks = array_diff($callbooks, [$data['global_call_lookup']]);
+
+			foreach ($rest_callbooks as $callbook) {
+				$new = str_replace('%' . $callbook . '_username%', '', $new);
+				$new = str_replace('%' . $callbook . '_password%', '', $new);
+			}
+
+			$new = str_replace($c_username, $data['callbook_username'], $new);
+			$new = str_replace($c_password, $data['callbook_password'], $new);
 		} else {
-			$new  = str_replace("%qrz_username%", '', $new);
-			$new  = str_replace("%qrz_password%", '', $new);
-			$new  = str_replace("%hamqth_username%", $data['callbook_username'], $new);
-			$new  = str_replace("%hamqth_password%", $data['callbook_password'], $new);
+			foreach ($callbooks as $callbook) {
+				$new = str_replace('%' . $callbook . '_username%', '', $new);
+				$new = str_replace('%' . $callbook . '_password%', '', $new);
+			}
 		}
+
 		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
 		$new = str_replace("'%log_threshold%'", $data['log_threshold'], $new);
 
