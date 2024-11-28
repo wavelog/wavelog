@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-27 16:31+0000\n"
-"PO-Revision-Date: 2024-11-22 23:53+0000\n"
+"POT-Creation-Date: 2024-11-24 23:05+0000\n"
+"PO-Revision-Date: 2024-11-27 16:31+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8.3\n"
+"X-Generator: Weblate 5.8.4\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -354,7 +354,7 @@ msgid " and "
 msgstr " e "
 
 #: application/controllers/Awards.php:489
-#: application/controllers/Logbook.php:1271
+#: application/controllers/Logbook.php:1364
 #: application/views/awards/index.php:8 application/views/bands/index.php:55
 #: application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:184
@@ -376,11 +376,12 @@ msgstr " e "
 #: application/views/user/edit.php:323
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1271
 msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:506
-#: application/controllers/Logbook.php:1272
+#: application/controllers/Logbook.php:1365
 #: application/views/bands/index.php:60
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:178
@@ -396,11 +397,12 @@ msgstr "SOTA"
 #: application/views/user/edit.php:279 application/views/user/edit.php:301
 #: application/views/user/edit.php:324
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/controllers/Logbook.php:1272
 msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:523
-#: application/controllers/Logbook.php:1273
+#: application/controllers/Logbook.php:1366
 #: application/views/bands/index.php:52
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:188
@@ -416,6 +418,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:280 application/views/user/edit.php:302
 #: application/views/user/edit.php:325
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1273
 msgid "POTA"
 msgstr "POTA"
 
@@ -980,8 +983,8 @@ msgstr "Logbooks da estação"
 msgid "Logbook"
 msgstr "Logbook"
 
-#: application/controllers/Logbook.php:659
-#: application/controllers/Logbook.php:674
+#: application/controllers/Logbook.php:658
+#: application/controllers/Logbook.php:673
 #: application/views/activated_gridmap/index.php:58
 #: application/views/awards/dok/index.php:55
 #: application/views/awards/dxcc/index.php:61
@@ -1001,11 +1004,12 @@ msgstr "Logbook"
 #: application/views/qslprint/qsolist.php:17
 #: application/views/qso/edit_ajax.php:37 application/views/qso/index.php:45
 #: application/views/timeline/index.php:56 application/views/user/edit.php:562
-#: application/views/user/edit.php:649
+#: application/views/user/edit.php:649 application/controllers/Logbook.php:659
+#: application/controllers/Logbook.php:674
 msgid "QSL"
 msgstr "QSL"
 
-#: application/controllers/Logbook.php:662
+#: application/controllers/Logbook.php:661
 #: application/views/activated_gridmap/index.php:66
 #: application/views/awards/cq/index.php:60
 #: application/views/awards/dok/index.php:59
@@ -1032,10 +1036,11 @@ msgstr "QSL"
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:563
 #: application/views/user/edit.php:659 application/views/view_log/qso.php:520
+#: application/controllers/Logbook.php:662
 msgid "LoTW"
 msgstr "LoTW"
 
-#: application/controllers/Logbook.php:665
+#: application/controllers/Logbook.php:664
 #: application/views/activated_gridmap/index.php:74
 #: application/views/awards/cq/index.php:64
 #: application/views/awards/dok/index.php:63
@@ -1062,10 +1067,11 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:305
 #: application/views/timeline/index.php:64 application/views/user/edit.php:564
 #: application/views/user/edit.php:667 application/views/user/edit.php:731
+#: application/controllers/Logbook.php:665
 msgid "eQSL"
 msgstr "eQSL"
 
-#: application/controllers/Logbook.php:671
+#: application/controllers/Logbook.php:670
 #: application/views/awards/dok/index.php:71
 #: application/views/awards/dxcc/index.php:77
 #: application/views/awards/jcc/index.php:68
@@ -1079,10 +1085,11 @@ msgstr "eQSL"
 #: application/views/user/edit.php:683
 #: application/views/view_log/partial/log_ajax.php:85
 #: application/views/view_log/qso.php:535
+#: application/controllers/Logbook.php:671
 msgid "Clublog"
 msgstr "Clublog"
 
-#: application/controllers/Logbook.php:1266
+#: application/controllers/Logbook.php:1359
 #: application/controllers/Radio.php:49
 #: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:39
@@ -1154,10 +1161,11 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:107 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:30
+#: application/controllers/Logbook.php:1266
 msgid "Mode"
 msgstr "Modo"
 
-#: application/controllers/Logbook.php:1267
+#: application/controllers/Logbook.php:1360
 #: application/views/awards/pota/index.php:36
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:174
@@ -1181,10 +1189,11 @@ msgstr "Modo"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:112 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1267
 msgid "RST (S)"
 msgstr "RST (E)"
 
-#: application/controllers/Logbook.php:1268
+#: application/controllers/Logbook.php:1361
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:198
@@ -1209,10 +1218,11 @@ msgstr "RST (E)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:117
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1268
 msgid "RST (R)"
 msgstr "RST (R)"
 
-#: application/controllers/Logbook.php:1269
+#: application/controllers/Logbook.php:1362
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1231,10 +1241,11 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:327
 #: application/views/view_log/qso.php:640
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1269
 msgid "Country"
 msgstr "País"
 
-#: application/controllers/Logbook.php:1270
+#: application/controllers/Logbook.php:1363
 #: application/views/awards/iota/index.php:169
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:186
@@ -1258,10 +1269,11 @@ msgstr "País"
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1270
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1274
+#: application/controllers/Logbook.php:1367
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:20
 #: application/views/awards/rac/index.php:143
@@ -1286,10 +1298,11 @@ msgstr "IOTA"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1274
 msgid "State"
 msgstr "Estado"
 
-#: application/controllers/Logbook.php:1275
+#: application/controllers/Logbook.php:1368
 #: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:40
@@ -1327,10 +1340,11 @@ msgstr "Estado"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:627
 #: application/views/visitor/index.php:27
+#: application/controllers/Logbook.php:1275
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
-#: application/controllers/Logbook.php:1276
+#: application/controllers/Logbook.php:1369
 #: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:42
@@ -1353,10 +1367,11 @@ msgstr "Gridsquare"
 #: application/views/user/edit.php:328
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1276
 msgid "Distance"
 msgstr "Distância"
 
-#: application/controllers/Logbook.php:1277
+#: application/controllers/Logbook.php:1370
 #: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:10
@@ -1431,10 +1446,11 @@ msgstr "Distância"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:33
+#: application/controllers/Logbook.php:1277
 msgid "Band"
 msgstr "Banda"
 
-#: application/controllers/Logbook.php:1278
+#: application/controllers/Logbook.php:1371
 #: application/controllers/Radio.php:48 application/views/bandmap/list.php:113
 #: application/views/contesting/index.php:143
 #: application/views/dashboard/index.php:16
@@ -1451,10 +1467,11 @@ msgstr "Banda"
 #: application/views/user/edit.php:317
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1278
 msgid "Frequency"
 msgstr "Frequência"
 
-#: application/controllers/Logbook.php:1279
+#: application/controllers/Logbook.php:1372
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:14
 #: application/views/logbookadvanced/index.php:320
@@ -1473,10 +1490,11 @@ msgstr "Frequência"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:647
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1279
 msgid "Operator"
 msgstr "Operador"
 
-#: application/controllers/Logbook.php:1300
+#: application/controllers/Logbook.php:1393
 #: application/controllers/Stationsetup.php:381
 #: application/views/awards/dxcc/index.php:28
 #: application/views/awards/dxcc/index.php:238
@@ -1499,6 +1517,7 @@ msgstr "Operador"
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:331
 #: application/views/view_log/qso.php:641
+#: application/controllers/Logbook.php:1300
 msgid "Deleted DXCC"
 msgstr "DXCC cancelada"
 
@@ -2235,7 +2254,7 @@ msgstr "Estatísticas de QSL"
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
-msgstr ""
+msgstr "Análise da Antena"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:284
@@ -2446,10 +2465,6 @@ msgstr ""
 #: application/controllers/Widgets.php:54 application/views/oqrs/index.php:69
 msgid "No stations found that are using Wavelog OQRS."
 msgstr "Não foram encontradas estações que estejam a utilizar o OQRS Wavelog."
-
-#: application/libraries/Callbook.php:86
-msgid "QRZCQ Error"
-msgstr ""
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -11554,7 +11569,7 @@ msgstr "Visitar a Página Pública"
 
 #: application/views/statistics/antennaanalytics.php:11
 msgid "Elevation"
-msgstr ""
+msgstr "Elevação"
 
 #: application/views/statistics/custom.php:12
 #: application/views/statistics/custom_result.php:12
@@ -12750,6 +12765,10 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#: application/libraries/Callbook.php:86
+msgid "QRZCQ Error"
+msgstr ""
 
 #~ msgid "eMail"
 #~ msgstr "e-mail"
