@@ -155,7 +155,7 @@
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Theme").' / '.__("Stylesheet"); ?></label>
-										<?php if(!isset($user_stylesheet)) { $user_stylesheet='default'; }?>
+										<?php if(!isset($user_stylesheet)) { $user_stylesheet='darkly'; }?>
 										<select class="form-select" id="user_stylesheet" name="user_stylesheet" required>
 											<?php
 											foreach ($themes as $theme) {
