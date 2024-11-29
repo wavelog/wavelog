@@ -96,12 +96,12 @@
 
               <?php } else {?>
               <div class="row">
-                <div class="mb-3 col-md-6">
+                <div class="mb-3 col-6">
                   <label for="start_date"><?= __("Date"); ?></label>
                   <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
-                <div class="mb-3 col-md-6">
+                <div class="mb-3 col-6">
                   <label for="start_time"><?= __("Time"); ?></label>
                   <div class="input-group">
                     <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
@@ -172,13 +172,13 @@
               </div>
 
               <!-- Signal Report Information -->
-              <div class="row">
-                <div class="mb-3 col-md-6">
+              <div class="row mb-3 mb-sm-4">
+                <div class="col-6">
                   <label for="rst_sent"><?= __("RST (S)"); ?></label>
                   <input tabindex="2" type="text" class="form-control form-control-sm" name="rst_sent" id="rst_sent" value="59">
                 </div>
 
-                <div class="mb-3 col-md-6">
+                <div class="col-6">
                   <label for="rst_rcvd"><?= __("RST (R)"); ?></label>
                   <input tabindex="3" type="text" class="form-control form-control-sm" name="rst_rcvd" id="rst_rcvd" value="59">
                 </div>
