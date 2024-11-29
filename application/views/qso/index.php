@@ -68,7 +68,7 @@
                   <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date('d-m-Y'); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
-                <div class="mb-3 col-sm-6 col-md-6 col-lg-4 col-xl-4 col-4">
+                <div class="mb-3 col-sm-6 col-md-6 col-lg-4 col-xl-4 col-4 ps-0 pe-0">
                 <label for="start_time"><?= __("Time on"); ?></label>
                   <div class="input-group">
                     <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" tabindex="5" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
