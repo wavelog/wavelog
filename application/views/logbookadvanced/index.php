@@ -538,46 +538,69 @@ $options = json_decode($options);
             </div>
         </div>
         <div class="row pt-2">
-            <div class="mb-2 btn-group w-auto mx-auto">
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".quickfilterbody" style="white-space: nowrap;"><i class="fas fa-filter"></i> <?= __("Quickfilters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody" style="white-space: nowrap;"><i class="fas fa-filter"></i> <?= __("QSL Filters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".filterbody" style="white-space: nowrap;"><i class="fas fa-filter"></i> <?= __("Filters"); ?></button>
-                <button type="button" class="btn btn-sm btn-success me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;"><i class="fas fa-tasks"></i> <?= __("Actions"); ?></button>
-                <label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
-                <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
-                    <option value="250">250</option>
-                    <option value="1000">1000</option>
-                    <option value="2500">2500</option>
-                    <option value="5000">5000</option>
-                </select>
-                <label class="me-2" for="de"><?= __("Location"); ?></label>
-                <select class="form-control form-control-sm" id="de" name="de" multiple="multiple">
-                    <?php foreach ($station_profile->result() as $station) { ?>
-                        <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
-                                                                                echo " selected =\"selected\"";
-                                                                            } ?>>
-                            <?= __("Callsign: ") . " " ?>
-                            <?php echo str_replace("0", "&Oslash;", strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
-                        </option>
-                    <?php } ?>
-                </select>
-                <button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right" id="searchButton" style="white-space: nowrap;"><i class="fas fa-search"></i> <?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton" style="white-space: nowrap;"><i class="fa fa-clone"></i> <?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
-				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="invalidButton" style="white-space: nowrap;"><i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton" style="white-space: nowrap;"><i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos" style="white-space: nowrap;"><i class="fas fa-trash-alt"></i> <?= __("Delete"); ?></button>
-                <div class="btn-group me-1" role="group">
-                    <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="mapButton" onclick="mapQsos(this.form);" style="white-space: nowrap;"><i class="fas fa-globe-europe"></i> <?= __("Map"); ?><div class="ld ld-ring ld-spin"></div></button>
-                    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
-                    </ul>
-                </div>
-                <button type="options" class="btn btn-sm btn-primary me-1" id="optionButton" style="white-space: nowrap;"><i class="fas fa-cog"></i> <?= __("Options"); ?></button>
-                <button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton" style="white-space: nowrap;"><i class="fas fa-undo"></i> <?= __("Reset"); ?></button>
+			<div class="d-flex flex-wrap mb-2 btn-group w-auto mx-auto">
+				<button type="button" class="btn btn-sm btn-primary me-1 mb-2 lba_buttons flex-grow-0" data-bs-toggle="collapse" data-bs-target=".quickfilterbody" style="white-space: nowrap;">
+					<i class="fas fa-filter"></i> <?= __("Quickfilters"); ?>
+				</button>
+				<button type="button" class="btn btn-sm btn-primary me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".qslfilterbody" style="white-space: nowrap;">
+					<i class="fas fa-filter"></i> <?= __("QSL Filters"); ?>
+				</button>
+				<button type="button" class="btn btn-sm btn-primary me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".filterbody" style="white-space: nowrap;">
+					<i class="fas fa-filter"></i> <?= __("Filters"); ?>
+				</button>
+				<button type="button" class="btn btn-sm btn-success me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;">
+					<i class="fas fa-tasks"></i> <?= __("Actions"); ?>
+				</button>
+				<label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
+				<select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
+					<option value="250">250</option>
+					<option value="1000">1000</option>
+					<option value="2500">2500</option>
+					<option value="5000">5000</option>
+				</select>
+				<label class="me-2" for="de"><?= __("Location"); ?></label>
+				<select class="form-control form-control-sm w-auto me-2" id="de" name="de" multiple="multiple">
+					<?php foreach ($station_profile->result() as $station) { ?>
+						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
+							echo " selected =\"selected\""; } ?>>
+							<?= __("Callsign: ") . " " ?>
+							<?php echo str_replace("0", "&Oslash;", strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
+						</option>
+					<?php } ?>
+				</select>
+				<button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right flex-grow-0 mb-2" id="searchButton" style="white-space: nowrap;">
+					<i class="fas fa-search"></i> <?= __("Search"); ?><div class="ld ld-ring ld-spin"></div>
+				</button>
+				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="dupeButton" style="white-space: nowrap;">
+					<i class="fa fa-clone"></i> <?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div>
+				</button>
+				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="invalidButton" style="white-space: nowrap;">
+					<i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div>
+				</button>
+				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="editButton" style="white-space: nowrap;">
+					<i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div>
+				</button>
+				<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;">
+					<i class="fas fa-trash-alt"></i> <?= __("Delete"); ?>
+				</button>
+				<div class="btn-group me-1" role="group">
+					<button type="button" class="btn btn-sm btn-primary ld-ext-right flex-grow-0 mb-2" id="mapButton" onclick="mapQsos(this.form);" style="white-space: nowrap;">
+						<i class="fas fa-globe-europe"></i> <?= __("Map"); ?><div class="ld ld-ring ld-spin"></div>
+					</button>
+					<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle flex-grow-0 mb-2" data-bs-toggle="dropdown" aria-expanded="false"></button>
+					<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+						<li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
+					</ul>
+				</div>
+				<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" style="white-space: nowrap;">
+					<i class="fas fa-cog"></i> <?= __("Options"); ?>
+				</button>
+				<button type="reset" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="resetButton" style="white-space: nowrap;">
+					<i class="fas fa-undo"></i> <?= __("Reset"); ?>
+				</button>
+			</div>
+		</div>
 
-            </div>
-        </div>
         </form>
         <table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center" id="qsoList">
             <thead>
