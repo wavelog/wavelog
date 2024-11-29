@@ -539,10 +539,10 @@ $options = json_decode($options);
         </div>
         <div class="row pt-2">
             <div class="mb-2 btn-group w-auto mx-auto">
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".quickfilterbody"><?= __("Quickfilters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody" style="white-space: nowrap;"><?= __("QSL Filters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".filterbody"><?= __("Filters"); ?></button>
-                <button type="button" class="btn btn-sm btn-success me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody"><?= __("Actions"); ?></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".quickfilterbody" style="white-space: nowrap;"><i class="fas fa-filter"></i> <?= __("Quickfilters"); ?></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody" style="white-space: nowrap;"><i class="fas fa-filter"></i> <?= __("QSL Filters"); ?></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".filterbody" style="white-space: nowrap;"><i class="fas fa-filter"></i> <?= __("Filters"); ?></button>
+                <button type="button" class="btn btn-sm btn-success me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;"><i class="fas fa-tasks"></i> <?= __("Actions"); ?></button>
                 <label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
                 <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
                     <option value="250">250</option>
@@ -573,7 +573,7 @@ $options = json_decode($options);
                         <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
                     </ul>
                 </div>
-                <button type="options" class="btn btn-sm btn-primary me-1" id="optionButton" style="white-space: nowrap;"><i class="fas fa-filter"></i> <?= __("Options"); ?></button>
+                <button type="options" class="btn btn-sm btn-primary me-1" id="optionButton" style="white-space: nowrap;"><i class="fas fa-cog"></i> <?= __("Options"); ?></button>
                 <button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton" style="white-space: nowrap;"><i class="fas fa-undo"></i> <?= __("Reset"); ?></button>
 
             </div>
