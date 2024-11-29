@@ -37,7 +37,7 @@ class Logbookadvanced_model extends CI_Model {
 					select col_primary_key from " . $this->config->item('table_name') . "
 					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 					where station_profile.user_id = ?
-					and coalesce(col_mode, '') = ''
+					and (coalesce(col_mode, '') = '' or col_mode = '0')
 
 					union all
 
