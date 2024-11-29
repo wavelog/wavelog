@@ -542,7 +542,7 @@ $options = json_decode($options);
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".quickfilterbody"><?= __("Quickfilters"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody" style="white-space: nowrap;"><?= __("QSL Filters"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".filterbody"><?= __("Filters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody"><?= __("Actions"); ?></button>
+                <button type="button" class="btn btn-sm btn-success me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody"><?= __("Actions"); ?></button>
                 <label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
                 <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
                     <option value="250">250</option>
@@ -561,9 +561,9 @@ $options = json_decode($options);
                         </option>
                     <?php } ?>
                 </select>
-                <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton" style="white-space: nowrap;"><i class="fas fa-search"></i> <?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
-				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="invalidButton"><?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div></button>
+                <button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right" id="searchButton" style="white-space: nowrap;"><i class="fas fa-search"></i> <?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><i class="fa fa-clone"></i> <?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
+				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="invalidButton"><i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton" style="white-space: nowrap;"><i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
                 <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos" style="white-space: nowrap;"><i class="fas fa-trash-alt"></i> <?= __("Delete"); ?></button>
                 <div class="btn-group me-1" role="group">
@@ -573,8 +573,8 @@ $options = json_decode($options);
                         <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
                     </ul>
                 </div>
-                <button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><?= __("Options"); ?></button>
-                <button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton"><?= __("Reset"); ?></button>
+                <button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><i class="fas fa-filter"></i> <?= __("Options"); ?></button>
+                <button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton"><i class="fas fa-undo"></i> <?= __("Reset"); ?></button>
 
             </div>
         </div>
