@@ -562,8 +562,8 @@ $options = json_decode($options);
                     <?php } ?>
                 </select>
                 <button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right" id="searchButton" style="white-space: nowrap;"><i class="fas fa-search"></i> <?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><i class="fa fa-clone"></i> <?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
-				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="invalidButton"><i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton" style="white-space: nowrap;"><i class="fa fa-clone"></i> <?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
+				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="invalidButton" style="white-space: nowrap;"><i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton" style="white-space: nowrap;"><i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
                 <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos" style="white-space: nowrap;"><i class="fas fa-trash-alt"></i> <?= __("Delete"); ?></button>
                 <div class="btn-group me-1" role="group">
@@ -573,8 +573,8 @@ $options = json_decode($options);
                         <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
                     </ul>
                 </div>
-                <button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><i class="fas fa-filter"></i> <?= __("Options"); ?></button>
-                <button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton"><i class="fas fa-undo"></i> <?= __("Reset"); ?></button>
+                <button type="options" class="btn btn-sm btn-primary me-1" id="optionButton" style="white-space: nowrap;"><i class="fas fa-filter"></i> <?= __("Options"); ?></button>
+                <button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton" style="white-space: nowrap;"><i class="fas fa-undo"></i> <?= __("Reset"); ?></button>
 
             </div>
         </div>
