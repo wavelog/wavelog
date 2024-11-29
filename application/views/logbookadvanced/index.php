@@ -538,7 +538,7 @@ $options = json_decode($options);
             </div>
         </div>
         <div class="row pt-2">
-			<div class="d-flex flex-wrap mb-2 btn-group w-auto mx-auto">
+			<div class="d-flex flex-wrap btn-group w-auto mx-auto">
 				<button type="button" class="btn btn-sm btn-primary me-1 mb-2 lba_buttons flex-grow-0" data-bs-toggle="collapse" data-bs-target=".quickfilterbody" style="white-space: nowrap;">
 					<i class="fas fa-filter"></i> <?= __("Quickfilters"); ?>
 				</button>
