@@ -131,6 +131,10 @@ function plot(visitor, grid_two, grid_four, grid_six, grid_two_confirmed, grid_f
                 div.innerHTML += '<i style="background: green"></i><span>' + gridsquares_gridsquares_confirmed + ' ('+grid_four_confirmed.length+')</span><br>';
                 div.innerHTML += '<i style="background: red"></i><span>' + gridsquares_gridsquares_not_confirmed + ' ('+(grid_four.length - grid_four_confirmed.length)+')</span><br>';
                 div.innerHTML += '<i></i><span>' + gridsquares_gridsquares_total_worked + ' ('+grid_four.length+')</span><br>';
+				div.innerHTML += "<h4>" + gridsquares_fields + "</h4>";
+				div.innerHTML += '<i style="background: green"></i><span>' + gridsquares_fields_confirmed + ' ('+grid_two_confirmed.length+')</span><br>';
+				div.innerHTML += '<i style="background: red"></i><span>' + gridsquares_fields_not_confirmed + ' ('+(grid_two.length - grid_two_confirmed.length)+')</span><br>';
+				div.innerHTML += '<i></i><span>' + gridsquares_fields_total_worked + ' ('+grid_two.length+')</span><br>';
                 return div;
             };
 
