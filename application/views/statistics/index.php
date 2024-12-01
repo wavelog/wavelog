@@ -30,10 +30,10 @@
 	</h2>
 		<br/>
 		<select class="form-select form-select-sm me-2 w-auto" style="display:none;" id="yr" name="yr">
-			<option value='All'><?= __("All"); ?></option>
+			<option value='All'><?= __("All Years"); ?></option>
 		<?php 
 			foreach($years as $yr) {
-				echo '<option value="'.$yr.'">'.$yr.'</option>';
+				echo '<option value="'.$yr.'">'.__("Year")." ".$yr.'</option>';
 			}
 		?>
 		</select>
