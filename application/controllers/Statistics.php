@@ -25,6 +25,7 @@ class Statistics extends CI_Controller {
 		// Set Page Title
 		$data['page_title'] = __("Statistics");
 		$data['sat_active'] = array_search("SAT", $this->bands->get_user_bands(), true);
+		$data['years'] = $this->get_years();
 
 		// Load Views
 		$this->load->view('interface_assets/header', $data);
@@ -74,6 +75,18 @@ class Statistics extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 		}
 
+	}
+
+	function get_years() {
+		$this->load->model('logbook_model');
+		$totals_year = $this->logbook_model->totals_year();
+		$years=[];
+		if ($totals_year) {
+			foreach($totals_year->result() as $years_obj) {
+				$years[] = $years_obj->year;
+			}
+		}
+		return $years;
 	}
 
 	public function get_year() {

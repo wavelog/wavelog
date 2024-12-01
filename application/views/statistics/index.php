@@ -27,10 +27,13 @@
 		<?php echo $page_title; ?>
 		<small class="text-muted"><?= __("Explore the logbook."); ?></small>
 	</h2>
-		<select id="yr" name="yr">
+		<?= __("Year"); ?> <select id="yr" name="yr">
 			<option value='All'><?= __("All"); ?></option>
-			<option value='2023'>2023</option>
-			<option value='2024'>2024</option>
+		<?php 
+			foreach($years as $yr) {
+				echo '<option value="'.$yr.'">'.$yr.'</option>';
+			}
+		?>
 		</select>
 	<br>
 	<div hidden class="tabs">
