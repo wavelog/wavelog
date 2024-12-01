@@ -3,55 +3,61 @@ totalQsosPerYear();
 
 var activeTab='totalQsosPerYear()';
 
-// Needed for sattable header fix, will be squished without
 $("a[href='#satellite']").on('shown.bs.tab', function(e) {
 	$(".sattable").DataTable().columns.adjust();
-});
-
-$("a[href='#satellite']").on('shown.bs.tab', function(e) {
 	activeTab='totalSatQsos()';
+	$("#yr").show();
 });
 
 $("a[href='#sattab']").on('shown.bs.tab', function(e) {
 	activeTab='totalSatQsos()';
+	$("#yr").show();
 });
 
 $("a[href='#home']").on('shown.bs.tab', function(e) {
 	activeTab='totalQsosPerYear()';
+	$("#yr").hide();
 });
 
 $("a[href='#yearstab']").on('shown.bs.tab', function(e) {
 	activeTab='totalQsosPerYear()';
+	$("#yr").hide();
 });
 
 $("a[href='#bandtab']").on('shown.bs.tab', function(e) {
 	totalBandQsos();
 	activeTab='totalBandQsos()'
+	$("#yr").show();
 });
 
 $("a[href='#modetab']").on('shown.bs.tab', function(e) {
 	totalModeQsos();
 	activeTab='totalModeQsos()'
+	$("#yr").show();
 });
 
 $("a[href='#qsotab']").on('shown.bs.tab', function(e) {
 	totalQsos();
 	activeTab='totalQsos()'
+	$("#yr").show();
 });
 
 $("a[href='#satqsostab']").on('shown.bs.tab', function(e) {
 	totalSatQsosC();
 	activeTab='totalSatQsosC()'
+	$("#yr").show();
 });
 
 $("a[href='#uniquetab']").on('shown.bs.tab', function(e) {
 	uniqueCallsigns();
 	activeTab='uniqueCallsigns()'
+	$("#yr").show();
 });
 
 $("a[href='#satuniquetab']").on('shown.bs.tab', function(e) {
 	uniqueSatCallsigns();
 	activeTab='uniqueSatCallsigns()'
+	$("#yr").show();
 });
 
 $("#yr").on('change',function(e) {

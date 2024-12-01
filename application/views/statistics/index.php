@@ -28,7 +28,8 @@
 		<?php echo $page_title; ?>
 		<small class="text-muted"><?= __("Explore the logbook."); ?></small>
 	</h2>
-		<?= __("Year"); ?> <select id="yr" name="yr">
+		<br/>
+		<select style="display:none;" id="yr" name="yr">
 			<option value='All'><?= __("All"); ?></option>
 		<?php 
 			foreach($years as $yr) {
