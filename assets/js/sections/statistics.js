@@ -42,10 +42,15 @@ $("a[href='#satuniquetab']").on('shown.bs.tab', function(e) {
     }
 });
 
+$("#yr").on('change',function(e) {
+	console.log(this.value);
+});
+
 function uniqueSatCallsigns() {
     $.ajax({
         url: base_url+'index.php/statistics/get_unique_sat_callsigns',
         type: 'post',
+	data: { yr: $("#yr option:selected").val() },
         success: function (data) {
             if (data.length > 0) {
                 $(".satunique").html(data);
@@ -58,6 +63,7 @@ function uniqueCallsigns() {
     $.ajax({
         url: base_url+'index.php/statistics/get_unique_callsigns',
         type: 'post',
+	data: { yr: $("#yr option:selected").val() },
         success: function (data) {
             if (data.length > 0) {
                 $(".unique").html(data);
@@ -70,6 +76,7 @@ function totalQsos() {
     $.ajax({
         url: base_url+'index.php/statistics/get_total_qsos',
         type: 'post',
+	data: { yr: $("#yr option:selected").val() },
         success: function (data) {
             if (data.length > 0) {
                 $(".qsos").html(data);
@@ -82,6 +89,7 @@ function totalSatQsosC() {
     $.ajax({
         url: base_url+'index.php/statistics/get_total_sat_qsos',
         type: 'post',
+	data: { yr: $("#yr option:selected").val() },
         success: function (data) {
             if (data.length > 0) {
                 $(".satqsos").html(data);
@@ -97,6 +105,7 @@ function totalQsosPerYear() {
         $.ajax({
             url: base_url+'index.php/statistics/get_year',
             type: 'post',
+	    data: { yr: $("#yr option:selected").val() },
             success: function (data) {
                 if (data.length > 0) {
                    
@@ -214,6 +223,7 @@ function totalModeQsos() {
     $.ajax({
         url: base_url+'index.php/statistics/get_mode',
         type: 'post',
+	data: { yr: $("#yr option:selected").val() },
         success: function (data) {
             if (data.length > 0) {
                 var labels = [];
@@ -343,6 +353,7 @@ function totalBandQsos() {
     $.ajax({
         url: base_url+'index.php/statistics/get_band',
         type: 'post',
+	data: { yr: $("#yr option:selected").val() },
         success: function (data) {
             if (data.length > 0) {
                
@@ -485,6 +496,7 @@ function totalSatQsos() {
     $.ajax({
         url: base_url+'index.php/statistics/get_sat',
         type: 'post',
+	data: { yr: $("#yr option:selected").val() },
         success: function (data) {
             if (data.length > 0) {
                 $('.tabs').removeAttr('hidden');
