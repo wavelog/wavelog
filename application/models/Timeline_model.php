@@ -29,7 +29,7 @@ class Timeline_model extends CI_Model {
 		$sql = "select min(date(COL_TIME_ON)) date, prefix, col_country, end, adif from "
 			.$this->config->item('table_name'). " thcv
 			join dxcc_entities on thcv.col_dxcc = dxcc_entities.adif
-			where station_id in (" . $location_list . ") and col_dxcc > 0";
+			where station_id in (" . $location_list . ") and col_dxcc > 0 ";
 
 		if ($band == 'SAT') {				// Left for compatibility reasons
 			$sql .= " and col_prop_mode = ?";

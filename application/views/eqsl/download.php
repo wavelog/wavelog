@@ -59,7 +59,7 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 	echo "<td>".$qsl['COL_BAND']."</td>";
 	echo "<td>".$qsl['COL_PROP_MODE']."</td>";
 	echo "<td>".date($custom_date_format, strtotime($qsl['COL_EQSL_QSLRDATE'])) ?? '' ."</td>";
-	echo "<td><a href=\"".site_url()."/eqsl/image/".$qsl['COL_PRIMARY_KEY']."\" data-fancybox=\"images\" data-width=\"528\" data-height=\"336\" class=\"btn btn-primary btn-sm\">" . __("View/Download") . "</a></td>";
+	echo "<td><a href=\"".site_url("eqsl/image/".$qsl['COL_PRIMARY_KEY'])."\" data-fancybox=\"images\" data-width=\"528\" data-height=\"336\" class=\"btn btn-primary btn-sm\">" . __("View/Download") . "</a></td>";
 }
 	echo "</tr>";
 ?>

@@ -1,7 +1,7 @@
 <div class="container">
 	<br>
 		<h2><?php echo $page_title; ?></h2>
-	<p><?php echo __("This page lists distance records per satellite based on gridsquares."); ?>
+	<p><?= __("This page lists distance records per satellite based on gridsquares."); ?>
 	<?php
 		if ($distances) {
 	?>

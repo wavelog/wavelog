@@ -39,7 +39,7 @@
                         <?php } ?>
                         <tr>
                             <td><?= __("Language"); ?></td>
-                            <td><?php echo __(ucfirst($this->config->item('language'))) . "\n"; ?></td>
+                            <td><?= __(ucfirst($this->config->item('language'))) . "\n"; ?></td>
                         </tr>
                         <tr>
                             <td><?= __("Base URL"); ?></td>

@@ -152,6 +152,11 @@ class Qrz extends CI_Controller {
 					$this->markqso($qso->COL_PRIMARY_KEY,'I');
 					$result['status'] = 'Error';
 					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
+				} elseif ( ($result['status']=='error') && (str_contains($result['message'],'required field missing mode')) ) {
+					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
+					$this->markqso($qso->COL_PRIMARY_KEY,'I');
+					$result['status'] = 'Error';
+					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
 				} elseif ( ($result['status']=='error') && (substr($result['message'],0,11)  == 'STATUS=AUTH')) {
 					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
 					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
@@ -345,7 +350,7 @@ class Qrz extends CI_Controller {
 
 	function mass_download_qsos($qrz_api_key = '', $lastqrz = '1900-01-01', $station_ids = '', $trusted = false) {
 		$config['upload_path'] = './uploads/';
-		$file = $config['upload_path'] . 'qrzcom_download_report.adi';
+		$file = $config['upload_path'] . 'qrzcom_download_report_'.md5($qrz_api_key).'.adi';
 		if (file_exists($file) && ! is_writable($file)) {
 			$result = "Temporary download file ".$file." is not writable. Aborting!";
 			return false;

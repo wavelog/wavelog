@@ -33,6 +33,11 @@ class Gridmap extends CI_Controller {
 		$data['gridsquares_gridsquares_not_confirmed'] 	= __("Gridsquares not confirmed");
 		$data['gridsquares_gridsquares_total_worked'] 	= __("Total gridsquares worked");
 
+		$data['gridsquares_fields'] 				= __("Fields");
+		$data['gridsquares_fields_confirmed'] 		= __("Fields confirmed");
+		$data['gridsquares_fields_not_confirmed'] 	= __("Fields not confirmed");
+		$data['gridsquares_fields_total_worked'] 	= __("Total fields worked");
+
         $footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/leaflet/geocoding.js',

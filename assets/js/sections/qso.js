@@ -22,15 +22,11 @@ function resetTimers(qso_manual) {
 
 function getUTCTimeStamp(el) {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
 	$(el).attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 }
 
 function getUTCDateStamp(el) {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
 	$(el).attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
 }
 
@@ -59,11 +55,10 @@ $('.qso_panel .qso_eqsl_qslmsg_update').off('click').on('click', function () {
 });
 
 $(document).on("keydown", function (e) {
-	if (e.key === "Escape") { // escape key maps to keycode `27`
+	if (e.key === "Escape" && $('#callsign').val() != '') { // escape key maps to keycode `27`
+		// console.log("Escape key pressed");
 		reset_fields();
-		resetTimers(qso_manual)
-		$('#callsign').val("");
-		$("#callsign").trigger("focus");
+		$('#callsign').trigger("focus");
 	}
 });
 
@@ -153,9 +148,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 
 $('#reset_time').on("click", function () {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$('#start_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 	$("[id='start_time']").each(function () {
 		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 	});
@@ -163,27 +156,35 @@ $('#reset_time').on("click", function () {
 
 $('#reset_start_time').on("click", function () {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$('#start_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='start_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$starttime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$starttime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $starttime);
 	});
-	$('#end_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $endtime);
 	});
 	// update date (today, for "post qso") //
-	$('#start_date').val(("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
+	$('#start_date').attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
 });
 
 $('#reset_end_time').on("click", function () {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$('#end_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $endtime);
 	});
 });
 
@@ -201,7 +202,7 @@ $(document).on("click", "#fav_recall", function (event) {
 	$('#band_rx').val(favs[this.innerText].band_rx);
 	$('#band').val(favs[this.innerText].band);
 	$('#frequency_rx').val(favs[this.innerText].frequency_rx);
-	$('#frequency').val(favs[this.innerText].frequency);
+	$('#frequency').val(favs[this.innerText].frequency).trigger("change");
 	$('#selectPropagation').val(favs[this.innerText].prop_mode);
 	$('#mode').val(favs[this.innerText].mode).on("change");
 });
@@ -284,7 +285,7 @@ bc.onmessage = function (ev) {
 			}
 			setTimeout(() => {
 				if (ev.data.frequency != null) {
-					$('#frequency').val(ev.data.frequency);
+					$('#frequency').val(ev.data.frequency).trigger("change");
 					$("#band").val(frequencyToBand(ev.data.frequency));
 				}
 				if (ev.data.frequency_rx != "") {
@@ -376,7 +377,7 @@ $(document).on('change', 'input', function () {
 								}
 								$("#band").val(frequencyToBand(val2[0].Uplink_Freq));
 								$("#band_rx").val(frequencyToBand(val2[0].Downlink_Freq));
-								$("#frequency").val(val2[0].Uplink_Freq);
+								$("#frequency").val(val2[0].Uplink_Freq).trigger("change");
 								$("#frequency_rx").val(val2[0].Downlink_Freq);
 								$("#selectPropagation").val('SAT');
 							}
@@ -516,6 +517,7 @@ function reset_fields() {
 	$('#name').val("");
 	$('#qth').val("");
 	$('#locator').val("");
+	$('#ant_path').val("");
 	$('#iota_ref').val("");
 	$("#locator").removeClass("confirmedGrid");
 	$("#locator").removeClass("workedGrid");
@@ -579,6 +581,8 @@ function reset_fields() {
 $("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3 && preventLookup == false) {
 
+		$("#noticer").fadeOut(1000);
+
 		// Temp store the callsign
 		var temp_callsign = $(this).val();
 
@@ -602,7 +606,7 @@ $("#callsign").on("focusout", function () {
 		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
 
 			// Make sure the typed callsign and json result match
-			if ($('#callsign').val = result.callsign) {
+			if ($('#callsign').val().toUpperCase().replace('Ø', '0') == result.callsign) {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
@@ -668,7 +672,7 @@ $("#callsign").on("focusout", function () {
 					} else if (result.lotw_days > 7) {
 						$('#lotw_info').addClass('lotw_info_yellow');
 					}
-					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign);
+					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign.replace('Ø', '0'));
 					$('#lotw_link').attr('target', "_blank");
 					$('#lotw_info').attr('data-bs-toggle', "tooltip");
 					if (result.lotw_days == 1) { 
@@ -678,11 +682,11 @@ $("#callsign").on("focusout", function () {
 					}
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
-				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
-				$('#qrz_info').attr('title', 'Lookup ' + callsign + ' info on qrz.com').removeClass('d-none');
+				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign.replace('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
+				$('#qrz_info').attr('title', 'Lookup ' + callsign.replace('Ø', '0') + ' info on qrz.com').removeClass('d-none');
 				$('#qrz_info').show();
-				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
-				$('#hamqth_info').attr('title', 'Lookup ' + callsign + ' info on hamqth.com').removeClass('d-none');
+				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign.replace('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
+				$('#hamqth_info').attr('title', 'Lookup ' + callsign.replace('Ø', '0') + ' info on hamqth.com').removeClass('d-none');
 				$('#hamqth_info').show();
 
 				var $dok_select = $('#darc_dok').selectize();
@@ -772,6 +776,11 @@ $("#callsign").on("focusout", function () {
 					$('#name').val(result.callsign_name);
 				}
 
+				/* Find Operators E-mail */
+				if ($('#email').val() == "") {
+					$('#email').val(result.callsign_email);
+				}
+
 				if ($('#continent').val() == "") {
 					$('#continent').val(result.dxcc.cont);
 				}
@@ -824,7 +833,12 @@ $("#callsign").on("focusout", function () {
 
 				// Get DXX Summary
 				getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
-			}
+			} 
+			// else {
+			// 	console.log("Callsigns do not match, skipping lookup");
+			// 	console.log("Typed Callsign: " + $('#callsign').val());
+			// 	console.log("Returned Callsign: " + result.callsign);
+			// }
 		});
 	} else {
 		// Reset QSO fields
@@ -868,7 +882,7 @@ $('#start_date').on('change', function () {
 $('.mode').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 		});
 	}
 	$('#frequency_rx').val("");
@@ -879,7 +893,7 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 		});
 	}
 	$('#frequency_rx').val("");
@@ -887,6 +901,7 @@ $('#band').on('change', function () {
 	$("#selectPropagation").val("");
 	$("#sat_name").val("");
 	$("#sat_mode").val("");
+	set_qrg();
 });
 
 /* On Key up Calculate Bearing and Distance */
@@ -977,6 +992,7 @@ $("#locator").on("input focus", function () {
 				type: 'post',
 				data: {
 					grid: $(this).val(),
+					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
@@ -991,6 +1007,7 @@ $("#locator").on("input focus", function () {
 				type: 'post',
 				data: {
 					grid: $(this).val(),
+					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
@@ -1008,6 +1025,41 @@ $("#locator").on("focusout", function () {
 	if ($(this).val().length == 0) {
 		$('#locator_info').text("");
 		document.getElementById("distance").value = null;
+	}
+});
+
+$("#ant_path").on("change", function () {
+	if ($("#locator").val().length > 0) {
+		$.ajax({
+			url: base_url + 'index.php/logbook/searchbearing',
+			type: 'post',
+			data: {
+				grid: $('#locator').val(),
+				ant_path: $('#ant_path').val(),
+				stationProfile: $('#stationProfile').val()
+			},
+			success: function (data) {
+				$('#locator_info').html(data).fadeIn("slow");
+			},
+			error: function () {
+				$('#locator_info').text("Error loading bearing!").fadeIn("slow");
+			},
+		});
+		$.ajax({
+			url: base_url + 'index.php/logbook/searchdistance',
+			type: 'post',
+			data: {
+				grid: $('#locator').val(),
+				ant_path: $('#ant_path').val(),
+				stationProfile: $('#stationProfile').val()
+			},
+			success: function (data) {
+				$('#distance').val(data);
+			},
+			error: function () {
+				$('#distance').val("");
+			},
+		});
 	}
 });
 
@@ -1178,9 +1230,18 @@ function testTimeOffConsistency() {
 }
 
 $(document).ready(function () {
+	qrg_inputtype();
 	clearTimeout();
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
+
+	// Clear the localStorage for the qrg units, except the quicklogCallsign
+	let quicklogCallsign = localStorage.getItem('quicklogCallsign');
+	localStorage.clear();
+	if (quicklogCallsign) {
+		localStorage.setItem('quicklogCallsign', quicklogCallsign);
+	}
+	set_qrg();
 
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
 	.focus(function () {
@@ -1399,8 +1460,9 @@ $(document).ready(function () {
 	// Only set the frequency when not set by userdata/PHP.
 	if ($('#frequency').val() == "") {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 			$('#frequency_rx').val("");
+			set_qrg();
 		});
 	}
 

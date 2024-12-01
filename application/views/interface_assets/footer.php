@@ -1035,7 +1035,7 @@ $($('#callsign')).on('keypress',function(e) {
 				data: {'sota': sota},
 				success: function(res) {
 					$('#qth').val(res.name);
-					$('#locator').val(res.locator);
+					$('#locator').val(res.locator).trigger('input');
 				},
 				error: function() {
 					$('#qth').val('');
@@ -1056,7 +1056,7 @@ $($('#callsign')).on('keypress',function(e) {
 				data: {'wwff': wwff},
 				success: function(res) {
 					$('#qth').val(res.name);
-					$('#locator').val(res.locator);
+					$('#locator').val(res.locator).trigger('input');
 				},
 				error: function() {
 					$('#qth').val('');
@@ -1077,7 +1077,7 @@ $($('#callsign')).on('keypress',function(e) {
 				data: {'pota': pota},
 				success: function(res) {
 					$('#qth').val(res.name);
-					$('#locator').val(res.grid6);
+					$('#locator').val(res.grid6).trigger('input');
 				},
 				error: function() {
 					$('#qth').val('');
@@ -1158,6 +1158,7 @@ $($('#callsign')).on('keypress',function(e) {
 
 <?php } ?>
 <?php if ( $this->uri->segment(1) == "qso" || ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) != "add")) { ?>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/qrg_handler.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
 
@@ -1209,6 +1210,7 @@ $($('#callsign')).on('keypress',function(e) {
 							    $(".radio_login_error" ).remove();
 						    }
 						    cat2UI($('#frequency'),data.frequency,false,true,function(d){
+                                $('#frequency').trigger('change');
 							    if ($("#band").val() != frequencyToBand(d)) {
 								    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
 							    }

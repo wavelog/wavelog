@@ -472,11 +472,21 @@ class QSO
 				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
 				$clublogstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
 			}
-
 			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
-		}
+			$clublogstring .= ' class="clublog-green';
+		} elseif ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "M") {
+			$clublogstring .= "title=\"".__("Modified");
 
-		$clublogstring .= ' class="clublog-' . (($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
+			if ($data['COL_CLUBLOG_QSO_UPLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
+				$clublogstring .=  "<br />(".__("last sent")." ".($timestamp!=''?date($custom_date_format, $timestamp):'').")";
+			}
+			$clublogstring .= "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\"";
+			$clublogstring .= ' class="clublog-yellow';
+		} else {
+			$clublogstring .= ' class="clublog-red';
+		}
+		$clublogstring.= '">&#9650;</span><span ';
 
 		if ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == "Y") {
 			$clublogstring .= "title=\"".__("Received");
@@ -488,9 +498,16 @@ class QSO
 			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
 		}
 
-		$clublogstring .= ' class="clublog-' . (($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='Y') ? 'green':'red') . '">&#9660;</span>';
+		$clublogstring .= ' class="clublog-';
+		if ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='Y') {
+			$clublogstring.='green';
+		} elseif ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='M') {
+			$clublogstring.='yellow';
+		} else {
+			$clublogstring.='red';
+		}
+		$clublogstring.='">&#9660;</span>';
 
-		$clublogstring .= '</span>';
 
 		return $clublogstring;
 	}
@@ -566,38 +583,51 @@ class QSO
 
 		$eqslstring = '<span ';
 
+		$timestamp = '';
+		if ($data['COL_EQSL_QSLSDATE'] != null) {
+			$timestamp = date($custom_date_format, strtotime($data['COL_EQSL_QSLSDATE']));
+		}
 		if ($data['COL_EQSL_QSL_SENT'] == "Y") {
-			$eqslstring .= "title=\"".__("Sent");
-
-			if ($data['COL_EQSL_QSLSDATE'] != null) {
-				$timestamp = strtotime($data['COL_EQSL_QSLSDATE']);
-				$eqslstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
-			}
-
-			$eqslstring .= "\" data-bs-toggle=\"tooltip\"";
-		}
-
-		$eqslstring .= ' class="eqsl-' . (($data['COL_EQSL_QSL_SENT'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
-
-		if ($data['COL_EQSL_QSL_RCVD'] == "Y") {
-			$eqslstring .= "title=\"".__("Received");
-
-			if ($data['COL_EQSL_QSLRDATE'] != null) {
-				$timestamp = strtotime($data['COL_EQSL_QSLRDATE']);
-				$eqslstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
-			}
-			$eqslstring .= "\" data-bs-toggle=\"tooltip\"";
-		}
-
-		$eqslstring .= ' class="eqsl-' . (($data['COL_EQSL_QSL_RCVD'] =='Y')?'green':'red') . '">';
-
-		if($data['COL_EQSL_QSL_RCVD'] =='Y') {
-			$eqslstring .= '<a class="eqsl-green" href="' . site_url("eqsl/image/".$data['COL_PRIMARY_KEY']) . '" data-fancybox="images" data-width="528" data-height="336">&#9660;</a>';
+			$eqslstring .= "title=\"" . __("Sent");
+			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
+			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-green\"";
+		} elseif ($data['COL_EQSL_QSL_SENT'] == "I") {
+			$eqslstring .= "title=\"" . __("Invalid (Ignore)");
+			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
+			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-grey\"";
+		} elseif ($data['COL_EQSL_QSL_SENT'] == "R") {
+			$eqslstring .= "title=\"" . __("Requested");
+			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
+			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
 		} else {
-			$eqslstring .= '&#9660;';
+			$eqslstring .= "class=\"eqsl-red\"";
 		}
 
-		$eqslstring .= '</span>';
+		$eqslstring .= '>&#9650;</span>';
+
+		$eqslstring .= '<span ';
+
+		$timestamp = '';
+		if ($data['COL_EQSL_QSLRDATE'] != null) {
+			$timestamp = date($custom_date_format, strtotime($data['COL_EQSL_QSLRDATE']));
+		}
+		if ($data['COL_EQSL_QSL_RCVD'] == "Y") {
+			$eqslstring .= "title=\"". __("Received");
+			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
+			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-green\"";
+		} elseif ($data['COL_EQSL_QSL_RCVD'] == "I") {
+			$eqslstring .= "title=\"" . __("Invalid (Ignore)");
+			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
+			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-grey\"";
+		} elseif ($data['COL_EQSL_QSL_RCVD'] == "R") {
+			$eqslstring .= "title=\"" . __("Requested");
+			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
+			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-yellow\"";
+		} else {
+			$eqslstring .= "class=\"eqsl-red\"";
+		}
+
+		$eqslstring .= '>&#9660;</span>';
 
 		return $eqslstring;
 	}
