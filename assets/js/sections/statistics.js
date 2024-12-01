@@ -4,23 +4,27 @@ totalQsosPerYear();
 var activeTab='totalQsosPerYear()';
 
 $("a[href='#satellite']").on('shown.bs.tab', function(e) {
-	$(".sattable").DataTable().columns.adjust();
+	totalSatQsos();
 	activeTab='totalSatQsos()';
+	$(".sattable").DataTable().columns.adjust();
 	$("#yr").show();
 });
 
 $("a[href='#sattab']").on('shown.bs.tab', function(e) {
 	activeTab='totalSatQsos()';
+	totalSatQsos();
 	$("#yr").show();
 });
 
 $("a[href='#home']").on('shown.bs.tab', function(e) {
 	activeTab='totalQsosPerYear()';
+	totalQsosPerYear();
 	$("#yr").hide();
 });
 
 $("a[href='#yearstab']").on('shown.bs.tab', function(e) {
 	activeTab='totalQsosPerYear()';
+	totalQsosPerYear();
 	$("#yr").hide();
 });
 
@@ -522,10 +526,10 @@ function totalSatQsos() {
         success: function (data) {
             if (data.length > 0) {
                 $(".satsummary").html('');
-				$(".satsummary").append('<br /><div style="display: flex;" id="satContainer"><div style="flex: 1;"><canvas id="satChart" width="500" height="500"></canvas></div><div style="flex: 1;" id="bandTable"></div></div><br />');
+				$(".satsummary").append('<br /><div style="display: flex;" id="satContainer"><div style="flex: 1;"><canvas id="satChart" width="500" height="500"></canvas></div><div style="flex: 1;" id="satTable"></div></div><br />');
 
 				// appending table to hold the data
-				$("#bandTable").append('<table style="width:100%" class="sattable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
+				$("#satTable").append('<table style="width:100%" class="sattable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
 					'<tr>' +
 					'<td>#</td>' +
 					'<td>' + lang_gen_satellite + '</td>' +
