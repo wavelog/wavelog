@@ -19,6 +19,7 @@
 		var lang_statistics_number_of_qso_worked = "<?= __("# of QSO's worked")?>";
 		var lang_gen_hamradio_mode = "<?= __("Mode")?>";
 		var lang_gen_hamradio_band = "<?= __("Band")?>";
+		var lang_gen_satellite = "<?= __("Satellite")?>";
 </script>
 
 <div class="container statistics">
@@ -108,21 +109,7 @@
 					</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="sattab" role="tabpanel" aria-labelledby="sat-tab">
-						<div style="display: flex;" id="satContainer">
-							<div style="flex: 1;">
-								<canvas id="satChart" width="500" height="500"></canvas>
-							</div>
-							<div style="flex: 1;" id="satTable">
-								<table style="width:100%" class="sattable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>
-									<tr>
-									<td>#</td>
-									<td><?= __("Satellite"); ?></td>
-									<td><?= __("# of QSO's worked"); ?></td>
-									</tr>
-									</thead>
-									<tbody></tbody>
-								</table>
-							</div>
+						<div class="satsummary">
 						</div>
 					</div>
 					<div class="tab-pane fade" id="satqsostab" role="tabpanel" aria-labelledby="satqsos-tab">
