@@ -148,6 +148,11 @@ class Migration_rename_satellites extends CI_Migration {
 			} else {
 				$this->insert_sat("MO-122", "MESAT1", "LEO", "V/U", "LSB", "145925000", "USB", "435825000", "Y");
 			}
+			$query = $this->db->get_where('satellite', array('name' => 'ASRTU-1'));
+			if ($query->num_rows() > 0) {
+				$this->remove_sat("ASRTU-1");
+			}
+			$this->insert_sat("AO-123", "ASRTU-1", "LEO", "V/U", "FM", "145850000", "FM", "435400000", "N");
 
 			$fields = array(
 				'exportname' => array(
@@ -213,7 +218,6 @@ class Migration_rename_satellites extends CI_Migration {
 
 		if ($result->num_rows() == 0) {
 			$this->db->insert('satellite', $data);
-         log_message('debug', 'SQL: '.$this->db->last_query());
 			$insert_id = $this->db->insert_id();
 
 			$modedata = array(
