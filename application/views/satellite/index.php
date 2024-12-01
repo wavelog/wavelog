@@ -18,8 +18,8 @@
     <table style="width:100%" class="sattable table table-sm table-striped">
 			<thead>
 				<tr>
-					<th><?= __("Name"); ?></th>
-					<th><?= __("Export Name"); ?></th>
+					<th><?= __("LoTW Name"); ?></th>
+					<th><?= __("Display Name"); ?></th>
 					<th><?= __("Orbit"); ?></th>
 					<th><?= __("Mode"); ?></th>
 					<th><?= __("LoTW"); ?></th>
@@ -31,7 +31,7 @@
 				<?php foreach ($satellites as $sat) { ?>
 				<tr>
 					<td style="text-align: center; vertical-align: middle;" class="satellite_<?php echo $sat->id ?>"><?php echo htmlentities($sat->satname) ?></td>
-					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->exportname ? htmlentities($sat->exportname) : '' ?></td>
+					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->displayname ? htmlentities($sat->displayname) : '' ?></td>
 					<?php echo '<td style="text-align: center; vertical-align: middle;"><span class="badge ';
 					switch (strtoupper($sat->orbit)) {
 					case 'LEO':

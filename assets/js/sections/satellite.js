@@ -64,7 +64,7 @@ function createSatellite(form) {
 			type: 'post',
 			data: {
 				'name': form.nameInput.value,
-				'exportname': form.exportNameInput.value,
+				'displayname': form.displayNameInput.value,
 				'orbit': form.orbit.value,
 				'modename': form.mode.value,
 				'uplinkmode': form.uplinkMode.value,
@@ -117,7 +117,7 @@ function saveUpdatedSatellite(form) {
 			type: 'post',
 			data: {'id': form.id.value,
 					'name': form.nameInput.value,
-					'exportname': form.exportNameInput.value,
+					'displayname': form.displayNameInput.value,
 					'lotw': form.lotwAccepted.value,
 					'orbit': form.orbit.value,
 			},

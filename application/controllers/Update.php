@@ -423,7 +423,7 @@ class Update extends CI_Controller {
 					$satname = $lines[$i];
 					$tleline1 = $lines[$i + 1];
 					$tleline2 = $lines[$i + 2];
-					$sql = "INSERT INTO tle (satelliteid, tle) select id, ? from satellite where name = ? or exportname = ?";
+					$sql = "INSERT INTO tle (satelliteid, tle) select id, ? from satellite where name = ? or displayname = ?";
 					$this->db->query($sql,array($tleline1."\n".$tleline2,$satname,$satname));
 				}
 			}

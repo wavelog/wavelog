@@ -4,14 +4,14 @@
 	<input type="hidden" id="satelliteid" name="id" value="<?php echo $satellite->id; ?>">
 		<div class = "row">
 			<div class="mb-3 col-md-6">
-				<label for="nameInput"><?= __("Satellite name"); ?></label>
-				<input type="text" class="form-control" name="nameInput" id="nameInput" aria-describedby="nameInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->name; } ?>" required>
-				<small id="nameInputHelp" class="form-text text-muted"><?= __("Name of the Satellite"); ?></small>
+				<label for="displayNameInput"><?= __("Satellite Display Name "); ?></label>
+				<input type="text" class="form-control" name="displayNameInput" id="displayNameInput" aria-describedby="displayNameInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->displayname; } ?>" required>
+				<small id="displayNameInputHelp" class="form-text text-muted"><?= __(" Display / cleartext name of the satellite. This is mandatory"); ?></small>
 			</div>
 			<div class="mb-3 col-md-6">
-				<label for="exportNameInput"><?= __("Export Name"); ?></label>
-				<input type="text" class="form-control" name="exportNameInput" id="exportNameInput" aria-describedby="exportNameInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->exportname; } ?>" required>
-				<small id="exportNameInputHelp" class="form-text text-muted"><?= __("If external services uses another name for the satellite, like LoTW"); ?></small>
+				<label for="nameInput"><?= __("LoTW name"); ?></label>
+				<input type="text" class="form-control" name="nameInput" id="nameInput" aria-describedby="nameInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->name; } ?>" required>
+				<small id="nameInputHelp" class="form-text text-muted"><?= __("Satellite name as accepted by LoTW. Not necessarily the same as the display name. Can be set/changed later when added to LoTW."); ?></small>
 			</div>
 		</div>
 		<div class = "row">
@@ -31,7 +31,7 @@
 						<option value="N" selected="selected"><?= __("No"); ?></option>
 					<?php } ?>
 				</select>
-				<small id="exportNameInputHelp" class="form-text text-muted"><?= __("Set to yes only if satellite is accepted my LoTW"); ?></small>
+				<small id="displayNameInputHelp" class="form-text text-muted"><?= __("Set to yes only if satellite is accepted my LoTW"); ?></small>
 			</div>
 		</div>
 

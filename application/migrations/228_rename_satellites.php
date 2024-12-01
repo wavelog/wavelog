@@ -126,22 +126,52 @@ class Migration_rename_satellites extends CI_Migration {
 				$this->update_sat_table($exportname, $name);
 				$this->update_log_table($exportname, $name);
 			}
-		}
 
-		if (!$this->db->field_exists('lotw', 'satellite')) {
+			if (!$this->db->field_exists('lotw', 'satellite')) {
+				$fields = array(
+					'lotw VARCHAR(1) NOT NULL DEFAULT "N" AFTER `orbit`',
+				);
+				$this->dbforge->add_column('satellite', $fields);
+			}
+
+			$this->set_lotw($this->lotw_sats);
+
+			$query = $this->db->get_where('satellite', array('name' => 'SONATE'));
+			if ($query->num_rows() > 0) {
+				$this->set_lotw(array("SONATE"));
+			} else {
+				$this->insert_sat("SONATE", "SONATE-2", "LEO", "V/V", "PKT", "145825000", "PKT", "145825000", "Y");
+			}
+			$query = $this->db->get_where('satellite', array('name' => 'MO-122'));
+			if ($query->num_rows() > 0) {
+				$this->set_lotw(array("MO-122"));
+			} else {
+				$this->insert_sat("MO-122", "MESAT1", "LEO", "V/U", "LSB", "145925000", "USB", "435825000", "Y");
+			}
+
 			$fields = array(
-				'lotw VARCHAR(1) NOT NULL DEFAULT "N" AFTER `orbit`',
+				'exportname' => array(
+					'name' => 'displayname',
+					'type' => 'VARCHAR',
+					'constraint' => 255,
+				),
 			);
-			$this->dbforge->add_column('satellite', $fields);
+			$this->dbforge->modify_column('satellite', $fields);
 		}
-
-		$this->set_lotw($this->lotw_sats);
-		$this->insert_sat("SONATE", "SONATE-2", "LEO", "V/V", "PKT", "145825000", "PKT", "145825000");
-		$this->insert_sat("MO-122", "MESAT1", "LEO", "V/U", "LSB", "145925000", "USB", "435825000");
 	}
 
 	public function down() {
 		if ($this->db->table_exists('satellite')) {
+
+			$fields = array(
+				'displayname' => array(
+					'name' => 'exportname',
+					'type' => 'VARCHAR',
+					'constraint' => 255,
+				),
+			);
+
+			$this->dbforge->modify_column('satellite', $fields);
 
 			foreach ($this->satellites as $exportname => $name) {
 				$this->update_sat_table($name, $exportname);
@@ -171,10 +201,11 @@ class Migration_rename_satellites extends CI_Migration {
 		$this->db->query($sql);
 	}
 
-	function insert_sat($name, $exportname, $orbit, $modename, $uplink_mode, $uplink_freq, $downlink_mode, $downlink_freq) {
+	function insert_sat($name, $exportname, $orbit, $modename, $uplink_mode, $uplink_freq, $downlink_mode, $downlink_freq, $lotw) {
 		$data = array(
 			'name' => $name,
 			'exportname' => $exportname,
+			'lotw' => $lotw,
 			'orbit' => $orbit,
 		);
 		$this->db->where('name', $name);
@@ -182,6 +213,7 @@ class Migration_rename_satellites extends CI_Migration {
 
 		if ($result->num_rows() == 0) {
 			$this->db->insert('satellite', $data);
+         log_message('debug', 'SQL: '.$this->db->last_query());
 			$insert_id = $this->db->insert_id();
 
 			$modedata = array(

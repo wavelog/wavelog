@@ -3,10 +3,10 @@
 class Satellite_model extends CI_Model {
 
 	function get_all_satellites() {
-		$sql = "select satellite.id, satellite.name as satname, group_concat(distinct satellitemode.name separator ', ') as modename, satellite.exportname, satellite.orbit, satellite.lotw as lotw
+		$sql = "select satellite.id, satellite.name as satname, group_concat(distinct satellitemode.name separator ', ') as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw
 		from satellite
 		left outer join satellitemode on satellite.id = satellitemode.satelliteid
-		group by satellite.name, satellite.exportname, satellite.orbit, satellite.id";
+		group by satellite.name, satellite.displayname, satellite.orbit, satellite.id";
 
 		return $this->db->query($sql)->result();
 	}
@@ -52,7 +52,7 @@ class Satellite_model extends CI_Model {
 	function add() {
 		$data = array(
 			'name' 			=> xss_clean($this->input->post('name', true)),
-			'exportname' 	=> xss_clean($this->input->post('exportname', true)),
+			'displayname' 	=> xss_clean($this->input->post('displayname', true)),
 			'orbit' 		=> xss_clean($this->input->post('orbit', true)),
 		);
 		if (xss_clean($this->input->post('lotw', true)) == 'Y') {
