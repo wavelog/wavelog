@@ -195,7 +195,7 @@ class Statistics extends CI_Controller {
 		$total_qsos = array();
 
 		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		$result = $this->stats->unique_callsigns();
+		$result = $this->stats->unique_callsigns($yr);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['bandunique'] = $result['bandunique'];
 		$total_qsos['modeunique'] = $result['modeunique'];
@@ -227,7 +227,7 @@ class Statistics extends CI_Controller {
 		$total_qsos = array();
 
 		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		$result = $this->stats->total_qsos();
+		$result = $this->stats->total_qsos($yr);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['bandtotal'] = $result['bandtotal'];
 		$total_qsos['modetotal'] = $result['modetotal'];
