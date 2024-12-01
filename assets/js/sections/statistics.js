@@ -1,37 +1,61 @@
 totalSatQsos();
 totalQsosPerYear();
 
+var activeTab='totalQsosPerYear()';
+
 // Needed for sattable header fix, will be squished without
 $("a[href='#satellite']").on('shown.bs.tab', function(e) {
-    $(".sattable").DataTable().columns.adjust();
+	$(".sattable").DataTable().columns.adjust();
+});
+
+$("a[href='#satellite']").on('shown.bs.tab', function(e) {
+	activeTab='totalSatQsos()';
+});
+
+$("a[href='#sattab']").on('shown.bs.tab', function(e) {
+	activeTab='totalSatQsos()';
+});
+
+$("a[href='#home']").on('shown.bs.tab', function(e) {
+	activeTab='totalQsosPerYear()';
+});
+
+$("a[href='#yearstab']").on('shown.bs.tab', function(e) {
+	activeTab='totalQsosPerYear()';
 });
 
 $("a[href='#bandtab']").on('shown.bs.tab', function(e) {
-        totalBandQsos();
+	totalBandQsos();
+	activeTab='totalBandQsos()'
 });
 
 $("a[href='#modetab']").on('shown.bs.tab', function(e) {
-        totalModeQsos();
+	totalModeQsos();
+	activeTab='totalModeQsos()'
 });
 
 $("a[href='#qsotab']").on('shown.bs.tab', function(e) {
-        totalQsos();
+	totalQsos();
+	activeTab='totalQsos()'
 });
 
 $("a[href='#satqsostab']").on('shown.bs.tab', function(e) {
-        totalSatQsosC();
+	totalSatQsosC();
+	activeTab='totalSatQsosC()'
 });
 
 $("a[href='#uniquetab']").on('shown.bs.tab', function(e) {
-        uniqueCallsigns();
+	uniqueCallsigns();
+	activeTab='uniqueCallsigns()'
 });
 
 $("a[href='#satuniquetab']").on('shown.bs.tab', function(e) {
-        uniqueSatCallsigns();
+	uniqueSatCallsigns();
+	activeTab='uniqueSatCallsigns()'
 });
 
 $("#yr").on('change',function(e) {
-	console.log(this.value);
+	eval(activeTab);
 });
 
 function uniqueSatCallsigns() {
@@ -491,7 +515,20 @@ function totalSatQsos() {
 	data: { yr: $("#yr option:selected").val() },
         success: function (data) {
             if (data.length > 0) {
-                $('.tabs').removeAttr('hidden');
+                $(".satsummary").html('');
+				$(".satsummary").append('<br /><div style="display: flex;" id="satContainer"><div style="flex: 1;"><canvas id="satChart" width="500" height="500"></canvas></div><div style="flex: 1;" id="bandTable"></div></div><br />');
+
+				// appending table to hold the data
+				$("#bandTable").append('<table style="width:100%" class="sattable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
+					'<tr>' +
+					'<td>#</td>' +
+					'<td>' + lang_gen_satellite + '</td>' +
+					'<td>' + lang_statistics_number_of_qso_worked + ' </td>' +
+					'</tr>' +
+					'</thead>' +
+					'<tbody></tbody></table>');
+
+		$('.tabs').removeAttr('hidden');
 
                 var labels = [];
                 var dataQso = [];
