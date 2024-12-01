@@ -8,19 +8,18 @@ class Statistics extends CI_Controller {
 	}
 
 
-	public function index()
-	{
-        $this->load->model('user_model');
-        $this->load->model('bands');
+	public function index() {
+		$this->load->model('user_model');
+		$this->load->model('bands');
 
-        if(!$this->user_model->authorize($this->config->item('auth_mode'))) {
-            if($this->user_model->validate_session()) {
-                $this->user_model->clear_session();
-                show_error('Access denied<p>Click <a href="'.site_url('user/login').'">here</a> to log in as another user', 403);
-            } else {
-                redirect('user/login');
-            }
-        }
+		if(!$this->user_model->authorize($this->config->item('auth_mode'))) {
+			if($this->user_model->validate_session()) {
+				$this->user_model->clear_session();
+				show_error('Access denied<p>Click <a href="'.site_url('user/login').'">here</a> to log in as another user', 403);
+			} else {
+				redirect('user/login');
+			}
+		}
 		// Render User Interface
 
 		// Set Page Title
@@ -99,18 +98,19 @@ class Statistics extends CI_Controller {
 
 	public function get_mode() {
 		$this->load->model('logbook_model');
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
 
 		$modestats = array();
 
 		$i = 0;
 		$modestats[$i]['mode'] = 'ssb';
-		$modestats[$i++]['total'] = $this->logbook_model->total_ssb();
+		$modestats[$i++]['total'] = $this->logbook_model->total_ssb($yr);
 		$modestats[$i]['mode'] = 'cw';
-		$modestats[$i++]['total'] = $this->logbook_model->total_cw();
+		$modestats[$i++]['total'] = $this->logbook_model->total_cw($yr);
 		$modestats[$i]['mode'] = 'fm';
-		$modestats[$i++]['total'] = $this->logbook_model->total_fm();
+		$modestats[$i++]['total'] = $this->logbook_model->total_fm($yr);
 		$modestats[$i]['mode'] = 'digi';
-		$modestats[$i]['total'] = $this->logbook_model->total_digi();
+		$modestats[$i]['total'] = $this->logbook_model->total_digi($yr);
 		usort($modestats, fn($a, $b) => $b['total'] <=> $a['total']);
 
 		header('Content-Type: application/json');
@@ -123,7 +123,8 @@ class Statistics extends CI_Controller {
 
 		$bandstats = array();
 
-		$total_bands = $this->logbook_model->total_bands();
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		$total_bands = $this->logbook_model->total_bands($yr);
 
 		$i = 0;
 
@@ -143,7 +144,8 @@ class Statistics extends CI_Controller {
 
 		$satstats = array();
 
-		$total_sat = $this->logbook_model->total_sat();
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		$total_sat = $this->logbook_model->total_sat($yr);
 		$i = 0;
 
 		if ($total_sat) {
@@ -162,13 +164,14 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$result = $this->stats->unique_sat_callsigns();
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		$result = $this->stats->unique_sat_callsigns($yr);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['satunique'] = $result['satunique'];
 		$total_qsos['modeunique'] = $result['modeunique'];
 		$total_qsos['total'] = $result['total'];
-		$total_qsos['sats'] = $this->stats->get_sats();
-		$total_qsos['modes'] = $this->stats->get_sat_modes();
+		$total_qsos['sats'] = $this->stats->get_sats($yr);
+		$total_qsos['modes'] = $this->stats->get_sat_modes($yr);
 
 		$this->load->view('statistics/satuniquetable', $total_qsos);
 	}
@@ -178,12 +181,13 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
 		$result = $this->stats->unique_callsigns();
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['bandunique'] = $result['bandunique'];
 		$total_qsos['modeunique'] = $result['modeunique'];
 		$total_qsos['total'] = $result['total'];
-		$total_qsos['bands'] = $this->stats->get_bands();
+		$total_qsos['bands'] = $this->stats->get_bands($yr);
 
 		$this->load->view('statistics/uniquetable', $total_qsos);
 	}
@@ -193,12 +197,13 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
-		$result = $this->stats->total_sat_qsos();
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		$result = $this->stats->total_sat_qsos($yr);
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['sattotal'] = $result['sattotal'];
 		$total_qsos['modetotal'] = $result['modetotal'];
 		$total_qsos['modes'] = $result['modes'];
-		$total_qsos['sats'] = $this->stats->get_sats();
+		$total_qsos['sats'] = $this->stats->get_sats($yr);
 
 		$this->load->view('statistics/satqsotable', $total_qsos);
 	}
@@ -208,11 +213,12 @@ class Statistics extends CI_Controller {
 
 		$total_qsos = array();
 
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
 		$result = $this->stats->total_qsos();
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['bandtotal'] = $result['bandtotal'];
 		$total_qsos['modetotal'] = $result['modetotal'];
-		$total_qsos['bands'] = $this->stats->get_bands();
+		$total_qsos['bands'] = $this->stats->get_bands($yr);
 
 		$this->load->view('statistics/qsotable', $total_qsos);
 	}

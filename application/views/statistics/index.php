@@ -27,7 +27,11 @@
 		<?php echo $page_title; ?>
 		<small class="text-muted"><?= __("Explore the logbook."); ?></small>
 	</h2>
-
+		<select id="yr" name="yr">
+			<option value='All'><?= __("All"); ?></option>
+			<option value='2023'>2023</option>
+			<option value='2024'>2024</option>
+		</select>
 	<br>
 	<div hidden class="tabs">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
