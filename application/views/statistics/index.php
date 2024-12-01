@@ -29,7 +29,7 @@
 		<small class="text-muted"><?= __("Explore the logbook."); ?></small>
 	</h2>
 		<br/>
-		<select style="display:none;" id="yr" name="yr">
+		<select class="form-select form-select-sm me-2 w-auto" style="display:none;" id="yr" name="yr">
 			<option value='All'><?= __("All"); ?></option>
 		<?php 
 			foreach($years as $yr) {
