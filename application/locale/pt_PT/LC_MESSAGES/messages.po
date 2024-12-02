@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-02 11:48+0000\n"
+"POT-Creation-Date: 2024-12-02 17:28+0000\n"
 "PO-Revision-Date: 2024-12-02 12:48+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -151,6 +151,26 @@ msgstr "Gridsquares não confirmadas"
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
 msgstr "Total de gridsquares activadas"
+
+#: application/controllers/Activated_gridmap.php:36
+#: application/controllers/Gridmap.php:36
+msgid "Fields"
+msgstr "Campos"
+
+#: application/controllers/Activated_gridmap.php:37
+#: application/controllers/Gridmap.php:37
+msgid "Fields confirmed"
+msgstr "Campos confirmados"
+
+#: application/controllers/Activated_gridmap.php:38
+#: application/controllers/Gridmap.php:38
+msgid "Fields not confirmed"
+msgstr "Campos não confirmados"
+
+#: application/controllers/Activated_gridmap.php:39
+#: application/controllers/Gridmap.php:39
+msgid "Total fields worked"
+msgstr "Total de campos trabalhados"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -798,26 +818,6 @@ msgstr "Mapa Gridsquare"
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
 msgstr "Total de gridsquares trabalhadas"
-
-#: application/controllers/Gridmap.php:36
-#: application/controllers/Activated_gridmap.php:36
-msgid "Fields"
-msgstr "Campos"
-
-#: application/controllers/Gridmap.php:37
-#: application/controllers/Activated_gridmap.php:37
-msgid "Fields confirmed"
-msgstr "Campos confirmados"
-
-#: application/controllers/Gridmap.php:38
-#: application/controllers/Activated_gridmap.php:38
-msgid "Fields not confirmed"
-msgstr "Campos não confirmados"
-
-#: application/controllers/Gridmap.php:39
-#: application/controllers/Activated_gridmap.php:39
-msgid "Total fields worked"
-msgstr "Total de campos trabalhados"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -1862,14 +1862,13 @@ msgid "Timestamp"
 msgstr "Registo de data e hora"
 
 #: application/controllers/Radio.php:52
-#: application/views/logbookadvanced/index.php:596
+#: application/views/logbookadvanced/index.php:592
 #: application/views/lotw_views/index.php:40
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:180
 #: application/views/stationsetup/exportmapoptions.php:5
 #: application/views/statistics/custom.php:31
 #: application/views/statistics/custom_result.php:33
-#: application/views/logbookadvanced/index.php:592
 msgid "Options"
 msgstr "Opções"
 
@@ -1917,7 +1916,7 @@ msgstr "Editar"
 #: application/views/interface_assets/footer.php:2415
 #: application/views/interface_assets/footer.php:2433
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
-#: application/views/logbookadvanced/index.php:584
+#: application/views/logbookadvanced/index.php:595
 #: application/views/lotw_views/index.php:111
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:71
@@ -1930,7 +1929,6 @@ msgstr "Editar"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:55
 #: application/views/view_log/qso.php:725
-#: application/views/logbookadvanced/index.php:595
 msgid "Delete"
 msgstr "Apagar"
 
@@ -1978,7 +1976,7 @@ msgstr "Tempos dos satélite"
 #: application/views/interface_assets/footer.php:38
 #: application/views/interface_assets/header.php:342
 #: application/views/interface_assets/header.php:349
-#: application/views/logbookadvanced/index.php:572
+#: application/views/logbookadvanced/index.php:571
 #: application/views/oqrs/index.php:28
 #: application/views/oqrs/showrequests.php:67
 #: application/views/qslcard/searchform.php:8
@@ -1997,7 +1995,6 @@ msgstr "Tempos dos satélite"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
-#: application/views/logbookadvanced/index.php:571
 msgid "Search"
 msgstr "Procurar"
 
@@ -4222,9 +4219,8 @@ msgstr "Tabela"
 #: application/views/awards/wab/index.php:108
 #: application/views/awards/waja/index.php:131
 #: application/views/awards/was/index.php:127
-#: application/views/logbookadvanced/index.php:588
-#: application/views/logbookadvanced/useroptions.php:7
 #: application/views/logbookadvanced/index.php:585
+#: application/views/logbookadvanced/useroptions.php:7
 msgid "Map"
 msgstr "Mapa"
 
@@ -8682,7 +8678,6 @@ msgstr "# Resultados"
 msgid "Dupes"
 msgstr "Duplicados"
 
-#: application/views/logbookadvanced/index.php:592
 #: application/views/logbookadvanced/index.php:589
 msgid "Globe map"
 msgstr "Mapa do globo"
