@@ -60,7 +60,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="callsign"><?= __("Callsign"); ?></label>
-                                            <input type="text" class="form-control" id="edit_callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
+                                            <input type="text" class="form-control uppercase" id="edit_callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
@@ -153,7 +153,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="locator"><?= __("Gridsquare"); ?></label>
-                                            <input type="text" class="form-control" id="locator_edit" name="locator" value="<?php echo $qso->COL_GRIDSQUARE; ?>">
+                                            <input type="text" class="form-control uppercase" id="locator_edit" name="locator" value="<?php echo $qso->COL_GRIDSQUARE; ?>">
                                             <small id="locator_info_edit" class="form-text text-muted"><?php if ($qso->COL_DISTANCE != "") echo $qso->COL_DISTANCE . " km"; ?></small>
                                         </div>
 
@@ -161,7 +161,7 @@
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="vucc_grids"><?= __("VUCC Gridsquare"); ?> <i id="vucc_grid_tooltip" data-bs-toggle="tooltip" data-bs-placement="right" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Used for VUCC MultiGrids"); ?>"></i></label>
-                                            <input type="text" class="form-control" id="vucc_grids" name="vucc_grids" value="<?php echo $qso->COL_VUCC_GRIDS; ?>">
+                                            <input type="text" class="form-control uppercase" id="vucc_grids" name="vucc_grids" value="<?php echo $qso->COL_VUCC_GRIDS; ?>">
                                         </div>
                                     </div>
 
@@ -592,7 +592,7 @@
 
                                     <div class="mb-3">
                                         <label for="operatorCallsign"><?= __("Operator Callsign"); ?></label>
-                                        <input type="text" id="operatorCallsign" class="form-control" name="operator_callsign" value="<?php echo $qso->COL_OPERATOR; ?>" />
+                                        <input type="text" id="operatorCallsign" class="form-control uppercase" name="operator_callsign" value="<?php echo $qso->COL_OPERATOR; ?>" />
                                     </div>
 
 
@@ -621,12 +621,12 @@
 
                                         <div class="mb-3 col-sm-3">
                                             <label for="srx_string"><?= __("Exchange (R)"); ?></label>
-                                            <input type="text" id="srx_string" class="form-control" name="srx_string" value="<?php echo $qso->COL_SRX_STRING; ?>" />
+                                            <input type="text" id="srx_string" class="form-control uppercase" name="srx_string" value="<?php echo $qso->COL_SRX_STRING; ?>" />
                                         </div>
 
                                         <div class="mb-3 col-sm-3">
                                             <label for="stx_string"><?= __("Exchange (S)"); ?></label>
-                                            <input type="text" id="stx_string" class="form-control" name="stx_string" value="<?php echo $qso->COL_STX_STRING; ?>" />
+                                            <input type="text" id="stx_string" class="form-control uppercase" name="stx_string" value="<?php echo $qso->COL_STX_STRING; ?>" />
                                         </div>
                                     </div>
 
