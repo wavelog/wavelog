@@ -39,7 +39,7 @@
 
                             <label class="col-auto control-label" for="operatorcall"><?= __("Operator Callsign"); ?></label>
                             <div class="col-auto">
-                                <input type="text" class="form-control form-control-sm" id="operator_callsign" name="operator_callsign" value='<?php echo $this->session->userdata('operator_callsign'); ?>' required>
+                                <input type="text" class="form-control form-control-sm uppercase" id="operator_callsign" name="operator_callsign" value='<?php echo $this->session->userdata('operator_callsign'); ?>' required>
                             </div>
                             <div class="col-auto">
                                 <a class="btn btn-sm btn-primary" id="moreSettingsButton"><i class="fas fa-wrench"></i> <?= __("More Settings"); ?></a>
@@ -163,7 +163,7 @@
                             <div class="col-md-2">
                                 <div>
                                     <label for="callsign"><?= __("Callsign"); ?></label>
-                                    <input type="text" class="form-control form-control-sm" id="callsign" name="callsign" autocomplete="off" required>
+                                    <input type="text" class="form-control form-control-sm uppercase" id="callsign" name="callsign" autocomplete="off" required>
                                     <small id="callsign_info" class="badge text-bg-danger"></small><br/>
                                     <small id="bearing_info" class="form-text text-muted"></small>
                                 </div>
@@ -184,12 +184,12 @@
 
                                 <div style="display:none" class="gridsquares">
                                     <label for="exch_gridsquare_s"><?= __("Gridsquare (S)"); ?></label>
-                                    <input disabled type="text" class="form-control form-control-sm" name="exch_gridsquare_s" id="exch_gridsquare_s" value="<?php echo $my_gridsquare;?>">
+                                    <input disabled type="text" class="form-control form-control-sm uppercase" name="exch_gridsquare_s" id="exch_gridsquare_s" value="<?php echo $my_gridsquare;?>">
                                 </div>
 
                                 <div style="display:none" class="exchanges">
                                     <label for="exch_sent"><?= __("Exch (S)"); ?></label>
-                                    <input type="text" class="form-control form-control-sm" name="exch_sent" id="exch_sent" value="">
+                                    <input type="text" class="form-control form-control-sm uppercase" name="exch_sent" id="exch_sent" value="">
                                 </div>
                             </div>
 
@@ -208,12 +208,12 @@
 
                                 <div style="display:none" class="gridsquarer">
                                     <label for="exch_gridsquare_r"><?= __("Gridsquare (R)"); ?></label>
-                                    <input type="text" class="form-control form-control-sm" name="locator" id="exch_gridsquare_r" value="">
+                                    <input type="text" class="form-control form-control-sm uppercase" name="locator" id="exch_gridsquare_r" value="">
                                 </div>
 
                                 <div style="display:none" class="exchanger">
                                     <label for="exch_rcvd"><?= __("Exch (R)"); ?></label>
-                                    <input type="text" class="form-control form-control-sm" name="exch_rcvd" id="exch_rcvd" value="">
+                                    <input type="text" class="form-control form-control-sm uppercase" name="exch_rcvd" id="exch_rcvd" value="">
                                 </div>
                             </div>
                         </div>
