@@ -481,7 +481,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div class="border-bottom border-top pt-2 pb-2 mt-2 mb-2" id="version_check">
+                            <div class="border-top pt-2 pb-2 mt-2 mb-2" id="version_check">
                                 <p id="version_check_result"></p>
                                 <small id="last_version_check"></small>
                             </div>
