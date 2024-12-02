@@ -524,8 +524,8 @@ function totalSatQsos() {
         type: 'post',
 	data: { yr: $("#yr option:selected").val() },
         success: function (data) {
+            $(".satsummary").html('');
             if (data.length > 0) {
-                $(".satsummary").html('');
 				$(".satsummary").append('<br /><div style="display: flex;" id="satContainer"><div style="flex: 1;"><canvas id="satChart" width="500" height="500"></canvas></div><div style="flex: 1;" id="satTable"></div></div><br />');
 
 				// appending table to hold the data
