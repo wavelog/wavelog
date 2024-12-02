@@ -55,7 +55,7 @@ function createSatelliteDialog() {
 
 function createSatellite(form) {
 	$(".alert").remove();
-	if (form.nameInput.value == "") {
+	if (form.displayNameInput.value == "") {
 		$('#create_satellite').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a name!</div>');
 	}
 	else {
@@ -108,7 +108,7 @@ function editSatelliteDialog(id) {
 
 function saveUpdatedSatellite(form) {
 	$(".alert").remove();
-	if (form.nameInput.value == "") {
+	if (form.displayNameInput.value == "") {
 		$('#edit_satellite_dialog').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a name!</div>');
 	}
 	else {
