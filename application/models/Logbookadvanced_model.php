@@ -513,18 +513,24 @@ class Logbookadvanced_model extends CI_Model {
 
         if(!$this->user_model->authorize(2)) {
             return array('message' => 'Error');
-        } else {
-            $data = array(
-                'COL_QSLRDATE' => date('Y-m-d H:i:s'),
-                'COL_QSL_RCVD' => $sent,
-                'COL_QSL_RCVD_VIA' => $method
-            );
-			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
-            $this->db->where_in('COL_PRIMARY_KEY', json_decode($ids, true));
-            $this->db->update($this->config->item('table_name'), $data);
+	} else {
+		$data = array(
+			'COL_QSLRDATE' => date('Y-m-d H:i:s'),
+			'COL_QSL_RCVD' => $sent,
+			'COL_QSL_RCVD_VIA' => $method
+		);
+		$this->db->where_in('COL_PRIMARY_KEY', json_decode($ids, true));
+		$this->db->update($this->config->item('table_name'), $data);
 
-            return array('message' => 'OK');
-        }
+		// Extra Query for QRZ, since we only update to M if sent before or invalid
+		$qrzdata=[];
+		$qrzdata['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
+		$this->db->where_in('COL_PRIMARY_KEY', json_decode($ids, true));
+		$this->db->where_in('COL_QRZCOM_QSO_UPLOAD_STATUS', array('Y','I'));
+		$this->db->update($this->config->item('table_name'), $qrzdata);
+
+		return array('message' => 'OK');
+	}
     }
 
 	public function updateQsoWithCallbookInfo($qsoID, $qso, $callbook) {
