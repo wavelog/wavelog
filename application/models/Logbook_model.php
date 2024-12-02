@@ -2882,8 +2882,17 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
+	private function where_year($yr) {
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
+	}
+
 	/* Return total amount of SSB QSOs logged */
-	function total_ssb() {
+	function total_ssb($yr = 'All') {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -2898,7 +2907,7 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COUNT( * ) as count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where_in('COL_MODE', $mode);
-
+		$this->where_year($yr);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		if ($query->num_rows() > 0) {
@@ -2909,7 +2918,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of satellite QSOs */
-	function total_sat() {
+	function total_sat($yr = 'All') {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -2923,6 +2932,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where('COL_SAT_NAME is not null');
 		$this->db->where('COL_SAT_NAME !=', '');
 		$this->db->where('COL_PROP_MODE', 'SAT');
+		$this->where_year($yr);
 		$this->db->order_by('count DESC');
 		$this->db->group_by('COL_SAT_NAME');
 		$query = $this->db->get($this->config->item('table_name'));
@@ -2969,7 +2979,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of CW QSOs */
-	function total_cw() {
+	function total_cw($yr = 'All') {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -2981,6 +2991,7 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COUNT( * ) as count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_MODE', 'CW');
+		$this->where_year($yr);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		if ($query->num_rows() > 0) {
@@ -2991,7 +3002,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of FM QSOs */
-	function total_fm() {
+	function total_fm($yr = 'All') {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3003,6 +3014,7 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COUNT( * ) as count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_MODE', 'FM');
+		$this->where_year($yr);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		if ($query->num_rows() > 0) {
@@ -3013,7 +3025,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of Digital QSOs */
-	function total_digi() {
+	function total_digi($yr = 'All') {
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3030,7 +3042,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where('COL_MODE !=', 'CW');
 		$this->db->where('COL_MODE !=', 'FM');
 		$this->db->where('COL_MODE !=', 'AM');
-
+		$this->where_year($yr);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		if ($query->num_rows() > 0) {
@@ -3047,7 +3059,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of QSOs per band */
-	function total_bands() {
+	function total_bands($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -3057,6 +3069,7 @@ class Logbook_model extends CI_Model {
 
 		$this->db->select('COL_BAND AS band, count( * ) AS count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->where_year($yr);
 		$this->db->group_by('band');
 		$this->db->order_by('count', 'DESC');
 

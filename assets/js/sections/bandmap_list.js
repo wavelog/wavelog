@@ -209,7 +209,7 @@ $(function() {
 		let ready_listener = true;
 		let call=this.innerText;
 		let qrg=''
-		if (this.parentNode.parentNode.className == 'spotted_call') {
+		if (this.parentNode.parentNode.className.indexOf('spotted_call')>=0) {
 			qrg=this.parentNode.parentNode.parentNode.cells[1].textContent*1000;
 		} else {
 			qrg=this.parentNode.parentNode.cells[1].textContent*1000;

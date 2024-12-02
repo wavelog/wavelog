@@ -127,5 +127,9 @@ var visitor = false;
     echo 'var gridsquares_gridsquares_confirmed = "' . $gridsquares_gridsquares_confirmed . '";';
     echo 'var gridsquares_gridsquares_not_confirmed = "' . $gridsquares_gridsquares_not_confirmed . '";';
     echo 'var gridsquares_gridsquares_total_worked = "' . $gridsquares_gridsquares_total_activated . '";';
+	echo "var gridsquares_fields = \"" . $gridsquares_fields . "\";\n";
+    echo "var gridsquares_fields_confirmed = \"" . $gridsquares_fields_confirmed . "\";\n";
+    echo "var gridsquares_fields_not_confirmed = \"" . $gridsquares_fields_not_confirmed . "\";\n";
+    echo "var gridsquares_fields_total_worked = \"" . $gridsquares_fields_total_worked . "\";\n";
 ?>
 </script>

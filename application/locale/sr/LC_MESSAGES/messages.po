@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-30 21:52+0000\n"
+"POT-Creation-Date: 2024-12-02 12:47+0000\n"
 "PO-Revision-Date: 2024-09-17 12:24+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -152,6 +152,26 @@ msgstr "Nepotvrđena polja"
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
 msgstr "Ukupno aktiviranih polja"
+
+#: application/controllers/Activated_gridmap.php:36
+#: application/controllers/Gridmap.php:36
+msgid "Fields"
+msgstr ""
+
+#: application/controllers/Activated_gridmap.php:37
+#: application/controllers/Gridmap.php:37
+msgid "Fields confirmed"
+msgstr ""
+
+#: application/controllers/Activated_gridmap.php:38
+#: application/controllers/Gridmap.php:38
+msgid "Fields not confirmed"
+msgstr ""
+
+#: application/controllers/Activated_gridmap.php:39
+#: application/controllers/Gridmap.php:39
+msgid "Total fields worked"
+msgstr ""
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -514,7 +534,7 @@ msgstr "Napomene - Rezervna kopija"
 #: application/views/bands/index.php:32
 #: application/views/interface_assets/header.php:385
 #: application/views/statistics/index.php:16
-#: application/views/statistics/index.php:56
+#: application/views/statistics/index.php:65
 msgid "Bands"
 msgstr "Opsezi"
 
@@ -798,22 +818,6 @@ msgstr "Mapa polja"
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
 msgstr "Ukupno rađenih polja"
-
-#: application/controllers/Gridmap.php:36
-msgid "Fields"
-msgstr ""
-
-#: application/controllers/Gridmap.php:37
-msgid "Fields confirmed"
-msgstr ""
-
-#: application/controllers/Gridmap.php:38
-msgid "Fields not confirmed"
-msgstr ""
-
-#: application/controllers/Gridmap.php:39
-msgid "Total fields worked"
-msgstr ""
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -1163,7 +1167,7 @@ msgstr "Clublog"
 #: application/views/statistics/custom_result.php:88
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:20
-#: application/views/statistics/index.php:53
+#: application/views/statistics/index.php:62
 #: application/views/timeline/index.php:19 application/views/user/edit.php:229
 #: application/views/user/edit.php:251 application/views/user/edit.php:273
 #: application/views/user/edit.php:295 application/views/user/edit.php:318
@@ -2017,7 +2021,7 @@ msgstr ""
 
 #: application/controllers/Simplefle.php:90
 #: application/controllers/Simplefle.php:93
-#: application/models/Logbook_model.php:4453
+#: application/models/Logbook_model.php:4466
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr ""
@@ -2231,7 +2235,7 @@ msgstr ""
 msgid "Edit Export Map options"
 msgstr "Uredite opcije za izvoz mape"
 
-#: application/controllers/Statistics.php:27
+#: application/controllers/Statistics.php:26
 #: application/views/interface_assets/header.php:134
 msgid "Statistics"
 msgstr "Statistika"
@@ -2240,13 +2244,13 @@ msgstr "Statistika"
 msgid "Custom Statistics"
 msgstr "Prilagođena statistika"
 
-#: application/controllers/Statistics.php:232
+#: application/controllers/Statistics.php:251
 #: application/views/interface_assets/header.php:138
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Statistika QSL karata"
 
-#: application/controllers/Statistics.php:247
+#: application/controllers/Statistics.php:266
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
@@ -2585,71 +2589,71 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Nisu pronađeni profili stanice sa odgovarajućim HRDlog akreditivima."
 
-#: application/models/Logbook_model.php:3773
+#: application/models/Logbook_model.php:3786
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:3774
+#: application/models/Logbook_model.php:3787
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 
-#: application/models/Logbook_model.php:3786
+#: application/models/Logbook_model.php:3799
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:3786
+#: application/models/Logbook_model.php:3799
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4085
+#: application/models/Logbook_model.php:4098
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4096
+#: application/models/Logbook_model.php:4109
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4149
+#: application/models/Logbook_model.php:4162
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4169
+#: application/models/Logbook_model.php:4182
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4190
+#: application/models/Logbook_model.php:4203
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4514
+#: application/models/Logbook_model.php:4527
 msgid "QSO could not be matched"
 msgstr "QSO se ne poklapa"
 
-#: application/models/Logbook_model.php:4520
+#: application/models/Logbook_model.php:4533
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrđeno preko LoTW/Clublog/eQSL/Kontest"
 
-#: application/models/Logbook_model.php:4525
+#: application/models/Logbook_model.php:4538
 msgid "confirmed by award manager"
 msgstr "potvrđeno od strane menadžera za diplome"
 
-#: application/models/Logbook_model.php:4528
+#: application/models/Logbook_model.php:4541
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrđeno unakrsnom proverom DCL podataka"
 
-#: application/models/Logbook_model.php:4531
+#: application/models/Logbook_model.php:4544
 msgid "confirmation pending"
 msgstr "čeka potvrđivanje"
 
-#: application/models/Logbook_model.php:4534
+#: application/models/Logbook_model.php:4547
 msgid "unconfirmed"
 msgstr "nepotvrđeno"
 
-#: application/models/Logbook_model.php:4537
+#: application/models/Logbook_model.php:4550
 #: application/views/view_log/qso.php:290
 msgid "unknown"
 msgstr "nepoznato"
@@ -2690,6 +2694,7 @@ msgstr "Ukupan broj rađenih WAJA"
 #: application/views/dashboard/index.php:245
 #: application/views/dayswithqso/index.php:38
 #: application/views/statistics/index.php:18
+#: application/views/statistics/index.php:36
 #: application/views/visitor/index.php:250
 msgid "Year"
 msgstr "Godina"
@@ -3136,7 +3141,7 @@ msgstr "Prikaži"
 #: application/views/satellite/flightpath.php:34
 #: application/views/satellite/passtable.php:5
 #: application/views/sattimers/index.php:38
-#: application/views/statistics/index.php:112
+#: application/views/statistics/index.php:22
 msgid "Satellite"
 msgstr "Satelit"
 
@@ -6045,7 +6050,6 @@ msgstr "VUCC polje"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:19
-#: application/views/statistics/index.php:113
 msgid "# of QSO's worked"
 msgstr "Broj rađenih veza"
 
@@ -7780,8 +7784,8 @@ msgstr "Globalne opcije"
 #: application/views/satellite/pass.php:495
 #: application/views/statistics/custom.php:20
 #: application/views/statistics/custom_result.php:21
-#: application/views/statistics/index.php:39
-#: application/views/statistics/index.php:93
+#: application/views/statistics/index.php:48
+#: application/views/statistics/index.php:102
 msgid "Satellites"
 msgstr "Sateliti"
 
@@ -8092,8 +8096,8 @@ msgid "Label types"
 msgstr "Vrste etiketa"
 
 #: application/views/labels/index.php:81
-#: application/views/statistics/index.php:59
-#: application/views/statistics/index.php:96
+#: application/views/statistics/index.php:68
+#: application/views/statistics/index.php:105
 #: application/views/widgets/qsos.php:3
 msgid "QSOs"
 msgstr "QSOi"
@@ -8952,7 +8956,7 @@ msgstr "Kategorija"
 #: application/views/qso/index.php:31
 #: application/views/statistics/custom.php:17
 #: application/views/statistics/custom_result.php:18
-#: application/views/statistics/index.php:35
+#: application/views/statistics/index.php:44
 #: application/views/user/edit.php:154
 msgid "General"
 msgstr "Opšte"
@@ -11449,7 +11453,7 @@ msgstr ""
 
 #: application/views/statistics/custom.php:12
 #: application/views/statistics/custom_result.php:12
-#: application/views/statistics/index.php:28
+#: application/views/statistics/index.php:29
 msgid "Explore the logbook."
 msgstr "Istražite dnevnik."
 
@@ -11478,7 +11482,7 @@ msgid "Rcvd"
 msgstr "Rcvd"
 
 #: application/views/statistics/index.php:14
-#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:59
 msgid "Years"
 msgstr "Godine"
 
@@ -11486,8 +11490,12 @@ msgstr "Godine"
 msgid "Number of QSOs worked each year"
 msgstr "Broj održanih veza svake godine"
 
-#: application/views/statistics/index.php:62
-#: application/views/statistics/index.php:99
+#: application/views/statistics/index.php:33
+msgid "All Years"
+msgstr ""
+
+#: application/views/statistics/index.php:71
+#: application/views/statistics/index.php:108
 msgid "Unique callsigns"
 msgstr "Jedinstvenih pozivnih znakova"
 
