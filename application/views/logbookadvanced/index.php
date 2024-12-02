@@ -568,8 +568,8 @@ $options = json_decode($options);
 						</option>
 					<?php } ?>
 				</select>
-				<button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right flex-grow-0 mb-2" id="searchButton" style="white-space: nowrap;">
-					<i class="fas fa-search"></i> <?= __("Search"); ?><div class="ld ld-ring ld-spin"></div>
+				<button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right flex-grow-0 mb-2" aria-label="<?= __("Search"); ?>" id="searchButton" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Search"); ?>">
+					<i class="fas fa-search"></i><div class="ld ld-ring ld-spin"></div>
 				</button>
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="dupeButton" style="white-space: nowrap;">
 					<i class="fa fa-clone"></i> <?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div>
@@ -580,9 +580,6 @@ $options = json_decode($options);
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="editButton" style="white-space: nowrap;">
 					<i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div>
 				</button>
-				<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;">
-					<i class="fas fa-trash-alt"></i> <?= __("Delete"); ?>
-				</button>
 				<div class="btn-group me-1" role="group">
 					<button type="button" class="btn btn-sm btn-primary ld-ext-right flex-grow-0 mb-2" id="mapButton" onclick="mapQsos(this.form);" style="white-space: nowrap;">
 						<i class="fas fa-globe-europe"></i> <?= __("Map"); ?><div class="ld ld-ring ld-spin"></div>
@@ -592,8 +589,11 @@ $options = json_decode($options);
 						<li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
 					</ul>
 				</div>
-				<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" style="white-space: nowrap;">
-					<i class="fas fa-cog"></i> <?= __("Options"); ?>
+				<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" aria-label="<?= __("Options"); ?>" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Options"); ?>">
+					<i class="fas fa-cog"></i>
+				</button>
+				<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
+					<i class="fas fa-trash-alt"></i>
 				</button>
 				<button type="reset" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="resetButton" style="white-space: nowrap;">
 					<i class="fas fa-undo"></i> <?= __("Reset"); ?>
