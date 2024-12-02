@@ -990,38 +990,6 @@ class Lotw extends CI_Controller {
 	}
 
 	/*
-	|	Function: lotw_satellite_map
-	|	Requires: OSCAR Satellite name $satname
-	|
-	|	Outputs if LoTW uses a different satellite name
-	|
-	*/
-	function lotw_satellite_map($satname) {
-		$arr = array(
-			"ARISS"		=>	"ISS",
-			"UKUBE1"	=>	"UKUBE-1",
-			"KEDR"		=>	"ARISSAT-1",
-			"TO-108"	=>	"CAS-6",
-			"TAURUS"	=>	"TAURUS-1",
-			"AISAT1"	=>	"AISAT-1",
-			'UVSQ'		=>	"UVSQ-SAT",
-			'CAS-3H'	=>	"LILACSAT-2",
-			'IO-117'	=>	"GREENCUBE",
-			"TEVEL1"	=>	"TEVEL-1",
-			"TEVEL2"	=>	"TEVEL-2",
-			"TEVEL3"	=>	"TEVEL-3",
-			"TEVEL4"	=>	"TEVEL-4",
-			"TEVEL5"	=>	"TEVEL-5",
-			"TEVEL6"	=>	"TEVEL-6",
-			"TEVEL7"	=>	"TEVEL-7",
-			"TEVEL8"	=>	"TEVEL-8",
-			"INSPR7"	=> "INSPIRE-SAT 7",
-		);
-
-		return array_search(strtoupper($satname),$arr,true);
-	}
-
-	/*
 	|	Function: lotw_ca_province_map
 	|	Requires: candian province map $ca_province
 	*/

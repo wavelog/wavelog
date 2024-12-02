@@ -463,11 +463,11 @@ class Logbook_model extends CI_Model {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		$this->db->select($this->config->item('table_name').'.*, `station_profile`.*, `dxcc_entities`.*, `lotw_users`.*');
+		$this->db->select($this->config->item('table_name').'.*, `station_profile`.*, `dxcc_entities`.*, `lotw_users`.*, `satellite.displayname` AS sat_displayname');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = ' . $this->config->item('table_name') . '.COL_DXCC', 'left outer');
 		$this->db->join('lotw_users', 'lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call', 'left outer');
-		if ($band == 'SAT' && ($type == 'VUCC' || $type == 'DXCC' || $type == 'DXCC2')) {
+		if (isset($sat) || strtoupper($band) == 'ALL' || $band == 'SAT' && ($type == 'VUCC' || $type == 'DXCC' || $type == 'DXCC2')) {
 			$this->db->join('satellite', 'satellite.name = ' . $this->config->item('table_name') . '.col_sat_name', 'left outer');
 		}
 		switch ($type) {
@@ -1995,12 +1995,13 @@ class Logbook_model extends CI_Model {
 			return array();
 		}
 
-		$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload');
+		$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload, satellite.displayname AS sat_displayname');
 		$this->db->from($this->config->item('table_name'));
 
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left');
 		$this->db->join('lotw_users', 'lotw_users.callsign = ' . $this->config->item('table_name') . '.col_call', 'left outer');
+		$this->db->join('satellite', 'satellite.name = ' . $this->config->item('table_name') . '.COL_SAT_NAME', 'left outer');
 
 		if ($band != '') {
 			if ($band == 'SAT') {
@@ -2023,7 +2024,7 @@ class Logbook_model extends CI_Model {
 
 	function get_qso($id, $trusted = false) {
 		if ($trusted || ($this->check_qso_is_accessible($id))) {
-			$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, coalesce(dxcc_entities_2.name, "- NONE -") as station_country, dxcc_entities_2.end as station_end, eQSL_images.image_file as eqsl_image_file, lotw_users.callsign as lotwuser, lotw_users.lastupload, primary_subdivisions.subdivision');
+			$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, coalesce(dxcc_entities_2.name, "- NONE -") as station_country, dxcc_entities_2.end as station_end, eQSL_images.image_file as eqsl_image_file, lotw_users.callsign as lotwuser, lotw_users.lastupload, primary_subdivisions.subdivision, satellite.displayname AS sat_displayname');
 			$this->db->from($this->config->item('table_name'));
 			$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left');
 			$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id', 'left');
@@ -2031,6 +2032,7 @@ class Logbook_model extends CI_Model {
 			$this->db->join('eQSL_images', $this->config->item('table_name') . '.COL_PRIMARY_KEY = eQSL_images.qso_id', 'left outer');
 			$this->db->join('lotw_users', $this->config->item('table_name') . '.COL_CALL = lotw_users.callsign', 'left outer');
 			$this->db->join('primary_subdivisions', $this->config->item('table_name') . '.COL_DXCC = primary_subdivisions.adif AND ' . $this->config->item('table_name') . '.COL_STATE = primary_subdivisions.state', 'left outer');
+			$this->db->join('satellite', $this->config->item('table_name') . '.COL_SAT_NAME = satellite.name', 'left outer');
 			$this->db->where('COL_PRIMARY_KEY', $id);
 			$this->db->limit(1);
 
@@ -5184,7 +5186,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where("station_id", $station_id);
 		$this->db->group_start();
 		$this->db->where('COL_LOTW_QSL_SENT', NULL);
-		$this->db->or_where('COL_LOTW_QSL_SENT !=', "Y");
+		$this->db->or_where_not_in('COL_LOTW_QSL_SENT', array("Y", "I"));
 		$this->db->group_end();
 		$this->db->where_not_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
 		$this->db->where('COL_TIME_ON >=', $start_date);
@@ -5211,7 +5213,21 @@ class Logbook_model extends CI_Model {
 		return "Updated";
 	}
 
+	function lotw_invalid_sats() {
+		$sats = array();
+		$this->db->select('name');
+		$this->db->where('lotw', 'N');
+		$query = $this->db->get('satellite');
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $row) {
+				array_push($sats, $row->name);
+			}
+		}
+		return $sats;
+	}
+
 	function mark_lotw_ignore($station_id) {
+		$invalid_sats = $this->lotw_invalid_sats();
 		$data = array(
 			'COL_LOTW_QSLSDATE' => null,
 			'COL_LOTW_QSL_SENT' => 'I',
@@ -5219,7 +5235,10 @@ class Logbook_model extends CI_Model {
 			'COL_LOTW_QSL_RCVD' => 'I',
 		);
 		$this->db->where("station_id", $station_id);
+		$this->db->group_start();
 		$this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
+		$this->db->or_where_in('COL_SAT_NAME', $invalid_sats);
+		$this->db->group_end();
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 

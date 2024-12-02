@@ -18,10 +18,11 @@
     <table style="width:100%" class="sattable table table-sm table-striped">
 			<thead>
 				<tr>
-					<th><?= __("Name"); ?></th>
-					<th><?= __("Export Name"); ?></th>
+					<th><?= __("LoTW Name"); ?></th>
+					<th><?= __("Display Name"); ?></th>
 					<th><?= __("Orbit"); ?></th>
 					<th><?= __("Mode"); ?></th>
+					<th><?= __("LoTW"); ?></th>
 					<th><?= __("Edit"); ?></th>
 					<th><?= __("Delete"); ?></th>
 				</tr>
@@ -30,7 +31,7 @@
 				<?php foreach ($satellites as $sat) { ?>
 				<tr>
 					<td style="text-align: center; vertical-align: middle;" class="satellite_<?php echo $sat->id ?>"><?php echo htmlentities($sat->satname) ?></td>
-					<td style="text-align: center; vertical-align: middle;"><?php echo htmlentities($sat->exportname) ?></td>
+					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->displayname ? htmlentities($sat->displayname) : '' ?></td>
 					<?php echo '<td style="text-align: center; vertical-align: middle;"><span class="badge ';
 					switch (strtoupper($sat->orbit)) {
 					case 'LEO':
@@ -46,9 +47,23 @@
 						echo 'bg-light';
 						break;
 					}
-						echo '">'.$sat->orbit.'</span></td>';
+					echo '">'.$sat->orbit.'</span></td>';
 					?>
 					<td style="text-align: center; vertical-align: middle;"><?php echo htmlentities($sat->modename ?? '') ?></td>
+					<?php echo '<td style="text-align: center; vertical-align: middle;">';
+					switch ($sat->lotw) {
+					case 'Y':
+						echo '<span class="badge bg-success">'.__("Yes").'</span>';
+						break;
+					case 'N':
+						echo '<span class="badge bg-danger">'.__("No").'</span>';
+						break;
+					default:
+						echo '<span class="badge bg-warning">'.__("Unknown").'</span>';
+						break;
+					}
+					echo '</td>';
+					?>
 					<td style="text-align: center; vertical-align: middle;"><button onclick="editSatelliteDialog(<?php echo $sat->id ?>)" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></i></button></td>
 					<td style="text-align: center; vertical-align: middle;"><button onclick="deleteSatellite('<?php echo $sat->id . '\',\'' . xss_clean(htmlentities(str_replace('\'',"\\'",str_replace('"','\"',str_replace('\\',' ',$sat->satname))))) ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td>
 				</tr>

@@ -75,12 +75,17 @@ class Satellite extends CI_Controller {
 
 		$id = $this->security->xss_clean($this->input->post('id', true));
 		$satellite['name'] 	= $this->security->xss_clean($this->input->post('name'));
-		$satellite['exportname'] 	= $this->security->xss_clean($this->input->post('exportname'));
+		$satellite['displayname'] 	= $this->security->xss_clean($this->input->post('displayname'));
 		$satellite['orbit'] 	= $this->security->xss_clean($this->input->post('orbit'));
+		if ($this->security->xss_clean($this->input->post('lotw')) == 'Y') {
+			$satellite['lotw'] = 'Y';
+		} else {;
+			$satellite['lotw'] = 'N';
+		}
 
-        $this->satellite_model->saveupdatedsatellite($id, $satellite);
+		$this->satellite_model->saveupdatedsatellite($id, $satellite);
 		echo json_encode(array('message' => 'OK'));
-        return;
+		return;
 	}
 
 	public function delete() {
