@@ -112,3 +112,32 @@ thead > tr > td {
 	--bs-btn-active-bg: inherit !important;
 	--bs-btn-active-color: inherit !important;
 }
+
+path.grid-rectangle {
+	stroke: rgba(97, 97, 97, 1);
+}
+
+span.grid-text > font {
+	color: rgb(97, 97, 97) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-unworked > font {
+	color: rgb(97, 97, 97) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-worked > font {
+	color: rgb(255, 255, 255) !important;
+	font-weight: 400 !important;
+}
+
+path.grid-confirmed {
+	fill: rgba(20, 109, 20, 0.7) !important;
+	stroke: rgba(20, 255, 144, 0.7) !important;
+}
+
+path.grid-worked {
+	fill: rgba(172, 40, 40, 0.7) !important;
+	stroke: rgba(248, 96, 129, 0.7) !important;
+}

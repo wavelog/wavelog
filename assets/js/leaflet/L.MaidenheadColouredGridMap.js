@@ -129,7 +129,11 @@ L.Maidenhead = L.LayerGroup.extend({
 		var title = '';
 		var locator = this._getLocator(lon,lat);
 		if (zoom != 3) {
-			title = '<span class="grid-text" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + locator + '</font></span>';
+			if(grid_four.includes(locator) || grid_four_confirmed.includes(locator) || grid_two.includes(locator) || grid_two_confirmed.includes(locator)) {
+				title = '<span class="grid-text-worked" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + locator + '</font></span>';
+			} else {
+				title = '<span class="grid-text-unworked" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + locator + '</font></span>';
+			}
 		}
 		var myIcon = L.divIcon({className: 'my-div-icon', html: title});
 		var marker = L.marker([lat,lon], {icon: myIcon}, clickable=false);
@@ -179,7 +183,12 @@ L.Maidenhead = L.LayerGroup.extend({
 		var title_size = new Array(0, 10, 12, 16, 20, 26, 26, 16, 24, 36, 12, 14, 20, 36, 60, 12, 20, 36, 60, 12, 24);
 		var zoom = map.getZoom();
 		var size = title_size[zoom]+'px';
-		var title = '<span class="grid-text" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator2(lon,lat) + '</font></span>';
+		if(grid_four.includes(locator) || grid_four_confirmed.includes(locator) || grid_two.includes(locator) || grid_two_confirmed.includes(locator)) {
+			var title = '<span class="grid-text-worked" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator2(lon,lat) + '</font></span>';
+		} else {
+			var title = '<span class="grid-text-unworked" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator2(lon,lat) + '</font></span>';
+		}
+
 		var myIcon = L.divIcon({className: 'my-div-icon', html: title});
 		var marker = L.marker([lat,lon], {icon: myIcon}, clickable=false);
 		return marker;
