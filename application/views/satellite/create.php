@@ -33,8 +33,12 @@
 		<div class = "row">
 			<div class="mb-3 col-md-6">
 				<label for="orbit"><?= __("Orbit"); ?></label>
-				<input type="text" class="form-control" name="orbit" id="orbit" aria-describedby="orbitHelp" required>
-				<small id="sorbitHelp" class="form-text text-muted"><?= __("Enter which orbit the satellite has (LEO, MEO, GEO)"); ?></small>
+				<select id="orbit" class="form-select" name="orbit" aria-describedby="orbitHelp">
+					<option value="LEO" selected="selected">LEO</option>
+					<option value="MEO">MEO</option>
+					<option value="GEO">GEO</option>
+				</select>
+				<small id="orbitHelp" class="form-text text-muted"><?= __("Enter which orbit the satellite has (LEO, MEO, GEO)"); ?></small>
 			</div>
 			<div class="mb-3 col-md-6">
 				<label for="mode"><?= __("Satellite mode name"); ?></label>

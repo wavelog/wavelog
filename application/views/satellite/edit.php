@@ -17,8 +17,12 @@
 		<div class = "row">
 			<div class="mb-3 col-md-6">
 				<label for="orbit"><?= __("Orbit"); ?></label>
-				<input type="text" class="form-control" name="orbit" id="orbit" aria-describedby="orbitHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->orbit; } ?>" required>
-				<small id="sorbitHelp" class="form-text text-muted"><?= __("Enter which orbit the satellite has (LEO, MEO, GEO)"); ?></small>
+				<select id="orbit" class="form-select" name="orbit">
+					<option value="LEO" <?php echo $satellite->orbit == "LEO" ? "selected=\"selected\"" : ''; ?>>LEO</option>
+					<option value="MEO" <?php echo $satellite->orbit == "MEO" ? "selected=\"selected\"" : ''; ?>>MEO</option>
+					<option value="GEO" <?php echo $satellite->orbit == "GEO" ? "selected=\"selected\"" : ''; ?>>GEO</option>
+				</select>
+				<small id="orbitHelp" class="form-text text-muted"><?= __("Enter which orbit the satellite has (LEO, MEO, GEO)"); ?></small>
 			</div>
 			<div class="mb-3 col-md-6">
 				<label for="lotwAccepted"><?= __("Accepted by LoTW"); ?></label>
