@@ -71,14 +71,14 @@
 		return $this->db->get($this->config->item('table_name'));
 	}
 
-	function unique_sat_callsigns() {
+	function unique_sat_callsigns($yr = 'All') {
 		$qsoView = array();
 
-		$sats = $this->get_sats();
-		$modes = $this->get_sat_modes();
+		$sats = $this->get_sats($yr);
+		$modes = $this->get_sat_modes($yr);
 
-		$satunique = $this->getUniqueSatCallsignsSat();
-		$modeunique = $this->getUniqueSatCallsignsModes();
+		$satunique = $this->getUniqueSatCallsignsSat($yr);
+		$modeunique = $this->getUniqueSatCallsignsModes($yr);
 
 		// Generating the band/mode table
 		foreach ($sats as $sat) {
@@ -102,7 +102,7 @@
 		}
 
 		// Populating array with worked
-		$workedQso = $this->getUniqueSatCallsigns();
+		$workedQso = $this->getUniqueSatCallsigns($yr);
 
 		foreach ($workedQso as $line) {
 			//if ($line->col_submode == null) {
@@ -114,22 +114,22 @@
 		}
 
 		$result['qsoView'] = $qsoView;
-		$result['satunique'] = $satcalls;
-		$result['modeunique'] = $modecalls;
-		$result['total'] = $this->getUniqueSatCallsignsTotal();
+		$result['satunique'] = $satcalls ?? '';
+		$result['modeunique'] = $modecalls ?? '';
+		$result['total'] = $this->getUniqueSatCallsignsTotal($yr);
 
 		return $result;
 	}
 
 
-	function unique_callsigns() {
+	function unique_callsigns($yr = 'All') {
 		$qsoView = array();
 
-		$bands = $this->get_bands();
-		$modes = $this->get_modes();
+		$bands = $this->get_bands($yr);
+		$modes = $this->get_modes($yr);
 
-		$bandunique = $this->getUniqueCallsignsBands();
-		$modeunique = $this->getUniqueCallsignsModes();
+		$bandunique = $this->getUniqueCallsignsBands($yr);
+		$modeunique = $this->getUniqueCallsignsModes($yr);
 
 		$modecalls=[];
 		$bandcalls=[];
@@ -156,7 +156,7 @@
 		}
 
 		// Populating array with worked
-		$workedQso = $this->getUniqueCallsigns();
+		$workedQso = $this->getUniqueCallsigns($yr);
 
 		foreach ($workedQso as $line) {
 			//if ($line->col_submode == null) {
@@ -170,12 +170,12 @@
 		$result['qsoView'] = $qsoView;
 		$result['bandunique'] = $bandcalls;
 		$result['modeunique'] = $modecalls;
-		$result['total'] = $this->getUniqueCallsignsTotal();
+		$result['total'] = $this->getUniqueCallsignsTotal($yr);
 
 		return $result;
 	}
 
-	function getUniqueSatCallsignsSat() {
+	function getUniqueSatCallsignsSat($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -188,6 +188,12 @@
 		$this->db->select('count(distinct col_call) as calls, upper(col_sat_name) as sat', FALSE);
 		$this->db->where('col_prop_mode', 'SAT');
 		$this->db->where('coalesce(col_sat_name,"") != ""');
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->group_by('upper(col_sat_name)');
 
@@ -196,7 +202,7 @@
 		return $query->result();
 	}
 
-	function getUniqueSatCallsigns() {
+	function getUniqueSatCallsigns($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -209,6 +215,12 @@
 		$this->db->select('count(distinct col_call) as calls, upper(col_sat_name) as sat, col_mode, coalesce(col_submode, "") col_submode', FALSE);
 		$this->db->where('col_prop_mode', 'SAT');
 		$this->db->where('coalesce(col_sat_name,"") != ""');
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->group_by('upper(col_sat_name), col_mode, coalesce(col_submode, "")');
 
@@ -217,7 +229,7 @@
 		return $query->result();
 	}
 
-	function getUniqueCallsigns() {
+	function getUniqueCallsigns($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -228,6 +240,12 @@
 		$bands = array();
 
 		$this->db->select('count(distinct col_call) as calls, lower(col_band) as band, col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->group_by('lower(col_band), col_mode, coalesce(col_submode, "")');
 
@@ -236,7 +254,7 @@
 		return $query->result();
 	}
 
-	function getUniqueCallsignsModes() {
+	function getUniqueCallsignsModes($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -247,6 +265,12 @@
 		$bands = array();
 
 		$this->db->select('count(distinct col_call) as calls, col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->group_by('col_mode, coalesce(col_submode, "")');
 
@@ -255,7 +279,7 @@
 		return $query->result();
 	}
 
-	function getUniqueSatCallsignsModes() {
+	function getUniqueSatCallsignsModes($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -268,6 +292,12 @@
 		$this->db->select('count(distinct col_call) as calls, col_mode, coalesce(col_submode, "") col_submode', FALSE);
 		$this->db->where('coalesce(col_sat_name,"") != ""');
 		$this->db->where('col_prop_mode', 'SAT');
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->group_by('col_mode, coalesce(col_submode, "")');
 
@@ -276,7 +306,7 @@
 		return $query->result();
 	}
 
-	function getUniqueCallsignsBands() {
+	function getUniqueCallsignsBands($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -287,6 +317,12 @@
 		$bands = array();
 
 		$this->db->select('count(distinct col_call) as calls, col_band as band', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->group_by('col_band');
 
@@ -295,7 +331,7 @@
 		return $query->result();
 	}
 
-	function getUniqueSatCallsignsTotal() {
+	function getUniqueSatCallsignsTotal($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -306,6 +342,12 @@
 		$bands = array();
 
 		$this->db->select('count(distinct col_call) as calls', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where('coalesce(col_sat_name,"") != ""');
 		$this->db->where('col_prop_mode', 'SAT');
 		$this->db->where_in('station_id', $logbooks_locations_array);
@@ -315,7 +357,7 @@
 		return $query->row();
 	}
 
-	function getUniqueCallsignsTotal() {
+	function getUniqueCallsignsTotal($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -326,6 +368,12 @@
 		$bands = array();
 
 		$this->db->select('count(distinct col_call) as calls', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 
 		$query = $this->db->get($this->config->item('table_name'));
@@ -333,11 +381,11 @@
 		return $query->row();
 	}
 
-	function total_sat_qsos() {
+	function total_sat_qsos($yr = 'All') {
 		$qsoView = array();
 
-		$sats = $this->get_sats();
-		$modes = $this->get_sat_modes();
+		$sats = $this->get_sats($yr);
+		$modes = $this->get_sat_modes($yr);
 
 		$sattotal = array();
 		$modetotal = array();
@@ -351,7 +399,7 @@
 		}
 
 		// Populating array with worked
-		$workedQso = $this->modeSatQso();
+		$workedQso = $this->modeSatQso($yr);
 		foreach ($workedQso as $line) {
 			if ($line->col_submode == null || $line->col_submode == "") {
 				$qsoView [$line->sat] [$line->col_mode] = $line->count;
@@ -371,11 +419,11 @@
 		return $result;
 	}
 
-	function total_qsos() {
+	function total_qsos($yr = 'All') {
 		$qsoView = array();
 
-		$bands = $this->get_bands();
-		$modes = $this->get_modes();
+		$bands = $this->get_bands($yr);
+		$modes = $this->get_modes($yr);
 
 		$bandtotal = array();
 		$modetotal = array();
@@ -389,7 +437,7 @@
 		}
 
 		// Populating array with worked
-		$workedQso = $this->modeBandQso();
+		$workedQso = $this->modeBandQso($yr);
 		foreach ($workedQso as $line) {
 			if ($line->col_submode == null || $line->col_submode == "") {
 				$qsoView [$line->col_mode]  [$line->band] = $line->count;
@@ -408,15 +456,15 @@
 		return $result;
 	}
 
-	function total_qsls() {
+	function total_qsls($yr = 'All') {
 		$qsoView = array();
 		$qsoSatView = array();
 
-		$bands = $this->get_bands();
-		$modes = $this->get_modes();
+		$bands = $this->get_bands($yr);
+		$modes = $this->get_modes($yr);
 
-		$sats = $this->get_sats();
-		$satmodes = $this->get_sat_modes();
+		$sats = $this->get_sats($yr);
+		$satmodes = $this->get_sat_modes($yr);
 
 		// Generating the band/mode table
 		foreach ($bands as $band) {
@@ -431,7 +479,7 @@
 		}
 
 		// Populating array with numbers
-		$workedQso = $this->modeBandQsl();
+		$workedQso = $this->modeBandQsl($yr);
 		foreach ($workedQso as $line) {
 			if ($line->col_submode == null || $line->col_submode == "") {
 				$qsoView [$line->col_mode]  [$line->band] ['qso'] = $line->qsos;
@@ -463,7 +511,7 @@
 		}
 
 		// Populating array with numbers
-		$workedSatQso = $this->modeSatQsl();
+		$workedSatQso = $this->modeSatQsl($yr);
 		foreach ($workedSatQso as $line) {
 			if ($line->col_submode == null || $line->col_submode == "") {
 				$qsoSatView [$line->col_mode]  [$line->sat] ['qso'] = $line->qsos;
@@ -488,56 +536,70 @@
 		return $result;
 	}
 
-	function modeBandQsl() {
+	function modeBandQsl($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
+		$binding=[];
 		if (!$logbooks_locations_array) {
 			return null;
 		}
 
 		$sql = "select lower(col_band) as band, col_mode, coalesce(col_submode, '') col_submode,
-				count(*) qsos,
+				count(1) qsos,
 				count(case when COL_QSL_RCVD='Y' then 1 end) qsl,
 				count(case when COL_EQSL_QSL_RCVD='Y' then 1 end) eqsl,
 				count(case when COL_LOTW_QSL_RCVD='Y' then 1 end) lotw,
 				count(case when COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' then 1 end) qrz,
 				count(case when COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y' then 1 end) clublog
 		from " . $this->config->item('table_name') . "
-		where station_id in (". implode(',', $logbooks_locations_array) .")
-		and col_prop_mode <> 'SAT'
+		where station_id in (". implode(',', $logbooks_locations_array) .")";
+		if ($yr != 'All') {
+			$sql.=" and COL_TIME_ON >= ? and COL_TIME_ON <= ? ";
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$binding[]=$syr;
+			$binding[]=$eyr;
+		}
+		$sql.=" and col_prop_mode <> 'SAT'
 		group by lower(col_band), col_mode, coalesce(col_submode, '')";
 
-		$result = $this->db->query($sql);
+		$result = $this->db->query($sql,$binding);
 		return $result->result();
 	}
 
-	function modeSatQsl() {
+	function modeSatQsl($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
+		$binding=[];
 		if (!$logbooks_locations_array) {
 			return null;
 		}
 
 		$sql = "select upper(col_sat_name) as sat, col_mode, coalesce(col_submode, '') col_submode,
-				count(*) qsos,
+				count(1) qsos,
 				count(case when COL_QSL_RCVD='Y' then 1 end) qsl,
 				count(case when COL_EQSL_QSL_RCVD='Y' then 1 end) eqsl,
 				count(case when COL_LOTW_QSL_RCVD='Y' then 1 end) lotw,
 				count(case when COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' then 1 end) qrz,
 				count(case when COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y' then 1 end) clublog
 		from " . $this->config->item('table_name') . "
-		where station_id in (". implode(',', $logbooks_locations_array) .")
-		and col_prop_mode = 'SAT'
+		where station_id in (". implode(',', $logbooks_locations_array) .")";
+		if ($yr != 'All') {
+			$sql.=" and COL_TIME_ON >= ? and COL_TIME_ON <= ? ";
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$binding[]=$syr;
+			$binding[]=$eyr;
+		}
+		$sql.=" and col_prop_mode = 'SAT'
 		and coalesce(col_sat_name, '') <> ''
 		group by upper(col_sat_name), col_mode, coalesce(col_submode, '')";
 
-		$result = $this->db->query($sql);
+		$result = $this->db->query($sql,$binding);
 		return $result->result();
 	}
 
-	function modeSatQso() {
+	function modeSatQso($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -547,9 +609,15 @@
 
 		$bands = array();
 
-		$this->db->select('count(*) as count, upper(col_sat_name) as sat, col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		$this->db->select('count(1) as count, upper(col_sat_name) as sat, col_mode, coalesce(col_submode, "") col_submode', FALSE);
 		$this->db->where('coalesce(col_sat_name,"") != ""');
 		$this->db->where('col_prop_mode', 'SAT');
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->group_by('upper(col_sat_name), col_mode, coalesce(col_submode, "")');
 
@@ -558,7 +626,7 @@
 		return $query->result();
 	}
 
-	function modeBandQso() {
+	function modeBandQso($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -567,6 +635,12 @@
 		}
 
 		$this->db->select('count(*) as count, lower(col_band) as band, col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->group_by('lower(col_band), col_mode, coalesce(col_submode, "")');
 
@@ -575,7 +649,7 @@
 		return $query->result();
 	}
 
-	function get_sats() {
+	function get_sats($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -586,6 +660,12 @@
 		$sats = array();
 
 		$this->db->select('distinct col_sat_name as satsort, upper(col_sat_name) as sat', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where('coalesce(col_sat_name,"") != ""');
 		$this->db->where('col_prop_mode', 'SAT');
 		$this->db->where_in('station_id', $logbooks_locations_array);
@@ -599,7 +679,7 @@
 		return $sats;
 	}
 
-	function get_bands() {
+	function get_bands($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -610,6 +690,12 @@
 		$bands = array();
 
 		$this->db->select('distinct col_band+0 as bandsort, lower(col_band) as band', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->order_by('bandsort', 'desc');
 
@@ -634,7 +720,7 @@
 		return $bands;
 	}
 
-	function get_sat_modes() {
+	function get_sat_modes($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -645,6 +731,12 @@
 		$modes = array();
 
 		$this->db->select('distinct col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where('coalesce(col_sat_name,"") != ""');
 		$this->db->where('col_prop_mode', 'SAT');
 		$this->db->where_in('station_id', $logbooks_locations_array);
@@ -663,7 +755,7 @@
 		return $modes;
 	}
 
-	function get_modes() {
+	function get_modes($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -674,6 +766,12 @@
 		$modes = array();
 
 		$this->db->select('distinct col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->order_by('col_mode, col_submode', 'ASC');
 
@@ -690,7 +788,7 @@
 		return $modes;
 	}
 
-	function elevationdata($sat, $orbit) {
+	function elevationdata($sat, $orbit, $yr = 'All') {
 		$conditions = [];
 		$binding = [];
 
@@ -720,8 +818,15 @@
 
 		$sql = "SELECT count(*) qsos, round(COL_ANT_EL) elevation FROM ".$this->config->item('table_name')."
 		LEFT JOIN satellite ON satellite.name = ".$this->config->item('table_name').".COL_SAT_NAME
-		where station_id in (" . implode(',',$logbooks_locations_array) . ") and coalesce(col_ant_el, '') <> ''
-		$where
+		where station_id in (" . implode(',',$logbooks_locations_array) . ") and coalesce(col_ant_el, '') <> ''";
+		if ($yr != 'All') {
+			$sql.=" and COL_TIME_ON >= ? and COL_TIME_ON <= ? ";
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$binding[]=$syr;
+			$binding[]=$eyr;
+		}
+		$sql.=" $where
 		group by round(col_ant_el)
 		order by elevation asc";
 
@@ -729,7 +834,7 @@
 		return $result->result();
 	}
 
-	function azimuthdata($band, $mode, $sat, $orbit) {
+	function azimuthdata($band, $mode, $sat, $orbit, $yr = 'All') {
 		$conditions = [];
 		$binding = [];
 
@@ -773,8 +878,15 @@
 		FROM ".$this->config->item('table_name')."
 		LEFT JOIN satellite ON satellite.name = ".$this->config->item('table_name').".COL_SAT_NAME
 		where station_id in (" . implode(',',$logbooks_locations_array) . ")
-		and coalesce(col_ant_az, '') <> ''
-		$where
+		and coalesce(col_ant_az, '') <> ''";
+		if ($yr != 'All') {
+			$sql.=" and COL_TIME_ON >= ? and COL_TIME_ON <= ? ";
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$binding[]=$syr;
+			$binding[]=$eyr;
+		}
+		$sql.=" $where
 		group by round(col_ant_az)
 		order by azimuth asc";
 

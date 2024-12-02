@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2024-11-30 21:52+0000\n"
 "PO-Revision-Date: 2024-12-02 11:12+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -515,6 +515,7 @@ msgstr "Резервное копирование заметок"
 #: application/views/interface_assets/header.php:385
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:56
+#: application/views/statistics/index.php:65
 msgid "Bands"
 msgstr "Диапазоны"
 
@@ -1171,6 +1172,7 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:107 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:30
+#: application/views/statistics/index.php:62
 msgid "Mode"
 msgstr "Вид модуляции"
 
@@ -2019,6 +2021,7 @@ msgstr ""
 #: application/controllers/Simplefle.php:93
 #: application/models/Logbook_model.php:4453
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4466
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
@@ -2231,6 +2234,7 @@ msgstr "Редактировать настройка экспорта карт�
 
 #: application/controllers/Statistics.php:27
 #: application/views/interface_assets/header.php:134
+#: application/controllers/Statistics.php:26
 msgid "Statistics"
 msgstr "Статистика"
 
@@ -2241,12 +2245,14 @@ msgstr "Пользовательская статистика"
 #: application/controllers/Statistics.php:232
 #: application/views/interface_assets/header.php:138
 #: application/views/statistics/qsltable.php:5
+#: application/controllers/Statistics.php:251
 msgid "QSL Statistics"
 msgstr "Статистика QSL"
 
 #: application/controllers/Statistics.php:247
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/antennaanalytics.php:3
+#: application/controllers/Statistics.php:266
 msgid "Antenna Analytics"
 msgstr "Аналитика антенн"
 
@@ -2584,20 +2590,24 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
 #: application/models/Logbook_model.php:3773
+#: application/models/Logbook_model.php:3786
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:3774
+#: application/models/Logbook_model.php:3787
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
 #: application/models/Logbook_model.php:3786
+#: application/models/Logbook_model.php:3799
 msgid "QSO on"
 msgstr "начало QSO"
 
 #: application/models/Logbook_model.php:3786
+#: application/models/Logbook_model.php:3799
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2606,51 +2616,63 @@ msgstr ""
 "импортировано. Оно недействительно"
 
 #: application/models/Logbook_model.php:4085
+#: application/models/Logbook_model.php:4098
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4096
+#: application/models/Logbook_model.php:4109
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4149
+#: application/models/Logbook_model.php:4162
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4169
+#: application/models/Logbook_model.php:4182
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4190
+#: application/models/Logbook_model.php:4203
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4514
+#: application/models/Logbook_model.php:4527
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
 #: application/models/Logbook_model.php:4520
+#: application/models/Logbook_model.php:4533
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4525
+#: application/models/Logbook_model.php:4538
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
 #: application/models/Logbook_model.php:4528
+#: application/models/Logbook_model.php:4541
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
 #: application/models/Logbook_model.php:4531
+#: application/models/Logbook_model.php:4544
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
 #: application/models/Logbook_model.php:4534
+#: application/models/Logbook_model.php:4547
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:4537
 #: application/views/view_log/qso.php:290
+#: application/models/Logbook_model.php:4550
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -2691,6 +2713,7 @@ msgstr "Накопленное количество отработанных WAJ
 #: application/views/dayswithqso/index.php:38
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:250
+#: application/views/statistics/index.php:36
 msgid "Year"
 msgstr "Год"
 
@@ -3137,6 +3160,7 @@ msgstr "Показать"
 #: application/views/satellite/passtable.php:5
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:112
+#: application/views/statistics/index.php:22
 msgid "Satellite"
 msgstr "Спутник"
 
@@ -7855,6 +7879,8 @@ msgstr "Общие настройки"
 #: application/views/statistics/custom_result.php:21
 #: application/views/statistics/index.php:39
 #: application/views/statistics/index.php:93
+#: application/views/statistics/index.php:48
+#: application/views/statistics/index.php:102
 msgid "Satellites"
 msgstr "Спутники"
 
@@ -8167,6 +8193,8 @@ msgstr "Тип наклеек"
 #: application/views/statistics/index.php:59
 #: application/views/statistics/index.php:96
 #: application/views/widgets/qsos.php:3
+#: application/views/statistics/index.php:68
+#: application/views/statistics/index.php:105
 msgid "QSOs"
 msgstr "QSO"
 
@@ -9026,6 +9054,7 @@ msgstr "Категория"
 #: application/views/statistics/custom_result.php:18
 #: application/views/statistics/index.php:35
 #: application/views/user/edit.php:154
+#: application/views/statistics/index.php:44
 msgid "General"
 msgstr "Общее"
 
@@ -11535,6 +11564,7 @@ msgstr "Возвышение"
 #: application/views/statistics/custom.php:12
 #: application/views/statistics/custom_result.php:12
 #: application/views/statistics/index.php:28
+#: application/views/statistics/index.php:29
 msgid "Explore the logbook."
 msgstr "Статистика журнала."
 
@@ -11564,6 +11594,7 @@ msgstr "Получено"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:59
 msgid "Years"
 msgstr "по годам"
 
@@ -11573,6 +11604,8 @@ msgstr "Количество QSO проведённых в каждом году
 
 #: application/views/statistics/index.php:62
 #: application/views/statistics/index.php:99
+#: application/views/statistics/index.php:71
+#: application/views/statistics/index.php:108
 msgid "Unique callsigns"
 msgstr "по уникальным позывным"
 
@@ -12720,6 +12753,10 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
+
+#: application/views/statistics/index.php:33
+msgid "All Years"
+msgstr ""
 
 #~ msgid "eMail"
 #~ msgstr "электронная почта"
