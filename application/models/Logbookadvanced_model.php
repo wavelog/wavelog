@@ -488,44 +488,46 @@ class Logbookadvanced_model extends CI_Model {
 		if(!$this->user_model->authorize(2)) {
 			return array('message' => 'Error');
 		} else {
-			if ($method != '') {
-				$data = array(
-					'COL_QSLSDATE' => date('Y-m-d H:i:s'),
-					'COL_QSL_SENT' => $sent,
-					'COL_QSL_SENT_VIA' => $method
-				);
-			} else {
-				$data = array(
-					'COL_QSLSDATE' => date('Y-m-d H:i:s'),
-					'COL_QSL_SENT' => $sent,
-				);
-			}
-			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
-			$this->db->where_in('COL_PRIMARY_KEY', json_decode($ids, true));
-			$this->db->update($this->config->item('table_name'), $data);
+			$sql = "UPDATE " . $this->config->item('table_name') ."
+				SET 
+				COL_QSLRDATE = CURRENT_TIMESTAMP,
+				COL_QSL_SENT = ?,
+				COL_QSL_SENT_VIA = ?,
+				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE 
+				WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
+				ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
+				END
+				WHERE COL_PRIMARY_KEY IN (".implode(',',json_decode($ids, true)).")";
+			$binding[] = $sent;
+			$binding[] = $method;
+			$this->db->query($sql, $binding);
 
 			return array('message' => 'OK');
 		}
 	}
 
 	public function updateQslReceived($ids, $user_id, $method, $sent) {
-        $this->load->model('user_model');
+		$this->load->model('user_model');
 
-        if(!$this->user_model->authorize(2)) {
-            return array('message' => 'Error');
-        } else {
-            $data = array(
-                'COL_QSLRDATE' => date('Y-m-d H:i:s'),
-                'COL_QSL_RCVD' => $sent,
-                'COL_QSL_RCVD_VIA' => $method
-            );
-			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
-            $this->db->where_in('COL_PRIMARY_KEY', json_decode($ids, true));
-            $this->db->update($this->config->item('table_name'), $data);
-
-            return array('message' => 'OK');
-        }
-    }
+		if(!$this->user_model->authorize(2)) {
+			return array('message' => 'Error');
+		} else {
+			$sql = "UPDATE " . $this->config->item('table_name') ."
+				SET 
+				COL_QSLRDATE = CURRENT_TIMESTAMP,
+				COL_QSL_RCVD = ?,
+				COL_QSL_RCVD_VIA = ?,
+				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE 
+				WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
+				ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
+				END
+				WHERE COL_PRIMARY_KEY IN (".implode(',',json_decode($ids, true)).")";
+			$binding[] = $sent;
+			$binding[] = $method;
+			$this->db->query($sql, $binding);
+			return array('message' => 'OK');
+		}
+	}
 
 	public function updateQsoWithCallbookInfo($qsoID, $qso, $callbook) {
 		$updatedData = array();
