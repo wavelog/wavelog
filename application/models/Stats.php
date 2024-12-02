@@ -114,8 +114,8 @@
 		}
 
 		$result['qsoView'] = $qsoView;
-		$result['satunique'] = $satcalls;
-		$result['modeunique'] = $modecalls;
+		$result['satunique'] = $satcalls ?? '';
+		$result['modeunique'] = $modecalls ?? '';
 		$result['total'] = $this->getUniqueSatCallsignsTotal($yr);
 
 		return $result;
