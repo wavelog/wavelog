@@ -629,7 +629,7 @@ class Logbook extends CI_Controller {
 			$this->db->from($this->config->item('table_name'));
 
 			$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME');
+			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME', 'left outer');
 			$this->db->where_in('station_profile.station_id', $logbooks_locations_array);
 
 			$this->db->group_start();
