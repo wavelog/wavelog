@@ -8,22 +8,34 @@ class Core
 	{
 		// Counter variable
 		$counter = 0;
+		$errors = [];
 
 		// Validate the hostname
 		if (isset($data['db_hostname']) and !empty($data['db_hostname'])) {
 			$counter++;
+		} else {
+			$errors[] = "DB Hostname is missing.";
 		}
+
 		// Validate the username
 		if (isset($data['db_username']) and !empty($data['db_username'])) {
 			$counter++;
+		} else {
+			$errors[] = "DB Username is missing.";
 		}
+
 		// Validate the password
 		if (isset($data['db_password']) and !empty($data['db_password'])) {
-			// pass
+			$counter++;
+		} else {
+			$errors[] = "DB Password is missing.";
 		}
+
 		// Validate the database
 		if (isset($data['db_name']) and !empty($data['db_name'])) {
 			$counter++;
+		} else {
+			$errors[] = "DB Name is missing.";
 		}
 
 		if ($data['directory'] ?? '' != "") {
@@ -31,36 +43,46 @@ class Core
 				//pass folders real
 				$counter++;
 			} else {
-				echo "Directory " . $data['directory'] . " cannot be found";
-				exit;
+				$errors[] = "Directory " . $data['directory'] . " does not exist.";
 			}
 		} else {
+			// directory is not set so nothing to check here
 			$counter++;
 		}
 
 		// Validate First Name
 		if (isset($data['firstname']) && !empty($data['firstname'])) {
 			$counter++;
+		} else {
+			$errors[] = "First Name is missing.";
 		}
 
 		// Validate Last Name
 		if (isset($data['lastname']) && !empty($data['lastname'])) {
 			$counter++;
+		} else {
+			$errors[] = "Last Name is missing.";
 		}
 
 		// Validate Username
 		if (isset($data['username']) && !empty($data['username'])) {
 			$counter++;
+		} else {
+			$errors[] = "Username is missing.";
 		}
 
 		// Validate Callsign
 		if (isset($data['callsign']) && !empty($data['callsign'])) {
 			$counter++;
+		} else {
+			$errors[] = "Callsign is missing.";
 		}
 
 		// Validate Password
 		if (isset($data['password']) && !empty($data['password'])) {
 			$counter++;
+		} else {
+			$errors[] = "User Password is missing.";
 		}
 
 		// Validate Locator
@@ -72,12 +94,14 @@ class Core
 				$errors[] = "Invalid Maidenhead Locator format.";
 			}
 		} else {
-			$errors[] = "Locator is required.";
+			$errors[] = "Locator is missing.";
 		}
 
 		// Validate Confirm Password
 		if (isset($data['cnfm_password']) && !empty($data['cnfm_password'])) {
 			$counter++;
+		} else {
+			$errors[] = "Confirm Password is missing.";
 		}
 
 		// Validate Email Address
@@ -90,18 +114,24 @@ class Core
 		// Validate Timezone
 		if (isset($data['timezone']) && is_numeric($data['timezone'])) {
 			$counter++;
+		} else {
+			$errors[] = "Invalid Timezone.";
 		}
 
 		// Check if all the required fields have been entered
-		if ($counter == '13') {
+		if ($counter == '14') {
+			log_message('info', 'Data validation passed.');
 			return true;
 		} else {
-			log_message('error', 'Failed to validate POST data');
+			log_message('error', 'Data validation failed.');
+			foreach ($errors as $error) {
+				log_message('error', $error);
+			}
 			return false;
 		}
 	}
 
-	// Function to write the config file
+	// Function to write the database config file
 	function write_config($data) {
 
 		$template_path 	= 'config/database.php';
@@ -114,8 +144,8 @@ class Core
 		$database_file = file_get_contents($template_path);
 
 		// Sanitize DB Password from single quotes
-		$sanitized_db_pwd = preg_replace("/\\\\/i",'\\\\\\\\',$data['db_password']);       // Escape the Escape char ( '\' becomes '\\' )
-		$sanitized_db_pwd = preg_replace("/\'/i",'\\\\\'',$sanitized_db_pwd);  // Escape the ' ( ' becomes \' )
+		$sanitized_db_pwd = preg_replace("/\\\\/i",'\\\\\\\\',$data['db_password']);       	// Escape the Escape char ( '\' becomes '\\' )
+		$sanitized_db_pwd = preg_replace("/\'/i",'\\\\\'',$sanitized_db_pwd);  				// Escape the ' ( ' becomes \' )
 
 		$new  = str_replace("%HOSTNAME%", $data['db_hostname'], $database_file);
 		$new  = str_replace("%USERNAME%", $data['db_username'], $new);
