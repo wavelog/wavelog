@@ -164,12 +164,12 @@ class Core
 		$new  = str_replace("%USERNAME%", $data['db_username'], $new);
 		$new  = str_replace("%PASSWORD%", $sanitized_db_pwd, $new);
 		$new  = str_replace("%DATABASE%", $data['db_name'], $new);
-		log_message('info', 'Database config file created successfully.');
+		log_message('info', 'Database config file prepared successfully. Writing to file...');
 
 		// Write the new database.php file
 		$handle = fopen($output_path, 'w+');
 		if ($handle === false) {
-			log_message('error', 'Failed to open newly created database.php file for writing check.');
+			log_message('error', 'Failed to open target path for writing the database.php file.');
 			return false;
 		}
 
@@ -188,7 +188,7 @@ class Core
 				return false;
 			}
 		} else {
-			log_message('error', 'database.php file is not writable.');
+			log_message('error', 'database.php path is not writable.');
 			return false;
 		}
 	}
@@ -200,15 +200,23 @@ class Core
 		$output_path 	= '../application/config/config.php';
 		if (isset($_ENV['CI_ENV'])) {
 			$output_path 	= '../application/config/'.$_ENV['CI_ENV'].'/config.php';
+			log_message('info', 'CI_ENV is set to ' . $_ENV['CI_ENV'] . '. Using ' . $_ENV['CI_ENV'] . ' config.php config path.');
+		} else {
+			log_message('info', 'CI_ENV is not set. Using default config.php config path.');
 		}
 
 		// Open the file
-		$database_file = file_get_contents($template_path);
+		$config_file = file_get_contents($template_path);
+		if ($config_file === false) {
+			log_message('error', 'Failed to read config.php template file.');
+			return false;
+		}
+		log_message('info', 'config.php template file read successfully.');
 
 		// creating a unique encryption key
 		$encryptionkey = uniqid(bin2hex(random_bytes(8)), false);
 
-		$new  = str_replace("%baselocator%", strtoupper($data['userlocator']), $database_file);
+		$new  = str_replace("%baselocator%", strtoupper($data['userlocator']), $config_file);
 		$new  = str_replace("%websiteurl%", $data['websiteurl'], $new);
 		$new  = str_replace("%directory%", $data['directory'], $new);
 		$new  = str_replace("%callbook%", $data['global_call_lookup'], $new);
@@ -237,24 +245,31 @@ class Core
 
 		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
 		$new = str_replace("'%log_threshold%'", $data['log_threshold'], $new);
+		log_message('info', 'Config.php file prepared successfully. Writing to file...');
 
 		// Write the new config.php file
 		$handle = fopen($output_path, 'w+');
+		if ($handle === false) {
+			log_message('error', 'Failed to open target path for writing the config.php file.');
+			return false;
+		}
 
 		// Verify file permissions
 		if (is_writable($output_path)) {
-
 			// Write the file
 			if (fwrite($handle, $new)) {
 				if(file_exists($output_path)) {
+					log_message('info', 'config.php file written successfully.');
 					return true;
 				} else {
+					log_message('error', 'config.php file not found after writing.');
 					return false;
 				}
 			} else {
 				return false;
 			}
 		} else {
+			log_message('error', 'config.php path is not writable.');
 			return false;
 		}
 	}
