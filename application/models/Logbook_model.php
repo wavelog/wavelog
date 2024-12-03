@@ -3002,6 +3002,28 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Return total number of FM QSOs */
+	function total_am($yr = 'All') {
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$this->db->select('COUNT( * ) as count', FALSE);
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->where('COL_MODE', 'AM');
+		$this->where_year($yr);
+		$query = $this->db->get($this->config->item('table_name'));
+
+		if ($query->num_rows() > 0) {
+			foreach ($query->result() as $row) {
+				return $row->count;
+			}
+		}
+	}
+
 	function total_fm($yr = 'All') {
 
 		$this->load->model('logbooks_model');
