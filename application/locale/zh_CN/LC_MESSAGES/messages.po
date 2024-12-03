@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-02 17:59+0000\n"
+"POT-Creation-Date: 2024-12-03 08:08+0000\n"
 "PO-Revision-Date: 2024-12-03 08:08+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -10058,10 +10058,12 @@ msgid "Satellite Display Name"
 msgstr "卫星显示名称"
 
 #: application/views/satellite/create.php:25
-msgid "Display / cleartext name of the satellite."
-msgstr "显示 / 明文的卫星名称。"
+#: application/views/satellite/edit.php:9
+msgid "Display / cleartext name of the satellite"
+msgstr ""
 
 #: application/views/satellite/create.php:28
+#: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:21
 msgid "LoTW Name"
 msgstr "LoTW 名称"
@@ -10136,14 +10138,6 @@ msgstr "只有卫星被我的LoTW接受时才设置为是"
 #: application/views/satellite/edit.php:7
 msgid "Satellite Display Name "
 msgstr "卫星显示名称 "
-
-#: application/views/satellite/edit.php:9
-msgid " Display / cleartext name of the satellite"
-msgstr " 显示/明文卫星名称"
-
-#: application/views/satellite/edit.php:12
-msgid "LoTW name"
-msgstr "LoTW 名称"
 
 #: application/views/satellite/edit.php:38
 msgid "Save satellite"
@@ -12339,10 +12333,14 @@ msgstr "您的呼号："
 msgid "Submit Request"
 msgstr "提交请求"
 
-#: application/views/satellite/create.php:25
-#: application/views/satellite/edit.php:9
-msgid "Display / cleartext name of the satellite"
-msgstr ""
+#~ msgid "Display / cleartext name of the satellite."
+#~ msgstr "显示 / 明文的卫星名称。"
+
+#~ msgid " Display / cleartext name of the satellite"
+#~ msgstr " 显示/明文卫星名称"
+
+#~ msgid "LoTW name"
+#~ msgstr "LoTW 名称"
 
 #~ msgid "Satellite name"
 #~ msgstr "卫星名称"

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-02 17:59+0000\n"
+"POT-Creation-Date: 2024-12-03 08:08+0000\n"
 "PO-Revision-Date: 2024-12-03 08:08+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -10402,10 +10402,12 @@ msgid "Satellite Display Name"
 msgstr "Nome de Exibição do Satélite"
 
 #: application/views/satellite/create.php:25
-msgid "Display / cleartext name of the satellite."
-msgstr "Nome / nome em texto claro do satélite."
+#: application/views/satellite/edit.php:9
+msgid "Display / cleartext name of the satellite"
+msgstr ""
 
 #: application/views/satellite/create.php:28
+#: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:21
 msgid "LoTW Name"
 msgstr "Nome do LoTW"
@@ -10482,14 +10484,6 @@ msgstr "Defina para sim apenas se o satélite for aceite pelo meu LoTW"
 #: application/views/satellite/edit.php:7
 msgid "Satellite Display Name "
 msgstr "Nome de Exibição do Satélite "
-
-#: application/views/satellite/edit.php:9
-msgid " Display / cleartext name of the satellite"
-msgstr " Nome / nome em texto claro do satélite"
-
-#: application/views/satellite/edit.php:12
-msgid "LoTW name"
-msgstr "Nome do LoTW"
 
 #: application/views/satellite/edit.php:38
 msgid "Save satellite"
@@ -12808,10 +12802,14 @@ msgstr "O seu indicativo:"
 msgid "Submit Request"
 msgstr "Submeter pedido"
 
-#: application/views/satellite/create.php:25
-#: application/views/satellite/edit.php:9
-msgid "Display / cleartext name of the satellite"
-msgstr ""
+#~ msgid "Display / cleartext name of the satellite."
+#~ msgstr "Nome / nome em texto claro do satélite."
+
+#~ msgid " Display / cleartext name of the satellite"
+#~ msgstr " Nome / nome em texto claro do satélite"
+
+#~ msgid "LoTW name"
+#~ msgstr "Nome do LoTW"
 
 #~ msgid "Satellite name"
 #~ msgstr "Nome do satélite"
