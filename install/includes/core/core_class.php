@@ -155,9 +155,6 @@ class Core
 		// Write the new database.php file
 		$handle = fopen($output_path, 'w+');
 
-		// Chmod the file, in case the user forgot
-		@chmod($output_path, 0777);
-
 		// Verify file permissions
 		if (is_writable($output_path)) {
 
