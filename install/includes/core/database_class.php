@@ -92,7 +92,15 @@ class Database {
 				throw new Exception(__("Database is not empty."));
 			}
 			
-			$mysql_version = $link->server_info;
+			$version_query = $link->query("SELECT VERSION() as version")->fetch_assoc();  // $link->server_info sometimes returns wrong version or additional (in this case unnecessary) information, e.g. 5.5.5-10.3.29-MariaDB-0+deb10u1
+			if (!$version_query) {
+				throw new Exception(__("Unable to get Database version: ") . $link->error);
+			}
+			if (!isset($version_query['version'])) {
+				throw new Exception(__("Database version could not be retrieved."));
+			}
+			$mysql_version = $version_query['version'];
+
 			
 			$link->close();
 			
