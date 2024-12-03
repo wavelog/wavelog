@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-03 08:08+0000\n"
+"POT-Creation-Date: 2024-12-03 15:27+0000\n"
 "PO-Revision-Date: 2024-11-16 17:03+0000\n"
 "Last-Translator: Samir <DL4DCO@users.noreply.translate.wavelog.org>\n"
 "Language-Team: Bosnian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -154,21 +154,25 @@ msgstr ""
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:36
+#: application/controllers/Visitor.php:390
 msgid "Fields"
 msgstr ""
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:37
+#: application/controllers/Visitor.php:391
 msgid "Fields confirmed"
 msgstr ""
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:38
+#: application/controllers/Visitor.php:392
 msgid "Fields not confirmed"
 msgstr ""
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:39
+#: application/controllers/Visitor.php:393
 msgid "Total fields worked"
 msgstr ""
 
@@ -2001,7 +2005,7 @@ msgstr ""
 
 #: application/controllers/Simplefle.php:90
 #: application/controllers/Simplefle.php:93
-#: application/models/Logbook_model.php:4468
+#: application/models/Logbook_model.php:4490
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr ""
@@ -2014,7 +2018,7 @@ msgstr ""
 #: application/controllers/Visitor.php:148
 #: application/controllers/Visitor.php:175
 #: application/controllers/Visitor.php:210
-#: application/controllers/Visitor.php:471
+#: application/controllers/Visitor.php:476
 #: application/controllers/Widgets.php:40
 msgid "Unknown Public Page."
 msgstr ""
@@ -2023,7 +2027,7 @@ msgstr ""
 #: application/controllers/Visitor.php:76
 #: application/controllers/Visitor.php:171
 #: application/controllers/Visitor.php:206
-#: application/controllers/Visitor.php:467
+#: application/controllers/Visitor.php:472
 #: application/controllers/Widgets.php:36
 msgid "Empty Logbook"
 msgstr ""
@@ -2218,13 +2222,13 @@ msgstr ""
 msgid "Custom Statistics"
 msgstr ""
 
-#: application/controllers/Statistics.php:251
+#: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:138
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr ""
 
-#: application/controllers/Statistics.php:266
+#: application/controllers/Statistics.php:268
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
@@ -2405,12 +2409,12 @@ msgstr ""
 msgid "Satellite Gridsquare Map"
 msgstr ""
 
-#: application/controllers/Visitor.php:405
+#: application/controllers/Visitor.php:410
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Public Search"
 msgstr ""
 
-#: application/controllers/Visitor.php:438
+#: application/controllers/Visitor.php:443
 msgid "Export Map"
 msgstr ""
 
@@ -2546,71 +2550,71 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:3788
+#: application/models/Logbook_model.php:3810
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:3789
+#: application/models/Logbook_model.php:3811
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 
-#: application/models/Logbook_model.php:3801
+#: application/models/Logbook_model.php:3823
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:3801
+#: application/models/Logbook_model.php:3823
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4100
+#: application/models/Logbook_model.php:4122
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4111
+#: application/models/Logbook_model.php:4133
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4164
+#: application/models/Logbook_model.php:4186
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4184
+#: application/models/Logbook_model.php:4206
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4205
+#: application/models/Logbook_model.php:4227
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4529
+#: application/models/Logbook_model.php:4551
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4535
+#: application/models/Logbook_model.php:4557
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4540
+#: application/models/Logbook_model.php:4562
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4543
+#: application/models/Logbook_model.php:4565
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4546
+#: application/models/Logbook_model.php:4568
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4549
+#: application/models/Logbook_model.php:4571
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4552
+#: application/models/Logbook_model.php:4574
 #: application/views/view_log/qso.php:290
 msgid "unknown"
 msgstr ""
