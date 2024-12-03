@@ -138,10 +138,23 @@ class Core
 		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/database.php';
 		if (isset($_ENV['CI_ENV'])) {
 			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/'.$_ENV['CI_ENV'].'/database.php';
+			log_message('info', 'CI_ENV is set to ' . $_ENV['CI_ENV'] . '. Using ' . $_ENV['CI_ENV'] . ' database.php config path.');
+		} else {
+			log_message('info', 'CI_ENV is not set. Using default database.php config path.');
+		}
+
+		if (!file_exists($template_path)) {
+			log_message('error', 'database.php template file not found.');
+			return false;
 		}
 
 		// Open the file
 		$database_file = file_get_contents($template_path);
+		if ($database_file === false) {
+			log_message('error', 'Failed to read database.php template file.');
+			return false;
+		}
+		log_message('info', 'database.php template file read successfully.');
 
 		// Sanitize DB Password from single quotes
 		$sanitized_db_pwd = preg_replace("/\\\\/i",'\\\\\\\\',$data['db_password']);       	// Escape the Escape char ( '\' becomes '\\' )
@@ -151,24 +164,31 @@ class Core
 		$new  = str_replace("%USERNAME%", $data['db_username'], $new);
 		$new  = str_replace("%PASSWORD%", $sanitized_db_pwd, $new);
 		$new  = str_replace("%DATABASE%", $data['db_name'], $new);
+		log_message('info', 'Database config file created successfully.');
 
 		// Write the new database.php file
 		$handle = fopen($output_path, 'w+');
+		if ($handle === false) {
+			log_message('error', 'Failed to open newly created database.php file for writing check.');
+			return false;
+		}
 
 		// Verify file permissions
 		if (is_writable($output_path)) {
-
 			// Write the file
 			if (fwrite($handle, $new)) {
 				if(file_exists($output_path)) {
+					log_message('info', 'database.php file written successfully.');
 					return true;
 				} else {
+					log_message('error', 'database.php file not found after writing.');
 					return false;
 				}
 			} else {
 				return false;
 			}
 		} else {
+			log_message('error', 'database.php file is not writable.');
 			return false;
 		}
 	}
