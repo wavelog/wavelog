@@ -8,11 +8,16 @@ class Database {
 		$mysqli = new mysqli($data['db_hostname'], $data['db_username'], $data['db_password'], $data['db_name']);
 
 		// Check for errors
-		if (mysqli_connect_errno())
+		if (mysqli_connect_errno()) {
+			log_message('error', 'Database connection error: ' . mysqli_connect_error());
 			return false;
+		}
 
 		// Open the default SQL file
-		$query = file_get_contents('assets/install.sql');
+		if (!$query = file_get_contents('assets/install.sql')) {
+			log_message('error', 'Failed to read install.sql file.');
+			return false;
+		}
 
 		$newpw = password_hash($data['password'], PASSWORD_DEFAULT);
 		$newquery  = str_replace("%%FIRSTUSER_NAME%%", str_replace("'", "\\'", $data['username']), $query);
@@ -26,24 +31,37 @@ class Database {
 		$newquery  = str_replace("%%FIRSTUSER_DXCC%%", $data['dxcc'], $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_CITY%%", str_replace("'", "\\'", $data['city']), $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_USERLANGUAGE%%", $data['userlanguage'], $newquery);
+		log_message('info', 'SQL queries prepared successfully. Writing to database...');
 
 
 		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-		// Execute a multi query
-		$mysqli->multi_query($newquery);
+		try {
+			// Execute a multi query
+			$mysqli->multi_query($newquery);
 
-		// MultiQuery is NON-Blocking,so wait until everything is done
-		do {
-			null;
-		} while ($mysqli->next_result());
+			// MultiQuery is NON-Blocking,so wait until everything is done
+			do {
+				null;
+			} while ($mysqli->next_result());
 
-		$result = $mysqli->store_result();
+			$mysqli->store_result();
 
-		// Close the connection
-		$mysqli->close();
+			// Close the connection
+			$mysqli->close();
 
-		return true;
+			log_message('info', 'Database tables created successfully.');
+			return true;
+
+		} catch (mysqli_sql_exception $e) {
+			log_message('error', 'Database Error: ' . $e->getMessage());
+
+			if ($mysqli->ping()) {
+				$mysqli->close();
+			}
+
+			return false;
+		}
 	}
 
 	function database_check($data) {
@@ -80,6 +98,7 @@ class Database {
 			
 			return $mysql_version;
 		} catch (Exception $e) {
+			log_message('error', 'Database Check Error: ' . $e->getMessage());
 			return 'Error: ' . $e->getMessage();
 		}
 	}
