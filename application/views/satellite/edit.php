@@ -6,10 +6,10 @@
 			<div class="mb-3 col-md-6">
 				<label for="displayNameInput"><?= __("Satellite Display Name "); ?></label>
 				<input type="text" class="form-control" name="displayNameInput" id="displayNameInput" aria-describedby="displayNameInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->displayname; } ?>" required>
-				<small id="displayNameInputHelp" class="form-text text-muted"><?= __(" Display / cleartext name of the satellite"); ?></small>
+				<small id="displayNameInputHelp" class="form-text text-muted"><?= __("Display / cleartext name of the satellite"); ?></small>
 			</div>
 			<div class="mb-3 col-md-6">
-				<label for="nameInput"><?= __("LoTW name"); ?></label>
+				<label for="nameInput"><?= __("LoTW Name"); ?></label>
 				<input type="text" class="form-control" name="nameInput" id="nameInput" aria-describedby="nameInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->name; } ?>" required>
 				<small id="nameInputHelp" class="form-text text-muted"><?= __("Satellite name as accepted by LoTW. Not necessarily the same as the display name. Can be set/changed later when added to LoTW."); ?></small>
 			</div>

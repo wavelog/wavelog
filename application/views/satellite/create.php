@@ -22,7 +22,7 @@
 			<div class="mb-3 col-md-6">
 				<label for="displayNameInput"><?= __("Satellite Display Name"); ?></label>
 				<input type="text" class="form-control" name="displayNameInput" id="displayNameInput" aria-describedby="displayNameInputHelp" required>
-				<small id="displayNameInputHelp" class="form-text text-muted"><?= __("Display / cleartext name of the satellite."); ?></small>
+				<small id="displayNameInputHelp" class="form-text text-muted"><?= __("Display / cleartext name of the satellite"); ?></small>
 			</div>
 			<div class="mb-3 col-md-6">
 				<label for="nameInput"><?= __("LoTW Name"); ?></label>
