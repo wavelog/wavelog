@@ -122,8 +122,8 @@ class Statistics extends CI_Controller {
 		$modestats[$i++]['total'] = $this->logbook_model->total_cw($yr);
 		$modestats[$i]['mode'] = 'fm';
 		$modestats[$i++]['total'] = $this->logbook_model->total_fm($yr);
-		$modestats[$i]['mode'] = 'others';
-		$modestats[$i++]['total'] = $this->logbook_model->total_others($yr);
+		$modestats[$i]['mode'] = 'am';
+		$modestats[$i++]['total'] = $this->logbook_model->total_am($yr);
 		$modestats[$i]['mode'] = 'digi';
 		$modestats[$i]['total'] = $this->logbook_model->total_digi($yr);
 		usort($modestats, fn($a, $b) => $b['total'] <=> $a['total']);
