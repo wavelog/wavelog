@@ -496,6 +496,9 @@ $options = json_decode($options);
         <div class="quickfilterbody collapse">
             <div class="mb-2 btn-group">
                 <span class="h6 me-1"><?= __("Quicksearch with selected: "); ?></span>
+				<?php if (($options->datetime->show ?? "true") == "true") { ?>
+                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchDate"><?= __("Search Date"); ?></button><?php
+                                                                                                                                    } ?>
                 <?php if (($options->dx->show ?? "true") == "true") { ?>
                     <button type="button" class="btn btn-sm btn-primary me-1" id="searchCallsign"><?= __("Search Callsign"); ?></button><?php
                                                                                                                                     } ?>
