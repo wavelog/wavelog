@@ -201,7 +201,7 @@
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
-                url: 'ajaxx.php',
+                url: 'ajax.php',
                 data: {
                     data: _POST,
                     run_database_file: 1
@@ -305,7 +305,7 @@
                         resolve();
                     } else {
                         running(field, false, true);
-                        await log_message('error', 'Could not update DXCC data.');
+                        await log_message('error', 'Could not update DXCC data. Check application/logs for any error messages.');
                         reject("<?= __("Could not update DXCC data"); ?>");
                     }
                 },
