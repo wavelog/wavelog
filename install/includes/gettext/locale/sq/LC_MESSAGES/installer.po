@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-28 07:17+0000\n"
+"POT-Creation-Date: 2024-12-04 16:45+0000\n"
 "PO-Revision-Date: 2024-08-12 11:59+0000\n"
 "Last-Translator: Dren Imeraj <dren.imeraj@hotmail.com>\n"
 "Language-Team: Albanian <https://translate.wavelog.org/projects/wavelog/"
@@ -19,21 +19,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.6.2\n"
 
-#: install/includes/core/database_class.php:59
+#: install/includes/core/database_class.php:77
 msgid "Connection Error: "
 msgstr "Gabim në lidhje: "
 
-#: install/includes/core/database_class.php:63
+#: install/includes/core/database_class.php:81
 msgid "Unable to create database: "
 msgstr "Nuk mund të krijohet baza e të dhënave: "
 
-#: install/includes/core/database_class.php:68
+#: install/includes/core/database_class.php:85
 msgid "Unable to select database: "
 msgstr "Nuk mund të zgjidhet baza e të dhënave: "
 
-#: install/includes/core/database_class.php:74
+#: install/includes/core/database_class.php:91
 msgid "Database is not empty."
 msgstr "Baza e të dhënave nuk është e zbrazët."
+
+#: install/includes/core/database_class.php:96
+msgid "Unable to get Database version: "
+msgstr ""
+
+#: install/includes/core/database_class.php:99
+msgid "Database version could not be retrieved."
+msgstr ""
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"

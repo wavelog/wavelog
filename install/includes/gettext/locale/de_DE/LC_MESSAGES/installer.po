@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-28 07:17+0000\n"
+"POT-Creation-Date: 2024-12-04 16:45+0000\n"
 "PO-Revision-Date: 2024-10-17 14:28+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
@@ -23,21 +23,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.7.2\n"
 
-#: install/includes/core/database_class.php:59
+#: install/includes/core/database_class.php:77
 msgid "Connection Error: "
 msgstr "Verbindungsfehler: "
 
-#: install/includes/core/database_class.php:63
+#: install/includes/core/database_class.php:81
 msgid "Unable to create database: "
 msgstr "Datenbank konnte nicht erstellt werden: "
 
-#: install/includes/core/database_class.php:68
+#: install/includes/core/database_class.php:85
 msgid "Unable to select database: "
 msgstr "Datenbank kann nicht ausgewählt werden: "
 
-#: install/includes/core/database_class.php:74
+#: install/includes/core/database_class.php:91
 msgid "Database is not empty."
 msgstr "Datenbank ist nicht leer."
+
+#: install/includes/core/database_class.php:96
+msgid "Unable to get Database version: "
+msgstr ""
+
+#: install/includes/core/database_class.php:99
+msgid "Database version could not be retrieved."
+msgstr ""
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
