@@ -348,8 +348,10 @@ class CI_Migration {
 				log_message('debug', 'Finished migrating to '.$current_version);
 
 				// After the migrations we can remove the lockfile
-				unlink($this->_migration_lockfile);
-				log_message('debug', 'Deleted migration lockfile');
+				if (file_exists($this->_migration_lockfile)) {
+					unlink($this->_migration_lockfile);
+					log_message('debug', 'Deleted migration lockfile');
+				}
 
 			} else {
 				log_message('error', 'Failed to create Migration Lockfile. Check directory permissions.');
