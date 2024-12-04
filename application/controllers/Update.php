@@ -211,7 +211,7 @@ class Update extends CI_Controller {
         $gz = gzopen($url, 'r');
         if ($gz === FALSE) {
             $this->update_status("FAILED: Could not download from clublog.org");
-            log_message('error', 'FAILED: Could not download exceptions from clublog.org');
+            log_message('error', 'FAILED: Could not download data from clublog.org');
             exit();
         }
 
@@ -223,6 +223,7 @@ class Update extends CI_Controller {
 
         if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
             $this->update_status("FAILED: Could not write to cty.xml file");
+			log_message('error', 'DXCC UPDATE FAILED: Could not write to cty.xml file');
             exit();
         }
 
