@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-04 16:45+0000\n"
+"POT-Creation-Date: 2024-12-04 21:58+0000\n"
 "PO-Revision-Date: 2024-09-27 16:01+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
@@ -20,30 +20,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.7.2\n"
-
-#: install/includes/core/database_class.php:77
-msgid "Connection Error: "
-msgstr "Greška u spajanju: "
-
-#: install/includes/core/database_class.php:81
-msgid "Unable to create database: "
-msgstr "Nemoguće je napraviti bazu podataka: "
-
-#: install/includes/core/database_class.php:85
-msgid "Unable to select database: "
-msgstr "Nemoguće je izabrati bazu podataka: "
-
-#: install/includes/core/database_class.php:91
-msgid "Database is not empty."
-msgstr "Baza podataka nije prazna."
-
-#: install/includes/core/database_class.php:96
-msgid "Unable to get Database version: "
-msgstr ""
-
-#: install/includes/core/database_class.php:99
-msgid "Database version could not be retrieved."
-msgstr ""
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -826,6 +802,18 @@ msgstr "Ne mogu ažurirati DXCC podatke"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Ne mogu kreirati install/.lock datoteku"
+
+#~ msgid "Connection Error: "
+#~ msgstr "Greška u spajanju: "
+
+#~ msgid "Unable to create database: "
+#~ msgstr "Nemoguće je napraviti bazu podataka: "
+
+#~ msgid "Unable to select database: "
+#~ msgstr "Nemoguće je izabrati bazu podataka: "
+
+#~ msgid "Database is not empty."
+#~ msgstr "Baza podataka nije prazna."
 
 #~ msgctxt "DXCC Select - No DXCC"
 #~ msgid "- NONE - (e.g. /MM, /AM)"
