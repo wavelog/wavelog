@@ -120,6 +120,7 @@ class Migration_rename_satellites extends CI_Migration {
 	);
 
 	public function up() {
+		$this->add_ix('TMP_HRD_IDX_COL_SAT_NAME','`COL_SAT_NAME`');
 		if ($this->db->table_exists('satellite')) {
 
 			foreach ($this->satellites as $exportname => $name) {
@@ -164,9 +165,11 @@ class Migration_rename_satellites extends CI_Migration {
 			);
 			$this->dbforge->modify_column('satellite', $fields);
 		}
+		$this->rm_ix('TMP_HRD_IDX_COL_SAT_NAME');
 	}
 
 	public function down() {
+		$this->add_ix('TMP_HRD_IDX_COL_SAT_NAME','`COL_SAT_NAME`');
 		if ($this->db->table_exists('satellite')) {
 
 			$fields = array(
@@ -190,6 +193,7 @@ class Migration_rename_satellites extends CI_Migration {
 		}
 		$this->remove_sat("SONATE");
 		$this->remove_sat("MO-122");
+		$this->rm_ix('TMP_HRD_IDX_COL_SAT_NAME');
 	}
 
 	function update_sat_table($from, $to) {
@@ -246,6 +250,22 @@ class Migration_rename_satellites extends CI_Migration {
 		$this->db->delete('satellitemode');
 		$this->db->where_in('id', $ids);
 		$this->db->delete('satellite');
+	}
+
+	private function add_ix($index,$cols) {
+		$ix_exist = $this->db->query("SHOW INDEX FROM ".$this->config->item('table_name')." WHERE Key_name = '".$index."'")->num_rows();
+		if ($ix_exist == 0) {
+			$sql = "ALTER TABLE ".$this->config->item('table_name')." ADD INDEX `".$index."` (".$cols.");";
+			$this->db->query($sql);
+		}
+	}
+
+	private function rm_ix($index) {
+		$ix_exist = $this->db->query("SHOW INDEX FROM ".$this->config->item('table_name')." WHERE Key_name = '".$index."'")->num_rows();
+		if ($ix_exist >= 1) {
+			$sql = "ALTER TABLE ".$this->config->item('table_name')." DROP INDEX `".$index."`;";
+			$this->db->query($sql);
+		}
 	}
 
 }
