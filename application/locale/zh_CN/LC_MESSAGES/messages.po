@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-03 08:08+0000\n"
+"POT-Creation-Date: 2024-12-04 09:36+0000\n"
 "PO-Revision-Date: 2024-12-03 12:03+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -64,7 +64,7 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
 #: application/controllers/Lotw.php:377 application/controllers/Lotw.php:400
-#: application/controllers/Lotw.php:725 application/controllers/Lotw.php:829
+#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:834
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Options.php:15 application/controllers/Oqrs.php:15
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:282
@@ -115,7 +115,6 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1046
 #: application/controllers/User.php:1248
 #: application/controllers/User_options.php:9
-#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:834
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -1564,29 +1563,27 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:731 application/controllers/Lotw.php:735
+#: application/controllers/Lotw.php:735
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
-#: application/controllers/Lotw.php:757 application/controllers/Lotw.php:864
 #: application/controllers/Lotw.php:761 application/controllers/Lotw.php:869
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Lotw.php:831 application/controllers/Lotw.php:836
+#: application/controllers/Lotw.php:836
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 导入"
 
-#: application/controllers/Lotw.php:909 application/controllers/Lotw.php:914
+#: application/controllers/Lotw.php:914
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "LoTW 用户名/密码错误。"
 
-#: application/controllers/Lotw.php:928 application/controllers/Lotw.php:933
-#: application/controllers/Lotw.php:938
+#: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 已发送"
 
-#: application/controllers/Lotw.php:940 application/controllers/Lotw.php:945
+#: application/controllers/Lotw.php:945
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
@@ -1893,13 +1890,12 @@ msgstr "默认（点击释放）"
 #: application/views/interface_assets/footer.php:559
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:581
-#: application/views/mode/index.php:64 application/views/satellite/edit.php:52
+#: application/views/mode/index.php:64 application/views/satellite/edit.php:56
 #: application/views/satellite/index.php:26
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:50
-#: application/views/satellite/edit.php:56
 msgid "Edit"
 msgstr "编辑"
 
@@ -1916,7 +1912,7 @@ msgstr "编辑"
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
-#: application/views/satellite/edit.php:53
+#: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:27
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
@@ -1924,7 +1920,6 @@ msgstr "编辑"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:55
 #: application/views/view_log/qso.php:732
-#: application/views/satellite/edit.php:57
 msgid "Delete"
 msgstr "删除"
 
@@ -2014,9 +2009,8 @@ msgstr "QSO 尚未在 LoTW 确认，但已在 QSO 日期后上传呼号"
 
 #: application/controllers/Simplefle.php:90
 #: application/controllers/Simplefle.php:93
-#: application/models/Logbook_model.php:4468
-#: application/views/simplefle/index.php:40
 #: application/models/Logbook_model.php:4490
+#: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "内容重复"
 
@@ -2028,9 +2022,8 @@ msgstr "内容重复"
 #: application/controllers/Visitor.php:148
 #: application/controllers/Visitor.php:175
 #: application/controllers/Visitor.php:210
-#: application/controllers/Visitor.php:471
-#: application/controllers/Widgets.php:40
 #: application/controllers/Visitor.php:476
+#: application/controllers/Widgets.php:40
 msgid "Unknown Public Page."
 msgstr "公开页面未知。"
 
@@ -2038,9 +2031,8 @@ msgstr "公开页面未知。"
 #: application/controllers/Visitor.php:76
 #: application/controllers/Visitor.php:171
 #: application/controllers/Visitor.php:206
-#: application/controllers/Visitor.php:467
-#: application/controllers/Widgets.php:36
 #: application/controllers/Visitor.php:472
+#: application/controllers/Widgets.php:36
 msgid "Empty Logbook"
 msgstr "日志为空"
 
@@ -2234,17 +2226,15 @@ msgstr "统计"
 msgid "Custom Statistics"
 msgstr "自定义统计"
 
-#: application/controllers/Statistics.php:251
+#: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:138
 #: application/views/statistics/qsltable.php:5
-#: application/controllers/Statistics.php:253
 msgid "QSL Statistics"
 msgstr "QSL 统计信息"
 
-#: application/controllers/Statistics.php:266
+#: application/controllers/Statistics.php:268
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/antennaanalytics.php:3
-#: application/controllers/Statistics.php:268
 msgid "Antenna Analytics"
 msgstr "天线分析"
 
@@ -2425,13 +2415,11 @@ msgstr "切换的用户不存在"
 msgid "Satellite Gridsquare Map"
 msgstr "卫星网格地图"
 
-#: application/controllers/Visitor.php:405
-#: application/views/stationsetup/stationsetup.php:35
 #: application/controllers/Visitor.php:410
+#: application/views/stationsetup/stationsetup.php:35
 msgid "Public Search"
 msgstr "公开搜索"
 
-#: application/controllers/Visitor.php:438
 #: application/controllers/Visitor.php:443
 msgid "Export Map"
 msgstr "导出地图"
@@ -2568,88 +2556,72 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:3788
 #: application/models/Logbook_model.php:3810
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:3789
 #: application/models/Logbook_model.php:3811
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
-#: application/models/Logbook_model.php:3801
 #: application/models/Logbook_model.php:3823
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:3801
 #: application/models/Logbook_model.php:3823
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
 
-#: application/models/Logbook_model.php:4100
 #: application/models/Logbook_model.php:4122
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4111
 #: application/models/Logbook_model.php:4133
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4164
 #: application/models/Logbook_model.php:4186
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4184
 #: application/models/Logbook_model.php:4206
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4205
 #: application/models/Logbook_model.php:4227
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4529
 #: application/models/Logbook_model.php:4551
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4535
 #: application/models/Logbook_model.php:4557
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4540
 #: application/models/Logbook_model.php:4562
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4543
 #: application/models/Logbook_model.php:4565
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4546
 #: application/models/Logbook_model.php:4568
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4549
 #: application/models/Logbook_model.php:4571
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4552
-#: application/views/view_log/qso.php:290
 #: application/models/Logbook_model.php:4574
+#: application/views/view_log/qso.php:290
 msgid "unknown"
 msgstr "未知"
 
@@ -3750,9 +3722,8 @@ msgstr "如用于描述用途的名字。"
 #: application/views/options/oqrs.php:63
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
-#: application/views/satellite/create.php:78
-#: application/views/simplefle/index.php:22
 #: application/views/satellite/create.php:82
+#: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "保存"
 
@@ -4633,7 +4604,7 @@ msgstr "显示IOTA地图"
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:54
 #: application/views/qso/edit_ajax.php:170 application/views/qso/index.php:195
-#: application/views/satellite/edit.php:47
+#: application/views/satellite/edit.php:51
 #: application/views/search/result.php:16
 #: application/views/search/search_result_ajax.php:19
 #: application/views/stationsetup/stationsetup.php:30
@@ -4644,7 +4615,6 @@ msgstr "显示IOTA地图"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:217
 #: application/views/view_log/qso.php:630
-#: application/views/satellite/edit.php:51
 msgid "Name"
 msgstr "名称"
 
@@ -5495,9 +5465,9 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:533
 #: application/views/qso/edit_ajax.php:549
 #: application/views/qso/edit_ajax.php:563 application/views/qso/index.php:605
-#: application/views/satellite/create.php:71
-#: application/views/satellite/edit.php:27
-#: application/views/satellite/edit.php:30
+#: application/views/satellite/create.php:75
+#: application/views/satellite/edit.php:31
+#: application/views/satellite/edit.php:34
 #: application/views/satellite/index.php:56
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
@@ -5518,9 +5488,6 @@ msgstr ""
 #: application/views/user/edit.php:419 application/views/user/edit.php:430
 #: application/views/user/edit.php:540 application/views/user/edit.php:802
 #: application/views/user/edit.php:834 application/views/user/edit.php:859
-#: application/views/satellite/create.php:75
-#: application/views/satellite/edit.php:31
-#: application/views/satellite/edit.php:34
 msgid "Yes"
 msgstr "是"
 
@@ -5547,9 +5514,9 @@ msgstr "是"
 #: application/views/qso/edit_ajax.php:532
 #: application/views/qso/edit_ajax.php:548
 #: application/views/qso/edit_ajax.php:562 application/views/qso/index.php:604
-#: application/views/satellite/create.php:72
-#: application/views/satellite/edit.php:28
-#: application/views/satellite/edit.php:31
+#: application/views/satellite/create.php:76
+#: application/views/satellite/edit.php:32
+#: application/views/satellite/edit.php:35
 #: application/views/satellite/index.php:59
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
@@ -5571,9 +5538,6 @@ msgstr "是"
 #: application/views/user/edit.php:522 application/views/user/edit.php:526
 #: application/views/user/edit.php:541 application/views/user/edit.php:803
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
-#: application/views/satellite/create.php:76
-#: application/views/satellite/edit.php:32
-#: application/views/satellite/edit.php:35
 msgid "No"
 msgstr "否"
 
@@ -10116,80 +10080,60 @@ msgid ""
 msgstr ""
 "LoTW接受的卫星名称。不一定与显示名称相同。稍后添加到LoTW时可以设置/更改。"
 
-#: application/views/satellite/create.php:37
-#: application/views/satellite/edit.php:21
 #: application/views/satellite/create.php:41
 #: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
 msgstr "输入卫星轨道名称（LEO, MEO, GEO）"
 
-#: application/views/satellite/create.php:40
 #: application/views/satellite/create.php:44
 msgid "Satellite mode name"
 msgstr "卫星模式名称"
 
-#: application/views/satellite/create.php:42
 #: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
 msgstr "输入卫星的模式"
 
-#: application/views/satellite/create.php:47
-#: application/views/satellite/edit.php:48
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
 msgid "Uplink mode"
 msgstr "上行模式"
 
-#: application/views/satellite/create.php:49
 #: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
 msgstr "输入上行的调制方式"
 
-#: application/views/satellite/create.php:52
-#: application/views/satellite/edit.php:49
 #: application/views/satellite/create.php:56
 #: application/views/satellite/edit.php:53
 msgid "Uplink frequency"
 msgstr "上行频率"
 
-#: application/views/satellite/create.php:54
 #: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
 msgstr "输入上行的信号频率（单位 Hz）"
 
-#: application/views/satellite/create.php:59
-#: application/views/satellite/edit.php:50
 #: application/views/satellite/create.php:63
 #: application/views/satellite/edit.php:54
 msgid "Downlink mode"
 msgstr "下行模式"
 
-#: application/views/satellite/create.php:61
 #: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
 msgstr "输入下行的调制方式"
 
-#: application/views/satellite/create.php:64
-#: application/views/satellite/edit.php:51
 #: application/views/satellite/create.php:68
 #: application/views/satellite/edit.php:55
 msgid "Downlink frequency"
 msgstr "下行频率"
 
-#: application/views/satellite/create.php:66
 #: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
 msgstr "输入下行的信号频率（单位 Hz）"
 
-#: application/views/satellite/create.php:69
-#: application/views/satellite/edit.php:24
 #: application/views/satellite/create.php:73
 #: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
 msgstr "是否被LoTW接受"
 
-#: application/views/satellite/create.php:74
-#: application/views/satellite/edit.php:34
 #: application/views/satellite/create.php:78
 #: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
@@ -10199,12 +10143,10 @@ msgstr "只有卫星被我的LoTW接受时才设置为是"
 msgid "Satellite Display Name "
 msgstr "卫星显示名称 "
 
-#: application/views/satellite/edit.php:38
 #: application/views/satellite/edit.php:42
 msgid "Save satellite"
 msgstr "保存卫星"
 
-#: application/views/satellite/edit.php:72
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
 msgstr "添加卫星模式"
