@@ -81,7 +81,6 @@ class Database {
 				throw new Exception(__("Unable to create database: ") . $link->error);
 			}
 	
-			// Wählen Sie die Datenbank aus
 			if (!$link->select_db($data['db_name'])) {
 				throw new Exception(__("Unable to select database: ") . $link->error);
 			}
@@ -101,10 +100,19 @@ class Database {
 			}
 			$mysql_version = $version_query['version'];
 
-			
+			// in case of a previous failed installation it can happen that still the migration lockfile is existent
+			// this would prevent the migration from running or at least would cause a unnecessary delay
+			// so we delete it here
+			$lockfile = sys_get_temp_dir() . '/.migration_running';
+			if (file_exists($lockfile)) {
+				log_message('info', 'Removing migration lockfile. Not expected to be present at this point.');
+				unlink($lockfile);
+			}
+
 			$link->close();
 			
 			return $mysql_version;
+
 		} catch (Exception $e) {
 			log_message('error', 'Database Check Error: ' . $e->getMessage());
 			return 'Error: ' . $e->getMessage();
