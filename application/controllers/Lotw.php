@@ -696,12 +696,16 @@ class Lotw extends CI_Controller {
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
-				if(curl_errno($ch)){
+				if(curl_errno($ch)) {
 					$result = "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 					if (curl_errno($ch) == 28) {  // break on timeout
 						$result .= "<br>Timeout reached. Stopping subsequent downloads.";
 						break;
 					}
+					continue;
+				} else if(str_contains($content,"Username/password incorrect</I>")) {
+					$result = "LoTW download failed for user ".$data['user_lotw_name'].": Username/password incorrect";
+					continue;
 				}
 				file_put_contents($file, $content);
 				if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
@@ -785,13 +789,14 @@ class Lotw extends CI_Controller {
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
-				if(!curl_errno($ch)){
+				if(curl_errno($ch)) {
+					print "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+				} else if (str_contains($content,"Username/password incorrect</I>")) {
+					print "LoTW download failed for user ".$data['user_lotw_name'].": Username/password incorrect";
+				} else {
 					file_put_contents($file, $content);
-
 					ini_set('memory_limit', '-1');
 					$this->loadFromFile($file, $station_ids);
-				} else {
-					print "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 				}
 			} else {
 				if (!is_writable(dirname($file))) {
