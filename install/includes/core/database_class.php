@@ -74,29 +74,29 @@ class Database {
 			$link->real_connect($data['db_hostname'], $data['db_username'], $data['db_password']);
 			
 			if ($link->connect_error) {
-				throw new Exception(__("Connection Error: ") . $link->connect_error);
+				throw new Exception("Connection Error: " . $link->connect_error);
 			}
 	
 			if (!$link->query("CREATE DATABASE IF NOT EXISTS " . $data['db_name'])) {
-				throw new Exception(__("Unable to create database: ") . $link->error);
+				throw new Exception("Unable to create database: " . $link->error);
 			}
 	
 			if (!$link->select_db($data['db_name'])) {
-				throw new Exception(__("Unable to select database: ") . $link->error);
+				throw new Exception("Unable to select database: " . $link->error);
 			}
 			
 			$result = $link->query("SHOW TABLES");
 		
 			if ($result->num_rows > 0) {
-				throw new Exception(__("Database is not empty."));
+				throw new Exception("Database is not empty.");
 			}
 			
 			$version_query = $link->query("SELECT VERSION() as version")->fetch_assoc();  // $link->server_info sometimes returns wrong version or additional (in this case unnecessary) information, e.g. 5.5.5-10.3.29-MariaDB-0+deb10u1
 			if (!$version_query) {
-				throw new Exception(__("Unable to get Database version: ") . $link->error);
+				throw new Exception("Unable to get Database version: " . $link->error);
 			}
 			if (!isset($version_query['version'])) {
-				throw new Exception(__("Database version could not be retrieved."));
+				throw new Exception("Database version could not be retrieved.");
 			}
 			$mysql_version = $version_query['version'];
 
