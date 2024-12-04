@@ -451,15 +451,15 @@ class Migration_adif_315 extends CI_Migration {
 
         $contests = [];
 
-        $contests[] = "INSERT INTO contest (name, adifname, active) VALUES ('ARI Italian EME Trophy', 'ARI-EME', 1);";
-        $contests[] = "INSERT INTO contest (name, adifname, active) VALUES ('ARI Italian Activity Contest (13cm+)', 'ARI-IAC-13CM', 1);";
-        $contests[] = "INSERT INTO contest (name, adifname, active) VALUES ('ARI Italian Activity Contest (23cm)', 'ARI-IAC-23CM', 1);";
-        $contests[] = "INSERT INTO contest (name, adifname, active) VALUES ('ARI Italian Activity Contest (6m)', 'ARI-IAC-6M', 1);";
-        $contests[] = "INSERT INTO contest (name, adifname, active) VALUES ('ARI Italian Activity Contest (UHF)', 'ARI-IAC-UHF', 1);";
-        $contests[] = "INSERT INTO contest (name, adifname, active) VALUES ('ARI Italian Activity Contest (VHF)', 'ARI-IAC-VHF', 1);";
-        $contests[] = "INSERT INTO contest (name, adifname, active) VALUES ('DARC FT4 Contest', 'DARC-FT4', 1);";
-        $contests[] = "INSERT INTO contest (name, adifname, active) VALUES ('K1USN Slow Speed Open', 'K1USN-SSO', 1);";
-        $contests[] = "INSERT INTO contest (name, adifname, active) VALUES ('PCCPro CW Contest', 'PCC', 1);";
+        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian EME Trophy', 'ARI-EME', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-EME');";
+        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (13cm+)', 'ARI-IAC-13CM', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-13CM');";
+        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (23cm)', 'ARI-IAC-23CM', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-23CM');";
+        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (6m)', 'ARI-IAC-6M', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-6M');";
+        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (UHF)', 'ARI-IAC-UHF', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-UHF');";
+        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (VHF)', 'ARI-IAC-VHF', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-VHF');";
+        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'DARC FT4 Contest', 'DARC-FT4', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'DARC-FT4');";
+        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'K1USN Slow Speed Open', 'K1USN-SSO', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'K1USN-SSO');";
+        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'PCCPro CW Contest', 'PCC', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'PCC');";
         
         // Run the querys
         try {
