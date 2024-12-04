@@ -696,7 +696,7 @@ class Lotw extends CI_Controller {
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
-				if(curl_errno($ch)){
+				if(curl_errno($ch) || str_contains($content,"Username/password incorrect</I>")) {
 					$result = "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 					if (curl_errno($ch) == 28) {  // break on timeout
 						$result .= "<br>Timeout reached. Stopping subsequent downloads.";
