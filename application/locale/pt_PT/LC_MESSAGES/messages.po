@@ -1910,6 +1910,7 @@ msgstr "Predefinição (clique para libertar)"
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:50
+#: application/views/satellite/edit.php:56
 msgid "Edit"
 msgstr "Editar"
 
@@ -1934,6 +1935,7 @@ msgstr "Editar"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:55
 #: application/views/view_log/qso.php:732
+#: application/views/satellite/edit.php:57
 msgid "Delete"
 msgstr "Apagar"
 
@@ -3789,6 +3791,7 @@ msgstr "Nome simples para descrever a utilização desta API."
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:78
 #: application/views/simplefle/index.php:22
+#: application/views/satellite/create.php:82
 msgid "Save"
 msgstr "Guardar"
 
@@ -4724,6 +4727,7 @@ msgstr "Mostrar mapa IOTA"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:217
 #: application/views/view_log/qso.php:630
+#: application/views/satellite/edit.php:51
 msgid "Name"
 msgstr "Nome"
 
@@ -5653,6 +5657,9 @@ msgstr ""
 #: application/views/user/edit.php:419 application/views/user/edit.php:430
 #: application/views/user/edit.php:540 application/views/user/edit.php:802
 #: application/views/user/edit.php:834 application/views/user/edit.php:859
+#: application/views/satellite/create.php:75
+#: application/views/satellite/edit.php:31
+#: application/views/satellite/edit.php:34
 msgid "Yes"
 msgstr "Sim"
 
@@ -5703,6 +5710,9 @@ msgstr "Sim"
 #: application/views/user/edit.php:522 application/views/user/edit.php:526
 #: application/views/user/edit.php:541 application/views/user/edit.php:803
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
+#: application/views/satellite/create.php:76
+#: application/views/satellite/edit.php:32
+#: application/views/satellite/edit.php:35
 msgid "No"
 msgstr "Não"
 
@@ -10428,60 +10438,80 @@ msgstr ""
 
 #: application/views/satellite/create.php:37
 #: application/views/satellite/edit.php:21
+#: application/views/satellite/create.php:41
+#: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
 msgstr "Introduza a órbita do satélite (LEO, MEO, GEO)"
 
 #: application/views/satellite/create.php:40
+#: application/views/satellite/create.php:44
 msgid "Satellite mode name"
 msgstr "Nome do modo de satélite"
 
 #: application/views/satellite/create.php:42
+#: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
 msgstr "Introduza o modo do satélite"
 
 #: application/views/satellite/create.php:47
 #: application/views/satellite/edit.php:48
+#: application/views/satellite/create.php:51
+#: application/views/satellite/edit.php:52
 msgid "Uplink mode"
 msgstr "Modo de uplink"
 
 #: application/views/satellite/create.php:49
+#: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
 msgstr "Introduza a modulação usada para uplink"
 
 #: application/views/satellite/create.php:52
 #: application/views/satellite/edit.php:49
+#: application/views/satellite/create.php:56
+#: application/views/satellite/edit.php:53
 msgid "Uplink frequency"
 msgstr "Frequência de uplink"
 
 #: application/views/satellite/create.php:54
+#: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
 msgstr "Introduza a frequência (em Hz) utilizada para uplink"
 
 #: application/views/satellite/create.php:59
 #: application/views/satellite/edit.php:50
+#: application/views/satellite/create.php:63
+#: application/views/satellite/edit.php:54
 msgid "Downlink mode"
 msgstr "Modo do downlink"
 
 #: application/views/satellite/create.php:61
+#: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
 msgstr "Introduza a modulação usada para o downlink"
 
 #: application/views/satellite/create.php:64
 #: application/views/satellite/edit.php:51
+#: application/views/satellite/create.php:68
+#: application/views/satellite/edit.php:55
 msgid "Downlink frequency"
 msgstr "Frequência de downlink"
 
 #: application/views/satellite/create.php:66
+#: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
 msgstr "Introduza a frequência (em Hz) usada para downlink"
 
 #: application/views/satellite/create.php:69
 #: application/views/satellite/edit.php:24
+#: application/views/satellite/create.php:73
+#: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
 msgstr "Aceite pelo LoTW"
 
 #: application/views/satellite/create.php:74
 #: application/views/satellite/edit.php:34
+#: application/views/satellite/create.php:78
+#: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
 msgstr "Defina para sim apenas se o satélite for aceite pelo meu LoTW"
 
@@ -10490,10 +10520,12 @@ msgid "Satellite Display Name "
 msgstr "Nome de Exibição do Satélite "
 
 #: application/views/satellite/edit.php:38
+#: application/views/satellite/edit.php:42
 msgid "Save satellite"
 msgstr "Guardar satélite"
 
 #: application/views/satellite/edit.php:72
+#: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
 msgstr "Adicionar modo satélite"
 

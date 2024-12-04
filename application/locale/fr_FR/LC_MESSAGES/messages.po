@@ -13,8 +13,8 @@ msgstr ""
 "POT-Creation-Date: 2024-12-03 15:27+0000\n"
 "PO-Revision-Date: 2024-12-04 07:53+0000\n"
 "Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1914,6 +1914,7 @@ msgstr "Par défaut (cliquez pour libérer)"
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:50
+#: application/views/satellite/edit.php:56
 msgid "Edit"
 msgstr "Editer"
 
@@ -1938,6 +1939,7 @@ msgstr "Editer"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:55
 #: application/views/view_log/qso.php:732
+#: application/views/satellite/edit.php:57
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -3795,6 +3797,7 @@ msgstr "Nom simple pour décrire l'utilisation de cette API."
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:78
 #: application/views/simplefle/index.php:22
+#: application/views/satellite/create.php:82
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -4737,6 +4740,7 @@ msgstr "Afficher la carte IOTA"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:217
 #: application/views/view_log/qso.php:630
+#: application/views/satellite/edit.php:51
 msgid "Name"
 msgstr "Nom"
 
@@ -5624,6 +5628,9 @@ msgstr ""
 #: application/views/user/edit.php:419 application/views/user/edit.php:430
 #: application/views/user/edit.php:540 application/views/user/edit.php:802
 #: application/views/user/edit.php:834 application/views/user/edit.php:859
+#: application/views/satellite/create.php:75
+#: application/views/satellite/edit.php:31
+#: application/views/satellite/edit.php:34
 msgid "Yes"
 msgstr "Oui"
 
@@ -5674,6 +5681,9 @@ msgstr "Oui"
 #: application/views/user/edit.php:522 application/views/user/edit.php:526
 #: application/views/user/edit.php:541 application/views/user/edit.php:803
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
+#: application/views/satellite/create.php:76
+#: application/views/satellite/edit.php:32
+#: application/views/satellite/edit.php:35
 msgid "No"
 msgstr "Non"
 
@@ -10184,60 +10194,80 @@ msgstr ""
 
 #: application/views/satellite/create.php:37
 #: application/views/satellite/edit.php:21
+#: application/views/satellite/create.php:41
+#: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
 msgstr ""
 
 #: application/views/satellite/create.php:40
+#: application/views/satellite/create.php:44
 msgid "Satellite mode name"
 msgstr ""
 
 #: application/views/satellite/create.php:42
+#: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
 msgstr ""
 
 #: application/views/satellite/create.php:47
 #: application/views/satellite/edit.php:48
+#: application/views/satellite/create.php:51
+#: application/views/satellite/edit.php:52
 msgid "Uplink mode"
 msgstr ""
 
 #: application/views/satellite/create.php:49
+#: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
 msgstr ""
 
 #: application/views/satellite/create.php:52
 #: application/views/satellite/edit.php:49
+#: application/views/satellite/create.php:56
+#: application/views/satellite/edit.php:53
 msgid "Uplink frequency"
 msgstr ""
 
 #: application/views/satellite/create.php:54
+#: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
 msgstr ""
 
 #: application/views/satellite/create.php:59
 #: application/views/satellite/edit.php:50
+#: application/views/satellite/create.php:63
+#: application/views/satellite/edit.php:54
 msgid "Downlink mode"
 msgstr ""
 
 #: application/views/satellite/create.php:61
+#: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
 msgstr ""
 
 #: application/views/satellite/create.php:64
 #: application/views/satellite/edit.php:51
+#: application/views/satellite/create.php:68
+#: application/views/satellite/edit.php:55
 msgid "Downlink frequency"
 msgstr ""
 
 #: application/views/satellite/create.php:66
+#: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
 msgstr ""
 
 #: application/views/satellite/create.php:69
 #: application/views/satellite/edit.php:24
+#: application/views/satellite/create.php:73
+#: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
 msgstr ""
 
 #: application/views/satellite/create.php:74
 #: application/views/satellite/edit.php:34
+#: application/views/satellite/create.php:78
+#: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
 msgstr ""
 
@@ -10246,10 +10276,12 @@ msgid "Satellite Display Name "
 msgstr ""
 
 #: application/views/satellite/edit.php:38
+#: application/views/satellite/edit.php:42
 msgid "Save satellite"
 msgstr ""
 
 #: application/views/satellite/edit.php:72
+#: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
 msgstr ""
 

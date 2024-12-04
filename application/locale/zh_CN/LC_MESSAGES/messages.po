@@ -1896,6 +1896,7 @@ msgstr "默认（点击释放）"
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:50
+#: application/views/satellite/edit.php:56
 msgid "Edit"
 msgstr "编辑"
 
@@ -1920,6 +1921,7 @@ msgstr "编辑"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:55
 #: application/views/view_log/qso.php:732
+#: application/views/satellite/edit.php:57
 msgid "Delete"
 msgstr "删除"
 
@@ -3747,6 +3749,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:78
 #: application/views/simplefle/index.php:22
+#: application/views/satellite/create.php:82
 msgid "Save"
 msgstr "保存"
 
@@ -4638,6 +4641,7 @@ msgstr "显示IOTA地图"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:217
 #: application/views/view_log/qso.php:630
+#: application/views/satellite/edit.php:51
 msgid "Name"
 msgstr "名称"
 
@@ -5511,6 +5515,9 @@ msgstr ""
 #: application/views/user/edit.php:419 application/views/user/edit.php:430
 #: application/views/user/edit.php:540 application/views/user/edit.php:802
 #: application/views/user/edit.php:834 application/views/user/edit.php:859
+#: application/views/satellite/create.php:75
+#: application/views/satellite/edit.php:31
+#: application/views/satellite/edit.php:34
 msgid "Yes"
 msgstr "是"
 
@@ -5561,6 +5568,9 @@ msgstr "是"
 #: application/views/user/edit.php:522 application/views/user/edit.php:526
 #: application/views/user/edit.php:541 application/views/user/edit.php:803
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
+#: application/views/satellite/create.php:76
+#: application/views/satellite/edit.php:32
+#: application/views/satellite/edit.php:35
 msgid "No"
 msgstr "否"
 
@@ -10105,60 +10115,80 @@ msgstr ""
 
 #: application/views/satellite/create.php:37
 #: application/views/satellite/edit.php:21
+#: application/views/satellite/create.php:41
+#: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
 msgstr "输入卫星轨道名称（LEO, MEO, GEO）"
 
 #: application/views/satellite/create.php:40
+#: application/views/satellite/create.php:44
 msgid "Satellite mode name"
 msgstr "卫星模式名称"
 
 #: application/views/satellite/create.php:42
+#: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
 msgstr "输入卫星的模式"
 
 #: application/views/satellite/create.php:47
 #: application/views/satellite/edit.php:48
+#: application/views/satellite/create.php:51
+#: application/views/satellite/edit.php:52
 msgid "Uplink mode"
 msgstr "上行模式"
 
 #: application/views/satellite/create.php:49
+#: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
 msgstr "输入上行的调制方式"
 
 #: application/views/satellite/create.php:52
 #: application/views/satellite/edit.php:49
+#: application/views/satellite/create.php:56
+#: application/views/satellite/edit.php:53
 msgid "Uplink frequency"
 msgstr "上行频率"
 
 #: application/views/satellite/create.php:54
+#: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
 msgstr "输入上行的信号频率（单位 Hz）"
 
 #: application/views/satellite/create.php:59
 #: application/views/satellite/edit.php:50
+#: application/views/satellite/create.php:63
+#: application/views/satellite/edit.php:54
 msgid "Downlink mode"
 msgstr "下行模式"
 
 #: application/views/satellite/create.php:61
+#: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
 msgstr "输入下行的调制方式"
 
 #: application/views/satellite/create.php:64
 #: application/views/satellite/edit.php:51
+#: application/views/satellite/create.php:68
+#: application/views/satellite/edit.php:55
 msgid "Downlink frequency"
 msgstr "下行频率"
 
 #: application/views/satellite/create.php:66
+#: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
 msgstr "输入下行的信号频率（单位 Hz）"
 
 #: application/views/satellite/create.php:69
 #: application/views/satellite/edit.php:24
+#: application/views/satellite/create.php:73
+#: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
 msgstr "是否被LoTW接受"
 
 #: application/views/satellite/create.php:74
 #: application/views/satellite/edit.php:34
+#: application/views/satellite/create.php:78
+#: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
 msgstr "只有卫星被我的LoTW接受时才设置为是"
 
@@ -10167,10 +10197,12 @@ msgid "Satellite Display Name "
 msgstr "卫星显示名称 "
 
 #: application/views/satellite/edit.php:38
+#: application/views/satellite/edit.php:42
 msgid "Save satellite"
 msgstr "保存卫星"
 
 #: application/views/satellite/edit.php:72
+#: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
 msgstr "添加卫星模式"
 
