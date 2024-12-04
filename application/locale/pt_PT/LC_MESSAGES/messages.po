@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-02 17:59+0000\n"
-"PO-Revision-Date: 2024-12-02 12:48+0000\n"
+"POT-Creation-Date: 2024-12-04 07:52+0000\n"
+"PO-Revision-Date: 2024-12-03 08:08+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -154,21 +154,25 @@ msgstr "Total de gridsquares activadas"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:36
+#: application/controllers/Visitor.php:390
 msgid "Fields"
 msgstr "Campos"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:37
+#: application/controllers/Visitor.php:391
 msgid "Fields confirmed"
 msgstr "Campos confirmados"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:38
+#: application/controllers/Visitor.php:392
 msgid "Fields not confirmed"
 msgstr "Campos não confirmados"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:39
+#: application/controllers/Visitor.php:393
 msgid "Total fields worked"
 msgstr "Total de campos trabalhados"
 
@@ -1900,7 +1904,7 @@ msgstr "Predefinição (clique para libertar)"
 #: application/views/interface_assets/footer.php:559
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:581
-#: application/views/mode/index.php:64 application/views/satellite/edit.php:52
+#: application/views/mode/index.php:64 application/views/satellite/edit.php:56
 #: application/views/satellite/index.php:26
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
@@ -1922,7 +1926,7 @@ msgstr "Editar"
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
-#: application/views/satellite/edit.php:53
+#: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:27
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
@@ -2021,7 +2025,7 @@ msgstr ""
 
 #: application/controllers/Simplefle.php:90
 #: application/controllers/Simplefle.php:93
-#: application/models/Logbook_model.php:4468
+#: application/models/Logbook_model.php:4490
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "Duplicado para"
@@ -2034,7 +2038,7 @@ msgstr "Duplicado para"
 #: application/controllers/Visitor.php:148
 #: application/controllers/Visitor.php:175
 #: application/controllers/Visitor.php:210
-#: application/controllers/Visitor.php:471
+#: application/controllers/Visitor.php:476
 #: application/controllers/Widgets.php:40
 msgid "Unknown Public Page."
 msgstr "Página pública desconhecida."
@@ -2043,7 +2047,7 @@ msgstr "Página pública desconhecida."
 #: application/controllers/Visitor.php:76
 #: application/controllers/Visitor.php:171
 #: application/controllers/Visitor.php:206
-#: application/controllers/Visitor.php:467
+#: application/controllers/Visitor.php:472
 #: application/controllers/Widgets.php:36
 msgid "Empty Logbook"
 msgstr "Logbook vazio"
@@ -2246,13 +2250,13 @@ msgstr "Estatísticas"
 msgid "Custom Statistics"
 msgstr "Estatísticas personalizadas"
 
-#: application/controllers/Statistics.php:251
+#: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:138
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Estatísticas de QSL"
 
-#: application/controllers/Statistics.php:266
+#: application/controllers/Statistics.php:268
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
@@ -2443,12 +2447,12 @@ msgstr "O utilizador solicitado para imitar não existe"
 msgid "Satellite Gridsquare Map"
 msgstr "Mapa Gridsquare de satélite"
 
-#: application/controllers/Visitor.php:405
+#: application/controllers/Visitor.php:410
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Public Search"
 msgstr "Pesquisa pública"
 
-#: application/controllers/Visitor.php:438
+#: application/controllers/Visitor.php:443
 msgid "Export Map"
 msgstr "Exportar mapa"
 
@@ -2594,22 +2598,22 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Não foram encontrados perfis de estação com credenciais do HRDlog."
 
-#: application/models/Logbook_model.php:3788
+#: application/models/Logbook_model.php:3810
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
-#: application/models/Logbook_model.php:3789
+#: application/models/Logbook_model.php:3811
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
-#: application/models/Logbook_model.php:3801
+#: application/models/Logbook_model.php:3823
 msgid "QSO on"
 msgstr "Contacto em"
 
-#: application/models/Logbook_model.php:3801
+#: application/models/Logbook_model.php:3823
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2617,51 +2621,51 @@ msgstr ""
 "Tentou importar um contacto sem nenhum CALL dado. Este contacto não foi "
 "importado. É inválido."
 
-#: application/models/Logbook_model.php:4100
+#: application/models/Logbook_model.php:4122
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4111
+#: application/models/Logbook_model.php:4133
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4164
+#: application/models/Logbook_model.php:4186
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4184
+#: application/models/Logbook_model.php:4206
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4205
+#: application/models/Logbook_model.php:4227
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4529
+#: application/models/Logbook_model.php:4551
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
-#: application/models/Logbook_model.php:4535
+#: application/models/Logbook_model.php:4557
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4540
+#: application/models/Logbook_model.php:4562
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
-#: application/models/Logbook_model.php:4543
+#: application/models/Logbook_model.php:4565
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
-#: application/models/Logbook_model.php:4546
+#: application/models/Logbook_model.php:4568
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
-#: application/models/Logbook_model.php:4549
+#: application/models/Logbook_model.php:4571
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:4552
+#: application/models/Logbook_model.php:4574
 #: application/views/view_log/qso.php:290
 msgid "unknown"
 msgstr "desconhecido"
@@ -3783,7 +3787,7 @@ msgstr "Nome simples para descrever a utilização desta API."
 #: application/views/options/oqrs.php:63
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
-#: application/views/satellite/create.php:78
+#: application/views/satellite/create.php:82
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "Guardar"
@@ -4709,7 +4713,7 @@ msgstr "Mostrar mapa IOTA"
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:54
 #: application/views/qso/edit_ajax.php:170 application/views/qso/index.php:195
-#: application/views/satellite/edit.php:47
+#: application/views/satellite/edit.php:51
 #: application/views/search/result.php:16
 #: application/views/search/search_result_ajax.php:19
 #: application/views/stationsetup/stationsetup.php:30
@@ -5626,9 +5630,9 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:533
 #: application/views/qso/edit_ajax.php:549
 #: application/views/qso/edit_ajax.php:563 application/views/qso/index.php:605
-#: application/views/satellite/create.php:71
-#: application/views/satellite/edit.php:27
-#: application/views/satellite/edit.php:30
+#: application/views/satellite/create.php:75
+#: application/views/satellite/edit.php:31
+#: application/views/satellite/edit.php:34
 #: application/views/satellite/index.php:56
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
@@ -5675,9 +5679,9 @@ msgstr "Sim"
 #: application/views/qso/edit_ajax.php:532
 #: application/views/qso/edit_ajax.php:548
 #: application/views/qso/edit_ajax.php:562 application/views/qso/index.php:604
-#: application/views/satellite/create.php:72
-#: application/views/satellite/edit.php:28
-#: application/views/satellite/edit.php:31
+#: application/views/satellite/create.php:76
+#: application/views/satellite/edit.php:32
+#: application/views/satellite/edit.php:35
 #: application/views/satellite/index.php:59
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
@@ -10399,16 +10403,18 @@ msgstr "Outros comentários."
 
 #: application/views/satellite/create.php:23
 msgid "Satellite Display Name"
-msgstr ""
+msgstr "Nome de Exibição do Satélite"
 
 #: application/views/satellite/create.php:25
-msgid "Display / cleartext name of the satellite."
+#: application/views/satellite/edit.php:9
+msgid "Display / cleartext name of the satellite"
 msgstr ""
 
 #: application/views/satellite/create.php:28
+#: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:21
 msgid "LoTW Name"
-msgstr ""
+msgstr "Nome do LoTW"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
@@ -10416,83 +10422,78 @@ msgid ""
 "Satellite name as accepted by LoTW. Not necessarily the same as the display "
 "name. Can be set/changed later when added to LoTW."
 msgstr ""
+"Nome do satélite conforme aceito pelo LoTW. Não necessariamente o mesmo que "
+"o nome exibido. Pode ser definido/alterado posteriormente quando adicionado "
+"ao LoTW."
 
-#: application/views/satellite/create.php:37
-#: application/views/satellite/edit.php:21
+#: application/views/satellite/create.php:41
+#: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
 msgstr "Introduza a órbita do satélite (LEO, MEO, GEO)"
 
-#: application/views/satellite/create.php:40
+#: application/views/satellite/create.php:44
 msgid "Satellite mode name"
 msgstr "Nome do modo de satélite"
 
-#: application/views/satellite/create.php:42
+#: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
 msgstr "Introduza o modo do satélite"
 
-#: application/views/satellite/create.php:47
-#: application/views/satellite/edit.php:48
+#: application/views/satellite/create.php:51
+#: application/views/satellite/edit.php:52
 msgid "Uplink mode"
 msgstr "Modo de uplink"
 
-#: application/views/satellite/create.php:49
+#: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
 msgstr "Introduza a modulação usada para uplink"
 
-#: application/views/satellite/create.php:52
-#: application/views/satellite/edit.php:49
+#: application/views/satellite/create.php:56
+#: application/views/satellite/edit.php:53
 msgid "Uplink frequency"
 msgstr "Frequência de uplink"
 
-#: application/views/satellite/create.php:54
+#: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
 msgstr "Introduza a frequência (em Hz) utilizada para uplink"
 
-#: application/views/satellite/create.php:59
-#: application/views/satellite/edit.php:50
+#: application/views/satellite/create.php:63
+#: application/views/satellite/edit.php:54
 msgid "Downlink mode"
 msgstr "Modo do downlink"
 
-#: application/views/satellite/create.php:61
+#: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
 msgstr "Introduza a modulação usada para o downlink"
 
-#: application/views/satellite/create.php:64
-#: application/views/satellite/edit.php:51
+#: application/views/satellite/create.php:68
+#: application/views/satellite/edit.php:55
 msgid "Downlink frequency"
 msgstr "Frequência de downlink"
 
-#: application/views/satellite/create.php:66
+#: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
 msgstr "Introduza a frequência (em Hz) usada para downlink"
 
-#: application/views/satellite/create.php:69
-#: application/views/satellite/edit.php:24
+#: application/views/satellite/create.php:73
+#: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
-msgstr ""
+msgstr "Aceite pelo LoTW"
 
-#: application/views/satellite/create.php:74
-#: application/views/satellite/edit.php:34
+#: application/views/satellite/create.php:78
+#: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
-msgstr ""
+msgstr "Defina para sim apenas se o satélite for aceite pelo meu LoTW"
 
 #: application/views/satellite/edit.php:7
 msgid "Satellite Display Name "
-msgstr ""
+msgstr "Nome de Exibição do Satélite "
 
-#: application/views/satellite/edit.php:9
-msgid " Display / cleartext name of the satellite"
-msgstr ""
-
-#: application/views/satellite/edit.php:12
-msgid "LoTW name"
-msgstr ""
-
-#: application/views/satellite/edit.php:38
+#: application/views/satellite/edit.php:42
 msgid "Save satellite"
 msgstr "Guardar satélite"
 
-#: application/views/satellite/edit.php:72
+#: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
 msgstr "Adicionar modo satélite"
 
@@ -10502,7 +10503,7 @@ msgstr "Adicionar um satélite"
 
 #: application/views/satellite/index.php:22
 msgid "Display Name"
-msgstr ""
+msgstr "Nome de Exibição"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
@@ -12804,6 +12805,15 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#~ msgid "Display / cleartext name of the satellite."
+#~ msgstr "Nome / nome em texto claro do satélite."
+
+#~ msgid " Display / cleartext name of the satellite"
+#~ msgstr " Nome / nome em texto claro do satélite"
+
+#~ msgid "LoTW name"
+#~ msgstr "Nome do LoTW"
 
 #~ msgid "Satellite name"
 #~ msgstr "Nome do satélite"
