@@ -785,7 +785,7 @@ class Lotw extends CI_Controller {
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
-				if(!curl_errno($ch)){
+				if(!curl_errno($ch) || str_contains($content,"Username/password incorrect</I>")){
 					file_put_contents($file, $content);
 
 					ini_set('memory_limit', '-1');
