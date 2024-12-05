@@ -370,8 +370,8 @@ class Qrz extends CI_Controller {
 		curl_setopt( $ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 
 		$content = htmlspecialchars_decode(curl_exec($ch));
-		file_put_contents($file, $content);
-		if (strlen(file_get_contents($file, false, null, 0, 100))!=100) {
+		if (strlen($content)<100) {
+			file_put_contents($file, $content);
 			$result = "QRZ downloading failed, either due to it being down or incorrect logins.";
 			return "false";
 		}
