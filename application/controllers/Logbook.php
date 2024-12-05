@@ -927,7 +927,7 @@ class Logbook extends CI_Controller {
 			COL_QRZCOM_QSO_UPLOAD_STATUS, COL_QSL_RCVD, COL_QSL_RCVD_VIA, COL_QSLRDATE, COL_QSLSDATE, COL_QSL_SENT,
 			COL_QSL_SENT_VIA, COL_QSL_VIA, COL_RST_RCVD, COL_RST_SENT, COL_SAT_NAME, COL_SOTA_REF, COL_SRX,
 			COL_SRX_STRING, COL_STATE, COL_STX, COL_STX_STRING, COL_SUBMODE, COL_TIME_ON, COL_VUCC_GRIDS, COL_WWFF_REF,
-			dxcc_entities.end, lotw_users.lastupload, satellite.name AS sat_displayname, station_profile.station_callsign,
+			dxcc_entities.end, lotw_users.lastupload, satellite.displayname AS sat_displayname, station_profile.station_callsign,
 			station_profile.station_gridsquare, station_profile.station_profile_name, dxcc_entities.name');
 		$this->db->from($this->config->item('table_name'));
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
