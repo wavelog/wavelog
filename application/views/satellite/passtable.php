@@ -15,10 +15,10 @@ if ($filtered) {
 				echo '<td>' . $pass->satname . '</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_aos, $zone, $format) . '</td>';
 				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->visible_aos, $zone, $format), Predict_Time::daynum2readable($pass->visible_los, $zone, $format), $format) . '</td>';
-				echo '<td>' . round($pass->visible_aos_az) . '° (' . azDegreesToDirection($pass->visible_aos_az) . ')</td>';
-				echo '<td>' . round($pass->max_el) . '°</td>';
+				echo '<td>' . round($pass->visible_aos_az) . ' ° (' . azDegreesToDirection($pass->visible_aos_az) . ')</td>';
+				echo '<td>' . round($pass->max_el) . ' °</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_los, $zone, $format) . '</td>';
-				echo '<td>' . round($pass->visible_los_az) . '° (' . azDegreesToDirection($pass->visible_los_az) . ')</td>';
+				echo '<td>' . round($pass->visible_los_az) . ' ° (' . azDegreesToDirection($pass->visible_los_az) . ')</td>';
 				echo '</tr>';
 			}
 			echo '</table>';

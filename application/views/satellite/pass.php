@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satslist"><?= __("Min. Satellite Elevation"); ?></label>
-				<input class="my-1 me-sm-2 w-auto form-control" id="minelevation" type="number" name="minelevation" value="0" />
+				<input class="my-1 me-sm-2 w-auto form-control" id="minelevation" type="number" min="0" max="90" name="minelevation" value="0" />
 			</div>
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" for="minazimuth"><?= __("Min. Azimuth"); ?></label>
