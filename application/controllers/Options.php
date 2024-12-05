@@ -370,12 +370,12 @@ class Options extends CI_Controller {
 				$this->email->initialize($config);
 			}
 
-			$message = $this->load->view('email/testmail.php', NULL, TRUE);
+			$message = $this->email->load('email/testmail', NULL);
 
 			$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 			$this->email->to($email);
-			$this->email->subject('Wavelog Test-Mail');
-			$this->email->message($message);
+			$this->email->subject($message['subject']);
+			$this->email->message($message['body']);
 
 			if (! $this->email->send()){
 				$this->session->set_flashdata('testmailFailed', __("Testmail failed. Something went wrong."));

@@ -211,7 +211,7 @@ class Update extends CI_Controller {
         $gz = gzopen($url, 'r');
         if ($gz === FALSE) {
             $this->update_status("FAILED: Could not download from clublog.org");
-            log_message('error', 'FAILED: Could not download exceptions from clublog.org');
+            log_message('error', 'FAILED: Could not download data from clublog.org');
             exit();
         }
 
@@ -223,6 +223,7 @@ class Update extends CI_Controller {
 
         if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
             $this->update_status("FAILED: Could not write to cty.xml file");
+			log_message('error', 'DXCC UPDATE FAILED: Could not write to cty.xml file');
             exit();
         }
 
@@ -423,7 +424,7 @@ class Update extends CI_Controller {
 					$satname = $lines[$i];
 					$tleline1 = $lines[$i + 1];
 					$tleline2 = $lines[$i + 2];
-					$sql = "INSERT INTO tle (satelliteid, tle) select id, ? from satellite where name = ? or exportname = ?";
+					$sql = "INSERT INTO tle (satelliteid, tle) select id, ? from satellite where name = ? or displayname = ?";
 					$this->db->query($sql,array($tleline1."\n".$tleline2,$satname,$satname));
 				}
 			}

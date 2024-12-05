@@ -53,6 +53,9 @@ Entity                \          MHz:   ALL   1.8   3.5     7    10    14    18 
 		}
 		$dxccs=$this->dxcc->list_current('prefix');
 		foreach ($dxccs->result() as $dxcc) {	// Loop through ALL active entities
+			if ($dxcc->adif == 0) {
+				continue;
+			}
 			$vals=$dxcc_list[$dxcc->prefix] ?? [];	// Set current Entity
 			$output .= str_pad($dxcc->prefix,6," ")." ".str_pad(substr($dxcc->name,0,30),30,".")."  ";
 			$allm=0;

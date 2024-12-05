@@ -105,7 +105,7 @@ class Reg1testformat {
          if (!empty($row->COL_GRIDSQUARE)) {
             if(!array_key_exists($row->COL_GRIDSQUARE, $locators)){
                $newlocator = true;
-               $distance = intval($CI->qra->distance($mylocator, $row->COL_GRIDSQUARE, "K"));
+               $distance = intval($CI->qra->distance($mylocator, $row->COL_GRIDSQUARE, "K", $row->COL_ANT_PATH));
                $locators[$row->COL_GRIDSQUARE] = $distance;
             }else{
                $newlocator = false;

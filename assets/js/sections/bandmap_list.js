@@ -209,14 +209,14 @@ $(function() {
 		let ready_listener = true;
 		let call=this.innerText;
 		let qrg=''
-		if ((this.parentNode.parentNode.className != 'odd') && (this.parentNode.parentNode.className != 'even')) {
+		if (this.parentNode.parentNode.className.indexOf('spotted_call')>=0) {
 			qrg=this.parentNode.parentNode.parentNode.cells[1].textContent*1000;
 		} else {
 			qrg=this.parentNode.parentNode.cells[1].textContent*1000;
 		}
 
 		try {
-			irrelevant=fetch('http://127.0.0.1:54321/'+qrg);
+			irrelevant=fetch(CatCallbackURL + '/'+qrg);
 		} finally {}
 
 		let check_pong = setInterval(function() {
@@ -269,7 +269,9 @@ $(function() {
 		}
 	});
 	
+	var CatCallbackURL = "http://127.0.0.1:54321";
 	var updateFromCAT = function() {
+
 	if($('select.radios option:selected').val() != '0') {
 		radioID = $('select.radios option:selected').val();
 		$.getJSON( base_url+"index.php/radio/json/" + radioID, function( data ) {
@@ -287,7 +289,7 @@ $(function() {
 					$(".radio_login_error" ).remove();
 				}
 				var band = frequencyToBand(data.frequency);
-
+				CatCallbackURL=data.cat_url;
 				if (band !== $("#band").val()) {
 					$("#band").val(band);
 					$("#band").trigger("change");

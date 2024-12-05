@@ -44,10 +44,10 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.mode);
 	}
 	if (user_options.rsts.show == "true"){
-		cells.eq(c++).text(qso.rstS);
+		cells.eq(c++).html(qso.rstS);
 	}
 	if (user_options.rstr.show == "true"){
-		cells.eq(c++).text(qso.rstR);
+		cells.eq(c++).html(qso.rstR);
 	}
 	if (user_options.band.show == "true"){
 		cells.eq(c++).text(qso.band);
@@ -80,7 +80,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.qslMessage);
 	}
 	if (user_options.dxcc.show == "true"){
-		cells.eq(c++).html(qso.dxccname);
+		cells.eq(c++).html(qso.dxcc);
 	}
 	if (user_options.state.show == "true"){
 		cells.eq(c++).html(qso.state);
@@ -97,18 +97,6 @@ function updateRow(qso) {
 	if (user_options.pota.show == "true"){
 		cells.eq(c++).html(qso.pota);
 	}
-	if ( (user_options.operator) && (user_options.operator.show == "true")){
-		cells.eq(c++).html(qso.operator);
-	}
-	if ( (user_options.comment) && (user_options.comment.show == "true")){
-		cells.eq(c++).html(qso.comment);
-	}
-	if ( (user_options.propagation) && (user_options.propagation.show == "true")){
-		cells.eq(c++).html(qso.propagation);
-	}
-	if ( (user_options.contest) && (user_options.contest.show == "true")){
-		cells.eq(c++).html(qso.contest);
-	}
 	if ( (user_options.sota) && (user_options.sota.show == "true")){
 		cells.eq(c++).html(qso.sota);
 	}
@@ -121,14 +109,32 @@ function updateRow(qso) {
 	if ( (user_options.sig) && (user_options.sig.show == "true")){
 		cells.eq(c++).html(qso.sig);
 	}
+	if ( (user_options.operator) && (user_options.operator.show == "true")){
+		cells.eq(c++).html(qso.operator);
+	}
+	if ( (user_options.comment) && (user_options.comment.show == "true")){
+		cells.eq(c++).html(qso.comment);
+	}
+	if ( (user_options.propagation) && (user_options.propagation.show == "true")){
+		cells.eq(c++).html(qso.propagation);
+	}
+	if ( (user_options.contest) && (user_options.contest.show == "true")){
+		cells.eq(c++).html(qso.contest);
+	}
 	if (user_options.myrefs.show == "true"){
 		cells.eq(c++).text(qso.deRefs);
 	}
 	if (user_options.continent.show == "true"){
 		cells.eq(c++).text(qso.continent);
 	}
+	if (user_options.distance.show == "true"){
+		cells.eq(c++).text(qso.distance);
+	}
 	if (user_options.profilename.show == "true"){
 		cells.eq(c++).text(qso.profilename);
+	}
+	if (user_options.stationpower.show == "true"){
+		cells.eq(c++).text(qso.stationpower);
 	}
 
 	$('[data-bs-toggle="tooltip"]').tooltip();
@@ -153,6 +159,12 @@ function loadQSOTable(rows) {
 			"language": {
 				url: getDataTablesLanguageUrl(),
 			},
+			"columnDefs": [
+            {
+                "targets": $(".distance-column-sort").index(),
+                "type": "distance", // use the custom sort type from the previous example
+            }
+        ]
 			// colReorder: {
 			// 	order: [0, 2,1,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18]
 			// 	// order: [0, customsortorder]
@@ -251,18 +263,6 @@ function loadQSOTable(rows) {
 		if (user_options.pota.show == "true"){
 			data.push(qso.pota);
 		}
-		if (user_options.operator.show == "true"){
-			data.push(qso.operator);
-		}
-		if (user_options.comment.show == "true"){
-			data.push(qso.comment);
-		}
-		if (user_options.propagation.show == "true"){
-			data.push(qso.propagation);
-		}
-		if (user_options.contest.show == "true"){
-			data.push(qso.contest);
-		}
 		if (user_options.sota.show == "true"){
 			data.push(qso.sota);
 		}
@@ -274,6 +274,18 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.sig.show == "true"){
 			data.push(qso.sig);
+		}
+		if (user_options.operator.show == "true"){
+			data.push(qso.operator);
+		}
+		if (user_options.comment.show == "true"){
+			data.push(qso.comment);
+		}
+		if (user_options.propagation.show == "true"){
+			data.push(qso.propagation);
+		}
+		if (user_options.contest.show == "true"){
+			data.push(qso.contest);
 		}
 		if (user_options.myrefs.show == "true"){
 			data.push(qso.deRefs);
@@ -289,8 +301,14 @@ function loadQSOTable(rows) {
 				data.push(qso.continent);
 			}
 		}
+		if (user_options.distance.show == "true"){
+			data.push(qso.distance);
+		}
 		if (user_options.profilename.show == "true"){
 			data.push(qso.profilename);
+		}
+		if (user_options.stationpower.show == "true"){
+			data.push(qso.stationpower);
 		}
 
 		let createdRow = table.row.add(data).index();
@@ -300,6 +318,11 @@ function loadQSOTable(rows) {
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
 }
+
+$.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+    var num = parseFloat(data);
+    return isNaN(num) ? 0 : num;
+};
 
 function processNextCallbookItem() {
 	if (!inCallbookProcessing) return;
@@ -1149,8 +1172,10 @@ function saveOptions() {
 			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
 			sig: $('input[name="sig"]').is(':checked') ? true : false,
 			continent: $('input[name="continent"]').is(':checked') ? true : false,
+			distance: $('input[name="distance"]').is(':checked') ? true : false,
 			qrz: $('input[name="qrz"]').is(':checked') ? true : false,
 			profilename: $('input[name="profilename"]').is(':checked') ? true : false,
+			stationpower: $('input[name="stationpower"]').is(':checked') ? true : false,
 			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
 			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
 			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,

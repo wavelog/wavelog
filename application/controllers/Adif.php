@@ -184,7 +184,7 @@ class adif extends CI_Controller {
 			$this->load->view('adif/import', $data);
 			$this->load->view('interface_assets/footer');
 		} else {
-			if ($this->stations->check_station_is_accessible($this->input->post('station_profile'))) {
+			if ($this->stations->check_station_is_accessible($this->input->post('station_profile', TRUE))) {
 				$contest=$this->security->xss_clean($this->input->post('contest')) ?? '';
 				$stopnow=false;
 				$fdata = array('upload_data' => $this->upload->data());
@@ -236,7 +236,7 @@ class adif extends CI_Controller {
 					};
 					$record='';	// free memory
 					try {
-						$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile'), $this->input->post('skipDuplicate'), $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markEqsl'), $this->input->post('markHrd'), true, $this->input->post('operatorName'), false, $this->input->post('skipStationCheck'));
+						$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile', TRUE), $this->input->post('skipDuplicate'), $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markEqsl'), $this->input->post('markHrd'), true, $this->input->post('operatorName'), false, $this->input->post('skipStationCheck'));
 					} catch (Exception $e) {
 						log_message('error', 'Import error: '.$e->getMessage());
 						$data['page_title'] = __("ADIF Import failed!");

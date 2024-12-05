@@ -2,9 +2,11 @@ var favs = {};
 var selected_sat;
 var selected_sat_mode;
 var scps = [];
+let lookupCall = null;
+let preventLookup = false;
 
 // if the dxcc id changes we need to update the state dropdown and clear the county value to avoid wrong data
-$("#dxcc_id").change(function () {
+$("#dxcc_id").on('change', function () {
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 	$('#stationCntyInputQso').val('');
 	$('#dxcc_id').multiselect('refresh');
@@ -20,20 +22,16 @@ function resetTimers(qso_manual) {
 
 function getUTCTimeStamp(el) {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
 	$(el).attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 }
 
 function getUTCDateStamp(el) {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
 	$(el).attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
 }
 
 
-$('#stationProfile').change(function () {
+$('#stationProfile').on('change', function () {
 	var stationProfile = $('#stationProfile').val();
 	$.ajax({
 		url: base_url + 'index.php/qso/get_station_power',
@@ -56,22 +54,18 @@ $('.qso_panel .qso_eqsl_qslmsg_update').off('click').on('click', function () {
 	$('#charsLeft').text(" ");
 });
 
-$(document).keyup(function (e) {
-	if (e.charCode === 0) {
-		let fixedcall = $('#callsign').val();
-		$('#callsign').val(fixedcall.replace('Ø', '0'));
-	}
-	if (e.key === "Escape") { // escape key maps to keycode `27`
+$(document).on("keydown", function (e) {
+	if (e.key === "Escape" && $('#callsign').val() != '') { // escape key maps to keycode `27`
+		// console.log("Escape key pressed");
 		reset_fields();
-		resetTimers(qso_manual)
-		$('#callsign').val("");
-		$("#callsign").focus();
+		$('#callsign').trigger("focus");
 	}
 });
 
 // Sanitize some input data
 $('#callsign').on('input', function () {
 	$(this).val($(this).val().replace(/\s/g, ''));
+	$(this).val($(this).val().replace(/0/g, 'Ø'));
 });
 
 $('#locator').on('input', function () {
@@ -93,7 +87,7 @@ function set_timers() {
 		var callsignValue = localStorage.getItem("quicklogCallsign");
 		if (callsignValue !== null && callsignValue !== undefined) {
 			$("#callsign").val(callsignValue);
-			$("#mode").focus();
+			$("#mode").trigger("focus");
 			localStorage.removeItem("quicklogCallsign");
 		}
 	}, 100);
@@ -131,7 +125,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 					$("#noticer").fadeOut(2000);
 					var triggerEl = document.querySelector('#myTab a[href="#qso"]')
 					bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
-					$("#callsign").focus();
+					$("#callsign").trigger("focus");
 				} else {
 					$("#noticer").removeClass("");
 					$("#noticer").addClass("alert alert-warning");
@@ -152,43 +146,49 @@ $("#qso_input").off('submit').on('submit', function (e) {
 	return false;
 });
 
-$('#reset_time').click(function () {
+$('#reset_time').on("click", function () {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$('#start_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 	$("[id='start_time']").each(function () {
 		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
 	});
 });
 
-$('#reset_start_time').click(function () {
+$('#reset_start_time').on("click", function () {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$('#start_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='start_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$starttime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$starttime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $starttime);
 	});
-	$('#end_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $endtime);
 	});
 	// update date (today, for "post qso") //
-	$('#start_date').val(("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
+	$('#start_date').attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
 });
 
-$('#reset_end_time').click(function () {
+$('#reset_end_time').on("click", function () {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$('#end_time').val(("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $endtime);
 	});
 });
 
-$('#fav_add').click(function (event) {
+$('#fav_add').on("click", function (event) {
 	save_fav();
 });
 
@@ -202,9 +202,9 @@ $(document).on("click", "#fav_recall", function (event) {
 	$('#band_rx').val(favs[this.innerText].band_rx);
 	$('#band').val(favs[this.innerText].band);
 	$('#frequency_rx').val(favs[this.innerText].frequency_rx);
-	$('#frequency').val(favs[this.innerText].frequency);
+	$('#frequency').val(favs[this.innerText].frequency).trigger("change");
 	$('#selectPropagation').val(favs[this.innerText].prop_mode);
-	$('#mode').val(favs[this.innerText].mode).change();
+	$('#mode').val(favs[this.innerText].mode).on("change");
 });
 
 
@@ -285,7 +285,7 @@ bc.onmessage = function (ev) {
 			}
 			setTimeout(() => {
 				if (ev.data.frequency != null) {
-					$('#frequency').val(ev.data.frequency);
+					$('#frequency').val(ev.data.frequency).trigger("change");
 					$("#band").val(frequencyToBand(ev.data.frequency));
 				}
 				if (ev.data.frequency_rx != "") {
@@ -300,7 +300,7 @@ bc.onmessage = function (ev) {
 	}
 } /* receive */
 
-$("#sat_name").change(function () {
+$("#sat_name").on('change', function () {
 	var sat = $("#sat_name").val();
 	if (sat == "") {
 		$("#sat_mode").val("");
@@ -308,7 +308,7 @@ $("#sat_name").change(function () {
 	}
 });
 
-$('#stateDropdown').change(function () {
+$('#stateDropdown').on('change', function () {
 	var state = $("#stateDropdown option:selected").text();
 	if (state != "") {
 		$("#stationCntyInputQso").prop('disabled', false);
@@ -377,7 +377,7 @@ $(document).on('change', 'input', function () {
 								}
 								$("#band").val(frequencyToBand(val2[0].Uplink_Freq));
 								$("#band_rx").val(frequencyToBand(val2[0].Downlink_Freq));
-								$("#frequency").val(val2[0].Uplink_Freq);
+								$("#frequency").val(val2[0].Uplink_Freq).trigger("change");
 								$("#frequency_rx").val(val2[0].Downlink_Freq);
 								$("#selectPropagation").val('SAT');
 							}
@@ -466,11 +466,22 @@ function changebadge(entityname) {
 	}
 }
 
-$('#btn_reset').click(function () {
+$('#btn_reset').on("click", function () {
+	preventLookup = true;
+
+	if (lookupCall) {
+		lookupCall.abort();
+	}
+
 	reset_fields();
+
+	// make sure the focusout event is finished before we allow a new lookup
+	setTimeout(() => {
+		preventLookup = false;
+	}, 100);
 });
 
-$('#btn_fullreset').click(function () {
+$('#btn_fullreset').on("click", function () {
 	reset_to_default();
 });
 
@@ -506,6 +517,7 @@ function reset_fields() {
 	$('#name').val("");
 	$('#qth').val("");
 	$('#locator').val("");
+	$('#ant_path').val("");
 	$('#iota_ref').val("");
 	$("#locator").removeClass("confirmedGrid");
 	$("#locator").removeClass("workedGrid");
@@ -566,8 +578,10 @@ function reset_fields() {
 	resetTimers(qso_manual);
 }
 
-$("#callsign").focusout(function () {
-	if ($(this).val().length >= 3) {
+$("#callsign").on("focusout", function () {
+	if ($(this).val().length >= 3 && preventLookup == false) {
+
+		$("#noticer").fadeOut(1000);
 
 		// Temp store the callsign
 		var temp_callsign = $(this).val();
@@ -589,10 +603,10 @@ $("#callsign").focusout(function () {
 		find_callsign = find_callsign.replace('Ø', '0');
 
 		// Replace / in a callsign with - to stop urls breaking
-		$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
+		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
 
 			// Make sure the typed callsign and json result match
-			if ($('#callsign').val = result.callsign) {
+			if ($('#callsign').val().toUpperCase().replace('Ø', '0') == result.callsign) {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
@@ -658,7 +672,7 @@ $("#callsign").focusout(function () {
 					} else if (result.lotw_days > 7) {
 						$('#lotw_info').addClass('lotw_info_yellow');
 					}
-					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign);
+					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign.replace('Ø', '0'));
 					$('#lotw_link').attr('target', "_blank");
 					$('#lotw_info').attr('data-bs-toggle', "tooltip");
 					if (result.lotw_days == 1) { 
@@ -668,11 +682,11 @@ $("#callsign").focusout(function () {
 					}
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
-				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
-				$('#qrz_info').attr('title', 'Lookup ' + callsign + ' info on qrz.com').removeClass('d-none');
+				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign.replace('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
+				$('#qrz_info').attr('title', 'Lookup ' + callsign.replace('Ø', '0') + ' info on qrz.com').removeClass('d-none');
 				$('#qrz_info').show();
-				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
-				$('#hamqth_info').attr('title', 'Lookup ' + callsign + ' info on hamqth.com').removeClass('d-none');
+				$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/' + callsign.replace('Ø', '0') + '"><img width="30" height="30" src="' + base_url + 'images/icons/hamqth.com.png"></a>');
+				$('#hamqth_info').attr('title', 'Lookup ' + callsign.replace('Ø', '0') + ' info on hamqth.com').removeClass('d-none');
 				$('#hamqth_info').show();
 
 				var $dok_select = $('#darc_dok').selectize();
@@ -690,7 +704,7 @@ $("#callsign").focusout(function () {
 
 				$('#dxcc_id').val(result.dxcc.adif).multiselect('refresh');
 				await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
-				if (result.callsign_cqz != '') {
+				if (result.callsign_cqz != '' && (result.callsign_cqz >= 1 && result.callsign_cqz <= 40)) {
 					$('#cqz').val(result.callsign_cqz);
 				} else {
 					$('#cqz').val(result.dxcc.cqz);
@@ -762,6 +776,11 @@ $("#callsign").focusout(function () {
 					$('#name').val(result.callsign_name);
 				}
 
+				/* Find Operators E-mail */
+				if ($('#email').val() == "") {
+					$('#email').val(result.callsign_email);
+				}
+
 				if ($('#continent').val() == "") {
 					$('#continent').val(result.dxcc.cont);
 				}
@@ -814,7 +833,12 @@ $("#callsign").focusout(function () {
 
 				// Get DXX Summary
 				getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
-			}
+			} 
+			// else {
+			// 	console.log("Callsigns do not match, skipping lookup");
+			// 	console.log("Typed Callsign: " + $('#callsign').val());
+			// 	console.log("Returned Callsign: " + result.callsign);
+			// }
 		});
 	} else {
 		// Reset QSO fields
@@ -823,7 +847,7 @@ $("#callsign").focusout(function () {
 })
 
 /* time input shortcut */
-$('#start_time').change(function () {
+$('#start_time').on('change', function () {
 	var raw_time = $(this).val();
 	if (raw_time.match(/^\d\[0-6]d$/)) {
 		raw_time = "0" + raw_time;
@@ -834,7 +858,7 @@ $('#start_time').change(function () {
 	}
 });
 
-$('#end_time').change(function () {
+$('#end_time').on('change', function () {
 	var raw_time = $(this).val();
 	if (raw_time.match(/^\d\[0-6]d$/)) {
 		raw_time = "0" + raw_time;
@@ -846,7 +870,7 @@ $('#end_time').change(function () {
 });
 
 /* date input shortcut */
-$('#start_date').change(function () {
+$('#start_date').on('change', function () {
 	raw_date = $(this).val();
 	if (raw_date.match(/^[12]\d{3}[01]\d[0123]\d$/)) {
 		raw_date = raw_date.substring(0, 4) + "-" + raw_date.substring(4, 6) + "-" + raw_date.substring(6, 8);
@@ -855,10 +879,10 @@ $('#start_date').change(function () {
 });
 
 /* on mode change */
-$('.mode').change(function () {
+$('.mode').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 		});
 	}
 	$('#frequency_rx').val("");
@@ -866,10 +890,10 @@ $('.mode').change(function () {
 
 /* Calculate Frequency */
 /* on band change */
-$('#band').change(function () {
+$('#band').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 		});
 	}
 	$('#frequency_rx').val("");
@@ -877,10 +901,11 @@ $('#band').change(function () {
 	$("#selectPropagation").val("");
 	$("#sat_name").val("");
 	$("#sat_mode").val("");
+	set_qrg();
 });
 
 /* On Key up Calculate Bearing and Distance */
-$("#locator").keyup(function () {
+$("#locator").on("input focus", function () {
 	if ($(this).val()) {
 		var qra_input = $(this).val();
 
@@ -967,6 +992,7 @@ $("#locator").keyup(function () {
 				type: 'post',
 				data: {
 					grid: $(this).val(),
+					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
@@ -981,6 +1007,7 @@ $("#locator").keyup(function () {
 				type: 'post',
 				data: {
 					grid: $(this).val(),
+					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
@@ -994,8 +1021,50 @@ $("#locator").keyup(function () {
 	}
 });
 
+$("#locator").on("focusout", function () {
+	if ($(this).val().length == 0) {
+		$('#locator_info').text("");
+		document.getElementById("distance").value = null;
+	}
+});
+
+$("#ant_path").on("change", function () {
+	if ($("#locator").val().length > 0) {
+		$.ajax({
+			url: base_url + 'index.php/logbook/searchbearing',
+			type: 'post',
+			data: {
+				grid: $('#locator').val(),
+				ant_path: $('#ant_path').val(),
+				stationProfile: $('#stationProfile').val()
+			},
+			success: function (data) {
+				$('#locator_info').html(data).fadeIn("slow");
+			},
+			error: function () {
+				$('#locator_info').text("Error loading bearing!").fadeIn("slow");
+			},
+		});
+		$.ajax({
+			url: base_url + 'index.php/logbook/searchdistance',
+			type: 'post',
+			data: {
+				grid: $('#locator').val(),
+				ant_path: $('#ant_path').val(),
+				stationProfile: $('#stationProfile').val()
+			},
+			success: function (data) {
+				$('#distance').val(data);
+			},
+			error: function () {
+				$('#distance').val("");
+			},
+		});
+	}
+});
+
 // Change report based on mode
-$('.mode').change(function () {
+$('.mode').on('change', function () {
 	setRst($('.mode').val());
 });
 
@@ -1040,16 +1109,15 @@ $('#dxcc_id').on('change', function () {
 
 //Spacebar moves to the name field when you're entering a callsign
 //Similar to contesting ux, good for pileups.
-$("#callsign").on("keypress", function (e) {
+$("#callsign").on("keydown", function (e) {
 	if (e.which == 32) {
-		$("#name").focus();
-		return false; //Eliminate space char
+		$("#name").trigger("focus");
+		e.preventDefault(); //Eliminate space char
 	}
 });
 
 
-// On Key up check and suggest callsigns
-$("#callsign").keyup(function () {
+$("#callsign").on("input focus", function () {
 	var ccall = $(this).val();
 	if ($(this).val().length >= 3) {
 		$('.callsign-suggest').show();
@@ -1064,12 +1132,12 @@ $("#callsign").keyup(function () {
 				success: function (result) {
 					$('.callsign-suggestions').text(result);
 					scps = result.split(" ");
-					highlight(ccall.toUpperCase());
+					highlightSCP(ccall.toUpperCase());
 				}
 			});
 		} else {
 			$('.callsign-suggestions').text(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
-			highlight(ccall.toUpperCase());
+			highlightSCP(ccall.toUpperCase());
 		}
 	} else {
 		$('.callsign-suggest').hide();
@@ -1082,7 +1150,7 @@ RegExp.escape = function (text) {
 }
 
 
-function highlight(term, base) {
+function highlightSCP(term, base) {
 	if (!term) return;
 	base = base || document.body;
 	var re = new RegExp("(" + RegExp.escape(term) + ")", "gi");
@@ -1162,9 +1230,18 @@ function testTimeOffConsistency() {
 }
 
 $(document).ready(function () {
+	qrg_inputtype();
 	clearTimeout();
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
+
+	// Clear the localStorage for the qrg units, except the quicklogCallsign
+	let quicklogCallsign = localStorage.getItem('quicklogCallsign');
+	localStorage.clear();
+	if (quicklogCallsign) {
+		localStorage.setItem('quicklogCallsign', quicklogCallsign);
+	}
+	set_qrg();
 
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
 	.focus(function () {
@@ -1217,7 +1294,7 @@ $(document).ready(function () {
 	};
 
 	// Callsign always has focus on load
-	$("#callsign").focus();
+	$("#callsign").trigger("focus");
 
 	// reset the timers on page load
 	resetTimers(qso_manual);
@@ -1383,8 +1460,9 @@ $(document).ready(function () {
 	// Only set the frequency when not set by userdata/PHP.
 	if ($('#frequency').val() == "") {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
-			$('#frequency').val(result);
+			$('#frequency').val(result).trigger("change");
 			$('#frequency_rx').val("");
+			set_qrg();
 		});
 	}
 

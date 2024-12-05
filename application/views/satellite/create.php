@@ -20,21 +20,25 @@
 		<form>
 		<div class = "row">
 			<div class="mb-3 col-md-6">
-				<label for="nameInput"><?= __("Satellite name"); ?></label>
-				<input type="text" class="form-control" name="nameInput" id="nameInput" aria-describedby="nameInputHelp" required>
-				<small id="nameInputHelp" class="form-text text-muted"><?= __("The name of the Satellite"); ?></small>
+				<label for="displayNameInput"><?= __("Satellite Display Name"); ?></label>
+				<input type="text" class="form-control" name="displayNameInput" id="displayNameInput" aria-describedby="displayNameInputHelp" required>
+				<small id="displayNameInputHelp" class="form-text text-muted"><?= __("Display / cleartext name of the satellite"); ?></small>
 			</div>
 			<div class="mb-3 col-md-6">
-				<label for="exportNameInput"><?= __("Export Name"); ?></label>
-				<input type="text" class="form-control" name="exportNameInput" id="exportNameInput" aria-describedby="exportNameInputHelp" required>
-				<small id="exportNameInputHelp" class="form-text text-muted"><?= __("If external services uses another name for the satellite, like LoTW"); ?></small>
+				<label for="nameInput"><?= __("LoTW Name"); ?></label>
+				<input type="text" class="form-control" name="nameInput" id="nameInput" aria-describedby="nameInputHelp">
+				<small id="nameInputHelp" class="form-text text-muted"><?= __("Satellite name as accepted by LoTW. Not necessarily the same as the display name. Can be set/changed later when added to LoTW."); ?></small>
 			</div>
 		</div>
 		<div class = "row">
 			<div class="mb-3 col-md-6">
 				<label for="orbit"><?= __("Orbit"); ?></label>
-				<input type="text" class="form-control" name="orbit" id="orbit" aria-describedby="orbitHelp" required>
-				<small id="sorbitHelp" class="form-text text-muted"><?= __("Enter which orbit the satellite has (LEO, MEO, GEO)"); ?></small>
+				<select id="orbit" class="form-select" name="orbit" aria-describedby="orbitHelp">
+					<option value="LEO" selected="selected">LEO</option>
+					<option value="MEO">MEO</option>
+					<option value="GEO">GEO</option>
+				</select>
+				<small id="orbitHelp" class="form-text text-muted"><?= __("Enter which orbit the satellite has (LEO, MEO, GEO)"); ?></small>
 			</div>
 			<div class="mb-3 col-md-6">
 				<label for="mode"><?= __("Satellite mode name"); ?></label>
@@ -64,6 +68,14 @@
 				<label for="downlinkFrequency"><?= __("Downlink frequency"); ?></label>
 				<input type="text" class="form-control" name="downlinkFrequency" id="downlinkFrequency" aria-describedby="downlinkFrequency" required>
 				<small id="downlinkFrequencyHelp" class="form-text text-muted"><?= __("Enter frequency (in Hz) used for downlink"); ?></small>
+			</div>
+			<div class="mb-3 col-md-6">
+				<label for="lotwAccepted"><?= __("Accepted by LoTW"); ?></label>
+				<select id="lotwAccepted" class="form-select" name="lotwAccepted">
+					<option value="Y"><?= __("Yes"); ?></option>
+					<option value="N" selected="selected"><?= __("No"); ?></option>
+				</select>
+				<small id="displayNameInputHelp" class="form-text text-muted"><?= __("Set to yes only if satellite is accepted my LoTW"); ?></small>
 			</div>
 		</div>
 

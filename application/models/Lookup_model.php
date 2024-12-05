@@ -58,6 +58,7 @@ class Lookup_model extends CI_Model{
 		case 'was':  $sqlquerytypestring .= " and col_state = '" . $queryinfo['was'] . "' and COL_DXCC in ('291', '6', '110')"; break;
 		case 'sota': $sqlquerytypestring .= " and col_sota_ref = '" . $queryinfo['sota'] . "'"; break;
 		case 'wwff': $sqlquerytypestring .= " and col_sig = 'WWFF' and col_sig_info = '" . $queryinfo['wwff'] . "'"; break;
+		case 'itu':  $sqlquerytypestring .= " and col_ituz = " . $queryinfo['ituz']; break;
 		default: break;
 		}
 

@@ -39,7 +39,7 @@
                         <?php } ?>
                         <tr>
                             <td><?= __("Language"); ?></td>
-                            <td><?php echo __(ucfirst($this->config->item('language'))) . "\n"; ?></td>
+                            <td><?= __(ucfirst($this->config->item('language'))) . "\n"; ?></td>
                         </tr>
                         <tr>
                             <td><?= __("Base URL"); ?></td>
@@ -291,6 +291,17 @@
                                         <?php } ?>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                    <td>php-gd</td>
+                                    <td>
+                                        <?php if (in_array('gd', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success"><?= __("Installed"); ?></span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger"><?= __("Not Installed"); ?></span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                         <div class="col">
@@ -470,7 +481,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div class="border-bottom border-top pt-2 pb-2 mt-2 mb-2" id="version_check">
+                            <div class="border-top pt-2 pb-2 mt-2 mb-2" id="version_check">
                                 <p id="version_check_result"></p>
                                 <small id="last_version_check"></small>
                             </div>

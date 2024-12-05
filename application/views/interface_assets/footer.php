@@ -30,6 +30,7 @@
     var lang_general_word_qso_data = "<?= __("QSO Data"); ?>";
     var lang_general_edit_qso = "<?= __("Edit QSO"); ?>";
     var lang_general_word_danger = "<?= __("DANGER"); ?>";
+    var lang_general_word_error = "<?= __("ERROR"); ?>";
     var lang_general_word_attention = "<?= __("Attention"); ?>";
     var lang_general_word_warning = "<?= __("Warning"); ?>";
     var lang_general_word_cancel = "<?= __("Cancel"); ?>";
@@ -49,6 +50,7 @@
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
     var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
+    var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>"
 </script>
 
 <!-- General JS Files used across Wavelog -->
@@ -170,6 +172,13 @@ if($this->session->userdata('user_id') != null) {
 </script>
 <?php } ?>
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
+
+<script>
+    // Replace all Ø in the searchbar
+    $('#nav-bar-search-input').on('input', function () {
+        $(this).val($(this).val().replace(/0/g, 'Ø'));
+    });
+</script>
 
 <script>
     var current_active_location = "<?php echo $this->stations->find_active(); ?>";
@@ -1026,7 +1035,7 @@ $($('#callsign')).on('keypress',function(e) {
 				data: {'sota': sota},
 				success: function(res) {
 					$('#qth').val(res.name);
-					$('#locator').val(res.locator);
+					$('#locator').val(res.locator).trigger('input');
 				},
 				error: function() {
 					$('#qth').val('');
@@ -1047,7 +1056,7 @@ $($('#callsign')).on('keypress',function(e) {
 				data: {'wwff': wwff},
 				success: function(res) {
 					$('#qth').val(res.name);
-					$('#locator').val(res.locator);
+					$('#locator').val(res.locator).trigger('input');
 				},
 				error: function() {
 					$('#qth').val('');
@@ -1068,7 +1077,7 @@ $($('#callsign')).on('keypress',function(e) {
 				data: {'pota': pota},
 				success: function(res) {
 					$('#qth').val(res.name);
-					$('#locator').val(res.grid6);
+					$('#locator').val(res.grid6).trigger('input');
 				},
 				error: function() {
 					$('#qth').val('');
@@ -1149,6 +1158,7 @@ $($('#callsign')).on('keypress',function(e) {
 
 <?php } ?>
 <?php if ( $this->uri->segment(1) == "qso" || ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) != "add")) { ?>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/qrg_handler.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
 
@@ -1200,6 +1210,7 @@ $($('#callsign')).on('keypress',function(e) {
 							    $(".radio_login_error" ).remove();
 						    }
 						    cat2UI($('#frequency'),data.frequency,false,true,function(d){
+                                $('#frequency').trigger('change');
 							    if ($("#band").val() != frequencyToBand(d)) {
 								    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
 							    }
@@ -2620,11 +2631,32 @@ function viewEqsl(picture, callsign) {
                    dt.search('').draw();
                 }
             };
+            $.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+               var num = parseFloat(data);
+               return isNaN(num) ? 0 : num;
+            };
+            $('#distrectable').on('order.dt search.dt', function() {
+               var disttable = $('#distrectable').DataTable();
+               let i = 1;
+               disttable
+                  .cells(null, 0, { search: 'applied', order: 'applied' })
+                  .every(function (cell) {
+                     this.data(i++);
+                  });
+            });
             $('#distrectable').DataTable({
                 "pageLength": 25,
                 responsive: false,
                 ordering: true,
-                "columnDefs": [ 2, 'num' ],
+                "columnDefs": [
+                   {
+                      2: 'num'
+                   },
+                   {
+                      "targets": $(".distance-column-sort").index(),
+                      "type": "distance",
+                   }
+                ],
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,

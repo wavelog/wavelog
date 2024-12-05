@@ -50,6 +50,7 @@ class Radio extends CI_Controller {
 			echo "<th>" . __("Timestamp") . "</th>";
 			echo "<th></th>";
 			echo "<th>" . __("Options") . "</th>";
+			echo "<th>" . __("Settings") . "</th>";
 			echo "<th></th>";
 			echo "</tr></thead><tbody>";
 			foreach ($query->result() as $row) {
@@ -102,6 +103,7 @@ class Radio extends CI_Controller {
 						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
 					}
 				}
+				echo "<td><button id='edit_cat_settings_".$row->id."' \" class=\"editCatSettings btn btn-sm btn-primary\"> " . __("Edit") . "</button></td>";
 				echo "<td><a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
 				echo "</tr>";
 			}
@@ -111,6 +113,20 @@ class Radio extends CI_Controller {
 			echo "<td colspan=\"6\"><div class=\"alert alert-info text-center\">" . __("No CAT interfaced radios found.") . "</div></td>";
 			echo "</tr></thead>";
 		}
+	}
+
+	public function saveCatUrl() {
+		$url = $this->input->post('caturl', true);
+		$id = $this->input->post('id', true);
+		$this->load->model('cat');
+		$this->cat->updateCatUrl($id,$url);
+	}
+
+	public function editCatUrl() {
+		$this->load->model('cat');
+		$data['container'] = $this->cat->radio_status($this->input->post('id', true))->row();
+		$data['page_title'] = __("Edit CAT Settings");
+		$this->load->view('radio/edit', $data);
 	}
 
 	function json($id) {
@@ -147,6 +163,8 @@ class Radio extends CI_Controller {
 					$power = $row->power;
 
 					$prop_mode = $row->prop_mode;
+
+					$cat_url = $row->cat_url;;
 
 					// Check Mode
 					if (isset($row->mode) && ($row->mode != null)) {
@@ -216,6 +234,9 @@ class Radio extends CI_Controller {
 					}
 					if (isset($prop_mode) && ($prop_mode != null)) {
 						$a_ret['prop_mode'] = $prop_mode;
+					}
+					if (isset($cat_url) && ($cat_url != null)) {
+						$a_ret['cat_url'] = $cat_url;
 					}
 					$a_ret['update_minutes_ago'] = $updated_at;
 					echo json_encode($a_ret, JSON_PRETTY_PRINT);

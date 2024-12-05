@@ -337,7 +337,13 @@ $ci =& get_instance();
                    echo "\" data-bs-toggle=\"tooltip\"";
                 }
                 echo ' class="qrz-';
-                echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y')?'green':'red';
+		if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y') {
+			echo "green";
+		} elseif ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='M') {
+			echo "yellow";
+		} else {
+			echo "red";
+		}
                 echo '">&#9650;</span>';
 
                 echo '<span ';
@@ -367,7 +373,13 @@ $ci =& get_instance();
                    echo "\" data-bs-toggle=\"tooltip\"";
                 }
                 echo ' class="clublog-';
-                echo ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y')?'green':'red';
+       		if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y') {
+			echo "green";
+		} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='M') {
+			echo "yellow";
+		} else {
+			echo "red";
+		}
                 echo '">&#9650;</span>';
 
                 echo '<span ';
@@ -416,8 +428,9 @@ $ci =& get_instance();
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Bureau)"); ?></a>
                                     <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Direct)"); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?= __("Mark QSL Card Requested"); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?= __("Mark QSL Card Not Required"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Bureau)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Direct)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Not Required"); ?></a>
                                 </div>
                             <?php } ?>
 

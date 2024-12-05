@@ -387,6 +387,11 @@ class Visitor extends CI_Controller {
 		$data['gridsquares_gridsquares_not_confirmed'] = __("Gridsquares not confirmed");
 		$data['gridsquares_gridsquares_total_worked'] = __("Total gridsquares worked");
 
+		$data['gridsquares_fields'] = __("Fields");
+		$data['gridsquares_fields_confirmed'] = __("Fields confirmed");
+		$data['gridsquares_fields_not_confirmed'] = __("Fields not confirmed");
+		$data['gridsquares_fields_total_worked'] = __("Total fields worked");
+
 		$data['visitor'] = true;
 
 		$this->load->view('visitor/layout/header', $data);
@@ -459,8 +464,7 @@ class Visitor extends CI_Controller {
 
 		$this->load->model('stationsetup_model');
         $logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
-        if ($logbook_id != false)
-        {
+        if ($logbook_id != false) {
             // Get associated station locations for mysql queries
             $logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
 
@@ -474,7 +478,7 @@ class Visitor extends CI_Controller {
 
 		$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band);
 		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
-		$user_default_confirmation = $this->get_user_default_confirmation($userid);
+		$user_default_confirmation = $this->visitor_model->get_user_default_confirmation($userid);
 
 		$mappedcoordinates = array();
 		foreach ($qsos->result('array') as $qso) {
@@ -498,6 +502,7 @@ class Visitor extends CI_Controller {
 			$this->load->library('Qra');
 		}
 		$this->load->model('logbook_model');
+		$this->load->model('visitor_model');
 
 		$latlng1 = $this->qra->qra2latlong($locator1);
 		$latlng2 = $this->qra->qra2latlong($locator2);
@@ -508,7 +513,7 @@ class Visitor extends CI_Controller {
 
 		$data['latlng1'] = $latlng1;
 		$data['latlng2'] = $latlng2;
-		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
+		$data['confirmed'] = ($this->visitor_model->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
 
 		return $data;
 	}
@@ -518,6 +523,7 @@ class Visitor extends CI_Controller {
 			$this->load->library('Qra');
 		}
 		$this->load->model('logbook_model');
+		$this->load->model('visitor_model');
 
 		$latlng1 = $this->qra->qra2latlong($mygrid);
 		$latlng2[0] = $lat;
@@ -529,39 +535,8 @@ class Visitor extends CI_Controller {
 
 		$data['latlng1'] = $latlng1;
 		$data['latlng2'] = $latlng2;
-		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
+		$data['confirmed'] = ($this->visitor_model->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
 
 		return $data;
-	}
-
-	function qso_is_confirmed($qso, $user_default_confirmation) {
-		$confirmed = false;
-		$qso = (array) $qso;
-		if (strpos($user_default_confirmation, 'Q') !== false) { // QSL
-			if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
-		}
-		if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
-			if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
-		}
-		if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
-			if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
-		}
-		if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
-			if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
-		}
-		return $confirmed;
-	}
-
-	function get_user_default_confirmation($userid) {
-		$this->db->where('user_id', $userid);
-		$query = $this->db->get('users');
-
-		if ($query->num_rows() > 0){
-			foreach ($query->result() as $row) {
-				return $row->user_default_confirmation;
-			}
-		} else {
-			return '';
-		}
 	}
 }

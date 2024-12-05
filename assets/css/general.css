@@ -230,14 +230,6 @@ thead > tr > td {
 	padding-top: 25px;
 }
 
-.qso_panel #callsign {
-	text-transform: uppercase;
-}
-
-.qso_panel #locator {
-	text-transform: uppercase;
-}
-
 .qso_panel .iota_ref {
 	text-transform: uppercase;
 }
@@ -258,18 +250,6 @@ thead > tr > td {
 	text-transform: uppercase;
 }
 
-.card-body #callsign {
-	text-transform: uppercase;
-}
-
-.card-body #locator {
-	text-transform: uppercase;
-}
-
-.card-body #vucc_grids {
-	text-transform: uppercase;
-}
-
 .card-body #sota_ref_edit-selectized {
 	text-transform: uppercase;
 }
@@ -283,18 +263,6 @@ thead > tr > td {
 }
 
 .card-body #darc_dok_edit-selectized {
-	text-transform: uppercase;
-}
-
-.card-body #exch_rcvd {
-	text-transform: uppercase;
-}
-
-.card-body #exch_sent {
-	text-transform: uppercase;
-}
-
-.card-body #exch_gridsquare_r {
 	text-transform: uppercase;
 }
 
@@ -334,6 +302,11 @@ TD.eqsl {
 	font-size: 1.1em;
 }
 
+.eqsl-grey {
+	color: #dddddd !important;
+	font-size: 1.1em;
+}
+
 TD.qsl {
 	width: 33px;
 	white-space: nowrap;
@@ -366,6 +339,11 @@ TD.clublog {
 
 .clublog-green {
 	color: #00a000 !important;
+	font-size: 1.1em;
+}
+
+.clublog-yellow {
+	color: #d39e00 !important;
 	font-size: 1.1em;
 }
 
@@ -452,8 +430,12 @@ TD.lotw {
 	text-transform: uppercase;
 }
 
-#nav-bar-search-input:focus {
-	text-transform: uppercase;
+#nav-bar-search-input {
+    text-transform: uppercase;
+}
+
+#nav-bar-search-input::placeholder {
+    text-transform: none;
 }
 
 .settings {
@@ -763,6 +745,15 @@ div#station_logbooks_linked_table_paginate {
 #wwff,
 #pota {
 	text-transform: uppercase;
+}
+
+#dx::placeholder,
+#state::placeholder,
+#gridsquare::placeholder,
+#sota::placeholder,
+#wwff::placeholder,
+#pota::placeholder {
+    text-transform: none;
 }
 
 #awardInfoButton {

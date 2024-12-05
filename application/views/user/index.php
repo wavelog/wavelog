@@ -3,8 +3,6 @@
 	var lang_admin_user = "<?= __("User"); ?>";
 	var lang_gen_hamradio_callsign = "<?= __("Callsign"); ?>";
 
-	var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>"
-
 	var lang_admin_email_settings_incorrect = "<?= __("Email settings are incorrect."); ?>";
 	var lang_admin_password_reset_processed = "<?= __("Password-reset e-mail sent to user:"); ?>";
 </script>
@@ -66,7 +64,7 @@
 							<?php echo '<tr class="tr' . ($i & 1) . '">'; ?>
 							<td style="text-align: left; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>"><?php echo $row->user_name; ?></a></td>
 							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_callsign; ?></td>
-							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_email; ?></td>
+							<td style="text-align: left; vertical-align: middle;"><a href="mailto:<?php echo $row->user_email; ?>"><?php echo $row->user_email; ?></a></td>
 							<td style="text-align: left; vertical-align: middle;"><?php $l = $this->config->item('auth_level');
 																					echo $l[$row->user_type]; ?></td>
 							<td style="text-align: left; vertical-align: middle;"><?php

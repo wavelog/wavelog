@@ -148,6 +148,7 @@ class Logbookadvanced extends CI_Controller {
 		);
 
 		$qsos = [];
+
 		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
 			$qsos[] = $qso->toArray();
 		}
@@ -160,8 +161,8 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbook_model');
 		$this->load->model('logbookadvanced_model');
 
-		$qsoID = xss_clean($this->input->post('qsoID'));
-		$qso = $this->logbook_model->qso_info($qsoID)->row_array();
+		$qsoID[] = xss_clean($this->input->post('qsoID'));
+		$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
 		if ($qso === null) {
 			header("Content-Type: application/json");
 			echo json_encode([]);
@@ -171,8 +172,8 @@ class Logbookadvanced extends CI_Controller {
 		$callbook = $this->logbook_model->loadCallBook($qso['COL_CALL'], $this->config->item('use_fullname'));
 
 		if ($callbook['callsign'] ?? "" !== "") {
-			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qsoID, $qso, $callbook);
-			$qso = $this->logbook_model->qso_info($qsoID)->row_array();
+			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook);
+			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
 		}
 
 		$qsoObj = new QSO($qso);
@@ -284,7 +285,7 @@ class Logbookadvanced extends CI_Controller {
 			'dateFrom' => '',
 			'dateTo' => '',
 			'de' => $this->input->post('de'),
-			'dx' => '',
+			'dx' => '*',
 			'mode' => '',
 			'band' => '',
 			'qslSent' => '',
@@ -294,8 +295,8 @@ class Logbookadvanced extends CI_Controller {
 			'iota' => '',
 			'dxcc' => '',
 			'propmode' => '',
-			'gridsquare' => '',
-			'state' => '',
+			'gridsquare' => '*',
+			'state' => '*',
 			'cqzone' => '',
 			'ituzone' => '',
 			'qsoresults' => count($this->input->post('ids')),
@@ -307,13 +308,13 @@ class Logbookadvanced extends CI_Controller {
 			'eqslReceived' => '',
 			'clublogSent' => '',
 			'clublogReceived' => '',
-			'qslvia' => '',
-			'sota' => '',
-			'pota' => '',
-			'wwff' => '',
+			'qslvia' => '*',
+			'sota' => '*',
+			'pota' => '*',
+			'wwff' => '*',
 			'qslimages' => '',
-			'operator' => '',
-			'contest' => '',
+			'operator' => '*',
+			'contest' => '*',
 			'continent' => '',
 			'ids' => xss_clean($this->input->post('ids'))
 		);
@@ -414,8 +415,11 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function isValidMaidenheadGrid($grid) {
+		if (strlen($grid) == 4)  $grid .= "LL";	// Only 4 Chars? Fill with center "LL" as only A-R allowed
+		if (strlen($grid) == 6)  $grid .= "55";	// Only 6 Chars? Fill with center "55"
+		if (strlen($grid) == 8)  $grid .= "LL";	// Only 8 Chars? Fill with center "LL" as only A-R allowed
 		// Regex pattern to match a single valid Maidenhead grid square (with optional extensions)
-		$singleGridPattern = '[A-R]{2}\d{2}([a-x]{2})?';
+		$singleGridPattern = '[A-R]{2}[0-9]{2}([A-X]{2})?([0-9]{2})?([A-X]{2})?';
 
 		// Regex to match VUCC grids, allowing multiple grids separated by commas
 		$compoundPattern = '/^(' . $singleGridPattern . ')(,' . $singleGridPattern . ')*$/i';
@@ -444,8 +448,8 @@ class Logbookadvanced extends CI_Controller {
 		}
 		$this->load->model('logbook_model');
 
-		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base) . $var_dist;
-		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2) . "&#186;";
+		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
+		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
 		$latlng1 = $this->qra->qra2latlong($locator1);
 		$latlng2 = $this->qra->qra2latlong($locator2);
 		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
@@ -553,6 +557,8 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['continent']['show'] = $this->input->post('continent');
 		$json_string['qrz']['show'] = $this->input->post('qrz');
 		$json_string['profilename']['show'] = $this->input->post('profilename');
+		$json_string['stationpower']['show'] = $this->input->post('stationpower');
+		$json_string['distance']['show'] = $this->input->post('distance');
 
 		$obj['column_settings']= json_encode($json_string);
 
@@ -600,6 +606,15 @@ class Logbookadvanced extends CI_Controller {
         }
 
 		$q = [];
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
 		foreach ($qsos as $qso) {
 			$q[] = $qso->toArray();
 		}

@@ -1,3 +1,7 @@
+<script>
+	var lang_edit_cat_settings = "<?= __("Edit CAT Settings"); ?>";
+</script>
+
 <div class="container">
 
 	<br>

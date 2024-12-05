@@ -358,6 +358,16 @@ class User_Model extends CI_Model {
 				// Update the user
 				$this->db->where('user_id', $fields['id']);
 				$this->db->update($this->config->item('auth_table'), $data);
+
+				// Remove static map images in cache to make sure they are updated
+				$this->load->model('Stations');
+				$this->load->model('staticmap_model');
+				$stations = $this->Stations->all_station_ids_of_user($fields['id']);
+				$station_ids = explode(',', $stations);
+				foreach ($station_ids as $station_id) {
+					$this->staticmap_model->remove_static_map_image(trim($station_id));
+				}
+
 				return OK;
 			} else {
 				return ENOSUCHUSER;

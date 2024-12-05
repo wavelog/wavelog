@@ -20,24 +20,32 @@ class Contestcalendar extends CI_Controller {
 
 		// get the raw data and parse it
 		$rssRawData = $this->getRssData();
-		$parsed = $this->parseRSS($rssRawData);
+		if ($rssRawData !== false) {
+			$parsed = $this->parseRSS($rssRawData);
 
-		// and give it to the view
-		$data['contestsToday'] = $this->contestsToday($parsed);
-		$data['contestsNextWeekend'] = $this->contestsNextWeekend($parsed);
-		$data['contestsNextWeek'] = $this->contestsNextWeek($parsed);
+			// and give it to the view
+			$data['contestsToday'] = $this->contestsToday($parsed);
+			$data['contestsNextWeekend'] = $this->contestsNextWeekend($parsed);
+			$data['contestsNextWeek'] = $this->contestsNextWeek($parsed);
 
-		// Get Date format
-		if ($this->session->userdata('user_date_format')) {
-			$data['custom_date_format'] = $this->session->userdata('user_date_format');
+			// Get Date format
+			if ($this->session->userdata('user_date_format')) {
+				$data['custom_date_format'] = $this->session->userdata('user_date_format');
+			} else {
+				$data['custom_date_format'] = $this->config->item('qso_date_format');
+			}
+
+			$footerData['scripts'] = [
+				'assets/js/sections/dxcalendar.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/dxcalendar.js"))
+			];
 		} else {
-			$data['custom_date_format'] = $this->config->item('qso_date_format');
+			$data['contestsToday']='';
+			$data['contestsNextWeekend']='';
+			$data['contestsNextWeek']='';
+			$data['custom_date_format'] = '';
+			$footerData['scripts']=[];
+			$this->session->set_flashdata('error', __("Contestcalendar not reachable. Try again later"));
 		}
-
-		$footerData['scripts'] = [
-			'assets/js/sections/dxcalendar.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/dxcalendar.js"))
-		];
-
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contestcalendar/index');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -129,13 +137,14 @@ class Contestcalendar extends CI_Controller {
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			$rssRawData = curl_exec($ch);
 			curl_close($ch);
 
 			if ($rssRawData === FALSE) {
 				$msg = "Something went wrong with fetching the Contest Data";
 				log_message('error', $msg);
-				return;
+				return false;
 			}
 
 			$this->cache->save('RssRawContestCal', $rssRawData, (60 * 60 * 12)); // 12 hours cache time

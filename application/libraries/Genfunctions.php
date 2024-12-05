@@ -134,4 +134,125 @@ class Genfunctions
 		return $flag;
 	}
 
+	/**
+	 * Function to convert a FontAwesome icon to a PNG image and returns filename if successful (or already exists)
+	 * Source: https://github.com/sperelson/Awesome2PNG
+	 * Modified by HB9HIL
+	 * 
+	 * @param string 	$unicode		Unicode of the FontAwesome icon (e.g. f0c8) - required
+	 * @param string 	$color			Hexadecimal color of the icon (default: ffffff)
+	 * @param string 	$dest_file		Destination file path (optional)
+	 * @param int 		$pixelshigh		Height of the icon in pixels (default: 32)
+	 * @param int 		$alpha			Alpha channel of the icon (default: 0)
+	 * @param array 	$padding		Padding of the icon (default: array(3, 3, 3, 3))
+	 * 
+	 * @return bool
+	 */
+	function fas2png($unicode, $color='ffffff', $dest_file = null, $pixelshigh=32, $alpha=0, $padding=array(3, 3, 3, 3)) {
+		try {
+			// Set the target path
+			if ($dest_file != null) {
+				$icon = $dest_file;
+			} else {
+				$CI = &get_instance();
+				$cachepath = $CI->config->item('cache_path') == '' ? APPPATH . 'cache/' : $CI->config->item('cache_path');
+				$cacheDir = $cachepath . "fas_icons_cache/";
+				if (!is_dir($cacheDir)) {
+					mkdir($cacheDir, 0755, true);
+				}
+				$icon = $cacheDir . 'icon_' . $unicode . '_' . $color . '_' . $pixelshigh . '_a' . $alpha . '_p' . implode('-', $padding) . '.png';
+			}
+
+			// Check if the icon already exists
+			if (file_exists($icon)) {
+				return $icon;
+			}
+
+			// Check if the font file exists
+			$font = realpath(APPPATH . '../') . '/assets/fontawesome/webfonts/fa-solid-900.ttf';
+			if (!file_exists($font)) {
+				throw new Exception('Font file not found: ' . $font);
+			}
+
+			// Variables for brute-forcing the correct point height
+			$ratio = 96 / 72;
+			$ratioadd = 0.0001;
+			$heightalright = false;
+			$count = 0;
+			$maxcount = 20000;
+
+			$text = json_decode('"&#x'.$unicode.';"');
+			if ($text === null) {
+				throw new Exception('Failed to decode unicode: &#x'.$unicode.';');
+			}
+
+			// Brute-force point height
+			while (!$heightalright && $count < $maxcount) {
+				$x = $pixelshigh / $ratio;
+				$count++;
+				$bounds = imagettfbbox($x, 0, $font, $text);
+
+				if ($bounds === false) {
+					throw new Exception('Failed to calculate bounding box with imagettfbbox.');
+				}
+
+				$height = abs($bounds[7] - abs($bounds[1]));
+
+				if ($height == $pixelshigh) {
+					$heightalright = true;
+				} else {
+					if ($height < $pixelshigh) {
+						$ratio -= $ratioadd;
+					} else {
+						$ratio += $ratioadd;
+					}
+				}
+			}
+
+			if (!$heightalright) {
+				throw new Exception('Could not calculate the correct height for the icon.');
+			}
+
+			$width = abs($bounds[4]) + abs($bounds[0]);
+
+			// Create the image
+			$im = imagecreatetruecolor($width + $padding[2] + $padding[3], $pixelshigh + $padding[0] + $padding[1]);
+			if ($im === false) {
+				throw new Exception('Failed to create image resource.');
+			}
+
+			imagesavealpha($im, true);
+			$trans = imagecolorallocatealpha($im, 0, 0, 0, 127);
+			imagefill($im, 0, 0, $trans);
+			imagealphablending($im, true);
+
+			// Prepare font color
+			$fontcolor = $alpha << 24 | hexdec($color);
+
+			// Add the icon
+			if (imagettftext($im, $x, 0, 1 + $padding[2], $height - abs($bounds[1]) - 1 + $padding[0], $fontcolor, $font, $text) === false) {
+				throw new Exception('Failed to render icon with imagettftext.');
+			}
+
+			imagesavealpha($im, true);
+
+			// Save the image
+			if (imagepng($im, $icon) === false) {
+				throw new Exception('Failed to save PNG image.');
+			}
+
+			// Sleep to make sure the file is available in the next run.
+			usleep(100000); // 100ms
+
+			// Clean up
+			imagedestroy($im);
+
+			return $icon;
+
+		} catch (Exception $e) {
+			log_message('error', $e->getMessage());
+			return false;
+		}
+	}
 }
+
