@@ -371,10 +371,10 @@ class Qrz extends CI_Controller {
 
 		$content = htmlspecialchars_decode(curl_exec($ch));
 		if (strlen($content)<100) {
-			file_put_contents($file, $content);
 			$result = "QRZ downloading failed, either due to it being down or incorrect logins.";
 			return "false";
 		}
+		file_put_contents($file, $content);
 
 		ini_set('memory_limit', '-1');
 		$result = $this->loadFromFile($file, $station_ids);
