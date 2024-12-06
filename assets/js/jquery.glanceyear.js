@@ -75,11 +75,11 @@
 
 						if (tagCountData) {
 							if (tagCountData > 1 )
-								tagCount = $(this).attr('data-count')+' scores';
+								tagCount = $(this).attr('data-count')+' QSOs';
 							else
-								tagCount = $(this).attr('data-count')+' score';
+								tagCount = $(this).attr('data-count')+' QSO';
 						} else {
-							tagCount = 'No scores';
+							tagCount = 'No QSOs';
 						}
 
 						$_tag.html( '<b>' + tagCount + '</b> on ' + tagDate)
@@ -148,7 +148,7 @@
 				$_this.find('rect.day[data-date="' + massive[m].date + '"]').attr('data-col', massive[m].col);
 				scoreCount += parseInt(massive[m].value);
 			}
-			$(settings.targetQuantity).text(massive.length + ' days, ' + scoreCount + ' scores');
+			$(settings.targetQuantity).text(massive.length + ' days, ' + scoreCount + ' QSOs');
 
 		}
 
