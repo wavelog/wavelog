@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-05 20:24+0000\n"
+"POT-Creation-Date: 2024-12-06 07:37+0000\n"
 "PO-Revision-Date: 2024-12-05 18:31+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -10584,28 +10584,25 @@ msgid "Duration"
 msgstr "Duración"
 
 #: application/views/satellite/passtable.php:8
-msgid "AOS Az"
-msgstr "AOS Az"
+msgid "AOS Azimuth"
+msgstr ""
 
 #: application/views/satellite/passtable.php:9
-msgid "AOS El"
-msgstr "AOS Él"
+#: application/views/sattimers/index.php:45
+msgid "Max Elevation"
+msgstr "Elevación máxima"
 
 #: application/views/satellite/passtable.php:10
-msgid "Max El"
-msgstr "Max El"
-
-#: application/views/satellite/passtable.php:11
 msgid "LOS Time"
 msgstr "Tiempo LOS"
 
-#: application/views/satellite/passtable.php:12
-msgid "LOS Az"
-msgstr "LOS Az"
+#: application/views/satellite/passtable.php:11
+msgid "LOS Azimuth"
+msgstr ""
 
-#: application/views/satellite/passtable.php:13
-msgid "LOS El"
-msgstr "LOS El"
+#: application/views/satellite/passtable.php:35
+msgid "min"
+msgstr ""
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -10625,10 +10622,6 @@ msgstr "Tiempo(d)-Fuera"
 #: application/views/statistics/antennaanalytics.php:8
 msgid "Azimuth"
 msgstr "Acimut"
-
-#: application/views/sattimers/index.php:45
-msgid "Max Elevation"
-msgstr "Elevación máxima"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/ituzones.php:5
@@ -12846,6 +12839,21 @@ msgstr "Tu indicativo de llamada:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Enviar solicitud"
+
+#~ msgid "AOS Az"
+#~ msgstr "AOS Az"
+
+#~ msgid "AOS El"
+#~ msgstr "AOS Él"
+
+#~ msgid "Max El"
+#~ msgstr "Max El"
+
+#~ msgid "LOS Az"
+#~ msgstr "LOS Az"
+
+#~ msgid "LOS El"
+#~ msgstr "LOS El"
 
 #~ msgid "edited"
 #~ msgstr "editado"
