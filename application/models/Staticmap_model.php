@@ -163,21 +163,20 @@ class Staticmap_model extends CI_Model {
         // Set the tile layer
         if ($thememode != null) {
             $attribution = $this->optionslib->get_option('option_map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
-            $subdomains = $this->optionslib->get_option('option_map_tile_subdomains') ?? 'abc';
             if ($thememode == 'light') {
                 $server_url = $this->optionslib->get_option('option_map_tile_server') ?? '';
                 if ($server_url == '') {
                     $server_url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
                     $this->optionslib->update('map_tile_server', $server_url, 'yes');
                 }
-                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode, $subdomains);
+                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
             } elseif ($thememode == 'dark') {
                 $server_url = $this->optionslib->get_option('option_map_tile_server_dark') ?? '';
                 if ($server_url == '') {
                     $server_url = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
                     $this->optionslib->update('map_tile_server_dark', $server_url, 'yes');
                 }
-                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode, $subdomains);
+                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
             } else {
                 $tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
             }
