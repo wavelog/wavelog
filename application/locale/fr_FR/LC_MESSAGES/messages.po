@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-06 13:18+0000\n"
+"POT-Creation-Date: 2024-12-06 13:19+0000\n"
 "PO-Revision-Date: 2024-12-04 07:53+0000\n"
 "Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -132,8 +132,8 @@ msgstr "Carte des Locator activés"
 #: application/controllers/Gridmap.php:31
 #: application/controllers/Visitor.php:385
 #: application/views/activators/index.php:100
-#: application/views/interface_assets/footer.php:45
-#: application/views/visitor/layout/footer.php:12
+#: application/views/interface_assets/footer.php:44
+#: application/views/visitor/layout/footer.php:22
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
 msgstr "Locator"
@@ -650,7 +650,7 @@ msgid "disabled"
 msgstr "désactivé"
 
 #: application/controllers/Cron.php:278
-#: application/views/interface_assets/footer.php:38
+#: application/views/interface_assets/footer.php:37
 msgid "OK"
 msgstr "OK"
 
@@ -1511,7 +1511,7 @@ msgstr "Opérateur"
 #: application/views/awards/dxcc/index.php:238
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:685
+#: application/views/interface_assets/footer.php:684
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:191
 #: application/views/lookup/index.php:44
@@ -1645,10 +1645,8 @@ msgstr "Edition d'une Note"
 #: application/controllers/Options.php:247
 #: application/controllers/Options.php:317
 #: application/controllers/Options.php:327
-#: application/controllers/Options.php:394
-#: application/controllers/Options.php:413
-#: application/controllers/Options.php:491
-#: application/controllers/Options.php:501
+#: application/controllers/Options.php:395
+#: application/controllers/Options.php:405
 msgid "Wavelog Options"
 msgstr "Paramètres Wavelog"
 
@@ -1725,48 +1723,28 @@ msgstr "Test d'envoi de mail : dysfonctionnement rencontré."
 msgid "Testmail sent. Email settings seem to be correct."
 msgstr "Test d'envoi de mail : les paramètres sont corrects."
 
-#: application/controllers/Options.php:395
-#: application/controllers/Options.php:414
-#: application/views/options/sidebar.php:11
-msgid "Maptiles Server"
-msgstr ""
-
-#: application/controllers/Options.php:475
-#, php-format
-msgid ""
-"Maptile cache could not be removed. Delete the folder manually. Path: %s"
-msgstr ""
-
-#: application/controllers/Options.php:479
-msgid "Maptile Options saved!"
-msgstr ""
-
-#: application/controllers/Options.php:481
-msgid "Maptile Options could not be saved!"
-msgstr ""
-
-#: application/controllers/Options.php:492
-#: application/controllers/Options.php:502
+#: application/controllers/Options.php:396
+#: application/controllers/Options.php:406
 msgid "Version Info Settings"
 msgstr "Infos Version : paramètres"
 
-#: application/controllers/Options.php:508
+#: application/controllers/Options.php:412
 msgid "Version Info Header changed to"
 msgstr "Infos Version : En-tête changée en"
 
-#: application/controllers/Options.php:512
+#: application/controllers/Options.php:416
 msgid "Version Info Mode changed to"
 msgstr "Infos Version : Mode changé en"
 
-#: application/controllers/Options.php:517
+#: application/controllers/Options.php:421
 msgid "Version Info Custom Text saved!"
 msgstr "Infos Version : texte personnalisé enregistré !"
 
-#: application/controllers/Options.php:528
+#: application/controllers/Options.php:432
 msgid "Version Info will be shown to all users again"
 msgstr "Version Info sera montré à tous les utilisateurs à nouveau"
 
-#: application/controllers/Options.php:536
+#: application/controllers/Options.php:440
 msgid "Version Info will not be shown to any user"
 msgstr "Version Info ne sera pas montré à aucun utilisateur"
 
@@ -1926,8 +1904,8 @@ msgstr "Par défaut (cliquez pour libérer)"
 #: application/controllers/Stationsetup.php:359
 #: application/views/api/help.php:57 application/views/contesting/add.php:59
 #: application/views/cron/index.php:58
-#: application/views/interface_assets/footer.php:551
-#: application/views/interface_assets/footer.php:560
+#: application/views/interface_assets/footer.php:550
+#: application/views/interface_assets/footer.php:559
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:584
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -1942,10 +1920,10 @@ msgstr "Editer"
 #: application/controllers/Radio.php:107
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:2377
-#: application/views/interface_assets/footer.php:2395
-#: application/views/interface_assets/footer.php:2416
-#: application/views/interface_assets/footer.php:2434
+#: application/views/interface_assets/footer.php:2376
+#: application/views/interface_assets/footer.php:2394
+#: application/views/interface_assets/footer.php:2415
+#: application/views/interface_assets/footer.php:2433
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:598
 #: application/views/lotw_views/index.php:111
@@ -2004,7 +1982,7 @@ msgstr "Minuteries de satellite"
 
 #: application/controllers/Search.php:19
 #: application/views/continents/index.php:49
-#: application/views/interface_assets/footer.php:39
+#: application/views/interface_assets/footer.php:38
 #: application/views/interface_assets/header.php:342
 #: application/views/interface_assets/header.php:349
 #: application/views/logbookadvanced/index.php:574
@@ -2810,8 +2788,8 @@ msgstr "Différence"
 #: application/views/gridmap/index.php:41
 #: application/views/gridmap/index.php:70
 #: application/views/gridmap/index.php:83
-#: application/views/interface_assets/footer.php:1488
-#: application/views/interface_assets/footer.php:1627
+#: application/views/interface_assets/footer.php:1487
+#: application/views/interface_assets/footer.php:1626
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -2855,7 +2833,7 @@ msgstr "Différence"
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
-#: application/views/visitor/layout/footer.php:172
+#: application/views/visitor/layout/footer.php:171
 msgid "All"
 msgstr "Tout"
 
@@ -3517,7 +3495,7 @@ msgstr "La taille maximum d'un fichier à télécharger est "
 #: application/views/debug/index.php:206 application/views/debug/index.php:562
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
-#: application/views/interface_assets/footer.php:36
+#: application/views/interface_assets/footer.php:35
 #: application/views/qrz/export.php:75 application/views/qrz/export.php:96
 #: application/views/stationsetup/stationsetup.php:111
 #: application/views/view_log/qso.php:741
@@ -3600,9 +3578,9 @@ msgstr ""
 "l'opérateur lors de l'importation"
 
 #: application/views/adif/import.php:162
-#: application/views/interface_assets/footer.php:33
-#: application/views/interface_assets/footer.php:511
-#: application/views/interface_assets/footer.php:2173
+#: application/views/interface_assets/footer.php:32
+#: application/views/interface_assets/footer.php:510
+#: application/views/interface_assets/footer.php:2172
 msgid "DANGER"
 msgstr "DANGER"
 
@@ -3808,13 +3786,12 @@ msgstr "Nom simple pour décrire l'utilisation de cette API."
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
-#: application/views/interface_assets/footer.php:47
-#: application/views/interface_assets/footer.php:546
+#: application/views/interface_assets/footer.php:46
+#: application/views/interface_assets/footer.php:545
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:116
 #: application/views/options/dxcluster.php:67
 #: application/views/options/email.php:112
-#: application/views/options/maptiles.php:76
 #: application/views/options/oqrs.php:63
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
@@ -4133,7 +4110,7 @@ msgstr "Récompense - CQ Magazine WAZ"
 #: application/views/bandmap/list.php:76
 #: application/views/dashboard/index.php:267
 #: application/views/dashboard/index.php:385
-#: application/views/interface_assets/footer.php:42
+#: application/views/interface_assets/footer.php:41
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
 msgid "Confirmed"
@@ -4207,7 +4184,7 @@ msgstr "Afficher QSO avec type QSL"
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
-#: application/views/interface_assets/footer.php:2152
+#: application/views/interface_assets/footer.php:2151
 #: application/views/qso/edit_ajax.php:403
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
@@ -5417,7 +5394,7 @@ msgstr ""
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
 #: application/views/contesting/index.php:88
-#: application/views/interface_assets/footer.php:46
+#: application/views/interface_assets/footer.php:45
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
 msgid "Close"
@@ -6169,7 +6146,7 @@ msgid "Enter your own Cron Expression"
 msgstr ""
 
 #: application/views/cron/edit.php:74
-#: application/views/interface_assets/footer.php:37
+#: application/views/interface_assets/footer.php:36
 #: application/views/user/index.php:150
 msgid "Cancel"
 msgstr "Annuler"
@@ -6998,7 +6975,7 @@ msgid "DX Gridsquare"
 msgstr ""
 
 #: application/views/distances/index.php:7
-#: application/views/interface_assets/footer.php:31
+#: application/views/interface_assets/footer.php:30
 #: application/views/simplefle/index.php:71
 msgid "QSO Data"
 msgstr "Données du QSO"
@@ -7327,10 +7304,10 @@ msgid "QSL Date"
 msgstr ""
 
 #: application/views/eqslcard/index.php:60
-#: application/views/interface_assets/footer.php:2378
-#: application/views/interface_assets/footer.php:2396
-#: application/views/interface_assets/footer.php:2417
-#: application/views/interface_assets/footer.php:2435
+#: application/views/interface_assets/footer.php:2377
+#: application/views/interface_assets/footer.php:2395
+#: application/views/interface_assets/footer.php:2416
+#: application/views/interface_assets/footer.php:2434
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:733
 msgid "View"
@@ -7433,7 +7410,7 @@ msgstr ""
 msgid "The QSOs are marked as exported to HRDLog Logbook."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:32
+#: application/views/interface_assets/footer.php:31
 #: application/views/search/search_result_ajax.php:416
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:350
@@ -7441,209 +7418,209 @@ msgstr ""
 msgid "Edit QSO"
 msgstr "Editer QSO"
 
-#: application/views/interface_assets/footer.php:34
+#: application/views/interface_assets/footer.php:33
 msgid "ERROR"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:35
+#: application/views/interface_assets/footer.php:34
 msgid "Attention"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:40
+#: application/views/interface_assets/footer.php:39
 msgid "Warning! Are you sure you want delete QSO with "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:41
+#: application/views/interface_assets/footer.php:40
 #: application/views/user/edit.php:493
 msgid "Colors"
 msgstr "Couleurs"
 
-#: application/views/interface_assets/footer.php:43
+#: application/views/interface_assets/footer.php:42
 msgid "Worked not confirmed"
 msgstr "Réalisés - non confirmés"
 
-#: application/views/interface_assets/footer.php:44
+#: application/views/interface_assets/footer.php:43
 msgid "Not worked"
 msgstr "Non réalisés"
 
-#: application/views/interface_assets/footer.php:48
+#: application/views/interface_assets/footer.php:47
 #: application/views/qso/index.php:650
-#: application/views/visitor/layout/footer.php:247
+#: application/views/visitor/layout/footer.php:246
 msgid "Clear"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:49
+#: application/views/interface_assets/footer.php:48
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:538
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:50
+#: application/views/interface_assets/footer.php:49
 msgid "No states for this DXCC available"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:51
+#: application/views/interface_assets/footer.php:50
 msgid "Compute QRB and QTF"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:52
+#: application/views/interface_assets/footer.php:51
 msgid "Error in locators. Please check."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:53
+#: application/views/interface_assets/footer.php:52
 #: application/views/user/index.php:37
 msgid "Refresh List"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:54
+#: application/views/interface_assets/footer.php:53
 msgid "Please Wait ..."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:135
+#: application/views/interface_assets/footer.php:134
 #: application/views/interface_assets/header.php:442
-#: application/views/options/sidebar.php:12
+#: application/views/options/sidebar.php:11
 msgid "Version Info"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:408
+#: application/views/interface_assets/footer.php:407
 msgid "Description:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:411
+#: application/views/interface_assets/footer.php:410
 msgid "Query description"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:427
+#: application/views/interface_assets/footer.php:426
 msgid "Your query has been saved!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:429
+#: application/views/interface_assets/footer.php:428
 #: application/views/search/filter.php:49
 msgid "Edit queries"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:431
+#: application/views/interface_assets/footer.php:430
 msgid "Stored queries:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:436
+#: application/views/interface_assets/footer.php:435
 #: application/views/search/filter.php:63
 msgid "Run Query"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:448
-#: application/views/interface_assets/footer.php:577
-#: application/views/interface_assets/footer.php:641
+#: application/views/interface_assets/footer.php:447
+#: application/views/interface_assets/footer.php:576
+#: application/views/interface_assets/footer.php:640
 msgid "Stored Queries"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:453
-#: application/views/interface_assets/footer.php:646
+#: application/views/interface_assets/footer.php:452
+#: application/views/interface_assets/footer.php:645
 msgid "You need to make a query before you search!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:474
-#: application/views/interface_assets/footer.php:605
+#: application/views/interface_assets/footer.php:473
+#: application/views/interface_assets/footer.php:604
 #: application/views/search/filter.php:82
 msgid "Export to ADIF"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:512
+#: application/views/interface_assets/footer.php:511
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:526
+#: application/views/interface_assets/footer.php:525
 msgid "The stored query has been deleted!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:535
+#: application/views/interface_assets/footer.php:534
 msgid "The stored query could not be deleted. Please try again!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:561
+#: application/views/interface_assets/footer.php:560
 msgid "The query description has been updated!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:565
+#: application/views/interface_assets/footer.php:564
 msgid "Something went wrong with the save. Please try again!"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:688
+#: application/views/interface_assets/footer.php:687
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:740
+#: application/views/interface_assets/footer.php:739
 #: application/views/logbookadvanced/index.php:569
 msgid "Callsign: "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:741
+#: application/views/interface_assets/footer.php:740
 msgid "Count: "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:742
+#: application/views/interface_assets/footer.php:741
 msgid "Grids: "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1205
+#: application/views/interface_assets/footer.php:1204
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1415
-#: application/views/interface_assets/footer.php:1419
-#: application/views/interface_assets/footer.php:1422
-#: application/views/interface_assets/footer.php:1559
-#: application/views/interface_assets/footer.php:1563
-#: application/views/interface_assets/footer.php:1566
+#: application/views/interface_assets/footer.php:1414
+#: application/views/interface_assets/footer.php:1418
+#: application/views/interface_assets/footer.php:1421
+#: application/views/interface_assets/footer.php:1558
+#: application/views/interface_assets/footer.php:1562
+#: application/views/interface_assets/footer.php:1565
 msgid "grid square"
 msgstr "Grilles des Locators"
 
-#: application/views/interface_assets/footer.php:1422
-#: application/views/interface_assets/footer.php:1566
+#: application/views/interface_assets/footer.php:1421
+#: application/views/interface_assets/footer.php:1565
 msgid "Total count"
 msgstr "Total"
 
-#: application/views/interface_assets/footer.php:2154
+#: application/views/interface_assets/footer.php:2153
 msgid "QSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2174
+#: application/views/interface_assets/footer.php:2173
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2214
+#: application/views/interface_assets/footer.php:2213
 #: application/views/view_log/qso.php:42
 msgid "eQSL Card"
 msgstr "Carte eQSL"
 
-#: application/views/interface_assets/footer.php:2216
+#: application/views/interface_assets/footer.php:2215
 msgid "eQSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2389
-#: application/views/interface_assets/footer.php:2428
+#: application/views/interface_assets/footer.php:2388
+#: application/views/interface_assets/footer.php:2427
 #: application/views/view_log/qso.php:723
 msgid "QSL image file"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2408
+#: application/views/interface_assets/footer.php:2407
 msgid "Front QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2446
+#: application/views/interface_assets/footer.php:2445
 msgid "Back QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2457
-#: application/views/interface_assets/footer.php:2482
+#: application/views/interface_assets/footer.php:2456
+#: application/views/interface_assets/footer.php:2481
 msgid "Add additional QSOs to a QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2493
+#: application/views/interface_assets/footer.php:2492
 msgid "Something went wrong. Please try again!"
 msgstr ""
 
@@ -9196,67 +9173,6 @@ msgstr ""
 msgid ""
 "Wavelog Options are global settings used for all users of the installation, "
 "which are overridden if there's a setting on a user level."
-msgstr ""
-
-#: application/views/options/maptiles.php:47
-msgid ""
-"This modifies the map source in various locations within Wavelog. Do not "
-"change any values here unless you are confident in what you are doing."
-msgstr ""
-
-#: application/views/options/maptiles.php:50
-msgid "Maptiles Server URL"
-msgstr ""
-
-#: application/views/options/maptiles.php:52
-#, php-format
-msgid ""
-"For the %sStatic Map API%s this URL is only used when theme is set to %s. "
-"Default: %s"
-msgstr ""
-
-#: application/views/options/maptiles.php:52
-msgid "URL of the map server which serves the maptiles."
-msgstr ""
-
-#: application/views/options/maptiles.php:55
-msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
-msgstr ""
-
-#: application/views/options/maptiles.php:57
-#, php-format
-msgid ""
-"URL of the map server which serves the dark maptiles. Only used for Static "
-"Map API. Default: %s"
-msgstr ""
-
-#: application/views/options/maptiles.php:60
-msgid "Subdomain System of Maptile Server"
-msgstr ""
-
-#: application/views/options/maptiles.php:62
-#, php-format
-msgid ""
-"System of the subdomains at this server ({s}). They are used for "
-"loadbalancing. Default: %s"
-msgstr ""
-
-#: application/views/options/maptiles.php:65
-msgid "URL of the Copyright Source"
-msgstr ""
-
-#: application/views/options/maptiles.php:67
-#, php-format
-msgid "Source URL for the copyright tag. Default: %s"
-msgstr ""
-
-#: application/views/options/maptiles.php:70
-msgid "Name of the Copyright Source"
-msgstr ""
-
-#: application/views/options/maptiles.php:72
-#, php-format
-msgid "Text for the copyright tag. Default: %s"
 msgstr ""
 
 #: application/views/options/oqrs.php:39
@@ -12412,7 +12328,7 @@ msgstr "Marquer QSL Reçue (Electronic)"
 msgid "eQSL picture"
 msgstr ""
 
-#: application/views/visitor/layout/footer.php:243
+#: application/views/visitor/layout/footer.php:242
 msgid "CSV"
 msgstr ""
 
