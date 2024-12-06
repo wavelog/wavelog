@@ -354,6 +354,12 @@ msgstr "日志视图 - VUCC"
 #: application/controllers/Timeline.php:114
 #: application/controllers/Timeline.php:117
 #: application/controllers/Timeline.php:120
+#: application/controllers/Timeline.php:126
+#: application/controllers/Timeline.php:129
+#: application/controllers/Timeline.php:132
+#: application/controllers/Timeline.php:135
+#: application/controllers/Timeline.php:138
+#: application/controllers/Timeline.php:141
 msgid "Log View"
 msgstr "日志视图"
 
@@ -1250,6 +1256,7 @@ msgstr "对方收我"
 #: application/views/view_log/qso.php:334
 #: application/views/view_log/qso.php:647
 #: application/views/visitor/index.php:15
+#: application/views/timeline/index.php:200
 msgid "Country"
 msgstr "DXCC 实体"
 
@@ -1277,6 +1284,7 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/views/timeline/index.php:295
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1305,6 +1313,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/timeline/index.php:265
 msgid "State"
 msgstr "州"
 
@@ -1346,6 +1355,7 @@ msgstr "州"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:634
 #: application/views/visitor/index.php:27
+#: application/views/timeline/index.php:356
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -1518,6 +1528,7 @@ msgstr "操作员"
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:338
 #: application/views/view_log/qso.php:648
+#: application/views/timeline/index.php:216
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -2663,6 +2674,7 @@ msgstr "累计通联的 WAJA 数量"
 #: application/views/statistics/index.php:18
 #: application/views/statistics/index.php:36
 #: application/views/visitor/index.php:250
+#: application/views/timeline/index.php:107
 msgid "Year"
 msgstr "年"
 
@@ -2785,6 +2797,7 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:171
+#: application/views/timeline/index.php:82
 msgid "All"
 msgstr "所有"
 
@@ -2831,12 +2844,14 @@ msgstr "周期"
 #: application/views/logbookadvanced/useroptions.php:134
 #: application/views/timeline/index.php:74
 #: application/views/view_log/qso.php:233
+#: application/views/timeline/index.php:79
 msgid "Propagation"
 msgstr "传播方式"
 
 #: application/views/accumulate/index.php:84
 #: application/views/distances/index.php:57
 #: application/views/timeline/index.php:78
+#: application/views/timeline/index.php:83
 msgid "All but SAT"
 msgstr "全部（除卫星以外）"
 
@@ -2846,6 +2861,7 @@ msgstr "全部（除卫星以外）"
 #: application/views/logbookadvanced/edit.php:161
 #: application/views/logbookadvanced/index.php:333
 #: application/views/timeline/index.php:79
+#: application/views/timeline/index.php:84
 msgid "None/Empty"
 msgstr "无/空"
 
@@ -2857,6 +2873,7 @@ msgstr "无/空"
 #: application/views/qso/edit_ajax.php:190 application/views/qso/index.php:426
 #: application/views/timeline/index.php:80
 #: application/views/view_log/qso.php:236
+#: application/views/timeline/index.php:85
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr "Aircraft Scatter"
@@ -2869,6 +2886,7 @@ msgstr "Aircraft Scatter"
 #: application/views/qso/edit_ajax.php:191 application/views/qso/index.php:427
 #: application/views/timeline/index.php:81
 #: application/views/view_log/qso.php:239
+#: application/views/timeline/index.php:86
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr "Aurora"
@@ -2881,6 +2899,7 @@ msgstr "Aurora"
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:428
 #: application/views/timeline/index.php:82
 #: application/views/view_log/qso.php:242
+#: application/views/timeline/index.php:87
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr "Aurora-E"
@@ -2893,6 +2912,7 @@ msgstr "Aurora-E"
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:429
 #: application/views/timeline/index.php:83
 #: application/views/view_log/qso.php:245
+#: application/views/timeline/index.php:88
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr "Back scatter"
@@ -2905,6 +2925,7 @@ msgstr "Back scatter"
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:430
 #: application/views/timeline/index.php:84
 #: application/views/view_log/qso.php:248
+#: application/views/timeline/index.php:89
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr "EchoLink"
@@ -2917,6 +2938,7 @@ msgstr "EchoLink"
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:431
 #: application/views/timeline/index.php:85
 #: application/views/view_log/qso.php:251
+#: application/views/timeline/index.php:90
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr "EME"
@@ -2929,6 +2951,7 @@ msgstr "EME"
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:432
 #: application/views/timeline/index.php:86
 #: application/views/view_log/qso.php:254
+#: application/views/timeline/index.php:91
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr "Sporadic E"
@@ -2941,6 +2964,7 @@ msgstr "Sporadic E"
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:433
 #: application/views/timeline/index.php:87
 #: application/views/view_log/qso.php:257
+#: application/views/timeline/index.php:92
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr "Field Aligned Irregularities"
@@ -2953,6 +2977,7 @@ msgstr "Field Aligned Irregularities"
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:434
 #: application/views/timeline/index.php:88
 #: application/views/view_log/qso.php:260
+#: application/views/timeline/index.php:93
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr "F2 Reflection"
@@ -2965,6 +2990,7 @@ msgstr "F2 Reflection"
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:435
 #: application/views/timeline/index.php:89
 #: application/views/view_log/qso.php:263
+#: application/views/timeline/index.php:94
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr "Internet-assisted"
@@ -2977,6 +3003,7 @@ msgstr "Internet-assisted"
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:436
 #: application/views/timeline/index.php:90
 #: application/views/view_log/qso.php:266
+#: application/views/timeline/index.php:95
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr "Ionoscatter"
@@ -2989,6 +3016,7 @@ msgstr "Ionoscatter"
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:437
 #: application/views/timeline/index.php:91
 #: application/views/view_log/qso.php:269
+#: application/views/timeline/index.php:96
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr "IRLP"
@@ -3001,6 +3029,7 @@ msgstr "IRLP"
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:438
 #: application/views/timeline/index.php:92
 #: application/views/view_log/qso.php:272
+#: application/views/timeline/index.php:97
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr "Meteor scatter"
@@ -3013,6 +3042,7 @@ msgstr "Meteor scatter"
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:439
 #: application/views/timeline/index.php:93
 #: application/views/view_log/qso.php:275
+#: application/views/timeline/index.php:98
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Terrestrial or atmospheric repeater or transponder"
@@ -3025,6 +3055,7 @@ msgstr "Terrestrial or atmospheric repeater or transponder"
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:440
 #: application/views/timeline/index.php:94
 #: application/views/view_log/qso.php:278
+#: application/views/timeline/index.php:99
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr "Rain scatter"
@@ -3037,6 +3068,7 @@ msgstr "Rain scatter"
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:441
 #: application/views/timeline/index.php:95
 #: application/views/view_log/qso.php:281
+#: application/views/timeline/index.php:100
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "Satellite"
@@ -3049,6 +3081,7 @@ msgstr "Satellite"
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:442
 #: application/views/timeline/index.php:96
 #: application/views/view_log/qso.php:284
+#: application/views/timeline/index.php:101
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr "Trans-equatorial"
@@ -3061,6 +3094,7 @@ msgstr "Trans-equatorial"
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:443
 #: application/views/timeline/index.php:97
 #: application/views/view_log/qso.php:287
+#: application/views/timeline/index.php:102
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr "Tropospheric ducting"
@@ -3092,6 +3126,13 @@ msgstr "Tropospheric ducting"
 #: application/views/timeline/index.php:276
 #: application/views/timeline/index.php:303
 #: application/views/timeplotter/index.php:59
+#: application/views/timeline/index.php:128
+#: application/views/timeline/index.php:219
+#: application/views/timeline/index.php:250
+#: application/views/timeline/index.php:278
+#: application/views/timeline/index.php:312
+#: application/views/timeline/index.php:340
+#: application/views/timeline/index.php:370
 msgid "Show"
 msgstr "显示"
 
@@ -3217,6 +3258,7 @@ msgstr "最低数量"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:135
+#: application/views/timeline/index.php:158
 msgid "Nothing found!"
 msgstr "未找到！"
 
@@ -3273,6 +3315,11 @@ msgstr "数量"
 #: application/views/timeline/index.php:238
 #: application/views/timeline/index.php:265
 #: application/views/timeline/index.php:291
+#: application/views/timeline/index.php:203
+#: application/views/timeline/index.php:266
+#: application/views/timeline/index.php:298
+#: application/views/timeline/index.php:328
+#: application/views/timeline/index.php:357
 msgid "Show QSO's"
 msgstr "显示 QSO"
 
@@ -3353,6 +3400,12 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:25
+#: application/views/timeline/index.php:198
+#: application/views/timeline/index.php:236
+#: application/views/timeline/index.php:264
+#: application/views/timeline/index.php:294
+#: application/views/timeline/index.php:326
+#: application/views/timeline/index.php:354
 msgid "Date"
 msgstr "日期"
 
@@ -3385,6 +3438,7 @@ msgstr "日期"
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/visitor/index.php:154
 #: application/views/widgets/qsos.php:27
+#: application/views/timeline/index.php:355
 msgid "Time"
 msgstr "时间"
 
@@ -3807,6 +3861,7 @@ msgstr "权限"
 #: application/views/sattimers/index.php:39
 #: application/views/stationsetup/stationsetup.php:31
 #: application/views/timeline/index.php:152
+#: application/views/timeline/index.php:201
 msgid "Status"
 msgstr "状态"
 
@@ -3976,6 +4031,7 @@ msgstr "总计"
 #: application/views/station_profile/edit.php:153
 #: application/views/timeline/index.php:264
 #: application/views/timeplotter/index.php:44
+#: application/views/timeline/index.php:327
 msgid "CQ Zone"
 msgstr "CQ 分区"
 
@@ -4401,6 +4457,8 @@ msgstr "DXCC名称"
 #: application/views/awards/iota/index.php:170
 #: application/views/timeline/index.php:150
 #: application/views/timeline/index.php:237
+#: application/views/timeline/index.php:199
+#: application/views/timeline/index.php:297
 msgid "Prefix"
 msgstr "前缀"
 
@@ -4615,6 +4673,7 @@ msgstr "显示IOTA地图"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:217
 #: application/views/view_log/qso.php:630
+#: application/views/timeline/index.php:296
 msgid "Name"
 msgstr "名称"
 
@@ -4984,6 +5043,7 @@ msgstr "显示 WAJA 地图"
 
 #: application/views/awards/waja/index.php:154
 #: application/views/timeline/index.php:185
+#: application/views/timeline/index.php:237
 msgid "Prefecture"
 msgstr "县"
 
@@ -6345,6 +6405,7 @@ msgstr "开始时间"
 #: application/views/dayswithqso/index.php:124
 #: application/views/dayswithqso/index.php:146
 #: application/views/timeline/index.php:153
+#: application/views/timeline/index.php:202
 msgid "End Date"
 msgstr "结束时间"
 
@@ -8454,6 +8515,7 @@ msgstr "本台呼号(De)"
 #: application/views/logbookadvanced/index.php:657
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/qso/edit_ajax.php:412 application/views/user/edit.php:565
+#: application/views/timeline/index.php:72
 msgid "QRZ"
 msgstr "QRZ"
 
@@ -11250,6 +11312,7 @@ msgid "Number of QSOs worked each year"
 msgstr "每年通联的 QSO 数量"
 
 #: application/views/statistics/index.php:33
+#: application/views/timeline/index.php:111
 msgid "All Years"
 msgstr "所有"
 
@@ -12353,6 +12416,10 @@ msgstr ""
 
 #: application/views/satellite/passtable.php:35
 msgid "min"
+msgstr ""
+
+#: application/views/timeline/index.php:119
+msgid "Only new in selected year"
 msgstr ""
 
 #~ msgid "Display / cleartext name of the satellite."
