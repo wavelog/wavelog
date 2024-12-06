@@ -17,6 +17,15 @@ class User extends CI_Controller {
 		$data['clubmode'] = $this->config->item('special_callsign');
 		$data['session_uid'] = $this->session->userdata('user_id');
 
+		// Get the last operators for clubstations
+		if ($data['clubmode']) {
+			$last_operators = [];
+			foreach ($data['clubs']->result() as $club) {
+				$last_operators[$club->user_id] = $this->user_model->last_operator($club->user_id);
+			}
+			$data['last_operators'] = $last_operators;
+		}
+
 		// Check if impersonating is disabled in the config
 		if ($this->config->item('disable_impersonate')) {
 			$data['disable_impersonate'] = true;

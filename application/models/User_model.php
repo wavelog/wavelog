@@ -614,6 +614,21 @@ class User_Model extends CI_Model {
 		return $result;
 	}
 
+	// FUNCTION: string last_operator()
+	// Returns the last operator's callsign
+	function last_operator($uid) {
+		$binding = [];
+		$sql = "SELECT qsos.COL_OPERATOR
+				FROM " . $this->config->item('table_name') . " qsos
+				INNER JOIN station_profile stations ON qsos.station_id = stations.station_id
+				WHERE stations.user_id = ?
+				ORDER BY qsos.COL_PRIMARY_KEY DESC
+				LIMIT 1";
+		$binding[] = $uid;
+		$query = $this->db->query($sql, $binding);
+		return $query->row()->COL_OPERATOR ?? '-';
+	}
+
 	// FUNCTION: array timezones()
 	// Returns a list of timezones
 	function timezones() {
