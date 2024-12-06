@@ -594,10 +594,12 @@ class User_Model extends CI_Model {
 	function users($club = '') {
 		$this->db->select('(SELECT COUNT(*) FROM station_profile WHERE user_id = users.user_id) as stationcount');
 		$this->db->select('(SELECT COUNT(*) FROM station_logbooks WHERE user_id = users.user_id) as logbookcount');
-		$this->db->select('(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id from station_profile WHERE user_id = users.user_id)) as qsocount');
+		$this->db->select('(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as qsocount');
 		$this->db->select('
-			(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as qsocount,
-			(SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as lastqso
+			(SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as lastqso,
+			(SELECT COL_OPERATOR FROM ' . $this->config->item('table_name') . ' WHERE COL_TIME_ON = (
+				SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)
+			) LIMIT 1) as lastoperator
 		');
 		$this->db->select('users.*');
 		if ($this->config->item('special_callsign')) {
@@ -608,25 +610,10 @@ class User_Model extends CI_Model {
 			}
 		}
 		$this->db->from('users');
-
+	
 		$result = $this->db->get();
-
+	
 		return $result;
-	}
-
-	// FUNCTION: string last_operator()
-	// Returns the last operator's callsign
-	function last_operator($uid) {
-		$binding = [];
-		$sql = "SELECT qsos.COL_OPERATOR
-				FROM " . $this->config->item('table_name') . " qsos
-				INNER JOIN station_profile stations ON qsos.station_id = stations.station_id
-				WHERE stations.user_id = ?
-				ORDER BY qsos.COL_PRIMARY_KEY DESC
-				LIMIT 1";
-		$binding[] = $uid;
-		$query = $this->db->query($sql, $binding);
-		return $query->row()->COL_OPERATOR ?? '-';
 	}
 
 	// FUNCTION: array timezones()

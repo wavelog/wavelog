@@ -215,7 +215,7 @@
 								<td style="text-align: left; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>"><?php echo $row->user_name; ?></a></td>
 								<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_callsign; ?></td>
 								<td style="text-align: left; vertical-align: middle;"><a href="mailto:<?php echo $row->user_email; ?>"><?php echo $row->user_email; ?></a></td>
-								<td style="text-align: left; vertical-align: middle;"><?php echo $last_operators[$row->user_id]; ?></td>
+								<td style="text-align: left; vertical-align: middle;"><?php echo $row->lastoperator; ?></td>
 								<td style="text-align: left; vertical-align: middle;"><?php
 									if ($row->last_seen != null) { // if the user never logged in before the value is null. We can show "never" then.
 										$lastSeenTimestamp = strtotime($row->last_seen);
