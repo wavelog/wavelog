@@ -1,0 +1,79 @@
+body { font-family: Arial, serif; }
+.glanceyear-container {
+	border: 1px solid #D8D8D8;
+	border-radius: 5px;
+	margin: 0 auto;
+	max-width: 683px;
+}
+.glanceyear-header {
+	position: relative;
+	background-color: #F5F5F5;
+	border-bottom: 1px solid #D8D8D8;
+	border-radius: 5px 5px 0 0;
+	color: #000;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 0;
+	padding: 7px 10px;
+}
+.glanceyear-quantity {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color:#aaa;
+	font-size: 10px;
+}
+.glanceyear-content { padding: 10px; }
+.glanceyear-text {
+	color: #aaa;
+	font-size: 12px;
+	font-weight: normal;
+	margin: 0 0;
+	padding: 0;
+}
+.glanceyear-summary { color: #aaa; font-size: 12px; margin: 0 10px 10px; }
+
+.glanceyear-legend {
+	color: #aaa;
+	float: right;
+	font-size: 12px;
+	text-align: middle;
+	text-wrap: none;
+}
+.glanceyear-legend span { display: inline-block; height: 10px; width: 10px; }
+
+svg rect.day { fill: #eee; shape-rendering: crispedges; }
+svg rect.day:hover { stroke: #aaa; stroke-width: 1px; }
+svg rect.day[data-col] { fill: #3d9692; }
+svg rect.day[data-col='1'] { fill: #c3dbda; }
+svg rect.day[data-col='3'] { fill: #5caeaa; }
+svg rect.day[data-col='6'] { fill: #277672; }
+svg rect.day[data-col='12'] { fill: #176662; }
+svg rect.day[data-col='24'] { fill: #075652; }
+svg rect.day[data-col='48'] { fill: #004642; }
+
+svg text { fill: #CCC; font-size: 9px; }
+svg text.month { fill: #AAA; }
+
+.svg-tag {
+	background-color: rgba(0,0,0,0.8);
+	border-radius: 3px;
+	color: #eee;
+	font-size: 12px;
+	line-height: 15px;
+	padding: 5px 15px;
+	position: absolute;
+	text-align: center;
+}
+.svg-tag:after {
+	border-color: rgba(0,0,0,0.8) transparent transparent transparent;
+	border-style: solid;
+	border-width: 5px 5px 0 5px;
+	bottom: -5px;
+	content: "";
+	height: 0;
+	left: 50%;
+	margin-left: -5px;
+	position: absolute;
+	width: 0;
+}
