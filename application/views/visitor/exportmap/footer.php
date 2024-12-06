@@ -8,7 +8,7 @@
 		var site_url = "<?php echo site_url(); ?>"; // Site URL
 		var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
 		var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
-		var option_map_tile_subdomains = '<?php echo $this->optionslib->get_option('option_map_tile_subdomains');?>';
+		var option_map_tile_subdomains = '<?php echo $this->optionslib->get_option('option_map_tile_subdomains') ?? 'abc';?>';
 	</script>
 
 	<!-- General JS Files used across Wavelog -->
