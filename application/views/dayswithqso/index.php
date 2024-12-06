@@ -83,7 +83,7 @@
 		?>
 		</select>
 		<div class="glanceyear-container mt-2">
-			<h1 class="glanceyear-header">QSOs this Year
+			<h1 class="glanceyear-header"><?= __("QSOs per Year")?>
 				<span class="glanceyear-quantity"></span>
 			</h1>
 			<div class="glanceyear-content" id="js-glanceyear">
@@ -91,14 +91,14 @@
 
 			<div class="glanceyear-summary">
 				<div class="glanceyear-legend">
-					Less&nbsp;
+					&lt;=0&nbsp;
 					<span style="background-color: #eee"></span>
 					<span style="background-color: #c3dbda"></span>
 					<span style="background-color: #5caeaa"></span>
 					<span style="background-color: #277672"></span>
-					&nbsp;More
+					&nbsp;&gt;24
 				</div>
-				Calendar with QSOs <br>
+				<?= __("Calendar with QSOs") ?><br>
 				<span id="debug"></span>
 			</div>
 	</div>

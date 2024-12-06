@@ -81,7 +81,7 @@
 							tagCount = 'No QSOs';
 						}
 
-						$_tag.html( '<b>' + tagCount + '</b> on ' + tagDate)
+						$_tag.html( '<b>' + tagCount + '</b> @ ' + tagDate)
 						.show()
 						.css({
 							'left': $(this).offset().left - $_tag.outerWidth()/2+5,
@@ -147,7 +147,7 @@
 				$_this.find('rect.day[data-date="' + massive[m].date + '"]').attr('data-col', massive[m].col);
 				scoreCount += parseInt(massive[m].value);
 			}
-			$(settings.targetQuantity).text(massive.length + ' days, ' + scoreCount + ' QSOs');
+			$(settings.targetQuantity).text(scoreCount + ' QSOs');
 
 		}
 
