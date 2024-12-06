@@ -22,6 +22,9 @@
 			<li class="nav-item">
 				<a class="nav-link" id="streaks-tab" data-bs-toggle="tab" href="#streaks" role="tab" aria-controls="streaks" aria-selected="false"><?= __("Streaks"); ?></a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="punchcard-tab" data-bs-toggle="tab" href="#punchcard" role="tab" aria-controls="punchcard" aria-selected="false"><?= __("QSOs of Year"); ?></a>
+			</li>
 		</ul>
 	</div>
 
@@ -64,11 +67,44 @@
             <canvas id="weekdaysChart" width="400" height="150"></canvas>
         </div>
 
-		<div class="tab-pane fade" id="monthsofyear" role="tabpanel" aria-labelledby="monthsofyear-tab">
+	<div class="tab-pane fade" id="monthsofyear" role="tabpanel" aria-labelledby="monthsofyear-tab">
             <br/>
             <h3><?= __('QSOs breakdown by month of the year'); ?></h3>
             <canvas id="monthChart" width="400" height="150"></canvas>
         </div>
+
+	<div class="tab-pane fade" id="punchcard" role="tabpanel" aria-labelledby="punchcard-tab">
+	    <link rel="stylesheet" href="/assets/css/glanceyear.css">
+            <br/>
+		<select class="form-select form-select-sm me-2 w-auto" id="yr" name="yr">
+		<?php 
+			foreach($years as $yr) {
+				echo '<option value="'.$yr.'">'.__("Year")." ".$yr.'</option>';
+			}
+		?>
+		</select>
+		<div class="glanceyear-container">
+			<h1 class="glanceyear-header">QSOs this Year
+				<span class="glanceyear-quantity"></span>
+			</h1>
+			<div class="glanceyear-content" id="js-glanceyear">
+			</div>
+
+			<div class="glanceyear-summary">
+				<div class="glanceyear-legend">
+					Less&nbsp;
+					<span style="background-color: #eee"></span>
+					<span style="background-color: #c3dbda"></span>
+					<span style="background-color: #5caeaa"></span>
+					<span style="background-color: #277672"></span>
+					&nbsp;More
+				</div>
+				Calendar with QSOs <br>
+				<span id="debug"></span>
+			</div>
+	</div>
+        </div>
+
 
         <div class="tab-pane fade" id="streaks" role="tabpanel" aria-labelledby="streaks-tab">
             <br/>
@@ -161,5 +197,6 @@
             }
             ?>
         </div>
+     
     </div>
 </div>
