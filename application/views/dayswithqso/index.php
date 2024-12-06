@@ -91,12 +91,12 @@
 
 			<div class="glanceyear-summary">
 				<div class="glanceyear-legend">
-					&lt;=0&nbsp;
+					<?= __("Less")?>
 					<span style="background-color: #eee"></span>
 					<span style="background-color: #c3dbda"></span>
 					<span style="background-color: #5caeaa"></span>
 					<span style="background-color: #277672"></span>
-					&nbsp;&gt;24
+					<?= __("More")?>
 				</div>
 				<?= __("Calendar with QSOs") ?><br>
 				<span id="debug"></span>
