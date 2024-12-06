@@ -163,49 +163,72 @@
 
 <?php
 
+function filter_timeline_array($timeline_array, $selectedyear, $onlynew) {
+    // Filter the timeline array
+    return array_filter($timeline_array, function($line) use ($selectedyear, $onlynew) {
+        if ($onlynew == "1") {
+            $entry_year = date('Y', strtotime($line->date ?? '1970-01-01 00:00:00'));
+            return $entry_year == $selectedyear; // Include only rows matching the year
+        }
+        return true; // Include all rows if $onlynew is not 1
+    });
+}
+
+function filter_timeline_array_vucc($timeline_array, $selectedyear, $onlynew) {
+    // Filter the timeline array
+    return array_filter($timeline_array, function($line) use ($selectedyear, $onlynew) {
+        if ($onlynew == "1") {
+            $entry_year = date('Y', strtotime($line['date'] ?? '1970-01-01 00:00:00')); // Use array key 'date'
+            return $entry_year == $selectedyear; // Include only rows matching the year
+        }
+        return true; // Include all rows if $onlynew is not 1
+    });
+}
+
+
 function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
-    $i = count($timeline_array); // General counter for all entries
-	$j = 1; // Separate counter for filtered rows (new stuff)
+    // Apply filtering to the timeline array
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $i = count($filtered_timeline); // General counter for all entries
+
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.__("Date").'</td>
-                        <td>'.__("Prefix").'</td>
-                        <td>'.__("Country").'</td>
-                        <td>'.__("Status").'</td>
-                        <td>'.__("End Date").'</td>
-                        <td>'.__("Show QSO's").'</td>
+                        <td>' . __("Date") . '</td>
+                        <td>' . __("Prefix") . '</td>
+                        <td>' . __("Country") . '</td>
+                        <td>' . __("Status") . '</td>
+                        <td>' . __("End Date") . '</td>
+                        <td>' . __("Show QSO's") . '</td>
                     </tr>
                 </thead>
                 <tbody>';
 
-    foreach ($timeline_array as $line) {
+    foreach ($filtered_timeline as $line) {
         $date_as_timestamp = strtotime($line->date ?? '1970-01-01 00:00:00');
-		$entry_year = date('Y', $date_as_timestamp);
-		if ($onlynew == "1" && $entry_year != $selectedyear) {
-            continue;
-        }
         echo '<tr>
-                <td>' . (($onlynew == "1") ? $j++ : $i--) . '</td>
+                <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->prefix . '</td>
                 <td>' . $line->col_country . '</td>
                 <td>';
-        if (!empty($line->end)) echo '<span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>';
+        if (!empty($line->end)) echo '<span class="badge text-bg-danger">' . __("Deleted DXCC") . '</span>';
         echo '</td>
                 <td>' . $line->end . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->adif . '","'. $bandselect . '","'. $modeselect . '","' . $propmode .'","' . $award .'")>'.__("Show").'</a></td>
-               </tr>';
+                <td><a href=javascript:displayTimelineContacts("' . $line->adif . '","' . $bandselect . '","' . $modeselect . '","' . $propmode . '","' . $award . '")>' . __("Show") . '</a></td>
+              </tr>';
     }
-    echo '</tfoot></table></div>';
+
+    echo '</tbody></table>';
 }
 
 function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
     $CI = &get_instance();
     $CI->load->model("Waja");
-    $i = count($timeline_array); // General counter for all entries
-	$j = 1; // Separate counter for filtered rows (new stuff)
+    // Apply filtering to the timeline array
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
@@ -217,14 +240,11 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
                 </thead>
                 <tbody>';
 
-    foreach ($timeline_array as $line) {
+    foreach ($filtered_timeline as $line) {
         $date_as_timestamp = strtotime($line->date);
-		$entry_year = date('Y', $date_as_timestamp);
-		if ($onlynew == "1" && $entry_year != $selectedyear) {
-            continue;
-        }
+
         echo '<tr>
-                <td>' . (($onlynew == "1") ? $j++ : $i--) . '</td>
+                <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $CI->Waja->jaPrefectures[$line->col_state] . ' ('.$line->col_state.')</td>
                 <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
@@ -234,8 +254,9 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
 }
 
 function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
-    $i = count($timeline_array); // General counter for all entries
-	$j = 1; // Separate counter for filtered rows (new stuff)
+    // Apply filtering to the timeline array
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
@@ -247,15 +268,11 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
                 </thead>
                 <tbody>';
 
-    foreach ($timeline_array as $line) {
+    foreach ($filtered_timeline as $line) {
         $date_as_timestamp = strtotime($line->date);
-		$entry_year = date('Y', $date_as_timestamp);
-		if ($onlynew == "1" && $entry_year != $selectedyear) {
-            continue;
-        }
 
         echo '<tr>
-                <td>' . (($onlynew == "1") ? $j++ : $i--) . '</td>
+                <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_state . '</td>
                 <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","' . $bandselect . '","' . $modeselect . '","' . $propmode . '","' . $award .'")>' . __("Show") . '</a></td>
@@ -267,8 +284,9 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
 
 
 function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
-    $i = count($timeline_array); // General counter for all entries
-	$j = 1; // Separate counter for filtered rows (new stuff)
+    // Apply filtering to the timeline array
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
@@ -282,14 +300,11 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
                 </thead>
                 <tbody>';
 
-    foreach ($timeline_array as $line) {
+    foreach ($filtered_timeline as $line) {
         $date_as_timestamp = strtotime($line->date);
-		$entry_year = date('Y', $date_as_timestamp);
-		if ($onlynew == "1" && $entry_year != $selectedyear) {
-            continue;
-        }
+
         echo '<tr>
-                <td>' . (($onlynew == "1") ? $j++ : $i--) . '</td>
+                <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_iota . '</td>
                 <td>' . $line->name . '</td>
@@ -301,8 +316,9 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
 }
 
 function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award, $selectedyear, $onlynew) {
-    $i = count($timeline_array); // General counter for all entries
-	$j = 1; // Separate counter for filtered rows (new stuff)
+    // Apply filtering to the timeline array
+    $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
+    $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
@@ -314,14 +330,11 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                 </thead>
                 <tbody>';
 
-    foreach ($timeline_array as $line) {
+    foreach ($filtered_timeline as $line) {
         $date_as_timestamp = strtotime($line->date);
-		$entry_year = date('Y', $date_as_timestamp);
-		if ($onlynew == "1" && $entry_year != $selectedyear) {
-            continue;
-        }
+
         echo '<tr>
-                <td>' . (($onlynew == "1") ? $j++ : $i--) . '</td>
+                <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_cqz . '</td>
                 <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
@@ -331,8 +344,9 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
 }
 
 function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect,  $propmode,$award, $selectedyear, $onlynew) {
-    $i = count($timeline_array); // General counter for all entries
-	$j = 1; // Separate counter for filtered rows (new stuff)
+    // Apply filtering to the timeline array
+    $filtered_timeline = filter_timeline_array_vucc($timeline_array, $selectedyear, $onlynew);
+    $i = count($filtered_timeline); // General counter for all entries
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
@@ -345,14 +359,11 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 </thead>
                 <tbody>';
 
-    foreach ($timeline_array as $line) {
+    foreach ($filtered_timeline as $line) {
         $date_as_timestamp = strtotime($line['date']);
-		$entry_year = date('Y', $date_as_timestamp);
-		if ($onlynew == "1" && $entry_year != $selectedyear) {
-            continue;
-        }
+
         echo '<tr>
-                <td>' . (($onlynew == "1") ? $j++ : $i--) . '</td>
+                <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . date('H:i', $date_as_timestamp) . '</td>
                 <td>' . $line['gridsquare'] . '</td>
