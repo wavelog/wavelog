@@ -5,24 +5,23 @@ if ($filtered) {
 					<th>' . __("Satellite") . '</th>
 					<th>' . __("AOS Time") . '</th>
 					<th>' . __("Duration") . '</th>
-					<th>' . __("AOS Az") . '</th>
-					<th>' . __("AOS El") . '</th>
-					<th>' . __("Max El") . '</th>
+					<th>' . __("AOS Azimuth") . '</th>
+					<th>' . __("Max Elevation") . '</th>
 					<th>' . __("LOS Time") . '</th>
-					<th>' . __("LOS Az") . '</th>
-					<th>' . __("LOS El") . '</th>
+					<th>' . __("LOS Azimuth") . '</th>
 				</tr>';
 			foreach ($filtered as $pass) {
 				echo '<tr>';
 				echo '<td>' . $pass->satname . '</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_aos, $zone, $format) . '</td>';
 				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->visible_aos, $zone, $format), Predict_Time::daynum2readable($pass->visible_los, $zone, $format), $format) . '</td>';
-				echo '<td>' . round($pass->visible_aos_az) . ' (' . azDegreesToDirection($pass->visible_aos_az) . ')</td>';
-				echo '<td>' . round($pass->visible_aos_el) . '</td>';
-				echo '<td>' . round($pass->max_el) . '</td>';
+				$aos_az = round($pass->visible_aos_az);
+				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->visible_aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
+				$max_el = round($pass->max_el);
+				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_los, $zone, $format) . '</td>';
-				echo '<td>' . round($pass->visible_los_az) . ' (' . azDegreesToDirection($pass->visible_los_az) . ')</td>';
-				echo '<td>' . round($pass->visible_los_el) . '</td>';
+				$los_az = round($pass->visible_los_az);
+				echo '<td>' . $los_az . ' ° (' . azDegreesToDirection($pass->visible_los_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$los_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '</tr>';
 			}
 			echo '</table>';
@@ -33,9 +32,9 @@ function returntimediff($start, $end, $format) {
 	$datetime2 = DateTime::createFromFormat($format, $start);
 	$interval = $datetime1->diff($datetime2);
 
-	$minutesDifference = ($interval->days * 24 * 60) + ($interval->h * 60) + $interval->i + ($interval->s / 60);
+	$diff = sprintf('%02d', (($interval->h*60)+$interval->i)).':'.sprintf('%02d', $interval->s).' '.__("min");
 
-	return round($minutesDifference) . ' min';
+	return $diff;
 }
 
 function azDegreesToDirection($az = 0) {
