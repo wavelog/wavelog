@@ -9,7 +9,6 @@
 			weeks: ['M','T','W','T','F','S', 'S'],
 			targetQuantity: '.glanceyear-quantity',
 			tagId: 'glanceyear-svgTag',
-			showToday: false,
 			today: new Date()
 		}, options );
 
@@ -54,7 +53,7 @@
 				}
 
 				dayCount--;
-				if (dayCount>=0 || (settings.showToday && dayCount>=-1)) {
+				if (dayCount>=-1) {
 					// Day-obj factory
 
 					var rectElement = createElementSvg('rect', {

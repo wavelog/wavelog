@@ -179,7 +179,7 @@ $(function() {
 							$('#debug').html('Date: '+ e.date + ', Count: ' + e.count);
 						},
 						showToday: false,
-						today: new Date($("#yr option:selected").val() + '-12-31T01:00:00')
+						today: new Date($("#yr option:selected").val() + '-12-31T23:59:00')
 					}
 
 				);
