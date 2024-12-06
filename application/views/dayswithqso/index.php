@@ -92,10 +92,10 @@
 			<div class="glanceyear-summary">
 				<div class="glanceyear-legend">
 					<?= __("Less")?>
-					<span style="background-color: #eee"></span>
-					<span style="background-color: #c3dbda"></span>
-					<span style="background-color: #5caeaa"></span>
-					<span style="background-color: #277672"></span>
+					<span class="glanceyear-legend-1"></span>
+					<span class="glanceyear-legend-2"></span>
+					<span class="glanceyear-legend-3"></span>
+					<span class="glanceyear-legend-4"></span>
 					<?= __("More")?>
 				</div>
 				<?= __("Calendar with QSOs") ?><br>
