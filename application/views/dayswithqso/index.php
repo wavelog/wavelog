@@ -74,7 +74,6 @@
         </div>
 
 	<div class="tab-pane fade" id="punchcard" role="tabpanel" aria-labelledby="punchcard-tab">
-	    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/glanceyear.css">
             <br/>
 		<select class="form-select form-select-sm me-2 w-auto" id="yr" name="yr">
 		<?php
