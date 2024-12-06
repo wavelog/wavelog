@@ -25,6 +25,27 @@ $(document).ready(function(){
         ]
     });
 
+    $('#adminclubusertable').DataTable({
+        "pageLength": 25,
+        responsive: true,
+        ordering: true,
+        "scrollY": "100%",
+        "scrollCollapse": true,
+        "paging": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csv',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            }
+        ]
+    });
+
     $('.icon_selectBox').off('click').on('click', function(){
         var boxcontent = $(this).attr('data-boxcontent');
         if ($('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').is(":hidden")) { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').show(); } else { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').hide(); }

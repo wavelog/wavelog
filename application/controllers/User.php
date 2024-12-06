@@ -13,6 +13,8 @@ class User extends CI_Controller {
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['results'] = $this->user_model->users();
+		$data['clubs'] = $this->user_model->users('is_club');
+		$data['clubmode'] = $this->config->item('special_callsign');
 		$data['session_uid'] = $this->session->userdata('user_id');
 
 		// Check if impersonating is disabled in the config
@@ -54,8 +56,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		$this->form_validation->set_rules('user_type', 'Type', 'required');
-		$this->form_validation->set_rules('user_firstname', 'First name', 'required');
-		$this->form_validation->set_rules('user_lastname', 'Last name', 'required');
+		// $this->form_validation->set_rules('user_firstname', 'First name', 'required');
+		// $this->form_validation->set_rules('user_lastname', 'Last name', 'required');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
@@ -64,6 +66,8 @@ class User extends CI_Controller {
 		$data['user_add'] = true;
 		$data['user_form_action'] = site_url('user/add');
 		$data['bands'] = $this->bands->get_user_bands();
+
+		$data['clubstation'] = ($this->input->get('club') ?? '') == '1' ? true : false;
 
 		// Get themes list
 		$data['themes'] = $this->user_model->getThemes();
@@ -81,9 +85,9 @@ class User extends CI_Controller {
 				$data['user_name'] = $this->input->post('user_name');
 				$data['user_email'] = $this->input->post('user_email');
 				$data['user_password'] = $this->input->post('user_password');
-				$data['user_type'] = $this->input->post('user_type');
-				$data['user_firstname'] = $this->input->post('user_firstname');
-				$data['user_lastname'] = $this->input->post('user_lastname');
+				$data['user_type'] = $data['clubstation'] == true ? '3' : $this->input->post('user_type');
+				$data['user_firstname'] = $this->input->post('user_firstname') ?? '';
+				$data['user_lastname'] = $this->input->post('user_lastname') ?? '';
 				$data['user_callsign'] = $this->input->post('user_callsign');
 				$data['user_locator'] = $this->input->post('user_locator');
 				$data['user_timezone'] = $this->input->post('user_timezone');
@@ -127,8 +131,8 @@ class User extends CI_Controller {
 				$this->input->post('user_password'),
 				$this->input->post('user_email'),
 				$this->input->post('user_type'),
-				$this->input->post('user_firstname'),
-				$this->input->post('user_lastname'),
+				$this->input->post('user_firstname') ?? '',
+				$this->input->post('user_lastname') ?? '',
 				$this->input->post('user_callsign'),
 				$this->input->post('user_locator'),
 				$this->input->post('user_timezone'),
@@ -169,21 +173,22 @@ class User extends CI_Controller {
 				$this->input->post('user_eqsl_password'),
 				$this->input->post('user_clublog_name'),
 				$this->input->post('user_clublog_password'),
-				$this->input->post('user_winkey')
+				$this->input->post('user_winkey'),
+				$this->input->post('clubstation') == '1' ? true : false
 				)) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
-					$data['username_error'] = 'Username <b>'.$this->input->post('user_name').'</b> already in use!';
+					$data['username_error'] = sprintf(__("Username %s already in use!"), '<b>' . $this->input->post('user_name') . '</b>');
 					break;
 				case EEMAILEXISTS:
-					$data['email_error'] = 'E-mail address <b>'.$this->input->post('user_email').'</b> already in use!';
+					$data['email_error'] = sprintf(__("E-mail %s already in use!"), '<b>' . $this->input->post('user_email') . '</b>');
 					break;
 				case EPASSWORDINVALID:
-					$data['password_error'] = 'Invalid password!';
+					$data['password_error'] = __("Invalid Password!");
 					break;
 				// All okay, return to user screen
 				case OK:
-					$this->session->set_flashdata('notice', 'User '.$this->input->post('user_name').' added');
+					$this->session->set_flashdata('notice', sprintf(__("User %s added!"), '<b>' . $this->input->post('user_name') . '</b>'));
 					redirect('user');
 					return;
 			}
@@ -194,8 +199,8 @@ class User extends CI_Controller {
 			$data['user_email'] = $this->input->post('user_email');
 			$data['user_password'] = $this->input->post('user_password');
 			$data['user_type'] = $this->input->post('user_type');
-			$data['user_firstname'] = $this->input->post('user_firstname');
-			$data['user_lastname'] = $this->input->post('user_lastname');
+			$data['user_firstname'] = $this->input->post('user_firstname') ?? '';
+			$data['user_lastname'] = $this->input->post('user_lastname') ?? '';
 			$data['user_callsign'] = $this->input->post('user_callsign');
 			$data['user_locator'] = $this->input->post('user_locator');
 			$data['user_measurement_base'] = $this->input->post('user_measurement_base');
@@ -250,7 +255,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
-		$data['user_form_action'] = site_url('user/edit')."/".$this->uri->segment(3);;
+		$data['user_form_action'] = site_url('user/edit')."/".$this->uri->segment(3);
+		$data['clubstation'] = ($query->row()->clubstation == 1) ? true : false;
 		$data['bands'] = $this->bands->get_user_bands();
 
 		// Get themes list

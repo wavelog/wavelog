@@ -164,7 +164,7 @@ class User_Model extends CI_Model {
 		$user_language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
 		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab,
 		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
-		$user_winkey) {
+		$user_winkey, $clubstation) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -172,8 +172,8 @@ class User_Model extends CI_Model {
 				'user_password' => $this->_hash($password),
 				'user_email' => xss_clean($email),
 				'user_type' => xss_clean($type),
-				'user_firstname' => xss_clean($firstname),
-				'user_lastname' => xss_clean($lastname),
+				'user_firstname' => xss_clean($firstname) ?? '',
+				'user_lastname' => xss_clean($lastname) ?? '',
 				'user_callsign' => xss_clean($callsign),
 				'user_locator' => xss_clean($locator),
 				'user_timezone' => xss_clean($timezone),
@@ -206,7 +206,8 @@ class User_Model extends CI_Model {
 				'user_eqsl_password' => xss_clean($user_eqsl_password),
 				'user_clublog_name' => xss_clean($user_clublog_name),
 				'user_clublog_password' => xss_clean($user_clublog_password),
-				'winkey' => xss_clean($user_winkey)
+				'winkey' => xss_clean($user_winkey),
+				'clubstation' => $clubstation == true ? 1 : 0,
 			);
 
 			// Check the password is valid
@@ -590,7 +591,7 @@ class User_Model extends CI_Model {
 
 	// FUNCTION: object users()
 	// Returns a list of users with additional counts
-	function users() {
+	function users($club = '') {
 		$this->db->select('(SELECT COUNT(*) FROM station_profile WHERE user_id = users.user_id) as stationcount');
 		$this->db->select('(SELECT COUNT(*) FROM station_logbooks WHERE user_id = users.user_id) as logbookcount');
 		$this->db->select('(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id from station_profile WHERE user_id = users.user_id)) as qsocount');
@@ -599,6 +600,13 @@ class User_Model extends CI_Model {
 			(SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as lastqso
 		');
 		$this->db->select('users.*');
+		if ($this->config->item('special_callsign')) {
+			if ($club == 'is_club') {
+				$this->db->where('clubstation', 1);
+			} else {
+				$this->db->where('clubstation != 1');
+			}
+		}
 		$this->db->from('users');
 
 		$result = $this->db->get();
