@@ -77,13 +77,13 @@
 	    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/glanceyear.css">
             <br/>
 		<select class="form-select form-select-sm me-2 w-auto" id="yr" name="yr">
-		<?php 
+		<?php
 			foreach($years as $yr) {
 				echo '<option value="'.$yr.'">'.__("Year")." ".$yr.'</option>';
 			}
 		?>
 		</select>
-		<div class="glanceyear-container">
+		<div class="glanceyear-container mt-2">
 			<h1 class="glanceyear-header">QSOs this Year
 				<span class="glanceyear-quantity"></span>
 			</h1>
@@ -197,6 +197,6 @@
             }
             ?>
         </div>
-     
+
     </div>
 </div>
