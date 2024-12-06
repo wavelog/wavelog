@@ -438,10 +438,17 @@ class Options extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 		} else {
 			$saved = false;
-			$map_tile_server_copyright = 'Map data &copy; <a href="' . $this->input->post('copyright_url', true) . '">' . $this->input->post('copyright_text', true) . '</a>';
-			$saved = $this->optionslib->update('map_tile_server', $this->input->post('maptile_server_url', true), 'yes');
-			$saved = $this->optionslib->update('map_tile_server_dark', $this->input->post('maptile_server_url_dark', true), 'yes');
-			$saved = $this->optionslib->update('map_tile_subdomains', $this->input->post('subdomain_system', true), 'yes');
+			if ($this->input->post('reset_defaults') == '1') {
+				$map_tile_server_copyright = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
+				$saved = $this->optionslib->update('map_tile_server', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 'yes');
+				$saved = $this->optionslib->update('map_tile_server_dark', 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', 'yes');
+				$saved = $this->optionslib->update('map_tile_subdomains', 'abc', 'yes');
+			} else {
+				$map_tile_server_copyright = 'Map data &copy; <a href="' . $this->input->post('copyright_url', true) . '">' . $this->input->post('copyright_text', true) . '</a>';
+				$saved = $this->optionslib->update('map_tile_server', $this->input->post('maptile_server_url', true), 'yes');
+				$saved = $this->optionslib->update('map_tile_server_dark', $this->input->post('maptile_server_url_dark', true), 'yes');
+				$saved = $this->optionslib->update('map_tile_subdomains', $this->input->post('subdomain_system', true), 'yes');
+			}
 			$saved = $this->optionslib->update('map_tile_server_copyright', $map_tile_server_copyright, 'yes');
 
 			// Also clean up static map images
