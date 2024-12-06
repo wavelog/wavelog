@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-05 20:24+0000\n"
+"POT-Creation-Date: 2024-12-06 07:37+0000\n"
 "PO-Revision-Date: 2024-12-05 18:31+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -10556,28 +10556,25 @@ msgid "Duration"
 msgstr "Duração"
 
 #: application/views/satellite/passtable.php:8
-msgid "AOS Az"
-msgstr "AOS Az"
+msgid "AOS Azimuth"
+msgstr ""
 
 #: application/views/satellite/passtable.php:9
-msgid "AOS El"
-msgstr "AOS El"
+#: application/views/sattimers/index.php:45
+msgid "Max Elevation"
+msgstr "Elevação Máxima"
 
 #: application/views/satellite/passtable.php:10
-msgid "Max El"
-msgstr "Máximo El"
-
-#: application/views/satellite/passtable.php:11
 msgid "LOS Time"
 msgstr "Tempo LOS"
 
-#: application/views/satellite/passtable.php:12
-msgid "LOS Az"
-msgstr "LOS Az"
+#: application/views/satellite/passtable.php:11
+msgid "LOS Azimuth"
+msgstr ""
 
-#: application/views/satellite/passtable.php:13
-msgid "LOS El"
-msgstr "LOS El"
+#: application/views/satellite/passtable.php:35
+msgid "min"
+msgstr ""
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -10597,10 +10594,6 @@ msgstr "Time(d)-Out"
 #: application/views/statistics/antennaanalytics.php:8
 msgid "Azimuth"
 msgstr "Azimute"
-
-#: application/views/sattimers/index.php:45
-msgid "Max Elevation"
-msgstr "Elevação Máxima"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/ituzones.php:5
@@ -12810,6 +12803,21 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#~ msgid "AOS Az"
+#~ msgstr "AOS Az"
+
+#~ msgid "AOS El"
+#~ msgstr "AOS El"
+
+#~ msgid "Max El"
+#~ msgstr "Máximo El"
+
+#~ msgid "LOS Az"
+#~ msgstr "LOS Az"
+
+#~ msgid "LOS El"
+#~ msgstr "LOS El"
 
 #~ msgid "Display / cleartext name of the satellite."
 #~ msgstr "Nome / nome em texto claro do satélite."

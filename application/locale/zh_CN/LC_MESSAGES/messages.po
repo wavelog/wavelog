@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-05 20:24+0000\n"
+"POT-Creation-Date: 2024-12-06 07:37+0000\n"
 "PO-Revision-Date: 2024-12-03 12:03+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -10209,28 +10209,25 @@ msgid "Duration"
 msgstr "持续时间"
 
 #: application/views/satellite/passtable.php:8
-msgid "AOS Az"
-msgstr "AOS 方位"
+msgid "AOS Azimuth"
+msgstr ""
 
 #: application/views/satellite/passtable.php:9
-msgid "AOS El"
-msgstr "AOS 仰角"
-
-#: application/views/satellite/passtable.php:10
-msgid "Max El"
+#: application/views/sattimers/index.php:45
+msgid "Max Elevation"
 msgstr "最大仰角"
 
-#: application/views/satellite/passtable.php:11
+#: application/views/satellite/passtable.php:10
 msgid "LOS Time"
 msgstr "LOS 时间"
 
-#: application/views/satellite/passtable.php:12
-msgid "LOS Az"
-msgstr "LOS 方位"
+#: application/views/satellite/passtable.php:11
+msgid "LOS Azimuth"
+msgstr ""
 
-#: application/views/satellite/passtable.php:13
-msgid "LOS El"
-msgstr "LOS 仰角"
+#: application/views/satellite/passtable.php:35
+msgid "min"
+msgstr ""
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -10248,10 +10245,6 @@ msgstr "超时"
 #: application/views/statistics/antennaanalytics.php:8
 msgid "Azimuth"
 msgstr "方位角"
-
-#: application/views/sattimers/index.php:45
-msgid "Max Elevation"
-msgstr "最大仰角"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/ituzones.php:5
@@ -12340,6 +12333,21 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "AOS Az"
+#~ msgstr "AOS 方位"
+
+#~ msgid "AOS El"
+#~ msgstr "AOS 仰角"
+
+#~ msgid "Max El"
+#~ msgstr "最大仰角"
+
+#~ msgid "LOS Az"
+#~ msgstr "LOS 方位"
+
+#~ msgid "LOS El"
+#~ msgstr "LOS 仰角"
 
 #~ msgid "Display / cleartext name of the satellite."
 #~ msgstr "显示 / 明文的卫星名称。"
