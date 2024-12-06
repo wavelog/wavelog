@@ -44,13 +44,18 @@
 				rectDate.setFullYear(settings.today.getFullYear());
 				rectDate.setDate(settings.today.getDate() - dayCount);
 				
-				if ( rectDate.getMonth() != monthCount && i < 52 && j > 3 && daysLeft > 7) {
+				if (rectDate.getFullYear() != settings.today.getFullYear()) {
+					dayCount--;
+					continue; 
+				}
+
+				if (rectDate.getFullYear() == settings.today.getFullYear() && rectDate.getMonth() != monthCount && i < 52 && j > 3 && daysLeft > 7) {
 					//new Month
 					var textMonth = createElementSvg('text', {'x': 12*i, 'y':'-6', 'class':'month'} );
 					textMonth.textContent = getNameMonth(rectDate.getMonth());
 					gElementContainer.appendChild(textMonth);
 					monthCount = rectDate.getMonth();
-				}
+				} 
 
 				dayCount--;
 				if (dayCount>=-1) {
