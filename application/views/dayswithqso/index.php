@@ -22,6 +22,9 @@
 			<li class="nav-item">
 				<a class="nav-link" id="streaks-tab" data-bs-toggle="tab" href="#streaks" role="tab" aria-controls="streaks" aria-selected="false"><?= __("Streaks"); ?></a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="punchcard-tab" data-bs-toggle="tab" href="#punchcard" role="tab" aria-controls="punchcard" aria-selected="false"><?= __("QSOs of Year"); ?></a>
+			</li>
 		</ul>
 	</div>
 
@@ -64,11 +67,43 @@
             <canvas id="weekdaysChart" width="400" height="150"></canvas>
         </div>
 
-		<div class="tab-pane fade" id="monthsofyear" role="tabpanel" aria-labelledby="monthsofyear-tab">
+	<div class="tab-pane fade" id="monthsofyear" role="tabpanel" aria-labelledby="monthsofyear-tab">
             <br/>
             <h3><?= __('QSOs breakdown by month of the year'); ?></h3>
             <canvas id="monthChart" width="400" height="150"></canvas>
         </div>
+
+	<div class="tab-pane fade" id="punchcard" role="tabpanel" aria-labelledby="punchcard-tab">
+            <br/>
+		<select class="form-select form-select-sm me-2 w-auto" id="yr" name="yr">
+		<?php
+			foreach($years as $yr) {
+				echo '<option value="'.$yr.'">'.__("Year")." ".$yr.'</option>';
+			}
+		?>
+		</select>
+		<div class="glanceyear-container mt-2">
+			<h1 class="glanceyear-header"><?= __("QSOs per Year")?>
+				<span class="glanceyear-quantity"></span>
+			</h1>
+			<div class="glanceyear-content" id="js-glanceyear">
+			</div>
+
+			<div class="glanceyear-summary">
+				<div class="glanceyear-legend">
+					<?= __("Less")?>
+					<span class="glanceyear-legend-1"></span>
+					<span class="glanceyear-legend-2"></span>
+					<span class="glanceyear-legend-3"></span>
+					<span class="glanceyear-legend-4"></span>
+					<?= __("More")?>
+				</div>
+				<?= __("Calendar with QSOs") ?><br>
+				<span id="debug"></span>
+			</div>
+	</div>
+        </div>
+
 
         <div class="tab-pane fade" id="streaks" role="tabpanel" aria-labelledby="streaks-tab">
             <br/>
@@ -161,5 +196,6 @@
             }
             ?>
         </div>
+
     </div>
 </div>
