@@ -471,7 +471,7 @@
 					</div>
 					<div class="mb-3 w-auto">
 						<label class="my-1 me-sm-2 w-auto" for="date"><?= __("Date"); ?></label>
-						<input name="date" id="date" type="date" class="form-control form-control-sm w-auto" value="<?php echo date('Y-m-d'); ?>" >
+						<input name="date" id="date" type="date" class="form-control form-control-sm my-1 me-sm-2 w-auto" value="<?php echo date('Y-m-d'); ?>" >
 					</div>
 					<div class="mb-3 w-auto">
 						<label class="my-1 me-sm-2 w-auto" for="mintime"><?= __("Min. time"); ?></label>
