@@ -133,11 +133,7 @@
                             <?php
                                 // Cacluate Distance if COL_DISTANCE is not set
                                 $ant_path = $row->COL_ANT_PATH ?? null;
-                                if ($row->COL_DISTANCE != null) {
-                                    $distance = $row->COL_DISTANCE;
-                                } else {
-                                    $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $ant_path);
-                                }
+                                $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, $measurement_base, $ant_path);
                                 switch ($measurement_base) {
                                     case 'M':
                                         $distance .= " mi";
