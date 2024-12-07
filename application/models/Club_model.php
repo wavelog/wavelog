@@ -74,6 +74,25 @@ class Club_model extends CI_Model {
     }
 
     /**
+     * Get available Clubstations per User
+     * 
+     * @param int $user_id
+     * 
+     * @return array
+     */
+    function get_clubstations($user_id) {
+
+        $sql = 'SELECT users.user_id, users.user_callsign
+                FROM club_permissions 
+                JOIN users ON club_permissions.club_id = users.user_id
+                WHERE club_permissions.user_id = ?;';
+
+        $clubs = $this->db->query($sql, [$user_id])->result();
+
+        return $clubs;
+    }
+
+    /**
      * 
      * Add Club Member
      * 

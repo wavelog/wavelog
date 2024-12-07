@@ -384,6 +384,17 @@
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?= __("Bands"); ?></a></li>
 
+								<?php if ($this->config->item('special_callsign')) { ?>
+									<div class="dropdown-divider"></div>
+									<li><a class="dropdown-item disabled"><?= __("Switch to Clubstation:"); ?></a></li>
+									<?php if (!empty($this->session->userdata('available_clubstations'))) { ?>
+										<?php foreach ($this->session->userdata('available_clubstations') as $clubstation) { ?>
+											<li><a class="dropdown-item" href="<?php echo site_url('club/switch') . "/" . $clubstation->user_id; ?>" title="<?= sprintf(__("Switch to %s"), $clubstation->user_callsign); ?>"><i class="fas fa-exchange-alt"></i> <?= $clubstation->user_callsign; ?></a></li>
+										<?php } ?>
+									<?php } else { ?>
+										<li><a class="dropdown-item"><?= __("No Clubstations available"); ?></a></li>
+									<?php } ?>
+								<?php } ?>
 
 								<div class="dropdown-divider"></div>
 

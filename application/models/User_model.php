@@ -476,6 +476,7 @@ class User_Model extends CI_Model {
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
 			'impersonate' => $this->session->userdata('impersonate') ?? false,
+			'available_clubstations' => ((($this->session->userdata('available_clubstations') ?? '') == '') ? $this->get_clubstations($u->row()->user_id) : $this->session->userdata('available_clubstations')),
 		);
 
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
@@ -749,6 +750,13 @@ class User_Model extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+
+	function get_clubstations($user_id) {
+		$this->load->model('club_model');
+		$clubstations = $this->club_model->get_clubstations($user_id);
+
+		return $clubstations;
 	}
 
 }
