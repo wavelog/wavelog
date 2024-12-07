@@ -7,7 +7,7 @@ class Satellite_model extends CI_Model {
 		from satellite
 		left outer join satellitemode on satellite.id = satellitemode.satelliteid
 		left outer join tle on satellite.id = tle.satelliteid
-		group by satellite.name, satellite.displayname, satellite.orbit, satellite.id";
+		group by satellite.name, satellite.displayname, satellite.orbit, satellite.id, tle.updated";
 
 		return $this->db->query($sql)->result();
 	}
