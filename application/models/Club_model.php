@@ -37,7 +37,7 @@ class Club_model extends CI_Model {
 
         // Now we can check the database for permissions
         $binding = [];
-        $sql = 'SELECT * FROM `club_permissions` WHERE user_id = ? AND club_id = ? AND level >= ?';
+        $sql = 'SELECT * FROM `club_permissions` WHERE user_id = ? AND club_id = ? AND p_level >= ?';
         $binding[] = $user_id;
         $binding[] = $club_id;
         $binding[] = $level;
