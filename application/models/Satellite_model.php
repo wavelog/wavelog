@@ -3,9 +3,10 @@
 class Satellite_model extends CI_Model {
 
 	function get_all_satellites() {
-		$sql = "select satellite.id, satellite.name as satname, group_concat(distinct satellitemode.name separator ', ') as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw
+		$sql = "select satellite.id, satellite.name as satname, group_concat(distinct satellitemode.name separator ', ') as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw, tle.updated
 		from satellite
 		left outer join satellitemode on satellite.id = satellitemode.satelliteid
+		left outer join tle on satellite.id = tle.satelliteid
 		group by satellite.name, satellite.displayname, satellite.orbit, satellite.id";
 
 		return $this->db->query($sql)->result();
