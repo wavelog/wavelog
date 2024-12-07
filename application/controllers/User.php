@@ -1195,6 +1195,12 @@ class User extends CI_Controller {
 			$this->session->set_flashdata('error', sprintf(__("You currently can't impersonate another user. You need to set %s to %s in your config.php!"), "'disable_impersonate'", "'false'"));
 			redirect('dashboard');
 		}
+
+		// Load the encryption library
+		if (!$this->load->is_loaded('encryption')) {
+			$this->load->library('encryption');
+		}
+		
 		// Load the user model
 		$this->load->model('user_model');
 
