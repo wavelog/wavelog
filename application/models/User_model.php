@@ -477,6 +477,7 @@ class User_Model extends CI_Model {
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
 			'impersonate' => $this->session->userdata('impersonate') ?? false,
 			'clubstation' => $u->row()->clubstation,
+			'source_uid' => $this->session->userdata('source_uid') ?? '',
 			'available_clubstations' => ((($this->session->userdata('available_clubstations') ?? '') == '') ? $this->get_clubstations($u->row()->user_id) : $this->session->userdata('available_clubstations')),
 		);
 
@@ -489,6 +490,12 @@ class User_Model extends CI_Model {
 			}
 		}
 
+		// Overrides
+
+		if ($userdata['clubstation'] == 1) {
+			$userdata['available_clubstations'] = 'none';
+			
+		}
 		if ($impersonate) {
 			$userdata['impersonate'] = true;
 		}
