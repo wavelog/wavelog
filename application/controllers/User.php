@@ -5,6 +5,7 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('user_model');
+		$this->load->library('form_validation');
 
 		if (!$this->load->is_loaded('encryption')) {
 			$this->load->library('encryption');

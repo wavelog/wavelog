@@ -12,13 +12,7 @@
 
 	<h2><?php echo $page_title; ?></h2>
 
-	<?php if ($this->session->flashdata('notice')) { ?>
-		<!-- Display Message -->
-		<div class="alert alert-info" role="alert">
-			<?php echo $this->session->flashdata('notice'); ?>
-		</div>
-
-	<?php } ?>
+	<?php $this->load->view('layout/messages'); ?>
 
 	<!-- This Info will be shown by the admin password reset -->
 	<div class="alert" id="pwd_reset_message" style="display: hide" role="alert"></div>
@@ -246,7 +240,7 @@
 										echo '<a class="btn btn-primary btn-sm ms-1 admin_pwd_reset" data-username="' . $row->user_name . '" data-callsign="' . $row->user_callsign . '" data-userid="' . $row->user_id . '" data-usermail="' . $row->user_email . '"><i class="fas fa-key"></i></a>';
 									}
 									?></td>
-								<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('user/club_permissions') . "/" . $row->user_id; ?>" class="btn btn-warning btn-sm"><i style="color: black;" class="fas fa-user-lock"></i></a>
+								<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('club/permissions') . "/" . $row->user_id; ?>" class="btn btn-warning btn-sm"><i style="color: black;" class="fas fa-user-lock"></i></a>
 								<?php if (!$disable_impersonate) { ?>
 								<td style="text-align: center; vertical-align: middle;">
 									<?php
