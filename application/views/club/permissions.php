@@ -196,22 +196,38 @@
                     <h5><?= __("No users currently have access to this club station."); ?></h5>
                 </div>
             <?php } else { ?>
-                <div class="table-responsive">
+                <div class="table-responsive mt-3">
                     <table class="table table-striped table-hover" id="clubuserstable">
                         <thead>
                             <tr>
-                                <th><?= __("User"); ?></th>
+                                <th><?= __("Firstname"); ?></th>
+                                <th><?= __("Lastname"); ?></th>
+                                <th><?= __("Callsign"); ?></th>
+                                <th><?= __("Username"); ?></th>
+                                <th><?= __("E-Mail"); ?></th>
                                 <th><?= __("Permission"); ?></th>
-                                <th><?= __("Edit"); ?></th>
-                                <th><?= __("Delete"); ?></th>
+                                <th><?= __("Actions"); ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($club_members as $member) { ?>
                                 <tr>
-                                    <td><?php echo $member->user_callsign; ?></td>
-                                    <td><?php echo $permissions[$member->p_level]; ?></td>
-                                    <td>
+                                    <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_firstname; ?></td>
+                                    <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_lastname; ?></td>
+                                    <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_callsign; ?></td>
+                                    <td style="text-align: center; vertical-align: middle;"><?php echo $member->user_name; ?></td>
+                                    <td style="text-align: center; vertical-align: middle;"><?php echo '<a href="mailto:' . $member->user_email . '">' . $member->user_email . '</a>'; ?></td>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <?php if ($member->p_level == 3) { ?>
+                                            <span class="badge bg-info"><?php echo $permissions[3]; ?></span>
+                                        <?php } else if ($member->p_level == 9) { ?>
+                                            <span class="badge bg-warning"><?php echo $permissions[9]; ?></span>
+                                        <?php } ?>
+                                        <?php if ($member->user_type == 99) { ?>
+                                            <span class="badge bg-danger"><?= __("Wavelog Administrator"); ?></span>
+                                        <?php } ?>
+                                    </td>
+                                    <td style="text-align: center; vertical-align: middle;">
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal_<?php echo $member->user_id; ?>"><i class="fas fa-edit"></i> <?= __("Edit"); ?></button>
                                         <div class="modal fade bg-black bg-opacity-50" id="editModal_<?php echo $member->user_id; ?>" tabindex="-1" aria-labelledby="editLabel_<?php echo $member->user_id; ?>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered modal-md">
@@ -220,7 +236,7 @@
                                                         <h5 class="modal-title" id="editLabel_<?php echo $member->user_id; ?>"><?= __("Edit User") ?></h5>
                                                     </div>
                                                     <form action="<?= site_url('club/alter_member'); ?>" method="post">
-                                                        <div class="modal-body" style="text-align: left !important;">
+                                                        <div class="modal-body" style="text-align: center !important;">
                                                             <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
                                                             <input type="hidden" name="user_id" value="<?php echo $member->user_id; ?>">
 
@@ -245,8 +261,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td>
                                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal_<?php echo $member->user_id; ?>"><i class="fas fa-trash"></i> <?= __("Delete"); ?></button>
                                         <div class="modal fade bg-black bg-opacity-50" id="deleteModal_<?php echo $member->user_id; ?>" tabindex="-1" aria-labelledby="deleteLabel_<?php echo $member->user_id; ?>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered modal-md">
@@ -255,7 +269,7 @@
                                                         <h5 class="modal-title" id="deleteLabel_<?php echo $member->user_id; ?>"><?= __("Delete User") ?></h5>
                                                     </div>
                                                     <form action="<?= site_url('club/delete_member'); ?>" method="post">
-                                                        <div class="modal-body" style="text-align: left !important;">
+                                                        <div class="modal-body" style="text-align: center !important;">
                                                             <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
                                                             <input type="hidden" name="user_id" value="<?php echo $member->user_id; ?>">
 

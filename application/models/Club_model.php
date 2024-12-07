@@ -63,7 +63,7 @@ class Club_model extends CI_Model {
      */
     function get_club_members($club_id) {
 
-        $sql = 'SELECT  users.user_id, users.user_callsign, users.user_name, users.user_firstname, users.user_lastname, users.user_email, club_permissions.p_level 
+        $sql = 'SELECT  users.user_id, users.user_type, users.user_callsign, users.user_name, users.user_firstname, users.user_lastname, users.user_email, club_permissions.p_level 
                 FROM club_permissions 
                 JOIN users ON club_permissions.user_id = users.user_id 
                 WHERE club_permissions.club_id = ?;';

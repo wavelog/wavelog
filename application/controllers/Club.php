@@ -15,8 +15,8 @@ class Club extends CI_Controller
      * @var array $permissions
      */
     private $permissions = [
-        9 => "Officer",
-        3 => "Member",
+        9 => "Club Officer",
+        3 => "Club Member",
     ];
 
     public function index()
@@ -53,9 +53,14 @@ class Club extends CI_Controller
 		$data['users'] = $this->user_model->users();
 		$data['permissions'] = $this->permissions;
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/club_permissions.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/club_permissions.js")),
+		];
+
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('club/permissions');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	public function alter_member() {
