@@ -469,12 +469,10 @@
                             <option ">Etc/GMT+12</option>
 					</select>
 					</div>
-					<!-- <div class="mb-3 w-auto">
+					<div class="mb-3 w-auto">
 						<label class="my-1 me-sm-2 w-auto" for="date"><?= __("Date"); ?></label>
-						<select class="my-1 me-sm-2 w-auto form-select" id="date" name="start">
-							<option selected value="0"><?= __("Today"); ?></option>
-						</select>
-					</div> -->
+						<input name="date" id="date" type="date" class="form-control form-control-sm w-auto" value="<?php echo date('Y-m-d'); ?>" >
+					</div>
 					<div class="mb-3 w-auto">
 						<label class="my-1 me-sm-2 w-auto" for="mintime"><?= __("Min. time"); ?></label>
 						<select class="my-1 me-sm-2 w-auto form-select" id="mintime" name="mintime">
