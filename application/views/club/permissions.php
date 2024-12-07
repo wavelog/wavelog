@@ -3,6 +3,8 @@
     <h2><?= sprintf(__("Club Permissions for %s"), $club->user_callsign); ?></h2>
     <!-- <a class="btn btn-primary" href="<?= site_url('user'); ?>"><i class="fas fa-arrow-left"></i> <?= __("Go back"); ?></a> -->
 
+    <?php $this->load->view('layout/messages'); ?>
+
     <div class="card mt-3">
         <div class="card-header">
             <?= __("Club Permissions"); ?>
@@ -22,8 +24,8 @@
                                     <thead class="table">
                                         <tr>
                                             <th><?= __("Action"); ?></th>
-                                            <th><?= __("Operator"); ?></th>
-                                            <th><?= __("Manager"); ?></th>
+                                            <th><?php echo $permissions[3]; ?></th>
+                                            <th><?php echo $permissions[9]; ?></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -158,37 +160,38 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="addUserLabel"><?= __("Add User to Club"); ?></h5>
                         </div>
-                        <div class="modal-body">
-                            <form action="<?= site_url('user/club_permissions/add'); ?>" method="post">
-                                <!-- Club ID as Hidden Field -->
-                                <input type="hidden" name="club_id" value="2">
+                        <form action="<?= site_url('club/alter_member'); ?>" method="post">
+                            <div class="modal-body">
+                                <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
 
-                                <!-- User Callsign Input -->
                                 <div class="mb-3">
-                                    <label for="user_callsign" class="form-label"><?= __("User Callsign"); ?></label>
-                                    <input type="text" class="form-control" id="user_callsign" name="user_callsign" required>
-                                </div>
-
-                                <!-- Permission Selector -->
-                                <div class="mb-3">
-                                    <label for="permission" class="form-label"><?= __("Permission"); ?></label>
-                                    <select class="form-select" id="permission" name="permission" required>
-                                        <option value="operator"><?= __("Operator"); ?></option>
-                                        <option value="manager"><?= __("Manager"); ?></option>
+                                    <label for="user_id" class="form-label"><?= __("User Callsign"); ?></label>
+                                    <select class="form-select" id="user_id" name="user_id" required>
+                                        <option value=""><?= __("Select User"); ?></option>
+                                        <?php foreach ($users->result() as $user) { ?>
+                                            <option value="<?php echo $user->user_id; ?>"><?php echo $user->user_callsign; ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
 
-                                <!-- Submit Button -->
-                                <button type="submit" class="btn btn-success w-100"><?= __("Add User"); ?></button>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Close"); ?></button>
-                        </div>
+                                <div class="mb-3">
+                                    <label for="permission" class="form-label"><?= __("Permission"); ?></label>
+                                    <select class="form-select" id="permission" name="permission" required>
+                                        <option value="3"><?php echo $permissions[3]; ?></option>
+                                        <option value="9"><?php echo $permissions[9]; ?></option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success"><?= __("Add User"); ?></button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <?php if (empty($users)) { ?>
+            <?php if (empty($club_members)) { ?>
                 <div class="text-center">
                     <h5><?= __("No users currently have access to this club station."); ?></h5>
                 </div>
@@ -198,23 +201,53 @@
                         <thead>
                             <tr>
                                 <th><?= __("User"); ?></th>
-                                <th><?= __("QSOs"); ?></th>
                                 <th><?= __("Permission"); ?></th>
                                 <th><?= __("Edit"); ?></th>
                                 <th><?= __("Delete"); ?></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($users as $user) { ?>
+                            <?php foreach ($club_members as $member) { ?>
                                 <tr>
-                                    <td><?= $user->user_callsign; ?></td>
-                                    <td><?= $user->qso_count; ?></td>
-                                    <td><?= $user->permission; ?></td>
+                                    <td><?php echo $member->user_callsign; ?></td>
+                                    <td><?php echo $permissions[$member->p_level]; ?></td>
                                     <td>
-                                        <a href="<?= site_url('user/club_permissions/edit/' . $user->id); ?>" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> <?= __("Edit"); ?></a>
+                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal_<?php echo $member->user_id; ?>"><i class="fas fa-edit"></i></button>
+                                        <div class="modal fade bg-black bg-opacity-50" id="editModal_<?php echo $member->user_id; ?>" tabindex="-1" aria-labelledby="editLabel_<?php echo $member->user_id; ?>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editLabel_<?php echo $member->user_id; ?>"><?= __("Edit User") ?></h5>
+                                                    </div>
+                                                    <form action="<?= site_url('club/alter_member'); ?>" method="post">
+                                                        <div class="modal-body" style="text-align: left !important;">
+                                                            <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
+                                                            <input type="hidden" name="user_id" value="<?php echo $member->user_id; ?>">
+
+                                                            <div class="mb-3">
+                                                                <label for="user_id" class="form-label"><?= __("User Callsign"); ?></label>
+                                                                <p><?php echo $member->user_callsign; ?></p>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label for="permission" class="form-label"><?= __("Permission"); ?></label>
+                                                                <select class="form-select" id="permission" name="permission" required>
+                                                                    <option value="3" <?php if ($member->p_level == 3) {echo 'selected'; } ?>><?php echo $permissions[3]; ?></option>
+                                                                    <option value="9" <?php if ($member->p_level == 9) {echo 'selected'; } ?>><?php echo $permissions[9]; ?></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-success"><?= __("Save"); ?></button>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
-                                        <a href="<?= site_url('user/club_permissions/delete/' . $user->id); ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> <?= __("Delete"); ?></a>
+                                        <a href="<?php echo site_url('user/club_permissions/delete/' . $member->user_id); ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> <?= __("Delete"); ?></a>
                                     </td>
                                 </tr>
                             <?php } ?>

@@ -56,6 +56,14 @@ class Migration_clubstations  extends CI_Migration
 			} catch (Exception $e) {
 				log_message('error', 'Mig 230 - Error adding foreign key fk_user_id: ' . $e->getMessage());
 			}
+
+			// Add unique constraint for club_id and user_id
+			$sql = "ALTER TABLE club_permissions ADD CONSTRAINT unique_member UNIQUE (club_id, user_id);";
+			try {
+				$this->db->query($sql);
+			} catch (Exception $e) {
+				log_message('error', 'Mig 230 - Error adding unique constraint unique_member: ' . $e->getMessage());
+			}
 		}
 	}
 
