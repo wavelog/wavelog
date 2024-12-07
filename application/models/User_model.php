@@ -476,6 +476,7 @@ class User_Model extends CI_Model {
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
 			'impersonate' => $this->session->userdata('impersonate') ?? false,
+			'clubstation' => $u->row()->clubstation,
 			'available_clubstations' => ((($this->session->userdata('available_clubstations') ?? '') == '') ? $this->get_clubstations($u->row()->user_id) : $this->session->userdata('available_clubstations')),
 		);
 
@@ -540,8 +541,14 @@ class User_Model extends CI_Model {
 	// Authenticate a user against the users table
 	function authenticate($username, $password) {
 		$u = $this->get($username);
-		if($u->num_rows() != 0)
-		{
+		if($u->num_rows() != 0) {
+			// direct login to clubstations are not allowed
+			if ($u->row()->clubstation == 1) {
+				$uid = $u->row()->user_id;
+				log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt.");
+				return 2;
+			}
+
 			if($this->_auth($password, $u->row()->user_password)) {
 				if (ENVIRONMENT != "maintenance") {
 					return 1;

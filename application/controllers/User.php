@@ -843,6 +843,13 @@ class User extends CI_Controller {
 				$user = $this->user_model->get_by_id($uid)->row();
 				$user_type = $user->user_type;
 
+				// direct login to clubstations are not allowed, especially not with a keeplogin cookie
+				if ($user->clubstation == 1) {
+					log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt with a modified cookie. Attack?");
+					$this->session->set_flashdata('error', __("This is not allowed!"));
+					redirect('user/login');
+				}
+
 				// compare both strings the hard way and log in if they match
 				if ($this->user_model->check_keep_hash($a, $b)) {
 
@@ -895,7 +902,8 @@ class User extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 
 		} else {
-			if($this->user_model->login() == 1) {
+			$login_attempt = $this->user_model->login();
+			if($login_attempt === 1) {
 				$this->user_model->update_session($data['user']->user_id);
 				$cookie= array(
 
@@ -923,7 +931,10 @@ class User extends CI_Controller {
 				}
 				$this->user_model->set_last_seen($data['user']->user_id);
 				redirect('dashboard');
-
+			
+			} else if ($login_attempt === 2) {
+				$this->session->set_flashdata('warning', __("You can't login to a clubstation directly. Use your personal account instead."));
+				redirect('user/login');
 			} else {
 				if(ENVIRONMENT == 'maintenance') {
 					$this->session->set_flashdata('notice', __("Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."));
@@ -1200,7 +1211,7 @@ class User extends CI_Controller {
 		if (!$this->load->is_loaded('encryption')) {
 			$this->load->library('encryption');
 		}
-		
+
 		// Load the user model
 		$this->load->model('user_model');
 
@@ -1250,12 +1261,20 @@ class User extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		// before we can impersonate a user, we need to make sure the current user is an admin
-		// TODO: authorize from additional datatable 'impersonators' to allow other user types to impersonate
-		$source_user = $this->user_model->get_by_id($source_uid)->row();
-		if(!$source_user || !$this->user_model->authorize(99)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard'); 
+		// before we can impersonate a user, we need to make sure the current user is allowed to do so
+		$clubswitch = $this->input->post('clubswitch', TRUE) ?? '';
+		if ($clubswitch == 1) {
+			$this->load->model('club_model');
+			if (!$this->club_model->club_authorize(3, $target_uid, $source_uid) || !$this->user_model->authorize(3)) {
+				$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+				redirect('dashboard');
+			}
+		} else {
+			$source_user = $this->user_model->get_by_id($source_uid)->row();
+			if(!$source_user || !$this->user_model->authorize(99)) {
+				$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+				redirect('dashboard'); 
+			}
 		}
 
 		/**
