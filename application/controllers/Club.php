@@ -76,8 +76,30 @@ class Club extends CI_Controller
 			redirect('dashboard'); 
 		}
 
-		$this->club_model->add_member($club_id, $user_id, $p_level);
+		$this->club_model->alter_member($club_id, $user_id, $p_level);
 		$this->session->set_flashdata('message', __("User added to club."));
+		redirect('club/permissions/'.$club_id);
+	}
+
+	public function delete_member() {
+		
+		$this->load->model('user_model');
+		$this->load->model('club_model');
+
+		$club_id = $this->input->post('club_id', true);
+		$user_id = $this->input->post('user_id', true);
+
+		if (!is_numeric($club_id)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+			redirect('dashboard'); 
+		}
+		if(!$this->user_model->authorize(99) && !$this->club_model->club_authorize(9, $club_id)) { 
+			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			redirect('dashboard'); 
+		}
+
+		$this->club_model->delete_member($club_id, $user_id);
+		$this->session->set_flashdata('message', __("User removed from club."));
 		redirect('club/permissions/'.$club_id);
 	}
 	

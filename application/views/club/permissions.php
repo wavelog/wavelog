@@ -212,7 +212,7 @@
                                     <td><?php echo $member->user_callsign; ?></td>
                                     <td><?php echo $permissions[$member->p_level]; ?></td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal_<?php echo $member->user_id; ?>"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal_<?php echo $member->user_id; ?>"><i class="fas fa-edit"></i> <?= __("Edit"); ?></button>
                                         <div class="modal fade bg-black bg-opacity-50" id="editModal_<?php echo $member->user_id; ?>" tabindex="-1" aria-labelledby="editLabel_<?php echo $member->user_id; ?>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered modal-md">
                                                 <div class="modal-content">
@@ -232,8 +232,8 @@
                                                             <div class="mb-3">
                                                                 <label for="permission" class="form-label"><?= __("Permission"); ?></label>
                                                                 <select class="form-select" id="permission" name="permission" required>
-                                                                    <option value="3" <?php if ($member->p_level == 3) {echo 'selected'; } ?>><?php echo $permissions[3]; ?></option>
-                                                                    <option value="9" <?php if ($member->p_level == 9) {echo 'selected'; } ?>><?php echo $permissions[9]; ?></option>
+                                                                    <option value="3" <?php if ($member->p_level == 3) { echo 'selected'; } ?>><?php echo $permissions[3]; ?></option>
+                                                                    <option value="9" <?php if ($member->p_level == 9) { echo 'selected'; } ?>><?php echo $permissions[9]; ?></option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -247,7 +247,35 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="<?php echo site_url('user/club_permissions/delete/' . $member->user_id); ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> <?= __("Delete"); ?></a>
+                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal_<?php echo $member->user_id; ?>"><i class="fas fa-trash"></i> <?= __("Delete"); ?></button>
+                                        <div class="modal fade bg-black bg-opacity-50" id="deleteModal_<?php echo $member->user_id; ?>" tabindex="-1" aria-labelledby="deleteLabel_<?php echo $member->user_id; ?>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteLabel_<?php echo $member->user_id; ?>"><?= __("Delete User") ?></h5>
+                                                    </div>
+                                                    <form action="<?= site_url('club/delete_member'); ?>" method="post">
+                                                        <div class="modal-body" style="text-align: left !important;">
+                                                            <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
+                                                            <input type="hidden" name="user_id" value="<?php echo $member->user_id; ?>">
+
+                                                            <p><?= __("Are you sure you want to delete this user from the club?"); ?></p>
+
+                                                            <div class="mb-3">
+                                                                <p>
+                                                                    <?= sprintf(__("Callsign: %s"), $member->user_callsign); ?><br>
+                                                                    <?= sprintf(__("Role: %s"), $permissions[$member->p_level]); ?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-danger"><?= __("Delete"); ?></button>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -257,3 +285,4 @@
                 </div>
         </div>
     </div>
+</div>

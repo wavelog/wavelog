@@ -83,7 +83,7 @@ class Club_model extends CI_Model {
      * 
      * @return boolean
      */
-    function add_member($club_id, $user_id, $p_level) {
+    function alter_member($club_id, $user_id, $p_level) {
 
         if ($club_id == 0 || !is_numeric($club_id)) {
             $this->session->set_flashdata('error', __("Invalid Club ID!"));
@@ -115,4 +115,39 @@ class Club_model extends CI_Model {
             redirect('club/permissions/' . $club_id);
         }
     }
+
+    /**
+     * 
+     * Delete Club Member
+     * 
+     * @param int $club_id
+     * @param int $user_id
+     * 
+     * @return boolean
+     */
+    function delete_member($club_id, $user_id) {
+
+        if ($club_id == 0 || !is_numeric($club_id)) {
+            $this->session->set_flashdata('error', __("Invalid Club ID!"));
+            redirect('dashboard');
+        }
+
+        if ($user_id == 0 || !is_numeric($user_id)) {
+            $this->session->set_flashdata('error', __("Invalid User ID!"));
+            redirect('dashboard');
+        }
+
+        $binding = [];
+        $sql = "DELETE FROM club_permissions WHERE club_id = ? AND user_id = ?";
+        $binding[] = $club_id;
+        $binding[] = $user_id;
+
+        if ($this->db->query($sql, $binding)) {
+            return true;
+        } else {
+            $this->session->set_flashdata('error', __("Error removing Club Member!"));
+            redirect('club/permissions/' . $club_id);
+        }
+    }
+
 }
