@@ -5,13 +5,6 @@ class Club_model extends CI_Model {
     /**
      * Authorization for Club Features
      * 
-     * Permission Levels:
-     * 9 - Club Officer
-     * 3 - Club Member (normal Operator)
-     * 
-     * These permission levels are independent of the codeigniter permission levels and managed in the club_permissions table!
-     * // TODO: Add a Wiki Link to the Permission Levels and Explainations about the Club Features
-     * 
      * @param int $level
      * @param int $club_id
      * @param int $user_id (optional)

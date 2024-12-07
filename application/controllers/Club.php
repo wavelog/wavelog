@@ -2,6 +2,14 @@
 
 class Club extends CI_Controller
 {
+	/** 
+	 * Permission Levels:
+	 * 9 - Officer
+	 * 3 - Member
+	 * 
+	 * These permission levels are independent of the codeigniter permission levels and managed in the club_permissions table!
+	 * // TODO: Add a Wiki Link to the Permission Levels and Explainations about the Club Features
+	*/
 
 	/**
      * @var array $permissions
