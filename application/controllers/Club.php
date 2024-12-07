@@ -82,7 +82,7 @@ class Club extends CI_Controller
 		}
 
 		$this->club_model->alter_member($club_id, $user_id, $p_level);
-		$this->session->set_flashdata('message', __("User added to club."));
+		$this->session->set_flashdata('success', __("Club member permissions have been updated. The user needs to re-login to see the changes."));
 		redirect('club/permissions/'.$club_id);
 	}
 
@@ -104,7 +104,7 @@ class Club extends CI_Controller
 		}
 
 		$this->club_model->delete_member($club_id, $user_id);
-		$this->session->set_flashdata('message', __("User removed from club."));
+		$this->session->set_flashdata('success', __("User removed from club."));
 		redirect('club/permissions/'.$club_id);
 	}
 	
