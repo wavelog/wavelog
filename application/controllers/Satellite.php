@@ -21,6 +21,16 @@ class Satellite extends CI_Controller {
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites();
 
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		$pageData['custom_date_format'] = $custom_date_format;
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/sections/satellite.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite.js")),

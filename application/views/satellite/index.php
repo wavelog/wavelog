@@ -67,7 +67,7 @@
 					?>
 					<?php echo '<td style="text-align: center; vertical-align: middle;">';
 					if ($sat->updated != null) {
-						echo '<span class="badge bg-success">'.__("Yes").'</span>';
+						echo '<span class="badge bg-success" data-bs-toggle="tooltip" title="Last TLE updated was ' . date($custom_date_format . " H:i", strtotime($sat->updated)) . '">'.__("Yes").'</span>';
 					} else {
 						echo '<span class="badge bg-danger">'.__("No").'</span>';
 					}
