@@ -492,12 +492,13 @@ class User_Model extends CI_Model {
 
 		// Overrides
 
+		if ($impersonate) {
+			$userdata['impersonate'] = true;
+			$userdata['available_clubstations'] = $this->get_clubstations($u->row()->user_id);
+		}
 		if ($userdata['clubstation'] == 1) {
 			$userdata['available_clubstations'] = 'none';
 			
-		}
-		if ($impersonate) {
-			$userdata['impersonate'] = true;
 		}
 
 		$this->session->set_userdata($userdata);
