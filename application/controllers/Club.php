@@ -107,5 +107,29 @@ class Club extends CI_Controller
 		$this->session->set_flashdata('success', __("User removed from club."));
 		redirect('club/permissions/'.$club_id);
 	}
+
+	public function switch_modal() {
+		
+		$this->load->model('user_model');
+		$this->load->model('club_model');
+		$this->load->library('encryption');
+
+		$cid = $this->input->post('club_id', true);
+		$data['club_callsign'] = $this->input->post('club_callsign', true);
+		$user_id = $this->session->userdata('user_id');
+
+		if (!is_numeric($cid)) {
+			$this->session->set_flashdata('error', __("Invalid Club ID!"));
+			redirect('dashboard'); 
+		}
+		if(!$this->club_model->club_authorize(3, $cid)) { 
+			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			redirect('dashboard'); 
+		}
+
+		$data['impersonate_hash'] = $this->encryption->encrypt($user_id . '/' . $cid . '/' . time());
+
+		$this->load->view('club/clubswitch_modal', $data);
+	}
 	
 }

@@ -50,7 +50,7 @@
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
     var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
-    var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>"
+    var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->
@@ -171,6 +171,25 @@ if($this->session->userdata('user_id') != null) {
     <?php } ?>
 </script>
 <?php } ?>
+<script>
+    function clubswitch_modal(club_id, club_callsign) {
+    $.ajax({
+        url: base_url + 'index.php/club/switch_modal',
+        type: 'POST',
+        data: {
+            club_id: club_id,
+            club_callsign: club_callsign
+        },
+        success: function(response) {
+            $('#clubswitchModal-container').html(response);
+            $('#clubswitchModal').modal('show');
+        },
+        error: function() {
+            alert('<?= __("Failed to load the modal. Please try again."); ?>');
+        }
+    });
+}
+</script>
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>

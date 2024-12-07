@@ -384,12 +384,17 @@
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?= __("Bands"); ?></a></li>
 
-								<?php if ($this->config->item('special_callsign')) { ?>
+								<?php if ($this->config->item('special_callsign') && $this->session->userdata('impersonate') == 0) { ?>
 									<div class="dropdown-divider"></div>
 									<li><a class="dropdown-item disabled"><?= __("Switch to Clubstation:"); ?></a></li>
 									<?php if (!empty($this->session->userdata('available_clubstations'))) { ?>
 										<?php foreach ($this->session->userdata('available_clubstations') as $clubstation) { ?>
-											<li><a class="dropdown-item" href="<?php echo site_url('club/switch') . "/" . $clubstation->user_id; ?>" title="<?= sprintf(__("Switch to %s"), $clubstation->user_callsign); ?>"><i class="fas fa-exchange-alt"></i> <?= $clubstation->user_callsign; ?></a></li>
+											<li>
+												<button class="dropdown-item" title="<?= sprintf(__("Switch to %s"), $clubstation->user_callsign); ?>" onclick="clubswitch_modal('<?php echo $clubstation->user_id; ?>', '<?php echo $clubstation->user_callsign; ?>')">
+													<i class="fas fa-exchange-alt"></i> <?php echo $clubstation->user_callsign; ?>
+												</button>
+												<div id="clubswitchModal-container"></div>
+											</li>										
 										<?php } ?>
 									<?php } else { ?>
 										<li><a class="dropdown-item"><?= __("No Clubstations available"); ?></a></li>

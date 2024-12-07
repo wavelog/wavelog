@@ -7,7 +7,7 @@ class Migration_clubstations  extends CI_Migration
 		// Add the clubstation flag to the users table
 		$col_check = $this->db->query("SHOW COLUMNS FROM users LIKE 'clubstation'")->num_rows() > 0;
 		if (!$col_check) {
-			$sql = "ALTER TABLE users ADD COLUMN clubstation TINYINT(1) DEFAULT 0";
+			$sql = "ALTER TABLE users ADD COLUMN clubstation TINYINT(1) DEFAULT 0 AFTER user_type;";
 			try {
 				$this->db->query($sql);
 			} catch (Exception $e) {
