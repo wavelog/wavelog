@@ -149,7 +149,7 @@ if($this->session->userdata('user_id') != null) {
 <!-- Version Dialog END -->
 
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE -->
-<?php if ($this->config->item('special_callsign') == true && $this->uri->segment(1) == "dashboard") { ?>
+<?php if ($this->config->item('special_callsign') && $this->uri->segment(1) == "dashboard" && $this->session->userdata('clubstation') == 1) { ?>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
 <script>
 	<?php
@@ -187,6 +187,9 @@ if($this->session->userdata('user_id') != null) {
         error: function() {
             alert('<?= __("Failed to load the modal. Please try again."); ?>');
         }
+    });
+    $(window).on('blur', function() {
+        $('#clubswitchModal').modal('hide');
     });
 }
 </script>
