@@ -490,7 +490,7 @@ class User_Model extends CI_Model {
 			}
 		}
 
-		// Restore custom data
+		// Restore custom data in impersonation mode
 		foreach ($this->session->userdata() as $key => $value) {
 			if (substr($key, 0, 3) == 'cd_') {
 				$userdata[$key] = $value;
@@ -498,7 +498,6 @@ class User_Model extends CI_Model {
 		}
 
 		// Overrides
-
 		if ($impersonate) {
 			$userdata['impersonate'] = true;
 			$userdata['available_clubstations'] = $this->get_clubstations($u->row()->user_id);

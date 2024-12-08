@@ -172,7 +172,7 @@ if($this->session->userdata('user_id') != null) {
 </script>
 <?php } ?>
 <script>
-    function clubswitch_modal(club_id, club_callsign) {
+function clubswitch_modal(club_id, club_callsign) {
     $.ajax({
         url: base_url + 'index.php/club/switch_modal',
         type: 'POST',
@@ -190,6 +190,21 @@ if($this->session->userdata('user_id') != null) {
     });
     $(window).on('blur', function() {
         $('#clubswitchModal').modal('hide');
+    });
+}
+function stopImpersonate_modal() {
+    $.ajax({
+        url: base_url + 'index.php/user/stop_impersonate_modal',
+        success: function(response) {
+            $('#stopImpersonateModal-container').html(response);
+            $('#stopImpersonateModal').modal('show');
+        },
+        error: function() {
+            alert('<?= __("Failed to load the modal. Please try again."); ?>');
+        }
+    });
+    $(window).on('blur', function() {
+        $('#stopImpersonateModal').modal('hide');
     });
 }
 </script>

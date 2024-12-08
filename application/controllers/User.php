@@ -797,6 +797,14 @@ class User extends CI_Controller {
 	}
 
 	function login($firstlogin = false) {
+
+		// Due the fact there was a new session generated, we need to get flash messages from a temporary cookie
+		$tmpdata = json_decode($this->input->cookie(config_item('cookie_prefix') . 'tmp_msg') ?? '') ?? false;
+		if ($tmpdata) {
+			$this->session->set_flashdata($tmpdata[0], $tmpdata[1]);
+			$this->input->set_cookie('tmp_msg', '', -3600, '');
+		}
+
 		// Check our version and run any migrations
 		if (!$this->load->is_loaded('Migration')) {
 			$this->load->library('Migration');
@@ -821,7 +829,7 @@ class User extends CI_Controller {
 		$data['user'] = $query->row();
 
 		// Read the cookie keep_login and allow the login
-		if ($this->input->cookie(config_item('cookie_prefix') . 'keep_login')) {
+		if ($this->input->cookie(config_item('cookie_prefix') . 'keep_login') || $this->input->cookie(config_item('cookie_prefix') . 're_login')) {
 
 			try {
 
@@ -830,7 +838,7 @@ class User extends CI_Controller {
 				}
 
 				// process the incoming string
-				$incoming_string = $this->input->cookie(config_item('cookie_prefix') . 'keep_login');
+				$incoming_string = $this->input->cookie(config_item('cookie_prefix') . 'keep_login') ?? $this->input->cookie(config_item('cookie_prefix') . 're_login');
 				$i_str_parts_a = explode(base64_encode($this->config->item('base_url')), $incoming_string);
 				$uid = base64_decode($i_str_parts_a[1]);
 				$a = $i_str_parts_a[0];
@@ -859,7 +867,7 @@ class User extends CI_Controller {
 						// if everything is fine we can log in the user
 						$this->user_model->update_session($uid);
 						$this->user_model->set_last_seen($uid);
-						log_message('debug', "User ID: [$uid] logged in successfully with 'Keep Login'.");
+						log_message('info', "User ID: [$uid] logged in successfully with 'Keep Login'.");
 						redirect('dashboard');
 
 					} else {
@@ -947,7 +955,7 @@ class User extends CI_Controller {
 		}
 	}
 
-	function logout() {
+	function logout($custom_message = null) {
 		$this->load->model('user_model');
 
 		$user_name = $this->session->userdata('user_name');
@@ -956,8 +964,13 @@ class User extends CI_Controller {
 		$this->input->set_cookie('keep_login', '', -3600, '');
 
 		$this->user_model->clear_session();
-
-		$this->session->set_flashdata('notice', sprintf(__("User %s logged out."), $user_name));
+		
+		if ($custom_message != null && is_array($custom_message)) {
+			$this->input->set_cookie('tmp_msg', json_encode([$custom_message[0], $custom_message[1]]), 10, '');
+		} else {
+			$this->input->set_cookie('tmp_msg', json_encode(['notice', sprintf(__("User %s logged out."), $user_name)]), 10, '');
+		}
+		
 		redirect('user/login');
 	}
 
@@ -1264,6 +1277,7 @@ class User extends CI_Controller {
 		// before we can impersonate a user, we need to make sure the current user is allowed to do so
 		$clubswitch = $this->input->post('clubswitch', TRUE) ?? '';
 		$custom_sessiondata = [];
+		$source_user = $this->user_model->get_by_id($source_uid)->row();
 		if ($clubswitch == 1) {
 			$this->load->model('club_model');
 			if (!$this->club_model->club_authorize(3, $target_uid, $source_uid) || !$this->user_model->authorize(3)) {
@@ -1282,12 +1296,13 @@ class User extends CI_Controller {
 				}
 			}
 		} else {
-			$source_user = $this->user_model->get_by_id($source_uid)->row();
 			if(!$source_user || !$this->user_model->authorize(99)) {
 				$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 				redirect('dashboard'); 
 			}
 		}
+		$custom_sessiondata['src_call'] = $source_user->user_callsign;
+		$custom_sessiondata['src_hash'] = $this->input->post('hash', TRUE) ?? '';
 
 		/**
 		 * Impersonate the user
@@ -1300,5 +1315,82 @@ class User extends CI_Controller {
 		
 		// Redirect to the dashboard, the user should now be logged in as the other user
 		redirect('dashboard');
+	}
+
+	public function stop_impersonate_modal() {
+		// Load the user model
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$this->load->view('user/stop_impersonate_modal');
+	}
+
+	public function stop_impersonate() {
+		// Load the user model
+		$this->load->model('user_model');
+
+		// there is no source_uid, there is probably something fishy going on. So we clear the session at this point
+		$source_uid = $this->session->userdata('source_uid') ?? false;
+		$post_chk = $this->input->post('stopImpersonate', TRUE) ?? false;
+		if (!$source_uid || $post_chk != 1) {
+			$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+			exit;
+		}
+
+		// is the current user a clubstation we need to check if the source user was allowed to impersonate the clubstation
+		$club = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+		$current_is_club = $club->clubstation == 1 ? true : false;
+		$source_user = $this->user_model->get_by_id($source_uid)->row();
+
+		if ($current_is_club) {
+			$this->load->model('club_model');
+			if (!$this->club_model->club_authorize(3, $this->session->userdata('user_id'), $source_uid)) {
+				$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+				exit;
+			}
+		} else {
+			// if the current user is not a clubstation, we need to check if the source user was allowed to impersonate the current user (has to be an admin)
+			if($source_user->user_type != 99) {
+				$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+				exit;
+			}
+		}
+
+		// Validate the impersonate hash
+		$this->load->library('encryption');
+		$raw_hash = $this->encryption->decrypt($this->session->userdata('cd_src_hash') ?? false);
+		if (!$raw_hash) {
+			$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+			exit;
+		}
+		$hash_parts = explode('/', $raw_hash);
+		$src_in_hash = $hash_parts[0];
+		$tgt_in_hash = $hash_parts[1];
+		$timestamp = $hash_parts[2];
+		if ($src_in_hash != $source_uid || $tgt_in_hash != $this->session->userdata('user_id')) {
+			$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+			exit;
+		}
+
+		// The timestamp can't be older then 2 hours
+		if (time() - $timestamp > 7200) {
+			$this->logout(['notice', __("The impersonation session has been closed due to inactivity. Please log in again.")]);
+			exit;
+		}
+
+		// Create a keep login cookie which will be used to log back in as the source user
+		$encrypted_string = $this->user_model->keep_cookie_hash($source_uid);
+		$cookie = array(
+			'name'   => 're_login',  // we use a different cookie name to avoid conflicts with the regular keep_login cookie
+			'value'  => $encrypted_string,
+			'expire' => 20,  // seconds should be enough
+			'secure' => TRUE,
+			'httponly' => TRUE
+		);
+		$this->input->set_cookie($cookie);
+
+		// log out on the regular way
+		$msg = ['notice', sprintf(__("You have been logged out of the club station %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
+		$this->logout($msg);
 	}
 }

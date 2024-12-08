@@ -466,6 +466,14 @@
 								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/wiki" title="Help"><i class="fas fa-question"></i> <?= __("Help"); ?></a></li>
 								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/discussions" title="Forum"><i class="far fa-comment-dots"></i> <?= __("Forum"); ?></a></li>
 								<div class="dropdown-divider"></div>
+								<?php if ($this->session->userdata('impersonate') == 1) { ?>
+									<li>
+										<button class="dropdown-item" style="flex: 1;" title="<?= sprintf(__("Stop impersonate and switch back to %s"), $this->session->userdata('cd_src_call') ?? ''); ?>" onclick="stopImpersonate_modal()">
+											<i class="fas fa-exchange-alt"></i> <?= sprintf(__("Switch back to %s"), $this->session->userdata('cd_src_call') ?? ''); ?>
+										</button>
+									</li>
+									<div id="stopImpersonateModal-container"></div>
+								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>" title="Logout"><i class="fas fa-sign-out-alt"></i> <?= __("Logout"); ?></a></li>
 							</ul>
 						</li>
