@@ -18,14 +18,15 @@ class Migration_tle_cron extends CI_Migration {
 			$this->db->insert_batch('cron', $data);
 		}
 
-		$this->dbtry("ALTER TABLE tle ADD CONSTRAINT tle_unique_satelliteid_FK FOREIGN KEY (satelliteid) REFERENCES satellite (id) ON DELETE CASCADE ON UPDATE RESTRICT;");
+		$this->dbtry("ALTER TABLE tle ADD CONSTRAINT tle_unique_satelliteid UNIQUE (satelliteid);");
+
 	}
 
 	public function down() {
 		if ($this->chk4cron('update_tle') > 0) {
 			$this->db->query("delete from cron where id='update_update_tle'");
 		}
-		$this->dbtry("alter table tle drop foreign key tle_unique_satelliteid_FK;");
+		$this->dbtry("ALTER TABLE tle DROP INDEX tle_unique_satelliteid;");
 	}
 
 	function chk4cron($cronkey) {
