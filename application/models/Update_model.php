@@ -329,7 +329,6 @@ class Update_model extends CI_Model {
 		if ($response === false) {
 			echo 'Error: ' . curl_error($curl);
 		} else {
-			$this->db->empty_table("tle");
 			// Split the response into an array of lines
 			$lines = explode("\n", $response);
 
@@ -345,8 +344,15 @@ class Update_model extends CI_Model {
 					$satname = $lines[$i];
 					$tleline1 = $lines[$i + 1];
 					$tleline2 = $lines[$i + 2];
-					$sql = "INSERT INTO tle (satelliteid, tle) select id, ? from satellite where name = ? or displayname = ?";
-					$this->db->query($sql,array($tleline1."\n".$tleline2,$satname,$satname));
+					$sql = "
+					INSERT INTO tle (satelliteid, tle)
+					SELECT id, ?
+					FROM satellite
+					WHERE name = ? OR displayname = ?
+					ON DUPLICATE KEY UPDATE
+					tle = VALUES(tle), updated = now()
+				";
+				$this->db->query($sql, array($tleline1 . "\n" . $tleline2, $satname, $satname));
 				}
 			}
 		}
