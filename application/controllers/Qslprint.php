@@ -19,14 +19,10 @@ class QSLPrint extends CI_Controller {
 
 	public function index($station_id = 'All')
 	{
-		$this->load->model('user_model');
-
 		// Check if users logged in
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
-		}
 		$this->load->model('stations');
 		$data['station_id'] = $this->security->xss_clean($station_id);
 		$data['station_profile'] = $this->stations->all_of_user();
