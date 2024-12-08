@@ -23,6 +23,7 @@
 					<th><?= __("Orbit"); ?></th>
 					<th><?= __("Mode"); ?></th>
 					<th><?= __("LoTW"); ?></th>
+					<th><?= __("TLE"); ?></th>
 					<th><?= __("Edit"); ?></th>
 					<th><?= __("Delete"); ?></th>
 				</tr>
@@ -62,6 +63,15 @@
 						echo '<span class="badge bg-warning">'.__("Unknown").'</span>';
 						break;
 					}
+					echo '</td>';
+					?>
+					<?php echo '<td style="text-align: center; vertical-align: middle;">';
+					if ($sat->updated != null) {
+						echo '<span class="badge bg-success" data-bs-toggle="tooltip" title="Last TLE updated was ' . date($custom_date_format . " H:i", strtotime($sat->updated)) . '">'.__("Yes").'</span>';
+					} else {
+						echo '<span class="badge bg-danger">'.__("No").'</span>';
+					}
+
 					echo '</td>';
 					?>
 					<td style="text-align: center; vertical-align: middle;"><button onclick="editSatelliteDialog(<?php echo $sat->id ?>)" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></i></button></td>

@@ -306,4 +306,66 @@ class Update_model extends CI_Model {
             }
         }
     }
+
+	function tle() {
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+		$mtime = microtime();
+        $mtime = explode(" ",$mtime);
+        $mtime = $mtime[1] + $mtime[0];
+        $starttime = $mtime;
+
+		$url = 'https://www.amsat.org/tle/dailytle.txt';
+		$curl = curl_init($url);
+
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+
+		$response = curl_exec($curl);
+
+		$count = 0;
+
+		if ($response === false) {
+			echo 'Error: ' . curl_error($curl);
+		} else {
+			// Split the response into an array of lines
+			$lines = explode("\n", $response);
+
+			$satname = '';
+			$tleline1 = '';
+			$tleline2 = '';
+			// Process each line
+			for ($i = 0; $i < count($lines); $i += 3) {
+				$count++;
+				// Check if there are at least three lines remaining
+				if (isset($lines[$i], $lines[$i + 1], $lines[$i + 2])) {
+					// Get the three lines
+					$satname = $lines[$i];
+					$tleline1 = $lines[$i + 1];
+					$tleline2 = $lines[$i + 2];
+					$sql = "
+					INSERT INTO tle (satelliteid, tle)
+					SELECT id, ?
+					FROM satellite
+					WHERE name = ? OR displayname = ?
+					ON DUPLICATE KEY UPDATE
+					tle = VALUES(tle), updated = now()
+				";
+				$this->db->query($sql, array($tleline1 . "\n" . $tleline2, $satname, $satname));
+				}
+			}
+		}
+
+		curl_close($curl);
+
+        $mtime = microtime();
+        $mtime = explode(" ",$mtime);
+        $mtime = $mtime[1] + $mtime[0];
+        $endtime = $mtime;
+        $totaltime = ($endtime - $starttime);
+        echo "This page was created in ".$totaltime." seconds <br />";
+        echo "Records inserted: " . $count . " <br/>";
+	}
+
 }

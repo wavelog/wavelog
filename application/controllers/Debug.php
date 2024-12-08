@@ -102,6 +102,7 @@ class Debug extends CI_Controller
 		$data['scp_update'] = $this->cron_model->cron('update_update_clublog_scp')->row();
 		$data['sota_update'] = $this->cron_model->cron('update_update_sota')->row();
 		$data['wwff_update'] = $this->cron_model->cron('update_update_wwff')->row();
+		$data['tle_update'] = $this->cron_model->cron('update_update_tle')->row();
 
 		$data['page_title'] = __("Debug");
 
@@ -224,7 +225,7 @@ class Debug extends CI_Controller
 
 					// Show success message
 					$this->session->set_flashdata('success', __("Wavelog was updated successfully!"));
-					
+
 					} catch (\Throwable $th) {
 					log_message("Error","Error at selfupdating");
 				}

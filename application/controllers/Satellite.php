@@ -21,6 +21,16 @@ class Satellite extends CI_Controller {
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites();
 
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		$pageData['custom_date_format'] = $custom_date_format;
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/sections/satellite.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite.js")),
@@ -285,7 +295,7 @@ class Satellite extends CI_Controller {
 		$tle     = new Predict_TLE($sat_tle->satellite, $temp[0], $temp[1]); // Instantiate it
 		$sat     = new Predict_Sat($tle); // Load up the satellite data
 
-		$now     = Predict_Time::get_current_daynum(); // get the current time as Julian Date (daynum)
+		$now     = $this->get_daynum_from_date($this->security->xss_clean($this->input->post('date'))); // get the current time as Julian Date (daynum)
 
 		// You can modify some preferences in Predict(), the defaults are below
 		//
@@ -315,5 +325,18 @@ class Satellite extends CI_Controller {
 		$data['zone'] = $zone;
 		$data['format'] = $format;
 		$this->load->view('satellite/passtable', $data);
+	}
+
+	public static function get_daynum_from_date($date) {
+		// Convert a Y-m-d date to a day number
+
+		// Convert date to Unix timestamp
+		$timestamp = strtotime($date);
+		if ($timestamp === false) {
+			throw new Exception("Invalid date format. Expected Y-m-d.");
+		}
+
+		// Calculate the day number
+		return Predict_Time::unix2daynum($timestamp, 0);
 	}
 }
