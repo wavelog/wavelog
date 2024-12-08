@@ -401,7 +401,6 @@
 													<?php } ?>
 												</div>
 											</li>										
-											<div id="clubswitchModal-container"></div>
 										<?php } ?>
 									<?php } else { ?>
 										<li><a class="dropdown-item"><?= __("No Clubstations available"); ?></a></li>
@@ -472,7 +471,6 @@
 											<i class="fas fa-exchange-alt"></i> <?= sprintf(__("Switch back to %s"), $this->session->userdata('cd_src_call') ?? ''); ?>
 										</button>
 									</li>
-									<div id="stopImpersonateModal-container"></div>
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>" title="Logout"><i class="fas fa-sign-out-alt"></i> <?= __("Logout"); ?></a></li>
 							</ul>
@@ -576,7 +574,9 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav>						
+	<div id="clubswitchModal-container"></div>
+	<div id="stopImpersonateModal-container"></div>
 	<script>
 		let headerMenu = document.getElementById('header-menu');
 		let dropdowns = document.querySelectorAll('.dropdown-toggle');
