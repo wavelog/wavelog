@@ -1263,11 +1263,23 @@ class User extends CI_Controller {
 
 		// before we can impersonate a user, we need to make sure the current user is allowed to do so
 		$clubswitch = $this->input->post('clubswitch', TRUE) ?? '';
+		$custom_sessiondata = [];
 		if ($clubswitch == 1) {
 			$this->load->model('club_model');
 			if (!$this->club_model->club_authorize(3, $target_uid, $source_uid) || !$this->user_model->authorize(3)) {
 				$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 				redirect('dashboard');
+			} else {
+				$targetclub = array_filter($this->session->userdata('available_clubstations'), function($club) use ($target_uid) {
+					return $club->user_id == $target_uid;
+				});
+				$p_level = !empty($targetclub) ? reset($targetclub)->p_level : null;
+				if ($p_level != null) {
+					$custom_sessiondata['p_level'] = $p_level;
+				} else {
+					$this->session->set_flashdata('error', __("Could not determine the correct permission level for the clubstation. Try again after re-login."));
+					redirect('dashboard');
+				}
 			}
 		} else {
 			$source_user = $this->user_model->get_by_id($source_uid)->row();
@@ -1284,7 +1296,7 @@ class User extends CI_Controller {
 		// TODO: Find a solution for sessiondata 'radio', so a user would be able to use e.g. his own radio while impersonating another user
 		// Due the fact that the user is now impersonating another user, he can't use his default radio anymore
 		$this->session->set_userdata('source_uid', $source_uid);
-		$this->user_model->update_session($target_uid, null, true); 
+		$this->user_model->update_session($target_uid, null, true, $custom_sessiondata); 
 		
 		// Redirect to the dashboard, the user should now be logged in as the other user
 		redirect('dashboard');

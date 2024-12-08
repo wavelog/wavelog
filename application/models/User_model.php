@@ -429,7 +429,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: void update_session()
 	// Updates a user's login session after they've logged in
 	// TODO: This should return bool TRUE/FALSE or 0/1
-	function update_session($id, $u = null, $impersonate = false) {
+	function update_session($id, $u = null, $impersonate = false, $custom_data = null) {
 
 		if ($u == null) {
 			$u = $this->get_by_id($id);
@@ -490,6 +490,13 @@ class User_Model extends CI_Model {
 			}
 		}
 
+		// Restore custom data
+		foreach ($this->session->userdata() as $key => $value) {
+			if (substr($key, 0, 3) == 'cd_') {
+				$userdata[$key] = $value;
+			}
+		}
+
 		// Overrides
 
 		if ($impersonate) {
@@ -498,7 +505,11 @@ class User_Model extends CI_Model {
 		}
 		if ($userdata['clubstation'] == 1) {
 			$userdata['available_clubstations'] = 'none';
-			
+		}
+		if (isset($custom_data)) {
+			foreach ($custom_data as $key => $value) {
+				$userdata['cd_' . $key] = $value;
+			}
 		}
 
 		$this->session->set_userdata($userdata);
@@ -599,7 +610,7 @@ class User_Model extends CI_Model {
 
 				$this->set_last_seen($u->row()->user_id);
 			}
-			return 1;
+				return 1;
 		} else {
 			return 0;
 		}
