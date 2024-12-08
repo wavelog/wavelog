@@ -154,6 +154,29 @@ class User_Model extends CI_Model {
 		}
 	}
 
+	// FUNCTION: array search_users($query)
+	// Search for users by parts of their callsign
+	function search_users($query, $clubstations = false) {
+		if (strlen($query) < 3) {
+			return false;
+		}
+		$this->db->select('user_id, user_callsign, user_firstname, user_lastname');
+		if (!$clubstations) {
+			$this->db->where('clubstation', 0);
+		}
+
+		$this->db->group_start();
+		$this->db->like('user_callsign', $query);
+		$this->db->or_like('user_firstname', $query);
+		$this->db->or_like('user_lastname', $query);
+		$this->db->group_end();
+
+		$this->db->limit(100);
+
+		$r = $this->db->get($this->config->item('auth_table'));
+		return $r;
+	}
+
 	// FUNCTION: bool add($username, $password, $email, $type)
 	// Add a user
 	function add($username, $password, $email, $type, $firstname, $lastname, $callsign, $locator, $timezone,

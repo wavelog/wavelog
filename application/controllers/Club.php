@@ -63,6 +63,42 @@ class Club extends CI_Controller
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	public function get_users() {
+		
+		if(!clubaccess_check(9)) { 
+			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			redirect('dashboard'); 
+		}
+		if (!$this->load->is_loaded('user_model')) {
+			$this->load->model('user_model');
+		}
+
+		$query = (string) $this->input->post('query', true) ?? '';
+		if (empty($query)) {
+			header('Content-Type: application/json');
+			echo json_encode([]);
+			return;
+		}
+
+		$users = $this->user_model->search_users($query);
+
+		$result = [];
+
+		if ($users != false) {
+			foreach ($users->result() as $user) {
+				$result[] = [
+					'user_id' => $user->user_id,
+					'user_callsign' => $user->user_callsign,
+					'user_firstname' => $user->user_firstname,
+					'user_lastname' => $user->user_lastname
+				];
+			}
+		}
+
+		header('Content-Type: application/json');
+    	echo json_encode($result);
+	}
+
 	public function alter_member() {
 		
 		$this->load->model('user_model');

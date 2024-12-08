@@ -155,36 +155,31 @@
                 <i class="fas fa-plus"></i> <?= __("Add User"); ?>
             </button>
             <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered" style="max-width: 700px;">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addUserLabel"><?= __("Add User to Club"); ?></h5>
+                            <h5 class="modal-title" id="addUserLabel"><?= __("Add new User to Club"); ?></h5>
                         </div>
                         <form action="<?= site_url('club/alter_member'); ?>" method="post">
                             <div class="modal-body">
                                 <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
 
-                                <div class="mb-3">
-                                    <label for="user_id" class="form-label"><?= __("User Callsign"); ?></label>
-                                    <select class="form-select" id="user_id" name="user_id" required>
-                                        <option value=""><?= __("Select User"); ?></option>
-                                        <?php foreach ($users->result() as $user) { ?>
-                                            <option value="<?php echo $user->user_id; ?>"><?php echo $user->user_callsign; ?></option>
-                                        <?php } ?>
-                                    </select>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <p class="fw-bold mb-4 mt-1"><?= __("User"); ?></p>
+                                        <p class="fw-bold mb-4"><?= __("Permission"); ?></p>
+                                    </div>
+                                    <div class="col">
+                                        <input class="form-control mb-2" id="user_id" name="user_id" required />
+                                        <select class="form-select mb-2" id="permission" name="permission" required>
+                                            <option value="3"><?php echo $permissions[3]; ?></option>
+                                            <option value="9"><?php echo $permissions[9]; ?></option>
+                                        </select>
+                                    </div>
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="permission" class="form-label"><?= __("Permission"); ?></label>
-                                    <select class="form-select" id="permission" name="permission" required>
-                                        <option value="3"><?php echo $permissions[3]; ?></option>
-                                        <option value="9"><?php echo $permissions[9]; ?></option>
-                                    </select>
-                                </div>
-
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success"><?= __("Add User"); ?></button>
+                                <button type="submit" class="btn btn-success"><?= __("Save"); ?></button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>
                             </div>
                         </form>
@@ -239,18 +234,18 @@
                                                         <div class="modal-body" style="text-align: center !important;">
                                                             <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
                                                             <input type="hidden" name="user_id" value="<?php echo $member->user_id; ?>">
-
-                                                            <div class="mb-3">
-                                                                <label for="user_id" class="form-label"><?= __("User Callsign"); ?></label>
-                                                                <p><?php echo $member->user_callsign; ?></p>
-                                                            </div>
-
-                                                            <div class="mb-3">
-                                                                <label for="permission" class="form-label"><?= __("Permission"); ?></label>
-                                                                <select class="form-select" id="permission" name="permission" required>
-                                                                    <option value="3" <?php if ($member->p_level == 3) { echo 'selected'; } ?>><?php echo $permissions[3]; ?></option>
-                                                                    <option value="9" <?php if ($member->p_level == 9) { echo 'selected'; } ?>><?php echo $permissions[9]; ?></option>
-                                                                </select>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <p class="fw-bold mb-4"><?= __("User Callsign"); ?></p>
+                                                                    <p class="fw-bold mb-3"><?= __("Permission"); ?></p>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p class="mb-3"><?php echo $member->user_callsign; ?></p>
+                                                                    <select class="form-select mb-3" id="permission" name="permission" required>
+                                                                        <option value="3" <?php if ($member->p_level == 3) { echo 'selected'; } ?>><?php echo $permissions[3]; ?></option>
+                                                                        <option value="9" <?php if ($member->p_level == 9) { echo 'selected'; } ?>><?php echo $permissions[9]; ?></option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
