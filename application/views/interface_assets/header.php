@@ -117,10 +117,12 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('qso?manual=1'); ?>" title="Log QSO made in the past"><i class="fas fa-list"></i> <?= __("Post QSO"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('simplefle'); ?>" title="Simple Fast Log Entry"><i class="fas fa-list"></i> <?= __("Simple Fast Log Entry"); ?></a></li>
+								<?php if (clubaccess_check(99)) { ?> <!-- Club Access Check -->
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=0'); ?>" title="Live contest QSOs"><i class="fas fa-list"></i> <?= __("Live Contest Logging"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=1'); ?>" title="Post contest QSOs"><i class="fas fa-list"></i> <?= __("Post Contest Logging"); ?></a></li>
+								<?php } ?>
 							</ul>
 						</li>
 
@@ -367,15 +369,23 @@
 
 						<!-- Logged in As -->
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-user"></i> <?php echo str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))); ?></a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+								<?php if ($this->session->userdata('clubstation') == 1) {
+									echo '<i class="fas fa-users"></i> ' 
+										. '<b>' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))) . '</b>'
+										. ' <br><small>' 
+										. sprintf(_pgettext("Operator: Callsign", "Op: %s"), str_replace("0","&Oslash;", strtoupper($this->session->userdata('operator_callsign')))) 
+										. '</small>'; 
+								} else { 
+									echo '<i class="fas fa-user"></i> ' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))); 
+								} ?>
+							</a>
 
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
-								<?php
-								if (!$this->config->item('special_callsign') ||
-									$this->session->userdata('user_type') == '99' ||
-									($this->config->item('special_callsign') && !$this->config->item('sc_hide_usermenu'))) { ?>
+
+								<?php if (clubaccess_check(9)) { ?> <!-- Club Access Check -->
+
 									<li><a class="dropdown-item" href="<?php echo site_url('user/edit') . "/" . $this->session->userdata('user_id'); ?>" title="Account"><i class="fas fa-user"></i> <?= __("Account"); ?></a></li>
-								<?php } ?>
 								<?php
 								$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name' => 'locations_quickswitch'))->row()->option_value ?? 'false');
 								if ($quickswitch_enabled != 'true') {
@@ -458,6 +468,9 @@
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
+
+								<?php } ?> <!-- End of Clubaccess check -->
+
 								<li><a class="dropdown-item" href="<?php echo site_url('api/help'); ?>" title="Manage API keys"><i class="fas fa-key"></i> <?= __("API Keys"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('radio'); ?>" title="Interface with one or more radios"><i class="fas fa-broadcast-tower"></i> <?= __("Hardware Interfaces"); ?></a></li>
 								<div class="dropdown-divider"></div>
@@ -476,7 +489,7 @@
 							</ul>
 						</li>
 						<?php
-						if ($quickswitch_enabled == 'true') { ?>
+						if (($quickswitch_enabled ?? '') == 'true') { ?>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-map-marker-alt"></i> | <i class="fas fa-book"></i></a>
 								<ul class="dropdown-menu dropdown-menu-right header-dropdown">

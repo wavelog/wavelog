@@ -130,7 +130,7 @@ class QSO extends CI_Controller {
 				'prop_mode' => $this->input->post('prop_mode', TRUE),
 				'radio' => $this->input->post('radio', TRUE),
 				'station_profile_id' => $this->input->post('station_profile', TRUE),
-				'operator_callsign' => $this->input->post('operator_callsign', TRUE),
+				'operator_callsign' => $this->input->post('operator_callsign', TRUE) ?? $this->session->userdata('operator_callsign'),
 				'transmit_power' => $this->input->post('transmit_power', TRUE)
 			);
 			// ];

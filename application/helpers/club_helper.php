@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   */
 
 if (!function_exists('clubaccess_check')) {
-    function clubaccess_check($required_level) {
+    function clubaccess_check($required_level, $qso_id = 0) {
 
         $CI =& get_instance();
         if (!$CI->load->is_loaded('session')) {
@@ -26,7 +26,18 @@ if (!function_exists('clubaccess_check')) {
         if ($clubmode && $clubstation == 1) {
             // check if the user has the required level
             if ($CI->session->userdata('cd_p_level') >= $required_level) {
-                return true;
+                if ($qso_id != 0) {
+                    // check if the QSO belongs to the user
+                    $CI->load->model('logbook_model');
+                    $qso = $CI->logbook_model->get_qso($qso_id)->row();
+                    if ($qso->COL_OPERATOR == $CI->session->userdata('operator_callsign') || $CI->session->userdata('cd_p_level') >= 9) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return true;
+                }
             } else {
                 return false;
             }
