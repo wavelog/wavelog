@@ -36,7 +36,7 @@ function echo_table_col($row, $name) {
 					$ci->load->library('Qra');
 				}
 				echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
-		case 'Distance':echo '<td><span data-bs-toggle="tooltip" title="'.$row->COL_GRIDSQUARE.'">' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</span></td>'; break;
+		case 'Distance':echo '<td><span data-bs-toggle="tooltip" title="'.$row->COL_GRIDSQUARE.'">' . getDistance($row->COL_DISTANCE) . '</span></td>'; break;
 		case 'Band':
             echo '<td>'; if($row->COL_SAT_NAME ?? '' != '') { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($row->COL_BAND ?? '').'">'.($row->sat_displayname != null ? $row->sat_displayname." (".$row->COL_SAT_NAME.")" : $row->COL_SAT_NAME).'</span></a></td>'; } else { if ($row->COL_FREQ ?? ''!= '') { echo ' <span data-bs-toggle="tooltip" title="'.$ci->frequency->qrg_conversion($row->COL_FREQ ?? 0).'">'. strtolower($row->COL_BAND ?? '').'</span>'; } else { echo strtolower($row->COL_BAND ?? ''); } } echo '</td>'; break;
 		case 'Frequency':
@@ -46,6 +46,54 @@ function echo_table_col($row, $name) {
 		case 'Location':echo '<td>' . ($row->station_profile_name ?? '') . '</td>'; break;
 		case 'Name':echo '<td>' . ($row->COL_NAME ?? '') . '</td>'; break;
 	}
+}
+
+function getDistance($distance) {
+	if (($distance ?? 0) == 0) return '';
+
+	$ci =& get_instance();
+	if ($ci->session->userdata('user_measurement_base') == NULL) {
+		$measurement_base = $ci->config->item('measurement_base');
+	}
+	else {
+		$measurement_base = $ci->session->userdata('user_measurement_base');
+	}
+
+	switch ($measurement_base) {
+		case 'M':
+			$unit = "mi";
+			break;
+		case 'K':
+			$unit = "km";
+			break;
+		case 'N':
+			$unit = "nmi";
+			break;
+		default:
+			$unit = "km";
+		}
+
+	if ($unit == 'mi') {
+		$distance = round($distance * 0.621371, 1);
+	}
+	if ($unit == 'nmi') {
+		$distance = round($distance * 0.539957, 1);
+	}
+
+	return $distance . ' ' . $unit;
+}
+
+
+function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
+	$echo = "";
+	if (!empty($grid)) {
+		$echo = $grid;
+		$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>') : '';
+	} else if (!empty($vucc)) {
+		$echo = $vucc;
+		$echo .= (!$isVisitor) ? (' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>') : '';
+	}
+	return $echo;
 }
 
 ?>
@@ -68,7 +116,7 @@ function echo_table_col($row, $name) {
                 echo_table_header_col($this, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
                 echo_table_header_col($this, $this->session->userdata('user_column5'));
 
-                    if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { 
+                    if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) {
     		    	if ( strpos($this->session->userdata('user_default_confirmation'),'Q') !== false  ) { ?>
                     	<th>QSL</th>
                     <?php } ?>
@@ -133,7 +181,7 @@ function echo_table_col($row, $name) {
                 echo_table_col($row, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
                 echo_table_col($row, $this->session->userdata('user_column5'));
 
-				if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { 
+				if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) {
     		    			if ( strpos($this->session->userdata('user_default_confirmation'),'Q') !== false  ) { ?>
                 <td id="qsl_<?php echo $row->COL_PRIMARY_KEY; ?>" class="qsl">
                 <span <?php if ($row->COL_QSL_SENT != "N") {
@@ -294,37 +342,37 @@ function echo_table_col($row, $name) {
 
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false ) { ?>
                     <td class="clublog">
-                        <span <?php 
-				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") { 
-					echo 'title="'.__("Sent").($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null ? " ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"'; 
+                        <span <?php
+				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") {
+					echo 'title="'.__("Sent").($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null ? " ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"';
 				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
 					echo 'title="'.__("Modified");
 					if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) {
 						echo "<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE)).")";
 					}
-					echo '" data-bs-toggle="tooltip" data-bs-html="true"'; 
-				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') { 
-					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"'; 
-				}?> class="clublog-<?php 
+					echo '" data-bs-toggle="tooltip" data-bs-html="true"';
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') {
+					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"';
+				}?> class="clublog-<?php
 
-				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'Y') { 
-					echo 'green'; 
+				if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'Y') {
+					echo 'green';
 				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'M') {
-					echo 'yellow'; 
-				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') { 
-					echo 'grey'; 
-				} else { 
-					echo 'red'; 
+					echo 'yellow';
+				} elseif ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == 'I') {
+					echo 'grey';
+				} else {
+					echo 'red';
 				} ?>">&#9650;</span>
-                        <span <?php 
-				if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") { 
-					echo "title=\"".__("Received"); 
-					if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { 
-						$timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); 
-						echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); 
-					} 
-					echo "\" data-bs-toggle=\"tooltip\""; 
-				} ?> class="clublog-<?php 
+                        <span <?php
+				if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") {
+					echo "title=\"".__("Received");
+					if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) {
+						$timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE);
+						echo " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+					}
+					echo "\" data-bs-toggle=\"tooltip\"";
+				} ?> class="clublog-<?php
 					echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
