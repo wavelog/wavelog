@@ -1374,7 +1374,7 @@ class User extends CI_Controller {
 
 		// The timestamp can't be older then 2 hours
 		if (time() - $timestamp > 7200) {
-			$this->logout(['notice', __("The impersonation session has been closed due to inactivity. Please log in again.")]);
+			$this->logout(['notice', __("The ability to return quickly has been disabled after the security hash expired. Please log in again.")]);
 			exit;
 		}
 
