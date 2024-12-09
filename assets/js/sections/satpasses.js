@@ -1,4 +1,7 @@
 function searchpasses() {
+	$(".ld-ext-right-plot").addClass('running');
+    $(".ld-ext-right-plot").prop('disabled', true);
+    $('#searchpass').prop("disabled", true);
 	if ($('#addskedpartner').is(':hidden')) {
 		loadPasses();
 	} else {
@@ -29,6 +32,9 @@ function loadPasses() {
         },
         success: function (html) {
             $("#resultpasses").html(html);
+			$(".ld-ext-right-plot").removeClass('running');
+            $(".ld-ext-right-plot").prop('disabled', false);
+            $('#searchpass').prop("disabled", false);
         },
         error: function(e) {
             modalloading=false;
@@ -55,6 +61,9 @@ function loadSkedPasses() {
         },
         success: function (html) {
             $("#resultpasses").html(html);
+			$(".ld-ext-right-plot").removeClass('running');
+            $(".ld-ext-right-plot").prop('disabled', false);
+            $('#searchpass').prop("disabled", false);
         },
         error: function(e) {
             modalloading=false;
