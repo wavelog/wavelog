@@ -21,10 +21,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-09 11:01+0000\n"
-"PO-Revision-Date: 2024-12-09 08:15+0000\n"
+"PO-Revision-Date: 2024-12-09 11:06+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1733,21 +1733,23 @@ msgstr "Testmail gesendet. E-Mail Einstellungen scheinen korrekt zu sein."
 #: application/controllers/Options.php:414
 #: application/views/options/sidebar.php:11
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Maptiles-Server"
 
 #: application/controllers/Options.php:473
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
+"Maptile-Cache konnte nicht entfernt werden. Lösche den Ordner manuell. Pfad: "
+"%s"
 
 #: application/controllers/Options.php:477
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "Maptile-Optionen gespeichert!"
 
 #: application/controllers/Options.php:479
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "Maptile-Optionen konnten nicht gespeichert werden!"
 
 #: application/controllers/Options.php:490
 #: application/controllers/Options.php:500
@@ -6933,7 +6935,7 @@ msgstr "WWFF-Datei Download"
 
 #: application/views/debug/index.php:554
 msgid "TLE update"
-msgstr ""
+msgstr "TLE-Update"
 
 #: application/views/debug/index.php:563
 msgid "QSO-DB Maintenance"
@@ -9411,6 +9413,9 @@ msgid ""
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
 msgstr ""
+"Dies modifiziert die Kartenquelle an verschiedenen Stellen innerhalb von "
+"Wavelog. Ändere hier keine Werte, es sei denn, du bist dir sicher, was du "
+"tust. Teste jede Änderung auf deinem %sDashboard%s!"
 
 #: application/views/options/maptiles.php:50
 #, php-format
@@ -9418,54 +9423,60 @@ msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
 msgstr ""
+"Du findest eine Liste der getesteten Einstellungen und alle Standardwerte im "
+"%sWavelog Wiki%s."
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "Maptiles-Server-URL"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
-msgstr ""
+msgstr "URL des Kartenservers, der die Kacheln bereitstellt."
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
-msgstr ""
+msgstr "Maptiles-Server-URL für dunkle Kacheln - NUR für Static Map API"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
 msgstr ""
+"URL des Kartenservers, der die dunklen Kacheln bereitstellt. Wird nur für "
+"die Static Map API verwendet."
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "Subdomain-System des Maptile-Servers"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
 msgstr ""
+"System der Subdomains auf diesem Server ({s} in der URL). Sie werden für "
+"Loadbalancing verwendet."
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
-msgstr ""
+msgstr "URL der Quelle des Copyrights"
 
 #: application/views/options/maptiles.php:71
 msgid "Source URL for the copyright tag."
-msgstr ""
+msgstr "Quell-URL für das Copyright-Tag."
 
 #: application/views/options/maptiles.php:74
 msgid "Name of the Copyright Source"
-msgstr ""
+msgstr "Name der Copyright-Quelle"
 
 #: application/views/options/maptiles.php:76
 msgid "Text for the copyright tag."
-msgstr ""
+msgstr "Text für das Copyright-Tag."
 
 #: application/views/options/maptiles.php:81
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "Auf Standardeinstellungen zurücksetzen"
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
@@ -10643,7 +10654,7 @@ msgstr "Anzeigename"
 
 #: application/views/satellite/index.php:26
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
