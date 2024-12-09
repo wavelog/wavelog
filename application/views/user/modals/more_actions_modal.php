@@ -7,7 +7,6 @@
             </div>
             <div class="modal-body" style="text-align: left !important;">
                 <p><?= __("Select an action to perform for the user:"); ?></p>
-                <br>
                 <table>
                     <tr>
                         <td class="pe-3"><?= __("Username:"); ?></td>
