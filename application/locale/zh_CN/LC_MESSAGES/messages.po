@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-09 11:01+0000\n"
-"PO-Revision-Date: 2024-12-09 08:04+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
+"PO-Revision-Date: 2024-12-10 11:08+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1722,15 +1722,15 @@ msgstr "Maptiles 服务器"
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
-msgstr ""
+msgstr "地图瓦片缓存文件无法删除，请手动删除： %s"
 
 #: application/controllers/Options.php:477
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "地图瓦片设置已保存！"
 
 #: application/controllers/Options.php:479
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "地图瓦片设置无法保存！"
 
 #: application/controllers/Options.php:490
 #: application/controllers/Options.php:500
@@ -6708,7 +6708,7 @@ msgstr "下载 WWFF 文件"
 
 #: application/views/debug/index.php:554
 msgid "TLE update"
-msgstr ""
+msgstr "TLE 更新"
 
 #: application/views/debug/index.php:563
 msgid "QSO-DB Maintenance"
@@ -9099,62 +9099,63 @@ msgid ""
 "This modifies the map source in various locations within Wavelog. Do not "
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
-msgstr ""
+msgstr "此处更改 Wavelog 使用的地图源，更改有风险，请修改后在 %s仪表板%s "
+"页面进行测试！"
 
 #: application/views/options/maptiles.php:50
 #, php-format
 msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
-msgstr ""
+msgstr "%sWavelog Wiki%s 上有已测试通过的设置组合。"
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "瓦片服务器 URL"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
-msgstr ""
+msgstr "地图瓦片服务器网址。"
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
-msgstr ""
+msgstr "瓦片服务器 URL (深色模式) - 仅可用于静态地图 API"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
-msgstr ""
+msgstr "地图瓦片服务器网址 (深色模式)，仅用于生成静态地图。"
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "瓦片服务器分流域名"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
-msgstr ""
+msgstr "瓦片服务器网址中的 {s} 部分，用于负载均衡。"
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
-msgstr ""
+msgstr "版权内容网址"
 
 #: application/views/options/maptiles.php:71
 msgid "Source URL for the copyright tag."
-msgstr ""
+msgstr "版权内容网址的显示文本。"
 
 #: application/views/options/maptiles.php:74
 msgid "Name of the Copyright Source"
-msgstr ""
+msgstr "版权方名称"
 
 #: application/views/options/maptiles.php:76
 msgid "Text for the copyright tag."
-msgstr ""
+msgstr "版权方名称显示文本。"
 
 #: application/views/options/maptiles.php:81
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "重置默认值"
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
@@ -10280,7 +10281,7 @@ msgstr "显示名称"
 
 #: application/views/satellite/index.php:26
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
