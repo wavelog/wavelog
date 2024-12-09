@@ -399,8 +399,8 @@ class Options extends CI_Controller {
 		$data['subdomain_system'] = $this->optionslib->get_option('map_tile_subdomains') ?? 'abc';
 		$map_tile_server_copyright = $this->optionslib->get_option('map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
 		preg_match('/<a href="([^"]+)">([^<]+)<\/a>/', $map_tile_server_copyright, $matches);
-		$data['copyright_url'] = $matches[1];
-		$data['copyright_text'] = $matches[2];
+		$data['copyright_url'] = $matches[1] ?? 'https://www.openstreetmap.org/';
+		$data['copyright_text'] = $matches[2] ?? 'OpenStreetMap';
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('options/maptiles');
@@ -425,17 +425,8 @@ class Options extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE) {
 
-			$data['maptile_server_url'] = $this->optionslib->get_option('maptile_server_url') ?? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-			$data['maptile_server_url_dark'] = $this->optionslib->get_option('map_tile_server_dark') ?? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-			$data['subdomain_system'] = $this->optionslib->get_option('map_tile_subdomains') ?? 'abc';
-			$map_tile_server_copyright = $this->optionslib->get_option('map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
-			preg_match('/<a href="([^"]+)">([^<]+)<\/a>/', $map_tile_server_copyright, $matches);
-			$data['copyright_url'] = $matches[1];
-			$data['copyright_text'] = $matches[2];
-
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('options/maptiles');
-			$this->load->view('interface_assets/footer');
+			$this->maptiles();
+			
 		} else {
 			$saved = false;
 			if ($this->input->post('reset_defaults') == '1') {
