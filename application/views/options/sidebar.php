@@ -8,6 +8,7 @@
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/oqrs'); ?>"><?= __("OQRS Options"); ?></a></li>
       <?php } ?>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/dxcluster'); ?>"><?= __("DXCluster"); ?></a></li>
+			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/maptiles'); ?>"><?= __("Maptiles Server"); ?></a></li>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/version_dialog'); ?>"><?= __("Version Info"); ?></a></li>
 		</ul>
 	</div>
