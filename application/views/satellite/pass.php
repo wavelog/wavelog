@@ -4,8 +4,11 @@
 	<div class="card-body">
 		<form class="d-flex align-items-center">
 		<div class="row">
+			<?php if ($satellites) { ?>
+
+			<h4>Your station</h4>
 			<div class="mb-3 w-auto">
-				<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satslist"><?= __("Min. Satellite Elevation"); ?></label>
+				<label class="my-1 me-sm-2 w-auto" id="minelevation" for="minelevation"><?= __("Min. Satellite Elevation"); ?></label>
 				<input class="my-1 me-sm-2 w-auto form-control" id="minelevation" type="number" min="0" max="90" name="minelevation" value="0" />
 			</div>
 			<div class="mb-3 w-auto">
@@ -477,7 +480,7 @@
 						<label class="my-1 me-sm-2 w-auto" for="mintime"><?= __("Min. time"); ?></label>
 						<select class="my-1 me-sm-2 w-auto form-select" id="mintime" name="mintime">
                         <?php for ($i = 0; $i <= 24; $i += 1): ?>
-                            <option value="<?= $i ?>" <?= $i === 8 ? 'selected' : '' ?>><?= $i ?>:00</option>
+                            <option value="<?= $i ?>" <?= $i === 00 ? 'selected' : '' ?>><?= $i ?>:00</option>
                         <?php endfor; ?>
 						</select>
 				</div>
@@ -485,7 +488,7 @@
 						<label class="my-1 me-sm-2 w-auto" for="maxtime"><?= __("Max. time"); ?></label>
 						<select class="my-1 me-sm-2 w-auto form-select" id="maxtime" name="maxtime">
                         <?php for ($i = 0; $i <= 24; $i += 1): ?>
-                            <option value="<?= $i ?>" <?= $i === 22 ? 'selected' : '' ?>><?= $i ?>:00</option>
+                            <option value="<?= $i ?>" <?= $i === 24 ? 'selected' : '' ?>><?= $i ?>:00</option>
                         <?php endfor; ?>
 						</select>
                 </div>
@@ -497,9 +500,41 @@
 						} ?>
 					</select>
 				</div>
+
+				<div id="addskedpartner" style="display:none" class="row">
+				<h4>Sked partner</h2>
+					<div class="mb-3 w-auto">
+						<label class="my-1 me-sm-2 w-auto" id="minskedelevationlabel" for="minskedelevation"><?= __("Min. Satellite Elevation"); ?></label>
+						<input class="my-1 me-sm-2 w-auto form-control" id="minskedelevation" type="number" min="0" max="90" name="minskedelevation" value="0" />
+					</div>
+					<div class="mb-3 w-auto">
+						<label class="my-1 me-sm-2 w-auto" for="minskedazimuth"><?= __("Min. Azimuth"); ?></label>
+						<select class="my-1 me-sm-2 w-auto form-select" id="minskedazimuth" name="minskedazimuth">
+						<?php for ($i = 0; $i <= 350; $i += 10): ?>
+							<option value="<?= $i ?>" <?= $i === 0 ? 'selected' : '' ?>><?= $i ?> &deg;</option>
+						<?php endfor; ?>
+					</select>
+					</div>
+					<div class="mb-3 w-auto">
+						<label class="my-1 me-sm-2 w-auto" for="maxskedazimuth"><?= __("Max. Azimuth"); ?></label>
+						<select class="my-1 me-sm-2 w-auto form-select" id="maxskedazimuth" name="maxskedazimuth">
+							<?php for ($i = 10; $i <= 360; $i += 10): ?>
+								<option value="<?= $i ?>" <?= $i === 360 ? 'selected' : '' ?>><?= $i ?> &deg;</option>
+							<?php endfor; ?>
+						</select>
+					</div>
+					<div class="mb-3 w-auto">
+							<label class="my-1 me-sm-2 w-auto" for="skedgrid"><?= __("Gridsquare"); ?></label>
+							<input class="my-1 me-sm-2 w-auto form-control"  id="skedgrid" type="text" name="skedgrid" value=""/>
+					</div>
+				</div>
         </form>
 				</div>
-		<button id="plot" type="button" name="searchpass" class="btn-sm btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="searchpasses()"><?= __("Load predictions"); ?><div class="ld ld-ring ld-spin"></div></button>
+		<button id="plot" type="button" name="searchpass" class="btn-sm btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="searchpasses()"><i class="fas fa-search"></i> <?= __("Load predictions"); ?><div class="ld ld-ring ld-spin"></div></button>
+		<button id="addsked" type="button" name="addsked" class="btn-sm btn btn-success me-1 ld-ext-right ld-ext-right-plot" onclick="addskedpartner()"><i class="fa fa-plus"></i> <?= __("Add sked partner"); ?><div class="ld ld-ring ld-spin"></div></button>
+		<?php } else { ?>
+			<?= __("No TLE information detected. Please update TLE's.")?>
+		<?php } ?>
 	</div>
     <div id="resultpasses">
 
