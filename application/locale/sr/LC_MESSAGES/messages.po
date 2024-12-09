@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-09 08:35+0000\n"
-"PO-Revision-Date: 2024-09-17 12:24+0000\n"
+"PO-Revision-Date: 2024-12-09 11:01+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sr/>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.1\n"
+"X-Generator: Weblate 5.8.4\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -157,25 +157,25 @@ msgstr "Ukupno aktiviranih polja"
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:390
 msgid "Fields"
-msgstr ""
+msgstr "Polja"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:391
 msgid "Fields confirmed"
-msgstr ""
+msgstr "Potvrđena polja"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:38
 #: application/controllers/Visitor.php:392
 msgid "Fields not confirmed"
-msgstr ""
+msgstr "Nepotvrđena polja"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:393
 msgid "Total fields worked"
-msgstr ""
+msgstr "Ukupno rađenih polja"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -586,7 +586,7 @@ msgstr "Takmičarski kalendar"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr ""
+msgstr "Takmičarski kalendar nije dostupan. Pokušajte posle ponovo"
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:7
@@ -630,7 +630,7 @@ msgstr "nikada"
 
 #: application/controllers/Cron.php:219
 msgid "calculating..."
-msgstr ""
+msgstr "računam..."
 
 #: application/controllers/Cron.php:230 application/views/cron/index.php:70
 msgid "healthy"
@@ -787,7 +787,7 @@ msgstr "Informacije o eQSL uvozu"
 
 #: application/controllers/Eqsl.php:154
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "eQSL Nadimci nisu definisani u Staničnim profilima!"
 
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
@@ -795,7 +795,7 @@ msgstr "eQSL učitavanje QSO"
 
 #: application/controllers/Eqsl.php:173
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "Niste definisali vaše eQSL.cc kredencijale!"
 
 #: application/controllers/Eqsl.php:432
 msgid "eQSL Tools"
@@ -1749,7 +1749,7 @@ msgstr "Pretraga dnevnika i OQRS"
 
 #: application/controllers/Oqrs.php:67
 msgid "Invalid Station ID"
-msgstr ""
+msgstr "Neispravan ID stanice"
 
 #: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:421
@@ -1841,15 +1841,15 @@ msgstr "Dodaj QSO"
 
 #: application/controllers/Qso.php:661
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "Morate biti prijavljeni da biste pristupili ovom URL."
 
 #: application/controllers/Qso.php:667
 msgid "Call Transfer"
-msgstr ""
+msgstr "Transfer pozivnog znaka"
 
 #: application/controllers/Qso.php:674
 msgid "No callsign provided."
-msgstr ""
+msgstr "Nije dostavljen pozivni znak."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:440
@@ -1944,7 +1944,7 @@ msgstr "Nisu pronađeni radio uređaji sa CAT interfejsom."
 
 #: application/controllers/Radio.php:128 application/views/radio/index.php:2
 msgid "Edit CAT Settings"
-msgstr ""
+msgstr "Uredi CAT podešavanja"
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
@@ -2029,7 +2029,7 @@ msgstr ""
 #: application/models/Logbook_model.php:4490
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
-msgstr ""
+msgstr "Duplikat za"
 
 #: application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
@@ -2234,7 +2234,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:99
 #: application/views/stationsetup/stationsetup.php:150
 msgid "Please select one"
-msgstr ""
+msgstr "Izaberite jedno"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -2259,7 +2259,7 @@ msgstr "Statistika QSL karata"
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
-msgstr ""
+msgstr "Analitika Antena"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:284
@@ -2342,7 +2342,7 @@ msgstr "Uredi korisnika"
 #: application/controllers/User.php:689 application/controllers/User.php:692
 #, php-format
 msgid "User %s edited"
-msgstr ""
+msgstr "Korisnik %s uređen"
 
 #: application/controllers/User.php:746
 msgid "Profile"
@@ -2472,7 +2472,7 @@ msgstr "Nisu pronađene stanice koje koriste Wavelog OQRS."
 
 #: application/libraries/Callbook.php:86
 msgid "QRZCQ Error"
-msgstr ""
+msgstr "QRZCQ greška"
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -2597,42 +2597,44 @@ msgstr ""
 #: application/models/Logbook_model.php:3810
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgstr "Prilikom uvoza QSO-ova, pogrešan je znak %s sa %s za %s: PRESKOČENO"
 
 #: application/models/Logbook_model.php:3811
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "Provjeri %s za savjete oko grešaka u ADIF poljima."
 
 #: application/models/Logbook_model.php:3823
 msgid "QSO on"
-msgstr ""
+msgstr "Start QSO"
 
 #: application/models/Logbook_model.php:3823
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
+"Pokušali ste uvesti QSO bez bilo kojeg znaka. Ovaj QSO nije uvežen, "
+"neispravan je"
 
 #: application/models/Logbook_model.php:4122
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "datum prijema QSL je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4133
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "datum slanja QSL je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4186
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Datum učitavanja veza na Clublog je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4206
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "datum prijama QSL sa LoTW je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4227
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "datum slanja QSL na LoTW je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4551
 msgid "QSO could not be matched"
@@ -3733,13 +3735,15 @@ msgstr "Duple veze su preskočene."
 
 #: application/views/adif/import_success.php:24
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Detalji uvoza / mogući problemi"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"Moguće je da postoje greške u ADIF, QSO-i su ipak dodati. Molimo proverite "
+"sledeće informacije:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -4552,13 +4556,15 @@ msgstr "Ova karta prikazuje samo QSO rađene preko SAT."
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Gridmaster Diploma"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Gridmaster diploma je originalno zamišljena za 488 grid polja koja mogu biti "
+"urađena u USA."
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -6928,7 +6934,7 @@ msgstr "Engleski"
 
 #: application/views/debug/index.php:667
 msgid "Estonian"
-msgstr ""
+msgstr "Estonski"
 
 #: application/views/debug/index.php:668
 msgid "Finnish"
@@ -6952,11 +6958,11 @@ msgstr "Italijanski"
 
 #: application/views/debug/index.php:673
 msgid "Latvian"
-msgstr ""
+msgstr "Letonski"
 
 #: application/views/debug/index.php:674
 msgid "Lithuanian"
-msgstr ""
+msgstr "Litvanski"
 
 #: application/views/debug/index.php:675
 msgid "Montenegrin"
