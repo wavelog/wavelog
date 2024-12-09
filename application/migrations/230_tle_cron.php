@@ -3,11 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Migration_tle_cron extends CI_Migration {
 	public function up() {
-		$this->db->query("DROP TABLE tle");
+		if ($this->db->table_exists('tle')) {
+			$this->db->query("DROP TABLE tle");
+		}
 		$this->db->query("CREATE TABLE `tle` (`id` int(6) unsigned NOT NULL AUTO_INCREMENT, `satelliteid` int(6) unsigned NOT NULL,
 			`tle` text DEFAULT NULL, `updated` timestamp NOT NULL DEFAULT current_timestamp(),
 			PRIMARY KEY (`satelliteid`), UNIQUE KEY `tle_unique_id` (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
-		$this->db->query("ALTER TABLE tle ADD CONSTRAINT tle_satellite_FK FOREIGN KEY (satelliteid) REFERENCES satellite(id) ON DELETE CASCADE");
+		$this->dbtry("ALTER TABLE tle ADD CONSTRAINT tle_satellite_FK FOREIGN KEY (satelliteid) REFERENCES satellite(id) ON DELETE CASCADE");
 		if ($this->chk4cron('update_update_tle') == 0) {
 			$data = array(
 				array(
