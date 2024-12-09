@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-07 20:30+0000\n"
+"POT-Creation-Date: 2024-12-09 08:35+0000\n"
 "PO-Revision-Date: 2024-08-17 10:49+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Albanian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -76,22 +76,22 @@ msgstr ""
 #: application/controllers/Reg1test.php:130
 #: application/controllers/Reg1test.php:164
 #: application/controllers/Satellite.php:18
-#: application/controllers/Satellite.php:37
-#: application/controllers/Satellite.php:44
-#: application/controllers/Satellite.php:53
-#: application/controllers/Satellite.php:72
-#: application/controllers/Satellite.php:92
-#: application/controllers/Satellite.php:100
-#: application/controllers/Satellite.php:108
-#: application/controllers/Satellite.php:122
-#: application/controllers/Satellite.php:140
-#: application/controllers/Satellite.php:151
-#: application/controllers/Satellite.php:167
-#: application/controllers/Satellite.php:195
-#: application/controllers/Satellite.php:206
-#: application/controllers/Satellite.php:228
-#: application/controllers/Satellite.php:241
-#: application/controllers/Satellite.php:249
+#: application/controllers/Satellite.php:47
+#: application/controllers/Satellite.php:54
+#: application/controllers/Satellite.php:63
+#: application/controllers/Satellite.php:82
+#: application/controllers/Satellite.php:102
+#: application/controllers/Satellite.php:110
+#: application/controllers/Satellite.php:118
+#: application/controllers/Satellite.php:132
+#: application/controllers/Satellite.php:150
+#: application/controllers/Satellite.php:161
+#: application/controllers/Satellite.php:177
+#: application/controllers/Satellite.php:205
+#: application/controllers/Satellite.php:216
+#: application/controllers/Satellite.php:238
+#: application/controllers/Satellite.php:251
+#: application/controllers/Satellite.php:259
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
 #: application/controllers/Simplefle.php:7
@@ -621,7 +621,7 @@ msgstr ""
 #: application/views/debug/index.php:525 application/views/debug/index.php:530
 #: application/views/debug/index.php:535 application/views/debug/index.php:540
 #: application/views/debug/index.php:545 application/views/debug/index.php:550
-#: application/views/user/index.php:136
+#: application/views/debug/index.php:555 application/views/user/index.php:136
 msgid "never"
 msgstr ""
 
@@ -685,42 +685,42 @@ msgstr ""
 msgid "Days with QSOs"
 msgstr ""
 
-#: application/controllers/Debug.php:106
+#: application/controllers/Debug.php:107
 msgid "Debug"
 msgstr ""
 
-#: application/controllers/Debug.php:145
+#: application/controllers/Debug.php:146
 msgid "Migrate data now"
 msgstr ""
 
-#: application/controllers/Debug.php:148
+#: application/controllers/Debug.php:149
 msgid "Migration already done. Run again?"
 msgstr ""
 
-#: application/controllers/Debug.php:152
+#: application/controllers/Debug.php:153
 msgid "No data to migrate"
 msgstr ""
 
-#: application/controllers/Debug.php:156 application/controllers/Debug.php:161
+#: application/controllers/Debug.php:157 application/controllers/Debug.php:162
 msgid "No migration possible"
 msgstr ""
 
-#: application/controllers/Debug.php:226
+#: application/controllers/Debug.php:227
 msgid "Wavelog was updated successfully!"
 msgstr ""
 
-#: application/controllers/Debug.php:244
+#: application/controllers/Debug.php:245
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr ""
 
-#: application/controllers/Debug.php:288
+#: application/controllers/Debug.php:289
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
 
-#: application/controllers/Debug.php:291
+#: application/controllers/Debug.php:292
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
 
@@ -1113,7 +1113,7 @@ msgstr ""
 #: application/views/contesting/index.php:259
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
-#: application/views/debug/index.php:573
+#: application/views/debug/index.php:578
 #: application/views/distancerecords/index.php:19
 #: application/views/dxatlas/index.php:42
 #: application/views/eqsl/analysis.php:39
@@ -1393,7 +1393,7 @@ msgstr ""
 #: application/views/contesting/index.php:258
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
-#: application/views/debug/index.php:574 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:579 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:10 application/views/kml/index.php:19
@@ -1881,7 +1881,7 @@ msgstr ""
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:584
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
-#: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:27
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
@@ -1903,7 +1903,7 @@ msgstr ""
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:57
-#: application/views/satellite/index.php:27
+#: application/views/satellite/index.php:28
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
@@ -1925,11 +1925,11 @@ msgstr ""
 msgid "Export EDI"
 msgstr ""
 
-#: application/controllers/Satellite.php:39
+#: application/controllers/Satellite.php:49
 msgid "Create Satellite"
 msgstr ""
 
-#: application/controllers/Satellite.php:66
+#: application/controllers/Satellite.php:76
 msgid "Edit Satellite"
 msgstr ""
 
@@ -3310,7 +3310,7 @@ msgstr ""
 #: application/views/contesting/index.php:98
 #: application/views/contesting/index.php:256
 #: application/views/dashboard/index.php:206
-#: application/views/debug/index.php:570
+#: application/views/debug/index.php:575
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -3354,7 +3354,7 @@ msgstr ""
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:256
 #: application/views/dashboard/index.php:209
-#: application/views/debug/index.php:571
+#: application/views/debug/index.php:576
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -3382,7 +3382,7 @@ msgstr ""
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:114
 #: application/views/contesting/index.php:257
-#: application/views/debug/index.php:572 application/views/debug/index.php:607
+#: application/views/debug/index.php:577 application/views/debug/index.php:612
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -3433,7 +3433,7 @@ msgstr ""
 
 #: application/views/adif/import.php:56 application/views/adif/import.php:231
 #: application/views/adif/import.php:269 application/views/debug/index.php:189
-#: application/views/debug/index.php:206 application/views/debug/index.php:562
+#: application/views/debug/index.php:206 application/views/debug/index.php:567
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:35
@@ -3805,7 +3805,7 @@ msgstr ""
 msgid "Read-Only"
 msgstr ""
 
-#: application/views/api/help.php:49 application/views/satellite/index.php:62
+#: application/views/api/help.php:49 application/views/satellite/index.php:63
 msgid "Unknown"
 msgstr ""
 
@@ -5362,7 +5362,8 @@ msgstr ""
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
-#: application/views/satellite/index.php:56
+#: application/views/satellite/index.php:57
+#: application/views/satellite/index.php:70
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
 #: application/views/station_profile/create.php:217
@@ -5411,7 +5412,8 @@ msgstr ""
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
-#: application/views/satellite/index.php:59
+#: application/views/satellite/index.php:60
+#: application/views/satellite/index.php:72
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/create.php:218
@@ -5550,7 +5552,6 @@ msgstr ""
 #: application/views/dashboard/index.php:348
 #: application/views/dashboard/index.php:369
 #: application/views/dashboard/index.php:390
-#: application/views/satellite/pass.php:475
 msgid "Today"
 msgstr ""
 
@@ -6540,7 +6541,7 @@ msgstr ""
 #: application/views/debug/index.php:520 application/views/debug/index.php:526
 #: application/views/debug/index.php:531 application/views/debug/index.php:536
 #: application/views/debug/index.php:541 application/views/debug/index.php:546
-#: application/views/debug/index.php:551
+#: application/views/debug/index.php:551 application/views/debug/index.php:556
 #: application/views/station_profile/edit.php:49
 msgid "Update"
 msgstr ""
@@ -6569,11 +6570,15 @@ msgstr ""
 msgid "WWFF file download"
 msgstr ""
 
-#: application/views/debug/index.php:558
+#: application/views/debug/index.php:554
+msgid "TLE update"
+msgstr ""
+
+#: application/views/debug/index.php:563
 msgid "QSO-DB Maintenance"
 msgstr ""
 
-#: application/views/debug/index.php:562
+#: application/views/debug/index.php:567
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -6581,7 +6586,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: application/views/debug/index.php:575
+#: application/views/debug/index.php:580
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
@@ -6590,120 +6595,120 @@ msgstr[1] ""
 msgid "Station Callsign"
 msgstr ""
 
-#: application/views/debug/index.php:600
+#: application/views/debug/index.php:605
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
 
-#: application/views/debug/index.php:608
+#: application/views/debug/index.php:613
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr ""
 
-#: application/views/debug/index.php:609 application/views/debug/index.php:620
+#: application/views/debug/index.php:614 application/views/debug/index.php:625
 msgid "Reassign"
 msgstr ""
 
-#: application/views/debug/index.php:629
+#: application/views/debug/index.php:634
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 
-#: application/views/debug/index.php:629
+#: application/views/debug/index.php:634
 msgid "Everything ok"
 msgstr ""
 
-#: application/views/debug/index.php:654
+#: application/views/debug/index.php:659
 msgid "Albanian"
 msgstr ""
 
-#: application/views/debug/index.php:655
+#: application/views/debug/index.php:660
 msgid "Bosnian"
 msgstr ""
 
-#: application/views/debug/index.php:656
+#: application/views/debug/index.php:661
 msgid "Bulgarian"
 msgstr ""
 
-#: application/views/debug/index.php:657
+#: application/views/debug/index.php:662
 msgid "Chinese (Simplified)"
 msgstr ""
 
-#: application/views/debug/index.php:658
+#: application/views/debug/index.php:663
 msgid "Croatian"
 msgstr ""
 
-#: application/views/debug/index.php:659
+#: application/views/debug/index.php:664
 msgid "Czech"
 msgstr ""
 
-#: application/views/debug/index.php:660
+#: application/views/debug/index.php:665
 msgid "Dutch"
 msgstr ""
 
-#: application/views/debug/index.php:661
+#: application/views/debug/index.php:666
 msgid "English"
 msgstr ""
 
-#: application/views/debug/index.php:662
+#: application/views/debug/index.php:667
 msgid "Estonian"
 msgstr ""
 
-#: application/views/debug/index.php:663
+#: application/views/debug/index.php:668
 msgid "Finnish"
 msgstr ""
 
-#: application/views/debug/index.php:664
+#: application/views/debug/index.php:669
 msgid "French"
 msgstr ""
 
-#: application/views/debug/index.php:665
+#: application/views/debug/index.php:670
 msgid "German"
 msgstr ""
 
-#: application/views/debug/index.php:666
+#: application/views/debug/index.php:671
 msgid "Greek"
 msgstr ""
 
-#: application/views/debug/index.php:667
+#: application/views/debug/index.php:672
 msgid "Italian"
 msgstr ""
 
-#: application/views/debug/index.php:668
+#: application/views/debug/index.php:673
 msgid "Latvian"
 msgstr ""
 
-#: application/views/debug/index.php:669
+#: application/views/debug/index.php:674
 msgid "Lithuanian"
 msgstr ""
 
-#: application/views/debug/index.php:670
+#: application/views/debug/index.php:675
 msgid "Montenegrin"
 msgstr ""
 
-#: application/views/debug/index.php:671
+#: application/views/debug/index.php:676
 msgid "Polish"
 msgstr ""
 
-#: application/views/debug/index.php:672
+#: application/views/debug/index.php:677
 msgid "Portuguese"
 msgstr ""
 
-#: application/views/debug/index.php:673
+#: application/views/debug/index.php:678
 msgid "Russian"
 msgstr ""
 
-#: application/views/debug/index.php:674
+#: application/views/debug/index.php:679
 msgid "Serbian"
 msgstr ""
 
-#: application/views/debug/index.php:675
+#: application/views/debug/index.php:680
 msgid "Spanish"
 msgstr ""
 
-#: application/views/debug/index.php:676
+#: application/views/debug/index.php:681
 msgid "Swedish"
 msgstr ""
 
-#: application/views/debug/index.php:677
+#: application/views/debug/index.php:682
 msgid "Turkish"
 msgstr ""
 
@@ -7501,7 +7506,7 @@ msgstr ""
 #: application/views/interface_assets/header.php:282
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
 #: application/views/satellite/index.php:11
-#: application/views/satellite/pass.php:495
+#: application/views/satellite/pass.php:493
 #: application/views/statistics/custom.php:20
 #: application/views/statistics/custom_result.php:21
 #: application/views/statistics/index.php:48
@@ -10016,6 +10021,10 @@ msgstr ""
 msgid "Display Name"
 msgstr ""
 
+#: application/views/satellite/index.php:26
+msgid "TLE"
+msgstr ""
+
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
 msgstr ""
@@ -10040,15 +10049,15 @@ msgstr ""
 msgid "Timezone"
 msgstr ""
 
-#: application/views/satellite/pass.php:479
+#: application/views/satellite/pass.php:477
 msgid "Min. time"
 msgstr ""
 
-#: application/views/satellite/pass.php:487
+#: application/views/satellite/pass.php:485
 msgid "Max. time"
 msgstr ""
 
-#: application/views/satellite/pass.php:504
+#: application/views/satellite/pass.php:502
 msgid "Load predictions"
 msgstr ""
 
