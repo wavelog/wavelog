@@ -71,10 +71,11 @@ foreach ($overlaps as $overlap) {
 
 	$skedAOS = $overlap['grid1']->visible_aos < $overlap['grid2']->visible_aos ? $overlap['grid2']->visible_aos : $overlap['grid1']->visible_aos;
 	$skedLOS = $overlap['grid1']->visible_los < $overlap['grid2']->visible_los ? $overlap['grid1']->visible_los : $overlap['grid2']->visible_los;
+	$timestamp = strtotime($date);
 
 	echo '<tr>';
     echo "<td>". $satellite . "</td>";
-    echo "<td></td>";
+    echo "<td>" . date($custom_date_format, $timestamp) . "</td>";
     echo "<td>" . Predict_Time::daynum2readable($skedAOS, $zone, $format) . "</td>";
 	echo "<td>" . Predict_Time::daynum2readable($skedLOS, $zone, $format) . "</td>";
 	echo "<td>" . returntimediff(Predict_Time::daynum2readable($skedAOS, $zone, $format), Predict_Time::daynum2readable($skedLOS, $zone, $format), $format) . "</td>";

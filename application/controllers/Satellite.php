@@ -337,20 +337,17 @@ class Satellite extends CI_Controller {
 			$custom_date_format = $this->config->item('qso_date_format');
 		}
 
-		$format = $custom_date_format . ' H:i:s';
+		$data['format'] = $custom_date_format . ' H:i:s';
 
 		$data['filtered'] = $filtered;
 		$data['zone'] = $timezone;
-		$data['format'] = $format;
 
 		return $data;
 
 	}
 
-	function calcSkedPass($sat_tle) {
+	function calcSkedPass($tle) {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-
-		$tle = $this->get_tle_for_predict();
 
 		$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
 		$altitude = $this->security->xss_clean($this->input->post('altitude'));
@@ -380,6 +377,8 @@ class Satellite extends CI_Controller {
 		$data['zone'] = $timezone;
 		$data['yourgrid'] = $yourgrid;
 		$data['skedgrid'] = $skedgrid;
+		$data['date'] = $date;
+		$data['custom_date_format'] = $custom_date_format;
 
 		$this->load->view('satellite/skedtable', $data);
 	}
