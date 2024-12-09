@@ -43,6 +43,67 @@ class User extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
+	public function actions_modal() {
+
+		$this->load->model('user_model');
+		$this->load->library('encryption');
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$data['user_id'] = $this->input->post('user_id', true) ?? '';
+		$modal = $this->input->post('modal', true) ?? '';
+
+		if($this->session->userdata('user_date_format')) {
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		if ($this->user_model->exists_by_id($data['user_id']) && $modal != '') {
+			$user = $this->user_model->get_by_id($data['user_id'])->row();
+			$gettext = new Gettext;
+
+			$data['user_name'] = $user->user_name;
+			$data['user_callsign'] = $user->user_callsign;
+			$data['user_email'] = $user->user_email;
+			$data['user_firstname'] = $user->user_type;
+			$data['user_lastname'] = $user->user_lastname;
+			$data['user_language'] = $gettext->find_by('folder', $user->user_language)['name_en'];
+			$data['is_clubstation'] = $user->clubstation == 1 ? true : false;
+			$data['last_seen'] = $user->last_seen;
+			$data['custom_date_format'] = $custom_date_format;
+			$data['has_flossie'] = ($this->config->item('encryption_key') == 'flossie1234555541') ? true : false;
+
+			$this->load->view('user/modals/'.$modal.'_modal', $data);
+		} else {
+			$this->session->set_flashdata('error', __("Invalid User ID or missing modal!"));
+			redirect('user');
+		}
+	}
+
+	public function convert() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$user_id = $this->input->post('user_id', true) ?? '';
+		$convert_to = $this->input->post('convert_to', true) ?? '';
+
+		if ($convert_to != '0' && $convert_to != '1') {
+			$this->session->set_flashdata('error', __("Invalid Parameter!"));
+			redirect('dashboard');
+		}
+
+		if ($this->user_model->exists_by_id($user_id)) {
+			if ($this->user_model->convert($user_id, $convert_to)) {
+				echo json_encode(true);
+			} else {
+				echo json_encode(false);
+			}
+		} else {
+			log_message('error', 'User Conversion - User ID not found: '.$user_id);
+			echo json_encode(false);
+		}
+	}
+
 	function add() {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
@@ -1322,7 +1383,7 @@ class User extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		$this->load->view('user/stop_impersonate_modal');
+		$this->load->view('user/modals/stop_impersonate_modal');
 	}
 
 	public function stop_impersonate() {

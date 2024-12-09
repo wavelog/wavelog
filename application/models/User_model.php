@@ -807,6 +807,31 @@ class User_Model extends CI_Model {
 		return $clubstations;
 	}
 
+	function convert($user_id, $clubstation) {
+		$clubstation_value = ($clubstation == true) ? 1 : 0;
+	
+		$sql = "UPDATE users SET clubstation = ? WHERE user_id = ?;";
+	
+		$this->db->trans_start();
+	
+		if (!$this->db->query($sql, [$clubstation_value, $user_id])) {
+			$this->db->trans_rollback();
+			return false;
+		}
+	
+		if ($clubstation) {
+			$delete_sql = "DELETE FROM club_permissions WHERE club_id = ?;";
+			if (!$this->db->query($delete_sql, [$user_id])) {
+				$this->db->trans_rollback();
+				return false;
+			}
+		}
+	
+		$this->db->trans_complete();
+	
+		return $this->db->trans_status();
+	}
+
 }
 
 ?>
