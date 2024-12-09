@@ -1471,7 +1471,7 @@ class Logbook_model extends CI_Model {
 			'COL_ANT_EL' => $this->input->post('ant_el') != '' ? $this->input->post('ant_el') : null,
 			'station_id' => $stationId,
 			'COL_STATION_CALLSIGN' => $stationCallsign,
-			'COL_OPERATOR' => $this->input->post('operator_callsign'),
+			'COL_OPERATOR' => $this->input->post('operator_callsign') ?? $qso->COL_OPERATOR,
 			'COL_STATE' => $this->input->post('input_state_edit'),
 			'COL_CNTY' => $uscounty,
 			'COL_MY_IOTA' => $iotaRef,
@@ -4238,7 +4238,7 @@ class Logbook_model extends CI_Model {
 
 
 			if ($operatorName != false) {
-				$operatorName = $this->session->userdata('user_callsign');
+				$operatorName = $this->session->userdata('operator_callsign');
 			} else {
 				$operatorName = (!empty($record['operator'])) ? $record['operator'] : '';
 			}

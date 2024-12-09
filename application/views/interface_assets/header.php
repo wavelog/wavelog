@@ -117,10 +117,12 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('qso?manual=1'); ?>" title="Log QSO made in the past"><i class="fas fa-list"></i> <?= __("Post QSO"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('simplefle'); ?>" title="Simple Fast Log Entry"><i class="fas fa-list"></i> <?= __("Simple Fast Log Entry"); ?></a></li>
+								<?php if (clubaccess_check(99)) { ?> <!-- Club Access Check -->
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=0'); ?>" title="Live contest QSOs"><i class="fas fa-list"></i> <?= __("Live Contest Logging"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('contesting?manual=1'); ?>" title="Post contest QSOs"><i class="fas fa-list"></i> <?= __("Post Contest Logging"); ?></a></li>
+								<?php } ?>
 							</ul>
 						</li>
 
@@ -367,15 +369,23 @@
 
 						<!-- Logged in As -->
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-user"></i> <?php echo str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))); ?></a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+								<?php if ($this->session->userdata('clubstation') == 1) {
+									echo '<i class="fas fa-users"></i> ' 
+										. '<b>' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))) . '</b>'
+										. ' <br><small>' 
+										. sprintf(_pgettext("Operator: Callsign", "Op: %s"), str_replace("0","&Oslash;", strtoupper($this->session->userdata('operator_callsign')))) 
+										. '</small>'; 
+								} else { 
+									echo '<i class="fas fa-user"></i> ' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))); 
+								} ?>
+							</a>
 
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
-								<?php
-								if (!$this->config->item('special_callsign') ||
-									$this->session->userdata('user_type') == '99' ||
-									($this->config->item('special_callsign') && !$this->config->item('sc_hide_usermenu'))) { ?>
+
+								<?php if (clubaccess_check(9)) { ?> <!-- Club Access Check -->
+
 									<li><a class="dropdown-item" href="<?php echo site_url('user/edit') . "/" . $this->session->userdata('user_id'); ?>" title="Account"><i class="fas fa-user"></i> <?= __("Account"); ?></a></li>
-								<?php } ?>
 								<?php
 								$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name' => 'locations_quickswitch'))->row()->option_value ?? 'false');
 								if ($quickswitch_enabled != 'true') {
@@ -384,6 +394,28 @@
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?= __("Bands"); ?></a></li>
 
+								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 0) { ?>
+									<div class="dropdown-divider"></div>
+									<li><a class="dropdown-item disabled"><?= __("Switch to Clubstation:"); ?></a></li>
+									<?php if (!empty($this->session->userdata('available_clubstations'))) { ?>
+										<?php foreach ($this->session->userdata('available_clubstations') as $clubstation) { ?>
+											<li>
+												<div class="btn-group w-100" role="group">
+													<button class="dropdown-item text-start" style="flex: 1;" title="<?= sprintf(__("Switch to %s"), $clubstation->user_callsign); ?>" onclick="clubswitch_modal('<?php echo $clubstation->user_id; ?>', '<?php echo $clubstation->user_callsign; ?>')">
+														<i class="fas fa-exchange-alt"></i> <?php echo $clubstation->user_callsign; ?>
+													</button>
+													<?php if ($clubstation->p_level >= 9 || $this->session->userdata('user_type') == 99) { ?>
+														<a class="dropdown-item text-end" style="flex: 0 0 50px;" title="<?= sprintf(_pgettext("Managing a Club Callsign", "Manage %s"), $clubstation->user_callsign); ?>" href="<?php echo site_url('club/permissions/' . $clubstation->user_id); ?>">
+															<i class="fas fa-cogs"></i>
+														</a>
+													<?php } ?>
+												</div>
+											</li>										
+										<?php } ?>
+									<?php } else { ?>
+										<li><a class="dropdown-item"><?= __("No Clubstations available"); ?></a></li>
+									<?php } ?>
+								<?php } ?>
 
 								<div class="dropdown-divider"></div>
 
@@ -436,6 +468,9 @@
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
+
+								<?php } ?> <!-- End of Clubaccess check -->
+
 								<li><a class="dropdown-item" href="<?php echo site_url('api/help'); ?>" title="Manage API keys"><i class="fas fa-key"></i> <?= __("API Keys"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('radio'); ?>" title="Interface with one or more radios"><i class="fas fa-broadcast-tower"></i> <?= __("Hardware Interfaces"); ?></a></li>
 								<div class="dropdown-divider"></div>
@@ -443,11 +478,18 @@
 								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/wiki" title="Help"><i class="fas fa-question"></i> <?= __("Help"); ?></a></li>
 								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/discussions" title="Forum"><i class="far fa-comment-dots"></i> <?= __("Forum"); ?></a></li>
 								<div class="dropdown-divider"></div>
+								<?php if ($this->session->userdata('impersonate') == 1) { ?>
+									<li>
+										<button class="dropdown-item" style="flex: 1;" title="<?= sprintf(__("Stop impersonate and switch back to %s"), $this->session->userdata('cd_src_call') ?? ''); ?>" onclick="stopImpersonate_modal()">
+											<i class="fas fa-exchange-alt"></i> <?= sprintf(__("Switch back to %s"), $this->session->userdata('cd_src_call') ?? ''); ?>
+										</button>
+									</li>
+								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>" title="Logout"><i class="fas fa-sign-out-alt"></i> <?= __("Logout"); ?></a></li>
 							</ul>
 						</li>
 						<?php
-						if ($quickswitch_enabled == 'true') { ?>
+						if (($quickswitch_enabled ?? '') == 'true') { ?>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-map-marker-alt"></i> | <i class="fas fa-book"></i></a>
 								<ul class="dropdown-menu dropdown-menu-right header-dropdown">
@@ -545,7 +587,9 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav>						
+	<div id="clubswitchModal-container"></div>
+	<div id="stopImpersonateModal-container"></div>
 	<script>
 		let headerMenu = document.getElementById('header-menu');
 		let dropdowns = document.querySelectorAll('.dropdown-toggle');

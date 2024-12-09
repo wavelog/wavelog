@@ -15,7 +15,7 @@ class Cfdexport extends CI_Controller {
 		$this->load->model('logbook_model');
 		$this->load->model('bands');
 
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['page_title'] = __("CFD Export");
 
