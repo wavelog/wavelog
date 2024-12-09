@@ -66,9 +66,8 @@ echo '<table style="width:100%" class="table-sm table table-bordered table-hover
     <tbody>';
 
 foreach ($overlaps as $overlap) {
-    // Example data (replace these with real calculations or data from the arrays)
-    $satellite = $overlap['grid1']->satname; // Replace with your satellite name
-    $skedDate = Predict_Time::daynum2readable($overlap['grid1']->visible_aos, $zone, $format); // Example sked date
+    $satellite = $overlap['grid1']->satname;
+    $skedDate = Predict_Time::daynum2readable($overlap['grid1']->visible_aos, $zone, $format);
 
 	$skedAOS = $overlap['grid1']->visible_aos < $overlap['grid2']->visible_aos ? $overlap['grid2']->visible_aos : $overlap['grid1']->visible_aos;
 	$skedLOS = $overlap['grid1']->visible_los < $overlap['grid2']->visible_los ? $overlap['grid1']->visible_los : $overlap['grid2']->visible_los;
@@ -81,7 +80,6 @@ foreach ($overlaps as $overlap) {
 	echo "<td>" . returntimediff(Predict_Time::daynum2readable($skedAOS, $zone, $format), Predict_Time::daynum2readable($skedLOS, $zone, $format), $format) . "</td>";
     echo "</div>";
 }
-
 
 function returntimediff($start, $end, $format) {
 	$datetime1 = DateTime::createFromFormat($format, $end);
