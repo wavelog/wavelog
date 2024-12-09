@@ -389,11 +389,17 @@ class Update extends CI_Controller {
 
     }
 
-	public function update_tle() {
-		$this->load->model('Update_model');
+    public function update_tle() {
+        $this->load->model('Update_model');
         $result = $this->Update_model->tle();
         echo $result;
-	}
+    }
+
+    public function update_lotw_sats() {
+       $this->load->model('Update_model');
+       $result = $this->Update_model->lotw_sats();
+       echo $result;
+    }
 
 	function version_check() {
 		// set the last run in cron table for the correct cron id
