@@ -4,6 +4,7 @@
     */
     var option_map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
     var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
+    var option_map_tile_subdomains = '<?php echo $this->optionslib->get_option('option_map_tile_subdomains') ?? 'abc';?>';
 
     var base_url = "<?php echo base_url(); ?>"; // Base URL
     var site_url = "<?php echo site_url(); ?>"; // Site URL
