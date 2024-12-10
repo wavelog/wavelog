@@ -10,6 +10,31 @@ class API_Model extends CI_Model {
 
     // GET API Keys
     function keys() {
+		$binding = [];
+		$user_id = $this->session->userdata('user_id');
+		$clubstation = $this->session->userdata('clubstation');
+		$impersonate = $this->session->userdata('impersonate');
+	
+		if ($clubstation == 1 && $impersonate == 1) {
+			$sql = "SELECT api.*, users.user_callsign 
+					FROM api 
+					JOIN users ON api.created_by = users.user_id 
+					WHERE api.user_id = ?";
+			$binding[] = $user_id;
+	
+			if (!clubaccess_check(9)) {
+				$sql .= " AND api.created_by = ?";
+				$binding[] = $this->session->userdata('source_uid');
+			}
+		} else {
+			$sql = "SELECT * FROM api WHERE user_id = ?";
+			$binding[] = $user_id;
+		}
+	
+		return $this->db->query($sql, $binding);
+	}
+
+	function keys_with_no_user_id() {
 		$this->db->where('user_id', $this->session->userdata('user_id'));
     	return $this->db->get('api');
     }
@@ -54,23 +79,26 @@ class API_Model extends CI_Model {
     	$this->db->where('key', xss_clean($key));
 		$this->db->delete('api');
     }
-    // Generate API Key
-    function generate_key($rights) {
 
-    	// Expects either rw (Read, Write) or r (read only)
+    // Generate API Key
+    function generate_key($rights, $creator = NULL) {
 
     	// Generate Unique Key
     	$data['key'] = uniqid("wl");
-
     	$data['rights'] = $rights;
 
     	// Set API key to active
     	$data['status'] = "active";
 
 		$data['user_id'] = $this->session->userdata('user_id');
+		$data['created_by'] = $creator != NULL ? $creator : $this->session->userdata('user_id');
+		
 
-    	$this->db->insert('api', $data);
-
+    	if ($this->db->insert('api', $data)) {
+			return true;
+		} else {
+			return false;
+		}
     }
 
     function access($key) {

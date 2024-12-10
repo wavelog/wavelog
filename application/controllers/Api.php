@@ -2,42 +2,31 @@
 
 class API extends CI_Controller {
 
-	// Do absolutely nothing
 	function index() {
-		echo "nothing to see";
-	}
-
-	function help() {
 		$this->load->model('user_model');
-
-		// Check if users logged in
-
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
-		}
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('api_model');
+		$this->load->library('form_validation');
 
 		$data['api_keys'] = $this->api_model->keys();
-
+		$data['clubmode'] = $this->session->userdata('clubstation') == 1 ? true : false;
 		$data['page_title'] = __("API");
 
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('api/help');
+		$this->load->view('api/index');
 		$this->load->view('interface_assets/footer');
+	}
+
+	// legacy
+	function help() {
+		redirect('api');
 	}
 
 
 	function edit($key) {
 		$this->load->model('user_model');
-
-		// Check if users logged in
-
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
-		}
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('api_model');
 
@@ -66,38 +55,40 @@ class API extends CI_Controller {
 
 			$this->session->set_flashdata('notice', sprintf(__("API Key %s description has been updated."), "<b>".$this->input->post('api_key')."</b>"));
 
-			redirect('api/help');
+			redirect('api');
 		}
 
 	}
 
 	function generate($rights) {
 		$this->load->model('user_model');
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		// Check if users logged in
-
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
+		if ($rights !== "r" && $rights !== "rw") {
+			$this->session->set_flashdata('error', __("Invalid API rights"));
+			redirect('api');
+			exit;
 		}
-
 
 		$this->load->model('api_model');
 
-		$data['api_keys'] = $this->api_model->generate_key($rights);
+		if ($this->session->userdata('clubstation') == 1 && $this->session->userdata('impersonate') == 1) {
+			$creator = $this->session->userdata('source_uid');
+		} else {
+			$creator = $this->session->userdata('user_id');
+		}
 
-		redirect('api/help');
+		if ($this->api_model->generate_key($rights, $creator)) {
+			$this->session->set_flashdata('success', __("API Key generated"));
+		} else {
+			$this->session->set_flashdata('error', __("API Key could not be generated"));
+		}
+		redirect('api');
 	}
 
 	function delete($key) {
 		$this->load->model('user_model');
-
-		// Check if users logged in
-
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
-		}
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 
 		$this->load->model('api_model');
@@ -106,7 +97,7 @@ class API extends CI_Controller {
 
 		$this->session->set_flashdata('notice', sprintf(__("API Key %s has been deleted"), "<b>".$key."</b>" ));
 
-		redirect('api/help');
+		redirect('api');
 	}
 
 	// Example of authing
