@@ -1,5 +1,5 @@
 <?php
-if ($filtered) {
+if (isset($filtered)) {
 	echo '<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
 				<tr id="toptable">
 					<th>' . __("Satellite") . '</th>
@@ -25,6 +25,11 @@ if ($filtered) {
 				echo '</tr>';
 			}
 			echo '</table>';
+} else {
+	echo '<div style="text-align: center !important">';
+	echo '<h2>'.__('Search failed!').'</h2>';
+	echo '<p>'.__('No passes found. Please check the input parameters.').'</p>';
+	echo '</div>';
 }
 
 function returntimediff($start, $end, $format) {
