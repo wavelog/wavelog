@@ -435,14 +435,14 @@ $ci =& get_instance();
                                         <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Direct)"); ?></a>
                                         <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Not Required"); ?></a>
                                     </div>
+                                    <div class="dropdown-divider"></div>
                                 <?php } ?>
                             <?php } ?>
 
-                            <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i><?= __("Lookup on QRZ.com"); ?></a>
+                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i> <?= __("Lookup on QRZ.com"); ?></a>
 
-                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i><?= __("Lookup on HamQTH"); ?></a>
+                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i> <?= __("Lookup on HamQTH"); ?></a>
 
                             <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <div class="dropdown-divider"></div>
