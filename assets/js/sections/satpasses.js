@@ -7,6 +7,9 @@ function searchpasses() {
 	} else {
 		let skedgrid = $("#skedgrid").val();
 		if (skedgrid == '') {
+			$(".ld-ext-right-plot").removeClass('running');
+            $(".ld-ext-right-plot").prop('disabled', false);
+            $('#searchpass').prop("disabled", false);
 			return;
 		}
 		loadSkedPasses();
