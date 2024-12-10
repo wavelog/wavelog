@@ -39,7 +39,7 @@ class API_Model extends CI_Model {
 		$this->db->where('key', $key);
 		$query = $this->db->get('api');
 
-		return $query->row()->description;
+		return $query->result_array()[0];
 	}
 
 	function key_userid($key) {
