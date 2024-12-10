@@ -83,10 +83,13 @@
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a>
 			<?php if (ENVIRONMENT == "development") { ?>
-				<span class="badge text-bg-danger"><?= __("Developer Mode"); ?></span>
+				<span class="badge text-bg-danger me-1"><?= __("Developer Mode"); ?></span>
 			<?php } ?>
 			<?php if (ENVIRONMENT == "maintenance") { ?>
-				<span class="badge text-bg-info"><?= __("Maintenance Mode"); ?></span>
+				<span class="badge text-bg-info me-1"><?= __("Maintenance Mode"); ?></span>
+			<?php } ?>
+			<?php if ($this->session->userdata('clubstation') == '1' && $this->session->userdata('impersonate') == '1') { ?>
+				<span class="badge text-bg-primary me-1"><?= __("Club Mode"); ?></span>
 			<?php } ?>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
