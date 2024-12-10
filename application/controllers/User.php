@@ -1447,7 +1447,7 @@ class User extends CI_Controller {
 			'name'   => 're_login',  // we use a different cookie name to avoid conflicts with the regular keep_login cookie
 			'value'  => $encrypted_string,
 			'expire' => 20,  // seconds should be enough
-			'secure' => TRUE,
+			'secure' => FALSE,
 			'httponly' => TRUE
 		);
 		$this->input->set_cookie($cookie);
