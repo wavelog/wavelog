@@ -938,6 +938,7 @@ class User extends CI_Controller {
 
 						// Delete keep_login cookie
 						$this->input->set_cookie('keep_login', '', -3600, '');
+						$this->input->set_cookie('re_login', '', -3600, '');
 
 						redirect('user/login');
 					}
@@ -1363,6 +1364,7 @@ class User extends CI_Controller {
 			}
 		}
 		$custom_sessiondata['src_call'] = $source_user->user_callsign;
+		$custom_sessiondata['src_user_type'] = $source_user->user_type;
 		$custom_sessiondata['src_hash'] = $this->input->post('hash', TRUE) ?? '';
 
 		/**

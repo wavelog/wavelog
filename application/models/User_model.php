@@ -546,6 +546,7 @@ class User_Model extends CI_Model {
 		{
 			$user_id = $this->session->userdata('user_id');
 			$user_type = $this->session->userdata('user_type');
+			$src_user_type = $this->session->userdata('cd_src_user_type');
 			$user_hash = $this->session->userdata('user_hash');
 			$impersonate = $this->session->userdata('impersonate');
 
@@ -559,7 +560,7 @@ class User_Model extends CI_Model {
 					return 0;
 				}
 			} else {  // handle the maintenance mode and kick out user on page reload if not an admin
-				if($user_type == '99' || $impersonate === true) {
+				if($user_type == '99' || $src_user_type === '99') {
 					if($this->_auth($user_id."-".$user_type, $user_hash)) {
 						// Freshen the session
 						$this->update_session($user_id, $u);
