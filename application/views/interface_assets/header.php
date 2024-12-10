@@ -89,7 +89,7 @@
 				<span class="badge text-bg-info me-1"><?= __("Maintenance Mode"); ?></span>
 			<?php } ?>
 			<?php if ($this->session->userdata('clubstation') == '1' && $this->session->userdata('impersonate') == '1') { ?>
-				<span class="badge text-bg-primary me-1"><?= __("Club Mode"); ?></span>
+				<span class="badge text-bg-primary me-1"><?= __("Clubstation"); ?></span>
 			<?php } ?>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
