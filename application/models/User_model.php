@@ -154,6 +154,29 @@ class User_Model extends CI_Model {
 		}
 	}
 
+	// FUNCTION: array search_users($query)
+	// Search for users by parts of their callsign
+	function search_users($query, $clubstations = false) {
+		if (strlen($query) < 3) {
+			return false;
+		}
+		$this->db->select('user_id, user_callsign, user_firstname, user_lastname');
+		if (!$clubstations) {
+			$this->db->where('clubstation', 0);
+		}
+
+		$this->db->group_start();
+		$this->db->like('user_callsign', $query);
+		$this->db->or_like('user_firstname', $query);
+		$this->db->or_like('user_lastname', $query);
+		$this->db->group_end();
+
+		$this->db->limit(100);
+
+		$r = $this->db->get($this->config->item('auth_table'));
+		return $r;
+	}
+
 	// FUNCTION: bool add($username, $password, $email, $type)
 	// Add a user
 	function add($username, $password, $email, $type, $firstname, $lastname, $callsign, $locator, $timezone,
@@ -164,7 +187,7 @@ class User_Model extends CI_Model {
 		$user_language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
 		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab,
 		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
-		$user_winkey) {
+		$user_winkey, $clubstation) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -172,8 +195,8 @@ class User_Model extends CI_Model {
 				'user_password' => $this->_hash($password),
 				'user_email' => xss_clean($email),
 				'user_type' => xss_clean($type),
-				'user_firstname' => xss_clean($firstname),
-				'user_lastname' => xss_clean($lastname),
+				'user_firstname' => xss_clean($firstname) ?? '',
+				'user_lastname' => xss_clean($lastname) ?? '',
 				'user_callsign' => xss_clean($callsign),
 				'user_locator' => xss_clean($locator),
 				'user_timezone' => xss_clean($timezone),
@@ -206,7 +229,8 @@ class User_Model extends CI_Model {
 				'user_eqsl_password' => xss_clean($user_eqsl_password),
 				'user_clublog_name' => xss_clean($user_clublog_name),
 				'user_clublog_password' => xss_clean($user_clublog_password),
-				'winkey' => xss_clean($user_winkey)
+				'winkey' => xss_clean($user_winkey),
+				'clubstation' => $clubstation == true ? 1 : 0,
 			);
 
 			// Check the password is valid
@@ -428,7 +452,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: void update_session()
 	// Updates a user's login session after they've logged in
 	// TODO: This should return bool TRUE/FALSE or 0/1
-	function update_session($id, $u = null, $impersonate = false) {
+	function update_session($id, $u = null, $impersonate = false, $custom_data = null) {
 
 		if ($u == null) {
 			$u = $this->get_by_id($id);
@@ -475,6 +499,9 @@ class User_Model extends CI_Model {
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
 			'impersonate' => $this->session->userdata('impersonate') ?? false,
+			'clubstation' => $u->row()->clubstation,
+			'source_uid' => $this->session->userdata('source_uid') ?? '',
+			'available_clubstations' => ((($this->session->userdata('available_clubstations') ?? '') == '') ? $this->get_clubstations($u->row()->user_id) : $this->session->userdata('available_clubstations')),
 		);
 
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
@@ -486,8 +513,25 @@ class User_Model extends CI_Model {
 			}
 		}
 
+		// Restore custom data in impersonation mode
+		foreach ($this->session->userdata() as $key => $value) {
+			if (substr($key, 0, 3) == 'cd_') {
+				$userdata[$key] = $value;
+			}
+		}
+
+		// Overrides
 		if ($impersonate) {
 			$userdata['impersonate'] = true;
+			$userdata['available_clubstations'] = $this->get_clubstations($u->row()->user_id);
+		}
+		if ($userdata['clubstation'] == 1) {
+			$userdata['available_clubstations'] = 'none';
+		}
+		if (isset($custom_data)) {
+			foreach ($custom_data as $key => $value) {
+				$userdata['cd_' . $key] = $value;
+			}
 		}
 
 		$this->session->set_userdata($userdata);
@@ -502,6 +546,7 @@ class User_Model extends CI_Model {
 		{
 			$user_id = $this->session->userdata('user_id');
 			$user_type = $this->session->userdata('user_type');
+			$src_user_type = $this->session->userdata('cd_src_user_type');
 			$user_hash = $this->session->userdata('user_hash');
 			$impersonate = $this->session->userdata('impersonate');
 
@@ -515,7 +560,7 @@ class User_Model extends CI_Model {
 					return 0;
 				}
 			} else {  // handle the maintenance mode and kick out user on page reload if not an admin
-				if($user_type == '99' || $impersonate === true) {
+				if($user_type == '99' || $src_user_type === '99') {
 					if($this->_auth($user_id."-".$user_type, $user_hash)) {
 						// Freshen the session
 						$this->update_session($user_id, $u);
@@ -538,8 +583,14 @@ class User_Model extends CI_Model {
 	// Authenticate a user against the users table
 	function authenticate($username, $password) {
 		$u = $this->get($username);
-		if($u->num_rows() != 0)
-		{
+		if($u->num_rows() != 0) {
+			// direct login to clubstations are not allowed
+			if ($u->row()->clubstation == 1) {
+				$uid = $u->row()->user_id;
+				log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt.");
+				return 2;
+			}
+
 			if($this->_auth($password, $u->row()->user_password)) {
 				if (ENVIRONMENT != "maintenance") {
 					return 1;
@@ -582,7 +633,7 @@ class User_Model extends CI_Model {
 
 				$this->set_last_seen($u->row()->user_id);
 			}
-			return 1;
+				return 1;
 		} else {
 			return 0;
 		}
@@ -590,19 +641,28 @@ class User_Model extends CI_Model {
 
 	// FUNCTION: object users()
 	// Returns a list of users with additional counts
-	function users() {
+	function users($club = '') {
 		$this->db->select('(SELECT COUNT(*) FROM station_profile WHERE user_id = users.user_id) as stationcount');
 		$this->db->select('(SELECT COUNT(*) FROM station_logbooks WHERE user_id = users.user_id) as logbookcount');
-		$this->db->select('(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id from station_profile WHERE user_id = users.user_id)) as qsocount');
+		$this->db->select('(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as qsocount');
 		$this->db->select('
-			(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as qsocount,
-			(SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as lastqso
+			(SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as lastqso,
+			(SELECT COL_OPERATOR FROM ' . $this->config->item('table_name') . ' WHERE COL_TIME_ON = (
+				SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)
+			) LIMIT 1) as lastoperator
 		');
 		$this->db->select('users.*');
+		if ($this->config->item('special_callsign')) {
+			if ($club == 'is_club') {
+				$this->db->where('clubstation', 1);
+			} else {
+				$this->db->where('clubstation != 1');
+			}
+		}
 		$this->db->from('users');
-
+	
 		$result = $this->db->get();
-
+	
 		return $result;
 	}
 
@@ -739,6 +799,38 @@ class User_Model extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+
+	function get_clubstations($user_id) {
+		$this->load->model('club_model');
+		$clubstations = $this->club_model->get_clubstations($user_id);
+
+		return $clubstations;
+	}
+
+	function convert($user_id, $clubstation) {
+		$clubstation_value = ($clubstation == true) ? 1 : 0;
+	
+		$sql = "UPDATE users SET clubstation = ? WHERE user_id = ?;";
+	
+		$this->db->trans_start();
+	
+		if (!$this->db->query($sql, [$clubstation_value, $user_id])) {
+			$this->db->trans_rollback();
+			return false;
+		}
+	
+		if ($clubstation) {
+			$delete_sql = "DELETE FROM club_permissions WHERE club_id = ?;";
+			if (!$this->db->query($delete_sql, [$user_id])) {
+				$this->db->trans_rollback();
+				return false;
+			}
+		}
+	
+		$this->db->trans_complete();
+	
+		return $this->db->trans_status();
 	}
 
 }

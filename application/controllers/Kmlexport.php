@@ -15,7 +15,7 @@ class Kmlexport extends CI_Controller {
         $this->load->model('logbook_model');
 	$this->load->model('bands');
 
-        if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+	if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
         $data['worked_bands'] = $this->bands->get_worked_bands(); // Used in the view for band select
         $data['modes'] = $this->modes->active(); // Used in the view for mode select

@@ -24,10 +24,11 @@
                 echo 'class="qslcardtab nav-item">
                 <a class="nav-link" id="qsltab" data-bs-toggle="tab" href="#qslcard" role="tab" aria-controls="home" aria-selected="false">'. __("QSL Card") .'</a>
                 </li>';
-
-            echo '<li class="nav-item">
-            <a class="nav-link" id="qslmanagementtab" data-bs-toggle="tab" href="#qslupload" role="tab" aria-controls="home" aria-selected="false">'. __("QSL Management") .'</a>
-            </li>';
+            if (clubaccess_check(9)) {
+                echo '<li class="nav-item">
+                <a class="nav-link" id="qslmanagementtab" data-bs-toggle="tab" href="#qslupload" role="tab" aria-controls="home" aria-selected="false">'. __("QSL Management") .'</a>
+                </li>';
+            }
         }
 
         ?>
@@ -546,7 +547,9 @@
 
                     <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
                         <br>
+                            <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <div style="display: inline-block;"><p class="editButton"><a class="btn btn-primary" href="<?php echo site_url('qso/edit'); ?>/<?php echo $row->COL_PRIMARY_KEY; ?>" href="javascript:;"><i class="fas fa-edit"></i> <?= __("Edit QSO"); ?></a></p></div>
+                            <?php } ?>
                             <div style="display: inline-block;"><form method="POST" action="<?php echo site_url('search'); ?>"><input type="hidden" value="<?php echo strtoupper($row->COL_CALL); ?>" name="callsign"><button class="btn btn-primary" type="submit"><i class="fas fa-eye"></i> <?= __("More QSOs"); ?></button></form></div>
                     <?php } ?>
 
