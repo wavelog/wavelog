@@ -37,7 +37,7 @@
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="timezone"><?= __("Timezone"); ?></label>
-					<select class="my-1 me-sm-2 w-auto form-select form-control-sm" id="timezone" name="timezone">
+					<select class="my-1 me-sm-2 w-auto form-select form-select-sm" id="timezone" name="timezone">
                             <option>Africa/Abidjan</option>
                             <option>Africa/Accra</option>
                             <option>Africa/Addis_Ababa</option>
