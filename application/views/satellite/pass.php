@@ -13,7 +13,7 @@
 			</div>
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" for="minazimuth"><?= __("Min. Azimuth"); ?></label>
-                <select class="my-1 me-sm-2 w-auto form-select form-select-sm" id="minazimuth" name="minazimuth">
+				<select class="my-1 me-sm-2 w-auto form-select form-select-sm" id="minazimuth" name="minazimuth">
 				<?php for ($i = 0; $i <= 350; $i += 10): ?>
 					<option value="<?= $i ?>" <?= $i === 0 ? 'selected' : '' ?>><?= $i ?> &deg;</option>
 				<?php endfor; ?>
@@ -29,7 +29,7 @@
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="yourgrid"><?= __("Gridsquare"); ?></label>
-                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="yourgrid" type="text" name="gridsquare" value="<?php echo $activegrid; ?>"/>
+					<input class="my-1 me-sm-2 w-auto form-control form-control-sm uppercase"  id="yourgrid" type="text" name="gridsquare" value="<?php echo $activegrid; ?>"/>
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="altitude"><?= __("Altitude (meters)"); ?></label>
@@ -525,10 +525,10 @@
 					</div>
 					<div class="mb-3 w-auto">
 							<label class="my-1 me-sm-2 w-auto" for="skedgrid"><?= __("Gridsquare"); ?></label>
-							<input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="skedgrid" type="text" name="skedgrid" value=""/>
+							<input class="my-1 me-sm-2 w-auto form-control form-control-sm uppercase"  id="skedgrid" type="text" name="skedgrid" value=""/>
 					</div>
 				</div>
-        </form>
+				</form>
 				</div>
 		<button id="plot" type="button" name="searchpass" class="btn-sm btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="searchpasses()"><i class="fas fa-search"></i> <?= __("Load predictions"); ?><div class="ld ld-ring ld-spin"></div></button>
 		<button id="addsked" type="button" name="addsked" class="btn-sm btn btn-success me-1" onclick="addskedpartner()"><i class="fa fa-plus"></i> <?= __("Add sked partner"); ?></button>
