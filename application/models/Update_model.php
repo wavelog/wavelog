@@ -387,12 +387,11 @@ class Update_model extends CI_Model {
 		$xml = simplexml_load_string(gzdecode($response));
 
 		$existingSats = array();
-		$this->db->select('name, lotw');
+		$this->db->select('name, displayname, lotw');
 		$query = $this->db->get('satellite');
 		foreach($query->result() as $row) {
-			$existingSats[$row->name] = $row->lotw;
+			$existingSats[$row->name] = array($row->lotw, $row->displayname);
 		}
-		//$existingSats = $query->result_array();
 
 		print '<table>';
 		print '<tr><th>'.__('Name').'</th><th>'.__('Display Name').'</th><th>'.__('Start Date').'</th><th>'.__('End Date').'</th><th>'.__('Status').'</th></tr>';
@@ -404,7 +403,7 @@ class Update_model extends CI_Model {
 			$status = '';
 
 			if (array_key_exists("$name", $existingSats)) {
-				if ($existingSats["$name"] == 'N') {
+				if ($existingSats["$name"][0] == 'N') {
 					$this->db->set('lotw', 'Y');
 					$this->db->where('name', $name);
 					$this->db->update('satellite');
@@ -415,6 +414,16 @@ class Update_model extends CI_Model {
 					}
 				} else {
 					$status = __('SAT already existing. Ignored.');
+				}
+				if ($existingSats["$name"][1] == '') {
+					$this->db->set('displayname', $displayname);
+					$this->db->where('name', $name);
+					$this->db->update('satellite');
+					if ($this->db->affected_rows() > 0) {
+						$status = __('SAT already existing. Display name updated.');
+					} else {
+						$status = __('SAT already existing. Updating display name failed.');
+					}
 				}
 			} else {
 				$data = array(
