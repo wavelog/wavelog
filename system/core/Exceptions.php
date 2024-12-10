@@ -69,10 +69,11 @@ class CI_Exceptions {
 		E_CORE_WARNING		=>	'Core Warning',
 		E_COMPILE_ERROR		=>	'Compile Error',
 		E_COMPILE_WARNING	=>	'Compile Warning',
+		E_DEPRECATED		=>	'Deprecated',
 		E_USER_ERROR		=>	'User Error',
 		E_USER_WARNING		=>	'User Warning',
 		E_USER_NOTICE		=>	'User Notice',
-		E_STRICT		=>	'Runtime Notice'
+		E_USER_DEPRECATED	=>	'User Deprecated',
 	);
 
 	/**
@@ -84,6 +85,10 @@ class CI_Exceptions {
 	{
 		$this->ob_level = ob_get_level();
 		// Note: Do not log messages from this constructor.
+
+		if (PHP_VERSION_ID >= 804000) {
+			$this->levels[E_STRICT] = 'Strict';
+		}
 	}
 
 	// --------------------------------------------------------------------
