@@ -1361,6 +1361,8 @@ class User extends CI_Controller {
 			if(!$source_user || !$this->user_model->authorize(99)) {
 				$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 				redirect('dashboard'); 
+			} else {
+				$custom_sessiondata['p_level'] = 99;  // if the user is an admin he also should have full rights in the clubstations
 			}
 		}
 		$custom_sessiondata['src_call'] = $source_user->user_callsign;
