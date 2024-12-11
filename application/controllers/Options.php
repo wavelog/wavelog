@@ -389,6 +389,100 @@ class Options extends CI_Controller {
 		redirect('/options/email');
 	}
 
+	// function used to display the /maptiles url in global options
+	function maptiles() {
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("Maptiles Server");
+
+		$data['maptile_server_url'] = $this->optionslib->get_option('map_tile_server') ?? 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		$data['maptile_server_url_dark'] = $this->optionslib->get_option('map_tile_server_dark') ?? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+		$data['subdomain_system'] = $this->optionslib->get_option('map_tile_subdomains') ?? 'abc';
+		$map_tile_server_copyright = $this->optionslib->get_option('map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
+		preg_match('/<a href="([^"]+)">([^<]+)<\/a>/', $map_tile_server_copyright, $matches);
+		$data['copyright_url'] = $matches[1] ?? 'https://www.openstreetmap.org/';
+		$data['copyright_text'] = $matches[2] ?? 'OpenStreetMap';
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('options/maptiles');
+		$this->load->view('interface_assets/footer');
+	}
+
+	// Handles saving the Maptiles options to the options system.
+	function maptiles_save() {
+
+		$data['page_title'] = __("Wavelog Options");
+		$data['sub_heading'] = __("Maptiles Server");
+
+		$this->load->helper(array('form', 'url'));
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('maptile_server_url', 'URL of Maptile Server', 'required');
+		$this->form_validation->set_rules('maptile_server_url_dark', 'URL of Dark Maptile Server', 'required');
+		$this->form_validation->set_rules('subdomain_system', 'Subdomains for Loadbalancing', 'required');
+		$this->form_validation->set_rules('copyright_url', 'URL for Copyright', 'required');
+		$this->form_validation->set_rules('copyright_text', 'Text for Copyright', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+
+			$this->maptiles();
+			
+		} else {
+			$saved = false;
+			if ($this->input->post('reset_defaults') == '1') {
+				$map_tile_server_copyright = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
+				$saved = $this->optionslib->update('map_tile_server', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 'yes');
+				$saved = $this->optionslib->update('map_tile_server_dark', 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', 'yes');
+				$saved = $this->optionslib->update('map_tile_subdomains', 'abc', 'yes');
+			} else {
+				$map_tile_server_copyright = 'Map data &copy; <a href="' . $this->input->post('copyright_url', true) . '">' . $this->input->post('copyright_text', true) . '</a>';
+				$saved = $this->optionslib->update('map_tile_server', $this->input->post('maptile_server_url', true), 'yes');
+				$saved = $this->optionslib->update('map_tile_server_dark', $this->input->post('maptile_server_url_dark', true), 'yes');
+				$saved = $this->optionslib->update('map_tile_subdomains', $this->input->post('subdomain_system', true), 'yes');
+			}
+			$saved = $this->optionslib->update('map_tile_server_copyright', $map_tile_server_copyright, 'yes');
+
+			// Also clean up static map images
+			if (!$this->load->is_loaded('staticmap_model')) {
+				$this->load->model('staticmap_model');
+			}
+			if (!$this->load->is_loaded('stations')) {
+				$this->load->model('stations');
+			}
+			$station_ids = explode(',',$this->stations->all_station_ids_of_user());
+			foreach ($station_ids as $station_id) {
+				$this->staticmap_model->remove_static_map_image($station_id);
+				log_message('debug', 'Removed static map image for station ID ' . $station_id);
+			}
+			// also remove the tilecache
+			$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
+        	$cacheDir = $cachepath . "tilecache/";
+			$tilecache_warning = false;
+			if (function_usable('exec')) {
+				try {
+					if (is_dir($cacheDir)) {
+						exec('rm -rf ' . $cacheDir);
+					}
+				} catch (\Throwable $th) {
+					$tilecache_warning = true;
+				}
+			} else {
+				$tilecache_warning = true;
+			}
+			if ($tilecache_warning) {
+				$this->session->set_flashdata('warning', sprintf(__("Maptile cache could not be removed. Delete the folder manually. Path: %s"), str_replace(FCPATH, '', $cacheDir)));
+				log_message('debug', 'Maptile cache could not be removed. Delete the folder manually. Path: ' . str_replace(FCPATH, '', $cacheDir));
+			}
+			if($saved == true) {
+				$this->session->set_flashdata('success', __("Maptile Options saved!"));
+			} else {
+				$this->session->set_flashdata('error', __("Maptile Options could not be saved!"));
+				log_message('error', 'Maptile Options could not be saved!');
+			}
+			redirect('/options/maptiles');
+		}
+	}
+
 	// function used to display the /version_dialog url
 	function version_dialog() {
 
