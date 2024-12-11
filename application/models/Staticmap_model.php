@@ -660,7 +660,7 @@ class Staticmap_model extends CI_Model {
             foreach ($linked_logbooks as $logbook_id) {
                 $slug = $this->stationsetup_model->get_slug($logbook_id);
                 if ($slug == false) {
-                    log_message('debug', "No slug found for logbook ID " . $logbook_id . ". Continue...");
+                    log_message('info', "No slug found for logbook ID " . $logbook_id . ". Continue...");
                     continue;
                 }
 
