@@ -2,11 +2,11 @@
     <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="actionsLabel"><?= __("Impersonate User") ?></h5>
+                <h5 class="modal-title" id="actionsLabel"><?= __("Impersonate User") . " " . __("(with Admin Rights)"); ?></h5>
             </div>
             <div class="modal-body" style="text-align: left !important;">
                 <?php if (!$has_flossie) { ?>
-                    <p><?= __("You are about to impersonate another user. To return to your admin account, you'll need to logout and log back in as admin."); ?></p>
+                    <p><?= __("You are about to impersonate another user. To return to your admin account, you can use the switch back button in the header menu."); ?></p>
                     <p><?= __("Do you want to impersonate this user?"); ?></p>
                     <br>
                     <table>
