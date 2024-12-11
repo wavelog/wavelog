@@ -401,8 +401,8 @@
 
 								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 0) { ?>
 									<div class="dropdown-divider"></div>
-									<li><a class="dropdown-item disabled"><?= __("Switch to Clubstation:"); ?></a></li>
 									<?php if (!empty($this->session->userdata('available_clubstations'))) { ?>
+										<li><a class="dropdown-item disabled"><?= __("Switch to Clubstation:"); ?></a></li>
 										<?php foreach ($this->session->userdata('available_clubstations') as $clubstation) { ?>
 											<li>
 												<div class="btn-group w-100" role="group">
@@ -418,7 +418,7 @@
 											</li>										
 										<?php } ?>
 									<?php } else { ?>
-										<li><a class="dropdown-item"><?= __("No Clubstations available"); ?></a></li>
+										<li><a class="dropdown-item disabled"><?= __("No Clubstations available"); ?></a></li>
 									<?php } ?>
 								<?php } ?>
 
