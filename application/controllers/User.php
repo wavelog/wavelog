@@ -45,7 +45,7 @@ class User extends CI_Controller {
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('user/index');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	public function actions_modal() {
