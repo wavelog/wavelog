@@ -118,6 +118,10 @@ class Club extends CI_Controller
 		}
 
 		$this->club_model->alter_member($club_id, $user_id, $p_level);
+
+		// we force an update of the session data for the current user
+		$this->session->set_userdata('available_clubstations', '');
+
 		$this->session->set_flashdata('success', __("Club member permissions have been updated. The user needs to re-login to see the changes."));
 		redirect('club/permissions/'.$club_id);
 	}
