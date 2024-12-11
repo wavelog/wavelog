@@ -166,7 +166,7 @@
 
                                 <div class="row">
                                     <div class="col text-center">
-                                        <p class="fw-bold mb-4 mt-1"><?= __("User"); ?></p>
+                                        <p class="fw-bold mb-4 mt-1"><?= __("User (Callsign or Name)"); ?></p>
                                         <p class="fw-bold mb-4"><?= __("Permission"); ?></p>
                                     </div>
                                     <div class="col">
