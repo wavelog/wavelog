@@ -500,9 +500,12 @@ class User_Model extends CI_Model {
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
 			'impersonate' => $this->session->userdata('impersonate') ?? false,
 			'clubstation' => $u->row()->clubstation,
-			'source_uid' => $this->session->userdata('source_uid') ?? '',
-			'available_clubstations' => ((($this->session->userdata('available_clubstations') ?? '') == '') ? $this->get_clubstations($u->row()->user_id) : $this->session->userdata('available_clubstations')),
+			'source_uid' => $this->session->userdata('source_uid') ?? ''
 		);
+
+		if ($this->config->item('special_callsign')) {
+			$userdata['available_clubstations'] = $this->get_clubstations($u->row()->user_id) ?? 'none';
+		}
 
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
 			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band), $u->row()->user_id)->row()->option_value ?? '');
