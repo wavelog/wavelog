@@ -119,6 +119,7 @@
 			$binding = [];
 			$sql = 'SELECT * FROM `cat` WHERE id = ? AND user_id = ?';
 			$binding[] = $id;
+			$binding[] = $this->session->userdata('user_id');
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
 				$sql .= ' AND operator = ?';
 				$binding[] = $this->session->userdata('source_uid');
