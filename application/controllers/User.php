@@ -65,7 +65,7 @@ class User extends CI_Controller {
 			$data['user_name'] = $user->user_name;
 			$data['user_callsign'] = $user->user_callsign;
 			$data['user_email'] = $user->user_email;
-			$data['user_firstname'] = $user->user_type;
+			$data['user_firstname'] = $user->user_firstname;
 			$data['user_lastname'] = $user->user_lastname;
 			$data['user_language'] = $gettext->find_by('folder', $user->user_language)['name_en'];
 			$data['is_clubstation'] = $user->clubstation == 1 ? true : false;
