@@ -2883,10 +2883,6 @@ function viewEqsl(picture, callsign) {
     <?php } ?>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "user") { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/user.js"></script>
-<?php } ?>
-
 <?php
 if (isset($scripts) && is_array($scripts)){
 	foreach($scripts as $script){

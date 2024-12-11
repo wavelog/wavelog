@@ -36,6 +36,11 @@ class User extends CI_Controller {
 
 		$data['has_flossie'] = ($this->config->item('encryption_key') == 'flossie1234555541') ? true : false;
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/user.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/user.js")),
+		];
+
 		$data['page_title'] = __("User Accounts");
 
 		$this->load->view('interface_assets/header', $data);
