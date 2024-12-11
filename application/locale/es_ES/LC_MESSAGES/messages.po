@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-10 14:07+0000\n"
-"PO-Revision-Date: 2024-12-05 18:31+0000\n"
+"PO-Revision-Date: 2024-12-11 17:54+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/es/>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1731,21 +1731,23 @@ msgstr ""
 #: application/controllers/Options.php:414
 #: application/views/options/sidebar.php:11
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Servidor de teselas de mapas"
 
 #: application/controllers/Options.php:473
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
+"No se pudo eliminar la caché de Maptile. Elimina la carpeta manualmente. "
+"Ruta: %s"
 
 #: application/controllers/Options.php:477
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "¡Opciones de Maptile guardadas!"
 
 #: application/controllers/Options.php:479
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "¡No se pudieron guardar las opciones de Maptile!"
 
 #: application/controllers/Options.php:490
 #: application/controllers/Options.php:500
@@ -6559,7 +6561,7 @@ msgstr "Rachas"
 
 #: application/views/dayswithqso/index.php:26
 msgid "QSOs of Year"
-msgstr ""
+msgstr "QSOs del año"
 
 #: application/views/dayswithqso/index.php:34
 msgid "Number of days with QSOs each year"
@@ -6579,19 +6581,19 @@ msgstr "Desglose de QSOs por mes del año"
 
 #: application/views/dayswithqso/index.php:86
 msgid "QSOs per Year"
-msgstr ""
+msgstr "QSOs por año"
 
 #: application/views/dayswithqso/index.php:94
 msgid "Less"
-msgstr ""
+msgstr "Menos"
 
 #: application/views/dayswithqso/index.php:99
 msgid "More"
-msgstr ""
+msgstr "Más"
 
 #: application/views/dayswithqso/index.php:101
 msgid "Calendar with QSOs"
-msgstr ""
+msgstr "Calendario con QSOs"
 
 #: application/views/dayswithqso/index.php:110
 msgid "Longest streak with QSOs in the log"
@@ -6944,7 +6946,7 @@ msgstr "Descarga de archivo WWFF"
 
 #: application/views/debug/index.php:554
 msgid "TLE update"
-msgstr ""
+msgstr "Actualización de TLE"
 
 #: application/views/debug/index.php:563
 msgid "QSO-DB Maintenance"
@@ -8710,7 +8712,7 @@ msgstr "Búsqueda rápida con seleccionados: "
 
 #: application/views/logbookadvanced/index.php:500
 msgid "Search Date"
-msgstr ""
+msgstr "Fecha de búsqueda"
 
 #: application/views/logbookadvanced/index.php:506
 msgid "Search DXCC"
@@ -9429,6 +9431,9 @@ msgid ""
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
 msgstr ""
+"Esto modifica la fuente del mapa en varios lugares dentro de Wavelog. No "
+"cambies ningún valor aquí a menos que estés seguro de lo que estás haciendo. "
+"¡Prueba cada cambio en tu %sDashboard%s!"
 
 #: application/views/options/maptiles.php:50
 #, php-format
@@ -9436,54 +9441,61 @@ msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
 msgstr ""
+"Puedes encontrar una lista de configuraciones probadas y todos los valores "
+"predeterminados en la %sWavelog Wiki%s."
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "URL del servidor de mapas"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
-msgstr ""
+msgstr "URL del servidor de mapas que sirve los mosaicos de mapas."
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
 msgstr ""
+"URL del servidor de Maptiles para Dark Tiles - SOLO API de Mapas Estáticos"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
 msgstr ""
+"URL del servidor de mapas que sirve los maptiles oscuros. Solo se utiliza "
+"para el Mapa Estático."
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "Sistema de subdominios del servidor Maptile"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
 msgstr ""
+"Sistema de los subdominios en este servidor ({s} en la URL). Se utilizan "
+"para el balanceo de carga."
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
-msgstr ""
+msgstr "URL de la fuente de derechos de autor"
 
 #: application/views/options/maptiles.php:71
 msgid "Source URL for the copyright tag."
-msgstr ""
+msgstr "URL de origen para la etiqueta de derechos de autor."
 
 #: application/views/options/maptiles.php:74
 msgid "Name of the Copyright Source"
-msgstr ""
+msgstr "Nombre de la fuente de derechos de autor"
 
 #: application/views/options/maptiles.php:76
 msgid "Text for the copyright tag."
-msgstr ""
+msgstr "Texto para la etiqueta de derechos de autor."
 
 #: application/views/options/maptiles.php:81
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "Restablecer a valores predeterminados"
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
@@ -10661,7 +10673,7 @@ msgstr "Nombre para mostrar"
 
 #: application/views/satellite/index.php:26
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
@@ -10704,11 +10716,11 @@ msgstr "Cargar predicciones"
 
 #: application/views/satellite/pass.php:534
 msgid "Add sked partner"
-msgstr ""
+msgstr "Agregar socio de sked"
 
 #: application/views/satellite/pass.php:536
 msgid "No TLE information detected. Please update TLE's."
-msgstr ""
+msgstr "No se detectó información TLE. Por favor, actualiza los TLE."
 
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:8
@@ -10725,7 +10737,7 @@ msgstr "Duración"
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:10
 msgid "AOS Azimuth"
-msgstr ""
+msgstr "Azimut AOS"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:11
@@ -10741,37 +10753,39 @@ msgstr "Tiempo LOS"
 #: application/views/satellite/passtable.php:11
 #: application/views/satellite/skedtable.php:13
 msgid "LOS Azimuth"
-msgstr ""
+msgstr "Azimut LOS"
 
 #: application/views/satellite/passtable.php:30
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
-msgstr ""
+msgstr "¡Búsqueda fallida!"
 
 #: application/views/satellite/passtable.php:31
 msgid "No passes found. Please check the input parameters."
-msgstr ""
+msgstr "No se encontraron pases. Por favor, verifica los parámetros de entrada."
 
 #: application/views/satellite/passtable.php:40
 #: application/views/satellite/skedtable.php:93
 msgid "min"
-msgstr ""
+msgstr "min"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
-msgstr ""
+msgstr "Cuadrícula"
 
 #: application/views/satellite/skedtable.php:58
 msgid "Sked AOS Time"
-msgstr ""
+msgstr "Hora AOS del sked"
 
 #: application/views/satellite/skedtable.php:59
 msgid "Sked LOS Time"
-msgstr ""
+msgstr "Hora para el sked LOS"
 
 #: application/views/satellite/skedtable.php:84
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
+"No se encontraron pases superpuestos. Por favor, verifica los parámetros de "
+"entrada."
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -12036,7 +12050,7 @@ msgstr "Agregar un tema"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
-msgstr ""
+msgstr "Solo nuevo en el año seleccionado"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
