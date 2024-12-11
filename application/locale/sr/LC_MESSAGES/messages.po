@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-10 14:07+0000\n"
-"PO-Revision-Date: 2024-09-17 12:24+0000\n"
+"PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sr/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.1\n"
+"X-Generator: Weblate 5.8.4\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -159,25 +159,25 @@ msgstr "Ukupno aktiviranih polja"
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:390
 msgid "Fields"
-msgstr ""
+msgstr "Polja"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:391
 msgid "Fields confirmed"
-msgstr ""
+msgstr "Potvrđena polja"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:38
 #: application/controllers/Visitor.php:392
 msgid "Fields not confirmed"
-msgstr ""
+msgstr "Nepotvrđena polja"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:393
 msgid "Total fields worked"
-msgstr ""
+msgstr "Ukupno rađenih polja"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -588,7 +588,7 @@ msgstr "Takmičarski kalendar"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr ""
+msgstr "Takmičarski kalendar nije dostupan. Pokušajte posle ponovo"
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:7
@@ -632,7 +632,7 @@ msgstr "nikada"
 
 #: application/controllers/Cron.php:219
 msgid "calculating..."
-msgstr ""
+msgstr "računam..."
 
 #: application/controllers/Cron.php:230 application/views/cron/index.php:70
 msgid "healthy"
@@ -789,7 +789,7 @@ msgstr "Informacije o eQSL uvozu"
 
 #: application/controllers/Eqsl.php:154
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "eQSL Nadimci nisu definisani u Staničnim profilima!"
 
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
@@ -797,7 +797,7 @@ msgstr "eQSL učitavanje QSO"
 
 #: application/controllers/Eqsl.php:173
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "Niste definisali vaše eQSL.cc kredencijale!"
 
 #: application/controllers/Eqsl.php:432
 msgid "eQSL Tools"
@@ -1726,21 +1726,22 @@ msgstr "Testmail je poslat. Izgleda da su email podešavanja u redu."
 #: application/controllers/Options.php:414
 #: application/views/options/sidebar.php:11
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Maptiles Server"
 
 #: application/controllers/Options.php:473
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
+"Maptile keš ne može biti uklonjen. Obrišite fasciklu ručno. Putanja: %s"
 
 #: application/controllers/Options.php:477
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "Maptile opcije su sačuvane!"
 
 #: application/controllers/Options.php:479
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "Maptile opcije ne mogu biti sačuvane!"
 
 #: application/controllers/Options.php:490
 #: application/controllers/Options.php:500
@@ -1774,7 +1775,7 @@ msgstr "Pretraga dnevnika i OQRS"
 
 #: application/controllers/Oqrs.php:67
 msgid "Invalid Station ID"
-msgstr ""
+msgstr "Neispravan ID stanice"
 
 #: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:423
@@ -1866,15 +1867,15 @@ msgstr "Dodaj QSO"
 
 #: application/controllers/Qso.php:661
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "Morate biti prijavljeni da biste pristupili ovom URL."
 
 #: application/controllers/Qso.php:667
 msgid "Call Transfer"
-msgstr ""
+msgstr "Transfer pozivnog znaka"
 
 #: application/controllers/Qso.php:674
 msgid "No callsign provided."
-msgstr ""
+msgstr "Nije dostavljen pozivni znak."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:442
@@ -1969,7 +1970,7 @@ msgstr "Nisu pronađeni radio uređaji sa CAT interfejsom."
 
 #: application/controllers/Radio.php:128 application/views/radio/index.php:2
 msgid "Edit CAT Settings"
-msgstr ""
+msgstr "Uredi CAT podešavanja"
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
@@ -2054,7 +2055,7 @@ msgstr ""
 #: application/models/Logbook_model.php:4490
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
-msgstr ""
+msgstr "Duplikat za"
 
 #: application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
@@ -2259,7 +2260,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:99
 #: application/views/stationsetup/stationsetup.php:150
 msgid "Please select one"
-msgstr ""
+msgstr "Izaberite jedno"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -2284,7 +2285,7 @@ msgstr "Statistika QSL karata"
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
-msgstr ""
+msgstr "Analitika Antena"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:286
@@ -2367,7 +2368,7 @@ msgstr "Uredi korisnika"
 #: application/controllers/User.php:689 application/controllers/User.php:692
 #, php-format
 msgid "User %s edited"
-msgstr ""
+msgstr "Korisnik %s uređen"
 
 #: application/controllers/User.php:746
 msgid "Profile"
@@ -2497,7 +2498,7 @@ msgstr "Nisu pronađene stanice koje koriste Wavelog OQRS."
 
 #: application/libraries/Callbook.php:86
 msgid "QRZCQ Error"
-msgstr ""
+msgstr "QRZCQ greška"
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -2622,42 +2623,44 @@ msgstr ""
 #: application/models/Logbook_model.php:3810
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgstr "Prilikom uvoza QSO-ova, pogrešan je znak %s sa %s za %s: PRESKOČENO"
 
 #: application/models/Logbook_model.php:3811
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "Provjeri %s za savjete oko grešaka u ADIF poljima."
 
 #: application/models/Logbook_model.php:3823
 msgid "QSO on"
-msgstr ""
+msgstr "Start QSO"
 
 #: application/models/Logbook_model.php:3823
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
+"Pokušali ste uvesti QSO bez bilo kojeg znaka. Ovaj QSO nije uvežen, "
+"neispravan je"
 
 #: application/models/Logbook_model.php:4122
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "datum prijema QSL je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4133
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "datum slanja QSL je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4186
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Datum učitavanja veza na Clublog je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4206
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "datum prijama QSL sa LoTW je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4227
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "datum slanja QSL na LoTW je neispravan (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4551
 msgid "QSO could not be matched"
@@ -3763,13 +3766,15 @@ msgstr "Duple veze su preskočene."
 
 #: application/views/adif/import_success.php:24
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Detalji uvoza / mogući problemi"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"Moguće je da postoje greške u ADIF, QSO-i su ipak dodati. Molimo proverite "
+"sledeće informacije:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -4583,13 +4588,15 @@ msgstr "Ova karta prikazuje samo QSO rađene preko SAT."
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Gridmaster Diploma"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Gridmaster diploma je originalno zamišljena za 488 grid polja koja mogu biti "
+"urađena u USA."
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -4597,6 +4604,9 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"Na ovoj mapi prikazana su polja za određenu DXCC zemlju. Ovo nije zvanična "
+"diploma, ali pokazuje koja sve polja možete uraditi za neku DXCC slično kao "
+"za US Gridmaster diplomu."
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -5286,6 +5296,8 @@ msgstr "Spotovi od"
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
 msgstr ""
+"Iskačući dijalozi su blokirani. Molimo dozvolite iskačuće dijaloge u vašem "
+"pregledaču, stalno za ovaj sajt."
 
 #: application/views/bandmap/list.php:72
 msgid "DXCC-Status"
@@ -5485,16 +5497,21 @@ msgid ""
 "For foreign stations LOCATION must be 'DX'. This information is required for "
 "IARU-HF and for all ARRL and CQ contests."
 msgstr ""
+"Za USA i Kanadske stanice LOKACIJA mora biti ARRL skraćenica. Za strane "
+"stanice, LOKACIJA mora biti \"DX\". Ova informacija je potrebna za IARU-HF i "
+"za sva ARRL i CQ takmičenja."
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
-msgstr ""
+msgstr "Za takmičenje RDXXC ovo sadrži RDA broj."
 
 #: application/views/cabrillo/index.php:48
 msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
 msgstr ""
+"Za RSGB-IOTA takmičenje ova informacija sadrži IOTA ime (ne IOTA brojčanu "
+"referencu)."
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:564
@@ -5542,7 +5559,7 @@ msgstr "Predajnik kategorije"
 
 #: application/views/cabrillo/index.php:143
 msgid "Category Time"
-msgstr ""
+msgstr "Vrijeme kategorije"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -5550,7 +5567,7 @@ msgstr ""
 #: application/views/cabrillo/index.php:148
 #, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d časova"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
@@ -5588,7 +5605,7 @@ msgstr "Okrug adrese"
 
 #: application/views/cabrillo/index.php:193
 msgid "Certificate"
-msgstr ""
+msgstr "Sertifikat"
 
 #: application/views/cabrillo/index.php:193
 msgid ""
@@ -6493,7 +6510,7 @@ msgstr ""
 
 #: application/views/dayswithqso/index.php:26
 msgid "QSOs of Year"
-msgstr ""
+msgstr "QSO-a godišnje"
 
 #: application/views/dayswithqso/index.php:34
 msgid "Number of days with QSOs each year"
@@ -6505,19 +6522,19 @@ msgstr "Dani"
 
 #: application/views/dayswithqso/index.php:66
 msgid "QSOs breakdown by day of the week"
-msgstr ""
+msgstr "Analiza QSOa tokom nedelje"
 
 #: application/views/dayswithqso/index.php:72
 msgid "QSOs breakdown by month of the year"
-msgstr ""
+msgstr "Analiza QSO-a po mjesecima tokom godine"
 
 #: application/views/dayswithqso/index.php:86
 msgid "QSOs per Year"
-msgstr ""
+msgstr "QSO-a godišnje"
 
 #: application/views/dayswithqso/index.php:94
 msgid "Less"
-msgstr ""
+msgstr "Manje"
 
 #: application/views/dayswithqso/index.php:99
 msgid "More"
@@ -6959,7 +6976,7 @@ msgstr "Engleski"
 
 #: application/views/debug/index.php:667
 msgid "Estonian"
-msgstr ""
+msgstr "Estonski"
 
 #: application/views/debug/index.php:668
 msgid "Finnish"
@@ -6983,11 +7000,11 @@ msgstr "Italijanski"
 
 #: application/views/debug/index.php:673
 msgid "Latvian"
-msgstr ""
+msgstr "Letonski"
 
 #: application/views/debug/index.php:674
 msgid "Lithuanian"
-msgstr ""
+msgstr "Litvanski"
 
 #: application/views/debug/index.php:675
 msgid "Montenegrin"
@@ -7033,7 +7050,7 @@ msgstr ""
 
 #: application/views/distancerecords/index.php:21
 msgid "DX Gridsquare"
-msgstr ""
+msgstr "DX polje"
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:31
@@ -7098,27 +7115,27 @@ msgstr "Izvor"
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
 msgid "Wavelog Account Password Reset"
-msgstr ""
+msgstr "Reset lozinke za Wavelog nalog"
 
 #: application/views/email/admin_reset_password.php:5
 #, php-format
 msgid "Hello %s"
-msgstr ""
+msgstr "Zdravo %s"
 
 #: application/views/email/admin_reset_password.php:7
 msgid "An admin initiated a password reset for your Wavelog account."
-msgstr ""
+msgstr "Administrator je pokrenuo reset pasworda za Vaš Wavelog nalog."
 
 #: application/views/email/admin_reset_password.php:9
 #, php-format
 msgid "Your username is: %s"
-msgstr ""
+msgstr "Vaše ime je: %s"
 
 #: application/views/email/admin_reset_password.php:11
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr ""
+msgstr "Kliknite ovdje za reset lozinke: %s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -7129,6 +7146,12 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Ako niste zahtjevali reset lozinke, ignorišite ovaj email i kontaktirajte "
+"administratora Vašeg Wavelog dnevnika\n"
+"\n"
+"Srdačno\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -7136,6 +7159,9 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"Zdravo,\n"
+"\n"
+"Vi ili neko drugi je zahtjevao reset lozinke Vašeg Wavelog naloga."
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -7145,19 +7171,24 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Ako niste ovo zahtjevali, ignorišite poruku\n"
+"\n"
+"Srdačno,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
 msgid "Wavelog OQRS from %s"
-msgstr ""
+msgstr "Wavelog OQRS od %s"
 
 #: application/views/email/oqrs_request.php:6
 msgid "The user entered the following message: "
-msgstr ""
+msgstr "Korisnik je uneo sledeću poruku: "
 
 #: application/views/email/oqrs_request.php:11
 msgid "The user did not enter any additional message."
-msgstr ""
+msgstr "Korisnik nije uneo nikakvu dodatnu poruku."
 
 #: application/views/email/oqrs_request.php:14
 #, php-format
@@ -7166,6 +7197,9 @@ msgid ""
 "\n"
 "You got an OQRS request from %s."
 msgstr ""
+"Zdravo,\n"
+"\n"
+"Dobili ste OQRS zahtev od %s."
 
 #: application/views/email/oqrs_request.php:20
 msgid ""
@@ -7175,10 +7209,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Molimo, prijavite se na vaš Wavelog nalog i obradite je.\n"
+"\n"
+"Srdačno,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
-msgstr ""
+msgstr "Wavelog Test-mail"
 
 #: application/views/email/testmail.php:5
 msgid ""
@@ -7192,6 +7231,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Zdravo,\n"
+"\n"
+"Ovo je testni email sa vaše Wavelog dnevnika.\n"
+"\n"
+"Ako ste primili ovaj mail, Vaša podešavanja su ispravna.\n"
+"\n"
+"Srdačno,\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
@@ -7229,7 +7277,7 @@ msgstr "Podvrsta rada"
 
 #: application/views/eqsl/analysis.php:41
 msgid "eQSL Received Date"
-msgstr ""
+msgstr "Datum prijemljene eQSL"
 
 #: application/views/eqsl/analysis.php:42
 msgid "Log Status"
@@ -7253,7 +7301,7 @@ msgstr ""
 
 #: application/views/eqsl/download.php:43
 msgid "eQSL Receive Date"
-msgstr ""
+msgstr "Datum prijema eQSL"
 
 #: application/views/eqsl/download.php:44
 msgid "Action"
@@ -7322,7 +7370,7 @@ msgstr ""
 
 #: application/views/eqsl/import.php:28
 msgid "The next automatic sync with eQSL will happen at: "
-msgstr ""
+msgstr "Sledeća automatska sinhronizacija sa eQSL će biti: "
 
 #: application/views/eqsl/import.php:31
 msgid "Import from file..."
@@ -7506,7 +7554,7 @@ msgstr "Uredi QSO"
 
 #: application/views/interface_assets/footer.php:34
 msgid "ERROR"
-msgstr ""
+msgstr "GREŠKA"
 
 #: application/views/interface_assets/footer.php:35
 msgid "Attention"
@@ -8215,7 +8263,7 @@ msgstr "Započeti štampu u?"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
-msgstr ""
+msgstr "Molimo izaberite kolonu koja će biti uređivana:"
 
 #: application/views/logbookadvanced/edit.php:17
 #: application/views/logbookadvanced/index.php:458
@@ -8226,7 +8274,7 @@ msgstr "QSL via"
 
 #: application/views/logbookadvanced/edit.php:18
 msgid "QSLMSG"
-msgstr ""
+msgstr "QSLMSG"
 
 #: application/views/logbookadvanced/edit.php:25
 msgid "LoTW Sent"
@@ -8238,25 +8286,25 @@ msgstr "LoTW primljen"
 
 #: application/views/logbookadvanced/edit.php:28
 msgid "QRZ Sent"
-msgstr ""
+msgstr "QRZ poslat"
 
 #: application/views/logbookadvanced/edit.php:29
 msgid "QRZ Received"
-msgstr ""
+msgstr "QRZ primljen"
 
 #: application/views/logbookadvanced/edit.php:30
 msgid "eQSL Sent"
-msgstr ""
+msgstr "eQSL poslata"
 
 #: application/views/logbookadvanced/edit.php:31
 msgid "eQSL Received"
-msgstr ""
+msgstr "eQSL primljena"
 
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:717
 #: application/views/logbookadvanced/useroptions.php:158
 msgid "Station power"
-msgstr ""
+msgstr "Snaga stanice"
 
 #: application/views/logbookadvanced/edit.php:82
 msgid "SAT Mode"
@@ -8338,7 +8386,7 @@ msgstr "Dx"
 #: application/views/logbookadvanced/index.php:326
 #: application/views/logbookadvanced/index.php:459
 msgid "Empty"
-msgstr ""
+msgstr "Prazno"
 
 #: application/views/logbookadvanced/index.php:250
 msgctxt "Propagation Mode"
@@ -8594,7 +8642,7 @@ msgstr "Brza pretraga sa izabranim: "
 
 #: application/views/logbookadvanced/index.php:500
 msgid "Search Date"
-msgstr ""
+msgstr "Datum pretrage"
 
 #: application/views/logbookadvanced/index.php:506
 msgid "Search DXCC"
@@ -8894,7 +8942,7 @@ msgstr "Informacije"
 
 #: application/views/lotw_views/index.php:141
 msgid "The next automatic sync with LoTW will happen at: "
-msgstr ""
+msgstr "Sledeća automatska sinhronizacija sa LoTW će se desiti: "
 
 #: application/views/lotw_views/index.php:143
 msgid "Manual Sync"
@@ -8911,7 +8959,7 @@ msgstr "Izvoz .p12 instrukcija"
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Use at least version 2.7 of TQSL"
-msgstr ""
+msgstr "Koristite verziju TQSL 2.7 ili kasniju"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
@@ -8923,11 +8971,11 @@ msgstr "Desni klik na željeni pozivni znak"
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Click 'Save Callsign Certificate File'"
-msgstr ""
+msgstr "Kliknite 'Sačuvaj datoteku sertifikata za pozivni znak'"
 
 #: application/views/lotw_views/upload_cert.php:26
 msgid "Do not add a password"
-msgstr ""
+msgstr "Nemojte dodavati lozinku"
 
 #: application/views/lotw_views/upload_cert.php:27
 msgid "Upload File below"
@@ -9305,6 +9353,9 @@ msgid ""
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
 msgstr ""
+"Ovo će modifikovati izvor mapa na različitim lokacijama unutar Waveloga. "
+"Nemojte menjati ove vrednosti ukoliko niste uvereni da znate šta radite. "
+"Testirajte svaku promenu na Vašem %sDashboard%s!"
 
 #: application/views/options/maptiles.php:50
 #, php-format
@@ -9312,54 +9363,59 @@ msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
 msgstr ""
+"Ovde možete videti listu testiranih podešavanja i podrazumevane vrednosti u "
+"%sWavelog Wiki%s."
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "Maptiles Server URL"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
-msgstr ""
+msgstr "URL servera mapa koji opslužuje maptiles."
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
-msgstr ""
+msgstr "Maptiles Server URL za tamne mape - SAMO API za Statičnu Mapu"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
 msgstr ""
+"URL servera mapa koji služi za tamne maptiles. Koristi se samo za Statičnu "
+"Mapu."
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "Subdomen Sistem Maptile servera"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
 msgstr ""
+"Sistem subodomena na ovom serveru ({s} uURL). Koriste se za load balansing."
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
-msgstr ""
+msgstr "URL izvora za autorska prava"
 
 #: application/views/options/maptiles.php:71
 msgid "Source URL for the copyright tag."
-msgstr ""
+msgstr "Izvorni URL za tag vlasničkih prava."
 
 #: application/views/options/maptiles.php:74
 msgid "Name of the Copyright Source"
-msgstr ""
+msgstr "Ime izvora vlasničkih prava"
 
 #: application/views/options/maptiles.php:76
 msgid "Text for the copyright tag."
-msgstr ""
+msgstr "Teks za tag vlasničkih prava."
 
 #: application/views/options/maptiles.php:81
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "Reset na podrazumevane vrednosti"
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
@@ -10954,11 +11010,11 @@ msgstr "Veze su upisane u dnevnik!"
 
 #: application/views/simplefle/index.php:37
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
-msgstr ""
+msgstr "QSO su uspešno upisani u dnevnik. Duple veze su preskočene."
 
 #: application/views/simplefle/index.php:39
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr ""
+msgstr "Došlo je do greške prilikom čuvanja QSO u dnevnik! Greška: "
 
 #: application/views/simplefle/index.php:43
 msgid "What is that?"
@@ -11643,7 +11699,7 @@ msgstr "Posetite javnu stranicu"
 
 #: application/views/statistics/antennaanalytics.php:11
 msgid "Elevation"
-msgstr ""
+msgstr "Elevacija"
 
 #: application/views/statistics/custom.php:12
 #: application/views/statistics/custom_result.php:12
@@ -11687,7 +11743,7 @@ msgstr "Broj održanih veza svake godine"
 #: application/views/statistics/index.php:33
 #: application/views/timeline/index.php:111
 msgid "All Years"
-msgstr ""
+msgstr "Sve godine"
 
 #: application/views/statistics/index.php:71
 #: application/views/statistics/index.php:108
@@ -11878,7 +11934,7 @@ msgstr "Dodajte temu"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
-msgstr ""
+msgstr "Samo nove u izabranoj godini"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
@@ -12343,6 +12399,9 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Ako za Clublog imate omogućenu 2FA, morate generisati lozinku aplikcije za "
+"korišćenje Clubloga u Wavelogu. Posjetite %svaša Clublog podešavanja%s da to "
+"uradite."
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
@@ -12622,7 +12681,7 @@ msgstr "Prikaz svih QSO staničnih lokacija koje su povezane u ovom dnevniku"
 #: application/views/view_log/partial/log_ajax.php:351
 #: src/QSLManager/QSO.php:482 src/QSLManager/QSO.php:539
 msgid "last sent"
-msgstr ""
+msgstr "poslednje poslato"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
@@ -12638,7 +12697,7 @@ msgstr "Ukupno rastojanje"
 
 #: application/views/view_log/qso.php:158
 msgid "Other Path"
-msgstr ""
+msgstr "Ostale putanje"
 
 #: application/views/view_log/qso.php:316
 msgid "Antenna Azimuth"

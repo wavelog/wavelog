@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-10 14:07+0000\n"
-"PO-Revision-Date: 2024-12-04 13:15+0000\n"
+"PO-Revision-Date: 2024-12-10 11:08+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -1726,21 +1726,23 @@ msgstr "Тестовое сообщение отправлено. Настрой
 #: application/controllers/Options.php:414
 #: application/views/options/sidebar.php:11
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Сервер картографических тайлов"
 
 #: application/controllers/Options.php:473
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
+"Кэш картографических тайлов не удалось удалить. Удалите папку вручную. Путь: "
+"%s"
 
 #: application/controllers/Options.php:477
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "Параметры картографических тайлов сохранены!"
 
 #: application/controllers/Options.php:479
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "Параметры картографических тайлов не удалось сохранить!"
 
 #: application/controllers/Options.php:490
 #: application/controllers/Options.php:500
@@ -6530,7 +6532,7 @@ msgstr "Полосы"
 
 #: application/views/dayswithqso/index.php:26
 msgid "QSOs of Year"
-msgstr ""
+msgstr "QSO года"
 
 #: application/views/dayswithqso/index.php:34
 msgid "Number of days with QSOs each year"
@@ -6550,19 +6552,19 @@ msgstr "Распределение QSO по месяцам года"
 
 #: application/views/dayswithqso/index.php:86
 msgid "QSOs per Year"
-msgstr ""
+msgstr "QSO в год"
 
 #: application/views/dayswithqso/index.php:94
 msgid "Less"
-msgstr ""
+msgstr "Меньше"
 
 #: application/views/dayswithqso/index.php:99
 msgid "More"
-msgstr ""
+msgstr "Больше"
 
 #: application/views/dayswithqso/index.php:101
 msgid "Calendar with QSOs"
-msgstr ""
+msgstr "Календарь с QSO"
 
 #: application/views/dayswithqso/index.php:110
 msgid "Longest streak with QSOs in the log"
@@ -6916,7 +6918,7 @@ msgstr "Скачать файл WWFF"
 
 #: application/views/debug/index.php:554
 msgid "TLE update"
-msgstr ""
+msgstr "Обновление TLE"
 
 #: application/views/debug/index.php:563
 msgid "QSO-DB Maintenance"
@@ -8665,7 +8667,7 @@ msgstr "Быстрый поиск с выбранными: "
 
 #: application/views/logbookadvanced/index.php:500
 msgid "Search Date"
-msgstr ""
+msgstr "Дата поиска"
 
 #: application/views/logbookadvanced/index.php:506
 msgid "Search DXCC"
@@ -8772,7 +8774,7 @@ msgstr "Изображение QSL #"
 #: application/views/logbookadvanced/qslcarousel.php:67
 #: application/views/qslcard/qslcarousel.php:32
 msgid "Previous"
-msgstr "Пред."
+msgstr "Пред"
 
 #: application/views/logbookadvanced/qslcarousel.php:71
 #: application/views/qslcard/qslcarousel.php:36
@@ -9384,6 +9386,9 @@ msgid ""
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
 msgstr ""
+"Это изменяет источник карты в различных местах внутри Wavelog. Не изменяйте "
+"здесь значения, если вы не уверены в своих действиях. Тестируйте каждое "
+"изменение на вашей %sDashboard%s!"
 
 #: application/views/options/maptiles.php:50
 #, php-format
@@ -9391,54 +9396,62 @@ msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
 msgstr ""
+"Вы можете найти список протестированных настроек и все значения по умолчанию "
+"в %sWavelog Wiki%s."
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "URL сервера картографических тайлов"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
-msgstr ""
+msgstr "URL карты сервера, который предоставляет тайлы карты."
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
 msgstr ""
+"URL сервера картографических тайлов для темных плиток - ТОЛЬКО для API "
+"статических карт"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
 msgstr ""
+"URL сервера карт, который предоставляет темные тайлы карты. Используется "
+"только для статической карты."
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "Система поддоменов сервера картографических тайлов"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
 msgstr ""
+"Система поддоменов на этом сервере ({s} в URL). Они используются для "
+"балансировки нагрузки."
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
-msgstr ""
+msgstr "URL источника авторских прав"
 
 #: application/views/options/maptiles.php:71
 msgid "Source URL for the copyright tag."
-msgstr ""
+msgstr "Источник URL для тега авторского права."
 
 #: application/views/options/maptiles.php:74
 msgid "Name of the Copyright Source"
-msgstr ""
+msgstr "Название источника авторских прав"
 
 #: application/views/options/maptiles.php:76
 msgid "Text for the copyright tag."
-msgstr ""
+msgstr "Текст для тега авторского права."
 
 #: application/views/options/maptiles.php:81
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "Сбросить настройки на значения по умолчанию"
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
@@ -10610,7 +10623,7 @@ msgstr "Отображаемое название"
 
 #: application/views/satellite/index.php:26
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
@@ -10674,7 +10687,7 @@ msgstr "Продолжительность"
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:10
 msgid "AOS Azimuth"
-msgstr ""
+msgstr "Азимут появления спутника над горизонтом (AOS)"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:11
@@ -10690,7 +10703,7 @@ msgstr "Время LOS"
 #: application/views/satellite/passtable.php:11
 #: application/views/satellite/skedtable.php:13
 msgid "LOS Azimuth"
-msgstr ""
+msgstr "Азимут захода спутника за горизонт (LOS)"
 
 #: application/views/satellite/passtable.php:30
 #: application/views/satellite/skedtable.php:83
@@ -10704,7 +10717,7 @@ msgstr ""
 #: application/views/satellite/passtable.php:40
 #: application/views/satellite/skedtable.php:93
 msgid "min"
-msgstr ""
+msgstr "мин"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
@@ -11965,7 +11978,7 @@ msgstr "Добавить тему"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
-msgstr ""
+msgstr "Только новые в выбранном году"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
