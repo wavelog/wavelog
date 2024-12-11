@@ -139,6 +139,11 @@ class User extends CI_Controller {
 		// Get themes list
 		$data['themes'] = $this->user_model->getThemes();
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/user.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/user.js")),
+		];
+
 		// Get timezones
 		$data['timezones'] = $this->user_model->timezones();
 		$data['user_language'] = 'english';
@@ -192,7 +197,7 @@ class User extends CI_Controller {
 			} else {
 				$this->load->view('user/edit', $data);
 			}
-			$this->load->view('interface_assets/footer');
+			$this->load->view('interface_assets/footer', $footerData);
 		} else {
 			switch($this->user_model->add($this->input->post('user_name'),
 				$this->input->post('user_password'),
@@ -293,7 +298,7 @@ class User extends CI_Controller {
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 			$data['user_language'] = $this->input->post('user_language');
 			$this->load->view('user/edit', $data);
-			$this->load->view('interface_assets/footer');
+			$this->load->view('interface_assets/footer', $footerData);
 		}
 	}
 
@@ -328,6 +333,11 @@ class User extends CI_Controller {
 
 		// Get themes list
 		$data['themes'] = $this->user_model->getThemes();
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/user.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/user.js")),
+		];
 
 		// Get timezones
 		$data['timezones'] = $this->user_model->timezones();
@@ -713,7 +723,7 @@ class User extends CI_Controller {
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
-			$this->load->view('interface_assets/footer');
+			$this->load->view('interface_assets/footer', $footerData);
 		} else {
 			unset($data);
 			switch($this->user_model->edit($this->input->post())) {

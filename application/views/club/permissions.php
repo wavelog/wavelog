@@ -154,7 +154,7 @@
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
                 <i class="fas fa-plus"></i> <?= __("Add User"); ?>
             </button>
-            <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true" data-bs-backdrop="static">
                 <div class="modal-dialog modal-dialog-centered" style="max-width: 700px;">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -163,19 +163,34 @@
                         <form action="<?= site_url('club/alter_member'); ?>" method="post">
                             <div class="modal-body">
                                 <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
-
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <p class="fw-bold mb-4 mt-1"><?= __("User (Callsign or Name)"); ?></p>
-                                        <p class="fw-bold mb-4"><?= __("Permission"); ?></p>
-                                    </div>
-                                    <div class="col">
-                                        <input class="form-control mb-2" id="user_id" name="user_id" required />
-                                        <select class="form-select mb-2" id="permission" name="permission" required>
-                                            <option value="3"><?php echo $permissions[3]; ?></option>
-                                            <option value="9"><?php echo $permissions[9]; ?></option>
-                                        </select>
-                                    </div>
+                                <p>
+                                    <?= sprintf(__("You can only add users to the %s Clubstation if they already exist on this Wavelog Server."), $club->user_callsign); ?>
+                                    <?= __("If they don't exist, please ask your Wavelog Administrator to create an account for them."); ?><br><br>
+                                    <?= __("Search for the user by their callsign or first/lastname and select the permission level."); ?>
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="table">
+                                            <tr>
+                                                <th class="text-center"><?= __("User (Callsign or Name)"); ?></th>
+                                                <th class="text-center"><?= __("Permission"); ?></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input class="form-control" id="user_id" name="user_id" required />
+                                                    <small class="form-text text-muted"><?= __("Type at least 2 characters."); ?></small>
+                                                </td>
+                                                <td>
+                                                    <select class="form-select" id="permission" name="permission" required>
+                                                        <option value="3"><?php echo $permissions[3]; ?></option>
+                                                        <option value="9"><?php echo $permissions[9]; ?></option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <div class="modal-footer">
