@@ -99,7 +99,7 @@
                                         </tr>
                                         <tr>
                                             <td><?= __("Import QSO per ADIF"); ?></td>
-                                            <td><i class="fas fa-check text-success"></i></td>
+                                            <td><i class="fas fa-times text-danger"></i></td>
                                             <td><i class="fas fa-check text-success"></i></td>
                                         </tr>
 
