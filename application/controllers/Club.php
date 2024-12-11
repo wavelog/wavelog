@@ -118,7 +118,7 @@ class Club extends CI_Controller
 		}
 
 		$this->club_model->alter_member($club_id, $user_id, $p_level);
-		$this->session->set_flashdata('success', __("Club member permissions have been updated. The user needs to re-login to see the changes."));
+		$this->session->set_flashdata('success', __("Club member permissions have been updated."));
 		redirect('club/permissions/'.$club_id);
 	}
 
