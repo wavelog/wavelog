@@ -176,6 +176,25 @@ class API extends CI_Controller {
 		}
 
 		$userid = $this->api_model->key_userid($obj['key']);
+		$created_by = $this->api_model->key_created_by($obj['key']);
+
+		/**
+		 * As the API key user could use it also for clubstations we need to do an additional check here. Only if clubstations are enabled
+		 * 
+		 * In Detail:
+		 * If the user is not the creator of the API key, it's likely a clubstation. In this case the callsign of the clubstation
+		 * can not be the same as the callsign of the user (operator call provided by the user). If this is the case, we need to use the callsign of the creator of the API key
+		 */
+		if ($this->config->item('special_callsign')) {
+			if ($userid != $created_by) {
+				$this->load->model('user_model');
+				$real_operator = $this->user_model->get_by_id($created_by)->row()->user_callsign;
+				// TODO: It would be possible to check here if operator is allowed to use the clubstation, but this can be added later if needed
+			} else {
+				$real_operator = null;
+			}
+		}
+
 		$this->api_model->update_last_used(($obj['key']));
 
 		if(!isset($obj['station_profile_id']) || $this->stations->check_station_against_user($obj['station_profile_id'], $userid) == false) {
@@ -209,7 +228,12 @@ class API extends CI_Controller {
 					}
 					if(count($record) == 0) {
 						break;
-					};
+					}
+					// in case the provided op call is the same as the clubstation callsign, we need to use the creator of the API key as the operator
+					$recorded_operator = $record['operator'] ?? '';
+					if ($real_operator != null && ($record['operator'] == $record['station_callsign']) || ($recorded_operator == '')) {
+						$record['operator'] = $real_operator;
+					}
 					array_push($alladif,$record);
 					$adif_count++;
 				};
