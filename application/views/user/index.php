@@ -94,14 +94,14 @@
 
 									<!-- Impersonate Button -->
 									<?php if (!$disable_impersonate && $session_uid != $row->user_id) { ?>
-										<button class="btn btn-info btn-sm" onclick="actions_modal('<?php echo $row->user_id; ?>', 'admin_impersonate')" title="<?= __("Impersonate"); ?>">
+										<button class="btn btn-info btn-sm btn-tooltip" onclick="actions_modal('<?php echo $row->user_id; ?>', 'admin_impersonate')" title="<?= __("Impersonate"); ?>">
 											<i class="fas fa-people-arrows"></i>
 										</button>
 									<?php } ?>
 
 									<!-- Other Actions Button -->
 									<?php if ($session_uid != $row->user_id) { ?>
-										<button class="btn btn-secondary btn-sm" onclick="actions_modal('<?php echo $row->user_id; ?>', 'more_actions')" title="<?= __("Other Actions"); ?>">
+										<button class="btn btn-secondary btn-sm btn-tooltip" onclick="actions_modal('<?php echo $row->user_id; ?>', 'more_actions')" title="<?= __("Other Actions"); ?>">
 											<i class="fas fa-bars"></i>
 										</button>
 									<?php } ?>
@@ -194,17 +194,17 @@
 
 									<!-- Impersonate Button -->
 									<?php if (!$disable_impersonate && $session_uid != $row->user_id) { ?>
-										<button class="btn btn-info btn-sm" onclick="actions_modal('<?php echo $row->user_id; ?>', 'admin_impersonate')" title="<?= __("Impersonate"); ?>">
+										<button class="btn btn-info btn-sm btn-tooltip" onclick="actions_modal('<?php echo $row->user_id; ?>', 'admin_impersonate')" title="<?= __("Impersonate"); ?>">
 											<i class="fas fa-people-arrows"></i>
 										</button>
 									<?php } ?>
 
 									<!-- Club Permissions Button -->
-									<a href="<?php echo site_url('club/permissions') . "/" . $row->user_id; ?>" class="btn btn-warning btn-sm" title="<?= __("Club Permissions"); ?>"><i style="color: black;" class="fas fa-user-lock"></i></a>
+									<a href="<?php echo site_url('club/permissions') . "/" . $row->user_id; ?>" class="btn btn-warning btn-sm btn-tooltip" title="<?= __("Club Permissions"); ?>"><i style="color: black;" class="fas fa-user-lock"></i></a>
 
 									<!-- Other Actions Button -->
 									<?php if ($session_uid != $row->user_id) { ?>
-										<button class="btn btn-secondary btn-sm" onclick="actions_modal('<?php echo $row->user_id; ?>', 'more_actions')" title="<?= __("Other Actions"); ?>">
+										<button class="btn btn-secondary btn-sm btn-tooltip" onclick="actions_modal('<?php echo $row->user_id; ?>', 'more_actions')" title="<?= __("Other Actions"); ?>">
 											<i class="fas fa-bars"></i>
 										</button>
 									<?php } ?>

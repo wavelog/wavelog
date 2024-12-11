@@ -146,7 +146,7 @@ $(document).ready(function(){
     });
 
     $(function () {
-        $('[title]').tooltip();
+        $('.btn-tooltip').tooltip();
     });
 
     $('.icon_selectBox').off('click').on('click', function(){
