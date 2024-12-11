@@ -25,8 +25,10 @@ class Club_model extends CI_Model {
 
         // admin is always allowed
         $this->load->model('user_model');
-        if ($this->user_model->authorize(99)) {
-            return true;
+        if ($user_id != NULL) {
+            if ($this->user_model->get_by_id($user_id)->row()->user_type == 99) {
+                return true;
+            }
         }
 
         if ($user_id == NULL || !is_numeric($user_id)) {
