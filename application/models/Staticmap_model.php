@@ -641,7 +641,7 @@ class Staticmap_model extends CI_Model {
         $cacheDir = $cachepath . "staticmap_images/";
 
         if (!is_dir($cacheDir)) {
-            log_message('debug', "Cache directory '" . $cacheDir . "' does not exist. Therefore no static map images to remove...");
+            log_message('info', "Cache directory '" . $cacheDir . "' does not exist. Therefore no static map images to remove...");
             return true;
         }
 
