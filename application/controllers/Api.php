@@ -548,6 +548,14 @@ class API extends CI_Controller {
 		$this->api_model->update_last_used($obj['key']);
 
 		$user_id = $this->api_model->key_userid($obj['key']);
+		$created_by = $this->api_model->key_created_by($obj['key']);
+
+		// Clubmode needs an additional check for the operator
+		if ($user_id != $created_by) {
+			$operator = $created_by;
+		} else {
+			$operator = $user_id;
+		}
 
 		// Special Case: Yaesu Radio's use CW-U and CW-L which aren't official ADIF Modes. We override this here to CW
 		if (isset($obj['mode']) && (strtoupper($obj['mode']) == 'CW-U' || strtoupper($obj['mode']) == 'CW-L')) {
@@ -555,7 +563,7 @@ class API extends CI_Controller {
 		}
 
 		// Store Result to Database
-		$this->cat->update($obj, $user_id);
+		$this->cat->update($obj, $user_id, $operator);
 
 		// Return Message
 

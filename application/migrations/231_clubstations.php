@@ -83,6 +83,25 @@ class Migration_clubstations  extends CI_Migration
 			} else {
 				log_message('info', 'Mig 230 - Column "created_by" already exists, skipping ALTER TABLE api.');
 			}
+
+			// Add 'operator' field to CAT Table
+			$col_check = $this->db->query("SHOW COLUMNS FROM cat LIKE 'operator'")->num_rows() > 0;
+			if (!$col_check) {
+				$sql_add_column = "ALTER TABLE cat ADD COLUMN operator INT(10) NOT NULL DEFAULT 0;";
+				try {
+					$this->db->query($sql_add_column);
+
+					$sql_update = "UPDATE cat SET operator = user_id;";
+					$this->db->query($sql_update);
+
+					$sql_drop_default = "ALTER TABLE cat ALTER COLUMN operator DROP DEFAULT;";
+					$this->db->query($sql_drop_default);
+				} catch (Exception $e) {
+					log_message('error', 'Mig 230 - Error adding column "operator": ' . $e->getMessage());
+				}
+			} else {
+				log_message('info', 'Mig 230 - Column "operator" already exists, skipping ALTER TABLE cat.');
+			}
 		}
 	}
 

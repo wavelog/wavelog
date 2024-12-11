@@ -49,6 +49,13 @@ class API_Model extends CI_Model {
 		return $query->result_array()[0]['user_id'];
 	}
 
+	function key_created_by($key) {
+		$this->db->where('key', $key);
+		$query = $this->db->get('api');
+
+		return $query->result_array()[0]['created_by'];
+	}
+
 	function update_key_description($key, $description) {
 
 		$data = array(
