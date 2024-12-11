@@ -157,7 +157,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: array search_users($query)
 	// Search for users by parts of their callsign
 	function search_users($query, $clubstations = false) {
-		if (strlen($query) < 3) {
+		if (strlen($query) < 2) {
 			return false;
 		}
 		$this->db->select('user_id, user_callsign, user_firstname, user_lastname');
