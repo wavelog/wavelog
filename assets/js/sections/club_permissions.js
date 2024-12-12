@@ -62,4 +62,9 @@ $(document).ready(function(){
             });
         }
     });
+
+    $('[type="submit"]').on('click', function() {
+        $(this).prop('disabled', true).addClass('running');
+        $(this).closest('form').submit();
+    });
 });
