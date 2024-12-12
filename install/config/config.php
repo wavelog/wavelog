@@ -680,7 +680,7 @@ $config['disable_oqrs'] = false;
 | This config switch is meant to use for Special Callsign operations or Clubstations.
 | If this switch is set to true it enables a whole bunch of features to handle Special Callsigns and Club Callsigns.
 | For more Information please visit the Wiki:
-| https://github.com/wavelog/wavelog/wiki/Recommended-Setup-for-Special-Callsigns-and-Clubs
+| https://github.com/wavelog/wavelog/wiki/Clubstations
 |
 | !!! Important !!!
 | $config['disable_impersonate'] has to be set to false to use this feature.
