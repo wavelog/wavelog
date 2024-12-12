@@ -187,6 +187,13 @@
                                                         <option value="3"><?php echo $permissions[3]; ?></option>
                                                         <option value="9"><?php echo $permissions[9]; ?></option>
                                                     </select>
+                                                    <div class="mt-2 form-check d-flex justify-content-end text-muted">
+                                                        <input class="form-check-input me-2" type="checkbox" id="notify_user" name="notify_user">
+                                                        <input type="hidden" name="notify_message" value="new_member">
+                                                        <label class="form-check-label" for="notify_user">
+                                                            <?= __("Notify the user via email"); ?>
+                                                        </label>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -239,30 +246,53 @@
                                     </td>
                                     <td style="text-align: center; vertical-align: middle;">
                                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal_<?php echo $member->user_id; ?>"><i class="fas fa-edit"></i> <?= __("Edit"); ?></button>
-                                        <div class="modal fade bg-black bg-opacity-50" id="editModal_<?php echo $member->user_id; ?>" tabindex="-1" aria-labelledby="editLabel_<?php echo $member->user_id; ?>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-                                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                        <div class="modal fade" id="editModal_<?php echo $member->user_id; ?>" tabindex="-1" aria-labelledby="editLabel_<?php echo $member->user_id; ?>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                                            <div class="modal-dialog modal-dialog-centered" style="max-width: 700px;">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="editLabel_<?php echo $member->user_id; ?>"><?= __("Edit User") ?></h5>
+                                                        <h5 class="modal-title" id="editLabel_<?php echo $member->user_id; ?>"><?= __("Edit User"); ?></h5>
                                                     </div>
                                                     <form action="<?= site_url('club/alter_member'); ?>" method="post">
-                                                        <div class="modal-body" style="text-align: center !important;">
+                                                        <div class="modal-body">
                                                             <input type="hidden" name="club_id" value="<?php echo $club->user_id; ?>">
                                                             <input type="hidden" name="user_id" value="<?php echo $member->user_id; ?>">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <p class="fw-bold mb-4"><?= __("User Callsign"); ?></p>
-                                                                    <p class="fw-bold mb-3"><?= __("Permission"); ?></p>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <p class="mb-3"><?php echo $member->user_callsign; ?></p>
-                                                                    <select class="form-select mb-3" id="permission" name="permission" required>
-                                                                        <option value="3" <?php if ($member->p_level == 3) { echo 'selected'; } ?>><?php echo $permissions[3]; ?></option>
-                                                                        <option value="9" <?php if ($member->p_level == 9) { echo 'selected'; } ?>><?php echo $permissions[9]; ?></option>
-                                                                    </select>
-                                                                </div>
+
+                                                            <p>
+                                                                <?= __("You can modify the users permission level for this Clubstation."); ?>
+                                                            </p>
+
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <thead class="table">
+                                                                        <tr>
+                                                                            <th class="text-center"><?= __("User Callsign"); ?></th>
+                                                                            <th class="text-center"><?= __("Permission"); ?></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-center pt-3">
+                                                                                <p><b><?php echo $member->user_callsign; ?> - <?php echo $member->user_firstname . ' ' . $member->user_lastname; ?></b></p>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select class="form-select" id="permission" name="permission" required>
+                                                                                    <option value="3" <?php if ($member->p_level == 3) { echo 'selected'; } ?>><?php echo $permissions[3]; ?></option>
+                                                                                    <option value="9" <?php if ($member->p_level == 9) { echo 'selected'; } ?>><?php echo $permissions[9]; ?></option>
+                                                                                </select>
+                                                                                <div class="mt-2 form-check d-flex justify-content-end text-muted">
+                                                                                    <input class="form-check-input me-2" type="checkbox" id="notify_user" name="notify_user">
+                                                                                    <input type="hidden" name="notify_message" value="modified_member">
+                                                                                    <label class="form-check-label" for="notify_user">
+                                                                                        <?= __("Notify the user via email about the change"); ?>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
+
                                                         <div class="modal-footer">
                                                             <button type="submit" class="btn btn-success"><?= __("Save"); ?></button>
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Cancel"); ?></button>

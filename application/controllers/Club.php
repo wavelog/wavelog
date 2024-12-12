@@ -118,6 +118,13 @@ class Club extends CI_Controller
 		}
 
 		$this->club_model->alter_member($club_id, $user_id, $p_level);
+
+		if ($this->input->post('notify_user', true) == 'on') {
+			if (!$this->notification($user_id, $club_id, $this->input->post('notify_message', true))) {
+				$this->session->set_flashdata('error', __("User could not be notified. Please check your email settings."));
+			}
+		}
+		
 		$this->session->set_flashdata('success', __("Club member permissions have been updated."));
 		redirect('club/permissions/'.$club_id);
 	}
@@ -166,6 +173,62 @@ class Club extends CI_Controller
 		$data['impersonate_hash'] = $this->encryption->encrypt($user_id . '/' . $cid . '/' . time());
 
 		$this->load->view('club/clubswitch_modal', $data);
+	}
+
+	private function notification($user_id, $club_id, $message) {
+
+		$this->load->library('email');
+		$this->load->model('club_model');
+
+		switch ($message) {
+			case 'new_member':
+				$view = 'email/club/new_member';
+				break;
+			case 'modified_member':
+				$view = 'email/club/modified_member';
+				break;
+			default:
+				log_message('error', "Club Notification; Can't notify user - Invalid message type.");
+				$this->session->set_flashdata('error', __("Invalid message type."));
+				redirect('club/permissions/'.$club_id);
+		}
+		
+		if($this->optionslib->get_option('emailProtocol') == "smtp") {
+			$config = [
+				'protocol' => $this->optionslib->get_option('emailProtocol'),
+				'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
+				'smtp_host' => $this->optionslib->get_option('smtpHost'),
+				'smtp_port' => $this->optionslib->get_option('smtpPort'),
+				'smtp_user' => $this->optionslib->get_option('smtpUsername'),
+				'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
+				'crlf' => "\r\n",
+				'newline' => "\r\n"
+			];
+			$this->email->initialize($config);
+
+		} else {
+			log_message('error', "Club Notification; Can't notify user - Email settings not configured.");
+			$this->session->set_flashdata('error', __("Email settings not configured."));
+			redirect('club/permissions/'.$club_id);
+		}
+
+		$user = $this->user_model->get_by_id($user_id)->row();
+		$club = $this->user_model->get_by_id($club_id)->row();
+		$permission = $this->club_model->get_permission($club_id, $user_id);
+		$permission_level = $this->permissions[$permission] ?? __("Unknown");
+
+		$mail_data['user_callsign'] = $user->user_callsign;
+		$mail_data['club_callsign'] = $club->user_callsign;
+		$mail_data['permission_level'] = $permission_level;
+
+		$message = $this->email->load($view, $mail_data, $user->user_language);
+
+		$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
+		$this->email->to($user->user_email);
+		$this->email->subject($message['subject']);
+		$this->email->message($message['body']);
+
+		return $this->email->send();
 	}
 	
 }
