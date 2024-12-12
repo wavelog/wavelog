@@ -359,13 +359,94 @@ class Update_model extends CI_Model {
 
 		curl_close($curl);
 
-        $mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $endtime = $mtime;
-        $totaltime = ($endtime - $starttime);
-        echo "This page was created in ".$totaltime." seconds <br />";
-        echo "Records inserted: " . $count . " <br/>";
+		$mtime = microtime();
+		$mtime = explode(" ",$mtime);
+		$mtime = $mtime[1] + $mtime[0];
+		$endtime = $mtime;
+		$totaltime = ($endtime - $starttime);
+		echo "This page was created in ".$totaltime." seconds <br />";
+		echo "Records inserted: " . $count . " <br/>";
 	}
+
+	 function lotw_sats() {
+		$url = 'https://lotw.arrl.org/lotw/config.tq6';
+		$curl = curl_init($url);
+
+		curl_setopt($curl, CURLOPT_FAILONERROR, true);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($curl, CURLOPT_BINARYTRANSFER,true);
+		curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+
+		$response = curl_exec($curl);
+		if (curl_errno($curl)) {
+			log_message('error', __('cURL error:').' '.curl_error($curl).' ('.curl_errno($curl).')');
+			return;
+		}
+		curl_close($curl);
+		$xmlstring = gzdecode($response);
+		if ($xmlstring === false) {
+			return;
+		}
+		$xml = simplexml_load_string($xmlstring);
+		if ($xml === false) {
+			return;
+		}
+
+		$existingSats = array();
+		$this->db->select('name, displayname, lotw');
+		$query = $this->db->get('satellite');
+		foreach($query->result() as $row) {
+			$existingSats[$row->name] = array($row->lotw, $row->displayname);
+		}
+
+		$result = array();
+
+		foreach ($xml->tqslconfig->satellites->satellite as $sat) {
+			$name = ($sat->attributes()->{'name'} ?? '')->__toString();
+			$startDate = $sat->attributes()->{'startDate'};
+			$endDate = $sat->attributes()->{'endDate'};
+			$displayname = ($sat ?? '')->__toString();
+			$status = '';
+
+			if (array_key_exists("$name", $existingSats)) {
+				if ($existingSats["$name"][0] == 'N') {
+					$this->db->set('lotw', 'Y');
+					$this->db->where('name', $name);
+					$this->db->update('satellite');
+					if ($this->db->affected_rows() > 0) {
+						$status = __('SAT already existing. LoTW status updated.');
+					} else {
+						$status = __('SAT already existing. Updating LoTW status failed.');
+					}
+				} else {
+					$status = __('SAT already existing. Ignored.');
+				}
+				if ($existingSats["$name"][1] == '') {
+					$this->db->set('displayname', $displayname);
+					$this->db->where('name', $name);
+					$this->db->update('satellite');
+					if ($this->db->affected_rows() > 0) {
+						$status = __('SAT already existing. Display name updated.');
+					} else {
+						$status = __('SAT already existing. Updating display name failed.');
+					}
+				}
+			} else {
+				$data = array(
+					'name' => $name,
+					'displayname' => $displayname,
+					'lotw' => 'Y',
+				);
+				if ($this->db->insert('satellite', $data)) {
+					$status = __('New SAT. Inserted.');
+				} else {
+					$status = __('New SAT. Insert failed.');
+				}
+			}
+			array_push($result, array('name' => $name, 'displayname' => $displayname, 'startDate' => $startDate, 'endDate' => $endDate, 'status' => $status));
+		}
+		return $result;
+	 }
 
 }

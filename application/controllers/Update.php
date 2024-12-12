@@ -389,11 +389,20 @@ class Update extends CI_Controller {
 
     }
 
-	public function update_tle() {
-		$this->load->model('Update_model');
+    public function update_tle() {
+        $this->load->model('Update_model');
         $result = $this->Update_model->tle();
         echo $result;
-	}
+    }
+
+    public function update_lotw_sats() {
+       $this->load->model('Update_model');
+       $bodyData['satupdates'] = $this->Update_model->lotw_sats();
+       $data['page_title'] = __("LoTW SAT Update");
+       $this->load->view('interface_assets/header', $data);
+       $this->load->view('lotw/satupdate', $bodyData);
+       $this->load->view('interface_assets/footer');
+    }
 
 	function version_check() {
 		// set the last run in cron table for the correct cron id
