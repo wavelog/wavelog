@@ -3718,7 +3718,7 @@ class Logbook_model extends CI_Model {
 		$query = $this->db->query($sql);
 		$row = $query->row();
 
-		if (isset($row)) {
+		if ($row->MAXDATE != null) {
 			return $row->MAXDATE;
 		}
 
