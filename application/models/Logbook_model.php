@@ -3552,7 +3552,7 @@ class Logbook_model extends CI_Model {
 		$binding[] = $mode;
 
 
-		if (isset($station_ids)) {
+		if ((isset($station_ids)) && (($station_ids ?? '') != '')) {
 			$sql .= ' AND station_id IN (' . $station_ids . ')';
 		}
 
@@ -3718,7 +3718,7 @@ class Logbook_model extends CI_Model {
 		$query = $this->db->query($sql);
 		$row = $query->row();
 
-		if (isset($row)) {
+		if ($row->MAXDATE != null) {
 			return $row->MAXDATE;
 		}
 

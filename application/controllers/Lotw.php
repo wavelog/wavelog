@@ -657,6 +657,7 @@ class Lotw extends CI_Controller {
 			foreach ($query->result() as $user) {
 				if ( ($sync_user_id != null) && ($sync_user_id != $user->user_id) ) { continue; }
 				$station_ids=$this->Stations->all_station_ids_of_user($user->user_id);
+				if ($station_ids == '') { continue; } // User has no Station-ID! next one
 
 				// Validate that LoTW credentials are not empty
 				// TODO: We don't actually see the error message
