@@ -402,7 +402,6 @@ class Update extends CI_Controller {
        $this->load->view('interface_assets/header', $data);
        $this->load->view('lotw/satupdate', $bodyData);
        $this->load->view('interface_assets/footer');
-       //echo $result;
     }
 
 	function version_check() {

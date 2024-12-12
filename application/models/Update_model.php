@@ -380,7 +380,7 @@ class Update_model extends CI_Model {
 
 		$response = curl_exec($curl);
 		if (curl_errno($curl)) {
-			echo __('cURL error:').' '.curl_error($curl).' ('.curl_errno($curl).')';
+			log_message('error', __('cURL error:').' '.curl_error($curl).' ('.curl_errno($curl).')');
 			return;
 		}
 		curl_close($curl);
