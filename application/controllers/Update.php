@@ -397,8 +397,12 @@ class Update extends CI_Controller {
 
     public function update_lotw_sats() {
        $this->load->model('Update_model');
-       $result = $this->Update_model->lotw_sats();
-       echo $result;
+       $bodyData['satupdates'] = $this->Update_model->lotw_sats();
+       $data['page_title'] = __("LoTW SAT Update");
+       $this->load->view('interface_assets/header', $data);
+       $this->load->view('lotw/satupdate', $bodyData);
+       $this->load->view('interface_assets/footer');
+       //echo $result;
     }
 
 	function version_check() {

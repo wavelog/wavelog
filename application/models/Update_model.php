@@ -393,13 +393,13 @@ class Update_model extends CI_Model {
 			$existingSats[$row->name] = array($row->lotw, $row->displayname);
 		}
 
-		print '<table>';
-		print '<tr><th>'.__('Name').'</th><th>'.__('Display Name').'</th><th>'.__('Start Date').'</th><th>'.__('End Date').'</th><th>'.__('Status').'</th></tr>';
+		$result = array();
+
 		foreach ($xml->tqslconfig->satellites->satellite as $sat) {
-			$name = $sat->attributes()->{'name'};
+			$name = ($sat->attributes()->{'name'} ?? '')->__toString();
 			$startDate = $sat->attributes()->{'startDate'};
 			$endDate = $sat->attributes()->{'endDate'};
-			$displayname = $sat;
+			$displayname = ($sat ?? '')->__toString();
 			$status = '';
 
 			if (array_key_exists("$name", $existingSats)) {
@@ -437,10 +437,9 @@ class Update_model extends CI_Model {
 					$status = __('New SAT. Insert failed.');
 				}
 			}
-			print('<tr><td>'.$name.'</td><td>'.$displayname.'</td><td>'.$startDate.'</td><td>'.$endDate.'</td><td>'.$status.'</td></tr>');
+			array_push($result, array('name' => $name, 'displayname' => $displayname, 'startDate' => $startDate, 'endDate' => $endDate, 'status' => $status));
 		}
-		print '</table>';
-		return;
+		return $result;
 	 }
 
 }

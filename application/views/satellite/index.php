@@ -13,6 +13,7 @@
 <div class="card">
   <div class="card-body">
   <button onclick="createSatelliteDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a satellite"); ?></button>
+  <a class="btn btn-primary btn-sm" href="<?php echo site_url('/update/update_lotw_sats'); ?>" role="button"><i class="fas fa-sync-alt"></i> <?= __("Sync Satellites from LoTW"); ?></a>
     <div class="table-responsive">
 
     <table style="width:100%" class="sattable table table-sm table-striped">
