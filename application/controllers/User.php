@@ -944,6 +944,7 @@ class User extends CI_Controller {
 						$this->user_model->update_session($uid);
 						$this->user_model->set_last_seen($uid);
 						log_message('info', "User ID: [$uid] logged in successfully with 'Keep Login'.");
+						$this->input->set_cookie('re_login', '', -3600, ''); // delete re_login cookie in case this was a re-login from a clubstation or impersonated user
 						redirect('dashboard');
 
 					} else {
