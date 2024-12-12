@@ -1044,8 +1044,6 @@ class User extends CI_Controller {
 		if ($hard_logout) {
 			$this->input->set_cookie('re_login', '', -3600, '');
 			$this->input->set_cookie('keep_login', '', -3600, '');
-		} else {
-			$this->input->set_cookie('re_login', '', -3600, '');
 		}
 
 		$this->user_model->clear_session();
