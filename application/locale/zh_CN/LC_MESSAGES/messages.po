@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-12 11:07+0000\n"
+"POT-Creation-Date: 2024-12-12 17:07+0000\n"
 "PO-Revision-Date: 2024-12-12 11:07+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -1048,7 +1048,7 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:169
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:409
-#: application/views/satellite/index.php:25
+#: application/views/satellite/index.php:26
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:563
@@ -1155,7 +1155,7 @@ msgstr "Clublog"
 #: application/views/qslprint/qsolist.php:9
 #: application/views/qso/components/previous_contacts.php:77
 #: application/views/qso/edit_ajax.php:119 application/views/qso/index.php:139
-#: application/views/satellite/index.php:24
+#: application/views/satellite/index.php:25
 #: application/views/search/cqzones_result.php:10
 #: application/views/search/ituzones_result.php:10
 #: application/views/search/lotw_unconfirmed_result.php:8
@@ -1916,7 +1916,7 @@ msgstr "默认（点击释放）"
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:584
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
-#: application/views/satellite/index.php:27
+#: application/views/satellite/index.php:28
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
@@ -1938,7 +1938,7 @@ msgstr "编辑"
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:57
-#: application/views/satellite/index.php:28
+#: application/views/satellite/index.php:29
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
@@ -2324,6 +2324,10 @@ msgstr "DXCC 例外："
 msgid "Dxcc Prefixes:"
 msgstr "DXCC 前缀："
 
+#: application/controllers/Update.php:401
+msgid "LoTW SAT Update"
+msgstr ""
+
 #: application/controllers/User.php:36
 #: application/views/interface_assets/header.php:276
 msgid "User Accounts"
@@ -2646,6 +2650,7 @@ msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:4574
+#: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
 msgid "unknown"
 msgstr "未知"
@@ -2657,6 +2662,38 @@ msgstr "有可用新版本："
 #: application/models/Update_model.php:304
 msgid "You are running the latest version."
 msgstr "您运行的已经是最新版本。"
+
+#: application/models/Update_model.php:383
+msgid "cURL error:"
+msgstr ""
+
+#: application/models/Update_model.php:418
+msgid "SAT already existing. LoTW status updated."
+msgstr ""
+
+#: application/models/Update_model.php:420
+msgid "SAT already existing. Updating LoTW status failed."
+msgstr ""
+
+#: application/models/Update_model.php:423
+msgid "SAT already existing. Ignored."
+msgstr ""
+
+#: application/models/Update_model.php:430
+msgid "SAT already existing. Display name updated."
+msgstr ""
+
+#: application/models/Update_model.php:432
+msgid "SAT already existing. Updating display name failed."
+msgstr ""
+
+#: application/models/Update_model.php:442
+msgid "New SAT. Inserted."
+msgstr ""
+
+#: application/models/Update_model.php:444
+msgid "New SAT. Insert failed."
+msgstr ""
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -3151,7 +3188,7 @@ msgstr "卫星"
 #: application/views/logbookadvanced/index.php:238
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
-#: application/views/satellite/index.php:23
+#: application/views/satellite/index.php:24
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
 msgid "Orbit"
@@ -3834,6 +3871,7 @@ msgid "Permissions"
 msgstr "权限"
 
 #: application/views/api/help.php:31 application/views/cron/index.php:54
+#: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:38
 #: application/views/mode/index.php:43
 #: application/views/oqrs/showrequests.php:91
@@ -3857,7 +3895,7 @@ msgstr "读 & 写"
 msgid "Read-Only"
 msgstr "只读"
 
-#: application/views/api/help.php:49 application/views/satellite/index.php:63
+#: application/views/api/help.php:49 application/views/satellite/index.php:64
 msgid "Unknown"
 msgstr "未知"
 
@@ -4636,6 +4674,7 @@ msgstr "显示IOTA地图"
 #: application/views/logbookadvanced/index.php:639
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:54
+#: application/views/lotw/satupdate.php:7
 #: application/views/qso/edit_ajax.php:170 application/views/qso/index.php:195
 #: application/views/satellite/edit.php:51
 #: application/views/search/result.php:16
@@ -5501,8 +5540,8 @@ msgstr ""
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
-#: application/views/satellite/index.php:57
-#: application/views/satellite/index.php:70
+#: application/views/satellite/index.php:58
+#: application/views/satellite/index.php:71
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
 #: application/views/station_profile/create.php:217
@@ -5551,8 +5590,8 @@ msgstr "是"
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
-#: application/views/satellite/index.php:60
-#: application/views/satellite/index.php:72
+#: application/views/satellite/index.php:61
+#: application/views/satellite/index.php:73
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/create.php:218
@@ -6392,12 +6431,14 @@ msgstr "最长QSO连续记录"
 #: application/views/dayswithqso/index.php:130
 #: application/views/dayswithqso/index.php:158
 #: application/views/dayswithqso/index.php:180
+#: application/views/lotw/satupdate.php:7
 msgid "Start Date"
 msgstr "开始时间"
 
 #: application/views/dayswithqso/index.php:131
 #: application/views/dayswithqso/index.php:159
 #: application/views/dayswithqso/index.php:181
+#: application/views/lotw/satupdate.php:7
 #: application/views/timeline/index.php:202
 msgid "End Date"
 msgstr "结束时间"
@@ -8642,6 +8683,11 @@ msgstr ""
 msgid "Import LoTW Matches"
 msgstr "导入 LoTW 匹配"
 
+#: application/views/lotw/satupdate.php:7
+#: application/views/satellite/index.php:23
+msgid "Display Name"
+msgstr "显示名称"
+
 #: application/views/lotw_views/index.php:4
 msgid "Upload folder is not writable. Please contact your admin."
 msgstr "上传目录非可写，请联系本站管理员。"
@@ -10195,7 +10241,7 @@ msgstr "显示/明文卫星名称"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
-#: application/views/satellite/index.php:21
+#: application/views/satellite/index.php:22
 msgid "LoTW Name"
 msgstr "LoTW 名称"
 
@@ -10282,11 +10328,11 @@ msgstr "添加卫星模式"
 msgid "Add a satellite"
 msgstr "添加卫星"
 
-#: application/views/satellite/index.php:22
-msgid "Display Name"
-msgstr "显示名称"
+#: application/views/satellite/index.php:16
+msgid "Sync Satellites from LoTW"
+msgstr ""
 
-#: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:27
 msgid "TLE"
 msgstr "TLE"
 
@@ -11942,9 +11988,13 @@ msgstr "地图设置"
 msgid "Icon"
 msgstr "图标"
 
-#: application/views/user/edit.php:484 application/views/user/edit.php:488
+#: application/views/user/edit.php:484
 msgid "Not display"
 msgstr "不显示"
+
+#: application/views/user/edit.php:488
+msgid "Not displayed"
+msgstr ""
 
 #: application/views/user/edit.php:497
 msgid "QSO (by default)"

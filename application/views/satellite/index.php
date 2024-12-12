@@ -13,6 +13,7 @@
 <div class="card">
   <div class="card-body">
   <button onclick="createSatelliteDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a satellite"); ?></button>
+  <a class="btn btn-primary btn-sm" href="<?php echo site_url('/update/update_lotw_sats'); ?>" role="button"><i class="fas fa-sync-alt"></i> <?= __("Sync Satellites from LoTW"); ?></a>
     <div class="table-responsive">
 
     <table style="width:100%" class="sattable table table-sm table-striped">
@@ -34,7 +35,7 @@
 					<td style="text-align: center; vertical-align: middle;" class="satellite_<?php echo $sat->id ?>"><?php echo htmlentities($sat->satname) ?></td>
 					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->displayname ? htmlentities($sat->displayname) : '' ?></td>
 					<?php echo '<td style="text-align: center; vertical-align: middle;"><span class="badge ';
-					switch (strtoupper($sat->orbit)) {
+					switch (strtoupper($sat->orbit ?? '')) {
 					case 'LEO':
 						echo 'bg-primary';
 						break;
@@ -42,13 +43,13 @@
 						echo 'bg-info';
 						break;
 					case 'GEO':
-						echo 'bg-warning';
+						echo 'bg-secondary';
 						break;
 					default:
-						echo 'bg-light';
+						echo 'bg-warning';
 						break;
 					}
-					echo '">'.$sat->orbit.'</span></td>';
+					echo '">'.($sat->orbit ?? __('unknown')).'</span></td>';
 					?>
 					<td style="text-align: center; vertical-align: middle;"><?php echo htmlentities($sat->modename ?? '') ?></td>
 					<?php echo '<td style="text-align: center; vertical-align: middle;">';
