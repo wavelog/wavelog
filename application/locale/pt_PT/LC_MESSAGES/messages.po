@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-10 14:07+0000\n"
-"PO-Revision-Date: 2024-12-07 19:16+0000\n"
+"POT-Creation-Date: 2024-12-12 11:07+0000\n"
+"PO-Revision-Date: 2024-12-11 17:54+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -61,7 +61,7 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
 #: application/controllers/Lotw.php:377 application/controllers/Lotw.php:400
-#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:834
+#: application/controllers/Lotw.php:730 application/controllers/Lotw.php:835
 #: application/controllers/Mode.php:15 application/controllers/Notes.php:10
 #: application/controllers/Options.php:15 application/controllers/Oqrs.php:15
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:282
@@ -1574,27 +1574,27 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "Informações sobre o ADIF LoTW"
 
-#: application/controllers/Lotw.php:735
+#: application/controllers/Lotw.php:736
 msgid "LoTW ADIF Import"
 msgstr "Importação ADIF LoTW"
 
-#: application/controllers/Lotw.php:761 application/controllers/Lotw.php:869
+#: application/controllers/Lotw.php:762 application/controllers/Lotw.php:870
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Não definiu as suas credenciais LoTW da ARRL !"
 
-#: application/controllers/Lotw.php:836
+#: application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
 msgstr "Enviar .TQ8 LoTW"
 
-#: application/controllers/Lotw.php:914
+#: application/controllers/Lotw.php:915
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "O seu nome de utilizador e/ou palavra-passe da ARRL está incorreto."
 
-#: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
+#: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
 msgstr ".TQ8 LoTW enviado"
 
-#: application/controllers/Lotw.php:945
+#: application/controllers/Lotw.php:946
 msgid "LoTW .TQ8 Not Sent"
 msgstr ".TQ8 LoTW não enviado"
 
@@ -1729,21 +1729,23 @@ msgstr ""
 #: application/controllers/Options.php:414
 #: application/views/options/sidebar.php:11
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Servidor de Maptiles"
 
 #: application/controllers/Options.php:473
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
+"Não foi possível remover a cache do Maptile. Elimine a pasta manualmente. "
+"Caminho: %s"
 
 #: application/controllers/Options.php:477
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "Opções de Maptile guardadas!"
 
 #: application/controllers/Options.php:479
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "Não foi possível guardar as opções do Maptile!"
 
 #: application/controllers/Options.php:490
 #: application/controllers/Options.php:500
@@ -6919,7 +6921,7 @@ msgstr "Descarregamento do ficheiro WWFF"
 
 #: application/views/debug/index.php:554
 msgid "TLE update"
-msgstr ""
+msgstr "Atualização de TLE"
 
 #: application/views/debug/index.php:563
 msgid "QSO-DB Maintenance"
@@ -9403,6 +9405,9 @@ msgid ""
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
 msgstr ""
+"Isto modifica a fonte do mapa em vários locais dentro do Wavelog. Não altere "
+"nenhum valor aqui a menos que tenha confiança no que está a fazer. Teste "
+"cada alteração no seu %sDashboard%s!"
 
 #: application/views/options/maptiles.php:50
 #, php-format
@@ -9410,54 +9415,61 @@ msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
 msgstr ""
+"Podes encontrar uma lista de definições testadas e todos os valores padrão "
+"na %sWavelog Wiki%s."
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "URL do Servidor de Maptiles"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
-msgstr ""
+msgstr "URL do servidor de mapas que fornece os tiles de mapas."
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
 msgstr ""
+"URL do servidor de Maptiles para Dark Tiles - APENAS API de Mapa Estático"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
 msgstr ""
+"URL do servidor de mapas que fornece os mapas escuros. Usado apenas para "
+"Mapas Estáticos."
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "Sistema de Subdomínio do Servidor Maptile"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
 msgstr ""
+"Sistema dos subdomínios neste servidor ({s} no URL). São usados para "
+"balanceamento de carga."
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
-msgstr ""
+msgstr "URL da Fonte de Direitos de Autor"
 
 #: application/views/options/maptiles.php:71
 msgid "Source URL for the copyright tag."
-msgstr ""
+msgstr "URL de origem para a tag de direitos autorais."
 
 #: application/views/options/maptiles.php:74
 msgid "Name of the Copyright Source"
-msgstr ""
+msgstr "Nome da Fonte de Direitos Autorais"
 
 #: application/views/options/maptiles.php:76
 msgid "Text for the copyright tag."
-msgstr ""
+msgstr "Texto para a etiqueta de direitos de autor."
 
 #: application/views/options/maptiles.php:81
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "Repor para os padrões"
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
@@ -10633,7 +10645,7 @@ msgstr "Nome de Exibição"
 
 #: application/views/satellite/index.php:26
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
@@ -10676,11 +10688,11 @@ msgstr "Carregar previsões"
 
 #: application/views/satellite/pass.php:534
 msgid "Add sked partner"
-msgstr ""
+msgstr "Adicionar parceiro de sked"
 
 #: application/views/satellite/pass.php:536
 msgid "No TLE information detected. Please update TLE's."
-msgstr ""
+msgstr "Nenhuma informação TLE detectada. Por favor, atualize os TLE's."
 
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:8
@@ -10718,11 +10730,12 @@ msgstr "Azimute LOS"
 #: application/views/satellite/passtable.php:30
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
-msgstr ""
+msgstr "Falha na pesquisa!"
 
 #: application/views/satellite/passtable.php:31
 msgid "No passes found. Please check the input parameters."
 msgstr ""
+"Nenhuma passagem encontrada. Por favor, verifique os parâmetros de entrada."
 
 #: application/views/satellite/passtable.php:40
 #: application/views/satellite/skedtable.php:93
@@ -10731,19 +10744,21 @@ msgstr "minuto"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
-msgstr ""
+msgstr "Grelha"
 
 #: application/views/satellite/skedtable.php:58
 msgid "Sked AOS Time"
-msgstr ""
+msgstr "Hora AOS do Sked"
 
 #: application/views/satellite/skedtable.php:59
 msgid "Sked LOS Time"
-msgstr ""
+msgstr "Hora LOS do Sked"
 
 #: application/views/satellite/skedtable.php:84
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
+"Nenhuma passagem sobreposta encontrada. Por favor, verifique os parâmetros "
+"de entrada."
 
 #: application/views/sattimers/index.php:15
 #, php-format

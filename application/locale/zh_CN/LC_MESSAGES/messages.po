@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-10 14:07+0000\n"
-"PO-Revision-Date: 2024-12-09 08:04+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
+"PO-Revision-Date: 2024-12-12 11:07+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -117,6 +117,7 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1046
 #: application/controllers/User.php:1248
 #: application/controllers/User_options.php:9
+#: application/controllers/Lotw.php:730 application/controllers/Lotw.php:835
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -1566,27 +1567,29 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:735
+#: application/controllers/Lotw.php:735 application/controllers/Lotw.php:736
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
 #: application/controllers/Lotw.php:761 application/controllers/Lotw.php:869
+#: application/controllers/Lotw.php:762 application/controllers/Lotw.php:870
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Lotw.php:836
+#: application/controllers/Lotw.php:836 application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 导入"
 
-#: application/controllers/Lotw.php:914
+#: application/controllers/Lotw.php:914 application/controllers/Lotw.php:915
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "LoTW 用户名/密码错误。"
 
 #: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
+#: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 已发送"
 
-#: application/controllers/Lotw.php:945
+#: application/controllers/Lotw.php:945 application/controllers/Lotw.php:946
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
@@ -1725,15 +1728,15 @@ msgstr "Maptiles 服务器"
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
-msgstr ""
+msgstr "地图瓦片缓存文件无法删除，请手动删除： %s"
 
 #: application/controllers/Options.php:477
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "地图瓦片设置已保存！"
 
 #: application/controllers/Options.php:479
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "地图瓦片设置无法保存！"
 
 #: application/controllers/Options.php:490
 #: application/controllers/Options.php:500
@@ -6715,7 +6718,7 @@ msgstr "下载 WWFF 文件"
 
 #: application/views/debug/index.php:554
 msgid "TLE update"
-msgstr ""
+msgstr "TLE 更新"
 
 #: application/views/debug/index.php:563
 msgid "QSO-DB Maintenance"
@@ -8426,7 +8429,7 @@ msgstr "用选中行的条件进行快速搜索： "
 
 #: application/views/logbookadvanced/index.php:500
 msgid "Search Date"
-msgstr "搜索信息"
+msgstr "搜索日期"
 
 #: application/views/logbookadvanced/index.php:506
 msgid "Search DXCC"
@@ -9106,61 +9109,63 @@ msgid ""
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
 msgstr ""
+"此处更改 Wavelog 使用的地图源，更改有风险，请修改后在 %s仪表板%s 页面进行测"
+"试！"
 
 #: application/views/options/maptiles.php:50
 #, php-format
 msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
-msgstr ""
+msgstr "%sWavelog Wiki%s 上有已测试通过的设置组合。"
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "瓦片服务器 URL"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
-msgstr ""
+msgstr "地图瓦片服务器网址。"
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
-msgstr ""
+msgstr "瓦片服务器 URL (深色模式) - 仅可用于静态地图 API"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
-msgstr ""
+msgstr "地图瓦片服务器网址 (深色模式)，仅用于生成静态地图。"
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "瓦片服务器分流域名"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
-msgstr ""
+msgstr "瓦片服务器网址中的 {s} 部分，用于负载均衡。"
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
-msgstr ""
+msgstr "版权内容网址"
 
 #: application/views/options/maptiles.php:71
 msgid "Source URL for the copyright tag."
-msgstr ""
+msgstr "版权内容网址的显示文本。"
 
 #: application/views/options/maptiles.php:74
 msgid "Name of the Copyright Source"
-msgstr ""
+msgstr "版权方名称"
 
 #: application/views/options/maptiles.php:76
 msgid "Text for the copyright tag."
-msgstr ""
+msgstr "版权方名称显示文本。"
 
 #: application/views/options/maptiles.php:81
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "重置默认值"
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
@@ -10286,7 +10291,7 @@ msgstr "显示名称"
 
 #: application/views/satellite/index.php:26
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
@@ -10329,11 +10334,11 @@ msgstr "加载预测"
 
 #: application/views/satellite/pass.php:534
 msgid "Add sked partner"
-msgstr ""
+msgstr "添加通联伙伴"
 
 #: application/views/satellite/pass.php:536
 msgid "No TLE information detected. Please update TLE's."
-msgstr ""
+msgstr "没有找到TLE信息，请更新TLE信息。"
 
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:8
@@ -10371,32 +10376,32 @@ msgstr "LOS 方位角"
 #: application/views/satellite/passtable.php:30
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
-msgstr ""
+msgstr "搜索失败！"
 
 #: application/views/satellite/passtable.php:31
 msgid "No passes found. Please check the input parameters."
-msgstr ""
+msgstr "没有找到卫星通过。请检查输入参数。"
 
 #: application/views/satellite/passtable.php:40
 #: application/views/satellite/skedtable.php:93
 msgid "min"
-msgstr "持续时间"
+msgstr "分钟"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
-msgstr ""
+msgstr "网格"
 
 #: application/views/satellite/skedtable.php:58
 msgid "Sked AOS Time"
-msgstr ""
+msgstr "预计信号捕获时间"
 
 #: application/views/satellite/skedtable.php:59
 msgid "Sked LOS Time"
-msgstr ""
+msgstr "预计信号消失时间"
 
 #: application/views/satellite/skedtable.php:84
 msgid "No overlapping passes found. Please check the input parameters."
-msgstr ""
+msgstr "未发现重叠传输。请检查输入参数。"
 
 #: application/views/sattimers/index.php:15
 #, php-format
