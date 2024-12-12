@@ -485,7 +485,7 @@
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="station">
 												<?php foreach($map_icon_select['station'] as $val) {
-													echo "<label data-value='".$val."'>".(($val=="0")?__("Not display"):("<i class='".$val."'></i>"))."</label>";
+													echo "<label data-value='".$val."'>".(($val=="0")?__("Not displayed"):("<i class='".$val."'></i>"))."</label>";
 												} ?>
 											</div>
 										</div>
