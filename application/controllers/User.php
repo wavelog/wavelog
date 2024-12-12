@@ -1035,14 +1035,16 @@ class User extends CI_Controller {
 		}
 	}
 
-	function logout($custom_message = null, $skip_redirect = true) {
+	function logout($custom_message = null, $hard_logout = true) {
 		$this->load->model('user_model');
 
 		$user_name = $this->session->userdata('user_name');
 
 		// Delete keep_login cookie
-		$this->input->set_cookie('keep_login', '', -3600, '');
-		if ($skip_redirect) {
+		if ($hard_logout) {
+			$this->input->set_cookie('re_login', '', -3600, '');
+			$this->input->set_cookie('keep_login', '', -3600, '');
+		} else {
 			$this->input->set_cookie('re_login', '', -3600, '');
 		}
 
