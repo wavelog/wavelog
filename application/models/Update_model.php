@@ -384,7 +384,14 @@ class Update_model extends CI_Model {
 			return;
 		}
 		curl_close($curl);
-		$xml = simplexml_load_string(gzdecode($response));
+		$xmlstring = gzdecode($response);
+		if ($xmlstring === false) {
+			return;
+		}
+		$xml = simplexml_load_string($xmlstring);
+		if ($xml === false) {
+			return;
+		}
 
 		$existingSats = array();
 		$this->db->select('name, displayname, lotw');
