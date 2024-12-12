@@ -963,6 +963,7 @@ class User extends CI_Controller {
 
 					// Delete keep_login cookie
 					$this->input->set_cookie('keep_login', '', -3600, '');
+					$this->input->set_cookie('re_login', '', -3600, '');
 					$this->session->set_flashdata('error', __("Login failed. Try again."));
 					redirect('user/login');
 				}
@@ -972,6 +973,7 @@ class User extends CI_Controller {
 
 				// Delete keep_login cookie
 				$this->input->set_cookie('keep_login', '', -3600, '');
+				$this->input->set_cookie('re_login', '', -3600, '');
 
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
 				redirect('user/login');
@@ -1032,13 +1034,16 @@ class User extends CI_Controller {
 		}
 	}
 
-	function logout($custom_message = null) {
+	function logout($custom_message = null, $skip_redirect = true) {
 		$this->load->model('user_model');
 
 		$user_name = $this->session->userdata('user_name');
 
 		// Delete keep_login cookie
 		$this->input->set_cookie('keep_login', '', -3600, '');
+		if ($skip_redirect) {
+			$this->input->set_cookie('re_login', '', -3600, '');
+		}
 
 		$this->user_model->clear_session();
 		
@@ -1471,6 +1476,6 @@ class User extends CI_Controller {
 
 		// log out on the regular way
 		$msg = ['notice', sprintf(__("You have been logged out of the clubstation %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
-		$this->logout($msg);
+		$this->logout($msg, false);
 	}
 }
