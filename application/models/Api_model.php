@@ -77,8 +77,8 @@ class API_Model extends CI_Model {
 	// Generate API Key
 	function generate_key($rights, $creator = NULL) {
 
-		// Generate Unique Key
-		$data['key'] = uniqid("wl");
+		// Generate Unique Key	
+		$data['key'] = "wl" . substr(md5(uniqid(rand(), true)), 19);
 		$data['rights'] = $rights;
 
 		// Set API key to active
