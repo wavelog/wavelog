@@ -192,17 +192,14 @@ class Club_model extends CI_Model {
             redirect('dashboard');
         }
 
-        $binding = [];
-        $sql = "DELETE FROM club_permissions WHERE club_id = ? AND user_id = ?";
-        $binding[] = $club_id;
-        $binding[] = $user_id;
-
-        if ($this->db->query($sql, $binding)) {
+        try {
+            $this->db->query('DELETE FROM club_permissions WHERE club_id = ? AND user_id = ?', [$club_id, $user_id]);
+            $this->db->query('DELETE FROM api WHERE user_id = ? AND created_by = ?', [$club_id, $user_id]);
+            $this->db->query('DELETE FROM cat WHERE user_id = ? AND operator = ?', [$club_id, $user_id]);
             return true;
-        } else {
-            $this->session->set_flashdata('error', __("Error removing Club Member!"));
-            redirect('club/permissions/' . $club_id);
+        } catch (Exception $e) {
+            log_message('error', 'Error deleting Club Member: ' . $e->getMessage());
+            return false;
         }
     }
-
 }

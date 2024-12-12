@@ -146,8 +146,11 @@ class Club extends CI_Controller
 			redirect('dashboard'); 
 		}
 
-		$this->club_model->delete_member($club_id, $user_id);
-		$this->session->set_flashdata('success', __("User removed from club."));
+		if ($this->club_model->delete_member($club_id, $user_id)) {
+			$this->session->set_flashdata('success', __("User removed from club."));
+		} else {
+			$this->session->set_flashdata('error', __("User could not be removed from club."));
+		}
 		redirect('club/permissions/'.$club_id);
 	}
 
