@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-12 11:07+0000\n"
+"POT-Creation-Date: 2024-12-12 13:41+0000\n"
 "PO-Revision-Date: 2024-12-10 11:08+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1055,7 +1055,7 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:169
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:409
-#: application/views/satellite/index.php:25
+#: application/views/satellite/index.php:26
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:563
@@ -1162,7 +1162,7 @@ msgstr "Clublog"
 #: application/views/qslprint/qsolist.php:9
 #: application/views/qso/components/previous_contacts.php:77
 #: application/views/qso/edit_ajax.php:119 application/views/qso/index.php:139
-#: application/views/satellite/index.php:24
+#: application/views/satellite/index.php:25
 #: application/views/search/cqzones_result.php:10
 #: application/views/search/ituzones_result.php:10
 #: application/views/search/lotw_unconfirmed_result.php:8
@@ -1933,7 +1933,7 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:584
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
-#: application/views/satellite/index.php:27
+#: application/views/satellite/index.php:28
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
@@ -1955,7 +1955,7 @@ msgstr "Редактировать"
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:57
-#: application/views/satellite/index.php:28
+#: application/views/satellite/index.php:29
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
@@ -2347,6 +2347,10 @@ msgstr "Исключения DXCC:"
 msgid "Dxcc Prefixes:"
 msgstr "Префиксы DXCC:"
 
+#: application/controllers/Update.php:401
+msgid "LoTW SAT Update"
+msgstr ""
+
 #: application/controllers/User.php:36
 #: application/views/interface_assets/header.php:276
 msgid "User Accounts"
@@ -2686,6 +2690,7 @@ msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:4574
+#: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
 msgid "unknown"
 msgstr "неизвестно"
@@ -2697,6 +2702,38 @@ msgstr "Доступна новая версия:"
 #: application/models/Update_model.php:304
 msgid "You are running the latest version."
 msgstr "Вы используете последнюю версию."
+
+#: application/models/Update_model.php:383
+msgid "cURL error:"
+msgstr ""
+
+#: application/models/Update_model.php:418
+msgid "SAT already existing. LoTW status updated."
+msgstr ""
+
+#: application/models/Update_model.php:420
+msgid "SAT already existing. Updating LoTW status failed."
+msgstr ""
+
+#: application/models/Update_model.php:423
+msgid "SAT already existing. Ignored."
+msgstr ""
+
+#: application/models/Update_model.php:430
+msgid "SAT already existing. Display name updated."
+msgstr ""
+
+#: application/models/Update_model.php:432
+msgid "SAT already existing. Updating display name failed."
+msgstr ""
+
+#: application/models/Update_model.php:442
+msgid "New SAT. Inserted."
+msgstr ""
+
+#: application/models/Update_model.php:444
+msgid "New SAT. Insert failed."
+msgstr ""
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -3191,7 +3228,7 @@ msgstr "Спутник"
 #: application/views/logbookadvanced/index.php:238
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
-#: application/views/satellite/index.php:23
+#: application/views/satellite/index.php:24
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
 msgid "Orbit"
@@ -3898,6 +3935,7 @@ msgid "Permissions"
 msgstr "Разрешения"
 
 #: application/views/api/help.php:31 application/views/cron/index.php:54
+#: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:38
 #: application/views/mode/index.php:43
 #: application/views/oqrs/showrequests.php:91
@@ -3921,7 +3959,7 @@ msgstr "Чтение и Запись"
 msgid "Read-Only"
 msgstr "Только Чтение"
 
-#: application/views/api/help.php:49 application/views/satellite/index.php:63
+#: application/views/api/help.php:49 application/views/satellite/index.php:64
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -4740,6 +4778,7 @@ msgstr "Показать карту IOTA"
 #: application/views/logbookadvanced/index.php:639
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:54
+#: application/views/lotw/satupdate.php:7
 #: application/views/qso/edit_ajax.php:170 application/views/qso/index.php:195
 #: application/views/satellite/edit.php:51
 #: application/views/search/result.php:16
@@ -5658,8 +5697,8 @@ msgstr ""
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
-#: application/views/satellite/index.php:57
-#: application/views/satellite/index.php:70
+#: application/views/satellite/index.php:58
+#: application/views/satellite/index.php:71
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
 #: application/views/station_profile/create.php:217
@@ -5708,8 +5747,8 @@ msgstr "Да"
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
-#: application/views/satellite/index.php:60
-#: application/views/satellite/index.php:72
+#: application/views/satellite/index.php:61
+#: application/views/satellite/index.php:73
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/create.php:218
@@ -6581,12 +6620,14 @@ msgstr "Серия (несколько дней с QSO подряд)"
 #: application/views/dayswithqso/index.php:130
 #: application/views/dayswithqso/index.php:158
 #: application/views/dayswithqso/index.php:180
+#: application/views/lotw/satupdate.php:7
 msgid "Start Date"
 msgstr "Дата начала"
 
 #: application/views/dayswithqso/index.php:131
 #: application/views/dayswithqso/index.php:159
 #: application/views/dayswithqso/index.php:181
+#: application/views/lotw/satupdate.php:7
 #: application/views/timeline/index.php:202
 msgid "End Date"
 msgstr "Дата окончания"
@@ -8891,6 +8932,11 @@ msgstr ""
 msgid "Import LoTW Matches"
 msgstr "Импортировать совпадения с LoTW"
 
+#: application/views/lotw/satupdate.php:7
+#: application/views/satellite/index.php:23
+msgid "Display Name"
+msgstr "Отображаемое название"
+
 #: application/views/lotw_views/index.php:4
 msgid "Upload folder is not writable. Please contact your admin."
 msgstr ""
@@ -10529,7 +10575,7 @@ msgstr "Отображаемое / открытое название спутн�
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
-#: application/views/satellite/index.php:21
+#: application/views/satellite/index.php:22
 msgid "LoTW Name"
 msgstr "Название для LoTW"
 
@@ -10617,11 +10663,11 @@ msgstr "Добавить вид модуляции (для спутника)"
 msgid "Add a satellite"
 msgstr "Добавить спутник"
 
-#: application/views/satellite/index.php:22
-msgid "Display Name"
-msgstr "Отображаемое название"
+#: application/views/satellite/index.php:16
+msgid "Sync Satellites from LoTW"
+msgstr ""
 
-#: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:27
 msgid "TLE"
 msgstr "TLE"
 
