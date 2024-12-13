@@ -1095,11 +1095,11 @@ class User extends CI_Controller {
 			redirect('dashboard'); // Redirect to dashboard if form validation fails to show the wizard again
 		} else {
 			if ($this->user_model->firstlogin_wizard($stationdata)) {
-				$this->session->set_flashdata('success', sprintf(__("Station created successfully! Welcome to Wavelog! To complete your Stationsetup click %shere%s."), '<a href="'.site_url('stationsetup').'"><u>', '</u></a>'));
+				$this->session->set_flashdata('success', sprintf(__("Station created successfully! Welcome to Wavelog! To complete your station setup, click %shere%s."), '<a href="'.site_url('stationsetup').'"><u>', '</u></a>'));
 				redirect('dashboard');
 			} else {
-				$this->session->set_flashdata('error', sprintf(__("Stationsetup failed! Please set up your station manually. Click %shere%s to do so."), '<a href="'.site_url('stationsetup').'"><u>', '</u></a>'));
-				redirect('dashboard');
+				$this->session->set_flashdata('error', __("Station setup failed! Please set up your station manually."));
+				redirect('stationsetup');
 			}
 		}
 		

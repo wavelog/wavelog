@@ -839,7 +839,7 @@ class User_Model extends CI_Model {
 
 	function firstlogin_wizard($stationdata) {
 		if (empty($stationdata)) {
-			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));  // We try to setup the station only once, so we set the user_option to 1 to prevent the wizard from showing up again
+			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));  // The station setup is attempted only once, so we set the user_option to 1 to prevent the wizard from appearing again.
 			return false;
 		}
 
@@ -886,7 +886,7 @@ class User_Model extends CI_Model {
 
 		} catch (Exception $e) {
 			log_message('error', 'Firstlogin wizard failed: ' . $e->getMessage());
-			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));  // We try to setup the station only once, so we set the user_option to 1 to prevent the wizard from showing up again
+			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));  // The station setup is attempted only once, so we set the user_option to 1 to prevent the wizard from appearing again.
 			return false;
 		}
 	}
