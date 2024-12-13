@@ -262,23 +262,6 @@ class User_Model extends CI_Model {
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'qso_tab','sig','show',".(xss_clean($user_sig_to_qso_tab ?? 'off') == "on" ? 1 : 0).");");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'qso_tab','dok','show',".(xss_clean($user_dok_to_qso_tab ?? 'off') == "on" ? 1 : 0).");");
 
-			$this->db->query("insert into station_logbooks (user_id, logbook_name, modified, public_slug, public_search) values (" . $insert_id . ", 'Home Logbook', null, null, false);"); // Hardcoding to "Logbook" name
-			$station_logbooks_insert_id = $this->db->insert_id();
-
-			$this->db->query("UPDATE users SET active_station_logbook = ? WHERE user_id = ?", [$station_logbooks_insert_id, $insert_id]);
-
-			$this->load->model('logbook_model');
-			$userdxcc = $this->logbook_model->dxcc_lookup(strtoupper(trim(xss_clean($callsign))), date('Ymd', time()));
-
-			$this->db->query("INSERT INTO station_profile (station_profile_name, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power,
-			station_dxcc, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, qrzapikey, county, station_sig, station_sig_info, qrzrealtime,
-			user_id, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email, webadifapikey, webadifapiurl, webadifrealtime, clublogignore, clublogrealtime, hrdlogrealtime, hrdlog_code, hrdlog_username) VALUES
-			('Home QTH', '" . xss_clean($locator) ."', 'Home City', '', '', '" . xss_clean($callsign) ."', NULL, ". $userdxcc['adif'] . ", '', ". $userdxcc['cqz'] . ", ". $userdxcc['ituz'] . ", 1, '','','','','','',0, ". $insert_id . ", '', '',0,'',0,'','https://qo100dx.club/api',0,0,0,0,'','')");
-
-			$station_profile_insert_id = $this->db->insert_id();
-
-			$this->db->query("INSERT INTO station_logbooks_relationship (station_logbook_id, station_location_id,modified) VALUES (" . $station_logbooks_insert_id . ", " . $station_profile_insert_id . ",NULL);");
-
 			return OK;
 		} else {
 			return EUSERNAMEEXISTS;
@@ -681,9 +664,9 @@ class User_Model extends CI_Model {
 			}
 		}
 		$this->db->from('users');
-
+	
 		$result = $this->db->get();
-
+	
 		return $result;
 	}
 
@@ -831,16 +814,16 @@ class User_Model extends CI_Model {
 
 	function convert($user_id, $clubstation) {
 		$clubstation_value = ($clubstation == true) ? 1 : 0;
-
+	
 		$sql = "UPDATE users SET clubstation = ? WHERE user_id = ?;";
-
+	
 		$this->db->trans_start();
-
+	
 		if (!$this->db->query($sql, [$clubstation_value, $user_id])) {
 			$this->db->trans_rollback();
 			return false;
 		}
-
+	
 		if ($clubstation) {
 			$delete_sql = "DELETE FROM club_permissions WHERE club_id = ?;";
 			if (!$this->db->query($delete_sql, [$user_id])) {
@@ -848,9 +831,9 @@ class User_Model extends CI_Model {
 				return false;
 			}
 		}
-
+	
 		$this->db->trans_complete();
-
+	
 		return $this->db->trans_status();
 	}
 
