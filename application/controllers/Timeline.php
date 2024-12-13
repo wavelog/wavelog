@@ -44,6 +44,12 @@ class Timeline extends CI_Controller {
 			$award = 'dxcc';
 		}
 
+		if ($this->input->post('year') != NULL) {
+			$year = $this->security->xss_clean($this->input->post('year'));
+		} else {
+			$year = 'All';
+		}
+
 		if ($this->input->post('qsl') != NULL) {
 			$qsl = $this->security->xss_clean($this->input->post('qsl'));
 		} else {
@@ -68,17 +74,32 @@ class Timeline extends CI_Controller {
 			$eqsl = '0';
 		}
 
+		if ($this->input->post('qrz') != NULL) {
+			$qrz = $this->security->xss_clean($this->input->post('qrz'));
+		} else {
+			$qrz = '0';
+		}
+
+		if ($this->input->post('onlynew') != NULL) {
+			$onlynew = $this->security->xss_clean($this->input->post('onlynew'));
+		} else {
+			$onlynew = '0';
+		}
+
 		$this->load->model('modes');
 		$this->load->model('bands');
 
 		$data['modes'] = $this->modes->active();
 
-		$data['timeline_array'] = $this->Timeline_model->get_timeline($band, $mode, $propmode, $award, $qsl, $lotw, $eqsl, $clublog);
+		$data['timeline_array'] = $this->Timeline_model->get_timeline($band, $mode, $propmode, $award, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew);
 		$data['worked_bands'] = $this->bands->get_worked_bands();
 		$data['bandselect'] = $band;
 		$data['modeselect'] = $mode;
 		$data['propmode'] = $propmode;
 		$data['user_default_band'] = $this->session->userdata('user_default_band');
+		$data['years'] = $this->Timeline_model->get_years();
+		$data['onlynew'] = $onlynew;
+		$data['selectedyear'] = $year;
 
 		$footerData['scripts'] = [ 'assets/js/sections/timeline.js?' ];
 		$this->load->view('interface_assets/header', $data);

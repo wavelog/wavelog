@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-28 07:17+0000\n"
+"POT-Creation-Date: 2024-12-04 21:58+0000\n"
 "PO-Revision-Date: 2024-10-17 14:28+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
@@ -22,22 +22,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.7.2\n"
-
-#: install/includes/core/database_class.php:59
-msgid "Connection Error: "
-msgstr "Verbindungsfehler: "
-
-#: install/includes/core/database_class.php:63
-msgid "Unable to create database: "
-msgstr "Datenbank konnte nicht erstellt werden: "
-
-#: install/includes/core/database_class.php:68
-msgid "Unable to select database: "
-msgstr "Datenbank kann nicht ausgewählt werden: "
-
-#: install/includes/core/database_class.php:74
-msgid "Database is not empty."
-msgstr "Datenbank ist nicht leer."
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -835,6 +819,18 @@ msgstr "Konnte DXCC-Daten nicht aktualisieren"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Konnte die install/.lock Datei nicht anlegen"
+
+#~ msgid "Connection Error: "
+#~ msgstr "Verbindungsfehler: "
+
+#~ msgid "Unable to create database: "
+#~ msgstr "Datenbank konnte nicht erstellt werden: "
+
+#~ msgid "Unable to select database: "
+#~ msgstr "Datenbank kann nicht ausgewählt werden: "
+
+#~ msgid "Database is not empty."
+#~ msgstr "Datenbank ist nicht leer."
 
 #~ msgctxt "DXCC Select - No DXCC"
 #~ msgid "- NONE - (e.g. /MM, /AM)"

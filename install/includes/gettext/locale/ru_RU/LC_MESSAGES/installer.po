@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-11-28 07:17+0000\n"
-"PO-Revision-Date: 2024-09-27 16:01+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"POT-Creation-Date: 2024-12-04 21:58+0000\n"
+"PO-Revision-Date: 2024-12-04 13:15+0000\n"
+"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
 "installer/ru/>\n"
 "Language: ru_RU\n"
@@ -20,23 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.7.2\n"
-
-#: install/includes/core/database_class.php:59
-msgid "Connection Error: "
-msgstr "Ошибка подключения: "
-
-#: install/includes/core/database_class.php:63
-msgid "Unable to create database: "
-msgstr "Не удаётся создать базу данных: "
-
-#: install/includes/core/database_class.php:68
-msgid "Unable to select database: "
-msgstr "Не удаётся выбрать базу данных: "
-
-#: install/includes/core/database_class.php:74
-msgid "Database is not empty."
-msgstr "База данных не пуста."
+"X-Generator: Weblate 5.8.4\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -76,7 +60,7 @@ msgstr "Английский"
 
 #: install/includes/interface_assets/footer.php:62
 msgid "Estonian"
-msgstr ""
+msgstr "Эстонский"
 
 #: install/includes/interface_assets/footer.php:63
 msgid "Finnish"
@@ -100,11 +84,11 @@ msgstr "Итальянский"
 
 #: install/includes/interface_assets/footer.php:68
 msgid "Latvian"
-msgstr ""
+msgstr "Латышский"
 
 #: install/includes/interface_assets/footer.php:69
 msgid "Lithuanian"
-msgstr ""
+msgstr "Литовский"
 
 #: install/includes/interface_assets/footer.php:70
 msgid "Montenegrin"
@@ -514,7 +498,7 @@ msgstr "DXCC"
 
 #: install/index.php:488
 msgid "Please select one"
-msgstr ""
+msgstr "Пожалуйста, выберите одно"
 
 #: install/index.php:489 install/index.php:495 install/index.php:519
 #: install/index.php:531 install/index.php:534 install/index.php:539
@@ -647,12 +631,16 @@ msgid ""
 "The callsign should not contain any pre- or suffixes as it is used as "
 "personal operator callsign."
 msgstr ""
+"Позывной не должен содержать никаких префиксов или суффиксов, так как он "
+"используется как личный позывной оператора."
 
 #: install/index.php:1353
 msgid ""
 "The callsign can not contain any special characters. It's your personal "
 "callsign without any pre- or suffixes."
 msgstr ""
+"Позывной не может содержать специальных символов. Это ваш личный позывной "
+"без каких-либо префиксов или суффиксов."
 
 #: install/index.php:1522
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
@@ -821,6 +809,18 @@ msgstr "Не удалось обновить данные DXCC"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Не удалось создать файл install/.lock"
+
+#~ msgid "Connection Error: "
+#~ msgstr "Ошибка подключения: "
+
+#~ msgid "Unable to create database: "
+#~ msgstr "Не удаётся создать базу данных: "
+
+#~ msgid "Unable to select database: "
+#~ msgstr "Не удаётся выбрать базу данных: "
+
+#~ msgid "Database is not empty."
+#~ msgstr "База данных не пуста."
 
 #~ msgctxt "DXCC Select - No DXCC"
 #~ msgid "- NONE - (e.g. /MM, /AM)"
