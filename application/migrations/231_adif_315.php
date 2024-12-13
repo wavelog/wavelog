@@ -449,22 +449,24 @@ class Migration_adif_315 extends CI_Migration {
          * https://adif.org/315/ADIF_315_annotated.htm#Contest_ID
          */
 
-        $contests = [];
-
-        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian EME Trophy', 'ARI-EME', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-EME');";
-        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (13cm+)', 'ARI-IAC-13CM', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-13CM');";
-        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (23cm)', 'ARI-IAC-23CM', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-23CM');";
-        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (6m)', 'ARI-IAC-6M', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-6M');";
-        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (UHF)', 'ARI-IAC-UHF', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-UHF');";
-        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'ARI Italian Activity Contest (VHF)', 'ARI-IAC-VHF', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'ARI-IAC-VHF');";
-        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'DARC FT4 Contest', 'DARC-FT4', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'DARC-FT4');";
-        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'K1USN Slow Speed Open', 'K1USN-SSO', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'K1USN-SSO');";
-        $contests[] = "INSERT INTO contest (name, adifname, active) SELECT 'PCCPro CW Contest', 'PCC', 1 WHERE NOT EXISTS (SELECT 1 FROM contest WHERE adifname = 'PCC');";
+        $new_c = [
+            ['name' => 'ARI Italian EME Trophy', 'adifname' => 'ARI-EME'],
+            ['name' => 'ARI Italian Activity Contest (13cm+)', 'adifname' => 'ARI-IAC-13CM'],
+            ['name' => 'ARI Italian Activity Contest (23cm)', 'adifname' => 'ARI-IAC-23CM'],
+            ['name' => 'ARI Italian Activity Contest (6m)', 'adifname' => 'ARI-IAC-6M'],
+            ['name' => 'ARI Italian Activity Contest (UHF)', 'adifname' => 'ARI-IAC-UHF'],
+            ['name' => 'ARI Italian Activity Contest (VHF)', 'adifname' => 'ARI-IAC-VHF'],
+            ['name' => 'DARC FT4 Contest', 'adifname' => 'DARC-FT4'],
+            ['name' => 'K1USN Slow Speed Open', 'adifname' => 'K1USN-SSO'],
+            ['name' => 'PCCPro CW Contest', 'adifname' => 'PCC'],
+        ];
         
-        // Run the querys
         try {
-            foreach ($contests as $query) {
-                $this->db->query($query);
+            foreach ($new_c as $c) {
+                $query = $this->db->query("SELECT 1 FROM contest WHERE adifname = ?", [$c['adifname']]);
+                if ($query->num_rows() == 0) {
+                    $this->db->query("INSERT INTO contest (name, adifname, active) VALUES (?, ?, 1);", [$c['name'], $c['adifname']]);
+                }
             }
         } catch (Exception $e) {
             $this->db->trans_rollback();
