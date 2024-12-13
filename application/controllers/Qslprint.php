@@ -33,10 +33,20 @@ class QSLPrint extends CI_Controller {
 
 		$this->load->model('qslprint_model');
 		if ( ($station_id != 'All') && ($this->stations->check_station_is_accessible($station_id)) ) {
-			$data['qsos'] = $this->qslprint_model->get_qsos_for_print($station_id);
+			$qsos = $this->qslprint_model->get_qsos_for_print($station_id);
 		} else {
-			$data['qsos'] = $this->qslprint_model->get_qsos_for_print();
+			$qsos = $this->qslprint_model->get_qsos_for_print();
 		}
+
+		$callsigns = array_map(function($qso) {
+			return $qso->COL_CALL;
+		}, $qsos->result());
+		$qsl_data = $this->qslprint_model->check_for_qsls_by_callsigns($callsigns);
+		$qsl_lookup = array_column($qsl_data, 'count', 'COL_CALL');
+		foreach ($qsos->result() as $qso) {
+			$qso->previous_qsl = $qsl_lookup[$qso->COL_CALL] ?? 0;
+		}
+		$data['qsos'] = $qsos;
 
 		$footerData = [];
 		$footerData['scripts'] = [

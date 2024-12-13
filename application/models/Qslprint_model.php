@@ -159,6 +159,25 @@ class Qslprint_model extends CI_Model {
 		return $query->result();
 	}
 
+	function check_for_qsls_by_callsigns($callsigns) {
+		if (empty($callsigns)) {
+			return [];
+		}
+
+		$this->load->model('stations');
+		$station_ids = $this->stations->all_station_ids_of_user();
+	
+		$this->db->select('COL_CALL, COUNT(COL_PRIMARY_KEY) as count');
+		$this->db->from($this->config->item('table_name'));
+		$this->db->where_in('COL_CALL', $callsigns);
+		$this->db->where_in('station_id', explode(',', $station_ids));
+		$this->db->where('COL_QSL_SENT', 'Y');
+		$this->db->group_by('COL_CALL');
+	
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 }
 
 ?>
