@@ -197,7 +197,7 @@ class User_Model extends CI_Model {
 				'user_type' => xss_clean($type),
 				'user_firstname' => xss_clean($firstname) ?? '',
 				'user_lastname' => xss_clean($lastname) ?? '',
-				'user_callsign' => xss_clean($callsign),
+				'user_callsign' => strtoupper(xss_clean($callsign)),
 				'user_locator' => strtoupper(xss_clean($locator)),
 				'user_timezone' => xss_clean($timezone),
 				'user_measurement_base' => xss_clean($measurement),
@@ -295,7 +295,7 @@ class User_Model extends CI_Model {
 				$data = array(
 					'user_name' => xss_clean($fields['user_name']),
 					'user_email' => xss_clean($fields['user_email']),
-					'user_callsign' => xss_clean($fields['user_callsign']),
+					'user_callsign' => strtoupper(xss_clean($fields['user_callsign'])),
 					'user_locator' => strtoupper(xss_clean($fields['user_locator'])),
 					'user_firstname' => xss_clean($fields['user_firstname']),
 					'user_lastname' => xss_clean($fields['user_lastname']),
