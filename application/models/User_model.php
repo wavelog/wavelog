@@ -187,7 +187,7 @@ class User_Model extends CI_Model {
 		$user_language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
 		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab,
 		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
-		$user_winkey, $clubstation) {
+		$user_winkey, $clubstation = 0) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -230,7 +230,7 @@ class User_Model extends CI_Model {
 				'user_clublog_name' => xss_clean($user_clublog_name),
 				'user_clublog_password' => xss_clean($user_clublog_password),
 				'winkey' => xss_clean($user_winkey),
-				'clubstation' => $clubstation == true ? 1 : 0,
+				'clubstation' => $clubstation,
 			);
 
 			// Check the password is valid
