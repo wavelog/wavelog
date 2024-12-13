@@ -807,30 +807,33 @@ function showActivatorsMap(call, count, grids) {
     <script id="leafembed" type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leafembed.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 
     <script type="text/javascript">
-      $(function () {
-        $('[data-bs-toggle="tooltip"]').tooltip()
-      });
+        $(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip()
+        });
 
         <?php if($qra == "set") { ?>
-        var q_lat = <?php echo $qra_lat; ?>;
-        var q_lng = <?php echo $qra_lng; ?>;
+            var q_lat = <?php echo $qra_lat; ?>;
+            var q_lng = <?php echo $qra_lng; ?>;
         <?php } else { ?>
-        var q_lat = 40.313043;
-        var q_lng = -32.695312;
+            var q_lat = 40.313043;
+            var q_lng = -32.695312;
         <?php } ?>
 
-        var qso_loc = '<?php echo site_url('map/map_plot_json');?>';
-        var q_zoom = 3;
+            var qso_loc = '<?php echo site_url('map/map_plot_json');?>';
+            var q_zoom = 3;
 
-      $(document).ready(function(){
+        $(document).ready(function(){
             <?php if ($this->config->item('map_gridsquares') != FALSE) { ?>
-              var grid = "Yes";
+                var grid = "Yes";
             <?php } else { ?>
-              var grid = "No";
+                var grid = "No";
             <?php } ?>
             initmap(grid,'map',{'dataPost':{'nb_qso':'18'}});
 
-      });
+            <?php if ($is_first_login ?? false) { ?>
+                $('#firstLoginWizardModal').modal('show');
+            <?php } ?>
+        });
     </script>
 <?php } ?>
 
