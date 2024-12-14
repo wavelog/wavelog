@@ -646,28 +646,40 @@ class User_Model extends CI_Model {
 	// FUNCTION: object users()
 	// Returns a list of users with additional counts
 	function users($club = '') {
-		$sql="  SELECT COUNT(distinct sp.station_id) as stationcount, count(distinct sl.logbook_id) as logbookcount, count(distinct log.col_primary_key) as qsocount,
-			MAX(COL_TIME_ON) as lastqso,";
-		if ($this->config->item('special_callsign') && ($club == 'is_club')) {
-			$sql.=" FIRST_VALUE(log.COL_OPERATOR) over (PARTITION by u.user_id order by log.COL_TIME_ON desc) as lastoperator,";
-		} else {
-			$sql.=" '' as lastoperator,";
-		}
-		$sql.="	u.*
+		$sql="  SELECT COUNT(distinct sp.station_id) AS stationcount, count(distinct sl.logbook_id) AS logbookcount, count(distinct log.col_primary_key) AS qsocount,
+			MAX(COL_TIME_ON) AS lastqso,
+			u.*
 			FROM  users u
-			left outer join station_profile sp on (sp.user_id = u.user_id)
-			left outer join station_logbooks sl on (sl.user_id = u.user_id)
-			left outer join ". $this->config->item('table_name') ." log on (log.station_id=sp.station_id)";
+			LEFT OUTER JOIN station_profile sp ON (sp.user_id = u.user_id)
+			LEFT OUTER JOIN station_logbooks sl ON (sl.user_id = u.user_id)
+			LEFT OUTER JOIN ". $this->config->item('table_name') ." log on (log.station_id=sp.station_id)";
 		if ($this->config->item('special_callsign')) {
 			if ($club == 'is_club') {
-				$sql.=' where clubstation=1';
+				$sql.=' WHERE clubstation=1';
 			} else {
-				$sql.=' where clubstation!=1';
+				$sql.=' WHERE clubstation!=1';
 			}
 		}
-		$sql.=" group by u.user_id";
+		$sql.=" GROUP BY u.user_id";
 		$result = $this->db->query($sql);
+		if ($this->config->item('special_callsign')) {
+			if ($club == 'is_club') {
+				foreach ($result->result() as &$row) {
+					$row->lastoperator=$this->get_last_op($row->user_id,$row->lastqso);
+				}
+			} else {
+				foreach ($result->result() as &$row) {
+					$row->lastoperator='';
+				}
+			}
+		}
 		return $result;
+	}
+
+	function get_last_op($userid,$lastqso) {
+		$sql="SELECT log.COL_OPERATOR FROM ". $this->config->item('table_name') ." log INNER JOIN station_profile sp ON (log.station_id=sp.station_id) where sp.user_id=? AND col_time_on=? ORDER BY col_time_on DESC LIMIT 1";
+		$resu=$this->db->query($sql,array($userid,$lastqso));
+		return $resu->result()[0]->COL_OPERATOR ?? '';
 	}
 
 	// FUNCTION: array timezones()
