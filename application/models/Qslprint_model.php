@@ -165,13 +165,13 @@ class Qslprint_model extends CI_Model {
 		}
 	
 		$where = [];
+		$binding = [];
 		foreach ($qso_data as $qso) {
-			$call = $this->db->escape($qso['call']);
-			$mode = $this->db->escape($qso['mode']);
-			$band = $this->db->escape($qso['band']);
-			$sat_name = $this->db->escape($qso['sat_name'] ?? '');
-	
-			$where[] = "(COL_CALL = $call AND COL_MODE = $mode AND COL_BAND = $band AND COL_SAT_NAME = $sat_name)";
+			$where[] = "(COL_CALL = ? AND COL_MODE = ? AND COL_BAND = ? AND COL_SAT_NAME = ?)";
+			$binding[] = $qso['call'];
+			$binding[] = $qso['mode'];
+			$binding[] = $qso['band'];
+			$binding[] = $qso['sat_name'] ?? '';
 		}
 	
 		$sql = "SELECT COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME, COUNT(COL_PRIMARY_KEY) AS count FROM " . $this->config->item('table_name') . " 
@@ -180,7 +180,7 @@ class Qslprint_model extends CI_Model {
 			GROUP BY COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME
 		";
 	
-		return $this->db->query($sql)->result();
+		return $this->db->query($sql, $binding)->result();
 	}
 }
 
