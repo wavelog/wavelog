@@ -646,27 +646,27 @@ class User_Model extends CI_Model {
 	// FUNCTION: object users()
 	// Returns a list of users with additional counts
 	function users($club = '') {
-		$this->db->select('(SELECT COUNT(*) FROM station_profile WHERE user_id = users.user_id) as stationcount');
-		$this->db->select('(SELECT COUNT(*) FROM station_logbooks WHERE user_id = users.user_id) as logbookcount');
-		$this->db->select('(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as qsocount');
-		$this->db->select('
-			(SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as lastqso,
-			(SELECT COL_OPERATOR FROM ' . $this->config->item('table_name') . ' WHERE COL_TIME_ON = (
-				SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)
-			) LIMIT 1) as lastoperator
-		');
-		$this->db->select('users.*');
+		$sql="  SELECT COUNT(distinct sp.station_id) as stationcount, count(distinct sl.logbook_id) as logbookcount, count(distinct log.col_primary_key) as qsocount,
+			MAX(COL_TIME_ON) as lastqso,";
+		if ($this->config->item('special_callsign') && ($club == 'is_club')) {
+			$sql.=" FIRST_VALUE(log.COL_OPERATOR) over (PARTITION by u.user_id order by log.COL_TIME_ON desc) as lastoperator,";
+		} else {
+			$sql.=" '' as lastoperator,";
+		}
+		$sql.="	u.*
+			FROM  users u
+			left outer join station_profile sp on (sp.user_id = u.user_id)
+			left outer join station_logbooks sl on (sl.user_id = u.user_id)
+			left outer join ". $this->config->item('table_name') ." log on (log.station_id=sp.station_id)";
 		if ($this->config->item('special_callsign')) {
 			if ($club == 'is_club') {
-				$this->db->where('clubstation', 1);
+				$sql.=' where clubstation=1';
 			} else {
-				$this->db->where('clubstation != 1');
+				$sql.=' where clubstation!=1';
 			}
 		}
-		$this->db->from('users');
-	
-		$result = $this->db->get();
-	
+		$sql.=" group by u.user_id";
+		$result = $this->db->query($sql);
 		return $result;
 	}
 
