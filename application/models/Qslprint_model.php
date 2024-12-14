@@ -163,6 +163,9 @@ class Qslprint_model extends CI_Model {
 		if (empty($qso_data)) {
 			return [];
 		}
+
+		$this->load->model('stations');
+		$station_ids = $this->stations->all_station_ids_of_user();
 	
 		$where = [];
 		$binding = [];
@@ -177,6 +180,7 @@ class Qslprint_model extends CI_Model {
 		$sql = "SELECT COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME, COUNT(COL_PRIMARY_KEY) AS count FROM " . $this->config->item('table_name') . " 
 			WHERE COL_QSL_SENT = 'Y'
 			AND (" . implode(' OR ', $where) . ")
+			AND station_id IN (" . $station_ids . ")
 			GROUP BY COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME
 		";
 	
