@@ -159,25 +159,29 @@ class Qslprint_model extends CI_Model {
 		return $query->result();
 	}
 
-	function check_for_qsls_by_callsigns($callsigns) {
-		if (empty($callsigns)) {
+	function check_previous_qsls($qso_data) {
+		if (empty($qso_data)) {
 			return [];
 		}
-
-		$this->load->model('stations');
-		$station_ids = $this->stations->all_station_ids_of_user();
 	
-		$this->db->select('COL_CALL, COUNT(COL_PRIMARY_KEY) as count');
-		$this->db->from($this->config->item('table_name'));
-		$this->db->where_in('COL_CALL', $callsigns);
-		$this->db->where_in('station_id', explode(',', $station_ids));
-		$this->db->where('COL_QSL_SENT', 'Y');
-		$this->db->group_by('COL_CALL');
+		$where = [];
+		foreach ($qso_data as $qso) {
+			$call = $this->db->escape($qso['call']);
+			$mode = $this->db->escape($qso['mode']);
+			$band = $this->db->escape($qso['band']);
+			$sat_name = $this->db->escape($qso['sat_name'] ?? '');
 	
-		$query = $this->db->get();
-		return $query->result();
+			$where[] = "(COL_CALL = $call AND COL_MODE = $mode AND COL_BAND = $band AND COL_SAT_NAME = $sat_name)";
+		}
+	
+		$sql = "SELECT COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME, COUNT(COL_PRIMARY_KEY) AS count FROM " . $this->config->item('table_name') . " 
+			WHERE COL_QSL_SENT = 'Y'
+			AND (" . implode(' OR ', $where) . ")
+			GROUP BY COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME
+		";
+	
+		return $this->db->query($sql)->result();
 	}
-
 }
 
 ?>

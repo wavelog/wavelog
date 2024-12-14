@@ -38,10 +38,18 @@ class QSLPrint extends CI_Controller {
 			$qsos = $this->qslprint_model->get_qsos_for_print();
 		}
 
-		$callsigns = array_map(function($qso) {
-			return $qso->COL_CALL;
+		$qso_data = array_map(function($qso) {
+			$d = [
+				'call' => $qso->COL_CALL,
+				'mode' => $qso->COL_MODE,
+				'band' => $qso->COL_BAND
+			];
+			if (!empty($qso->COL_SAT_NAME)) {
+				$d['sat_name'] = $qso->COL_SAT_NAME;
+			}
+			return $d;
 		}, $qsos->result());
-		$qsl_data = $this->qslprint_model->check_for_qsls_by_callsigns($callsigns);
+		$qsl_data = $this->qslprint_model->check_previous_qsls($qso_data);
 		$qsl_lookup = array_column($qsl_data, 'count', 'COL_CALL');
 		foreach ($qsos->result() as $qso) {
 			$qso->previous_qsl = $qsl_lookup[$qso->COL_CALL] ?? 0;
