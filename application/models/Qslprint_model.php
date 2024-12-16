@@ -68,25 +68,23 @@ class Qslprint_model extends CI_Model {
 	 * It will be provided when calling the function when the dropdown is changed and the javascript fires
 	 */
 	function get_qsos_for_print($station_id = 'All') {
+		$binding=[];
+		$binding[]=$this->session->userdata('user_id');
+		$sql="SELECT count(distinct oldlog.col_primary_key) as previous_qsl, log.*,sp.*,o.*
+			FROM ".$this->config->item('table_name')." log
+			INNER JOIN station_profile sp ON sp.`station_id` = log.`station_id`
+			LEFT OUTER JOIN oqrs o ON o.`qsoid` = log.`COL_PRIMARY_KEY`
+			LEFT OUTER JOIN ".$this->config->item('table_name')." oldlog on (oldlog.COL_QSL_SENT = 'Y' and oldlog.station_id=sp.station_id and oldlog.COL_BAND=log.col_band and oldlog.COL_CALL=log.col_call and oldlog.COL_MODE=log.col_mode and oldlog.COL_SAT_NAME=log.col_sat_name and oldlog.COL_PRIMARY_KEY!=log.col_primary_key)
+			WHERE sp.`user_id` = ?";
 		if ($station_id != 'All') {
-			$this->db->where($this->config->item('table_name').'.station_id', $station_id);
+			$sql.=' AND log.`station_id` = ?';
+			$binding[]=$station_id;
 		}
+		$sql.=" AND log.`COL_QSL_SENT` IN('R', 'Q')
+			GROUP BY log.col_primary_key
+			ORDER BY log.`COL_DXCC` ASC, log.`COL_CALL` ASC, log.`COL_SAT_NAME` ASC, log.`COL_SAT_MODE` ASC, log.`COL_BAND_RX` ASC, log.`COL_TIME_ON` ASC, log.`COL_MODE` ASC LIMIT 1000";
 
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('oqrs', 'oqrs.qsoid = '.$this->config->item('table_name').'.COL_PRIMARY_KEY', 'left outer');
-		// always filter user. this ensures that even if the station_id is from another user no inaccesible QSOs will be returned
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-		$this->db->where_in('COL_QSL_SENT', array('R', 'Q'));
-		$this->db->order_by("COL_DXCC", "ASC");
-		$this->db->order_by("COL_CALL", "ASC");
-		$this->db->order_by("COL_SAT_NAME", "ASC");
-		$this->db->order_by("COL_SAT_MODE", "ASC");
-		$this->db->order_by("COL_BAND_RX", "ASC");
-		$this->db->order_by("COL_TIME_ON", "ASC");
-		$this->db->order_by("COL_MODE", "ASC");
-		$this->db->limit(1000);
-		$query = $this->db->get($this->config->item('table_name'));
-
+		$query = $this->db->query($sql, $binding);
 		return $query;
 	}
 
@@ -159,33 +157,6 @@ class Qslprint_model extends CI_Model {
 		return $query->result();
 	}
 
-	function check_previous_qsls($qso_data) {
-		if (empty($qso_data)) {
-			return [];
-		}
-
-		$this->load->model('stations');
-		$station_ids = $this->stations->all_station_ids_of_user();
-	
-		$where = [];
-		$binding = [];
-		foreach ($qso_data as $qso) {
-			$where[] = "(COL_CALL = ? AND COL_MODE = ? AND COL_BAND = ? AND COL_SAT_NAME = ?)";
-			$binding[] = $qso['call'];
-			$binding[] = $qso['mode'];
-			$binding[] = $qso['band'];
-			$binding[] = $qso['sat_name'] ?? '';
-		}
-	
-		$sql = "SELECT COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME, COUNT(COL_PRIMARY_KEY) AS count FROM " . $this->config->item('table_name') . " 
-			WHERE COL_QSL_SENT = 'Y'
-			AND (" . implode(' OR ', $where) . ")
-			AND station_id IN (" . $station_ids . ")
-			GROUP BY COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME
-		";
-	
-		return $this->db->query($sql, $binding)->result();
-	}
 }
 
 ?>
