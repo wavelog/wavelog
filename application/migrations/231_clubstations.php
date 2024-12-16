@@ -1,111 +1,58 @@
 <?php
 
-class Migration_clubstations  extends CI_Migration
-{
+class Migration_clubstations extends CI_Migration {
 
-	public function up() {
-		// Add the clubstation flag to the users table
-		$col_check = $this->db->query("SHOW COLUMNS FROM users LIKE 'clubstation';")->num_rows() > 0;
-		if (!$col_check) {
-			$sql = "ALTER TABLE users ADD COLUMN clubstation TINYINT(1) DEFAULT 0 AFTER user_type;";
-			try {
-				$this->db->query($sql);
-			} catch (Exception $e) {
-				log_message('error', 'Mig 230 - Error adding column "clubstation": ' . $e->getMessage());
-			}
-		} else {
-			log_message('info', 'Mig 230 - Column "clubstation" already exists, skipping ALTER TABLE users.');
-		}
+    public function up() {
+        // Add the clubstation flag to the users table
+        $this->add_column_if_not_exists('users', 'clubstation', 'TINYINT(1) DEFAULT 0 AFTER user_type');
 
-		// Create a new table for the club permissions
-		if (!$this->db->table_exists('club_permissions')) {
-			$this->dbforge->add_field(array(
-				'id' => array(
-					'type' => 'INT',
-					'constraint' => 6,
-					'unsigned' => TRUE,
-					'auto_increment' => TRUE,
-					'null' => FALSE
-				),
-				'club_id' => array(
-					'type' => 'INT',
-					'constraint' => '6',
-					'unsigned' => TRUE,
-					'null' => FALSE,
-				),
-				'user_id' => array(
-					'type' => 'INT',
-					'constraint' => '6',
-					'unsigned' => TRUE,
-					'null' => FALSE,
-				),
-				'p_level' => array(
-					'type' => 'INT',
-					'constraint' => '6',
-					'unsigned' => TRUE,
-					'null' => FALSE,
-				),
-			));
-			$this->dbforge->add_key('id', TRUE);
-			$this->dbforge->create_table('club_permissions');
+        // Create a new table for the club permissions
+        if (!$this->db->table_exists('club_permissions')) {
+            try {
+                $this->db->query("CREATE TABLE `club_permissions` (
+                    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                    club_id INT(6) UNSIGNED NOT NULL,
+                    user_id INT(6) UNSIGNED NOT NULL,
+                    p_level INT(2) UNSIGNED NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE RESTRICT,
+                    UNIQUE (user_id, club_id)
+                );");
+            } catch (Exception $e) {
+                log_message('error', 'Mig 230 - Error creating table "club_permissions": ' . $e->getMessage());
+            }
+        }
 
-			// Add a foreign key for the user_id
-			$sql = "ALTER TABLE club_permissions ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE RESTRICT;";
-			try {
-				$this->db->query($sql);
-			} catch (Exception $e) {
-				log_message('error', 'Mig 230 - Error adding foreign key fk_user_id: ' . $e->getMessage());
-			}
+        // Add 'created_by' column to 'api' table
+        $this->add_column_if_not_exists('api', 'created_by', 'INT(6) NOT NULL DEFAULT 0');
+        $this->db->query("UPDATE `api` SET created_by = user_id;");
+        $this->db->query("ALTER TABLE `api` MODIFY created_by INT(6) NOT NULL;");
 
-			// Add unique constraint for club_id and user_id
-			$sql = "ALTER TABLE club_permissions ADD CONSTRAINT unique_member UNIQUE (club_id, user_id);";
-			try {
-				$this->db->query($sql);
-			} catch (Exception $e) {
-				log_message('error', 'Mig 230 - Error adding unique constraint unique_member: ' . $e->getMessage());
-			}
+        // Add 'created_at' column to 'api' table
+        $this->add_column_if_not_exists('api', 'created_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP');
 
-			// Add 'created_by' field to API Keys
-			$col_check = $this->db->query("SHOW COLUMNS FROM api LIKE 'created_by'")->num_rows() > 0;
-			if (!$col_check) {
-				$sql_add_column = "ALTER TABLE api ADD COLUMN created_by INT(10) NOT NULL DEFAULT 0;";
-				try {
-					$this->db->query($sql_add_column);
-
-					$sql_update = "UPDATE api SET created_by = user_id;";
-					$this->db->query($sql_update);
-
-					$sql_drop_default = "ALTER TABLE api ALTER COLUMN created_by DROP DEFAULT;";
-					$this->db->query($sql_drop_default);
-				} catch (Exception $e) {
-					log_message('error', 'Mig 230 - Error adding column "created_by": ' . $e->getMessage());
-				}
-			} else {
-				log_message('info', 'Mig 230 - Column "created_by" already exists, skipping ALTER TABLE api.');
-			}
-
-			// Add 'operator' field to CAT Table
-			$col_check = $this->db->query("SHOW COLUMNS FROM cat LIKE 'operator'")->num_rows() > 0;
-			if (!$col_check) {
-				$sql_add_column = "ALTER TABLE cat ADD COLUMN operator INT(10) NOT NULL DEFAULT 0;";
-				try {
-					$this->db->query($sql_add_column);
-
-					$sql_update = "UPDATE cat SET operator = user_id;";
-					$this->db->query($sql_update);
-
-					$sql_drop_default = "ALTER TABLE cat ALTER COLUMN operator DROP DEFAULT;";
-					$this->db->query($sql_drop_default);
-				} catch (Exception $e) {
-					log_message('error', 'Mig 230 - Error adding column "operator": ' . $e->getMessage());
-				}
-			} else {
-				log_message('info', 'Mig 230 - Column "operator" already exists, skipping ALTER TABLE cat.');
-			}
-		}
-	}
+        // Add 'operator' column to 'cat' table
+        $this->add_column_if_not_exists('cat', 'operator', 'INT(6) NOT NULL DEFAULT 0');
+        $this->db->query("UPDATE `cat` SET operator = user_id;");
+        $this->db->query("ALTER TABLE `cat` MODIFY operator INT(6) NOT NULL;");
+    }
 
 	public function down() {
-		// we don't want to loose data in case of a down migration, so we don't drop the column here
-	}
+        // we don't want to loose data in case of a down migration, so we don't drop the column here
+    }
+
+    private function add_column_if_not_exists($table, $column, $definition) {
+        $col_check = $this->db->query("SHOW COLUMNS FROM `$table` LIKE '$column';")->num_rows() > 0;
+        if (!$col_check) {
+            try {
+                $this->db->query("ALTER TABLE `$table` ADD COLUMN $column $definition;");
+                log_message('info', "Mig 230 - Column '$column' added to table '$table'.");
+            } catch (Exception $e) {
+                log_message('error', "Mig 230 - Error adding column '$column' to table '$table': " . $e->getMessage());
+            }
+        } else {
+            log_message('info', "Mig 230 - Column '$column' already exists in table '$table', skipping ALTER TABLE.");
+        }
+    }
 }
