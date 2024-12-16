@@ -103,8 +103,6 @@ class AdifHelper {
 			'CNTY_ALT',
 			'MY_CNTY_ALT',
 			'MY_DARC_DOK',
-			'DCL_QSLRDATE',
-			'DCL_QSLSDATE',
 			'MORSE_KEY_INFO',
 			'MORSE_KEY_TYPE',
 			'QSLMSG_RCVD',
