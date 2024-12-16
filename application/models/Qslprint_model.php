@@ -85,7 +85,6 @@ class Qslprint_model extends CI_Model {
 			ORDER BY log.`COL_DXCC` ASC, log.`COL_CALL` ASC, log.`COL_SAT_NAME` ASC, log.`COL_SAT_MODE` ASC, log.`COL_BAND_RX` ASC, log.`COL_TIME_ON` ASC, log.`COL_MODE` ASC LIMIT 1000";
 
 		$query = $this->db->query($sql, $binding);
-		log_message("Error",$this->db->last_query());
 		return $query;
 	}
 
