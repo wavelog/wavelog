@@ -3,8 +3,10 @@
 class Migration_clubstations extends CI_Migration {
 
     public function up() {
-        // Add the clubstation flag to the users table
+        // Add new columns to 'users' table
         $this->add_column_if_not_exists('users', 'clubstation', 'TINYINT(1) DEFAULT 0 AFTER user_type');
+		$this->add_column_if_not_exists('users', 'created_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP');
+		$this->add_column_if_not_exists('users', 'modified_at', 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP');
 
         // Create a new table for the club permissions
         if (!$this->db->table_exists('club_permissions')) {
