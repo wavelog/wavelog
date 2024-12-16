@@ -41,7 +41,11 @@ class Migration_clubstations extends CI_Migration {
     }
 
 	public function down() {
-        // we don't want to loose data in case of a down migration, so we don't drop the column here
+		// Due the risk of data loss we can't drop any new created columns or tables
+		// But we can drop some of the timestamp columns
+		$this->db->query("ALTER TABLE `users` DROP COLUMN created_at;");
+		$this->db->query("ALTER TABLE `users` DROP COLUMN modified_at;");
+		$this->db->query("ALTER TABLE `api` DROP COLUMN created_at;");
     }
 
     private function add_column_if_not_exists($table, $column, $definition) {
