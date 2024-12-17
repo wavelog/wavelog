@@ -762,3 +762,14 @@ $config['disable_version_check'] = false;
 // $config['trxd_connection_type'] = 'ws';
 // $config['trxd_ws_path'] = '/trx-control';
 // $config['trxd_timeout'] = 5;
+
+/*
+|--------------------------------------------------------------------------
+| eqsl.cc Massdownloa
+|--------------------------------------------------------------------------
+|
+| The eqsl.cc mass download function is not threadsafe. So it is disabled by default.
+| Please consider enabling this carefully. Not recommended for multi-user environments.
+ */
+
+$config['enable_eqsl_massdownload'] = false;
