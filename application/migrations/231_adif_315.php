@@ -544,6 +544,29 @@ class Migration_adif_315 extends CI_Migration {
 
     public function down()
     {
-        // No way back here
+        $columns = array(
+           'COL_CNTY_ALT',
+           'COL_MY_CNTY_ALT',
+           'COL_MY_DARC_DOK',
+           'COL_DCL_QSLRDATE',
+           'COL_DCL_QSL_RCVD',
+           'COL_DCL_QSLSDATE',
+           'COL_DCL_QSL_SENT',
+           'COL_MORSE_KEY_INFO',
+           'COL_MORSE_KEY_TYPE',
+           'COL_QSLMSG_RCVD'
+        );
+        $table_name = $this->config->item('table_name');
+        if ($this->db->table_exists($table_name)) {
+            $this->db->trans_start();
+            foreach($columns as $column_name) {
+                if ($this->db->field_exists($column_name, $table_name)) {
+                    $this->dbforge->drop_column($table_name, $column_name);
+                } else {
+                    log_message('info', 'Column "'.$column_name.'" not found, dropping skipped.');
+                }
+            }
+            $this->db->trans_complete();
+        }
     }
 }
