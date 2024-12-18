@@ -66,7 +66,7 @@ check_working_dir
 
 # Fetch the latest changes from the master branch
 echo "Fetching changes from remote..."
-if git fetch $GIT_REMOTE --tags ; then
+if git fetch $GIT_REMOTE --tags --force ; then
 	echo "Fetched latest changes successfully"
 else
 	echo "Fetch failed; stopping here."

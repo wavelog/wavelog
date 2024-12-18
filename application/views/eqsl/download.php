@@ -65,7 +65,7 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 ?>
 		</tbody></table>
 		<br /><br />
-		<?php if (!($this->config->item('disable_manual_eqsl'))) {
+		<?php if ($this->config->item('enable_eqsl_massdownload') && !($this->config->item('disable_manual_eqsl'))) {
 			echo form_open_multipart('eqsl/download');?>
 
 			<div class="form-check">

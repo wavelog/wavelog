@@ -447,7 +447,7 @@ class eqsl extends CI_Controller {
 		$errors = 0;
 		$this->load->library('electronicqsl');
 
-		if ($this->input->post('eqsldownload') == 'download') {
+		if ($this->input->post('eqsldownload') == 'download' && $this->config->item('enable_eqsl_massdownload')) {
 			$i = 0;
 			$this->load->model('eqslmethods_model');
 			$qslsnotdownloaded = $this->eqslmethods_model->eqsl_not_yet_downloaded();
