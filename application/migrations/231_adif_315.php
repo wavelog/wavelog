@@ -12,7 +12,7 @@ class Migration_adif_315 extends CI_Migration {
     {
         /**
          * ADIF Version 3.1.5
-         * The new ADIF version 3.1.5 comes with some changes. 
+         * The new ADIF version 3.1.5 comes with some changes.
          */
 
         $this->db->trans_start();
@@ -126,7 +126,7 @@ class Migration_adif_315 extends CI_Migration {
             $this->db->trans_rollback();
             log_message('error', 'Migration failed: ' . $e->getMessage());
             log_message('error', 'The query was: ' . $query);
-			return false;
+            return false;
         }
 
         // ############################################################################################################
@@ -467,9 +467,9 @@ class Migration_adif_315 extends CI_Migration {
             $this->db->trans_rollback();
             log_message('error', 'Migration failed: ' . $e->getMessage());
             log_message('error', 'The query was: ' . $query);
-			return false;
+            return false;
         }
-        
+
         // ############################################################################################################
 
         /**
@@ -492,7 +492,7 @@ class Migration_adif_315 extends CI_Migration {
             $this->db->trans_rollback();
             log_message('error', 'Migration failed: ' . $e->getMessage());
             log_message('error', 'The query was: ' . $query);
-			return false;
+            return false;
         }
 
 
@@ -515,7 +515,7 @@ class Migration_adif_315 extends CI_Migration {
             ['name' => 'K1USN Slow Speed Open', 'adifname' => 'K1USN-SSO'],
             ['name' => 'PCCPro CW Contest', 'adifname' => 'PCC'],
         ];
-        
+
         try {
             foreach ($new_c as $c) {
                 $query = $this->db->query("SELECT 1 FROM `contest` WHERE adifname = ?", [$c['adifname']]);
@@ -527,7 +527,7 @@ class Migration_adif_315 extends CI_Migration {
             $this->db->trans_rollback();
             log_message('error', 'Migration failed: ' . $e->getMessage());
             log_message('error', 'The query was: ' . $query);
-			return false;
+            return false;
         }
 
         $this->db->trans_complete();
