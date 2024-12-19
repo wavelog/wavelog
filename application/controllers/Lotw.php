@@ -723,6 +723,62 @@ class Lotw extends CI_Controller {
 		}
 	}
 
+	public function check_lotw_credentials () {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+			exit();
+		}
+		$ret=[];
+
+		$this->load->model('logbook_model');
+		$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
+		$q = $query->row();
+		$data['user_lotw_name'] = urlencode($q->user_lotw_name ?? '');
+		$data['user_lotw_password'] = urlencode($q->user_lotw_password ?? '');
+
+		// Get URL for downloading LoTW
+		$query = $query = $this->db->query('SELECT lotw_login_url FROM config');
+		$q = $query->row();
+		$lotw_url = $q->lotw_login_url;
+
+		// Validate that LoTW credentials are not empty
+		// TODO: We don't actually see the error message
+		if ($data['user_lotw_name'] == '' || $data['user_lotw_password'] == '') {
+			$ret='No Creds set';
+		}
+
+		// Build URL for LoTW report file
+		$lotw_url .= "?";
+		$lotw_url .= "login=" . $data['user_lotw_name'];
+		$lotw_url .= "&password=" . $data['user_lotw_password'];
+
+		log_message("Error",$lotw_url);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $lotw_url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+		$content = curl_exec($ch);
+		if ($content) {
+			if(curl_errno($ch)) {
+				$ret['status']='failed';
+				$ret['details']== __("LoTW check failed for user ").$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+			} else if (str_contains($content,"Username/password incorrect</I>")) {
+				$ret['status']='failed_wrong_creds';
+				$ret['details']= __("LoTW check failed for user ").$data['user_lotw_name'].__(": Username/password incorrect");
+			} else {
+				$ret['status']='OK';
+			}
+		} else {
+			$ret['status']='failed_na';
+			$ret['details']= __("LoTW not available at present");
+		}
+		header("Content-type: application/json");
+		echo json_encode($ret);
+		return $ret;
+	}
+
 	public function import() {	// Is only called via frontend. Cron uses "upload". within download the download is called
 		$this->load->model('user_model');
 		$this->load->model('Stations');
