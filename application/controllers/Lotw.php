@@ -789,6 +789,7 @@ class Lotw extends CI_Controller {
 					$ret['details']= sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], __("Username/password incorrect"));
 				} else {
 					$ret['status']='OK';
+					$ret['details']= __("LoTW login OK!");
 				}
 			} else {
 				$ret['status']='failed_na';
