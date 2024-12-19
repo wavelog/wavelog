@@ -33,10 +33,12 @@ class QSLPrint extends CI_Controller {
 
 		$this->load->model('qslprint_model');
 		if ( ($station_id != 'All') && ($this->stations->check_station_is_accessible($station_id)) ) {
-			$data['qsos'] = $this->qslprint_model->get_qsos_for_print($station_id);
+			$qsos = $this->qslprint_model->get_qsos_for_print($station_id);
 		} else {
-			$data['qsos'] = $this->qslprint_model->get_qsos_for_print();
+			$qsos = $this->qslprint_model->get_qsos_for_print();
 		}
+
+		$data['qsos'] = $qsos;
 
 		$footerData = [];
 		$footerData['scripts'] = [

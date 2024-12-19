@@ -197,6 +197,7 @@ if ($qsos->result() != NULL) {
 		}
 		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'><button onclick="addQsoToPrintQueue(\''.$qsl->COL_PRIMARY_KEY.'\')" class="btn btn-sm btn-success">' . __("Add to print queue") . '</button></td>';
 		echo '</tr>';
+		echo '<span style="display: none;" id="previous_qsl_'.$qsl->COL_PRIMARY_KEY.'">'; if ($qsl->previous_qsl > 0 ) { echo '<span class="badge bg-warning">' . $qsl->previous_qsl . '</span>'; } else { echo '<span class="badge bg-success">0</span>'; } echo '</span>';
 	}
 
 	echo '</tbody></table>';
