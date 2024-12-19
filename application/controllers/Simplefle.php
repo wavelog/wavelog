@@ -82,28 +82,18 @@ class SimpleFLE extends CI_Controller {
 		$this->load->model('logbook_model');
 
 		$qsos = json_decode($qsos, true);
-		$result = [];
-		foreach ($qsos as $qso) {
-			$one_result = $this->logbook_model->import($qso, $qso['station_id']);
+		$station_id = $qsos[0]['station_id']; // we can trust this value
 
-			// if the returner is not empty we have an error and should log it
-			if (json_encode($result) != '[]' && strpos(json_encode($one_result), __("Duplicate for")) == false) {
-				log_message('error', 'SimpleFLE, save_qsos(); For QSO: ' . $qso['call'] . ' on ' . $qso['qso_date'] . ' Error: ' . json_encode($one_result));
-			}
-			if (strpos(json_encode($one_result), __("Duplicate for")) !== false) {
-				log_message('debug', 'SimpleFLE, save_qsos(); For QSO: ' . $qso['call'] . ' on ' . $qso['qso_date'] . ' Warning: ' . json_encode($one_result));
-			}
+		$bulk_result = $this->logbook_model->import_bulk($qsos, $station_id);
 
-			if ($one_result != '') {
-				$result[] = $one_result;
-			}
-		}
+		$clean_result = str_replace(['<br><br/>'], "\n", $bulk_result);
+		log_message('debug', "SimpleFLE, save_qsos(); Bulk Result: \n" . $clean_result);
 
 		// Also clean up static map images
 		if (!$this->load->is_loaded('staticmap_model')) {
 			$this->load->model('staticmap_model');
 		}
-		$this->staticmap_model->remove_static_map_image($qso['station_id']);
+		$this->staticmap_model->remove_static_map_image($station_id);
 
 		if (empty($result)) {
 			echo "success";
