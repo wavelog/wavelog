@@ -737,7 +737,7 @@ class Lotw extends CI_Controller {
 		$raw = file_get_contents("php://input");
 		try {
 			$obj = json_decode($raw,true);
-		} catch (e) {
+		} catch (Exception $e) {
 			$ret['status']='failed_wrongcall';
 			log_message("Error",$ret['status']);
 		} finally {
