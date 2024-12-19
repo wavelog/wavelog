@@ -950,10 +950,16 @@ function statesDropdown(states, set_state = null, dropdown = '#stateDropdown') {
     if (states.status == 'ok') {
         dropdown.prop('disabled', false);
         $.each(states.data, function(index, state) {
-            var option = $('<option>', {
-                value: state.state,
-                text: state.subdivision + ' (' + state.state + ')'
-            });
+            var d_text = '';
+            if (state.deprecated == '1') {
+                d_text = '\u26A0\uFE0F [' + lang_general_states_deprecated + '] - ';
+            }
+            if (state.state == set_state || state.deprecated != '1') {
+                var option = $('<option>', {
+                    value: state.state,
+                    text: d_text + state.subdivision + ' (' + state.state + ')'
+                });
+            }
             dropdown.append(option);
         });
         $(dropdown).val(set_state);
