@@ -2954,6 +2954,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_CONT is not null');
 		$this->db->where('COL_CONT !=', '');
+		$this->db->where_in('COL_CONT', ['AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN']);
 
 		if ($searchCriteria['mode'] !== '') {
 			$this->db->group_start();
