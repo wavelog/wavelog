@@ -27,7 +27,10 @@
 			</form>
 
 	    <p class="card-text"><?= __("Here you can export requested QSLs as CSV or ADIF files for printing and, optionally, mark them as sent."); ?></p>
-	    <p class="card-text"><?= __("Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their 'QSL Sent' field."); ?></p>
+	    <p class="card-text">
+			<?= __("Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their 'QSL Sent' field."); ?><br>
+			<?= sprintf(__("The column %s shows how many QSLs have been sent to the same station before on the same band and mode."), "'" . __("Previous QSL") . "'"); ?>
+		</p>
 
 		<div class="resulttable">
 		<?php 

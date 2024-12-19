@@ -82,6 +82,7 @@ function addQsoToPrintQueue(id) {
 			line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(7)").text()+'</span></td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(8)").text()+'</td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(10)").text()+'</td>';
+			line += '<td style=\'text-align: center\'>'+$("#previous_qsl_"+id).html()+'</td>';
 			line += '<td style=\'text-align: center\'><button onclick="mark_qsl_sent('+id+', \'B\')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></button></td>';
 			line += '<td style=\'text-align: center\'><button onclick="deleteFromQslQueue('+id+')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td></td>';
 			line += '<td style=\'text-align: center\'><button onclick="openQsoList(\''+$("#qsolist_"+id).find("td:eq(0)").text()+'\')" class="btn btn-sm btn-success"><i class="fas fa-search"></i></button></td>';
