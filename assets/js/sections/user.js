@@ -57,6 +57,19 @@ $(document).ready(function(){
         }, 300);
     });
 
+	$('#lotw_test_btn').click(function() {
+		$.ajax({
+			url: base_url + 'index.php/lotw/check_lotw_credentials',
+			type: 'POST',
+			contentType: "application/json",
+			data: JSON.stringify({lotw_user: $("#user_lotw_name").val(), lotw_pass: $("#user_lotw_password").val()}),
+			success: function(result) {
+				console.log(result);
+			}
+		}
+		);
+	});
+
     $('.admin_pwd_reset').click(function() {
         var pwd_reset_user_name = $(this).data('username');
         var pwd_reset_user_callsign = $(this).data('callsign');
