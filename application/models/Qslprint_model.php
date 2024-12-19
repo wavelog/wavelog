@@ -146,6 +146,26 @@ class Qslprint_model extends CI_Model {
 		return $query;
 	}
 
+	function get_previous_qsls($qso_id) {
+		if (empty($qso_id)) {
+			return 0;
+		}
+	
+		$table_name = $this->config->item('table_name');
+		$sql = "SELECT COUNT(COL_PRIMARY_KEY) AS previous_qsl 
+				FROM $table_name 
+				WHERE COL_QSL_SENT = 'Y'
+				AND station_id = (SELECT station_id FROM $table_name WHERE COL_PRIMARY_KEY = ?)
+				AND (COL_CALL, COL_MODE, COL_BAND, COALESCE(COL_SAT_NAME, '')) = 
+					(SELECT COL_CALL, COL_MODE, COL_BAND, COALESCE(COL_SAT_NAME, '') 
+					 FROM $table_name 
+					 WHERE COL_PRIMARY_KEY = ?)
+				GROUP BY COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME";
+	
+		// we only return the count of previous QSLs as an integer
+		return (int) $this->db->query($sql, [$qso_id, $qso_id])->row()->previous_qsl;
+	}
+
 	function show_oqrs($id) {
 		$this->db->select('requesttime as "Request time", requestcallsign as "Requester", email as "Email", note as "Note"');
 		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');

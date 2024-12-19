@@ -197,6 +197,16 @@ class QSLPrint extends CI_Controller {
 		$this->load->view('oqrs/showoqrs', $data);
 	}
 
+	public function get_previous_qsl() {
+		$id = $this->security->xss_clean($this->input->post('id'));
+
+		$this->load->model('qslprint_model');
+
+		$number_qsls = $this->qslprint_model->get_previous_qsls($id);
+		header('Content-Type: application/json');
+		echo json_encode($number_qsls);
+	}
+
 }
 
 /* End of file Qslprint.php */
