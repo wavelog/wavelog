@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2024-12-12 17:07+0000\n"
 "PO-Revision-Date: 2024-12-17 16:28+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2055,6 +2055,7 @@ msgstr ""
 #: application/controllers/Simplefle.php:93
 #: application/models/Logbook_model.php:4490
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4491
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
@@ -2624,20 +2625,24 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
 #: application/models/Logbook_model.php:3810
+#: application/models/Logbook_model.php:3811
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:3811
+#: application/models/Logbook_model.php:3812
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
 #: application/models/Logbook_model.php:3823
+#: application/models/Logbook_model.php:3824
 msgid "QSO on"
 msgstr "начало QSO"
 
 #: application/models/Logbook_model.php:3823
+#: application/models/Logbook_model.php:3824
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2646,52 +2651,64 @@ msgstr ""
 "импортировано. Оно недействительно"
 
 #: application/models/Logbook_model.php:4122
+#: application/models/Logbook_model.php:4123
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4133
+#: application/models/Logbook_model.php:4134
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4186
+#: application/models/Logbook_model.php:4187
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4206
+#: application/models/Logbook_model.php:4207
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4227
+#: application/models/Logbook_model.php:4228
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4551
+#: application/models/Logbook_model.php:4552
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
 #: application/models/Logbook_model.php:4557
+#: application/models/Logbook_model.php:4558
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4562
+#: application/models/Logbook_model.php:4563
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
 #: application/models/Logbook_model.php:4565
+#: application/models/Logbook_model.php:4566
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
 #: application/models/Logbook_model.php:4568
+#: application/models/Logbook_model.php:4569
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
 #: application/models/Logbook_model.php:4571
+#: application/models/Logbook_model.php:4572
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:4574
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
+#: application/models/Logbook_model.php:4575
 msgid "unknown"
 msgstr "неизвестно"
 
