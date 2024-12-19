@@ -2,6 +2,105 @@
 // Javascript for User Section
 //
 
+function clearRefSwitches() {
+    var iotaSwitch = document.getElementById("iotaToQsoTab");
+    iotaSwitch.checked = false;
+    var sotaSwitch = document.getElementById("sotaToQsoTab");
+    sotaSwitch.checked = false;
+    var wwffSwitch = document.getElementById("wwffToQsoTab");
+    wwffSwitch.checked = false;
+    var potaSwitch = document.getElementById("potaToQsoTab");
+    potaSwitch.checked = false;
+    var sigSwitch = document.getElementById("sigToQsoTab");
+    sigSwitch.checked = false;
+    var dokSwitch = document.getElementById("dokToQsoTab");
+    dokSwitch.checked = false;
+}
+
+function actions_modal(user_id, modal) {
+    $.ajax({
+        url: base_url + 'index.php/user/actions_modal',
+        type: 'POST',
+        data: { 
+            modal: modal,
+            user_id: user_id 
+        },
+        success: function(response) {
+            $('#actionsModal-container').html(response);
+            $('#actionsModal').modal('show');
+        },
+        error: function() {
+            alert(lang_general_word_error);
+        }
+    });
+    $(window).on('blur', function() {
+        $('#actionsModal').modal('hide');
+    }); 
+}
+
+function send_passwort_reset(user_id) {
+    $('#pwd_reset_message').hide().removeClass('alert-success alert-danger');
+    $('#send_resetlink_btn').prop('disabled', true).addClass('running');
+    $('#passwordreset_sent').hide().removeClass('fa-check fa-times text-success text-danger');
+
+    $.ajax({
+        url: base_url + 'index.php/user/admin_send_password_reset',
+        type: 'POST',
+        data: { 
+            user_id: user_id,
+            submit_allowed: true
+        },
+        success: function(result) {
+            if (result) {
+                $('#pwd_reset_message').show().text(lang_admin_password_reset_processed).addClass('alert-success');
+                $('#send_resetlink_btn').prop('disabled', false).removeClass('running');
+                $('#passwordreset_sent').show().addClass('fa-check text-success');
+            } else {
+                $('#pwd_reset_message').show().text(lang_admin_email_settings_incorrect).addClass('alert-danger');
+                $('#send_resetlink_btn').prop('disabled', false).removeClass('running');
+                $('#passwordreset_sent').show().addClass('fa-times text-danger');
+            }
+        },
+        error: function() {
+            $('#pwd_reset_message').show().text(lang_admin_password_reset_failed).addClass('alert-danger');
+            $('#send_resetlink_btn').prop('disabled', false).removeClass('running');
+            $('#passwordreset_sent').show().addClass('fa-times text-danger');
+        }
+    });
+}
+
+function convert_user(user_id, convert_to) {
+    $('#user_converted_message').hide().removeClass('alert-success alert-danger');
+    $('#convert_user_btn').prop('disabled', true).removeClass('btn-secondary').addClass('btn-danger running');
+    $('#user_converted').hide().removeClass('fa-check fa-times text-success text-danger');
+
+    $.ajax({
+        url: base_url + 'index.php/user/convert',
+        type: 'POST',
+        data: { 
+            user_id: user_id,
+            convert_to: convert_to,
+        },
+        success: function(result) {
+            if (result) {
+                $('#user_converted_message').show().text(lang_account_conversion_processed).addClass('alert-success');
+                $('#convert_user_btn').removeClass('running btn-danger').addClass('btn-secondary');
+                $('#user_converted').show().addClass('fa-check text-success');
+            } else {
+                $('#user_converted_message').show().text(lang_account_conversion_failed).addClass('alert-danger');
+                $('#convert_user_btn').prop('disabled', false).removeClass('running');
+                $('#user_converted').show().addClass('fa-times text-danger');
+            }
+        },
+        error: function() {
+            $('#user_converted_message').show().text(lang_account_conversion_failed).addClass('alert-danger');
+            $('#convert_user_btn').prop('disabled', false).removeClass('running');
+            $('#user_converted').show().addClass('fa-times text-danger');
+        }
+    });
+}
+
+
 $(document).ready(function(){
 
     $('#adminusertable').DataTable({
@@ -23,6 +122,31 @@ $(document).ready(function(){
                 }
             }
         ]
+    });
+
+    $('#adminclubusertable').DataTable({
+        "pageLength": 25,
+        responsive: true,
+        ordering: true,
+        "scrollY": "100%",
+        "scrollCollapse": true,
+        "paging": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'csv',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5 ]
+                }
+            }
+        ]
+    });
+
+    $(function () {
+        $('.btn-tooltip').tooltip();
     });
 
     $('.icon_selectBox').off('click').on('click', function(){
@@ -144,18 +268,3 @@ $(document).ready(function(){
 
     });
 });
-
-function clearRefSwitches() {
-   var iotaSwitch = document.getElementById("iotaToQsoTab");
-   iotaSwitch.checked = false;
-   var sotaSwitch = document.getElementById("sotaToQsoTab");
-   sotaSwitch.checked = false;
-   var wwffSwitch = document.getElementById("wwffToQsoTab");
-   wwffSwitch.checked = false;
-   var potaSwitch = document.getElementById("potaToQsoTab");
-   potaSwitch.checked = false;
-   var sigSwitch = document.getElementById("sigToQsoTab");
-   sigSwitch.checked = false;
-   var dokSwitch = document.getElementById("dokToQsoTab");
-   dokSwitch.checked = false;
-}
