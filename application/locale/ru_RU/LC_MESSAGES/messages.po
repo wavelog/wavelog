@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-19 09:33+0000\n"
-"PO-Revision-Date: 2024-12-10 11:08+0000\n"
+"POT-Creation-Date: 2024-12-12 17:07+0000\n"
+"PO-Revision-Date: 2024-12-17 16:28+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -2053,8 +2053,9 @@ msgstr ""
 
 #: application/controllers/Simplefle.php:90
 #: application/controllers/Simplefle.php:93
-#: application/models/Logbook_model.php:4491
+#: application/models/Logbook_model.php:4490
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4491
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
@@ -2349,7 +2350,7 @@ msgstr "Префиксы DXCC:"
 
 #: application/controllers/Update.php:401
 msgid "LoTW SAT Update"
-msgstr ""
+msgstr "Обновление спутников для LoTW"
 
 #: application/controllers/User.php:36
 #: application/views/interface_assets/header.php:276
@@ -2623,20 +2624,24 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
+#: application/models/Logbook_model.php:3810
 #: application/models/Logbook_model.php:3811
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
+#: application/models/Logbook_model.php:3811
 #: application/models/Logbook_model.php:3812
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
+#: application/models/Logbook_model.php:3823
 #: application/models/Logbook_model.php:3824
 msgid "QSO on"
 msgstr "начало QSO"
 
+#: application/models/Logbook_model.php:3823
 #: application/models/Logbook_model.php:3824
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -2645,53 +2650,65 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
+#: application/models/Logbook_model.php:4122
 #: application/models/Logbook_model.php:4123
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4133
 #: application/models/Logbook_model.php:4134
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4186
 #: application/models/Logbook_model.php:4187
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4206
 #: application/models/Logbook_model.php:4207
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4227
 #: application/models/Logbook_model.php:4228
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4551
 #: application/models/Logbook_model.php:4552
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
+#: application/models/Logbook_model.php:4557
 #: application/models/Logbook_model.php:4558
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4562
 #: application/models/Logbook_model.php:4563
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
+#: application/models/Logbook_model.php:4565
 #: application/models/Logbook_model.php:4566
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
+#: application/models/Logbook_model.php:4568
 #: application/models/Logbook_model.php:4569
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
+#: application/models/Logbook_model.php:4571
 #: application/models/Logbook_model.php:4572
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4575
+#: application/models/Logbook_model.php:4574
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
+#: application/models/Logbook_model.php:4575
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -2705,35 +2722,35 @@ msgstr "Вы используете последнюю версию."
 
 #: application/models/Update_model.php:383
 msgid "cURL error:"
-msgstr ""
+msgstr "ошибка cURL:"
 
 #: application/models/Update_model.php:418
 msgid "SAT already existing. LoTW status updated."
-msgstr ""
+msgstr "Спутник уже существует. Статус LoTW обновлен."
 
 #: application/models/Update_model.php:420
 msgid "SAT already existing. Updating LoTW status failed."
-msgstr ""
+msgstr "Спутник уже существует. Обновление статуса LoTW не удалось."
 
 #: application/models/Update_model.php:423
 msgid "SAT already existing. Ignored."
-msgstr ""
+msgstr "Спутник уже существует. Игнорируется."
 
 #: application/models/Update_model.php:430
 msgid "SAT already existing. Display name updated."
-msgstr ""
+msgstr "Спутник уже существует. Отображаемое наименование обновлено."
 
 #: application/models/Update_model.php:432
 msgid "SAT already existing. Updating display name failed."
-msgstr ""
+msgstr "Спутник уже существует. Не удалось обновить отображаемое наименование."
 
 #: application/models/Update_model.php:442
 msgid "New SAT. Inserted."
-msgstr ""
+msgstr "Новый спутник. Добавлен."
 
 #: application/models/Update_model.php:444
 msgid "New SAT. Insert failed."
-msgstr ""
+msgstr "Новый спутник. Добавление не удалось."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -10665,7 +10682,7 @@ msgstr "Добавить спутник"
 
 #: application/views/satellite/index.php:16
 msgid "Sync Satellites from LoTW"
-msgstr ""
+msgstr "Синхронизировать спутники с LoTW"
 
 #: application/views/satellite/index.php:27
 msgid "TLE"
@@ -10712,11 +10729,11 @@ msgstr "Загрузить прогнозы"
 
 #: application/views/satellite/pass.php:534
 msgid "Add sked partner"
-msgstr ""
+msgstr "Добавить корреспондента по скеду"
 
 #: application/views/satellite/pass.php:536
 msgid "No TLE information detected. Please update TLE's."
-msgstr ""
+msgstr "Информация о TLE не обнаружена. Пожалуйста, обновите TLE."
 
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:8
@@ -10754,11 +10771,11 @@ msgstr "Азимут захода спутника за горизонт (LOS)"
 #: application/views/satellite/passtable.php:30
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
-msgstr ""
+msgstr "Поиск не удался!"
 
 #: application/views/satellite/passtable.php:31
 msgid "No passes found. Please check the input parameters."
-msgstr ""
+msgstr "Видимые орбиты не найдены. Пожалуйста, проверьте исходные параметры."
 
 #: application/views/satellite/passtable.php:40
 #: application/views/satellite/skedtable.php:93
@@ -10767,19 +10784,20 @@ msgstr "мин"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
-msgstr ""
+msgstr "Квадрат"
 
 #: application/views/satellite/skedtable.php:58
 msgid "Sked AOS Time"
-msgstr ""
+msgstr "Время AOS для скеда"
 
 #: application/views/satellite/skedtable.php:59
 msgid "Sked LOS Time"
-msgstr ""
+msgstr "Время LOS для скеда"
 
 #: application/views/satellite/skedtable.php:84
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
+"Перекрывающихся орбит не найдено. Пожалуйста, проверьте исходные параметры."
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -12399,7 +12417,7 @@ msgstr "Не отображать"
 
 #: application/views/user/edit.php:488
 msgid "Not displayed"
-msgstr ""
+msgstr "Не отображается"
 
 #: application/views/user/edit.php:497
 msgid "QSO (by default)"
