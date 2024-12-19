@@ -469,7 +469,7 @@ class Lotw extends CI_Controller {
 	private function loadFromFile($filepath, $station_ids, $display_view = "TRUE") {
 
 		// Figure out how we should be marking QSLs confirmed via LoTW
-		$query = $query = $this->db->query('SELECT lotw_rcvd_mark FROM config');
+		$query = $this->db->query('SELECT lotw_rcvd_mark FROM config');
 		$q = $query->row();
 		$config['lotw_rcvd_mark'] = $q->lotw_rcvd_mark;
 
