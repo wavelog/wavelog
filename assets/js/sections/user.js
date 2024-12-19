@@ -75,7 +75,7 @@ $(document).ready(function(){
 				if(res.status == 'OK') {
 					btn_div.addClass('alert-success');
 					msg_div.addClass('alert-success');
-					msg_div.text('LoTW OK!');
+					msg_div.text('LoTW login OK!');
 					msg_div.show();
 					btn_div.show();
 				} else {

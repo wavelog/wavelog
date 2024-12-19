@@ -715,7 +715,7 @@
 										<div class="input-group">
 											<input class="form-control" type="password" id="user_lotw_password" name="user_lotw_password" value="<?php if(isset($user_lotw_password)) { echo $user_lotw_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
-											<button class="btn btn-secondary" type="button" id="lotw_test_btn">Test LoTW</button>
+											<button class="btn btn-secondary" type="button" id="lotw_test_btn"><?= __("Test Login"); ?></button>
 										</div>
 										<div class="alert mt-3" style="display: none;" id="lotw_test_txt"></div>
 										<?php if(isset($lotwpassword_error)) {

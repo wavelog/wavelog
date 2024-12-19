@@ -783,10 +783,10 @@ class Lotw extends CI_Controller {
 			if ($content) {
 				if(curl_errno($ch)) {
 					$ret['status']='failed';
-					$ret['details']== __("LoTW check failed for user ").$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+					$ret['details']== __("LoTW login failed for user ").$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 				} else if (str_contains($content,"Username/password incorrect</I>")) {
 					$ret['status']='failed_wrong_creds';
-					$ret['details']= __("LoTW check failed for user ").$data['user_lotw_name'].__(": Username/password incorrect");
+					$ret['details']= __("LoTW login failed for user ").$data['user_lotw_name'].": ". __("Username/password incorrect");
 				} else {
 					$ret['status']='OK';
 				}
