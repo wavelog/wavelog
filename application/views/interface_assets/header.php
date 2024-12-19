@@ -200,6 +200,8 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/dok'); ?>"><i class="fas fa-trophy"></i> <?= __("DOK"); ?></a></li>
 										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/dl'); ?>"><i class="fas fa-trophy"></i> <?= __("DL Gridmaster"); ?></a></li>
+										<div class="dropdown-divider"></div>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/wae'); ?>"><i class="fas fa-trophy"></i> <?= __("WAE (Worked All Europe)"); ?></a></li>
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>

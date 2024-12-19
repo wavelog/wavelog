@@ -1680,7 +1680,7 @@ $(document).ready(function(){
 		<script src="<?php echo base_url(); ?>assets/js/sections/webadif.js"></script>
 	<?php } ?>
 
-<?php if ($this->uri->segment(2) == "dxcc") { ?>
+<?php if ($this->uri->segment(2) == "dxcc" || $this->uri->segment(2) == "wae") { ?>
 <script>
     $('.tabledxcc').DataTable({
         "pageLength": 25,
