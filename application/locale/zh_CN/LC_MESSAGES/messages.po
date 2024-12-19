@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-19 10:54+0000\n"
+"POT-Creation-Date: 2024-12-19 11:07+0000\n"
 "PO-Revision-Date: 2024-12-17 16:28+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -64,18 +64,18 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
 #: application/controllers/Lotw.php:377 application/controllers/Lotw.php:400
-#: application/controllers/Lotw.php:730 application/controllers/Lotw.php:835
-#: application/controllers/Mode.php:15 application/controllers/Notes.php:10
-#: application/controllers/Options.php:15 application/controllers/Oqrs.php:15
-#: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:282
-#: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
-#: application/controllers/Qsl.php:44 application/controllers/Qsl.php:52
-#: application/controllers/Qslprint.php:147 application/controllers/Qso.php:9
-#: application/controllers/Qso.php:19 application/controllers/Qso.php:176
-#: application/controllers/Qso.php:275 application/controllers/Qso.php:295
-#: application/controllers/Qso.php:304 application/controllers/Qso.php:600
-#: application/controllers/Radio.php:282 application/controllers/Radio.php:308
-#: application/controllers/Radio.php:324
+#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:813
+#: application/controllers/Lotw.php:918 application/controllers/Mode.php:15
+#: application/controllers/Notes.php:10 application/controllers/Options.php:15
+#: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
+#: application/controllers/Qrz.php:282 application/controllers/Qsl.php:12
+#: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
+#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
+#: application/controllers/Qso.php:9 application/controllers/Qso.php:19
+#: application/controllers/Qso.php:176 application/controllers/Qso.php:275
+#: application/controllers/Qso.php:295 application/controllers/Qso.php:304
+#: application/controllers/Qso.php:600 application/controllers/Radio.php:282
+#: application/controllers/Radio.php:308 application/controllers/Radio.php:324
 #: application/controllers/Reg1test.php:18
 #: application/controllers/Reg1test.php:63
 #: application/controllers/Reg1test.php:102
@@ -1082,7 +1082,7 @@ msgstr "LoTW"
 #: application/views/search/search_result_ajax.php:273
 #: application/views/station_profile/edit.php:305
 #: application/views/timeline/index.php:64 application/views/user/edit.php:564
-#: application/views/user/edit.php:667 application/views/user/edit.php:731
+#: application/views/user/edit.php:667 application/views/user/edit.php:733
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1566,27 +1566,48 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:736
+#: application/controllers/Lotw.php:786 application/controllers/Lotw.php:789
+#, php-format
+msgid "LoTW login failed for user %s: %s."
+msgstr ""
+
+#: application/controllers/Lotw.php:789
+msgid "Username/password incorrect"
+msgstr ""
+
+#: application/controllers/Lotw.php:792
+msgid "LoTW login OK!"
+msgstr ""
+
+#: application/controllers/Lotw.php:796
+msgid "LoTW currently not available. Try again later."
+msgstr ""
+
+#: application/controllers/Lotw.php:801
+msgid "No LoTW credentials provided."
+msgstr ""
+
+#: application/controllers/Lotw.php:819
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
-#: application/controllers/Lotw.php:762 application/controllers/Lotw.php:870
+#: application/controllers/Lotw.php:845 application/controllers/Lotw.php:953
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Lotw.php:837
+#: application/controllers/Lotw.php:920
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 导入"
 
-#: application/controllers/Lotw.php:915
+#: application/controllers/Lotw.php:998
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "LoTW 用户名/密码错误。"
 
-#: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
+#: application/controllers/Lotw.php:1017 application/controllers/Lotw.php:1022
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 已发送"
 
-#: application/controllers/Lotw.php:946
+#: application/controllers/Lotw.php:1029
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
@@ -5563,8 +5584,8 @@ msgstr ""
 #: application/views/user/edit.php:369 application/views/user/edit.php:379
 #: application/views/user/edit.php:389 application/views/user/edit.php:399
 #: application/views/user/edit.php:419 application/views/user/edit.php:430
-#: application/views/user/edit.php:540 application/views/user/edit.php:802
-#: application/views/user/edit.php:834 application/views/user/edit.php:859
+#: application/views/user/edit.php:540 application/views/user/edit.php:804
+#: application/views/user/edit.php:836 application/views/user/edit.php:861
 msgid "Yes"
 msgstr "是"
 
@@ -5614,8 +5635,8 @@ msgstr "是"
 #: application/views/user/edit.php:390 application/views/user/edit.php:400
 #: application/views/user/edit.php:420 application/views/user/edit.php:431
 #: application/views/user/edit.php:522 application/views/user/edit.php:526
-#: application/views/user/edit.php:541 application/views/user/edit.php:803
-#: application/views/user/edit.php:833 application/views/user/edit.php:858
+#: application/views/user/edit.php:541 application/views/user/edit.php:805
+#: application/views/user/edit.php:835 application/views/user/edit.php:860
 msgid "No"
 msgstr "否"
 
@@ -12070,27 +12091,31 @@ msgstr "Logbook of The World (LoTW) 用户名"
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Logbook of The World (LoTW) 密码"
 
-#: application/views/user/edit.php:734
+#: application/views/user/edit.php:718
+msgid "Test Login"
+msgstr ""
+
+#: application/views/user/edit.php:736
 msgid "eQSL.cc Username"
 msgstr "eQSL.cc 用户名"
 
-#: application/views/user/edit.php:740
+#: application/views/user/edit.php:742
 msgid "eQSL.cc Password"
 msgstr "eQSL.cc 密码"
 
-#: application/views/user/edit.php:757
+#: application/views/user/edit.php:759
 msgid "Club Log"
 msgstr "Clublog"
 
-#: application/views/user/edit.php:760
+#: application/views/user/edit.php:762
 msgid "Club Log Email/Callsign"
 msgstr "Clublog 邮件地址/呼号"
 
-#: application/views/user/edit.php:766
+#: application/views/user/edit.php:768
 msgid "Club Log Password"
 msgstr "Clublog 密码"
 
-#: application/views/user/edit.php:771
+#: application/views/user/edit.php:773
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -12099,69 +12124,69 @@ msgstr ""
 "如在 Clublog 启用了双因素验证，则需要在 Clublog 为 Wavelog 创建一个 App. "
 "Password，创建地址 %s %s。"
 
-#: application/views/user/edit.php:788
+#: application/views/user/edit.php:790
 msgid "Miscellaneous"
 msgstr "其它"
 
-#: application/views/user/edit.php:796
+#: application/views/user/edit.php:798
 msgid "AMSAT Status Upload"
 msgstr "上传 AMSAT"
 
-#: application/views/user/edit.php:799
+#: application/views/user/edit.php:801
 msgid "Upload status of SAT QSOs to"
 msgstr "上传卫星状态到"
 
-#: application/views/user/edit.php:813
+#: application/views/user/edit.php:815
 msgid "Mastodonserver"
 msgstr "Mastodon 服务器"
 
-#: application/views/user/edit.php:816
+#: application/views/user/edit.php:818
 msgid "URL of Mastodonserver"
 msgstr "Mastodon 地址"
 
-#: application/views/user/edit.php:818
+#: application/views/user/edit.php:820
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "您的 Mastodon 服务器地址，例如 %s"
 
-#: application/views/user/edit.php:827
+#: application/views/user/edit.php:829
 msgid "Experimental"
 msgstr "实验性功能"
 
-#: application/views/user/edit.php:827
+#: application/views/user/edit.php:829
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
-#: application/views/user/edit.php:830
+#: application/views/user/edit.php:832
 msgid "Winkeyer Features Enabled"
 msgstr "启用 Winkeyer 功能"
 
-#: application/views/user/edit.php:836
+#: application/views/user/edit.php:838
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr "Wavelog 对 Winkeyer 的支持是实验性的，请在使用前阅读说明 %s。"
 
-#: application/views/user/edit.php:847
+#: application/views/user/edit.php:849
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:850
+#: application/views/user/edit.php:852
 msgid "Private Feed Key"
 msgstr "Private Feed Key"
 
-#: application/views/user/edit.php:852
+#: application/views/user/edit.php:854
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "在 %s 查看个人资料。"
 
-#: application/views/user/edit.php:855
+#: application/views/user/edit.php:857
 msgid "Show Workable Passes Only"
 msgstr "只显示可通联的过境"
 
-#: application/views/user/edit.php:861
+#: application/views/user/edit.php:863
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -12169,7 +12194,7 @@ msgstr ""
 "如果启用，仅显示基于在 hams.at 设置好的位置信息计算过境，需要设置好 Private "
 "Feed Key。"
 
-#: application/views/user/edit.php:873
+#: application/views/user/edit.php:875
 msgid "Save Account"
 msgstr "保存账户更改"
 
