@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-12 17:07+0000\n"
-"PO-Revision-Date: 2024-12-10 11:08+0000\n"
+"POT-Creation-Date: 2024-12-19 11:07+0000\n"
+"PO-Revision-Date: 2024-12-17 16:28+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -61,18 +61,18 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
 #: application/controllers/Lotw.php:377 application/controllers/Lotw.php:400
-#: application/controllers/Lotw.php:730 application/controllers/Lotw.php:835
-#: application/controllers/Mode.php:15 application/controllers/Notes.php:10
-#: application/controllers/Options.php:15 application/controllers/Oqrs.php:15
-#: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:282
-#: application/controllers/Qsl.php:12 application/controllers/Qsl.php:13
-#: application/controllers/Qsl.php:44 application/controllers/Qsl.php:52
-#: application/controllers/Qslprint.php:147 application/controllers/Qso.php:9
-#: application/controllers/Qso.php:19 application/controllers/Qso.php:176
-#: application/controllers/Qso.php:275 application/controllers/Qso.php:295
-#: application/controllers/Qso.php:304 application/controllers/Qso.php:600
-#: application/controllers/Radio.php:282 application/controllers/Radio.php:308
-#: application/controllers/Radio.php:324
+#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:813
+#: application/controllers/Lotw.php:918 application/controllers/Mode.php:15
+#: application/controllers/Notes.php:10 application/controllers/Options.php:15
+#: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
+#: application/controllers/Qrz.php:282 application/controllers/Qsl.php:12
+#: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
+#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
+#: application/controllers/Qso.php:9 application/controllers/Qso.php:19
+#: application/controllers/Qso.php:176 application/controllers/Qso.php:275
+#: application/controllers/Qso.php:295 application/controllers/Qso.php:304
+#: application/controllers/Qso.php:600 application/controllers/Radio.php:282
+#: application/controllers/Radio.php:308 application/controllers/Radio.php:324
 #: application/controllers/Reg1test.php:18
 #: application/controllers/Reg1test.php:63
 #: application/controllers/Reg1test.php:102
@@ -1089,7 +1089,7 @@ msgstr "LoTW"
 #: application/views/search/search_result_ajax.php:273
 #: application/views/station_profile/edit.php:305
 #: application/views/timeline/index.php:64 application/views/user/edit.php:564
-#: application/views/user/edit.php:667 application/views/user/edit.php:731
+#: application/views/user/edit.php:667 application/views/user/edit.php:733
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1511,7 +1511,7 @@ msgstr "Оператор"
 #: application/views/awards/dxcc/index.php:238
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:685
+#: application/views/interface_assets/footer.php:687
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:191
 #: application/views/lookup/index.php:44
@@ -1573,27 +1573,48 @@ msgstr ""
 msgid "LoTW ADIF Information"
 msgstr "LoTW. Информация ADIF"
 
-#: application/controllers/Lotw.php:736
+#: application/controllers/Lotw.php:786 application/controllers/Lotw.php:789
+#, php-format
+msgid "LoTW login failed for user %s: %s."
+msgstr ""
+
+#: application/controllers/Lotw.php:789
+msgid "Username/password incorrect"
+msgstr ""
+
+#: application/controllers/Lotw.php:792
+msgid "LoTW login OK!"
+msgstr ""
+
+#: application/controllers/Lotw.php:796
+msgid "LoTW currently not available. Try again later."
+msgstr ""
+
+#: application/controllers/Lotw.php:801
+msgid "No LoTW credentials provided."
+msgstr ""
+
+#: application/controllers/Lotw.php:819
 msgid "LoTW ADIF Import"
 msgstr "LoTW. Импорт ADIF"
 
-#: application/controllers/Lotw.php:762 application/controllers/Lotw.php:870
+#: application/controllers/Lotw.php:845 application/controllers/Lotw.php:953
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Вы не указали свои учетные данные ARRL LoTW!"
 
-#: application/controllers/Lotw.php:837
+#: application/controllers/Lotw.php:920
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW. TQ8 загрузка"
 
-#: application/controllers/Lotw.php:915
+#: application/controllers/Lotw.php:998
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Ваше имя пользователя и/или пароль ARRL неверны."
 
-#: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
+#: application/controllers/Lotw.php:1017 application/controllers/Lotw.php:1022
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW. TQ8 загружен"
 
-#: application/controllers/Lotw.php:946
+#: application/controllers/Lotw.php:1029
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW. TQ8 не загружен"
 
@@ -1928,8 +1949,8 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/controllers/Stationsetup.php:359
 #: application/views/api/help.php:57 application/views/contesting/add.php:59
 #: application/views/cron/index.php:58
-#: application/views/interface_assets/footer.php:551
-#: application/views/interface_assets/footer.php:560
+#: application/views/interface_assets/footer.php:553
+#: application/views/interface_assets/footer.php:562
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:584
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -1944,10 +1965,10 @@ msgstr "Редактировать"
 #: application/controllers/Radio.php:107
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:2377
-#: application/views/interface_assets/footer.php:2395
-#: application/views/interface_assets/footer.php:2416
-#: application/views/interface_assets/footer.php:2434
+#: application/views/interface_assets/footer.php:2379
+#: application/views/interface_assets/footer.php:2397
+#: application/views/interface_assets/footer.php:2418
+#: application/views/interface_assets/footer.php:2436
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:598
 #: application/views/lotw_views/index.php:111
@@ -2053,7 +2074,7 @@ msgstr ""
 
 #: application/controllers/Simplefle.php:90
 #: application/controllers/Simplefle.php:93
-#: application/models/Logbook_model.php:4490
+#: application/models/Logbook_model.php:4507
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "Дубликат для"
@@ -2349,7 +2370,7 @@ msgstr "Префиксы DXCC:"
 
 #: application/controllers/Update.php:401
 msgid "LoTW SAT Update"
-msgstr ""
+msgstr "Обновление спутников для LoTW"
 
 #: application/controllers/User.php:36
 #: application/views/interface_assets/header.php:276
@@ -2623,21 +2644,21 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:3810
+#: application/models/Logbook_model.php:3811
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:3811
+#: application/models/Logbook_model.php:3812
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
-#: application/models/Logbook_model.php:3823
+#: application/models/Logbook_model.php:3824
 msgid "QSO on"
 msgstr "начало QSO"
 
-#: application/models/Logbook_model.php:3823
+#: application/models/Logbook_model.php:3824
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2645,51 +2666,51 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
-#: application/models/Logbook_model.php:4122
+#: application/models/Logbook_model.php:4123
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4133
+#: application/models/Logbook_model.php:4134
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4186
+#: application/models/Logbook_model.php:4185
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4206
+#: application/models/Logbook_model.php:4205
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4227
+#: application/models/Logbook_model.php:4226
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4551
+#: application/models/Logbook_model.php:4568
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:4557
+#: application/models/Logbook_model.php:4574
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4562
+#: application/models/Logbook_model.php:4579
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:4565
+#: application/models/Logbook_model.php:4582
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:4568
+#: application/models/Logbook_model.php:4585
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:4571
+#: application/models/Logbook_model.php:4588
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4574
+#: application/models/Logbook_model.php:4591
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
 msgid "unknown"
@@ -2705,35 +2726,35 @@ msgstr "Вы используете последнюю версию."
 
 #: application/models/Update_model.php:383
 msgid "cURL error:"
-msgstr ""
+msgstr "ошибка cURL:"
 
 #: application/models/Update_model.php:418
 msgid "SAT already existing. LoTW status updated."
-msgstr ""
+msgstr "Спутник уже существует. Статус LoTW обновлен."
 
 #: application/models/Update_model.php:420
 msgid "SAT already existing. Updating LoTW status failed."
-msgstr ""
+msgstr "Спутник уже существует. Обновление статуса LoTW не удалось."
 
 #: application/models/Update_model.php:423
 msgid "SAT already existing. Ignored."
-msgstr ""
+msgstr "Спутник уже существует. Игнорируется."
 
 #: application/models/Update_model.php:430
 msgid "SAT already existing. Display name updated."
-msgstr ""
+msgstr "Спутник уже существует. Отображаемое наименование обновлено."
 
 #: application/models/Update_model.php:432
 msgid "SAT already existing. Updating display name failed."
-msgstr ""
+msgstr "Спутник уже существует. Не удалось обновить отображаемое наименование."
 
 #: application/models/Update_model.php:442
 msgid "New SAT. Inserted."
-msgstr ""
+msgstr "Новый спутник. Добавлен."
 
 #: application/models/Update_model.php:444
 msgid "New SAT. Insert failed."
-msgstr ""
+msgstr "Новый спутник. Добавление не удалось."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -2799,7 +2820,7 @@ msgstr "Разница"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:179
+#: application/views/adif/import.php:189
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -2843,8 +2864,8 @@ msgstr "Разница"
 #: application/views/gridmap/index.php:41
 #: application/views/gridmap/index.php:70
 #: application/views/gridmap/index.php:83
-#: application/views/interface_assets/footer.php:1488
-#: application/views/interface_assets/footer.php:1627
+#: application/views/interface_assets/footer.php:1490
+#: application/views/interface_assets/footer.php:1629
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -3328,8 +3349,8 @@ msgid "Nothing found!"
 msgstr "Не найдено!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:66 application/views/adif/import.php:183
-#: application/views/adif/import.php:228
+#: application/views/adif/import.php:66 application/views/adif/import.php:193
+#: application/views/adif/import.php:238
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
 #: application/views/awards/sota/index.php:25
@@ -3528,7 +3549,7 @@ msgstr "DOK в DCL"
 msgid "DCL QSL Status"
 msgstr "Статус DCL QSL"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:253
+#: application/views/adif/import.php:36 application/views/adif/import.php:263
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -3550,8 +3571,8 @@ msgstr "Лог-файлы должны иметь расширение .adi"
 msgid "Maximum file upload size is "
 msgstr "Максимальный размер загружаемого файла "
 
-#: application/views/adif/import.php:56 application/views/adif/import.php:231
-#: application/views/adif/import.php:269 application/views/debug/index.php:189
+#: application/views/adif/import.php:56 application/views/adif/import.php:241
+#: application/views/adif/import.php:279 application/views/debug/index.php:189
 #: application/views/debug/index.php:206 application/views/debug/index.php:567
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
@@ -3565,7 +3586,7 @@ msgid "Warning"
 msgstr "Предупреждение"
 
 #: application/views/adif/import.php:60 application/views/adif/import.php:62
-#: application/views/adif/import.php:177 application/views/adif/import.php:226
+#: application/views/adif/import.php:187 application/views/adif/import.php:236
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -3595,7 +3616,7 @@ msgstr "Отметить импортированные QSO, как загруж
 
 #: application/views/adif/import.php:95 application/views/adif/import.php:105
 #: application/views/adif/import.php:115 application/views/adif/import.php:125
-#: application/views/adif/import.php:135
+#: application/views/adif/import.php:135 application/views/adif/import.php:145
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "Отметьте, если импортируемый ADIF не содержит этой информации."
 
@@ -3616,10 +3637,14 @@ msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "Отметить импортированные QSO, как загруженные в журнал Clublog"
 
 #: application/views/adif/import.php:143
+msgid "Mark imported QSOs as uploaded to DCL Logbook"
+msgstr ""
+
+#: application/views/adif/import.php:153
 msgid "Use DXCC information from ADIF"
 msgstr "Использовать информацию о DXCC из ADIF"
 
-#: application/views/adif/import.php:145
+#: application/views/adif/import.php:155
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
@@ -3627,25 +3652,25 @@ msgstr ""
 "Если не отмечено, Wavelog будет пытаться определить информацию о DXCC "
 "автоматически."
 
-#: application/views/adif/import.php:153
+#: application/views/adif/import.php:163
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
 "Всегда используйте позывной учетной записи, под которой выполнен вход, в "
 "качестве позывного оператора при импорте"
 
-#: application/views/adif/import.php:162
+#: application/views/adif/import.php:172
 #: application/views/interface_assets/footer.php:33
-#: application/views/interface_assets/footer.php:511
-#: application/views/interface_assets/footer.php:2173
+#: application/views/interface_assets/footer.php:513
+#: application/views/interface_assets/footer.php:2175
 msgid "DANGER"
 msgstr "ОПАСНО"
 
-#: application/views/adif/import.php:162
+#: application/views/adif/import.php:172
 msgid "Ignore Stationcallsign on import"
 msgstr "Игнорировать позывной станции при импорте"
 
-#: application/views/adif/import.php:164
+#: application/views/adif/import.php:174
 #, php-format
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
@@ -3654,17 +3679,17 @@ msgstr ""
 "Если выбрано, Wavelog попытается импортировать %sвсе%s QSO из ADIF, "
 "независимо от того, соответствуют ли они выбранному местоположению станции."
 
-#: application/views/adif/import.php:168 application/views/adif/import.php:284
+#: application/views/adif/import.php:178 application/views/adif/import.php:294
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Загрузить"
 
-#: application/views/adif/import.php:175
+#: application/views/adif/import.php:185
 msgid "Take your logbook file anywhere!"
 msgstr "Возьми журнал с собой!"
 
-#: application/views/adif/import.php:176
+#: application/views/adif/import.php:186
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -3672,7 +3697,7 @@ msgstr ""
 "Экспорт ADIF позволяет импортировать QSO в различные приложения (сервисы), "
 "такие как LoTW, Awards или просто сохранить, как резервную копию."
 
-#: application/views/adif/import.php:187 application/views/adif/import.php:233
+#: application/views/adif/import.php:197 application/views/adif/import.php:243
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
 #: application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -3681,7 +3706,7 @@ msgstr ""
 msgid "From date"
 msgstr "Начиная с даты"
 
-#: application/views/adif/import.php:190 application/views/adif/import.php:236
+#: application/views/adif/import.php:200 application/views/adif/import.php:246
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -3690,41 +3715,41 @@ msgstr "Начиная с даты"
 msgid "To date"
 msgstr "До даты"
 
-#: application/views/adif/import.php:198
+#: application/views/adif/import.php:208
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Отметить экспортированные QSO как загруженные в LoTW"
 
-#: application/views/adif/import.php:206
+#: application/views/adif/import.php:216
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Отметить экспортированные QSO как незагруженные в LoTW"
 
-#: application/views/adif/import.php:211
+#: application/views/adif/import.php:221
 msgid "Export QSO's"
 msgstr "Экспорт QSO"
 
-#: application/views/adif/import.php:216
+#: application/views/adif/import.php:226
 msgid "Export Satellite-Only QSOs"
 msgstr "Экспортировать QSO, проведённые через спутник"
 
-#: application/views/adif/import.php:217
+#: application/views/adif/import.php:227
 msgid "Export All Satellite QSOs"
 msgstr "Экспортировать все QSO, проведённые через спутник"
 
-#: application/views/adif/import.php:219
+#: application/views/adif/import.php:229
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr ""
 "Экспортировать все QSO, проведённые через спутник, подтверждённые на LoTW"
 
-#: application/views/adif/import.php:231 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:241 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "Если диапазон дат не выбран, то будут отмечены все QSO!"
 
-#: application/views/adif/import.php:239
+#: application/views/adif/import.php:249
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Отметить QSO как экспортированные в LoTW"
 
-#: application/views/adif/import.php:253
+#: application/views/adif/import.php:263
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -3737,11 +3762,11 @@ msgstr ""
 "указать 'DL' в списке префиксов). Скачанный ADIF файл может быть загружен "
 "здесь для обновления журнала информацией DOK."
 
-#: application/views/adif/import.php:260
+#: application/views/adif/import.php:270
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Импортировать только данные DOK из QSO, подтверждённых на DCL."
 
-#: application/views/adif/import.php:262
+#: application/views/adif/import.php:272
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -3749,12 +3774,12 @@ msgstr ""
 "Снисите отметку, если вы также хотите обновить данные DOK из QSO, не "
 "подтверждённых на DCL."
 
-#: application/views/adif/import.php:269
+#: application/views/adif/import.php:279
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr ""
 "Перезаписать информацию DOK в логе информацией из DCL (в случае различия)."
 
-#: application/views/adif/import.php:271
+#: application/views/adif/import.php:281
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -3762,11 +3787,11 @@ msgstr ""
 "Если отмеченно, то Wavelog принудительно перезапишет имеющиемя данные DOK "
 "данными из журнала DCL."
 
-#: application/views/adif/import.php:278
+#: application/views/adif/import.php:288
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Игнорировать несовпадающиe QSO."
 
-#: application/views/adif/import.php:280
+#: application/views/adif/import.php:290
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -3843,7 +3868,7 @@ msgstr "Простое название, описывающее назначен
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:47
-#: application/views/interface_assets/footer.php:546
+#: application/views/interface_assets/footer.php:548
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:116
 #: application/views/options/dxcluster.php:67
@@ -4237,7 +4262,7 @@ msgstr "Отобразить QSO с типом QSL"
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
-#: application/views/interface_assets/footer.php:2152
+#: application/views/interface_assets/footer.php:2154
 #: application/views/qso/edit_ajax.php:403
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
@@ -5716,8 +5741,8 @@ msgstr ""
 #: application/views/user/edit.php:369 application/views/user/edit.php:379
 #: application/views/user/edit.php:389 application/views/user/edit.php:399
 #: application/views/user/edit.php:419 application/views/user/edit.php:430
-#: application/views/user/edit.php:540 application/views/user/edit.php:802
-#: application/views/user/edit.php:834 application/views/user/edit.php:859
+#: application/views/user/edit.php:540 application/views/user/edit.php:804
+#: application/views/user/edit.php:836 application/views/user/edit.php:861
 msgid "Yes"
 msgstr "Да"
 
@@ -5767,8 +5792,8 @@ msgstr "Да"
 #: application/views/user/edit.php:390 application/views/user/edit.php:400
 #: application/views/user/edit.php:420 application/views/user/edit.php:431
 #: application/views/user/edit.php:522 application/views/user/edit.php:526
-#: application/views/user/edit.php:541 application/views/user/edit.php:803
-#: application/views/user/edit.php:833 application/views/user/edit.php:858
+#: application/views/user/edit.php:541 application/views/user/edit.php:805
+#: application/views/user/edit.php:835 application/views/user/edit.php:860
 msgid "No"
 msgstr "Нет"
 
@@ -6473,9 +6498,10 @@ msgstr "Необходимо"
 #: application/views/visitor/index.php:291
 #: application/views/visitor/index.php:314
 #: application/views/visitor/index.php:332
-#: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:314
-#: src/QSLManager/QSO.php:417 src/QSLManager/QSO.php:469
-#: src/QSLManager/QSO.php:524 src/QSLManager/QSO.php:591
+#: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:339
+#: src/QSLManager/QSO.php:442 src/QSLManager/QSO.php:494
+#: src/QSLManager/QSO.php:549 src/QSLManager/QSO.php:610
+#: src/QSLManager/QSO.php:677
 msgid "Sent"
 msgstr "Отправлено"
 
@@ -6504,9 +6530,10 @@ msgstr "Отправлено"
 #: application/views/view_log/partial/log_ajax.php:369
 #: application/views/visitor/index.php:296
 #: application/views/visitor/index.php:319
-#: application/views/visitor/index.php:337 src/QSLManager/QSO.php:359
-#: src/QSLManager/QSO.php:440 src/QSLManager/QSO.php:492
-#: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:615
+#: application/views/visitor/index.php:337 src/QSLManager/QSO.php:384
+#: src/QSLManager/QSO.php:465 src/QSLManager/QSO.php:517
+#: src/QSLManager/QSO.php:588 src/QSLManager/QSO.php:649
+#: src/QSLManager/QSO.php:701
 msgid "Received"
 msgstr "Принято"
 
@@ -6537,10 +6564,10 @@ msgstr "Принято"
 #: application/views/view_log/partial/log_ajax.php:234
 #: application/views/view_log/partial/log_ajax.php:297
 #: application/views/view_log/partial/log_ajax.php:323
-#: application/views/visitor/index.php:301 src/QSLManager/QSO.php:320
-#: src/QSLManager/QSO.php:365 src/QSLManager/QSO.php:425
-#: src/QSLManager/QSO.php:448 src/QSLManager/QSO.php:599
-#: src/QSLManager/QSO.php:623
+#: application/views/visitor/index.php:301 src/QSLManager/QSO.php:345
+#: src/QSLManager/QSO.php:390 src/QSLManager/QSO.php:450
+#: src/QSLManager/QSO.php:473 src/QSLManager/QSO.php:685
+#: src/QSLManager/QSO.php:709
 msgid "Requested"
 msgstr "Запрошено"
 
@@ -7498,10 +7525,10 @@ msgid "QSL Date"
 msgstr "Дата QSL"
 
 #: application/views/eqslcard/index.php:60
-#: application/views/interface_assets/footer.php:2378
-#: application/views/interface_assets/footer.php:2396
-#: application/views/interface_assets/footer.php:2417
-#: application/views/interface_assets/footer.php:2435
+#: application/views/interface_assets/footer.php:2380
+#: application/views/interface_assets/footer.php:2398
+#: application/views/interface_assets/footer.php:2419
+#: application/views/interface_assets/footer.php:2437
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:729
 msgid "View"
@@ -7680,76 +7707,82 @@ msgstr "Обновить список"
 msgid "Please Wait ..."
 msgstr "Пожалуйста подождите..."
 
-#: application/views/interface_assets/footer.php:135
+#: application/views/interface_assets/footer.php:55
+msgctxt ""
+"Word for country states that are deprecated but kept for legacy reasons."
+msgid "deprecated"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:137
 #: application/views/interface_assets/header.php:444
 #: application/views/options/sidebar.php:12
 msgid "Version Info"
 msgstr "Информация о версии"
 
-#: application/views/interface_assets/footer.php:408
+#: application/views/interface_assets/footer.php:410
 msgid "Description:"
 msgstr "Описание:"
 
-#: application/views/interface_assets/footer.php:411
+#: application/views/interface_assets/footer.php:413
 msgid "Query description"
 msgstr "Описание запроса"
 
-#: application/views/interface_assets/footer.php:427
+#: application/views/interface_assets/footer.php:429
 msgid "Your query has been saved!"
 msgstr "Ваш запрос сохранён!"
 
-#: application/views/interface_assets/footer.php:429
+#: application/views/interface_assets/footer.php:431
 #: application/views/search/filter.php:49
 msgid "Edit queries"
 msgstr "Редактировать запросы"
 
-#: application/views/interface_assets/footer.php:431
+#: application/views/interface_assets/footer.php:433
 msgid "Stored queries:"
 msgstr "Сохранённые запросы:"
 
-#: application/views/interface_assets/footer.php:436
+#: application/views/interface_assets/footer.php:438
 #: application/views/search/filter.php:63
 msgid "Run Query"
 msgstr "Выполнить запрос"
 
-#: application/views/interface_assets/footer.php:448
-#: application/views/interface_assets/footer.php:577
-#: application/views/interface_assets/footer.php:641
+#: application/views/interface_assets/footer.php:450
+#: application/views/interface_assets/footer.php:579
+#: application/views/interface_assets/footer.php:643
 msgid "Stored Queries"
 msgstr "Сохранённые запросы"
 
-#: application/views/interface_assets/footer.php:453
-#: application/views/interface_assets/footer.php:646
+#: application/views/interface_assets/footer.php:455
+#: application/views/interface_assets/footer.php:648
 msgid "You need to make a query before you search!"
 msgstr "Сначала нужно сформировать запрос, прежде чем искать!"
 
-#: application/views/interface_assets/footer.php:474
-#: application/views/interface_assets/footer.php:605
+#: application/views/interface_assets/footer.php:476
+#: application/views/interface_assets/footer.php:607
 #: application/views/search/filter.php:82
 msgid "Export to ADIF"
 msgstr "Экспортировать в ADIF"
 
-#: application/views/interface_assets/footer.php:512
+#: application/views/interface_assets/footer.php:514
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Внимание! Вы уверены, что хотите удалить этот сохранённый запрос?"
 
-#: application/views/interface_assets/footer.php:526
+#: application/views/interface_assets/footer.php:528
 msgid "The stored query has been deleted!"
 msgstr "Сохранённый запрос был удален!"
 
-#: application/views/interface_assets/footer.php:535
+#: application/views/interface_assets/footer.php:537
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "Не удалось удалить сохранённый запрос. Пожалуйста, попробуйте еще раз!"
 
-#: application/views/interface_assets/footer.php:561
+#: application/views/interface_assets/footer.php:563
 msgid "The query description has been updated!"
 msgstr "Описание запроса было обновлено!"
 
-#: application/views/interface_assets/footer.php:565
+#: application/views/interface_assets/footer.php:567
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Что-то пошло не так с сохранением. Пожалуйста, попробуйте еще раз!"
 
-#: application/views/interface_assets/footer.php:688
+#: application/views/interface_assets/footer.php:690
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -7759,75 +7792,75 @@ msgstr ""
 "действителен. Проверьте, какой DXCC для данного конкретного места является "
 "правильным. Если вы уверены, проигнорируйте это предупреждение."
 
-#: application/views/interface_assets/footer.php:740
+#: application/views/interface_assets/footer.php:742
 #: application/views/logbookadvanced/index.php:569
 msgid "Callsign: "
 msgstr "Позывной: "
 
-#: application/views/interface_assets/footer.php:741
+#: application/views/interface_assets/footer.php:743
 msgid "Count: "
 msgstr "Всего: "
 
-#: application/views/interface_assets/footer.php:742
+#: application/views/interface_assets/footer.php:744
 msgid "Grids: "
 msgstr "Квадратов: "
 
-#: application/views/interface_assets/footer.php:1205
+#: application/views/interface_assets/footer.php:1207
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
 msgstr "Вы не вошли в систему. Пожалуйста, %sвойдите%s"
 
-#: application/views/interface_assets/footer.php:1415
-#: application/views/interface_assets/footer.php:1419
-#: application/views/interface_assets/footer.php:1422
-#: application/views/interface_assets/footer.php:1559
-#: application/views/interface_assets/footer.php:1563
-#: application/views/interface_assets/footer.php:1566
+#: application/views/interface_assets/footer.php:1417
+#: application/views/interface_assets/footer.php:1421
+#: application/views/interface_assets/footer.php:1424
+#: application/views/interface_assets/footer.php:1561
+#: application/views/interface_assets/footer.php:1565
+#: application/views/interface_assets/footer.php:1568
 msgid "grid square"
 msgstr "квадрат(/-а/-ов)"
 
-#: application/views/interface_assets/footer.php:1422
-#: application/views/interface_assets/footer.php:1566
+#: application/views/interface_assets/footer.php:1424
+#: application/views/interface_assets/footer.php:1568
 msgid "Total count"
 msgstr "Всего"
 
-#: application/views/interface_assets/footer.php:2154
+#: application/views/interface_assets/footer.php:2156
 msgid "QSL Card for "
 msgstr "QSL-карточка для "
 
-#: application/views/interface_assets/footer.php:2174
+#: application/views/interface_assets/footer.php:2176
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Внимание! Вы уверены, что хотите удалить эту QSL-карточку?"
 
-#: application/views/interface_assets/footer.php:2214
+#: application/views/interface_assets/footer.php:2216
 #: application/views/view_log/qso.php:42
 msgid "eQSL Card"
 msgstr "eQSL-карточка"
 
-#: application/views/interface_assets/footer.php:2216
+#: application/views/interface_assets/footer.php:2218
 msgid "eQSL Card for "
 msgstr "eQSL-карточка для "
 
-#: application/views/interface_assets/footer.php:2389
-#: application/views/interface_assets/footer.php:2428
+#: application/views/interface_assets/footer.php:2391
+#: application/views/interface_assets/footer.php:2430
 #: application/views/view_log/qso.php:719
 msgid "QSL image file"
 msgstr "Изображение QSL-карточки"
 
-#: application/views/interface_assets/footer.php:2408
+#: application/views/interface_assets/footer.php:2410
 msgid "Front QSL Card:"
 msgstr "Лицевая сторона QSL-карточки:"
 
-#: application/views/interface_assets/footer.php:2446
+#: application/views/interface_assets/footer.php:2448
 msgid "Back QSL Card:"
 msgstr "Обратная сторона QSL-карточки:"
 
-#: application/views/interface_assets/footer.php:2457
-#: application/views/interface_assets/footer.php:2482
+#: application/views/interface_assets/footer.php:2459
+#: application/views/interface_assets/footer.php:2484
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Добавить дополнительные QSO на QSL-карточку"
 
-#: application/views/interface_assets/footer.php:2493
+#: application/views/interface_assets/footer.php:2495
 msgid "Something went wrong. Please try again!"
 msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз!"
 
@@ -8478,7 +8511,7 @@ msgstr "QSL отправлено"
 #: application/views/search/search_result_ajax.php:225
 #: application/views/view_log/partial/log_ajax.php:193
 #: application/views/view_log/partial/log_ajax.php:231
-#: src/QSLManager/QSO.php:317 src/QSLManager/QSO.php:362
+#: src/QSLManager/QSO.php:342 src/QSLManager/QSO.php:387
 msgid "Queued"
 msgstr "В очереди"
 
@@ -8515,10 +8548,10 @@ msgstr "В очереди"
 #: application/views/view_log/partial/log_ajax.php:318
 #: application/views/view_log/partial/log_ajax.php:337
 #: application/views/view_log/partial/log_ajax.php:355
-#: src/QSLManager/QSO.php:323 src/QSLManager/QSO.php:368
-#: src/QSLManager/QSO.php:421 src/QSLManager/QSO.php:444
-#: src/QSLManager/QSO.php:546 src/QSLManager/QSO.php:595
-#: src/QSLManager/QSO.php:619
+#: src/QSLManager/QSO.php:348 src/QSLManager/QSO.php:393
+#: src/QSLManager/QSO.php:446 src/QSLManager/QSO.php:469
+#: src/QSLManager/QSO.php:571 src/QSLManager/QSO.php:632
+#: src/QSLManager/QSO.php:681 src/QSLManager/QSO.php:705
 msgid "Invalid (Ignore)"
 msgstr "Некорректно (Игнорировать)"
 
@@ -8546,7 +8579,7 @@ msgstr "Способ отправки QSL"
 #: application/views/search/search_result_ajax.php:241
 #: application/views/view_log/partial/log_ajax.php:212
 #: application/views/view_log/partial/log_ajax.php:250
-#: src/QSLManager/QSO.php:340 src/QSLManager/QSO.php:383
+#: src/QSLManager/QSO.php:365 src/QSLManager/QSO.php:408
 msgid "Bureau"
 msgstr "Бюро"
 
@@ -8564,7 +8597,7 @@ msgstr "Бюро"
 #: application/views/search/search_result_ajax.php:244
 #: application/views/view_log/partial/log_ajax.php:215
 #: application/views/view_log/partial/log_ajax.php:253
-#: src/QSLManager/QSO.php:343 src/QSLManager/QSO.php:386
+#: src/QSLManager/QSO.php:368 src/QSLManager/QSO.php:411
 msgid "Direct"
 msgstr "Напрямую"
 
@@ -8582,7 +8615,7 @@ msgstr "Напрямую"
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:221
 #: application/views/view_log/partial/log_ajax.php:259
-#: src/QSLManager/QSO.php:349 src/QSLManager/QSO.php:392
+#: src/QSLManager/QSO.php:374 src/QSLManager/QSO.php:417
 msgid "Electronic"
 msgstr "Электронное"
 
@@ -9729,7 +9762,7 @@ msgstr "Профиль QTH"
 #: application/views/qso/index.php:627
 #: application/views/search/search_result_ajax.php:205
 #: application/views/view_log/partial/log_ajax.php:218
-#: src/QSLManager/QSO.php:346
+#: src/QSLManager/QSO.php:371
 msgid "Via"
 msgstr "via"
 
@@ -10181,7 +10214,8 @@ msgstr "QSL MSG"
 #: application/views/qso/edit_ajax.php:553
 #: application/views/view_log/partial/log_ajax.php:337
 #: application/views/view_log/partial/log_ajax.php:349
-#: src/QSLManager/QSO.php:478 src/QSLManager/QSO.php:535
+#: src/QSLManager/QSO.php:503 src/QSLManager/QSO.php:560
+#: src/QSLManager/QSO.php:621
 msgid "Modified"
 msgstr "Модифицированный"
 
@@ -10665,7 +10699,7 @@ msgstr "Добавить спутник"
 
 #: application/views/satellite/index.php:16
 msgid "Sync Satellites from LoTW"
-msgstr ""
+msgstr "Синхронизировать спутники с LoTW"
 
 #: application/views/satellite/index.php:27
 msgid "TLE"
@@ -10712,11 +10746,11 @@ msgstr "Загрузить прогнозы"
 
 #: application/views/satellite/pass.php:534
 msgid "Add sked partner"
-msgstr ""
+msgstr "Добавить корреспондента по скеду"
 
 #: application/views/satellite/pass.php:536
 msgid "No TLE information detected. Please update TLE's."
-msgstr ""
+msgstr "Информация о TLE не обнаружена. Пожалуйста, обновите TLE."
 
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:8
@@ -10754,11 +10788,11 @@ msgstr "Азимут захода спутника за горизонт (LOS)"
 #: application/views/satellite/passtable.php:30
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
-msgstr ""
+msgstr "Поиск не удался!"
 
 #: application/views/satellite/passtable.php:31
 msgid "No passes found. Please check the input parameters."
-msgstr ""
+msgstr "Видимые орбиты не найдены. Пожалуйста, проверьте исходные параметры."
 
 #: application/views/satellite/passtable.php:40
 #: application/views/satellite/skedtable.php:93
@@ -10767,19 +10801,20 @@ msgstr "мин"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
-msgstr ""
+msgstr "Квадрат"
 
 #: application/views/satellite/skedtable.php:58
 msgid "Sked AOS Time"
-msgstr ""
+msgstr "Время AOS для скеда"
 
 #: application/views/satellite/skedtable.php:59
 msgid "Sked LOS Time"
-msgstr ""
+msgstr "Время LOS для скеда"
 
 #: application/views/satellite/skedtable.php:84
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
+"Перекрывающихся орбит не найдено. Пожалуйста, проверьте исходные параметры."
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -12399,7 +12434,7 @@ msgstr "Не отображать"
 
 #: application/views/user/edit.php:488
 msgid "Not displayed"
-msgstr ""
+msgstr "Не отображается"
 
 #: application/views/user/edit.php:497
 msgid "QSO (by default)"
@@ -12464,27 +12499,31 @@ msgstr "Логин"
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Пароль"
 
-#: application/views/user/edit.php:734
+#: application/views/user/edit.php:718
+msgid "Test Login"
+msgstr ""
+
+#: application/views/user/edit.php:736
 msgid "eQSL.cc Username"
 msgstr "Логин"
 
-#: application/views/user/edit.php:740
+#: application/views/user/edit.php:742
 msgid "eQSL.cc Password"
 msgstr "Пароль"
 
-#: application/views/user/edit.php:757
+#: application/views/user/edit.php:759
 msgid "Club Log"
 msgstr "Clublog"
 
-#: application/views/user/edit.php:760
+#: application/views/user/edit.php:762
 msgid "Club Log Email/Callsign"
 msgstr "Емэйл/позывной"
 
-#: application/views/user/edit.php:766
+#: application/views/user/edit.php:768
 msgid "Club Log Password"
 msgstr "Пароль"
 
-#: application/views/user/edit.php:771
+#: application/views/user/edit.php:773
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -12494,44 +12533,44 @@ msgstr ""
 "сгенерировать пароль приложения для использования Clublog в Wavelog. "
 "Посетите %sстраницу настроек вашего Clublog%s, чтобы сделать это."
 
-#: application/views/user/edit.php:788
+#: application/views/user/edit.php:790
 msgid "Miscellaneous"
 msgstr "Разное"
 
-#: application/views/user/edit.php:796
+#: application/views/user/edit.php:798
 msgid "AMSAT Status Upload"
 msgstr "Загрузка статуса AMSAT"
 
-#: application/views/user/edit.php:799
+#: application/views/user/edit.php:801
 msgid "Upload status of SAT QSOs to"
 msgstr "Загружать статус QSO через спутники в"
 
-#: application/views/user/edit.php:813
+#: application/views/user/edit.php:815
 msgid "Mastodonserver"
 msgstr "Сервер Mastodon"
 
-#: application/views/user/edit.php:816
+#: application/views/user/edit.php:818
 msgid "URL of Mastodonserver"
 msgstr "URL профиля пользователя Mastodon"
 
-#: application/views/user/edit.php:818
+#: application/views/user/edit.php:820
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Главный URL вашего сервера Mastodon, т.е. %s"
 
-#: application/views/user/edit.php:827
+#: application/views/user/edit.php:829
 msgid "Experimental"
 msgstr "Экспериментально"
 
-#: application/views/user/edit.php:827
+#: application/views/user/edit.php:829
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
-#: application/views/user/edit.php:830
+#: application/views/user/edit.php:832
 msgid "Winkeyer Features Enabled"
 msgstr "Функционал Winkeyer включен"
 
-#: application/views/user/edit.php:836
+#: application/views/user/edit.php:838
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -12540,25 +12579,25 @@ msgstr ""
 "Поддержка Winkeyer в Wavelog является очень экспериментальной. Перед "
 "включением сначала прочитайте вики в %s."
 
-#: application/views/user/edit.php:847
+#: application/views/user/edit.php:849
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:850
+#: application/views/user/edit.php:852
 msgid "Private Feed Key"
 msgstr "Приватный ключ потока"
 
-#: application/views/user/edit.php:852
+#: application/views/user/edit.php:854
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Смотри свой профиль на %s."
 
-#: application/views/user/edit.php:855
+#: application/views/user/edit.php:857
 msgid "Show Workable Passes Only"
 msgstr "Показывать только пригодные для работы витки"
 
-#: application/views/user/edit.php:861
+#: application/views/user/edit.php:863
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -12567,7 +12606,7 @@ msgstr ""
 "квадрате, установленном в вашем аккаунте на hams.at. Требуется указание "
 "приватного ключа потока."
 
-#: application/views/user/edit.php:873
+#: application/views/user/edit.php:875
 msgid "Save Account"
 msgstr "Сохранить изменения"
 
@@ -12773,7 +12812,8 @@ msgstr ""
 
 #: application/views/view_log/partial/log_ajax.php:337
 #: application/views/view_log/partial/log_ajax.php:351
-#: src/QSLManager/QSO.php:482 src/QSLManager/QSO.php:539
+#: src/QSLManager/QSO.php:507 src/QSLManager/QSO.php:564
+#: src/QSLManager/QSO.php:625
 msgid "last sent"
 msgstr "последнее отправленное"
 

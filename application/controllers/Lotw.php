@@ -469,7 +469,7 @@ class Lotw extends CI_Controller {
 	private function loadFromFile($filepath, $station_ids, $display_view = "TRUE") {
 
 		// Figure out how we should be marking QSLs confirmed via LoTW
-		$query = $query = $this->db->query('SELECT lotw_rcvd_mark FROM config');
+		$query = $this->db->query('SELECT lotw_rcvd_mark FROM config');
 		$q = $query->row();
 		$config['lotw_rcvd_mark'] = $q->lotw_rcvd_mark;
 
@@ -721,6 +721,89 @@ class Lotw extends CI_Controller {
 		} else {
 			return "No LoTW User details found to carry out matches.";
 		}
+	}
+
+	public function check_lotw_credentials () {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+			exit();
+		}
+		$ret=[];
+		$ret['status']='';
+
+
+		$raw = file_get_contents("php://input");
+		try {
+			$obj = json_decode($raw,true);
+		} catch (Exception $e) {
+			$ret['status']='failed_wrongcall';
+			log_message("Error",$ret['status']);
+		} finally {
+			$lotw_user=$obj['lotw_user'] ?? '';
+			$lotw_pass=$obj['lotw_pass'] ?? '';
+		}
+		$raw='';
+
+		$pw_placeholder = '**********';
+		if ($lotw_pass == $pw_placeholder) {	// User comes with unaltered credentials - take them from database
+			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
+			$q = $query->row();
+			$data['user_lotw_name'] = urlencode($q->user_lotw_name ?? '');
+			$data['user_lotw_password'] = urlencode($q->user_lotw_password ?? '');
+		} else {
+			$data['user_lotw_name'] = urlencode($lotw_user ?? '');
+			$data['user_lotw_password'] = urlencode($lotw_pass ?? '');
+		}
+
+		if ((($data['user_lotw_name'] ?? '') != '') && (($data['user_lotw_password'] ?? '') != '') && ($ret['status'] != 'failed_wrongcall')) {
+
+			// Get URL for downloading LoTW
+			$query = $query = $this->db->query('SELECT lotw_login_url FROM config');
+			$q = $query->row();
+			$lotw_url = $q->lotw_login_url;
+
+			// Validate that LoTW credentials are not empty
+			// TODO: We don't actually see the error message
+			if ($data['user_lotw_name'] == '' || $data['user_lotw_password'] == '') {
+				$ret='No Creds set';
+			}
+
+			// Build URL for LoTW report file
+			$lotw_url .= "?";
+			$lotw_url .= "login=" . $data['user_lotw_name'];
+			$lotw_url .= "&password=" . $data['user_lotw_password'];
+
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $lotw_url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+			$content = curl_exec($ch);
+			if ($content) {
+				if(curl_errno($ch)) {
+					$ret['status']='failed';
+					$ret['details']== sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
+				} else if (str_contains($content,"Username/password incorrect</I>")) {
+					$ret['status']='failed_wrong_creds';
+					$ret['details']= sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], __("Username/password incorrect"));
+				} else {
+					$ret['status']='OK';
+					$ret['details']= __("LoTW login OK!");
+				}
+			} else {
+				$ret['status']='failed_na';
+				$ret['details']= __("LoTW currently not available. Try again later.");
+			}
+		} else {
+			if (($ret['status'] ?? '') == '') {
+				$ret['status']='failed_nocred';
+				$ret['details']= __("No LoTW credentials provided.");
+			}
+		}
+		header("Content-type: application/json");
+		echo json_encode($ret);
+		return $ret;
 	}
 
 	public function import() {	// Is only called via frontend. Cron uses "upload". within download the download is called
