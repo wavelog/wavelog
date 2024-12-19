@@ -731,47 +731,74 @@ class Lotw extends CI_Controller {
 			exit();
 		}
 		$ret=[];
+		$ret['status']='';
 
-		$this->load->model('logbook_model');
-		$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
-		$q = $query->row();
-		$data['user_lotw_name'] = urlencode($q->user_lotw_name ?? '');
-		$data['user_lotw_password'] = urlencode($q->user_lotw_password ?? '');
 
-		// Get URL for downloading LoTW
-		$query = $query = $this->db->query('SELECT lotw_login_url FROM config');
-		$q = $query->row();
-		$lotw_url = $q->lotw_login_url;
+		$raw = file_get_contents("php://input");
+		try {
+			$obj = json_decode($raw,true);
+		} catch (e) {
+			$ret['status']='failed_wrongcall';
+			log_message("Error",$ret['status']);
+		} finally {
+			$lotw_user=$obj['lotw_user'] ?? '';
+			$lotw_pass=$obj['lotw_pass'] ?? '';
+		}
+		$raw='';
 
-		// Validate that LoTW credentials are not empty
-		// TODO: We don't actually see the error message
-		if ($data['user_lotw_name'] == '' || $data['user_lotw_password'] == '') {
-			$ret='No Creds set';
+		$pw_placeholder = '**********';
+		if ($lotw_pass == $pw_placeholder) {	// User comes with unaltered credentials - take them from database
+			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
+			$q = $query->row();
+			$data['user_lotw_name'] = urlencode($q->user_lotw_name ?? '');
+			$data['user_lotw_password'] = urlencode($q->user_lotw_password ?? '');
+		} else {
+			$data['user_lotw_name'] = urlencode($lotw_user ?? '');
+			$data['user_lotw_password'] = urlencode($lotw_pass ?? '');
 		}
 
-		// Build URL for LoTW report file
-		$lotw_url .= "?";
-		$lotw_url .= "login=" . $data['user_lotw_name'];
-		$lotw_url .= "&password=" . $data['user_lotw_password'];
+		if ((($data['user_lotw_name'] ?? '') != '') && (($data['user_lotw_password'] ?? '') != '') && ($ret['status'] != 'failed_wrongcall')) {
 
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $lotw_url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-		$content = curl_exec($ch);
-		if ($content) {
-			if(curl_errno($ch)) {
-				$ret['status']='failed';
-				$ret['details']== __("LoTW check failed for user ").$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
-			} else if (str_contains($content,"Username/password incorrect</I>")) {
-				$ret['status']='failed_wrong_creds';
-				$ret['details']= __("LoTW check failed for user ").$data['user_lotw_name'].__(": Username/password incorrect");
+			// Get URL for downloading LoTW
+			$query = $query = $this->db->query('SELECT lotw_login_url FROM config');
+			$q = $query->row();
+			$lotw_url = $q->lotw_login_url;
+
+			// Validate that LoTW credentials are not empty
+			// TODO: We don't actually see the error message
+			if ($data['user_lotw_name'] == '' || $data['user_lotw_password'] == '') {
+				$ret='No Creds set';
+			}
+
+			// Build URL for LoTW report file
+			$lotw_url .= "?";
+			$lotw_url .= "login=" . $data['user_lotw_name'];
+			$lotw_url .= "&password=" . $data['user_lotw_password'];
+
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $lotw_url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+			$content = curl_exec($ch);
+			if ($content) {
+				if(curl_errno($ch)) {
+					$ret['status']='failed';
+					$ret['details']== __("LoTW check failed for user ").$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+				} else if (str_contains($content,"Username/password incorrect</I>")) {
+					$ret['status']='failed_wrong_creds';
+					$ret['details']= __("LoTW check failed for user ").$data['user_lotw_name'].__(": Username/password incorrect");
+				} else {
+					$ret['status']='OK';
+				}
 			} else {
-				$ret['status']='OK';
+				$ret['status']='failed_na';
+				$ret['details']= __("LoTW not available at present");
 			}
 		} else {
-			$ret['status']='failed_na';
-			$ret['details']= __("LoTW not available at present");
+			if (($ret['status'] ?? '') == '') {
+				$ret['status']='failed_nocred';
+				$ret['details']= __("No LoTW credentials provided");
+			}
 		}
 		header("Content-type: application/json");
 		echo json_encode($ret);
