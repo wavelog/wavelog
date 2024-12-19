@@ -57,6 +57,44 @@ $(document).ready(function(){
         }, 300);
     });
 
+	$('#lotw_test_btn').click(function() {
+		var btn_div = $('#lotw_test_btn');
+		var msg_div = $('#lotw_test_txt');
+
+		msg_div.hide();
+		msg_div.removeClass('alert-success alert-danger')
+		btn_div.hide();
+		btn_div.removeClass('alert-success alert-danger')
+
+		$.ajax({
+			url: base_url + 'index.php/lotw/check_lotw_credentials',
+			type: 'POST',
+			contentType: "application/json",
+			data: JSON.stringify({lotw_user: $("#user_lotw_name").val(), lotw_pass: $("#user_lotw_password").val()}),
+			success: function(res) {
+				if(res.status == 'OK') {
+					btn_div.addClass('alert-success');
+					msg_div.addClass('alert-success');
+					msg_div.text(res.details);
+					msg_div.show();
+					btn_div.show();
+				} else {
+					btn_div.addClass('alert-danger');
+					msg_div.addClass('alert-danger');
+					msg_div.text('Error: '+res.details);
+					msg_div.show();
+					btn_div.show();
+				}
+			},
+			error: function(res) {
+				msg_div.addClass('alert-danger');
+				msg_div.text('ERROR');
+				msg_div.show();
+				btn_div.show();
+			},
+		})
+	});
+
     $('.admin_pwd_reset').click(function() {
         var pwd_reset_user_name = $(this).data('username');
         var pwd_reset_user_callsign = $(this).data('callsign');
