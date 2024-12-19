@@ -783,21 +783,21 @@ class Lotw extends CI_Controller {
 			if ($content) {
 				if(curl_errno($ch)) {
 					$ret['status']='failed';
-					$ret['details']== __("LoTW login failed for user ").$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+					$ret['details']== sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
 				} else if (str_contains($content,"Username/password incorrect</I>")) {
 					$ret['status']='failed_wrong_creds';
-					$ret['details']= __("LoTW login failed for user ").$data['user_lotw_name'].": ". __("Username/password incorrect");
+					$ret['details']= sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], __("Username/password incorrect"));
 				} else {
 					$ret['status']='OK';
 				}
 			} else {
 				$ret['status']='failed_na';
-				$ret['details']= __("LoTW not available at present");
+				$ret['details']= __("LoTW currently not available. Try again later.");
 			}
 		} else {
 			if (($ret['status'] ?? '') == '') {
 				$ret['status']='failed_nocred';
-				$ret['details']= __("No LoTW credentials provided");
+				$ret['details']= __("No LoTW credentials provided.");
 			}
 		}
 		header("Content-type: application/json");
