@@ -754,7 +754,6 @@ class Lotw extends CI_Controller {
 		$lotw_url .= "login=" . $data['user_lotw_name'];
 		$lotw_url .= "&password=" . $data['user_lotw_password'];
 
-		log_message("Error",$lotw_url);
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $lotw_url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
