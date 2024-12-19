@@ -717,6 +717,7 @@
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 											<button class="btn btn-secondary" type="button" id="lotw_test_btn">Test LoTW</button>
 										</div>
+										<div class="alert mt-3" style="display: none;" id="lotw_test_txt"></div>
 										<?php if(isset($lotwpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$lotwpassword_error."</small>";
 											} else if (!isset($user_add)) { ?>
