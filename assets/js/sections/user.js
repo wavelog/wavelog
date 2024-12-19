@@ -61,10 +61,8 @@ $(document).ready(function(){
 		var btn_div = $('#lotw_test_btn');
 		var msg_div = $('#lotw_test_txt');
 
-		msg_div.hide();
-		msg_div.removeClass('alert-success alert-danger')
-		btn_div.hide();
-		btn_div.removeClass('alert-success alert-danger')
+		msg_div.removeClass('alert-success alert-danger').text('').hide();
+		btn_div.removeClass('alert-success alert-danger').addClass('running');
 
 		$.ajax({
 			url: base_url + 'index.php/lotw/check_lotw_credentials',
@@ -73,24 +71,16 @@ $(document).ready(function(){
 			data: JSON.stringify({lotw_user: $("#user_lotw_name").val(), lotw_pass: $("#user_lotw_password").val()}),
 			success: function(res) {
 				if(res.status == 'OK') {
-					btn_div.addClass('alert-success');
-					msg_div.addClass('alert-success');
-					msg_div.text(res.details);
-					msg_div.show();
-					btn_div.show();
+					btn_div.addClass('alert-success').removeClass('running');
+					msg_div.addClass('alert-success').text(res.details).show();
 				} else {
-					btn_div.addClass('alert-danger');
-					msg_div.addClass('alert-danger');
-					msg_div.text('Error: '+res.details);
-					msg_div.show();
-					btn_div.show();
+					btn_div.addClass('alert-danger').removeClass('running');
+					msg_div.addClass('alert-danger').text('Error: '+res.details).show();
 				}
 			},
 			error: function(res) {
-				msg_div.addClass('alert-danger');
-				msg_div.text('ERROR');
-				msg_div.show();
-				btn_div.show();
+                btn_div.addClass('alert-danger').removeClass('running');
+				msg_div.addClass('alert-danger').text('ERROR').show();
 			},
 		})
 	});
