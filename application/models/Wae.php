@@ -58,6 +58,29 @@ class WAE extends CI_Model {
 					$dxccMatrix[$dxcc->adif]['Deleted'] = isset($dxcc->Enddate) ? 1 : 0;
 				$dxccMatrix[$dxcc->adif][$band] = '-';
 			}
+			$dxccMatrix['IV']['name'] = 'ITU Vienna';
+			$dxccMatrix['IV']['Dxccprefix'] = '4U1V';
+			$dxccMatrix['IV'][$band] = '-';
+			$dxccMatrix['AI']['name'] = 'Aftican Italy';
+			$dxccMatrix['AI']['Dxccprefix'] = 'IG9';
+			$dxccMatrix['AI'][$band] = '-';
+			$dxccMatrix['SY']['name'] = 'Sicily';
+			$dxccMatrix['SY']['Dxccprefix'] = 'IT9';
+			$dxccMatrix['SY'][$band] = '-';
+			$dxccMatrix['BI']['name'] = 'Bear Island';
+			$dxccMatrix['BI']['Dxccprefix'] = 'JW/b';
+			$dxccMatrix['BI'][$band] = '-';
+			$dxccMatrix['SI']['name'] = 'Shetland Islands';
+			$dxccMatrix['SI']['Dxccprefix'] = 'GM/s';
+			$dxccMatrix['SI'][$band] = '-';
+			$dxccMatrix['KO']['name'] = 'Kosovo';
+			$dxccMatrix['KO']['Dxccprefix'] = 'Z6';
+			$dxccMatrix['KO'][$band] = '-';
+			$dxccMatrix['ET']['name'] = 'European Turkey';
+			$dxccMatrix['ET']['Dxccprefix'] = 'TA1';
+			$dxccMatrix['ET'][$band] = '-';
+
+
 
 			// If worked is checked, we add worked entities to the array
 			if ($postdata['worked'] != NULL) {
@@ -96,8 +119,23 @@ class WAE extends CI_Model {
 			}
 		}
 
-		if (isset($dxccMatrix)) {
-			return $dxccMatrix;
+		// Convert associative array to indexed array for sorting
+		$dxccIndexed = array_values($dxccMatrix);
+
+		// Sort the indexed array by the 'name' key
+		usort($dxccIndexed, function ($a, $b) {
+			return strcmp($a['Dxccprefix'], $b['Dxccprefix']);
+		});
+
+		// Optionally reindex the sorted array back to associative format
+		$dxccSorted = [];
+		foreach ($dxccIndexed as $item) {
+			$key = array_search($item, $dxccMatrix);
+			$dxccSorted[$key] = $item;
+		}
+
+		if (isset($dxccSorted)) {
+			return $dxccSorted;
 		} else {
 			return 0;
 		}
@@ -337,9 +375,8 @@ class WAE extends CI_Model {
      * Function gets worked and confirmed summary on each band on the active stationprofile
      */
 	function get_wae_summary($bands, $postdata) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		if (!$logbooks_locations_array) {
 			return null;
