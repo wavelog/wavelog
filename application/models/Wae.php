@@ -3,13 +3,9 @@
 class WAE extends CI_Model {
 
 	// Make an array of the WAE countries
-	// If in special group JW/b, GM/s etc, do a lookup into db to find WAE country and place
-	// Probably a lookup from the DB with a list from DARC.
 
 	// Reference: https://www.darc.de/der-club/referate/dx/diplome/wae-diplom/wae-laenderliste/
-
-	// Which adifkey should we use?
-	// adifkey+E?
+	// ADIF refrence: https://www.adif.org.uk/315/ADIF_315.htm#Region_Enumeration
 
 	// $sql = select * from dxcc_entities where cont = 'EU' and end is null
 
