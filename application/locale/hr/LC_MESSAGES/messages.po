@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-19 20:14+0000\n"
+"POT-Creation-Date: 2024-12-20 12:49+0000\n"
 "PO-Revision-Date: 2024-11-23 16:17+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Croatian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -66,7 +66,7 @@ msgstr ""
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:282 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
-#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
+#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:149
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:176 application/controllers/Qso.php:275
 #: application/controllers/Qso.php:295 application/controllers/Qso.php:304
@@ -1858,7 +1858,7 @@ msgstr ""
 msgid "QSL Card Management"
 msgstr ""
 
-#: application/controllers/Qslprint.php:46
+#: application/controllers/Qslprint.php:48
 msgid "Print Requested QSLs"
 msgstr ""
 
@@ -9517,10 +9517,22 @@ msgid ""
 "optionally, mark them as sent."
 msgstr ""
 
-#: application/views/qslprint/index.php:30
+#: application/views/qslprint/index.php:31
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
+msgstr ""
+
+#: application/views/qslprint/index.php:32
+#: application/views/qslprint/qslprint.php:32
+msgid "Previous QSL"
+msgstr ""
+
+#: application/views/qslprint/index.php:32
+#, php-format
+msgid ""
+"The column %s shows how many QSLs have been sent to the same station before "
+"on the same band and mode."
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:31
@@ -9528,56 +9540,56 @@ msgstr ""
 msgid "Send Method"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:32
+#: application/views/qslprint/qslprint.php:33
 msgid "Mark as sent"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:33
+#: application/views/qslprint/qslprint.php:34
 msgid "Remove"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:34
+#: application/views/qslprint/qslprint.php:35
 #: application/views/simplefle/index.php:142
 msgid "QSO List"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:69
+#: application/views/qslprint/qslprint.php:71
 msgid "Mark selected QSOs as sent"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:70
+#: application/views/qslprint/qslprint.php:72
 msgid "Remove selected QSOs from the queue"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:71
+#: application/views/qslprint/qslprint.php:73
 msgid "Export selected QSOs to ADIF-file"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:73
+#: application/views/qslprint/qslprint.php:75
 msgid "Export CSV-file"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:73
+#: application/views/qslprint/qslprint.php:75
 msgid "Export requested QSLs to CSV-file"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:75
+#: application/views/qslprint/qslprint.php:77
 msgid "Export ADIF"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:75
+#: application/views/qslprint/qslprint.php:77
 msgid "Export requested QSLs to ADIF-file"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:77
+#: application/views/qslprint/qslprint.php:79
 msgid "Mark QSLs as printed"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:77
+#: application/views/qslprint/qslprint.php:79
 msgid "Mark requested QSLs as sent"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:81
+#: application/views/qslprint/qslprint.php:83
 msgid "No QSLs to print were found!"
 msgstr ""
 
