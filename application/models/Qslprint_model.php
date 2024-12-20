@@ -163,7 +163,7 @@ class Qslprint_model extends CI_Model {
 				GROUP BY COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME";
 	
 		// we only return the count of previous QSLs as an integer
-		return (int) $this->db->query($sql, [$qso_id, $qso_id])->row()->previous_qsl ?? 0;
+		return (int) ($this->db->query($sql, [$qso_id, $qso_id])->row()->previous_qsl ?? 0);
 	}
 
 	function show_oqrs($id) {
