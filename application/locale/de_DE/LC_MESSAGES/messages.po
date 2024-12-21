@@ -23,10 +23,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-20 12:49+0000\n"
-"PO-Revision-Date: 2024-12-16 13:04+0000\n"
-"Last-Translator: \"Sebastian K.\" <sebastian@sebastian-kettner.net>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2024-12-21 12:14+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1588,23 +1588,23 @@ msgstr "LoTW ADIF Information"
 #: application/controllers/Lotw.php:786 application/controllers/Lotw.php:789
 #, php-format
 msgid "LoTW login failed for user %s: %s."
-msgstr ""
+msgstr "LoTW-Login für Benutzer %s fehlgeschlagen: %s."
 
 #: application/controllers/Lotw.php:789
 msgid "Username/password incorrect"
-msgstr ""
+msgstr "Benutzername/Passwort falsch"
 
 #: application/controllers/Lotw.php:792
 msgid "LoTW login OK!"
-msgstr ""
+msgstr "LoTW-Login OK!"
 
 #: application/controllers/Lotw.php:796
 msgid "LoTW currently not available. Try again later."
-msgstr ""
+msgstr "LoTW derzeit nicht verfügbar. Versuche es später noch einmal."
 
 #: application/controllers/Lotw.php:801
 msgid "No LoTW credentials provided."
-msgstr ""
+msgstr "Keine LoTW-Logindaten angegeben."
 
 #: application/controllers/Lotw.php:819
 msgid "LoTW ADIF Import"
@@ -3656,7 +3656,7 @@ msgstr "Markiere hochgeladene QSOs als bereits zu Clublog hochgeladen"
 
 #: application/views/adif/import.php:143
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
-msgstr ""
+msgstr "Markiere importierte QSOs als hochgeladen ins DCL-Logbuch"
 
 #: application/views/adif/import.php:153
 msgid "Use DXCC information from ADIF"
@@ -7737,7 +7737,7 @@ msgstr "Bitte warten..."
 msgctxt ""
 "Word for country states that are deprecated but kept for legacy reasons."
 msgid "deprecated"
-msgstr ""
+msgstr "veraltet"
 
 #: application/views/interface_assets/footer.php:137
 #: application/views/interface_assets/header.php:444
@@ -10037,7 +10037,7 @@ msgstr ""
 #: application/views/qslprint/index.php:32
 #: application/views/qslprint/qslprint.php:32
 msgid "Previous QSL"
-msgstr ""
+msgstr "Vorherige QSLs"
 
 #: application/views/qslprint/index.php:32
 #, php-format
@@ -10045,6 +10045,8 @@ msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
 msgstr ""
+"Die Spalte %s zeigt, wie viele QSLs zuvor an die gleiche Station im gleichen "
+"Band und Mode gesendet wurden."
 
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
@@ -12578,7 +12580,7 @@ msgstr "Logbook of The World (LoTW) Passwort"
 
 #: application/views/user/edit.php:718
 msgid "Test Login"
-msgstr ""
+msgstr "Login Test"
 
 #: application/views/user/edit.php:736
 msgid "eQSL.cc Username"
