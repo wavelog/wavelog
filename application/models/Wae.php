@@ -38,7 +38,6 @@ class WAE extends CI_Model {
 
 	function get_wae_array($bands, $postdata) {
 		$dxccArray = $this->fetchdxcc($postdata);
-		$waeArray = $this->fetchdxcc($postdata, true);
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -255,7 +254,7 @@ class WAE extends CI_Model {
 		return $query->result();
 	}
 
-	function fetchDxcc($postdata, $wae = false) {
+	function fetchDxcc($postdata) {
 		$bindings=[];
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -266,18 +265,14 @@ class WAE extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-		$sql = "select adif, prefix, name, date(end) Enddate, date(start) Startdate, lat, `long`, x.col_region
+		$sql = "select adif, prefix, name, date(end) Enddate, date(start) Startdate, lat, `long`
 			from dxcc_entities";
 
 		if ($postdata['notworked'] == NULL) {
 			$sql .= " join (select col_dxcc, col_region from " . $this->config->item('table_name') . " thcv
 			LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
 						where station_id in (" . $location_list . ")";
-		if ($wae) {
-			$sql .= ' and col_dxcc in ( '. $this->waecountries . ') and col_region in ('. $this->region.')';
-		} else {
 			$sql .= " and col_dxcc in ( ". $this->eucountries . ") and coalesce(col_region, '') = ''";
-		}
 
 			if ($postdata['band'] != 'All') {
 				if ($postdata['band'] == 'SAT') {
@@ -311,12 +306,7 @@ class WAE extends CI_Model {
 			$sql .= " and end is null";
 		}
 
-		if ($wae) {
-			$sql .= ' and dxcc_entities.adif in ( '. $this->waecountries . ')';
-		} else {
-			$sql .= ' and dxcc_entities.adif in (' . $this->eucountries . ')';
-		}
-
+		$sql .= ' and dxcc_entities.adif in (' . $this->eucountries . ')';
 
 		$sql .= ' order by prefix';
 		$query = $this->db->query($sql,$bindings);
