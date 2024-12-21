@@ -355,10 +355,12 @@
               <small id="powerHelp" class="form-text text-muted"><?= __("Give power value in Watts. Include only numbers in the input."); ?></small>
             </div>
 
+            <?php if (clubaccess_check(9)) { ?>
             <div class="mb-3">
               <label for="operator_callsign"><?= __("Operator Callsign"); ?></label>
               <input type="text" class="form-control" id="operator_callsign" name="operator_callsign" value="<?php if ($this->session->userdata('operator_callsign')) { echo $this->session->userdata('operator_callsign'); } ?>" />
             </div>
+            <?php } ?>
 
         </div>
 
