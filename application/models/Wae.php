@@ -37,7 +37,6 @@ class WAE extends CI_Model {
 	}
 
 	function get_wae_array($bands, $postdata) {
-		$dxccArray = $this->fetchdxcc($postdata);
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -46,7 +45,18 @@ class WAE extends CI_Model {
 			return null;
 		}
 
+		$waeCount = array(); // Used for keeping track of which WAE are not worked
+
+		$waeCount['IV']['count'] = 0;
+		$waeCount['AI']['count'] = 0;
+		$waeCount['SY']['count'] = 0;
+		$waeCount['BI']['count'] = 0;
+		$waeCount['SI']['count'] = 0;
+		$waeCount['ET']['count'] = 0;
+
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+		$dxccArray = $this->fetchdxcc($postdata, $location_list);
 
 		$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
@@ -94,6 +104,7 @@ class WAE extends CI_Model {
 				$workedDXCC = $this->getDxccBandWorked($location_list, $band, $postdata, true);
 				foreach ($workedDXCC as $wdxcc) {
 					$dxccMatrix[$wdxcc->col_region][$band] = '<div class="bg-danger awardsBgDanger" ><a href=\'javascript:displayContacts("'.$wdxcc->col_region.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","WAE", "")\'>W</a></div>';
+					$waeCount[$wdxcc->col_region]['count']++;
 				}
 			}
 
@@ -110,6 +121,7 @@ class WAE extends CI_Model {
 				$confirmedDXCC = $this->getDxccBandConfirmed($location_list, $band, $postdata, true);
 				foreach ($confirmedDXCC as $cdxcc) {
 					$dxccMatrix[$cdxcc->col_region][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$cdxcc->col_region.'","'. $band . '","'. $postdata['sat'] . '","'. $postdata['orbit'] . '","' . $postdata['mode'] . '","WAE","'.$qsl.'")\'>C</a></div>';
+					$waeCount[$cdxcc->col_region]['count']++;
 				}
 			}
 		}
@@ -140,6 +152,27 @@ class WAE extends CI_Model {
 			}
 		}
 
+
+		if ($postdata['notworked'] == NULL) {
+			if ($waeCount['IV']['count'] == 0) {
+				unset($dxccMatrix['IV']);
+			};
+			if ($waeCount['AI']['count'] == 0) {
+				unset($dxccMatrix['AI']);
+			};
+			if ($waeCount['SY']['count'] == 0) {
+				unset($dxccMatrix['SY']);
+			};
+			if ($waeCount['BI']['count'] == 0) {
+				unset($dxccMatrix['BI']);
+			};
+			if ($waeCount['SI']['count'] == 0) {
+				unset($dxccMatrix['SI']);
+			};
+			if ($waeCount['ET']['count'] == 0) {
+				unset($dxccMatrix['ET']);
+			};
+		}
 		// Convert associative array to indexed array for sorting
 		$dxccIndexed = array_values($dxccMatrix);
 
@@ -254,16 +287,8 @@ class WAE extends CI_Model {
 		return $query->result();
 	}
 
-	function fetchDxcc($postdata) {
+	function fetchDxcc($postdata, $location_list) {
 		$bindings=[];
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
-			return null;
-		}
-
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		$sql = "select adif, prefix, name, date(end) Enddate, date(start) Startdate, lat, `long`
 			from dxcc_entities";
@@ -366,8 +391,8 @@ class WAE extends CI_Model {
 
 		$sql .= ')';
 		$sql .= " group by col_dxcc, col_region
-	    ) ll on dxcc_entities.adif = ll.col_dxcc
-	    where 1=1";
+		) ll on dxcc_entities.adif = ll.col_dxcc
+		where 1=1";
 
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and dxcc_entities.end is null";
@@ -386,7 +411,7 @@ class WAE extends CI_Model {
 	function getDxccConfirmed($location_list, $postdata, $wae = false) {
 		$bindings=[];
 		$sql = "SELECT adif as dxcc FROM dxcc_entities
-	    join (
+		join (
 		select col_dxcc
 		from ".$this->config->item('table_name')." thcv
 		LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
@@ -416,8 +441,8 @@ class WAE extends CI_Model {
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= " group by col_dxcc
-	    ) ll on dxcc_entities.adif = ll.col_dxcc
-	    where 1=1";
+		) ll on dxcc_entities.adif = ll.col_dxcc
+		where 1=1";
 
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and dxcc_entities.end is null";
