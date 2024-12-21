@@ -158,7 +158,7 @@
                     <thead>
                     <tr>
                         <td>#</td>
-                        <td>' . __("DXCC Name") . '</td>
+                        <td>' . __("WAE Name") . '</td>
                         <td>' . __("Prefix") . '</td>';
         foreach($bands as $band) {
             echo '<td>' . $band . '</td>';
