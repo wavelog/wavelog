@@ -32,6 +32,9 @@ class Hrdlog extends CI_Controller {
      * Used for displaying the uid for manually selecting log for upload to hrdlog
      */
     public function export() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
         $this->load->model('stations');
 
         $data['page_title'] = "HRDlog.net Logbook";
