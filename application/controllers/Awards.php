@@ -1985,9 +1985,7 @@ class Awards extends CI_Controller {
 			$postdata['orbit'] = 'All';
 		}
 
-		$dxcclist = $this->wae->fetchdxcc($postdata);
-
-		$data['wae_array'] = $this->wae->get_wae_array($dxcclist, $bands, $postdata);
+		$data['wae_array'] = $this->wae->get_wae_array($bands, $postdata);
 		$data['wae_summary'] = $this->wae->get_wae_summary($bands, $postdata);
 
 		// Render Page
