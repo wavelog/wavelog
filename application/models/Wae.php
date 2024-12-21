@@ -73,9 +73,6 @@ class WAE extends CI_Model {
 			$dxccMatrix['SI']['name'] = 'Shetland Islands';
 			$dxccMatrix['SI']['Dxccprefix'] = 'GM/s';
 			$dxccMatrix['SI'][$band] = '-';
-			$dxccMatrix['KO']['name'] = 'Kosovo';
-			$dxccMatrix['KO']['Dxccprefix'] = 'Z6';
-			$dxccMatrix['KO'][$band] = '-';
 			$dxccMatrix['ET']['name'] = 'European Turkey';
 			$dxccMatrix['ET']['Dxccprefix'] = 'TA1';
 			$dxccMatrix['ET'][$band] = '-';
