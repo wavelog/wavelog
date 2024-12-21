@@ -161,8 +161,12 @@ class WAE extends CI_Model {
 				join (
 					select col_region, col_dxcc from ".$this->config->item('table_name')." thcv
 					LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
-					where station_id in (" . $location_list .
-				") and col_dxcc in ( ". $this->eucountries . ")";
+					where station_id in (" . $location_list . ")";
+		if ($wae) {
+			$sql .= ' and col_dxcc in ( '. $this->waecountries . ') and col_region in ('. $this->region.')';
+		} else {
+			$sql .= " and col_dxcc in ( ". $this->eucountries . ") and coalesce(col_region, '') = ''";
+		}
 
 		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		if ($band == 'SAT') {
@@ -182,18 +186,18 @@ class WAE extends CI_Model {
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
-		$sql .= " group by col_dxcc
+		$sql .= " group by col_dxcc, col_region
 				) x on dxcc_entities.adif = x.col_dxcc";
 
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and dxcc_entities.end is null";
 		}
-		if ($wae) {
-			$sql .= ' and col_dxcc in ( '. $this->waecountries . ') and col_region in ('. $this->region.')';
-		} else {
-			$sql .= " and col_dxcc in ( ". $this->eucountries . ") and coalesce(col_region, '') = ''";
-		}
 
+		if ($wae) {
+			$sql .= ' and dxcc_entities.adif in ( '. $this->waecountries . ')';
+		} else {
+			$sql .= ' and dxcc_entities.adif in (' . $this->eucountries . ')';
+		}
 
 		$query = $this->db->query($sql,$bindings);
 
@@ -206,8 +210,13 @@ class WAE extends CI_Model {
 				join (
 					select col_region, col_dxcc from ".$this->config->item('table_name')." thcv
 					LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
-					where station_id in (" . $location_list .
-					") and col_dxcc in ( ". $this->eucountries . ")";
+					where station_id in (" . $location_list . ")";
+		if ($wae) {
+			$sql .= ' and col_dxcc in ( '. $this->waecountries . ') and col_region in ('. $this->region.')';
+		} else {
+			$sql .= " and col_dxcc in ( ". $this->eucountries . ") and coalesce(col_region, '') = ''";
+		}
+
 		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		if ($band == 'SAT') {
 			if ($postdata['sat'] != 'All') {
@@ -229,9 +238,9 @@ class WAE extends CI_Model {
 		}
 
 		if ($wae) {
-			$sql .= ' and col_dxcc in ( '. $this->waecountries . ') and col_region in ('. $this->region.')';
+			$sql .= ' and dxcc_entities.adif in ( '. $this->waecountries . ')';
 		} else {
-			$sql .= " and col_dxcc in ( ". $this->eucountries . ") and coalesce(col_region, '') = ''";
+			$sql .= ' and dxcc_entities.adif in (' . $this->eucountries . ')';
 		}
 
 		$query = $this->db->query($sql,$bindings);

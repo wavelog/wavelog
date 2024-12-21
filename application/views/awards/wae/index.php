@@ -16,8 +16,8 @@
 
     <form class="form" action="<?php echo site_url('awards/wae'); ?>" method="post" enctype="multipart/form-data">
         <fieldset>
-
-            <div class="mb-3 row">
+<?php
+      /*      <div class="mb-3 row">
                 <div class="col-md-2 control-label" for="checkboxes"><?= __("Deleted WAE"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
@@ -25,8 +25,8 @@
                         <label class="form-check-label" for="includedeleted"><?= __("Include deleted"); ?></label>
                     </div>
                 </div>
-            </div>
-
+            </div>*/
+?>
             <!-- Multiple Checkboxes (inline) -->
             <div class="mb-3 row">
                 <div class="col-md-2" for="checkboxes"><?= __("Worked / Confirmed"); ?></div>
