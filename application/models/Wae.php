@@ -493,8 +493,8 @@ class WAE extends CI_Model {
 			//WAE
 			$worked = $this->getSummaryByBand($band, $postdata, $location_list, true);
 			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list, true);
-			$dxccSummary['worked'][$band] += $worked[0]->count;
-			$dxccSummary['confirmed'][$band] += $confirmed[0]->count;
+			$dxccSummary['worked'][$band] += $worked[0]->regioncount;
+			$dxccSummary['confirmed'][$band] += $confirmed[0]->regioncount;
 		}
 
 		$dxccSummary['worked']['Total'] = 0;
@@ -509,15 +509,15 @@ class WAE extends CI_Model {
 		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list, true);
 		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $location_list, true);
 
-		$dxccSummary['worked']['Total'] += $workedTotal[0]->count;
-		$dxccSummary['confirmed']['Total'] += $confirmedTotal[0]->count;
+		$dxccSummary['worked']['Total'] += $workedTotal[0]->regioncount;
+		$dxccSummary['confirmed']['Total'] += $confirmedTotal[0]->regioncount;
 
 		return $dxccSummary;
 	}
 
 	function getSummaryByBand($band, $postdata, $location_list, $wae = false) {
 		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_dxcc) as count FROM " . $this->config->item('table_name') . " thcv";
+		$sql = "SELECT count(distinct thcv.col_dxcc) as count, count(distinct thcv.col_region) regioncount FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
 		$sql .= " join dxcc_entities d on thcv.col_dxcc = d.adif";
 
@@ -585,7 +585,7 @@ class WAE extends CI_Model {
 
 	function getSummaryByBandConfirmed($band, $postdata, $location_list, $wae = false) {
 		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_dxcc) as count FROM " . $this->config->item('table_name') . " thcv";
+		$sql = "SELECT count(distinct thcv.col_dxcc) as count, count(distinct thcv.col_region) regioncount FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
 		$sql .= " join dxcc_entities d on thcv.col_dxcc = d.adif";
 
