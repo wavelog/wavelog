@@ -229,9 +229,9 @@ class WAE extends CI_Model {
 		$sql .= " group by col_dxcc, col_region
 				) x on dxcc_entities.adif = x.col_dxcc";
 
-		if ($postdata['includedeleted'] == NULL) {
+		// if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and dxcc_entities.end is null";
-		}
+		// }
 
 		if ($wae) {
 			$sql .= ' and dxcc_entities.adif in ( '. $this->waecountries . ')';
@@ -261,21 +261,22 @@ class WAE extends CI_Model {
 		if ($band == 'SAT') {
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
+				$bindings[] = $postdata['sat'];
 			}
 		}
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
+			$bindings[] = $postdata['mode'];
+			$bindings[] = $postdata['mode'];
 		}
 		$sql .= $this->addOrbitToQuery($postdata,$bindings);
 
 		$sql .= " group by col_dxcc
 				) x on dxcc_entities.adif = x.col_dxcc";;
-		if ($postdata['includedeleted'] == NULL) {
+
+		// if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and dxcc_entities.end is null";
-		}
+		// }
 
 		if ($wae) {
 			$sql .= ' and dxcc_entities.adif in ( '. $this->waecountries . ')';
@@ -316,8 +317,8 @@ class WAE extends CI_Model {
 
 			if ($postdata['mode'] != 'All') {
 				$sql .= " and (col_mode = ? or col_submode = ?)";
-				$bindings[]=$postdata['mode'];
-				$bindings[]=$postdata['mode'];
+				$bindings[] = $postdata['mode'];
+				$bindings[] = $postdata['mode'];
 			}
 
 			$sql .= $this->addOrbitToQuery($postdata, $bindings);
@@ -327,9 +328,9 @@ class WAE extends CI_Model {
 
 		$sql .= " where 1 = 1";
 
-		if ($postdata['includedeleted'] == NULL) {
+		// if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and end is null";
-		}
+		// }
 
 		$sql .= ' and dxcc_entities.adif in (' . $this->eucountries . ')';
 
@@ -364,8 +365,8 @@ class WAE extends CI_Model {
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
+			$bindings[] = $postdata['mode'];
+			$bindings[] = $postdata['mode'];
 		}
 
 		$sql .= " and not exists (select 1 from ".$this->config->item('table_name')." where station_id in (". $location_list .") and col_dxcc = thcv.col_dxcc";
@@ -388,8 +389,8 @@ class WAE extends CI_Model {
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
+			$bindings[] = $postdata['mode'];
+			$bindings[] = $postdata['mode'];
 		}
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
@@ -399,9 +400,9 @@ class WAE extends CI_Model {
 		) ll on dxcc_entities.adif = ll.col_dxcc
 		where 1=1";
 
-		if ($postdata['includedeleted'] == NULL) {
+		// if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and dxcc_entities.end is null";
-		}
+		// }
 
 		if ($wae) {
 			$sql .= ' and dxcc_entities.adif in ( '. $this->waecountries . ')';
@@ -431,14 +432,14 @@ class WAE extends CI_Model {
 		if ($postdata['band'] == 'SAT') {
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
+				$bindings[] = $postdata['sat'];
 			}
 		}
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
+			$bindings[] = $postdata['mode'];
+			$bindings[] = $postdata['mode'];
 		}
 
 		$sql .= $this->addOrbitToQuery($postdata,$bindings);
@@ -449,9 +450,9 @@ class WAE extends CI_Model {
 		) ll on dxcc_entities.adif = ll.col_dxcc
 		where 1=1";
 
-		if ($postdata['includedeleted'] == NULL) {
+		// if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and dxcc_entities.end is null";
-		}
+		// }
 
 		if ($wae) {
 			$sql .= ' and dxcc_entities.adif in ( '. $this->waecountries . ')';
@@ -480,11 +481,14 @@ class WAE extends CI_Model {
 		foreach ($bands as $band) {
 			$worked = '';
 			$confirmed = '';
+			$dxccSummary['worked'][$band] = 0;
+			$dxccSummary['confirmed'][$band] = 0;
+
 			// EU DXCC
 			$worked = $this->getSummaryByBand($band, $postdata, $location_list);
 			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
-			$dxccSummary['worked'][$band] = $worked[0]->count;
-			$dxccSummary['confirmed'][$band] = $confirmed[0]->count;
+			$dxccSummary['worked'][$band] += $worked[0]->count;
+			$dxccSummary['confirmed'][$band] += $confirmed[0]->count;
 
 			//WAE
 			$worked = $this->getSummaryByBand($band, $postdata, $location_list, true);
@@ -493,11 +497,14 @@ class WAE extends CI_Model {
 			$dxccSummary['confirmed'][$band] += $confirmed[0]->count;
 		}
 
+		$dxccSummary['worked']['Total'] = 0;
+		$dxccSummary['confirmed']['Total'] = 0;
+
 		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list);
 		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $location_list);
 
-		$dxccSummary['worked']['Total'] = $workedTotal[0]->count;
-		$dxccSummary['confirmed']['Total'] = $confirmedTotal[0]->count;
+		$dxccSummary['worked']['Total'] += $workedTotal[0]->count;
+		$dxccSummary['confirmed']['Total'] += $confirmedTotal[0]->count;
 
 		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list, true);
 		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $location_list, true);
@@ -548,9 +555,9 @@ class WAE extends CI_Model {
 			$bindings[] = $postdata['mode'];
 		}
 
-		if ($postdata['includedeleted'] == NULL) {
+		// if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and d.end is null";
-		}
+		// }
 
 		if ($wae) {
 			$sql .= ' and d.adif in ( '. $this->waecountries . ')';
@@ -621,9 +628,9 @@ class WAE extends CI_Model {
 
 		$sql .= $this->addOrbitToQuery($postdata,$bindings);
 
-		if ($postdata['includedeleted'] == NULL) {
+		// if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and d.end is null";
-		}
+		// }
 
 		if ($wae) {
 			$sql .= ' and d.adif in ( '. $this->waecountries . ')';
