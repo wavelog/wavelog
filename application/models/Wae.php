@@ -152,7 +152,6 @@ class WAE extends CI_Model {
 			}
 		}
 
-
 		if ($postdata['notworked'] == NULL) {
 			if ($waeCount['IV']['count'] == 0) {
 				unset($dxccMatrix['IV']);
@@ -173,6 +172,7 @@ class WAE extends CI_Model {
 				unset($dxccMatrix['ET']);
 			};
 		}
+
 		// Convert associative array to indexed array for sorting
 		$dxccIndexed = array_values($dxccMatrix);
 
@@ -473,10 +473,19 @@ class WAE extends CI_Model {
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		foreach ($bands as $band) {
+			$worked = '';
+			$confirmed = '';
+			// EU DXCC
 			$worked = $this->getSummaryByBand($band, $postdata, $location_list);
 			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
 			$dxccSummary['worked'][$band] = $worked[0]->count;
 			$dxccSummary['confirmed'][$band] = $confirmed[0]->count;
+
+			//WAE
+			$worked = $this->getSummaryByBand($band, $postdata, $location_list, true);
+			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list, true);
+			$dxccSummary['worked'][$band] += $worked[0]->count;
+			$dxccSummary['confirmed'][$band] += $confirmed[0]->count;
 		}
 
 		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list);
@@ -485,16 +494,27 @@ class WAE extends CI_Model {
 		$dxccSummary['worked']['Total'] = $workedTotal[0]->count;
 		$dxccSummary['confirmed']['Total'] = $confirmedTotal[0]->count;
 
+		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list, true);
+		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $location_list, true);
+
+		$dxccSummary['worked']['Total'] += $workedTotal[0]->count;
+		$dxccSummary['confirmed']['Total'] += $confirmedTotal[0]->count;
+
 		return $dxccSummary;
 	}
 
-	function getSummaryByBand($band, $postdata, $location_list) {
+	function getSummaryByBand($band, $postdata, $location_list, $wae = false) {
 		$bindings=[];
 		$sql = "SELECT count(distinct thcv.col_dxcc) as count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
 		$sql .= " join dxcc_entities d on thcv.col_dxcc = d.adif";
 
-		$sql .= " where station_id in (" . $location_list . ") and col_dxcc > 0";
+		$sql .= " where station_id in (" . $location_list . ")";
+		if ($wae) {
+			$sql .= ' and col_dxcc in ( '. $this->waecountries . ') and col_region in ('. $this->region.')';
+		} else {
+			$sql .= " and col_dxcc in ( ". $this->eucountries . ") and coalesce(col_region, '') = ''";
+		}
 
 		if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode ='" . $band . "'";
@@ -514,19 +534,24 @@ class WAE extends CI_Model {
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 			$sql .= " and thcv.col_band = ?";
-			$bindings[]=$band;
+			$bindings[] = $band;
 		}
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
+			$bindings[] = $postdata['mode'];
+			$bindings[] = $postdata['mode'];
 		}
 
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and d.end is null";
 		}
-		$sql .= " and col_dxcc in ( ". $this->eucountries . ")";
+
+		if ($wae) {
+			$sql .= ' and d.adif in ( '. $this->waecountries . ')';
+		} else {
+			$sql .= ' and d.adif in (' . $this->eucountries . ')';
+		}
 
 		$sql .= $this->addOrbitToQuery($postdata,$bindings);
 
@@ -546,13 +571,18 @@ class WAE extends CI_Model {
 		return $sql;
 	}
 
-	function getSummaryByBandConfirmed($band, $postdata, $location_list) {
+	function getSummaryByBandConfirmed($band, $postdata, $location_list, $wae = false) {
 		$bindings=[];
 		$sql = "SELECT count(distinct thcv.col_dxcc) as count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
 		$sql .= " join dxcc_entities d on thcv.col_dxcc = d.adif";
 
-		$sql .= " where station_id in (" . $location_list . ") and col_dxcc > 0";
+		$sql .= " where station_id in (" . $location_list . ")";
+		if ($wae) {
+			$sql .= ' and col_dxcc in ( '. $this->waecountries . ') and col_region in ('. $this->region.')';
+		} else {
+			$sql .= " and col_dxcc in ( ". $this->eucountries . ") and coalesce(col_region, '') = ''";
+		}
 
 		if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode = ?";
@@ -573,25 +603,28 @@ class WAE extends CI_Model {
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 			$sql .= " and thcv.col_band = ?";
-			$bindings[]=$band;
+			$bindings[] = $band;
 		}
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
+			$bindings[] = $postdata['mode'];
+			$bindings[] = $postdata['mode'];
 		}
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= $this->addOrbitToQuery($postdata,$bindings);
 
-
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and d.end is null";
 		}
 
-		$sql .= " and col_dxcc in ( ". $this->eucountries . ")";
+		if ($wae) {
+			$sql .= ' and d.adif in ( '. $this->waecountries . ')';
+		} else {
+			$sql .= ' and d.adif in (' . $this->eucountries . ')';
+		}
 
 		$query = $this->db->query($sql,$bindings);
 
