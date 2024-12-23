@@ -132,11 +132,13 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                         <a class="dropdown-item" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit"></i> <?= __("Edit QSO"); ?></a>
-
+						<?php } ?>
+						
                         <?php if($row->COL_QSL_SENT !='Y') { ?>
+							<div class="dropdown-divider"></div>
                             <div class="qsl_sent_<?php echo $row->COL_PRIMARY_KEY; ?>">
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Bureau)"); ?></a>
                                 <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Direct)"); ?></a>
                             </div>
