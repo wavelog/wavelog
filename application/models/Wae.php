@@ -75,7 +75,7 @@ class WAE extends CI_Model {
 			$dxccMatrix['IV']['name'] = 'ITU Vienna';
 			$dxccMatrix['IV']['Dxccprefix'] = '4U1V';
 			$dxccMatrix['IV'][$band] = '-';
-			$dxccMatrix['AI']['name'] = 'Aftican Italy';
+			$dxccMatrix['AI']['name'] = 'African Italy';
 			$dxccMatrix['AI']['Dxccprefix'] = 'IG9';
 			$dxccMatrix['AI'][$band] = '-';
 			$dxccMatrix['SY']['name'] = 'Sicily';
@@ -97,10 +97,7 @@ class WAE extends CI_Model {
 				foreach ($workedDXCC as $wdxcc) {
 					$dxccMatrix[$wdxcc->dxcc][$band] = '<div class="bg-danger awardsBgDanger" ><a href=\'javascript:displayContacts("'.$wdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","WAE", "")\'>W</a></div>';
 				}
-			}
 
-			// If worked is checked, we add worked WAE to the array
-			if ($postdata['worked'] != NULL) {
 				$workedDXCC = $this->getDxccBandWorked($location_list, $band, $postdata, true);
 				foreach ($workedDXCC as $wdxcc) {
 					$dxccMatrix[$wdxcc->col_region][$band] = '<div class="bg-danger awardsBgDanger" ><a href=\'javascript:displayContacts("'.$wdxcc->col_region.'","'. $band . '","'. $postdata['sat'] . '","' . $postdata['orbit'] . '","'. $postdata['mode'] . '","WAE", "")\'>W</a></div>';
@@ -114,10 +111,6 @@ class WAE extends CI_Model {
 				foreach ($confirmedDXCC as $cdxcc) {
 					$dxccMatrix[$cdxcc->dxcc][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$cdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","'. $postdata['orbit'] . '","' . $postdata['mode'] . '","WAE","'.$qsl.'")\'>C</a></div>';
 				}
-			}
-
-			// If confirmed is checked, we add confirmed WAE to the array
-			if ($postdata['confirmed'] != NULL) {
 				$confirmedDXCC = $this->getDxccBandConfirmed($location_list, $band, $postdata, true);
 				foreach ($confirmedDXCC as $cdxcc) {
 					$dxccMatrix[$cdxcc->col_region][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$cdxcc->col_region.'","'. $band . '","'. $postdata['sat'] . '","'. $postdata['orbit'] . '","' . $postdata['mode'] . '","WAE","'.$qsl.'")\'>C</a></div>';
@@ -128,14 +121,14 @@ class WAE extends CI_Model {
 
 		// We want to remove the worked dxcc's in the list, since we do not want to display them
 		if ($postdata['worked'] == NULL) {
-			$workedDxcc = $this->getDxccWorked($location_list, $postdata, false);
+			$workedDxcc = $this->getDxccWorked($location_list, $postdata);
 			foreach ($workedDxcc as $wdxcc) {
 				if (array_key_exists($wdxcc->dxcc, $dxccMatrix)) {
 					unset($dxccMatrix[$wdxcc->dxcc]);
 				}
 			}
-			$workedDxcc = $this->getDxccWorked($location_list, $postdata, true);
-			foreach ($workedDxcc as $wdxcc) {
+			$workedWae = $this->getDxccWorked($location_list, $postdata, true);
+			foreach ($workedWae as $wdxcc) {
 				if (array_key_exists($wdxcc->col_region, $dxccMatrix)) {
 					unset($dxccMatrix[$wdxcc->col_region]);
 				}
@@ -148,6 +141,13 @@ class WAE extends CI_Model {
 			foreach ($confirmedDxcc as $cdxcc) {
 				if (array_key_exists($cdxcc->dxcc, $dxccMatrix)) {
 					unset($dxccMatrix[$cdxcc->dxcc]);
+				}
+			}
+
+			$confirmedWae = $this->getDxccConfirmed($location_list, $postdata, true);
+			foreach ($confirmedWae as $cdxcc) {
+				if (array_key_exists($cdxcc->col_region, $dxccMatrix)) {
+					unset($dxccMatrix[$cdxcc->col_region]);
 				}
 			}
 		}
@@ -212,14 +212,14 @@ class WAE extends CI_Model {
 		if ($band == 'SAT') {
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
+				$bindings[] = $postdata['sat'];
 			}
 		}
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
-			$bindings[]=$postdata['mode'];
-			$bindings[]=$postdata['mode'];
+			$bindings[] = $postdata['mode'];
+			$bindings[] = $postdata['mode'];
 		}
 
 		$sql .= $this->addOrbitToQuery($postdata,$bindings);
@@ -303,15 +303,15 @@ class WAE extends CI_Model {
 			if ($postdata['band'] != 'All') {
 				if ($postdata['band'] == 'SAT') {
 					$sql .= " and col_prop_mode = ?";
-					$bindings[]=$postdata['band'];
+					$bindings[] = $postdata['band'];
 					if ($postdata['sat'] != 'All') {
 						$sql .= " and col_sat_name = ?";
-						$bindings[]=$postdata['sat'];
+						$bindings[] = $postdata['sat'];
 					}
 				} else {
 					$sql .= " and col_prop_mode !='SAT'";
 					$sql .= " and col_band = ?";
-					$bindings[]=$postdata['band'];
+					$bindings[] = $postdata['band'];
 				}
 			}
 
@@ -341,7 +341,8 @@ class WAE extends CI_Model {
 	}
 
 	function getDxccWorked($location_list, $postdata, $wae = false) {
-		$bindings=[];
+		$bindings = [];
+
 		$sql = "SELECT adif as dxcc, ll.col_region FROM dxcc_entities
 			join (
 				select col_dxcc, col_region
@@ -357,7 +358,7 @@ class WAE extends CI_Model {
 		if ($postdata['band'] == 'SAT') {
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
+				$bindings[] = $postdata['sat'];
 			}
 		}
 
@@ -381,7 +382,7 @@ class WAE extends CI_Model {
 		if ($postdata['band'] == 'SAT') {
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
+				$bindings[] = $postdata['sat'];
 			}
 		}
 
@@ -415,10 +416,11 @@ class WAE extends CI_Model {
 	}
 
 	function getDxccConfirmed($location_list, $postdata, $wae = false) {
-		$bindings=[];
-		$sql = "SELECT adif as dxcc FROM dxcc_entities
+		$bindings = [];
+
+		$sql = "SELECT adif as dxcc, ll.col_region FROM dxcc_entities
 		join (
-		select col_dxcc
+		select col_dxcc, col_region
 		from ".$this->config->item('table_name')." thcv
 		LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
 		where station_id in (" . $location_list . ")";
@@ -446,7 +448,7 @@ class WAE extends CI_Model {
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
-		$sql .= " group by col_dxcc
+		$sql .= " group by col_dxcc, col_region
 		) ll on dxcc_entities.adif = ll.col_dxcc
 		where 1=1";
 
@@ -455,9 +457,9 @@ class WAE extends CI_Model {
 		// }
 
 		if ($wae) {
-			$sql .= ' and dxcc_entities.adif in ( '. $this->waecountries . ')';
+			$sql .= ' and col_dxcc in ( '. $this->waecountries . ') and col_region in ('. $this->region.')';
 		} else {
-			$sql .= ' and dxcc_entities.adif in (' . $this->eucountries . ')';
+			$sql .= " and col_dxcc in ( ". $this->eucountries . ") and coalesce(col_region, '') = ''";
 		}
 
 		$query = $this->db->query($sql,$bindings);
@@ -532,7 +534,7 @@ class WAE extends CI_Model {
 			$sql .= " and thcv.col_prop_mode ='" . $band . "'";
 			if ($band != 'All' && $postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
+				$bindings[] = $postdata['sat'];
 			}
 		} else if ($band == 'All') {
 			$this->load->model('bands');
@@ -577,7 +579,7 @@ class WAE extends CI_Model {
 		$sql = '';
 		if ($postdata['orbit'] != 'All') {
 			$sql .= ' AND satellite.orbit = ?';
-			$binding[]=$postdata['orbit'];
+			$binding[] = $postdata['orbit'];
 		}
 
 		return $sql;
@@ -598,10 +600,10 @@ class WAE extends CI_Model {
 
 		if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode = ?";
-			$bindings[]=$band;
+			$bindings[] = $band;
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
-				$bindings[]=$postdata['sat'];
+				$bindings[] = $postdata['sat'];
 			}
 		} else if ($band == 'All') {
 			$this->load->model('bands');
