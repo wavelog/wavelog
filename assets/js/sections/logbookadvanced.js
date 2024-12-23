@@ -109,6 +109,9 @@ function updateRow(qso) {
 	if ( (user_options.sig) && (user_options.sig.show == "true")){
 		cells.eq(c++).html(qso.sig);
 	}
+	if ( (user_options.region) && (user_options.region.show == "true")){
+		cells.eq(c++).html(qso.region);
+	}
 	if ( (user_options.operator) && (user_options.operator.show == "true")){
 		cells.eq(c++).html(qso.operator);
 	}
@@ -274,6 +277,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.sig.show == "true"){
 			data.push(qso.sig);
+		}
+		if (user_options.region.show == "true"){
+			data.push(qso.region);
 		}
 		if (user_options.operator.show == "true"){
 			data.push(qso.operator);
@@ -1261,6 +1267,7 @@ function saveOptions() {
 			dok: $('input[name="dok"]').is(':checked') ? true : false,
 			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
 			sig: $('input[name="sig"]').is(':checked') ? true : false,
+			region: $('input[name="region"]').is(':checked') ? true : false,
 			continent: $('input[name="continent"]').is(':checked') ? true : false,
 			distance: $('input[name="distance"]').is(':checked') ? true : false,
 			qrz: $('input[name="qrz"]').is(':checked') ? true : false,

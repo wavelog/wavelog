@@ -489,11 +489,11 @@ class Logbookadvanced_model extends CI_Model {
 			return array('message' => 'Error');
 		} else {
 			$sql = "UPDATE " . $this->config->item('table_name') ."
-				SET 
+				SET
 				COL_QSLRDATE = CURRENT_TIMESTAMP,
 				COL_QSL_SENT = ?,
 				COL_QSL_SENT_VIA = ?,
-				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE 
+				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE
 				WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
 				ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
 				END
@@ -513,11 +513,11 @@ class Logbookadvanced_model extends CI_Model {
 			return array('message' => 'Error');
 		} else {
 			$sql = "UPDATE " . $this->config->item('table_name') ."
-				SET 
+				SET
 				COL_QSLRDATE = CURRENT_TIMESTAMP,
 				COL_QSL_RCVD = ?,
 				COL_QSL_RCVD_VIA = ?,
-				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE 
+				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE
 				WHEN COL_QRZCOM_QSO_UPLOAD_STATUS IN ('Y', 'I') THEN 'M'
 				ELSE COL_QRZCOM_QSO_UPLOAD_STATUS
 				END
@@ -661,6 +661,7 @@ class Logbookadvanced_model extends CI_Model {
 			case "eqslsent": $column = 'COL_EQSL_QSL_SENT'; break;
 			case "eqslreceived": $column = 'COL_EQSL_QSL_RCVD'; break;
 			case "stationpower": $column = 'COL_TX_PWR'; break;
+			case "region": $column = 'COL_REGION'; break;
 			default: return;
 		}
 
@@ -842,7 +843,14 @@ class Logbookadvanced_model extends CI_Model {
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
-		}else {
+		} else if ($column == 'COL_REGION') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_REGION = ? " .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".".$column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 

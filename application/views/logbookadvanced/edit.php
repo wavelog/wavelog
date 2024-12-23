@@ -30,6 +30,7 @@
 			<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
 			<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 			<option value="stationpower"><?= __("Station power"); ?></option>
+			<option value="region"><?= __("Region"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
