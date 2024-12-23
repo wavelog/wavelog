@@ -44,6 +44,7 @@ class QSO
 	private string $dxcc;
 	private string $iota;
 	private string $continent;
+	private string $region;
 	/** @var string[] */
 	private string $deVUCCGridsquares;
 	private string $dxGridsquare;
@@ -174,6 +175,7 @@ class QSO
 		$this->de = $data['station_callsign'];
 		$this->dx = $data['COL_CALL'];
 		$this->continent = $data['COL_CONT'] ?? '';
+		$this->region = $data['COL_REGION'] ?? '';
 
 		$this->mode = $data['COL_MODE'] ?? '';
 		$this->submode = $data['COL_SUBMODE'] ?? '';
@@ -1185,7 +1187,8 @@ class QSO
 			'continent' => $this->continent,
 			'profilename' => $this->profilename,
 			'stationpower' => $this->stationpower,
-			'distance' => $this->getFormattedDistance()
+			'distance' => $this->getFormattedDistance(),
+			'region' => $this->region
 		];
 	}
 

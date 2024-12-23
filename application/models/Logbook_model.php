@@ -3744,9 +3744,12 @@ class Logbook_model extends CI_Model {
 		$station_id_ok = true;
 		$station_profile = $this->stations->profile_clean($station_id);
 		$amsat_status_upload = $this->user_model->get_user_amsat_status_upload_by_id($station_profile->user_id);
+		
+		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $station_id), $station_profile->user_id)->result();
+		$station_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 
 		foreach ($records as $record) {
-			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
+			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg);
 			if ($one_error['error'] ?? '' != '') {
 				$custom_errors .= $one_error['error'] . "<br/>";
 			} else {	// No Errors / QSO doesn't exist so far
@@ -3796,7 +3799,7 @@ class Logbook_model extends CI_Model {
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
-	function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null) {
+	function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $station_qslmsg = null) {
 		// be sure that station belongs to user
 		$this->load->model('stations');
 		if ($station_id_ok == false) {
@@ -4168,9 +4171,11 @@ class Logbook_model extends CI_Model {
 			}
 
 			// QSL Message is always the one set in the station profile
-			// TODO: Improve performance and write value in tempdata so avoid a query per QSO
-			$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $station_id), $station_profile->user_id)->result();
-			$qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
+			if (!empty($station_qslmsg)) {
+				$qslmsg = $station_qslmsg;
+			} else {
+				$qslmsg = "";
+			}
 
 			// Validate Clublog-Fields
 			if ($markClublog != NULL) {

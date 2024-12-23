@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-19 11:07+0000\n"
+"POT-Creation-Date: 2024-12-20 12:49+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Montenegrin <https://translate.wavelog.org/projects/wavelog/"
@@ -66,7 +66,7 @@ msgstr ""
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:282 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
-#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
+#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:149
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:176 application/controllers/Qso.php:275
 #: application/controllers/Qso.php:295 application/controllers/Qso.php:304
@@ -1858,7 +1858,7 @@ msgstr ""
 msgid "QSL Card Management"
 msgstr ""
 
-#: application/controllers/Qslprint.php:46
+#: application/controllers/Qslprint.php:48
 msgid "Print Requested QSLs"
 msgstr ""
 
@@ -2047,13 +2047,6 @@ msgstr ""
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
-msgstr ""
-
-#: application/controllers/Simplefle.php:90
-#: application/controllers/Simplefle.php:93
-#: application/models/Logbook_model.php:4507
-#: application/views/simplefle/index.php:40
-msgid "Duplicate for"
 msgstr ""
 
 #: application/controllers/Staticmap.php:20
@@ -2600,71 +2593,76 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:3811
+#: application/models/Logbook_model.php:3814
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:3812
+#: application/models/Logbook_model.php:3815
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 
-#: application/models/Logbook_model.php:3824
+#: application/models/Logbook_model.php:3827
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:3824
+#: application/models/Logbook_model.php:3827
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4123
+#: application/models/Logbook_model.php:4126
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4134
+#: application/models/Logbook_model.php:4137
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4185
+#: application/models/Logbook_model.php:4190
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4205
+#: application/models/Logbook_model.php:4210
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4226
+#: application/models/Logbook_model.php:4231
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4568
+#: application/models/Logbook_model.php:4512
+#: application/views/simplefle/index.php:40
+msgid "Duplicate for"
+msgstr ""
+
+#: application/models/Logbook_model.php:4573
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4574
+#: application/models/Logbook_model.php:4579
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4579
+#: application/models/Logbook_model.php:4584
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4582
+#: application/models/Logbook_model.php:4587
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4585
+#: application/models/Logbook_model.php:4590
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4588
+#: application/models/Logbook_model.php:4593
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4591
+#: application/models/Logbook_model.php:4596
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
 msgid "unknown"
@@ -9519,10 +9517,22 @@ msgid ""
 "optionally, mark them as sent."
 msgstr ""
 
-#: application/views/qslprint/index.php:30
+#: application/views/qslprint/index.php:31
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
+msgstr ""
+
+#: application/views/qslprint/index.php:32
+#: application/views/qslprint/qslprint.php:32
+msgid "Previous QSL"
+msgstr ""
+
+#: application/views/qslprint/index.php:32
+#, php-format
+msgid ""
+"The column %s shows how many QSLs have been sent to the same station before "
+"on the same band and mode."
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:31
@@ -9530,56 +9540,56 @@ msgstr ""
 msgid "Send Method"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:32
+#: application/views/qslprint/qslprint.php:33
 msgid "Mark as sent"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:33
+#: application/views/qslprint/qslprint.php:34
 msgid "Remove"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:34
+#: application/views/qslprint/qslprint.php:35
 #: application/views/simplefle/index.php:142
 msgid "QSO List"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:69
+#: application/views/qslprint/qslprint.php:71
 msgid "Mark selected QSOs as sent"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:70
+#: application/views/qslprint/qslprint.php:72
 msgid "Remove selected QSOs from the queue"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:71
+#: application/views/qslprint/qslprint.php:73
 msgid "Export selected QSOs to ADIF-file"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:73
+#: application/views/qslprint/qslprint.php:75
 msgid "Export CSV-file"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:73
+#: application/views/qslprint/qslprint.php:75
 msgid "Export requested QSLs to CSV-file"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:75
+#: application/views/qslprint/qslprint.php:77
 msgid "Export ADIF"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:75
+#: application/views/qslprint/qslprint.php:77
 msgid "Export requested QSLs to ADIF-file"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:77
+#: application/views/qslprint/qslprint.php:79
 msgid "Mark QSLs as printed"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:77
+#: application/views/qslprint/qslprint.php:79
 msgid "Mark requested QSLs as sent"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:81
+#: application/views/qslprint/qslprint.php:83
 msgid "No QSLs to print were found!"
 msgstr ""
 

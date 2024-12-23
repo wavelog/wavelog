@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-19 11:07+0000\n"
+"POT-Creation-Date: 2024-12-20 12:49+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -67,7 +67,7 @@ msgstr ""
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:282 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
-#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
+#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:149
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:176 application/controllers/Qso.php:275
 #: application/controllers/Qso.php:295 application/controllers/Qso.php:304
@@ -1878,7 +1878,7 @@ msgstr "Učitavanje QSL karata"
 msgid "QSL Card Management"
 msgstr "Upravljanje QSL kartama"
 
-#: application/controllers/Qslprint.php:46
+#: application/controllers/Qslprint.php:48
 msgid "Print Requested QSLs"
 msgstr "Štampanje zahtevanih QSL karata"
 
@@ -2070,13 +2070,6 @@ msgid ""
 msgstr ""
 "QSO koji nisu potvrđeni na LoTW, ali su pozivni znakovi imali učitavanje na "
 "LoTW nakon datuma QSOa"
-
-#: application/controllers/Simplefle.php:90
-#: application/controllers/Simplefle.php:93
-#: application/models/Logbook_model.php:4507
-#: application/views/simplefle/index.php:40
-msgid "Duplicate for"
-msgstr "Duplikat za"
 
 #: application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
@@ -2645,21 +2638,21 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Nisu pronađeni profili stanice sa odgovarajućim HRDlog akreditivima."
 
-#: application/models/Logbook_model.php:3811
+#: application/models/Logbook_model.php:3814
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Prilikom uvoza QSO-ova, pogrešan je znak %s sa %s za %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:3812
+#: application/models/Logbook_model.php:3815
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Provjeri %s za savjete oko grešaka u ADIF poljima."
 
-#: application/models/Logbook_model.php:3824
+#: application/models/Logbook_model.php:3827
 msgid "QSO on"
 msgstr "Start QSO"
 
-#: application/models/Logbook_model.php:3824
+#: application/models/Logbook_model.php:3827
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2667,51 +2660,56 @@ msgstr ""
 "Pokušali ste uvesti QSO bez bilo kojeg znaka. Ovaj QSO nije uvežen, "
 "neispravan je"
 
-#: application/models/Logbook_model.php:4123
+#: application/models/Logbook_model.php:4126
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijema QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4134
+#: application/models/Logbook_model.php:4137
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4185
+#: application/models/Logbook_model.php:4190
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Datum učitavanja veza na Clublog je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4205
+#: application/models/Logbook_model.php:4210
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijama QSL sa LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4226
+#: application/models/Logbook_model.php:4231
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL na LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4568
+#: application/models/Logbook_model.php:4512
+#: application/views/simplefle/index.php:40
+msgid "Duplicate for"
+msgstr "Duplikat za"
+
+#: application/models/Logbook_model.php:4573
 msgid "QSO could not be matched"
 msgstr "QSO se ne poklapa"
 
-#: application/models/Logbook_model.php:4574
+#: application/models/Logbook_model.php:4579
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrđeno preko LoTW/Clublog/eQSL/Kontest"
 
-#: application/models/Logbook_model.php:4579
+#: application/models/Logbook_model.php:4584
 msgid "confirmed by award manager"
 msgstr "potvrđeno od strane menadžera za diplome"
 
-#: application/models/Logbook_model.php:4582
+#: application/models/Logbook_model.php:4587
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrđeno unakrsnom proverom DCL podataka"
 
-#: application/models/Logbook_model.php:4585
+#: application/models/Logbook_model.php:4590
 msgid "confirmation pending"
 msgstr "čeka potvrđivanje"
 
-#: application/models/Logbook_model.php:4588
+#: application/models/Logbook_model.php:4593
 msgid "unconfirmed"
 msgstr "nepotvrđeno"
 
-#: application/models/Logbook_model.php:4591
+#: application/models/Logbook_model.php:4596
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
 msgid "unknown"
@@ -9950,7 +9948,7 @@ msgstr ""
 "Ovde možete izvesti zahtevane QSL karte kao CSV ili ADIF datoteke za štampu "
 "i, opciono, označiti ih kao poslate."
 
-#: application/views/qslprint/index.php:30
+#: application/views/qslprint/index.php:31
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
@@ -9958,61 +9956,73 @@ msgstr ""
 "Zahtevane QSL karte su svi QSOovi sa vrednošću 'Zahtevane' ili 'U nizu' u "
 "njihovom 'Poslata QSL' polju."
 
+#: application/views/qslprint/index.php:32
+#: application/views/qslprint/qslprint.php:32
+msgid "Previous QSL"
+msgstr ""
+
+#: application/views/qslprint/index.php:32
+#, php-format
+msgid ""
+"The column %s shows how many QSLs have been sent to the same station before "
+"on the same band and mode."
+msgstr ""
+
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
 msgid "Send Method"
 msgstr "Način slanja"
 
-#: application/views/qslprint/qslprint.php:32
+#: application/views/qslprint/qslprint.php:33
 msgid "Mark as sent"
 msgstr "Označi poslatom"
 
-#: application/views/qslprint/qslprint.php:33
+#: application/views/qslprint/qslprint.php:34
 msgid "Remove"
 msgstr "Uklonite"
 
-#: application/views/qslprint/qslprint.php:34
+#: application/views/qslprint/qslprint.php:35
 #: application/views/simplefle/index.php:142
 msgid "QSO List"
 msgstr "Lista veza"
 
-#: application/views/qslprint/qslprint.php:69
+#: application/views/qslprint/qslprint.php:71
 msgid "Mark selected QSOs as sent"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:70
+#: application/views/qslprint/qslprint.php:72
 msgid "Remove selected QSOs from the queue"
 msgstr "Uklonite izabrane veze iz niza"
 
-#: application/views/qslprint/qslprint.php:71
+#: application/views/qslprint/qslprint.php:73
 msgid "Export selected QSOs to ADIF-file"
 msgstr ""
 
-#: application/views/qslprint/qslprint.php:73
+#: application/views/qslprint/qslprint.php:75
 msgid "Export CSV-file"
 msgstr "Izvoz CSV datoteke"
 
-#: application/views/qslprint/qslprint.php:73
+#: application/views/qslprint/qslprint.php:75
 msgid "Export requested QSLs to CSV-file"
 msgstr "Izvoz zahtevanih QSL u CSV datoteku"
 
-#: application/views/qslprint/qslprint.php:75
+#: application/views/qslprint/qslprint.php:77
 msgid "Export ADIF"
 msgstr "Izvoz ADIF"
 
-#: application/views/qslprint/qslprint.php:75
+#: application/views/qslprint/qslprint.php:77
 msgid "Export requested QSLs to ADIF-file"
 msgstr "Izvoz zahtevanih QSL karata u ADIF datoteku"
 
-#: application/views/qslprint/qslprint.php:77
+#: application/views/qslprint/qslprint.php:79
 msgid "Mark QSLs as printed"
 msgstr "Označi QSL kao štampane"
 
-#: application/views/qslprint/qslprint.php:77
+#: application/views/qslprint/qslprint.php:79
 msgid "Mark requested QSLs as sent"
 msgstr "Označi zahtevane QSL kao poslate"
 
-#: application/views/qslprint/qslprint.php:81
+#: application/views/qslprint/qslprint.php:83
 msgid "No QSLs to print were found!"
 msgstr "Nisu pronađene QSL za štampu!"
 
