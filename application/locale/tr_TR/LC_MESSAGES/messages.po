@@ -5,20 +5,21 @@
 # Halil AYYILDIZ <ta2lghalil@gmail.com>, 2024.
 # Fatih ÖNDER <fatih05onder@gmail.com>, 2024.
 # utkuyalcin <utkyalcn@gmail.com>, 2024.
+# "Fatih ÖNDER (TB1TFO)" <fatih05onder@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-20 12:49+0000\n"
-"PO-Revision-Date: 2024-10-30 21:08+0000\n"
-"Last-Translator: utkuyalcin <utkyalcn@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/tr/>\n"
+"PO-Revision-Date: 2024-12-23 15:29+0000\n"
+"Last-Translator: \"Fatih ÖNDER (TB1TFO)\" <fatih05onder@gmail.com>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.8.4\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -3594,33 +3595,37 @@ msgstr ""
 
 #: application/views/adif/import.php:143
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
-msgstr ""
+msgstr "İçe aktarılan QSO'ları DCL Logbook'a yüklenmiş olarak işaretleyin"
 
 #: application/views/adif/import.php:153
 msgid "Use DXCC information from ADIF"
-msgstr ""
+msgstr "ADIF'ten DXCC bilgilerini kullanın"
 
 #: application/views/adif/import.php:155
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
 msgstr ""
+"Seçilmezse, Wavelog DXCC bilgilerini otomatik olarak belirlemeye "
+"çalışacaktır."
 
 #: application/views/adif/import.php:163
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
+"İçe aktarma sırasında operatör çağrısı olarak her zaman oturum açmış hesap "
+"çağrı işaretini kullanın"
 
 #: application/views/adif/import.php:172
 #: application/views/interface_assets/footer.php:33
 #: application/views/interface_assets/footer.php:513
 #: application/views/interface_assets/footer.php:2175
 msgid "DANGER"
-msgstr ""
+msgstr "TEHLİKE"
 
 #: application/views/adif/import.php:172
 msgid "Ignore Stationcallsign on import"
-msgstr ""
+msgstr "İçe aktarmada Stationcallsign'ı yoksay"
 
 #: application/views/adif/import.php:174
 #, php-format
@@ -3628,22 +3633,26 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Eğer seçilirse, Wavelog ADIF'in %sall%s QSO'larını seçilen istasyon-konumla "
+"eşleşip eşleşmediklerine bakmaksızın içe aktarmaya çalışacaktır."
 
 #: application/views/adif/import.php:178 application/views/adif/import.php:294
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
-msgstr ""
+msgstr "Yükle"
 
 #: application/views/adif/import.php:185
 msgid "Take your logbook file anywhere!"
-msgstr ""
+msgstr "Seyir defteri dosyanızı her yere götürün!"
 
 #: application/views/adif/import.php:186
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr ""
+"ADIF'leri dışa aktarmak, kişileri LoTW, Awards gibi üçüncü taraf "
+"uygulamalara aktarmanıza veya yalnızca bir yedek tutmanıza olanak tanır."
 
 #: application/views/adif/import.php:197 application/views/adif/import.php:243
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
@@ -3661,36 +3670,36 @@ msgstr "Tarihten itibaren"
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
 msgid "To date"
-msgstr ""
+msgstr "Bugüne kadar"
 
 #: application/views/adif/import.php:208
 msgid "Mark exported QSOs as uploaded to LoTW"
-msgstr ""
+msgstr "Dışa aktarılan QSO'ları LoTW'ye yüklenmiş olarak işaretleyin"
 
 #: application/views/adif/import.php:216
 msgid "Export QSOs not uploaded to LoTW"
-msgstr ""
+msgstr "LoTW'ye yüklenmeyen QSO'ları dışa aktarın"
 
 #: application/views/adif/import.php:221
 msgid "Export QSO's"
-msgstr ""
+msgstr "QSO'ları Dışa Aktar"
 
 #: application/views/adif/import.php:226
 msgid "Export Satellite-Only QSOs"
-msgstr ""
+msgstr "Yalnızca Uydudan Yapılan QSO'ları Dışa Aktarma"
 
 #: application/views/adif/import.php:227
 msgid "Export All Satellite QSOs"
-msgstr ""
+msgstr "Tüm Uydu QSO'larını Dışa Aktar"
 
 #: application/views/adif/import.php:229
 msgid "Export All Satellite QSOs Confirmed on LoTW"
-msgstr ""
+msgstr "LoTW'de Onaylanan Tüm Uydu QSO'larını Dışa Aktar"
 
 #: application/views/adif/import.php:241 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
-msgstr ""
+msgstr "Bir tarih aralığı seçilmezse, tüm QSO'lar işaretlenecektir!"
 
 #: application/views/adif/import.php:249
 msgid "Mark QSOs as exported to LoTW"
