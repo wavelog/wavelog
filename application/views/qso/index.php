@@ -420,13 +420,13 @@
                   <label for="region"><?= __("Region"); ?></label>
                   <select class="form-select" id="region" name="region">
                       <option value="NONE" selected><?= __("NONE"); ?></option>
-                      <option value="IV"><?= __("ITU Vienna"); ?></option>
                       <option value="AI"><?= __("African Italy"); ?></option>
-                      <option value="SY"><?= __("Sicily"); ?></option>
                       <option value="BI"><?= __("Bear Island"); ?></option>
-                      <option value="SI"><?= __("Shetland Islands"); ?></option>
-                      <option value="KO"><?= __("Kosovo"); ?></option>
                       <option value="ET"><?= __("European Turkey"); ?></option>
+                      <option value="IV"><?= __("ITU Vienna"); ?></option>
+                      <option value="KO"><?= __("Kosovo"); ?></option>
+                      <option value="SI"><?= __("Shetland Islands"); ?></option>
+                      <option value="SY"><?= __("Sicily"); ?></option>
                   </select>
               </div>
 
