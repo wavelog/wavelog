@@ -1722,6 +1722,29 @@ $(document).ready(function(){
     }
  </script>
     <?php } ?>
+	<?php if ($this->uri->segment(2) == "wae") { ?>
+		<script>
+	$('#band2').change(function(){
+   var band = $("#band2 option:selected").text();
+   if (band != "SAT") {
+      $("#sats").val('All');
+      $("#orbits").val('All');
+      $("#satrow").hide();
+      $("#orbitrow").hide();
+   } else {
+      $("#satrow").show();
+      $("#orbitrow").show();
+   }
+});
+
+$('#sats').change(function(){
+   var sat = $("#sats option:selected").text();
+      $("#band2").val('SAT');
+   if (sat != "All") {
+   }
+});
+</script>
+    <?php } ?>
 
 <?php if ($this->uri->segment(2) == "waja") { ?>
 <script>
