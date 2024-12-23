@@ -271,7 +271,7 @@ class WAE extends CI_Model {
 		}
 		$sql .= $this->addOrbitToQuery($postdata,$bindings);
 
-		$sql .= " group by col_dxcc
+		$sql .= " group by col_dxcc, col_region
 				) x on dxcc_entities.adif = x.col_dxcc";;
 
 		// if ($postdata['includedeleted'] == NULL) {
