@@ -419,7 +419,8 @@
               <div class="mb-3">
                   <label for="region"><?= __("Region"); ?></label>
                   <select class="form-select" id="region" name="region">
-                      <option value="NONE" selected><?= __("NONE"); ?></option>
+                      <option value="" selected></option>
+                      <option value="NONE"><?= __("NONE"); ?></option>
                       <option value="AI"><?= __("African Italy"); ?></option>
                       <option value="BI"><?= __("Bear Island"); ?></option>
                       <option value="ET"><?= __("European Turkey"); ?></option>
