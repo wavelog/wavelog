@@ -469,6 +469,13 @@
                     </tr>
                     <?php } ?>
 
+                    <?php if($row->COL_REGION != null) { ?>
+                    <tr>
+                        <td><?= __("Region"); ?></td>
+                        <td><?php echo $row->COL_REGION; ?></td>
+                    </tr>
+                    <?php } ?>
+
                     <?php if($row->COL_EMAIL != null) { ?>
                     <tr>
                         <td><?= __("E-mail"); ?></td>
