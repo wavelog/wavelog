@@ -168,4 +168,16 @@
 			<option value="SA"><?= __("South America"); ?></option>
 			<option value="OC"><?= __("Oceania"); ?></option>
 		</select>
+
+		<select style="display:none" id="editRegion" name="region" class="form-select w-auto form-select-sm w-auto">
+			<option value=""></option>
+			<option value="NONE"><?= __("NONE"); ?></option>
+			<option value="AI"><?= __("African Italy"); ?></option>
+			<option value="BI"><?= __("Bear Island"); ?></option>
+			<option value="ET"><?= __("European Turkey"); ?></option>
+			<option value="IV"><?= __("ITU Vienna"); ?></option>
+			<option value="KO"><?= __("Kosovo"); ?></option>
+			<option value="SI"><?= __("Shetland Islands"); ?></option>
+			<option value="SY"><?= __("Sicily"); ?></option>
+		</select>
 	</form>
