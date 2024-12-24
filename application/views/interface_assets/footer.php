@@ -1238,24 +1238,28 @@ $($('#callsign')).on('keypress',function(e) {
 							    }
 						    } else {
 							    $(".radio_timeout_error" ).remove();
-							    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> ' + data.frequency_formatted;
+                                separator = '<span style="margin-left:10px"></span>';
+							    text = '<i class="fas fa-broadcast-tower"></i>' + separator + '<b>TX:</b> ' + data.frequency_formatted;
 							    if(data.mode != null) {
-								    text = text+'<span style="margin-left:10px"></span>'+data.mode;
+								    text = text + separator + data.mode;
 							    }
 							    if(data.power != null && data.power != 0) {
-								    text = text+'<span style="margin-left:10px"></span>'+data.power+' W';
+								    text = text + separator + data.power+' W';
 							    }
-							    ptext = '';
+                                complementary_info = []
 							    if(data.prop_mode != null && data.prop_mode != '') {
-								    ptext = ptext + data.prop_mode;
 								    if (data.prop_mode == 'SAT') {
-									    ptext = ptext + ' ' + data.satname;
-								    }
+									    complementary_info.push(data.prop_mode + ' ' + data.satname);
+								    } else {
+                                        complementary_info.push(data.prop_mode);
+                                    }
 							    }
 							    if(data.frequency_rx != null && data.frequency_rx != 0) {
-								    ptext = ptext + '<span style="margin-left:10px"></span><b>RX:</b> ' + data.frequency_rx_formatted;
+                                    complementary_info.push('<b>RX:</b> ' + data.frequency_rx_formatted);
 							    }
-							    if( ptext != '') { text = text + '<span style="margin-left:10px"></span>(' + ptext + ')';}
+							    if( complementary_info.length > 0) { 
+                                    text = text + separator + '(' + complementary_info.join(separator) + ')';
+                                }
 							    if (! $('#radio_cat_state').length) {
 								    $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
 							    } else {
