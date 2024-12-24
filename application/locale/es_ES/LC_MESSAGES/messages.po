@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-12-24 09:04+0000\n"
-"PO-Revision-Date: 2024-12-13 06:56+0000\n"
+"PO-Revision-Date: 2024-12-24 19:42+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/es/>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1579,23 +1579,23 @@ msgstr "Información ADIF de LoTW"
 #: application/controllers/Lotw.php:786 application/controllers/Lotw.php:789
 #, php-format
 msgid "LoTW login failed for user %s: %s."
-msgstr ""
+msgstr "Error de inicio de sesión en LoTW para el usuario %s: %s."
 
 #: application/controllers/Lotw.php:789
 msgid "Username/password incorrect"
-msgstr ""
+msgstr "Nombre de usuario/contraseña incorrectos"
 
 #: application/controllers/Lotw.php:792
 msgid "LoTW login OK!"
-msgstr ""
+msgstr "¡Inicio de sesión en LoTW correcto!"
 
 #: application/controllers/Lotw.php:796
 msgid "LoTW currently not available. Try again later."
-msgstr ""
+msgstr "LoTW no está disponible actualmente. Inténtalo de nuevo más tarde."
 
 #: application/controllers/Lotw.php:801
 msgid "No LoTW credentials provided."
-msgstr ""
+msgstr "No se proporcionaron credenciales de LoTW."
 
 #: application/controllers/Lotw.php:819
 msgid "LoTW ADIF Import"
@@ -3649,7 +3649,7 @@ msgstr ""
 
 #: application/views/adif/import.php:143
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
-msgstr ""
+msgstr "Marca los QSOs importados como subidos al DCL Logbook"
 
 #: application/views/adif/import.php:153
 msgid "Use DXCC information from ADIF"
@@ -7749,7 +7749,7 @@ msgstr "Por favor espera..."
 msgctxt ""
 "Word for country states that are deprecated but kept for legacy reasons."
 msgid "deprecated"
-msgstr ""
+msgstr "obsoleto"
 
 #: application/views/interface_assets/footer.php:137
 #: application/views/interface_assets/header.php:444
@@ -8452,7 +8452,7 @@ msgstr "Potencia de la estación"
 #: application/views/logbookadvanced/index.php:698
 #: application/views/logbookadvanced/useroptions.php:126
 msgid "Region"
-msgstr ""
+msgstr "Región"
 
 #: application/views/logbookadvanced/edit.php:83
 msgid "SAT Mode"
@@ -8480,35 +8480,35 @@ msgstr "Verificado"
 
 #: application/views/logbookadvanced/edit.php:174
 msgid "NONE"
-msgstr ""
+msgstr "NINGUNO"
 
 #: application/views/logbookadvanced/edit.php:175
 msgid "African Italy"
-msgstr ""
+msgstr "Italia africana"
 
 #: application/views/logbookadvanced/edit.php:176
 msgid "Bear Island"
-msgstr ""
+msgstr "Isla del Oso"
 
 #: application/views/logbookadvanced/edit.php:177
 msgid "European Turkey"
-msgstr ""
+msgstr "Turquía europea"
 
 #: application/views/logbookadvanced/edit.php:178
 msgid "ITU Vienna"
-msgstr ""
+msgstr "ITU Vienna"
 
 #: application/views/logbookadvanced/edit.php:179
 msgid "Kosovo"
-msgstr ""
+msgstr "Kosovo"
 
 #: application/views/logbookadvanced/edit.php:180
 msgid "Shetland Islands"
-msgstr ""
+msgstr "Islas Shetland"
 
 #: application/views/logbookadvanced/edit.php:181
 msgid "Sicily"
-msgstr ""
+msgstr "Sicilia"
 
 #: application/views/logbookadvanced/index.php:11
 #: application/views/logbookadvanced/useroptions.php:182
@@ -10087,7 +10087,7 @@ msgstr ""
 #: application/views/qslprint/index.php:32
 #: application/views/qslprint/qslprint.php:32
 msgid "Previous QSL"
-msgstr ""
+msgstr "QSL anterior"
 
 #: application/views/qslprint/index.php:32
 #, php-format
@@ -10095,6 +10095,8 @@ msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
 msgstr ""
+"La columna %s muestra cuántos QSLs se han enviado a la misma estación antes "
+"en la misma banda y modo."
 
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
@@ -12630,7 +12632,7 @@ msgstr "Contraseña Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:718
 msgid "Test Login"
-msgstr ""
+msgstr "Prueba de inicio de sesión"
 
 #: application/views/user/edit.php:736
 msgid "eQSL.cc Username"
