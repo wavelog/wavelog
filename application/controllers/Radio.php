@@ -28,15 +28,9 @@ class Radio extends CI_Controller {
 
 	function status() {
 
-		// Check Auth
 		$this->load->model('user_model');
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		// Check if users logged in
-
-		if ($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
-		}
 		session_write_close();
 
 		$this->load->model('cat');
@@ -45,10 +39,13 @@ class Radio extends CI_Controller {
 		if ($query->num_rows() > 0) {
 			echo "<thead><tr>";
 			echo "<th>" . __("Radio") . "</th>";
+			if ($this->session->userdata('clubstation') == 1 && clubaccess_check(9)) {
+				echo "<th>" . __("Operator") . "</th>";
+			}
 			echo "<th>" . __("Frequency") . "</th>";
 			echo "<th>" . __("Mode") . "</th>";
 			echo "<th>" . __("Timestamp") . "</th>";
-			echo "<th></th>";
+			echo "<th> </th>";
 			echo "<th>" . __("Options") . "</th>";
 			echo "<th>" . __("Settings") . "</th>";
 			echo "<th></th>";
@@ -56,6 +53,16 @@ class Radio extends CI_Controller {
 			foreach ($query->result() as $row) {
 				echo "<tr>";
 				echo "<td>" . $row->radio . "</td>";
+
+				$this->load->model('user_model');
+				if ($this->session->userdata('clubstation') == 1 && clubaccess_check(9)) {
+					$operator = $this->user_model->get_by_id($row->operator)->row();
+					if ($operator) {
+						echo "<td>" . $operator->user_callsign . "</td>";
+					} else {
+						echo "<td>" . __("UNKNOWN") . "</td>";
+					}
+				}
 
 				if (empty($row->frequency) || $row->frequency == "0") {
 					echo "<td>- / -</td>";
@@ -93,14 +100,16 @@ class Radio extends CI_Controller {
 					echo '<td></td>';
 				}
 
-				$defaul_user_radio = $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? NULL;
-				if (!$defaul_user_radio) {
-					echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
-				} else {
-					if ($defaul_user_radio !== $row->id) {
+				if ($this->session->userdata('clubstation') != 1) {
+					$defaul_user_radio = $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? NULL;
+					if (!$defaul_user_radio) {
 						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
 					} else {
-						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+						if ($defaul_user_radio !== $row->id) {
+							echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+						} else {
+							echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+						}
 					}
 				}
 				echo "<td><button id='edit_cat_settings_".$row->id."' \" class=\"editCatSettings btn btn-sm btn-primary\"> " . __("Edit") . "</button></td>";
