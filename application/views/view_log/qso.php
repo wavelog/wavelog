@@ -472,7 +472,7 @@
                     <?php if($row->COL_REGION != null) { ?>
                     <tr>
                         <td><?= __("Region"); ?></td>
-                        <td><?php echo $row->COL_REGION; ?></td>
+                        <td><?php echo $this->logbook_model->getLongRegion($row->COL_REGION); ?></td>
                     </tr>
                     <?php } ?>
 
