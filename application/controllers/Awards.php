@@ -1917,4 +1917,82 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
+	public function wae ()	{
+		$this->load->model('wae');
+		$this->load->model('modes');
+		$this->load->model('bands');
+
+		$data['orbits'] = $this->bands->get_worked_orbits();
+		$data['sats_available'] = $this->bands->get_worked_sats();
+		$data['user_default_band'] = $this->session->userdata('user_default_band');
+
+		$data['worked_bands'] = $this->bands->get_worked_bands('dxcc'); // Used in the view for band select
+		$data['modes'] = $this->modes->active(); // Used in the view for mode select
+
+		if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
+			if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+				$bands = $data['worked_bands'];
+			} else {
+				$bands[] = $this->security->xss_clean($this->input->post('band'));
+			}
+		} else {
+			$bands = $data['worked_bands'];
+		}
+
+		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+
+		if($this->input->method() === 'post') {
+			$postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+			$postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+			$postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+			$postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+			$postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
+			$postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+			$postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+			$postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+
+			$postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
+			$postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
+			$postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
+			$postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
+			$postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
+			$postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
+			$postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
+			$postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
+			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
+			$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
+		} else { // Setting default values at first load of page
+			$postdata['qsl'] = 1;
+			$postdata['lotw'] = 1;
+			$postdata['eqsl'] = 0;
+			$postdata['qrz'] = 0;
+			$postdata['worked'] = 1;
+			$postdata['confirmed'] = 1;
+			$postdata['notworked'] = 1;
+			$postdata['includedeleted'] = 0;
+			$postdata['Africa'] = 1;
+			$postdata['Asia'] = 1;
+			$postdata['Europe'] = 1;
+			$postdata['NorthAmerica'] = 1;
+			$postdata['SouthAmerica'] = 1;
+			$postdata['Oceania'] = 1;
+			$postdata['Antarctica'] = 1;
+			$postdata['band'] = 'All';
+			$postdata['mode'] = 'All';
+			$postdata['sat'] = 'All';
+			$postdata['orbit'] = 'All';
+		}
+
+		$data['wae_array'] = $this->wae->get_wae_array($bands, $postdata);
+		$data['wae_summary'] = $this->wae->get_wae_summary($bands, $postdata);
+
+		// Render Page
+		$data['page_title'] = sprintf(__("Awards - %s"), __("WAE"));
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/wae/index');
+		$this->load->view('interface_assets/footer');
+	}
+
 }
