@@ -481,6 +481,12 @@ class Logbook_model extends CI_Model {
 			case 'CALL':
 				$this->db->where('COL_CALL', $searchphrase);
 				break;
+			case 'WAE':
+				$this->db->group_start();
+				$this->db->where("COL_DXCC", $searchphrase);
+				$this->db->or_where("COL_REGION", $searchphrase);
+				$this->db->group_end();
+				break;
 			case 'DXCC':
 				$this->db->where('COL_COUNTRY', $searchphrase);
 				if ($band == 'SAT' && $type == 'DXCC') {
