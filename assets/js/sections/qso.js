@@ -505,6 +505,7 @@ function reset_fields() {
 	$('#country').val("");
 	$('#continent').val("");
 	$('#email').val("");
+	$('#region').val("");
 	$('#lotw_info').text("");
 	$('#lotw_info').attr('data-bs-original-title', "");
 	$('#lotw_info').removeClass("lotw_info_red");
@@ -1175,6 +1176,7 @@ function resetDefaultQSOFields() {
 	$('#country').val("");
 	$('#continent').val("");
 	$('#email').val("");
+	$('#region').val("");
 	$('#dxcc_id').val("").multiselect('refresh');
 	$('#cqz').val("");
 	$('#ituz').val("");
