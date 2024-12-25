@@ -1684,7 +1684,7 @@ $(document).ready(function(){
 		<script src="<?php echo base_url(); ?>assets/js/sections/webadif.js"></script>
 	<?php } ?>
 
-<?php if ($this->uri->segment(2) == "dxcc") { ?>
+<?php if ($this->uri->segment(2) == "dxcc" || $this->uri->segment(2) == "wae") { ?>
 <script>
     $('.tabledxcc').DataTable({
         "pageLength": 25,
@@ -1725,6 +1725,29 @@ $(document).ready(function(){
         $(".buttons-csv").css("color", "white");
     }
  </script>
+    <?php } ?>
+	<?php if ($this->uri->segment(2) == "wae") { ?>
+		<script>
+	$('#band2').change(function(){
+   var band = $("#band2 option:selected").text();
+   if (band != "SAT") {
+      $("#sats").val('All');
+      $("#orbits").val('All');
+      $("#satrow").hide();
+      $("#orbitrow").hide();
+   } else {
+      $("#satrow").show();
+      $("#orbitrow").show();
+   }
+});
+
+$('#sats').change(function(){
+   var sat = $("#sats option:selected").text();
+      $("#band2").val('SAT');
+   if (sat != "All") {
+   }
+});
+</script>
     <?php } ?>
 
 <?php if ($this->uri->segment(2) == "waja") { ?>
