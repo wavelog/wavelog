@@ -300,6 +300,16 @@ $config['languages'] = array(
 		'direction' => 'ltr',
 		'code'      => 'tr',
 		'flag'      => 'tr',
+	),
+	'armenian' => array(
+		'name'      => 'Հայերեն',
+		'name_en'   => 'armenian',
+		'folder'    => 'armenian',
+		'locale'    => 'hy-HY',
+		'gettext'   => 'hy_HY',
+		'direction' => 'ltr',
+		'code'      => 'hy',
+		'flag'      => 'hy',
 	)
 );
 
