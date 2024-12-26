@@ -303,10 +303,10 @@ $config['languages'] = array(
 	),
 	'armenian' => array(
 		'name'      => 'Հայերեն',
-		'name_en'   => 'armenian',
+		'name_en'   => 'Armenian',
 		'folder'    => 'armenian',
-		'locale'    => 'hy-HY',
-		'gettext'   => 'hy_HY',
+		'locale'    => 'hy',
+		'gettext'   => 'hy',
 		'direction' => 'ltr',
 		'code'      => 'hy',
 		'flag'      => 'hy',
