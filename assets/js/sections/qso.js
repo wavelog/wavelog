@@ -602,13 +602,13 @@ $("#callsign").on("focusout", function () {
 		var callsign = find_callsign;
 
 		find_callsign = find_callsign.replace(/\//g, "-");
-		find_callsign = find_callsign.replace('Ø', '0');
+		find_callsign = find_callsign.replaceAll('Ø', '0');
 
 		// Replace / in a callsign with - to stop urls breaking
 		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
 
 			// Make sure the typed callsign and json result match
-			if ($('#callsign').val().toUpperCase().replace('Ø', '0') == result.callsign) {
+			if ($('#callsign').val().toUpperCase().replaceAll('Ø', '0') == result.callsign) {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
