@@ -14,7 +14,7 @@ class WAE extends CI_Model {
 	// 4U1V (OE for DXCC), JW/b, GM/s, IT, TA1,
 	private $waecountries = '206, 248, 259, 279, 390';
 
-	private $region = "'IV', 'AI', 'SY', 'BI', 'SI', 'ET'";
+	private $region = "'IV', 'SY', 'BI', 'SI', 'ET'";
 
 	// $sql = select * from dxcc_entities where cont = 'EU' and end is not null
 
@@ -48,7 +48,6 @@ class WAE extends CI_Model {
 		$waeCount = array(); // Used for keeping track of which WAE are not worked
 
 		$waeCount['IV']['count'] = 0;
-		$waeCount['AI']['count'] = 0;
 		$waeCount['SY']['count'] = 0;
 		$waeCount['BI']['count'] = 0;
 		$waeCount['SI']['count'] = 0;
@@ -75,9 +74,6 @@ class WAE extends CI_Model {
 			$dxccMatrix['IV']['name'] = 'ITU Vienna';
 			$dxccMatrix['IV']['Dxccprefix'] = '4U1V';
 			$dxccMatrix['IV'][$band] = '-';
-			$dxccMatrix['AI']['name'] = 'African Italy';
-			$dxccMatrix['AI']['Dxccprefix'] = 'IG9';
-			$dxccMatrix['AI'][$band] = '-';
 			$dxccMatrix['SY']['name'] = 'Sicily';
 			$dxccMatrix['SY']['Dxccprefix'] = 'IT9';
 			$dxccMatrix['SY'][$band] = '-';
@@ -155,9 +151,6 @@ class WAE extends CI_Model {
 		if ($postdata['notworked'] == NULL) {
 			if ($waeCount['IV']['count'] == 0) {
 				unset($dxccMatrix['IV']);
-			};
-			if ($waeCount['AI']['count'] == 0) {
-				unset($dxccMatrix['AI']);
 			};
 			if ($waeCount['SY']['count'] == 0) {
 				unset($dxccMatrix['SY']);
