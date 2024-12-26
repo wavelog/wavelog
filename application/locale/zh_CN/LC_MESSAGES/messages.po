@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-23 16:46+0000\n"
+"POT-Creation-Date: 2024-12-26 07:19+0000\n"
 "PO-Revision-Date: 2024-12-26 06:42+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -206,7 +206,6 @@ msgid "ADIF Export"
 msgstr "ADIF 导出"
 
 #: application/controllers/Adif.php:145
-#: application/views/interface_assets/header.php:392
 #: application/views/interface_assets/header.php:394
 msgid "ADIF Import / Export"
 msgstr "ADIF 导入/导出"
@@ -303,10 +302,9 @@ msgstr "奖项 - %s"
 #: application/views/interface_assets/header.php:200
 #: application/views/logbookadvanced/index.php:689
 #: application/views/logbookadvanced/useroptions.php:114
-#: application/views/qso/edit_ajax.php:385 application/views/qso/index.php:271
-#: application/views/qso/index.php:542 application/views/user/edit.php:603
+#: application/views/qso/edit_ajax.php:399 application/views/qso/index.php:271
+#: application/views/qso/index.php:556 application/views/user/edit.php:603
 #: application/views/view_log/qso.php:459
-#: application/views/qso/edit_ajax.php:399 application/views/qso/index.php:556
 msgid "DOK"
 msgstr "DOK"
 
@@ -338,7 +336,6 @@ msgid "Awards - WAJA"
 msgstr "奖项 - WAJA"
 
 #: application/controllers/Awards.php:330 application/views/bands/index.php:51
-#: application/views/interface_assets/header.php:216
 #: application/views/interface_assets/header.php:218
 msgid "JCC"
 msgstr "JCC"
@@ -402,7 +399,7 @@ msgstr " 并且 "
 #: application/views/qslcard/searchresult.php:65
 #: application/views/qslcard/searchresult.php:81
 #: application/views/qso/components/previous_contacts.php:82
-#: application/views/qso/edit_ajax.php:360
+#: application/views/qso/edit_ajax.php:374
 #: application/views/search/search_result_ajax.php:9
 #: application/views/station_profile/edit.php:243
 #: application/views/user/edit.php:234 application/views/user/edit.php:256
@@ -410,7 +407,6 @@ msgstr " 并且 "
 #: application/views/user/edit.php:323
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
-#: application/views/qso/edit_ajax.php:374
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -424,14 +420,13 @@ msgstr "SOTA"
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/lookup/index.php:10
 #: application/views/qso/components/previous_contacts.php:83
-#: application/views/qso/edit_ajax.php:370
+#: application/views/qso/edit_ajax.php:384
 #: application/views/search/search_result_ajax.php:10
 #: application/views/station_profile/edit.php:256
 #: application/views/user/edit.php:235 application/views/user/edit.php:257
 #: application/views/user/edit.php:279 application/views/user/edit.php:301
 #: application/views/user/edit.php:324
 #: application/views/view_log/partial/log_ajax.php:10
-#: application/views/qso/edit_ajax.php:384
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -445,14 +440,13 @@ msgstr "WWFF"
 #: application/views/logbookadvanced/index.php:683
 #: application/views/logbookadvanced/useroptions.php:106
 #: application/views/qso/components/previous_contacts.php:84
-#: application/views/qso/edit_ajax.php:366
+#: application/views/qso/edit_ajax.php:380
 #: application/views/search/search_result_ajax.php:11
 #: application/views/station_profile/edit.php:269
 #: application/views/user/edit.php:236 application/views/user/edit.php:258
 #: application/views/user/edit.php:280 application/views/user/edit.php:302
 #: application/views/user/edit.php:325
 #: application/views/view_log/partial/log_ajax.php:11
-#: application/views/qso/edit_ajax.php:380
 msgid "POTA"
 msgstr "POTA"
 
@@ -481,7 +475,6 @@ msgstr "IOTA（空中岛屿）"
 
 #: application/controllers/Awards.php:870
 #: application/controllers/Awards.php:884
-#: application/views/interface_assets/header.php:236
 #: application/views/interface_assets/header.php:238
 msgid "US Counties"
 msgstr "美国各县"
@@ -534,8 +527,11 @@ msgstr "ITU 分区"
 msgid "Worked All Continents (WAC)"
 msgstr "通联世界大洲奖（WAC）"
 
+#: application/controllers/Awards.php:1992
+msgid "WAE"
+msgstr "WAE"
+
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
-#: application/views/interface_assets/header.php:288
 #: application/views/interface_assets/header.php:290
 msgid "Backup"
 msgstr "备份"
@@ -550,10 +546,9 @@ msgstr "笔记 - 备份"
 
 #: application/controllers/Band.php:25 application/views/bands/index.php:28
 #: application/views/bands/index.php:32
-#: application/views/interface_assets/header.php:387
+#: application/views/interface_assets/header.php:389
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:65
-#: application/views/interface_assets/header.php:389
 msgid "Bands"
 msgstr "波段"
 
@@ -578,7 +573,6 @@ msgid "Export Cabrillo"
 msgstr "导出 Cabrillo"
 
 #: application/controllers/Cfdexport.php:20
-#: application/views/interface_assets/header.php:406
 #: application/views/interface_assets/header.php:408
 msgid "CFD Export"
 msgstr "CFD 导出"
@@ -596,7 +590,6 @@ msgid "No user has configured Clublog."
 msgstr "Clublog 未配置用户账户。"
 
 #: application/controllers/Contestcalendar.php:19
-#: application/views/interface_assets/header.php:253
 #: application/views/interface_assets/header.php:255
 msgid "Contest Calendar"
 msgstr "比赛日历"
@@ -611,7 +604,6 @@ msgid "Contest Logging"
 msgstr "比赛日志"
 
 #: application/controllers/Contesting.php:123
-#: application/views/interface_assets/header.php:282
 #: application/views/interface_assets/header.php:284
 msgid "Contests"
 msgstr "比赛"
@@ -628,7 +620,6 @@ msgid "Continents"
 msgstr "大陆"
 
 #: application/controllers/Cron.php:38
-#: application/views/interface_assets/header.php:292
 #: application/views/interface_assets/header.php:294
 msgid "Cron Manager"
 msgstr "Cron 管理器"
@@ -696,7 +687,6 @@ msgid "Not running"
 msgstr "未运行"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:400
 #: application/views/interface_assets/header.php:402
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV 导出"
@@ -780,13 +770,11 @@ msgid "and propagation"
 msgstr "和传播方式"
 
 #: application/controllers/Dxatlas.php:19
-#: application/views/interface_assets/header.php:398
 #: application/views/interface_assets/header.php:400
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas Gridsquare 导出"
 
 #: application/controllers/Dxcalendar.php:10
-#: application/views/interface_assets/header.php:251
 #: application/views/interface_assets/header.php:253
 msgid "DX Calendar"
 msgstr "DX 日志"
@@ -859,9 +847,8 @@ msgid "No QSOs found to upload."
 msgstr "无 QSO 可供上传。"
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:396
-#: application/views/kml/index.php:3
 #: application/views/interface_assets/header.php:398
+#: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr "KML 导出"
 
@@ -1028,6 +1015,7 @@ msgstr "日志簿"
 #: application/views/awards/rac/index.php:47
 #: application/views/awards/vucc/band.php:15
 #: application/views/awards/wab/index.php:72
+#: application/views/awards/wae/index.php:54
 #: application/views/awards/waja/index.php:55
 #: application/views/awards/was/index.php:55
 #: application/views/gridmap/index.php:101
@@ -1040,7 +1028,6 @@ msgstr "日志簿"
 #: application/views/qso/edit_ajax.php:37 application/views/qso/index.php:45
 #: application/views/timeline/index.php:56 application/views/user/edit.php:562
 #: application/views/user/edit.php:649
-#: application/views/awards/wae/index.php:54
 msgid "QSL"
 msgstr "QSL"
 
@@ -1056,6 +1043,7 @@ msgstr "QSL"
 #: application/views/awards/vucc/band.php:16
 #: application/views/awards/wab/index.php:80
 #: application/views/awards/wac/index.php:48
+#: application/views/awards/wae/index.php:58
 #: application/views/awards/waja/index.php:59
 #: application/views/awards/was/index.php:59
 #: application/views/dashboard/index.php:303
@@ -1066,15 +1054,12 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:22
 #: application/views/qslprint/qsolist.php:169
 #: application/views/qslprint/qsolist.php:184
-#: application/views/qso/edit_ajax.php:409
+#: application/views/qso/edit_ajax.php:423
 #: application/views/satellite/index.php:26
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:563
-#: application/views/user/edit.php:659 application/views/view_log/qso.php:523
-#: application/views/qso/edit_ajax.php:423
-#: application/views/view_log/qso.php:530
-#: application/views/awards/wae/index.php:58
+#: application/views/user/edit.php:659 application/views/view_log/qso.php:530
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1089,6 +1074,7 @@ msgstr "LoTW"
 #: application/views/awards/rac/index.php:55
 #: application/views/awards/wab/index.php:88
 #: application/views/awards/wac/index.php:52
+#: application/views/awards/wae/index.php:62
 #: application/views/awards/waja/index.php:63
 #: application/views/awards/was/index.php:63
 #: application/views/dashboard/index.php:303
@@ -1099,14 +1085,12 @@ msgstr "LoTW"
 #: application/views/qslprint/qsolist.php:19
 #: application/views/qslprint/qsolist.php:140
 #: application/views/qslprint/qsolist.php:153
-#: application/views/qso/edit_ajax.php:406
+#: application/views/qso/edit_ajax.php:420
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:273
 #: application/views/station_profile/edit.php:305
 #: application/views/timeline/index.php:64 application/views/user/edit.php:564
 #: application/views/user/edit.php:667 application/views/user/edit.php:733
-#: application/views/qso/edit_ajax.php:420
-#: application/views/awards/wae/index.php:62
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1115,6 +1099,7 @@ msgstr "eQSL"
 #: application/views/awards/dxcc/index.php:77
 #: application/views/awards/jcc/index.php:68
 #: application/views/awards/wab/index.php:104
+#: application/views/awards/wae/index.php:70
 #: application/views/awards/waja/index.php:71
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/search/search_result_ajax.php:124
@@ -1123,9 +1108,7 @@ msgstr "eQSL"
 #: application/views/update/index.php:20 application/views/user/edit.php:566
 #: application/views/user/edit.php:683
 #: application/views/view_log/partial/log_ajax.php:133
-#: application/views/view_log/qso.php:538
 #: application/views/view_log/qso.php:545
-#: application/views/awards/wae/index.php:70
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1145,6 +1128,7 @@ msgstr "Clublog"
 #: application/views/awards/sig/qso_list.php:12
 #: application/views/awards/wab/index.php:53
 #: application/views/awards/wac/index.php:110
+#: application/views/awards/wae/index.php:121
 #: application/views/awards/waja/index.php:91
 #: application/views/awards/was/index.php:87
 #: application/views/components/hamsat/table.php:30
@@ -1201,7 +1185,6 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:107 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:30
-#: application/views/awards/wae/index.php:121
 msgid "Mode"
 msgstr "模式"
 
@@ -1277,9 +1260,8 @@ msgstr "对方收我"
 #: application/views/view_log/partial/log.php:13
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:330
-#: application/views/view_log/qso.php:643
-#: application/views/visitor/index.php:15
 #: application/views/view_log/qso.php:650
+#: application/views/visitor/index.php:15
 msgid "Country"
 msgstr "DXCC 实体"
 
@@ -1299,7 +1281,7 @@ msgstr "DXCC 实体"
 #: application/views/qslcard/searchresult.php:64
 #: application/views/qslcard/searchresult.php:80
 #: application/views/qso/components/previous_contacts.php:81
-#: application/views/qso/edit_ajax.php:351
+#: application/views/qso/edit_ajax.php:365
 #: application/views/search/search_result_ajax.php:8
 #: application/views/station_profile/edit.php:215
 #: application/views/timeline/index.php:295 application/views/user/edit.php:233
@@ -1307,7 +1289,6 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
-#: application/views/qso/edit_ajax.php:365
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1376,9 +1357,8 @@ msgstr "州"
 #: application/views/user/edit.php:282 application/views/user/edit.php:304
 #: application/views/user/edit.php:327 application/views/user/profile.php:34
 #: application/views/view_log/partial/log_ajax.php:13
-#: application/views/view_log/qso.php:630
-#: application/views/visitor/index.php:27
 #: application/views/view_log/qso.php:637
+#: application/views/visitor/index.php:27
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -1427,6 +1407,7 @@ msgstr "距离"
 #: application/views/awards/vucc/index.php:21
 #: application/views/awards/wab/index.php:22
 #: application/views/awards/wac/index.php:63
+#: application/views/awards/wae/index.php:76
 #: application/views/awards/waja/index.php:77
 #: application/views/awards/was/index.php:73
 #: application/views/awards/wwff/index.php:35
@@ -1483,7 +1464,6 @@ msgstr "距离"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:33
-#: application/views/awards/wae/index.php:76
 msgid "Band"
 msgstr "频段"
 
@@ -1524,9 +1504,8 @@ msgstr "频率"
 #: application/views/user/edit.php:284 application/views/user/edit.php:306
 #: application/views/user/edit.php:329
 #: application/views/view_log/partial/log_ajax.php:17
-#: application/views/view_log/qso.php:650
-#: application/views/visitor/index.php:39
 #: application/views/view_log/qso.php:657
+#: application/views/visitor/index.php:39
 msgid "Operator"
 msgstr "操作员"
 
@@ -1534,6 +1513,7 @@ msgstr "操作员"
 #: application/controllers/Stationsetup.php:381
 #: application/views/awards/dxcc/index.php:28
 #: application/views/awards/dxcc/index.php:238
+#: application/views/awards/wae/index.php:174
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
 #: application/views/interface_assets/footer.php:687
@@ -1552,9 +1532,7 @@ msgstr "操作员"
 #: application/views/timeplotter/index.php:33
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:334
-#: application/views/view_log/qso.php:644
 #: application/views/view_log/qso.php:651
-#: application/views/awards/wae/index.php:174
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -1568,11 +1546,10 @@ msgstr "快速查找"
 
 #: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
 #: application/controllers/Lotw.php:125 application/views/adif/import.php:27
-#: application/views/interface_assets/header.php:433
+#: application/views/interface_assets/header.php:435
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:705 application/views/visitor/index.php:328
-#: application/views/interface_assets/header.php:435
 msgid "Logbook of the World"
 msgstr "Logbook of the World(LoTW)"
 
@@ -1647,9 +1624,8 @@ msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
 #: application/controllers/Mode.php:25
-#: application/views/interface_assets/header.php:280
-#: application/views/mode/index.php:27
 #: application/views/interface_assets/header.php:282
+#: application/views/mode/index.php:27
 msgid "Modes"
 msgstr "模式"
 
@@ -1663,10 +1639,8 @@ msgstr "编辑模式"
 #: application/views/notes/main.php:5 application/views/notes/main.php:8
 #: application/views/notes/view.php:6 application/views/notes/view.php:9
 #: application/views/qso/edit_ajax.php:36
-#: application/views/qso/edit_ajax.php:393 application/views/qso/index.php:41
-#: application/views/qso/index.php:591 application/views/view_log/qso.php:14
-#: application/views/view_log/qso.php:705
-#: application/views/qso/edit_ajax.php:407 application/views/qso/index.php:605
+#: application/views/qso/edit_ajax.php:407 application/views/qso/index.php:41
+#: application/views/qso/index.php:605 application/views/view_log/qso.php:14
 #: application/views/view_log/qso.php:712
 msgid "Notes"
 msgstr "笔记"
@@ -1829,7 +1803,6 @@ msgid "Invalid Station ID"
 msgstr "无效站台ID"
 
 #: application/controllers/Oqrs.php:134
-#: application/views/interface_assets/header.php:423
 #: application/views/interface_assets/header.php:425
 msgid "OQRS Requests"
 msgstr "OQRS"
@@ -1874,7 +1847,6 @@ msgid ""
 msgstr "负数纬度表示南纬，负数经度表示西经。"
 
 #: application/controllers/Qrz.php:201
-#: application/views/interface_assets/header.php:436
 #: application/views/interface_assets/header.php:438
 msgid "QRZ Logbook"
 msgstr "QRZ 日志簿"
@@ -1923,7 +1895,6 @@ msgid "No callsign provided."
 msgstr "未提供呼号。"
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:442
 #: application/views/interface_assets/header.php:444
 msgid "Hardware Interfaces"
 msgstr "硬件接口"
@@ -1951,7 +1922,7 @@ msgid "Options"
 msgstr "设置"
 
 #: application/controllers/Radio.php:53 application/views/debug/index.php:308
-#: application/views/qso/index.php:698 application/views/qso/index.php:712
+#: application/views/qso/index.php:712
 msgid "Settings"
 msgstr "设置"
 
@@ -1989,10 +1960,10 @@ msgstr "编辑"
 #: application/controllers/Radio.php:107
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:2379
-#: application/views/interface_assets/footer.php:2397
-#: application/views/interface_assets/footer.php:2418
-#: application/views/interface_assets/footer.php:2436
+#: application/views/interface_assets/footer.php:2406
+#: application/views/interface_assets/footer.php:2424
+#: application/views/interface_assets/footer.php:2445
+#: application/views/interface_assets/footer.php:2463
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:603
 #: application/views/lotw_views/index.php:111
@@ -2006,16 +1977,7 @@ msgstr "编辑"
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:55
-#: application/views/view_log/qso.php:728
-#: application/views/interface_assets/footer.php:2383
-#: application/views/interface_assets/footer.php:2401
-#: application/views/interface_assets/footer.php:2422
-#: application/views/interface_assets/footer.php:2440
 #: application/views/view_log/qso.php:735
-#: application/views/interface_assets/footer.php:2406
-#: application/views/interface_assets/footer.php:2424
-#: application/views/interface_assets/footer.php:2445
-#: application/views/interface_assets/footer.php:2463
 msgid "Delete"
 msgstr "删除"
 
@@ -2061,8 +2023,8 @@ msgstr "卫星时钟"
 #: application/controllers/Search.php:19
 #: application/views/continents/index.php:49
 #: application/views/interface_assets/footer.php:39
-#: application/views/interface_assets/header.php:344
-#: application/views/interface_assets/header.php:351
+#: application/views/interface_assets/header.php:346
+#: application/views/interface_assets/header.php:353
 #: application/views/logbookadvanced/index.php:579
 #: application/views/oqrs/index.php:28
 #: application/views/oqrs/showrequests.php:67
@@ -2082,8 +2044,6 @@ msgstr "卫星时钟"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
-#: application/views/interface_assets/header.php:346
-#: application/views/interface_assets/header.php:353
 msgid "Search"
 msgstr "搜索"
 
@@ -2156,8 +2116,6 @@ msgid "Duplicate Station Location:"
 msgstr "台站地址重复："
 
 #: application/controllers/Stationsetup.php:35
-#: application/views/interface_assets/header.php:385
-#: application/views/interface_assets/header.php:498
 #: application/views/interface_assets/header.php:387
 #: application/views/interface_assets/header.php:500
 msgid "Station Setup"
@@ -2177,8 +2135,7 @@ msgstr "不允许"
 #: application/controllers/Stationsetup.php:131
 #: application/controllers/Stationsetup.php:152
 #: application/controllers/Stationsetup.php:436
-#: application/views/qso/index.php:657 application/views/simplefle/index.php:38
-#: application/views/qso/index.php:671
+#: application/views/qso/index.php:671 application/views/simplefle/index.php:38
 msgid "Error"
 msgstr "错误"
 
@@ -2227,10 +2184,9 @@ msgid "Set as Active Logbook"
 msgstr "设置为正在使用的日志"
 
 #: application/controllers/Stationsetup.php:263
-#: application/views/interface_assets/header.php:496
+#: application/views/interface_assets/header.php:498
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
-#: application/views/interface_assets/header.php:498
 msgid "Active Logbook"
 msgstr "启用"
 
@@ -2334,7 +2290,6 @@ msgid "Antenna Analytics"
 msgstr "天线分析"
 
 #: application/controllers/Themes.php:27
-#: application/views/interface_assets/header.php:286
 #: application/views/interface_assets/header.php:288
 msgid "Themes"
 msgstr "主题"
@@ -2400,7 +2355,6 @@ msgid "LoTW SAT Update"
 msgstr "LoTW 卫星数据更新"
 
 #: application/controllers/User.php:36
-#: application/views/interface_assets/header.php:276
 #: application/views/interface_assets/header.php:278
 msgid "User Accounts"
 msgstr "用户账户"
@@ -2437,10 +2391,9 @@ msgid "Login failed. Try again."
 msgstr "登录失败，请重试。"
 
 #: application/controllers/User.php:884
-#: application/views/interface_assets/header.php:364
+#: application/views/interface_assets/header.php:366
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
-#: application/views/interface_assets/header.php:366
 msgid "Login"
 msgstr "登录"
 
@@ -2528,7 +2481,6 @@ msgstr "导出地图"
 
 #: application/controllers/Webadif.php:92
 #: application/controllers/Webadif.php:139
-#: application/views/interface_assets/header.php:437
 #: application/views/interface_assets/header.php:439
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
@@ -2659,112 +2611,78 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:3814
-#: application/models/Logbook_model.php:3828
 #: application/models/Logbook_model.php:3834
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:3815
-#: application/models/Logbook_model.php:3829
 #: application/models/Logbook_model.php:3835
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
-#: application/models/Logbook_model.php:3827
-#: application/models/Logbook_model.php:3841
 #: application/models/Logbook_model.php:3847
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:3827
-#: application/models/Logbook_model.php:3841
 #: application/models/Logbook_model.php:3847
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
 
-#: application/models/Logbook_model.php:4126
-#: application/models/Logbook_model.php:4140
 #: application/models/Logbook_model.php:4146
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4137
-#: application/models/Logbook_model.php:4151
 #: application/models/Logbook_model.php:4157
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4190
-#: application/models/Logbook_model.php:4204
 #: application/models/Logbook_model.php:4210
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4210
-#: application/models/Logbook_model.php:4224
 #: application/models/Logbook_model.php:4230
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4231
-#: application/models/Logbook_model.php:4245
 #: application/models/Logbook_model.php:4251
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4512
-#: application/views/simplefle/index.php:40
-#: application/models/Logbook_model.php:4526
 #: application/models/Logbook_model.php:4532
+#: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4573
-#: application/models/Logbook_model.php:4587
 #: application/models/Logbook_model.php:4593
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4579
-#: application/models/Logbook_model.php:4593
 #: application/models/Logbook_model.php:4599
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4584
-#: application/models/Logbook_model.php:4598
 #: application/models/Logbook_model.php:4604
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4587
-#: application/models/Logbook_model.php:4601
 #: application/models/Logbook_model.php:4607
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4590
-#: application/models/Logbook_model.php:4604
 #: application/models/Logbook_model.php:4610
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4593
-#: application/models/Logbook_model.php:4607
 #: application/models/Logbook_model.php:4613
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4596
+#: application/models/Logbook_model.php:4616
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
-#: application/models/Logbook_model.php:4610
-#: application/models/Logbook_model.php:4616
 msgid "unknown"
 msgstr "未知"
 
@@ -2892,6 +2810,9 @@ msgstr "差异"
 #: application/views/awards/wac/index.php:81
 #: application/views/awards/wac/index.php:97
 #: application/views/awards/wac/index.php:113
+#: application/views/awards/wae/index.php:93
+#: application/views/awards/wae/index.php:109
+#: application/views/awards/wae/index.php:124
 #: application/views/awards/waja/index.php:94
 #: application/views/awards/was/index.php:90
 #: application/views/bandmap/list.php:74 application/views/bandmap/list.php:81
@@ -2916,8 +2837,8 @@ msgstr "差异"
 #: application/views/gridmap/index.php:41
 #: application/views/gridmap/index.php:70
 #: application/views/gridmap/index.php:83
-#: application/views/interface_assets/footer.php:1490
-#: application/views/interface_assets/footer.php:1629
+#: application/views/interface_assets/footer.php:1494
+#: application/views/interface_assets/footer.php:1633
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -2962,11 +2883,6 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:172
-#: application/views/interface_assets/footer.php:1494
-#: application/views/interface_assets/footer.php:1633
-#: application/views/awards/wae/index.php:93
-#: application/views/awards/wae/index.php:109
-#: application/views/awards/wae/index.php:124
 msgid "All"
 msgstr "所有"
 
@@ -3036,9 +2952,9 @@ msgstr "无/空"
 #: application/views/dxatlas/index.php:95
 #: application/views/gridmap/index.php:44 application/views/kml/index.php:80
 #: application/views/logbookadvanced/index.php:256
-#: application/views/qso/edit_ajax.php:190 application/views/qso/index.php:426
+#: application/views/qso/edit_ajax.php:190 application/views/qso/index.php:440
 #: application/views/timeline/index.php:85
-#: application/views/view_log/qso.php:232 application/views/qso/index.php:440
+#: application/views/view_log/qso.php:232
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr "Aircraft Scatter"
@@ -3048,9 +2964,9 @@ msgstr "Aircraft Scatter"
 #: application/views/dxatlas/index.php:96
 #: application/views/gridmap/index.php:45 application/views/kml/index.php:81
 #: application/views/logbookadvanced/index.php:257
-#: application/views/qso/edit_ajax.php:191 application/views/qso/index.php:427
+#: application/views/qso/edit_ajax.php:191 application/views/qso/index.php:441
 #: application/views/timeline/index.php:86
-#: application/views/view_log/qso.php:235 application/views/qso/index.php:441
+#: application/views/view_log/qso.php:235
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr "Aurora"
@@ -3060,9 +2976,9 @@ msgstr "Aurora"
 #: application/views/dxatlas/index.php:97
 #: application/views/gridmap/index.php:46 application/views/kml/index.php:82
 #: application/views/logbookadvanced/index.php:258
-#: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:428
+#: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:442
 #: application/views/timeline/index.php:87
-#: application/views/view_log/qso.php:238 application/views/qso/index.php:442
+#: application/views/view_log/qso.php:238
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr "Aurora-E"
@@ -3072,9 +2988,9 @@ msgstr "Aurora-E"
 #: application/views/dxatlas/index.php:98
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:83
 #: application/views/logbookadvanced/index.php:259
-#: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:429
+#: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:443
 #: application/views/timeline/index.php:88
-#: application/views/view_log/qso.php:241 application/views/qso/index.php:443
+#: application/views/view_log/qso.php:241
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr "Back scatter"
@@ -3084,9 +3000,9 @@ msgstr "Back scatter"
 #: application/views/dxatlas/index.php:99
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:84
 #: application/views/logbookadvanced/index.php:260
-#: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:430
+#: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:444
 #: application/views/timeline/index.php:89
-#: application/views/view_log/qso.php:244 application/views/qso/index.php:444
+#: application/views/view_log/qso.php:244
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr "EchoLink"
@@ -3096,9 +3012,9 @@ msgstr "EchoLink"
 #: application/views/dxatlas/index.php:100
 #: application/views/gridmap/index.php:49 application/views/kml/index.php:85
 #: application/views/logbookadvanced/index.php:261
-#: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:431
+#: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:445
 #: application/views/timeline/index.php:90
-#: application/views/view_log/qso.php:247 application/views/qso/index.php:445
+#: application/views/view_log/qso.php:247
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr "EME"
@@ -3108,9 +3024,9 @@ msgstr "EME"
 #: application/views/dxatlas/index.php:101
 #: application/views/gridmap/index.php:50 application/views/kml/index.php:86
 #: application/views/logbookadvanced/index.php:262
-#: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:432
+#: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:446
 #: application/views/timeline/index.php:91
-#: application/views/view_log/qso.php:250 application/views/qso/index.php:446
+#: application/views/view_log/qso.php:250
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr "Sporadic E"
@@ -3120,9 +3036,9 @@ msgstr "Sporadic E"
 #: application/views/dxatlas/index.php:102
 #: application/views/gridmap/index.php:51 application/views/kml/index.php:87
 #: application/views/logbookadvanced/index.php:263
-#: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:433
+#: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:447
 #: application/views/timeline/index.php:92
-#: application/views/view_log/qso.php:253 application/views/qso/index.php:447
+#: application/views/view_log/qso.php:253
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr "Field Aligned Irregularities"
@@ -3132,9 +3048,9 @@ msgstr "Field Aligned Irregularities"
 #: application/views/dxatlas/index.php:103
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:88
 #: application/views/logbookadvanced/index.php:264
-#: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:434
+#: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:448
 #: application/views/timeline/index.php:93
-#: application/views/view_log/qso.php:256 application/views/qso/index.php:448
+#: application/views/view_log/qso.php:256
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr "F2 Reflection"
@@ -3144,9 +3060,9 @@ msgstr "F2 Reflection"
 #: application/views/dxatlas/index.php:104
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:89
 #: application/views/logbookadvanced/index.php:265
-#: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:435
+#: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:449
 #: application/views/timeline/index.php:94
-#: application/views/view_log/qso.php:259 application/views/qso/index.php:449
+#: application/views/view_log/qso.php:259
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr "Internet-assisted"
@@ -3156,9 +3072,9 @@ msgstr "Internet-assisted"
 #: application/views/dxatlas/index.php:105
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:90
 #: application/views/logbookadvanced/index.php:266
-#: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:436
+#: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:450
 #: application/views/timeline/index.php:95
-#: application/views/view_log/qso.php:262 application/views/qso/index.php:450
+#: application/views/view_log/qso.php:262
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr "Ionoscatter"
@@ -3168,9 +3084,9 @@ msgstr "Ionoscatter"
 #: application/views/dxatlas/index.php:106
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:91
 #: application/views/logbookadvanced/index.php:267
-#: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:437
+#: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:451
 #: application/views/timeline/index.php:96
-#: application/views/view_log/qso.php:265 application/views/qso/index.php:451
+#: application/views/view_log/qso.php:265
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr "IRLP"
@@ -3180,9 +3096,9 @@ msgstr "IRLP"
 #: application/views/dxatlas/index.php:107
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:92
 #: application/views/logbookadvanced/index.php:268
-#: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:438
+#: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:452
 #: application/views/timeline/index.php:97
-#: application/views/view_log/qso.php:268 application/views/qso/index.php:452
+#: application/views/view_log/qso.php:268
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr "Meteor scatter"
@@ -3192,9 +3108,9 @@ msgstr "Meteor scatter"
 #: application/views/dxatlas/index.php:108
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:93
 #: application/views/logbookadvanced/index.php:269
-#: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:439
+#: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:453
 #: application/views/timeline/index.php:98
-#: application/views/view_log/qso.php:271 application/views/qso/index.php:453
+#: application/views/view_log/qso.php:271
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Terrestrial or atmospheric repeater or transponder"
@@ -3204,9 +3120,9 @@ msgstr "Terrestrial or atmospheric repeater or transponder"
 #: application/views/dxatlas/index.php:109
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:94
 #: application/views/logbookadvanced/index.php:270
-#: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:440
+#: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:454
 #: application/views/timeline/index.php:99
-#: application/views/view_log/qso.php:274 application/views/qso/index.php:454
+#: application/views/view_log/qso.php:274
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr "Rain scatter"
@@ -3216,9 +3132,9 @@ msgstr "Rain scatter"
 #: application/views/dxatlas/index.php:110
 #: application/views/gridmap/index.php:59 application/views/kml/index.php:95
 #: application/views/logbookadvanced/index.php:271
-#: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:441
+#: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:455
 #: application/views/timeline/index.php:100
-#: application/views/view_log/qso.php:277 application/views/qso/index.php:455
+#: application/views/view_log/qso.php:277
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "Satellite"
@@ -3228,9 +3144,9 @@ msgstr "Satellite"
 #: application/views/dxatlas/index.php:111
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:96
 #: application/views/logbookadvanced/index.php:272
-#: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:442
+#: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:456
 #: application/views/timeline/index.php:101
-#: application/views/view_log/qso.php:280 application/views/qso/index.php:456
+#: application/views/view_log/qso.php:280
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr "Trans-equatorial"
@@ -3240,9 +3156,9 @@ msgstr "Trans-equatorial"
 #: application/views/dxatlas/index.php:112
 #: application/views/gridmap/index.php:61 application/views/kml/index.php:97
 #: application/views/logbookadvanced/index.php:273
-#: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:443
+#: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:457
 #: application/views/timeline/index.php:102
-#: application/views/view_log/qso.php:283 application/views/qso/index.php:457
+#: application/views/view_log/qso.php:283
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr "Tropospheric ducting"
@@ -3258,6 +3174,7 @@ msgstr "Tropospheric ducting"
 #: application/views/awards/jcc/index.php:113
 #: application/views/awards/rac/index.php:104
 #: application/views/awards/wac/index.php:135
+#: application/views/awards/wae/index.php:146
 #: application/views/awards/waja/index.php:116
 #: application/views/awards/was/index.php:112
 #: application/views/distances/index.php:79
@@ -3274,7 +3191,6 @@ msgstr "Tropospheric ducting"
 #: application/views/timeline/index.php:340
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
-#: application/views/awards/wae/index.php:146
 msgid "Show"
 msgstr "显示"
 
@@ -3282,6 +3198,7 @@ msgstr "显示"
 #: application/views/awards/dxcc/index.php:131
 #: application/views/awards/wab/index.php:34
 #: application/views/awards/wac/index.php:78
+#: application/views/awards/wae/index.php:90
 #: application/views/components/hamsat/table.php:29
 #: application/views/distancerecords/index.php:14
 #: application/views/distances/index.php:34
@@ -3295,7 +3212,6 @@ msgstr "显示"
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:22
-#: application/views/awards/wae/index.php:90
 msgid "Satellite"
 msgstr "卫星"
 
@@ -3303,6 +3219,7 @@ msgstr "卫星"
 #: application/views/awards/dxcc/index.php:147
 #: application/views/awards/wab/index.php:44
 #: application/views/awards/wac/index.php:94
+#: application/views/awards/wae/index.php:106
 #: application/views/distances/index.php:44
 #: application/views/gridmap/index.php:80
 #: application/views/logbookadvanced/index.php:243
@@ -3311,7 +3228,6 @@ msgstr "卫星"
 #: application/views/satellite/index.php:24
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
-#: application/views/awards/wae/index.php:106
 msgid "Orbit"
 msgstr "环绕"
 
@@ -3332,10 +3248,10 @@ msgstr "确认"
 #: application/views/awards/rac/index.php:59
 #: application/views/awards/wab/index.php:96
 #: application/views/awards/wac/index.php:56
+#: application/views/awards/wae/index.php:66
 #: application/views/awards/waja/index.php:67
 #: application/views/awards/was/index.php:67
 #: application/views/gridmap/index.php:125 application/views/user/edit.php:675
-#: application/views/awards/wae/index.php:66
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -3400,13 +3316,13 @@ msgstr "最低数量"
 #: application/views/awards/vucc/band.php:41
 #: application/views/awards/vucc/index.php:39
 #: application/views/awards/wac/index.php:199
+#: application/views/awards/wae/index.php:216
 #: application/views/awards/waja/index.php:202
 #: application/views/awards/was/index.php:200
 #: application/views/awards/wwff/index.php:64
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
-#: application/views/awards/wae/index.php:216
 msgid "Nothing found!"
 msgstr "未找到！"
 
@@ -3448,8 +3364,7 @@ msgstr "未找到！"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/user/edit.php:123 application/views/user/index.php:4
 #: application/views/user/index.php:45 application/views/user/profile.php:29
-#: application/views/view_log/qso.php:82 application/views/view_log/qso.php:622
-#: application/views/view_log/qso.php:629
+#: application/views/view_log/qso.php:82 application/views/view_log/qso.php:629
 msgid "Callsign"
 msgstr "呼号"
 
@@ -3630,8 +3545,7 @@ msgstr "重要"
 msgid "Log Files must have the file type *.adi"
 msgstr "日志文件的后缀必须是.adi"
 
-#: application/views/adif/import.php:56 application/views/view_log/qso.php:737
-#: application/views/view_log/qso.php:744
+#: application/views/adif/import.php:56 application/views/view_log/qso.php:744
 msgid "Maximum file upload size is "
 msgstr "最大上传文件大小是 "
 
@@ -3643,10 +3557,9 @@ msgstr "最大上传文件大小是 "
 #: application/views/interface_assets/footer.php:36
 #: application/views/qrz/export.php:75 application/views/qrz/export.php:96
 #: application/views/stationsetup/stationsetup.php:111
-#: application/views/view_log/qso.php:737
+#: application/views/view_log/qso.php:744
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
-#: application/views/view_log/qso.php:744
 msgid "Warning"
 msgstr "注意"
 
@@ -3723,8 +3636,6 @@ msgstr "在导入时始终使用登录账户的呼号作为操作员呼号"
 #: application/views/adif/import.php:172
 #: application/views/interface_assets/footer.php:33
 #: application/views/interface_assets/footer.php:513
-#: application/views/interface_assets/footer.php:2175
-#: application/views/interface_assets/footer.php:2179
 #: application/views/interface_assets/footer.php:2202
 msgid "DANGER"
 msgstr "警告"
@@ -3930,7 +3841,6 @@ msgid "Save"
 msgstr "保存"
 
 #: application/views/api/help.php:14
-#: application/views/interface_assets/header.php:441
 #: application/views/interface_assets/header.php:443
 msgid "API Keys"
 msgstr "API 密钥"
@@ -4092,14 +4002,14 @@ msgstr "县"
 #: application/views/awards/wab/index.php:18
 #: application/views/awards/wac/index.php:7
 #: application/views/awards/wac/index.php:14
+#: application/views/awards/wae/index.php:6
+#: application/views/awards/wae/index.php:13
 #: application/views/awards/waja/index.php:18
 #: application/views/awards/waja/index.php:25
 #: application/views/awards/was/index.php:19
 #: application/views/awards/was/index.php:26
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:13
-#: application/views/awards/wae/index.php:6
-#: application/views/awards/wae/index.php:13
 msgid "Award Info"
 msgstr "奖状详情"
 
@@ -4148,6 +4058,7 @@ msgstr "已确认的县"
 #: application/views/awards/jcc/index.php:185
 #: application/views/awards/rac/index.php:171
 #: application/views/awards/wac/index.php:177
+#: application/views/awards/wae/index.php:193
 #: application/views/awards/waja/index.php:179
 #: application/views/awards/was/index.php:179
 #: application/views/dashboard/index.php:276
@@ -4163,7 +4074,6 @@ msgstr "已确认的县"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
-#: application/views/awards/wae/index.php:193
 msgid "Total"
 msgstr "总计"
 
@@ -4254,9 +4164,9 @@ msgstr "已通联"
 #: application/views/awards/jcc/index.php:34
 #: application/views/awards/rac/index.php:29
 #: application/views/awards/wac/index.php:26
+#: application/views/awards/wae/index.php:36
 #: application/views/awards/waja/index.php:37
 #: application/views/awards/was/index.php:37
-#: application/views/awards/wae/index.php:36
 msgid "Show worked"
 msgstr "显示已通联"
 
@@ -4269,9 +4179,9 @@ msgstr "显示已通联"
 #: application/views/awards/jcc/index.php:38
 #: application/views/awards/rac/index.php:33
 #: application/views/awards/wac/index.php:30
+#: application/views/awards/wae/index.php:40
 #: application/views/awards/waja/index.php:41
 #: application/views/awards/was/index.php:41
-#: application/views/awards/wae/index.php:40
 msgid "Show confirmed"
 msgstr "显示已确认"
 
@@ -4283,9 +4193,9 @@ msgstr "显示已确认"
 #: application/views/awards/jcc/index.php:42
 #: application/views/awards/rac/index.php:37
 #: application/views/awards/wac/index.php:34
+#: application/views/awards/wae/index.php:44
 #: application/views/awards/waja/index.php:45
 #: application/views/awards/was/index.php:45
-#: application/views/awards/wae/index.php:44
 msgid "Show not worked"
 msgstr "显示未通联"
 
@@ -4297,21 +4207,18 @@ msgstr "显示未通联"
 #: application/views/awards/jcc/index.php:48
 #: application/views/awards/rac/index.php:43
 #: application/views/awards/wac/index.php:40
+#: application/views/awards/wae/index.php:50
 #: application/views/awards/waja/index.php:51
 #: application/views/awards/was/index.php:51
-#: application/views/awards/wae/index.php:50
 msgid "Show QSO with QSL Type"
 msgstr "显示 QSL 分类下的 QSO"
 
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
-#: application/views/interface_assets/footer.php:2154
-#: application/views/qso/edit_ajax.php:403
-#: application/views/view_log/qso.php:25
-#: application/views/interface_assets/footer.php:2158
-#: application/views/qso/edit_ajax.php:417
 #: application/views/interface_assets/footer.php:2181
+#: application/views/qso/edit_ajax.php:417
+#: application/views/view_log/qso.php:25
 msgid "QSL Card"
 msgstr "QSL 卡片"
 
@@ -4324,6 +4231,7 @@ msgstr "QSL 卡片"
 #: application/views/awards/jcc/index.php:112
 #: application/views/awards/rac/index.php:103
 #: application/views/awards/wac/index.php:134
+#: application/views/awards/wae/index.php:145
 #: application/views/awards/waja/index.php:115
 #: application/views/awards/was/index.php:111
 #: application/views/continents/index.php:50
@@ -4331,7 +4239,6 @@ msgstr "QSL 卡片"
 #: application/views/oqrs/showrequests.php:68
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:607
-#: application/views/awards/wae/index.php:145
 msgid "Reset"
 msgstr "重置筛选条件"
 
@@ -4375,9 +4282,9 @@ msgstr "地图"
 #: application/views/awards/jcc/index.php:168
 #: application/views/awards/rac/index.php:162
 #: application/views/awards/wac/index.php:168
+#: application/views/awards/wae/index.php:184
 #: application/views/awards/waja/index.php:170
 #: application/views/awards/was/index.php:170
-#: application/views/awards/wae/index.php:184
 msgid "Summary"
 msgstr "概览"
 
@@ -4390,9 +4297,9 @@ msgstr "概览"
 #: application/views/awards/jcc/index.php:195
 #: application/views/awards/rac/index.php:175
 #: application/views/awards/wac/index.php:181
+#: application/views/awards/wae/index.php:198
 #: application/views/awards/waja/index.php:184
 #: application/views/awards/was/index.php:183
-#: application/views/awards/wae/index.php:198
 msgid "Total worked"
 msgstr "共通联"
 
@@ -4405,9 +4312,9 @@ msgstr "共通联"
 #: application/views/awards/jcc/index.php:214
 #: application/views/awards/rac/index.php:182
 #: application/views/awards/wac/index.php:188
+#: application/views/awards/wae/index.php:205
 #: application/views/awards/waja/index.php:191
 #: application/views/awards/was/index.php:190
-#: application/views/awards/wae/index.php:205
 msgid "Total confirmed"
 msgstr "共确认"
 
@@ -4466,9 +4373,9 @@ msgstr "DOK + SDOK"
 #: application/views/awards/iota/index.php:39
 #: application/views/awards/jcc/index.php:30
 #: application/views/awards/rac/index.php:25
+#: application/views/awards/wae/index.php:32
 #: application/views/awards/waja/index.php:33
 #: application/views/awards/was/index.php:33
-#: application/views/awards/wae/index.php:32
 msgid "Worked / Confirmed"
 msgstr "通联过 / 已确认"
 
@@ -4479,9 +4386,9 @@ msgstr "通联过 / 已确认"
 #: application/views/awards/jcc/index.php:77
 #: application/views/awards/rac/index.php:68
 #: application/views/awards/wac/index.php:66
+#: application/views/awards/wae/index.php:79
 #: application/views/awards/waja/index.php:80
 #: application/views/awards/was/index.php:76
-#: application/views/awards/wae/index.php:79
 msgid "Every band"
 msgstr "各个波段"
 
@@ -4619,14 +4526,13 @@ msgstr "DXCC名称"
 
 #: application/views/awards/dxcc/index.php:226
 #: application/views/awards/iota/index.php:170
+#: application/views/awards/wae/index.php:162
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
-#: application/views/awards/wae/index.php:162
 msgid "Prefix"
 msgstr "前缀"
 
 #: application/views/awards/ffma/index.php:8
-#: application/views/interface_assets/header.php:242
 #: application/views/interface_assets/header.php:244
 msgid "Fred Fish Memorial Award"
 msgstr "弗雷德·菲什纪念奖"
@@ -4837,7 +4743,6 @@ msgstr "显示IOTA地图"
 #: application/views/user/edit.php:307 application/views/user/edit.php:330
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:213
-#: application/views/view_log/qso.php:626
 #: application/views/view_log/qso.php:633
 msgid "Name"
 msgstr "名称"
@@ -4929,7 +4834,6 @@ msgstr "数量"
 
 #: application/views/awards/jcc/index.php:152
 #: application/views/search/result.php:21
-#: application/views/view_log/qso.php:636
 #: application/views/view_log/qso.php:643
 msgid "City"
 msgstr "城市"
@@ -4972,11 +4876,10 @@ msgid ""
 msgstr "欲了解更多关于可用奖项和类别的信息，请访问%s。"
 
 #: application/views/awards/pota/index.php:31
-#: application/views/qso/index.php:243 application/views/qso/index.php:516
+#: application/views/qso/index.php:243 application/views/qso/index.php:530
 #: application/views/station_profile/create.php:177
 #: application/views/station_profile/edit.php:272
 #: application/views/user/edit.php:595 application/views/view_log/qso.php:402
-#: application/views/view_log/qso.php:685 application/views/qso/index.php:530
 #: application/views/view_log/qso.php:692
 msgid "POTA Reference(s)"
 msgstr "POTA 编号"
@@ -5173,6 +5076,14 @@ msgstr "奖项 - 通联世界大洲奖（WAC）"
 msgid "Continent"
 msgstr "大陆"
 
+#: application/views/awards/wae/index.php:7
+msgid "WAE Award"
+msgstr "WAE 奖"
+
+#: application/views/awards/wae/index.php:161
+msgid "WAE Name"
+msgstr "WAE 名称"
+
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
 msgid "Prefecture"
@@ -5282,11 +5193,10 @@ msgstr ""
 "以申请全球和国内的丰富多彩的奖项。"
 
 #: application/views/awards/wwff/index.php:31
-#: application/views/qso/index.php:231 application/views/qso/index.php:503
+#: application/views/qso/index.php:231 application/views/qso/index.php:517
 #: application/views/station_profile/create.php:171
 #: application/views/station_profile/edit.php:259
 #: application/views/user/edit.php:591 application/views/view_log/qso.php:395
-#: application/views/view_log/qso.php:678 application/views/qso/index.php:517
 #: application/views/view_log/qso.php:685
 msgid "WWFF Reference"
 msgstr "WWFF 编号"
@@ -5430,29 +5340,24 @@ msgid ""
 msgstr ""
 "启用的波段将显示在 QSO“波段”下拉列表中，而停用的频段将被隐藏且无法选择。"
 
-#: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:376
-#: application/views/qso/index.php:255 application/views/qso/index.php:528
+#: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:390
+#: application/views/qso/index.php:255 application/views/qso/index.php:542
 #: application/views/user/edit.php:599 application/views/view_log/qso.php:424
-#: application/views/view_log/qso.php:692
-#: application/views/qso/edit_ajax.php:390 application/views/qso/index.php:542
 #: application/views/view_log/qso.php:699
 msgid "Sig"
 msgstr "设备"
 
-#: application/views/bands/index.php:56 application/views/qso/edit_ajax.php:345
-#: application/views/qso/index.php:467 application/views/qso/edit_ajax.php:359
+#: application/views/bands/index.php:56 application/views/qso/edit_ajax.php:359
 #: application/views/qso/index.php:481
 msgid "USA County"
 msgstr "县(美国)"
 
 #: application/views/bands/index.php:58
-#: application/views/interface_assets/header.php:214
 #: application/views/interface_assets/header.php:216
 msgid "WAJA"
 msgstr "WAJA"
 
 #: application/views/bands/index.php:59
-#: application/views/interface_assets/header.php:238
 #: application/views/interface_assets/header.php:240
 msgid "WAS"
 msgstr "WAS"
@@ -5689,14 +5594,14 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:455
 #: application/views/logbookadvanced/index.php:470
 #: application/views/lookup/lotwuser.php:12
-#: application/views/qso/edit_ajax.php:422
-#: application/views/qso/edit_ajax.php:455
-#: application/views/qso/edit_ajax.php:483
-#: application/views/qso/edit_ajax.php:496
-#: application/views/qso/edit_ajax.php:520
-#: application/views/qso/edit_ajax.php:533
-#: application/views/qso/edit_ajax.php:549
-#: application/views/qso/edit_ajax.php:563 application/views/qso/index.php:605
+#: application/views/qso/edit_ajax.php:436
+#: application/views/qso/edit_ajax.php:469
+#: application/views/qso/edit_ajax.php:497
+#: application/views/qso/edit_ajax.php:510
+#: application/views/qso/edit_ajax.php:534
+#: application/views/qso/edit_ajax.php:547
+#: application/views/qso/edit_ajax.php:563
+#: application/views/qso/edit_ajax.php:577 application/views/qso/index.php:619
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
@@ -5721,13 +5626,6 @@ msgstr ""
 #: application/views/user/edit.php:419 application/views/user/edit.php:430
 #: application/views/user/edit.php:540 application/views/user/edit.php:804
 #: application/views/user/edit.php:836 application/views/user/edit.php:861
-#: application/views/qso/edit_ajax.php:436
-#: application/views/qso/edit_ajax.php:469
-#: application/views/qso/edit_ajax.php:497
-#: application/views/qso/edit_ajax.php:510
-#: application/views/qso/edit_ajax.php:534
-#: application/views/qso/edit_ajax.php:547
-#: application/views/qso/edit_ajax.php:577 application/views/qso/index.php:619
 msgid "Yes"
 msgstr "是"
 
@@ -5746,14 +5644,14 @@ msgstr "是"
 #: application/views/logbookadvanced/index.php:456
 #: application/views/logbookadvanced/index.php:471
 #: application/views/lookup/lotwuser.php:14
-#: application/views/qso/edit_ajax.php:421
-#: application/views/qso/edit_ajax.php:454
-#: application/views/qso/edit_ajax.php:482
-#: application/views/qso/edit_ajax.php:495
-#: application/views/qso/edit_ajax.php:519
-#: application/views/qso/edit_ajax.php:532
-#: application/views/qso/edit_ajax.php:548
-#: application/views/qso/edit_ajax.php:562 application/views/qso/index.php:604
+#: application/views/qso/edit_ajax.php:435
+#: application/views/qso/edit_ajax.php:468
+#: application/views/qso/edit_ajax.php:496
+#: application/views/qso/edit_ajax.php:509
+#: application/views/qso/edit_ajax.php:533
+#: application/views/qso/edit_ajax.php:546
+#: application/views/qso/edit_ajax.php:562
+#: application/views/qso/edit_ajax.php:576 application/views/qso/index.php:618
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
@@ -5779,13 +5677,6 @@ msgstr "是"
 #: application/views/user/edit.php:522 application/views/user/edit.php:526
 #: application/views/user/edit.php:541 application/views/user/edit.php:805
 #: application/views/user/edit.php:835 application/views/user/edit.php:860
-#: application/views/qso/edit_ajax.php:435
-#: application/views/qso/edit_ajax.php:468
-#: application/views/qso/edit_ajax.php:496
-#: application/views/qso/edit_ajax.php:509
-#: application/views/qso/edit_ajax.php:533
-#: application/views/qso/edit_ajax.php:546
-#: application/views/qso/edit_ajax.php:576 application/views/qso/index.php:618
 msgid "No"
 msgstr "否"
 
@@ -5937,11 +5828,10 @@ msgstr "ADIF 名称"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:476
+#: application/views/interface_assets/header.php:478
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
-#: application/views/interface_assets/header.php:478
 msgid "Active"
 msgstr "启用"
 
@@ -6002,9 +5892,8 @@ msgstr "创建"
 
 #: application/views/contesting/edit.php:31
 #: application/views/contesting/index.php:29
-#: application/views/qso/edit_ajax.php:603
-#: application/views/view_log/qso.php:374
 #: application/views/qso/edit_ajax.php:617
+#: application/views/view_log/qso.php:374
 msgid "Contest Name"
 msgstr "竞赛名称"
 
@@ -6050,8 +5939,7 @@ msgstr "序号 + 网格 + 交换信息"
 
 #: application/views/contesting/index.php:40
 #: application/views/operator/index.php:5
-#: application/views/qso/edit_ajax.php:594 application/views/qso/index.php:359
-#: application/views/qso/edit_ajax.php:608
+#: application/views/qso/edit_ajax.php:608 application/views/qso/index.php:359
 msgid "Operator Callsign"
 msgstr "操作员呼号"
 
@@ -6128,7 +6016,6 @@ msgstr "序号"
 
 #: application/views/contesting/index.php:181
 #: application/views/contesting/index.php:264
-#: application/views/qso/edit_ajax.php:618
 #: application/views/qso/edit_ajax.php:632
 msgid "Serial (S)"
 msgstr "序列编号 (S)"
@@ -6144,7 +6031,6 @@ msgstr "信号交换(发)"
 
 #: application/views/contesting/index.php:205
 #: application/views/contesting/index.php:265
-#: application/views/qso/edit_ajax.php:613
 #: application/views/qso/edit_ajax.php:627
 msgid "Serial (R)"
 msgstr "序列编号 (R)"
@@ -6163,7 +6049,7 @@ msgid "Reset QSO"
 msgstr "重置 QSO"
 
 #: application/views/contesting/index.php:234
-#: application/views/qso/index.php:656 application/views/qso/index.php:670
+#: application/views/qso/index.php:670
 msgid "Save QSO"
 msgstr "保存 QSO"
 
@@ -6338,8 +6224,7 @@ msgstr "只有具有 SOTA 信息的 QSO 才会被导出！"
 #: application/views/csv/index.php:92 application/views/dxatlas/index.php:92
 #: application/views/eqsl/download.php:42
 #: application/views/eqslcard/index.php:33 application/views/kml/index.php:77
-#: application/views/qso/edit_ajax.php:187 application/views/qso/index.php:423
-#: application/views/qso/index.php:437
+#: application/views/qso/edit_ajax.php:187 application/views/qso/index.php:437
 msgid "Propagation Mode"
 msgstr "传播模式"
 
@@ -6446,10 +6331,10 @@ msgstr "待通联"
 #: application/views/qslprint/qsolist.php:60
 #: application/views/qslprint/qsolist.php:140
 #: application/views/qslprint/qsolist.php:169
-#: application/views/qso/edit_ajax.php:418
-#: application/views/qso/edit_ajax.php:479
-#: application/views/qso/edit_ajax.php:516
-#: application/views/qso/edit_ajax.php:545 application/views/qso/index.php:601
+#: application/views/qso/edit_ajax.php:432
+#: application/views/qso/edit_ajax.php:493
+#: application/views/qso/edit_ajax.php:530
+#: application/views/qso/edit_ajax.php:559 application/views/qso/index.php:615
 #: application/views/search/search_result_ajax.php:180
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:298
@@ -6467,10 +6352,7 @@ msgstr "待通联"
 #: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:341
 #: src/QSLManager/QSO.php:444 src/QSLManager/QSO.php:496
 #: src/QSLManager/QSO.php:551 src/QSLManager/QSO.php:612
-#: src/QSLManager/QSO.php:679 application/views/qso/edit_ajax.php:432
-#: application/views/qso/edit_ajax.php:493
-#: application/views/qso/edit_ajax.php:530
-#: application/views/qso/edit_ajax.php:559 application/views/qso/index.php:615
+#: src/QSLManager/QSO.php:679
 msgid "Sent"
 msgstr "已发送"
 
@@ -6483,10 +6365,10 @@ msgstr "已发送"
 #: application/views/qslprint/qsolist.php:102
 #: application/views/qslprint/qsolist.php:153
 #: application/views/qslprint/qsolist.php:184
-#: application/views/qso/edit_ajax.php:451
-#: application/views/qso/edit_ajax.php:492
-#: application/views/qso/edit_ajax.php:529
-#: application/views/qso/edit_ajax.php:559
+#: application/views/qso/edit_ajax.php:465
+#: application/views/qso/edit_ajax.php:506
+#: application/views/qso/edit_ajax.php:543
+#: application/views/qso/edit_ajax.php:573
 #: application/views/search/search_result_ajax.php:222
 #: application/views/search/search_result_ajax.php:273
 #: application/views/search/search_result_ajax.php:313
@@ -6502,10 +6384,7 @@ msgstr "已发送"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:386
 #: src/QSLManager/QSO.php:467 src/QSLManager/QSO.php:519
 #: src/QSLManager/QSO.php:590 src/QSLManager/QSO.php:651
-#: src/QSLManager/QSO.php:703 application/views/qso/edit_ajax.php:465
-#: application/views/qso/edit_ajax.php:506
-#: application/views/qso/edit_ajax.php:543
-#: application/views/qso/edit_ajax.php:573
+#: src/QSLManager/QSO.php:703
 msgid "Received"
 msgstr "已收到"
 
@@ -6522,14 +6401,14 @@ msgstr "已收到"
 #: application/views/oqrs/qsolist.php:56 application/views/oqrs/qsolist.php:98
 #: application/views/qslprint/qsolist.php:66
 #: application/views/qslprint/qsolist.php:108
-#: application/views/qso/edit_ajax.php:423
-#: application/views/qso/edit_ajax.php:456
-#: application/views/qso/edit_ajax.php:484
-#: application/views/qso/edit_ajax.php:497
-#: application/views/qso/edit_ajax.php:521
-#: application/views/qso/edit_ajax.php:534
-#: application/views/qso/edit_ajax.php:550
-#: application/views/qso/edit_ajax.php:564 application/views/qso/index.php:606
+#: application/views/qso/edit_ajax.php:437
+#: application/views/qso/edit_ajax.php:470
+#: application/views/qso/edit_ajax.php:498
+#: application/views/qso/edit_ajax.php:511
+#: application/views/qso/edit_ajax.php:535
+#: application/views/qso/edit_ajax.php:548
+#: application/views/qso/edit_ajax.php:564
+#: application/views/qso/edit_ajax.php:578 application/views/qso/index.php:620
 #: application/views/search/search_result_ajax.php:186
 #: application/views/search/search_result_ajax.php:228
 #: application/views/view_log/partial/log_ajax.php:196
@@ -6539,13 +6418,7 @@ msgstr "已收到"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:347
 #: src/QSLManager/QSO.php:392 src/QSLManager/QSO.php:452
 #: src/QSLManager/QSO.php:475 src/QSLManager/QSO.php:687
-#: src/QSLManager/QSO.php:711 application/views/qso/edit_ajax.php:437
-#: application/views/qso/edit_ajax.php:470
-#: application/views/qso/edit_ajax.php:498
-#: application/views/qso/edit_ajax.php:511
-#: application/views/qso/edit_ajax.php:535
-#: application/views/qso/edit_ajax.php:548
-#: application/views/qso/edit_ajax.php:578 application/views/qso/index.php:620
+#: src/QSLManager/QSO.php:711
 msgid "Requested"
 msgstr "已请求"
 
@@ -7089,6 +6962,10 @@ msgstr "瑞典语"
 msgid "Turkish"
 msgstr "土耳其语"
 
+#: application/views/debug/index.php:683
+msgid "Armenian"
+msgstr ""
+
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr "本页根据网格列出了每个卫星通联的距离记录。"
@@ -7151,7 +7028,6 @@ msgid "Date to"
 msgstr "日期到"
 
 #: application/views/dxcalendar/index.php:13
-#: application/views/view_log/qso.php:481
 #: application/views/view_log/qso.php:488
 msgid "QSL Info"
 msgstr "QSL 信息"
@@ -7306,7 +7182,6 @@ msgstr "上传QSO"
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
 #: application/views/eqsl/import.php:15 application/views/eqsl/result.php:17
 #: application/views/eqsl/tools.php:15
-#: application/views/interface_assets/header.php:249
 #: application/views/interface_assets/header.php:251
 msgid "Tools"
 msgstr "工具"
@@ -7469,21 +7344,12 @@ msgid "QSL Date"
 msgstr "QSL 日期"
 
 #: application/views/eqslcard/index.php:60
-#: application/views/interface_assets/footer.php:2380
-#: application/views/interface_assets/footer.php:2398
-#: application/views/interface_assets/footer.php:2419
-#: application/views/interface_assets/footer.php:2437
-#: application/views/qslcard/index.php:66
-#: application/views/view_log/qso.php:729
-#: application/views/interface_assets/footer.php:2384
-#: application/views/interface_assets/footer.php:2402
-#: application/views/interface_assets/footer.php:2423
-#: application/views/interface_assets/footer.php:2441
-#: application/views/view_log/qso.php:736
 #: application/views/interface_assets/footer.php:2407
 #: application/views/interface_assets/footer.php:2425
 #: application/views/interface_assets/footer.php:2446
 #: application/views/interface_assets/footer.php:2464
+#: application/views/qslcard/index.php:66
+#: application/views/view_log/qso.php:736
 msgid "View"
 msgstr "查看"
 
@@ -7590,7 +7456,6 @@ msgstr "QSO 已标记为导出至 HRDLog Logbook。"
 #: application/views/search/search_result_ajax.php:416
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:398
-#: application/views/view_log/qso.php:549
 #: application/views/view_log/qso.php:556
 msgid "Edit QSO"
 msgstr "编辑 QSO"
@@ -7621,15 +7486,13 @@ msgid "Not worked"
 msgstr "未通联"
 
 #: application/views/interface_assets/footer.php:48
-#: application/views/qso/index.php:650
-#: application/views/visitor/layout/footer.php:247
 #: application/views/qso/index.php:664
+#: application/views/visitor/layout/footer.php:247
 msgid "Clear"
 msgstr "清除"
 
 #: application/views/interface_assets/footer.php:49
 #: application/views/qso/edit_ajax.php:211
-#: application/views/qso/edit_ajax.php:538
 #: application/views/qso/edit_ajax.php:552
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr "传播方式不被 LoTW 支持，LoTW 字段已禁用。"
@@ -7662,9 +7525,8 @@ msgid "deprecated"
 msgstr "已废弃"
 
 #: application/views/interface_assets/footer.php:137
-#: application/views/interface_assets/header.php:444
-#: application/views/options/sidebar.php:12
 #: application/views/interface_assets/header.php:446
+#: application/views/options/sidebar.php:12
 msgid "Version Info"
 msgstr "版本信息"
 
@@ -7758,85 +7620,56 @@ msgstr "网格： "
 msgid "You're not logged in. Please %slogin%s"
 msgstr "请前往 %s这里%s 登录"
 
-#: application/views/interface_assets/footer.php:1417
 #: application/views/interface_assets/footer.php:1421
-#: application/views/interface_assets/footer.php:1424
-#: application/views/interface_assets/footer.php:1561
-#: application/views/interface_assets/footer.php:1565
-#: application/views/interface_assets/footer.php:1568
 #: application/views/interface_assets/footer.php:1425
 #: application/views/interface_assets/footer.php:1428
+#: application/views/interface_assets/footer.php:1565
 #: application/views/interface_assets/footer.php:1569
 #: application/views/interface_assets/footer.php:1572
 msgid "grid square"
 msgstr "网格"
 
-#: application/views/interface_assets/footer.php:1424
-#: application/views/interface_assets/footer.php:1568
 #: application/views/interface_assets/footer.php:1428
 #: application/views/interface_assets/footer.php:1572
 msgid "Total count"
 msgstr "总数"
 
-#: application/views/interface_assets/footer.php:2156
-#: application/views/interface_assets/footer.php:2160
 #: application/views/interface_assets/footer.php:2183
 msgid "QSL Card for "
 msgstr "QSL 卡片至 "
 
-#: application/views/interface_assets/footer.php:2176
-#: application/views/interface_assets/footer.php:2180
 #: application/views/interface_assets/footer.php:2203
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "警告！确定要删除这个 QSL 卡片吗？"
 
-#: application/views/interface_assets/footer.php:2216
-#: application/views/view_log/qso.php:42
-#: application/views/interface_assets/footer.php:2220
 #: application/views/interface_assets/footer.php:2243
+#: application/views/view_log/qso.php:42
 msgid "eQSL Card"
 msgstr "电子 QSL 卡片"
 
-#: application/views/interface_assets/footer.php:2218
-#: application/views/interface_assets/footer.php:2222
 #: application/views/interface_assets/footer.php:2245
 msgid "eQSL Card for "
 msgstr "eQSL 卡片至 "
 
-#: application/views/interface_assets/footer.php:2391
-#: application/views/interface_assets/footer.php:2430
-#: application/views/view_log/qso.php:719
-#: application/views/interface_assets/footer.php:2395
-#: application/views/interface_assets/footer.php:2434
-#: application/views/view_log/qso.php:726
 #: application/views/interface_assets/footer.php:2418
 #: application/views/interface_assets/footer.php:2457
+#: application/views/view_log/qso.php:726
 msgid "QSL image file"
 msgstr "QSL 图片文件"
 
-#: application/views/interface_assets/footer.php:2410
-#: application/views/interface_assets/footer.php:2414
 #: application/views/interface_assets/footer.php:2437
 msgid "Front QSL Card:"
 msgstr "QSL 卡片正面："
 
-#: application/views/interface_assets/footer.php:2448
-#: application/views/interface_assets/footer.php:2452
 #: application/views/interface_assets/footer.php:2475
 msgid "Back QSL Card:"
 msgstr "QSL 卡片背面："
 
-#: application/views/interface_assets/footer.php:2459
-#: application/views/interface_assets/footer.php:2484
-#: application/views/interface_assets/footer.php:2463
-#: application/views/interface_assets/footer.php:2488
 #: application/views/interface_assets/footer.php:2486
 #: application/views/interface_assets/footer.php:2511
 msgid "Add additional QSOs to a QSL Card"
 msgstr "向一张卡片添加额外的 QSO"
 
-#: application/views/interface_assets/footer.php:2495
-#: application/views/interface_assets/footer.php:2499
 #: application/views/interface_assets/footer.php:2522
 msgid "Something went wrong. Please try again!"
 msgstr "出现了错误，请重试！"
@@ -7913,188 +7746,157 @@ msgstr "德国"
 msgid "DL Gridmaster"
 msgstr "DL Gridmaster"
 
-#: application/views/interface_assets/header.php:206
+#: application/views/interface_assets/header.php:204
+msgid "WAE (Worked All Europe)"
+msgstr "WAE (Worked All Europe)"
+
 #: application/views/interface_assets/header.php:208
 msgid "Great Britain"
 msgstr "英国"
 
-#: application/views/interface_assets/header.php:208
 #: application/views/interface_assets/header.php:210
 msgid "WAB"
 msgstr "WAB"
 
-#: application/views/interface_assets/header.php:212
 #: application/views/interface_assets/header.php:214
 msgid "Japan"
 msgstr "日本"
 
-#: application/views/interface_assets/header.php:218
 #: application/views/interface_assets/header.php:220
 msgid "JA Gridmaster"
 msgstr "JA Gridmaster"
 
-#: application/views/interface_assets/header.php:222
 #: application/views/interface_assets/header.php:224
 msgid "Luxemburg"
 msgstr "卢森堡"
 
-#: application/views/interface_assets/header.php:224
 #: application/views/interface_assets/header.php:226
 msgid "LX Gridmaster"
 msgstr "LX Gridmaster"
 
-#: application/views/interface_assets/header.php:228
 #: application/views/interface_assets/header.php:230
 msgid "Switzerland"
 msgstr "瑞士"
 
-#: application/views/interface_assets/header.php:234
 #: application/views/interface_assets/header.php:236
 msgid "USA"
 msgstr "美国"
 
-#: application/views/interface_assets/header.php:240
 #: application/views/interface_assets/header.php:242
 msgid "US Gridmaster"
 msgstr "US Gridmaster"
 
-#: application/views/interface_assets/header.php:257
 #: application/views/interface_assets/header.php:259
 msgid "Bandmap"
 msgstr "波段地图"
 
-#: application/views/interface_assets/header.php:259
 #: application/views/interface_assets/header.php:261
 msgid "SAT Timers"
 msgstr "卫星过境时钟"
 
-#: application/views/interface_assets/header.php:262
 #: application/views/interface_assets/header.php:264
 msgid "Satellite Flightpath"
 msgstr "卫星轨迹"
 
-#: application/views/interface_assets/header.php:266
 #: application/views/interface_assets/header.php:268
 msgid "Satellite Pass"
 msgstr "卫星过境"
 
-#: application/views/interface_assets/header.php:273
-#: application/views/stationsetup/stationsetup.php:113
 #: application/views/interface_assets/header.php:275
+#: application/views/stationsetup/stationsetup.php:113
 msgid "Admin"
 msgstr "管理员"
 
-#: application/views/interface_assets/header.php:278
 #: application/views/interface_assets/header.php:280
 msgid "Global Options"
 msgstr "全局选项"
 
-#: application/views/interface_assets/header.php:284
+#: application/views/interface_assets/header.php:286
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
 #: application/views/satellite/index.php:11
 #: application/views/statistics/custom.php:20
 #: application/views/statistics/custom_result.php:21
 #: application/views/statistics/index.php:48
 #: application/views/statistics/index.php:102
-#: application/views/interface_assets/header.php:286
 msgid "Satellites"
 msgstr "卫星"
 
-#: application/views/interface_assets/header.php:290
 #: application/views/interface_assets/header.php:292
 msgid "Update Country Files"
 msgstr "更新国家文件"
 
-#: application/views/interface_assets/header.php:294
 #: application/views/interface_assets/header.php:296
 msgid "Debug Information"
 msgstr "调试信息"
 
-#: application/views/interface_assets/header.php:341
 #: application/views/interface_assets/header.php:343
 msgid "Add/Search Callsign"
 msgstr "添加/搜索 呼号"
 
-#: application/views/interface_assets/header.php:343
 #: application/views/interface_assets/header.php:345
 msgid "Log"
 msgstr "日志"
 
-#: application/views/interface_assets/header.php:350
+#: application/views/interface_assets/header.php:352
 #: application/views/logbookadvanced/index.php:508
 #: application/views/oqrs/index.php:27 application/views/user/edit.php:441
 #: application/views/visitor/layout/header.php:95
-#: application/views/interface_assets/header.php:352
 msgid "Search Callsign"
 msgstr "查询呼号"
 
-#: application/views/interface_assets/header.php:379
-#: application/views/user/edit.php:49
 #: application/views/interface_assets/header.php:381
+#: application/views/user/edit.php:49
 msgid "Account"
 msgstr "账户信息"
 
-#: application/views/interface_assets/header.php:394
 #: application/views/interface_assets/header.php:396
 msgid "Other Export Options"
 msgstr "其它导出选项"
 
-#: application/views/interface_assets/header.php:402
 #: application/views/interface_assets/header.php:404
 msgid "Cabrillo Export"
 msgstr "Cabrillo 导出"
 
-#: application/views/interface_assets/header.php:404
 #: application/views/interface_assets/header.php:406
 msgid "EDI Export"
 msgstr "EDI 导出"
 
-#: application/views/interface_assets/header.php:428
 #: application/views/interface_assets/header.php:430
 msgid "QSL Queue"
 msgstr "QSL 队列"
 
-#: application/views/interface_assets/header.php:429
 #: application/views/interface_assets/header.php:431
 msgid "Labels"
 msgstr "标签"
 
-#: application/views/interface_assets/header.php:431
 #: application/views/interface_assets/header.php:433
 msgid "Third-Party Services"
 msgstr "第三方服务"
 
-#: application/views/interface_assets/header.php:434
 #: application/views/interface_assets/header.php:436
 msgid "eQSL Import / Export"
 msgstr "eQSL 导入/导出"
 
-#: application/views/interface_assets/header.php:435
 #: application/views/interface_assets/header.php:437
 msgid "HRDLog Logbook"
 msgstr "HRDLog 日志簿"
 
-#: application/views/interface_assets/header.php:445
 #: application/views/interface_assets/header.php:447
 msgid "Help"
 msgstr "帮助"
 
-#: application/views/interface_assets/header.php:446
 #: application/views/interface_assets/header.php:448
 msgid "Forum"
 msgstr "论坛"
 
-#: application/views/interface_assets/header.php:448
 #: application/views/interface_assets/header.php:450
 msgid "Logout"
 msgstr "注销"
 
-#: application/views/interface_assets/header.php:456
 #: application/views/interface_assets/header.php:458
 msgid "Select a Location"
 msgstr "选择电台站位置"
 
-#: application/views/interface_assets/header.php:535
 #: application/views/interface_assets/header.php:537
 msgid "Extras"
 msgstr "额外"
@@ -8413,6 +8215,8 @@ msgstr "台站功率"
 #: application/views/logbookadvanced/edit.php:33
 #: application/views/logbookadvanced/index.php:698
 #: application/views/logbookadvanced/useroptions.php:126
+#: application/views/qso/edit_ajax.php:323 application/views/qso/index.php:420
+#: application/views/view_log/qso.php:474
 msgid "Region"
 msgstr "区"
 
@@ -8439,6 +8243,46 @@ msgstr "无效"
 #: application/views/logbookadvanced/index.php:459
 msgid "Verified"
 msgstr "已验证"
+
+#: application/views/logbookadvanced/edit.php:174
+#: application/views/qso/edit_ajax.php:326 application/views/qso/index.php:423
+msgid "NONE"
+msgstr "无"
+
+#: application/views/logbookadvanced/edit.php:175
+#: application/views/qso/edit_ajax.php:327 application/views/qso/index.php:424
+msgid "African Italy"
+msgstr "非洲意大利"
+
+#: application/views/logbookadvanced/edit.php:176
+#: application/views/qso/edit_ajax.php:328 application/views/qso/index.php:425
+msgid "Bear Island"
+msgstr "熊岛"
+
+#: application/views/logbookadvanced/edit.php:177
+#: application/views/qso/edit_ajax.php:329 application/views/qso/index.php:426
+msgid "European Turkey"
+msgstr "欧洲土耳其"
+
+#: application/views/logbookadvanced/edit.php:178
+#: application/views/qso/edit_ajax.php:330 application/views/qso/index.php:427
+msgid "ITU Vienna"
+msgstr "国际电信联盟维也纳办事处"
+
+#: application/views/logbookadvanced/edit.php:179
+#: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:428
+msgid "Kosovo"
+msgstr "科索沃"
+
+#: application/views/logbookadvanced/edit.php:180
+#: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:429
+msgid "Shetland Islands"
+msgstr "设得兰群岛"
+
+#: application/views/logbookadvanced/edit.php:181
+#: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:430
+msgid "Sicily"
+msgstr "西西里岛"
 
 #: application/views/logbookadvanced/index.php:11
 #: application/views/logbookadvanced/useroptions.php:182
@@ -8514,19 +8358,15 @@ msgstr "QSL 发送"
 #: application/views/oqrs/qsolist.php:53 application/views/oqrs/qsolist.php:95
 #: application/views/qslprint/qsolist.php:63
 #: application/views/qslprint/qsolist.php:105
-#: application/views/qso/edit_ajax.php:424
-#: application/views/qso/edit_ajax.php:485
-#: application/views/qso/edit_ajax.php:522
-#: application/views/qso/edit_ajax.php:551 application/views/qso/index.php:607
+#: application/views/qso/edit_ajax.php:438
+#: application/views/qso/edit_ajax.php:499
+#: application/views/qso/edit_ajax.php:536
+#: application/views/qso/edit_ajax.php:565 application/views/qso/index.php:621
 #: application/views/search/search_result_ajax.php:183
 #: application/views/search/search_result_ajax.php:225
 #: application/views/view_log/partial/log_ajax.php:193
 #: application/views/view_log/partial/log_ajax.php:231
 #: src/QSLManager/QSO.php:344 src/QSLManager/QSO.php:389
-#: application/views/qso/edit_ajax.php:438
-#: application/views/qso/edit_ajax.php:499
-#: application/views/qso/edit_ajax.php:536
-#: application/views/qso/edit_ajax.php:565 application/views/qso/index.php:621
 msgid "Queued"
 msgstr "已排队"
 
@@ -8545,14 +8385,14 @@ msgstr "已排队"
 #: application/views/qslprint/qsolist.php:111
 #: application/views/qslprint/qsolist.php:176
 #: application/views/qslprint/qsolist.php:191
-#: application/views/qso/edit_ajax.php:425
-#: application/views/qso/edit_ajax.php:457
-#: application/views/qso/edit_ajax.php:486
-#: application/views/qso/edit_ajax.php:498
-#: application/views/qso/edit_ajax.php:523
-#: application/views/qso/edit_ajax.php:535
-#: application/views/qso/edit_ajax.php:552
-#: application/views/qso/edit_ajax.php:565 application/views/qso/index.php:608
+#: application/views/qso/edit_ajax.php:439
+#: application/views/qso/edit_ajax.php:471
+#: application/views/qso/edit_ajax.php:500
+#: application/views/qso/edit_ajax.php:512
+#: application/views/qso/edit_ajax.php:537
+#: application/views/qso/edit_ajax.php:549
+#: application/views/qso/edit_ajax.php:566
+#: application/views/qso/edit_ajax.php:579 application/views/qso/index.php:622
 #: application/views/search/search_result_ajax.php:189
 #: application/views/search/search_result_ajax.php:231
 #: application/views/search/search_result_ajax.php:305
@@ -8567,14 +8407,6 @@ msgstr "已排队"
 #: src/QSLManager/QSO.php:448 src/QSLManager/QSO.php:471
 #: src/QSLManager/QSO.php:573 src/QSLManager/QSO.php:634
 #: src/QSLManager/QSO.php:683 src/QSLManager/QSO.php:707
-#: application/views/qso/edit_ajax.php:439
-#: application/views/qso/edit_ajax.php:471
-#: application/views/qso/edit_ajax.php:500
-#: application/views/qso/edit_ajax.php:512
-#: application/views/qso/edit_ajax.php:537
-#: application/views/qso/edit_ajax.php:549
-#: application/views/qso/edit_ajax.php:566
-#: application/views/qso/edit_ajax.php:579 application/views/qso/index.php:622
 msgid "Invalid (Ignore)"
 msgstr "无效(忽略)"
 
@@ -8596,15 +8428,13 @@ msgstr "QSL 发送方式"
 #: application/views/qslprint/qsolist.php:79
 #: application/views/qslprint/qsolist.php:121
 #: application/views/qslprint/qsolist.php:212
-#: application/views/qso/edit_ajax.php:436
-#: application/views/qso/edit_ajax.php:469 application/views/qso/index.php:619
+#: application/views/qso/edit_ajax.php:450
+#: application/views/qso/edit_ajax.php:483 application/views/qso/index.php:633
 #: application/views/search/search_result_ajax.php:199
 #: application/views/search/search_result_ajax.php:241
 #: application/views/view_log/partial/log_ajax.php:212
 #: application/views/view_log/partial/log_ajax.php:250
 #: src/QSLManager/QSO.php:367 src/QSLManager/QSO.php:410
-#: application/views/qso/edit_ajax.php:450
-#: application/views/qso/edit_ajax.php:483 application/views/qso/index.php:633
 msgid "Bureau"
 msgstr "卡片局"
 
@@ -8616,15 +8446,13 @@ msgstr "卡片局"
 #: application/views/qslprint/qsolist.php:82
 #: application/views/qslprint/qsolist.php:124
 #: application/views/qslprint/qsolist.php:213
-#: application/views/qso/edit_ajax.php:435
-#: application/views/qso/edit_ajax.php:468 application/views/qso/index.php:618
+#: application/views/qso/edit_ajax.php:449
+#: application/views/qso/edit_ajax.php:482 application/views/qso/index.php:632
 #: application/views/search/search_result_ajax.php:202
 #: application/views/search/search_result_ajax.php:244
 #: application/views/view_log/partial/log_ajax.php:215
 #: application/views/view_log/partial/log_ajax.php:253
 #: src/QSLManager/QSO.php:370 src/QSLManager/QSO.php:413
-#: application/views/qso/edit_ajax.php:449
-#: application/views/qso/edit_ajax.php:482 application/views/qso/index.php:632
 msgid "Direct"
 msgstr "直邮"
 
@@ -8636,15 +8464,13 @@ msgstr "直邮"
 #: application/views/qslprint/qsolist.php:88
 #: application/views/qslprint/qsolist.php:130
 #: application/views/qslprint/qsolist.php:214
-#: application/views/qso/edit_ajax.php:437
-#: application/views/qso/edit_ajax.php:470 application/views/qso/index.php:620
+#: application/views/qso/edit_ajax.php:451
+#: application/views/qso/edit_ajax.php:484 application/views/qso/index.php:634
 #: application/views/search/search_result_ajax.php:208
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:221
 #: application/views/view_log/partial/log_ajax.php:259
 #: src/QSLManager/QSO.php:376 src/QSLManager/QSO.php:419
-#: application/views/qso/edit_ajax.php:451
-#: application/views/qso/edit_ajax.php:484 application/views/qso/index.php:634
 msgid "Electronic"
 msgstr "电子"
 
@@ -8652,12 +8478,10 @@ msgstr "电子"
 #: application/views/logbookadvanced/index.php:393
 #: application/views/oqrs/qsolist.php:117
 #: application/views/qslprint/qsolist.php:127
-#: application/views/qso/edit_ajax.php:438
-#: application/views/qso/edit_ajax.php:471 application/views/qso/index.php:621
-#: application/views/search/search_result_ajax.php:247
-#: application/views/view_log/partial/log_ajax.php:256
 #: application/views/qso/edit_ajax.php:452
 #: application/views/qso/edit_ajax.php:485 application/views/qso/index.php:635
+#: application/views/search/search_result_ajax.php:247
+#: application/views/view_log/partial/log_ajax.php:256
 msgid "Manager"
 msgstr "管理员"
 
@@ -8702,7 +8526,6 @@ msgid "With selected: "
 msgstr "用选中行进行： "
 
 #: application/views/logbookadvanced/index.php:483
-#: application/views/qso/edit_ajax.php:642
 #: application/views/qso/edit_ajax.php:656
 msgid "Update from Callbook"
 msgstr "从历史日志补全信息"
@@ -8857,9 +8680,8 @@ msgstr "本台呼号(De)"
 
 #: application/views/logbookadvanced/index.php:662
 #: application/views/logbookadvanced/useroptions.php:78
-#: application/views/qso/edit_ajax.php:412
-#: application/views/timeline/index.php:72 application/views/user/edit.php:565
 #: application/views/qso/edit_ajax.php:426
+#: application/views/timeline/index.php:72 application/views/user/edit.php:565
 msgid "QRZ"
 msgstr "QRZ"
 
@@ -9028,7 +8850,6 @@ msgid "Date Expires"
 msgstr "过期日期"
 
 #: application/views/lotw_views/index.php:39
-#: application/views/view_log/qso.php:519
 #: application/views/view_log/qso.php:526
 msgid "Last Upload"
 msgstr "最后一次上传是"
@@ -9679,9 +9500,8 @@ msgstr "有额外的信息需要记录吗？"
 #: application/views/oqrs/request.php:60
 #: application/views/oqrs/request_grouped.php:64
 #: application/views/oqrs/showrequests.php:87
-#: application/views/qso/edit_ajax.php:273 application/views/qso/index.php:549
+#: application/views/qso/edit_ajax.php:273 application/views/qso/index.php:563
 #: application/views/user/index.php:46 application/views/user/profile.php:24
-#: application/views/view_log/qso.php:474 application/views/qso/index.php:563
 #: application/views/view_log/qso.php:481
 msgid "E-mail"
 msgstr "电子邮件"
@@ -9707,11 +9527,10 @@ msgstr "发送“未记录日志”请求"
 #: application/views/user/edit.php:478
 #: application/views/view_log/partial/log.php:22
 #: application/views/view_log/partial/log_ajax.php:136
-#: application/views/view_log/qso.php:618
-#: application/views/view_log/qso.php:622
-#: application/views/view_log/qso.php:626
-#: application/views/view_log/qso.php:630
-#: application/views/view_log/qso.php:636
+#: application/views/view_log/qso.php:625
+#: application/views/view_log/qso.php:629
+#: application/views/view_log/qso.php:633
+#: application/views/view_log/qso.php:637
 #: application/views/view_log/qso.php:643
 #: application/views/view_log/qso.php:650
 #: application/views/view_log/qso.php:657
@@ -9720,11 +9539,6 @@ msgstr "发送“未记录日志”请求"
 #: application/views/view_log/qso.php:678
 #: application/views/view_log/qso.php:685
 #: application/views/view_log/qso.php:692
-#: application/views/view_log/qso.php:697
-#: application/views/view_log/qso.php:625
-#: application/views/view_log/qso.php:629
-#: application/views/view_log/qso.php:633
-#: application/views/view_log/qso.php:637
 #: application/views/view_log/qso.php:699
 #: application/views/view_log/qso.php:704
 msgid "Station"
@@ -9734,10 +9548,10 @@ msgstr "电台站"
 #: application/views/qslprint/qslprint.php:28
 #: application/views/qslprint/qsolist.php:15
 #: application/views/qslprint/qsolist.php:85
-#: application/views/qso/index.php:627
+#: application/views/qso/index.php:641
 #: application/views/search/search_result_ajax.php:205
 #: application/views/view_log/partial/log_ajax.php:218
-#: src/QSLManager/QSO.php:373 application/views/qso/index.php:641
+#: src/QSLManager/QSO.php:373
 msgid "Via"
 msgstr "通过"
 
@@ -10082,7 +9896,6 @@ msgstr "以W为单位设置功率值。在输入中仅填写数值。"
 
 #: application/views/qso/edit_ajax.php:134 application/views/qso/index.php:353
 #: application/views/reg1test/index.php:114
-#: application/views/view_log/qso.php:657
 #: application/views/view_log/qso.php:664
 msgid "Transmit Power (W)"
 msgstr "发射功率(W)"
@@ -10091,28 +9904,26 @@ msgstr "发射功率(W)"
 msgid "Used for VUCC MultiGrids"
 msgstr "被 VUCC 网格计算使用"
 
-#: application/views/qso/edit_ajax.php:219 application/views/qso/index.php:447
-#: application/views/qso/index.php:461
+#: application/views/qso/edit_ajax.php:219 application/views/qso/index.php:461
 msgid "Antenna Path"
 msgstr "天线波束路径"
 
-#: application/views/qso/edit_ajax.php:222 application/views/qso/index.php:450
-#: application/views/view_log/qso.php:161 application/views/qso/index.php:464
+#: application/views/qso/edit_ajax.php:222 application/views/qso/index.php:464
+#: application/views/view_log/qso.php:161
 msgid "Greyline"
 msgstr "晨昏线"
 
-#: application/views/qso/edit_ajax.php:223 application/views/qso/index.php:451
-#: application/views/qso/index.php:465
+#: application/views/qso/edit_ajax.php:223 application/views/qso/index.php:465
 msgid "Other"
 msgstr "其它"
 
-#: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:452
-#: application/views/view_log/qso.php:152 application/views/qso/index.php:466
+#: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:466
+#: application/views/view_log/qso.php:152
 msgid "Short Path"
 msgstr "短路径"
 
-#: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:453
-#: application/views/view_log/qso.php:155 application/views/qso/index.php:467
+#: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:467
+#: application/views/view_log/qso.php:155
 msgid "Long Path"
 msgstr "长路径"
 
@@ -10124,65 +9935,49 @@ msgstr "卫星名称"
 msgid "Sat Mode"
 msgstr "卫星模式"
 
-#: application/views/qso/edit_ajax.php:292 application/views/qso/index.php:576
-#: application/views/qso/index.php:590
+#: application/views/qso/edit_ajax.php:292 application/views/qso/index.php:590
 msgid "Antenna Azimuth (°)"
 msgstr "天线方位角（°）"
 
-#: application/views/qso/edit_ajax.php:292 application/views/qso/index.php:578
-#: application/views/qso/index.php:592
+#: application/views/qso/edit_ajax.php:292 application/views/qso/index.php:592
 msgid "Antenna azimuth in decimal degrees."
 msgstr "天线方位角（以十进制度为单位）。"
 
-#: application/views/qso/edit_ajax.php:297 application/views/qso/index.php:582
-#: application/views/qso/index.php:596
+#: application/views/qso/edit_ajax.php:297 application/views/qso/index.php:596
 msgid "Antenna Elevation (°)"
 msgstr "天线仰角（°）"
 
-#: application/views/qso/edit_ajax.php:297 application/views/qso/index.php:584
-#: application/views/qso/index.php:598
+#: application/views/qso/edit_ajax.php:297 application/views/qso/index.php:598
 msgid "Antenna elevation in decimal degrees."
 msgstr "天线仰角（以十进制度为单位）。"
 
-#: application/views/qso/edit_ajax.php:380 application/views/qso/index.php:262
-#: application/views/qso/index.php:534 application/views/user/edit.php:599
+#: application/views/qso/edit_ajax.php:394 application/views/qso/index.php:262
+#: application/views/qso/index.php:548 application/views/user/edit.php:599
 #: application/views/view_log/qso.php:440
-#: application/views/view_log/qso.php:697
-#: application/views/qso/edit_ajax.php:394 application/views/qso/index.php:548
 #: application/views/view_log/qso.php:704
 msgid "Sig Info"
 msgstr "Sig 属性"
 
-#: application/views/qso/edit_ajax.php:395
-#: application/views/qso/edit_ajax.php:508 application/views/qso/index.php:593
-#: application/views/qso/index.php:637 application/views/qso/edit_ajax.php:409
+#: application/views/qso/edit_ajax.php:409
 #: application/views/qso/edit_ajax.php:522 application/views/qso/index.php:607
 #: application/views/qso/index.php:651
 msgid "Note: Gets exported to third-party services."
 msgstr "注意：将导出到第三方服务提供方。"
 
-#: application/views/qso/edit_ajax.php:431
 #: application/views/qso/edit_ajax.php:445
 msgid "Sent Method"
 msgstr "选择方式"
 
-#: application/views/qso/edit_ajax.php:434
-#: application/views/qso/edit_ajax.php:467 application/views/qso/index.php:614
-#: application/views/qso/index.php:617 application/views/qso/edit_ajax.php:448
+#: application/views/qso/edit_ajax.php:448
 #: application/views/qso/edit_ajax.php:481 application/views/qso/index.php:628
 #: application/views/qso/index.php:631
 msgid "Method"
 msgstr "方法"
 
-#: application/views/qso/edit_ajax.php:444
 #: application/views/qso/edit_ajax.php:458
 msgid "Sent Via"
 msgstr "发送 Via"
 
-#: application/views/qso/edit_ajax.php:458
-#: application/views/qso/edit_ajax.php:499
-#: application/views/qso/edit_ajax.php:536
-#: application/views/qso/edit_ajax.php:566
 #: application/views/qso/edit_ajax.php:472
 #: application/views/qso/edit_ajax.php:513
 #: application/views/qso/edit_ajax.php:550
@@ -10190,53 +9985,45 @@ msgstr "发送 Via"
 msgid "Verified (Match)"
 msgstr "已确认"
 
-#: application/views/qso/edit_ajax.php:464
 #: application/views/qso/edit_ajax.php:478
 msgid "Received Method"
 msgstr "接收方式"
 
-#: application/views/qso/edit_ajax.php:505 application/views/qso/index.php:634
 #: application/views/qso/edit_ajax.php:519 application/views/qso/index.php:648
 msgid "Get the default message for eQSL, for this station."
 msgstr "获取该站的 eQSL 默认消息。"
 
-#: application/views/qso/edit_ajax.php:505 application/views/qso/index.php:634
 #: application/views/qso/edit_ajax.php:519 application/views/qso/index.php:648
 msgid "QSL MSG"
 msgstr "QSL确认信息"
 
-#: application/views/qso/edit_ajax.php:553
+#: application/views/qso/edit_ajax.php:567
 #: application/views/view_log/partial/log_ajax.php:337
 #: application/views/view_log/partial/log_ajax.php:349
 #: src/QSLManager/QSO.php:505 src/QSLManager/QSO.php:562
-#: src/QSLManager/QSO.php:623 application/views/qso/edit_ajax.php:567
+#: src/QSLManager/QSO.php:623
 msgid "Modified"
 msgstr "已更改"
 
-#: application/views/qso/edit_ajax.php:585
 #: application/views/qso/edit_ajax.php:599
 msgid "Change Station Profile"
 msgstr "修改台站信息"
 
-#: application/views/qso/edit_ajax.php:623
 #: application/views/qso/edit_ajax.php:637
 msgid "Exchange (R)"
 msgstr "交换报告（R）"
 
-#: application/views/qso/edit_ajax.php:628
 #: application/views/qso/edit_ajax.php:642
 msgid "Exchange (S)"
 msgstr "交换报告（S）"
 
-#: application/views/qso/edit_ajax.php:640
+#: application/views/qso/edit_ajax.php:654
 #: application/views/search/search_result_ajax.php:445
 #: application/views/view_log/partial/log.php:157
 #: application/views/view_log/partial/log_ajax.php:427
-#: application/views/qso/edit_ajax.php:654
 msgid "Delete QSO"
 msgstr "删除 QSO"
 
-#: application/views/qso/edit_ajax.php:643
 #: application/views/qso/edit_ajax.php:657
 msgid "Save changes"
 msgstr "保存"
@@ -10245,8 +10032,7 @@ msgstr "保存"
 msgid "TimeOff is less than TimeOn"
 msgstr "结束时间小于开始时间"
 
-#: application/views/qso/index.php:5 application/views/qso/index.php:745
-#: application/views/qso/index.php:759
+#: application/views/qso/index.php:5 application/views/qso/index.php:759
 msgid "Previous Contacts"
 msgstr "先前通联"
 
@@ -10301,20 +10087,18 @@ msgstr "关闭时间"
 msgid "Search DXCluster for latest Spot"
 msgstr "在 DXCluster 搜索最新 Spot"
 
-#: application/views/qso/index.php:203 application/views/qso/index.php:473
+#: application/views/qso/index.php:203 application/views/qso/index.php:487
 #: application/views/station_profile/create.php:149
 #: application/views/station_profile/edit.php:218
 #: application/views/user/edit.php:583 application/views/view_log/qso.php:381
-#: application/views/view_log/qso.php:664 application/views/qso/index.php:487
 #: application/views/view_log/qso.php:671
 msgid "IOTA Reference"
 msgstr "IOTA 编号"
 
-#: application/views/qso/index.php:219 application/views/qso/index.php:490
+#: application/views/qso/index.php:219 application/views/qso/index.php:504
 #: application/views/station_profile/create.php:165
 #: application/views/station_profile/edit.php:246
 #: application/views/user/edit.php:587 application/views/view_log/qso.php:388
-#: application/views/view_log/qso.php:671 application/views/qso/index.php:504
 #: application/views/view_log/qso.php:678
 msgid "SOTA Reference"
 msgstr "SOTA 编号"
@@ -10327,85 +10111,83 @@ msgstr "频率(接收)"
 msgid "Band (RX)"
 msgstr "频段(接收)"
 
-#: application/views/qso/index.php:492 application/views/qso/index.php:506
+#: application/views/qso/index.php:506
 msgid "For example: GM/NS-001."
 msgstr "例如: GM/NS-001."
 
-#: application/views/qso/index.php:505 application/views/qso/index.php:519
+#: application/views/qso/index.php:519
 msgid "For example: DLFF-0069."
 msgstr "例如: DLFF-0069."
 
-#: application/views/qso/index.php:518 application/views/qso/index.php:532
+#: application/views/qso/index.php:532
 msgid "For example: PA-0150. Multiple values allowed."
 msgstr "例如: PA-0150. 可使用多个值。"
 
-#: application/views/qso/index.php:530 application/views/qso/index.php:544
+#: application/views/qso/index.php:544
 msgid "For example: GMA"
 msgstr "例如: GMA"
 
-#: application/views/qso/index.php:536 application/views/qso/index.php:550
+#: application/views/qso/index.php:550
 msgid "For example: DA/NW-357"
 msgstr "例如: DA/NW-357"
 
-#: application/views/qso/index.php:544 application/views/qso/index.php:558
+#: application/views/qso/index.php:558
 msgid "For example: Q03"
 msgstr "例如: Q03"
 
-#: application/views/qso/index.php:551 application/views/qso/index.php:565
+#: application/views/qso/index.php:565
 msgid "E-mail address of QSO-partner"
 msgstr "对方QSO的电子邮件地址"
 
-#: application/views/qso/index.php:560 application/views/view_log/qso.php:295
-#: application/views/qso/index.php:574
+#: application/views/qso/index.php:574 application/views/view_log/qso.php:295
 msgid "Satellite Name"
 msgstr "卫星名称"
 
-#: application/views/qso/index.php:568 application/views/view_log/qso.php:309
-#: application/views/qso/index.php:582
+#: application/views/qso/index.php:582 application/views/view_log/qso.php:309
 msgid "Satellite Mode"
 msgstr "卫星模式"
 
-#: application/views/qso/index.php:653 application/views/qso/index.php:667
+#: application/views/qso/index.php:667
 msgid "Reset to Default"
 msgstr "重置为默认"
 
-#: application/views/qso/index.php:694 application/views/qso/index.php:708
+#: application/views/qso/index.php:708
 msgid "Winkey"
 msgstr "Winkey"
 
-#: application/views/qso/index.php:696 application/views/qso/index.php:710
+#: application/views/qso/index.php:710
 msgid "Connect"
 msgstr "连接"
 
-#: application/views/qso/index.php:705 application/views/qso/index.php:719
+#: application/views/qso/index.php:719
 msgid "Stop"
 msgstr "停止"
 
-#: application/views/qso/index.php:706 application/views/qso/index.php:720
+#: application/views/qso/index.php:720
 msgid "Tune"
 msgstr "调谐"
 
-#: application/views/qso/index.php:707 application/views/qso/index.php:721
+#: application/views/qso/index.php:721
 msgid "Stop Tune"
 msgstr "停止调谐"
 
-#: application/views/qso/index.php:713 application/views/qso/index.php:727
+#: application/views/qso/index.php:727
 msgid "CW Speed"
 msgstr "CW 速度"
 
-#: application/views/qso/index.php:718 application/views/qso/index.php:732
+#: application/views/qso/index.php:732
 msgid "Send"
 msgstr "发射"
 
-#: application/views/qso/index.php:728 application/views/qso/index.php:742
+#: application/views/qso/index.php:742
 msgid "Suggestions"
 msgstr "建议"
 
-#: application/views/qso/index.php:735 application/views/qso/index.php:749
+#: application/views/qso/index.php:749
 msgid "Profile Picture"
 msgstr "操作员照片"
 
-#: application/views/qso/index.php:759 application/views/qso/index.php:773
+#: application/views/qso/index.php:773
 msgid "Max. 5 previous contacts are shown"
 msgstr "最多五次先前通联将会被显示"
 
@@ -10967,7 +10749,6 @@ msgstr "标记 已收到卡片(直邮)"
 #: application/views/search/search_result_ajax.php:429
 #: application/views/view_log/partial/log.php:148
 #: application/views/view_log/partial/log_ajax.php:414
-#: application/views/view_log/qso.php:767
 #: application/views/view_log/qso.php:774
 msgid "Mark QSL Received (Bureau)"
 msgstr "标记 已收到卡片(卡片局)"
@@ -10975,7 +10756,6 @@ msgstr "标记 已收到卡片(卡片局)"
 #: application/views/search/search_result_ajax.php:430
 #: application/views/view_log/partial/log.php:149
 #: application/views/view_log/partial/log_ajax.php:415
-#: application/views/view_log/qso.php:769
 #: application/views/view_log/qso.php:776
 msgid "Mark QSL Received (Direct)"
 msgstr "标记 已收到卡片(直邮)"
@@ -10983,7 +10763,6 @@ msgstr "标记 已收到卡片(直邮)"
 #: application/views/search/search_result_ajax.php:431
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:405
-#: application/views/view_log/qso.php:777
 #: application/views/view_log/qso.php:784
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "标记 已请求卡片(卡片局)"
@@ -10991,7 +10770,6 @@ msgstr "标记 已请求卡片(卡片局)"
 #: application/views/search/search_result_ajax.php:432
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:406
-#: application/views/view_log/qso.php:779
 #: application/views/view_log/qso.php:786
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "标记 已请求卡片(直邮)"
@@ -10999,7 +10777,6 @@ msgstr "标记 已请求卡片(直邮)"
 #: application/views/search/search_result_ajax.php:433
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:407
-#: application/views/view_log/qso.php:781
 #: application/views/view_log/qso.php:788
 msgid "Mark QSL Card Not Required"
 msgstr "标记 不需要卡片"
@@ -12748,65 +12525,50 @@ msgstr "天线方位"
 msgid "Antenna Elevation"
 msgstr "天线仰角"
 
-#: application/views/view_log/qso.php:485
 #: application/views/view_log/qso.php:492
 msgid "QSL Card has been sent via the bureau"
 msgstr "QSL 卡片已由卡片局发出"
 
-#: application/views/view_log/qso.php:487
 #: application/views/view_log/qso.php:494
 msgid "QSL Card has been sent via direct"
 msgstr "QSL 卡片已直邮发出"
 
-#: application/views/view_log/qso.php:489
 #: application/views/view_log/qso.php:496
 msgid "QSL Card has been sent electronically"
 msgstr "eQSL 卡片已经发送"
 
-#: application/views/view_log/qso.php:491
 #: application/views/view_log/qso.php:498
 msgid "QSL Card has been sent via manager"
 msgstr "QSL 卡片已经由卡片管理员发出"
 
-#: application/views/view_log/qso.php:493
 #: application/views/view_log/qso.php:500
 msgid "QSL Card has been sent"
 msgstr "QSL 卡片已经发出"
 
-#: application/views/view_log/qso.php:502
 #: application/views/view_log/qso.php:509
 msgid "QSL Card has been received via the bureau"
 msgstr "QSL 卡片已由卡片局收妥"
 
-#: application/views/view_log/qso.php:504
 #: application/views/view_log/qso.php:511
 msgid "QSL Card has been received via direct"
 msgstr "QSL 卡片已直邮收妥"
 
-#: application/views/view_log/qso.php:506
 #: application/views/view_log/qso.php:513
 msgid "QSL Card has been received electronically"
 msgstr "eQSL 卡片已经收妥"
 
-#: application/views/view_log/qso.php:508
 #: application/views/view_log/qso.php:515
 msgid "QSL Card has been received via manager"
 msgstr "QSL 卡片已经由卡片管理员收妥"
 
-#: application/views/view_log/qso.php:510
 #: application/views/view_log/qso.php:517
 msgid "QSL Card has been received"
 msgstr "QSL Card 已被接收"
 
-#: application/views/view_log/qso.php:519
 #: application/views/view_log/qso.php:526
 msgid "This station uses LoTW."
 msgstr "这个电台使用 LOTW。"
 
-#: application/views/view_log/qso.php:524
-#: application/views/view_log/qso.php:529
-#: application/views/view_log/qso.php:534
-#: application/views/view_log/qso.php:539
 #: application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
 #: application/views/view_log/qso.php:541
@@ -12814,37 +12576,30 @@ msgstr "这个电台使用 LOTW。"
 msgid "This QSO was confirmed on"
 msgstr "该 QSO 确认于"
 
-#: application/views/view_log/qso.php:550
 #: application/views/view_log/qso.php:557
 msgid "More QSOs"
 msgstr "更多 QSO"
 
-#: application/views/view_log/qso.php:618
 #: application/views/view_log/qso.php:625
 msgid "Details"
 msgstr "详细"
 
-#: application/views/view_log/qso.php:745
 #: application/views/view_log/qso.php:752
 msgid "Uploaded QSL Card front image"
 msgstr "上传 QSL 卡片正面图像"
 
-#: application/views/view_log/qso.php:750
 #: application/views/view_log/qso.php:757
 msgid "Upload QSL Card image"
 msgstr "上传 QSL 卡片图像"
 
-#: application/views/view_log/qso.php:755
 #: application/views/view_log/qso.php:762
 msgid "Uploaded QSL Card back image"
 msgstr "上传 QSL 卡片背面图像"
 
-#: application/views/view_log/qso.php:771
 #: application/views/view_log/qso.php:778
 msgid "Mark QSL Received (Electronic)"
 msgstr "标记 已收到卡片(电子)"
 
-#: application/views/view_log/qso.php:794
 #: application/views/view_log/qso.php:801
 msgid "eQSL picture"
 msgstr "eQSL 图片"
@@ -12951,59 +12706,6 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
-
-#: application/views/logbookadvanced/edit.php:174
-#: application/views/qso/edit_ajax.php:326 application/views/qso/index.php:423
-msgid "NONE"
-msgstr "无"
-
-#: application/views/logbookadvanced/edit.php:175
-msgid "African Italy"
-msgstr "非洲意大利"
-
-#: application/views/logbookadvanced/edit.php:176
-msgid "Bear Island"
-msgstr "熊岛"
-
-#: application/views/logbookadvanced/edit.php:177
-msgid "European Turkey"
-msgstr "欧洲土耳其"
-
-#: application/views/logbookadvanced/edit.php:178
-msgid "ITU Vienna"
-msgstr "国际电信联盟维也纳办事处"
-
-#: application/views/logbookadvanced/edit.php:179
-msgid "Kosovo"
-msgstr "科索沃"
-
-#: application/views/logbookadvanced/edit.php:180
-msgid "Shetland Islands"
-msgstr "设得兰群岛"
-
-#: application/views/logbookadvanced/edit.php:181
-msgid "Sicily"
-msgstr "西西里岛"
-
-#: application/controllers/Awards.php:1992
-msgid "WAE"
-msgstr "WAE"
-
-#: application/views/awards/wae/index.php:7
-msgid "WAE Award"
-msgstr "WAE 奖"
-
-#: application/views/awards/wae/index.php:161
-msgid "WAE Name"
-msgstr "WAE 名称"
-
-#: application/views/interface_assets/header.php:204
-msgid "WAE (Worked All Europe)"
-msgstr "WAE (Worked All Europe)"
-
-#: application/views/debug/index.php:683
-msgid "Armenian"
-msgstr ""
 
 #~ msgid "AOS Az"
 #~ msgstr "AOS 方位"
