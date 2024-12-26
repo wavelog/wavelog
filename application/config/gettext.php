@@ -309,7 +309,7 @@ $config['languages'] = array(
 		'gettext'   => 'hy',
 		'direction' => 'ltr',
 		'code'      => 'hy',
-		'flag'      => 'hy',
+		'flag'      => 'am',
 	)
 );
 
