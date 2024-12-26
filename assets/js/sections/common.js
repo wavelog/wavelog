@@ -1159,6 +1159,31 @@ function enableMap() {
     map.keyboard.enable();
 }
 
+function shareModal(qso_data) {
+    console.log(qso_data);
+    $.ajax({
+        url: base_url + 'index.php/qso/getShareModal',
+        type: 'post',
+        data: {
+            qso_data: qso_data
+        },
+        success: function (html) {
+            BootstrapDialog.show({
+                title: lang_general_share_qso,
+                cssClass: 'bg-black bg-opacity-50',
+                nl2br: false,
+                message: html,
+                buttons: [{
+                    label: lang_admin_close,
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+        }
+    });
+}
+
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
     "🚀 https://www.github.com/wavelog/wavelog");
