@@ -175,7 +175,7 @@ class QSO
 		$this->de = $data['station_callsign'];
 		$this->dx = $data['COL_CALL'];
 		$this->continent = $data['COL_CONT'] ?? '';
-		$this->region = $this->getRegionString(strtoupper($data['COL_REGION']));
+		$this->region = $this->getRegionString(strtoupper($data['COL_REGION'] ?? ''));
 
 		$this->mode = $data['COL_MODE'] ?? '';
 		$this->submode = $data['COL_SUBMODE'] ?? '';
