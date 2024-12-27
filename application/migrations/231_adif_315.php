@@ -137,6 +137,16 @@ class Migration_adif_315 extends CI_Migration {
 		 * https://adif.org/315/ADIF_315_annotated.htm#Primary_Administrative_Subdivision
 		 */
 
+		$prim_subdiv = [];
+
+		// Add a column to flag entries as deprecated
+		$col_check = $this->db->query("SHOW COLUMNS FROM `primary_subdivisions` LIKE 'deprecated';")->num_rows() > 0;
+		if (!$col_check) {
+			$prim_subdiv[] = "ALTER TABLE `primary_subdivisions` ADD COLUMN deprecated TINYINT(1) DEFAULT 0;";
+		} else {
+			log_message('info', 'Column "deprecated" already exists, skipping ALTER TABLE.');
+		}
+
 		// Clean Up primary_subdivisions from dupes, since there's no PK!!
 		$this->db->query("CREATE TABLE tmp_psd AS SELECT DISTINCT ps.`adif`,ps.`state`,ps.`subdivision`,ps.`deprecated` FROM `primary_subdivisions` ps");
 		$this->db->query("DELETE FROM `primary_subdivisions`");
@@ -148,15 +158,6 @@ class Migration_adif_315 extends CI_Migration {
 		// Add Unique IDX
 		$this->add_unique_ix('`primary_subdivisions`','IDX_UNIQ_SUBDIVISON#adif#state#deprecated','`adif`,`state`,`deprecated`');
 
-		$prim_subdiv = [];
-
-		// Add a column to flag entries as deprecated
-		$col_check = $this->db->query("SHOW COLUMNS FROM `primary_subdivisions` LIKE 'deprecated';")->num_rows() > 0;
-		if (!$col_check) {
-			$prim_subdiv[] = "ALTER TABLE `primary_subdivisions` ADD COLUMN deprecated TINYINT(1) DEFAULT 0;";
-		} else {
-			log_message('info', 'Column "deprecated" already exists, skipping ALTER TABLE.');
-		}
 
 		// Mark 'Märket' as deprecated
 		$prim_subdiv[] = "UPDATE `primary_subdivisions` SET deprecated = 1 WHERE adif = '5' AND state = '051';";
