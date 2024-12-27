@@ -4184,11 +4184,11 @@ class Logbook_model extends CI_Model {
 				$input_qsl_sent_via = "";
 			}
 
-			// QSL Message is always the one set in the station profile
-			if (!empty($station_qslmsg)) {
-				$qslmsg = $station_qslmsg;
+			// Try to import the QSL Message from the ADIF file, otherwise use the default message from the station profile
+			if (isset($record['qslmsg'])) {
+				$qslmsg = $record['qslmsg'];
 			} else {
-				$qslmsg = "";
+				$qslmsg = $station_qslmsg;
 			}
 
 			// Validate Clublog-Fields
