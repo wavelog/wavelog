@@ -6546,7 +6546,10 @@ msgstr "Necessário"
 #: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:341
 #: src/QSLManager/QSO.php:444 src/QSLManager/QSO.php:496
 #: src/QSLManager/QSO.php:551 src/QSLManager/QSO.php:612
-#: src/QSLManager/QSO.php:679
+#: src/QSLManager/QSO.php:679 src/QSLManager/QSO.php:374
+#: src/QSLManager/QSO.php:477 src/QSLManager/QSO.php:529
+#: src/QSLManager/QSO.php:584 src/QSLManager/QSO.php:645
+#: src/QSLManager/QSO.php:712
 msgid "Sent"
 msgstr "Enviado"
 
@@ -6578,7 +6581,10 @@ msgstr "Enviado"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:386
 #: src/QSLManager/QSO.php:467 src/QSLManager/QSO.php:519
 #: src/QSLManager/QSO.php:590 src/QSLManager/QSO.php:651
-#: src/QSLManager/QSO.php:703
+#: src/QSLManager/QSO.php:703 src/QSLManager/QSO.php:419
+#: src/QSLManager/QSO.php:500 src/QSLManager/QSO.php:552
+#: src/QSLManager/QSO.php:623 src/QSLManager/QSO.php:684
+#: src/QSLManager/QSO.php:736
 msgid "Received"
 msgstr "Recebido"
 
@@ -6612,7 +6618,10 @@ msgstr "Recebido"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:347
 #: src/QSLManager/QSO.php:392 src/QSLManager/QSO.php:452
 #: src/QSLManager/QSO.php:475 src/QSLManager/QSO.php:687
-#: src/QSLManager/QSO.php:711
+#: src/QSLManager/QSO.php:711 src/QSLManager/QSO.php:380
+#: src/QSLManager/QSO.php:425 src/QSLManager/QSO.php:485
+#: src/QSLManager/QSO.php:508 src/QSLManager/QSO.php:720
+#: src/QSLManager/QSO.php:744
 msgid "Requested"
 msgstr "Solicitado"
 
@@ -8626,6 +8635,7 @@ msgstr "QSL enviada"
 #: application/views/view_log/partial/log_ajax.php:193
 #: application/views/view_log/partial/log_ajax.php:231
 #: src/QSLManager/QSO.php:344 src/QSLManager/QSO.php:389
+#: src/QSLManager/QSO.php:377 src/QSLManager/QSO.php:422
 msgid "Queued"
 msgstr "Em fila"
 
@@ -8666,6 +8676,10 @@ msgstr "Em fila"
 #: src/QSLManager/QSO.php:448 src/QSLManager/QSO.php:471
 #: src/QSLManager/QSO.php:573 src/QSLManager/QSO.php:634
 #: src/QSLManager/QSO.php:683 src/QSLManager/QSO.php:707
+#: src/QSLManager/QSO.php:383 src/QSLManager/QSO.php:428
+#: src/QSLManager/QSO.php:481 src/QSLManager/QSO.php:504
+#: src/QSLManager/QSO.php:606 src/QSLManager/QSO.php:667
+#: src/QSLManager/QSO.php:716 src/QSLManager/QSO.php:740
 msgid "Invalid (Ignore)"
 msgstr "Inválido (Ignorar)"
 
@@ -8694,6 +8708,7 @@ msgstr "Método de envio de QSL"
 #: application/views/view_log/partial/log_ajax.php:212
 #: application/views/view_log/partial/log_ajax.php:250
 #: src/QSLManager/QSO.php:367 src/QSLManager/QSO.php:410
+#: src/QSLManager/QSO.php:400 src/QSLManager/QSO.php:443
 msgid "Bureau"
 msgstr "Bureau"
 
@@ -8712,6 +8727,7 @@ msgstr "Bureau"
 #: application/views/view_log/partial/log_ajax.php:215
 #: application/views/view_log/partial/log_ajax.php:253
 #: src/QSLManager/QSO.php:370 src/QSLManager/QSO.php:413
+#: src/QSLManager/QSO.php:403 src/QSLManager/QSO.php:446
 msgid "Direct"
 msgstr "Direto"
 
@@ -8730,6 +8746,7 @@ msgstr "Direto"
 #: application/views/view_log/partial/log_ajax.php:221
 #: application/views/view_log/partial/log_ajax.php:259
 #: src/QSLManager/QSO.php:376 src/QSLManager/QSO.php:419
+#: src/QSLManager/QSO.php:409 src/QSLManager/QSO.php:452
 msgid "Electronic"
 msgstr "Eletrónico"
 
@@ -9883,7 +9900,7 @@ msgstr "Estação"
 #: application/views/qso/index.php:641
 #: application/views/search/search_result_ajax.php:205
 #: application/views/view_log/partial/log_ajax.php:218
-#: src/QSLManager/QSO.php:373
+#: src/QSLManager/QSO.php:373 src/QSLManager/QSO.php:406
 msgid "Via"
 msgstr "Via"
 
@@ -10351,7 +10368,8 @@ msgstr "MSG QSL"
 #: application/views/view_log/partial/log_ajax.php:337
 #: application/views/view_log/partial/log_ajax.php:349
 #: src/QSLManager/QSO.php:505 src/QSLManager/QSO.php:562
-#: src/QSLManager/QSO.php:623
+#: src/QSLManager/QSO.php:623 src/QSLManager/QSO.php:538
+#: src/QSLManager/QSO.php:595 src/QSLManager/QSO.php:656
 msgid "Modified"
 msgstr "Modificado"
 
@@ -12974,7 +12992,8 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:337
 #: application/views/view_log/partial/log_ajax.php:351
 #: src/QSLManager/QSO.php:509 src/QSLManager/QSO.php:566
-#: src/QSLManager/QSO.php:627
+#: src/QSLManager/QSO.php:627 src/QSLManager/QSO.php:542
+#: src/QSLManager/QSO.php:599 src/QSLManager/QSO.php:660
 msgid "last sent"
 msgstr "último enviado"
 
