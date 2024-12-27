@@ -675,4 +675,20 @@ class QSO extends CI_Controller {
 			redirect('dashboard');
 		}
 	}
+
+    /**
+     * Easy modal Loader 
+     * Used for Share Modal in QSO Details view
+     */
+    function getShareModal() {
+
+        $data['qso'] = $this->input->post('qso_data', TRUE);
+
+        if (empty($data['qso'])) {
+            echo "No QSO data provided.";
+            return;
+        }
+
+        $this->load->view('qso/components/share_modal', $data, false);
+    }
 }
