@@ -1160,7 +1160,6 @@ function enableMap() {
 }
 
 function shareModal(qso_data) {
-    console.log(qso_data);
     $.ajax({
         url: base_url + 'index.php/qso/getShareModal',
         type: 'post',
