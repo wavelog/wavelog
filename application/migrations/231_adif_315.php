@@ -138,7 +138,7 @@ class Migration_adif_315 extends CI_Migration {
          */
 
 	// Clean Up primary_subdivisions from dupes, since there's no PK!!
-	$this->db->query("CREATE TABLE wmp_psd AS SELECT DISTINCT ps.adif,ps.state,ps.subdivision,ps.deprecated FROM primary_subdivisions ps");
+	$this->db->query("CREATE TABLE tmp_psd AS SELECT DISTINCT ps.adif,ps.state,ps.subdivision,ps.deprecated FROM primary_subdivisions ps");
 	$this->db->query("DELETE FROM primary_subdivisions");
 	$this->db->query("INSERT INTO primary_subdivisions SELECT * FROM tmp_psd");
 	$this->db->query("DROP TABLE tmp_psd");
