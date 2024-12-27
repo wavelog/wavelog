@@ -55,7 +55,8 @@
 			\"qrz\":{\"show\":\"true\"},
 			\"profilename\":{\"show\":\"true\"},
 			\"stationpower\":{\"show\":\"true\"},
-			\"distance\":{\"show\":\"true\"}
+			\"distance\":{\"show\":\"true\"},
+			\"region\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
@@ -126,6 +127,10 @@
     }
 	if (!isset($current_opts->distance)) {
         echo "\nvar o_template = { distance: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->region)) {
+        echo "\nvar o_template = { region: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -695,6 +700,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->sig->show ?? "true") == "true") {
                         echo '<th>SIG</th>';
+                    } ?>
+					<?php if (($options->region->show ?? "true") == "true") {
+                        echo '<th>' . __("Region") . '</th>';
                     } ?>
                     <?php if (($options->operator->show ?? "true") == "true") {
                         echo '<th>' . __("Operator") . '</th>';

@@ -44,6 +44,7 @@ class QSO
 	private string $dxcc;
 	private string $iota;
 	private string $continent;
+	private string $region;
 	/** @var string[] */
 	private string $deVUCCGridsquares;
 	private string $dxGridsquare;
@@ -174,6 +175,7 @@ class QSO
 		$this->de = $data['station_callsign'];
 		$this->dx = $data['COL_CALL'];
 		$this->continent = $data['COL_CONT'] ?? '';
+		$this->region = $this->getRegionString(strtoupper($data['COL_REGION'] ?? ''));
 
 		$this->mode = $data['COL_MODE'] ?? '';
 		$this->submode = $data['COL_SUBMODE'] ?? '';
@@ -302,6 +304,39 @@ class QSO
 			return '<a href="javascript:spawnLookupModal('.$ituz.',\'itu\');">'.$ituz.'</a>';
 		}
 		return $ituz;
+	}
+
+	/**
+	 * @return string
+	 */
+	function getRegionString($region): string
+	{
+		switch($region) {
+			case 'AI':
+				return 'African Italy ('.$region.')';
+				break;
+			case 'BI':
+				return 'Bear Island ('.$region.')';
+				break;
+			case 'ET':
+				return 'European Turkey ('.$region.')';
+				break;
+			case 'IV':
+				return 'ITU Vienna ('.$region.')';
+				break;
+			case 'KO':
+				return 'Kosovo ('.$region.')';
+				break;
+			case 'SY':
+				return 'Sicily ('.$region.')';
+				break;
+			case 'SI':
+				return 'Shetland Islands ('.$region.')';
+				break;
+			default:
+				return ($region ?? '');
+				break;
+			}
 	}
 
 	/**
@@ -1185,7 +1220,8 @@ class QSO
 			'continent' => $this->continent,
 			'profilename' => $this->profilename,
 			'stationpower' => $this->stationpower,
-			'distance' => $this->getFormattedDistance()
+			'distance' => $this->getFormattedDistance(),
+			'region' => $this->region
 		];
 	}
 

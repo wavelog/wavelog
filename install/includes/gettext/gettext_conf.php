@@ -255,5 +255,15 @@ $gt_conf['languages'] = array(
 		'direction' => 'ltr',
 		'code'      => 'tr',
 		'flag'      => 'tr',
+	),
+	'armenian' => array(
+		'name'      => 'Հայերեն',
+		'name_en'   => 'Armenian',
+		'folder'    => 'armenian',
+		'locale'    => 'hy',
+		'gettext'   => 'hy',
+		'direction' => 'ltr',
+		'code'      => 'hy',
+		'flag'      => 'am',
 	)
 );
