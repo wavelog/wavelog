@@ -145,6 +145,7 @@ class Migration_adif_315 extends CI_Migration {
 		$this->db->query("DELETE FROM `primary_subdivisions` WHERE `adif`=15 and `state`='PM' and `subdivision`='Permskaya Kraj'");
 		$this->db->query("DELETE FROM `primary_subdivisions` WHERE `adif`=206 and `state`='BM' and `subdivision`='Bruck/Mur'");
 
+		// Add Unique IDX
 		$this->add_unique_ix('`primary_subdivisions`','IDX_UNIQ_SUBDIVISON#adif#state#deprecated','`adif`,`state`,`deprecated`');
 
 		$prim_subdiv = [];
@@ -490,10 +491,14 @@ class Migration_adif_315 extends CI_Migration {
 
 		$submodes = [];
 
+		// CleanUp ADIF-Table from possible dupes
+
 		$this->db->query("CREATE TABLE tmp_adif_modes AS SELECT DISTINCT ad.`mode`,ad.`submode`,ad.`qrgmode`,ad.`active` FROM adif_modes ad");
 		$this->db->query("DELETE FROM `adif_modes`");
 		$this->db->query("INSERT INTO `adif_modes` (`mode`,`submode`,`qrgmode`,`active`) SELECT * FROM tmp_adif_modes");
 		$this->db->query("DROP TABLE tmp_adif_modes");
+
+		// Add Unique IDX
 
 		$this->add_unique_ix('`adif_modes`','IDX_UNIQ_ADIF_MODES#mode#submode#qrgmode#active','`mode`,`submode`,`qrgmode`,`active`');
 
