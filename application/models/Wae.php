@@ -173,22 +173,21 @@ class WAE extends CI_Model {
 			};
 		}
 
-		// Convert associative array to indexed array for sorting
-		$dxccIndexed = array_values($dxccMatrix);
+		if (isset($dxccMatrix)) {
+			// Convert associative array to indexed array for sorting
+			$dxccIndexed = array_values($dxccMatrix);
 
-		// Sort the indexed array by the 'name' key
-		usort($dxccIndexed, function ($a, $b) {
-			return strcmp($a['Dxccprefix'], $b['Dxccprefix']);
-		});
+			// Sort the indexed array by the 'name' key
+			usort($dxccIndexed, function ($a, $b) {
+				return strcmp($a['Dxccprefix'], $b['Dxccprefix']);
+			});
 
-		// Optionally reindex the sorted array back to associative format
-		$dxccSorted = [];
-		foreach ($dxccIndexed as $item) {
-			$key = array_search($item, $dxccMatrix);
-			$dxccSorted[$key] = $item;
-		}
-
-		if (isset($dxccSorted)) {
+			// Optionally reindex the sorted array back to associative format
+			$dxccSorted = [];
+			foreach ($dxccIndexed as $item) {
+				$key = array_search($item, $dxccMatrix);
+				$dxccSorted[$key] = $item;
+			}
 			return $dxccSorted;
 		} else {
 			return 0;
@@ -523,22 +522,23 @@ class WAE extends CI_Model {
 
 		$bandslots = $this->bands->get_worked_bands('dxcc');
 
-		$workedSat = $this->getSummaryByBand('SAT', $postdata, $this->location_list, $bandslots, true);
-		$dxccSummary['worked']['SAT'] += $workedSat[0]->regioncount;
+		if (isset($dxccSummary['worked']['SAT'])) {
+			$workedSat = $this->getSummaryByBand('SAT', $postdata, $this->location_list, $bandslots, true);
+			$dxccSummary['worked']['SAT'] += $workedSat[0]->regioncount;
+			$workedSat = $this->getSummaryByBand('SAT', $postdata, $this->location_list, $bandslots);
+			$dxccSummary['worked']['SAT'] += $workedSat[0]->count;
+		}
 
-		$workedSat = $this->getSummaryByBand('SAT', $postdata, $this->location_list, $bandslots);
-		$dxccSummary['worked']['SAT'] += $workedSat[0]->count;
+		if (isset($dxccSummary['confirmed']['SAT'])) {
+			$confirmedSat = $this->getSummaryByBandConfirmed('SAT', $postdata, $this->location_list, $bandslots, true);
+			$dxccSummary['confirmed']['SAT'] += $confirmedSat[0]->regioncount;
 
-		$confirmedSat = $this->getSummaryByBandConfirmed('SAT', $postdata, $this->location_list, $bandslots, true);
-		$dxccSummary['confirmed']['SAT'] += $confirmedSat[0]->regioncount;
-
-		$confirmedSat = $this->getSummaryByBandConfirmed('SAT', $postdata, $this->location_list, $bandslots);
-		$dxccSummary['confirmed']['SAT'] += $confirmedSat[0]->count;
-
+			$confirmedSat = $this->getSummaryByBandConfirmed('SAT', $postdata, $this->location_list, $bandslots);
+			$dxccSummary['confirmed']['SAT'] += $confirmedSat[0]->count;
+		}
 
 		$dxccSummary['worked']['Total'] = 0;
 		$dxccSummary['confirmed']['Total'] = 0;
-
 
 		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $this->location_list, $bandslots);
 		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $this->location_list, $bandslots);
