@@ -240,7 +240,7 @@ class API extends CI_Controller {
 			} else {
 				$return_msg[]=$custom_errors;
 				http_response_code(400);
-				echo json_encode(['status' => 'created', 'type' => $obj['type'], 'string' => $obj['string'], 'adif_count' => $adif_count, 'adif_errors' => $adif_errors, 'messages' => $return_msg ]);
+				echo json_encode(['status' => 'abort', 'type' => $obj['type'], 'string' => $obj['string'], 'adif_count' => $adif_count, 'adif_errors' => $adif_errors, 'messages' => $return_msg ]);
 			}
 
 
