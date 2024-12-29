@@ -479,6 +479,10 @@ class WAE extends CI_Model {
 			$dxccSummary['confirmed'][$band] = 0;
 		}
 
+		$this->load->model('bands');
+
+		$bandslots = $this->bands->get_worked_bands('dxcc');
+
 		//WAE
 		$confirmed = $this->getSummaryConfirmed($postdata, $this->location_list, true);
 
@@ -518,9 +522,6 @@ class WAE extends CI_Model {
 				$dxccSummary['worked'][$w->col_band] += $w->regioncount;
 			}
 		}
-		$this->load->model('bands');
-
-		$bandslots = $this->bands->get_worked_bands('dxcc');
 
 		if (isset($dxccSummary['worked']['SAT'])) {
 			$workedSat = $this->getSummaryByBand('SAT', $postdata, $this->location_list, $bandslots, true);
@@ -557,6 +558,7 @@ class WAE extends CI_Model {
 
 	function getSummary($postdata, $location_list, $wae = false) {
 		$bindings = [];
+
 		$sql = "SELECT count(distinct thcv.col_dxcc) as count, count(distinct thcv.col_region) regioncount, col_band FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
 		$sql .= " join dxcc_entities d on thcv.col_dxcc = d.adif";
@@ -573,6 +575,8 @@ class WAE extends CI_Model {
 			$bindings[] = $postdata['mode'];
 			$bindings[] = $postdata['mode'];
 		}
+
+		$sql .=	" and thcv.col_prop_mode !='SAT'";
 
 		// if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and d.end is null";
@@ -659,6 +663,7 @@ class WAE extends CI_Model {
 
 	function getSummaryConfirmed($postdata, $location_list, $wae = false) {
 		$bindings = [];
+
 		$sql = "SELECT count(distinct thcv.col_dxcc) as count, count(distinct thcv.col_region) regioncount, thcv.col_band FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
 		$sql .= " join dxcc_entities d on thcv.col_dxcc = d.adif";
@@ -675,6 +680,8 @@ class WAE extends CI_Model {
 			$bindings[] = $postdata['mode'];
 			$bindings[] = $postdata['mode'];
 		}
+
+		$sql .=	" and thcv.col_prop_mode !='SAT'";
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
