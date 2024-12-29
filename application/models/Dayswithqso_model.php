@@ -137,7 +137,7 @@ class Dayswithqso_model extends CI_Model
                 }
             }
 
-			if ($dateprev == $datecurr) {
+			if ($dateprev == $datecurr && $streak > 1) {
 				$streaks[$i]['highstreak'] = $streak;
 				$streaks[$i]['endstreak'] = $endstreak->format('Y-m-d');
 				$streaks[$i]['beginstreak'] = $endstreak->sub(new DateInterval('P'.($streak-1).'D'))->format('Y-m-d');
