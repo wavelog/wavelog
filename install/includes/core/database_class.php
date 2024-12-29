@@ -77,7 +77,7 @@ class Database {
 				throw new Exception("Connection Error: " . $link->connect_error);
 			}
 	
-			if (!$link->query("CREATE DATABASE IF NOT EXISTS " . $data['db_name'])) {
+			if (!$link->query("CREATE DATABASE IF NOT EXISTS `" . $data['db_name'] . "`")) {
 				throw new Exception("Unable to create database: " . $link->error);
 			}
 	
