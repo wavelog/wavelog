@@ -166,6 +166,10 @@ class API extends CI_Controller {
 
 		$this->load->model('stations');
 
+		if (!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+
 		$return_msg = array();
 		$return_count = 0;
 
@@ -192,6 +196,8 @@ class API extends CI_Controller {
 			echo json_encode(['status' => 'failed', 'reason' => "station id does not belong to the API key owner."]);
 			die();
 		}
+		$mystation=$this->stations->profile_clean($obj['station_profile_id']);
+		$mygrid=($mystation->station_gridsquare ?? '');
 
 		if($obj['type'] == "adif" && $obj['string'] != "") {
 			// Load the logbook model for adding QSO records
@@ -219,6 +225,9 @@ class API extends CI_Controller {
 					if(count($record) == 0) {
 						break;
 					};
+					if ((key_exists('gridsquare',$record)) && (($mygrid ?? '') != '') && (($record['gridsquare'] ?? '') != '') && (!(key_exists('distance',$record)))) {
+						$record['distance'] = $this->qra->distance($mygrid, $record['gridsquare'], 'K');
+					}
 					array_push($alladif,$record);
 					$adif_count++;
 				};
