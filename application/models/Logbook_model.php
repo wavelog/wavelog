@@ -3650,7 +3650,7 @@ class Logbook_model extends CI_Model {
 			$data['COL_CQZ'] = $cqz;
 		}
 
-		if ($dxcc != "") {
+		if (($dxcc ?? '') != '') {
 			$data['COL_DXCC'] = $dxcc;
 		}
 
