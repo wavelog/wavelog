@@ -2167,6 +2167,14 @@ $('#sats').change(function(){
             $('[class*="buttons"]').css("color", "white");
         }
 
+	 $(document).ready(function() {
+		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
+			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
+			$("#DataTables_Table_0_filter label input").trigger("input");
+		});
+        });
+
     </script>
 <?php } ?>
 
