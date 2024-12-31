@@ -860,6 +860,13 @@ function findincorrectcqzones() {
         if (isDarkModeTheme()) {
             $(".buttons-csv").css("color", "white");
         }
+		$(document).ready(function() {
+		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
+			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
+			$("#DataTables_Table_0_filter label input").trigger("input");
+		});
+        });
     });
 }
 
@@ -886,6 +893,13 @@ function findincorrectituzones() {
         if (isDarkModeTheme()) {
             $(".buttons-csv").css("color", "white");
         }
+		$(document).ready(function() {
+		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
+			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
+			$("#DataTables_Table_0_filter label input").trigger("input");
+		});
+        });
     });
 }
 
@@ -1258,7 +1272,7 @@ $($('#callsign')).on('keypress',function(e) {
 							    if(data.frequency_rx != null && data.frequency_rx != 0) {
                                     complementary_info.push('<b>RX:</b> ' + data.frequency_rx_formatted);
 							    }
-							    if( complementary_info.length > 0) { 
+							    if( complementary_info.length > 0) {
                                     text = text + separator + '(' + complementary_info.join(separator) + ')';
                                 }
 							    if (! $('#radio_cat_state').length) {
@@ -2166,6 +2180,14 @@ $('#sats').change(function(){
         if (isDarkModeTheme()) {
             $('[class*="buttons"]').css("color", "white");
         }
+
+	 $(document).ready(function() {
+		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
+			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
+			$("#DataTables_Table_0_filter label input").trigger("input");
+		});
+        });
 
     </script>
 <?php } ?>
