@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-12-31 08:21+0000\n"
+"POT-Creation-Date: 2024-12-31 18:32+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -61,8 +61,8 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
 #: application/controllers/Lotw.php:377 application/controllers/Lotw.php:400
-#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:813
-#: application/controllers/Lotw.php:918 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:735 application/controllers/Lotw.php:819
+#: application/controllers/Lotw.php:924 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:282 application/controllers/Qsl.php:12
@@ -1581,52 +1581,52 @@ msgstr ""
 "Nije pronađen sertifikat %s. Ako naziv datoteke sadrži 'key-only' to je "
 "tipično zahtev za sertifikat koji još nije obrađen od strane LoTW."
 
-#: application/controllers/Lotw.php:620
+#: application/controllers/Lotw.php:626
 msgid "LoTW ADIF Information"
 msgstr "Informacija o LoTW ADIF"
 
-#: application/controllers/Lotw.php:786 application/controllers/Lotw.php:789
+#: application/controllers/Lotw.php:792 application/controllers/Lotw.php:795
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr ""
 
-#: application/controllers/Lotw.php:789
+#: application/controllers/Lotw.php:795
 msgid "Username/password incorrect"
 msgstr ""
 
-#: application/controllers/Lotw.php:792
+#: application/controllers/Lotw.php:798
 msgid "LoTW login OK!"
 msgstr ""
 
-#: application/controllers/Lotw.php:796
+#: application/controllers/Lotw.php:802
 msgid "LoTW currently not available. Try again later."
 msgstr ""
 
-#: application/controllers/Lotw.php:801
+#: application/controllers/Lotw.php:807
 msgid "No LoTW credentials provided."
 msgstr ""
 
-#: application/controllers/Lotw.php:819
+#: application/controllers/Lotw.php:825
 msgid "LoTW ADIF Import"
 msgstr "Uvoz LoTW ADIF"
 
-#: application/controllers/Lotw.php:845 application/controllers/Lotw.php:953
+#: application/controllers/Lotw.php:851 application/controllers/Lotw.php:959
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Niste definisali vaše ARRL LoTW kredencijale!"
 
-#: application/controllers/Lotw.php:920
+#: application/controllers/Lotw.php:926
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 učitavanje"
 
-#: application/controllers/Lotw.php:998
+#: application/controllers/Lotw.php:1004
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Vaše ARRL korisničko ime i/ili lozinka su netačni."
 
-#: application/controllers/Lotw.php:1017 application/controllers/Lotw.php:1022
+#: application/controllers/Lotw.php:1023 application/controllers/Lotw.php:1028
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 je poslat"
 
-#: application/controllers/Lotw.php:1029
+#: application/controllers/Lotw.php:1035
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 nije poslat"
 
@@ -2650,21 +2650,21 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Nisu pronađeni profili stanice sa odgovarajućim HRDlog akreditivima."
 
-#: application/models/Logbook_model.php:3834
+#: application/models/Logbook_model.php:3838
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Prilikom uvoza QSO-ova, pogrešan je znak %s sa %s za %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:3835
+#: application/models/Logbook_model.php:3839
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Provjeri %s za savjete oko grešaka u ADIF poljima."
 
-#: application/models/Logbook_model.php:3847
+#: application/models/Logbook_model.php:3851
 msgid "QSO on"
 msgstr "Start QSO"
 
-#: application/models/Logbook_model.php:3847
+#: application/models/Logbook_model.php:3851
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2672,56 +2672,56 @@ msgstr ""
 "Pokušali ste uvesti QSO bez bilo kojeg znaka. Ovaj QSO nije uvežen, "
 "neispravan je"
 
-#: application/models/Logbook_model.php:4146
+#: application/models/Logbook_model.php:4150
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijema QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4157
+#: application/models/Logbook_model.php:4161
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4210
+#: application/models/Logbook_model.php:4214
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Datum učitavanja veza na Clublog je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4230
+#: application/models/Logbook_model.php:4234
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijama QSL sa LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4251
+#: application/models/Logbook_model.php:4255
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL na LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4532
+#: application/models/Logbook_model.php:4536
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "Duplikat za"
 
-#: application/models/Logbook_model.php:4593
+#: application/models/Logbook_model.php:4597
 msgid "QSO could not be matched"
 msgstr "QSO se ne poklapa"
 
-#: application/models/Logbook_model.php:4599
+#: application/models/Logbook_model.php:4603
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrđeno preko LoTW/Clublog/eQSL/Kontest"
 
-#: application/models/Logbook_model.php:4604
+#: application/models/Logbook_model.php:4608
 msgid "confirmed by award manager"
 msgstr "potvrđeno od strane menadžera za diplome"
 
-#: application/models/Logbook_model.php:4607
+#: application/models/Logbook_model.php:4611
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrđeno unakrsnom proverom DCL podataka"
 
-#: application/models/Logbook_model.php:4610
+#: application/models/Logbook_model.php:4614
 msgid "confirmation pending"
 msgstr "čeka potvrđivanje"
 
-#: application/models/Logbook_model.php:4613
+#: application/models/Logbook_model.php:4617
 msgid "unconfirmed"
 msgstr "nepotvrđeno"
 
-#: application/models/Logbook_model.php:4616
+#: application/models/Logbook_model.php:4620
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
 msgid "unknown"
