@@ -261,12 +261,10 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> <?= __("SAT Timers"); ?></a></li>
 								<?php if (ENVIRONMENT == "development") { ?>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?> <span class="badge text-bg-danger">Beta</span></a>
+									<li><a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?> <span class="badge text-bg-danger">Beta</span></a></li>
 								<?php } ?>
-								<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') == 99)) { ?> <!-- ADMIN -->
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?></a>
-								<?php } ?>
+									<li><a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?></a></li>
 							</ul>
 						</li>
 					<?php } ?>
