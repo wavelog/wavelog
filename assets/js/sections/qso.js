@@ -888,6 +888,7 @@ $('.mode').on('change', function () {
 		});
 	}
 	$('#frequency_rx').val("");
+	$("#callsign").blur();
 });
 
 /* Calculate Frequency */
