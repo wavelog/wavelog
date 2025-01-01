@@ -905,6 +905,7 @@ $('#band').on('change', function () {
 	$("#sat_name").val("");
 	$("#sat_mode").val("");
 	set_qrg();
+	$("#callsign").blur();
 });
 
 /* On Key up Calculate Bearing and Distance */
