@@ -532,9 +532,19 @@
                     <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
 
+					<?php if($row->COL_LOTW_QSL_RCVD == "Y" && $row->COL_LOTW_QSLRDATE == null) { ?>
+                    <h3><?= __("LoTW"); ?></h3>
+                    <p><?= __("This QSO is confirmed on LoTW."); ?></p>
+                    <?php } ?>
+
                     <?php if($row->COL_EQSL_QSL_RCVD == "Y" && $row->COL_EQSL_QSLRDATE != null) { ?>
                     <h3>eQSL</h3>
                         <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                    <?php } ?>
+
+					<?php if($row->COL_EQSL_QSL_RCVD == "Y" && $row->COL_EQSL_QSLRDATE == null) { ?>
+                    <h3>eQSL</h3>
+                        <p><?= __("This QSO is confirmed on eQSL."); ?></p>
                     <?php } ?>
 
                     <?php if($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { ?>
@@ -542,9 +552,19 @@
                         <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
 
+					<?php if($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_QRZCOM_QSO_DOWNLOAD_DATE == null) { ?>
+                    <h3>QRZ.com</h3>
+                        <p><?= __("This QSO is confirmed on QRZ.com."); ?></p>
+                    <?php } ?>
+
                     <?php if($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { ?>
                     <h3><?= __("Clublog"); ?></h3>
                         <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                    <?php } ?>
+
+					<?php if($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_CLUBLOG_QSO_DOWNLOAD_DATE == null) { ?>
+                    <h3><?= __("Clublog"); ?></h3>
+                        <p><?= __("This QSO is confirmed on Clublog."); ?></p>
                     <?php } ?>
             </div>
 
@@ -588,15 +608,15 @@
                             $hashtags .= " #".$row->COL_SIG." ".$row->COL_SIG_INFO;
                         }
                         if (!isset($distance)) {
-                            $twitter_string = urlencode("Just worked ".$row->COL_CALL." ");
+                            $twitter_string = "Just worked ".$row->COL_CALL." ";
                             if ($row->COL_DXCC != 0) {
-                               $twitter_string .= urlencode("in ".ucwords(strtolower(($row->COL_COUNTRY)))." ");
+                               $twitter_string .= "in ".ucwords(strtolower(($row->COL_COUNTRY)))." ";
                             }
-                            $twitter_string .= urlencode("on ".$twitter_band_sat." using ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)." ".$hashtags);
+                            $twitter_string .= "on ".$twitter_band_sat." using ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)." ".$hashtags;
                         } else {
-                            $twitter_string = urlencode("Just worked ".$row->COL_CALL." ");
+                            $twitter_string = "Just worked ".$row->COL_CALL." ";
                             if ($row->COL_DXCC != 0) {
-                               $twitter_string .= urlencode("in ".ucwords(strtolower(($row->COL_COUNTRY)))." ");
+                               $twitter_string .= "in ".ucwords(strtolower(($row->COL_COUNTRY)))." ";
                                if ($dxccFlag != null) {
                                   $twitter_string .= $dxccFlag." ";
                                }
@@ -613,14 +633,10 @@
                                   $distancestring = "(Grids: ".$row->COL_VUCC_GRIDS.")";
                                }
                             }
-                            $twitter_string .= urlencode($distancestring." on ".$twitter_band_sat." using ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)." ".$hashtags);
+                            $twitter_string .= $distancestring." on ".$twitter_band_sat." using ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)." ".$hashtags;
                         }
                     ?>
-
-                    <div style="display: inline-block;"><a class="btn btn-primary twitter-share-button" target="_blank" href="https://twitter.com/intent/tweet?text=<?php echo $twitter_string; ?>"><i class="fab fa-twitter"></i> Tweet</a></div>
-                    <div style="display: inline-block;"><a class="btn btn-primary twitter-share-button" target="_blank" href="https://bsky.app/intent/compose?text=<?php echo $twitter_string; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"/></svg> Post</a></div>
-                    <?php if($this->session->userdata('user_mastodon_url') != null) { echo '<div style="display: inline-block;"><a class="btn btn-primary twitter-share-button" target="_blank" href="'.$this->session->userdata('user_mastodon_url').'/share?text='.$twitter_string.'"><i class="fab fa-mastodon"></i> Toot</a></div>'; } ?>
-
+                    <button class="btn btn-primary" onClick='shareModal(<?php echo json_encode(['qso' => $row, 'twitter_string' => $twitter_string]); ?>);'><i class="fas fa-share-square"></i> <?= __("Share"); ?></button>
                 </div>
             </div>
         </div>

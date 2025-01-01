@@ -66,7 +66,7 @@
                         </tr>
                         <tr>
                             <td><?= __("System Time"); ?></td>
-                            <td><?php echo(date("Y-m-d H:i:s", time())); ?></td>
+                            <td><?php echo $system_time; ?></td>
                         </tr>
                         <tr class="blank-row">
                             <td> </td>

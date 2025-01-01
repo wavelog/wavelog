@@ -858,6 +858,8 @@ class Logbook extends CI_Controller {
 
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
+        	$id = str_replace('Ø', "0", $id);
+        	$id2 = str_replace('Ø', "0", $id2);
 		$fixedid = $id;
 
 		if ($id2 != "") {

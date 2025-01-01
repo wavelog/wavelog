@@ -98,7 +98,8 @@ class Search extends CI_Controller {
 	}
 
 	function search_result() {
-		$data['results'] = $this->fetchQueryResult(($this->input->post('search', TRUE) ?? ''), FALSE);
+        	$sstring = str_replace('Ø', "0", $this->input->post("method", TRUE) ?? '');
+		$data['results'] = $this->fetchQueryResult($sstring, FALSE);
 		$this->load->view('search/search_result_ajax', $data);
 	}
 

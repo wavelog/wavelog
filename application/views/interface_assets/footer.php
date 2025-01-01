@@ -30,6 +30,7 @@
     */
     var lang_general_word_qso_data = "<?= __("QSO Data"); ?>";
     var lang_general_edit_qso = "<?= __("Edit QSO"); ?>";
+    var lang_general_share_qso = "<?= __("Share QSO"); ?>";
     var lang_general_word_danger = "<?= __("DANGER"); ?>";
     var lang_general_word_error = "<?= __("ERROR"); ?>";
     var lang_general_word_attention = "<?= __("Attention"); ?>";
@@ -896,6 +897,13 @@ function findincorrectcqzones() {
         if (isDarkModeTheme()) {
             $(".buttons-csv").css("color", "white");
         }
+		$(document).ready(function() {
+		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
+			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
+			$("#DataTables_Table_0_filter label input").trigger("input");
+		});
+        });
     });
 }
 
@@ -922,6 +930,13 @@ function findincorrectituzones() {
         if (isDarkModeTheme()) {
             $(".buttons-csv").css("color", "white");
         }
+		$(document).ready(function() {
+		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
+			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
+			$("#DataTables_Table_0_filter label input").trigger("input");
+		});
+        });
     });
 }
 
@@ -929,7 +944,7 @@ function searchButtonPress() {
     if (event) { event.preventDefault(); }
     if ($('#callsign').val()) {
         let fixedcall = $('#callsign').val().trim();
-        $('#partial_view').load("logbook/search_result/" + fixedcall.replace('Ø', '0'), function() {
+        $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ø', '0'), function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
                 showQsoActionsMenu($(this).closest('.dropdown'));
@@ -1294,7 +1309,7 @@ $($('#callsign')).on('keypress',function(e) {
 							    if(data.frequency_rx != null && data.frequency_rx != 0) {
                                     complementary_info.push('<b>RX:</b> ' + data.frequency_rx_formatted);
 							    }
-							    if( complementary_info.length > 0) { 
+							    if( complementary_info.length > 0) {
                                     text = text + separator + '(' + complementary_info.join(separator) + ')';
                                 }
 							    if (! $('#radio_cat_state').length) {
@@ -2202,6 +2217,14 @@ $('#sats').change(function(){
         if (isDarkModeTheme()) {
             $('[class*="buttons"]').css("color", "white");
         }
+
+	 $(document).ready(function() {
+		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
+			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
+			$("#DataTables_Table_0_filter label input").trigger("input");
+		});
+        });
 
     </script>
 <?php } ?>

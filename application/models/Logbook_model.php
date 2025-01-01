@@ -3628,7 +3628,7 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid, $station_ids, $ant_path = null) {
+	function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid, $station_ids, $dxcc = null, $ant_path = null) {
 
 		$data = array(
 			'COL_LOTW_QSLRDATE' => $qsl_date,
@@ -3648,6 +3648,10 @@ class Logbook_model extends CI_Model {
 
 		if ($cqz != "") {
 			$data['COL_CQZ'] = $cqz;
+		}
+
+		if (($dxcc ?? '') != '') {
+			$data['COL_DXCC'] = $dxcc;
 		}
 
 		if ($ituz != "") {
@@ -4184,11 +4188,11 @@ class Logbook_model extends CI_Model {
 				$input_qsl_sent_via = "";
 			}
 
-			// QSL Message is always the one set in the station profile
-			if (!empty($station_qslmsg)) {
-				$qslmsg = $station_qslmsg;
+			// Try to import the QSL Message from the ADIF file, otherwise use the default message from the station profile
+			if (isset($record['qslmsg'])) {
+				$qslmsg = $record['qslmsg'];
 			} else {
-				$qslmsg = "";
+				$qslmsg = $station_qslmsg;
 			}
 
 			// Validate Clublog-Fields

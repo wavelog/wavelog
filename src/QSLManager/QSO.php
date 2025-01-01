@@ -726,7 +726,7 @@ class QSO
 
 		$eqslstring .= '>&#9650;</span>';
 
-		$eqslstring .= '<span ';
+		$eqslstring .= '<a ';
 
 		$timestamp = '';
 		if ($data['COL_EQSL_QSLRDATE'] != null) {
@@ -735,7 +735,8 @@ class QSO
 		if ($data['COL_EQSL_QSL_RCVD'] == "Y") {
 			$eqslstring .= "title=\"". __("Received");
 			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
-			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-green\"";
+			$eqslstring .= "\" data-bs-toggle=\"tooltip\" class=\"eqsl-green\" ";
+			$eqslstring .= "href=\"".site_url("eqsl/image/".$data['COL_PRIMARY_KEY'])."\"  data-fancybox=\"images\" data-width=\"528\" data-height=\"336\"";
 		} elseif ($data['COL_EQSL_QSL_RCVD'] == "I") {
 			$eqslstring .= "title=\"" . __("Invalid (Ignore)");
 			$eqslstring .= $timestamp != '' ? " ".$timestamp : '';
@@ -748,7 +749,7 @@ class QSO
 			$eqslstring .= "class=\"eqsl-red\"";
 		}
 
-		$eqslstring .= '>&#9660;</span>';
+		$eqslstring .= '>&#9660;</a>';
 
 		return $eqslstring;
 	}
