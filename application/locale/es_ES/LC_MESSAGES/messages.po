@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-01 09:13+0000\n"
+"POT-Creation-Date: 2025-01-01 15:34+0000\n"
 "PO-Revision-Date: 2024-12-28 11:43+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1070,6 +1070,7 @@ msgstr "QSL"
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:563
 #: application/views/user/edit.php:659 application/views/view_log/qso.php:530
+#: application/views/view_log/qso.php:535
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1118,7 +1119,8 @@ msgstr "eQSL"
 #: application/views/update/index.php:20 application/views/user/edit.php:566
 #: application/views/user/edit.php:683
 #: application/views/view_log/partial/log_ajax.php:133
-#: application/views/view_log/qso.php:545
+#: application/views/view_log/qso.php:560
+#: application/views/view_log/qso.php:565
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1270,7 +1272,7 @@ msgstr "RST (Recibida)"
 #: application/views/view_log/partial/log.php:13
 #: application/views/view_log/partial/log_ajax.php:7
 #: application/views/view_log/qso.php:330
-#: application/views/view_log/qso.php:647
+#: application/views/view_log/qso.php:667
 #: application/views/visitor/index.php:15
 msgid "Country"
 msgstr "País"
@@ -1367,7 +1369,7 @@ msgstr "Estado"
 #: application/views/user/edit.php:282 application/views/user/edit.php:304
 #: application/views/user/edit.php:327 application/views/user/profile.php:34
 #: application/views/view_log/partial/log_ajax.php:13
-#: application/views/view_log/qso.php:634
+#: application/views/view_log/qso.php:654
 #: application/views/visitor/index.php:27
 msgid "Gridsquare"
 msgstr "Cuadrícula"
@@ -1514,7 +1516,7 @@ msgstr "Frecuencia"
 #: application/views/user/edit.php:284 application/views/user/edit.php:306
 #: application/views/user/edit.php:329
 #: application/views/view_log/partial/log_ajax.php:17
-#: application/views/view_log/qso.php:654
+#: application/views/view_log/qso.php:674
 #: application/views/visitor/index.php:39
 msgid "Operator"
 msgstr "Operador"
@@ -1542,7 +1544,7 @@ msgstr "Operador"
 #: application/views/timeplotter/index.php:33
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:334
-#: application/views/view_log/qso.php:648
+#: application/views/view_log/qso.php:668
 msgid "Deleted DXCC"
 msgstr "DXCC Eliminado"
 
@@ -1652,7 +1654,7 @@ msgstr "Modo de edición"
 #: application/views/qso/edit_ajax.php:36
 #: application/views/qso/edit_ajax.php:407 application/views/qso/index.php:41
 #: application/views/qso/index.php:609 application/views/view_log/qso.php:14
-#: application/views/view_log/qso.php:709
+#: application/views/view_log/qso.php:729
 msgid "Notes"
 msgstr "Notas"
 
@@ -1997,7 +1999,7 @@ msgstr "Editar"
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:55
-#: application/views/view_log/qso.php:732
+#: application/views/view_log/qso.php:752
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -3415,7 +3417,7 @@ msgstr "¡Nada encontrado!"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/user/edit.php:123 application/views/user/index.php:4
 #: application/views/user/index.php:45 application/views/user/profile.php:29
-#: application/views/view_log/qso.php:82 application/views/view_log/qso.php:626
+#: application/views/view_log/qso.php:82 application/views/view_log/qso.php:646
 msgid "Callsign"
 msgstr "Indicativo"
 
@@ -3596,7 +3598,7 @@ msgstr "Importante"
 msgid "Log Files must have the file type *.adi"
 msgstr "Los archivos de registro deben tener el tipo de archivo *.adi"
 
-#: application/views/adif/import.php:56 application/views/view_log/qso.php:741
+#: application/views/adif/import.php:56 application/views/view_log/qso.php:761
 msgid "Maximum file upload size is "
 msgstr "El tamaño máximo del archivo subido es "
 
@@ -3608,7 +3610,7 @@ msgstr "El tamaño máximo del archivo subido es "
 #: application/views/interface_assets/footer.php:37
 #: application/views/qrz/export.php:75 application/views/qrz/export.php:96
 #: application/views/stationsetup/stationsetup.php:111
-#: application/views/view_log/qso.php:741
+#: application/views/view_log/qso.php:761
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
 msgid "Warning"
@@ -4865,7 +4867,7 @@ msgstr "Mostrar mapa de IOTA"
 #: application/views/user/edit.php:307 application/views/user/edit.php:330
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:213
-#: application/views/view_log/qso.php:630
+#: application/views/view_log/qso.php:650
 msgid "Name"
 msgstr "Nombre"
 
@@ -4965,7 +4967,7 @@ msgstr "Número"
 
 #: application/views/awards/jcc/index.php:152
 #: application/views/search/result.php:21
-#: application/views/view_log/qso.php:640
+#: application/views/view_log/qso.php:660
 msgid "City"
 msgstr "Ciudad"
 
@@ -5015,7 +5017,7 @@ msgstr ""
 #: application/views/station_profile/create.php:177
 #: application/views/station_profile/edit.php:272
 #: application/views/user/edit.php:595 application/views/view_log/qso.php:402
-#: application/views/view_log/qso.php:689
+#: application/views/view_log/qso.php:709
 msgid "POTA Reference(s)"
 msgstr "Referencia POTA"
 
@@ -5362,7 +5364,7 @@ msgstr ""
 #: application/views/station_profile/create.php:171
 #: application/views/station_profile/edit.php:259
 #: application/views/user/edit.php:591 application/views/view_log/qso.php:395
-#: application/views/view_log/qso.php:682
+#: application/views/view_log/qso.php:702
 msgid "WWFF Reference"
 msgstr "Referencia WWFF"
 
@@ -5522,7 +5524,7 @@ msgstr ""
 #: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:390
 #: application/views/qso/index.php:255 application/views/qso/index.php:546
 #: application/views/user/edit.php:599 application/views/view_log/qso.php:424
-#: application/views/view_log/qso.php:696
+#: application/views/view_log/qso.php:716
 msgid "Sig"
 msgstr "Señal"
 
@@ -7614,7 +7616,7 @@ msgstr "Fecha QSL"
 #: application/views/interface_assets/footer.php:2469
 #: application/views/interface_assets/footer.php:2487
 #: application/views/qslcard/index.php:66
-#: application/views/view_log/qso.php:733
+#: application/views/view_log/qso.php:753
 msgid "View"
 msgstr "Ver."
 
@@ -7732,7 +7734,7 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:416
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:398
-#: application/views/view_log/qso.php:556
+#: application/views/view_log/qso.php:576
 msgid "Edit QSO"
 msgstr "Editar QSO"
 
@@ -7938,7 +7940,7 @@ msgstr "Tarjeta eQSL para "
 
 #: application/views/interface_assets/footer.php:2441
 #: application/views/interface_assets/footer.php:2480
-#: application/views/view_log/qso.php:723
+#: application/views/view_log/qso.php:743
 msgid "QSL image file"
 msgstr "Archivo de imagen QSL"
 
@@ -9890,20 +9892,20 @@ msgstr "Enviar solicitud de no en el registro"
 #: application/views/user/edit.php:478
 #: application/views/view_log/partial/log.php:22
 #: application/views/view_log/partial/log_ajax.php:136
-#: application/views/view_log/qso.php:622
-#: application/views/view_log/qso.php:626
-#: application/views/view_log/qso.php:630
-#: application/views/view_log/qso.php:634
-#: application/views/view_log/qso.php:640
-#: application/views/view_log/qso.php:647
+#: application/views/view_log/qso.php:642
+#: application/views/view_log/qso.php:646
+#: application/views/view_log/qso.php:650
 #: application/views/view_log/qso.php:654
-#: application/views/view_log/qso.php:661
-#: application/views/view_log/qso.php:668
-#: application/views/view_log/qso.php:675
-#: application/views/view_log/qso.php:682
-#: application/views/view_log/qso.php:689
-#: application/views/view_log/qso.php:696
-#: application/views/view_log/qso.php:701
+#: application/views/view_log/qso.php:660
+#: application/views/view_log/qso.php:667
+#: application/views/view_log/qso.php:674
+#: application/views/view_log/qso.php:681
+#: application/views/view_log/qso.php:688
+#: application/views/view_log/qso.php:695
+#: application/views/view_log/qso.php:702
+#: application/views/view_log/qso.php:709
+#: application/views/view_log/qso.php:716
+#: application/views/view_log/qso.php:721
 msgid "Station"
 msgstr "Estación"
 
@@ -10289,7 +10291,7 @@ msgstr "Especifique el valor de potencia en Watios (W). Incluya solo números."
 
 #: application/views/qso/edit_ajax.php:134 application/views/qso/index.php:353
 #: application/views/reg1test/index.php:114
-#: application/views/view_log/qso.php:661
+#: application/views/view_log/qso.php:681
 msgid "Transmit Power (W)"
 msgstr "Potencia de transmisión (W)"
 
@@ -10347,7 +10349,7 @@ msgstr "Elevación de la antena en grados decimales."
 #: application/views/qso/edit_ajax.php:394 application/views/qso/index.php:262
 #: application/views/qso/index.php:552 application/views/user/edit.php:599
 #: application/views/view_log/qso.php:440
-#: application/views/view_log/qso.php:701
+#: application/views/view_log/qso.php:721
 msgid "Sig Info"
 msgstr "Información de señal"
 
@@ -10484,7 +10486,7 @@ msgstr "Buscar DXCluster para el último Spot"
 #: application/views/station_profile/create.php:149
 #: application/views/station_profile/edit.php:218
 #: application/views/user/edit.php:583 application/views/view_log/qso.php:381
-#: application/views/view_log/qso.php:668
+#: application/views/view_log/qso.php:688
 msgid "IOTA Reference"
 msgstr "Referencia IOTA"
 
@@ -10492,7 +10494,7 @@ msgstr "Referencia IOTA"
 #: application/views/station_profile/create.php:165
 #: application/views/station_profile/edit.php:246
 #: application/views/user/edit.php:587 application/views/view_log/qso.php:388
-#: application/views/view_log/qso.php:675
+#: application/views/view_log/qso.php:695
 msgid "SOTA Reference"
 msgstr "Referencia SOTA"
 
@@ -11165,35 +11167,35 @@ msgstr "Marcar QSL como Enviada (Directa)"
 #: application/views/search/search_result_ajax.php:429
 #: application/views/view_log/partial/log.php:148
 #: application/views/view_log/partial/log_ajax.php:414
-#: application/views/view_log/qso.php:771
+#: application/views/view_log/qso.php:791
 msgid "Mark QSL Received (Bureau)"
 msgstr "Marcar QSL como Recibida (Buró)"
 
 #: application/views/search/search_result_ajax.php:430
 #: application/views/view_log/partial/log.php:149
 #: application/views/view_log/partial/log_ajax.php:415
-#: application/views/view_log/qso.php:773
+#: application/views/view_log/qso.php:793
 msgid "Mark QSL Received (Direct)"
 msgstr "Marcar QSL como Recibida (Directa)"
 
 #: application/views/search/search_result_ajax.php:431
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:405
-#: application/views/view_log/qso.php:781
+#: application/views/view_log/qso.php:801
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "Marcar QSL como Solicitada (Buró)"
 
 #: application/views/search/search_result_ajax.php:432
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:406
-#: application/views/view_log/qso.php:783
+#: application/views/view_log/qso.php:803
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "Marcar QSL como Solicitada (Directa)"
 
 #: application/views/search/search_result_ajax.php:433
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:407
-#: application/views/view_log/qso.php:785
+#: application/views/view_log/qso.php:805
 msgid "Mark QSL Card Not Required"
 msgstr "Marcar QSL como no Requerida"
 
@@ -13100,41 +13102,57 @@ msgid "This station uses LoTW."
 msgstr "Esta estacion usa LoTW."
 
 #: application/views/view_log/qso.php:531
-#: application/views/view_log/qso.php:536
 #: application/views/view_log/qso.php:541
-#: application/views/view_log/qso.php:546
+#: application/views/view_log/qso.php:551
+#: application/views/view_log/qso.php:561
 msgid "This QSO was confirmed on"
 msgstr "Esta QSO fue confirmada en"
 
-#: application/views/view_log/qso.php:557
+#: application/views/view_log/qso.php:536
+msgid "This QSO is confirmed on LoTW."
+msgstr ""
+
+#: application/views/view_log/qso.php:546
+msgid "This QSO is confirmed on eQSL."
+msgstr ""
+
+#: application/views/view_log/qso.php:556
+msgid "This QSO is confirmed on QRZ.com."
+msgstr ""
+
+#: application/views/view_log/qso.php:566
+msgid "This QSO is confirmed on Clublog."
+msgstr ""
+
+#: application/views/view_log/qso.php:577
 msgid "More QSOs"
 msgstr "Más QSOs"
 
-#: application/views/view_log/qso.php:616
+#: application/views/view_log/qso.php:636
 msgid "Share"
 msgstr "Compartir"
 
-#: application/views/view_log/qso.php:622
+#: application/views/view_log/qso.php:642
 msgid "Details"
 msgstr "Detalles"
 
-#: application/views/view_log/qso.php:749
+#: application/views/view_log/qso.php:769
 msgid "Uploaded QSL Card front image"
 msgstr "Imagen delantera de la QSL subida"
 
-#: application/views/view_log/qso.php:754
+#: application/views/view_log/qso.php:774
 msgid "Upload QSL Card image"
 msgstr "Subir QSL"
 
-#: application/views/view_log/qso.php:759
+#: application/views/view_log/qso.php:779
 msgid "Uploaded QSL Card back image"
 msgstr "Imagen trasera de la QSL subida"
 
-#: application/views/view_log/qso.php:775
+#: application/views/view_log/qso.php:795
 msgid "Mark QSL Received (Electronic)"
 msgstr "Marcar QSL como Recibida (Electrónico)"
 
-#: application/views/view_log/qso.php:798
+#: application/views/view_log/qso.php:818
 msgid "eQSL picture"
 msgstr "imagen de eQSL"
 
