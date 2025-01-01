@@ -18,11 +18,6 @@
 	var lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
 	var lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
 
-	/*Pull from localStorage to set form input value*/
-	if (localStorage.hasOwnProperty('qsoresults')) {
-		document.getElementById('qsoResults').value = localStorage.getItem('qsoresults');
-	}
-
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
