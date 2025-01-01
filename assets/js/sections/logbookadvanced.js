@@ -436,6 +436,8 @@ $(document).ready(function () {
 		$("#qsoList_wrapper").attr("Hidden", false);
 		$("#qsoList_info").attr("Hidden", false);
 
+		localStorage.setItem('qsoresults', this.qsoresults.value);
+
 		$('#searchButton').prop("disabled", true).addClass("running");
 		$.ajax({
 			url: this.action,
