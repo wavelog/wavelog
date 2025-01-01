@@ -115,6 +115,7 @@
 					<th><?= __("DXCC"); ?></th>
 					<th style="width:150px;"><?= __("Spotter"); ?></th>
 					<th><?= __("Message"); ?></th>
+					<th><?= __("Last Worked"); ?></th>
 				</tr>
 			</thead>
 
