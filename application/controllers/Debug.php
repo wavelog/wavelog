@@ -27,6 +27,14 @@ class Debug extends CI_Controller
 		$footerData = [];
 		$footerData['scripts'] = ['assets/js/sections/debug.js'];
 
+		// Get Custom Date format
+		if ($this->session->userdata('user_date_format')) {
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+		$data['system_time'] = date($custom_date_format . " H:i:s", time());
+
 		$data['running_version'] = $this->optionslib->get_option('version');
 		$data['latest_release'] = $this->optionslib->get_option('latest_release');
 
