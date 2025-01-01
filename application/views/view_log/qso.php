@@ -531,9 +531,19 @@
                     <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
 
+					<?php if($row->COL_LOTW_QSL_RCVD == "Y" && $row->COL_LOTW_QSLRDATE == null) { ?>
+                    <h3><?= __("LoTW"); ?></h3>
+                    <p><?= __("This QSO is confirmed on LoTW."); ?></p>
+                    <?php } ?>
+
                     <?php if($row->COL_EQSL_QSL_RCVD == "Y" && $row->COL_EQSL_QSLRDATE != null) { ?>
                     <h3>eQSL</h3>
                         <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                    <?php } ?>
+
+					<?php if($row->COL_EQSL_QSL_RCVD == "Y" && $row->COL_EQSL_QSLRDATE == null) { ?>
+                    <h3>eQSL</h3>
+                        <p><?= __("This QSO is confirmed on eQSL."); ?></p>
                     <?php } ?>
 
                     <?php if($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { ?>
@@ -541,9 +551,19 @@
                         <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
 
+					<?php if($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_QRZCOM_QSO_DOWNLOAD_DATE == null) { ?>
+                    <h3>QRZ.com</h3>
+                        <p><?= __("This QSO is confirmed on QRZ.com."); ?></p>
+                    <?php } ?>
+
                     <?php if($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { ?>
                     <h3><?= __("Clublog"); ?></h3>
                         <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                    <?php } ?>
+
+					<?php if($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_CLUBLOG_QSO_DOWNLOAD_DATE == null) { ?>
+                    <h3><?= __("Clublog"); ?></h3>
+                        <p><?= __("This QSO is confirmed on Clublog."); ?></p>
                     <?php } ?>
             </div>
 
