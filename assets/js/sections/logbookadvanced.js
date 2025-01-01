@@ -414,7 +414,9 @@ $(document).ready(function () {
 		document.getElementById('qsoResults').value = localStorage.getItem('qsoresults');
 	}
 	if (localStorage.hasOwnProperty('selectedlocations')) {
-		document.getElementById('de').value = localStorage.getItem('selectedlocations');
+		const selectedLocations = localStorage.getItem('selectedlocations');
+		const locationsArray = selectedLocations ? selectedLocations.split(',') : [];
+		$('#de').multiselect('select', locationsArray);
 	}
 
 	$('#searchForm').submit(function (e) {
