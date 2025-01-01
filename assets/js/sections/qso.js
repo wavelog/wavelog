@@ -504,6 +504,8 @@ function reset_fields() {
 	$('#comment').val("");
 	$('#country').val("");
 	$('#continent').val("");
+	$('#email').val("");
+	$('#region').val("");
 	$('#lotw_info').text("");
 	$('#lotw_info').attr('data-bs-original-title', "");
 	$('#lotw_info').removeClass("lotw_info_red");
@@ -600,13 +602,13 @@ $("#callsign").on("focusout", function () {
 		var callsign = find_callsign;
 
 		find_callsign = find_callsign.replace(/\//g, "-");
-		find_callsign = find_callsign.replace('Ø', '0');
+		find_callsign = find_callsign.replaceAll('Ø', '0');
 
 		// Replace / in a callsign with - to stop urls breaking
 		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
 
 			// Make sure the typed callsign and json result match
-			if ($('#callsign').val().toUpperCase().replace('Ø', '0') == result.callsign) {
+			if ($('#callsign').val().toUpperCase().replaceAll('Ø', '0') == result.callsign) {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
@@ -1173,6 +1175,8 @@ function resetDefaultQSOFields() {
 	$('#locator_info').text("");
 	$('#country').val("");
 	$('#continent').val("");
+	$('#email').val("");
+	$('#region').val("");
 	$('#dxcc_id').val("").multiselect('refresh');
 	$('#cqz').val("");
 	$('#ituz').val("");

@@ -163,3 +163,32 @@ function months() {
 		}
 	});
 }
+
+$(function() {
+	var pdata;
+	function render_punchcard() {
+		$.ajax({
+			url: base_url + 'index.php/dayswithqso/get_punchvals/' + $("#yr option:selected").val(),
+			success: function (data) {
+				pdata=data;
+
+				$('#js-glanceyear').empty().glanceyear(
+					pdata,
+					{
+						eventClick: function(e) {
+							$('#debug').html('Date: '+ e.date + ', Count: ' + e.count);
+						},
+						showToday: false,
+						today: new Date($("#yr option:selected").val() + '-12-31T23:59:00')
+					}
+
+				);
+			}
+		});
+	}
+
+	render_punchcard();
+	$("#yr").on('change',function(e) {
+		render_punchcard();
+	});
+});

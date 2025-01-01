@@ -319,8 +319,22 @@
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="row">
+									</div>
+									<div class="row">
+										<div class="mb-3 col-sm-6">
+                                            <label for="region"><?= __("Region"); ?></label>
+                                            <select class="form-select" id="region_edit" name="region">
+                                                    <option value=''<?php if (($qso->COL_REGION ?? '') == '') echo " selected=\"selected\""; ?>></option>
+													<option value="NONE"<?php if (($qso->COL_REGION ?? '') == 'NONE') echo " selected=\"selected\""; ?>><?= __("NONE"); ?></option>
+													<option value="AI"<?php if (($qso->COL_REGION ?? '') == 'AI') echo " selected=\"selected\""; ?>><?= __("African Italy"); ?></option>
+													<option value="BI"<?php if (($qso->COL_REGION ?? '') == 'BI') echo " selected=\"selected\""; ?>><?= __("Bear Island"); ?></option>
+													<option value="ET"<?php if (($qso->COL_REGION ?? '') == 'ET') echo " selected=\"selected\""; ?>><?= __("European Turkey"); ?></option>
+													<option value="IV"<?php if (($qso->COL_REGION ?? '') == 'IV') echo " selected=\"selected\""; ?>><?= __("ITU Vienna"); ?></option>
+													<option value="KO"<?php if (($qso->COL_REGION ?? '') == 'KO') echo " selected=\"selected\""; ?>><?= __("Kosovo"); ?></option>
+													<option value="SI"<?php if (($qso->COL_REGION ?? '') == 'SI') echo " selected=\"selected\""; ?>><?= __("Shetland Islands"); ?></option>
+													<option value="SY"<?php if (($qso->COL_REGION ?? '') == 'SY') echo " selected=\"selected\""; ?>><?= __("Sicily"); ?></option>
+                                            </select>
+                                        </div>
                                         <div class="mb-3 col-sm-6">
                                             <?php
                                             $CI = &get_instance();

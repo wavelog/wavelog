@@ -950,10 +950,16 @@ function statesDropdown(states, set_state = null, dropdown = '#stateDropdown') {
     if (states.status == 'ok') {
         dropdown.prop('disabled', false);
         $.each(states.data, function(index, state) {
-            var option = $('<option>', {
-                value: state.state,
-                text: state.subdivision + ' (' + state.state + ')'
-            });
+            var d_text = '';
+            if (state.deprecated == '1') {
+                d_text = '\u26A0\uFE0F [' + lang_general_states_deprecated + '] - ';
+            }
+            if (state.state == set_state || state.deprecated != '1') {
+                var option = $('<option>', {
+                    value: state.state,
+                    text: d_text + state.subdivision + ' (' + state.state + ')'
+                });
+            }
             dropdown.append(option);
         });
         $(dropdown).val(set_state);
@@ -1151,6 +1157,30 @@ function enableMap() {
     map.doubleClickZoom.enable();
     map.boxZoom.enable();
     map.keyboard.enable();
+}
+
+function shareModal(qso_data) {
+    $.ajax({
+        url: base_url + 'index.php/qso/getShareModal',
+        type: 'post',
+        data: {
+            qso_data: qso_data
+        },
+        success: function (html) {
+            BootstrapDialog.show({
+                title: lang_general_share_qso,
+                cssClass: 'bg-black bg-opacity-50',
+                nl2br: false,
+                message: html,
+                buttons: [{
+                    label: lang_admin_close,
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+        }
+    });
 }
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +

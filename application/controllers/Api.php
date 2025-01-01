@@ -166,6 +166,10 @@ class API extends CI_Controller {
 
 		$this->load->model('stations');
 
+		if (!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+
 		$return_msg = array();
 		$return_count = 0;
 
@@ -192,6 +196,8 @@ class API extends CI_Controller {
 			echo json_encode(['status' => 'failed', 'reason' => "station id does not belong to the API key owner."]);
 			die();
 		}
+		$mystation=$this->stations->profile_clean($obj['station_profile_id']);
+		$mygrid=($mystation->station_gridsquare ?? '');
 
 		if($obj['type'] == "adif" && $obj['string'] != "") {
 			// Load the logbook model for adding QSO records
@@ -219,12 +225,15 @@ class API extends CI_Controller {
 					if(count($record) == 0) {
 						break;
 					};
+					if ((key_exists('gridsquare',$record)) && (($mygrid ?? '') != '') && (($record['gridsquare'] ?? '') != '') && (!(key_exists('distance',$record)))) {
+						$record['distance'] = $this->qra->distance($mygrid, $record['gridsquare'], 'K');
+					}
 					array_push($alladif,$record);
 					$adif_count++;
 				};
 				$record='';	// free memory
 				gc_collect_cycles();
-				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, false, true, false, true, false);
+				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, false, false, true, false, true, false);
 				if ($custom_errors) {
 					$adif_errors++;
 				}
@@ -234,8 +243,15 @@ class API extends CI_Controller {
 				$return_msg[]='Dryrun works';
 			}
 
-			http_response_code(201);
-			echo json_encode(['status' => 'created', 'type' => $obj['type'], 'string' => $obj['string'], 'adif_count' => $adif_count, 'adif_errors' => $adif_errors, 'messages' => $return_msg ]);
+			if ($adif_errors == 0) {
+				http_response_code(201);
+				echo json_encode(['status' => 'created', 'type' => $obj['type'], 'string' => $obj['string'], 'adif_count' => $adif_count, 'adif_errors' => $adif_errors, 'messages' => $return_msg ]);
+			} else {
+				$return_msg[]=$custom_errors;
+				http_response_code(400);
+				echo json_encode(['status' => 'abort', 'type' => $obj['type'], 'string' => $obj['string'], 'adif_count' => $adif_count, 'adif_errors' => $adif_errors, 'messages' => $return_msg ]);
+			}
+
 
 		}
 

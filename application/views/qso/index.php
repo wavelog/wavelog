@@ -383,39 +383,57 @@
 
                   </select>
               </div>
-              <div class="mb-3">
-                  <label for="continent"><?= __("Continent"); ?></label>
-                  <select class="form-select" id="continent" name="continent">
-                      <option value=""></option>
-                      <option value="AF"><?= __("Africa"); ?></option>
-                      <option value="AN"><?= __("Antarctica"); ?></option>
-                      <option value="AS"><?= __("Asia"); ?></option>
-                      <option value="EU"><?= __("Europe"); ?></option>
-                      <option value="NA"><?= __("North America"); ?></option>
-                      <option value="OC"><?= __("Oceania"); ?></option>
-                      <option value="SA"><?= __("South America"); ?></option>
-                  </select>
-              </div>
-              <div class="mb-3">
-                  <label for="cqz"><?= __("CQ Zone"); ?></label>
-                  <select class="form-select" id="cqz" name="cqz" required>
-                      <?php
-                      for ($i = 0; $i<=40; $i++) {
-                          echo '<option value="'. $i . '">'. $i .'</option>';
-                      }
-                      ?>
-                  </select>
-              </div>
-              <div class="mb-3">
-                  <label for="ituz"><?= __("ITU Zone"); ?></label>
-                  <select class="form-select" id="ituz" name="ituz">
-                      <?php
-                      for ($i = 0; $i<=90; $i++) {
-                          echo '<option value="'. $i . '">'. $i .'</option>';
-                      }
-                      ?>
-                  </select>
-              </div>
+			  <div class="row">
+				  <div class="mb-3 col">
+					  <label for="continent"><?= __("Continent"); ?></label>
+					  <select class="form-select" id="continent" name="continent">
+						  <option value=""></option>
+						  <option value="AF"><?= __("Africa"); ?></option>
+						  <option value="AN"><?= __("Antarctica"); ?></option>
+						  <option value="AS"><?= __("Asia"); ?></option>
+						  <option value="EU"><?= __("Europe"); ?></option>
+						  <option value="NA"><?= __("North America"); ?></option>
+						  <option value="OC"><?= __("Oceania"); ?></option>
+						  <option value="SA"><?= __("South America"); ?></option>
+					  </select>
+				  </div>
+				  <div class="mb-3 col">
+					  <label for="region"><?= __("Region"); ?></label>
+					  <select class="form-select" id="region" name="region">
+						  <option value="" selected></option>
+						  <option value="NONE"><?= __("NONE"); ?></option>
+						  <option value="AI"><?= __("African Italy"); ?></option>
+						  <option value="BI"><?= __("Bear Island"); ?></option>
+						  <option value="ET"><?= __("European Turkey"); ?></option>
+						  <option value="IV"><?= __("ITU Vienna"); ?></option>
+						  <option value="KO"><?= __("Kosovo"); ?></option>
+						  <option value="SI"><?= __("Shetland Islands"); ?></option>
+						  <option value="SY"><?= __("Sicily"); ?></option>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="row">
+				  <div class="mb-3 col">
+					  <label for="cqz"><?= __("CQ Zone"); ?></label>
+					  <select class="form-select" id="cqz" name="cqz" required>
+						  <?php
+						  for ($i = 0; $i<=40; $i++) {
+							  echo '<option value="'. $i . '">'. $i .'</option>';
+						  }
+						  ?>
+					  </select>
+				  </div>
+				  <div class="mb-3 col">
+					  <label for="ituz"><?= __("ITU Zone"); ?></label>
+					  <select class="form-select" id="ituz" name="ituz">
+						  <?php
+						  for ($i = 0; $i<=90; $i++) {
+							  echo '<option value="'. $i . '">'. $i .'</option>';
+						  }
+						  ?>
+					  </select>
+				  </div>
+			  </div>
 
             <div class="mb-3">
               <div class="row">

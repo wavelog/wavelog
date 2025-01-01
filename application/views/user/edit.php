@@ -485,7 +485,7 @@
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="station">
 												<?php foreach($map_icon_select['station'] as $val) {
-													echo "<label data-value='".$val."'>".(($val=="0")?__("Not display"):("<i class='".$val."'></i>"))."</label>";
+													echo "<label data-value='".$val."'>".(($val=="0")?__("Not displayed"):("<i class='".$val."'></i>"))."</label>";
 												} ?>
 											</div>
 										</div>
@@ -706,16 +706,18 @@
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Logbook of The World (LoTW) Username"); ?></label>
-										<input class="form-control" type="text" name="user_lotw_name" value="<?php if(isset($user_lotw_name)) { echo $user_lotw_name; } ?>" />
+										<input class="form-control" type="text" name="user_lotw_name" id="user_lotw_name" value="<?php if(isset($user_lotw_name)) { echo $user_lotw_name; } ?>" />
 										<?php if(isset($userlotwname_error)) { echo "<small class=\"badge bg-danger\">".$userlotwname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?= __("Logbook of The World (LoTW) Password"); ?></label>
 										<div class="input-group">
-											<input class="form-control" type="password" name="user_lotw_password" value="<?php if(isset($user_lotw_password)) { echo $user_lotw_password; } ?>" />
+											<input class="form-control" type="password" id="user_lotw_password" name="user_lotw_password" value="<?php if(isset($user_lotw_password)) { echo $user_lotw_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
+											<button class="btn btn-secondary ld-ext-right" type="button" id="lotw_test_btn"><?= __("Test Login"); ?><div class="ld ld-ring ld-spin"></div></button>
 										</div>
+										<div class="alert mt-3" style="display: none;" id="lotw_test_txt"></div>
 										<?php if(isset($lotwpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$lotwpassword_error."</small>";
 											} else if (!isset($user_add)) { ?>

@@ -137,7 +137,11 @@ class Dayswithqso_model extends CI_Model
                 }
             }
 
-
+			if ($dateprev == $datecurr && $streak > 1) {
+				$streaks[$i]['highstreak'] = $streak;
+				$streaks[$i]['endstreak'] = $endstreak->format('Y-m-d');
+				$streaks[$i]['beginstreak'] = $endstreak->sub(new DateInterval('P'.($streak-1).'D'))->format('Y-m-d');
+			}
 
             if (isset($streaks) && is_array($streaks)) {
                 usort($streaks, array($this,'compareStreak'));      // Sort array, highest streak first
@@ -176,6 +180,28 @@ class Dayswithqso_model extends CI_Model
         $query = $this->db->query($sql);
 
         return $query->result();
+    }
+
+    function getPunchvals($yr) {
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+	    if (!$logbooks_locations_array) {
+		    return null;
+	    }
+
+	    $location_list = "'".implode("','",$logbooks_locations_array)."'";
+	    $bindings=[];
+
+	    $sql = "select count(1) as qsos, date_format(col_time_on,'%Y-%c-%e') as date from "
+		    .$this->config->item('table_name'). " thcv
+		    where station_id in (" . $location_list . ") and col_time_on >= ? and col_time_on <= ? group by date_format(col_time_on,'%Y-%c-%e')";
+	    $bindings[]=$yr.'-01-01 00:00:00';
+	    $bindings[]=$yr.'-12-31 23:59:59';
+
+	    $query = $this->db->query($sql,$bindings);
+
+	    return $query->result();
     }
 
 	/*

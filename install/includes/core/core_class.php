@@ -24,13 +24,6 @@ class Core
 			$errors[] = "DB Username is missing.";
 		}
 
-		// Validate the password
-		if (isset($data['db_password']) and !empty($data['db_password'])) {
-			$counter++;
-		} else {
-			$errors[] = "DB Password is missing.";
-		}
-
 		// Validate the database
 		if (isset($data['db_name']) and !empty($data['db_name'])) {
 			$counter++;
@@ -119,7 +112,7 @@ class Core
 		}
 
 		// Check if all the required fields have been entered
-		if ($counter == '14') {
+		if ($counter == 13) {
 			log_message('info', 'Data validation passed.');
 			return true;
 		} else {
@@ -157,8 +150,8 @@ class Core
 		log_message('info', 'database.php template file read successfully.');
 
 		// Sanitize DB Password from single quotes
-		$sanitized_db_pwd = preg_replace("/\\\\/i",'\\\\\\\\',$data['db_password']);       	// Escape the Escape char ( '\' becomes '\\' )
-		$sanitized_db_pwd = preg_replace("/\'/i",'\\\\\'',$sanitized_db_pwd);  				// Escape the ' ( ' becomes \' )
+		$sanitized_db_pwd = preg_replace("/\\\\/i",'\\\\\\\\',$data['db_password'] ?? '');       	// Escape the Escape char ( '\' becomes '\\' )
+		$sanitized_db_pwd = preg_replace("/\'/i",'\\\\\'',$sanitized_db_pwd);  				 		// Escape the ' ( ' becomes \' )
 
 		$new  = str_replace("%HOSTNAME%", $data['db_hostname'], $database_file);
 		$new  = str_replace("%USERNAME%", $data['db_username'], $new);

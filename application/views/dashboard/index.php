@@ -35,7 +35,7 @@ function echo_table_col($row, $name) {
 				$ci->load->library('qra');
 			}
 			echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
-		case 'Distance':    echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</td>'; break;
+		case 'Distance':echo '<td><span data-bs-toggle="tooltip" title="'.$row->COL_GRIDSQUARE.'">' . getDistance($row->COL_DISTANCE) . '</span></td>'; break;
 		case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { echo strtolower($row->COL_BAND); } echo '</td>'; break;
 		case 'Frequency':
 			echo '<td>'; if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { if($row->COL_FREQ != null) { echo $ci->frequency->qrg_conversion($row->COL_FREQ); } else { echo strtolower($row->COL_BAND); } } echo '</td>'; break;
@@ -44,6 +44,42 @@ function echo_table_col($row, $name) {
 		case 'Name': echo '<td>' . ($row->COL_NAME) . '</td>'; break;
 	}
 }
+
+function getDistance($distance) {
+	if (($distance ?? 0) == 0) return '';
+
+	$ci =& get_instance();
+	if ($ci->session->userdata('user_measurement_base') == NULL) {
+		$measurement_base = $ci->config->item('measurement_base');
+	}
+	else {
+		$measurement_base = $ci->session->userdata('user_measurement_base');
+	}
+
+	switch ($measurement_base) {
+		case 'M':
+			$unit = "mi";
+			break;
+		case 'K':
+			$unit = "km";
+			break;
+		case 'N':
+			$unit = "nmi";
+			break;
+		default:
+			$unit = "km";
+		}
+
+	if ($unit == 'mi') {
+		$distance = round($distance * 0.621371, 1);
+	}
+	if ($unit == 'nmi') {
+		$distance = round($distance * 0.539957, 1);
+	}
+
+	return $distance . ' ' . $unit;
+}
+
 ?>
 
 <script>
@@ -110,7 +146,7 @@ function echo_table_col($row, $name) {
 	<?php if($todays_qsos >= 1) { ?>
 		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
 			<?= sprintf(
-					_ngettext("You have had %d QSO today", "You have had %d QSOs today", intval($todays_qsos)), 
+					_ngettext("You have had %d QSO today", "You have had %d QSOs today", intval($todays_qsos)),
 					intval($todays_qsos)
 				); ?>
 		</div>
@@ -147,7 +183,7 @@ function echo_table_col($row, $name) {
 			</div>
 		<?php } ?>
 	<?php } ?>
-	
+
 <?php } ?>
 <?php $this->load->view('layout/messages'); ?>
 </div>
