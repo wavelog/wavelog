@@ -27,7 +27,7 @@ $(document).ready(function(){
         closeAfterSelect: true,
         valueField: 'user_id',
         labelField: 'user_callsign',
-        searchField: ['user_callsign', 'user_firstname', 'user_lastname'],
+        searchField: ['user_name', 'user_callsign', 'user_firstname', 'user_lastname'],
         options: [],
         create: false,
         load: function(query, callback) {
@@ -57,6 +57,8 @@ $(document).ready(function(){
             }
         },
         onInitialize: function() {
+            this.$control.addClass('selectize-dark');
+
             $('.selectize-control').parents().each(function() {
                 $(this).css('overflow', 'visible');
             });
