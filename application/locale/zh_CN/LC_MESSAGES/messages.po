@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-01 15:34+0000\n"
+"POT-Creation-Date: 2025-01-02 09:05+0000\n"
 "PO-Revision-Date: 2025-01-02 09:05+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -309,7 +309,7 @@ msgid "DOK"
 msgstr "DOK"
 
 #: application/controllers/Awards.php:175 application/views/awards/index.php:7
-#: application/views/bandmap/list.php:115 application/views/bands/index.php:48
+#: application/views/bandmap/list.php:116 application/views/bands/index.php:48
 #: application/views/csv/index.php:58 application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:11
 #: application/views/interface_assets/header.php:168
@@ -328,7 +328,6 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
-#: application/views/bandmap/list.php:116
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -1414,7 +1413,7 @@ msgstr "距离"
 #: application/views/awards/waja/index.php:77
 #: application/views/awards/was/index.php:73
 #: application/views/awards/wwff/index.php:35
-#: application/views/bandmap/index.php:45 application/views/bandmap/list.php:91
+#: application/views/bandmap/index.php:45 application/views/bandmap/list.php:92
 #: application/views/bands/create.php:24 application/views/bands/edit.php:6
 #: application/views/bands/index.php:45
 #: application/views/contesting/index.php:126
@@ -1466,12 +1465,12 @@ msgstr "距离"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:33 application/views/bandmap/list.php:92
+#: application/views/widgets/qsos.php:33
 msgid "Band"
 msgstr "频段"
 
 #: application/controllers/Logbook.php:1293
-#: application/controllers/Radio.php:48 application/views/bandmap/list.php:113
+#: application/controllers/Radio.php:48 application/views/bandmap/list.php:114
 #: application/views/contesting/index.php:143
 #: application/views/dashboard/index.php:16
 #: application/views/qslcard/searchresult.php:22
@@ -1487,7 +1486,6 @@ msgstr "频段"
 #: application/views/user/edit.php:317
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:36
-#: application/views/bandmap/list.php:114
 msgid "Frequency"
 msgstr "频率"
 
@@ -1904,9 +1902,9 @@ msgid "Hardware Interfaces"
 msgstr "硬件接口"
 
 #: application/controllers/Radio.php:47 application/views/bandmap/index.php:25
-#: application/views/bandmap/list.php:63
+#: application/views/bandmap/list.php:64
 #: application/views/contesting/index.php:152
-#: application/views/qso/index.php:319 application/views/bandmap/list.php:64
+#: application/views/qso/index.php:319
 msgid "Radio"
 msgstr "电台"
 
@@ -2615,95 +2613,78 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:3838
 #: application/models/Logbook_model.php:3865
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:3839
 #: application/models/Logbook_model.php:3866
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
-#: application/models/Logbook_model.php:3851
 #: application/models/Logbook_model.php:3878
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:3851
 #: application/models/Logbook_model.php:3878
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
 
-#: application/models/Logbook_model.php:4150
 #: application/models/Logbook_model.php:4177
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4161
 #: application/models/Logbook_model.php:4188
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4214
 #: application/models/Logbook_model.php:4241
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4234
 #: application/models/Logbook_model.php:4261
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4255
 #: application/models/Logbook_model.php:4282
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4536
-#: application/views/simplefle/index.php:40
 #: application/models/Logbook_model.php:4563
+#: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4597
 #: application/models/Logbook_model.php:4624
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4603
 #: application/models/Logbook_model.php:4630
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4608
 #: application/models/Logbook_model.php:4635
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4611
 #: application/models/Logbook_model.php:4638
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4614
 #: application/models/Logbook_model.php:4641
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4617
 #: application/models/Logbook_model.php:4644
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4620
+#: application/models/Logbook_model.php:4647
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
-#: application/models/Logbook_model.php:4647
 msgid "unknown"
 msgstr "未知"
 
@@ -2836,8 +2817,8 @@ msgstr "差异"
 #: application/views/awards/wae/index.php:124
 #: application/views/awards/waja/index.php:94
 #: application/views/awards/was/index.php:90
-#: application/views/bandmap/list.php:74 application/views/bandmap/list.php:81
-#: application/views/bandmap/list.php:93 application/views/bands/index.php:117
+#: application/views/bandmap/list.php:75 application/views/bandmap/list.php:82
+#: application/views/bandmap/list.php:94 application/views/bands/index.php:117
 #: application/views/cabrillo/index.php:69
 #: application/views/continents/index.php:32
 #: application/views/continents/index.php:41 application/views/csv/index.php:21
@@ -2904,8 +2885,6 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:172
-#: application/views/bandmap/list.php:75 application/views/bandmap/list.php:82
-#: application/views/bandmap/list.php:94
 msgid "All"
 msgstr "所有"
 
@@ -3444,7 +3423,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/adif/dcl_success.php:29
 #: application/views/awards/pota/index.php:32
 #: application/views/awards/wwff/index.php:32
-#: application/views/bandmap/list.php:112
+#: application/views/bandmap/list.php:113
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:98
 #: application/views/contesting/index.php:256
@@ -3482,14 +3461,14 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:107
 #: application/views/visitor/index.php:151
-#: application/views/widgets/qsos.php:25 application/views/bandmap/list.php:113
+#: application/views/widgets/qsos.php:25
 msgid "Date"
 msgstr "日期"
 
 #: application/views/adif/dcl_success.php:30
 #: application/views/awards/pota/index.php:33
 #: application/views/awards/wwff/index.php:33
-#: application/views/bandmap/list.php:112
+#: application/views/bandmap/list.php:113
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:256
@@ -3514,13 +3493,13 @@ msgstr "日期"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:109
 #: application/views/visitor/index.php:154
-#: application/views/widgets/qsos.php:27 application/views/bandmap/list.php:113
+#: application/views/widgets/qsos.php:27
 msgid "Time"
 msgstr "时间"
 
 #: application/views/adif/dcl_success.php:31
 #: application/views/awards/vucc/band.php:18
-#: application/views/bandmap/list.php:114
+#: application/views/bandmap/list.php:115
 #: application/views/contesting/index.php:257
 #: application/views/debug/index.php:581 application/views/debug/index.php:616
 #: application/views/dxcalendar/index.php:12
@@ -3534,7 +3513,7 @@ msgstr "时间"
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:111
 #: application/views/visitor/index.php:156
-#: application/views/widgets/qsos.php:29 application/views/bandmap/list.php:115
+#: application/views/widgets/qsos.php:29
 msgid "Call"
 msgstr "呼号"
 
@@ -4158,25 +4137,23 @@ msgstr "CQ 杂志 WAZ 奖状"
 #: application/views/awards/itu/index.php:34
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/wac/index.php:22
-#: application/views/bandmap/list.php:76
+#: application/views/bandmap/list.php:77
 #: application/views/dashboard/index.php:303
 #: application/views/dashboard/index.php:421
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
-#: application/views/bandmap/list.php:77
 msgid "Confirmed"
 msgstr "已确认"
 
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
 #: application/views/awards/wac/index.php:22
-#: application/views/bandmap/list.php:75
+#: application/views/bandmap/list.php:76
 #: application/views/dashboard/index.php:299
 #: application/views/dashboard/index.php:415
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
-#: application/views/bandmap/list.php:76
 msgid "Worked"
 msgstr "已通联"
 
@@ -4466,78 +4443,78 @@ msgstr "包括已删除"
 
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:61
-#: application/views/bandmap/index.php:37 application/views/bandmap/list.php:83
+#: application/views/bandmap/index.php:37 application/views/bandmap/list.php:84
 #: application/views/logbookadvanced/edit.php:164
 #: application/views/logbookadvanced/index.php:340
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:264 application/views/qso/index.php:392
-#: application/views/view_log/qso.php:349 application/views/bandmap/list.php:84
+#: application/views/view_log/qso.php:349
 msgid "Antarctica"
 msgstr "南极洲"
 
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/iota/index.php:65
-#: application/views/bandmap/index.php:36 application/views/bandmap/list.php:82
+#: application/views/bandmap/index.php:36 application/views/bandmap/list.php:83
 #: application/views/logbookadvanced/edit.php:163
 #: application/views/logbookadvanced/index.php:339
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:263 application/views/qso/index.php:391
-#: application/views/view_log/qso.php:346 application/views/bandmap/list.php:83
+#: application/views/view_log/qso.php:346
 msgid "Africa"
 msgstr "非洲"
 
 #: application/views/awards/dxcc/index.php:95
 #: application/views/awards/iota/index.php:69
-#: application/views/bandmap/index.php:38 application/views/bandmap/list.php:84
+#: application/views/bandmap/index.php:38 application/views/bandmap/list.php:85
 #: application/views/logbookadvanced/edit.php:166
 #: application/views/logbookadvanced/index.php:342
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:393
-#: application/views/view_log/qso.php:352 application/views/bandmap/list.php:85
+#: application/views/view_log/qso.php:352
 msgid "Asia"
 msgstr "亚洲"
 
 #: application/views/awards/dxcc/index.php:99
 #: application/views/awards/iota/index.php:73
-#: application/views/bandmap/index.php:39 application/views/bandmap/list.php:85
+#: application/views/bandmap/index.php:39 application/views/bandmap/list.php:86
 #: application/views/logbookadvanced/edit.php:167
 #: application/views/logbookadvanced/index.php:343
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:394
-#: application/views/view_log/qso.php:355 application/views/bandmap/list.php:86
+#: application/views/view_log/qso.php:355
 msgid "Europe"
 msgstr "欧洲"
 
 #: application/views/awards/dxcc/index.php:103
 #: application/views/awards/iota/index.php:77
-#: application/views/bandmap/index.php:40 application/views/bandmap/list.php:86
+#: application/views/bandmap/index.php:40 application/views/bandmap/list.php:87
 #: application/views/logbookadvanced/edit.php:165
 #: application/views/logbookadvanced/index.php:341
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:395
-#: application/views/view_log/qso.php:358 application/views/bandmap/list.php:87
+#: application/views/view_log/qso.php:358
 msgid "North America"
 msgstr "北美洲"
 
 #: application/views/awards/dxcc/index.php:107
 #: application/views/awards/iota/index.php:81
-#: application/views/bandmap/index.php:42 application/views/bandmap/list.php:88
+#: application/views/bandmap/index.php:42 application/views/bandmap/list.php:89
 #: application/views/logbookadvanced/edit.php:168
 #: application/views/logbookadvanced/index.php:344
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:397
-#: application/views/view_log/qso.php:364 application/views/bandmap/list.php:89
+#: application/views/view_log/qso.php:364
 msgid "South America"
 msgstr "南美洲"
 
 #: application/views/awards/dxcc/index.php:111
 #: application/views/awards/iota/index.php:85
-#: application/views/bandmap/index.php:41 application/views/bandmap/list.php:87
+#: application/views/bandmap/index.php:41 application/views/bandmap/list.php:88
 #: application/views/logbookadvanced/edit.php:169
 #: application/views/logbookadvanced/index.php:345
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:396
-#: application/views/view_log/qso.php:361 application/views/bandmap/list.php:88
+#: application/views/view_log/qso.php:361
 msgid "Oceania"
 msgstr "大洋洲"
 
@@ -5269,26 +5246,23 @@ msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr "您的笔记备份已成功完成。输出可在以下位置找到"
 
-#: application/views/bandmap/index.php:15 application/views/bandmap/list.php:52
-#: application/views/bandmap/list.php:53
+#: application/views/bandmap/index.php:15 application/views/bandmap/list.php:53
 msgid "BandMap"
 msgstr "波段地图"
 
-#: application/views/bandmap/index.php:18 application/views/bandmap/list.php:55
-#: application/views/bandmap/list.php:56
+#: application/views/bandmap/index.php:18 application/views/bandmap/list.php:56
 msgid "BandList"
 msgstr "波段列表"
 
-#: application/views/bandmap/index.php:27 application/views/bandmap/list.php:65
+#: application/views/bandmap/index.php:27 application/views/bandmap/list.php:66
 #: application/views/contesting/index.php:19
 #: application/views/contesting/index.php:57
 #: application/views/contesting/index.php:154
-#: application/views/qso/index.php:321 application/views/bandmap/list.php:66
+#: application/views/qso/index.php:321
 msgid "None"
 msgstr "无"
 
-#: application/views/bandmap/index.php:33 application/views/bandmap/list.php:79
-#: application/views/bandmap/list.php:80
+#: application/views/bandmap/index.php:33 application/views/bandmap/list.php:80
 msgid "Spots de"
 msgstr "Spots de"
 
@@ -5296,26 +5270,32 @@ msgstr "Spots de"
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
 msgstr "弹出窗口被禁止，请永久允许本站的弹出窗口。"
 
-#: application/views/bandmap/list.php:72 application/views/bandmap/list.php:73
+#: application/views/bandmap/list.php:7
+msgid "Click to prepare logging."
+msgstr ""
+
+#: application/views/bandmap/list.php:73
 msgid "DXCC-Status"
 msgstr "DXCC状态"
 
-#: application/views/bandmap/list.php:77 application/views/bandmap/list.php:78
+#: application/views/bandmap/list.php:78
 msgid "Not Confirmed"
 msgstr "未确认"
 
-#: application/views/bandmap/list.php:116
 #: application/views/bandmap/list.php:117
 msgid "Spotter"
 msgstr "Spotter"
 
-#: application/views/bandmap/list.php:117
+#: application/views/bandmap/list.php:118
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
-#: application/views/bandmap/list.php:118
 msgid "Message"
 msgstr "消息"
+
+#: application/views/bandmap/list.php:119
+msgid "Last Worked"
+msgstr ""
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
@@ -12776,14 +12756,6 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
-
-#: application/views/bandmap/list.php:7
-msgid "Click to prepare logging."
-msgstr ""
-
-#: application/views/bandmap/list.php:119
-msgid "Last Worked"
-msgstr ""
 
 #~ msgid "AOS Az"
 #~ msgstr "AOS 方位"
