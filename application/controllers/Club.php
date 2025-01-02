@@ -8,16 +8,22 @@ class Club extends CI_Controller
 	 * 3 - Member
 	 * 
 	 * These permission levels are independent of the codeigniter permission levels and managed in the club_permissions table!
-	 * // TODO: Add a Wiki Link to the Permission Levels and Explainations about the Club Features
+	 * https://github.com/wavelog/wavelog/wiki/Clubstations
 	*/
 
 	/**
      * @var array $permissions
      */
-    private $permissions = [
-        9 => "Club Officer",
-        3 => "Club Member",
-    ];
+    private $permissions;
+
+	function __construct() {
+		parent::__construct();
+
+		$this->permissions = [
+			9 => __("Club Officer"),
+			3 => __("Club Member"),
+		];
+	}
 
     public function index()
     {
