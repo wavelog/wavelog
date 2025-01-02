@@ -87,7 +87,7 @@ class cron extends CI_Controller {
 					if ($isdue == true) {
 						$isdue_result = 'true';
 
-						// TODO Add log_message level debug here to have logging for the cron manager
+						log_message('debug', 'CRON: ' . $cron->id . ' is due and will be executed.');
 
 						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
 						echo "CRON: " . $cron->id . " -> RUNNING...\n";
