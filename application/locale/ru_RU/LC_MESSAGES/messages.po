@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-01 15:34+0000\n"
+"POT-Creation-Date: 2025-01-02 09:05+0000\n"
 "PO-Revision-Date: 2024-12-23 15:29+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -306,7 +306,7 @@ msgid "DOK"
 msgstr "DOK"
 
 #: application/controllers/Awards.php:175 application/views/awards/index.php:7
-#: application/views/bandmap/list.php:115 application/views/bands/index.php:48
+#: application/views/bandmap/list.php:116 application/views/bands/index.php:48
 #: application/views/csv/index.php:58 application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:11
 #: application/views/interface_assets/header.php:168
@@ -1420,7 +1420,7 @@ msgstr "Дистанция"
 #: application/views/awards/waja/index.php:77
 #: application/views/awards/was/index.php:73
 #: application/views/awards/wwff/index.php:35
-#: application/views/bandmap/index.php:45 application/views/bandmap/list.php:91
+#: application/views/bandmap/index.php:45 application/views/bandmap/list.php:92
 #: application/views/bands/create.php:24 application/views/bands/edit.php:6
 #: application/views/bands/index.php:45
 #: application/views/contesting/index.php:126
@@ -1477,7 +1477,7 @@ msgid "Band"
 msgstr "Диапазон"
 
 #: application/controllers/Logbook.php:1293
-#: application/controllers/Radio.php:48 application/views/bandmap/list.php:113
+#: application/controllers/Radio.php:48 application/views/bandmap/list.php:114
 #: application/views/contesting/index.php:143
 #: application/views/dashboard/index.php:16
 #: application/views/qslcard/searchresult.php:22
@@ -1919,7 +1919,7 @@ msgid "Hardware Interfaces"
 msgstr "Аппаратные интерфейсы"
 
 #: application/controllers/Radio.php:47 application/views/bandmap/index.php:25
-#: application/views/bandmap/list.php:63
+#: application/views/bandmap/list.php:64
 #: application/views/contesting/index.php:152
 #: application/views/qso/index.php:319
 msgid "Radio"
@@ -2651,21 +2651,21 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:3838
+#: application/models/Logbook_model.php:3865
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:3839
+#: application/models/Logbook_model.php:3866
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
-#: application/models/Logbook_model.php:3851
+#: application/models/Logbook_model.php:3878
 msgid "QSO on"
 msgstr "начало QSO"
 
-#: application/models/Logbook_model.php:3851
+#: application/models/Logbook_model.php:3878
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2673,56 +2673,56 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
-#: application/models/Logbook_model.php:4150
+#: application/models/Logbook_model.php:4177
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4161
+#: application/models/Logbook_model.php:4188
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4214
+#: application/models/Logbook_model.php:4241
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4234
+#: application/models/Logbook_model.php:4261
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4255
+#: application/models/Logbook_model.php:4282
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4536
+#: application/models/Logbook_model.php:4563
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:4597
+#: application/models/Logbook_model.php:4624
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:4603
+#: application/models/Logbook_model.php:4630
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4608
+#: application/models/Logbook_model.php:4635
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:4611
+#: application/models/Logbook_model.php:4638
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:4614
+#: application/models/Logbook_model.php:4641
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:4617
+#: application/models/Logbook_model.php:4644
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4620
+#: application/models/Logbook_model.php:4647
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:286
 msgid "unknown"
@@ -2857,8 +2857,8 @@ msgstr "Разница"
 #: application/views/awards/wae/index.php:124
 #: application/views/awards/waja/index.php:94
 #: application/views/awards/was/index.php:90
-#: application/views/bandmap/list.php:74 application/views/bandmap/list.php:81
-#: application/views/bandmap/list.php:93 application/views/bands/index.php:117
+#: application/views/bandmap/list.php:75 application/views/bandmap/list.php:82
+#: application/views/bandmap/list.php:94 application/views/bands/index.php:117
 #: application/views/cabrillo/index.php:69
 #: application/views/continents/index.php:32
 #: application/views/continents/index.php:41 application/views/csv/index.php:21
@@ -3463,7 +3463,7 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/adif/dcl_success.php:29
 #: application/views/awards/pota/index.php:32
 #: application/views/awards/wwff/index.php:32
-#: application/views/bandmap/list.php:112
+#: application/views/bandmap/list.php:113
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:98
 #: application/views/contesting/index.php:256
@@ -3508,7 +3508,7 @@ msgstr "Дата"
 #: application/views/adif/dcl_success.php:30
 #: application/views/awards/pota/index.php:33
 #: application/views/awards/wwff/index.php:33
-#: application/views/bandmap/list.php:112
+#: application/views/bandmap/list.php:113
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:256
@@ -3539,7 +3539,7 @@ msgstr "Время"
 
 #: application/views/adif/dcl_success.php:31
 #: application/views/awards/vucc/band.php:18
-#: application/views/bandmap/list.php:114
+#: application/views/bandmap/list.php:115
 #: application/views/contesting/index.php:257
 #: application/views/debug/index.php:581 application/views/debug/index.php:616
 #: application/views/dxcalendar/index.php:12
@@ -4208,7 +4208,7 @@ msgstr "Дипломы - CQ Magazine WAZ"
 #: application/views/awards/itu/index.php:34
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/wac/index.php:22
-#: application/views/bandmap/list.php:76
+#: application/views/bandmap/list.php:77
 #: application/views/dashboard/index.php:303
 #: application/views/dashboard/index.php:421
 #: application/views/interface_assets/footer.php:43
@@ -4220,7 +4220,7 @@ msgstr "Подтверждено"
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
 #: application/views/awards/wac/index.php:22
-#: application/views/bandmap/list.php:75
+#: application/views/bandmap/list.php:76
 #: application/views/dashboard/index.php:299
 #: application/views/dashboard/index.php:415
 #: application/views/search/result.php:35
@@ -4521,7 +4521,7 @@ msgstr "Включая удалённые"
 
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:61
-#: application/views/bandmap/index.php:37 application/views/bandmap/list.php:83
+#: application/views/bandmap/index.php:37 application/views/bandmap/list.php:84
 #: application/views/logbookadvanced/edit.php:164
 #: application/views/logbookadvanced/index.php:340
 #: application/views/options/dxcluster.php:56
@@ -4532,7 +4532,7 @@ msgstr "Антарктика"
 
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/iota/index.php:65
-#: application/views/bandmap/index.php:36 application/views/bandmap/list.php:82
+#: application/views/bandmap/index.php:36 application/views/bandmap/list.php:83
 #: application/views/logbookadvanced/edit.php:163
 #: application/views/logbookadvanced/index.php:339
 #: application/views/options/dxcluster.php:55
@@ -4543,7 +4543,7 @@ msgstr "Африка"
 
 #: application/views/awards/dxcc/index.php:95
 #: application/views/awards/iota/index.php:69
-#: application/views/bandmap/index.php:38 application/views/bandmap/list.php:84
+#: application/views/bandmap/index.php:38 application/views/bandmap/list.php:85
 #: application/views/logbookadvanced/edit.php:166
 #: application/views/logbookadvanced/index.php:342
 #: application/views/options/dxcluster.php:57
@@ -4554,7 +4554,7 @@ msgstr "Азия"
 
 #: application/views/awards/dxcc/index.php:99
 #: application/views/awards/iota/index.php:73
-#: application/views/bandmap/index.php:39 application/views/bandmap/list.php:85
+#: application/views/bandmap/index.php:39 application/views/bandmap/list.php:86
 #: application/views/logbookadvanced/edit.php:167
 #: application/views/logbookadvanced/index.php:343
 #: application/views/options/dxcluster.php:58
@@ -4565,7 +4565,7 @@ msgstr "Европа"
 
 #: application/views/awards/dxcc/index.php:103
 #: application/views/awards/iota/index.php:77
-#: application/views/bandmap/index.php:40 application/views/bandmap/list.php:86
+#: application/views/bandmap/index.php:40 application/views/bandmap/list.php:87
 #: application/views/logbookadvanced/edit.php:165
 #: application/views/logbookadvanced/index.php:341
 #: application/views/options/dxcluster.php:59
@@ -4576,7 +4576,7 @@ msgstr "Северная Америка"
 
 #: application/views/awards/dxcc/index.php:107
 #: application/views/awards/iota/index.php:81
-#: application/views/bandmap/index.php:42 application/views/bandmap/list.php:88
+#: application/views/bandmap/index.php:42 application/views/bandmap/list.php:89
 #: application/views/logbookadvanced/edit.php:168
 #: application/views/logbookadvanced/index.php:344
 #: application/views/options/dxcluster.php:61
@@ -4587,7 +4587,7 @@ msgstr "Южная Америка"
 
 #: application/views/awards/dxcc/index.php:111
 #: application/views/awards/iota/index.php:85
-#: application/views/bandmap/index.php:41 application/views/bandmap/list.php:87
+#: application/views/bandmap/index.php:41 application/views/bandmap/list.php:88
 #: application/views/logbookadvanced/edit.php:169
 #: application/views/logbookadvanced/index.php:345
 #: application/views/options/dxcluster.php:60
@@ -5391,15 +5391,15 @@ msgstr ""
 "Резервное копирование заметок успешно завершено. Выходные данные можно найти "
 "здесь"
 
-#: application/views/bandmap/index.php:15 application/views/bandmap/list.php:52
+#: application/views/bandmap/index.php:15 application/views/bandmap/list.php:53
 msgid "BandMap"
 msgstr "Карта активности на диапазоне"
 
-#: application/views/bandmap/index.php:18 application/views/bandmap/list.php:55
+#: application/views/bandmap/index.php:18 application/views/bandmap/list.php:56
 msgid "BandList"
 msgstr "Список активности на диапазоне"
 
-#: application/views/bandmap/index.php:27 application/views/bandmap/list.php:65
+#: application/views/bandmap/index.php:27 application/views/bandmap/list.php:66
 #: application/views/contesting/index.php:19
 #: application/views/contesting/index.php:57
 #: application/views/contesting/index.php:154
@@ -5407,7 +5407,7 @@ msgstr "Список активности на диапазоне"
 msgid "None"
 msgstr "Нет"
 
-#: application/views/bandmap/index.php:33 application/views/bandmap/list.php:79
+#: application/views/bandmap/index.php:33 application/views/bandmap/list.php:80
 msgid "Spots de"
 msgstr "Споты от"
 
@@ -5417,24 +5417,32 @@ msgstr ""
 "Всплывающее окно было заблокировано! Пожалуйста, разрешите всплывающие окна "
 "для этого сайта."
 
-#: application/views/bandmap/list.php:72
+#: application/views/bandmap/list.php:7
+msgid "Click to prepare logging."
+msgstr ""
+
+#: application/views/bandmap/list.php:73
 msgid "DXCC-Status"
 msgstr "Статус DXCC"
 
-#: application/views/bandmap/list.php:77
+#: application/views/bandmap/list.php:78
 msgid "Not Confirmed"
 msgstr "Не подтверждено"
 
-#: application/views/bandmap/list.php:116
+#: application/views/bandmap/list.php:117
 msgid "Spotter"
 msgstr "Споттер"
 
-#: application/views/bandmap/list.php:117
+#: application/views/bandmap/list.php:118
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
 msgid "Message"
 msgstr "Сообщение"
+
+#: application/views/bandmap/list.php:119
+msgid "Last Worked"
+msgstr ""
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"

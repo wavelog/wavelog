@@ -2325,6 +2325,33 @@ class Logbook_model extends CI_Model {
 		return $query->num_rows();
 	}
 
+	function last_worked_callsign_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
+
+		if ($StationLocationsArray == null) {
+			$this->load->model('logbooks_model');
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		} else {
+			$logbooks_locations_array = $StationLocationsArray;
+		}
+
+		$this->db->select('COL_TIME_ON as LAST_QSO,COL_MODE as LAST_MODE');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->where('COL_CALL', $callsign);
+
+		$band = ($band == 'All') ? null : $band;
+		if ($band != null && $band != 'SAT') {
+			$this->db->where('COL_BAND', $band);
+		} else if ($band == 'SAT') {
+			// Where col_sat_name is not empty
+			$this->db->where('COL_SAT_NAME !=', '');
+		}
+		$this->db->order_by('COL_TIME_ON desc');
+		$this->db->limit('1');
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->result();
+	}
+
 	function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
 
 		if ($StationLocationsArray == null) {
