@@ -25,8 +25,8 @@ msgstr ""
 "POT-Creation-Date: 2025-01-02 09:22+0000\n"
 "PO-Revision-Date: 2025-01-02 10:56+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,7 +139,8 @@ msgstr ""
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 #: application/controllers/Club.php:48 application/controllers/Club.php:75
 #: application/controllers/Club.php:122 application/controllers/Club.php:151
-#: application/controllers/Club.php:178
+#: application/controllers/Club.php:178 application/controllers/Club.php:123
+#: application/controllers/Club.php:152 application/controllers/Club.php:179
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
@@ -633,38 +634,46 @@ msgstr "Club-Berechtigungen"
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186 application/controllers/Club.php:118
 #: application/controllers/Club.php:147 application/controllers/Club.php:174
+#: application/controllers/Club.php:119 application/controllers/Club.php:148
+#: application/controllers/Club.php:175
 msgid "Invalid Club ID!"
 msgstr "Ungültige Club-ID!"
 
 #: application/controllers/Club.php:124 application/controllers/Club.php:130
+#: application/controllers/Club.php:131
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
 "Benutzer konnte nicht benachrichtigt werden. Bitte überprüfe deine E-Mail-"
 "Einstellungen."
 
 #: application/controllers/Club.php:128 application/controllers/Club.php:134
+#: application/controllers/Club.php:135
 msgid "Club member permissions have been updated."
 msgstr "Die Berechtigungen des Clubmitglieds wurden aktualisiert."
 
 #: application/controllers/Club.php:150 application/controllers/Club.php:156
+#: application/controllers/Club.php:157
 msgid "User removed from club."
 msgstr "Benutzer aus dem Club entfernt."
 
 #: application/controllers/Club.php:152 application/controllers/Club.php:158
+#: application/controllers/Club.php:159
 msgid "User could not be removed from club."
 msgstr "Benutzer konnte nicht aus dem Club entfernt werden."
 
 #: application/controllers/Club.php:195 application/controllers/Club.php:201
+#: application/controllers/Club.php:202
 msgid "Invalid message type."
 msgstr "Ungültiger Nachrichtentyp."
 
 #: application/controllers/Club.php:214 application/controllers/Club.php:220
+#: application/controllers/Club.php:221
 msgid "Email settings not configured."
 msgstr "E-Mail-Einstellungen nicht konfiguriert."
 
 #: application/controllers/Club.php:221 application/views/api/index.php:62
 #: application/views/satellite/index.php:64
-#: application/controllers/Club.php:227
+#: application/controllers/Club.php:227 application/controllers/Club.php:228
 msgid "Unknown"
 msgstr "Unbekannt"
 
