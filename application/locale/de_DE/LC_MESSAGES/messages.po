@@ -23,10 +23,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-02 09:22+0000\n"
-"PO-Revision-Date: 2025-01-01 17:09+0000\n"
+"PO-Revision-Date: 2025-01-02 09:54+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -284,15 +284,15 @@ msgstr "API-Schlüssel %s Beschreibung wurde aktualisiert."
 
 #: application/controllers/Api.php:68
 msgid "Invalid API rights"
-msgstr ""
+msgstr "Ungültige API-Rechte"
 
 #: application/controllers/Api.php:82
 msgid "API Key generated"
-msgstr ""
+msgstr "API-Schlüssel generiert"
 
 #: application/controllers/Api.php:84
 msgid "API Key could not be generated"
-msgstr ""
+msgstr "API-Schlüssel konnte nicht generiert werden"
 
 #: application/controllers/Api.php:98
 #, php-format
@@ -612,48 +612,50 @@ msgstr "CFD-Export"
 #: application/controllers/Club.php:38 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "Ungültige Benutzer-ID!"
 
 #: application/controllers/Club.php:46
 msgid "This user is not a club station."
-msgstr ""
+msgstr "Dieser Benutzer ist keine Clubstation."
 
 #: application/controllers/Club.php:50
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:203
 msgid "Club Permissions"
-msgstr ""
+msgstr "Clubberechtigungen"
 
 #: application/controllers/Club.php:112 application/controllers/Club.php:141
 #: application/controllers/Club.php:168 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "Ungültige Club-ID!"
 
 #: application/controllers/Club.php:124
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
+"Benutzer konnte nicht benachrichtigt werden. Bitte überprüfe deine E-Mail-"
+"Einstellungen."
 
 #: application/controllers/Club.php:128
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "Die Berechtigungen des Clubmitglieds wurden aktualisiert."
 
 #: application/controllers/Club.php:150
 msgid "User removed from club."
-msgstr ""
+msgstr "Benutzer aus dem Club entfernt."
 
 #: application/controllers/Club.php:152
 msgid "User could not be removed from club."
-msgstr ""
+msgstr "Benutzer konnte nicht aus dem Club entfernt werden."
 
 #: application/controllers/Club.php:195
 msgid "Invalid message type."
-msgstr ""
+msgstr "Ungültiger Nachrichtentyp."
 
 #: application/controllers/Club.php:214
 msgid "Email settings not configured."
-msgstr ""
+msgstr "E-Mail-Einstellungen nicht konfiguriert."
 
 #: application/controllers/Club.php:221 application/views/api/index.php:62
 #: application/views/satellite/index.php:64
@@ -2030,7 +2032,7 @@ msgstr "Einstellungen"
 
 #: application/controllers/Radio.php:63
 msgid "UNKNOWN"
-msgstr ""
+msgstr "UNBEKANNT"
 
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:156
@@ -2484,11 +2486,11 @@ msgstr "Benutzerkonten"
 
 #: application/controllers/User.php:83
 msgid "Invalid User ID or missing modal!"
-msgstr ""
+msgstr "Ungültige Benutzer-ID oder fehlendes Modal!"
 
 #: application/controllers/User.php:96
 msgid "Invalid Parameter!"
-msgstr ""
+msgstr "Ungültige Parameter!"
 
 #: application/controllers/User.php:152
 #: application/views/club/permissions.php:155
@@ -2498,21 +2500,21 @@ msgstr "Füge Benutzer hinzu"
 #: application/controllers/User.php:253
 #, php-format
 msgid "Username %s already in use!"
-msgstr ""
+msgstr "Benutzername %s bereits vergeben!"
 
 #: application/controllers/User.php:256
 #, php-format
 msgid "E-mail %s already in use!"
-msgstr ""
+msgstr "E-Mail %s wird bereits verwendet!"
 
 #: application/controllers/User.php:259
 msgid "Invalid Password!"
-msgstr ""
+msgstr "Ungültiges Passwort!"
 
 #: application/controllers/User.php:263
 #, php-format
 msgid "User %s added!"
-msgstr ""
+msgstr "Benutzer %s hinzugefügt!"
 
 #: application/controllers/User.php:267
 msgid "Users"
@@ -2542,7 +2544,7 @@ msgstr ""
 
 #: application/controllers/User.php:933
 msgid "This is not allowed!"
-msgstr ""
+msgstr "Das ist nicht erlaubt!"
 
 #: application/controllers/User.php:968 application/controllers/User.php:979
 msgid "Login failed. Try again."
@@ -2559,6 +2561,8 @@ msgstr "Anmeldung"
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
+"Du kannst dich nicht direkt bei einer Clubstation einloggen. Verwende "
+"stattdessen deinen persönlichen Account."
 
 #: application/controllers/User.php:1028
 msgid ""
@@ -2610,6 +2614,8 @@ msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
 msgstr ""
+"Du kannst derzeit keinen anderen Benutzer imitieren. Du musst %s auf %s in "
+"deiner config.php setzen!"
 
 #: application/controllers/User.php:1316
 #: application/views/user/modals/admin_impersonate_modal.php:36
@@ -2649,18 +2655,22 @@ msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
+"Konnte die korrekte Berechtigungsstufe für die Clubstation nicht bestimmen. "
+"Logge dich aus und wieder ein. Versuche es danach noch einmal."
 
 #: application/controllers/User.php:1422 application/controllers/User.php:1434
 #: application/controllers/User.php:1440 application/controllers/User.php:1449
 #: application/controllers/User.php:1457
 msgid "Ups.. Something went wrong. Try to log back in."
-msgstr ""
+msgstr "Ups.. Etwas ist schiefgelaufen. Versuch, dich nochmal einzuloggen."
 
 #: application/controllers/User.php:1463
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr ""
+"Die Möglichkeit, schnell zurückzukehren, wurde deaktiviert, nachdem der "
+"Sicherheitsschlüssel abgelaufen ist. Bitte melde dich erneut an."
 
 #: application/controllers/User.php:1479
 #, php-format
@@ -2668,6 +2678,8 @@ msgid ""
 "You have been logged out of the clubstation %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"Du wurdest aus der Clubstation %s ausgeloggt. Willkommen zurück, %s, in "
+"deinem persönlichen Account!"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
@@ -2782,11 +2794,11 @@ msgstr "Stadt / Ku / Gun"
 
 #: application/models/Club_model.php:154
 msgid "Invalid Permission Level!"
-msgstr ""
+msgstr "Ungültige Berechtigungsstufe!"
 
 #: application/models/Club_model.php:169
 msgid "Error adding Club Member!"
-msgstr ""
+msgstr "Fehler beim Hinzufügen eines Clubmitglieds!"
 
 #: application/models/Eqslmethods_model.php:287
 msgid "Your eQSL username and/or password is incorrect."
@@ -3798,7 +3810,7 @@ msgstr "Wähle Stationsstandort"
 
 #: application/views/adif/import.php:73
 msgid "Select the operator of the imported QSOs"
-msgstr ""
+msgstr "Wähle den Operator der importierten QSOs aus"
 
 #: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
@@ -4160,6 +4172,8 @@ msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"Bei Clubstationen sind die API-Schlüssel persönlich und werden nicht "
+"geteilt. Clubmitglieder können nur ihre eigenen Schlüssel sehen."
 
 #: application/views/api/index.php:24
 msgid "API Key"
@@ -4177,7 +4191,7 @@ msgstr "Zuletzt verwendet"
 
 #: application/views/api/index.php:28
 msgid "Created By"
-msgstr ""
+msgstr "Erstellt von"
 
 #: application/views/api/index.php:30
 msgid "Permissions"
@@ -4218,7 +4232,7 @@ msgstr "Test"
 #: application/views/api/index.php:73
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "Bist du sicher, dass du den API-Schlüssel %s löschen möchtest?"
 
 #: application/views/api/index.php:86
 msgid "You have no API Keys."
@@ -5630,7 +5644,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Klicken, um das Loggen vorzubereiten."
 
 #: application/views/bandmap/list.php:73
 msgid "DXCC-Status"
@@ -5653,7 +5667,7 @@ msgstr "Nachricht"
 
 #: application/views/bandmap/list.php:119
 msgid "Last Worked"
-msgstr ""
+msgstr "Zuletzt gearbeitet"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
@@ -6082,17 +6096,17 @@ msgstr "Export von CFD-Datei für DARC-Toplist (siehe %s)"
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
-msgstr ""
+msgstr "Wechsle zu einer Clubstation"
 
 #: application/views/club/clubswitch_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch to %s?"
-msgstr ""
+msgstr "Bist du sicher, dass du zu %s wechseln willst?"
 
 #: application/views/club/clubswitch_modal.php:14
 #: application/views/user/modals/stop_impersonate_modal.php:13
 msgid "Yes, switch over!"
-msgstr ""
+msgstr "Ja, wechsel rüber!"
 
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:205
@@ -6108,11 +6122,11 @@ msgstr "Abbrechen"
 #: application/views/club/permissions.php:3
 #, php-format
 msgid "Club Permissions for %s"
-msgstr ""
+msgstr "Clubberechtigungen für %s"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
-msgstr ""
+msgstr "Geh zurück"
 
 #: application/views/club/permissions.php:13
 msgid ""
@@ -6120,14 +6134,17 @@ msgid ""
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
 msgstr ""
+"Damit Nutzer QSOs mit diesem Club/Sonderrufzeichen loggen können, benötigen "
+"sie entsprechende Berechtigungen. Füge Nutzer in die Tabelle unten ein und "
+"setze die entsprechende Berechtigung."
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
-msgstr ""
+msgstr "Sieh dir die verfügbaren Berechtigungen an"
 
 #: application/views/club/permissions.php:19
 msgid "Available Permissions"
-msgstr ""
+msgstr "Verfügbare Berechtigungen"
 
 #: application/views/club/permissions.php:26
 #: application/views/eqsl/download.php:44
@@ -6136,69 +6153,69 @@ msgstr "Aktion"
 
 #: application/views/club/permissions.php:33
 msgid "Log QSOs via Web GUI (live and post)"
-msgstr ""
+msgstr "QSOs über Web-GUI loggen (live und zeitversetzt)"
 
 #: application/views/club/permissions.php:41
 msgid "Log QSOs via API"
-msgstr ""
+msgstr "QSOs über API loggen"
 
 #: application/views/club/permissions.php:49
 msgid "Edit a QSO"
-msgstr ""
+msgstr "Ein QSO bearbeiten"
 
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
 msgid "QSO was done by the operator"
-msgstr ""
+msgstr "QSO wurde vom Operator geloggt"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
 msgid "QSO was done by another operator"
-msgstr ""
+msgstr "QSO wurde von einem anderen Operator geloggt"
 
 #: application/views/club/permissions.php:67
 msgid "Delete a QSO"
-msgstr ""
+msgstr "Ein QSO löschen"
 
 #: application/views/club/permissions.php:85
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
-msgstr ""
+msgstr "Stationssetup verwalten (Logbücher und Standorte bearbeiten/erstellen)"
 
 #: application/views/club/permissions.php:93
 msgid "Manage Third-Party services"
-msgstr ""
+msgstr "Drittanbieter-Dienste verwalten"
 
 #: application/views/club/permissions.php:101
 msgid "Import QSO per ADIF"
-msgstr ""
+msgstr "QSOs per ADIF importieren"
 
 #: application/views/club/permissions.php:110
 msgid "Export QSO per ADIF"
-msgstr ""
+msgstr "QSOs per ADIF exportieren"
 
 #: application/views/club/permissions.php:118
 msgid "User Management"
-msgstr ""
+msgstr "Benutzerverwaltung"
 
 #: application/views/club/permissions.php:123
 msgid "Can create new users in Wavelog"
-msgstr ""
+msgstr "Kann neue Benutzer in Wavelog erstellen"
 
 #: application/views/club/permissions.php:128
 msgid "Can edit other users in Wavelog"
-msgstr ""
+msgstr "Kann andere Benutzer in Wavelog bearbeiten"
 
 #: application/views/club/permissions.php:133
 msgid "Can edit Club permissions and add/remove users"
-msgstr ""
+msgstr "Kann Club-Berechtigungen bearbeiten und Benutzer hinzufügen/entfernen"
 
 #: application/views/club/permissions.php:151
 msgid "Users with Permissions"
-msgstr ""
+msgstr "Benutzer mit Berechtigungen"
 
 #: application/views/club/permissions.php:161
 msgid "Add new User to Club"
-msgstr ""
+msgstr "Neuen Benutzer zum Club hinzufügen"
 
 #: application/views/club/permissions.php:167
 #, php-format
@@ -6206,48 +6223,54 @@ msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr ""
+"Du kannst Nutzer nur zur %s Clubstation hinzufügen, wenn sie bereits auf "
+"diesem Wavelog-Server existieren."
 
 #: application/views/club/permissions.php:168
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
 msgstr ""
+"Wenn sie nicht existieren, frag bitte deinen Wavelog-Administrator, ein "
+"Konto für sie zu erstellen."
 
 #: application/views/club/permissions.php:169
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
 msgstr ""
+"Suche nach dem Benutzer anhand seines Rufzeichens oder Vor-/Nachnamens und "
+"wähle die Berechtigungsstufe aus."
 
 #: application/views/club/permissions.php:175
 msgid "User (Callsign or Name)"
-msgstr ""
+msgstr "Benutzer (Rufzeichen oder Name)"
 
 #: application/views/club/permissions.php:176
 #: application/views/club/permissions.php:225
 #: application/views/club/permissions.php:269
 msgid "Permission"
-msgstr ""
+msgstr "Berechtigung"
 
 #: application/views/club/permissions.php:183
 msgid "Type at least 2 characters."
-msgstr ""
+msgstr "Gib mindestens 2 Zeichen ein."
 
 #: application/views/club/permissions.php:194
 msgid "Notify the user via email"
-msgstr ""
+msgstr "Benachrichtige den Benutzer per E-Mail"
 
 #: application/views/club/permissions.php:213
 msgid "No users currently have access to this club station."
-msgstr ""
+msgstr "Derzeit hat kein Benutzer Zugriff auf diese Clubstation."
 
 #: application/views/club/permissions.php:220
 msgid "Firstname"
-msgstr ""
+msgstr "Vorname"
 
 #: application/views/club/permissions.php:221
 msgid "Lastname"
-msgstr ""
+msgstr "Nachname"
 
 #: application/views/club/permissions.php:223
 #: application/views/user/edit.php:57 application/views/user/index.php:146
@@ -6258,41 +6281,42 @@ msgstr "Benutzername"
 
 #: application/views/club/permissions.php:224
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #: application/views/club/permissions.php:244
 msgid "Wavelog Administrator"
-msgstr ""
+msgstr "Wavelog Administrator"
 
 #: application/views/club/permissions.php:261
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
+"Du kannst die Berechtigungsstufe der Benutzer für diese Clubstation ändern."
 
 #: application/views/club/permissions.php:268
 msgid "User Callsign"
-msgstr ""
+msgstr "Benutzer-Rufzeichen"
 
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
-msgstr ""
+msgstr "Benachrichtige den Benutzer per E-Mail über die Änderung"
 
 #: application/views/club/permissions.php:309
 msgid "Delete User"
-msgstr ""
+msgstr "Benutzer löschen"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
-msgstr ""
+msgstr "Bist du sicher, dass du diesen Benutzer aus dem Club entfernen willst?"
 
 #: application/views/club/permissions.php:320
 #, php-format
 msgid "Callsign: %s"
-msgstr ""
+msgstr "Rufzeichen: %s"
 
 #: application/views/club/permissions.php:321
 #, php-format
 msgid "Role: %s"
-msgstr ""
+msgstr "Rolle: %s"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -7727,7 +7751,7 @@ msgstr ""
 #: application/views/email/club/modified_member.php:3
 #, php-format
 msgid "Your permission level for Clubstation %s has been changed"
-msgstr ""
+msgstr "Dein Berechtigungslevel für die Clubstation %s wurde geändert"
 
 #: application/views/email/club/modified_member.php:5
 #, php-format
@@ -7737,11 +7761,15 @@ msgid ""
 "Your permission level for Clubstation %s has been changed. You can access "
 "this callsign through your account at %s."
 msgstr ""
+"Lieber %s,\n"
+"\n"
+"Dein Berechtigungslevel für die Clubstation %s wurde geändert. Du kannst auf "
+"dieses Rufzeichen über deinen Account auf %s zugreifen."
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
 msgid "Your new permission level is: %s"
-msgstr ""
+msgstr "Dein neuer Berechtigungslevel ist: %s"
 
 #: application/views/email/club/modified_member.php:11
 #: application/views/email/club/new_member.php:11
@@ -7752,11 +7780,16 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Logge dich ein und schau es dir an!\n"
+"\n"
+"Grüße,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr ""
+msgstr "Neue %s Mitgliedschaft in Wavelog!"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -7766,11 +7799,15 @@ msgid ""
 "You have been added to the Clubstation %s. You can now access this callsign "
 "through your account on %s."
 msgstr ""
+"Lieber %s\n"
+"\n"
+"Du wurdest zur Clubstation %s hinzugefügt. Du kannst jetzt dieses Rufzeichen "
+"über deinen Account auf %s nutzen."
 
 #: application/views/email/club/new_member.php:9
 #, php-format
 msgid "Your permission level is: %s"
-msgstr ""
+msgstr "Dein Berechtigungslevel ist: %s"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -8252,7 +8289,7 @@ msgstr "Versionsinfo"
 #: application/views/interface_assets/footer.php:192
 #: application/views/interface_assets/footer.php:207
 msgid "Failed to load the modal. Please try again."
-msgstr ""
+msgstr "Fehler beim Laden des Modals. Bitte versuche es erneut."
 
 #: application/views/interface_assets/footer.php:448
 msgid "Description:"
@@ -8416,7 +8453,7 @@ msgstr "Wartungsmodus"
 #: application/views/interface_assets/header.php:92
 #: application/views/user/edit.php:90
 msgid "Clubstation"
-msgstr ""
+msgstr "Clubstation"
 
 #: application/views/interface_assets/header.php:102
 msgid "Overview"
@@ -8584,7 +8621,7 @@ msgstr "Suche Rufzeichen"
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
-msgstr ""
+msgstr "Op: %s"
 
 #: application/views/interface_assets/header.php:393
 #: application/views/user/edit.php:54
@@ -8593,22 +8630,22 @@ msgstr "Benutzerkonto"
 
 #: application/views/interface_assets/header.php:405
 msgid "Switch to Clubstation:"
-msgstr ""
+msgstr "Wechsel zur Clubstation:"
 
 #: application/views/interface_assets/header.php:409
 #, php-format
 msgid "Switch to %s"
-msgstr ""
+msgstr "Wechsle zu %s"
 
 #: application/views/interface_assets/header.php:413
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
-msgstr ""
+msgstr "Verwalte %s"
 
 #: application/views/interface_assets/header.php:421
 msgid "No Clubstations available"
-msgstr ""
+msgstr "Keine Clubstationen verfügbar"
 
 #: application/views/interface_assets/header.php:429
 msgid "Other Export Options"
@@ -8653,12 +8690,12 @@ msgstr "Forum"
 #: application/views/interface_assets/header.php:488
 #, php-format
 msgid "Stop impersonate and switch back to %s"
-msgstr ""
+msgstr "Stoppe zu imitieren und wechsle zurück zu %s"
 
 #: application/views/interface_assets/header.php:489
 #, php-format
 msgid "Switch back to %s"
-msgstr ""
+msgstr "Wechsle zurück zu %s"
 
 #: application/views/interface_assets/header.php:493
 msgid "Logout"
@@ -12886,7 +12923,7 @@ msgstr "Ja, Benutzerkonto löschen"
 
 #: application/views/user/edit.php:6
 msgid "Create Clubstation Account"
-msgstr ""
+msgstr "Clubstation-Account erstellen"
 
 #: application/views/user/edit.php:8
 msgid "Create User Account"
@@ -12910,7 +12947,7 @@ msgstr "Passwort"
 
 #: application/views/user/edit.php:75
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "Teile dieses Passwort nicht mit den Operatoren!"
 
 #: application/views/user/edit.php:85
 msgid "User Role"
@@ -12918,7 +12955,7 @@ msgstr "Benutzerrolle"
 
 #: application/views/user/edit.php:114
 msgid "Callsign Owner"
-msgstr ""
+msgstr "Rufzeicheninhaber"
 
 #: application/views/user/edit.php:114
 msgid "Personal"
@@ -12938,7 +12975,7 @@ msgstr "Ham Radio"
 
 #: application/views/user/edit.php:138
 msgid "Special/Club Callsign"
-msgstr ""
+msgstr "Sonder-/Clubrufzeichen"
 
 #: application/views/user/edit.php:161
 msgid "Wavelog Preferences"
@@ -13396,11 +13433,11 @@ msgstr "Imitieren"
 #: application/views/user/index.php:104 application/views/user/index.php:207
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
-msgstr ""
+msgstr "Andere Aktionen"
 
 #: application/views/user/index.php:132
 msgid "Clubstation List"
-msgstr ""
+msgstr "Clubstations-Liste"
 
 #: application/views/user/index.php:135
 msgid ""
@@ -13408,18 +13445,22 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
+"Clubstationen in Wavelog sind eine einzigartige Möglichkeit für Clubs und "
+"Sonderrufzeichen-Events, um mehrere Operatoren zu verwalten. Eine "
+"Clubstation ist im Grunde ein normaler Benutzeraccount mit einigen "
+"speziellen Funktionen und Einschränkungen."
 
 #: application/views/user/index.php:137
 msgid "Create Clubstation"
-msgstr ""
+msgstr "Clubstation erstellen"
 
 #: application/views/user/index.php:149
 msgid "Last Operator"
-msgstr ""
+msgstr "Letzter Operator"
 
 #: application/views/user/index.php:231
 msgid "No Clubstations configures yet."
-msgstr ""
+msgstr "Noch keine Clubstationen konfiguriert."
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
@@ -13448,7 +13489,7 @@ msgstr "Angemeldet bleiben"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "(with Admin Rights)"
-msgstr ""
+msgstr "(mit Admin-Rechten)"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "Impersonate User"
@@ -13459,6 +13500,9 @@ msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
 msgstr ""
+"Du bist dabei, einen anderen Benutzer zu imitieren. Um zu deinem Admin-"
+"Account zurückzukehren, kannst du den 'Wechsel zurück'-Button im Menu "
+"verwenden."
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
 msgid "Do you want to impersonate this user?"
@@ -13496,72 +13540,85 @@ msgstr "Zuletzt gesehen:"
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
-msgstr ""
+msgstr "Wähle eine Aktion für den Benutzer aus:"
 
 #: application/views/user/modals/more_actions_modal.php:33
 #: application/views/user/modals/more_actions_modal.php:61
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "Sende einen Link zum Zurücksetzen des Passworts per E-Mail"
 
 #: application/views/user/modals/more_actions_modal.php:39
 msgid "Convert to Clubstation"
-msgstr ""
+msgstr "In Clubstation umwandeln"
 
 #: application/views/user/modals/more_actions_modal.php:39
 msgid "Convert to User"
-msgstr ""
+msgstr "In Benutzer umwandeln"
 
 #: application/views/user/modals/more_actions_modal.php:54
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"E-Mail zum Zurücksetzen des Passworts erfolgreich an den Benutzer gesendet. "
+"Du kannst diesen Dialog jetzt schließen."
 
 #: application/views/user/modals/more_actions_modal.php:55
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"E-Mail zum Zurücksetzen des Passworts konnte nicht an den Benutzer gesendet "
+"werden. Sind die E-Mail-Einstellungen in den globalen Optionen korrekt "
+"konfiguriert?"
 
 #: application/views/user/modals/more_actions_modal.php:64
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"Du bist dabei, dem Benutzer einen Link zum Zurücksetzen des Passworts zu "
+"senden. Der Benutzer kann sein Passwort zurücksetzen, indem er auf den Link "
+"in der E-Mail klickt."
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid "Do you want to send the password reset email to this user?"
 msgstr ""
+"Möchtest du die E-Mail zum Zurücksetzen des Passworts an diesen Benutzer "
+"senden?"
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:116
 msgid "User:"
-msgstr ""
+msgstr "Benutzer:"
 
 #: application/views/user/modals/more_actions_modal.php:70
 #: application/views/user/modals/more_actions_modal.php:119
 msgid "Language:"
-msgstr ""
+msgstr "Sprache:"
 
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Send the email"
-msgstr ""
+msgstr "Sende die E-Mail"
 
 #: application/views/user/modals/more_actions_modal.php:91
 msgid "The account was successfully converted. You can now close this dialog."
 msgstr ""
+"Der Account wurde erfolgreich umgewandelt. Du kannst diesen Dialog jetzt "
+"schließen."
 
 #: application/views/user/modals/more_actions_modal.php:92
 msgid "The account could not be converted. An error has occurred."
 msgstr ""
+"Der Account konnte nicht umgewandelt werden. Ein Fehler ist aufgetreten."
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Convert this account into a normal user"
-msgstr ""
+msgstr "Diesen Account in einen normalen Benutzer umwandeln"
 
 #: application/views/user/modals/more_actions_modal.php:102
 msgid "Convert this account into a clubstation"
-msgstr ""
+msgstr "Wandle diesen Account in eine Clubstation um"
 
 #: application/views/user/modals/more_actions_modal.php:109
 msgid ""
@@ -13569,6 +13626,9 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
+"Du bist dabei, diese Clubstation in einen regulären Benutzeraccount "
+"umzuwandeln. Der Benutzer wird sich wieder einloggen können und alle "
+"zugewiesenen Clubberechtigungen werden entfernt. Benutze das mit Vorsicht!"
 
 #: application/views/user/modals/more_actions_modal.php:111
 msgid ""
@@ -13576,23 +13636,26 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
+"Du bist dabei, diesen Benutzeraccount in eine Clubstation umzuwandeln. Der "
+"Benutzer wird sich nicht mehr einloggen können und der Account wird in einen "
+"Clubstation-Account umgewandelt. Benutze das mit Vorsicht!"
 
 #: application/views/user/modals/more_actions_modal.php:114
 msgid "Are you sure you want to convert this account?"
-msgstr ""
+msgstr "Bist du sicher, dass du diesen Account umwandeln willst?"
 
 #: application/views/user/modals/more_actions_modal.php:124
 msgid "Convert"
-msgstr ""
+msgstr "Umwandeln"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "Wechsle zurück zum Hauptbenutzer"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch back to %s?"
-msgstr ""
+msgstr "Bist du sicher, dass du zu %s zurückwechseln willst?"
 
 #: application/views/user/profile.php:19
 msgid "Level"
