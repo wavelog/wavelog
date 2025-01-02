@@ -21,7 +21,7 @@ class Staticmap_model extends CI_Model {
      * @return bool  True if the image was rendered successfully, false if not
      */
 
-    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false, $cqzones = false, $ituzones = false) {
+    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false, $cqzones = false, $ituzones = false, $watermark = true) {
 
         //===============================================================================================================================
         //=============================================== PREPARE AND LOAD DEPENDENCIES =================================================
@@ -163,20 +163,21 @@ class Staticmap_model extends CI_Model {
         // Set the tile layer
         if ($thememode != null) {
             $attribution = $this->optionslib->get_option('option_map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
+            $subdomains = $this->optionslib->get_option('option_map_tile_subdomains') ?? 'abc';
             if ($thememode == 'light') {
                 $server_url = $this->optionslib->get_option('option_map_tile_server') ?? '';
                 if ($server_url == '') {
                     $server_url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
                     $this->optionslib->update('map_tile_server', $server_url, 'yes');
                 }
-                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
+                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode, $subdomains);
             } elseif ($thememode == 'dark') {
                 $server_url = $this->optionslib->get_option('option_map_tile_server_dark') ?? '';
                 if ($server_url == '') {
                     $server_url = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
                     $this->optionslib->update('map_tile_server_dark', $server_url, 'yes');
                 }
-                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
+                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode, $subdomains);
             } else {
                 $tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
             }
@@ -563,9 +564,11 @@ class Staticmap_model extends CI_Model {
         $markersConfirmed->draw($image, $map->getMapData());
 
         // Add Wavelog watermark
-        $watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
-        $watermark->resize(round($width * $watermark_size_mutiplier), round((($width * 3) / 4) * $watermark_size_mutiplier));
-        $image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
+        if ($watermark) {
+            $watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
+            $watermark->resize(round($width * $watermark_size_mutiplier), round((($width * 3) / 4) * $watermark_size_mutiplier));
+            $image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
+        }
 
         // Add "Created with Wavelog" text
         $user = $this->user_model->get_by_id($uid)->row();
@@ -638,7 +641,7 @@ class Staticmap_model extends CI_Model {
         $cacheDir = $cachepath . "staticmap_images/";
 
         if (!is_dir($cacheDir)) {
-            log_message('debug', "Cache directory '" . $cacheDir . "' does not exist. Therefore no static map images to remove...");
+            log_message('info', "Cache directory '" . $cacheDir . "' does not exist. Therefore no static map images to remove...");
             return true;
         }
 
@@ -657,7 +660,7 @@ class Staticmap_model extends CI_Model {
             foreach ($linked_logbooks as $logbook_id) {
                 $slug = $this->stationsetup_model->get_slug($logbook_id);
                 if ($slug == false) {
-                    log_message('debug', "No slug found for logbook ID " . $logbook_id . ". Continue...");
+                    log_message('info', "No slug found for logbook ID " . $logbook_id . ". Continue...");
                     continue;
                 }
 

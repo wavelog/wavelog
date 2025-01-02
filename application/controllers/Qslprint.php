@@ -19,24 +19,22 @@ class QSLPrint extends CI_Controller {
 
 	public function index($station_id = 'All')
 	{
-		$this->load->model('user_model');
-
 		// Check if users logged in
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
-		}
 		$this->load->model('stations');
 		$data['station_id'] = $this->security->xss_clean($station_id);
 		$data['station_profile'] = $this->stations->all_of_user();
 
 		$this->load->model('qslprint_model');
 		if ( ($station_id != 'All') && ($this->stations->check_station_is_accessible($station_id)) ) {
-			$data['qsos'] = $this->qslprint_model->get_qsos_for_print($station_id);
+			$qsos = $this->qslprint_model->get_qsos_for_print($station_id);
 		} else {
-			$data['qsos'] = $this->qslprint_model->get_qsos_for_print();
+			$qsos = $this->qslprint_model->get_qsos_for_print();
 		}
+
+		$data['qsos'] = $qsos;
 
 		$footerData = [];
 		$footerData['scripts'] = [
@@ -193,6 +191,16 @@ class QSLPrint extends CI_Controller {
 
 		$data['result'] = $this->qslprint_model->show_oqrs($id);
 		$this->load->view('oqrs/showoqrs', $data);
+	}
+
+	public function get_previous_qsl() {
+		$id = $this->security->xss_clean($this->input->post('id'));
+
+		$this->load->model('qslprint_model');
+
+		$number_qsls = $this->qslprint_model->get_previous_qsls($id);
+		header('Content-Type: application/json');
+		echo json_encode($number_qsls);
 	}
 
 }

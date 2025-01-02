@@ -43,7 +43,7 @@ class eqsl extends CI_Controller {
 
 	public function import() {
 		$this->load->model('user_model');
-		if (!$this->user_model->authorize(2)) {
+		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
@@ -447,7 +447,7 @@ class eqsl extends CI_Controller {
 		$errors = 0;
 		$this->load->library('electronicqsl');
 
-		if ($this->input->post('eqsldownload') == 'download') {
+		if ($this->input->post('eqsldownload') == 'download' && $this->config->item('enable_eqsl_massdownload')) {
 			$i = 0;
 			$this->load->model('eqslmethods_model');
 			$qslsnotdownloaded = $this->eqslmethods_model->eqsl_not_yet_downloaded();

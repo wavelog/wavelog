@@ -32,7 +32,7 @@ class QSO extends CI_Controller {
 
 		$data['notice'] = false;
 		$data['stations'] = $this->stations->all_of_user();
-		$data['radios'] = $this->cat->radios();
+		$data['radios'] = $this->cat->radios(true);
 		$data['radio_last_updated'] = $this->cat->last_updated()->row();
 		$data['query'] = $this->logbook_model->last_custom('5');
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
@@ -130,7 +130,7 @@ class QSO extends CI_Controller {
 				'prop_mode' => $this->input->post('prop_mode', TRUE),
 				'radio' => $this->input->post('radio', TRUE),
 				'station_profile_id' => $this->input->post('station_profile', TRUE),
-				'operator_callsign' => $this->input->post('operator_callsign', TRUE),
+				'operator_callsign' => $this->input->post('operator_callsign', TRUE) ?? $this->session->userdata('operator_callsign'),
 				'transmit_power' => $this->input->post('transmit_power', TRUE)
 			);
 			// ];
@@ -675,4 +675,20 @@ class QSO extends CI_Controller {
 			redirect('dashboard');
 		}
 	}
+
+    /**
+     * Easy modal Loader 
+     * Used for Share Modal in QSO Details view
+     */
+    function getShareModal() {
+
+        $data['qso'] = $this->input->post('qso_data', TRUE);
+
+        if (empty($data['qso'])) {
+            echo "No QSO data provided.";
+            return;
+        }
+
+        $this->load->view('qso/components/share_modal', $data, false);
+    }
 }

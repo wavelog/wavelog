@@ -5,10 +5,7 @@
 	</div>
 <?php } ?>
 <br>
-	<?php
-	if (!($this->config->item('disable_manual_lotw'))) { ?>
 	<a class="btn btn-outline-primary btn-sm float-end" href="<?php echo site_url('/lotw/import'); ?>" role="button"><i class="fas fa-cloud-download-alt"></i> <?= __("LoTW Import"); ?></a>
-	<?php } ?>
 	<h2><?= __("Logbook of the World"); ?></h2>
 
 	<!-- Card Starts -->

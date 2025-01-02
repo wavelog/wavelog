@@ -187,8 +187,14 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'qrzsent' || column == 'qrzreceived') {
 		value = $("#editQrz").val();
 	}
+	if (column == 'eqslsent' || column == 'eqslreceived') {
+		value = $("#editEqsl").val();
+	}
 	if (column == 'continent') {
 		value = $("#editContinent").val();
+	}
+	if (column == 'region') {
+		value = $("#editRegion").val();
 	}
 	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'qslmsg' || column == 'stationpower') {
 		value = $("#editTextInput").val();
@@ -239,6 +245,8 @@ function changeEditType(type) {
 	$('#editContinent').hide();
 	$('#editQrz').hide();
 	$('#saveButton').prop("disabled", false);
+	$('#editEqsl').hide();
+	$('#editRegion').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -273,10 +281,14 @@ function changeEditType(type) {
 		$('#editLoTW').show();
 	} else if (type == "qrzsent" || type == "qrzreceived") {
 		$('#editQrz').show();
+	} else if (type == "eqslsent" || type == "eqslreceived") {
+		$('#editEqsl').show();
 	} else if (type == "continent") {
 		$('#editContinent').show();
 	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == "stationpower") {
 		$('#editTextInput').show();
+	} else if (type == "region") {
+		$('#editRegion').show();
 	} else if (type == "") {
 		$('#saveButton').prop("disabled", true);
 	}

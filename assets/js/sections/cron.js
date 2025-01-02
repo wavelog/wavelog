@@ -35,7 +35,6 @@ function init_datatable() {
 		"pageLength": 25,
 		responsive: true,
 		ordering: true,
-		"scrollY": "600px",
 		"scrollCollapse": true,
 		"paging": false,
 		"scrollX": true,

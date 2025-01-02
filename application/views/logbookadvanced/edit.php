@@ -27,7 +27,10 @@
 			<option value="continent"><?= __("Continent"); ?></option>
 			<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
 			<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
+			<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
+			<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 			<option value="stationpower"><?= __("Station power"); ?></option>
+			<option value="region"><?= __("Region"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -149,6 +152,12 @@
 			<option value="I"><?= __("Invalid"); ?></option>
 		</select>
 
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editEqsl"  name="eqsl">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+		</select>
+
 		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">
 			<option value=""><?= __("None/Empty"); ?></option>
 			<option value="AF"><?= __("Africa"); ?></option>
@@ -158,5 +167,17 @@
 			<option value="EU"><?= __("Europe"); ?></option>
 			<option value="SA"><?= __("South America"); ?></option>
 			<option value="OC"><?= __("Oceania"); ?></option>
+		</select>
+
+		<select style="display:none" id="editRegion" name="region" class="form-select w-auto form-select-sm w-auto">
+			<option value=""></option>
+			<option value="NONE"><?= __("NONE"); ?></option>
+			<option value="AI"><?= __("African Italy"); ?></option>
+			<option value="BI"><?= __("Bear Island"); ?></option>
+			<option value="ET"><?= __("European Turkey"); ?></option>
+			<option value="IV"><?= __("ITU Vienna"); ?></option>
+			<option value="KO"><?= __("Kosovo"); ?></option>
+			<option value="SI"><?= __("Shetland Islands"); ?></option>
+			<option value="SY"><?= __("Sicily"); ?></option>
 		</select>
 	</form>

@@ -20,7 +20,7 @@ class Distancerecords_model extends CI_Model {
 		if (!$logbooks_locations_array) {
 			return null;
 		}
-		$sql = 'SELECT t1.sat, t1.distance, t2.COL_TIME_ON AS time, t2.COL_CALL AS callsign, t2.COL_GRIDSQUARE AS grid, t2.COL_MODE AS mode, t2.COL_PRIMARY_KEY AS primarykey, t2.station_gridsquare AS mygrid
+		$sql = 'SELECT t1.sat, displayname AS sat_displayname, t1.distance, t2.COL_TIME_ON AS time, t2.COL_CALL AS callsign, t2.COL_GRIDSQUARE AS grid, t2.COL_MODE AS mode, t2.COL_PRIMARY_KEY AS primarykey, t2.station_gridsquare AS mygrid
 			FROM (
 				SELECT MAX(col_distance) AS distance, COL_SAT_NAME AS sat
 					FROM '.$this->config->item('table_name').'
@@ -38,6 +38,7 @@ class Distancerecords_model extends CI_Model {
 			) t2
 				ON t1.sat = t2.COL_SAT_NAME
 				AND t1.distance = t2.COL_DISTANCE
+			LEFT JOIN satellite t3 ON t3.name = t2.COL_SAT_NAME
 				WHERE t2.rn = 1
 				ORDER BY t1.distance DESC;';
 
@@ -69,9 +70,10 @@ class Distancerecords_model extends CI_Model {
 		// With that query for oldest QSO per sat and distance
 		foreach ($query->result() as $row) {
 			$bindings=[];
-			$subsql = 'SELECT COL_SAT_NAME AS sat, COL_TIME_ON as time, COL_CALL as callsign, COL_GRIDSQUARE as grid, station_profile.station_gridsquare AS mygrid, COL_MODE AS mode, COL_PRIMARY_KEY as primarykey
+			$subsql = 'SELECT COL_SAT_NAME AS sat, satellite.displayname AS sat_displayname, COL_TIME_ON as time, COL_CALL as callsign, COL_GRIDSQUARE as grid, station_profile.station_gridsquare AS mygrid, COL_MODE AS mode, COL_PRIMARY_KEY as primarykey
 				FROM '.$this->config->item('table_name').'
 				LEFT JOIN station_profile ON station_profile.station_id = '.$this->config->item('table_name').'.station_id
+				LEFT JOIN satellite ON satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME
 				WHERE '.$this->config->item('table_name').'.station_id IN ('.implode(', ', $logbooks_locations_array).')
 				AND COL_SAT_NAME = ?
 				AND COL_DISTANCE = ?
@@ -80,7 +82,7 @@ class Distancerecords_model extends CI_Model {
 			$bindings[]=$row->distance;
 			$subquery = $this->db->query($subsql, $bindings);
 			$subrow = $subquery->row();
-			array_push($result, (object) ["sat" => $row->sat, "distance" => $row->distance, "time" => $subrow->time, "primarykey" => $subrow->primarykey, "callsign" => $subrow->callsign, "mode" => $subrow->mode, "grid" => $subrow->grid, "mygrid" => $subrow->mygrid]);
+			array_push($result, (object) ["sat" => $row->sat, "sat_displayname" => $subrow->sat_displayname, "distance" => $row->distance, "time" => $subrow->time, "primarykey" => $subrow->primarykey, "callsign" => $subrow->callsign, "mode" => $subrow->mode, "grid" => $subrow->grid, "mygrid" => $subrow->mygrid]);
 		}
 		return($result);
 	}
@@ -88,7 +90,10 @@ class Distancerecords_model extends CI_Model {
 	public function sat_distances($sat){
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->db->select('*, satellite.displayname AS sat_displayname');
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME');
+		$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left outer');
 		$this->db->where('COL_SAT_NAME', $sat);
 		$this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
 		$this->db->order_by("COL_DISTANCE", "desc");

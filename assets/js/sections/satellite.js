@@ -55,8 +55,8 @@ function createSatelliteDialog() {
 
 function createSatellite(form) {
 	$(".alert").remove();
-	if (form.nameInput.value == "") {
-		$('#create_satellite').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a name!</div>');
+	if (form.displayNameInput.value == "") {
+		$('#create_satellite').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> Please enter a name!</div>');
 	}
 	else {
 		$.ajax({
@@ -64,13 +64,14 @@ function createSatellite(form) {
 			type: 'post',
 			data: {
 				'name': form.nameInput.value,
-				'exportname': form.exportNameInput.value,
+				'displayname': form.displayNameInput.value,
 				'orbit': form.orbit.value,
 				'modename': form.mode.value,
 				'uplinkmode': form.uplinkMode.value,
 				'uplinkfrequency': form.uplinkFrequency.value,
 				'downlinkmode': form.downlinkMode.value,
 				'downlinkfrequency': form.downlinkFrequency.value,
+				'lotw': form.lotwAccepted.value,
 			},
 			success: function (html) {
 				location.reload();
@@ -107,8 +108,8 @@ function editSatelliteDialog(id) {
 
 function saveUpdatedSatellite(form) {
 	$(".alert").remove();
-	if (form.nameInput.value == "") {
-		$('#edit_satellite_dialog').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a name!</div>');
+	if (form.displayNameInput.value == "") {
+		$('#edit_satellite_dialog').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> Please enter a name!</div>');
 	}
 	else {
 		$.ajax({
@@ -116,7 +117,8 @@ function saveUpdatedSatellite(form) {
 			type: 'post',
 			data: {'id': form.id.value,
 					'name': form.nameInput.value,
-					'exportname': form.exportNameInput.value,
+					'displayname': form.displayNameInput.value,
+					'lotw': form.lotwAccepted.value,
 					'orbit': form.orbit.value,
 			},
 			success: function (html) {

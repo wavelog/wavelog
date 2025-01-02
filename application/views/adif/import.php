@@ -75,6 +75,22 @@
                                                                                     } ?>><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                             <?php } ?>
                         </select>
+                        <?php 
+                        $show_operator_question = true;
+                        if ($this->config->item('special_callsign') && $club_operators != false) { 
+                            $show_operator_question = false; ?>
+                            <div class="small form-text text-muted"><?= __("Select the operator of the imported QSOs") ?></div>
+                            <select name="club_operator" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
+                                <?php foreach ($club_operators as $operator) { ?>
+                                    <option value="<?php echo $operator->user_callsign; ?>" 
+                                        <?php if ($operator->user_callsign == $this->session->userdata('cd_src_call')) {
+                                            echo ' selected="selected"';
+                                        } ?>>
+                                        <?php echo $operator->user_callsign; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        <?php } ?>
                         <div class="small form-text text-muted"><?= __("Add QSOs to Contest") ?></div>
                         <select name="contest" id="contest" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
                             <option value="" selected><?= __("No Contest"); ?></option>
@@ -148,6 +164,16 @@
                         <div class="mb-3 row">
                             <div class="col-md-10">
                                 <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="markDcl" value="1" id="markDclImport">
+                                    <label class="form-check-label" for="markDclImport"><?= __("Mark imported QSOs as uploaded to DCL Logbook") ?></label>
+                                </div>
+                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-md-10">
+                                <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="dxccAdif" value="1" id="dxccAdif">
                                     <label class="form-check-label" for="dxccAdif"><?= __("Use DXCC information from ADIF") ?></label>
                                 </div>
@@ -155,6 +181,7 @@
                             </div>
                         </div>
 
+                        <?php if ($show_operator_question) { ?>
                         <div class="mb-3 row">
                             <div class="col-md-10">
                                 <div class="form-check-inline">
@@ -163,6 +190,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php } ?>
 
                         <div class="mb-3 row">
                             <div class="col-md-10">

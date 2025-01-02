@@ -18,6 +18,14 @@ $('#qrg_unit').on('click', function () {
 	}
 });
 
+function qrg_inputtype() {
+	// on small screens we change the input type of the frequency and frequency_rx fields to number to show the numeric keyboard
+	if (window.innerWidth < 768) {
+		$('#freq_calculated').attr('type', 'number').attr('step', '0.001').attr('inputmode', 'decimal').attr('lang', 'en');
+		$('#frequency_rx').attr('type', 'number').attr('step', '0.001').attr('inputmode', 'decimal').attr('lang', 'en');
+	}
+}
+
 async function set_qrg() {
 
 	let frequency = $('#frequency').val();
@@ -58,16 +66,16 @@ async function set_new_qrg() {
 	let unit = $('#qrg_unit').html();
 
 	// check if the input contains a unit and parse the qrg
-	if (/^\d+(\.\d+)?\s*hz$/i.test(new_qrg)) {
+	if (/^\d+(\.\d+)?\s*(hz|h)$/i.test(new_qrg)) {
 		unit = 'Hz';
 		parsed_qrg = parseFloat(new_qrg);
-	} else if (/^\d+(\.\d+)?\s*khz$/i.test(new_qrg)) {
+	} else if (/^\d+(\.\d+)?\s*(khz|k)$/i.test(new_qrg)) {
 		unit = 'kHz';
 		parsed_qrg = parseFloat(new_qrg);
-	} else if (/^\d+(\.\d+)?\s*mhz$/i.test(new_qrg)) {
+	} else if (/^\d+(\.\d+)?\s*(mhz|m)$/i.test(new_qrg)) {
 		unit = 'MHz';
 		parsed_qrg = parseFloat(new_qrg);
-	} else if (/^\d+(\.\d+)?\s*ghz$/i.test(new_qrg)) {
+	} else if (/^\d+(\.\d+)?\s*(ghz|g)$/i.test(new_qrg)) {
 		unit = 'GHz';
 		parsed_qrg = parseFloat(new_qrg);
 	}
@@ -111,7 +119,9 @@ $('#frequency').on('change', function () {
 });
 
 $('#freq_calculated').on('input', function () {
-    $(this).val($(this).val().replace(',', '.'));
+	if (window.innerWidth > 768) {
+    	$(this).val($(this).val().replace(',', '.'));
+	}
 });
 
 $('#freq_calculated').on('change', function () {
@@ -122,8 +132,12 @@ $('#freq_calculated').on('change', function () {
 $('#freq_calculated').on('keydown', function (e) {
 	if (e.which === 13) {
 		e.preventDefault();
-		set_new_qrg().then(() => {
-            $("#qso_input").trigger('submit');
-        });
+		if ($('#callsign').val() != '') {
+			set_new_qrg().then(() => {
+				$("#qso_input").trigger('submit');
+			});
+		} else {
+			set_new_qrg();
+		}
     }
 });

@@ -55,7 +55,8 @@
 			\"qrz\":{\"show\":\"true\"},
 			\"profilename\":{\"show\":\"true\"},
 			\"stationpower\":{\"show\":\"true\"},
-			\"distance\":{\"show\":\"true\"}
+			\"distance\":{\"show\":\"true\"},
+			\"region\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
@@ -128,6 +129,10 @@
         echo "\nvar o_template = { distance: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
+	if (!isset($current_opts->region)) {
+        echo "\nvar o_template = { region: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
 
 
     foreach ($mapoptions as $mo) {
@@ -172,7 +177,7 @@ $options = json_decode($options);
                         </div>
                         <div <?php if (($options->dx->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="dx"><?= __("Dx"); ?></label>
-                            <input type="text" name="dx" id="dx" class="form-control form-control-sm" value="">
+                            <input onclick="this.select()" type="text" name="dx" id="dx" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->dxcc->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="dxcc"><?= __("DXCC"); ?></label>
@@ -197,11 +202,11 @@ $options = json_decode($options);
                         </div>
                         <div <?php if (($options->state->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="state"><?= __("State"); ?></label>
-                            <input type="text" name="state" id="state" class="form-control form-control-sm" value="">
+                            <input onclick="this.select()" type="text" name="state" id="state" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->gridsquare->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="gridsquare"><?= __("Gridsquare"); ?></label>
-                            <input type="text" name="gridsquare" id="gridsquare" class="form-control form-control-sm" value="">
+                            <input onclick="this.select()" type="text" name="gridsquare" id="gridsquare" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->mode->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="mode"><?= __("Mode"); ?></label>
@@ -294,11 +299,11 @@ $options = json_decode($options);
                     <div class="row">
                         <div <?php if (($options->sota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="sota"><?= __("SOTA"); ?></label>
-                            <input type="text" name="sota" id="sota" class="form-control form-control-sm" value="">
+                            <input onclick="this.select()" type="text" name="sota" id="sota" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->pota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="pota"><?= __("POTA"); ?></label>
-                            <input type="text" name="pota" id="pota" class="form-control form-control-sm" value="">
+                            <input onclick="this.select()" type="text" name="pota" id="pota" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->iota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="iota"><?= __("IOTA"); ?></label>
@@ -314,16 +319,16 @@ $options = json_decode($options);
                         </div>
                         <div <?php if (($options->wwff->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="wwff"><?= __("WWFF"); ?></label>
-                            <input type="text" name="wwff" id="wwff" class="form-control form-control-sm" value="">
+                            <input onclick="this.select()" type="text" name="wwff" id="wwff" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->operator->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="operator"><?= __("Operator"); ?></label>
-                            <input type="text" name="operator" id="operator" class="form-control form-control-sm" value="">
+                            <input onclick="this.select()" type="text" name="operator" id="operator" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
 
                         <div <?php if (($options->contest->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="contest"><?= __("Contest"); ?></label>
-                            <input type="text" name="contest" id="contest" class="form-control form-control-sm" value="">
+                            <input onclick="this.select()" type="text" name="contest" id="contest" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
 
 						<div <?php if (($options->continent->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
@@ -456,7 +461,7 @@ $options = json_decode($options);
                 </div>
                 <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="qslvia"><?= __("QSL via"); ?></label>
-                    <input type="search" name="qslvia" class="form-control form-control-sm">
+                    <input type="search" name="qslvia" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                 </div>
                 <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="qslimages"><?= __("QSL Images"); ?></label>
@@ -468,7 +473,7 @@ $options = json_decode($options);
                 </div>
             </div>
         </div>
-
+		<?php if(clubaccess_check(9)) { ?>
         <div class="actionbody collapse">
             <script>
                 var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
@@ -493,9 +498,13 @@ $options = json_decode($options);
                 <button type="button" class="btn btn-sm btn-info me-1" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
             </div>
         </div>
+		<?php } ?>
         <div class="quickfilterbody collapse">
             <div class="mb-2 btn-group">
                 <span class="h6 me-1"><?= __("Quicksearch with selected: "); ?></span>
+				<?php if (($options->datetime->show ?? "true") == "true") { ?>
+                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchDate"><?= __("Search Date"); ?></button><?php
+                                                                                                                                    } ?>
                 <?php if (($options->dx->show ?? "true") == "true") { ?>
                     <button type="button" class="btn btn-sm btn-primary me-1" id="searchCallsign"><?= __("Search Callsign"); ?></button><?php
                                                                                                                                     } ?>
@@ -538,46 +547,75 @@ $options = json_decode($options);
             </div>
         </div>
         <div class="row pt-2">
-            <div class="mb-3 d-flex align-items-center col-lg d-flex flex-row justify-content-center align-items-center">
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".quickfilterbody"><?= __("Quickfilters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody"><?= __("QSL Filters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".filterbody"><?= __("Filters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody"><?= __("Actions"); ?></button>
-                <label for="qsoResults" class="me-2"><?= __("# Results"); ?></label>
-                <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
-                    <option value="250">250</option>
-                    <option value="1000">1000</option>
-                    <option value="2500">2500</option>
-                    <option value="5000">5000</option>
-                </select>
-                <label class="me-2" for="de"><?= __("Location"); ?></label>
-                <select class="form-control form-control-sm" id="de" name="de" multiple="multiple">
-                    <?php foreach ($station_profile->result() as $station) { ?>
-                        <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
-                                                                                echo " selected =\"selected\"";
-                                                                            } ?>>
-                            <?= __("Callsign: ") . " " ?>
-                            <?php echo str_replace("0", "&Oslash;", strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
-                        </option>
-                    <?php } ?>
-                </select>
-                <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton"><?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
-				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="invalidButton"><?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton"><?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
-                <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos"><?= __("Delete"); ?></button>
-                <div class="btn-group me-1" role="group">
-                    <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?= __("Map"); ?><div class="ld ld-ring ld-spin"></div></button>
-                    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
-                    </ul>
-                </div>
-                <button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><?= __("Options"); ?></button>
-                <button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton"><?= __("Reset"); ?></button>
+			<div class="d-flex flex-wrap btn-group w-auto mx-auto">
+				<button type="button" class="btn btn-sm btn-primary me-1 mb-2 lba_buttons flex-grow-0" data-bs-toggle="collapse" data-bs-target=".quickfilterbody" style="white-space: nowrap;">
+					<i class="fas fa-filter"></i> <?= __("Quickfilters"); ?>
+				</button>
+				<button type="button" class="btn btn-sm btn-primary me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".qslfilterbody" style="white-space: nowrap;">
+					<i class="fas fa-filter"></i> <?= __("QSL Filters"); ?>
+				</button>
+				<button type="button" class="btn btn-sm btn-primary me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".filterbody" style="white-space: nowrap;">
+					<i class="fas fa-filter"></i> <?= __("Filters"); ?>
+				</button>
+				<?php if(clubaccess_check(9)) { ?>
+				<button type="button" class="btn btn-sm btn-success me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;">
+					<i class="fas fa-tasks"></i> <?= __("Actions"); ?>
+				</button>
+				<?php } ?>
+				<label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
+				<select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
+					<option value="250">250</option>
+					<option value="1000">1000</option>
+					<option value="2500">2500</option>
+					<option value="5000">5000</option>
+				</select>
+				<label class="me-2" for="de"><?= __("Location"); ?></label>
+				<select class="form-control form-control-sm w-auto me-2" id="de" name="de" multiple="multiple">
+					<?php foreach ($station_profile->result() as $station) { ?>
+						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
+							echo " selected =\"selected\""; } ?>>
+							<?= __("Callsign: ") . " " ?>
+							<?php echo str_replace("0", "&Oslash;", strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
+						</option>
+					<?php } ?>
+				</select>
+				<button type="submit" class="btn btn-sm btn-success me-1 ld-ext-right flex-grow-0 mb-2" aria-label="<?= __("Search"); ?>" id="searchButton" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Search"); ?>">
+					<i class="fas fa-search"></i><div class="ld ld-ring ld-spin"></div>
+				</button>
+				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="dupeButton" style="white-space: nowrap;">
+					<i class="fa fa-clone"></i> <?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div>
+				</button>
+				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="invalidButton" style="white-space: nowrap;">
+					<i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div>
+				</button>
+				<?php if(clubaccess_check(9)) { ?>
+				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="editButton" style="white-space: nowrap;">
+					<i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div>
+				</button>
+				<?php } ?>
+				<div class="btn-group me-1" role="group">
+					<button type="button" class="btn btn-sm btn-primary ld-ext-right flex-grow-0 mb-2" id="mapButton" onclick="mapQsos(this.form);" style="white-space: nowrap;">
+						<i class="fas fa-globe-europe"></i> <?= __("Map"); ?><div class="ld ld-ring ld-spin"></div>
+					</button>
+					<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle flex-grow-0 mb-2" data-bs-toggle="dropdown" aria-expanded="false"></button>
+					<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+						<li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
+					</ul>
+				</div>
+				<?php if(clubaccess_check(9)) { ?>
+				<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" aria-label="<?= __("Options"); ?>" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Options"); ?>">
+					<i class="fas fa-cog"></i>
+				</button>
+					<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				<?php } ?>
+				<button type="reset" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="resetButton" style="white-space: nowrap;">
+					<i class="fas fa-undo"></i> <?= __("Reset"); ?>
+				</button>
+			</div>
+		</div>
 
-            </div>
-        </div>
         </form>
         <table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center" id="qsoList">
             <thead>
@@ -662,6 +700,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->sig->show ?? "true") == "true") {
                         echo '<th>SIG</th>';
+                    } ?>
+					<?php if (($options->region->show ?? "true") == "true") {
+                        echo '<th>' . __("Region") . '</th>';
                     } ?>
                     <?php if (($options->operator->show ?? "true") == "true") {
                         echo '<th>' . __("Operator") . '</th>';

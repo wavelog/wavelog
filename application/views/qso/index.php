@@ -63,12 +63,12 @@
                       <!-- HTML for Date/Time -->
               <?php if ($this->session->userdata('user_qso_end_times')  == 1) { ?>
               <div class="row">
-                <div class="mb-3 col-md-3">
+                <div class="mb-3 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-4">
                   <label for="start_date"><?= __("Date"); ?></label>
                   <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date('d-m-Y'); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
-                <div class="mb-3 col-md-4">
+                <div class="mb-3 col-sm-6 col-md-6 col-lg-4 col-xl-4 col-4 ps-0 pe-0">
                 <label for="start_time"><?= __("Time on"); ?></label>
                   <div class="input-group">
                     <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" tabindex="5" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
@@ -80,7 +80,7 @@
                   </div>
                 </div>
 
-                <div class="mb-3 col-md-4">
+                <div class="mb-3 col-sm-6 col-md-6 col-lg-4 col-xl-4 col-4">
                   <label for="end_time"><?= __("Time off"); ?></label>
                   <div class="input-group">
                     <input type="text" class="form-control form-control-sm input_end_time" name="end_time" id="end_time" tabindex="6" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
@@ -99,12 +99,12 @@
 
               <?php } else {?>
               <div class="row">
-                <div class="mb-3 col-md-6">
+                <div class="mb-3 col-6">
                   <label for="start_date"><?= __("Date"); ?></label>
                   <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date('d-m-Y'); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
-                <div class="mb-3 col-md-6">
+                <div class="mb-3 col-6">
                   <label for="start_time"><?= __("Time"); ?></label>
                   <div class="input-group">
                     <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" tabindex="5" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
@@ -126,7 +126,7 @@
                 <div class="mb-3 col-md-12">
                   <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i>
                   <div class="input-group">
-                    <input tabindex="7" type="text" class="form-control" id="callsign" name="callsign" autocomplete="off" required>
+                    <input tabindex="7" type="text" class="form-control uppercase" id="callsign" name="callsign" autocomplete="off" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>
@@ -179,13 +179,13 @@
               </div>
 
               <!-- Signal Report Information -->
-              <div class="row">
-                <div class="mb-3 col-md-6">
+              <div class="row mb-3 mb-sm-4">
+                <div class="col-6">
                   <label for="rst_sent"><?= __("RST (S)"); ?></label>
                   <input tabindex="8" type="text" class="form-control form-control-sm" name="rst_sent" id="rst_sent" value="59">
                 </div>
 
-                <div class="mb-3 col-md-6">
+                <div class="col-6">
                   <label for="rst_rcvd"><?= __("RST (R)"); ?></label>
                   <input tabindex="9" type="text" class="form-control form-control-sm" name="rst_rcvd" id="rst_rcvd" value="59">
                 </div>
@@ -285,7 +285,7 @@
               <div class="mb-3 row">
                   <label for="locator" class="col-sm-3 col-form-label"><?= __("Gridsquare"); ?></label>
                   <div class="col-sm-9">
-                    <input tabindex="19" type="text" class="form-control form-control-sm" name="locator" id="locator" value="">
+                    <input tabindex="19" type="text" class="form-control form-control-sm uppercase" name="locator" id="locator" value="">
                     <small id="locator_info" class="form-text text-muted"></small>
                 </div>
               </div>
@@ -351,14 +351,16 @@
 
             <div class="mb-3">
               <label for="transmit_power"><?= __("Transmit Power (W)"); ?></label>
-              <input type="number" step="0.001" class="form-control" id="transmit_power" name="transmit_power" value="<?php if ($this->session->userdata('transmit_power')) { echo $this->session->userdata('transmit_power'); } else { echo $power; } ?>" />
+              <input type="number" inputmode="decimal" step="0.001" pattern="[0-9]*" class="form-control" id="transmit_power" name="transmit_power" value="<?php if ($this->session->userdata('transmit_power')) { echo $this->session->userdata('transmit_power'); } else { echo $power; } ?>" />
               <small id="powerHelp" class="form-text text-muted"><?= __("Give power value in Watts. Include only numbers in the input."); ?></small>
             </div>
 
+            <?php if (clubaccess_check(9)) { ?>
             <div class="mb-3">
               <label for="operator_callsign"><?= __("Operator Callsign"); ?></label>
               <input type="text" class="form-control" id="operator_callsign" name="operator_callsign" value="<?php if ($this->session->userdata('operator_callsign')) { echo $this->session->userdata('operator_callsign'); } ?>" />
             </div>
+            <?php } ?>
 
         </div>
 
@@ -383,68 +385,100 @@
 
                   </select>
               </div>
-              <div class="mb-3">
-                  <label for="continent"><?= __("Continent"); ?></label>
-                  <select class="form-select" id="continent" name="continent">
-                      <option value=""></option>
-                      <option value="AF"><?= __("Africa"); ?></option>
-                      <option value="AN"><?= __("Antarctica"); ?></option>
-                      <option value="AS"><?= __("Asia"); ?></option>
-                      <option value="EU"><?= __("Europe"); ?></option>
-                      <option value="NA"><?= __("North America"); ?></option>
-                      <option value="OC"><?= __("Oceania"); ?></option>
-                      <option value="SA"><?= __("South America"); ?></option>
-                  </select>
-              </div>
-              <div class="mb-3">
-                  <label for="cqz"><?= __("CQ Zone"); ?></label>
-                  <select class="form-select" id="cqz" name="cqz" required>
-                      <?php
-                      for ($i = 0; $i<=40; $i++) {
-                          echo '<option value="'. $i . '">'. $i .'</option>';
-                      }
-                      ?>
-                  </select>
-              </div>
-              <div class="mb-3">
-                  <label for="ituz"><?= __("ITU Zone"); ?></label>
-                  <select class="form-select" id="ituz" name="ituz">
-                      <?php
-                      for ($i = 0; $i<=90; $i++) {
-                          echo '<option value="'. $i . '">'. $i .'</option>';
-                      }
-                      ?>
-                  </select>
-              </div>
+			  <div class="row">
+				  <div class="mb-3 col">
+					  <label for="continent"><?= __("Continent"); ?></label>
+					  <select class="form-select" id="continent" name="continent">
+						  <option value=""></option>
+						  <option value="AF"><?= __("Africa"); ?></option>
+						  <option value="AN"><?= __("Antarctica"); ?></option>
+						  <option value="AS"><?= __("Asia"); ?></option>
+						  <option value="EU"><?= __("Europe"); ?></option>
+						  <option value="NA"><?= __("North America"); ?></option>
+						  <option value="OC"><?= __("Oceania"); ?></option>
+						  <option value="SA"><?= __("South America"); ?></option>
+					  </select>
+				  </div>
+				  <div class="mb-3 col">
+					  <label for="region"><?= __("Region"); ?></label>
+					  <select class="form-select" id="region" name="region">
+						  <option value="" selected></option>
+						  <option value="NONE"><?= __("NONE"); ?></option>
+						  <option value="AI"><?= __("African Italy"); ?></option>
+						  <option value="BI"><?= __("Bear Island"); ?></option>
+						  <option value="ET"><?= __("European Turkey"); ?></option>
+						  <option value="IV"><?= __("ITU Vienna"); ?></option>
+						  <option value="KO"><?= __("Kosovo"); ?></option>
+						  <option value="SI"><?= __("Shetland Islands"); ?></option>
+						  <option value="SY"><?= __("Sicily"); ?></option>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="row">
+				  <div class="mb-3 col">
+					  <label for="cqz"><?= __("CQ Zone"); ?></label>
+					  <select class="form-select" id="cqz" name="cqz" required>
+						  <?php
+						  for ($i = 0; $i<=40; $i++) {
+							  echo '<option value="'. $i . '">'. $i .'</option>';
+						  }
+						  ?>
+					  </select>
+				  </div>
+				  <div class="mb-3 col">
+					  <label for="ituz"><?= __("ITU Zone"); ?></label>
+					  <select class="form-select" id="ituz" name="ituz">
+						  <?php
+						  for ($i = 0; $i<=90; $i++) {
+							  echo '<option value="'. $i . '">'. $i .'</option>';
+						  }
+						  ?>
+					  </select>
+				  </div>
+			  </div>
 
             <div class="mb-3">
-              <label for="selectPropagation"><?= __("Propagation Mode"); ?></label>
-              <select class="form-select" id="selectPropagation" name="prop_mode">
-                <option value="" <?php if(!empty($this->session->userdata('prop_mode'))) { echo "selected=\"selected\""; } ?>></option>
-                <option value="AS" <?php if($this->session->userdata('prop_mode') == "AS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
-                <option value="AUR" <?php if($this->session->userdata('prop_mode') == "AUR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aurora"); ?></option>
-                <option value="AUE" <?php if($this->session->userdata('prop_mode') == "AUE") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
-                <option value="BS" <?php if($this->session->userdata('prop_mode') == "BS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Back scatter"); ?></option>
-                <option value="ECH" <?php if($this->session->userdata('prop_mode') == "ECH") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","EchoLink"); ?></option>
-                <option value="EME" <?php if($this->session->userdata('prop_mode') == "EME") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Earth-Moon-Earth"); ?></option>
-                <option value="ES" <?php if($this->session->userdata('prop_mode') == "ES") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
-                <option value="FAI" <?php if($this->session->userdata('prop_mode') == "FAI") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
-                <option value="F2" <?php if($this->session->userdata('prop_mode') == "F2") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
-                <option value="INTERNET" <?php if($this->session->userdata('prop_mode') == "INTERNET") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
-                <option value="ION" <?php if($this->session->userdata('prop_mode') == "ION") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
-                <option value="IRL" <?php if($this->session->userdata('prop_mode') == "IRL") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","IRLP"); ?></option>
-                <option value="MS" <?php if($this->session->userdata('prop_mode') == "MS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
-                <option value="RPT" <?php if($this->session->userdata('prop_mode') == "RPT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
-                <option value="RS" <?php if($this->session->userdata('prop_mode') == "RS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
-                <option value="SAT" <?php if($this->session->userdata('prop_mode') == "SAT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
-                <option value="TEP" <?php if($this->session->userdata('prop_mode') == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
-                <option value="TR" <?php if($this->session->userdata('prop_mode') == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
-              </select>
+              <div class="row">
+                <div class="col">
+                  <label for="selectPropagation"><?= __("Propagation Mode"); ?></label>
+                  <select class="form-select" id="selectPropagation" name="prop_mode">
+                    <option value="" <?php if(!empty($this->session->userdata('prop_mode'))) { echo "selected=\"selected\""; } ?>></option>
+                    <option value="AS" <?php if($this->session->userdata('prop_mode') == "AS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
+                    <option value="AUR" <?php if($this->session->userdata('prop_mode') == "AUR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aurora"); ?></option>
+                    <option value="AUE" <?php if($this->session->userdata('prop_mode') == "AUE") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
+                    <option value="BS" <?php if($this->session->userdata('prop_mode') == "BS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Back scatter"); ?></option>
+                    <option value="ECH" <?php if($this->session->userdata('prop_mode') == "ECH") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","EchoLink"); ?></option>
+                    <option value="EME" <?php if($this->session->userdata('prop_mode') == "EME") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Earth-Moon-Earth"); ?></option>
+                    <option value="ES" <?php if($this->session->userdata('prop_mode') == "ES") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
+                    <option value="FAI" <?php if($this->session->userdata('prop_mode') == "FAI") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
+                    <option value="F2" <?php if($this->session->userdata('prop_mode') == "F2") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
+                    <option value="INTERNET" <?php if($this->session->userdata('prop_mode') == "INTERNET") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
+                    <option value="ION" <?php if($this->session->userdata('prop_mode') == "ION") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
+                    <option value="IRL" <?php if($this->session->userdata('prop_mode') == "IRL") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","IRLP"); ?></option>
+                    <option value="MS" <?php if($this->session->userdata('prop_mode') == "MS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
+                    <option value="RPT" <?php if($this->session->userdata('prop_mode') == "RPT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
+                    <option value="RS" <?php if($this->session->userdata('prop_mode') == "RS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
+                    <option value="SAT" <?php if($this->session->userdata('prop_mode') == "SAT") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
+                    <option value="TEP" <?php if($this->session->userdata('prop_mode') == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
+                    <option value="TR" <?php if($this->session->userdata('prop_mode') == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="ant_path"><?= __("Antenna Path"); ?></label>
+                  <select class="form-select" id="ant_path" name="ant_path">
+                      <option value=""></option>
+                      <option value="G"><?= __("Greyline"); ?></option>
+                      <option value="O"><?= __("Other"); ?></option>
+                      <option value="S"><?= __("Short Path"); ?></option>
+                      <option value="L"><?= __("Long Path"); ?></option>
+                  </select>
+                </div>
+              </div>
             </div>
 
             <div class="mb-3">
               <label for="stateInput" id="stateInputLabel"></label>
-                <select class="form-select" name="input_state_edit" id="stateDropdown">
+                <select class="form-select" name="input_state" id="stateDropdown">
                   <option value=""></option>
                 </select>
             </div>
@@ -532,9 +566,9 @@
             <?php } ?>
 
             <div class="mb-3">
-              <label for="email"><?= __("eMail"); ?></label>
+              <label for="email"><?= __("E-mail"); ?></label>
               <input class="form-control" id="email" type="text" name="email" value="" />
-              <small id="MailHelp" class="form-text text-muted"><?= __("eMail-Adress of QSO-Partner"); ?></small>
+              <small id="MailHelp" class="form-text text-muted"><?= __("E-mail address of QSO-partner"); ?></small>
             </div>
 
 
@@ -560,13 +594,13 @@
 
             <div class="mb-3">
               <label for="ant_az"><?= __("Antenna Azimuth (°)"); ?></label>
-              <input type="number" step="0.1" min="0" max="360" class="form-control" id="ant_az" name="ant_az" />
+              <input type="number" inputmode="decimal" step="0.1" min="0" max="359.9" class="form-control" id="ant_az" name="ant_az" />
               <small id="azHelp" class="form-text text-muted"><?= __("Antenna azimuth in decimal degrees."); ?></small>
             </div>
 
             <div class="mb-3">
               <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
-              <input type="number" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" />
+              <input type="number" inputmode="decimal" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" />
               <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
             </div>
           </div>

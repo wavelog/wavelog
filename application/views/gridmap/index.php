@@ -61,7 +61,7 @@
                         <option value="TR"><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
                     </select>
                 </div>
-                    
+
             </div>
             <div class="row mb-2">
                 <label class="col-md-1" for="mode"><?= __("Mode"); ?></label>
@@ -129,7 +129,7 @@
             </div>
             <button id="plot" type="button" name="plot" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-plot" onclick="gridPlot(this.form,<?php echo $visitor == true ? "true" : "false"; ?>)"><?= __("Plot"); ?><div class="ld ld-ring ld-spin"></div></button>
             <button id="clear" type="button" name="clear" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-clear" onclick="clearMarkers()"><?= __("Clear Markers"); ?><div class="ld ld-ring ld-spin"></div></button>
-            
+
         </form>
     <?php } ?>
 
@@ -175,5 +175,9 @@
     echo "var gridsquares_gridsquares_confirmed = \"" . $gridsquares_gridsquares_confirmed . "\";\n";
     echo "var gridsquares_gridsquares_not_confirmed = \"" . $gridsquares_gridsquares_not_confirmed . "\";\n";
     echo "var gridsquares_gridsquares_total_worked = \"" . $gridsquares_gridsquares_total_worked . "\";\n";
+    echo "var gridsquares_fields = \"" . $gridsquares_fields . "\";\n";
+    echo "var gridsquares_fields_confirmed = \"" . $gridsquares_fields_confirmed . "\";\n";
+    echo "var gridsquares_fields_not_confirmed = \"" . $gridsquares_fields_not_confirmed . "\";\n";
+    echo "var gridsquares_fields_total_worked = \"" . $gridsquares_fields_total_worked . "\";\n";
     ?>
 </script>

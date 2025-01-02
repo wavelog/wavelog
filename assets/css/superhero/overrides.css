@@ -46,18 +46,28 @@ path.grid-rectangle {
 }
 
 span.grid-text > font {
-	color: rgba(220, 220, 220, 1) !important;
-	-webkit-text-stroke: 0.6px black !important;
+	color: rgba(255, 255, 255, 1) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-unworked > font {
+	color: rgba(255, 255, 255, .4) !important;
+	font-weight: 400 !important;
+}
+
+span.grid-text-worked > font {
+	color: rgba(255, 255, 255, 1) !important;
+	font-weight: 400 !important;
 }
 
 path.grid-confirmed {
-	fill: rgba(144, 238, 144, 0.4) !important;
-	stroke: rgba(144, 238, 144, 0.4) !important;
+	fill: rgba(20, 109, 20, 0.7) !important;
+	stroke: rgba(20, 255, 144, 0.7) !important;
 }
 
 path.grid-worked {
-	fill: rgba(220, 50, 50, 0.4) !important;
-	stroke: rgba(220, 50, 50, 0.4) !important;
+	fill: rgba(172, 40, 40, 0.7) !important;
+	stroke: rgba(248, 96, 129, 0.7) !important;
 }
 
 .map-leaflet {
@@ -221,4 +231,113 @@ div.alert-danger {
 	--bs-btn-hover-color: inherit !important;
 	--bs-btn-active-bg: #1e3146;
 	--bs-btn-active-color: inherit !important;
+}
+
+/* ============  Glanceyear ============ */
+
+.glanceyear-container {
+	border: 1px solid #1a4b6c;
+	border-radius: 5px;
+	max-width: 683px;
+	background-color: #0d2a42;
+}
+.glanceyear-header {
+	position: relative;
+	background-color: #133b59;
+	border-bottom: 1px solid #1a4b6c;
+	border-radius: 5px 5px 0 0;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 0;
+	padding: 7px 10px;
+}
+.glanceyear-quantity {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color: #76a9cf;
+	font-size: 10px;
+}
+
+.glanceyear-text {
+	color: #9fc7e1;
+	font-size: 12px;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+}
+.glanceyear-summary {
+	color: #76a9cf;
+	font-size: 12px;
+	margin: 0 10px 10px;
+}
+
+.glanceyear-legend {
+	color: #76a9cf;
+	float: right;
+	font-size: 12px;
+	text-align: middle;
+	text-wrap: none;
+}
+
+svg rect.day {
+	fill: #1c4866;
+	shape-rendering: crispedges;
+}
+svg rect.day:hover {
+	stroke: #64b5f6;
+	stroke-width: 1px;
+}
+svg rect.day[data-col] {
+	fill: #0d3e5c;
+}
+svg rect.day[data-col='1'] {
+	fill: #73e2ff;
+}
+svg rect.day[data-col='3'] {
+	fill: #5ecbff;
+}
+svg rect.day[data-col='6'] {
+	fill: #4ab4f5;
+}
+svg rect.day[data-col='12'] {
+	fill: #349cd8;
+}
+svg rect.day[data-col='24'] {
+	fill: #237fb4;
+}
+svg rect.day[data-col='48'] {
+	fill: #237fb4;
+}
+
+svg text {
+	fill: #9fc7e1;
+	font-size: 9px;
+}
+svg text.month {
+	fill: #76a9cf;
+}
+
+.svg-tag {
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 3px;
+	color: #9fc7e1;
+	font-size: 12px;
+	line-height: 15px;
+	padding: 5px 15px;
+	position: absolute;
+	text-align: center;
+}
+.svg-tag:after {
+	border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+	border-style: solid;
+	border-width: 5px 5px 0 5px;
+	bottom: -5px;
+	content: "";
+	height: 0;
+	left: 50%;
+	margin-left: -5px;
+	position: absolute;
+	width: 0;
 }

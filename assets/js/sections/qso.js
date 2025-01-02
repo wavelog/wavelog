@@ -158,11 +158,19 @@ $('#reset_start_time').on("click", function () {
 	var now = new Date();
 	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='start_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$starttime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$starttime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $starttime);
 	});
 	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $endtime);
 	});
 	// update date (today, for "post qso") //
 	$('#start_date').attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
@@ -172,7 +180,11 @@ $('#reset_end_time').on("click", function () {
 	var now = new Date();
 	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
 	$("[id='end_time']").each(function () {
-		$(this).attr("value", ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
+		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
+		if (qso_manual != 1) {
+			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
+		}
+		$(this).attr("value", $endtime);
 	});
 });
 
@@ -492,6 +504,8 @@ function reset_fields() {
 	$('#comment').val("");
 	$('#country').val("");
 	$('#continent').val("");
+	$('#email').val("");
+	$('#region').val("");
 	$('#lotw_info').text("");
 	$('#lotw_info').attr('data-bs-original-title', "");
 	$('#lotw_info').removeClass("lotw_info_red");
@@ -505,6 +519,7 @@ function reset_fields() {
 	$('#name').val("");
 	$('#qth').val("");
 	$('#locator').val("");
+	$('#ant_path').val("");
 	$('#iota_ref').val("");
 	$("#locator").removeClass("confirmedGrid");
 	$("#locator").removeClass("workedGrid");
@@ -587,13 +602,13 @@ $("#callsign").on("focusout", function () {
 		var callsign = find_callsign;
 
 		find_callsign = find_callsign.replace(/\//g, "-");
-		find_callsign = find_callsign.replace('Ø', '0');
+		find_callsign = find_callsign.replaceAll('Ø', '0');
 
 		// Replace / in a callsign with - to stop urls breaking
 		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
 
 			// Make sure the typed callsign and json result match
-			if ($('#callsign').val().toUpperCase().replace('Ø', '0') == result.callsign) {
+			if ($('#callsign').val().toUpperCase().replaceAll('Ø', '0') == result.callsign) {
 
 				// Reset QSO fields
 				resetDefaultQSOFields();
@@ -763,6 +778,11 @@ $("#callsign").on("focusout", function () {
 					$('#name').val(result.callsign_name);
 				}
 
+				/* Find Operators E-mail */
+				if ($('#email').val() == "") {
+					$('#email').val(result.callsign_email);
+				}
+
 				if ($('#continent').val() == "") {
 					$('#continent').val(result.dxcc.cont);
 				}
@@ -868,6 +888,7 @@ $('.mode').on('change', function () {
 		});
 	}
 	$('#frequency_rx').val("");
+	$("#callsign").blur();
 });
 
 /* Calculate Frequency */
@@ -884,6 +905,7 @@ $('#band').on('change', function () {
 	$("#sat_name").val("");
 	$("#sat_mode").val("");
 	set_qrg();
+	$("#callsign").blur();
 });
 
 /* On Key up Calculate Bearing and Distance */
@@ -974,6 +996,7 @@ $("#locator").on("input focus", function () {
 				type: 'post',
 				data: {
 					grid: $(this).val(),
+					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
@@ -988,6 +1011,7 @@ $("#locator").on("input focus", function () {
 				type: 'post',
 				data: {
 					grid: $(this).val(),
+					ant_path: $('#ant_path').val(),
 					stationProfile: $('#stationProfile').val()
 				},
 				success: function (data) {
@@ -1005,6 +1029,41 @@ $("#locator").on("focusout", function () {
 	if ($(this).val().length == 0) {
 		$('#locator_info').text("");
 		document.getElementById("distance").value = null;
+	}
+});
+
+$("#ant_path").on("change", function () {
+	if ($("#locator").val().length > 0) {
+		$.ajax({
+			url: base_url + 'index.php/logbook/searchbearing',
+			type: 'post',
+			data: {
+				grid: $('#locator').val(),
+				ant_path: $('#ant_path').val(),
+				stationProfile: $('#stationProfile').val()
+			},
+			success: function (data) {
+				$('#locator_info').html(data).fadeIn("slow");
+			},
+			error: function () {
+				$('#locator_info').text("Error loading bearing!").fadeIn("slow");
+			},
+		});
+		$.ajax({
+			url: base_url + 'index.php/logbook/searchdistance',
+			type: 'post',
+			data: {
+				grid: $('#locator').val(),
+				ant_path: $('#ant_path').val(),
+				stationProfile: $('#stationProfile').val()
+			},
+			success: function (data) {
+				$('#distance').val(data);
+			},
+			error: function () {
+				$('#distance').val("");
+			},
+		});
 	}
 });
 
@@ -1118,6 +1177,8 @@ function resetDefaultQSOFields() {
 	$('#locator_info').text("");
 	$('#country').val("");
 	$('#continent').val("");
+	$('#email').val("");
+	$('#region').val("");
 	$('#dxcc_id').val("").multiselect('refresh');
 	$('#cqz').val("");
 	$('#ituz').val("");
@@ -1175,12 +1236,17 @@ function testTimeOffConsistency() {
 }
 
 $(document).ready(function () {
+	qrg_inputtype();
 	clearTimeout();
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 
-	// Clear the localStorage for the qrg units
+	// Clear the localStorage for the qrg units, except the quicklogCallsign
+	let quicklogCallsign = localStorage.getItem('quicklogCallsign');
 	localStorage.clear();
+	if (quicklogCallsign) {
+		localStorage.setItem('quicklogCallsign', quicklogCallsign);
+	}
 	set_qrg();
 
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })

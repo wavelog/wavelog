@@ -39,7 +39,7 @@
                         <?php } ?>
                         <tr>
                             <td><?= __("Language"); ?></td>
-                            <td><?php echo __(ucfirst($this->config->item('language'))) . "\n"; ?></td>
+                            <td><?= __(ucfirst($this->config->item('language'))) . "\n"; ?></td>
                         </tr>
                         <tr>
                             <td><?= __("Base URL"); ?></td>
@@ -63,6 +63,10 @@
                         <tr>
                             <td><?= __("Environment"); ?></td>
                             <td><?php echo ENVIRONMENT; ?></td>
+                        </tr>
+                        <tr>
+                            <td><?= __("System Time"); ?></td>
+                            <td><?php echo $system_time; ?></td>
                         </tr>
                         <tr class="blank-row">
                             <td> </td>
@@ -481,7 +485,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div class="border-bottom border-top pt-2 pb-2 mt-2 mb-2" id="version_check">
+                            <div class="border-top pt-2 pb-2 mt-2 mb-2" id="version_check">
                                 <p id="version_check_result"></p>
                                 <small id="last_version_check"></small>
                             </div>
@@ -549,6 +553,11 @@
                             <td><?= __("WWFF file download"); ?></td>
                             <td><?php echo $wwff_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff'); ?>"><?= __("Update"); ?></a></td>
+                        </tr>
+						<tr>
+                            <td><?= __("TLE update"); ?></td>
+                            <td><?php echo $tle_update->last_run ?? __("never"); ?></td>
+                            <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_tle'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                     </table>
                 </div>
@@ -675,4 +684,5 @@
     <?= __("Spanish"); ?>
     <?= __("Swedish"); ?>
     <?= __("Turkish"); ?>
+    <?= __("Armenian"); ?>
 </div>

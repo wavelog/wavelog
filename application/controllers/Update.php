@@ -211,7 +211,7 @@ class Update extends CI_Controller {
         $gz = gzopen($url, 'r');
         if ($gz === FALSE) {
             $this->update_status("FAILED: Could not download from clublog.org");
-            log_message('error', 'FAILED: Could not download exceptions from clublog.org');
+            log_message('error', 'FAILED: Could not download data from clublog.org');
             exit();
         }
 
@@ -223,6 +223,7 @@ class Update extends CI_Controller {
 
         if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
             $this->update_status("FAILED: Could not write to cty.xml file");
+			log_message('error', 'DXCC UPDATE FAILED: Could not write to cty.xml file');
             exit();
         }
 
@@ -388,66 +389,26 @@ class Update extends CI_Controller {
 
     }
 
-	public function update_tle() {
-		$mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $starttime = $mtime;
+    public function update_tle() {
+        $this->load->model('Update_model');
+        $result = $this->Update_model->tle();
+        echo $result;
+    }
 
-		$url = 'https://www.amsat.org/tle/dailytle.txt';
-		$curl = curl_init($url);
-
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-
-		$response = curl_exec($curl);
-
-		$count = 0;
-
-		if ($response === false) {
-			echo 'Error: ' . curl_error($curl);
-		} else {
-			$this->db->empty_table("tle");
-			// Split the response into an array of lines
-			$lines = explode("\n", $response);
-
-			$satname = '';
-			$tleline1 = '';
-			$tleline2 = '';
-			// Process each line
-			for ($i = 0; $i < count($lines); $i += 3) {
-				$count++;
-				// Check if there are at least three lines remaining
-				if (isset($lines[$i], $lines[$i + 1], $lines[$i + 2])) {
-					// Get the three lines
-					$satname = $lines[$i];
-					$tleline1 = $lines[$i + 1];
-					$tleline2 = $lines[$i + 2];
-					$sql = "INSERT INTO tle (satelliteid, tle) select id, ? from satellite where name = ? or exportname = ?";
-					$this->db->query($sql,array($tleline1."\n".$tleline2,$satname,$satname));
-				}
-			}
-		}
-
-		curl_close($curl);
-
-        $mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $endtime = $mtime;
-        $totaltime = ($endtime - $starttime);
-        echo "This page was created in ".$totaltime." seconds <br />";
-        echo "Records inserted: " . $count . " <br/>";
-        $datetime = new DateTime("now", new DateTimeZone('UTC'));
-        $datetime = $datetime->format('Ymd h:i');
-        $this->optionslib->update('tle_update', $datetime , 'no');
-	}
+    public function update_lotw_sats() {
+       $this->load->model('Update_model');
+       $bodyData['satupdates'] = $this->Update_model->lotw_sats();
+       $data['page_title'] = __("LoTW SAT Update");
+       $this->load->view('interface_assets/header', $data);
+       $this->load->view('lotw/satupdate', $bodyData);
+       $this->load->view('interface_assets/footer');
+    }
 
 	function version_check() {
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
-		
+
 		$this->load->model('Update_model');
 		$this->Update_model->update_check();
 	}

@@ -1,7 +1,12 @@
 <div class="container">
+	<br>
 	<h3>
 	  <?php if (isset($user_add)) {
-		echo __("Create User Account");
+		if ($clubstation) {
+			echo __("Create Clubstation Account");
+		} else {
+			echo __("Create User Account");
+		}
 	  } else {
 		echo __("Edit Account")." <small class=\"text-muted\">".$user_name."</small>";
 	  }
@@ -66,6 +71,9 @@
 											<input class="form-control" type="password" name="user_password" value="<?php if(isset($user_password)) { echo $user_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
+										<?php if($clubstation) { ?>
+											<small class="text-muted"><?= __("Don't share this password with operators!"); ?></small>
+										<?php } ?>
 										<?php if(isset($password_error)) {
 											echo "<small class=\"badge bg-danger\">".$password_error."</small>";
 											} else if (!isset($user_add)) { ?>
@@ -78,9 +86,13 @@
 										<?php if($this->session->userdata('user_type') == 99) { ?>
 											<select class="form-select" name="user_type">
 											<?php
-												$levels = $this->config->item('auth_level');
-												foreach ($levels as $key => $value) {
-													echo '<option value="'. $key . '" '. (($user_type ?? '') == $key ? "selected=\"selected\"":""). '>' . $value . '</option>';
+												if ($clubstation) {
+													echo '<option value="3" selected="selected">' . __("Clubstation") . '</option>';
+												} else {
+													$levels = $this->config->item('auth_level');
+													foreach ($levels as $key => $value) {
+														echo '<option value="'. $key . '" '. (($user_type ?? '') == $key ? "selected=\"selected\"":""). '>' . $value . '</option>';
+													}
 												}
 											?>
 											</select>
@@ -88,6 +100,9 @@
 											$l = $this->config->item('auth_level');
 											echo $l[$user_type];
 										}?>
+										<?php if ($clubstation) { ?>
+											<input type="hidden" name="clubstation" value="1" />
+										<?php } ?>
 									</div>
 								</div>
 							</div>
@@ -96,7 +111,7 @@
 						<!-- Personal Information -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("Personal"); ?></div>
+								<div class="card-header"><?php if ($clubstation) { echo __("Callsign Owner"); } else { echo __("Personal");} ?></div>
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("First Name"); ?></label>
@@ -120,15 +135,15 @@
 								<div class="card-header"><?= __("Ham Radio"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?= __("Callsign"); ?></label>
-										<input class="form-control" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
+										<label><?php if ($clubstation) { echo __("Special/Club Callsign"); } else { echo __("Callsign"); } ?></label>
+										<input class="form-control uppercase" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
 											<?php if(isset($callsign_error)) { echo "<small class=\"badge bg-danger\">".$callsign_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?= __("Gridsquare"); ?></label>
-										<input class="form-control" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
+										<input class="form-control uppercase" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
 											<?php if(isset($locator_error)) { echo "<small class=\"badge bg-danger\">".$locator_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
@@ -155,7 +170,7 @@
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Theme").' / '.__("Stylesheet"); ?></label>
-										<?php if(!isset($user_stylesheet)) { $user_stylesheet='default'; }?>
+										<?php if(!isset($user_stylesheet)) { $user_stylesheet='darkly'; }?>
 										<select class="form-select" id="user_stylesheet" name="user_stylesheet" required>
 											<?php
 											foreach ($themes as $theme) {
@@ -485,7 +500,7 @@
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="station">
 												<?php foreach($map_icon_select['station'] as $val) {
-													echo "<label data-value='".$val."'>".(($val=="0")?__("Not display"):("<i class='".$val."'></i>"))."</label>";
+													echo "<label data-value='".$val."'>".(($val=="0")?__("Not displayed"):("<i class='".$val."'></i>"))."</label>";
 												} ?>
 											</div>
 										</div>
@@ -706,16 +721,18 @@
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Logbook of The World (LoTW) Username"); ?></label>
-										<input class="form-control" type="text" name="user_lotw_name" value="<?php if(isset($user_lotw_name)) { echo $user_lotw_name; } ?>" />
+										<input class="form-control" type="text" name="user_lotw_name" id="user_lotw_name" value="<?php if(isset($user_lotw_name)) { echo $user_lotw_name; } ?>" />
 										<?php if(isset($userlotwname_error)) { echo "<small class=\"badge bg-danger\">".$userlotwname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?= __("Logbook of The World (LoTW) Password"); ?></label>
 										<div class="input-group">
-											<input class="form-control" type="password" name="user_lotw_password" value="<?php if(isset($user_lotw_password)) { echo $user_lotw_password; } ?>" />
+											<input class="form-control" type="password" id="user_lotw_password" name="user_lotw_password" value="<?php if(isset($user_lotw_password)) { echo $user_lotw_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
+											<button class="btn btn-secondary ld-ext-right" type="button" id="lotw_test_btn"><?= __("Test Login"); ?><div class="ld ld-ring ld-spin"></div></button>
 										</div>
+										<div class="alert mt-3" style="display: none;" id="lotw_test_txt"></div>
 										<?php if(isset($lotwpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$lotwpassword_error."</small>";
 											} else if (!isset($user_add)) { ?>

@@ -75,5 +75,6 @@
 		<?= __("Spanish"); ?>
 		<?= __("Swedish"); ?>
 		<?= __("Turkish"); ?>
+		<?= __("Armenian"); ?>
 	</div>
 </footer>

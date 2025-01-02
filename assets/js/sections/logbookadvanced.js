@@ -80,7 +80,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.qslMessage);
 	}
 	if (user_options.dxcc.show == "true"){
-		cells.eq(c++).html(qso.dxccname);
+		cells.eq(c++).html(qso.dxcc);
 	}
 	if (user_options.state.show == "true"){
 		cells.eq(c++).html(qso.state);
@@ -108,6 +108,9 @@ function updateRow(qso) {
 	}
 	if ( (user_options.sig) && (user_options.sig.show == "true")){
 		cells.eq(c++).html(qso.sig);
+	}
+	if ( (user_options.region) && (user_options.region.show == "true")){
+		cells.eq(c++).html(qso.region);
 	}
 	if ( (user_options.operator) && (user_options.operator.show == "true")){
 		cells.eq(c++).html(qso.operator);
@@ -274,6 +277,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.sig.show == "true"){
 			data.push(qso.sig);
+		}
+		if (user_options.region.show == "true"){
+			data.push(qso.region);
 		}
 		if (user_options.operator.show == "true"){
 			data.push(qso.operator);
@@ -708,6 +714,10 @@ $(document).ready(function () {
 		quickSearch('dx');
 	});
 
+	$('#searchDate').click(function (event) {
+		quickSearch('date');
+	});
+
 	$('#searchCqZone').click(function (event) {
 		quickSearch('cqzone');
 	});
@@ -910,12 +920,98 @@ $(document).ready(function () {
 				case 'operator': 	col1 = $(currentRow).find('#operator').text(); break;
 				case 'mode': 		col1 = currentRow.find("td:eq(4)").text(); break;
 				case 'band': 		col1 = currentRow.find("td:eq(7)").text(); col1 = col1.match(/\S\w*/); break;
+				case 'date': 		col1 = currentRow.find("td:eq(1)").text(); break;
 			}
 			if (col1.length == 0) return;
 			$('#searchForm').trigger("reset");
-			$("#"+type).val(col1);
+
+			if (type == 'date') {
+				let dateParts;
+				let formattedDate;
+
+			switch (custom_date_format) {
+				case "DD/MM/YY":
+					dateParts = col1.split(' ')[0].split('/');
+					formattedDate = `${ensureFourDigitYear(dateParts[2])}-${dateParts[1]}-${dateParts[0]}`;
+					break;
+
+				case "DD/MM/YYYY":
+					dateParts = col1.split(' ')[0].split('/');
+					formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+					break;
+
+				case "MM/DD/YY":
+					dateParts = col1.split(' ')[0].split('/');
+					formattedDate = `${ensureFourDigitYear(dateParts[2])}-${dateParts[0]}-${dateParts[1]}`;
+					break;
+
+				case "MM/DD/YYYY":
+					dateParts = col1.split(' ')[0].split('/');
+					formattedDate = `${dateParts[2]}-${dateParts[0]}-${dateParts[1]}`;
+					break;
+
+				case "DD.MM.YYYY":
+					dateParts = col1.split(' ')[0].split('.');
+					formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+					break;
+
+				case "YY/MM/DD":
+					dateParts = col1.split(' ')[0].split('/');
+					formattedDate = `${ensureFourDigitYear(dateParts[0])}-${dateParts[1]}-${dateParts[2]}`;
+					break;
+
+				case "YYYY-MM-DD":
+					dateParts = col1.split(' ')[0].split('-');
+					formattedDate = `${dateParts[0]}-${dateParts[1]}-${dateParts[2]}`;
+					break;
+
+				case "MMM DD, YY":
+				case "MMM DD, YYYY":
+					const monthNames = {
+						Jan: "01",
+						Feb: "02",
+						Mar: "03",
+						Apr: "04",
+						May: "05",
+						Jun: "06",
+						Jul: "07",
+						Aug: "08",
+						Sep: "09",
+						Oct: "10",
+						Nov: "11",
+						Dec: "12"
+					};
+
+					// Split by space and comma
+					const parts = col1.replace(',', '').split(' '); // Example: ["Dec", "03", "24"]
+
+					const month = monthNames[parts[0]]; // Convert month name to numeric format
+					const day = parts[1].padStart(2, '0'); // Ensure day has leading zero
+					const year = ensureFourDigitYear(parts[2]); // Ensure 4-digit year
+
+					formattedDate = `${year}-${month}-${day}`; // Convert to 'YYYY-MM-DD'
+					break;
+
+				default:
+					dateParts = col1.split(' ')[0].split('/');
+					formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+			}
+				$("#dateFrom").val(formattedDate);
+				$("#dateTo").val(formattedDate);
+			} else {
+				$("#"+type).val(col1);
+			}
 			$('#searchForm').submit();
 		});
+	}
+
+	function ensureFourDigitYear(year) { 				// Utility function to handle 2-digit year conversion
+		if (year.length === 2) {
+			return parseInt(year, 10) <= 49
+				? `20${year}` // Years 00-49 are in the 21st century
+				: `19${year}`; // Years 50-99 are in the 20th century
+		}
+		return year; // If already 4 digits, return as is
 	}
 
 	$('#printLabel').click(function (event) {
@@ -1171,6 +1267,7 @@ function saveOptions() {
 			dok: $('input[name="dok"]').is(':checked') ? true : false,
 			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
 			sig: $('input[name="sig"]').is(':checked') ? true : false,
+			region: $('input[name="region"]').is(':checked') ? true : false,
 			continent: $('input[name="continent"]').is(':checked') ? true : false,
 			distance: $('input[name="distance"]').is(':checked') ? true : false,
 			qrz: $('input[name="qrz"]').is(':checked') ? true : false,

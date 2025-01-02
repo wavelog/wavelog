@@ -34,7 +34,9 @@
                                     <a class="nav-item nav-link" id="nav-satellites-tab" data-bs-toggle="tab" href="#nav-satellites" role="tab" aria-controls="nav-awards" aria-selected="true"><?= __("Sats"); ?></a>
                                     <a class="nav-item nav-link" id="nav-awards-tab" data-bs-toggle="tab" href="#nav-awards" role="tab" aria-controls="nav-awards" aria-selected="true"><?= __("Awards"); ?></a>
                                     <a class="nav-item nav-link" id="nav-qso-notes-tab" data-bs-toggle="tab" href="#nav-qso-notes" role="tab" aria-controls="nav-qso-notes" aria-selected="false"><?= __("Notes"); ?></a>
-                                    <a class="nav-item nav-link" id="nav-qsl-tab" data-bs-toggle="tab" href="#nav-qsl" role="tab" aria-controls="nav-qsl" aria-selected="false"><?= __("QSL"); ?></a>
+                                    <?php if (clubaccess_check(9)) { ?>
+                                    <a class="nav-item nav-link" id="nav-qsl-edit-tab" data-bs-toggle="tab" href="#nav-qsl-edit" role="tab" aria-controls="nav-qsl-edit" aria-selected="false"><?= __("QSL"); ?></a>
+                                    <?php } ?>
                                     <a class="nav-item nav-link" id="nav-station-tab" data-bs-toggle="tab" href="#nav-station" role="tab" aria-controls="nav-station" aria-selected="false"><?= __("Station"); ?></a>
                                     <a class="nav-item nav-link" id="nav-contest-tab" data-bs-toggle="tab" href="#nav-contest" role="tab" aria-controls="nav-contest" aria-selected="false"><?= __("Contest"); ?></a>
                                 </div>
@@ -60,7 +62,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="callsign"><?= __("Callsign"); ?></label>
-                                            <input type="text" class="form-control" id="edit_callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
+                                            <input type="text" class="form-control uppercase" id="edit_callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
@@ -153,27 +155,27 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="locator"><?= __("Gridsquare"); ?></label>
-                                            <input type="text" class="form-control" id="locator_edit" name="locator" value="<?php echo $qso->COL_GRIDSQUARE; ?>">
-                                            <small id="locator_info" class="form-text text-muted"><?php if ($qso->COL_DISTANCE != "") echo $qso->COL_DISTANCE . " km"; ?></small>
+                                            <input type="text" class="form-control uppercase" id="locator_edit" name="locator" value="<?php echo $qso->COL_GRIDSQUARE; ?>">
+                                            <small id="locator_info_edit" class="form-text text-muted"><?php if ($qso->COL_DISTANCE != "") echo $qso->COL_DISTANCE . " km"; ?></small>
                                         </div>
 
                                         <input type="hidden" name="distance" id="distance" value="<?php print ($qso->COL_DISTANCE != "") ? $qso->COL_DISTANCE : "0"; ?>">
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="vucc_grids"><?= __("VUCC Gridsquare"); ?> <i id="vucc_grid_tooltip" data-bs-toggle="tooltip" data-bs-placement="right" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Used for VUCC MultiGrids"); ?>"></i></label>
-                                            <input type="text" class="form-control" id="vucc_grids" name="vucc_grids" value="<?php echo $qso->COL_VUCC_GRIDS; ?>">
+                                            <input type="text" class="form-control uppercase" id="vucc_grids" name="vucc_grids" value="<?php echo $qso->COL_VUCC_GRIDS; ?>">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="name"><?= __("Name"); ?></label>
-                                            <input type="text" class="form-control" id="name" name="name" value="<?php echo $qso->COL_NAME; ?>">
+                                            <input type="text" class="form-control" id="name_edit" name="name" value="<?php echo $qso->COL_NAME; ?>">
                                         </div>
 
                                         <div class="mb-3 col-sm-6">
                                             <label for="qth"><?= __("QTH"); ?></label>
-                                            <input type="text" class="form-control" id="qth" name="qth" value="<?php echo $qso->COL_QTH; ?>">
+                                            <input type="text" class="form-control" id="qth_edit" name="qth" value="<?php echo $qso->COL_QTH; ?>">
                                         </div>
                                     </div>
 
@@ -185,7 +187,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <label for="prop_mode"><?= __("Propagation Mode"); ?></label>
-                                            <select class="form-select" id="prop_mode" name="prop_mode">
+                                            <select class="form-select" id="prop_mode_edit" name="prop_mode">
                                                 <option value="" <?php if ($qso->COL_PROP_MODE == "") { echo "selected=\"selected\""; } ?>></option>
                                                 <option value="AS" <?php if ($qso->COL_PROP_MODE == "AS") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Aircraft Scatter"); ?></option>
                                                 <option value="AUR" <?php if ($qso->COL_PROP_MODE == "AUR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode", "Aurora"); ?></option>
@@ -217,7 +219,7 @@
                                         <input type="hidden" class="form-control" id="country" name="country" value="<?php echo $qso->COL_COUNTRY; ?>">
                                         <div class="mb-3 col-sm-6">
                                             <label for="ant_path"><?= __("Antenna Path"); ?></label>
-                                            <select class="form-select" id="ant_path" name="ant_path">
+                                            <select class="form-select" id="ant_path_edit" name="ant_path">
                                                 <option value=""></option>
                                                 <option value="G" <?php if ($qso->COL_ANT_PATH == "G") { echo "selected=\"selected\""; } ?>><?= __("Greyline"); ?></option>
                                                 <option value="O" <?php if ($qso->COL_ANT_PATH == "O") { echo "selected=\"selected\""; } ?>><?= __("Other"); ?></option>
@@ -230,7 +232,7 @@
                                     <div class="row mb-3">
                                         <div class="mb-3 col-sm-6">
                                             <label for="dxcc_id"><?= __("DXCC"); ?></label>
-                                            <select class="form-select" id="dxcc_id" name="dxcc_id" required>
+                                            <select class="form-select" id="dxcc_id_edit" name="dxcc_id" required>
                                                 <option value=""><?= __("Please select one"); ?></option>
                                                 <?php
                                                 foreach ($dxcc as $d) {
@@ -258,7 +260,7 @@
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="continent"><?= __("Continent"); ?></label>
-                                            <select class="form-select" id="continent" name="continent">
+                                            <select class="form-select" id="continent_edit" name="continent">
                                                 <option value=""></option>
                                                 <option value="AF" <?php if ($qso->COL_CONT == "AF") { echo "selected=\"selected\""; } ?>><?= __("Africa"); ?></option>
                                                 <option value="AN" <?php if ($qso->COL_CONT == "AN") { echo "selected=\"selected\""; } ?>><?= __("Antarctica"); ?></option>
@@ -270,7 +272,7 @@
                                             </select>
                                         </div>
                                     	<div class="mb-3">
-                                       		<label for="email"><?= __("eMail"); ?></label>
+                                       		<label for="email"><?= __("E-mail"); ?></label>
                                        		<input type="text" class="form-control" id="email_edit" name="email" value="<?php echo $qso->COL_EMAIL; ?>">
                                     	</div>
                                     </div>
@@ -304,7 +306,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="cqz"><?= __("CQ Zone"); ?></label>
-                                            <select class="form-select" id="cqz" name="cqz" required>
+                                            <select class="form-select" id="cqz_edit" name="cqz" required>
                                                 <?php for ($i = 1; $i <= 40; $i++) { ?>
                                                     <option value="<?= $i; ?>" <?php if ($qso->COL_CQZ == $i) echo "selected=\"selected\""; ?>><?= $i; ?></option>
                                                 <?php } ?>
@@ -312,15 +314,29 @@
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="ituz"><?= __("ITU Zone"); ?></label>
-                                            <select class="form-select" id="ituz" name="ituz">
+                                            <select class="form-select" id="ituz_edit" name="ituz">
                                                 <option value=''></option>
                                                 <?php for ($i = 1; $i <= 90; $i++) { ?>
                                                     <option value="<?= $i; ?>" <?php if ($qso->COL_ITUZ == $i) echo "selected=\"selected\""; ?>><?= $i; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="row">
+									</div>
+									<div class="row">
+										<div class="mb-3 col-sm-6">
+                                            <label for="region"><?= __("Region"); ?></label>
+                                            <select class="form-select" id="region_edit" name="region">
+                                                    <option value=''<?php if (($qso->COL_REGION ?? '') == '') echo " selected=\"selected\""; ?>></option>
+													<option value="NONE"<?php if (($qso->COL_REGION ?? '') == 'NONE') echo " selected=\"selected\""; ?>><?= __("NONE"); ?></option>
+													<option value="AI"<?php if (($qso->COL_REGION ?? '') == 'AI') echo " selected=\"selected\""; ?>><?= __("African Italy"); ?></option>
+													<option value="BI"<?php if (($qso->COL_REGION ?? '') == 'BI') echo " selected=\"selected\""; ?>><?= __("Bear Island"); ?></option>
+													<option value="ET"<?php if (($qso->COL_REGION ?? '') == 'ET') echo " selected=\"selected\""; ?>><?= __("European Turkey"); ?></option>
+													<option value="IV"<?php if (($qso->COL_REGION ?? '') == 'IV') echo " selected=\"selected\""; ?>><?= __("ITU Vienna"); ?></option>
+													<option value="KO"<?php if (($qso->COL_REGION ?? '') == 'KO') echo " selected=\"selected\""; ?>><?= __("Kosovo"); ?></option>
+													<option value="SI"<?php if (($qso->COL_REGION ?? '') == 'SI') echo " selected=\"selected\""; ?>><?= __("Shetland Islands"); ?></option>
+													<option value="SY"<?php if (($qso->COL_REGION ?? '') == 'SY') echo " selected=\"selected\""; ?>><?= __("Sicily"); ?></option>
+                                            </select>
+                                        </div>
                                         <div class="mb-3 col-sm-6">
                                             <?php
                                             $CI = &get_instance();
@@ -330,8 +346,8 @@
                                             $state_list = $CI->subdivisions->get_state_list($qso->COL_DXCC);
                                             ?>
 
-                                            <label for="stateDropdown" id="stateInputLabel"><?php echo $subdivision_name; ?></label>
-                                            <select class="form-select" id="stateDropdown" name="input_state_edit">
+                                            <label for="stateDropdown" id="stateInputLabelEdit"><?php echo $subdivision_name; ?></label>
+                                            <select class="form-select" id="stateDropdownEdit" name="input_state_edit">
                                                 <option value=""></option>
                                                 <?php foreach ($state_list->result() as $state) {
                                                     $selected = ($qso->COL_STATE == $state->state) ? 'selected="selected"' : ''; ?>
@@ -341,17 +357,15 @@
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <?php if ($qso->COL_DXCC == '291' || $qso->COL_DXCC == '110'  || $qso->COL_DXCC == '006') { ?>
-                                            <div class="mb-3 col-sm-6" id="location_us_county">
-                                                <label for="stationCntyInput"><?= __("USA County"); ?></label>
-                                                <input class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo $qso->COL_CNTY; ?>" />
-                                            </div>
-                                        <?php } ?>
+                                        <div style="display: none;" class="mb-3 col-sm-6" id="location_us_county_edit">
+                                            <label for="stationCntyInput"><?= __("USA County"); ?></label>
+                                            <input class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo $qso->COL_CNTY; ?>" />
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="iota_ref"><?= __("IOTA"); ?></label>
-                                            <select class="form-select" id="iota_ref" name="iota_ref">
+                                            <select class="form-select" id="iota_ref_edit" name="iota_ref">
                                                 <option value=""></option>
                                                 <?php foreach ($iota as $i) { ?>
                                                     <option value="<?= $i->tag; ?>" <?php if ($qso->COL_IOTA == $i->tag) echo "selected=\"selected\""; ?>><?= $i->tag . ' - ' . $i->name; ?></option>
@@ -399,10 +413,10 @@
                                 </div>
 
                                 <!-- QSL Panel Contents -->
-                                <div class="tab-pane fade" id="nav-qsl" role="tabpanel" aria-labelledby="nav-qsl-tab">
+                                <div class="tab-pane fade" id="nav-qsl-edit" role="tabpanel" aria-labelledby="nav-qsl-edit-tab">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="qsl-tab" data-bs-toggle="tab" href="#qsl" role="tab" aria-controls="qsl" aria-selected="true"><?= __("QSL Card"); ?></a>
+                                            <a class="nav-link active" id="qsl-edit-tab" data-bs-toggle="tab" href="#qsl-edit" role="tab" aria-controls="qsl-edit" aria-selected="true"><?= __("QSL Card"); ?></a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="eqsl-tab" data-bs-toggle="tab" href="#eqsl" role="tab" aria-controls="eqsl" aria-selected="false"><?= __("eQSL"); ?></a>
@@ -415,7 +429,7 @@
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="qsl" role="tabpanel" aria-labelledby="qsl-tab">
+                                        <div class="tab-pane fade show active" id="qsl-edit" role="tabpanel" aria-labelledby="qsl-edit-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
@@ -592,10 +606,12 @@
                                         </select>
                                     </div>
 
+                                    <?php if(clubaccess_check(9)) { ?>
                                     <div class="mb-3">
                                         <label for="operatorCallsign"><?= __("Operator Callsign"); ?></label>
-                                        <input type="text" id="operatorCallsign" class="form-control" name="operator_callsign" value="<?php echo $qso->COL_OPERATOR; ?>" />
+                                        <input type="text" id="operatorCallsign" class="form-control uppercase" name="operator_callsign" value="<?php echo $qso->COL_OPERATOR; ?>" />
                                     </div>
+                                    <?php } ?>
 
 
                                 </div>
@@ -623,12 +639,12 @@
 
                                         <div class="mb-3 col-sm-3">
                                             <label for="srx_string"><?= __("Exchange (R)"); ?></label>
-                                            <input type="text" id="srx_string" class="form-control" name="srx_string" value="<?php echo $qso->COL_SRX_STRING; ?>" />
+                                            <input type="text" id="srx_string" class="form-control uppercase" name="srx_string" value="<?php echo $qso->COL_SRX_STRING; ?>" />
                                         </div>
 
                                         <div class="mb-3 col-sm-3">
                                             <label for="stx_string"><?= __("Exchange (S)"); ?></label>
-                                            <input type="text" id="stx_string" class="form-control" name="stx_string" value="<?php echo $qso->COL_STX_STRING; ?>" />
+                                            <input type="text" id="stx_string" class="form-control uppercase" name="stx_string" value="<?php echo $qso->COL_STX_STRING; ?>" />
                                         </div>
                                     </div>
 

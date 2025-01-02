@@ -24,7 +24,7 @@ $(function() {
 					'targets': 2,
 					'createdCell':  function (td, cellData, rowData, row, col) {
 						$(td).addClass("spotted_call"); 
-						// $(td).attr( "title", "Click to prepare logging" );
+						$(td).attr( "title", lang_click_to_prepare_logging);
 					}
 				}
 			],
@@ -99,6 +99,11 @@ $(function() {
 						data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+dxcc_wked_info+'</a>');
 						data[0].push(single.spotter);
 						data[0].push(single.message || '');
+						if (single.worked_call) {
+							data[0].push(single.last_wked.LAST_QSO+' in '+single.last_wked.LAST_MODE);
+						} else {
+							data[0].push('');
+						}
 						if (oldtable.length > 0) {
 							let update=false;
 							oldtable.each( function (srow) {
@@ -209,7 +214,7 @@ $(function() {
 		let ready_listener = true;
 		let call=this.innerText;
 		let qrg=''
-		if ((this.parentNode.parentNode.className != 'odd') && (this.parentNode.parentNode.className != 'even')) {
+		if (this.parentNode.parentNode.className.indexOf('spotted_call')>=0) {
 			qrg=this.parentNode.parentNode.parentNode.cells[1].textContent*1000;
 		} else {
 			qrg=this.parentNode.parentNode.cells[1].textContent*1000;
