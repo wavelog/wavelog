@@ -153,7 +153,7 @@ if($this->session->userdata('user_id') != null) {
 <!-- Version Dialog END -->
 
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE -->
-<?php if ($this->config->item('special_callsign') == true && $this->uri->segment(1) == "dashboard") { ?>
+<?php if ($this->config->item('special_callsign') && $this->uri->segment(1) == "dashboard" && $this->session->userdata('clubstation') == 1) { ?>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
 <script>
 	<?php
@@ -175,6 +175,43 @@ if($this->session->userdata('user_id') != null) {
     <?php } ?>
 </script>
 <?php } ?>
+<script>
+function clubswitch_modal(club_id, club_callsign) {
+    $.ajax({
+        url: base_url + 'index.php/club/switch_modal',
+        type: 'POST',
+        data: {
+            club_id: club_id,
+            club_callsign: club_callsign
+        },
+        success: function(response) {
+            $('#clubswitchModal-container').html(response);
+            $('#clubswitchModal').modal('show');
+        },
+        error: function() {
+            alert('<?= __("Failed to load the modal. Please try again."); ?>');
+        }
+    });
+    $(window).on('blur', function() {
+        $('#clubswitchModal').modal('hide');
+    });
+}
+function stopImpersonate_modal() {
+    $.ajax({
+        url: base_url + 'index.php/user/stop_impersonate_modal',
+        success: function(response) {
+            $('#stopImpersonateModal-container').html(response);
+            $('#stopImpersonateModal').modal('show');
+        },
+        error: function() {
+            alert('<?= __("Failed to load the modal. Please try again."); ?>');
+        }
+    });
+    $(window).on('blur', function() {
+        $('#stopImpersonateModal').modal('hide');
+    });
+}
+</script>
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>
@@ -2896,10 +2933,6 @@ function viewEqsl(picture, callsign) {
             }
         </script>
     <?php } ?>
-<?php } ?>
-
-<?php if ($this->uri->segment(1) == "user") { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/user.js"></script>
 <?php } ?>
 
 <?php

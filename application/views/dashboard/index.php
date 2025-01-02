@@ -142,7 +142,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if($this->optionslib->get_option('dashboard_banner') != "false") { ?>
+	<?php if($this->optionslib->get_option('dashboard_banner') != "false" && $this->session->userdata('clubstation') == 0) { ?>
 	<?php if($todays_qsos >= 1) { ?>
 		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
 			<?= sprintf(

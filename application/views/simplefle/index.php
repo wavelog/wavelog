@@ -110,6 +110,7 @@
 							<small class="form-text text-muted"><?= sprintf(__("If you did operate from a new location, first create a new %sStation Location%s"), '<a href="'.site_url('station').'">', '</a>'); ?></small>
 						</div>
 					</div>
+					<?php if (clubaccess_check(9)) { ?>
 					<div class="col-xs-12 col-lg-6">
 						<div class="mb-3">
 							<label for="operator"><?= __("Operator"); ?> <span class="text-muted input-example"><?= __("e.g. OK2CQR"); ?></span></label>
@@ -118,6 +119,9 @@
 							<small class="form-text text-muted"><?= __("This is callsign of the operator. Without any pre- or suffixes."); ?></small>
 						</div>
 					</div>
+					<?php } else { ?>
+					<input type="hidden" id="operator" value="<?php echo $this->session->userdata('operator_callsign'); ?>">
+					<?php } ?>
 				</div>
 			</div>
 

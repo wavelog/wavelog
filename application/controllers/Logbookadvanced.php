@@ -158,6 +158,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function updateFromCallbook() {
+		if(!clubaccess_check(9)) return;
+
 		$this->load->model('logbook_model');
 		$this->load->model('logbookadvanced_model');
 
@@ -183,6 +185,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function export_to_adif() {
+		if(!clubaccess_check(9)) return;
+
 		ini_set('memory_limit', '-1');
 		set_time_limit(0);
 		$this->load->model('logbookadvanced_model');
@@ -197,6 +201,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function export_to_adif_params() {
+		if(!clubaccess_check(9)) return;
+
 		ini_set('memory_limit', '-1');
 		set_time_limit(0);
 		$this->load->model('logbookadvanced_model');
@@ -211,6 +217,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function update_qsl() {
+		if(!clubaccess_check(9)) return;
+
 		$this->load->model('logbookadvanced_model');
 
 		$ids = xss_clean($this->input->post('id'));
@@ -239,6 +247,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function update_qsl_received() {
+		if(!clubaccess_check(9)) return;
+
 		$this->load->model('logbookadvanced_model');
 
 		$ids = xss_clean($this->input->post('id'));
@@ -504,6 +514,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function userOptions() {
+		if(!clubaccess_check(9)) return;
+
 		$this->load->model('user_options_model');
 		$userOptions = $this->user_options_model->get_options('LogbookAdvanced')->result();
 		if (isset($userOptions[0])) {
@@ -524,6 +536,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function setUserOptions() {
+		if(!clubaccess_check(9)) return;
+
 		$json_string['datetime']['show'] = $this->input->post('datetime');
 		$json_string['de']['show'] = $this->input->post('de');
 		$json_string['dx']['show'] = $this->input->post('dx');
@@ -575,6 +589,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function editDialog() {
+		if(!clubaccess_check(9)) return;
+
 		$this->load->model('bands');
 		$this->load->model('modes');
 		$this->load->model('logbookadvanced_model');
@@ -589,6 +605,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function saveBatchEditQsos() {
+		if(!clubaccess_check(9)) return;
+
 		$ids = xss_clean($this->input->post('ids'));
 		$column = xss_clean($this->input->post('column'));
 		$value = xss_clean($this->input->post('value'));
@@ -625,6 +643,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function batchDeleteQsos() {
+		if(!clubaccess_check(9)) return;
+
 		$ids = xss_clean($this->input->post('ids'));
 
 		$this->load->model('logbookadvanced_model');

@@ -473,7 +473,7 @@ $options = json_decode($options);
                 </div>
             </div>
         </div>
-
+		<?php if(clubaccess_check(9)) { ?>
         <div class="actionbody collapse">
             <script>
                 var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
@@ -498,6 +498,7 @@ $options = json_decode($options);
                 <button type="button" class="btn btn-sm btn-info me-1" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
             </div>
         </div>
+		<?php } ?>
         <div class="quickfilterbody collapse">
             <div class="mb-2 btn-group">
                 <span class="h6 me-1"><?= __("Quicksearch with selected: "); ?></span>
@@ -556,9 +557,11 @@ $options = json_decode($options);
 				<button type="button" class="btn btn-sm btn-primary me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".filterbody" style="white-space: nowrap;">
 					<i class="fas fa-filter"></i> <?= __("Filters"); ?>
 				</button>
+				<?php if(clubaccess_check(9)) { ?>
 				<button type="button" class="btn btn-sm btn-success me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;">
 					<i class="fas fa-tasks"></i> <?= __("Actions"); ?>
 				</button>
+				<?php } ?>
 				<label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
 				<select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
 					<option value="250">250</option>
@@ -585,9 +588,11 @@ $options = json_decode($options);
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="invalidButton" style="white-space: nowrap;">
 					<i class="fa fa-exclamation-triangle"></i> <?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div>
 				</button>
+				<?php if(clubaccess_check(9)) { ?>
 				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right flex-grow-0 mb-2" id="editButton" style="white-space: nowrap;">
 					<i class="fas fa-edit"></i> <?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div>
 				</button>
+				<?php } ?>
 				<div class="btn-group me-1" role="group">
 					<button type="button" class="btn btn-sm btn-primary ld-ext-right flex-grow-0 mb-2" id="mapButton" onclick="mapQsos(this.form);" style="white-space: nowrap;">
 						<i class="fas fa-globe-europe"></i> <?= __("Map"); ?><div class="ld ld-ring ld-spin"></div>
@@ -597,12 +602,14 @@ $options = json_decode($options);
 						<li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
 					</ul>
 				</div>
+				<?php if(clubaccess_check(9)) { ?>
 				<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" aria-label="<?= __("Options"); ?>" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Options"); ?>">
 					<i class="fas fa-cog"></i>
 				</button>
-				<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
-					<i class="fas fa-trash-alt"></i>
-				</button>
+					<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
+						<i class="fas fa-trash-alt"></i>
+					</button>
+				<?php } ?>
 				<button type="reset" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="resetButton" style="white-space: nowrap;">
 					<i class="fas fa-undo"></i> <?= __("Reset"); ?>
 				</button>

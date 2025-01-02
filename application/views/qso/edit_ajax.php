@@ -34,7 +34,9 @@
                                     <a class="nav-item nav-link" id="nav-satellites-tab" data-bs-toggle="tab" href="#nav-satellites" role="tab" aria-controls="nav-awards" aria-selected="true"><?= __("Sats"); ?></a>
                                     <a class="nav-item nav-link" id="nav-awards-tab" data-bs-toggle="tab" href="#nav-awards" role="tab" aria-controls="nav-awards" aria-selected="true"><?= __("Awards"); ?></a>
                                     <a class="nav-item nav-link" id="nav-qso-notes-tab" data-bs-toggle="tab" href="#nav-qso-notes" role="tab" aria-controls="nav-qso-notes" aria-selected="false"><?= __("Notes"); ?></a>
+                                    <?php if (clubaccess_check(9)) { ?>
                                     <a class="nav-item nav-link" id="nav-qsl-edit-tab" data-bs-toggle="tab" href="#nav-qsl-edit" role="tab" aria-controls="nav-qsl-edit" aria-selected="false"><?= __("QSL"); ?></a>
+                                    <?php } ?>
                                     <a class="nav-item nav-link" id="nav-station-tab" data-bs-toggle="tab" href="#nav-station" role="tab" aria-controls="nav-station" aria-selected="false"><?= __("Station"); ?></a>
                                     <a class="nav-item nav-link" id="nav-contest-tab" data-bs-toggle="tab" href="#nav-contest" role="tab" aria-controls="nav-contest" aria-selected="false"><?= __("Contest"); ?></a>
                                 </div>
@@ -604,10 +606,12 @@
                                         </select>
                                     </div>
 
+                                    <?php if(clubaccess_check(9)) { ?>
                                     <div class="mb-3">
                                         <label for="operatorCallsign"><?= __("Operator Callsign"); ?></label>
                                         <input type="text" id="operatorCallsign" class="form-control uppercase" name="operator_callsign" value="<?php echo $qso->COL_OPERATOR; ?>" />
                                     </div>
+                                    <?php } ?>
 
 
                                 </div>

@@ -674,24 +674,20 @@ $config['disable_oqrs'] = false;
 
 /*
 |--------------------------------------------------------------------------
-| Special Callsign Feature
+| Special Callsign Feature aka. Clubstations Support
 |--------------------------------------------------------------------------
 |
-| This config switch is meant to use for Special Callsign operations in a dedicated Wavelog Installation
-| If this switch is set to true it will enable a dialog which pops up for each operator after login
-| to ask for his personal callsign. This causes the QSOs to get saved with the correct operator data.
-| Example:      Special Callsign:   DL250CDF
-|               Operator:           DF2TG
+| This config switch is meant to use for Special Callsign operations or Clubstations.
+| If this switch is set to true it enables a whole bunch of features to handle Special Callsigns and Club Callsigns.
+| For more Information please visit the Wiki:
+| https://github.com/wavelog/wavelog/wiki/Clubstations
 |
-| It is recommend to enable also "Disable Syncing to 3rd party-Services at UI"
-| More Information about this feature and how to use it, you can find here:
-| https://github.com/wavelog/wavelog/wiki/Recommended-Setup-for-Special-Callsigns-and-Clubs
+| !!! Important !!!
+| $config['disable_impersonate'] has to be set to false to use this feature.
+|
 */
 
 $config['special_callsign'] = false;
-
-// hides the usermenu; takes action only if "special_callsign" is true
-$config['sc_hide_usermenu'] = true;
 
 
 /*
@@ -700,7 +696,7 @@ $config['sc_hide_usermenu'] = true;
 |--------------------------------------------------------------------------
 |
 | This config switch disables the impersonate feature. This feauture is used to impersonate another user.
-| Impersonate is enabled by default. To disable it, set the value to false.
+| Impersonate is enabled by default. To disable it, set the value to false. Also the special_callsign feature needs this to be false.
 |
 */
 

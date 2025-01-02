@@ -10,7 +10,7 @@ class adif extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
 	public function test() {
@@ -145,6 +145,13 @@ class adif extends CI_Controller {
 		$data['page_title'] = __("ADIF Import / Export");
 		$data['max_upload'] = ini_get('upload_max_filesize');
 
+		if ($this->config->item('special_callsign') && clubaccess_check(9) && $this->session->userdata('clubstation') == 1) {
+			$this->load->model('club_model');
+			$data['club_operators'] = $this->club_model->get_club_members($this->session->userdata('user_id'));
+		} else {
+			$data['club_operators'] = false;
+		}
+
 		$data['station_profile'] = $this->stations->all_of_user();
 		$active_station_id = $this->stations->find_active();
 		$station_profile = $this->stations->profile($active_station_id);
@@ -185,7 +192,8 @@ class adif extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 		} else {
 			if ($this->stations->check_station_is_accessible($this->input->post('station_profile', TRUE))) {
-				$contest=$this->security->xss_clean($this->input->post('contest')) ?? '';
+				$contest=$this->input->post('contest', true) ?? '';
+				$club_operator=$this->input->post('club_operator', true) ?? '';
 				$stopnow=false;
 				$fdata = array('upload_data' => $this->upload->data());
 				ini_set('memory_limit', '-1');
@@ -229,6 +237,9 @@ class adif extends CI_Controller {
 						if ($contest != '') {
 							$record['contest_id']=$contest;
 						}
+						if ($club_operator != '') {
+							$record['operator']=strtoupper($club_operator);
+						}
 						if(count($record) == 0) {
 							break;
 						};
@@ -236,7 +247,7 @@ class adif extends CI_Controller {
 					};
 					$record='';	// free memory
 					try {
-						$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile', TRUE), $this->input->post('skipDuplicate'), $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markEqsl'), $this->input->post('markHrd'), $this->input->post('markDcl'), true, $this->input->post('operatorName'), false, $this->input->post('skipStationCheck'));
+						$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile', TRUE), $this->input->post('skipDuplicate'), $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markEqsl'), $this->input->post('markHrd'), $this->input->post('markDcl'), true, $this->input->post('operatorName') ?? false, false, $this->input->post('skipStationCheck'));
 					} catch (Exception $e) {
 						log_message('error', 'Import error: '.$e->getMessage());
 						$data['page_title'] = __("ADIF Import failed!");
