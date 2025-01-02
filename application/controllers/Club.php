@@ -88,6 +88,7 @@ class Club extends CI_Controller
 			foreach ($users->result() as $user) {
 				$result[] = [
 					'user_id' => $user->user_id,
+					'user_name' => $user->user_name,
 					'user_callsign' => $user->user_callsign,
 					'user_firstname' => $user->user_firstname,
 					'user_lastname' => $user->user_lastname
