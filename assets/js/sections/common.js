@@ -180,6 +180,7 @@ function single_callbook_update() {
                 fill_if_empty('#ituz_edit', data.dxcc.ituz);
             }
             fill_if_empty('#locator_edit', data.callsign_qra);
+            fill_if_empty('#email_edit', data.callsign_email);
             // fill_if_empty('#image', data.image);  Not in use yet, but may in future
             fill_if_empty('#iota_ref_edit', data.callsign_iota);
             fill_if_empty('#name_edit', data.callsign_name);
