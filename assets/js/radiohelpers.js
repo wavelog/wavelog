@@ -40,7 +40,7 @@ function frequencyToBand(frequency) {
 	else if(result >= 219000000 && result <= 225000000) {
 		return '1.25m';
 	}
-	else if(result >= 430000000 && result <= 440000000) {
+	else if(result >= 420000000 && result <= 450000000) {
 		return '70cm';
 	}
 	else if(result >= 902000000 && result <= 928000000) {
@@ -49,16 +49,16 @@ function frequencyToBand(frequency) {
 	else if(result >= 1200000000 && result <= 1600000000) {
 		return '23cm';
 	}
-	else if(result >= 2300800000 && result <= 2890800000) {
+	else if(result >= 2300000000 && result <= 2890800000) {
 		return '13cm';
 	}
-	else if(result >= 3300000000 && result <= 3450000000) {
+	else if(result >= 3300000000 && result <= 3500000000) {
 		return '9cm';
 	}
-	else if(result >= 5650000000 && result <= 5700000000) {
+	else if(result >= 5650000000 && result <= 5925000000) {
 		return '6cm';
 	}
-	else if(result >= 10125000000 && result <= 10525000000) {
+	else if(result >= 10000000000 && result <= 10525000000) {
 		return '3cm';
 	}
 }
