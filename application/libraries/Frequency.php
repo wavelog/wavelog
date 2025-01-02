@@ -193,7 +193,7 @@ class Frequency {
 			$Band = "2m";
 		} else if ($Frequency > 218000000 && $Frequency < 226000000) {
 			$Band = "1.25m";
-		} else if ($Frequency > 430000000 && $Frequency < 440000000) {
+		} else if ($Frequency > 420000000 && $Frequency < 450000000) {
 			$Band = "70cm";
 		} else if ($Frequency > 900000000 && $Frequency < 930000000) {
 			$Band = "33cm";
