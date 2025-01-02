@@ -214,7 +214,7 @@ async function fill_if_empty(field, data) {
     }
 
     // catch special case for grid
-    if (field == "#locator_edit") {
+    if (field == "#locator_edit" && $(field).val() == '') {
         $(field).val(data.toUpperCase()).css('border', border_color).trigger('change');
         return;
     }
