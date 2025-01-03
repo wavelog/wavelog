@@ -268,7 +268,7 @@
 
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>" + "index.php/migrate",
+                url: `${window.location.origin}/index.php/migrate`,
                 dataType: 'json',
                 success: async function(response) {
                     if (response.status == 'success') {
@@ -297,7 +297,7 @@
 
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>" + "index.php/update/dxcc",
+                url: `${window.location.origin}/index.php/update/dxcc`,
                 success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
