@@ -107,7 +107,7 @@
 		function radios($only_operator = false) {
 			$this->db->select('id, radio');
 			$this->db->where('user_id', $this->session->userdata('user_id'));
-			if ($only_operator || ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9))) {
+			if ($only_operator && ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9))) {
 				$this->db->where('operator', $this->session->userdata('source_uid'));
 			}
 			$query = $this->db->get('cat');

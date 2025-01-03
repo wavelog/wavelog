@@ -4222,6 +4222,14 @@ class Logbook_model extends CI_Model {
 				$qslmsg = $station_qslmsg;
 			}
 
+			// Only import SIG_INFO and SIG_INFO_INTL if SIG is set. Discard otherwise as we do not now which activity group the reference belongs to
+			if (empty($record['sig'])) {
+				$sig_info = $sig_info_intl = '';
+			} else {
+				$sig_info = $record['sig_info'] ?? '';
+				$sig_info_intl = $record['sig_info_intl'] ?? '';
+			}
+
 			// Validate Clublog-Fields
 			if ($markClublog != NULL) {
 				$input_clublog_qsl_sent = "Y";
@@ -4482,8 +4490,8 @@ class Logbook_model extends CI_Model {
 				'COL_SAT_NAME' => (!empty($record['sat_name'])) ? $record['sat_name'] : '',
 				'COL_SFI' => (!empty($record['sfi'])) ? $record['sfi'] : null,
 				'COL_SIG' => (!empty($record['sig'])) ? $record['sig'] : '',
-				'COL_SIG_INFO' => (!empty($record['sig_info'])) ? $record['sig_info'] : '',
-				'COL_SIG_INFO_INTL' => (!empty($record['sig_info_intl'])) ? $record['sig_info_intl'] : '',
+				'COL_SIG_INFO' => $sig_info,
+				'COL_SIG_INFO_INTL' => $sig_info_intl,
 				'COL_SIG_INTL' => (!empty($record['sig_intl'])) ? $record['sig_intl'] : '',
 				'COL_SILENT_KEY' => (!empty($record['silent_key'])) ? $record['silent_key'] : '',
 				'COL_SKCC' => (!empty($record['skcc'])) ? $record['skcc'] : '',

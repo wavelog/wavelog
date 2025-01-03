@@ -13,7 +13,7 @@ class Bandmap extends CI_Controller {
 	function index() {
 		$this->load->model('cat');
 		$this->load->model('bands');
-		$data['radios'] = $this->cat->radios();
+		$data['radios'] = $this->cat->radios(true);
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
 
         $footerData = [];

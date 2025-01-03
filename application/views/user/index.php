@@ -43,7 +43,7 @@
 									</a>
 								</td>
 								<td style="text-align: left; vertical-align: middle;">
-									<?php echo $row->user_callsign; ?>
+									<?php echo str_replace("0", "&Oslash;", $row->user_callsign); ?>
 								</td>
 								<td style="text-align: left; vertical-align: middle;">
 									<a href="mailto:<?php echo $row->user_email; ?>">
@@ -158,7 +158,7 @@
 							foreach ($clubs->result() as $row) { ?>
 								<?php echo '<tr class="tr' . ($i & 1) . '">'; ?>
 								<td style="text-align: left; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>"><?php echo $row->user_name; ?></a></td>
-								<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_callsign; ?></td>
+								<td style="text-align: left; vertical-align: middle;"><?php echo str_replace("0", "&Oslash;", $row->user_callsign); ?></td>
 								<td style="text-align: left; vertical-align: middle;"><a href="mailto:<?php echo $row->user_email; ?>"><?php echo $row->user_email; ?></a></td>
 								<td style="text-align: left; vertical-align: middle;"><?php echo $row->lastoperator; ?></td>
 								<td style="text-align: left; vertical-align: middle;"><?php
