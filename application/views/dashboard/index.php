@@ -110,7 +110,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if ($locationCount == 0) { ?>
+	<?php if ($locationCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station locations. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -118,7 +118,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if ($logbookCount == 0) { ?>
+	<?php if ($logbookCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -126,7 +126,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if (($linkedCount > 0) && $active_not_linked) { ?>
+	<?php if (($linkedCount > 0) && $active_not_linked && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "Your active Station Location isn't linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -134,7 +134,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if ($linkedCount == 0) { ?>
+	<?php if ($linkedCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -157,7 +157,7 @@ function getDistance($distance) {
 	<?php } ?>
 	<?php } ?>
 
-	<?php if($current_active == 0) { ?>
+	<?php if($current_active == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		  <?= __("Attention: you need to set an active station location."); ?>
 		</div>
@@ -428,5 +428,5 @@ function getDistance($distance) {
 	</div>
   </div>
 </div>
-
+<?php echo $firstloginwizard; ?>
 </div>

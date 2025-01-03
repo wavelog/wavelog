@@ -833,6 +833,10 @@ function showActivatorsMap(call, count, grids) {
             <?php } ?>
             initmap(grid,'map',{'dataPost':{'nb_qso':'18'}});
 
+            <?php if ($is_first_login ?? false) : ?>
+                $('#firstLoginWizardModal').modal('show');
+            <?php endif; ?>
+
       });
     </script>
 <?php } ?>
@@ -2945,4 +2949,5 @@ if (isset($scripts) && is_array($scripts)){
 ?>
 
   </body>
+  <pre><?php print_r($this->session->userdata()); ?></pre>
 </html>
