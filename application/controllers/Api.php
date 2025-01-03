@@ -237,7 +237,7 @@ class API extends CI_Controller {
 					}
 					// in case the provided op call is the same as the clubstation callsign, we need to use the creator of the API key as the operator
 					$recorded_operator = $record['operator'] ?? '';
-					if ($real_operator != null && ($record['operator'] == $record['station_callsign']) || ($recorded_operator == '')) {
+					if (key_exists('operator',$record) && $real_operator != null && ($record['operator'] == $record['station_callsign']) || ($recorded_operator == '')) {
 						$record['operator'] = $real_operator;
 					}
 					
