@@ -297,7 +297,7 @@
 
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: url: `${window.location.origin}/index.php/update/dxcc`,
+                url: `${window.location.origin}/index.php/update/dxcc`,
                 success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
