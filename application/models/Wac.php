@@ -57,7 +57,9 @@ class Wac extends CI_Model{
 		if ($postdata['notworked'] == NULL) {
 			foreach ($this->validContinents as $cont) {
 				if ($wac[$cont]['count'] == 0) {
-					unset($bandWac[$cont]);
+					if (isset($bandWac)) {
+						unset($bandWac[$cont]);
+					}
 				};
 			}
 		}
