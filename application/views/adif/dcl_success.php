@@ -13,7 +13,7 @@
   </div>
   <div class="card-body">
     <?php if($dcl_error_count[0] > 0) { ?>
-       <h3 class="card-title">Yay, its updated!</h3>
+       <h3 class="card-title"><?= __("Yay, its updated!"); ?></h3>
        <p class="card-text"><?= __("DCL information for DOKs has been updated.")?></p>
     <?php } else { ?>
        <h3 class="card-title"><?= __("No QSOs found which could be updated.")?></h3>
