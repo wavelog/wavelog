@@ -3,6 +3,9 @@ $(document).ready(function(){
 		e.preventDefault();
 		var fi = document.getElementById("userfile");
 		var file = fi.files[0];;
+		if (!(file)) {
+			return;
+		}
 		$("#prepare_sub").prop("disabled",true);
 		if (JSZip.support.blob) {	// Check if Browser supports ZIP
 			var zip = new JSZip();
