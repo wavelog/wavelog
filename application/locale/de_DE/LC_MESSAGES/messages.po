@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-03 00:14+0000\n"
-"PO-Revision-Date: 2025-01-02 09:54+0000\n"
+"POT-Creation-Date: 2025-01-02 09:22+0000\n"
+"PO-Revision-Date: 2025-01-02 10:56+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -49,9 +49,9 @@ msgstr ""
 #: application/controllers/Cabrillo.php:139
 #: application/controllers/Calltester.php:11
 #: application/controllers/Cfdexport.php:18
-#: application/controllers/Cfdexport.php:29 application/controllers/Club.php:48
-#: application/controllers/Club.php:75 application/controllers/Club.php:123
-#: application/controllers/Club.php:152 application/controllers/Club.php:179
+#: application/controllers/Cfdexport.php:29 application/controllers/Club.php:42
+#: application/controllers/Club.php:69 application/controllers/Club.php:116
+#: application/controllers/Club.php:145 application/controllers/Club.php:172
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
@@ -137,6 +137,10 @@ msgstr ""
 #: application/controllers/User.php:1409
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Club.php:48 application/controllers/Club.php:75
+#: application/controllers/Club.php:122 application/controllers/Club.php:151
+#: application/controllers/Club.php:178 application/controllers/Club.php:123
+#: application/controllers/Club.php:152 application/controllers/Club.php:179
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
@@ -609,64 +613,67 @@ msgstr "Cabrillo-Export"
 msgid "CFD Export"
 msgstr "CFD-Export"
 
-#: application/controllers/Club.php:23
-msgid "Club Officer"
-msgstr ""
-
-#: application/controllers/Club.php:24
-msgid "Club Member"
-msgstr ""
-
-#: application/controllers/Club.php:44 application/models/Club_model.php:75
+#: application/controllers/Club.php:38 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
+#: application/controllers/Club.php:44
 msgid "Invalid User ID!"
 msgstr "Ungültige Benutzer-ID!"
 
-#: application/controllers/Club.php:52
+#: application/controllers/Club.php:46 application/controllers/Club.php:52
 msgid "This user is not a club station."
 msgstr "Dieser Benutzer ist keine Clubstation."
 
-#: application/controllers/Club.php:56
+#: application/controllers/Club.php:50
 #: application/views/club/permissions.php:10
-#: application/views/user/index.php:203
+#: application/views/user/index.php:203 application/controllers/Club.php:56
 msgid "Club Permissions"
-msgstr "Clubberechtigungen"
+msgstr "Club-Berechtigungen"
 
-#: application/controllers/Club.php:119 application/controllers/Club.php:148
-#: application/controllers/Club.php:175 application/models/Club_model.php:22
+#: application/controllers/Club.php:112 application/controllers/Club.php:141
+#: application/controllers/Club.php:168 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
-#: application/models/Club_model.php:186
+#: application/models/Club_model.php:186 application/controllers/Club.php:118
+#: application/controllers/Club.php:147 application/controllers/Club.php:174
+#: application/controllers/Club.php:119 application/controllers/Club.php:148
+#: application/controllers/Club.php:175
 msgid "Invalid Club ID!"
 msgstr "Ungültige Club-ID!"
 
+#: application/controllers/Club.php:124 application/controllers/Club.php:130
 #: application/controllers/Club.php:131
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
 "Benutzer konnte nicht benachrichtigt werden. Bitte überprüfe deine E-Mail-"
 "Einstellungen."
 
+#: application/controllers/Club.php:128 application/controllers/Club.php:134
 #: application/controllers/Club.php:135
 msgid "Club member permissions have been updated."
 msgstr "Die Berechtigungen des Clubmitglieds wurden aktualisiert."
 
+#: application/controllers/Club.php:150 application/controllers/Club.php:156
 #: application/controllers/Club.php:157
 msgid "User removed from club."
 msgstr "Benutzer aus dem Club entfernt."
 
+#: application/controllers/Club.php:152 application/controllers/Club.php:158
 #: application/controllers/Club.php:159
 msgid "User could not be removed from club."
 msgstr "Benutzer konnte nicht aus dem Club entfernt werden."
 
+#: application/controllers/Club.php:195 application/controllers/Club.php:201
 #: application/controllers/Club.php:202
 msgid "Invalid message type."
 msgstr "Ungültiger Nachrichtentyp."
 
+#: application/controllers/Club.php:214 application/controllers/Club.php:220
 #: application/controllers/Club.php:221
 msgid "Email settings not configured."
 msgstr "E-Mail-Einstellungen nicht konfiguriert."
 
-#: application/controllers/Club.php:228 application/views/api/index.php:62
+#: application/controllers/Club.php:221 application/views/api/index.php:62
 #: application/views/satellite/index.php:64
+#: application/controllers/Club.php:227 application/controllers/Club.php:228
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -2882,50 +2889,61 @@ msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
+#: application/models/Logbook_model.php:4241
 #: application/models/Logbook_model.php:4249
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
+#: application/models/Logbook_model.php:4261
 #: application/models/Logbook_model.php:4269
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
 
+#: application/models/Logbook_model.php:4282
 #: application/models/Logbook_model.php:4290
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4571
+#: application/models/Logbook_model.php:4563
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4571
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
+#: application/models/Logbook_model.php:4624
 #: application/models/Logbook_model.php:4632
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
+#: application/models/Logbook_model.php:4630
 #: application/models/Logbook_model.php:4638
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4635
 #: application/models/Logbook_model.php:4643
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
+#: application/models/Logbook_model.php:4638
 #: application/models/Logbook_model.php:4646
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
+#: application/models/Logbook_model.php:4641
 #: application/models/Logbook_model.php:4649
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
+#: application/models/Logbook_model.php:4644
 #: application/models/Logbook_model.php:4652
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:4655
+#: application/models/Logbook_model.php:4647
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4655
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -6130,7 +6148,7 @@ msgstr "Abbrechen"
 #: application/views/club/permissions.php:3
 #, php-format
 msgid "Club Permissions for %s"
-msgstr "Clubberechtigungen für %s"
+msgstr "Club-Berechtigungen für %s"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
@@ -13636,7 +13654,7 @@ msgid ""
 msgstr ""
 "Du bist dabei, diese Clubstation in einen regulären Benutzeraccount "
 "umzuwandeln. Der Benutzer wird sich wieder einloggen können und alle "
-"zugewiesenen Clubberechtigungen werden entfernt. Benutze das mit Vorsicht!"
+"zugewiesenen Club-Berechtigungen werden entfernt. Benutze das mit Vorsicht!"
 
 #: application/views/user/modals/more_actions_modal.php:111
 msgid ""
@@ -13955,6 +13973,14 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
+
+#: application/controllers/Club.php:23
+msgid "Club Officer"
+msgstr "Club Officer"
+
+#: application/controllers/Club.php:24
+msgid "Club Member"
+msgstr "Club Mitglied"
 
 #~ msgid "Do you really want to send this user a password-reset link?"
 #~ msgstr ""

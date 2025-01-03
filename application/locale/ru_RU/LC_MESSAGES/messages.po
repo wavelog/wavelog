@@ -2,14 +2,14 @@
 # Copyright (c) 2025 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
 # This file is distributed under the MIT licence.
 #
-# Michael Skolsky <r1blh@yandex.ru>, 2024.
+# Michael Skolsky <r1blh@yandex.ru>, 2024, 2025.
 # "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-03 00:14+0000\n"
-"PO-Revision-Date: 2024-12-23 15:29+0000\n"
+"POT-Creation-Date: 2025-01-02 10:12+0000\n"
+"PO-Revision-Date: 2025-01-02 21:41+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -37,8 +37,8 @@ msgstr ""
 #: application/controllers/Calltester.php:11
 #: application/controllers/Cfdexport.php:18
 #: application/controllers/Cfdexport.php:29 application/controllers/Club.php:48
-#: application/controllers/Club.php:75 application/controllers/Club.php:123
-#: application/controllers/Club.php:152 application/controllers/Club.php:179
+#: application/controllers/Club.php:75 application/controllers/Club.php:122
+#: application/controllers/Club.php:151 application/controllers/Club.php:178
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
@@ -124,6 +124,8 @@ msgstr ""
 #: application/controllers/User.php:1409
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Club.php:123 application/controllers/Club.php:152
+#: application/controllers/Club.php:179
 msgid "You're not allowed to do that!"
 msgstr "Вам нельзя это делать!"
 
@@ -271,15 +273,15 @@ msgstr "Описание ключа API %s обновлено."
 
 #: application/controllers/Api.php:68
 msgid "Invalid API rights"
-msgstr ""
+msgstr "Недостаточные разрешения доступа к API"
 
 #: application/controllers/Api.php:82
 msgid "API Key generated"
-msgstr ""
+msgstr "Ключ API сгенерирован"
 
 #: application/controllers/Api.php:84
 msgid "API Key could not be generated"
-msgstr ""
+msgstr "Не удалось сгенерировать ключ API"
 
 #: application/controllers/Api.php:98
 #, php-format
@@ -548,7 +550,7 @@ msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:1992
 msgid "WAE"
-msgstr ""
+msgstr "WAE"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:293
@@ -598,60 +600,64 @@ msgstr "Экспорт CDF"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
-msgstr ""
+msgstr "Руководитель коллективной станции"
 
 #: application/controllers/Club.php:24
 msgid "Club Member"
-msgstr ""
+msgstr "Оператор коллективной станции"
 
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "Недействительный идентификатор пользователя!"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
-msgstr ""
+msgstr "Этот пользователь не является коллективной станцией."
 
 #: application/controllers/Club.php:56
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:203
 msgid "Club Permissions"
-msgstr ""
+msgstr "Разрешения для коллективной станции"
 
-#: application/controllers/Club.php:119 application/controllers/Club.php:148
-#: application/controllers/Club.php:175 application/models/Club_model.php:22
+#: application/controllers/Club.php:118 application/controllers/Club.php:147
+#: application/controllers/Club.php:174 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "Недействительный ID коллективной станции!"
 
-#: application/controllers/Club.php:131
+#: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
+"Пользователю не удалось отправить уведомление. Пожалуйста, проверьте "
+"настройки электронной почты."
 
-#: application/controllers/Club.php:135
+#: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "Разрешения для операторов коллективной станции были обновлены."
 
-#: application/controllers/Club.php:157
+#: application/controllers/Club.php:156
 msgid "User removed from club."
-msgstr ""
+msgstr "Пользователь удален из списка операторов коллективной станции."
 
-#: application/controllers/Club.php:159
+#: application/controllers/Club.php:158
 msgid "User could not be removed from club."
 msgstr ""
+"Пользователь не может быть удален из списка операторов коллективной станции."
 
-#: application/controllers/Club.php:202
+#: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr ""
+msgstr "Недопустимый тип сообщения."
 
-#: application/controllers/Club.php:221
+#: application/controllers/Club.php:220
 msgid "Email settings not configured."
-msgstr ""
+msgstr "Параметры электронной почты не настроены."
 
-#: application/controllers/Club.php:228 application/views/api/index.php:62
+#: application/controllers/Club.php:227 application/views/api/index.php:62
 #: application/views/satellite/index.php:64
+#: application/controllers/Club.php:228
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -2029,7 +2035,7 @@ msgstr "Настройки"
 
 #: application/controllers/Radio.php:63
 msgid "UNKNOWN"
-msgstr ""
+msgstr "НЕИЗВЕСТНО"
 
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:156
@@ -2479,10 +2485,11 @@ msgstr "Аккаунты пользователей"
 #: application/controllers/User.php:83
 msgid "Invalid User ID or missing modal!"
 msgstr ""
+"Недействительный идентификатор пользователя или отсутствует модальное окно!"
 
 #: application/controllers/User.php:96
 msgid "Invalid Parameter!"
-msgstr ""
+msgstr "Недопустимый параметр!"
 
 #: application/controllers/User.php:152
 #: application/views/club/permissions.php:155
@@ -2492,21 +2499,21 @@ msgstr "Добавить пользователя"
 #: application/controllers/User.php:253
 #, php-format
 msgid "Username %s already in use!"
-msgstr ""
+msgstr "Имя пользователя %s уже используется!"
 
 #: application/controllers/User.php:256
 #, php-format
 msgid "E-mail %s already in use!"
-msgstr ""
+msgstr "Электронная почта %s уже используется!"
 
 #: application/controllers/User.php:259
 msgid "Invalid Password!"
-msgstr ""
+msgstr "Неверный пароль!"
 
 #: application/controllers/User.php:263
 #, php-format
 msgid "User %s added!"
-msgstr ""
+msgstr "Пользователь %s добавлен!"
 
 #: application/controllers/User.php:267
 msgid "Users"
@@ -2536,7 +2543,7 @@ msgstr ""
 
 #: application/controllers/User.php:933
 msgid "This is not allowed!"
-msgstr ""
+msgstr "Это не разрешено!"
 
 #: application/controllers/User.php:968 application/controllers/User.php:979
 msgid "Login failed. Try again."
@@ -2553,6 +2560,8 @@ msgstr "Вход"
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
+"Вы не можете войти в аккаунт коллективной станции напрямую. Используйте "
+"вместо этого свой личный аккаунт."
 
 #: application/controllers/User.php:1028
 msgid ""
@@ -2604,6 +2613,8 @@ msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
 msgstr ""
+"В настоящее время вы не можете выдавать себя за другого пользователя. Вам "
+"нужно установить %s на %s в вашем config.php!"
 
 #: application/controllers/User.php:1316
 #: application/views/user/modals/admin_impersonate_modal.php:36
@@ -2643,18 +2654,22 @@ msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
+"Не удалось определить правильный уровень доступа для оператора коллективной "
+"станции. Попробуйте снова после повторного входа."
 
 #: application/controllers/User.php:1422 application/controllers/User.php:1434
 #: application/controllers/User.php:1440 application/controllers/User.php:1449
 #: application/controllers/User.php:1457
 msgid "Ups.. Something went wrong. Try to log back in."
-msgstr ""
+msgstr "Упс.. Что-то пошло не так. Попробуй войти снова."
 
 #: application/controllers/User.php:1463
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr ""
+"Возможность быстрого возврата была отключена после истечения срока действия "
+"хэша безопасности. Пожалуйста, войдите снова."
 
 #: application/controllers/User.php:1479
 #, php-format
@@ -2662,6 +2677,8 @@ msgid ""
 "You have been logged out of the clubstation %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"Вы вышли из аккаунта коллективной станции %s. Добро пожаловать обратно, %s, "
+"в ваш личный аккаунт!"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
@@ -2776,11 +2793,11 @@ msgstr "Город / Ku / Gun"
 
 #: application/models/Club_model.php:154
 msgid "Invalid Permission Level!"
-msgstr ""
+msgstr "Недостаточный уровень разрешений!"
 
 #: application/models/Club_model.php:169
 msgid "Error adding Club Member!"
-msgstr ""
+msgstr "Ошибка при добавлении оператора коллективной станции!"
 
 #: application/models/Eqslmethods_model.php:287
 msgid "Your eQSL username and/or password is incorrect."
@@ -2853,50 +2870,61 @@ msgstr "дата получения QSL недействительна (ГГГГ
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4241
 #: application/models/Logbook_model.php:4249
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4261
 #: application/models/Logbook_model.php:4269
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4282
 #: application/models/Logbook_model.php:4290
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4571
+#: application/models/Logbook_model.php:4563
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4571
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
+#: application/models/Logbook_model.php:4624
 #: application/models/Logbook_model.php:4632
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
+#: application/models/Logbook_model.php:4630
 #: application/models/Logbook_model.php:4638
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4635
 #: application/models/Logbook_model.php:4643
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
+#: application/models/Logbook_model.php:4638
 #: application/models/Logbook_model.php:4646
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
+#: application/models/Logbook_model.php:4641
 #: application/models/Logbook_model.php:4649
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
+#: application/models/Logbook_model.php:4644
 #: application/models/Logbook_model.php:4652
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4655
+#: application/models/Logbook_model.php:4647
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4655
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -3788,7 +3816,7 @@ msgstr "Выберите профиль QTH"
 
 #: application/views/adif/import.php:73
 msgid "Select the operator of the imported QSOs"
-msgstr ""
+msgstr "Выберите оператора для импортированных QSO"
 
 #: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
@@ -4145,6 +4173,8 @@ msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"На клубных станциях API-ключи являются личными и не подлежат обмену. "
+"Пользователи клубных станций могут видеть только свои собственные ключи."
 
 #: application/views/api/index.php:24
 msgid "API Key"
@@ -4162,7 +4192,7 @@ msgstr "Использовался последний раз"
 
 #: application/views/api/index.php:28
 msgid "Created By"
-msgstr ""
+msgstr "Создано"
 
 #: application/views/api/index.php:30
 msgid "Permissions"
@@ -4203,7 +4233,7 @@ msgstr "Проверка"
 #: application/views/api/index.php:73
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "Вы уверены, что хотите удалить ключ API %s?"
 
 #: application/views/api/index.php:86
 msgid "You have no API Keys."
@@ -5402,11 +5432,11 @@ msgstr "Континент"
 
 #: application/views/awards/wae/index.php:7
 msgid "WAE Award"
-msgstr ""
+msgstr "Диплом WAE"
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
-msgstr ""
+msgstr "Название WAE"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
@@ -5612,7 +5642,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Нажмите, чтобы подготовить ведение журнала."
 
 #: application/views/bandmap/list.php:73
 msgid "DXCC-Status"
@@ -5635,7 +5665,7 @@ msgstr "Сообщение"
 
 #: application/views/bandmap/list.php:119
 msgid "Last Worked"
-msgstr ""
+msgstr "Последнее сработанное"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
@@ -6064,17 +6094,17 @@ msgstr "Экспорт CFD-файла для DARC-Toplist (см. %s)"
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
-msgstr ""
+msgstr "Переключиться на коллективную станцию"
 
 #: application/views/club/clubswitch_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch to %s?"
-msgstr ""
+msgstr "Вы уверены, что хотите переключиться на %s?"
 
 #: application/views/club/clubswitch_modal.php:14
 #: application/views/user/modals/stop_impersonate_modal.php:13
 msgid "Yes, switch over!"
-msgstr ""
+msgstr "Да, переключиться!"
 
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:205
@@ -6090,11 +6120,11 @@ msgstr "Отмена"
 #: application/views/club/permissions.php:3
 #, php-format
 msgid "Club Permissions for %s"
-msgstr ""
+msgstr "Разрешения оператора коллективной станции для %s"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
-msgstr ""
+msgstr "Вернуться"
 
 #: application/views/club/permissions.php:13
 msgid ""
@@ -6102,14 +6132,17 @@ msgid ""
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
 msgstr ""
+"Чтобы пользователи могли логировать QSO с этим коллективным/специальным "
+"позывным, им нужны соответствующие разрешения. Добавьте пользователей в "
+"таблицу ниже и установите соответствующие разрешения."
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
-msgstr ""
+msgstr "Посмотреть доступные разрешения"
 
 #: application/views/club/permissions.php:19
 msgid "Available Permissions"
-msgstr ""
+msgstr "Доступные разрешения"
 
 #: application/views/club/permissions.php:26
 #: application/views/eqsl/download.php:44
@@ -6118,69 +6151,73 @@ msgstr "Действие"
 
 #: application/views/club/permissions.php:33
 msgid "Log QSOs via Web GUI (live and post)"
-msgstr ""
+msgstr "Запись QSO через веб-интерфейс (в реальном времени и постфактум)"
 
 #: application/views/club/permissions.php:41
 msgid "Log QSOs via API"
-msgstr ""
+msgstr "Запись QSO через API"
 
 #: application/views/club/permissions.php:49
 msgid "Edit a QSO"
-msgstr ""
+msgstr "Редактирование QSO"
 
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
 msgid "QSO was done by the operator"
-msgstr ""
+msgstr "QSO было проведено оператором"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
 msgid "QSO was done by another operator"
-msgstr ""
+msgstr "QSO было проведено другим оператором"
 
 #: application/views/club/permissions.php:67
 msgid "Delete a QSO"
-msgstr ""
+msgstr "Удаление QSO"
 
 #: application/views/club/permissions.php:85
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
 msgstr ""
+"Управление настройкой станции (редактирование/создание журналов и профилей "
+"QTH)"
 
 #: application/views/club/permissions.php:93
 msgid "Manage Third-Party services"
-msgstr ""
+msgstr "Управление интеграцией со сторонними сервисами"
 
 #: application/views/club/permissions.php:101
 msgid "Import QSO per ADIF"
-msgstr ""
+msgstr "Импорт QSO из ADIF"
 
 #: application/views/club/permissions.php:110
 msgid "Export QSO per ADIF"
-msgstr ""
+msgstr "Экспорт QSO в формате ADIF"
 
 #: application/views/club/permissions.php:118
 msgid "User Management"
-msgstr ""
+msgstr "Управление пользователями"
 
 #: application/views/club/permissions.php:123
 msgid "Can create new users in Wavelog"
-msgstr ""
+msgstr "Создание новых пользователей в Wavelog"
 
 #: application/views/club/permissions.php:128
 msgid "Can edit other users in Wavelog"
-msgstr ""
+msgstr "Изменение других пользователей в Wavelog"
 
 #: application/views/club/permissions.php:133
 msgid "Can edit Club permissions and add/remove users"
 msgstr ""
+"Изменение разрешений для операторов коллективной станции и добавление/"
+"удаление пользователей"
 
 #: application/views/club/permissions.php:151
 msgid "Users with Permissions"
-msgstr ""
+msgstr "Пользователи с разрешениями"
 
 #: application/views/club/permissions.php:161
 msgid "Add new User to Club"
-msgstr ""
+msgstr "Добавление нового оператора коллективной станции"
 
 #: application/views/club/permissions.php:167
 #, php-format
@@ -6188,48 +6225,56 @@ msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr ""
+"Вы можете добавлять операторов коллективной станции %s только в том случае, "
+"если они уже существуют на этом сервере Wavelog."
 
 #: application/views/club/permissions.php:168
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
 msgstr ""
+"Если их не существует, попросите вашего администратора Wavelog создать для "
+"них учетную запись."
 
 #: application/views/club/permissions.php:169
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
 msgstr ""
+"Найдите пользователя по его позывному или имени/фамилии и выберите уровень "
+"доступа."
 
 #: application/views/club/permissions.php:175
 msgid "User (Callsign or Name)"
-msgstr ""
+msgstr "Пользователь (Позывной или Имя)"
 
 #: application/views/club/permissions.php:176
 #: application/views/club/permissions.php:225
 #: application/views/club/permissions.php:269
 msgid "Permission"
-msgstr ""
+msgstr "Разрешения"
 
 #: application/views/club/permissions.php:183
 msgid "Type at least 2 characters."
-msgstr ""
+msgstr "Введите как минимум 2 символа."
 
 #: application/views/club/permissions.php:194
 msgid "Notify the user via email"
-msgstr ""
+msgstr "Уведомить пользователя по электронной почте"
 
 #: application/views/club/permissions.php:213
 msgid "No users currently have access to this club station."
 msgstr ""
+"В настоящее время ни у одного пользователя нет доступа к этой коллективной "
+"станции."
 
 #: application/views/club/permissions.php:220
 msgid "Firstname"
-msgstr ""
+msgstr "Имя"
 
 #: application/views/club/permissions.php:221
 msgid "Lastname"
-msgstr ""
+msgstr "Фамилия"
 
 #: application/views/club/permissions.php:223
 #: application/views/user/edit.php:57 application/views/user/index.php:146
@@ -6240,41 +6285,44 @@ msgstr "Имя пользователя"
 
 #: application/views/club/permissions.php:224
 msgid "E-Mail"
-msgstr ""
+msgstr "Электронная почта"
 
 #: application/views/club/permissions.php:244
 msgid "Wavelog Administrator"
-msgstr ""
+msgstr "Администратор Wavelog"
 
 #: application/views/club/permissions.php:261
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
+"Вы можете изменять уровень разрешений операторов для этой коллективной "
+"станции."
 
 #: application/views/club/permissions.php:268
 msgid "User Callsign"
-msgstr ""
+msgstr "Позывной оператора"
 
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
-msgstr ""
+msgstr "Уведомить пользователя по электронной почте об изменении"
 
 #: application/views/club/permissions.php:309
 msgid "Delete User"
-msgstr ""
+msgstr "Удалить оператора"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
 msgstr ""
+"Вы уверены в том, что хотите удалить этого оператора коллективной станции?"
 
 #: application/views/club/permissions.php:320
 #, php-format
 msgid "Callsign: %s"
-msgstr ""
+msgstr "Позывной: %s"
 
 #: application/views/club/permissions.php:321
 #, php-format
 msgid "Role: %s"
-msgstr ""
+msgstr "Роль: %s"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -7212,7 +7260,7 @@ msgstr "Окружение"
 
 #: application/views/debug/index.php:68
 msgid "System Time"
-msgstr ""
+msgstr "Системное время"
 
 #: application/views/debug/index.php:76
 msgid "Total QSO on this instance"
@@ -7588,7 +7636,7 @@ msgstr "Турецкий"
 
 #: application/views/debug/index.php:687
 msgid "Armenian"
-msgstr ""
+msgstr "Армянский"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
@@ -7708,7 +7756,7 @@ msgstr ""
 #: application/views/email/club/modified_member.php:3
 #, php-format
 msgid "Your permission level for Clubstation %s has been changed"
-msgstr ""
+msgstr "Ваш уровень доступа для коллективной станции %s был изменен"
 
 #: application/views/email/club/modified_member.php:5
 #, php-format
@@ -7718,11 +7766,15 @@ msgid ""
 "Your permission level for Clubstation %s has been changed. You can access "
 "this callsign through your account at %s."
 msgstr ""
+"Уважаемый %s,\n"
+"\n"
+"Ваш уровень доступа для коллективной станции %s был изменен. Вы можете "
+"получить доступ к этому позывному через ваш аккаунт на %s."
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
 msgid "Your new permission level is: %s"
-msgstr ""
+msgstr "Ваш новый уровень доступа: %s"
 
 #: application/views/email/club/modified_member.php:11
 #: application/views/email/club/new_member.php:11
@@ -7733,11 +7785,16 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Войдите и посмотрите! \n"
+"\n"
+"С уважением, \n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr ""
+msgstr "Новое пользователь %s на Wavelog!"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -7747,11 +7804,15 @@ msgid ""
 "You have been added to the Clubstation %s. You can now access this callsign "
 "through your account on %s."
 msgstr ""
+"Уважаемый %s\n"
+"\n"
+"Вы были добавлены в список операторов коллективной станции %s. Теперь вы "
+"можете получить доступ к этому позывному через свой аккаунт на %s."
 
 #: application/views/email/club/new_member.php:9
 #, php-format
 msgid "Your permission level is: %s"
-msgstr ""
+msgstr "Ваш уровень доступа: %s"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -8157,7 +8218,7 @@ msgstr "Редактировать QSO"
 
 #: application/views/interface_assets/footer.php:33
 msgid "Share QSO"
-msgstr ""
+msgstr "Поделиться QSO"
 
 #: application/views/interface_assets/footer.php:35
 msgid "ERROR"
@@ -8232,7 +8293,7 @@ msgstr "Информация о версии"
 #: application/views/interface_assets/footer.php:192
 #: application/views/interface_assets/footer.php:207
 msgid "Failed to load the modal. Please try again."
-msgstr ""
+msgstr "Не удалось загрузить модальное окно. Пожалуйста, попробуйте еще раз."
 
 #: application/views/interface_assets/footer.php:448
 msgid "Description:"
@@ -8390,7 +8451,7 @@ msgstr "Режим обслуживания"
 #: application/views/interface_assets/header.php:92
 #: application/views/user/edit.php:90
 msgid "Clubstation"
-msgstr ""
+msgstr "Коллективная станция"
 
 #: application/views/interface_assets/header.php:102
 msgid "Overview"
@@ -8458,7 +8519,7 @@ msgstr "DL Gridmaster"
 
 #: application/views/interface_assets/header.php:209
 msgid "WAE (Worked All Europe)"
-msgstr ""
+msgstr "WAE (Worked All Europe)"
 
 #: application/views/interface_assets/header.php:213
 msgid "Great Britain"
@@ -8558,7 +8619,7 @@ msgstr "Поиск позывного"
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
-msgstr ""
+msgstr "Оп.: %s"
 
 #: application/views/interface_assets/header.php:393
 #: application/views/user/edit.php:54
@@ -8567,22 +8628,22 @@ msgstr "Информация об аккаунте"
 
 #: application/views/interface_assets/header.php:405
 msgid "Switch to Clubstation:"
-msgstr ""
+msgstr "Переключиться на коллективную станцию:"
 
 #: application/views/interface_assets/header.php:409
 #, php-format
 msgid "Switch to %s"
-msgstr ""
+msgstr "Переключиться на %s"
 
 #: application/views/interface_assets/header.php:413
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
-msgstr ""
+msgstr "Управление %s"
 
 #: application/views/interface_assets/header.php:421
 msgid "No Clubstations available"
-msgstr ""
+msgstr "Нет доступных коллективных станций"
 
 #: application/views/interface_assets/header.php:429
 msgid "Other Export Options"
@@ -8627,12 +8688,12 @@ msgstr "Форум"
 #: application/views/interface_assets/header.php:488
 #, php-format
 msgid "Stop impersonate and switch back to %s"
-msgstr ""
+msgstr "Прекратить выдавать себя за другого и переключиться обратно на %s"
 
 #: application/views/interface_assets/header.php:489
 #, php-format
 msgid "Switch back to %s"
-msgstr ""
+msgstr "Переключиться обратно на %s"
 
 #: application/views/interface_assets/header.php:493
 msgid "Logout"
@@ -8970,7 +9031,7 @@ msgstr "Выходная мощность"
 #: application/views/qso/edit_ajax.php:327 application/views/qso/index.php:403
 #: application/views/view_log/qso.php:475
 msgid "Region"
-msgstr ""
+msgstr "Регион"
 
 #: application/views/logbookadvanced/edit.php:83
 msgid "SAT Mode"
@@ -9004,37 +9065,37 @@ msgstr "—"
 #: application/views/logbookadvanced/edit.php:175
 #: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:407
 msgid "African Italy"
-msgstr ""
+msgstr "Африканская Италия"
 
 #: application/views/logbookadvanced/edit.php:176
 #: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:408
 msgid "Bear Island"
-msgstr ""
+msgstr "Медвежий остров"
 
 #: application/views/logbookadvanced/edit.php:177
 #: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:409
 msgid "European Turkey"
-msgstr ""
+msgstr "Европейская Турция"
 
 #: application/views/logbookadvanced/edit.php:178
 #: application/views/qso/edit_ajax.php:334 application/views/qso/index.php:410
 msgid "ITU Vienna"
-msgstr ""
+msgstr "МСЭ Вена"
 
 #: application/views/logbookadvanced/edit.php:179
 #: application/views/qso/edit_ajax.php:335 application/views/qso/index.php:411
 msgid "Kosovo"
-msgstr ""
+msgstr "Косово"
 
 #: application/views/logbookadvanced/edit.php:180
 #: application/views/qso/edit_ajax.php:336 application/views/qso/index.php:412
 msgid "Shetland Islands"
-msgstr ""
+msgstr "Шетландские острова"
 
 #: application/views/logbookadvanced/edit.php:181
 #: application/views/qso/edit_ajax.php:337 application/views/qso/index.php:413
 msgid "Sicily"
-msgstr ""
+msgstr "Сицилия"
 
 #: application/views/logbookadvanced/index.php:11
 #: application/views/logbookadvanced/useroptions.php:182
@@ -10689,15 +10750,15 @@ msgstr ""
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
-msgstr ""
+msgstr "Опубликовать на X"
 
 #: application/views/qso/components/share_modal.php:6
 msgid "Post on Bluesky"
-msgstr ""
+msgstr "Опубликовать на Bluesky"
 
 #: application/views/qso/components/share_modal.php:10
 msgid "Toot on Mastodon"
-msgstr ""
+msgstr "Тут на Мастодоне"
 
 #: application/views/qso/components/winkeysettings.php:3
 #: application/views/qso/components/winkeysettings.php:19
@@ -12830,7 +12891,7 @@ msgstr "Да, удалить этого пользователя"
 
 #: application/views/user/edit.php:6
 msgid "Create Clubstation Account"
-msgstr ""
+msgstr "Создать аккаунт коллективной станции"
 
 #: application/views/user/edit.php:8
 msgid "Create User Account"
@@ -12854,7 +12915,7 @@ msgstr "Пароль"
 
 #: application/views/user/edit.php:75
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "Не делись этим паролем с операторами!"
 
 #: application/views/user/edit.php:85
 msgid "User Role"
@@ -12862,7 +12923,7 @@ msgstr "Роль пользователя"
 
 #: application/views/user/edit.php:114
 msgid "Callsign Owner"
-msgstr ""
+msgstr "Владелец позывного сигнала"
 
 #: application/views/user/edit.php:114
 msgid "Personal"
@@ -12882,7 +12943,7 @@ msgstr "Радиостанция"
 
 #: application/views/user/edit.php:138
 msgid "Special/Club Callsign"
-msgstr ""
+msgstr "Специальный/Коллективный позывной"
 
 #: application/views/user/edit.php:161
 msgid "Wavelog Preferences"
@@ -13338,11 +13399,11 @@ msgstr "Имперсонация"
 #: application/views/user/index.php:104 application/views/user/index.php:207
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
-msgstr ""
+msgstr "Другие действия"
 
 #: application/views/user/index.php:132
 msgid "Clubstation List"
-msgstr ""
+msgstr "Список коллективных станций"
 
 #: application/views/user/index.php:135
 msgid ""
@@ -13350,18 +13411,22 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
+"Коллективные станции в Wavelog — это способ управлять коллективными и "
+"специальными станциями с несколькими операторами. Коллективная станция — "
+"это, по сути, обычная учетная запись пользователя с некоторыми особыми "
+"функциями и ограничениями."
 
 #: application/views/user/index.php:137
 msgid "Create Clubstation"
-msgstr ""
+msgstr "Создать аккаунт коллективной станцию"
 
 #: application/views/user/index.php:149
 msgid "Last Operator"
-msgstr ""
+msgstr "Последний оператор"
 
 #: application/views/user/index.php:231
 msgid "No Clubstations configures yet."
-msgstr ""
+msgstr "Аккаунты коллективных станций ещё не настроены."
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
@@ -13390,7 +13455,7 @@ msgstr "Оставаться в системе"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "(with Admin Rights)"
-msgstr ""
+msgstr "(с правами администратора)"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "Impersonate User"
@@ -13401,6 +13466,9 @@ msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
 msgstr ""
+"Вы собираетесь выдать себя за другого пользователя. Чтобы вернуться в свою "
+"учетную запись администратора, вы можете использовать кнопку \"переключения "
+"обратно\" в меню заголовка ."
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
 msgid "Do you want to impersonate this user?"
@@ -13438,72 +13506,80 @@ msgstr "Последний раз видели:"
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
-msgstr ""
+msgstr "Выберите действие для выполнения пользователем:"
 
 #: application/views/user/modals/more_actions_modal.php:33
 #: application/views/user/modals/more_actions_modal.php:61
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "Отправить ссылку для сброса пароля по электронной почте"
 
 #: application/views/user/modals/more_actions_modal.php:39
 msgid "Convert to Clubstation"
-msgstr ""
+msgstr "Преобразовать в коллективную станцию"
 
 #: application/views/user/modals/more_actions_modal.php:39
 msgid "Convert to User"
-msgstr ""
+msgstr "Преобразовать в обычного пользователя"
 
 #: application/views/user/modals/more_actions_modal.php:54
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"Электронное письмо для сброса пароля успешно отправлено пользователю. Вы "
+"можете закрыть этот диалог."
 
 #: application/views/user/modals/more_actions_modal.php:55
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"Не удалось отправить письмо для сброса пароля пользователю. Правильно ли "
+"настроены параметры электронной почты в глобальных настройках?"
 
 #: application/views/user/modals/more_actions_modal.php:64
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"Вы собираетесь отправить пользователю ссылку для сброса пароля. Пользователь "
+"сможет сбросить свой пароль, кликнув по ссылке в электронном письме."
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid "Do you want to send the password reset email to this user?"
-msgstr ""
+msgstr "Вы хотите отправить этому пользователю письмо для сброса пароля?"
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:116
 msgid "User:"
-msgstr ""
+msgstr "Пользователь:"
 
 #: application/views/user/modals/more_actions_modal.php:70
 #: application/views/user/modals/more_actions_modal.php:119
 msgid "Language:"
-msgstr ""
+msgstr "Язык:"
 
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Send the email"
-msgstr ""
+msgstr "Отправить электронное письмо"
 
 #: application/views/user/modals/more_actions_modal.php:91
 msgid "The account was successfully converted. You can now close this dialog."
 msgstr ""
+"Учетная запись была успешно преобразована. Теперь вы можете закрыть этот "
+"диалог."
 
 #: application/views/user/modals/more_actions_modal.php:92
 msgid "The account could not be converted. An error has occurred."
-msgstr ""
+msgstr "Аккаунт не удалось преобразовать. Произошла ошибка."
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Convert this account into a normal user"
-msgstr ""
+msgstr "Преобразовать эту учетную запись в обычного пользователя"
 
 #: application/views/user/modals/more_actions_modal.php:102
 msgid "Convert this account into a clubstation"
-msgstr ""
+msgstr "Преобразовать этот аккаунт в коллективную станцию"
 
 #: application/views/user/modals/more_actions_modal.php:109
 msgid ""
@@ -13511,6 +13587,10 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
+"Вы собираетесь преобразовать эту коллективную станцию в обычную учетную "
+"запись пользователя. Пользователь сможет снова войти в систему, и все "
+"назначенные разрешения операторов коллективной станции будут удалены. "
+"Используйте с осторожностью!"
 
 #: application/views/user/modals/more_actions_modal.php:111
 msgid ""
@@ -13518,23 +13598,27 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
+"Вы собираетесь преобразовать эту учетную запись пользователя в учетную "
+"запись коллективной станции. Пользователь больше не сможет войти в систему, "
+"и учетная запись будет преобразована в учетную запись коллективной станции. "
+"Используйте с осторожностью!"
 
 #: application/views/user/modals/more_actions_modal.php:114
 msgid "Are you sure you want to convert this account?"
-msgstr ""
+msgstr "Вы уверены, что хотите преобразовать этот аккаунт?"
 
 #: application/views/user/modals/more_actions_modal.php:124
 msgid "Convert"
-msgstr ""
+msgstr "Преобразовать"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "Переключиться обратно на основного пользователя"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch back to %s?"
-msgstr ""
+msgstr "Вы уверены, что хотите вернуться к %s?"
 
 #: application/views/user/profile.php:19
 msgid "Level"
@@ -13664,19 +13748,19 @@ msgstr "Это QSO было подтверждено"
 
 #: application/views/view_log/qso.php:537
 msgid "This QSO is confirmed on LoTW."
-msgstr ""
+msgstr "Это QSO подтверждено на LoTW."
 
 #: application/views/view_log/qso.php:547
 msgid "This QSO is confirmed on eQSL."
-msgstr ""
+msgstr "Это QSO подтверждено на eQSL."
 
 #: application/views/view_log/qso.php:557
 msgid "This QSO is confirmed on QRZ.com."
-msgstr ""
+msgstr "Это QSO подтверждено на QRZ.com."
 
 #: application/views/view_log/qso.php:567
 msgid "This QSO is confirmed on Clublog."
-msgstr ""
+msgstr "Это QSO подтверждено на Clublog."
 
 #: application/views/view_log/qso.php:580
 msgid "More QSOs"
@@ -13684,7 +13768,7 @@ msgstr "Больше QSO"
 
 #: application/views/view_log/qso.php:639
 msgid "Share"
-msgstr ""
+msgstr "Поделиться"
 
 #: application/views/view_log/qso.php:645
 msgid "Details"
