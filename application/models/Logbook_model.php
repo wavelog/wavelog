@@ -4223,7 +4223,7 @@ class Logbook_model extends CI_Model {
 			}
 
 			// Only import SIG_INFO and SIG_INFO_INTL if SIG is set. Discard otherwise as we do not now which activity group the reference belongs to
-			if (!isset($record['sig']) || $record['sig'] == '') {
+			if (empty($record['sig'])) {
 				$sig_info = $sig_info_intl = '';
 			} else {
 				$sig_info = $record['sig_info'] ?? '';
