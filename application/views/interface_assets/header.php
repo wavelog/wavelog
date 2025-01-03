@@ -178,6 +178,8 @@
 										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/vucc'); ?>"><i class="fas fa-trophy"></i> <?= __("VUCC"); ?></a></li>
 										<div class="dropdown-divider"></div>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/wae'); ?>"><i class="fas fa-trophy"></i> <?= __("Worked All Europe (WAE)"); ?></a></li>
+										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/wac'); ?>"><i class="fas fa-trophy"></i> <?= __("Worked All Continents (WAC)"); ?></a></li>
 										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/wwff'); ?>"><i class="fas fa-trophy"></i> <?= __("WWFF"); ?></a></li>
@@ -205,8 +207,6 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/dok'); ?>"><i class="fas fa-trophy"></i> <?= __("DOK"); ?></a></li>
 										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/dl'); ?>"><i class="fas fa-trophy"></i> <?= __("DL Gridmaster"); ?></a></li>
-										<div class="dropdown-divider"></div>
-										<li><a class="dropdown-item" href="<?php echo site_url('awards/wae'); ?>"><i class="fas fa-trophy"></i> <?= __("WAE (Worked All Europe)"); ?></a></li>
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
