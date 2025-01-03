@@ -40,12 +40,18 @@ class Migration_clubstations extends CI_Migration {
         $this->db->query("ALTER TABLE `cat` MODIFY operator INT(6) NOT NULL;");
     }
 
-	public function down() {
-		// Due the risk of data loss we can't drop any new created columns or tables
-		// But we can drop some of the timestamp columns
-		$this->db->query("ALTER TABLE `users` DROP COLUMN created_at;");
-		$this->db->query("ALTER TABLE `users` DROP COLUMN modified_at;");
-		$this->db->query("ALTER TABLE `api` DROP COLUMN created_at;");
+    public function down() {
+        // Due the risk of data loss we can't drop any new created columns or tables
+        // But we can drop some of the timestamp columns
+        if ($this->db->field_exists('created_at', 'users')) {
+            $this->db->query("ALTER TABLE `users` DROP COLUMN created_at;");
+        }
+        if ($this->db->field_exists('modified_at', 'users')) {
+            $this->db->query("ALTER TABLE `users` DROP COLUMN modified_at;");
+        }
+        if ($this->db->field_exists('created_at', 'api')) {
+            $this->db->query("ALTER TABLE `api` DROP COLUMN created_at;");
+        }
     }
 
     private function add_column_if_not_exists($table, $column, $definition) {
