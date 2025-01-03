@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-03 00:14+0000\n"
+"POT-Creation-Date: 2025-01-03 08:53+0000\n"
 "PO-Revision-Date: 2025-01-03 07:36+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -321,7 +321,7 @@ msgstr "奖项 - %s"
 #: application/views/awards/dok/index.php:149
 #: application/views/bands/index.php:47
 #: application/views/contesting/index.php:58
-#: application/views/interface_assets/header.php:205
+#: application/views/interface_assets/header.php:207
 #: application/views/logbookadvanced/index.php:696
 #: application/views/logbookadvanced/useroptions.php:114
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:271
@@ -410,7 +410,7 @@ msgstr " 并且 "
 #: application/controllers/Logbook.php:1286
 #: application/views/awards/index.php:8 application/views/bands/index.php:55
 #: application/views/dashboard/index.php:9
-#: application/views/interface_assets/header.php:189
+#: application/views/interface_assets/header.php:191
 #: application/views/logbookadvanced/edit.php:20
 #: application/views/logbookadvanced/index.php:301
 #: application/views/logbookadvanced/useroptions.php:110
@@ -436,7 +436,7 @@ msgstr "SOTA"
 #: application/controllers/Logbook.php:1287
 #: application/views/bands/index.php:60
 #: application/views/dashboard/index.php:10
-#: application/views/interface_assets/header.php:183
+#: application/views/interface_assets/header.php:185
 #: application/views/logbookadvanced/edit.php:22
 #: application/views/logbookadvanced/index.php:321
 #: application/views/logbookadvanced/useroptions.php:118
@@ -456,7 +456,7 @@ msgstr "WWFF"
 #: application/controllers/Logbook.php:1288
 #: application/views/bands/index.php:52
 #: application/views/dashboard/index.php:11
-#: application/views/interface_assets/header.php:193
+#: application/views/interface_assets/header.php:195
 #: application/views/logbookadvanced/edit.php:15
 #: application/views/logbookadvanced/index.php:305
 #: application/views/logbookadvanced/index.php:690
@@ -483,7 +483,7 @@ msgid "Worked All States (WAS)"
 msgstr "通联全部州奖（WAS）"
 
 #: application/controllers/Awards.php:717 application/views/bands/index.php:53
-#: application/views/interface_assets/header.php:199
+#: application/views/interface_assets/header.php:201
 msgid "RAC"
 msgstr "RAC"
 
@@ -545,7 +545,7 @@ msgstr "ITU 分区"
 
 #: application/controllers/Awards.php:1914
 #: application/views/awards/wac/index.php:8
-#: application/views/interface_assets/header.php:181
+#: application/views/interface_assets/header.php:183
 msgid "Worked All Continents (WAC)"
 msgstr "通联世界大洲奖（WAC）"
 
@@ -1351,7 +1351,7 @@ msgstr "DXCC 实体"
 #: application/controllers/Logbook.php:1285
 #: application/views/awards/iota/index.php:169
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
-#: application/views/interface_assets/header.php:191
+#: application/views/interface_assets/header.php:193
 #: application/views/logbookadvanced/edit.php:11
 #: application/views/logbookadvanced/index.php:309
 #: application/views/logbookadvanced/index.php:687
@@ -2576,7 +2576,8 @@ msgstr "重置密码"
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
-msgstr "您当前无权以其他用户身份操作。你需要在你的config.php中将 %s 设置为 %s ！"
+msgstr ""
+"您当前无权以其他用户身份操作。你需要在你的config.php中将 %s 设置为 %s ！"
 
 #: application/controllers/User.php:1316
 #: application/views/user/modals/admin_impersonate_modal.php:36
@@ -5944,8 +5945,9 @@ msgid ""
 "In order for users to log QSOs with this club/special callsign, they need "
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
-msgstr "要让用户使用此集体台站/特殊呼号记录 QSO "
-"，必须为其授予相应权限。请在下表中添加用户并分配权限。"
+msgstr ""
+"要让用户使用此集体台站/特殊呼号记录 QSO ，必须为其授予相应权限。请在下表中添"
+"加用户并分配权限。"
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
@@ -8216,21 +8218,21 @@ msgstr "国际"
 msgid "ITU"
 msgstr "ITU"
 
-#: application/views/interface_assets/header.php:197
+#: application/views/interface_assets/header.php:181
+msgid "Worked All Europe (WAE)"
+msgstr ""
+
+#: application/views/interface_assets/header.php:199
 msgid "Canada"
 msgstr "加拿大"
 
-#: application/views/interface_assets/header.php:203
+#: application/views/interface_assets/header.php:205
 msgid "Germany"
 msgstr "德国"
 
-#: application/views/interface_assets/header.php:207
+#: application/views/interface_assets/header.php:209
 msgid "DL Gridmaster"
 msgstr "DL Gridmaster"
-
-#: application/views/interface_assets/header.php:209
-msgid "WAE (Worked All Europe)"
-msgstr "WAE (Worked All Europe)"
 
 #: application/views/interface_assets/header.php:213
 msgid "Great Britain"
@@ -13058,7 +13060,8 @@ msgstr "密码重置邮件没有发送给用户。你确定全局设置中的 Em
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
-msgstr "你将要给用户发送密码重置链接。用户将能够点击邮箱中的链接来重置他们的密码。"
+msgstr ""
+"你将要给用户发送密码重置链接。用户将能够点击邮箱中的链接来重置他们的密码。"
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid "Do you want to send the password reset email to this user?"
@@ -13398,6 +13401,9 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "WAE (Worked All Europe)"
+#~ msgstr "WAE (Worked All Europe)"
 
 #~ msgid "Do you really want to send this user a password-reset link?"
 #~ msgstr "确认发送重置密码链接？"
