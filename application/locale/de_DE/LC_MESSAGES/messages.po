@@ -881,6 +881,7 @@ msgstr "DX Kalender"
 #: application/views/dashboard/index.php:368
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:366
 msgid "eQSL Cards"
 msgstr "eQSL-Karten"
 
@@ -1166,6 +1167,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:578
 #: application/views/user/edit.php:674 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/dashboard/index.php:301
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1197,6 +1199,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:305
 #: application/views/timeline/index.php:64 application/views/user/edit.php:579
 #: application/views/user/edit.php:682 application/views/user/edit.php:748
+#: application/views/dashboard/index.php:301
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1979,6 +1982,8 @@ msgstr "QRZ ADIF-Information"
 #: application/views/dashboard/index.php:320
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:301
+#: application/views/dashboard/index.php:318
 msgid "QSL Cards"
 msgstr "QSL-Karten"
 
@@ -3006,6 +3011,7 @@ msgstr "Kumulierte Anzahl gearbeiteter WAJA"
 #: application/views/statistics/index.php:36
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:279
 msgid "Year"
 msgstr "Jahr"
 
@@ -3018,6 +3024,7 @@ msgstr "Jährlich"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:286
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:284
 msgid "Month"
 msgstr "Monat"
 
@@ -3614,6 +3621,7 @@ msgstr "Nichts gefunden!"
 #: application/views/user/edit.php:138 application/views/user/index.php:28
 #: application/views/user/index.php:147 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:649
+#: application/views/dashboard/index.php:209
 msgid "Callsign"
 msgstr "Rufzeichen"
 
@@ -3709,6 +3717,7 @@ msgstr "Die Informationen zum DOK im Logbuch weichen von denen im DCL ab"
 #: application/views/view_log/partial/log_ajax.php:107
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:25
+#: application/views/dashboard/index.php:204
 msgid "Date"
 msgstr "Datum"
 
@@ -3741,6 +3750,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log_ajax.php:109
 #: application/views/visitor/index.php:154
 #: application/views/widgets/qsos.php:27
+#: application/views/dashboard/index.php:207
 msgid "Time"
 msgstr "Zeit"
 
@@ -3787,6 +3797,7 @@ msgstr "DARC DCL"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/dashboard/index.php:180
 msgid "Important"
 msgstr "Wichtig"
 
@@ -4378,6 +4389,7 @@ msgstr "Bestätigte Counties"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:274
 msgid "Total"
 msgstr "Gesamt"
 
@@ -4448,6 +4460,8 @@ msgstr "Diplome - CQ Magazin WAZ"
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:301
+#: application/views/dashboard/index.php:419
 msgid "Confirmed"
 msgstr "Bestätigt"
 
@@ -4459,6 +4473,8 @@ msgstr "Bestätigt"
 #: application/views/dashboard/index.php:415
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:297
+#: application/views/dashboard/index.php:413
 msgid "Worked"
 msgstr "Gearbeitet"
 
@@ -5189,6 +5205,7 @@ msgstr "Stadt"
 #: application/views/awards/jcc/index.php:187
 #: application/views/dashboard/index.php:411
 #: application/views/distances/index.php:23
+#: application/views/dashboard/index.php:409
 msgid "SAT"
 msgstr "SAT"
 
@@ -6431,6 +6448,10 @@ msgstr "Details anzeigen"
 #: application/views/dashboard/index.php:348
 #: application/views/dashboard/index.php:369
 #: application/views/dashboard/index.php:390
+#: application/views/dashboard/index.php:319
+#: application/views/dashboard/index.php:346
+#: application/views/dashboard/index.php:367
+#: application/views/dashboard/index.php:388
 msgid "Today"
 msgstr "Heute"
 
@@ -6969,16 +6990,19 @@ msgstr "Mindestens eines deiner LoTW-Zertifikate läuft demnächst ab!"
 
 #: application/views/dashboard/index.php:272
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:270
 msgid "QSOs Breakdown"
 msgstr "QSO-Übersicht"
 
 #: application/views/dashboard/index.php:295
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:293
 msgid "DXCCs Breakdown"
 msgstr "DXCC-Übersicht"
 
 #: application/views/dashboard/index.php:312
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:310
 msgid "Needed"
 msgstr "Benötigt"
 
@@ -7012,7 +7036,10 @@ msgstr "Benötigt"
 #: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:374
 #: src/QSLManager/QSO.php:477 src/QSLManager/QSO.php:529
 #: src/QSLManager/QSO.php:584 src/QSLManager/QSO.php:645
-#: src/QSLManager/QSO.php:712
+#: src/QSLManager/QSO.php:712 application/views/dashboard/index.php:323
+#: application/views/dashboard/index.php:350
+#: application/views/dashboard/index.php:371
+#: application/views/dashboard/index.php:392
 msgid "Sent"
 msgstr "Gesendet"
 
@@ -7044,7 +7071,10 @@ msgstr "Gesendet"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:419
 #: src/QSLManager/QSO.php:500 src/QSLManager/QSO.php:552
 #: src/QSLManager/QSO.php:623 src/QSLManager/QSO.php:684
-#: src/QSLManager/QSO.php:736
+#: src/QSLManager/QSO.php:736 application/views/dashboard/index.php:329
+#: application/views/dashboard/index.php:356
+#: application/views/dashboard/index.php:377
+#: application/views/dashboard/index.php:398
 msgid "Received"
 msgstr "Erhalten"
 
@@ -7078,16 +7108,18 @@ msgstr "Erhalten"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:380
 #: src/QSLManager/QSO.php:425 src/QSLManager/QSO.php:485
 #: src/QSLManager/QSO.php:508 src/QSLManager/QSO.php:720
-#: src/QSLManager/QSO.php:745
+#: src/QSLManager/QSO.php:745 application/views/dashboard/index.php:335
 msgid "Requested"
 msgstr "Angefragt"
 
 #: application/views/dashboard/index.php:347
+#: application/views/dashboard/index.php:345
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:410
+#: application/views/dashboard/index.php:408
 msgid "VUCC-Grids"
 msgstr "VUCC-Locator"
 
@@ -13959,6 +13991,18 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
+
+#: application/views/dashboard/index.php:176
+#, php-format
+msgctxt "LoTW Warning"
+msgid "At least one of your %sLoTW certificates%s is expired!"
+msgstr ""
+
+#: application/views/dashboard/index.php:180
+#, php-format
+msgctxt "LoTW Warning"
+msgid "At least one of your %sLoTW certificates%s is about to expire!"
+msgstr ""
 
 #~ msgid "WAE (Worked All Europe)"
 #~ msgstr "WAE (Worked All Europe)"
