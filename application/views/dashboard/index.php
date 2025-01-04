@@ -173,11 +173,11 @@ function getDistance($distance) {
 		<?php
 			if($lotw_cert_expired == true) { ?>
 			<div class="alert alert-danger" role="alert">
-				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is expired!"), '<a href="' . site_url('lotw') . '">', "</a>"); ?>
+				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is expired!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
 			</div>
 		<?php } elseif($lotw_cert_expiring == true) { ?>
 			<div class="alert alert-warning" role="alert">
-				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is about to expire!"), '<a href="' . site_url('lotw') . '">', "</a>"); ?>
+				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is about to expire!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
 			</div>
 		<?php } ?>
 	<?php } ?>
