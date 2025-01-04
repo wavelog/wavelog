@@ -78,7 +78,7 @@ If you would like to contribute in any way to Wavelog, it is most appreciated. T
 
 **For translations and language stuff you can refer to our [Wiki about Translations](https://github.com/wavelog/wavelog/wiki/Translations).**
 
-Please note that Wavelog was built using [Codeigniter](https://www.codeigniter.com/docs) version 3 and uses Bootstrap 5 for the user CSS framework documentation is available for this when building components.
+Please note that Wavelog was built using [Codeigniter](https://www.codeigniter.com/userguide3/) version 3 and uses Bootstrap 5 for the user CSS framework documentation is available for this when building components.
 
 > [!IMPORTANT]  
 > Only accepting PRs on the "dev" branch.
