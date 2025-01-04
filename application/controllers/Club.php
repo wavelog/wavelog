@@ -56,7 +56,6 @@ class Club extends CI_Controller
 		$data['page_title'] = __("Club Permissions");
 		$data['club'] = $club;
 		$data['club_members'] = $this->club_model->get_club_members($cid);
-		$data['users'] = $this->user_model->users();
 		$data['permissions'] = $this->permissions;
 
 		$footerData = [];

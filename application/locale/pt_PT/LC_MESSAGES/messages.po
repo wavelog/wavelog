@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-03 00:14+0000\n"
-"PO-Revision-Date: 2025-01-01 17:09+0000\n"
+"POT-Creation-Date: 2025-01-03 09:19+0000\n"
+"PO-Revision-Date: 2025-01-03 11:37+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -37,8 +37,8 @@ msgstr ""
 #: application/controllers/Calltester.php:11
 #: application/controllers/Cfdexport.php:18
 #: application/controllers/Cfdexport.php:29 application/controllers/Club.php:48
-#: application/controllers/Club.php:75 application/controllers/Club.php:123
-#: application/controllers/Club.php:152 application/controllers/Club.php:179
+#: application/controllers/Club.php:74 application/controllers/Club.php:122
+#: application/controllers/Club.php:151 application/controllers/Club.php:178
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
@@ -124,6 +124,10 @@ msgstr ""
 #: application/controllers/User.php:1409
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Update.php:304
+#: application/controllers/Update.php:315
+#: application/controllers/Update.php:326
+#: application/controllers/Update.php:337
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
 
@@ -271,15 +275,15 @@ msgstr "A descrição da chave API %s foi actualizada."
 
 #: application/controllers/Api.php:68
 msgid "Invalid API rights"
-msgstr ""
+msgstr "Direitos de API inválidos"
 
 #: application/controllers/Api.php:82
 msgid "API Key generated"
-msgstr ""
+msgstr "Chave API gerada"
 
 #: application/controllers/Api.php:84
 msgid "API Key could not be generated"
-msgstr ""
+msgstr "A chave da API não pôde ser gerada"
 
 #: application/controllers/Api.php:98
 #, php-format
@@ -318,7 +322,7 @@ msgstr "Prémios - %s"
 #: application/views/awards/dok/index.php:149
 #: application/views/bands/index.php:47
 #: application/views/contesting/index.php:58
-#: application/views/interface_assets/header.php:205
+#: application/views/interface_assets/header.php:207
 #: application/views/logbookadvanced/index.php:696
 #: application/views/logbookadvanced/useroptions.php:114
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:271
@@ -407,7 +411,7 @@ msgstr " e "
 #: application/controllers/Logbook.php:1286
 #: application/views/awards/index.php:8 application/views/bands/index.php:55
 #: application/views/dashboard/index.php:9
-#: application/views/interface_assets/header.php:189
+#: application/views/interface_assets/header.php:191
 #: application/views/logbookadvanced/edit.php:20
 #: application/views/logbookadvanced/index.php:301
 #: application/views/logbookadvanced/useroptions.php:110
@@ -433,7 +437,7 @@ msgstr "SOTA"
 #: application/controllers/Logbook.php:1287
 #: application/views/bands/index.php:60
 #: application/views/dashboard/index.php:10
-#: application/views/interface_assets/header.php:183
+#: application/views/interface_assets/header.php:185
 #: application/views/logbookadvanced/edit.php:22
 #: application/views/logbookadvanced/index.php:321
 #: application/views/logbookadvanced/useroptions.php:118
@@ -453,7 +457,7 @@ msgstr "WWFF"
 #: application/controllers/Logbook.php:1288
 #: application/views/bands/index.php:52
 #: application/views/dashboard/index.php:11
-#: application/views/interface_assets/header.php:193
+#: application/views/interface_assets/header.php:195
 #: application/views/logbookadvanced/edit.php:15
 #: application/views/logbookadvanced/index.php:305
 #: application/views/logbookadvanced/index.php:690
@@ -480,7 +484,7 @@ msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:717 application/views/bands/index.php:53
-#: application/views/interface_assets/header.php:199
+#: application/views/interface_assets/header.php:201
 msgid "RAC"
 msgstr "RAC"
 
@@ -542,7 +546,7 @@ msgstr "Zonas ITU"
 
 #: application/controllers/Awards.php:1914
 #: application/views/awards/wac/index.php:8
-#: application/views/interface_assets/header.php:181
+#: application/views/interface_assets/header.php:183
 msgid "Worked All Continents (WAC)"
 msgstr "Worked All Continents (WAC)"
 
@@ -598,59 +602,61 @@ msgstr "Exportar CFD"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
-msgstr ""
+msgstr "Responsável do Clube"
 
 #: application/controllers/Club.php:24
 msgid "Club Member"
-msgstr ""
+msgstr "Membro do Clube"
 
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "ID de Utilizador Inválido!"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
-msgstr ""
+msgstr "Este utilizador não é uma estação de clube."
 
 #: application/controllers/Club.php:56
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:203
 msgid "Club Permissions"
-msgstr ""
+msgstr "Permissões do Clube"
 
-#: application/controllers/Club.php:119 application/controllers/Club.php:148
-#: application/controllers/Club.php:175 application/models/Club_model.php:22
+#: application/controllers/Club.php:118 application/controllers/Club.php:147
+#: application/controllers/Club.php:174 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "ID de Clube Inválido!"
 
-#: application/controllers/Club.php:131
+#: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
+"O utilizador não pôde ser notificado. Por favor, verifique as suas "
+"definições de email."
 
-#: application/controllers/Club.php:135
+#: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "As permissões dos membros do clube foram atualizadas."
 
-#: application/controllers/Club.php:157
+#: application/controllers/Club.php:156
 msgid "User removed from club."
-msgstr ""
+msgstr "Utilizador removido do clube."
 
-#: application/controllers/Club.php:159
+#: application/controllers/Club.php:158
 msgid "User could not be removed from club."
-msgstr ""
+msgstr "Não foi possível remover o utilizador do clube."
 
-#: application/controllers/Club.php:202
+#: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr ""
+msgstr "Tipo de mensagem inválido."
 
-#: application/controllers/Club.php:221
+#: application/controllers/Club.php:220
 msgid "Email settings not configured."
-msgstr ""
+msgstr "Definições do email não configuradas."
 
-#: application/controllers/Club.php:228 application/views/api/index.php:62
+#: application/controllers/Club.php:227 application/views/api/index.php:62
 #: application/views/satellite/index.php:64
 msgid "Unknown"
 msgstr "Desconhecido"
@@ -863,6 +869,7 @@ msgstr "Calendário DX"
 #: application/views/dashboard/index.php:368
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:366
 msgid "eQSL Cards"
 msgstr "Cartões eQSL"
 
@@ -1149,6 +1156,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:578
 #: application/views/user/edit.php:674 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/dashboard/index.php:301
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1180,6 +1188,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:305
 #: application/views/timeline/index.php:64 application/views/user/edit.php:579
 #: application/views/user/edit.php:682 application/views/user/edit.php:748
+#: application/views/dashboard/index.php:301
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1352,13 +1361,14 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:331
 #: application/views/view_log/qso.php:670
 #: application/views/visitor/index.php:15
+#: application/views/view_log/qso.php:673
 msgid "Country"
 msgstr "País"
 
 #: application/controllers/Logbook.php:1285
 #: application/views/awards/iota/index.php:169
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
-#: application/views/interface_assets/header.php:191
+#: application/views/interface_assets/header.php:193
 #: application/views/logbookadvanced/edit.php:11
 #: application/views/logbookadvanced/index.php:309
 #: application/views/logbookadvanced/index.php:687
@@ -1449,6 +1459,7 @@ msgstr "Estado"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:657
 #: application/views/visitor/index.php:27
+#: application/views/view_log/qso.php:660
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
@@ -1597,6 +1608,7 @@ msgstr "Frequência"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:677
 #: application/views/visitor/index.php:39
+#: application/views/view_log/qso.php:680
 msgid "Operator"
 msgstr "Operador"
 
@@ -1624,6 +1636,7 @@ msgstr "Operador"
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:671
+#: application/views/view_log/qso.php:674
 msgid "Deleted DXCC"
 msgstr "DXCC cancelada"
 
@@ -1734,6 +1747,7 @@ msgstr "Editar Modo"
 #: application/views/qso/edit_ajax.php:409 application/views/qso/index.php:41
 #: application/views/qso/index.php:611 application/views/view_log/qso.php:14
 #: application/views/view_log/qso.php:732
+#: application/views/view_log/qso.php:735
 msgid "Notes"
 msgstr "Notas"
 
@@ -1964,6 +1978,8 @@ msgstr "Informação ADIF QRZ"
 #: application/views/dashboard/index.php:320
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:301
+#: application/views/dashboard/index.php:318
 msgid "QSL Cards"
 msgstr "Cartões QSL"
 
@@ -2029,7 +2045,7 @@ msgstr "Configurações"
 
 #: application/controllers/Radio.php:63
 msgid "UNKNOWN"
-msgstr ""
+msgstr "DESCONHECIDO"
 
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:156
@@ -2088,6 +2104,7 @@ msgstr "Editar"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:113
 #: application/views/user/index.php:216 application/views/view_log/qso.php:755
+#: application/views/view_log/qso.php:758
 msgid "Delete"
 msgstr "Apagar"
 
@@ -2401,12 +2418,14 @@ msgstr "Estatísticas personalizadas"
 #: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:143
 #: application/views/statistics/qsltable.php:5
+#: application/controllers/Statistics.php:209
 msgid "QSL Statistics"
 msgstr "Estatísticas de QSL"
 
 #: application/controllers/Statistics.php:268
 #: application/views/interface_assets/header.php:141
 #: application/views/statistics/antennaanalytics.php:3
+#: application/controllers/Statistics.php:224
 msgid "Antenna Analytics"
 msgstr "Análise da Antena"
 
@@ -2452,26 +2471,32 @@ msgid "Preparing DXCC Prefixes: "
 msgstr "Preparação de Prefixos DXCC: "
 
 #: application/controllers/Update.php:247
+#: application/controllers/Update.php:261
 msgid "DONE"
 msgstr "TERMINADO"
 
 #: application/controllers/Update.php:261
+#: application/controllers/Update.php:275
 msgid "Updating..."
 msgstr "A actualizar..."
 
 #: application/controllers/Update.php:264
+#: application/controllers/Update.php:278
 msgid "Dxcc Entities:"
 msgstr "Entidades DXCC:"
 
 #: application/controllers/Update.php:265
+#: application/controllers/Update.php:279
 msgid "Dxcc Exceptions:"
 msgstr "Excepções do DXCC:"
 
 #: application/controllers/Update.php:266
+#: application/controllers/Update.php:280
 msgid "Dxcc Prefixes:"
 msgstr "Prefixos DXCC:"
 
 #: application/controllers/Update.php:401
+#: application/controllers/Update.php:415
 msgid "LoTW SAT Update"
 msgstr "Atualização SAT LoTW"
 
@@ -2482,11 +2507,11 @@ msgstr "Contas de utilizadores"
 
 #: application/controllers/User.php:83
 msgid "Invalid User ID or missing modal!"
-msgstr ""
+msgstr "ID de utilizador inválido ou modal em falta!"
 
 #: application/controllers/User.php:96
 msgid "Invalid Parameter!"
-msgstr ""
+msgstr "Parâmetro inválido!"
 
 #: application/controllers/User.php:152
 #: application/views/club/permissions.php:155
@@ -2496,21 +2521,21 @@ msgstr "Adicionar utilizador"
 #: application/controllers/User.php:253
 #, php-format
 msgid "Username %s already in use!"
-msgstr ""
+msgstr "Nome de utilizador %s já está em uso!"
 
 #: application/controllers/User.php:256
 #, php-format
 msgid "E-mail %s already in use!"
-msgstr ""
+msgstr "E-mail %s já está em uso!"
 
 #: application/controllers/User.php:259
 msgid "Invalid Password!"
-msgstr ""
+msgstr "Senha inválida!"
 
 #: application/controllers/User.php:263
 #, php-format
 msgid "User %s added!"
-msgstr ""
+msgstr "Utilizador %s adicionado!"
 
 #: application/controllers/User.php:267
 msgid "Users"
@@ -2540,7 +2565,7 @@ msgstr ""
 
 #: application/controllers/User.php:933
 msgid "This is not allowed!"
-msgstr ""
+msgstr "Isto não é permitido!"
 
 #: application/controllers/User.php:968 application/controllers/User.php:979
 msgid "Login failed. Try again."
@@ -2557,6 +2582,8 @@ msgstr "Iniciar sessão"
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
+"Não pode fazer login diretamente numa estação do clube. Use a sua conta "
+"pessoal."
 
 #: application/controllers/User.php:1028
 msgid ""
@@ -2608,6 +2635,8 @@ msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
 msgstr ""
+"Atualmente, não podes personificar um outro utilizador. Precisa de definir "
+"%s para %s no seu ficheiro config.php!"
 
 #: application/controllers/User.php:1316
 #: application/views/user/modals/admin_impersonate_modal.php:36
@@ -2647,18 +2676,22 @@ msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
+"Não foi possível determinar o nível de permissão correto para a estação do "
+"clube. Tente novamente após fazer login."
 
 #: application/controllers/User.php:1422 application/controllers/User.php:1434
 #: application/controllers/User.php:1440 application/controllers/User.php:1449
 #: application/controllers/User.php:1457
 msgid "Ups.. Something went wrong. Try to log back in."
-msgstr ""
+msgstr "Ups.. Algo correu mal. Tente fazer login novamente."
 
 #: application/controllers/User.php:1463
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr ""
+"A capacidade de retornar rapidamente foi desativada após a expiração do hash "
+"de segurança. Por favor, faça login novamente."
 
 #: application/controllers/User.php:1479
 #, php-format
@@ -2666,6 +2699,8 @@ msgid ""
 "You have been logged out of the clubstation %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"Foi desconectado da estação do clube %s. Bem-vindo de volta, %s, à sua conta "
+"pessoal!"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
@@ -2780,11 +2815,11 @@ msgstr "Cidade / Ku / Gun"
 
 #: application/models/Club_model.php:154
 msgid "Invalid Permission Level!"
-msgstr ""
+msgstr "Nível de Permissão Inválido!"
 
 #: application/models/Club_model.php:169
 msgid "Error adding Club Member!"
-msgstr ""
+msgstr "Erro ao adicionar Membro do Clube!"
 
 #: application/models/Eqslmethods_model.php:287
 msgid "Your eQSL username and/or password is incorrect."
@@ -2831,21 +2866,25 @@ msgstr ""
 "HRDlog: Não foram encontrados perfis de estação com credenciais do HRDlog."
 
 #: application/models/Logbook_model.php:3865
+#: application/models/Logbook_model.php:3859
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
 #: application/models/Logbook_model.php:3866
+#: application/models/Logbook_model.php:3860
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
 #: application/models/Logbook_model.php:3878
+#: application/models/Logbook_model.php:3872
 msgid "QSO on"
 msgstr "Contacto em"
 
 #: application/models/Logbook_model.php:3878
+#: application/models/Logbook_model.php:3872
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2854,57 +2893,70 @@ msgstr ""
 "importado. É inválido"
 
 #: application/models/Logbook_model.php:4177
+#: application/models/Logbook_model.php:4171
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4188
+#: application/models/Logbook_model.php:4182
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4249
+#: application/models/Logbook_model.php:4243
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4263
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4284
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4571
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4565
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
 #: application/models/Logbook_model.php:4632
+#: application/models/Logbook_model.php:4626
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
 #: application/models/Logbook_model.php:4638
+#: application/models/Logbook_model.php:4632
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4643
+#: application/models/Logbook_model.php:4637
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
 #: application/models/Logbook_model.php:4646
+#: application/models/Logbook_model.php:4640
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
 #: application/models/Logbook_model.php:4649
+#: application/models/Logbook_model.php:4643
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
 #: application/models/Logbook_model.php:4652
+#: application/models/Logbook_model.php:4646
 msgid "unconfirmed"
 msgstr "não confirmado"
 
 #: application/models/Logbook_model.php:4655
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4649
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -2980,6 +3032,7 @@ msgstr "Número acumulado de WAJA contactados"
 #: application/views/statistics/index.php:36
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:279
 msgid "Year"
 msgstr "Ano"
 
@@ -2992,6 +3045,7 @@ msgstr "Anual"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:286
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:284
 msgid "Month"
 msgstr "Mês"
 
@@ -3588,6 +3642,8 @@ msgstr "Nada encontrado!"
 #: application/views/user/edit.php:138 application/views/user/index.php:28
 #: application/views/user/index.php:147 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:649
+#: application/views/dashboard/index.php:209
+#: application/views/view_log/qso.php:652
 msgid "Callsign"
 msgstr "Indicativo"
 
@@ -3683,6 +3739,7 @@ msgstr "Há dados diferentes para DOK no teu log em comparação com DCL."
 #: application/views/view_log/partial/log_ajax.php:107
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:25
+#: application/views/dashboard/index.php:204
 msgid "Date"
 msgstr "Data"
 
@@ -3715,6 +3772,7 @@ msgstr "Data"
 #: application/views/view_log/partial/log_ajax.php:109
 #: application/views/visitor/index.php:154
 #: application/views/widgets/qsos.php:27
+#: application/views/dashboard/index.php:207
 msgid "Time"
 msgstr "Tempo"
 
@@ -3761,6 +3819,7 @@ msgstr "DARC DCL"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/dashboard/index.php:180
 msgid "Important"
 msgstr "Importante"
 
@@ -3769,6 +3828,7 @@ msgid "Log Files must have the file type *.adi"
 msgstr "Os ficheiros de registo devem ter o tipo de ficheiro *.adi"
 
 #: application/views/adif/import.php:56 application/views/view_log/qso.php:764
+#: application/views/view_log/qso.php:767
 msgid "Maximum file upload size is "
 msgstr "O tamanho máximo de upload de ficheiro é "
 
@@ -3783,6 +3843,7 @@ msgstr "O tamanho máximo de upload de ficheiro é "
 #: application/views/view_log/qso.php:764
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/view_log/qso.php:767
 msgid "Warning"
 msgstr "Aviso"
 
@@ -3796,7 +3857,7 @@ msgstr "Selecionar Localização da Estação"
 
 #: application/views/adif/import.php:73
 msgid "Select the operator of the imported QSOs"
-msgstr ""
+msgstr "Selecione o operador dos contactos importados"
 
 #: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
@@ -4154,6 +4215,8 @@ msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"Nas Estações Clube são as chaves API pessoais e não são partilhadas. Os "
+"utilizadores da Rstação Clube só podem ver suas próprias chaves."
 
 #: application/views/api/index.php:24
 msgid "API Key"
@@ -4171,7 +4234,7 @@ msgstr "Última utilização"
 
 #: application/views/api/index.php:28
 msgid "Created By"
-msgstr ""
+msgstr "Criado por"
 
 #: application/views/api/index.php:30
 msgid "Permissions"
@@ -4212,7 +4275,7 @@ msgstr "Teste"
 #: application/views/api/index.php:73
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "Tem a certeza de que deseja eliminar a Chave API %s?"
 
 #: application/views/api/index.php:86
 msgid "You have no API Keys."
@@ -4347,6 +4410,7 @@ msgstr "Condados Confirmados"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:274
 msgid "Total"
 msgstr "Total"
 
@@ -4417,6 +4481,8 @@ msgstr "Diplomas - CQ Magazine WAZ"
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:301
+#: application/views/dashboard/index.php:419
 msgid "Confirmed"
 msgstr "Confirmado"
 
@@ -4428,6 +4494,8 @@ msgstr "Confirmado"
 #: application/views/dashboard/index.php:415
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:297
+#: application/views/dashboard/index.php:413
 msgid "Worked"
 msgstr "Contactado"
 
@@ -5051,6 +5119,7 @@ msgstr "Mostrar mapa IOTA"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:653
+#: application/views/view_log/qso.php:656
 msgid "Name"
 msgstr "Nome"
 
@@ -5151,12 +5220,14 @@ msgstr "Número"
 #: application/views/awards/jcc/index.php:152
 #: application/views/search/result.php:21
 #: application/views/view_log/qso.php:663
+#: application/views/view_log/qso.php:666
 msgid "City"
 msgstr "Cidade"
 
 #: application/views/awards/jcc/index.php:187
 #: application/views/dashboard/index.php:411
 #: application/views/distances/index.php:23
+#: application/views/dashboard/index.php:409
 msgid "SAT"
 msgstr "Satélite"
 
@@ -5201,6 +5272,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:272
 #: application/views/user/edit.php:610 application/views/view_log/qso.php:403
 #: application/views/view_log/qso.php:712
+#: application/views/view_log/qso.php:715
 msgid "POTA Reference(s)"
 msgstr "Referência(s) POTA"
 
@@ -5543,6 +5615,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:259
 #: application/views/user/edit.php:606 application/views/view_log/qso.php:396
 #: application/views/view_log/qso.php:705
+#: application/views/view_log/qso.php:708
 msgid "WWFF Reference"
 msgstr "Referência WWFF"
 
@@ -5626,7 +5699,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Clique para preparar o registo."
 
 #: application/views/bandmap/list.php:73
 msgid "DXCC-Status"
@@ -5649,7 +5722,7 @@ msgstr "Mensagem"
 
 #: application/views/bandmap/list.php:119
 msgid "Last Worked"
-msgstr ""
+msgstr "Último Trabalhado"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
@@ -5711,6 +5784,7 @@ msgstr ""
 #: application/views/qso/index.php:255 application/views/qso/index.php:548
 #: application/views/user/edit.php:614 application/views/view_log/qso.php:425
 #: application/views/view_log/qso.php:719
+#: application/views/view_log/qso.php:722
 msgid "Sig"
 msgstr "Sinal"
 
@@ -6075,17 +6149,17 @@ msgstr "Exportação de ficheiro CFD para DARC-Toplist (Ver %s)"
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
-msgstr ""
+msgstr "Mudar para uma estação de clube"
 
 #: application/views/club/clubswitch_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch to %s?"
-msgstr ""
+msgstr "Tem a certeza de que quer mudar para %s?"
 
 #: application/views/club/clubswitch_modal.php:14
 #: application/views/user/modals/stop_impersonate_modal.php:13
 msgid "Yes, switch over!"
-msgstr ""
+msgstr "Sim, mudar!"
 
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:205
@@ -6101,11 +6175,11 @@ msgstr "Cancelar"
 #: application/views/club/permissions.php:3
 #, php-format
 msgid "Club Permissions for %s"
-msgstr ""
+msgstr "Permissões do Clube para %s"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
-msgstr ""
+msgstr "Voltar"
 
 #: application/views/club/permissions.php:13
 msgid ""
@@ -6113,14 +6187,17 @@ msgid ""
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
 msgstr ""
+"Para que os utilizadores registem contactos com este indicativo de clube/"
+"especial, eles precisam de autorizações apropriadas. Adicione os "
+"utilizadores à tabela abaixo e defina a permissão apropriada."
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
-msgstr ""
+msgstr "Ver permissões disponíveis"
 
 #: application/views/club/permissions.php:19
 msgid "Available Permissions"
-msgstr ""
+msgstr "Permissões Disponíveis"
 
 #: application/views/club/permissions.php:26
 #: application/views/eqsl/download.php:44
@@ -6130,68 +6207,69 @@ msgstr "Ação"
 #: application/views/club/permissions.php:33
 msgid "Log QSOs via Web GUI (live and post)"
 msgstr ""
+"Registar contactos através da interface visual web (em directo e postar)"
 
 #: application/views/club/permissions.php:41
 msgid "Log QSOs via API"
-msgstr ""
+msgstr "Registar contactos via API"
 
 #: application/views/club/permissions.php:49
 msgid "Edit a QSO"
-msgstr ""
+msgstr "Editar um contacto"
 
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
 msgid "QSO was done by the operator"
-msgstr ""
+msgstr "O contacto foi realizado pelo operador"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
 msgid "QSO was done by another operator"
-msgstr ""
+msgstr "Contacto foi feito por outro operador"
 
 #: application/views/club/permissions.php:67
 msgid "Delete a QSO"
-msgstr ""
+msgstr "Apagar contacto"
 
 #: application/views/club/permissions.php:85
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
-msgstr ""
+msgstr "Gerir configuração da Estação (editar/criar logbooks e localizações)"
 
 #: application/views/club/permissions.php:93
 msgid "Manage Third-Party services"
-msgstr ""
+msgstr "Gerir serviços de terceiros"
 
 #: application/views/club/permissions.php:101
 msgid "Import QSO per ADIF"
-msgstr ""
+msgstr "Importar contacto via ficheiro ADIF"
 
 #: application/views/club/permissions.php:110
 msgid "Export QSO per ADIF"
-msgstr ""
+msgstr "Exportar contacto para ficheiro ADIF"
 
 #: application/views/club/permissions.php:118
 msgid "User Management"
-msgstr ""
+msgstr "Gestão de Utilizadores"
 
 #: application/views/club/permissions.php:123
 msgid "Can create new users in Wavelog"
-msgstr ""
+msgstr "Pode criar novos utilizadores no Wavelog"
 
 #: application/views/club/permissions.php:128
 msgid "Can edit other users in Wavelog"
-msgstr ""
+msgstr "Pode editar outros utilizadores no Wavelog"
 
 #: application/views/club/permissions.php:133
 msgid "Can edit Club permissions and add/remove users"
-msgstr ""
+msgstr "Pode editar permissões do Clube e adicionar/remover utilizadores"
 
 #: application/views/club/permissions.php:151
 msgid "Users with Permissions"
-msgstr ""
+msgstr "Utilizadores com Permissões"
 
 #: application/views/club/permissions.php:161
 msgid "Add new User to Club"
-msgstr ""
+msgstr "Adicionar um novo Utilizador ao Clube"
 
 #: application/views/club/permissions.php:167
 #, php-format
@@ -6199,48 +6277,54 @@ msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr ""
+"Só é possível adicionar utilizadores à %s Estação Clube se estes já "
+"existirem neste servidor Wavelog."
 
 #: application/views/club/permissions.php:168
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
 msgstr ""
+"Se eles não existirem, por favor, peça ao seu Administrador do Wavelog para "
+"criar uma conta para eles."
 
 #: application/views/club/permissions.php:169
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
 msgstr ""
+"Procure o utilizador pelo indicativo ou nome próprio/apelido e selecione o "
+"nível de permissão."
 
 #: application/views/club/permissions.php:175
 msgid "User (Callsign or Name)"
-msgstr ""
+msgstr "Utilizador (Indicativo ou Nome)"
 
 #: application/views/club/permissions.php:176
 #: application/views/club/permissions.php:225
 #: application/views/club/permissions.php:269
 msgid "Permission"
-msgstr ""
+msgstr "Permissão"
 
 #: application/views/club/permissions.php:183
 msgid "Type at least 2 characters."
-msgstr ""
+msgstr "Escreva pelo menos 2 caracteres."
 
 #: application/views/club/permissions.php:194
 msgid "Notify the user via email"
-msgstr ""
+msgstr "Notificar o utilizador por email"
 
 #: application/views/club/permissions.php:213
 msgid "No users currently have access to this club station."
-msgstr ""
+msgstr "Atualmente, nenhum utilizador tem acesso a esta estação de clube."
 
 #: application/views/club/permissions.php:220
 msgid "Firstname"
-msgstr ""
+msgstr "Primeiro nome"
 
 #: application/views/club/permissions.php:221
 msgid "Lastname"
-msgstr ""
+msgstr "Sobrenome"
 
 #: application/views/club/permissions.php:223
 #: application/views/user/edit.php:57 application/views/user/index.php:146
@@ -6251,41 +6335,43 @@ msgstr "Nome de utilizador"
 
 #: application/views/club/permissions.php:224
 msgid "E-Mail"
-msgstr ""
+msgstr "Email"
 
 #: application/views/club/permissions.php:244
 msgid "Wavelog Administrator"
-msgstr ""
+msgstr "Administrador do Wavelog"
 
 #: application/views/club/permissions.php:261
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
+"Pode modificar o nível de permissão dos utilizadores para esta estação de "
+"clube."
 
 #: application/views/club/permissions.php:268
 msgid "User Callsign"
-msgstr ""
+msgstr "Indicativo do Utilizador"
 
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
-msgstr ""
+msgstr "Notificar o utilizador por email sobre a alteração"
 
 #: application/views/club/permissions.php:309
 msgid "Delete User"
-msgstr ""
+msgstr "Apagar Utilizador"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
-msgstr ""
+msgstr "Tem a certeza de que quere eliminar este utilizador do clube?"
 
 #: application/views/club/permissions.php:320
 #, php-format
 msgid "Callsign: %s"
-msgstr ""
+msgstr "Indicativo: %s"
 
 #: application/views/club/permissions.php:321
 #, php-format
 msgid "Role: %s"
-msgstr ""
+msgstr "Função: %s"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -6385,6 +6471,10 @@ msgstr "Mostrar detalhes"
 #: application/views/dashboard/index.php:348
 #: application/views/dashboard/index.php:369
 #: application/views/dashboard/index.php:390
+#: application/views/dashboard/index.php:319
+#: application/views/dashboard/index.php:346
+#: application/views/dashboard/index.php:367
+#: application/views/dashboard/index.php:388
 msgid "Today"
 msgstr "Hoje"
 
@@ -6918,16 +7008,19 @@ msgstr "Pelo menos um dos seus certificados LoTW está prestes a expirar!"
 
 #: application/views/dashboard/index.php:272
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:270
 msgid "QSOs Breakdown"
 msgstr "Distribuição de contactos"
 
 #: application/views/dashboard/index.php:295
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:293
 msgid "DXCCs Breakdown"
 msgstr "Distribuição de DXCCs"
 
 #: application/views/dashboard/index.php:312
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:310
 msgid "Needed"
 msgstr "Necessário"
 
@@ -6961,7 +7054,10 @@ msgstr "Necessário"
 #: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:374
 #: src/QSLManager/QSO.php:477 src/QSLManager/QSO.php:529
 #: src/QSLManager/QSO.php:584 src/QSLManager/QSO.php:645
-#: src/QSLManager/QSO.php:712
+#: src/QSLManager/QSO.php:712 application/views/dashboard/index.php:323
+#: application/views/dashboard/index.php:350
+#: application/views/dashboard/index.php:371
+#: application/views/dashboard/index.php:392
 msgid "Sent"
 msgstr "Enviado"
 
@@ -6993,7 +7089,10 @@ msgstr "Enviado"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:419
 #: src/QSLManager/QSO.php:500 src/QSLManager/QSO.php:552
 #: src/QSLManager/QSO.php:623 src/QSLManager/QSO.php:684
-#: src/QSLManager/QSO.php:736
+#: src/QSLManager/QSO.php:736 application/views/dashboard/index.php:329
+#: application/views/dashboard/index.php:356
+#: application/views/dashboard/index.php:377
+#: application/views/dashboard/index.php:398
 msgid "Received"
 msgstr "Recebido"
 
@@ -7027,16 +7126,18 @@ msgstr "Recebido"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:380
 #: src/QSLManager/QSO.php:425 src/QSLManager/QSO.php:485
 #: src/QSLManager/QSO.php:508 src/QSLManager/QSO.php:720
-#: src/QSLManager/QSO.php:745
+#: src/QSLManager/QSO.php:745 application/views/dashboard/index.php:335
 msgid "Requested"
 msgstr "Solicitado"
 
 #: application/views/dashboard/index.php:347
+#: application/views/dashboard/index.php:345
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:410
+#: application/views/dashboard/index.php:408
 msgid "VUCC-Grids"
 msgstr "VUCC-Grids"
 
@@ -7717,7 +7818,7 @@ msgstr ""
 #: application/views/email/club/modified_member.php:3
 #, php-format
 msgid "Your permission level for Clubstation %s has been changed"
-msgstr ""
+msgstr "O seu nível de permissão para a estação do clube %s foi alterado"
 
 #: application/views/email/club/modified_member.php:5
 #, php-format
@@ -7727,11 +7828,15 @@ msgid ""
 "Your permission level for Clubstation %s has been changed. You can access "
 "this callsign through your account at %s."
 msgstr ""
+"Caro %s,\n"
+"\n"
+"O seu nível de permissão para a estação do clube %s foi alterado. Pode "
+"aceder a este indicativo através da sua conta em %s."
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
 msgid "Your new permission level is: %s"
-msgstr ""
+msgstr "O seu novo nível de permissão é: %s"
 
 #: application/views/email/club/modified_member.php:11
 #: application/views/email/club/new_member.php:11
@@ -7742,11 +7847,16 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Inicie sessão e verifique! \n"
+"\n"
+"Cumprimentos, \n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr ""
+msgstr "Nova adesão %s no Wavelog!"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -7756,11 +7866,15 @@ msgid ""
 "You have been added to the Clubstation %s. You can now access this callsign "
 "through your account on %s."
 msgstr ""
+"Caro %s\n"
+"\n"
+"Foi adicionado à estação do clube %s. Pode, agora, aceder a este indicativo "
+"através da tua conta em %s."
 
 #: application/views/email/club/new_member.php:9
 #, php-format
 msgid "Your permission level is: %s"
-msgstr ""
+msgstr "O seu nível de permissão é: %s"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -8046,6 +8160,7 @@ msgstr "Data QSL"
 #: application/views/interface_assets/footer.php:2524
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:756
+#: application/views/view_log/qso.php:759
 msgid "View"
 msgstr "Vista"
 
@@ -8244,7 +8359,7 @@ msgstr "Informação da Versão"
 #: application/views/interface_assets/footer.php:192
 #: application/views/interface_assets/footer.php:207
 msgid "Failed to load the modal. Please try again."
-msgstr ""
+msgstr "Falha ao carregar o modal. Por favor, tente novamente."
 
 #: application/views/interface_assets/footer.php:448
 msgid "Description:"
@@ -8372,6 +8487,7 @@ msgstr "Cartão eQSL para "
 #: application/views/interface_assets/footer.php:2478
 #: application/views/interface_assets/footer.php:2517
 #: application/views/view_log/qso.php:746
+#: application/views/view_log/qso.php:749
 msgid "QSL image file"
 msgstr "Ficheiro de imagem QSL"
 
@@ -8403,7 +8519,7 @@ msgstr "Modo de Manutenção"
 #: application/views/interface_assets/header.php:92
 #: application/views/user/edit.php:90
 msgid "Clubstation"
-msgstr ""
+msgstr "Estação do clube"
 
 #: application/views/interface_assets/header.php:102
 msgid "Overview"
@@ -8457,21 +8573,21 @@ msgstr "Internacional"
 msgid "ITU"
 msgstr "UIT"
 
-#: application/views/interface_assets/header.php:197
+#: application/views/interface_assets/header.php:181
+msgid "Worked All Europe (WAE)"
+msgstr "Worked All Europe (WAE)"
+
+#: application/views/interface_assets/header.php:199
 msgid "Canada"
 msgstr "Canadá"
 
-#: application/views/interface_assets/header.php:203
+#: application/views/interface_assets/header.php:205
 msgid "Germany"
 msgstr "Alemanha"
 
-#: application/views/interface_assets/header.php:207
+#: application/views/interface_assets/header.php:209
 msgid "DL Gridmaster"
 msgstr "DL Gridmaster"
-
-#: application/views/interface_assets/header.php:209
-msgid "WAE (Worked All Europe)"
-msgstr "WAE (Worked All Europe)"
 
 #: application/views/interface_assets/header.php:213
 msgid "Great Britain"
@@ -8571,7 +8687,7 @@ msgstr "Pesquisar Indicativo"
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
-msgstr ""
+msgstr "Op: %s"
 
 #: application/views/interface_assets/header.php:393
 #: application/views/user/edit.php:54
@@ -8580,22 +8696,22 @@ msgstr "Conta"
 
 #: application/views/interface_assets/header.php:405
 msgid "Switch to Clubstation:"
-msgstr ""
+msgstr "Mudar para estação do clube:"
 
 #: application/views/interface_assets/header.php:409
 #, php-format
 msgid "Switch to %s"
-msgstr ""
+msgstr "Mudar para %s"
 
 #: application/views/interface_assets/header.php:413
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
-msgstr ""
+msgstr "Gerir %s"
 
 #: application/views/interface_assets/header.php:421
 msgid "No Clubstations available"
-msgstr ""
+msgstr "Nenhuma estação do clube disponível"
 
 #: application/views/interface_assets/header.php:429
 msgid "Other Export Options"
@@ -8640,12 +8756,12 @@ msgstr "Fórum"
 #: application/views/interface_assets/header.php:488
 #, php-format
 msgid "Stop impersonate and switch back to %s"
-msgstr ""
+msgstr "Parar a representação e voltar a mudar para %s"
 
 #: application/views/interface_assets/header.php:489
 #, php-format
 msgid "Switch back to %s"
-msgstr ""
+msgstr "Mudar de volta para %s"
 
 #: application/views/interface_assets/header.php:493
 msgid "Logout"
@@ -10380,6 +10496,20 @@ msgstr "Enviar não no pedido de logs"
 #: application/views/view_log/qso.php:712
 #: application/views/view_log/qso.php:719
 #: application/views/view_log/qso.php:724
+#: application/views/view_log/qso.php:648
+#: application/views/view_log/qso.php:652
+#: application/views/view_log/qso.php:656
+#: application/views/view_log/qso.php:660
+#: application/views/view_log/qso.php:666
+#: application/views/view_log/qso.php:673
+#: application/views/view_log/qso.php:680
+#: application/views/view_log/qso.php:687
+#: application/views/view_log/qso.php:694
+#: application/views/view_log/qso.php:701
+#: application/views/view_log/qso.php:708
+#: application/views/view_log/qso.php:715
+#: application/views/view_log/qso.php:722
+#: application/views/view_log/qso.php:727
 msgid "Station"
 msgstr "Estação"
 
@@ -10766,6 +10896,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:353
 #: application/views/reg1test/index.php:114
 #: application/views/view_log/qso.php:684
+#: application/views/view_log/qso.php:687
 msgid "Transmit Power (W)"
 msgstr "Potência de Transmissão (W)"
 
@@ -10824,6 +10955,7 @@ msgstr "Elevação da antena em graus decimais."
 #: application/views/qso/index.php:554 application/views/user/edit.php:614
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:724
+#: application/views/view_log/qso.php:727
 msgid "Sig Info"
 msgstr "Informação de sinal"
 
@@ -10961,6 +11093,7 @@ msgstr "Pesquisar DXCluster para o spot mais recente"
 #: application/views/station_profile/edit.php:218
 #: application/views/user/edit.php:598 application/views/view_log/qso.php:382
 #: application/views/view_log/qso.php:691
+#: application/views/view_log/qso.php:694
 msgid "IOTA Reference"
 msgstr "Referência IOTA"
 
@@ -10969,6 +11102,7 @@ msgstr "Referência IOTA"
 #: application/views/station_profile/edit.php:246
 #: application/views/user/edit.php:602 application/views/view_log/qso.php:389
 #: application/views/view_log/qso.php:698
+#: application/views/view_log/qso.php:701
 msgid "SOTA Reference"
 msgstr "Referência SOTA"
 
@@ -11640,6 +11774,7 @@ msgstr "Marcar QSL anviada (Direta)"
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:417
 #: application/views/view_log/qso.php:794
+#: application/views/view_log/qso.php:797
 msgid "Mark QSL Received (Bureau)"
 msgstr "Marcar QSL recebida (Bureau)"
 
@@ -11647,6 +11782,7 @@ msgstr "Marcar QSL recebida (Bureau)"
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:418
 #: application/views/view_log/qso.php:796
+#: application/views/view_log/qso.php:799
 msgid "Mark QSL Received (Direct)"
 msgstr "Marcar QSL recebida (Direto)"
 
@@ -11654,6 +11790,7 @@ msgstr "Marcar QSL recebida (Direto)"
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:408
 #: application/views/view_log/qso.php:804
+#: application/views/view_log/qso.php:807
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "Marcar cartão QSL como solicitado (Bureau)"
 
@@ -11661,6 +11798,7 @@ msgstr "Marcar cartão QSL como solicitado (Bureau)"
 #: application/views/view_log/partial/log.php:153
 #: application/views/view_log/partial/log_ajax.php:409
 #: application/views/view_log/qso.php:806
+#: application/views/view_log/qso.php:809
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "Marcar cartão QSL como solicitado (Direto)"
 
@@ -11668,6 +11806,7 @@ msgstr "Marcar cartão QSL como solicitado (Direto)"
 #: application/views/view_log/partial/log.php:154
 #: application/views/view_log/partial/log_ajax.php:410
 #: application/views/view_log/qso.php:808
+#: application/views/view_log/qso.php:811
 msgid "Mark QSL Card Not Required"
 msgstr "Marcar QSL como não necessária"
 
@@ -12873,7 +13012,7 @@ msgstr "Sim, apagar este utilizador"
 
 #: application/views/user/edit.php:6
 msgid "Create Clubstation Account"
-msgstr ""
+msgstr "Criar uma conta de Estação do Clube"
 
 #: application/views/user/edit.php:8
 msgid "Create User Account"
@@ -12897,7 +13036,7 @@ msgstr "Palavra-passe"
 
 #: application/views/user/edit.php:75
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "Não partilhe esta palavra-passe com os operadores!"
 
 #: application/views/user/edit.php:85
 msgid "User Role"
@@ -12905,7 +13044,7 @@ msgstr "Função do utilizador"
 
 #: application/views/user/edit.php:114
 msgid "Callsign Owner"
-msgstr ""
+msgstr "Dono/Reponsavel do Indicativo de Chamada"
 
 #: application/views/user/edit.php:114
 msgid "Personal"
@@ -12925,7 +13064,7 @@ msgstr "Rádio Amador"
 
 #: application/views/user/edit.php:138
 msgid "Special/Club Callsign"
-msgstr ""
+msgstr "Indicativo especial/clube"
 
 #: application/views/user/edit.php:161
 msgid "Wavelog Preferences"
@@ -13385,11 +13524,11 @@ msgstr "Imitar"
 #: application/views/user/index.php:104 application/views/user/index.php:207
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
-msgstr ""
+msgstr "Outras Ações"
 
 #: application/views/user/index.php:132
 msgid "Clubstation List"
-msgstr ""
+msgstr "Lista de estações do clube"
 
 #: application/views/user/index.php:135
 msgid ""
@@ -13397,18 +13536,22 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
+"As estações de clube no Wavelog são uma forma única para clubes e eventos "
+"com indicativos especiais gerirem múltiplos operadores. Uma estação de clube "
+"é basicamente uma conta de utilizador normal com algumas funcionalidades "
+"especiais e algumas restrições."
 
 #: application/views/user/index.php:137
 msgid "Create Clubstation"
-msgstr ""
+msgstr "Criar uma estação clube"
 
 #: application/views/user/index.php:149
 msgid "Last Operator"
-msgstr ""
+msgstr "Último Operador"
 
 #: application/views/user/index.php:231
 msgid "No Clubstations configures yet."
-msgstr ""
+msgstr "Ainda não há estações do clube configuradas."
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
@@ -13437,7 +13580,7 @@ msgstr "Manter a minha sessão iniciada"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "(with Admin Rights)"
-msgstr ""
+msgstr "(com direitos de administrador)"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "Impersonate User"
@@ -13448,6 +13591,8 @@ msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
 msgstr ""
+"Está prestes a representar um outro utilizador. Para voltar à sua conta de "
+"administrador, pode usar o botão de voltar no menu do cabeçalho."
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
 msgid "Do you want to impersonate this user?"
@@ -13485,72 +13630,78 @@ msgstr "Última vez visto:"
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
-msgstr ""
+msgstr "Selecione uma ação para realizar para o usuário:"
 
 #: application/views/user/modals/more_actions_modal.php:33
 #: application/views/user/modals/more_actions_modal.php:61
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "Enviar um link de redefinição de senha por email"
 
 #: application/views/user/modals/more_actions_modal.php:39
 msgid "Convert to Clubstation"
-msgstr ""
+msgstr "Converter para estação de clube"
 
 #: application/views/user/modals/more_actions_modal.php:39
 msgid "Convert to User"
-msgstr ""
+msgstr "Converter para Utilizador"
 
 #: application/views/user/modals/more_actions_modal.php:54
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"Email de redefinição de senha enviado com sucesso para o utilizador. Pode "
+"fechar este diálogo agora."
 
 #: application/views/user/modals/more_actions_modal.php:55
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"Não foi possível enviar o email de redefinição de senha para o utilizador. "
+"As definições de email nas opções globais estão configuradas corretamente?"
 
 #: application/views/user/modals/more_actions_modal.php:64
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"Estás prestes a enviar um link de redefinição de senha para o utilizador. O "
+"utilizador poderá redefinir a sua senha clicando no link no email."
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid "Do you want to send the password reset email to this user?"
-msgstr ""
+msgstr "Quer enviar o email de redefinição de senha para este utilizador?"
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:116
 msgid "User:"
-msgstr ""
+msgstr "Utilizador:"
 
 #: application/views/user/modals/more_actions_modal.php:70
 #: application/views/user/modals/more_actions_modal.php:119
 msgid "Language:"
-msgstr ""
+msgstr "Idioma:"
 
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Send the email"
-msgstr ""
+msgstr "Enviar o email"
 
 #: application/views/user/modals/more_actions_modal.php:91
 msgid "The account was successfully converted. You can now close this dialog."
-msgstr ""
+msgstr "A conta foi convertida com sucesso. Pode agora fechar este diálogo."
 
 #: application/views/user/modals/more_actions_modal.php:92
 msgid "The account could not be converted. An error has occurred."
-msgstr ""
+msgstr "A conta não pôde ser convertida. Ocorreu um erro."
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Convert this account into a normal user"
-msgstr ""
+msgstr "Converter esta conta num utilizador normal"
 
 #: application/views/user/modals/more_actions_modal.php:102
 msgid "Convert this account into a clubstation"
-msgstr ""
+msgstr "Converter esta conta numa estação clube"
 
 #: application/views/user/modals/more_actions_modal.php:109
 msgid ""
@@ -13558,6 +13709,9 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
+"Está prestes a converter esta estação de clube para uma conta de utilizador "
+"regular. O utilizador poderá fazer login novamente e todas as permissões "
+"atribuídas ao clube serão removidas. Use com cautela!"
 
 #: application/views/user/modals/more_actions_modal.php:111
 msgid ""
@@ -13565,23 +13719,26 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
+"Está prestes a converter esta conta de utilizador para uma estação de clube. "
+"O utilizador deixará de poder iniciar sessão e a conta será convertida para "
+"uma conta de estação de clube. Use com cautela!"
 
 #: application/views/user/modals/more_actions_modal.php:114
 msgid "Are you sure you want to convert this account?"
-msgstr ""
+msgstr "Tem a certeza de que quer converter esta conta?"
 
 #: application/views/user/modals/more_actions_modal.php:124
 msgid "Convert"
-msgstr ""
+msgstr "Converter"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "Mudar para o utilizador principal"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch back to %s?"
-msgstr ""
+msgstr "Tem a certeza de que quer voltar para %s?"
 
 #: application/views/user/profile.php:19
 msgid "Level"
@@ -13730,30 +13887,37 @@ msgid "More QSOs"
 msgstr "Mais contactos"
 
 #: application/views/view_log/qso.php:639
+#: application/views/view_log/qso.php:642
 msgid "Share"
 msgstr "Partilhar"
 
 #: application/views/view_log/qso.php:645
+#: application/views/view_log/qso.php:648
 msgid "Details"
 msgstr "Detailes"
 
 #: application/views/view_log/qso.php:772
+#: application/views/view_log/qso.php:775
 msgid "Uploaded QSL Card front image"
 msgstr "Imagem da frente do cartão QSL transferida"
 
 #: application/views/view_log/qso.php:777
+#: application/views/view_log/qso.php:780
 msgid "Upload QSL Card image"
 msgstr "Transferir imagem do cartão QSL"
 
 #: application/views/view_log/qso.php:782
+#: application/views/view_log/qso.php:785
 msgid "Uploaded QSL Card back image"
 msgstr "Imagem do verso do cartão QSL transferida"
 
 #: application/views/view_log/qso.php:798
+#: application/views/view_log/qso.php:801
 msgid "Mark QSL Received (Electronic)"
 msgstr "Marcar QSL Recebida (Eletrónico)"
 
 #: application/views/view_log/qso.php:821
+#: application/views/view_log/qso.php:824
 msgid "eQSL picture"
 msgstr "Imagem eQSL"
 
@@ -13871,6 +14035,21 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#: application/views/dashboard/index.php:176
+#, php-format
+msgctxt "LoTW Warning"
+msgid "At least one of your %sLoTW certificates%s is expired!"
+msgstr ""
+
+#: application/views/dashboard/index.php:180
+#, php-format
+msgctxt "LoTW Warning"
+msgid "At least one of your %sLoTW certificates%s is about to expire!"
+msgstr ""
+
+#~ msgid "WAE (Worked All Europe)"
+#~ msgstr "WAE (Worked All Europe)"
 
 #~ msgid "Do you really want to send this user a password-reset link?"
 #~ msgstr ""

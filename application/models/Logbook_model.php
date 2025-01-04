@@ -3122,12 +3122,6 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Return the list of modes in the logbook */
-	function get_modes() {
-		$query = $this->db->query('select distinct(COL_MODE) from ' . $this->config->item('table_name') . ' order by COL_MODE');
-		return $query;
-	}
-
 	/* Return total number of QSOs per band */
 	function total_bands($yr = 'All') {
 		$this->load->model('logbooks_model');
