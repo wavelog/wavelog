@@ -607,6 +607,9 @@
                         if($row->COL_SIG != null && $row->COL_SIG_INFO != null) {
                             $hashtags .= " #".$row->COL_SIG." ".$row->COL_SIG_INFO;
                         }
+                        if($row->COL_MODE == "CW") {
+                            $hashtags .= " #cwfe";
+                        }
                         if (!isset($distance)) {
                             $twitter_string = "Just worked ".$row->COL_CALL." ";
                             if ($row->COL_DXCC != 0) {
