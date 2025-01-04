@@ -2422,12 +2422,14 @@ msgstr "Benutzerdefinierte Statistiken"
 #: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:143
 #: application/views/statistics/qsltable.php:5
+#: application/controllers/Statistics.php:209
 msgid "QSL Statistics"
 msgstr "QSL-Statistiken"
 
 #: application/controllers/Statistics.php:268
 #: application/views/interface_assets/header.php:141
 #: application/views/statistics/antennaanalytics.php:3
+#: application/controllers/Statistics.php:224
 msgid "Antenna Analytics"
 msgstr "Antennenanalyse"
 
@@ -2860,6 +2862,7 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
 #: application/models/Logbook_model.php:3865
+#: application/models/Logbook_model.php:3859
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -2867,15 +2870,18 @@ msgstr ""
 "importiert"
 
 #: application/models/Logbook_model.php:3866
+#: application/models/Logbook_model.php:3860
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Schaue im %s für Tipps zu möglichen Fehlern in der ADIF-Datei."
 
 #: application/models/Logbook_model.php:3878
+#: application/models/Logbook_model.php:3872
 msgid "QSO on"
 msgstr "QSO am"
 
 #: application/models/Logbook_model.php:3878
+#: application/models/Logbook_model.php:3872
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2884,57 +2890,70 @@ msgstr ""
 "QSO wurde nicht importiert. Es ist ungültig"
 
 #: application/models/Logbook_model.php:4177
+#: application/models/Logbook_model.php:4171
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4188
+#: application/models/Logbook_model.php:4182
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:4249
+#: application/models/Logbook_model.php:4243
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4263
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4284
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:4571
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4565
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
 #: application/models/Logbook_model.php:4632
+#: application/models/Logbook_model.php:4626
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
 #: application/models/Logbook_model.php:4638
+#: application/models/Logbook_model.php:4632
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4643
+#: application/models/Logbook_model.php:4637
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
 #: application/models/Logbook_model.php:4646
+#: application/models/Logbook_model.php:4640
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
 #: application/models/Logbook_model.php:4649
+#: application/models/Logbook_model.php:4643
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
 #: application/models/Logbook_model.php:4652
+#: application/models/Logbook_model.php:4646
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
 #: application/models/Logbook_model.php:4655
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4649
 msgid "unknown"
 msgstr "unbekannt"
 
