@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-04 10:01+0000\n"
+"POT-Creation-Date: 2025-01-04 13:46+0000\n"
 "PO-Revision-Date: 2024-12-28 11:43+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1265,9 +1265,6 @@ msgstr "Clublog"
 #: application/views/search/search_result_ajax.php:4
 #: application/views/simplefle/index.php:157
 #: application/views/statistics/antennaanalytics.php:31
-#: application/views/statistics/custom.php:60
-#: application/views/statistics/custom_result.php:62
-#: application/views/statistics/custom_result.php:88
 #: application/views/statistics/index.php:15
 #: application/views/statistics/index.php:20
 #: application/views/statistics/index.php:62
@@ -1346,7 +1343,6 @@ msgstr "RST (Recibida)"
 #: application/views/qso/components/previous_contacts.php:80
 #: application/views/search/search_result_ajax.php:7
 #: application/views/stationsetup/stationsetup.php:124
-#: application/views/statistics/custom_result.php:92
 #: application/views/timeline/index.php:200 application/views/user/edit.php:247
 #: application/views/user/edit.php:269 application/views/user/edit.php:291
 #: application/views/user/edit.php:313 application/views/user/edit.php:336
@@ -1544,9 +1540,6 @@ msgstr "Distancia"
 #: application/views/simplefle/index.php:156
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/antennaanalytics.php:19
-#: application/views/statistics/custom.php:53
-#: application/views/statistics/custom_result.php:55
-#: application/views/statistics/custom_result.php:91
 #: application/views/statistics/index.php:21
 #: application/views/timeline/index.php:7
 #: application/views/timeplotter/index.php:14
@@ -2020,8 +2013,6 @@ msgstr "Marca de tiempo"
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:184
 #: application/views/stationsetup/exportmapoptions.php:5
-#: application/views/statistics/custom.php:31
-#: application/views/statistics/custom_result.php:33
 msgid "Options"
 msgstr "Opciones"
 
@@ -2395,17 +2386,13 @@ msgstr "Editar opciones de exportación de mapas"
 msgid "Statistics"
 msgstr "Estadísticas"
 
-#: application/controllers/Statistics.php:50
-msgid "Custom Statistics"
-msgstr "Estadísticas personalizadas"
-
-#: application/controllers/Statistics.php:253
+#: application/controllers/Statistics.php:209
 #: application/views/interface_assets/header.php:143
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Estadísticas de QSL"
 
-#: application/controllers/Statistics.php:268
+#: application/controllers/Statistics.php:224
 #: application/views/interface_assets/header.php:141
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
@@ -2833,22 +2820,22 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: No se encontraron perfiles de estación con credenciales de HRDlog."
 
-#: application/models/Logbook_model.php:3865
+#: application/models/Logbook_model.php:3859
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estación incorrecto %s al importar QSO con %s para %s: OMITIDO"
 
-#: application/models/Logbook_model.php:3866
+#: application/models/Logbook_model.php:3860
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Revisa %s para obtener pistas sobre errores en archivos ADIF."
 
-#: application/models/Logbook_model.php:3878
+#: application/models/Logbook_model.php:3872
 msgid "QSO on"
 msgstr "QSO en"
 
-#: application/models/Logbook_model.php:3878
+#: application/models/Logbook_model.php:3872
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2856,56 +2843,56 @@ msgstr ""
 "Intentaste importar un QSO sin ningún indicativo dado. Este QSO no fue "
 "importado. Es inválido"
 
-#: application/models/Logbook_model.php:4177
+#: application/models/Logbook_model.php:4171
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrfecha es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4188
+#: application/models/Logbook_model.php:4182
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslfecha es inválida (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4249
+#: application/models/Logbook_model.php:4243
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la fecha de carga de clublog_qso es inválida (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4263
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslrdate no es válida (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4284
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "el lotw_qslsdate es inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4571
+#: application/models/Logbook_model.php:4565
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:4632
+#: application/models/Logbook_model.php:4626
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
 
-#: application/models/Logbook_model.php:4638
+#: application/models/Logbook_model.php:4632
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmados por LoTW/Clublog/eQSL/Concurso"
 
-#: application/models/Logbook_model.php:4643
+#: application/models/Logbook_model.php:4637
 msgid "confirmed by award manager"
 msgstr "confirmados por el administrador del premio"
 
-#: application/models/Logbook_model.php:4646
+#: application/models/Logbook_model.php:4640
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmados al hacer chequeo cruzadoc on datos de DCL"
 
-#: application/models/Logbook_model.php:4649
+#: application/models/Logbook_model.php:4643
 msgid "confirmation pending"
 msgstr "pendiente de confirmación"
 
-#: application/models/Logbook_model.php:4652
+#: application/models/Logbook_model.php:4646
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
-#: application/models/Logbook_model.php:4655
+#: application/models/Logbook_model.php:4649
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
@@ -3673,9 +3660,6 @@ msgstr "Hay datos diferentes para DOKs en su libro comparados con DCL"
 #: application/views/search/ituzones_result.php:7
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:153
-#: application/views/statistics/custom.php:38
-#: application/views/statistics/custom_result.php:40
-#: application/views/statistics/custom_result.php:85
 #: application/views/timeline/index.php:198
 #: application/views/timeline/index.php:236
 #: application/views/timeline/index.php:264
@@ -3711,7 +3695,6 @@ msgstr "Fecha"
 #: application/views/search/ituzones_result.php:8
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:154
-#: application/views/statistics/custom_result.php:86
 #: application/views/timeline/index.php:355
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log.php:6
@@ -3733,7 +3716,6 @@ msgstr "Tiempo Test"
 #: application/views/qslcard/searchresult.php:8
 #: application/views/qso/components/previous_contacts.php:7
 #: application/views/search/search_result_ajax.php:93
-#: application/views/statistics/custom_result.php:87
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:111
 #: application/views/visitor/index.php:156
@@ -6379,14 +6361,10 @@ msgid "Contest"
 msgstr "Concurso"
 
 #: application/views/contestcalendar/index.php:22
-#: application/views/statistics/custom.php:41
-#: application/views/statistics/custom_result.php:43
 msgid "Start"
 msgstr "Comienzo"
 
 #: application/views/contestcalendar/index.php:23
-#: application/views/statistics/custom.php:46
-#: application/views/statistics/custom_result.php:48
 msgid "End"
 msgstr "Fin."
 
@@ -6978,7 +6956,6 @@ msgstr "Solicitadas"
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:332
 #: application/views/search/search_result_ajax.php:368
-#: application/views/statistics/custom_result.php:89
 #: application/views/view_log/partial/log_ajax.php:190
 #: application/views/view_log/partial/log_ajax.php:267
 #: application/views/view_log/partial/log_ajax.php:287
@@ -8571,8 +8548,6 @@ msgstr "Opciones Globales"
 #: application/views/interface_assets/header.php:289
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
 #: application/views/satellite/index.php:11
-#: application/views/statistics/custom.php:20
-#: application/views/statistics/custom_result.php:21
 #: application/views/statistics/index.php:48
 #: application/views/statistics/index.php:102
 msgid "Satellites"
@@ -9834,10 +9809,7 @@ msgid "Category"
 msgstr "Categoría"
 
 #: application/views/notes/add.php:36 application/views/notes/edit.php:37
-#: application/views/qso/index.php:31
-#: application/views/statistics/custom.php:17
-#: application/views/statistics/custom_result.php:18
-#: application/views/statistics/index.php:44
+#: application/views/qso/index.php:31 application/views/statistics/index.php:44
 #: application/views/user/edit.php:169
 msgid "General"
 msgstr "General"
@@ -12535,36 +12507,6 @@ msgstr "Visitar Página Pública"
 msgid "Elevation"
 msgstr "Elevación"
 
-#: application/views/statistics/custom.php:12
-#: application/views/statistics/custom_result.php:12
-#: application/views/statistics/index.php:29
-msgid "Explore the logbook."
-msgstr "Explore el libro de guardia."
-
-#: application/views/statistics/custom.php:23
-#: application/views/statistics/custom_result.php:24
-msgid "Custom"
-msgstr "Personalizado"
-
-#: application/views/statistics/custom.php:27
-#: application/views/statistics/custom_result.php:29
-msgid "This is a work in-progress"
-msgstr "Esto es un trabajo en progreso"
-
-#: application/views/statistics/custom.php:74
-#: application/views/statistics/custom_result.php:71
-msgid "Finished your selection? time to search!"
-msgstr "¿Terminaste tu selección? ¡Es hora de buscar!"
-
-#: application/views/statistics/custom.php:86
-msgid "Results go here"
-msgstr "Los resultados van aquí"
-
-#: application/views/statistics/custom_result.php:90
-#: application/views/widgets/qsos.php:32
-msgid "Rcvd"
-msgstr "Recibido"
-
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:59
 msgid "Years"
@@ -12573,6 +12515,10 @@ msgstr "Años"
 #: application/views/statistics/index.php:17
 msgid "Number of QSOs worked each year"
 msgstr "Número de QSOs logradas cada año"
+
+#: application/views/statistics/index.php:29
+msgid "Explore the logbook."
+msgstr "Explore el libro de guardia."
 
 #: application/views/statistics/index.php:33
 #: application/views/timeline/index.php:111
@@ -13911,6 +13857,25 @@ msgstr "Tu indicativo de llamada:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Enviar solicitud"
+
+#: application/views/widgets/qsos.php:32
+msgid "Rcvd"
+msgstr "Recibido"
+
+#~ msgid "Custom Statistics"
+#~ msgstr "Estadísticas personalizadas"
+
+#~ msgid "Custom"
+#~ msgstr "Personalizado"
+
+#~ msgid "This is a work in-progress"
+#~ msgstr "Esto es un trabajo en progreso"
+
+#~ msgid "Finished your selection? time to search!"
+#~ msgstr "¿Terminaste tu selección? ¡Es hora de buscar!"
+
+#~ msgid "Results go here"
+#~ msgstr "Los resultados van aquí"
 
 #~ msgid "At least one of your LoTW certificates is expired!"
 #~ msgstr "¡Al menos uno de sus certificados de LoTW ya ha caducado!"
