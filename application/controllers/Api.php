@@ -970,4 +970,25 @@ class API extends CI_Controller {
 		$latlng = $this->qra->qra2latlong($qra);
 		return $latlng;
 	}
+	
+	function version() {
+		// This API endpoint provides the version of Wavelog if the provide key has at least read permissions
+		$data = json_decode(file_get_contents('php://input'), true);
+		$valid = false;
+	
+		if (!empty($data['key'])) {
+			$this->load->model('api_model');
+			if (substr($this->api_model->access($data['key']), 0, 1) == 'r') {
+				$valid = true;
+			}
+		}
+
+		header("Content-type: application/json");
+		if ($valid) {
+			echo json_encode(['status' => 'ok', 'version' => $this->optionslib->get_option('version')]);
+		} else {
+			http_response_code(401);
+			echo json_encode(['status' => 'failed', 'reason' => "missing or invalid api key"]);
+		}
+	}
 }
