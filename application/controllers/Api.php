@@ -973,11 +973,18 @@ class API extends CI_Controller {
 	
 	function version() {
 		// This API endpoint provides the version of Wavelog if the provide key has at least read permissions
-		$this->load->model('api_model');
-		$key = $this->input->post('key', TRUE);
-		
+		$data = json_decode(file_get_contents('php://input'), true);
+		$valid = false;
+	
+		if (!empty($data['key'])) {
+			$this->load->model('api_model');
+			if (substr($this->api_model->access($data['key']), 0, 1) == 'r') {
+				$valid = true;
+			}
+		}
+
 		header("Content-type: application/json");
-		if(substr($this->api_model->access($key),0,1) == 'r') {
+		if ($valid) {
 			echo json_encode(['status' => 'ok', 'version' => $this->optionslib->get_option('version')]);
 		} else {
 			http_response_code(401);
