@@ -638,8 +638,7 @@ $(function () {
             $(".searchbutton").prop('disabled', true);
 
             $.post("<?php echo site_url('search/search_result'); ?>", {
-                    search: JSON.stringify(result, null, 2),
-                    temp: "testvar"
+                    search: JSON.stringify(result, null, 2)
                 })
                 .done(function(data) {
                     $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_search_result();">'+"<?= __("Export to ADIF"); ?>"+'</button>');
