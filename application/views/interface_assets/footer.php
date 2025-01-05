@@ -2949,5 +2949,4 @@ if (isset($scripts) && is_array($scripts)){
 ?>
 
   </body>
-  <pre><?php print_r($this->session->userdata()); ?></pre>
 </html>
