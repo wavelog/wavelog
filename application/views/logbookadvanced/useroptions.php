@@ -155,6 +155,14 @@
 			<td><div class="form-check"><input class="form-check-input" name="distance" type="checkbox" <?php if (($options->distance->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
+			<td><?= __("Antenna azimuth"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="antennaazimuth" type="checkbox" <?php if (($options->antennaazimuth->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td><?= __("Antenna elevation"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="antennaelevation" type="checkbox" <?php if (($options->antennaelevation->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
 			<td><?= __("Profile name"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="profilename" type="checkbox" <?php if (($options->profilename->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
