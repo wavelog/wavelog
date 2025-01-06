@@ -56,7 +56,9 @@
 			\"profilename\":{\"show\":\"true\"},
 			\"stationpower\":{\"show\":\"true\"},
 			\"distance\":{\"show\":\"true\"},
-			\"region\":{\"show\":\"true\"}
+			\"region\":{\"show\":\"true\"},
+			\"antennaazimuth\":{\"show\":\"true\"},
+			\"antennaelevation\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
@@ -131,6 +133,14 @@
     }
 	if (!isset($current_opts->region)) {
         echo "\nvar o_template = { region: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->antennaazimuth)) {
+        echo "\nvar o_template = { antennaazimuth: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->antennaelevation)) {
+        echo "\nvar o_template = { antennaelevation: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -724,6 +734,12 @@ $options = json_decode($options);
                     } ?>
 					<?php if (($options->distance->show ?? "true") == "true") {
                         echo '<th class="distance-column-sort">' . __("Distance") . '</th>';
+                    } ?>
+					<?php if (($options->antennaazimuth->show ?? "true") == "true") {
+                        echo '<th data-bs-toggle="tooltip" data-bs-placement="top" title="' . __("Antenna azimuth") . '">' . __("Ant az") . '</th>';
+                    } ?>
+					<?php if (($options->antennaelevation->show ?? "true") == "true") {
+                        echo '<th data-bs-toggle="tooltip" data-bs-placement="top" title="' .__("Antenna elevation") .'">' . __("Ant el") . '</th>';
                     } ?>
 					<?php if (($options->profilename->show ?? "true") == "true") {
                         echo '<th>' . __("Profile name") . '</th>';
