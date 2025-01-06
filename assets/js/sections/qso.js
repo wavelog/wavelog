@@ -882,7 +882,7 @@ $('#start_date').on('change', function () {
 
 /* on mode change */
 $('.mode').on('change', function () {
-	if ($('#radio').val() == 0) {
+	if ($('#radio').val() == 0 && $('#sat_name').val() == '') {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result).trigger("change");
 		});
