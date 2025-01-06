@@ -886,8 +886,8 @@ $('.mode').on('change', function () {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result).trigger("change");
 		});
+		$('#frequency_rx').val("");
 	}
-	$('#frequency_rx').val("");
 	$("#callsign").blur();
 });
 
