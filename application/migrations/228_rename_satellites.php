@@ -174,6 +174,7 @@ class Migration_rename_satellites extends CI_Migration {
 		$this->add_ix('TMP_HRD_IDX_COL_SAT_NAME','`COL_SAT_NAME`');
 		if ($this->db->table_exists('satellite')) {
 
+			if ($this->db->field_exists('displayname', 'satellite')) {
 			$fields = array(
 				'displayname' => array(
 					'name' => 'exportname',
@@ -181,6 +182,7 @@ class Migration_rename_satellites extends CI_Migration {
 					'constraint' => 255,
 				),
 			);
+		}
 
 			$this->dbforge->modify_column('satellite', $fields);
 
