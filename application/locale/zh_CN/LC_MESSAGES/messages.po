@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-05 09:22+0000\n"
-"PO-Revision-Date: 2025-01-03 07:36+0000\n"
+"PO-Revision-Date: 2025-01-06 08:11+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -601,16 +601,16 @@ msgstr "CFD 导出"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
-msgstr ""
+msgstr "集体台站管理员"
 
 #: application/controllers/Club.php:24
 msgid "Club Member"
-msgstr ""
+msgstr "集体台站成员"
 
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "无效的用户ID！"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
@@ -620,38 +620,38 @@ msgstr "这个用户不是集体台站。"
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:203
 msgid "Club Permissions"
-msgstr ""
+msgstr "集体台站权限"
 
 #: application/controllers/Club.php:118 application/controllers/Club.php:147
 #: application/controllers/Club.php:174 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "无效的集体台站 ID！"
 
 #: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
-msgstr ""
+msgstr "无法通知用户。请检查你电子邮箱设置。"
 
 #: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "集体站成员角色已更新。"
 
 #: application/controllers/Club.php:156
 msgid "User removed from club."
-msgstr ""
+msgstr "成员已从集体台站中移除。"
 
 #: application/controllers/Club.php:158
 msgid "User could not be removed from club."
-msgstr ""
+msgstr "成员不能移出集体台站。"
 
 #: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr ""
+msgstr "无效的消息类型。"
 
 #: application/controllers/Club.php:220
 msgid "Email settings not configured."
-msgstr ""
+msgstr "电子邮箱没有设置。"
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
 #: application/views/satellite/index.php:64
@@ -2003,7 +2003,7 @@ msgstr "设置"
 
 #: application/controllers/Radio.php:63
 msgid "UNKNOWN"
-msgstr ""
+msgstr "未知"
 
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:156
@@ -2442,11 +2442,11 @@ msgstr "用户账户"
 
 #: application/controllers/User.php:83
 msgid "Invalid User ID or missing modal!"
-msgstr ""
+msgstr "无效的用户 ID 或者缺失模式！"
 
 #: application/controllers/User.php:96
 msgid "Invalid Parameter!"
-msgstr ""
+msgstr "无效参数！"
 
 #: application/controllers/User.php:152
 #: application/views/club/permissions.php:155
@@ -2456,7 +2456,7 @@ msgstr "添加用户"
 #: application/controllers/User.php:253
 #, php-format
 msgid "Username %s already in use!"
-msgstr ""
+msgstr "用户名 %s 已被使用！"
 
 #: application/controllers/User.php:256
 #, php-format
@@ -2498,7 +2498,7 @@ msgstr "恭喜您，Wavelog 已成功安装，您可以登录并开始通联了�
 
 #: application/controllers/User.php:933
 msgid "This is not allowed!"
-msgstr ""
+msgstr "这不被允许！"
 
 #: application/controllers/User.php:968 application/controllers/User.php:979
 msgid "Login failed. Try again."
@@ -2599,7 +2599,7 @@ msgstr "切换的用户不存在"
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
-msgstr "无法确认集体台站的正确权限。请重新登录后再试。"
+msgstr "无法确认集体台站的正确角色。请重新登录后再试。"
 
 #: application/controllers/User.php:1422 application/controllers/User.php:1434
 #: application/controllers/User.php:1440 application/controllers/User.php:1449
@@ -2731,11 +2731,11 @@ msgstr "郡"
 
 #: application/models/Club_model.php:154
 msgid "Invalid Permission Level!"
-msgstr ""
+msgstr "无效的角色！"
 
 #: application/models/Club_model.php:169
 msgid "Error adding Club Member!"
-msgstr ""
+msgstr "添加集体台站成员错误！"
 
 #: application/models/Eqslmethods_model.php:287
 msgid "Your eQSL username and/or password is incorrect."
@@ -4063,7 +4063,8 @@ msgstr "如应用不再使用，建议删除对应的 API Key。"
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
-msgstr ""
+msgstr "在集体台站的API key是个人的并且不共享。集体台站的用户只能看见他们自己的API "
+"key。"
 
 #: application/views/api/index.php:24
 msgid "API Key"
@@ -4081,7 +4082,7 @@ msgstr "上次使用"
 
 #: application/views/api/index.php:28
 msgid "Created By"
-msgstr ""
+msgstr "创建者"
 
 #: application/views/api/index.php:30
 msgid "Permissions"
@@ -5448,7 +5449,7 @@ msgstr "弹出窗口被禁止，请永久允许本站的弹出窗口。"
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "点击以准备记录。"
 
 #: application/views/bandmap/list.php:73
 msgid "DXCC-Status"
@@ -5900,7 +5901,7 @@ msgstr "你确定想要切换到 %s ？"
 #: application/views/club/clubswitch_modal.php:14
 #: application/views/user/modals/stop_impersonate_modal.php:13
 msgid "Yes, switch over!"
-msgstr ""
+msgstr "是的，切换！"
 
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:205
@@ -5916,28 +5917,27 @@ msgstr "取消"
 #: application/views/club/permissions.php:3
 #, php-format
 msgid "Club Permissions for %s"
-msgstr ""
+msgstr "%s 的集体台站角色"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
-msgstr ""
+msgstr "回去"
 
 #: application/views/club/permissions.php:13
 msgid ""
 "In order for users to log QSOs with this club/special callsign, they need "
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
-msgstr ""
-"要让用户使用此集体台站/特殊呼号记录 QSO ，必须为其授予相应权限。请在下表中添"
-"加用户并分配权限。"
+msgstr "要让用户使用此集体台站/特殊呼号记录 QSO "
+"，必须为其授予相应角色。请在下表中添加用户并分配角色。"
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
-msgstr ""
+msgstr "查看可用的角色"
 
 #: application/views/club/permissions.php:19
 msgid "Available Permissions"
-msgstr ""
+msgstr "可用的角色"
 
 #: application/views/club/permissions.php:26
 #: application/views/eqsl/download.php:44
@@ -5959,12 +5959,12 @@ msgstr "编辑 QSO"
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
 msgid "QSO was done by the operator"
-msgstr ""
+msgstr "当前操作员完成的 QSO"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
 msgid "QSO was done by another operator"
-msgstr ""
+msgstr "其他操作员完成的 QSO"
 
 #: application/views/club/permissions.php:67
 msgid "Delete a QSO"
@@ -5980,11 +5980,11 @@ msgstr "管理第三方服务"
 
 #: application/views/club/permissions.php:101
 msgid "Import QSO per ADIF"
-msgstr ""
+msgstr "从 ADIF 导入 QSO"
 
 #: application/views/club/permissions.php:110
 msgid "Export QSO per ADIF"
-msgstr ""
+msgstr "导出 QSO 到 ADIF"
 
 #: application/views/club/permissions.php:118
 msgid "User Management"
@@ -6027,7 +6027,7 @@ msgstr "如果用户不存在，请联系你的 Wavelog 管理员来为他们创
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
-msgstr ""
+msgstr "通过姓名/呼号搜索用户来选择角色。"
 
 #: application/views/club/permissions.php:175
 msgid "User (Callsign or Name)"
@@ -6037,7 +6037,7 @@ msgstr "用户名（呼号或者名字）"
 #: application/views/club/permissions.php:225
 #: application/views/club/permissions.php:269
 msgid "Permission"
-msgstr "权限"
+msgstr "角色"
 
 #: application/views/club/permissions.php:183
 msgid "Type at least 2 characters."
@@ -6076,7 +6076,7 @@ msgstr "Wavelog 管理员"
 
 #: application/views/club/permissions.php:261
 msgid "You can modify the users permission level for this Clubstation."
-msgstr ""
+msgstr "你可以修改用户在这个集体台站的角色。"
 
 #: application/views/club/permissions.php:268
 msgid "User Callsign"
@@ -6084,7 +6084,7 @@ msgstr "用户呼号"
 
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
-msgstr ""
+msgstr "通过电子邮件通知用户关于角色的修改"
 
 #: application/views/club/permissions.php:309
 msgid "Delete User"
@@ -6699,13 +6699,13 @@ msgstr "您的主题没有定义主题模式。请向管理员请求编辑主题
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
-msgstr ""
+msgstr "你的 %s LoTW 证书 %s 至少过期了一个！"
 
 #: application/views/dashboard/index.php:180
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
-msgstr ""
+msgstr "你的 %s LoTW 证书 %s 至少有一个快过期了！"
 
 #: application/views/dashboard/index.php:270
 #: application/views/visitor/index.php:241
@@ -7481,7 +7481,7 @@ msgstr ""
 #: application/views/email/club/modified_member.php:3
 #, php-format
 msgid "Your permission level for Clubstation %s has been changed"
-msgstr ""
+msgstr "你在集体台站 %s 中的角色已被修改"
 
 #: application/views/email/club/modified_member.php:5
 #, php-format
@@ -7491,11 +7491,14 @@ msgid ""
 "Your permission level for Clubstation %s has been changed. You can access "
 "this callsign through your account at %s."
 msgstr ""
+"亲爱的 %s，\n"
+"\n"
+"你在集体台站 %s 中的角色已修改。你可以通过在 %s 上的账号来访问这个呼号。"
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
 msgid "Your new permission level is: %s"
-msgstr ""
+msgstr "你新的角色是： %s"
 
 #: application/views/email/club/modified_member.php:11
 #: application/views/email/club/new_member.php:11
@@ -7515,7 +7518,7 @@ msgstr ""
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr ""
+msgstr "Wavelog 上的新用户 %s ！"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -7525,11 +7528,14 @@ msgid ""
 "You have been added to the Clubstation %s. You can now access this callsign "
 "through your account on %s."
 msgstr ""
+"亲爱的 %s，\n"
+"\n"
+"你已经被添加到了集体台站 %s。你可以通过在 %s 上的账号来访问这个呼号。"
 
 #: application/views/email/club/new_member.php:9
 #, php-format
 msgid "Your permission level is: %s"
-msgstr ""
+msgstr "你的角色：%s"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -8201,7 +8207,7 @@ msgstr "ITU"
 
 #: application/views/interface_assets/header.php:181
 msgid "Worked All Europe (WAE)"
-msgstr ""
+msgstr "全欧通信竞赛（WAE）"
 
 #: application/views/interface_assets/header.php:199
 msgid "Canada"
@@ -8380,7 +8386,7 @@ msgstr "论坛"
 #: application/views/interface_assets/header.php:488
 #, php-format
 msgid "Stop impersonate and switch back to %s"
-msgstr ""
+msgstr "登出并返回到 %s"
 
 #: application/views/interface_assets/header.php:489
 #, php-format
@@ -12877,7 +12883,7 @@ msgstr "切换至该用户"
 #: application/views/user/index.php:104 application/views/user/index.php:207
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
-msgstr ""
+msgstr "更多操作"
 
 #: application/views/user/index.php:132
 msgid "Clubstation List"
@@ -12902,7 +12908,7 @@ msgstr "上一位操作员"
 
 #: application/views/user/index.php:231
 msgid "No Clubstations configures yet."
-msgstr ""
+msgstr "目前没有集体台站。"
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
@@ -12931,7 +12937,7 @@ msgstr "保持登录"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "(with Admin Rights)"
-msgstr ""
+msgstr "（以管理员权限）"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "Impersonate User"
@@ -12941,7 +12947,8 @@ msgstr "以该用户登录"
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
-msgstr ""
+msgstr "您即将以另一个用户来登录。要返回您的管理员帐户，您可以使用标题菜单中的切换返"
+"回按钮。"
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
 msgid "Do you want to impersonate this user?"
@@ -13052,14 +13059,16 @@ msgid ""
 "You are about to convert this club station to a regular user account. The "
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
-msgstr ""
+msgstr "您将转换这个集体台站用户成一个普通用户。集体台站用户可以再次登录但是所有的集"
+"体台站角色将被移除。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:111
 msgid ""
 "You are about to convert this user account to a club station. The user will "
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
-msgstr ""
+msgstr "您将要转换这个普通用户为集体台站用户。这个用户将不再能够登录并且账号将被转换"
+"为集体台站账号。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:114
 msgid "Are you sure you want to convert this account?"
@@ -13071,7 +13080,7 @@ msgstr "转换"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "切换回主用户"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
