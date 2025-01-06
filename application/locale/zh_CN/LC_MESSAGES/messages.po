@@ -127,6 +127,8 @@ msgstr ""
 #: application/controllers/User.php:1409
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Lotw.php:738 application/controllers/Lotw.php:822
+#: application/controllers/Lotw.php:927
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -1651,52 +1653,55 @@ msgstr ""
 "文件 %s 中未找到呼号证书，如果文件名包含了 'key-only' 则此文件大概率是呼号证"
 "书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
 
-#: application/controllers/Lotw.php:626
+#: application/controllers/Lotw.php:626 application/controllers/Lotw.php:629
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
 #: application/controllers/Lotw.php:792 application/controllers/Lotw.php:795
+#: application/controllers/Lotw.php:798
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr "LoTW 用户%s 登录失败: %s。"
 
-#: application/controllers/Lotw.php:795
+#: application/controllers/Lotw.php:795 application/controllers/Lotw.php:798
 msgid "Username/password incorrect"
 msgstr "用户名/密码不正确"
 
-#: application/controllers/Lotw.php:798
+#: application/controllers/Lotw.php:798 application/controllers/Lotw.php:801
 msgid "LoTW login OK!"
 msgstr "LoTW 登录成功！"
 
-#: application/controllers/Lotw.php:802
+#: application/controllers/Lotw.php:802 application/controllers/Lotw.php:805
 msgid "LoTW currently not available. Try again later."
 msgstr "LoTW当前不可用。请稍后再试。"
 
-#: application/controllers/Lotw.php:807
+#: application/controllers/Lotw.php:807 application/controllers/Lotw.php:810
 msgid "No LoTW credentials provided."
 msgstr "没有提供 LoTW 证书。"
 
-#: application/controllers/Lotw.php:825
+#: application/controllers/Lotw.php:825 application/controllers/Lotw.php:828
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
 #: application/controllers/Lotw.php:851 application/controllers/Lotw.php:959
+#: application/controllers/Lotw.php:854 application/controllers/Lotw.php:962
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Lotw.php:926
+#: application/controllers/Lotw.php:926 application/controllers/Lotw.php:929
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 导入"
 
-#: application/controllers/Lotw.php:1004
+#: application/controllers/Lotw.php:1004 application/controllers/Lotw.php:1007
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "LoTW 用户名/密码错误。"
 
 #: application/controllers/Lotw.php:1023 application/controllers/Lotw.php:1028
+#: application/controllers/Lotw.php:1026 application/controllers/Lotw.php:1031
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 已发送"
 
-#: application/controllers/Lotw.php:1035
+#: application/controllers/Lotw.php:1035 application/controllers/Lotw.php:1038
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
@@ -4063,7 +4068,8 @@ msgstr "如应用不再使用，建议删除对应的 API Key。"
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
-msgstr "在集体台站的API key是个人的并且不共享。集体台站的用户只能看见他们自己的API "
+msgstr ""
+"在集体台站的API key是个人的并且不共享。集体台站的用户只能看见他们自己的API "
 "key。"
 
 #: application/views/api/index.php:24
@@ -5928,8 +5934,9 @@ msgid ""
 "In order for users to log QSOs with this club/special callsign, they need "
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
-msgstr "要让用户使用此集体台站/特殊呼号记录 QSO "
-"，必须为其授予相应角色。请在下表中添加用户并分配角色。"
+msgstr ""
+"要让用户使用此集体台站/特殊呼号记录 QSO ，必须为其授予相应角色。请在下表中添"
+"加用户并分配角色。"
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
@@ -12947,7 +12954,8 @@ msgstr "以该用户登录"
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
-msgstr "您即将以另一个用户来登录。要返回您的管理员帐户，您可以使用标题菜单中的切换返"
+msgstr ""
+"您即将以另一个用户来登录。要返回您的管理员帐户，您可以使用标题菜单中的切换返"
 "回按钮。"
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
@@ -13059,7 +13067,8 @@ msgid ""
 "You are about to convert this club station to a regular user account. The "
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
-msgstr "您将转换这个集体台站用户成一个普通用户。集体台站用户可以再次登录但是所有的集"
+msgstr ""
+"您将转换这个集体台站用户成一个普通用户。集体台站用户可以再次登录但是所有的集"
 "体台站角色将被移除。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:111
@@ -13067,7 +13076,8 @@ msgid ""
 "You are about to convert this user account to a club station. The user will "
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
-msgstr "您将要转换这个普通用户为集体台站用户。这个用户将不再能够登录并且账号将被转换"
+msgstr ""
+"您将要转换这个普通用户为集体台站用户。这个用户将不再能够登录并且账号将被转换"
 "为集体台站账号。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:114
