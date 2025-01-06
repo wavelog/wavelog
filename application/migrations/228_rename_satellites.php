@@ -156,14 +156,16 @@ class Migration_rename_satellites extends CI_Migration {
 			$this->insert_sat("AO-123", "ASRTU-1", "LEO", "V/U", "FM", "145850000", "FM", "435400000", "N");
 			$this->update_log_table("ASRTU-1", "AO-123");
 
-			$fields = array(
-				'exportname' => array(
-					'name' => 'displayname',
-					'type' => 'VARCHAR',
-					'constraint' => 255,
-				),
-			);
-			$this->dbforge->modify_column('satellite', $fields);
+			if ($this->db->field_exists('exportname', 'satellite')) {
+				$fields = array(
+					'exportname' => array(
+						'name' => 'displayname',
+						'type' => 'VARCHAR',
+						'constraint' => 255,
+					),
+				);
+				$this->dbforge->modify_column('satellite', $fields);
+			}
 		}
 		$this->rm_ix('TMP_HRD_IDX_COL_SAT_NAME');
 	}
