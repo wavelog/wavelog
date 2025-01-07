@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-07 05:10+0000\n"
+"POT-Creation-Date: 2025-01-07 20:50+0000\n"
 "PO-Revision-Date: 2025-01-06 22:30+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -119,9 +119,9 @@ msgstr ""
 #: application/controllers/User.php:55 application/controllers/User.php:90
 #: application/controllers/User.php:114 application/controllers/User.php:307
 #: application/controllers/User.php:308 application/controllers/User.php:826
-#: application/controllers/User.php:845 application/controllers/User.php:1160
-#: application/controllers/User.php:1367 application/controllers/User.php:1383
-#: application/controllers/User.php:1409
+#: application/controllers/User.php:845 application/controllers/User.php:1067
+#: application/controllers/User.php:1208 application/controllers/User.php:1417
+#: application/controllers/User.php:1433 application/controllers/User.php:1459
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
@@ -1616,6 +1616,7 @@ msgstr "Operador"
 #: application/views/stationsetup/stationsetup.php:150
 #: application/views/timeline/index.php:216
 #: application/views/timeplotter/index.php:33
+#: application/views/user/modals/first_login_wizard.php:52
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:674
@@ -2063,10 +2064,10 @@ msgstr "Editar"
 #: application/views/club/permissions.php:304
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:2465
-#: application/views/interface_assets/footer.php:2483
-#: application/views/interface_assets/footer.php:2504
-#: application/views/interface_assets/footer.php:2522
+#: application/views/interface_assets/footer.php:2469
+#: application/views/interface_assets/footer.php:2487
+#: application/views/interface_assets/footer.php:2508
+#: application/views/interface_assets/footer.php:2526
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:619
 #: application/views/lotw_views/index.php:111
@@ -2375,6 +2376,7 @@ msgstr ""
 #: application/views/station_profile/create.php:71
 #: application/views/station_profile/edit.php:99
 #: application/views/stationsetup/stationsetup.php:150
+#: application/views/user/modals/first_login_wizard.php:46
 msgid "Please select one"
 msgstr "Por favor, selecione um"
 
@@ -2570,30 +2572,81 @@ msgid "User %s logged out."
 msgstr "O utilizador %s terminou a sessão."
 
 #: application/controllers/User.php:1070
+#: application/views/oqrs/request_grouped.php:16
+#: application/views/user/modals/first_login_wizard.php:26
+msgid "Station Name"
+msgstr "Nome da estação"
+
+#: application/controllers/User.php:1071 application/views/debug/index.php:584
+#: application/views/public_search/result.php:17
+#: application/views/station_profile/create.php:57
+#: application/views/station_profile/edit.php:73
+#: application/views/stationsetup/linkedlocations.php:32
+#: application/views/stationsetup/stationsetup.php:123
+#: application/views/user/modals/first_login_wizard.php:34
+msgid "Station Callsign"
+msgstr "Indicativo da Estação"
+
+#: application/controllers/User.php:1072
+#: application/views/station_profile/create.php:68
+#: application/views/station_profile/edit.php:96
+#: application/views/user/modals/first_login_wizard.php:42
+msgid "Station DXCC"
+msgstr "Estação DXCC"
+
+#: application/controllers/User.php:1073
+msgid "Station CQ Zone"
+msgstr ""
+
+#: application/controllers/User.php:1074
+msgid "Station ITU Zone"
+msgstr ""
+
+#: application/controllers/User.php:1075
+#: application/views/user/modals/first_login_wizard.php:91
+msgid "Station Locator"
+msgstr ""
+
+#: application/controllers/User.php:1090
+msgid "Invalid Locator!"
+msgstr ""
+
+#: application/controllers/User.php:1098
+#, php-format
+msgid ""
+"Station created successfully! Welcome to Wavelog! To complete your station "
+"setup, click %shere%s."
+msgstr ""
+
+#: application/controllers/User.php:1101
+msgid "Station setup failed! Please set up your station manually."
+msgstr ""
+
+#: application/controllers/User.php:1118
 msgid "Password Reset is disabled on the Demo!"
 msgstr "A reposição da palavra-passe está desactivada na Demo!"
 
-#: application/controllers/User.php:1083
+#: application/controllers/User.php:1131
 msgid "Forgot Password"
 msgstr "Esqueci-me da palavra-passe"
 
-#: application/controllers/User.php:1134
+#: application/controllers/User.php:1182
 #: application/views/user/modals/more_actions_modal.php:53
 msgid "Email settings are incorrect."
 msgstr "As definições de e-mail estão incorrectas."
 
-#: application/controllers/User.php:1138 application/controllers/User.php:1143
+#: application/controllers/User.php:1186 application/controllers/User.php:1191
 msgid "Password Reset Processed."
 msgstr "A redefinição da palavra-passe foi processada."
 
-#: application/controllers/User.php:1244
+#: application/controllers/User.php:1292
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Redefinir a palavra-passe"
 
-#: application/controllers/User.php:1302
+#: application/controllers/User.php:1352
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -2602,7 +2655,7 @@ msgstr ""
 "Atualmente, não podes personificar um outro utilizador. Precisa de definir "
 "%s para %s no seu ficheiro config.php!"
 
-#: application/controllers/User.php:1316
+#: application/controllers/User.php:1366
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -2611,15 +2664,15 @@ msgstr ""
 "Atualmente, não pode personificar outro utilizador. Por favor, altera a "
 "encryption_key no seu ficheiro config.php primeiro!"
 
-#: application/controllers/User.php:1323
+#: application/controllers/User.php:1373
 msgid "Invalid Hash"
 msgstr "Hash inválido"
 
-#: application/controllers/User.php:1336
+#: application/controllers/User.php:1386
 msgid "The impersonation hash is too old. Please try again."
 msgstr "O hash de personificação é muito antigo. Por favor, tente novamente."
 
-#: application/controllers/User.php:1343
+#: application/controllers/User.php:1393
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -2627,15 +2680,15 @@ msgstr ""
 "Não pode fazer-se passar por outro utilizador enquanto não estiver "
 "autenticado como o utilizador de origem"
 
-#: application/controllers/User.php:1349
+#: application/controllers/User.php:1399
 msgid "There was a problem with your session. Please try again."
 msgstr "Houve um problema com a sua sessão. Por favor, tente novamente."
 
-#: application/controllers/User.php:1356
+#: application/controllers/User.php:1406
 msgid "The requested user to impersonate does not exist"
 msgstr "O utilizador solicitado para imitar não existe"
 
-#: application/controllers/User.php:1377
+#: application/controllers/User.php:1427
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -2643,13 +2696,13 @@ msgstr ""
 "Não foi possível determinar o nível de permissão correto para a estação do "
 "clube. Tente novamente após fazer login."
 
-#: application/controllers/User.php:1422 application/controllers/User.php:1434
-#: application/controllers/User.php:1440 application/controllers/User.php:1449
-#: application/controllers/User.php:1457
+#: application/controllers/User.php:1472 application/controllers/User.php:1484
+#: application/controllers/User.php:1490 application/controllers/User.php:1499
+#: application/controllers/User.php:1507
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Ups.. Algo correu mal. Tente fazer login novamente."
 
-#: application/controllers/User.php:1463
+#: application/controllers/User.php:1513
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -2657,7 +2710,7 @@ msgstr ""
 "A capacidade de retornar rapidamente foi desativada após a expiração do hash "
 "de segurança. Por favor, faça login novamente."
 
-#: application/controllers/User.php:1479
+#: application/controllers/User.php:1529
 #, php-format
 msgid ""
 "You have been logged out of the clubstation %s. Welcome back, %s, to your "
@@ -3058,8 +3111,8 @@ msgstr "Diferença"
 #: application/views/gridmap/index.php:41
 #: application/views/gridmap/index.php:70
 #: application/views/gridmap/index.php:83
-#: application/views/interface_assets/footer.php:1545
-#: application/views/interface_assets/footer.php:1684
+#: application/views/interface_assets/footer.php:1549
+#: application/views/interface_assets/footer.php:1688
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -3861,7 +3914,7 @@ msgstr ""
 #: application/views/adif/import.php:190
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:551
-#: application/views/interface_assets/footer.php:2261
+#: application/views/interface_assets/footer.php:2265
 msgid "DANGER"
 msgstr "PERIGO"
 
@@ -4362,6 +4415,7 @@ msgstr "Total"
 #: application/views/station_profile/edit.php:153
 #: application/views/timeline/index.php:327
 #: application/views/timeplotter/index.php:44
+#: application/views/user/modals/first_login_wizard.php:74
 msgid "CQ Zone"
 msgstr "Zona CQ"
 
@@ -4488,7 +4542,7 @@ msgstr "Mostrar contactos com tipo de QSL"
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
-#: application/views/interface_assets/footer.php:2240
+#: application/views/interface_assets/footer.php:2244
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
@@ -5066,6 +5120,7 @@ msgstr "Suprimido"
 #: application/views/search/ituzones_result.php:13
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:170
+#: application/views/user/modals/first_login_wizard.php:84
 msgid "ITU Zone"
 msgstr "Zona ITU"
 
@@ -7470,15 +7525,6 @@ msgstr[0] ""
 msgstr[1] ""
 "A base de dados contém %d contactos sem um perfil de estação (localização)"
 
-#: application/views/debug/index.php:584
-#: application/views/public_search/result.php:17
-#: application/views/station_profile/create.php:57
-#: application/views/station_profile/edit.php:73
-#: application/views/stationsetup/linkedlocations.php:32
-#: application/views/stationsetup/stationsetup.php:123
-msgid "Station Callsign"
-msgstr "Indicativo da Estação"
-
 #: application/views/debug/index.php:609
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
@@ -8060,10 +8106,10 @@ msgid "QSL Date"
 msgstr "Data QSL"
 
 #: application/views/eqslcard/index.php:60
-#: application/views/interface_assets/footer.php:2466
-#: application/views/interface_assets/footer.php:2484
-#: application/views/interface_assets/footer.php:2505
-#: application/views/interface_assets/footer.php:2523
+#: application/views/interface_assets/footer.php:2470
+#: application/views/interface_assets/footer.php:2488
+#: application/views/interface_assets/footer.php:2509
+#: application/views/interface_assets/footer.php:2527
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:759
 msgid "View"
@@ -8353,62 +8399,62 @@ msgstr "Quantidade: "
 msgid "Grids: "
 msgstr "Grelhas: "
 
-#: application/views/interface_assets/footer.php:1258
+#: application/views/interface_assets/footer.php:1262
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
 msgstr "Não tem sessão iniciada. Por favor %slogin%s"
 
-#: application/views/interface_assets/footer.php:1472
 #: application/views/interface_assets/footer.php:1476
-#: application/views/interface_assets/footer.php:1479
-#: application/views/interface_assets/footer.php:1616
+#: application/views/interface_assets/footer.php:1480
+#: application/views/interface_assets/footer.php:1483
 #: application/views/interface_assets/footer.php:1620
-#: application/views/interface_assets/footer.php:1623
+#: application/views/interface_assets/footer.php:1624
+#: application/views/interface_assets/footer.php:1627
 msgid "grid square"
 msgstr "quadrícula"
 
-#: application/views/interface_assets/footer.php:1479
-#: application/views/interface_assets/footer.php:1623
+#: application/views/interface_assets/footer.php:1483
+#: application/views/interface_assets/footer.php:1627
 msgid "Total count"
 msgstr "Número total"
 
-#: application/views/interface_assets/footer.php:2242
+#: application/views/interface_assets/footer.php:2246
 msgid "QSL Card for "
 msgstr "Cartão QSL para "
 
-#: application/views/interface_assets/footer.php:2262
+#: application/views/interface_assets/footer.php:2266
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Aviso! Tem a certeza de que quer eliminar este cartão QSL?"
 
-#: application/views/interface_assets/footer.php:2302
+#: application/views/interface_assets/footer.php:2306
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr "Cartão eQSL"
 
-#: application/views/interface_assets/footer.php:2304
+#: application/views/interface_assets/footer.php:2308
 msgid "eQSL Card for "
 msgstr "Cartão eQSL para "
 
-#: application/views/interface_assets/footer.php:2477
-#: application/views/interface_assets/footer.php:2516
+#: application/views/interface_assets/footer.php:2481
+#: application/views/interface_assets/footer.php:2520
 #: application/views/view_log/qso.php:749
 msgid "QSL image file"
 msgstr "Ficheiro de imagem QSL"
 
-#: application/views/interface_assets/footer.php:2496
+#: application/views/interface_assets/footer.php:2500
 msgid "Front QSL Card:"
 msgstr "Frente do Cartão QSL:"
 
-#: application/views/interface_assets/footer.php:2534
+#: application/views/interface_assets/footer.php:2538
 msgid "Back QSL Card:"
 msgstr "Parte traseira do Cartão QSL:"
 
-#: application/views/interface_assets/footer.php:2545
-#: application/views/interface_assets/footer.php:2570
+#: application/views/interface_assets/footer.php:2549
+#: application/views/interface_assets/footer.php:2574
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Adicionar QSOs adicionais a um Cartão QSL"
 
-#: application/views/interface_assets/footer.php:2581
+#: application/views/interface_assets/footer.php:2585
 msgid "Something went wrong. Please try again!"
 msgstr "Algo correu mal. Por favor, tente novamente!"
 
@@ -10461,10 +10507,6 @@ msgstr "Direto (escrever o endereço na mensagem abaixo)"
 msgid "Submit request"
 msgstr "Submeter pedido"
 
-#: application/views/oqrs/request_grouped.php:16
-msgid "Station Name"
-msgstr "Nome da estação"
-
 #: application/views/oqrs/request_grouped.php:73
 #: application/views/oqrs/result.php:40
 msgid "No QSOs found in the log."
@@ -12017,11 +12059,6 @@ msgstr "Potência da Estação (W)"
 msgid "Default station power in Watt. Overwritten by CAT."
 msgstr "Potência por defeito da estação em Watt. Substituída pelo CAT."
 
-#: application/views/station_profile/create.php:68
-#: application/views/station_profile/edit.php:96
-msgid "Station DXCC"
-msgstr "Estação DXCC"
-
 #: application/views/station_profile/create.php:78
 #: application/views/station_profile/edit.php:112
 msgid "Station DXCC entity. For example: Bolivia"
@@ -13495,6 +13532,47 @@ msgstr "E-mail:"
 #: application/views/user/modals/admin_impersonate_modal.php:30
 msgid "Last Seen:"
 msgstr "Última vez visto:"
+
+#: application/views/user/modals/first_login_wizard.php:5
+msgid "First Login Wizard"
+msgstr ""
+
+#: application/views/user/modals/first_login_wizard.php:20
+msgid "Hello and Welcome to Wavelog!"
+msgstr ""
+
+#: application/views/user/modals/first_login_wizard.php:21
+#, php-format
+msgid ""
+"Before you can start logging QSOs, we need to set up your first Station "
+"Location. You can find more information about how Station Locations and "
+"Logbooks work in our %sWiki here%s!"
+msgstr ""
+
+#: application/views/user/modals/first_login_wizard.php:22
+msgid ""
+"Please provide some additional information so that Wavelog can create your "
+"first Station:"
+msgstr ""
+
+#: application/views/user/modals/first_login_wizard.php:29
+msgid "Home QTH"
+msgstr ""
+
+#: application/views/user/modals/first_login_wizard.php:62
+msgid "Station Zones"
+msgstr ""
+
+#: application/views/user/modals/first_login_wizard.php:74
+#: application/views/user/modals/first_login_wizard.php:84
+#, php-format
+msgctxt "zone lookup"
+msgid "%sLookup%s"
+msgstr ""
+
+#: application/views/user/modals/first_login_wizard.php:102
+msgid "Save and Start Logging"
+msgstr ""
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
