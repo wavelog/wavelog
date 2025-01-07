@@ -133,6 +133,12 @@ function updateRow(qso) {
 	if (user_options.distance.show == "true"){
 		cells.eq(c++).text(qso.distance);
 	}
+	if (user_options.antennaazimuth.show == "true"){
+		cells.eq(c++).text(qso.antennaazimuth);
+	}
+	if (user_options.antennaelevation.show == "true"){
+		cells.eq(c++).text(qso.antennaelevation);
+	}
 	if (user_options.profilename.show == "true"){
 		cells.eq(c++).text(qso.profilename);
 	}
@@ -309,6 +315,12 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.distance.show == "true"){
 			data.push(qso.distance);
+		}
+		if (user_options.antennaazimuth.show == "true"){
+			data.push(qso.antennaazimuth);
+		}
+		if (user_options.antennaelevation.show == "true"){
+			data.push(qso.antennaelevation);
 		}
 		if (user_options.profilename.show == "true"){
 			data.push(qso.profilename);
@@ -1270,6 +1282,8 @@ function saveOptions() {
 			region: $('input[name="region"]').is(':checked') ? true : false,
 			continent: $('input[name="continent"]').is(':checked') ? true : false,
 			distance: $('input[name="distance"]').is(':checked') ? true : false,
+			antennaazimuth: $('input[name="antennaazimuth"]').is(':checked') ? true : false,
+			antennaelevation: $('input[name="antennaelevation"]').is(':checked') ? true : false,
 			qrz: $('input[name="qrz"]').is(':checked') ? true : false,
 			profilename: $('input[name="profilename"]').is(':checked') ? true : false,
 			stationpower: $('input[name="stationpower"]').is(':checked') ? true : false,

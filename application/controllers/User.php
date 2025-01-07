@@ -92,7 +92,7 @@ class User extends CI_Controller {
 		$user_id = $this->input->post('user_id', true) ?? '';
 		$convert_to = $this->input->post('convert_to', true) ?? '';
 
-		if ($convert_to != '0' && $convert_to != '1') {
+		if ($convert_to !== '0' && $convert_to !== '1') {
 			$this->session->set_flashdata('error', __("Invalid Parameter!"));
 			redirect('dashboard');
 		}
