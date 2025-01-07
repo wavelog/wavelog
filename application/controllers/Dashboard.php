@@ -150,8 +150,7 @@ class Dashboard extends CI_Controller
 
 		$data['is_first_login'] = $show_fl_wiz;
 		$data['firstloginwizard'] = '';
-		if ($this->session->userdata('user_type') != 99 &&		// Don't show to Admin
-			$this->session->userdata('impersonate') == 0 &&		// Don't show to impersonated user
+		if ($this->session->userdata('impersonate') == 0 &&		// Don't show to impersonated user
 			$this->session->userdata('clubstation') == 0 &&		// Don't show to Clubstation
 			$data['is_first_login']) {							// Don't show if already done
 
