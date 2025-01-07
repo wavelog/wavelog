@@ -71,7 +71,7 @@
                                                     }
                                                     ?>
                                                 </select>
-                                                <small class="form-text text-muted"><?= __("CQ Zone"); ?></small>
+                                                <small class="form-text text-muted"><?= __("CQ Zone"); ?> (<?= sprintf(_pgettext("zone lookup","%sLookup%s"),"<a href='https://zone-check.eu/?m=cq' target='_blank'>", "</a>"); ?>)</small>
                                             </div>
                                             <div class="col-md-6">
                                                 <select class="form-select" id="stationITUZoneInput" name="station_ituz" required>
@@ -81,7 +81,7 @@
                                                     }
                                                     ?>
                                                 </select>
-                                                <small class="form-text text-muted"><?= __("ITU Zone"); ?></small>
+                                                <small class="form-text text-muted"><?= __("ITU Zone"); ?> (<?= sprintf(_pgettext("zone lookup","%sLookup%s"),"<a href='https://zone-check.eu/?m=itu' target='_blank'>", "</a>"); ?>)</small>
                                             </div>
                                         </div>
                                     </div>
