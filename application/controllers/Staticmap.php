@@ -3,7 +3,7 @@
 
 class Staticmap extends CI_Controller {
 
-    public function render($slug = '') {
+    public function render($slug) {
 
         // set to true to remove cached imaged for debugging pruposes
         $debugging = false;
@@ -16,7 +16,7 @@ class Staticmap extends CI_Controller {
         $this->load->model('visitor_model');
 
         $slug = $this->security->xss_clean($slug);
-        if ($slug == '') {
+        if (empty($slug)) {
             show_404(__("Unknown Public Page."));
         }
         // check if the public slug exists
