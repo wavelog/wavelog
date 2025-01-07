@@ -511,6 +511,7 @@ class User_Model extends CI_Model {
 			'active_station_logbook' => $u->row()->active_station_logbook,
 			'user_language' => isset($u->row()->user_language) ? $u->row()->user_language: 'english',
 			'isWinkeyEnabled' => $u->row()->winkey,
+			'FirstLoginWizard' => ((($this->session->userdata('FirstLoginWizard') ?? '') == '') ? ($this->user_options_model->get_options('FirstLoginWizard', 'shown')->row()->option_value ?? null) : $this->session->userdata('FirstLoginWizard')),
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
 			'impersonate' => $this->session->userdata('impersonate') ?? false,
 			'clubstation' => $u->row()->clubstation,
@@ -857,6 +858,60 @@ class User_Model extends CI_Model {
 		$this->db->trans_complete();
 	
 		return $this->db->trans_status();
+	}
+
+	function firstlogin_wizard($stationdata) {
+		if (empty($stationdata)) {
+			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));  // We try to setup the station only once, so we set the user_option to 1 to prevent the wizard from showing up again
+			return false;
+		}
+
+		try {
+			$this->db->query("INSERT INTO station_logbooks (user_id, logbook_name, modified, public_slug, public_search) 
+				VALUES (?, 'Home Logbook', NULL, NULL, 0)", [$stationdata['user_id']]
+			);
+			$station_logbooks_insert_id = $this->db->insert_id();
+
+			$this->db->query("UPDATE users 
+				SET active_station_logbook = ? 
+				WHERE user_id = ?", [$station_logbooks_insert_id, $stationdata['user_id']]
+			);
+
+			$this->load->model('logbook_model');
+
+			$this->db->query("INSERT INTO station_profile (
+					station_profile_name, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power,
+					station_dxcc, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, qrzapikey, county,
+					station_sig, station_sig_info, qrzrealtime, user_id, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email,
+					webadifapikey, webadifapiurl, webadifrealtime, clublogignore, clublogrealtime, hrdlogrealtime, hrdlog_code, hrdlog_username
+				) VALUES (
+					?, ?, '', '', '', ?, NULL, ?, '', ?, ?, 1, '', '', '', '', '', '', 0, ?, '', '', 0, '', 0, '', 
+					'https://qo100dx.club/api', 0, 0, 0, 0, '', ''
+				)", [
+					$stationdata['station_name'],
+					strtoupper($stationdata['station_locator']),
+					strtoupper($stationdata['station_callsign']),
+					$stationdata['station_dxcc'],
+					$stationdata['station_cqz'],
+					$stationdata['station_ituz'],
+					$stationdata['user_id']
+				]
+			);
+			$station_profile_insert_id = $this->db->insert_id();
+
+			$this->db->query("INSERT INTO station_logbooks_relationship (station_logbook_id, station_location_id, modified) 
+				VALUES (?, ?, NULL)", [$station_logbooks_insert_id, $station_profile_insert_id]
+			);
+
+			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));
+
+			return true;
+
+		} catch (Exception $e) {
+			log_message('error', 'Firstlogin wizard failed: ' . $e->getMessage());
+			$this->user_options_model->set_option('FirstLoginWizard', 'showed',  array('boolean' => 1));  // We try to setup the station only once, so we set the user_option to 1 to prevent the wizard from showing up again
+			return false;
+		}
 	}
 
 }
