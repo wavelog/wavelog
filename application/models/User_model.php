@@ -165,12 +165,24 @@ class User_Model extends CI_Model {
 			$this->db->where('clubstation', 0);
 		}
 
-		$this->db->group_start();
-		$this->db->like('user_callsign', $query);
-		$this->db->or_like('user_name', $query);
-		$this->db->or_like('user_firstname', $query);
-		$this->db->or_like('user_lastname', $query);
-		$this->db->group_end();
+		// if there is a space it's probably a firstname + lastname search
+		if (strpos($query, ' ') !== false) {
+			$parts = explode(' ', $query, 2);
+	
+			$this->db->group_start();
+			$this->db->like('user_firstname', $parts[0]);
+			$this->db->or_like('user_lastname', $parts[0]);
+			$this->db->like('user_lastname', $parts[1]);
+			$this->db->or_like('user_firstname', $parts[1]);
+			$this->db->group_end();
+		} else {
+			$this->db->group_start();
+			$this->db->like('user_callsign', $query);
+			$this->db->or_like('user_name', $query);
+			$this->db->or_like('user_firstname', $query);
+			$this->db->or_like('user_lastname', $query);
+			$this->db->group_end();
+		}
 
 		$this->db->limit(100);
 
@@ -838,10 +850,10 @@ class User_Model extends CI_Model {
 		}
 	
 		if ($clubstation) {
-			$delete_sql = "DELETE FROM club_permissions WHERE club_id = ?;";
-			if (!$this->db->query($delete_sql, [$user_id])) {
-				$this->db->trans_rollback();
-				return false;
+		$delete_sql = "DELETE FROM club_permissions WHERE club_id = ?;";
+		if (!$this->db->query($delete_sql, [$user_id])) {
+			$this->db->trans_rollback();
+			return false;
 			}
 		}
 	
