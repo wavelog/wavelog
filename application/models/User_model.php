@@ -171,7 +171,7 @@ class User_Model extends CI_Model {
 		$this->db->or_like('user_firstname', $query);
 		$this->db->or_like('user_lastname', $query);
 		$this->db->group_end();
-
+		
 		$this->db->limit(100);
 
 		$r = $this->db->get($this->config->item('auth_table'));
@@ -826,23 +826,20 @@ class User_Model extends CI_Model {
 	}
 
 	function convert($user_id, $clubstation) {
-		$clubstation_value = ($clubstation == true) ? 1 : 0;
-	
 		$sql = "UPDATE users SET clubstation = ? WHERE user_id = ?;";
 	
 		$this->db->trans_start();
 	
-		if (!$this->db->query($sql, [$clubstation_value, $user_id])) {
+		if (!$this->db->query($sql, [$clubstation, $user_id])) {
 			$this->db->trans_rollback();
 			return false;
 		}
 	
-		if ($clubstation) {
-			$delete_sql = "DELETE FROM club_permissions WHERE club_id = ?;";
-			if (!$this->db->query($delete_sql, [$user_id])) {
-				$this->db->trans_rollback();
-				return false;
-			}
+		// Remove all club permissions in case there is a club with this user id
+		$delete_sql = "DELETE FROM club_permissions WHERE club_id = ?;";
+		if (!$this->db->query($delete_sql, [$user_id])) {
+			$this->db->trans_rollback();
+			return false;
 		}
 	
 		$this->db->trans_complete();
