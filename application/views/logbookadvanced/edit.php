@@ -31,6 +31,8 @@
 			<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 			<option value="stationpower"><?= __("Station power"); ?></option>
 			<option value="region"><?= __("Region"); ?></option>
+			<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
+			<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -153,6 +155,12 @@
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editEqsl"  name="eqsl">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editClublog"  name="clublog">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
 			<option value="I"><?= __("Invalid"); ?></option>
