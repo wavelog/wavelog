@@ -137,7 +137,7 @@ if($this->session->userdata('user_id') != null) {
     if (empty($versionDialogHeader)) {
         $this->optionslib->update('version_dialog_header', __("Version Info"), 'yes');
     }
-    if($versionDialog != "disabled") {
+    if($versionDialog != "disabled" && !($is_first_login ?? false)) {
         $confirmed = $this->user_options_model->get_options('version_dialog', array('option_name'=>'confirmed'))->result();
         $confirmation_value = (isset($confirmed[0]->option_value))?$confirmed[0]->option_value:'false';
         if ($confirmation_value != 'true') {
