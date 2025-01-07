@@ -400,8 +400,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?= __("Bands"); ?></a></li>
 
 								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 0) { ?>
-									<div class="dropdown-divider"></div>
 									<?php if (!empty($this->session->userdata('available_clubstations'))) { ?>
+										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item disabled"><?= __("Switch to Clubstation:"); ?></a></li>
 										<?php foreach ($this->session->userdata('available_clubstations') as $clubstation) { ?>
 											<li>
@@ -417,7 +417,8 @@
 												</div>
 											</li>										
 										<?php } ?>
-									<?php } else { ?>
+									<?php } else if ($this->session->userdata('user_type') === '99') { ?>
+										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item disabled"><?= __("No Clubstations available"); ?></a></li>
 									<?php } ?>
 								<?php } ?>
