@@ -15,7 +15,7 @@ class Staticmap extends CI_Controller {
         $this->load->model('stationsetup_model');
         $this->load->model('visitor_model');
 
-        $slug = $this->security->xss_clean($slug);
+        $slug = $this->security->xss_clean($slug) ?? '';
         if (empty($slug)) {
             show_404(__("Unknown Public Page."));
         }
