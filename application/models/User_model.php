@@ -838,23 +838,20 @@ class User_Model extends CI_Model {
 	}
 
 	function convert($user_id, $clubstation) {
-		$clubstation_value = ($clubstation == true) ? 1 : 0;
-	
 		$sql = "UPDATE users SET clubstation = ? WHERE user_id = ?;";
 	
 		$this->db->trans_start();
 	
-		if (!$this->db->query($sql, [$clubstation_value, $user_id])) {
+		if (!$this->db->query($sql, [$clubstation, $user_id])) {
 			$this->db->trans_rollback();
 			return false;
 		}
 	
-		if ($clubstation) {
+		// Remove all club permissions in case there is a club with this user id
 		$delete_sql = "DELETE FROM club_permissions WHERE club_id = ?;";
 		if (!$this->db->query($delete_sql, [$user_id])) {
 			$this->db->trans_rollback();
 			return false;
-			}
 		}
 	
 		$this->db->trans_complete();
