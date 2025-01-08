@@ -776,7 +776,7 @@
 
         </div>
       </div>
-      <small class="mt-0.5" style="float: right;"><?= __("Max. 5 previous contacts are shown"); ?></small>
+      <small style="float: right;"><?= __("Max. 5 previous contacts are shown"); ?></small>
     </div>
   </div>
 
