@@ -399,7 +399,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="darc_dok"><?= __("DOK"); ?></label>
-                                        <input type="text" class="form-control" id="darc_dok_edit" name="darc_dok" value="<?php echo $qso->COL_DARC_DOK; ?>">
+                                        <input type="text" class="form-control text-uppercase" id="darc_dok_edit" name="darc_dok" value="<?php echo $qso->COL_DARC_DOK; ?>">
                                     </div>
                                 </div>
 

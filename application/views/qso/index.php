@@ -270,7 +270,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="darc_dok"><?= __("DOK"); ?></label>
                 <div class="col-sm-9">
-                  <input class="form-control" id="darc_dok" tabindex="17" type="text" name="darc_dok" value="" />
+                  <input class="form-control text-uppercase" id="darc_dok" tabindex="17" type="text" name="darc_dok" value="" />
                 </div>
               </div>
               <?php } ?>
@@ -560,7 +560,7 @@
             <?php if (!$user_dok_to_qso_tab ?? false) { ?>
             <div class="mb-3">
               <label for="darc_dok"><?= __("DOK"); ?></label>
-              <input class="form-control" id="darc_dok" type="text" name="darc_dok" value="" />
+              <input class="form-control text-uppercase" id="darc_dok" type="text" name="darc_dok" value="" />
               <small id="dokHelp" class="form-text text-muted"><?= __("For example: Q03"); ?></small>
             </div>
             <?php } ?>
