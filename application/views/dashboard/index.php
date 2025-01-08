@@ -214,7 +214,7 @@ function getDistance($distance) {
   <div class="col-sm-8">
 
   	<div class="table-responsive">
-    	<table class="table table-striped table-hover border-top">
+    	<table class="table table-striped table-hover border-top mb-2">
 
     		<thead>
 				<tr class="titles">
@@ -270,6 +270,9 @@ function getDistance($distance) {
 			<?php $i++; } } ?>
 		</table>
 	</div>
+	<small class="mb-3 me-2" style="float: right;">
+		<?= sprintf(__("Max. %d previous contacts are shown"), Dashboard::LAST_QSOS_COUNT) ?>
+	</small>
   </div>
 
   <div class="col-sm-4">
