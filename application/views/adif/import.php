@@ -66,14 +66,14 @@
                                                                                     } ?>><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                             <?php } ?>
                         </select>
-                        <?php 
+                        <?php
                         $show_operator_question = true;
-                        if ($this->config->item('special_callsign') && $club_operators != false) { 
+                        if ($this->config->item('special_callsign') && $club_operators != false) {
                             $show_operator_question = false; ?>
                             <div class="small form-text text-muted"><?= __("Select the operator of the imported QSOs") ?></div>
                             <select name="club_operator" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
                                 <?php foreach ($club_operators as $operator) { ?>
-                                    <option value="<?php echo $operator->user_callsign; ?>" 
+                                    <option value="<?php echo $operator->user_callsign; ?>"
                                         <?php if ($operator->user_callsign == $this->session->userdata('cd_src_call')) {
                                             echo ' selected="selected"';
                                         } ?>>
@@ -202,6 +202,7 @@
                     <form class="form" action="<?php echo site_url('adif/export_custom'); ?>" method="post" enctype="multipart/form-data">
                         <h5 class="card-title"><?= __("Take your logbook file anywhere!") ?> </h5>
                         <p class="card-text"><?= __("Exporting ADIFs allows you to import contacts into third party applications like LoTW, Awards or just for keeping a backup.") ?> </p>
+						<p class="card-text"><?= sprintf(_pgettext("", "If you need more filtering, you can use %sthe Advanced Logbook%s to filter and export!"), '<a href="' . site_url('logbookadvanced') . '">', "</a>"); ?>
                         <div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
                         <select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
                             <option value="0"><?= __("All") ?></option>
