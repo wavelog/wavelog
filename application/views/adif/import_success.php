@@ -26,7 +26,7 @@
     </p>
 
     <!-- Display imported information for contest data fixing if contest data was imported -->
-    <?php if(count($imported_contests) > 0)?>
+    <?php if(count($imported_contests) > 0) {?>
     <p style="color:red;"><?= __("You imported at least 1 QSO containing a contest ID.")?></p>
     <p><?= __("Sometimes, depending on your contest logging software, your exchanges will not be imported properly from that softwares ADIF. If you like to correct that, switch to the CBR Import Tab of the ADIF Import page.")?></p>
     <p><?= __("We found the following numbers of QSOs for the following contest IDs:")?></p>
@@ -37,6 +37,7 @@
       <li><?php echo $contestid . ' (' . $qsocount . ' '. ($qsocount == 1 ? 'QSO' : 'QSOs')  .')'; ?></li>
     <?php } ?>
     </ul>
+    <?php } ?>
    
     <!-- Display errors for ADIF import -->
     <?php if($adif_errors) { ?>
