@@ -190,6 +190,9 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'eqslsent' || column == 'eqslreceived') {
 		value = $("#editEqsl").val();
 	}
+	if (column == 'clublogsent' || column == 'clublogreceived') {
+		value = $("#editClublog").val();
+	}
 	if (column == 'continent') {
 		value = $("#editContinent").val();
 	}
@@ -247,6 +250,7 @@ function changeEditType(type) {
 	$('#saveButton').prop("disabled", false);
 	$('#editEqsl').hide();
 	$('#editRegion').hide();
+	$('#editClublog').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -289,6 +293,8 @@ function changeEditType(type) {
 		$('#editTextInput').show();
 	} else if (type == "region") {
 		$('#editRegion').show();
+	} else if (type == "clublogsent"  || type == "clublogreceived") {
+		$('#editClublog').show();
 	} else if (type == "") {
 		$('#saveButton').prop("disabled", true);
 	}
