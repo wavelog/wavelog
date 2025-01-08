@@ -110,7 +110,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if ($locationCount == 0) { ?>
+	<?php if ($locationCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station locations. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -118,7 +118,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if ($logbookCount == 0) { ?>
+	<?php if ($logbookCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -126,7 +126,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if (($linkedCount > 0) && $active_not_linked) { ?>
+	<?php if (($linkedCount > 0) && $active_not_linked && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "Your active Station Location isn't linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -134,7 +134,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if ($linkedCount == 0) { ?>
+	<?php if ($linkedCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -157,7 +157,7 @@ function getDistance($distance) {
 	<?php } ?>
 	<?php } ?>
 
-	<?php if($current_active == 0) { ?>
+	<?php if($current_active == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		  <?= __("Attention: you need to set an active station location."); ?>
 		</div>
@@ -173,13 +173,11 @@ function getDistance($distance) {
 		<?php
 			if($lotw_cert_expired == true) { ?>
 			<div class="alert alert-danger" role="alert">
-				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= __("At least one of your LoTW certificates is expired!"); ?>
+				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is expired!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
 			</div>
-		<?php } ?>
-
-		<?php if($lotw_cert_expiring == true) { ?>
+		<?php } elseif($lotw_cert_expiring == true) { ?>
 			<div class="alert alert-warning" role="alert">
-				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= __("At least one of your LoTW certificates is about to expire!"); ?>
+				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is about to expire!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
 			</div>
 		<?php } ?>
 	<?php } ?>
@@ -428,5 +426,5 @@ function getDistance($distance) {
 	</div>
   </div>
 </div>
-
+<?php echo $firstloginwizard; ?>
 </div>

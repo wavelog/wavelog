@@ -508,6 +508,9 @@ class Lotw extends CI_Controller {
 			if (($record['call'] ?? '') == '') {	// Failsafe if no call is given
 				continue;
 			}
+			if (($record['station_callsign'] ?? '') == '') {	// Failsafe if no station_callsign is given
+				continue;
+			}
 			$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
 
 			$qsl_date = date('Y-m-d H:i', strtotime($record['app_lotw_rxqsl']));

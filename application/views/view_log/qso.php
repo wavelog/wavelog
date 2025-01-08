@@ -607,6 +607,9 @@
                         if($row->COL_SIG != null && $row->COL_SIG_INFO != null) {
                             $hashtags .= " #".$row->COL_SIG." ".$row->COL_SIG_INFO;
                         }
+                        if($row->COL_MODE == "CW") {
+                            $hashtags .= " #cwfe";
+                        }
                         if (!isset($distance)) {
                             $twitter_string = "Just worked ".$row->COL_CALL." ";
                             if ($row->COL_DXCC != 0) {
@@ -636,7 +639,7 @@
                             $twitter_string .= $distancestring." on ".$twitter_band_sat." using ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)." ".$hashtags;
                         }
                     ?>
-                    <button class="btn btn-primary" onClick='shareModal(<?php echo json_encode(['qso' => $row, 'twitter_string' => $twitter_string]); ?>);'><i class="fas fa-share-square"></i> <?= __("Share"); ?></button>
+                    <button class="btn btn-primary" onClick='shareModal(<?php echo json_encode(['qso' => $row, 'twitter_string' => $twitter_string], JSON_HEX_APOS | JSON_HEX_QUOT); ?>);'><i class="fas fa-share-square"></i> <?= __("Share"); ?></button>
                 </div>
             </div>
         </div>

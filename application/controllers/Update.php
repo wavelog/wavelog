@@ -210,9 +210,23 @@ class Update extends CI_Controller {
 
         $gz = gzopen($url, 'r');
         if ($gz === FALSE) {
-            $this->update_status("FAILED: Could not download from clublog.org");
-            log_message('error', 'FAILED: Could not download data from clublog.org');
-            exit();
+			$msg = "FAILED: Could not download data from clublog.org. Trying alternative URL.";
+            $this->update_status($msg);
+            log_message('error', $msg);
+
+			$alt_url = "https://github.com/wavelog/dxcc_data/raw/refs/heads/master/cty.xml.gz";
+			$gz = gzopen($alt_url, 'r');
+
+			if ($gz === FALSE) {
+				$msg = "FAILED: Could not download dxcc data. Please check your internet connection.";
+				$this->update_status($msg);
+				log_message('error', $msg);
+				exit();
+			} else {
+				$msg = "Downloaded data successfully from alternative URL (github).";
+				$this->update_status($msg);
+				log_message('debug', $msg);
+			}
         }
 
         $data = "";

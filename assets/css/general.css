@@ -7,9 +7,17 @@ body {
 	.modal-xl {
 		max-width: 900px;
 	}
+
+	#firstloginwizard_modal_content {
+		overflow-y: visible;
+	}
 }
 
 @media (max-width: 991px) {
+
+	#firstloginwizard_modal_content {
+		overflow-y: auto;
+	}
 
 	.h-lg-25 {
 		height: 25% !important;

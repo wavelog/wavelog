@@ -33,50 +33,6 @@ class Statistics extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	function custom() {
-
-	    $this->load->model('user_model');
-		if(!$this->user_model->authorize($this->config->item('auth_mode'))) {
-			if($this->user_model->validate_session()) {
-				$this->user_model->clear_session();
-				show_error('Access denied<p>Click <a href="'.site_url('user/login').'">here</a> to log in as another user', 403);
-			} else {
-				redirect('user/login');
-			}
-		}
-
-	    $this->load->model('logbook_model');
-
-		$data['page_title'] = __("Custom Statistics");
-		$data['modes'] = $this->logbook_model->get_modes();
-
-		$this->load->helper(array('form', 'url'));
-
-		$this->load->library('form_validation');
-
-		$this->form_validation->set_rules('start_date', 'Start Date', 'required');
-		$this->form_validation->set_rules('end_date', 'End Date', 'required');
-
-		if ($this->form_validation->run() == FALSE)
-		{
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('statistics/custom', $data);
-			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
-
-			$this->load->model('stats');
-
-			$data['result'] = $this->stats->result();
-
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('statistics/custom_result');
-			$this->load->view('interface_assets/footer');
-		}
-
-	}
-
 	function get_years() {
 		$this->load->model('logbook_model');
 		$totals_year = $this->logbook_model->totals_year();

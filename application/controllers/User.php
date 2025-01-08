@@ -92,7 +92,7 @@ class User extends CI_Controller {
 		$user_id = $this->input->post('user_id', true) ?? '';
 		$convert_to = $this->input->post('convert_to', true) ?? '';
 
-		if ($convert_to != '0' && $convert_to != '1') {
+		if ($convert_to !== '0' && $convert_to !== '1') {
 			$this->session->set_flashdata('error', __("Invalid Parameter!"));
 			redirect('dashboard');
 		}
@@ -1058,6 +1058,54 @@ class User extends CI_Controller {
 	}
 
 	/**
+	 * First Login Wizard
+	 * 
+	 * Form Data to create the first station location
+	 */
+	function firstlogin_wizard_form() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('station_name', __("Station Name"), 'required');
+		$this->form_validation->set_rules('station_callsign', __("Station Callsign"), 'required');
+		$this->form_validation->set_rules('station_dxcc', __("Station DXCC"), 'required');
+		$this->form_validation->set_rules('station_cqz', __("Station CQ Zone"), 'required');
+		$this->form_validation->set_rules('station_ituz', __("Station ITU Zone"), 'required');
+		$this->form_validation->set_rules('station_locator', __("Station Locator"), 'required');
+
+		$stationdata = [
+			'user_id' => $this->session->userdata('user_id'),
+			'station_name' => $this->input->post('station_name', true),
+			'station_callsign' => $this->input->post('station_callsign', true),
+			'station_dxcc' => $this->input->post('station_dxcc', true),
+			'station_cqz' => $this->input->post('station_cqz', true),
+			'station_ituz' => $this->input->post('station_ituz', true),
+			'station_locator' => $this->input->post('station_locator', true),
+		];
+
+		log_message('debug', 'First Login Wizard Form Data: '.print_r($stationdata, true));
+
+		if (!$this->check_locator($stationdata['station_locator'])) {
+			$this->session->set_flashdata('fl_wiz_error', __("Invalid Locator!"));
+			redirect('dashboard');
+		}
+
+		if ($this->form_validation->run() == FALSE) {
+			redirect('dashboard'); // Redirect to dashboard if form validation fails to show the wizard again
+		} else {
+			if ($this->user_model->firstlogin_wizard($stationdata)) {
+				$this->session->set_flashdata('success', sprintf(__("Station created successfully! Welcome to Wavelog! To complete your station setup, click %shere%s."), '<a href="'.site_url('stationsetup').'"><u>', '</u></a>'));
+				redirect('dashboard');
+			} else {
+				$this->session->set_flashdata('error', __("Station setup failed! Please set up your station manually."));
+				redirect('stationsetup');
+			}
+		}
+
+	}
+
+	/**
 	 * Function: forgot_password
 	 *
 	 * Allows users to input an email address and a password will be sent to that address.
@@ -1260,8 +1308,10 @@ class User extends CI_Controller {
 		}
 	}
 
-	function check_locator($grid) {
-		$grid = $this->input->post('user_locator');
+	function check_locator($grid = '') {
+		if (empty($grid)) {
+			$grid = $this->input->post('locator', TRUE);
+		}
 		// Allow empty locator
 		if (preg_match('/^$/', $grid)) return true;
 		// Allow 6-digit locator
