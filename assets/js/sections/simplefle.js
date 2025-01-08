@@ -224,6 +224,8 @@ function handleInput() {
 	var callsign = "";
 	var gridsquare = "";
 	var sotaWwff = "";
+	var srx = "";
+	var stx = "";
 	qsoList = [];
 	$("#qsoTable tbody").empty();
 	errors = [];
@@ -235,11 +237,27 @@ function handleInput() {
 		var rst_s = null;
 		var rst_r = null;
 		var gridsquare = "";
-		items = row.startsWith("day ") ? [row] : row.split(" ");
-		var itemNumber = 0;
+		var srx = "";
 		var call_rec = false;
+		var add_info = {};
 
+		// First, search for <...>-Patterns, which may contain comments (... or additional fields)
+		let addInfoMatches = row.matchAll(/<([^>]*)>/g);
+		addInfoMatches.forEach((item) => {
+		  row = row.replace(item[0], "");
+		  let kv;
+		  if (kv = item[1].match(/^([a-z_]+): *(.*)$/)) {
+		    add_info[kv[1]] = kv[2];
+		  } else {
+		    add_info.comment = (('comment' in add_info)?add_info.comment+' ': '')+item[1];
+		  }
+		});
+
+		// Now split the remaining line by spaces and match patterns on those
+		var itemNumber = 0;
+		items = row.startsWith("day ") ? [row] : row.split(" ");
 		items.forEach((item) => {
+			var parts;
 			if (item === "") {
 				return;
 			}
@@ -300,11 +318,26 @@ function handleInput() {
 				item.match(/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/i)
 			) {
 				gridsquare = item.toUpperCase();
-			} else if (itemNumber > 0 && item.match(/^[-+]\d{1,2}|\d{1,3}$|\d{1,3}[-+]d{1,2}$/)) {
+			} else if (itemNumber > 0 && item.match(/^[-+]\d{1,2}$|^\d{1,3}$|^\d{1,3}[-+]d{1,2}$/)) {
 				if (rst_s === null) {
 					rst_s = item;
 				} else {
 					rst_r = item;
+				}
+			} else if (itemNumber > 0 && (parts = item.match(/^([\.,])(\d*)(,|([\.,])(\d+))?$/))) { // Contest ,*** .***
+				if (parts[1] == ',') {
+						stx = parts[2];
+				} else {
+						srx = parts[2];
+				}
+				if (parts.length > 3 && parts[3] !== undefined && parts[3] == ',') { // With ',' only increment stx
+					stx++;
+				} else if (parts.length > 4 && parts[4] !== undefined) {
+					if (parts[4] == ',') {
+						stx = parts[5];
+					} else {
+						srx = parts[5];
+					}
 				}
 			}
 
@@ -345,10 +378,13 @@ function handleInput() {
 				freq,
 				band,
 				mode,
-				gridsquare,
+				gridsquare, // 6
 				rst_s,
 				rst_r,
 				sotaWwff,
+				stx,
+				srx,
+				add_info, // 12
 			]);
 
 			let sotaWwffText = "";
@@ -363,6 +399,7 @@ function handleInput() {
 				sotaWwffText = `W: ${sotaWwff}`;
 			}
 
+			const refs = [sotaWwffText,stx,srx].filter( (x) => x.length>0 || x>0 ).join(',');
 			const tableRow = $(`<tr>
 			<td>${extraQsoDate}</td>
 			<td>${qsotime}</td>
@@ -372,7 +409,7 @@ function handleInput() {
 			<td>${rst_s}</td>
 			<td>${rst_r}</td>
 			<td>${gridsquare}</td>
-			<td>${sotaWwffText}</td>
+			<td>${refs}</td>
 			</tr>`);
 
 			$("#qsoTable > tbody:last-child").append(tableRow);
@@ -951,8 +988,11 @@ $(".js-save-to-log").click(function () {
 						} else if (isWWFF(item[9])) {
 							wwff_ref = item[9];
 						}
+						var stx = item[10];
+						var srx = item[11];
+						var add_info = item[12];
 
-						qsos.push({
+						qsos.push({ ...add_info, ...{
 							call: callsign,
 							gridsquare: gridsquare,
 							rst_sent: rst_sent,
@@ -969,7 +1009,9 @@ $(".js-save-to-log").click(function () {
 							iota: iota_ref,
 							pota_ref: pota_ref,
 							wwff_ref: wwff_ref,
-						});
+							stx: stx,
+							srx: srx,
+						}});
 					});
 
 					$.ajax({
