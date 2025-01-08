@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-08 08:38+0000\n"
+"POT-Creation-Date: 2025-01-08 12:32+0000\n"
 "PO-Revision-Date: 2025-01-07 05:11+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -211,43 +211,39 @@ msgstr "有效日期"
 msgid "date incorrect"
 msgstr "日期有误"
 
-#: application/controllers/Adif.php:29 application/views/adif/import.php:24
-msgid "ADIF Export"
-msgstr "ADIF 导出"
-
-#: application/controllers/Adif.php:145
+#: application/controllers/Adif.php:134
 #: application/views/interface_assets/header.php:428
 msgid "ADIF Import / Export"
 msgstr "ADIF 导入/导出"
 
-#: application/controllers/Adif.php:176 application/views/adif/import.php:21
+#: application/controllers/Adif.php:165 application/views/adif/import.php:21
 #: application/views/lotw/import.php:3
 msgid "ADIF Import"
 msgstr "ADIF 导入"
 
-#: application/controllers/Adif.php:217
+#: application/controllers/Adif.php:206
 msgid "Unsupported Filetype"
 msgstr "文件类型不支持"
 
-#: application/controllers/Adif.php:253
+#: application/controllers/Adif.php:242
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "ADIF 导入失败！"
 
-#: application/controllers/Adif.php:267
+#: application/controllers/Adif.php:256
 msgid "Station Profile not valid for User"
 msgstr "用户台站信息无效"
 
-#: application/controllers/Adif.php:274
+#: application/controllers/Adif.php:263
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF 已导入"
 
-#: application/controllers/Adif.php:285
+#: application/controllers/Adif.php:274
 msgid "DCL Import"
 msgstr "导入 DCL"
 
-#: application/controllers/Adif.php:343
+#: application/controllers/Adif.php:332
 msgid "DCL Data Imported"
 msgstr "DCL 数据已导入"
 
@@ -3005,7 +3001,7 @@ msgstr "差异"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:207
+#: application/views/adif/import.php:208
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3542,8 +3538,8 @@ msgid "Nothing found!"
 msgstr "未找到！"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:66 application/views/adif/import.php:211
-#: application/views/adif/import.php:256
+#: application/views/adif/import.php:66 application/views/adif/import.php:212
+#: application/views/adif/import.php:257
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
 #: application/views/awards/sota/index.php:25
@@ -3738,7 +3734,11 @@ msgstr "DCL 中的 DOK"
 msgid "DCL QSL Status"
 msgstr "DCL QSL 状态"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:281
+#: application/views/adif/import.php:24
+msgid "ADIF Export"
+msgstr "ADIF 导出"
+
+#: application/views/adif/import.php:36 application/views/adif/import.php:282
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -3760,8 +3760,8 @@ msgstr "日志文件的后缀必须是.adi"
 msgid "Maximum file upload size is "
 msgstr "最大上传文件大小是 "
 
-#: application/views/adif/import.php:56 application/views/adif/import.php:259
-#: application/views/adif/import.php:297 application/views/debug/index.php:193
+#: application/views/adif/import.php:56 application/views/adif/import.php:260
+#: application/views/adif/import.php:298 application/views/debug/index.php:193
 #: application/views/debug/index.php:210 application/views/debug/index.php:571
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
@@ -3775,7 +3775,7 @@ msgid "Warning"
 msgstr "注意"
 
 #: application/views/adif/import.php:60 application/views/adif/import.php:62
-#: application/views/adif/import.php:205 application/views/adif/import.php:254
+#: application/views/adif/import.php:206 application/views/adif/import.php:255
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -3867,7 +3867,7 @@ msgid ""
 msgstr ""
 "如果选中，Wavelog 会从 ADIF 中尝试导入 %s全部的%s QSO，忽略是否匹配台站地址。"
 
-#: application/views/adif/import.php:196 application/views/adif/import.php:312
+#: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
@@ -3883,7 +3883,15 @@ msgid ""
 "like LoTW, Awards or just for keeping a backup."
 msgstr "导出 ADIF 方便您将日志导入到 LoTW 等第三方应用程序或备份日志。"
 
-#: application/views/adif/import.php:215 application/views/adif/import.php:261
+#: application/views/adif/import.php:205
+#, php-format
+msgctxt ""
+msgid ""
+"If you need more filtering, you can use %sthe Advanced Logbook%s to filter "
+"and export!"
+msgstr ""
+
+#: application/views/adif/import.php:216 application/views/adif/import.php:262
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
 #: application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -3892,7 +3900,7 @@ msgstr "导出 ADIF 方便您将日志导入到 LoTW 等第三方应用程序或
 msgid "From date"
 msgstr "起始日期"
 
-#: application/views/adif/import.php:218 application/views/adif/import.php:264
+#: application/views/adif/import.php:219 application/views/adif/import.php:265
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -3901,40 +3909,40 @@ msgstr "起始日期"
 msgid "To date"
 msgstr "终止日期"
 
-#: application/views/adif/import.php:226
+#: application/views/adif/import.php:227
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "将导出的 QSO 标记为已上传到 LoTW"
 
-#: application/views/adif/import.php:234
+#: application/views/adif/import.php:235
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "导出没有上传到 LoTW 的 QSO"
 
-#: application/views/adif/import.php:239
+#: application/views/adif/import.php:240
 msgid "Export QSO's"
 msgstr "导出 QSO"
 
-#: application/views/adif/import.php:244
+#: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
 msgstr "只导出卫星 QSO"
 
-#: application/views/adif/import.php:245
+#: application/views/adif/import.php:246
 msgid "Export All Satellite QSOs"
 msgstr "导出所有卫星 QSO"
 
-#: application/views/adif/import.php:247
+#: application/views/adif/import.php:248
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "导出 LoTW 上确认的所有卫星 QSO"
 
-#: application/views/adif/import.php:259 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:260 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "如果未选择日期范围，则所有 QSO 都将被标记！"
 
-#: application/views/adif/import.php:267
+#: application/views/adif/import.php:268
 msgid "Mark QSOs as exported to LoTW"
 msgstr "将 QSO 标记为导出到 LoTW"
 
-#: application/views/adif/import.php:281
+#: application/views/adif/import.php:282
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -3945,31 +3953,31 @@ msgstr ""
 "前往 %s 导出已确认的 DOK，可选择仅导出 DL QSO 以加快速度。您可在此处上传已下"
 "载的 ADIF 日志，系统将以此更新 DOK 信息。"
 
-#: application/views/adif/import.php:288
+#: application/views/adif/import.php:289
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "仅导入在 DCL 上确认的 QSO 的 DOK 数据。"
 
-#: application/views/adif/import.php:290
+#: application/views/adif/import.php:291
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr "如果您还想使用 DCL 中未经确认的 QSO 的数据更新 DOK，请取消选中。"
 
-#: application/views/adif/import.php:297
+#: application/views/adif/import.php:298
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "根据已有 DCL 覆盖 DOK 数据（如不同）。"
 
-#: application/views/adif/import.php:299
+#: application/views/adif/import.php:300
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr "如果选中，Wavelog 将使用 DCL 日志中的 DOK 强制覆盖现有的 DOK 信息。"
 
-#: application/views/adif/import.php:306
+#: application/views/adif/import.php:307
 msgid "Ignore QSOs that cannot be matched."
 msgstr "忽略无法匹配的 QSO。"
 
-#: application/views/adif/import.php:308
+#: application/views/adif/import.php:309
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
