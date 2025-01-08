@@ -242,15 +242,17 @@ function handleInput() {
 		var add_info = {};
 
 		// First, search for <...>-Patterns, which may contain comments (... or additional fields)
-		let addInfoMatches = row.matchAll(/<([^>]*)>/g);
+		let addInfoMatches = row.matchAll(/<([^>]*)>|\[([^\]]*)\]/g);
 		addInfoMatches.forEach((item) => {
-		  row = row.replace(item[0], "");
-		  let kv;
-		  if (kv = item[1].match(/^([a-z_]+): *(.*)$/)) {
-		    add_info[kv[1]] = kv[2];
-		  } else {
-		    add_info.comment = (('comment' in add_info)?add_info.comment+' ': '')+item[1];
-		  }
+			row = row.replace(item[0], "");
+			let kv;
+			if (item[0][0] == '<' && (kv = item[1].match(/^([a-z_]+): *(.*)$/))) {
+				add_info[kv[1]] = kv[2];
+			} else if (item[0][0] == '[') {
+				add_info.qslmsg = item[2];
+			} else {
+				add_info.comment = (('comment' in add_info)?add_info.comment+' ': '')+item[1];
+			}
 		});
 
 		// Now split the remaining line by spaces and match patterns on those
@@ -315,9 +317,9 @@ function handleInput() {
 				callsign = item.toUpperCase();
 				call_rec = true;
 			} else if (
-				item.match(/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/i)
+				parts = item.match(/(?<=^#?)[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/i)
 			) {
-				gridsquare = item.toUpperCase();
+				gridsquare = parts[0].toUpperCase();
 			} else if (itemNumber > 0 && item.match(/^[-+]\d{1,2}$|^\d{1,3}$|^\d{1,3}[-+]d{1,2}$/)) {
 				if (rst_s === null) {
 					rst_s = item;
@@ -339,6 +341,8 @@ function handleInput() {
 						srx = parts[5];
 					}
 				}
+			} else if (itemNumber > 0 && (parts = item.match(/(?<=^@)[A-Za-z]+/))) {
+				add_info.name = parts[0];
 			}
 
 			itemNumber = itemNumber + 1;
