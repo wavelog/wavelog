@@ -243,7 +243,8 @@ class adif extends CI_Controller {
 
 						//handle club operator
 						if ($club_operator != '') {
-							$record['operator']=strtoupper($club_operator);
+							$record['operator'] = strtoupper($club_operator);
+						}
 
 						//check if contest_id exists in record and extract all found contest_ids
 						if(array_key_exists('contest_id', $record)){
