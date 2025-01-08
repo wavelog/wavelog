@@ -40,7 +40,7 @@ class Widgets extends CI_Controller {
 				show_404(__("Unknown Public Page."));
 			}
 
-			$data['last_five_qsos'] = $this->logbook_model->get_last_qsos(15, $logbooks_locations_array);
+			$data['last_qsos_list'] = $this->logbook_model->get_last_qsos(15, $logbooks_locations_array);
 			
 			$this->load->view('widgets/qsos', $data);
 		}
