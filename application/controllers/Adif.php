@@ -240,7 +240,6 @@ class adif extends CI_Controller {
 						if ($contest != '') {
 							$record['contest_id'] = $contest;
 						}
-<<<<<<< HEAD
 
 						//check if contest_id exists in record and extract all found contest_ids
 						if(array_key_exists('contest_id', $record)){
@@ -254,11 +253,6 @@ class adif extends CI_Controller {
 							}
 						}
 
-=======
-						if ($club_operator != '') {
-							$record['operator']=strtoupper($club_operator);
-						}
->>>>>>> dev
 						if(count($record) == 0) {
 							break;
 						};
