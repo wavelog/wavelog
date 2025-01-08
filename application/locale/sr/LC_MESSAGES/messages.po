@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-08 08:38+0000\n"
+"POT-Creation-Date: 2025-01-08 12:32+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -208,43 +208,39 @@ msgstr "važeći datum"
 msgid "date incorrect"
 msgstr "netačan datum"
 
-#: application/controllers/Adif.php:29 application/views/adif/import.php:24
-msgid "ADIF Export"
-msgstr "ADIF izvoz"
-
-#: application/controllers/Adif.php:145
+#: application/controllers/Adif.php:134
 #: application/views/interface_assets/header.php:428
 msgid "ADIF Import / Export"
 msgstr "ADIF uvoz/izvoz"
 
-#: application/controllers/Adif.php:176 application/views/adif/import.php:21
+#: application/controllers/Adif.php:165 application/views/adif/import.php:21
 #: application/views/lotw/import.php:3
 msgid "ADIF Import"
 msgstr "Uvoz ADIF"
 
-#: application/controllers/Adif.php:217
+#: application/controllers/Adif.php:206
 msgid "Unsupported Filetype"
 msgstr "Nepodržana vrsta datoteke"
 
-#: application/controllers/Adif.php:253
+#: application/controllers/Adif.php:242
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "Uvoz ADIF podataka nije uspelo!"
 
-#: application/controllers/Adif.php:267
+#: application/controllers/Adif.php:256
 msgid "Station Profile not valid for User"
 msgstr "Profil stanice nije validan za ovog korisnika"
 
-#: application/controllers/Adif.php:274
+#: application/controllers/Adif.php:263
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF uvezen"
 
-#: application/controllers/Adif.php:285
+#: application/controllers/Adif.php:274
 msgid "DCL Import"
 msgstr "Uvoz DCL"
 
-#: application/controllers/Adif.php:343
+#: application/controllers/Adif.php:332
 msgid "DCL Data Imported"
 msgstr "DCL podaci uvezeni"
 
@@ -3045,7 +3041,7 @@ msgstr "Razlika"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:207
+#: application/views/adif/import.php:208
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3582,8 +3578,8 @@ msgid "Nothing found!"
 msgstr "Ništa nije pronađeno!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:66 application/views/adif/import.php:211
-#: application/views/adif/import.php:256
+#: application/views/adif/import.php:66 application/views/adif/import.php:212
+#: application/views/adif/import.php:257
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
 #: application/views/awards/sota/index.php:25
@@ -3778,7 +3774,11 @@ msgstr "DOK u DCL"
 msgid "DCL QSL Status"
 msgstr "Status DCL QSL"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:281
+#: application/views/adif/import.php:24
+msgid "ADIF Export"
+msgstr "ADIF izvoz"
+
+#: application/views/adif/import.php:36 application/views/adif/import.php:282
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -3800,8 +3800,8 @@ msgstr "Datoteke dnevnika moraju biti vrste *.adi"
 msgid "Maximum file upload size is "
 msgstr "Maksimalna veličina datoteke za učitavanje je "
 
-#: application/views/adif/import.php:56 application/views/adif/import.php:259
-#: application/views/adif/import.php:297 application/views/debug/index.php:193
+#: application/views/adif/import.php:56 application/views/adif/import.php:260
+#: application/views/adif/import.php:298 application/views/debug/index.php:193
 #: application/views/debug/index.php:210 application/views/debug/index.php:571
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
@@ -3815,7 +3815,7 @@ msgid "Warning"
 msgstr "Upozorenje"
 
 #: application/views/adif/import.php:60 application/views/adif/import.php:62
-#: application/views/adif/import.php:205 application/views/adif/import.php:254
+#: application/views/adif/import.php:206 application/views/adif/import.php:255
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -3910,7 +3910,7 @@ msgstr ""
 "Ako je selektovano, Wavelog će pokušati da uveze %sall%s QSO iz ADIF, bez "
 "obzira da li se poklapaju sa izabranom stanicom - lokacijom."
 
-#: application/views/adif/import.php:196 application/views/adif/import.php:312
+#: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
@@ -3928,7 +3928,15 @@ msgstr ""
 "Izvoz ADIFa vam omogućava da uvezete kontakte u treće aplikacije kao što su "
 "LoTW, Diplome ili da ga goristite samo kao rezervnu kopiju."
 
-#: application/views/adif/import.php:215 application/views/adif/import.php:261
+#: application/views/adif/import.php:205
+#, php-format
+msgctxt ""
+msgid ""
+"If you need more filtering, you can use %sthe Advanced Logbook%s to filter "
+"and export!"
+msgstr ""
+
+#: application/views/adif/import.php:216 application/views/adif/import.php:262
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
 #: application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -3937,7 +3945,7 @@ msgstr ""
 msgid "From date"
 msgstr "Od datuma"
 
-#: application/views/adif/import.php:218 application/views/adif/import.php:264
+#: application/views/adif/import.php:219 application/views/adif/import.php:265
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -3946,40 +3954,40 @@ msgstr "Od datuma"
 msgid "To date"
 msgstr "Do datuma"
 
-#: application/views/adif/import.php:226
+#: application/views/adif/import.php:227
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Označi izvezene QSO kao učitane na LoTW"
 
-#: application/views/adif/import.php:234
+#: application/views/adif/import.php:235
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Izvezi QSO koji nisu učitani na LoTW"
 
-#: application/views/adif/import.php:239
+#: application/views/adif/import.php:240
 msgid "Export QSO's"
 msgstr "Izvezi QSOe"
 
-#: application/views/adif/import.php:244
+#: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
 msgstr "Izvezi samo satelitske QSO"
 
-#: application/views/adif/import.php:245
+#: application/views/adif/import.php:246
 msgid "Export All Satellite QSOs"
 msgstr "Izvezi sve satelitske QSO"
 
-#: application/views/adif/import.php:247
+#: application/views/adif/import.php:248
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Izvezi sve satelitske QSO potvrđene na LoTW"
 
-#: application/views/adif/import.php:259 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:260 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "Ako nije izabran opseg datuma, onda će svi QSO biti označeni!"
 
-#: application/views/adif/import.php:267
+#: application/views/adif/import.php:268
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Označi QSOe kao izvezene u LoTW"
 
-#: application/views/adif/import.php:281
+#: application/views/adif/import.php:282
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -3992,11 +4000,11 @@ msgstr ""
 "stavi 'DL'). Preuzeta ADIF datoteka može biti učitana ovde u nameri da "
 "ažurirate QSO sa informacijom o DOK."
 
-#: application/views/adif/import.php:288
+#: application/views/adif/import.php:289
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Uvezi samo DOK podatke iz QSO potvrđenih na DCL."
 
-#: application/views/adif/import.php:290
+#: application/views/adif/import.php:291
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -4004,11 +4012,11 @@ msgstr ""
 "Nemojte označiti ako takođe želite da ažurirate DOK sa podacima iz "
 "nepotvrđenih QSO u DCL."
 
-#: application/views/adif/import.php:297
+#: application/views/adif/import.php:298
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Prepišite DCL-om postojeće DOK u dnevniku (ako su različiti)."
 
-#: application/views/adif/import.php:299
+#: application/views/adif/import.php:300
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4016,11 +4024,11 @@ msgstr ""
 "Ako je označeno, Wavelog će silom prepisati postojeće DOK sa DOK iz DCL "
 "dnevnika."
 
-#: application/views/adif/import.php:306
+#: application/views/adif/import.php:307
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Zanemarite QSOe koji se ne mogu poklopiti."
 
-#: application/views/adif/import.php:308
+#: application/views/adif/import.php:309
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
