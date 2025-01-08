@@ -3,6 +3,8 @@
 class Dashboard extends CI_Controller
 {
 
+	const LAST_QSOS_COUNT = 18; // max number of most recent qsos to be displayed on a dashboard
+
 	public function index()
 	{
 		// Check if users logged in
@@ -115,7 +117,10 @@ class Dashboard extends CI_Controller
 		$data['qrz_sent_today'] = $QSLStatsBreakdownArray['QRZ_Sent_today'];
 		$data['qrz_rcvd_today'] = $QSLStatsBreakdownArray['QRZ_Received_today'];
 
-		$data['last_qsos_list'] = $this->logbook_model->get_last_qsos('18', $logbooks_locations_array);
+		$data['last_qsos_list'] = $this->logbook_model->get_last_qsos(
+			Dashboard::LAST_QSOS_COUNT, 
+			$logbooks_locations_array,
+		);
 
 		$data['vucc'] = $this->vucc->fetchVuccSummary();
 		$data['vuccSAT'] = $this->vucc->fetchVuccSummary('SAT');
