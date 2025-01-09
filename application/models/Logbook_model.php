@@ -5419,6 +5419,9 @@ class Logbook_model extends CI_Model {
 			// check lat / lng (depend info source) //
 			if ($row->COL_GRIDSQUARE != null) {
 				$stn_loc = $this->qra->qra2latlong($row->COL_GRIDSQUARE);
+				if (($this->session->userdata('user_locator') ?? '') != '') {
+					$xbearing = $this->qra->get_bearing($this->session->userdata('user_locator'),$row->COL_GRIDSQUARE);
+				}
 			} elseif ($row->COL_VUCC_GRIDS != null) {
 				$coords = array();
 				$grids = explode(",", $row->COL_VUCC_GRIDS);
@@ -5444,10 +5447,16 @@ class Logbook_model extends CI_Model {
 
 					$stn_loc = $this->qra->get_midpoint($coords);
 				}
+				if (($this->session->userdata('user_locator') ?? '') != '') {
+					$xbearing = $this->qra->get_bearing($this->session->userdata('user_locator'),$row->COL_VUCC_GRIDS);
+				}
 			} else {
 				if (isset($row->lat) && isset($row->long)) {
 					$stn_loc = array($row->lat, $row->long);
 				}
+			}
+			if (isset($xbearing)) {
+				$plot['html'].=__("Bearing").': '.$xbearing."&deg;<br/>";
 			}
 			if (isset($stn_loc)) {
 				list($plot['lat'], $plot['lng']) = $stn_loc;
