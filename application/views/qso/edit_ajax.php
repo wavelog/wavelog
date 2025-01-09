@@ -374,27 +374,27 @@
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="sota_ref"><?= __("SOTA"); ?></label>
-                                            <input type="text" class="form-control" id="sota_ref_edit" name="sota_ref" value="<?php echo $qso->COL_SOTA_REF; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="sota_ref_edit" name="sota_ref" value="<?php echo $qso->COL_SOTA_REF; ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="pota_ref"><?= __("POTA"); ?></label>
-                                            <input type="text" class="form-control" id="pota_ref_edit" name="pota_ref" value="<?php echo $qso->COL_POTA_REF; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="pota_ref_edit" name="pota_ref" value="<?php echo $qso->COL_POTA_REF; ?>">
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="wwff_ref"><?= __("WWFF"); ?></label>
-                                            <input type="text" class="form-control" id="wwff_ref_edit" name="wwff_ref" value="<?php echo $qso->COL_WWFF_REF; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="wwff_ref_edit" name="wwff_ref" value="<?php echo $qso->COL_WWFF_REF; ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="sig"><?= __("Sig"); ?></label>
-                                            <input type="text" class="form-control" id="sig" name="sig" value="<?php echo $qso->COL_SIG; ?>">
+                                            <input type="text" class="form-control test-uppercase" id="sig" name="sig" value="<?php echo $qso->COL_SIG; ?>">
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="sig_info"><?= __("Sig Info"); ?></label>
-                                            <input type="text" class="form-control" id="sig_info" name="sig_info" value="<?php echo $qso->COL_SIG_INFO; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="sig_info" name="sig_info" value="<?php echo $qso->COL_SIG_INFO; ?>">
                                         </div>
                                     </div>
                                     <div class="mb-3">
