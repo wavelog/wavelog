@@ -390,7 +390,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="sig"><?= __("Sig"); ?></label>
-                                            <input type="text" class="form-control test-uppercase" id="sig" name="sig" value="<?php echo $qso->COL_SIG; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="sig" name="sig" value="<?php echo $qso->COL_SIG; ?>">
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="sig_info"><?= __("Sig Info"); ?></label>
