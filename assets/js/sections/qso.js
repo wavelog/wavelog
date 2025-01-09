@@ -154,37 +154,55 @@ $('#reset_time').on("click", function () {
 	});
 });
 
-$('#reset_start_time').on("click", function () {
+
+
+// Function to format the current time as HH:MM or HH:MM:SS
+function formatTime(date, includeSeconds) {
+	let time = ("0" + date.getUTCHours()).slice(-2) + ":" + ("0" + date.getUTCMinutes()).slice(-2);
+	if (includeSeconds) {
+		time += ":" + ("0" + date.getUTCSeconds()).slice(-2);
+	}
+	return time;
+}
+
+// Event listener for resetting start time
+$("#reset_start_time").on("click", function () {
 	var now = new Date();
-	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+
+	// Format start and end times
+	let startTime = formatTime(now, qso_manual != 1);
+	let endTime = formatTime(now, qso_manual != 1);
+
+	// Update all elements with id 'start_time'
 	$("[id='start_time']").each(function () {
-		$starttime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
-		if (qso_manual != 1) {
-			$starttime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
-		}
-		$(this).attr("value", $starttime);
+		$(this).val(startTime);
 	});
-	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+
+	// Update all elements with id 'end_time'
 	$("[id='end_time']").each(function () {
-		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
-		if (qso_manual != 1) {
-			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
-		}
-		$(this).attr("value", $endtime);
+		$(this).val(endTime);
 	});
-	// update date (today, for "post qso") //
-	$('#start_date').attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
+
+	// Update the start date
+	$("#start_date").val(
+		("0" + now.getUTCDate()).slice(-2) +
+		"-" +
+		("0" + (now.getUTCMonth() + 1)).slice(-2) +
+		"-" +
+		now.getUTCFullYear()
+	);
 });
 
-$('#reset_end_time').on("click", function () {
+// Event listener for resetting end time
+$("#reset_end_time").on("click", function () {
 	var now = new Date();
-	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+
+	// Format end time
+	let endTime = formatTime(now, qso_manual != 1);
+
+	// Update all elements with id 'end_time'
 	$("[id='end_time']").each(function () {
-		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
-		if (qso_manual != 1) {
-			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
-		}
-		$(this).attr("value", $endtime);
+		$(this).val(endTime);
 	});
 });
 
