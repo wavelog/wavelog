@@ -51,7 +51,9 @@ function getBearing($grid = '') {
 	if ($grid == '')  return '';
 	$ci =& get_instance();
 	if (($ci->session->userdata('user_locator') ?? '') != '') {
-		$ci->load->library('qra');
+		if(!$ci->load->is_loaded('qra')) {
+			$ci->load->library('qra');
+		}
 		$bearing=$ci->qra->get_bearing($ci->session->userdata('user_locator'),$grid);
 		return($bearing.'&deg;');
 	} else {
