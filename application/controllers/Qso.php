@@ -1,7 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class QSO extends CI_Controller 
-{
+class QSO extends CI_Controller {
 
     const LAST_QSOS_COUNT = 5; // max number of most recent qsos to be displayed on a qso page
 
