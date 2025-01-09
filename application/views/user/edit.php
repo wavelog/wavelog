@@ -254,6 +254,7 @@
 											<option value="Distance" <?php if ($user_column1 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column1 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column1 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column1 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -276,6 +277,7 @@
 											<option value="Distance" <?php if ($user_column2 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column2 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column2 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column2 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -298,6 +300,7 @@
 											<option value="Distance" <?php if ($user_column3 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column3 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column3 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column3 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -320,6 +323,7 @@
 											<option value="Distance" <?php if ($user_column4 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column4 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column4 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column4 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -344,6 +348,7 @@
 											<option value="Operator" <?php if ($user_column5 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column5 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
 											<option value="Location" <?php if ($user_column5 == "Location") { echo " selected =\"selected\""; } ?>><?= __("Station Location"); ?></option>
+											<option value="Bearing" <?php if ($user_column5 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 								</div>
