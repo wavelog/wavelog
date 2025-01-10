@@ -1334,6 +1334,18 @@ class Logbook_model extends CI_Model {
 			$qrz_rcvd = 'N';
 		}
 
+		if ($this->input->post('clublog_sent')) {
+			$clublog_sent = $this->input->post('clublog_sent');
+		} else {
+			$clublog_sent = 'N';
+		}
+
+		if ($this->input->post('clublog_rcvd')) {
+			$clublog_rcvd = $this->input->post('clublog_rcvd');
+		} else {
+			$clublog_rcvd = 'N';
+		}
+
 		if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 			$lotw_sent = 'I';
 		} elseif ($this->input->post('lotw_sent')) {
@@ -1419,6 +1431,22 @@ class Logbook_model extends CI_Model {
 			$qrzrdate = $qso->COL_QRZCOM_QSO_DOWNLOAD_DATE;
 		}
 
+		if ($clublog_sent == 'N' && $qso->COL_CLUBLOG_QSO_UPLOAD_STATUS != $clublog_sent) {
+			$clublogsdate = null;
+		} elseif (!$qso->COL_CLUBLOG_QSO_UPLOAD_DATE || $qso->COL_CLUBLOG_QSO_UPLOAD_STATUS != $clublog_sent) {
+			$clublogsdate = date('Y-m-d H:i:s');
+		} else {
+			$clublogsdate = $qso->COL_CLUBLOG_QSO_UPLOAD_DATE;
+		}
+
+		if ($clublog_rcvd == 'N' && $qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS != $clublog_rcvd) {
+			$clublogrdate = null;
+		} elseif (!$qso->COL_CLUBLOG_QSO_DOWNLOAD_DATE || $qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS != $clublog_rcvd) {
+			$clublogrdate = date('Y-m-d H:i:s');
+		} else {
+			$clublogrdate = $qso->COL_CLUBLOG_QSO_DOWNLOAD_DATE;
+		}
+
 		if (($this->input->post('distance')) && (is_numeric($this->input->post('distance')))) {
 			$distance = $this->input->post('distance');
 		} else {
@@ -1468,6 +1496,10 @@ class Logbook_model extends CI_Model {
 			'COL_LOTW_QSLRDATE' => $lotwrdate,
 			'COL_LOTW_QSL_SENT' => $lotw_sent,
 			'COL_LOTW_QSL_RCVD' => $lotw_rcvd,
+			'COL_CLUBLOG_QSO_UPLOAD_DATE' => $clublogsdate,
+			'COL_CLUBLOG_QSO_DOWNLOAD_DATE' => $clublogrdate,
+			'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $clublog_rcvd,
+			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => $clublog_sent,
 			'COL_IOTA' => $this->input->post('iota_ref'),
 			'COL_SOTA_REF' => strtoupper(trim($this->input->post('sota_ref'))),
 			'COL_WWFF_REF' => strtoupper(trim($this->input->post('wwff_ref'))),
@@ -3783,7 +3815,7 @@ class Logbook_model extends CI_Model {
 		$station_id_ok = true;
 		$station_profile = $this->stations->profile_clean($station_id);
 		$amsat_status_upload = $this->user_model->get_user_amsat_status_upload_by_id($station_profile->user_id);
-		
+
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $station_id), $station_profile->user_id)->result();
 		$station_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 
@@ -5540,12 +5572,12 @@ class Logbook_model extends CI_Model {
 		case 'SI':
 			return 'Shetland Islands';
 			break;
-		default: 
+		default:
 			return $region;
 			break;
 		}
 	}
-			
+
 
 	function getContinent($dxcc) {
 		$sql = "SELECT cont FROM dxcc_entities WHERE adif = ?";

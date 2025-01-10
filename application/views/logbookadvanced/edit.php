@@ -163,7 +163,9 @@
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editClublog"  name="clublog">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
+			<option value="R"><?= __("Requested"); ?></option>
 			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="V"><?= __("Verified"); ?></option>
 		</select>
 
 		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">
