@@ -28,7 +28,7 @@
 <p><?= __("Additional informations can be submitted in the following way:") ?></p>
 <p><?= __("Notes:") ?></p>
 <pre>
-    2112 dj3ce < comment >
+    2112 dj3ce &lt; comment &gt;
 </pre>
 <p><?= __("Operator Name:") ?></p>
 <pre>
@@ -59,7 +59,7 @@
 <p><?= __("First, all previous exchange is wiped, then only a serial is set. Otherwise the previous exchange 'D23' would have been set also.") ?></p>
 <p><?= __("You may use the comment syntax, to fill adif-fields supported by the Wavelog-Import:") ?></p>
 <pre>
-    2119 dj3ce <tx_pwr:50> <rx_pwr:750> <darc_dok:F39> <sfi:210> <rig:QCX> <...>
+    2119 dj3ce &lt;tx_pwr:50&gt; &lt;rx_pwr:750&gt; &lt;darc_dok:F39&gt; &lt;sfi:210&gt; &lt;rig:QCX&gt; &lt;...&gt;
 </pre>
 <p><?= sprintf(__("A full summary of all commands and the necessary syntax can be found in %sthis article%s of our Wiki."), '<a href="https://github.com/wavelog/wavelog/wiki/SimpleFLE" target="_blank">', '</a>'); ?></p>
 
