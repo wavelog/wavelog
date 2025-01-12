@@ -422,8 +422,7 @@ function createContentMessage(qso) {
 function createContentMessageDx(qso) {
 	var table = '<table><tbody>' +
 	'<tr>' +
-	'<td>Callsign</td>' +
-	'<td>' + qso.callsign.replaceAll('0', 'Ø') + '</td>' +
+	'<td colspan=2><div class="big-flag"><div class="flag">' + qso.dxccFlag + '</div><a id="edit_qso" href="javascript:displayQso('+qso.id+')">'+qso.callsign.replaceAll('0', 'Ø')+'</a></div></td>' +
 	'</tr>' +
 	'<tr>' +
 	'<td>Date/Time</td>' +
