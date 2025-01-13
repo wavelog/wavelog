@@ -610,7 +610,12 @@ class User_Model extends CI_Model {
 				return 2;
 			}
 
-			if ($u->row()->login_attempts > 3) {
+			if ($this->config->item('max_login_attempts')) {
+				$maxattempts = $this->config->item('max_login_attempts');
+			} else {
+				$maxattempts = 3;
+			}
+			if ($u->row()->login_attempts > $maxattempts) {
 				$uid = $u->row()->user_id;
 				log_message('debug', "User ID: [$uid] Login rejected because of too many failed login attempts.");
 				return 3;
