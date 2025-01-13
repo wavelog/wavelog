@@ -422,7 +422,12 @@ function createContentMessage(qso) {
 function createContentMessageDx(qso) {
 	var table = '<table><tbody>' +
 	'<tr>' +
-	'<td colspan=2><div class="big-flag"><div class="flag">' + qso.dxccFlag + '</div><a id="edit_qso" href="javascript:displayQso('+qso.id+')">'+qso.callsign.replaceAll('0', 'Ø')+'</a></div></td>' +
+	'<td colspan=2><div class="big-flag">';
+	if (qso.dxccFlag != '') {
+		table += '<div class="flag">' + qso.dxccFlag + '</div>';
+	}
+	table += '<a id="edit_qso" href="javascript:displayQso('+qso.id+')">'+qso.callsign.replaceAll('0', 'Ø')+'</a></div>';
+	table += '</td>' +
 	'</tr>' +
 	'<tr>' +
 	'<td>Date/Time</td>' +
