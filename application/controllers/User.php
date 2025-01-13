@@ -1023,6 +1023,9 @@ class User extends CI_Controller {
 			} else if ($login_attempt === 2) {
 				$this->session->set_flashdata('warning', __("You can't login to a clubstation directly. Use your personal account instead."));
 				redirect('user/login');
+			} else if ($login_attempt === 3) {
+				$this->session->set_flashdata('warning', __("Your account is locked, due to too many failed login-attempts. Please reset your Password."));
+				redirect('user/login');
 			} else {
 				if(ENVIRONMENT == 'maintenance') {
 					$this->session->set_flashdata('notice', __("Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."));

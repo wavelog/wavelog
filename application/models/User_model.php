@@ -609,7 +609,14 @@ class User_Model extends CI_Model {
 				return 2;
 			}
 
+			if ($u->row()->login_attempts >= 3) {
+				$uid = $u->row()->user_id;
+				log_message('debug', "User ID: [$uid] Login rejected because of too many failed login attempts.");
+				return 3;
+			}
+
 			if($this->_auth($password, $u->row()->user_password)) {
+				$this->db->query("UPDATE users SET login_attempts = 0 WHERE user_id = ?", [$u->row()->user_id]);	// Reset failurecount
 				if (ENVIRONMENT != "maintenance") {
 					return 1;
 				} else {
@@ -619,6 +626,8 @@ class User_Model extends CI_Model {
 						return 1;
 					}
 				}
+			} else { // Update failurecount
+				$this->db->query("UPDATE users SET login_attempts = login_attempts+1 WHERE user_id = ?", [$u->row()->user_id]);
 			}
 		}
 		return 0;
