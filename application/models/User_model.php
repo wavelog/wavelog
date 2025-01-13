@@ -361,6 +361,7 @@ class User_Model extends CI_Model {
 							if($data['user_password'] == EPASSWORDINVALID) {
 								return EPASSWORDINVALID;
 							}
+							$data['login_attempts'] = 0;
 						}
 					}
 				}
@@ -755,7 +756,8 @@ class User_Model extends CI_Model {
 		$data = array(
 			'user_password' => $this->_hash($password),
 			'reset_password_code' => NULL,
-			'reset_password_date' => NULL
+			'reset_password_date' => NULL,
+			'login_attempts' => 0
 		);
 
 		$this->db->where('reset_password_code', $reset_code);
