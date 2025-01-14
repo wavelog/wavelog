@@ -1224,11 +1224,11 @@ class QSO
 			'sig' => $this->getFormattedSig(),
 			'continent' => $this->continent,
 			'profilename' => $this->profilename,
-			'stationpower' => $this->stationpower,
+			'stationpower' => empty($this->stationpower) ? null : $this->stationpower.' W',
 			'distance' => $this->getFormattedDistance(),
 			'region' => $this->region,
-			'antennaelevation' => $this->antennaelevation,
-			'antennaazimuth' => $this->antennaazimuth
+			'antennaelevation' => empty($this->antennaelevation) ? null : $this->antennaelevation.'°',
+			'antennaazimuth' => empty($this->antennaazimuth) ? null : $this->antennaazimuth.'°'
 		];
 	}
 

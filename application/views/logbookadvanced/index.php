@@ -736,16 +736,16 @@ $options = json_decode($options);
                         echo '<th class="distance-column-sort">' . __("Distance") . '</th>';
                     } ?>
 					<?php if (($options->antennaazimuth->show ?? "true") == "true") {
-                        echo '<th data-bs-toggle="tooltip" data-bs-placement="top" title="' . __("Antenna azimuth") . '">' . __("Ant az") . '</th>';
+                        echo '<th class="antennaazimuth-column-sort" data-bs-toggle="tooltip" data-bs-placement="top" title="' . __("Antenna azimuth") . '">' . __("Ant az") . '</th>';
                     } ?>
 					<?php if (($options->antennaelevation->show ?? "true") == "true") {
-                        echo '<th data-bs-toggle="tooltip" data-bs-placement="top" title="' .__("Antenna elevation") .'">' . __("Ant el") . '</th>';
+                        echo '<th class="antennaelevation-column-sort" data-bs-toggle="tooltip" data-bs-placement="top" title="' .__("Antenna elevation") .'">' . __("Ant el") . '</th>';
                     } ?>
 					<?php if (($options->profilename->show ?? "true") == "true") {
                         echo '<th>' . __("Profile name") . '</th>';
                     } ?>
 					<?php if (($options->stationpower->show ?? "true") == "true") {
-                        echo '<th>' . __("Station power") . '</th>';
+                        echo '<th class="stationpower-column-sort">' . __("Station power") . '</th>';
                     } ?>
                 </tr>
             </thead>
