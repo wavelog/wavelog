@@ -169,11 +169,23 @@ function loadQSOTable(rows) {
 				url: getDataTablesLanguageUrl(),
 			},
 			"columnDefs": [
-            {
-                "targets": $(".distance-column-sort").index(),
-                "type": "distance", // use the custom sort type from the previous example
-            }
-        ]
+				{
+					"targets": $(".distance-column-sort").index(),
+					"type": "numbersort", // use the custom sort type from the previous example
+				},
+				{
+					"targets": $(".antennaazimuth-column-sort").index(),
+					"type": "numbersort",
+				},
+				{
+					"targets": $(".antennaelevation-column-sort").index(),
+					"type": "numbersort",
+				},
+				{
+					"targets": $(".stationpower-column-sort").index(),
+					"type": "numbersort",
+				},
+			]
 			// colReorder: {
 			// 	order: [0, 2,1,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18]
 			// 	// order: [0, customsortorder]
@@ -337,7 +349,7 @@ function loadQSOTable(rows) {
 	$('[data-bs-toggle="tooltip"]').tooltip();
 }
 
-$.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+$.fn.dataTable.ext.type.order['numbersort-pre'] = function(data) {
     var num = parseFloat(data);
     return isNaN(num) ? 0 : num;
 };
