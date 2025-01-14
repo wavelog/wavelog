@@ -221,7 +221,11 @@ $(function() {
 		}
 
 		try {
-			irrelevant=fetch(CatCallbackURL + '/'+qrg);
+			irrelevant=fetch(CatCallbackURL + '/'+qrg).catch(() => {
+				console.log("Fallback to ugly PopUp");
+				openedWindow = window.open(CatCallbackURL + '/' + qrg);
+				openedWindow.close();
+			});
 		} finally {}
 
 		let check_pong = setInterval(function() {
