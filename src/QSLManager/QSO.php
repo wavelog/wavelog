@@ -1227,8 +1227,8 @@ class QSO
 			'stationpower' => empty($this->stationpower) ? null : $this->stationpower.' W',
 			'distance' => $this->getFormattedDistance(),
 			'region' => $this->region,
-			'antennaelevation' => empty($this->antennaelevation) ? null : $this->antennaelevation.'°',
-			'antennaazimuth' => empty($this->antennaazimuth) ? null : $this->antennaazimuth.'°'
+			'antennaelevation' => $this->antennaelevation == null ? null : $this->antennaelevation.'°',
+			'antennaazimuth' => $this->antennaazimuth == null ? null : $this->antennaazimuth.'°'
 		];
 	}
 
