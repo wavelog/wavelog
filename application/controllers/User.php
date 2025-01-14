@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+include_once(APPPATH . 'controllers' . DIRECTORY_SEPARATOR . 'Dashboard.php');
+
 class User extends CI_Controller {
 
 	public function index()
@@ -373,9 +375,13 @@ class User extends CI_Controller {
 		// Get timezones
 		$data['timezones'] = $this->user_model->timezones();
 
+		// Max value to be present in the "dashboard last QSO count" selectbox
+		$data['dashboard_last_qso_count_limit'] = \Dashboard::MAX_QSOS_COUNT_LIMIT; 
+
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = __("Edit User");
+			// Prepare data and render the user options view
+			$data['page_title'] = __("Edit User"); // TODO this line will be pulled out as it is duplicated in both branches of if statement
 
 			$q = $query->row();
 
@@ -752,10 +758,29 @@ class User extends CI_Controller {
 			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'), $this->uri->segment(3))->row()->option_value ?? 'false');
 			$data['user_utc_headermenu'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'utc_headermenu'), $this->uri->segment(3))->row()->option_value ?? 'false');
 
+			if($this->input->post('user_dashboard_last_qso_count', true)) {
+				$data['user_dashboard_last_qso_count'] = $this->input->post('user_dashboard_last_qso_count', true);
+			} else {
+				// Determine last (recent) QSO count to preselect into the selectbox
+				$last_qso_count_opt = $this->user_options_model->get_options(
+					'dashboard', 
+					array('option_name' => 'last_qso_count', 'option_key' => 'count'), 
+					$this->uri->segment(3)
+				)->result();
+				if (count($last_qso_count_opt) > 0) {
+					// value found in user options - use it
+					$data['user_dashboard_last_qso_count'] = $last_qso_count_opt[0]->option_value;
+				} else {
+					// value not found in user options - use default value
+					$data['user_dashboard_last_qso_count'] = \Dashboard::DEFAULT_QSOS_COUNT;
+				}
+			}
+
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
 		} else {
+			// Data was submitted for saving - save updated options in DB  
 			unset($data);
 			switch($this->user_model->edit($this->input->post())) {
 				// Check for errors
@@ -847,6 +872,7 @@ class User extends CI_Controller {
 			$data['user_winkey'] = $this->input->post('user_winkey');
 			$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
 			$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
+			$data['user_dashboard_last_qso_count'] = $this->input->post('user_dashboard_last_qso_count', true);
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
 		}
