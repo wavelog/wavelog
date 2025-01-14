@@ -487,9 +487,9 @@
 							</div>
 						</div>
 
-						<!-- Map Setting -->
 						<?php if ($this->session->userdata('user_id') == $this->uri->segment(3)) { ?>
 						<div class="col-md">
+							<!-- Map Settings -->
 							<div class="card">
 								<div class="card-header"><?= __("Map Settings"); ?></div>
 								<div class="card-body">
@@ -559,6 +559,23 @@
 											<select class="form-select" id="user_map_gridsquare_show" name="user_map_gridsquare_show">
 												<option value="1" <?php if ($user_map_gridsquare_show == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
 												<option value="0" <?php if ($user_map_gridsquare_show == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Dashboard Settings -->
+							<div class="card">
+								<div class="card-header"><?= __("Dashboard Settings"); ?></div>
+								<div class="card-body">
+									<div class="row">
+										<div class="mb-3">
+											<label for="dashboard-last-qso-count"><?= __("Select the number of latest QSOs to be displayed on dashboard."); ?></label>
+											<select class="form-select" id="dashboard-last-qso-count" name="user_dashboard_last_qso_count">
+												<?php for ($i = 5 ; $i <= $dashboard_last_qso_count_limit; $i += 5) {
+													$selected_attribute_value = $user_dashboard_last_qso_count == $i ? " selected =\"selected\"" : "";
+													printf("<option value=\"{$i}\"{$selected_attribute_value}>{$i}</option>");
+												} ?>
 											</select>
 										</div>
 									</div>
