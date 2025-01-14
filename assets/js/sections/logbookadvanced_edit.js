@@ -177,6 +177,8 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'satellite') {
 		value = $("#editSatellite").val();
 		value2 = $("#editSatelliteMode").val();
+		value3 = $("#editBand").val();
+		value4 = $("#editBandRx").val();
 	}
 	if (column == 'contest') {
 		value = $("#editContest").val();
@@ -210,7 +212,9 @@ function saveBatchEditQsos(id_list) {
 			ids: JSON.stringify(id_list, null, 2),
 			column: column,
 			value: value,
-			value2: value2
+			value2: value2,
+			value3: value3,
+			value4: value4
 		},
 		success: function (data) {
 			if (data != []) {
@@ -234,6 +238,7 @@ function changeEditType(type) {
 	$('#editTextInput').hide();
 	$('#editDate').hide();
 	$('#editBand').hide();
+	$('#editBandTxLabel').hide();
 	$('#editMode').hide();
 	$('#editSatellite').hide();
 	$('#editSatelliteMode').hide();
@@ -269,6 +274,7 @@ function changeEditType(type) {
 		$('#editStationLocation').show();
 	} else if (type == "band") {
 		$('#editBand').show();
+		$('#editBandTxLabel').show();
 		$('#editBandRx').show();
 		$('#editBandRxLabel').show();
 	}else if (type == "mode") {
@@ -279,6 +285,10 @@ function changeEditType(type) {
 		$('#editSatellite').show();
 		$('#editSatelliteMode').show();
 		$('#editSatelliteModeLabel').show();
+		$('#editBand').show();
+		$('#editBandRx').show();
+		$('#editBandTxLabel').show();
+		$('#editBandRxLabel').show();
 	} else if (type == "contest") {
 		$('#editContest').show();
 	} else if (type == "lotwsent" || type == "lotwreceived") {

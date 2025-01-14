@@ -85,6 +85,7 @@
 		<label style="display:none" id="editSatelliteModeLabel" class="mx-2 w-auto" for="editSatelliteMode"><?= __("SAT Mode"); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editSatelliteMode" type="text" name="editSatelliteMode" placeholder="" aria-label="editSatelliteMode">
 
+		<label style="display:none" id="editBandTxLabel" class="mx-2 w-auto" for="editBand"><?= __("Band TX"); ?></label>
 		<select style="display:none" id="editBand" class="form-select w-auto form-select-sm" name="editBand">
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';

@@ -630,7 +630,7 @@ class Logbookadvanced_model extends CI_Model {
         return $this->db->get()->result();
     }
 
-	function saveEditedQsos($ids, $column, $value, $value2) {
+	function saveEditedQsos($ids, $column, $value, $value2, $value3, $value4) {
 		$skipqrzupdate = false;
 		switch($column) {
 			case "cqz": $column = 'COL_CQZ'; break;
@@ -763,17 +763,47 @@ class Logbookadvanced_model extends CI_Model {
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
 
 		} else if ($column == 'COL_SAT_NAME') {
+			$bindings=[];
 
 			$propmode = $value == '' ? '' : 'SAT';
 			$satmode = $value2 ?? '';
+			$bandtx = $value3 == '' ? '' : $value3;
+			$bandrx = $value4 == '' ? '' : $value4;
+
+			$bindings[] = $value;
+			$bindings[] = $propmode;
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_SAT_NAME = ?" .
-			", " . $this->config->item('table_name').".COL_PROP_MODE = ?" .
-			", " . $this->config->item('table_name').".COL_SAT_MODE = ?" .
-			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+			", " . $this->config->item('table_name').".COL_PROP_MODE = ?";
 
-			$query = $this->db->query($sql, array($value, $propmode, $satmode, json_decode($ids, true), $this->session->userdata('user_id')));
+			if ($satmode != '') {
+				$sql .= ", " . $this->config->item('table_name').".COL_SAT_MODE = ?";
+				$bindings[] = $satmode;
+			}
+
+			if ($bandtx != '') {
+				$sql .= ", " . $this->config->item('table_name').".COL_BAND = ?";
+				$bindings[] = $bandtx;
+				$frequencyBand = $this->frequency->defaultFrequencies[$bandtx]['CW'];
+				$sql .= ", " . $this->config->item('table_name').".COL_FREQ = ?";
+				$bindings[] = $frequencyBand;
+			}
+
+			if ($bandrx != '') {
+				$sql .= ", " . $this->config->item('table_name').".COL_BAND_RX = ?";
+				$bindings[] = $bandrx;
+				$frequencyBandRx = $bandrx == '' ? null : $this->frequency->defaultFrequencies[$bandrx]['CW'];
+				$sql .= ", " . $this->config->item('table_name').".COL_FREQ_RX = ?";
+				$bindings[] = $frequencyBandRx;
+			}
+
+			$sql .= " WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$bindings[] = json_decode($ids, true);
+			$bindings[] = $this->session->userdata('user_id');
+
+			$query = $this->db->query($sql, $bindings);
 		} else if ($column == 'COL_LOTW_QSL_SENT') {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
