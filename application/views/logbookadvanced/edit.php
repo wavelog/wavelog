@@ -87,6 +87,7 @@
 
 		<label style="display:none" id="editBandTxLabel" class="mx-2 w-auto" for="editBand"><?= __("Band TX"); ?></label>
 		<select style="display:none" id="editBand" class="form-select w-auto form-select-sm" name="editBand">
+			<option value="">-</option>
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';
 					foreach($bandgroup as $band) {

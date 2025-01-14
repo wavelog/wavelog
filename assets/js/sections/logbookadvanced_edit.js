@@ -142,6 +142,8 @@ function saveBatchEditQsos(id_list) {
 	var column = $("#editColumn").val();
 	var value;
 	var value2;
+	var value3;
+	var value4;
 
 	if (column == 'cqz') {
 		value = $("#editCqz").val();

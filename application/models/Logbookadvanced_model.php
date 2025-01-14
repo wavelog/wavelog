@@ -696,6 +696,8 @@ class Logbookadvanced_model extends CI_Model {
 			$query = $this->db->query($sql, array($stationid, $iotaRef, $sotaRef, $wwffRef, $potaRef, $sig, $sigInfo, $stationCallsign, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_BAND') {
 
+			if ($value == '') return;
+
 			$bandrx = $value2 == '' ? '' : $value2;
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_BAND = ?" .
@@ -724,7 +726,7 @@ class Logbookadvanced_model extends CI_Model {
 
 				$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 					" SET " . $this->config->item('table_name').".COL_GRIDSQUARE = ?" .
-", " . $this->config->item('table_name').".COL_VUCC_GRIDS = ?" .
+					", " . $this->config->item('table_name').".COL_VUCC_GRIDS = ?" .
 					" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 				$query = $this->db->query($sql, array($grid_value, $vucc_value, json_decode($ids, true), $this->session->userdata('user_id')));
