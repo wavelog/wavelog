@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-15 13:26+0000\n"
-"PO-Revision-Date: 2025-01-09 07:41+0000\n"
+"POT-Creation-Date: 2025-01-15 11:19+0000\n"
+"PO-Revision-Date: 2025-01-15 13:27+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -1949,7 +1949,7 @@ msgstr "Logbook QRZ"
 msgid "QRZ QSL Import"
 msgstr "Importação de QSL QRZ"
 
-#: application/controllers/Qrz.php:344
+#: application/controllers/Qrz.php:341 application/controllers/Qrz.php:344
 msgid "QRZ ADIF Information"
 msgstr "Informação ADIF QRZ"
 
@@ -2883,21 +2883,25 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Não foram encontrados perfis de estação com credenciais do HRDlog."
 
+#: application/models/Logbook_model.php:3868
 #: application/models/Logbook_model.php:3871
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
+#: application/models/Logbook_model.php:3869
 #: application/models/Logbook_model.php:3872
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
+#: application/models/Logbook_model.php:3881
 #: application/models/Logbook_model.php:3884
 msgid "QSO on"
 msgstr "Contacto em"
 
+#: application/models/Logbook_model.php:3881
 #: application/models/Logbook_model.php:3884
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -2906,62 +2910,75 @@ msgstr ""
 "Tentou importar um contacto sem nenhum CALL dado. Este contacto não foi "
 "importado. É inválido"
 
+#: application/models/Logbook_model.php:4180
 #: application/models/Logbook_model.php:4183
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:4191
 #: application/models/Logbook_model.php:4194
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:4252
 #: application/models/Logbook_model.php:4255
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:4272
 #: application/models/Logbook_model.php:4275
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:4293
 #: application/models/Logbook_model.php:4296
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4577
+#: application/models/Logbook_model.php:4574
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4577
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
+#: application/models/Logbook_model.php:4635
 #: application/models/Logbook_model.php:4638
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
+#: application/models/Logbook_model.php:4641
 #: application/models/Logbook_model.php:4644
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4646
 #: application/models/Logbook_model.php:4649
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
+#: application/models/Logbook_model.php:4649
 #: application/models/Logbook_model.php:4652
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
+#: application/models/Logbook_model.php:4652
 #: application/models/Logbook_model.php:4655
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
+#: application/models/Logbook_model.php:4655
 #: application/models/Logbook_model.php:4658
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:4661
+#: application/models/Logbook_model.php:4658
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4661
 msgid "unknown"
 msgstr "desconhecido"
 
-#: application/models/Logbook_model.php:5471
+#: application/models/Logbook_model.php:5468
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -2972,6 +2989,7 @@ msgstr "desconhecido"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/user/edit.php:351
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5471
 msgid "Bearing"
 msgstr "Direção"
 
@@ -9096,7 +9114,7 @@ msgstr "Modo Satélite"
 
 #: application/views/logbookadvanced/edit.php:88
 msgid "Band TX"
-msgstr ""
+msgstr "Banda TX"
 
 #: application/views/logbookadvanced/edit.php:101
 msgid "Band RX"
