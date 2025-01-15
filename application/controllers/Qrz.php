@@ -312,7 +312,7 @@ class Qrz extends CI_Controller {
 				if ((($user_id_to_load != null) && ($user_id_to_load != $station->user_id))) {	// Skip User if we're called with a specific user_id
 					continue;
 				} 
-				if ($lastqrz == null) {
+				if (($lastqrz == null) || ($user_id_to_load == null)) {
 					$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
 				}
 				$qrz_api_key = $station->qrzapikey;
