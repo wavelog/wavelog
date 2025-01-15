@@ -315,6 +315,9 @@ class Qrz extends CI_Controller {
 				if (($lastqrz == null) || ($user_id_to_load == null)) {
 					$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
 				}
+				if (($lastqrz ?? '') == '2999-12-31') {	// Nothing to do here, skip station
+					continue;
+				}
 				$qrz_api_key = $station->qrzapikey;
 				$result=($this->mass_download_qsos($qrz_api_key, $lastqrz, $station->station_ids));
 				if (isset($result['tableheaders'])) {
