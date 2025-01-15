@@ -3754,12 +3754,15 @@ class Logbook_model extends CI_Model {
 	}
 
 	function qrz_last_qsl_date($user_id) {
-		$sql = "SELECT date_format(MAX(COALESCE(COL_QRZCOM_QSO_DOWNLOAD_DATE, str_to_date('1900-01-01','%Y-%m-%d'))),'%Y-%m-%d') MAXDATE
+		$sql = "SELECT date_format(MAX(COALESCE(COL_QRZCOM_QSO_DOWNLOAD_DATE, str_to_date('1900-01-01','%Y-%m-%d'))),'%Y-%m-%d') MAXDATE, COUNT(1) as QSOS
 		    FROM " . $this->config->item('table_name') . " INNER JOIN station_profile ON (" . $this->config->item('table_name') . ".station_id = station_profile.station_id)
 		    WHERE station_profile.user_id=? and station_profile.qrzapikey is not null and COL_QRZCOM_QSO_DOWNLOAD_DATE is not null";
-		$query = $this->db->query($sql, $user_id);
+		$query = $this->db->query($sql, array($user_id));
 		$row = $query->row();
-		if (isset($row) && ($row->MAXDATE ?? '' != '')) {
+		if (isset($row) && (($row->QSOS ?? 0) == 0)) {	// Abort / Set LASTQSO to future if no QSO is in Log to prevent processing QRZ-Data
+			return '2999-12-31';
+		}
+		if (isset($row) && (($row->MAXDATE ?? '') != '')) {
 			return $row->MAXDATE;
 		} else {
 			return '1900-01-01';
