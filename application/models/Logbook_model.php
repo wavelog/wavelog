@@ -3722,16 +3722,7 @@ class Logbook_model extends CI_Model {
 			$data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
-		$this->db->where('COL_PRIMARY_KEY', $qsoid);
-		$this->db->where('station_id in (' . $station_ids . ')');
-
-		$this->db->update($this->config->item('table_name'), $data);
-		unset($data);
-
 		if ($qsl_gridsquare != "" || $qsl_vucc_grids != "") {
-			$data = array(
-				'COL_DISTANCE' => 0
-			);
 			$this->db->select('station_profile.station_gridsquare as station_gridsquare');
 			$this->db->where('COL_PRIMARY_KEY', $qsoid);
 			$this->db->join('station_profile', $this->config->item('table_name') . '.station_id = station_profile.station_id', 'left outer');
@@ -3753,11 +3744,11 @@ class Logbook_model extends CI_Model {
 				$data['COL_VUCC_GRIDS'] = $qsl_vucc_grids;
 				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K', $ant_path);
 			}
-
-			$this->db->where('COL_PRIMARY_KEY', $qsoid);
-
-			$this->db->update($this->config->item('table_name'), $data);
 		}
+		$this->db->where('COL_PRIMARY_KEY', $qsoid);
+		$this->db->where('station_id in (' . $station_ids . ')');
+
+		$this->db->update($this->config->item('table_name'), $data);
 
 		return "Updated";
 	}
