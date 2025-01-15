@@ -3712,8 +3712,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		// Check if QRZ or ClubLog is already uploaded. If so, set qso to reupload to qrz.com (M) or clublog
-		$qsql = "select COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE from " . $this->config->item('table_name') . " where COL_BAND=? and COL_CALL=? and COL_STATION_CALLSIGN=? and date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ? and COL_PRIMARY_KEY = ? and station_id in (" . $station_ids . ')';
-		$query = $this->db->query($qsql, array($band, $callsign, $station_callsign, $datetime, $qsoid));
+		$qsql = "SELECT COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE FROM " . $this->config->item('table_name') . " WHERE COL_PRIMARY_KEY = ? AND station_id IN (" . $station_ids . ')';
+		$query = $this->db->query($qsql, $qsoid);
 		$row = $query->row();
 		if (($row->QRZ_STATE ?? '') == 'Y') {
 			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
@@ -3722,28 +3722,8 @@ class Logbook_model extends CI_Model {
 			$data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
-		$this->db->group_start();
-		$this->db->where('date_format(COL_LOTW_QSLRDATE, \'%Y-%m-%d %H:%i\') != ', $qsl_date);
-		$this->db->or_where('COL_LOTW_QSLRDATE is null');
-		$this->db->group_end();
-		$this->db->where('COL_CALL', $callsign);
-		$this->db->where('COL_BAND', $band);
-		$this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ', $datetime);
-		$this->db->where('COL_STATION_CALLSIGN', $station_callsign);
-		$this->db->where('COL_PRIMARY_KEY', $qsoid);
-		$this->db->where('station_id in (' . $station_ids . ')');
-
-		$this->db->update($this->config->item('table_name'), $data);
-		unset($data);
-
 		if ($qsl_gridsquare != "" || $qsl_vucc_grids != "") {
-			$data = array(
-				'COL_DISTANCE' => 0
-			);
 			$this->db->select('station_profile.station_gridsquare as station_gridsquare');
-			$this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ', $datetime);
-			$this->db->where('COL_CALL', $callsign);
-			$this->db->where('COL_BAND', $band);
 			$this->db->where('COL_PRIMARY_KEY', $qsoid);
 			$this->db->join('station_profile', $this->config->item('table_name') . '.station_id = station_profile.station_id', 'left outer');
 			$this->db->where('station_profile.station_id in (' . $station_ids . ')');
@@ -3764,14 +3744,11 @@ class Logbook_model extends CI_Model {
 				$data['COL_VUCC_GRIDS'] = $qsl_vucc_grids;
 				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K', $ant_path);
 			}
-
-			$this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ', $datetime);
-			$this->db->where('COL_CALL', $callsign);
-			$this->db->where('COL_BAND', $band);
-			$this->db->where('COL_PRIMARY_KEY', $qsoid);
-
-			$this->db->update($this->config->item('table_name'), $data);
 		}
+		$this->db->where('COL_PRIMARY_KEY', $qsoid);
+		$this->db->where('station_id in (' . $station_ids . ')');
+
+		$this->db->update($this->config->item('table_name'), $data);
 
 		return "Updated";
 	}
