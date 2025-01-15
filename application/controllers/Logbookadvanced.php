@@ -627,9 +627,11 @@ class Logbookadvanced extends CI_Controller {
 		$column = xss_clean($this->input->post('column'));
 		$value = xss_clean($this->input->post('value'));
 		$value2 = xss_clean($this->input->post('value2'));
+		$value3 = xss_clean($this->input->post('value3'));
+		$value4 = xss_clean($this->input->post('value4'));
 
 		$this->load->model('logbookadvanced_model');
-		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value, $value2);
+		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value, $value2, $value3, $value4);
 
 		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
 
