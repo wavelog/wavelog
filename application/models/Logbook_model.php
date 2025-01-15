@@ -3713,7 +3713,7 @@ class Logbook_model extends CI_Model {
 
 		// Check if QRZ or ClubLog is already uploaded. If so, set qso to reupload to qrz.com (M) or clublog
 		$qsql = "SELECT COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE FROM " . $this->config->item('table_name') . " WHERE COL_PRIMARY_KEY = ? AND station_id IN (" . $station_ids . ')';
-		$query = $this->db->query($qsql, array($band, $callsign, $station_callsign, $datetime, $qsoid));
+		$query = $this->db->query($qsql, $qsoid);
 		$row = $query->row();
 		if (($row->QRZ_STATE ?? '') == 'Y') {
 			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
