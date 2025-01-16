@@ -60,7 +60,7 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 	echo "<td>".$qsl['COL_BAND']."</td>";
 	echo "<td>";
 	if (!empty($qsl['COL_QSLMSG_RCVD'])) {
-		echo $qsl['COL_QSLMSG_RCVD'];
+		echo htmlentities($qsl['COL_QSLMSG_RCVD']);
 	}
 	echo "</td>";
 	echo "<td>".$qsl['COL_PROP_MODE']."</td>";
