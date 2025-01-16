@@ -15,8 +15,8 @@
     var lang_gen_hamradio_cq_zones = '<?= _pgettext("Map Options", "CQ Zones"); ?>';
     var lang_gen_hamradio_itu_zones = '<?= _pgettext("Map Options", "ITU Zones"); ?>';
     var lang_gen_hamradio_nightshadow = '<?= _pgettext("Map Options", "Night Shadow"); ?>';
-	var lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
-	var lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
+    var lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
+    var lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
@@ -64,6 +64,14 @@
     }
     $current_opts = json_decode($options);
     echo "var user_options = $options;";
+    if (!isset($current_opts->qslmsgs)) {
+        echo "\nvar o_template = { qslmsgs: {show: 'false'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+    if (!isset($current_opts->qslmsgr)) {
+        echo "\nvar o_template = { qslmsgr: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
     if (!isset($current_opts->pota)) {
         echo "\nvar o_template = { pota: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
