@@ -521,11 +521,19 @@
                                             </div>
                                             <div class="mb-3 row">
                                                 <div>
-                                                    <label for="qslmsg"><?= __("QSL MSG"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
+                                                    <label for="qslmsg"><?= __("QSL MSG (S)"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
                                                     <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
                                                     <textarea type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qso->COL_QSLMSG; ?></textarea>
                                                     <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
                                                     <div id="qslmsg_hide" style="display:none;"><?php echo $qso->COL_QSLMSG; ?></div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <div>
+                                                    <label for="qslmsgr"><?= __("QSL MSG (R)"); ?></label>
+                                                    <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
+                                                    <textarea readonly type="text" class="form-control" id="qslmsgr" name="qslmsgr" rows="2"><?php echo htmlentities($qso->COL_QSLMSG_RCVD); ?></textarea>
+                                                    <div class="small form-text text-muted"><?= __("Note: Not editable. Only displayed here.") ?></div>
                                                 </div>
                                             </div>
 
