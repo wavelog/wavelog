@@ -80,11 +80,11 @@
 		</tr>
 		<tr>
 			<td><?= __("QSL Msg (S)"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="qslmsgs" type="checkbox" <?php if (($options->qslmsgs->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+			<td><div class="form-check"><input class="form-check-input" name="qslmsgs" type="checkbox" <?php if (($options->qslmsgs->show ?? "false") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("QSL Msg (R)"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="qslmsgr" type="checkbox" <?php if (($options->qslmsgr->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+			<td><div class="form-check"><input class="form-check-input" name="qslmsgr" type="checkbox" <?php if (($options->qslmsgr->show ?? "false") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("DXCC"); ?></td>

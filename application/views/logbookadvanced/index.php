@@ -35,8 +35,8 @@
             \"lotw\":{\"show\":\"true\"},
             \"eqsl\":{\"show\":\"true\"},
             \"clublog\":{\"show\":\"true\"},
-            \"qslmsgs\":{\"show\":\"true\"},
-            \"qslmsgr\":{\"show\":\"true\"},
+            \"qslmsgs\":{\"show\":\"false\"},
+            \"qslmsgr\":{\"show\":\"false\"},
             \"dxcc\":{\"show\":\"true\"},
             \"state\":{\"show\":\"true\"},
             \"cqzone\":{\"show\":\"true\"},
@@ -679,10 +679,10 @@ $options = json_decode($options);
                     <?php if (($options->qrz->show ?? "true") == "true") {
                         echo '<th class="qrz">' . __("QRZ") . '</th>';
                     } ?>
-                    <?php if (($options->qslmsgs->show ?? "true") == "true") {
+                    <?php if (($options->qslmsgs->show ?? "false") == "true") {
                         echo '<th>' . __("QSL Msg (S)") . '</th>';
                     } ?>
-                    <?php if (($options->qslmsgr->show ?? "true") == "true") {
+                    <?php if (($options->qslmsgr->show ?? "false") == "true") {
                         echo '<th>' . __("QSL Msg (R)") . '</th>';
                     } ?>
                     <?php if (($options->dxcc->show ?? "true") == "true") {
