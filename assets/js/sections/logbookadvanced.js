@@ -76,8 +76,11 @@ function updateRow(qso) {
 	if (user_options.qrz.show == "true"){
 		cells.eq(c++).html(qso.qrz);
 	}
-	if (user_options.qslmsg.show == "true"){
+	if (user_options.qslmsgs.show == "true"){
 		cells.eq(c++).text(qso.qslMessage);
+	}
+	if (user_options.qslmsgr.show == "true"){
+		cells.eq(c++).text(qso.qslMessageR);
 	}
 	if (user_options.dxcc.show == "true"){
 		cells.eq(c++).html(qso.dxcc);
@@ -263,8 +266,11 @@ function loadQSOTable(rows) {
 		if (user_options.qrz.show == "true"){
 			data.push(qso.qrz);
 		}
-		if (user_options.qslmsg.show == "true"){
+		if (user_options.qslmsgs.show == "true"){
 			data.push(qso.qslMessage);
+		}
+		if (user_options.qslmsgr.show == "true"){
+			data.push(qso.qslMessageR);
 		}
 		if (user_options.dxcc.show == "true"){
 			data.push(qso.dxcc+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
@@ -1275,7 +1281,8 @@ function saveOptions() {
 			clublog: $('input[name="clublog"]').is(':checked') ? true : false,
 			lotw: $('input[name="lotw"]').is(':checked') ? true : false,
 			eqsl: $('input[name="eqsl"]').is(':checked') ? true : false,
-			qslmsg: $('input[name="qslmsg"]').is(':checked') ? true : false,
+			qslmsgs: $('input[name="qslmsgs"]').is(':checked') ? true : false,
+			qslmsgr: $('input[name="qslmsgr"]').is(':checked') ? true : false,
 			dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
 			state: $('input[name="state"]').is(':checked') ? true : false,
 			cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
