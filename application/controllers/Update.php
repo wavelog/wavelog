@@ -31,138 +31,73 @@ class Update extends CI_Controller {
 	}
 
 	/*
- * Load the DXCC entities
- */
-public function dxcc_entities($xml_data = null) {
-    // Ensure the Paths library is loaded
-    if (!$this->load->is_loaded('Paths')) {
-        $this->load->library('Paths');
-    }
-
-    // Load XML data if not provided
-    if ($xml_data === null) {
-        $xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
-    }
-
-    $a_data = [];
-    $batch_size = 100; // Batch size for database insertion
-    $count = 0;
-
-    foreach ($xml_data->entities->entity as $entity) {
-        $a_data[] = [
-            'adif' => isset($entity->adif) ? (int) $entity->adif : 0,
-            'name' => isset($entity->cqz) ? (string) $entity->name : (string) $entity->entity,
-            'prefix' => isset($entity->cqz) ? (string) $entity->prefix : (string) $entity->call,
-            'ituz' => isset($entity->ituz) ? (float) $entity->ituz : 0,
-            'cqz' => isset($entity->cqz) ? (int) $entity->cqz : 0,
-            'cont' => isset($entity->cont) ? (string) $entity->cont : '',
-            'long' => isset($entity->long) ? (float) $entity->long : 0,
-            'lat' => isset($entity->lat) ? (float) $entity->lat : 0,
-            'start' => isset($entity->start) ? date('Y-m-d H:i:s', strtotime($entity->start)) : null,
-            'end' => isset($entity->end) ? date('Y-m-d H:i:s', strtotime($entity->end)) : null,
-        ];
-
-        $count++;
-
-        // Insert in batches for better performance
-        if ($count % $batch_size === 0) {
-            $this->db->insert_batch('dxcc_entities', $a_data);
-            $a_data = []; // Clear batch data
-            $this->update_status(__("Preparing DXCC-Entries: ") . $count);
-        }
-    }
-
-    // Add the final special entity
-    $a_data[] = [
-        'adif' => 0,
-        'name' => '- NONE - (e.g. /MM, /AM)',
-        'prefix' => '',
-        'ituz' => 0,
-        'cqz' => 0,
-        'cont' => '',
-        'long' => 0,
-        'lat' => 0,
-        'start' => null,
-        'end' => null,
-    ];
-
-    // Insert remaining data
-    if (!empty($a_data)) {
-        $this->db->insert_batch('dxcc_entities', $a_data);
-    }
-
-    $this->update_status(); // Final status update
-    return $count;
-}
-
-
-    /*
-     * Load the dxcc entities
-     */
-	public function dxcc_entities2($xml_data = null) {
-
-        // Load the cty file
-        if(!$this->load->is_loaded('Paths')) {
-        	$this->load->library('Paths');
+	* Load the DXCC entities
+	*/
+	public function dxcc_entities($xml_data = null) {
+		// Ensure the Paths library is loaded
+		if (!$this->load->is_loaded('Paths')) {
+			$this->load->library('Paths');
 		}
-		if ($xml_data == null) {
+
+		// Load XML data if not provided
+		if ($xml_data === null) {
 			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
 		}
 
-		//$xml_data->entities->entity->count();
-
+		$a_data = [];
+		$batch_size = 100; // Batch size for database insertion
 		$count = 0;
-		$a_data=[];
+
 		foreach ($xml_data->entities->entity as $entity) {
-			$startinfo = strtotime($entity->start);
-			$endinfo = strtotime($entity->end);
+			$a_data[] = [
+				'adif' => isset($entity->adif) ? (int) $entity->adif : 0,
+				'name' => isset($entity->cqz) ? (string) $entity->name : (string) $entity->entity,
+				'prefix' => isset($entity->cqz) ? (string) $entity->prefix : (string) $entity->call,
+				'ituz' => isset($entity->ituz) ? (float) $entity->ituz : 0,
+				'cqz' => isset($entity->cqz) ? (int) $entity->cqz : 0,
+				'cont' => isset($entity->cont) ? (string) $entity->cont : '',
+				'long' => isset($entity->long) ? (float) $entity->long : 0,
+				'lat' => isset($entity->lat) ? (float) $entity->lat : 0,
+				'start' => isset($entity->start) ? date('Y-m-d H:i:s', strtotime($entity->start)) : null,
+				'end' => isset($entity->end) ? date('Y-m-d H:i:s', strtotime($entity->end)) : null,
+			];
 
-			$start_date = ($startinfo) ? date('Y-m-d H:i:s',$startinfo) : null;
-			$end_date = ($endinfo) ? date('Y-m-d H:i:s',$endinfo) : null;
+			$count++;
 
-			if(!$entity->cqz) {
-				$data = array(
-					'prefix' => (string) $entity->call,
-					'name' =>  (string) $entity->entity,
-				);
-			} else {
-				$data = array(
-					'adif' => (int) $entity->adif,
-					'name' =>  (string) $entity->name,
-					'prefix' => (string)  $entity->prefix,
-					'ituz' => (float) $entity->ituz,
-					'cqz' => (int) $entity->cqz,
-					'cont' => (string) $entity->cont,
-					'long' => (float) $entity->long,
-					'lat' => (float) $entity->lat,
-					'start' => $start_date,
-					'end' => $end_date,
-				);
+			// Insert in batches for better performance
+			if ($count % $batch_size === 0) {
+				$this->db->insert_batch('dxcc_entities', $a_data);
+				$a_data = []; // Clear batch data
+				$this->update_status(__("Preparing DXCC-Entries: ") . $count);
 			}
-
-			array_push($a_data,$data);
-			$count += 1;
-			if ($count % 10  == 0)
-				$this->update_status(__("Preparing DXCC-Entries: ").$count);
 		}
-		array_push($a_data, array(
-					'adif' => 0,
-					'name' => '- NONE - (e.g. /MM, /AM)',
-					'prefix' => '',
-					'ituz' => 0,
-					'cqz' => 0,
-					'cont' => '',
-					'long' => 0,
-					'lat' => 0,
-					'start' => null,
-					'end' => null
-				));
-		$this->db->insert_batch('dxcc_entities', $a_data);
 
-		$this->update_status();
+		// Add the final special entity
+		$a_data[] = [
+			'adif' => 0,
+			'name' => '- NONE - (e.g. /MM, /AM)',
+			'prefix' => '',
+			'ituz' => 0,
+			'cqz' => 0,
+			'cont' => '',
+			'long' => 0,
+			'lat' => 0,
+			'start' => null,
+			'end' => null,
+		];
+
+		// Insert remaining data
+		if (!empty($a_data)) {
+			$this->db->insert_batch('dxcc_entities', $a_data);
+		}
+
+		$this->update_status(); // Final status update
 		return $count;
 	}
 
+	/*
+     * Load the dxcc prefixes
+     */
 	public function dxcc_exceptions($xml_data = null) {
 		// Ensure the Paths library is loaded
 		if (!$this->load->is_loaded('Paths')) {
@@ -211,53 +146,9 @@ public function dxcc_entities($xml_data = null) {
 		return $count;
 	}
 
-
-    /*
-     * Load the dxcc exceptions
+	/*
+     * Load the dxcc prefixes
      */
-	public function dxcc_exceptions2($xml_data = null) {
-
-        // Load the cty file
-        if(!$this->load->is_loaded('Paths')) {
-        	$this->load->library('Paths');
-		}
-		if ($xml_data == null) {
-			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
-		}
-
-		$count = 0;
-		$a_data=[];
-		foreach ($xml_data->exceptions->exception as $record) {
-			$startinfo = strtotime($record->start);
-			$endinfo = strtotime($record->end);
-
-			$start_date = ($startinfo) ? date('Y-m-d H:i:s',$startinfo) : null;
-			$end_date = ($endinfo) ? date('Y-m-d H:i:s',$endinfo) : null;
-
-			$data = array(
-				'record' => (int) $record->attributes()->record,
-				'call' => (string) $record->call,
-				'entity' =>  (string) $record->entity,
-				'adif' => (int) $record->adif,
-				'cqz' => (int) $record->cqz,
-				'cont' => (string) $record->cont,
-				'long' => (float) $record->long,
-				'lat' => (float) $record->lat,
-				'start' => $start_date,
-				'end' => $end_date,
-			);
-
-			array_push($a_data,$data);
-			$count += 1;
-			if ($count % 10  == 0)
-				$this->update_status(__("Preparing DXCC Exceptions: ").$count);
-		}
-		$this->db->insert_batch('dxcc_exceptions', $a_data);
-
-		$this->update_status();
-		return $count;
-	}
-
 	public function dxcc_prefixes($xml_data = null) {
 		// Load the cty file
 		if (!$this->load->is_loaded('Paths')) {
@@ -303,55 +194,6 @@ public function dxcc_entities($xml_data = null) {
 		}
 
 		$this->update_status(); // Clear the status message
-		return $count;
-	}
-
-
-    /*
-     * Load the dxcc prefixes
-     */
-	public function dxcc_prefixes2($xml_data = null) {
-
-		// Load the cty file
-        if(!$this->load->is_loaded('Paths')) {
-        	$this->load->library('Paths');
-		}
-
-		if ($xml_data == null) {
-			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
-		}
-
-		$count = 0;
-		$a_data=[];
-		foreach ($xml_data->prefixes->prefix as $record) {
-			$startinfo = strtotime($record->start);
-			$endinfo = strtotime($record->end);
-
-			$start_date = ($startinfo) ? date('Y-m-d H:i:s',$startinfo) : null;
-			$end_date = ($endinfo) ? date('Y-m-d H:i:s',$endinfo) : null;
-
-			$data = array(
-				'record' => (int) $record->attributes()->record,
-				'call' => (string) $record->call,
-				'entity' =>  (string) $record->entity,
-				'adif' => (int) $record->adif,
-				'cqz' => (int) $record->cqz,
-				'cont' => (string) $record->cont,
-				'long' => (float) $record->long,
-				'lat' => (float) $record->lat,
-				'start' => $start_date,
-				'end' => $end_date,
-			);
-
-			array_push($a_data,$data);
-			$count += 1;
-			if ($count % 10  == 0)
-				$this->update_status(__("Preparing DXCC Prefixes: ").$count);
-		}
-		$this->db->insert_batch('dxcc_prefixes', $a_data);
-
-		//print("$count prefixes processed");
-		$this->update_status();
 		return $count;
 	}
 
