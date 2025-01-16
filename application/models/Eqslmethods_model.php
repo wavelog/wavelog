@@ -505,10 +505,12 @@ class Eqslmethods_model extends CI_Model {
 	// We could also probably use this:
 	// https://eqsl.cc/qslcard/VerifyQSO.txt
 	// https://www.eqsl.cc/qslcard/ImportADIF.txt
-	function eqsl_update($datetime, $callsign, $band, $mode, $qsl_status, $station_callsign, $station_id, $eqsl_qslrdate = null) {
+	function eqsl_update($datetime, $callsign, $band, $mode, $qsl_status, $station_callsign, $station_id, $eqsl_qslrdate = null, $qslmsg = null) {
 		$data = array(
 			'COL_EQSL_QSLRDATE' => $eqsl_qslrdate ?? date('Y-m-d'), // eQSL gives a date now. Use current date as fallback only
-			'COL_EQSL_QSL_RCVD' => $qsl_status
+			'COL_EQSL_QSL_RCVD' => $qsl_status,
+			// Incoming QSLMSG to be stored in QSLMSG_RCVD
+			'COL_QSLMSG_RCVD' => $qslmsg
 		);
 
 		$this->db->where('COL_TIME_ON >= DATE_ADD(DATE_FORMAT("' . $datetime . '", \'%Y-%m-%d %H:%i\' ), INTERVAL -15 MINUTE )');
