@@ -1201,6 +1201,7 @@ class QSO
 			'qrz' => $this->getqrz(),
 			'dcl' => $this->getdcl(),
 			'qslMessage' => $this->getQSLMsg(),
+			'qslMessageR' => $this->getQSLMsgRcvd(),
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),
 			'state' => $this->getState(),

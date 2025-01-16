@@ -566,7 +566,8 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['lotw']['show'] = $this->input->post('lotw');
 		$json_string['eqsl']['show'] = $this->input->post('eqsl');
 		$json_string['clublog']['show'] = $this->input->post('clublog');
-		$json_string['qslmsg']['show'] = $this->input->post('qslmsg');
+		$json_string['qslmsgs']['show'] = $this->input->post('qslmsgs');
+		$json_string['qslmsgr']['show'] = $this->input->post('qslmsgr');
 		$json_string['dxcc']['show'] = $this->input->post('dxcc');
 		$json_string['state']['show'] = $this->input->post('state');
 		$json_string['cqzone']['show'] = $this->input->post('cqzone');

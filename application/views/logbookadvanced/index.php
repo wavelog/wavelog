@@ -15,8 +15,8 @@
     var lang_gen_hamradio_cq_zones = '<?= _pgettext("Map Options", "CQ Zones"); ?>';
     var lang_gen_hamradio_itu_zones = '<?= _pgettext("Map Options", "ITU Zones"); ?>';
     var lang_gen_hamradio_nightshadow = '<?= _pgettext("Map Options", "Night Shadow"); ?>';
-	var lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
-	var lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
+    var lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
+    var lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
@@ -35,7 +35,8 @@
             \"lotw\":{\"show\":\"true\"},
             \"eqsl\":{\"show\":\"true\"},
             \"clublog\":{\"show\":\"true\"},
-            \"qslmsg\":{\"show\":\"true\"},
+            \"qslmsgs\":{\"show\":\"false\"},
+            \"qslmsgr\":{\"show\":\"false\"},
             \"dxcc\":{\"show\":\"true\"},
             \"state\":{\"show\":\"true\"},
             \"cqzone\":{\"show\":\"true\"},
@@ -45,24 +46,32 @@
             \"operator\":{\"show\":\"true\"},
             \"comment\":{\"show\":\"true\"},
             \"propagation\":{\"show\":\"true\"},
-			\"contest\":{\"show\":\"true\"},
-			\"gridsquare\":{\"show\":\"true\"},
-			\"sota\":{\"show\":\"true\"},
-			\"dok\":{\"show\":\"true\"},
-			\"wwff\":{\"show\":\"true\"},
-			\"sig\":{\"show\":\"true\"},
-			\"continent\":{\"show\":\"true\"},
-			\"qrz\":{\"show\":\"true\"},
-			\"profilename\":{\"show\":\"true\"},
-			\"stationpower\":{\"show\":\"true\"},
-			\"distance\":{\"show\":\"true\"},
-			\"region\":{\"show\":\"true\"},
-			\"antennaazimuth\":{\"show\":\"true\"},
-			\"antennaelevation\":{\"show\":\"true\"}
+            \"contest\":{\"show\":\"true\"},
+            \"gridsquare\":{\"show\":\"true\"},
+            \"sota\":{\"show\":\"true\"},
+            \"dok\":{\"show\":\"true\"},
+            \"wwff\":{\"show\":\"true\"},
+            \"sig\":{\"show\":\"true\"},
+            \"continent\":{\"show\":\"true\"},
+            \"qrz\":{\"show\":\"true\"},
+            \"profilename\":{\"show\":\"true\"},
+            \"stationpower\":{\"show\":\"true\"},
+            \"distance\":{\"show\":\"true\"},
+            \"region\":{\"show\":\"true\"},
+            \"antennaazimuth\":{\"show\":\"true\"},
+            \"antennaelevation\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
     echo "var user_options = $options;";
+    if (!isset($current_opts->qslmsgs)) {
+        echo "\nvar o_template = { qslmsgs: {show: 'false'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+    if (!isset($current_opts->qslmsgr)) {
+        echo "\nvar o_template = { qslmsgr: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
     if (!isset($current_opts->pota)) {
         echo "\nvar o_template = { pota: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
@@ -111,35 +120,35 @@
         echo "\nvar o_template = { sig: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
-	if (!isset($current_opts->continent)) {
+    if (!isset($current_opts->continent)) {
         echo "\nvar o_template = { continent: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
-	if (!isset($current_opts->qrz)) {
+    if (!isset($current_opts->qrz)) {
         echo "\nvar o_template = { qrz: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
-	if (!isset($current_opts->profilename)) {
+    if (!isset($current_opts->profilename)) {
         echo "\nvar o_template = { profilename: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
-	if (!isset($current_opts->stationpower)) {
+    if (!isset($current_opts->stationpower)) {
         echo "\nvar o_template = { stationpower: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
-	if (!isset($current_opts->distance)) {
+    if (!isset($current_opts->distance)) {
         echo "\nvar o_template = { distance: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
-	if (!isset($current_opts->region)) {
+    if (!isset($current_opts->region)) {
         echo "\nvar o_template = { region: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
-	if (!isset($current_opts->antennaazimuth)) {
+    if (!isset($current_opts->antennaazimuth)) {
         echo "\nvar o_template = { antennaazimuth: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
-	if (!isset($current_opts->antennaelevation)) {
+    if (!isset($current_opts->antennaelevation)) {
         echo "\nvar o_template = { antennaelevation: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
@@ -675,11 +684,14 @@ $options = json_decode($options);
                     <?php if ($this->session->userdata('user_lotw_name') != "" && ($options->lotw->show ?? "true") == "true") {
                         echo '<th class="lotwconfirmation">LoTW</th>';
                     } ?>
-					<?php if (($options->qrz->show ?? "true") == "true") {
+                    <?php if (($options->qrz->show ?? "true") == "true") {
                         echo '<th class="qrz">' . __("QRZ") . '</th>';
                     } ?>
-                    <?php if (($options->qslmsg->show ?? "true") == "true") {
-                        echo '<th>' . __("QSL Msg") . '</th>';
+                    <?php if (($options->qslmsgs->show ?? "false") == "true") {
+                        echo '<th>' . __("QSL Msg (S)") . '</th>';
+                    } ?>
+                    <?php if (($options->qslmsgr->show ?? "false") == "true") {
+                        echo '<th>' . __("QSL Msg (R)") . '</th>';
                     } ?>
                     <?php if (($options->dxcc->show ?? "true") == "true") {
                         echo '<th>' . __("DXCC") . '</th>';
@@ -699,7 +711,7 @@ $options = json_decode($options);
                     <?php if (($options->pota->show ?? "true") == "true") {
                         echo '<th>' . __("POTA") . '</th>';
                     } ?>
-					<?php if (($options->sota->show ?? "true") == "true") {
+                    <?php if (($options->sota->show ?? "true") == "true") {
                         echo '<th>SOTA</th>';
                     } ?>
                     <?php if (($options->dok->show ?? "true") == "true") {
@@ -711,7 +723,7 @@ $options = json_decode($options);
                     <?php if (($options->sig->show ?? "true") == "true") {
                         echo '<th>SIG</th>';
                     } ?>
-					<?php if (($options->region->show ?? "true") == "true") {
+                    <?php if (($options->region->show ?? "true") == "true") {
                         echo '<th>' . __("Region") . '</th>';
                     } ?>
                     <?php if (($options->operator->show ?? "true") == "true") {
@@ -729,22 +741,22 @@ $options = json_decode($options);
                     <?php if (($options->myrefs->show ?? "true") == "true") {
                         echo '<th>' . __("My Refs") . '</th>';
                     } ?>
-					<?php if (($options->continent->show ?? "true") == "true") {
+                    <?php if (($options->continent->show ?? "true") == "true") {
                         echo '<th>' . __("Continent") . '</th>';
                     } ?>
-					<?php if (($options->distance->show ?? "true") == "true") {
+                    <?php if (($options->distance->show ?? "true") == "true") {
                         echo '<th class="distance-column-sort">' . __("Distance") . '</th>';
                     } ?>
-					<?php if (($options->antennaazimuth->show ?? "true") == "true") {
+                    <?php if (($options->antennaazimuth->show ?? "true") == "true") {
                         echo '<th class="antennaazimuth-column-sort" data-bs-toggle="tooltip" data-bs-placement="top" title="' . __("Antenna azimuth") . '">' . __("Ant az") . '</th>';
                     } ?>
-					<?php if (($options->antennaelevation->show ?? "true") == "true") {
+                    <?php if (($options->antennaelevation->show ?? "true") == "true") {
                         echo '<th class="antennaelevation-column-sort" data-bs-toggle="tooltip" data-bs-placement="top" title="' .__("Antenna elevation") .'">' . __("Ant el") . '</th>';
                     } ?>
-					<?php if (($options->profilename->show ?? "true") == "true") {
+                    <?php if (($options->profilename->show ?? "true") == "true") {
                         echo '<th>' . __("Profile name") . '</th>';
                     } ?>
-					<?php if (($options->stationpower->show ?? "true") == "true") {
+                    <?php if (($options->stationpower->show ?? "true") == "true") {
                         echo '<th class="stationpower-column-sort">' . __("Station power") . '</th>';
                     } ?>
                 </tr>
