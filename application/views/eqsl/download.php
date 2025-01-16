@@ -39,6 +39,7 @@
 				<th><?= __("Mode"); ?></th>
 				<th><?= __("Submode"); ?></th>
 				<th><?= __("Band"); ?></th>
+				<th><?= __("QSL Message"); ?></th>
 				<th><?= __("Propagation Mode"); ?></th>
 				<th><?= __("eQSL Receive Date"); ?></th>
 				<th><?= __("Action"); ?></th>
@@ -57,6 +58,11 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 		echo "<td></td>";
 	}
 	echo "<td>".$qsl['COL_BAND']."</td>";
+	echo "<td>";
+	if (!empty($qsl['COL_QSLMSG_RCVD'])) {
+		echo $qsl['COL_QSLMSG_RCVD'];
+	}
+	echo "</td>";
 	echo "<td>".$qsl['COL_PROP_MODE']."</td>";
 	echo "<td>";
 	if (!empty($qsl['COL_EQSL_QSLRDATE'])) {
