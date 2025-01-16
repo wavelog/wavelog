@@ -30,16 +30,84 @@ class Update extends CI_Controller {
 
 	}
 
+	/*
+ * Load the DXCC entities
+ */
+public function dxcc_entities($xml_data = null) {
+    // Ensure the Paths library is loaded
+    if (!$this->load->is_loaded('Paths')) {
+        $this->load->library('Paths');
+    }
+
+    // Load XML data if not provided
+    if ($xml_data === null) {
+        $xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+    }
+
+    $a_data = [];
+    $batch_size = 100; // Batch size for database insertion
+    $count = 0;
+
+    foreach ($xml_data->entities->entity as $entity) {
+        $a_data[] = [
+            'adif' => isset($entity->adif) ? (int) $entity->adif : 0,
+            'name' => isset($entity->cqz) ? (string) $entity->name : (string) $entity->entity,
+            'prefix' => isset($entity->cqz) ? (string) $entity->prefix : (string) $entity->call,
+            'ituz' => isset($entity->ituz) ? (float) $entity->ituz : 0,
+            'cqz' => isset($entity->cqz) ? (int) $entity->cqz : 0,
+            'cont' => isset($entity->cont) ? (string) $entity->cont : '',
+            'long' => isset($entity->long) ? (float) $entity->long : 0,
+            'lat' => isset($entity->lat) ? (float) $entity->lat : 0,
+            'start' => isset($entity->start) ? date('Y-m-d H:i:s', strtotime($entity->start)) : null,
+            'end' => isset($entity->end) ? date('Y-m-d H:i:s', strtotime($entity->end)) : null,
+        ];
+
+        $count++;
+
+        // Insert in batches for better performance
+        if ($count % $batch_size === 0) {
+            $this->db->insert_batch('dxcc_entities', $a_data);
+            $a_data = []; // Clear batch data
+            $this->update_status(__("Preparing DXCC-Entries: ") . $count);
+        }
+    }
+
+    // Add the final special entity
+    $a_data[] = [
+        'adif' => 0,
+        'name' => '- NONE - (e.g. /MM, /AM)',
+        'prefix' => '',
+        'ituz' => 0,
+        'cqz' => 0,
+        'cont' => '',
+        'long' => 0,
+        'lat' => 0,
+        'start' => null,
+        'end' => null,
+    ];
+
+    // Insert remaining data
+    if (!empty($a_data)) {
+        $this->db->insert_batch('dxcc_entities', $a_data);
+    }
+
+    $this->update_status(); // Final status update
+    return $count;
+}
+
+
     /*
      * Load the dxcc entities
      */
-	public function dxcc_entities() {
+	public function dxcc_entities2($xml_data = null) {
 
         // Load the cty file
         if(!$this->load->is_loaded('Paths')) {
         	$this->load->library('Paths');
 		}
-		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+		if ($xml_data == null) {
+			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+		}
 
 		//$xml_data->entities->entity->count();
 
@@ -95,16 +163,67 @@ class Update extends CI_Controller {
 		return $count;
 	}
 
+	public function dxcc_exceptions($xml_data = null) {
+		// Ensure the Paths library is loaded
+		if (!$this->load->is_loaded('Paths')) {
+			$this->load->library('Paths');
+		}
+
+		// Load XML data if not provided
+		if ($xml_data === null) {
+			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+		}
+
+		$a_data = [];
+		$batch_size = 100; // Batch size for efficient database inserts
+		$count = 0;
+
+		foreach ($xml_data->exceptions->exception as $record) {
+			$a_data[] = [
+				'record' => (int) $record->attributes()->record,
+				'call' => (string) $record->call,
+				'entity' => (string) $record->entity,
+				'adif' => (int) $record->adif,
+				'cqz' => (int) $record->cqz,
+				'cont' => (string) $record->cont,
+				'long' => (float) $record->long,
+				'lat' => (float) $record->lat,
+				'start' => $record->start ? date('Y-m-d H:i:s', strtotime($record->start)) : null,
+				'end' => $record->end ? date('Y-m-d H:i:s', strtotime($record->end)) : null,
+			];
+
+			$count++;
+
+			// Insert in batches for better performance
+			if ($count % $batch_size === 0) {
+				$this->db->insert_batch('dxcc_exceptions', $a_data);
+				$a_data = []; // Clear batch data
+				$this->update_status(__("Preparing DXCC Exceptions: ") . $count);
+			}
+		}
+
+		// Insert any remaining records
+		if (!empty($a_data)) {
+			$this->db->insert_batch('dxcc_exceptions', $a_data);
+		}
+
+		$this->update_status(); // Final status update
+		return $count;
+	}
+
+
     /*
      * Load the dxcc exceptions
      */
-	public function dxcc_exceptions() {
+	public function dxcc_exceptions2($xml_data = null) {
 
         // Load the cty file
         if(!$this->load->is_loaded('Paths')) {
         	$this->load->library('Paths');
 		}
-		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+		if ($xml_data == null) {
+			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+		}
 
 		$count = 0;
 		$a_data=[];
@@ -139,16 +258,68 @@ class Update extends CI_Controller {
 		return $count;
 	}
 
+	public function dxcc_prefixes($xml_data = null) {
+		// Load the cty file
+		if (!$this->load->is_loaded('Paths')) {
+			$this->load->library('Paths');
+		}
+
+		// Load XML data if not provided
+		if ($xml_data === null) {
+			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+		}
+
+		$a_data = [];
+		$batch_size = 100; // Insert in batches of 100 for efficiency
+		$count = 0;
+
+		foreach ($xml_data->prefixes->prefix as $record) {
+			$a_data[] = [
+				'record' => (int) $record->attributes()->record,
+				'call' => (string) $record->call,
+				'entity' => (string) $record->entity,
+				'adif' => (int) $record->adif,
+				'cqz' => (int) $record->cqz,
+				'cont' => (string) $record->cont,
+				'long' => (float) $record->long,
+				'lat' => (float) $record->lat,
+				'start' => $record->start ? date('Y-m-d H:i:s', strtotime($record->start)) : null,
+				'end' => $record->end ? date('Y-m-d H:i:s', strtotime($record->end)) : null,
+			];
+
+			$count++;
+
+			// Insert in batches to avoid memory overload
+			if ($count % $batch_size === 0) {
+				$this->db->insert_batch('dxcc_prefixes', $a_data);
+				$a_data = []; // Clear the batch array
+				$this->update_status(__("Preparing DXCC Prefixes: ") . $count);
+			}
+		}
+
+		// Insert any remaining records
+		if (!empty($a_data)) {
+			$this->db->insert_batch('dxcc_prefixes', $a_data);
+		}
+
+		$this->update_status(); // Clear the status message
+		return $count;
+	}
+
+
     /*
      * Load the dxcc prefixes
      */
-	public function dxcc_prefixes() {
+	public function dxcc_prefixes2($xml_data = null) {
 
 		// Load the cty file
         if(!$this->load->is_loaded('Paths')) {
         	$this->load->library('Paths');
 		}
-		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+
+		if ($xml_data == null) {
+			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+		}
 
 		$count = 0;
 		$a_data=[];
@@ -249,9 +420,10 @@ class Update extends CI_Controller {
 
         // Parse the three sections of the file and update the tables
         $this->db->trans_start();
-        $this->dxcc_entities();
-        $this->dxcc_exceptions();
-        $this->dxcc_prefixes();
+		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+        $this->dxcc_exceptions($xml_data);
+        $this->dxcc_entities($xml_data);
+        $this->dxcc_prefixes($xml_data);
 		$sql = "update dxcc_entities
 		join dxcc_temp on dxcc_entities.adif = dxcc_temp.adif
 		set dxcc_entities.ituz = dxcc_temp.ituz;";
