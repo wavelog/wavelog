@@ -187,6 +187,7 @@ class Satellite extends CI_Controller {
 			'assets/js/sections/three-orbit-controls.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/three-orbit-controls.js")),
 			'assets/js/sections/satellite_functions.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite_functions.js")),
 			'assets/js/sections/flightpath.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/flightpath.js")),
+			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
 		$homegrid = explode(',', $this->stations->find_gridsquare());

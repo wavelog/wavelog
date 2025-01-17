@@ -345,6 +345,8 @@ var sats = (function (L, d3, satelliteJs) {
 
     legend.addTo(leafletMap);
 
+    var maidenhead = L.maidenhead().addTo(leafletMap);
+
     attributionControl = L.control.attribution({
       prefix: ''
     }).addTo(leafletMap);

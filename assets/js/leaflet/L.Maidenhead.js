@@ -37,8 +37,8 @@ L.Maidenhead = L.LayerGroup.extend({
 	redraw: function () {
 		var d3 =         new Array(20,10,10,10,10,10,1 ,1 ,1 ,1 ,1/24,1/24,1/24,1/24,1/24,1/240,1/240,1/240,1/240,1/240/24,1/240/24 );
 		var lat_cor =    new Array(0 ,8 ,8 ,8 ,10,14,6 ,8 ,8 ,8 ,1.4 ,2.5 ,3   ,3.5 ,4   ,4    ,3.5  ,3.5  ,3    ,1.8     ,1.6      );
-		var bounds = map.getBounds();
-		var zoom = map.getZoom();
+		var bounds = this._map.getBounds();
+		var zoom = this._map.getZoom();
 		var unit = d3[zoom];
 		var lcor = lat_cor[zoom];
 		var w = bounds.getWest();
@@ -67,7 +67,7 @@ L.Maidenhead = L.LayerGroup.extend({
     	
 	_getLabel: function(lon,lat) {
 	  var title_size = new Array(0 ,10,12,16,20,26,15,16,24,36,12  ,14  ,20  ,36  ,60  ,12   ,20   ,36   ,60   ,12      ,24       );
-	  var zoom = map.getZoom();
+	  var zoom = this._map.getZoom();
 	  var size = title_size[zoom]+'px';
 	  var title = '<span class="grid-text" style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator(lon,lat) + '</font></span>';
       var myIcon = L.divIcon({className: 'my-div-icon', html: title});
@@ -83,7 +83,7 @@ L.Maidenhead = L.LayerGroup.extend({
       var locator = "";
       var x = lon;
       var y = lat;
-      var precision = d4[map.getZoom()];
+      var precision = d4[this._map.getZoom()];
       while (x < -180) {x += 360;}
       while (x > 180) {x -=360;}
       x = x + 180;
