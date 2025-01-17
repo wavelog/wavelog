@@ -288,7 +288,7 @@ class Clublog_model extends CI_Model
 	}
 
 	function all_enabled($userid) {
-		$sql = "select sp.station_callsign, group_concat(sp.station_id) as station_ids from station_profile sp 
+		$sql = "select sp.station_callsign, group_concat(sp.station_id) as station_ids from station_profile sp
 			inner join users u on (u.user_id=sp.user_id)
 			where u.user_clublog_name is not null and u.user_clublog_password is not null and sp.clublogignore=0 and u.user_id=?
 			group by sp.station_callsign";
@@ -312,4 +312,35 @@ class Clublog_model extends CI_Model
 
 		return $this->db->get();
 	}
+
+	function stations_with_clublog_enabled() {
+		$bindings=[];
+		$sql = "SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, modc.modcount, notc.notcount, totc.totcount
+			FROM station_profile
+			LEFT OUTER JOIN (
+				SELECT count(*) modcount, station_id
+				FROM ". $this->config->item('table_name') .
+				" WHERE COL_CLUBLOG_QSO_UPLOAD_STATUS = 'M'
+				group by station_id
+		) as modc on station_profile.station_id = modc.station_id
+		LEFT OUTER JOIN (
+			SELECT count(*) notcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" WHERE (coalesce(COL_CLUBLOG_QSO_UPLOAD_STATUS, '') = ''
+			or COL_CLUBLOG_QSO_UPLOAD_STATUS = 'N')
+			group by station_id
+		) as notc on station_profile.station_id = notc.station_id
+		LEFT OUTER JOIN (
+			SELECT count(*) totcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" WHERE COL_CLUBLOG_QSO_UPLOAD_STATUS = 'Y'
+			group by station_id
+		) as totc on station_profile.station_id = totc.station_id
+		WHERE coalesce(station_profile.clublogignore, 1) = 0
+		AND station_profile.user_id = ?";
+		$bindings[]=$this->session->userdata('user_id');
+		$query = $this->db->query($sql, $bindings);
+
+		return $query;
+    }
 }

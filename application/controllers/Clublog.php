@@ -89,4 +89,30 @@ class Clublog extends CI_Controller
 		// echo ucfirst(strtolower($data['Name']));
 		return $data;
 	}
+
+	/*
+	 * Used for displaying the uid for manually selecting log for upload to qrz
+	 */
+	public function export() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$this->load->model('clublog_model');
+		$this->load->model('stations');
+
+		$data['page_title'] = __("Clublog");
+
+		$data['station_profiles'] = $this->stations->all_of_user();
+
+		$data['station_profile'] = $this->clublog_model->stations_with_clublog_enabled();
+		$data['callsigns'] = $this->stations->callsigns_of_user($this->session->userdata('user_id'));
+
+		$this->load->model('cron_model');
+		$data['next_run_up'] = $this->cron_model->get_next_run("clublog_upload");
+		$data['next_run_down'] = $this->cron_model->get_next_run("clublog_download");
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('clublog/export');
+		$this->load->view('interface_assets/footer');
+	}
 }
