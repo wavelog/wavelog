@@ -7,6 +7,10 @@
 	const homelon = "<?php echo $latlng[1]; ?>";
 	var icon_home_url = "<?php echo base_url();?>assets/images/dot.png";
 </script>
+<script type="text/javascript">
+    var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
+</script>
+
 <style>
     .footprint--LEO {
       fill: rgba(255, 0, 0, 0.5);
