@@ -131,6 +131,13 @@ msgstr ""
 #: application/controllers/Update.php:329
 #: application/controllers/Update.php:340
 #: application/controllers/Update.php:351
+#: application/controllers/Satellite.php:206
+#: application/controllers/Satellite.php:217
+#: application/controllers/Satellite.php:239
+#: application/controllers/Satellite.php:259
+#: application/controllers/Satellite.php:272
+#: application/controllers/Satellite.php:280
+#: application/controllers/Satellite.php:351
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -217,6 +224,7 @@ msgstr "日期有误"
 
 #: application/controllers/Adif.php:134
 #: application/views/interface_assets/header.php:428
+#: application/views/interface_assets/header.php:426
 msgid "ADIF Import / Export"
 msgstr "ADIF 导入/导出"
 
@@ -555,6 +563,7 @@ msgstr "WAE"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:293
+#: application/views/interface_assets/header.php:291
 msgid "Backup"
 msgstr "备份"
 
@@ -571,6 +580,7 @@ msgstr "笔记 - 备份"
 #: application/views/interface_assets/header.php:400
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:65
+#: application/views/interface_assets/header.php:398
 msgid "Bands"
 msgstr "波段"
 
@@ -596,6 +606,7 @@ msgstr "导出 Cabrillo"
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:442
+#: application/views/interface_assets/header.php:440
 msgid "CFD Export"
 msgstr "CFD 导出"
 
@@ -686,6 +697,7 @@ msgstr "比赛日志"
 
 #: application/controllers/Contesting.php:123
 #: application/views/interface_assets/header.php:287
+#: application/views/interface_assets/header.php:285
 msgid "Contests"
 msgstr "比赛"
 
@@ -702,6 +714,7 @@ msgstr "大陆"
 
 #: application/controllers/Cron.php:38
 #: application/views/interface_assets/header.php:297
+#: application/views/interface_assets/header.php:295
 msgid "Cron Manager"
 msgstr "Cron 管理器"
 
@@ -769,6 +782,7 @@ msgstr "未运行"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:436
+#: application/views/interface_assets/header.php:434
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV 导出"
 
@@ -852,6 +866,7 @@ msgstr "和传播方式"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:434
+#: application/views/interface_assets/header.php:432
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas Gridsquare 导出"
 
@@ -930,6 +945,7 @@ msgstr "无 QSO 可供上传。"
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:432
 #: application/views/kml/index.php:3
+#: application/views/interface_assets/header.php:430
 msgid "KML Export"
 msgstr "KML 导出"
 
@@ -1629,6 +1645,7 @@ msgstr "快速查找"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:725 application/views/visitor/index.php:328
+#: application/views/interface_assets/header.php:467
 msgid "Logbook of the World"
 msgstr "Logbook of the World(LoTW)"
 
@@ -1705,6 +1722,7 @@ msgstr "LoTW .TQ8 未发送"
 #: application/controllers/Mode.php:25
 #: application/views/interface_assets/header.php:285
 #: application/views/mode/index.php:27
+#: application/views/interface_assets/header.php:283
 msgid "Modes"
 msgstr "模式"
 
@@ -1883,6 +1901,7 @@ msgstr "无效站台ID"
 
 #: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:459
+#: application/views/interface_assets/header.php:457
 msgid "OQRS Requests"
 msgstr "OQRS"
 
@@ -1927,6 +1946,7 @@ msgstr "负数纬度表示南纬，负数经度表示西经。"
 
 #: application/controllers/Qrz.php:204
 #: application/views/interface_assets/header.php:472
+#: application/views/interface_assets/header.php:470
 msgid "QRZ Logbook"
 msgstr "QRZ 日志簿"
 
@@ -1975,6 +1995,7 @@ msgstr "未提供呼号。"
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:479
 msgid "Hardware Interfaces"
 msgstr "硬件接口"
 
@@ -2130,6 +2151,8 @@ msgstr "卫星时钟"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/interface_assets/header.php:347
+#: application/views/interface_assets/header.php:354
 msgid "Search"
 msgstr "搜索"
 
@@ -2204,6 +2227,8 @@ msgstr "台站地址重复："
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:398
 #: application/views/interface_assets/header.php:544
+#: application/views/interface_assets/header.php:396
+#: application/views/interface_assets/header.php:542
 msgid "Station Setup"
 msgstr "设置台站"
 
@@ -2273,6 +2298,7 @@ msgstr "设置为正在使用的日志"
 #: application/views/interface_assets/header.php:542
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:540
 msgid "Active Logbook"
 msgstr "启用"
 
@@ -2375,6 +2401,7 @@ msgstr "天线分析"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:291
+#: application/views/interface_assets/header.php:289
 msgid "Themes"
 msgstr "主题"
 
@@ -2448,6 +2475,7 @@ msgstr "LoTW 卫星数据更新"
 
 #: application/controllers/User.php:44
 #: application/views/interface_assets/header.php:281
+#: application/views/interface_assets/header.php:279
 msgid "User Accounts"
 msgstr "用户账户"
 
@@ -2519,6 +2547,7 @@ msgstr "登录失败，请重试。"
 #: application/views/interface_assets/header.php:369
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
+#: application/views/interface_assets/header.php:367
 msgid "Login"
 msgstr "登录"
 
@@ -2699,6 +2728,7 @@ msgstr "导出地图"
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
 #: application/views/interface_assets/header.php:473
+#: application/views/interface_assets/header.php:471
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
 
@@ -3451,6 +3481,7 @@ msgstr "显示"
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:22
+#: application/views/satellite/flightpath.php:38
 msgid "Satellite"
 msgstr "卫星"
 
@@ -3497,6 +3528,7 @@ msgstr "QRZ.com"
 #: application/views/activated_gridmap/index.php:86
 #: application/views/gridmap/index.php:130
 #: application/views/satellite/flightpath.php:42
+#: application/views/satellite/flightpath.php:46
 msgid "Plot"
 msgstr "绘制"
 
@@ -4087,6 +4119,7 @@ msgstr "保存"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:480
+#: application/views/interface_assets/header.php:478
 msgid "API Keys"
 msgstr "API 密钥"
 
@@ -6325,6 +6358,7 @@ msgstr "ADIF 名称"
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
+#: application/views/interface_assets/header.php:520
 msgid "Active"
 msgstr "启用"
 
@@ -8081,6 +8115,7 @@ msgstr "已废弃"
 #: application/views/interface_assets/footer.php:138
 #: application/views/interface_assets/header.php:483
 #: application/views/options/sidebar.php:12
+#: application/views/interface_assets/header.php:481
 msgid "Version Info"
 msgstr "版本信息"
 
@@ -8359,19 +8394,23 @@ msgid "SAT Timers"
 msgstr "卫星过境时钟"
 
 #: application/views/interface_assets/header.php:269
+#: application/views/interface_assets/header.php:268
 msgid "Satellite Flightpath"
 msgstr "卫星轨迹"
 
 #: application/views/interface_assets/header.php:272
+#: application/views/interface_assets/header.php:270
 msgid "Satellite Pass"
 msgstr "卫星过境"
 
 #: application/views/interface_assets/header.php:278
 #: application/views/stationsetup/stationsetup.php:113
+#: application/views/interface_assets/header.php:276
 msgid "Admin"
 msgstr "管理员"
 
 #: application/views/interface_assets/header.php:283
+#: application/views/interface_assets/header.php:281
 msgid "Global Options"
 msgstr "全局选项"
 
@@ -8380,22 +8419,27 @@ msgstr "全局选项"
 #: application/views/satellite/index.php:11
 #: application/views/statistics/index.php:48
 #: application/views/statistics/index.php:102
+#: application/views/interface_assets/header.php:287
 msgid "Satellites"
 msgstr "卫星"
 
 #: application/views/interface_assets/header.php:295
+#: application/views/interface_assets/header.php:293
 msgid "Update Country Files"
 msgstr "更新国家文件"
 
 #: application/views/interface_assets/header.php:299
+#: application/views/interface_assets/header.php:297
 msgid "Debug Information"
 msgstr "调试信息"
 
 #: application/views/interface_assets/header.php:346
+#: application/views/interface_assets/header.php:344
 msgid "Add/Search Callsign"
 msgstr "添加/搜索 呼号"
 
 #: application/views/interface_assets/header.php:348
+#: application/views/interface_assets/header.php:346
 msgid "Log"
 msgstr "日志"
 
@@ -8403,10 +8447,12 @@ msgstr "日志"
 #: application/views/logbookadvanced/index.php:528
 #: application/views/oqrs/index.php:27 application/views/user/edit.php:461
 #: application/views/visitor/layout/header.php:95
+#: application/views/interface_assets/header.php:353
 msgid "Search Callsign"
 msgstr "查询呼号"
 
 #: application/views/interface_assets/header.php:382
+#: application/views/interface_assets/header.php:380
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
@@ -8414,87 +8460,107 @@ msgstr "操作员：%s"
 
 #: application/views/interface_assets/header.php:393
 #: application/views/user/edit.php:54
+#: application/views/interface_assets/header.php:391
 msgid "Account"
 msgstr "账户信息"
 
 #: application/views/interface_assets/header.php:405
+#: application/views/interface_assets/header.php:403
 msgid "Switch to Clubstation:"
 msgstr "切换到集体台站："
 
 #: application/views/interface_assets/header.php:409
+#: application/views/interface_assets/header.php:407
 #, php-format
 msgid "Switch to %s"
 msgstr "切换到 %s"
 
 #: application/views/interface_assets/header.php:413
+#: application/views/interface_assets/header.php:411
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "管理 %s"
 
 #: application/views/interface_assets/header.php:422
+#: application/views/interface_assets/header.php:420
 msgid "No Clubstations available"
 msgstr "没有可用的集体台站"
 
 #: application/views/interface_assets/header.php:430
+#: application/views/interface_assets/header.php:428
 msgid "Other Export Options"
 msgstr "其它导出选项"
 
 #: application/views/interface_assets/header.php:438
+#: application/views/interface_assets/header.php:436
 msgid "Cabrillo Export"
 msgstr "Cabrillo 导出"
 
 #: application/views/interface_assets/header.php:440
+#: application/views/interface_assets/header.php:438
 msgid "EDI Export"
 msgstr "EDI 导出"
 
 #: application/views/interface_assets/header.php:464
+#: application/views/interface_assets/header.php:462
 msgid "QSL Queue"
 msgstr "QSL 队列"
 
 #: application/views/interface_assets/header.php:465
+#: application/views/interface_assets/header.php:463
 msgid "Labels"
 msgstr "标签"
 
 #: application/views/interface_assets/header.php:467
+#: application/views/interface_assets/header.php:465
 msgid "Third-Party Services"
 msgstr "第三方服务"
 
 #: application/views/interface_assets/header.php:470
+#: application/views/interface_assets/header.php:468
 msgid "eQSL Import / Export"
 msgstr "eQSL 导入/导出"
 
 #: application/views/interface_assets/header.php:471
+#: application/views/interface_assets/header.php:469
 msgid "HRDLog Logbook"
 msgstr "HRDLog 日志簿"
 
 #: application/views/interface_assets/header.php:484
+#: application/views/interface_assets/header.php:482
 msgid "Help"
 msgstr "帮助"
 
 #: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:483
 msgid "Forum"
 msgstr "论坛"
 
 #: application/views/interface_assets/header.php:489
+#: application/views/interface_assets/header.php:487
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "登出并返回到 %s"
 
 #: application/views/interface_assets/header.php:490
+#: application/views/interface_assets/header.php:488
 #, php-format
 msgid "Switch back to %s"
 msgstr "切换回 %s"
 
 #: application/views/interface_assets/header.php:494
+#: application/views/interface_assets/header.php:492
 msgid "Logout"
 msgstr "注销"
 
 #: application/views/interface_assets/header.php:502
+#: application/views/interface_assets/header.php:500
 msgid "Select a Location"
 msgstr "选择电台站位置"
 
 #: application/views/interface_assets/header.php:581
+#: application/views/interface_assets/header.php:579
 msgid "Extras"
 msgstr "额外"
 
@@ -8897,6 +8963,7 @@ msgstr "西西里岛"
 
 #: application/views/logbookadvanced/index.php:11
 #: application/views/logbookadvanced/useroptions.php:194
+#: application/views/satellite/flightpath.php:11
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "网格"
