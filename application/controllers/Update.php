@@ -123,7 +123,7 @@ class Update extends CI_Controller {
 				'cont' => (string) $record->cont,
 				'long' => (float) $record->long,
 				'lat' => (float) $record->lat,
-				'start' => $record->start ? date('Y-m-d H:i:s', strtotime($record->start)) : null,
+				'start' => (!empty($record->start) && strtotime($record->start)) ? date('Y-m-d H:i:s', strtotime($record->start))  : null,
 				'end' => $record->end ? date('Y-m-d H:i:s', strtotime($record->end)) : null,
 			];
 
@@ -174,7 +174,7 @@ class Update extends CI_Controller {
 				'cont' => (string) $record->cont,
 				'long' => (float) $record->long,
 				'lat' => (float) $record->lat,
-				'start' => $record->start ? date('Y-m-d H:i:s', strtotime($record->start)) : null,
+				'start' => (!empty($record->start) && strtotime($record->start)) ? date('Y-m-d H:i:s', strtotime($record->start))  : null,
 				'end' => $record->end ? date('Y-m-d H:i:s', strtotime($record->end)) : null,
 			];
 
