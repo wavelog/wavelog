@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-17 13:10+0000\n"
-"PO-Revision-Date: 2025-01-15 13:27+0000\n"
+"POT-Creation-Date: 2025-01-16 12:29+0000\n"
+"PO-Revision-Date: 2025-01-17 12:23+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -97,13 +97,13 @@ msgstr ""
 #: application/controllers/Satellite.php:150
 #: application/controllers/Satellite.php:161
 #: application/controllers/Satellite.php:177
-#: application/controllers/Satellite.php:206
-#: application/controllers/Satellite.php:217
-#: application/controllers/Satellite.php:239
-#: application/controllers/Satellite.php:259
-#: application/controllers/Satellite.php:272
-#: application/controllers/Satellite.php:280
-#: application/controllers/Satellite.php:351
+#: application/controllers/Satellite.php:205
+#: application/controllers/Satellite.php:216
+#: application/controllers/Satellite.php:238
+#: application/controllers/Satellite.php:258
+#: application/controllers/Satellite.php:271
+#: application/controllers/Satellite.php:279
+#: application/controllers/Satellite.php:350
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
 #: application/controllers/Simplefle.php:7
@@ -112,10 +112,10 @@ msgstr ""
 #: application/controllers/Themes.php:17
 #: application/controllers/Timeline.php:10
 #: application/controllers/Timeplotter.php:11
-#: application/controllers/Update.php:24 application/controllers/Update.php:318
-#: application/controllers/Update.php:329
-#: application/controllers/Update.php:340
-#: application/controllers/Update.php:351 application/controllers/User.php:14
+#: application/controllers/Update.php:24 application/controllers/Update.php:304
+#: application/controllers/Update.php:315
+#: application/controllers/Update.php:326
+#: application/controllers/Update.php:337 application/controllers/User.php:14
 #: application/controllers/User.php:55 application/controllers/User.php:90
 #: application/controllers/User.php:114 application/controllers/User.php:307
 #: application/controllers/User.php:308 application/controllers/User.php:826
@@ -124,6 +124,17 @@ msgstr ""
 #: application/controllers/User.php:1433 application/controllers/User.php:1459
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Update.php:318
+#: application/controllers/Update.php:329
+#: application/controllers/Update.php:340
+#: application/controllers/Update.php:351
+#: application/controllers/Satellite.php:206
+#: application/controllers/Satellite.php:217
+#: application/controllers/Satellite.php:239
+#: application/controllers/Satellite.php:259
+#: application/controllers/Satellite.php:272
+#: application/controllers/Satellite.php:280
+#: application/controllers/Satellite.php:351
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
 
@@ -209,6 +220,7 @@ msgid "date incorrect"
 msgstr "data incorrecta"
 
 #: application/controllers/Adif.php:134
+#: application/views/interface_assets/header.php:428
 #: application/views/interface_assets/header.php:426
 msgid "ADIF Import / Export"
 msgstr "Importação / Exportação ADIF"
@@ -547,6 +559,7 @@ msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
+#: application/views/interface_assets/header.php:293
 #: application/views/interface_assets/header.php:291
 msgid "Backup"
 msgstr "Backup"
@@ -561,9 +574,10 @@ msgstr "Notas - Backup"
 
 #: application/controllers/Band.php:25 application/views/bands/index.php:28
 #: application/views/bands/index.php:32
-#: application/views/interface_assets/header.php:398
+#: application/views/interface_assets/header.php:400
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:65
+#: application/views/interface_assets/header.php:398
 msgid "Bands"
 msgstr "Bandas"
 
@@ -588,6 +602,7 @@ msgid "Export Cabrillo"
 msgstr "Exportar Cabrillo"
 
 #: application/controllers/Cfdexport.php:20
+#: application/views/interface_assets/header.php:442
 #: application/views/interface_assets/header.php:440
 msgid "CFD Export"
 msgstr "Exportar CFD"
@@ -681,6 +696,7 @@ msgid "Contest Logging"
 msgstr "Registo de concurso"
 
 #: application/controllers/Contesting.php:123
+#: application/views/interface_assets/header.php:287
 #: application/views/interface_assets/header.php:285
 msgid "Contests"
 msgstr "Concursos"
@@ -697,6 +713,7 @@ msgid "Continents"
 msgstr "Continentes"
 
 #: application/controllers/Cron.php:38
+#: application/views/interface_assets/header.php:297
 #: application/views/interface_assets/header.php:295
 msgid "Cron Manager"
 msgstr "Gestor Cron"
@@ -764,6 +781,7 @@ msgid "Not running"
 msgstr "Não está a funcionar"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
+#: application/views/interface_assets/header.php:436
 #: application/views/interface_assets/header.php:434
 msgid "SOTA CSV Export"
 msgstr "Exportar CSV SOTA"
@@ -848,6 +866,7 @@ msgid "and propagation"
 msgstr "e propagação"
 
 #: application/controllers/Dxatlas.php:19
+#: application/views/interface_assets/header.php:434
 #: application/views/interface_assets/header.php:432
 msgid "DX Atlas Gridsquare Export"
 msgstr "Exportar Gridsquare DX Atlas"
@@ -926,8 +945,9 @@ msgid "No QSOs found to upload."
 msgstr "Não foram encontrados QSOs para carregar."
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:430
+#: application/views/interface_assets/header.php:432
 #: application/views/kml/index.php:3
+#: application/views/interface_assets/header.php:430
 msgid "KML Export"
 msgstr "Exportação KML"
 
@@ -1630,10 +1650,11 @@ msgstr "Consulta rápida"
 
 #: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
 #: application/controllers/Lotw.php:125 application/views/adif/import.php:27
-#: application/views/interface_assets/header.php:467
+#: application/views/interface_assets/header.php:469
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:725 application/views/visitor/index.php:328
+#: application/views/interface_assets/header.php:467
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -1709,8 +1730,9 @@ msgid "LoTW .TQ8 Not Sent"
 msgstr ".TQ8 LoTW não enviado"
 
 #: application/controllers/Mode.php:25
-#: application/views/interface_assets/header.php:283
+#: application/views/interface_assets/header.php:285
 #: application/views/mode/index.php:27
+#: application/views/interface_assets/header.php:283
 msgid "Modes"
 msgstr "Modos"
 
@@ -1892,6 +1914,7 @@ msgid "Invalid Station ID"
 msgstr "ID de estação inválido"
 
 #: application/controllers/Oqrs.php:134
+#: application/views/interface_assets/header.php:459
 #: application/views/interface_assets/header.php:457
 msgid "OQRS Requests"
 msgstr "Pedidos OQRS"
@@ -1941,6 +1964,7 @@ msgstr ""
 "oeste de Greenwich."
 
 #: application/controllers/Qrz.php:204
+#: application/views/interface_assets/header.php:472
 #: application/views/interface_assets/header.php:470
 msgid "QRZ Logbook"
 msgstr "Logbook QRZ"
@@ -1989,6 +2013,7 @@ msgid "No callsign provided."
 msgstr "Nenhum indicativo fornecido."
 
 #: application/controllers/Radio.php:17
+#: application/views/interface_assets/header.php:481
 #: application/views/interface_assets/header.php:479
 msgid "Hardware Interfaces"
 msgstr "Interfaces hardware"
@@ -2124,8 +2149,8 @@ msgstr "Tempos dos satélite"
 #: application/controllers/Search.php:19
 #: application/views/continents/index.php:49
 #: application/views/interface_assets/footer.php:40
-#: application/views/interface_assets/header.php:347
-#: application/views/interface_assets/header.php:354
+#: application/views/interface_assets/header.php:349
+#: application/views/interface_assets/header.php:356
 #: application/views/logbookadvanced/index.php:601
 #: application/views/oqrs/index.php:28
 #: application/views/oqrs/showrequests.php:67
@@ -2145,6 +2170,8 @@ msgstr "Tempos dos satélite"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/interface_assets/header.php:347
+#: application/views/interface_assets/header.php:354
 msgid "Search"
 msgstr "Procurar"
 
@@ -2219,6 +2246,8 @@ msgid "Duplicate Station Location:"
 msgstr "Localização da estação duplicada:"
 
 #: application/controllers/Stationsetup.php:35
+#: application/views/interface_assets/header.php:398
+#: application/views/interface_assets/header.php:544
 #: application/views/interface_assets/header.php:396
 #: application/views/interface_assets/header.php:542
 msgid "Station Setup"
@@ -2287,9 +2316,10 @@ msgid "Set as Active Logbook"
 msgstr "Definir como logbook ativo"
 
 #: application/controllers/Stationsetup.php:263
-#: application/views/interface_assets/header.php:540
+#: application/views/interface_assets/header.php:542
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:540
 msgid "Active Logbook"
 msgstr "Logbook Ativo"
 
@@ -2399,6 +2429,7 @@ msgid "Antenna Analytics"
 msgstr "Análise da Antena"
 
 #: application/controllers/Themes.php:27
+#: application/views/interface_assets/header.php:291
 #: application/views/interface_assets/header.php:289
 msgid "Themes"
 msgstr "Temas"
@@ -2427,43 +2458,52 @@ msgstr "Plotador de tempo"
 msgid "Updates"
 msgstr "Actualizações"
 
-#: application/controllers/Update.php:71
+#: application/controllers/Update.php:78 application/controllers/Update.php:71
 msgid "Preparing DXCC-Entries: "
 msgstr "Preparação de registos DXCC: "
 
+#: application/controllers/Update.php:134
 #: application/controllers/Update.php:136
 msgid "Preparing DXCC Exceptions: "
 msgstr "Preparação de Excepções DXCC: "
 
+#: application/controllers/Update.php:178
 #: application/controllers/Update.php:187
 msgid "Preparing DXCC Prefixes: "
 msgstr "Preparação de Prefixos DXCC: "
 
+#: application/controllers/Update.php:261
 #: application/controllers/Update.php:275
 msgid "DONE"
 msgstr "TERMINADO"
 
+#: application/controllers/Update.php:275
 #: application/controllers/Update.php:289
 msgid "Updating..."
 msgstr "A actualizar..."
 
+#: application/controllers/Update.php:278
 #: application/controllers/Update.php:292
 msgid "Dxcc Entities:"
 msgstr "Entidades DXCC:"
 
+#: application/controllers/Update.php:279
 #: application/controllers/Update.php:293
 msgid "Dxcc Exceptions:"
 msgstr "Excepções do DXCC:"
 
+#: application/controllers/Update.php:280
 #: application/controllers/Update.php:294
 msgid "Dxcc Prefixes:"
 msgstr "Prefixos DXCC:"
 
+#: application/controllers/Update.php:415
 #: application/controllers/Update.php:429
 msgid "LoTW SAT Update"
 msgstr "Atualização SAT LoTW"
 
 #: application/controllers/User.php:44
+#: application/views/interface_assets/header.php:281
 #: application/views/interface_assets/header.php:279
 msgid "User Accounts"
 msgstr "Contas de utilizadores"
@@ -2535,9 +2575,10 @@ msgid "Login failed. Try again."
 msgstr "O login falhou. Tente novamente."
 
 #: application/controllers/User.php:986
-#: application/views/interface_assets/header.php:367
+#: application/views/interface_assets/header.php:369
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
+#: application/views/interface_assets/header.php:367
 msgid "Login"
 msgstr "Iniciar sessão"
 
@@ -2735,6 +2776,7 @@ msgstr "Exportar mapa"
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
+#: application/views/interface_assets/header.php:473
 #: application/views/interface_assets/header.php:471
 msgid "QO-100 Dx Club Upload"
 msgstr "Transferência QO-100 Dx Club"
@@ -3494,13 +3536,14 @@ msgstr "Mostrar"
 #: application/views/gridmap/index.php:25 application/views/hamsat/index.php:32
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:253
-#: application/views/satellite/flightpath.php:38
+#: application/views/satellite/flightpath.php:34
 #: application/views/satellite/pass.php:496
 #: application/views/satellite/passtable.php:5
 #: application/views/satellite/skedtable.php:7
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:22
+#: application/views/satellite/flightpath.php:38
 msgid "Satellite"
 msgstr "Satélite"
 
@@ -3546,6 +3589,7 @@ msgstr "QRZ.com"
 
 #: application/views/activated_gridmap/index.php:86
 #: application/views/gridmap/index.php:130
+#: application/views/satellite/flightpath.php:42
 #: application/views/satellite/flightpath.php:46
 msgid "Plot"
 msgstr "Traçar"
@@ -4158,6 +4202,7 @@ msgid "Save"
 msgstr "Guardar"
 
 #: application/views/api/index.php:8
+#: application/views/interface_assets/header.php:480
 #: application/views/interface_assets/header.php:478
 msgid "API Keys"
 msgstr "Chaves API"
@@ -6509,10 +6554,11 @@ msgstr "Nome ADIF"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:520
+#: application/views/interface_assets/header.php:522
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
+#: application/views/interface_assets/header.php:520
 msgid "Active"
 msgstr "Ativo"
 
@@ -8010,7 +8056,7 @@ msgstr ""
 #: application/views/eqslcard/index.php:34
 #: application/views/view_log/qso.php:544
 msgid "QSL Message"
-msgstr ""
+msgstr "Mensagem QSL"
 
 #: application/views/eqsl/download.php:44
 msgid "eQSL Receive Date"
@@ -8340,8 +8386,9 @@ msgid "deprecated"
 msgstr "obsoleto"
 
 #: application/views/interface_assets/footer.php:138
-#: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:483
 #: application/views/options/sidebar.php:12
+#: application/views/interface_assets/header.php:481
 msgid "Version Info"
 msgstr "Informação da Versão"
 
@@ -8621,142 +8668,173 @@ msgstr "Mapa de Bandas"
 msgid "SAT Timers"
 msgstr "Tempos satélite"
 
+#: application/views/interface_assets/header.php:269
 #: application/views/interface_assets/header.php:268
 msgid "Satellite Flightpath"
 msgstr "Trajectória de Satélite"
 
+#: application/views/interface_assets/header.php:272
 #: application/views/interface_assets/header.php:270
 msgid "Satellite Pass"
 msgstr "Passagem de Satélite"
 
-#: application/views/interface_assets/header.php:276
+#: application/views/interface_assets/header.php:278
 #: application/views/stationsetup/stationsetup.php:113
+#: application/views/interface_assets/header.php:276
 msgid "Admin"
 msgstr "Administrador"
 
+#: application/views/interface_assets/header.php:283
 #: application/views/interface_assets/header.php:281
 msgid "Global Options"
 msgstr "Opções Globais"
 
-#: application/views/interface_assets/header.php:287
+#: application/views/interface_assets/header.php:289
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
 #: application/views/satellite/index.php:11
 #: application/views/statistics/index.php:48
 #: application/views/statistics/index.php:102
+#: application/views/interface_assets/header.php:287
 msgid "Satellites"
 msgstr "Satélites"
 
+#: application/views/interface_assets/header.php:295
 #: application/views/interface_assets/header.php:293
 msgid "Update Country Files"
 msgstr "Atualizar ficheiros de países"
 
+#: application/views/interface_assets/header.php:299
 #: application/views/interface_assets/header.php:297
 msgid "Debug Information"
 msgstr "Informações de debug"
 
+#: application/views/interface_assets/header.php:346
 #: application/views/interface_assets/header.php:344
 msgid "Add/Search Callsign"
 msgstr "Adicionar/Pesquisar Indicativo"
 
+#: application/views/interface_assets/header.php:348
 #: application/views/interface_assets/header.php:346
 msgid "Log"
 msgstr "Log"
 
-#: application/views/interface_assets/header.php:353
+#: application/views/interface_assets/header.php:355
 #: application/views/logbookadvanced/index.php:528
 #: application/views/oqrs/index.php:27 application/views/user/edit.php:461
 #: application/views/visitor/layout/header.php:95
+#: application/views/interface_assets/header.php:353
 msgid "Search Callsign"
 msgstr "Pesquisar Indicativo"
 
+#: application/views/interface_assets/header.php:382
 #: application/views/interface_assets/header.php:380
 #, php-format
 msgctxt "Operator: Callsign"
 msgid "Op: %s"
 msgstr "Op: %s"
 
-#: application/views/interface_assets/header.php:391
+#: application/views/interface_assets/header.php:393
 #: application/views/user/edit.php:54
+#: application/views/interface_assets/header.php:391
 msgid "Account"
 msgstr "Conta"
 
+#: application/views/interface_assets/header.php:405
 #: application/views/interface_assets/header.php:403
 msgid "Switch to Clubstation:"
 msgstr "Mudar para estação do clube:"
 
+#: application/views/interface_assets/header.php:409
 #: application/views/interface_assets/header.php:407
 #, php-format
 msgid "Switch to %s"
 msgstr "Mudar para %s"
 
+#: application/views/interface_assets/header.php:413
 #: application/views/interface_assets/header.php:411
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "Gerir %s"
 
+#: application/views/interface_assets/header.php:422
 #: application/views/interface_assets/header.php:420
 msgid "No Clubstations available"
 msgstr "Nenhuma estação do clube disponível"
 
+#: application/views/interface_assets/header.php:430
 #: application/views/interface_assets/header.php:428
 msgid "Other Export Options"
 msgstr "Outras opções de exportação"
 
+#: application/views/interface_assets/header.php:438
 #: application/views/interface_assets/header.php:436
 msgid "Cabrillo Export"
 msgstr "Exportação Cabrillo"
 
+#: application/views/interface_assets/header.php:440
 #: application/views/interface_assets/header.php:438
 msgid "EDI Export"
 msgstr "Exportação EDI"
 
+#: application/views/interface_assets/header.php:464
 #: application/views/interface_assets/header.php:462
 msgid "QSL Queue"
 msgstr "Fila de QSLs"
 
+#: application/views/interface_assets/header.php:465
 #: application/views/interface_assets/header.php:463
 msgid "Labels"
 msgstr "Etiquetas"
 
+#: application/views/interface_assets/header.php:467
 #: application/views/interface_assets/header.php:465
 msgid "Third-Party Services"
 msgstr "Serviços de terceiros"
 
+#: application/views/interface_assets/header.php:470
 #: application/views/interface_assets/header.php:468
 msgid "eQSL Import / Export"
 msgstr "Importação / Exportação de eQSL"
 
+#: application/views/interface_assets/header.php:471
 #: application/views/interface_assets/header.php:469
 msgid "HRDLog Logbook"
 msgstr "Logbook HRDLog"
 
+#: application/views/interface_assets/header.php:484
 #: application/views/interface_assets/header.php:482
 msgid "Help"
 msgstr "Ajuda"
 
+#: application/views/interface_assets/header.php:485
 #: application/views/interface_assets/header.php:483
 msgid "Forum"
 msgstr "Fórum"
 
+#: application/views/interface_assets/header.php:489
 #: application/views/interface_assets/header.php:487
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Parar a representação e voltar a mudar para %s"
 
+#: application/views/interface_assets/header.php:490
 #: application/views/interface_assets/header.php:488
 #, php-format
 msgid "Switch back to %s"
 msgstr "Mudar de volta para %s"
 
+#: application/views/interface_assets/header.php:494
 #: application/views/interface_assets/header.php:492
 msgid "Logout"
 msgstr "Terminar sessão"
 
+#: application/views/interface_assets/header.php:502
 #: application/views/interface_assets/header.php:500
 msgid "Select a Location"
 msgstr "Selecionar uma localização"
 
+#: application/views/interface_assets/header.php:581
 #: application/views/interface_assets/header.php:579
 msgid "Extras"
 msgstr "Extras"
@@ -9574,15 +9652,13 @@ msgstr "QRZ"
 
 #: application/views/logbookadvanced/index.php:691
 #: application/views/logbookadvanced/useroptions.php:82
-#: application/views/qso/edit_ajax.php:524
 msgid "QSL Msg (S)"
-msgstr ""
+msgstr "Msg QSL (E)"
 
 #: application/views/logbookadvanced/index.php:694
 #: application/views/logbookadvanced/useroptions.php:86
-#: application/views/qso/edit_ajax.php:533
 msgid "QSL Msg (R)"
-msgstr ""
+msgstr "Msg QSL (R)"
 
 #: application/views/logbookadvanced/index.php:742
 #: application/views/logbookadvanced/useroptions.php:150
@@ -11001,9 +11077,17 @@ msgstr "Método de receção"
 msgid "Get the default message for eQSL, for this station."
 msgstr "Obtém a mensagem padrão para eQSL, para esta estação."
 
+#: application/views/qso/edit_ajax.php:524
+msgid "QSL MSG (S)"
+msgstr "MSG QSL (E)"
+
+#: application/views/qso/edit_ajax.php:533
+msgid "QSL MSG (R)"
+msgstr "MSG QSL (R)"
+
 #: application/views/qso/edit_ajax.php:536
 msgid "Note: Not editable. Only displayed here."
-msgstr ""
+msgstr "Nota: Não editável. Apenas exibido aqui."
 
 #: application/views/qso/edit_ajax.php:580
 #: application/views/view_log/partial/log_ajax.php:353
