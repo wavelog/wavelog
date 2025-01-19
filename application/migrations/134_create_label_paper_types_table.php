@@ -21,7 +21,7 @@ class Migration_create_label_paper_types_table extends CI_Migration {
 
 				'paper_name' => array(
 					'type' => 'VARCHAR',
-					'constraint' => '250',
+					'constraint' => '191',
 				),
 
 				'metric' => array(

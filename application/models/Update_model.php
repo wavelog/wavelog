@@ -271,7 +271,7 @@ class Update_model extends CI_Model {
         $result=curl_exec($ch);
         curl_close($ch);
         $json = json_decode($result, true);
-        $latest_tag = $json[0]['tag_name'];
+        $latest_tag = $json[0]['tag_name'] ?? 'Unknown';
         return $latest_tag;
     }
 
