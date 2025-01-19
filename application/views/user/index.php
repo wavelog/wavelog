@@ -70,17 +70,21 @@
 									} ?>
 								</td>
 								<td style="text-align: left; vertical-align: middle;">
-									<span class="badge text-bg-success"><?= __("Locations"); ?>: <?php echo $row->stationcount; ?></span>
-									<br>
-									<span class="badge text-bg-info"><?= __("Logbooks"); ?>: <?php echo $row->logbookcount; ?></span>
-									<?php if ($row->qsocount > 0) { ?>
-										<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Last QSO:"); ?><br><?php echo $row->lastqso; ?>">
-											<?php echo $row->qsocount; ?> <?= __("QSO"); ?>
-										</span>
+									<?php if ($row->login_attempts > $maxattempts) { ?>
+										<span class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Account was locked due too many login attempts."); ?>"><?= __("Account locked"); ?></span>
 									<?php } else { ?>
-										<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("No QSOs in Log"); ?>">
-											<?php echo $row->qsocount; ?> <?= __("QSO"); ?>
-										</span>
+										<span class="badge text-bg-success"><?= __("Locations"); ?>: <?php echo $row->stationcount; ?></span>
+										<br>
+										<span class="badge text-bg-info"><?= __("Logbooks"); ?>: <?php echo $row->logbookcount; ?></span>
+										<?php if ($row->qsocount > 0) { ?>
+											<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Last QSO:"); ?><br><?php echo $row->lastqso; ?>">
+												<?php echo $row->qsocount; ?> <?= __("QSO"); ?>
+											</span>
+										<?php } else { ?>
+											<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("No QSOs in Log"); ?>">
+												<?php echo $row->qsocount; ?> <?= __("QSO"); ?>
+											</span>
+										<?php } ?>
 									<?php } ?>
 								</td>
 

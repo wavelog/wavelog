@@ -27,6 +27,12 @@
                 </table>
                 <hr>
                 <div class="d-flex flex-column">
+
+                    <?php if ($is_locked) { ?>
+                    <button class="btn btn-danger mb-2" data-bs-target="#unlockUserModal" data-bs-toggle="modal">
+                        <i class="fas fa-lock-open"></i> <?= __("Unlock User"); ?>
+                    </button>
+                    <?php } ?>
                     
                     <?php if (!$is_clubstation) { ?>
                     <button class="btn btn-primary mb-2" data-bs-target="#passwordResetModal" data-bs-toggle="modal">
@@ -40,6 +46,35 @@
                     </button>
                     <?php } ?>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Close") ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Second Layer - Unlock User Modal -->
+<div class="modal fade bg-black bg-opacity-50" id="unlockUserModal" tabindex="-1" aria-labelledby="unlockUserLabel" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="unlockUserLabel"><?= __("Unlock User"); ?></h5>
+            </div>
+            <div class="modal-body" style="text-align: left !important;">
+                <p><?= __("You are about to unlock the user below. The user was locked due to too many failed login attempts. After unlocking, the user will be able to log in again."); ?></p>
+                <p>
+                    <?= __("User:"); ?> <strong><?php echo $user_name; ?></strong><br>
+                    <?= __("Name:"); ?> <strong><?php echo $user_firstname . ' ' . $user_lastname; ?></strong><br>
+                    <?= __("Callsign:"); ?> <strong><?php echo $user_callsign; ?></strong><br>
+                    <?= __("Language:"); ?> <strong><?= __($user_language); ?></strong><br>
+                    <?= __("E-Mail:"); ?> <strong><a href="mailto:<?php echo $user_email; ?>"><?php echo $user_email; ?></a></strong>
+                </p>
+                <br>
+                <a href="<?php echo site_url('user/unlock/' . $user_id); ?>" class="btn btn-danger">
+                    <i class="fas fa-unlock"></i> <?= __("Unlock User") ?>
+                </a>
+                <div class="alert mt-3" id="pwd_reset_message" style="display: none;" role="alert"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Close") ?></button>

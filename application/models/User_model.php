@@ -672,6 +672,12 @@ class User_Model extends CI_Model {
 		}
 	}
 
+	// FUNCTION: bool unlock($user_id)
+	// Unlocks a user account after it was locked doe too many failed login attempts
+	function unlock($user_id) {
+		return $this->db->query("UPDATE users SET login_attempts = 0 WHERE user_id = ?", [$user_id]);
+	}
+
 	// FUNCTION: object users()
 	// Returns a list of users with additional counts
 	function users($club = '') {
