@@ -956,6 +956,7 @@ class Logbook_model extends CI_Model {
 			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
 			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
 			$this->db->query($sql,array($cl_username,$cl_password));
+			$returner['status'] = $response;
 		} else {
 			$returner['status'] = $response;
 		}
