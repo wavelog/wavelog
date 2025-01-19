@@ -306,6 +306,7 @@ class Search extends CI_Controller {
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
 		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->limit(5000);
 
 		if ($returnquery) {
 			$query = $this->db->get_compiled_select($this->config->item('table_name'));
