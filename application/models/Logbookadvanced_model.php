@@ -102,7 +102,7 @@ class Logbookadvanced_model extends CI_Model {
 			}
 			$conditions[] = "qsos.station_id in (".$stationids.")";
 		}
-		if ($searchCriteria['dx'] !== '*') {
+		if ($searchCriteria['dx'] !== '*' && $searchCriteria['dx'] !== '') {
 			$conditions[] = "COL_CALL LIKE ?";
 			$binding[] = '%' . trim($searchCriteria['dx']) . '%';
 		}
@@ -228,7 +228,7 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['dxcc'];
 		}
 
-        if ($searchCriteria['state'] !== '*') {
+        if ($searchCriteria['state'] !== '*' && $searchCriteria['state'] !== '') {
 			$conditions[] = "COL_STATE = ?";
 			$binding[] = $searchCriteria['state'];
 		}
@@ -246,7 +246,7 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['ituzone'];
 		}
 
-		if ($searchCriteria['qslvia'] !== '*') {
+		if ($searchCriteria['qslvia'] !== '*' && $searchCriteria['qslvia'] !== '') {
 			$conditions[] = "COL_QSL_VIA like ?";
 			$binding[] = $searchCriteria['qslvia'].'%';
 		}
@@ -255,7 +255,7 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_QSL_VIA, '') = ''";
 		}
 
-		if ($searchCriteria['sota'] !== '*') {
+		if ($searchCriteria['sota'] !== '*' && $searchCriteria['sota'] !== '') {
 			$conditions[] = "COL_SOTA_REF like ?";
 			$binding[] = $searchCriteria['sota'].'%';
 		}
@@ -263,7 +263,7 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_SOTA_REF, '') = ''";
 		}
 
-		if ($searchCriteria['pota'] !== '*') {
+		if ($searchCriteria['pota'] !== '*' && $searchCriteria['pota'] !== '') {
 			$conditions[] = "COL_POTA_REF like ?";
 			$binding[] = $searchCriteria['pota'].'%';
 		}
@@ -271,7 +271,7 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_POTA_REF, '') = ''";
 		}
 
-		if ($searchCriteria['wwff'] !== '*') {
+		if ($searchCriteria['wwff'] !== '*' && $searchCriteria['wwff'] !== '') {
 			$conditions[] = "COL_WWFF_REF like ?";
 			$binding[] = $searchCriteria['wwff'].'%';
 		}
@@ -279,7 +279,7 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_WWFF_REF, '') = ''";
 		}
 
-		if ($searchCriteria['operator'] !== '*') {
+		if ($searchCriteria['operator'] !== '*' && $searchCriteria['operator'] !== '') {
 			$conditions[] = "COL_OPERATOR like ?";
 			$binding[] = $searchCriteria['operator'].'%';
 		}
@@ -287,7 +287,7 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_OPERATOR, '') = ''";
 		}
 
-        if ($searchCriteria['gridsquare'] !== '*') {
+        if ($searchCriteria['gridsquare'] !== '*' && $searchCriteria['gridsquare'] !== '') {
                 $conditions[] = "(COL_GRIDSQUARE like ? or COL_VUCC_GRIDS like ?)";
                 $binding[] = '%' . $searchCriteria['gridsquare'] . '%';
                 $binding[] = '%' . $searchCriteria['gridsquare'] . '%';
@@ -310,7 +310,7 @@ class Logbookadvanced_model extends CI_Model {
 			}
 		}
 
-		if ($searchCriteria['contest'] !== '*') {
+		if ($searchCriteria['contest'] !== '*' && $searchCriteria['contest'] !== '') {
 			$conditions[] = "COL_CONTEST_ID like ?";
 			$binding[] = '%'.$searchCriteria['contest'].'%';
 		}
