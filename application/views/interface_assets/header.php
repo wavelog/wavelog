@@ -161,6 +161,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('timeplotter'); ?>" title="View time when worked"><i class="fas fa-chart-area"></i> <?= __("Timeplotter"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('continents'); ?>" title="Continents"><i class="fas fa-globe-europe"></i> <?= __("Continents"); ?></a></li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('callstats'); ?>" title="Callsign Statistics"><i class="fas fa-chart-area"></i> <?= __("Callsign Statistics"); ?></a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"> <!-- AWARDS -->
@@ -374,13 +376,13 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
 								<?php if ($this->session->userdata('clubstation') == 1) {
-									echo '<i class="fas fa-users"></i> ' 
+									echo '<i class="fas fa-users"></i> '
 										. '<b>' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))) . '</b>'
-										. ' <br><small>' 
-										. sprintf(_pgettext("Operator: Callsign", "Op: %s"), str_replace("0","&Oslash;", strtoupper($this->session->userdata('operator_callsign')))) 
-										. '</small>'; 
-								} else { 
-									echo '<i class="fas fa-user"></i> ' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))); 
+										. ' <br><small>'
+										. sprintf(_pgettext("Operator: Callsign", "Op: %s"), str_replace("0","&Oslash;", strtoupper($this->session->userdata('operator_callsign'))))
+										. '</small>';
+								} else {
+									echo '<i class="fas fa-user"></i> ' . str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign')));
 								} ?>
 							</a>
 
@@ -413,7 +415,7 @@
 														</a>
 													<?php } ?>
 												</div>
-											</li>										
+											</li>
 										<?php } ?>
 									<?php } else if ($this->session->userdata('user_type') === '99') { ?>
 										<div class="dropdown-divider"></div>
@@ -591,7 +593,7 @@
 				</ul>
 			</div>
 		</div>
-	</nav>						
+	</nav>
 	<div id="clubswitchModal-container"></div>
 	<div id="stopImpersonateModal-container"></div>
 	<script>
