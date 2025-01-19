@@ -1201,6 +1201,7 @@ class QSO
 			'qrz' => $this->getqrz(),
 			'dcl' => $this->getdcl(),
 			'qslMessage' => $this->getQSLMsg(),
+			'qslMessageR' => $this->getQSLMsgRcvd(),
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),
 			'state' => $this->getState(),
@@ -1224,11 +1225,11 @@ class QSO
 			'sig' => $this->getFormattedSig(),
 			'continent' => $this->continent,
 			'profilename' => $this->profilename,
-			'stationpower' => $this->stationpower,
+			'stationpower' => empty($this->stationpower) ? null : $this->stationpower.' W',
 			'distance' => $this->getFormattedDistance(),
 			'region' => $this->region,
-			'antennaelevation' => $this->antennaelevation,
-			'antennaazimuth' => $this->antennaazimuth
+			'antennaelevation' => $this->antennaelevation == null ? null : $this->antennaelevation.'°',
+			'antennaazimuth' => $this->antennaazimuth == null ? null : $this->antennaazimuth.'°'
 		];
 	}
 

@@ -79,8 +79,12 @@
 			<td><div class="form-check"><input class="form-check-input" name="qrz" type="checkbox" <?php if (($options->qrz->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?= __("QSL Msg"); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="qslmsg" type="checkbox" <?php if (($options->qslmsg->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+			<td><?= __("QSL Msg (S)"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="qslmsgs" type="checkbox" <?php if (($options->qslmsgs->show ?? "false") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td><?= __("QSL Msg (R)"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="qslmsgr" type="checkbox" <?php if (($options->qslmsgr->show ?? "false") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
 			<td><?= __("DXCC"); ?></td>

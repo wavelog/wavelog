@@ -391,6 +391,10 @@ if (!file_exists('.lock')) {
 														</div>
 													</div>
 												</div>
+												<div class="alert alert-info" id="qrz_hint" style="display: none; margin-top: 10px;">
+													<p><i class="fas fa-lightbulb"></i> <?= __("Good to know:"); ?></p>
+													<?= __("Use your callsign as your username for QRZ.com. The XML API does not support email addresses."); ?>
+												</div>
 											</div>
 											<a class="btn btn-sm btn-secondary" id="advancedSettingsButton"><?= __("Advanced Settings"); ?></a>
 											<div class="modal fade" id="advancedSettingsModal" tabindex="-1" aria-labelledby="advancedSettingsModalLabel" aria-hidden="true">
@@ -1405,11 +1409,24 @@ if (!file_exists('.lock')) {
 
 				let directory = $('#directory');
 				let websiteurl = $('#websiteurl');
+				let callbook_type = $('#global_call_lookup');
 				let callbook_username = $('#callbook_username');
 				let callbook_password = $('#callbook_password');
 
 				// On Page Load
 				$(document).ready(function() {
+
+					if (callbook_type.val() === 'qrz') {
+						$('#qrz_hint').show();
+					}
+
+					callbook_type.on('change', function() {
+						if (callbook_type.val() === 'qrz') {
+							$('#qrz_hint').show();
+						} else {
+							$('#qrz_hint').hide();
+						}
+					});
 
 					$('#advancedSettingsButton').click(function() {
 						$('#advancedSettingsModal').modal('show');

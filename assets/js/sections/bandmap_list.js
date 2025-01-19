@@ -221,7 +221,10 @@ $(function() {
 		}
 
 		try {
-			irrelevant=fetch(CatCallbackURL + '/'+qrg);
+			irrelevant=fetch(CatCallbackURL + '/'+qrg).catch(() => {
+				openedWindow = window.open(CatCallbackURL + '/' + qrg);
+				openedWindow.close();
+			});
 		} finally {}
 
 		let check_pong = setInterval(function() {

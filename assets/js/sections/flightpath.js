@@ -1,4 +1,6 @@
 var satmarker;
+var maidenhead;
+var leafletMap;
 var icon_dot_url = base_url + "assets/icons/saticon.png";
 var saticon = L.icon({ iconUrl: icon_dot_url, iconSize: [30, 30] });
 
@@ -288,7 +290,6 @@ var sats = (function (L, d3, satelliteJs) {
   // var TLE_DATA_DATE = new Date(2024, 04, 18).getTime();
   var TLE_DATA_DATE = Date.now();
 
-  var leafletMap;
   var attributionControl;
   var activeClock;
   var sats;
@@ -336,14 +337,20 @@ var sats = (function (L, d3, satelliteJs) {
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
-        div.innerHTML += "<h4>Satellite Orbit</h4>";
-        div.innerHTML += "<i style='background: rgba(255, 0, 0, 0.5)'></i><span>LEO</span><br>";
-        div.innerHTML += "<i style='background: rgba(0, 255, 0, 0.5)'></i><span>MEO</span><br>";
-        div.innerHTML += "<i style='background: rgba(0, 0, 255, 0.5)'></i><span>GEO</span><br>";
+        var html = "<h4>Satellite Orbit</h4>";
+        html += "<table>";
+        html += "<tr><td><i style='background: rgba(255, 0, 0, 0.5)'></i></td><td><span>LEO</span></td></tr>";
+        html += "<tr><td><i style='background: rgba(0, 255, 0, 0.5)'></i></td><td><span>MEO</span></td></tr>";
+        html += "<tr><td><i style='background: rgba(0, 0, 255, 0.5)'></i></td><td><span>GEO</span></td></tr>";
+        html += '<tr><td><input type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"></td><td><span> ' + lang_gen_hamradio_gridsquares + '</span></td></tr>';
+        html += "</table>";
+        div.innerHTML = html;
         return div;
     };
 
     legend.addTo(leafletMap);
+
+    maidenhead = L.maidenhead().addTo(leafletMap);
 
     attributionControl = L.control.attribution({
       prefix: ''
@@ -484,3 +491,11 @@ function plot_sat() {
 		},
 	});
 }
+
+function toggleGridsquares(bool) {
+	if(!bool) {
+		leafletMap.removeLayer(maidenhead);
+	} else {
+		maidenhead.addTo(leafletMap);
+	}
+};

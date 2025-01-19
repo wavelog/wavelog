@@ -456,7 +456,12 @@ class Logbookadvanced extends CI_Controller {
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
+
 		$this->load->model('logbook_model');
+
+		if(!$this->load->is_loaded('DxccFlag')) {
+			$this->load->library('DxccFlag');
+		}
 
 		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
 		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
@@ -480,6 +485,8 @@ class Logbookadvanced extends CI_Controller {
 		$data['satname'] = $qso['COL_SAT_NAME'];
 		$data['orbit'] = $qso['orbit'];
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
+		$data['dxccFlag'] = $this->dxccflag->get($qso['COL_DXCC']);
+		$data['id'] = $qso['COL_PRIMARY_KEY'];
 
 		return $data;
 	}
@@ -488,7 +495,12 @@ class Logbookadvanced extends CI_Controller {
 		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
+
 		$this->load->model('logbook_model');
+
+		if(!$this->load->is_loaded('DxccFlag')) {
+			$this->load->library('DxccFlag');
+		}
 
 		$latlng1 = $this->qra->qra2latlong($mygrid);
 		$latlng2[0] = $lat;
@@ -509,6 +521,8 @@ class Logbookadvanced extends CI_Controller {
 		$data['satname'] = $qso['COL_SAT_NAME'];
 		$data['orbit'] = $qso['orbit'];
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
+		$data['dxccFlag'] = $this->dxccflag->get($qso['COL_DXCC']);
+		$data['id'] = $qso['COL_PRIMARY_KEY'];
 
 		return $data;
 	}
@@ -552,7 +566,8 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['lotw']['show'] = $this->input->post('lotw');
 		$json_string['eqsl']['show'] = $this->input->post('eqsl');
 		$json_string['clublog']['show'] = $this->input->post('clublog');
-		$json_string['qslmsg']['show'] = $this->input->post('qslmsg');
+		$json_string['qslmsgs']['show'] = $this->input->post('qslmsgs');
+		$json_string['qslmsgr']['show'] = $this->input->post('qslmsgr');
 		$json_string['dxcc']['show'] = $this->input->post('dxcc');
 		$json_string['state']['show'] = $this->input->post('state');
 		$json_string['cqzone']['show'] = $this->input->post('cqzone');
@@ -613,9 +628,11 @@ class Logbookadvanced extends CI_Controller {
 		$column = xss_clean($this->input->post('column'));
 		$value = xss_clean($this->input->post('value'));
 		$value2 = xss_clean($this->input->post('value2'));
+		$value3 = xss_clean($this->input->post('value3'));
+		$value4 = xss_clean($this->input->post('value4'));
 
 		$this->load->model('logbookadvanced_model');
-		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value, $value2);
+		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value, $value2, $value3, $value4);
 
 		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
 

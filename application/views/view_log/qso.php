@@ -539,7 +539,11 @@
 
                     <?php if($row->COL_EQSL_QSL_RCVD == "Y" && $row->COL_EQSL_QSLRDATE != null) { ?>
                     <h3>eQSL</h3>
-                        <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                        <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.
+                        <?php if (!empty($row->COL_QSLMSG_RCVD)) { ?>
+                           <br /><?= __("QSL Message"); ?>: <?php echo htmlentities($row->COL_QSLMSG_RCVD); ?>
+                        <?php } ?>
+                        </p>
                     <?php } ?>
 
 					<?php if($row->COL_EQSL_QSL_RCVD == "Y" && $row->COL_EQSL_QSLRDATE == null) { ?>

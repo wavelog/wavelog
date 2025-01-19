@@ -76,8 +76,11 @@ function updateRow(qso) {
 	if (user_options.qrz.show == "true"){
 		cells.eq(c++).html(qso.qrz);
 	}
-	if (user_options.qslmsg.show == "true"){
+	if (user_options.qslmsgs.show == "true"){
 		cells.eq(c++).text(qso.qslMessage);
+	}
+	if (user_options.qslmsgr.show == "true"){
+		cells.eq(c++).text(qso.qslMessageR);
 	}
 	if (user_options.dxcc.show == "true"){
 		cells.eq(c++).html(qso.dxcc);
@@ -169,11 +172,23 @@ function loadQSOTable(rows) {
 				url: getDataTablesLanguageUrl(),
 			},
 			"columnDefs": [
-            {
-                "targets": $(".distance-column-sort").index(),
-                "type": "distance", // use the custom sort type from the previous example
-            }
-        ]
+				{
+					"targets": $(".distance-column-sort").index(),
+					"type": "numbersort", // use the custom sort type from the previous example
+				},
+				{
+					"targets": $(".antennaazimuth-column-sort").index(),
+					"type": "numbersort",
+				},
+				{
+					"targets": $(".antennaelevation-column-sort").index(),
+					"type": "numbersort",
+				},
+				{
+					"targets": $(".stationpower-column-sort").index(),
+					"type": "numbersort",
+				},
+			]
 			// colReorder: {
 			// 	order: [0, 2,1,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18]
 			// 	// order: [0, customsortorder]
@@ -251,8 +266,11 @@ function loadQSOTable(rows) {
 		if (user_options.qrz.show == "true"){
 			data.push(qso.qrz);
 		}
-		if (user_options.qslmsg.show == "true"){
+		if (user_options.qslmsgs.show == "true"){
 			data.push(qso.qslMessage);
+		}
+		if (user_options.qslmsgr.show == "true"){
+			data.push(qso.qslMessageR);
 		}
 		if (user_options.dxcc.show == "true"){
 			data.push(qso.dxcc+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
@@ -337,7 +355,7 @@ function loadQSOTable(rows) {
 	$('[data-bs-toggle="tooltip"]').tooltip();
 }
 
-$.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+$.fn.dataTable.ext.type.order['numbersort-pre'] = function(data) {
     var num = parseFloat(data);
     return isNaN(num) ? 0 : num;
 };
@@ -1263,7 +1281,8 @@ function saveOptions() {
 			clublog: $('input[name="clublog"]').is(':checked') ? true : false,
 			lotw: $('input[name="lotw"]').is(':checked') ? true : false,
 			eqsl: $('input[name="eqsl"]').is(':checked') ? true : false,
-			qslmsg: $('input[name="qslmsg"]').is(':checked') ? true : false,
+			qslmsgs: $('input[name="qslmsgs"]').is(':checked') ? true : false,
+			qslmsgr: $('input[name="qslmsgr"]').is(':checked') ? true : false,
 			dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
 			state: $('input[name="state"]').is(':checked') ? true : false,
 			cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,

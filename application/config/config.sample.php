@@ -37,7 +37,7 @@ $config['display_freq'] = true;
 | QRZ Login Options
 |--------------------------------------------------------------------------
 |
-| 	'qrz_username'	QRZ.com user login
+| 	'qrz_username'	QRZ.com user login (callsign, not email)
 |	'qrz_password'	QRZ.com user password
 |	'use_fullname'  Get full names from QRZ, may not be GDPR compliant
 */
