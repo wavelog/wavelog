@@ -953,6 +953,7 @@ class Logbook_model extends CI_Model {
 		if (preg_match('/\bOK\b/', $response)) {
 			$returner['status'] = 'OK';
 		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
+			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
 			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
 			$this->db->query($sql,array($cl_username,$cl_password));
 		} else {
