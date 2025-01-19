@@ -14,9 +14,6 @@
 					<a class="nav-link" id="mark-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="false"><?= __("Download QSOs"); ?></a>
 				</li>
 				<?php } ?>
-				<li class="nav-item">
-					<a class="nav-link" id="mark-tab" data-bs-toggle="tab" href="#mark" role="tab" aria-controls="export" aria-selected="false"><?= __("Mark QSOs"); ?></a>
-				</li>
 			</ul>
 
         </div>
@@ -84,31 +81,6 @@
 				</form>
 			</div>
 		<?php } ?>
-		<div class="tab-pane fade" id="mark" role="tabpanel" aria-labelledby="home-tab">
-
-				<form class="form" action="<?php echo site_url('clublog/mark_clublog'); ?>" method="post" enctype="multipart/form-data">
-					<select name="station_profile" class="form-select mb-4 me-sm-4" style="width: 30%;">
-						<option disabled value="0"><?= __("Select Station Location"); ?></option>
-						<?php foreach ($station_profiles->result() as $station) { ?>
-							<option <?php if ($station->station_active) { echo "selected "; } ?>value="<?php echo $station->station_id; ?>">Callsign: <?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
-						<?php } ?>
-					</select>
-					<p><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("If a date range is not selected then all QSOs will be marked!"); ?></p>
-					<div class="row">
-						<div class="col-md-2">
-							<label for="from"><?= __("From date") . ": " ?></label>
-							<input name="from" id="from" type="date" class="form-control w-auto">
-						</div>
-
-						<div class="col-md-2">
-							<label for="to"><?= __("To date") . ": " ?></label>
-							<input name="to" id="to" type="date" class="form-control w-auto">
-						</div>
-					</div>
-					<br>
-					<button type="submit" class="btn btn-sm btn-primary" value="Export"><?= __("Mark QSOs as exported to Clublog"); ?></button>
-				</form>
-	</div>
 			</div>
 		</div>
 	</div>
