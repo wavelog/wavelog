@@ -17,27 +17,27 @@ $(document).ready(function () {
 
 	let bandselect = $('#band');
 
-	showHideLeoGeo(bandselect);
+	showHideOrbit(bandselect);
 	bandselect.change(function () {
-		showHideLeoGeo(bandselect);
+		showHideOrbit(bandselect);
 	});
 
 });
 
-function showHideLeoGeo(bandselect) {
+function showHideOrbit(bandselect) {
 
 	if (bandselect.val() == "SAT") {
-		$("#leogeoselect").show();
-		$("#leogeolabel").show();
+		$("#orbitselect").show();
+		$("#orbitlabel").show();
 		$("#satlabel").show();
 		$("#satselect").show();
 	} else {
-		$("#leogeoselect select").val("All");
-		$("#leogeolabel select").val("both");
+		$("#orbitselect select").val("All");
+		$("#orbitlabel select").val("All");
 		$("#satlabel select").val("All");
 		$("#satselect select").val("All");
-		$("#leogeoselect").hide();
-		$("#leogeolabel").hide();
+		$("#orbitselect").hide();
+		$("#orbitlabel").hide();
 		$("#satlabel").hide();
 		$("#satselect").hide();
 	}
@@ -45,13 +45,13 @@ function showHideLeoGeo(bandselect) {
 
 function displayCallstatsContacts(call, band, mode, sat, orbit, propagation) {
 	var data = {
-        Searchphrase: call,
-        Band: band,
+		Searchphrase: call,
+		Band: band,
 		Mode: mode,
 		Propagation: propagation,
-        Sat: sat,
+		Sat: sat,
 		Orbit: orbit
-    };
+	};
 
 	$.ajax({
 		url: base_url + "index.php/callstats/qso_details_callstats",

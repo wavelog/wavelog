@@ -3,18 +3,20 @@
 
     <form class="form" action="<?php echo site_url('callstats'); ?>" method="post" enctype="multipart/form-data">
         <!-- Select Basic -->
-        <div class="mb-3 row">
-            <label class="col-md-1 control-label w-auto" for="band"><?= __("Band"); ?></label>
-            <div class="col-md-3 w-auto">
-                <select id="band" name="band" class="form-select form-select-sm">
-                    <option value="All" <?php if ($bandselect == "All") echo ' selected'; ?>><?= __("All"); ?></option>
-                    <?php foreach ($worked_bands as $band) {
-                        echo '<option value="' . $band . '"';
-                        if ($bandselect == $band) echo ' selected';
-                        echo '>' . $band . '</option>' . "\n";
-                    } ?>
-                </select>
-            </div>
+	<div class="mb-3 row">
+			<label class="col-md-1 control-label w-auto" for="band"><?= __("Band"); ?></label>
+			<div class="col-md-3 w-auto">
+				<select id="band" name="band" class="form-select form-select-sm">
+					<option value="All" <?php if ($bandselect == "All") echo ' selected'; ?>><?= __("All"); ?></option>
+					<?php
+					foreach ($worked_bands as $band) {
+						echo '<option value="' . $band . '"';
+						if ($bandselect == $band) echo ' selected';
+						echo '>' . $band . '</option>' . "\n";
+					}
+					?>
+				</select>
+			</div>
 
 			<label id="satlabel" class="col-md-1 control-label w-auto" for="sat" style="display: none;"><?= __("Satellite"); ?></label>
 			<div id="satselect" class="col-sm-2 w-auto" style="display: none;">
@@ -23,21 +25,26 @@
 					<?php
 					foreach ($sats as $sat) {
 						echo '<option value="' . $sat . '"';
-                        if ($satselect == $sat) echo ' selected';
-                        echo '>' . $sat . '</option>' . "\n";
+						if ($satselect == $sat) echo ' selected';
+						echo '>' . $sat . '</option>' . "\n";
 					}
 					?>
 				</select>
 			</div>
 
-            <label id="leogeolabel" class="col-md-1 control-label w-auto" for="leogeo" style="display: none;">LEO/GEO</label>
-            <div id="leogeoselect" class="col-md-3 w-auto" style="display: none;">
-                <select id="leogeo" name="leogeo" class="form-select form-select-sm">
-                    <option value="both" <?php if ($orbit == 'both') echo ' selected'; ?>><?= _pgettext("Orbiter LEO or GEO", "Both"); ?></option>
-                    <option value="leo" <?php if ($orbit == 'leo') echo ' selected'; ?>>LEO</option>
-                    <option value="geo" <?php if ($orbit == 'geo') echo ' selected'; ?>>GEO</option>
-                </select>
-            </div>
+			<label id="orbitlabel" class="col-md-1 control-label w-auto" for="orbit" style="display: none;"><?= __("Orbit"); ?></label>
+			<div id="orbitselect" class="col-md-3 w-auto" style="display: none;">
+				<select id="orbit" name="orbit" class="form-select form-select-sm">
+					<option value="All"><?= __("All") ?></option>
+					<?php
+					foreach ($orbits as $orbitval) {
+						echo '<option value="' . $orbitval . '"';
+						if ($orbit == $orbitval) echo ' selected';
+						echo '>' . strtoupper($orbitval) . '</option>' . "\n";
+					}
+					?>
+				</select>
+			</div>
 
 			<label class="col-md-1 control-label w-auto" for="mode"><?= __("Mode"); ?></label>
 			<div class="col-sm-2 w-auto">
@@ -57,7 +64,7 @@
 
 			<label class="col-md-1 controll-label w-auto" for="propagation"><?= __("Propagation"); ?></label>
 			<div class="col-sm-4 w-auto">
-				<select class="form-select form-select-sm w-auto" id="propagation"	>
+				<select class="form-select form-select-sm w-auto" name="propagation" id="propagation">
 					<option value="" <?php if ($propagationselect == '') echo ' selected'; ?>><?= __("All"); ?></option>
 					<option value="None" <?php if ($propagationselect == 'None') echo ' selected'; ?>><?= __("None/Empty"); ?></option>
 					<option value="NoSAT" <?php if ($propagationselect == 'NoSAT') echo ' selected'; ?>><?= __("All except SAT") ?></option>
@@ -132,9 +139,6 @@ function write_activators($activators_array, $band, $mode, $sat, $orbit, $propag
 {
     if ($band == '') {
         $band = 'All';
-    }
-    if ($orbit == '') {
-        $orbit = 'both';
     }
     $i = 1;
     echo '<table style="width:100%" class="table table-sm callstatstable table-bordered table-hover table-striped table-condensed text-center">

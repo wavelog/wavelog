@@ -10,7 +10,7 @@ class Callstats_model extends CI_Model {
 		$this->logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 	}
 
-	function get_activators($band, $mode, $propagation, $mincount, $leogeo, $sat) {
+	function get_activators($band, $mode, $propagation, $mincount, $orbit, $sat) {
 
 		if ($mincount == '' || $mincount == 0 || !is_numeric($mincount)) {
 			$mincount = 2;
@@ -27,45 +27,48 @@ class Callstats_model extends CI_Model {
 			`col_call` as `call`,
 			COUNT(*) as `count`
 				from " . $this->config->item('table_name') . "
+				left join satellite on ".$this->config->item('table_name').".COL_SAT_NAME = satellite.name
 				where station_id in (" . $location_list . ")";
 		if ($band != 'All') {
-			$binding[] = $band;
 			if ($band == 'SAT') {
-				switch ($leogeo) {
-					case 'both':
-					$sql .= " and col_prop_mode = ?";
-					break;
-					case 'leo':
-					$sql .= " and col_prop_mode = ?";
-					$sql .= " and col_sat_name != 'QO-100'";
-					break;
-					case 'geo':
-					$sql .= " and col_prop_mode = ?";
-					$sql .= " and col_sat_name = 'QO-100'";
-					break;
-					default:
-					$sql .= " and col_prop_mode = ?";
-					break;
-				}
-				if ($sat != 'All') {
+				$sql .= " and col_prop_mode = ? ";
+				$binding[] = $band;
+				if ($sat != 'All' && $sat != '') {
 					$sql .= " and col_sat_name = ?";
 					$binding[] = $sat;
 				}
 			} else {
-				$sql .= " and col_prop_mode != 'SAT'";
-				$sql .= " and COL_BAND = ?";
+				if ($propagation == 'None') {
+					$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
+				} elseif ($propagation == 'NoSAT') {
+					$sql .= " and col_prop_mode != 'SAT'";
+				} elseif ($propagation != '') {
+					$sql .= " and col_prop_mode = ?";
+					$binding[] = $propagation;
+				}
+				$sql .= " and col_band = ?";
+				$binding[] = $band;
 			}
-		}
-
-		if (($propagation ?? 'All') != 'All') {
-			$this->db->where("COL_PROP_MODE = ?");
-			$binding[] = $propagation;
+		} else {
+			if ($propagation == 'None') {
+				$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
+			} elseif ($propagation == 'NoSAT') {
+				$sql .= " and col_prop_mode != 'SAT'";
+			} elseif ($propagation != '') {
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propagation;
+			}
 		}
 
 		if ($mode != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $mode;
 			$binding[] = $mode;
+		}
+
+		if ($orbit != 'All') {
+			$sql .= " AND satellite.orbit = ?";
+			$binding[] = $orbit;
 		}
 
 		$sql .= "
@@ -158,11 +161,11 @@ class Callstats_model extends CI_Model {
 			}
 		}
 
-		if ($orbit != 'both') {
+		if ($orbit != 'All') {
 			$this->db->where('orbit', $orbit);
 		}
 
-		if ($propagation != 'All') {
+		if ($propagation != '') {
 			if ($propagation == 'None') {
 				$this->db->where('COL_PROP_MODE', '');
 			} else if ($propagation == 'NoSAT') {
