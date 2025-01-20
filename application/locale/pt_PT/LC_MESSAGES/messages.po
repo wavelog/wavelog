@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-20 15:34+0000\n"
-"PO-Revision-Date: 2025-01-17 12:23+0000\n"
+"PO-Revision-Date: 2025-01-20 20:11+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -599,7 +599,7 @@ msgstr "Exportar Cabrillo"
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "Estatísticas de indicativos de chamada"
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:442
@@ -2489,15 +2489,15 @@ msgstr "ID de utilizador inválido ou modal em falta!"
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
-msgstr ""
+msgstr "Utilizador desbloqueado!"
 
 #: application/controllers/User.php:110
 msgid "Failed to unlock user!"
-msgstr ""
+msgstr "Falha ao desbloquear o utilizador!"
 
 #: application/controllers/User.php:114
 msgid "User not found!"
-msgstr ""
+msgstr "Utilizador não encontrado!"
 
 #: application/controllers/User.php:127
 msgid "Invalid Parameter!"
@@ -2580,6 +2580,8 @@ msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr ""
+"A sua conta está bloqueada, devido a demasiadas tentativas de login "
+"falhadas. Por favor, redefina a sua palavra-passe."
 
 #: application/controllers/User.php:1062
 msgid ""
@@ -6219,7 +6221,7 @@ msgstr "Todos exceto satélite"
 
 #: application/views/callstats/index.php:149
 msgid "#QSOs"
-msgstr ""
+msgstr "#QSOs"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -8626,7 +8628,7 @@ msgstr "Quadrículas Ativadas"
 
 #: application/views/interface_assets/header.php:165
 msgid "Callsign Statistics"
-msgstr ""
+msgstr "Estatísticas de indicativos de chamada"
 
 #: application/views/interface_assets/header.php:171
 msgid "International"
@@ -13550,11 +13552,11 @@ msgstr "Nunca"
 
 #: application/views/user/index.php:74
 msgid "Account locked"
-msgstr ""
+msgstr "Conta bloqueada"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
-msgstr ""
+msgstr "A conta foi bloqueada devido a muitas tentativas de login."
 
 #: application/views/user/index.php:76 application/views/user/index.php:182
 msgid "Locations"
@@ -13742,7 +13744,7 @@ msgstr "Selecione uma ação para realizar para o usuário:"
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "Desbloquear utilizador"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
@@ -13763,6 +13765,9 @@ msgid ""
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
 msgstr ""
+"Está prestes a desbloquear o utilizador abaixo. O utilizador foi bloqueado "
+"devido a demasiadas tentativas de login falhadas. Após o desbloqueio, o "
+"utilizador poderá fazer login novamente."
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
