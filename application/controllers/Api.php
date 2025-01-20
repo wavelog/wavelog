@@ -189,6 +189,7 @@ class API extends CI_Controller {
 		 * If the user is not the creator of the API key, it's likely a clubstation. In this case the callsign of the clubstation
 		 * can not be the same as the callsign of the user (operator call provided by the user). If this is the case, we need to use the callsign of the creator of the API key
 		 */
+		$real_operator = null;
 		if ($this->config->item('special_callsign')) {
 			if ($userid != $created_by) {
 				$this->load->model('user_model');
