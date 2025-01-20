@@ -47,6 +47,10 @@ class Callstats_model extends CI_Model {
 					$sql .= " and col_prop_mode = ?";
 					break;
 				}
+				if ($sat != 'All') {
+					$sql .= " and col_sat_name = ?";
+					$binding[] = $sat;
+				}
 			} else {
 				$sql .= " and col_prop_mode != 'SAT'";
 				$sql .= " and COL_BAND = ?";
