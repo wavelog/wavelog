@@ -25,6 +25,12 @@ class User extends CI_Controller {
 			$data['disable_impersonate'] = false;
 		}
 
+		if ($this->config->item('max_login_attempts')) {
+			$data['maxattempts'] = $this->config->item('max_login_attempts');
+		} else {
+			$data['maxattempts'] = 3;
+		}
+
 		// Get Date format
 		if($this->session->userdata('user_date_format')) {
 			// If Logged in and session exists
@@ -63,6 +69,12 @@ class User extends CI_Controller {
 			$custom_date_format = $this->config->item('qso_date_format');
 		}
 
+		if ($this->config->item('max_login_attempts')) {
+			$maxattempts = $this->config->item('max_login_attempts');
+		} else {
+			$maxattempts = 3;
+		}
+
 		if ($this->user_model->exists_by_id($data['user_id']) && $modal != '') {
 			$user = $this->user_model->get_by_id($data['user_id'])->row();
 			$gettext = new Gettext;
@@ -74,6 +86,7 @@ class User extends CI_Controller {
 			$data['user_lastname'] = $user->user_lastname;
 			$data['user_language'] = $gettext->find_by('folder', $user->user_language)['name_en'];
 			$data['is_clubstation'] = $user->clubstation == 1 ? true : false;
+			$data['is_locked'] = $user->login_attempts > $maxattempts ? true : false;
 			$data['last_seen'] = $user->last_seen;
 			$data['custom_date_format'] = $custom_date_format;
 			$data['has_flossie'] = ($this->config->item('encryption_key') == 'flossie1234555541') ? true : false;
@@ -82,6 +95,24 @@ class User extends CI_Controller {
 		} else {
 			$this->session->set_flashdata('error', __("Invalid User ID or missing modal!"));
 			redirect('user');
+		}
+	}
+
+	public function unlock($uid) {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		if ($this->user_model->exists_by_id($uid)) {
+			if ($this->user_model->unlock($uid)) {
+				$this->session->set_flashdata('success', __("User unlocked!"));
+				redirect('user');
+			} else {
+				$this->session->set_flashdata('error', __("Failed to unlock user!"));
+				redirect('user');
+			}
+		} else {
+			$this->session->set_flashdata('error', __("User not found!"));
+			redirect('dashboard');
 		}
 	}
 
@@ -1022,6 +1053,9 @@ class User extends CI_Controller {
 			
 			} else if ($login_attempt === 2) {
 				$this->session->set_flashdata('warning', __("You can't login to a clubstation directly. Use your personal account instead."));
+				redirect('user/login');
+			} else if ($login_attempt === 3) {
+				$this->session->set_flashdata('warning', __("Your account is locked, due to too many failed login-attempts. Please reset your password."));
 				redirect('user/login');
 			} else {
 				if(ENVIRONMENT == 'maintenance') {
