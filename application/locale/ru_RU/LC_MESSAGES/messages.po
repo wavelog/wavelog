@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-20 20:11+0000\n"
-"PO-Revision-Date: 2025-01-13 08:04+0000\n"
+"POT-Creation-Date: 2025-01-20 15:34+0000\n"
+"PO-Revision-Date: 2025-01-20 17:35+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -599,7 +599,7 @@ msgstr "Экспорт Cabrillo"
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "Статистика по позывным"
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:442
@@ -2487,15 +2487,15 @@ msgstr ""
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
-msgstr ""
+msgstr "Пользователь разблокирован!"
 
 #: application/controllers/User.php:110
 msgid "Failed to unlock user!"
-msgstr ""
+msgstr "Не удалось разблокировать пользователя!"
 
 #: application/controllers/User.php:114
 msgid "User not found!"
-msgstr ""
+msgstr "Пользователь не найден!"
 
 #: application/controllers/User.php:127
 msgid "Invalid Parameter!"
@@ -2578,6 +2578,8 @@ msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr ""
+"Ваш аккаунт заблокирован из-за слишком большого количества неудачных попыток "
+"входа. Пожалуйста, сбросьте пароль."
 
 #: application/controllers/User.php:1062
 msgid ""
@@ -2909,20 +2911,24 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
+#: application/models/Logbook_model.php:3871
 #: application/models/Logbook_model.php:3875
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
+#: application/models/Logbook_model.php:3872
 #: application/models/Logbook_model.php:3876
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
+#: application/models/Logbook_model.php:3884
 #: application/models/Logbook_model.php:3888
 msgid "QSO on"
 msgstr "начало QSO"
 
+#: application/models/Logbook_model.php:3884
 #: application/models/Logbook_model.php:3888
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -2931,62 +2937,75 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
+#: application/models/Logbook_model.php:4183
 #: application/models/Logbook_model.php:4187
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4194
 #: application/models/Logbook_model.php:4198
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4255
 #: application/models/Logbook_model.php:4259
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4275
 #: application/models/Logbook_model.php:4279
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4296
 #: application/models/Logbook_model.php:4300
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4581
+#: application/models/Logbook_model.php:4577
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4581
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
+#: application/models/Logbook_model.php:4638
 #: application/models/Logbook_model.php:4642
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
+#: application/models/Logbook_model.php:4644
 #: application/models/Logbook_model.php:4648
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4649
 #: application/models/Logbook_model.php:4653
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
+#: application/models/Logbook_model.php:4652
 #: application/models/Logbook_model.php:4656
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
+#: application/models/Logbook_model.php:4655
 #: application/models/Logbook_model.php:4659
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
+#: application/models/Logbook_model.php:4658
 #: application/models/Logbook_model.php:4662
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4665
+#: application/models/Logbook_model.php:4661
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4665
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5475
+#: application/models/Logbook_model.php:5471
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -2997,6 +3016,7 @@ msgstr "неизвестно"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/user/edit.php:351
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5475
 msgid "Bearing"
 msgstr "Направление"
 
@@ -6208,7 +6228,7 @@ msgstr "Все, за исключением спутниковых"
 
 #: application/views/callstats/index.php:149
 msgid "#QSOs"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -8085,7 +8105,7 @@ msgstr ""
 #: application/views/eqslcard/index.php:34
 #: application/views/view_log/qso.php:544
 msgid "QSL Message"
-msgstr ""
+msgstr "сообщение QSL"
 
 #: application/views/eqsl/download.php:44
 msgid "eQSL Receive Date"
@@ -8622,7 +8642,7 @@ msgstr "Активированные квадраты"
 
 #: application/views/interface_assets/header.php:165
 msgid "Callsign Statistics"
-msgstr ""
+msgstr "Статистика по позывным"
 
 #: application/views/interface_assets/header.php:171
 msgid "International"
@@ -9172,7 +9192,7 @@ msgstr "Спутниковый режим"
 
 #: application/views/logbookadvanced/edit.php:88
 msgid "Band TX"
-msgstr ""
+msgstr "Диапазон TX"
 
 #: application/views/logbookadvanced/edit.php:101
 msgid "Band RX"
@@ -9645,13 +9665,13 @@ msgstr "QRZ"
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/qso/edit_ajax.php:524
 msgid "QSL Msg (S)"
-msgstr ""
+msgstr "QSL сообщение (S)"
 
 #: application/views/logbookadvanced/index.php:694
 #: application/views/logbookadvanced/useroptions.php:86
 #: application/views/qso/edit_ajax.php:533
 msgid "QSL Msg (R)"
-msgstr ""
+msgstr "QSL сообщение (R)"
 
 #: application/views/logbookadvanced/index.php:742
 #: application/views/logbookadvanced/useroptions.php:150
@@ -11065,7 +11085,7 @@ msgstr "Сообщение в eQSL по умолчанию для этого п�
 
 #: application/views/qso/edit_ajax.php:536
 msgid "Note: Not editable. Only displayed here."
-msgstr ""
+msgstr "Примечание: Не редактируется. Только отображается."
 
 #: application/views/qso/edit_ajax.php:580
 #: application/views/view_log/partial/log_ajax.php:353
@@ -12590,12 +12610,12 @@ msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
 msgstr ""
-"Профили QTH определяют места работы, например, ваш QTH, QTH друзей или "
-"портативная станция."
+"Профили QTH определяют места работы, к примеру: ваш QTH, QTH друга или \"в "
+"поле\"."
 
 #: application/views/stationsetup/stationsetup.php:96
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr "Также, как и журнал, профиль QTH объединяет набор QSO."
+msgstr "Также, как и журнал, профиль станции хранит в одном месте набор QSO."
 
 #: application/views/stationsetup/stationsetup.php:97
 msgid ""
@@ -12603,7 +12623,7 @@ msgid ""
 "with the -Active Station- badge."
 msgstr ""
 "Только один профиль QTH может быть активен в каждый момент. В таблице ниже "
-"он отмечена меткой -Активный профиль QTH-."
+"он отмечен меткой -Активный профиль QTH-."
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
@@ -13512,11 +13532,12 @@ msgstr "Никогда"
 
 #: application/views/user/index.php:74
 msgid "Account locked"
-msgstr ""
+msgstr "Аккаунт заблокирован."
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
 msgstr ""
+"Аккаунт был заблокирован из-за слишком большого количества попыток входа."
 
 #: application/views/user/index.php:76 application/views/user/index.php:182
 msgid "Locations"
@@ -13704,7 +13725,7 @@ msgstr "Выберите действие для выполнения польз
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "Разблокировать пользователя"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
@@ -13725,6 +13746,9 @@ msgid ""
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
 msgstr ""
+"Вы собираетесь разблокировать пользователя ниже. Пользователь был "
+"заблокирован из-за слишком большого количества неудачных попыток входа. "
+"После разблокировки пользователь сможет снова войти в систему."
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
