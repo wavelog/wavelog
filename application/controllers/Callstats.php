@@ -36,7 +36,7 @@ class Callstats extends CI_Controller
 	    if ($this->input->post('propagation') != NULL) {   // Propagation is not set when page first loads.
 		    $propagation = $this->input->post('propagation',true);
 	    } else {
-		    $propagation = 'All';
+		    $propagation = '';
 	    }
 
 	    if ($this->input->post('mincount') != NULL) {   // mincount is not set when page first loads.
@@ -45,10 +45,10 @@ class Callstats extends CI_Controller
 		    $mincount = 2;
 	    }
 
-	    if ($this->input->post('leogeo') != NULL) {   // orbit is not set when page first loads.
-		    $orbit = $this->input->post('leogeo',true);
+	    if ($this->input->post('orbit') != NULL) {   // orbit is not set when page first loads.
+		    $orbit = $this->input->post('orbit',true);
 	    } else {
-		    $orbit = 'both';
+		    $orbit = 'All';
 	    }
 
 
@@ -61,6 +61,7 @@ class Callstats extends CI_Controller
 	    $data['sats'] = $this->bands->get_worked_sats();
 	    $data['worked_bands'] = $this->bands->get_worked_bands();
 	    $data['worked_modes'] = $this->Callstats_model->get_worked_modes();
+       $data['orbits'] = $this->bands->get_worked_orbits();
 	    $data['mincount'] = $mincount;
 	    $data['maxactivatedgrids'] = $this->Callstats_model->get_max_qsos();
 	    $data['orbit'] = $orbit;
@@ -97,7 +98,7 @@ class Callstats extends CI_Controller
 
 		// Render Page
 		$data['page_title'] = __("Log View");
-		$data['filter'] = $searchphrase.__(" and band ").$band . __(" and mode ").$mode . __(" and satellite ").$sat . __(" and orbit ").$orbit . __(" and propagation ").$propagation;
+		$data['filter'] = $searchphrase.__(" and band ").$band;
 		if ($band == 'SAT') {
 			if ($sat != 'All' && $sat != null) {
 				$data['filter'] .= __(" and sat ").$sat;
