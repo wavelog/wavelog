@@ -32,6 +32,10 @@ function showHideLeoGeo(bandselect) {
 		$("#satlabel").show();
 		$("#satselect").show();
 	} else {
+		$("#leogeoselect select").val("All");
+		$("#leogeolabel select").val("both");
+		$("#satlabel select").val("All");
+		$("#satselect select").val("All");
 		$("#leogeoselect").hide();
 		$("#leogeolabel").hide();
 		$("#satlabel").hide();

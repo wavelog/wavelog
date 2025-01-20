@@ -15,71 +15,70 @@ class Callstats extends CI_Controller
         }
     }
 
-    public function index()
-    {
-        $data['page_title'] = __("Callsign statistics");
+    public function index() {
+	    $data['page_title'] = __("Callsign statistics");
 
-		$this->load->model('bands');
-        $this->load->model('Callstats_model');
+	    $this->load->model('bands');
+	    $this->load->model('Callstats_model');
 
-        if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
-            $band = $this->input->post('band');
-        } else {
-            $band = 'All';
-        }
+	    if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
+		    $band = $this->input->post('band',true);
+	    } else {
+		    $band = 'All';
+	    }
 
-		if ($this->input->post('mode') != NULL) {   // Mode is not set when page first loads.
-            $mode = $this->input->post('mode');
-        } else {
-            $mode = 'All';
-        }
+	    if ($this->input->post('mode') != NULL) {   // Mode is not set when page first loads.
+		    $mode = $this->input->post('mode',true);
+	    } else {
+		    $mode = 'All';
+	    }
 
-		if ($this->input->post('propagation') != NULL) {   // Propagation is not set when page first loads.
-            $propagation = $this->input->post('propagation');
-        } else {
-            $propagation = 'All';
-        }
+	    if ($this->input->post('propagation') != NULL) {   // Propagation is not set when page first loads.
+		    $propagation = $this->input->post('propagation',true);
+	    } else {
+		    $propagation = 'All';
+	    }
 
-        if ($this->input->post('mincount') != NULL) {   // mincount is not set when page first loads.
-            $mincount = $this->input->post('mincount');
-        } else {
-            $mincount = 2;
-        }
+	    if ($this->input->post('mincount') != NULL) {   // mincount is not set when page first loads.
+		    $mincount = $this->input->post('mincount',true);
+	    } else {
+		    $mincount = 2;
+	    }
 
-        if ($this->input->post('leogeo') != NULL) {   // orbit is not set when page first loads.
-            $orbit = $this->input->post('leogeo');
-        } else {
-            $orbit = 'both';
-        }
+	    if ($this->input->post('leogeo') != NULL) {   // orbit is not set when page first loads.
+		    $orbit = $this->input->post('leogeo',true);
+	    } else {
+		    $orbit = 'both';
+	    }
 
 
-        if ($this->input->post('sat') != NULL) {   // Sat is not set when page first loads.
-            $sat = $this->input->post('sat');
-        } else {
-            $sat = 'All';
-        }
+	    if ($this->input->post('sat') != NULL) {   // Sat is not set when page first loads.
+		    $sat = $this->input->post('sat',true);
+	    } else {
+		    $sat = 'All';
+	    }
 
-		$data['sats'] = $this->bands->get_worked_sats();
-        $data['worked_bands'] = $this->bands->get_worked_bands();
-		$data['worked_modes'] = $this->Callstats_model->get_worked_modes();
-        $data['mincount'] = $mincount;
-        $data['maxactivatedgrids'] = $this->Callstats_model->get_max_qsos();
-        $data['orbit'] = $orbit;
-        $data['activators_array'] = $this->Callstats_model->get_activators($band, $mode, $propagation, $mincount, $orbit, $sat);
-        $data['bandselect'] = $band;
-		$data['modeselect'] = $mode;
-		$data['satselect'] = $sat;
-		$data['propagationselect'] = $propagation;
-		$data['user_default_band'] = $this->session->userdata('user_default_band');
+	    $data['sats'] = $this->bands->get_worked_sats();
+	    $data['worked_bands'] = $this->bands->get_worked_bands();
+	    $data['worked_modes'] = $this->Callstats_model->get_worked_modes();
+	    $data['mincount'] = $mincount;
+	    $data['maxactivatedgrids'] = $this->Callstats_model->get_max_qsos();
+	    $data['orbit'] = $orbit;
+	    $data['activators_array'] = $this->Callstats_model->get_activators($band, $mode, $propagation, $mincount, $orbit, $sat);
+	    $data['bandselect'] = $band;
+	    $data['modeselect'] = $mode;
+	    $data['satselect'] = $sat;
+	    $data['propagationselect'] = $propagation;
+	    $data['user_default_band'] = $this->session->userdata('user_default_band');
 
-        $footerData = [];
-		$footerData['scripts'] = [
-			'assets/js/sections/callstats.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/callstats.js")),
-		];
+	    $footerData = [];
+	    $footerData['scripts'] = [
+		    'assets/js/sections/callstats.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/callstats.js")),
+	    ];
 
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('callstats/index');
-        $this->load->view('interface_assets/footer', $footerData);
+	    $this->load->view('interface_assets/header', $data);
+	    $this->load->view('callstats/index');
+	    $this->load->view('interface_assets/footer', $footerData);
     }
 
 	/*
