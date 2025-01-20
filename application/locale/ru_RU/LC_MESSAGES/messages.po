@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-20 11:33+0000\n"
+"POT-Creation-Date: 2025-01-20 15:34+0000\n"
 "PO-Revision-Date: 2025-01-13 08:04+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -117,12 +117,13 @@ msgstr ""
 #: application/controllers/Update.php:329
 #: application/controllers/Update.php:340
 #: application/controllers/Update.php:351 application/controllers/User.php:14
-#: application/controllers/User.php:55 application/controllers/User.php:90
-#: application/controllers/User.php:114 application/controllers/User.php:307
-#: application/controllers/User.php:308 application/controllers/User.php:826
-#: application/controllers/User.php:845 application/controllers/User.php:1067
-#: application/controllers/User.php:1208 application/controllers/User.php:1417
-#: application/controllers/User.php:1433 application/controllers/User.php:1459
+#: application/controllers/User.php:61 application/controllers/User.php:103
+#: application/controllers/User.php:121 application/controllers/User.php:145
+#: application/controllers/User.php:338 application/controllers/User.php:339
+#: application/controllers/User.php:857 application/controllers/User.php:876
+#: application/controllers/User.php:1101 application/controllers/User.php:1242
+#: application/controllers/User.php:1451 application/controllers/User.php:1467
+#: application/controllers/User.php:1493
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
@@ -624,7 +625,7 @@ msgstr "Этот пользователь не является коллекти
 
 #: application/controllers/Club.php:56
 #: application/views/club/permissions.php:10
-#: application/views/user/index.php:203
+#: application/views/user/index.php:207
 msgid "Club Permissions"
 msgstr "Разрешения для коллективной станции"
 
@@ -2065,8 +2066,8 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
-#: application/views/themes/index.php:104 application/views/user/index.php:91
-#: application/views/user/index.php:191
+#: application/views/themes/index.php:104 application/views/user/index.php:95
+#: application/views/user/index.php:195
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -2092,8 +2093,8 @@ msgstr "Редактировать"
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
-#: application/views/themes/index.php:107 application/views/user/index.php:113
-#: application/views/user/index.php:216 application/views/view_log/qso.php:762
+#: application/views/themes/index.php:107 application/views/user/index.php:117
+#: application/views/user/index.php:220 application/views/view_log/qso.php:762
 msgid "Delete"
 msgstr "Удалить"
 
@@ -2347,8 +2348,8 @@ msgstr "Активный профиль QTH"
 #: application/views/qso/edit_ajax.php:33 application/views/qso/index.php:23
 #: application/views/simplefle/index.php:28
 #: application/views/stationsetup/stationsetup.php:161
-#: application/views/user/index.php:78 application/views/user/index.php:82
-#: application/views/user/index.php:182 application/views/user/index.php:184
+#: application/views/user/index.php:81 application/views/user/index.php:85
+#: application/views/user/index.php:186 application/views/user/index.php:188
 msgid "QSO"
 msgstr "QSO"
 
@@ -2474,63 +2475,75 @@ msgstr "Префиксы DXCC:"
 msgid "LoTW SAT Update"
 msgstr "Обновление спутников для LoTW"
 
-#: application/controllers/User.php:44
+#: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:281
 msgid "User Accounts"
 msgstr "Аккаунты пользователей"
 
-#: application/controllers/User.php:83
+#: application/controllers/User.php:96
 msgid "Invalid User ID or missing modal!"
 msgstr ""
 "Недействительный идентификатор пользователя или отсутствует модальное окно!"
 
-#: application/controllers/User.php:96
+#: application/controllers/User.php:107
+msgid "User unlocked!"
+msgstr ""
+
+#: application/controllers/User.php:110
+msgid "Failed to unlock user!"
+msgstr ""
+
+#: application/controllers/User.php:114
+msgid "User not found!"
+msgstr ""
+
+#: application/controllers/User.php:127
 msgid "Invalid Parameter!"
 msgstr "Недопустимый параметр!"
 
-#: application/controllers/User.php:152
+#: application/controllers/User.php:183
 #: application/views/club/permissions.php:155
 msgid "Add User"
 msgstr "Добавить пользователя"
 
-#: application/controllers/User.php:253
+#: application/controllers/User.php:284
 #, php-format
 msgid "Username %s already in use!"
 msgstr "Имя пользователя %s уже используется!"
 
-#: application/controllers/User.php:256
+#: application/controllers/User.php:287
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "Электронная почта %s уже используется!"
 
-#: application/controllers/User.php:259
+#: application/controllers/User.php:290
 msgid "Invalid Password!"
 msgstr "Неверный пароль!"
 
-#: application/controllers/User.php:263
+#: application/controllers/User.php:294
 #, php-format
 msgid "User %s added!"
 msgstr "Пользователь %s добавлен!"
 
-#: application/controllers/User.php:267
+#: application/controllers/User.php:298
 msgid "Users"
 msgstr "Пользователи"
 
-#: application/controllers/User.php:347 application/controllers/User.php:780
+#: application/controllers/User.php:378 application/controllers/User.php:811
 #: application/views/club/permissions.php:253
 msgid "Edit User"
 msgstr "Редактировать пользователя"
 
-#: application/controllers/User.php:772 application/controllers/User.php:775
+#: application/controllers/User.php:803 application/controllers/User.php:806
 #, php-format
 msgid "User %s edited"
 msgstr "Аккаунт пользователя %s отредактирован"
 
-#: application/controllers/User.php:829
+#: application/controllers/User.php:860
 msgid "Profile"
 msgstr "Профиль"
 
-#: application/controllers/User.php:894
+#: application/controllers/User.php:925
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -2538,29 +2551,35 @@ msgstr ""
 "Поздравляем! Wavelog был успешно установлен. Теперь вы можете войти в "
 "систему в первый раз."
 
-#: application/controllers/User.php:933
+#: application/controllers/User.php:964
 msgid "This is not allowed!"
 msgstr "Это не разрешено!"
 
-#: application/controllers/User.php:968 application/controllers/User.php:979
+#: application/controllers/User.php:999 application/controllers/User.php:1010
 msgid "Login failed. Try again."
 msgstr "Вход не выполнен. Попробуйте снова."
 
-#: application/controllers/User.php:986
+#: application/controllers/User.php:1017
 #: application/views/interface_assets/header.php:369
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Вход"
 
-#: application/controllers/User.php:1024
+#: application/controllers/User.php:1055
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "Вы не можете войти в аккаунт коллективной станции напрямую. Используйте "
 "вместо этого свой личный аккаунт."
 
-#: application/controllers/User.php:1028
+#: application/controllers/User.php:1058
+msgid ""
+"Your account is locked, due to too many failed login-attempts. Please reset "
+"your password."
+msgstr ""
+
+#: application/controllers/User.php:1062
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2571,22 +2590,22 @@ msgstr ""
 "администратором. В настоящий момент только администраторы могут войти на "
 "сервер."
 
-#: application/controllers/User.php:1031
+#: application/controllers/User.php:1065
 msgid "Incorrect username or password!"
 msgstr "Неверные логин или пароль!"
 
-#: application/controllers/User.php:1054
+#: application/controllers/User.php:1088
 #, php-format
 msgid "User %s logged out."
 msgstr "Пользователь %s вышел."
 
-#: application/controllers/User.php:1070
+#: application/controllers/User.php:1104
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Профиль QTH"
 
-#: application/controllers/User.php:1071 application/views/debug/index.php:584
+#: application/controllers/User.php:1105 application/views/debug/index.php:584
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
@@ -2596,31 +2615,31 @@ msgstr "Профиль QTH"
 msgid "Station Callsign"
 msgstr "Позывной"
 
-#: application/controllers/User.php:1072
+#: application/controllers/User.php:1106
 #: application/views/station_profile/create.php:68
 #: application/views/station_profile/edit.php:96
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "DXCC станции"
 
-#: application/controllers/User.php:1073
+#: application/controllers/User.php:1107
 msgid "Station CQ Zone"
 msgstr "Зона CQ"
 
-#: application/controllers/User.php:1074
+#: application/controllers/User.php:1108
 msgid "Station ITU Zone"
 msgstr "Зона ITU"
 
-#: application/controllers/User.php:1075
+#: application/controllers/User.php:1109
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr "Локатор"
 
-#: application/controllers/User.php:1090
+#: application/controllers/User.php:1124
 msgid "Invalid Locator!"
 msgstr "Недопустимый локатор!"
 
-#: application/controllers/User.php:1098
+#: application/controllers/User.php:1132
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2629,35 +2648,35 @@ msgstr ""
 "Профиль QTH успешно создан! Добро пожаловать в Wavelog! Чтобы завершить "
 "настройку станции, нажмите %sздесь%s."
 
-#: application/controllers/User.php:1101
+#: application/controllers/User.php:1135
 msgid "Station setup failed! Please set up your station manually."
 msgstr "|Создать профиль QTH не удалось! Пожалуйста, настройте его вручную."
 
-#: application/controllers/User.php:1118
+#: application/controllers/User.php:1152
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Сброс пароля отключен в демо-версии!"
 
-#: application/controllers/User.php:1131
+#: application/controllers/User.php:1165
 msgid "Forgot Password"
 msgstr "Восстановить пароль"
 
-#: application/controllers/User.php:1182
-#: application/views/user/modals/more_actions_modal.php:53
+#: application/controllers/User.php:1216
+#: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "Настройки емэйл некорректны."
 
-#: application/controllers/User.php:1186 application/controllers/User.php:1191
+#: application/controllers/User.php:1220 application/controllers/User.php:1225
 msgid "Password Reset Processed."
 msgstr "Осуществлён сброс пароля."
 
-#: application/controllers/User.php:1292
+#: application/controllers/User.php:1326
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Сбросить пароль"
 
-#: application/controllers/User.php:1352
+#: application/controllers/User.php:1386
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -2666,7 +2685,7 @@ msgstr ""
 "В настоящее время вы не можете выдавать себя за другого пользователя. Вам "
 "нужно установить %s на %s в вашем config.php!"
 
-#: application/controllers/User.php:1366
+#: application/controllers/User.php:1400
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -2675,15 +2694,15 @@ msgstr ""
 "В настоящее время вы не можете выдавать себя за другого пользователя. "
 "Пожалуйста, сначала измените encryption_key в вашем файле config.php!"
 
-#: application/controllers/User.php:1373
+#: application/controllers/User.php:1407
 msgid "Invalid Hash"
 msgstr "Неверный хеш"
 
-#: application/controllers/User.php:1386
+#: application/controllers/User.php:1420
 msgid "The impersonation hash is too old. Please try again."
 msgstr "Хэш имперсонации слишком старый. Пожалуйста, попробуйте снова."
 
-#: application/controllers/User.php:1393
+#: application/controllers/User.php:1427
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -2691,15 +2710,15 @@ msgstr ""
 "Вы не можете выдавать себя за другого пользователя, если вы не вошли в "
 "систему как исходный пользователь"
 
-#: application/controllers/User.php:1399
+#: application/controllers/User.php:1433
 msgid "There was a problem with your session. Please try again."
 msgstr "Произошла проблема с вашей сессией. Пожалуйста, попробуйте снова."
 
-#: application/controllers/User.php:1406
+#: application/controllers/User.php:1440
 msgid "The requested user to impersonate does not exist"
 msgstr "Запрашиваемый для имперсонации пользователь не существует"
 
-#: application/controllers/User.php:1427
+#: application/controllers/User.php:1461
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -2707,13 +2726,13 @@ msgstr ""
 "Не удалось определить правильный уровень доступа для оператора коллективной "
 "станции. Попробуйте снова после повторного входа."
 
-#: application/controllers/User.php:1472 application/controllers/User.php:1484
-#: application/controllers/User.php:1490 application/controllers/User.php:1499
-#: application/controllers/User.php:1507
+#: application/controllers/User.php:1506 application/controllers/User.php:1518
+#: application/controllers/User.php:1524 application/controllers/User.php:1533
+#: application/controllers/User.php:1541
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Упс.. Что-то пошло не так. Попробуй войти снова."
 
-#: application/controllers/User.php:1513
+#: application/controllers/User.php:1547
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -2721,7 +2740,7 @@ msgstr ""
 "Возможность быстрого возврата была отключена после истечения срока действия "
 "хэша безопасности. Пожалуйста, войдите снова."
 
-#: application/controllers/User.php:1529
+#: application/controllers/User.php:1563
 #, php-format
 msgid ""
 "You have been logged out of the clubstation %s. Welcome back, %s, to your "
@@ -3682,7 +3701,7 @@ msgstr "Не найдено!"
 #: application/views/station_profile/edit.php:63
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/user/edit.php:138 application/views/user/index.php:28
-#: application/views/user/index.php:147 application/views/user/profile.php:29
+#: application/views/user/index.php:151 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:656
 msgid "Callsign"
 msgstr "Позывной"
@@ -4300,7 +4319,7 @@ msgstr "Статус"
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:581
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
-#: application/views/user/index.php:152 application/views/webadif/export.php:45
+#: application/views/user/index.php:156 application/views/webadif/export.php:45
 msgid "Actions"
 msgstr "Действия"
 
@@ -5863,9 +5882,10 @@ msgstr "Лобавить диапазон"
 #: application/views/contesting/index.php:88
 #: application/views/interface_assets/footer.php:47
 #: application/views/simplefle/index.php:21
-#: application/views/user/modals/more_actions_modal.php:45
-#: application/views/user/modals/more_actions_modal.php:82
-#: application/views/user/modals/more_actions_modal.php:131
+#: application/views/user/modals/more_actions_modal.php:51
+#: application/views/user/modals/more_actions_modal.php:80
+#: application/views/user/modals/more_actions_modal.php:117
+#: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
 msgid "Close"
 msgstr "Закрыть"
@@ -6380,7 +6400,7 @@ msgid "Lastname"
 msgstr "Фамилия"
 
 #: application/views/club/permissions.php:223
-#: application/views/user/edit.php:57 application/views/user/index.php:146
+#: application/views/user/edit.php:57 application/views/user/index.php:150
 #: application/views/user/login.php:58 application/views/user/login.php:69
 #: application/views/user/login.php:70 application/views/user/profile.php:14
 msgid "Username"
@@ -8373,7 +8393,7 @@ msgid "Error in locators. Please check."
 msgstr "Ошибка в локаторах. Пожалуйста, проверьте."
 
 #: application/views/interface_assets/footer.php:54
-#: application/views/user/index.php:20 application/views/user/index.php:138
+#: application/views/user/index.php:20 application/views/user/index.php:142
 msgid "Refresh List"
 msgstr "Обновить список"
 
@@ -10525,7 +10545,7 @@ msgstr "Есть ли дополнительная информация, о ко
 #: application/views/oqrs/request_grouped.php:64
 #: application/views/oqrs/showrequests.php:87
 #: application/views/qso/edit_ajax.php:275 application/views/qso/index.php:569
-#: application/views/user/index.php:29 application/views/user/index.php:148
+#: application/views/user/index.php:29 application/views/user/index.php:152
 #: application/views/user/profile.php:24 application/views/view_log/qso.php:482
 msgid "E-mail"
 msgstr "Емэйл"
@@ -13481,46 +13501,54 @@ msgstr "Добавить пользователя"
 msgid "Type"
 msgstr "Роль"
 
-#: application/views/user/index.php:31 application/views/user/index.php:150
+#: application/views/user/index.php:31 application/views/user/index.php:154
 msgid "Last seen"
 msgstr "Последний логин"
 
-#: application/views/user/index.php:69 application/views/user/index.php:174
+#: application/views/user/index.php:69 application/views/user/index.php:178
 #: application/views/user/modals/admin_impersonate_modal.php:31
 msgid "Never"
 msgstr "Никогда"
 
-#: application/views/user/index.php:73 application/views/user/index.php:178
+#: application/views/user/index.php:74
+msgid "Account locked"
+msgstr ""
+
+#: application/views/user/index.php:74
+msgid "Account was locked due to too many login attempts."
+msgstr ""
+
+#: application/views/user/index.php:76 application/views/user/index.php:182
 msgid "Locations"
 msgstr "Профилей QTH"
 
-#: application/views/user/index.php:75 application/views/user/index.php:180
+#: application/views/user/index.php:78 application/views/user/index.php:184
 msgid "Logbooks"
 msgstr "Журналов"
 
-#: application/views/user/index.php:77 application/views/user/index.php:182
+#: application/views/user/index.php:80 application/views/user/index.php:186
 msgid "Last QSO:"
 msgstr "Последнее QSO:"
 
-#: application/views/user/index.php:81 application/views/user/index.php:184
+#: application/views/user/index.php:84 application/views/user/index.php:188
 msgid "No QSOs in Log"
 msgstr "Количество QSO в журнале"
 
-#: application/views/user/index.php:97 application/views/user/index.php:197
+#: application/views/user/index.php:101 application/views/user/index.php:201
 #: application/views/user/modals/admin_impersonate_modal.php:43
 msgid "Impersonate"
 msgstr "Имперсонация"
 
-#: application/views/user/index.php:104 application/views/user/index.php:207
+#: application/views/user/index.php:108 application/views/user/index.php:211
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
 msgstr "Другие действия"
 
-#: application/views/user/index.php:132
+#: application/views/user/index.php:136
 msgid "Clubstation List"
 msgstr "Список коллективных станций"
 
-#: application/views/user/index.php:135
+#: application/views/user/index.php:139
 msgid ""
 "Clubstations in Wavelog are a unique way for clubs and special callsign "
 "events to handle multiple operators. A clubstation is basically a normal "
@@ -13531,15 +13559,15 @@ msgstr ""
 "это, по сути, обычная учетная запись пользователя с некоторыми особыми "
 "функциями и ограничениями."
 
-#: application/views/user/index.php:137
+#: application/views/user/index.php:141
 msgid "Create Clubstation"
 msgstr "Создать аккаунт коллективной станцию"
 
-#: application/views/user/index.php:149
+#: application/views/user/index.php:153
 msgid "Last Operator"
 msgstr "Последний оператор"
 
-#: application/views/user/index.php:231
+#: application/views/user/index.php:235
 msgid "No Clubstations configures yet."
 msgstr "Аккаунты коллективных станций ещё не настроены."
 
@@ -13597,21 +13625,24 @@ msgstr "Имя пользователя:"
 #: application/views/user/modals/admin_impersonate_modal.php:18
 #: application/views/user/modals/more_actions_modal.php:16
 #: application/views/user/modals/more_actions_modal.php:68
-#: application/views/user/modals/more_actions_modal.php:117
+#: application/views/user/modals/more_actions_modal.php:103
+#: application/views/user/modals/more_actions_modal.php:152
 msgid "Name:"
 msgstr "Имя:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:22
 #: application/views/user/modals/more_actions_modal.php:20
 #: application/views/user/modals/more_actions_modal.php:69
-#: application/views/user/modals/more_actions_modal.php:118
+#: application/views/user/modals/more_actions_modal.php:104
+#: application/views/user/modals/more_actions_modal.php:153
 msgid "Callsign:"
 msgstr "Позывной:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:26
 #: application/views/user/modals/more_actions_modal.php:24
 #: application/views/user/modals/more_actions_modal.php:71
-#: application/views/user/modals/more_actions_modal.php:120
+#: application/views/user/modals/more_actions_modal.php:106
+#: application/views/user/modals/more_actions_modal.php:155
 msgid "E-Mail:"
 msgstr "Электронная почта:"
 
@@ -13670,19 +13701,44 @@ msgid "Select an action to perform for the user:"
 msgstr "Выберите действие для выполнения пользователем:"
 
 #: application/views/user/modals/more_actions_modal.php:33
-#: application/views/user/modals/more_actions_modal.php:61
+#: application/views/user/modals/more_actions_modal.php:62
+#: application/views/user/modals/more_actions_modal.php:75
+msgid "Unlock User"
+msgstr ""
+
+#: application/views/user/modals/more_actions_modal.php:39
+#: application/views/user/modals/more_actions_modal.php:96
 msgid "Send a Password Reset Link via Email"
 msgstr "Отправить ссылку для сброса пароля по электронной почте"
 
-#: application/views/user/modals/more_actions_modal.php:39
+#: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to Clubstation"
 msgstr "Преобразовать в коллективную станцию"
 
-#: application/views/user/modals/more_actions_modal.php:39
+#: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to User"
 msgstr "Преобразовать в обычного пользователя"
 
-#: application/views/user/modals/more_actions_modal.php:54
+#: application/views/user/modals/more_actions_modal.php:65
+msgid ""
+"You are about to unlock the user below. The user was locked due to too many "
+"failed login attempts. After unlocking, the user will be able to log in "
+"again."
+msgstr ""
+
+#: application/views/user/modals/more_actions_modal.php:67
+#: application/views/user/modals/more_actions_modal.php:102
+#: application/views/user/modals/more_actions_modal.php:151
+msgid "User:"
+msgstr "Пользователь:"
+
+#: application/views/user/modals/more_actions_modal.php:70
+#: application/views/user/modals/more_actions_modal.php:105
+#: application/views/user/modals/more_actions_modal.php:154
+msgid "Language:"
+msgstr "Язык:"
+
+#: application/views/user/modals/more_actions_modal.php:89
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
@@ -13690,7 +13746,7 @@ msgstr ""
 "Электронное письмо для сброса пароля успешно отправлено пользователю. Вы "
 "можете закрыть этот диалог."
 
-#: application/views/user/modals/more_actions_modal.php:55
+#: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
@@ -13698,7 +13754,7 @@ msgstr ""
 "Не удалось отправить письмо для сброса пароля пользователю. Правильно ли "
 "настроены параметры электронной почты в глобальных настройках?"
 
-#: application/views/user/modals/more_actions_modal.php:64
+#: application/views/user/modals/more_actions_modal.php:99
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
@@ -13706,43 +13762,33 @@ msgstr ""
 "Вы собираетесь отправить пользователю ссылку для сброса пароля. Пользователь "
 "сможет сбросить свой пароль, кликнув по ссылке в электронном письме."
 
-#: application/views/user/modals/more_actions_modal.php:65
+#: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
 msgstr "Вы хотите отправить этому пользователю письмо для сброса пароля?"
 
-#: application/views/user/modals/more_actions_modal.php:67
-#: application/views/user/modals/more_actions_modal.php:116
-msgid "User:"
-msgstr "Пользователь:"
-
-#: application/views/user/modals/more_actions_modal.php:70
-#: application/views/user/modals/more_actions_modal.php:119
-msgid "Language:"
-msgstr "Язык:"
-
-#: application/views/user/modals/more_actions_modal.php:75
+#: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
 msgstr "Отправить электронное письмо"
 
-#: application/views/user/modals/more_actions_modal.php:91
+#: application/views/user/modals/more_actions_modal.php:126
 msgid "The account was successfully converted. You can now close this dialog."
 msgstr ""
 "Учетная запись была успешно преобразована. Теперь вы можете закрыть этот "
 "диалог."
 
-#: application/views/user/modals/more_actions_modal.php:92
+#: application/views/user/modals/more_actions_modal.php:127
 msgid "The account could not be converted. An error has occurred."
 msgstr "Аккаунт не удалось преобразовать. Произошла ошибка."
 
-#: application/views/user/modals/more_actions_modal.php:100
+#: application/views/user/modals/more_actions_modal.php:135
 msgid "Convert this account into a normal user"
 msgstr "Преобразовать эту учетную запись в обычного пользователя"
 
-#: application/views/user/modals/more_actions_modal.php:102
+#: application/views/user/modals/more_actions_modal.php:137
 msgid "Convert this account into a clubstation"
 msgstr "Преобразовать этот аккаунт в коллективную станцию"
 
-#: application/views/user/modals/more_actions_modal.php:109
+#: application/views/user/modals/more_actions_modal.php:144
 msgid ""
 "You are about to convert this club station to a regular user account. The "
 "user will be able to log in again and all assigned club permissions will be "
@@ -13753,7 +13799,7 @@ msgstr ""
 "назначенные разрешения операторов коллективной станции будут удалены. "
 "Используйте с осторожностью!"
 
-#: application/views/user/modals/more_actions_modal.php:111
+#: application/views/user/modals/more_actions_modal.php:146
 msgid ""
 "You are about to convert this user account to a club station. The user will "
 "no longer be able to log in and the account will be converted to a club "
@@ -13764,11 +13810,11 @@ msgstr ""
 "и учетная запись будет преобразована в учетную запись коллективной станции. "
 "Используйте с осторожностью!"
 
-#: application/views/user/modals/more_actions_modal.php:114
+#: application/views/user/modals/more_actions_modal.php:149
 msgid "Are you sure you want to convert this account?"
 msgstr "Вы уверены, что хотите преобразовать этот аккаунт?"
 
-#: application/views/user/modals/more_actions_modal.php:124
+#: application/views/user/modals/more_actions_modal.php:159
 msgid "Convert"
 msgstr "Преобразовать"
 

@@ -361,6 +361,7 @@ class User_Model extends CI_Model {
 							if($data['user_password'] == EPASSWORDINVALID) {
 								return EPASSWORDINVALID;
 							}
+							$data['login_attempts'] = 0;
 						}
 					}
 				}
@@ -609,7 +610,19 @@ class User_Model extends CI_Model {
 				return 2;
 			}
 
+			if ($this->config->item('max_login_attempts')) {
+				$maxattempts = $this->config->item('max_login_attempts');
+			} else {
+				$maxattempts = 3;
+			}
+			if ($u->row()->login_attempts > $maxattempts) {
+				$uid = $u->row()->user_id;
+				log_message('debug', "User ID: [$uid] Login rejected because of too many failed login attempts.");
+				return 3;
+			}
+
 			if($this->_auth($password, $u->row()->user_password)) {
+				$this->db->query("UPDATE users SET login_attempts = 0 WHERE user_id = ?", [$u->row()->user_id]);	// Reset failurecount
 				if (ENVIRONMENT != "maintenance") {
 					return 1;
 				} else {
@@ -619,6 +632,8 @@ class User_Model extends CI_Model {
 						return 1;
 					}
 				}
+			} else { // Update failurecount
+				$this->db->query("UPDATE users SET login_attempts = login_attempts+1 WHERE user_id = ?", [$u->row()->user_id]);
 			}
 		}
 		return 0;
@@ -655,6 +670,12 @@ class User_Model extends CI_Model {
 		} else {
 			return 0;
 		}
+	}
+
+	// FUNCTION: bool unlock($user_id)
+	// Unlocks a user account after it was locked doe too many failed login attempts
+	function unlock($user_id) {
+		return $this->db->query("UPDATE users SET login_attempts = 0 WHERE user_id = ?", [$user_id]);
 	}
 
 	// FUNCTION: object users()
@@ -746,7 +767,8 @@ class User_Model extends CI_Model {
 		$data = array(
 			'user_password' => $this->_hash($password),
 			'reset_password_code' => NULL,
-			'reset_password_date' => NULL
+			'reset_password_date' => NULL,
+			'login_attempts' => 0
 		);
 
 		$this->db->where('reset_password_code', $reset_code);
