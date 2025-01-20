@@ -794,7 +794,7 @@ class Logbook_model extends CI_Model {
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
 					$result = $this->push_qso_to_clublog($result->ucn, $result->ucp, $data['COL_STATION_CALLSIGN'], $adif);
-					if (($result['status'] == 'OK') || (($result['status'] == 'error') || ($result['status'] == 'duplicate') || ($result['status'] == 'auth_error'))) {
+					if ($result['status'] == 'OK') {
 						$this->mark_clublog_qsos_sent($last_id);
 					}
 				}
@@ -948,14 +948,18 @@ class Logbook_model extends CI_Model {
 		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($request);
 		$info = curl_getinfo($request);
+		curl_close($request);
 
-		// If Clublog Accepts mark the QSOs
 		if (preg_match('/\bOK\b/', $response)) {
 			$returner['status'] = 'OK';
+		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
+			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
+			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
+			$this->db->query($sql,array($cl_username,$cl_password));
+			$returner['status'] = $response;
 		} else {
 			$returner['status'] = $response;
 		}
-		curl_close($request);
 		return ($returner);
 	}
 
