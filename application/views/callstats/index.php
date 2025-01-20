@@ -6,7 +6,7 @@
         <div class="mb-3 row">
             <label class="col-md-1 control-label w-auto" for="band"><?= __("Band"); ?></label>
             <div class="col-md-3 w-auto">
-                <select id="band" name="band" class="form-select">
+                <select id="band" name="band" class="form-select form-select-sm">
                     <option value="All" <?php if ($bandselect == "All") echo ' selected'; ?>><?= __("All"); ?></option>
                     <?php foreach ($worked_bands as $band) {
                         echo '<option value="' . $band . '"';
@@ -32,7 +32,7 @@
 
             <label id="leogeolabel" class="col-md-1 control-label w-auto" for="leogeo" style="display: none;">LEO/GEO</label>
             <div id="leogeoselect" class="col-md-3 w-auto" style="display: none;">
-                <select id="leogeo" name="leogeo" class="form-select">
+                <select id="leogeo" name="leogeo" class="form-select form-select-sm">
                     <option value="both" <?php if ($orbit == 'both') echo ' selected'; ?>><?= _pgettext("Orbiter LEO or GEO", "Both"); ?></option>
                     <option value="leo" <?php if ($orbit == 'leo') echo ' selected'; ?>>LEO</option>
                     <option value="geo" <?php if ($orbit == 'geo') echo ' selected'; ?>>GEO</option>
@@ -57,7 +57,7 @@
 
 			<label class="col-md-1 controll-label w-auto" for="propagation"><?= __("Propagation"); ?></label>
 			<div class="col-sm-4 w-auto">
-				<select class="form-select form-select-sm w-auto" id="propagation">
+				<select class="form-select form-select-sm w-auto" id="propagation"	>
 					<option value="" <?php if ($propagationselect == '') echo ' selected'; ?>><?= __("All"); ?></option>
 					<option value="None" <?php if ($propagationselect == 'None') echo ' selected'; ?>><?= __("None/Empty"); ?></option>
 					<option value="NoSAT" <?php if ($propagationselect == 'NoSAT') echo ' selected'; ?>><?= __("All except SAT") ?></option>
@@ -84,7 +84,7 @@
 
             <label class="col-md-1 control-label w-auto" for="mincount"><?= __("Minimum Count"); ?></label>
             <div class="col-md-3 w-auto">
-                <select id="mincount" name="mincount" class="form-select w-auto">
+                <select id="mincount" name="mincount" class="form-select form-select-sm w-auto">
                     <?php
                     $i = 2;
                     do {
