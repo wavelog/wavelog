@@ -1055,7 +1055,7 @@ class User extends CI_Controller {
 				$this->session->set_flashdata('warning', __("You can't login to a clubstation directly. Use your personal account instead."));
 				redirect('user/login');
 			} else if ($login_attempt === 3) {
-				$this->session->set_flashdata('warning', __("Your account is locked, due to too many failed login-attempts. Please reset your Password."));
+				$this->session->set_flashdata('warning', __("Your account is locked, due to too many failed login-attempts. Please reset your password."));
 				redirect('user/login');
 			} else {
 				if(ENVIRONMENT == 'maintenance') {

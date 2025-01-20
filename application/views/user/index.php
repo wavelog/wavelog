@@ -71,7 +71,7 @@
 								</td>
 								<td style="text-align: left; vertical-align: middle;">
 									<?php if ($row->login_attempts > $maxattempts) { ?>
-										<span class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Account was locked due too many login attempts."); ?>"><?= __("Account locked"); ?></span>
+										<span class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Account was locked due to too many login attempts."); ?>"><?= __("Account locked"); ?></span>
 									<?php } else { ?>
 										<span class="badge text-bg-success"><?= __("Locations"); ?>: <?php echo $row->stationcount; ?></span>
 										<br>
