@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-21 11:22+0000\n"
-"PO-Revision-Date: 2025-01-17 12:23+0000\n"
+"POT-Creation-Date: 2025-01-20 20:11+0000\n"
+"PO-Revision-Date: 2025-01-21 11:22+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -602,7 +602,7 @@ msgstr "导出 Cabrillo"
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "呼号统计"
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:442
@@ -2445,62 +2445,7 @@ msgstr "DXCC 例外："
 msgid "Dxcc Prefixes:"
 msgstr "DXCC 前缀："
 
-#: application/controllers/Update.php:365
-msgid "SCP Update complete. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:367
-msgid "SCP Update failed. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:385
-msgid "LoTW Users Update complete. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:387
-msgid "LoTW Users Update failed. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:404
-msgid "DOK Update complete. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:406
-msgid "DOK Update failed. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:423
-msgid "SOTA Update complete. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:425
-msgid "SOTA Update failed. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:442
-msgid "WWFF Update complete. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:444
-msgid "WWFF Update failed. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:458
-msgid "POTA Update complete. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:460
-msgid "POTA Update failed. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:473
-msgid "TLE Update complete. Result: "
-msgstr ""
-
-#: application/controllers/Update.php:475
-msgid "TLE Update failed. Result: "
-msgstr ""
-
+#: application/controllers/Update.php:429
 #: application/controllers/Update.php:486
 msgid "LoTW SAT Update"
 msgstr "LoTW 卫星数据更新"
@@ -2516,15 +2461,15 @@ msgstr "无效的用户 ID 或者缺失模式！"
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
-msgstr ""
+msgstr "用户已解锁！"
 
 #: application/controllers/User.php:110
 msgid "Failed to unlock user!"
-msgstr ""
+msgstr "解锁用户失败！"
 
 #: application/controllers/User.php:114
 msgid "User not found!"
-msgstr ""
+msgstr "用户未找到！"
 
 #: application/controllers/User.php:127
 msgid "Invalid Parameter!"
@@ -2602,7 +2547,7 @@ msgstr "你不能直接登录集体台站。使用你的个人账户登录。"
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
-msgstr ""
+msgstr "由于多次登录失败，你的账号已锁定。请重置你的密码。"
 
 #: application/controllers/User.php:1062
 msgid ""
@@ -3002,42 +2947,52 @@ msgstr "未知"
 msgid "Bearing"
 msgstr "方位角"
 
+#: application/models/Update_model.php:300
 #: application/models/Update_model.php:303
 msgid "Newer release available:"
 msgstr "有可用新版本："
 
+#: application/models/Update_model.php:304
 #: application/models/Update_model.php:307
 msgid "You are running the latest version."
 msgstr "您运行的已经是最新版本。"
 
+#: application/models/Update_model.php:383
 #: application/models/Update_model.php:385
 msgid "cURL error:"
 msgstr "cURL 错误："
 
+#: application/models/Update_model.php:418
 #: application/models/Update_model.php:420
 msgid "SAT already existing. LoTW status updated."
 msgstr "卫星已存在，LoTW 状态已更新。"
 
+#: application/models/Update_model.php:420
 #: application/models/Update_model.php:422
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "卫星已存在，LoTW 状态更新失败。"
 
+#: application/models/Update_model.php:423
 #: application/models/Update_model.php:425
 msgid "SAT already existing. Ignored."
 msgstr "卫星已存在，忽略。"
 
+#: application/models/Update_model.php:430
 #: application/models/Update_model.php:432
 msgid "SAT already existing. Display name updated."
 msgstr "卫星已存在，已更新名称。"
 
+#: application/models/Update_model.php:432
 #: application/models/Update_model.php:434
 msgid "SAT already existing. Updating display name failed."
 msgstr "卫星已存在，更新名称失败。"
 
+#: application/models/Update_model.php:442
 #: application/models/Update_model.php:444
 msgid "New SAT. Inserted."
 msgstr "新卫星已添加。"
 
+#: application/models/Update_model.php:444
 #: application/models/Update_model.php:446
 msgid "New SAT. Insert failed."
 msgstr "新卫星添加失败。"
@@ -6091,7 +6046,7 @@ msgstr "除卫星以外"
 
 #: application/views/callstats/index.php:149
 msgid "#QSOs"
-msgstr ""
+msgstr "通联数量"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -8407,7 +8362,7 @@ msgstr "激活的网格"
 
 #: application/views/interface_assets/header.php:165
 msgid "Callsign Statistics"
-msgstr ""
+msgstr "呼号统计"
 
 #: application/views/interface_assets/header.php:171
 msgid "International"
@@ -13112,11 +13067,11 @@ msgstr "从不"
 
 #: application/views/user/index.php:74
 msgid "Account locked"
-msgstr ""
+msgstr "账号锁定"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
-msgstr ""
+msgstr "由于多次登录尝试，账号锁定。"
 
 #: application/views/user/index.php:76 application/views/user/index.php:182
 msgid "Locations"
@@ -13298,7 +13253,7 @@ msgstr "选择要为用户执行的操作："
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "解锁用户"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
@@ -13319,6 +13274,8 @@ msgid ""
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
 msgstr ""
+"你将要解锁以下用户。这些用户因为多次失败登录而被锁定。解锁后，用户可以再次登"
+"录。"
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
@@ -13687,6 +13644,62 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:32
 msgid "Rcvd"
 msgstr "收"
+
+#: application/controllers/Update.php:365
+msgid "SCP Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:367
+msgid "SCP Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:385
+msgid "LoTW Users Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:387
+msgid "LoTW Users Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:404
+msgid "DOK Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:406
+msgid "DOK Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:423
+msgid "SOTA Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:425
+msgid "SOTA Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:442
+msgid "WWFF Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:444
+msgid "WWFF Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:458
+msgid "POTA Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:460
+msgid "POTA Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:473
+msgid "TLE Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:475
+msgid "TLE Update failed. Result: "
+msgstr ""
 
 #~ msgid "QSL MSG (S)"
 #~ msgstr "QSL 消息（发送）"
