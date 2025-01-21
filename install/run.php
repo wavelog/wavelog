@@ -28,7 +28,7 @@
                 </div>
 
                 <?php
-                // we can easily add more steps here if necessary 
+                // we can easily add more steps here if necessary
                 ?>
 
                 <div class="mb-3" id="installer_lock" style="opacity: 50%;">
@@ -266,9 +266,13 @@
         running(field, true);
         await log_message('debug', 'Start migrating database to the newest version.');
 
+        const basePath = window.location.pathname.split('/')[1];
+        const baseURL = `${window.location.origin}/${basePath}`;
+        const url = `${baseURL}/index.php/migrate`;
+
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: `${window.location.origin}/index.php/migrate`,
+                url: url,
                 dataType: 'json',
                 success: async function(response) {
                     if (response.status == 'success') {
@@ -295,9 +299,13 @@
         await log_message('debug', 'Start updating DXCC database. This can take a moment or two... Please wait');
         running(field, true);
 
+        const basePath = window.location.pathname.split('/')[1];
+        const baseURL = `${window.location.origin}/${basePath}`;
+        const url = `${baseURL}/index.php/update/dxcc`;
+
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: `${window.location.origin}/index.php/update/dxcc`,
+                url: url,
                 success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
