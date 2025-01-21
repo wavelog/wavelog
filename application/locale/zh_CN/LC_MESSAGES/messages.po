@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-20 20:11+0000\n"
-"PO-Revision-Date: 2025-01-17 12:23+0000\n"
+"PO-Revision-Date: 2025-01-21 11:22+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -602,7 +602,7 @@ msgstr "导出 Cabrillo"
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "呼号统计"
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:442
@@ -2460,15 +2460,15 @@ msgstr "无效的用户 ID 或者缺失模式！"
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
-msgstr ""
+msgstr "用户已解锁！"
 
 #: application/controllers/User.php:110
 msgid "Failed to unlock user!"
-msgstr ""
+msgstr "解锁用户失败！"
 
 #: application/controllers/User.php:114
 msgid "User not found!"
-msgstr ""
+msgstr "用户未找到！"
 
 #: application/controllers/User.php:127
 msgid "Invalid Parameter!"
@@ -2546,7 +2546,7 @@ msgstr "你不能直接登录集体台站。使用你的个人账户登录。"
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
-msgstr ""
+msgstr "由于多次登录失败，你的账号已锁定。请重置你的密码。"
 
 #: application/controllers/User.php:1062
 msgid ""
@@ -6035,7 +6035,7 @@ msgstr "除卫星以外"
 
 #: application/views/callstats/index.php:149
 msgid "#QSOs"
-msgstr ""
+msgstr "通联数量"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -8351,7 +8351,7 @@ msgstr "激活的网格"
 
 #: application/views/interface_assets/header.php:165
 msgid "Callsign Statistics"
-msgstr ""
+msgstr "呼号统计"
 
 #: application/views/interface_assets/header.php:171
 msgid "International"
@@ -13056,11 +13056,11 @@ msgstr "从不"
 
 #: application/views/user/index.php:74
 msgid "Account locked"
-msgstr ""
+msgstr "账号锁定"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
-msgstr ""
+msgstr "由于多次登录尝试，账号锁定。"
 
 #: application/views/user/index.php:76 application/views/user/index.php:182
 msgid "Locations"
@@ -13242,7 +13242,7 @@ msgstr "选择要为用户执行的操作："
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "解锁用户"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
@@ -13262,7 +13262,8 @@ msgid ""
 "You are about to unlock the user below. The user was locked due to too many "
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
-msgstr ""
+msgstr "你将要解锁以下用户。这些用户因为多次失败登录而被锁定。解锁后，用户可以再次登"
+"录。"
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
