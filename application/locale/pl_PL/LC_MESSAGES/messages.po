@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-20 20:11+0000\n"
+"POT-Creation-Date: 2025-01-21 11:22+0000\n"
 "PO-Revision-Date: 2025-01-03 01:47+0000\n"
 "Last-Translator: Maciej SP2FE <wavelog@sp2fe.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2472,7 +2472,63 @@ msgstr "Wyjątki DXCC:"
 msgid "Dxcc Prefixes:"
 msgstr "Prefiksy DXCC:"
 
-#: application/controllers/Update.php:429
+#: application/controllers/Update.php:365
+msgid "SCP Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:367
+msgid "SCP Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:385
+msgid "LoTW Users Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:387
+msgid "LoTW Users Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:404
+msgid "DOK Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:406
+msgid "DOK Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:423
+msgid "SOTA Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:425
+msgid "SOTA Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:442
+msgid "WWFF Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:444
+msgid "WWFF Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:458
+msgid "POTA Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:460
+msgid "POTA Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:473
+msgid "TLE Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:475
+msgid "TLE Update failed. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:486
 msgid "LoTW SAT Update"
 msgstr "Aktualizacja LoTW SAT"
 
@@ -2989,43 +3045,43 @@ msgstr "nieznany"
 msgid "Bearing"
 msgstr "Kierunek"
 
-#: application/models/Update_model.php:300
+#: application/models/Update_model.php:303
 msgid "Newer release available:"
 msgstr "Nowsza wersja dostępna:"
 
-#: application/models/Update_model.php:304
+#: application/models/Update_model.php:307
 msgid "You are running the latest version."
 msgstr "Używasz najnowszej wersji."
 
-#: application/models/Update_model.php:383
+#: application/models/Update_model.php:385
 msgid "cURL error:"
 msgstr "błąd cURL:"
 
-#: application/models/Update_model.php:418
+#: application/models/Update_model.php:420
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT już istnieje. Status LoTW zaktualizowany."
 
-#: application/models/Update_model.php:420
+#: application/models/Update_model.php:422
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT już istnieje. Aktualizacja statusu LoTW nie powiodła się."
 
-#: application/models/Update_model.php:423
+#: application/models/Update_model.php:425
 msgid "SAT already existing. Ignored."
 msgstr "SAT już istnieje. Zignorowano."
 
-#: application/models/Update_model.php:430
+#: application/models/Update_model.php:432
 msgid "SAT already existing. Display name updated."
 msgstr "SAT już istnieje. Zaktualizowano nazwę wyświetlaną."
 
-#: application/models/Update_model.php:432
+#: application/models/Update_model.php:434
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT już istnieje. Aktualizacja nazwy wyświetlanej nie powiodła się."
 
-#: application/models/Update_model.php:442
+#: application/models/Update_model.php:444
 msgid "New SAT. Inserted."
 msgstr ""
 
-#: application/models/Update_model.php:444
+#: application/models/Update_model.php:446
 msgid "New SAT. Insert failed."
 msgstr ""
 
