@@ -10,8 +10,11 @@ class Update_model extends CI_Model {
 
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
-		$this->fetch_clublog_scp();
-		$this->fetch_supercheckpartial_master();
+        $result = '';
+		$result .= $this->fetch_clublog_scp();
+		$result .= $this->fetch_supercheckpartial_master();
+
+        return $result;
     }
 
 	function fetch_clublog_scp() {
@@ -30,15 +33,15 @@ class Update_model extends CI_Model {
             if (file_put_contents($strFile, $data) !== FALSE) {
                 $nCount = count(file($strFile));
                 if ($nCount > 0) {
-                    echo "DONE: " . number_format($nCount) . " callsigns loaded";
+                    return "DONE: " . number_format($nCount) . " callsigns loaded";
                 } else {
-                    echo "FAILED: Empty file";
+                    return "FAILED: Empty file";
                 }
             } else {
-                echo "FAILED: Could not write to Club Log SCP file";
+                return "FAILED: Could not write to Club Log SCP file";
             }
         } else {
-            echo "FAILED: Could not connect to Club Log";
+            return "FAILED: Could not connect to Club Log";
         }
 	}
 
@@ -46,19 +49,19 @@ class Update_model extends CI_Model {
 		$contents = file_get_contents('https://www.supercheckpartial.com/MASTER.SCP', true);
 
         if ($contents === FALSE) {
-            echo  "Something went wrong with fetching the MASTER.SCP file.";
+            return  "Something went wrong with fetching the MASTER.SCP file.";
         } else {
             $file = './updates/MASTER.SCP';
 
             if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
                 $nCount = count(file($file));
                 if ($nCount > 0) {
-                    echo  "DONE: " . number_format($nCount) . " callsigns loaded";
+                    return  "DONE: " . number_format($nCount) . " callsigns loaded";
                 } else {
-                    echo "FAILED: Empty file";
+                    return "FAILED: Empty file";
                 }
             } else {
-                echo "FAILED: Could not write to Supercheckpartial MASTER.SCP file";
+                return "FAILED: Could not write to Supercheckpartial MASTER.SCP file";
             }
         }
 	}
@@ -258,7 +261,7 @@ class Update_model extends CI_Model {
         $mtime = $mtime[1] + $mtime[0];
         $endtime = $mtime;
         $totaltime = ($endtime - $starttime);
-        return "Records inserted: " . $i . " in " . $totaltime . " seconds <br />";
+        return "Records inserted: " . $i . " in " . $totaltime . " seconds";
     }
 
     function wavelog_latest_release() {
@@ -327,7 +330,7 @@ class Update_model extends CI_Model {
 		$count = 0;
 
 		if ($response === false) {
-			echo 'Error: ' . curl_error($curl);
+			return 'Error: ' . curl_error($curl);
 		} else {
 			// Split the response into an array of lines
 			$lines = explode("\n", $response);
@@ -364,8 +367,7 @@ class Update_model extends CI_Model {
 		$mtime = $mtime[1] + $mtime[0];
 		$endtime = $mtime;
 		$totaltime = ($endtime - $starttime);
-		echo "This page was created in ".$totaltime." seconds <br />";
-		echo "Records inserted: " . $count . " <br/>";
+		return "This page was created in ".$totaltime." seconds <br />Records inserted: " . $count;
 	}
 
 	 function lotw_sats() {
