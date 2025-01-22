@@ -3,8 +3,11 @@
 		// restore data from the localstorage if available
 		$('#install_form input').each(function() {
 			var inputId = $(this).attr('id');
-			if (localStorage.getItem(inputId)) {
-				$(this).val(localStorage.getItem(inputId));
+			if (inputId !== 'directory' && inputId !== 'websiteurl') { // do not restore directory and websiteurl for legacy reasons
+				console.log('Updated inputId: ', inputId);
+				if (localStorage.getItem(inputId)) {
+					$(this).val(localStorage.getItem(inputId));
+				}
 			}
 		});
 		$('#install_form select').each(function() {

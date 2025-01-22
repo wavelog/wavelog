@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $config['app_name'] = 'Wavelog';
-$config['directory'] = '/%directory%';
+$config['directory'] = '%directory%';
 $config['callbook'] = '%callbook%'; // Options are hamqth, qrz or qrzcq
 
 $config['datadir'] = null; // default to install directory
