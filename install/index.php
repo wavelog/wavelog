@@ -9,8 +9,13 @@ HB9HIL - First refactoring - January 2024
 DJ7NT - Docker Readiness - April 2024
 HB9HIL - Big UX and backend upgrade - July 2024
 */
+require_once('includes/install_config/install_lib.php');
+$http_scheme = is_https() ? "https" : "http";
 
-if (!file_exists('.lock')) {
+$directory = ltrim(str_replace('/install', '', dirname($_SERVER['SCRIPT_NAME'])), '/');
+$base_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . "/" . $directory . "/";
+
+if (!file_exists('.lock') && !file_exists('../application/config/config.php') && !file_exists('../application/config/docker/config.php')) {
 
 	include 'includes/interface_assets/header.php';
 
@@ -344,10 +349,6 @@ if (!file_exists('.lock')) {
 										<div class="col">
 											<p><?= __("Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'"); ?></p>
 											<div class="mb-3">
-												<?php 
-													$directory = ltrim(str_replace('/install', '', dirname($_SERVER['SCRIPT_NAME'])), '/');
-													$base_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . "/" . $directory . "/";
-												?>
 												<label for="directory" class="form-label"><?= __("Your final Wavelog URL"); ?><i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This is the URL where you can access this Wavelog instance after the installer has run. If this does not display what you expect, you may need to check your web server configuration. This is the base_url in your config.php, which can be edited after the installation."); ?>"></i></label>
 												<pre class="alert bg-secondary" id="main-url"><?php echo $base_url; ?></pre>
 												<input type="hidden" id="directory" name="directory" value="<?php echo $directory; ?>" />
@@ -1996,8 +1997,8 @@ if (!file_exists('.lock')) {
 	<?php } ?>
 
 <?php } else {
-
-	header("Location: $websiteurl");
+	header('Location: '.$base_url, true, 301);
+	die();
 } ?>
 
 </html>
