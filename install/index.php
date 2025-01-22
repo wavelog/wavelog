@@ -344,24 +344,14 @@ if (!file_exists('.lock')) {
 										<div class="col">
 											<p><?= __("Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'"); ?></p>
 											<div class="mb-3">
-												<label for="directory" class="form-label"><?= __("Directory"); ?><i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job. It also can be empty."); ?>"></i></label>
-												<div class="input-group">
-													<span class="input-group-text" id="main-url"><?php echo $http_scheme . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
-													<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
-													<div class="invalid-tooltip">
-														<?= __("No slash before or after the directory. Just the name of the folder."); ?>
-													</div>
-												</div>
-											</div>
-											<div class="mb-3 position-relative">
-												<label for="websiteurl" class="form-label required"><?= __("Website URL"); ?></label><i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= sprintf(__("This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."), "https://mywavelog.example.org/", "http://192.168.1.100/"); ?>"></i>
-												<input type="text" id="websiteurl" value="<?php echo $websiteurl; ?>" class="form-control" name="websiteurl" />
-												<div class="invalid-tooltip">
-													<?= __("This field<br>
-													- can't be empty<br>
-													- have to end with a slash 'example/'<br>
-													- have to start with 'http'"); ?>
-												</div>
+												<?php 
+													$directory = ltrim(str_replace('/install', '', dirname($_SERVER['SCRIPT_NAME'])), '/');
+													$base_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . "/" . $directory . "/";
+												?>
+												<label for="directory" class="form-label"><?= __("Your final Wavelog URL"); ?><i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This is the URL where you can access this Wavelog instance after the installer has run. If this does not display what you expect, you may need to check your web server configuration. This is the base_url in your config.php, which can be edited after the installation."); ?>"></i></label>
+												<pre class="alert bg-secondary" id="main-url"><?php echo $base_url; ?></pre>
+												<input type="hidden" id="directory" name="directory" value="<?php echo $directory; ?>" />
+												<input type="hidden" id="websiteurl" name="websiteurl" value="<?php echo $base_url; ?>" />
 											</div>
 											<div class="mb-3">
 												<label for="global_call_lookup" class="form-label"><?= __("Optional: Global Callbook Lookup"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."); ?>"></i></label>
@@ -1219,9 +1209,6 @@ if (!file_exists('.lock')) {
 
 					// Exit Tab 3 - Configuration
 					if (nextTab.attr('id') == fourthTabId) {
-						if (!directory_check() || !websiteurl_check()) {
-							return;
-						}
 						if (!callbook_combination()) {
 							return;
 						}
@@ -1895,14 +1882,6 @@ if (!file_exists('.lock')) {
 					var checklist_configuration = true;
 
 					if ($('#callbook_password').hasClass('is-invalid')) {
-						checklist_configuration = false;
-					}
-
-					if ($('#directory').hasClass('is-invalid')) {
-						checklist_configuration = false;
-					}
-
-					if ($('#websiteurl').val() == '' || $('#websiteurl').hasClass('is-invalid')) {
 						checklist_configuration = false;
 					}
 
