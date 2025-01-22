@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-21 11:22+0000\n"
+"POT-Creation-Date: 2025-01-22 11:12+0000\n"
 "PO-Revision-Date: 2025-01-21 11:22+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -227,25 +227,25 @@ msgstr "ADIF 导入"
 msgid "Unsupported Filetype"
 msgstr "文件类型不支持"
 
-#: application/controllers/Adif.php:242
+#: application/controllers/Adif.php:260
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "ADIF 导入失败！"
 
-#: application/controllers/Adif.php:256
+#: application/controllers/Adif.php:274
 msgid "Station Profile not valid for User"
 msgstr "用户台站信息无效"
 
-#: application/controllers/Adif.php:263
+#: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF 已导入"
 
-#: application/controllers/Adif.php:274
+#: application/controllers/Adif.php:293
 msgid "DCL Import"
 msgstr "导入 DCL"
 
-#: application/controllers/Adif.php:332
+#: application/controllers/Adif.php:351
 msgid "DCL Data Imported"
 msgstr "DCL 数据已导入"
 
@@ -598,6 +598,25 @@ msgstr "DXCluster"
 #: application/controllers/Cabrillo.php:20
 msgid "Export Cabrillo"
 msgstr "导出 Cabrillo"
+
+#: application/controllers/Cabrillo.php:150
+msgid "Cabrillo Import"
+msgstr ""
+
+#: application/controllers/Cabrillo.php:197
+msgid "Broken CBR file - no QSO data or incomplete header found."
+msgstr ""
+
+#: application/controllers/Cabrillo.php:243
+#, php-format
+msgid ""
+"QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
+"file. Skipping as a safety measure."
+msgstr ""
+
+#: application/controllers/Cabrillo.php:301
+msgid "CBR Data Imported"
+msgstr ""
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
@@ -3106,7 +3125,7 @@ msgstr "差异"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:208
+#: application/views/adif/import.php:217
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3665,8 +3684,8 @@ msgid "Nothing found!"
 msgstr "未找到！"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:66 application/views/adif/import.php:212
-#: application/views/adif/import.php:257
+#: application/views/adif/import.php:75 application/views/adif/import.php:221
+#: application/views/adif/import.php:266
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
 #: application/views/awards/sota/index.php:25
@@ -3731,6 +3750,11 @@ msgstr "显示地图"
 msgid "Results of DCL DOK Update"
 msgstr "DCL DOK 更新结果"
 
+#: application/views/adif/dcl_success.php:16
+#: application/views/cabrillo/cbr_success.php:16
+msgid "Yay, its updated!"
+msgstr ""
+
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
 msgstr "DOK 的 DCL 信息已更新。"
@@ -3740,6 +3764,7 @@ msgid "No QSOs found which could be updated."
 msgstr "未找到可以更新的 QSO。"
 
 #: application/views/adif/dcl_success.php:22
+#: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs ignored"
 msgstr "已忽略的 QSO"
 
@@ -3748,6 +3773,7 @@ msgid "QSOs unmatched"
 msgstr "无法匹配的 QSO"
 
 #: application/views/adif/dcl_success.php:22
+#: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs updated"
 msgstr "已更新的 QSO"
 
@@ -3867,12 +3893,16 @@ msgstr "DCL QSL 状态"
 msgid "ADIF Export"
 msgstr "ADIF 导出"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:282
+#: application/views/adif/import.php:36 application/views/adif/import.php:291
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
-#: application/views/adif/import.php:55 application/views/api/index.php:16
-#: application/views/dashboard/index.php:172
+#: application/views/adif/import.php:45
+msgid "CBR Import"
+msgstr ""
+
+#: application/views/adif/import.php:64 application/views/adif/import.php:338
+#: application/views/api/index.php:16 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -3881,16 +3911,16 @@ msgstr "DARC DCL"
 msgid "Important"
 msgstr "重要"
 
-#: application/views/adif/import.php:55
+#: application/views/adif/import.php:64
 msgid "Log Files must have the file type *.adi"
 msgstr "日志文件的后缀必须是.adi"
 
-#: application/views/adif/import.php:56 application/views/view_log/qso.php:771
+#: application/views/adif/import.php:65 application/views/view_log/qso.php:771
 msgid "Maximum file upload size is "
 msgstr "最大上传文件大小是 "
 
-#: application/views/adif/import.php:56 application/views/adif/import.php:260
-#: application/views/adif/import.php:298 application/views/debug/index.php:193
+#: application/views/adif/import.php:65 application/views/adif/import.php:269
+#: application/views/adif/import.php:307 application/views/debug/index.php:193
 #: application/views/debug/index.php:210 application/views/debug/index.php:571
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
@@ -3903,92 +3933,92 @@ msgstr "最大上传文件大小是 "
 msgid "Warning"
 msgstr "注意"
 
-#: application/views/adif/import.php:60 application/views/adif/import.php:62
-#: application/views/adif/import.php:206 application/views/adif/import.php:255
+#: application/views/adif/import.php:69 application/views/adif/import.php:71
+#: application/views/adif/import.php:215 application/views/adif/import.php:264
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
 msgid "Select Station Location"
 msgstr "选择台站位置"
 
-#: application/views/adif/import.php:73
+#: application/views/adif/import.php:82
 msgid "Select the operator of the imported QSOs"
 msgstr "选择导入的 QSO 的操作员"
 
-#: application/views/adif/import.php:85
+#: application/views/adif/import.php:94
 msgid "Add QSOs to Contest"
 msgstr "向竞赛中添加 QSO"
 
-#: application/views/adif/import.php:87
+#: application/views/adif/import.php:96 application/views/adif/import.php:345
 #: application/views/simplefle/index.php:85
 msgid "No Contest"
 msgstr "无竞赛"
 
-#: application/views/adif/import.php:93
+#: application/views/adif/import.php:102
 msgid "ADIF File"
 msgstr "ADIF 文件"
 
-#: application/views/adif/import.php:100
+#: application/views/adif/import.php:109
 msgid "Import duplicate QSOs"
 msgstr "导入重复的 QSO"
 
-#: application/views/adif/import.php:109
+#: application/views/adif/import.php:118
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "标记导入的 QSO 为已上传至 LoTW"
 
-#: application/views/adif/import.php:111 application/views/adif/import.php:121
-#: application/views/adif/import.php:131 application/views/adif/import.php:141
-#: application/views/adif/import.php:151 application/views/adif/import.php:161
+#: application/views/adif/import.php:120 application/views/adif/import.php:130
+#: application/views/adif/import.php:140 application/views/adif/import.php:150
+#: application/views/adif/import.php:160 application/views/adif/import.php:170
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "如果导入的 ADIF 文件不包含此信息，选择此项。"
 
-#: application/views/adif/import.php:119
+#: application/views/adif/import.php:128
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "标记导入的 QSO 为已上传至 eQSL"
 
-#: application/views/adif/import.php:129
+#: application/views/adif/import.php:138
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "标记导入的 QSO 为已上传至 HRDLog Logbook"
 
-#: application/views/adif/import.php:139
+#: application/views/adif/import.php:148
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "标记导入的 QSO 为已上传至 QRZ Logbook"
 
-#: application/views/adif/import.php:149
+#: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "标记导入的 QSO 为已上传至 Clublog Logbook"
 
-#: application/views/adif/import.php:159
+#: application/views/adif/import.php:168
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "标记导入的 QSO 为已上传至 DCL Logbook"
 
-#: application/views/adif/import.php:169
+#: application/views/adif/import.php:178
 msgid "Use DXCC information from ADIF"
 msgstr "使用 ADIF 文件中的 DXCC 信息"
 
-#: application/views/adif/import.php:171
+#: application/views/adif/import.php:180
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
 msgstr "如果不选择，Wavelog 将会自动判断 QSO 的 DXCC。"
 
-#: application/views/adif/import.php:180
+#: application/views/adif/import.php:189
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr "在导入时始终使用登录账户的呼号作为操作员呼号"
 
-#: application/views/adif/import.php:190
+#: application/views/adif/import.php:199
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:551
 #: application/views/interface_assets/footer.php:2265
 msgid "DANGER"
 msgstr "警告"
 
-#: application/views/adif/import.php:190
+#: application/views/adif/import.php:199
 msgid "Ignore Stationcallsign on import"
 msgstr "导入时忽略台站的呼号"
 
-#: application/views/adif/import.php:192
+#: application/views/adif/import.php:201
 #, php-format
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
@@ -3996,23 +4026,23 @@ msgid ""
 msgstr ""
 "如果选中，Wavelog 会从 ADIF 中尝试导入 %s全部的%s QSO，忽略是否匹配台站地址。"
 
-#: application/views/adif/import.php:196 application/views/adif/import.php:313
-#: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
-#: application/views/webadif/export.php:55
+#: application/views/adif/import.php:205 application/views/adif/import.php:322
+#: application/views/adif/import.php:360 application/views/hrdlog/export.php:50
+#: application/views/qrz/export.php:55 application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "上传"
 
-#: application/views/adif/import.php:203
+#: application/views/adif/import.php:212
 msgid "Take your logbook file anywhere!"
 msgstr "在其他地方保管、上传日志！"
 
-#: application/views/adif/import.php:204
+#: application/views/adif/import.php:213
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr "导出 ADIF 方便您将日志导入到 LoTW 等第三方应用程序或备份日志。"
 
-#: application/views/adif/import.php:205
+#: application/views/adif/import.php:214
 #, php-format
 msgctxt ""
 msgid ""
@@ -4020,7 +4050,7 @@ msgid ""
 "and export!"
 msgstr "%s详细日志%s 中可使用更多过滤器选项，也可导出日志！"
 
-#: application/views/adif/import.php:216 application/views/adif/import.php:262
+#: application/views/adif/import.php:225 application/views/adif/import.php:271
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
 #: application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4029,7 +4059,7 @@ msgstr "%s详细日志%s 中可使用更多过滤器选项，也可导出日志�
 msgid "From date"
 msgstr "起始日期"
 
-#: application/views/adif/import.php:219 application/views/adif/import.php:265
+#: application/views/adif/import.php:228 application/views/adif/import.php:274
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -4038,40 +4068,40 @@ msgstr "起始日期"
 msgid "To date"
 msgstr "终止日期"
 
-#: application/views/adif/import.php:227
+#: application/views/adif/import.php:236
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "将导出的 QSO 标记为已上传到 LoTW"
 
-#: application/views/adif/import.php:235
+#: application/views/adif/import.php:244
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "导出没有上传到 LoTW 的 QSO"
 
-#: application/views/adif/import.php:240
+#: application/views/adif/import.php:249
 msgid "Export QSO's"
 msgstr "导出 QSO"
 
-#: application/views/adif/import.php:245
+#: application/views/adif/import.php:254
 msgid "Export Satellite-Only QSOs"
 msgstr "只导出卫星 QSO"
 
-#: application/views/adif/import.php:246
+#: application/views/adif/import.php:255
 msgid "Export All Satellite QSOs"
 msgstr "导出所有卫星 QSO"
 
-#: application/views/adif/import.php:248
+#: application/views/adif/import.php:257
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "导出 LoTW 上确认的所有卫星 QSO"
 
-#: application/views/adif/import.php:260 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:269 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "如果未选择日期范围，则所有 QSO 都将被标记！"
 
-#: application/views/adif/import.php:268
+#: application/views/adif/import.php:277
 msgid "Mark QSOs as exported to LoTW"
 msgstr "将 QSO 标记为导出到 LoTW"
 
-#: application/views/adif/import.php:282
+#: application/views/adif/import.php:291
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4082,35 +4112,83 @@ msgstr ""
 "前往 %s 导出已确认的 DOK，可选择仅导出 DL QSO 以加快速度。您可在此处上传已下"
 "载的 ADIF 日志，系统将以此更新 DOK 信息。"
 
-#: application/views/adif/import.php:289
+#: application/views/adif/import.php:298
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "仅导入在 DCL 上确认的 QSO 的 DOK 数据。"
 
-#: application/views/adif/import.php:291
+#: application/views/adif/import.php:300
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr "如果您还想使用 DCL 中未经确认的 QSO 的数据更新 DOK，请取消选中。"
 
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:307
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "根据已有 DCL 覆盖 DOK 数据（如不同）。"
 
-#: application/views/adif/import.php:300
+#: application/views/adif/import.php:309
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr "如果选中，Wavelog 将使用 DCL 日志中的 DOK 强制覆盖现有的 DOK 信息。"
 
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:316
 msgid "Ignore QSOs that cannot be matched."
 msgstr "忽略无法匹配的 QSO。"
 
-#: application/views/adif/import.php:309
+#: application/views/adif/import.php:318
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
 msgstr "如未选择，Wavelog 中未找到的 QSO 会被显示。"
+
+#: application/views/adif/import.php:337
+msgid ""
+"If you imported an ADIF file of a contest, provided by another logging "
+"software, sometimes, depending on that software, your exchanges will not be "
+"imported properly from that softwares ADIF. If you like to correct that, you "
+"can provide the Cabrillo file that this software also provides to rewrite "
+"that data in Wavelog."
+msgstr ""
+
+#: application/views/adif/import.php:337
+#: application/views/lotw_views/index.php:137
+msgid "Information"
+msgstr "信息"
+
+#: application/views/adif/import.php:338
+msgid ""
+"Please use this function before changing anything about the QSOs in Wavelog, "
+"as this function uses the Contest ID, as well as date and time information "
+"from both your already imported ADIF file, as well as the CBR file you are "
+"about to upload to match the QSOs and only correct relevant data."
+msgstr ""
+
+#: application/views/adif/import.php:343
+msgid " Contest Name, only if Contest ID in CBR is different"
+msgstr ""
+
+#: application/views/adif/import.php:343
+msgid "Optional"
+msgstr ""
+
+#: application/views/adif/import.php:353
+msgid ""
+"A serial number is ALWAYS part of the exchange for both parties in this "
+"contest."
+msgstr ""
+
+#: application/views/adif/import.php:355
+msgid ""
+"If you or your partner only sometimes exchange serial numbers, please leave "
+"this unchecked."
+msgstr ""
+
+#: application/views/adif/import.php:356
+msgid ""
+"If unchecked, this will erase the default serial number that (for example) "
+"N1MM+ produces. If checked, it will correct the serial number if necessary."
+msgstr ""
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
@@ -4125,27 +4203,42 @@ msgstr ""
 "有至少一个 ADIF 字段无法解析或插入至数据库，请检查 ADIF 文件。您可以使用在线"
 "的 ADIF 检查工具，例如："
 
-#: application/views/adif/import_success.php:15
+#: application/views/adif/import_success.php:17
 msgid "Yay, its imported!"
 msgstr "导入成功！"
 
-#: application/views/adif/import_success.php:16
+#: application/views/adif/import_success.php:18
 msgid "The ADIF File has been imported."
 msgstr "ADIF 文件已成功导入。"
 
-#: application/views/adif/import_success.php:18
+#: application/views/adif/import_success.php:22
 msgid "Dupes were inserted!"
 msgstr "已添加重复项！"
 
-#: application/views/adif/import_success.php:20
+#: application/views/adif/import_success.php:24
 msgid "Dupes were skipped."
 msgstr "已跳过重复项。"
 
-#: application/views/adif/import_success.php:24
+#: application/views/adif/import_success.php:30
+msgid "You imported at least 1 QSO containing a contest ID."
+msgstr ""
+
+#: application/views/adif/import_success.php:31
+msgid ""
+"Sometimes, depending on your contest logging software, your exchanges will "
+"not be imported properly from that softwares ADIF. If you like to correct "
+"that, switch to the CBR Import Tab of the ADIF Import page."
+msgstr ""
+
+#: application/views/adif/import_success.php:32
+msgid "We found the following numbers of QSOs for the following contest IDs:"
+msgstr ""
+
+#: application/views/adif/import_success.php:44
 msgid "Import details / possible problems"
 msgstr "导入详情 / 存在错误"
 
-#: application/views/adif/import_success.php:25
+#: application/views/adif/import_success.php:45
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -5801,6 +5894,23 @@ msgstr "启用所有"
 #: application/views/contesting/add.php:78 application/views/mode/index.php:90
 msgid "Deactivate All"
 msgstr "停用所有"
+
+#: application/views/cabrillo/cbr_success.php:12
+msgid "Results of CBR Contest Data Update"
+msgstr ""
+
+#: application/views/cabrillo/cbr_success.php:17
+msgid ""
+"Your contest QSOs have been updated using the values of your Cabrillo file."
+msgstr ""
+
+#: application/views/cabrillo/cbr_success.php:19
+msgid "No QSOs were updated by your Cabrillo file."
+msgstr ""
+
+#: application/views/cabrillo/cbr_success.php:25
+msgid "CBR errors"
+msgstr ""
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
@@ -9642,10 +9752,6 @@ msgstr "未同步"
 #: application/views/lotw_views/index.php:122
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr "你需要上传 LoTW p12 证书以使用该功能。"
-
-#: application/views/lotw_views/index.php:137
-msgid "Information"
-msgstr "信息"
 
 #: application/views/lotw_views/index.php:141
 msgid "The next automatic sync with LoTW will happen at: "
