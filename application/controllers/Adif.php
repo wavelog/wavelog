@@ -222,13 +222,31 @@ class adif extends CI_Controller {
 					$this->adif_parser->initialize();
 					$custom_errors = "";
 					$alladif=[];
+					$contest_qso_infos = [];
 					while($record = $this->adif_parser->get_record()) {
+						
+						//overwrite the contest id if user chose a contest in UI
 						if ($contest != '') {
-							$record['contest_id']=$contest;
+							$record['contest_id'] = $contest;
 						}
+
+						//handle club operator
 						if ($club_operator != '') {
-							$record['operator']=strtoupper($club_operator);
+							$record['operator'] = strtoupper($club_operator);
 						}
+
+						//check if contest_id exists in record and extract all found contest_ids
+						if(array_key_exists('contest_id', $record)){
+							$contest_id = $record['contest_id'];
+							if($contest_id != ''){
+								if(array_key_exists($contest_id, $contest_qso_infos)){
+									$contest_qso_infos[$contest_id] += 1;
+								}else{
+									$contest_qso_infos[$contest_id] = 1;
+								}
+							}
+						}
+
 						if(count($record) == 0) {
 							break;
 						};
@@ -259,6 +277,7 @@ class adif extends CI_Controller {
 			log_message("Error","ADIF End");
 			$data['adif_errors'] = $custom_errors;
 			$data['skip_dupes'] = $this->input->post('skipDuplicate');
+			$data['imported_contests'] = $contest_qso_infos;
 
 			$data['page_title'] = __("ADIF Imported");
 			$this->load->view('interface_assets/header', $data);
