@@ -35,6 +35,15 @@
                                                                                                                                                 echo 'false';
                                                                                                                                             } ?>"><?= __("DARC DCL") ?></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php if ($showtab == 'cbr') {
+                                            echo 'active';
+                                        } ?>" id="cbr-tab" data-bs-toggle="tab" href="#cbr" role="tab" aria-controls="cbr" aria-selected="<?php if ($showtab == 'cbr') {
+                                                                                                                                                echo 'true';
+                                                                                                                                            } else {
+                                                                                                                                                echo 'false';
+                                                                                                                                            } ?>"><?= __("CBR Import") ?></a>
+                </li>
             </ul>
         </div>
 
@@ -307,6 +316,44 @@
                                     <label class="form-check-label" for="ignoreAmbiguous"><?= __("Ignore QSOs that cannot be matched.") ?></label>
                                 </div>
                                 <div class="small form-text text-muted"><?= __("If unchecked, information about QSOs which could not be found in Wavelog will be displayed.") ?></div>
+                            </div>
+                        </div>
+                        <input class="form-control w-auto mb-2 me-sm-2" type="file" name="userfile" size="20" />
+                        <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane <?php if ($showtab == 'cbr') {
+                                            echo 'active';
+                                        } else {
+                                            echo 'fade';
+                                        } ?>" id="cbr" role="tabpanel" aria-labelledby="home-tab">
+                    <?php if (isset($error) && $showtab == 'cbr') { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $error; ?>
+                        </div>
+                    <?php } ?>
+
+                    <p class="card-text"><span class="badge text-bg-info"><?= __("Information"); ?></span> <?= __("If you imported an ADIF file of a contest, provided by another logging software, sometimes, depending on that software, your exchanges will not be imported properly from that softwares ADIF. If you like to correct that, you can provide the Cabrillo file that this software also provides to rewrite that data in Wavelog.") ?></p>
+                    <p class="card-text"><span class="badge text-bg-warning"><?= __("Important"); ?></span> <?= __("Please use this function before changing anything about the QSOs in Wavelog, as this function uses the Contest ID, as well as date and time information from both your already imported ADIF file, as well as the CBR file you are about to upload to match the QSOs and only correct relevant data.") ?></p>
+                    <form class="form" action="<?php echo site_url('cabrillo/cbrimport'); ?>" method="post" enctype="multipart/form-data">
+
+                        <div class="mb-3 row">
+                            <div class="col-md-10">
+                            <div class="small form-text text-muted"><span class="badge text-bg-success"><?= __("Optional"); ?></span><?= __(" Contest Name, only if Contest ID in CBR is different") ?></div>
+                                <select name="contest_id" id="contest_id" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
+                                    <option value="" selected><?= __("No Contest"); ?></option>
+                                    <?php
+                                    foreach ($contests as $contest) {
+                                        echo '<option value="' . $contest['adifname'] . '">' . $contest['name'] . '</option>';
+                                    } ?>
+                                </select>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="serial_number_present" value="1" id="serial_number_present" unchecked>
+                                    <label class="form-check-label" for="serial_number_present"><?= __("A serial number is ALWAYS part of the exchange for both parties in this contest.") ?></label>
+                                </div>
+                                <div class="small form-text text-muted"><?= __("If you or your partner only sometimes exchange serial numbers, please leave this unchecked.") ?></div>
+                                <div class="small form-text text-muted"><?= __("If unchecked, this will erase the default serial number that (for example) N1MM+ produces. If checked, it will correct the serial number if necessary.") ?></div>
                             </div>
                         </div>
                         <input class="form-control w-auto mb-2 me-sm-2" type="file" name="userfile" size="20" />
