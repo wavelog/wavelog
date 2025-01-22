@@ -42,12 +42,12 @@ class CBR_Parser
 
             //process and collect header lines if qso mode is not set
             if (!$qso_mode) {
-                
+
                 //split the line into an array using ': ' as the delimiter
                 $parts = explode(': ', $line, 2);
 
                 //collect header information
-                $header[$parts[0]] = preg_replace('/\s+/', '', $parts[1]);
+                $header[$parts[0]] = trim($parts[1]);
 
                 //skip to next line
                 continue;
@@ -55,13 +55,13 @@ class CBR_Parser
 
             //process and collect QSO lines if qso mode is set
             if ($qso_mode) {
-                
+
                 //split the line into the elements
                 $qso_elements = preg_split('/\s+/', trim($line));
 
                 //determine maximum qso field size
                 $max_qso_fields = max($max_qso_fields, count($qso_elements));
-                
+
                 //add qso elements to qso line array
                 array_push($qso_lines_raw, $qso_elements);
 
@@ -81,7 +81,7 @@ class CBR_Parser
                     //intersect with current indices, preserving only common indices
                     $common_59_indices = array_intersect($common_59_indices, $indices_of_59);
                 }
-                
+
                 //skip to next line
                 continue;
             }
@@ -96,7 +96,7 @@ class CBR_Parser
             $result["RCVD_59_POS"] = 0;
             $result["SENT_EXCHANGE_COUNT"] = 0;
             $result["RCVD_EXCHANGE_COUNT"] = 0;
-    
+
             //return result
             return $result;
         }
@@ -111,7 +111,7 @@ class CBR_Parser
             $result["RCVD_59_POS"] = 0;
             $result["SENT_EXCHANGE_COUNT"] = 0;
             $result["RCVD_EXCHANGE_COUNT"] = 0;
-    
+
             //return blank result
             return $result;
         }
@@ -133,9 +133,9 @@ class CBR_Parser
 
         //change all QSOs into associative arrays with meaningful keys
         foreach ($qso_lines_raw as $line) {
-            
+
             $qso_line = [];
-            
+
             //get well defined fields
             $qso_line["QSO_MARKER"] = $line[0];
             $qso_line["FREQ"] = $line[1];
@@ -144,7 +144,7 @@ class CBR_Parser
             $qso_line["TIME"] = $line[4];
             $qso_line["OWN_CALLSIGN"] = $line[5];
             $qso_line["SENT_59"] = $line[$sent_59_pos];
-           
+
             //set serial if requested
             if($serial_number_present) {
                 $qso_line["SENT_SERIAL"] = $line[$sent_59_pos + 1];
@@ -154,7 +154,7 @@ class CBR_Parser
             $exchange_nr = 1;
             $startindex = ($sent_59_pos + ($serial_number_present ? 2 : 1));
             $endindex = ($rcvd_59_pos - 1);
-            for ($i = $startindex; $i < $endindex; $i++) { 
+            for ($i = $startindex; $i < $endindex; $i++) {
                 $qso_line["SENT_EXCH_" . $exchange_nr] = $line[$i];
                 $exchange_nr++;
             }
@@ -172,7 +172,7 @@ class CBR_Parser
             $exchange_nr = 1;
             $startindex = ($rcvd_59_pos + ($serial_number_present ? 2 : 1));
             $endindex = (count($line));
-            for ($i = $startindex; $i < $endindex; $i++) { 
+            for ($i = $startindex; $i < $endindex; $i++) {
                 $qso_line["RCVD_EXCH_" . $exchange_nr] = $line[$i];
                 $exchange_nr++;
             }
@@ -180,7 +180,7 @@ class CBR_Parser
             //end of data in CQR format
             //enhance QSO data with additional fields
             $band = "";
-            
+
             //convert frequency to integer if possible
             if(is_numeric($qso_line["FREQ"])) {
                 $frequency = (int)$qso_line["FREQ"];
@@ -188,7 +188,7 @@ class CBR_Parser
                 $frequency = null;
             }
 
-            //convert CBR values to band where no real frequency is given. 
+            //convert CBR values to band where no real frequency is given.
             //if frequency is given, consult the frequency library
             switch ($qso_line["FREQ"]) {
                 case '50':

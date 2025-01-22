@@ -240,7 +240,7 @@ class Cabrillo extends CI_Controller {
 			
 			//create error if more than 1 QSO is found and skip
 			if(count($contest_qsos) != 1){
-				array_push($custom_errors, sprintf(__("QSO %d not found or more that 1 QSOs found that match the criteria of the CBR file. Skipping as a safety measure."), $i));
+				array_push($custom_errors, sprintf(__("QSO %d not found or more than 1 QSO found that match the criteria of the CBR file. Skipping as a safety measure."), $i));
 				$i++;
 				continue;
 			}
