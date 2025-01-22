@@ -77,7 +77,7 @@
                         </select>
                         <?php
                         $show_operator_question = true;
-                        if ($this->config->item('special_callsign') && $club_operators != false) {
+                        if ($this->config->item('special_callsign') && (!empty($club_operators))) {
                             $show_operator_question = false; ?>
                             <div class="small form-text text-muted"><?= __("Select the operator of the imported QSOs") ?></div>
                             <select name="club_operator" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
