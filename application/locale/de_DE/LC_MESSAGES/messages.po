@@ -13,7 +13,7 @@
 # Rasmus <DL4BS@users.noreply.translate.wavelog.org>, 2024.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2024, 2025.
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
-# "Stefan (DB4SCW)" <dev@db4scw.de>, 2024.
+# "Stefan (DB4SCW)" <dev@db4scw.de>, 2024, 2025.
 # "Joerg (DJ7NT)" <joerg+kennungen.github@dorgeist.com>, 2024.
 # Reiner Herrmann <reiner@reiner-h.de>, 2024.
 # Fabian Franz BSc <franz.fabian.94@gmail.com>, 2024, 2025.
@@ -22,11 +22,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-22 12:29+0000\n"
-"PO-Revision-Date: 2025-01-20 20:19+0000\n"
+"POT-Creation-Date: 2025-01-22 11:12+0000\n"
+"PO-Revision-Date: 2025-01-22 12:30+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -611,11 +611,12 @@ msgstr "Cabrillo-Export"
 
 #: application/controllers/Cabrillo.php:150
 msgid "Cabrillo Import"
-msgstr ""
+msgstr "Cabrillo-Import"
 
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
 msgstr ""
+"Defekte CBR-Datei - keine QSO-Daten oder unvollständiger Header gefunden."
 
 #: application/controllers/Cabrillo.php:243
 #, php-format
@@ -623,10 +624,12 @@ msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
 msgstr ""
+"QSO %d nicht gefunden oder mehr als 1 QSO gefunden, das den Kriterien der "
+"CBR-Datei entspricht. Import wurde als Sicherheitsmaßnahme übersprungen."
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
-msgstr ""
+msgstr "CBR-Daten importiert"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
@@ -2505,59 +2508,59 @@ msgstr "DXCC-Präfixe:"
 
 #: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
-msgstr ""
+msgstr "SCP-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
-msgstr ""
+msgstr "SCP-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:385
 msgid "LoTW Users Update complete. Result: "
-msgstr ""
+msgstr "LoTW-Benutzer-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:387
 msgid "LoTW Users Update failed. Result: "
-msgstr ""
+msgstr "LoTW-Benutzer-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:404
 msgid "DOK Update complete. Result: "
-msgstr ""
+msgstr "DOK-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:406
 msgid "DOK Update failed. Result: "
-msgstr ""
+msgstr "DOK-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:423
 msgid "SOTA Update complete. Result: "
-msgstr ""
+msgstr "SOTA-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:425
 msgid "SOTA Update failed. Result: "
-msgstr ""
+msgstr "SOTA-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:442
 msgid "WWFF Update complete. Result: "
-msgstr ""
+msgstr "WWFF-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:444
 msgid "WWFF Update failed. Result: "
-msgstr ""
+msgstr "WWFF-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:458
 msgid "POTA Update complete. Result: "
-msgstr ""
+msgstr "POTA-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:460
 msgid "POTA Update failed. Result: "
-msgstr ""
+msgstr "POTA-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:473
 msgid "TLE Update complete. Result: "
-msgstr ""
+msgstr "TLE-Update abgeschlossen. Ergebnis: "
 
 #: application/controllers/Update.php:475
 msgid "TLE Update failed. Result: "
-msgstr ""
+msgstr "TLE-Update fehlgeschlagen. Ergebnis: "
 
 #: application/controllers/Update.php:486
 msgid "LoTW SAT Update"
@@ -3825,7 +3828,7 @@ msgstr "Ergebnisse des DCL DOK-Updates"
 #: application/views/adif/dcl_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr ""
+msgstr "Yay, aktualisiert!"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
@@ -3971,7 +3974,7 @@ msgstr "DARC DCL"
 
 #: application/views/adif/import.php:45
 msgid "CBR Import"
-msgstr ""
+msgstr "CBR Import"
 
 #: application/views/adif/import.php:64 application/views/adif/import.php:338
 #: application/views/api/index.php:16 application/views/dashboard/index.php:172
@@ -4245,6 +4248,11 @@ msgid ""
 "can provide the Cabrillo file that this software also provides to rewrite "
 "that data in Wavelog."
 msgstr ""
+"Wenn du eine ADIF-Datei eines Contests importiert hast, die von einer "
+"anderen Log-Software bereitgestellt wurde, werden manchmal, je nach "
+"Software, deine Exchanges nicht richtig aus dieser ADIF importiert. Wenn du "
+"das korrigieren möchtest, kannst du die Cabrillo-Datei, die diese Software "
+"ebenfalls bereitstellt, importieren, um diese Daten in Wavelog zu korrigeren."
 
 #: application/views/adif/import.php:337
 #: application/views/lotw_views/index.php:137
@@ -4258,32 +4266,44 @@ msgid ""
 "from both your already imported ADIF file, as well as the CBR file you are "
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
+"Bitte benutze diese Funktion, bevor du irgendetwas an den QSOs in Wavelog "
+"änderst, da diese Funktion die Contest-ID sowie Datums- und "
+"Zeitinformationen, sowohl aus deiner bereits importierten ADIF-Datei, als "
+"auch aus der CBR-Datei, die du hochladen möchtest, verwendet, um die QSOs "
+"abzugleichen und nur relevante Daten zu korrigieren."
 
 #: application/views/adif/import.php:343
-msgid "Contest Name, only if Contest ID in CBR is different"
-msgstr ""
+msgid " Contest Name, only if Contest ID in CBR is different"
+msgstr " Contestname, nur wenn Contest-ID in der CBR-Datei unterschiedlich ist"
 
 #: application/views/adif/import.php:343
 msgid "Optional"
-msgstr ""
+msgstr "Optional"
 
 #: application/views/adif/import.php:353
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
+"Eine Seriennummer ist IMMER Teil des Datenaustauschs für beide Parteien in "
+"diesem Wettbewerb."
 
 #: application/views/adif/import.php:355
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
+"Wenn du, oder dein QSO-Partner nur manchmal Seriennummern austauscht, lass "
+"hier bitte unausgewählt."
 
 #: application/views/adif/import.php:356
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
 msgstr ""
+"Wenn nicht angehakt, wird die Standard-Seriennummer gelöscht, die (zum "
+"Beispiel) N1MM+ erzeugt. Wenn angehakt, wird die Seriennummer bei Bedarf "
+"korrigiert."
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
@@ -4317,7 +4337,7 @@ msgstr "evtl. vorhandene Duplikate wurden übersprungen."
 
 #: application/views/adif/import_success.php:30
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr ""
+msgstr "Du hast mindestens 1 QSO mit einer Contest-ID importiert."
 
 #: application/views/adif/import_success.php:31
 msgid ""
@@ -4325,10 +4345,13 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
+"Manchmal werden je nach Contest-Logging-Programm deine Austausche nicht "
+"richtig aus der ADIF dieser Software importiert. Wenn du das korrigieren "
+"möchtest, wechsle zum CBR-Import-Tab der ADIF-Importseite."
 
 #: application/views/adif/import_success.php:32
 msgid "We found the following numbers of QSOs for the following contest IDs:"
-msgstr ""
+msgstr "Wir haben die folgende QSOs für die folgenden Contest-IDs gefunden:"
 
 #: application/views/adif/import_success.php:44
 msgid "Import details / possible problems"
@@ -6090,20 +6113,21 @@ msgstr "Deaktiviere alle"
 
 #: application/views/cabrillo/cbr_success.php:12
 msgid "Results of CBR Contest Data Update"
-msgstr ""
+msgstr "Ergebnisse des CBR-Contest-Datenupdates"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
 "Your contest QSOs have been updated using the values of your Cabrillo file."
 msgstr ""
+"Deine Contest-QSOs wurden mit den Werten deiner Cabrillo-Datei aktualisiert."
 
 #: application/views/cabrillo/cbr_success.php:19
 msgid "No QSOs were updated by your Cabrillo file."
-msgstr ""
+msgstr "Keine QSOs wurden durch deine Cabrillo-Datei aktualisiert."
 
 #: application/views/cabrillo/cbr_success.php:25
 msgid "CBR errors"
-msgstr ""
+msgstr "CBR-Fehler"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
@@ -14345,6 +14369,10 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:32
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#: application/views/adif/import.php:343
+msgid "Contest Name, only if Contest ID in CBR is different"
+msgstr "Contest-Name, nur wenn Contest-ID in der CBR-Datei unterschiedlich ist"
 
 #~ msgid "QSL Msg"
 #~ msgstr "QSL Msg"
