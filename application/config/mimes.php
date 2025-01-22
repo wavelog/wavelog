@@ -185,5 +185,7 @@ return array(
 	'ADI'   =>  array('application/octet-stream','text/plain', 'audio/x-hx-aac-adif'),
 	'ADIF'  =>  array('application/octet-stream','text/plain', 'audio/x-hx-aac-adif'),
 	'tq8'   =>  'application/octet-stream',
-	'TQ8'   =>  'application/octet-stream'
+	'TQ8'   =>  'application/octet-stream',
+	'cbr'   =>  array('application/octet-stream','text/plain'),
+	'CBR'   =>  array('application/octet-stream','text/plain')
 );
