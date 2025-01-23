@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-22 13:16+0000\n"
+"POT-Creation-Date: 2025-01-23 10:57+0000\n"
 "PO-Revision-Date: 2025-01-23 10:12+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -612,7 +612,8 @@ msgstr "损害的 CBR 文件 - 没有通联数据或文件头不完整。"
 msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
-msgstr "%d 条通联记录未找到或不止一条通联记录批评 CBR 文件。跳过是一个安全的方式。"
+msgstr ""
+"%d 条通联记录未找到或不止一条通联记录批评 CBR 文件。跳过是一个安全的方式。"
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
@@ -4151,8 +4152,8 @@ msgid ""
 "that data in Wavelog."
 msgstr ""
 "如果您导入了由另一个日志软件提供的竞赛的ADIF文件，有时，根据该软件的不同，您"
-"的通联将无法从该软件的ADIF正确导入。如果您想更正该问题，可以提供该软件提供的C"
-"abrillo文件来在Wavelog中重写该数据。"
+"的通联将无法从该软件的ADIF正确导入。如果您想更正该问题，可以提供该软件提供的"
+"Cabrillo文件来在Wavelog中重写该数据。"
 
 #: application/views/adif/import.php:337
 #: application/views/lotw_views/index.php:137
@@ -4194,8 +4195,9 @@ msgstr "如果你和你的伙伴只是有时交换序列号，请不要勾选。
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
-msgstr "如果未选中，这将抹除（例如）由N1MM+ "
-"提供的默认序列号。如果选中，将在必要时修正序列号。"
+msgstr ""
+"如果未选中，这将抹除（例如）由N1MM+ 提供的默认序列号。如果选中，将在必要时修"
+"正序列号。"
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
@@ -4235,7 +4237,8 @@ msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
-msgstr "有时，根据您的竞赛记录软件，您的通联记录无法从该软件ADIF正确导入。如果您想更"
+msgstr ""
+"有时，根据您的竞赛记录软件，您的通联记录无法从该软件ADIF正确导入。如果您想更"
 "正该问题，请切换到“ADIF导入”页面的“CBP导入”选项卡。"
 
 #: application/views/adif/import_success.php:32
@@ -7597,100 +7600,104 @@ msgid "Albanian"
 msgstr "阿尔巴尼亚语"
 
 #: application/views/debug/index.php:664
+msgid "Armenian"
+msgstr "亚美尼亚语"
+
+#: application/views/debug/index.php:665
 msgid "Bosnian"
 msgstr "波斯尼亚语"
 
-#: application/views/debug/index.php:665
+#: application/views/debug/index.php:666
 msgid "Bulgarian"
 msgstr "保加利亚语"
 
-#: application/views/debug/index.php:666
+#: application/views/debug/index.php:667
 msgid "Chinese (Simplified)"
 msgstr "简体中文"
 
-#: application/views/debug/index.php:667
+#: application/views/debug/index.php:668
 msgid "Croatian"
 msgstr "克罗地亚语"
 
-#: application/views/debug/index.php:668
+#: application/views/debug/index.php:669
 msgid "Czech"
 msgstr "捷克语"
 
-#: application/views/debug/index.php:669
+#: application/views/debug/index.php:670
 msgid "Dutch"
 msgstr "荷兰语"
 
-#: application/views/debug/index.php:670
+#: application/views/debug/index.php:671
 msgid "English"
 msgstr "英语"
 
-#: application/views/debug/index.php:671
+#: application/views/debug/index.php:672
 msgid "Estonian"
 msgstr "爱沙尼亚语"
 
-#: application/views/debug/index.php:672
+#: application/views/debug/index.php:673
 msgid "Finnish"
 msgstr "芬兰语"
 
-#: application/views/debug/index.php:673
+#: application/views/debug/index.php:674
 msgid "French"
 msgstr "法语"
 
-#: application/views/debug/index.php:674
+#: application/views/debug/index.php:675
 msgid "German"
 msgstr "德语"
 
-#: application/views/debug/index.php:675
+#: application/views/debug/index.php:676
 msgid "Greek"
 msgstr "希腊语"
 
-#: application/views/debug/index.php:676
+#: application/views/debug/index.php:677
 msgid "Italian"
 msgstr "意大利语"
 
-#: application/views/debug/index.php:677
+#: application/views/debug/index.php:678
 msgid "Latvian"
 msgstr "拉脱维亚语"
 
-#: application/views/debug/index.php:678
+#: application/views/debug/index.php:679
 msgid "Lithuanian"
 msgstr "立陶宛语"
 
-#: application/views/debug/index.php:679
+#: application/views/debug/index.php:680
 msgid "Montenegrin"
 msgstr "黑山语"
 
-#: application/views/debug/index.php:680
+#: application/views/debug/index.php:681
 msgid "Polish"
 msgstr "波兰语"
 
-#: application/views/debug/index.php:681
+#: application/views/debug/index.php:682
 msgid "Portuguese"
 msgstr "葡萄牙语"
 
-#: application/views/debug/index.php:682
+#: application/views/debug/index.php:683
 msgid "Russian"
 msgstr "俄语"
 
-#: application/views/debug/index.php:683
+#: application/views/debug/index.php:684
 msgid "Serbian"
 msgstr "塞尔维亚语"
 
-#: application/views/debug/index.php:684
+#: application/views/debug/index.php:685
+msgid "Slovenian"
+msgstr ""
+
+#: application/views/debug/index.php:686
 msgid "Spanish"
 msgstr "西班牙语"
 
-#: application/views/debug/index.php:685
+#: application/views/debug/index.php:687
 msgid "Swedish"
 msgstr "瑞典语"
 
-#: application/views/debug/index.php:686
+#: application/views/debug/index.php:688
 msgid "Turkish"
 msgstr "土耳其语"
-
-#: application/views/debug/index.php:687
-msgid "Armenian"
-msgstr "亚美尼亚语"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
