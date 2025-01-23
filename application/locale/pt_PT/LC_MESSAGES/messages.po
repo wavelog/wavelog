@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-22 13:16+0000\n"
-"PO-Revision-Date: 2025-01-21 23:22+0000\n"
+"PO-Revision-Date: 2025-01-22 19:50+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -598,11 +598,13 @@ msgstr "Exportar Cabrillo"
 
 #: application/controllers/Cabrillo.php:150
 msgid "Cabrillo Import"
-msgstr ""
+msgstr "Importar Cabrillo"
 
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
 msgstr ""
+"Arquivo CBR corrompido - sem dados de QSO / Contactos ou cabeçalho "
+"incompleto encontrado."
 
 #: application/controllers/Cabrillo.php:243
 #, php-format
@@ -610,10 +612,12 @@ msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
 msgstr ""
+"Contacto %d não encontrado ou mais de 1 contactos encontrado que corresponde "
+"aos critérios do arquivo CBR. A ignorar como medida de segurança."
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
-msgstr ""
+msgstr "Dados CBR Importados"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
@@ -3817,7 +3821,7 @@ msgstr "Resultados da atualização do DCL DOK"
 #: application/views/adif/dcl_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr ""
+msgstr "Boa, está atualizado!"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
@@ -3963,7 +3967,7 @@ msgstr "DARC DCL"
 
 #: application/views/adif/import.php:45
 msgid "CBR Import"
-msgstr ""
+msgstr "Importar CBR"
 
 #: application/views/adif/import.php:64 application/views/adif/import.php:338
 #: application/views/api/index.php:16 application/views/dashboard/index.php:172
@@ -4233,6 +4237,11 @@ msgid ""
 "can provide the Cabrillo file that this software also provides to rewrite "
 "that data in Wavelog."
 msgstr ""
+"Se importou um ficheiro ADIF de um concurso, fornecido por outro software de "
+"registo, às vezes, dependendo desse software, as tuas trocas não serão "
+"importadas corretamente do ADIF desse software. Se quiser corrigir isso, "
+"pode fornecer o ficheiro Cabrillo que esse software também fornece para "
+"reescrever esses dados no Wavelog."
 
 #: application/views/adif/import.php:337
 #: application/views/lotw_views/index.php:137
@@ -4246,32 +4255,43 @@ msgid ""
 "from both your already imported ADIF file, as well as the CBR file you are "
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
+"Por favor, use esta função antes de alterar qualquer coisa nos contactos do "
+"Wavelog, pois esta função utiliza o ID do Concurso, bem como informações de "
+"data e hora tanto do seu ficheiro ADIF já importado, como do ficheiro CBR "
+"que está prestes a carregar para corresponder os contactos e apenas corrigir "
+"os dados relevantes."
 
 #: application/views/adif/import.php:343
 msgid "Contest Name, only if Contest ID in CBR is different"
-msgstr ""
+msgstr "Nome do Concurso, apenas se o ID do Concurso no CBR for diferente"
 
 #: application/views/adif/import.php:343
 msgid "Optional"
-msgstr ""
+msgstr "Opcional"
 
 #: application/views/adif/import.php:353
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
+"Um número de série é SEMPRE parte da troca para ambas as partes neste "
+"concurso."
 
 #: application/views/adif/import.php:355
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
+"Se você ou o seu parceiro só às vezes trocam números de série, por favor, "
+"deixe isto desmarcado."
 
 #: application/views/adif/import.php:356
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
 msgstr ""
+"Se não for selecionado, apagará o número de série padrão que (por exemplo) o "
+"N1MM+ produz. Se selecionado, corrigirá o número de série, se necessário."
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
@@ -4305,7 +4325,7 @@ msgstr "Os duplicados foram ignorados."
 
 #: application/views/adif/import_success.php:30
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr ""
+msgstr "Importou pelo menos 1 contacto contendo um ID de concurso."
 
 #: application/views/adif/import_success.php:31
 msgid ""
@@ -4313,10 +4333,16 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
+"Às vezes, dependendo do seu software de registro de concursos, as trocas "
+"podem não ser importadas corretamente do ADIF desse software. Se quiser "
+"corrigir isso, mude para a aba de Importação CBR na página de Importação "
+"ADIF."
 
 #: application/views/adif/import_success.php:32
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
+"Encontrámos os seguintes números de contactos para os seguintes IDs de "
+"concurso:"
 
 #: application/views/adif/import_success.php:44
 msgid "Import details / possible problems"
@@ -6079,20 +6105,22 @@ msgstr "Desativar tudo"
 
 #: application/views/cabrillo/cbr_success.php:12
 msgid "Results of CBR Contest Data Update"
-msgstr ""
+msgstr "Resultados da actualização de dados do concurso CBR"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
 "Your contest QSOs have been updated using the values of your Cabrillo file."
 msgstr ""
+"Os seus contactos de concurso foram atualizados usando os valores do seu "
+"ficheiro Cabrillo."
 
 #: application/views/cabrillo/cbr_success.php:19
 msgid "No QSOs were updated by your Cabrillo file."
-msgstr ""
+msgstr "Nenhum contacto foi atualizado pelo seu ficheiro Cabrillo."
 
 #: application/views/cabrillo/cbr_success.php:25
 msgid "CBR errors"
-msgstr ""
+msgstr "erros CBR"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
