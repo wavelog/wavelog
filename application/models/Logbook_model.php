@@ -4718,7 +4718,7 @@ class Logbook_model extends CI_Model {
      */
 	public function check_dxcc_table($call, $date) {
 
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
 			->where('`call`', $call)
@@ -4809,7 +4809,7 @@ class Logbook_model extends CI_Model {
 
 	public function dxcc_lookup($call, $date) {
 
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
 			->where('`call`', $call)
@@ -4918,7 +4918,7 @@ class Logbook_model extends CI_Model {
 		$c = '';
 
 		$lidadditions = '/^QRP$|^LGT$/';
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
 		$noneadditions = '/^MM$|^AM$/';
 
 		# First check if the call is in the proper format, A/B/C where A and C
