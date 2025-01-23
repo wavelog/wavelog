@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-22 13:16+0000\n"
-"PO-Revision-Date: 2025-01-21 11:22+0000\n"
+"PO-Revision-Date: 2025-01-23 10:12+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -601,22 +601,22 @@ msgstr "导出 Cabrillo"
 
 #: application/controllers/Cabrillo.php:150
 msgid "Cabrillo Import"
-msgstr ""
+msgstr "Cabrillo 导入"
 
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
-msgstr ""
+msgstr "损害的 CBR 文件 - 没有通联数据或文件头不完整。"
 
 #: application/controllers/Cabrillo.php:243
 #, php-format
 msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
-msgstr ""
+msgstr "%d 条通联记录未找到或不止一条通联记录批评 CBR 文件。跳过是一个安全的方式。"
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
-msgstr ""
+msgstr "CBR 数据已导入"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
@@ -2466,59 +2466,59 @@ msgstr "DXCC 前缀："
 
 #: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
-msgstr ""
+msgstr "SCP 更新已完成。结果为： "
 
 #: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
-msgstr ""
+msgstr "SCP 更新失败。结果为： "
 
 #: application/controllers/Update.php:385
 msgid "LoTW Users Update complete. Result: "
-msgstr ""
+msgstr "LoTW 用户更新完成。结果为： "
 
 #: application/controllers/Update.php:387
 msgid "LoTW Users Update failed. Result: "
-msgstr ""
+msgstr "LoTW 用户更新失败。结果为： "
 
 #: application/controllers/Update.php:404
 msgid "DOK Update complete. Result: "
-msgstr ""
+msgstr "DOK 更新完成。结果为： "
 
 #: application/controllers/Update.php:406
 msgid "DOK Update failed. Result: "
-msgstr ""
+msgstr "DOK 更新失败。结果为： "
 
 #: application/controllers/Update.php:423
 msgid "SOTA Update complete. Result: "
-msgstr ""
+msgstr "SOTA 更新完成。结果为： "
 
 #: application/controllers/Update.php:425
 msgid "SOTA Update failed. Result: "
-msgstr ""
+msgstr "SOTA 更新失败。结果为： "
 
 #: application/controllers/Update.php:442
 msgid "WWFF Update complete. Result: "
-msgstr ""
+msgstr "WWFF 更新成功。结果为： "
 
 #: application/controllers/Update.php:444
 msgid "WWFF Update failed. Result: "
-msgstr ""
+msgstr "WWFF 更新失败。结果为： "
 
 #: application/controllers/Update.php:458
 msgid "POTA Update complete. Result: "
-msgstr ""
+msgstr "POTA 更新完成。结果为： "
 
 #: application/controllers/Update.php:460
 msgid "POTA Update failed. Result: "
-msgstr ""
+msgstr "POTA 更新失败。结果为： "
 
 #: application/controllers/Update.php:473
 msgid "TLE Update complete. Result: "
-msgstr ""
+msgstr "TLE 更新完成。结果为： "
 
 #: application/controllers/Update.php:475
 msgid "TLE Update failed. Result: "
-msgstr ""
+msgstr "TLE 更新失败。结果为： "
 
 #: application/controllers/Update.php:486
 msgid "LoTW SAT Update"
@@ -3753,7 +3753,7 @@ msgstr "DCL DOK 更新结果"
 #: application/views/adif/dcl_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr ""
+msgstr "耶，更新了！"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
@@ -3899,7 +3899,7 @@ msgstr "DARC DCL"
 
 #: application/views/adif/import.php:45
 msgid "CBR Import"
-msgstr ""
+msgstr "CBR 导入"
 
 #: application/views/adif/import.php:64 application/views/adif/import.php:338
 #: application/views/api/index.php:16 application/views/dashboard/index.php:172
@@ -4150,6 +4150,9 @@ msgid ""
 "can provide the Cabrillo file that this software also provides to rewrite "
 "that data in Wavelog."
 msgstr ""
+"如果您导入了由另一个日志软件提供的竞赛的ADIF文件，有时，根据该软件的不同，您"
+"的通联将无法从该软件的ADIF正确导入。如果您想更正该问题，可以提供该软件提供的C"
+"abrillo文件来在Wavelog中重写该数据。"
 
 #: application/views/adif/import.php:337
 #: application/views/lotw_views/index.php:137
@@ -4163,32 +4166,36 @@ msgid ""
 "from both your already imported ADIF file, as well as the CBR file you are "
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
+"请在更改 Wavelog 中有关 QSO 的任何内容之前使用此功能，因为此功能使用竞赛ID，"
+"您已导入的ADIF文件以及您即将上传的CBP文件中的日期和时间信息以匹配QSO并且仅更"
+"正相关数据。"
 
 #: application/views/adif/import.php:343
 msgid "Contest Name, only if Contest ID in CBR is different"
-msgstr ""
+msgstr "比赛名称，仅当 CBP 中的比赛ID不同时"
 
 #: application/views/adif/import.php:343
 msgid "Optional"
-msgstr ""
+msgstr "可选"
 
 #: application/views/adif/import.php:353
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
-msgstr ""
+msgstr "序列号始终是本次比赛双方交换的一部分。"
 
 #: application/views/adif/import.php:355
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
-msgstr ""
+msgstr "如果你和你的伙伴只是有时交换序列号，请不要勾选。"
 
 #: application/views/adif/import.php:356
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
-msgstr ""
+msgstr "如果未选中，这将抹除（例如）由N1MM+ "
+"提供的默认序列号。如果选中，将在必要时修正序列号。"
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
@@ -4221,18 +4228,19 @@ msgstr "已跳过重复项。"
 
 #: application/views/adif/import_success.php:30
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr ""
+msgstr "你已经导入至少一个包含比赛ID的通联记录。"
 
 #: application/views/adif/import_success.php:31
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
-msgstr ""
+msgstr "有时，根据您的竞赛记录软件，您的通联记录无法从该软件ADIF正确导入。如果您想更"
+"正该问题，请切换到“ADIF导入”页面的“CBP导入”选项卡。"
 
 #: application/views/adif/import_success.php:32
 msgid "We found the following numbers of QSOs for the following contest IDs:"
-msgstr ""
+msgstr "我们找到了以下竞赛 ID 的以下 QSO 数量："
 
 #: application/views/adif/import_success.php:44
 msgid "Import details / possible problems"
@@ -5897,20 +5905,20 @@ msgstr "停用所有"
 
 #: application/views/cabrillo/cbr_success.php:12
 msgid "Results of CBR Contest Data Update"
-msgstr ""
+msgstr "CBP竞赛数据更新结果"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
 "Your contest QSOs have been updated using the values of your Cabrillo file."
-msgstr ""
+msgstr "您的竞赛QSO已使用Cabrillo文件中的值更新。"
 
 #: application/views/cabrillo/cbr_success.php:19
 msgid "No QSOs were updated by your Cabrillo file."
-msgstr ""
+msgstr "您的Cabrillo文件没有更新任何QSO。"
 
 #: application/views/cabrillo/cbr_success.php:25
 msgid "CBR errors"
-msgstr ""
+msgstr "CBR 错误"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
