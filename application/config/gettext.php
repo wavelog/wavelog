@@ -71,6 +71,16 @@ $config['languages'] = array(
 		'code'      => 'sq',
 		'flag'      => 'al',
 	),
+    'armenian' => array(
+        'name'      => 'Հայերեն',
+        'name_en'   => 'Armenian',
+        'folder'    => 'armenian',
+        'locale'    => 'hy',
+        'gettext'   => 'hy',
+        'direction' => 'ltr',
+        'code'      => 'hy',
+        'flag'      => 'am',
+    ),
 	'bosnian' => array(
 		'name'      => 'Bosanski',
 		'name_en'   => 'Bosnian',
@@ -271,6 +281,16 @@ $config['languages'] = array(
 		'code'      => 'sr',
 		'flag'      => 'rs',
 	),
+    'slovenian' => array(
+        'name'      => 'Slovenščina',
+        'name_en'   => 'Slovenian',
+        'folder'    => 'slovenian',
+        'locale'    => 'sl',
+        'gettext'   => 'sl',
+        'direction' => 'ltr',
+        'code'      => 'sl',
+        'flag'      => 'si',
+    ),
 	'spanish' => array(
 		'name'      => 'Español',
 		'name_en'   => 'Spanish',
@@ -300,16 +320,6 @@ $config['languages'] = array(
 		'direction' => 'ltr',
 		'code'      => 'tr',
 		'flag'      => 'tr',
-	),
-	'armenian' => array(
-		'name'      => 'Հայերեն',
-		'name_en'   => 'Armenian',
-		'folder'    => 'armenian',
-		'locale'    => 'hy',
-		'gettext'   => 'hy',
-		'direction' => 'ltr',
-		'code'      => 'hy',
-		'flag'      => 'am',
 	)
 );
 
