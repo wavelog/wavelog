@@ -13,7 +13,7 @@ class Dxcc {
 
 	public function dxcc_lookup($call, $date) {
 
-		$csadditions = '/^P$|^R$|^A$|^M$/';
+		$csadditions = '/^P$|^R$|^A$|^B$|^M$/';
 		$CI =& get_instance();
 
 		if (array_key_exists($call, $this->dxccexceptions)) {
@@ -91,7 +91,7 @@ class Dxcc {
 		$c = '';
 
 		$lidadditions = '/^QRP$|^LGT$/';
-		$csadditions = '/^P$|^R$|^A$|^M$|^LH$/';
+		$csadditions = '/^P$|^R$|^B$|^A$|^M$|^LH$/';
 		$noneadditions = '/^MM$|^AM$/';
 
 		# First check if the call is in the proper format, A/B/C where A and C
