@@ -53,14 +53,14 @@ class Logbookadvanced extends CI_Controller {
 		$pageData['modes'] = $this->logbookadvanced_model->get_modes();
 		$pageData['dxccarray'] = $this->logbook_model->fetchDxcc();
 		$pageData['iotaarray'] = $this->logbook_model->fetchIota();
-		$pageData['sats'] = $this->bands->get_worked_sats();
+		$pageData['sats'] = $this->logbookadvanced_model->get_worked_sats();
 		$pageData['orbits'] = $this->bands->get_worked_orbits();
 		$pageData['station_profile'] = $this->stations->all_of_user();
 		$pageData['active_station_info'] = $station_profile->row();
 		$pageData['homegrid'] = explode(',', $this->stations->find_gridsquare());
 		$pageData['active_station_id'] = $active_station_id;
 
-		$pageData['bands'] = $this->bands->get_worked_bands();
+		$pageData['bands'] = $this->logbookadvanced_model->get_worked_bands();
 
 		// Get Date format
 		if($this->session->userdata('user_date_format')) {
