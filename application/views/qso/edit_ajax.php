@@ -532,7 +532,7 @@
                                                 <div>
                                                     <label for="qslmsgr"><?= __("QSL Msg (R)"); ?></label>
                                                     <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
-                                                    <textarea readonly type="text" class="form-control" id="qslmsgr" name="qslmsgr" rows="2"><?php echo htmlentities($qso->COL_QSLMSG_RCVD); ?></textarea>
+                                                    <textarea readonly type="text" class="form-control" id="qslmsgr" name="qslmsgr" rows="2"><?php echo htmlentities($qso->COL_QSLMSG_RCVD ?? ''); ?></textarea>
                                                     <div class="small form-text text-muted"><?= __("Note: Not editable. Only displayed here.") ?></div>
                                                 </div>
                                             </div>
