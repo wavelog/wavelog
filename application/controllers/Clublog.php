@@ -91,7 +91,7 @@ class Clublog extends CI_Controller
 	}
 
 	/*
-	 * Used for displaying the uid for manually selecting log for upload to qrz
+	 * Used for displaying the uid for manually selecting log for upload to Clublog
 	 */
 	public function export() {
 		$this->load->model('user_model');
@@ -114,5 +114,49 @@ class Clublog extends CI_Controller
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('clublog/export');
 		$this->load->view('interface_assets/footer');
+	}
+
+	public function uploadlog($station_id) {
+		$this->load->model('clublog_model');
+
+		$users = $this->clublog_model->get_clublog_users($this->session->userdata('user_id'));
+
+		if (!empty($users)) {
+			foreach ($users as $user) {
+				$r = $this->clublog_model->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password, $station_id);
+			}
+		} else {
+			$r = __("No user has configured Clublog.");
+		}
+
+		echo $r;
+	}
+
+	public function importlog() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$data['page_title'] = __("Clublog QSL Import");
+
+		$this->load->model('logbook_model');
+
+		$customDate = $this->input->post('from');
+		if ($customDate != NULL) {
+			$clublog_last_date = date($customDate);
+		} else {
+			// Query the logbook to determine when the last LoTW confirmation was
+			$clublog_last_date = null;
+		}
+		$users = $this->clublog_model->get_clublog_users($this->session->userdata('user_id'));
+
+		if (!empty($users)) {
+			foreach ($users as $user) {
+				$r = $this->clublog_model->downloadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password, $clublog_last_date);
+			}
+		} else {
+			$r = __("No user has configured Clublog.");
+		}
+
+		echo $r;
 	}
 }

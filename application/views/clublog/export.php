@@ -24,8 +24,6 @@
             <?php if (($next_run_up ?? '') != '') { echo "<p>".__("The next automatic Upload to Clublog will happen at: ").$next_run_up."</p>"; } ?>
             <p><?= __("Here you can see all QSOs which have not been previously uploaded to a Clublog logbook."); ?></p>
             <p><?= __("You need to set a username and password in your user account. You will also need to enable upload for each station profile ."); ?></p>
-            <?php if (!($this->config->item('disable_manual_clublog'))) { echo '<p><span class="badge text-bg-warning">Warning</span> This might take a while as QSO uploads are processed sequentially.</p>'; } ?>
-
 <?php
             if ($station_profile->result()) {
             echo '
@@ -49,7 +47,7 @@
                     echo '<td id ="notcount'.$station->station_id.'">' . $station->notcount . '</td>';
                     echo '<td id ="totcount'.$station->station_id.'">' . $station->totcount . '</td>';
 		    if (!($this->config->item('disable_manual_clublog'))) {
-			    echo '<td><button id="clublogUpload" type="button" name="clublogUpload" class="btn btn-primary btn-sm ld-ext-right ld-ext-right-'.$station->station_id.'" onclick="ExportClublog('. $station->station_id .')"><i class="fas fa-cloud-upload-alt"></i> ' . __("Upload") . '<div class="ld ld-ring ld-spin"></div></button></td>';
+			    echo '<td><a href="' . site_url('clublog/uploadlog') . '/' . $station->station_id . '" class="btn btn-sm btn-primary"><i class="fas fa-cloud-upload-alt"></i> ' . __("Upload") .'</a></td>';
 		    } else {
 			    echo '<td>&nbsp;</td>';
 		    }
@@ -67,7 +65,7 @@
 		<?php if (!($this->config->item('disable_manual_clublog'))) { ?>
 			<div class="tab-pane fade" id="import" role="tabpanel" aria-labelledby="home-tab">
 
-				<form class="form" action="<?php echo site_url('clublog/import_clublog'); ?>" method="post" enctype="multipart/form-data">
+				<form class="form" action="<?php echo site_url('clublog/importlog'); ?>" method="post" enctype="multipart/form-data">
 					<?php if (($next_run_down ?? '') != '') { echo "<p>".__("The next automatic Download from Clublog-QSLs will happen at: ").$next_run_down."</p>"; } ?>
 					<p><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("If no startdate is given then all QSOs after last confirmation will be downloaded/updated!"); ?></p>
 					<div class="row">

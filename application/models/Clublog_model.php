@@ -3,15 +3,18 @@
 class Clublog_model extends CI_Model
 {
 
-	function get_clublog_users() {
+	function get_clublog_users($userid = null) {
 		$this->db->select('user_clublog_name, user_clublog_password, user_id');
 		$this->db->where('coalesce(user_clublog_name, "") != ""');
 		$this->db->where('coalesce(user_clublog_password, "") != ""');
+		if ($userid !== null) {
+			$this->db->where('user_id', $userid);
+		}
 		$query = $this->db->get($this->config->item('auth_table'));
 		return $query->result();
 	}
 
-	function uploadUser($userid, $username, $password) {
+	function uploadUser($userid, $username, $password, $station_id = null) {
 		$clean_username = $this->security->xss_clean($username);
 		$clean_passord = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
@@ -30,7 +33,7 @@ class Clublog_model extends CI_Model
 			$this->load->library('AdifHelper');
 		}
 
-		$station_profiles = $this->all_with_count($clean_userid);
+		$station_profiles = $this->all_with_count($clean_userid, $station_id);
 
 		if ($station_profiles->num_rows()) {
 			foreach ($station_profiles->result() as $station_row) {
@@ -127,7 +130,7 @@ class Clublog_model extends CI_Model
 		return $return . "\n";
 	}
 
-	function downloadUser($userid, $username, $password) {
+	function downloadUser($userid, $username, $password, $clublog_last_date = null) {
 		$clean_username = $this->security->xss_clean($username);
 		$clean_password = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
@@ -148,7 +151,7 @@ class Clublog_model extends CI_Model
 
 		if ($station_profiles->num_rows()) {
 			foreach ($station_profiles->result() as $station_row) {
-				$lastrec = $this->clublog_last_qsl_rcvd_date($station_row->station_callsign);
+				$lastrec = $clublog_last_date ?? $this->clublog_last_qsl_rcvd_date($station_row->station_callsign);
 				$url = 'https://clublog.org/getmatches.php?api=608df94896cb9c5421ae748235492b43815610c9&email=' . $clean_username . '&password=' . $clean_password . '&callsign=' . $station_row->station_callsign . '&startyear=' . substr($lastrec, 0, 4) . '&startmonth=' . substr($lastrec, 4, 2) . '&startday=' . substr($lastrec, 6, 2);
 				$request = curl_init($url);
 
@@ -296,11 +299,14 @@ class Clublog_model extends CI_Model
 		return $query;
 	}
 
-	function all_with_count($userid) {
+	function all_with_count($userid, $station_id) {
 		$this->db->select('station_profile.station_id, station_profile.station_callsign, count(' . $this->config->item('table_name') . '.station_id) as qso_total');
 		$this->db->from('station_profile');
 		$this->db->join($this->config->item('table_name'), 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id', 'left');
 		$this->db->group_by('station_profile.station_id');
+		if ($station_id !== null) {
+			$this->db->where('station_profile.station_id', $station_id);
+		}
 		$this->db->where('station_profile.user_id', $userid);
 		$this->db->where('station_profile.clublogignore', 0);
 		$this->db->group_start();
