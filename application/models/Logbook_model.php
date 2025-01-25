@@ -794,7 +794,7 @@ class Logbook_model extends CI_Model {
 
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
 					$result = $this->push_qso_to_clublog($result->ucn, $result->ucp, $data['COL_STATION_CALLSIGN'], $adif);
-					if (($result['status'] == 'OK') || (($result['status'] == 'error') || ($result['status'] == 'duplicate') || ($result['status'] == 'auth_error'))) {
+					if ($result['status'] == 'OK') {
 						$this->mark_clublog_qsos_sent($last_id);
 					}
 				}
@@ -948,14 +948,18 @@ class Logbook_model extends CI_Model {
 		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($request);
 		$info = curl_getinfo($request);
+		curl_close($request);
 
-		// If Clublog Accepts mark the QSOs
 		if (preg_match('/\bOK\b/', $response)) {
 			$returner['status'] = 'OK';
+		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
+			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
+			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
+			$this->db->query($sql,array($cl_username,$cl_password));
+			$returner['status'] = $response;
 		} else {
 			$returner['status'] = $response;
 		}
-		curl_close($request);
 		return ($returner);
 	}
 
@@ -4714,7 +4718,7 @@ class Logbook_model extends CI_Model {
      */
 	public function check_dxcc_table($call, $date) {
 
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
 			->where('`call`', $call)
@@ -4805,7 +4809,7 @@ class Logbook_model extends CI_Model {
 
 	public function dxcc_lookup($call, $date) {
 
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
 			->where('`call`', $call)
@@ -4914,7 +4918,7 @@ class Logbook_model extends CI_Model {
 		$c = '';
 
 		$lidadditions = '/^QRP$|^LGT$/';
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
 		$noneadditions = '/^MM$|^AM$/';
 
 		# First check if the call is in the proper format, A/B/C where A and C
@@ -5568,9 +5572,71 @@ class Logbook_model extends CI_Model {
 		}
 		return '';
 	}
+
+	function getContestQSO(array $station_ids, string $station_callsign, string $contest_id, string $callsign, string $band, string $mode, string $date, string $time)
+	{
+		
+		//load QSO table
+		$this->db->select('*');
+		$this->db->from($this->config->item('table_name'));
+
+		//load only for given station_ids
+		$this->db->where_in('station_id', $station_ids);
+
+		//load only for the station_callsign given
+		$this->db->where('COL_STATION_CALLSIGN', xss_clean($station_callsign));
+
+		//load only for the given contest id
+		$this->db->where('COL_CONTEST_ID', xss_clean($contest_id));
+
+		//load only for this qso partners callsign
+		$this->db->where('COL_CALL', xss_clean($callsign));
+
+		//load only for given band (no cleaning necessary because provided by wavelog itself)
+		$this->db->where('COL_BAND', $band);
+
+		//load only for specific mode if the mode is determinate. If not, omit it. In most cases, that should be fine. Also provided by wavelog itself, so no cleaning.
+		if($mode != '') {
+			$this->db->where('COL_MODE', $mode);
+		}
+
+		//prepare datetime from format '2099-12-31 13:47' to be usable in a performant query
+		$datetime_raw = $date . ' ' . substr($time, 0, 2) . ':' . substr($time, 2, 2);
+		$datetime = new DateTime($datetime_raw,new DateTimeZone('UTC'));
+		$from_datetime = $datetime->format('Y-m-d H:i:s');
+		$datetime->add(new DateInterval('PT1M'));
+		$to_datetime = $datetime->format('Y-m-d H:i:s');
+		
+		//load only QSOs during this minute
+		$this->db->where('COL_TIME_ON >=', $from_datetime);
+		$this->db->where('COL_TIME_ON <', $to_datetime);
+
+		//return whatever is left
+		return $this->db->get();
+	}
+
+	function set_contest_fields($qso_primary_key, ?int $stx, ?string $stxstring, ?int $srx, ?string $srxstring) {
+		
+		//assemble data fields from input
+		$data = $data = array(
+			'COL_STX' => $stx,
+			'COL_STX_STRING' => $stxstring == null ? null : substr($stxstring, 0, 32),
+			'COL_SRX' => $srx,
+			'COL_SRX_STRING' => $srxstring == null ? null : substr($srxstring, 0, 32)
+		);
+	
+		//narrow db operation down to 1 QSO
+		$this->db->where(array('COL_PRIMARY_KEY' => $qso_primary_key));
+		
+		//update data and return
+		$this->db->update($this->config->item('table_name'), $data);
+		return;
+	}
+	
 }
 
 function validateADIFDate($date, $format = 'Ymd') {
 	$d = DateTime::createFromFormat($format, $date);
 	return $d && $d->format($format) == $date;
 }
+

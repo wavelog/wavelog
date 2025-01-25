@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $config['app_name'] = 'Wavelog';
-$config['directory'] = '/%directory%';
+$config['directory'] = '%directory%';
 $config['callbook'] = '%callbook%'; // Options are hamqth, qrz or qrzcq
 
 $config['datadir'] = null; // default to install directory
@@ -769,3 +769,11 @@ $config['disable_version_check'] = false;
  */
 
 $config['enable_eqsl_massdownload'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Lock Account after n failed login-attempts
+|--------------------------------------------------------------------------
+ */
+
+$config['max_login_attempts'] = 3;

@@ -360,8 +360,16 @@ class Update extends CI_Controller {
 
         $this->load->model('Update_model');
         $result = $this->Update_model->clublog_scp();
-        echo $result;
-
+        if($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 4) == 'DONE') {
+				$this->session->set_flashdata('success', __("SCP Update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("SCP Update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+        	echo $result;
+		}
     }
 
     public function download_lotw_users() {
@@ -372,8 +380,16 @@ class Update extends CI_Controller {
 
         $this->load->model('Update_model');
         $result = $this->Update_model->lotw_users();
-        echo $result;
-
+        if($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 7) == 'Records') {
+				$this->session->set_flashdata('success', __("LoTW Users Update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("LoTW Users Update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+        	echo $result;
+		}
     }
 
     /*
@@ -383,8 +399,16 @@ class Update extends CI_Controller {
 
         $this->load->model('Update_model');
         $result = $this->Update_model->dok();
-        echo $result;
-
+		if($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 4) == 'DONE') {
+				$this->session->set_flashdata('success', __("DOK Update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("DOK Update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+        	echo $result;
+		}
     }
 
     /*
@@ -394,8 +418,16 @@ class Update extends CI_Controller {
 
         $this->load->model('Update_model');
         $result = $this->Update_model->sota();
-        echo $result;
-
+        if($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 4) == 'DONE') {
+				$this->session->set_flashdata('success', __("SOTA Update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("SOTA Update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+        	echo $result;
+		}
     }
 
     /*
@@ -405,22 +437,47 @@ class Update extends CI_Controller {
 
         $this->load->model('Update_model');
         $result = $this->Update_model->wwff();
-        echo $result;
-
+        if($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 4) == 'DONE') {
+				$this->session->set_flashdata('success', __("WWFF Update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("WWFF Update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+        	echo $result;
+		}
     }
 
     public function update_pota() {
 
         $this->load->model('Update_model');
         $result = $this->Update_model->pota();
-        echo $result;
-
+        if($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 4) == 'DONE') {
+				$this->session->set_flashdata('success', __("POTA Update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("POTA Update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+        	echo $result;
+		}
     }
 
     public function update_tle() {
         $this->load->model('Update_model');
         $result = $this->Update_model->tle();
-        echo $result;
+        if($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 4) == 'This') {
+				$this->session->set_flashdata('success', __("TLE Update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("TLE Update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+        	echo $result;
+		}
     }
 
     public function update_lotw_sats() {

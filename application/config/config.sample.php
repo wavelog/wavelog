@@ -109,7 +109,7 @@ $config['auth_level'][99] = 'Administrator';
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/logbook';
+$config['base_url'] = 'http://localhost/logbook/';
 
 /*
 |--------------------------------------------------------------------------
@@ -769,3 +769,11 @@ $config['disable_version_check'] = false;
  */
 
 $config['enable_eqsl_massdownload'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Lock Account after n failed login-attempts
+|--------------------------------------------------------------------------
+ */
+
+$config['max_login_attempts'] = 3;

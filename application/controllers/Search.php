@@ -104,7 +104,8 @@ class Search extends CI_Controller {
 	}
 
 	function export_to_adif() {
-		$data['qsos'] = $this->fetchQueryResult(($this->input->post('search', TRUE) ?? ''), FALSE);
+		$sstring = str_replace('Ø', "0", $this->input->post("search", TRUE) ?? '');
+		$data['qsos'] = $this->fetchQueryResult($sstring, FALSE);
 		$this->load->view('adif/data/exportall', $data);
 	}
 
@@ -304,7 +305,7 @@ class Search extends CI_Controller {
 
 		$this->db->order_by('COL_TIME_ON', 'DESC');
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
+		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left');
 		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 		$this->db->limit(5000);
 

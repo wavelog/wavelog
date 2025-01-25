@@ -419,19 +419,19 @@
                                             <a class="nav-link active" id="qsl-edit-tab" data-bs-toggle="tab" href="#qsl-edit" role="tab" aria-controls="qsl-edit" aria-selected="true"><?= __("QSL Card"); ?></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="eqsl-tab" data-bs-toggle="tab" href="#eqsl" role="tab" aria-controls="eqsl" aria-selected="false"><?= __("eQSL"); ?></a>
+                                            <a class="nav-link" id="eqsl-tab" data-bs-toggle="tab" href="#eqsl-edit" role="tab" aria-controls="eqsl" aria-selected="false"><?= __("eQSL"); ?></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="lotw-tab" data-bs-toggle="tab" href="#lotw" role="tab" aria-controls="lotw" aria-selected="false"><?= __("LoTW"); ?></a>
+                                            <a class="nav-link" id="lotw-tab" data-bs-toggle="tab" href="#lotw-edit" role="tab" aria-controls="lotw" aria-selected="false"><?= __("LoTW"); ?></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="qrz-tab" data-bs-toggle="tab" href="#qrz" role="tab" aria-controls="qrz" aria-selected="false"><?= __("QRZ"); ?></a>
+                                            <a class="nav-link" id="qrz-tab" data-bs-toggle="tab" href="#qrz-edit" role="tab" aria-controls="qrz" aria-selected="false"><?= __("QRZ"); ?></a>
                                         </li>
 										<li class="nav-item">
-                                            <a class="nav-link" id="clublog-tab" data-bs-toggle="tab" href="#clublog" role="tab" aria-controls="clublog" aria-selected="false"><?= __("Clublog"); ?></a>
+                                            <a class="nav-link" id="clublog-tab" data-bs-toggle="tab" href="#clublog-edit" role="tab" aria-controls="clublog" aria-selected="false"><?= __("Clublog"); ?></a>
                                         </li>
                                     </ul>
-                                    <div class="tab-content" id="myTabContent">
+                                    <div class="tab-content" id="qsl_edit_tabs">
                                         <div class="tab-pane fade show active" id="qsl-edit" role="tabpanel" aria-labelledby="qsl-edit-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
@@ -493,7 +493,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane fade" id="eqsl" role="tabpanel" aria-labelledby="eqsl-tab">
+                                        <div class="tab-pane fade" id="eqsl-edit" role="tabpanel" aria-labelledby="eqsl-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
@@ -532,13 +532,13 @@
                                                 <div>
                                                     <label for="qslmsgr"><?= __("QSL Msg (R)"); ?></label>
                                                     <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
-                                                    <textarea readonly type="text" class="form-control" id="qslmsgr" name="qslmsgr" rows="2"><?php echo htmlentities($qso->COL_QSLMSG_RCVD); ?></textarea>
+                                                    <textarea readonly type="text" class="form-control" id="qslmsgr" name="qslmsgr" rows="2"><?php echo htmlentities($qso->COL_QSLMSG_RCVD ?? ''); ?></textarea>
                                                     <div class="small form-text text-muted"><?= __("Note: Not editable. Only displayed here.") ?></div>
                                                 </div>
                                             </div>
 
                                         </div>
-                                        <div class="tab-pane fade" id="lotw" role="tabpanel" aria-labelledby="lotw-tab">
+                                        <div class="tab-pane fade" id="lotw-edit" role="tabpanel" aria-labelledby="lotw-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
@@ -567,7 +567,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane fade" id="qrz" role="tabpanel" aria-labelledby="qrz-tab">
+                                        <div class="tab-pane fade" id="qrz-edit" role="tabpanel" aria-labelledby="qrz-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
@@ -595,7 +595,7 @@
                                                 </div>
                                             </div>
                                         </div>
-										<div class="tab-pane fade" id="clublog" role="tabpanel" aria-labelledby="clublog-tab">
+										<div class="tab-pane fade" id="clublog-edit" role="tabpanel" aria-labelledby="clublog-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
