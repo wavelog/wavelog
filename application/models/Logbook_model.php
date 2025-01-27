@@ -3178,6 +3178,30 @@ class Logbook_model extends CI_Model {
 		return $query;
 	}
 
+	/* Return total number of QSOs per operator */
+	function total_operators($yr = 'All') {
+		
+		//Load logbook model and get station locations
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		//get statistics from database
+		$this->db->select('IFNULL(IF(COL_OPERATOR = "", COL_STATION_CALLSIGN, COL_OPERATOR), COL_STATION_CALLSIGN) AS operator, count( * ) AS count', FALSE);
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->where_year($yr);
+		$this->db->group_by('operator');
+		$this->db->order_by('count', 'DESC');
+
+		$query = $this->db->get($this->config->item('table_name'));
+
+		//return result
+		return $query;
+	}
+
 	function get_QSLStats($StationLocationsArray = null) {
 
 		if ($StationLocationsArray == null) {

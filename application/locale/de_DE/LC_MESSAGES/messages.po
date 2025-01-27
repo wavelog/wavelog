@@ -22,11 +22,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-23 10:57+0000\n"
+"POT-Creation-Date: 2025-01-27 12:34+0000\n"
 "PO-Revision-Date: 2025-01-24 15:27+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -585,7 +585,7 @@ msgstr "Notizen - Backup"
 #: application/views/bands/index.php:32
 #: application/views/interface_assets/header.php:400
 #: application/views/statistics/index.php:16
-#: application/views/statistics/index.php:65
+#: application/views/statistics/index.php:67
 msgid "Bands"
 msgstr "Bänder"
 
@@ -1310,8 +1310,8 @@ msgstr "Clublog"
 #: application/views/simplefle/index.php:157
 #: application/views/statistics/antennaanalytics.php:31
 #: application/views/statistics/index.php:15
-#: application/views/statistics/index.php:20
-#: application/views/statistics/index.php:62
+#: application/views/statistics/index.php:21
+#: application/views/statistics/index.php:64
 #: application/views/timeline/index.php:19 application/views/user/edit.php:244
 #: application/views/user/edit.php:267 application/views/user/edit.php:290
 #: application/views/user/edit.php:313 application/views/user/edit.php:337
@@ -1584,7 +1584,7 @@ msgstr "Distanz"
 #: application/views/simplefle/index.php:156
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/antennaanalytics.php:19
-#: application/views/statistics/index.php:21
+#: application/views/statistics/index.php:22
 #: application/views/timeline/index.php:7
 #: application/views/timeplotter/index.php:14
 #: application/views/user/edit.php:242 application/views/user/edit.php:265
@@ -1631,6 +1631,7 @@ msgstr "Frequenz"
 #: application/views/qso/components/previous_contacts.php:90
 #: application/views/search/search_result_ajax.php:17
 #: application/views/simplefle/index.php:116
+#: application/views/statistics/index.php:23
 #: application/views/user/edit.php:255 application/views/user/edit.php:278
 #: application/views/user/edit.php:301 application/views/user/edit.php:324
 #: application/views/user/edit.php:348
@@ -2433,13 +2434,13 @@ msgstr "Bearbeite Export-Karte Optionen"
 msgid "Statistics"
 msgstr "Statistik"
 
-#: application/controllers/Statistics.php:209
+#: application/controllers/Statistics.php:238
 #: application/views/interface_assets/header.php:143
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "QSL-Statistiken"
 
-#: application/controllers/Statistics.php:224
+#: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:141
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
@@ -3002,23 +3003,23 @@ msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
-#: application/models/Logbook_model.php:3875
+#: application/models/Logbook_model.php:3899
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Falscher Stationscall %s im QSO mit %s für das Stationsprofil %s: Nicht "
 "importiert"
 
-#: application/models/Logbook_model.php:3876
+#: application/models/Logbook_model.php:3900
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Schaue im %s für Tipps zu möglichen Fehlern in der ADIF-Datei."
 
-#: application/models/Logbook_model.php:3888
+#: application/models/Logbook_model.php:3912
 msgid "QSO on"
 msgstr "QSO am"
 
-#: application/models/Logbook_model.php:3888
+#: application/models/Logbook_model.php:3912
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3026,62 +3027,62 @@ msgstr ""
 "Du hast versucht, ein QSO ohne angegebenes Rufzeichen zu importieren. Dieses "
 "QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:4187
+#: application/models/Logbook_model.php:4211
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4198
+#: application/models/Logbook_model.php:4222
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4259
+#: application/models/Logbook_model.php:4283
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4279
+#: application/models/Logbook_model.php:4303
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4300
+#: application/models/Logbook_model.php:4324
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4581
+#: application/models/Logbook_model.php:4605
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
-#: application/models/Logbook_model.php:4642
+#: application/models/Logbook_model.php:4666
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:4648
+#: application/models/Logbook_model.php:4672
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4677
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:4656
+#: application/models/Logbook_model.php:4680
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:4659
+#: application/models/Logbook_model.php:4683
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:4662
+#: application/models/Logbook_model.php:4686
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:4665
+#: application/models/Logbook_model.php:4689
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "unbekannt"
 
-#: application/models/Logbook_model.php:5475
+#: application/models/Logbook_model.php:5499
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3164,8 +3165,8 @@ msgstr "Kumulierte Anzahl gearbeiteter WAJA"
 #: application/views/dashboard/index.php:296
 #: application/views/dayswithqso/index.php:41
 #: application/views/dayswithqso/index.php:81
-#: application/views/statistics/index.php:18
-#: application/views/statistics/index.php:36
+#: application/views/statistics/index.php:19
+#: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -3648,7 +3649,7 @@ msgstr "Anzeigen"
 #: application/views/satellite/skedtable.php:7
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
-#: application/views/statistics/index.php:22
+#: application/views/statistics/index.php:24
 msgid "Satellite"
 msgstr "Satellit"
 
@@ -6255,6 +6256,8 @@ msgstr "Kategorie Overlay"
 
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
+#: application/views/statistics/index.php:17
+#: application/views/statistics/index.php:73
 msgid "Operators"
 msgstr "Operatoren"
 
@@ -7033,7 +7036,7 @@ msgid "VUCC Gridsquare"
 msgstr "VUCC Locator"
 
 #: application/views/continents/index.php:63
-#: application/views/statistics/index.php:19
+#: application/views/statistics/index.php:20
 msgid "# of QSO's worked"
 msgstr "# gearbeitete QSOs"
 
@@ -8929,8 +8932,8 @@ msgstr "Globale Optionen"
 #: application/views/interface_assets/header.php:289
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
 #: application/views/satellite/index.php:11
-#: application/views/statistics/index.php:48
-#: application/views/statistics/index.php:102
+#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:111
 msgid "Satellites"
 msgstr "Satelliten"
 
@@ -9274,8 +9277,8 @@ msgid "Label types"
 msgstr "Etiketten-Typen"
 
 #: application/views/labels/index.php:81
-#: application/views/statistics/index.php:68
-#: application/views/statistics/index.php:105
+#: application/views/statistics/index.php:70
+#: application/views/statistics/index.php:114
 #: application/views/widgets/qsos.php:3
 msgid "QSOs"
 msgstr "QSOs"
@@ -10227,7 +10230,7 @@ msgid "Category"
 msgstr "Kategorie"
 
 #: application/views/notes/add.php:36 application/views/notes/edit.php:37
-#: application/views/qso/index.php:31 application/views/statistics/index.php:44
+#: application/views/qso/index.php:31 application/views/statistics/index.php:46
 #: application/views/user/edit.php:169
 msgid "General"
 msgstr "Allgemeines"
@@ -12922,25 +12925,25 @@ msgid "Elevation"
 msgstr "Elevation"
 
 #: application/views/statistics/index.php:14
-#: application/views/statistics/index.php:59
+#: application/views/statistics/index.php:61
 msgid "Years"
 msgstr "Jahre"
 
-#: application/views/statistics/index.php:17
+#: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
 msgstr "Anzahl der QSOs gearbeitet pro Jahr"
 
-#: application/views/statistics/index.php:29
+#: application/views/statistics/index.php:31
 msgid "Explore the logbook."
 msgstr "Logbuch untersuchen."
 
-#: application/views/statistics/index.php:33
+#: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
 msgid "All Years"
 msgstr "Alle Jahre"
 
-#: application/views/statistics/index.php:71
-#: application/views/statistics/index.php:108
+#: application/views/statistics/index.php:76
+#: application/views/statistics/index.php:117
 msgid "Unique callsigns"
 msgstr "Eindeutige Rufzeichen"
 
