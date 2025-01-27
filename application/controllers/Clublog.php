@@ -138,7 +138,7 @@ class Clublog extends CI_Controller
 
 		$data['page_title'] = __("Clublog QSL Import");
 
-		$this->load->model('logbook_model');
+		$this->load->model('clublog_model');
 
 		$customDate = $this->input->post('from');
 		if ($customDate != NULL) {
