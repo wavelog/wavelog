@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-27 13:03+0000\n"
-"PO-Revision-Date: 2025-01-24 15:27+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
+"POT-Creation-Date: 2025-01-23 10:57+0000\n"
+"PO-Revision-Date: 2025-01-27 12:34+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -575,6 +575,7 @@ msgstr "笔记 - 备份"
 #: application/views/bands/index.php:32
 #: application/views/interface_assets/header.php:400
 #: application/views/statistics/index.php:16
+#: application/views/statistics/index.php:65
 #: application/views/statistics/index.php:67
 msgid "Bands"
 msgstr "波段"
@@ -723,10 +724,11 @@ msgstr "比赛"
 msgid "Update Contest"
 msgstr "更新竞赛"
 
-#: application/controllers/Continents.php:26
+#: application/controllers/Continents.php:25
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/iota/index.php:57
 #: application/views/interface_assets/header.php:163
+#: application/controllers/Continents.php:26
 msgid "Continents"
 msgstr "大陆"
 
@@ -1288,8 +1290,8 @@ msgstr "Clublog"
 #: application/views/simplefle/index.php:157
 #: application/views/statistics/antennaanalytics.php:31
 #: application/views/statistics/index.php:15
-#: application/views/statistics/index.php:21
-#: application/views/statistics/index.php:64
+#: application/views/statistics/index.php:20
+#: application/views/statistics/index.php:62
 #: application/views/timeline/index.php:19 application/views/user/edit.php:244
 #: application/views/user/edit.php:267 application/views/user/edit.php:290
 #: application/views/user/edit.php:313 application/views/user/edit.php:337
@@ -1297,6 +1299,8 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:30
+#: application/views/statistics/index.php:21
+#: application/views/statistics/index.php:64
 msgid "Mode"
 msgstr "模式"
 
@@ -1562,7 +1566,7 @@ msgstr "距离"
 #: application/views/simplefle/index.php:156
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/antennaanalytics.php:19
-#: application/views/statistics/index.php:22
+#: application/views/statistics/index.php:21
 #: application/views/timeline/index.php:7
 #: application/views/timeplotter/index.php:14
 #: application/views/user/edit.php:242 application/views/user/edit.php:265
@@ -1572,6 +1576,7 @@ msgstr "距离"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:33
+#: application/views/statistics/index.php:22
 msgid "Band"
 msgstr "频段"
 
@@ -1609,13 +1614,13 @@ msgstr "频率"
 #: application/views/qso/components/previous_contacts.php:90
 #: application/views/search/search_result_ajax.php:17
 #: application/views/simplefle/index.php:116
-#: application/views/statistics/index.php:23
 #: application/views/user/edit.php:255 application/views/user/edit.php:278
 #: application/views/user/edit.php:301 application/views/user/edit.php:324
 #: application/views/user/edit.php:348
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:684
 #: application/views/visitor/index.php:39
+#: application/views/statistics/index.php:23
 msgid "Operator"
 msgstr "操作员"
 
@@ -2393,15 +2398,17 @@ msgstr "编辑导出地图选项"
 msgid "Statistics"
 msgstr "统计"
 
-#: application/controllers/Statistics.php:238
+#: application/controllers/Statistics.php:209
 #: application/views/interface_assets/header.php:143
 #: application/views/statistics/qsltable.php:5
+#: application/controllers/Statistics.php:238
 msgid "QSL Statistics"
 msgstr "QSL 统计信息"
 
-#: application/controllers/Statistics.php:253
+#: application/controllers/Statistics.php:224
 #: application/views/interface_assets/header.php:141
 #: application/views/statistics/antennaanalytics.php:3
+#: application/controllers/Statistics.php:253
 msgid "Antenna Analytics"
 msgstr "天线分析"
 
@@ -2934,82 +2941,99 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
+#: application/models/Logbook_model.php:3875
 #: application/models/Logbook_model.php:3899
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
+#: application/models/Logbook_model.php:3876
 #: application/models/Logbook_model.php:3900
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
+#: application/models/Logbook_model.php:3888
 #: application/models/Logbook_model.php:3912
 msgid "QSO on"
 msgstr "QSO 时间"
 
+#: application/models/Logbook_model.php:3888
 #: application/models/Logbook_model.php:3912
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
 
+#: application/models/Logbook_model.php:4187
 #: application/models/Logbook_model.php:4211
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:4198
 #: application/models/Logbook_model.php:4222
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:4259
 #: application/models/Logbook_model.php:4283
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
+#: application/models/Logbook_model.php:4279
 #: application/models/Logbook_model.php:4303
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:4300
 #: application/models/Logbook_model.php:4324
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4605
+#: application/models/Logbook_model.php:4581
 #: application/views/simplefle/index.php:40
+#: application/models/Logbook_model.php:4605
 msgid "Duplicate for"
 msgstr "内容重复"
 
+#: application/models/Logbook_model.php:4642
 #: application/models/Logbook_model.php:4666
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
+#: application/models/Logbook_model.php:4648
 #: application/models/Logbook_model.php:4672
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
+#: application/models/Logbook_model.php:4653
 #: application/models/Logbook_model.php:4677
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
+#: application/models/Logbook_model.php:4656
 #: application/models/Logbook_model.php:4680
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
+#: application/models/Logbook_model.php:4659
 #: application/models/Logbook_model.php:4683
 msgid "confirmation pending"
 msgstr "等待确认"
 
+#: application/models/Logbook_model.php:4662
 #: application/models/Logbook_model.php:4686
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4689
+#: application/models/Logbook_model.php:4665
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4689
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5499
+#: application/models/Logbook_model.php:5475
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3020,6 +3044,7 @@ msgstr "未知"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/user/edit.php:351
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5499
 msgid "Bearing"
 msgstr "方位角"
 
@@ -3091,10 +3116,12 @@ msgstr "累计通联的 WAJA 数量"
 #: application/views/dashboard/index.php:296
 #: application/views/dayswithqso/index.php:41
 #: application/views/dayswithqso/index.php:81
-#: application/views/statistics/index.php:19
-#: application/views/statistics/index.php:38
+#: application/views/statistics/index.php:18
+#: application/views/statistics/index.php:36
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/statistics/index.php:19
+#: application/views/statistics/index.php:38
 msgid "Year"
 msgstr "年"
 
@@ -3575,6 +3602,7 @@ msgstr "显示"
 #: application/views/satellite/skedtable.php:7
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
+#: application/views/statistics/index.php:22
 #: application/views/statistics/index.php:24
 msgid "Satellite"
 msgstr "卫星"
@@ -6803,6 +6831,7 @@ msgid "VUCC Gridsquare"
 msgstr "VUCC 网格"
 
 #: application/views/continents/index.php:63
+#: application/views/statistics/index.php:19
 #: application/views/statistics/index.php:20
 msgid "# of QSO's worked"
 msgstr "通联的 QSO 数量"
@@ -8625,6 +8654,8 @@ msgstr "全局选项"
 #: application/views/interface_assets/header.php:289
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
 #: application/views/satellite/index.php:11
+#: application/views/statistics/index.php:48
+#: application/views/statistics/index.php:102
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
 msgid "Satellites"
@@ -8965,9 +8996,11 @@ msgid "Label types"
 msgstr "标签类型"
 
 #: application/views/labels/index.php:81
+#: application/views/statistics/index.php:68
+#: application/views/statistics/index.php:105
+#: application/views/widgets/qsos.php:3
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
-#: application/views/widgets/qsos.php:3
 msgid "QSOs"
 msgstr "QSO"
 
@@ -9078,7 +9111,7 @@ msgstr "卫星模式"
 
 #: application/views/logbookadvanced/edit.php:88
 msgid "Band TX"
-msgstr ""
+msgstr "发送频段"
 
 #: application/views/logbookadvanced/edit.php:101
 msgid "Band RX"
@@ -9903,8 +9936,9 @@ msgid "Category"
 msgstr "分类"
 
 #: application/views/notes/add.php:36 application/views/notes/edit.php:37
-#: application/views/qso/index.php:31 application/views/statistics/index.php:46
+#: application/views/qso/index.php:31 application/views/statistics/index.php:44
 #: application/views/user/edit.php:169
+#: application/views/statistics/index.php:46
 msgid "General"
 msgstr "通用"
 
@@ -12449,23 +12483,29 @@ msgid "Elevation"
 msgstr "仰角"
 
 #: application/views/statistics/index.php:14
+#: application/views/statistics/index.php:59
 #: application/views/statistics/index.php:61
 msgid "Years"
 msgstr "年"
 
+#: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
 msgstr "每年通联的 QSO 数量"
 
+#: application/views/statistics/index.php:29
 #: application/views/statistics/index.php:31
 msgid "Explore the logbook."
 msgstr "查看日志。"
 
-#: application/views/statistics/index.php:35
+#: application/views/statistics/index.php:33
 #: application/views/timeline/index.php:111
+#: application/views/statistics/index.php:35
 msgid "All Years"
 msgstr "所有"
 
+#: application/views/statistics/index.php:71
+#: application/views/statistics/index.php:108
 #: application/views/statistics/index.php:76
 #: application/views/statistics/index.php:117
 msgid "Unique callsigns"
