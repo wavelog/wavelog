@@ -46,11 +46,11 @@
                     echo '<td id ="modcount'.$station->station_id.'">' . $station->modcount . '</td>';
                     echo '<td id ="notcount'.$station->station_id.'">' . $station->notcount . '</td>';
                     echo '<td id ="totcount'.$station->station_id.'">' . $station->totcount . '</td>';
-		    if (!($this->config->item('disable_manual_clublog'))) {
-			    echo '<td><a href="' . site_url('clublog/uploadlog') . '/' . $station->station_id . '" class="btn btn-sm btn-primary"><i class="fas fa-cloud-upload-alt"></i> ' . __("Upload") .'</a></td>';
-		    } else {
-			    echo '<td>&nbsp;</td>';
-		    }
+			if (!($this->config->item('disable_manual_clublog'))) {
+				echo '<td><button id="clublogUpload" type="button" name="clublogUpload" class="btn btn-primary btn-sm ld-ext-right ld-ext-right-'.$station->station_id.'" onclick="ExportClublog('. $station->station_id .')"><i class="fas fa-cloud-upload-alt"></i> ' . __("Upload") . '<div class="ld ld-ring ld-spin"></div></button></td>';
+			} else {
+				echo '<td>&nbsp;</td>';
+			}
                     echo '</tr>';
                 }
                 echo '</tfoot></table>';

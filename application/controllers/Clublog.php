@@ -111,25 +111,39 @@ class Clublog extends CI_Controller
 		$data['next_run_up'] = $this->cron_model->get_next_run("clublog_upload");
 		$data['next_run_down'] = $this->cron_model->get_next_run("clublog_download");
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/clublog.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/clublog.js")),
+		];
+
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('clublog/export');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	public function uploadlog($station_id) {
+	public function uploadlog() {
 		$this->load->model('clublog_model');
+
+		$clean_station_id = $this->security->xss_clean($this->input->post('station_id'));
 
 		$users = $this->clublog_model->get_clublog_users($this->session->userdata('user_id'));
 
 		if (!empty($users)) {
+			$stationinfo = $this->clublog_model->stations_with_clublog_enabled();
+			$info = $stationinfo->result();
+			$data['info'] = $info;
 			foreach ($users as $user) {
-				$r = $this->clublog_model->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password, $station_id);
+				$data['status'] = 'OK';
+				$data['infomessage'] = $this->clublog_model->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password, $clean_station_id);
 			}
 		} else {
-			$r = __("No user has configured Clublog.");
+			$data['status'] = 'Error';
+			$data['errormessages']= __("No user has configured Clublog.");
+			$data['info'] = '';
 		}
 
-		echo $r;
+		header('Content-type: application/json');
+		echo json_encode($data);
 	}
 
 	public function importlog() {
