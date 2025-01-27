@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-27 13:03+0000\n"
-"PO-Revision-Date: 2025-01-27 21:48+0000\n"
-"Last-Translator: PE1PQX <Andre@pe1pqx.eu>\n"
+"PO-Revision-Date: 2025-01-28 10:26+0000\n"
+"Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/nl/>\n"
 "Language: nl_NL\n"
@@ -2833,7 +2833,7 @@ msgstr ""
 #: application/controllers/Visitor.php:216
 #, fuzzy
 msgid "Satellite Gridsquare Map"
-msgstr "Satelliet locator kaart"
+msgstr "Satelliet locatorvak kaart"
 
 #: application/controllers/Visitor.php:410
 #: application/views/stationsetup/stationsetup.php:35
@@ -8418,8 +8418,8 @@ msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
 msgstr ""
-"Kan werkbare doorgangen alleen niet filteren zonder privésleutel voor de "
-"feed. Stel de feed-sleutel in %s in."
+"Kan werkbare passages alleen niet filteren zonder privésleutel voor de feed. "
+"Stel de feed-sleutel in %s in."
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
@@ -9427,9 +9427,10 @@ msgstr "Sicilië"
 #: application/views/logbookadvanced/index.php:11
 #: application/views/logbookadvanced/useroptions.php:194
 #: application/views/satellite/flightpath.php:11
+#, fuzzy
 msgctxt "Map Options"
 msgid "Gridsquares"
-msgstr ""
+msgstr "Locatorvakken"
 
 #: application/views/logbookadvanced/index.php:14
 #: application/views/logbookadvanced/useroptions.php:190
@@ -11776,7 +11777,7 @@ msgstr "TLE"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
-msgstr "Satellietovergangen"
+msgstr "Satelliet passages"
 
 #: application/views/satellite/pass.php:11
 #: application/views/satellite/pass.php:507
@@ -12031,11 +12032,11 @@ msgstr "Sorry, maar we hebben geen eerdere QSO's gevonden met %s"
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr ""
+msgstr "Callbook zoeken voor %s"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
-msgstr ""
+msgstr "Niet gewerkt"
 
 #: application/views/search/search_result_ajax.php:424
 #: application/views/view_log/partial/log.php:142
@@ -12087,20 +12088,20 @@ msgstr "Markeer QSL Kort ikke påkrævet"
 #: application/views/search/search_result_ajax.php:443
 #: application/views/view_log/partial/log_ajax.php:441
 msgid "Lookup on QRZ.com"
-msgstr ""
+msgstr "Opzoeken op QRZ.com"
 
 #: application/views/search/search_result_ajax.php:445
 #: application/views/view_log/partial/log_ajax.php:443
 msgid "Lookup on HamQTH"
-msgstr ""
+msgstr "Opzoeken op HamQTH"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "Zoekopdracht"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr ""
+msgstr "Simple Fast Log Entry (FLE)"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -12108,6 +12109,9 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
+"'Fast Log Entry', of simpelweg 'FLE', is een systeem om QSOs zeer snel en "
+"efficiënt te loggen. Vanwege de syntax is slechts een minimale invoer nodig "
+"om veel QSOs met zo min mogelijk inspanning te loggen."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -12115,6 +12119,9 @@ msgid ""
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
 "a web interface to log QSOs."
 msgstr ""
+"FLE is oorspronkelijk geschreven door DF3CB. Hij biedt een programma voor "
+"Windows aan op zijn website. Simple FLE is geschreven door OK2CQR op basis "
+"van DF3CB's FLE en biedt een webinterface om QSO's te loggen."
 
 #: application/views/simplefle/index.php:16
 #, php-format
@@ -12123,102 +12130,117 @@ msgid ""
 "session and now SimpleFLE is also available in Wavelog. Information about "
 "the syntax and how FLE works can be found %s."
 msgstr ""
+"Een veelvoorkomend gebruiksscenario is als je je papieren logs van een "
+"buitensessie moet importeren en nu is SimpleFLE ook beschikbaar in Wavelog. "
+"Informatie over de syntaxis en hoe FLE werkt, is te vinden %s."
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:183
 msgid "Syntax Help"
-msgstr ""
+msgstr "Syntaxis hulp"
 
 #: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
-msgstr ""
+msgstr "Syntax voor FLE"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
-msgstr ""
+msgstr "Sluiten en voorbeeldgegevens laden"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr ""
+msgstr "Band ontbreekt!"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr ""
+msgstr "Modus ontbreekt!"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr ""
+msgstr "Tijd is niet ingesteld!"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
-msgstr ""
+msgstr "Ongeldige datum"
 
 #: application/views/simplefle/index.php:29
+#, fuzzy
 msgid "Station Call is not selected"
-msgstr ""
+msgstr "Station Call is niet geselecteerd"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
-msgstr ""
+msgstr "'Operator'-veld is leeg"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr ""
+msgstr "Waarschuwing! Wil je echt alles resetten?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
+"Waarschuwing! Je kunt de QSO-lijst niet loggen, omdat sommige QSO's geen "
+"band en/of modus gedefinieerd hebben!"
 
 #: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr ""
+"Waarschuwing! Je kunt de QSO-lijst niet loggen, omdat sommige QSO's geen "
+"tijd hebben gedefinieerd!"
 
 #: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
 msgstr ""
+"Let op! Het gegevensveld bevat voorbeeldgegevens. Wis eerst de loggingsessie!"
 
 #: application/views/simplefle/index.php:35
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
 msgstr ""
+"Weet je zeker dat je deze QSO aan het logboek wilt toevoegen en de sessie "
+"wilt wissen?"
 
 #: application/views/simplefle/index.php:36
 msgid "QSO Logged!"
-msgstr ""
+msgstr "QSO gelogd!"
 
 #: application/views/simplefle/index.php:37
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
 msgstr ""
+"De QSO's zijn succesvol in het logboek vastgelegd! Duplicaten werden "
+"overgeslagen."
 
 #: application/views/simplefle/index.php:39
 msgid "An error occurred while saving the QSO to the logbook! Error: "
 msgstr ""
+"Er is een fout opgetreden bij het opslaan van de QSO in het logboek! Fout: "
 
 #: application/views/simplefle/index.php:43
 msgid "What is that?"
-msgstr ""
+msgstr "Wat is dat?"
 
 #: application/views/simplefle/index.php:46
 msgid "Current UTC Time"
-msgstr ""
+msgstr "Huidige UTC-tijd"
 
 #: application/views/simplefle/index.php:79
 msgid "If you don't choose a date, today's date will be used."
-msgstr ""
+msgstr "Als je geen datum kiest, wordt de datum van vandaag gebruikt."
 
 #: application/views/simplefle/index.php:91
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "Je kunt de ingevoerde QSOs aan een wedstrijd toevoegen."
 
 #: application/views/simplefle/index.php:98
+#, fuzzy
 msgid "Station Call/Location"
-msgstr ""
+msgstr "Station Call/Locatie"
 
 #: application/views/simplefle/index.php:110
 #, php-format
@@ -12226,167 +12248,200 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Als je vanaf een nieuwe locatie opereert, maak dan eerst een nieuwe "
+"%sStation Locatie%s aan"
 
 #: application/views/simplefle/index.php:116
 msgid "e.g. OK2CQR"
-msgstr ""
+msgstr "bijv. OK2CQR"
 
 #: application/views/simplefle/index.php:119
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr ""
+msgstr "Dit is de roepnaam van de operator. Zonder voor- of achtervoegsels."
 
 #: application/views/simplefle/index.php:132
 msgid "Enter the Data"
-msgstr ""
+msgstr "Voer de gegevens in"
 
 #: application/views/simplefle/index.php:161
 msgid "Refs"
-msgstr ""
+msgstr "Referenties"
 
 #: application/views/simplefle/index.php:173
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "De referenties kunnen of %sS%sOTA, %sI%sOTA, %sP%sOTA, of %sW%sWFF zijn"
 
 #: application/views/simplefle/index.php:180
 msgid "Reload QSO List"
-msgstr ""
+msgstr "QSO-lijst herladen"
 
 #: application/views/simplefle/index.php:181
 msgid "Save in Wavelog"
-msgstr ""
+msgstr "Opslaan in Wavelog"
 
 #: application/views/simplefle/index.php:182
 msgid "Clear Logging Session"
-msgstr ""
+msgstr "Loggingsessie wissen"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "Nog geen opties"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
-msgstr ""
+msgstr "Voordat je begint met het loggen van een QSO, let op de basisregels."
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
-msgstr ""
+msgstr "- Elke nieuwe QSO moet op een nieuwe regel staan."
 
 #: application/views/simplefle/syntax_help.php:3
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr ""
+"- Schrijf op elke nieuwe regel alleen gegevens die zijn veranderd ten "
+"opzichte van de vorige QSO."
 
 #: application/views/simplefle/syntax_help.php:4
+#, fuzzy
 msgid ""
 "To begin, ensure you have already filled in the form on the left with the "
 "date, station call, and operator's call. The main data includes the band (or "
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
+"Om te beginnen, zorg ervoor dat je het formulier aan de linkerkant al hebt "
+"ingevuld met de datum, station roepnaam en operator roepnaam. De "
+"belangrijkste gegevens zijn de band (of QRG in MHz, bijvoorbeeld '7.145'), "
+"modus en tijd. Na de tijd geef je de eerste QSO, wat in wezen de roepnaam is."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
-msgstr ""
+msgstr "Bijvoorbeeld, een QSO dat begon om 21:34 (UTC) met 4W7EST op 20m SSB."
 
 #: application/views/simplefle/syntax_help.php:10
+#, fuzzy
 msgid ""
 "If you don't provide any RST information, the syntax will use 59 (599 for "
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
+"Als je geen RST-informatie geeft, wordt de syntax 59 (599 voor data) "
+"gebruikt. Onze volgende QSO was niet 59 aan beide kanten, dus geven we de "
+"informatie met de verzonden RST eerst. Het was 2 minuten later dan de eerste "
+"QSO."
 
 #: application/views/simplefle/syntax_help.php:16
+#, fuzzy
 msgid ""
 "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We "
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
+"Het eerste QSO was om 21:34, en het tweede 2 minuten later om 21:36. We "
+"schrijven 6 op omdat dit de enige gegevens zijn die hier veranderden. De "
+"informatie over band en modus veranderde niet, dus deze gegevens worden "
+"weggelaten."
 
 #: application/views/simplefle/syntax_help.php:17
+#, fuzzy
 msgid ""
 "For our next QSO at 21:40 on 14th May, 2021, we changed the band to 40m but "
 "still on SSB. If no RST information is given, the syntax will use 59 for "
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
+"Voor onze volgende QSO om 21:40 op 14 mei 2021, hebben we de band veranderd "
+"naar 40m maar nog steeds op SSB. Als er geen RST-informatie wordt gegeven, "
+"zal de syntax 59 gebruiken voor elke nieuwe QSO. Daarom kunnen we nog een "
+"QSO toevoegen dat op exact hetzelfde tijdstip twee dagen later plaatsvond. "
+"De datum moet in het formaat JJJJ-MM-DD zijn."
 
 #: application/views/simplefle/syntax_help.php:28
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Een volledige samenvatting van alle commando's en de benodigde syntaxis is "
+"te vinden in %sdit artikel%s van onze Wiki."
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:67
 msgid "Location Name"
-msgstr ""
+msgstr "Locatienaam"
 
 #: application/views/station_profile/create.php:52
 #: application/views/station_profile/create.php:53
 #: application/views/station_profile/edit.php:69
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "Thuis QTH"
 
 #: application/views/station_profile/create.php:53
 #: application/views/station_profile/edit.php:69
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "Korte naam voor de locatie van het station. Bijvoorbeeld: %s"
 
 #: application/views/station_profile/create.php:59
 #: application/views/station_profile/edit.php:75
+#, fuzzy
 msgid "Station callsign. For example: 4W7EST/P"
-msgstr ""
+msgstr "Station roepnaam. Bijvoorbeeld: 4W7EST/P"
 
 #: application/views/station_profile/create.php:63
 #: application/views/station_profile/edit.php:79
 msgid "Station Power (W)"
-msgstr ""
+msgstr "Station vermogen (W)"
 
 #: application/views/station_profile/create.php:65
 #: application/views/station_profile/edit.php:81
 msgid "Default station power in Watt. Overwritten by CAT."
-msgstr ""
+msgstr "Standaard stationvermogen in Watt. Overschreven door CAT."
 
 #: application/views/station_profile/create.php:78
 #: application/views/station_profile/edit.php:112
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr ""
+msgstr "Station DXCC-entiteit. Bijvoorbeeld: Bolivia"
 
 #: application/views/station_profile/create.php:83
 #: application/views/station_profile/edit.php:118
+#, fuzzy
 msgid "Station City"
-msgstr ""
+msgstr "Station stad"
 
 #: application/views/station_profile/create.php:85
 #: application/views/station_profile/edit.php:120
+#, fuzzy
 msgid "Station city. For example: Oslo"
-msgstr ""
+msgstr "Station stad. Bijvoorbeeld: Oslo"
 
 #: application/views/station_profile/create.php:94
 #: application/views/station_profile/edit.php:132
+#, fuzzy
 msgid "Station state. Applies to certain countries only."
-msgstr ""
+msgstr "Stationsstaat. Geldt alleen voor bepaalde landen."
 
 #: application/views/station_profile/create.php:99
 #: application/views/station_profile/edit.php:137
+#, fuzzy
 msgid "Station County"
-msgstr ""
+msgstr "Station County"
 
 #: application/views/station_profile/create.php:101
 #: application/views/station_profile/edit.php:139
+#, fuzzy
 msgid "Station County (Only used for USA/Alaska/Hawaii)."
-msgstr ""
+msgstr "Station County (Alleen gebruikt voor de VS/Alaska/Hawaii)."
 
 #: application/views/station_profile/create.php:116
 #: application/views/station_profile/edit.php:165
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
-msgstr ""
+msgstr "Als je je CQ Zone niet weet, dan %s om het te vinden!"
 
 #: application/views/station_profile/create.php:116
 #: application/views/station_profile/create.php:130
@@ -12395,84 +12450,91 @@ msgstr ""
 #: application/views/station_profile/edit.php:182
 #: application/views/station_profile/edit.php:206
 msgid "click here"
-msgstr ""
+msgstr "klik hier"
 
 #: application/views/station_profile/create.php:130
 #: application/views/station_profile/edit.php:182
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
-msgstr ""
+msgstr "Als je je ITU-zone niet kent, dan %s om het te vinden!"
 
 #: application/views/station_profile/create.php:135
 #: application/views/station_profile/edit.php:194
 #: application/views/station_profile/edit.php:197
+#, fuzzy
 msgid "Station Gridsquare"
-msgstr ""
+msgstr "Station locatorvak"
 
 #: application/views/station_profile/create.php:140
 #: application/views/station_profile/edit.php:202
+#, fuzzy
 msgid "Get Gridsquare"
-msgstr ""
+msgstr "Krijg locatorvak"
 
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:206
-#, php-format
+#, fuzzy, php-format
 msgctxt "uses 'click here'"
 msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
 "then %s!"
 msgstr ""
+"Station locatorvak. Bijvoorbeeld: HM54AP. Als je je locatorvak niet weet, "
+"dan %s!"
 
 #: application/views/station_profile/create.php:145
 #: application/views/station_profile/edit.php:207
+#, fuzzy
 msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
 msgstr ""
+"Als je je op een locatorvaklijn bevindt, voer dan meerdere locatorvakken in, "
+"gescheiden door komma's. Bijvoorbeeld: IO77,IO78,IO87,IO88."
 
 #: application/views/station_profile/create.php:160
 #: application/views/station_profile/edit.php:232
 msgid "Station IOTA reference. For example: EU-005"
-msgstr ""
+msgstr "Station IOTA-referentie. Bijvoorbeeld: EU-005"
 
 #: application/views/station_profile/create.php:161
 #: application/views/station_profile/edit.php:233
 msgid "IOTA World website"
-msgstr ""
+msgstr "IOTA Wereld website"
 
 #: application/views/station_profile/create.php:161
 #: application/views/station_profile/edit.php:233
 #, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr ""
+msgstr "Je kunt IOTA-referenties opzoeken bij de %s."
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:248
 msgid "SOTA Maps website"
-msgstr ""
+msgstr "SOTA Maps-website"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:248
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
-msgstr ""
+msgstr "Station SOTA-referentie. Je kunt SOTA-referenties opzoeken bij de %s."
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:261
 msgid "GMA Map website"
-msgstr ""
+msgstr "GMA Map-website"
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:261
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr ""
+msgstr "Station WWFF-referentie. Je kunt WWFF-referenties opzoeken bij de %s."
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:274
 msgid "POTA Map website"
-msgstr ""
+msgstr "POTA Map-website"
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:274
@@ -12481,6 +12543,8 @@ msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
+"Station POTA-referentie(s). Meerdere door komma's gescheiden waarden "
+"toegestaan. Je kunt POTA-referenties opzoeken bij de %s."
 
 #: application/views/station_profile/create.php:183
 #: application/views/station_profile/edit.php:287
@@ -12506,17 +12570,17 @@ msgstr ""
 #: application/views/station_profile/edit.php:308
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr ""
+msgstr "eQSL QTH Bijnaam"
 
 #: application/views/station_profile/create.php:197
 #: application/views/station_profile/edit.php:310
 msgid "The QTH Nickname which is configured in your eQSL Profile"
-msgstr ""
+msgstr "De QTH-bijnaam die is geconfigureerd in je eQSL-profiel"
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:313
 msgid "Default QSLMSG"
-msgstr ""
+msgstr "Standaard QSLMSG"
 
 #: application/views/station_profile/create.php:204
 #: application/views/station_profile/edit.php:316
@@ -12524,11 +12588,13 @@ msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
 msgstr ""
+"Definieer een standaardbericht dat voor elke QSO voor deze stationlocatie "
+"wordt ingevuld en verzonden."
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:355
 msgid "Ignore Clublog Upload"
-msgstr ""
+msgstr "Clublog-upload negeren"
 
 #: application/views/station_profile/create.php:212
 #: application/views/station_profile/edit.php:360
@@ -12537,132 +12603,137 @@ msgid ""
 "Clublog. If this is deactivated on it's own please check if the Call is "
 "properly configured at Clublog"
 msgstr ""
+"Als dit is ingeschakeld, worden de QSOs die vanaf deze locatie zijn gemaakt "
+"niet geüpload naar Clublog. Als dit vanzelf wordt gedeactiveerd, controleer "
+"dan of de roepnaam correct is geconfigureerd bij Clublog"
 
 #: application/views/station_profile/create.php:215
 #: application/views/station_profile/edit.php:363
 msgid "ClubLog Realtime Upload"
-msgstr ""
+msgstr "ClubLog Realtime Upload"
 
 #: application/views/station_profile/create.php:224
 #: application/views/station_profile/edit.php:379
 msgid "HRDLog.net Username"
-msgstr ""
+msgstr "HRDLog.net gebruikersnaam"
 
 #: application/views/station_profile/create.php:226
 #: application/views/station_profile/edit.php:381
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr ""
+"De gebruikersnaam waarmee je geregistreerd bent op HRDlog.net (meestal je "
+"roepnaam)."
 
 #: application/views/station_profile/create.php:229
 #: application/views/station_profile/edit.php:384
 msgid "HRDLog.net API Key"
-msgstr ""
+msgstr "HRDLog.net API-sleutel"
 
 #: application/views/station_profile/create.php:231
 #: application/views/station_profile/edit.php:386
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr ""
+msgstr "Maak je API-code op je %s"
 
 #: application/views/station_profile/create.php:231
 #: application/views/station_profile/edit.php:386
 msgid "HRDLog.net Userprofile page"
-msgstr ""
+msgstr "HRDLog.net Gebruikersprofielpagina"
 
 #: application/views/station_profile/create.php:234
 #: application/views/station_profile/edit.php:389
 msgid "HRDLog.net Logbook Realtime Upload"
-msgstr ""
+msgstr "HRDLog.net Logboek Realtime Upload"
 
 #: application/views/station_profile/create.php:244
 #: application/views/station_profile/edit.php:324
 msgid "Subscription Required"
-msgstr ""
+msgstr "Abonnement vereist"
 
 #: application/views/station_profile/create.php:249
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr ""
+msgstr "QRZ.com Logboek API-sleutel"
 
 #: application/views/station_profile/create.php:252
 msgid "Test API-Key"
-msgstr ""
+msgstr "Test API-sleutel"
 
 #: application/views/station_profile/create.php:255
 #: application/views/station_profile/edit.php:333
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
-msgstr ""
+msgstr "Vind je API-sleutel op %s"
 
 #: application/views/station_profile/create.php:255
 #: application/views/station_profile/edit.php:333
 msgid "the QRZ.com Logbook settings page"
-msgstr ""
+msgstr "de QRZ.com Logboek instellingen pagina"
 
 #: application/views/station_profile/create.php:258
 #: application/views/station_profile/edit.php:337
 msgid "QRZ.com Logbook Upload"
-msgstr ""
+msgstr "QRZ.com Logboek Upload"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:340
 msgid "Realtime"
-msgstr ""
+msgstr "Realtime"
 
 #: application/views/station_profile/create.php:269
 #: application/views/station_profile/edit.php:406
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
-msgstr ""
+msgstr "QO-100 Dx Club API-sleutel"
 
 #: application/views/station_profile/create.php:271
 #: application/views/station_profile/edit.php:408
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
-msgstr ""
+msgstr "Maak je API-sleutel aan op je %s"
 
 #: application/views/station_profile/create.php:271
 #: application/views/station_profile/edit.php:408
 msgid "QO-100 Dx Club's profile page"
-msgstr ""
+msgstr "Profielpagina van de QO-100 Dx Club"
 
 #: application/views/station_profile/create.php:274
 #: application/views/station_profile/edit.php:411
 msgid "QO-100 Dx Club Realtime Upload"
-msgstr ""
+msgstr "QO-100 Dx Club Realtime Upload"
 
 #: application/views/station_profile/create.php:284
 #: application/views/station_profile/edit.php:429
 msgid "OQRS Enabled"
-msgstr ""
+msgstr "OQRS ingeschakeld"
 
 #: application/views/station_profile/create.php:291
 #: application/views/station_profile/edit.php:436
 msgid "OQRS Email alert"
-msgstr ""
+msgstr "OQRS E-mail alert"
 
 #: application/views/station_profile/create.php:296
 #: application/views/station_profile/edit.php:441
 msgid "Make sure email is set up under admin and global options."
-msgstr ""
+msgstr "Zorg ervoor dat e-mail is ingesteld onder beheer- en globale opties."
 
 #: application/views/station_profile/create.php:299
 #: application/views/station_profile/edit.php:444
 msgid "OQRS Text"
-msgstr ""
+msgstr "OQRS-tekst"
 
 #: application/views/station_profile/create.php:301
 #: application/views/station_profile/edit.php:446
 msgid "Some info you want to add regarding QSL'ing."
-msgstr ""
+msgstr "Wat extra info die je wilt toevoegen over QSL'en."
 
 #: application/views/station_profile/edit.php:149
 msgid "Zones"
-msgstr ""
+msgstr "Zones"
 
 #: application/views/station_profile/edit.php:284
 msgid "Signature"
@@ -12670,38 +12741,40 @@ msgstr ""
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
-msgstr ""
+msgstr "Stationslogboeknaam"
 
 #: application/views/stationsetup/create.php:19
 msgid "You can call a station logbook anything."
-msgstr ""
+msgstr "Je kunt een stationlogboek alles noemen."
 
 #: application/views/stationsetup/edit.php:18
 msgid "Container name"
-msgstr ""
+msgstr "Containernaam"
 
 #: application/views/stationsetup/edit.php:20
 msgid "You can call a container anything."
-msgstr ""
+msgstr "Je kunt een container alles noemen."
 
 #: application/views/stationsetup/exportmapoptions.php:11
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
-msgstr ""
+msgstr "CQ Zone-overlay"
 
 #: application/views/stationsetup/exportmapoptions.php:15
+#, fuzzy
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr ""
+msgstr "Locatorvak overlay"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
 msgid "Night shadow overlay"
-msgstr ""
+msgstr "Nacht schaduw overlay"
 
 #: application/views/stationsetup/exportmapoptions.php:27
+#, fuzzy
 msgid "# QSOs shown"
-msgstr ""
+msgstr "# QSOs getoond"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
@@ -12709,20 +12782,20 @@ msgstr ""
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
-msgstr ""
+msgstr "Beschikbare stationlocaties selecteren"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr ""
+msgstr "Link locatie"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:122
 msgid "Profile Name"
-msgstr ""
+msgstr "Profielnaam"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr ""
+msgstr "Stationlocatie ontkoppelen"
 
 #: application/views/stationsetup/stationsetup.php:21
 msgid ""
@@ -13288,27 +13361,36 @@ msgid "Location auto lookup."
 msgstr ""
 
 #: application/views/user/edit.php:392
+#, fuzzy
 msgid "If set, gridsquare is fetched based on location name."
 msgstr ""
+"Als het ingesteld is, wordt het locatorvak opgehaald op basis van de "
+"locatienaam."
 
 #: application/views/user/edit.php:396
+#, fuzzy
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr ""
+msgstr "SOTA zoekt automatisch locatorvak en naam op voor de top."
 
 #: application/views/user/edit.php:402 application/views/user/edit.php:412
 #: application/views/user/edit.php:422
+#, fuzzy
 msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
 msgstr ""
+"Indien ingesteld, worden naam en locatorvak opgehaald van de API en ingevuld "
+"in locatie en locator."
 
 #: application/views/user/edit.php:406
+#, fuzzy
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr ""
+msgstr "WWFF automatische opzoeking van locatorvak en naam voor referentie."
 
 #: application/views/user/edit.php:416
+#, fuzzy
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr ""
+msgstr "POTA zoekt automatisch locatorvak en naam op voor park."
 
 #: application/views/user/edit.php:433
 msgid "Menu Options"
@@ -13525,13 +13607,17 @@ msgstr ""
 
 #: application/views/user/edit.php:877
 msgid "Show Workable Passes Only"
-msgstr ""
+msgstr "Toon alleen werkbare passages"
 
 #: application/views/user/edit.php:883
+#, fuzzy
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
+"Indien ingeschakeld, worden alleen werkbare passages getoond op basis van "
+"het locatorvak dat in je hams.at-account is ingesteld. Vereist dat de "
+"private feed-sleutel is ingesteld."
 
 #: application/views/user/edit.php:895
 msgid "Save Account"
