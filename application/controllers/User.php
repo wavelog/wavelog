@@ -154,8 +154,6 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		$this->form_validation->set_rules('user_type', 'Type', 'required');
-		// $this->form_validation->set_rules('user_firstname', 'First name', 'required');
-		// $this->form_validation->set_rules('user_lastname', 'Last name', 'required');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
