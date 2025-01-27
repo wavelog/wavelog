@@ -378,11 +378,11 @@ class User extends CI_Controller {
 		// Max value to be present in the "dashboard last QSO count" selectbox
 		$data['dashboard_last_qso_count_limit'] = \Dashboard::MAX_QSOS_COUNT_LIMIT; 
 
+		$data['page_title'] = __("Edit User");
+
 		if ($this->form_validation->run() == FALSE)
 		{
 			// Prepare data and render the user options view
-			$data['page_title'] = __("Edit User"); // TODO this line will be pulled out as it is duplicated in both branches of if statement
-
 			$q = $query->row();
 
 			$data['id'] = $q->user_id;
@@ -833,7 +833,6 @@ class User extends CI_Controller {
 					}
 					return;
 			}
-			$data['page_title'] = __("Edit User");
 
 			$this->load->view('interface_assets/header', $data);
 			$data['user_name'] = $this->input->post('user_name', true);
