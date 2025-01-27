@@ -110,6 +110,35 @@ class Statistics extends CI_Controller {
 		echo json_encode($bandstats);
 	}
 
+	public function get_operators() {
+
+		//load logbook model
+		$this->load->model('logbook_model');
+
+		//define stats array
+		$operatorstats = array();
+
+		//get year if present
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		
+		//load stats
+		$total_operators = $this->logbook_model->total_operators($yr);
+
+		$i = 0;
+
+		//convert to final form
+		if ($total_operators) {
+			foreach($total_operators->result() as $qso_numbers) {
+				$operatorstats[$i]['operator'] = $qso_numbers->operator;
+				$operatorstats[$i++]['count'] = $qso_numbers->count;
+			}
+		}
+
+		//return as json
+		header('Content-Type: application/json');
+		echo json_encode($operatorstats);
+	}
+
 	public function get_sat() {
 		$this->load->model('logbook_model');
 
