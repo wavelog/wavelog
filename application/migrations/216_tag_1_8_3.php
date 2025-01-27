@@ -25,8 +25,10 @@ class Migration_tag_1_8_3 extends CI_Migration {
         $this->db->where('option_value', 'custom_text');
         $this->db->update('options', array('option_value' => 'both'));
 
-        $this->db->query("INSERT INTO satellite (name, exportname, orbit) SELECT distinct 'MESAT1','', 'LEO' FROM satellite WHERE NOT EXISTS (SELECT 1 FROM satellite WHERE name = 'MESAT1');");
-        $this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/U', id, 'LSB', '145925000', 'USB', '435825000' FROM satellite WHERE name = 'MESAT1' and NOT EXISTS (SELECT 1 FROM satellitemode WHERE satelliteid = satellite.id) ;");
+        if ($this->db->field_exists('exportname', 'satellite')) {
+            $this->db->query("INSERT INTO satellite (name, exportname, orbit) SELECT distinct 'MESAT1','', 'LEO' FROM satellite WHERE NOT EXISTS (SELECT 1 FROM satellite WHERE name = 'MESAT1');");
+            $this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/U', id, 'LSB', '145925000', 'USB', '435825000' FROM satellite WHERE name = 'MESAT1' and NOT EXISTS (SELECT 1 FROM satellitemode WHERE satelliteid = satellite.id) ;");
+        }
         $this->db->query("UPDATE cron SET description = 'Up- and Download QSOs to LoTW' WHERE id = 'lotw_lotw_upload';");
 
         //Mark MESAT1 QSOs LoTW sent state as invalid/ignore until it is recognized by LoTW
