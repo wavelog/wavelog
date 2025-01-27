@@ -3190,7 +3190,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		//get statistics from database
-		$this->db->select('IFNULL(IF(COL_OPERATOR = "", TABLE_HRD_CONTACTS_V01.COL_STATION_CALLSIGN, COL_OPERATOR), TABLE_HRD_CONTACTS_V01.COL_STATION_CALLSIGN) AS operator, count( * ) AS count', FALSE);
+		$this->db->select('IFNULL(IF(COL_OPERATOR = "", COL_STATION_CALLSIGN, COL_OPERATOR), COL_STATION_CALLSIGN) AS operator, count( * ) AS count', FALSE);
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->where_year($yr);
 		$this->db->group_by('operator');
