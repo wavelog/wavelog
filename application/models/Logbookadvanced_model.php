@@ -596,14 +596,12 @@ class Logbookadvanced_model extends CI_Model {
     }
 
 	function get_modes() {
-		if (!$this->logbooks_locations_array) {
-			return null;
-		}
 
 		$modes = array();
 
 		$this->db->select('distinct col_mode, coalesce(col_submode, "") col_submode', FALSE);
-		$this->db->where_in('station_id', $this->logbooks_locations_array);
+		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 		$this->db->order_by('col_mode, col_submode', 'ASC');
 
 		$query = $this->db->get($this->config->item('table_name'));
@@ -617,6 +615,57 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		return $modes;
+	}
+
+	function get_worked_bands() {
+		// get all worked slots from database
+		$sql = "SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` thcv
+			JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? AND COL_PROP_MODE != \"SAT\" ORDER BY col_band";
+
+		$data = $this->db->query($sql, array($this->session->userdata('user_id')));
+
+		$worked_slots = array();
+		foreach($data->result() as $row){
+			array_push($worked_slots, $row->COL_BAND);
+		}
+
+		$sql = "SELECT distinct LOWER(`COL_PROP_MODE`) as `COL_PROP_MODE` FROM `".$this->config->item('table_name')."` thcv
+			JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? AND COL_PROP_MODE = \"SAT\"";
+
+		$SAT_data = $this->db->query($sql, array($this->session->userdata('user_id')));
+
+		foreach($SAT_data->result() as $row){
+			array_push($worked_slots, strtoupper($row->COL_PROP_MODE));
+		}
+
+		usort(
+			$worked_slots,
+			function($b, $a) {
+				sscanf($a, '%f%s', $ac, $ar);
+				sscanf($b, '%f%s', $bc, $br);
+				if ($ar == $br) {
+					return ($ac < $bc) ? -1 : 1;
+				}
+				return ($ar < $br) ? -1 : 1;
+			}
+		);
+
+		return $worked_slots;
+	}
+
+	function get_worked_sats() {
+		// get all worked sats from database
+		$sql = "SELECT distinct col_sat_name FROM ".$this->config->item('table_name')." thcv
+		JOIN station_profile on thcv.station_id = station_profile.station_id WHERE station_profile.user_id = ? and coalesce(col_sat_name, '') <> '' ORDER BY col_sat_name";
+
+		$data = $this->db->query($sql, array($this->session->userdata('user_id')));
+
+		$worked_sats = array();
+		foreach($data->result() as $row){
+			array_push($worked_sats, $row->col_sat_name);
+		}
+
+		return $worked_sats;
 	}
 
 	function getQslsForQsoIds($ids) {
