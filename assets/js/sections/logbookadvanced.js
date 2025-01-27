@@ -813,9 +813,18 @@ $(document).ready(function () {
 						action: function (dialogItself) {
 							$('#optionButton').prop("disabled", false);
 							$('#closeButton').prop("disabled", true);
-							saveOptions();
-							dialogItself.close();
-							location.reload();
+							saveOptions().then(() => {
+								dialogItself.close();
+								location.reload();
+							}).catch(error => {
+								BootstrapDialog.alert({
+									title: 'Error',
+									message: 'An error occurred while saving options: ' + error,
+									type: BootstrapDialog.TYPE_DANGER, // Sets the dialog style to "danger"
+									closable: true,
+									buttonLabel: 'Close'
+								});
+							});
 						}
 					},
 					{
@@ -1263,61 +1272,65 @@ function printlabel() {
 function saveOptions() {
 	$('#saveButton').prop("disabled", true);
 	$('#closeButton').prop("disabled", true);
-	$.ajax({
-		url: base_url + 'index.php/logbookadvanced/setUserOptions',
-		type: 'post',
-		data: {
-			datetime: $('input[name="datetime"]').is(':checked') ? true : false,
-			de: $('input[name="de"]').is(':checked') ? true : false,
-			dx: $('input[name="dx"]').is(':checked') ? true : false,
-			mode: $('input[name="mode"]').is(':checked') ? true : false,
-			rsts: $('input[name="rsts"]').is(':checked') ? true : false,
-			rstr: $('input[name="rstr"]').is(':checked') ? true : false,
-			band: $('input[name="band"]').is(':checked') ? true : false,
-			myrefs: $('input[name="myrefs"]').is(':checked') ? true : false,
-			name: $('input[name="name"]').is(':checked') ? true : false,
-			qslvia: $('input[name="qslvia"]').is(':checked') ? true : false,
-			qsl: $('input[name="qsl"]').is(':checked') ? true : false,
-			clublog: $('input[name="clublog"]').is(':checked') ? true : false,
-			lotw: $('input[name="lotw"]').is(':checked') ? true : false,
-			eqsl: $('input[name="eqsl"]').is(':checked') ? true : false,
-			qslmsgs: $('input[name="qslmsgs"]').is(':checked') ? true : false,
-			qslmsgr: $('input[name="qslmsgr"]').is(':checked') ? true : false,
-			dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
-			state: $('input[name="state"]').is(':checked') ? true : false,
-			cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
-			ituzone: $('input[name="ituzone"]').is(':checked') ? true : false,
-			iota: $('input[name="iota"]').is(':checked') ? true : false,
-			pota: $('input[name="pota"]').is(':checked') ? true : false,
-			operator: $('input[name="operator"]').is(':checked') ? true : false,
-			comment: $('input[name="comment"]').is(':checked') ? true : false,
-			propagation: $('input[name="propagation"]').is(':checked') ? true : false,
-			contest: $('input[name="contest"]').is(':checked') ? true : false,
-			gridsquare: $('input[name="gridsquare"]').is(':checked') ? true : false,
-			sota: $('input[name="sota"]').is(':checked') ? true : false,
-			dok: $('input[name="dok"]').is(':checked') ? true : false,
-			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
-			sig: $('input[name="sig"]').is(':checked') ? true : false,
-			region: $('input[name="region"]').is(':checked') ? true : false,
-			continent: $('input[name="continent"]').is(':checked') ? true : false,
-			distance: $('input[name="distance"]').is(':checked') ? true : false,
-			antennaazimuth: $('input[name="antennaazimuth"]').is(':checked') ? true : false,
-			antennaelevation: $('input[name="antennaelevation"]').is(':checked') ? true : false,
-			qrz: $('input[name="qrz"]').is(':checked') ? true : false,
-			profilename: $('input[name="profilename"]').is(':checked') ? true : false,
-			stationpower: $('input[name="stationpower"]').is(':checked') ? true : false,
-			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
-			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
-			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
-			ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
-			nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
-		},
-		success: function(data) {
-			$('#saveButton').prop("disabled", false);
-			$('#closeButton').prop("disabled", false);
-		},
-		error: function() {
-			$('#saveButton').prop("disabled", false);
-		},
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/setUserOptions',
+			type: 'post',
+			data: {
+				datetime: $('input[name="datetime"]').is(':checked') ? true : false,
+				de: $('input[name="de"]').is(':checked') ? true : false,
+				dx: $('input[name="dx"]').is(':checked') ? true : false,
+				mode: $('input[name="mode"]').is(':checked') ? true : false,
+				rsts: $('input[name="rsts"]').is(':checked') ? true : false,
+				rstr: $('input[name="rstr"]').is(':checked') ? true : false,
+				band: $('input[name="band"]').is(':checked') ? true : false,
+				myrefs: $('input[name="myrefs"]').is(':checked') ? true : false,
+				name: $('input[name="name"]').is(':checked') ? true : false,
+				qslvia: $('input[name="qslvia"]').is(':checked') ? true : false,
+				qsl: $('input[name="qsl"]').is(':checked') ? true : false,
+				clublog: $('input[name="clublog"]').is(':checked') ? true : false,
+				lotw: $('input[name="lotw"]').is(':checked') ? true : false,
+				eqsl: $('input[name="eqsl"]').is(':checked') ? true : false,
+				qslmsgs: $('input[name="qslmsgs"]').is(':checked') ? true : false,
+				qslmsgr: $('input[name="qslmsgr"]').is(':checked') ? true : false,
+				dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
+				state: $('input[name="state"]').is(':checked') ? true : false,
+				cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
+				ituzone: $('input[name="ituzone"]').is(':checked') ? true : false,
+				iota: $('input[name="iota"]').is(':checked') ? true : false,
+				pota: $('input[name="pota"]').is(':checked') ? true : false,
+				operator: $('input[name="operator"]').is(':checked') ? true : false,
+				comment: $('input[name="comment"]').is(':checked') ? true : false,
+				propagation: $('input[name="propagation"]').is(':checked') ? true : false,
+				contest: $('input[name="contest"]').is(':checked') ? true : false,
+				gridsquare: $('input[name="gridsquare"]').is(':checked') ? true : false,
+				sota: $('input[name="sota"]').is(':checked') ? true : false,
+				dok: $('input[name="dok"]').is(':checked') ? true : false,
+				wwff: $('input[name="wwff"]').is(':checked') ? true : false,
+				sig: $('input[name="sig"]').is(':checked') ? true : false,
+				region: $('input[name="region"]').is(':checked') ? true : false,
+				continent: $('input[name="continent"]').is(':checked') ? true : false,
+				distance: $('input[name="distance"]').is(':checked') ? true : false,
+				antennaazimuth: $('input[name="antennaazimuth"]').is(':checked') ? true : false,
+				antennaelevation: $('input[name="antennaelevation"]').is(':checked') ? true : false,
+				qrz: $('input[name="qrz"]').is(':checked') ? true : false,
+				profilename: $('input[name="profilename"]').is(':checked') ? true : false,
+				stationpower: $('input[name="stationpower"]').is(':checked') ? true : false,
+				gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
+				path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
+				cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
+				ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
+				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
+			},
+			success: function(data) {
+				$('#saveButton').prop("disabled", false);
+				$('#closeButton').prop("disabled", false);
+				resolve(data);
+			},
+			error: function(error) {
+				$('#saveButton').prop("disabled", false);
+				reject(error);
+			},
+		});
 	});
 }
