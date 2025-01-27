@@ -178,7 +178,7 @@ class Clublog_model extends CI_Model
 							$this->logbook_model->clublog_update($oneqsl[2], $oneqsl[0], $oneqsl[3], 'Y', $station_row->station_callsign, $station_row->station_ids);
 						}
 					} catch (Exception $e) {
-						$return = "Something gone wrong while trying to Download for station(s) " . $station_row->station_ids . " / Call: " . $station_row->station_callsign;
+						$return = "Something gone wrong while trying to Download for station(s) " . $station_row->station_ids . " / Call: " . $station_row->station_callsign." / Response was: ".$response;
 						log_message("error", $return);
 					}
 
