@@ -26,6 +26,24 @@ function ExportClublog(station_id) {
 			else {
 				$(".card-body").append('<div class="alert alert-danger" role="alert">' + data.info + '</div>');
 			}
+
+			if (data.errormessages.length > 0) {
+				$("#clublog_export").append(
+					'<div class="errormessages">\n' +
+					'    <div class="card mt-2">\n' +
+					'        <div class="card-header bg-danger">\n' +
+					'            Error Message\n' +
+					'        </div>\n' +
+					'        <div class="card-body">\n' +
+					'            <div class="errors"></div>\n' +
+					'        </div>\n' +
+					'    </div>\n' +
+					'</div>'
+				);
+				$.each(data.errormessages, function (index, value) {
+					$(".errors").append('<li>' + value);
+				});
+			}
 		}
 	});
 }
