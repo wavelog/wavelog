@@ -552,7 +552,7 @@ function mapQsos(form) {
 					qslimages: form.qslimages.value,
 					continent: form.continent.value,
 					contest: form.contest.value,
-					comment: form.contest.value
+					comment: form.comment.value
 				},
 				success: function(data) {
 					loadMapOptions(data);
