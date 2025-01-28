@@ -1564,6 +1564,19 @@ class Logbook_model extends CI_Model {
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
+	/* Return last 10 QSOs */
+	function last_ten() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		$this->db->select('COL_CALL, COL_BAND, COL_FREQ, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->order_by("COL_TIME_ON", "desc");
+		$this->db->limit(10);
+
+		return $this->db->get($this->config->item('table_name'));
+	}
+
 	/* Show custom number of qsos */
 	function last_custom($num) {
 		$this->load->model('logbooks_model');

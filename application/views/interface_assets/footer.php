@@ -830,24 +830,7 @@ function showActivatorsMap(call, count, grids) {
             <?php } else { ?>
               var grid = "No";
             <?php } ?>
-            
-            <?php
-              // Determine last (recent) QSO count for dashboard map
-              $last_qso_count_opt = $this->user_options_model->get_options(
-                  'dashboard', 
-                  array('option_name' => 'last_qso_count', 'option_key' => 'count'), 
-                  $this->uri->segment(3)
-              )->result();
-              if (count($last_qso_count_opt) > 0) {
-                  // value found in user options - use it
-                  $last_qso_count = $last_qso_count_opt[0]->option_value;
-              } else {
-                  // value not found in user options - use default value
-                  $last_qso_count = \Dashboard::DEFAULT_QSOS_COUNT;
-              }
-            ?>
-            <?php printf("var dashboard_qso_count = '%d';", $last_qso_count) ?>
-            initmap(grid,'map',{'dataPost':{'nb_qso': dashboard_qso_count}});
+            initmap(grid,'map',{'dataPost':{'nb_qso':'18'}});
 
             <?php if ($is_first_login ?? false) : ?>
                 $('#firstLoginWizardModal').modal('show');

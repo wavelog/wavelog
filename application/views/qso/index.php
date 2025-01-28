@@ -776,7 +776,7 @@
 
         </div>
       </div>
-      <small style="float: right;"><?= sprintf(__("Max. %d previous contacts are shown"), QSO::LAST_QSOS_COUNT) ?></small>
+      <small class="mt-0.5" style="float: right;"><?= __("Max. 5 previous contacts are shown"); ?></small>
     </div>
   </div>
 
