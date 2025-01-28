@@ -224,6 +224,11 @@ function handleInput() {
 	var callsign = "";
 	var gridsquare = "";
 	var sotaWwff = "";
+	var srx = "";
+	var stx = "";
+	var stx_incr_mode = 0;
+	var prev_stx = "";
+	var prev_stx_string = "";
 	qsoList = [];
 	$("#qsoTable tbody").empty();
 	errors = [];
@@ -235,11 +240,30 @@ function handleInput() {
 		var rst_s = null;
 		var rst_r = null;
 		var gridsquare = "";
-		items = row.startsWith("day ") ? [row] : row.split(" ");
-		var itemNumber = 0;
+		var srx = "";
+		var stx = "";
 		var call_rec = false;
+		var add_info = {};
 
+		// First, search for <...>- and [...]-Patterns, which may contain comments (... or additional fields) / qsl-notes
+		let addInfoMatches = row.matchAll(/<([^>]*)>|\[([^\]]*)\]/g);
+		addInfoMatches.forEach((item) => {
+			row = row.replace(item[0], "");
+			let kv;
+			if (item[0][0] == '<' && (kv = item[1].match(/^([a-z_]+): *(.*)$/))) {
+				add_info[kv[1]] = kv[2];
+			} else if (item[0][0] == '[') {
+				add_info.qslmsg = item[2];
+			} else {
+				add_info.comment = (('comment' in add_info)?add_info.comment+' ': '')+item[1];
+			}
+		});
+
+		// Now split the remaining line by spaces and match patterns on those
+		var itemNumber = 0;
+		items = row.startsWith("day ") ? [row] : row.split(" ");
 		items.forEach((item) => {
+			var parts;
 			if (item === "") {
 				return;
 			}
@@ -297,15 +321,71 @@ function handleInput() {
 				callsign = item.toUpperCase();
 				call_rec = true;
 			} else if (
-				item.match(/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/i)
+				parts = item.match(/(?<=^#?)[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/i)
 			) {
-				gridsquare = item.toUpperCase();
-			} else if (itemNumber > 0 && item.match(/^[-+]\d{1,2}|\d{1,3}$|\d{1,3}[-+]d{1,2}$/)) {
+				gridsquare = parts[0].toUpperCase();
+			} else if (itemNumber > 0 && item.match(/^[-+]\d{1,2}$|^\d{1,3}$|^\d{1,3}[-+]d{1,2}$/)) {
 				if (rst_s === null) {
 					rst_s = item;
 				} else {
 					rst_r = item;
 				}
+			} else if (itemNumber > 0 && (parts = item.match(/^(([\.,])((\d*|\+[\+0]|-)|([A-Za-z0-9\/]+)))+$/))) { // Contest ,*** .***
+				// Caution! May be entered multiple times, and may contain empty tokens
+				// Iterate over all parts -- take care to behave exactly like entered with spaces
+				item.matchAll(/([\.,])((\d*|\+[\+0]|-)|([A-Za-z0-9\/]+))(?=$|[\.,])/g).forEach((exch) => {
+					var pre_stx = stx;
+					var pre_srx = srx;
+
+					switch (exch[1]+((exch[3]===undefined)?'s':'n')) { // [.,][sn]
+						case ".n": // Received serial
+							srx = exch[2];
+							break;
+						case ",n": // Sent serial
+							stx = exch[2];
+							break;
+						case ".s": // Received exchange
+							add_info.srx_string = exch[2];
+							break;
+						case ",s": // Sent exchange
+							add_info.stx_string = exch[2];
+					}
+
+					// Mode swith
+					if (stx == "++") {
+						stx = pre_stx;
+						stx_incr_mode = 1;
+						return; // no further processing of this (sub-)token here jumps to next pattern, if available
+					} else if (stx == "+0") {
+						stx = pre_stx;
+						stx_incr_mode = 0;
+						return; // no further processing of this (sub-)token here jumps to next pattern, if available
+					}
+
+					if (stx == '-') { // Wipe all sent exchange if '-'
+						stx = '';
+						prev_stx = '';
+						delete add_info.stx_string;
+						prev_stx_string = '';
+					}
+
+					// FLE paradima: Previous if not set - we have some sort of contest exchange, so 
+					// re-apply previously set stx / stx_string if not already populated
+					if (prev_stx != '' && stx == '') {
+						stx = (prev_stx*1) + stx_incr_mode;
+					}
+
+					if (prev_stx_string != '' && add_info.stx_string === undefined) {
+						add_info.stx_string = prev_stx_string;
+					}
+
+					// Sanity check
+					if (srx == "++" || srx == "+0" || srx == '-') srx = pre_srx;
+				});
+
+
+			} else if (itemNumber > 0 && (parts = item.match(/(?<=^@)[A-Za-z]+/))) {
+				add_info.name = parts[0];
 			}
 
 			itemNumber = itemNumber + 1;
@@ -345,10 +425,13 @@ function handleInput() {
 				freq,
 				band,
 				mode,
-				gridsquare,
+				gridsquare, // 6
 				rst_s,
 				rst_r,
 				sotaWwff,
+				stx,
+				srx,
+				add_info, // 12
 			]);
 
 			let sotaWwffText = "";
@@ -363,14 +446,32 @@ function handleInput() {
 				sotaWwffText = `W: ${sotaWwff}`;
 			}
 
+			// Contest exchange info: sent
+			let stx_info = "";
+			if (stx != '') {
+				stx_info += `<span data-bs-toggle="tooltip" class="badge text-bg-light">${stx}</span>`;
+			}
+			if (add_info.stx_string !== undefined && add_info.stx_string.length > 0) {
+				stx_info += `<span data-bs-toggle="tooltip" class="badge text-bg-light">${add_info.stx_string}</span>`;
+			}
+
+			// Contest exchange info: received
+			let srx_info = "";
+			if (srx != '') {
+				srx_info += `<span data-bs-toggle="tooltip" title="" class="badge text-bg-light">${srx}</span>`;
+			}
+			if (add_info.srx_string !== undefined && add_info.srx_string.length > 0) {
+				srx_info += `<span data-bs-toggle="tooltip" title="" class="badge text-bg-light">${add_info.srx_string}</span>`;
+			}
+
 			const tableRow = $(`<tr>
 			<td>${extraQsoDate}</td>
 			<td>${qsotime}</td>
 			<td>${callsign}</td>
 			<td><span data-bs-toggle="tooltip" data-placement="left" title="${freq}">${band}</span></td>
 			<td>${mode}</td>
-			<td>${rst_s}</td>
-			<td>${rst_r}</td>
+			<td>${rst_s} ${stx_info}</td>
+			<td>${rst_r} ${srx_info}</td>
 			<td>${gridsquare}</td>
 			<td>${sotaWwffText}</td>
 			</tr>`);
@@ -415,6 +516,8 @@ function handleInput() {
 		}
 
 		prevMode = mode;
+		prev_stx = stx;
+		prev_stx_string = add_info.stx_string ?? '';
 	});
 
 	// Scroll to the bototm of #qsoTableBody (scroll by the value of its scrollheight property)
@@ -720,6 +823,16 @@ function isExampleDataEntered() {
     return isExampleData;
 }
 
+function isAllContestDataWithContestId() {
+		// true = allfine, false = something wrong
+		let hasContestId = $("#contest").val() != '';
+		let hasContestData = false;
+		qsoList.forEach((item) => {
+			hasContestData = hasContestData || (item[10] != '' || item[12].stx_string !== undefined || item[11] != '' || item[12].stx_string !== undefined);
+		});
+		return hasContestData == hasContestId;
+}
+
 function getAdifTag(tagName, value) {
 	return "<" + tagName + ":" + value.length + ">" + value + " ";
 }
@@ -891,6 +1004,17 @@ $(".js-save-to-log").click(function () {
 		});
 		return false;
 	}
+	if (false === isAllContestDataWithContestId()) {
+		BootstrapDialog.alert({
+			title: lang_general_word_warning,
+			message: lang_qso_simplefle_warning_missing_contestid,
+			type: BootstrapDialog.TYPE_DANGER,
+			btnCancelLabel: lang_general_word_cancel,
+			btnOKLabel: lang_general_word_ok,
+			btnOKClass: "btn-warning",
+		});
+		return false;
+	}
 	if (true === isExampleDataEntered()) {
 		BootstrapDialog.alert({
 			title: lang_general_word_warning,
@@ -951,8 +1075,11 @@ $(".js-save-to-log").click(function () {
 						} else if (isWWFF(item[9])) {
 							wwff_ref = item[9];
 						}
+						var stx = item[10];
+						var srx = item[11];
+						var add_info = item[12];
 
-						qsos.push({
+						qsos.push({ ...add_info, ...{
 							call: callsign,
 							gridsquare: gridsquare,
 							rst_sent: rst_sent,
@@ -969,7 +1096,9 @@ $(".js-save-to-log").click(function () {
 							iota: iota_ref,
 							pota_ref: pota_ref,
 							wwff_ref: wwff_ref,
-						});
+							stx: stx,
+							srx: srx,
+						}});
 					});
 
 					$.ajax({
