@@ -130,9 +130,6 @@ class Clublog extends CI_Controller
 			$users = $this->clublog_model->get_clublog_users($this->session->userdata('user_id'));
 
 			if (!empty($users)) {
-				$stationinfo = $this->clublog_model->stations_with_clublog_enabled();
-				$info = $stationinfo->result();
-				$data['info'] = $info;
 				foreach ($users as $user) {
 					$data['status'] = 'OK';
 					$data['infomessage'] = $this->clublog_model->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password, $clean_station_id);
@@ -141,8 +138,10 @@ class Clublog extends CI_Controller
 			} else {
 				$data['status'] = 'Error';
 				$data['errormessages'] = __("No user has configured Clublog.");
-				$data['info'] = '';
 			}
+			$stationinfo = $this->clublog_model->stations_with_clublog_enabled();
+			$info = $stationinfo->result();
+			$data['info'] = $info;
 
 			header('Content-type: application/json');
 			echo json_encode($data);
