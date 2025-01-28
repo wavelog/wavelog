@@ -313,6 +313,7 @@ function qra2latlong($strQRA) {
 
 	if ((strlen($strQRA) % 2 == 0) && (strlen($strQRA) <= 10)) {	// Check if QRA is EVEN (the % 2 does that) and smaller/equal 8
 		$strQRA = strtoupper($strQRA);
+		if (strlen($strQRA) == 2)  $strQRA .= "55";	// Only 2 Chars? Fill with center "55"
 		if (strlen($strQRA) == 4)  $strQRA .= "LL";	// Only 4 Chars? Fill with center "LL" as only A-R allowed
 		if (strlen($strQRA) == 6)  $strQRA .= "55";	// Only 6 Chars? Fill with center "55"
 		if (strlen($strQRA) == 8)  $strQRA .= "LL";	// Only 8 Chars? Fill with center "LL" as only A-R allowed

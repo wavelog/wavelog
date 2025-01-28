@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-23 10:57+0000\n"
+"POT-Creation-Date: 2025-01-27 13:03+0000\n"
 "PO-Revision-Date: 2024-12-04 07:53+0000\n"
 "Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -573,7 +573,7 @@ msgstr "Notes - Sauvegarde"
 #: application/views/bands/index.php:32
 #: application/views/interface_assets/header.php:400
 #: application/views/statistics/index.php:16
-#: application/views/statistics/index.php:65
+#: application/views/statistics/index.php:67
 msgid "Bands"
 msgstr "Bandes"
 
@@ -720,7 +720,7 @@ msgstr "Concours"
 msgid "Update Contest"
 msgstr "Mettre à jour"
 
-#: application/controllers/Continents.php:25
+#: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/iota/index.php:57
 #: application/views/interface_assets/header.php:163
@@ -1297,8 +1297,8 @@ msgstr "Clublog"
 #: application/views/simplefle/index.php:157
 #: application/views/statistics/antennaanalytics.php:31
 #: application/views/statistics/index.php:15
-#: application/views/statistics/index.php:20
-#: application/views/statistics/index.php:62
+#: application/views/statistics/index.php:21
+#: application/views/statistics/index.php:64
 #: application/views/timeline/index.php:19 application/views/user/edit.php:244
 #: application/views/user/edit.php:267 application/views/user/edit.php:290
 #: application/views/user/edit.php:313 application/views/user/edit.php:337
@@ -1571,7 +1571,7 @@ msgstr "Distance"
 #: application/views/simplefle/index.php:156
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/antennaanalytics.php:19
-#: application/views/statistics/index.php:21
+#: application/views/statistics/index.php:22
 #: application/views/timeline/index.php:7
 #: application/views/timeplotter/index.php:14
 #: application/views/user/edit.php:242 application/views/user/edit.php:265
@@ -1618,6 +1618,7 @@ msgstr "Frequence"
 #: application/views/qso/components/previous_contacts.php:90
 #: application/views/search/search_result_ajax.php:17
 #: application/views/simplefle/index.php:116
+#: application/views/statistics/index.php:23
 #: application/views/user/edit.php:255 application/views/user/edit.php:278
 #: application/views/user/edit.php:301 application/views/user/edit.php:324
 #: application/views/user/edit.php:348
@@ -2415,13 +2416,13 @@ msgstr "Modifier les options d'exportation de la carte"
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: application/controllers/Statistics.php:209
+#: application/controllers/Statistics.php:238
 #: application/views/interface_assets/header.php:143
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Statistiques QSL"
 
-#: application/controllers/Statistics.php:224
+#: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:141
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
@@ -2973,23 +2974,23 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog : Aucun profil de station avec les identifiants HRDlog trouvé."
 
-#: application/models/Logbook_model.php:3875
+#: application/models/Logbook_model.php:3899
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicatif d'appel de station incorrect %s lors de l'importation du QSO avec "
 "%s pour %s : IGNORÉ"
 
-#: application/models/Logbook_model.php:3876
+#: application/models/Logbook_model.php:3900
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Vérifie %s pour des indices sur les erreurs dans les fichiers ADIF."
 
-#: application/models/Logbook_model.php:3888
+#: application/models/Logbook_model.php:3912
 msgid "QSO on"
 msgstr "QSO en"
 
-#: application/models/Logbook_model.php:3888
+#: application/models/Logbook_model.php:3912
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2997,62 +2998,62 @@ msgstr ""
 "Vous avez essayé d'importer un QSO sans indicatif donné. Ce QSO n'a pas été "
 "importé. Il est invalide"
 
-#: application/models/Logbook_model.php:4187
+#: application/models/Logbook_model.php:4211
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrdate est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4198
+#: application/models/Logbook_model.php:4222
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslsdate est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4259
+#: application/models/Logbook_model.php:4283
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4279
+#: application/models/Logbook_model.php:4303
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslrdate est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4300
+#: application/models/Logbook_model.php:4324
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslsdate est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4581
+#: application/models/Logbook_model.php:4605
 #: application/views/simplefle/index.php:40
 msgid "Duplicate for"
 msgstr "Dupliquer pour"
 
-#: application/models/Logbook_model.php:4642
+#: application/models/Logbook_model.php:4666
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
-#: application/models/Logbook_model.php:4648
+#: application/models/Logbook_model.php:4672
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4677
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
-#: application/models/Logbook_model.php:4656
+#: application/models/Logbook_model.php:4680
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
-#: application/models/Logbook_model.php:4659
+#: application/models/Logbook_model.php:4683
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
-#: application/models/Logbook_model.php:4662
+#: application/models/Logbook_model.php:4686
 msgid "unconfirmed"
 msgstr "non confirmé"
 
-#: application/models/Logbook_model.php:4665
+#: application/models/Logbook_model.php:4689
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "inconnu"
 
-#: application/models/Logbook_model.php:5475
+#: application/models/Logbook_model.php:5499
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3134,8 +3135,8 @@ msgstr "Nombre total de WAJA contactés"
 #: application/views/dashboard/index.php:296
 #: application/views/dayswithqso/index.php:41
 #: application/views/dayswithqso/index.php:81
-#: application/views/statistics/index.php:18
-#: application/views/statistics/index.php:36
+#: application/views/statistics/index.php:19
+#: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
 msgid "Year"
@@ -3618,7 +3619,7 @@ msgstr "Afficher"
 #: application/views/satellite/skedtable.php:7
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
-#: application/views/statistics/index.php:22
+#: application/views/statistics/index.php:24
 msgid "Satellite"
 msgstr "Satellite"
 
@@ -6167,6 +6168,8 @@ msgstr "Catégorie - Overlay"
 
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
+#: application/views/statistics/index.php:17
+#: application/views/statistics/index.php:73
 msgid "Operators"
 msgstr "Operateurs"
 
@@ -6926,7 +6929,7 @@ msgid "VUCC Gridsquare"
 msgstr ""
 
 #: application/views/continents/index.php:63
-#: application/views/statistics/index.php:19
+#: application/views/statistics/index.php:20
 msgid "# of QSO's worked"
 msgstr "QSOs réalisés"
 
@@ -8698,8 +8701,8 @@ msgstr ""
 #: application/views/interface_assets/header.php:289
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
 #: application/views/satellite/index.php:11
-#: application/views/statistics/index.php:48
-#: application/views/statistics/index.php:102
+#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:111
 msgid "Satellites"
 msgstr ""
 
@@ -9040,8 +9043,8 @@ msgid "Label types"
 msgstr ""
 
 #: application/views/labels/index.php:81
-#: application/views/statistics/index.php:68
-#: application/views/statistics/index.php:105
+#: application/views/statistics/index.php:70
+#: application/views/statistics/index.php:114
 #: application/views/widgets/qsos.php:3
 msgid "QSOs"
 msgstr "Nb QSOs /Bandes /Modes"
@@ -9982,7 +9985,7 @@ msgid "Category"
 msgstr "Catégorie"
 
 #: application/views/notes/add.php:36 application/views/notes/edit.php:37
-#: application/views/qso/index.php:31 application/views/statistics/index.php:44
+#: application/views/qso/index.php:31 application/views/statistics/index.php:46
 #: application/views/user/edit.php:169
 msgid "General"
 msgstr "Général"
@@ -12492,25 +12495,25 @@ msgid "Elevation"
 msgstr ""
 
 #: application/views/statistics/index.php:14
-#: application/views/statistics/index.php:59
+#: application/views/statistics/index.php:61
 msgid "Years"
 msgstr "Nb QSOs /An"
 
-#: application/views/statistics/index.php:17
+#: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
 msgstr "Nombre de QSOs réalisés par an"
 
-#: application/views/statistics/index.php:29
+#: application/views/statistics/index.php:31
 msgid "Explore the logbook."
 msgstr "Informations sur le journal de trafic."
 
-#: application/views/statistics/index.php:33
+#: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
 msgid "All Years"
 msgstr ""
 
-#: application/views/statistics/index.php:71
-#: application/views/statistics/index.php:108
+#: application/views/statistics/index.php:76
+#: application/views/statistics/index.php:117
 msgid "Unique callsigns"
 msgstr "Indicatif unique /Bandes /Modes"
 

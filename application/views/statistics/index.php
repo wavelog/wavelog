@@ -14,11 +14,13 @@
 		var lang_statistics_years = "<?= __("Years")?>";
 		var lang_statistics_modes = "<?= __("Mode")?>";
 		var lang_statistics_bands = "<?= __("Bands")?>";
+		var lang_statistics_operators = "<?= __("Operators")?>";
 		var lang_statistics_number_of_qso_worked_each_year = "<?= __("Number of QSOs worked each year")?>";
 		var lang_statistics_year = "<?= __("Year")?>";
 		var lang_statistics_number_of_qso_worked = "<?= __("# of QSO's worked")?>";
 		var lang_gen_hamradio_mode = "<?= __("Mode")?>";
 		var lang_gen_hamradio_band = "<?= __("Band")?>";
+		var lang_gen_hamradio_operator = "<?= __("Operator")?>";
 		var lang_gen_satellite = "<?= __("Satellite")?>";
 </script>
 
@@ -68,6 +70,9 @@
 							<a class="nav-link" id="qso-tab" data-bs-toggle="tab" href="#qsotab" role="tab" aria-controls="bandtab" aria-selected="false"><?= __("QSOs"); ?></a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link" id="operators-tab" data-bs-toggle="tab" href="#operatorstab" role="tab" aria-controls="operatorstab" aria-selected="false"><?= __("Operators"); ?></a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" id="unique-tab" data-bs-toggle="tab" href="#uniquetab" role="tab" aria-controls="uniquetab" aria-selected="false"><?= __("Unique callsigns"); ?></a>
 						</li>
 					</ul>
@@ -86,6 +91,10 @@
 					</div>
 					<div class="tab-pane fade" id="qsotab" role="tabpanel" aria-labelledby="qso-tab">
 							<div class="qsos">
+							</div>
+					</div>
+					<div class="tab-pane fade" id="operatorstab" role="tabpanel" aria-labelledby="operators-tab">
+							<div class="operators">
 							</div>
 					</div>
 					<div class="tab-pane fade" id="uniquetab" role="tabpanel" aria-labelledby="unique-tab">
