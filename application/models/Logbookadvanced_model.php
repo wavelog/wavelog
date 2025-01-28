@@ -263,6 +263,14 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_SOTA_REF, '') = ''";
 		}
 
+		if ($searchCriteria['comment'] !== '*' && $searchCriteria['comment'] !== '') {
+			$conditions[] = "COL_COMMENT like ?";
+			$binding[] = '%' . $searchCriteria['comment'].'%';
+		}
+		if ($searchCriteria['comment'] == '') {
+			$conditions[] = "coalesce(COL_COMMENT, '') = ''";
+		}
+
 		if ($searchCriteria['pota'] !== '*' && $searchCriteria['pota'] !== '') {
 			$conditions[] = "COL_POTA_REF like ?";
 			$binding[] = $searchCriteria['pota'].'%';

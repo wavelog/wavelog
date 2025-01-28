@@ -507,6 +507,7 @@ $(document).ready(function () {
 				contest: this.contest.value,
 				invalid: this.invalid.value,
 				continent: this.continent.value,
+				comment: this.comment.value,
 			},
 			dataType: 'json',
 			success: function (data) {
