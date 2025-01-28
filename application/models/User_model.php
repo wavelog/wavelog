@@ -1,7 +1,5 @@
 <?php
 
-include_once(APPPATH . 'controllers' . DIRECTORY_SEPARATOR . 'Dashboard.php');
-
 /* user_model.php
  *
  * This model implements user authentication and authorization
@@ -327,10 +325,6 @@ class User_Model extends CI_Model {
 					'winkey' => xss_clean($fields['user_winkey']),
 				);
 
-				// Hard limit for last (recent) QSO count setting
-				$dashboard_last_qso_count = xss_clean($fields['user_dashboard_last_qso_count']);
-				$dashboard_last_qso_count = $dashboard_last_qso_count > \Dashboard::MAX_QSOS_COUNT_LIMIT ? \Dashboard::MAX_QSOS_COUNT_LIMIT : $dashboard_last_qso_count;
-
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'hamsat','hamsat_key','api','".xss_clean($fields['user_hamsat_key'])."');");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'hamsat','hamsat_key','workable','".xss_clean($fields['user_hamsat_workable_only'])."');");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','iota','show',".(xss_clean($fields['user_iota_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
@@ -339,7 +333,6 @@ class User_Model extends CI_Model {
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','pota','show',".(xss_clean($fields['user_pota_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','sig','show',".(xss_clean($fields['user_sig_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','dok','show',".(xss_clean($fields['user_dok_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
-				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'dashboard','last_qso_count','count','".$dashboard_last_qso_count."');");
 
 				// Check to see if the user is allowed to change user levels
 				if($this->session->userdata('user_type') == 99) {
