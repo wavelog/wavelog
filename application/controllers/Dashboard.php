@@ -1,7 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller
-{
+class Dashboard extends CI_Controller {
+
+	const DEFAULT_QSOS_COUNT = 20;
+	const MAX_QSOS_COUNT_LIMIT = 50; 
 
 	public function index()
 	{
@@ -115,7 +117,20 @@ class Dashboard extends CI_Controller
 		$data['qrz_sent_today'] = $QSLStatsBreakdownArray['QRZ_Sent_today'];
 		$data['qrz_rcvd_today'] = $QSLStatsBreakdownArray['QRZ_Received_today'];
 
-		$data['last_five_qsos'] = $this->logbook_model->get_last_qsos('18', $logbooks_locations_array);
+		// Determine last (recent) QSO count to be fetched
+		$last_qso_count_opt = $this->user_options_model->get_options(
+			'dashboard', 
+			array('option_name' => 'last_qso_count', 'option_key' => 'count'), 
+			$this->uri->segment(3)
+		)->result();
+		if (count($last_qso_count_opt) > 0) {
+			// value found in user options - use it
+			$last_qso_count = $last_qso_count_opt[0]->option_value;
+		} else {
+			// value not found in user options - use default value
+			$last_qso_count = \Dashboard::DEFAULT_QSOS_COUNT;
+		}
+		$data['last_qsos_list'] = $this->logbook_model->get_last_qsos($last_qso_count, $logbooks_locations_array);
 
 		$data['vucc'] = $this->vucc->fetchVuccSummary();
 		$data['vuccSAT'] = $this->vucc->fetchVuccSummary('SAT');

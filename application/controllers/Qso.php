@@ -2,6 +2,8 @@
 
 class QSO extends CI_Controller {
 
+    const LAST_QSOS_COUNT = 5; // max number of most recent qsos to be displayed on a qso page
+
 	function __construct()
 	{
 		parent::__construct();
@@ -34,7 +36,7 @@ class QSO extends CI_Controller {
 		$data['stations'] = $this->stations->all_of_user();
 		$data['radios'] = $this->cat->radios(true);
 		$data['radio_last_updated'] = $this->cat->last_updated()->row();
-		$data['query'] = $this->logbook_model->last_custom('5');
+		$data['query'] = $this->logbook_model->last_custom(self::LAST_QSOS_COUNT);
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
 		$data['iota'] = $this->logbook_model->fetchIota();
 		$data['modes'] = $this->modes->active();
@@ -601,7 +603,7 @@ class QSO extends CI_Controller {
       $this->load->model('logbook_model');
       session_write_close();
 
-      $data['query'] = $this->logbook_model->last_custom('5');
+      $data['query'] = $this->logbook_model->last_custom(self::LAST_QSOS_COUNT);
 
       // Load view
       $this->load->view('qso/components/previous_contacts', $data);

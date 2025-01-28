@@ -8,14 +8,17 @@
 
 class Widgets extends CI_Controller {
 
+	const LAST_QSOS_COUNT = 15; // number of of qsos to be displayed in the last qsos widget
+	const LAST_QSOS_MAX_LIMIT = 40; // if user requests more than this limit, qsos will be capped to this number 
+
 	public function index()
 	{
 		// Show a help page
 	}
 	
 	
-	// Can be used to embed last 11 QSOs in a iframe or javascript include.
-	public function qsos($logbook_slug = null) {
+	// Can be used to embed last self::LAST_QSOS_COUNT QSOs in a iframe or javascript include.
+	public function qsos($logbook_slug = null, $qso_count = self::LAST_QSOS_COUNT) {
 
 		if($logbook_slug == null) {
 			show_error(__("Unknown Public Page, please make sure the public slug is correct."));
@@ -40,7 +43,14 @@ class Widgets extends CI_Controller {
 				show_404(__("Unknown Public Page."));
 			}
 
-			$data['last_five_qsos'] = $this->logbook_model->get_last_qsos(15, $logbooks_locations_array);
+			if ($qso_count > self::LAST_QSOS_MAX_LIMIT) {
+				$qso_count = self::LAST_QSOS_MAX_LIMIT;
+			}
+
+			$data['last_qsos_list'] = $this->logbook_model->get_last_qsos(
+				$qso_count, 
+				$logbooks_locations_array,
+			);
 			
 			$this->load->view('widgets/qsos', $data);
 		}

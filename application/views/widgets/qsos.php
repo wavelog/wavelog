@@ -45,7 +45,7 @@
 			}
 
 			$i = 0;
-			foreach ($last_five_qsos->result() as $row) { ?>
+			foreach ($last_qsos_list->result() as $row) { ?>
 				<?php  echo '<tr class="tr'.($i & 1).'">'; ?>
 					<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?></td>
 					<?php if ($show_time) { ?>
