@@ -145,6 +145,7 @@ class Logbookadvanced extends CI_Controller {
 			'contest' => xss_clean($this->input->post('contest')),
 			'invalid' => xss_clean($this->input->post('invalid')),
 			'continent' => xss_clean($this->input->post('continent')),
+			'comment' => xss_clean($this->input->post('comment')),
 		);
 
 		$qsos = [];
@@ -326,6 +327,7 @@ class Logbookadvanced extends CI_Controller {
 			'operator' => '*',
 			'contest' => '*',
 			'continent' => '',
+			'comment' => '*',
 			'ids' => xss_clean($this->input->post('ids'))
 		);
 
@@ -372,6 +374,7 @@ class Logbookadvanced extends CI_Controller {
 			'contest' => xss_clean($this->input->post('contest')),
 			'qslimages' => xss_clean($this->input->post('qslimages')),
 			'continent' => xss_clean($this->input->post('continent')),
+			'comment' => xss_clean($this->input->post('comment')),
 		);
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
