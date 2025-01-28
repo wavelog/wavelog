@@ -371,10 +371,10 @@ class User extends CI_Controller {
 		// Get timezones
 		$data['timezones'] = $this->user_model->timezones();
 
+		$data['page_title'] = __("Edit User");
+
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = __("Edit User");
-
 			$q = $query->row();
 
 			$data['id'] = $q->user_id;
@@ -806,7 +806,6 @@ class User extends CI_Controller {
 					}
 					return;
 			}
-			$data['page_title'] = __("Edit User");
 
 			$this->load->view('interface_assets/header', $data);
 			$data['user_name'] = $this->input->post('user_name', true);
