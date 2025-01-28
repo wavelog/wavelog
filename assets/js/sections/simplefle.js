@@ -470,8 +470,8 @@ function handleInput() {
 			<td>${callsign}</td>
 			<td><span data-bs-toggle="tooltip" data-placement="left" title="${freq}">${band}</span></td>
 			<td>${mode}</td>
-			<td>${rst_s}${stx_info}</td>
-			<td>${rst_r}${srx_info}</td>
+			<td>${rst_s} ${stx_info}</td>
+			<td>${rst_r} ${srx_info}</td>
 			<td>${gridsquare}</td>
 			<td>${sotaWwffText}</td>
 			</tr>`);
