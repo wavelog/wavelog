@@ -2,7 +2,7 @@
 
 class QSO extends CI_Controller {
 
-    const LAST_QSOS_COUNT = 5; // max number of most recent qsos to be displayed on a qso page
+	const LAST_QSOS_COUNT = 5; // max number of most recent qsos to be displayed on a qso page
 
 	function __construct()
 	{
@@ -85,6 +85,8 @@ class QSO extends CI_Controller {
 		} else {
 			$data['user_dok_to_qso_tab'] = 0;
 		}
+
+		$data['qso_count'] = self::LAST_QSOS_COUNT;
 
 		$this->load->library('form_validation');
 
