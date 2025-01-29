@@ -154,8 +154,6 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		$this->form_validation->set_rules('user_type', 'Type', 'required');
-		// $this->form_validation->set_rules('user_firstname', 'First name', 'required');
-		// $this->form_validation->set_rules('user_lastname', 'Last name', 'required');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
@@ -373,10 +371,10 @@ class User extends CI_Controller {
 		// Get timezones
 		$data['timezones'] = $this->user_model->timezones();
 
+		$data['page_title'] = __("Edit User");
+
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = __("Edit User");
-
 			$q = $query->row();
 
 			$data['id'] = $q->user_id;
@@ -808,7 +806,6 @@ class User extends CI_Controller {
 					}
 					return;
 			}
-			$data['page_title'] = __("Edit User");
 
 			$this->load->view('interface_assets/header', $data);
 			$data['user_name'] = $this->input->post('user_name', true);

@@ -74,7 +74,7 @@ class Logbook extends CI_Controller {
         echo json_encode($return, JSON_PRETTY_PRINT);
     }
 
-	function json($tempcallsign, $tempband, $tempmode, $tempstation_id = null, $date = "") {
+	function json($tempcallsign, $tempband, $tempmode, $tempstation_id = null, $date = "", $count = 5) {
 		session_write_close();
 		if (($date ?? '') != '') {
 			$date=date("Y-m-d",strtotime($date));
@@ -132,7 +132,7 @@ class Logbook extends CI_Controller {
 
 		$callbook = $this->logbook_model->loadCallBook($callsign, $this->config->item('use_fullname'));
 
-		$return['partial'] = $this->partial($lookupcall, $callbook, $callsign, $return['dxcc'], $lotw_days, $band);
+		$return['partial'] = $this->partial($lookupcall, $callbook, $callsign, $return['dxcc'], $lotw_days, $band, $count);
 
 		if ($this->session->userdata('user_measurement_base') == NULL) {
 			$measurement_base = $this->config->item('measurement_base');
@@ -615,7 +615,7 @@ class Logbook extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	function partial($lookupcall, $callbook, $callsign, $dxcc, $lotw_days, $band = null) {
+	function partial($lookupcall, $callbook, $callsign, $dxcc, $lotw_days, $band = null, $count = 5) {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
@@ -640,7 +640,7 @@ class Logbook extends CI_Controller {
 			$this->db->group_end();
 
 			$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "desc");
-			$this->db->limit(5);
+			$this->db->limit($count);
 
 			$query = $this->db->get();
 		}

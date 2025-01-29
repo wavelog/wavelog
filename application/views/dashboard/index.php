@@ -235,8 +235,8 @@ function getDistance($distance) {
 
 			<?php
 			$i = 0;
-			if(!empty($last_five_qsos) > 0) {
-			foreach ($last_five_qsos->result() as $row) { ?>
+			if(!empty($last_qsos_list) > 0) {
+			foreach ($last_qsos_list->result() as $row) { ?>
 				<?php  echo '<tr id="qso_'.$row->COL_PRIMARY_KEY.'" class="tr'.($i & 1).'">'; ?>
 
 					<?php
