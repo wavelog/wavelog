@@ -177,6 +177,10 @@ class User extends CI_Controller {
 		$data['timezones'] = $this->user_model->timezones();
 		$data['user_language'] = 'english';
 
+		// Values for the "dashboard last QSO count" selectbox
+		$data['dashboard_last_qso_count_limit'] = \User_Model::DASHBOARD_QSOS_COUNT_LIMIT;
+		$data['user_dashboard_last_qso_count'] = \User_Model::DASHBOARD_DEFAULT_QSOS_COUNT;
+
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Add User");
 			$data['measurement_base'] = $this->config->item('measurement_base');
@@ -370,6 +374,9 @@ class User extends CI_Controller {
 
 		// Get timezones
 		$data['timezones'] = $this->user_model->timezones();
+
+		// Max value to be present in the "dashboard last QSO count" selectbox
+		$data['dashboard_last_qso_count_limit'] = \User_Model::DASHBOARD_QSOS_COUNT_LIMIT;
 
 		$data['page_title'] = __("Edit User");
 
@@ -751,6 +758,23 @@ class User extends CI_Controller {
 			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'), $this->uri->segment(3))->row()->option_value ?? 'false');
 			$data['user_utc_headermenu'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'utc_headermenu'), $this->uri->segment(3))->row()->option_value ?? 'false');
 
+			if($this->input->post('user_dashboard_last_qso_count', true)) {
+				$data['user_dashboard_last_qso_count'] = $this->input->post('user_dashboard_last_qso_count', true);
+			} else {
+				// Determine last (recent) QSO count to preselect into the selectbox
+				$last_qso_count_opt = $this->user_options_model->get_options(
+					'dashboard', 
+					array('option_name' => 'last_qso_count', 'option_key' => 'count'), 
+					$this->uri->segment(3)
+				)->result();
+
+				if (count($last_qso_count_opt) > 0) {
+					$data['user_dashboard_last_qso_count'] = $last_qso_count_opt[0]->option_value;
+				} else {
+					$data['user_dashboard_last_qso_count'] = \User_Model::DASHBOARD_DEFAULT_QSOS_COUNT;
+				}
+			}
+
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
@@ -846,6 +870,7 @@ class User extends CI_Controller {
 			$data['user_winkey'] = $this->input->post('user_winkey');
 			$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
 			$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
+			$data['user_dashboard_last_qso_count'] = $this->input->post('user_dashboard_last_qso_count', true);
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
 		}
