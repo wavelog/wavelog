@@ -140,6 +140,8 @@ class Hamsat extends CI_Controller {
 
 			if (strtoupper($decoded_json->data[$i]->satellite->name) == 'GREENCUBE') {
 				$decoded_json->data[$i]->sat_export_name = 'IO-117';
+			} else if (strtoupper($decoded_json->data[$i]->satellite->name) == 'AO-07') {
+				$decoded_json->data[$i]->sat_export_name = 'AO-7';
 			} else {
 				$decoded_json->data[$i]->sat_export_name = $decoded_json->data[$i]->satellite->name;
 			}
