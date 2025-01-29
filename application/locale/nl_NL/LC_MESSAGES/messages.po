@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-28 11:41+0000\n"
-"PO-Revision-Date: 2025-01-28 10:26+0000\n"
+"PO-Revision-Date: 2025-01-29 08:38+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -849,8 +849,8 @@ msgid ""
 "'images/eqsl_card_images'."
 msgstr ""
 "Bestandsoverdracht was succesvol, maar controleer ook handmatig. Als alles "
-"goed lijkt, kun je de mappen 'assets/qslcard' en 'images/eqsl_card_images' "
-"verwijderen."
+"goed lijkt, kun je de directories 'assets/qslcard' en 'images/"
+"eqsl_card_images' verwijderen."
 
 #: application/controllers/Debug.php:300
 msgid "File Migration failed. Please check the Error Log."
@@ -1882,7 +1882,8 @@ msgstr "Maptiles-server"
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
-"Maptile-cache kon niet worden verwijderd. Verwijder de map handmatig. Pad: %s"
+"Maptile-cache kon niet worden verwijderd. Verwijder de directory handmatig. "
+"Pad: %s"
 
 #: application/controllers/Options.php:477
 msgid "Maptile Options saved!"
@@ -5864,8 +5865,9 @@ msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
-"Er is iets misgegaan tijdens het back-upproces. Controleer of de back-upmap "
-"bestaat en beschrijfbaar is door de gebruiker/groep van je webserver."
+"Er is iets misgegaan tijdens het back-upproces. Controleer of de back-up "
+"directory bestaat en beschrijfbaar is door de gebruiker/groep van je "
+"webserver."
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -7608,14 +7610,14 @@ msgstr "Codeigniter-versie"
 
 #: application/views/debug/index.php:122
 msgid "Folder Permissions"
-msgstr "Mapmachtigingen"
+msgstr "Directory-machtigingen"
 
 #: application/views/debug/index.php:124
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
 msgstr ""
-"Dit verifieert dat de mappen die door Wavelog worden gebruikt lees- en "
+"Dit verifieert dat de directories die door Wavelog worden gebruikt lees- en "
 "schrijfrechten hebben via PHP."
 
 #: application/views/debug/index.php:130 application/views/debug/index.php:141
@@ -7648,8 +7650,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Ga naar je application/config map en vergelijk config.sample.php met je "
-"config.php"
+"Ga naar je application/config directory en vergelijk config.sample.php met "
+"je config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -9991,7 +9993,8 @@ msgstr "Weergavenaam"
 
 #: application/views/lotw_views/index.php:4
 msgid "Upload folder is not writable. Please contact your admin."
-msgstr "Uploadmap is niet beschrijfbaar. Neem contact op met je beheerder."
+msgstr ""
+"Upload directory is niet beschrijfbaar. Neem contact op met je beheerder."
 
 #: application/views/lotw_views/index.php:8
 msgid "LoTW Import"
@@ -12173,6 +12176,9 @@ msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
+"Let op! Of je hebt een wedstrijd ingesteld, maar geen uitwisseling "
+"opgenomen, of je hebt wedstrijdgegevens gelogd maar geen wedstrijd "
+"geselecteerd."
 
 #: application/views/simplefle/index.php:36
 msgid ""
@@ -12331,23 +12337,24 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
-msgstr ""
+msgstr "Aanvullende informatie kan op de volgende manier worden ingediend:"
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "Notities:"
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "Operator Naam:"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "QSL-bericht (Let op! Momenteel niet zichtbaar in wavelog!):"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
 msgstr ""
+"Contestuitwisseling; serienummers of andere uitwisseling - of zelfs beide:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -12358,27 +12365,44 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"Ontvangen uitwisseling moet worden voorafgegaan door een punt '.', verzonden "
+"uitwisseling met een komma ','. De laatste twee regels zijn gelijkwaardig - "
+"d.w.z. spaties maken niet uit, net zoals de volgorde niet uitmaakt. "
+"Uitwisseling die je hebt verzonden, wordt automatisch opgenomen in het "
+"volgende QSO, als het de ontvangen uitwisseling bevat, of als je een enkele "
+"komma ',' gebruikt. Om het verzonden serienummer automatisch te verhogen, "
+"gebruik ',++' en geef een initiële verzonden uitwisseling. Om te "
+"deactiveren, gebruik ',+0':"
 
 #: application/views/simplefle/syntax_help.php:54
+#, fuzzy
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
+"Hier gebruikt het eerste QSO het volgnummer 1, en het tweede zal 2 als "
+"volgnummer gebruiken. Als je je verzonden uitwisseling wilt wissen, gebruik "
+"je ',-':"
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
+"Eerst wordt alle eerdere uitwisseling gewist, daarna wordt alleen een "
+"volgnummer ingesteld. Anders zou de vorige uitwisseling 'D23' ook zijn "
+"ingesteld."
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
+"Je kunt de commentaarsyntaxis gebruiken om ADIF-velden in te vullen die door "
+"de Wavelog-import worden ondersteund:"
 
 #: application/views/simplefle/syntax_help.php:64
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
@@ -12786,7 +12810,7 @@ msgstr "# QSOs getoond"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
-msgstr ""
+msgstr "Bezoek de te exporteren kaart"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
@@ -12812,170 +12836,194 @@ msgid ""
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
 msgstr ""
+"Stationlogboeken stellen je in staat om stationlocaties te groeperen, "
+"waardoor je alle locaties in één sessie kunt zien, van de logboekgebieden "
+"tot de analyses. Geweldig voor wanneer je op meerdere locaties opereert, "
+"maar ze deel uitmaken van dezelfde DXCC- of VUCC-cirkel."
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
-msgstr ""
+msgstr "Gekoppelde locaties"
 
 #: application/views/stationsetup/stationsetup.php:34
 msgid "Visitor site"
-msgstr ""
+msgstr "Bezoekerssite"
 
 #: application/views/stationsetup/stationsetup.php:91
 msgid "Station Locations"
-msgstr ""
+msgstr "Stationslocaties"
 
 #: application/views/stationsetup/stationsetup.php:95
+#, fuzzy
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
 msgstr ""
+"Stationlocaties definiëren bedieningslocaties, zoals je QTH, de QTH van een "
+"vriend, of een draagbaar station."
 
 #: application/views/stationsetup/stationsetup.php:96
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
 msgstr ""
+"Net als logboeken houdt een stationprofiel een set van QSO's bij elkaar."
 
 #: application/views/stationsetup/stationsetup.php:97
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
 msgstr ""
+"Er mag maar één station tegelijk actief zijn. In de onderstaande tabel wordt "
+"dit aangegeven met het -Actief Station- badge."
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr ""
+"De kolom 'Gekoppeld' toont of de locatie van het station is gekoppeld aan "
+"het hierboven geselecteerde Actief Logboek."
 
 #: application/views/stationsetup/stationsetup.php:101
 msgid "Create a Station Location"
-msgstr ""
+msgstr "Maak een stationlocatie"
 
 #: application/views/stationsetup/stationsetup.php:105
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
+"Let op: Je moet een actieve stationlocatie instellen. Ga naar Roepnaam-"
+">Station Location om er een te selecteren."
 
 #: application/views/stationsetup/stationsetup.php:111
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
 msgstr ""
+"Vanwege recente wijzigingen binnen Wavelog moet je QSOs opnieuw toewijzen "
+"aan je stationprofielen."
 
 #: application/views/stationsetup/stationsetup.php:113
 msgid "Maintenance"
-msgstr ""
+msgstr "Onderhoud"
 
 #: application/views/stationsetup/stationsetup.php:113
 msgid "Please reassign them at "
-msgstr ""
+msgstr "Wijs ze alsjeblieft opnieuw toe aan "
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Linked"
-msgstr ""
+msgstr "Gekoppeld"
 
 #: application/views/stationsetup/stationsetup.php:134
 msgid "Favorite"
-msgstr ""
+msgstr "Favoriet"
 
 #: application/views/stationsetup/stationsetup.php:180
 msgid "mark/unmark as favorite"
-msgstr ""
+msgstr "als favoriet markeren/demarkeren"
 
 #: application/views/stationsetup/visitor.php:2
 msgid ""
 "Setting a public slug allows you to share your logbook with anyone via a "
 "custom website address, this slug can contain letters & numbers only."
 msgstr ""
+"Door een openbare 'slug' in te stellen, kun je je logboek met iedereen delen "
+"via een aangepast webadres. Deze 'slug' mag alleen letters en cijfers "
+"bevatten."
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
-msgstr ""
+msgstr "Later ziet het er zo uit:"
 
 #: application/views/stationsetup/visitor.php:4
+#, fuzzy
 msgid "[your slug]"
-msgstr ""
+msgstr "[jouw 'slug']"
 
 #: application/views/stationsetup/visitor.php:10
 msgid "Type in Public Slug choice"
-msgstr ""
+msgstr "Voer openbare 'slug' keuze in"
 
 #: application/views/stationsetup/visitor.php:17
 msgid "Visit Public Page"
-msgstr ""
+msgstr "Bezoek openbare pagina"
 
 #: application/views/statistics/antennaanalytics.php:11
 msgid "Elevation"
-msgstr ""
+msgstr "Hoogte"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:61
 msgid "Years"
-msgstr ""
+msgstr "Jaren"
 
 #: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
-msgstr ""
+msgstr "Aantal QSOs per jaar gewerkt"
 
 #: application/views/statistics/index.php:31
 msgid "Explore the logbook."
-msgstr ""
+msgstr "Verken het logboek."
 
 #: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
 msgid "All Years"
-msgstr ""
+msgstr "Alle jaren"
 
 #: application/views/statistics/index.php:76
 #: application/views/statistics/index.php:117
 msgid "Unique callsigns"
-msgstr ""
+msgstr "Unieke roepnamen"
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
-msgstr ""
+msgstr "Themanaam"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
 msgstr ""
+"Dit is de naam die wordt gebruikt om het thema in de themalijst weer te "
+"geven."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
-msgstr ""
+msgstr "Directorynaam"
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
 msgstr ""
+"Dit is de naam van de directory waar je CSS-bestanden zijn geplaatst onder "
+"assets/css."
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
 msgid "Theme Mode"
-msgstr ""
+msgstr "Themamodus"
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
 msgid "Light"
-msgstr ""
+msgstr "Licht"
 
 #: application/views/themes/add.php:19 application/views/themes/edit.php:19
 msgid "Dark"
-msgstr ""
+msgstr "Donker"
 
 #: application/views/themes/add.php:21
 msgid "This defines wherever the theme is a light or a dark one."
-msgstr ""
+msgstr "Hiermee wordt bepaald of het thema een licht of een donker thema is."
 
 #: application/views/themes/add.php:25 application/views/themes/edit.php:25
 #: application/views/themes/index.php:85
 msgid "Header Logo"
-msgstr ""
+msgstr "Koptekst logo"
 
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
 msgid "Only PNG files with a size ratio of 1:1 are allowed."
-msgstr ""
+msgstr "Alleen PNG-bestanden met een pixelverhouding van 1:1 zijn toegestaan."
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
 #, php-format
@@ -12983,11 +13031,13 @@ msgid ""
 "This is the name of the file which is used as %s small %s Logo in the header "
 "placed in assets/logo."
 msgstr ""
+"Dit is de naam van het bestand dat wordt gebruikt als %s klein %s logo in de "
+"koptekst die is geplaatst in assets/logo."
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
 msgid "Main Logo"
-msgstr ""
+msgstr "Hoofdlogo"
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
 #, php-format
@@ -12995,24 +13045,28 @@ msgid ""
 "This is the name of the file which is used as %s big %s Logo in the login "
 "screen placed in assets/logo."
 msgstr ""
+"Dit is de naam van het bestand dat wordt gebruikt als %s groot %s logo in "
+"het inlogscherm die is geplaatst in assets/logo."
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
-msgstr ""
+msgstr "Thema toevoegen"
 
 #: application/views/themes/edit.php:21
 msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
 msgstr ""
+"Hiermee wordt bepaald of het thema licht of donker is. Op basis hiervan "
+"wordt het logo gekozen."
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
-msgstr ""
+msgstr "Thema bijwerken"
 
 #: application/views/themes/index.php:22
 msgid "Themes list"
-msgstr ""
+msgstr "Themalijst"
 
 #: application/views/themes/index.php:28
 msgid ""
@@ -13020,18 +13074,21 @@ msgid ""
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
 msgstr ""
+"In dit menu kun je thema's toevoegen en bewerken in Wavelog. Het proces van "
+"het toevoegen van een thema is niet echt eenvoudig en moet alleen worden "
+"gedaan door een beheerder die zich bewust is van zijn acties."
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
-msgstr ""
+msgstr "Ook moet worden gezegd dat deze functie nog in ontwikkeling is."
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "Proces van het toevoegen van een nieuw thema"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
-msgstr ""
+msgstr "Stap 1"
 
 #: application/views/themes/index.php:44
 #, php-format
@@ -13039,40 +13096,48 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
+"Maak een nieuwe directory in 'assets/css/' en upload een 'bootstrap.min.css' "
+"bestand dat basisstijlregels bevat. We gebruiken de thema's van %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
-msgstr ""
+msgstr "Stap 2"
 
 #: application/views/themes/index.php:53
 msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
 msgstr ""
+"Maak een bestand in deze directory genaamd 'overrides.css'. Plaats je "
+"aangepaste CSS-code daarin."
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
-msgstr ""
+msgstr "Stap 3"
 
 #: application/views/themes/index.php:62
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
 msgstr ""
+"Voor elk nieuw thema heb je twee logobestanden nodig. Eén voor het "
+"inlogscherm en één voor de koptekst."
 
 #: application/views/themes/index.php:63
 msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
+"Alleen PNG-bestanden zijn toegestaan, en ze moeten een pixelverhouding van 1:"
+"1 hebben (bijv. 1000px hoogte en 1000px breedte)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr ""
+msgstr "Plaats de twee logobestanden in de directory 'assets/logo/'"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
-msgstr ""
+msgstr "Stap 4"
 
 #: application/views/themes/index.php:73
 #, php-format
@@ -13080,80 +13145,90 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Klik hier op 'Thema toevoegen' en voer de benodigde gegevens in. Typ de "
+"bestandsnamen voor de logo's %szonder%s de bestandsextensie '.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
-msgstr ""
+msgstr "Directorynaam"
 
 #: application/views/themes/index.php:99
+#, fuzzy
 msgid "Please edit"
-msgstr ""
+msgstr "Pas alsjeblieft aan"
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
-msgstr ""
+msgstr "Een thema toevoegen"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
-msgstr ""
+msgstr "Alleen nieuw in geselecteerd jaar"
 
 #: application/views/timeplotter/index.php:2
+#, fuzzy
 msgid "contacts were plotted"
-msgstr ""
+msgstr "contacten werden getekend"
 
 #: application/views/timeplotter/index.php:3
 msgid "Time Distribution"
-msgstr ""
+msgstr "Tijdverdeling"
 
 #: application/views/timeplotter/index.php:6
 msgid "Callsign(s) worked (max 5)"
-msgstr ""
+msgstr "Gewerkte roepnamen (maximaal 5)"
 
 #: application/views/timeplotter/index.php:10
 msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
+"De Timeplotter wordt gebruikt om je logboek te analyseren en te ontdekken op "
+"welke tijden je bepaalde CQ-zones of DXCC-landen op een geselecteerde band "
+"hebt gewerkt."
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
-msgstr ""
+msgstr "DXCC-opzoekgegevens"
 
 #: application/views/update/index.php:12
 msgid "Distance Data"
-msgstr ""
+msgstr "Afstandsgegevens"
 
 #: application/views/update/index.php:19
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
 msgstr ""
+"Hier kun je de DXCC-opzoekgegevens bijwerken die worden gebruikt voor het "
+"weergeven van roepnaaminformatie."
 
 #: application/views/update/index.php:20
 msgid "This data is provided by"
-msgstr ""
+msgstr "Deze gegevens worden verstrekt door"
 
 #: application/views/update/index.php:24
 msgid "You must install php-xml for this to work."
-msgstr ""
+msgstr "Je moet php-xml installeren om dit te laten werken."
 
 #: application/views/update/index.php:27
 msgid "Check for DXCC Data Updates"
-msgstr ""
+msgstr "Controleer op DXCC-gegevensupdates"
 
 #: application/views/update/index.php:28
 msgid "Update DXCC Data"
-msgstr ""
+msgstr "DXCC-gegevens bijwerken"
 
 #: application/views/update/index.php:30
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: application/views/update/index.php:34
 msgid "Apply DXCC Data to Logbook"
-msgstr ""
+msgstr "DXCC-gegevens toepassen op logboek"
 
 #: application/views/update/index.php:36
+#, fuzzy
 msgid ""
 "After updating, Wavelog can fill in missing callsign information in the "
 "logbook using the newly-obtained DXCC data.\n"
@@ -13161,36 +13236,43 @@ msgid ""
 "missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
+"Na de update kan Wavelog ontbrekende roepnaaminformatie in het logboek "
+"invullen met de nieuw verkregen DXCC-gegevens. Je kunt ervoor kiezen om "
+"alleen de QSO's in het logboek te controleren die DXCC-metadata missen, of "
+"om het hele logboek opnieuw te controleren en bestaande metadata bij te "
+"werken, voor het geval deze is gewijzigd."
 
 #: application/views/update/index.php:45
 msgid "Check QSOs missing DXCC data"
-msgstr ""
+msgstr "Controleer QSOs zonder DXCC-gegevens"
 
 #: application/views/update/index.php:54 application/views/update/index.php:95
 msgid "Re-check all QSOs in logbook"
-msgstr ""
+msgstr "Controleer alle QSOs in het logboek opnieuw"
 
 #: application/views/update/index.php:59
 msgid "Apply Continent Data to Logbook"
-msgstr ""
+msgstr "Continentgegevens toepassen op logboek"
 
 #: application/views/update/index.php:61
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
 msgstr ""
+"Deze functie kan worden gebruikt om QSO-continentinformatie bij te werken "
+"voor alle QSO's in Wavelog die deze informatie missen."
 
 #: application/views/update/index.php:68
 msgid "Check QSOs missing continent data"
-msgstr ""
+msgstr "Controleer QSOs met ontbrekende continentgegevens"
 
 #: application/views/update/index.php:80
 msgid "Here you can update QSOs with missing distance information."
-msgstr ""
+msgstr "Hier kun je QSO's bijwerken met ontbrekende afstandsinformatie."
 
 #: application/views/update/index.php:86
 msgid "Update distance data"
-msgstr ""
+msgstr "Afstandsgegevens bijwerken"
 
 #: application/views/update/index.php:89
 msgid ""
@@ -13198,38 +13280,41 @@ msgid ""
 "QSOs. Depending on the number of QSOs this might take some time to execute. "
 "Please be patient."
 msgstr ""
+"Gebruik de volgende knop om de afstandsinformatie voor al je QSO's bij te "
+"werken. Afhankelijk van het aantal QSO's kan dit enige tijd duren. Gelieve "
+"geduld te hebben."
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
-msgstr ""
+msgstr "Verwijder gebruikersaccount"
 
 #: application/views/user/delete.php:10
 msgid "Are you sure you want to delete the user account"
-msgstr ""
+msgstr "Weet je zeker dat je het gebruikersaccount wilt verwijderen"
 
 #: application/views/user/delete.php:14
 msgid "No, do not delete this user"
-msgstr ""
+msgstr "Nee, verwijder deze gebruiker niet"
 
 #: application/views/user/delete.php:14
 msgid "Yes, delete this user"
-msgstr ""
+msgstr "Ja, verwijder deze gebruiker"
 
 #: application/views/user/edit.php:6
 msgid "Create Clubstation Account"
-msgstr ""
+msgstr "Clubstation-account aanmaken"
 
 #: application/views/user/edit.php:8
 msgid "Create User Account"
-msgstr ""
+msgstr "Gebruikersaccount aanmaken"
 
 #: application/views/user/edit.php:11
 msgid "Edit Account"
-msgstr ""
+msgstr "Account bewerken"
 
 #: application/views/user/edit.php:46
 msgid "General Information"
-msgstr ""
+msgstr "Algemene informatie"
 
 #: application/views/user/edit.php:69 application/views/user/login.php:59
 #: application/views/user/login.php:73 application/views/user/login.php:74
@@ -13241,19 +13326,19 @@ msgstr "Wachtwoord"
 
 #: application/views/user/edit.php:75
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "Deel dit wachtwoord niet met operators!"
 
 #: application/views/user/edit.php:85
 msgid "User Role"
-msgstr ""
+msgstr "Gebruikersrol"
 
 #: application/views/user/edit.php:114
 msgid "Callsign Owner"
-msgstr ""
+msgstr "Roepnaam eigenaar"
 
 #: application/views/user/edit.php:114
 msgid "Personal"
-msgstr ""
+msgstr "Persoonsgegevens"
 
 #: application/views/user/edit.php:117
 msgid "First Name"
@@ -13265,108 +13350,116 @@ msgstr "Achternaam"
 
 #: application/views/user/edit.php:135
 msgid "Ham Radio"
-msgstr ""
+msgstr "Zendamateur"
 
 #: application/views/user/edit.php:138
 msgid "Special/Club Callsign"
-msgstr ""
+msgstr "Speciale/Clubroepnaam"
 
 #: application/views/user/edit.php:161
 msgid "Wavelog Preferences"
-msgstr ""
+msgstr "Wavelog Voorkeuren"
 
 #: application/views/user/edit.php:172
 msgid "Stylesheet"
-msgstr ""
+msgstr "Stijlblad"
 
 #: application/views/user/edit.php:184
 msgid "Wavelog Language"
-msgstr ""
+msgstr "Wavelog taal"
 
 #: application/views/user/edit.php:191
 msgid "Choose Wavelog language."
-msgstr ""
+msgstr "Kies Wavelog-taal."
 
 #: application/views/user/edit.php:202
 msgid "Date Format"
-msgstr ""
+msgstr "Datumnotatie"
 
 #: application/views/user/edit.php:215
 msgid "Select how you would like dates shown when logged into your account."
 msgstr ""
+"Selecteer hoe je wilt dat datums worden weergegeven wanneer je bent ingelogd "
+"op je account."
 
 #: application/views/user/edit.php:219
 msgid "Measurement preference"
-msgstr ""
+msgstr "Voorkeurseenheid"
 
 #: application/views/user/edit.php:223
 msgid "Kilometers"
-msgstr ""
+msgstr "Kilometers"
 
 #: application/views/user/edit.php:224
 msgid "Miles"
-msgstr ""
+msgstr "Mijlen"
 
 #: application/views/user/edit.php:225
 msgid "Nautical miles"
-msgstr ""
+msgstr "Zeemijlen"
 
 #: application/views/user/edit.php:227
 msgid "Choose which unit distances will be shown in"
-msgstr ""
+msgstr "Kies welke eenheden voor afstanden worden getoond"
 
 #: application/views/user/edit.php:236
 msgid "Logbook fields"
-msgstr ""
+msgstr "Logboekvelden"
 
 #: application/views/user/edit.php:239
 msgid "Choose column 1"
-msgstr ""
+msgstr "Kies kolom 1"
 
 #: application/views/user/edit.php:262
 msgid "Choose column 2"
-msgstr ""
+msgstr "Kies kolom 2"
 
 #: application/views/user/edit.php:285
 msgid "Choose column 3"
-msgstr ""
+msgstr "Kies kolom 3"
 
 #: application/views/user/edit.php:308
 msgid "Choose column 4"
-msgstr ""
+msgstr "Kies kolom 4"
 
 #: application/views/user/edit.php:331
 msgid "Choose column 5 (only for logbook)"
-msgstr ""
+msgstr "Kies kolom 5 (alleen voor logboek)"
 
 #: application/views/user/edit.php:361
 msgid "QSO Logging Options"
-msgstr ""
+msgstr "Opties voor QSO-registratie"
 
 #: application/views/user/edit.php:364
 msgid "Log End Times for QSOs Separately"
-msgstr ""
+msgstr "Log de eindtijden voor QSO's afzonderlijk"
 
 #: application/views/user/edit.php:370
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
 msgstr ""
+"Kies hier 'ja' als je de QSO start- en eindtijden apart wilt loggen. Als je "
+"'nee' kiest, zal de eindtijd hetzelfde zijn als de starttijd."
 
 #: application/views/user/edit.php:375
 msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
+"Toon profielfoto van QSO-partner van qrz.com/hamqth.com-profiel in de log "
+"QSO-sectie."
 
 #: application/views/user/edit.php:381
 msgid ""
 "Please set your qrz.com/hamqth.com credentials in the general config file."
 msgstr ""
+"Stel je qrz.com/hamqth.com inloggegevens in het algemene configuratiebestand "
+"in."
 
 #: application/views/user/edit.php:386
 msgid "Location auto lookup."
-msgstr ""
+msgstr "Automatisch locatorvak opzoeken."
 
 #: application/views/user/edit.php:392
 msgid "If set, gridsquare is fetched based on location name."
@@ -13397,151 +13490,158 @@ msgstr "POTA zoekt automatisch locatorvak en naam op voor park."
 
 #: application/views/user/edit.php:433
 msgid "Menu Options"
-msgstr ""
+msgstr "Menu-opties"
 
 #: application/views/user/edit.php:436
 msgid "Show notes in the main menu."
-msgstr ""
+msgstr "Notities weergeven in het hoofdmenu."
 
 #: application/views/user/edit.php:447
 msgid "Quicklog Field"
-msgstr ""
+msgstr "Quicklog veld"
 
 #: application/views/user/edit.php:453
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
 msgstr ""
+"Met deze functie kun je roepnamen loggen met behulp van het zoekveld in de "
+"koptekst."
 
 #: application/views/user/edit.php:457
 msgid "Quicklog - Action on press Enter"
-msgstr ""
+msgstr "Quicklog - Actie bij indrukken van Enter"
 
 #: application/views/user/edit.php:460
 msgid "Log Callsign"
-msgstr ""
+msgstr "Log roepnaam"
 
 #: application/views/user/edit.php:463
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
 msgstr ""
+"Welke actie moet worden uitgevoerd wanneer Enter wordt ingedrukt in het "
+"quicklog-veld?"
 
 #: application/views/user/edit.php:469
 msgid "Station Locations Quickswitch"
-msgstr ""
+msgstr "Snelle wissel van stationlocaties"
 
 #: application/views/user/edit.php:474
 msgid "Show the Station Locations Quickswitch in the main menu"
-msgstr ""
+msgstr "Toon de stationslocaties Quickswitch in het hoofdmenu"
 
 #: application/views/user/edit.php:478
 msgid "UTC Time in Menu"
-msgstr ""
+msgstr "UTC-tijd in menu"
 
 #: application/views/user/edit.php:483
 msgid "Show the current UTC Time in the menu"
-msgstr ""
+msgstr "Toon de huidige UTC-tijd in het menu"
 
 #: application/views/user/edit.php:494
 msgid "Map Settings"
-msgstr ""
+msgstr "Kaartinstellingen"
 
 #: application/views/user/edit.php:501
 msgid "Icon"
-msgstr ""
+msgstr "Icoon"
 
 #: application/views/user/edit.php:504
 msgid "Not display"
-msgstr ""
+msgstr "Niet weergeven"
 
 #: application/views/user/edit.php:508
 msgid "Not displayed"
-msgstr ""
+msgstr "Niet weergegeven"
 
 #: application/views/user/edit.php:517
 msgid "QSO (by default)"
-msgstr ""
+msgstr "QSO (standaard)"
 
 #: application/views/user/edit.php:536
 msgid "QSO (confirmed)"
-msgstr ""
+msgstr "QSO (bevestigd)"
 
 #: application/views/user/edit.php:537
 msgid "(If 'No', displayed as 'QSO (by default))'"
-msgstr ""
+msgstr "(Indien 'Nee', weergegeven als 'QSO (standaard)')"
 
 #: application/views/user/edit.php:556
 msgid "Show Locator"
-msgstr ""
+msgstr "Toon locator"
 
 #: application/views/user/edit.php:575
 msgid "Previous QSL Type"
-msgstr ""
+msgstr "Vorige QSL-type"
 
 #: application/views/user/edit.php:579
 msgid "Select the type of QSL to show in the previous QSOs section."
 msgstr ""
+"Selecteer het type QSL om weer te geven in het gedeelte van de vorige QSOs."
 
 #: application/views/user/edit.php:596
 msgid "Show Reference Fields on QSO Tab"
-msgstr ""
+msgstr "Toon referentievelden op QSO-tabblad"
 
 #: application/views/user/edit.php:600
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
+"De ingeschakelde items worden op het QSO-tabblad weergegeven in plaats van "
+"op het Algemeen-tabblad."
 
 #: application/views/user/edit.php:639
 msgid "Default Values"
-msgstr ""
+msgstr "Standaardwaarden"
 
 #: application/views/user/edit.php:647
 msgid "Settings for Default Band and Confirmation"
-msgstr ""
+msgstr "Instellingen voor standaardband en bevestiging"
 
 #: application/views/user/edit.php:650
 msgid "Default Band"
-msgstr ""
+msgstr "Standaardband"
 
 #: application/views/user/edit.php:660
 msgid "Default QSL-Methods"
-msgstr ""
+msgstr "Standaard QSL-methoden"
 
 #: application/views/user/edit.php:717
 msgid "Third Party Services"
-msgstr ""
+msgstr "Diensten van derden"
 
 #: application/views/user/edit.php:728
 msgid "Logbook of The World (LoTW) Username"
-msgstr ""
+msgstr "Logbook of The World (LoTW) gebruikersnaam"
 
 #: application/views/user/edit.php:734
 msgid "Logbook of The World (LoTW) Password"
-msgstr ""
+msgstr "Logbook of The World (LoTW) wachtwoord"
 
 #: application/views/user/edit.php:738
 msgid "Test Login"
-msgstr ""
+msgstr "Test inloggen"
 
 #: application/views/user/edit.php:756
 msgid "eQSL.cc Username"
-msgstr ""
+msgstr "eQSL.cc gebruikersnaam"
 
 #: application/views/user/edit.php:762
 msgid "eQSL.cc Password"
-msgstr ""
+msgstr "eQSL.cc wachtwoord"
 
 #: application/views/user/edit.php:779
 msgid "Club Log"
-msgstr ""
+msgstr "Club Log"
 
 #: application/views/user/edit.php:782
 msgid "Club Log Email/Callsign"
-msgstr ""
+msgstr "Club Log E-mail/roepnaam"
 
 #: application/views/user/edit.php:788
 msgid "Club Log Password"
-msgstr ""
+msgstr "Club Log-wachtwoord"
 
 #: application/views/user/edit.php:793
 #, php-format
@@ -13549,43 +13649,46 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Als je 2FA hebt ingeschakeld bij Clublog, moet je een app-wachtwoord "
+"genereren om Clublog in Wavelog te gebruiken. Bezoek %sje clublog-"
+"instellingenpagina%s om dit te doen."
 
 #: application/views/user/edit.php:810
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diversen"
 
 #: application/views/user/edit.php:818
 msgid "AMSAT Status Upload"
-msgstr ""
+msgstr "AMSAT-statusupload"
 
 #: application/views/user/edit.php:821
 msgid "Upload status of SAT QSOs to"
-msgstr ""
+msgstr "Uploadstatus van SAT QSOs naar"
 
 #: application/views/user/edit.php:835
 msgid "Mastodonserver"
-msgstr ""
+msgstr "Mastodon-server"
 
 #: application/views/user/edit.php:838
 msgid "URL of Mastodonserver"
-msgstr ""
+msgstr "URL van Mastodonserver"
 
 #: application/views/user/edit.php:840
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
-msgstr ""
+msgstr "Hoofd-URL van je Mastodon-server, bijv. %s"
 
 #: application/views/user/edit.php:849
 msgid "Experimental"
-msgstr ""
+msgstr "Experimenteel"
 
 #: application/views/user/edit.php:849
 msgid "Winkeyer"
-msgstr ""
+msgstr "Winkeyer"
 
 #: application/views/user/edit.php:852
 msgid "Winkeyer Features Enabled"
-msgstr ""
+msgstr "Winkeyer-functies ingeschakeld"
 
 #: application/views/user/edit.php:858
 #, php-format
@@ -13593,20 +13696,22 @@ msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr ""
+"Winkeyer-ondersteuning in Wavelog is zeer experimenteel. Lees eerst de wiki "
+"op %s voordat je het inschakelt."
 
 #: application/views/user/edit.php:869
 msgid "Hams.at"
-msgstr ""
+msgstr "Hams.at"
 
 #: application/views/user/edit.php:872
 msgid "Private Feed Key"
-msgstr ""
+msgstr "Privé Feed Sleutel"
 
 #: application/views/user/edit.php:874
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr ""
+msgstr "Bekijk je profiel op %s."
 
 #: application/views/user/edit.php:877
 msgid "Show Workable Passes Only"
@@ -13622,36 +13727,44 @@ msgstr ""
 "private feed-sleutel is ingesteld."
 
 #: application/views/user/edit.php:895
+#, fuzzy
 msgid "Save Account"
-msgstr ""
+msgstr "Account opslaan"
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Wachtwoord vergeten?"
 
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
 msgid "You can reset your password here."
-msgstr ""
+msgstr "Je kunt hier je wachtwoord opnieuw instellen."
 
 #: application/views/user/index.php:11
 msgid "User List"
-msgstr ""
+msgstr "Gebruikerslijst"
 
 #: application/views/user/index.php:14
 msgid "Wavelog needs at least one user configured in order to operate."
 msgstr ""
+"Wavelog heeft ten minste één geconfigureerde gebruiker nodig om te kunnen "
+"werken."
 
 #: application/views/user/index.php:15
 msgid ""
 "Users can be assigned roles which give them different permissions, such as "
 "adding QSOs to the logbook and accessing Wavelog APIs."
 msgstr ""
+"Gebruikers kunnen rollen toegewezen krijgen die hen verschillende rechten "
+"geven, zoals het toevoegen van QSO's aan het logboek en toegang tot Wavelog "
+"API's."
 
 #: application/views/user/index.php:16
 msgid ""
 "The currently logged-in user is displayed at the upper-right of each page."
 msgstr ""
+"De momenteel ingelogde gebruiker wordt rechtsboven op elke pagina "
+"weergegeven."
 
 #: application/views/user/index.php:17
 msgid ""
@@ -13659,61 +13772,65 @@ msgid ""
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
 msgstr ""
+"Met de knop voor het opnieuw instellen van het wachtwoord kun je een "
+"gebruiker een e-mail sturen met een link om hun wachtwoord opnieuw in te "
+"stellen. Zorg ervoor dat de e-mailinstellingen in de globale opties correct "
+"zijn geconfigureerd om dit te bereiken."
 
 #: application/views/user/index.php:19
 msgid "Create user"
-msgstr ""
+msgstr "Gebruiker aanmaken"
 
 #: application/views/user/index.php:30
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: application/views/user/index.php:31 application/views/user/index.php:154
 msgid "Last seen"
-msgstr ""
+msgstr "Laatst gezien"
 
 #: application/views/user/index.php:69 application/views/user/index.php:178
 #: application/views/user/modals/admin_impersonate_modal.php:31
 msgid "Never"
-msgstr ""
+msgstr "Nooit"
 
 #: application/views/user/index.php:74
 msgid "Account locked"
-msgstr ""
+msgstr "Account vergrendeld"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
-msgstr ""
+msgstr "Account was vergrendeld vanwege te veel inlogpogingen."
 
 #: application/views/user/index.php:76 application/views/user/index.php:182
 msgid "Locations"
-msgstr ""
+msgstr "Locaties"
 
 #: application/views/user/index.php:78 application/views/user/index.php:184
 msgid "Logbooks"
-msgstr ""
+msgstr "Logboeken"
 
 #: application/views/user/index.php:80 application/views/user/index.php:186
 msgid "Last QSO:"
-msgstr ""
+msgstr "Laatste QSO:"
 
 #: application/views/user/index.php:84 application/views/user/index.php:188
 msgid "No QSOs in Log"
-msgstr ""
+msgstr "Geen QSOs in logboek"
 
 #: application/views/user/index.php:101 application/views/user/index.php:201
 #: application/views/user/modals/admin_impersonate_modal.php:43
 msgid "Impersonate"
-msgstr ""
+msgstr "Imiteren"
 
 #: application/views/user/index.php:108 application/views/user/index.php:211
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
-msgstr ""
+msgstr "Andere acties"
 
 #: application/views/user/index.php:136
 msgid "Clubstation List"
-msgstr ""
+msgstr "Clubstationlijst"
 
 #: application/views/user/index.php:139
 msgid ""
@@ -13721,66 +13838,73 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
+"Clubstations in Wavelog zijn een unieke manier voor clubs en speciale "
+"roepletterevenementen om meerdere operators te beheren. Een clubstation is "
+"in feite een normaal gebruikersaccount met enkele speciale functies en "
+"enkele beperkingen."
 
 #: application/views/user/index.php:141
 msgid "Create Clubstation"
-msgstr ""
+msgstr "Clubstation maken"
 
 #: application/views/user/index.php:153
 msgid "Last Operator"
-msgstr ""
+msgstr "Laatste operator"
 
 #: application/views/user/index.php:235
 msgid "No Clubstations configures yet."
-msgstr ""
+msgstr "Nog geen clubstations geconfigureerd."
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
-msgstr ""
+msgstr "ONDERHOUDSMODUS"
 
 #: application/views/user/login.php:56
 msgid "Welcome to the Demo of Wavelog"
-msgstr ""
+msgstr "Welkom bij de demo van Wavelog"
 
 #: application/views/user/login.php:57
 msgid "This demo will be reset every night at 0200z."
-msgstr ""
+msgstr "Deze demo wordt elke nacht om 0200z gereset."
 
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Meer informatie over Wavelog op %sGithub%s."
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Wachtwoord vergeten?"
 
 #: application/views/user/login.php:85
 msgid "Keep me logged in"
-msgstr ""
+msgstr "Houd me ingelogd"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "(with Admin Rights)"
-msgstr ""
+msgstr "(met beheerdersrechten)"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "Impersonate User"
-msgstr ""
+msgstr "Imiteer gebruiker"
 
 #: application/views/user/modals/admin_impersonate_modal.php:9
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
 msgstr ""
+"Je staat op het punt om een andere gebruiker te imiteren. Om terug te keren "
+"naar je beheerdersaccount, kun je de knop \"terugschakelen\" in het "
+"hoofdmenu gebruiken."
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
 msgid "Do you want to impersonate this user?"
-msgstr ""
+msgstr "Wil je deze gebruiker imiteren?"
 
 #: application/views/user/modals/admin_impersonate_modal.php:14
 #: application/views/user/modals/more_actions_modal.php:12
 msgid "Username:"
-msgstr ""
+msgstr "Gebruikersnaam:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:18
 #: application/views/user/modals/more_actions_modal.php:16
@@ -13788,7 +13912,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:103
 #: application/views/user/modals/more_actions_modal.php:152
 msgid "Name:"
-msgstr ""
+msgstr "Naam:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:22
 #: application/views/user/modals/more_actions_modal.php:20
@@ -13796,7 +13920,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:104
 #: application/views/user/modals/more_actions_modal.php:153
 msgid "Callsign:"
-msgstr ""
+msgstr "Roepnaam:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:26
 #: application/views/user/modals/more_actions_modal.php:24
@@ -13804,19 +13928,19 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:106
 #: application/views/user/modals/more_actions_modal.php:155
 msgid "E-Mail:"
-msgstr ""
+msgstr "E-Mail:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:30
 msgid "Last Seen:"
-msgstr ""
+msgstr "Laatst gezien:"
 
 #: application/views/user/modals/first_login_wizard.php:5
 msgid "First Login Wizard"
-msgstr ""
+msgstr "Eerste inlogwizard"
 
 #: application/views/user/modals/first_login_wizard.php:20
 msgid "Hello and Welcome to Wavelog!"
-msgstr ""
+msgstr "Hallo en welkom bij Wavelog!"
 
 #: application/views/user/modals/first_login_wizard.php:21
 #, php-format
@@ -13825,54 +13949,57 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
+"Voordat je QSOs kunt loggen, moeten we je eerste Station Locatie instellen. "
+"Meer informatie over hoe Station Locaties en Logboeken werken, vind je in "
+"onze %sWiki hier%s!"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
 "Please provide some additional information so that Wavelog can create your "
 "first Station:"
-msgstr ""
+msgstr "Geef wat extra informatie zodat Wavelog je eerste station kan maken:"
 
 #: application/views/user/modals/first_login_wizard.php:29
 msgid "Home QTH"
-msgstr ""
+msgstr "Thuis QTH"
 
 #: application/views/user/modals/first_login_wizard.php:62
 msgid "Station Zones"
-msgstr ""
+msgstr "Stationzones"
 
 #: application/views/user/modals/first_login_wizard.php:74
 #: application/views/user/modals/first_login_wizard.php:84
 #, php-format
 msgctxt "zone lookup"
 msgid "%sLookup%s"
-msgstr ""
+msgstr "%sOpzoeken%s"
 
 #: application/views/user/modals/first_login_wizard.php:102
 msgid "Save and Start Logging"
-msgstr ""
+msgstr "Opslaan en beginnen met loggen"
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
-msgstr ""
+msgstr "Selecteer een actie om voor de gebruiker uit te voeren:"
 
 #: application/views/user/modals/more_actions_modal.php:33
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "Gebruiker ontgrendelen"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "Stuur een link voor het opnieuw instellen van het wachtwoord via e-mail"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to Clubstation"
-msgstr ""
+msgstr "Omzetten naar clubstation"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to User"
-msgstr ""
+msgstr "Omzetten naar gebruiker"
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid ""
@@ -13880,60 +14007,73 @@ msgid ""
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
 msgstr ""
+"Je staat op het punt de gebruiker hieronder te ontgrendelen. De gebruiker "
+"was vergrendeld vanwege te veel mislukte inlogpogingen. Na het ontgrendelen "
+"kan de gebruiker weer inloggen."
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
 #: application/views/user/modals/more_actions_modal.php:151
 msgid "User:"
-msgstr ""
+msgstr "Gebruiker:"
 
 #: application/views/user/modals/more_actions_modal.php:70
 #: application/views/user/modals/more_actions_modal.php:105
 #: application/views/user/modals/more_actions_modal.php:154
 msgid "Language:"
-msgstr ""
+msgstr "Taal:"
 
 #: application/views/user/modals/more_actions_modal.php:89
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"E-mail voor wachtwoordherstel succesvol naar gebruiker verzonden. Je kunt "
+"dit dialoogvenster nu sluiten."
 
 #: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"E-mail voor wachtwoordreset kon niet naar gebruiker worden verzonden. Zijn "
+"de e-mailinstellingen in de globale opties correct geconfigureerd?"
 
 #: application/views/user/modals/more_actions_modal.php:99
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"Je staat op het punt een link voor het opnieuw instellen van het wachtwoord "
+"naar de gebruiker te sturen. De gebruiker kan zijn wachtwoord opnieuw "
+"instellen door op de link in de e-mail te klikken."
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
 msgstr ""
+"Wil je de e-mail voor het opnieuw instellen van het wachtwoord naar deze "
+"gebruiker sturen?"
 
 #: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
-msgstr ""
+msgstr "Stuur de e-mail"
 
 #: application/views/user/modals/more_actions_modal.php:126
 msgid "The account was successfully converted. You can now close this dialog."
 msgstr ""
+"Het account is succesvol omgezet. Je kunt dit dialoogvenster nu sluiten."
 
 #: application/views/user/modals/more_actions_modal.php:127
 msgid "The account could not be converted. An error has occurred."
-msgstr ""
+msgstr "Het account kon niet worden omgezet. Er is een fout opgetreden."
 
 #: application/views/user/modals/more_actions_modal.php:135
 msgid "Convert this account into a normal user"
-msgstr ""
+msgstr "Zet dit account om in een normale gebruiker"
 
 #: application/views/user/modals/more_actions_modal.php:137
 msgid "Convert this account into a clubstation"
-msgstr ""
+msgstr "Zet dit account om in een clubstation"
 
 #: application/views/user/modals/more_actions_modal.php:144
 msgid ""
@@ -13941,6 +14081,9 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
+"Je staat op het punt om dit clubstation om te zetten naar een regulier "
+"gebruikersaccount. De gebruiker zal weer kunnen inloggen en alle toegewezen "
+"clubrechten zullen worden verwijderd. Wees voorzichtig!"
 
 #: application/views/user/modals/more_actions_modal.php:146
 msgid ""
@@ -13948,186 +14091,194 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
+"Je staat op het punt om dit gebruikersaccount om te zetten naar een "
+"clubstation. De gebruiker zal niet langer kunnen inloggen en het account zal "
+"worden omgezet naar een clubstationaccount. Wees voorzichtig!"
 
 #: application/views/user/modals/more_actions_modal.php:149
 msgid "Are you sure you want to convert this account?"
-msgstr ""
+msgstr "Weet je zeker dat je dit account wilt omzetten?"
 
 #: application/views/user/modals/more_actions_modal.php:159
 msgid "Convert"
-msgstr ""
+msgstr "Omzetten"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "Schakel terug naar de hoofdgebruiker"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch back to %s?"
-msgstr ""
+msgstr "Weet je zeker dat je wilt terugschakelen naar %s?"
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "Niveau"
 
 #: application/views/user/profile.php:39
 msgid "First name"
-msgstr ""
+msgstr "Voornaam"
 
 #: application/views/user/profile.php:44
 msgid "Last name"
-msgstr ""
+msgstr "Achternaam"
 
 #: application/views/user/profile.php:50
 msgid "Edit profile"
-msgstr ""
+msgstr "Profiel bewerken"
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
 msgstr "Bevestig uw wachtwoord"
 
 #: application/views/version_dialog/index.php:20
+#, fuzzy
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
 msgstr ""
+"Geen versie dialoogtekst ingesteld. Ga naar het Admin-menu en stel er een in."
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
 msgstr ""
+"Fout bij het parseren van JSON-gegevens of een leeg resultaat van GitHub "
+"ontvangen."
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
-msgstr ""
+msgstr "Fout bij het ophalen van de gegevens van GitHub."
 
 #: application/views/version_dialog/index.php:75
 msgid "Don't show again"
-msgstr ""
+msgstr "Niet meer tonen"
 
 #: application/views/view_log/index.php:4
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
 msgstr ""
+"Alle QSO's van stationlocaties weergeven die aan dit logboek zijn gekoppeld"
 
 #: application/views/view_log/partial/log_ajax.php:353
 #: application/views/view_log/partial/log_ajax.php:367
 #: src/QSLManager/QSO.php:546 src/QSLManager/QSO.php:603
 #: src/QSLManager/QSO.php:664
 msgid "last sent"
-msgstr ""
+msgstr "laatst verzonden"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
-msgstr ""
+msgstr "QSO-gegevens"
 
 #: application/views/view_log/qso.php:29
 msgid "QSL Management"
-msgstr ""
+msgstr "QSL-beheer"
 
 #: application/views/view_log/qso.php:132
 msgid "Total Distance"
-msgstr ""
+msgstr "Totale afstand"
 
 #: application/views/view_log/qso.php:159
 msgid "Other Path"
-msgstr ""
+msgstr "Ander pad"
 
 #: application/views/view_log/qso.php:317
 msgid "Antenna Azimuth"
-msgstr ""
+msgstr "Antenne-azimut"
 
 #: application/views/view_log/qso.php:324
 msgid "Antenna Elevation"
-msgstr ""
+msgstr "Antenne elevatie"
 
 #: application/views/view_log/qso.php:493
 msgid "QSL Card has been sent via the bureau"
-msgstr ""
+msgstr "QSL-kaart is via het bureau verzonden"
 
 #: application/views/view_log/qso.php:495
 msgid "QSL Card has been sent via direct"
-msgstr ""
+msgstr "QSL-kaart is rechtstreeks verzonden"
 
 #: application/views/view_log/qso.php:497
 msgid "QSL Card has been sent electronically"
-msgstr ""
+msgstr "QSL-kaart is elektronisch verzonden"
 
 #: application/views/view_log/qso.php:499
 msgid "QSL Card has been sent via manager"
-msgstr ""
+msgstr "QSL-kaart is via manager verzonden"
 
 #: application/views/view_log/qso.php:501
 msgid "QSL Card has been sent"
-msgstr ""
+msgstr "QSL-kaart is verzonden"
 
 #: application/views/view_log/qso.php:510
 msgid "QSL Card has been received via the bureau"
-msgstr ""
+msgstr "QSL-kaart is via het bureau ontvangen"
 
 #: application/views/view_log/qso.php:512
 msgid "QSL Card has been received via direct"
-msgstr ""
+msgstr "QSL-kaart is rechtstreeks ontvangen"
 
 #: application/views/view_log/qso.php:514
 msgid "QSL Card has been received electronically"
-msgstr ""
+msgstr "QSL-kaart is elektronisch ontvangen"
 
 #: application/views/view_log/qso.php:516
 msgid "QSL Card has been received via manager"
-msgstr ""
+msgstr "QSL-kaart is ontvangen via manager"
 
 #: application/views/view_log/qso.php:518
 msgid "QSL Card has been received"
-msgstr ""
+msgstr "QSL-kaart is ontvangen"
 
 #: application/views/view_log/qso.php:527
 msgid "This station uses LoTW."
-msgstr ""
+msgstr "Dit station gebruikt LoTW."
 
 #: application/views/view_log/qso.php:532
 #: application/views/view_log/qso.php:542
 #: application/views/view_log/qso.php:556
 #: application/views/view_log/qso.php:566
 msgid "This QSO was confirmed on"
-msgstr ""
+msgstr "Dit QSO werd bevestigd op"
 
 #: application/views/view_log/qso.php:537
 msgid "This QSO is confirmed on LoTW."
-msgstr ""
+msgstr "Dit QSO is bevestigd op LoTW."
 
 #: application/views/view_log/qso.php:551
 msgid "This QSO is confirmed on eQSL."
-msgstr ""
+msgstr "Deze QSO is bevestigd op eQSL."
 
 #: application/views/view_log/qso.php:561
 msgid "This QSO is confirmed on QRZ.com."
-msgstr ""
+msgstr "Dit QSO is bevestigd op QRZ.com."
 
 #: application/views/view_log/qso.php:571
 msgid "This QSO is confirmed on Clublog."
-msgstr ""
+msgstr "Dit QSO is bevestigd op Clublog."
 
 #: application/views/view_log/qso.php:584
 msgid "More QSOs"
-msgstr ""
+msgstr "Meer QSOs"
 
 #: application/views/view_log/qso.php:646
 msgid "Share"
-msgstr ""
+msgstr "Delen"
 
 #: application/views/view_log/qso.php:652
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
 #: application/views/view_log/qso.php:779
 msgid "Uploaded QSL Card front image"
-msgstr ""
+msgstr "Geüploade QSL-kaart voorkant afbeelding"
 
 #: application/views/view_log/qso.php:784
 msgid "Upload QSL Card image"
-msgstr ""
+msgstr "Upload QSL-kaart afbeelding"
 
 #: application/views/view_log/qso.php:789
 msgid "Uploaded QSL Card back image"
-msgstr ""
+msgstr "Geüploade QSL-kaart achterkant afbeelding"
 
 #: application/views/view_log/qso.php:805
 msgid "Mark QSL Received (Electronic)"
@@ -14135,45 +14286,51 @@ msgstr "Markeer QSL ontvangen (Electronic)"
 
 #: application/views/view_log/qso.php:828
 msgid "eQSL picture"
-msgstr ""
+msgstr "eQSL afbeelding"
 
 #: application/views/visitor/layout/footer.php:243
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: application/views/visitor/layout/header.php:74
 msgid "OQRS"
-msgstr ""
+msgstr "OQRS"
 
 #: application/views/visitor/layout/header.php:82
 msgid "Visit Wavelog on Github"
-msgstr ""
+msgstr "Bezoek Wavelog op Github"
 
 #: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
-msgstr ""
+msgstr "Voer een roepnaam in!"
 
 #: application/views/webadif/export.php:22
 msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
 "to QO-100 Dx Club."
 msgstr ""
+"Hier kun je alle QSO's zien en uploaden die nog niet eerder naar de QO-100 "
+"Dx Club zijn geüpload."
 
 #: application/views/webadif/export.php:33
 msgid ""
 "You need to set a QO-100 Dx Club API key in your station profile. Only "
 "station profiles with an API Key are displayed."
 msgstr ""
+"Je moet een QO-100 Dx Club API-sleutel instellen in je stationprofiel. "
+"Alleen stationprofielen met een API-sleutel worden weergegeven."
 
 #: application/views/webadif/export.php:63
 msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
+"Er zijn momenteel geen openstaande QSO's die geüpload moeten worden naar de "
+"API van de QO-100 Dx Club."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
-msgstr ""
+msgstr "Zet je QO-100-station aan!"
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
@@ -14181,11 +14338,13 @@ msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
 msgstr ""
+"Geen van je logboeken is geconfigureerd om gegevens naar de API van de QO-"
+"100 Dx Club te exporteren."
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 msgid "QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dx Club"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
@@ -14194,6 +14353,8 @@ msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
 "%s an API key."
 msgstr ""
+"Om deze functie te configureren, ga naar je profielpagina op de %s en %s "
+"maak %s een API-sleutel aan."
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
@@ -14202,45 +14363,49 @@ msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
 "created at the club."
 msgstr ""
+"Navigeer vervolgens naar je %s en configureer je station met de sleutel die "
+"je bij de club hebt aangemaakt."
 
 #: application/views/webadif/export.php:83
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
 msgstr ""
+"Hier kun je je QSO's markeren als geüpload die nog niet eerder naar de QO-"
+"100 Dx Club zijn geüpload."
 
 #: application/views/webadif/export.php:107
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr ""
+msgstr "Markeer QSOs als geëxporteerd naar QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
-msgstr ""
+msgstr "De QSO's zijn gemarkeerd als geëxporteerd naar QO-100 Dx Club."
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
-msgstr ""
+msgstr "Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:76
 msgid "Wavelog OQRS Request"
-msgstr ""
+msgstr "Wavelog OQRS-verzoek"
 
 #: application/views/widgets/oqrs.php:79
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
-msgstr ""
+msgstr "Vraag een QSL-kaart aan voor je QSO met %s."
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
-msgstr ""
+msgstr "Je roepnaam:"
 
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
-msgstr ""
+msgstr "Verzoek indienen"
 
 #: application/views/widgets/qsos.php:32
 msgid "Rcvd"
-msgstr ""
+msgstr "Ontvangen"
 
 #~ msgid "Countries Breakdown"
 #~ msgstr "Landen overzicht"

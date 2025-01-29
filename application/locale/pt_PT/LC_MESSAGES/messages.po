@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-28 11:41+0000\n"
-"PO-Revision-Date: 2025-01-23 16:03+0000\n"
+"PO-Revision-Date: 2025-01-29 08:38+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -12211,6 +12211,8 @@ msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
+"Atenção! Ou você configurou um concurso, mas não incluiu uma troca, ou "
+"registrou dados do concurso, mas não selecionou um concurso."
 
 #: application/views/simplefle/index.php:36
 msgid ""
@@ -12369,23 +12371,23 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
-msgstr ""
+msgstr "Informações adicionais podem ser enviadas da seguinte forma:"
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "Notas:"
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "Nome do Operador:"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "Mensagem-QSL (Atenção! Não é visível no wavelog atualmente!):"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
-msgstr ""
+msgstr "Troca/Exchange do Concurso; números de série ou outra troca - ou ambos:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -12396,24 +12398,38 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"A troca recebida deve ter um prefixo com um ponto '.', a troca enviada com "
+"uma vírgula ','. As duas últimas linhas são equivalentes - ou seja, os "
+"espaços não importam, assim como a ordem. A troca que você enviou será "
+"automaticamente incluída no próximo contacto, se contiver a troca recebida, "
+"ou se você usar uma única vírgula ','. Para incrementar automaticamente o "
+"serial enviado, use ',++' e forneça uma troca inicial enviada. Para "
+"desativar, use ',+0':"
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
+"Aqui, o primeiro contacto usa o número de série 1, e o segundo usará 2 como "
+"o número de série. Se quiser apagar a troca enviada, use ',-'."
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
+"Primeiro, toda a troca anterior é apagada, depois apenas um número de série "
+"é definido. Caso contrário, a troca anterior 'D23' também teria sido "
+"definida."
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
+"Pode usar a sintaxe de comentários para preencher os campos adif suportados "
+"pela Importação do Wavelog:"
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
