@@ -524,6 +524,13 @@ class User_Model extends CI_Model {
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
 			'impersonate' => $this->session->userdata('impersonate') ?? false,
 			'clubstation' => $u->row()->clubstation,
+			// TODO FIND THE BUG
+			// when user logs in, the $this->user_options_model->get_options is returning 0 rows for some reason.
+			// so the code falls back to DASHBOARD_DEFAULT_QSOS_COUNT, and this value gets saved into the session
+			// and used from now. In other words, the setting is not honored at all, since it was not returned from DB.
+			// Why is it returning 0 rows right after login, but subsequent calls to $this->user_options_model->get_options
+			// return the saved value with no problem?
+			'dashboard_last_qso_count' => $this->session->userdata('dashboard_last_qso_count') ?? $this->user_options_model->get_options('dashboard', array('option_name' => 'last_qso_count', 'option_key' => 'count'))->row()->option_value ?? self::DASHBOARD_DEFAULT_QSOS_COUNT,
 			'source_uid' => $this->session->userdata('source_uid') ?? ''
 		);
 
