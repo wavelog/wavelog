@@ -375,6 +375,7 @@ class User extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
+			// Prepare data and render the user options view
 			$q = $query->row();
 
 			$data['id'] = $q->user_id;
@@ -754,6 +755,7 @@ class User extends CI_Controller {
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
 		} else {
+			// Data was submitted for saving - save updated options in DB 
 			unset($data);
 			switch($this->user_model->edit($this->input->post())) {
 				// Check for errors
