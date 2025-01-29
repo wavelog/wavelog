@@ -776,7 +776,7 @@
 
         </div>
       </div>
-      <small style="float: right;"><?= sprintf(__("Max. %s previous contacts are shown"), $qso_count); ?></small>
+      <small style="float: right;"><?= sprintf(_ngettext("Max. %d previous contact is shown", "Max. %d previous contacts are shown", intval($qso_count)), intval($qso_count)); ?></small>
     </div>
   </div>
 
