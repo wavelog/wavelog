@@ -154,6 +154,7 @@ class Clublog_model extends CI_Model
 		if ($station_profiles->num_rows()) {
 			foreach ($station_profiles->result() as $station_row) {
 				$lastrec = $clublog_last_date ?? $this->clublog_last_qsl_rcvd_date($station_row->station_callsign);
+				$lastrec = str_replace('-', '', $lastrec);
 				$url = 'https://clublog.org/getmatches.php?api=608df94896cb9c5421ae748235492b43815610c9&email=' . $clean_username . '&password=' . $clean_password . '&callsign=' . $station_row->station_callsign . '&startyear=' . substr($lastrec, 0, 4) . '&startmonth=' . substr($lastrec, 4, 2) . '&startday=' . substr($lastrec, 6, 2);
 				$request = curl_init($url);
 
