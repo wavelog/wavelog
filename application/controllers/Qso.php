@@ -2,11 +2,14 @@
 
 class QSO extends CI_Controller {
 
+	const LAST_QSOS_COUNT = 5; // max number of most recent qsos to be displayed on a qso page
+
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		$this->session->set_userdata('last_qsos_count', self::LAST_QSOS_COUNT);
 	}
 
 	public function index() {
@@ -34,7 +37,7 @@ class QSO extends CI_Controller {
 		$data['stations'] = $this->stations->all_of_user();
 		$data['radios'] = $this->cat->radios(true);
 		$data['radio_last_updated'] = $this->cat->last_updated()->row();
-		$data['query'] = $this->logbook_model->last_custom('5');
+		$data['query'] = $this->logbook_model->last_custom($this->session->userdata('last_qsos_count'));
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
 		$data['iota'] = $this->logbook_model->fetchIota();
 		$data['modes'] = $this->modes->active();
@@ -83,6 +86,8 @@ class QSO extends CI_Controller {
 		} else {
 			$data['user_dok_to_qso_tab'] = 0;
 		}
+
+		$data['qso_count'] = $this->session->userdata('last_qsos_count');
 
 		$this->load->library('form_validation');
 
@@ -601,7 +606,7 @@ class QSO extends CI_Controller {
       $this->load->model('logbook_model');
       session_write_close();
 
-      $data['query'] = $this->logbook_model->last_custom('5');
+      $data['query'] = $this->logbook_model->last_custom($this->session->userdata('last_qsos_count'));
 
       // Load view
       $this->load->view('qso/components/previous_contacts', $data);
