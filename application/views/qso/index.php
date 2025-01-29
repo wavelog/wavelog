@@ -776,7 +776,7 @@
 
         </div>
       </div>
-      <small style="float: right;"><?= __("Max. 5 previous contacts are shown"); ?></small>
+      <small style="float: right;"><?= sprintf(__("Max. %s previous contacts are shown"), $qso_count); ?></small>
     </div>
   </div>
 
