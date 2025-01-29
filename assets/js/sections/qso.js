@@ -623,7 +623,7 @@ $("#callsign").on("focusout", function () {
 		find_callsign = find_callsign.replaceAll('Ø', '0');
 
 		// Replace / in a callsign with - to stop urls breaking
-		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
+		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val() + '/' + last_qsos_count, async function (result) {
 
 			// Make sure the typed callsign and json result match
 			if ($('#callsign').val().toUpperCase().replaceAll('Ø', '0') == result.callsign) {
