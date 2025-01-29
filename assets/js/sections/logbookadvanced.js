@@ -439,6 +439,20 @@ $(document).ready(function () {
 		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'width':'100%', 'height':'37px'
 	})
 
+	/*Pull from localStorage to set form input value*/
+	if (localStorage.hasOwnProperty('qsoresults')) {
+		document.getElementById('qsoResults').value = localStorage.getItem('qsoresults');
+	}
+
+	if (localStorage.hasOwnProperty('selectedlocations')) {
+		const selectedLocations = localStorage.getItem('selectedlocations');
+		const locationsArray = selectedLocations ? selectedLocations.split(',') : [];
+		// First, deselect all options
+		$('#de').multiselect('deselectAll', false);
+
+		// Then, select the stored locations
+		$('#de').multiselect('select', locationsArray);
+	}
 
 	$('#searchForm').submit(function (e) {
 		let container = L.DomUtil.get('advancedmap');
@@ -465,6 +479,9 @@ $(document).ready(function () {
 		$("#qsoList").attr("Hidden", false);
 		$("#qsoList_wrapper").attr("Hidden", false);
 		$("#qsoList_info").attr("Hidden", false);
+
+		localStorage.setItem('qsoresults', this.qsoresults.value);
+		localStorage.setItem('selectedlocations', $('#de').val());
 
 		$('#searchButton').prop("disabled", true).addClass("running");
 		$.ajax({
