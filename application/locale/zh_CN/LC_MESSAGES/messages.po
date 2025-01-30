@@ -3,7 +3,7 @@
 # This file is distributed under the MIT licence.
 #
 # Karuru <karuru@aerodefense.co.uk>, 2024, 2025.
-# BG6HJE <1753409828@qq.com>, 2024.
+# BG6HJE <1753409828@qq.com>, 2024, 2025.
 # imlonghao <wavelog@esd.cc>, 2024, 2025.
 # Jian ke <bg8ixz@hotmail.com>, 2024.
 # Qing He <HE@BD8DHF.COM>, 2024.
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-30 11:54+0000\n"
-"PO-Revision-Date: 2025-01-30 13:21+0000\n"
-"Last-Translator: imlonghao <wavelog@esd.cc>\n"
+"PO-Revision-Date: 2025-01-30 13:42+0000\n"
+"Last-Translator: BG6HJE <1753409828@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -7047,7 +7047,7 @@ msgstr "你的 %s LoTW 证书 %s 至少有一个快过期了！"
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] "最大显示 %d 个之前的通联"
+msgstr[0] "已达最大。已显示 %d 个先前的通联"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
@@ -11789,7 +11789,8 @@ msgstr "警告！您不能记录 QSO 列表，因为您正在使用示例数据�
 msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
-msgstr ""
+msgstr "请注意！要么您设置了一个竞赛，但没有设置任何交换数字，要么您已经记录了竞赛数"
+"据，但没有选择竞赛。"
 
 #: application/views/simplefle/index.php:36
 msgid ""
@@ -11936,23 +11937,23 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
-msgstr ""
+msgstr "其他信息可以通过以下方式提交："
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "注意："
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "操作员姓名："
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "QSL-信息（注意！目前在 wavelog 中不可见！）："
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
-msgstr ""
+msgstr "竞赛交换码；序号或其他交换信息——或两者："
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -11963,24 +11964,31 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"接收到的交换码必须以句号“.”开头，发送的交换码以逗号“,”开头。最后两行是等效的—"
+"—也就是说，空格无关紧要，顺序也无关紧要。如果您发送的交换码包含接收到的交换码"
+"，或者您使用单个逗号“,”，则您发送的交换码将自动包含在下一个QSO中。要自动递增"
+"发送的序列号，请使用“,++”并提供初始发送的交换码。要停用自动递增，请使用“,+0”"
+"："
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
-msgstr ""
+msgstr "在这里，第一个QSO使用设置的1作为序列号，第二个QSO将使用2作为序列号。如果您想"
+"清除您发送的交换码，使用“,-”："
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
-msgstr ""
+msgstr "首先，所有之前的交换码都被清除，然后只设置一个序列号。否则，之前的交换码“D23”"
+"也会被设置。"
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
-msgstr ""
+msgstr "你可以使用注释语法来填充 Wavelog-导入支持的 ADIF 字段："
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
@@ -13095,11 +13103,11 @@ msgstr "选择要在上一个 QSO 部分中显示的 QSL 方式。"
 
 #: application/views/user/edit.php:595
 msgid "Dashboard Settings"
-msgstr ""
+msgstr "仪表盘设置"
 
 #: application/views/user/edit.php:599
 msgid "Select the number of latest QSOs to be displayed on dashboard."
-msgstr ""
+msgstr "选择要在仪表板上显示的最新QSO的数量。"
 
 #: application/views/user/edit.php:613
 msgid "Show Reference Fields on QSO Tab"
