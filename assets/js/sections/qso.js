@@ -66,6 +66,7 @@ $(document).on("keydown", function (e) {
 $('#callsign').on('input', function () {
 	$(this).val($(this).val().replace(/\s/g, ''));
 	$(this).val($(this).val().replace(/0/g, 'Ø'));
+	$(this).val($(this).val().replace(/\./g, '/P'));
 });
 
 $('#locator').on('input', function () {
