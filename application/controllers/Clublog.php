@@ -144,7 +144,7 @@ class Clublog extends CI_Controller
 
 		$this->load->model('clublog_model');
 
-		$customDate = $this->input->post('from');
+		$customDate = $this->input->post('date');
 		if ($customDate != NULL) {
 			$clublog_last_date = date($customDate);
 		} else {
@@ -161,7 +161,8 @@ class Clublog extends CI_Controller
 			$r = __("No user has configured Clublog.");
 		}
 
-		echo $r;
+		header('Content-type: application/json');
+		echo json_encode($r);
 	}
 
 }

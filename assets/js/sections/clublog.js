@@ -28,7 +28,7 @@ function ExportClublog(station_id) {
 			}
 
 			if (data.errormessages.length > 0) {
-				$("#clublog_export").append(
+				$("#export").append(
 					'<div class="errormessages">\n' +
 					'    <div class="card mt-2">\n' +
 					'        <div class="card-header bg-danger">\n' +
@@ -44,6 +44,29 @@ function ExportClublog(station_id) {
 					$(".errors").append('<li>' + value);
 				});
 			}
+		}
+	});
+}
+
+
+function importlog() {
+	if ($(".alert").length > 0) {
+		$(".alert").remove();
+	}
+	if ($(".errormessages").length > 0) {
+		$(".errormessages").remove();
+	}
+	$(".ld-ext-right-import").addClass('running');
+	$(".ld-ext-right-import").prop('disabled', true);
+
+	$.ajax({
+		url: base_url + 'index.php/clublog/importlog',
+		type: 'post',
+		data: {'date': $(".importdate").val()},
+		success: function (data) {
+			$(".ld-ext-right-import").removeClass('running');
+			$(".ld-ext-right-import").prop('disabled', false);
+			$("#import").append('<div class="alert alert-success" role="alert">' + data + '</div>');
 		}
 	});
 }

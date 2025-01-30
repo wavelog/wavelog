@@ -71,11 +71,11 @@
 					<div class="row">
 						<div class="col-md-2">
 							<label for="from"><?= __("From date") . ": " ?></label>
-							<input name="from" id="from" type="date" class="form-control w-auto">
+							<input name="from" id="from" type="date" class="importdate form-control w-auto">
 						</div>
 					</div>
 					<br>
-					<button type="submit" class="btn btn-sm btn-primary" value="Export"><?= __("Download from Clublog"); ?></button>
+					<button type="button" class="btn btn-sm btn-primary ld-ext-right ld-ext-right-import" onclick="importlog();"><i class="fas fa-cloud-download-alt"></i> <?= __("Download from Clublog"); ?><div class="ld ld-ring ld-spin"></div></button>
 				</form>
 			</div>
 		<?php } ?>
