@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-30 11:54+0000\n"
-"PO-Revision-Date: 2025-01-30 13:42+0000\n"
+"PO-Revision-Date: 2025-01-30 14:01+0000\n"
 "Last-Translator: Maciej SP2FE <wavelog@sp2fe.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -403,7 +403,7 @@ msgstr " i propagacja "
 #: application/controllers/Awards.php:470
 #: application/controllers/Callstats.php:114
 msgid " and mode "
-msgstr " i tryb "
+msgstr " i emisja "
 
 #: application/controllers/Awards.php:473
 #: application/controllers/Callstats.php:117
@@ -484,7 +484,7 @@ msgstr "CQ Magazine WAZ"
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
-msgstr "Pracował we wszystkich stanach (WAS)"
+msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:717 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:204
@@ -516,7 +516,7 @@ msgstr "Nagrody - "
 #: application/controllers/Awards.php:923
 #: application/controllers/Awards.php:955
 msgid "Gridsquares worked"
-msgstr "Przepracowane lokatory"
+msgstr "Zaliczone lokatory"
 
 #: application/controllers/Awards.php:924
 #: application/controllers/Awards.php:956
@@ -530,7 +530,7 @@ msgstr "Lokatory potwierdzone kartą QSL"
 
 #: application/controllers/Awards.php:942
 msgid "Fred Fish Memorial Award (FFMA)"
-msgstr "Nagroda Pamięci Freda Fisha (FFMA)"
+msgstr "Fred Fish Memorial Award (FFMA)"
 
 #: application/controllers/Awards.php:1143
 #: application/views/interface_assets/header.php:180
@@ -551,7 +551,7 @@ msgstr "Strefy ITU"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:186
 msgid "Worked All Continents (WAC)"
-msgstr "Pracował na wszystkich kontynentach (WAC)"
+msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:1992
 msgid "WAE"
@@ -568,7 +568,7 @@ msgstr "Kopia zapasowa - ADIF"
 
 #: application/controllers/Backup.php:84
 msgid "Notes - Backup"
-msgstr "Notatki - Kopia zapasowa"
+msgstr "Notatki - kopia zapasowa"
 
 #: application/controllers/Band.php:25 application/views/bands/index.php:28
 #: application/views/bands/index.php:32
@@ -720,7 +720,7 @@ msgstr "Zawody"
 
 #: application/controllers/Contesting.php:137
 msgid "Update Contest"
-msgstr "Aktualizacja konkursu"
+msgstr "Aktualizuj zawody"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:83
@@ -736,7 +736,7 @@ msgstr "Menedżer Cron"
 
 #: application/controllers/Cron.php:154 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
-msgstr "Edytuj Cronjob"
+msgstr "Edytuj zadanie"
 
 #: application/controllers/Cron.php:218 application/controllers/Cron.php:219
 #: application/views/cron/index.php:83 application/views/cron/index.php:85
@@ -754,19 +754,19 @@ msgstr "obliczanie..."
 
 #: application/controllers/Cron.php:230 application/views/cron/index.php:70
 msgid "healthy"
-msgstr "zdrowy"
+msgstr "w porządku"
 
 #: application/controllers/Cron.php:232 application/views/cron/index.php:72
 msgid "failed"
-msgstr "nieudany"
+msgstr "nieudane"
 
 #: application/controllers/Cron.php:234 application/views/cron/index.php:74
 msgid "pending"
-msgstr "oczekujący"
+msgstr "oczekujące"
 
 #: application/controllers/Cron.php:239 application/views/cron/index.php:79
 msgid "disabled"
-msgstr "wyłączony"
+msgstr "wyłączone"
 
 #: application/controllers/Cron.php:278
 #: application/views/interface_assets/footer.php:39
@@ -780,7 +780,7 @@ msgid ""
 "It should run every minute (* * * * *)."
 msgstr ""
 "Ostatnie uruchomienie miało miejsce ponad %s sekund temu.%sSprawdź swój "
-"główny cron! Powinien działać co minutę (* * * * *)."
+"główny cron! Powinien uruchamiać się co minutę (* * * * *)."
 
 #: application/controllers/Cron.php:285
 #, php-format
@@ -789,7 +789,7 @@ msgid ""
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
 "Ostatnie uruchomienie miało miejsce ponad %s minut temu.%sWygląda na to, że "
-"Twój Mastercron nie działa!%sPowinien działać co minutę (* * * * *)."
+"główny cron nie pracuje!%sPowinien uruchamiać się co minutę (* * * * *)."
 
 #: application/controllers/Cron.php:290 application/views/cron/index.php:29
 msgctxt "Master Cron"
@@ -822,7 +822,7 @@ msgstr "Migruj dane teraz"
 
 #: application/controllers/Debug.php:157
 msgid "Migration already done. Run again?"
-msgstr "Migracja już zakończona. Uruchomić ponownie?"
+msgstr "Migracja już była wykonana. Czy chcesz uruchomić ją ponownie?"
 
 #: application/controllers/Debug.php:161
 msgid "No data to migrate"
@@ -846,7 +846,7 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
-"Migracja plików zakończyła się pomyślnie, ale proszę również sprawdzić "
+"Migracja plików zakończyła się pomyślnie, ale proszę zweryfikować to "
 "ręcznie. Jeśli wszystko wydaje się w porządku, możesz usunąć foldery 'assets/"
 "qslcard' i 'images/eqsl_card_images'."
 
@@ -865,7 +865,7 @@ msgstr "Rekordy odległości satelitarnych"
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:152
 msgid "Distances Worked"
-msgstr "Przepracowane odległości"
+msgstr "Zaliczone odległości"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
@@ -911,7 +911,7 @@ msgstr "Pseudonimy eQSL w profilach stacji nie są zdefiniowane!"
 
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
-msgstr "Wgrywanie eQSL QSO"
+msgstr "Przesyłanie QSO eQSL"
 
 #: application/controllers/Eqsl.php:173
 msgid "You have not defined your eQSL.cc credentials!"
@@ -941,7 +941,7 @@ msgstr "Mapa lokatorów"
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
-msgstr "Suma przepracowanych lokatorów"
+msgstr "Suma zaliczonych lokatorów"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
