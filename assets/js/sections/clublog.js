@@ -21,10 +21,10 @@ function ExportClublog(station_id) {
 					$('#notcount'+value.station_id).html(value.notcount);
 					$('#totcount'+value.station_id).html(value.totcount);
 				});
-				$(".card-body").append('<div class="alert alert-success" role="alert">' + data.infomessage + '</div>');
+				$("#export").append('<div class="alert alert-success" role="alert">' + data.infomessage + '</div>');
 			}
 			else {
-				$(".card-body").append('<div class="alert alert-danger" role="alert">' + data.info + '</div>');
+				$("#export").append('<div class="alert alert-danger" role="alert">' + data.info + '</div>');
 			}
 
 			if (data.errormessages.length > 0) {
