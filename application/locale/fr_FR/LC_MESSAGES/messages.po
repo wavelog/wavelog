@@ -5,16 +5,16 @@
 # Aurélien Barrau <abarrau378@gmail.com>, 2024.
 # Byt3 <falko@205er.de>, 2024.
 # "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
-# "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
+# "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024, 2025.
 # F4JSU <f4jsu.radio@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-30 14:01+0000\n"
-"PO-Revision-Date: 2024-12-04 07:53+0000\n"
-"Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"PO-Revision-Date: 2025-01-30 21:18+0000\n"
+"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,25 +172,25 @@ msgstr "Total des Locator activés"
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:390
 msgid "Fields"
-msgstr ""
+msgstr "Champs"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:391
 msgid "Fields confirmed"
-msgstr ""
+msgstr "Champs confirmés"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:38
 #: application/controllers/Visitor.php:392
 msgid "Fields not confirmed"
-msgstr ""
+msgstr "Champs non confirmés"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:393
 msgid "Total fields worked"
-msgstr ""
+msgstr "Nombre total de champs travaillés"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -270,15 +270,15 @@ msgstr "Les informations sur la clé API %s a été mise à jour."
 
 #: application/controllers/Api.php:68
 msgid "Invalid API rights"
-msgstr ""
+msgstr "Droits d'API invalides"
 
 #: application/controllers/Api.php:82
 msgid "API Key generated"
-msgstr ""
+msgstr "Clé API générée"
 
 #: application/controllers/Api.php:84
 msgid "API Key could not be generated"
-msgstr ""
+msgstr "La clé API n'a pas pu être générée"
 
 #: application/controllers/Api.php:98
 #, php-format
@@ -554,7 +554,7 @@ msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:1992
 msgid "WAE"
-msgstr ""
+msgstr "WAE"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:294
@@ -599,11 +599,13 @@ msgstr "Exporter Cabrillo"
 
 #: application/controllers/Cabrillo.php:150
 msgid "Cabrillo Import"
-msgstr ""
+msgstr "Importation Cabrillo"
 
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
 msgstr ""
+"Fichier CBR corrompu - pas de données QSO / contact ou en-tête incomplet "
+"trouvé."
 
 #: application/controllers/Cabrillo.php:243
 #, php-format
@@ -611,15 +613,17 @@ msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
 msgstr ""
+"QSO %d introuvable ou plus d'un QSO trouvé correspondant aux critères du "
+"fichier CBR. Ignoré par mesure de sécurité."
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
-msgstr ""
+msgstr "Données CBR importées"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "Statistiques des indicatifs d'appel"
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:443
@@ -628,57 +632,59 @@ msgstr "Exporter en CFD"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
-msgstr ""
+msgstr "Responsable Club"
 
 #: application/controllers/Club.php:24
 msgid "Club Member"
-msgstr ""
+msgstr "Membre du club"
 
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "ID utilisateur invalide !"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
-msgstr ""
+msgstr "Cet utilisateur n'est pas une station de club."
 
 #: application/controllers/Club.php:56
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:207
 msgid "Club Permissions"
-msgstr ""
+msgstr "Autorisations du club"
 
 #: application/controllers/Club.php:118 application/controllers/Club.php:147
 #: application/controllers/Club.php:174 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "ID de club invalide !"
 
 #: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
 msgstr ""
+"L'utilisateur n'a pas pu être notifié. Veuillez vérifier vos paramètres de "
+"messagerie."
 
 #: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "Les autorisations des membres du club ont été mises à jour."
 
 #: application/controllers/Club.php:156
 msgid "User removed from club."
-msgstr ""
+msgstr "Utilisateur retiré du club."
 
 #: application/controllers/Club.php:158
 msgid "User could not be removed from club."
-msgstr ""
+msgstr "L'utilisateur n'a pas pu être retiré du club."
 
 #: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr ""
+msgstr "Type de message invalide."
 
 #: application/controllers/Club.php:220
 msgid "Email settings not configured."
-msgstr ""
+msgstr "Paramètres de messagerie non configurés."
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
 #: application/views/satellite/index.php:64
@@ -809,7 +815,7 @@ msgstr "Tableau de bord"
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:156
 msgid "Days with QSOs"
-msgstr ""
+msgstr "Jours avec des QSOs"
 
 #: application/controllers/Debug.php:115
 msgid "Debug"
@@ -1702,23 +1708,23 @@ msgstr "Information ADIF LoTW"
 #: application/controllers/Lotw.php:795 application/controllers/Lotw.php:798
 #, php-format
 msgid "LoTW login failed for user %s: %s."
-msgstr ""
+msgstr "Échec de la connexion LoTW pour l'utilisateur %s : %s."
 
 #: application/controllers/Lotw.php:798
 msgid "Username/password incorrect"
-msgstr ""
+msgstr "Nom d'utilisateur/mot de passe incorrect"
 
 #: application/controllers/Lotw.php:801
 msgid "LoTW login OK!"
-msgstr ""
+msgstr "Connexion LoTW OK !"
 
 #: application/controllers/Lotw.php:805
 msgid "LoTW currently not available. Try again later."
-msgstr ""
+msgstr "LoTW actuellement indisponible. Réessayez plus tard."
 
 #: application/controllers/Lotw.php:810
 msgid "No LoTW credentials provided."
-msgstr ""
+msgstr "Aucun identifiant LoTW fourni."
 
 #: application/controllers/Lotw.php:828
 msgid "LoTW ADIF Import"
@@ -1875,21 +1881,23 @@ msgstr "Test d'envoi de mail : les paramètres sont corrects."
 #: application/controllers/Options.php:414
 #: application/views/options/sidebar.php:11
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Serveur de tuiles cartographiques"
 
 #: application/controllers/Options.php:473
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
+"Le cache des tuiles de la carte n'a pas pu être supprimé. Supprimez le "
+"dossier manuellement. Chemin : %s"
 
 #: application/controllers/Options.php:477
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "Options de Maptile enregistrées !"
 
 #: application/controllers/Options.php:479
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "Les options de Maptile n'ont pas pu être enregistrées !"
 
 #: application/controllers/Options.php:490
 #: application/controllers/Options.php:500
@@ -2054,7 +2062,7 @@ msgstr "Paramètres"
 
 #: application/controllers/Radio.php:63
 msgid "UNKNOWN"
-msgstr ""
+msgstr "INCONNU"
 
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:156
@@ -2426,7 +2434,7 @@ msgstr "Statistiques QSL"
 #: application/views/interface_assets/header.php:142
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
-msgstr ""
+msgstr "Analyse d'antenne"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:292
@@ -2491,63 +2499,63 @@ msgstr "Préfixes DXCC :"
 
 #: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
-msgstr ""
+msgstr "Mise à jour SCP terminée. Résultat : "
 
 #: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
-msgstr ""
+msgstr "Échec de la mise à jour SCP. Résultat : "
 
 #: application/controllers/Update.php:385
 msgid "LoTW Users Update complete. Result: "
-msgstr ""
+msgstr "Mise à jour des utilisateurs LoTW terminée. Résultat : "
 
 #: application/controllers/Update.php:387
 msgid "LoTW Users Update failed. Result: "
-msgstr ""
+msgstr "Mise à jour des utilisateurs LoTW échouée. Résultat : "
 
 #: application/controllers/Update.php:404
 msgid "DOK Update complete. Result: "
-msgstr ""
+msgstr "Mise à jour DOK terminée. Résultat : "
 
 #: application/controllers/Update.php:406
 msgid "DOK Update failed. Result: "
-msgstr ""
+msgstr "La mise à jour DOK a échoué. Résultat : "
 
 #: application/controllers/Update.php:423
 msgid "SOTA Update complete. Result: "
-msgstr ""
+msgstr "Mise à jour SOTA terminée. Résultat : "
 
 #: application/controllers/Update.php:425
 msgid "SOTA Update failed. Result: "
-msgstr ""
+msgstr "La mise à jour SOTA a échoué. Résultat : "
 
 #: application/controllers/Update.php:442
 msgid "WWFF Update complete. Result: "
-msgstr ""
+msgstr "Mise à jour WWFF terminée. Résultat : "
 
 #: application/controllers/Update.php:444
 msgid "WWFF Update failed. Result: "
-msgstr ""
+msgstr "Mise à jour WWFF échouée. Résultat : "
 
 #: application/controllers/Update.php:458
 msgid "POTA Update complete. Result: "
-msgstr ""
+msgstr "Mise à jour POTA terminée. Résultat : "
 
 #: application/controllers/Update.php:460
 msgid "POTA Update failed. Result: "
-msgstr ""
+msgstr "La mise à jour POTA a échoué. Résultat : "
 
 #: application/controllers/Update.php:473
 msgid "TLE Update complete. Result: "
-msgstr ""
+msgstr "Mise à jour TLE terminée. Résultat : "
 
 #: application/controllers/Update.php:475
 msgid "TLE Update failed. Result: "
-msgstr ""
+msgstr "La mise à jour TLE a échoué. Résultat : "
 
 #: application/controllers/Update.php:486
 msgid "LoTW SAT Update"
-msgstr ""
+msgstr "Mise à jour LoTW SAT"
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:282
@@ -2556,23 +2564,23 @@ msgstr "Compte des utilisateurs"
 
 #: application/controllers/User.php:96
 msgid "Invalid User ID or missing modal!"
-msgstr ""
+msgstr "ID utilisateur invalide ou modal manquant !"
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
-msgstr ""
+msgstr "Utilisateur déverrouillé !"
 
 #: application/controllers/User.php:110
 msgid "Failed to unlock user!"
-msgstr ""
+msgstr "Échec du déverrouillage de l'utilisateur !"
 
 #: application/controllers/User.php:114
 msgid "User not found!"
-msgstr ""
+msgstr "Utilisateur non trouvé !"
 
 #: application/controllers/User.php:127
 msgid "Invalid Parameter!"
-msgstr ""
+msgstr "Paramètre invalide !"
 
 #: application/controllers/User.php:185
 #: application/views/club/permissions.php:155
@@ -2582,21 +2590,21 @@ msgstr "Ajouter un utilisateur"
 #: application/controllers/User.php:286
 #, php-format
 msgid "Username %s already in use!"
-msgstr ""
+msgstr "Nom d'utilisateur %s déjà utilisé !"
 
 #: application/controllers/User.php:289
 #, php-format
 msgid "E-mail %s already in use!"
-msgstr ""
+msgstr "E-mail %s déjà utilisé !"
 
 #: application/controllers/User.php:292
 msgid "Invalid Password!"
-msgstr ""
+msgstr "Mot de passe invalide !"
 
 #: application/controllers/User.php:296
 #, php-format
 msgid "User %s added!"
-msgstr ""
+msgstr "Utilisateur %s ajouté !"
 
 #: application/controllers/User.php:300
 msgid "Users"
@@ -2610,7 +2618,7 @@ msgstr "Modifier l'utilisateur"
 #: application/controllers/User.php:811 application/controllers/User.php:814
 #, php-format
 msgid "User %s edited"
-msgstr ""
+msgstr "L'utilisateur %s a modifié"
 
 #: application/controllers/User.php:868
 msgid "Profile"
@@ -2626,7 +2634,7 @@ msgstr ""
 
 #: application/controllers/User.php:972
 msgid "This is not allowed!"
-msgstr ""
+msgstr "Ceci n'est pas autorisé !"
 
 #: application/controllers/User.php:1007 application/controllers/User.php:1018
 msgid "Login failed. Try again."
@@ -2643,12 +2651,16 @@ msgstr "Se connecter"
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
+"Vous ne pouvez pas vous connecter directement à une station de club. "
+"Utilisez plutôt votre compte personnel."
 
 #: application/controllers/User.php:1066
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr ""
+"Votre compte est verrouillé en raison de trop nombreuses tentatives de "
+"connexion échouées. Veuillez réinitialiser votre mot de passe."
 
 #: application/controllers/User.php:1070
 msgid ""
@@ -2674,7 +2686,7 @@ msgstr "L'utilisateur %s s'est déconnecté."
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
-msgstr ""
+msgstr "Nom de la station"
 
 #: application/controllers/User.php:1113 application/views/debug/index.php:584
 #: application/views/public_search/result.php:17
@@ -2684,31 +2696,31 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:123
 #: application/views/user/modals/first_login_wizard.php:34
 msgid "Station Callsign"
-msgstr ""
+msgstr "Indicatif de station"
 
 #: application/controllers/User.php:1114
 #: application/views/station_profile/create.php:68
 #: application/views/station_profile/edit.php:96
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
-msgstr ""
+msgstr "Station DXCC"
 
 #: application/controllers/User.php:1115
 msgid "Station CQ Zone"
-msgstr ""
+msgstr "Zone CQ de la station"
 
 #: application/controllers/User.php:1116
 msgid "Station ITU Zone"
-msgstr ""
+msgstr "Zone ITU de la station"
 
 #: application/controllers/User.php:1117
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
-msgstr ""
+msgstr "QTH Locator de station"
 
 #: application/controllers/User.php:1132
 msgid "Invalid Locator!"
-msgstr ""
+msgstr "QTH Locator invalide !"
 
 #: application/controllers/User.php:1140
 #, php-format
@@ -2716,10 +2728,14 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
+"Station créée avec succès ! Bienvenue sur Wavelog ! Pour terminer la "
+"configuration de votre station, cliquez %sici%s."
 
 #: application/controllers/User.php:1143
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
+"La configuration de la station a échoué ! Veuillez configurer votre station "
+"manuellement."
 
 #: application/controllers/User.php:1160
 msgid "Password Reset is disabled on the Demo!"
@@ -2751,6 +2767,8 @@ msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
 msgstr ""
+"Vous ne pouvez pas actuellement usurper l'identité d'un autre utilisateur. "
+"Vous devez définir %s sur %s dans votre config.php !"
 
 #: application/controllers/User.php:1408
 #: application/views/user/modals/admin_impersonate_modal.php:36
@@ -2791,18 +2809,22 @@ msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
+"Impossible de déterminer le niveau de permission correct pour la station de "
+"club. Réessayez après vous être reconnecté."
 
 #: application/controllers/User.php:1514 application/controllers/User.php:1526
 #: application/controllers/User.php:1532 application/controllers/User.php:1541
 #: application/controllers/User.php:1549
 msgid "Ups.. Something went wrong. Try to log back in."
-msgstr ""
+msgstr "Oups.. Quelque chose s'est mal passé. Essaie de te reconnecter."
 
 #: application/controllers/User.php:1555
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr ""
+"La capacité de revenir rapidement a été désactivée après l'expiration du "
+"hachage de sécurité. Veuillez vous reconnecter."
 
 #: application/controllers/User.php:1571
 #, php-format
@@ -2810,6 +2832,8 @@ msgid ""
 "You have been logged out of the clubstation %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"Vous avez été déconnecté de la station du club %s. Bienvenue de retour, %s, "
+"sur votre compte personnel !"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
@@ -2841,7 +2865,7 @@ msgstr "Aucune station trouvée utilisant le OQRS de Wavelog."
 
 #: application/libraries/Callbook.php:86
 msgid "QRZCQ Error"
-msgstr ""
+msgstr "Erreur QRZCQ"
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
@@ -2923,11 +2947,11 @@ msgstr "Ville / Arrondissement / Préfecture"
 
 #: application/models/Club_model.php:154
 msgid "Invalid Permission Level!"
-msgstr ""
+msgstr "Niveau de permission invalide !"
 
 #: application/models/Club_model.php:169
 msgid "Error adding Club Member!"
-msgstr ""
+msgstr "Erreur lors de l'ajout d'un membre du club !"
 
 #: application/models/Eqslmethods_model.php:287
 msgid "Your eQSL username and/or password is incorrect."
@@ -3077,35 +3101,35 @@ msgstr "Vous utilisez la dernière version."
 
 #: application/models/Update_model.php:385
 msgid "cURL error:"
-msgstr ""
+msgstr "Erreur cURL :"
 
 #: application/models/Update_model.php:420
 msgid "SAT already existing. LoTW status updated."
-msgstr ""
+msgstr "SAT déjà existant. Statut LoTW mis à jour."
 
 #: application/models/Update_model.php:422
 msgid "SAT already existing. Updating LoTW status failed."
-msgstr ""
+msgstr "SAT déjà existant. Mise à jour du statut LoTW échouée."
 
 #: application/models/Update_model.php:425
 msgid "SAT already existing. Ignored."
-msgstr ""
+msgstr "SAT déjà existant. Ignoré."
 
 #: application/models/Update_model.php:432
 msgid "SAT already existing. Display name updated."
-msgstr ""
+msgstr "SAT déjà existant. Nom d'affichage mis à jour."
 
 #: application/models/Update_model.php:434
 msgid "SAT already existing. Updating display name failed."
-msgstr ""
+msgstr "SAT déjà existant. Échec de la mise à jour du nom d'affichage."
 
 #: application/models/Update_model.php:444
 msgid "New SAT. Inserted."
-msgstr ""
+msgstr "Nouveau SAT. Inséré."
 
 #: application/models/Update_model.php:446
 msgid "New SAT. Insert failed."
-msgstr ""
+msgstr "Nouveau SAT. Insertion échouée."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -3799,7 +3823,7 @@ msgstr "Résultats de la mise jour pour DCL DOK"
 #: application/views/adif/dcl_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr ""
+msgstr "Youpi, c'est mis à jour !"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
@@ -3945,7 +3969,7 @@ msgstr "DARC DCL"
 
 #: application/views/adif/import.php:45
 msgid "CBR Import"
-msgstr ""
+msgstr "Importation CBR"
 
 #: application/views/adif/import.php:64 application/views/adif/import.php:338
 #: application/views/api/index.php:16 application/views/dashboard/index.php:172
@@ -3989,7 +4013,7 @@ msgstr "Sélectionner une Localisation"
 
 #: application/views/adif/import.php:82
 msgid "Select the operator of the imported QSOs"
-msgstr ""
+msgstr "Sélectionne l'opérateur des QSOs importés"
 
 #: application/views/adif/import.php:94
 msgid "Add QSOs to Contest"
@@ -4039,7 +4063,7 @@ msgstr ""
 
 #: application/views/adif/import.php:168
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
-msgstr ""
+msgstr "Marquer les QSOs importés comme téléchargés dans le carnet de bord DCL"
 
 #: application/views/adif/import.php:178
 msgid "Use DXCC information from ADIF"
@@ -4106,6 +4130,8 @@ msgid ""
 "If you need more filtering, you can use %sthe Advanced Logbook%s to filter "
 "and export!"
 msgstr ""
+"Si tu as besoin de plus de filtrage, tu peux utiliser %sle carnet de bord "
+"avancé%s pour filtrer et exporter !"
 
 #: application/views/adif/import.php:225 application/views/adif/import.php:270
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
@@ -4216,11 +4242,16 @@ msgid ""
 "can provide the Cabrillo file that this software also provides to rewrite "
 "that data in Wavelog."
 msgstr ""
+"Si vous avez importé un fichier ADIF d'un concours, fourni par un autre "
+"logiciel de journalisation, parfois, selon ce logiciel, vos échanges ne "
+"seront pas importés correctement depuis l'ADIF de ce logiciel. Si vous "
+"souhaitez corriger cela, vous pouvez fournir le fichier Cabrillo que ce "
+"logiciel fournit également pour réécrire ces données dans Wavelog."
 
 #: application/views/adif/import.php:337
 #: application/views/lotw_views/index.php:137
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: application/views/adif/import.php:338
 msgid ""
@@ -4229,6 +4260,12 @@ msgid ""
 "from both your already imported ADIF file, as well as the CBR file you are "
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
+"Veuillez utiliser cette fonction avant de modifier quoi que ce soit "
+"concernant les QSOs dans Wavelog, car cette fonction utilise l'ID du "
+"concours, ainsi que les informations de date et d'heure de votre fichier "
+"ADIF déjà importé, ainsi que du fichier CBR que vous êtes sur le point de "
+"télécharger pour faire correspondre les QSOs et ne corriger que les données "
+"pertinentes."
 
 #: application/views/adif/import.php:343
 msgid "Contest Name, only if Contest ID in CBR is different"
