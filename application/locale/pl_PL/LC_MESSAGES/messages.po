@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-30 11:54+0000\n"
-"PO-Revision-Date: 2025-01-30 14:01+0000\n"
+"PO-Revision-Date: 2025-01-30 14:35+0000\n"
 "Last-Translator: Maciej SP2FE <wavelog@sp2fe.eu>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1006,19 +1006,19 @@ msgstr "Margines lewy"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:411
 msgid "QSLs Horizontally"
-msgstr "QSL-e poziomo"
+msgstr "Pozioma karta QSL"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:412
 msgid "QSLs Vertically"
-msgstr "QSL-e pionowo"
+msgstr "Pionowa karta QSL"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:413
 msgid "Horizontal Space"
-msgstr "Przestrzeń pozioma"
+msgstr "Odstęp poziomy"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:414
 msgid "Vertical Space"
-msgstr "Pionowa przestrzeń"
+msgstr "Odstęp pionowy"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:415
 msgid "Label width"
@@ -1061,13 +1061,13 @@ msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
 msgstr ""
-"Nie można zapisać twojego dokumentu. Pamiętaj, że nie może mieć takiej samej "
-"nazwy jak istniejące typy dokumentów."
+"Nie można zapisać twojego typu papieru. Pamiętaj, że nie może mieć takiej "
+"samej nazwy jak już istniejące opcje."
 
 #: application/controllers/Labels.php:205
 #: application/controllers/Labels.php:208
 msgid "You need to assign a paperType to the label before printing"
-msgstr "Musisz przypisać typ papieru do etykiety przed drukowaniem"
+msgstr "Przed drukowaniem musisz przypisać typ papieru do etykiety"
 
 #: application/controllers/Labels.php:215
 #: application/controllers/Labels.php:218
@@ -1116,8 +1116,8 @@ msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
 msgstr ""
-"Nie znaleziono dzienników. Musisz zdefiniować dziennik w sekcji Dzienniki "
-"stacji! Zrób to tutaj:"
+"Nie znaleziono logbooków. Musisz zdefiniować log w sekcji Logi stacji! Zrób "
+"to tutaj:"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -1716,7 +1716,7 @@ msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
-"Nie znaleziono certyfikatu w pliku %s. Jeśli nazwa pliku zawiera 'key-only', "
+"Nie znaleziono certyfikatu w pliku %s. Jeśli nazwa pliku zawiera „key-only”, "
 "jest to zazwyczaj żądanie certyfikatu, które nie zostało jeszcze "
 "przetworzone przez LoTW."
 
@@ -1755,7 +1755,7 @@ msgstr "Nie zdefiniowano danych logowania ARRL LoTW!"
 
 #: application/controllers/Lotw.php:929
 msgid "LoTW .TQ8 Upload"
-msgstr "Przesyłanie LoTW .TQ8"
+msgstr "Przesyłanie .TQ8 LoTW"
 
 #: application/controllers/Lotw.php:1007
 msgid "Your ARRL username and/or password is incorrect."
@@ -1763,11 +1763,11 @@ msgstr "Twoja nazwa użytkownika i/lub hasło ARRL jest niepoprawne."
 
 #: application/controllers/Lotw.php:1026 application/controllers/Lotw.php:1031
 msgid "LoTW .TQ8 Sent"
-msgstr "LoTW .TQ8 wysłano"
+msgstr "Przesłano LoTW .TQ8"
 
 #: application/controllers/Lotw.php:1038
 msgid "LoTW .TQ8 Not Sent"
-msgstr "LoTW .TQ8 nie wysłano"
+msgstr "Nie przesłano LoTW .TQ8"
 
 #: application/controllers/Mode.php:25
 #: application/views/interface_assets/header.php:286
@@ -1888,11 +1888,11 @@ msgstr "Opcje OQRS zostały zapisane."
 #: application/controllers/Options.php:381
 #: application/controllers/Options.php:386
 msgid "Testmail failed. Something went wrong."
-msgstr "Mail testowy nie zadziałał poprawnie. Coś poszło nie tak."
+msgstr "Nie udało się wysłać maila testowego."
 
 #: application/controllers/Options.php:383
 msgid "Testmail sent. Email settings seem to be correct."
-msgstr "Testmail wysłany. Ustawienia e-mail wydają się być poprawne."
+msgstr "Mail testowy wysłany. Ustawienia e-mail wydają się być poprawne."
 
 #: application/controllers/Options.php:395
 #: application/controllers/Options.php:414
@@ -2044,6 +2044,7 @@ msgid "You have to be logged in to access this URL."
 msgstr "Musisz być zalogowany aby uzyskać dostęp do tej strony."
 
 #: application/controllers/Qso.php:672
+#, fuzzy
 msgid "Call Transfer"
 msgstr "Przekazywanie połączeń"
 
@@ -2065,7 +2066,7 @@ msgstr "Radio"
 
 #: application/controllers/Radio.php:47
 msgid "Timestamp"
-msgstr "Znacznik czasu"
+msgstr "Timestamp"
 
 #: application/controllers/Radio.php:49
 #: application/views/logbookadvanced/index.php:630
@@ -2221,11 +2222,11 @@ msgstr "Szukaj i filtruj log"
 
 #: application/controllers/Search.php:58
 msgid "Incorrectly logged CQ zones"
-msgstr "Niepoprawnie zarejestrowane strefy CQ"
+msgstr "Niepoprawnie zapisane strefy CQ"
 
 #: application/controllers/Search.php:70
 msgid "Incorrectly logged ITU zones"
-msgstr "Niepoprawnie zarejestrowane strefy ITU"
+msgstr "Niepoprawnie zapisane strefy ITU"
 
 #: application/controllers/Search.php:82
 msgid ""
@@ -2324,7 +2325,7 @@ msgstr "Edytuj połączone lokalizacje"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
-msgstr "Edytuj stronę odwiedzających"
+msgstr "Edytuj stronę dla odwiedzających"
 
 #: application/controllers/Stationsetup.php:212
 msgid "Error. Link is already in use!"
@@ -2761,7 +2762,7 @@ msgstr "Reset hasła został wyłączony w wersji demo!"
 
 #: application/controllers/User.php:1173
 msgid "Forgot Password"
-msgstr "Zapomniałem hasła"
+msgstr "Resetuj hasło"
 
 #: application/controllers/User.php:1224
 #: application/views/user/modals/more_actions_modal.php:88
