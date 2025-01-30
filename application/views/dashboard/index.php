@@ -271,7 +271,7 @@ function getDistance($distance) {
 		</table>
 	</div>
 	<small class="mb-3 me-2" style="float: right;">
-		<?= sprintf(__("Max. %d previous contacts are shown"), $this->session->userdata('dashboard_last_qso_count')) ?>
+		<?= sprintf(_ngettext("Max. %d previous contact is shown", "Max. %d previous contacts are shown", intval($this->session->userdata('dashboard_last_qso_count'))), intval($this->session->userdata('dashboard_last_qso_count'))); ?>
 	</small>
   </div>
 

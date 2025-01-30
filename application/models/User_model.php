@@ -13,9 +13,6 @@
 
 class User_Model extends CI_Model {
 
-	const DASHBOARD_DEFAULT_QSOS_COUNT = 20; // number of last QSOs used, if user has no value in settings yet 
-	const DASHBOARD_QSOS_COUNT_LIMIT = 50;   // hard limit for max number of QSOs shown on dashboard
-
 	// FUNCTION: object get($username)
 	// Retrieve a user
 	function get($username) {
@@ -330,7 +327,7 @@ class User_Model extends CI_Model {
 
 				// Hard limit safety check for last (recent) QSO count setting
 				$dashboard_last_qso_count = xss_clean($fields['user_dashboard_last_qso_count']);
-				$dashboard_last_qso_count = $dashboard_last_qso_count > self::DASHBOARD_QSOS_COUNT_LIMIT ? self::DASHBOARD_QSOS_COUNT_LIMIT : $dashboard_last_qso_count;
+				$dashboard_last_qso_count = $dashboard_last_qso_count > DASHBOARD_QSOS_COUNT_LIMIT ? DASHBOARD_QSOS_COUNT_LIMIT : $dashboard_last_qso_count;
 
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'hamsat','hamsat_key','api','".xss_clean($fields['user_hamsat_key'])."');");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'hamsat','hamsat_key','workable','".xss_clean($fields['user_hamsat_workable_only'])."');");
@@ -341,6 +338,7 @@ class User_Model extends CI_Model {
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','sig','show',".(xss_clean($fields['user_sig_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','dok','show',".(xss_clean($fields['user_dok_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'dashboard','last_qso_count','count','".$dashboard_last_qso_count."');");
+				$this->session->set_userdata('dashboard_last_qso_count', $dashboard_last_qso_count);
 
 				// Check to see if the user is allowed to change user levels
 				if($this->session->userdata('user_type') == 99) {
@@ -524,13 +522,7 @@ class User_Model extends CI_Model {
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
 			'impersonate' => $this->session->userdata('impersonate') ?? false,
 			'clubstation' => $u->row()->clubstation,
-			// TODO FIND THE BUG
-			// when user logs in, the $this->user_options_model->get_options is returning 0 rows for some reason.
-			// so the code falls back to DASHBOARD_DEFAULT_QSOS_COUNT, and this value gets saved into the session
-			// and used from now. In other words, the setting is not honored at all, since it was not returned from DB.
-			// Why is it returning 0 rows right after login, but subsequent calls to $this->user_options_model->get_options
-			// return the saved value with no problem?
-			'dashboard_last_qso_count' => $this->session->userdata('dashboard_last_qso_count') ?? $this->user_options_model->get_options('dashboard', array('option_name' => 'last_qso_count', 'option_key' => 'count'))->row()->option_value ?? self::DASHBOARD_DEFAULT_QSOS_COUNT,
+			'dashboard_last_qso_count' => ($this->session->userdata('dashboard_last_qso_count') ?? '') == '' ? ($this->user_options_model->get_options('dashboard', array('option_name' => 'last_qso_count', 'option_key' => 'count'))->row()->option_value ?? '') : $this->session->userdata('dashboard_last_qso_count'),
 			'source_uid' => $this->session->userdata('source_uid') ?? ''
 		);
 
