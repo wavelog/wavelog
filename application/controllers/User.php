@@ -181,6 +181,10 @@ class User extends CI_Controller {
 		$data['dashboard_last_qso_count_limit'] = DASHBOARD_QSOS_COUNT_LIMIT;
 		$data['user_dashboard_last_qso_count'] = DASHBOARD_DEFAULT_QSOS_COUNT;
 
+		// Values for the "QSO page last QSO count" selectbox
+		$data['qso_page_last_qso_count_limit'] = QSO_PAGE_QSOS_COUNT_LIMIT;
+		$data['user_qso_page_last_qso_count'] = QSO_PAGE_DEFAULT_QSOS_COUNT;
+
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Add User");
 			$data['measurement_base'] = $this->config->item('measurement_base');
@@ -377,6 +381,9 @@ class User extends CI_Controller {
 
 		// Max value to be present in the "dashboard last QSO count" selectbox
 		$data['dashboard_last_qso_count_limit'] = DASHBOARD_QSOS_COUNT_LIMIT;
+
+		// Max value to be present in the "QSO page last QSO count" selectbox
+		$data['qso_page_last_qso_count_limit'] = QSO_PAGE_QSOS_COUNT_LIMIT;
 
 		$data['page_title'] = __("Edit User");
 
@@ -758,6 +765,7 @@ class User extends CI_Controller {
 			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'), $this->uri->segment(3))->row()->option_value ?? 'false');
 			$data['user_utc_headermenu'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'utc_headermenu'), $this->uri->segment(3))->row()->option_value ?? 'false');
 			$data['user_dashboard_last_qso_count'] = ($this->user_options_model->get_options('dashboard', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? DASHBOARD_DEFAULT_QSOS_COUNT);
+			$data['user_qso_page_last_qso_count'] = ($this->user_options_model->get_options('qso_tab', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? QSO_PAGE_DEFAULT_QSOS_COUNT);
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
@@ -855,6 +863,8 @@ class User extends CI_Controller {
 			$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
 			$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
 			$data['user_dashboard_last_qso_count'] = $this->input->post('user_dashboard_last_qso_count', true);
+			$data['user_qso_page_last_qso_count'] = $this->input->post('user_qso_page_last_qso_count', true);
+
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
 		}
