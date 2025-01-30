@@ -137,7 +137,7 @@ class Clublog_model extends CI_Model
 		$clean_password = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
 
-		$return = "Nothing to download";
+		$return = '';
 
 		$this->config->load('config');
 
@@ -165,15 +165,17 @@ class Clublog_model extends CI_Model
 				curl_close($request);
 
 				if (curl_errno($request)) {
-					$return = curl_error($request);
+					$log .= curl_error($request)."<br>";
 				} elseif (preg_match_all('/Login rejected/', $response)) {
 					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
-					$return = "Wrong Clublog username and password for Callsign: '" . $station_row->station_callsign . "'. 'LOGIN REJECTED'.";
-					log_message('debug', $return);
+					$log = "Wrong Clublog username and password for Callsign: '" . $station_row->station_callsign . "'. 'LOGIN REJECTED'.";
+					log_message('debug', $log);
+					$return .= $log."<br>";
 				} elseif (preg_match_all('/Invalid callsign/', $response)) {	// We're trying to download calls for a station we're not granted. Disable Clublog-Transfer for that station(s)
 					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
-					$return = "The callsign '" . $station_row->station_callsign . "' does not match the user account at Clublog. 'INVALID CALLSIGN'.";
-					log_message('debug', $return);
+					$log = "The callsign '" . $station_row->station_callsign . "' does not match the user account at Clublog. 'INVALID CALLSIGN'.";
+					log_message('debug', $log);
+					$return .= $log."<br>";
 				} else {
 					try {
 						$cl_qsls = json_decode($response);
@@ -181,14 +183,18 @@ class Clublog_model extends CI_Model
 							$this->logbook_model->clublog_update($oneqsl[2], $oneqsl[0], $oneqsl[3], 'Y', $station_row->station_callsign, $station_row->station_ids);
 						}
 					} catch (Exception $e) {
-						$return = "Something gone wrong while trying to Download for station(s) " . $station_row->station_ids . " / Call: " . $station_row->station_callsign." / Response was: ".$response;
-						log_message("error", $return);
+						$log = "Something gone wrong while trying to Download for station(s) " . $station_row->station_ids . " / Call: " . $station_row->station_callsign." / Response was: ".$response;
+						log_message("error", $log);
+						$return .= $log."<br>";
 					}
 
-					$return = "QSO's for Callsign: '" . $station_row->station_callsign . "' were successfully downloaded";
-					log_message('info', $return);
+					$log = "QSO's for Callsign: '" . $station_row->station_callsign . "' were successfully downloaded";
+					log_message('info', $log);
+					$return .= $log."<br>";
 				}
 			}
+		} else {
+			$return = "Nothing to download";
 		}
 
 		return $return . "\n";
