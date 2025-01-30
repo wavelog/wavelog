@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-30 11:54+0000\n"
-"PO-Revision-Date: 2025-01-29 08:38+0000\n"
+"PO-Revision-Date: 2025-01-30 13:08+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -7270,8 +7270,8 @@ msgstr ""
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Max. %d vorige contacten worden getoond"
+msgstr[1] "Max. %d vorige contacten worden getoond"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
@@ -10370,7 +10370,7 @@ msgstr "30 minuten"
 msgid "The Age in Minutes of spots, that will be taken care at bandplan/lookup"
 msgstr ""
 "De ouderdom in minuten van spotter rapporten, die bij bandplan/lookup worden "
-"verzorgd."
+"verzorgd"
 
 #: application/views/options/dxcluster.php:53
 msgid "Show spots which are spotted from following continent"
@@ -11215,8 +11215,9 @@ msgstr "Antenne-elevatie in decimale graden."
 #: application/views/qso/index.php:554 application/views/user/edit.php:636
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
+#, fuzzy
 msgid "Sig Info"
-msgstr ""
+msgstr "Speciale activiteiten of interesse groep informatie"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:613
@@ -11517,7 +11518,7 @@ msgstr ""
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr "Exporteer een contest naar een REG1TEST EDI-log."
+msgstr "Exporteer een contest naar een REG1TEST EDI-log"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
@@ -12512,7 +12513,7 @@ msgstr "Krijg locatorvak"
 
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:206
-#, fuzzy, php-format
+#, php-format
 msgctxt "uses 'click here'"
 msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
@@ -12585,23 +12586,27 @@ msgstr ""
 
 #: application/views/station_profile/create.php:183
 #: application/views/station_profile/edit.php:287
+#, fuzzy
 msgid "Signature Name"
-msgstr ""
+msgstr "Stationsignatuur naam"
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:289
+#, fuzzy
 msgid "Station Signature (e.g. GMA).."
-msgstr ""
+msgstr "Stationsignatuur (bijv. GMA).."
 
 #: application/views/station_profile/create.php:189
 #: application/views/station_profile/edit.php:293
+#, fuzzy
 msgid "Signature Information"
-msgstr ""
+msgstr "Stationsignatuur informatie"
 
 #: application/views/station_profile/create.php:191
 #: application/views/station_profile/edit.php:295
+#, fuzzy
 msgid "Station Signature Info (e.g. DA/NW-357)."
-msgstr ""
+msgstr "Stationsignatuur informatie (bijv. DA/NW-357)."
 
 #: application/views/station_profile/create.php:195
 #: application/views/station_profile/edit.php:308
@@ -12773,8 +12778,9 @@ msgid "Zones"
 msgstr "Zones"
 
 #: application/views/station_profile/edit.php:284
+#, fuzzy
 msgid "Signature"
-msgstr ""
+msgstr "Signatuur"
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
@@ -13580,11 +13586,13 @@ msgstr ""
 
 #: application/views/user/edit.php:595
 msgid "Dashboard Settings"
-msgstr ""
+msgstr "Dashboardinstellingen"
 
 #: application/views/user/edit.php:599
 msgid "Select the number of latest QSOs to be displayed on dashboard."
 msgstr ""
+"Selecteer het aantal nieuwste QSO's dat op het dashboard moet worden "
+"weergegeven."
 
 #: application/views/user/edit.php:613
 msgid "Show Reference Fields on QSO Tab"
