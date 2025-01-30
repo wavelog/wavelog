@@ -688,30 +688,58 @@ class User_Model extends CI_Model {
 	// FUNCTION: object users()
 	// Returns a list of users with additional counts
 	function users($club = '') {
-		$sql="  SELECT COUNT(distinct sp.station_id) AS stationcount, count(distinct sl.logbook_id) AS logbookcount, count(distinct log.col_primary_key) AS qsocount,
-			MAX(COL_TIME_ON) AS lastqso,
-			u.*
-			FROM  users u
-			LEFT OUTER JOIN station_profile sp ON (sp.user_id = u.user_id)
-			LEFT OUTER JOIN station_logbooks sl ON (sl.user_id = u.user_id)
-			LEFT OUTER JOIN ". $this->config->item('table_name') ." log on (log.station_id=sp.station_id)";
+		$sql = "SELECT 
+					u.user_id,
+					u.user_name,
+					u.user_firstname,
+					u.user_lastname,
+					u.user_callsign,
+					u.user_email,
+					u.user_type,
+					u.last_seen,
+					u.login_attempts,
+					u.clubstation,
+					COALESCE(sp_count.stationcount, 0)    	AS stationcount,
+					COALESCE(sl_count.logbookcount, 0)   	AS logbookcount,
+					COALESCE(lc.qsocount, 0)            	AS qsocount,
+					lc.lastqso
+				FROM users u
+				LEFT JOIN (
+					SELECT user_id, COUNT(*) AS stationcount
+					FROM station_profile
+					GROUP BY user_id
+				) sp_count ON sp_count.user_id = u.user_id
+				LEFT JOIN (
+					SELECT user_id, COUNT(*) AS logbookcount
+					FROM station_logbooks
+					GROUP BY user_id
+				) sl_count ON sl_count.user_id = u.user_id
+				LEFT JOIN (
+					SELECT sp.user_id, 
+						COUNT(l.col_primary_key) AS qsocount,
+						MAX(l.COL_TIME_ON)      AS lastqso
+					FROM station_profile sp
+					JOIN " . $this->config->item('table_name') . " l ON l.station_id = sp.station_id
+					GROUP BY sp.user_id
+				) lc ON lc.user_id = u.user_id";
+
 		if ($this->config->item('special_callsign')) {
-			if ($club == 'is_club') {
-				$sql.=' WHERE clubstation=1';
+			if ($club === 'is_club') {
+				$sql .= " WHERE u.clubstation = 1";
 			} else {
-				$sql.=' WHERE clubstation!=1';
+				$sql .= " WHERE u.clubstation != 1";
 			}
 		}
-		$sql.=" GROUP BY u.user_id";
+
 		$result = $this->db->query($sql);
 		if ($this->config->item('special_callsign')) {
-			if ($club == 'is_club') {
+			if ($club === 'is_club') {
 				foreach ($result->result() as &$row) {
-					$row->lastoperator=$this->get_last_op($row->user_id,$row->lastqso);
+					$row->lastoperator = $this->get_last_op($row->user_id, $row->lastqso);
 				}
 			} else {
 				foreach ($result->result() as &$row) {
-					$row->lastoperator='';
+					$row->lastoperator = '';
 				}
 			}
 		}
