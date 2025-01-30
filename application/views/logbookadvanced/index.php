@@ -1,4 +1,6 @@
 <script type="text/javascript">
+    var user_id = <?php echo $this->session->userdata('user_id'); ?>;
+
     /*
      * Custom user settings
      */
