@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-30 11:54+0000\n"
-"PO-Revision-Date: 2025-01-30 13:09+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"PO-Revision-Date: 2025-01-30 13:11+0000\n"
+"Last-Translator: PE1PQX <Andre@pe1pqx.eu>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/nl/>\n"
 "Language: nl_NL\n"
@@ -137,7 +137,7 @@ msgstr "Opgetelde statistieken"
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr "Kaart met geactiveerde Gridsquares"
+msgstr "Kaart met geactiveerde Locator vakken"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:922
@@ -149,23 +149,23 @@ msgstr "Kaart met geactiveerde Gridsquares"
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "Gridsquares"
+msgstr "Locator vakken"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
-msgstr "Bevestigde gridsquares"
+msgstr "Bevestigde locator vakken"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
-msgstr "Niet bevestigde gridsquares"
+msgstr "Niet bevestigde locator vakken"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "Totaal geactiveerde gridsquares"
+msgstr "Totaal geactiveerde locator vakken"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:36
@@ -195,7 +195,7 @@ msgstr "Totaal aantal gewerkte vakken"
 #: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:150
 msgid "Gridsquare Activators"
-msgstr "Geactiveerde gridsquares"
+msgstr "Geactiveerde locator vakken"
 
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
@@ -222,7 +222,7 @@ msgstr "ADIF Import"
 
 #: application/controllers/Adif.php:206
 msgid "Unsupported Filetype"
-msgstr "File soorten niet ondersteund"
+msgstr "Bestandstype niet ondersteund"
 
 #: application/controllers/Adif.php:260
 #: application/views/adif/import_failed.php:12
@@ -231,7 +231,7 @@ msgstr "ADIF importeren gefaald!"
 
 #: application/controllers/Adif.php:274
 msgid "Station Profile not valid for User"
-msgstr "Stations beschrijving niet gecontroleerd voor gebruiker"
+msgstr "Stations profiel niet geldig voor gebruiker"
 
 #: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
@@ -514,17 +514,17 @@ msgstr "Awards - "
 #: application/controllers/Awards.php:923
 #: application/controllers/Awards.php:955
 msgid "Gridsquares worked"
-msgstr "Gewerkte gridsquared"
+msgstr "Gewerkte locator vakken"
 
 #: application/controllers/Awards.php:924
 #: application/controllers/Awards.php:956
 msgid "Gridsquares confirmed on LoTW"
-msgstr "Door LoTW bevestigde gridsquares"
+msgstr "Door LoTW bevestigde locator vakken"
 
 #: application/controllers/Awards.php:925
 #: application/controllers/Awards.php:957
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Door papieren QSL bevestigde gridsquares"
+msgstr "Door papieren QSL bevestigde locator vakken"
 
 #: application/controllers/Awards.php:942
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -578,7 +578,7 @@ msgstr "Banden"
 
 #: application/controllers/Band.php:39 application/controllers/Mode.php:41
 msgid "Create Mode"
-msgstr "Maak modus"
+msgstr "Maak mode"
 
 #: application/controllers/Band.php:64 application/views/bands/index.php:150
 msgid "Edit Band"
@@ -590,7 +590,7 @@ msgstr "Band bewerken"
 #: application/controllers/Options.php:156
 #: application/views/options/sidebar.php:10
 msgid "DXCluster"
-msgstr "DXCluster"
+msgstr "DX-Cluster"
 
 #: application/controllers/Cabrillo.php:20
 msgid "Export Cabrillo"
@@ -621,7 +621,7 @@ msgstr "CBR-gegevens geïmporteerd"
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr "Roepnaamstatistieken"
+msgstr "Roepnaam statistieken"
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:443
@@ -703,11 +703,11 @@ msgstr "Geen gebruiker heeft Clublog geconfigureerd."
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:263
 msgid "Contest Calendar"
-msgstr "Contestkalender"
+msgstr "Wedstrijd kalender"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr "Contestkalender niet bereikbaar. Probeer het later opnieuw"
+msgstr "Wedstrijd kalender niet bereikbaar. Probeer het later opnieuw"
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:7
@@ -721,7 +721,7 @@ msgstr "Wedstrijden"
 
 #: application/controllers/Contesting.php:137
 msgid "Update Contest"
-msgstr "Bijwerken inhoud"
+msgstr "Bijwerken wedstrijd"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:83
@@ -860,7 +860,7 @@ msgstr "Bestandsoverdracht mislukt. Controleer het foutlogboek."
 #: application/controllers/Distancerecords.php:86
 #: application/views/interface_assets/header.php:154
 msgid "Satellite Distance Records"
-msgstr "Satellietafstandrecords"
+msgstr "Satelliet  afstandrecords"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -885,7 +885,7 @@ msgstr "en propagatie"
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:435
 msgid "DX Atlas Gridsquare Export"
-msgstr "DX Atlas Gridsquare Exporteren"
+msgstr "DX Atlas locator vakken Exporteren"
 
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:261
@@ -933,12 +933,12 @@ msgstr "Succesvol gedownload: "
 
 #: application/controllers/Eqsl.php:489
 msgid "eQSL Card Image Download"
-msgstr "eQSL-kaartafbeelding downloaden"
+msgstr "eQSL-kaart afbeelding downloaden"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:146
 msgid "Gridsquare Map"
-msgstr "Gridsquare-kaart"
+msgstr "Locator vakken kaart"
 
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:388
