@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-30 14:01+0000\n"
+"POT-Creation-Date: 2025-01-30 21:18+0000\n"
 "PO-Revision-Date: 2024-11-16 17:03+0000\n"
 "Last-Translator: Samir <DL4DCO@users.noreply.translate.wavelog.org>\n"
 "Language-Team: Bosnian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -74,7 +74,7 @@ msgstr ""
 #: application/controllers/Qrz.php:285 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:24
-#: application/controllers/Qslprint.php:145 application/controllers/Qso.php:11
+#: application/controllers/Qslprint.php:145 application/controllers/Qso.php:9
 #: application/controllers/Qso.php:22 application/controllers/Qso.php:181
 #: application/controllers/Qso.php:280 application/controllers/Qso.php:300
 #: application/controllers/Qso.php:309 application/controllers/Qso.php:605
@@ -118,11 +118,11 @@ msgstr ""
 #: application/controllers/Update.php:351 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
-#: application/controllers/User.php:340 application/controllers/User.php:341
-#: application/controllers/User.php:865 application/controllers/User.php:884
-#: application/controllers/User.php:1109 application/controllers/User.php:1250
-#: application/controllers/User.php:1459 application/controllers/User.php:1475
-#: application/controllers/User.php:1501
+#: application/controllers/User.php:344 application/controllers/User.php:345
+#: application/controllers/User.php:875 application/controllers/User.php:894
+#: application/controllers/User.php:1119 application/controllers/User.php:1260
+#: application/controllers/User.php:1469 application/controllers/User.php:1485
+#: application/controllers/User.php:1511
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
@@ -319,7 +319,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:725
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:271
-#: application/views/qso/index.php:562 application/views/user/edit.php:640
+#: application/views/qso/index.php:562 application/views/user/edit.php:649
 #: application/views/view_log/qso.php:460
 msgid "DOK"
 msgstr ""
@@ -1128,8 +1128,8 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:15
 #: application/views/qslprint/qsolist.php:17
 #: application/views/qso/edit_ajax.php:38 application/views/qso/index.php:45
-#: application/views/timeline/index.php:56 application/views/user/edit.php:582
-#: application/views/user/edit.php:686
+#: application/views/timeline/index.php:56 application/views/user/edit.php:591
+#: application/views/user/edit.php:695
 msgid "QSL"
 msgstr ""
 
@@ -1160,8 +1160,8 @@ msgstr ""
 #: application/views/satellite/index.php:26
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
-#: application/views/timeline/index.php:60 application/views/user/edit.php:583
-#: application/views/user/edit.php:696 application/views/view_log/qso.php:531
+#: application/views/timeline/index.php:60 application/views/user/edit.php:592
+#: application/views/user/edit.php:705 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
 msgid "LoTW"
 msgstr ""
@@ -1192,8 +1192,8 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:273
 #: application/views/station_profile/edit.php:305
-#: application/views/timeline/index.php:64 application/views/user/edit.php:584
-#: application/views/user/edit.php:704 application/views/user/edit.php:770
+#: application/views/timeline/index.php:64 application/views/user/edit.php:593
+#: application/views/user/edit.php:713 application/views/user/edit.php:779
 msgid "eQSL"
 msgstr ""
 
@@ -1209,8 +1209,8 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:124
 #: application/views/station_profile/edit.php:352
 #: application/views/timeline/index.php:68
-#: application/views/update/index.php:20 application/views/user/edit.php:586
-#: application/views/user/edit.php:720
+#: application/views/update/index.php:20 application/views/user/edit.php:595
+#: application/views/user/edit.php:729
 #: application/views/view_log/partial/log_ajax.php:149
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
@@ -1651,7 +1651,7 @@ msgstr ""
 #: application/views/interface_assets/header.php:470
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
-#: application/views/user/edit.php:742 application/views/visitor/index.php:328
+#: application/views/user/edit.php:751 application/views/visitor/index.php:328
 msgid "Logbook of the World"
 msgstr ""
 
@@ -2287,7 +2287,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:339
 #: application/views/station_profile/edit.php:393
 #: application/views/stationsetup/stationsetup.php:76
-#: application/views/user/edit.php:471 application/views/user/edit.php:480
+#: application/views/user/edit.php:480 application/views/user/edit.php:489
 msgid "Disabled"
 msgstr ""
 
@@ -2546,103 +2546,103 @@ msgstr ""
 msgid "Invalid Parameter!"
 msgstr ""
 
-#: application/controllers/User.php:185
+#: application/controllers/User.php:189
 #: application/views/club/permissions.php:155
 msgid "Add User"
 msgstr ""
 
-#: application/controllers/User.php:286
+#: application/controllers/User.php:290
 #, php-format
 msgid "Username %s already in use!"
 msgstr ""
 
-#: application/controllers/User.php:289
+#: application/controllers/User.php:293
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr ""
 
-#: application/controllers/User.php:292
+#: application/controllers/User.php:296
 msgid "Invalid Password!"
 msgstr ""
 
-#: application/controllers/User.php:296
+#: application/controllers/User.php:300
 #, php-format
 msgid "User %s added!"
 msgstr ""
 
-#: application/controllers/User.php:300
+#: application/controllers/User.php:304
 msgid "Users"
 msgstr ""
 
-#: application/controllers/User.php:381
+#: application/controllers/User.php:388
 #: application/views/club/permissions.php:253
 msgid "Edit User"
 msgstr ""
 
-#: application/controllers/User.php:811 application/controllers/User.php:814
+#: application/controllers/User.php:819 application/controllers/User.php:822
 #, php-format
 msgid "User %s edited"
 msgstr ""
 
-#: application/controllers/User.php:868
+#: application/controllers/User.php:878
 msgid "Profile"
 msgstr ""
 
-#: application/controllers/User.php:933
+#: application/controllers/User.php:943
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
 msgstr ""
 
-#: application/controllers/User.php:972
+#: application/controllers/User.php:982
 msgid "This is not allowed!"
 msgstr ""
 
-#: application/controllers/User.php:1007 application/controllers/User.php:1018
+#: application/controllers/User.php:1017 application/controllers/User.php:1028
 msgid "Login failed. Try again."
 msgstr ""
 
-#: application/controllers/User.php:1025
+#: application/controllers/User.php:1035
 #: application/views/interface_assets/header.php:370
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr ""
 
-#: application/controllers/User.php:1063
+#: application/controllers/User.php:1073
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 
-#: application/controllers/User.php:1066
+#: application/controllers/User.php:1076
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr ""
 
-#: application/controllers/User.php:1070
+#: application/controllers/User.php:1080
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
 msgstr ""
 
-#: application/controllers/User.php:1073
+#: application/controllers/User.php:1083
 msgid "Incorrect username or password!"
 msgstr ""
 
-#: application/controllers/User.php:1096
+#: application/controllers/User.php:1106
 #, php-format
 msgid "User %s logged out."
 msgstr ""
 
-#: application/controllers/User.php:1112
+#: application/controllers/User.php:1122
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr ""
 
-#: application/controllers/User.php:1113 application/views/debug/index.php:584
+#: application/controllers/User.php:1123 application/views/debug/index.php:584
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
@@ -2652,120 +2652,120 @@ msgstr ""
 msgid "Station Callsign"
 msgstr ""
 
-#: application/controllers/User.php:1114
+#: application/controllers/User.php:1124
 #: application/views/station_profile/create.php:68
 #: application/views/station_profile/edit.php:96
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr ""
 
-#: application/controllers/User.php:1115
+#: application/controllers/User.php:1125
 msgid "Station CQ Zone"
 msgstr ""
 
-#: application/controllers/User.php:1116
+#: application/controllers/User.php:1126
 msgid "Station ITU Zone"
 msgstr ""
 
-#: application/controllers/User.php:1117
+#: application/controllers/User.php:1127
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr ""
 
-#: application/controllers/User.php:1132
+#: application/controllers/User.php:1142
 msgid "Invalid Locator!"
 msgstr ""
 
-#: application/controllers/User.php:1140
+#: application/controllers/User.php:1150
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
 
-#: application/controllers/User.php:1143
+#: application/controllers/User.php:1153
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 
-#: application/controllers/User.php:1160
+#: application/controllers/User.php:1170
 msgid "Password Reset is disabled on the Demo!"
 msgstr ""
 
-#: application/controllers/User.php:1173
+#: application/controllers/User.php:1183
 msgid "Forgot Password"
 msgstr ""
 
-#: application/controllers/User.php:1224
+#: application/controllers/User.php:1234
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr ""
 
-#: application/controllers/User.php:1228 application/controllers/User.php:1233
+#: application/controllers/User.php:1238 application/controllers/User.php:1243
 msgid "Password Reset Processed."
 msgstr ""
 
-#: application/controllers/User.php:1334
+#: application/controllers/User.php:1344
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr ""
 
-#: application/controllers/User.php:1394
+#: application/controllers/User.php:1404
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
 msgstr ""
 
-#: application/controllers/User.php:1408
+#: application/controllers/User.php:1418
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr ""
 
-#: application/controllers/User.php:1415
+#: application/controllers/User.php:1425
 msgid "Invalid Hash"
 msgstr ""
 
-#: application/controllers/User.php:1428
+#: application/controllers/User.php:1438
 msgid "The impersonation hash is too old. Please try again."
 msgstr ""
 
-#: application/controllers/User.php:1435
+#: application/controllers/User.php:1445
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr ""
 
-#: application/controllers/User.php:1441
+#: application/controllers/User.php:1451
 msgid "There was a problem with your session. Please try again."
 msgstr ""
 
-#: application/controllers/User.php:1448
+#: application/controllers/User.php:1458
 msgid "The requested user to impersonate does not exist"
 msgstr ""
 
-#: application/controllers/User.php:1469
+#: application/controllers/User.php:1479
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
 
-#: application/controllers/User.php:1514 application/controllers/User.php:1526
-#: application/controllers/User.php:1532 application/controllers/User.php:1541
-#: application/controllers/User.php:1549
+#: application/controllers/User.php:1524 application/controllers/User.php:1536
+#: application/controllers/User.php:1542 application/controllers/User.php:1551
+#: application/controllers/User.php:1559
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr ""
 
-#: application/controllers/User.php:1555
+#: application/controllers/User.php:1565
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr ""
 
-#: application/controllers/User.php:1571
+#: application/controllers/User.php:1581
 #, php-format
 msgid ""
 "You have been logged out of the clubstation %s. Welcome back, %s, to your "
@@ -3214,7 +3214,7 @@ msgstr ""
 #: application/views/timeplotter/index.php:17
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
-#: application/views/user/edit.php:670
+#: application/views/user/edit.php:679
 #: application/views/visitor/layout/footer.php:172
 msgid "All"
 msgstr ""
@@ -3607,7 +3607,7 @@ msgstr ""
 #: application/views/awards/wae/index.php:66
 #: application/views/awards/waja/index.php:67
 #: application/views/awards/was/index.php:67
-#: application/views/gridmap/index.php:125 application/views/user/edit.php:712
+#: application/views/gridmap/index.php:125 application/views/user/edit.php:721
 msgid "QRZ.com"
 msgstr ""
 
@@ -4677,7 +4677,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:640
 #: application/views/oqrs/showrequests.php:68
 #: application/views/qrbcalc/index.php:19
-#: application/views/search/filter.php:43 application/views/user/edit.php:644
+#: application/views/search/filter.php:43 application/views/user/edit.php:653
 msgid "Reset"
 msgstr "Resetovati"
 
@@ -5275,7 +5275,7 @@ msgstr ""
 #: application/views/qso/index.php:243 application/views/qso/index.php:536
 #: application/views/station_profile/create.php:177
 #: application/views/station_profile/edit.php:272
-#: application/views/user/edit.php:632 application/views/view_log/qso.php:403
+#: application/views/user/edit.php:641 application/views/view_log/qso.php:403
 #: application/views/view_log/qso.php:719
 msgid "POTA Reference(s)"
 msgstr ""
@@ -5563,7 +5563,7 @@ msgstr ""
 #: application/views/qso/index.php:231 application/views/qso/index.php:523
 #: application/views/station_profile/create.php:171
 #: application/views/station_profile/edit.php:259
-#: application/views/user/edit.php:628 application/views/view_log/qso.php:396
+#: application/views/user/edit.php:637 application/views/view_log/qso.php:396
 #: application/views/view_log/qso.php:712
 msgid "WWFF Reference"
 msgstr ""
@@ -5714,7 +5714,7 @@ msgstr ""
 
 #: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:392
 #: application/views/qso/index.php:255 application/views/qso/index.php:548
-#: application/views/user/edit.php:636 application/views/view_log/qso.php:425
+#: application/views/user/edit.php:645 application/views/view_log/qso.php:425
 #: application/views/view_log/qso.php:726
 msgid "Sig"
 msgstr ""
@@ -6018,9 +6018,9 @@ msgstr ""
 #: application/views/user/edit.php:367 application/views/user/edit.php:378
 #: application/views/user/edit.php:389 application/views/user/edit.php:399
 #: application/views/user/edit.php:409 application/views/user/edit.php:419
-#: application/views/user/edit.php:439 application/views/user/edit.php:450
-#: application/views/user/edit.php:560 application/views/user/edit.php:841
-#: application/views/user/edit.php:873 application/views/user/edit.php:898
+#: application/views/user/edit.php:448 application/views/user/edit.php:459
+#: application/views/user/edit.php:569 application/views/user/edit.php:850
+#: application/views/user/edit.php:882 application/views/user/edit.php:907
 msgid "Yes"
 msgstr "Da"
 
@@ -6071,10 +6071,10 @@ msgstr "Da"
 #: application/views/user/edit.php:368 application/views/user/edit.php:379
 #: application/views/user/edit.php:390 application/views/user/edit.php:400
 #: application/views/user/edit.php:410 application/views/user/edit.php:420
-#: application/views/user/edit.php:440 application/views/user/edit.php:451
-#: application/views/user/edit.php:542 application/views/user/edit.php:546
-#: application/views/user/edit.php:561 application/views/user/edit.php:842
-#: application/views/user/edit.php:872 application/views/user/edit.php:897
+#: application/views/user/edit.php:449 application/views/user/edit.php:460
+#: application/views/user/edit.php:551 application/views/user/edit.php:555
+#: application/views/user/edit.php:570 application/views/user/edit.php:851
+#: application/views/user/edit.php:881 application/views/user/edit.php:906
 msgid "No"
 msgstr "Ne"
 
@@ -6703,7 +6703,7 @@ msgstr ""
 #: application/views/station_profile/create.php:262
 #: application/views/station_profile/edit.php:341
 #: application/views/stationsetup/stationsetup.php:73
-#: application/views/user/edit.php:472 application/views/user/edit.php:481
+#: application/views/user/edit.php:481 application/views/user/edit.php:490
 msgid "Enabled"
 msgstr ""
 
@@ -8110,7 +8110,7 @@ msgid "Warning! Are you sure you want delete QSO with "
 msgstr ""
 
 #: application/views/interface_assets/footer.php:42
-#: application/views/user/edit.php:513
+#: application/views/user/edit.php:522
 msgid "Colors"
 msgstr ""
 
@@ -8489,7 +8489,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:356
 #: application/views/logbookadvanced/index.php:535
-#: application/views/oqrs/index.php:27 application/views/user/edit.php:461
+#: application/views/oqrs/index.php:27 application/views/user/edit.php:470
 #: application/views/visitor/layout/header.php:95
 msgid "Search Callsign"
 msgstr ""
@@ -9385,7 +9385,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:695
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/qso/edit_ajax.php:428
-#: application/views/timeline/index.php:72 application/views/user/edit.php:585
+#: application/views/timeline/index.php:72 application/views/user/edit.php:594
 msgid "QRZ"
 msgstr ""
 
@@ -10237,7 +10237,7 @@ msgstr ""
 #: application/views/search/ituzones_result.php:16
 #: application/views/search/lotw_unconfirmed_result.php:11
 #: application/views/search/search_result_ajax.php:127
-#: application/views/user/edit.php:498
+#: application/views/user/edit.php:507
 #: application/views/view_log/partial/log.php:22
 #: application/views/view_log/partial/log_ajax.php:152
 #: application/views/view_log/qso.php:652
@@ -10673,7 +10673,7 @@ msgid "Antenna elevation in decimal degrees."
 msgstr ""
 
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:262
-#: application/views/qso/index.php:554 application/views/user/edit.php:636
+#: application/views/qso/index.php:554 application/views/user/edit.php:645
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
 msgid "Sig Info"
@@ -10812,7 +10812,7 @@ msgstr ""
 #: application/views/qso/index.php:203 application/views/qso/index.php:493
 #: application/views/station_profile/create.php:149
 #: application/views/station_profile/edit.php:218
-#: application/views/user/edit.php:620 application/views/view_log/qso.php:382
+#: application/views/user/edit.php:629 application/views/view_log/qso.php:382
 #: application/views/view_log/qso.php:698
 msgid "IOTA Reference"
 msgstr ""
@@ -10820,7 +10820,7 @@ msgstr ""
 #: application/views/qso/index.php:219 application/views/qso/index.php:510
 #: application/views/station_profile/create.php:165
 #: application/views/station_profile/edit.php:246
-#: application/views/user/edit.php:624 application/views/view_log/qso.php:389
+#: application/views/user/edit.php:633 application/views/view_log/qso.php:389
 #: application/views/view_log/qso.php:705
 msgid "SOTA Reference"
 msgstr ""
@@ -12775,238 +12775,242 @@ msgstr ""
 msgid "POTA auto lookup gridsquare and name for park."
 msgstr ""
 
-#: application/views/user/edit.php:433
+#: application/views/user/edit.php:425
+msgid "Number of previous contacts displayed on QSO page."
+msgstr ""
+
+#: application/views/user/edit.php:442
 msgid "Menu Options"
 msgstr ""
 
-#: application/views/user/edit.php:436
+#: application/views/user/edit.php:445
 msgid "Show notes in the main menu."
 msgstr ""
 
-#: application/views/user/edit.php:447
+#: application/views/user/edit.php:456
 msgid "Quicklog Field"
 msgstr ""
 
-#: application/views/user/edit.php:453
+#: application/views/user/edit.php:462
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
 msgstr ""
 
-#: application/views/user/edit.php:457
+#: application/views/user/edit.php:466
 msgid "Quicklog - Action on press Enter"
 msgstr ""
 
-#: application/views/user/edit.php:460
+#: application/views/user/edit.php:469
 msgid "Log Callsign"
 msgstr ""
 
-#: application/views/user/edit.php:463
+#: application/views/user/edit.php:472
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
 msgstr ""
 
-#: application/views/user/edit.php:469
+#: application/views/user/edit.php:478
 msgid "Station Locations Quickswitch"
 msgstr ""
 
-#: application/views/user/edit.php:474
+#: application/views/user/edit.php:483
 msgid "Show the Station Locations Quickswitch in the main menu"
 msgstr ""
 
-#: application/views/user/edit.php:478
+#: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
 msgstr ""
 
-#: application/views/user/edit.php:483
+#: application/views/user/edit.php:492
 msgid "Show the current UTC Time in the menu"
 msgstr ""
 
-#: application/views/user/edit.php:494
+#: application/views/user/edit.php:503
 msgid "Map Settings"
 msgstr ""
 
-#: application/views/user/edit.php:501
+#: application/views/user/edit.php:510
 msgid "Icon"
 msgstr ""
 
-#: application/views/user/edit.php:504
+#: application/views/user/edit.php:513
 msgid "Not display"
 msgstr ""
 
-#: application/views/user/edit.php:508
+#: application/views/user/edit.php:517
 msgid "Not displayed"
 msgstr ""
 
-#: application/views/user/edit.php:517
+#: application/views/user/edit.php:526
 msgid "QSO (by default)"
 msgstr ""
 
-#: application/views/user/edit.php:536
+#: application/views/user/edit.php:545
 msgid "QSO (confirmed)"
 msgstr ""
 
-#: application/views/user/edit.php:537
+#: application/views/user/edit.php:546
 msgid "(If 'No', displayed as 'QSO (by default))'"
 msgstr ""
 
-#: application/views/user/edit.php:556
+#: application/views/user/edit.php:565
 msgid "Show Locator"
 msgstr ""
 
-#: application/views/user/edit.php:575
+#: application/views/user/edit.php:584
 msgid "Previous QSL Type"
 msgstr ""
 
-#: application/views/user/edit.php:579
+#: application/views/user/edit.php:588
 msgid "Select the type of QSL to show in the previous QSOs section."
 msgstr ""
 
-#: application/views/user/edit.php:595
+#: application/views/user/edit.php:604
 msgid "Dashboard Settings"
 msgstr ""
 
-#: application/views/user/edit.php:599
+#: application/views/user/edit.php:608
 msgid "Select the number of latest QSOs to be displayed on dashboard."
 msgstr ""
 
-#: application/views/user/edit.php:613
+#: application/views/user/edit.php:622
 msgid "Show Reference Fields on QSO Tab"
 msgstr ""
 
-#: application/views/user/edit.php:617
+#: application/views/user/edit.php:626
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
 
-#: application/views/user/edit.php:656
+#: application/views/user/edit.php:665
 msgid "Default Values"
 msgstr ""
 
-#: application/views/user/edit.php:664
+#: application/views/user/edit.php:673
 msgid "Settings for Default Band and Confirmation"
 msgstr ""
 
-#: application/views/user/edit.php:667
+#: application/views/user/edit.php:676
 msgid "Default Band"
 msgstr ""
 
-#: application/views/user/edit.php:677
+#: application/views/user/edit.php:686
 msgid "Default QSL-Methods"
 msgstr ""
 
-#: application/views/user/edit.php:734
+#: application/views/user/edit.php:743
 msgid "Third Party Services"
 msgstr ""
 
-#: application/views/user/edit.php:745
+#: application/views/user/edit.php:754
 msgid "Logbook of The World (LoTW) Username"
 msgstr ""
 
-#: application/views/user/edit.php:751
+#: application/views/user/edit.php:760
 msgid "Logbook of The World (LoTW) Password"
 msgstr ""
 
-#: application/views/user/edit.php:755
+#: application/views/user/edit.php:764
 msgid "Test Login"
 msgstr ""
 
-#: application/views/user/edit.php:773
+#: application/views/user/edit.php:782
 msgid "eQSL.cc Username"
 msgstr ""
 
-#: application/views/user/edit.php:779
+#: application/views/user/edit.php:788
 msgid "eQSL.cc Password"
 msgstr ""
 
-#: application/views/user/edit.php:796
+#: application/views/user/edit.php:805
 msgid "Club Log"
 msgstr ""
 
-#: application/views/user/edit.php:799
+#: application/views/user/edit.php:808
 msgid "Club Log Email/Callsign"
 msgstr ""
 
-#: application/views/user/edit.php:805
+#: application/views/user/edit.php:814
 msgid "Club Log Password"
 msgstr ""
 
-#: application/views/user/edit.php:810
+#: application/views/user/edit.php:819
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
 
-#: application/views/user/edit.php:827
+#: application/views/user/edit.php:836
 msgid "Miscellaneous"
 msgstr ""
 
-#: application/views/user/edit.php:835
+#: application/views/user/edit.php:844
 msgid "AMSAT Status Upload"
 msgstr ""
 
-#: application/views/user/edit.php:838
+#: application/views/user/edit.php:847
 msgid "Upload status of SAT QSOs to"
 msgstr ""
 
-#: application/views/user/edit.php:852
+#: application/views/user/edit.php:861
 msgid "Mastodonserver"
 msgstr ""
 
-#: application/views/user/edit.php:855
+#: application/views/user/edit.php:864
 msgid "URL of Mastodonserver"
 msgstr ""
 
-#: application/views/user/edit.php:857
+#: application/views/user/edit.php:866
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr ""
 
-#: application/views/user/edit.php:866
+#: application/views/user/edit.php:875
 msgid "Experimental"
 msgstr ""
 
-#: application/views/user/edit.php:866
+#: application/views/user/edit.php:875
 msgid "Winkeyer"
 msgstr ""
 
-#: application/views/user/edit.php:869
+#: application/views/user/edit.php:878
 msgid "Winkeyer Features Enabled"
 msgstr ""
 
-#: application/views/user/edit.php:875
+#: application/views/user/edit.php:884
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr ""
 
-#: application/views/user/edit.php:886
+#: application/views/user/edit.php:895
 msgid "Hams.at"
 msgstr ""
 
-#: application/views/user/edit.php:889
+#: application/views/user/edit.php:898
 msgid "Private Feed Key"
 msgstr ""
 
-#: application/views/user/edit.php:891
+#: application/views/user/edit.php:900
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr ""
 
-#: application/views/user/edit.php:894
+#: application/views/user/edit.php:903
 msgid "Show Workable Passes Only"
 msgstr ""
 
-#: application/views/user/edit.php:900
+#: application/views/user/edit.php:909
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
 
-#: application/views/user/edit.php:912
+#: application/views/user/edit.php:921
 msgid "Save Account"
 msgstr ""
 
