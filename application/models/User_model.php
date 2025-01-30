@@ -688,6 +688,20 @@ class User_Model extends CI_Model {
 	// FUNCTION: object users()
 	// Returns a list of users with additional counts
 	function users($club = '') {
+		$qsocount_select = "";
+		$qsocount_join = "";
+		if (!($this->config->item('disable_user_stats') ?? false)) {
+			$qsocount_select = ", COALESCE(lc.qsocount, 0) AS qsocount, lc.lastqso";
+			$qsocount_join = 
+				" LEFT JOIN (
+					SELECT sp.user_id, 
+						COUNT(l.col_primary_key) AS qsocount,
+						MAX(l.COL_TIME_ON)      AS lastqso
+					FROM station_profile sp
+					JOIN " . $this->config->item('table_name') . " l ON l.station_id = sp.station_id
+					GROUP BY sp.user_id
+				) lc ON lc.user_id = u.user_id";
+		}
 		$sql = "SELECT 
 					u.user_id,
 					u.user_name,
@@ -700,9 +714,8 @@ class User_Model extends CI_Model {
 					u.login_attempts,
 					u.clubstation,
 					COALESCE(sp_count.stationcount, 0)    	AS stationcount,
-					COALESCE(sl_count.logbookcount, 0)   	AS logbookcount,
-					COALESCE(lc.qsocount, 0)            	AS qsocount,
-					lc.lastqso
+					COALESCE(sl_count.logbookcount, 0)   	AS logbookcount
+					".$qsocount_select."
 				FROM users u
 				LEFT JOIN (
 					SELECT user_id, COUNT(*) AS stationcount
@@ -713,15 +726,8 @@ class User_Model extends CI_Model {
 					SELECT user_id, COUNT(*) AS logbookcount
 					FROM station_logbooks
 					GROUP BY user_id
-				) sl_count ON sl_count.user_id = u.user_id
-				LEFT JOIN (
-					SELECT sp.user_id, 
-						COUNT(l.col_primary_key) AS qsocount,
-						MAX(l.COL_TIME_ON)      AS lastqso
-					FROM station_profile sp
-					JOIN " . $this->config->item('table_name') . " l ON l.station_id = sp.station_id
-					GROUP BY sp.user_id
-				) lc ON lc.user_id = u.user_id";
+				) sl_count ON sl_count.user_id = u.user_id"
+				 .$qsocount_join;
 
 		if ($this->config->item('special_callsign')) {
 			if ($club === 'is_club') {
@@ -733,13 +739,13 @@ class User_Model extends CI_Model {
 
 		$result = $this->db->query($sql);
 		if ($this->config->item('special_callsign')) {
-			if ($club === 'is_club') {
+			if ($club === 'is_club' && !($this->config->item('disable_user_stats') ?? false)) {
 				foreach ($result->result() as &$row) {
 					$row->lastoperator = $this->get_last_op($row->user_id, $row->lastqso);
 				}
 			} else {
 				foreach ($result->result() as &$row) {
-					$row->lastoperator = '';
+					$row->lastoperator = '';   				// Important: If 'disable_user_stats' is set to true, the admin won't see the last operator of a clubstation
 				}
 			}
 		}

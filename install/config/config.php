@@ -776,4 +776,15 @@ $config['enable_eqsl_massdownload'] = false;
 |--------------------------------------------------------------------------
  */
 
-$config['max_login_attempts'] = 3;
+ $config['max_login_attempts'] = 3;
+
+ /*
+ |--------------------------------------------------------------------------
+ | Disable User QSO Count in User List (Admin Menu)
+ | Reason for this setting is to prevent performance issues on large installations
+ | where the QSO count is not needed. Set to true to disable the QSO count. 
+ | This also hides the last Operator for CLubstations. Default is false.
+ |--------------------------------------------------------------------------
+  */
+ 
+  $config['disable_user_stats'] = false;
