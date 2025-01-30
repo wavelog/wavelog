@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-23 10:57+0000\n"
-"PO-Revision-Date: 2025-01-30 14:01+0000\n"
+"PO-Revision-Date: 2025-01-30 14:35+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
 "installer/ru/>\n"
@@ -322,10 +322,14 @@ msgid ""
 "check your web server configuration. This is the base_url in your config."
 "php, which can be edited after the installation."
 msgstr ""
+"Это URL-адрес, по которому вы можете получить доступ к этому экземпляру "
+"Wavelog после запуска установщика. Если это не отображает то, что вы "
+"ожидаете, возможно, вам нужно проверить конфигурацию вашего веб-сервера. Это "
+"base_url в вашем config.php, который можно отредактировать после установки."
 
 #: install/index.php:352
 msgid "Your final Wavelog URL"
-msgstr ""
+msgstr "Ваш окончательный URL Wavelog"
 
 #: install/index.php:358
 msgid "Optional: Global Callbook Lookup"
@@ -369,13 +373,15 @@ msgstr "Пароль не может содержать %s или быть пу�
 
 #: install/index.php:386
 msgid "Good to know:"
-msgstr ""
+msgstr "Хорошо бы знать:"
 
 #: install/index.php:387
 msgid ""
 "Use your callsign as your username for QRZ.com. The XML API does not support "
 "email addresses."
 msgstr ""
+"Используйте свой позывной в качестве имени пользователя для QRZ.com. XML API "
+"не поддерживает адреса электронной почты."
 
 #: install/index.php:390 install/index.php:395
 msgid "Advanced Settings"
