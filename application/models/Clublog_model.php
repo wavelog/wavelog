@@ -3,6 +3,8 @@
 class Clublog_model extends CI_Model
 {
 
+	private $clublog_identifier = '608df94896cb9c5421ae748235492b43815610c9';
+
 	function get_clublog_users($userid = null) {
 		$this->db->select('user_clublog_name, user_clublog_password, user_id');
 		$this->db->where('coalesce(user_clublog_name, "") != ""');
@@ -75,7 +77,7 @@ class Clublog_model extends CI_Model
 									'email' => $clean_username,
 									'password' => $clean_passord,
 									'callsign' => $station_row->station_callsign,
-									'api' => "608df94896cb9c5421ae748235492b43815610c9",
+									'api' => $this->clublog_identifier,
 									'file' => $cFile
 								)
 							);
@@ -155,7 +157,7 @@ class Clublog_model extends CI_Model
 			foreach ($station_profiles->result() as $station_row) {
 				$lastrec = $clublog_last_date ?? $this->clublog_last_qsl_rcvd_date($station_row->station_callsign);
 				$lastrec = str_replace('-', '', $lastrec);
-				$url = 'https://clublog.org/getmatches.php?api=608df94896cb9c5421ae748235492b43815610c9&email=' . $clean_username . '&password=' . $clean_password . '&callsign=' . $station_row->station_callsign . '&startyear=' . substr($lastrec, 0, 4) . '&startmonth=' . substr($lastrec, 4, 2) . '&startday=' . substr($lastrec, 6, 2);
+				$url = 'https://clublog.org/getmatches.php?api=' . $this->clublog_identifier . '&email=' . $clean_username . '&password=' . $clean_password . '&callsign=' . $station_row->station_callsign . '&startyear=' . substr($lastrec, 0, 4) . '&startmonth=' . substr($lastrec, 4, 2) . '&startday=' . substr($lastrec, 6, 2);
 				$request = curl_init($url);
 
 				// recieve a file
@@ -358,4 +360,42 @@ class Clublog_model extends CI_Model
 
 		return $query;
     }
+
+	function push_qso_to_clublog($cl_username, $cl_password, $station_callsign, $adif) {
+
+		// initialise the curl request
+		$returner = [];
+		$request = curl_init('https://clublog.org/realtime.php');
+
+		curl_setopt($request, CURLOPT_POST, true);
+		curl_setopt(
+			$request,
+			CURLOPT_POSTFIELDS,
+			array(
+				'email' => $cl_username,
+				'password' => $cl_password,
+				'callsign' => $station_callsign,
+				'adif' => $adif,
+				'api' => $this->clublog_identifier,
+			)
+		);
+
+		// output the response
+		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($request);
+		$info = curl_getinfo($request);
+		curl_close($request);
+
+		if (preg_match('/\bOK\b/', $response)) {
+			$returner['status'] = 'OK';
+		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
+			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
+			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
+			$this->db->query($sql,array($cl_username,$cl_password));
+			$returner['status'] = $response;
+		} else {
+			$returner['status'] = $response;
+		}
+		return ($returner);
+	}
 }

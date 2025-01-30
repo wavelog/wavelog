@@ -784,7 +784,6 @@ class Logbook_model extends CI_Model {
 			// No point in fetching hrdlog code or qrz api key and qrzrealtime setting if we're skipping the export
 			if (!$skipexport) {
 
-
 				$result = $this->exists_clublog_credentials($data['station_id']);
 				if (isset($result->ucp) && isset($result->ucn) && (($result->ucp ?? '') != '') && (($result->ucn ?? '') != '') && ($result->clublogrealtime == 1)) {
 					if (!$this->load->is_loaded('AdifHelper')) {
@@ -792,8 +791,12 @@ class Logbook_model extends CI_Model {
 					}
 					$qso = $this->get_qso($last_id, true)->result();
 
+					if (!$this->load->is_loaded('clublog_model')) {
+						$this->load->model('clublog_model');
+					}
+
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->push_qso_to_clublog($result->ucn, $result->ucp, $data['COL_STATION_CALLSIGN'], $adif);
+					$result = $this->clublog_model->push_qso_to_clublog($result->ucn, $result->ucp, $data['COL_STATION_CALLSIGN'], $adif);
 					if ($result['status'] == 'OK') {
 						$this->mark_clublog_qsos_sent($last_id);
 					}
@@ -923,44 +926,6 @@ class Logbook_model extends CI_Model {
 		} else {
 			return false;
 		}
-	}
-
-	function push_qso_to_clublog($cl_username, $cl_password, $station_callsign, $adif) {
-
-		// initialise the curl request
-		$returner = [];
-		$request = curl_init('https://clublog.org/realtime.php');
-
-		curl_setopt($request, CURLOPT_POST, true);
-		curl_setopt(
-			$request,
-			CURLOPT_POSTFIELDS,
-			array(
-				'email' => $cl_username,
-				'password' => $cl_password,
-				'callsign' => $station_callsign,
-				'adif' => $adif,
-				'api' => "608df94896cb9c5421ae748235492b43815610c9",
-			)
-		);
-
-		// output the response
-		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-		$response = curl_exec($request);
-		$info = curl_getinfo($request);
-		curl_close($request);
-
-		if (preg_match('/\bOK\b/', $response)) {
-			$returner['status'] = 'OK';
-		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
-			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
-			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
-			$this->db->query($sql,array($cl_username,$cl_password));
-			$returner['status'] = $response;
-		} else {
-			$returner['status'] = $response;
-		}
-		return ($returner);
 	}
 
 	/*
@@ -3167,7 +3132,7 @@ class Logbook_model extends CI_Model {
 
 	/* Return total number of QSOs per operator */
 	function total_operators($yr = 'All') {
-		
+
 		//Load logbook model and get station locations
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -5586,7 +5551,7 @@ class Logbook_model extends CI_Model {
 
 	function getContestQSO(array $station_ids, string $station_callsign, string $contest_id, string $callsign, string $band, string $mode, string $date, string $time)
 	{
-		
+
 		//load QSO table
 		$this->db->select('*');
 		$this->db->from($this->config->item('table_name'));
@@ -5617,7 +5582,7 @@ class Logbook_model extends CI_Model {
 		$from_datetime = $datetime->format('Y-m-d H:i:s');
 		$datetime->add(new DateInterval('PT1M'));
 		$to_datetime = $datetime->format('Y-m-d H:i:s');
-		
+
 		//load only QSOs during this minute
 		$this->db->where('COL_TIME_ON >=', $from_datetime);
 		$this->db->where('COL_TIME_ON <', $to_datetime);
@@ -5627,7 +5592,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	function set_contest_fields($qso_primary_key, ?int $stx, ?string $stxstring, ?int $srx, ?string $srxstring) {
-		
+
 		//assemble data fields from input
 		$data = $data = array(
 			'COL_STX' => $stx,
@@ -5635,15 +5600,15 @@ class Logbook_model extends CI_Model {
 			'COL_SRX' => $srx,
 			'COL_SRX_STRING' => $srxstring == null ? null : substr($srxstring, 0, 32)
 		);
-	
+
 		//narrow db operation down to 1 QSO
 		$this->db->where(array('COL_PRIMARY_KEY' => $qso_primary_key));
-		
+
 		//update data and return
 		$this->db->update($this->config->item('table_name'), $data);
 		return;
 	}
-	
+
 }
 
 function validateADIFDate($date, $format = 'Ymd') {
