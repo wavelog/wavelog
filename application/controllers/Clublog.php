@@ -76,20 +76,6 @@ class Clublog extends CI_Controller
 		$this->clublog_model->mark_qsos_sent($clean_station_id);
 	}
 
-	// Find DXCC
-	function find_dxcc($callsign)
-	{
-		$clean_callsign = $this->security->xss_clean($callsign);
-		// Live lookup against Clublogs API
-		$url = "https://clublog.org/dxcc?call=" . $clean_callsign . "&api=608df94896cb9c5421ae748235492b43815610c9&full=1";
-
-		$json = file_get_contents($url);
-		$data = json_decode($json, TRUE);
-
-		// echo ucfirst(strtolower($data['Name']));
-		return $data;
-	}
-
 	/*
 	 * Used for displaying the uid for manually selecting log for upload to Clublog
 	 */
@@ -177,4 +163,5 @@ class Clublog extends CI_Controller
 
 		echo $r;
 	}
+
 }

@@ -830,7 +830,9 @@ function showActivatorsMap(call, count, grids) {
             <?php } else { ?>
               var grid = "No";
             <?php } ?>
-            initmap(grid,'map',{'dataPost':{'nb_qso':'18'}});
+            
+            <?php printf("var dashboard_qso_count = '%d';", $this->session->userdata('dashboard_last_qso_count')) ?>
+            initmap(grid,'map',{'dataPost':{'nb_qso': dashboard_qso_count}});
 
             <?php if ($is_first_login ?? false) : ?>
                 $('#firstLoginWizardModal').modal('show');

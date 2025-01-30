@@ -4787,7 +4787,7 @@ class Logbook_model extends CI_Model {
 
 		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
 
-		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
+		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`,`long`,`lat`')
 			->where('`call`', $call)
 			->where('(start <= ', $date)
 			->or_where('start is null)', NULL, false)

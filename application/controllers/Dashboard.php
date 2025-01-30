@@ -114,7 +114,11 @@ class Dashboard extends CI_Controller {
 		$data['qrz_sent_today'] = $QSLStatsBreakdownArray['QRZ_Sent_today'];
 		$data['qrz_rcvd_today'] = $QSLStatsBreakdownArray['QRZ_Received_today'];
 
-		$data['last_qsos_list'] = $this->logbook_model->get_last_qsos('18', $logbooks_locations_array);
+		$data['last_qso_count'] = empty($this->session->userdata('dashboard_last_qso_count')) ? DASHBOARD_DEFAULT_QSOS_COUNT : $this->session->userdata('dashboard_last_qso_count');
+		$data['last_qsos_list'] = $this->logbook_model->get_last_qsos(
+			$data['last_qso_count'],
+			$logbooks_locations_array
+		);
 
 		$data['vucc'] = $this->vucc->fetchVuccSummary();
 		$data['vuccSAT'] = $this->vucc->fetchVuccSummary('SAT');
