@@ -590,6 +590,23 @@
 
 								</div>
 							</div>
+							<!-- Dashboard Settings -->
+							<div class="card">
+								<div class="card-header"><?= __("Dashboard Settings"); ?></div>
+								<div class="card-body">
+									<div class="row">
+										<div class="mb-3">
+											<label for="dashboard-last-qso-count"><?= __("Select the number of latest QSOs to be displayed on dashboard."); ?></label>
+											<select class="form-select" id="dashboard-last-qso-count" name="user_dashboard_last_qso_count">
+												<?php for ($i = 5 ; $i <= $dashboard_last_qso_count_limit; $i += 5) {
+													$selected_attribute_value = $user_dashboard_last_qso_count == $i ? " selected =\"selected\"" : "";
+													printf("<option value=\"{$i}\"{$selected_attribute_value}>{$i}</option>");
+												} ?>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="col-md">
 							<div class="card">
