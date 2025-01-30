@@ -439,6 +439,20 @@ $(document).ready(function () {
 		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'width':'100%', 'height':'37px'
 	})
 
+	/*Pull from localStorage to set form input value*/
+	if (localStorage.hasOwnProperty(`user_${user_id}_qsoresults`)) {
+		document.getElementById('qsoResults').value = localStorage.getItem(`user_${user_id}_qsoresults`);
+	}
+
+	if (localStorage.hasOwnProperty(`user_${user_id}_selectedlocations`)) {
+		const selectedLocations = localStorage.getItem(`user_${user_id}_selectedlocations`);
+		const locationsArray = selectedLocations ? selectedLocations.split(',') : [];
+		// First, deselect all options
+		$('#de').multiselect('deselectAll', false);
+
+		// Then, select the stored locations
+		$('#de').multiselect('select', locationsArray);
+	}
 
 	$('#searchForm').submit(function (e) {
 		let container = L.DomUtil.get('advancedmap');
@@ -465,6 +479,9 @@ $(document).ready(function () {
 		$("#qsoList").attr("Hidden", false);
 		$("#qsoList_wrapper").attr("Hidden", false);
 		$("#qsoList_info").attr("Hidden", false);
+
+		localStorage.setItem(`user_${user_id}_qsoresults`, this.qsoresults.value);
+		localStorage.setItem(`user_${user_id}_selectedlocations`, $('#de').val());
 
 		$('#searchButton').prop("disabled", true).addClass("running");
 		$.ajax({
