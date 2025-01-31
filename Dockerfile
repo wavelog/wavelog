@@ -11,6 +11,7 @@ RUN set -e; \
         libjpeg-dev \
         libfreetype6-dev \
         cron \
+        build-essential \
     ; \
     docker-php-ext-configure gd --with-freetype --with-jpeg; \
     \
