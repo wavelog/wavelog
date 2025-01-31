@@ -45,7 +45,7 @@
     2114 dj3ce ,12,LA.14.DL
     2114 dj3ce .14 ,12 .DL ,LA
 </pre>
-<p><?= __("Received exchange has to be prefixed with a dot '.', sent exchange with a comma ','. The last to lines are equivalent - i.e. spaces don't matter as the order doesn't as well. Exchange you have sent will automatically be included in the next QSO, if it contains received exchange, or if you use a single comma ','. To automatically increment the sent serial, use ',++' and give an initial sent exchange. To deactivate, use ',+0':") ?></p>
+<p><?= __("Received exchange has to be prefixed with a dot '.', sent exchange with a comma ','. The last two lines are equivalent - i.e. spaces don't matter as the order doesn't as well. Exchange you have sent will automatically be included in the next QSO, if it contains received exchange, or if you use a single comma ','. To automatically increment the sent serial, use ',++' and give an initial sent exchange. To deactivate, use ',+0':") ?></p>
 <pre>
     ,++
     2112 dj3ce ,1.12
