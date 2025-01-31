@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-31 08:30+0000\n"
-"PO-Revision-Date: 2025-01-31 10:10+0000\n"
-"Last-Translator: \"Sebastian K.\" <sebastian@sebastian-kettner.net>\n"
+"PO-Revision-Date: 2025-01-31 10:35+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/de/>\n"
 "Language: de_DE\n"
@@ -12447,11 +12447,12 @@ msgstr "Name Operator:"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr "QSL-Nachricht (Achtung! Derzeit in wavelog nicht sichtbar!):"
+msgstr "QSL-Nachricht (Achtung! Derzeit in Wavelog nicht sichtbar!):"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
-msgstr "Contest-QSO; lfd. Nummer oder andere Angaben - oder auch beides:"
+msgstr ""
+"Contest-Exchange; Seriennummer oder anderer Exchange - oder auch beides:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -12462,39 +12463,38 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
-"Empfangene Contestdaten benötigen einen Punkt '.' als Präfix, gesendete "
-"Daten ein Komma ','. Die letzten beiden Zeilen sind gleichwertig, d.h. "
-"Leerzeichen und Reihenfolge sind nicht relevant. Gesendete Contestdaten "
-"werden automatisch in das nächste QSO übernommen sofern es empfangene "
-"Contestdaten enthält oder wenn du ein einzelnes Komma ',' verwendest. Um die "
-"laufende Nummer automatisch zu erhöhen benutze '++' und gib einen Startwert "
-"an. Um dies zu deaktivieren benutze '+0':"
+"Der empfangene Exchange benötigen einen Punkt '.' als Präfix, der gesendete "
+"Exchange ein Komma ','. Die letzten beiden Zeilen sind gleichwertig, d.h. "
+"Leerzeichen und Reihenfolge sind nicht relevant. Gesendete Exchange werden "
+"automatisch in das nächste QSO übernommen sofern es empfangene Exchange "
+"enthält oder wenn du ein einzelnes Komma ',' verwendest. Um die Seriennummer "
+"automatisch zu erhöhen benutze '++' und gib einen Startwert an. Um dies zu "
+"deaktivieren benutze '+0':"
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
-"Hier wird für das erste QSO die laufende Nummer 1 verwendet, für das zweite "
-"QSO die Nummer 2. Wenn du die gesendeten Contestdaten löschen willst benutze "
-"'-':"
+"Hier wird für das erste QSO die Seriennummer 1 verwendet, für das zweite QSO "
+"die Nummer 2. Wenn du den gesendeten Exchange löschen willst benutze '-':"
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
-"Zuerst werden alle vorherigen Contestdaten entfernt, anschließend wird "
-"lediglich die laufende Nummer gesetzt. Ansonsten wären die Contestdaten "
-"'D23' aus dem vorherigen QSO ebenfalls präsent."
+"Zuerst werden alle vorherigen Exchange entfernt, anschließend wird lediglich "
+"die Seriennummer gesetzt. Ansonsten würde der vorherige Exchange 'D23' "
+"ebenfalls gesetzt werden."
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
-"Du kannst die Kommentar-Syntax verwenden um von wavlog-Import unterstützte "
-"ADIF-Felder zu füllen:"
+"Du kannst die Kommentar-Syntax nutzen, um ADIF-Felder zu füllen, die vom "
+"Wavelog-Import unterstützt werden:"
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
@@ -13591,7 +13591,7 @@ msgstr "Automatische Ermittlung des Parknamens anhand der POTA-Referenz."
 
 #: application/views/user/edit.php:425
 msgid "Number of previous contacts displayed on QSO page."
-msgstr "Anzahl früherer Kontakte wird auf der QSO-Seite angezeigt."
+msgstr "Anzahl der QSOs welche auf der QSO Seite (Logging) angezeigt werden."
 
 #: application/views/user/edit.php:442
 msgid "Menu Options"
