@@ -70,7 +70,7 @@ class Clublog_model extends CI_Model
 
 							// send a file
 							curl_setopt($request, CURLOPT_POST, true);
-							curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+							curl_setopt($request, CURLOPT_TIMEOUT, 10);
 							curl_setopt(
 								$request,
 								CURLOPT_POSTFIELDS,
@@ -167,7 +167,7 @@ class Clublog_model extends CI_Model
 
 				// recieve a file
 				curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+				curl_setopt($request, CURLOPT_TIMEOUT, 10);
 				$response = curl_exec($request);
 				$info = curl_getinfo($request);
 				curl_close($request);
@@ -374,7 +374,7 @@ class Clublog_model extends CI_Model
 		$request = curl_init('https://clublog.org/realtime.php');
 
 		curl_setopt($request, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($request, CURLOPT_TIMEOUT, 10);
 		curl_setopt(
 			$request,
 			CURLOPT_POSTFIELDS,
