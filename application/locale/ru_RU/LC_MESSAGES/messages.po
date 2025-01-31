@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-31 05:49+0000\n"
+"POT-Creation-Date: 2025-01-31 08:30+0000\n"
 "PO-Revision-Date: 2025-01-30 14:35+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -40,6 +40,8 @@ msgstr ""
 #: application/controllers/Cfdexport.php:29 application/controllers/Club.php:48
 #: application/controllers/Club.php:74 application/controllers/Club.php:122
 #: application/controllers/Club.php:151 application/controllers/Club.php:178
+#: application/controllers/Clublog.php:84
+#: application/controllers/Clublog.php:143
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
@@ -698,8 +700,35 @@ msgstr "Сервер в режиме обслуживания. Попробуй�
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
+#: application/controllers/Clublog.php:126
+#: application/controllers/Clublog.php:163
 msgid "No user has configured Clublog."
 msgstr "Ни один пользователь не сконфигурировал доступ к Clublog."
+
+#: application/controllers/Clublog.php:89
+#: application/controllers/Logbook.php:672
+#: application/views/awards/dok/index.php:71
+#: application/views/awards/dxcc/index.php:77
+#: application/views/awards/jcc/index.php:68
+#: application/views/awards/wab/index.php:104
+#: application/views/awards/wae/index.php:70
+#: application/views/awards/waja/index.php:71
+#: application/views/logbookadvanced/useroptions.php:62
+#: application/views/qso/edit_ajax.php:431
+#: application/views/search/search_result_ajax.php:124
+#: application/views/station_profile/edit.php:352
+#: application/views/timeline/index.php:68
+#: application/views/update/index.php:20 application/views/user/edit.php:595
+#: application/views/user/edit.php:729
+#: application/views/view_log/partial/log_ajax.php:149
+#: application/views/view_log/qso.php:565
+#: application/views/view_log/qso.php:570
+msgid "Clublog"
+msgstr "Clublog"
+
+#: application/controllers/Clublog.php:145
+msgid "Clublog QSL Import"
+msgstr ""
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:263
@@ -1216,26 +1245,6 @@ msgstr "LoTW"
 #: application/views/user/edit.php:713 application/views/user/edit.php:779
 msgid "eQSL"
 msgstr "eQSL"
-
-#: application/controllers/Logbook.php:672
-#: application/views/awards/dok/index.php:71
-#: application/views/awards/dxcc/index.php:77
-#: application/views/awards/jcc/index.php:68
-#: application/views/awards/wab/index.php:104
-#: application/views/awards/wae/index.php:70
-#: application/views/awards/waja/index.php:71
-#: application/views/logbookadvanced/useroptions.php:62
-#: application/views/qso/edit_ajax.php:431
-#: application/views/search/search_result_ajax.php:124
-#: application/views/station_profile/edit.php:352
-#: application/views/timeline/index.php:68
-#: application/views/update/index.php:20 application/views/user/edit.php:595
-#: application/views/user/edit.php:729
-#: application/views/view_log/partial/log_ajax.php:149
-#: application/views/view_log/qso.php:565
-#: application/views/view_log/qso.php:570
-msgid "Clublog"
-msgstr "Clublog"
 
 #: application/controllers/Logbook.php:1281
 #: application/controllers/Radio.php:46
@@ -2027,7 +2036,7 @@ msgid "No callsign provided."
 msgstr "Позывной не указан."
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:482
+#: application/views/interface_assets/header.php:483
 msgid "Hardware Interfaces"
 msgstr "Аппаратные интерфейсы"
 
@@ -2258,7 +2267,7 @@ msgstr "Дубликат профиля QTH:"
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:399
-#: application/views/interface_assets/header.php:545
+#: application/views/interface_assets/header.php:546
 msgid "Station Setup"
 msgstr "Настройка станции"
 
@@ -2325,7 +2334,7 @@ msgid "Set as Active Logbook"
 msgstr "Установить как активный"
 
 #: application/controllers/Stationsetup.php:263
-#: application/views/interface_assets/header.php:543
+#: application/views/interface_assets/header.php:544
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -2989,21 +2998,21 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:3886
+#: application/models/Logbook_model.php:3851
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:3887
+#: application/models/Logbook_model.php:3852
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
-#: application/models/Logbook_model.php:3899
+#: application/models/Logbook_model.php:3864
 msgid "QSO on"
 msgstr "начало QSO"
 
-#: application/models/Logbook_model.php:3899
+#: application/models/Logbook_model.php:3864
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3011,62 +3020,62 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
-#: application/models/Logbook_model.php:4198
+#: application/models/Logbook_model.php:4163
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4209
+#: application/models/Logbook_model.php:4174
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4270
+#: application/models/Logbook_model.php:4235
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4255
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4311
+#: application/models/Logbook_model.php:4276
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4592
+#: application/models/Logbook_model.php:4557
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4618
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:4659
+#: application/models/Logbook_model.php:4624
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4664
+#: application/models/Logbook_model.php:4629
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:4667
+#: application/models/Logbook_model.php:4632
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:4670
+#: application/models/Logbook_model.php:4635
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:4673
+#: application/models/Logbook_model.php:4638
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4676
+#: application/models/Logbook_model.php:4641
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5486
+#: application/models/Logbook_model.php:5451
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3736,6 +3745,7 @@ msgstr "Минимальное количество"
 #: application/views/awards/was/index.php:200
 #: application/views/awards/wwff/index.php:64
 #: application/views/callstats/index.php:129
+#: application/views/clublog/export.php:60
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
@@ -3979,9 +3989,10 @@ msgid "Maximum file upload size is "
 msgstr "Максимальный размер загружаемого файла "
 
 #: application/views/adif/import.php:65 application/views/adif/import.php:268
-#: application/views/adif/import.php:307 application/views/debug/index.php:193
-#: application/views/debug/index.php:210 application/views/debug/index.php:571
-#: application/views/hrdlog/export.php:25
+#: application/views/adif/import.php:307
+#: application/views/clublog/export.php:70
+#: application/views/debug/index.php:193 application/views/debug/index.php:210
+#: application/views/debug/index.php:571 application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:37
 #: application/views/qrz/export.php:75 application/views/qrz/export.php:96
@@ -4091,8 +4102,10 @@ msgstr ""
 "независимо от того, соответствуют ли они выбранному местоположению станции."
 
 #: application/views/adif/import.php:205 application/views/adif/import.php:322
-#: application/views/adif/import.php:360 application/views/hrdlog/export.php:50
-#: application/views/qrz/export.php:55 application/views/webadif/export.php:55
+#: application/views/adif/import.php:360
+#: application/views/clublog/export.php:50
+#: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
+#: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Загрузить"
 
@@ -4119,8 +4132,8 @@ msgstr ""
 "Advanced Logbook%s для фильтрации и экспорта!"
 
 #: application/views/adif/import.php:225 application/views/adif/import.php:270
-#: application/views/cfd/index.php:15 application/views/csv/index.php:118
-#: application/views/dxatlas/index.php:118
+#: application/views/cfd/index.php:15 application/views/clublog/export.php:73
+#: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
@@ -4391,7 +4404,7 @@ msgid "Save"
 msgstr "Сохранить"
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:482
 msgid "API Keys"
 msgstr "ключи API"
 
@@ -4492,6 +4505,7 @@ msgstr "Статус"
 
 #: application/views/api/index.php:32
 #: application/views/club/permissions.php:226
+#: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:588
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
@@ -6644,6 +6658,87 @@ msgstr "Позывной: %s"
 msgid "Role: %s"
 msgstr "Роль: %s"
 
+#: application/views/clublog/export.php:10
+#: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
+#: application/views/webadif/export.php:10
+msgid "Upload Logbook"
+msgstr "Загрузить журнал"
+
+#: application/views/clublog/export.php:14
+#: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
+#: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
+#: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
+#: application/views/qrz/export.php:14
+msgid "Download QSOs"
+msgstr "Скачать QSO"
+
+#: application/views/clublog/export.php:24
+msgid "The next automatic Upload to Clublog will happen at: "
+msgstr ""
+
+#: application/views/clublog/export.php:25
+msgid ""
+"Here you can see all QSOs which have not been previously uploaded to a "
+"Clublog logbook."
+msgstr ""
+
+#: application/views/clublog/export.php:26
+msgid ""
+"You need to set a username and password in your user account. You will also "
+"need to enable upload for each station profile ."
+msgstr ""
+
+#: application/views/clublog/export.php:34
+#: application/views/hrdlog/export.php:34
+#: application/views/logbookadvanced/index.php:764
+#: application/views/logbookadvanced/useroptions.php:170
+#: application/views/qrz/export.php:39
+#: application/views/qslprint/qslprint.php:30
+#: application/views/qslprint/qsolist.php:14
+#: application/views/webadif/export.php:41
+msgid "Profile name"
+msgstr "Название профиля"
+
+#: application/views/clublog/export.php:35
+#: application/views/hrdlog/export.php:35
+#: application/views/oqrs/showrequests.php:86
+#: application/views/qrz/export.php:40 application/views/webadif/export.php:42
+msgid "Station callsign"
+msgstr "Позывной"
+
+#: application/views/clublog/export.php:36
+#: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
+msgid "Edited QSOs not uploaded"
+msgstr "Отредактированных QSO не загружено"
+
+#: application/views/clublog/export.php:37
+#: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
+#: application/views/webadif/export.php:43
+msgid "Total QSOs not uploaded"
+msgstr "Всего QSO не загружено"
+
+#: application/views/clublog/export.php:38
+#: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
+#: application/views/webadif/export.php:44
+msgid "Total QSOs uploaded"
+msgstr "Всего QSO загржено"
+
+#: application/views/clublog/export.php:69
+msgid "The next automatic Download from Clublog-QSLs will happen at: "
+msgstr ""
+
+#: application/views/clublog/export.php:70 application/views/qrz/export.php:75
+msgid ""
+"If no startdate is given then all QSOs after last confirmation will be "
+"downloaded/updated!"
+msgstr ""
+"Если дата начала не указана, то все QSO после последнего подтверждения будут "
+"загружены/обновлены!"
+
+#: application/views/clublog/export.php:78
+msgid "Download from Clublog"
+msgstr ""
+
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
 msgid "Hamsat - Satellite Rovers"
@@ -6776,7 +6871,7 @@ msgstr "название для ADIF"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:523
+#: application/views/interface_assets/header.php:524
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -8234,13 +8329,6 @@ msgstr ""
 "\n"
 "Wavelog"
 
-#: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
-#: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
-#: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
-#: application/views/qrz/export.php:14
-msgid "Download QSOs"
-msgstr "Скачать QSO"
-
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
@@ -8452,11 +8540,6 @@ msgstr ""
 msgid "your profile"
 msgstr "вашем профиле"
 
-#: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
-#: application/views/webadif/export.php:10
-msgid "Upload Logbook"
-msgstr "Загрузить журнал"
-
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
@@ -8489,36 +8572,6 @@ msgid "This might take a while as QSO uploads are processed sequentially."
 msgstr ""
 "Это может занять некоторое время, поскольку загрузка QSO обрабатывается "
 "последовательно."
-
-#: application/views/hrdlog/export.php:34
-#: application/views/logbookadvanced/index.php:764
-#: application/views/logbookadvanced/useroptions.php:170
-#: application/views/qrz/export.php:39
-#: application/views/qslprint/qslprint.php:30
-#: application/views/qslprint/qsolist.php:14
-#: application/views/webadif/export.php:41
-msgid "Profile name"
-msgstr "Название профиля"
-
-#: application/views/hrdlog/export.php:35
-#: application/views/oqrs/showrequests.php:86
-#: application/views/qrz/export.php:40 application/views/webadif/export.php:42
-msgid "Station callsign"
-msgstr "Позывной"
-
-#: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
-msgid "Edited QSOs not uploaded"
-msgstr "Отредактированных QSO не загружено"
-
-#: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
-#: application/views/webadif/export.php:43
-msgid "Total QSOs not uploaded"
-msgstr "Всего QSO не загружено"
-
-#: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
-#: application/views/webadif/export.php:44
-msgid "Total QSOs uploaded"
-msgstr "Всего QSO загржено"
 
 #: application/views/hrdlog/export.php:60
 msgid ""
@@ -8619,7 +8672,7 @@ msgid "deprecated"
 msgstr "устарело"
 
 #: application/views/interface_assets/footer.php:138
-#: application/views/interface_assets/header.php:484
+#: application/views/interface_assets/header.php:485
 #: application/views/options/sidebar.php:12
 msgid "Version Info"
 msgstr "Информация о версии"
@@ -9013,33 +9066,37 @@ msgstr "импорт / экспорт eQSL"
 msgid "HRDLog Logbook"
 msgstr "Журнал HRDLog"
 
-#: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:475
+msgid "Clublog Import / Export"
+msgstr ""
+
+#: application/views/interface_assets/header.php:486
 msgid "Help"
 msgstr "Помощь"
 
-#: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:487
 msgid "Forum"
 msgstr "Форум"
 
-#: application/views/interface_assets/header.php:490
+#: application/views/interface_assets/header.php:491
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "Прекратить выдавать себя за другого и переключиться обратно на %s"
 
-#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:492
 #, php-format
 msgid "Switch back to %s"
 msgstr "Переключиться обратно на %s"
 
-#: application/views/interface_assets/header.php:495
+#: application/views/interface_assets/header.php:496
 msgid "Logout"
 msgstr "Выход"
 
-#: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:504
 msgid "Select a Location"
 msgstr "Выберите профиль QTH"
 
-#: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:583
 msgid "Extras"
 msgstr "Дополнения"
 
@@ -10965,14 +11022,6 @@ msgstr ""
 #: application/views/qrz/export.php:74
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
 msgstr "Следующее автоматическое скачивание с QRZ QSL произойдет в: "
-
-#: application/views/qrz/export.php:75
-msgid ""
-"If no startdate is given then all QSOs after last confirmation will be "
-"downloaded/updated!"
-msgstr ""
-"Если дата начала не указана, то все QSO после последнего подтверждения будут "
-"загружены/обновлены!"
 
 #: application/views/qrz/export.php:83
 msgid "Download from QRZ Logbook"

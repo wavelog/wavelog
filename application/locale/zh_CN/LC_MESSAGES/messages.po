@@ -129,6 +129,8 @@ msgstr ""
 #: application/controllers/User.php:1511
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Clublog.php:84
+#: application/controllers/Clublog.php:143
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -697,6 +699,8 @@ msgstr "已开启维护模式，请稍后重试。"
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
+#: application/controllers/Clublog.php:126
+#: application/controllers/Clublog.php:163
 msgid "No user has configured Clublog."
 msgstr "Clublog 未配置用户账户。"
 
@@ -1223,6 +1227,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:149
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
+#: application/controllers/Clublog.php:89
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -2007,6 +2012,7 @@ msgstr "未提供呼号。"
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:482
+#: application/views/interface_assets/header.php:483
 msgid "Hardware Interfaces"
 msgstr "硬件接口"
 
@@ -2236,6 +2242,7 @@ msgstr "台站地址重复："
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:399
 #: application/views/interface_assets/header.php:545
+#: application/views/interface_assets/header.php:546
 msgid "Station Setup"
 msgstr "设置台站"
 
@@ -2305,6 +2312,7 @@ msgstr "设置为正在使用的日志"
 #: application/views/interface_assets/header.php:543
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:544
 msgid "Active Logbook"
 msgstr "启用"
 
@@ -2935,77 +2943,94 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
 #: application/models/Logbook_model.php:3886
+#: application/models/Logbook_model.php:3851
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
 #: application/models/Logbook_model.php:3887
+#: application/models/Logbook_model.php:3852
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
 #: application/models/Logbook_model.php:3899
+#: application/models/Logbook_model.php:3864
 msgid "QSO on"
 msgstr "QSO 时间"
 
 #: application/models/Logbook_model.php:3899
+#: application/models/Logbook_model.php:3864
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
 
 #: application/models/Logbook_model.php:4198
+#: application/models/Logbook_model.php:4163
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4209
+#: application/models/Logbook_model.php:4174
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4270
+#: application/models/Logbook_model.php:4235
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4255
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4311
+#: application/models/Logbook_model.php:4276
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4592
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4557
 msgid "Duplicate for"
 msgstr "内容重复"
 
 #: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4618
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
 #: application/models/Logbook_model.php:4659
+#: application/models/Logbook_model.php:4624
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
 #: application/models/Logbook_model.php:4664
+#: application/models/Logbook_model.php:4629
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
 #: application/models/Logbook_model.php:4667
+#: application/models/Logbook_model.php:4632
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
 #: application/models/Logbook_model.php:4670
+#: application/models/Logbook_model.php:4635
 msgid "confirmation pending"
 msgstr "等待确认"
 
 #: application/models/Logbook_model.php:4673
+#: application/models/Logbook_model.php:4638
 msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:4676
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4641
 msgid "unknown"
 msgstr "未知"
 
@@ -3020,6 +3045,7 @@ msgstr "未知"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/user/edit.php:351
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5451
 msgid "Bearing"
 msgstr "方位角"
 
@@ -3682,6 +3708,7 @@ msgstr "最低数量"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
+#: application/views/clublog/export.php:60
 msgid "Nothing found!"
 msgstr "未找到！"
 
@@ -3932,6 +3959,7 @@ msgstr "最大上传文件大小是 "
 #: application/views/view_log/qso.php:771
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/clublog/export.php:70
 msgid "Warning"
 msgstr "注意"
 
@@ -4031,6 +4059,7 @@ msgstr ""
 #: application/views/adif/import.php:205 application/views/adif/import.php:322
 #: application/views/adif/import.php:360 application/views/hrdlog/export.php:50
 #: application/views/qrz/export.php:55 application/views/webadif/export.php:55
+#: application/views/clublog/export.php:50
 msgid "Upload"
 msgstr "上传"
 
@@ -4058,6 +4087,7 @@ msgstr "%s详细日志%s 中可使用更多过滤器选项，也可导出日志�
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/clublog/export.php:73
 msgid "From date"
 msgstr "起始日期"
 
@@ -4301,6 +4331,7 @@ msgstr "保存"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:482
 msgid "API Keys"
 msgstr "API 密钥"
 
@@ -4401,6 +4432,7 @@ msgstr "状态"
 #: application/views/logbookadvanced/index.php:588
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
 #: application/views/user/index.php:160 application/views/webadif/export.php:45
+#: application/views/clublog/export.php:39
 msgid "Actions"
 msgstr "操作"
 
@@ -6569,6 +6601,7 @@ msgstr "ADIF 名称"
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
+#: application/views/interface_assets/header.php:524
 msgid "Active"
 msgstr "启用"
 
@@ -7970,7 +8003,7 @@ msgstr ""
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
-#: application/views/qrz/export.php:14
+#: application/views/qrz/export.php:14 application/views/clublog/export.php:14
 msgid "Download QSOs"
 msgstr "下载QSO"
 
@@ -8171,6 +8204,7 @@ msgstr "您的个人资料"
 
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
+#: application/views/clublog/export.php:10
 msgid "Upload Logbook"
 msgstr "上传日志本"
 
@@ -8210,26 +8244,31 @@ msgstr "由于 QSO 正在按顺序处理，您需要等待一段时间。"
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:14
 #: application/views/webadif/export.php:41
+#: application/views/clublog/export.php:34
 msgid "Profile name"
 msgstr "台站"
 
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:86
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
+#: application/views/clublog/export.php:35
 msgid "Station callsign"
 msgstr "台站呼号"
 
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
+#: application/views/clublog/export.php:36
 msgid "Edited QSOs not uploaded"
 msgstr "编辑的 QSO 未上传"
 
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:43
+#: application/views/clublog/export.php:37
 msgid "Total QSOs not uploaded"
 msgstr "未上传的 QSO 数量"
 
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
 #: application/views/webadif/export.php:44
+#: application/views/clublog/export.php:38
 msgid "Total QSOs uploaded"
 msgstr "上传的 QSO 数量"
 
@@ -8332,6 +8371,7 @@ msgstr "已废弃"
 #: application/views/interface_assets/footer.php:138
 #: application/views/interface_assets/header.php:484
 #: application/views/options/sidebar.php:12
+#: application/views/interface_assets/header.php:485
 msgid "Version Info"
 msgstr "版本信息"
 
@@ -8724,32 +8764,39 @@ msgid "HRDLog Logbook"
 msgstr "HRDLog 日志簿"
 
 #: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:486
 msgid "Help"
 msgstr "帮助"
 
 #: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:487
 msgid "Forum"
 msgstr "论坛"
 
 #: application/views/interface_assets/header.php:490
+#: application/views/interface_assets/header.php:491
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "登出并返回到 %s"
 
 #: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:492
 #, php-format
 msgid "Switch back to %s"
 msgstr "切换回 %s"
 
 #: application/views/interface_assets/header.php:495
+#: application/views/interface_assets/header.php:496
 msgid "Logout"
 msgstr "注销"
 
 #: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:504
 msgid "Select a Location"
 msgstr "选择电台站位置"
 
 #: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:583
 msgid "Extras"
 msgstr "额外"
 
@@ -10596,7 +10643,7 @@ msgstr ""
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
 msgstr "QRZ-QSL 下次自动同步时间： "
 
-#: application/views/qrz/export.php:75
+#: application/views/qrz/export.php:75 application/views/clublog/export.php:70
 msgid ""
 "If no startdate is given then all QSOs after last confirmation will be "
 "downloaded/updated!"
@@ -13895,6 +13942,38 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:32
 msgid "Rcvd"
 msgstr "收"
+
+#: application/controllers/Clublog.php:145
+msgid "Clublog QSL Import"
+msgstr ""
+
+#: application/views/clublog/export.php:24
+msgid "The next automatic Upload to Clublog will happen at: "
+msgstr ""
+
+#: application/views/clublog/export.php:25
+msgid ""
+"Here you can see all QSOs which have not been previously uploaded to a "
+"Clublog logbook."
+msgstr ""
+
+#: application/views/clublog/export.php:26
+msgid ""
+"You need to set a username and password in your user account. You will also "
+"need to enable upload for each station profile ."
+msgstr ""
+
+#: application/views/clublog/export.php:69
+msgid "The next automatic Download from Clublog-QSLs will happen at: "
+msgstr ""
+
+#: application/views/clublog/export.php:78
+msgid "Download from Clublog"
+msgstr ""
+
+#: application/views/interface_assets/header.php:475
+msgid "Clublog Import / Export"
+msgstr ""
 
 #~ msgid "Max. 5 previous contacts are shown"
 #~ msgstr "最多五次先前通联将会被显示"
