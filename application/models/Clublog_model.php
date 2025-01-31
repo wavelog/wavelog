@@ -120,7 +120,7 @@ class Clublog_model extends CI_Model
 									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
 									$this->db->query($sql,$station_row->station_id);
 								} else {
-									log_message('error', 'Some uncought exception for station ' . $station_row->station_callsign);
+									log_message('error', 'Some uncaught exception for station ' . $station_row->station_callsign);
 								}
 							}
 
@@ -399,7 +399,7 @@ class Clublog_model extends CI_Model
 			$this->db->query($sql,array($cl_username,$cl_password));
 			$returner['status'] = $response;
 		} else {
-			log_message("Error","Uncough exception at ClubLog-RT for ".$cl_username." / Details: ".$httpcode." : ".$response);
+			log_message("Error","Uncaught exception at ClubLog-RT for ".$cl_username." / Details: ".$httpcode." : ".$response);
 			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
 			$returner['status'] = $response;
 		}
