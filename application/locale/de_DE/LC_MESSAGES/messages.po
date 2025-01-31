@@ -18,15 +18,15 @@
 # Reiner Herrmann <reiner@reiner-h.de>, 2024.
 # Fabian Franz BSc <franz.fabian.94@gmail.com>, 2024, 2025.
 # David Quental <ct1drb72@gmail.com>, 2024.
-# "Sebastian K." <sebastian@sebastian-kettner.net>, 2024.
+# "Sebastian K." <sebastian@sebastian-kettner.net>, 2024, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-31 08:30+0000\n"
-"PO-Revision-Date: 2025-01-24 15:27+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2025-01-31 10:10+0000\n"
+"Last-Translator: \"Sebastian K.\" <sebastian@sebastian-kettner.net>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -741,7 +741,7 @@ msgstr "Clublog"
 
 #: application/controllers/Clublog.php:145
 msgid "Clublog QSL Import"
-msgstr ""
+msgstr "Clublog QSL-Import"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:263
@@ -6688,19 +6688,23 @@ msgstr "QSOs herunterladen"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
-msgstr ""
+msgstr "Zeitpunkt des nächsten automatischen Uploads zu Clublog: "
 
 #: application/views/clublog/export.php:25
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "Clublog logbook."
 msgstr ""
+"Hier siehst du alle QSOs die bisher nicht in ein Clublog-Logbuch hochgeladen "
+"wurden."
 
 #: application/views/clublog/export.php:26
 msgid ""
 "You need to set a username and password in your user account. You will also "
 "need to enable upload for each station profile ."
 msgstr ""
+"Du musst einen Benutzernamen und ein Passwort in deinem Benutzerkonto "
+"angeben. Außerdem musst du den Upload für jedes Stationsprofil aktivieren."
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
@@ -6739,7 +6743,7 @@ msgstr "Summe hochgeladener QSOs"
 
 #: application/views/clublog/export.php:69
 msgid "The next automatic Download from Clublog-QSLs will happen at: "
-msgstr ""
+msgstr "Zeitpunkt des nächsten automatischen Downloads von Clublog-QSLs: "
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
@@ -6751,7 +6755,7 @@ msgstr ""
 
 #: application/views/clublog/export.php:78
 msgid "Download from Clublog"
-msgstr ""
+msgstr "Download von Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -7396,8 +7400,8 @@ msgstr "Mindestens eines deiner %sLoTW-Zertifikate%s wird bald ablaufen!"
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Max. %d vorheriger Kontakt wird angezeigt"
+msgstr[1] "Max. %d vorherige Kontakte werden angezeigt"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
@@ -9086,7 +9090,7 @@ msgstr "HRDLog Logbuch"
 
 #: application/views/interface_assets/header.php:475
 msgid "Clublog Import / Export"
-msgstr ""
+msgstr "Clublog Import/Export"
 
 #: application/views/interface_assets/header.php:486
 msgid "Help"
@@ -12270,6 +12274,8 @@ msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
+"Achtung! Du hast entweder einen Contest ausgewählt aber keine Verbindung "
+"geloggt oder hast Contest-Daten geloggt ohne einen Contest auszuwählen."
 
 #: application/views/simplefle/index.php:36
 msgid ""
@@ -12429,23 +12435,23 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
-msgstr ""
+msgstr "Zusätzliche Informationen können wie folgt hinzugefügt werden:"
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "Notizen:"
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "Name Operator:"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "QSL-Nachricht (Achtung! Derzeit in wavelog nicht sichtbar!):"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
-msgstr ""
+msgstr "Contest-QSO; lfd. Nummer oder andere Angaben - oder auch beides:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -12456,24 +12462,39 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"Empfangene Contestdaten benötigen einen Punkt '.' als Präfix, gesendete "
+"Daten ein Komma ','. Die letzten beiden Zeilen sind gleichwertig, d.h. "
+"Leerzeichen und Reihenfolge sind nicht relevant. Gesendete Contestdaten "
+"werden automatisch in das nächste QSO übernommen sofern es empfangene "
+"Contestdaten enthält oder wenn du ein einzelnes Komma ',' verwendest. Um die "
+"laufende Nummer automatisch zu erhöhen benutze '++' und gib einen Startwert "
+"an. Um dies zu deaktivieren benutze '+0':"
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
+"Hier wird für das erste QSO die laufende Nummer 1 verwendet, für das zweite "
+"QSO die Nummer 2. Wenn du die gesendeten Contestdaten löschen willst benutze "
+"'-':"
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
+"Zuerst werden alle vorherigen Contestdaten entfernt, anschließend wird "
+"lediglich die laufende Nummer gesetzt. Ansonsten wären die Contestdaten "
+"'D23' aus dem vorherigen QSO ebenfalls präsent."
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
+"Du kannst die Kommentar-Syntax verwenden um von wavlog-Import unterstützte "
+"ADIF-Felder zu füllen:"
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
@@ -13570,7 +13591,7 @@ msgstr "Automatische Ermittlung des Parknamens anhand der POTA-Referenz."
 
 #: application/views/user/edit.php:425
 msgid "Number of previous contacts displayed on QSO page."
-msgstr ""
+msgstr "Anzahl früherer Kontakte wird auf der QSO-Seite angezeigt."
 
 #: application/views/user/edit.php:442
 msgid "Menu Options"
