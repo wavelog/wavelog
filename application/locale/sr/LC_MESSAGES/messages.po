@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-31 05:49+0000\n"
+"POT-Creation-Date: 2025-01-31 08:30+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -40,6 +40,8 @@ msgstr ""
 #: application/controllers/Cfdexport.php:29 application/controllers/Club.php:48
 #: application/controllers/Club.php:74 application/controllers/Club.php:122
 #: application/controllers/Club.php:151 application/controllers/Club.php:178
+#: application/controllers/Clublog.php:84
+#: application/controllers/Clublog.php:143
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
@@ -693,8 +695,35 @@ msgstr "Aktivan je mod održavanja. Pokušajte ponovo kasnije."
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
+#: application/controllers/Clublog.php:126
+#: application/controllers/Clublog.php:163
 msgid "No user has configured Clublog."
 msgstr "Nema korisnika sa podešenim Clublog."
+
+#: application/controllers/Clublog.php:89
+#: application/controllers/Logbook.php:672
+#: application/views/awards/dok/index.php:71
+#: application/views/awards/dxcc/index.php:77
+#: application/views/awards/jcc/index.php:68
+#: application/views/awards/wab/index.php:104
+#: application/views/awards/wae/index.php:70
+#: application/views/awards/waja/index.php:71
+#: application/views/logbookadvanced/useroptions.php:62
+#: application/views/qso/edit_ajax.php:431
+#: application/views/search/search_result_ajax.php:124
+#: application/views/station_profile/edit.php:352
+#: application/views/timeline/index.php:68
+#: application/views/update/index.php:20 application/views/user/edit.php:595
+#: application/views/user/edit.php:729
+#: application/views/view_log/partial/log_ajax.php:149
+#: application/views/view_log/qso.php:565
+#: application/views/view_log/qso.php:570
+msgid "Clublog"
+msgstr "Clublog"
+
+#: application/controllers/Clublog.php:145
+msgid "Clublog QSL Import"
+msgstr ""
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:263
@@ -1211,26 +1240,6 @@ msgstr "LoTW"
 #: application/views/user/edit.php:713 application/views/user/edit.php:779
 msgid "eQSL"
 msgstr "eQSL"
-
-#: application/controllers/Logbook.php:672
-#: application/views/awards/dok/index.php:71
-#: application/views/awards/dxcc/index.php:77
-#: application/views/awards/jcc/index.php:68
-#: application/views/awards/wab/index.php:104
-#: application/views/awards/wae/index.php:70
-#: application/views/awards/waja/index.php:71
-#: application/views/logbookadvanced/useroptions.php:62
-#: application/views/qso/edit_ajax.php:431
-#: application/views/search/search_result_ajax.php:124
-#: application/views/station_profile/edit.php:352
-#: application/views/timeline/index.php:68
-#: application/views/update/index.php:20 application/views/user/edit.php:595
-#: application/views/user/edit.php:729
-#: application/views/view_log/partial/log_ajax.php:149
-#: application/views/view_log/qso.php:565
-#: application/views/view_log/qso.php:570
-msgid "Clublog"
-msgstr "Clublog"
 
 #: application/controllers/Logbook.php:1281
 #: application/controllers/Radio.php:46
@@ -2021,7 +2030,7 @@ msgid "No callsign provided."
 msgstr "Nije dostavljen pozivni znak."
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:482
+#: application/views/interface_assets/header.php:483
 msgid "Hardware Interfaces"
 msgstr "Hardverski interfejs"
 
@@ -2252,7 +2261,7 @@ msgstr "Napravi duplikat lokacije stanice:"
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:399
-#: application/views/interface_assets/header.php:545
+#: application/views/interface_assets/header.php:546
 msgid "Station Setup"
 msgstr "Podešavanje stanice"
 
@@ -2319,7 +2328,7 @@ msgid "Set as Active Logbook"
 msgstr "Postavi kao aktivni dnevnik"
 
 #: application/controllers/Stationsetup.php:263
-#: application/views/interface_assets/header.php:543
+#: application/views/interface_assets/header.php:544
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -2970,21 +2979,21 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Nisu pronađeni profili stanice sa odgovarajućim HRDlog akreditivima."
 
-#: application/models/Logbook_model.php:3886
+#: application/models/Logbook_model.php:3851
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Prilikom uvoza QSO-ova, pogrešan je znak %s sa %s za %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:3887
+#: application/models/Logbook_model.php:3852
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Provjeri %s za savjete oko grešaka u ADIF poljima."
 
-#: application/models/Logbook_model.php:3899
+#: application/models/Logbook_model.php:3864
 msgid "QSO on"
 msgstr "Start QSO"
 
-#: application/models/Logbook_model.php:3899
+#: application/models/Logbook_model.php:3864
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2992,62 +3001,62 @@ msgstr ""
 "Pokušali ste uvesti QSO bez bilo kojeg znaka. Ovaj QSO nije uvežen, "
 "neispravan je"
 
-#: application/models/Logbook_model.php:4198
+#: application/models/Logbook_model.php:4163
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijema QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4209
+#: application/models/Logbook_model.php:4174
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4270
+#: application/models/Logbook_model.php:4235
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Datum učitavanja veza na Clublog je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4255
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijama QSL sa LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4311
+#: application/models/Logbook_model.php:4276
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL na LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4592
+#: application/models/Logbook_model.php:4557
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikat za"
 
-#: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4618
 msgid "QSO could not be matched"
 msgstr "QSO se ne poklapa"
 
-#: application/models/Logbook_model.php:4659
+#: application/models/Logbook_model.php:4624
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrđeno preko LoTW/Clublog/eQSL/Kontest"
 
-#: application/models/Logbook_model.php:4664
+#: application/models/Logbook_model.php:4629
 msgid "confirmed by award manager"
 msgstr "potvrđeno od strane menadžera za diplome"
 
-#: application/models/Logbook_model.php:4667
+#: application/models/Logbook_model.php:4632
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrđeno unakrsnom proverom DCL podataka"
 
-#: application/models/Logbook_model.php:4670
+#: application/models/Logbook_model.php:4635
 msgid "confirmation pending"
 msgstr "čeka potvrđivanje"
 
-#: application/models/Logbook_model.php:4673
+#: application/models/Logbook_model.php:4638
 msgid "unconfirmed"
 msgstr "nepotvrđeno"
 
-#: application/models/Logbook_model.php:4676
+#: application/models/Logbook_model.php:4641
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "nepoznato"
 
-#: application/models/Logbook_model.php:5486
+#: application/models/Logbook_model.php:5451
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3717,6 +3726,7 @@ msgstr "Minimalan broj"
 #: application/views/awards/was/index.php:200
 #: application/views/awards/wwff/index.php:64
 #: application/views/callstats/index.php:129
+#: application/views/clublog/export.php:60
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
@@ -3960,9 +3970,10 @@ msgid "Maximum file upload size is "
 msgstr "Maksimalna veličina datoteke za učitavanje je "
 
 #: application/views/adif/import.php:65 application/views/adif/import.php:268
-#: application/views/adif/import.php:307 application/views/debug/index.php:193
-#: application/views/debug/index.php:210 application/views/debug/index.php:571
-#: application/views/hrdlog/export.php:25
+#: application/views/adif/import.php:307
+#: application/views/clublog/export.php:70
+#: application/views/debug/index.php:193 application/views/debug/index.php:210
+#: application/views/debug/index.php:571 application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:37
 #: application/views/qrz/export.php:75 application/views/qrz/export.php:96
@@ -4070,8 +4081,10 @@ msgstr ""
 "obzira da li se poklapaju sa izabranom stanicom - lokacijom."
 
 #: application/views/adif/import.php:205 application/views/adif/import.php:322
-#: application/views/adif/import.php:360 application/views/hrdlog/export.php:50
-#: application/views/qrz/export.php:55 application/views/webadif/export.php:55
+#: application/views/adif/import.php:360
+#: application/views/clublog/export.php:50
+#: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
+#: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Učitavanje"
 
@@ -4096,8 +4109,8 @@ msgid ""
 msgstr ""
 
 #: application/views/adif/import.php:225 application/views/adif/import.php:270
-#: application/views/cfd/index.php:15 application/views/csv/index.php:118
-#: application/views/dxatlas/index.php:118
+#: application/views/cfd/index.php:15 application/views/clublog/export.php:73
+#: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
@@ -4344,7 +4357,7 @@ msgid "Save"
 msgstr "Sačuvajte"
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:482
 msgid "API Keys"
 msgstr "API ključevi"
 
@@ -4443,6 +4456,7 @@ msgstr "Status"
 
 #: application/views/api/index.php:32
 #: application/views/club/permissions.php:226
+#: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:588
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
@@ -6560,6 +6574,87 @@ msgstr ""
 msgid "Role: %s"
 msgstr ""
 
+#: application/views/clublog/export.php:10
+#: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
+#: application/views/webadif/export.php:10
+msgid "Upload Logbook"
+msgstr "Učitavanje dnevnika"
+
+#: application/views/clublog/export.php:14
+#: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
+#: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
+#: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
+#: application/views/qrz/export.php:14
+msgid "Download QSOs"
+msgstr "Preuzimanje QSOa"
+
+#: application/views/clublog/export.php:24
+msgid "The next automatic Upload to Clublog will happen at: "
+msgstr ""
+
+#: application/views/clublog/export.php:25
+msgid ""
+"Here you can see all QSOs which have not been previously uploaded to a "
+"Clublog logbook."
+msgstr ""
+
+#: application/views/clublog/export.php:26
+msgid ""
+"You need to set a username and password in your user account. You will also "
+"need to enable upload for each station profile ."
+msgstr ""
+
+#: application/views/clublog/export.php:34
+#: application/views/hrdlog/export.php:34
+#: application/views/logbookadvanced/index.php:764
+#: application/views/logbookadvanced/useroptions.php:170
+#: application/views/qrz/export.php:39
+#: application/views/qslprint/qslprint.php:30
+#: application/views/qslprint/qsolist.php:14
+#: application/views/webadif/export.php:41
+msgid "Profile name"
+msgstr "Naziv profila"
+
+#: application/views/clublog/export.php:35
+#: application/views/hrdlog/export.php:35
+#: application/views/oqrs/showrequests.php:86
+#: application/views/qrz/export.php:40 application/views/webadif/export.php:42
+msgid "Station callsign"
+msgstr "Pozivni znak stanice"
+
+#: application/views/clublog/export.php:36
+#: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
+msgid "Edited QSOs not uploaded"
+msgstr "Uređeni QSOi nisu učitani"
+
+#: application/views/clublog/export.php:37
+#: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
+#: application/views/webadif/export.php:43
+msgid "Total QSOs not uploaded"
+msgstr "Ukupan broj neučitanih QSOa"
+
+#: application/views/clublog/export.php:38
+#: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
+#: application/views/webadif/export.php:44
+msgid "Total QSOs uploaded"
+msgstr "Ukupan broj učitanih QSOa"
+
+#: application/views/clublog/export.php:69
+msgid "The next automatic Download from Clublog-QSLs will happen at: "
+msgstr ""
+
+#: application/views/clublog/export.php:70 application/views/qrz/export.php:75
+msgid ""
+"If no startdate is given then all QSOs after last confirmation will be "
+"downloaded/updated!"
+msgstr ""
+"Ako nije zadat početni datum, sve veze nakon poslednje povrde će biti "
+"preuzete/ažurirane!"
+
+#: application/views/clublog/export.php:78
+msgid "Download from Clublog"
+msgstr ""
+
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
 msgid "Hamsat - Satellite Rovers"
@@ -6694,7 +6789,7 @@ msgstr "Naziv ADIF"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:523
+#: application/views/interface_assets/header.php:524
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -8130,13 +8225,6 @@ msgstr ""
 "\n"
 "Wavelog"
 
-#: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
-#: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
-#: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
-#: application/views/qrz/export.php:14
-msgid "Download QSOs"
-msgstr "Preuzimanje QSOa"
-
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
@@ -8343,11 +8431,6 @@ msgstr ""
 msgid "your profile"
 msgstr "vaš profil"
 
-#: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
-#: application/views/webadif/export.php:10
-msgid "Upload Logbook"
-msgstr "Učitavanje dnevnika"
-
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
@@ -8378,36 +8461,6 @@ msgstr "Kod možete zahtevati na %s"
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
 msgstr "Ovo može potrajati jer se učitavanje QSOa vrši sekvencijalno."
-
-#: application/views/hrdlog/export.php:34
-#: application/views/logbookadvanced/index.php:764
-#: application/views/logbookadvanced/useroptions.php:170
-#: application/views/qrz/export.php:39
-#: application/views/qslprint/qslprint.php:30
-#: application/views/qslprint/qsolist.php:14
-#: application/views/webadif/export.php:41
-msgid "Profile name"
-msgstr "Naziv profila"
-
-#: application/views/hrdlog/export.php:35
-#: application/views/oqrs/showrequests.php:86
-#: application/views/qrz/export.php:40 application/views/webadif/export.php:42
-msgid "Station callsign"
-msgstr "Pozivni znak stanice"
-
-#: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
-msgid "Edited QSOs not uploaded"
-msgstr "Uređeni QSOi nisu učitani"
-
-#: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
-#: application/views/webadif/export.php:43
-msgid "Total QSOs not uploaded"
-msgstr "Ukupan broj neučitanih QSOa"
-
-#: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
-#: application/views/webadif/export.php:44
-msgid "Total QSOs uploaded"
-msgstr "Ukupan broj učitanih QSOa"
 
 #: application/views/hrdlog/export.php:60
 msgid ""
@@ -8510,7 +8563,7 @@ msgid "deprecated"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:138
-#: application/views/interface_assets/header.php:484
+#: application/views/interface_assets/header.php:485
 #: application/views/options/sidebar.php:12
 msgid "Version Info"
 msgstr "Informacija o verziji"
@@ -8904,33 +8957,37 @@ msgstr "eQSL izvoz/uvoz"
 msgid "HRDLog Logbook"
 msgstr "HRDLog Logbook"
 
-#: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:475
+msgid "Clublog Import / Export"
+msgstr ""
+
+#: application/views/interface_assets/header.php:486
 msgid "Help"
 msgstr "Pomoć"
 
-#: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:487
 msgid "Forum"
 msgstr "Forum"
 
-#: application/views/interface_assets/header.php:490
+#: application/views/interface_assets/header.php:491
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr ""
 
-#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:492
 #, php-format
 msgid "Switch back to %s"
 msgstr ""
 
-#: application/views/interface_assets/header.php:495
+#: application/views/interface_assets/header.php:496
 msgid "Logout"
 msgstr "Odjavite se"
 
-#: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:504
 msgid "Select a Location"
 msgstr "Izaberite lokaciju"
 
-#: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:583
 msgid "Extras"
 msgstr "Dodaci"
 
@@ -10843,14 +10900,6 @@ msgstr ""
 #: application/views/qrz/export.php:74
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
 msgstr ""
-
-#: application/views/qrz/export.php:75
-msgid ""
-"If no startdate is given then all QSOs after last confirmation will be "
-"downloaded/updated!"
-msgstr ""
-"Ako nije zadat početni datum, sve veze nakon poslednje povrde će biti "
-"preuzete/ažurirane!"
 
 #: application/views/qrz/export.php:83
 msgid "Download from QRZ Logbook"
