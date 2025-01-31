@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-31 08:30+0000\n"
-"PO-Revision-Date: 2025-01-31 16:05+0000\n"
-"Last-Translator: Christian Egger <zone11@mac.com>\n"
+"PO-Revision-Date: 2025-01-31 17:23+0000\n"
+"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
 "Language: fr_FR\n"
@@ -731,7 +731,7 @@ msgstr "Clublog"
 
 #: application/controllers/Clublog.php:145
 msgid "Clublog QSL Import"
-msgstr ""
+msgstr "Importation QSL Clublog"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:263
@@ -4283,29 +4283,35 @@ msgstr ""
 
 #: application/views/adif/import.php:343
 msgid "Contest Name, only if Contest ID in CBR is different"
-msgstr ""
+msgstr "Nom du concours, uniquement si l'ID du concours dans CBR est différent"
 
 #: application/views/adif/import.php:343
 msgid "Optional"
-msgstr ""
+msgstr "Optionnel"
 
 #: application/views/adif/import.php:353
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
+"Un numéro de série fait TOUJOURS partie de l'échange pour les deux parties "
+"dans ce concours."
 
 #: application/views/adif/import.php:355
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
+"Si vous ou votre partenaire n'échangez que parfois des numéros de série, "
+"veuillez laisser cette case non cochée."
 
 #: application/views/adif/import.php:356
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
 msgstr ""
+"Si décoché, cela effacera le numéro de série par défaut que (par exemple) "
+"N1MM+ produit. Si coché, cela corrigera le numéro de série si nécessaire."
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
@@ -4340,7 +4346,7 @@ msgstr "Les doublons ont été ignorés."
 
 #: application/views/adif/import_success.php:30
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr ""
+msgstr "Vous avez importé au moins 1 QSO contenant un identifiant de concours."
 
 #: application/views/adif/import_success.php:31
 msgid ""
@@ -4348,10 +4354,16 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
+"Parfois, selon votre logiciel de log concours, vos échanges ne seront pas "
+"importés correctement depuis l'ADIF de ce logiciel. Si vous souhaitez "
+"corriger cela, passez à l'onglet d'importation CBR de la page d'importation "
+"ADIF."
 
 #: application/views/adif/import_success.php:32
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
+"Nous avons trouvé les nombres de QSOs suivants pour les identifiants de "
+"concours suivants :"
 
 #: application/views/adif/import_success.php:44
 msgid "Import details / possible problems"
@@ -4473,6 +4485,8 @@ msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"Sur les stations de club, les clés API sont personnelles et non partagées. "
+"Les utilisateurs des stations de club ne peuvent voir que leurs propres clés."
 
 #: application/views/api/index.php:24
 msgid "API Key"
@@ -4490,7 +4504,7 @@ msgstr "Dernière utilisation"
 
 #: application/views/api/index.php:28
 msgid "Created By"
-msgstr ""
+msgstr "Créé par"
 
 #: application/views/api/index.php:30
 msgid "Permissions"
@@ -4532,7 +4546,7 @@ msgstr "Test"
 #: application/views/api/index.php:73
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "Est-vous sûr de vouloir supprimer la clé API %s ?"
 
 #: application/views/api/index.php:86
 msgid "You have no API Keys."
@@ -5746,7 +5760,7 @@ msgstr ""
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
-msgstr ""
+msgstr "Nom WAE"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
@@ -5829,11 +5843,11 @@ msgstr ""
 
 #: application/views/awards/was/index.php:114
 msgid "Show WAS Map"
-msgstr ""
+msgstr "Afficher la carte WAS"
 
 #: application/views/awards/wwff/index.php:7
 msgid "WWFF - World Wide Flora and Fauna Award"
-msgstr ""
+msgstr "WWFF - Diplome Mondial de la Flore et de la Faune"
 
 #: application/views/awards/wwff/index.php:8
 msgid ""
@@ -5841,6 +5855,9 @@ msgid ""
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
+"WWFF, World Wide Flora and Fauna en radioamateur, encourage les opérateurs "
+"radioamateurs licenciés à quitter leur station et à opérer en portable dans "
+"les zones de flore et faune protégées (PFF) dans le monde entier."
 
 #: application/views/awards/wwff/index.php:9
 msgid ""
@@ -5848,6 +5865,10 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
+"Plus de 26 000 zones de flore et faune protégées (PFF) dans le monde sont "
+"déjà enregistrées dans le répertoire WWFF. Les chasseurs et les activateurs "
+"peuvent postuler pour des récompenses colorées, tant au niveau mondial que "
+"national."
 
 #: application/views/awards/wwff/index.php:31
 #: application/views/qso/index.php:231 application/views/qso/index.php:523
@@ -5862,11 +5883,13 @@ msgstr "Référence WWFF"
 msgid ""
 "The backup of your log completed successfully. The output can be found at"
 msgstr ""
+"La sauvegarde de votre journal s'est terminée avec succès. La sortie se "
+"trouve à"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr ""
+msgstr "Vous pourrais automatiser ce processus en en faisant un cronjob."
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -5874,30 +5897,39 @@ msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
+"Une erreur s'est produite lors du processus de sauvegarde. Vérifiez que le "
+"dossier de sauvegarde existe et qu'il est accessible en écriture par l'"
+"utilisateur/groupe de votre serveur web."
 
 #: application/views/backup/main.php:17
 msgid ""
 "Some of the data stored in Wavelog can be exported so that you can keep a "
 "backup copy elsewhere."
 msgstr ""
+"Certaines données stockées dans Wavelog peuvent être exportées afin que vous "
+"puissiez conserver une copie de sauvegarde ailleurs."
 
 #: application/views/backup/main.php:18
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
 msgstr ""
+"Il est recommandé de créer des sauvegardes régulièrement pour protéger vos "
+"données."
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
-msgstr ""
+msgstr "Sauvegarder les données ADIF"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
-msgstr ""
+msgstr "Notes de sauvegarde"
 
 #: application/views/backup/notes_view.php:7
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
+"La sauvegarde de vos notes a été effectuée avec succès. Le résultat se "
+"trouve à"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:53
 msgid "BandMap"
@@ -5905,7 +5937,7 @@ msgstr ""
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:56
 msgid "BandList"
-msgstr ""
+msgstr "Liste des bandes"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:66
 #: application/views/contesting/index.php:19
@@ -5917,34 +5949,36 @@ msgstr "Aucun"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:80
 msgid "Spots de"
-msgstr ""
+msgstr "Spots de"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
 msgstr ""
+"La fenêtre contextuelle a été bloquée ! Veuillez autoriser les fenêtres "
+"contextuelles pour ce site de manière permanente."
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Cliquez sur pour préparer la journalisation."
 
 #: application/views/bandmap/list.php:73
 msgid "DXCC-Status"
-msgstr ""
+msgstr "Statut DXCC"
 
 #: application/views/bandmap/list.php:78
 msgid "Not Confirmed"
-msgstr ""
+msgstr "Non confirmé"
 
 #: application/views/bandmap/list.php:117
 msgid "Spotter"
-msgstr ""
+msgstr "Spotter"
 
 #: application/views/bandmap/list.php:118
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 #: application/views/bandmap/list.php:119
 msgid "Last Worked"
@@ -13996,7 +14030,7 @@ msgstr "Soumettre la demande"
 
 #: application/views/widgets/qsos.php:32
 msgid "Rcvd"
-msgstr ""
+msgstr "Reçu"
 
 #~ msgid "Custom Statistics"
 #~ msgstr "Statistiques personnalisées"
