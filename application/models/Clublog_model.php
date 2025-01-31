@@ -70,6 +70,7 @@ class Clublog_model extends CI_Model
 
 							// send a file
 							curl_setopt($request, CURLOPT_POST, true);
+							curl_setopt($request, CURLOPT_TIMEOUT, 10);
 							curl_setopt(
 								$request,
 								CURLOPT_POSTFIELDS,
@@ -86,7 +87,7 @@ class Clublog_model extends CI_Model
 							curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
 							$response = curl_exec($request);
 							$info = curl_getinfo($request);
-
+							$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
 							if (curl_errno($request)) {
 								$return =  curl_error($request);
 							}
@@ -94,28 +95,33 @@ class Clublog_model extends CI_Model
 
 
 							// If Clublog Accepts mark the QSOs
-							if (preg_match('/\baccepted\b/', $response)) {
+							if (($httpcode == 200) || (preg_match('/\baccepted\b/', $response))) {
 								$return =  "QSOs uploaded and Logbook QSOs marked as sent to Clublog.";
 								$this->mark_qsos_sent($station_row->station_id);
 								$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
-								log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent.');
-							} else if (preg_match('/checksum duplicate/', $response)) {
+								log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
+							} else if (preg_match('/checksum duplicate/', $response)) {	// Be safe, if Michael rolls back to 403 on duplicate
 								$return =  "QSOs uploaded (as duplicate!) and Logbook QSOs marked as sent to Clublog";
 								$this->mark_qsos_sent($station_row->station_id);
 								$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
-								log_message('info', 'Clublog DUPLICATE upload for ' . $station_row->station_callsign . ' successfully sent.');
+								log_message('info', 'Clublog DUPLICATE upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
 							} else {
-								$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response;
-								log_message('error', 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response);
+								$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
+								log_message('error', $return);
 								if (substr($response,0,13) == 'Upload denied') {	// Deactivate Upload for Station if Clublog rejects it due to non-configured Call (prevent being blacklisted at Clublog)
 									log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to non-configured Call (prevent being blacklisted at Clublog.');
 									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
 									$this->db->query($sql,$station_row->station_id);
-								}
-								if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
+								} else if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
 									log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to wrong credentials (prevent being blacklisted at Clublog.');
 									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
 									$this->db->query($sql,$station_row->station_id);
+								} else if ($httpcode == 403) {
+									log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to 403 (prevent being blacklisted at Clublog.');
+									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+									$this->db->query($sql,$station_row->station_id);
+								} else {
+									log_message('error', 'Some uncaught exception for station ' . $station_row->station_callsign);
 								}
 							}
 
@@ -123,7 +129,6 @@ class Clublog_model extends CI_Model
 							unlink('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
 						}
 					} else {
-
 						$return =  "Nothing awaiting upload to clublog for " . $station_row->station_callsign;
 						log_message('info', 'Nothing awaiting upload to clublog for ' . $station_row->station_callsign);
 					}
@@ -162,6 +167,7 @@ class Clublog_model extends CI_Model
 
 				// recieve a file
 				curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($request, CURLOPT_TIMEOUT, 10);
 				$response = curl_exec($request);
 				$info = curl_getinfo($request);
 				curl_close($request);
@@ -368,6 +374,7 @@ class Clublog_model extends CI_Model
 		$request = curl_init('https://clublog.org/realtime.php');
 
 		curl_setopt($request, CURLOPT_POST, true);
+		curl_setopt($request, CURLOPT_TIMEOUT, 10);
 		curl_setopt(
 			$request,
 			CURLOPT_POSTFIELDS,
@@ -384,6 +391,7 @@ class Clublog_model extends CI_Model
 		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($request);
 		$info = curl_getinfo($request);
+		$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
 		curl_close($request);
 
 		if (preg_match('/\bOK\b/', $response)) {
@@ -394,6 +402,8 @@ class Clublog_model extends CI_Model
 			$this->db->query($sql,array($cl_username,$cl_password));
 			$returner['status'] = $response;
 		} else {
+			log_message("Error","Uncaught exception at ClubLog-RT for ".$cl_username." / Details: ".$httpcode." : ".$response);
+			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
 			$returner['status'] = $response;
 		}
 		return ($returner);
