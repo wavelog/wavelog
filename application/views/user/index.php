@@ -76,14 +76,16 @@
 										<span class="badge text-bg-success"><?= __("Locations"); ?>: <?php echo $row->stationcount; ?></span>
 										<br>
 										<span class="badge text-bg-info"><?= __("Logbooks"); ?>: <?php echo $row->logbookcount; ?></span>
-										<?php if ($row->qsocount > 0) { ?>
-											<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Last QSO:"); ?><br><?php echo $row->lastqso; ?>">
-												<?php echo $row->qsocount; ?> <?= __("QSO"); ?>
-											</span>
-										<?php } else { ?>
-											<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("No QSOs in Log"); ?>">
-												<?php echo $row->qsocount; ?> <?= __("QSO"); ?>
-											</span>
+										<?php if (!($this->config->item('disable_user_stats') ?? false)) {
+											if ($row->qsocount > 0) { ?>
+												<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Last QSO:"); ?><br><?php echo $row->lastqso; ?>">
+													<?php echo $row->qsocount; ?> <?= __("QSO"); ?>
+												</span>
+											<?php } else { ?>
+												<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("No QSOs in Log"); ?>">
+													<?php echo $row->qsocount; ?> <?= __("QSO"); ?>
+												</span>
+											<?php } ?>
 										<?php } ?>
 									<?php } ?>
 								</td>
@@ -150,7 +152,9 @@
 								<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Username"); ?></th>
 								<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Callsign"); ?></th>
 								<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("E-mail"); ?></th>
-								<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Last Operator"); ?></th>
+								<?php if (!($this->config->item('disable_user_stats') ?? false)) { ?>
+									<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Last Operator"); ?></th>
+								<?php } ?>
 								<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Last seen"); ?></th>
 								<th></th>
 								<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Actions"); ?></th>
@@ -164,7 +168,9 @@
 								<td style="text-align: left; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>"><?php echo $row->user_name; ?></a></td>
 								<td style="text-align: left; vertical-align: middle;"><?php echo str_replace("0", "&Oslash;", $row->user_callsign); ?></td>
 								<td style="text-align: left; vertical-align: middle;"><a href="mailto:<?php echo $row->user_email; ?>"><?php echo $row->user_email; ?></a></td>
-								<td style="text-align: left; vertical-align: middle;"><?php echo $row->lastoperator; ?></td>
+								<?php if (!($this->config->item('disable_user_stats') ?? false)) { ?>
+									<td style="text-align: left; vertical-align: middle;"><?php echo $row->lastoperator; ?></td>
+								<?php } ?>
 								<td style="text-align: left; vertical-align: middle;"><?php
 									if ($row->last_seen != null) { // if the user never logged in before the value is null. We can show "never" then.
 										$lastSeenTimestamp = strtotime($row->last_seen);
@@ -182,10 +188,12 @@
 									<span class="badge text-bg-success"><?= __("Locations"); ?>: <?php echo $row->stationcount; ?></span>
 									<br>
 									<span class="badge text-bg-info"><?= __("Logbooks"); ?>: <?php echo $row->logbookcount; ?></span>
-									<?php if ($row->qsocount > 0) { ?>
-										<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Last QSO:"); ?><br><?php echo $row->lastqso; ?>"><?php echo $row->qsocount; ?> <?= __("QSO"); ?></span>
-									<?php } else { ?>
-										<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("No QSOs in Log"); ?>"><?php echo $row->qsocount; ?> <?= __("QSO"); ?></span>
+									<?php if (!($this->config->item('disable_user_stats') ?? false)) {
+										if ($row->qsocount > 0) { ?>
+											<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Last QSO:"); ?><br><?php echo $row->lastqso; ?>"><?php echo $row->qsocount; ?> <?= __("QSO"); ?></span>
+										<?php } else { ?>
+											<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("No QSOs in Log"); ?>"><?php echo $row->qsocount; ?> <?= __("QSO"); ?></span>
+										<?php } ?>
 									<?php } ?>
 								</td>
 								<!-- ### Actions ### -->
