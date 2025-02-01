@@ -6,14 +6,14 @@
 # Byt3 <falko@205er.de>, 2024.
 # "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024, 2025.
-# F4JSU <f4jsu.radio@gmail.com>, 2024.
+# F4JSU <f4jsu.radio@gmail.com>, 2024, 2025.
 # Christian Egger <zone11@mac.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-31 08:30+0000\n"
-"PO-Revision-Date: 2025-01-31 17:23+0000\n"
-"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
+"PO-Revision-Date: 2025-02-01 10:12+0000\n"
+"Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
 "Language: fr_FR\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -5840,6 +5840,8 @@ msgstr ""
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
 msgstr ""
+"Toutes les informations et les règles relatives à l'ARRL WAS Award peuvent "
+"être consultées à l'adresse suivante : %s."
 
 #: application/views/awards/was/index.php:114
 msgid "Show WAS Map"
@@ -5986,7 +5988,7 @@ msgstr ""
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr ""
+msgstr "Nom de la bande (ex.: 20m)"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:61
@@ -6000,7 +6002,7 @@ msgstr ""
 #: application/views/bands/create.php:34 application/views/bands/edit.php:16
 #: application/views/bands/index.php:62
 msgid "SSB QRG"
-msgstr ""
+msgstr "SSB QRG"
 
 #: application/views/bands/create.php:36 application/views/bands/edit.php:18
 msgid "Frequency for SSB QRG in band (must be in Hz)"
@@ -6009,7 +6011,7 @@ msgstr ""
 #: application/views/bands/create.php:39 application/views/bands/edit.php:21
 #: application/views/bands/index.php:63
 msgid "DATA QRG"
-msgstr ""
+msgstr "Données QRG"
 
 #: application/views/bands/create.php:41 application/views/bands/edit.php:23
 msgid "Frequency for DATA QRG in band (must be in Hz)"
@@ -6017,8 +6019,9 @@ msgstr ""
 
 #: application/views/bands/create.php:44 application/views/bands/edit.php:26
 #: application/views/bands/index.php:64
+#, fuzzy
 msgid "CW QRG"
-msgstr ""
+msgstr "QRG CW"
 
 #: application/views/bands/create.php:46 application/views/bands/edit.php:28
 msgid "Frequency for CW QRG in band (must be in Hz)"
@@ -6056,7 +6059,7 @@ msgstr ""
 #: application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:248
 msgid "WAS"
-msgstr ""
+msgstr "WAS"
 
 #: application/views/bands/index.php:65
 msgid "QRG Unit"
@@ -6064,23 +6067,23 @@ msgstr ""
 
 #: application/views/bands/index.php:98
 msgid "Hz"
-msgstr ""
+msgstr "Hz"
 
 #: application/views/bands/index.php:99
 msgid "kHz"
-msgstr ""
+msgstr "kHz"
 
 #: application/views/bands/index.php:100
 msgid "MHz"
-msgstr ""
+msgstr "MHz"
 
 #: application/views/bands/index.php:101
 msgid "GHz"
-msgstr ""
+msgstr "GHz"
 
 #: application/views/bands/index.php:151 application/views/bands/index.php:157
 msgid "Create a band"
-msgstr ""
+msgstr "Créer une bande"
 
 #: application/views/bands/index.php:152
 #: application/views/club/permissions.php:142
@@ -6098,15 +6101,17 @@ msgstr "Fermer"
 
 #: application/views/bands/index.php:153
 msgid "Warning! Are you sure you want to delete the following band: "
-msgstr ""
+msgstr "Attention ! Êtes-vous sûr de vouloir supprimer la bande suivante : "
 
 #: application/views/bands/index.php:154
+#, fuzzy
 msgid "Warning! Are you sure you want to activate all bands?"
-msgstr ""
+msgstr "Attention ! Es-tu sûr de vouloir activer toutes les bandes ?"
 
 #: application/views/bands/index.php:155
+#, fuzzy
 msgid "Warning! Are you sure you want to deactivate all bands?"
-msgstr ""
+msgstr "Attention ! Es-tu sûr de vouloir désactiver toutes les bandes ?"
 
 #: application/views/bands/index.php:158
 #: application/views/contesting/add.php:77 application/views/mode/index.php:89
@@ -6119,8 +6124,9 @@ msgid "Deactivate All"
 msgstr "Désactiver tout"
 
 #: application/views/cabrillo/cbr_success.php:12
+#, fuzzy
 msgid "Results of CBR Contest Data Update"
-msgstr ""
+msgstr "Résultats du concours CBR Mise à jour"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
@@ -6128,12 +6134,13 @@ msgid ""
 msgstr ""
 
 #: application/views/cabrillo/cbr_success.php:19
+#, fuzzy
 msgid "No QSOs were updated by your Cabrillo file."
-msgstr ""
+msgstr "Aucun QSO n'a été mis à jour par votre fichier Cabrillo."
 
 #: application/views/cabrillo/cbr_success.php:25
 msgid "CBR errors"
-msgstr ""
+msgstr "Erreurs CBR"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
@@ -6173,7 +6180,7 @@ msgstr "Sélectionner le lieu de la Station :"
 #: application/views/cabrillo/index.php:44
 #: application/views/reg1test/index.php:53
 msgid "Club"
-msgstr ""
+msgstr "Club"
 
 #: application/views/cabrillo/index.php:48
 msgid ""
@@ -6181,6 +6188,10 @@ msgid ""
 "For foreign stations LOCATION must be 'DX'. This information is required for "
 "IARU-HF and for all ARRL and CQ contests."
 msgstr ""
+"Pour les stations des États-Unis et du Canada, la LOCALISATION doit être "
+"l'abréviation de la section ARRL. Pour les stations étrangères, la "
+"LOCALISATION doit être 'DX'. Cette information est requise pour l'IARU-HF et "
+"pour tous les concours ARRL et CQ."
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
@@ -6237,8 +6248,9 @@ msgid "Category Transmitter"
 msgstr "Catégorie - Emetteur"
 
 #: application/views/cabrillo/index.php:143
+#, fuzzy
 msgid "Category Time"
-msgstr ""
+msgstr "Catégorie Temps"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -6246,7 +6258,7 @@ msgstr ""
 #: application/views/cabrillo/index.php:148
 #, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d Heures"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
@@ -6286,7 +6298,7 @@ msgstr "Adresse - Pays"
 
 #: application/views/cabrillo/index.php:193
 msgid "Certificate"
-msgstr ""
+msgstr "Certificat"
 
 #: application/views/cabrillo/index.php:193
 msgid ""
@@ -6417,12 +6429,14 @@ msgstr "Aucun concours trouvé dans votre journal de trafic."
 
 #: application/views/callstats/index.php:70
 #: application/views/gridmap/index.php:43
+#, fuzzy
 msgid "All except SAT"
-msgstr ""
+msgstr "Tous sauf le SAT."
 
 #: application/views/callstats/index.php:149
+#, fuzzy
 msgid "#QSOs"
-msgstr ""
+msgstr "#QSOs"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -6434,9 +6448,9 @@ msgid "Switch to a Clubstation"
 msgstr ""
 
 #: application/views/club/clubswitch_modal.php:9
-#, php-format
+#, fuzzy, php-format
 msgid "Are you sure you want to switch to %s?"
-msgstr ""
+msgstr "Es-tu sûr de vouloir passer à %s ?"
 
 #: application/views/club/clubswitch_modal.php:14
 #: application/views/user/modals/stop_impersonate_modal.php:13
@@ -6455,13 +6469,13 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #: application/views/club/permissions.php:3
-#, php-format
+#, fuzzy, php-format
 msgid "Club Permissions for %s"
-msgstr ""
+msgstr "Autorisations du club pour %s"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
-msgstr ""
+msgstr "Retour en arrière"
 
 #: application/views/club/permissions.php:13
 msgid ""
@@ -9881,7 +9895,7 @@ msgstr "Envoyer un fichier"
 
 #: application/views/lotw/import.php:24
 msgid "Download Report"
-msgstr ""
+msgstr "Télécharger le rapport"
 
 #: application/views/lotw/import.php:24
 #, php-format
