@@ -28,10 +28,6 @@ jobs:
       uses: docker/metadata-action@v5
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-    - name: Enable QEMU for multi-arch builds
-      run: |
-        docker run --rm --privileged tonistiigi/binfmt --install all
-        ls /proc/sys/fs/binfmt_misc/
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
     - name: Set up Docker Buildx
