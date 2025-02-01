@@ -42,7 +42,7 @@ RUN mkdir ./application/config/docker; \
 
 # Create the cron job
 RUN touch /etc/cron.d/wavelog; \
-    echo "* * * * * php /var/www/html/index.php cron run &>/dev/null" >> /etc/cron.d/wavelog; \
+    echo "* * * * * curl --silent http://localhost/index.php/cron/run &>/dev/null" >> /etc/cron.d/wavelog; \
     chmod 0644 /etc/cron.d/wavelog;\
     crontab /etc/cron.d/wavelog;\
     mkdir -p /var/log/cron; \
