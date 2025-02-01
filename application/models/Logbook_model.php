@@ -4694,6 +4694,7 @@ class Logbook_model extends CI_Model {
      */
 	public function check_dxcc_table($call, $date) {
 
+		$date = date("Y-m-d", strtotime($date));
 		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
@@ -4785,6 +4786,7 @@ class Logbook_model extends CI_Model {
 
 	public function dxcc_lookup($call, $date) {
 
+		$date = date("Y-m-d", strtotime($date));
 		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`,`long`,`lat`')
