@@ -35,6 +35,17 @@ class User_Model extends CI_Model {
 		return $r;
 	}
 
+	// FUNCTION: object get_by_callsign($callsign)
+	// Retrieve a user by call sign
+	function get_by_callsign($callsign) {
+		$clean_callsign = $this->security->xss_clean($callsign);
+		$clean_callsign = strtoupper($clean_callsign);
+
+		$this->db->where('user_callsign', $clean_callsign);
+		$r = $this->db->get($this->config->item('auth_table'));
+		return $r;
+	}
+
 	// FUNCTION: object get_all_lotw_users
 	// Returns all users with lotw details
 	function get_all_lotw_users() {
