@@ -76,8 +76,11 @@ function updateRow(qso) {
 	if (user_options.qrz.show == "true"){
 		cells.eq(c++).html(qso.qrz);
 	}
-	if (user_options.qslmsg.show == "true"){
+	if (user_options.qslmsgs.show == "true"){
 		cells.eq(c++).text(qso.qslMessage);
+	}
+	if (user_options.qslmsgr.show == "true"){
+		cells.eq(c++).text(qso.qslMessageR);
 	}
 	if (user_options.dxcc.show == "true"){
 		cells.eq(c++).html(qso.dxcc);
@@ -133,6 +136,12 @@ function updateRow(qso) {
 	if (user_options.distance.show == "true"){
 		cells.eq(c++).text(qso.distance);
 	}
+	if (user_options.antennaazimuth.show == "true"){
+		cells.eq(c++).text(qso.antennaazimuth);
+	}
+	if (user_options.antennaelevation.show == "true"){
+		cells.eq(c++).text(qso.antennaelevation);
+	}
 	if (user_options.profilename.show == "true"){
 		cells.eq(c++).text(qso.profilename);
 	}
@@ -163,11 +172,23 @@ function loadQSOTable(rows) {
 				url: getDataTablesLanguageUrl(),
 			},
 			"columnDefs": [
-            {
-                "targets": $(".distance-column-sort").index(),
-                "type": "distance", // use the custom sort type from the previous example
-            }
-        ]
+				{
+					"targets": $(".distance-column-sort").index(),
+					"type": "numbersort", // use the custom sort type from the previous example
+				},
+				{
+					"targets": $(".antennaazimuth-column-sort").index(),
+					"type": "numbersort",
+				},
+				{
+					"targets": $(".antennaelevation-column-sort").index(),
+					"type": "numbersort",
+				},
+				{
+					"targets": $(".stationpower-column-sort").index(),
+					"type": "numbersort",
+				},
+			]
 			// colReorder: {
 			// 	order: [0, 2,1,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18]
 			// 	// order: [0, customsortorder]
@@ -245,8 +266,11 @@ function loadQSOTable(rows) {
 		if (user_options.qrz.show == "true"){
 			data.push(qso.qrz);
 		}
-		if (user_options.qslmsg.show == "true"){
+		if (user_options.qslmsgs.show == "true"){
 			data.push(qso.qslMessage);
+		}
+		if (user_options.qslmsgr.show == "true"){
+			data.push(qso.qslMessageR);
 		}
 		if (user_options.dxcc.show == "true"){
 			data.push(qso.dxcc+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
@@ -310,6 +334,12 @@ function loadQSOTable(rows) {
 		if (user_options.distance.show == "true"){
 			data.push(qso.distance);
 		}
+		if (user_options.antennaazimuth.show == "true"){
+			data.push(qso.antennaazimuth);
+		}
+		if (user_options.antennaelevation.show == "true"){
+			data.push(qso.antennaelevation);
+		}
 		if (user_options.profilename.show == "true"){
 			data.push(qso.profilename);
 		}
@@ -325,7 +355,7 @@ function loadQSOTable(rows) {
 	$('[data-bs-toggle="tooltip"]').tooltip();
 }
 
-$.fn.dataTable.ext.type.order['distance-pre'] = function(data) {
+$.fn.dataTable.ext.type.order['numbersort-pre'] = function(data) {
     var num = parseFloat(data);
     return isNaN(num) ? 0 : num;
 };
@@ -409,6 +439,20 @@ $(document).ready(function () {
 		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'width':'100%', 'height':'37px'
 	})
 
+	/*Pull from localStorage to set form input value*/
+	if (localStorage.hasOwnProperty(`user_${user_id}_qsoresults`)) {
+		document.getElementById('qsoResults').value = localStorage.getItem(`user_${user_id}_qsoresults`);
+	}
+
+	if (localStorage.hasOwnProperty(`user_${user_id}_selectedlocations`)) {
+		const selectedLocations = localStorage.getItem(`user_${user_id}_selectedlocations`);
+		const locationsArray = selectedLocations ? selectedLocations.split(',') : [];
+		// First, deselect all options
+		$('#de').multiselect('deselectAll', false);
+
+		// Then, select the stored locations
+		$('#de').multiselect('select', locationsArray);
+	}
 
 	$('#searchForm').submit(function (e) {
 		let container = L.DomUtil.get('advancedmap');
@@ -435,6 +479,9 @@ $(document).ready(function () {
 		$("#qsoList").attr("Hidden", false);
 		$("#qsoList_wrapper").attr("Hidden", false);
 		$("#qsoList_info").attr("Hidden", false);
+
+		localStorage.setItem(`user_${user_id}_qsoresults`, this.qsoresults.value);
+		localStorage.setItem(`user_${user_id}_selectedlocations`, $('#de').val());
 
 		$('#searchButton').prop("disabled", true).addClass("running");
 		$.ajax({
@@ -477,6 +524,7 @@ $(document).ready(function () {
 				contest: this.contest.value,
 				invalid: this.invalid.value,
 				continent: this.continent.value,
+				comment: this.comment.value,
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -783,9 +831,18 @@ $(document).ready(function () {
 						action: function (dialogItself) {
 							$('#optionButton').prop("disabled", false);
 							$('#closeButton').prop("disabled", true);
-							saveOptions();
-							dialogItself.close();
-							location.reload();
+							saveOptions().then(() => {
+								dialogItself.close();
+								location.reload();
+							}).catch(error => {
+								BootstrapDialog.alert({
+									title: 'Error',
+									message: 'An error occurred while saving options: ' + error,
+									type: BootstrapDialog.TYPE_DANGER, // Sets the dialog style to "danger"
+									closable: true,
+									buttonLabel: 'Close'
+								});
+							});
 						}
 					},
 					{
@@ -1233,58 +1290,65 @@ function printlabel() {
 function saveOptions() {
 	$('#saveButton').prop("disabled", true);
 	$('#closeButton').prop("disabled", true);
-	$.ajax({
-		url: base_url + 'index.php/logbookadvanced/setUserOptions',
-		type: 'post',
-		data: {
-			datetime: $('input[name="datetime"]').is(':checked') ? true : false,
-			de: $('input[name="de"]').is(':checked') ? true : false,
-			dx: $('input[name="dx"]').is(':checked') ? true : false,
-			mode: $('input[name="mode"]').is(':checked') ? true : false,
-			rsts: $('input[name="rsts"]').is(':checked') ? true : false,
-			rstr: $('input[name="rstr"]').is(':checked') ? true : false,
-			band: $('input[name="band"]').is(':checked') ? true : false,
-			myrefs: $('input[name="myrefs"]').is(':checked') ? true : false,
-			name: $('input[name="name"]').is(':checked') ? true : false,
-			qslvia: $('input[name="qslvia"]').is(':checked') ? true : false,
-			qsl: $('input[name="qsl"]').is(':checked') ? true : false,
-			clublog: $('input[name="clublog"]').is(':checked') ? true : false,
-			lotw: $('input[name="lotw"]').is(':checked') ? true : false,
-			eqsl: $('input[name="eqsl"]').is(':checked') ? true : false,
-			qslmsg: $('input[name="qslmsg"]').is(':checked') ? true : false,
-			dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
-			state: $('input[name="state"]').is(':checked') ? true : false,
-			cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
-			ituzone: $('input[name="ituzone"]').is(':checked') ? true : false,
-			iota: $('input[name="iota"]').is(':checked') ? true : false,
-			pota: $('input[name="pota"]').is(':checked') ? true : false,
-			operator: $('input[name="operator"]').is(':checked') ? true : false,
-			comment: $('input[name="comment"]').is(':checked') ? true : false,
-			propagation: $('input[name="propagation"]').is(':checked') ? true : false,
-			contest: $('input[name="contest"]').is(':checked') ? true : false,
-			gridsquare: $('input[name="gridsquare"]').is(':checked') ? true : false,
-			sota: $('input[name="sota"]').is(':checked') ? true : false,
-			dok: $('input[name="dok"]').is(':checked') ? true : false,
-			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
-			sig: $('input[name="sig"]').is(':checked') ? true : false,
-			region: $('input[name="region"]').is(':checked') ? true : false,
-			continent: $('input[name="continent"]').is(':checked') ? true : false,
-			distance: $('input[name="distance"]').is(':checked') ? true : false,
-			qrz: $('input[name="qrz"]').is(':checked') ? true : false,
-			profilename: $('input[name="profilename"]').is(':checked') ? true : false,
-			stationpower: $('input[name="stationpower"]').is(':checked') ? true : false,
-			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
-			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
-			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
-			ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
-			nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
-		},
-		success: function(data) {
-			$('#saveButton').prop("disabled", false);
-			$('#closeButton').prop("disabled", false);
-		},
-		error: function() {
-			$('#saveButton').prop("disabled", false);
-		},
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/setUserOptions',
+			type: 'post',
+			data: {
+				datetime: $('input[name="datetime"]').is(':checked') ? true : false,
+				de: $('input[name="de"]').is(':checked') ? true : false,
+				dx: $('input[name="dx"]').is(':checked') ? true : false,
+				mode: $('input[name="mode"]').is(':checked') ? true : false,
+				rsts: $('input[name="rsts"]').is(':checked') ? true : false,
+				rstr: $('input[name="rstr"]').is(':checked') ? true : false,
+				band: $('input[name="band"]').is(':checked') ? true : false,
+				myrefs: $('input[name="myrefs"]').is(':checked') ? true : false,
+				name: $('input[name="name"]').is(':checked') ? true : false,
+				qslvia: $('input[name="qslvia"]').is(':checked') ? true : false,
+				qsl: $('input[name="qsl"]').is(':checked') ? true : false,
+				clublog: $('input[name="clublog"]').is(':checked') ? true : false,
+				lotw: $('input[name="lotw"]').is(':checked') ? true : false,
+				eqsl: $('input[name="eqsl"]').is(':checked') ? true : false,
+				qslmsgs: $('input[name="qslmsgs"]').is(':checked') ? true : false,
+				qslmsgr: $('input[name="qslmsgr"]').is(':checked') ? true : false,
+				dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
+				state: $('input[name="state"]').is(':checked') ? true : false,
+				cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
+				ituzone: $('input[name="ituzone"]').is(':checked') ? true : false,
+				iota: $('input[name="iota"]').is(':checked') ? true : false,
+				pota: $('input[name="pota"]').is(':checked') ? true : false,
+				operator: $('input[name="operator"]').is(':checked') ? true : false,
+				comment: $('input[name="comment"]').is(':checked') ? true : false,
+				propagation: $('input[name="propagation"]').is(':checked') ? true : false,
+				contest: $('input[name="contest"]').is(':checked') ? true : false,
+				gridsquare: $('input[name="gridsquare"]').is(':checked') ? true : false,
+				sota: $('input[name="sota"]').is(':checked') ? true : false,
+				dok: $('input[name="dok"]').is(':checked') ? true : false,
+				wwff: $('input[name="wwff"]').is(':checked') ? true : false,
+				sig: $('input[name="sig"]').is(':checked') ? true : false,
+				region: $('input[name="region"]').is(':checked') ? true : false,
+				continent: $('input[name="continent"]').is(':checked') ? true : false,
+				distance: $('input[name="distance"]').is(':checked') ? true : false,
+				antennaazimuth: $('input[name="antennaazimuth"]').is(':checked') ? true : false,
+				antennaelevation: $('input[name="antennaelevation"]').is(':checked') ? true : false,
+				qrz: $('input[name="qrz"]').is(':checked') ? true : false,
+				profilename: $('input[name="profilename"]').is(':checked') ? true : false,
+				stationpower: $('input[name="stationpower"]').is(':checked') ? true : false,
+				gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
+				path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
+				cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
+				ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
+				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
+			},
+			success: function(data) {
+				$('#saveButton').prop("disabled", false);
+				$('#closeButton').prop("disabled", false);
+				resolve(data);
+			},
+			error: function(error) {
+				$('#saveButton').prop("disabled", false);
+				reject(error);
+			},
+		});
 	});
 }

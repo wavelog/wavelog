@@ -343,11 +343,11 @@ class Logbook_model extends CI_Model {
 			'COL_ITUZ' => $this->input->post('ituz', true) ?? null,
 			'COL_STATE' => $qso_state,
 			'COL_CNTY' => $clean_county_input,
-			'COL_SOTA_REF' => $this->input->post('sota_ref') == null ? '' : trim($this->input->post('sota_ref')),
-			'COL_WWFF_REF' => $this->input->post('wwff_ref') == null ? '' : trim($this->input->post('wwff_ref')),
-			'COL_POTA_REF' => $this->input->post('pota_ref') == null ? '' : trim($this->input->post('pota_ref')),
-			'COL_SIG' => $this->input->post('sig') == null ? '' : trim($this->input->post('sig')),
-			'COL_SIG_INFO' => $this->input->post('sig_info') == null ? '' : trim($this->input->post('sig_info')),
+			'COL_SOTA_REF' => $this->input->post('sota_ref') == null ? '' : strtoupper(trim($this->input->post('sota_ref'))),
+			'COL_WWFF_REF' => $this->input->post('wwff_ref') == null ? '' : strtoupper(trim($this->input->post('wwff_ref'))),
+			'COL_POTA_REF' => $this->input->post('pota_ref') == null ? '' : strtoupper(trim($this->input->post('pota_ref'))),
+			'COL_SIG' => $this->input->post('sig') == null ? '' : strtoupper(trim($this->input->post('sig'))),
+			'COL_SIG_INFO' => $this->input->post('sig_info') == null ? '' : strtoupper(trim($this->input->post('sig_info'))),
 			'COL_DARC_DOK' => $darc_dok  == null ? '' : strtoupper(trim($darc_dok)),
 			'COL_NOTES' => $this->input->post('notes'),
 			'COL_EMAIL' => $email ?? '',
@@ -784,7 +784,6 @@ class Logbook_model extends CI_Model {
 			// No point in fetching hrdlog code or qrz api key and qrzrealtime setting if we're skipping the export
 			if (!$skipexport) {
 
-
 				$result = $this->exists_clublog_credentials($data['station_id']);
 				if (isset($result->ucp) && isset($result->ucn) && (($result->ucp ?? '') != '') && (($result->ucn ?? '') != '') && ($result->clublogrealtime == 1)) {
 					if (!$this->load->is_loaded('AdifHelper')) {
@@ -792,9 +791,13 @@ class Logbook_model extends CI_Model {
 					}
 					$qso = $this->get_qso($last_id, true)->result();
 
+					if (!$this->load->is_loaded('clublog_model')) {
+						$this->load->model('clublog_model');
+					}
+
 					$adif = $this->adifhelper->getAdifLine($qso[0]);
-					$result = $this->push_qso_to_clublog($result->ucn, $result->ucp, $data['COL_STATION_CALLSIGN'], $adif);
-					if (($result['status'] == 'OK') || (($result['status'] == 'error') || ($result['status'] == 'duplicate') || ($result['status'] == 'auth_error'))) {
+					$result = $this->clublog_model->push_qso_to_clublog($result->ucn, $result->ucp, $data['COL_STATION_CALLSIGN'], $adif);
+					if ($result['status'] == 'OK') {
 						$this->mark_clublog_qsos_sent($last_id);
 					}
 				}
@@ -923,40 +926,6 @@ class Logbook_model extends CI_Model {
 		} else {
 			return false;
 		}
-	}
-
-	function push_qso_to_clublog($cl_username, $cl_password, $station_callsign, $adif) {
-
-		// initialise the curl request
-		$returner = [];
-		$request = curl_init('https://clublog.org/realtime.php');
-
-		curl_setopt($request, CURLOPT_POST, true);
-		curl_setopt(
-			$request,
-			CURLOPT_POSTFIELDS,
-			array(
-				'email' => $cl_username,
-				'password' => $cl_password,
-				'callsign' => $station_callsign,
-				'adif' => $adif,
-				'api' => "608df94896cb9c5421ae748235492b43815610c9",
-			)
-		);
-
-		// output the response
-		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-		$response = curl_exec($request);
-		$info = curl_getinfo($request);
-
-		// If Clublog Accepts mark the QSOs
-		if (preg_match('/\bOK\b/', $response)) {
-			$returner['status'] = 'OK';
-		} else {
-			$returner['status'] = $response;
-		}
-		curl_close($request);
-		return ($returner);
 	}
 
 	/*
@@ -1334,6 +1303,18 @@ class Logbook_model extends CI_Model {
 			$qrz_rcvd = 'N';
 		}
 
+		if ($this->input->post('clublog_sent')) {
+			$clublog_sent = $this->input->post('clublog_sent');
+		} else {
+			$clublog_sent = 'N';
+		}
+
+		if ($this->input->post('clublog_rcvd')) {
+			$clublog_rcvd = $this->input->post('clublog_rcvd');
+		} else {
+			$clublog_rcvd = 'N';
+		}
+
 		if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 			$lotw_sent = 'I';
 		} elseif ($this->input->post('lotw_sent')) {
@@ -1419,6 +1400,22 @@ class Logbook_model extends CI_Model {
 			$qrzrdate = $qso->COL_QRZCOM_QSO_DOWNLOAD_DATE;
 		}
 
+		if ($clublog_sent == 'N' && $qso->COL_CLUBLOG_QSO_UPLOAD_STATUS != $clublog_sent) {
+			$clublogsdate = null;
+		} elseif (!$qso->COL_CLUBLOG_QSO_UPLOAD_DATE || $qso->COL_CLUBLOG_QSO_UPLOAD_STATUS != $clublog_sent) {
+			$clublogsdate = date('Y-m-d H:i:s');
+		} else {
+			$clublogsdate = $qso->COL_CLUBLOG_QSO_UPLOAD_DATE;
+		}
+
+		if ($clublog_rcvd == 'N' && $qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS != $clublog_rcvd) {
+			$clublogrdate = null;
+		} elseif (!$qso->COL_CLUBLOG_QSO_DOWNLOAD_DATE || $qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS != $clublog_rcvd) {
+			$clublogrdate = date('Y-m-d H:i:s');
+		} else {
+			$clublogrdate = $qso->COL_CLUBLOG_QSO_DOWNLOAD_DATE;
+		}
+
 		if (($this->input->post('distance')) && (is_numeric($this->input->post('distance')))) {
 			$distance = $this->input->post('distance');
 		} else {
@@ -1468,14 +1465,18 @@ class Logbook_model extends CI_Model {
 			'COL_LOTW_QSLRDATE' => $lotwrdate,
 			'COL_LOTW_QSL_SENT' => $lotw_sent,
 			'COL_LOTW_QSL_RCVD' => $lotw_rcvd,
+			'COL_CLUBLOG_QSO_UPLOAD_DATE' => $clublogsdate,
+			'COL_CLUBLOG_QSO_DOWNLOAD_DATE' => $clublogrdate,
+			'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $clublog_rcvd,
+			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => $clublog_sent,
 			'COL_IOTA' => $this->input->post('iota_ref'),
-			'COL_SOTA_REF' => $this->input->post('sota_ref'),
-			'COL_WWFF_REF' => $this->input->post('wwff_ref'),
-			'COL_POTA_REF' => $this->input->post('pota_ref'),
+			'COL_SOTA_REF' => strtoupper(trim($this->input->post('sota_ref'))),
+			'COL_WWFF_REF' => strtoupper(trim($this->input->post('wwff_ref'))),
+			'COL_POTA_REF' => strtoupper(trim($this->input->post('pota_ref'))),
 			'COL_TX_PWR' => $txpower,
-			'COL_SIG' => $this->input->post('sig'),
-			'COL_SIG_INFO' => $this->input->post('sig_info'),
-			'COL_DARC_DOK' => strtoupper($this->input->post('darc_dok')),
+			'COL_SIG' => strtoupper(trim($this->input->post('sig'))),
+			'COL_SIG_INFO' => strtoupper(trim($this->input->post('sig_info'))),
+			'COL_DARC_DOK' => strtoupper(trim($this->input->post('darc_dok'))),
 			'COL_QTH' => $this->input->post('qth'),
 			'COL_PROP_MODE' => $this->input->post('prop_mode'),
 			'COL_ANT_PATH' => $this->input->post('ant_path'),
@@ -1490,7 +1491,7 @@ class Logbook_model extends CI_Model {
 			'COL_ANT_EL' => $this->input->post('ant_el') != '' ? $this->input->post('ant_el') : null,
 			'station_id' => $stationId,
 			'COL_STATION_CALLSIGN' => $stationCallsign,
-			'COL_OPERATOR' => $this->input->post('operator_callsign'),
+			'COL_OPERATOR' => $this->input->post('operator_callsign') ?? $qso->COL_OPERATOR,
 			'COL_STATE' => $this->input->post('input_state_edit'),
 			'COL_CNTY' => $uscounty,
 			'COL_MY_IOTA' => $iotaRef,
@@ -1526,19 +1527,6 @@ class Logbook_model extends CI_Model {
 
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
 		$this->db->update($this->config->item('table_name'), $data);
-	}
-
-	/* Return last 10 QSOs */
-	function last_ten() {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		$this->db->select('COL_CALL, COL_BAND, COL_FREQ, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME');
-		$this->db->where_in('station_id', $logbooks_locations_array);
-		$this->db->order_by("COL_TIME_ON", "desc");
-		$this->db->limit(10);
-
-		return $this->db->get($this->config->item('table_name'));
 	}
 
 	/* Show custom number of qsos */
@@ -2325,6 +2313,33 @@ class Logbook_model extends CI_Model {
 		return $query->num_rows();
 	}
 
+	function last_worked_callsign_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
+
+		if ($StationLocationsArray == null) {
+			$this->load->model('logbooks_model');
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		} else {
+			$logbooks_locations_array = $StationLocationsArray;
+		}
+
+		$this->db->select('COL_TIME_ON as LAST_QSO,COL_MODE as LAST_MODE');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->where('COL_CALL', $callsign);
+
+		$band = ($band == 'All') ? null : $band;
+		if ($band != null && $band != 'SAT') {
+			$this->db->where('COL_BAND', $band);
+		} else if ($band == 'SAT') {
+			// Where col_sat_name is not empty
+			$this->db->where('COL_SAT_NAME !=', '');
+		}
+		$this->db->order_by('COL_TIME_ON desc');
+		$this->db->limit('1');
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->result();
+	}
+
 	function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
 
 		if ($StationLocationsArray == null) {
@@ -3095,12 +3110,6 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	/* Return the list of modes in the logbook */
-	function get_modes() {
-		$query = $this->db->query('select distinct(COL_MODE) from ' . $this->config->item('table_name') . ' order by COL_MODE');
-		return $query;
-	}
-
 	/* Return total number of QSOs per band */
 	function total_bands($yr = 'All') {
 		$this->load->model('logbooks_model');
@@ -3118,6 +3127,30 @@ class Logbook_model extends CI_Model {
 
 		$query = $this->db->get($this->config->item('table_name'));
 
+		return $query;
+	}
+
+	/* Return total number of QSOs per operator */
+	function total_operators($yr = 'All') {
+
+		//Load logbook model and get station locations
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		//get statistics from database
+		$this->db->select('IFNULL(IF(COL_OPERATOR = "", COL_STATION_CALLSIGN, COL_OPERATOR), COL_STATION_CALLSIGN) AS operator, count( * ) AS count', FALSE);
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->where_year($yr);
+		$this->db->group_by('operator');
+		$this->db->order_by('count', 'DESC');
+
+		$query = $this->db->get($this->config->item('table_name'));
+
+		//return result
 		return $query;
 	}
 
@@ -3659,8 +3692,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		// Check if QRZ or ClubLog is already uploaded. If so, set qso to reupload to qrz.com (M) or clublog
-		$qsql = "select COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE from " . $this->config->item('table_name') . " where COL_BAND=? and COL_CALL=? and COL_STATION_CALLSIGN=? and date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ? and COL_PRIMARY_KEY = ? and station_id in (" . $station_ids . ')';
-		$query = $this->db->query($qsql, array($band, $callsign, $station_callsign, $datetime, $qsoid));
+		$qsql = "SELECT COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE FROM " . $this->config->item('table_name') . " WHERE COL_PRIMARY_KEY = ? AND station_id IN (" . $station_ids . ')';
+		$query = $this->db->query($qsql, $qsoid);
 		$row = $query->row();
 		if (($row->QRZ_STATE ?? '') == 'Y') {
 			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
@@ -3669,28 +3702,8 @@ class Logbook_model extends CI_Model {
 			$data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
-		$this->db->group_start();
-		$this->db->where('date_format(COL_LOTW_QSLRDATE, \'%Y-%m-%d %H:%i\') != ', $qsl_date);
-		$this->db->or_where('COL_LOTW_QSLRDATE is null');
-		$this->db->group_end();
-		$this->db->where('COL_CALL', $callsign);
-		$this->db->where('COL_BAND', $band);
-		$this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ', $datetime);
-		$this->db->where('COL_STATION_CALLSIGN', $station_callsign);
-		$this->db->where('COL_PRIMARY_KEY', $qsoid);
-		$this->db->where('station_id in (' . $station_ids . ')');
-
-		$this->db->update($this->config->item('table_name'), $data);
-		unset($data);
-
 		if ($qsl_gridsquare != "" || $qsl_vucc_grids != "") {
-			$data = array(
-				'COL_DISTANCE' => 0
-			);
 			$this->db->select('station_profile.station_gridsquare as station_gridsquare');
-			$this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ', $datetime);
-			$this->db->where('COL_CALL', $callsign);
-			$this->db->where('COL_BAND', $band);
 			$this->db->where('COL_PRIMARY_KEY', $qsoid);
 			$this->db->join('station_profile', $this->config->item('table_name') . '.station_id = station_profile.station_id', 'left outer');
 			$this->db->where('station_profile.station_id in (' . $station_ids . ')');
@@ -3711,25 +3724,25 @@ class Logbook_model extends CI_Model {
 				$data['COL_VUCC_GRIDS'] = $qsl_vucc_grids;
 				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K', $ant_path);
 			}
-
-			$this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ', $datetime);
-			$this->db->where('COL_CALL', $callsign);
-			$this->db->where('COL_BAND', $band);
-			$this->db->where('COL_PRIMARY_KEY', $qsoid);
-
-			$this->db->update($this->config->item('table_name'), $data);
 		}
+		$this->db->where('COL_PRIMARY_KEY', $qsoid);
+		$this->db->where('station_id in (' . $station_ids . ')');
+
+		$this->db->update($this->config->item('table_name'), $data);
 
 		return "Updated";
 	}
 
 	function qrz_last_qsl_date($user_id) {
-		$sql = "SELECT date_format(MAX(COALESCE(COL_QRZCOM_QSO_DOWNLOAD_DATE, str_to_date('1900-01-01','%Y-%m-%d'))),'%Y-%m-%d') MAXDATE
+		$sql = "SELECT date_format(MAX(COALESCE(COL_QRZCOM_QSO_DOWNLOAD_DATE, str_to_date('1900-01-01','%Y-%m-%d'))),'%Y-%m-%d') MAXDATE, COUNT(1) as QSOS
 		    FROM " . $this->config->item('table_name') . " INNER JOIN station_profile ON (" . $this->config->item('table_name') . ".station_id = station_profile.station_id)
 		    WHERE station_profile.user_id=? and station_profile.qrzapikey is not null and COL_QRZCOM_QSO_DOWNLOAD_DATE is not null";
-		$query = $this->db->query($sql, $user_id);
+		$query = $this->db->query($sql, array($user_id));
 		$row = $query->row();
-		if (isset($row) && ($row->MAXDATE ?? '' != '')) {
+		if (isset($row) && (($row->QSOS ?? 0) == 0)) {	// Abort / Set LASTQSO to future if no QSO is in Log to prevent processing QRZ-Data
+			return '2999-12-31';
+		}
+		if (isset($row) && (($row->MAXDATE ?? '') != '')) {
 			return $row->MAXDATE;
 		} else {
 			return '1900-01-01';
@@ -3762,7 +3775,7 @@ class Logbook_model extends CI_Model {
 		$station_id_ok = true;
 		$station_profile = $this->stations->profile_clean($station_id);
 		$amsat_status_upload = $this->user_model->get_user_amsat_status_upload_by_id($station_profile->user_id);
-		
+
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $station_id), $station_profile->user_id)->result();
 		$station_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 
@@ -4195,6 +4208,14 @@ class Logbook_model extends CI_Model {
 				$qslmsg = $station_qslmsg;
 			}
 
+			// Only import SIG_INFO and SIG_INFO_INTL if SIG is set. Discard otherwise as we do not now which activity group the reference belongs to
+			if (empty($record['sig'])) {
+				$sig_info = $sig_info_intl = '';
+			} else {
+				$sig_info = $record['sig_info'] ?? '';
+				$sig_info_intl = $record['sig_info_intl'] ?? '';
+			}
+
 			// Validate Clublog-Fields
 			if ($markClublog != NULL) {
 				$input_clublog_qsl_sent = "Y";
@@ -4266,7 +4287,7 @@ class Logbook_model extends CI_Model {
 
 
 			if ($operatorName != false) {
-				$operatorName = $this->session->userdata('user_callsign');
+				$operatorName = $this->session->userdata('operator_callsign');
 			} else {
 				$operatorName = (!empty($record['operator'])) ? $record['operator'] : '';
 			}
@@ -4455,8 +4476,8 @@ class Logbook_model extends CI_Model {
 				'COL_SAT_NAME' => (!empty($record['sat_name'])) ? $record['sat_name'] : '',
 				'COL_SFI' => (!empty($record['sfi'])) ? $record['sfi'] : null,
 				'COL_SIG' => (!empty($record['sig'])) ? $record['sig'] : '',
-				'COL_SIG_INFO' => (!empty($record['sig_info'])) ? $record['sig_info'] : '',
-				'COL_SIG_INFO_INTL' => (!empty($record['sig_info_intl'])) ? $record['sig_info_intl'] : '',
+				'COL_SIG_INFO' => $sig_info,
+				'COL_SIG_INFO_INTL' => $sig_info_intl,
 				'COL_SIG_INTL' => (!empty($record['sig_intl'])) ? $record['sig_intl'] : '',
 				'COL_SILENT_KEY' => (!empty($record['silent_key'])) ? $record['silent_key'] : '',
 				'COL_SKCC' => (!empty($record['skcc'])) ? $record['skcc'] : '',
@@ -4673,7 +4694,8 @@ class Logbook_model extends CI_Model {
      */
 	public function check_dxcc_table($call, $date) {
 
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$/';
+		$date = date("Y-m-d", strtotime($date));
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
 			->where('`call`', $call)
@@ -4764,9 +4786,10 @@ class Logbook_model extends CI_Model {
 
 	public function dxcc_lookup($call, $date) {
 
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$|^LH$/';
+		$date = date("Y-m-d", strtotime($date));
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
 
-		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
+		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`,`long`,`lat`')
 			->where('`call`', $call)
 			->where('(start <= ', $date)
 			->or_where('start is null)', NULL, false)
@@ -4873,7 +4896,7 @@ class Logbook_model extends CI_Model {
 		$c = '';
 
 		$lidadditions = '/^QRP$|^LGT$/';
-		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$|^LH$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^B$|^A$|^M$|^LH$/';
 		$noneadditions = '/^MM$|^AM$/';
 
 		# First check if the call is in the proper format, A/B/C where A and C
@@ -5390,6 +5413,9 @@ class Logbook_model extends CI_Model {
 			// check lat / lng (depend info source) //
 			if ($row->COL_GRIDSQUARE != null) {
 				$stn_loc = $this->qra->qra2latlong($row->COL_GRIDSQUARE);
+				if (($this->session->userdata('user_locator') ?? '') != '') {
+					$xbearing = $this->qra->get_bearing($this->session->userdata('user_locator'),$row->COL_GRIDSQUARE);
+				}
 			} elseif ($row->COL_VUCC_GRIDS != null) {
 				$coords = array();
 				$grids = explode(",", $row->COL_VUCC_GRIDS);
@@ -5415,10 +5441,16 @@ class Logbook_model extends CI_Model {
 
 					$stn_loc = $this->qra->get_midpoint($coords);
 				}
+				if (($this->session->userdata('user_locator') ?? '') != '') {
+					$xbearing = $this->qra->get_bearing($this->session->userdata('user_locator'),$row->COL_VUCC_GRIDS);
+				}
 			} else {
 				if (isset($row->lat) && isset($row->long)) {
 					$stn_loc = array($row->lat, $row->long);
 				}
+			}
+			if (isset($xbearing)) {
+				$plot['html'].=__("Bearing").': '.$xbearing."&deg;<br/>";
 			}
 			if (isset($stn_loc)) {
 				list($plot['lat'], $plot['lng']) = $stn_loc;
@@ -5502,12 +5534,12 @@ class Logbook_model extends CI_Model {
 		case 'SI':
 			return 'Shetland Islands';
 			break;
-		default: 
+		default:
 			return $region;
 			break;
 		}
 	}
-			
+
 
 	function getContinent($dxcc) {
 		$sql = "SELECT cont FROM dxcc_entities WHERE adif = ?";
@@ -5518,9 +5550,71 @@ class Logbook_model extends CI_Model {
 		}
 		return '';
 	}
+
+	function getContestQSO(array $station_ids, string $station_callsign, string $contest_id, string $callsign, string $band, string $mode, string $date, string $time)
+	{
+
+		//load QSO table
+		$this->db->select('*');
+		$this->db->from($this->config->item('table_name'));
+
+		//load only for given station_ids
+		$this->db->where_in('station_id', $station_ids);
+
+		//load only for the station_callsign given
+		$this->db->where('COL_STATION_CALLSIGN', xss_clean($station_callsign));
+
+		//load only for the given contest id
+		$this->db->where('COL_CONTEST_ID', xss_clean($contest_id));
+
+		//load only for this qso partners callsign
+		$this->db->where('COL_CALL', xss_clean($callsign));
+
+		//load only for given band (no cleaning necessary because provided by wavelog itself)
+		$this->db->where('COL_BAND', $band);
+
+		//load only for specific mode if the mode is determinate. If not, omit it. In most cases, that should be fine. Also provided by wavelog itself, so no cleaning.
+		if($mode != '') {
+			$this->db->where('COL_MODE', $mode);
+		}
+
+		//prepare datetime from format '2099-12-31 13:47' to be usable in a performant query
+		$datetime_raw = $date . ' ' . substr($time, 0, 2) . ':' . substr($time, 2, 2);
+		$datetime = new DateTime($datetime_raw,new DateTimeZone('UTC'));
+		$from_datetime = $datetime->format('Y-m-d H:i:s');
+		$datetime->add(new DateInterval('PT1M'));
+		$to_datetime = $datetime->format('Y-m-d H:i:s');
+
+		//load only QSOs during this minute
+		$this->db->where('COL_TIME_ON >=', $from_datetime);
+		$this->db->where('COL_TIME_ON <', $to_datetime);
+
+		//return whatever is left
+		return $this->db->get();
+	}
+
+	function set_contest_fields($qso_primary_key, ?int $stx, ?string $stxstring, ?int $srx, ?string $srxstring) {
+
+		//assemble data fields from input
+		$data = $data = array(
+			'COL_STX' => $stx,
+			'COL_STX_STRING' => $stxstring == null ? null : substr($stxstring, 0, 32),
+			'COL_SRX' => $srx,
+			'COL_SRX_STRING' => $srxstring == null ? null : substr($srxstring, 0, 32)
+		);
+
+		//narrow db operation down to 1 QSO
+		$this->db->where(array('COL_PRIMARY_KEY' => $qso_primary_key));
+
+		//update data and return
+		$this->db->update($this->config->item('table_name'), $data);
+		return;
+	}
+
 }
 
 function validateADIFDate($date, $format = 'Ymd') {
 	$d = DateTime::createFromFormat($format, $date);
 	return $d && $d->format($format) == $date;
 }
+

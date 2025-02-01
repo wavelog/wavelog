@@ -39,6 +39,7 @@
 				<th><?= __("Mode"); ?></th>
 				<th><?= __("Submode"); ?></th>
 				<th><?= __("Band"); ?></th>
+				<th><?= __("QSL Message"); ?></th>
 				<th><?= __("Propagation Mode"); ?></th>
 				<th><?= __("eQSL Receive Date"); ?></th>
 				<th><?= __("Action"); ?></th>
@@ -57,8 +58,17 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 		echo "<td></td>";
 	}
 	echo "<td>".$qsl['COL_BAND']."</td>";
+	echo "<td>";
+	if (!empty($qsl['COL_QSLMSG_RCVD'])) {
+		echo htmlentities($qsl['COL_QSLMSG_RCVD']);
+	}
+	echo "</td>";
 	echo "<td>".$qsl['COL_PROP_MODE']."</td>";
-	echo "<td>".date($custom_date_format, strtotime($qsl['COL_EQSL_QSLRDATE'])) ?? '' ."</td>";
+	echo "<td>";
+	if (!empty($qsl['COL_EQSL_QSLRDATE'])) {
+		echo date($custom_date_format, strtotime($qsl['COL_EQSL_QSLRDATE'])) ?? '';
+	}
+	echo "</td>";
 	echo "<td><a href=\"".site_url("eqsl/image/".$qsl['COL_PRIMARY_KEY'])."\" data-fancybox=\"images\" data-width=\"528\" data-height=\"336\" class=\"btn btn-primary btn-sm\">" . __("View/Download") . "</a></td>";
 }
 	echo "</tr>";

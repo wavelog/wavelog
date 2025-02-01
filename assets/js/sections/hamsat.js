@@ -122,6 +122,11 @@ function loadActivationsTable(rows, show_workable_only) {
 			data.push(activation.callsign.replaceAll('0', 'Ø'));
 		}
 		data.push(activation.comment);
+		if (activation.satellite.name != activation.sat_export_name) {
+			sat = activation.sat_export_name;
+		} else {
+			sat = activation.satellite.name;
+		}
 		if (activation.mhz != null) {
 			freq = parseFloat(activation.mhz).toFixed(3);
 			dir = '';
@@ -130,16 +135,16 @@ function loadActivationsTable(rows, show_workable_only) {
 			} else if (activation.mhz_direction == "down") {
 				dir = '&darr;';
 			}
-			data.push("<span data-bs-toggle=\"tooltip\" data-bs-original-title=\""+freq+" MHz "+dir+"\">"+activation.satellite.name+"</span>");
+			data.push("<span data-bs-toggle=\"tooltip\" data-bs-original-title=\""+freq+" MHz "+dir+"\">"+sat+"</span>");
 		} else {
-			data.push(activation.satellite.name);
+			data.push(sat);
 		}
 		data.push("<span title=\""+activation.mode+"\" class=\"badge "+activation.mode_class+"\">"+activation.mode+"</span>");
 		grids = [];
 		for (var j=0; j < activation.grids_wkd.length; j++) {
 			if (!grids.some(str => str.includes(activation.grids[j].substring(0, 4)))) {
 				if (activation.grids_wkd[j] == 1) {
-					grids.push("<span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-success\">"+activation.grids[j].substring(0, 4)+"</span>")
+					grids.push("<a href=\"javascript:displayContacts('"+activation.grids[j].substring(0, 4)+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-success\">"+activation.grids[j].substring(0, 4)+"</span></a>")
 				} else {
 					grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+activation.grids[j].substring(0, 4)+"</span>")
 				}

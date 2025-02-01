@@ -84,6 +84,8 @@ class QSO
 
 	private string $stationpower;
 	private float $distance;
+	private string $antennaazimuth;
+	private string $antennaelevation;
 
 	private string $measurement_base;
 
@@ -273,6 +275,8 @@ class QSO
 
 		$this->stationpower = $data['COL_TX_PWR'] ?? '';
 		$this->distance = (float)$data['COL_DISTANCE'] ?? 0;
+		$this->antennaazimuth = $data['COL_ANT_AZ'] ?? '';
+		$this->antennaelevation = $data['COL_ANT_EL'] ?? '';
 
 		if ($CI->session->userdata('user_measurement_base') == NULL) {
 			$measurement_base = $CI->config->item('measurement_base');
@@ -1197,6 +1201,7 @@ class QSO
 			'qrz' => $this->getqrz(),
 			'dcl' => $this->getdcl(),
 			'qslMessage' => $this->getQSLMsg(),
+			'qslMessageR' => $this->getQSLMsgRcvd(),
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),
 			'state' => $this->getState(),
@@ -1220,9 +1225,11 @@ class QSO
 			'sig' => $this->getFormattedSig(),
 			'continent' => $this->continent,
 			'profilename' => $this->profilename,
-			'stationpower' => $this->stationpower,
+			'stationpower' => empty($this->stationpower) ? null : $this->stationpower.' W',
 			'distance' => $this->getFormattedDistance(),
-			'region' => $this->region
+			'region' => $this->region,
+			'antennaelevation' => $this->antennaelevation == null ? null : $this->antennaelevation.'°',
+			'antennaazimuth' => $this->antennaazimuth == null ? null : $this->antennaazimuth.'°'
 		];
 	}
 

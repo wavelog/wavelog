@@ -9,8 +9,13 @@ HB9HIL - First refactoring - January 2024
 DJ7NT - Docker Readiness - April 2024
 HB9HIL - Big UX and backend upgrade - July 2024
 */
+require_once('includes/install_config/install_lib.php');
+$http_scheme = is_https() ? "https" : "http";
 
-if (!file_exists('.lock')) {
+$directory = ltrim(str_replace('/install', '', dirname($_SERVER['SCRIPT_NAME'])), '/');
+$base_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . ($directory !== '' ? '/' . $directory : '') . '/';
+
+if (!file_exists('.lock') && !file_exists('../application/config/config.php') && !file_exists('../application/config/docker/config.php')) {
 
 	include 'includes/interface_assets/header.php';
 
@@ -344,24 +349,10 @@ if (!file_exists('.lock')) {
 										<div class="col">
 											<p><?= __("Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'"); ?></p>
 											<div class="mb-3">
-												<label for="directory" class="form-label"><?= __("Directory"); ?><i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job. It also can be empty."); ?>"></i></label>
-												<div class="input-group">
-													<span class="input-group-text" id="main-url"><?php echo $http_scheme . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
-													<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
-													<div class="invalid-tooltip">
-														<?= __("No slash before or after the directory. Just the name of the folder."); ?>
-													</div>
-												</div>
-											</div>
-											<div class="mb-3 position-relative">
-												<label for="websiteurl" class="form-label required"><?= __("Website URL"); ?></label><i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= sprintf(__("This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."), "https://mywavelog.example.org/", "http://192.168.1.100/"); ?>"></i>
-												<input type="text" id="websiteurl" value="<?php echo $websiteurl; ?>" class="form-control" name="websiteurl" />
-												<div class="invalid-tooltip">
-													<?= __("This field<br>
-													- can't be empty<br>
-													- have to end with a slash 'example/'<br>
-													- have to start with 'http'"); ?>
-												</div>
+												<label for="main_url" class="form-label"><?= __("Your final Wavelog URL"); ?><i id="main_url_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This is the URL where you can access this Wavelog instance after the installer has run. If this does not display what you expect, you may need to check your web server configuration. This is the base_url in your config.php, which can be edited after the installation."); ?>"></i></label>
+												<pre class="alert bg-secondary" id="main_url"><?php echo $base_url; ?></pre>
+												<input type="hidden" id="directory" name="directory" value="<?php echo $directory; ?>" />
+												<input type="hidden" id="websiteurl" name="websiteurl" value="<?php echo $base_url; ?>" />
 											</div>
 											<div class="mb-3">
 												<label for="global_call_lookup" class="form-label"><?= __("Optional: Global Callbook Lookup"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."); ?>"></i></label>
@@ -390,6 +381,10 @@ if (!file_exists('.lock')) {
 															<?= sprintf(__("Password can't contain %s or be empty"), "' \" / \ < >"); ?>
 														</div>
 													</div>
+												</div>
+												<div class="alert alert-info" id="qrz_hint" style="display: none; margin-top: 10px;">
+													<p><i class="fas fa-lightbulb"></i> <?= __("Good to know:"); ?></p>
+													<?= __("Use your callsign as your username for QRZ.com. The XML API does not support email addresses."); ?>
 												</div>
 											</div>
 											<a class="btn btn-sm btn-secondary" id="advancedSettingsButton"><?= __("Advanced Settings"); ?></a>
@@ -439,23 +434,23 @@ if (!file_exists('.lock')) {
 											<div class="row">
 												<div class="col">
 													<div class="mb-3">
-														<label for="db_hostname" class="form-label required"><?= __("Hostname or IP"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306.<br>In a docker compose install type 'wavelog-db'."); ?>"></i>
+														<label for="db_hostname" class="form-label required"><?= __("Hostname or IP"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306.<br>In a docker compose install type 'wavelog-db'."); ?>"></i>
 														<input type="text" id="db_hostname" placeholder="localhost" class="form-control" name="db_hostname" />
 													</div>
 												</div>
 												<div class="col">
 													<div class="mb-3">
-														<label for="db_name" class="form-label required"><?= __("Database Name"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Name of the Database"); ?>"></i>
+														<label for="db_name" class="form-label required"><?= __("Database Name"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Name of the Database"); ?>"></i>
 														<input type="text" id="db_name" placeholder="wavelog" class="form-control" name="db_name" />
 													</div>
 												</div>
 											</div>
 											<div class="mb-3">
-												<label for="db_username" class="form-label required"><?= __("Username"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Username of the Database User which has full access to the database."); ?>"></i>
+												<label for="db_username" class="form-label required"><?= __("Username"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Username of the Database User which has full access to the database."); ?>"></i>
 												<input type="text" id="db_username" placeholder="waveloguser" class="form-control" name="db_username" />
 											</div>
 											<div class="mb-3">
-												<label for="db_password" class="form-label"><?= __("Password"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Password of the Database User"); ?>"></i>
+												<label for="db_password" class="form-label"><?= __("Password"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Password of the Database User"); ?>"></i>
 												<input type="password" id="db_password" placeholder="supersecretpassword" class="form-control" name="db_password" />
 											</div>
 											<div class="col">
@@ -1215,9 +1210,6 @@ if (!file_exists('.lock')) {
 
 					// Exit Tab 3 - Configuration
 					if (nextTab.attr('id') == fourthTabId) {
-						if (!directory_check() || !websiteurl_check()) {
-							return;
-						}
 						if (!callbook_combination()) {
 							return;
 						}
@@ -1388,39 +1380,35 @@ if (!file_exists('.lock')) {
 				 * Tab 3 - Configuration
 				 * 
 				 * 		Rules:
-				 * 		Website-URL and Directory have to be green. No checks needed 'Advanced Settings'.
+				 * 		No checks needed 'Advanced Settings'.
 				 * 
 				 * 		Callbook Password:
 				 * 			- do not allow specialchars defined in stringForbiddenChars() (hard)
 				 * 
-				 * 		Directory:
-				 * 			- no slash allowed (hard)
-				 * 
-				 * 		Website-URL:
-				 *			- can't be empty (hard)
-				 *			- has to have a trailing slash (hard)
-				 *			- have to start with http (hard)
 				 * 
 				 */
 
-				let directory = $('#directory');
-				let websiteurl = $('#websiteurl');
+				let callbook_type = $('#global_call_lookup');
 				let callbook_username = $('#callbook_username');
 				let callbook_password = $('#callbook_password');
 
 				// On Page Load
 				$(document).ready(function() {
 
+					if (callbook_type.val() === 'qrz') {
+						$('#qrz_hint').show();
+					}
+
+					callbook_type.on('change', function() {
+						if (callbook_type.val() === 'qrz') {
+							$('#qrz_hint').show();
+						} else {
+							$('#qrz_hint').hide();
+						}
+					});
+
 					$('#advancedSettingsButton').click(function() {
 						$('#advancedSettingsModal').modal('show');
-					});
-
-					directory.on('change', function() {
-						directory_check();
-					});
-
-					websiteurl.on('change', function() {
-						websiteurl_check();
 					});
 
 					callbook_username.on('change', function() {
@@ -1442,38 +1430,6 @@ if (!file_exists('.lock')) {
 						stringForbiddenChars(callbook_password);
 					});
 				});
-
-				function directory_check() {
-					var check = true;
-
-					if (directory.val().startsWith('/') || directory.val().endsWith('/')) {
-						check = false;
-					}
-
-					input_is_valid(directory, check ? 'is-valid' : 'is-invalid');
-
-					return check;
-				}
-
-				function websiteurl_check() {
-					var check = true;
-
-					if (websiteurl.val() == '') {
-						check = false;
-					} else if (!websiteurl.val().endsWith('/')) {
-						check = false;
-					} else if (!websiteurl.val().startsWith('http')) {
-						check = false;
-					}
-
-					if (check) {
-						input_is_valid(websiteurl, 'is-valid');
-					} else {
-						input_is_valid(websiteurl, 'is-invalid');
-					}
-
-					return check;
-				}
 
 				function callbook_combination() {
 					let check = true;
@@ -1881,14 +1837,6 @@ if (!file_exists('.lock')) {
 						checklist_configuration = false;
 					}
 
-					if ($('#directory').hasClass('is-invalid')) {
-						checklist_configuration = false;
-					}
-
-					if ($('#websiteurl').val() == '' || $('#websiteurl').hasClass('is-invalid')) {
-						checklist_configuration = false;
-					}
-
 					if (checklist_configuration) {
 						checklistConfiguration.removeClass('fa-times-circle');
 						checklistConfiguration.addClass('fa-check-circle').css('color', '#04a004');
@@ -2000,8 +1948,8 @@ if (!file_exists('.lock')) {
 	<?php } ?>
 
 <?php } else {
-
-	header("Location: $websiteurl");
+	header('Location: '.$base_url, true, 301);
+	die();
 } ?>
 
 </html>

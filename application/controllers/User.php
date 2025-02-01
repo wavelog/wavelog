@@ -5,6 +5,7 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('user_model');
+		$this->load->library('form_validation');
 
 		if (!$this->load->is_loaded('encryption')) {
 			$this->load->library('encryption');
@@ -13,6 +14,8 @@ class User extends CI_Controller {
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['results'] = $this->user_model->users();
+		$data['clubs'] = $this->user_model->users('is_club');
+		$data['clubmode'] = $this->config->item('special_callsign');
 		$data['session_uid'] = $this->session->userdata('user_id');
 
 		// Check if impersonating is disabled in the config
@@ -20,6 +23,12 @@ class User extends CI_Controller {
 			$data['disable_impersonate'] = true;
 		} else {
 			$data['disable_impersonate'] = false;
+		}
+
+		if ($this->config->item('max_login_attempts')) {
+			$data['maxattempts'] = $this->config->item('max_login_attempts');
+		} else {
+			$data['maxattempts'] = 3;
 		}
 
 		// Get Date format
@@ -33,11 +42,102 @@ class User extends CI_Controller {
 
 		$data['has_flossie'] = ($this->config->item('encryption_key') == 'flossie1234555541') ? true : false;
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/user.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/user.js")),
+		];
+
 		$data['page_title'] = __("User Accounts");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('user/index');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	public function actions_modal() {
+
+		$this->load->model('user_model');
+		$this->load->library('encryption');
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$data['user_id'] = $this->input->post('user_id', true) ?? '';
+		$modal = $this->input->post('modal', true) ?? '';
+
+		if($this->session->userdata('user_date_format')) {
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		if ($this->config->item('max_login_attempts')) {
+			$maxattempts = $this->config->item('max_login_attempts');
+		} else {
+			$maxattempts = 3;
+		}
+
+		if ($this->user_model->exists_by_id($data['user_id']) && $modal != '') {
+			$user = $this->user_model->get_by_id($data['user_id'])->row();
+			$gettext = new Gettext;
+
+			$data['user_name'] = $user->user_name;
+			$data['user_callsign'] = $user->user_callsign;
+			$data['user_email'] = $user->user_email;
+			$data['user_firstname'] = $user->user_firstname;
+			$data['user_lastname'] = $user->user_lastname;
+			$data['user_language'] = $gettext->find_by('folder', $user->user_language)['name_en'];
+			$data['is_clubstation'] = $user->clubstation == 1 ? true : false;
+			$data['is_locked'] = $user->login_attempts > $maxattempts ? true : false;
+			$data['last_seen'] = $user->last_seen;
+			$data['custom_date_format'] = $custom_date_format;
+			$data['has_flossie'] = ($this->config->item('encryption_key') == 'flossie1234555541') ? true : false;
+
+			$this->load->view('user/modals/'.$modal.'_modal', $data);
+		} else {
+			$this->session->set_flashdata('error', __("Invalid User ID or missing modal!"));
+			redirect('user');
+		}
+	}
+
+	public function unlock($uid) {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		if ($this->user_model->exists_by_id($uid)) {
+			if ($this->user_model->unlock($uid)) {
+				$this->session->set_flashdata('success', __("User unlocked!"));
+				redirect('user');
+			} else {
+				$this->session->set_flashdata('error', __("Failed to unlock user!"));
+				redirect('user');
+			}
+		} else {
+			$this->session->set_flashdata('error', __("User not found!"));
+			redirect('dashboard');
+		}
+	}
+
+	public function convert() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$user_id = $this->input->post('user_id', true) ?? '';
+		$convert_to = $this->input->post('convert_to', true) ?? '';
+
+		if ($convert_to !== '0' && $convert_to !== '1') {
+			$this->session->set_flashdata('error', __("Invalid Parameter!"));
+			redirect('dashboard');
+		}
+
+		if ($this->user_model->exists_by_id($user_id)) {
+			if ($this->user_model->convert($user_id, $convert_to)) {
+				echo json_encode(true);
+			} else {
+				echo json_encode(false);
+			}
+		} else {
+			log_message('error', 'User Conversion - User ID not found: '.$user_id);
+			echo json_encode(false);
+		}
 	}
 
 	function add() {
@@ -54,8 +154,6 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		$this->form_validation->set_rules('user_type', 'Type', 'required');
-		$this->form_validation->set_rules('user_firstname', 'First name', 'required');
-		$this->form_validation->set_rules('user_lastname', 'Last name', 'required');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
@@ -65,12 +163,27 @@ class User extends CI_Controller {
 		$data['user_form_action'] = site_url('user/add');
 		$data['bands'] = $this->bands->get_user_bands();
 
+		$data['clubstation'] = ($this->input->get('club') ?? '') == '1' ? true : false;
+
 		// Get themes list
 		$data['themes'] = $this->user_model->getThemes();
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/user.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/user.js")),
+		];
 
 		// Get timezones
 		$data['timezones'] = $this->user_model->timezones();
 		$data['user_language'] = 'english';
+
+		// Values for the "dashboard last QSO count" selectbox
+		$data['dashboard_last_qso_count_limit'] = DASHBOARD_QSOS_COUNT_LIMIT;
+		$data['user_dashboard_last_qso_count'] = DASHBOARD_DEFAULT_QSOS_COUNT;
+
+		// Values for the "QSO page last QSO count" selectbox
+		$data['qso_page_last_qso_count_limit'] = QSO_PAGE_QSOS_COUNT_LIMIT;
+		$data['user_qso_page_last_qso_count'] = QSO_PAGE_DEFAULT_QSOS_COUNT;
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Add User");
@@ -81,9 +194,9 @@ class User extends CI_Controller {
 				$data['user_name'] = $this->input->post('user_name');
 				$data['user_email'] = $this->input->post('user_email');
 				$data['user_password'] = $this->input->post('user_password');
-				$data['user_type'] = $this->input->post('user_type');
-				$data['user_firstname'] = $this->input->post('user_firstname');
-				$data['user_lastname'] = $this->input->post('user_lastname');
+				$data['user_type'] = $data['clubstation'] == true ? '3' : $this->input->post('user_type');
+				$data['user_firstname'] = $this->input->post('user_firstname') ?? '';
+				$data['user_lastname'] = $this->input->post('user_lastname') ?? '';
 				$data['user_callsign'] = $this->input->post('user_callsign');
 				$data['user_locator'] = $this->input->post('user_locator');
 				$data['user_timezone'] = $this->input->post('user_timezone');
@@ -121,14 +234,14 @@ class User extends CI_Controller {
 			} else {
 				$this->load->view('user/edit', $data);
 			}
-			$this->load->view('interface_assets/footer');
+			$this->load->view('interface_assets/footer', $footerData);
 		} else {
 			switch($this->user_model->add($this->input->post('user_name'),
 				$this->input->post('user_password'),
 				$this->input->post('user_email'),
 				$this->input->post('user_type'),
-				$this->input->post('user_firstname'),
-				$this->input->post('user_lastname'),
+				$this->input->post('user_firstname') ?? '',
+				$this->input->post('user_lastname') ?? '',
 				$this->input->post('user_callsign'),
 				$this->input->post('user_locator'),
 				$this->input->post('user_timezone'),
@@ -169,21 +282,22 @@ class User extends CI_Controller {
 				$this->input->post('user_eqsl_password'),
 				$this->input->post('user_clublog_name'),
 				$this->input->post('user_clublog_password'),
-				$this->input->post('user_winkey')
+				$this->input->post('user_winkey'),
+				$this->input->post('clubstation') == '1' ? true : false
 				)) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
-					$data['username_error'] = 'Username <b>'.$this->input->post('user_name').'</b> already in use!';
+					$data['username_error'] = sprintf(__("Username %s already in use!"), '<b>' . $this->input->post('user_name') . '</b>');
 					break;
 				case EEMAILEXISTS:
-					$data['email_error'] = 'E-mail address <b>'.$this->input->post('user_email').'</b> already in use!';
+					$data['email_error'] = sprintf(__("E-mail %s already in use!"), '<b>' . $this->input->post('user_email') . '</b>');
 					break;
 				case EPASSWORDINVALID:
-					$data['password_error'] = 'Invalid password!';
+					$data['password_error'] = __("Invalid Password!");
 					break;
 				// All okay, return to user screen
 				case OK:
-					$this->session->set_flashdata('notice', 'User '.$this->input->post('user_name').' added');
+					$this->session->set_flashdata('notice', sprintf(__("User %s added!"), '<b>' . $this->input->post('user_name') . '</b>'));
 					redirect('user');
 					return;
 			}
@@ -194,8 +308,8 @@ class User extends CI_Controller {
 			$data['user_email'] = $this->input->post('user_email');
 			$data['user_password'] = $this->input->post('user_password');
 			$data['user_type'] = $this->input->post('user_type');
-			$data['user_firstname'] = $this->input->post('user_firstname');
-			$data['user_lastname'] = $this->input->post('user_lastname');
+			$data['user_firstname'] = $this->input->post('user_firstname') ?? '';
+			$data['user_lastname'] = $this->input->post('user_lastname') ?? '';
 			$data['user_callsign'] = $this->input->post('user_callsign');
 			$data['user_locator'] = $this->input->post('user_locator');
 			$data['user_measurement_base'] = $this->input->post('user_measurement_base');
@@ -221,7 +335,7 @@ class User extends CI_Controller {
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 			$data['user_language'] = $this->input->post('user_language');
 			$this->load->view('user/edit', $data);
-			$this->load->view('interface_assets/footer');
+			$this->load->view('interface_assets/footer', $footerData);
 		}
 	}
 
@@ -250,19 +364,32 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
-		$data['user_form_action'] = site_url('user/edit')."/".$this->uri->segment(3);;
+		$data['user_form_action'] = site_url('user/edit')."/".$this->uri->segment(3);
+		$data['clubstation'] = ($query->row()->clubstation == 1) ? true : false;
 		$data['bands'] = $this->bands->get_user_bands();
 
 		// Get themes list
 		$data['themes'] = $this->user_model->getThemes();
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/user.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/user.js")),
+		];
+
 		// Get timezones
 		$data['timezones'] = $this->user_model->timezones();
 
+		// Max value to be present in the "dashboard last QSO count" selectbox
+		$data['dashboard_last_qso_count_limit'] = DASHBOARD_QSOS_COUNT_LIMIT;
+
+		// Max value to be present in the "QSO page last QSO count" selectbox
+		$data['qso_page_last_qso_count_limit'] = QSO_PAGE_QSOS_COUNT_LIMIT;
+
+		$data['page_title'] = __("Edit User");
+
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = __("Edit User");
-
+			// Prepare data and render the user options view
 			$q = $query->row();
 
 			$data['id'] = $q->user_id;
@@ -637,11 +764,14 @@ class User extends CI_Controller {
 
 			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'), $this->uri->segment(3))->row()->option_value ?? 'false');
 			$data['user_utc_headermenu'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'utc_headermenu'), $this->uri->segment(3))->row()->option_value ?? 'false');
+			$data['user_dashboard_last_qso_count'] = ($this->user_options_model->get_options('dashboard', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? DASHBOARD_DEFAULT_QSOS_COUNT);
+			$data['user_qso_page_last_qso_count'] = ($this->user_options_model->get_options('qso_tab', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? QSO_PAGE_DEFAULT_QSOS_COUNT);
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
-			$this->load->view('interface_assets/footer');
+			$this->load->view('interface_assets/footer', $footerData);
 		} else {
+			// Data was submitted for saving - save updated options in DB 
 			unset($data);
 			switch($this->user_model->edit($this->input->post())) {
 				// Check for errors
@@ -694,7 +824,6 @@ class User extends CI_Controller {
 					}
 					return;
 			}
-			$data['page_title'] = __("Edit User");
 
 			$this->load->view('interface_assets/header', $data);
 			$data['user_name'] = $this->input->post('user_name', true);
@@ -733,6 +862,9 @@ class User extends CI_Controller {
 			$data['user_winkey'] = $this->input->post('user_winkey');
 			$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
 			$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
+			$data['user_dashboard_last_qso_count'] = $this->input->post('user_dashboard_last_qso_count', true);
+			$data['user_qso_page_last_qso_count'] = $this->input->post('user_qso_page_last_qso_count', true);
+
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
 		}
@@ -790,6 +922,14 @@ class User extends CI_Controller {
 	}
 
 	function login($firstlogin = false) {
+
+		// Due the fact there was a new session generated, we need to get flash messages from a temporary cookie
+		$tmpdata = json_decode($this->input->cookie(config_item('cookie_prefix') . 'tmp_msg') ?? '') ?? false;
+		if ($tmpdata) {
+			$this->session->set_flashdata($tmpdata[0], $tmpdata[1]);
+			$this->input->set_cookie('tmp_msg', '', -3600, '');
+		}
+
 		// Check our version and run any migrations
 		if (!$this->load->is_loaded('Migration')) {
 			$this->load->library('Migration');
@@ -814,7 +954,7 @@ class User extends CI_Controller {
 		$data['user'] = $query->row();
 
 		// Read the cookie keep_login and allow the login
-		if ($this->input->cookie(config_item('cookie_prefix') . 'keep_login')) {
+		if ($this->input->cookie(config_item('cookie_prefix') . 'keep_login') || $this->input->cookie(config_item('cookie_prefix') . 're_login')) {
 
 			try {
 
@@ -823,7 +963,7 @@ class User extends CI_Controller {
 				}
 
 				// process the incoming string
-				$incoming_string = $this->input->cookie(config_item('cookie_prefix') . 'keep_login');
+				$incoming_string = $this->input->cookie(config_item('cookie_prefix') . 'keep_login') ?? $this->input->cookie(config_item('cookie_prefix') . 're_login');
 				$i_str_parts_a = explode(base64_encode($this->config->item('base_url')), $incoming_string);
 				$uid = base64_decode($i_str_parts_a[1]);
 				$a = $i_str_parts_a[0];
@@ -836,6 +976,13 @@ class User extends CI_Controller {
 				$user = $this->user_model->get_by_id($uid)->row();
 				$user_type = $user->user_type;
 
+				// direct login to clubstations are not allowed, especially not with a keeplogin cookie
+				if ($user->clubstation == 1) {
+					log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt with a modified cookie. Attack?");
+					$this->session->set_flashdata('error', __("This is not allowed!"));
+					redirect('user/login');
+				}
+
 				// compare both strings the hard way and log in if they match
 				if ($this->user_model->check_keep_hash($a, $b)) {
 
@@ -845,7 +992,8 @@ class User extends CI_Controller {
 						// if everything is fine we can log in the user
 						$this->user_model->update_session($uid);
 						$this->user_model->set_last_seen($uid);
-						log_message('debug', "User ID: [$uid] logged in successfully with 'Keep Login'.");
+						log_message('info', "User ID: [$uid] logged in successfully with 'Keep Login'.");
+						$this->input->set_cookie('re_login', '', -3600, ''); // delete re_login cookie in case this was a re-login from a clubstation or impersonated user
 						redirect('dashboard');
 
 					} else {
@@ -855,6 +1003,7 @@ class User extends CI_Controller {
 
 						// Delete keep_login cookie
 						$this->input->set_cookie('keep_login', '', -3600, '');
+						$this->input->set_cookie('re_login', '', -3600, '');
 
 						redirect('user/login');
 					}
@@ -864,6 +1013,7 @@ class User extends CI_Controller {
 
 					// Delete keep_login cookie
 					$this->input->set_cookie('keep_login', '', -3600, '');
+					$this->input->set_cookie('re_login', '', -3600, '');
 					$this->session->set_flashdata('error', __("Login failed. Try again."));
 					redirect('user/login');
 				}
@@ -873,6 +1023,7 @@ class User extends CI_Controller {
 
 				// Delete keep_login cookie
 				$this->input->set_cookie('keep_login', '', -3600, '');
+				$this->input->set_cookie('re_login', '', -3600, '');
 
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
 				redirect('user/login');
@@ -888,7 +1039,8 @@ class User extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 
 		} else {
-			if($this->user_model->login() == 1) {
+			$login_attempt = $this->user_model->login();
+			if($login_attempt === 1) {
 				$this->user_model->update_session($data['user']->user_id);
 				$cookie= array(
 
@@ -916,7 +1068,13 @@ class User extends CI_Controller {
 				}
 				$this->user_model->set_last_seen($data['user']->user_id);
 				redirect('dashboard');
-
+			
+			} else if ($login_attempt === 2) {
+				$this->session->set_flashdata('warning', __("You can't login to a clubstation directly. Use your personal account instead."));
+				redirect('user/login');
+			} else if ($login_attempt === 3) {
+				$this->session->set_flashdata('warning', __("Your account is locked, due to too many failed login-attempts. Please reset your password."));
+				redirect('user/login');
 			} else {
 				if(ENVIRONMENT == 'maintenance') {
 					$this->session->set_flashdata('notice', __("Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."));
@@ -929,18 +1087,74 @@ class User extends CI_Controller {
 		}
 	}
 
-	function logout() {
+	function logout($custom_message = null, $hard_logout = true) {
 		$this->load->model('user_model');
 
 		$user_name = $this->session->userdata('user_name');
 
 		// Delete keep_login cookie
-		$this->input->set_cookie('keep_login', '', -3600, '');
+		if ($hard_logout) {
+			$this->input->set_cookie('re_login', '', -3600, '');
+			$this->input->set_cookie('keep_login', '', -3600, '');
+		}
 
 		$this->user_model->clear_session();
-
-		$this->session->set_flashdata('notice', sprintf(__("User %s logged out."), $user_name));
+		
+		if ($custom_message != null && is_array($custom_message)) {
+			$this->input->set_cookie('tmp_msg', json_encode([$custom_message[0], $custom_message[1]]), 10, '');
+		} else {
+			$this->input->set_cookie('tmp_msg', json_encode(['notice', sprintf(__("User %s logged out."), $user_name)]), 10, '');
+		}
+		
 		redirect('user/login');
+	}
+
+	/**
+	 * First Login Wizard
+	 * 
+	 * Form Data to create the first station location
+	 */
+	function firstlogin_wizard_form() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('station_name', __("Station Name"), 'required');
+		$this->form_validation->set_rules('station_callsign', __("Station Callsign"), 'required');
+		$this->form_validation->set_rules('station_dxcc', __("Station DXCC"), 'required');
+		$this->form_validation->set_rules('station_cqz', __("Station CQ Zone"), 'required');
+		$this->form_validation->set_rules('station_ituz', __("Station ITU Zone"), 'required');
+		$this->form_validation->set_rules('station_locator', __("Station Locator"), 'required');
+
+		$stationdata = [
+			'user_id' => $this->session->userdata('user_id'),
+			'station_name' => $this->input->post('station_name', true),
+			'station_callsign' => $this->input->post('station_callsign', true),
+			'station_dxcc' => $this->input->post('station_dxcc', true),
+			'station_cqz' => $this->input->post('station_cqz', true),
+			'station_ituz' => $this->input->post('station_ituz', true),
+			'station_locator' => $this->input->post('station_locator', true),
+		];
+
+		log_message('debug', 'First Login Wizard Form Data: '.print_r($stationdata, true));
+
+		if (!$this->check_locator($stationdata['station_locator'])) {
+			$this->session->set_flashdata('fl_wiz_error', __("Invalid Locator!"));
+			redirect('dashboard');
+		}
+
+		if ($this->form_validation->run() == FALSE) {
+			redirect('dashboard'); // Redirect to dashboard if form validation fails to show the wizard again
+		} else {
+			if ($this->user_model->firstlogin_wizard($stationdata)) {
+				$this->session->set_flashdata('success', sprintf(__("Station created successfully! Welcome to Wavelog! To complete your station setup, click %shere%s."), '<a href="'.site_url('stationsetup').'"><u>', '</u></a>'));
+				redirect('dashboard');
+			} else {
+				$this->session->set_flashdata('error', __("Station setup failed! Please set up your station manually."));
+				redirect('stationsetup');
+			}
+		}
+
 	}
 
 	/**
@@ -1146,8 +1360,10 @@ class User extends CI_Controller {
 		}
 	}
 
-	function check_locator($grid) {
-		$grid = $this->input->post('user_locator');
+	function check_locator($grid = '') {
+		if (empty($grid)) {
+			$grid = $this->input->post('locator', TRUE);
+		}
 		// Allow empty locator
 		if (preg_match('/^$/', $grid)) return true;
 		// Allow 6-digit locator
@@ -1185,13 +1401,15 @@ class User extends CI_Controller {
 
 		// Check if impersonating is disabled in the config
 		if ($this->config->item('disable_impersonate')) {
-			show_404();
+			$this->session->set_flashdata('error', sprintf(__("You currently can't impersonate another user. You need to set %s to %s in your config.php!"), "'disable_impersonate'", "'false'"));
+			redirect('dashboard');
 		}
 
 		// Load the encryption library
 		if (!$this->load->is_loaded('encryption')) {
 			$this->load->library('encryption');
 		}
+
 		// Load the user model
 		$this->load->model('user_model');
 
@@ -1241,13 +1459,38 @@ class User extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		// before we can impersonate a user, we need to make sure the current user is an admin
-		// TODO: authorize from additional datatable 'impersonators' to allow other user types to impersonate
+		// before we can impersonate a user, we need to make sure the current user is allowed to do so
+		$clubswitch = $this->input->post('clubswitch', TRUE) ?? '';
+		$custom_sessiondata = [];
 		$source_user = $this->user_model->get_by_id($source_uid)->row();
-		if(!$source_user || !$this->user_model->authorize(99)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard'); 
+		if ($clubswitch == 1) {
+			$this->load->model('club_model');
+			if (!$this->club_model->club_authorize(3, $target_uid, $source_uid) || !$this->user_model->authorize(3)) {
+				$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+				redirect('dashboard');
+			} else {
+				$targetclub = array_filter($this->session->userdata('available_clubstations'), function($club) use ($target_uid) {
+					return $club->user_id == $target_uid;
+				});
+				$p_level = !empty($targetclub) ? reset($targetclub)->p_level : null;
+				if ($p_level != null) {
+					$custom_sessiondata['p_level'] = $p_level;
+				} else {
+					$this->session->set_flashdata('error', __("Could not determine the correct permission level for the clubstation. Try again after re-login."));
+					redirect('dashboard');
+				}
+			}
+		} else {
+			if(!$source_user || !$this->user_model->authorize(99)) {
+				$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+				redirect('dashboard'); 
+			} else {
+				$custom_sessiondata['p_level'] = 99;  // if the user is an admin he also should have full rights in the clubstations
+			}
 		}
+		$custom_sessiondata['src_call'] = $source_user->user_callsign;
+		$custom_sessiondata['src_user_type'] = $source_user->user_type;
+		$custom_sessiondata['src_hash'] = $this->input->post('hash', TRUE) ?? '';
 
 		/**
 		 * Impersonate the user
@@ -1255,9 +1498,87 @@ class User extends CI_Controller {
 		// Update the session with the new user_id
 		// TODO: Find a solution for sessiondata 'radio', so a user would be able to use e.g. his own radio while impersonating another user
 		// Due the fact that the user is now impersonating another user, he can't use his default radio anymore
-		$this->user_model->update_session($target_uid, null, $impersonate = true); 
+		$this->session->set_userdata('source_uid', $source_uid);
+		$this->user_model->update_session($target_uid, null, true, $custom_sessiondata); 
 		
 		// Redirect to the dashboard, the user should now be logged in as the other user
 		redirect('dashboard');
+	}
+
+	public function stop_impersonate_modal() {
+		// Load the user model
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$this->load->view('user/modals/stop_impersonate_modal');
+	}
+
+	public function stop_impersonate() {
+		// Load the user model
+		$this->load->model('user_model');
+
+		// there is no source_uid, there is probably something fishy going on. So we clear the session at this point
+		$source_uid = $this->session->userdata('source_uid') ?? false;
+		$post_chk = $this->input->post('stopImpersonate', TRUE) ?? false;
+		if (!$source_uid || $post_chk != 1) {
+			$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+			exit;
+		}
+
+		// is the current user a clubstation we need to check if the source user was allowed to impersonate the clubstation
+		$club = $this->user_model->get_by_id($this->session->userdata('user_id'))->row();
+		$current_is_club = $club->clubstation == 1 ? true : false;
+		$source_user = $this->user_model->get_by_id($source_uid)->row();
+
+		if ($current_is_club) {
+			$this->load->model('club_model');
+			if (!$this->club_model->club_authorize(3, $this->session->userdata('user_id'), $source_uid)) {
+				$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+				exit;
+			}
+		} else {
+			// if the current user is not a clubstation, we need to check if the source user was allowed to impersonate the current user (has to be an admin)
+			if($source_user->user_type != 99) {
+				$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+				exit;
+			}
+		}
+
+		// Validate the impersonate hash
+		$this->load->library('encryption');
+		$raw_hash = $this->encryption->decrypt($this->session->userdata('cd_src_hash') ?? false);
+		if (!$raw_hash) {
+			$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+			exit;
+		}
+		$hash_parts = explode('/', $raw_hash);
+		$src_in_hash = $hash_parts[0];
+		$tgt_in_hash = $hash_parts[1];
+		$timestamp = $hash_parts[2];
+		if ($src_in_hash != $source_uid || $tgt_in_hash != $this->session->userdata('user_id')) {
+			$this->logout(['error', __("Ups.. Something went wrong. Try to log back in.")]);
+			exit;
+		}
+
+		// The timestamp can't be older then 2 hours
+		if (time() - $timestamp > 7200) {
+			$this->logout(['notice', __("The ability to return quickly has been disabled after the security hash expired. Please log in again.")]);
+			exit;
+		}
+
+		// Create a keep login cookie which will be used to log back in as the source user
+		$encrypted_string = $this->user_model->keep_cookie_hash($source_uid);
+		$cookie = array(
+			'name'   => 're_login',  // we use a different cookie name to avoid conflicts with the regular keep_login cookie
+			'value'  => $encrypted_string,
+			'expire' => 20,  // seconds should be enough
+			'secure' => FALSE,
+			'httponly' => TRUE
+		);
+		$this->input->set_cookie($cookie);
+
+		// log out on the regular way
+		$msg = ['notice', sprintf(__("You have been logged out of the clubstation %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
+		$this->logout($msg, false);
 	}
 }

@@ -147,7 +147,7 @@ class WAE extends CI_Model {
 				}
 			}
 
-			$confirmedWae = $this->getDxccConfirmed($$this->location_list, $postdata, true);
+			$confirmedWae = $this->getDxccConfirmed($this->location_list, $postdata, true);
 			foreach ($confirmedWae as $cdxcc) {
 				if (array_key_exists($cdxcc->col_region, $dxccMatrix)) {
 					unset($dxccMatrix[$cdxcc->col_region]);

@@ -45,6 +45,12 @@ define('EFORBIDDEN',							'Forbidden');
 
 define('OK',									'OK');
 
+define('DASHBOARD_DEFAULT_QSOS_COUNT',          20);
+define('DASHBOARD_QSOS_COUNT_LIMIT',            50);
+
+define('QSO_PAGE_DEFAULT_QSOS_COUNT',           5);
+define('QSO_PAGE_QSOS_COUNT_LIMIT',             20);
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

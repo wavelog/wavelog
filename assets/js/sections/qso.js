@@ -66,6 +66,7 @@ $(document).on("keydown", function (e) {
 $('#callsign').on('input', function () {
 	$(this).val($(this).val().replace(/\s/g, ''));
 	$(this).val($(this).val().replace(/0/g, 'Ø'));
+	$(this).val($(this).val().replace(/\./g, '/P'));
 });
 
 $('#locator').on('input', function () {
@@ -154,37 +155,55 @@ $('#reset_time').on("click", function () {
 	});
 });
 
-$('#reset_start_time').on("click", function () {
+
+
+// Function to format the current time as HH:MM or HH:MM:SS
+function formatTime(date, includeSeconds) {
+	let time = ("0" + date.getUTCHours()).slice(-2) + ":" + ("0" + date.getUTCMinutes()).slice(-2);
+	if (includeSeconds) {
+		time += ":" + ("0" + date.getUTCSeconds()).slice(-2);
+	}
+	return time;
+}
+
+// Event listener for resetting start time
+$("#reset_start_time").on("click", function () {
 	var now = new Date();
-	$('#start_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+
+	// Format start and end times
+	let startTime = formatTime(now, qso_manual != 1);
+	let endTime = formatTime(now, qso_manual != 1);
+
+	// Update all elements with id 'start_time'
 	$("[id='start_time']").each(function () {
-		$starttime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
-		if (qso_manual != 1) {
-			$starttime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
-		}
-		$(this).attr("value", $starttime);
+		$(this).val(startTime);
 	});
-	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+
+	// Update all elements with id 'end_time'
 	$("[id='end_time']").each(function () {
-		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
-		if (qso_manual != 1) {
-			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
-		}
-		$(this).attr("value", $endtime);
+		$(this).val(endTime);
 	});
-	// update date (today, for "post qso") //
-	$('#start_date').attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
+
+	// Update the start date
+	$("#start_date").val(
+		("0" + now.getUTCDate()).slice(-2) +
+		"-" +
+		("0" + (now.getUTCMonth() + 1)).slice(-2) +
+		"-" +
+		now.getUTCFullYear()
+	);
 });
 
-$('#reset_end_time').on("click", function () {
+// Event listener for resetting end time
+$("#reset_end_time").on("click", function () {
 	var now = new Date();
-	$('#end_time').attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2));
+
+	// Format end time
+	let endTime = formatTime(now, qso_manual != 1);
+
+	// Update all elements with id 'end_time'
 	$("[id='end_time']").each(function () {
-		$endtime = ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2);
-		if (qso_manual != 1) {
-			$endtime += ':' + ("0" + now.getUTCSeconds()).slice(-2);
-		}
-		$(this).attr("value", $endtime);
+		$(this).val(endTime);
 	});
 });
 
@@ -605,7 +624,7 @@ $("#callsign").on("focusout", function () {
 		find_callsign = find_callsign.replaceAll('Ø', '0');
 
 		// Replace / in a callsign with - to stop urls breaking
-		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
+		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val() + '/' + last_qsos_count, async function (result) {
 
 			// Make sure the typed callsign and json result match
 			if ($('#callsign').val().toUpperCase().replaceAll('Ø', '0') == result.callsign) {
@@ -882,12 +901,13 @@ $('#start_date').on('change', function () {
 
 /* on mode change */
 $('.mode').on('change', function () {
-	if ($('#radio').val() == 0) {
+	if ($('#radio').val() == 0 && $('#sat_name').val() == '') {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result).trigger("change");
 		});
+		$('#frequency_rx').val("");
 	}
-	$('#frequency_rx').val("");
+	$("#callsign").blur();
 });
 
 /* Calculate Frequency */
@@ -904,6 +924,7 @@ $('#band').on('change', function () {
 	$("#sat_name").val("");
 	$("#sat_mode").val("");
 	set_qrg();
+	$("#callsign").blur();
 });
 
 /* On Key up Calculate Bearing and Distance */

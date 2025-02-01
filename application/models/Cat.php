@@ -2,7 +2,7 @@
 
 	class Cat extends CI_Model {
 
-		function update($result, $user_id) {
+		function update($result, $user_id, $operator) {
 
 			$timestamp = gmdate("Y-m-d H:i:s");
 
@@ -16,6 +16,7 @@
 			}
 
 			$this->db->where('radio', $result['radio']);
+			$this->db->where('operator', $operator);
 			$this->db->where('user_id', $user_id);
 			$query = $this->db->get('cat');
 
@@ -74,6 +75,7 @@
 				// Add a new record
 				$data['radio'] = $result['radio'];
 				$data['user_id'] = $user_id;
+				$data['operator'] = $operator;
 
 				$this->db->insert('cat', $data);
 			}
@@ -82,6 +84,9 @@
 		function status() {
 			//$this->db->where('radio', $result['radio']);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
+			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
+				$this->db->where('operator', $this->session->userdata('source_uid'));
+			}
 			$query = $this->db->get('cat');
 
 			return $query;
@@ -89,6 +94,9 @@
 
 		function recent_status() {
 			$this->db->where('user_id', $this->session->userdata('user_id'));
+			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
+				$this->db->where('operator', $this->session->userdata('source_uid'));
+			}
 			$this->db->where("timestamp > date_sub(UTC_TIMESTAMP(), interval 15 minute)", NULL, FALSE);
 
 			$query = $this->db->get('cat');
@@ -96,22 +104,39 @@
 		}
 
 		/* Return list of radios */
-		function radios() {
+		function radios($only_operator = false) {
 			$this->db->select('id, radio');
 			$this->db->where('user_id', $this->session->userdata('user_id'));
+			if ($only_operator && ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9))) {
+				$this->db->where('operator', $this->session->userdata('source_uid'));
+			}
 			$query = $this->db->get('cat');
 
 			return $query;
 		}
 
 		function radio_status($id) {
+			$binding = [];
 			$sql = 'SELECT * FROM `cat` WHERE id = ? AND user_id = ?';
-			return $this->db->query($sql, array($id, $this->session->userdata('user_id')));
+			$binding[] = $id;
+			$binding[] = $this->session->userdata('user_id');
+			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
+				$sql .= ' AND operator = ?';
+				$binding[] = $this->session->userdata('source_uid');
+			}
+			return $this->db->query($sql, $binding);
 		}
 
 		function last_updated() {
-			$sql = 'SELECT * FROM cat WHERE user_id = ? ORDER BY timestamp DESC LIMIT 1';
-			return $this->db->query($sql, $this->session->userdata('user_id'));
+			$binding = [];
+			$sql = 'SELECT * FROM cat WHERE user_id = ?';
+			$binding[] = $this->session->userdata('user_id');
+			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
+				$sql .= ' AND operator = ?';
+				$binding[] = $this->session->userdata('source_uid');
+			}
+			$sql .= ' ORDER BY timestamp DESC LIMIT 1';
+			return $this->db->query($sql, $binding);
 		}
 
 		function delete($id) {

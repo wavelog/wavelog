@@ -4,6 +4,7 @@
 	var dxcluster_maxage = <?php echo $this->optionslib->get_option('dxcluster_maxage') ?? 60; ?>;
 	var custom_date_format = "<?php echo $custom_date_format ?>";
 	var popup_warning = "<?= __("Pop-up was blocked! Please allow pop-ups for this site permanently."); ?>";
+	var lang_click_to_prepare_logging = "<?= __("Click to prepare logging."); ?>";
 </script>
 
 <style>
@@ -115,6 +116,7 @@
 					<th><?= __("DXCC"); ?></th>
 					<th style="width:150px;"><?= __("Spotter"); ?></th>
 					<th><?= __("Message"); ?></th>
+					<th><?= __("Last Worked"); ?></th>
 				</tr>
 			</thead>
 

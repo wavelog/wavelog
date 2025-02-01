@@ -137,7 +137,7 @@ if($this->session->userdata('user_id') != null) {
     if (empty($versionDialogHeader)) {
         $this->optionslib->update('version_dialog_header', __("Version Info"), 'yes');
     }
-    if($versionDialog != "disabled") {
+    if($versionDialog != "disabled" && !($is_first_login ?? false)) {
         $confirmed = $this->user_options_model->get_options('version_dialog', array('option_name'=>'confirmed'))->result();
         $confirmation_value = (isset($confirmed[0]->option_value))?$confirmed[0]->option_value:'false';
         if ($confirmation_value != 'true') {
@@ -153,7 +153,7 @@ if($this->session->userdata('user_id') != null) {
 <!-- Version Dialog END -->
 
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE -->
-<?php if ($this->config->item('special_callsign') == true && $this->uri->segment(1) == "dashboard") { ?>
+<?php if ($this->config->item('special_callsign') && $this->uri->segment(1) == "dashboard" && $this->session->userdata('clubstation') == 1) { ?>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
 <script>
 	<?php
@@ -175,6 +175,43 @@ if($this->session->userdata('user_id') != null) {
     <?php } ?>
 </script>
 <?php } ?>
+<script>
+function clubswitch_modal(club_id, club_callsign) {
+    $.ajax({
+        url: base_url + 'index.php/club/switch_modal',
+        type: 'POST',
+        data: {
+            club_id: club_id,
+            club_callsign: club_callsign
+        },
+        success: function(response) {
+            $('#clubswitchModal-container').html(response);
+            $('#clubswitchModal').modal('show');
+        },
+        error: function() {
+            alert('<?= __("Failed to load the modal. Please try again."); ?>');
+        }
+    });
+    $(window).on('blur', function() {
+        $('#clubswitchModal').modal('hide');
+    });
+}
+function stopImpersonate_modal() {
+    $.ajax({
+        url: base_url + 'index.php/user/stop_impersonate_modal',
+        success: function(response) {
+            $('#stopImpersonateModal-container').html(response);
+            $('#stopImpersonateModal').modal('show');
+        },
+        error: function() {
+            alert('<?= __("Failed to load the modal. Please try again."); ?>');
+        }
+    });
+    $(window).on('blur', function() {
+        $('#stopImpersonateModal').modal('hide');
+    });
+}
+</script>
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
 
 <script>
@@ -601,8 +638,7 @@ $(function () {
             $(".searchbutton").prop('disabled', true);
 
             $.post("<?php echo site_url('search/search_result'); ?>", {
-                    search: JSON.stringify(result, null, 2),
-                    temp: "testvar"
+                    search: JSON.stringify(result, null, 2)
                 })
                 .done(function(data) {
                     $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_search_result();">'+"<?= __("Export to ADIF"); ?>"+'</button>');
@@ -794,7 +830,13 @@ function showActivatorsMap(call, count, grids) {
             <?php } else { ?>
               var grid = "No";
             <?php } ?>
-            initmap(grid,'map',{'dataPost':{'nb_qso':'18'}});
+            
+            <?php printf("var dashboard_qso_count = '%d';", $this->session->userdata('dashboard_last_qso_count')) ?>
+            initmap(grid,'map',{'dataPost':{'nb_qso': dashboard_qso_count}});
+
+            <?php if ($is_first_login ?? false) : ?>
+                $('#firstLoginWizardModal').modal('show');
+            <?php endif; ?>
 
       });
     </script>
@@ -2896,10 +2938,6 @@ function viewEqsl(picture, callsign) {
             }
         </script>
     <?php } ?>
-<?php } ?>
-
-<?php if ($this->uri->segment(1) == "user") { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/user.js"></script>
 <?php } ?>
 
 <?php

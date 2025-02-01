@@ -3,15 +3,20 @@
 class Clublog_model extends CI_Model
 {
 
-	function get_clublog_users() {
+	private $clublog_identifier = '608df94896cb9c5421ae748235492b43815610c9';
+
+	function get_clublog_users($userid = null) {
 		$this->db->select('user_clublog_name, user_clublog_password, user_id');
 		$this->db->where('coalesce(user_clublog_name, "") != ""');
 		$this->db->where('coalesce(user_clublog_password, "") != ""');
+		if ($userid !== null) {
+			$this->db->where('user_id', $userid);
+		}
 		$query = $this->db->get($this->config->item('auth_table'));
 		return $query->result();
 	}
 
-	function uploadUser($userid, $username, $password) {
+	function uploadUser($userid, $username, $password, $station_id = null) {
 		$clean_username = $this->security->xss_clean($username);
 		$clean_passord = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
@@ -30,7 +35,7 @@ class Clublog_model extends CI_Model
 			$this->load->library('AdifHelper');
 		}
 
-		$station_profiles = $this->all_with_count($clean_userid);
+		$station_profiles = $this->all_with_count($clean_userid, $station_id);
 
 		if ($station_profiles->num_rows()) {
 			foreach ($station_profiles->result() as $station_row) {
@@ -65,6 +70,7 @@ class Clublog_model extends CI_Model
 
 							// send a file
 							curl_setopt($request, CURLOPT_POST, true);
+							curl_setopt($request, CURLOPT_TIMEOUT, 10);
 							curl_setopt(
 								$request,
 								CURLOPT_POSTFIELDS,
@@ -72,7 +78,7 @@ class Clublog_model extends CI_Model
 									'email' => $clean_username,
 									'password' => $clean_passord,
 									'callsign' => $station_row->station_callsign,
-									'api' => "608df94896cb9c5421ae748235492b43815610c9",
+									'api' => $this->clublog_identifier,
 									'file' => $cFile
 								)
 							);
@@ -81,7 +87,7 @@ class Clublog_model extends CI_Model
 							curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
 							$response = curl_exec($request);
 							$info = curl_getinfo($request);
-
+							$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
 							if (curl_errno($request)) {
 								$return =  curl_error($request);
 							}
@@ -89,26 +95,33 @@ class Clublog_model extends CI_Model
 
 
 							// If Clublog Accepts mark the QSOs
-							if (preg_match('/\baccepted\b/', $response)) {
-								$return =  "QSOs uploaded and Logbook QSOs marked as sent to Clublog";
+							if (($httpcode == 200) || (preg_match('/\baccepted\b/', $response))) {
+								$return =  "QSOs uploaded and Logbook QSOs marked as sent to Clublog.";
 								$this->mark_qsos_sent($station_row->station_id);
-								$return =  "Clublog upload for " . $station_row->station_callsign;
-								log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent.');
-							} else if (preg_match('/checksum duplicate/', $response)) {
-								$return =  "QSOs uploaded (asduplicate!) and Logbook QSOs marked as sent to Clublog";
+								$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
+								log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
+							} else if (preg_match('/checksum duplicate/', $response)) {	// Be safe, if Michael rolls back to 403 on duplicate
+								$return =  "QSOs uploaded (as duplicate!) and Logbook QSOs marked as sent to Clublog";
 								$this->mark_qsos_sent($station_row->station_id);
-								$return =  "Clublog upload for " . $station_row->station_callsign;
-								log_message('info', 'Clublog DUPLICATE upload for ' . $station_row->station_callsign . ' successfully sent.');
+								$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
+								log_message('info', 'Clublog DUPLICATE upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
 							} else {
-								$return =  "Error " . $response;
-								log_message('error', 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response);
+								$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
+								log_message('error', $return);
 								if (substr($response,0,13) == 'Upload denied') {	// Deactivate Upload for Station if Clublog rejects it due to non-configured Call (prevent being blacklisted at Clublog)
-        								$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-        								$this->db->query($sql,$station_row->station_id);
-								}
-								if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
-        								$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-        								$this->db->query($sql,$station_row->station_id);
+									log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to non-configured Call (prevent being blacklisted at Clublog.');
+									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+									$this->db->query($sql,$station_row->station_id);
+								} else if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
+									log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to wrong credentials (prevent being blacklisted at Clublog.');
+									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+									$this->db->query($sql,$station_row->station_id);
+								} else if ($httpcode == 403) {
+									log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to 403 (prevent being blacklisted at Clublog.');
+									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+									$this->db->query($sql,$station_row->station_id);
+								} else {
+									log_message('error', 'Some uncaught exception for station ' . $station_row->station_callsign);
 								}
 							}
 
@@ -116,7 +129,6 @@ class Clublog_model extends CI_Model
 							unlink('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
 						}
 					} else {
-
 						$return =  "Nothing awaiting upload to clublog for " . $station_row->station_callsign;
 						log_message('info', 'Nothing awaiting upload to clublog for ' . $station_row->station_callsign);
 					}
@@ -127,12 +139,12 @@ class Clublog_model extends CI_Model
 		return $return . "\n";
 	}
 
-	function downloadUser($userid, $username, $password) {
+	function downloadUser($userid, $username, $password, $clublog_last_date = null) {
 		$clean_username = $this->security->xss_clean($username);
 		$clean_password = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
 
-		$return = "Nothing to download";
+		$return = '';
 
 		$this->config->load('config');
 
@@ -148,26 +160,30 @@ class Clublog_model extends CI_Model
 
 		if ($station_profiles->num_rows()) {
 			foreach ($station_profiles->result() as $station_row) {
-				$lastrec = $this->clublog_last_qsl_rcvd_date($station_row->station_callsign);
-				$url = 'https://clublog.org/getmatches.php?api=608df94896cb9c5421ae748235492b43815610c9&email=' . $clean_username . '&password=' . $clean_password . '&callsign=' . $station_row->station_callsign . '&startyear=' . substr($lastrec, 0, 4) . '&startmonth=' . substr($lastrec, 4, 2) . '&startday=' . substr($lastrec, 6, 2);
+				$lastrec = $clublog_last_date ?? $this->clublog_last_qsl_rcvd_date($station_row->station_callsign);
+				$lastrec = str_replace('-', '', $lastrec);
+				$url = 'https://clublog.org/getmatches.php?api=' . $this->clublog_identifier . '&email=' . $clean_username . '&password=' . $clean_password . '&callsign=' . $station_row->station_callsign . '&startyear=' . substr($lastrec, 0, 4) . '&startmonth=' . substr($lastrec, 4, 2) . '&startday=' . substr($lastrec, 6, 2);
 				$request = curl_init($url);
 
 				// recieve a file
 				curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($request, CURLOPT_TIMEOUT, 10);
 				$response = curl_exec($request);
 				$info = curl_getinfo($request);
 				curl_close($request);
 
 				if (curl_errno($request)) {
-					$return = curl_error($request);
+					$log .= curl_error($request)."<br>";
 				} elseif (preg_match_all('/Login rejected/', $response)) {
 					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
-					$return = "Wrong Clublog username and password for Callsign: '" . $station_row->station_callsign . "'. 'LOGIN REJECTED'.";
-					log_message('debug', $return);
+					$log = "Wrong Clublog username and password for Callsign: '" . $station_row->station_callsign . "'. 'LOGIN REJECTED'.";
+					log_message('debug', $log);
+					$return .= $log."<br>";
 				} elseif (preg_match_all('/Invalid callsign/', $response)) {	// We're trying to download calls for a station we're not granted. Disable Clublog-Transfer for that station(s)
 					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
-					$return = "The callsign '" . $station_row->station_callsign . "' does not match the user account at Clublog. 'INVALID CALLSIGN'.";
-					log_message('debug', $return);
+					$log = "The callsign '" . $station_row->station_callsign . "' does not match the user account at Clublog. 'INVALID CALLSIGN'.";
+					log_message('debug', $log);
+					$return .= $log."<br>";
 				} else {
 					try {
 						$cl_qsls = json_decode($response);
@@ -175,14 +191,18 @@ class Clublog_model extends CI_Model
 							$this->logbook_model->clublog_update($oneqsl[2], $oneqsl[0], $oneqsl[3], 'Y', $station_row->station_callsign, $station_row->station_ids);
 						}
 					} catch (Exception $e) {
-						$return = "Something gone wrong while trying to Download for station(s) " . $station_row->station_ids . " / Call: " . $station_row->station_callsign;
-						log_message("error", $return);
+						$log = "Something gone wrong while trying to Download for station(s) " . $station_row->station_ids . " / Call: " . $station_row->station_callsign." / Response was: ".$response;
+						log_message("error", $log);
+						$return .= $log."<br>";
 					}
 
-					$return = "QSO's for Callsign: '" . $station_row->station_callsign . "' were successfully downloaded";
-					log_message('info', $return);
+					$log = "QSO's for Callsign: '" . $station_row->station_callsign . "' were successfully downloaded";
+					log_message('info', $log);
+					$return .= $log."<br>";
 				}
 			}
+		} else {
+			$return = "Nothing to download";
 		}
 
 		return $return . "\n";
@@ -288,7 +308,7 @@ class Clublog_model extends CI_Model
 	}
 
 	function all_enabled($userid) {
-		$sql = "select sp.station_callsign, group_concat(sp.station_id) as station_ids from station_profile sp 
+		$sql = "select sp.station_callsign, group_concat(sp.station_id) as station_ids from station_profile sp
 			inner join users u on (u.user_id=sp.user_id)
 			where u.user_clublog_name is not null and u.user_clublog_password is not null and sp.clublogignore=0 and u.user_id=?
 			group by sp.station_callsign";
@@ -296,11 +316,14 @@ class Clublog_model extends CI_Model
 		return $query;
 	}
 
-	function all_with_count($userid) {
+	function all_with_count($userid, $station_id) {
 		$this->db->select('station_profile.station_id, station_profile.station_callsign, count(' . $this->config->item('table_name') . '.station_id) as qso_total');
 		$this->db->from('station_profile');
 		$this->db->join($this->config->item('table_name'), 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id', 'left');
 		$this->db->group_by('station_profile.station_id');
+		if ($station_id !== null) {
+			$this->db->where('station_profile.station_id', $station_id);
+		}
 		$this->db->where('station_profile.user_id', $userid);
 		$this->db->where('station_profile.clublogignore', 0);
 		$this->db->group_start();
@@ -311,5 +334,78 @@ class Clublog_model extends CI_Model
 		$this->db->group_end();
 
 		return $this->db->get();
+	}
+
+	function stations_with_clublog_enabled() {
+		$bindings=[];
+		$sql = "SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, modc.modcount, notc.notcount, totc.totcount
+			FROM station_profile
+			LEFT OUTER JOIN (
+				SELECT count(*) modcount, station_id
+				FROM ". $this->config->item('table_name') .
+				" WHERE COL_CLUBLOG_QSO_UPLOAD_STATUS = 'M'
+				group by station_id
+		) as modc on station_profile.station_id = modc.station_id
+		LEFT OUTER JOIN (
+			SELECT count(*) notcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" WHERE (coalesce(COL_CLUBLOG_QSO_UPLOAD_STATUS, '') = ''
+			or COL_CLUBLOG_QSO_UPLOAD_STATUS = 'N')
+			group by station_id
+		) as notc on station_profile.station_id = notc.station_id
+		LEFT OUTER JOIN (
+			SELECT count(*) totcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" WHERE COL_CLUBLOG_QSO_UPLOAD_STATUS = 'Y'
+			group by station_id
+		) as totc on station_profile.station_id = totc.station_id
+		WHERE coalesce(station_profile.clublogignore, 1) = 0
+		AND station_profile.user_id = ?";
+		$bindings[]=$this->session->userdata('user_id');
+		$query = $this->db->query($sql, $bindings);
+
+		return $query;
+    }
+
+	function push_qso_to_clublog($cl_username, $cl_password, $station_callsign, $adif) {
+
+		// initialise the curl request
+		$returner = [];
+		$request = curl_init('https://clublog.org/realtime.php');
+
+		curl_setopt($request, CURLOPT_POST, true);
+		curl_setopt($request, CURLOPT_TIMEOUT, 10);
+		curl_setopt(
+			$request,
+			CURLOPT_POSTFIELDS,
+			array(
+				'email' => $cl_username,
+				'password' => $cl_password,
+				'callsign' => $station_callsign,
+				'adif' => $adif,
+				'api' => $this->clublog_identifier,
+			)
+		);
+
+		// output the response
+		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($request);
+		$info = curl_getinfo($request);
+		$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
+		curl_close($request);
+
+		if (preg_match('/\bOK\b/', $response)) {
+			$returner['status'] = 'OK';
+		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
+			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
+			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
+			$this->db->query($sql,array($cl_username,$cl_password));
+			$returner['status'] = $response;
+		} else {
+			log_message("Error","Uncaught exception at ClubLog-RT for ".$cl_username." / Details: ".$httpcode." : ".$response);
+			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
+			$returner['status'] = $response;
+		}
+		return ($returner);
 	}
 }

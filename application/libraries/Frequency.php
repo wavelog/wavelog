@@ -171,6 +171,8 @@ class Frequency {
 			$Band = "160m";
 		} else if ($Frequency > 3000000 && $Frequency < 4000000) {
 			$Band = "80m";
+		} else if ($Frequency > 5350000 && $Frequency < 5367000) {
+			$Band = "60m";
 		} else if ($Frequency > 6000000 && $Frequency < 8000000) {
 			$Band = "40m";
 		} else if ($Frequency > 9000000 && $Frequency < 11000000) {
@@ -185,7 +187,7 @@ class Frequency {
 			$Band = "12m";
 		} else if ($Frequency > 27000000 && $Frequency < 30000000) {
 			$Band = "10m";
-		} else if ($Frequency > 49000000 && $Frequency < 52000000) {
+		} else if ($Frequency > 49000000 && $Frequency < 55000000) {
 			$Band = "6m";
 		} else if ($Frequency > 69000000 && $Frequency < 71000000) {
 			$Band = "4m";
@@ -193,7 +195,7 @@ class Frequency {
 			$Band = "2m";
 		} else if ($Frequency > 218000000 && $Frequency < 226000000) {
 			$Band = "1.25m";
-		} else if ($Frequency > 430000000 && $Frequency < 440000000) {
+		} else if ($Frequency > 420000000 && $Frequency < 450000000) {
 			$Band = "70cm";
 		} else if ($Frequency > 900000000 && $Frequency < 930000000) {
 			$Band = "33cm";

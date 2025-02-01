@@ -7,9 +7,17 @@ body {
 	.modal-xl {
 		max-width: 900px;
 	}
+
+	#firstloginwizard_modal_content {
+		overflow-y: visible;
+	}
 }
 
 @media (max-width: 991px) {
+
+	#firstloginwizard_modal_content {
+		overflow-y: auto;
+	}
 
 	.h-lg-25 {
 		height: 25% !important;
@@ -1183,4 +1191,19 @@ svg text.month { fill: #AAA; }
 }
 .glanceyear-legend-4 {
 	background-color: #277672;	
+}
+
+.leaflet-popup-content {
+    font-family: "Twemoji Country Flags", sans-serif;
+	min-width: 260px; /* Minimum width to ensure readability */
+}
+
+.big-flag {
+	float: left;
+    font-size: 3em;
+    line-height: 1;
+	white-space: no-wrap;
+	display: flex;
+    align-items: center; /* Vertically aligns the flag and callsign */
+    gap: 0.5em; /* Adds space between the flag and callsign */
 }

@@ -32,6 +32,7 @@
 				var lang_qso_simplefle_warning_missing_band_mode = "<?= __("Warning! You can't log the QSO List, because some QSO don't have band and/or mode defined!"); ?>";
 				var lang_qso_simplefle_warning_missing_time = "<?= __("Warning! You can't log the QSO List, because some QSO don't have a time defined!"); ?>";
 				var lang_qso_simplefle_warning_example_data = "<?= __("Attention! The Data Field containes example data. First Clear Logging Session!"); ?>";
+				var lang_qso_simplefle_warning_missing_contestid = "<?= __("Attention! Either you have set a contest, but included no exchange, or you have logged contest-data but did not select a contest."); ?>";
 				var lang_qso_simplefle_confirm_save_to_log = "<?= __("Are you sure that you want to add these QSO to the Log and clear the session?"); ?>";
 				var lang_qso_simplefle_success_save_to_log_header = "<?= __("QSO Logged!"); ?>";
 				var lang_qso_simplefle_success_save_to_log = "<?= __("The QSO were successfully logged in the logbook! Dupes were skipped."); ?>";
@@ -110,6 +111,7 @@
 							<small class="form-text text-muted"><?= sprintf(__("If you did operate from a new location, first create a new %sStation Location%s"), '<a href="'.site_url('station').'">', '</a>'); ?></small>
 						</div>
 					</div>
+					<?php if (clubaccess_check(9)) { ?>
 					<div class="col-xs-12 col-lg-6">
 						<div class="mb-3">
 							<label for="operator"><?= __("Operator"); ?> <span class="text-muted input-example"><?= __("e.g. OK2CQR"); ?></span></label>
@@ -118,6 +120,9 @@
 							<small class="form-text text-muted"><?= __("This is callsign of the operator. Without any pre- or suffixes."); ?></small>
 						</div>
 					</div>
+					<?php } else { ?>
+					<input type="hidden" id="operator" value="<?php echo $this->session->userdata('operator_callsign'); ?>">
+					<?php } ?>
 				</div>
 			</div>
 

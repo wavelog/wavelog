@@ -16,6 +16,7 @@ function echo_table_header_col($name) {
 		case 'Frequency': echo '<th>'.__("Frequency").'</th>'; break;
 		case 'Operator': echo '<th>'.__("Operator").'</th>'; break;
 		case 'Name': echo '<th>'.__("Name").'</th>'; break;
+		case 'Bearing': echo '<th>'.__("Bearing").'</th>'; break;
 	}
 }
 
@@ -36,6 +37,7 @@ function echo_table_col($row, $name) {
 			}
 			echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
 		case 'Distance':echo '<td><span data-bs-toggle="tooltip" title="'.$row->COL_GRIDSQUARE.'">' . getDistance($row->COL_DISTANCE) . '</span></td>'; break;
+		case 'Bearing':echo '<td><span data-bs-toggle="tooltip" title="'.($row->COL_VUCC_GRIDS!="" ? $row->COL_VUCC_GRIDS : $row->COL_GRIDSQUARE).'">' . getBearing(($row->COL_VUCC_GRIDS!="" ? $row->COL_VUCC_GRIDS : $row->COL_GRIDSQUARE)) . '</span></td>'; break;
 		case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { echo strtolower($row->COL_BAND); } echo '</td>'; break;
 		case 'Frequency':
 			echo '<td>'; if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { if($row->COL_FREQ != null) { echo $ci->frequency->qrg_conversion($row->COL_FREQ); } else { echo strtolower($row->COL_BAND); } } echo '</td>'; break;
@@ -44,6 +46,21 @@ function echo_table_col($row, $name) {
 		case 'Name': echo '<td>' . ($row->COL_NAME) . '</td>'; break;
 	}
 }
+
+function getBearing($grid = '') {
+	if ($grid == '')  return '';
+	$ci =& get_instance();
+	if (($ci->session->userdata('user_locator') ?? '') != '') {
+		if(!$ci->load->is_loaded('qra')) {
+			$ci->load->library('qra');
+		}
+		$bearing=$ci->qra->get_bearing($ci->session->userdata('user_locator'),$grid);
+		return($bearing.'&deg;');
+	} else {
+		return '';
+	}
+}
+
 
 function getDistance($distance) {
 	if (($distance ?? 0) == 0) return '';
@@ -110,7 +127,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if ($locationCount == 0) { ?>
+	<?php if ($locationCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station locations. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -118,7 +135,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if ($logbookCount == 0) { ?>
+	<?php if ($logbookCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -126,7 +143,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if (($linkedCount > 0) && $active_not_linked) { ?>
+	<?php if (($linkedCount > 0) && $active_not_linked && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "Your active Station Location isn't linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -134,7 +151,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if ($linkedCount == 0) { ?>
+	<?php if ($linkedCount == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
@@ -142,7 +159,7 @@ function getDistance($distance) {
 		</div>
 	<?php } ?>
 
-	<?php if($this->optionslib->get_option('dashboard_banner') != "false") { ?>
+	<?php if($this->optionslib->get_option('dashboard_banner') != "false" && $this->session->userdata('clubstation') == 0) { ?>
 	<?php if($todays_qsos >= 1) { ?>
 		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
 			<?= sprintf(
@@ -157,7 +174,7 @@ function getDistance($distance) {
 	<?php } ?>
 	<?php } ?>
 
-	<?php if($current_active == 0) { ?>
+	<?php if($current_active == 0 && !$is_first_login) { ?>
 		<div class="alert alert-danger" role="alert">
 		  <?= __("Attention: you need to set an active station location."); ?>
 		</div>
@@ -173,13 +190,11 @@ function getDistance($distance) {
 		<?php
 			if($lotw_cert_expired == true) { ?>
 			<div class="alert alert-danger" role="alert">
-				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= __("At least one of your LoTW certificates is expired!"); ?>
+				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is expired!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
 			</div>
-		<?php } ?>
-
-		<?php if($lotw_cert_expiring == true) { ?>
+		<?php } elseif($lotw_cert_expiring == true) { ?>
 			<div class="alert alert-warning" role="alert">
-				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= __("At least one of your LoTW certificates is about to expire!"); ?>
+				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is about to expire!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
 			</div>
 		<?php } ?>
 	<?php } ?>
@@ -199,7 +214,7 @@ function getDistance($distance) {
   <div class="col-sm-8">
 
   	<div class="table-responsive">
-    	<table class="table table-striped table-hover border-top">
+    	<table class="table table-striped table-hover border-top mb-2">
 
     		<thead>
 				<tr class="titles">
@@ -220,8 +235,8 @@ function getDistance($distance) {
 
 			<?php
 			$i = 0;
-			if(!empty($last_five_qsos) > 0) {
-			foreach ($last_five_qsos->result() as $row) { ?>
+			if(!empty($last_qsos_list) > 0) {
+			foreach ($last_qsos_list->result() as $row) { ?>
 				<?php  echo '<tr id="qso_'.$row->COL_PRIMARY_KEY.'" class="tr'.($i & 1).'">'; ?>
 
 					<?php
@@ -255,6 +270,9 @@ function getDistance($distance) {
 			<?php $i++; } } ?>
 		</table>
 	</div>
+	<small class="mb-3 me-2" style="float: right;">
+		<?= sprintf(_ngettext("Max. %d previous contact is shown", "Max. %d previous contacts are shown", intval($last_qso_count)), intval($last_qso_count)); ?>
+	</small>
   </div>
 
   <div class="col-sm-4">
@@ -428,5 +446,5 @@ function getDistance($distance) {
 	</div>
   </div>
 </div>
-
+<?php echo $firstloginwizard; ?>
 </div>

@@ -1,7 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller
-{
+class Dashboard extends CI_Controller {
 
 	public function index()
 	{
@@ -115,7 +114,11 @@ class Dashboard extends CI_Controller
 		$data['qrz_sent_today'] = $QSLStatsBreakdownArray['QRZ_Sent_today'];
 		$data['qrz_rcvd_today'] = $QSLStatsBreakdownArray['QRZ_Received_today'];
 
-		$data['last_five_qsos'] = $this->logbook_model->get_last_qsos('18', $logbooks_locations_array);
+		$data['last_qso_count'] = empty($this->session->userdata('dashboard_last_qso_count')) ? DASHBOARD_DEFAULT_QSOS_COUNT : $this->session->userdata('dashboard_last_qso_count');
+		$data['last_qsos_list'] = $this->logbook_model->get_last_qsos(
+			$data['last_qso_count'],
+			$logbooks_locations_array
+		);
 
 		$data['vucc'] = $this->vucc->fetchVuccSummary();
 		$data['vuccSAT'] = $this->vucc->fetchVuccSummary('SAT');
@@ -127,11 +130,48 @@ class Dashboard extends CI_Controller
 
 		$current = $this->logbook_model->total_countries_current($logbooks_locations_array);
 
+		$footerData['scripts'] = [
+			'assets/js/sections/dashboard.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/dashboard.js")),
+		];
+
+		// First Login Wizard
+		$fl_wiz_value = $this->session->userdata('FirstLoginWizard') ?? null;
+		$show_fl_wiz = false;
+
+		// if the value is empty, we check if the user has any station locations
+		if ($fl_wiz_value === null) {
+			$this->load->model('stations');
+			if ($this->stations->all_of_user()->num_rows() == 0) {
+				$show_fl_wiz = true;
+			} else {
+				$this->user_options_model->set_option('FirstLoginWizard', 'shown', ['boolean' => 1]);
+				$this->session->set_userdata('FirstLoginWizard', 1);
+			}
+		} elseif ($fl_wiz_value == 0) {
+			$show_fl_wiz = true;
+		}
+
+		$data['is_first_login'] = $show_fl_wiz;
+		$data['firstloginwizard'] = '';
+		if ($this->session->userdata('impersonate') == 0 &&		// Don't show to impersonated user
+			$this->session->userdata('clubstation') == 0 &&		// Don't show to Clubstation
+			$data['is_first_login']) {							// Don't show if already done
+
+			$this->load->model('dxcc');
+			$viewdata['dxcc_list'] = $this->dxcc->list();
+
+			$footerData['scripts'][] = 'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js"));
+
+			$this->load->library('form_validation');
+
+			$data['firstloginwizard'] = $this->load->view('user/modals/first_login_wizard', $viewdata, true);
+		}
+
 		$data['total_countries_needed'] = count($dxcc->result()) - $current;
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('dashboard/index');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	function radio_display_component()

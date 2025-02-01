@@ -661,6 +661,7 @@
 ?>
 <div style="display: none">
     <?= __("Albanian"); ?>
+    <?= __("Armenian"); ?>
     <?= __("Bosnian"); ?>
     <?= __("Bulgarian"); ?>
     <?= __("Chinese (Simplified)"); ?>
@@ -681,8 +682,8 @@
     <?= __("Portuguese"); ?>
     <?= __("Russian"); ?>
     <?= __("Serbian"); ?>
+    <?= __("Slovenian"); ?>
     <?= __("Spanish"); ?>
     <?= __("Swedish"); ?>
     <?= __("Turkish"); ?>
-    <?= __("Armenian"); ?>
 </div>

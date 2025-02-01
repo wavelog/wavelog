@@ -24,10 +24,11 @@
                 echo 'class="qslcardtab nav-item">
                 <a class="nav-link" id="qsltab" data-bs-toggle="tab" href="#qslcard" role="tab" aria-controls="home" aria-selected="false">'. __("QSL Card") .'</a>
                 </li>';
-
-            echo '<li class="nav-item">
-            <a class="nav-link" id="qslmanagementtab" data-bs-toggle="tab" href="#qslupload" role="tab" aria-controls="home" aria-selected="false">'. __("QSL Management") .'</a>
-            </li>';
+            if (clubaccess_check(9)) {
+                echo '<li class="nav-item">
+                <a class="nav-link" id="qslmanagementtab" data-bs-toggle="tab" href="#qslupload" role="tab" aria-controls="home" aria-selected="false">'. __("QSL Management") .'</a>
+                </li>';
+            }
         }
 
         ?>
@@ -538,7 +539,11 @@
 
                     <?php if($row->COL_EQSL_QSL_RCVD == "Y" && $row->COL_EQSL_QSLRDATE != null) { ?>
                     <h3>eQSL</h3>
-                        <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                        <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.
+                        <?php if (!empty($row->COL_QSLMSG_RCVD)) { ?>
+                           <br /><?= __("QSL Message"); ?>: <?php echo htmlentities($row->COL_QSLMSG_RCVD); ?>
+                        <?php } ?>
+                        </p>
                     <?php } ?>
 
 					<?php if($row->COL_EQSL_QSL_RCVD == "Y" && $row->COL_EQSL_QSLRDATE == null) { ?>
@@ -573,7 +578,9 @@
 
                     <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
                         <br>
+                            <?php if (clubaccess_check(3, $row->COL_PRIMARY_KEY)) { ?>
                             <div style="display: inline-block;"><p class="editButton"><a class="btn btn-primary" href="<?php echo site_url('qso/edit'); ?>/<?php echo $row->COL_PRIMARY_KEY; ?>" href="javascript:;"><i class="fas fa-edit"></i> <?= __("Edit QSO"); ?></a></p></div>
+                            <?php } ?>
                             <div style="display: inline-block;"><form method="POST" action="<?php echo site_url('search'); ?>"><input type="hidden" value="<?php echo strtoupper($row->COL_CALL); ?>" name="callsign"><button class="btn btn-primary" type="submit"><i class="fas fa-eye"></i> <?= __("More QSOs"); ?></button></form></div>
                     <?php } ?>
 
@@ -604,6 +611,9 @@
                         if($row->COL_SIG != null && $row->COL_SIG_INFO != null) {
                             $hashtags .= " #".$row->COL_SIG." ".$row->COL_SIG_INFO;
                         }
+                        if($row->COL_MODE == "CW") {
+                            $hashtags .= " #cwfe";
+                        }
                         if (!isset($distance)) {
                             $twitter_string = "Just worked ".$row->COL_CALL." ";
                             if ($row->COL_DXCC != 0) {
@@ -633,7 +643,7 @@
                             $twitter_string .= $distancestring." on ".$twitter_band_sat." using ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)." ".$hashtags;
                         }
                     ?>
-                    <button class="btn btn-primary" onClick='shareModal(<?php echo json_encode(['qso' => $row, 'twitter_string' => $twitter_string]); ?>);'><i class="fas fa-share-square"></i> <?= __("Share"); ?></button>
+                    <button class="btn btn-primary" onClick='shareModal(<?php echo json_encode(['qso' => $row, 'twitter_string' => $twitter_string], JSON_HEX_APOS | JSON_HEX_QUOT); ?>);'><i class="fas fa-share-square"></i> <?= __("Share"); ?></button>
                 </div>
             </div>
         </div>

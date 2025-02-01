@@ -34,7 +34,9 @@
                                     <a class="nav-item nav-link" id="nav-satellites-tab" data-bs-toggle="tab" href="#nav-satellites" role="tab" aria-controls="nav-awards" aria-selected="true"><?= __("Sats"); ?></a>
                                     <a class="nav-item nav-link" id="nav-awards-tab" data-bs-toggle="tab" href="#nav-awards" role="tab" aria-controls="nav-awards" aria-selected="true"><?= __("Awards"); ?></a>
                                     <a class="nav-item nav-link" id="nav-qso-notes-tab" data-bs-toggle="tab" href="#nav-qso-notes" role="tab" aria-controls="nav-qso-notes" aria-selected="false"><?= __("Notes"); ?></a>
+                                    <?php if (clubaccess_check(9)) { ?>
                                     <a class="nav-item nav-link" id="nav-qsl-edit-tab" data-bs-toggle="tab" href="#nav-qsl-edit" role="tab" aria-controls="nav-qsl-edit" aria-selected="false"><?= __("QSL"); ?></a>
+                                    <?php } ?>
                                     <a class="nav-item nav-link" id="nav-station-tab" data-bs-toggle="tab" href="#nav-station" role="tab" aria-controls="nav-station" aria-selected="false"><?= __("Station"); ?></a>
                                     <a class="nav-item nav-link" id="nav-contest-tab" data-bs-toggle="tab" href="#nav-contest" role="tab" aria-controls="nav-contest" aria-selected="false"><?= __("Contest"); ?></a>
                                 </div>
@@ -372,32 +374,32 @@
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="sota_ref"><?= __("SOTA"); ?></label>
-                                            <input type="text" class="form-control" id="sota_ref_edit" name="sota_ref" value="<?php echo $qso->COL_SOTA_REF; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="sota_ref_edit" name="sota_ref" value="<?php echo $qso->COL_SOTA_REF; ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="pota_ref"><?= __("POTA"); ?></label>
-                                            <input type="text" class="form-control" id="pota_ref_edit" name="pota_ref" value="<?php echo $qso->COL_POTA_REF; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="pota_ref_edit" name="pota_ref" value="<?php echo $qso->COL_POTA_REF; ?>">
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="wwff_ref"><?= __("WWFF"); ?></label>
-                                            <input type="text" class="form-control" id="wwff_ref_edit" name="wwff_ref" value="<?php echo $qso->COL_WWFF_REF; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="wwff_ref_edit" name="wwff_ref" value="<?php echo $qso->COL_WWFF_REF; ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="mb-3 col-sm-6">
                                             <label for="sig"><?= __("Sig"); ?></label>
-                                            <input type="text" class="form-control" id="sig" name="sig" value="<?php echo $qso->COL_SIG; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="sig" name="sig" value="<?php echo $qso->COL_SIG; ?>">
                                         </div>
                                         <div class="mb-3 col-sm-6">
                                             <label for="sig_info"><?= __("Sig Info"); ?></label>
-                                            <input type="text" class="form-control" id="sig_info" name="sig_info" value="<?php echo $qso->COL_SIG_INFO; ?>">
+                                            <input type="text" class="form-control text-uppercase" id="sig_info" name="sig_info" value="<?php echo $qso->COL_SIG_INFO; ?>">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="darc_dok"><?= __("DOK"); ?></label>
-                                        <input type="text" class="form-control" id="darc_dok_edit" name="darc_dok" value="<?php echo $qso->COL_DARC_DOK; ?>">
+                                        <input type="text" class="form-control text-uppercase" id="darc_dok_edit" name="darc_dok" value="<?php echo $qso->COL_DARC_DOK; ?>">
                                     </div>
                                 </div>
 
@@ -417,16 +419,19 @@
                                             <a class="nav-link active" id="qsl-edit-tab" data-bs-toggle="tab" href="#qsl-edit" role="tab" aria-controls="qsl-edit" aria-selected="true"><?= __("QSL Card"); ?></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="eqsl-tab" data-bs-toggle="tab" href="#eqsl" role="tab" aria-controls="eqsl" aria-selected="false"><?= __("eQSL"); ?></a>
+                                            <a class="nav-link" id="eqsl-tab" data-bs-toggle="tab" href="#eqsl-edit" role="tab" aria-controls="eqsl" aria-selected="false"><?= __("eQSL"); ?></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="lotw-tab" data-bs-toggle="tab" href="#lotw" role="tab" aria-controls="lotw" aria-selected="false"><?= __("LoTW"); ?></a>
+                                            <a class="nav-link" id="lotw-tab" data-bs-toggle="tab" href="#lotw-edit" role="tab" aria-controls="lotw" aria-selected="false"><?= __("LoTW"); ?></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="qrz-tab" data-bs-toggle="tab" href="#qrz" role="tab" aria-controls="qrz" aria-selected="false"><?= __("QRZ"); ?></a>
+                                            <a class="nav-link" id="qrz-tab" data-bs-toggle="tab" href="#qrz-edit" role="tab" aria-controls="qrz" aria-selected="false"><?= __("QRZ"); ?></a>
+                                        </li>
+										<li class="nav-item">
+                                            <a class="nav-link" id="clublog-tab" data-bs-toggle="tab" href="#clublog-edit" role="tab" aria-controls="clublog" aria-selected="false"><?= __("Clublog"); ?></a>
                                         </li>
                                     </ul>
-                                    <div class="tab-content" id="myTabContent">
+                                    <div class="tab-content" id="qsl_edit_tabs">
                                         <div class="tab-pane fade show active" id="qsl-edit" role="tabpanel" aria-labelledby="qsl-edit-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
@@ -488,7 +493,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane fade" id="eqsl" role="tabpanel" aria-labelledby="eqsl-tab">
+                                        <div class="tab-pane fade" id="eqsl-edit" role="tabpanel" aria-labelledby="eqsl-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
@@ -516,16 +521,24 @@
                                             </div>
                                             <div class="mb-3 row">
                                                 <div>
-                                                    <label for="qslmsg"><?= __("QSL MSG"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
+                                                    <label for="qslmsg"><?= __("QSL Msg (S)"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
                                                     <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
                                                     <textarea type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qso->COL_QSLMSG; ?></textarea>
                                                     <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
                                                     <div id="qslmsg_hide" style="display:none;"><?php echo $qso->COL_QSLMSG; ?></div>
                                                 </div>
                                             </div>
+                                            <div class="mb-3 row">
+                                                <div>
+                                                    <label for="qslmsgr"><?= __("QSL Msg (R)"); ?></label>
+                                                    <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
+                                                    <textarea readonly type="text" class="form-control" id="qslmsgr" name="qslmsgr" rows="2"><?php echo htmlentities($qso->COL_QSLMSG_RCVD ?? ''); ?></textarea>
+                                                    <div class="small form-text text-muted"><?= __("Note: Not editable. Only displayed here.") ?></div>
+                                                </div>
+                                            </div>
 
                                         </div>
-                                        <div class="tab-pane fade" id="lotw" role="tabpanel" aria-labelledby="lotw-tab">
+                                        <div class="tab-pane fade" id="lotw-edit" role="tabpanel" aria-labelledby="lotw-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
@@ -554,7 +567,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane fade" id="qrz" role="tabpanel" aria-labelledby="qrz-tab">
+                                        <div class="tab-pane fade" id="qrz-edit" role="tabpanel" aria-labelledby="qrz-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
@@ -582,6 +595,33 @@
                                                 </div>
                                             </div>
                                         </div>
+										<div class="tab-pane fade" id="clublog-edit" role="tabpanel" aria-labelledby="clublog-tab">
+                                            <div class="mt-3 mb-3 row">
+                                                <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="clublog_sent" name="clublog_sent">
+                                                        <option value="N" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "N") echo "selected=\"selected\""; ?>><?= __("No"); ?></option>
+                                                        <option value="Y" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
+                                                        <option value="R" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
+                                                        <option value="Q" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Q") echo "selected=\"selected\""; ?>><?= __("Queued"); ?></option>
+                                                        <option value="I" <?php if ($qso->COL_CLUBLOG_QSO_UPLOAD_STATUS == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label for="sent" class="col-sm-3 col-form-label"><?= __("Received"); ?></label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="clublog_rcvd" name="clublog_rcvd">
+                                                        <option value="N" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "N") echo "selected=\"selected\""; ?>><?= __("No"); ?></option>
+                                                        <option value="Y" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
+                                                        <option value="R" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
+                                                        <option value="I" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                        <option value="V" <?php if ($qso->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -604,10 +644,12 @@
                                         </select>
                                     </div>
 
+                                    <?php if(clubaccess_check(9)) { ?>
                                     <div class="mb-3">
                                         <label for="operatorCallsign"><?= __("Operator Callsign"); ?></label>
                                         <input type="text" id="operatorCallsign" class="form-control uppercase" name="operator_callsign" value="<?php echo $qso->COL_OPERATOR; ?>" />
                                     </div>
+                                    <?php } ?>
 
 
                                 </div>

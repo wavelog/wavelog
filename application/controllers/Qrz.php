@@ -196,6 +196,9 @@ class Qrz extends CI_Controller {
 	 * Used for displaying the uid for manually selecting log for upload to qrz
 	 */
 	public function export() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('stations');
 
 		$data['page_title'] = __("QRZ Logbook");
@@ -309,8 +312,11 @@ class Qrz extends CI_Controller {
 				if ((($user_id_to_load != null) && ($user_id_to_load != $station->user_id))) {	// Skip User if we're called with a specific user_id
 					continue;
 				} 
-				if ($lastqrz == null) {
+				if (($lastqrz == null) || ($user_id_to_load == null)) {
 					$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
+				}
+				if (($lastqrz ?? '') == '2999-12-31') {	// Nothing to do here, skip station
+					continue;
 				}
 				$qrz_api_key = $station->qrzapikey;
 				$result=($this->mass_download_qsos($qrz_api_key, $lastqrz, $station->station_ids));

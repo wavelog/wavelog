@@ -7,6 +7,9 @@ class QSO extends CI_Controller {
 		parent::__construct();
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+        
+        $last_qso_count = empty($this->session->userdata('qso_page_last_qso_count')) ? QSO_PAGE_DEFAULT_QSOS_COUNT : $this->session->userdata('qso_page_last_qso_count');
+		$this->session->set_userdata('qso_page_last_qso_count', $last_qso_count);
 	}
 
 	public function index() {
@@ -32,9 +35,9 @@ class QSO extends CI_Controller {
 
 		$data['notice'] = false;
 		$data['stations'] = $this->stations->all_of_user();
-		$data['radios'] = $this->cat->radios();
+		$data['radios'] = $this->cat->radios(true);
 		$data['radio_last_updated'] = $this->cat->last_updated()->row();
-		$data['query'] = $this->logbook_model->last_custom('5');
+		$data['query'] = $this->logbook_model->last_custom($this->session->userdata('qso_page_last_qso_count'));
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
 		$data['iota'] = $this->logbook_model->fetchIota();
 		$data['modes'] = $this->modes->active();
@@ -84,6 +87,8 @@ class QSO extends CI_Controller {
 			$data['user_dok_to_qso_tab'] = 0;
 		}
 
+		$data['qso_count'] = $this->session->userdata('qso_page_last_qso_count');
+
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('start_date', 'Date', 'required');
@@ -130,7 +135,7 @@ class QSO extends CI_Controller {
 				'prop_mode' => $this->input->post('prop_mode', TRUE),
 				'radio' => $this->input->post('radio', TRUE),
 				'station_profile_id' => $this->input->post('station_profile', TRUE),
-				'operator_callsign' => $this->input->post('operator_callsign', TRUE),
+				'operator_callsign' => $this->input->post('operator_callsign', TRUE) ?? $this->session->userdata('operator_callsign'),
 				'transmit_power' => $this->input->post('transmit_power', TRUE)
 			);
 			// ];
@@ -601,7 +606,7 @@ class QSO extends CI_Controller {
       $this->load->model('logbook_model');
       session_write_close();
 
-      $data['query'] = $this->logbook_model->last_custom('5');
+      $data['query'] = $this->logbook_model->last_custom($this->session->userdata('qso_page_last_qso_count'));
 
       // Load view
       $this->load->view('qso/components/previous_contacts', $data);

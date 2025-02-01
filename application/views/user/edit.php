@@ -1,7 +1,12 @@
 <div class="container">
+	<br>
 	<h3>
 	  <?php if (isset($user_add)) {
-		echo __("Create User Account");
+		if ($clubstation) {
+			echo __("Create Clubstation Account");
+		} else {
+			echo __("Create User Account");
+		}
 	  } else {
 		echo __("Edit Account")." <small class=\"text-muted\">".$user_name."</small>";
 	  }
@@ -66,6 +71,9 @@
 											<input class="form-control" type="password" name="user_password" value="<?php if(isset($user_password)) { echo $user_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
+										<?php if($clubstation) { ?>
+											<small class="text-muted"><?= __("Don't share this password with operators!"); ?></small>
+										<?php } ?>
 										<?php if(isset($password_error)) {
 											echo "<small class=\"badge bg-danger\">".$password_error."</small>";
 											} else if (!isset($user_add)) { ?>
@@ -78,9 +86,13 @@
 										<?php if($this->session->userdata('user_type') == 99) { ?>
 											<select class="form-select" name="user_type">
 											<?php
-												$levels = $this->config->item('auth_level');
-												foreach ($levels as $key => $value) {
-													echo '<option value="'. $key . '" '. (($user_type ?? '') == $key ? "selected=\"selected\"":""). '>' . $value . '</option>';
+												if ($clubstation) {
+													echo '<option value="3" selected="selected">' . __("Clubstation") . '</option>';
+												} else {
+													$levels = $this->config->item('auth_level');
+													foreach ($levels as $key => $value) {
+														echo '<option value="'. $key . '" '. (($user_type ?? '') == $key ? "selected=\"selected\"":""). '>' . $value . '</option>';
+													}
 												}
 											?>
 											</select>
@@ -88,6 +100,9 @@
 											$l = $this->config->item('auth_level');
 											echo $l[$user_type];
 										}?>
+										<?php if ($clubstation) { ?>
+											<input type="hidden" name="clubstation" value="1" />
+										<?php } ?>
 									</div>
 								</div>
 							</div>
@@ -96,7 +111,7 @@
 						<!-- Personal Information -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("Personal"); ?></div>
+								<div class="card-header"><?php if ($clubstation) { echo __("Callsign Owner"); } else { echo __("Personal");} ?></div>
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("First Name"); ?></label>
@@ -120,15 +135,15 @@
 								<div class="card-header"><?= __("Ham Radio"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?= __("Callsign"); ?></label>
-										<input class="form-control" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
+										<label><?php if ($clubstation) { echo __("Special/Club Callsign"); } else { echo __("Callsign"); } ?></label>
+										<input class="form-control uppercase" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
 											<?php if(isset($callsign_error)) { echo "<small class=\"badge bg-danger\">".$callsign_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?= __("Gridsquare"); ?></label>
-										<input class="form-control" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
+										<input class="form-control uppercase" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
 											<?php if(isset($locator_error)) { echo "<small class=\"badge bg-danger\">".$locator_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
@@ -239,6 +254,7 @@
 											<option value="Distance" <?php if ($user_column1 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column1 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column1 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column1 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -261,6 +277,7 @@
 											<option value="Distance" <?php if ($user_column2 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column2 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column2 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column2 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -283,6 +300,7 @@
 											<option value="Distance" <?php if ($user_column3 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column3 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column3 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column3 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -305,6 +323,7 @@
 											<option value="Distance" <?php if ($user_column4 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column4 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column4 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column4 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -329,6 +348,7 @@
 											<option value="Operator" <?php if ($user_column5 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column5 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
 											<option value="Location" <?php if ($user_column5 == "Location") { echo " selected =\"selected\""; } ?>><?= __("Station Location"); ?></option>
+											<option value="Bearing" <?php if ($user_column5 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 								</div>
@@ -400,6 +420,15 @@
 											<option value="0" <?php if ($user_pota_lookup == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
 										<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+									</div>
+									<div class="mb-3">
+										<label for="qso-page-last-qso-count"><?= __("Number of previous contacts displayed on QSO page."); ?></label>
+										<select class="form-select" id="qso-page-last-qso-count" name="user_qso_page_last_qso_count">
+											<?php for ($i = 5 ; $i <= $qso_page_last_qso_count_limit; $i += 5) {
+												$selected_attribute_value = $user_qso_page_last_qso_count == $i ? " selected =\"selected\"" : "";
+												printf("<option value=\"{$i}\"{$selected_attribute_value}>{$i}</option>");
+											} ?>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -568,6 +597,23 @@
 										</div>
 									</div>
 
+								</div>
+							</div>
+							<!-- Dashboard Settings -->
+							<div class="card">
+								<div class="card-header"><?= __("Dashboard Settings"); ?></div>
+								<div class="card-body">
+									<div class="row">
+										<div class="mb-3">
+											<label for="dashboard-last-qso-count"><?= __("Select the number of latest QSOs to be displayed on dashboard."); ?></label>
+											<select class="form-select" id="dashboard-last-qso-count" name="user_dashboard_last_qso_count">
+												<?php for ($i = 5 ; $i <= $dashboard_last_qso_count_limit; $i += 5) {
+													$selected_attribute_value = $user_dashboard_last_qso_count == $i ? " selected =\"selected\"" : "";
+													printf("<option value=\"{$i}\"{$selected_attribute_value}>{$i}</option>");
+												} ?>
+											</select>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
