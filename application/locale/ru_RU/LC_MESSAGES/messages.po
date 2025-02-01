@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-31 08:30+0000\n"
-"PO-Revision-Date: 2025-01-30 14:35+0000\n"
+"PO-Revision-Date: 2025-02-01 10:12+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -728,7 +728,7 @@ msgstr "Clublog"
 
 #: application/controllers/Clublog.php:145
 msgid "Clublog QSL Import"
-msgstr ""
+msgstr "Импорт QSL из Clublog"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:263
@@ -6674,19 +6674,21 @@ msgstr "Скачать QSO"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
-msgstr ""
+msgstr "Следующая автоматическая загрузка в Clublog произойдет в: "
 
 #: application/views/clublog/export.php:25
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "Clublog logbook."
-msgstr ""
+msgstr "Здесь вы можете увидеть QSO, которые ранее не были загружены в Clublog."
 
 #: application/views/clublog/export.php:26
 msgid ""
 "You need to set a username and password in your user account. You will also "
 "need to enable upload for each station profile ."
 msgstr ""
+"Вам нужно установить имя пользователя и пароль в своей учетной записи. Вам "
+"также потребуется включить загрузку для каждого профиля QTH."
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
@@ -6725,7 +6727,7 @@ msgstr "Всего QSO загржено"
 
 #: application/views/clublog/export.php:69
 msgid "The next automatic Download from Clublog-QSLs will happen at: "
-msgstr ""
+msgstr "Следующая автоматическая загрузка QSL из Clublog произойдет в: "
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
@@ -6737,7 +6739,7 @@ msgstr ""
 
 #: application/views/clublog/export.php:78
 msgid "Download from Clublog"
-msgstr ""
+msgstr "Скачать из Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -9068,7 +9070,7 @@ msgstr "Журнал HRDLog"
 
 #: application/views/interface_assets/header.php:475
 msgid "Clublog Import / Export"
-msgstr ""
+msgstr "Импорт / Экспорт из Clublog"
 
 #: application/views/interface_assets/header.php:486
 msgid "Help"
@@ -13539,7 +13541,7 @@ msgstr "Автозаполнение QTH локатора и названия п
 
 #: application/views/user/edit.php:425
 msgid "Number of previous contacts displayed on QSO page."
-msgstr ""
+msgstr "Количество предыдущих контактов, отображаемых на странице QSO."
 
 #: application/views/user/edit.php:442
 msgid "Menu Options"
