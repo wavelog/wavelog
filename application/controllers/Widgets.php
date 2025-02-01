@@ -72,4 +72,207 @@ class Widgets extends CI_Controller {
 		$data['user_callsign'] = strtoupper($this->security->xss_clean($user_callsign));
 		$this->load->view('widgets/oqrs', $data);
 	}
+
+	/**
+	 * On-Air widget handler
+	 *
+	 * @param string $user_callsign
+	 * @return void
+	 */
+	public function on_air($user_callsign = "") {
+		if (empty($user_callsign)) {
+			show_404(__("User callsign not specified"));
+			return;
+		}
+
+		// TODO caching?
+		// it will defeat purpose of having fresh value, so we might cache max for the time of "cat timeout"
+
+		try {
+			$user_id = $this->get_user_id_by_callsign($user_callsign);
+		} catch (\Exception $e) {
+			show_404($e->getMessage());
+			return;
+		}
+
+		$this->load->model('cat');
+		// TODO
+		// following call raises question of privacy - only the users that want to use this widget 
+		// should be able to do that (probably needs new widget settings in account preferences?) 
+		// otherwise you could query any user that is known to be part of concrete wavelog instance
+		// and he might not want to be "seen"
+		$query = $this->cat->status_for_user_id($user_id);
+
+		if ($query->num_rows() > 0) {
+			$radio_timeout_seconds = $this->get_radio_timeout_seconds();
+			$cat_timeout_interval_minutes = floor($radio_timeout_seconds / 60);
+			$radios_online = [];
+			$last_seen_days_ago = 999;
+
+			foreach ($query->result() as $radio_data) {
+				// There can be multiple radios online, we need to take into account all of them
+				$radio_updated_ago_minutes = $this->calculate_radio_updated_ago_minutes($radio_data->timestamp);
+				
+				if ($radio_updated_ago_minutes > $cat_timeout_interval_minutes) {
+					// Radio was updated too long ago - calculate user's "last seen X days ago" value
+					$mins_per_day = 1440;
+					$radio_last_seen_days_ago = (int)floor($radio_updated_ago_minutes / $mins_per_day);
+					$last_seen_days_ago = min($last_seen_days_ago, $radio_last_seen_days_ago);
+				} else {
+					// Radio is available - add it to the array of available radios to be presented in UI
+					$radio_obj = new \stdClass;
+					$radio_obj->frequency_string = $this->prepare_frequency_string_for_widget($radio_data);
+					$radios_online[] = $radio_obj;
+				}
+			}
+
+			// determine theme
+			$theme = $this->input->get('theme', true) ?? $this->config->item('option_theme');
+			$data['theme'] = $theme;
+			
+			// determine text size 
+			$text_size = $this->input->get('text_size', true) ?? 1;
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+
+			// prepare rest of the data for UI
+			$data['user_callsign'] = strtoupper($this->security->xss_clean($user_callsign));
+			$data['is_on_air'] = count($radios_online) > 0;
+			$data['radios_online'] = $radios_online;
+			$data['last_seen_days_ago_string'] = $this->prepare_last_seen_text($last_seen_days_ago);
+
+			$this->load->view('widgets/on_air', $data);
+
+		} else {
+			show_404(__("No CAT interfaced radios found"));
+			return;
+		}
+	}
+
+	/**
+	 * Get radio timout value. In case user set value in GET parameter, this value is used.
+	 * Otherwise global radio timeout value is used.
+	 *
+	 * @return int
+	 */
+	private function get_radio_timeout_seconds() {
+		$query_param_value = $this->input->get('radio_timeout_seconds', true);
+
+		if (is_numeric($query_param_value) === false || empty($query_param_value)) {
+			return intval($this->config->item('radio_timeout_seconds'));
+		}
+
+		$radio_timeout_seconds = intval($query_param_value);
+		$min_value = 60;
+
+		if ($radio_timeout_seconds < $min_value) {
+			$radio_timeout_seconds = $min_value;
+		}
+
+		return $radio_timeout_seconds;
+	}
+
+	/**
+	 * Fetch user ID by user callsign
+	 *
+	 * @param string $user_callsign
+	 * @return string
+	 */
+	private function get_user_id_by_callsign($user_callsign) {
+		$this->load->model('user_model');
+		$user_result = $this->user_model->get_by_callsign($user_callsign);
+		if ($user_result->num_rows() == 0) {
+			throw new \Exception(__("User not found by callsign"));
+		}
+		if ($user_result->num_rows() > 1) {
+			throw new \Exception(__("Multiple users found by callsign"));
+		}
+		$user_row = $user_result->result();
+		$user_data = current($user_row);
+
+		return $user_data->user_id;
+	}
+
+	/**
+	 * Prepare Boostrap CSS font size class for text in the widget
+	 *
+	 * @param integer $selected_size Use values in range 1-6
+	 * @return string Prepared Bootstrap font-size CSS class
+	 */
+	private function prepare_text_size_css_class($selected_size = 1) {
+		if ($selected_size < 1 || $selected_size > 6) {
+			$selected_size = 1;
+		}
+
+		$base_size_number = 7;
+		$calculated_size_number = $base_size_number - $selected_size;
+
+		return sprintf("fs-%s", $calculated_size_number);
+	}
+
+	/**
+	 * Prepare text "last seen" text
+	 *
+	 * @param int $last_seen_days_ago
+	 * @return void
+	 */
+	private function prepare_last_seen_text($last_seen_days_ago) {
+		if ($last_seen_days_ago === 0) {
+			return "Last seen less than a day ago";
+		} 
+		if ($last_seen_days_ago === 1) {
+			return "Last seen yesterday";
+		}
+		return sprintf("Last seen %d days ago", $last_seen_days_ago);
+	}
+
+	/**
+	 * Calculate "radio last updated at" value
+	 *
+	 * @param string $radio_last_updated_timestamp How many minutes ago was radio CAT data updated
+	 * @return int
+	 */
+	private function calculate_radio_updated_ago_minutes($radio_last_updated_timestamp) {
+		$datetime1 = new DateTime("now", new DateTimeZone('UTC')); // Today's Date/Time
+		$datetime2 = new DateTime($radio_last_updated_timestamp, new DateTimeZone('UTC'));
+		$interval = $datetime1->diff($datetime2);
+
+		$minutes_ago = $interval->days * 24 * 60;
+		$minutes_ago += $interval->h * 60;
+		$minutes_ago += $interval->i;
+
+		return (int)$minutes_ago;
+	}
+
+	/**
+	 * Prepare formatted frequency string based on given CAT data
+	 *
+	 * @param object $cat_data
+	 * @return string
+	 */
+	private function prepare_frequency_string_for_widget($cat_data) {
+		$r_option = 1;
+		$source_unit = "Hz";
+		$target_unit = "MHz";
+
+		if (empty($cat_data->frequency) || $cat_data->frequency == "0") {
+			return "- / -";
+		} elseif (empty($cat_data->frequency_rx) || $cat_data->frequency_rx == "0") {
+			$tx_frequency = $this->frequency->qrg_conversion(
+				$cat_data->frequency, $r_option, $source_unit, $target_unit
+			);
+			$mode_string = empty($cat_data->mode) ? "" : $cat_data->mode;
+
+			return trim(sprintf("%s %s", $tx_frequency, $mode_string));
+		} else {
+			$rx_frequency = $this->frequency->qrg_conversion(
+				$cat_data->frequency_rx, $r_option, $source_unit, $target_unit
+			);
+			$tx_frequency = $this->frequency->qrg_conversion(
+				$cat_data->frequency, $r_option, $source_unit, $target_unit
+			);
+			$mode_string = empty($cat_data->mode) ? "" : $cat_data->mode;
+
+			return trim(sprintf("%s / %s %s", $rx_frequency, $tx_frequency, $mode_string));
+		}
+	}
 }
