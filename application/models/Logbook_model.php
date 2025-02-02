@@ -1539,6 +1539,7 @@ class Logbook_model extends CI_Model {
 			$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left outer');
 			$this->db->where_in('station_id', $logbooks_locations_array);
 			$this->db->order_by("COL_TIME_ON", "desc");
+			$this->db->order_by("COL_PRIMARY_KEY", "desc");
 			$this->db->limit($num);
 
 			return $this->db->get($this->config->item('table_name'));
@@ -2246,7 +2247,7 @@ class Logbook_model extends CI_Model {
 			    LIMIT ?) hrd
 			    JOIN station_profile ON station_profile.station_id = hrd.station_id
 			    LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
-			    ORDER BY col_time_on DESC";
+			    ORDER BY col_time_on DESC, col_primary_key DESC";
 			$binding[] = $num * 1;
 			$query = $this->db->query($sql, $binding);
 
