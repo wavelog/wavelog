@@ -367,7 +367,7 @@ class Clublog_model extends CI_Model
 		return $query;
     }
 
-	function push_qso_to_clublog($cl_username, $cl_password, $station_callsign, $adif) {
+	function push_qso_to_clublog($cl_username, $cl_password, $station_callsign, $adif, $station_id) {
 
 		// initialise the curl request
 		$returner = [];
@@ -398,8 +398,8 @@ class Clublog_model extends CI_Model
 			$returner['status'] = 'OK';
 		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
 			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
-			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
-			$this->db->query($sql,array($cl_username,$cl_password));
+			$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+			$this->db->query($sql,array($station_id));
 			$returner['status'] = $response;
 		} else {
 			log_message("Error","Uncaught exception at ClubLog-RT for ".$cl_username." / Details: ".$httpcode." : ".$response);
