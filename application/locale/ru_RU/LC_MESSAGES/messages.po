@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-02-01 12:44+0000\n"
 "PO-Revision-Date: 2025-02-02 12:12+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -433,6 +433,7 @@ msgstr " и "
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1287
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -453,6 +454,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/controllers/Logbook.php:1288
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -473,6 +475,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:297 application/views/user/edit.php:320
 #: application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1289
 msgid "POTA"
 msgstr "POTA"
 
@@ -723,6 +726,7 @@ msgstr "Ни один пользователь не сконфигурирова
 #: application/views/view_log/partial/log_ajax.php:149
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
+#: application/controllers/Logbook.php:673
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1178,7 +1182,8 @@ msgstr "Журнал"
 #: application/views/qslprint/qsolist.php:17
 #: application/views/qso/edit_ajax.php:38 application/views/qso/index.php:45
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
-#: application/views/user/edit.php:695
+#: application/views/user/edit.php:695 application/controllers/Logbook.php:661
+#: application/controllers/Logbook.php:676
 msgid "QSL"
 msgstr "QSL"
 
@@ -1212,6 +1217,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:705 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/controllers/Logbook.php:664
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1243,6 +1249,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:305
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:713 application/views/user/edit.php:779
+#: application/controllers/Logbook.php:667
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1317,6 +1324,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:30
+#: application/controllers/Logbook.php:1282
 msgid "Mode"
 msgstr "Вид модуляции"
 
@@ -1344,6 +1352,7 @@ msgstr "Вид модуляции"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1283
 msgid "RST (S)"
 msgstr "RST (TX)"
 
@@ -1372,6 +1381,7 @@ msgstr "RST (TX)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1284
 msgid "RST (R)"
 msgstr "RST (RX)"
 
@@ -1393,6 +1403,7 @@ msgstr "RST (RX)"
 #: application/views/view_log/qso.php:331
 #: application/views/view_log/qso.php:677
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1285
 msgid "Country"
 msgstr "Страна"
 
@@ -1420,6 +1431,7 @@ msgstr "Страна"
 #: application/views/user/edit.php:317 application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1286
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1448,6 +1460,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:321 application/views/user/edit.php:345
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1290
 msgid "State"
 msgstr "Область/штат"
 
@@ -1490,6 +1503,7 @@ msgstr "Область/штат"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
+#: application/controllers/Logbook.php:1291
 msgid "Gridsquare"
 msgstr "QTH локатор"
 
@@ -1516,6 +1530,7 @@ msgstr "QTH локатор"
 #: application/views/user/edit.php:347
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1292
 msgid "Distance"
 msgstr "Дистанция"
 
@@ -1592,6 +1607,7 @@ msgstr "Дистанция"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:33
+#: application/controllers/Logbook.php:1293
 msgid "Band"
 msgstr "Диапазон"
 
@@ -1612,6 +1628,7 @@ msgstr "Диапазон"
 #: application/views/user/edit.php:336
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1294
 msgid "Frequency"
 msgstr "Частота"
 
@@ -1636,6 +1653,7 @@ msgstr "Частота"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:684
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1295
 msgid "Operator"
 msgstr "Оператор"
 
@@ -1664,6 +1682,7 @@ msgstr "Оператор"
 #: application/views/view_log/partial/log_ajax.php:30
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:678
+#: application/controllers/Logbook.php:1316
 msgid "Deleted DXCC"
 msgstr "Удалённые DXCC"
 
@@ -2999,20 +3018,24 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
 #: application/models/Logbook_model.php:3851
+#: application/models/Logbook_model.php:3852
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:3852
+#: application/models/Logbook_model.php:3853
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
 #: application/models/Logbook_model.php:3864
+#: application/models/Logbook_model.php:3865
 msgid "QSO on"
 msgstr "начало QSO"
 
 #: application/models/Logbook_model.php:3864
+#: application/models/Logbook_model.php:3865
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3021,57 +3044,70 @@ msgstr ""
 "импортировано. Оно недействительно"
 
 #: application/models/Logbook_model.php:4163
+#: application/models/Logbook_model.php:4164
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4174
+#: application/models/Logbook_model.php:4175
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4235
+#: application/models/Logbook_model.php:4236
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4255
+#: application/models/Logbook_model.php:4256
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4276
+#: application/models/Logbook_model.php:4277
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4557
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4558
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
 #: application/models/Logbook_model.php:4618
+#: application/models/Logbook_model.php:4619
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
 #: application/models/Logbook_model.php:4624
+#: application/models/Logbook_model.php:4625
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4629
+#: application/models/Logbook_model.php:4630
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
 #: application/models/Logbook_model.php:4632
+#: application/models/Logbook_model.php:4633
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
 #: application/models/Logbook_model.php:4635
+#: application/models/Logbook_model.php:4636
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
 #: application/models/Logbook_model.php:4638
+#: application/models/Logbook_model.php:4639
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:4641
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4642
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -3086,6 +3122,7 @@ msgstr "неизвестно"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/user/edit.php:351
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5454
 msgid "Bearing"
 msgstr "Направление"
 
