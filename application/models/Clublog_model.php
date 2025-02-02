@@ -390,7 +390,6 @@ class Clublog_model extends CI_Model
 		// output the response
 		curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($request);
-		$info = curl_getinfo($request);
 		$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
 		curl_close($request);
 
@@ -403,7 +402,6 @@ class Clublog_model extends CI_Model
 			$returner['status'] = $response;
 		} else {
 			log_message("Error","Uncaught exception at ClubLog-RT for ".$cl_username." / Details: ".$httpcode." : ".$response);
-			$sql = 'update station_profile set clublogignore = 1 where cl_username = ? and cl_password = ?';
 			$returner['status'] = $response;
 		}
 		return ($returner);
