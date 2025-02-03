@@ -2385,6 +2385,11 @@ function viewEqsl(picture, callsign) {
                         $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
                             showQsoActionsMenu($(this).closest('.dropdown'));
                         });
+                        $('#contacttable_filter input').on('keyup', function() {
+                           tocrappyzero = $(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+                           $('#contacttable_filter label input').val(tocrappyzero);
+                           $('#contacttable_filter label input').trigger('input');
+                        });
                     },
                     buttons: [{
                         label: lang_admin_close,
@@ -2393,6 +2398,7 @@ function viewEqsl(picture, callsign) {
                         }
                     }]
                 });
+
             }
         });
     }
