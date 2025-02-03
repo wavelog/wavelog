@@ -267,4 +267,11 @@ $(document).ready(function(){
         }).getModalHeader().find('.modal-title').after('<i class="fas fa-spinner fa-spin fa-2x"></i>');
 
     });
+
+	$("#adminusertable_filter label input").on('keyup', function (e) {
+		tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+		$("#adminusertable_filter label input").val(tocrappyzero);
+		$("#adminusertable_filter label input").trigger("input");
+	});
+
 });
