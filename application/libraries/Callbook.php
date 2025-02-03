@@ -156,7 +156,7 @@ class Callbook {
 			}
 		}
 
-		$callbook = $this->ci->qrztu->search($callsign, $this->ci->session->userdata('qrzru_session_key'));
+		$callbook = $this->ci->qrzru->search($callsign, $this->ci->session->userdata('qrzru_session_key'));
 
 		if ($callbook['error'] ?? '' == 'Invalid session key') {
 			$qrzru_session_key = $this->ci->qrzru->session($username, $password);
