@@ -75,7 +75,7 @@ class Lookup_model extends CI_Model{
 			$binds[]=$queryinfo['sota'];
 			break;
 		case 'wwff':
-			$sqlquerytypestring .= " and col_sig = 'WWFF' and col_sig_info = ?";
+			$sqlquerytypestring .= " and col_wwff_ref = ?";
 			$binds[]=$queryinfo['wwff'];
 			break;
 		case 'itu':
