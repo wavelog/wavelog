@@ -275,8 +275,8 @@ function qso_edit(id) {
 
                     if ($('#dxcc_id_edit').val() == '291' || $('#dxcc_id_edit').val() == '110' || $('#dxcc_id_edit').val() == '6') {
                         $('#location_us_county_edit').show();
-                    } else {    
-                        $('#location_us_county_edit').hide();    
+                    } else {
+                        $('#location_us_county_edit').hide();
                     }
 
                     var state = $("#stateDropdownEdit option:selected").text();
@@ -744,7 +744,9 @@ function spawnLookupModal(searchphrase, searchtype) {
                         $('#quicklookuptype').val(searchtype);
                         if (searchtype == 'dxcc') {
                             $("#quicklookupdxcc").val(searchphrase);
-                        } else if (searchtype == 'iota') {
+                        } else if (searchtype == 'continent') {
+                            $("#quicklookupcontinent").val(searchphrase);
+						} else if (searchtype == 'iota') {
                             $("#quicklookupiota").val(searchphrase);
                         } else if (searchtype == 'cq') {
                             $("#quicklookupcqz").val(searchphrase);
@@ -775,6 +777,7 @@ function changeLookupType(type) {
 	$('#quicklookupituz').hide();
 	$('#quicklookupwas').hide();
 	$('#quicklookuptext').hide();
+	$('#quicklookupcontinent').hide();
     if (type == "dxcc") {
         $('#quicklookupdxcc').show();
     } else if (type == "iota") {
@@ -787,7 +790,9 @@ function changeLookupType(type) {
         $('#quicklookupituz').show();
     } else if (type == "was") {
         $('#quicklookupwas').show();
-    }
+    } else if (type == "continent") {
+        $('#quicklookupcontinent').show();
+	}
 }
 
 // This function executes the call to the backend for fetching queryresult and displays the table in the dialog
@@ -808,6 +813,7 @@ function getLookupResult() {
 			wwff: $('#quicklookuptext').val(),
 			lotw: $('#quicklookuptext').val(),
 			ituz: $('#quicklookupituz').val(),
+			continent: $('#quicklookupcontinent').val(),
 		},
 		success: function (html) {
 			$('#lookupresulttable').html(html);

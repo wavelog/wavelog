@@ -39,41 +39,52 @@ class Lookup_model extends CI_Model{
 	/*
 	 * Builds information-where-part of query depending on what we are searching for
 	 */
-	private function build_info_query($queryinfo,&$binds) {
+	private function build_info_query($queryinfo, &$binds) {
 		$sqlquerytypestring='';
+		if (strlen($queryinfo['grid']) > 4) {
+			$fixedgrid = substr($queryinfo['grid'], 0, 4);
+		}
+		else {
+			$fixedgrid = $queryinfo['grid'];
+		}
+
 		switch ($queryinfo['type']) {
-		case 'dxcc': 
+		case 'dxcc':
 			$sqlquerytypestring .= " and col_dxcc = ?";
-			$binds[]=$queryinfo['dxcc']; 
+			$binds[]=$queryinfo['dxcc'];
 			break;
-		case 'iota': 
+		case 'iota':
 			$sqlquerytypestring .= " and col_iota = ?";
-			$binds[]=$queryinfo['iota']; 
+			$binds[]=$queryinfo['iota'];
 			break;
-		case 'vucc': 
+		case 'vucc':
 			$sqlquerytypestring .= " and (col_gridsquare like ? or col_vucc_grids like ?)";
 			$binds[]='%'.$fixedgrid.'%';
-			$binds[]='%'.$fixedgrid.'%'; 
+			$binds[]='%'.$fixedgrid.'%';
 			break;
-		case 'cq':   
+		case 'cq':
 			$sqlquerytypestring .= " and col_cqz = ?";
 			$binds[]=$queryinfo['cqz'];
 			break;
-		case 'was':  
-			$sqlquerytypestring .= " and col_state = ? and COL_DXCC in ('291', '6', '110')"; 
+		case 'was':
+			$sqlquerytypestring .= " and col_state = ? and COL_DXCC in ('291', '6', '110')";
 			$binds[]=$queryinfo['was'];
 			break;
-		case 'sota': 
+		case 'sota':
 			$sqlquerytypestring .= " and col_sota_ref = ?";
 			$binds[]=$queryinfo['sota'];
 			break;
-		case 'wwff': 
-			$sqlquerytypestring .= " and col_sig = 'WWFF' and col_sig_info = ?";
+		case 'wwff':
+			$sqlquerytypestring .= " and col_wwff_ref = ?";
 			$binds[]=$queryinfo['wwff'];
 			break;
-		case 'itu':  
+		case 'itu':
 			$sqlquerytypestring .= " and col_ituz = ?";
 			$binds[]=$queryinfo['ituz'];
+			break;
+		case 'continent':
+			$sqlquerytypestring .= " and col_cont = ?";
+			$binds[]=$queryinfo['continent'];
 			break;
 		default: break;
 		}
@@ -86,12 +97,7 @@ class Lookup_model extends CI_Model{
 	function getQueryData($queryinfo, $confirmedtype) {
 		// If user inputs longer grid than 4 chars, we use only the first 4
 		$binds=[];
-		if (strlen($queryinfo['grid']) > 4) {
-			$fixedgrid = substr($queryinfo['grid'], 0, 4);
-		}
-		else {
-			$fixedgrid = $queryinfo['grid'];
-		}
+
 
 		$sqlquerytypestring = '';
 
