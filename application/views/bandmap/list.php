@@ -114,6 +114,7 @@
 					<th style="width:150px;"><?= __("Frequency"); ?></th>
 					<th><?= __("Call"); ?></th>
 					<th><?= __("DXCC"); ?></th>
+					<th><?= __("Continent"); ?></th>
 					<th style="width:150px;"><?= __("Spotter"); ?></th>
 					<th><?= __("Message"); ?></th>
 					<th><?= __("Last Worked"); ?></th>

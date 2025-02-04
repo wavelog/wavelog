@@ -17,13 +17,13 @@ $(function() {
 				{
 					'targets': 1, "type":"num",
 					'createdCell':  function (td, cellData, rowData, row, col) {
-						$(td).addClass("kHz"); 
+						$(td).addClass("kHz");
 					}
 				},
 				{
 					'targets': 2,
 					'createdCell':  function (td, cellData, rowData, row, col) {
-						$(td).addClass("spotted_call"); 
+						$(td).addClass("spotted_call");
 						$(td).attr( "title", lang_click_to_prepare_logging);
 					}
 				}
@@ -84,7 +84,7 @@ $(function() {
 							}
 							lotw_badge='<a id="lotw_badge" style="float: right;" href="https://lotw.arrl.org/lotwuser/act?act='+single.spotted+'" target="_blank"><small id="lotw_infox" class="badge text-bg-success '+lclass+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was '+single.dxcc_spotted.lotw_user+' days ago">L</small></a>';
 						}
-							
+
 						data[0]=[];
 						data[0].push(single.when_pretty);
 						data[0].push(single.frequency*1);
@@ -97,6 +97,17 @@ $(function() {
 							dxcc_wked_info=((dxcc_wked_info != '' ?'<span class="'+dxcc_wked_info+'">' : '')+single.dxcc_spotted.entity+(dxcc_wked_info != '' ? '</span>' : ''));
 						}
 						data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+dxcc_wked_info+'</a>');
+
+						if (single.cnfmd_continent) {
+							continent_wked_info="text-success";
+						} else if (single.worked_continent) {
+							continent_wked_info="text-warning";
+						} else {
+							continent_wked_info="text-danger";
+						}
+						continent_wked_info = ((continent_wked_info != '' ?'<span class="'+continent_wked_info+'">' : '')+single.dxcc_spotted.cont+(continent_wked_info != '' ? '</span>' : ''));
+
+						data[0].push(continent_wked_info);
 						data[0].push(single.spotter);
 						data[0].push(single.message || '');
 						if (single.worked_call) {
@@ -109,12 +120,12 @@ $(function() {
 							oldtable.each( function (srow) {
 								if (JSON.stringify(srow) === JSON.stringify(data[0])) {
 									update=true;
-								} 
+								}
 							});
 							if (!update) { 	// Sth. Fresh? So highlight
 								table.rows.add(data).draw().nodes().to$().addClass("fresh");
-							} else { 
-								table.rows.add(data).draw(); 
+							} else {
+								table.rows.add(data).draw();
 							}
 						} else {
 							table.rows.add(data).draw();
@@ -203,7 +214,7 @@ $(function() {
 		}
 		bc_qsowin.postMessage('ping');
 	},500);
-	
+
 	let bc2qso = new BroadcastChannel('qso_wish');
 
 	// set some times
@@ -276,7 +287,7 @@ $(function() {
 			$('#menutoggle_i').addClass('fa-arrow-down');
 		}
 	});
-	
+
 	var CatCallbackURL = "http://127.0.0.1:54321";
 	var updateFromCAT = function() {
 
