@@ -350,6 +350,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
+#: application/views/lookup/index.php:5
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -435,7 +436,7 @@ msgstr " 并且 "
 #: application/views/user/edit.php:295 application/views/user/edit.php:318
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:9
-#: application/views/visitor/index.php:21
+#: application/views/visitor/index.php:21 application/views/lookup/index.php:9
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -456,6 +457,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/views/lookup/index.php:11
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -1408,7 +1410,7 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:271 application/views/user/edit.php:294
 #: application/views/user/edit.php:317 application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:8
-#: application/views/visitor/index.php:18
+#: application/views/visitor/index.php:18 application/views/lookup/index.php:7
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1478,7 +1480,7 @@ msgstr "州"
 #: application/views/user/edit.php:346 application/views/user/profile.php:34
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
-#: application/views/visitor/index.php:27
+#: application/views/visitor/index.php:27 application/views/lookup/index.php:6
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -1652,7 +1654,7 @@ msgstr "操作员"
 #: application/views/user/modals/first_login_wizard.php:52
 #: application/views/view_log/partial/log_ajax.php:30
 #: application/views/view_log/qso.php:335
-#: application/views/view_log/qso.php:678
+#: application/views/view_log/qso.php:678 application/views/lookup/index.php:45
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -3563,6 +3565,7 @@ msgstr "Tropospheric ducting"
 #: application/views/timeline/index.php:340
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
+#: application/views/lookup/index.php:92
 msgid "Show"
 msgstr "显示"
 
@@ -4936,7 +4939,7 @@ msgstr "包括已删除"
 #: application/views/logbookadvanced/index.php:361
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:394
-#: application/views/view_log/qso.php:350
+#: application/views/view_log/qso.php:350 application/views/lookup/index.php:58
 msgid "Antarctica"
 msgstr "南极洲"
 
@@ -4947,7 +4950,7 @@ msgstr "南极洲"
 #: application/views/logbookadvanced/index.php:360
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:393
-#: application/views/view_log/qso.php:347
+#: application/views/view_log/qso.php:347 application/views/lookup/index.php:57
 msgid "Africa"
 msgstr "非洲"
 
@@ -4958,7 +4961,7 @@ msgstr "非洲"
 #: application/views/logbookadvanced/index.php:363
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:395
-#: application/views/view_log/qso.php:353
+#: application/views/view_log/qso.php:353 application/views/lookup/index.php:60
 msgid "Asia"
 msgstr "亚洲"
 
@@ -4969,7 +4972,7 @@ msgstr "亚洲"
 #: application/views/logbookadvanced/index.php:364
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:396
-#: application/views/view_log/qso.php:356
+#: application/views/view_log/qso.php:356 application/views/lookup/index.php:61
 msgid "Europe"
 msgstr "欧洲"
 
@@ -4980,7 +4983,7 @@ msgstr "欧洲"
 #: application/views/logbookadvanced/index.php:362
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:397
-#: application/views/view_log/qso.php:359
+#: application/views/view_log/qso.php:359 application/views/lookup/index.php:59
 msgid "North America"
 msgstr "北美洲"
 
@@ -4991,7 +4994,7 @@ msgstr "北美洲"
 #: application/views/logbookadvanced/index.php:365
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:399
-#: application/views/view_log/qso.php:365
+#: application/views/view_log/qso.php:365 application/views/lookup/index.php:62
 msgid "South America"
 msgstr "南美洲"
 
@@ -5002,7 +5005,7 @@ msgstr "南美洲"
 #: application/views/logbookadvanced/index.php:366
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:398
-#: application/views/view_log/qso.php:362
+#: application/views/view_log/qso.php:362 application/views/lookup/index.php:63
 msgid "Oceania"
 msgstr "大洋洲"
 
@@ -5254,6 +5257,7 @@ msgstr "已删除"
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:170
 #: application/views/user/modals/first_login_wizard.php:84
+#: application/views/lookup/index.php:8
 msgid "ITU Zone"
 msgstr "ITU 分区"
 
@@ -5563,7 +5567,7 @@ msgstr "奖项 - 通联世界大洲奖（WAC）"
 #: application/views/logbookadvanced/index.php:752
 #: application/views/logbookadvanced/useroptions.php:154
 #: application/views/qso/edit_ajax.php:262 application/views/qso/index.php:390
-#: application/views/view_log/qso.php:342
+#: application/views/view_log/qso.php:342 application/views/lookup/index.php:4
 msgid "Continent"
 msgstr "大陆"
 
@@ -9681,15 +9685,15 @@ msgstr "层"
 msgid "Default on"
 msgstr "默认开启"
 
-#: application/views/lookup/index.php:9
+#: application/views/lookup/index.php:9 application/views/lookup/index.php:10
 msgid "US State"
 msgstr "美国州"
 
-#: application/views/lookup/index.php:11
+#: application/views/lookup/index.php:11 application/views/lookup/index.php:12
 msgid "LoTW user"
 msgstr "LoTW 用户"
 
-#: application/views/lookup/index.php:60
+#: application/views/lookup/index.php:60 application/views/lookup/index.php:75
 msgid "Choose a State"
 msgstr "选择州"
 
