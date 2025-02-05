@@ -2388,7 +2388,7 @@ function viewEqsl(picture, callsign) {
 
                        var target = document.body;
                        var observer = new MutationObserver(function() {
-                               $('#contacttable_filter input').on('keyup', function (e) {
+                               $('#dt-search-0').on('keyup', function (e) {
                                        tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
                                        $(this).val(tocrappyzero);
                                        $(this).trigger("input");
