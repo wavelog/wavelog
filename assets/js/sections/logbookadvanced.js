@@ -155,7 +155,7 @@ function updateRow(qso) {
 
 function loadQSOTable(rows) {
 	var uninitialized = $('#qsoList').filter(function() {
-		return !$.fn.DataTable.fnIsDataTable(this);
+		return !$.fn.DataTable.isDataTable(this);
 	});
 
 	uninitialized.each(function() {
