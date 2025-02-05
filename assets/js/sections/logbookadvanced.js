@@ -2,8 +2,6 @@ var callBookProcessingDialog = null;
 var inCallbookProcessing = false;
 var inCallbookItemProcessing = false;
 
-// Array of valid continent codes
-const validContinents = ['AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN'];
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -321,15 +319,7 @@ function loadQSOTable(rows) {
 			data.push(qso.deRefs);
 		}
 		if (user_options.continent.show == "true"){
-			if (qso.continent === '') {
-				data.push(qso.continent);
-			} else if (!validContinents.includes(qso.continent.toUpperCase())) {
-				// Check if qso.continent is not in the list of valid continents
-				data.push('<span class="bg-danger">Invalid continent</span> ' + qso.continent);
-			} else {
-				// Continent is valid
-				data.push(qso.continent);
-			}
+			data.push(qso.continent);
 		}
 		if (user_options.distance.show == "true"){
 			data.push(qso.distance);
