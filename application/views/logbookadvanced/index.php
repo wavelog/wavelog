@@ -71,7 +71,7 @@
         echo "\nuser_options={...user_options, ...o_template};";
     }
     if (!isset($current_opts->qslmsgr)) {
-        echo "\nvar o_template = { qslmsgr: {show: 'true'}};";
+        echo "\nvar o_template = { qslmsgr: {show: 'false'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
     if (!isset($current_opts->pota)) {
