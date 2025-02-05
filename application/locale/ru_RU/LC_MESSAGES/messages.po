@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-05 11:36+0000\n"
+"POT-Creation-Date: 2025-02-05 17:00+0000\n"
 "PO-Revision-Date: 2025-02-02 12:12+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -7443,10 +7443,10 @@ msgstr "Необходимо"
 #: application/views/visitor/index.php:291
 #: application/views/visitor/index.php:314
 #: application/views/visitor/index.php:332
-#: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:378
-#: src/QSLManager/QSO.php:481 src/QSLManager/QSO.php:533
-#: src/QSLManager/QSO.php:588 src/QSLManager/QSO.php:649
-#: src/QSLManager/QSO.php:716
+#: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:393
+#: src/QSLManager/QSO.php:496 src/QSLManager/QSO.php:548
+#: src/QSLManager/QSO.php:603 src/QSLManager/QSO.php:664
+#: src/QSLManager/QSO.php:731
 msgid "Sent"
 msgstr "Отправлено"
 
@@ -7476,10 +7476,10 @@ msgstr "Отправлено"
 #: application/views/view_log/partial/log_ajax.php:385
 #: application/views/visitor/index.php:296
 #: application/views/visitor/index.php:319
-#: application/views/visitor/index.php:337 src/QSLManager/QSO.php:423
-#: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:556
-#: src/QSLManager/QSO.php:627 src/QSLManager/QSO.php:688
-#: src/QSLManager/QSO.php:740
+#: application/views/visitor/index.php:337 src/QSLManager/QSO.php:438
+#: src/QSLManager/QSO.php:519 src/QSLManager/QSO.php:571
+#: src/QSLManager/QSO.php:642 src/QSLManager/QSO.php:703
+#: src/QSLManager/QSO.php:755
 msgid "Received"
 msgstr "Принято"
 
@@ -7513,10 +7513,10 @@ msgstr "Принято"
 #: application/views/view_log/partial/log_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:313
 #: application/views/view_log/partial/log_ajax.php:339
-#: application/views/visitor/index.php:301 src/QSLManager/QSO.php:384
-#: src/QSLManager/QSO.php:429 src/QSLManager/QSO.php:489
-#: src/QSLManager/QSO.php:512 src/QSLManager/QSO.php:724
-#: src/QSLManager/QSO.php:749
+#: application/views/visitor/index.php:301 src/QSLManager/QSO.php:399
+#: src/QSLManager/QSO.php:444 src/QSLManager/QSO.php:504
+#: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:739
+#: src/QSLManager/QSO.php:764
 msgid "Requested"
 msgstr "Запрошено"
 
@@ -9603,7 +9603,7 @@ msgstr "QSL отправлено"
 #: application/views/search/search_result_ajax.php:225
 #: application/views/view_log/partial/log_ajax.php:209
 #: application/views/view_log/partial/log_ajax.php:247
-#: src/QSLManager/QSO.php:381 src/QSLManager/QSO.php:426
+#: src/QSLManager/QSO.php:396 src/QSLManager/QSO.php:441
 msgid "Queued"
 msgstr "В очереди"
 
@@ -9642,10 +9642,10 @@ msgstr "В очереди"
 #: application/views/view_log/partial/log_ajax.php:334
 #: application/views/view_log/partial/log_ajax.php:353
 #: application/views/view_log/partial/log_ajax.php:371
-#: src/QSLManager/QSO.php:387 src/QSLManager/QSO.php:432
-#: src/QSLManager/QSO.php:485 src/QSLManager/QSO.php:508
-#: src/QSLManager/QSO.php:610 src/QSLManager/QSO.php:671
-#: src/QSLManager/QSO.php:720 src/QSLManager/QSO.php:745
+#: src/QSLManager/QSO.php:402 src/QSLManager/QSO.php:447
+#: src/QSLManager/QSO.php:500 src/QSLManager/QSO.php:523
+#: src/QSLManager/QSO.php:625 src/QSLManager/QSO.php:686
+#: src/QSLManager/QSO.php:735 src/QSLManager/QSO.php:760
 msgid "Invalid (Ignore)"
 msgstr "Некорректно (Игнорировать)"
 
@@ -9673,7 +9673,7 @@ msgstr "Способ отправки QSL"
 #: application/views/search/search_result_ajax.php:241
 #: application/views/view_log/partial/log_ajax.php:228
 #: application/views/view_log/partial/log_ajax.php:266
-#: src/QSLManager/QSO.php:404 src/QSLManager/QSO.php:447
+#: src/QSLManager/QSO.php:419 src/QSLManager/QSO.php:462
 msgid "Bureau"
 msgstr "Бюро"
 
@@ -9691,7 +9691,7 @@ msgstr "Бюро"
 #: application/views/search/search_result_ajax.php:244
 #: application/views/view_log/partial/log_ajax.php:231
 #: application/views/view_log/partial/log_ajax.php:269
-#: src/QSLManager/QSO.php:407 src/QSLManager/QSO.php:450
+#: src/QSLManager/QSO.php:422 src/QSLManager/QSO.php:465
 msgid "Direct"
 msgstr "Напрямую"
 
@@ -9709,7 +9709,7 @@ msgstr "Напрямую"
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:237
 #: application/views/view_log/partial/log_ajax.php:275
-#: src/QSLManager/QSO.php:413 src/QSLManager/QSO.php:456
+#: src/QSLManager/QSO.php:428 src/QSLManager/QSO.php:471
 msgid "Electronic"
 msgstr "Электронное"
 
@@ -10874,7 +10874,7 @@ msgstr "Профиль QTH"
 #: application/views/qso/index.php:647
 #: application/views/search/search_result_ajax.php:205
 #: application/views/view_log/partial/log_ajax.php:234
-#: src/QSLManager/QSO.php:410
+#: src/QSLManager/QSO.php:425
 msgid "Via"
 msgstr "via"
 
@@ -11341,8 +11341,8 @@ msgstr "Примечание: Не редактируется. Только от
 #: application/views/qso/edit_ajax.php:580
 #: application/views/view_log/partial/log_ajax.php:353
 #: application/views/view_log/partial/log_ajax.php:365
-#: src/QSLManager/QSO.php:542 src/QSLManager/QSO.php:599
-#: src/QSLManager/QSO.php:660
+#: src/QSLManager/QSO.php:557 src/QSLManager/QSO.php:614
+#: src/QSLManager/QSO.php:675
 msgid "Modified"
 msgstr "Модифицированный"
 
@@ -14232,8 +14232,8 @@ msgstr ""
 
 #: application/views/view_log/partial/log_ajax.php:353
 #: application/views/view_log/partial/log_ajax.php:367
-#: src/QSLManager/QSO.php:546 src/QSLManager/QSO.php:603
-#: src/QSLManager/QSO.php:664
+#: src/QSLManager/QSO.php:561 src/QSLManager/QSO.php:618
+#: src/QSLManager/QSO.php:679
 msgid "last sent"
 msgstr "последнее отправленное"
 
