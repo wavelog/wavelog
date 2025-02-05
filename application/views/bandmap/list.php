@@ -36,6 +36,9 @@
 		color: inherit;
 		text-decoration: none;
 	}
+	.dataTables_wrapper {
+		margin: 10px;
+	}
 </style>
 
 
@@ -104,10 +107,13 @@
 				?>
 			</select>
 		</div>
+		</div>
+
+</div>
 
 		<p>
 
-		<table style="width:100%" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
+		<table style="width:100%;" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
 			<thead>
 				<tr class="log_title titles">
 					<th style="width:200px;"><?= __("Date"); ?>/<?= __("Time"); ?></th>
@@ -126,5 +132,4 @@
 		</table>
 	</div>
 
-</div>
-</div>
+
