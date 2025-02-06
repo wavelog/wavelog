@@ -39,7 +39,7 @@
 
 	<form method="post" action="<?php echo $user_form_action; ?>" name="users" autocomplete="off">
 	<div class="accordion user_edit">
-		<!-- ZONE 1 / USER -->
+		<!-- ZONE 1 / User General Information -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_user_general">
 				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_user_general" aria-expanded="true" aria-controls="panelsStayOpen-B_user_general">
@@ -669,7 +669,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ZONE 3 / Default Value -->
+		<!-- ZONE 3 / Default Values -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_default_value">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_default_value" aria-expanded="false" aria-controls="panelsStayOpen-B_default_value">
@@ -747,7 +747,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ZONE 4 / Confirmation Account -->
+		<!-- ZONE 4 / Third Party Services -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_confirmation_account">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_confirmation_account" aria-expanded="false" aria-controls="panelsStayOpen-B_confirmation_account">
