@@ -12,7 +12,6 @@ class Qrzru {
 		// URL to the XML Source
 		$ci = & get_instance();
 		$xml_feed_url = 'https://api.qrz.ru/login?u='.$username.'&p='.urlencode($password) . '&agent=wavelog';;
-		https://api.qrz.ru/login?u=r1blh&p=Wavelog2025
 
 		// CURL Functions
 		$ch = curl_init();
@@ -82,7 +81,7 @@ class Qrzru {
 			curl_close($ch);
 
 			// Create XML object
-			$xml = simplexml_load_string($xml);
+				$xml = simplexml_load_string($xml);
 			if (!empty($xml->session->error)) {
 				return $data['error'] = (string)$xml->session->error;
 			}
