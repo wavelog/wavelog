@@ -142,6 +142,7 @@ class Lookup extends CI_Controller {
 		session_write_close();
 
 		if($call) {
+			$call = str_replace("-","/",$call);
 			$uppercase_callsign = strtoupper($call);
 		}
 
