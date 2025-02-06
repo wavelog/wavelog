@@ -175,6 +175,7 @@ function loadQSOTable(rows) {
 				url: getDataTablesLanguageUrl(),
 			},
 			"columnDefs": [
+				{ orderable: false, targets: 0 },
 				{
 					"targets": $(".distance-column-sort").index(),
 					"type": "numbersort", // use the custom sort type from the previous example
