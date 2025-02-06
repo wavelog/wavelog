@@ -142,7 +142,7 @@ class Callbook {
 	}
 
 	function qrzru($username, $password, $callsign) {
-		if (!$this->ci->load->is_loaded('qrzcq')) {
+		if (!$this->ci->load->is_loaded('qrzru')) {
 			$this->ci->load->library('qrzru');
 		}
 
