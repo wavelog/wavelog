@@ -148,17 +148,12 @@ class Callbook {
 
 		if (!$this->ci->session->userdata('qrzru_session_key')) {
 			$result = $this->ci->qrzru->session($username, $password);
-			if ($result[0] == 0) {
-				$this->ci->session->set_userdata('qrzru_session_key', $result[1]);
-			} else {
-				$data['error'] = __("QRZ.RU Error").": ".$result[1];
-				return $data;
-			}
+			$this->ci->session->set_userdata('qrzru_session_key', $result);
 		}
 
 		$callbook = $this->ci->qrzru->search($callsign, $this->ci->session->userdata('qrzru_session_key'));
 
-		if ($callbook['error'] ?? '' == 'Invalid session key') {
+		if ($callbook['error'] ?? '' == 'Session does not exist or expired') {
 			$qrzru_session_key = $this->ci->qrzru->session($username, $password);
 			$this->ci->session->set_userdata('qrzru_session_key', $qrzru_session_key);
 			$callbook = $this->ci->qrzru->search($callsign, $this->ci->session->userdata('qrzru_session_key'));

@@ -11,7 +11,8 @@ class Qrzru {
 	public function session($username, $password) {
 		// URL to the XML Source
 		$ci = & get_instance();
-		$xml_feed_url = 'https://api.qrz.ru/login?u='.$username.';p='.urlencode($password).';agent=wavelog';
+		$xml_feed_url = 'https://api.qrz.ru/login?u='.$username.'&p='.urlencode($password) . '&agent=wavelog';;
+		https://api.qrz.ru/login?u=r1blh&p=Wavelog2025
 
 		// CURL Functions
 		$ch = curl_init();
@@ -28,7 +29,7 @@ class Qrzru {
 		$xml = simplexml_load_string($xml);
 
 		// Return Session Key
-		return (string) $xml->Session->Key;
+		return (string) $xml->Session->session_id;
 	}
 
 	// Set Session Key session.
@@ -37,7 +38,7 @@ class Qrzru {
 		$ci = & get_instance();
 
 		// URL to the XML Source
-		$xml_feed_url = 'https://api.qrz.ru/login?u='.$username.';p='.urlencode($password).';agent=wavelog';
+		$xml_feed_url = 'https://api.qrz.ru/login?u='.$username.'&p='.urlencode($password).';agent=wavelog';
 
 		// CURL Functions
 		$ch = curl_init();
@@ -66,7 +67,7 @@ class Qrzru {
 		$ci = & get_instance();
 		try {
 			// URL to the XML Source
-			$xml_feed_url = 'https://api.qrz.ru/callsign?id=' . $key . ';callsign=' . $callsign . '';
+				$xml_feed_url = 'https://api.qrz.ru/callsign?id=' . $key . '&callsign=' . $callsign . '';
 
 			// CURL Functions
 			$ch = curl_init();
@@ -79,12 +80,11 @@ class Qrzru {
 			$xml = curl_exec($ch);
 			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
-			if ($httpcode != 200) return $data['error'] = 'Problems with qrz.ru communication'; // Exit function if no 200. If request fails, 0 is returned
 
 			// Create XML object
 			$xml = simplexml_load_string($xml);
-			if (!empty($xml->Session->Error)) {
-				return $data['error'] = $xml->Session->Error;
+			if (!empty($xml->session->error)) {
+				return $data['error'] = (string)$xml->session->error;
 			}
 
 			// Return Required Fields
