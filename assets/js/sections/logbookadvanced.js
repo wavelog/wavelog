@@ -1136,11 +1136,11 @@ $(document).ready(function () {
 	$('#checkBoxAll').change(function (event) {
 		if (this.checked) {
 			$('#qsoList tbody tr').each(function (i) {
-				selectQsoID($(this).data('qsoID'))
+				selectQsoID($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
 			});
 		} else {
 			$('#qsoList tbody tr').each(function (i) {
-				unselectQsoID($(this).data('qsoID'))
+				unselectQsoID($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
 			});
 		}
 	});
