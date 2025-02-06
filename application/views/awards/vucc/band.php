@@ -5,7 +5,7 @@
     <?php
     $i = 1;
     if ($vucc_array) {
-        echo '<table style="width:100%" class="table table-sm tablevucc table-bordered table-hover table-striped table-condensed text-center">
+        echo '<table style="width:100%" class="table table-sm tablevucc table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
             <td>#</td>

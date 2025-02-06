@@ -162,7 +162,7 @@
     if ($iota_array) {
         echo '
 
-                <table style="width:100%;" class="table table-sm tableiota table-bordered table-hover table-striped table-condensed text-center">
+                <table style="width:100%;" class="table table-sm tableiota table-hover table-striped table-condensed text-center">
                     <thead>
                     <tr>
                         <td>#</td>
@@ -191,7 +191,7 @@
         echo '</table>
         <h2>' . __("Summary") . '</h2>
 
-        <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
+        <table class="table-sm tablesummary table table-hover table-striped table-condensed text-center">
         <thead>
         <tr><td></td>';
 

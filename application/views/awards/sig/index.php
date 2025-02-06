@@ -15,7 +15,7 @@
         <!-- End of Award Info Box -->
 
 <?php if ($sig_types) { ?>
-    <table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
+    <table style="width:100%" class="table-sm table table-hover table-striped table-condensed text-center">
 
 	<tr>
 		<td><?= __("Award Type"); ?></td>

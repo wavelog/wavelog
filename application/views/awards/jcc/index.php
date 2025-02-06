@@ -145,7 +145,7 @@
     $i = 1;
     if ($jcc_array) {
         echo '
-                <table id="jccTable" style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
+                <table id="jccTable" style="width:100%" class="table-sm table table-hover table-striped table-condensed text-center">
                     <thead>
                     <tr>
 						<td>' . __("Number") . '</td>
@@ -167,7 +167,7 @@
         echo '</table>
         <h2>' . __("Summary") . '</h2>
 
-        <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">';
+        <table class="table-sm tablesummary table table-hover table-striped table-condensed text-center">';
         $sat = 0;
         if (in_array('SAT', $bands)) {
            $sat = 1;

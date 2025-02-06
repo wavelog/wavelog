@@ -5,7 +5,7 @@
     <?php
     $i = 1;
     if ($counties_array) {
-        echo '<table  style="width:100%" class="countiestable table table-sm table-bordered table-hover table-striped table-condensed text-center">
+        echo '<table  style="width:100%" class="countiestable table table-sm table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
             <td>#</td>
