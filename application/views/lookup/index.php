@@ -1,4 +1,4 @@
-	<form method="post" class="d-flex align-items-center">
+	<form method="post" onsubmit="getLookupResult(this.form); return false;" class="d-flex align-items-center">
 		<select id="quicklookuptype" name="type" class="form-select w-auto me-2">
 			<option value="cq"><?= __("CQ Zone"); ?></option>
 			<option value="continent"><?= __("Continent"); ?></option>
