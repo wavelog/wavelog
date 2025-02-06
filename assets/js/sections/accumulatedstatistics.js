@@ -69,7 +69,7 @@ function accumulatePlot(form) {
 
 				// appending table to hold the data
 				$("#accumulateTable").append(
-					'<table style="width:100%" class="accutable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
+					'<table style="width:100%" class="accutable table table-sm table-hover table-striped table-condensed text-center"><thead>' +
 						"<tr>" +
 						"<th>#</th>" +
 						"<th>" +
