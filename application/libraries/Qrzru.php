@@ -11,7 +11,7 @@ class Qrzru {
 	public function session($username, $password) {
 		// URL to the XML Source
 		$ci = & get_instance();
-		$xml_feed_url = 'https://api.qrz.ru/login?u='.$username.'&p='.urlencode($password) . '&agent=wavelog';;
+		$xml_feed_url = 'https://api.qrz.ru/login?u='.$username.'&p='.urlencode($password) . '&agent=wavelog';
 
 		// CURL Functions
 		$ch = curl_init();
@@ -66,7 +66,7 @@ class Qrzru {
 		$ci = & get_instance();
 		try {
 			// URL to the XML Source
-				$xml_feed_url = 'https://api.qrz.ru/callsign?id=' . $key . '&callsign=' . $callsign . '';
+			$xml_feed_url = 'https://api.qrz.ru/callsign?id=' . $key . '&callsign=' . $callsign . '';
 
 			// CURL Functions
 			$ch = curl_init();
@@ -81,7 +81,7 @@ class Qrzru {
 			curl_close($ch);
 
 			// Create XML object
-				$xml = simplexml_load_string($xml);
+			$xml = simplexml_load_string($xml);
 			if (!empty($xml->session->error)) {
 				return $data['error'] = (string)$xml->session->error;
 			}
