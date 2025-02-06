@@ -376,13 +376,13 @@ function processNextCallbookItem() {
 
 	callBookProcessingDialog.setMessage("Retrieving callbook data : " + nElements + " remaining");
 
-	unselectQsoID(elements.first().closest('tr').data('qsoID'));
+	unselectQsoID(elements.first().closest('tr').attr('id')?.replace(/\D/g, '')); // Removes non-numeric characters
 
 	$.ajax({
 		url: site_url + '/logbookadvanced/updateFromCallbook',
 		type: 'post',
 		data: {
-			qsoID: elements.first().closest('tr').data('qsoID')
+			qsoID: elements.first().closest('tr').attr('id')?.replace(/\D/g, '')
 		},
 		dataType: 'json',
 		success: function (data) {
@@ -612,7 +612,7 @@ $(document).ready(function () {
 
 		var id_list=[];
 		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
+			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '')
 			id_list.push(id);
 		});
 
@@ -637,7 +637,7 @@ $(document).ready(function () {
 						},
 						success: function(data) {
 							elements.each(function() {
-								let id = $(this).first().closest('tr').data('qsoID')
+								let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 								var row = $("#qsoID-" + id);
 								table.row(row).remove();
 							});
@@ -660,7 +660,7 @@ $(document).ready(function () {
 		$('#exportAdif').prop("disabled", true);
 		var id_list=[];
 		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
+			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 			id_list.push(id);
 			unselectQsoID(id);
 		});
@@ -883,7 +883,7 @@ $(document).ready(function () {
 		$('#qslSlideshow').prop("disabled", true);
 		var id_list=[];
 		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
+			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 			id_list.push(id);
 		});
 		$.ajax({
@@ -1167,7 +1167,7 @@ function handleQsl(sent, method, tag) {
 	$('#'+tag).prop("disabled", true);
 	var id_list=[];
 	elements.each(function() {
-		let id = $(this).first().closest('tr').data('qsoID')
+		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 		id_list.push(id);
 	});
 	$.ajax({
@@ -1207,7 +1207,7 @@ function handleQslReceived(sent, method, tag) {
 	$('#'+tag).prop("disabled", true);
 	var id_list=[];
 	elements.each(function() {
-		let id = $(this).first().closest('tr').data('qsoID')
+		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 		id_list.push(id);
 	});
 	$.ajax({
@@ -1237,7 +1237,7 @@ function printlabel() {
 	let markchecked = $('#markprinted')[0].checked;
 
 	elements.each(function() {
-		let id = $(this).first().closest('tr').data('qsoID')
+		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 		id_list.push(id);
 	});
 	$.ajax({
