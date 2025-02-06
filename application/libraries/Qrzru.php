@@ -89,10 +89,7 @@ class Qrzru {
 			// Return Required Fields
 			$data['callsign'] = (string)$xml->Callsign->call;
 
-			$data['name'] = (string)$xml->Callsign->ename;
-
-			// we always give back the name, no matter if reduced data or not
-			$data['name'] = trim($data['name']);
+			$data['name'] = trim((string)($xml->Callsign->ename ?: $xml->Callsign->name) . ' ' . (string)($xml->Callsign->esurname ?: $xml->Callsign->surname));
 
 			if ($reduced == false) {
 				$data['city'] 		= (string)$xml->Callsign->city;
