@@ -191,7 +191,7 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
     $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
     $i = count($filtered_timeline); // General counter for all entries
 
-    echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
+    echo '<table style="width:100%" class="table table-sm timelinetable table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
@@ -229,7 +229,7 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
     // Apply filtering to the timeline array
     $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
     $i = count($filtered_timeline); // General counter for all entries
-    echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
+    echo '<table style="width:100%" class="table table-sm timelinetable table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
@@ -257,7 +257,7 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
     // Apply filtering to the timeline array
     $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
     $i = count($filtered_timeline); // General counter for all entries
-    echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
+    echo '<table style="width:100%" class="table table-sm timelinetable table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
@@ -287,7 +287,7 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
     // Apply filtering to the timeline array
     $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
     $i = count($filtered_timeline); // General counter for all entries
-    echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
+    echo '<table style="width:100%" class="table table-sm timelinetable table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
@@ -319,7 +319,7 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
     // Apply filtering to the timeline array
     $filtered_timeline = filter_timeline_array($timeline_array, $selectedyear, $onlynew);
     $i = count($filtered_timeline); // General counter for all entries
-    echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
+    echo '<table style="width:100%" class="table table-sm timelinetable table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
@@ -347,7 +347,7 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
     // Apply filtering to the timeline array
     $filtered_timeline = filter_timeline_array_vucc($timeline_array, $selectedyear, $onlynew);
     $i = count($filtered_timeline); // General counter for all entries
-    echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
+    echo '<table style="width:100%" class="table table-sm timelinetable table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
