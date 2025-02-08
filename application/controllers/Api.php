@@ -166,6 +166,7 @@ class API extends CI_Controller {
 
 		// Decode JSON and store
 		$raw = file_get_contents("php://input");
+		$raw = $raw = preg_replace('#[\r\n\t]+#', '', $raw);
 		$obj = json_decode($raw,true);
 		$raw='';
 		if ($obj === NULL) {
