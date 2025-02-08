@@ -713,7 +713,7 @@ $("#callsign").on("focusout", function () {
 				var $dok_select = $('#darc_dok').selectize();
 				var dok_selectize = $dok_select[0].selectize;
 				if ((result.dxcc.adif == '230') && (($("#callsign").val().trim().length) > 0)) {
-					$.get(base_url + 'index.php/lookup/dok/' + $('#callsign').val().toUpperCase(), function (result) {
+					$.get(base_url + 'index.php/lookup/dok/' + $('#callsign').val().toUpperCase().replaceAll('Ø', '0').replaceAll('/','-'), function (result) {
 						if (result) {
 							dok_selectize.addOption({ name: result });
 							dok_selectize.setValue(result, false);
