@@ -170,7 +170,7 @@ function loadQSOTable(rows) {
 			"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
 			"scrollCollapse": true,
 			"paging":         false,
-			"scrollX": true,
+			// "scrollX": true,
 			"language": {
 				url: getDataTablesLanguageUrl(),
 			},
