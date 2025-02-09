@@ -355,7 +355,8 @@ function loadQSOTable(rows) {
 		table.rows(createdRow).nodes().to$().data('qsoID', qso.qsoID);
 	//	table.row(createdRow).node().to$().attr("id", 'qsoID-' + qso.qsoID);
 	}
-	table.draw();
+	// table.draw();
+	table.columns.adjust().draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
 }
 
