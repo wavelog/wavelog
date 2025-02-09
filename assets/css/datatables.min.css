@@ -500,7 +500,9 @@ table.dataTable.table-sm>thead>tr th.dt-orderable-asc span.dt-column-order, tabl
 }
 
 div.dt-scroll-head table.table-bordered {
-	border-bottom-width: 0
+	border-bottom-width: 1px;
+	border-bottom-color: rgba(255, 255, 255, 0.15);
+	border-bottom-style: solid
 }
 
 div.table-responsive>div.dt-container>div.row {
@@ -1603,9 +1605,9 @@ table.dataTable.table-bordered th, table.dataTable.table-bordered td {
 	border-top-width: 0
 }
 
-table.dataTable.table-bordered th:last-child, table.dataTable.table-bordered td:last-child {
+/* table.dataTable.table-bordered th:last-child, table.dataTable.table-bordered td:last-child {
 	border-right: 1px solid #dee2e6
-}
+} */
 
 table.dataTable.table-bordered tr:last-child th, table.dataTable.table-bordered tr:last-child td {
 	border-bottom-width: 0
@@ -1625,6 +1627,28 @@ div.dtfc-top-blocker, div.dtfc-bottom-blocker {
 
 div.dt-scroll-body {
 	border-left-color: var(--bs-table-color) !important
+}
+
+table.table-bordered.dataTable thead tr:first-child th,
+table.table-bordered.dataTable thead tr:first-child td {
+	border-top-width: 1px;
+}
+
+table.table-bordered.dataTable th:first-child,
+table.table-bordered.dataTable th:first-child,
+table.table-bordered.dataTable td:first-child,
+table.table-bordered.dataTable td:first-child {
+	border-left-width: 1px;
+}
+table.table-bordered.dataTable th:last-child,
+table.table-bordered.dataTable th:last-child,
+table.table-bordered.dataTable td:last-child,
+table.table-bordered.dataTable td:last-child {
+	border-right-width: 1px;
+}
+table.table-bordered.dataTable th,
+table.table-bordered.dataTable td {
+	border-bottom-width: 1px;
 }
 
 /* div.dt-scroll-headInner table.table-bordered tr th:first-child, div.dt-scroll-footInner table.table-bordered tr th:first-child {
