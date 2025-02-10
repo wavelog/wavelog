@@ -331,7 +331,7 @@ $(function () {
 </script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "api"  && $this->uri->segment(2) == "help") { ?>
+<?php if ($this->uri->segment(1) == "api") { ?>
 <script type="text/javascript">
 function copyApiKey(apiKey) {
    var apiKeyField = $('#'+apiKey);
