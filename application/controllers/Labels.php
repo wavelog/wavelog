@@ -391,14 +391,6 @@ class Labels extends CI_Controller {
 		    $text .= " | ".($qso['qsl_recvd'] == 'Y' ? 'TNX' : 'PSE')." QSL";
 		}
 
-
-//		if (!empty($qso['qslmsg'])) { $text .= $qso['qslmsg'];}
-//		else {
-//		    $text .= "Thanks for the QSO".($numofqsos>1 ? 's' : '');
-//		    $text .= " | ".($qso['qsl_recvd'] == 'Y' ? 'TNX' : 'PSE')." QSL";
-//		    }
-
-
 		$pdf->Add_Label($text,$orientation);    }
 
 
