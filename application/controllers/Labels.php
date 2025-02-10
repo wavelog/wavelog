@@ -297,7 +297,9 @@ class Labels extends CI_Controller {
 				'sota' => $qso->station_sota ?? '',
 				'iota' => $qso->station_iota ?? '',
 				'pota' => $qso->station_pota ?? '',
-				'wwff' => $qso->station_wwff ?? ''
+				'wwff' => $qso->station_wwff ?? '',
+				'qslmsg' => $qso->COL_QSLMSG  ?? '',
+
 			];
 		}
 		if (!empty($qso_data)) {
@@ -377,9 +379,12 @@ class Labels extends CI_Controller {
 			if (!empty($qso['wwff'])) { $ref_text .= "WWFF:".$qso['wwff']; $ref_avail = true;}
 			if ($ref_avail == true) {$text .= $ref_text."\n";}
 		}
+		if (!empty($qso['qslmsg'])) { $text .= $qso['qslmsg'];}
+		else {
 		$text .= "Thanks for the QSO".($numofqsos>1 ? 's' : '');
-		$text .= " | ".($qso['qsl_recvd'] == 'Y' ? 'TNX' : 'PSE')." QSL";
-		$pdf->Add_Label($text,$orientation);	}
+		$text .= " | ".($qso['qsl_recvd'] == 'Y' ? 'TNX' : 'PSE')." QSL";}
+		$pdf->Add_Label($text,$orientation);    }
+
 
 	// New End
 
