@@ -147,7 +147,7 @@
     $i = 1;
     if ($waja_array) {
         echo '
-                <table style="width:100%" class="table-sm table tablewaja table-hover table-striped table-condensed text-center">
+                <table style="width:100%" class="table-sm table tablewaja table-bordered table-hover table-striped table-condensed text-center">
                     <thead>
                     <tr>
 						<td>' . __("Number") . '</td>
@@ -169,7 +169,7 @@
         echo '</table>
         <h2>' . __("Summary") . '</h2>
 
-        <table class="table-sm tablesummary table table-hover table-striped table-condensed text-center">
+        <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr><td></td>';
 

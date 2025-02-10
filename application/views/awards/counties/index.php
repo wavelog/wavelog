@@ -14,7 +14,7 @@
         </div>
         <!-- End of Award Info Box -->
     <?php if ($counties_array) { ?>
-    <table  style="width:100%" class="countiestable table table-sm table-hover table-striped table-condensed text-center">
+    <table  style="width:100%" class="countiestable table table-sm table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
             <td><?= __("State"); ?></td>

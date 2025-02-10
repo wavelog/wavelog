@@ -143,7 +143,7 @@
 <?php
     if ($dok_array) {
     echo '
-    <table style="width:100%" id="doktable" class="table table-sm table-hover table-striped table-condensed text-center">
+    <table style="width:100%" id="doktable" class="table table-sm table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
             <th>' . __("DOK") . '</th>';
@@ -164,7 +164,7 @@
         echo '</table>
         <h2>' . __("Summary") . '</h2>
 
-        <table class="table-sm tablesummary table table-hover table-striped table-condensed text-center">
+        <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr><td></td>';
 

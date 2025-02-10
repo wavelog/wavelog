@@ -1,5 +1,5 @@
 <div class="container">
-		<table style="width:100%" class="wabtable table-sm table table-hover table-striped table-condensed text-center">
+		<table style="width:100%" class="wabtable table-sm table table-bordered table-hover table-striped table-condensed text-center">
 			<thead>
 				<tr>
 					<th class="select-filter" scope="col"><?= __("WAB Square"); ?></th>

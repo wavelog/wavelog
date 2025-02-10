@@ -3,7 +3,7 @@
 
     <?php if ($sig_all) { ?>
 
-	<table style="width:100%" class="table-sm table tablesig table-hover table-striped table-condensed text-center">
+	<table style="width:100%" class="table-sm table tablesig table-bordered table-hover table-striped table-condensed text-center">
 			<thead>
         <tr>
             <td><?= __("Reference"); ?></td>

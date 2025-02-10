@@ -15,7 +15,7 @@
   <!-- End of Award Info Box -->
 <?php if (!empty($vucc_array)) { ?>
 
-        <table class="table table-sm table-hover table-striped table-condensed text-center">
+        <table class="table table-sm table-bordered table-hover table-striped table-condensed text-center">
             <thead>
             <tr>
                 <td><?= __("Band"); ?></td>

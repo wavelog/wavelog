@@ -144,7 +144,7 @@
     if ($was_array) {
         $i = 1;
     echo '
-    <table style="width:100%" class="table table-sm tablewas table-hover table-striped table-condensed text-center">
+    <table style="width:100%" class="table table-sm tablewas table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
             <td>#</td>
@@ -169,7 +169,7 @@
 
         <h2>' . __("Summary") . '</h2>
 
-        <table class="table tablesummary table-sm table-hover table-striped table-condensed text-center">
+        <table class="table tablesummary table-sm table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr><td></td>';
 
