@@ -153,17 +153,18 @@ $(function() {
 	function highlight_current_qrg(qrg) {
 		var table=get_dtable();
 		// var table=$('.spottable').DataTable();
-		table.rows().every(function() {
-			var d=this.data();
+		table.rows().eq(0).each( function ( index ) {
+			let row = table.row( index );
+			var d=row.data();
 			var distance=Math.abs(parseInt(d[1])-qrg);
 			if (distance<=20) {
 				distance++;
 				alpha=(.5/distance);
-				this.nodes().to$().css('--bs-table-bg', 'rgba(0,0,255,' + alpha + ')');
-				this.nodes().to$().css('--bs-table-accent-bg', 'rgba(0,0,255,' + alpha + ')');
+				$(row.node()).css('--bs-table-bg', 'rgba(0,0,255,' + alpha + ')');
+				$(row.node()).css('--bs-table-accent-bg', 'rgba(0,0,255,' + alpha + ')');
 			} else {
-				this.nodes().to$().css('--bs-table-bg', '');
-				this.nodes().to$().css('--bs-table-accent-bg', '');
+				$(row.node()).css('--bs-table-bg', '');
+				$(row.node()).css('--bs-table-accent-bg', '');
 			}
 		});
 	}
