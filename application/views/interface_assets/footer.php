@@ -882,66 +882,80 @@ function findlotwunconfirmed(){
 function findincorrectcqzones() {
     event.preventDefault();
     $('#partial_view').load(base_url+"index.php/logbook/search_incorrect_cq_zones/"+$("#station_id").val(), function() {
-        $('.qsolist').DataTable({
-            "pageLength": 25,
-            responsive: false,
-            ordering: false,
-            "scrollY":        "500px",
-            "scrollCollapse": true,
-            "paging":         false,
-            "scrollX": true,
-            "language": {
-                url: getDataTablesLanguageUrl(),
-            },
-            dom: 'Bfrtip',
-            buttons: [
-                'csv'
-            ]
-        });
-        // change color of csv-button if dark mode is chosen
-        if (isDarkModeTheme()) {
-            $(".buttons-csv").css("color", "white");
-        }
-		$(document).ready(function() {
-		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
-			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
-			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
-			$("#DataTables_Table_0_filter label input").trigger("input");
-		});
-        });
+	    $('.qsolist').DataTable({
+	    "pageLength": 25,
+		    responsive: false,
+		    ordering: false,
+		    "scrollY":        "500px",
+		    "scrollCollapse": true,
+		    "paging":         false,
+		    "scrollX": true,
+		    "language": {
+		    url: getDataTablesLanguageUrl(),
+    },
+	    dom: 'Bfrtip',
+	    buttons: [
+		    'csv'
+	    ]
+    });
+	    // change color of csv-button if dark mode is chosen
+	    if (isDarkModeTheme()) {
+		    $(".buttons-csv").css("color", "white");
+	    }
+	    $(document).ready(function() {
+		    var target = document.body;
+		    var observer = new MutationObserver(function() {
+			    $('#dt-search-0').on('keyup', function (e) {
+				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				    $(this).val(tocrappyzero);
+				    $(this).trigger("input");
+			    });
+		    });
+		    var config = { childList: true, subtree: true};
+		    // pass in the target node, as well as the observer options
+		    observer.observe(target, config);
+	    });
     });
 }
 
 function findincorrectituzones() {
     event.preventDefault();
     $('#partial_view').load(base_url+"index.php/logbook/search_incorrect_itu_zones/"+$("#station_id").val(), function() {
-        $('.qsolist').DataTable({
-            "pageLength": 25,
-            responsive: false,
-            ordering: false,
-            "scrollY":        "500px",
-            "scrollCollapse": true,
-            "paging":         false,
-            "scrollX": true,
-            "language": {
-                url: getDataTablesLanguageUrl(),
-            },
-            dom: 'Bfrtip',
-            buttons: [
-                'csv'
-            ]
-        });
-        // change color of csv-button if dark mode is chosen
-        if (isDarkModeTheme()) {
-            $(".buttons-csv").css("color", "white");
-        }
-		$(document).ready(function() {
-		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
-			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
-			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
-			$("#DataTables_Table_0_filter label input").trigger("input");
-		});
-        });
+	    $('.qsolist').DataTable({
+	    "pageLength": 25,
+		    responsive: false,
+		    ordering: false,
+		    "scrollY":        "500px",
+		    "scrollCollapse": true,
+		    "paging":         false,
+		    "scrollX": true,
+		    "language": {
+		    url: getDataTablesLanguageUrl(),
+    },
+	    dom: 'Bfrtip',
+	    buttons: [
+		    'csv'
+	    ]
+    });
+	    // change color of csv-button if dark mode is chosen
+	    if (isDarkModeTheme()) {
+		    $(".buttons-csv").css("color", "white");
+	    }
+
+	    $(document).ready(function() {
+		    var target = document.body;
+		    var observer = new MutationObserver(function() {
+			    $('#dt-search-0').on('keyup', function (e) {
+				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				    $(this).val(tocrappyzero);
+				    $(this).trigger("input");
+			    });
+		    });
+		    var config = { childList: true, subtree: true};
+		    // pass in the target node, as well as the observer options
+		    observer.observe(target, config);
+	    });
+
     });
 }
 
@@ -2222,14 +2236,19 @@ $('#sats').change(function(){
         if (isDarkModeTheme()) {
             $('[class*="buttons"]').css("color", "white");
         }
-
-	 $(document).ready(function() {
-		$("#DataTables_Table_0_filter label input").on('keyup', function (e) {
-			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
-			$("#DataTables_Table_0_filter label input").val(tocrappyzero);
-			$("#DataTables_Table_0_filter label input").trigger("input");
+	$(document).ready(function() {
+		var target = document.body;
+		var observer = new MutationObserver(function() {
+			$('#dt-search-0').on('keyup', function (e) {
+				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				$(this).val(tocrappyzero);
+				$(this).trigger("input");
+			});
 		});
-        });
+		var config = { childList: true, subtree: true};
+		// pass in the target node, as well as the observer options
+		observer.observe(target, config);
+	});
 
     </script>
 <?php } ?>
@@ -2388,7 +2407,7 @@ function viewEqsl(picture, callsign) {
 
                        var target = document.body;
                        var observer = new MutationObserver(function() {
-                               $('#contacttable_filter input').on('keyup', function (e) {
+                               $('#dt-search-0').on('keyup', function (e) {
                                        tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
                                        $(this).val(tocrappyzero);
                                        $(this).trigger("input");
@@ -2813,6 +2832,21 @@ function viewEqsl(picture, callsign) {
     }
 
     ?>
+    <script>
+    	    $(document).ready(function() {
+		    var target = document.body;
+		    var observer = new MutationObserver(function() {
+			    $('#dt-search-1').on('keyup', function (e) {
+				    tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				    $(this).val(tocrappyzero);
+				    $(this).trigger("input");
+			    });
+		    });
+		    var config = { childList: true, subtree: true};
+		    // pass in the target node, as well as the observer options
+		    observer.observe(target, config);
+	    });
+    </script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
     <?php if ($this->uri->segment(2) == "wwff") { ?>

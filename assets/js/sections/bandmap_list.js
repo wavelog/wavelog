@@ -30,7 +30,8 @@ $(function() {
 			],
 			"language": {
 				url: getDataTablesLanguageUrl(),
-			}
+			},
+			"search": { "smart": true },
 		});
 		return table;
 	}

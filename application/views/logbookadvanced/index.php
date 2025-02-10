@@ -643,7 +643,7 @@ $options = json_decode($options);
 		</div>
 
         </form>
-        <table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center" id="qsoList">
+        <table style="width:100%" class="table-sm table table-hover table-striped table-bordered table-condensed text-center" id="qsoList">
             <thead>
                 <tr>
                     <th>
