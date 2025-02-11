@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-10 08:56+0000\n"
+"POT-Creation-Date: 2025-02-11 12:33+0000\n"
 "PO-Revision-Date: 2025-02-04 18:44+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1016,59 +1016,59 @@ msgstr "QSL-Karten Etiketten"
 msgid "Create Label Type"
 msgstr "Erstelle Etikettentyp"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:406
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:419
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr "Etikettenname"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:407
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:420
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:76
 msgid "Paper Type"
 msgstr "Papiertyp"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:408
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:421
 #: application/views/labels/index.php:42 application/views/labels/index.php:77
 msgid "Measurement"
 msgstr "Maßeinheit"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:409
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:422
 msgid "Top Margin"
 msgstr "Oberer Abstand"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:410
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:423
 msgid "Left Margin"
 msgstr "Linker Abstand"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:411
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:424
 msgid "QSLs Horizontally"
 msgstr "QSLs im Querformat"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:412
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:425
 msgid "QSLs Vertically"
 msgstr "QSLs im Hochformat"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:413
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:426
 msgid "Horizontal Space"
 msgstr "Horizontaler Abstand"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:414
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:427
 msgid "Vertical Space"
 msgstr "Vertikaler Abstand"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:415
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:428
 msgid "Label width"
 msgstr "Etikettenbreite"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:416
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:429
 msgid "Label height"
 msgstr "Etikettenhöhe"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:417
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:430
 msgid "Size of Font"
 msgstr "Schriftgröße"
 
-#: application/controllers/Labels.php:90 application/controllers/Labels.php:418
+#: application/controllers/Labels.php:90 application/controllers/Labels.php:431
 msgid "Number of QSOs on label"
 msgstr "Anzahl von QSOs auf einem Etikett"
 
@@ -1077,22 +1077,22 @@ msgid "Create Paper Type"
 msgstr "Erstelle Papiertyp"
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:465
+#: application/controllers/Labels.php:478
 msgid "Paper Name"
 msgstr "Papierbezeichnung"
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:466
+#: application/controllers/Labels.php:479
 msgid "Paper Width"
 msgstr "Papierbreite"
 
 #: application/controllers/Labels.php:121
-#: application/controllers/Labels.php:467
+#: application/controllers/Labels.php:480
 msgid "Paper Height"
 msgstr "Papierhöhe"
 
 #: application/controllers/Labels.php:132
-#: application/controllers/Labels.php:475
+#: application/controllers/Labels.php:488
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
@@ -1100,19 +1100,19 @@ msgstr ""
 "Dein Papier konnte nicht gespeichert werden. Denk daran, dass es nicht den "
 "gleichen Namen haben kann, wie ein bereits existierender Papier Typ."
 
-#: application/controllers/Labels.php:205
-#: application/controllers/Labels.php:208
+#: application/controllers/Labels.php:209
+#: application/controllers/Labels.php:212
 msgid "You need to assign a paperType to the label before printing"
 msgstr ""
 "Du musst einen Papier Typ dem Etikett zuweisen, bevor du drucken kannst"
 
-#: application/controllers/Labels.php:215
-#: application/controllers/Labels.php:218
+#: application/controllers/Labels.php:219
+#: application/controllers/Labels.php:222
 msgid "You need to create a label and set it to be used for print."
 msgstr "Du musst ein Etikett erstellen und es für den Druck auswählen."
 
-#: application/controllers/Labels.php:225
-#: application/controllers/Labels.php:228
+#: application/controllers/Labels.php:229
+#: application/controllers/Labels.php:232
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
@@ -1120,31 +1120,31 @@ msgstr ""
 "Da ist was schief gelaufen! Das Etikett konnte nicht generiert werden. "
 "Überprüfe Etiketten- und Schrift-Größe."
 
-#: application/controllers/Labels.php:251
+#: application/controllers/Labels.php:255
 msgid "0 QSOs found for print!"
 msgstr "0 QSOs für den Druck gefunden!"
 
-#: application/controllers/Labels.php:395
+#: application/controllers/Labels.php:408
 msgid "Edit Label"
 msgstr "Bearbeite Etikett"
 
-#: application/controllers/Labels.php:424
+#: application/controllers/Labels.php:437
 msgid "Label was saved."
 msgstr "Etikett wurde gespeichert."
 
-#: application/controllers/Labels.php:432
+#: application/controllers/Labels.php:445
 msgid "Label was deleted."
 msgstr "Etikett wurde gelöscht."
 
-#: application/controllers/Labels.php:454
+#: application/controllers/Labels.php:467
 msgid "Edit Paper"
 msgstr "Bearbeite Papier"
 
-#: application/controllers/Labels.php:479
+#: application/controllers/Labels.php:492
 msgid "Paper was saved."
 msgstr "Papier wurde gespeichert."
 
-#: application/controllers/Labels.php:492
+#: application/controllers/Labels.php:505
 msgid "Paper was deleted."
 msgstr "Papier wurde gelöscht."
 
@@ -9317,7 +9317,7 @@ msgstr ""
 "den Etiketten-Stil."
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/startatform.php:27
+#: application/views/logbookadvanced/startatform.php:39
 msgid "Mark QSL as printed"
 msgstr "Markiere QSL als gedruckt"
 
@@ -9402,7 +9402,15 @@ msgid "Include Via (if filled)?"
 msgstr "Inklusive Via (falls gesetzt)?"
 
 #: application/views/labels/startatform.php:22
-#: application/views/logbookadvanced/startatform.php:21
+msgid "Include QSLMSG (if filled)?"
+msgstr ""
+
+#: application/views/labels/startatform.php:28
+msgid "Include TNX message?"
+msgstr ""
+
+#: application/views/labels/startatform.php:34
+#: application/views/logbookadvanced/startatform.php:33
 msgid "Start printing at?"
 msgstr "Druck starten bei?"
 
@@ -9996,6 +10004,14 @@ msgstr "Weiter"
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
 msgstr "Inklusive Via"
+
+#: application/views/logbookadvanced/startatform.php:21
+msgid "Include QSLMSG"
+msgstr ""
+
+#: application/views/logbookadvanced/startatform.php:27
+msgid "Include TNX message"
+msgstr ""
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"

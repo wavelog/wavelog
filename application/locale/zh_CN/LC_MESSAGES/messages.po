@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-10 08:56+0000\n"
+"POT-Creation-Date: 2025-02-11 12:33+0000\n"
 "PO-Revision-Date: 2025-02-04 17:23+0000\n"
 "Last-Translator: BG6HJE <1753409828@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -1000,59 +1000,59 @@ msgstr "QSL 卡片标签"
 msgid "Create Label Type"
 msgstr "创建标签类型"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:406
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:419
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr "标签名称"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:407
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:420
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:76
 msgid "Paper Type"
 msgstr "纸张类型"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:408
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:421
 #: application/views/labels/index.php:42 application/views/labels/index.php:77
 msgid "Measurement"
 msgstr "测量单位"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:409
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:422
 msgid "Top Margin"
 msgstr "顶边距"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:410
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:423
 msgid "Left Margin"
 msgstr "左边距"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:411
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:424
 msgid "QSLs Horizontally"
 msgstr "QSL 水平数量"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:412
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:425
 msgid "QSLs Vertically"
 msgstr "QSL 垂直数量"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:413
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:426
 msgid "Horizontal Space"
 msgstr "水平空白间隔"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:414
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:427
 msgid "Vertical Space"
 msgstr "垂直空白间隔"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:415
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:428
 msgid "Label width"
 msgstr "标签宽度"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:416
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:429
 msgid "Label height"
 msgstr "标签高度"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:417
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:430
 msgid "Size of Font"
 msgstr "字体大小"
 
-#: application/controllers/Labels.php:90 application/controllers/Labels.php:418
+#: application/controllers/Labels.php:90 application/controllers/Labels.php:431
 msgid "Number of QSOs on label"
 msgstr "标签上的 QSO 数量"
 
@@ -1061,69 +1061,69 @@ msgid "Create Paper Type"
 msgstr "创建纸张类型"
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:465
+#: application/controllers/Labels.php:478
 msgid "Paper Name"
 msgstr "纸张名称"
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:466
+#: application/controllers/Labels.php:479
 msgid "Paper Width"
 msgstr "纸张宽度"
 
 #: application/controllers/Labels.php:121
-#: application/controllers/Labels.php:467
+#: application/controllers/Labels.php:480
 msgid "Paper Height"
 msgstr "纸张高度"
 
 #: application/controllers/Labels.php:132
-#: application/controllers/Labels.php:475
+#: application/controllers/Labels.php:488
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
 msgstr "此纸张未被保存，请检查是否与已有名称重复。"
 
-#: application/controllers/Labels.php:205
-#: application/controllers/Labels.php:208
+#: application/controllers/Labels.php:209
+#: application/controllers/Labels.php:212
 msgid "You need to assign a paperType to the label before printing"
 msgstr "在打印前，需要给标签指定一种纸张类型"
 
-#: application/controllers/Labels.php:215
-#: application/controllers/Labels.php:218
+#: application/controllers/Labels.php:219
+#: application/controllers/Labels.php:222
 msgid "You need to create a label and set it to be used for print."
 msgstr "您需要创建并启用一个用于打印信息的标签。"
 
-#: application/controllers/Labels.php:225
-#: application/controllers/Labels.php:228
+#: application/controllers/Labels.php:229
+#: application/controllers/Labels.php:232
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
 msgstr "出现了错误，标签未生成，请检查标签和字体大小。"
 
-#: application/controllers/Labels.php:251
+#: application/controllers/Labels.php:255
 msgid "0 QSOs found for print!"
 msgstr "无 QSO 可供打印！"
 
-#: application/controllers/Labels.php:395
+#: application/controllers/Labels.php:408
 msgid "Edit Label"
 msgstr "编辑标签"
 
-#: application/controllers/Labels.php:424
+#: application/controllers/Labels.php:437
 msgid "Label was saved."
 msgstr "标签已保存。"
 
-#: application/controllers/Labels.php:432
+#: application/controllers/Labels.php:445
 msgid "Label was deleted."
 msgstr "标签已删除。"
 
-#: application/controllers/Labels.php:454
+#: application/controllers/Labels.php:467
 msgid "Edit Paper"
 msgstr "编辑纸张"
 
-#: application/controllers/Labels.php:479
+#: application/controllers/Labels.php:492
 msgid "Paper was saved."
 msgstr "纸张已保存。"
 
-#: application/controllers/Labels.php:492
+#: application/controllers/Labels.php:505
 msgid "Paper was deleted."
 msgstr "纸张已删除。"
 
@@ -8998,7 +8998,7 @@ msgid ""
 msgstr "用于展示用途的标签名称，建议选择一个有明确含义的名称。"
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/startatform.php:27
+#: application/views/logbookadvanced/startatform.php:39
 msgid "Mark QSL as printed"
 msgstr "标记 QSL 已打印"
 
@@ -9081,7 +9081,15 @@ msgid "Include Via (if filled)?"
 msgstr "包含 Via（如提供）？"
 
 #: application/views/labels/startatform.php:22
-#: application/views/logbookadvanced/startatform.php:21
+msgid "Include QSLMSG (if filled)?"
+msgstr ""
+
+#: application/views/labels/startatform.php:28
+msgid "Include TNX message?"
+msgstr ""
+
+#: application/views/labels/startatform.php:34
+#: application/views/logbookadvanced/startatform.php:33
 msgid "Start printing at?"
 msgstr "开始打印编号？"
 
@@ -9675,6 +9683,14 @@ msgstr "后一项"
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
 msgstr "包含通过"
+
+#: application/views/logbookadvanced/startatform.php:21
+msgid "Include QSLMSG"
+msgstr ""
+
+#: application/views/logbookadvanced/startatform.php:27
+msgid "Include TNX message"
+msgstr ""
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
