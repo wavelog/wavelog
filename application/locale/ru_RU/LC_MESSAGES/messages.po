@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-10 08:56+0000\n"
+"POT-Creation-Date: 2025-02-11 12:33+0000\n"
 "PO-Revision-Date: 2025-02-02 12:12+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1005,59 +1005,59 @@ msgstr "наклейки QSL карточек"
 msgid "Create Label Type"
 msgstr "Новый тип наклеек"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:406
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:419
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr "Название наклейки"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:407
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:420
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:76
 msgid "Paper Type"
 msgstr "Тип бумаги"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:408
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:421
 #: application/views/labels/index.php:42 application/views/labels/index.php:77
 msgid "Measurement"
 msgstr "Единицы измерения"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:409
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:422
 msgid "Top Margin"
 msgstr "Отступ сверху"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:410
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:423
 msgid "Left Margin"
 msgstr "Отступ слева"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:411
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:424
 msgid "QSLs Horizontally"
 msgstr "QSL в строку"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:412
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:425
 msgid "QSLs Vertically"
 msgstr "QSL в столбец"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:413
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:426
 msgid "Horizontal Space"
 msgstr "Интервал по горизонтали"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:414
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:427
 msgid "Vertical Space"
 msgstr "Интервал по вертикали"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:415
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:428
 msgid "Label width"
 msgstr "Ширина наклейки"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:416
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:429
 msgid "Label height"
 msgstr "Высота наклейки"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:417
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:430
 msgid "Size of Font"
 msgstr "Размер шрифта"
 
-#: application/controllers/Labels.php:90 application/controllers/Labels.php:418
+#: application/controllers/Labels.php:90 application/controllers/Labels.php:431
 msgid "Number of QSOs on label"
 msgstr "Количество QSO на наклейке"
 
@@ -1066,22 +1066,22 @@ msgid "Create Paper Type"
 msgstr "Новый тип бумаги"
 
 #: application/controllers/Labels.php:119
-#: application/controllers/Labels.php:465
+#: application/controllers/Labels.php:478
 msgid "Paper Name"
 msgstr "Название типа бумаги"
 
 #: application/controllers/Labels.php:120
-#: application/controllers/Labels.php:466
+#: application/controllers/Labels.php:479
 msgid "Paper Width"
 msgstr "Ширина бумаги"
 
 #: application/controllers/Labels.php:121
-#: application/controllers/Labels.php:467
+#: application/controllers/Labels.php:480
 msgid "Paper Height"
 msgstr "Высота бумаги"
 
 #: application/controllers/Labels.php:132
-#: application/controllers/Labels.php:475
+#: application/controllers/Labels.php:488
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
@@ -1089,19 +1089,19 @@ msgstr ""
 "Ваш тип бумаги не может быть сохранён. Помните, что вы не можете задать уже "
 "существующее в списке типов бумаги название."
 
-#: application/controllers/Labels.php:205
-#: application/controllers/Labels.php:208
+#: application/controllers/Labels.php:209
+#: application/controllers/Labels.php:212
 msgid "You need to assign a paperType to the label before printing"
 msgstr "Вам необходимо указать тип бумаги для наклеек перед печатью"
 
-#: application/controllers/Labels.php:215
-#: application/controllers/Labels.php:218
+#: application/controllers/Labels.php:219
+#: application/controllers/Labels.php:222
 msgid "You need to create a label and set it to be used for print."
 msgstr ""
 "Вам нужно создать шаблон наклейки и назначить его используемым при печати."
 
-#: application/controllers/Labels.php:225
-#: application/controllers/Labels.php:228
+#: application/controllers/Labels.php:229
+#: application/controllers/Labels.php:232
 msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
@@ -1109,31 +1109,31 @@ msgstr ""
 "Что-то пошло не так! Наклейки не могут быть сгенерированы. Проверьте размер "
 "наклеек и размер шрифта."
 
-#: application/controllers/Labels.php:251
+#: application/controllers/Labels.php:255
 msgid "0 QSOs found for print!"
 msgstr "QSO для печати не найдены!"
 
-#: application/controllers/Labels.php:395
+#: application/controllers/Labels.php:408
 msgid "Edit Label"
 msgstr "Редактировать тип наклеек"
 
-#: application/controllers/Labels.php:424
+#: application/controllers/Labels.php:437
 msgid "Label was saved."
 msgstr "Шаблон наклейки сохранён."
 
-#: application/controllers/Labels.php:432
+#: application/controllers/Labels.php:445
 msgid "Label was deleted."
 msgstr "Шаблон наклейки удалён."
 
-#: application/controllers/Labels.php:454
+#: application/controllers/Labels.php:467
 msgid "Edit Paper"
 msgstr "Редактировать тип бумаги"
 
-#: application/controllers/Labels.php:479
+#: application/controllers/Labels.php:492
 msgid "Paper was saved."
 msgstr "Тип бумаги сохранён."
 
-#: application/controllers/Labels.php:492
+#: application/controllers/Labels.php:505
 msgid "Paper was deleted."
 msgstr "Тип бумаги удалён."
 
@@ -9299,7 +9299,7 @@ msgstr ""
 "осмысленное, к примеру, стиль наклейки."
 
 #: application/views/labels/index.php:2
-#: application/views/logbookadvanced/startatform.php:27
+#: application/views/logbookadvanced/startatform.php:39
 msgid "Mark QSL as printed"
 msgstr "Отметить QSL, как напечатанную"
 
@@ -9383,7 +9383,15 @@ msgid "Include Via (if filled)?"
 msgstr "Включить via (если заполнено)?"
 
 #: application/views/labels/startatform.php:22
-#: application/views/logbookadvanced/startatform.php:21
+msgid "Include QSLMSG (if filled)?"
+msgstr ""
+
+#: application/views/labels/startatform.php:28
+msgid "Include TNX message?"
+msgstr ""
+
+#: application/views/labels/startatform.php:34
+#: application/views/logbookadvanced/startatform.php:33
 msgid "Start printing at?"
 msgstr "Начать печать в?"
 
@@ -9977,6 +9985,14 @@ msgstr "След."
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
 msgstr "Включить via"
+
+#: application/views/logbookadvanced/startatform.php:21
+msgid "Include QSLMSG"
+msgstr ""
+
+#: application/views/logbookadvanced/startatform.php:27
+msgid "Include TNX message"
+msgstr ""
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"

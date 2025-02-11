@@ -19,6 +19,18 @@
         </div>
     </div>
     <div class="mb-3 row">
+        <label for="qslmsg"><?= __("Include QSLMSG (if filled)?"); ?></label>
+        <div class="form-check-inline">
+            <input class="form-check-input" type="checkbox" name="qslmsg" id="qslmsg">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="tnxmsg"><?= __("Include TNX message?"); ?></label>
+        <div class="form-check-inline">
+            <input class="form-check-input" type="checkbox" name="tnxmsg" id="tnxmsg" checked>
+        </div>
+    </div>
+    <div class="mb-3 row">
         <label for="startat"><?= __("Start printing at?"); ?></label>
         <div class="d-flex align-items-center">
             <input class="form-control input-group-sm" type="number" id="startat" name="startat" value="1">
