@@ -129,7 +129,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.deRefs);
 	}
 	if (user_options.continent.show == "true"){
-		cells.eq(c++).text(qso.continent);
+		cells.eq(c++).html(qso.continent);
 	}
 	if (user_options.distance.show == "true"){
 		cells.eq(c++).text(qso.distance);
