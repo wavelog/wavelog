@@ -20,6 +20,13 @@
 
     .form-signin input[type="email"] {
         margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
     }
 </style>
 <main class="form-signin">
@@ -29,7 +36,7 @@
             <span class="badge text-bg-warning mb-4 pt-2 pb-2"><?= __("MAINTENANCE MODE"); ?></span>
         </div>
     <?php } ?>
-    <div class="my-2 rounded-10 shadow-sm card mb-2 shadow-sm">
+    <div class="my-2 rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
             <?php 
             /**
