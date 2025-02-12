@@ -390,6 +390,9 @@ function loadOqrsTable(rows) {
 			searching: false,
 			responsive: false,
 			ordering: true,
+			createdRow: function (row, data, dataIndex) {
+				$(row).attr('id',data.id);
+			},
 			"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
 			"scrollCollapse": true,
 			"paging":         false,
@@ -425,9 +428,9 @@ function loadOqrsTable(rows) {
             echo_status(qso.status),
 		];
 
+		data.id='oqrsID-' + qso.id;
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('oqrsID', qso.id);
-		table.row(createdRow).node().id = 'oqrsID_' + qso.id;
 	}
     table.columns.adjust().draw();
 }
