@@ -450,10 +450,15 @@ class Qrz extends CI_Controller {
 				$record['qsl_rcvd'] = $config['qrz_rcvd_mark'];
 			}
 
+			// Prop-Mode not given? Create array-key andfill with null
+			if (!(array_key_exists('prop_mode', $record))) {
+				$record['prop_mode']=null;
+			}
+
 			$record['call']=str_replace("_","/",$record['call']);
 			$record['station_callsign']=str_replace("_","/",$record['station_callsign'] ?? '');
 			if ($record['station_callsign'] ?? '' != '') {
-				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign'], $station_ids);
+				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['prop_mode'], $record['station_callsign'], $station_ids);
 
 				if($status[0] == "Found") {
 					$qrz_status = $this->logbook_model->qrz_update($status[1], $qsl_date, $record['qsl_rcvd']);

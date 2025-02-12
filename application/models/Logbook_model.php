@@ -3589,7 +3589,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	/* Used to check if the qso is already in the database */
-	function import_check($datetime, $callsign, $band, $mode, $station_callsign, $station_ids = null) {
+	function import_check($datetime, $callsign, $band, $mode, $prop_mode, $station_callsign, $station_ids = null) {
 		$binding = [];
 		$mode = $this->get_main_mode_from_mode($mode);
 
@@ -3608,6 +3608,10 @@ class Logbook_model extends CI_Model {
 		$binding[] = $band;
 		$binding[] = $mode;
 
+		if (($prop_mode ?? '') != '') {
+			$sql.=' AND COL_PROP_MODE=?';
+			$binding[] = $prop_mode;
+		}
 
 		if ((isset($station_ids)) && (($station_ids ?? '') != '')) {
 			$sql .= ' AND station_id IN (' . $station_ids . ')';

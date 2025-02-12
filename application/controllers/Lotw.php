@@ -527,7 +527,12 @@ class Lotw extends CI_Controller {
 				$record['qsl_rcvd'] = $config['lotw_rcvd_mark'];
 			}
 
-			$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign'], $station_ids);
+			// Prop-Mode not given? Create array-key andfill with null
+			if (!(array_key_exists('prop_mode', $record))) {
+				$record['prop_mode']=null;
+			}
+
+			$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['prop_mode'],$record['station_callsign'], $station_ids);
 
 			if($status[0] == "Found") {
 				$qso_id4lotw=$status[1];

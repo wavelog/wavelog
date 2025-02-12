@@ -163,6 +163,11 @@ class EqslImporter
 				$record['qsl_sent'] = $config['eqsl_rcvd_mark'];
 			}
 
+			// Prop-Mode not given? Create array-key andfill with null
+			if (!(array_key_exists('prop_mode', $record))) {
+				$record['prop_mode']=null;
+			}
+
 			// eQSL now provides EQSL_QSLRDATE so we can use it if it is present
 			if ((array_key_exists('eqsl_qslrdate', $record)) && ($record['eqsl_qslrdate'] != '')) {
 				$eqsl_qslrdate = $record['eqsl_qslrdate'];
@@ -170,7 +175,7 @@ class EqslImporter
 				$eqsl_qslrdate = date('Y-m-d');
 			}
 
-			$status = $this->CI->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $station_callsign, $station_id);
+			$status = $this->CI->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['prop_mode'], $station_callsign, $station_id);
 			$qsoid = 0;
 			if ($status[0] == "Found") {
 				$qsoid = $status[1];
