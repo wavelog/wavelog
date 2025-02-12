@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-11 12:33+0000\n"
+"POT-Creation-Date: 2025-02-12 14:27+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3174,7 +3174,7 @@ msgstr "Razlika"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:217
+#: application/views/adif/import.php:208
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3734,8 +3734,8 @@ msgid "Nothing found!"
 msgstr "Ništa nije pronađeno!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:75 application/views/adif/import.php:221
-#: application/views/adif/import.php:265
+#: application/views/adif/import.php:75 application/views/adif/import.php:212
+#: application/views/adif/import.php:256
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
 #: application/views/awards/sota/index.php:25
@@ -3943,7 +3943,7 @@ msgstr "Status DCL QSL"
 msgid "ADIF Export"
 msgstr "ADIF izvoz"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:291
+#: application/views/adif/import.php:36 application/views/adif/import.php:282
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -3951,7 +3951,7 @@ msgstr "DARC DCL"
 msgid "CBR Import"
 msgstr ""
 
-#: application/views/adif/import.php:64 application/views/adif/import.php:338
+#: application/views/adif/import.php:64 application/views/adif/import.php:329
 #: application/views/api/index.php:16 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
@@ -3969,8 +3969,8 @@ msgstr "Datoteke dnevnika moraju biti vrste *.adi"
 msgid "Maximum file upload size is "
 msgstr "Maksimalna veličina datoteke za učitavanje je "
 
-#: application/views/adif/import.php:65 application/views/adif/import.php:268
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:65 application/views/adif/import.php:259
+#: application/views/adif/import.php:298
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:571 application/views/hrdlog/export.php:25
@@ -3985,7 +3985,7 @@ msgid "Warning"
 msgstr "Upozorenje"
 
 #: application/views/adif/import.php:69 application/views/adif/import.php:71
-#: application/views/adif/import.php:215 application/views/adif/import.php:263
+#: application/views/adif/import.php:206 application/views/adif/import.php:254
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -3993,61 +3993,61 @@ msgid "Select Station Location"
 msgstr "Izaberite lokaciju stanice"
 
 #: application/views/adif/import.php:82
-msgid "Select the operator of the imported QSOs"
+msgid "Type in the operators callsign of the imported QSOs"
 msgstr ""
 
-#: application/views/adif/import.php:94
+#: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
 msgstr "Dodajte QSO u takmičenje"
 
-#: application/views/adif/import.php:96 application/views/adif/import.php:345
+#: application/views/adif/import.php:87 application/views/adif/import.php:336
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "Nema takmičenja"
 
-#: application/views/adif/import.php:102
+#: application/views/adif/import.php:93
 msgid "ADIF File"
 msgstr "ADIF datoteka"
 
-#: application/views/adif/import.php:109
+#: application/views/adif/import.php:100
 msgid "Import duplicate QSOs"
 msgstr "Uvezi duple QSO"
 
-#: application/views/adif/import.php:118
+#: application/views/adif/import.php:109
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Označi uvezene QSO kao učitane na LoTW"
 
-#: application/views/adif/import.php:120 application/views/adif/import.php:130
-#: application/views/adif/import.php:140 application/views/adif/import.php:150
-#: application/views/adif/import.php:160 application/views/adif/import.php:170
+#: application/views/adif/import.php:111 application/views/adif/import.php:121
+#: application/views/adif/import.php:131 application/views/adif/import.php:141
+#: application/views/adif/import.php:151 application/views/adif/import.php:161
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "Izaberi ako ADIF koji je učitan ne sadrži ove informacije."
 
-#: application/views/adif/import.php:128
+#: application/views/adif/import.php:119
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "Označi uvezene veze kao učitane na eQSL dnevnik"
 
-#: application/views/adif/import.php:138
+#: application/views/adif/import.php:129
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "Označi uvezene QSO kao učitane na HRDLog.net dnevnik"
 
-#: application/views/adif/import.php:148
+#: application/views/adif/import.php:139
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "Označi uvezene QSO kao učitane u QRZ dnevnik"
 
-#: application/views/adif/import.php:158
+#: application/views/adif/import.php:149
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "Označi uvezene QSO kao učitane u Clublog dnevnik"
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:159
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr ""
 
-#: application/views/adif/import.php:178
+#: application/views/adif/import.php:169
 msgid "Use DXCC information from ADIF"
 msgstr "Koristi DXCC informaciju iz ADIF"
 
-#: application/views/adif/import.php:180
+#: application/views/adif/import.php:171
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
@@ -4055,23 +4055,23 @@ msgstr ""
 "Ako nije selektovano, Wavelog će pokušati da odredi DXCC informacije "
 "automatski."
 
-#: application/views/adif/import.php:189
+#: application/views/adif/import.php:180
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr "Uvek koristite pozivni znak prijavljenog operatora tokom uvoza"
 
-#: application/views/adif/import.php:199
+#: application/views/adif/import.php:190
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:551
 #: application/views/interface_assets/footer.php:2286
 msgid "DANGER"
 msgstr "OPASNOST"
 
-#: application/views/adif/import.php:199
+#: application/views/adif/import.php:190
 msgid "Ignore Stationcallsign on import"
 msgstr "Zanemari pozivni znak stanice prilikom uvoza"
 
-#: application/views/adif/import.php:201
+#: application/views/adif/import.php:192
 #, php-format
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
@@ -4080,19 +4080,19 @@ msgstr ""
 "Ako je selektovano, Wavelog će pokušati da uveze %sall%s QSO iz ADIF, bez "
 "obzira da li se poklapaju sa izabranom stanicom - lokacijom."
 
-#: application/views/adif/import.php:205 application/views/adif/import.php:322
-#: application/views/adif/import.php:360
+#: application/views/adif/import.php:196 application/views/adif/import.php:313
+#: application/views/adif/import.php:351
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Učitavanje"
 
-#: application/views/adif/import.php:212
+#: application/views/adif/import.php:203
 msgid "Take your logbook file anywhere!"
 msgstr "Ponesite datoteku sa vašim dnevnikom gde god želite!"
 
-#: application/views/adif/import.php:213
+#: application/views/adif/import.php:204
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4100,7 +4100,7 @@ msgstr ""
 "Izvoz ADIFa vam omogućava da uvezete kontakte u treće aplikacije kao što su "
 "LoTW, Diplome ili da ga goristite samo kao rezervnu kopiju."
 
-#: application/views/adif/import.php:214
+#: application/views/adif/import.php:205
 #, php-format
 msgctxt ""
 msgid ""
@@ -4108,7 +4108,7 @@ msgid ""
 "and export!"
 msgstr ""
 
-#: application/views/adif/import.php:225 application/views/adif/import.php:270
+#: application/views/adif/import.php:216 application/views/adif/import.php:261
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
 #: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4117,7 +4117,7 @@ msgstr ""
 msgid "From date"
 msgstr "Od datuma"
 
-#: application/views/adif/import.php:228 application/views/adif/import.php:273
+#: application/views/adif/import.php:219 application/views/adif/import.php:264
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -4126,40 +4126,40 @@ msgstr "Od datuma"
 msgid "To date"
 msgstr "Do datuma"
 
-#: application/views/adif/import.php:236
+#: application/views/adif/import.php:227
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Označi izvezene QSO kao učitane na LoTW"
 
-#: application/views/adif/import.php:244
+#: application/views/adif/import.php:235
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Izvezi QSO koji nisu učitani na LoTW"
 
-#: application/views/adif/import.php:249
+#: application/views/adif/import.php:240
 msgid "Export QSO's"
 msgstr "Izvezi QSOe"
 
-#: application/views/adif/import.php:254
+#: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
 msgstr "Izvezi samo satelitske QSO"
 
-#: application/views/adif/import.php:255
+#: application/views/adif/import.php:246
 msgid "Export All Satellite QSOs"
 msgstr "Izvezi sve satelitske QSO"
 
-#: application/views/adif/import.php:257
+#: application/views/adif/import.php:248
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Izvezi sve satelitske QSO potvrđene na LoTW"
 
-#: application/views/adif/import.php:268 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:259 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "Ako nije izabran opseg datuma, onda će svi QSO biti označeni!"
 
-#: application/views/adif/import.php:276
+#: application/views/adif/import.php:267
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Označi QSOe kao izvezene u LoTW"
 
-#: application/views/adif/import.php:291
+#: application/views/adif/import.php:282
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4172,11 +4172,11 @@ msgstr ""
 "stavi 'DL'). Preuzeta ADIF datoteka može biti učitana ovde u nameri da "
 "ažurirate QSO sa informacijom o DOK."
 
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:289
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Uvezi samo DOK podatke iz QSO potvrđenih na DCL."
 
-#: application/views/adif/import.php:300
+#: application/views/adif/import.php:291
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -4184,11 +4184,11 @@ msgstr ""
 "Nemojte označiti ako takođe želite da ažurirate DOK sa podacima iz "
 "nepotvrđenih QSO u DCL."
 
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:298
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Prepišite DCL-om postojeće DOK u dnevniku (ako su različiti)."
 
-#: application/views/adif/import.php:309
+#: application/views/adif/import.php:300
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4196,11 +4196,11 @@ msgstr ""
 "Ako je označeno, Wavelog će silom prepisati postojeće DOK sa DOK iz DCL "
 "dnevnika."
 
-#: application/views/adif/import.php:316
+#: application/views/adif/import.php:307
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Zanemarite QSOe koji se ne mogu poklopiti."
 
-#: application/views/adif/import.php:318
+#: application/views/adif/import.php:309
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -4208,7 +4208,7 @@ msgstr ""
 "Ako ostavite neoznačeno, biće prikazane informacije o QSO koji ne mogu biti "
 "pronađeni u Wavelogu."
 
-#: application/views/adif/import.php:337
+#: application/views/adif/import.php:328
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4217,12 +4217,12 @@ msgid ""
 "that data in Wavelog."
 msgstr ""
 
-#: application/views/adif/import.php:337
+#: application/views/adif/import.php:328
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Informacije"
 
-#: application/views/adif/import.php:338
+#: application/views/adif/import.php:329
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4230,27 +4230,27 @@ msgid ""
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
 
-#: application/views/adif/import.php:343
+#: application/views/adif/import.php:334
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr ""
 
-#: application/views/adif/import.php:343
+#: application/views/adif/import.php:334
 msgid "Optional"
 msgstr ""
 
-#: application/views/adif/import.php:353
+#: application/views/adif/import.php:344
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
 
-#: application/views/adif/import.php:355
+#: application/views/adif/import.php:346
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
 
-#: application/views/adif/import.php:356
+#: application/views/adif/import.php:347
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -9663,7 +9663,7 @@ msgid "With selected: "
 msgstr "Sa izabranim: "
 
 #: application/views/logbookadvanced/index.php:509
-#: application/views/qso/edit_ajax.php:698
+#: application/views/qso/edit_ajax.php:697
 msgid "Update from Callbook"
 msgstr "Ažurirajte iz Callbooka"
 

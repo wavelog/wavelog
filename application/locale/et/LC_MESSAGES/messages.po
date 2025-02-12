@@ -2,12 +2,12 @@
 # Copyright (c) 2025 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
 # This file is distributed under the MIT licence.
 #
-# tviitkar <tambet@viitkar.ee>, 2024.
+# tviitkar <tambet@viitkar.ee>, 2024, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-11 12:33+0000\n"
-"PO-Revision-Date: 2024-11-24 17:28+0000\n"
+"POT-Creation-Date: 2025-02-12 14:27+0000\n"
+"PO-Revision-Date: 2025-02-11 12:33+0000\n"
 "Last-Translator: tviitkar <tambet@viitkar.ee>\n"
 "Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/et/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -268,15 +268,15 @@ msgstr "API võtme %s kirjeldus on muudetud."
 
 #: application/controllers/Api.php:68
 msgid "Invalid API rights"
-msgstr ""
+msgstr "Ebakorrektsed API õigused"
 
 #: application/controllers/Api.php:82
 msgid "API Key generated"
-msgstr ""
+msgstr "API võti genereeritud"
 
 #: application/controllers/Api.php:84
 msgid "API Key could not be generated"
-msgstr ""
+msgstr "API võtme genereerimine ebaõnnestus"
 
 #: application/controllers/Api.php:98
 #, php-format
@@ -552,7 +552,7 @@ msgstr ""
 
 #: application/controllers/Awards.php:1992
 msgid "WAE"
-msgstr ""
+msgstr "WAE"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:294
@@ -597,7 +597,7 @@ msgstr "Ekspordi Cabrillo"
 
 #: application/controllers/Cabrillo.php:150
 msgid "Cabrillo Import"
-msgstr ""
+msgstr "Cabrilli import"
 
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
@@ -612,12 +612,12 @@ msgstr ""
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
-msgstr ""
+msgstr "CBR andmed imporditud"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "Kutsungite statistika"
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:443
@@ -630,12 +630,12 @@ msgstr ""
 
 #: application/controllers/Club.php:24
 msgid "Club Member"
-msgstr ""
+msgstr "Klubi liige"
 
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "Ebakorrektne kasutaja ID!"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
@@ -645,43 +645,43 @@ msgstr ""
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
-msgstr ""
+msgstr "Klubi õigused"
 
 #: application/controllers/Club.php:118 application/controllers/Club.php:147
 #: application/controllers/Club.php:174 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "Ebakorrektne klubi ID!"
 
 #: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
-msgstr ""
+msgstr "Kasutaja teavitamine ebaõnnestus. Palun kontrollige e-posti sätteid."
 
 #: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "Klubi liikme õigused on uuendatud."
 
 #: application/controllers/Club.php:156
 msgid "User removed from club."
-msgstr ""
+msgstr "Kasutaja on klubist eemaldatud."
 
 #: application/controllers/Club.php:158
 msgid "User could not be removed from club."
-msgstr ""
+msgstr "Kasutaja eemaldamine klubist ebaõnnestus."
 
 #: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr ""
+msgstr "Ebakorrektne sõnumi tüüp."
 
 #: application/controllers/Club.php:220
 msgid "Email settings not configured."
-msgstr ""
+msgstr "E-posti sätted puuduvad."
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
 #: application/views/satellite/index.php:64
 msgid "Unknown"
-msgstr ""
+msgstr "Tundmatu"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Eqsl.php:13 application/controllers/Hrdlog.php:19
@@ -720,7 +720,7 @@ msgstr "Clublog"
 
 #: application/controllers/Clublog.php:145
 msgid "Clublog QSL Import"
-msgstr ""
+msgstr "Clublog QSL import"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:263
@@ -972,7 +972,7 @@ msgstr[1] ""
 
 #: application/controllers/Hrdlog.php:79
 msgid "No QSOs found to upload."
-msgstr ""
+msgstr "Üleslaadimiseks ei leitud ühtegi QSO-d."
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:433
@@ -991,7 +991,7 @@ msgstr ""
 #: application/controllers/Labels.php:78 application/controllers/Labels.php:419
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
-msgstr ""
+msgstr "Sedeli nimi"
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:420
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
@@ -1006,11 +1006,11 @@ msgstr "Mõõt"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:422
 msgid "Top Margin"
-msgstr ""
+msgstr "Ülemine veeris"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:423
 msgid "Left Margin"
-msgstr ""
+msgstr "Vasak ääris"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:424
 msgid "QSLs Horizontally"
@@ -1026,19 +1026,19 @@ msgstr ""
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:427
 msgid "Vertical Space"
-msgstr ""
+msgstr "Vertikaalne vahe"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:428
 msgid "Label width"
-msgstr ""
+msgstr "Sedeli laius"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:429
 msgid "Label height"
-msgstr ""
+msgstr "Sedeli kõrgus"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:430
 msgid "Size of Font"
-msgstr ""
+msgstr "Kirja suurus"
 
 #: application/controllers/Labels.php:90 application/controllers/Labels.php:431
 msgid "Number of QSOs on label"
@@ -1056,12 +1056,12 @@ msgstr ""
 #: application/controllers/Labels.php:120
 #: application/controllers/Labels.php:479
 msgid "Paper Width"
-msgstr ""
+msgstr "Paberi laius"
 
 #: application/controllers/Labels.php:121
 #: application/controllers/Labels.php:480
 msgid "Paper Height"
-msgstr ""
+msgstr "Paberi kõrgus"
 
 #: application/controllers/Labels.php:132
 #: application/controllers/Labels.php:488
@@ -1120,6 +1120,8 @@ msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
 msgstr ""
+"Ühtegi logiraamatut ei leitud. Logiraamat tuleb luua Jaama Logiraamatu "
+"menüüs. Saad seda teha siin:"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -1646,7 +1648,7 @@ msgstr "Kustutatud DXCC"
 
 #: application/controllers/Logbookadvanced.php:31
 msgid "Advanced logbook"
-msgstr ""
+msgstr "Täiustatud logiraamat"
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -1687,23 +1689,23 @@ msgstr "LoTW ADIF informatsioon"
 #: application/controllers/Lotw.php:795 application/controllers/Lotw.php:798
 #, php-format
 msgid "LoTW login failed for user %s: %s."
-msgstr ""
+msgstr "LoTW sisselogimine ebaõnnestus kasutajale: %s: %s."
 
 #: application/controllers/Lotw.php:798
 msgid "Username/password incorrect"
-msgstr ""
+msgstr "Kasutajanimi ja/või parool ebakorrektne"
 
 #: application/controllers/Lotw.php:801
 msgid "LoTW login OK!"
-msgstr ""
+msgstr "LoTW-i sisselogimine õnnestus!"
 
 #: application/controllers/Lotw.php:805
 msgid "LoTW currently not available. Try again later."
-msgstr ""
+msgstr "LoTW pole hetkel kättesaadav. Palun proovige hiljem uuesti."
 
 #: application/controllers/Lotw.php:810
 msgid "No LoTW credentials provided."
-msgstr ""
+msgstr "LoTW-i kasutajatunnused puuduvad."
 
 #: application/controllers/Lotw.php:828
 msgid "LoTW ADIF Import"
@@ -1858,7 +1860,7 @@ msgstr ""
 #: application/controllers/Options.php:414
 #: application/views/options/sidebar.php:11
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Maptiles-i server"
 
 #: application/controllers/Options.php:473
 #, php-format
@@ -1893,11 +1895,11 @@ msgstr ""
 
 #: application/controllers/Options.php:526
 msgid "Version Info will be shown to all users again"
-msgstr ""
+msgstr "Versiooni info kuvatakse kõikidele kasutajatele"
 
 #: application/controllers/Options.php:534
 msgid "Version Info will not be shown to any user"
-msgstr ""
+msgstr "Versiooni infot ei kuvata ühelegi kasutajale"
 
 #: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:92
 #: application/controllers/Oqrs.php:104
@@ -1911,7 +1913,7 @@ msgstr "Ebakorrektne jaama ID"
 #: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:460
 msgid "OQRS Requests"
-msgstr ""
+msgstr "OQRS päringud"
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -1921,33 +1923,33 @@ msgstr "QRB kalkulaator"
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "Laiuskraad: %s, Pikkuskraad: %s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s ja %s vahemaa on %s miil."
+msgstr[1] "%s ja %s vahemaa on %s miili."
 
 #: application/controllers/Qrbcalc.php:57
 #, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s ja %s vahemaa on %s meremiil."
+msgstr[1] "%s ja %s vahemaa on %s meremiili."
 
 #: application/controllers/Qrbcalc.php:60
 #, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s ja %s vahemaa on %s kilomeeter."
+msgstr[1] "%s ja %s vahemaa on %s kilomeetrit."
 
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "Suund %s."
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
@@ -1993,7 +1995,7 @@ msgstr "Lisa QSO"
 
 #: application/controllers/Qso.php:666
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "Selle URL-i külastamiseks peate olema sisselogitud."
 
 #: application/controllers/Qso.php:672
 msgid "Call Transfer"
@@ -2006,7 +2008,7 @@ msgstr "Puudub kutsung."
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:483
 msgid "Hardware Interfaces"
-msgstr ""
+msgstr "Riistvaraliidesed"
 
 #: application/controllers/Radio.php:41 application/views/bandmap/index.php:25
 #: application/views/bandmap/list.php:67
@@ -2035,7 +2037,7 @@ msgstr "Sätted"
 
 #: application/controllers/Radio.php:63
 msgid "UNKNOWN"
-msgstr ""
+msgstr "Tundmatud"
 
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:156
@@ -2099,28 +2101,28 @@ msgstr "Kustuta"
 
 #: application/controllers/Radio.php:122
 msgid "No CAT interfaced radios found."
-msgstr ""
+msgstr "Ei leitud ühtegi CAT-liidesega raadiot."
 
 #: application/controllers/Radio.php:137 application/views/radio/index.php:2
 msgid "Edit CAT Settings"
-msgstr ""
+msgstr "Muuda CAT sätteid"
 
 #: application/controllers/Reg1test.php:22
 msgid "Export EDI"
-msgstr ""
+msgstr "EDI eksport"
 
 #: application/controllers/Satellite.php:49
 msgid "Create Satellite"
-msgstr ""
+msgstr "Loo satelliit"
 
 #: application/controllers/Satellite.php:76
 msgid "Edit Satellite"
-msgstr ""
+msgstr "Muuda satelliiti"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
 msgid "You have no station locations. Go %s to create it!"
-msgstr ""
+msgstr "Puuduvad jaama asukohad. Asukoha lisamiseks mine %s!"
 
 #: application/controllers/Sattimers.php:41
 #: application/views/awards/counties/index.php:8
@@ -2129,7 +2131,7 @@ msgstr ""
 #: application/views/awards/was/index.php:23
 #: application/views/simplefle/index.php:16
 msgid "here"
-msgstr ""
+msgstr "siin"
 
 #: application/controllers/Sattimers.php:44
 #: application/views/sattimers/index.php:13
@@ -2262,19 +2264,19 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:166
 msgid "Edit container name"
-msgstr ""
+msgstr "Muuda konteineri nime"
 
 #: application/controllers/Stationsetup.php:181
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Muuda lingitud asukohti"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
-msgstr ""
+msgstr "Muuda külaliste lehekülge"
 
 #: application/controllers/Stationsetup.php:212
 msgid "Error. Link is already in use!"
-msgstr ""
+msgstr "Viga. Link on juba kasutusel!"
 
 #: application/controllers/Stationsetup.php:253
 #: application/views/options/appearance.php:57
@@ -2292,19 +2294,19 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:480 application/views/user/edit.php:489
 msgid "Disabled"
-msgstr ""
+msgstr "Välja lülitatud"
 
 #: application/controllers/Stationsetup.php:261
 #: application/views/stationsetup/stationsetup.php:44
 msgid "Set as Active Logbook"
-msgstr ""
+msgstr "Määra aktiivseks logiraamatuks"
 
 #: application/controllers/Stationsetup.php:263
 #: application/views/interface_assets/header.php:544
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
-msgstr ""
+msgstr "Aktiivne logiraamat"
 
 #: application/controllers/Stationsetup.php:270
 #: application/views/stationsetup/stationsetup.php:55
@@ -2406,21 +2408,21 @@ msgstr ""
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:292
 msgid "Themes"
-msgstr ""
+msgstr "Teemad"
 
 #: application/controllers/Themes.php:46
 msgid "Create Theme"
-msgstr ""
+msgstr "Loo uus teema"
 
 #: application/controllers/Themes.php:65
 msgid "Edit Theme"
-msgstr ""
+msgstr "Muuda teemat"
 
 #: application/controllers/Timeline.php:15
 #: application/views/interface_assets/header.php:158
 #: application/views/timeline/index.php:2
 msgid "Timeline"
-msgstr ""
+msgstr "Ajajoon"
 
 #: application/controllers/Timeplotter.php:17
 #: application/views/interface_assets/header.php:162
@@ -2430,7 +2432,7 @@ msgstr ""
 
 #: application/controllers/Update.php:26
 msgid "Updates"
-msgstr ""
+msgstr "Uuendused"
 
 #: application/controllers/Update.php:71
 msgid "Preparing DXCC-Entries: "
@@ -2446,11 +2448,11 @@ msgstr ""
 
 #: application/controllers/Update.php:275
 msgid "DONE"
-msgstr ""
+msgstr "VALMIS"
 
 #: application/controllers/Update.php:289
 msgid "Updating..."
-msgstr ""
+msgstr "Uuendamisel..."
 
 #: application/controllers/Update.php:292
 msgid "Dxcc Entities:"
@@ -2466,59 +2468,59 @@ msgstr ""
 
 #: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
-msgstr ""
+msgstr "SCP uuendamine lõpetatud. Tulemus: "
 
 #: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
-msgstr ""
+msgstr "SCP uuendamine ebaõnnestus. Tulemus: "
 
 #: application/controllers/Update.php:385
 msgid "LoTW Users Update complete. Result: "
-msgstr ""
+msgstr "LoTW kasutajate uuendamine lõpetatud. Tulemus: "
 
 #: application/controllers/Update.php:387
 msgid "LoTW Users Update failed. Result: "
-msgstr ""
+msgstr "LoTW kasutajate uuendamine ebaõnnestus. Tulemus: "
 
 #: application/controllers/Update.php:404
 msgid "DOK Update complete. Result: "
-msgstr ""
+msgstr "DOK uuendamine lõpetatud. Tulemus: "
 
 #: application/controllers/Update.php:406
 msgid "DOK Update failed. Result: "
-msgstr ""
+msgstr "DOK uuendamine ebaõnnestus. Tulemus: "
 
 #: application/controllers/Update.php:423
 msgid "SOTA Update complete. Result: "
-msgstr ""
+msgstr "SOTA uuendamine lõpetatud. Tulemus: "
 
 #: application/controllers/Update.php:425
 msgid "SOTA Update failed. Result: "
-msgstr ""
+msgstr "SOTA uuendamine ebaõnnestus. Tulemus: "
 
 #: application/controllers/Update.php:442
 msgid "WWFF Update complete. Result: "
-msgstr ""
+msgstr "WWFF uuendamine lõpetatud. Tulemus: "
 
 #: application/controllers/Update.php:444
 msgid "WWFF Update failed. Result: "
-msgstr ""
+msgstr "WWFF uuendamine ebaõnnestus. Tulemus: "
 
 #: application/controllers/Update.php:458
 msgid "POTA Update complete. Result: "
-msgstr ""
+msgstr "POTA uuendamine lõpetatud. Tulemus: "
 
 #: application/controllers/Update.php:460
 msgid "POTA Update failed. Result: "
-msgstr ""
+msgstr "POTA uuendamine ebaõnnestus. Tulemus: "
 
 #: application/controllers/Update.php:473
 msgid "TLE Update complete. Result: "
-msgstr ""
+msgstr "TLE uuendamine lõpetatud. Tulemus: "
 
 #: application/controllers/Update.php:475
 msgid "TLE Update failed. Result: "
-msgstr ""
+msgstr "TLE uuendamine ebaõnnestus. Tulemus: "
 
 #: application/controllers/Update.php:486
 msgid "LoTW SAT Update"
@@ -2527,7 +2529,7 @@ msgstr ""
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:282
 msgid "User Accounts"
-msgstr ""
+msgstr "Kasutajakontod"
 
 #: application/controllers/User.php:96
 msgid "Invalid User ID or missing modal!"
@@ -2535,15 +2537,15 @@ msgstr ""
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
-msgstr ""
+msgstr "Kasutajakonto vabastatud!"
 
 #: application/controllers/User.php:110
 msgid "Failed to unlock user!"
-msgstr ""
+msgstr "Kasutajakonto vabastamine ebaõnnestus!"
 
 #: application/controllers/User.php:114
 msgid "User not found!"
-msgstr ""
+msgstr "Kasutajat ei leitud!"
 
 #: application/controllers/User.php:127
 msgid "Invalid Parameter!"
@@ -2552,44 +2554,44 @@ msgstr ""
 #: application/controllers/User.php:189
 #: application/views/club/permissions.php:155
 msgid "Add User"
-msgstr ""
+msgstr "Lisa kasutaja"
 
 #: application/controllers/User.php:290
 #, php-format
 msgid "Username %s already in use!"
-msgstr ""
+msgstr "Kasutajanimi %s on juba kasutusel!"
 
 #: application/controllers/User.php:293
 #, php-format
 msgid "E-mail %s already in use!"
-msgstr ""
+msgstr "E-mail %s on juba kasutusel!"
 
 #: application/controllers/User.php:296
 msgid "Invalid Password!"
-msgstr ""
+msgstr "Ebakorrektne parool!"
 
 #: application/controllers/User.php:300
 #, php-format
 msgid "User %s added!"
-msgstr ""
+msgstr "Lisatud kasutaja %s!"
 
 #: application/controllers/User.php:304
 msgid "Users"
-msgstr ""
+msgstr "Kasutajad"
 
 #: application/controllers/User.php:388
 #: application/views/club/permissions.php:253
 msgid "Edit User"
-msgstr ""
+msgstr "Muuda kasutajat"
 
 #: application/controllers/User.php:819 application/controllers/User.php:822
 #, php-format
 msgid "User %s edited"
-msgstr ""
+msgstr "Kasutaja %s muudetud"
 
 #: application/controllers/User.php:878
 msgid "Profile"
-msgstr ""
+msgstr "Profiil"
 
 #: application/controllers/User.php:943
 msgid ""
@@ -2599,18 +2601,18 @@ msgstr ""
 
 #: application/controllers/User.php:982
 msgid "This is not allowed!"
-msgstr ""
+msgstr "Keelatud tegevus!"
 
 #: application/controllers/User.php:1017 application/controllers/User.php:1028
 msgid "Login failed. Try again."
-msgstr ""
+msgstr "Sisselogimine ebaõnnestus. Proovi uuesti."
 
 #: application/controllers/User.php:1035
 #: application/views/interface_assets/header.php:370
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
-msgstr ""
+msgstr "Logi sisse"
 
 #: application/controllers/User.php:1073
 msgid ""
@@ -2632,18 +2634,18 @@ msgstr ""
 
 #: application/controllers/User.php:1083
 msgid "Incorrect username or password!"
-msgstr ""
+msgstr "Ebakorrektne kasutajanimi või parool!"
 
 #: application/controllers/User.php:1106
 #, php-format
 msgid "User %s logged out."
-msgstr ""
+msgstr "Kasutaja %s välja logitud."
 
 #: application/controllers/User.php:1122
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
-msgstr ""
+msgstr "Jaama nimi"
 
 #: application/controllers/User.php:1123 application/views/debug/index.php:584
 #: application/views/public_search/result.php:17
@@ -2653,31 +2655,31 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:123
 #: application/views/user/modals/first_login_wizard.php:34
 msgid "Station Callsign"
-msgstr ""
+msgstr "Jaama kutsung"
 
 #: application/controllers/User.php:1124
 #: application/views/station_profile/create.php:68
 #: application/views/station_profile/edit.php:96
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
-msgstr ""
+msgstr "Jaama DXCC"
 
 #: application/controllers/User.php:1125
 msgid "Station CQ Zone"
-msgstr ""
+msgstr "Jaama CQ tsoon"
 
 #: application/controllers/User.php:1126
 msgid "Station ITU Zone"
-msgstr ""
+msgstr "Jaama ITU tsoon"
 
 #: application/controllers/User.php:1127
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
-msgstr ""
+msgstr "Jaama lokaator"
 
 #: application/controllers/User.php:1142
 msgid "Invalid Locator!"
-msgstr ""
+msgstr "Ebakorrektne lokaator!"
 
 #: application/controllers/User.php:1150
 #, php-format
@@ -2696,12 +2698,12 @@ msgstr ""
 
 #: application/controllers/User.php:1183
 msgid "Forgot Password"
-msgstr ""
+msgstr "Unustasin parooli"
 
 #: application/controllers/User.php:1234
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
-msgstr ""
+msgstr "E-maili sätted ebakorrektsed."
 
 #: application/controllers/User.php:1238 application/controllers/User.php:1243
 msgid "Password Reset Processed."
@@ -2712,7 +2714,7 @@ msgstr ""
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
-msgstr ""
+msgstr "Taasta parool"
 
 #: application/controllers/User.php:1404
 #, php-format
@@ -2730,7 +2732,7 @@ msgstr ""
 
 #: application/controllers/User.php:1425
 msgid "Invalid Hash"
-msgstr ""
+msgstr "Ebasobilik räsi"
 
 #: application/controllers/User.php:1438
 msgid "The impersonation hash is too old. Please try again."
@@ -2782,7 +2784,7 @@ msgstr ""
 #: application/controllers/Visitor.php:410
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Public Search"
-msgstr ""
+msgstr "Avalik otsing"
 
 #: application/controllers/Visitor.php:443
 msgid "Export Map"
@@ -2809,75 +2811,75 @@ msgstr ""
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Provints"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "Oblast"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Regioon"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Osakond"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Omavalitsus"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Liitriik"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "Maakond"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Piirkond"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "USA osariik"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefektuur"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "Osariik"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "USA maakond"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
@@ -3121,7 +3123,7 @@ msgstr ""
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:217
+#: application/views/adif/import.php:208
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3681,8 +3683,8 @@ msgid "Nothing found!"
 msgstr ""
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:75 application/views/adif/import.php:221
-#: application/views/adif/import.php:265
+#: application/views/adif/import.php:75 application/views/adif/import.php:212
+#: application/views/adif/import.php:256
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
 #: application/views/awards/sota/index.php:25
@@ -3890,7 +3892,7 @@ msgstr ""
 msgid "ADIF Export"
 msgstr "ADIF eksporter"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:291
+#: application/views/adif/import.php:36 application/views/adif/import.php:282
 msgid "DARC DCL"
 msgstr ""
 
@@ -3898,7 +3900,7 @@ msgstr ""
 msgid "CBR Import"
 msgstr ""
 
-#: application/views/adif/import.php:64 application/views/adif/import.php:338
+#: application/views/adif/import.php:64 application/views/adif/import.php:329
 #: application/views/api/index.php:16 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
@@ -3916,8 +3918,8 @@ msgstr ""
 msgid "Maximum file upload size is "
 msgstr ""
 
-#: application/views/adif/import.php:65 application/views/adif/import.php:268
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:65 application/views/adif/import.php:259
+#: application/views/adif/import.php:298
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:571 application/views/hrdlog/export.php:25
@@ -3932,7 +3934,7 @@ msgid "Warning"
 msgstr ""
 
 #: application/views/adif/import.php:69 application/views/adif/import.php:71
-#: application/views/adif/import.php:215 application/views/adif/import.php:263
+#: application/views/adif/import.php:206 application/views/adif/import.php:254
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -3940,108 +3942,108 @@ msgid "Select Station Location"
 msgstr ""
 
 #: application/views/adif/import.php:82
-msgid "Select the operator of the imported QSOs"
+msgid "Type in the operators callsign of the imported QSOs"
 msgstr ""
 
-#: application/views/adif/import.php:94
+#: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
 msgstr ""
 
-#: application/views/adif/import.php:96 application/views/adif/import.php:345
+#: application/views/adif/import.php:87 application/views/adif/import.php:336
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr ""
 
-#: application/views/adif/import.php:102
+#: application/views/adif/import.php:93
 msgid "ADIF File"
 msgstr ""
 
-#: application/views/adif/import.php:109
+#: application/views/adif/import.php:100
 msgid "Import duplicate QSOs"
 msgstr ""
 
-#: application/views/adif/import.php:118
+#: application/views/adif/import.php:109
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr ""
 
-#: application/views/adif/import.php:120 application/views/adif/import.php:130
-#: application/views/adif/import.php:140 application/views/adif/import.php:150
-#: application/views/adif/import.php:160 application/views/adif/import.php:170
+#: application/views/adif/import.php:111 application/views/adif/import.php:121
+#: application/views/adif/import.php:131 application/views/adif/import.php:141
+#: application/views/adif/import.php:151 application/views/adif/import.php:161
 msgid "Select if ADIF being imported does not contain this information."
 msgstr ""
 
-#: application/views/adif/import.php:128
+#: application/views/adif/import.php:119
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr ""
 
-#: application/views/adif/import.php:138
+#: application/views/adif/import.php:129
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr ""
 
-#: application/views/adif/import.php:148
+#: application/views/adif/import.php:139
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr ""
 
-#: application/views/adif/import.php:158
+#: application/views/adif/import.php:149
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr ""
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:159
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr ""
 
-#: application/views/adif/import.php:178
+#: application/views/adif/import.php:169
 msgid "Use DXCC information from ADIF"
 msgstr ""
 
-#: application/views/adif/import.php:180
+#: application/views/adif/import.php:171
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
 msgstr ""
 
-#: application/views/adif/import.php:189
+#: application/views/adif/import.php:180
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
 
-#: application/views/adif/import.php:199
+#: application/views/adif/import.php:190
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:551
 #: application/views/interface_assets/footer.php:2286
 msgid "DANGER"
 msgstr ""
 
-#: application/views/adif/import.php:199
+#: application/views/adif/import.php:190
 msgid "Ignore Stationcallsign on import"
 msgstr ""
 
-#: application/views/adif/import.php:201
+#: application/views/adif/import.php:192
 #, php-format
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
 
-#: application/views/adif/import.php:205 application/views/adif/import.php:322
-#: application/views/adif/import.php:360
+#: application/views/adif/import.php:196 application/views/adif/import.php:313
+#: application/views/adif/import.php:351
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr ""
 
-#: application/views/adif/import.php:212
+#: application/views/adif/import.php:203
 msgid "Take your logbook file anywhere!"
 msgstr ""
 
-#: application/views/adif/import.php:213
+#: application/views/adif/import.php:204
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr ""
 
-#: application/views/adif/import.php:214
+#: application/views/adif/import.php:205
 #, php-format
 msgctxt ""
 msgid ""
@@ -4049,7 +4051,7 @@ msgid ""
 "and export!"
 msgstr ""
 
-#: application/views/adif/import.php:225 application/views/adif/import.php:270
+#: application/views/adif/import.php:216 application/views/adif/import.php:261
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
 #: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4058,7 +4060,7 @@ msgstr ""
 msgid "From date"
 msgstr ""
 
-#: application/views/adif/import.php:228 application/views/adif/import.php:273
+#: application/views/adif/import.php:219 application/views/adif/import.php:264
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -4067,40 +4069,40 @@ msgstr ""
 msgid "To date"
 msgstr ""
 
-#: application/views/adif/import.php:236
+#: application/views/adif/import.php:227
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr ""
 
-#: application/views/adif/import.php:244
+#: application/views/adif/import.php:235
 msgid "Export QSOs not uploaded to LoTW"
 msgstr ""
 
-#: application/views/adif/import.php:249
+#: application/views/adif/import.php:240
 msgid "Export QSO's"
 msgstr ""
 
-#: application/views/adif/import.php:254
+#: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
 msgstr ""
 
-#: application/views/adif/import.php:255
+#: application/views/adif/import.php:246
 msgid "Export All Satellite QSOs"
 msgstr ""
 
-#: application/views/adif/import.php:257
+#: application/views/adif/import.php:248
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr ""
 
-#: application/views/adif/import.php:268 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:259 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr ""
 
-#: application/views/adif/import.php:276
+#: application/views/adif/import.php:267
 msgid "Mark QSOs as exported to LoTW"
 msgstr ""
 
-#: application/views/adif/import.php:291
+#: application/views/adif/import.php:282
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4109,37 +4111,37 @@ msgid ""
 "with DOK info."
 msgstr ""
 
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:289
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr ""
 
-#: application/views/adif/import.php:300
+#: application/views/adif/import.php:291
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr ""
 
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:298
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr ""
 
-#: application/views/adif/import.php:309
+#: application/views/adif/import.php:300
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr ""
 
-#: application/views/adif/import.php:316
+#: application/views/adif/import.php:307
 msgid "Ignore QSOs that cannot be matched."
 msgstr ""
 
-#: application/views/adif/import.php:318
+#: application/views/adif/import.php:309
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
 msgstr ""
 
-#: application/views/adif/import.php:337
+#: application/views/adif/import.php:328
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4148,12 +4150,12 @@ msgid ""
 "that data in Wavelog."
 msgstr ""
 
-#: application/views/adif/import.php:337
+#: application/views/adif/import.php:328
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr ""
 
-#: application/views/adif/import.php:338
+#: application/views/adif/import.php:329
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4161,27 +4163,27 @@ msgid ""
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
 
-#: application/views/adif/import.php:343
+#: application/views/adif/import.php:334
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr ""
 
-#: application/views/adif/import.php:343
+#: application/views/adif/import.php:334
 msgid "Optional"
 msgstr ""
 
-#: application/views/adif/import.php:353
+#: application/views/adif/import.php:344
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
 
-#: application/views/adif/import.php:355
+#: application/views/adif/import.php:346
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
 
-#: application/views/adif/import.php:356
+#: application/views/adif/import.php:347
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -9292,7 +9294,7 @@ msgid "With selected: "
 msgstr ""
 
 #: application/views/logbookadvanced/index.php:509
-#: application/views/qso/edit_ajax.php:698
+#: application/views/qso/edit_ajax.php:697
 msgid "Update from Callbook"
 msgstr ""
 
