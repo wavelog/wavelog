@@ -382,7 +382,7 @@ function searchLogTimeDate(id) {
 
 function loadOqrsTable(rows) {
 	var uninitialized = $('.oqrstable').filter(function() {
-		return !$.fn.DataTable.fnIsDataTable(this);
+		return !$.fn.DataTable.isDataTable(this);
 	});
 
 	uninitialized.each(function() {
