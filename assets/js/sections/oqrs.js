@@ -428,7 +428,7 @@ function loadOqrsTable(rows) {
             echo_status(qso.status),
 		];
 
-		data.id='oqrsID-' + qso.id;
+		data.id='oqrsID_' + qso.id;
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('oqrsID', qso.id);
 	}
@@ -521,7 +521,7 @@ $(document).ready(function () {
 			callback: function(result) {
 				if(result) {
 					elements.each(function() {
-						let id = $(this).first().closest('tr').data('oqrsID')
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 						$.ajax({
 							url: base_url + 'index.php/oqrs/delete_oqrs_line',
 							type: 'post',
@@ -560,7 +560,7 @@ $(document).ready(function () {
 			callback: function(result) {
 				if(result) {
 					elements.each(function() {
-						let id = $(this).first().closest('tr').data('oqrsID')
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 						$.ajax({
 							url: base_url + 'index.php/oqrs/mark_oqrs_line_as_done',
 							type: 'post',
@@ -581,11 +581,11 @@ $(document).ready(function () {
 	$('#checkBoxAll').change(function (event) {
 		if (this.checked) {
 			$('.oqrstable tbody tr').each(function (i) {
-				selectQsoID($(this).data('oqrsID'))
+				selectQsoID($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
 			});
 		} else {
 			$('.oqrstable tbody tr').each(function (i) {
-				unselectQsoID($(this).data('oqrsID'))
+				unselectQsoID($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
 			});
 		}
 	});
