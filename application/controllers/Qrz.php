@@ -450,7 +450,7 @@ class Qrz extends CI_Controller {
 				$record['qsl_rcvd'] = $config['qrz_rcvd_mark'];
 			}
 
-			// Prop-Mode not given? Create array-key andfill with null
+			// Prop-Mode not given? Create array-key and fill with null
 			if (!(array_key_exists('prop_mode', $record))) {
 				$record['prop_mode']=null;
 			}
