@@ -3611,6 +3611,8 @@ class Logbook_model extends CI_Model {
 		if (($prop_mode ?? '') != '') {
 			$sql.=' AND COL_PROP_MODE=?';
 			$binding[] = $prop_mode;
+		} else {
+			$sql.=' AND (COL_PROP_MODE is null OR COL_PROP_MODE=\'\')';
 		}
 
 		if ((isset($station_ids)) && (($station_ids ?? '') != '')) {
