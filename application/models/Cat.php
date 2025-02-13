@@ -81,6 +81,19 @@
 			}
 		}
 
+		/**
+		 * Get CAT radios statuses for given user ID 
+		 *
+		 * @param int|string $user_id
+		 * @return object
+		 */
+		function status_for_user_id($user_id) {
+			$this->db->where('user_id', $user_id);
+			$query = $this->db->get('cat');
+
+			return $query;
+		}
+
 		function status() {
 			//$this->db->where('radio', $result['radio']);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
