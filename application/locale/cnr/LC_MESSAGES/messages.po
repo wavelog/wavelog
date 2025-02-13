@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-13 09:52+0000\n"
+"POT-Creation-Date: 2025-02-13 11:07+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Montenegrin <https://translate.wavelog.org/projects/wavelog/"
@@ -68,8 +68,8 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
 #: application/controllers/Lotw.php:377 application/controllers/Lotw.php:400
-#: application/controllers/Lotw.php:738 application/controllers/Lotw.php:822
-#: application/controllers/Lotw.php:927 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:748 application/controllers/Lotw.php:832
+#: application/controllers/Lotw.php:937 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:136
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
@@ -1683,52 +1683,52 @@ msgid ""
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
 
-#: application/controllers/Lotw.php:629
+#: application/controllers/Lotw.php:639
 msgid "LoTW ADIF Information"
 msgstr ""
 
-#: application/controllers/Lotw.php:795 application/controllers/Lotw.php:798
+#: application/controllers/Lotw.php:805 application/controllers/Lotw.php:808
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr ""
 
-#: application/controllers/Lotw.php:798
+#: application/controllers/Lotw.php:808
 msgid "Username/password incorrect"
 msgstr ""
 
-#: application/controllers/Lotw.php:801
+#: application/controllers/Lotw.php:811
 msgid "LoTW login OK!"
 msgstr ""
 
-#: application/controllers/Lotw.php:805
+#: application/controllers/Lotw.php:815
 msgid "LoTW currently not available. Try again later."
 msgstr ""
 
-#: application/controllers/Lotw.php:810
+#: application/controllers/Lotw.php:820
 msgid "No LoTW credentials provided."
 msgstr ""
 
-#: application/controllers/Lotw.php:828
+#: application/controllers/Lotw.php:838
 msgid "LoTW ADIF Import"
 msgstr ""
 
-#: application/controllers/Lotw.php:854 application/controllers/Lotw.php:962
+#: application/controllers/Lotw.php:864 application/controllers/Lotw.php:972
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr ""
 
-#: application/controllers/Lotw.php:929
+#: application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Upload"
 msgstr ""
 
-#: application/controllers/Lotw.php:1007
+#: application/controllers/Lotw.php:1017
 msgid "Your ARRL username and/or password is incorrect."
 msgstr ""
 
-#: application/controllers/Lotw.php:1026 application/controllers/Lotw.php:1031
+#: application/controllers/Lotw.php:1036 application/controllers/Lotw.php:1041
 msgid "LoTW .TQ8 Sent"
 msgstr ""
 
-#: application/controllers/Lotw.php:1038
+#: application/controllers/Lotw.php:1048
 msgid "LoTW .TQ8 Not Sent"
 msgstr ""
 
@@ -2934,82 +2934,82 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:3854
+#: application/models/Logbook_model.php:3867
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:3855
+#: application/models/Logbook_model.php:3868
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 
-#: application/models/Logbook_model.php:3867
+#: application/models/Logbook_model.php:3880
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:3867
+#: application/models/Logbook_model.php:3880
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4166
+#: application/models/Logbook_model.php:4179
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4177
+#: application/models/Logbook_model.php:4190
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4238
+#: application/models/Logbook_model.php:4251
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4258
+#: application/models/Logbook_model.php:4271
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4279
+#: application/models/Logbook_model.php:4292
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4560
+#: application/models/Logbook_model.php:4573
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:4621
+#: application/models/Logbook_model.php:4634
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4627
+#: application/models/Logbook_model.php:4640
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4632
+#: application/models/Logbook_model.php:4645
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4635
+#: application/models/Logbook_model.php:4648
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4638
+#: application/models/Logbook_model.php:4651
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4641
+#: application/models/Logbook_model.php:4654
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4644
+#: application/models/Logbook_model.php:4657
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr ""
 
-#: application/models/Logbook_model.php:5456
+#: application/models/Logbook_model.php:5469
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
