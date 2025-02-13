@@ -598,16 +598,3 @@
 	</nav>
 	<div id="clubswitchModal-container"></div>
 	<div id="stopImpersonateModal-container"></div>
-	<script>
-		let headerMenu = document.getElementById('header-menu');
-		let dropdowns = document.querySelectorAll('.dropdown-toggle');
-
-		dropdowns.forEach((dd) => {
-			dd.addEventListener('click', function(e) {
-				if (headerMenu.clientWidth < 992) {
-					var el = this.nextElementSibling;
-					el.style.display = el.style.display === 'block' ? 'none' : 'block';
-				}
-			});
-		});
-	</script>
