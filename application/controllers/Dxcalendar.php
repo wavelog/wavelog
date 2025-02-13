@@ -15,6 +15,11 @@ class Dxcalendar extends CI_Controller {
 			$rssRawData = file_get_contents($rssUrl, true);
 			$this->cache->save('RssRawDxCal', $rssRawData, (60*60*12));
 		}
+
+		// Ensure proper encoding (assuming UTF-8)
+		$rssRawData = mb_convert_encoding($rssRawData, 'UTF-8', 'UTF-8');
+
+		// Now parse with SimpleXML
 		$rssdata = simplexml_load_string($rssRawData, null, LIBXML_NOCDATA);
 
 		// Get Date format
