@@ -505,7 +505,7 @@ class Eqslmethods_model extends CI_Model {
 	// We could also probably use this:
 	// https://eqsl.cc/qslcard/VerifyQSO.txt
 	// https://www.eqsl.cc/qslcard/ImportADIF.txt
-	function eqsl_update($datetime, $callsign, $band, $mode, $qsl_status, $station_callsign, $station_id, $eqsl_qslrdate = null, $qslmsg = null) {
+	function eqsl_update($qsoid, $qsl_status, $eqsl_qslrdate = null, $qslmsg = null) {
 		$data = array(
 			'COL_EQSL_QSLRDATE' => $eqsl_qslrdate ?? date('Y-m-d'), // eQSL gives a date now. Use current date as fallback only
 			'COL_EQSL_QSL_RCVD' => $qsl_status,
@@ -513,13 +513,7 @@ class Eqslmethods_model extends CI_Model {
 			'COL_QSLMSG_RCVD' => $qslmsg ?? ''
 		);
 
-		$this->db->where('COL_TIME_ON >= DATE_ADD(DATE_FORMAT("' . $datetime . '", \'%Y-%m-%d %H:%i\' ), INTERVAL -15 MINUTE )');
-		$this->db->where('COL_TIME_ON <= DATE_ADD(DATE_FORMAT("' . $datetime . '", \'%Y-%m-%d %H:%i\' ), INTERVAL 15 MINUTE )');
-		$this->db->where('COL_CALL', $callsign);
-		$this->db->where('COL_STATION_CALLSIGN', $station_callsign);
-		$this->db->where('COL_BAND', $band);
-		$this->db->where('COL_MODE', $mode);
-		$this->db->where('station_id', $station_id);
+		$this->db->where('COL_PRIMARY_KEY', $qsoid);
 
 		$this->db->update($this->config->item('table_name'), $data);
 
@@ -527,16 +521,10 @@ class Eqslmethods_model extends CI_Model {
 	}
 
 	// Determine if we've already received an eQSL for this QSO
-	function eqsl_dupe_check($datetime, $callsign, $band, $mode, $qsl_status, $station_callsign, $station_id) {
+	function eqsl_dupe_check($qsoid, $qsl_status) {
 		$this->db->select('COL_EQSL_QSLRDATE');
-		$this->db->where('COL_TIME_ON >= DATE_ADD(DATE_FORMAT("' . $datetime . '", \'%Y-%m-%d %H:%i\' ), INTERVAL -15 MINUTE )');
-		$this->db->where('COL_TIME_ON <= DATE_ADD(DATE_FORMAT("' . $datetime . '", \'%Y-%m-%d %H:%i\' ), INTERVAL 15 MINUTE )');
-		$this->db->where('COL_CALL', $callsign);
-		$this->db->where('COL_BAND', $band);
-		$this->db->where('COL_MODE', $mode);
-		$this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+		$this->db->where('COL_PRIMARY_KEY', $qsoid);
 		$this->db->where('COL_EQSL_QSL_RCVD', $qsl_status);
-		$this->db->where('station_id', $station_id);
 		$this->db->limit(1);
 
 		$query = $this->db->get($this->config->item('table_name'));

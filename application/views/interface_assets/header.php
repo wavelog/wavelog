@@ -38,8 +38,8 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/query-builder.default.min.css" />
 	<?php } ?>
 
-	<?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit")) { ?>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/plugins/quill/quill.snow.css" />
+	<?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit" || $this->uri->segment(2) == "view")) { ?>
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/plugins/easymde/easymde.css" />
 	<?php } ?>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/loading.min.css" />
