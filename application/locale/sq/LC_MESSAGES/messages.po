@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-13 12:17+0000\n"
+"POT-Creation-Date: 2025-02-13 15:58+0000\n"
 "PO-Revision-Date: 2024-08-17 10:49+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Albanian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -74,10 +74,10 @@ msgstr ""
 #: application/controllers/Qrz.php:285 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:24
-#: application/controllers/Qslprint.php:145 application/controllers/Qso.php:9
-#: application/controllers/Qso.php:22 application/controllers/Qso.php:181
-#: application/controllers/Qso.php:280 application/controllers/Qso.php:300
-#: application/controllers/Qso.php:309 application/controllers/Qso.php:605
+#: application/controllers/Qslprint.php:145 application/controllers/Qso.php:8
+#: application/controllers/Qso.php:21 application/controllers/Qso.php:180
+#: application/controllers/Qso.php:279 application/controllers/Qso.php:300
+#: application/controllers/Qso.php:313 application/controllers/Qso.php:609
 #: application/controllers/Radio.php:32 application/controllers/Radio.php:291
 #: application/controllers/Radio.php:317 application/controllers/Radio.php:333
 #: application/controllers/Reg1test.php:17
@@ -1987,19 +1987,19 @@ msgstr ""
 msgid "Print Requested QSLs"
 msgstr ""
 
-#: application/controllers/Qso.php:106
+#: application/controllers/Qso.php:105
 msgid "Add QSO"
 msgstr ""
 
-#: application/controllers/Qso.php:666
+#: application/controllers/Qso.php:670
 msgid "You have to be logged in to access this URL."
 msgstr ""
 
-#: application/controllers/Qso.php:672
+#: application/controllers/Qso.php:676
 msgid "Call Transfer"
 msgstr ""
 
-#: application/controllers/Qso.php:679
+#: application/controllers/Qso.php:683
 msgid "No callsign provided."
 msgstr ""
 
@@ -2928,82 +2928,82 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:3867
+#: application/models/Logbook_model.php:3874
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:3868
+#: application/models/Logbook_model.php:3875
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 
-#: application/models/Logbook_model.php:3880
+#: application/models/Logbook_model.php:3887
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:3880
+#: application/models/Logbook_model.php:3887
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4179
+#: application/models/Logbook_model.php:4186
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4190
+#: application/models/Logbook_model.php:4197
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4251
+#: application/models/Logbook_model.php:4258
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4271
+#: application/models/Logbook_model.php:4278
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4292
+#: application/models/Logbook_model.php:4299
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4573
+#: application/models/Logbook_model.php:4580
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:4634
+#: application/models/Logbook_model.php:4641
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4640
+#: application/models/Logbook_model.php:4647
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4645
+#: application/models/Logbook_model.php:4652
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4648
+#: application/models/Logbook_model.php:4655
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4651
+#: application/models/Logbook_model.php:4658
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4654
+#: application/models/Logbook_model.php:4661
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4657
+#: application/models/Logbook_model.php:4664
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr ""
 
-#: application/models/Logbook_model.php:5469
+#: application/models/Logbook_model.php:5476
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
