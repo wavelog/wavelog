@@ -185,7 +185,7 @@ class API extends CI_Controller {
 
 		/**
 		 * As the API key user could use it also for clubstations we need to do an additional check here. Only if clubstations are enabled
-		 * 
+		 *
 		 * In Detail:
 		 * If the user is not the creator of the API key, it's likely a clubstation. In this case the callsign of the clubstation
 		 * can not be the same as the callsign of the user (operator call provided by the user). If this is the case, we need to use the callsign of the creator of the API key
@@ -242,7 +242,7 @@ class API extends CI_Controller {
 					if (key_exists('operator',$record) && $real_operator != null && ($record['operator'] == $record['station_callsign']) || ($recorded_operator == '')) {
 						$record['operator'] = $real_operator;
 					}
-					
+
 					if ((key_exists('gridsquare',$record)) && (($mygrid ?? '') != '') && (($record['gridsquare'] ?? '') != '') && (!(key_exists('distance',$record)))) {
 						$record['distance'] = $this->qra->distance($mygrid, $record['gridsquare'], 'K');
 					}
@@ -356,12 +356,12 @@ class API extends CI_Controller {
 
 		//get qso data
 		$data['qsos'] = $this->adif_data->export_past_id($station_id, $fetchfromid, $limit);
-		
+
 		//set internalonly attribute for adif creation
 		$data['internalrender'] = true;
-		
+
 		//if no new QSOs are ready, return that
-		$qso_count = count($data['qsos']->result()); 
+		$qso_count = count($data['qsos']->result());
 		if($qso_count <= 0) {
 			http_response_code(200);
 			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
@@ -375,7 +375,7 @@ class API extends CI_Controller {
 		$lastfetchedid = 0;
 		foreach ($data['qsos']->result() as $row) {
 			$lastfetchedid = max($lastfetchedid, $row->COL_PRIMARY_KEY);
-		}		
+		}
 
 		//return API result
 		http_response_code(200);
@@ -661,7 +661,7 @@ class API extends CI_Controller {
 
 		$this->load->model('stations');
 		$all_station_ids=$this->stations->all_station_ids_of_user($user_id);
-		
+
 		if ((array_key_exists('station_ids',$raw_input)) && (is_array($raw_input['station_ids']))) {		// Special station_ids needed and it is an array?
 			$a_station_ids=[];
 			foreach ($raw_input['station_ids'] as $stationid) {	// Check for grants to given station_id
@@ -972,12 +972,12 @@ class API extends CI_Controller {
 		$latlng = $this->qra->qra2latlong($qra);
 		return $latlng;
 	}
-	
+
 	function version() {
 		// This API endpoint provides the version of Wavelog if the provide key has at least read permissions
 		$data = json_decode(file_get_contents('php://input'), true);
 		$valid = false;
-	
+
 		if (!empty($data['key'])) {
 			$this->load->model('api_model');
 			if (substr($this->api_model->access($data['key']), 0, 1) == 'r') {
@@ -993,4 +993,83 @@ class API extends CI_Controller {
 			echo json_encode(['status' => 'failed', 'reason' => "missing or invalid api key"]);
 		}
 	}
+
+	/*
+		API call used in this WordPress plugin: https://github.com/HochdruckHummer/wavelog-wp-qso-display
+	*/
+	function get_wp_stats() {
+		// Set header
+		header('Content-type: application/json');
+
+		// Load API model
+		$this->load->model('api_model');
+
+		// Decode JSON and store
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj === NULL) {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+			return;
+		}
+
+		// Authorization
+		if (!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
+			http_response_code(401);
+			echo json_encode(['status' => 'failed', 'reason' => "missing or wrong api key"]);
+			return;
+		}
+
+		// Validate station_id
+		if (!isset($obj['station_id']) || !is_numeric($obj['station_id'])) {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "Invalid station_id."]);
+			return;
+		}
+
+		$station_id = (int)$obj['station_id'];
+		$key = $obj['key'];
+
+		// Load stations model
+		$this->load->model('stations');
+
+		// Get user stations
+		$userid = $this->api_model->key_userid($key);
+		$stations = $this->stations->all_of_user($userid);
+		$station_ids = array_map(function($row) {
+			return $row->station_id;
+		}, $stations->result());
+
+		// Check station access
+		if (!in_array($station_id, $station_ids)) {
+			http_response_code(401);
+			echo json_encode(['status' => 'failed', 'reason' => "Station ID not accessible for this API key"]);
+			return;
+		}
+
+		// Load cache driver
+		$this->load->driver('cache', ['adapter' => 'file']);
+
+		// Create cache key
+		$cache_key = "wp_stats_{$station_id}";
+
+		// Check if cached data exists
+		if ($cached_data = $this->cache->get($cache_key)) {
+			http_response_code(200);
+			echo json_encode(['status' => 'successful', 'message' => 'Data from cache', 'statistics' => $cached_data]);
+			return;
+		}
+
+		// Get QSO data (from database)
+		$data['totalalltime'] = $this->api_model->get_qsos_total($station_id)->result();
+		$data['totalthisyear'] = $this->api_model->get_qsos_this_year($station_id)->result();
+		$data['totalgroupedmodes'] = $this->api_model->get_qsos_grouped_by_mode($station_id)->result();
+
+		// Store in cache for 5 minutes
+		$this->cache->save($cache_key, $data, 600); // 10 minutes
+
+		// Return result
+		http_response_code(200);
+		echo json_encode(['status' => 'successful', 'message' => 'Export successful', 'statistics' => $data]);
+	}
+
 }
