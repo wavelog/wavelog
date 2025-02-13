@@ -294,13 +294,18 @@ class QSO extends CI_Controller {
     }
 
     function qso_save_ajax() {
-        $this->load->model('logbook_model');
-        $this->load->model('user_model');
-        if(!$this->user_model->authorize(2)) {
-            $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
-        }
+	    $this->load->library('form_validation');
+	    $this->load->model('logbook_model');
+	    $this->load->model('user_model');
+	    if(!$this->user_model->authorize(2)) {
+		    $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
+	    }
+	    $this->form_validation->set_rules('time_on', 'Start Date', 'required');
+	    $this->form_validation->set_rules('time_off', 'End Date', 'required');
 
-        $this->logbook_model->edit();
+	    if ($this->form_validation->run()) {
+		    $this->logbook_model->edit();
+	    }
     }
 
 	function qsl_rcvd($id, $method) {
