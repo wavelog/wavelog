@@ -188,7 +188,7 @@
 			</td>
 			<td>
 				<?php if($row->station_active != 1) {
-					$cnfmsg = sprintf(__("Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."), $row->station_profile_name); ?>?>
+					$cnfmsg = sprintf(__("Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."), $row->station_profile_name); ?>
 					<a href="<?php echo site_url('station/delete')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Delete"); ?> onclick="return confirm('<?= $cnfmsg ?>');"><i class="fas fa-trash-alt"></i></a>
 				<?php } ?>
 			</td>
