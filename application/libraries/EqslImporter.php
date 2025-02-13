@@ -163,6 +163,10 @@ class EqslImporter
 				$record['qsl_sent'] = $config['eqsl_rcvd_mark'];
 			}
 
+			// SAT-Name not given? Create array-key and fill with null
+			if (!(array_key_exists('sat_name', $record))) {
+				$record['sat_name']=null;
+			}
 			// Prop-Mode not given? Create array-key and fill with null
 			if (!(array_key_exists('prop_mode', $record))) {
 				$record['prop_mode']=null;
@@ -175,7 +179,7 @@ class EqslImporter
 				$eqsl_qslrdate = date('Y-m-d');
 			}
 
-			$status = $this->CI->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['prop_mode'], $station_callsign, $station_id);
+			$status = $this->CI->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['prop_mode'], $record['sat_name'], $station_callsign, $station_id);
 			$qsoid = 0;
 			if ($status[0] == "Found") {
 				$qsoid = $status[1];
