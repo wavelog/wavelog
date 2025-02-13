@@ -183,10 +183,10 @@ class EqslImporter
 			$qsoid = 0;
 			if ($status[0] == "Found") {
 				$qsoid = $status[1];
-				$dupe = $this->CI->eqslmethods_model->eqsl_dupe_check($time_on, $record['call'], $record['band'], $record['mode'], $config['eqsl_rcvd_mark'], $station_callsign, $station_id);
+				$dupe = $this->CI->eqslmethods_model->eqsl_dupe_check($qsoid,$config['eqsl_rcvd_mark']);
 				if ($dupe == false) {
 					$updated += 1;
-					$eqsl_status = $this->CI->eqslmethods_model->eqsl_update($time_on, $record['call'], $record['band'], $record['mode'], $config['eqsl_rcvd_mark'], $station_callsign, $station_id, $eqsl_qslrdate, ($record['qslmsg'] ?? null));
+					$eqsl_status = $this->CI->eqslmethods_model->eqsl_update($qsoid, $config['eqsl_rcvd_mark'], $eqsl_qslrdate, ($record['qslmsg'] ?? null));
 				} else {
 					$dupes += 1;
 					$eqsl_status = "Already received an eQSL for this QSO.";
