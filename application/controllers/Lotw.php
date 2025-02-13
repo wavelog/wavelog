@@ -597,7 +597,7 @@ class Lotw extends CI_Controller {
 				$table .= "<tr>";
 				$table .= "<td>".$record['station_callsign']."</td>";
 				$table .= "<td>".$time_on."</td>";
-				$table .= "<td>".$record['call']."</td>";
+				$table .= "<td><a id=\"view_lotw_qso\" href=\"javascript:displayQso(".$status[1].")\">".$record['call']."</a></td>";
 				$table .= "<td>".$record['mode']."</td>";
 				$table .= "<td>".$record['qsl_rcvd']."</td>";
 				$table .= "<td>".$qsl_date."</td>";
