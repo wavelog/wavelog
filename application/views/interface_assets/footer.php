@@ -279,8 +279,14 @@ function stopImpersonate_modal() {
 
 <?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") ) { ?>
     <!-- Javascript used for Notes Area -->
-    <script src="<?php echo base_url() ;?>assets/plugins/quill/quill.min.js"></script>
+    <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
     <script src="<?php echo base_url() ;?>assets/js/sections/notes.js"></script>
+<?php } ?>
+
+<?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "view") ) { ?>
+    <!-- Javascript used for Notes Area -->
+    <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
+    <script src="<?php echo base_url() ;?>assets/js/sections/notes_view.js"></script>
 <?php } ?>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script>
