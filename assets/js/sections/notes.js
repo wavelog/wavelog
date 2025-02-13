@@ -1,4 +1,4 @@
-const notes = new EasyMDE({element: document.getElementById('notes'), forceSync: true, spellChecker: false, placeholder: 'Gebe die Notiz ein...', maxHeight: '350px', 
+const notes = new EasyMDE({element: document.getElementById('notes'), forceSync: true, spellChecker: false, placeholder: 'Create note...', maxHeight: '350px', 
     toolbar: [
         {
             name: "bold",
