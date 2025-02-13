@@ -4,58 +4,58 @@ const notes = new EasyMDE({element: document.getElementById('notes'), forceSync:
             name: "bold",
             action: EasyMDE.toggleBold,
             className: "fa fa-bold",
-            title: "Fett",
+            title: "bold",
         },
         {
             name: "italic",
             action: EasyMDE.toggleItalic,
             className: "fa fa-italic",
-            title: "Kursiv",
+            title: "italic",
         },
         {
             name: "heading",
             action: EasyMDE.toggleHeadingSmaller,
             className: "fa fa-header",
-            title: "Überschrift"
+            title: "heading",
         },
         "|",
         {
             name: "quote",
             action: EasyMDE.toggleBlockquote,
             className: "fa fa-quote-left",
-            title: "Zitat"
+            title: "quote",
         },
         {
             name: "unordered-list",
             action: EasyMDE.toggleUnorderedList,
             className: "fa fa-list-ul",
-            title: "Unsortierte Liste"
+            title: "unordered list",
         },
         {
             name: "ordered-list",
             action: EasyMDE.toggleOrderedList,
             className: "fa fa-list-ol",
-            title: "Sortierte Liste"
+            title: "ordered list",
         },
         "|",
         {
             name: "link",
             action: EasyMDE.drawLink,
             className: "fa fa-link",
-            title: "Link"
+            title: "link"
         },
         {
             name: "image",
             action: EasyMDE.drawImage,
             className: "fa fa-image",
-            title: "Bild"
+            title: "image"
         },
         "|",
         {
             name: "preview",
             action: EasyMDE.togglePreview,
             className: "fa fa-eye no-disable",
-            title: "Vorschau"
+            title: "preview"
         },
         "|",
         {
