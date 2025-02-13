@@ -1424,9 +1424,16 @@ class Logbook_model extends CI_Model {
 			$distance = null;
 		}
 
+		$time_on=$this->input->post('time_on');
+		$time_off=$this->input->post('time_off');
+
+		if (($time_off ?? '') == '') {
+			$time_off=$time_on;
+		}
+
 		$data = array(
-			'COL_TIME_ON' => $this->input->post('time_on'),
-			'COL_TIME_OFF' => $this->input->post('time_off'),
+			'COL_TIME_ON' => $time_on,
+			'COL_TIME_OFF' => $time_off,
 			'COL_CALL' => strtoupper(trim($this->input->post('callsign'))),
 			'COL_BAND' => $this->input->post('band'),
 			'COL_BAND_RX' => $this->input->post('band_rx'),
