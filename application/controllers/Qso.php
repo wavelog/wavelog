@@ -302,10 +302,14 @@ class QSO extends CI_Controller {
 		}
 		$this->form_validation->set_rules('time_on', 'Start Date', 'required');
 		$this->form_validation->set_rules('time_off', 'End Date', 'required');
+		$this->form_validation->set_rules('id', 'qso ID', 'required');
 
+		$edit_result['success']=false;
 		if ($this->form_validation->run()) {
-			$this->logbook_model->edit();
+			$edit_result=$this->logbook_model->edit();
 		}
+		header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($edit_result);
 	}
 
 	function qsl_rcvd($id, $method) {

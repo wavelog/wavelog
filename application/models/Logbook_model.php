@@ -1528,7 +1528,16 @@ class Logbook_model extends CI_Model {
 		}
 
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
-		$this->db->update($this->config->item('table_name'), $data);
+		$retvals=[];
+		try {
+			$this->db->update($this->config->item('table_name'), $data);
+			$retvals['success']=true;
+		} catch (Exception $e) {
+			$retvals['success']=false;
+			$retvals['detail']=$e;
+		} finally {
+			return($retvals);
+		}
 	}
 
 	/* QSL received */
