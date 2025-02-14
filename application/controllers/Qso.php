@@ -191,14 +191,15 @@ class QSO extends CI_Controller {
 		$data['iota'] = $this->logbook_model->fetchIota();
 		$data['modes'] = $this->modes->all();
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('qso/edit', $data);
-		}
-		else
-		{
-			$this->logbook_model->edit();
-			$this->session->set_flashdata('notice', 'Record Updated');
+		} else {
+			$edit_result=$this->logbook_model->edit();
+			if ($edit_result['success']) {
+				$this->session->set_flashdata('notice', 'Record Updated');
+			} else {
+				$this->session->set_flashdata('notice', 'Record not Updated');
+			}
 			$this->load->view('qso/edit_done');
 		}
 	}
