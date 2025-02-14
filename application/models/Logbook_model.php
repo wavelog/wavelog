@@ -1424,11 +1424,16 @@ class Logbook_model extends CI_Model {
 			$distance = null;
 		}
 
-		$time_on=$this->input->post('time_on');
-		$time_off=$this->input->post('time_off');
-
-		if (($time_off ?? '') == '') {
-			$time_off=$time_on;
+		// Check if time_off is before time_on. If: set time_off to time_on
+		$time_on = date("Y-m-d H:i:s", strtotime($this->input->post('time_on')));
+		if (($this->input->post('time_off') ?? '') != '') {
+			$time_off = date("Y-m-d H:i:s", strtotime($this->input->post('time_off')));
+			$_tmp_datetime_off = strtotime($time_off);
+			if ($_tmp_datetime_off < strtotime($this->input->post('time_on'))) {
+				$time_off = $time_on;
+			}
+		} else {
+			$time_off = $time_on;
 		}
 
 		$data = array(
