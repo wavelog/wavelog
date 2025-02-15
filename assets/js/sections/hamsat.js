@@ -49,7 +49,7 @@ function configureButton(rowLength) {
 
 function loadActivationsTable(rows, show_workable_only) {
 	var uninitialized = $('#activationsList').filter(function() {
-		if ($.fn.DataTable.fnIsDataTable(this)) {
+		if ($.fn.DataTable.isDataTable(this)) {
 			return false;
 		} else {
 			configureButton(rows.length);
@@ -76,6 +76,9 @@ function loadActivationsTable(rows, show_workable_only) {
 			ordering: true,
 			"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
 			"scrollCollapse": true,
+			createdRow: function (row, data, dataIndex) {
+				$(row).attr('id',data.id);
+			},
 			"language": {
 				url: getDataTablesLanguageUrl(),
 			},
@@ -171,10 +174,10 @@ function loadActivationsTable(rows, show_workable_only) {
 		} else {
 			data.push('');
 		}
-
+		data.id='activationID-' + activation.id;
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('activationID', activation.id);
-		table.row(createdRow).node().id = 'activationID-' + activation.id;
+		// table.row(createdRow).node().id = 'activationID-' + activation.id;
 	}
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
