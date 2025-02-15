@@ -1198,6 +1198,8 @@ class Logbook_model extends CI_Model {
 
 	/* Edit QSO */
 	function edit() {
+		$retvals=[];
+		$retvals['success']=false;
 		$qso = $this->get_qso($this->input->post('id'))->row();
 
 		$entity = $this->get_entity($this->input->post('dxcc_id'));
@@ -1207,11 +1209,13 @@ class Logbook_model extends CI_Model {
 		// be sure that station belongs to user
 		$this->load->model('stations');
 		if (!$this->stations->check_station_is_accessible($stationId)) {
-			return;
+			$retvals['detail']='Station ID not allowed';
+			return $retvals;
 		}
 
 		if (trim($this->input->post('callsign')) == '') {
-			return;
+			$retvals['detail']='No Call given';
+			return $retvals;
 		}
 
 		$station_profile = $this->stations->profile_clean($stationId);
@@ -1528,7 +1532,6 @@ class Logbook_model extends CI_Model {
 		}
 
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
-		$retvals=[];
 		try {
 			$this->db->update($this->config->item('table_name'), $data);
 			$retvals['success']=true;

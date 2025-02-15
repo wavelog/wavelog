@@ -541,11 +541,13 @@ function qso_save() {
         contentType: false,
         type: 'POST',
         success: function (dataofconfirm) {
-            $(".edit-dialog").modal('hide');
-            $(".qso-dialog").modal('hide');
-            if (reload_after_qso_safe == true) {
-                location.reload();
-            }
+		if (dataofconfirm.success) {
+			$(".edit-dialog").modal('hide');
+			$(".qso-dialog").modal('hide');
+			if (reload_after_qso_safe == true) {
+				location.reload();
+			}
+		}
         },
         error: function(xhr, status, error) {
             console.log(xhr.responseText);
