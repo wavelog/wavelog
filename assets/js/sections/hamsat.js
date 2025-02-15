@@ -177,7 +177,6 @@ function loadActivationsTable(rows, show_workable_only) {
 		data.id='activationID-' + activation.id;
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('activationID', activation.id);
-		// table.row(createdRow).node().id = 'activationID-' + activation.id;
 	}
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
