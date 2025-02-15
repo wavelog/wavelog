@@ -1209,12 +1209,12 @@ class Logbook_model extends CI_Model {
 		// be sure that station belongs to user
 		$this->load->model('stations');
 		if (!$this->stations->check_station_is_accessible($stationId)) {
-			$retvals['detail']='Station ID not allowed';
+			$retvals['detail']=__('Station ID not allowed');
 			return $retvals;
 		}
 
 		if (trim($this->input->post('callsign')) == '') {
-			$retvals['detail']='No Call given';
+			$retvals['detail']=__('No Call given');
 			return $retvals;
 		}
 
@@ -1440,6 +1440,13 @@ class Logbook_model extends CI_Model {
 			$time_off = $time_on;
 		}
 
+ 		if (is_numeric($this->input->post('dxcc_id'))) {
+			$dxcc=$this->input->post('dxcc_id');
+		} else {
+			$retvals['detail']=__("DXCC has to be Numeric");
+			return $retvals;
+		}		
+		
 		$data = array(
 			'COL_TIME_ON' => $time_on,
 			'COL_TIME_OFF' => $time_off,
@@ -1458,7 +1465,7 @@ class Logbook_model extends CI_Model {
 			'COL_NAME' => $this->input->post('name'),
 			'COL_COUNTRY' => $country,
 			'COL_CONT' => $this->input->post('continent'),
-			'COL_DXCC' => $this->input->post('dxcc_id'),
+			'COL_DXCC' => $dxcc,
 			'COL_CQZ' => $this->input->post('cqz'),
 			'COL_ITUZ' => $this->input->post('ituz') != '' ? $this->input->post('ituz') : null,
 			'COL_SAT_NAME' => $this->input->post('sat_name'),
