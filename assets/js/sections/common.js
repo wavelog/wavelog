@@ -547,6 +547,8 @@ function qso_save() {
 			if (reload_after_qso_safe == true) {
 				location.reload();
 			}
+		} else {
+			$("#flashdata").html(dataofconfirm.detail);
 		}
         },
         error: function(xhr, status, error) {

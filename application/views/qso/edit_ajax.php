@@ -45,7 +45,6 @@
                         </div>
 
                         <div class="card-body">
-
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-qso" role="tabpanel" aria-labelledby="nav-qso-tab">
                                     <div class="row">
