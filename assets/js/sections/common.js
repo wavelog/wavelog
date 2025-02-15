@@ -548,7 +548,8 @@ function qso_save() {
 				location.reload();
 			}
 		} else {
-			$("#flashdata").html(dataofconfirm.detail);
+			$("#error-messages-qso-edit").html('<div class="alert alert-danger alert-dismissible fade show" role="alert">'+dataofconfirm.detail+'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+			$(".modal-body").animate({ scrollTop: 0 }, 'fast');
 		}
         },
         error: function(xhr, status, error) {

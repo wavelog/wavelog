@@ -24,6 +24,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
+				<div id="error-messages-qso-edit"></div>
                 <?php echo validation_errors(); ?>
                 <form name="qsos" id="qsoform">
                     <div class="card">
