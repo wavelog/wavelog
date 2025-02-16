@@ -191,14 +191,15 @@ class QSO extends CI_Controller {
 		$data['iota'] = $this->logbook_model->fetchIota();
 		$data['modes'] = $this->modes->all();
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('qso/edit', $data);
-		}
-		else
-		{
-			$this->logbook_model->edit();
-			$this->session->set_flashdata('notice', 'Record Updated');
+		} else {
+			$edit_result=$this->logbook_model->edit();
+			if ($edit_result['success']) {
+				$this->session->set_flashdata('notice', 'Record Updated');
+			} else {
+				$this->session->set_flashdata('notice', 'Record not Updated');
+			}
 			$this->load->view('qso/edit_done');
 		}
 	}
@@ -301,10 +302,20 @@ class QSO extends CI_Controller {
 		}
 		$this->form_validation->set_rules('time_on', 'Start Date', 'required');
 		$this->form_validation->set_rules('time_off', 'End Date', 'required');
+		$this->form_validation->set_rules('id', 'qso ID', 'required');
 
+		$edit_result=array();
+		$edit_result['success']=false;
 		if ($this->form_validation->run()) {
-			$this->logbook_model->edit();
+			$edit_result=$this->logbook_model->edit();
+		} else {
+			if (validation_errors() != '') {
+				$edit_result['detail']=validation_errors();
+			}
+			$edit_result['success']=false;
 		}
+		header('Content-Type: application/json');
+		echo json_encode($edit_result);
 	}
 
 	function qsl_rcvd($id, $method) {

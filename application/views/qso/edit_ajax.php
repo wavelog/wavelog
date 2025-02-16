@@ -24,6 +24,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
+				<div id="error-messages-qso-edit"></div>
                 <?php echo validation_errors(); ?>
                 <form name="qsos" id="qsoform">
                     <div class="card">
@@ -45,7 +46,6 @@
                         </div>
 
                         <div class="card-body">
-
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-qso" role="tabpanel" aria-labelledby="nav-qso-tab">
                                     <div class="row">

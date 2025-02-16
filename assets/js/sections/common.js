@@ -541,11 +541,16 @@ function qso_save() {
         contentType: false,
         type: 'POST',
         success: function (dataofconfirm) {
-            $(".edit-dialog").modal('hide');
-            $(".qso-dialog").modal('hide');
-            if (reload_after_qso_safe == true) {
-                location.reload();
-            }
+		if (dataofconfirm.success) {
+			$(".edit-dialog").modal('hide');
+			$(".qso-dialog").modal('hide');
+			if (reload_after_qso_safe == true) {
+				location.reload();
+			}
+		} else {
+			$("#error-messages-qso-edit").html('<div class="alert alert-danger alert-dismissible fade show" role="alert">'+dataofconfirm.detail+'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+			$(".modal-body").animate({ scrollTop: 0 }, 'fast');
+		}
         },
         error: function(xhr, status, error) {
             console.log(xhr.responseText);

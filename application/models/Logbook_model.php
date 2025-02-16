@@ -1198,6 +1198,8 @@ class Logbook_model extends CI_Model {
 
 	/* Edit QSO */
 	function edit() {
+		$retvals=[];
+		$retvals['success']=false;
 		$qso = $this->get_qso($this->input->post('id'))->row();
 
 		$entity = $this->get_entity($this->input->post('dxcc_id'));
@@ -1207,11 +1209,13 @@ class Logbook_model extends CI_Model {
 		// be sure that station belongs to user
 		$this->load->model('stations');
 		if (!$this->stations->check_station_is_accessible($stationId)) {
-			return;
+			$retvals['detail']=__('Station ID not allowed');
+			return $retvals;
 		}
 
 		if (trim($this->input->post('callsign')) == '') {
-			return;
+			$retvals['detail']=__('No Call given');
+			return $retvals;
 		}
 
 		$station_profile = $this->stations->profile_clean($stationId);
@@ -1424,13 +1428,25 @@ class Logbook_model extends CI_Model {
 			$distance = null;
 		}
 
-		$time_on=$this->input->post('time_on');
-		$time_off=$this->input->post('time_off');
-
-		if (($time_off ?? '') == '') {
-			$time_off=$time_on;
+		// Check if time_off is before time_on. If: set time_off to time_on
+		$time_on = date("Y-m-d H:i:s", strtotime($this->input->post('time_on')));
+		if (($this->input->post('time_off') ?? '') != '') {
+			$time_off = date("Y-m-d H:i:s", strtotime($this->input->post('time_off')));
+			$_tmp_datetime_off = strtotime($time_off);
+			if ($_tmp_datetime_off < strtotime($this->input->post('time_on'))) {
+				$time_off = $time_on;
+			}
+		} else {
+			$time_off = $time_on;
 		}
 
+ 		if (is_numeric($this->input->post('dxcc_id'))) {
+			$dxcc=$this->input->post('dxcc_id');
+		} else {
+			$retvals['detail']=__("DXCC has to be Numeric");
+			return $retvals;
+		}		
+		
 		$data = array(
 			'COL_TIME_ON' => $time_on,
 			'COL_TIME_OFF' => $time_off,
@@ -1449,7 +1465,7 @@ class Logbook_model extends CI_Model {
 			'COL_NAME' => $this->input->post('name'),
 			'COL_COUNTRY' => $country,
 			'COL_CONT' => $this->input->post('continent'),
-			'COL_DXCC' => $this->input->post('dxcc_id'),
+			'COL_DXCC' => $dxcc,
 			'COL_CQZ' => $this->input->post('cqz'),
 			'COL_ITUZ' => $this->input->post('ituz') != '' ? $this->input->post('ituz') : null,
 			'COL_SAT_NAME' => $this->input->post('sat_name'),
@@ -1523,7 +1539,15 @@ class Logbook_model extends CI_Model {
 		}
 
 		$this->db->where('COL_PRIMARY_KEY', $this->input->post('id'));
-		$this->db->update($this->config->item('table_name'), $data);
+		try {
+			$this->db->update($this->config->item('table_name'), $data);
+			$retvals['success']=true;
+		} catch (Exception $e) {
+			$retvals['success']=false;
+			$retvals['detail']=$e;
+		} finally {
+			return($retvals);
+		}
 	}
 
 	/* QSL received */
