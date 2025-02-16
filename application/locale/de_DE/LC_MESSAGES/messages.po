@@ -23,11 +23,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-13 15:58+0000\n"
+"POT-Creation-Date: 2025-02-16 11:46+0000\n"
 "PO-Revision-Date: 2025-02-15 22:22+0000\n"
 "Last-Translator: Mathias Balthasar Regner <mabregner@gmail.com>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,8 +93,8 @@ msgstr ""
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:145 application/controllers/Qso.php:8
 #: application/controllers/Qso.php:21 application/controllers/Qso.php:180
-#: application/controllers/Qso.php:279 application/controllers/Qso.php:300
-#: application/controllers/Qso.php:313 application/controllers/Qso.php:609
+#: application/controllers/Qso.php:280 application/controllers/Qso.php:301
+#: application/controllers/Qso.php:324 application/controllers/Qso.php:620
 #: application/controllers/Radio.php:32 application/controllers/Radio.php:291
 #: application/controllers/Radio.php:317 application/controllers/Radio.php:333
 #: application/controllers/Reg1test.php:17
@@ -302,7 +302,7 @@ msgstr "API-Schlüssel %s wurde gelöscht"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:170
-#: application/views/qso/edit_ajax.php:35
+#: application/views/qso/edit_ajax.php:36
 msgid "Awards"
 msgstr "Diplome"
 
@@ -1188,7 +1188,7 @@ msgstr "Logbuch"
 #: application/views/qslprint/qslprint.php:28
 #: application/views/qslprint/qsolist.php:15
 #: application/views/qslprint/qsolist.php:17
-#: application/views/qso/edit_ajax.php:38 application/views/qso/index.php:45
+#: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:45
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
 #: application/views/user/edit.php:695
 msgid "QSL"
@@ -1782,7 +1782,7 @@ msgstr "Bearbeite Mode"
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:5 application/views/notes/main.php:8
 #: application/views/notes/view.php:6 application/views/notes/view.php:9
-#: application/views/qso/edit_ajax.php:36
+#: application/views/qso/edit_ajax.php:37
 #: application/views/qso/edit_ajax.php:409 application/views/qso/index.php:41
 #: application/views/qso/index.php:611 application/views/view_log/qso.php:14
 #: application/views/view_log/qso.php:739
@@ -2033,15 +2033,15 @@ msgstr "Druck angeforderter QSLs"
 msgid "Add QSO"
 msgstr "Logge QSO"
 
-#: application/controllers/Qso.php:670
+#: application/controllers/Qso.php:681
 msgid "You have to be logged in to access this URL."
 msgstr "Du musst eingeloggt sein, um auf diese URL zugreifen zu können."
 
-#: application/controllers/Qso.php:676
+#: application/controllers/Qso.php:687
 msgid "Call Transfer"
 msgstr "Rufzeichen Transfer"
 
-#: application/controllers/Qso.php:683
+#: application/controllers/Qso.php:694
 msgid "No callsign provided."
 msgstr "Kein Rufzeichen angegeben."
 
@@ -2389,7 +2389,7 @@ msgstr "Aktive Station"
 
 #: application/controllers/Stationsetup.php:354
 #: application/views/interface_assets/header.php:117
-#: application/views/qso/edit_ajax.php:33 application/views/qso/index.php:23
+#: application/views/qso/edit_ajax.php:34 application/views/qso/index.php:23
 #: application/views/simplefle/index.php:28
 #: application/views/stationsetup/stationsetup.php:161
 #: application/views/user/index.php:82 application/views/user/index.php:86
@@ -3013,23 +3013,35 @@ msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
-#: application/models/Logbook_model.php:3874
+#: application/models/Logbook_model.php:1212
+msgid "Station ID not allowed"
+msgstr ""
+
+#: application/models/Logbook_model.php:1217
+msgid "No Call given"
+msgstr ""
+
+#: application/models/Logbook_model.php:1446
+msgid "DXCC has to be Numeric"
+msgstr ""
+
+#: application/models/Logbook_model.php:3898
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Falscher Stationscall %s im QSO mit %s für das Stationsprofil %s: Nicht "
 "importiert"
 
-#: application/models/Logbook_model.php:3875
+#: application/models/Logbook_model.php:3899
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Schaue im %s für Tipps zu möglichen Fehlern in der ADIF-Datei."
 
-#: application/models/Logbook_model.php:3887
+#: application/models/Logbook_model.php:3911
 msgid "QSO on"
 msgstr "QSO am"
 
-#: application/models/Logbook_model.php:3887
+#: application/models/Logbook_model.php:3911
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3037,62 +3049,62 @@ msgstr ""
 "Du hast versucht, ein QSO ohne angegebenes Rufzeichen zu importieren. Dieses "
 "QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:4186
+#: application/models/Logbook_model.php:4210
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4197
+#: application/models/Logbook_model.php:4221
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4258
+#: application/models/Logbook_model.php:4282
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4278
+#: application/models/Logbook_model.php:4302
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4299
+#: application/models/Logbook_model.php:4323
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4580
+#: application/models/Logbook_model.php:4604
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
-#: application/models/Logbook_model.php:4641
+#: application/models/Logbook_model.php:4665
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:4647
+#: application/models/Logbook_model.php:4671
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4652
+#: application/models/Logbook_model.php:4676
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:4655
+#: application/models/Logbook_model.php:4679
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:4658
+#: application/models/Logbook_model.php:4682
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:4661
+#: application/models/Logbook_model.php:4685
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:4664
+#: application/models/Logbook_model.php:4688
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "unbekannt"
 
-#: application/models/Logbook_model.php:5476
+#: application/models/Logbook_model.php:5500
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -6841,7 +6853,7 @@ msgstr "Keine Conteste"
 #: application/views/logbookadvanced/index.php:351
 #: application/views/logbookadvanced/index.php:746
 #: application/views/logbookadvanced/useroptions.php:146
-#: application/views/qso/edit_ajax.php:41
+#: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
 msgid "Contest"
 msgstr "Contest"
@@ -10879,7 +10891,7 @@ msgstr "Sende eine 'Nicht im Log'-Anfrage"
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:29
 #: application/views/qslprint/qsolist.php:13
-#: application/views/qso/edit_ajax.php:40 application/views/qso/index.php:27
+#: application/views/qso/edit_ajax.php:41 application/views/qso/index.php:27
 #: application/views/search/cqzones_result.php:16
 #: application/views/search/ituzones_result.php:16
 #: application/views/search/lotw_unconfirmed_result.php:11
@@ -11248,7 +11260,7 @@ msgstr "Funktion %d - Name"
 msgid "Function %d - Macro"
 msgstr "Funktion %d - Makro"
 
-#: application/views/qso/edit_ajax.php:34
+#: application/views/qso/edit_ajax.php:35
 msgid "Sats"
 msgstr "Satelliten"
 
