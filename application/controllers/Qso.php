@@ -309,6 +309,9 @@ class QSO extends CI_Controller {
 		if ($this->form_validation->run()) {
 			$edit_result=$this->logbook_model->edit();
 		} else {
+			if (validation_errors() != '') {
+				$edit_result['detail']=validation_errors();
+			}
 			$edit_result['success']=false;
 		}
 		header('Content-Type: application/json');
