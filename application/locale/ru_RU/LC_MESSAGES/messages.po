@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-02-13 15:58+0000\n"
 "PO-Revision-Date: 2025-02-16 11:46+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,6 +128,8 @@ msgstr ""
 #: application/controllers/User.php:1511
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Qso.php:280 application/controllers/Qso.php:301
+#: application/controllers/Qso.php:324 application/controllers/Qso.php:620
 msgid "You're not allowed to do that!"
 msgstr "Вам нельзя это делать!"
 
@@ -289,6 +291,7 @@ msgstr "Ключ API %s удалён"
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:170
 #: application/views/qso/edit_ajax.php:35
+#: application/views/qso/edit_ajax.php:36
 msgid "Awards"
 msgstr "Дипломы"
 
@@ -1178,7 +1181,7 @@ msgstr "Журнал"
 #: application/views/qslprint/qsolist.php:17
 #: application/views/qso/edit_ajax.php:38 application/views/qso/index.php:45
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
-#: application/views/user/edit.php:695
+#: application/views/user/edit.php:695 application/views/qso/edit_ajax.php:39
 msgid "QSL"
 msgstr "QSL"
 
@@ -1773,6 +1776,7 @@ msgstr "Редактировать"
 #: application/views/qso/edit_ajax.php:409 application/views/qso/index.php:41
 #: application/views/qso/index.php:611 application/views/view_log/qso.php:14
 #: application/views/view_log/qso.php:739
+#: application/views/qso/edit_ajax.php:37
 msgid "Notes"
 msgstr "Заметки"
 
@@ -2023,15 +2027,15 @@ msgstr "Распечатать запрошенные QSL"
 msgid "Add QSO"
 msgstr "Добавить QSO"
 
-#: application/controllers/Qso.php:670
+#: application/controllers/Qso.php:670 application/controllers/Qso.php:681
 msgid "You have to be logged in to access this URL."
 msgstr "Для доступа к этому URL необходимо войти в систему."
 
-#: application/controllers/Qso.php:676
+#: application/controllers/Qso.php:676 application/controllers/Qso.php:687
 msgid "Call Transfer"
 msgstr "Перевод вызова"
 
-#: application/controllers/Qso.php:683
+#: application/controllers/Qso.php:683 application/controllers/Qso.php:694
 msgid "No callsign provided."
 msgstr "Позывной не указан."
 
@@ -2381,6 +2385,7 @@ msgstr "Активный профиль QTH"
 #: application/views/stationsetup/stationsetup.php:161
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
+#: application/views/qso/edit_ajax.php:34
 msgid "QSO"
 msgstr "QSO"
 
@@ -2999,20 +3004,24 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
 #: application/models/Logbook_model.php:3874
+#: application/models/Logbook_model.php:3898
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:3875
+#: application/models/Logbook_model.php:3899
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
 #: application/models/Logbook_model.php:3887
+#: application/models/Logbook_model.php:3911
 msgid "QSO on"
 msgstr "начало QSO"
 
 #: application/models/Logbook_model.php:3887
+#: application/models/Logbook_model.php:3911
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3021,57 +3030,70 @@ msgstr ""
 "импортировано. Оно недействительно"
 
 #: application/models/Logbook_model.php:4186
+#: application/models/Logbook_model.php:4210
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4197
+#: application/models/Logbook_model.php:4221
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4258
+#: application/models/Logbook_model.php:4282
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4278
+#: application/models/Logbook_model.php:4302
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4299
+#: application/models/Logbook_model.php:4323
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4580
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4604
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
 #: application/models/Logbook_model.php:4641
+#: application/models/Logbook_model.php:4665
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
 #: application/models/Logbook_model.php:4647
+#: application/models/Logbook_model.php:4671
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4652
+#: application/models/Logbook_model.php:4676
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
 #: application/models/Logbook_model.php:4655
+#: application/models/Logbook_model.php:4679
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
 #: application/models/Logbook_model.php:4658
+#: application/models/Logbook_model.php:4682
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
 #: application/models/Logbook_model.php:4661
+#: application/models/Logbook_model.php:4685
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:4664
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4688
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -3086,6 +3108,7 @@ msgstr "неизвестно"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/user/edit.php:351
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5500
 msgid "Bearing"
 msgstr "Направление"
 
@@ -6824,6 +6847,7 @@ msgstr "Нет контестов"
 #: application/views/logbookadvanced/useroptions.php:146
 #: application/views/qso/edit_ajax.php:41
 #: application/views/simplefle/index.php:84
+#: application/views/qso/edit_ajax.php:42
 msgid "Contest"
 msgstr "Контест"
 
@@ -10880,6 +10904,7 @@ msgstr "Отправить запрос 'не в журнале'"
 #: application/views/view_log/qso.php:719
 #: application/views/view_log/qso.php:726
 #: application/views/view_log/qso.php:731
+#: application/views/qso/edit_ajax.php:41
 msgid "Station"
 msgstr "Профиль QTH"
 
@@ -11227,6 +11252,7 @@ msgid "Function %d - Macro"
 msgstr "Функция %d - Макрос"
 
 #: application/views/qso/edit_ajax.php:34
+#: application/views/qso/edit_ajax.php:35
 msgid "Sats"
 msgstr "Спутники"
 
@@ -14492,6 +14518,18 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:32
 msgid "Rcvd"
 msgstr "Получено"
+
+#: application/models/Logbook_model.php:1212
+msgid "Station ID not allowed"
+msgstr ""
+
+#: application/models/Logbook_model.php:1217
+msgid "No Call given"
+msgstr ""
+
+#: application/models/Logbook_model.php:1446
+msgid "DXCC has to be Numeric"
+msgstr ""
 
 #~ msgid "Select the operator of the imported QSOs"
 #~ msgstr "Выберите оператора для импортированных QSO"
