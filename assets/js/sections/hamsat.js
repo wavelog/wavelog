@@ -68,9 +68,15 @@ function loadActivationsTable(rows, show_workable_only) {
 		$.fn.dataTable.moment(custom_date_format);
 		$(this).DataTable({
 			"pageLength": 25,
-			"columnDefs": [{
-				"targets": [8, 9, 10], "orderable": false
-		}],	
+			"columnDefs": [
+				{
+				"defaultContent": "-",
+				"targets": "_all"
+				},{
+				"targets": [8, 9, 10],
+				"orderable": false
+				}
+			],	
 			searching: true,
 			responsive: false,
 			ordering: true,
