@@ -226,6 +226,16 @@
 										</select>
 										<small id="user_measurement_base_Help" class="form-text text-muted"><?= __("Choose which unit distances will be shown in"); ?></small>
 									</div>
+
+									<div class="mb-3">
+										<label for="user_dashboard_map"><?= __("Show Dashboard Map"); ?></label>
+										<?php if(!isset($user_dashboard_map)) { $user_dashboard_map='Y'; }?>
+										<select class="form-select" id="user_dashboard_map" name="user_dashboard_map" aria-describedby="user_dashboard_map_Help" required>
+											<option value='Y' <?php if($user_dashboard_map == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value='N' <?php if($user_dashboard_map == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
+										</select>
+										<small id="user_dashboard_map_Help" class="form-text text-muted"><?= __("Choose whether to show map on dashboard or not"); ?></small>
+									</div>
 								</div>
 							</div>
 						</div>

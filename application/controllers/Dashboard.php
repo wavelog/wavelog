@@ -67,7 +67,11 @@ class Dashboard extends CI_Controller {
 		$data['current_active'] = $this->stations->find_active();
 
 		$data['themesWithoutMode'] = $this->setup_model->checkThemesWithoutMode();
-		$data['dashboard_map'] = $this->optionslib->get_option('dashboard_map');
+		if (($this->optionslib->get_option('dashboard_map') == 'true') && (($this->session->userdata('user_dashboard_map') ?? 'Y') == 'Y')) {
+			$data['dashboard_map'] = $this->optionslib->get_option('dashboard_map');
+		} else {
+			$data['dashboard_map'] = 'false';
+		}
 
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
