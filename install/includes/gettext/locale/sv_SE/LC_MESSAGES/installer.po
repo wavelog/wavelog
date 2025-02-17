@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-01-23 10:57+0000\n"
-"PO-Revision-Date: 2025-02-12 08:52+0000\n"
+"PO-Revision-Date: 2025-02-18 01:16+0000\n"
 "Last-Translator: Dahl <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
 "installer/sv/>\n"
@@ -157,7 +157,7 @@ msgstr "6. Avsluta"
 
 #: install/index.php:67
 msgid "Welcome to the Wavelog Installer"
-msgstr ""
+msgstr "Välkommen till Wavelogs Installationsprogram"
 
 #: install/index.php:68
 msgid ""
@@ -166,10 +166,14 @@ msgid ""
 "logging software. Follow the steps in each tab to configure and install "
 "Wavelog on your server."
 msgstr ""
+"Detta installationsprogram guidar dig genom de nödvändiga stegen för "
+"installationen av Wavelog. <br>Wavelog är en kraftfull webbaserad "
+"programvara för amatörradiologgning. Följ stegen på varje flik för att "
+"konfigurera och installera Wavelog på din server."
 
 #: install/index.php:69
 msgid "Discussions"
-msgstr ""
+msgstr "Diskussioner"
 
 #: install/index.php:69
 #, php-format
@@ -177,97 +181,105 @@ msgid ""
 "If you encounter any issues or have questions, refer to the documentation "
 "(%s) or community forum (%s) on Github for assistance."
 msgstr ""
+"Om du stöter på några problem eller har frågor, se dokumentationen (%s) "
+"eller community-forumet (%s) på Github för hjälp."
 
 #: install/index.php:69
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: install/index.php:70
 msgid "Thank you for installing Wavelog!"
-msgstr ""
+msgstr "Tack för att du installerade Wavelog!"
 
 #: install/index.php:71 install/index.php:74 install/index.php:1032
 msgid "Language"
-msgstr ""
+msgstr "Språk"
 
 #: install/index.php:84
 msgid "Select a language"
-msgstr ""
+msgstr "Välj ett språk"
 
 #: install/index.php:96 install/index.php:417
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: install/index.php:106
 msgid "PHP Modules"
-msgstr ""
+msgstr "PHP Moduler"
 
 #: install/index.php:113
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: install/index.php:114
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
-msgstr ""
+msgstr "min. %s (rekommenderad %s+)"
 
 #: install/index.php:141
 msgid "Installed"
-msgstr ""
+msgstr "Installerad"
 
 #: install/index.php:141
 msgid "Not Installed"
-msgstr ""
+msgstr "Ej installerad"
 
 #: install/index.php:149
 msgid "PHP Settings"
-msgstr ""
+msgstr "PHP Inställningar"
 
 #: install/index.php:239
 msgid "Folder Write Permissions"
-msgstr ""
+msgstr "Skrivbehörigheter för mapp"
 
 #: install/index.php:245 install/index.php:256 install/index.php:267
 #: install/index.php:278 install/index.php:289
 msgid "Success"
-msgstr ""
+msgstr "Godkänt"
 
 #: install/index.php:248 install/index.php:259 install/index.php:270
 #: install/index.php:281 install/index.php:292
 msgid "Failed"
-msgstr ""
+msgstr "Ej Godkänt"
 
 #: install/index.php:299
 msgid "Web Server"
-msgstr ""
+msgstr "Webserver"
 
 #: install/index.php:302
 msgid "Version:"
-msgstr ""
+msgstr "Version:"
 
 #: install/index.php:309
 msgid "Important note for nginx users!"
-msgstr ""
+msgstr "Viktig notering för nginx-användare!"
 
 #: install/index.php:310
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
 msgstr ""
+"Eftersom du använder nginx som webbserver, se till att du har gjort "
+"ändringarna som beskrivs i wikin innan du fortsätter."
 
 #: install/index.php:319
 msgid "Some Checks have failed!"
-msgstr ""
+msgstr "Vissa kontroller har misslyckats!"
 
 #: install/index.php:320
 msgid "Check your PHP settings and install missing modules if necessary."
 msgstr ""
+"Kontrollera dina PHP-inställningar och installera saknade moduler om det "
+"behövs."
 
 #: install/index.php:321
 msgid ""
 "After that, you have to restart your webserver and start the installer again."
 msgstr ""
+"Efter det måste du starta om din webbserver och starta "
+"installationsprogrammet igen."
 
 #: install/index.php:322
 #, php-format
@@ -275,26 +287,33 @@ msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
 "target='_blank'>here</a>."
 msgstr ""
+"I händelse av misslyckade 'Skrivrättigheter för mappar' kolla in vår Wiki <a "
+"href='%s' target='_blank'>här</a>."
 
 #: install/index.php:328
 msgid "You have some warnings!"
-msgstr ""
+msgstr "Du har några varningar!"
 
 #: install/index.php:329
 msgid ""
 "Some of the settings are not optimal. You can proceed with the installer but "
 "be aware that you could run into problems while using Wavelog."
 msgstr ""
+"Vissa av inställningarna är inte optimala. Du kan fortsätta med "
+"installationsprogrammet men var medveten om att du kan stöta på problem när "
+"du använder Wavelog."
 
 #: install/index.php:336
 msgid "All Checks are OK. You can continue."
-msgstr ""
+msgstr "Alla kontroller är OK. Du kan fortsätta."
 
 #: install/index.php:350
 msgid ""
 "Configure some basic parameters for your wavelog instance. You can change "
 "them later in 'application/config/config.php'"
 msgstr ""
+"Konfigurera några grundläggande parametrar för din wavelog-instans. Du kan "
+"ändra dem senare i 'application/config/config.php'"
 
 #: install/index.php:352
 msgid ""
@@ -303,6 +322,10 @@ msgid ""
 "check your web server configuration. This is the base_url in your config."
 "php, which can be edited after the installation."
 msgstr ""
+"Detta är URL:en där du kan komma åt den här Wavelog-instansen efter att "
+"installationsprogrammet har körts. Om detta inte visar vad du förväntar dig "
+"kan du behöva kontrollera din webbserverkonfiguration. Detta är base_url i "
+"din config.php, som kan redigera efter installationen."
 
 #: install/index.php:352
 msgid "Your final Wavelog URL"
