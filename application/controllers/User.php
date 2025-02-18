@@ -1590,7 +1590,7 @@ class User extends CI_Controller {
 		$this->input->set_cookie($cookie);
 
 		// log out on the regular way
-		$msg = ['notice', sprintf(__("You have been logged out of the clubstation %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
+		$msg = ['notice', sprintf(__("You have been logged out of the account %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
 		$this->logout($msg, false);
 	}
 }
