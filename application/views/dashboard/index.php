@@ -203,7 +203,7 @@ function getDistance($distance) {
 <?php $this->load->view('layout/messages'); ?>
 </div>
 
-<?php if($dashboard_map != "false" && $dashboard_map != "map_at_right") { ?>
+<?php if($dashboard_map != "N" && $dashboard_map != "map_at_right") { ?>
 <!-- Map -->
 <div id="map" class="map-leaflet" style="width: 100%; height: 350px"></div>
 <?php } ?>
