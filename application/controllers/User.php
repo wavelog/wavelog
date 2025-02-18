@@ -779,6 +779,11 @@ class User extends CI_Controller {
 			$data['user_dashboard_last_qso_count'] = ($this->user_options_model->get_options('dashboard', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? DASHBOARD_DEFAULT_QSOS_COUNT);
 			$data['user_qso_page_last_qso_count'] = ($this->user_options_model->get_options('qso_tab', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? QSO_PAGE_DEFAULT_QSOS_COUNT);
 
+			$data['on_air_widget_enabled'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'enabled'), $this->uri->segment(3))->row()->option_value ?? "false");
+			$data['on_air_widget_display_last_seen'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_last_seen'), $this->uri->segment(3))->row()->option_value ?? "false");
+			$data['on_air_widget_show_only_most_recent_radio'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_only_most_recent_radio'), $this->uri->segment(3))->row()->option_value ?? "true");
+			$data['on_air_widget_url'] = site_url('widgets/on_air/' . $q->slug);
+
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
@@ -876,6 +881,9 @@ class User extends CI_Controller {
 			$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
 			$data['user_dashboard_last_qso_count'] = $this->input->post('user_dashboard_last_qso_count', true);
 			$data['user_qso_page_last_qso_count'] = $this->input->post('user_qso_page_last_qso_count', true);
+			$data['on_air_widget_enabled'] = $this->input->post('on_air_widget_enabled', true);
+			$data['on_air_widget_display_last_seen'] = $this->input->post('on_air_widget_display_last_seen', true);
+			$data['on_air_widget_show_only_most_recent_radio'] = $this->input->post('on_air_widget_show_only_most_recent_radio', true);
 
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
