@@ -88,9 +88,9 @@ To use this widget insert this Element:
                             <?= $radio_data->frequency_string; ?>
                         </p>
                     <?php } // end foreach ?>
-                <?php } else { ?>
+                <?php } else if ($last_seen_text !== null) { ?>
                     <p class="<?= $text_size_class ?>">
-                        <?= sprintf($last_seen_days_ago_string); ?>
+                        <?= sprintf($last_seen_text); ?>
                     </p>
                 <?php } ?>                
             </div>

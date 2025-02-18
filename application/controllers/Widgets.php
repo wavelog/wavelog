@@ -76,31 +76,31 @@ class Widgets extends CI_Controller {
 	/**
 	 * On-Air widget handler
 	 *
-	 * @param string $user_callsign
+	 * @param string $user_slug
 	 * @return void
 	 */
-	public function on_air($user_callsign = "") {
-		if (empty($user_callsign)) {
-			show_404(__("User callsign not specified"));
+	public function on_air($user_slug = "") {
+		if (empty($user_slug)) {
+			show_404(__("User slug not specified"));
 			return;
 		}
 
-		// TODO caching?
-		// it will defeat purpose of having fresh value, so we might cache max for the time of "cat timeout"
-
 		try {
-			$user_id = $this->get_user_id_by_callsign($user_callsign);
+			$user = $this->get_user_by_slug($user_slug);
 		} catch (\Exception $e) {
 			show_404($e->getMessage());
 			return;
 		}
+		
+		$user_id = $user->user_id;		
+		$widget_options = $this->get_on_air_widget_options($user_id);
+		
+		if ($widget_options->is_enabled === false) {
+			show_404(__("User has on-air widget disabled"));
+			return;
+		}
 
 		$this->load->model('cat');
-		// TODO
-		// following call raises question of privacy - only the users that want to use this widget 
-		// should be able to do that (probably needs new widget settings in account preferences?) 
-		// otherwise you could query any user that is known to be part of concrete wavelog instance
-		// and he might not want to be "seen"
 		$query = $this->cat->status_for_user_id($user_id);
 
 		if ($query->num_rows() > 0) {
@@ -121,6 +121,7 @@ class Widgets extends CI_Controller {
 				} else {
 					// Radio is available - add it to the array of available radios to be presented in UI
 					$radio_obj = new \stdClass;
+					$radio_obj->updated_at = $radio_data->timestamp;
 					$radio_obj->frequency_string = $this->prepare_frequency_string_for_widget($radio_data);
 					$radios_online[] = $radio_obj;
 				}
@@ -134,11 +135,24 @@ class Widgets extends CI_Controller {
 			$text_size = $this->input->get('text_size', true) ?? 1;
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 
+			if (count($radios_online) > 1 && $widget_options->display_only_most_recent_radio) {
+				// in case only most recent radio should be displayed, use only most recently updated radio as a result
+				usort($radios_online, function($radio_a, $radio_b) {
+					if ($radio_a->updated_at == $radio_b->updated_at) return 0;
+  					return ($radio_a->updated_at > $radio_b->updated_at) ? -1 : 1;
+				});
+				
+				$radios_online = [$radios_online[0]];
+			}
+
+			// last seen text
+			$last_seen_text = $widget_options->display_last_seen ? $this->prepare_last_seen_text($last_seen_days_ago) : null;
+
 			// prepare rest of the data for UI
-			$data['user_callsign'] = strtoupper($this->security->xss_clean($user_callsign));
+			$data['user_callsign'] = strtoupper($user->user_callsign);
 			$data['is_on_air'] = count($radios_online) > 0;
 			$data['radios_online'] = $radios_online;
-			$data['last_seen_days_ago_string'] = $this->prepare_last_seen_text($last_seen_days_ago);
+			$data['last_seen_text'] = $last_seen_text;
 
 			$this->load->view('widgets/on_air', $data);
 
@@ -146,6 +160,46 @@ class Widgets extends CI_Controller {
 			show_404(__("No CAT interfaced radios found"));
 			return;
 		}
+	}
+
+	/**
+	 * Fetch and prepare user options for on air widget
+	 *
+	 * @return stdClass
+	 */
+	private function get_on_air_widget_options($user_id) {
+		$raw_widget_options = $this->user_options_model->get_options('widget', null, $user_id)->result_array();
+		
+		// default values
+		$options = new \stdClass();
+		$options->is_enabled = false;
+		$options->display_last_seen = false;
+		$options->display_only_most_recent_radio = true;
+
+		if ($raw_widget_options === null) {
+			return $options;
+		}
+
+		foreach ($raw_widget_options as $opt_data) {
+			if ($opt_data["option_name"] !== 'on_air') {
+				continue;
+			}
+
+			$key = $opt_data["option_key"];
+			$value = $opt_data["option_value"];
+
+			if ($key === "enabled") {
+				$options->is_enabled = $value === "true";
+			}
+			if ($key === "display_last_seen") {
+				$options->display_last_seen = $value === "true";
+			}
+			if ($key === "display_only_most_recent_radio") {
+				$options->display_only_most_recent_radio = $value === "true";
+			}
+		}
+
+		return $options;
 	}
 
 	/**
@@ -172,24 +226,24 @@ class Widgets extends CI_Controller {
 	}
 
 	/**
-	 * Fetch user ID by user callsign
+	 * Fetch user ID by user slug
 	 *
-	 * @param string $user_callsign
-	 * @return string
+	 * @param string $slug
+	 * @return object
 	 */
-	private function get_user_id_by_callsign($user_callsign) {
+	private function get_user_by_slug($slug) {
 		$this->load->model('user_model');
-		$user_result = $this->user_model->get_by_callsign($user_callsign);
+		$user_result = $this->user_model->get_by_slug($slug);
 		if ($user_result->num_rows() == 0) {
-			throw new \Exception(__("User not found by callsign"));
+			throw new \Exception(__("User not found by slug"));
 		}
 		if ($user_result->num_rows() > 1) {
-			throw new \Exception(__("Multiple users found by callsign"));
+			throw new \Exception(__("Multiple users found by slug"));
 		}
 		$user_row = $user_result->result();
-		$user_data = current($user_row);
+		$user = current($user_row);
 
-		return $user_data->user_id;
+		return $user;
 	}
 
 	/**

@@ -35,13 +35,13 @@ class User_Model extends CI_Model {
 		return $r;
 	}
 
-	// FUNCTION: object get_by_callsign($callsign)
-	// Retrieve a user by call sign
-	function get_by_callsign($callsign) {
-		$clean_callsign = $this->security->xss_clean($callsign);
-		$clean_callsign = strtoupper($clean_callsign);
+	// FUNCTION: object get_by_slug($slug)
+	// Retrieve a user by slug
+	function get_by_slug($slug) {
+		$clean_slug = $this->security->xss_clean($slug);
+		$clean_slug = strtoupper($clean_slug);
 
-		$this->db->where('user_callsign', $clean_callsign);
+		$this->db->where('slug', $clean_slug);
 		$r = $this->db->get($this->config->item('auth_table'));
 		return $r;
 	}
