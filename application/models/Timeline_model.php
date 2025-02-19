@@ -26,7 +26,7 @@ class Timeline_model extends CI_Model {
 
 	public function get_timeline_dxcc($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew) {
 		$binding = [];
-		$sql = "select min(date(COL_TIME_ON)) date, prefix, col_country, end, adif from "
+		$sql = "select min(date(COL_TIME_ON)) date, prefix, dxcc_entities.name as dxcc_name, end, adif from "
 			.$this->config->item('table_name'). " thcv
 			join dxcc_entities on thcv.col_dxcc = dxcc_entities.adif
 			where station_id in (" . $location_list . ") and col_dxcc > 0 ";
