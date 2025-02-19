@@ -285,6 +285,9 @@ class User extends CI_Controller {
 				$this->input->post('user_clublog_name'),
 				$this->input->post('user_clublog_password'),
 				$this->input->post('user_winkey'),
+				$this->input->post('on_air_widget_enabled'),
+				$this->input->post('on_air_widget_display_last_seen'),
+				$this->input->post('on_air_widget_show_only_most_recent_radio'),
 				$this->input->post('clubstation') == '1' ? true : false
 				)) {
 				// Check for errors

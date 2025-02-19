@@ -861,7 +861,14 @@
 											<option value="false" <?php if ($on_air_widget_enabled == "false") { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
 											<option value="true" <?php if ($on_air_widget_enabled == "true") { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?= sprintf(__("If enabled, widget will be available at %s. This assumes you have at least one CAT radio configured and working."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>"); ?></small>
+										<small class="form-text text-muted">
+											<?= sprintf(__("Note: In order to use this widget, you need to have at least one CAT radio configured and working.")); ?>
+											<?php if (isset($on_air_widget_url)) {
+												// when adding user, the $on_air_widget_url url is not yet availalable, hence the if condition here 
+												print("<br>");
+												printf(__("When enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
+											} ?>
+										</small>
 									</div>
 									<div class="mb-3">
 										<label><?= __('Display "Last seen" time'); ?></label>
