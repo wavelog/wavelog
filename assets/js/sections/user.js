@@ -1,4 +1,4 @@
-// 
+//
 // Javascript for User Section
 //
 
@@ -21,9 +21,9 @@ function actions_modal(user_id, modal) {
     $.ajax({
         url: base_url + 'index.php/user/actions_modal',
         type: 'POST',
-        data: { 
+        data: {
             modal: modal,
-            user_id: user_id 
+            user_id: user_id
         },
         success: function(response) {
             $('#actionsModal-container').html(response);
@@ -35,7 +35,7 @@ function actions_modal(user_id, modal) {
     });
     $(window).on('blur', function() {
         $('#actionsModal').modal('hide');
-    }); 
+    });
 }
 
 function send_passwort_reset(user_id) {
@@ -46,7 +46,7 @@ function send_passwort_reset(user_id) {
     $.ajax({
         url: base_url + 'index.php/user/admin_send_password_reset',
         type: 'POST',
-        data: { 
+        data: {
             user_id: user_id,
             submit_allowed: true
         },
@@ -77,7 +77,7 @@ function convert_user(user_id, convert_to) {
     $.ajax({
         url: base_url + 'index.php/user/convert',
         type: 'POST',
-        data: { 
+        data: {
             user_id: user_id,
             convert_to: convert_to,
         },
@@ -117,6 +117,10 @@ $(document).ready(function(){
 		buttons: [
 			{
 				extend: 'csv',
+				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				init: function(api, node, config) {
+					$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+				},
 				exportOptions: {
 					columns: [ 0, 1, 2, 3, 4, 5 ]
 				}
@@ -138,6 +142,10 @@ $(document).ready(function(){
 		buttons: [
 			{
 				extend: 'csv',
+				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				init: function(api, node, config) {
+					$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+				},
 				exportOptions: {
 					columns: [ 0, 1, 2, 3, 4, 5 ]
 				}
@@ -218,8 +226,8 @@ $(document).ready(function(){
 		BootstrapDialog.confirm({
 			title: lang_general_word_warning,
 			message:
-			lang_admin_confirm_pwd_reset + "\n\n" + 
-			lang_admin_user + ": " + pwd_reset_user_name + "\n" + 
+			lang_admin_confirm_pwd_reset + "\n\n" +
+			lang_admin_user + ": " + pwd_reset_user_name + "\n" +
 			lang_gen_hamradio_callsign + ": " + pwd_reset_user_callsign,
 			type: BootstrapDialog.TYPE_DANGER,
 			btnCancelLabel: lang_general_word_cancel,
@@ -237,7 +245,7 @@ $(document).ready(function(){
 					$.ajax({
 						url: base_url + 'index.php/user/admin_send_password_reset',
 						type: 'POST',
-						data: { 
+						data: {
 							user_id: pwd_reset_user_id,
 							submit_allowed: true
 						},
