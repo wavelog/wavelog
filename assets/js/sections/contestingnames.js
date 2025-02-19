@@ -13,6 +13,10 @@ $('.contesttable').DataTable({
 	buttons: [
 		{
 			extend: 'csv',
+			className: 'mb-1 btn btn-primary', // Bootstrap classes
+				init: function(api, node, config) {
+					$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+				},
 			exportOptions: {
 				columns: [ 0, 1, 2 ]
 			}
