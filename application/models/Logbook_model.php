@@ -5354,7 +5354,7 @@ class Logbook_model extends CI_Model {
 
 	function lotw_invalid_sats() {
 		$sats = array();
-		$this->db->select('name');
+		$this->db->select('COALESCE(NULLIF(name, \'\'), displayname) AS name');
 		$this->db->where('lotw', 'N');
 		$query = $this->db->get('satellite');
 		if ($query->num_rows() > 0){
