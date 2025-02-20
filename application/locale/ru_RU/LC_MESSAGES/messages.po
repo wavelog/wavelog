@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-19 18:56+0000\n"
-"PO-Revision-Date: 2025-02-16 11:46+0000\n"
+"POT-Creation-Date: 2025-02-18 08:38+0000\n"
+"PO-Revision-Date: 2025-02-18 19:23+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -1646,7 +1646,7 @@ msgstr "Оператор"
 #: application/views/awards/wae/index.php:174
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:29
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:742
+#: application/views/interface_assets/footer.php:730
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:217
 #: application/views/lookup/index.php:45
@@ -1664,6 +1664,7 @@ msgstr "Оператор"
 #: application/views/view_log/partial/log_ajax.php:30
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:678
+#: application/views/interface_assets/footer.php:742
 msgid "Deleted DXCC"
 msgstr "Удалённые DXCC"
 
@@ -2087,8 +2088,8 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/api/index.php:68
 #: application/views/club/permissions.php:248
 #: application/views/contesting/add.php:59 application/views/cron/index.php:58
-#: application/views/interface_assets/footer.php:603
-#: application/views/interface_assets/footer.php:612
+#: application/views/interface_assets/footer.php:597
+#: application/views/interface_assets/footer.php:606
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:619
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
@@ -2098,6 +2099,8 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/interface_assets/footer.php:603
+#: application/views/interface_assets/footer.php:612
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -2107,10 +2110,10 @@ msgstr "Редактировать"
 #: application/views/club/permissions.php:304
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:2641
-#: application/views/interface_assets/footer.php:2659
-#: application/views/interface_assets/footer.php:2680
-#: application/views/interface_assets/footer.php:2698
+#: application/views/interface_assets/footer.php:2509
+#: application/views/interface_assets/footer.php:2527
+#: application/views/interface_assets/footer.php:2548
+#: application/views/interface_assets/footer.php:2566
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:635
 #: application/views/lotw_views/index.php:111
@@ -2125,6 +2128,10 @@ msgstr "Редактировать"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
+#: application/views/interface_assets/footer.php:2641
+#: application/views/interface_assets/footer.php:2659
+#: application/views/interface_assets/footer.php:2680
+#: application/views/interface_assets/footer.php:2698
 msgid "Delete"
 msgstr "Удалить"
 
@@ -2830,9 +2837,11 @@ msgstr ""
 #: application/controllers/User.php:1593
 #, php-format
 msgid ""
-"You have been logged out of the account %s. Welcome back, %s, to your "
+"You have been logged out of the clubstation %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"Вы вышли из аккаунта коллективной станции %s. Добро пожаловать обратно, %s, "
+"в ваш личный аккаунт!"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
@@ -2996,15 +3005,15 @@ msgstr "HRDlog: не найдены профили QTH с данными вхо�
 
 #: application/models/Logbook_model.php:1212
 msgid "Station ID not allowed"
-msgstr ""
+msgstr "Недопустимый ID станции"
 
 #: application/models/Logbook_model.php:1217
 msgid "No Call given"
-msgstr ""
+msgstr "Не указан позывной"
 
 #: application/models/Logbook_model.php:1446
 msgid "DXCC has to be Numeric"
-msgstr ""
+msgstr "DXCC должен быть цифровым"
 
 #: application/models/Logbook_model.php:3898
 #, php-format
@@ -3253,8 +3262,8 @@ msgstr "Разница"
 #: application/views/gridmap/index.php:41
 #: application/views/gridmap/index.php:70
 #: application/views/gridmap/index.php:83
-#: application/views/interface_assets/footer.php:1601
-#: application/views/interface_assets/footer.php:1740
+#: application/views/interface_assets/footer.php:1571
+#: application/views/interface_assets/footer.php:1710
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -3299,6 +3308,8 @@ msgstr "Разница"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:690
 #: application/views/visitor/layout/footer.php:172
+#: application/views/interface_assets/footer.php:1601
+#: application/views/interface_assets/footer.php:1740
 msgid "All"
 msgstr "Все"
 
@@ -4091,6 +4102,8 @@ msgstr ""
 
 #: application/views/adif/import.php:190
 #: application/views/interface_assets/footer.php:34
+#: application/views/interface_assets/footer.php:557
+#: application/views/interface_assets/footer.php:2292
 #: application/views/interface_assets/footer.php:563
 #: application/views/interface_assets/footer.php:2412
 msgid "DANGER"
@@ -4397,7 +4410,7 @@ msgstr "Простое название, описывающее назначен
 #: application/views/club/permissions.php:297
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:48
-#: application/views/interface_assets/footer.php:598
+#: application/views/interface_assets/footer.php:592
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:106
 #: application/views/options/dxcluster.php:67
@@ -4408,6 +4421,7 @@ msgstr "Простое название, описывающее назначен
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
 #: application/views/simplefle/index.php:22
+#: application/views/interface_assets/footer.php:598
 msgid "Save"
 msgstr "Сохранить"
 
@@ -4816,9 +4830,10 @@ msgstr "Отобразить QSO с типом QSL"
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
-#: application/views/interface_assets/footer.php:2391
+#: application/views/interface_assets/footer.php:2271
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2391
 msgid "QSL Card"
 msgstr "QSL карточка"
 
@@ -8541,12 +8556,16 @@ msgid "QSL Date"
 msgstr "Дата QSL"
 
 #: application/views/eqslcard/index.php:64
+#: application/views/interface_assets/footer.php:2510
+#: application/views/interface_assets/footer.php:2528
+#: application/views/interface_assets/footer.php:2549
+#: application/views/interface_assets/footer.php:2567
+#: application/views/qslcard/index.php:66
+#: application/views/view_log/qso.php:763
 #: application/views/interface_assets/footer.php:2642
 #: application/views/interface_assets/footer.php:2660
 #: application/views/interface_assets/footer.php:2681
 #: application/views/interface_assets/footer.php:2699
-#: application/views/qslcard/index.php:66
-#: application/views/view_log/qso.php:763
 msgid "View"
 msgstr "Посмотреть"
 
@@ -8657,6 +8676,7 @@ msgstr "Не сработано"
 
 #: application/views/interface_assets/footer.php:49
 #: application/views/qso/index.php:670
+#: application/views/visitor/layout/footer.php:247
 #: application/views/visitor/layout/footer.php:251
 msgid "Clear"
 msgstr "Очистить"
@@ -8732,42 +8752,52 @@ msgid "Run Query"
 msgstr "Выполнить запрос"
 
 #: application/views/interface_assets/footer.php:494
+#: application/views/interface_assets/footer.php:623
+#: application/views/interface_assets/footer.php:686
 #: application/views/interface_assets/footer.php:629
 #: application/views/interface_assets/footer.php:698
 msgid "Stored Queries"
 msgstr "Сохранённые запросы"
 
 #: application/views/interface_assets/footer.php:499
+#: application/views/interface_assets/footer.php:691
 #: application/views/interface_assets/footer.php:703
 msgid "You need to make a query before you search!"
 msgstr "Сначала нужно сформировать запрос, прежде чем искать!"
 
 #: application/views/interface_assets/footer.php:520
-#: application/views/interface_assets/footer.php:656
+#: application/views/interface_assets/footer.php:650
 #: application/views/search/filter.php:82
+#: application/views/interface_assets/footer.php:656
 msgid "Export to ADIF"
 msgstr "Экспортировать в ADIF"
 
+#: application/views/interface_assets/footer.php:558
 #: application/views/interface_assets/footer.php:564
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Внимание! Вы уверены, что хотите удалить этот сохранённый запрос?"
 
+#: application/views/interface_assets/footer.php:572
 #: application/views/interface_assets/footer.php:578
 msgid "The stored query has been deleted!"
 msgstr "Сохранённый запрос был удален!"
 
+#: application/views/interface_assets/footer.php:581
 #: application/views/interface_assets/footer.php:587
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "Не удалось удалить сохранённый запрос. Пожалуйста, попробуйте еще раз!"
 
+#: application/views/interface_assets/footer.php:607
 #: application/views/interface_assets/footer.php:613
 msgid "The query description has been updated!"
 msgstr "Описание запроса было обновлено!"
 
+#: application/views/interface_assets/footer.php:611
 #: application/views/interface_assets/footer.php:617
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Что-то пошло не так с сохранением. Пожалуйста, попробуйте еще раз!"
 
+#: application/views/interface_assets/footer.php:733
 #: application/views/interface_assets/footer.php:745
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
@@ -8778,24 +8808,34 @@ msgstr ""
 "действителен. Проверьте, какой DXCC для данного конкретного места является "
 "правильным. Если вы уверены, проигнорируйте это предупреждение."
 
-#: application/views/interface_assets/footer.php:797
+#: application/views/interface_assets/footer.php:785
 #: application/views/logbookadvanced/index.php:603
+#: application/views/interface_assets/footer.php:797
 msgid "Callsign: "
 msgstr "Позывной: "
 
+#: application/views/interface_assets/footer.php:786
 #: application/views/interface_assets/footer.php:798
 msgid "Count: "
 msgstr "Всего: "
 
+#: application/views/interface_assets/footer.php:787
 #: application/views/interface_assets/footer.php:799
 msgid "Grids: "
 msgstr "Квадратов: "
 
+#: application/views/interface_assets/footer.php:1284
 #: application/views/interface_assets/footer.php:1314
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
 msgstr "Вы не вошли в систему. Пожалуйста, %sвойдите%s"
 
+#: application/views/interface_assets/footer.php:1498
+#: application/views/interface_assets/footer.php:1502
+#: application/views/interface_assets/footer.php:1505
+#: application/views/interface_assets/footer.php:1642
+#: application/views/interface_assets/footer.php:1646
+#: application/views/interface_assets/footer.php:1649
 #: application/views/interface_assets/footer.php:1528
 #: application/views/interface_assets/footer.php:1532
 #: application/views/interface_assets/footer.php:1535
@@ -8805,47 +8845,60 @@ msgstr "Вы не вошли в систему. Пожалуйста, %sвойд
 msgid "grid square"
 msgstr "квадрат(/-а/-ов)"
 
+#: application/views/interface_assets/footer.php:1505
+#: application/views/interface_assets/footer.php:1649
 #: application/views/interface_assets/footer.php:1535
 #: application/views/interface_assets/footer.php:1679
 msgid "Total count"
 msgstr "Всего"
 
+#: application/views/interface_assets/footer.php:2273
 #: application/views/interface_assets/footer.php:2393
 msgid "QSL Card for "
 msgstr "QSL-карточка для "
 
+#: application/views/interface_assets/footer.php:2293
 #: application/views/interface_assets/footer.php:2413
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Внимание! Вы уверены, что хотите удалить эту QSL-карточку?"
 
-#: application/views/interface_assets/footer.php:2453
+#: application/views/interface_assets/footer.php:2333
 #: application/views/view_log/qso.php:43
+#: application/views/interface_assets/footer.php:2453
 msgid "eQSL Card"
 msgstr "eQSL-карточка"
 
+#: application/views/interface_assets/footer.php:2335
 #: application/views/interface_assets/footer.php:2455
 msgid "eQSL Card for "
 msgstr "eQSL-карточка для "
 
+#: application/views/interface_assets/footer.php:2521
+#: application/views/interface_assets/footer.php:2560
+#: application/views/view_log/qso.php:753
 #: application/views/interface_assets/footer.php:2653
 #: application/views/interface_assets/footer.php:2692
-#: application/views/view_log/qso.php:753
 msgid "QSL image file"
 msgstr "Изображение QSL-карточки"
 
+#: application/views/interface_assets/footer.php:2540
 #: application/views/interface_assets/footer.php:2672
 msgid "Front QSL Card:"
 msgstr "Лицевая сторона QSL-карточки:"
 
+#: application/views/interface_assets/footer.php:2578
 #: application/views/interface_assets/footer.php:2710
 msgid "Back QSL Card:"
 msgstr "Обратная сторона QSL-карточки:"
 
+#: application/views/interface_assets/footer.php:2589
+#: application/views/interface_assets/footer.php:2614
 #: application/views/interface_assets/footer.php:2721
 #: application/views/interface_assets/footer.php:2746
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Добавить дополнительные QSO на QSL-карточку"
 
+#: application/views/interface_assets/footer.php:2625
 #: application/views/interface_assets/footer.php:2757
 msgid "Something went wrong. Please try again!"
 msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз!"
@@ -13478,7 +13531,7 @@ msgstr "Выберите единицы измерения расстояния"
 
 #: application/views/user/edit.php:231
 msgid "Show Dashboard Map"
-msgstr ""
+msgstr "Показать карту на панели управления"
 
 #: application/views/user/edit.php:235
 msgid "Map at right"
@@ -13486,7 +13539,7 @@ msgstr "Карта справа"
 
 #: application/views/user/edit.php:238
 msgid "Choose whether to show map on dashboard or not"
-msgstr ""
+msgstr "Выберите, показывать ли карту на панели управления или нет"
 
 #: application/views/user/edit.php:247
 msgid "Logbook fields"
@@ -14499,13 +14552,12 @@ msgstr "Отправить запрос"
 msgid "Rcvd"
 msgstr "Получено"
 
+#: application/controllers/User.php:1593
 #, php-format
-#~ msgid ""
-#~ "You have been logged out of the clubstation %s. Welcome back, %s, to your "
-#~ "personal account!"
-#~ msgstr ""
-#~ "Вы вышли из аккаунта коллективной станции %s. Добро пожаловать обратно, "
-#~ "%s, в ваш личный аккаунт!"
+msgid ""
+"You have been logged out of the account %s. Welcome back, %s, to your "
+"personal account!"
+msgstr ""
 
 #~ msgid "Dashboard Map"
 #~ msgstr "Карта на экране сводных данных"
