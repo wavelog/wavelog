@@ -273,8 +273,7 @@ class User_Model extends CI_Model {
 				$this->load->library('encryption');
 			}
 			$user_slug_base = md5($this->encryption->encrypt($username));
-			$slug_length = 10;
-			$user_slug = substr($user_slug_base, 0, $slug_length);
+			$user_slug = substr($user_slug_base, 0, USER_SLUG_LENGTH);
 			$data['slug'] = $user_slug;
 
 			// Add user and insert bandsettings for user

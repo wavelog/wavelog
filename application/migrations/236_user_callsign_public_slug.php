@@ -32,8 +32,7 @@ class Migration_user_callsign_public_slug extends CI_Migration {
                 if ($user_row["slug"] === null) {
                     $user_name = $user_row["user_name"];
                     $user_slug_base = md5($this->encryption->encrypt($user_name));
-                    $slug_length = 10;
-                    $url_slug = substr($user_slug_base, 0, $slug_length);
+                    $url_slug = substr($user_slug_base, 0, USER_SLUG_LENGTH);
                     
                     // update the slug only in case the slug does not exist yet
                     $user_id = $user_row["user_id"];
