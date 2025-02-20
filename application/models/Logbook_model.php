@@ -1898,10 +1898,12 @@ class Logbook_model extends CI_Model {
 			);
 
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
+			$this->db->where('COL_QSL_SENT !=', 'Y');
 
 			$this->db->update($this->config->item('table_name'), $data);
-
-			$this->set_qrzcom_modified($qso_id);
+			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
+				$this->set_qrzcom_modified($qso_id);
+			}
 
 		} else {
 			return;
@@ -1926,10 +1928,11 @@ class Logbook_model extends CI_Model {
 			}
 
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
+			$this->db->where('COL_QSL_SENT !=', 'Y');
 
-			$this->db->update($this->config->item('table_name'), $data);
-
-			$this->set_qrzcom_modified($qso_id);
+			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
+				$this->set_qrzcom_modified($qso_id);
+			}
 		} else {
 			return;
 		}
@@ -1947,10 +1950,14 @@ class Logbook_model extends CI_Model {
 			);
 
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
+			$this->db->where('COL_QSL_SENT !=','R');
+			$this->db->where('COL_QSL_SENT_VIA !=', $method);
 
 			$this->db->update($this->config->item('table_name'), $data);
 
-			$this->set_qrzcom_modified($qso_id);
+			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
+				$this->set_qrzcom_modified($qso_id);
+			}
 		} else {
 			return;
 		}
@@ -1966,10 +1973,13 @@ class Logbook_model extends CI_Model {
 			);
 
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
+			$this->db->where('COL_QSL_SENT !=', 'I');
 
 			$this->db->update($this->config->item('table_name'), $data);
 
-			$this->set_qrzcom_modified($qso_id);
+			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
+				$this->set_qrzcom_modified($qso_id);
+			}
 		} else {
 			return;
 		}
@@ -3739,13 +3749,13 @@ class Logbook_model extends CI_Model {
 		}
 
 		// Check if QRZ or ClubLog is already uploaded. If so, set qso to reupload to qrz.com (M) or clublog
-		$qsql = "SELECT COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE FROM " . $this->config->item('table_name') . " WHERE COL_PRIMARY_KEY = ? AND station_id IN (" . $station_ids . ')';
+		$qsql = "SELECT COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE, COL_LOTW_QSL_RCVD as LOTW_STATE FROM " . $this->config->item('table_name') . " WHERE COL_PRIMARY_KEY = ? AND station_id IN (" . $station_ids . ')';
 		$query = $this->db->query($qsql, $qsoid);
 		$row = $query->row();
-		if (($row->QRZ_STATE ?? '') == 'Y') {
+		if ((($row->QRZ_STATE ?? '') == 'Y') && (($row->LOTW_STATE ?? '') != $qsl_status)) {	// Set ONLY to Modified if lotw-state differs
 			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
 		}
-		if (($row->CL_STATE ?? '') == 'Y') {
+		if ((($row->CL_STATE ?? '') == 'Y')  && (($row->LOTW_STATE ?? '') != $qsl_status)) {	// Set ONLY to Modified if lotw-state differs
 			$data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
