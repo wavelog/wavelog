@@ -41,6 +41,10 @@ class Migration_user_callsign_public_slug extends CI_Migration {
                 }
             }
         }
+
+        // Step 3: Make user slug unique
+        $this->db->query("ALTER TABLE `users` modify `slug` varchar(50) NOT NULL");
+        $this->db->query("ALTER TABLE `users` ADD CONSTRAINT `user_slug_unique` UNIQUE (`slug`)");
     }
 
     public function down()
