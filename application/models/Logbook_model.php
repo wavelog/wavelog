@@ -5353,12 +5353,13 @@ class Logbook_model extends CI_Model {
 
 	function lotw_invalid_sats() {
 		$sats = array();
-		$this->db->select('name');
+		$this->db->select('COALESCE(NULLIF(name, \'\'), NULLIF(displayname, \'\')) AS satname');
 		$this->db->where('lotw', 'N');
+		$this->db->having('satname !=', null);
 		$query = $this->db->get('satellite');
 		if ($query->num_rows() > 0){
 			foreach ($query->result() as $row) {
-				array_push($sats, $row->name);
+				array_push($sats, $row->satname);
 			}
 		}
 		return $sats;
@@ -5374,8 +5375,18 @@ class Logbook_model extends CI_Model {
 		);
 		$this->db->where("station_id", $station_id);
 		$this->db->group_start();
-		$this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
-		$this->db->or_where_in('COL_SAT_NAME', $invalid_sats);
+			$this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
+			$this->db->or_group_start();
+				$this->db->where('COL_PROP_MODE', 'SAT');
+				$this->db->where_in('COL_SAT_NAME', $invalid_sats);
+			$this->db->group_end();
+			$this->db->or_group_start();
+				$this->db->where('COL_PROP_MODE', 'SAT');
+				$this->db->group_start();
+					$this->db->where('COL_SAT_NAME', '');
+					$this->db->or_where('COL_SAT_NAME', null);
+				$this->db->group_end();
+			$this->db->group_end();
 		$this->db->group_end();
 		$this->db->update($this->config->item('table_name'), $data);
 	}
