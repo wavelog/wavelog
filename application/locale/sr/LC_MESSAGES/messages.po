@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-21 13:41+0000\n"
+"POT-Creation-Date: 2025-02-21 15:58+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2989,21 +2989,21 @@ msgstr ""
 msgid "DXCC has to be Numeric"
 msgstr ""
 
-#: application/models/Logbook_model.php:3898
+#: application/models/Logbook_model.php:3908
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Prilikom uvoza QSO-ova, pogrešan je znak %s sa %s za %s: PRESKOČENO"
 
-#: application/models/Logbook_model.php:3899
+#: application/models/Logbook_model.php:3909
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Provjeri %s za savjete oko grešaka u ADIF poljima."
 
-#: application/models/Logbook_model.php:3911
+#: application/models/Logbook_model.php:3921
 msgid "QSO on"
 msgstr "Start QSO"
 
-#: application/models/Logbook_model.php:3911
+#: application/models/Logbook_model.php:3921
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3011,62 +3011,62 @@ msgstr ""
 "Pokušali ste uvesti QSO bez bilo kojeg znaka. Ovaj QSO nije uvežen, "
 "neispravan je"
 
-#: application/models/Logbook_model.php:4210
+#: application/models/Logbook_model.php:4220
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijema QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4221
+#: application/models/Logbook_model.php:4231
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4282
+#: application/models/Logbook_model.php:4292
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Datum učitavanja veza na Clublog je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4302
+#: application/models/Logbook_model.php:4312
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "datum prijama QSL sa LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4323
+#: application/models/Logbook_model.php:4333
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL na LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4604
+#: application/models/Logbook_model.php:4614
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikat za"
 
-#: application/models/Logbook_model.php:4665
+#: application/models/Logbook_model.php:4675
 msgid "QSO could not be matched"
 msgstr "QSO se ne poklapa"
 
-#: application/models/Logbook_model.php:4671
+#: application/models/Logbook_model.php:4681
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrđeno preko LoTW/Clublog/eQSL/Kontest"
 
-#: application/models/Logbook_model.php:4676
+#: application/models/Logbook_model.php:4686
 msgid "confirmed by award manager"
 msgstr "potvrđeno od strane menadžera za diplome"
 
-#: application/models/Logbook_model.php:4679
+#: application/models/Logbook_model.php:4689
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrđeno unakrsnom proverom DCL podataka"
 
-#: application/models/Logbook_model.php:4682
+#: application/models/Logbook_model.php:4692
 msgid "confirmation pending"
 msgstr "čeka potvrđivanje"
 
-#: application/models/Logbook_model.php:4685
+#: application/models/Logbook_model.php:4695
 msgid "unconfirmed"
 msgstr "nepotvrđeno"
 
-#: application/models/Logbook_model.php:4688
+#: application/models/Logbook_model.php:4698
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "nepoznato"
 
-#: application/models/Logbook_model.php:5511
+#: application/models/Logbook_model.php:5521
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
