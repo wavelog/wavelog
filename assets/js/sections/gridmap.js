@@ -236,8 +236,20 @@ function clearMarkers() {
 }
 
 $(document).ready(function(){
-    gridPlot(this.form, visitor);
-    $(window).resize(function () {
-        set_map_height();
-    });
-})
+	gridPlot(this.form, visitor);
+	$(window).resize(function () {
+		set_map_height();
+	});
+
+	var target = document.body;
+	var observer = new MutationObserver(function() {
+		$('#dt-search-0').on('keyup', function (e) {
+			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+			$(this).val(tocrappyzero);
+			$(this).trigger("input");
+		});
+	});
+	var config = { childList: true, subtree: true};
+	// pass in the target node, as well as the observer options
+	observer.observe(target, config);
+});

@@ -200,7 +200,8 @@ class User extends CI_Controller {
 				$data['user_callsign'] = $this->input->post('user_callsign');
 				$data['user_locator'] = $this->input->post('user_locator');
 				$data['user_timezone'] = $this->input->post('user_timezone');
-				$data['user_measurement_base'] = $this->input->post('user_measurement_base');
+				$data['user_measurement_base'] = $this->input->post('user_measurement_base') ?? 'K';
+				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 				$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 				$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 				$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -246,6 +247,7 @@ class User extends CI_Controller {
 				$this->input->post('user_locator'),
 				$this->input->post('user_timezone'),
 				$this->input->post('user_measurement_base'),
+				$this->input->post('user_dashboard_map') ?? 'Y',
 				$this->input->post('user_date_format'),
 				$this->input->post('user_stylesheet'),
 				$this->input->post('user_qth_lookup'),
@@ -313,6 +315,7 @@ class User extends CI_Controller {
 			$data['user_callsign'] = $this->input->post('user_callsign');
 			$data['user_locator'] = $this->input->post('user_locator');
 			$data['user_measurement_base'] = $this->input->post('user_measurement_base');
+			$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 			$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 			$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 			$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -665,6 +668,15 @@ class User extends CI_Controller {
 					$data['user_hamsat_key'] = $hkey_opt[0]->option_value;
 				} else {
 					$data['user_hamsat_key'] = '';
+				}
+			}
+
+			if($this->input->post('user_dashboard_map')) {
+				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_map','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($dkey_opt)>0) {
+					$data['user_dashboard_map'] = $dkey_opt[0]->option_value;
 				}
 			}
 
@@ -1578,7 +1590,7 @@ class User extends CI_Controller {
 		$this->input->set_cookie($cookie);
 
 		// log out on the regular way
-		$msg = ['notice', sprintf(__("You have been logged out of the clubstation %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
+		$msg = ['notice', sprintf(__("You have been logged out of the account %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
 		$this->logout($msg, false);
 	}
 }

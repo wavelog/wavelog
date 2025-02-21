@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['app_name'] = 'Wavelog';
 $config['directory'] = '%directory%';
-$config['callbook'] = '%callbook%'; // Options are hamqth, qrz or qrzcq
+$config['callbook'] = '%callbook%'; // Options are hamqth, qrz, qrzcq or qrzru
 
 $config['datadir'] = null; // default to install directory
 
@@ -67,6 +67,17 @@ $config['hamqth_password'] = '%hamqth_password%';
 */
 $config['qrzcq_username'] = '%qrzcq_username%';
 $config['qrzcq_password'] = '%qrzcq_password%';
+
+/*
+|--------------------------------------------------------------------------
+| QRZ.ru Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrzru_username'	QRZru.com user login
+|	'qrzru_password'	QRZru.com user password
+*/
+$config['qrzru_username'] = '%qrzru_username%';
+$config['qrzru_password'] = '%qrzru_password%';
 
 /*
 |--------------------------------------------------------------------------
@@ -471,7 +482,7 @@ $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
-/* 
+/*
  * To make sure we do not collect infinite session we set some garbage collection settings
  * see https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability
  * and https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
@@ -782,9 +793,9 @@ $config['enable_eqsl_massdownload'] = false;
  |--------------------------------------------------------------------------
  | Disable User QSO Count in User List (Admin Menu)
  | Reason for this setting is to prevent performance issues on large installations
- | where the QSO count is not needed. Set to true to disable the QSO count. 
+ | where the QSO count is not needed. Set to true to disable the QSO count.
  | This also hides the last Operator for CLubstations. Default is false.
  |--------------------------------------------------------------------------
   */
- 
+
   $config['disable_user_stats'] = false;

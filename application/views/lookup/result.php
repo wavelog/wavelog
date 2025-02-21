@@ -38,6 +38,7 @@ foreach ($result as $mode => $value) {
 				case 'sota': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $sota).'","' . $key . '","All","All","' . $mode . '","SOTA")\'>'   . $val . '</a>'; break;
 				case 'wwff': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $wwff).'","' . $key . '","All","All","' . $mode . '","WWFF")\'>'   . $val . '</a>'; break;
 				case 'itu': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $ituz).'","' . $key . '","All","All","' . $mode . '","ITU")\'>'   . $val . '</a>'; break;
+				case 'continent': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $continent).'","' . $key . '","All","All","' . $mode . '","WAC")\'>'   . $val . '</a>'; break;
 			}
 
 			if ($current_band == $key && strtoupper($current_mode )== strtoupper($mode)) {

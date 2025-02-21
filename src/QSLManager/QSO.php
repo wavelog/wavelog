@@ -291,6 +291,21 @@ class QSO
 	/**
 	 * @return string
 	 */
+	function getContinentLink(): string
+	{
+		if ($this->continent == '') return '';
+
+		$validContinents = ['AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN'];
+
+		if (in_array($this->continent, $validContinents, true)) {
+			return '<a href="javascript:spawnLookupModal(\''.strtolower($this->continent).'\',\'continent\');">'.$this->continent.'</a>';
+		}
+		return '<span class="bg-danger">Invalid continent</span> ' . $this->continent;
+	}
+
+	/**
+	 * @return string
+	 */
 	function getCqLink($cqz): string
 	{
 		if ($cqz > '0' && $cqz <= '40') {
@@ -1223,7 +1238,7 @@ class QSO
 			'dok' => $this->getFormattedDok(),
 			'wwff' => $this->getFormattedWwff(),
 			'sig' => $this->getFormattedSig(),
-			'continent' => $this->continent,
+			'continent' => $this->getContinentLink(),
 			'profilename' => $this->profilename,
 			'stationpower' => empty($this->stationpower) ? null : $this->stationpower.' W',
 			'distance' => $this->getFormattedDistance(),

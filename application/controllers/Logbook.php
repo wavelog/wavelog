@@ -640,6 +640,7 @@ class Logbook extends CI_Controller {
 			$this->db->group_end();
 
 			$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "desc");
+			$this->db->order_by($this->config->item('table_name').".COL_PRIMARY_KEY", "desc");
 			$this->db->limit($count);
 
 			$query = $this->db->get();

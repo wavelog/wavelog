@@ -2,8 +2,6 @@ var callBookProcessingDialog = null;
 var inCallbookProcessing = false;
 var inCallbookItemProcessing = false;
 
-// Array of valid continent codes
-const validContinents = ['AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN'];
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -131,7 +129,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.deRefs);
 	}
 	if (user_options.continent.show == "true"){
-		cells.eq(c++).text(qso.continent);
+		cells.eq(c++).html(qso.continent);
 	}
 	if (user_options.distance.show == "true"){
 		cells.eq(c++).text(qso.distance);
@@ -155,7 +153,7 @@ function updateRow(qso) {
 
 function loadQSOTable(rows) {
 	var uninitialized = $('#qsoList').filter(function() {
-		return !$.fn.DataTable.fnIsDataTable(this);
+		return !$.fn.DataTable.isDataTable(this);
 	});
 
 	uninitialized.each(function() {
@@ -164,14 +162,18 @@ function loadQSOTable(rows) {
 			searching: false,
 			responsive: false,
 			ordering: true,
+			createdRow: function (row, data, dataIndex) {
+				$(row).attr('id',data.id);
+			},
 			"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
 			"scrollCollapse": true,
 			"paging":         false,
-			"scrollX": true,
+			// "scrollX": true,
 			"language": {
 				url: getDataTablesLanguageUrl(),
 			},
 			"columnDefs": [
+				{ orderable: false, targets: 0 },
 				{
 					"targets": $(".distance-column-sort").index(),
 					"type": "numbersort", // use the custom sort type from the previous example
@@ -321,15 +323,7 @@ function loadQSOTable(rows) {
 			data.push(qso.deRefs);
 		}
 		if (user_options.continent.show == "true"){
-			if (qso.continent === '') {
-				data.push(qso.continent);
-			} else if (!validContinents.includes(qso.continent.toUpperCase())) {
-				// Check if qso.continent is not in the list of valid continents
-				data.push('<span class="bg-danger">Invalid continent</span> ' + qso.continent);
-			} else {
-				// Continent is valid
-				data.push(qso.continent);
-			}
+			data.push(qso.continent);
 		}
 		if (user_options.distance.show == "true"){
 			data.push(qso.distance);
@@ -346,12 +340,13 @@ function loadQSOTable(rows) {
 		if (user_options.stationpower.show == "true"){
 			data.push(qso.stationpower);
 		}
-
+		data.id='qsoID-' + qso.qsoID;
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('qsoID', qso.qsoID);
-		table.row(createdRow).node().id = 'qsoID-' + qso.qsoID;
+	//	table.row(createdRow).node().to$().attr("id", 'qsoID-' + qso.qsoID);
 	}
-	table.draw();
+	// table.draw();
+	table.columns.adjust().draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
 }
 
@@ -373,13 +368,13 @@ function processNextCallbookItem() {
 
 	callBookProcessingDialog.setMessage("Retrieving callbook data : " + nElements + " remaining");
 
-	unselectQsoID(elements.first().closest('tr').data('qsoID'));
+	unselectQsoID(elements.first().closest('tr').attr('id')?.replace(/\D/g, '')); // Removes non-numeric characters
 
 	$.ajax({
 		url: site_url + '/logbookadvanced/updateFromCallbook',
 		type: 'post',
 		data: {
-			qsoID: elements.first().closest('tr').data('qsoID')
+			qsoID: elements.first().closest('tr').attr('id')?.replace(/\D/g, '')
 		},
 		dataType: 'json',
 		success: function (data) {
@@ -609,7 +604,7 @@ $(document).ready(function () {
 
 		var id_list=[];
 		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
+			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '')
 			id_list.push(id);
 		});
 
@@ -634,7 +629,7 @@ $(document).ready(function () {
 						},
 						success: function(data) {
 							elements.each(function() {
-								let id = $(this).first().closest('tr').data('qsoID')
+								let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 								var row = $("#qsoID-" + id);
 								table.row(row).remove();
 							});
@@ -657,7 +652,7 @@ $(document).ready(function () {
 		$('#exportAdif').prop("disabled", true);
 		var id_list=[];
 		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
+			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 			id_list.push(id);
 			unselectQsoID(id);
 		});
@@ -880,7 +875,7 @@ $(document).ready(function () {
 		$('#qslSlideshow').prop("disabled", true);
 		var id_list=[];
 		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
+			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 			id_list.push(id);
 		});
 		$.ajax({
@@ -1133,11 +1128,11 @@ $(document).ready(function () {
 	$('#checkBoxAll').change(function (event) {
 		if (this.checked) {
 			$('#qsoList tbody tr').each(function (i) {
-				selectQsoID($(this).data('qsoID'))
+				selectQsoID($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
 			});
 		} else {
 			$('#qsoList tbody tr').each(function (i) {
-				unselectQsoID($(this).data('qsoID'))
+				unselectQsoID($(this).first().closest('tr').attr('id')?.replace(/\D/g, ''));
 			});
 		}
 	});
@@ -1164,7 +1159,7 @@ function handleQsl(sent, method, tag) {
 	$('#'+tag).prop("disabled", true);
 	var id_list=[];
 	elements.each(function() {
-		let id = $(this).first().closest('tr').data('qsoID')
+		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 		id_list.push(id);
 	});
 	$.ajax({
@@ -1204,7 +1199,7 @@ function handleQslReceived(sent, method, tag) {
 	$('#'+tag).prop("disabled", true);
 	var id_list=[];
 	elements.each(function() {
-		let id = $(this).first().closest('tr').data('qsoID')
+		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 		id_list.push(id);
 	});
 	$.ajax({
@@ -1234,7 +1229,7 @@ function printlabel() {
 	let markchecked = $('#markprinted')[0].checked;
 
 	elements.each(function() {
-		let id = $(this).first().closest('tr').data('qsoID')
+		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
 		id_list.push(id);
 	});
 	$.ajax({
@@ -1244,6 +1239,8 @@ function printlabel() {
 				'startat': $('#startat').val(),
 				'grid': $('#gridlabel')[0].checked,
 				'via': $('#via')[0].checked,
+				'tnxmsg': $('#tnxmsg')[0].checked,
+				'qslmsg': $('#qslmsg')[0].checked,
 				'reference': $('#reference')[0].checked
 			},
 		xhr:function(){

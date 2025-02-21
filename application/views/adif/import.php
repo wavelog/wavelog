@@ -79,17 +79,8 @@
                         $show_operator_question = true;
                         if ($this->config->item('special_callsign') && (!empty($club_operators))) {
                             $show_operator_question = false; ?>
-                            <div class="small form-text text-muted"><?= __("Select the operator of the imported QSOs") ?></div>
-                            <select name="club_operator" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
-                                <?php foreach ($club_operators as $operator) { ?>
-                                    <option value="<?php echo $operator->user_callsign; ?>"
-                                        <?php if ($operator->user_callsign == $this->session->userdata('cd_src_call')) {
-                                            echo ' selected="selected"';
-                                        } ?>>
-                                        <?php echo $operator->user_callsign; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
+                            <div class="small form-text text-muted"><?= __("Type in the operators callsign of the imported QSOs") ?></div>
+                            <input type="text"  name="club_operator" class="form-control mb-2 me-sm-2 w-50 w-lg-100" value="<?php echo ($this->session->userdata('cd_src_call') ?? ''); ?>">
                         <?php } ?>
                         <div class="small form-text text-muted"><?= __("Add QSOs to Contest") ?></div>
                         <select name="contest" id="contest" class="form-select mb-2 me-sm-2 w-50 w-lg-100">

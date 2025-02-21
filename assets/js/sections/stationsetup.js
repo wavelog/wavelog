@@ -496,7 +496,7 @@ function createStationLocation() {
 
 function loadLogbookTable(rows) {
 	var uninitialized = $('#station_logbooks_table').filter(function() {
-		return !$.fn.DataTable.fnIsDataTable(this);
+		return !$.fn.DataTable.isDataTable(this);
 	});
 
 	uninitialized.each(function() {
@@ -537,7 +537,7 @@ function loadLogbookTable(rows) {
 
 function loadLocationTable(rows) {
 	var uninitialized = $('#station_locations_table').filter(function() {
-		return !$.fn.DataTable.fnIsDataTable(this);
+		return !$.fn.DataTable.isDataTable(this);
 	});
 
 	uninitialized.each(function() {

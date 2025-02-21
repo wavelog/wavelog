@@ -36,6 +36,9 @@
 		color: inherit;
 		text-decoration: none;
 	}
+	.dataTables_wrapper {
+		margin: 10px;
+	}
 </style>
 
 
@@ -104,16 +107,20 @@
 				?>
 			</select>
 		</div>
+		</div>
+
+</div>
 
 		<p>
 
-		<table style="width:100%" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
+		<table style="width:100%;" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
 			<thead>
 				<tr class="log_title titles">
 					<th style="width:200px;"><?= __("Date"); ?>/<?= __("Time"); ?></th>
 					<th style="width:150px;"><?= __("Frequency"); ?></th>
 					<th><?= __("Call"); ?></th>
 					<th><?= __("DXCC"); ?></th>
+					<th style="width:30px;"><?= __("WAC"); ?></th>
 					<th style="width:150px;"><?= __("Spotter"); ?></th>
 					<th><?= __("Message"); ?></th>
 					<th><?= __("Last Worked"); ?></th>
@@ -125,5 +132,4 @@
 		</table>
 	</div>
 
-</div>
-</div>
+

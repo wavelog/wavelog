@@ -2,13 +2,12 @@
 
 class QSO extends CI_Controller {
 
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-        
-        $last_qso_count = empty($this->session->userdata('qso_page_last_qso_count')) ? QSO_PAGE_DEFAULT_QSOS_COUNT : $this->session->userdata('qso_page_last_qso_count');
+
+		$last_qso_count = empty($this->session->userdata('qso_page_last_qso_count')) ? QSO_PAGE_DEFAULT_QSOS_COUNT : $this->session->userdata('qso_page_last_qso_count');
 		$this->session->set_userdata('qso_page_last_qso_count', $last_qso_count);
 	}
 
@@ -21,15 +20,15 @@ class QSO extends CI_Controller {
 		$this->load->model('bands');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-        // Getting the live/post mode from GET command
-        // 0 = live
-        // 1 = post (manual)
-        $get_manual_mode = $this->input->get('manual', TRUE);
-        if ($get_manual_mode == '0' || $get_manual_mode == '1') {
-            $data['manual_mode'] = $get_manual_mode;
-        } else {
-            show_404();
-        }
+		// Getting the live/post mode from GET command
+		// 0 = live
+		// 1 = post (manual)
+		$get_manual_mode = $this->input->get('manual', TRUE);
+		if ($get_manual_mode == '0' || $get_manual_mode == '1') {
+			$data['manual_mode'] = $get_manual_mode;
+		} else {
+			show_404();
+		}
 
 		$data['active_station_profile'] = $this->stations->find_active();
 
@@ -169,9 +168,9 @@ class QSO extends CI_Controller {
 	 * This is used for contest-logging and the ajax-call
 	 */
 	public function saveqso() {
-        $this->load->model('logbook_model');
-        $this->logbook_model->create_qso();
-    }
+		$this->load->model('logbook_model');
+		$this->logbook_model->create_qso();
+	}
 
 	function edit() {
 
@@ -187,219 +186,235 @@ class QSO extends CI_Controller {
 		$this->form_validation->set_rules('time_off', 'End Date', 'required');
 		$this->form_validation->set_rules('callsign', 'Callsign', 'required');
 
-        $data['qso'] = $query->row();
-        $data['dxcc'] = $this->logbook_model->fetchDxcc();
-        $data['iota'] = $this->logbook_model->fetchIota();
+		$data['qso'] = $query->row();
+		$data['dxcc'] = $this->logbook_model->fetchDxcc();
+		$data['iota'] = $this->logbook_model->fetchIota();
 		$data['modes'] = $this->modes->all();
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('qso/edit', $data);
-		}
-		else
-		{
-			$this->logbook_model->edit();
-			$this->session->set_flashdata('notice', 'Record Updated');
+		} else {
+			$edit_result=$this->logbook_model->edit();
+			if ($edit_result['success']) {
+				$this->session->set_flashdata('notice', 'Record Updated');
+			} else {
+				$this->session->set_flashdata('notice', 'Record not Updated');
+			}
 			$this->load->view('qso/edit_done');
 		}
 	}
 
-    function winkeysettings() {
+	function winkeysettings() {
 
-        // Load model Winkey
-        $this->load->model('winkey');
+		// Load model Winkey
+		$this->load->model('winkey');
 
-        // call settings from model winkey
-        $data['result'] = $this->winkey->settings($this->session->userdata('user_id'), $this->stations->find_active());
+		// call settings from model winkey
+		$data['result'] = $this->winkey->settings($this->session->userdata('user_id'), $this->stations->find_active());
 
 		$this->load->view('qso/components/winkeysettings', $data);
-    }
+	}
 
-    function cwmacrosave(){
-        // Get the data from the form
-        $function1_name = $this->input->post('function1_name', TRUE);
-        $function1_macro = $this->input->post('function1_macro', TRUE);
+	function cwmacrosave(){
+		// Get the data from the form
+		$function1_name = $this->input->post('function1_name', TRUE);
+		$function1_macro = $this->input->post('function1_macro', TRUE);
 
-        $function2_name = $this->input->post('function2_name', TRUE);
-        $function2_macro = $this->input->post('function2_macro', TRUE);
+		$function2_name = $this->input->post('function2_name', TRUE);
+		$function2_macro = $this->input->post('function2_macro', TRUE);
 
-        $function3_name = $this->input->post('function3_name', TRUE);
-        $function3_macro = $this->input->post('function3_macro', TRUE);
+		$function3_name = $this->input->post('function3_name', TRUE);
+		$function3_macro = $this->input->post('function3_macro', TRUE);
 
-        $function4_name = $this->input->post('function4_name', TRUE);
-        $function4_macro = $this->input->post('function4_macro', TRUE);
+		$function4_name = $this->input->post('function4_name', TRUE);
+		$function4_macro = $this->input->post('function4_macro', TRUE);
 
-        $function5_name = $this->input->post('function5_name', TRUE);
-        $function5_macro = $this->input->post('function5_macro', TRUE);
+		$function5_name = $this->input->post('function5_name', TRUE);
+		$function5_macro = $this->input->post('function5_macro', TRUE);
 
-        $data = [
-            'user_id' => $this->session->userdata('user_id'),
-            'station_location_id' => $this->stations->find_active(),
+		$data = [
+			'user_id' => $this->session->userdata('user_id'),
+			'station_location_id' => $this->stations->find_active(),
 			'function1_name'  => $function1_name,
-            'function1_macro' => $function1_macro,
-            'function2_name'  => $function2_name,
-            'function2_macro' => $function2_macro,
-            'function3_name'  => $function3_name,
-            'function3_macro' => $function3_macro,
-            'function4_name'  => $function4_name,
-            'function4_macro' => $function4_macro,
-            'function5_name'  => $function5_name,
-            'function5_macro' => $function5_macro,
+			'function1_macro' => $function1_macro,
+			'function2_name'  => $function2_name,
+			'function2_macro' => $function2_macro,
+			'function3_name'  => $function3_name,
+			'function3_macro' => $function3_macro,
+			'function4_name'  => $function4_name,
+			'function4_macro' => $function4_macro,
+			'function5_name'  => $function5_name,
+			'function5_macro' => $function5_macro,
 		];
 
-        // Load model Winkey
-        $this->load->model('winkey');
+		// Load model Winkey
+		$this->load->model('winkey');
 
-        // save the data
-        $this->winkey->save($data);
+		// save the data
+		$this->winkey->save($data);
 
-        echo "Macros Saved, Press Close and lets get sending!";
-    }
+		echo "Macros Saved, Press Close and lets get sending!";
+	}
 
-    function cwmacros_json() {
-        // Load model Winkey
-        $this->load->model('winkey');
+	function cwmacros_json() {
+		// Load model Winkey
+		$this->load->model('winkey');
 
-        header('Content-Type: application/json; charset=utf-8');
+		header('Content-Type: application/json; charset=utf-8');
 
-        // Call settings_json from model winkey
-        echo $this->winkey->settings_json($this->session->userdata('user_id'), $this->stations->find_active());
-    }
+		// Call settings_json from model winkey
+		echo $this->winkey->settings_json($this->session->userdata('user_id'), $this->stations->find_active());
+	}
 
-    function edit_ajax() {
+	function edit_ajax() {
 
-        $this->load->model('logbook_model');
-        $this->load->model('user_model');
-        $this->load->model('modes');
-        $this->load->model('bands');
-        $this->load->model('contesting_model');
+		$this->load->model('logbook_model');
+		$this->load->model('user_model');
+		$this->load->model('modes');
+		$this->load->model('bands');
+		$this->load->model('contesting_model');
 
-        $this->load->library('form_validation');
+		$this->load->library('form_validation');
 
-        if(!$this->user_model->authorize(2)) {
-            $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
-        }
+		if(!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
+		}
 
-        $id = str_replace('"', "", $this->input->post("id", TRUE));
-        $query = $this->logbook_model->qso_info($id);
+		$id = str_replace('"', "", $this->input->post("id", TRUE));
+		$query = $this->logbook_model->qso_info($id);
 
-        $data['qso'] = $query->row();
-        $data['dxcc'] = $this->logbook_model->fetchDxcc();
-        $data['iota'] = $this->logbook_model->fetchIota();
-        $data['modes'] = $this->modes->all();
-        $data['bands'] = $this->bands->get_user_bands_for_qso_entry(true);
-        $data['contest'] = $this->contesting_model->getActivecontests();
+		$data['qso'] = $query->row();
+		$data['dxcc'] = $this->logbook_model->fetchDxcc();
+		$data['iota'] = $this->logbook_model->fetchIota();
+		$data['modes'] = $this->modes->all();
+		$data['bands'] = $this->bands->get_user_bands_for_qso_entry(true);
+		$data['contest'] = $this->contesting_model->getActivecontests();
 
-        $this->load->view('qso/edit_ajax', $data);
-    }
+		$this->load->view('qso/edit_ajax', $data);
+	}
 
-    function qso_save_ajax() {
-        $this->load->model('logbook_model');
-        $this->load->model('user_model');
-        if(!$this->user_model->authorize(2)) {
-            $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
-        }
+	function qso_save_ajax() {
+		$this->load->library('form_validation');
+		$this->load->model('logbook_model');
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
+		}
+		$this->form_validation->set_rules('time_on', 'Start Date', 'required');
+		$this->form_validation->set_rules('time_off', 'End Date', 'required');
+		$this->form_validation->set_rules('id', 'qso ID', 'required');
 
-        $this->logbook_model->edit();
-    }
+		$edit_result=array();
+		$edit_result['success']=false;
+		if ($this->form_validation->run()) {
+			$edit_result=$this->logbook_model->edit();
+		} else {
+			if (validation_errors() != '') {
+				$edit_result['detail']=validation_errors();
+			}
+			$edit_result['success']=false;
+		}
+		header('Content-Type: application/json');
+		echo json_encode($edit_result);
+	}
 
 	function qsl_rcvd($id, $method) {
 		$this->load->model('logbook_model');
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-			// Update Logbook to Mark Paper Card Received
+		// Update Logbook to Mark Paper Card Received
 
-			$this->logbook_model->paperqsl_update($id, $method);
+		$this->logbook_model->paperqsl_update($id, $method);
 
-			$this->session->set_flashdata('notice', 'QSL Card: Marked as Received');
+		$this->session->set_flashdata('notice', 'QSL Card: Marked as Received');
 
-			redirect('logbook');
+		redirect('logbook');
 	}
 
-    function qsl_rcvd_ajax() {
-        $id = str_replace('"', "", $this->input->post("id", TRUE));
-        $method = str_replace('"', "", $this->input->post("method", TRUE));
+	function qsl_rcvd_ajax() {
+		$id = str_replace('"', "", $this->input->post("id", TRUE));
+		$method = str_replace('"', "", $this->input->post("method", TRUE));
 
-        $this->load->model('logbook_model');
-        $this->load->model('user_model');
+		$this->load->model('logbook_model');
+		$this->load->model('user_model');
 
-        header('Content-Type: application/json');
+		header('Content-Type: application/json');
 
-        if(!$this->user_model->authorize(2)) {
-            echo json_encode(array('message' => 'Error'));
+		if(!$this->user_model->authorize(2)) {
+			echo json_encode(array('message' => 'Error'));
 
-        }
-        else {
-            // Update Logbook to Mark Paper Card Received
-            $this->logbook_model->paperqsl_update($id, $method);
+		}
+		else {
+			// Update Logbook to Mark Paper Card Received
+			$this->logbook_model->paperqsl_update($id, $method);
 
-            echo json_encode(array('message' => 'OK'));
-        }
-    }
+			echo json_encode(array('message' => 'OK'));
+		}
+	}
 
-    function qsl_sent_ajax() {
-        $id = str_replace('"', "", $this->input->post("id", TRUE));
-        $method = str_replace('"', "", $this->input->post("method", TRUE));
+	function qsl_sent_ajax() {
+		$id = str_replace('"', "", $this->input->post("id", TRUE));
+		$method = str_replace('"', "", $this->input->post("method", TRUE));
 
-        $this->load->model('logbook_model');
-        $this->load->model('user_model');
+		$this->load->model('logbook_model');
+		$this->load->model('user_model');
 
-        header('Content-Type: application/json');
+		header('Content-Type: application/json');
 
-        if(!$this->user_model->authorize(2)) {
-            echo json_encode(array('message' => 'Error'));
+		if(!$this->user_model->authorize(2)) {
+			echo json_encode(array('message' => 'Error'));
 
-        }
-        else {
-            // Update Logbook to Mark Paper Card Sent
-            $this->logbook_model->paperqsl_update_sent($id, $method);
+		}
+		else {
+			// Update Logbook to Mark Paper Card Sent
+			$this->logbook_model->paperqsl_update_sent($id, $method);
 
-            echo json_encode(array('message' => 'OK'));
-        }
-    }
+			echo json_encode(array('message' => 'OK'));
+		}
+	}
 
-    function qsl_requested_ajax() {
-        $id = str_replace('"', "", $this->input->post("id", TRUE));
-        $method = str_replace('"', "", $this->input->post("method", TRUE));
+	function qsl_requested_ajax() {
+		$id = str_replace('"', "", $this->input->post("id", TRUE));
+		$method = str_replace('"', "", $this->input->post("method", TRUE));
 
-        $this->load->model('logbook_model');
-        $this->load->model('user_model');
+		$this->load->model('logbook_model');
+		$this->load->model('user_model');
 
-        header('Content-Type: application/json');
+		header('Content-Type: application/json');
 
-        if(!$this->user_model->authorize(2)) {
-            echo json_encode(array('message' => 'Error'));
+		if(!$this->user_model->authorize(2)) {
+			echo json_encode(array('message' => 'Error'));
 
-        }
-        else {
-            // Update Logbook to Mark Paper Card Received
-            $this->logbook_model->paperqsl_requested($id, $method);
+		}
+		else {
+			// Update Logbook to Mark Paper Card Received
+			$this->logbook_model->paperqsl_requested($id, $method);
 
-            echo json_encode(array('message' => 'OK'));
-        }
-    }
+			echo json_encode(array('message' => 'OK'));
+		}
+	}
 
 	function qsl_ignore_ajax() {
-        $id = str_replace('"', "", $this->input->post("id", TRUE));
-        $method = str_replace('"', "", $this->input->post("method", TRUE));
+		$id = str_replace('"', "", $this->input->post("id", TRUE));
+		$method = str_replace('"', "", $this->input->post("method", TRUE));
 
-        $this->load->model('logbook_model');
-        $this->load->model('user_model');
+		$this->load->model('logbook_model');
+		$this->load->model('user_model');
 
-        header('Content-Type: application/json');
+		header('Content-Type: application/json');
 
-        if(!$this->user_model->authorize(2)) {
-            echo json_encode(array('message' => 'Error'));
+		if(!$this->user_model->authorize(2)) {
+			echo json_encode(array('message' => 'Error'));
 
-        }
-        else {
-            // Update Logbook to Mark Paper Card Received
-            $this->logbook_model->paperqsl_ignore($id, $method);
+		}
+		else {
+			// Update Logbook to Mark Paper Card Received
+			$this->logbook_model->paperqsl_ignore($id, $method);
 
-            echo json_encode(array('message' => 'OK'));
-        }
-    }
+			echo json_encode(array('message' => 'OK'));
+		}
+	}
 
 	/* Delete QSO */
 	function delete($id) {
@@ -415,25 +430,25 @@ class QSO extends CI_Controller {
 
 		// If deletes from /logbook dropdown redirect
 		if (strpos($_SERVER['HTTP_REFERER'], '/logbook') !== false) {
-		    redirect($_SERVER['HTTP_REFERER']);
+			redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
 
-    /* Delete QSO */
-    function delete_ajax() {
-        $id = str_replace('"', "", $this->input->post("id", TRUE));
+	/* Delete QSO */
+	function delete_ajax() {
+		$id = str_replace('"', "", $this->input->post("id", TRUE));
 
-        $this->load->model('logbook_model');
-	if ($this->logbook_model->check_qso_is_accessible($id)) {
-        	$this->logbook_model->delete($id);
-        	header('Content-Type: application/json');
-        	echo json_encode(array('message' => 'OK'));
-	} else {
-        	header('Content-Type: application/json');
-        	echo json_encode(array('message' => 'not allowed'));
+		$this->load->model('logbook_model');
+		if ($this->logbook_model->check_qso_is_accessible($id)) {
+			$this->logbook_model->delete($id);
+			header('Content-Type: application/json');
+			echo json_encode(array('message' => 'OK'));
+		} else {
+			header('Content-Type: application/json');
+			echo json_encode(array('message' => 'not allowed'));
+		}
+		return;
 	}
-        return;
-    }
 
 
 	function band_to_freq($band, $mode) {
@@ -451,207 +466,207 @@ class QSO extends CI_Controller {
 		$this->load->library('sota');
 		$json = [];
 
-        $query = $this->input->get('query', TRUE) ?? FALSE;
-        $json = $this->sota->get($query);
+		$query = $this->input->get('query', TRUE) ?? FALSE;
+		$json = $this->sota->get($query);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
 	}
 
 	public function get_wwff() {
-        $json = [];
+		$json = [];
 
-        $query = $this->input->get('query', TRUE) ?? FALSE;
-        $wwff = strtoupper($query);
+		$query = $this->input->get('query', TRUE) ?? FALSE;
+		$wwff = strtoupper($query);
 
-        $file = 'updates/wwff.txt';
+		$file = 'updates/wwff.txt';
 
-        if (is_readable($file)) {
-            $lines = file($file, FILE_IGNORE_NEW_LINES);
-            $input = preg_quote($wwff, '~');
-            $reg = '~^'. $input .'(.*)$~';
-            $result = preg_grep($reg, $lines);
-            $json = [];
-            $i = 0;
-            foreach ($result as &$value) {
-                // Limit to 100 as to not slowdown browser too much
-                if (count($json) <= 100) {
-                    $json[] = ["name"=>$value];
-                }
-            }
-        } else {
-            $src = 'assets/resources/wwff.txt';
-            if (copy($src, $file)) {
-                $this->get_wwff();
-            } else {
-                log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
-            }
-        }
+		if (is_readable($file)) {
+			$lines = file($file, FILE_IGNORE_NEW_LINES);
+			$input = preg_quote($wwff, '~');
+			$reg = '~^'. $input .'(.*)$~';
+			$result = preg_grep($reg, $lines);
+			$json = [];
+			$i = 0;
+			foreach ($result as &$value) {
+				// Limit to 100 as to not slowdown browser too much
+				if (count($json) <= 100) {
+					$json[] = ["name"=>$value];
+				}
+			}
+		} else {
+			$src = 'assets/resources/wwff.txt';
+			if (copy($src, $file)) {
+				$this->get_wwff();
+			} else {
+				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
+			}
+		}
 
-        header('Content-Type: application/json');
-        echo json_encode($json);
-    }
+		header('Content-Type: application/json');
+		echo json_encode($json);
+	}
 
 	public function get_pota() {
-        $json = [];
+		$json = [];
 
-        $query = $this->input->get('query', TRUE) ?? FALSE;
-        $pota = strtoupper($query);
+		$query = $this->input->get('query', TRUE) ?? FALSE;
+		$pota = strtoupper($query);
 
-        $file = 'updates/pota.txt';
+		$file = 'updates/pota.txt';
 
-        if (is_readable($file)) {
-            $lines = file($file, FILE_IGNORE_NEW_LINES);
-            $input = preg_quote($pota, '~');
-            $reg = '~^'. $input .'(.*)$~';
-            $result = preg_grep($reg, $lines);
-            $json = [];
-            $i = 0;
-            foreach ($result as &$value) {
-                // Limit to 100 as to not slowdown browser too much
-                if (count($json) <= 100) {
-                    $json[] = ["name"=>$value];
-                }
-            }
-        } else {
-            $src = 'assets/resources/pota.txt';
-            if (copy($src, $file)) {
-                $this->get_pota();
-            } else {
-                log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
-            }
-        }
+		if (is_readable($file)) {
+			$lines = file($file, FILE_IGNORE_NEW_LINES);
+			$input = preg_quote($pota, '~');
+			$reg = '~^'. $input .'(.*)$~';
+			$result = preg_grep($reg, $lines);
+			$json = [];
+			$i = 0;
+			foreach ($result as &$value) {
+				// Limit to 100 as to not slowdown browser too much
+				if (count($json) <= 100) {
+					$json[] = ["name"=>$value];
+				}
+			}
+		} else {
+			$src = 'assets/resources/pota.txt';
+			if (copy($src, $file)) {
+				$this->get_pota();
+			} else {
+				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
+			}
+		}
 
-        header('Content-Type: application/json');
-        echo json_encode($json);
-    }
+		header('Content-Type: application/json');
+		echo json_encode($json);
+	}
 
-    /*
+	/*
 	 * Function is used for autocompletion of DOK in the QSO entry form
 	 */
-    public function get_dok() {
-        $json = [];
+	public function get_dok() {
+		$json = [];
 
-        $query = $this->input->get('query', TRUE) ?? FALSE;
-        $dok = strtoupper($query);
+		$query = $this->input->get('query', TRUE) ?? FALSE;
+		$dok = strtoupper($query);
 
-        $file = 'updates/dok.txt';
+		$file = 'updates/dok.txt';
 
-        if (is_readable($file)) {
-            $lines = file($file, FILE_IGNORE_NEW_LINES);
-            $input = preg_quote($dok, '~');
-            $reg = '~^'. $input .'(.*)$~';
-            $result = preg_grep($reg, $lines);
-            $json = [];
-            $i = 0;
-            foreach ($result as &$value) {
-                // Limit to 100 as to not slowdown browser too much
-                if (count($json) <= 100) {
-                    $json[] = ["name"=>$value];
-                }
-            }
-        } else {
-            $src = 'assets/resources/dok.txt';
-            if (copy($src, $file)) {
-                $this->get_dok();
-            } else {
-                log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
-            }
-        }
+		if (is_readable($file)) {
+			$lines = file($file, FILE_IGNORE_NEW_LINES);
+			$input = preg_quote($dok, '~');
+			$reg = '~^'. $input .'(.*)$~';
+			$result = preg_grep($reg, $lines);
+			$json = [];
+			$i = 0;
+			foreach ($result as &$value) {
+				// Limit to 100 as to not slowdown browser too much
+				if (count($json) <= 100) {
+					$json[] = ["name"=>$value];
+				}
+			}
+		} else {
+			$src = 'assets/resources/dok.txt';
+			if (copy($src, $file)) {
+				$this->get_dok();
+			} else {
+				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
+			}
+		}
 
-        header('Content-Type: application/json');
-        echo json_encode($json);
-    }
+		header('Content-Type: application/json');
+		echo json_encode($json);
+	}
 
-   public function get_sota_info() {
-      $this->load->library('sota');
+	public function get_sota_info() {
+		$this->load->library('sota');
 
-      $sota = $this->input->post('sota', TRUE);
+		$sota = $this->input->post('sota', TRUE);
 
-      header('Content-Type: application/json');
-      echo $this->sota->info($sota);
-   }
+		header('Content-Type: application/json');
+		echo $this->sota->info($sota);
+	}
 
-   public function get_wwff_info() {
-      $this->load->library('wwff');
+	public function get_wwff_info() {
+		$this->load->library('wwff');
 
-      $wwff = $this->input->post('wwff', TRUE);
+		$wwff = $this->input->post('wwff', TRUE);
 
-      header('Content-Type: application/json');
-      echo $this->wwff->info($wwff);
-   }
+		header('Content-Type: application/json');
+		echo $this->wwff->info($wwff);
+	}
 
-   public function get_pota_info() {
-      $this->load->library('pota');
+	public function get_pota_info() {
+		$this->load->library('pota');
 
-      $pota = $this->input->post('pota', TRUE);
+		$pota = $this->input->post('pota', TRUE);
 
-      header('Content-Type: application/json');
-      echo $this->pota->info($pota);
-   }
+		header('Content-Type: application/json');
+		echo $this->pota->info($pota);
+	}
 
-   public function get_station_power() {
-      $this->load->model('stations');
-      $stationProfile = $this->input->post('stationProfile', TRUE);
-      $data = array('station_power' => $this->stations->get_station_power($stationProfile));
+	public function get_station_power() {
+		$this->load->model('stations');
+		$stationProfile = $this->input->post('stationProfile', TRUE);
+		$data = array('station_power' => $this->stations->get_station_power($stationProfile));
 
-      header('Content-Type: application/json');
-      echo json_encode($data);
-   }
+		header('Content-Type: application/json');
+		echo json_encode($data);
+	}
 
-   // Return Previous QSOs Made in the active logbook
-   public function component_past_contacts() {
-      $this->load->library('Qra');
-      if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-      $this->load->model('logbook_model');
-      session_write_close();
+	// Return Previous QSOs Made in the active logbook
+	public function component_past_contacts() {
+		$this->load->library('Qra');
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		$this->load->model('logbook_model');
+		session_write_close();
 
-      $data['query'] = $this->logbook_model->last_custom($this->session->userdata('qso_page_last_qso_count'));
+		$data['query'] = $this->logbook_model->last_custom($this->session->userdata('qso_page_last_qso_count'));
 
-      // Load view
-      $this->load->view('qso/components/previous_contacts', $data);
-   }
+		// Load view
+		$this->load->view('qso/components/previous_contacts', $data);
+	}
 
-   public function get_eqsl_default_qslmsg() {	// Get ONLY Default eQSL-Message with this function. This is ONLY for QSO relevant!
-	   $return_json = array();
-	   $option_key = $this->input->post('option_key', TRUE);
-	   if ($option_key > 0) {
-		   $options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $option_key))->result();
-		   $return_json['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
-	   }
-	   header('Content-Type: application/json');
-	   echo json_encode($return_json);
-   }
+	public function get_eqsl_default_qslmsg() {	// Get ONLY Default eQSL-Message with this function. This is ONLY for QSO relevant!
+		$return_json = array();
+		$option_key = $this->input->post('option_key', TRUE);
+		if ($option_key > 0) {
+			$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $option_key))->result();
+			$return_json['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
+		}
+		header('Content-Type: application/json');
+		echo json_encode($return_json);
+	}
 
 	public function unsupported_lotw_prop_modes() {
 		echo json_encode($this->config->item('lotw_unsupported_prop_modes'));
 	}
 
-   function check_locator($grid) {
-      $grid = $this->input->post('locator', TRUE);
-      // Allow empty locator
-      if (preg_match('/^$/', $grid)) return true;
-      // Allow 6-digit locator
-      if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Xa-x]{2}$/', $grid)) return true;
-      // Allow 4-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 4-digit grid line
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 4-digit grid corner
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 2-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
-      // Allow 8-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Xa-x]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 10-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Xa-x]{2}[0-9]{2}[A-Xa-x]{2}$/', $grid)) return true;
-      else {
-         $this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
-         return false;
-      }
-   }
+	function check_locator($grid) {
+		$grid = $this->input->post('locator', TRUE);
+		// Allow empty locator
+		if (preg_match('/^$/', $grid)) return true;
+		// Allow 6-digit locator
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Xa-x]{2}$/', $grid)) return true;
+		// Allow 4-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 4-digit grid line
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 4-digit grid corner
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 2-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
+		// Allow 8-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Xa-x]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 10-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Xa-x]{2}[0-9]{2}[A-Xa-x]{2}$/', $grid)) return true;
+		else {
+			$this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
+			return false;
+		}
+	}
 
-   /**
+	/**
 	 * Open the API url which causes the browser to open the QSO live logging and populate the callsign with the data from the API
 	 * 
 	 * Usage example:
@@ -669,7 +684,7 @@ class QSO extends CI_Controller {
 
 		// get the data from the API
 		$data['callsign'] = $this->input->get('callsign', TRUE);
-        $data['page_title'] = __("Call Transfer");
+		$data['page_title'] = __("Call Transfer");
 
 		// load the QSO redirect page
 		if ($data['callsign'] != "") {
@@ -681,19 +696,19 @@ class QSO extends CI_Controller {
 		}
 	}
 
-    /**
-     * Easy modal Loader 
-     * Used for Share Modal in QSO Details view
-     */
-    function getShareModal() {
+	/**
+	 * Easy modal Loader 
+	 * Used for Share Modal in QSO Details view
+	 */
+	function getShareModal() {
 
-        $data['qso'] = $this->input->post('qso_data', TRUE);
+		$data['qso'] = $this->input->post('qso_data', TRUE);
 
-        if (empty($data['qso'])) {
-            echo "No QSO data provided.";
-            return;
-        }
+		if (empty($data['qso'])) {
+			echo "No QSO data provided.";
+			return;
+		}
 
-        $this->load->view('qso/components/share_modal', $data, false);
-    }
+		$this->load->view('qso/components/share_modal', $data, false);
+	}
 }

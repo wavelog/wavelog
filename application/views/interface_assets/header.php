@@ -38,8 +38,8 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/query-builder.default.min.css" />
 	<?php } ?>
 
-	<?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit")) { ?>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/plugins/quill/quill.snow.css" />
+	<?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit" || $this->uri->segment(2) == "view")) { ?>
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/plugins/easymde/easymde.css" />
 	<?php } ?>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/loading.min.css" />
@@ -169,7 +169,7 @@
 						<li class="nav-item dropdown"> <!-- AWARDS -->
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?= __("Awards"); ?></a>
 							<ul class="dropdown-menu header-dropdown">
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-globe"></i> <?= __("International"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#"><i class="fas fa-globe"></i> <?= __("International"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/cq'); ?>"><i class="fas fa-trophy"></i> <?= __("CQ"); ?></a></li>
 										<div class="dropdown-divider"></div>
@@ -189,7 +189,7 @@
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-trophy"></i> xOTA</a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#"><i class="fas fa-trophy"></i> xOTA</a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/sota'); ?>"><i class="fas fa-trophy"></i> <?= __("SOTA"); ?></a></li>
 										<div class="dropdown-divider"></div>
@@ -199,13 +199,13 @@
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">🇨🇦 <?= __("Canada"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇨🇦 <?= __("Canada"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/rac'); ?>"><i class="fas fa-trophy"></i> <?= __("RAC"); ?></a></li>
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">🇩🇪 <?= __("Germany"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇩🇪 <?= __("Germany"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/dok'); ?>"><i class="fas fa-trophy"></i> <?= __("DOK"); ?></a></li>
 										<div class="dropdown-divider"></div>
@@ -213,13 +213,13 @@
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">🇬🇧 <?= __("Great Britain"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇬🇧 <?= __("Great Britain"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/wab'); ?>"><i class="fas fa-trophy"></i> <?= __("WAB"); ?></a></li>
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">🇯🇵 <?= __("Japan"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇯🇵 <?= __("Japan"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/waja'); ?>"><i class="fas fa-trophy"></i> <?= __("WAJA"); ?></a></li>
 										<div class="dropdown-divider"></div>
@@ -229,19 +229,19 @@
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">🇱🇺 <?= __("Luxemburg"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇱🇺 <?= __("Luxemburg"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/lx'); ?>"><i class="fas fa-trophy"></i> <?= __("LX Gridmaster"); ?></a></li>
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">🇨🇭 <?= __("Switzerland"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇨🇭 <?= __("Switzerland"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/helvetia'); ?>"><i class="fas fa-trophy"></i> H26</a></li>
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">🇺🇸 <?= __("USA"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#">🇺🇸 <?= __("USA"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/counties'); ?>"><i class="fas fa-trophy"></i> <?= __("US Counties"); ?></a></li>
 										<div class="dropdown-divider"></div>
@@ -428,7 +428,7 @@
 
 								<li><a class="dropdown-item" href="<?php echo site_url('adif'); ?>" title="Amateur Data Interchange Format (ADIF) import / export"><i class="fas fa-sync"></i> <?= __("ADIF Import / Export"); ?></a></li>
 
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Other Export Options"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Other Export Options"); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('kmlexport'); ?>" title="KML Export for Google Earth"><i class="fas fa-sync"></i> <?= __("KML Export"); ?></a></li>
 
@@ -465,7 +465,7 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="<?= __("QSL Queue"); ?>"><i class="fas fa-print"></i> <?= __("QSL Queue"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?= __("Labels"); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Third-Party Services"); ?></a>
+								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Third-Party Services"); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('lotw'); ?>" title="Synchronise with Logbook of the World (LoTW)"><i class="fas fa-sync"></i> <?= __("Logbook of the World"); ?></a></li>
 										<li><a class="dropdown-item" href="<?php echo site_url('eqsl/import'); ?>" title="eQSL import / export"><i class="fas fa-sync"></i> <?= __("eQSL Import / Export"); ?></a></li>
@@ -600,14 +600,23 @@
 	<div id="stopImpersonateModal-container"></div>
 	<script>
 		let headerMenu = document.getElementById('header-menu');
-		let dropdowns = document.querySelectorAll('.dropdown-toggle');
+		let dropdowns = document.querySelectorAll('.dropdown-toggle-submenu');
 
 		dropdowns.forEach((dd) => {
 			dd.addEventListener('click', function(e) {
+				e.stopPropagation();
 				if (headerMenu.clientWidth < 992) {
 					var el = this.nextElementSibling;
+					dropdowns.forEach((otherDd) => {
+						if (otherDd !== dd) {
+							otherDd.nextElementSibling.style.display = 'none';
+						}
+					});
 					el.style.display = el.style.display === 'block' ? 'none' : 'block';
 				}
+				this.addEventListener('hide.bs.dropdown', function() {
+					this.nextElementSibling.style.display = 'none';
+				});
 			});
 		});
 	</script>

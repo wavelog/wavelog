@@ -211,7 +211,7 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->prefix . '</td>
-                <td>' . $line->col_country . '</td>
+                <td>' . ucwords(strtolower($line->dxcc_name)) . '</td>
                 <td>';
         if (!empty($line->end)) echo '<span class="badge text-bg-danger">' . __("Deleted DXCC") . '</span>';
         echo '</td>

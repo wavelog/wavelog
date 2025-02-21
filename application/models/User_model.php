@@ -193,7 +193,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: bool add($username, $password, $email, $type)
 	// Add a user
 	function add($username, $password, $email, $type, $firstname, $lastname, $callsign, $locator, $timezone,
-		$measurement, $user_date_format, $user_stylesheet, $user_qth_lookup, $user_sota_lookup, $user_wwff_lookup,
+		$measurement, $dashboard_map, $user_date_format, $user_stylesheet, $user_qth_lookup, $user_sota_lookup, $user_wwff_lookup,
 		$user_pota_lookup, $user_show_notes, $user_column1, $user_column2, $user_column3, $user_column4, $user_column5,
 		$user_show_profile_image, $user_previous_qsl_type, $user_amsat_status_upload, $user_mastodon_url,
 		$user_default_band, $user_default_confirmation, $user_qso_end_times, $user_quicklog, $user_quicklog_enter,
@@ -274,6 +274,7 @@ class User_Model extends CI_Model {
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'qso_tab','pota','show',".(xss_clean($user_pota_to_qso_tab ?? 'off') == "on" ? 1 : 0).");");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'qso_tab','sig','show',".(xss_clean($user_sig_to_qso_tab ?? 'off') == "on" ? 1 : 0).");");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'qso_tab','dok','show',".(xss_clean($user_dok_to_qso_tab ?? 'off') == "on" ? 1 : 0).");");
+			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'dashboard','show_map','boolean','".xss_clean($fields['user_dashboard_map'] ?? 'Y')."');");
 
 			return OK;
 		} else {
@@ -341,8 +342,10 @@ class User_Model extends CI_Model {
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','dok','show',".(xss_clean($fields['user_dok_to_qso_tab'] ?? 'off') == "on" ? 1 : 0).");");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'dashboard','last_qso_count','count','".$dashboard_last_qso_count."');");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','last_qso_count','count','".$qso_page_last_qso_count."');");
+				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'dashboard','show_map','boolean','".xss_clean($fields['user_dashboard_map'] ?? 'Y')."');");
 				$this->session->set_userdata('dashboard_last_qso_count', $dashboard_last_qso_count);
 				$this->session->set_userdata('qso_page_last_qso_count', $qso_page_last_qso_count);				
+				$this->session->set_userdata('user_dashboard_map',xss_clean($fields['user_dashboard_map'] ?? 'Y'));
 
 				// Check to see if the user is allowed to change user levels
 				if($this->session->userdata('user_type') == 99) {
@@ -498,6 +501,7 @@ class User_Model extends CI_Model {
 			'radio' => ((($this->session->userdata('radio') ?? '') == '') ? $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? '' : $this->session->userdata('radio')),
 			'station_profile_id' => $this->session->userdata('station_profile_id') ?? '',
 			'user_measurement_base' => $u->row()->user_measurement_base,
+			'user_dashboard_map' => ((($this->session->userdata('user_dashboard_map') ?? 'Y') == 'Y') ? $this->user_options_model->get_options('dashboard', array('option_name' => 'show_map', 'option_key' => 'boolean'))->row()->option_value ?? 'Y' : $this->session->userdata('user_dashboard_map')),
 			'user_date_format' => $u->row()->user_date_format,
 			'user_stylesheet' => $u->row()->user_stylesheet,
 			'user_qth_lookup' => isset($u->row()->user_qth_lookup) ? $u->row()->user_qth_lookup : 0,
