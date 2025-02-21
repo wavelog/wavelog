@@ -5374,8 +5374,15 @@ class Logbook_model extends CI_Model {
 		);
 		$this->db->where("station_id", $station_id);
 		$this->db->group_start();
-		$this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
-		$this->db->or_where_in('COL_SAT_NAME', $invalid_sats);
+			$this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
+			$this->db->or_where_in('COL_SAT_NAME', $invalid_sats);
+			$this->db->or_group_start();
+				$this->db->where('COL_PROP_MODE', 'SAT');
+				$this->db->group_start();
+					$this->db->where('COL_SAT_NAME', '');
+					$this->db->or_where('COL_SAT_NAME', null);
+				$this->db->group_end();
+			$this->db->group_end();
 		$this->db->group_end();
 		$this->db->update($this->config->item('table_name'), $data);
 	}
