@@ -111,7 +111,7 @@ $(function() {
 						data[0].push(continent_wked_info);
 						data[0].push(single.spotter);
 						data[0].push(single.message || '');
-						if (single.worked_call) {
+						if ((single.worked_call) && ((single.last_wked || '') != '')) {
 							data[0].push(single.last_wked.LAST_QSO+' in '+single.last_wked.LAST_MODE);
 						} else {
 							data[0].push('');
