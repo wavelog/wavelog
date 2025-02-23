@@ -157,7 +157,9 @@ class Widgets extends CI_Controller {
 			$this->load->view('widgets/on_air', $data);
 
 		} else {
-			show_404(__("No CAT interfaced radios found"));
+			show_error(
+				__("No CAT interfaced radios found. You need to have at least one radio interface configured.")
+			);
 			return;
 		}
 	}
