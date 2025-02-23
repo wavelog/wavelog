@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-21 15:58+0000\n"
+"POT-Creation-Date: 2025-02-23 13:29+0000\n"
 "PO-Revision-Date: 2025-02-18 01:16+0000\n"
 "Last-Translator: Ethan Carter Edwards <ethan@ethancedwards.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -124,11 +124,11 @@ msgstr ""
 #: application/controllers/Update.php:351 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
-#: application/controllers/User.php:347 application/controllers/User.php:348
-#: application/controllers/User.php:887 application/controllers/User.php:906
-#: application/controllers/User.php:1131 application/controllers/User.php:1272
-#: application/controllers/User.php:1481 application/controllers/User.php:1497
-#: application/controllers/User.php:1523
+#: application/controllers/User.php:350 application/controllers/User.php:351
+#: application/controllers/User.php:898 application/controllers/User.php:917
+#: application/controllers/User.php:1142 application/controllers/User.php:1283
+#: application/controllers/User.php:1492 application/controllers/User.php:1508
+#: application/controllers/User.php:1534
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
@@ -2597,44 +2597,44 @@ msgstr "¡Parámetro no válido!"
 msgid "Add User"
 msgstr "Agregar usuario"
 
-#: application/controllers/User.php:292
+#: application/controllers/User.php:295
 #, php-format
 msgid "Username %s already in use!"
 msgstr "¡Nombre de usuario %s ya está en uso!"
 
-#: application/controllers/User.php:295
+#: application/controllers/User.php:298
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "¡El correo electrónico %s ya está en uso!"
 
-#: application/controllers/User.php:298
+#: application/controllers/User.php:301
 msgid "Invalid Password!"
 msgstr "¡Contraseña inválida!"
 
-#: application/controllers/User.php:302
+#: application/controllers/User.php:305
 #, php-format
 msgid "User %s added!"
 msgstr "¡Usuario %s añadido!"
 
-#: application/controllers/User.php:306
+#: application/controllers/User.php:309
 msgid "Users"
 msgstr "Usuarios"
 
-#: application/controllers/User.php:391
+#: application/controllers/User.php:394
 #: application/views/club/permissions.php:253
 msgid "Edit User"
 msgstr "Editar usuario"
 
-#: application/controllers/User.php:831 application/controllers/User.php:834
+#: application/controllers/User.php:839 application/controllers/User.php:842
 #, php-format
 msgid "User %s edited"
 msgstr "Usuario %s editado"
 
-#: application/controllers/User.php:890
+#: application/controllers/User.php:901
 msgid "Profile"
 msgstr "Perfil"
 
-#: application/controllers/User.php:955
+#: application/controllers/User.php:966
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -2642,29 +2642,29 @@ msgstr ""
 "¡Felicidades! Wavelog se instaló con éxito. Ahora puedes iniciar sesión por "
 "primera vez."
 
-#: application/controllers/User.php:994
+#: application/controllers/User.php:1005
 msgid "This is not allowed!"
 msgstr "¡Esto no está permitido!"
 
-#: application/controllers/User.php:1029 application/controllers/User.php:1040
+#: application/controllers/User.php:1040 application/controllers/User.php:1051
 msgid "Login failed. Try again."
 msgstr "Error de inicio de sesión. Inténtalo de nuevo."
 
-#: application/controllers/User.php:1047
+#: application/controllers/User.php:1058
 #: application/views/interface_assets/header.php:370
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Iniciar Sesión"
 
-#: application/controllers/User.php:1085
+#: application/controllers/User.php:1096
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "No puedes iniciar sesión en una estación de club directamente. Usa tu cuenta "
 "personal en su lugar."
 
-#: application/controllers/User.php:1088
+#: application/controllers/User.php:1099
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -2672,7 +2672,7 @@ msgstr ""
 "Tu cuenta está bloqueada debido a demasiados intentos fallidos de inicio de "
 "sesión. Por favor, restablece tu contraseña."
 
-#: application/controllers/User.php:1092
+#: application/controllers/User.php:1103
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2683,22 +2683,22 @@ msgstr ""
 "administrador. Solo los administradores tienen permiso para iniciar sesión "
 "en este momento."
 
-#: application/controllers/User.php:1095
+#: application/controllers/User.php:1106
 msgid "Incorrect username or password!"
 msgstr "¡Nombre de usuario o contraseña incorrectos!"
 
-#: application/controllers/User.php:1118
+#: application/controllers/User.php:1129
 #, php-format
 msgid "User %s logged out."
 msgstr "El usuario %s cerró sesión."
 
-#: application/controllers/User.php:1134
+#: application/controllers/User.php:1145
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Nombre de la estación"
 
-#: application/controllers/User.php:1135 application/views/debug/index.php:584
+#: application/controllers/User.php:1146 application/views/debug/index.php:584
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
@@ -2708,31 +2708,31 @@ msgstr "Nombre de la estación"
 msgid "Station Callsign"
 msgstr "Indicativo de la Estación"
 
-#: application/controllers/User.php:1136
+#: application/controllers/User.php:1147
 #: application/views/station_profile/create.php:68
 #: application/views/station_profile/edit.php:96
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "DXCC de la Estación"
 
-#: application/controllers/User.php:1137
+#: application/controllers/User.php:1148
 msgid "Station CQ Zone"
 msgstr "Zona CQ de la estación"
 
-#: application/controllers/User.php:1138
+#: application/controllers/User.php:1149
 msgid "Station ITU Zone"
 msgstr "Zona ITU de la estación"
 
-#: application/controllers/User.php:1139
+#: application/controllers/User.php:1150
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr "Locator de la estación"
 
-#: application/controllers/User.php:1154
+#: application/controllers/User.php:1165
 msgid "Invalid Locator!"
 msgstr "¡Locator inválido!"
 
-#: application/controllers/User.php:1162
+#: application/controllers/User.php:1173
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2741,38 +2741,38 @@ msgstr ""
 "¡Estación creada con éxito! ¡Bienvenido a Wavelog! Para completar la "
 "configuración de tu estación, haz clic %saquí%s."
 
-#: application/controllers/User.php:1165
+#: application/controllers/User.php:1176
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 "¡La configuración de la estación falló! Por favor, configura tu estación "
 "manualmente."
 
-#: application/controllers/User.php:1182
+#: application/controllers/User.php:1193
 msgid "Password Reset is disabled on the Demo!"
 msgstr ""
 "¡El restablecimiento de contraseña está deshabilitado en la sesión Demo!"
 
-#: application/controllers/User.php:1195
+#: application/controllers/User.php:1206
 msgid "Forgot Password"
 msgstr "Contraseña olvidada"
 
-#: application/controllers/User.php:1246
+#: application/controllers/User.php:1257
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "Las configuraciones del correo electrónico están incorrectas."
 
-#: application/controllers/User.php:1250 application/controllers/User.php:1255
+#: application/controllers/User.php:1261 application/controllers/User.php:1266
 msgid "Password Reset Processed."
 msgstr "Restablecimiento de contraseña hecha."
 
-#: application/controllers/User.php:1356
+#: application/controllers/User.php:1367
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Restablecer Contraseña"
 
-#: application/controllers/User.php:1416
+#: application/controllers/User.php:1427
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -2781,7 +2781,7 @@ msgstr ""
 "Actualmente no puedes suplantar a otro usuario. ¡Necesitas establecer %s a "
 "%s en tu config.php!"
 
-#: application/controllers/User.php:1430
+#: application/controllers/User.php:1441
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -2790,16 +2790,16 @@ msgstr ""
 "Actualmente no puedes suplantar a otro usuario. ¡Por favor, cambia la "
 "encryption_key en tu archivo config.php primero!"
 
-#: application/controllers/User.php:1437
+#: application/controllers/User.php:1448
 msgid "Invalid Hash"
 msgstr "Hash no válido"
 
-#: application/controllers/User.php:1450
+#: application/controllers/User.php:1461
 msgid "The impersonation hash is too old. Please try again."
 msgstr ""
 "El hash de suplantación es demasiado antiguo. Por favor, inténtalo de nuevo."
 
-#: application/controllers/User.php:1457
+#: application/controllers/User.php:1468
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -2807,15 +2807,15 @@ msgstr ""
 "No puedes hacerte pasar por otro usuario mientras no hayas iniciado sesión "
 "como el usuario original"
 
-#: application/controllers/User.php:1463
+#: application/controllers/User.php:1474
 msgid "There was a problem with your session. Please try again."
 msgstr "Hubo un problema con tu sesión. Por favor, inténtalo de nuevo."
 
-#: application/controllers/User.php:1470
+#: application/controllers/User.php:1481
 msgid "The requested user to impersonate does not exist"
 msgstr "El usuario solicitado para suplantar no existe"
 
-#: application/controllers/User.php:1491
+#: application/controllers/User.php:1502
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -2823,13 +2823,13 @@ msgstr ""
 "No se pudo determinar el nivel de permiso correcto para la estación del "
 "club. Intenta de nuevo después de volver a iniciar sesión."
 
-#: application/controllers/User.php:1536 application/controllers/User.php:1548
-#: application/controllers/User.php:1554 application/controllers/User.php:1563
-#: application/controllers/User.php:1571
+#: application/controllers/User.php:1547 application/controllers/User.php:1559
+#: application/controllers/User.php:1565 application/controllers/User.php:1574
+#: application/controllers/User.php:1582
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Ups.. Algo salió mal. Intenta volver a iniciar sesión."
 
-#: application/controllers/User.php:1577
+#: application/controllers/User.php:1588
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -2837,7 +2837,7 @@ msgstr ""
 "La capacidad de regresar rápidamente ha sido desactivada después de que el "
 "hash de seguridad expiró. Por favor, inicia sesión de nuevo."
 
-#: application/controllers/User.php:1593
+#: application/controllers/User.php:1604
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -2872,6 +2872,28 @@ msgstr ""
 #: application/controllers/Widgets.php:54 application/views/oqrs/index.php:69
 msgid "No stations found that are using Wavelog OQRS."
 msgstr "No se encontraron estaciones que estén usando Wavelog OQRS."
+
+#: application/controllers/Widgets.php:84
+msgid "User slug not specified"
+msgstr ""
+
+#: application/controllers/Widgets.php:99
+msgid "User has on-air widget disabled"
+msgstr ""
+
+#: application/controllers/Widgets.php:161
+msgid ""
+"No CAT interfaced radios found. You need to have at least one radio "
+"interface configured."
+msgstr ""
+
+#: application/controllers/Widgets.php:240
+msgid "User not found by slug"
+msgstr ""
+
+#: application/controllers/Widgets.php:243
+msgid "Multiple users found by slug"
+msgstr ""
 
 #: application/libraries/Callbook.php:93
 msgid "QRZCQ Error"
@@ -6392,8 +6414,9 @@ msgstr ""
 #: application/views/user/edit.php:410 application/views/user/edit.php:420
 #: application/views/user/edit.php:430 application/views/user/edit.php:459
 #: application/views/user/edit.php:470 application/views/user/edit.php:580
-#: application/views/user/edit.php:861 application/views/user/edit.php:893
-#: application/views/user/edit.php:918
+#: application/views/user/edit.php:862 application/views/user/edit.php:878
+#: application/views/user/edit.php:886 application/views/user/edit.php:916
+#: application/views/user/edit.php:948 application/views/user/edit.php:973
 msgid "Yes"
 msgstr "Sí"
 
@@ -6447,8 +6470,9 @@ msgstr "Sí"
 #: application/views/user/edit.php:431 application/views/user/edit.php:460
 #: application/views/user/edit.php:471 application/views/user/edit.php:562
 #: application/views/user/edit.php:566 application/views/user/edit.php:581
-#: application/views/user/edit.php:862 application/views/user/edit.php:892
-#: application/views/user/edit.php:917
+#: application/views/user/edit.php:861 application/views/user/edit.php:877
+#: application/views/user/edit.php:917 application/views/user/edit.php:947
+#: application/views/user/edit.php:972
 msgid "No"
 msgstr "No"
 
@@ -7188,6 +7212,7 @@ msgstr "Identificador"
 #: application/views/station_profile/edit.php:341
 #: application/views/stationsetup/stationsetup.php:73
 #: application/views/user/edit.php:492 application/views/user/edit.php:501
+#: application/views/user/edit.php:858
 msgid "Enabled"
 msgstr "Activado"
 
@@ -13824,43 +13849,88 @@ msgstr ""
 "%stu página de configuración de Clublog%s para hacerlo."
 
 #: application/views/user/edit.php:847
+msgid "Widgets"
+msgstr ""
+
+#: application/views/user/edit.php:855
+msgid "On-Air widget"
+msgstr ""
+
+#: application/views/user/edit.php:865
+msgid ""
+"Note: In order to use this widget, you need to have at least one CAT radio "
+"configured and working."
+msgstr ""
+
+#: application/views/user/edit.php:869
+#, php-format
+msgid "When enabled, widget will be available at %s."
+msgstr ""
+
+#: application/views/user/edit.php:874
+msgid "Display \"Last seen\" time"
+msgstr ""
+
+#: application/views/user/edit.php:880
+msgid ""
+"This setting control whether the 'Last seen' time is displayed in widget or "
+"not."
+msgstr ""
+
+#: application/views/user/edit.php:883
+msgid "Display only most recently updated radio"
+msgstr ""
+
+#: application/views/user/edit.php:887
+msgid "No, show all radios"
+msgstr ""
+
+#: application/views/user/edit.php:889
+msgid ""
+"If you have multiple CAT radios configured, this setting controls whether "
+"the widget should display all on-air radios of the user, or just the most "
+"recently updated one. In case you have only one radio, this setting has no "
+"effect."
+msgstr ""
+
+#: application/views/user/edit.php:902
 msgid "Miscellaneous"
 msgstr "Otras Opciones"
 
-#: application/views/user/edit.php:855
+#: application/views/user/edit.php:910
 msgid "AMSAT Status Upload"
 msgstr "Subida de estados AMSAT"
 
-#: application/views/user/edit.php:858
+#: application/views/user/edit.php:913
 msgid "Upload status of SAT QSOs to"
 msgstr "Subir los estados de QSOs de SAT QSOs a"
 
-#: application/views/user/edit.php:872
+#: application/views/user/edit.php:927
 msgid "Mastodonserver"
 msgstr "Servidor de Mastodon"
 
-#: application/views/user/edit.php:875
+#: application/views/user/edit.php:930
 msgid "URL of Mastodonserver"
 msgstr "URL del Servidor de Mastodon"
 
-#: application/views/user/edit.php:877
+#: application/views/user/edit.php:932
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "URL principal de tu servidor Mastodon, por ejemplo, %s"
 
-#: application/views/user/edit.php:886
+#: application/views/user/edit.php:941
 msgid "Experimental"
 msgstr "Experimental"
 
-#: application/views/user/edit.php:886
+#: application/views/user/edit.php:941
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
-#: application/views/user/edit.php:889
+#: application/views/user/edit.php:944
 msgid "Winkeyer Features Enabled"
 msgstr "Características de Winkeyer Activadas"
 
-#: application/views/user/edit.php:895
+#: application/views/user/edit.php:950
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -13869,25 +13939,25 @@ msgstr ""
 "El soporte de Winkeyer en Wavelog es muy experimental. Lee primero la wiki "
 "en %s antes de habilitarlo."
 
-#: application/views/user/edit.php:906
+#: application/views/user/edit.php:961
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:909
+#: application/views/user/edit.php:964
 msgid "Private Feed Key"
 msgstr "Clave de alimentación privada"
 
-#: application/views/user/edit.php:911
+#: application/views/user/edit.php:966
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Consulta tu perfil en %s."
 
-#: application/views/user/edit.php:914
+#: application/views/user/edit.php:969
 msgid "Show Workable Passes Only"
 msgstr "Mostrar solo pases utilizables"
 
-#: application/views/user/edit.php:920
+#: application/views/user/edit.php:975
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -13896,7 +13966,7 @@ msgstr ""
 "cuadrícula establecido en tu cuenta de hams.at. Requiere que se establezca "
 "la clave de alimentación privada."
 
-#: application/views/user/edit.php:932
+#: application/views/user/edit.php:987
 msgid "Save Account"
 msgstr "Guardar Cambios de la Cuenta"
 
