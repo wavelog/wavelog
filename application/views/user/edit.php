@@ -39,7 +39,7 @@
 
 	<form method="post" action="<?php echo $user_form_action; ?>" name="users" autocomplete="off">
 	<div class="accordion user_edit">
-		<!-- ZONE 1 / USER -->
+		<!-- ZONE 1 / User General Information -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_user_general">
 				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_user_general" aria-expanded="true" aria-controls="panelsStayOpen-B_user_general">
@@ -669,7 +669,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ZONE 3 / Default Value -->
+		<!-- ZONE 3 / Default Values -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_default_value">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_default_value" aria-expanded="false" aria-controls="panelsStayOpen-B_default_value">
@@ -747,7 +747,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ZONE 4 / Confirmation Account -->
+		<!-- ZONE 4 / Third Party Services -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_confirmation_account">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_confirmation_account" aria-expanded="false" aria-controls="panelsStayOpen-B_confirmation_account">
@@ -840,7 +840,62 @@
 				</div>
 			</div>
 		</div>
-		<!-- ZONE 5 / Miscellaneous -->
+		<!-- ZONE 5 / Widgets -->
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="panelsStayOpen-H_widget_settings">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_widget_settings" aria-expanded="false" aria-controls="panelsStayOpen-B_widget_settings">
+				<?= __("Widgets");?></button>
+			</h2>
+			<div id="panelsStayOpen-B_widget_settings" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-H_widget_settings">
+				<div class="accordion-body">
+					<div class="row">
+						<!-- On-Air Widget Settings -->
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?= __("On-Air widget"); ?></div>
+								<div class="card-body">
+									<div class="mb-3">
+										<label><?= __("Enabled"); ?></label>
+										<?php if(!isset($on_air_widget_enabled)) { $on_air_widget_enabled='false'; }?>
+										<select class="form-select" name="on_air_widget_enabled" id="on_air_widget_enabled">
+											<option value="false" <?php if ($on_air_widget_enabled == "false") { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
+											<option value="true" <?php if ($on_air_widget_enabled == "true") { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
+										</select>
+										<small class="form-text text-muted">
+											<?= sprintf(__("Note: In order to use this widget, you need to have at least one CAT radio configured and working.")); ?>
+											<?php if (isset($on_air_widget_url)) {
+												// when adding user, the $on_air_widget_url url is not yet availalable, hence the if condition here 
+												print("<br>");
+												printf(__("When enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
+											} ?>
+										</small>
+									</div>
+									<div class="mb-3">
+										<label><?= __('Display "Last seen" time'); ?></label>
+										<?php if(!isset($on_air_widget_display_last_seen)) { $on_air_widget_display_last_seen='false'; }?>
+										<select class="form-select" name="on_air_widget_display_last_seen" id="on_air_widget_display_last_seen">
+											<option value="false" <?php if ($on_air_widget_display_last_seen == "false") { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
+											<option value="true" <?php if ($on_air_widget_display_last_seen == "true") { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
+										</select>
+										<small class="form-text text-muted"><?= __("This setting control whether the 'Last seen' time is displayed in widget or not."); ?></small>
+									</div>
+									<div class="mb-3">
+										<label><?= __("Display only most recently updated radio"); ?></label>
+										<?php if(!isset($on_air_widget_show_only_most_recent_radio)) { $on_air_widget_show_only_most_recent_radio='true'; }?>
+										<select class="form-select" name="on_air_widget_show_only_most_recent_radio" id="on_air_widget_show_only_most_recent_radio">
+										<option value="true" <?php if ($on_air_widget_show_only_most_recent_radio == "true") { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
+										<option value="false" <?php if ($on_air_widget_show_only_most_recent_radio == "false") { echo 'selected="selected"'; } ?>><?= __("No, show all radios"); ?></option>
+										</select>
+										<small class="form-text text-muted"><?= __("If you have multiple CAT radios configured, this setting controls whether the widget should display all on-air radios of the user, or just the most recently updated one. In case you have only one radio, this setting has no effect."); ?></small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ZONE 6 / Miscellaneous -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_miscellaneous">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_miscellaneous" aria-expanded="false" aria-controls="panelsStayOpen-B_miscellaneous">
