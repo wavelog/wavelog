@@ -110,6 +110,7 @@ class Satellite_model extends CI_Model {
 	function satellite_data() {
 		$this->db->select('COALESCE(NULLIF(satellite.name, \'\'), satellite.displayname) AS satellite, satellitemode.name AS satmode, satellitemode.uplink_mode AS Uplink_Mode, satellitemode.uplink_freq AS Uplink_Freq, satellitemode.downlink_mode AS Downlink_Mode, satellitemode.downlink_freq AS Downlink_Freq');
 		$this->db->join('satellitemode', 'satellite.id = satellitemode.satelliteid', 'LEFT OUTER');
+		$this->db->order_by('satellite', 'ASC');
 		$query = $this->db->get('satellite');
 		return $query->result();
 	}
