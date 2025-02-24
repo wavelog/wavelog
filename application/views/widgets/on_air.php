@@ -1,6 +1,6 @@
-<!-- 
- 
-This is an On-Air widget to place in your QRZ.com Bio or somewhere else. 
+<!--
+
+This is an On-Air widget to place in your QRZ.com Bio or somewhere else.
 
 To use this widget insert this Element:
 
@@ -69,14 +69,15 @@ To use this widget insert this Element:
         <div class="left-column">
             <img class="widgetLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo', $theme); ?>.png" alt="Logo" />
         </div>
+        <?php if (!isset($error)) { ?>
         <div class="right-column">
             <div class="top-right">
                 <p class="<?= $text_size_class ?>">
-                    <?php 
+                    <?php
                         if ($is_on_air === true) {
-                            printf("%s is ON-AIR", $user_callsign); 
+                            printf("%s is ON-AIR", $user_callsign);
                         } else {
-                            printf("%s is OFF-AIR", $user_callsign); 
+                            printf("%s is OFF-AIR", $user_callsign);
                         }
                     ?>
                 </p>
@@ -92,9 +93,19 @@ To use this widget insert this Element:
                     <p class="<?= $text_size_class ?>">
                         <?= sprintf($last_seen_text); ?>
                     </p>
-                <?php } ?>                
+                <?php } ?>
             </div>
         </div>
+     <?php } else { ?>
+        <div class="right-column">
+            <div class="top-right">
+                <p class="<?= $text_size_class ?>"><?= __("Error") ?></p>
+            </div>
+            <div class="bottom-right mt-3">
+                <p class="<?= $text_size_class ?>"><?= $error ?></p>
+           </div>
+        </div>
+     <?php } ?>
     </div>
 </body>
 
