@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
-	
+
 	Widgets are designed to be addons to use around the internet.
-		
+
 */
 
 class Widgets extends CI_Controller {
@@ -12,8 +12,8 @@ class Widgets extends CI_Controller {
 	{
 		// Show a help page
 	}
-	
-	
+
+
 	// Can be used to embed last 11 QSOs in a iframe or javascript include.
 	public function qsos($logbook_slug = null) {
 
@@ -41,7 +41,7 @@ class Widgets extends CI_Controller {
 			}
 
 			$data['last_qsos_list'] = $this->logbook_model->get_last_qsos(15, $logbooks_locations_array);
-			
+
 			$this->load->view('widgets/qsos', $data);
 		}
 	}
@@ -49,7 +49,7 @@ class Widgets extends CI_Controller {
 	public function oqrs($user_callsign = 'CALL MISSING') {
 		$this->load->model('oqrs_model');
 		$stations = $this->oqrs_model->get_oqrs_stations();
-	
+
 		if ($stations->result() === NULL) {
 			show_404(__("No stations found that are using Wavelog OQRS."));
 			return;
@@ -68,7 +68,7 @@ class Widgets extends CI_Controller {
 		} else {
 			$data['theme'] = $this->config->item('option_theme');
 		}
-	
+
 		$data['user_callsign'] = strtoupper($this->security->xss_clean($user_callsign));
 		$this->load->view('widgets/oqrs', $data);
 	}
@@ -91,10 +91,10 @@ class Widgets extends CI_Controller {
 			show_404($e->getMessage());
 			return;
 		}
-		
-		$user_id = $user->user_id;		
+
+		$user_id = $user->user_id;
 		$widget_options = $this->get_on_air_widget_options($user_id);
-		
+
 		if ($widget_options->is_enabled === false) {
 			show_404(__("User has on-air widget disabled"));
 			return;
@@ -102,6 +102,13 @@ class Widgets extends CI_Controller {
 
 		$this->load->model('cat');
 		$query = $this->cat->status_for_user_id($user_id);
+
+		// determine theme
+		$theme = $this->input->get('theme', true) ?? $this->config->item('option_theme');
+
+		// determine text size
+		$text_size = $this->input->get('text_size', true) ?? 1;
+
 
 		if ($query->num_rows() > 0) {
 			$radio_timeout_seconds = $this->get_radio_timeout_seconds();
@@ -112,7 +119,7 @@ class Widgets extends CI_Controller {
 			foreach ($query->result() as $radio_data) {
 				// There can be multiple radios online, we need to take into account all of them
 				$radio_updated_ago_minutes = $this->calculate_radio_updated_ago_minutes($radio_data->timestamp);
-				
+
 				if ($radio_updated_ago_minutes > $cat_timeout_interval_minutes) {
 					// Radio was updated too long ago - calculate user's "last seen X days ago" value
 					$mins_per_day = 1440;
@@ -127,26 +134,21 @@ class Widgets extends CI_Controller {
 				}
 			}
 
-			// determine theme
-			$theme = $this->input->get('theme', true) ?? $this->config->item('option_theme');
-			$data['theme'] = $theme;
-			
-			// determine text size 
-			$text_size = $this->input->get('text_size', true) ?? 1;
-			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
-
 			if (count($radios_online) > 1 && $widget_options->display_only_most_recent_radio) {
 				// in case only most recent radio should be displayed, use only most recently updated radio as a result
 				usort($radios_online, function($radio_a, $radio_b) {
 					if ($radio_a->updated_at == $radio_b->updated_at) return 0;
   					return ($radio_a->updated_at > $radio_b->updated_at) ? -1 : 1;
 				});
-				
+
 				$radios_online = [$radios_online[0]];
 			}
 
 			// last seen text
 			$last_seen_text = $widget_options->display_last_seen ? $this->prepare_last_seen_text($last_seen_days_ago) : null;
+
+			$data['theme'] = $theme;
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 
 			// prepare rest of the data for UI
 			$data['user_callsign'] = strtoupper($user->user_callsign);
@@ -157,10 +159,12 @@ class Widgets extends CI_Controller {
 			$this->load->view('widgets/on_air', $data);
 
 		} else {
-			show_error(
-				__("No CAT interfaced radios found. You need to have at least one radio interface configured.")
-			);
-			return;
+			$theme = $this->input->get('theme', true) ?? $this->config->item('option_theme');
+			$data['theme'] = $theme;
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['user_callsign'] = strtoupper($user->user_callsign);
+			$data['error'] = __("No CAT interfaced radios found. You need to have at least one radio interface configured.");
+			$this->load->view('widgets/on_air', $data);
 		}
 	}
 
@@ -171,7 +175,7 @@ class Widgets extends CI_Controller {
 	 */
 	private function get_on_air_widget_options($user_id) {
 		$raw_widget_options = $this->user_options_model->get_options('widget', null, $user_id)->result_array();
-		
+
 		// default values
 		$options = new \stdClass();
 		$options->is_enabled = false;
