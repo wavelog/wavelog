@@ -289,7 +289,7 @@ class Widgets extends CI_Controller {
 	private function prepare_last_seen_text($last_seen_days_ago) {
 		if ($last_seen_days_ago === 0) {
 			return "Last seen less than a day ago";
-		} 
+		}
 		if ($last_seen_days_ago === 1) {
 			return "Last seen yesterday";
 		}
