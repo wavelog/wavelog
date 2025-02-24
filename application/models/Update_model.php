@@ -418,6 +418,10 @@ class Update_model extends CI_Model {
 					$this->db->update('satellite');
 					if ($this->db->affected_rows() > 0) {
 						$status = __('SAT already existing. LoTW status updated.');
+						$updateresult = $this->reset_lotw_qsl_fields($name, $existingSats["$name"][1]);
+						if ($updateresult > 0) {
+							$status .= ' '.sprintf(__('LoTW status for %s QSOs updated'), $updateresult);
+						}
 					} else {
 						$status = __('SAT already existing. Updating LoTW status failed.');
 					}
@@ -442,6 +446,12 @@ class Update_model extends CI_Model {
 				);
 				if ($this->db->insert('satellite', $data)) {
 					$status = __('New SAT. Inserted.');
+					if (array_key_exists($name, $existingSats)) {
+						$updateresult = $this->reset_lotw_qsl_fields($data['name'], $existingSats["$name"][1]);
+						if ($updateresult > 0) {
+							$status .= ' '.sprintf(__('LoTW status for %s QSOs updated'), $updateresult);
+						}
+					}
 				} else {
 					$status = __('New SAT. Insert failed.');
 				}
@@ -449,6 +459,16 @@ class Update_model extends CI_Model {
 			array_push($result, array('name' => $name, 'displayname' => $displayname, 'startDate' => $startDate, 'endDate' => $endDate, 'status' => $status));
 		}
 		return $result;
-	 }
+	}
+
+	function reset_lotw_qsl_fields($satname = null, $displayname = null) {
+		if (isset($satname) && $satname != '' && isset($displayname) && $displayname != '') {
+			$sql = "UPDATE ".$this->config->item('table_name')." SET COL_LOTW_QSL_SENT = 'N', COL_LOTW_QSL_RCVD = 'N', COL_LOTW_QSLSDATE = NULL, COL_LOTW_QSLRDATE = NULL, COL_SAT_NAME = ? WHERE COL_SAT_NAME = ? AND COL_PROP_MODE = 'SAT' AND COL_LOTW_QSL_SENT = 'I' AND COL_LOTW_QSL_RCVD = 'I';";
+			$this->db->query($sql, array($satname, $displayname));
+			return $this->db->affected_rows();
+		} else {
+			return 0;
+		}
+	}
 
 }
