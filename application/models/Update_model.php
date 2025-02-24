@@ -461,15 +461,8 @@ class Update_model extends CI_Model {
 
 	function reset_lotw_qsl_fields($satname = null) {
 		if (isset($satname) && $satname != '') {
-			$this->db->set('COL_LOTW_QSL_SENT', 'N');
-			$this->db->set('COL_LOTW_QSL_RCVD', 'N');
-			$this->db->set('COL_LOTW_QSLSDATE', null);
-			$this->db->set('COL_LOTW_QSLRDATE', null);
-			$this->db->where('COL_SAT_NAME', $satname);
-			$this->db->where('COL_PROP_MODE', 'SAT');
-			$this->db->where('COL_LOTW_QSL_SENT', 'I');
-			$this->db->where('COL_LOTW_QSL_RCVD', 'I');
-			$this->db->update($this->config->item('table_name'));
+			$sql = 'UPDATE '.$this->config->item('table_name').' SET COL_LOTW_QSL_SENT = \'N\', COL_LOTW_QSL_RCVD = \'N\', COL_LOTW_QSLSDATE = NULL, COL_LOTW_QSLRDATE = NULL WHERE COL_SAT_NAME = ? AND COL_PROP_MODE = \'SAT\' AND COL_LOTW_QSL_SENT = \'I\' AND COL_LOTW_QSL_RCVD = \'I\';';
+			$this->db->query($sql, $satname);
 			return $this->db->affected_rows();
 		} else {
 			return 0;
