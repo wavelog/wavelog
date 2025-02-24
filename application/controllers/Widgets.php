@@ -62,9 +62,14 @@ class Widgets extends CI_Controller {
 			$data['logo_url'] = 'https://github.com/wavelog/wavelog';
 		}
 
+		$this->load->model('themes_model');
 		$theme = $this->input->get('theme', TRUE);
 		if ($theme != null) {
-			$data['theme'] = $theme;
+			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
+				$data['theme'] = $theme;
+			} else {
+				$data['theme'] = $this->config->item('option_theme');
+			}
 		} else {
 			$data['theme'] = $this->config->item('option_theme');
 		}
@@ -81,13 +86,22 @@ class Widgets extends CI_Controller {
 	 */
 	public function on_air($user_slug = "") {
 		// determine theme
-		$theme = $this->input->get('theme', true) ?? $this->config->item('option_theme');
+		$this->load->model('themes_model');
+		$theme = $this->input->get('theme', TRUE);
+		if ($theme != null) {
+			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
+				$data['theme'] = $theme;
+			} else {
+				$data['theme'] = $this->config->item('option_theme');
+			}
+		} else {
+			$data['theme'] = $this->config->item('option_theme');
+		}
 
 		// determine text size
 		$text_size = $this->input->get('text_size', true) ?? 1;
 
 		if (empty($user_slug)) {
-			$data['theme'] = $theme;
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 			$data['error'] = __("User slug not specified");
 			$this->load->view('widgets/on_air', $data);
@@ -97,7 +111,6 @@ class Widgets extends CI_Controller {
 		try {
 			$user = $this->get_user_by_slug($user_slug);
 		} catch (\Exception $e) {
-			$data['theme'] = $theme;
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 			$data['error'] = __("User slug not specified");
 			$data['error'] = $e->getMessage();
@@ -109,7 +122,6 @@ class Widgets extends CI_Controller {
 		$widget_options = $this->get_on_air_widget_options($user_id);
 
 		if ($widget_options->is_enabled === false) {
-			$data['theme'] = $theme;
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 			$data['error'] = __("User has on-air widget disabled");
 			$this->load->view('widgets/on_air', $data);
@@ -157,7 +169,6 @@ class Widgets extends CI_Controller {
 			// last seen text
 			$last_seen_text = $widget_options->display_last_seen ? $this->prepare_last_seen_text($last_seen_days_ago) : null;
 
-			$data['theme'] = $theme;
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 
 			// prepare rest of the data for UI
@@ -169,8 +180,6 @@ class Widgets extends CI_Controller {
 			$this->load->view('widgets/on_air', $data);
 
 		} else {
-			$theme = $this->input->get('theme', true) ?? $this->config->item('option_theme');
-			$data['theme'] = $theme;
 			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
 			$data['user_callsign'] = strtoupper($user->user_callsign);
 			$data['error'] = __("No CAT interfaced radios found. You need to have at least one radio interface configured.");
