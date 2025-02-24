@@ -5,7 +5,7 @@
 # Fabian Berg <hb9hil@wavelog.org>, 2024.
 # Christian Egger <christian@hb9hjq.ch>, 2024.
 # Nikolas Hagelstein <nikolas.hagelstein@gmail.com>, 2024.
-# Jörg Dorgeist <wavelog@dj7nt.de>, 2024.
+# Jörg Dorgeist <wavelog@dj7nt.de>, 2024, 2025.
 # Florian Wolters <wavelog@df2et.de>, 2024.
 # Byt3 <falko@205er.de>, 2024.
 # Kim - DG9VH <kim.huebel@gmail.com>, 2024.
@@ -25,10 +25,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-02-23 13:29+0000\n"
-"PO-Revision-Date: 2025-02-24 12:06+0000\n"
-"Last-Translator: \"Sebastian K.\" <sebastian@sebastian-kettner.net>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2025-02-24 13:43+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2885,12 +2885,12 @@ msgstr "Keine Stationen gefunden, welche Wavelog OQRS benutzen."
 #: application/controllers/Widgets.php:106
 #: application/controllers/Widgets.php:115
 msgid "User slug not specified"
-msgstr ""
+msgstr "Kurz-URL nicht angegeben"
 
 #: application/controllers/Widgets.php:99
 #: application/controllers/Widgets.php:126
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "On-Air Widget wurde vom Nutzer deaktiviert"
 
 #: application/controllers/Widgets.php:161
 msgid ""
@@ -2903,12 +2903,12 @@ msgstr ""
 #: application/controllers/Widgets.php:240
 #: application/controllers/Widgets.php:264
 msgid "User not found by slug"
-msgstr ""
+msgstr "Nutzer nicht über Kurz-URL gefunden"
 
 #: application/controllers/Widgets.php:243
 #: application/controllers/Widgets.php:267
 msgid "Multiple users found by slug"
-msgstr ""
+msgstr "Mehrere Nutzer über Kurz-URL gefunden"
 
 #: application/libraries/Callbook.php:93
 msgid "QRZCQ Error"
@@ -13841,36 +13841,40 @@ msgstr "Widgets"
 
 #: application/views/user/edit.php:855
 msgid "On-Air widget"
-msgstr ""
+msgstr "On-Air Widget"
 
 #: application/views/user/edit.php:865
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
 msgstr ""
+"Hinweis: Wenn Du dieses Widget nutzen möchtest, solltest Du mindestens einen "
+"Transceiver via CAT konfiguriert haben."
 
 #: application/views/user/edit.php:869
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "Wenn diese Einstellung aktiviert ist, findest Du das Widget unter %s."
 
 #: application/views/user/edit.php:874
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "Zeige \"Zuletzt gesehen\"-Zeit an"
 
 #: application/views/user/edit.php:880
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
+"Mit dieser Einstellung kannst Du beeinflussen, ob die Zeit aus 'Zuletzt "
+"gesehen' im Widget angezeigt werden soll, oder nicht."
 
 #: application/views/user/edit.php:883
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "Zeige nur zuletzt aktualisierten CAT-Transceiver an"
 
 #: application/views/user/edit.php:887
 msgid "No, show all radios"
-msgstr ""
+msgstr "Nein, Zeige alle CAT-Transceiver"
 
 #: application/views/user/edit.php:889
 msgid ""
@@ -13879,6 +13883,10 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"Wenn Du mehrere CAT-Transceiver konfiguriert/in Nutzung hast, kannst Du hier "
+"einstellen ob alle angezeigt werden sollen, oder nur der TRX, der zuletzt "
+"geupdated wurde. Hast Du nur einen CAT-TRX, so hat diese Einstellung keinen "
+"Effekt."
 
 #: application/views/user/edit.php:902
 msgid "Miscellaneous"
