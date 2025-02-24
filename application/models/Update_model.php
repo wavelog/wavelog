@@ -463,7 +463,7 @@ class Update_model extends CI_Model {
 
 	function reset_lotw_qsl_fields($satname = null, $displayname = null) {
 		if (isset($satname) && $satname != '' && isset($displayname) && $displayname != '') {
-			$sql = 'UPDATE '.$this->config->item('table_name').' SET COL_LOTW_QSL_SENT = \'N\', COL_LOTW_QSL_RCVD = \'N\', COL_LOTW_QSLSDATE = NULL, COL_LOTW_QSLRDATE = NULL, COL_SAT_NAME = ? WHERE COL_SAT_NAME = ? AND COL_PROP_MODE = \'SAT\' AND COL_LOTW_QSL_SENT = \'I\' AND COL_LOTW_QSL_RCVD = \'I\';';
+			$sql = "UPDATE ".$this->config->item('table_name')." SET COL_LOTW_QSL_SENT = 'N', COL_LOTW_QSL_RCVD = 'N', COL_LOTW_QSLSDATE = NULL, COL_LOTW_QSLRDATE = NULL, COL_SAT_NAME = ? WHERE COL_SAT_NAME = ? AND COL_PROP_MODE = 'SAT' AND COL_LOTW_QSL_SENT = 'I' AND COL_LOTW_QSL_RCVD = 'I';";
 			$this->db->query($sql, array($satname, $displayname));
 			return $this->db->affected_rows();
 		} else {
