@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-23 13:29+0000\n"
-"PO-Revision-Date: 2025-02-18 22:37+0000\n"
+"POT-Creation-Date: 2025-02-24 12:06+0000\n"
+"PO-Revision-Date: 2025-02-24 12:06+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -2283,6 +2283,7 @@ msgstr "Niet toegestaan"
 #: application/controllers/Stationsetup.php:152
 #: application/controllers/Stationsetup.php:436
 #: application/views/qso/index.php:677 application/views/simplefle/index.php:39
+#: application/views/widgets/on_air.php:102
 msgid "Error"
 msgstr "Fout"
 
@@ -2862,27 +2863,30 @@ msgstr "Onbekende openbare pagina, controleer of de openbare slug correct is."
 msgid "No stations found that are using Wavelog OQRS."
 msgstr "Geen stations gevonden die Wavelog OQRS gebruiken."
 
-#: application/controllers/Widgets.php:84
+#: application/controllers/Widgets.php:106
+#: application/controllers/Widgets.php:115
 msgid "User slug not specified"
-msgstr ""
+msgstr "Gebruikersslug niet gespecificeerd"
 
-#: application/controllers/Widgets.php:99
+#: application/controllers/Widgets.php:126
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "Gebruiker heeft on-air widget uitgeschakeld"
 
-#: application/controllers/Widgets.php:161
+#: application/controllers/Widgets.php:185
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
 msgstr ""
+"Geen CAT-geïntegreerde radio's gevonden. Je moet ten minste één radio-"
+"interface geconfigureerd hebben."
 
-#: application/controllers/Widgets.php:240
+#: application/controllers/Widgets.php:264
 msgid "User not found by slug"
-msgstr ""
+msgstr "Gebruiker niet gevonden op basis van slug"
 
-#: application/controllers/Widgets.php:243
+#: application/controllers/Widgets.php:267
 msgid "Multiple users found by slug"
-msgstr ""
+msgstr "Meerdere gebruikers gevonden op basis van slug"
 
 #: application/libraries/Callbook.php:93
 msgid "QRZCQ Error"
@@ -13781,40 +13785,44 @@ msgstr ""
 
 #: application/views/user/edit.php:847
 msgid "Widgets"
-msgstr ""
+msgstr "Widgets"
 
 #: application/views/user/edit.php:855
 msgid "On-Air widget"
-msgstr ""
+msgstr "On-Air widget"
 
 #: application/views/user/edit.php:865
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
 msgstr ""
+"Opmerking: Om deze widget te gebruiken, moet je ten minste één CAT-radio "
+"geconfigureerd en werkend hebben."
 
 #: application/views/user/edit.php:869
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "Wanneer ingeschakeld, zal de widget beschikbaar zijn op %s."
 
 #: application/views/user/edit.php:874
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "Toon \"Laatst gezien\" tijd"
 
 #: application/views/user/edit.php:880
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
+"Met deze instelling bepaal je of de 'Laatst gezien' tijd in de widget wordt "
+"weergegeven of niet."
 
 #: application/views/user/edit.php:883
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "Toon alleen de meest recent bijgewerkte radio"
 
 #: application/views/user/edit.php:887
 msgid "No, show all radios"
-msgstr ""
+msgstr "Nee, toon alle radio's"
 
 #: application/views/user/edit.php:889
 msgid ""
@@ -13823,6 +13831,10 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"Als je meerdere CAT-radio's hebt geconfigureerd, bepaalt deze instelling of "
+"de widget alle actieve radio's van de gebruiker moet weergeven, of alleen de "
+"meest recent bijgewerkte. Als je slechts één radio hebt, heeft deze "
+"instelling geen effect."
 
 #: application/views/user/edit.php:902
 msgid "Miscellaneous"

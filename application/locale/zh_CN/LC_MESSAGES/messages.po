@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-23 13:29+0000\n"
-"PO-Revision-Date: 2025-02-19 07:02+0000\n"
+"POT-Creation-Date: 2025-02-24 12:06+0000\n"
+"PO-Revision-Date: 2025-02-24 12:06+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -2262,6 +2262,7 @@ msgstr "不允许"
 #: application/controllers/Stationsetup.php:152
 #: application/controllers/Stationsetup.php:436
 #: application/views/qso/index.php:677 application/views/simplefle/index.php:39
+#: application/views/widgets/on_air.php:102
 msgid "Error"
 msgstr "错误"
 
@@ -2815,27 +2816,28 @@ msgstr "公开页面有误，请确认公开标识符正确。"
 msgid "No stations found that are using Wavelog OQRS."
 msgstr "未找到启用 OQRS 的台站。"
 
-#: application/controllers/Widgets.php:84
+#: application/controllers/Widgets.php:106
+#: application/controllers/Widgets.php:115
 msgid "User slug not specified"
-msgstr ""
+msgstr "未指定用户标识"
 
-#: application/controllers/Widgets.php:99
+#: application/controllers/Widgets.php:126
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "用户禁用了 on-air 插件"
 
-#: application/controllers/Widgets.php:161
+#: application/controllers/Widgets.php:185
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
-msgstr ""
+msgstr "找不到CAT接口的电台。您需要至少配置一个电台接口。"
 
-#: application/controllers/Widgets.php:240
+#: application/controllers/Widgets.php:264
 msgid "User not found by slug"
-msgstr ""
+msgstr "通过标识未找到用户"
 
-#: application/controllers/Widgets.php:243
+#: application/controllers/Widgets.php:267
 msgid "Multiple users found by slug"
-msgstr ""
+msgstr "通过标识找到多个用户"
 
 #: application/libraries/Callbook.php:93
 msgid "QRZCQ Error"
@@ -13299,40 +13301,40 @@ msgstr ""
 
 #: application/views/user/edit.php:847
 msgid "Widgets"
-msgstr ""
+msgstr "插件"
 
 #: application/views/user/edit.php:855
 msgid "On-Air widget"
-msgstr ""
+msgstr "on-Air 插件"
 
 #: application/views/user/edit.php:865
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
-msgstr ""
+msgstr "注意：为了使用这个插件，你需要至少一个CAT电台设置并使其正常工作。"
 
 #: application/views/user/edit.php:869
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "当激活时，插件将可以从 %s 访问。"
 
 #: application/views/user/edit.php:874
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "展示 “上次出现” 时间"
 
 #: application/views/user/edit.php:880
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
-msgstr ""
+msgstr "这个设置控制是否在插件上显示 “上次出现” 时间。"
 
 #: application/views/user/edit.php:883
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "仅显示最近更新的电台"
 
 #: application/views/user/edit.php:887
 msgid "No, show all radios"
-msgstr ""
+msgstr "不，显示所有电台"
 
 #: application/views/user/edit.php:889
 msgid ""
@@ -13341,6 +13343,8 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"如果您配置了多个CAT无线电，则此设置控制小部件是否应显示用户的所有电台，还是仅"
+"显示最近更新的电台。如果您只有一个电台，则此设置无效。"
 
 #: application/views/user/edit.php:902
 msgid "Miscellaneous"
