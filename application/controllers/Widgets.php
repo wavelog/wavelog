@@ -64,7 +64,6 @@ class Widgets extends CI_Controller {
 
 		$this->load->model('themes_model');
 		$theme = $this->input->get('theme', TRUE);
-		log_message("Error",$this->themes_model->get_theme_mode($theme));
 		if ($theme != null) {
 			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
 				$data['theme'] = $theme;
@@ -89,7 +88,6 @@ class Widgets extends CI_Controller {
 		// determine theme
 		$this->load->model('themes_model');
 		$theme = $this->input->get('theme', TRUE);
-		log_message("Error",$this->themes_model->get_theme_mode($theme));
 		if ($theme != null) {
 			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
 				$data['theme'] = $theme;
