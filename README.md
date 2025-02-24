@@ -68,7 +68,7 @@ Wavelog-support can be reached by creating an issue here at github. If you've an
 
 Special thanks to our contributors, who are part of Wavelog by improving code!
 
-[F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce), [R1BLH](https://github.com/r1blh), [BG2ELG](https://github.com/violarulan), [DF1ASH](https://github.com/derFogel), [DB4SCW](https://github.com/DB4SCW), [VE2HEW](https://github.com/anthonydiiorio), [OK1GOD](https://github.com/filipmelik), [DJ1PW](https://github.com/winnieXY), [toseppo](https://github.com/toseppo), [N7DSB](https://github.com/desertblade), [BA7LAC](https://github.com/imlonghao), [AE4CE](https://github.com/ethancedwards8), [K1AF](https://github.com/patrickrb), [OE4BAM](https://github.com/MatykoBr), [HB9HJQ](https://github.com/zone11)
+[F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce), [R1BLH](https://github.com/r1blh), [BG2ELG](https://github.com/violarulan), [DF1ASH](https://github.com/derFogel), [DB4SCW](https://github.com/DB4SCW), [VE2HEW](https://github.com/anthonydiiorio), [OK1GOD](https://github.com/filipmelik), [DJ1PW](https://github.com/winnieXY), [toseppo](https://github.com/toseppo), [N7DSB](https://github.com/desertblade), [BA7LAC](https://github.com/imlonghao), [AE4CE](https://github.com/ethancedwards8), [K1AF](https://github.com/patrickrb), [OE4BAM](https://github.com/MatykoBr), [HB9HJQ](https://github.com/zone11), [R3DHX](https://github.com/AleksdemSA)
 
 Translators:
 
