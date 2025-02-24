@@ -80,15 +80,28 @@ class Widgets extends CI_Controller {
 	 * @return void
 	 */
 	public function on_air($user_slug = "") {
+		// determine theme
+		$theme = $this->input->get('theme', true) ?? $this->config->item('option_theme');
+
+		// determine text size
+		$text_size = $this->input->get('text_size', true) ?? 1;
+
 		if (empty($user_slug)) {
-			show_404(__("User slug not specified"));
+			$data['theme'] = $theme;
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['error'] = __("User slug not specified");
+			$this->load->view('widgets/on_air', $data);
 			return;
 		}
 
 		try {
 			$user = $this->get_user_by_slug($user_slug);
 		} catch (\Exception $e) {
-			show_404($e->getMessage());
+			$data['theme'] = $theme;
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['error'] = __("User slug not specified");
+			$data['error'] = $e->getMessage();
+			$this->load->view('widgets/on_air', $data);
 			return;
 		}
 
@@ -96,18 +109,15 @@ class Widgets extends CI_Controller {
 		$widget_options = $this->get_on_air_widget_options($user_id);
 
 		if ($widget_options->is_enabled === false) {
-			show_404(__("User has on-air widget disabled"));
+			$data['theme'] = $theme;
+			$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+			$data['error'] = __("User has on-air widget disabled");
+			$this->load->view('widgets/on_air', $data);
 			return;
 		}
 
 		$this->load->model('cat');
 		$query = $this->cat->status_for_user_id($user_id);
-
-		// determine theme
-		$theme = $this->input->get('theme', true) ?? $this->config->item('option_theme');
-
-		// determine text size
-		$text_size = $this->input->get('text_size', true) ?? 1;
 
 
 		if ($query->num_rows() > 0) {
@@ -165,6 +175,7 @@ class Widgets extends CI_Controller {
 			$data['user_callsign'] = strtoupper($user->user_callsign);
 			$data['error'] = __("No CAT interfaced radios found. You need to have at least one radio interface configured.");
 			$this->load->view('widgets/on_air', $data);
+			return;
 		}
 	}
 
