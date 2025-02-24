@@ -418,7 +418,7 @@ class Update_model extends CI_Model {
 					$this->db->update('satellite');
 					if ($this->db->affected_rows() > 0) {
 						$status = __('SAT already existing. LoTW status updated.');
-						$updateresult = $this->reset_lotw_qsl_fields($name);
+						$updateresult = $this->reset_lotw_qsl_fields($name, $existingSats["$name"][1]);
 						if ($updateresult > 0) {
 							$status .= ' '.sprintf(__('LoTW status for %s QSOs updated'), $updateresult);
 						}
@@ -446,9 +446,11 @@ class Update_model extends CI_Model {
 				);
 				if ($this->db->insert('satellite', $data)) {
 					$status = __('New SAT. Inserted.');
-					$updateresult = $this->reset_lotw_qsl_fields($data['name']);
-					if ($updateresult > 0) {
-						$status .= ' '.sprintf(__('LoTW status for %s QSOs updated'), $updateresult);
+					if (array_key_exists($name, $existingSats)) {
+						$updateresult = $this->reset_lotw_qsl_fields($data['name'], $existingSats["$name"][1]);
+						if ($updateresult > 0) {
+							$status .= ' '.sprintf(__('LoTW status for %s QSOs updated'), $updateresult);
+						}
 					}
 				} else {
 					$status = __('New SAT. Insert failed.');
@@ -459,10 +461,10 @@ class Update_model extends CI_Model {
 		return $result;
 	}
 
-	function reset_lotw_qsl_fields($satname = null) {
-		if (isset($satname) && $satname != '') {
-			$sql = 'UPDATE '.$this->config->item('table_name').' SET COL_LOTW_QSL_SENT = \'N\', COL_LOTW_QSL_RCVD = \'N\', COL_LOTW_QSLSDATE = NULL, COL_LOTW_QSLRDATE = NULL WHERE COL_SAT_NAME = ? AND COL_PROP_MODE = \'SAT\' AND COL_LOTW_QSL_SENT = \'I\' AND COL_LOTW_QSL_RCVD = \'I\';';
-			$this->db->query($sql, $satname);
+	function reset_lotw_qsl_fields($satname = null, $displayname = null) {
+		if (isset($satname) && $satname != '' && isset($displayname) && $displayname != '') {
+			$sql = 'UPDATE '.$this->config->item('table_name').' SET COL_LOTW_QSL_SENT = \'N\', COL_LOTW_QSL_RCVD = \'N\', COL_LOTW_QSLSDATE = NULL, COL_LOTW_QSLRDATE = NULL, COL_SAT_NAME = ? WHERE COL_SAT_NAME = ? AND COL_PROP_MODE = \'SAT\' AND COL_LOTW_QSL_SENT = \'I\' AND COL_LOTW_QSL_RCVD = \'I\';';
+			$this->db->query($sql, array($satname, $displayname));
 			return $this->db->affected_rows();
 		} else {
 			return 0;
