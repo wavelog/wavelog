@@ -1254,7 +1254,23 @@ function testTimeOffConsistency() {
 	return true;
 }
 
+function panMap(stationProfileIndex) {
+	$.ajax({
+		url: base_url + 'index.php/station/stationProfileCoords/'+stationProfileIndex,
+		type: 'get',
+		success: function(data) {
+			result = JSON.parse(data);
+			if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+				mymap.panTo([result[0], result[1]]);
+			}
+		},
+		error: function() {
+		},
+	});
+}
+
 $(document).ready(function () {
+
 	qrg_inputtype();
 	clearTimeout();
 	set_timers();
