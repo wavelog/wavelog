@@ -1,6 +1,7 @@
 <script>
     var lang_days_with_qso_short = "<?= __("Days with QSOs"); ?>";
     var lang_qsos_this_weekday = "<?= __('Number of QSOs for this day of the week'); ?>";
+    var lang_qsos_this_month = "<?= __('Number of QSOs for this month of the year'); ?>";
 </script>
 
 <div class="container">
