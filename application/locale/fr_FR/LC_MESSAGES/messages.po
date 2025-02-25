@@ -8,12 +8,13 @@
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024, 2025.
 # F4JSU <f4jsu.radio@gmail.com>, 2024, 2025.
 # Christian Egger <zone11@mac.com>, 2025.
+# remy56k <remy@bubocode.fr>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-25 10:58+0000\n"
-"PO-Revision-Date: 2025-02-01 10:12+0000\n"
-"Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
+"POT-Creation-Date: 2025-02-24 12:06+0000\n"
+"PO-Revision-Date: 2025-02-25 06:19+0000\n"
+"Last-Translator: remy56k <remy@bubocode.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
 "Language: fr_FR\n"
@@ -2836,11 +2837,13 @@ msgstr ""
 "hachage de sécurité. Veuillez vous reconnecter."
 
 #: application/controllers/User.php:1604
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"Vous avez été déconnecté du compte %s. Content de vous revoir, %s, sur votre "
+"compte personnel !"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
@@ -2877,13 +2880,15 @@ msgstr ""
 
 #: application/controllers/Widgets.php:126
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "L'utilisateur a désactivé le widget \"on-air\" (en direct)"
 
 #: application/controllers/Widgets.php:185
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
 msgstr ""
+"Aucune radio interfacée via CAT n'a été trouvée. Vous devez avoir au moins "
+"une interface de radio configurée."
 
 #: application/controllers/Widgets.php:264
 msgid "User not found by slug"
@@ -3030,7 +3035,7 @@ msgstr "HRDlog : Aucun profil de station avec les identifiants HRDlog trouvé."
 
 #: application/models/Logbook_model.php:1212
 msgid "Station ID not allowed"
-msgstr ""
+msgstr "ID de station non autorisé"
 
 #: application/models/Logbook_model.php:1217
 msgid "No Call given"
@@ -3038,8 +3043,9 @@ msgstr ""
 
 #: application/models/Logbook_model.php:1446
 msgid "DXCC has to be Numeric"
-msgstr ""
+msgstr "Le DXCC doit être un nombre"
 
+#: application/models/Logbook_model.php:3908
 #: application/models/Logbook_model.php:3910
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3047,15 +3053,18 @@ msgstr ""
 "Indicatif d'appel de station incorrect %s lors de l'importation du QSO avec "
 "%s pour %s : IGNORÉ"
 
+#: application/models/Logbook_model.php:3909
 #: application/models/Logbook_model.php:3911
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Vérifie %s pour des indices sur les erreurs dans les fichiers ADIF."
 
+#: application/models/Logbook_model.php:3921
 #: application/models/Logbook_model.php:3923
 msgid "QSO on"
 msgstr "QSO en"
 
+#: application/models/Logbook_model.php:3921
 #: application/models/Logbook_model.php:3923
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3064,62 +3073,75 @@ msgstr ""
 "Vous avez essayé d'importer un QSO sans indicatif donné. Ce QSO n'a pas été "
 "importé. Il est invalide"
 
+#: application/models/Logbook_model.php:4220
 #: application/models/Logbook_model.php:4222
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrdate est invalide (AAAAMMJJ)"
 
+#: application/models/Logbook_model.php:4231
 #: application/models/Logbook_model.php:4233
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslsdate est invalide (AAAAMMJJ)"
 
+#: application/models/Logbook_model.php:4292
 #: application/models/Logbook_model.php:4294
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
+#: application/models/Logbook_model.php:4312
 #: application/models/Logbook_model.php:4314
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslrdate est invalide (AAAAMMJJ)"
 
+#: application/models/Logbook_model.php:4333
 #: application/models/Logbook_model.php:4335
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslsdate est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4616
+#: application/models/Logbook_model.php:4614
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4616
 msgid "Duplicate for"
 msgstr "Dupliquer pour"
 
+#: application/models/Logbook_model.php:4675
 #: application/models/Logbook_model.php:4677
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
+#: application/models/Logbook_model.php:4681
 #: application/models/Logbook_model.php:4683
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4686
 #: application/models/Logbook_model.php:4688
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
+#: application/models/Logbook_model.php:4689
 #: application/models/Logbook_model.php:4691
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
+#: application/models/Logbook_model.php:4692
 #: application/models/Logbook_model.php:4694
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
+#: application/models/Logbook_model.php:4695
 #: application/models/Logbook_model.php:4697
 msgid "unconfirmed"
 msgstr "non confirmé"
 
-#: application/models/Logbook_model.php:4700
+#: application/models/Logbook_model.php:4698
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4700
 msgid "unknown"
 msgstr "inconnu"
 
-#: application/models/Logbook_model.php:5523
+#: application/models/Logbook_model.php:5521
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3130,6 +3152,7 @@ msgstr "inconnu"
 #: application/views/user/edit.php:314 application/views/user/edit.php:337
 #: application/views/user/edit.php:362
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5523
 msgid "Bearing"
 msgstr "Azimut"
 
@@ -4057,7 +4080,7 @@ msgstr "Sélectionner une Localisation"
 
 #: application/views/adif/import.php:82
 msgid "Type in the operators callsign of the imported QSOs"
-msgstr ""
+msgstr "Saisir l'indicatif d'appel de l'opérateur des QSOs importés"
 
 #: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
@@ -5798,20 +5821,6 @@ msgstr "Continent"
 msgid "WAE Award"
 msgstr ""
 
-#: application/views/awards/wae/index.php:8
-msgid ""
-"The oldest and most renowned of all DARC certificates is awarded for "
-"contacts with amateur radio stations in European countries and on islands "
-"listed in the WAE country list on different bands."
-msgstr ""
-
-#: application/views/awards/wae/index.php:9
-msgid ""
-"The WAE will be issued in the following modes: CW, SSB, Phone, RTTY, FT8,  "
-"Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
-"I, WAE TOP and the WAE Trophy."
-msgstr ""
-
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
 msgstr "Nom WAE"
@@ -5873,12 +5882,18 @@ msgid "WAS Award"
 msgstr "Diplome WAS"
 
 #: application/views/awards/was/index.php:21
+#, fuzzy
 msgid ""
 "ARRL's most popular award is the Worked All States Award. Thousands upon "
 "thousands of awards have been issued to hams around the world. In ARRL's "
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
+"La récompense la plus populaire de l'ARRL est le \"Worked All States "
+"Award\". Des milliers et des milliers de récompenses ont été décernées à des "
+"radioamateurs du monde entier. Pour sa 101e année, l'ARRL a repensé les "
+"certificats et le programme dans l'espoir de rationaliser et d'améliorer le "
+"programme de récompenses."
 
 #: application/views/awards/was/index.php:22
 msgid ""
@@ -6042,11 +6057,11 @@ msgstr "Message"
 
 #: application/views/bandmap/list.php:126
 msgid "Last Worked"
-msgstr ""
+msgstr "Dernière activité"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr "Nom de la bande (ex.: 20m)"
+msgstr "Nom de la bande (ex. : 20m)"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:61
@@ -6055,7 +6070,7 @@ msgstr "Groupe de Bandes"
 
 #: application/views/bands/create.php:31 application/views/bands/edit.php:13
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
-msgstr ""
+msgstr "Nom du groupe de bandes (ex. : hf, vhf, uhf, shf)"
 
 #: application/views/bands/create.php:34 application/views/bands/edit.php:16
 #: application/views/bands/index.php:62
@@ -6089,12 +6104,17 @@ msgid ""
 "Using the band list you can control which bands are shown when creating a "
 "new QSO."
 msgstr ""
+"En utilisant la liste des bandes, vous pouvez contrôler les bandes affichées "
+"lors de la création d'un nouveau QSO."
 
 #: application/views/bands/index.php:37
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
 msgstr ""
+"Les bandes actives seront affichées dans la liste déroulante «Bande» du QSO, "
+"tandis que les bandes inactives seront masquées et ne pourront pas être "
+"sélectionnées."
 
 #: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:392
 #: application/views/qso/index.php:255 application/views/qso/index.php:548
@@ -6120,7 +6140,7 @@ msgstr "WAS"
 
 #: application/views/bands/index.php:65
 msgid "QRG Unit"
-msgstr ""
+msgstr "Unité QRG"
 
 #: application/views/bands/index.php:98
 msgid "Hz"
@@ -6186,6 +6206,8 @@ msgstr "Résultats du concours CBR Mise à jour"
 msgid ""
 "Your contest QSOs have been updated using the values of your Cabrillo file."
 msgstr ""
+"Les QSOs de votre concours ont été mis à jour d'après les valeurs de votre "
+"fichier Cabrillo."
 
 #: application/views/cabrillo/cbr_success.php:19
 msgid "No QSOs were updated by your Cabrillo file."
@@ -8077,11 +8099,11 @@ msgstr ""
 
 #: application/views/distancerecords/index.php:20
 msgid "My Gridsquare"
-msgstr ""
+msgstr "Ma grille"
 
 #: application/views/distancerecords/index.php:21
 msgid "DX Gridsquare"
-msgstr ""
+msgstr "Grille DX"
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:31
@@ -8350,13 +8372,16 @@ msgstr ""
 
 #: application/views/eqsl/download.php:72
 msgid "View/Download"
-msgstr ""
+msgstr "Voir/Télécharger"
 
 #: application/views/eqsl/download.php:83 application/views/eqsl/import.php:54
 msgid ""
 "Wavelog will use the eQSL credentials from your Wavelog user profile to "
 "connect to eQSL and download confirmations."
 msgstr ""
+"Wavelog utilisera les informations d'authentification eQSL de votre profil "
+"utilisateur Wavelog pour se connecter à eQSL et télécharger les "
+"confirmations."
 
 #: application/views/eqsl/download.php:85
 msgid ""
@@ -8365,6 +8390,11 @@ msgid ""
 "to call this function several times depending on the amount of outstanding "
 "cards. This may run into a script timeout depending on the PHP configuration."
 msgstr ""
+"En raison d'une limite de débit d'environ 10 secondes par téléchargement "
+"d'image eQSL, l'appel de cette fonction prendra beaucoup de temps ! Vous "
+"devrez donc peut-être appeler cette fonction plusieurs fois en fonction du "
+"nombre de cartes en attente. Cela peut entraîner un dépassement de délai "
+"d'exécution du script en fonction de votre configuration PHP."
 
 #: application/views/eqsl/download.php:93
 msgid ""
@@ -8402,7 +8432,7 @@ msgstr ""
 
 #: application/views/eqsl/import.php:31
 msgid "Import from file..."
-msgstr ""
+msgstr "Importer depuis un fichier..."
 
 #: application/views/eqsl/import.php:34
 msgid "Download Inbox"
@@ -8414,6 +8444,8 @@ msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
 msgstr ""
+"Téléchargez le fichier ADIF exporté depuis eQSL depuis la page %s pour "
+"marquer les QSO comme confirmés sur eQSL."
 
 #: application/views/eqsl/import.php:35
 msgid "Choose Station(location) eQSL File belongs to:"
@@ -11082,17 +11114,17 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:471
 msgid "Other"
-msgstr ""
+msgstr "Autre"
 
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:472
 #: application/views/view_log/qso.php:153
 msgid "Short Path"
-msgstr ""
+msgstr "Chemin court"
 
 #: application/views/qso/edit_ajax.php:227 application/views/qso/index.php:473
 #: application/views/view_log/qso.php:156
 msgid "Long Path"
-msgstr ""
+msgstr "Chemin long"
 
 #: application/views/qso/edit_ajax.php:284
 msgid "Sat Name"
@@ -11892,7 +11924,7 @@ msgstr ""
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
-msgstr ""
+msgstr "Non contacté"
 
 #: application/views/search/search_result_ajax.php:424
 #: application/views/view_log/partial/log.php:142
@@ -13456,7 +13488,7 @@ msgstr ""
 
 #: application/views/user/edit.php:887
 msgid "No, show all radios"
-msgstr ""
+msgstr "Non, montrer toutes les radios"
 
 #: application/views/user/edit.php:889
 msgid ""
@@ -13465,6 +13497,10 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"Si vous avez configuré plusieurs radios avec du CAT, ce paramètre contrôle "
+"si le widget doit afficher toutes les radios en direct de l'utilisateur ou "
+"uniquement la dernière mise à jour. Si vous n'avez qu'une seule radio, ce "
+"paramètre n'a aucun effet."
 
 #: application/views/user/edit.php:902
 msgid "Miscellaneous"
@@ -14159,6 +14195,20 @@ msgstr "Soumettre la demande"
 #: application/views/widgets/qsos.php:32
 msgid "Rcvd"
 msgstr "Reçu"
+
+#: application/views/awards/wae/index.php:8
+msgid ""
+"The oldest and most renowned of all DARC certificates is awarded for "
+"contacts with amateur radio stations in European countries and on islands "
+"listed in the WAE country list on different bands."
+msgstr ""
+
+#: application/views/awards/wae/index.php:9
+msgid ""
+"The WAE will be issued in the following modes: CW, SSB, Phone, RTTY, FT8,  "
+"Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
+"I, WAE TOP and the WAE Trophy."
+msgstr ""
 
 #, php-format
 #~ msgid ""
