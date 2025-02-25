@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-02-24 12:06+0000\n"
 "PO-Revision-Date: 2025-02-25 06:19+0000\n"
 "Last-Translator: remy56k <remy@bubocode.fr>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/fr/>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3046,6 +3046,7 @@ msgid "DXCC has to be Numeric"
 msgstr "Le DXCC doit être un nombre"
 
 #: application/models/Logbook_model.php:3908
+#: application/models/Logbook_model.php:3910
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3053,15 +3054,18 @@ msgstr ""
 "%s pour %s : IGNORÉ"
 
 #: application/models/Logbook_model.php:3909
+#: application/models/Logbook_model.php:3911
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Vérifie %s pour des indices sur les erreurs dans les fichiers ADIF."
 
 #: application/models/Logbook_model.php:3921
+#: application/models/Logbook_model.php:3923
 msgid "QSO on"
 msgstr "QSO en"
 
 #: application/models/Logbook_model.php:3921
+#: application/models/Logbook_model.php:3923
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3070,57 +3074,70 @@ msgstr ""
 "importé. Il est invalide"
 
 #: application/models/Logbook_model.php:4220
+#: application/models/Logbook_model.php:4222
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4231
+#: application/models/Logbook_model.php:4233
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslsdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4292
+#: application/models/Logbook_model.php:4294
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4312
+#: application/models/Logbook_model.php:4314
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslrdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4333
+#: application/models/Logbook_model.php:4335
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslsdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4614
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4616
 msgid "Duplicate for"
 msgstr "Dupliquer pour"
 
 #: application/models/Logbook_model.php:4675
+#: application/models/Logbook_model.php:4677
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
 #: application/models/Logbook_model.php:4681
+#: application/models/Logbook_model.php:4683
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4686
+#: application/models/Logbook_model.php:4688
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
 #: application/models/Logbook_model.php:4689
+#: application/models/Logbook_model.php:4691
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
 #: application/models/Logbook_model.php:4692
+#: application/models/Logbook_model.php:4694
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
 #: application/models/Logbook_model.php:4695
+#: application/models/Logbook_model.php:4697
 msgid "unconfirmed"
 msgstr "non confirmé"
 
 #: application/models/Logbook_model.php:4698
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4700
 msgid "unknown"
 msgstr "inconnu"
 
@@ -3135,6 +3152,7 @@ msgstr "inconnu"
 #: application/views/user/edit.php:314 application/views/user/edit.php:337
 #: application/views/user/edit.php:362
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5523
 msgid "Bearing"
 msgstr "Azimut"
 
@@ -5870,8 +5888,8 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
-"La récompense la plus populaire de l'ARRL est le \"Worked All States Award\""
-". Des milliers et des milliers de récompenses ont été décernées à des "
+"La récompense la plus populaire de l'ARRL est le \"Worked All States "
+"Award\". Des milliers et des milliers de récompenses ont été décernées à des "
 "radioamateurs du monde entier. Pour sa 101e année, l'ARRL a repensé les "
 "certificats et le programme dans l'espoir de rationaliser et d'améliorer le "
 "programme de récompenses."
