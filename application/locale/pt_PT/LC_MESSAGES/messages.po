@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-02-25 14:28+0000\n"
-"PO-Revision-Date: 2025-02-19 19:29+0000\n"
+"PO-Revision-Date: 2025-02-26 17:16+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -2875,25 +2875,27 @@ msgstr "Não foram encontradas estações que estejam a utilizar o OQRS Wavelog.
 #: application/controllers/Widgets.php:106
 #: application/controllers/Widgets.php:115
 msgid "User slug not specified"
-msgstr ""
+msgstr "Slug do utilizador não especificado"
 
 #: application/controllers/Widgets.php:126
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "O utilizador tem o widget on-air desativado"
 
 #: application/controllers/Widgets.php:185
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
 msgstr ""
+"Não foram encontrados rádios com interface CAT. Precisa de ter pelo menos "
+"uma interface de rádio configurada."
 
 #: application/controllers/Widgets.php:264
 msgid "User not found by slug"
-msgstr ""
+msgstr "Utilizador não encontrado pelo slug"
 
 #: application/controllers/Widgets.php:267
 msgid "Multiple users found by slug"
-msgstr ""
+msgstr "Vários utilizadores encontrados pelo slug"
 
 #: application/libraries/Callbook.php:93
 msgid "QRZCQ Error"
@@ -5793,6 +5795,9 @@ msgid ""
 "contacts with amateur radio stations in European countries and on islands "
 "listed in the WAE country list on different bands."
 msgstr ""
+"O mais antigo e renomado de todos os certificados DARC é concedido por "
+"contactos com estações de rádio amador em países europeus e em ilhas "
+"listadas na lista de países WAE em diferentes bandas."
 
 #: application/views/awards/wae/index.php:9
 msgid ""
@@ -5800,6 +5805,9 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
+"O WAE será emitido nos seguintes modos: CW, SSB, Phone, RTTY, FT8, Digital e "
+"Modos Mistos. É emitido em cinco classes: WAE III, WAE II, WAE I, WAE TOP e "
+"o Troféu WAE."
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
@@ -7586,7 +7594,7 @@ msgstr "Número de contactos para este dia da semana"
 
 #: application/views/dayswithqso/index.php:4
 msgid "Number of QSOs for this month of the year"
-msgstr ""
+msgstr "Número de contactos para este mês do ano"
 
 #: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
@@ -13833,40 +13841,44 @@ msgstr ""
 
 #: application/views/user/edit.php:847
 msgid "Widgets"
-msgstr ""
+msgstr "Widgets"
 
 #: application/views/user/edit.php:855
 msgid "On-Air widget"
-msgstr ""
+msgstr "Widget On-Air"
 
 #: application/views/user/edit.php:865
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
 msgstr ""
+"Nota: Para utilizar este widget, é necessário ter pelo menos um rádio CAT "
+"configurado e a funcionar."
 
 #: application/views/user/edit.php:869
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "Quando ativado, o widget estará disponível em %s."
 
 #: application/views/user/edit.php:874
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "Exibir hora do \"visto por último\""
 
 #: application/views/user/edit.php:880
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
+"Esta configuração controla se o horário de 'Última vez visto' é exibido no "
+"widget ou não."
 
 #: application/views/user/edit.php:883
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "Exibir apenas o rádio atualizado mais recentemente"
 
 #: application/views/user/edit.php:887
 msgid "No, show all radios"
-msgstr ""
+msgstr "Não, mostra todos os rádios"
 
 #: application/views/user/edit.php:889
 msgid ""
@@ -13875,6 +13887,10 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"Se tiver múltiplos rádios CAT configurados, esta definição controla se o "
+"widget deve exibir todos os rádios no ar do utilizador, ou apenas o mais "
+"recentemente atualizado. No caso de ter apenas um rádio, esta definição não "
+"tem efeito."
 
 #: application/views/user/edit.php:902
 msgid "Miscellaneous"
