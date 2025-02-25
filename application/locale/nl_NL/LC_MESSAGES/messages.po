@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-25 10:58+0000\n"
+"POT-Creation-Date: 2025-02-25 14:28+0000\n"
 "PO-Revision-Date: 2025-02-24 12:06+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3188,8 +3188,8 @@ msgstr "Opgeteld aantal WAJA gewerkt"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:299
-#: application/views/dayswithqso/index.php:41
-#: application/views/dayswithqso/index.php:81
+#: application/views/dayswithqso/index.php:42
+#: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:19
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
@@ -3199,7 +3199,7 @@ msgstr "Jaar"
 
 #: application/views/accumulate/index.php:9
 #: application/views/accumulate/index.php:67
-#: application/views/dayswithqso/index.php:14
+#: application/views/dayswithqso/index.php:15
 msgid "Yearly"
 msgstr "Jaarlijks"
 
@@ -7571,96 +7571,100 @@ msgstr "VUCC-Grids"
 msgid "Number of QSOs for this day of the week"
 msgstr "Aantal QSO's voor deze dag van de week"
 
-#: application/views/dayswithqso/index.php:17
+#: application/views/dayswithqso/index.php:4
+msgid "Number of QSOs for this month of the year"
+msgstr ""
+
+#: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
 msgstr "Dagen van de week"
 
-#: application/views/dayswithqso/index.php:20
+#: application/views/dayswithqso/index.php:21
 msgid "Months of the year"
 msgstr "Maanden van het jaar"
 
-#: application/views/dayswithqso/index.php:23
+#: application/views/dayswithqso/index.php:24
 msgid "Streaks"
 msgstr "Reeks"
 
-#: application/views/dayswithqso/index.php:26
+#: application/views/dayswithqso/index.php:27
 msgid "QSOs of Year"
 msgstr "QSOs van het jaar"
 
-#: application/views/dayswithqso/index.php:34
+#: application/views/dayswithqso/index.php:35
 msgid "Number of days with QSOs each year"
 msgstr "Aantal dagen met QSOs elk jaar"
 
-#: application/views/dayswithqso/index.php:50
+#: application/views/dayswithqso/index.php:51
 msgid "Days"
 msgstr "Dagen"
 
-#: application/views/dayswithqso/index.php:66
+#: application/views/dayswithqso/index.php:67
 msgid "QSOs breakdown by day of the week"
 msgstr "QSOs per dag van de week"
 
-#: application/views/dayswithqso/index.php:72
+#: application/views/dayswithqso/index.php:73
 msgid "QSOs breakdown by month of the year"
 msgstr "QSOs per maand van het jaar"
 
-#: application/views/dayswithqso/index.php:86
+#: application/views/dayswithqso/index.php:87
 msgid "QSOs per Year"
 msgstr "QSOs per jaar"
 
-#: application/views/dayswithqso/index.php:94
+#: application/views/dayswithqso/index.php:95
 msgid "Less"
 msgstr "Minder"
 
-#: application/views/dayswithqso/index.php:99
+#: application/views/dayswithqso/index.php:100
 msgid "More"
 msgstr "Meer"
 
-#: application/views/dayswithqso/index.php:101
+#: application/views/dayswithqso/index.php:102
 msgid "Calendar with QSOs"
 msgstr "Kalender met QSO's"
 
-#: application/views/dayswithqso/index.php:110
+#: application/views/dayswithqso/index.php:111
 msgid "Longest streak with QSOs in the log"
 msgstr "Langste reeks met QSOs in het logboek"
 
-#: application/views/dayswithqso/index.php:111
+#: application/views/dayswithqso/index.php:112
 msgid "A maximum of the 10 longest streaks are shown!"
 msgstr "Er worden maximaal 10 van de langste reeksen getoond!"
 
-#: application/views/dayswithqso/index.php:129
+#: application/views/dayswithqso/index.php:130
 msgid "Streak (continuous days with QSOs)"
 msgstr "Reeks (aaneengesloten dagen met QSOs)"
-
-#: application/views/dayswithqso/index.php:130
-#: application/views/dayswithqso/index.php:158
-#: application/views/dayswithqso/index.php:180
-#: application/views/lotw/satupdate.php:7
-msgid "Start Date"
-msgstr "Startdatum"
 
 #: application/views/dayswithqso/index.php:131
 #: application/views/dayswithqso/index.php:159
 #: application/views/dayswithqso/index.php:181
 #: application/views/lotw/satupdate.php:7
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: application/views/dayswithqso/index.php:132
+#: application/views/dayswithqso/index.php:160
+#: application/views/dayswithqso/index.php:182
+#: application/views/lotw/satupdate.php:7
 #: application/views/timeline/index.php:202
 msgid "End Date"
 msgstr "Einddatum"
 
-#: application/views/dayswithqso/index.php:147
+#: application/views/dayswithqso/index.php:148
 msgctxt "Days with QSOs"
 msgid "No streak found!"
 msgstr "Geen reeks gevonden!"
 
-#: application/views/dayswithqso/index.php:151
+#: application/views/dayswithqso/index.php:152
 msgid "Current streak with QSOs in the log"
 msgstr "Huidige reeks met QSOs in het logboek"
 
-#: application/views/dayswithqso/index.php:157
-#: application/views/dayswithqso/index.php:179
+#: application/views/dayswithqso/index.php:158
+#: application/views/dayswithqso/index.php:180
 msgid "Current streak (continuous days with QSOs)"
 msgstr "Huidige reeks (aaneengesloten dagen met QSOs)"
 
-#: application/views/dayswithqso/index.php:174
+#: application/views/dayswithqso/index.php:175
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
@@ -7668,7 +7672,7 @@ msgstr ""
 "Als je vandaag een QSO maakt, kun je je reeks blijven verlengen... anders "
 "wordt je huidige reeks verbroken!"
 
-#: application/views/dayswithqso/index.php:195
+#: application/views/dayswithqso/index.php:196
 msgid "No current streak found!"
 msgstr "Geen huidige reeks gevonden!"
 

@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-02-25 10:58+0000\n"
+"POT-Creation-Date: 2025-02-25 14:28+0000\n"
 "PO-Revision-Date: 2025-02-24 12:06+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -3132,8 +3132,8 @@ msgstr "累计通联的 WAJA 数量"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:299
-#: application/views/dayswithqso/index.php:41
-#: application/views/dayswithqso/index.php:81
+#: application/views/dayswithqso/index.php:42
+#: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:19
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
@@ -3143,7 +3143,7 @@ msgstr "年"
 
 #: application/views/accumulate/index.php:9
 #: application/views/accumulate/index.php:67
-#: application/views/dayswithqso/index.php:14
+#: application/views/dayswithqso/index.php:15
 msgid "Yearly"
 msgstr "每年"
 
@@ -7338,102 +7338,106 @@ msgstr "VUCC 网格"
 msgid "Number of QSOs for this day of the week"
 msgstr "一周内每日通联QSO数"
 
-#: application/views/dayswithqso/index.php:17
+#: application/views/dayswithqso/index.php:4
+msgid "Number of QSOs for this month of the year"
+msgstr ""
+
+#: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
 msgstr "每周"
 
-#: application/views/dayswithqso/index.php:20
+#: application/views/dayswithqso/index.php:21
 msgid "Months of the year"
 msgstr "每月"
 
-#: application/views/dayswithqso/index.php:23
+#: application/views/dayswithqso/index.php:24
 msgid "Streaks"
 msgstr "通联连续记录"
 
-#: application/views/dayswithqso/index.php:26
+#: application/views/dayswithqso/index.php:27
 msgid "QSOs of Year"
 msgstr "今年的QSO"
 
-#: application/views/dayswithqso/index.php:34
+#: application/views/dayswithqso/index.php:35
 msgid "Number of days with QSOs each year"
 msgstr "本年QSO总数"
 
-#: application/views/dayswithqso/index.php:50
+#: application/views/dayswithqso/index.php:51
 msgid "Days"
 msgstr "天"
 
-#: application/views/dayswithqso/index.php:66
+#: application/views/dayswithqso/index.php:67
 msgid "QSOs breakdown by day of the week"
 msgstr "每周各天的通联数量统计"
 
-#: application/views/dayswithqso/index.php:72
+#: application/views/dayswithqso/index.php:73
 msgid "QSOs breakdown by month of the year"
 msgstr "每年各月的通联数量统计"
 
-#: application/views/dayswithqso/index.php:86
+#: application/views/dayswithqso/index.php:87
 msgid "QSOs per Year"
 msgstr "每年的QSO"
 
-#: application/views/dayswithqso/index.php:94
+#: application/views/dayswithqso/index.php:95
 msgid "Less"
 msgstr "少"
 
-#: application/views/dayswithqso/index.php:99
+#: application/views/dayswithqso/index.php:100
 msgid "More"
 msgstr "多"
 
-#: application/views/dayswithqso/index.php:101
+#: application/views/dayswithqso/index.php:102
 msgid "Calendar with QSOs"
 msgstr "QSO日历"
 
-#: application/views/dayswithqso/index.php:110
+#: application/views/dayswithqso/index.php:111
 msgid "Longest streak with QSOs in the log"
 msgstr "日志中最长QSO连续记录"
 
-#: application/views/dayswithqso/index.php:111
+#: application/views/dayswithqso/index.php:112
 msgid "A maximum of the 10 longest streaks are shown!"
 msgstr "最多显示 10 条最长 QSO 连续记录！"
 
-#: application/views/dayswithqso/index.php:129
+#: application/views/dayswithqso/index.php:130
 msgid "Streak (continuous days with QSOs)"
 msgstr "最长QSO连续记录"
-
-#: application/views/dayswithqso/index.php:130
-#: application/views/dayswithqso/index.php:158
-#: application/views/dayswithqso/index.php:180
-#: application/views/lotw/satupdate.php:7
-msgid "Start Date"
-msgstr "开始时间"
 
 #: application/views/dayswithqso/index.php:131
 #: application/views/dayswithqso/index.php:159
 #: application/views/dayswithqso/index.php:181
 #: application/views/lotw/satupdate.php:7
+msgid "Start Date"
+msgstr "开始时间"
+
+#: application/views/dayswithqso/index.php:132
+#: application/views/dayswithqso/index.php:160
+#: application/views/dayswithqso/index.php:182
+#: application/views/lotw/satupdate.php:7
 #: application/views/timeline/index.php:202
 msgid "End Date"
 msgstr "结束时间"
 
-#: application/views/dayswithqso/index.php:147
+#: application/views/dayswithqso/index.php:148
 msgctxt "Days with QSOs"
 msgid "No streak found!"
 msgstr "未找到连续记录！"
 
-#: application/views/dayswithqso/index.php:151
+#: application/views/dayswithqso/index.php:152
 msgid "Current streak with QSOs in the log"
 msgstr "目前的QSO连续记录"
 
-#: application/views/dayswithqso/index.php:157
-#: application/views/dayswithqso/index.php:179
+#: application/views/dayswithqso/index.php:158
+#: application/views/dayswithqso/index.php:180
 msgid "Current streak (continuous days with QSOs)"
 msgstr "当前连续天数"
 
-#: application/views/dayswithqso/index.php:174
+#: application/views/dayswithqso/index.php:175
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
 msgstr "如果你今天进行了QSO，那么就能延长你的连续天数，否则将会被打破清零！"
 
-#: application/views/dayswithqso/index.php:195
+#: application/views/dayswithqso/index.php:196
 msgid "No current streak found!"
 msgstr "没有找到连续的天数！"
 
