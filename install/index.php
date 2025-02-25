@@ -12,8 +12,19 @@ HB9HIL - Big UX and backend upgrade - July 2024
 require_once('includes/install_config/install_lib.php');
 $http_scheme = is_https() ? "https" : "http";
 
+
+/* Mod for reverse proxy handling -
+ it needs proxy_set_header X-Request-URI $request; in rev-proxy setting
+*/
+
+if ($_SERVER['HTTP_X_REQUEST_URI']) {
+	$extdirectory = ltrim(str_replace('/install', '', dirname($_SERVER['HTTP_X_REQUEST_URI'])), '/');
+    } else {
+	$extdirectory = ltrim(str_replace('/install', '', dirname($_SERVER['SCRIPT_NAME'])), '/');
+    }
+
 $directory = ltrim(str_replace('/install', '', dirname($_SERVER['SCRIPT_NAME'])), '/');
-$base_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . ($directory !== '' ? '/' . $directory : '') . '/';
+$base_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . ($extdirectory !== '' ? '/' . $extdirectory : '') . '/';
 
 if (!file_exists('.lock') && !file_exists('../application/config/config.php') && !file_exists('../application/config/docker/config.php')) {
 
