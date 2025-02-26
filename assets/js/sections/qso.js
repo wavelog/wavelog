@@ -506,6 +506,7 @@ $('#btn_fullreset').on("click", function () {
 
 function reset_to_default() {
 	reset_fields();
+	panMap(activeStationId);
 	$("#stationProfile").val(activeStationId);
 	$("#selectPropagation").val("");
 	$("#frequency_rx").val("");
