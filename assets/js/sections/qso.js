@@ -1272,7 +1272,6 @@ function panMap(stationProfileIndex) {
 }
 
 $(document).ready(function () {
-
 	qrg_inputtype();
 	clearTimeout();
 	set_timers();
