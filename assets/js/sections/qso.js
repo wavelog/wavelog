@@ -1262,6 +1262,7 @@ function panMap(stationProfileIndex) {
 			result = JSON.parse(data);
 			if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
 				mymap.panTo([result[0], result[1]]);
+				pos = result;
 			}
 		},
 		error: function() {
