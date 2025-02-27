@@ -601,6 +601,21 @@ class Stations extends CI_Model {
 		if (($station_lat!=0)&&($station_lng!=0)) { $_jsonresult = array('lat'=>$station_lat,'lng'=>$station_lng,'html'=>$station_active->station_gridsquare,'label'=>$station_active->station_profile_name,'icon'=>'stationIcon'); }
 		return (count($_jsonresult)>0)?(array('station'=>$_jsonresult)):array();
 	}
+
+	public function lookupProfileCoords($stationid) {
+		$sql = "SELECT station_gridsquare FROM station_profile WHERE station_id = ?;";
+		$query = $this->db->query($sql, $stationid);
+		if ($query->num_rows() == 1) {
+			$row = $query->row();
+			if ($row->station_gridsquare != '') {
+				if (!$this->load->is_loaded('Qra')) {
+					$this->load->library('Qra');
+				}
+				return $this->qra->qra2latlong($row->station_gridsquare);
+			}
+		}
+		return false;
+	}
 }
 
 ?>

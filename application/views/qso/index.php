@@ -305,7 +305,7 @@
           <div class="tab-pane fade" id="station" role="tabpanel" aria-labelledby="station-tab">
             <div class="mb-3">
               <label for="stationProfile"><?= __("Station Location"); ?></label>
-              <select id="stationProfile" class="form-select" name="station_profile">
+              <select id="stationProfile" class="form-select" name="station_profile" onChange="panMap(this.value);">
                 <?php
                    $power = '';
                       foreach ($stations->result() as $stationrow) {

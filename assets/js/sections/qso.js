@@ -506,6 +506,7 @@ $('#btn_fullreset').on("click", function () {
 
 function reset_to_default() {
 	reset_fields();
+	panMap(activeStationId);
 	$("#stationProfile").val(activeStationId);
 	$("#selectPropagation").val("");
 	$("#frequency_rx").val("");
@@ -1252,6 +1253,22 @@ function testTimeOffConsistency() {
 		return false;
 	}
 	return true;
+}
+
+function panMap(stationProfileIndex) {
+	$.ajax({
+		url: base_url + 'index.php/station/stationProfileCoords/'+stationProfileIndex,
+		type: 'get',
+		success: function(data) {
+			result = JSON.parse(data);
+			if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+				mymap.panTo([result[0], result[1]]);
+				pos = result;
+			}
+		},
+		error: function() {
+		},
+	});
 }
 
 $(document).ready(function () {
