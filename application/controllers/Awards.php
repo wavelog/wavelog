@@ -1917,7 +1917,7 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	public function wae ()	{
+	public function wae () {
 		$this->load->model('wae');
 		$this->load->model('modes');
 		$this->load->model('bands');
@@ -1995,4 +1995,15 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
+	public function seven3on73 () {
+
+		// Grab all worked stations on AO-73
+		$this->load->model('Seven3on73');
+		$data['seven3on73_array'] = $this->Seven3on73->get_all();
+
+		$data['page_title'] = sprintf(__("Awards - %s"), __("73 on 73"));
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/73on73/index');
+		$this->load->view('interface_assets/footer');
+	}
 }
