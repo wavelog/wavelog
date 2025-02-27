@@ -892,6 +892,25 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<!-- QSOs Widget Settings -->
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?= __("QSOs widget"); ?></div>
+								<div class="card-body">
+									<div class="mb-3">
+										<label><?= __('Display exact QSO time'); ?></label>
+										<?php if(!isset($qso_widget_display_qso_time)) { $qso_widget_display_qso_time='false'; }?>
+										<select class="form-select" name="qso_widget_display_qso_time" id="qso_widget_display_qso_time">
+											<option value="false" <?php if ($qso_widget_display_qso_time == "false") { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
+											<option value="true" <?php if ($qso_widget_display_qso_time == "true") { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
+										</select>
+										<small class="form-text text-muted"><?= __("This setting control whether exact QSO time should displayed in the QSO widget or not."); ?></small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

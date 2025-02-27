@@ -188,6 +188,19 @@ class Logbooks_model extends CI_Model {
 		}
 	}
 
+	function user_id_from_logbook_slug($slug) {
+		$this->db->where('public_slug', $this->security->xss_clean($slug));
+		$query = $this->db->get('station_logbooks');
+
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $row) {
+				return $row->user_id;
+			}
+		} else {
+			return null;
+		}
+	}
+
 	function is_public_slug_available($slug) {
 		// Clean public_slug
 		$clean_slug = $this->security->xss_clean($slug);
