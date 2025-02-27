@@ -14,14 +14,47 @@ class Widgets extends CI_Controller {
 	}
 
 
-	// Can be used to embed last 11 QSOs in a iframe or javascript include.
+	// Can be used to embed last few QSOs
 	public function qsos($logbook_slug = null) {
 
 		if($logbook_slug == null) {
 			show_error(__("Unknown Public Page, please make sure the public slug is correct."));
 		}
-		$this->load->model('logbook_model');
 
+		// determine theme
+		$this->load->model('themes_model');
+		$theme = $this->input->get('theme', TRUE);
+		if ($theme != null) {
+			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
+				$data['theme'] = $theme;
+			} else {
+				$data['theme'] = $this->config->item('option_theme');
+			}
+		} else {
+			$data['theme'] = "default";
+		}
+
+		// should we show time?
+		// TODO
+		$data['show_time'] = (($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time')));
+		$data['show_time'] = true;
+
+		// determine text size
+		$text_size = $this->input->get('text_size', true) ?? 1;
+		$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+
+		// number of QSOs shown
+		$qso_count_param = $this->input->get('qso_count', TRUE);
+		if ($qso_count_param != null) {
+			$qso_count = min($qso_count_param, QSO_WIDGET_MAX_QSO_LIMIT);
+		} else {
+			$qso_count = QSO_WIDGET_DEFAULT_QSO_LIMIT;
+		}
+
+		// date format
+		$data['date_format'] = $this->config->item('qso_date_format'); // date format from /config/wavelog.php
+		
+		$this->load->model('logbook_model');
 		$this->load->model('logbooks_model');
 		if($this->logbooks_model->public_slug_exists($logbook_slug)) {
 			// Load the public view
@@ -40,7 +73,7 @@ class Widgets extends CI_Controller {
 				show_404(__("Unknown Public Page."));
 			}
 
-			$data['last_qsos_list'] = $this->logbook_model->get_last_qsos(15, $logbooks_locations_array);
+			$data['last_qsos_list'] = $this->logbook_model->get_last_qsos($qso_count, $logbooks_locations_array);
 
 			$this->load->view('widgets/qsos', $data);
 		}
