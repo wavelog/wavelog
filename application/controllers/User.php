@@ -348,7 +348,7 @@ class User extends CI_Controller {
 	function edit() {
 		$this->load->model('user_model');
 		if ( ($this->session->userdata('user_id') == '') || ((!$this->user_model->authorize(99)) && ($this->session->userdata('user_id') != $this->uri->segment(3))) ) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-		if ( $this->config->item('special_callsign') && $this->session->userdata('user_type') != '99' && $this->config->item('sc_hide_usermenu') ) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if (!clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$query = $this->user_model->get_by_id($this->uri->segment(3));
 
 		$data['existing_languages'] = $this->config->item('languages');
