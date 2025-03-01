@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-01 08:30+0000\n"
+"POT-Creation-Date: 2025-03-01 10:46+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Lithuanian <https://translate.wavelog.org/projects/wavelog/"
@@ -3078,27 +3078,33 @@ msgstr ""
 msgid "SAT already existing. LoTW status updated."
 msgstr ""
 
-#: application/models/Update_model.php:422
+#: application/models/Update_model.php:423
+#: application/models/Update_model.php:452
+#, php-format
+msgid "LoTW status for %s QSOs updated"
+msgstr ""
+
+#: application/models/Update_model.php:426
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr ""
 
-#: application/models/Update_model.php:425
+#: application/models/Update_model.php:429
 msgid "SAT already existing. Ignored."
 msgstr ""
 
-#: application/models/Update_model.php:432
+#: application/models/Update_model.php:436
 msgid "SAT already existing. Display name updated."
 msgstr ""
 
-#: application/models/Update_model.php:434
+#: application/models/Update_model.php:438
 msgid "SAT already existing. Updating display name failed."
 msgstr ""
 
-#: application/models/Update_model.php:444
+#: application/models/Update_model.php:448
 msgid "New SAT. Inserted."
 msgstr ""
 
-#: application/models/Update_model.php:446
+#: application/models/Update_model.php:456
 msgid "New SAT. Insert failed."
 msgstr ""
 
