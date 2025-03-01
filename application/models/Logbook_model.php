@@ -281,11 +281,6 @@ class Logbook_model extends CI_Model {
 			$qslrdate = date('Y-m-d H:i:s');
 		}
 
-		$distance=null;
-		if ( (($this->input->post('distance') ?? '') != '') && (is_numeric($this->input->post('distance'))) ) {
- 			$distance=$this->input->post('distance');
-		}
-
 		// Create array with QSO Data
 		$data = array(
 			'COL_TIME_ON' => $datetime,
@@ -316,7 +311,6 @@ class Logbook_model extends CI_Model {
 			'COL_QTH' => $qso_qth,
 			'COL_PROP_MODE' => $prop_mode,
 			'COL_IOTA' => $this->input->post('iota_ref')  == null ? '' : trim($this->input->post('iota_ref')),
-			'COL_DISTANCE' => $distance,
 			'COL_FREQ_RX' => $this->parse_frequency($this->input->post('freq_display_rx')),
 			'COL_ANT_AZ' => $ant_az,
 			'COL_ANT_EL' => $ant_el,
@@ -366,7 +360,6 @@ class Logbook_model extends CI_Model {
 			return 'Station not accessible<br>';
 		}
 
-
 		// If station profile has been provided fill in the fields
 		if ($station_id != "0") {
 			$station = $this->check_station($station_id);
@@ -383,6 +376,19 @@ class Logbook_model extends CI_Model {
 				$data['COL_MY_VUCC_GRIDS'] = strtoupper(trim($station['station_gridsquare']));
 			} else {
 				$data['COL_MY_GRIDSQUARE'] = strtoupper(trim($station['station_gridsquare']));
+			}
+
+			$distance=null;
+			if ( (($this->input->post('distance') ?? '') != '') && (is_numeric($this->input->post('distance'))) ) {
+				$distance=$this->input->post('distance');
+			} elseif (isset($qso_locator) && $qso_locator != '') {
+				if (!$this->load->is_loaded('Qra')) {
+					$this->load->library('Qra');
+				}
+				$distance = $this->qra->distance(strtoupper(trim($station['station_gridsquare'])), $qso_locator, 'K');
+			}
+			if ($distance != null ) {
+				$data['COL_DISTANCE'] = $distance;
 			}
 
 			if ($this->exists_hrdlog_credentials($station_id)) {
