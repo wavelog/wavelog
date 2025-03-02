@@ -9,12 +9,13 @@
 # Qing He <HE@BD8DHF.COM>, 2024.
 # hellofinch <543933756@qq.com>, 2024, 2025.
 # wxy <xy.8789aime@foxmail.com>, 2024.
+# YuanRetro <lijiaxuan1811@163.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-02 21:42+0000\n"
-"PO-Revision-Date: 2025-02-26 17:16+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
+"POT-Creation-Date: 2025-03-01 10:46+0000\n"
+"PO-Revision-Date: 2025-03-02 21:42+0000\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -564,7 +565,7 @@ msgstr "WAE"
 #: application/controllers/Awards.php:2004
 #: application/views/interface_assets/header.php:194
 msgid "73 on 73"
-msgstr ""
+msgstr "73 on 73"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:300
@@ -1680,7 +1681,7 @@ msgstr "快速查找"
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:762 application/views/visitor/index.php:328
 msgid "Logbook of the World"
-msgstr "Logbook of the World(LoTW)"
+msgstr "Logbook of the World (LoTW)"
 
 #: application/controllers/Lotw.php:150
 msgid "Certificate Imported."
@@ -3094,9 +3095,8 @@ msgstr "卫星已存在，LoTW 状态已更新。"
 #: application/models/Update_model.php:423
 #: application/models/Update_model.php:452
 #, php-format
-msgid "LoTW status for %d QSO updated"
-msgid_plural "LoTW status for %d QSOs updated"
-msgstr[0] ""
+msgid "LoTW status for %s QSOs updated"
+msgstr "对%s个QSO的LoTW状态已更新"
 
 #: application/models/Update_model.php:426
 msgid "SAT already existing. Updating LoTW status failed."
@@ -4549,13 +4549,15 @@ msgstr "奖状详情"
 
 #: application/views/awards/73on73/index.php:7
 msgid "73 on 73 Award"
-msgstr ""
+msgstr "73 on 73 奖"
 
 #: application/views/awards/73on73/index.php:8
 msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Paul Stoetzer (N8HM )正在赞助一个关于使用AO-73 (FUNcube-1)业余卫星进行通联的"
+"奖项。"
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:23
@@ -8329,7 +8331,7 @@ msgstr "标记所有 QSO 已上传到 eQSL"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr "如果你有很多 QSO 需要上传到 eQSL请使用此功能，以防服务器超时。"
+msgstr "如果你有很多 QSO 需要上传到 eQSL，请使用此功能以防服务器超时。"
 
 #: application/views/eqslcard/index.php:10
 #, php-format
@@ -9637,7 +9639,7 @@ msgstr "用选中行的条件进行快速搜索： "
 
 #: application/views/logbookadvanced/index.php:532
 msgid "Search Date"
-msgstr "搜索日期"
+msgstr "按照日期搜索"
 
 #: application/views/logbookadvanced/index.php:538
 msgid "Search DXCC"
@@ -14113,6 +14115,13 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:32
 msgid "Rcvd"
 msgstr "收"
+
+#: application/models/Update_model.php:423
+#: application/models/Update_model.php:452
+#, php-format
+msgid "LoTW status for %d QSO updated"
+msgid_plural "LoTW status for %d QSOs updated"
+msgstr[0] ""
 
 #, php-format
 #~ msgid ""
