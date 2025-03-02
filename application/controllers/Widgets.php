@@ -51,6 +51,7 @@ class Widgets extends CI_Controller {
 		
 		$this->load->model('logbook_model');
 		$this->load->model('logbooks_model');
+		$this->load->model('stationsetup_model');
 		if($this->logbooks_model->public_slug_exists($logbook_slug)) {
 
 			$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($logbook_slug);
@@ -68,7 +69,7 @@ class Widgets extends CI_Controller {
 			}
 
 			// Get widget settings
-			$user_id = $this->logbooks_model->user_id_from_logbook_slug($logbook_slug);
+			$user_id = $this->stationsetup_model->public_slug_exists_userid($logbook_slug);
 			$widget_options = $this->get_qso_widget_options($user_id);
 
 			$data['show_time'] = $widget_options->display_qso_time;			
