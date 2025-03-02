@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-03-01 10:46+0000\n"
-"PO-Revision-Date: 2025-02-18 19:23+0000\n"
+"PO-Revision-Date: 2025-03-02 21:42+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -561,7 +561,7 @@ msgstr "WAE"
 #: application/controllers/Awards.php:2004
 #: application/views/interface_assets/header.php:194
 msgid "73 on 73"
-msgstr ""
+msgstr "73 on 73"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:300
@@ -2843,6 +2843,7 @@ msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"Вы вышли из аккаунта %s. Добро пожаловать обратно, %s, в ваш личный аккаунт!"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
@@ -2876,25 +2877,25 @@ msgstr "Не найдено профилей QTH, использующих OQRS.
 #: application/controllers/Widgets.php:106
 #: application/controllers/Widgets.php:115
 msgid "User slug not specified"
-msgstr ""
+msgstr "Не указана публичная метка"
 
 #: application/controllers/Widgets.php:126
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "У пользователя отключен виджет \"в эфире\""
 
 #: application/controllers/Widgets.php:185
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
-msgstr ""
+msgstr "Не найдено аппаратных интерфейсов. Необходимо настроить хотя бы один."
 
 #: application/controllers/Widgets.php:264
 msgid "User not found by slug"
-msgstr ""
+msgstr "Пользователь не найден по публичной метке"
 
 #: application/controllers/Widgets.php:267
 msgid "Multiple users found by slug"
-msgstr ""
+msgstr "Несколько пользователей найдено по публичной метке"
 
 #: application/libraries/Callbook.php:93
 msgid "QRZCQ Error"
@@ -3150,7 +3151,7 @@ msgstr "Спутник уже существует. Статус LoTW обнов
 #: application/models/Update_model.php:452
 #, php-format
 msgid "LoTW status for %s QSOs updated"
-msgstr ""
+msgstr "Статус LoTW для %s QSO обновлен"
 
 #: application/models/Update_model.php:426
 msgid "SAT already existing. Updating LoTW status failed."
@@ -4494,7 +4495,7 @@ msgstr "Скопировать в буфер обмена"
 
 #: application/views/api/index.php:13
 msgid "The API URL for this Wavelog instance is"
-msgstr "URL API для этого инстанса Wavelog"
+msgstr "URL API этого сервера Wavelog"
 
 #: application/views/api/index.php:14 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33 application/views/radio/index.php:26
@@ -4641,13 +4642,15 @@ msgstr "Информация о дипломе"
 
 #: application/views/awards/73on73/index.php:7
 msgid "73 on 73 Award"
-msgstr ""
+msgstr "73 on 73 Award"
 
 #: application/views/awards/73on73/index.php:8
 msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Пол Стётцер N8HM спонсирует диплом за связи, установленные через "
+"любительский радиоспутник AO-73 (FUNcube-1)."
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:23
@@ -5811,6 +5814,9 @@ msgid ""
 "contacts with amateur radio stations in European countries and on islands "
 "listed in the WAE country list on different bands."
 msgstr ""
+"Самый старый и известный из всех сертификатов DARC вручается за связи с "
+"любительскими радиостанциями в европейских странах и на островах, "
+"перечисленных в списке стран WAE, на разных диапазонах."
 
 #: application/views/awards/wae/index.php:9
 msgid ""
@@ -5818,6 +5824,9 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
+"WAE выдаётся за проведение QSO в следующих режимах: CW, SSB, Phone, RTTY, "
+"FT8, Digital и Mixed Modes. Он выдается в пяти классах: WAE III, WAE II, WAE "
+"I, WAE TOP и WAE Trophy."
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
@@ -7620,7 +7629,7 @@ msgstr "Количество QSO за этот день недели"
 
 #: application/views/dayswithqso/index.php:4
 msgid "Number of QSOs for this month of the year"
-msgstr ""
+msgstr "Количество QSO в этом месяце года"
 
 #: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
@@ -7799,7 +7808,7 @@ msgstr "Системное время"
 
 #: application/views/debug/index.php:76
 msgid "Total QSO on this instance"
-msgstr "Всего QSO на этом инстансе"
+msgstr "Всего QSO на этом сервере"
 
 #: application/views/debug/index.php:80
 msgid "Total User"
@@ -13831,40 +13840,44 @@ msgstr ""
 
 #: application/views/user/edit.php:847
 msgid "Widgets"
-msgstr ""
+msgstr "Виджеты"
 
 #: application/views/user/edit.php:855
 msgid "On-Air widget"
-msgstr ""
+msgstr "Виджет \"В эфире\""
 
 #: application/views/user/edit.php:865
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
 msgstr ""
+"Примечание: Чтобы использовать этот виджет, у вас должен быть настроен и "
+"работать, как минимум, один аппаратный интерфейс."
 
 #: application/views/user/edit.php:869
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "После включения виджет будет доступен на %s."
 
 #: application/views/user/edit.php:874
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "Отобразить время \"Последней активности\""
 
 #: application/views/user/edit.php:880
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
+"Эта настройка управляет отображением времени \"Последней активности\" в "
+"виджете."
 
 #: application/views/user/edit.php:883
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "Отображать только недавно обновлённые данные от радиостанции"
 
 #: application/views/user/edit.php:887
 msgid "No, show all radios"
-msgstr ""
+msgstr "Нет,  отображать все радиостанции"
 
 #: application/views/user/edit.php:889
 msgid ""
@@ -13873,6 +13886,10 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"Если у вас настроено несколько аппаратных интерфейсов, эта настройка "
+"управляет тем, должен ли виджет отображать все активные радиостанции "
+"пользователя или только последнюю обновленную. Если у вас только одна "
+"радиостанция, эта настройка не имеет эффекта."
 
 #: application/views/user/edit.php:902
 msgid "Miscellaneous"
