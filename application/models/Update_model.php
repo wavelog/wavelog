@@ -420,7 +420,7 @@ class Update_model extends CI_Model {
 						$status = __('SAT already existing. LoTW status updated.');
 						$updateresult = $this->reset_lotw_qsl_fields($name, $existingSats["$name"][1]);
 						if ($updateresult > 0) {
-							$status .= ' '.sprintf(__('LoTW status for %s QSOs updated'), $updateresult);
+							$status .= ' '.sprintf(_ngettext('LoTW status for %d QSO updated', 'LoTW status for %d QSOs updated', intval($updateresult)), intval($updateresult));
 						}
 					} else {
 						$status = __('SAT already existing. Updating LoTW status failed.');
@@ -449,7 +449,7 @@ class Update_model extends CI_Model {
 					if (array_key_exists($name, $existingSats)) {
 						$updateresult = $this->reset_lotw_qsl_fields($data['name'], $existingSats["$name"][1]);
 						if ($updateresult > 0) {
-							$status .= ' '.sprintf(__('LoTW status for %s QSOs updated'), $updateresult);
+							$status .= ' '.sprintf(_ngettext('LoTW status for %d QSO updated', 'LoTW status for %d QSOs updated', intval($updateresult)), intval($updateresult));
 						}
 					}
 				} else {
