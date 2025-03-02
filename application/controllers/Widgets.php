@@ -40,10 +40,10 @@ class Widgets extends CI_Controller {
 
 		// number of QSOs shown
 		$qso_count_param = $this->input->get('qso_count', TRUE);
-		if ($qso_count_param != null) {
-			$qso_count = min($qso_count_param, QSO_WIDGET_MAX_QSO_LIMIT);
-		} else {
+		if ($qso_count_param === null || !is_numeric($qso_count_param)) {
 			$qso_count = QSO_WIDGET_DEFAULT_QSO_LIMIT;
+		} else {
+			$qso_count = min($qso_count_param, QSO_WIDGET_MAX_QSO_LIMIT);
 		}
 
 		// date format
