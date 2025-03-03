@@ -319,7 +319,8 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		if ($searchCriteria['contest'] !== '*' && $searchCriteria['contest'] !== '') {
-			$conditions[] = "COL_CONTEST_ID like ?";
+			$conditions[] = "(COL_CONTEST_ID like ? OR contest.name like ?)";
+			$binding[] = '%'.$searchCriteria['contest'].'%';
 			$binding[] = '%'.$searchCriteria['contest'].'%';
 		}
 
