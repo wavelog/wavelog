@@ -111,7 +111,7 @@ class Reg1testformat {
                $newlocator = false;
                $distance = $locators[$row->COL_GRIDSQUARE];
             }
-         } else { 
+         } else {
             $distance = 0;
             $newlocator = false;
          }
