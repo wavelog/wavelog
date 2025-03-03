@@ -111,7 +111,7 @@ class Reg1testformat {
                $newlocator = false;
                $distance = $locators[$row->COL_GRIDSQUARE];
             }
-         } else {
+         } else { 
             $distance = 0;
             $newlocator = false;
          }
@@ -143,7 +143,7 @@ class Reg1testformat {
 
          $qsorow .= ($newdxcc ? 'N' : '') . ';'; //flag if DXCC is new
 
-         $qsorow .= ";\r\n"; //flag for duplicate QSO. Leave empty as Wavelog does not have this.
+         $qsorow .= "\r\n"; //flag for duplicate QSO. Leave empty as Wavelog does not have this. Do not include a semicolon at the end as this is optional
 
          //add row to overall result
          $result['formatted_qso'] .= $qsorow;
