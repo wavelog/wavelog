@@ -14,17 +14,45 @@ class Widgets extends CI_Controller {
 	}
 
 
-	// Can be used to embed last 11 QSOs in a iframe or javascript include.
+	// Can be used to embed last few QSOs
 	public function qsos($logbook_slug = null) {
 
 		if($logbook_slug == null) {
 			show_error(__("Unknown Public Page, please make sure the public slug is correct."));
 		}
-		$this->load->model('logbook_model');
 
+		// determine theme
+		$this->load->model('themes_model');
+		$theme = $this->input->get('theme', TRUE);
+		if ($theme != null) {
+			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
+				$data['theme'] = $theme;
+			} else {
+				$data['theme'] = $this->config->item('option_theme');
+			}
+		} else {
+			$data['theme'] = "default";
+		}
+
+		// determine text size
+		$text_size = $this->input->get('text_size', true) ?? 1;
+		$data['text_size_class'] = $this->prepare_text_size_css_class($text_size);
+
+		// number of QSOs shown
+		$qso_count_param = $this->input->get('qso_count', TRUE);
+		if ($qso_count_param === null || !is_numeric($qso_count_param)) {
+			$qso_count = QSO_WIDGET_DEFAULT_QSO_LIMIT;
+		} else {
+			$qso_count = min($qso_count_param, QSO_WIDGET_MAX_QSO_LIMIT);
+		}
+
+		// date format
+		$data['date_format'] = $this->config->item('qso_date_format'); // date format from /config/wavelog.php
+		
+		$this->load->model('logbook_model');
 		$this->load->model('logbooks_model');
+		$this->load->model('stationsetup_model');
 		if($this->logbooks_model->public_slug_exists($logbook_slug)) {
-			// Load the public view
 
 			$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($logbook_slug);
 			if($logbook_id != false)
@@ -40,7 +68,12 @@ class Widgets extends CI_Controller {
 				show_404(__("Unknown Public Page."));
 			}
 
-			$data['last_qsos_list'] = $this->logbook_model->get_last_qsos(15, $logbooks_locations_array);
+			// Get widget settings
+			$user_id = $this->stationsetup_model->public_slug_exists_userid($logbook_slug);
+			$widget_options = $this->get_qso_widget_options($user_id);
+
+			$data['show_time'] = $widget_options->display_qso_time;			
+			$data['last_qsos_list'] = $this->logbook_model->get_last_qsos($qso_count, $logbooks_locations_array);
 
 			$this->load->view('widgets/qsos', $data);
 		}
@@ -186,6 +219,38 @@ class Widgets extends CI_Controller {
 			$this->load->view('widgets/on_air', $data);
 			return;
 		}
+	}
+
+	/**
+	 * Fetch and prepare user options for QSO widget
+	 *
+	 * @return stdClass
+	 */
+	private function get_qso_widget_options($user_id) {
+		$raw_widget_options = $this->user_options_model->get_options('widget', null, $user_id)->result_array();
+
+		// default values
+		$options = new \stdClass();
+		$options->display_qso_time = false;
+
+		if ($raw_widget_options === null) {
+			return $options;
+		}
+
+		foreach ($raw_widget_options as $opt_data) {
+			if ($opt_data["option_name"] !== 'qso') {
+				continue;
+			}
+
+			$key = $opt_data["option_key"];
+			$value = $opt_data["option_value"];
+
+			if ($key === "display_qso_time") {
+				$options->display_qso_time = $value === "true";
+			}
+		}
+
+		return $options;
 	}
 
 	/**
