@@ -64,7 +64,7 @@ class IOTA extends CI_Model {
 
 		$sql = "SELECT distinct UPPER(col_iota) as tag FROM " . $this->config->item('table_name') . " thcv
 			join iota on thcv.col_iota = iota.tag
-			where station_id in (" . $location_list .  ") and thcv.col_iota is not null";
+			where station_id in (" . $location_list . ") and thcv.col_iota is not null";
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
@@ -157,8 +157,8 @@ class IOTA extends CI_Model {
 
 		$sql = "SELECT distinct UPPER(col_iota) as tag FROM " . $this->config->item('table_name') . " thcv
 			join iota on thcv.col_iota = iota.tag
-			where station_id in (" . $location_list .  ") and thcv.col_iota is not null
-			and not exists (select 1 from ". $this->config->item('table_name') . " where station_id = ". $location_list .  " and col_iota = thcv.col_iota)";
+			where station_id in (" . $location_list . ") and thcv.col_iota is not null
+			and not exists (select 1 from ". $this->config->item('table_name') . " where station_id in (". $location_list . ") and col_iota = thcv.col_iota)";
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
@@ -190,7 +190,7 @@ class IOTA extends CI_Model {
 
 		$sql = "SELECT distinct UPPER(col_iota) as tag FROM " . $this->config->item('table_name') . " thcv
 			join iota on thcv.col_iota = iota.tag
-			where station_id in (" . $location_list .  ") and thcv.col_iota is not null";
+			where station_id in (" . $location_list . ") and thcv.col_iota is not null";
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		if ($postdata['mode'] != 'All') {
