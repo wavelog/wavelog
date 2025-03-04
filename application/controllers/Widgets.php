@@ -303,7 +303,7 @@ class Widgets extends CI_Controller {
 		$query_param_value = $this->input->get('radio_timeout_seconds', true);
 
 		if (is_numeric($query_param_value) === false || empty($query_param_value)) {
-			return intval($this->config->item('radio_timeout_seconds'));
+			return intval($this->optionslib->get_option('cat_timeout_interval'));
 		}
 
 		$radio_timeout_seconds = intval($query_param_value);
