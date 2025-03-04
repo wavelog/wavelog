@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-03-03 18:05+0000\n"
-"PO-Revision-Date: 2025-03-02 21:42+0000\n"
+"PO-Revision-Date: 2025-03-04 21:04+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2046,7 +2046,7 @@ msgstr "Позывной не указан."
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:489
 msgid "Hardware Interfaces"
-msgstr "Аппаратные интерфейсы"
+msgstr "Интерфейсы радиостанций"
 
 #: application/controllers/Radio.php:41 application/views/bandmap/index.php:25
 #: application/views/bandmap/list.php:67
@@ -2887,7 +2887,7 @@ msgstr "У пользователя отключен виджет \"в эфир�
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
-msgstr "Не найдено аппаратных интерфейсов. Необходимо настроить хотя бы один."
+msgstr "Не найдено интерфейсов радиостанций. Необходимо настроить хотя бы один."
 
 #: application/controllers/Widgets.php:329
 msgid "User not found by slug"
@@ -3152,9 +3152,9 @@ msgstr "Спутник уже существует. Статус LoTW обнов
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Статус LoTW для %d QSO обновлен"
+msgstr[1] "Статус LoTW для %d QSO обновлен"
+msgstr[2] "Статус LoTW для %d QSO обновлен"
 
 #: application/models/Update_model.php:426
 msgid "SAT already existing. Updating LoTW status failed."
@@ -13854,7 +13854,7 @@ msgid ""
 "configured and working."
 msgstr ""
 "Примечание: Чтобы использовать этот виджет, у вас должен быть настроен и "
-"работать, как минимум, один аппаратный интерфейс."
+"работать, как минимум, один интерфейс радиостанции."
 
 #: application/views/user/edit.php:869
 #, php-format
@@ -13888,24 +13888,26 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
-"Если у вас настроено несколько аппаратных интерфейсов, эта настройка "
+"Если у вас настроено несколько интерфейсов радиостанций, то эта настройка "
 "управляет тем, должен ли виджет отображать все активные радиостанции "
-"пользователя или только последнюю обновленную. Если у вас только одна "
-"радиостанция, эта настройка не имеет эффекта."
+"пользователя или только последнюю обновленную. Если у вас настроена только "
+"одна радиостанция, эта настройка не имеет эффекта."
 
 #: application/views/user/edit.php:899
 msgid "QSOs widget"
-msgstr ""
+msgstr "QSO виджет"
 
 #: application/views/user/edit.php:902
 msgid "Display exact QSO time"
-msgstr ""
+msgstr "Отображать точное время QSO"
 
 #: application/views/user/edit.php:908
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
+"Эта настройка контролирует, следует ли отображать точное время QSO в виджете "
+"QSO или нет."
 
 #: application/views/user/edit.php:921
 msgid "Miscellaneous"
