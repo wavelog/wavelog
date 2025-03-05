@@ -812,11 +812,11 @@ class Awards extends CI_Controller {
 	    $data['modes'] = $this->modes->active(); // Used in the view for mode select
 
 	    if($this->input->method() === 'post') {
-		    $postdata['qsl'] = 1;
-		    $postdata['lotw'] = 1;
-		    $postdata['eqsl'] = 0;
-		    $postdata['qrz'] = 0;
-		    $postdata['clublog'] = 0;
+		    $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl')) ?? NULL;
+		    $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw')) ?? NULL;
+		    $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl')) ?? NULL;
+		    $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz')) ?? NULL;
+		    $postdata['clublog'] = $this->security->xss_clean($this->input->post('qrz')) ?? NULL;
 		    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked')) ?? NULL;
 		    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed')) ?? NULL;
 		    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked')) ?? NULL;
@@ -1569,11 +1569,14 @@ class Awards extends CI_Controller {
 
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
         $postdata['band'] = $this->input->post('band');
-	$postdata['mode'] = $this->input->post('mode');
+        $postdata['mode'] = $this->input->post('mode');
         $postdata['includedeleted'] = $this->input->post('includedeleted') == 0 ? NULL: 1;
         $postdata['Africa'] = $this->input->post('Africa') == 0 ? NULL: 1;
         $postdata['Asia'] = $this->input->post('Asia') == 0 ? NULL: 1;
