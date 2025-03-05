@@ -1311,7 +1311,7 @@ $($('#callsign')).on('keypress',function(e) {
 						    if (data.error == 'not_logged_in') {
 							    $(".radio_cat_state" ).remove();
 							    if($('.radio_login_error').length == 0) {
-								    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> ' + '<?= sprintf(__("You're not logged in. Please %slogin%s"), '<a href="' . base_url() . '">', '</a>'); ?>' + '</div>');
+								    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> ' + "<?= sprintf(__("You're not logged in. Please %slogin%s"), '<a href=\"' . base_url() . '\">', '</a>'); ?>" + '</div>');
 							    }
 						    }
 						    // Put future Errorhandling here
