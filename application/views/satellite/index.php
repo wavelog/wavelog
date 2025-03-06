@@ -23,7 +23,7 @@
 					<th><?= __("Display Name"); ?></th>
 					<th><?= __("QSOs"); ?></th>
 					<th><?= __("Orbit"); ?></th>
-					<th><?= __("Mode"); ?></th>
+					<th><?= __("SAT Mode"); ?></th>
 					<th><?= __("LoTW"); ?></th>
 					<th><?= __("TLE"); ?></th>
 					<th><?= __("Edit"); ?></th>
