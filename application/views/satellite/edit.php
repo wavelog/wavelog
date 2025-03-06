@@ -48,7 +48,7 @@
 <table style="width:100%" class="satmodetable table table-sm table-striped">
 		<thead>
 			<tr>
-				<th style="text-align: center; vertical-align: middle;"><?= __("Name"); ?></th>
+				<th style="text-align: center; vertical-align: middle;"><?= __("SAT Mode"); ?></th>
 				<th style="text-align: center; vertical-align: middle;"><?= __("Uplink mode"); ?></th>
 				<th style="text-align: center; vertical-align: middle;"><?= __("Uplink frequency"); ?></th>
 				<th style="text-align: center; vertical-align: middle;"><?= __("Downlink mode"); ?></th>

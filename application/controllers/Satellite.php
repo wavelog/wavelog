@@ -18,8 +18,24 @@ class Satellite extends CI_Controller {
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('satellite_model');
+		$this->load->model('logbook_model');
 
-		$pageData['satellites'] = $this->satellite_model->get_all_satellites();
+		$satellites = $this->satellite_model->get_all_satellites();
+		$qsonum = $this->logbook_model->get_sat_qso_count();
+		foreach ($satellites as $sat) {
+			if (array_key_exists($sat->satname, $qsonum)) {
+				if ($sat->satname != '') {
+					$sat->qsocount = $qsonum[$sat->satname];
+				}
+			} elseif (array_key_exists($sat->displayname, $qsonum)) {
+				if ($sat->displayname != '') {
+					$sat->qsocount = $qsonum[$sat->displayname];
+				}
+			} else {
+				$sat->qsocount = '';
+			}
+		}
+		$pageData['satellites'] = $satellites;
 
 		if($this->session->userdata('user_date_format')) {
 			// If Logged in and session exists
