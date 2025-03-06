@@ -21,8 +21,9 @@
 				<tr>
 					<th><?= __("LoTW Name"); ?></th>
 					<th><?= __("Display Name"); ?></th>
+					<th><?= __("QSOs"); ?></th>
 					<th><?= __("Orbit"); ?></th>
-					<th><?= __("Mode"); ?></th>
+					<th><?= __("SAT Mode"); ?></th>
 					<th><?= __("LoTW"); ?></th>
 					<th><?= __("TLE"); ?></th>
 					<th><?= __("Edit"); ?></th>
@@ -34,6 +35,7 @@
 				<tr>
 					<td style="text-align: center; vertical-align: middle;" class="satellite_<?php echo $sat->id ?>"><?php echo htmlentities($sat->satname) ?></td>
 					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->displayname ? htmlentities($sat->displayname) : '' ?></td>
+					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->qsocount ?></td>
 					<?php echo '<td style="text-align: center; vertical-align: middle;"><span class="badge ';
 					switch (strtoupper($sat->orbit ?? '')) {
 					case 'LEO':

@@ -129,6 +129,21 @@ msgstr ""
 #: application/controllers/User.php:1537
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Satellite.php:70
+#: application/controllers/Satellite.php:79
+#: application/controllers/Satellite.php:98
+#: application/controllers/Satellite.php:126
+#: application/controllers/Satellite.php:134
+#: application/controllers/Satellite.php:148
+#: application/controllers/Satellite.php:166
+#: application/controllers/Satellite.php:193
+#: application/controllers/Satellite.php:222
+#: application/controllers/Satellite.php:233
+#: application/controllers/Satellite.php:255
+#: application/controllers/Satellite.php:275
+#: application/controllers/Satellite.php:288
+#: application/controllers/Satellite.php:296
+#: application/controllers/Satellite.php:367
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
 
@@ -696,6 +711,7 @@ msgstr "Definições do email não configuradas."
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
 #: application/views/satellite/index.php:64
+#: application/views/satellite/index.php:66
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -1220,6 +1236,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
 #: application/views/user/edit.php:716 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/satellite/index.php:27
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2109,6 +2126,7 @@ msgstr "Predefinição (clique para libertar)"
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/satellite/index.php:29
 msgid "Edit"
 msgstr "Editar"
 
@@ -2136,6 +2154,7 @@ msgstr "Editar"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
+#: application/views/satellite/index.php:30
 msgid "Delete"
 msgstr "Apagar"
 
@@ -2152,10 +2171,12 @@ msgid "Export EDI"
 msgstr "Exportar EDI"
 
 #: application/controllers/Satellite.php:49
+#: application/controllers/Satellite.php:65
 msgid "Create Satellite"
 msgstr "Criar satélite"
 
 #: application/controllers/Satellite.php:76
+#: application/controllers/Satellite.php:92
 msgid "Edit Satellite"
 msgstr "Editar satélite"
 
@@ -3127,6 +3148,7 @@ msgstr "não confirmado"
 #: application/models/Logbook_model.php:4707
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
+#: application/views/satellite/index.php:54
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -3723,6 +3745,7 @@ msgstr "Satélite"
 #: application/views/satellite/index.php:24
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
+#: application/views/satellite/index.php:25
 msgid "Orbit"
 msgstr "Órbita"
 
@@ -6462,7 +6485,8 @@ msgstr ""
 #: application/views/user/edit.php:862 application/views/user/edit.php:878
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
-#: application/views/user/edit.php:992
+#: application/views/user/edit.php:992 application/views/satellite/index.php:60
+#: application/views/satellite/index.php:73
 msgid "Yes"
 msgstr "Sim"
 
@@ -6519,6 +6543,8 @@ msgstr "Sim"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
+#: application/views/satellite/index.php:63
+#: application/views/satellite/index.php:75
 msgid "No"
 msgstr "Não"
 
@@ -9452,6 +9478,7 @@ msgstr "Tipos de etiquetas"
 #: application/views/labels/index.php:81
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
+#: application/views/satellite/index.php:24
 msgid "QSOs"
 msgstr "Contactos"
 
@@ -9566,6 +9593,8 @@ msgid "Clublog Received"
 msgstr "Clublog recebido"
 
 #: application/views/logbookadvanced/edit.php:85
+#: application/views/satellite/edit.php:51
+#: application/views/satellite/index.php:26
 msgid "SAT Mode"
 msgstr "Modo Satélite"
 
@@ -11947,6 +11976,7 @@ msgid "Sync Satellites from LoTW"
 msgstr "Sincronizar Satélites via LoTW"
 
 #: application/views/satellite/index.php:27
+#: application/views/satellite/index.php:28
 msgid "TLE"
 msgstr "TLE"
 
