@@ -1207,3 +1207,18 @@ svg text.month { fill: #AAA; }
     align-items: center; /* Vertically aligns the flag and callsign */
     gap: 0.5em; /* Adds space between the flag and callsign */
 }
+
+.htmx-indicator {
+   opacity: 0;
+   animation: blinker 2s linear infinite;
+}
+
+.htmx-request.htmx-indicator {
+   opacity: 1;
+}
+
+@keyframes blinker {
+   50% {
+      opacity: 0;
+   }
+}
