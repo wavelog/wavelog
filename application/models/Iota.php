@@ -71,6 +71,11 @@ class IOTA extends CI_Model {
 			$binding[] = $postdata['mode'];
 			$binding[] = $postdata['mode'];
 		}
+		if ($band == 'SAT') {
+			$sql .= " and col_prop_mode='SAT'";
+		} else {
+			$sql.=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
+		}
 
 		$sql .= $this->genfunctions->addBandToQuery($band,$binding);
 
@@ -98,6 +103,11 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $postdata['mode'];
 			$binding[] = $postdata['mode'];
+		}
+		if ($band == 'SAT') {
+			$sql .= " and col_prop_mode='SAT'";
+		} else {
+			$sql.=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 		}
 
 		$sql .= $this->genfunctions->addBandToQuery($band,$binding);
@@ -142,6 +152,8 @@ class IOTA extends CI_Model {
 					$sql .= " and col_band = ?";
 					$binding[] = $postdata['band'];
 				}
+			} else {
+				$sql.=" and (col_prop_mode != 'SAT' or col_prop_mode is null)";
 			}
 			$sql .= ")";
 		}
@@ -164,6 +176,11 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $postdata['mode'];
 			$binding[] = $postdata['mode'];
+		}
+		if ($postdata['band'] == 'SAT') {
+			$sql .= " and col_prop_mode='SAT'";
+		} else {
+			$sql.=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 		}
 
 		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$binding);
@@ -197,6 +214,11 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $postdata['mode'];
 			$binding[] = $postdata['mode'];
+		}
+		if ($postdata['band'] == 'SAT') {
+			$sql .= " and col_prop_mode='SAT'";
+		} else {
+			$sql.=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 		}
 
 		if ($postdata['includedeleted'] == NULL) {
