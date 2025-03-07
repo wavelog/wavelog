@@ -54,6 +54,32 @@
             </div>
 
             <div class="mb-3 row">
+                <div class="col-md-2"><?= __("Show QSO with QSL Type"); ?></div>
+                <div class="col-md-10">
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="qsl"><?= __("QSL Card"); ?></label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
+                    </div>
+                   <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
+                    </div>
+                   <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
+                    </div>
+                     <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
                 <div class="col-md-2"><?= __("Continents"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
