@@ -63,11 +63,10 @@ class Timeline_model extends CI_Model {
 
 		$sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $clublog, $qrz);
 
-		$sql .= " group by col_dxcc, col_country
+		$sql .= " group by col_dxcc
 			order by date desc";
 
 		$query = $this->db->query($sql, $binding);
-
 		return $query->result();
 	}
 
