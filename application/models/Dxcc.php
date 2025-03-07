@@ -284,11 +284,11 @@ class DXCC extends CI_Model {
 				$sql .= " and col_sat_name = ?";
 				$bindings[]=$postdata['sat'];
 			}
+			$sql .= $this->addOrbitToQuery($postdata,$bindings);
 		} else {
 			$sql.=" and (col_prop_mode != 'SAT' or col_prop_mode is null)";
 		}
 
-		$sql .= $this->addOrbitToQuery($postdata,$bindings);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
@@ -304,11 +304,11 @@ class DXCC extends CI_Model {
 				$sql .= " and col_sat_name = ?";
 				$bindings[]=$postdata['sat'];
 			}
+			$sql .= $this->addOrbitToQuery($postdata,$bindings);
 		} else {
 			$sql.=" and (col_prop_mode != 'SAT' or col_prop_mode is null)";
 		}
 
-		$sql .= $this->addOrbitToQuery($postdata,$bindings);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
@@ -327,7 +327,6 @@ class DXCC extends CI_Model {
 		}
 
 		$sql .= $this->addContinentsToQuery($postdata);
-
 		$query = $this->db->query($sql,$bindings);
 		return $query->result();
 	}
