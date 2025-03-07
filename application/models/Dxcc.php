@@ -81,6 +81,9 @@ class DXCC extends CI_Model {
 					$dxccMatrix[$dxcc->adif]['Deleted'] = isset($dxcc->Enddate) ? 1 : 0;
 				$dxccMatrix[$dxcc->adif][$band] = '-';
 			}
+			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
 
 			// If worked is checked, we add worked entities to the array
 			if ($postdata['worked'] != NULL) {
