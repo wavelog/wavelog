@@ -73,7 +73,7 @@
             </div>
 
             <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="band"><?= __("Band"); ?></label>
+                <label class="col-md-2 control-label" for="band2"><?= __("Band"); ?></label>
                 <div class="col-md-2">
                     <select id="band2" name="band" class="form-select form-select-sm">
                         <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band"); ?></option>
@@ -87,7 +87,7 @@
             </div>
             <div id="satrow" class="mb-3 row" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
 			<?php if (count($sats_available) != 0) { ?>
-                <label class="col-md-2 control-label" id="satslabel" for="distplot_sats"><?= __("Satellite"); ?></label>
+                <label class="col-md-2 control-label" id="satslabel" for="sats"><?= __("Satellite"); ?></label>
 				<div class="col-md-2">
                 <select class="form-select form-select-sm"  id="sats" name="sats">
                     <option value="All" <?php if ($this->input->post('sats') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?= __("All")?></option>
