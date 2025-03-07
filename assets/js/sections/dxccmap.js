@@ -1,5 +1,6 @@
 var osmUrl = $('#dxccmapjs').attr("tileUrl");
 
+
 $('#band2').change(function(){
    var band = $("#band2 option:selected").text();
    if (band != "SAT") {
@@ -12,6 +13,8 @@ $('#band2').change(function(){
       $("#orbitrow").show();
    }
 });
+
+$('#band2').change();	// trigger the change on fresh-load to hide/show SAT-Params
 
 $('#sats').change(function(){
    var sat = $("#sats option:selected").text();
