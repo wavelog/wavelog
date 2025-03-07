@@ -220,26 +220,68 @@
         <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr><td></td>';
-
-        foreach($bands as $band) {
-            echo '<td>' . $band . '</td>';
-        }
-        echo '<td>' . __("Total") . '</td></tr>';
-
+	$addsat='';
+	foreach($bands as $band) {
+		if ($band != 'SAT') {
+			echo '<td>' . $band . '</td>';
+		} else {
+			$addsat='<td>' . $band . '</td>';
+		}
+	}
+	echo '<td><b>' . __("Total") . '</b></td>';
+	if (count($bands) > 1) {
+		echo '<td class="spacingcell"></td>';
+	}
+	echo $addsat;
         echo '</thead>
         <tbody>
 
         <tr><td>' . __("Total worked") . '</td>';
 
-        foreach ($iota_summary['worked'] as $dxcc) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $dxcc . '</td>';
-        }
+	$addsat='';
+	foreach ($iota_summary['worked'] as $band => $iota) {      // Fills the table with the data
+		if ($band != 'SAT') {
+			echo '<td style="text-align: center">';
+			if ($band == 'Total') {
+				echo '<b>'.$iota.'</b>';
+			} else {
+				echo $iota;
+			}
+			echo '</td>';
+		} else {
+			$addsat='<td style="text-align: center">' . $iota . '</td>';
+		}
+	}
+	if ($addsat != '' && count($iota_summary['worked']) > 1) {
+		if (count($bands) > 1) {
+			echo '<td class="spacingcell"></td>';
+		}
+		echo $addsat;
+	}
 
-        echo '</tr><tr>
-        <td>' . __("Total confirmed") . '</td>';
-        foreach ($iota_summary['confirmed'] as $dxcc) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $dxcc . '</td>';
-        }
+	echo '</tr><tr>
+	<td>' . __("Total confirmed") . '</td>';
+
+	$addsat='';
+	foreach ($iota_summary['confirmed'] as $band => $iota) {      // Fills the table with the data
+		if ($band != 'SAT') {
+			echo '<td style="text-align: center">';
+			if ($band == 'Total') {
+				echo '<b>'.$iota.'</b>';
+			} else {
+				echo $iota;
+			}
+			echo '</td>';
+		} else {
+			$addsat='<td style="text-align: center">' . $iota . '</td>';
+		}
+	}
+	if ($addsat != '' && count($iota_summary['confirmed']) > 1) {
+		if (count($bands) > 1) {
+			echo '<td class="spacingcell"></td>';
+		}
+		echo $addsat;
+	}
 
         echo '</tr>
         </table>

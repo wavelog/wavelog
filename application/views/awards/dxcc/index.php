@@ -217,110 +217,109 @@
     <?php
     $i = 1;
     if ($dxcc_array) {
-        echo '
-                <table style="width:100%" class="table-sm table tabledxcc table-bordered table-hover table-striped table-condensed text-center">
-                    <thead>
-                    <tr>
-                        <td>#</td>
-                        <td>' . __("DXCC Name") . '</td>
-                        <td>' . __("Prefix") . '</td>';
-        foreach($bands as $band) {
-            echo '<td>' . $band . '</td>';
-        }
-        echo '</tr>
-                    </thead>
-                    <tbody>';
-        foreach ($dxcc_array as $dxcc => $value) {      // Fills the table with the data
-            echo '<tr>
-                        <td>'. $i++ .'</td>';
-            foreach ($value as $name => $key) {
-                if (isset($value['Deleted']) && $value['Deleted'] == 1 && $name == "name") {
-                   echo '<td style="text-align: center">' . $key . ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span></td>';
-                } else if ($name == "Deleted") {
-                   continue;
-                } else {
-                   echo '<td style="text-align: center">' . $key . '</td>';
-                }
-            }
-            echo '</tr>';
-        }
-        echo '</table>
-        <h2>' . __("Summary") . '</h2>
-
-        <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
-        <thead>
-        <tr><td></td>';
-
-	$addsat='';
-        foreach($bands as $band) {
-	    if ($band != 'SAT') {
-            	echo '<td>' . $band . '</td>';
-	    } else {
-		$addsat='<td>' . $band . '</td>';
+	    echo '
+		<table style="width:100%" class="table-sm table tabledxcc table-bordered table-hover table-striped table-condensed text-center">
+		    <thead>
+		    <tr>
+			<td>#</td>
+			<td>' . __("DXCC Name") . '</td>
+			<td>' . __("Prefix") . '</td>';
+	    foreach($bands as $band) {
+		    echo '<td>' . $band . '</td>';
 	    }
-        }
-        echo '<td><b>' . __("Total") . '</b></td>';
-        if (count($bands) > 1) {
-           echo '<td class="spacingcell"></td>';
-        }
-	echo $addsat;
-	echo '
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr><td>' . __("Total worked") . '</td>';
-	$addsat='';
-        foreach ($dxcc_summary['worked'] as $band => $dxcc) {      // Fills the table with the data
-	    if ($band != 'SAT') {
-          echo '<td style="text-align: center">';
-          if ($band == 'Total') {
-             echo '<b>'.$dxcc.'</b>';
-          } else {
-             echo $dxcc;
-          }
-          echo '</td>';
-	    } else {
-		$addsat='<td style="text-align: center">' . $dxcc . '</td>';
+	echo '</tr>
+		    </thead>
+		    <tbody>';
+	    foreach ($dxcc_array as $dxcc => $value) {      // Fills the table with the data
+		    echo '<tr>
+			    <td>'. $i++ .'</td>';
+		    foreach ($value as $name => $key) {
+			    if (isset($value['Deleted']) && $value['Deleted'] == 1 && $name == "name") {
+				    echo '<td style="text-align: center">' . $key . ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span></td>';
+			    } else if ($name == "Deleted") {
+				    continue;
+			    } else {
+				    echo '<td style="text-align: center">' . $key . '</td>';
+			    }
+		    }
+		    echo '</tr>';
 	    }
-        }
+	    echo '</table>
+		    <h2>' . __("Summary") . '</h2>
+
+		    <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
+		    <thead>
+		    <tr><td></td>';
+
+				    $addsat='';
+				    foreach($bands as $band) {
+					    if ($band != 'SAT') {
+						    echo '<td>' . $band . '</td>';
+					    } else {
+						    $addsat='<td>' . $band . '</td>';
+					    }
+				    }
+				    echo '<td><b>' . __("Total") . '</b></td>';
+				    if (count($bands) > 1) {
+					    echo '<td class="spacingcell"></td>';
+				    }
+				    echo $addsat;
+				    echo '
+	</tr>
+	</thead>
+	<tbody>
+
+	<tr><td>' . __("Total worked") . '</td>';
+	$addsat='';
+	foreach ($dxcc_summary['worked'] as $band => $dxcc) {      // Fills the table with the data
+		if ($band != 'SAT') {
+			echo '<td style="text-align: center">';
+			if ($band == 'Total') {
+				echo '<b>'.$dxcc.'</b>';
+			} else {
+				echo $dxcc;
+			}
+			echo '</td>';
+		} else {
+			$addsat='<td style="text-align: center">' . $dxcc . '</td>';
+		}
+	}
 	if ($addsat != '' && count($dxcc_summary['worked']) > 1) {
-        if (count($bands) > 1) {
-		echo '<td class="spacingcell"></td>';
-        }
+		if (count($bands) > 1) {
+			echo '<td class="spacingcell"></td>';
+		}
 		echo $addsat;
 	}
 
-        echo '</tr><tr>
-        <td>' . __("Total confirmed") . '</td>';
+	echo '</tr><tr>
+	<td>' . __("Total confirmed") . '</td>';
 	$addsat='';
-        foreach ($dxcc_summary['confirmed'] as $band => $dxcc) {      // Fills the table with the data
-	    if ($band != 'SAT') {
-          echo '<td style="text-align: center">';
-          if ($band == 'Total') {
-             echo '<b>'.$dxcc.'</b>';
-          } else {
-             echo $dxcc;
-          }
-          echo '</td>';
-	    } else {
-		$addsat='<td style="text-align: center">' . $dxcc . '</td>';
-	    }
-        }
+	foreach ($dxcc_summary['confirmed'] as $band => $dxcc) {      // Fills the table with the data
+		if ($band != 'SAT') {
+			echo '<td style="text-align: center">';
+			if ($band == 'Total') {
+				echo '<b>'.$dxcc.'</b>';
+			} else {
+				echo $dxcc;
+			}
+			echo '</td>';
+		} else {
+			$addsat='<td style="text-align: center">' . $dxcc . '</td>';
+		}
+	}
 	if ($addsat != '' && count($dxcc_summary['confirmed']) > 1) {
-        if (count($bands) > 1) {
-		echo '<td class="spacingcell"></td>';
-        }
+		if (count($bands) > 1) {
+			echo '<td class="spacingcell"></td>';
+		}
 		echo $addsat;
 	}
 
-        echo '</tr>
-        </table>
-        </div>';
+	echo '</tr>
+	</table>
+	</div>';
 
-    }
-    else {
-        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
+    } else {
+	    echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
                 </div>
