@@ -137,10 +137,13 @@ class DXCC extends CI_Model {
 
 		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		if ($band == 'SAT') {
+			$sql .= " and col_prop_mode='SAT'";
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
 				$bindings[]=$postdata['sat'];
 			}
+		} else {
+			$sql.=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 		}
 
 		if ($postdata['mode'] != 'All') {
@@ -177,11 +180,15 @@ class DXCC extends CI_Model {
 					") and col_dxcc > 0";
 		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		if ($band == 'SAT') {
+			$sql .= " and col_prop_mode ='SAT'";
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
 				$bindings[]=$postdata['sat'];
 			}
+		} else {
+			$sql.=" and (col_prop_mode != 'SAT' or col_prop_mode is null)";
 		}
+
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$bindings[]=$postdata['mode'];
@@ -232,6 +239,8 @@ class DXCC extends CI_Model {
 					$sql .= " and col_band = ?";
 					$bindings[]=$postdata['band'];
 				}
+			} else {
+				$sql.=" and (col_prop_mode != 'SAT' or col_prop_mode is null)";
 			}
 
 			if ($postdata['mode'] != 'All') {
@@ -270,10 +279,13 @@ class DXCC extends CI_Model {
 				") and col_dxcc > 0";
 		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$bindings);
 		if ($postdata['band'] == 'SAT') {
+			$sql .= " and col_prop_mode = 'SAT'";
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
 				$bindings[]=$postdata['sat'];
 			}
+		} else {
+			$sql.=" and (col_prop_mode != 'SAT' or col_prop_mode is null)";
 		}
 
 		$sql .= $this->addOrbitToQuery($postdata,$bindings);
@@ -287,11 +299,15 @@ class DXCC extends CI_Model {
 		$sql .= " and not exists (select 1 from ".$this->config->item('table_name')." where station_id in (". $location_list .") and col_dxcc = thcv.col_dxcc and col_dxcc > 0";
 		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$bindings);
 		if ($postdata['band'] == 'SAT') {
+			$sql .= " and col_prop_mode = 'SAT'";
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
 				$bindings[]=$postdata['sat'];
 			}
+		} else {
+			$sql.=" and (col_prop_mode != 'SAT' or col_prop_mode is null)";
 		}
+
 		$sql .= $this->addOrbitToQuery($postdata,$bindings);
 
 		if ($postdata['mode'] != 'All') {
@@ -328,10 +344,13 @@ class DXCC extends CI_Model {
 
 		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$bindings);
 		if ($postdata['band'] == 'SAT') {
+			$sql .= " and col_prop_mode = 'SAT'";
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
 				$bindings[]=$postdata['sat'];
 			}
+		} else {
+			$sql.=" and (col_prop_mode != 'SAT' or col_prop_mode is null)";
 		}
 
 		if ($postdata['mode'] != 'All') {
