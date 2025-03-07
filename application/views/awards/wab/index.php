@@ -31,7 +31,7 @@
                 } ?>
             </select>
             <?php if (count($sats_available) != 0) { ?>
-                <label class="my-1 me-2" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?= __("Satellite"); ?></label>
+                <label class="my-1 me-2" id="satslabel" for="sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?= __("Satellite"); ?></label>
                 <select class="form-select my-1 me-sm-2 w-auto"  id="sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
                     <option value="All"><?= __("All")?></option>
                     <?php foreach($sats_available as $sat) {
@@ -61,7 +61,7 @@
                     }
                     ?>
             </select>
-			<label class="my-1 me-2"><?= __("Confirmation"); ?></label>
+			<label class="my-1 me-2" for="qsl"><?= __("Confirmation"); ?></label>
                 <div>
                     <div class="form-check-inline">
                     <?php echo '<input class="form-check-input" value="1" type="checkbox" name="qsl" id="qsl"';
