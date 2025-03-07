@@ -174,6 +174,7 @@ class Awards extends CI_Controller {
 
 		// Render Page
 		$data['page_title'] = sprintf(__("Awards - %s"), __("DXCC"));
+		$data['posted_band']=$postdata['band'];
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/dxcc/index');
 		$this->load->view('interface_assets/footer');

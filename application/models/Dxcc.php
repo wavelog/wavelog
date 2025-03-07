@@ -70,6 +70,9 @@ class DXCC extends CI_Model {
 		$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
 		foreach ($bands as $band) {             	// Looping through bands and entities to generate the array needed for display
+			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
 			foreach ($dxccArray as $dxcc) {
 				if ($dxcc->adif == '0') {
 					$dxccMatrix[$dxcc->adif]['name'] = $dxcc->name;
@@ -80,9 +83,6 @@ class DXCC extends CI_Model {
 				if ($postdata['includedeleted'])
 					$dxccMatrix[$dxcc->adif]['Deleted'] = isset($dxcc->Enddate) ? 1 : 0;
 				$dxccMatrix[$dxcc->adif][$band] = '-';
-			}
-			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
-				continue;
 			}
 
 			// If worked is checked, we add worked entities to the array
