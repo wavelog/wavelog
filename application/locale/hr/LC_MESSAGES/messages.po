@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-07 08:50+0000\n"
+"POT-Creation-Date: 2025-03-07 08:59+0000\n"
 "PO-Revision-Date: 2024-11-23 16:17+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Croatian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -305,11 +305,11 @@ msgstr ""
 #: application/controllers/Awards.php:871
 #: application/controllers/Awards.php:943
 #: application/controllers/Awards.php:1144
-#: application/controllers/Awards.php:1646
-#: application/controllers/Awards.php:1786
-#: application/controllers/Awards.php:1915
-#: application/controllers/Awards.php:1993
-#: application/controllers/Awards.php:2005
+#: application/controllers/Awards.php:1649
+#: application/controllers/Awards.php:1789
+#: application/controllers/Awards.php:1918
+#: application/controllers/Awards.php:1996
+#: application/controllers/Awards.php:2008
 #, php-format
 msgid "Awards - %s"
 msgstr ""
@@ -542,22 +542,22 @@ msgstr ""
 msgid "Awards - SIG - "
 msgstr ""
 
-#: application/controllers/Awards.php:1786
+#: application/controllers/Awards.php:1789
 #: application/views/awards/itu/index.php:20
 msgid "ITU Zones"
 msgstr ""
 
-#: application/controllers/Awards.php:1915
+#: application/controllers/Awards.php:1918
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:186
 msgid "Worked All Continents (WAC)"
 msgstr ""
 
-#: application/controllers/Awards.php:1993
+#: application/controllers/Awards.php:1996
 msgid "WAE"
 msgstr ""
 
-#: application/controllers/Awards.php:2005
+#: application/controllers/Awards.php:2008
 #: application/views/interface_assets/header.php:194
 msgid "73 on 73"
 msgstr ""
@@ -709,6 +709,7 @@ msgstr ""
 #: application/controllers/Logbook.php:673
 #: application/views/awards/dok/index.php:71
 #: application/views/awards/dxcc/index.php:77
+#: application/views/awards/iota/index.php:77
 #: application/views/awards/jcc/index.php:68
 #: application/views/awards/wab/index.php:104
 #: application/views/awards/wae/index.php:70
@@ -755,7 +756,7 @@ msgstr ""
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:83
-#: application/views/awards/iota/index.php:57
+#: application/views/awards/iota/index.php:83
 #: application/views/interface_assets/header.php:164
 msgid "Continents"
 msgstr ""
@@ -1174,6 +1175,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:59
 #: application/views/awards/dxcc/index.php:65
 #: application/views/awards/helvetia/index.php:59
+#: application/views/awards/iota/index.php:65
 #: application/views/awards/itu/index.php:60
 #: application/views/awards/jcc/index.php:56
 #: application/views/awards/rac/index.php:51
@@ -1207,6 +1209,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:63
 #: application/views/awards/dxcc/index.php:69
 #: application/views/awards/helvetia/index.php:63
+#: application/views/awards/iota/index.php:69
 #: application/views/awards/itu/index.php:64
 #: application/views/awards/jcc/index.php:60
 #: application/views/awards/rac/index.php:55
@@ -1242,7 +1245,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:91
 #: application/views/awards/dxcc/index.php:162
 #: application/views/awards/helvetia/index.php:87
-#: application/views/awards/iota/index.php:105
+#: application/views/awards/iota/index.php:131
 #: application/views/awards/itu/index.php:88
 #: application/views/awards/jcc/index.php:88
 #: application/views/awards/rac/index.php:79
@@ -1385,7 +1388,7 @@ msgid "Country"
 msgstr ""
 
 #: application/controllers/Logbook.php:1286
-#: application/views/awards/iota/index.php:169
+#: application/views/awards/iota/index.php:195
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:202
 #: application/views/logbookadvanced/edit.php:11
@@ -1516,7 +1519,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:77
 #: application/views/awards/dxcc/index.php:117
 #: application/views/awards/helvetia/index.php:73
-#: application/views/awards/iota/index.php:91
+#: application/views/awards/iota/index.php:117
 #: application/views/awards/itu/index.php:74
 #: application/views/awards/jcc/index.php:74
 #: application/views/awards/pota/index.php:35
@@ -3186,7 +3189,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:150
 #: application/views/awards/dxcc/index.php:165
 #: application/views/awards/helvetia/index.php:90
-#: application/views/awards/iota/index.php:108
+#: application/views/awards/iota/index.php:134
 #: application/views/awards/itu/index.php:77
 #: application/views/awards/itu/index.php:91
 #: application/views/awards/jcc/index.php:91
@@ -3582,7 +3585,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:127
 #: application/views/awards/dxcc/index.php:187
 #: application/views/awards/helvetia/index.php:112
-#: application/views/awards/iota/index.php:130
+#: application/views/awards/iota/index.php:156
 #: application/views/awards/itu/index.php:113
 #: application/views/awards/jcc/index.php:113
 #: application/views/awards/rac/index.php:104
@@ -3660,6 +3663,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:67
 #: application/views/awards/dxcc/index.php:73
 #: application/views/awards/helvetia/index.php:67
+#: application/views/awards/iota/index.php:73
 #: application/views/awards/itu/index.php:68
 #: application/views/awards/jcc/index.php:64
 #: application/views/awards/rac/index.php:59
@@ -3717,7 +3721,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:196
 #: application/views/awards/dxcc/index.php:280
 #: application/views/awards/helvetia/index.php:200
-#: application/views/awards/iota/index.php:224
+#: application/views/awards/iota/index.php:250
 #: application/views/awards/itu/index.php:198
 #: application/views/awards/jcc/index.php:236
 #: application/views/awards/pota/index.php:67
@@ -4593,7 +4597,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:174
 #: application/views/awards/dxcc/index.php:257
 #: application/views/awards/helvetia/index.php:179
-#: application/views/awards/iota/index.php:201
+#: application/views/awards/iota/index.php:227
 #: application/views/awards/itu/index.php:176
 #: application/views/awards/jcc/index.php:185
 #: application/views/awards/rac/index.php:171
@@ -4741,6 +4745,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:51
 #: application/views/awards/dxcc/index.php:57
 #: application/views/awards/helvetia/index.php:51
+#: application/views/awards/iota/index.php:57
 #: application/views/awards/itu/index.php:52
 #: application/views/awards/jcc/index.php:48
 #: application/views/awards/rac/index.php:43
@@ -4752,6 +4757,7 @@ msgid "Show QSO with QSL Type"
 msgstr ""
 
 #: application/views/awards/cq/index.php:56
+#: application/views/awards/iota/index.php:61
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
 #: application/views/interface_assets/footer.php:2391
@@ -4764,7 +4770,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:126
 #: application/views/awards/dxcc/index.php:186
 #: application/views/awards/helvetia/index.php:111
-#: application/views/awards/iota/index.php:129
+#: application/views/awards/iota/index.php:155
 #: application/views/awards/itu/index.php:112
 #: application/views/awards/jcc/index.php:112
 #: application/views/awards/rac/index.php:103
@@ -4787,7 +4793,7 @@ msgstr ""
 #: application/views/awards/cq/index.php:124
 #: application/views/awards/dxcc/index.php:199
 #: application/views/awards/helvetia/index.php:124
-#: application/views/awards/iota/index.php:142
+#: application/views/awards/iota/index.php:168
 #: application/views/awards/itu/index.php:124
 #: application/views/awards/rac/index.php:116
 #: application/views/awards/waja/index.php:128
@@ -4799,7 +4805,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:128
 #: application/views/awards/dxcc/index.php:202
 #: application/views/awards/helvetia/index.php:127
-#: application/views/awards/iota/index.php:145
+#: application/views/awards/iota/index.php:171
 #: application/views/awards/itu/index.php:127
 #: application/views/awards/jcc/index.php:129
 #: application/views/awards/rac/index.php:119
@@ -4815,7 +4821,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:165
 #: application/views/awards/dxcc/index.php:248
 #: application/views/awards/helvetia/index.php:170
-#: application/views/awards/iota/index.php:192
+#: application/views/awards/iota/index.php:218
 #: application/views/awards/itu/index.php:167
 #: application/views/awards/jcc/index.php:168
 #: application/views/awards/rac/index.php:162
@@ -4830,7 +4836,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:178
 #: application/views/awards/dxcc/index.php:262
 #: application/views/awards/helvetia/index.php:183
-#: application/views/awards/iota/index.php:206
+#: application/views/awards/iota/index.php:232
 #: application/views/awards/itu/index.php:180
 #: application/views/awards/jcc/index.php:195
 #: application/views/awards/rac/index.php:175
@@ -4845,7 +4851,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:185
 #: application/views/awards/dxcc/index.php:269
 #: application/views/awards/helvetia/index.php:190
-#: application/views/awards/iota/index.php:213
+#: application/views/awards/iota/index.php:239
 #: application/views/awards/itu/index.php:187
 #: application/views/awards/jcc/index.php:214
 #: application/views/awards/rac/index.php:182
@@ -4913,7 +4919,7 @@ msgstr ""
 #: application/views/awards/dok/index.php:80
 #: application/views/awards/dxcc/index.php:120
 #: application/views/awards/helvetia/index.php:76
-#: application/views/awards/iota/index.php:94
+#: application/views/awards/iota/index.php:120
 #: application/views/awards/jcc/index.php:77
 #: application/views/awards/rac/index.php:68
 #: application/views/awards/wac/index.php:66
@@ -4965,7 +4971,7 @@ msgid "Include deleted"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:87
-#: application/views/awards/iota/index.php:61
+#: application/views/awards/iota/index.php:87
 #: application/views/bandmap/index.php:37 application/views/bandmap/list.php:87
 #: application/views/logbookadvanced/edit.php:176
 #: application/views/logbookadvanced/index.php:361
@@ -4977,7 +4983,7 @@ msgid "Antarctica"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:91
-#: application/views/awards/iota/index.php:65
+#: application/views/awards/iota/index.php:91
 #: application/views/bandmap/index.php:36 application/views/bandmap/list.php:86
 #: application/views/logbookadvanced/edit.php:175
 #: application/views/logbookadvanced/index.php:360
@@ -4989,7 +4995,7 @@ msgid "Africa"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:95
-#: application/views/awards/iota/index.php:69
+#: application/views/awards/iota/index.php:95
 #: application/views/bandmap/index.php:38 application/views/bandmap/list.php:88
 #: application/views/logbookadvanced/edit.php:178
 #: application/views/logbookadvanced/index.php:363
@@ -5001,7 +5007,7 @@ msgid "Asia"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:99
-#: application/views/awards/iota/index.php:73
+#: application/views/awards/iota/index.php:99
 #: application/views/bandmap/index.php:39 application/views/bandmap/list.php:89
 #: application/views/logbookadvanced/edit.php:179
 #: application/views/logbookadvanced/index.php:364
@@ -5013,7 +5019,7 @@ msgid "Europe"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:103
-#: application/views/awards/iota/index.php:77
+#: application/views/awards/iota/index.php:103
 #: application/views/bandmap/index.php:40 application/views/bandmap/list.php:90
 #: application/views/logbookadvanced/edit.php:177
 #: application/views/logbookadvanced/index.php:362
@@ -5025,7 +5031,7 @@ msgid "North America"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:107
-#: application/views/awards/iota/index.php:81
+#: application/views/awards/iota/index.php:107
 #: application/views/bandmap/index.php:42 application/views/bandmap/list.php:92
 #: application/views/logbookadvanced/edit.php:180
 #: application/views/logbookadvanced/index.php:365
@@ -5037,7 +5043,7 @@ msgid "South America"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:111
-#: application/views/awards/iota/index.php:85
+#: application/views/awards/iota/index.php:111
 #: application/views/bandmap/index.php:41 application/views/bandmap/list.php:91
 #: application/views/logbookadvanced/edit.php:181
 #: application/views/logbookadvanced/index.php:366
@@ -5057,7 +5063,7 @@ msgid "DXCC Name"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:226
-#: application/views/awards/iota/index.php:170
+#: application/views/awards/iota/index.php:196
 #: application/views/awards/wae/index.php:162
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
@@ -5216,11 +5222,11 @@ msgstr ""
 msgid "Deleted IOTA"
 msgstr ""
 
-#: application/views/awards/iota/index.php:132
+#: application/views/awards/iota/index.php:158
 msgid "Show IOTA Map"
 msgstr ""
 
-#: application/views/awards/iota/index.php:171
+#: application/views/awards/iota/index.php:197
 #: application/views/contesting/add.php:25
 #: application/views/contesting/create.php:24
 #: application/views/contesting/index.php:59
@@ -5245,7 +5251,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: application/views/awards/iota/index.php:173
+#: application/views/awards/iota/index.php:199
 msgid "Deleted"
 msgstr ""
 
