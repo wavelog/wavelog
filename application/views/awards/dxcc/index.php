@@ -259,7 +259,10 @@
 		$addsat='<td>' . $band . '</td>';
 	    }
         }
-        echo '<td>' . __("Total") . '</td>';
+        echo '<td><b>' . __("Total") . '</b></td>';
+        if (count($bands) > 1) {
+           echo '<td class="spacingcell"></td>';
+        }
 	echo $addsat;
 	echo '
         </tr>
@@ -270,12 +273,21 @@
 	$addsat='';
         foreach ($dxcc_summary['worked'] as $band => $dxcc) {      // Fills the table with the data
 	    if ($band != 'SAT') {
-            	echo '<td style="text-align: center">' . $dxcc . '</td>';
+          echo '<td style="text-align: center">';
+          if ($band == 'Total') {
+             echo '<b>'.$dxcc.'</b>';
+          } else {
+             echo $dxcc;
+          }
+          echo '</td>';
 	    } else {
 		$addsat='<td style="text-align: center">' . $dxcc . '</td>';
 	    }
         }
-	if ($addsat != '') {
+	if ($addsat != '' && count($dxcc_summary['worked']) > 1) {
+        if (count($bands) > 1) {
+		echo '<td class="spacingcell"></td>';
+        }
 		echo $addsat;
 	}
 
@@ -284,12 +296,21 @@
 	$addsat='';
         foreach ($dxcc_summary['confirmed'] as $band => $dxcc) {      // Fills the table with the data
 	    if ($band != 'SAT') {
-            	echo '<td style="text-align: center">' . $dxcc . '</td>';
+          echo '<td style="text-align: center">';
+          if ($band == 'Total') {
+             echo '<b>'.$dxcc.'</b>';
+          } else {
+             echo $dxcc;
+          }
+          echo '</td>';
 	    } else {
 		$addsat='<td style="text-align: center">' . $dxcc . '</td>';
 	    }
         }
-	if ($addsat != '') {
+	if ($addsat != '' && count($dxcc_summary['confirmed']) > 1) {
+        if (count($bands) > 1) {
+		echo '<td class="spacingcell"></td>';
+        }
 		echo $addsat;
 	}
 
