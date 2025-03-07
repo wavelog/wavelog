@@ -238,6 +238,7 @@ class Update_model extends CI_Model {
             return "Something went wrong with fetching the LoTW uses file";
         }
         $this->db->empty_table("lotw_users");
+        $this->db->query("ALTER TABLE lotw_users AUTO_INCREMENT 1");
         $i = 0;
         $data = fgetcsv($handle, 1000, ",");
         do {
