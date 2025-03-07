@@ -117,7 +117,7 @@
                 <label class="col-md-2 control-label" for="band"><?= __("Band"); ?></label>
                 <div class="col-md-2">
                     <select id="band2" name="band" class="form-select form-select-sm">
-                        <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band"); ?></option>
+                        <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band (w/o SAT)"); ?></option>
                         <?php foreach($worked_bands as $band) {
                             echo '<option value="' . $band . '"';
                             if ($this->input->post('band') == $band) echo ' selected';
@@ -251,25 +251,47 @@
         <thead>
         <tr><td></td>';
 
+	$addsat='';
         foreach($bands as $band) {
-            echo '<td>' . $band . '</td>';
+	    if ($band != 'SAT') {
+            	echo '<td>' . $band . '</td>';
+	    } else {
+		$addsat='<td>' . $band . '</td>';
+	    }
         }
-        echo '<td>' . __("Total") . '</td>
+        echo '<td>' . __("Total") . '</td>';
+	echo $addsat;
+	echo '
         </tr>
         </thead>
         <tbody>
 
         <tr><td>' . __("Total worked") . '</td>';
-
-        foreach ($dxcc_summary['worked'] as $dxcc) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $dxcc . '</td>';
+	$addsat='';
+        foreach ($dxcc_summary['worked'] as $band => $dxcc) {      // Fills the table with the data
+	    if ($band != 'SAT') {
+            	echo '<td style="text-align: center">' . $dxcc . '</td>';
+	    } else {
+		$addsat='<td style="text-align: center">' . $dxcc . '</td>';
+	    }
         }
+	if ($addsat != '') {
+		echo $addsat;
+	}
 
         echo '</tr><tr>
         <td>' . __("Total confirmed") . '</td>';
-        foreach ($dxcc_summary['confirmed'] as $dxcc) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $dxcc . '</td>';
+	$addsat='';
+        foreach ($dxcc_summary['confirmed'] as $band => $dxcc) {      // Fills the table with the data
+	    if ($band != 'SAT') {
+            	echo '<td style="text-align: center">' . $dxcc . '</td>';
+	    } else {
+		$addsat='<td style="text-align: center">' . $dxcc . '</td>';
+	    }
         }
+	if ($addsat != '') {
+		echo $addsat;
+	}
 
         echo '</tr>
         </table>
