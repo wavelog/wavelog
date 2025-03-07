@@ -338,6 +338,11 @@ msgstr "奖项"
 #: application/controllers/Awards.php:1915
 #: application/controllers/Awards.php:1993
 #: application/controllers/Awards.php:2005
+#: application/controllers/Awards.php:1649
+#: application/controllers/Awards.php:1789
+#: application/controllers/Awards.php:1918
+#: application/controllers/Awards.php:1996
+#: application/controllers/Awards.php:2008
 #, php-format
 msgid "Awards - %s"
 msgstr "奖项 - %s"
@@ -606,6 +611,7 @@ msgstr "奖项 - SIG - "
 #: application/controllers/Awards.php:1785
 #: application/views/awards/itu/index.php:20
 #: application/controllers/Awards.php:1786
+#: application/controllers/Awards.php:1789
 msgid "ITU Zones"
 msgstr "ITU 分区"
 
@@ -613,17 +619,20 @@ msgstr "ITU 分区"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:186
 #: application/controllers/Awards.php:1915
+#: application/controllers/Awards.php:1918
 msgid "Worked All Continents (WAC)"
 msgstr "通联世界大洲奖（WAC）"
 
 #: application/controllers/Awards.php:1992
 #: application/controllers/Awards.php:1993
+#: application/controllers/Awards.php:1996
 msgid "WAE"
 msgstr "WAE"
 
 #: application/controllers/Awards.php:2004
 #: application/views/interface_assets/header.php:194
 #: application/controllers/Awards.php:2005
+#: application/controllers/Awards.php:2008
 msgid "73 on 73"
 msgstr "73 on 73"
 
@@ -789,6 +798,7 @@ msgstr "Clublog 未配置用户账户。"
 #: application/views/view_log/partial/log_ajax.php:149
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
+#: application/views/awards/iota/index.php:77
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -823,6 +833,7 @@ msgstr "更新竞赛"
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/iota/index.php:57
 #: application/views/interface_assets/header.php:164
+#: application/views/awards/iota/index.php:83
 msgid "Continents"
 msgstr "大陆"
 
@@ -1268,6 +1279,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
 #: application/views/user/edit.php:716 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/awards/iota/index.php:65
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1299,6 +1311,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:305
 #: application/views/timeline/index.php:64 application/views/user/edit.php:604
 #: application/views/user/edit.php:724 application/views/user/edit.php:790
+#: application/views/awards/iota/index.php:69
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1373,6 +1386,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/awards/iota/index.php:131
 msgid "Mode"
 msgstr "模式"
 
@@ -1478,6 +1492,7 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:328 application/views/user/edit.php:352
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/views/awards/iota/index.php:195
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1650,6 +1665,7 @@ msgstr "距离"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/views/awards/iota/index.php:117
 msgid "Band"
 msgstr "频段"
 
@@ -3377,6 +3393,7 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:690
 #: application/views/visitor/layout/footer.php:172
+#: application/views/awards/iota/index.php:134
 msgid "All"
 msgstr "所有"
 
@@ -3706,6 +3723,7 @@ msgstr "Tropospheric ducting"
 #: application/views/timeline/index.php:340
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
+#: application/views/awards/iota/index.php:156
 msgid "Show"
 msgstr "显示"
 
@@ -3770,6 +3788,7 @@ msgstr "确认"
 #: application/views/awards/waja/index.php:67
 #: application/views/awards/was/index.php:67
 #: application/views/gridmap/index.php:125 application/views/user/edit.php:732
+#: application/views/awards/iota/index.php:73
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -3837,6 +3856,7 @@ msgstr "最低数量"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
+#: application/views/awards/iota/index.php:250
 msgid "Nothing found!"
 msgstr "未找到！"
 
@@ -4742,6 +4762,7 @@ msgstr "已确认的县"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/iota/index.php:227
 msgid "Total"
 msgstr "总计"
 
@@ -4879,6 +4900,7 @@ msgstr "显示未通联"
 #: application/views/awards/wae/index.php:50
 #: application/views/awards/waja/index.php:51
 #: application/views/awards/was/index.php:51
+#: application/views/awards/iota/index.php:57
 msgid "Show QSO with QSL Type"
 msgstr "显示 QSL 分类下的 QSO"
 
@@ -4888,6 +4910,7 @@ msgstr "显示 QSL 分类下的 QSO"
 #: application/views/interface_assets/footer.php:2391
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
+#: application/views/awards/iota/index.php:61
 msgid "QSL Card"
 msgstr "QSL 卡片"
 
@@ -4908,6 +4931,7 @@ msgstr "QSL 卡片"
 #: application/views/oqrs/showrequests.php:68
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:664
+#: application/views/awards/iota/index.php:155
 msgid "Reset"
 msgstr "重置筛选条件"
 
@@ -4923,6 +4947,7 @@ msgstr "查看CQ分区地图"
 #: application/views/awards/rac/index.php:116
 #: application/views/awards/waja/index.php:128
 #: application/views/awards/was/index.php:124
+#: application/views/awards/iota/index.php:168
 msgid "Table"
 msgstr "表格"
 
@@ -4939,6 +4964,7 @@ msgstr "表格"
 #: application/views/awards/was/index.php:127
 #: application/views/logbookadvanced/index.php:624
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/awards/iota/index.php:171
 msgid "Map"
 msgstr "地图"
 
@@ -4954,6 +4980,7 @@ msgstr "地图"
 #: application/views/awards/wae/index.php:184
 #: application/views/awards/waja/index.php:170
 #: application/views/awards/was/index.php:170
+#: application/views/awards/iota/index.php:218
 msgid "Summary"
 msgstr "概览"
 
@@ -4969,6 +4996,7 @@ msgstr "概览"
 #: application/views/awards/wae/index.php:198
 #: application/views/awards/waja/index.php:184
 #: application/views/awards/was/index.php:183
+#: application/views/awards/iota/index.php:232
 msgid "Total worked"
 msgstr "共通联"
 
@@ -4984,6 +5012,7 @@ msgstr "共通联"
 #: application/views/awards/wae/index.php:205
 #: application/views/awards/waja/index.php:191
 #: application/views/awards/was/index.php:190
+#: application/views/awards/iota/index.php:239
 msgid "Total confirmed"
 msgstr "共确认"
 
@@ -5058,6 +5087,7 @@ msgstr "通联过 / 已确认"
 #: application/views/awards/wae/index.php:79
 #: application/views/awards/waja/index.php:80
 #: application/views/awards/was/index.php:76
+#: application/views/awards/iota/index.php:120
 msgid "Every band"
 msgstr "各个波段"
 
@@ -5117,6 +5147,7 @@ msgstr "包括已删除"
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:394
 #: application/views/view_log/qso.php:350
+#: application/views/awards/iota/index.php:87
 msgid "Antarctica"
 msgstr "南极洲"
 
@@ -5129,6 +5160,7 @@ msgstr "南极洲"
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:393
 #: application/views/view_log/qso.php:347
+#: application/views/awards/iota/index.php:91
 msgid "Africa"
 msgstr "非洲"
 
@@ -5141,6 +5173,7 @@ msgstr "非洲"
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:395
 #: application/views/view_log/qso.php:353
+#: application/views/awards/iota/index.php:95
 msgid "Asia"
 msgstr "亚洲"
 
@@ -5153,6 +5186,7 @@ msgstr "亚洲"
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:396
 #: application/views/view_log/qso.php:356
+#: application/views/awards/iota/index.php:99
 msgid "Europe"
 msgstr "欧洲"
 
@@ -5165,6 +5199,7 @@ msgstr "欧洲"
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:397
 #: application/views/view_log/qso.php:359
+#: application/views/awards/iota/index.php:103
 msgid "North America"
 msgstr "北美洲"
 
@@ -5177,6 +5212,7 @@ msgstr "北美洲"
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:399
 #: application/views/view_log/qso.php:365
+#: application/views/awards/iota/index.php:107
 msgid "South America"
 msgstr "南美洲"
 
@@ -5189,6 +5225,7 @@ msgstr "南美洲"
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:398
 #: application/views/view_log/qso.php:362
+#: application/views/awards/iota/index.php:111
 msgid "Oceania"
 msgstr "大洋洲"
 
@@ -5205,6 +5242,7 @@ msgstr "DXCC名称"
 #: application/views/awards/wae/index.php:162
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
+#: application/views/awards/iota/index.php:196
 msgid "Prefix"
 msgstr "前缀"
 
@@ -5384,6 +5422,7 @@ msgid "Deleted IOTA"
 msgstr "已删除的IOTA"
 
 #: application/views/awards/iota/index.php:132
+#: application/views/awards/iota/index.php:158
 msgid "Show IOTA Map"
 msgstr "显示IOTA地图"
 
@@ -5409,10 +5448,12 @@ msgstr "显示IOTA地图"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
+#: application/views/awards/iota/index.php:197
 msgid "Name"
 msgstr "名称"
 
 #: application/views/awards/iota/index.php:173
+#: application/views/awards/iota/index.php:199
 msgid "Deleted"
 msgstr "已删除"
 
