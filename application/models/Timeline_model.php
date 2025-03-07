@@ -67,7 +67,6 @@ class Timeline_model extends CI_Model {
 			order by date desc";
 
 		$query = $this->db->query($sql, $binding);
-		log_message("Error",$this->db->last_query());
 		return $query->result();
 	}
 
