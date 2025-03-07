@@ -7,6 +7,9 @@ class IOTA extends CI_Model {
 
 	function get_iota_array($iotaArray, $bands, $postdata, $location_list) {
 		foreach ($bands as $band) {             	// Looping through bands and iota to generate the array needed for display
+			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
 			foreach ($iotaArray as $iota) {
 				$iotaMatrix[$iota->tag]['prefix'] = $iota->prefix;
 				$iotaMatrix[$iota->tag]['name'] = $iota->name;

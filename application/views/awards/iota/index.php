@@ -199,6 +199,9 @@
             echo '      <td>' . __("Deleted") . '</td>';
 
         foreach($bands as $band) {
+	    if (($posted_band != 'SAT') && ($band == 'SAT')) {
+		   continue;
+	    }
             echo '<td>' . $band . '</td>';
         }
         echo '</tr>
