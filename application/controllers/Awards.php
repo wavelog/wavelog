@@ -121,23 +121,23 @@ class Awards extends CI_Controller {
 		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
 		if($this->input->method() === 'post') {
-			$postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
-			$postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
-			$postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
-			$postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
-			$postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
-			$postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
-			$postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
-			$postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+			$postdata['qsl'] = ($this->input->post('qsl',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['lotw'] = ($this->input->post('lotw',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['eqsl'] = ($this->input->post('eqsl',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['qrz'] = ($this->input->post('qrz',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['clublog'] = ($this->input->post('clublog',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['worked'] = ($this->input->post('worked',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['confirmed'] = ($this->input->post('confirmed',true) ?? 0)  == 0 ? NULL: 1;
+			$postdata['notworked'] = ($this->input->post('notworked',true) ?? 0)  == 0 ? NULL: 1;
 
-			$postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
-			$postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
-			$postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
-			$postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
-			$postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
-			$postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
-			$postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
-			$postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
+			$postdata['includedeleted'] = ($this->input->post('includedeleted',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Africa'] = ($this->input->post('Africa',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Asia'] = ($this->input->post('Asia',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Europe'] = ($this->input->post('Europe',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['NorthAmerica'] = ($this->input->post('NorthAmerica',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['SouthAmerica'] = ($this->input->post('SouthAmerica',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Oceania'] = ($this->input->post('Oceania',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Antarctica'] = ($this->input->post('Antarctica',true) ?? 0) == 0 ? NULL: 1;
 			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
@@ -145,12 +145,13 @@ class Awards extends CI_Controller {
 		} else { // Setting default values at first load of page
 			$postdata['qsl'] = 1;
 			$postdata['lotw'] = 1;
-			$postdata['eqsl'] = 0;
-			$postdata['qrz'] = 0;
+			$postdata['eqsl'] = NULL;
+			$postdata['qrz'] = NULL;
+			$postdata['clublog'] = NULL;
 			$postdata['worked'] = 1;
 			$postdata['confirmed'] = 1;
 			$postdata['notworked'] = 1;
-			$postdata['includedeleted'] = 0;
+			$postdata['includedeleted'] = NULL;
 			$postdata['Africa'] = 1;
 			$postdata['Asia'] = 1;
 			$postdata['Europe'] = 1;
