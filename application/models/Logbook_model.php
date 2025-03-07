@@ -3727,7 +3727,7 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid, $station_ids, $country = null, $dxcc = null, $ant_path = null) {
+	function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid, $station_ids, $dxcc = null, $country = null, $ant_path = null) {
 
 		$data = array(
 			'COL_LOTW_QSLRDATE' => $qsl_date,
