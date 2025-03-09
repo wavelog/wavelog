@@ -174,6 +174,7 @@ class Awards extends CI_Controller {
 
 		// Render Page
 		$data['page_title'] = sprintf(__("Awards - %s"), __("DXCC"));
+		$data['posted_band']=$postdata['band'];
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/dxcc/index');
 		$this->load->view('interface_assets/footer');
@@ -857,6 +858,7 @@ class Awards extends CI_Controller {
 	    $iotalist = $this->iota->fetchIota($postdata, $location_list);
 	    $data['iota_array'] = $this->iota->get_iota_array($iotalist, $bands, $postdata, $location_list);
 	    $data['iota_summary'] = $this->iota->get_iota_summary($bands, $postdata, $location_list);
+	    $data['posted_band']=$postdata['band'];
 
 	    // Render Page
 	    $data['page_title'] = sprintf(__("Awards - %s"), __("IOTA (Island On The Air)"));

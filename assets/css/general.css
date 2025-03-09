@@ -1222,3 +1222,12 @@ svg text.month { fill: #AAA; }
       opacity: 0;
    }
 }
+
+.spacingcell {
+   background-color: transparent !important;
+   border-top-style: none !important;
+   border-bottom-style: none !important;
+   border-right-style: none !important;
+   --dt-row-hover: transparent !important;
+   --dt-row-stripe: transparent !important;
+}
