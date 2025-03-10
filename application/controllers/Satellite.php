@@ -437,18 +437,4 @@ class Satellite extends CI_Controller {
 		// Calculate the day number
 		return Predict_Time::unix2daynum($timestamp, 0);
 	}
-
-	public function sat_qsos_ajax() {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-		$this->load->model('satellite_model');
-
-		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
-		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
-		$data['results'] = $this->satellite_model->sat_qsos($sat,$mode);
-
-		$data['page_title'] = __("Log View")." - " . __("Satellite QSOs");
-		$data['filter'] = $sat;
-
-		$this->load->view('satellite/details', $data);
-    }
 }

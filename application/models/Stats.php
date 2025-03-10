@@ -893,6 +893,21 @@
 		$result = $this->db->query($sql, $binding);
 		return $result->result();
 	}
+
+	public function sat_qsos($sat){
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->db->select('*, satellite.displayname AS sat_displayname');
+		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME');
+		$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left outer');
+		$this->db->where('COL_SAT_NAME', $sat);
+		$this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
+		$this->db->order_by("COL_TIME_ON desc, COL_PRIMARY_KEY desc");
+		$this->db->limit(500);
+
+		return $this->db->get($this->config->item('table_name'));
+	}
 }
 
 ?>

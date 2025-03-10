@@ -703,7 +703,7 @@ function totalSatQsos() {
 
                     var $iterator = $('<td></td>').html(i++);
                     var $type = $('<td></td>').html(row.sat);
-                    var $content = $('<td></td>').html(row.count);
+                    var $content = '<td><a href="javascript:displaySatQsos(\''+row.sat+'\')">'+row.count+'</a></td>';
 
                     $row.append($iterator, $type, $content);
 
@@ -811,7 +811,6 @@ function totalSatQsos() {
         }
     });
 }
-
 
 var modalloading=false;
 function displaySatQsos(sat,mode) {
