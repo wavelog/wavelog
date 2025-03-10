@@ -821,7 +821,7 @@ function displaySatQsos(sat,mode) {
 		})
 		modalloading=true;
 		$.ajax({
-			url: base_url + 'index.php/satellite/sat_qsos_ajax',
+			url: base_url + 'index.php/statistics/sat_qsos_ajax',
 			type: 'post',
 			data: ajax_data,
 			success: function (html) {
