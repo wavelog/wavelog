@@ -293,4 +293,18 @@ class Statistics extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode($elevationarray);
 	}
+
+	public function sat_qsos_ajax() {
+		$this->load->model('stats');
+
+		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
+		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
+		$year = $this->security->xss_clean($this->input->post("Year"));
+		$data['results'] = $this->stats->sat_qsos($sat,$year,$mode);
+
+		$data['page_title'] = __("Log View")." - " . __("Satellite QSOs");
+		$data['filter'] = $sat;
+
+		$this->load->view('statistics/details', $data);
+	}
 }
