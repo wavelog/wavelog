@@ -14,7 +14,6 @@ if ($qsoarray) {
 	foreach ($qsoarray as $sat => $mode) {
         	echo '<tr><th>'. $sat .'</th>';
 		foreach ($mode as $cmode => $singlemode) {
-			#echo '<td>'.$singlemode.'</td>';
 			echo '<td>';
 			if (($singlemode ?? '-') != '-') { 
 				echo "<a href=\"javascript:displaySatQsos('".$sat."','".$cmode."')\">".$singlemode."</a>"; 
