@@ -60,7 +60,7 @@
                     <tr>
                         <th>#</th>
                         <th><?= __("Continent"); ?></th>
-                        <th><?= __("# of QSO's worked"); ?></th>
+                        <th><?= __("# of QSOs worked"); ?></th>
                     </tr>
                 </thead>
                 <tbody></tbody>

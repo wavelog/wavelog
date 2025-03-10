@@ -147,7 +147,7 @@ function write_activators($activators_array, $band, $mode, $sat, $orbit, $propag
                         <td>#</td>
                         <td>' . __("Callsign") . '</td>
                         <td>' . __("#QSOs") . '</td>
-                        <td>' . __("Show QSO's") . '</td>
+                        <td>' . __("Show QSOs") . '</td>
                     </tr>
                 </thead>
                 <tbody>';
