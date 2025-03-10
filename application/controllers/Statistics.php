@@ -297,6 +297,7 @@ class Statistics extends CI_Controller {
 	public function sat_qsos_ajax() {
 		$this->load->model('stats');
 
+		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
 		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
 		$data['results'] = $this->stats->sat_qsos($sat,$mode);
 
