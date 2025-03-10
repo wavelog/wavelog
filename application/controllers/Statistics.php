@@ -299,7 +299,8 @@ class Statistics extends CI_Controller {
 
 		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
 		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
-		$data['results'] = $this->stats->sat_qsos($sat,$mode);
+		$year = $this->security->xss_clean($this->input->post("Year"));
+		$data['results'] = $this->stats->sat_qsos($sat,$year,$mode);
 
 		$data['page_title'] = __("Log View")." - " . __("Satellite QSOs");
 		$data['filter'] = $sat;
