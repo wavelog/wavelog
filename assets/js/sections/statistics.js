@@ -703,7 +703,7 @@ function totalSatQsos() {
 
                     var $iterator = $('<td></td>').html(i++);
                     var $type = $('<td></td>').html(row.sat);
-                    var $content = $('<td></td>').html(row.count);
+                    var $content = '<td><a href="javascript:displaySatQsos(\''+row.sat+'\')">'+row.count+'</a></td>';
 
                     $row.append($iterator, $type, $content);
 
@@ -810,4 +810,69 @@ function totalSatQsos() {
             }
         }
     });
+}
+
+var modalloading=false;
+function displaySatQsos(sat,mode) {
+	if (!(modalloading)) {
+		var ajax_data = ({
+			'Sat': sat,
+			'Mode': mode,
+			'Year': $("#yr option:selected").val(),
+		})
+		modalloading=true;
+		$.ajax({
+			url: base_url + 'index.php/statistics/sat_qsos_ajax',
+			type: 'post',
+			data: ajax_data,
+			success: function (html) {
+				var dialog = new BootstrapDialog({
+					title: lang_general_word_qso_data,
+					cssClass: 'qso-dialog',
+					size: BootstrapDialog.SIZE_WIDE,
+					nl2br: false,
+					message: html,
+					onshown: function(dialog) {
+						modalloading=false;
+						$('[data-bs-toggle="tooltip"]').tooltip();
+						$('.contacttable').DataTable({
+							"pageLength": 25,
+							responsive: false,
+							ordering: false,
+							"scrollY":        "550px",
+							"scrollCollapse": true,
+							"paging":         false,
+							"scrollX": true,
+							"language": {
+								url: getDataTablesLanguageUrl(),
+							},
+							dom: 'Bfrtip',
+							buttons: [
+								'csv'
+							]
+						});
+						// change color of csv-button if dark mode is chosen
+						if (isDarkModeTheme()) {
+							$(".buttons-csv").css("color", "white");
+						}
+						$('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
+							showQsoActionsMenu($(this).closest('.dropdown'));
+						});
+					},
+					buttons: [{
+						label: lang_admin_close,
+						action: function(dialogItself) {
+							dialogItself.close();
+						}
+					}]
+				});
+				dialog.realize();
+				$("body").append(dialog.getModal());
+				dialog.open();
+			},
+			error: function(e) {
+				modalloading=false;
+			}
+		});
+	}
 }

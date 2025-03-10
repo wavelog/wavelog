@@ -16,8 +16,8 @@ msgstr ""
 "POT-Creation-Date: 2025-03-09 10:15+0000\n"
 "PO-Revision-Date: 2025-03-10 14:53+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -382,6 +382,7 @@ msgstr "日志视图 - VUCC"
 #: application/controllers/Timeline.php:135
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
+#: application/controllers/Statistics.php:305
 msgid "Log View"
 msgstr "日志视图"
 
@@ -694,6 +695,7 @@ msgstr "电子邮箱没有设置。"
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
 #: application/views/satellite/index.php:66
+#: application/views/satellite/index.php:64
 msgid "Unknown"
 msgstr "未知"
 
@@ -1210,6 +1212,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
 #: application/views/user/edit.php:716 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/satellite/index.php:26
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2089,6 +2092,7 @@ msgstr "默认（点击释放）"
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/satellite/index.php:28
 msgid "Edit"
 msgstr "编辑"
 
@@ -2116,6 +2120,7 @@ msgstr "编辑"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
+#: application/views/satellite/index.php:29
 msgid "Delete"
 msgstr "删除"
 
@@ -3061,6 +3066,7 @@ msgstr "未确认"
 #: application/models/Logbook_model.php:4711
 #: application/views/satellite/index.php:54
 #: application/views/view_log/qso.php:287
+#: application/views/satellite/index.php:52
 msgid "unknown"
 msgstr "未知"
 
@@ -3656,6 +3662,7 @@ msgstr "卫星"
 #: application/views/satellite/index.php:25
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
+#: application/views/satellite/index.php:24
 msgid "Orbit"
 msgstr "环绕"
 
@@ -4585,6 +4592,7 @@ msgstr "数量"
 #: application/views/awards/vucc/band.php:4
 #: application/views/distancerecords/details.php:1
 #: application/views/timeline/details.php:2
+#: application/views/statistics/details.php:1
 msgid "Filtering on"
 msgstr "筛选打开"
 
@@ -4653,6 +4661,7 @@ msgstr "已确认的县"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/statistics/satqsotable.php:28
 msgid "Total"
 msgstr "总计"
 
@@ -6262,7 +6271,8 @@ msgstr ""
 #: application/views/user/edit.php:862 application/views/user/edit.php:878
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
-#: application/views/user/edit.php:992
+#: application/views/user/edit.php:992 application/views/satellite/index.php:58
+#: application/views/satellite/index.php:71
 msgid "Yes"
 msgstr "是"
 
@@ -6319,6 +6329,8 @@ msgstr "是"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
+#: application/views/satellite/index.php:61
+#: application/views/satellite/index.php:73
 msgid "No"
 msgstr "否"
 
@@ -9263,6 +9275,7 @@ msgstr "Clublog 已收到"
 #: application/views/logbookadvanced/edit.php:85
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:25
 msgid "SAT Mode"
 msgstr "卫星模式"
 
@@ -11548,6 +11561,7 @@ msgid "Sync Satellites from LoTW"
 msgstr "从 LoTW 同步卫星"
 
 #: application/views/satellite/index.php:28
+#: application/views/satellite/index.php:27
 msgid "TLE"
 msgstr "TLE"
 
@@ -14143,6 +14157,10 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#: application/controllers/Statistics.php:305
+msgid "Satellite QSOs"
+msgstr ""
 
 #, php-format
 #~ msgid "LoTW status for %s QSOs updated"

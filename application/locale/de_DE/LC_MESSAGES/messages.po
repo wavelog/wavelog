@@ -27,8 +27,8 @@ msgstr ""
 "POT-Creation-Date: 2025-03-09 10:15+0000\n"
 "PO-Revision-Date: 2025-03-10 14:53+0000\n"
 "Last-Translator: Mathias Balthasar Regner <mabregner@gmail.com>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -393,6 +393,7 @@ msgstr "Log Ansicht – VUCC"
 #: application/controllers/Timeline.php:135
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
+#: application/controllers/Statistics.php:305
 msgid "Log View"
 msgstr "Log-Ansicht"
 
@@ -709,6 +710,7 @@ msgstr "E-Mail-Einstellungen nicht konfiguriert."
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
 #: application/views/satellite/index.php:66
+#: application/views/satellite/index.php:64
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -1233,6 +1235,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
 #: application/views/user/edit.php:716 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/satellite/index.php:26
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2120,6 +2123,7 @@ msgstr "Standardgerät (klicken zum freigeben)"
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/satellite/index.php:28
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -2147,6 +2151,7 @@ msgstr "Bearbeiten"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
+#: application/views/satellite/index.php:29
 msgid "Delete"
 msgstr "Löschen"
 
@@ -3137,6 +3142,7 @@ msgstr "nicht bestätigt"
 #: application/models/Logbook_model.php:4711
 #: application/views/satellite/index.php:54
 #: application/views/view_log/qso.php:287
+#: application/views/satellite/index.php:52
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -3734,6 +3740,7 @@ msgstr "Satellit"
 #: application/views/satellite/index.php:25
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
+#: application/views/satellite/index.php:24
 msgid "Orbit"
 msgstr "Orbit"
 
@@ -4704,6 +4711,7 @@ msgstr "Nummer"
 #: application/views/awards/vucc/band.php:4
 #: application/views/distancerecords/details.php:1
 #: application/views/timeline/details.php:2
+#: application/views/statistics/details.php:1
 msgid "Filtering on"
 msgstr "Filtern auf"
 
@@ -4776,6 +4784,7 @@ msgstr "Bestätigte Counties"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/statistics/satqsotable.php:28
 msgid "Total"
 msgstr "Gesamt"
 
@@ -6480,7 +6489,8 @@ msgstr ""
 #: application/views/user/edit.php:862 application/views/user/edit.php:878
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
-#: application/views/user/edit.php:992
+#: application/views/user/edit.php:992 application/views/satellite/index.php:58
+#: application/views/satellite/index.php:71
 msgid "Yes"
 msgstr "Ja"
 
@@ -6537,6 +6547,8 @@ msgstr "Ja"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
+#: application/views/satellite/index.php:61
+#: application/views/satellite/index.php:73
 msgid "No"
 msgstr "Nein"
 
@@ -9590,6 +9602,7 @@ msgstr "Clublog empfangen"
 #: application/views/logbookadvanced/edit.php:85
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:25
 msgid "SAT Mode"
 msgstr "SAT Modus"
 
@@ -11973,6 +11986,7 @@ msgid "Sync Satellites from LoTW"
 msgstr "Synchronisiere Satelliten aus dem LoTW"
 
 #: application/views/satellite/index.php:28
+#: application/views/satellite/index.php:27
 msgid "TLE"
 msgstr "TLE"
 
@@ -14731,6 +14745,10 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#: application/controllers/Statistics.php:305
+msgid "Satellite QSOs"
+msgstr ""
 
 #, php-format
 #~ msgid "LoTW status for %s QSOs updated"

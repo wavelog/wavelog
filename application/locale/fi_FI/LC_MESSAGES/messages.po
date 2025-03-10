@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-09 10:15+0000\n"
+"POT-Creation-Date: 2025-03-10 15:33+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -369,6 +369,7 @@ msgstr ""
 #: application/controllers/Awards.php:458
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
+#: application/controllers/Statistics.php:305
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -685,7 +686,7 @@ msgid "Email settings not configured."
 msgstr ""
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
-#: application/views/satellite/index.php:66
+#: application/views/satellite/index.php:64
 msgid "Unknown"
 msgstr ""
 
@@ -1191,7 +1192,7 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:169
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:425
-#: application/views/satellite/index.php:27
+#: application/views/satellite/index.php:26
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
@@ -2071,7 +2072,7 @@ msgstr ""
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:619
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
-#: application/views/satellite/index.php:29
+#: application/views/satellite/index.php:28
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
@@ -2097,7 +2098,7 @@ msgstr "Muokkaa"
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:57
-#: application/views/satellite/index.php:30
+#: application/views/satellite/index.php:29
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
@@ -2411,6 +2412,10 @@ msgstr ""
 #: application/views/interface_assets/header.php:142
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
+msgstr ""
+
+#: application/controllers/Statistics.php:305
+msgid "Satellite QSOs"
 msgstr ""
 
 #: application/controllers/Themes.php:27
@@ -3043,7 +3048,7 @@ msgid "unconfirmed"
 msgstr ""
 
 #: application/models/Logbook_model.php:4711
-#: application/views/satellite/index.php:54
+#: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr ""
@@ -3638,7 +3643,7 @@ msgstr "Satelliitti"
 #: application/views/logbookadvanced/index.php:264
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
-#: application/views/satellite/index.php:25
+#: application/views/satellite/index.php:24
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
 msgid "Orbit"
@@ -4546,6 +4551,7 @@ msgstr ""
 #: application/views/awards/details.php:1
 #: application/views/awards/vucc/band.php:4
 #: application/views/distancerecords/details.php:1
+#: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
 msgid "Filtering on"
 msgstr ""
@@ -4605,7 +4611,7 @@ msgstr ""
 #: application/views/statistics/qsotable.php:10
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
-#: application/views/statistics/satqsotable.php:22
+#: application/views/statistics/satqsotable.php:28
 #: application/views/statistics/satuniquetable.php:10
 #: application/views/statistics/satuniquetable.php:22
 #: application/views/statistics/uniquetable.php:10
@@ -6110,8 +6116,8 @@ msgstr ""
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
-#: application/views/satellite/index.php:60
-#: application/views/satellite/index.php:73
+#: application/views/satellite/index.php:58
+#: application/views/satellite/index.php:71
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
 #: application/views/station_profile/create.php:217
@@ -6166,8 +6172,8 @@ msgstr "Kyllä"
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
-#: application/views/satellite/index.php:63
-#: application/views/satellite/index.php:75
+#: application/views/satellite/index.php:61
+#: application/views/satellite/index.php:73
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/create.php:218
@@ -8957,7 +8963,6 @@ msgid "Label types"
 msgstr ""
 
 #: application/views/labels/index.php:81
-#: application/views/satellite/index.php:24
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
 msgid "QSOs"
@@ -9074,7 +9079,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/edit.php:85
 #: application/views/satellite/edit.php:51
-#: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:25
 msgid "SAT Mode"
 msgstr ""
 
@@ -11354,7 +11359,7 @@ msgstr ""
 msgid "Sync Satellites from LoTW"
 msgstr ""
 
-#: application/views/satellite/index.php:28
+#: application/views/satellite/index.php:27
 msgid "TLE"
 msgstr ""
 
