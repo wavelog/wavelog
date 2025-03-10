@@ -813,10 +813,11 @@ function totalSatQsos() {
 }
 
 var modalloading=false;
-function displaySatQsos(sat) {
+function displaySatQsos(sat,mode) {
 	if (!(modalloading)) {
 		var ajax_data = ({
 			'Sat': sat,
+			'Mode': mode,
 		})
 		modalloading=true;
 		$.ajax({
