@@ -894,7 +894,7 @@
 		return $result->result();
 	}
 
-	public function sat_qsos($sat,$mode) {
+	public function sat_qsos($sat,$year,$mode) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 		$this->db->select('*, satellite.displayname AS sat_displayname');
@@ -907,6 +907,10 @@
 			$this->db->where('COL_MODE', $mode);
 			$this->db->or_where('COL_SUBMODE', $mode);
 			$this->db->group_end();
+		}
+		if (($year ?? 'All') != 'All') {
+			$this->db->where('COL_TIME_ON >=',date($year.'-01-01 00:00:00'));
+			$this->db->where('COL_TIME_ON <=',date($year.'-12-31 23:59:59'));
 		}
 		$this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
 		$this->db->order_by("COL_TIME_ON desc, COL_PRIMARY_KEY desc");

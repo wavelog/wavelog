@@ -818,6 +818,7 @@ function displaySatQsos(sat,mode) {
 		var ajax_data = ({
 			'Sat': sat,
 			'Mode': mode,
+			'Year': $("#yr option:selected").val(),
 		})
 		modalloading=true;
 		$.ajax({
