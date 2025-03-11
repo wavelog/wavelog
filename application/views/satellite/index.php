@@ -1,6 +1,20 @@
 <div class="container">
 
 <br>
+<?php if ($this->session->flashdata('success')) { ?>
+        <!-- Display Message -->
+        <div class="alert alert-success">
+            <p><?php echo $this->session->flashdata('success'); ?></p>
+        </div>
+    <?php } ?>
+
+    <?php if ($this->session->flashdata('error')) { ?>
+        <!-- Display Message -->
+        <div class="alert alert-danger">
+            <p><?php echo $this->session->flashdata('error'); ?></p>
+        </div>
+    <?php } ?>
+
 	<?php if($this->session->flashdata('message')) { ?>
 		<!-- Display Message -->
 		<div class="alert-message error">
@@ -14,6 +28,7 @@
   <div class="card-body">
   <button onclick="createSatelliteDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a satellite"); ?></button>
   <a class="btn btn-primary btn-sm" href="<?php echo site_url('/update/update_lotw_sats'); ?>" role="button"><i class="fas fa-sync-alt"></i> <?= __("Sync Satellites from LoTW"); ?></a>
+  <a class="btn btn-primary btn-sm" href="<?php echo site_url('/update/update_tle/satellite'); ?>" role="button"><i class="fas fa-sync-alt"></i> <?= __("Update Satellite TLE"); ?></a>
     <div class="table-responsive">
 
     <table style="width:100%" class="sattable table table-sm table-striped">
