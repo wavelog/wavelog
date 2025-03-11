@@ -465,7 +465,7 @@ class Update extends CI_Controller {
 		}
     }
 
-    public function update_tle() {
+    public function update_tle($returnpath = 'debug') {
         $this->load->model('Update_model');
         $result = $this->Update_model->tle();
         if($this->session->userdata('user_type') == '99') {
@@ -474,7 +474,7 @@ class Update extends CI_Controller {
 			} else {
 				$this->session->set_flashdata('error', __("TLE Update failed. Result: ") . "'" . $result . "'");
 			}
-			redirect('debug');
+			redirect($returnpath);
 		} else {
         	echo $result;
 		}

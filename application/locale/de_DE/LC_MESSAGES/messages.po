@@ -28,8 +28,8 @@ msgstr ""
 "POT-Creation-Date: 2025-03-09 10:15+0000\n"
 "PO-Revision-Date: 2025-03-11 16:13+0000\n"
 "Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -712,6 +712,7 @@ msgstr "E-Mail-Einstellungen nicht konfiguriert."
 #: application/controllers/Club.php:227 application/views/api/index.php:62
 #: application/views/satellite/index.php:66
 #: application/views/satellite/index.php:64
+#: application/views/satellite/index.php:79
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -1237,6 +1238,7 @@ msgstr "QSL"
 #: application/views/user/edit.php:716 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
 #: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:41
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2125,6 +2127,7 @@ msgstr "Standardgerät (klicken zum freigeben)"
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
 #: application/views/satellite/index.php:28
+#: application/views/satellite/index.php:43
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -2153,6 +2156,7 @@ msgstr "Bearbeiten"
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
 #: application/views/satellite/index.php:29
+#: application/views/satellite/index.php:44
 msgid "Delete"
 msgstr "Löschen"
 
@@ -3144,6 +3148,7 @@ msgstr "nicht bestätigt"
 #: application/views/satellite/index.php:54
 #: application/views/view_log/qso.php:287
 #: application/views/satellite/index.php:52
+#: application/views/satellite/index.php:67
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -3742,6 +3747,7 @@ msgstr "Satellit"
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
 #: application/views/satellite/index.php:24
+#: application/views/satellite/index.php:39
 msgid "Orbit"
 msgstr "Orbit"
 
@@ -6492,6 +6498,7 @@ msgstr ""
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
 #: application/views/user/edit.php:992 application/views/satellite/index.php:58
 #: application/views/satellite/index.php:71
+#: application/views/satellite/index.php:86
 msgid "Yes"
 msgstr "Ja"
 
@@ -6550,6 +6557,8 @@ msgstr "Ja"
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
 #: application/views/satellite/index.php:61
 #: application/views/satellite/index.php:73
+#: application/views/satellite/index.php:76
+#: application/views/satellite/index.php:88
 msgid "No"
 msgstr "Nein"
 
@@ -9136,6 +9145,7 @@ msgstr "Globale Optionen"
 #: application/views/satellite/index.php:11
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
+#: application/views/satellite/index.php:25
 msgid "Satellites"
 msgstr "Satelliten"
 
@@ -9604,6 +9614,7 @@ msgstr "Clublog empfangen"
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:26
 #: application/views/satellite/index.php:25
+#: application/views/satellite/index.php:40
 msgid "SAT Mode"
 msgstr "SAT Modus"
 
@@ -10247,6 +10258,7 @@ msgstr "Importiere LoTW-Übereinstimmungen"
 
 #: application/views/lotw/satupdate.php:7
 #: application/views/satellite/index.php:23
+#: application/views/satellite/index.php:38
 msgid "Display Name"
 msgstr "Anzeigename"
 
@@ -11894,6 +11906,7 @@ msgstr "Anzeige- bzw. Klartextname des Satelliten"
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:22
+#: application/views/satellite/index.php:37
 msgid "LoTW Name"
 msgstr "LoTW Name"
 
@@ -11979,15 +11992,18 @@ msgid "Add satellite mode"
 msgstr "Satellitenmodus hinzufügen"
 
 #: application/views/satellite/index.php:15
+#: application/views/satellite/index.php:29
 msgid "Add a satellite"
 msgstr "Satellit hinzufügen"
 
 #: application/views/satellite/index.php:16
+#: application/views/satellite/index.php:30
 msgid "Sync Satellites from LoTW"
 msgstr "Synchronisiere Satelliten aus dem LoTW"
 
 #: application/views/satellite/index.php:28
 #: application/views/satellite/index.php:27
+#: application/views/satellite/index.php:42
 msgid "TLE"
 msgstr "TLE"
 
@@ -14750,6 +14766,10 @@ msgstr "Rcvd"
 #: application/controllers/Statistics.php:305
 msgid "Satellite QSOs"
 msgstr "Satellit QSOs"
+
+#: application/views/satellite/index.php:31
+msgid "Update Satellite TLE"
+msgstr ""
 
 #, php-format
 #~ msgid "LoTW status for %s QSOs updated"
