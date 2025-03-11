@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-10 15:33+0000\n"
+"POT-Creation-Date: 2025-03-11 16:13+0000\n"
 "PO-Revision-Date: 2025-03-07 07:44+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -694,7 +694,7 @@ msgid "Email settings not configured."
 msgstr "电子邮箱没有设置。"
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
-#: application/views/satellite/index.php:64
+#: application/views/satellite/index.php:79
 msgid "Unknown"
 msgstr "未知"
 
@@ -1205,7 +1205,7 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:169
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:425
-#: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:41
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
@@ -2084,7 +2084,7 @@ msgstr "默认（点击释放）"
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:619
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
-#: application/views/satellite/index.php:28
+#: application/views/satellite/index.php:43
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
@@ -2110,7 +2110,7 @@ msgstr "编辑"
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:57
-#: application/views/satellite/index.php:29
+#: application/views/satellite/index.php:44
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
@@ -3064,7 +3064,7 @@ msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:4711
-#: application/views/satellite/index.php:52
+#: application/views/satellite/index.php:67
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "未知"
@@ -3658,7 +3658,7 @@ msgstr "卫星"
 #: application/views/logbookadvanced/index.php:264
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
-#: application/views/satellite/index.php:24
+#: application/views/satellite/index.php:39
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
 msgid "Orbit"
@@ -6245,8 +6245,8 @@ msgstr ""
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
-#: application/views/satellite/index.php:58
-#: application/views/satellite/index.php:71
+#: application/views/satellite/index.php:73
+#: application/views/satellite/index.php:86
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
 #: application/views/station_profile/create.php:217
@@ -6301,8 +6301,8 @@ msgstr "是"
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
-#: application/views/satellite/index.php:61
-#: application/views/satellite/index.php:73
+#: application/views/satellite/index.php:76
+#: application/views/satellite/index.php:88
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/create.php:218
@@ -8806,7 +8806,7 @@ msgstr "全局选项"
 
 #: application/views/interface_assets/header.php:296
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:11
+#: application/views/satellite/index.php:25
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
 msgid "Satellites"
@@ -9267,7 +9267,7 @@ msgstr "Clublog 已收到"
 
 #: application/views/logbookadvanced/edit.php:85
 #: application/views/satellite/edit.php:51
-#: application/views/satellite/index.php:25
+#: application/views/satellite/index.php:40
 msgid "SAT Mode"
 msgstr "卫星模式"
 
@@ -9904,7 +9904,7 @@ msgid "Import LoTW Matches"
 msgstr "导入 LoTW 匹配"
 
 #: application/views/lotw/satupdate.php:7
-#: application/views/satellite/index.php:23
+#: application/views/satellite/index.php:38
 msgid "Display Name"
 msgstr "显示名称"
 
@@ -11461,7 +11461,7 @@ msgstr "显示/明文卫星名称"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
-#: application/views/satellite/index.php:22
+#: application/views/satellite/index.php:37
 msgid "LoTW Name"
 msgstr "LoTW 名称"
 
@@ -11544,15 +11544,19 @@ msgstr "保存卫星"
 msgid "Add satellite mode"
 msgstr "添加卫星模式"
 
-#: application/views/satellite/index.php:15
+#: application/views/satellite/index.php:29
 msgid "Add a satellite"
 msgstr "添加卫星"
 
-#: application/views/satellite/index.php:16
+#: application/views/satellite/index.php:30
 msgid "Sync Satellites from LoTW"
 msgstr "从 LoTW 同步卫星"
 
-#: application/views/satellite/index.php:27
+#: application/views/satellite/index.php:31
+msgid "Update Satellite TLE"
+msgstr ""
+
+#: application/views/satellite/index.php:42
 msgid "TLE"
 msgstr "TLE"
 
