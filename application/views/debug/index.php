@@ -674,6 +674,7 @@
     <?= __("French"); ?>
     <?= __("German"); ?>
     <?= __("Greek"); ?>
+    <?= __("Hungarian"); ?>
     <?= __("Italian"); ?>
     <?= __("Latvian"); ?>
     <?= __("Lithuanian"); ?>
