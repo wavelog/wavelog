@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-11 16:13+0000\n"
+"POT-Creation-Date: 2025-03-12 05:33+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3852,8 +3852,8 @@ msgstr "Broj"
 #: application/views/timeline/index.php:298
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
-msgid "Show QSO's"
-msgstr "Prikaži QSOe"
+msgid "Show QSOs"
+msgstr ""
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
@@ -4138,11 +4138,9 @@ msgstr "Zanemari pozivni znak stanice prilikom uvoza"
 #: application/views/adif/import.php:192
 #, php-format
 msgid ""
-"If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
-"regardless if they match to the chosen station-location."
+"If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
+"if they match to the chosen station-location."
 msgstr ""
-"Ako je selektovano, Wavelog će pokušati da uveze %sall%s QSO iz ADIF, bez "
-"obzira da li se poklapaju sa izabranom stanicom - lokacijom."
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4199,8 +4197,8 @@ msgid "Export QSOs not uploaded to LoTW"
 msgstr "Izvezi QSO koji nisu učitani na LoTW"
 
 #: application/views/adif/import.php:240
-msgid "Export QSO's"
-msgstr "Izvezi QSOe"
+msgid "Export QSOs"
+msgstr ""
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
@@ -7146,8 +7144,8 @@ msgstr "VUCC polje"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
-msgid "# of QSO's worked"
-msgstr "Broj rađenih veza"
+msgid "# of QSOs worked"
+msgstr ""
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -10873,8 +10871,8 @@ msgid "Add to print queue"
 msgstr "Dodajte u niz za štampu"
 
 #: application/views/oqrs/qsolist.php:197
-msgid "No QSO's were found. It seems you were not active at this time."
-msgstr "Veze nisu pronađene. Izgleda da niste bili aktivni u ovo vreme."
+msgid "No QSOs were found. It seems you were not active at this time."
+msgstr ""
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11158,9 +11156,9 @@ msgstr "Nisu pronađene QSL za štampu!"
 
 #: application/views/qslprint/qsolist.php:207
 msgid ""
-"No additional QSO's were found. That means they are probably already in the "
+"No additional QSOs were found. That means they are probably already in the "
 "queue."
-msgstr "Nisu pronađene dodatne vze. To znači da su vereovatno već u nizu."
+msgstr ""
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -14481,6 +14479,31 @@ msgstr "Pošaljite zahtev"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid "Show QSO's"
+#~ msgstr "Prikaži QSOe"
+
+#, php-format
+#~ msgid ""
+#~ "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
+#~ "regardless if they match to the chosen station-location."
+#~ msgstr ""
+#~ "Ako je selektovano, Wavelog će pokušati da uveze %sall%s QSO iz ADIF, bez "
+#~ "obzira da li se poklapaju sa izabranom stanicom - lokacijom."
+
+#~ msgid "Export QSO's"
+#~ msgstr "Izvezi QSOe"
+
+#~ msgid "# of QSO's worked"
+#~ msgstr "Broj rađenih veza"
+
+#~ msgid "No QSO's were found. It seems you were not active at this time."
+#~ msgstr "Veze nisu pronađene. Izgleda da niste bili aktivni u ovo vreme."
+
+#~ msgid ""
+#~ "No additional QSO's were found. That means they are probably already in "
+#~ "the queue."
+#~ msgstr "Nisu pronađene dodatne vze. To znači da su vereovatno već u nizu."
 
 #~ msgid "Dashboard Map"
 #~ msgstr "Karta na kontrolnoj tabli"

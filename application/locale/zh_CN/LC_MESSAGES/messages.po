@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-11 16:13+0000\n"
+"POT-Creation-Date: 2025-03-12 05:33+0000\n"
 "PO-Revision-Date: 2025-03-07 07:44+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -3813,8 +3813,8 @@ msgstr "数量"
 #: application/views/timeline/index.php:298
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
-msgid "Show QSO's"
-msgstr "显示 QSO"
+msgid "Show QSOs"
+msgstr ""
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
@@ -4097,10 +4097,9 @@ msgstr "导入时忽略台站的呼号"
 #: application/views/adif/import.php:192
 #, php-format
 msgid ""
-"If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
-"regardless if they match to the chosen station-location."
+"If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
+"if they match to the chosen station-location."
 msgstr ""
-"如果选中，Wavelog 会从 ADIF 中尝试导入 %s全部的%s QSO，忽略是否匹配台站地址。"
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4155,8 +4154,8 @@ msgid "Export QSOs not uploaded to LoTW"
 msgstr "导出没有上传到 LoTW 的 QSO"
 
 #: application/views/adif/import.php:240
-msgid "Export QSO's"
-msgstr "导出 QSO"
+msgid "Export QSOs"
+msgstr ""
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
@@ -7017,8 +7016,8 @@ msgstr "VUCC 网格"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
-msgid "# of QSO's worked"
-msgstr "通联的 QSO 数量"
+msgid "# of QSOs worked"
+msgstr ""
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -10636,8 +10635,8 @@ msgid "Add to print queue"
 msgstr "添加到打印队列中"
 
 #: application/views/oqrs/qsolist.php:197
-msgid "No QSO's were found. It seems you were not active at this time."
-msgstr "无 QSO，似乎您最近不太活跃。"
+msgid "No QSOs were found. It seems you were not active at this time."
+msgstr ""
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -10913,9 +10912,9 @@ msgstr "没有找到需要打印的 QSL 信息！"
 
 #: application/views/qslprint/qsolist.php:207
 msgid ""
-"No additional QSO's were found. That means they are probably already in the "
+"No additional QSOs were found. That means they are probably already in the "
 "queue."
-msgstr "没有找到附加的 QSL 信息，可能它们已经被添加到打印队列中。"
+msgstr ""
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -14152,6 +14151,31 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#~ msgid "Show QSO's"
+#~ msgstr "显示 QSO"
+
+#, php-format
+#~ msgid ""
+#~ "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
+#~ "regardless if they match to the chosen station-location."
+#~ msgstr ""
+#~ "如果选中，Wavelog 会从 ADIF 中尝试导入 %s全部的%s QSO，忽略是否匹配台站地"
+#~ "址。"
+
+#~ msgid "Export QSO's"
+#~ msgstr "导出 QSO"
+
+#~ msgid "# of QSO's worked"
+#~ msgstr "通联的 QSO 数量"
+
+#~ msgid "No QSO's were found. It seems you were not active at this time."
+#~ msgstr "无 QSO，似乎您最近不太活跃。"
+
+#~ msgid ""
+#~ "No additional QSO's were found. That means they are probably already in "
+#~ "the queue."
+#~ msgstr "没有找到附加的 QSL 信息，可能它们已经被添加到打印队列中。"
 
 #, php-format
 #~ msgid "LoTW status for %s QSOs updated"

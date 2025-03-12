@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-11 16:13+0000\n"
+"POT-Creation-Date: 2025-03-12 05:33+0000\n"
 "PO-Revision-Date: 2025-03-04 21:04+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3871,8 +3871,8 @@ msgstr "Счётчик"
 #: application/views/timeline/index.php:298
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
-msgid "Show QSO's"
-msgstr "Показать QSO"
+msgid "Show QSOs"
+msgstr ""
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
@@ -4159,11 +4159,9 @@ msgstr "Игнорировать позывной станции при импо
 #: application/views/adif/import.php:192
 #, php-format
 msgid ""
-"If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
-"regardless if they match to the chosen station-location."
+"If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
+"if they match to the chosen station-location."
 msgstr ""
-"Если выбрано, Wavelog попытается импортировать %sвсе%s QSO из ADIF, "
-"независимо от того, соответствуют ли они выбранному местоположению станции."
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4222,8 +4220,8 @@ msgid "Export QSOs not uploaded to LoTW"
 msgstr "Отметить экспортированные QSO как незагруженные в LoTW"
 
 #: application/views/adif/import.php:240
-msgid "Export QSO's"
-msgstr "Экспорт QSO"
+msgid "Export QSOs"
+msgstr ""
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
@@ -7245,8 +7243,8 @@ msgstr "Квадрат VUCC"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
-msgid "# of QSO's worked"
-msgstr "# QSO проведено"
+msgid "# of QSOs worked"
+msgstr ""
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -11005,8 +11003,8 @@ msgid "Add to print queue"
 msgstr "Добавить в очередь печати"
 
 #: application/views/oqrs/qsolist.php:197
-msgid "No QSO's were found. It seems you were not active at this time."
-msgstr "Не найдено ни одного QSO. Похоже, что вы не были активны в это время."
+msgid "No QSOs were found. It seems you were not active at this time."
+msgstr ""
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11295,11 +11293,9 @@ msgstr "QSL для печати не найдены!"
 
 #: application/views/qslprint/qsolist.php:207
 msgid ""
-"No additional QSO's were found. That means they are probably already in the "
+"No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
-"Никаких дополнительных QSO не было найдено. Это означает, что они, вероятно, "
-"уже находятся в очереди."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -14682,6 +14678,35 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#~ msgid "Show QSO's"
+#~ msgstr "Показать QSO"
+
+#, php-format
+#~ msgid ""
+#~ "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
+#~ "regardless if they match to the chosen station-location."
+#~ msgstr ""
+#~ "Если выбрано, Wavelog попытается импортировать %sвсе%s QSO из ADIF, "
+#~ "независимо от того, соответствуют ли они выбранному местоположению "
+#~ "станции."
+
+#~ msgid "Export QSO's"
+#~ msgstr "Экспорт QSO"
+
+#~ msgid "# of QSO's worked"
+#~ msgstr "# QSO проведено"
+
+#~ msgid "No QSO's were found. It seems you were not active at this time."
+#~ msgstr ""
+#~ "Не найдено ни одного QSO. Похоже, что вы не были активны в это время."
+
+#~ msgid ""
+#~ "No additional QSO's were found. That means they are probably already in "
+#~ "the queue."
+#~ msgstr ""
+#~ "Никаких дополнительных QSO не было найдено. Это означает, что они, "
+#~ "вероятно, уже находятся в очереди."
 
 #, php-format
 #~ msgid "LoTW status for %s QSOs updated"
