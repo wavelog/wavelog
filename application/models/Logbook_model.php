@@ -1958,9 +1958,9 @@ class Logbook_model extends CI_Model {
 			);
 
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
-			$this->db->or_group_start();
+			$this->db->group_start();
 			$this->db->where('COL_QSL_SENT !=','R');
-			$this->db->where('COL_QSL_SENT_VIA !=', $method);
+			$this->db->or_where('COL_QSL_SENT_VIA !=', $method);
 			$this->db->group_end();
 
 			$this->db->update($this->config->item('table_name'), $data);
