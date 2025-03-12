@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-12 05:33+0000\n"
-"PO-Revision-Date: 2025-03-07 07:44+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
+"POT-Creation-Date: 2025-03-09 10:15+0000\n"
+"PO-Revision-Date: 2025-03-12 05:34+0000\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -376,13 +376,13 @@ msgstr "日志视图 - VUCC"
 #: application/controllers/Awards.php:458
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:305
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
 #: application/controllers/Timeline.php:135
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
+#: application/controllers/Statistics.php:305
 msgid "Log View"
 msgstr "日志视图"
 
@@ -694,6 +694,8 @@ msgid "Email settings not configured."
 msgstr "电子邮箱没有设置。"
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
+#: application/views/satellite/index.php:66
+#: application/views/satellite/index.php:64
 #: application/views/satellite/index.php:79
 msgid "Unknown"
 msgstr "未知"
@@ -1205,12 +1207,14 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:169
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:425
-#: application/views/satellite/index.php:41
+#: application/views/satellite/index.php:27
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
 #: application/views/user/edit.php:716 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:41
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2084,12 +2088,14 @@ msgstr "默认（点击释放）"
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:619
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
-#: application/views/satellite/index.php:43
+#: application/views/satellite/index.php:29
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/satellite/index.php:28
+#: application/views/satellite/index.php:43
 msgid "Edit"
 msgstr "编辑"
 
@@ -2110,13 +2116,15 @@ msgstr "编辑"
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:57
-#: application/views/satellite/index.php:44
+#: application/views/satellite/index.php:30
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
+#: application/views/satellite/index.php:29
+#: application/views/satellite/index.php:44
 msgid "Delete"
 msgstr "删除"
 
@@ -2425,10 +2433,6 @@ msgstr "QSL 统计信息"
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "天线分析"
-
-#: application/controllers/Statistics.php:305
-msgid "Satellite QSOs"
-msgstr ""
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:298
@@ -3064,8 +3068,10 @@ msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:4711
-#: application/views/satellite/index.php:67
+#: application/views/satellite/index.php:54
 #: application/views/view_log/qso.php:287
+#: application/views/satellite/index.php:52
+#: application/views/satellite/index.php:67
 msgid "unknown"
 msgstr "未知"
 
@@ -3658,9 +3664,11 @@ msgstr "卫星"
 #: application/views/logbookadvanced/index.php:264
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
-#: application/views/satellite/index.php:39
+#: application/views/satellite/index.php:25
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
+#: application/views/satellite/index.php:24
+#: application/views/satellite/index.php:39
 msgid "Orbit"
 msgstr "环绕"
 
@@ -3813,8 +3821,8 @@ msgstr "数量"
 #: application/views/timeline/index.php:298
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
-msgid "Show QSOs"
-msgstr ""
+msgid "Show QSO's"
+msgstr "显示 QSO"
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
@@ -4097,9 +4105,10 @@ msgstr "导入时忽略台站的呼号"
 #: application/views/adif/import.php:192
 #, php-format
 msgid ""
-"If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
-"if they match to the chosen station-location."
+"If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
+"regardless if they match to the chosen station-location."
 msgstr ""
+"如果选中，Wavelog 会从 ADIF 中尝试导入 %s全部的%s QSO，忽略是否匹配台站地址。"
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4154,8 +4163,8 @@ msgid "Export QSOs not uploaded to LoTW"
 msgstr "导出没有上传到 LoTW 的 QSO"
 
 #: application/views/adif/import.php:240
-msgid "Export QSOs"
-msgstr ""
+msgid "Export QSO's"
+msgstr "导出 QSO"
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
@@ -4588,8 +4597,8 @@ msgstr "数量"
 #: application/views/awards/details.php:1
 #: application/views/awards/vucc/band.php:4
 #: application/views/distancerecords/details.php:1
-#: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
+#: application/views/statistics/details.php:1
 msgid "Filtering on"
 msgstr "筛选打开"
 
@@ -4652,12 +4661,13 @@ msgstr "已确认的县"
 #: application/views/statistics/qsotable.php:10
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
-#: application/views/statistics/satqsotable.php:28
+#: application/views/statistics/satqsotable.php:22
 #: application/views/statistics/satuniquetable.php:10
 #: application/views/statistics/satuniquetable.php:22
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/statistics/satqsotable.php:28
 msgid "Total"
 msgstr "总计"
 
@@ -5111,7 +5121,7 @@ msgstr "大洋洲"
 #: application/views/awards/dxcc/index.php:120
 #: application/views/awards/iota/index.php:120
 msgid "Every band (w/o SAT)"
-msgstr ""
+msgstr "所有频段 (不包含卫星)"
 
 #: application/views/awards/dxcc/index.php:189
 msgid "Show DXCC Map"
@@ -6244,8 +6254,8 @@ msgstr ""
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
+#: application/views/satellite/index.php:60
 #: application/views/satellite/index.php:73
-#: application/views/satellite/index.php:86
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
 #: application/views/station_profile/create.php:217
@@ -6267,7 +6277,9 @@ msgstr ""
 #: application/views/user/edit.php:862 application/views/user/edit.php:878
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
-#: application/views/user/edit.php:992
+#: application/views/user/edit.php:992 application/views/satellite/index.php:58
+#: application/views/satellite/index.php:71
+#: application/views/satellite/index.php:86
 msgid "Yes"
 msgstr "是"
 
@@ -6300,8 +6312,8 @@ msgstr "是"
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
-#: application/views/satellite/index.php:76
-#: application/views/satellite/index.php:88
+#: application/views/satellite/index.php:63
+#: application/views/satellite/index.php:75
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/create.php:218
@@ -6324,6 +6336,10 @@ msgstr "是"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
+#: application/views/satellite/index.php:61
+#: application/views/satellite/index.php:73
+#: application/views/satellite/index.php:76
+#: application/views/satellite/index.php:88
 msgid "No"
 msgstr "否"
 
@@ -7016,8 +7032,8 @@ msgstr "VUCC 网格"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
-msgid "# of QSOs worked"
-msgstr ""
+msgid "# of QSO's worked"
+msgstr "通联的 QSO 数量"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -8805,9 +8821,10 @@ msgstr "全局选项"
 
 #: application/views/interface_assets/header.php:296
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:25
+#: application/views/satellite/index.php:11
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
+#: application/views/satellite/index.php:25
 msgid "Satellites"
 msgstr "卫星"
 
@@ -9150,6 +9167,7 @@ msgid "Label types"
 msgstr "标签类型"
 
 #: application/views/labels/index.php:81
+#: application/views/satellite/index.php:24
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
 msgid "QSOs"
@@ -9266,6 +9284,8 @@ msgstr "Clublog 已收到"
 
 #: application/views/logbookadvanced/edit.php:85
 #: application/views/satellite/edit.php:51
+#: application/views/satellite/index.php:26
+#: application/views/satellite/index.php:25
 #: application/views/satellite/index.php:40
 msgid "SAT Mode"
 msgstr "卫星模式"
@@ -9903,6 +9923,7 @@ msgid "Import LoTW Matches"
 msgstr "导入 LoTW 匹配"
 
 #: application/views/lotw/satupdate.php:7
+#: application/views/satellite/index.php:23
 #: application/views/satellite/index.php:38
 msgid "Display Name"
 msgstr "显示名称"
@@ -10635,8 +10656,8 @@ msgid "Add to print queue"
 msgstr "添加到打印队列中"
 
 #: application/views/oqrs/qsolist.php:197
-msgid "No QSOs were found. It seems you were not active at this time."
-msgstr ""
+msgid "No QSO's were found. It seems you were not active at this time."
+msgstr "无 QSO，似乎您最近不太活跃。"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -10912,9 +10933,9 @@ msgstr "没有找到需要打印的 QSL 信息！"
 
 #: application/views/qslprint/qsolist.php:207
 msgid ""
-"No additional QSOs were found. That means they are probably already in the "
+"No additional QSO's were found. That means they are probably already in the "
 "queue."
-msgstr ""
+msgstr "没有找到附加的 QSL 信息，可能它们已经被添加到打印队列中。"
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -11460,6 +11481,7 @@ msgstr "显示/明文卫星名称"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
+#: application/views/satellite/index.php:22
 #: application/views/satellite/index.php:37
 msgid "LoTW Name"
 msgstr "LoTW 名称"
@@ -11543,18 +11565,18 @@ msgstr "保存卫星"
 msgid "Add satellite mode"
 msgstr "添加卫星模式"
 
+#: application/views/satellite/index.php:15
 #: application/views/satellite/index.php:29
 msgid "Add a satellite"
 msgstr "添加卫星"
 
+#: application/views/satellite/index.php:16
 #: application/views/satellite/index.php:30
 msgid "Sync Satellites from LoTW"
 msgstr "从 LoTW 同步卫星"
 
-#: application/views/satellite/index.php:31
-msgid "Update Satellite TLE"
-msgstr ""
-
+#: application/views/satellite/index.php:28
+#: application/views/satellite/index.php:27
 #: application/views/satellite/index.php:42
 msgid "TLE"
 msgstr "TLE"
@@ -13434,7 +13456,7 @@ msgstr "QSO 小部件"
 
 #: application/views/user/edit.php:902
 msgid "Display exact QSO time"
-msgstr "显示确切的通联时间"
+msgstr "显示确切通联时间"
 
 #: application/views/user/edit.php:908
 msgid ""
@@ -14121,7 +14143,7 @@ msgstr "在这里您可以将未上传至 QO-100 Dx Club 的 QSO 标记为已上
 
 #: application/views/webadif/export.php:107
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr "标记 QSO 已导出至 QO-100 Dx Club"
+msgstr "标记 QSO 以导出至 QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
@@ -14152,30 +14174,50 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
-#~ msgid "Show QSO's"
-#~ msgstr "显示 QSO"
+#: application/controllers/Statistics.php:305
+msgid "Satellite QSOs"
+msgstr "卫星通联"
 
+#: application/views/satellite/index.php:31
+msgid "Update Satellite TLE"
+msgstr "更新星历"
+
+#: application/views/activators/index.php:101
+#: application/views/callstats/index.php:150
+#: application/views/timeline/index.php:203
+#: application/views/timeline/index.php:238
+#: application/views/timeline/index.php:266
+#: application/views/timeline/index.php:298
+#: application/views/timeline/index.php:328
+#: application/views/timeline/index.php:357
+msgid "Show QSOs"
+msgstr ""
+
+#: application/views/adif/import.php:192
 #, php-format
-#~ msgid ""
-#~ "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
-#~ "regardless if they match to the chosen station-location."
-#~ msgstr ""
-#~ "如果选中，Wavelog 会从 ADIF 中尝试导入 %s全部的%s QSO，忽略是否匹配台站地"
-#~ "址。"
+msgid ""
+"If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
+"if they match to the chosen station-location."
+msgstr ""
 
-#~ msgid "Export QSO's"
-#~ msgstr "导出 QSO"
+#: application/views/adif/import.php:240
+msgid "Export QSOs"
+msgstr ""
 
-#~ msgid "# of QSO's worked"
-#~ msgstr "通联的 QSO 数量"
+#: application/views/continents/index.php:63
+#: application/views/statistics/index.php:20
+msgid "# of QSOs worked"
+msgstr ""
 
-#~ msgid "No QSO's were found. It seems you were not active at this time."
-#~ msgstr "无 QSO，似乎您最近不太活跃。"
+#: application/views/oqrs/qsolist.php:197
+msgid "No QSOs were found. It seems you were not active at this time."
+msgstr ""
 
-#~ msgid ""
-#~ "No additional QSO's were found. That means they are probably already in "
-#~ "the queue."
-#~ msgstr "没有找到附加的 QSL 信息，可能它们已经被添加到打印队列中。"
+#: application/views/qslprint/qsolist.php:207
+msgid ""
+"No additional QSOs were found. That means they are probably already in the "
+"queue."
+msgstr ""
 
 #, php-format
 #~ msgid "LoTW status for %s QSOs updated"
