@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-12 16:17+0000\n"
-"PO-Revision-Date: 2025-03-11 16:13+0000\n"
+"POT-Creation-Date: 2025-03-12 13:41+0000\n"
+"PO-Revision-Date: 2025-03-12 19:25+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -3059,21 +3059,25 @@ msgstr "Nenhum indicativo fornecido"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tem de ser numérico"
 
+#: application/models/Logbook_model.php:3921
 #: application/models/Logbook_model.php:3923
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
+#: application/models/Logbook_model.php:3922
 #: application/models/Logbook_model.php:3924
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
+#: application/models/Logbook_model.php:3934
 #: application/models/Logbook_model.php:3936
 msgid "QSO on"
 msgstr "Contacto em"
 
+#: application/models/Logbook_model.php:3934
 #: application/models/Logbook_model.php:3936
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3082,62 +3086,75 @@ msgstr ""
 "Tentou importar um contacto sem nenhum CALL dado. Este contacto não foi "
 "importado. É inválido"
 
+#: application/models/Logbook_model.php:4233
 #: application/models/Logbook_model.php:4235
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:4244
 #: application/models/Logbook_model.php:4246
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:4305
 #: application/models/Logbook_model.php:4307
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:4325
 #: application/models/Logbook_model.php:4327
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
+#: application/models/Logbook_model.php:4346
 #: application/models/Logbook_model.php:4348
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4629
+#: application/models/Logbook_model.php:4627
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4629
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
+#: application/models/Logbook_model.php:4688
 #: application/models/Logbook_model.php:4690
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
+#: application/models/Logbook_model.php:4694
 #: application/models/Logbook_model.php:4696
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4699
 #: application/models/Logbook_model.php:4701
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
+#: application/models/Logbook_model.php:4702
 #: application/models/Logbook_model.php:4704
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
+#: application/models/Logbook_model.php:4705
 #: application/models/Logbook_model.php:4707
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
+#: application/models/Logbook_model.php:4708
 #: application/models/Logbook_model.php:4710
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:4713
+#: application/models/Logbook_model.php:4711
 #: application/views/satellite/index.php:67
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4713
 msgid "unknown"
 msgstr "desconhecido"
 
-#: application/models/Logbook_model.php:5536
+#: application/models/Logbook_model.php:5534
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3148,6 +3165,7 @@ msgstr "desconhecido"
 #: application/views/user/edit.php:314 application/views/user/edit.php:337
 #: application/views/user/edit.php:362
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5536
 msgid "Bearing"
 msgstr "Direção"
 
@@ -3883,7 +3901,7 @@ msgstr "Contagem"
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
 msgid "Show QSOs"
-msgstr ""
+msgstr "Mostrar Contactos"
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
@@ -4173,6 +4191,9 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
 "if they match to the chosen station-location."
 msgstr ""
+"Se selecionado, o Wavelog tentará importar %stodos%s os contactos do "
+"ficheiro ADIF, independentemente de corresponderem à estação-localização "
+"escolhida."
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4232,7 +4253,7 @@ msgstr "Exportar contactos não enviados para o LoTW"
 
 #: application/views/adif/import.php:240
 msgid "Export QSOs"
-msgstr ""
+msgstr "Exportar Contactos"
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
@@ -7248,7 +7269,7 @@ msgstr "Gridsquare VUCC"
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
 msgid "# of QSOs worked"
-msgstr ""
+msgstr "# de contactos efectuados"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -8147,7 +8168,7 @@ msgstr "Grego"
 
 #: application/views/debug/index.php:677
 msgid "Hungarian"
-msgstr ""
+msgstr "Húngaro"
 
 #: application/views/debug/index.php:678
 msgid "Italian"
@@ -11024,6 +11045,7 @@ msgstr "Adicionar à fila de impressão"
 #: application/views/oqrs/qsolist.php:197
 msgid "No QSOs were found. It seems you were not active at this time."
 msgstr ""
+"Não foram encontrados contactos. Parece que não esteve activo nesta altura."
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11314,6 +11336,8 @@ msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
+"Não foram encontrados contactos adicionais. Isso significa que provavelmente "
+"já estão na fila de espera."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -11966,7 +11990,7 @@ msgstr "Sincronizar Satélites via LoTW"
 
 #: application/views/satellite/index.php:31
 msgid "Update Satellite TLE"
-msgstr ""
+msgstr "Atualizar TLE de satélites"
 
 #: application/views/satellite/index.php:42
 msgid "TLE"
