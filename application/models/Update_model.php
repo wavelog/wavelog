@@ -316,10 +316,11 @@ class Update_model extends CI_Model {
 		$this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 		$mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $starttime = $mtime;
+		$mtime = explode(" ",$mtime);
+		$mtime = $mtime[1] + $mtime[0];
+		$starttime = $mtime;
 
+		$this->update_norad_ids();
 		$url = 'https://www.amsat.org/tle/dailytle.txt';
 		$curl = curl_init($url);
 
@@ -345,18 +346,18 @@ class Update_model extends CI_Model {
 				// Check if there are at least three lines remaining
 				if (isset($lines[$i], $lines[$i + 1], $lines[$i + 2])) {
 					// Get the three lines
-					$satname = $lines[$i];
+					$satname = substr($lines[$i+1], 2, 5);
 					$tleline1 = $lines[$i + 1];
 					$tleline2 = $lines[$i + 2];
 					$sql = "
 					INSERT INTO tle (satelliteid, tle)
 					SELECT id, ?
 					FROM satellite
-					WHERE name = ? OR displayname = ?
+					WHERE norad_id = ?
 					ON DUPLICATE KEY UPDATE
 					tle = VALUES(tle), updated = now()
 				";
-				$this->db->query($sql, array($tleline1 . "\n" . $tleline2, $satname, $satname));
+				$this->db->query($sql, array($tleline1 . "\n" . $tleline2, $satname));
 				}
 			}
 		}
@@ -470,6 +471,17 @@ class Update_model extends CI_Model {
 		} else {
 			return 0;
 		}
+	}
+
+	function update_norad_ids() {
+		$csvfile = 'https://www.df2et.de/cqrlog/lotw_norad.csv';
+		$csvhandle = fopen($csvfile, "r");
+		while (false !== ($data = fgetcsv($csvhandle, 1000, ","))) {
+			$this->db->set('norad_id', $data[1]);
+			$this->db->where('name', $data[0]);
+			$this->db->update('satellite');
+		}
+		return;
 	}
 
 }
