@@ -204,7 +204,7 @@ if ($qsos->result() != NULL) {
 
 	<?php
 } else {
-	echo '<div class="alert alert-danger">' . __("No additional QSO's were found. That means they are probably already in the queue.") . '</div>';
+	echo '<div class="alert alert-danger">' . __("No additional QSOs were found. That means they are probably already in the queue.") . '</div>';
 }
 
 function echo_qsl_sent_via($method) {
