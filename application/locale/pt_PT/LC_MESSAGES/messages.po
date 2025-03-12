@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-09 10:15+0000\n"
+"POT-Creation-Date: 2025-03-12 05:33+0000\n"
 "PO-Revision-Date: 2025-03-11 16:13+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -373,13 +373,13 @@ msgstr "Visualização do log - VUCC"
 #: application/controllers/Awards.php:458
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
+#: application/controllers/Statistics.php:305
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
 #: application/controllers/Timeline.php:135
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
-#: application/controllers/Statistics.php:305
 msgid "Log View"
 msgstr "Ver log"
 
@@ -696,8 +696,6 @@ msgid "Email settings not configured."
 msgstr "Definições do email não configuradas."
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
-#: application/views/satellite/index.php:66
-#: application/views/satellite/index.php:64
 #: application/views/satellite/index.php:79
 msgid "Unknown"
 msgstr "Desconhecido"
@@ -1219,14 +1217,12 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:169
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:425
-#: application/views/satellite/index.php:27
+#: application/views/satellite/index.php:41
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
 #: application/views/user/edit.php:716 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
-#: application/views/satellite/index.php:26
-#: application/views/satellite/index.php:41
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -2110,14 +2106,12 @@ msgstr "Predefinição (clique para libertar)"
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:619
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
-#: application/views/satellite/index.php:29
+#: application/views/satellite/index.php:43
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
-#: application/views/satellite/index.php:28
-#: application/views/satellite/index.php:43
 msgid "Edit"
 msgstr "Editar"
 
@@ -2138,15 +2132,13 @@ msgstr "Editar"
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:57
-#: application/views/satellite/index.php:30
+#: application/views/satellite/index.php:44
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
-#: application/views/satellite/index.php:29
-#: application/views/satellite/index.php:44
 msgid "Delete"
 msgstr "Apagar"
 
@@ -2465,6 +2457,10 @@ msgstr "Estatísticas de QSL"
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "Análise da Antena"
+
+#: application/controllers/Statistics.php:305
+msgid "Satellite QSOs"
+msgstr "Contactos via satélite"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:298
@@ -3136,10 +3132,8 @@ msgid "unconfirmed"
 msgstr "não confirmado"
 
 #: application/models/Logbook_model.php:4711
-#: application/views/satellite/index.php:54
-#: application/views/view_log/qso.php:287
-#: application/views/satellite/index.php:52
 #: application/views/satellite/index.php:67
+#: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -3733,11 +3727,9 @@ msgstr "Satélite"
 #: application/views/logbookadvanced/index.php:264
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
-#: application/views/satellite/index.php:25
+#: application/views/satellite/index.php:39
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
-#: application/views/satellite/index.php:24
-#: application/views/satellite/index.php:39
 msgid "Orbit"
 msgstr "Órbita"
 
@@ -3890,8 +3882,8 @@ msgstr "Contagem"
 #: application/views/timeline/index.php:298
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
-msgid "Show QSO's"
-msgstr "Mostrar contactos"
+msgid "Show QSOs"
+msgstr ""
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
@@ -4178,11 +4170,9 @@ msgstr "Ignorar indicativo da estação na importação"
 #: application/views/adif/import.php:192
 #, php-format
 msgid ""
-"If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
-"regardless if they match to the chosen station-location."
+"If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
+"if they match to the chosen station-location."
 msgstr ""
-"Se for selecionado, o Wavelog tentará importar %stodos%s os contactos do "
-"ADIF, independentemente de corresponderem à estação-local escolhida."
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4241,8 +4231,8 @@ msgid "Export QSOs not uploaded to LoTW"
 msgstr "Exportar contactos não enviados para o LoTW"
 
 #: application/views/adif/import.php:240
-msgid "Export QSO's"
-msgstr "Exportar contactos"
+msgid "Export QSOs"
+msgstr ""
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
@@ -4705,8 +4695,8 @@ msgstr "Número"
 #: application/views/awards/details.php:1
 #: application/views/awards/vucc/band.php:4
 #: application/views/distancerecords/details.php:1
-#: application/views/timeline/details.php:2
 #: application/views/statistics/details.php:1
+#: application/views/timeline/details.php:2
 msgid "Filtering on"
 msgstr "Filtragem ligada"
 
@@ -4774,13 +4764,12 @@ msgstr "Condados Confirmados"
 #: application/views/statistics/qsotable.php:10
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
-#: application/views/statistics/satqsotable.php:22
+#: application/views/statistics/satqsotable.php:28
 #: application/views/statistics/satuniquetable.php:10
 #: application/views/statistics/satuniquetable.php:22
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
-#: application/views/statistics/satqsotable.php:28
 msgid "Total"
 msgstr "Total"
 
@@ -6461,8 +6450,8 @@ msgstr ""
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
-#: application/views/satellite/index.php:60
 #: application/views/satellite/index.php:73
+#: application/views/satellite/index.php:86
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
 #: application/views/station_profile/create.php:217
@@ -6484,9 +6473,7 @@ msgstr ""
 #: application/views/user/edit.php:862 application/views/user/edit.php:878
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
-#: application/views/user/edit.php:992 application/views/satellite/index.php:58
-#: application/views/satellite/index.php:71
-#: application/views/satellite/index.php:86
+#: application/views/user/edit.php:992
 msgid "Yes"
 msgstr "Sim"
 
@@ -6519,8 +6506,8 @@ msgstr "Sim"
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
-#: application/views/satellite/index.php:63
-#: application/views/satellite/index.php:75
+#: application/views/satellite/index.php:76
+#: application/views/satellite/index.php:88
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/create.php:218
@@ -6543,10 +6530,6 @@ msgstr "Sim"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
-#: application/views/satellite/index.php:61
-#: application/views/satellite/index.php:73
-#: application/views/satellite/index.php:76
-#: application/views/satellite/index.php:88
 msgid "No"
 msgstr "Não"
 
@@ -7264,8 +7247,8 @@ msgstr "Gridsquare VUCC"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
-msgid "# of QSO's worked"
-msgstr "# of contactos feitos"
+msgid "# of QSOs worked"
+msgstr ""
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -9126,10 +9109,9 @@ msgstr "Opções Globais"
 
 #: application/views/interface_assets/header.php:296
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:11
+#: application/views/satellite/index.php:25
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
-#: application/views/satellite/index.php:25
 msgid "Satellites"
 msgstr "Satélites"
 
@@ -9479,7 +9461,6 @@ msgid "Label types"
 msgstr "Tipos de etiquetas"
 
 #: application/views/labels/index.php:81
-#: application/views/satellite/index.php:24
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
 msgid "QSOs"
@@ -9597,8 +9578,6 @@ msgstr "Clublog recebido"
 
 #: application/views/logbookadvanced/edit.php:85
 #: application/views/satellite/edit.php:51
-#: application/views/satellite/index.php:26
-#: application/views/satellite/index.php:25
 #: application/views/satellite/index.php:40
 msgid "SAT Mode"
 msgstr "Modo Satélite"
@@ -10244,7 +10223,6 @@ msgid "Import LoTW Matches"
 msgstr "Importar correspondências do LoTW"
 
 #: application/views/lotw/satupdate.php:7
-#: application/views/satellite/index.php:23
 #: application/views/satellite/index.php:38
 msgid "Display Name"
 msgstr "Nome de Exibição"
@@ -11040,9 +11018,8 @@ msgid "Add to print queue"
 msgstr "Adicionar à fila de impressão"
 
 #: application/views/oqrs/qsolist.php:197
-msgid "No QSO's were found. It seems you were not active at this time."
+msgid "No QSOs were found. It seems you were not active at this time."
 msgstr ""
-"Não foram encontrados contactos. Parece que não estava ativo nesta altura."
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11330,11 +11307,9 @@ msgstr "Não foram encontradas QSLs para imprimir!"
 
 #: application/views/qslprint/qsolist.php:207
 msgid ""
-"No additional QSO's were found. That means they are probably already in the "
+"No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
-"Não foram encontrados contactos adicionais. Isso significa que provavelmente "
-"já estão na fila de espera."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -11892,7 +11867,6 @@ msgstr "Mostrar/ nome em texto claro do satélite"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
-#: application/views/satellite/index.php:22
 #: application/views/satellite/index.php:37
 msgid "LoTW Name"
 msgstr "Nome do LoTW"
@@ -11978,18 +11952,18 @@ msgstr "Guardar satélite"
 msgid "Add satellite mode"
 msgstr "Adicionar modo satélite"
 
-#: application/views/satellite/index.php:15
 #: application/views/satellite/index.php:29
 msgid "Add a satellite"
 msgstr "Adicionar um satélite"
 
-#: application/views/satellite/index.php:16
 #: application/views/satellite/index.php:30
 msgid "Sync Satellites from LoTW"
 msgstr "Sincronizar Satélites via LoTW"
 
-#: application/views/satellite/index.php:28
-#: application/views/satellite/index.php:27
+#: application/views/satellite/index.php:31
+msgid "Update Satellite TLE"
+msgstr ""
+
 #: application/views/satellite/index.php:42
 msgid "TLE"
 msgstr "TLE"
@@ -14737,50 +14711,33 @@ msgstr "Submeter pedido"
 msgid "Rcvd"
 msgstr "Recebido"
 
-#: application/controllers/Statistics.php:305
-msgid "Satellite QSOs"
-msgstr "Contactos via satélite"
+#~ msgid "Show QSO's"
+#~ msgstr "Mostrar contactos"
 
-#: application/views/satellite/index.php:31
-msgid "Update Satellite TLE"
-msgstr ""
-
-#: application/views/activators/index.php:101
-#: application/views/callstats/index.php:150
-#: application/views/timeline/index.php:203
-#: application/views/timeline/index.php:238
-#: application/views/timeline/index.php:266
-#: application/views/timeline/index.php:298
-#: application/views/timeline/index.php:328
-#: application/views/timeline/index.php:357
-msgid "Show QSOs"
-msgstr ""
-
-#: application/views/adif/import.php:192
 #, php-format
-msgid ""
-"If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
-"if they match to the chosen station-location."
-msgstr ""
+#~ msgid ""
+#~ "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
+#~ "regardless if they match to the chosen station-location."
+#~ msgstr ""
+#~ "Se for selecionado, o Wavelog tentará importar %stodos%s os contactos do "
+#~ "ADIF, independentemente de corresponderem à estação-local escolhida."
 
-#: application/views/adif/import.php:240
-msgid "Export QSOs"
-msgstr ""
+#~ msgid "Export QSO's"
+#~ msgstr "Exportar contactos"
 
-#: application/views/continents/index.php:63
-#: application/views/statistics/index.php:20
-msgid "# of QSOs worked"
-msgstr ""
+#~ msgid "# of QSO's worked"
+#~ msgstr "# of contactos feitos"
 
-#: application/views/oqrs/qsolist.php:197
-msgid "No QSOs were found. It seems you were not active at this time."
-msgstr ""
+#~ msgid "No QSO's were found. It seems you were not active at this time."
+#~ msgstr ""
+#~ "Não foram encontrados contactos. Parece que não estava ativo nesta altura."
 
-#: application/views/qslprint/qsolist.php:207
-msgid ""
-"No additional QSOs were found. That means they are probably already in the "
-"queue."
-msgstr ""
+#~ msgid ""
+#~ "No additional QSO's were found. That means they are probably already in "
+#~ "the queue."
+#~ msgstr ""
+#~ "Não foram encontrados contactos adicionais. Isso significa que "
+#~ "provavelmente já estão na fila de espera."
 
 #, php-format
 #~ msgid ""
