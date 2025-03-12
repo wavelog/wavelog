@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-03-12 13:41+0000\n"
-"PO-Revision-Date: 2025-03-11 16:13+0000\n"
+"PO-Revision-Date: 2025-03-12 16:17+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -3883,7 +3883,7 @@ msgstr "Contagem"
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
 msgid "Show QSOs"
-msgstr ""
+msgstr "Mostrar Contactos"
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
@@ -4173,6 +4173,9 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
 "if they match to the chosen station-location."
 msgstr ""
+"Se selecionado, o Wavelog tentará importar %stodos%s os contactos do "
+"ficheiro ADIF, independentemente de corresponderem à estação-localização "
+"escolhida."
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4232,7 +4235,7 @@ msgstr "Exportar contactos não enviados para o LoTW"
 
 #: application/views/adif/import.php:240
 msgid "Export QSOs"
-msgstr ""
+msgstr "Exportar Contactos"
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
@@ -7248,7 +7251,7 @@ msgstr "Gridsquare VUCC"
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
 msgid "# of QSOs worked"
-msgstr ""
+msgstr "# de contactos efectuados"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -11024,6 +11027,7 @@ msgstr "Adicionar à fila de impressão"
 #: application/views/oqrs/qsolist.php:197
 msgid "No QSOs were found. It seems you were not active at this time."
 msgstr ""
+"Não foram encontrados contactos. Parece que não esteve activo nesta altura."
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11314,6 +11318,8 @@ msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
+"Não foram encontrados contactos adicionais. Isso significa que provavelmente "
+"já estão na fila de espera."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -11966,7 +11972,7 @@ msgstr "Sincronizar Satélites via LoTW"
 
 #: application/views/satellite/index.php:31
 msgid "Update Satellite TLE"
-msgstr ""
+msgstr "Atualizar TLE de satélites"
 
 #: application/views/satellite/index.php:42
 msgid "TLE"
