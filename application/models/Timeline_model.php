@@ -380,8 +380,23 @@ class Timeline_model extends CI_Model {
 		usort($timeline, function($a, $b) {
 			return $b['date'] <=> $a['date'];
 		});
+		
+		$result=[];
+		foreach ($timeline as $grid => $date) {
+			$existingKey = array_search($date, $result);
 
-		return $timeline;
+			if ($existingKey === false) {
+				if (!isset($result[$grid]) || strtotime($date) < strtotime($result[$grid])) {
+					$result[$grid] = $date;
+				}
+			} elseif ($existingKey !== $grid) {
+				if (strcmp($grid, $existingKey) < 0) {
+					unset($result[$existingKey]);
+					$result[$grid] = $date;
+				}
+			}
+		}
+		return $result;
 	}
 
 	public function get_gridsquare($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew) {
@@ -471,7 +486,6 @@ class Timeline_model extends CI_Model {
 		$sql .= " and col_vucc_grids <> ''";
 
 		$query = $this->db->query($sql, $binding);
-
 		return $query->result();
 	}
 
