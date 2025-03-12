@@ -156,6 +156,16 @@ $gt_conf['languages'] = array(
 		'code'      => 'el',
 		'flag'      => 'gr',
 	),
+	'hungarian' => array(
+		'name'      => 'Magyar',
+		'name_en'   => 'Hungarian',
+		'folder'    => 'hungarian',
+		'locale'    => 'hu',
+		'gettext'   => 'hu',
+		'direction' => 'ltr',
+		'code'      => 'hu',
+		'flag'      => 'hu',
+	),
 	'italian' => array(
 		'name'      => 'Italiano',
 		'name_en'   => 'Italian',
