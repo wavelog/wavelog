@@ -28,8 +28,8 @@ msgstr ""
 "POT-Creation-Date: 2025-03-09 10:15+0000\n"
 "PO-Revision-Date: 2025-03-12 05:34+0000\n"
 "Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14770,6 +14770,43 @@ msgstr "Satellit QSOs"
 #: application/views/satellite/index.php:31
 msgid "Update Satellite TLE"
 msgstr "Satellitenbahnelemente (TLE) aktualisieren"
+
+#: application/views/activators/index.php:101
+#: application/views/callstats/index.php:150
+#: application/views/timeline/index.php:203
+#: application/views/timeline/index.php:238
+#: application/views/timeline/index.php:266
+#: application/views/timeline/index.php:298
+#: application/views/timeline/index.php:328
+#: application/views/timeline/index.php:357
+msgid "Show QSOs"
+msgstr ""
+
+#: application/views/adif/import.php:192
+#, php-format
+msgid ""
+"If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
+"if they match to the chosen station-location."
+msgstr ""
+
+#: application/views/adif/import.php:240
+msgid "Export QSOs"
+msgstr ""
+
+#: application/views/continents/index.php:63
+#: application/views/statistics/index.php:20
+msgid "# of QSOs worked"
+msgstr ""
+
+#: application/views/oqrs/qsolist.php:197
+msgid "No QSOs were found. It seems you were not active at this time."
+msgstr ""
+
+#: application/views/qslprint/qsolist.php:207
+msgid ""
+"No additional QSOs were found. That means they are probably already in the "
+"queue."
+msgstr ""
 
 #, php-format
 #~ msgid "LoTW status for %s QSOs updated"
