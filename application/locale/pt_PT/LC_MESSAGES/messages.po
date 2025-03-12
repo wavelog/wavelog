@@ -3060,21 +3060,25 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC tem de ser numérico"
 
 #: application/models/Logbook_model.php:3921
+#: application/models/Logbook_model.php:3923
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
 #: application/models/Logbook_model.php:3922
+#: application/models/Logbook_model.php:3924
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
 #: application/models/Logbook_model.php:3934
+#: application/models/Logbook_model.php:3936
 msgid "QSO on"
 msgstr "Contacto em"
 
 #: application/models/Logbook_model.php:3934
+#: application/models/Logbook_model.php:3936
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3083,57 +3087,70 @@ msgstr ""
 "importado. É inválido"
 
 #: application/models/Logbook_model.php:4233
+#: application/models/Logbook_model.php:4235
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4244
+#: application/models/Logbook_model.php:4246
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4305
+#: application/models/Logbook_model.php:4307
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4325
+#: application/models/Logbook_model.php:4327
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4346
+#: application/models/Logbook_model.php:4348
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4627
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4629
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
 #: application/models/Logbook_model.php:4688
+#: application/models/Logbook_model.php:4690
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
 #: application/models/Logbook_model.php:4694
+#: application/models/Logbook_model.php:4696
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4699
+#: application/models/Logbook_model.php:4701
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
 #: application/models/Logbook_model.php:4702
+#: application/models/Logbook_model.php:4704
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
 #: application/models/Logbook_model.php:4705
+#: application/models/Logbook_model.php:4707
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
 #: application/models/Logbook_model.php:4708
+#: application/models/Logbook_model.php:4710
 msgid "unconfirmed"
 msgstr "não confirmado"
 
 #: application/models/Logbook_model.php:4711
 #: application/views/satellite/index.php:67
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4713
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -3148,6 +3165,7 @@ msgstr "desconhecido"
 #: application/views/user/edit.php:314 application/views/user/edit.php:337
 #: application/views/user/edit.php:362
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5536
 msgid "Bearing"
 msgstr "Direção"
 
