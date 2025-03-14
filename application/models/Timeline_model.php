@@ -380,7 +380,7 @@ class Timeline_model extends CI_Model {
 				} else {
 					// Exists, check the date
 					if ($gridSplit->date < $timeline[$index]['date']) {
-						// Update only if the new date is more recent
+						// Update only if the new date is older
 						$timeline[$index]['date'] = $gridSplit->date;
 					}
 				}
@@ -389,7 +389,7 @@ class Timeline_model extends CI_Model {
 		usort($timeline, function($a, $b) {
 			return $b['date'] <=> $a['date'];
 		});
-		
+
 		return $timeline;
 	}
 
