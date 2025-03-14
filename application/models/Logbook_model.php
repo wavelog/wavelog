@@ -3790,6 +3790,7 @@ class Logbook_model extends CI_Model {
 				$this->load->library('Qra');
 			}
 			if ($qsl_gridsquare != "") {
+				$data['COL_VUCC_GRIDS'] = null;
 				$data['COL_GRIDSQUARE'] = $qsl_gridsquare;
 				$data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_gridsquare, 'K', $ant_path);
 			} elseif ($qsl_vucc_grids != "") {
