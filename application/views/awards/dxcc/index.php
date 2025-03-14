@@ -287,10 +287,12 @@
 			$addsat='<td style="text-align: center">' . $dxcc . '</td>';
 		}
 	}
+
+	if (count($bands) > 1) {
+		echo '<td class="spacingcell"></td>';
+	}
+
 	if ($addsat != '' && count($dxcc_summary['worked']) > 1) {
-		if (count($bands) > 1) {
-			echo '<td class="spacingcell"></td>';
-		}
 		echo $addsat;
 	}
 
@@ -310,10 +312,11 @@
 			$addsat='<td style="text-align: center">' . $dxcc . '</td>';
 		}
 	}
+	if (count($bands) > 1) {
+		echo '<td class="spacingcell"></td>';
+	}
+
 	if ($addsat != '' && count($dxcc_summary['confirmed']) > 1) {
-		if (count($bands) > 1) {
-			echo '<td class="spacingcell"></td>';
-		}
 		echo $addsat;
 	}
 
