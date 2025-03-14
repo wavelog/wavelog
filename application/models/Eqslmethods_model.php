@@ -45,6 +45,7 @@ class Eqslmethods_model extends CI_Model {
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$qslsnotsent = $this->eqsl_not_yet_sent($clean_userid);
+		log_message("Error",$this->db->last_query());
 
 		foreach ($qslsnotsent->result_array() as $qsl) {
 			$data['user_eqsl_name'] = $qsl['station_callsign'];
@@ -209,7 +210,7 @@ class Eqslmethods_model extends CI_Model {
 
 		// adding qslmsg if it isn't blank
 		if ($qsl['COL_QSLMSG'] != '') {
-			$qsl['COL_QSLMSG'] = str_replace(array(chr(10), chr(13)), array(' ', ' '), $qsl['COL_QSLMSG']);
+			$qsl['COL_QSLMSG'] = str_replace(array(chr(10), chr(13),'<'), array(' ', ' ',''), $qsl['COL_QSLMSG']);
 			$adif .= "%3C";
 			$adif .= "QSLMSG";
 			$adif .= "%3A";
