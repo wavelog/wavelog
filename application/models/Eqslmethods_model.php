@@ -215,9 +215,7 @@ class Eqslmethods_model extends CI_Model {
 			$adif .= "%3A";
 			$adif .= strlen($qsl['COL_QSLMSG']);
 			$adif .= "%3E";
-			$adif .= str_replace('&', '%26', $qsl['COL_QSLMSG']);
-			$adif .= str_replace('?', '%3F', $qsl['COL_QSLMSG']);
-			$adif .= str_replace('-', '%2D', $qsl['COL_QSLMSG']);
+			$adif .= rawurlencode($qsl['COL_QSLMSG']);
 			$adif .= "%20";
 		}
 
