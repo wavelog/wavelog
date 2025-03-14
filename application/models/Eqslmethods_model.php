@@ -291,6 +291,7 @@ class Eqslmethods_model extends CI_Model {
 				} else {
 					if (stristr($result, "Result: 0 out of 0 records added")) {
 						$msg = __("Something went wrong with eQSL.cc!");
+						log_message('error', 'eQSL at QSO: '.$qsl['COL_PRIMARY_KEY']); // No leftover-Debug, but Find the faulty QSO for not known errors!
 						log_message('error', 'eQSL: '.$msg);
 						$this->session->set_flashdata('warning', $msg);
 						$status = "Error";
