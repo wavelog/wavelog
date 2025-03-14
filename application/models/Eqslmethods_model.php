@@ -261,6 +261,7 @@ class Eqslmethods_model extends CI_Model {
 		// basic curl options for all requests
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 
 		// use the URL we built
 		curl_setopt($ch, CURLOPT_URL, $adif);
