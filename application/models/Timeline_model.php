@@ -370,10 +370,19 @@ class Timeline_model extends CI_Model {
 			$grids = explode(",", $gridSplit->gridsquare);
 			foreach($grids as $key) {
 				$grid_four = strtoupper(substr(trim($key),0,4));
-				if (!array_search($grid_four, array_column($timeline, 'gridsquare'))) {
+				$index = array_search($grid_four, array_column($timeline, 'gridsquare'));
+				if ($index === false) {
+					// Doesn't exist, add new entry
 					$timeline[] = array(
 						'gridsquare' => $grid_four,
-						'date'       => $gridSplit->date);
+						'date'       => $gridSplit->date
+					);
+				} else {
+					// Exists, check the date
+					if ($gridSplit->date < $timeline[$index]['date']) {
+						// Update only if the new date is older
+						$timeline[$index]['date'] = $gridSplit->date;
+					}
 				}
 			}
 		}
@@ -471,7 +480,6 @@ class Timeline_model extends CI_Model {
 		$sql .= " and col_vucc_grids <> ''";
 
 		$query = $this->db->query($sql, $binding);
-
 		return $query->result();
 	}
 
