@@ -367,7 +367,7 @@ class Eqslmethods_model extends CI_Model {
 
 	function disable_eqsl_station_id($user_id,$station_id) {
 		$sql='update station_profile set eqslqthnickname=null where user_id=? and station_id=?';
-		$bindings=[$userid,$station_id];
+		$bindings=[$user_id,$station_id];
 		$this->db->query($sql,$bindings);
 		return;
 	}
