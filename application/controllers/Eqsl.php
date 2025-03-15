@@ -192,9 +192,11 @@ class eqsl extends CI_Controller {
 				if ($status == 'Login Error') {
 					log_message('error', 'eQSL Credentials-Error for '.$data['user_eqsl_name'].' Login will be disabled!');
 					$this->eqslmethods_model->disable_eqsl_uid($this->session->userdata('user_id'));
-                        	} elseif ($status == 'Nick Error') {
-                                	log_message('error', 'eQSL Nickname-Error for User '.$data['user_eqsl_name'].' with Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile'.($qsl['eqsl_station_id'] ?? '').' Nickname will be removed!');
-                                	$this->eqslmethods_model->disable_eqsl_station_id($this->session->userdata('user_id'),$qsl['eqsl_station_id']);
+					$status=__("User/Pass wrong for eQSL");
+				} elseif ($status == 'Nick Error') {
+					log_message('error', 'eQSL Nickname-Error for User '.$data['user_eqsl_name'].' with Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile'.($qsl['eqsl_station_id'] ?? '').' Nickname will be removed!');
+					$this->eqslmethods_model->disable_eqsl_station_id($this->session->userdata('user_id'),$qsl['eqsl_station_id']);
+					$status=__("No such Nickname at eQSL");
 				}
 
 				if($status == 'Error') {

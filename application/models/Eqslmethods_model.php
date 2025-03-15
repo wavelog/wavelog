@@ -49,16 +49,16 @@ class Eqslmethods_model extends CI_Model {
 		foreach ($qslsnotsent->result_array() as $qsl) {
 			$data['user_eqsl_name'] = $qsl['station_callsign'];
 			$adif = $this->generateAdif($qsl, $data);
-			
+
 			$status = $this->uploadQso($adif, $qsl);
 
 			if ($status == 'Error') {
 				log_message('error', 'eQSL Error for '.$data['user_eqsl_name']);
 				break;
-                        } elseif ($status == 'Nick Error') {
-                                log_message('error', 'eQSL Nickname-Error for User '.$data['user_eqsl_name'].' with Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile: '.($qsl['eqsl_station_id'] ?? '').' Nickname will be removed!');
-                                $this->disable_eqsl_station_id($userid,$qsl['eqsl_station_id']);
-                                break;
+			} elseif ($status == 'Nick Error') {
+				log_message('error', 'eQSL Nickname-Error for User '.$data['user_eqsl_name'].' with Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile: '.($qsl['eqsl_station_id'] ?? '').' Nickname will be removed!');
+				$this->disable_eqsl_station_id($userid,$qsl['eqsl_station_id']);
+				break;
 			} elseif ($status == 'Login Error') {
 				log_message('error', 'eQSL Credentials-Error (User, Pass or Nickname) for '.$data['user_eqsl_name'].' Login will be disabled!');
 				$this->disable_eqsl_uid($userid);
