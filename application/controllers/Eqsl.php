@@ -192,6 +192,9 @@ class eqsl extends CI_Controller {
 				if ($status == 'Login Error') {
 					log_message('error', 'eQSL Credentials-Error for '.$data['user_eqsl_name'].' Login will be disabled!');
 					$this->eqslmethods_model->disable_eqsl_uid($this->session->userdata('user_id'));
+                        	} elseif ($status == 'Nick Error') {
+                                	log_message('error', 'eQSL Nickname-Error for User '.$data['user_eqsl_name'].' with Nickname '.($data['eqslqthnickname'] ?? '').' at station_profile'.($data['eqsl_station_id'] ?? '').' Nickname will be removed!');
+                                	$this->eqlsmethods_model->disable_eqsl_station_id($this->session->userdata('user_id'),$data['eqsl_station_id']);
 				}
 
 				if($status == 'Error') {
