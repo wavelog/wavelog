@@ -55,6 +55,10 @@ class Eqslmethods_model extends CI_Model {
 			if ($status == 'Error') {
 				log_message('error', 'eQSL Error for '.$data['user_eqsl_name']);
 				break;
+                        } elseif ($status == 'Nick Error') {
+                                log_message('error', 'eQSL Nickname-Error for User '.$data['user_eqsl_name'].' with Nickname '.($data['eqslqthnickname'] ?? '').' at station_profile'.($data['eqsl_station_id'] ?? '').' Nickname will be removed!');
+                                $this->disable_eqsl_station_id($userid,$data['eqsl_station_id']);
+                                break;
 			} elseif ($status == 'Login Error') {
 				log_message('error', 'eQSL Credentials-Error (User, Pass or Nickname) for '.$data['user_eqsl_name'].' Login will be disabled!');
 				$this->disable_eqsl_uid($userid);
@@ -300,7 +304,7 @@ class Eqslmethods_model extends CI_Model {
 				} elseif (stristr($result, "No match on APP_EQSL_QTH_NICKNAME")) {
 					$msg = __("eQSL-Nickname doesn't exist at eQSL");
 					$this->session->set_flashdata('warning', $msg);
-					$status = "Login Error";
+					$status = "Nick Error";
 				} elseif (stristr($result, "Bad record: Duplicate")) {
 					$status = "Duplicate";
 					$this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
@@ -359,6 +363,13 @@ class Eqslmethods_model extends CI_Model {
 				$this->db->update($this->config->item('table_name'), $data);
 			}
 		}
+	}
+
+	function disable_eqsl_station_id($user_id,$station_id) {
+		$sql='update station_profile set eqslqthnickname=null where user_id=? and station_id=?';
+		$bindings=[$userid,$station_id];
+		$this->db->query($sql,$bindings);
+		return;
 	}
 
 	function disable_eqsl_uid($userid) {
