@@ -83,7 +83,7 @@
 				</form>
 				</div>
 		<button id="plot" type="button" name="searchpass" class="btn-sm btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="searchpasses()"><i class="fas fa-search"></i> <?= __("Load predictions"); ?><div class="ld ld-ring ld-spin"></div></button>
-		<button id="addsked" type="button" name="addsked" class="btn-sm btn btn-success me-1" onclick="addskedpartner()"><i class="fa fa-plus"></i> <?= __("Add sked partner"); ?></button>
+		<button id="addsked" type="button" name="addsked" class="btn-sm btn btn-success me-1" onclick="addskedpartner()" disabled><i class="fa fa-plus"></i> <?= __("Add sked partner"); ?></button>
 		<?php } else { ?>
 			<?= __("No TLE information detected. Please update TLE's.")?>
 		<?php } ?>

@@ -78,5 +78,12 @@ function addskedpartner() {
 		$('#addskedpartner').hide();
 		$('#satlist').prepend('<option value="">All</option>');
 	}
-
 }
+
+$('#satlist').change(function () {
+    if ($('#satlist').val() === "") {
+		$('#addsked').prop('disabled', true);
+    } else {
+		$('#addsked').prop('disabled', false);
+    }
+});
