@@ -186,7 +186,7 @@ class Satellite extends CI_Controller {
 		echo json_encode($sat_list, JSON_FORCE_OBJECT);
 	}
 
-	public function flightpath() {
+	public function flightpath($sat = null) {
 
 		$this->load->model('satellite_model');
 		$this->load->model('stations');
@@ -206,11 +206,11 @@ class Satellite extends CI_Controller {
 
 		$this->load->library('Qra');
 		$pageData['latlng'] = $this->qra->qra2latlong($homegrid[0]);
-
+		$data['selsat']=strtoupper($sat ?? '');
 		// Render Page
 		$pageData['page_title'] = "Satellite Flightpath";
 		$this->load->view('interface_assets/header', $pageData);
-		$this->load->view('satellite/flightpath');
+		$this->load->view('satellite/flightpath',$data);
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 

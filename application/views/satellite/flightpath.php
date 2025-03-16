@@ -38,11 +38,14 @@
 			<label class="my-1 me-2" id="satslabel" for="distplot_sats"><?= __("Satellite"); ?></label>
 			<select class="form-select my-1 me-sm-2 w-auto"  id="sats">
 				<?php foreach($satellites as $sat) {
-					echo '<option value="' . $sat->satname . '"' . '>' . $sat->satname . '</option>'."\n";
+					echo '<option value="' . $sat->satname . '"';
+					if ($sat->satname == ($selsat ?? '')) { echo ' selected'; }
+					echo '>' . $sat->satname . '</option>'."\n";
 				} ?>
 			</select>
 
 
+		<input type="hidden" id="selsat" value="<?php echo ($selsat ?? ''); ?>">
 		<button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plot_sat()"><?= __("Plot"); ?><div class="ld ld-ring ld-spin"></div></button><p id="az"></p>&nbsp;&nbsp;<p id="ele"></p>
 	</form>
 

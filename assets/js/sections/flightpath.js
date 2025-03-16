@@ -514,3 +514,9 @@ function toggleGridsquares(bool) {
 		maidenhead.addTo(leafletMap);
 	}
 };
+
+$( document ).ready(function() {
+	if ($("#selsat").val() != '') {
+		plot_sat();
+	}
+});
