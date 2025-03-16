@@ -6,6 +6,12 @@ var saticon = L.icon({ iconUrl: icon_dot_url, iconSize: [30, 30] });
 
 var homeicon = L.icon({ iconUrl: icon_home_url, iconSize: [15, 15] });
 
+var observerGd = {
+	longitude: satellite.degreesToRadians(homelon),
+	latitude: satellite.degreesToRadians(homelat),
+	height: 0.370
+};
+
 var sats = (function (L, d3, satelliteJs) {
   var RADIANS = Math.PI / 180;
   var DEGREES = 180 / Math.PI;
@@ -183,7 +189,14 @@ var sats = (function (L, d3, satelliteJs) {
 		try {
 			var positionAndVelocity = satelliteJs.propagate(this._satrec, this._date);
 			var positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, this._gmst);
+			var positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, this._gmst);
+			var lA = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
 
+			this._lookAngles = {
+				azimuth: lA.azimuth * DEGREES,
+				elevation: lA.elevation * DEGREES,
+				rangeSat: lA.rangeSat
+			};
 			this._position = {
 				lat: positionGd.latitude * DEGREES,
 				lng: positionGd.longitude * DEGREES
@@ -365,12 +378,13 @@ var sats = (function (L, d3, satelliteJs) {
       .pointRadius(2.5);
   };
 
-  function updateSats(date) {
-    sats.forEach(function (sat) {
-      sat.setDate(date).update();
-    });
-    return sats
-  };
+	function updateSats(date) {
+		sats.forEach(function (sat) {
+			sat.setDate(date).update();
+			console.log(sat._lookAngles);
+		});
+		return sats
+	};
 
   /**
    * Create satellite objects for each record in the TLEs and begin animation
