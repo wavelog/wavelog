@@ -48,7 +48,7 @@
 						</select>
 				</div>
                 <div class="mb-3 w-auto">
-					<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satlist"><?= __("Satellite"); ?></label>
+					<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satlist"><?= __("Satellite"); ?>   <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" title="Only satellites with TLE data are shown here!"></i></label>
 					<select class="my-1 me-sm-2 w-auto form-select form-select-sm"  id="satlist">
 						<option value="">All</option>
 						<?php foreach($satellites as $sat) {
