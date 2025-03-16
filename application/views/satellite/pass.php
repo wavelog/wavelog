@@ -480,18 +480,10 @@
 						<label class="my-1 me-sm-2 w-auto" for="mintime"><?= __("Min. time"); ?></label>
 						<select class="my-1 me-sm-2 w-auto form-select form-select-sm" id="mintime" name="mintime">
                         <?php for ($i = 0; $i <= 24; $i += 1): ?>
-                            <option value="<?= $i ?>" <?= $i === 00 ? 'selected' : '' ?>><?= $i ?>:00</option>
+                            <option value="<?= $i ?>" <?= ($i == gmdate("H")) ? 'selected' : '' ?>><?= $i ?>:00</option>
                         <?php endfor; ?>
 						</select>
 				</div>
-				<div class="mb-3 w-auto">
-						<label class="my-1 me-sm-2 w-auto" for="maxtime"><?= __("Max. time"); ?></label>
-						<select class="my-1 me-sm-2 w-auto form-select form-select-sm" id="maxtime" name="maxtime">
-                        <?php for ($i = 0; $i <= 24; $i += 1): ?>
-                            <option value="<?= $i ?>" <?= $i === 24 ? 'selected' : '' ?>><?= $i ?>:00</option>
-                        <?php endfor; ?>
-						</select>
-                </div>
                 <div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satlist"><?= __("Satellite"); ?></label>
 					<select class="my-1 me-sm-2 w-auto form-select form-select-sm"  id="satlist">

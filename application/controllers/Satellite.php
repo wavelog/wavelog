@@ -259,12 +259,13 @@ class Satellite extends CI_Controller {
 			$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
 			$altitude = $this->security->xss_clean($this->input->post('altitude'));
 			$date = $this->security->xss_clean($this->input->post('date'));
+			$mintime = $this->security->xss_clean($this->input->post('mintime'));
 			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
 			$timezone = $this->security->xss_clean($this->input->post('timezone'));
 			if (($this->security->xss_clean($this->input->post('sat')) ?? '') != '') {	// specific SAT
-				$data = $this->calcPass($tles[0], $yourgrid, $altitude, $date, $minelevation, $timezone);
+				$data = $this->calcPass($tles[0], $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone);
 			} else {	// All SATs
-				$data = $this->calcPasses($tles, $yourgrid, $altitude, $date, $minelevation, $timezone);
+				$data = $this->calcPasses($tles, $yourgrid, $altitude, $date, $mintime,$minelevation, $timezone);
 			}
 			$this->load->view('satellite/passtable', $data);
 		}
@@ -304,7 +305,7 @@ class Satellite extends CI_Controller {
 		return $tles; 
 	}
 
-	function calcPasses($sat_tles, $yourgrid, $altitude, $date, $minelevation, $timezone) {
+	function calcPasses($sat_tles, $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone) {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		require_once "./src/predict/Predict.php";
@@ -347,7 +348,7 @@ class Satellite extends CI_Controller {
 				$tle     = new Predict_TLE($sat_tle->satellite, $temp[0], $temp[1]); // Instantiate it
 				$sat     = new Predict_Sat($tle); // Load up the satellite data
 
-				$now     = $this->get_daynum_from_date($date); // get the current time as Julian Date (daynum)
+				$now     = $this->get_daynum_from_date($date)+($mintime/24); // get the current time as Julian Date (daynum)
 
 				// You can modify some preferences in Predict(), the defaults are below
 				//
@@ -384,7 +385,7 @@ class Satellite extends CI_Controller {
 
 	}
 
-function calcPass($sat_tle, $yourgrid, $altitude, $date, $minelevation, $timezone) {
+function calcPass($sat_tle, $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone) {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		require_once "./src/predict/Predict.php";
@@ -424,7 +425,7 @@ function calcPass($sat_tle, $yourgrid, $altitude, $date, $minelevation, $timezon
 		$tle     = new Predict_TLE($sat_tle->satellite, $temp[0], $temp[1]); // Instantiate it
 		$sat     = new Predict_Sat($tle); // Load up the satellite data
 
-		$now     = $this->get_daynum_from_date($date); // get the current time as Julian Date (daynum)
+		$now     = $this->get_daynum_from_date($date)+($mintime/24); // get the current time as Julian Date (daynum)
 
 		// You can modify some preferences in Predict(), the defaults are below
 		//
