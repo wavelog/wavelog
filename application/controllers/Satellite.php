@@ -466,7 +466,7 @@ class Satellite extends CI_Controller {
 		$skedgrid = $this->security->xss_clean($this->input->post('skedgrid'));
 		$minskedelevation = $this->security->xss_clean($this->input->post('minskedelevation'));
 
-		$skedPass = $this->calcPass($tle, $skedgrid, 0, $date, $mintime, $minskedelevation);
+		$skedPass = $this->calcPass($tle, $skedgrid, $date, $mintime, $minskedelevation);
 
 		// Get Date format
 		if ($this->session->userdata('user_date_format')) {
