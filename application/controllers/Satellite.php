@@ -255,14 +255,17 @@ class Satellite extends CI_Controller {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		try {
-			$tle = $this->get_tle_for_predict();
+			$tles = $this->get_tle_for_predict();
 			$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
 			$altitude = $this->security->xss_clean($this->input->post('altitude'));
 			$date = $this->security->xss_clean($this->input->post('date'));
 			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
 			$timezone = $this->security->xss_clean($this->input->post('timezone'));
-			$data = $this->calcPass($tle, $yourgrid, $altitude, $date, $minelevation, $timezone);
-
+			if (($this->security->xss_clean($this->input->post('sat')) ?? '') != '') {	// specific SAT
+				$data = $this->calcPass($tles[0], $yourgrid, $altitude, $date, $minelevation, $timezone);
+			} else {	// All SATs
+				$data = $this->calcPasses($tles, $yourgrid, $altitude, $date, $minelevation, $timezone);
+			}
 			$this->load->view('satellite/passtable', $data);
 		}
 		catch (Exception $e) {
@@ -287,12 +290,101 @@ class Satellite extends CI_Controller {
 	public function get_tle_for_predict() {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		$sat = $this->security->xss_clean($this->input->post('sat'));
+		$input_sat = $this->security->xss_clean($this->input->post('sat'));
 		$this->load->model('satellite_model');
-		return $this->satellite_model->get_tle($sat);
+		$tles=[];
+		if (($input_sat ?? '') == '') {
+			$satellites = $this->satellite_model->get_all_satellites_with_tle();
+			foreach ($satellites as $sat) {
+				$tles[]=$this->satellite_model->get_tle($sat->satname);
+			}
+		} else {
+			$tles[]=$this->satellite_model->get_tle($input_sat);
+		}
+		return $tles; 
 	}
 
-	function calcPass($sat_tle, $yourgrid, $altitude, $date, $minelevation, $timezone) {
+	function calcPasses($sat_tles, $yourgrid, $altitude, $date, $minelevation, $timezone) {
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		require_once "./src/predict/Predict.php";
+		require_once "./src/predict/Predict/Sat.php";
+		require_once "./src/predict/Predict/QTH.php";
+		require_once "./src/predict/Predict/Time.php";
+		require_once "./src/predict/Predict/TLE.php";
+
+		// The observer or groundstation is called QTH in ham radio terms
+		$predict  = new Predict();
+		$qth      = new Predict_QTH();
+		$qth->alt = $altitude; // Altitude in meters
+
+		$strQRA = $yourgrid;
+
+		if ((strlen($strQRA) % 2 == 0) && (strlen($strQRA) <= 10)) {	// Check if QRA is EVEN (the % 2 does that) and smaller/equal 8
+			$strQRA = strtoupper($strQRA);
+			if (strlen($strQRA) == 4)  $strQRA .= "LL";	// Only 4 Chars? Fill with center "LL" as only A-R allowed
+			if (strlen($strQRA) == 6)  $strQRA .= "55";	// Only 6 Chars? Fill with center "55"
+			if (strlen($strQRA) == 8)  $strQRA .= "LL";	// Only 8 Chars? Fill with center "LL" as only A-R allowed
+
+			if (!preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $strQRA)) {
+				return false;
+			}
+		}
+
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+		$homecoordinates = $this->qra->qra2latlong($yourgrid);
+
+		$qth->lat = $homecoordinates[0];
+		$qth->lon = $homecoordinates[1];
+
+		$filtered=[];
+		foreach ($sat_tles as $sat_tle) {
+			try {
+				$temp = preg_split('/\n/', $sat_tle->tle);
+
+				$tle     = new Predict_TLE($sat_tle->satellite, $temp[0], $temp[1]); // Instantiate it
+				$sat     = new Predict_Sat($tle); // Load up the satellite data
+
+				$now     = $this->get_daynum_from_date($date); // get the current time as Julian Date (daynum)
+
+				// You can modify some preferences in Predict(), the defaults are below
+				//
+				$predict->minEle     = intval($minelevation); // Minimum elevation for a pass
+				$predict->timeRes    = 1; // Pass details: time resolution in seconds
+				$predict->numEntries = 20; // Pass details: number of entries per pass
+				// $predict->threshold  = -6; // Twilight threshold (sun must be at this lat or lower)
+
+				// Get the passes and filter visible only, takes about 4 seconds for 10 days
+				$results  = $predict->get_passes($sat, $qth, $now, 1);
+				$all_of_sat = $predict->filterVisiblePasses($results);
+				array_push($filtered, ...$all_of_sat);
+			} catch (\Throwable $th) {
+				log_message("Error", "Exception while calculating passes for SAT ".$sat_tle->satellite);
+			}
+		}
+		$sortKey = array_column($filtered, 'aos');
+		array_multisort($sortKey, SORT_ASC, $filtered);
+		// Get Date format
+		if ($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		$data['format'] = $custom_date_format . ' H:i:s';
+
+		$data['filtered'] = $filtered;
+		$data['zone'] = $timezone;
+
+		return $data;
+
+	}
+
+function calcPass($sat_tle, $yourgrid, $altitude, $date, $minelevation, $timezone) {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		require_once "./src/predict/Predict.php";
