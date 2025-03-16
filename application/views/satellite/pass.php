@@ -31,10 +31,6 @@
 					<label class="my-1 me-sm-2 w-auto" for="yourgrid"><?= __("Gridsquare"); ?></label>
 					<input class="my-1 me-sm-2 w-auto form-control form-control-sm uppercase"  id="yourgrid" type="text" name="gridsquare" value="<?php echo $activegrid; ?>"/>
 			</div>
-			<div class="mb-3 w-auto">
-					<label class="my-1 me-sm-2 w-auto" for="altitude"><?= __("Altitude (meters)"); ?></label>
-                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="altitude" type="number" name="altitude" value="0" />
-			</div>
 					<div class="mb-3 w-auto">
 						<label class="my-1 me-sm-2 w-auto" for="date"><?= __("Date"); ?></label>
 						<input name="date" id="date" type="date" class="form-control form-control-sm my-1 me-sm-2 w-auto" value="<?php echo date('Y-m-d'); ?>" >

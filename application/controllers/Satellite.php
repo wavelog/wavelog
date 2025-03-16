@@ -6,15 +6,14 @@
 
 class Satellite extends CI_Controller {
 
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('user_model');
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
-	public function index()
-	{
+	public function index() {
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('satellite_model');
@@ -74,8 +73,7 @@ class Satellite extends CI_Controller {
 		$this->satellite_model->add();
 	}
 
-	public function edit()
-	{
+	public function edit() {
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('satellite_model');
@@ -91,7 +89,7 @@ class Satellite extends CI_Controller {
 
 		$data['page_title'] = __("Edit Satellite");
 
-        $this->load->view('satellite/edit', $data);
+		$this->load->view('satellite/edit', $data);
 	}
 
 	public function saveupdatedSatellite() {
@@ -106,7 +104,7 @@ class Satellite extends CI_Controller {
 		if ($this->security->xss_clean($this->input->post('lotw')) == 'Y') {
 			$satellite['lotw'] = 'Y';
 		} else {;
-			$satellite['lotw'] = 'N';
+		$satellite['lotw'] = 'N';
 		}
 
 		$this->satellite_model->saveupdatedsatellite($id, $satellite);
@@ -117,7 +115,7 @@ class Satellite extends CI_Controller {
 	public function delete() {
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-	    $id = $this->input->post('id');
+		$id = $this->input->post('id');
 		$this->load->model('satellite_model');
 		$this->satellite_model->delete($id);
 	}
@@ -125,7 +123,7 @@ class Satellite extends CI_Controller {
 	public function deleteSatMode() {
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-	    $id = $this->input->post('id');
+		$id = $this->input->post('id');
 		$this->load->model('satellite_model');
 		$this->satellite_model->deleteSatMode($id);
 	}
@@ -137,12 +135,12 @@ class Satellite extends CI_Controller {
 		$satellite['name'] 	= $this->security->xss_clean($this->input->post('name'));
 
 		$this->load->model('satellite_model');
-        $this->satellite_model->saveSatellite($id, $satellite);
+		$this->satellite_model->saveSatellite($id, $satellite);
 
 		header('Content-Type: application/json');
-        echo json_encode(array('message' => 'OK'));
+		echo json_encode(array('message' => 'OK'));
 		return;
-    }
+	}
 
 	public function saveSatModeChanges() {
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
@@ -155,26 +153,25 @@ class Satellite extends CI_Controller {
 		$satmode['downlink_freq'] 	= $this->security->xss_clean($this->input->post('downlink_freq'));
 
 		$this->load->model('satellite_model');
-        $this->satellite_model->saveSatelliteMode($id, $satmode);
+		$this->satellite_model->saveSatelliteMode($id, $satmode);
 
 		header('Content-Type: application/json');
-        echo json_encode(array('message' => 'OK'));
+		echo json_encode(array('message' => 'OK'));
 		return;
-    }
+	}
 
 	public function addSatMode() {
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('satellite_model');
-        $inserted_id = $this->satellite_model->insertSatelliteMode();
+		$inserted_id = $this->satellite_model->insertSatelliteMode();
 
 		header('Content-Type: application/json');
-        echo json_encode(array('inserted_id' => $inserted_id));
+		echo json_encode(array('inserted_id' => $inserted_id));
 		return;
 	}
 
 	public function satellite_data() {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('satellite_model');
 		$satellite_data = $this->satellite_model->satellite_data();
@@ -190,7 +187,6 @@ class Satellite extends CI_Controller {
 	}
 
 	public function flightpath() {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('satellite_model');
 		$this->load->model('stations');
@@ -219,19 +215,17 @@ class Satellite extends CI_Controller {
 	}
 
 	public function create_ics($raw_sat,$raw_aos,$raw_los) {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['sat'] = $this->security->xss_clean($raw_sat);
 		$data['aos'] = $this->security->xss_clean($raw_aos);
 		$data['los'] = $this->security->xss_clean($raw_los);
 
 		header("Content-type:text/calendar");
-        	header('Content-Disposition: attachment; filename="'.$data['sat'].'.ics"');
+		header('Content-Disposition: attachment; filename="'.$data['sat'].'.ics"');
 		$this->load->view('satellite/schedule',$data);
 	}
 
 	public function get_tle() {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$sat = $this->security->xss_clean($this->input->post('sat'));
 		$this->load->model('satellite_model');
@@ -242,11 +236,10 @@ class Satellite extends CI_Controller {
 	}
 
 	public function pass() {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('satellite_model');
 		$this->load->model('stations');
-        $active_station_id = $this->stations->find_active();
+		$active_station_id = $this->stations->find_active();
 		$pageData['activegrid'] = $this->stations->gridsquare_from_station($active_station_id);
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites_with_tle();
@@ -264,19 +257,17 @@ class Satellite extends CI_Controller {
 	}
 
 	public function searchPasses() {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		try {
 			$tles = $this->get_tle_for_predict();
 			$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
-			$altitude = $this->security->xss_clean($this->input->post('altitude'));
 			$date = $this->security->xss_clean($this->input->post('date'));
 			$mintime = $this->security->xss_clean($this->input->post('mintime'));
 			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
 			if (($this->security->xss_clean($this->input->post('sat')) ?? '') != '') {	// specific SAT
-				$data = $this->calcPass($tles[0], $yourgrid, $altitude, $date, $mintime, $minelevation);
+				$data = $this->calcPass($tles[0], $yourgrid, $date, $mintime, $minelevation);
 			} else {	// All SATs
-				$data = $this->calcPasses($tles, $yourgrid, $altitude, $date, $mintime,$minelevation);
+				$data = $this->calcPasses($tles, $yourgrid, $date, $mintime,$minelevation);
 			}
 			$this->load->view('satellite/passtable', $data);
 		}
@@ -287,7 +278,6 @@ class Satellite extends CI_Controller {
 	}
 
 	public function searchSkedPasses() {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		try {
 			$tle = $this->get_tle_for_predict();
@@ -300,7 +290,6 @@ class Satellite extends CI_Controller {
 	}
 
 	public function get_tle_for_predict() {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$input_sat = $this->security->xss_clean($this->input->post('sat'));
 		$this->load->model('satellite_model');
@@ -316,8 +305,7 @@ class Satellite extends CI_Controller {
 		return $tles; 
 	}
 
-	function calcPasses($sat_tles, $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone = 'UTC') {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+	function calcPasses($sat_tles, $yourgrid, $date, $mintime, $minelevation, $timezone = 'UTC') {
 
 		require_once "./src/predict/Predict.php";
 		require_once "./src/predict/Predict/Sat.php";
@@ -328,7 +316,7 @@ class Satellite extends CI_Controller {
 		// The observer or groundstation is called QTH in ham radio terms
 		$predict  = new Predict();
 		$qth      = new Predict_QTH();
-		$qth->alt = $altitude; // Altitude in meters
+		$qth->alt = 100;
 
 		$strQRA = $yourgrid;
 
@@ -396,8 +384,7 @@ class Satellite extends CI_Controller {
 
 	}
 
-function calcPass($sat_tle, $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone = 'UTC') {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+	function calcPass($sat_tle, $yourgrid, $date, $mintime, $minelevation, $timezone = 'UTC') {
 
 		require_once "./src/predict/Predict.php";
 		require_once "./src/predict/Predict/Sat.php";
@@ -408,7 +395,7 @@ function calcPass($sat_tle, $yourgrid, $altitude, $date, $mintime, $minelevation
 		// The observer or groundstation is called QTH in ham radio terms
 		$predict  = new Predict();
 		$qth      = new Predict_QTH();
-		$qth->alt = $altitude; // Altitude in meters
+		$qth->alt = 100;
 
 		$strQRA = $yourgrid;
 
@@ -468,15 +455,13 @@ function calcPass($sat_tle, $yourgrid, $altitude, $date, $mintime, $minelevation
 	}
 
 	function calcSkedPass($tle) {
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
-		$altitude = $this->security->xss_clean($this->input->post('altitude'));
 		$date = $this->security->xss_clean($this->input->post('date'));
 		$mintime = $this->security->xss_clean($this->input->post('mintime'));
 		$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
 
-		$homePass =	$this->calcPass($tle, $yourgrid, $altitude, $date, $mintime, $minelevation);
+		$homePass =	$this->calcPass($tle, $yourgrid, $date, $mintime, $minelevation);
 
 		$skedgrid = $this->security->xss_clean($this->input->post('skedgrid'));
 		$minskedelevation = $this->security->xss_clean($this->input->post('minskedelevation'));
