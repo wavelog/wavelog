@@ -381,7 +381,8 @@ var sats = (function (L, d3, satelliteJs) {
 	function updateSats(date) {
 		sats.forEach(function (sat) {
 			sat.setDate(date).update();
-			console.log(sat._lookAngles);
+			$("#az").html("Azimuth: "+Math.round((sat._lookAngles.azimuth*100),2)/100);
+			$("#ele").html("Elevation: "+Math.round((sat._lookAngles.elevation*100),2)/100);
 		});
 		return sats
 	};

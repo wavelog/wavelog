@@ -43,7 +43,7 @@
 			</select>
 
 
-		<button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plot_sat()"><?= __("Plot"); ?><div class="ld ld-ring ld-spin"></div></button>
+		<button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plot_sat()"><?= __("Plot"); ?><div class="ld ld-ring ld-spin"></div></button><p id="az"></p>&nbsp;&nbsp;<p id="ele"></p>
 	</form>
 
 </div>
