@@ -77,8 +77,10 @@ function loadSkedPasses() {
 function addskedpartner() {
 	if ($('#addskedpartner').is(':hidden')) {
 		$('#addskedpartner').show();
+		$('#satlist option[value=""]').remove();
 	} else {
 		$('#addskedpartner').hide();
+		$('#satlist').prepend('<option value="">All</option>');
 	}
 
 }
