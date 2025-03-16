@@ -261,11 +261,10 @@ class Satellite extends CI_Controller {
 			$date = $this->security->xss_clean($this->input->post('date'));
 			$mintime = $this->security->xss_clean($this->input->post('mintime'));
 			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
-			$timezone = $this->security->xss_clean($this->input->post('timezone'));
 			if (($this->security->xss_clean($this->input->post('sat')) ?? '') != '') {	// specific SAT
-				$data = $this->calcPass($tles[0], $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone);
+				$data = $this->calcPass($tles[0], $yourgrid, $altitude, $date, $mintime, $minelevation);
 			} else {	// All SATs
-				$data = $this->calcPasses($tles, $yourgrid, $altitude, $date, $mintime,$minelevation, $timezone);
+				$data = $this->calcPasses($tles, $yourgrid, $altitude, $date, $mintime,$minelevation);
 			}
 			$this->load->view('satellite/passtable', $data);
 		}
@@ -280,7 +279,7 @@ class Satellite extends CI_Controller {
 
 		try {
 			$tle = $this->get_tle_for_predict();
-			$this->calcSkedPass($tle);
+			$this->calcSkedPass($tle[0]);
 		}
 		catch (Exception $e) {
 			header("Content-type: application/json");
@@ -305,7 +304,7 @@ class Satellite extends CI_Controller {
 		return $tles; 
 	}
 
-	function calcPasses($sat_tles, $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone) {
+	function calcPasses($sat_tles, $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone = 'UTC') {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		require_once "./src/predict/Predict.php";
@@ -385,7 +384,7 @@ class Satellite extends CI_Controller {
 
 	}
 
-function calcPass($sat_tle, $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone) {
+function calcPass($sat_tle, $yourgrid, $altitude, $date, $mintime, $minelevation, $timezone = 'UTC') {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		require_once "./src/predict/Predict.php";
@@ -462,15 +461,15 @@ function calcPass($sat_tle, $yourgrid, $altitude, $date, $mintime, $minelevation
 		$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
 		$altitude = $this->security->xss_clean($this->input->post('altitude'));
 		$date = $this->security->xss_clean($this->input->post('date'));
+		$mintime = $this->security->xss_clean($this->input->post('mintime'));
 		$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
-		$timezone = $this->security->xss_clean($this->input->post('timezone'));
 
-		$homePass =	$this->calcPass($tle, $yourgrid, $altitude, $date, $minelevation, $timezone);
+		$homePass =	$this->calcPass($tle, $yourgrid, $altitude, $date, $mintime, $minelevation);
 
 		$skedgrid = $this->security->xss_clean($this->input->post('skedgrid'));
 		$minskedelevation = $this->security->xss_clean($this->input->post('minskedelevation'));
 
-		$skedPass = $this->calcPass($tle, $skedgrid, 0, $date, $minskedelevation, $timezone);
+		$skedPass = $this->calcPass($tle, $skedgrid, 0, $date, $mintime, $minskedelevation);
 
 		// Get Date format
 		if ($this->session->userdata('user_date_format')) {
@@ -484,7 +483,6 @@ function calcPass($sat_tle, $yourgrid, $altitude, $date, $mintime, $minelevation
 		$data['format'] = $custom_date_format . ' H:i:s';
 
 		$data['overlaps'] = $this->findOverlaps($homePass, $skedPass);
-		$data['zone'] = $timezone;
 		$data['yourgrid'] = $yourgrid;
 		$data['skedgrid'] = $skedgrid;
 		$data['date'] = $date;
