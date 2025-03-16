@@ -13,7 +13,10 @@ if (isset($filtered)) {
 			foreach ($filtered as $pass) {
 				echo '<tr>';
 				echo '<td>' . $pass->satname . '</td>';
-				echo '<td>' . Predict_Time::daynum2readable($pass->visible_aos, $zone, $format) . '</td>';
+				$aos_ics=Predict_Time::daynum2readable($pass->visible_aos, $zone, 'Y-m-d\TH:i:s\z');
+				$los_ics=Predict_Time::daynum2readable($pass->visible_los, $zone, 'Y-m-d\TH:i:s\z');
+				$ics='create_ics/'.$pass->satname.'/'.$aos_ics.'/'.$los_ics;
+				echo '<td>' . Predict_Time::daynum2readable($pass->visible_aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
 				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->visible_aos, $zone, $format), Predict_Time::daynum2readable($pass->visible_los, $zone, $format), $format) . '</td>';
 				$aos_az = round($pass->visible_aos_az);
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->visible_aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';

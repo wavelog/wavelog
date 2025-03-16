@@ -218,6 +218,18 @@ class Satellite extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	public function create_ics($raw_sat,$raw_aos,$raw_los) {
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$data['sat'] = $this->security->xss_clean($raw_sat);
+		$data['aos'] = $this->security->xss_clean($raw_aos);
+		$data['los'] = $this->security->xss_clean($raw_los);
+
+		header("Content-type:text/calendar");
+        	header('Content-Disposition: attachment; filename="'.$data['sat'].'.ics"');
+		$this->load->view('satellite/schedule',$data);
+	}
+
 	public function get_tle() {
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
