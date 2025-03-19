@@ -289,9 +289,8 @@ var sats = (function (L, d3, satelliteJs) {
    * @returns {'LEO' | 'MEO' | 'GEO'}
    */
   Satellite.prototype.orbitTypeFromAlt = function (altitude) {
-    console.log(altitude);
     this._altitude = altitude || this._altitude;
-    return this._altitude < 1200 ? 'LEO' : this._altitude > 22000 ? 'GEO' : 'MEO';
+    return this._altitude < 2000 ? 'LEO' : this._altitude > 22000 ? 'GEO' : 'MEO';
   };
 
 
@@ -350,11 +349,13 @@ var sats = (function (L, d3, satelliteJs) {
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
-        var html = "<h4>Satellite Orbit</h4>";
+        var html = "<h4>Satellite Details</h4>";
         html += "<table>";
-        html += "<tr><td><i style='background: rgba(255, 0, 0, 0.5)'></i></td><td><span>LEO</span></td></tr>";
-        html += "<tr><td><i style='background: rgba(0, 255, 0, 0.5)'></i></td><td><span>MEO</span></td></tr>";
-        html += "<tr><td><i style='background: rgba(0, 0, 255, 0.5)'></i></td><td><span>GEO</span></td></tr>";
+        html += '<tr><td><span>Satellite</span></td><td align="right"><span id="satname"></span></td></tr>';
+        html += '<tr><td><span>Orbit</span></td><td align="right"><span id="satorbit"></span></td></tr>';
+        html += '<tr><td><span>Altitude</span></td><td align="right"><span id="satalt"></span></td></tr>';
+        html += '<tr><td><span>Azimuth</span></td><td align="right"><span id="az"></span></td></tr>';
+        html += '<tr><td><span>Elevation</span></td><td align="right"><span id="ele"></span></td></tr>';
         html += '<tr><td><input type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"></td><td><span> ' + lang_gen_hamradio_gridsquares + '</span></td></tr>';
         html += "</table>";
         div.innerHTML = html;
@@ -381,10 +382,21 @@ var sats = (function (L, d3, satelliteJs) {
 	function updateSats(date) {
 		sats.forEach(function (sat) {
 			sat.setDate(date).update();
-			$("#az").html("Azimuth: "+Math.round((sat._lookAngles.azimuth*100),2)/100);
-			$("#ele").html("Elevation: "+Math.round((sat._lookAngles.elevation*100),2)/100);
+			var az = (Math.round((sat._lookAngles.azimuth*100),2)/100).toFixed(2);
+			var ele = (Math.round((sat._lookAngles.elevation*100),2)/100).toFixed(2);
+			if (ele > 0) {
+				az = "<b>"+az+"°</b>";
+				ele = "<b>"+ele+"°</b>";
+			} else {
+				az = az+"°";
+				ele = ele+"°";
+			}
+			$("#az").html(az);
+			$("#ele").html(ele);
+			$("#satorbit").html(sat.getOrbitType());
+			$("#satalt").html(Math.round(sat.altitude() * 1,60934)+" km");
 		});
-		return sats
+		return;
 	};
 
   /**
@@ -484,7 +496,6 @@ function plot_sat() {
 	if(container != null){
 		container._leaflet_id = null;
 		container.remove();
-
 	}
 
 	amap = $('#sat_map').val();
@@ -500,6 +511,7 @@ function plot_sat() {
 		},
 		success: function (data) {
 			sats.start(data);
+			$("#satname").html($("#sats").val());
 		},
 		error: function (data) {
 			alert('Something went wrong!');
@@ -516,7 +528,7 @@ function toggleGridsquares(bool) {
 };
 
 $( document ).ready(function() {
-	if ($("#selsat").val() != '') {
+	if ($("#sats").val() != '') {
 		plot_sat();
 	}
 });
