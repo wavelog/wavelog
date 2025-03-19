@@ -1,5 +1,5 @@
 /*!
- * satellite-js v3.0.0
+ * satellite-js v5.0.0
  * (c) 2013 Shashwat Kandadai and UCSC
  * https://github.com/shashwatak/satellite-js
  * License: MIT
@@ -8,41 +8,42 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.satellite = factory());
-}(this, (function () { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.satellite = factory());
+})(this, (function () { 'use strict';
 
   var pi = Math.PI;
   var twoPi = pi * 2;
   var deg2rad = pi / 180.0;
   var rad2deg = 180 / pi;
   var minutesPerDay = 1440.0;
-  var mu = 398600.5; // in km3 / s2
-
-  var earthRadius = 6378.137; // in km
-
+  var mu = 398600.8; // in km3 / s2
+  var earthRadius = 6378.135; // in km
   var xke = 60.0 / Math.sqrt(earthRadius * earthRadius * earthRadius / mu);
+  var vkmpersec = earthRadius * xke / 60.0;
   var tumin = 1.0 / xke;
-  var j2 = 0.00108262998905;
-  var j3 = -0.00000253215306;
-  var j4 = -0.00000161098761;
+  var j2 = 0.001082616;
+  var j3 = -0.00000253881;
+  var j4 = -0.00000165597;
   var j3oj2 = j3 / j2;
   var x2o3 = 2.0 / 3.0;
 
   var constants = /*#__PURE__*/Object.freeze({
-    pi: pi,
-    twoPi: twoPi,
+    __proto__: null,
     deg2rad: deg2rad,
-    rad2deg: rad2deg,
-    minutesPerDay: minutesPerDay,
-    mu: mu,
     earthRadius: earthRadius,
-    xke: xke,
-    tumin: tumin,
     j2: j2,
     j3: j3,
-    j4: j4,
     j3oj2: j3oj2,
-    x2o3: x2o3
+    j4: j4,
+    minutesPerDay: minutesPerDay,
+    mu: mu,
+    pi: pi,
+    rad2deg: rad2deg,
+    tumin: tumin,
+    twoPi: twoPi,
+    vkmpersec: vkmpersec,
+    x2o3: x2o3,
+    xke: xke
   });
 
   /* -----------------------------------------------------------------------------
@@ -83,19 +84,19 @@
    * --------------------------------------------------------------------------- */
   function days2mdhms(year, days) {
     var lmonth = [31, year % 4 === 0 ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    var dayofyr = Math.floor(days); //  ----------------- find month and day of month ----------------
+    var dayofyr = Math.floor(days);
 
+    //  ----------------- find month and day of month ----------------
     var i = 1;
     var inttemp = 0;
-
     while (dayofyr > inttemp + lmonth[i - 1] && i < 12) {
       inttemp += lmonth[i - 1];
       i += 1;
     }
-
     var mon = i;
-    var day = dayofyr - inttemp; //  ----------------- find hours minutes and seconds -------------
+    var day = dayofyr - inttemp;
 
+    //  ----------------- find hours minutes and seconds -------------
     var temp = (days - dayofyr) * 24.0;
     var hr = Math.floor(temp);
     temp = (temp - hr) * 60.0;
@@ -109,6 +110,7 @@
       sec: sec
     };
   }
+
   /* -----------------------------------------------------------------------------
    *
    *                           procedure jday
@@ -141,7 +143,6 @@
    *    vallado       2007, 189, alg 14, ex 3-14
    *
    * --------------------------------------------------------------------------- */
-
   function jdayInternal(year, mon, day, hr, minute, sec) {
     var msec = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
     return 367.0 * year - Math.floor(7 * (year + Math.floor((mon + 9) / 12.0)) * 0.25) + Math.floor(275 * mon / 9.0) + day + 1721013.5 + ((msec / 60000 + sec / 60.0 + minute) / 60.0 + hr) / 24.0 // ut in days
@@ -152,12 +153,13 @@
   function jday(year, mon, day, hr, minute, sec, msec) {
     if (year instanceof Date) {
       var date = year;
-      return jdayInternal(date.getUTCFullYear(), date.getUTCMonth() + 1, // Note, this function requires months in range 1-12.
+      return jdayInternal(date.getUTCFullYear(), date.getUTCMonth() + 1,
+      // Note, this function requires months in range 1-12.
       date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
     }
-
     return jdayInternal(year, mon, day, hr, minute, sec, msec);
   }
+
   /* -----------------------------------------------------------------------------
    *
    *                           procedure invjday
@@ -197,34 +199,33 @@
    *  references    :
    *    vallado       2007, 208, alg 22, ex 3-13
    * --------------------------------------------------------------------------- */
-
   function invjday(jd, asArray) {
     // --------------- find year and days of the year -
     var temp = jd - 2415019.5;
     var tu = temp / 365.25;
     var year = 1900 + Math.floor(tu);
-    var leapyrs = Math.floor((year - 1901) * 0.25); // optional nudge by 8.64x10-7 sec to get even outputs
+    var leapyrs = Math.floor((year - 1901) * 0.25);
 
-    var days = temp - ((year - 1900) * 365.0 + leapyrs) + 0.00000000001; // ------------ check for case of beginning of a year -----------
+    // optional nudge by 8.64x10-7 sec to get even outputs
+    var days = temp - ((year - 1900) * 365.0 + leapyrs) + 0.00000000001;
 
+    // ------------ check for case of beginning of a year -----------
     if (days < 1.0) {
       year -= 1;
       leapyrs = Math.floor((year - 1901) * 0.25);
       days = temp - ((year - 1900) * 365.0 + leapyrs);
-    } // ----------------- find remaing data  -------------------------
+    }
 
-
+    // ----------------- find remaing data  -------------------------
     var mdhms = days2mdhms(year, days);
     var mon = mdhms.mon,
-        day = mdhms.day,
-        hr = mdhms.hr,
-        minute = mdhms.minute;
+      day = mdhms.day,
+      hr = mdhms.hr,
+      minute = mdhms.minute;
     var sec = mdhms.sec - 0.00000086400;
-
     if (asArray) {
       return [year, mon, day, hr, minute, Math.floor(sec)];
     }
-
     return new Date(Date.UTC(year, mon - 1, day, hr, minute, Math.floor(sec)));
   }
 
@@ -294,47 +295,48 @@
    *    hoots, schumacher and glover 2004
    *    vallado, crawford, hujsak, kelso  2006
    ----------------------------------------------------------------------------*/
-
   function dpper(satrec, options) {
     var e3 = satrec.e3,
-        ee2 = satrec.ee2,
-        peo = satrec.peo,
-        pgho = satrec.pgho,
-        pho = satrec.pho,
-        pinco = satrec.pinco,
-        plo = satrec.plo,
-        se2 = satrec.se2,
-        se3 = satrec.se3,
-        sgh2 = satrec.sgh2,
-        sgh3 = satrec.sgh3,
-        sgh4 = satrec.sgh4,
-        sh2 = satrec.sh2,
-        sh3 = satrec.sh3,
-        si2 = satrec.si2,
-        si3 = satrec.si3,
-        sl2 = satrec.sl2,
-        sl3 = satrec.sl3,
-        sl4 = satrec.sl4,
-        t = satrec.t,
-        xgh2 = satrec.xgh2,
-        xgh3 = satrec.xgh3,
-        xgh4 = satrec.xgh4,
-        xh2 = satrec.xh2,
-        xh3 = satrec.xh3,
-        xi2 = satrec.xi2,
-        xi3 = satrec.xi3,
-        xl2 = satrec.xl2,
-        xl3 = satrec.xl3,
-        xl4 = satrec.xl4,
-        zmol = satrec.zmol,
-        zmos = satrec.zmos;
+      ee2 = satrec.ee2,
+      peo = satrec.peo,
+      pgho = satrec.pgho,
+      pho = satrec.pho,
+      pinco = satrec.pinco,
+      plo = satrec.plo,
+      se2 = satrec.se2,
+      se3 = satrec.se3,
+      sgh2 = satrec.sgh2,
+      sgh3 = satrec.sgh3,
+      sgh4 = satrec.sgh4,
+      sh2 = satrec.sh2,
+      sh3 = satrec.sh3,
+      si2 = satrec.si2,
+      si3 = satrec.si3,
+      sl2 = satrec.sl2,
+      sl3 = satrec.sl3,
+      sl4 = satrec.sl4,
+      t = satrec.t,
+      xgh2 = satrec.xgh2,
+      xgh3 = satrec.xgh3,
+      xgh4 = satrec.xgh4,
+      xh2 = satrec.xh2,
+      xh3 = satrec.xh3,
+      xi2 = satrec.xi2,
+      xi3 = satrec.xi3,
+      xl2 = satrec.xl2,
+      xl3 = satrec.xl3,
+      xl4 = satrec.xl4,
+      zmol = satrec.zmol,
+      zmos = satrec.zmos;
     var init = options.init,
-        opsmode = options.opsmode;
+      opsmode = options.opsmode;
     var ep = options.ep,
-        inclp = options.inclp,
-        nodep = options.nodep,
-        argpp = options.argpp,
-        mp = options.mp; // Copy satellite attributes into local variables for convenience
+      inclp = options.inclp,
+      nodep = options.nodep,
+      argpp = options.argpp,
+      mp = options.mp;
+
+    // Copy satellite attributes into local variables for convenience
     // and symmetry in writing formulae.
 
     var alfdp;
@@ -357,19 +359,21 @@
     var xls;
     var xnoh;
     var zf;
-    var zm; //  ---------------------- constants -----------------------------
+    var zm;
 
+    //  ---------------------- constants -----------------------------
     var zns = 1.19459e-5;
     var zes = 0.01675;
     var znl = 1.5835218e-4;
-    var zel = 0.05490; //  --------------- calculate time varying periodics -----------
+    var zel = 0.05490;
 
-    zm = zmos + zns * t; // be sure that the initial call has time set to zero
+    //  --------------- calculate time varying periodics -----------
+    zm = zmos + zns * t;
 
+    // be sure that the initial call has time set to zero
     if (init === 'y') {
       zm = zmos;
     }
-
     zf = zm + 2.0 * zes * Math.sin(zm);
     sinzf = Math.sin(zf);
     f2 = 0.5 * sinzf * sinzf - 0.25;
@@ -380,11 +384,9 @@
     var sghs = sgh2 * f2 + sgh3 * f3 + sgh4 * sinzf;
     var shs = sh2 * f2 + sh3 * f3;
     zm = zmol + znl * t;
-
     if (init === 'y') {
       zm = zmol;
     }
-
     zf = zm + 2.0 * zel * Math.sin(zm);
     sinzf = Math.sin(zf);
     f2 = 0.5 * sinzf * sinzf - 0.25;
@@ -399,7 +401,6 @@
     pl = sls + sll;
     pgh = sghs + sghl;
     ph = shs + shll;
-
     if (init === 'n') {
       pe -= peo;
       pinc -= pinco;
@@ -410,6 +411,7 @@
       ep += pe;
       sinip = Math.sin(inclp);
       cosip = Math.cos(inclp);
+
       /* ----------------- apply periodics directly ------------ */
       // sgp4fix for lyddane choice
       // strn3 used original inclination - this is technically feasible
@@ -419,7 +421,6 @@
       // use next line for original strn3 approach and original inclination
       // if (inclo >= 0.2)
       // use next line for gsfc version and perturbed inclination
-
       if (inclp >= 0.2) {
         ph /= sinip;
         pgh -= cosip * ph;
@@ -436,24 +437,24 @@
         dbet = -ph * sinop + pinc * cosip * cosop;
         alfdp += dalf;
         betdp += dbet;
-        nodep %= twoPi; //  sgp4fix for afspc written intrinsic functions
-        //  nodep used without a trigonometric function ahead
+        nodep %= twoPi;
 
+        //  sgp4fix for afspc written intrinsic functions
+        //  nodep used without a trigonometric function ahead
         if (nodep < 0.0 && opsmode === 'a') {
           nodep += twoPi;
         }
-
         xls = mp + argpp + cosip * nodep;
         dls = pl + pgh - pinc * nodep * sinip;
         xls += dls;
         xnoh = nodep;
-        nodep = Math.atan2(alfdp, betdp); //  sgp4fix for afspc written intrinsic functions
-        //  nodep used without a trigonometric function ahead
+        nodep = Math.atan2(alfdp, betdp);
 
+        //  sgp4fix for afspc written intrinsic functions
+        //  nodep used without a trigonometric function ahead
         if (nodep < 0.0 && opsmode === 'a') {
           nodep += twoPi;
         }
-
         if (Math.abs(xnoh - nodep) > pi) {
           if (nodep < xnoh) {
             nodep += twoPi;
@@ -461,12 +462,10 @@
             nodep -= twoPi;
           }
         }
-
         mp += pl;
         argpp = xls - mp - cosip * nodep;
       }
     }
-
     return {
       ep: ep,
       inclp: inclp,
@@ -543,15 +542,14 @@
    *    hoots, schumacher and glover 2004
    *    vallado, crawford, hujsak, kelso  2006
    ----------------------------------------------------------------------------*/
-
   function dscom(options) {
     var epoch = options.epoch,
-        ep = options.ep,
-        argpp = options.argpp,
-        tc = options.tc,
-        inclp = options.inclp,
-        nodep = options.nodep,
-        np = options.np;
+      ep = options.ep,
+      argpp = options.argpp,
+      tc = options.tc,
+      inclp = options.inclp,
+      nodep = options.nodep,
+      np = options.np;
     var a1;
     var a2;
     var a3;
@@ -614,8 +612,9 @@
     var z23;
     var z31;
     var z32;
-    var z33; // -------------------------- constants -------------------------
+    var z33;
 
+    // -------------------------- constants -------------------------
     var zes = 0.01675;
     var zel = 0.05490;
     var c1ss = 2.9864797e-6;
@@ -623,8 +622,9 @@
     var zsinis = 0.39785416;
     var zcosis = 0.91744867;
     var zcosgs = 0.1945905;
-    var zsings = -0.98088458; //  --------------------- local variables ------------------------
+    var zsings = -0.98088458;
 
+    //  --------------------- local variables ------------------------
     var nm = np;
     var em = ep;
     var snodm = Math.sin(nodep);
@@ -635,8 +635,9 @@
     var cosim = Math.cos(inclp);
     var emsq = em * em;
     var betasq = 1.0 - emsq;
-    var rtemsq = Math.sqrt(betasq); //  ----------------- initialize lunar solar terms ---------------
+    var rtemsq = Math.sqrt(betasq);
 
+    //  ----------------- initialize lunar solar terms ---------------
     var peo = 0.0;
     var pinco = 0.0;
     var plo = 0.0;
@@ -656,8 +657,9 @@
     zx = Math.atan2(zx, zy);
     zx += gam - xnodce;
     var zcosgl = Math.cos(zx);
-    var zsingl = Math.sin(zx); //  ------------------------- do solar terms ---------------------
+    var zsingl = Math.sin(zx);
 
+    //  ------------------------- do solar terms ---------------------
     zcosg = zcosgs;
     zsing = zsings;
     zcosi = zcosis;
@@ -667,7 +669,6 @@
     cc = c1ss;
     var xnoi = 1.0 / nm;
     var lsflg = 0;
-
     while (lsflg < 2) {
       lsflg += 1;
       a1 = zcosg * zcosh + zsing * zcosi * zsinh;
@@ -709,8 +710,9 @@
       s1 = -15.0 * em * s4;
       s5 = x1 * x3 + x2 * x4;
       s6 = x2 * x3 + x1 * x4;
-      s7 = x2 * x4 - x1 * x3; //  ----------------------- do lunar terms -------------------
+      s7 = x2 * x4 - x1 * x3;
 
+      //  ----------------------- do lunar terms -------------------
       if (lsflg === 1) {
         ss1 = s1;
         ss2 = s2;
@@ -740,10 +742,10 @@
         cc = c1l;
       }
     }
-
     var zmol = (4.7199672 + (0.22997150 * day - gam)) % twoPi;
-    var zmos = (6.2565837 + 0.017201977 * day) % twoPi; //  ------------------------ do solar terms ----------------------
+    var zmos = (6.2565837 + 0.017201977 * day) % twoPi;
 
+    //  ------------------------ do solar terms ----------------------
     var se2 = 2.0 * ss1 * ss6;
     var se3 = 2.0 * ss1 * ss7;
     var si2 = 2.0 * ss2 * sz12;
@@ -755,8 +757,9 @@
     var sgh3 = 2.0 * ss4 * (sz33 - sz31);
     var sgh4 = -18.0 * ss4 * zes;
     var sh2 = -2.0 * ss2 * sz22;
-    var sh3 = -2.0 * ss2 * (sz23 - sz21); //  ------------------------ do lunar terms ----------------------
+    var sh3 = -2.0 * ss2 * (sz23 - sz21);
 
+    //  ------------------------ do lunar terms ----------------------
     var ee2 = 2.0 * s1 * s6;
     var e3 = 2.0 * s1 * s7;
     var xi2 = 2.0 * s2 * z12;
@@ -933,79 +936,78 @@
    *    hoots, schumacher and glover 2004
    *    vallado, crawford, hujsak, kelso  2006
    ----------------------------------------------------------------------------*/
-
   function dsinit(options) {
     var cosim = options.cosim,
-        argpo = options.argpo,
-        s1 = options.s1,
-        s2 = options.s2,
-        s3 = options.s3,
-        s4 = options.s4,
-        s5 = options.s5,
-        sinim = options.sinim,
-        ss1 = options.ss1,
-        ss2 = options.ss2,
-        ss3 = options.ss3,
-        ss4 = options.ss4,
-        ss5 = options.ss5,
-        sz1 = options.sz1,
-        sz3 = options.sz3,
-        sz11 = options.sz11,
-        sz13 = options.sz13,
-        sz21 = options.sz21,
-        sz23 = options.sz23,
-        sz31 = options.sz31,
-        sz33 = options.sz33,
-        t = options.t,
-        tc = options.tc,
-        gsto = options.gsto,
-        mo = options.mo,
-        mdot = options.mdot,
-        no = options.no,
-        nodeo = options.nodeo,
-        nodedot = options.nodedot,
-        xpidot = options.xpidot,
-        z1 = options.z1,
-        z3 = options.z3,
-        z11 = options.z11,
-        z13 = options.z13,
-        z21 = options.z21,
-        z23 = options.z23,
-        z31 = options.z31,
-        z33 = options.z33,
-        ecco = options.ecco,
-        eccsq = options.eccsq;
+      argpo = options.argpo,
+      s1 = options.s1,
+      s2 = options.s2,
+      s3 = options.s3,
+      s4 = options.s4,
+      s5 = options.s5,
+      sinim = options.sinim,
+      ss1 = options.ss1,
+      ss2 = options.ss2,
+      ss3 = options.ss3,
+      ss4 = options.ss4,
+      ss5 = options.ss5,
+      sz1 = options.sz1,
+      sz3 = options.sz3,
+      sz11 = options.sz11,
+      sz13 = options.sz13,
+      sz21 = options.sz21,
+      sz23 = options.sz23,
+      sz31 = options.sz31,
+      sz33 = options.sz33,
+      t = options.t,
+      tc = options.tc,
+      gsto = options.gsto,
+      mo = options.mo,
+      mdot = options.mdot,
+      no = options.no,
+      nodeo = options.nodeo,
+      nodedot = options.nodedot,
+      xpidot = options.xpidot,
+      z1 = options.z1,
+      z3 = options.z3,
+      z11 = options.z11,
+      z13 = options.z13,
+      z21 = options.z21,
+      z23 = options.z23,
+      z31 = options.z31,
+      z33 = options.z33,
+      ecco = options.ecco,
+      eccsq = options.eccsq;
     var emsq = options.emsq,
-        em = options.em,
-        argpm = options.argpm,
-        inclm = options.inclm,
-        mm = options.mm,
-        nm = options.nm,
-        nodem = options.nodem,
-        irez = options.irez,
-        atime = options.atime,
-        d2201 = options.d2201,
-        d2211 = options.d2211,
-        d3210 = options.d3210,
-        d3222 = options.d3222,
-        d4410 = options.d4410,
-        d4422 = options.d4422,
-        d5220 = options.d5220,
-        d5232 = options.d5232,
-        d5421 = options.d5421,
-        d5433 = options.d5433,
-        dedt = options.dedt,
-        didt = options.didt,
-        dmdt = options.dmdt,
-        dnodt = options.dnodt,
-        domdt = options.domdt,
-        del1 = options.del1,
-        del2 = options.del2,
-        del3 = options.del3,
-        xfact = options.xfact,
-        xlamo = options.xlamo,
-        xli = options.xli,
-        xni = options.xni;
+      em = options.em,
+      argpm = options.argpm,
+      inclm = options.inclm,
+      mm = options.mm,
+      nm = options.nm,
+      nodem = options.nodem,
+      irez = options.irez,
+      atime = options.atime,
+      d2201 = options.d2201,
+      d2211 = options.d2211,
+      d3210 = options.d3210,
+      d3222 = options.d3222,
+      d4410 = options.d4410,
+      d4422 = options.d4422,
+      d5220 = options.d5220,
+      d5232 = options.d5232,
+      d5421 = options.d5421,
+      d5433 = options.d5433,
+      dedt = options.dedt,
+      didt = options.didt,
+      dmdt = options.dmdt,
+      dnodt = options.dnodt,
+      domdt = options.domdt,
+      del1 = options.del1,
+      del2 = options.del2,
+      del3 = options.del3,
+      xfact = options.xfact,
+      xlamo = options.xlamo,
+      xli = options.xli,
+      xni = options.xni;
     var f220;
     var f221;
     var f311;
@@ -1044,66 +1046,66 @@
     var root22 = 1.7891679e-6;
     var root44 = 7.3636953e-9;
     var root54 = 2.1765803e-9;
+    // eslint-disable-next-line no-loss-of-precision
     var rptim = 4.37526908801129966e-3; // equates to 7.29211514668855e-5 rad/sec
-
     var root32 = 3.7393792e-7;
     var root52 = 1.1428639e-7;
     var znl = 1.5835218e-4;
-    var zns = 1.19459e-5; // -------------------- deep space initialization ------------
+    var zns = 1.19459e-5;
 
+    // -------------------- deep space initialization ------------
     irez = 0;
-
     if (nm < 0.0052359877 && nm > 0.0034906585) {
       irez = 1;
     }
-
     if (nm >= 8.26e-3 && nm <= 9.24e-3 && em >= 0.5) {
       irez = 2;
-    } // ------------------------ do solar terms -------------------
+    }
 
-
+    // ------------------------ do solar terms -------------------
     var ses = ss1 * zns * ss5;
     var sis = ss2 * zns * (sz11 + sz13);
     var sls = -zns * ss3 * (sz1 + sz3 - 14.0 - 6.0 * emsq);
     var sghs = ss4 * zns * (sz31 + sz33 - 6.0);
-    var shs = -zns * ss2 * (sz21 + sz23); // sgp4fix for 180 deg incl
+    var shs = -zns * ss2 * (sz21 + sz23);
 
+    // sgp4fix for 180 deg incl
     if (inclm < 5.2359877e-2 || inclm > pi - 5.2359877e-2) {
       shs = 0.0;
     }
-
     if (sinim !== 0.0) {
       shs /= sinim;
     }
+    var sgs = sghs - cosim * shs;
 
-    var sgs = sghs - cosim * shs; // ------------------------- do lunar terms ------------------
-
+    // ------------------------- do lunar terms ------------------
     dedt = ses + s1 * znl * s5;
     didt = sis + s2 * znl * (z11 + z13);
     dmdt = sls - znl * s3 * (z1 + z3 - 14.0 - 6.0 * emsq);
     var sghl = s4 * znl * (z31 + z33 - 6.0);
-    var shll = -znl * s2 * (z21 + z23); // sgp4fix for 180 deg incl
+    var shll = -znl * s2 * (z21 + z23);
 
+    // sgp4fix for 180 deg incl
     if (inclm < 5.2359877e-2 || inclm > pi - 5.2359877e-2) {
       shll = 0.0;
     }
-
     domdt = sgs + sghl;
     dnodt = shs;
-
     if (sinim !== 0.0) {
       domdt -= cosim / sinim * shll;
       dnodt += shll / sinim;
-    } // ----------- calculate deep space resonance effects --------
+    }
 
-
+    // ----------- calculate deep space resonance effects --------
     var dndt = 0.0;
     var theta = (gsto + tc * rptim) % twoPi;
     em += dedt * t;
     inclm += didt * t;
     argpm += domdt * t;
     nodem += dnodt * t;
-    mm += dmdt * t; // sgp4fix for negative inclinations
+    mm += dmdt * t;
+
+    // sgp4fix for negative inclinations
     // the following if statement should be commented out
     // if (inclm < 0.0)
     // {
@@ -1111,11 +1113,12 @@
     //   argpm  = argpm - pi;
     //   nodem = nodem + pi;
     // }
+
     // -------------- initialize the resonance terms -------------
-
     if (irez !== 0) {
-      aonv = Math.pow(nm / xke, x2o3); // ---------- geopotential resonance for 12 hour orbits ------
+      aonv = Math.pow(nm / xke, x2o3);
 
+      // ---------- geopotential resonance for 12 hour orbits ------
       if (irez === 2) {
         cosisq = cosim * cosim;
         var emo = em;
@@ -1124,7 +1127,6 @@
         emsq = eccsq;
         eoc = em * emsq;
         g201 = -0.306 - (em - 0.64) * 0.440;
-
         if (em <= 0.65) {
           g211 = 3.616 - 13.2470 * em + 16.2900 * emsq;
           g310 = -19.302 + 117.3900 * em - 228.4190 * emsq + 156.5910 * eoc;
@@ -1138,14 +1140,12 @@
           g322 = -342.585 + 1554.908 * em - 2366.899 * emsq + 1215.972 * eoc;
           g410 = -1052.797 + 4758.686 * em - 7193.992 * emsq + 3651.957 * eoc;
           g422 = -3581.690 + 16178.110 * em - 24462.770 * emsq + 12422.520 * eoc;
-
           if (em > 0.715) {
             g520 = -5149.66 + 29936.92 * em - 54087.36 * emsq + 31324.56 * eoc;
           } else {
             g520 = 1464.74 - 4664.75 * em + 3763.64 * emsq;
           }
         }
-
         if (em < 0.7) {
           g533 = -919.22770 + 4988.6100 * em - 9064.7700 * emsq + 5542.21 * eoc;
           g521 = -822.71072 + 4568.6173 * em - 8491.4146 * emsq + 5337.524 * eoc;
@@ -1155,7 +1155,6 @@
           g521 = -51752.104 + 218913.95 * em - 309468.16 * emsq + 146349.42 * eoc;
           g532 = -40023.880 + 170470.89 * em - 242699.48 * emsq + 115605.82 * eoc;
         }
-
         sini2 = sinim * sinim;
         f220 = 0.75 * (1.0 + 2.0 * cosim + cosisq);
         f221 = 1.5 * sini2;
@@ -1192,9 +1191,9 @@
         xfact = mdot + dmdt + 2.0 * (nodedot + dnodt - rptim) - no;
         em = emo;
         emsq = emsqo;
-      } //  ---------------- synchronous resonance terms --------------
+      }
 
-
+      //  ---------------- synchronous resonance terms --------------
       if (irez === 1) {
         g200 = 1.0 + emsq * (-2.5 + 0.8125 * emsq);
         g310 = 1.0 + 2.0 * emsq;
@@ -1209,15 +1208,14 @@
         del1 = del1 * f311 * g310 * q31 * aonv;
         xlamo = (mo + nodeo + argpo - theta) % twoPi;
         xfact = mdot + xpidot + dmdt + domdt + dnodt - (no + rptim);
-      } //  ------------ for sgp4, initialize the integrator ----------
+      }
 
-
+      //  ------------ for sgp4, initialize the integrator ----------
       xli = xlamo;
       xni = no;
       atime = 0.0;
       nm = no + dndt;
     }
-
     return {
       em: em,
       argpm: argpm,
@@ -1278,26 +1276,21 @@
    *  references    :
    *    vallado       2004, 191, eq 3-45
    * --------------------------------------------------------------------------- */
-
   function gstimeInternal(jdut1) {
     var tut1 = (jdut1 - 2451545.0) / 36525.0;
     var temp = -6.2e-6 * tut1 * tut1 * tut1 + 0.093104 * tut1 * tut1 + (876600.0 * 3600 + 8640184.812866) * tut1 + 67310.54841; // # sec
-
     temp = temp * deg2rad / 240.0 % twoPi; // 360/86400 = 1/240, to deg, to rad
-    //  ------------------------ check quadrants ---------------------
 
+    //  ------------------------ check quadrants ---------------------
     if (temp < 0.0) {
       temp += twoPi;
     }
-
     return temp;
   }
-
   function gstime() {
     if ((arguments.length <= 0 ? undefined : arguments[0]) instanceof Date || arguments.length > 1) {
       return gstimeInternal(jday.apply(void 0, arguments));
     }
-
     return gstimeInternal.apply(void 0, arguments);
   }
 
@@ -1351,23 +1344,25 @@
    *    hoots, schumacher and glover 2004
    *    vallado, crawford, hujsak, kelso  2006
    ----------------------------------------------------------------------------*/
-
   function initl(options) {
     var ecco = options.ecco,
-        epoch = options.epoch,
-        inclo = options.inclo,
-        opsmode = options.opsmode;
-    var no = options.no; // sgp4fix use old way of finding gst
+      epoch = options.epoch,
+      inclo = options.inclo,
+      opsmode = options.opsmode;
+    var no = options.no;
+
+    // sgp4fix use old way of finding gst
     // ----------------------- earth constants ---------------------
     // sgp4fix identify constants and allow alternate values
-    // ------------- calculate auxillary epoch quantities ----------
 
+    // ------------- calculate auxillary epoch quantities ----------
     var eccsq = ecco * ecco;
     var omeosq = 1.0 - eccsq;
     var rteosq = Math.sqrt(omeosq);
     var cosio = Math.cos(inclo);
-    var cosio2 = cosio * cosio; // ------------------ un-kozai the mean motion -----------------
+    var cosio2 = cosio * cosio;
 
+    // ------------------ un-kozai the mean motion -----------------
     var ak = Math.pow(xke / no, x2o3);
     var d1 = 0.75 * j2 * (3.0 * cosio2 - 1.0) / (rteosq * omeosq);
     var delPrime = d1 / (ak * ak);
@@ -1382,30 +1377,29 @@
     var ainv = 1.0 / ao;
     var posq = po * po;
     var rp = ao * (1.0 - ecco);
-    var method = 'n'; //  sgp4fix modern approach to finding sidereal time
+    var method = 'n';
 
+    //  sgp4fix modern approach to finding sidereal time
     var gsto;
-
     if (opsmode === 'a') {
       //  sgp4fix use old way of finding gst
       //  count integer number of days from 0 jan 1970
       var ts70 = epoch - 7305.0;
       var ds70 = Math.floor(ts70 + 1.0e-8);
-      var tfrac = ts70 - ds70; //  find greenwich location at epoch
+      var tfrac = ts70 - ds70;
 
-      var c1 = 1.72027916940703639e-2;
-      var thgr70 = 1.7321343856509374;
-      var fk5r = 5.07551419432269442e-15;
+      //  find greenwich location at epoch
+      var c1 = 1.72027916940703639e-2; // eslint-disable-line no-loss-of-precision
+      var thgr70 = 1.7321343856509374; // eslint-disable-line no-loss-of-precision
+      var fk5r = 5.07551419432269442e-15; // eslint-disable-line no-loss-of-precision
       var c1p2p = c1 + twoPi;
       gsto = (thgr70 + c1 * ds70 + c1p2p * tfrac + ts70 * ts70 * fk5r) % twoPi;
-
       if (gsto < 0.0) {
         gsto += twoPi;
       }
     } else {
       gsto = gstime(epoch + 2433281.5);
     }
-
     return {
       no: no,
       method: method,
@@ -1497,44 +1491,43 @@
    *    hoots, schumacher and glover 2004
    *    vallado, crawford, hujsak, kelso  2006
    ----------------------------------------------------------------------------*/
-
   function dspace(options) {
     var irez = options.irez,
-        d2201 = options.d2201,
-        d2211 = options.d2211,
-        d3210 = options.d3210,
-        d3222 = options.d3222,
-        d4410 = options.d4410,
-        d4422 = options.d4422,
-        d5220 = options.d5220,
-        d5232 = options.d5232,
-        d5421 = options.d5421,
-        d5433 = options.d5433,
-        dedt = options.dedt,
-        del1 = options.del1,
-        del2 = options.del2,
-        del3 = options.del3,
-        didt = options.didt,
-        dmdt = options.dmdt,
-        dnodt = options.dnodt,
-        domdt = options.domdt,
-        argpo = options.argpo,
-        argpdot = options.argpdot,
-        t = options.t,
-        tc = options.tc,
-        gsto = options.gsto,
-        xfact = options.xfact,
-        xlamo = options.xlamo,
-        no = options.no;
+      d2201 = options.d2201,
+      d2211 = options.d2211,
+      d3210 = options.d3210,
+      d3222 = options.d3222,
+      d4410 = options.d4410,
+      d4422 = options.d4422,
+      d5220 = options.d5220,
+      d5232 = options.d5232,
+      d5421 = options.d5421,
+      d5433 = options.d5433,
+      dedt = options.dedt,
+      del1 = options.del1,
+      del2 = options.del2,
+      del3 = options.del3,
+      didt = options.didt,
+      dmdt = options.dmdt,
+      dnodt = options.dnodt,
+      domdt = options.domdt,
+      argpo = options.argpo,
+      argpdot = options.argpdot,
+      t = options.t,
+      tc = options.tc,
+      gsto = options.gsto,
+      xfact = options.xfact,
+      xlamo = options.xlamo,
+      no = options.no;
     var atime = options.atime,
-        em = options.em,
-        argpm = options.argpm,
-        inclm = options.inclm,
-        xli = options.xli,
-        mm = options.mm,
-        xni = options.xni,
-        nodem = options.nodem,
-        nm = options.nm;
+      em = options.em,
+      argpm = options.argpm,
+      inclm = options.inclm,
+      xli = options.xli,
+      mm = options.mm,
+      xni = options.xni,
+      nodem = options.nodem,
+      nm = options.nm;
     var fasx2 = 0.13130908;
     var fasx4 = 2.8843198;
     var fasx6 = 0.37448087;
@@ -1543,8 +1536,8 @@
     var g44 = 1.8014998;
     var g52 = 1.0508330;
     var g54 = 4.4108898;
+    // eslint-disable-next-line no-loss-of-precision
     var rptim = 4.37526908801129966e-3; // equates to 7.29211514668855e-5 rad/sec
-
     var stepp = 720.0;
     var stepn = -720.0;
     var step2 = 259200.0;
@@ -1557,14 +1550,17 @@
     var xndt;
     var xomi;
     var dndt = 0.0;
-    var ft = 0.0; //  ----------- calculate deep space resonance effects -----------
+    var ft = 0.0;
 
+    //  ----------- calculate deep space resonance effects -----------
     var theta = (gsto + tc * rptim) % twoPi;
     em += dedt * t;
     inclm += didt * t;
     argpm += domdt * t;
     nodem += dnodt * t;
-    mm += dmdt * t; // sgp4fix for negative inclinations
+    mm += dmdt * t;
+
+    // sgp4fix for negative inclinations
     // the following if statement should be commented out
     // if (inclm < 0.0)
     // {
@@ -1574,11 +1570,11 @@
     // }
 
     /* - update resonances : numerical (euler-maclaurin) integration - */
-
     /* ------------------------- epoch restart ----------------------  */
     //   sgp4fix for propagator problems
     //   the following integration works for negative time steps and periods
     //   the specific changes are unknown because the original code was so convoluted
+
     // sgp4fix take out atime = 0.0 and fix for faster operation
 
     if (irez !== 0) {
@@ -1587,17 +1583,15 @@
         atime = 0.0;
         xni = no;
         xli = xlamo;
-      } // sgp4fix move check outside loop
+      }
 
-
+      // sgp4fix move check outside loop
       if (t > 0.0) {
         delt = stepp;
       } else {
         delt = stepn;
       }
-
       var iretn = 381; // added for do loop
-
       while (iretn === 381) {
         //  ------------------- dot terms calculated -------------
         //  ----------- near - synchronous resonance terms -------
@@ -1613,29 +1607,26 @@
           x2li = xli + xli;
           xndt = d2201 * Math.sin(x2omi + xli - g22) + d2211 * Math.sin(xli - g22) + d3210 * Math.sin(xomi + xli - g32) + d3222 * Math.sin(-xomi + xli - g32) + d4410 * Math.sin(x2omi + x2li - g44) + d4422 * Math.sin(x2li - g44) + d5220 * Math.sin(xomi + xli - g52) + d5232 * Math.sin(-xomi + xli - g52) + d5421 * Math.sin(xomi + x2li - g54) + d5433 * Math.sin(-xomi + x2li - g54);
           xldot = xni + xfact;
-          xnddt = d2201 * Math.cos(x2omi + xli - g22) + d2211 * Math.cos(xli - g22) + d3210 * Math.cos(xomi + xli - g32) + d3222 * Math.cos(-xomi + xli - g32) + d5220 * Math.cos(xomi + xli - g52) + d5232 * Math.cos(-xomi + xli - g52) + 2.0 * d4410 * Math.cos(x2omi + x2li - g44) + d4422 * Math.cos(x2li - g44) + d5421 * Math.cos(xomi + x2li - g54) + d5433 * Math.cos(-xomi + x2li - g54);
+          xnddt = d2201 * Math.cos(x2omi + xli - g22) + d2211 * Math.cos(xli - g22) + d3210 * Math.cos(xomi + xli - g32) + d3222 * Math.cos(-xomi + xli - g32) + d5220 * Math.cos(xomi + xli - g52) + d5232 * Math.cos(-xomi + xli - g52) + 2.0 * (d4410 * Math.cos(x2omi + x2li - g44) + d4422 * Math.cos(x2li - g44) + d5421 * Math.cos(xomi + x2li - g54) + d5433 * Math.cos(-xomi + x2li - g54));
           xnddt *= xldot;
-        } //  ----------------------- integrator -------------------
+        }
+
+        //  ----------------------- integrator -------------------
         //  sgp4fix move end checks to end of routine
-
-
         if (Math.abs(t - atime) >= stepp) {
           iretn = 381;
         } else {
           ft = t - atime;
           iretn = 0;
         }
-
         if (iretn === 381) {
           xli += xldot * delt + xndt * step2;
           xni += xndt * delt + xnddt * step2;
           atime += delt;
         }
       }
-
       nm = xni + xndt * ft + xnddt * ft * ft * 0.5;
       xl = xli + xldot * ft + xndt * ft * ft * 0.5;
-
       if (irez !== 1) {
         mm = xl - 2.0 * nodem + 2.0 * theta;
         dndt = nm - no;
@@ -1643,10 +1634,8 @@
         mm = xl - nodem - argpm + theta;
         dndt = nm - no;
       }
-
       nm = no + dndt;
     }
-
     return {
       atime: atime,
       em: em,
@@ -1747,9 +1736,9 @@
    *    hoots, schumacher and glover 2004
    *    vallado, crawford, hujsak, kelso  2006
    ----------------------------------------------------------------------------*/
-
   function sgp4(satrec, tsince) {
     /* eslint-disable no-param-reassign */
+
     var coseo1;
     var sineo1;
     var cosip;
@@ -1777,17 +1766,19 @@
     var xlm;
     var mp;
     var nodep;
+
     /* ------------------ set mathematical constants --------------- */
     // sgp4fix divisor for divide by zero check on inclination
     // the old check used 1.0 + cos(pi-1.0e-9), but then compared it to
     // 1.5 e-12, so the threshold was changed to 1.5e-12 for consistency
 
     var temp4 = 1.5e-12;
-    var vkmpersec = earthRadius * xke / 60.0; // --------------------- clear sgp4 error flag -----------------
 
+    // --------------------- clear sgp4 error flag -----------------
     satrec.t = tsince;
-    satrec.error = 0; //  ------- update for secular gravity and atmospheric drag -----
+    satrec.error = 0;
 
+    //  ------- update for secular gravity and atmospheric drag -----
     var xmdf = satrec.mo + satrec.mdot * satrec.t;
     var argpdf = satrec.argpo + satrec.argpdot * satrec.t;
     var nodedf = satrec.nodeo + satrec.nodedot * satrec.t;
@@ -1798,10 +1789,9 @@
     tempa = 1.0 - satrec.cc1 * satrec.t;
     tempe = satrec.bstar * satrec.cc4 * satrec.t;
     templ = satrec.t2cof * t2;
-
     if (satrec.isimp !== 1) {
-      delomg = satrec.omgcof * satrec.t; //  sgp4fix use mutliply for speed instead of pow
-
+      delomg = satrec.omgcof * satrec.t;
+      //  sgp4fix use mutliply for speed instead of pow
       var delmtemp = 1.0 + satrec.eta * Math.cos(xmdf);
       delm = satrec.xmcof * (delmtemp * delmtemp * delmtemp - satrec.delmo);
       temp = delomg + delm;
@@ -1813,11 +1803,9 @@
       tempe += satrec.bstar * satrec.cc5 * (Math.sin(mm) - satrec.sinmao);
       templ = templ + satrec.t3cof * t3 + t4 * (satrec.t4cof + satrec.t * satrec.t5cof);
     }
-
     nm = satrec.no;
     var em = satrec.ecco;
     inclm = satrec.inclo;
-
     if (satrec.method === 'd') {
       tc = satrec.t;
       var dspaceOptions = {
@@ -1866,42 +1854,42 @@
       nodem = dspaceResult.nodem;
       nm = dspaceResult.nm;
     }
-
     if (nm <= 0.0) {
       // printf("// error nm %f\n", nm);
-      satrec.error = 2; // sgp4fix add return
-
+      satrec.error = 2;
+      // sgp4fix add return
       return [false, false];
     }
-
     var am = Math.pow(xke / nm, x2o3) * tempa * tempa;
     nm = xke / Math.pow(am, 1.5);
-    em -= tempe; // fix tolerance for error recognition
-    // sgp4fix am is fixed from the previous nm check
+    em -= tempe;
 
+    // fix tolerance for error recognition
+    // sgp4fix am is fixed from the previous nm check
     if (em >= 1.0 || em < -0.001) {
       // || (am < 0.95)
       // printf("// error em %f\n", em);
-      satrec.error = 1; // sgp4fix to return if there is an error in eccentricity
-
+      satrec.error = 1;
+      // sgp4fix to return if there is an error in eccentricity
       return [false, false];
-    } //  sgp4fix fix tolerance to avoid a divide by zero
+    }
 
-
+    //  sgp4fix fix tolerance to avoid a divide by zero
     if (em < 1.0e-6) {
       em = 1.0e-6;
     }
-
     mm += satrec.no * templ;
     xlm = mm + argpm + nodem;
     nodem %= twoPi;
     argpm %= twoPi;
     xlm %= twoPi;
-    mm = (xlm - argpm - nodem) % twoPi; // ----------------- compute extra mean quantities -------------
+    mm = (xlm - argpm - nodem) % twoPi;
 
+    // ----------------- compute extra mean quantities -------------
     var sinim = Math.sin(inclm);
-    var cosim = Math.cos(inclm); // -------------------- add lunar-solar periodics --------------
+    var cosim = Math.cos(inclm);
 
+    // -------------------- add lunar-solar periodics --------------
     var ep = em;
     xincp = inclm;
     argpp = argpm;
@@ -1909,7 +1897,6 @@
     mp = mm;
     sinip = sinim;
     cosip = cosim;
-
     if (satrec.method === 'd') {
       var dpperParameters = {
         inclo: satrec.inclo,
@@ -1919,7 +1906,7 @@
         nodep: nodep,
         argpp: argpp,
         mp: mp,
-        opsmode: satrec.operationmod
+        opsmode: satrec.operationmode
       };
       var dpperResult = dpper(satrec, dpperParameters);
       ep = dpperResult.ep;
@@ -1927,51 +1914,50 @@
       argpp = dpperResult.argpp;
       mp = dpperResult.mp;
       xincp = dpperResult.inclp;
-
       if (xincp < 0.0) {
         xincp = -xincp;
         nodep += pi;
         argpp -= pi;
       }
-
       if (ep < 0.0 || ep > 1.0) {
         //  printf("// error ep %f\n", ep);
-        satrec.error = 3; //  sgp4fix add return
-
+        satrec.error = 3;
+        //  sgp4fix add return
         return [false, false];
       }
-    } //  -------------------- long period periodics ------------------
+    }
 
-
+    //  -------------------- long period periodics ------------------
     if (satrec.method === 'd') {
       sinip = Math.sin(xincp);
       cosip = Math.cos(xincp);
-      satrec.aycof = -0.5 * j3oj2 * sinip; //  sgp4fix for divide by zero for xincp = 180 deg
+      satrec.aycof = -0.5 * j3oj2 * sinip;
 
+      //  sgp4fix for divide by zero for xincp = 180 deg
       if (Math.abs(cosip + 1.0) > 1.5e-12) {
         satrec.xlcof = -0.25 * j3oj2 * sinip * (3.0 + 5.0 * cosip) / (1.0 + cosip);
       } else {
         satrec.xlcof = -0.25 * j3oj2 * sinip * (3.0 + 5.0 * cosip) / temp4;
       }
     }
-
     var axnl = ep * Math.cos(argpp);
     temp = 1.0 / (am * (1.0 - ep * ep));
     var aynl = ep * Math.sin(argpp) + temp * satrec.aycof;
-    var xl = mp + argpp + nodep + temp * satrec.xlcof * axnl; // --------------------- solve kepler's equation ---------------
+    var xl = mp + argpp + nodep + temp * satrec.xlcof * axnl;
 
+    // --------------------- solve kepler's equation ---------------
     var u = (xl - nodep) % twoPi;
     eo1 = u;
     tem5 = 9999.9;
-    var ktr = 1; //    sgp4fix for kepler iteration
-    //    the following iteration needs better limits on corrections
+    var ktr = 1;
 
+    //    sgp4fix for kepler iteration
+    //    the following iteration needs better limits on corrections
     while (Math.abs(tem5) >= 1.0e-12 && ktr <= 10) {
       sineo1 = Math.sin(eo1);
       coseo1 = Math.cos(eo1);
       tem5 = 1.0 - coseo1 * axnl - sineo1 * aynl;
       tem5 = (u - aynl * coseo1 + axnl * sineo1 - eo1) / tem5;
-
       if (Math.abs(tem5) >= 0.95) {
         if (tem5 > 0.0) {
           tem5 = 0.95;
@@ -1979,24 +1965,21 @@
           tem5 = -0.95;
         }
       }
-
       eo1 += tem5;
       ktr += 1;
-    } //  ------------- short period preliminary quantities -----------
+    }
 
-
+    //  ------------- short period preliminary quantities -----------
     var ecose = axnl * coseo1 + aynl * sineo1;
     var esine = axnl * sineo1 - aynl * coseo1;
     var el2 = axnl * axnl + aynl * aynl;
     var pl = am * (1.0 - el2);
-
     if (pl < 0.0) {
       //  printf("// error pl %f\n", pl);
-      satrec.error = 4; //  sgp4fix add return
-
+      satrec.error = 4;
+      //  sgp4fix add return
       return [false, false];
     }
-
     var rl = am * (1.0 - ecose);
     var rdotl = Math.sqrt(am) * esine / rl;
     var rvdotl = Math.sqrt(pl) / rl;
@@ -2009,22 +1992,33 @@
     var cos2u = 1.0 - 2.0 * sinu * sinu;
     temp = 1.0 / pl;
     var temp1 = 0.5 * j2 * temp;
-    var temp2 = temp1 * temp; // -------------- update for short period periodics ------------
+    var temp2 = temp1 * temp;
 
+    // -------------- update for short period periodics ------------
     if (satrec.method === 'd') {
       cosisq = cosip * cosip;
       satrec.con41 = 3.0 * cosisq - 1.0;
       satrec.x1mth2 = 1.0 - cosisq;
       satrec.x7thm1 = 7.0 * cosisq - 1.0;
     }
-
     var mrt = rl * (1.0 - 1.5 * temp2 * betal * satrec.con41) + 0.5 * temp1 * satrec.x1mth2 * cos2u;
+
+    // sgp4fix for decaying satellites
+    if (mrt < 1.0) {
+      // printf("// decay condition %11.6f \n",mrt);
+      satrec.error = 6;
+      return {
+        position: false,
+        velocity: false
+      };
+    }
     su -= 0.25 * temp2 * satrec.x7thm1 * sin2u;
     var xnode = nodep + 1.5 * temp2 * cosip * sin2u;
     var xinc = xincp + 1.5 * temp2 * cosip * sinip * cos2u;
     var mvt = rdotl - nm * temp1 * satrec.x1mth2 * sin2u / xke;
-    var rvdot = rvdotl + nm * temp1 * (satrec.x1mth2 * cos2u + 1.5 * satrec.con41) / xke; // --------------------- orientation vectors -------------------
+    var rvdot = rvdotl + nm * temp1 * (satrec.x1mth2 * cos2u + 1.5 * satrec.con41) / xke;
 
+    // --------------------- orientation vectors -------------------
     var sinsu = Math.sin(su);
     var cossu = Math.cos(su);
     var snod = Math.sin(xnode);
@@ -2038,8 +2032,9 @@
     var uz = sini * sinsu;
     var vx = xmx * cossu - cnod * sinsu;
     var vy = xmy * cossu - snod * sinsu;
-    var vz = sini * cossu; // --------- position and velocity (in km and km/sec) ----------
+    var vz = sini * cossu;
 
+    // --------- position and velocity (in km and km/sec) ----------
     var r = {
       x: mrt * ux * earthRadius,
       y: mrt * uy * earthRadius,
@@ -2049,21 +2044,12 @@
       x: (mvt * ux + rvdot * vx) * vkmpersec,
       y: (mvt * uy + rvdot * vy) * vkmpersec,
       z: (mvt * uz + rvdot * vz) * vkmpersec
-    }; // sgp4fix for decaying satellites
-
-    if (mrt < 1.0) {
-      // printf("// decay condition %11.6f \n",mrt);
-      satrec.error = 6;
-      return {
-        position: false,
-        velocity: false
-      };
-    }
-
+    };
     return {
       position: r,
       velocity: v
     };
+
     /* eslint-enable no-param-reassign */
   }
 
@@ -2148,19 +2134,19 @@
    *    hoots, schumacher and glover 2004
    *    vallado, crawford, hujsak, kelso  2006
    ----------------------------------------------------------------------------*/
-
   function sgp4init(satrec, options) {
     /* eslint-disable no-param-reassign */
+
     var opsmode = options.opsmode,
-        satn = options.satn,
-        epoch = options.epoch,
-        xbstar = options.xbstar,
-        xecco = options.xecco,
-        xargpo = options.xargpo,
-        xinclo = options.xinclo,
-        xmo = options.xmo,
-        xno = options.xno,
-        xnodeo = options.xnodeo;
+      satn = options.satn,
+      epoch = options.epoch,
+      xbstar = options.xbstar,
+      xecco = options.xecco,
+      xargpo = options.xargpo,
+      xinclo = options.xinclo,
+      xmo = options.xmo,
+      xno = options.xno,
+      xnodeo = options.xnodeo;
     var cosim;
     var sinim;
     var cc1sq;
@@ -2217,13 +2203,14 @@
     var z23;
     var z31;
     var z33;
+
     /* ------------------------ initialization --------------------- */
     // sgp4fix divisor for divide by zero check on inclination
     // the old check used 1.0 + Math.cos(pi-1.0e-9), but then compared it to
     // 1.5 e-12, so the threshold was changed to 1.5e-12 for consistency
+    var temp4 = 1.5e-12;
 
-    var temp4 = 1.5e-12; // ----------- set all near earth variables to zero ------------
-
+    // ----------- set all near earth variables to zero ------------
     satrec.isimp = 0;
     satrec.method = 'n';
     satrec.aycof = 0.0;
@@ -2250,8 +2237,9 @@
     satrec.nodedot = 0.0;
     satrec.xlcof = 0.0;
     satrec.xmcof = 0.0;
-    satrec.nodecf = 0.0; // ----------- set all deep space variables to zero ------------
+    satrec.nodecf = 0.0;
 
+    // ----------- set all deep space variables to zero ------------
     satrec.irez = 0;
     satrec.d2201 = 0.0;
     satrec.d2211 = 0.0;
@@ -2307,7 +2295,9 @@
     satrec.zmos = 0.0;
     satrec.atime = 0.0;
     satrec.xli = 0.0;
-    satrec.xni = 0.0; // sgp4fix - note the following variables are also passed directly via satrec.
+    satrec.xni = 0.0;
+
+    // sgp4fix - note the following variables are also passed directly via satrec.
     // it is possible to streamline the sgp4init call by deleting the "x"
     // variables, but the user would need to set the satrec.* values first. we
     // include the additional assignments in case twoline2rv is not used.
@@ -2318,13 +2308,16 @@
     satrec.inclo = xinclo;
     satrec.mo = xmo;
     satrec.no = xno;
-    satrec.nodeo = xnodeo; //  sgp4fix add opsmode
+    satrec.nodeo = xnodeo;
 
-    satrec.operationmode = opsmode; // ------------------------ earth constants -----------------------
+    //  sgp4fix add opsmode
+    satrec.operationmode = opsmode;
+
+    // ------------------------ earth constants -----------------------
     // sgp4fix identify constants and allow alternate values
 
-    var ss = 78.0 / earthRadius + 1.0; // sgp4fix use multiply for speed instead of pow
-
+    var ss = 78.0 / earthRadius + 1.0;
+    // sgp4fix use multiply for speed instead of pow
     var qzms2ttemp = (120.0 - 78.0) / earthRadius;
     var qzms2t = qzms2ttemp * qzms2ttemp * qzms2ttemp * qzms2ttemp;
     satrec.init = 'y';
@@ -2340,19 +2333,24 @@
     };
     var initlResult = initl(initlOptions);
     var ao = initlResult.ao,
-        con42 = initlResult.con42,
-        cosio = initlResult.cosio,
-        cosio2 = initlResult.cosio2,
-        eccsq = initlResult.eccsq,
-        omeosq = initlResult.omeosq,
-        posq = initlResult.posq,
-        rp = initlResult.rp,
-        rteosq = initlResult.rteosq,
-        sinio = initlResult.sinio;
+      con42 = initlResult.con42,
+      cosio = initlResult.cosio,
+      cosio2 = initlResult.cosio2,
+      eccsq = initlResult.eccsq,
+      omeosq = initlResult.omeosq,
+      posq = initlResult.posq,
+      rp = initlResult.rp,
+      rteosq = initlResult.rteosq,
+      sinio = initlResult.sinio;
     satrec.no = initlResult.no;
     satrec.con41 = initlResult.con41;
     satrec.gsto = initlResult.gsto;
-    satrec.error = 0; // sgp4fix remove this check as it is unnecessary
+    satrec.a = Math.pow(satrec.no * tumin, -2.0 / 3.0);
+    satrec.alta = satrec.a * (1.0 + satrec.ecco) - 1.0;
+    satrec.altp = satrec.a * (1.0 - satrec.ecco) - 1.0;
+    satrec.error = 0;
+
+    // sgp4fix remove this check as it is unnecessary
     // the mrt check in sgp4 handles decaying satellite cases even if the starting
     // condition is below the surface of te earth
     // if (rp < 1.0)
@@ -2363,28 +2361,25 @@
 
     if (omeosq >= 0.0 || satrec.no >= 0.0) {
       satrec.isimp = 0;
-
-      if ((rp < 220.0 / earthRadius) + 1.0) {
+      if (rp < 220.0 / earthRadius + 1.0) {
         satrec.isimp = 1;
       }
-
       sfour = ss;
       qzms24 = qzms2t;
-      perige = (rp - 1.0) * earthRadius; // - for perigees below 156 km, s and qoms2t are altered -
+      perige = (rp - 1.0) * earthRadius;
 
+      // - for perigees below 156 km, s and qoms2t are altered -
       if (perige < 156.0) {
         sfour = perige - 78.0;
-
         if (perige < 98.0) {
           sfour = 20.0;
-        } // sgp4fix use multiply for speed instead of pow
+        }
 
-
+        // sgp4fix use multiply for speed instead of pow
         var qzms24temp = (120.0 - sfour) / earthRadius;
         qzms24 = qzms24temp * qzms24temp * qzms24temp * qzms24temp;
         sfour = sfour / earthRadius + 1.0;
       }
-
       pinvsq = 1.0 / posq;
       tsi = 1.0 / (ao - sfour);
       satrec.eta = ao * satrec.ecco * tsi;
@@ -2396,11 +2391,9 @@
       cc2 = coef1 * satrec.no * (ao * (1.0 + 1.5 * etasq + eeta * (4.0 + etasq)) + 0.375 * j2 * tsi / psisq * satrec.con41 * (8.0 + 3.0 * etasq * (8.0 + etasq)));
       satrec.cc1 = satrec.bstar * cc2;
       cc3 = 0.0;
-
       if (satrec.ecco > 1.0e-4) {
         cc3 = -2.0 * coef * tsi * j3oj2 * satrec.no * sinio / satrec.ecco;
       }
-
       satrec.x1mth2 = 1.0 - cosio2;
       satrec.cc4 = 2.0 * satrec.no * coef1 * ao * omeosq * (satrec.eta * (2.0 + 0.5 * etasq) + satrec.ecco * (0.5 + 2.0 * etasq) - j2 * tsi / (ao * psisq) * (-3.0 * satrec.con41 * (1.0 - 2.0 * eeta + etasq * (1.5 - 0.5 * eeta)) + 0.75 * satrec.x1mth2 * (2.0 * etasq - eeta * (1.0 + etasq)) * Math.cos(2.0 * satrec.argpo)));
       satrec.cc5 = 2.0 * coef1 * ao * omeosq * (1.0 + 2.75 * (etasq + eeta) + eeta * etasq);
@@ -2415,27 +2408,27 @@
       xpidot = satrec.argpdot + satrec.nodedot;
       satrec.omgcof = satrec.bstar * cc3 * Math.cos(satrec.argpo);
       satrec.xmcof = 0.0;
-
       if (satrec.ecco > 1.0e-4) {
         satrec.xmcof = -x2o3 * coef * satrec.bstar / eeta;
       }
-
       satrec.nodecf = 3.5 * omeosq * xhdot1 * satrec.cc1;
-      satrec.t2cof = 1.5 * satrec.cc1; // sgp4fix for divide by zero with xinco = 180 deg
+      satrec.t2cof = 1.5 * satrec.cc1;
 
+      // sgp4fix for divide by zero with xinco = 180 deg
       if (Math.abs(cosio + 1.0) > 1.5e-12) {
         satrec.xlcof = -0.25 * j3oj2 * sinio * (3.0 + 5.0 * cosio) / (1.0 + cosio);
       } else {
         satrec.xlcof = -0.25 * j3oj2 * sinio * (3.0 + 5.0 * cosio) / temp4;
       }
+      satrec.aycof = -0.5 * j3oj2 * sinio;
 
-      satrec.aycof = -0.5 * j3oj2 * sinio; // sgp4fix use multiply for speed instead of pow
-
+      // sgp4fix use multiply for speed instead of pow
       var delmotemp = 1.0 + satrec.eta * Math.cos(satrec.mo);
       satrec.delmo = delmotemp * delmotemp * delmotemp;
       satrec.sinmao = Math.sin(satrec.mo);
-      satrec.x7thm1 = 7.0 * cosio2 - 1.0; // --------------- deep space initialization -------------
+      satrec.x7thm1 = 7.0 * cosio2 - 1.0;
 
+      // --------------- deep space initialization -------------
       if (2 * pi / satrec.no >= 225.0) {
         satrec.method = 'd';
         satrec.isimp = 1;
@@ -2661,9 +2654,9 @@
         satrec.xlamo = dsinitResult.xlamo;
         satrec.xli = dsinitResult.xli;
         satrec.xni = dsinitResult.xni;
-      } // ----------- set variables if not deep space -----------
+      }
 
-
+      // ----------- set variables if not deep space -----------
       if (satrec.isimp !== 1) {
         cc1sq = satrec.cc1 * satrec.cc1;
         satrec.d2 = 4.0 * ao * tsi * cc1sq;
@@ -2674,14 +2667,15 @@
         satrec.t4cof = 0.25 * (3.0 * satrec.d3 + satrec.cc1 * (12.0 * satrec.d2 + 10.0 * cc1sq));
         satrec.t5cof = 0.2 * (3.0 * satrec.d4 + 12.0 * satrec.cc1 * satrec.d3 + 6.0 * satrec.d2 * satrec.d2 + 15.0 * cc1sq * (2.0 * satrec.d2 + cc1sq));
       }
+
       /* finally propogate to zero epoch to initialize all others. */
       // sgp4fix take out check to let satellites process until they are actually below earth surface
       // if(satrec.error == 0)
-
     }
 
-    sgp4(satrec, 0, 0);
+    sgp4(satrec, 0);
     satrec.init = 'n';
+
     /* eslint-enable no-param-reassign */
   }
 
@@ -2740,11 +2734,9 @@
    * to the algorithm.  If you want to turn some of these off and go
    * back into "afspc" mode, then set `afspc_mode` to `True`.
    */
-
   function twoline2satrec(longstr1, longstr2) {
     var opsmode = 'i';
     var xpdotp = 1440.0 / (2.0 * pi); // 229.1831180523293;
-
     var year = 0;
     var satrec = {};
     satrec.error = 0;
@@ -2753,35 +2745,37 @@
     satrec.epochdays = parseFloat(longstr1.substring(20, 32));
     satrec.ndot = parseFloat(longstr1.substring(33, 43));
     satrec.nddot = parseFloat(".".concat(parseInt(longstr1.substring(44, 50), 10), "E").concat(longstr1.substring(50, 52)));
-    satrec.bstar = parseFloat("".concat(longstr1.substring(53, 54), ".").concat(parseInt(longstr1.substring(54, 59), 10), "E").concat(longstr1.substring(59, 61))); // satrec.satnum = longstr2.substring(2, 7);
+    satrec.bstar = parseFloat("".concat(longstr1.substring(53, 54), ".").concat(parseInt(longstr1.substring(54, 59), 10), "E").concat(longstr1.substring(59, 61)));
 
+    // satrec.satnum = longstr2.substring(2, 7);
     satrec.inclo = parseFloat(longstr2.substring(8, 16));
     satrec.nodeo = parseFloat(longstr2.substring(17, 25));
     satrec.ecco = parseFloat(".".concat(longstr2.substring(26, 33)));
     satrec.argpo = parseFloat(longstr2.substring(34, 42));
     satrec.mo = parseFloat(longstr2.substring(43, 51));
-    satrec.no = parseFloat(longstr2.substring(52, 63)); // ---- find no, ndot, nddot ----
+    satrec.no = parseFloat(longstr2.substring(52, 63));
 
+    // ---- find no, ndot, nddot ----
     satrec.no /= xpdotp; //   rad/min
     // satrec.nddot= satrec.nddot * Math.pow(10.0, nexp);
     // satrec.bstar= satrec.bstar * Math.pow(10.0, ibexp);
+
     // ---- convert to sgp4 units ----
+    // satrec.ndot /= (xpdotp * 1440.0); // ? * minperday
+    // satrec.nddot /= (xpdotp * 1440.0 * 1440);
 
-    satrec.a = Math.pow(satrec.no * tumin, -2.0 / 3.0);
-    satrec.ndot /= xpdotp * 1440.0; // ? * minperday
-
-    satrec.nddot /= xpdotp * 1440.0 * 1440; // ---- find standard orbital elements ----
-
+    // ---- find standard orbital elements ----
     satrec.inclo *= deg2rad;
     satrec.nodeo *= deg2rad;
     satrec.argpo *= deg2rad;
     satrec.mo *= deg2rad;
-    satrec.alta = satrec.a * (1.0 + satrec.ecco) - 1.0;
-    satrec.altp = satrec.a * (1.0 - satrec.ecco) - 1.0; // ----------------------------------------------------------------
+
+    // ----------------------------------------------------------------
     // find sgp4epoch time of element set
     // remember that sgp4 uses units of days from 0 jan 1950 (sgp4epoch)
     // and minutes from the epoch (time)
     // ----------------------------------------------------------------
+
     // ---------------- temp fix for years from 1957-2056 -------------------
     // --------- correct fix will occur when year is 4-digit in tle ---------
 
@@ -2790,15 +2784,15 @@
     } else {
       year = satrec.epochyr + 1900;
     }
-
     var mdhmsResult = days2mdhms(year, satrec.epochdays);
     var mon = mdhmsResult.mon,
-        day = mdhmsResult.day,
-        hr = mdhmsResult.hr,
-        minute = mdhmsResult.minute,
-        sec = mdhmsResult.sec;
-    satrec.jdsatepoch = jday(year, mon, day, hr, minute, sec); //  ---------------- initialize the orbit at sgp4epoch -------------------
+      day = mdhmsResult.day,
+      hr = mdhmsResult.hr,
+      minute = mdhmsResult.minute,
+      sec = mdhmsResult.sec;
+    satrec.jdsatepoch = jday(year, mon, day, hr, minute, sec);
 
+    //  ---------------- initialize the orbit at sgp4epoch -------------------
     sgp4init(satrec, {
       opsmode: opsmode,
       satn: satrec.satnum,
@@ -2815,30 +2809,35 @@
   }
 
   function _toConsumableArray(arr) {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
   }
-
   function _arrayWithoutHoles(arr) {
-    if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-      return arr2;
-    }
+    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
   }
-
   function _iterableToArray(iter) {
-    if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
   }
-
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+    return arr2;
+  }
   function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance");
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
   function propagate() {
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
-
     // Return a position and velocity vector for a given date and time.
     var satrec = args[0];
     var date = Array.prototype.slice.call(args, 1);
@@ -2848,23 +2847,25 @@
   }
 
   function dopplerFactor(location, position, velocity) {
-    var currentRange = Math.sqrt(Math.pow(position.x - location.x, 2) + Math.pow(position.y - location.y, 2) + Math.pow(position.z - location.z, 2));
-    var nextPos = {
-      x: position.x + velocity.x,
-      y: position.y + velocity.y,
-      z: position.z + velocity.z
-    };
-    var nextRange = Math.sqrt(Math.pow(nextPos.x - location.x, 2) + Math.pow(nextPos.y - location.y, 2) + Math.pow(nextPos.z - location.z, 2));
-    var rangeRate = nextRange - currentRange;
+    var mfactor = 7.292115E-5;
+    var c = 299792.458; // Speed of light in km/s
 
+    var range = {
+      x: position.x - location.x,
+      y: position.y - location.y,
+      z: position.z - location.z
+    };
+    range.w = Math.sqrt(Math.pow(range.x, 2) + Math.pow(range.y, 2) + Math.pow(range.z, 2));
+    var rangeVel = {
+      x: velocity.x + mfactor * location.y,
+      y: velocity.y - mfactor * location.x,
+      z: velocity.z
+    };
     function sign(value) {
       return value >= 0 ? 1 : -1;
     }
-
-    rangeRate *= sign(rangeRate);
-    var c = 299792.458; // Speed of light in km/s
-
-    return 1 + rangeRate / c;
+    var rangeRate = (range.x * rangeVel.x + range.y * rangeVel.y + range.z * rangeVel.z) / range.w;
+    return 1 + rangeRate / c * sign(rangeRate);
   }
 
   function radiansToDegrees(radians) {
@@ -2877,34 +2878,30 @@
     if (radians < -pi / 2 || radians > pi / 2) {
       throw new RangeError('Latitude radians must be in range [-pi/2; pi/2].');
     }
-
     return radiansToDegrees(radians);
   }
   function degreesLong(radians) {
     if (radians < -pi || radians > pi) {
       throw new RangeError('Longitude radians must be in range [-pi; pi].');
     }
-
     return radiansToDegrees(radians);
   }
   function radiansLat(degrees) {
     if (degrees < -90 || degrees > 90) {
       throw new RangeError('Latitude degrees must be in range [-90; 90].');
     }
-
     return degreesToRadians(degrees);
   }
   function radiansLong(degrees) {
     if (degrees < -180 || degrees > 180) {
       throw new RangeError('Longitude degrees must be in range [-180; 180].');
     }
-
     return degreesToRadians(degrees);
   }
   function geodeticToEcf(geodetic) {
     var longitude = geodetic.longitude,
-        latitude = geodetic.latitude,
-        height = geodetic.height;
+      latitude = geodetic.latitude,
+      height = geodetic.height;
     var a = 6378.137;
     var b = 6356.7523142;
     var f = (a - b) / a;
@@ -2927,26 +2924,21 @@
     var f = (a - b) / a;
     var e2 = 2 * f - f * f;
     var longitude = Math.atan2(eci.y, eci.x) - gmst;
-
     while (longitude < -pi) {
       longitude += twoPi;
     }
-
     while (longitude > pi) {
       longitude -= twoPi;
     }
-
     var kmax = 20;
     var k = 0;
     var latitude = Math.atan2(eci.z, Math.sqrt(eci.x * eci.x + eci.y * eci.y));
     var C;
-
     while (k < kmax) {
       C = 1 / Math.sqrt(1 - e2 * (Math.sin(latitude) * Math.sin(latitude)));
       latitude = Math.atan2(eci.z + a * C * e2 * Math.sin(latitude), R);
       k += 1;
     }
-
     var height = R / Math.cos(latitude) - a * C;
     return {
       longitude: longitude,
@@ -2982,6 +2974,7 @@
     // [X]     [C  S  0][X]
     // [Y]  =  [-S C  0][Y]
     // [Z]ecf  [0  0  1][Z]eci
+
     var x = eci.x * Math.cos(gmst) + eci.y * Math.sin(gmst);
     var y = eci.x * -Math.sin(gmst) + eci.y * Math.cos(gmst);
     var z = eci.z;
@@ -2991,13 +2984,13 @@
       z: z
     };
   }
-
   function topocentric(observerGeodetic, satelliteEcf) {
     // http://www.celestrak.com/columns/v02n02/
     // TS Kelso's method, except I'm using ECF frame
     // and he uses ECI.
+
     var longitude = observerGeodetic.longitude,
-        latitude = observerGeodetic.latitude;
+      latitude = observerGeodetic.latitude;
     var observerEcf = geodeticToEcf(observerGeodetic);
     var rx = satelliteEcf.x - observerEcf.x;
     var ry = satelliteEcf.y - observerEcf.y;
@@ -3011,6 +3004,7 @@
       topZ: topZ
     };
   }
+
   /**
    * @param {Object} tc
    * @param {Number} tc.topS Positive horizontal vector S due south.
@@ -3018,12 +3012,10 @@
    * @param {Number} tc.topZ Vector Z normal to the surface of the earth (up).
    * @returns {Object}
    */
-
-
   function topocentricToLookAngles(tc) {
     var topS = tc.topS,
-        topE = tc.topE,
-        topZ = tc.topZ;
+      topE = tc.topE,
+      topZ = tc.topZ;
     var rangeSat = Math.sqrt(topS * topS + topE * topE + topZ * topZ);
     var El = Math.asin(topZ / rangeSat);
     var Az = Math.atan2(-topE, topS) + pi;
@@ -3031,7 +3023,6 @@
       azimuth: Az,
       elevation: El,
       rangeSat: rangeSat // Range in km
-
     };
   }
 
@@ -3066,4 +3057,4 @@
 
   return indexUmd;
 
-})));
+}));

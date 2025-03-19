@@ -27,8 +27,6 @@ function loadPasses() {
             'minelevation': $("#minelevation").val(),
             'minazimuth': $("#minazimuth").val(),
             'maxazimuth': $("#maxazimuth").val(),
-            'altitude': $("#altitude").val(),
-            'timezone': $("#timezone").val(),
             'date': $("#date").val(),
             'mintime': $("#mintime").val(),
             'maxtime': $("#maxtime").val(),
@@ -54,8 +52,6 @@ function loadSkedPasses() {
             'minelevation': $("#minelevation").val(),
             'minazimuth': $("#minazimuth").val(),
             'maxazimuth': $("#maxazimuth").val(),
-            'altitude': $("#altitude").val(),
-            'timezone': $("#timezone").val(),
             'date': $("#date").val(),
             'mintime': $("#mintime").val(),
             'maxtime': $("#maxtime").val(),
@@ -77,8 +73,17 @@ function loadSkedPasses() {
 function addskedpartner() {
 	if ($('#addskedpartner').is(':hidden')) {
 		$('#addskedpartner').show();
+		$('#satlist option[value=""]').remove();
 	} else {
 		$('#addskedpartner').hide();
+		$('#satlist').prepend('<option value="">All</option>');
 	}
-
 }
+
+$('#satlist').change(function () {
+    if ($('#satlist').val() === "") {
+		$('#addsked').prop('disabled', true);
+    } else {
+		$('#addsked').prop('disabled', false);
+    }
+});

@@ -807,6 +807,7 @@ class Predict
                 if ($detail->vis != Predict::SAT_VIS_VISIBLE) {
                     continue;
                 }
+
                 if ($detail->el < $this->minEle) {
                     continue;
                 }
