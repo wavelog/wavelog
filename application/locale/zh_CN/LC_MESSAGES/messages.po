@@ -16,8 +16,8 @@ msgstr ""
 "POT-Creation-Date: 2025-03-15 20:46+0000\n"
 "PO-Revision-Date: 2025-03-17 17:33+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,6 +132,10 @@ msgstr ""
 #: application/controllers/User.php:1537
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:366
+#: application/controllers/Eqsl.php:433 application/controllers/Eqsl.php:449
+#: application/controllers/Eqsl.php:510
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -955,19 +959,19 @@ msgstr "eQSL QSO 上传"
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "您未设置 eQSL 的账户信息！"
 
-#: application/controllers/Eqsl.php:432
+#: application/controllers/Eqsl.php:432 application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
 msgstr "eQSL 工具"
 
-#: application/controllers/Eqsl.php:480
+#: application/controllers/Eqsl.php:480 application/controllers/Eqsl.php:485
 msgid " / Errors: "
 msgstr " / 错误： "
 
-#: application/controllers/Eqsl.php:480
+#: application/controllers/Eqsl.php:480 application/controllers/Eqsl.php:485
 msgid "Successfully downloaded: "
 msgstr "下载成功： "
 
-#: application/controllers/Eqsl.php:489
+#: application/controllers/Eqsl.php:489 application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
 msgstr "eQSL 卡片图像下载"
 
@@ -2947,24 +2951,29 @@ msgid "Error adding Club Member!"
 msgstr "添加集体台站成员错误！"
 
 #: application/models/Eqslmethods_model.php:287
+#: application/models/Eqslmethods_model.php:292
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "您的 eQSL 用户名或密码错误。"
 
 #: application/models/Eqslmethods_model.php:293
+#: application/models/Eqslmethods_model.php:297
 msgid "Something went wrong with eQSL.cc!"
 msgstr "eQSL 服务异常！"
 
 #: application/models/Eqslmethods_model.php:309
+#: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL 网站出了一些问题，请稍后重试。"
 
 #: application/models/Eqslmethods_model.php:315
+#: application/models/Eqslmethods_model.php:322
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr "上传的 QSO 有问题，您可能需要手动录入。"
 
 #: application/models/Eqslmethods_model.php:321
+#: application/models/Eqslmethods_model.php:327
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr "eQSL 网站似乎更改了地址，请在 GitHub 上创建一个 issue。"
@@ -4099,8 +4108,9 @@ msgstr "导入时忽略台站的呼号"
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
 "if they match to the chosen station-location."
-msgstr "如果选择此选项，Wavelog 将尝试导入 %s所有%s ADIF "
-"通联记录，不管它们是否与所选的台站位置匹配。"
+msgstr ""
+"如果选择此选项，Wavelog 将尝试导入 %s所有%s ADIF 通联记录，不管它们是否与所选"
+"的台站位置匹配。"
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -14156,6 +14166,24 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#: application/controllers/Eqsl.php:195
+msgid "User/Pass wrong for eQSL"
+msgstr ""
+
+#: application/controllers/Eqsl.php:199
+#, php-format
+msgid "No such eQSL QTH Nickname: %s"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:308
+msgid "QTH Nickname does not exist at eQSL"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:333
+msgid ""
+"An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
+msgstr ""
 
 #~ msgid "Show QSO's"
 #~ msgstr "显示 QSO"
