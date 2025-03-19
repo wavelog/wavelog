@@ -200,6 +200,7 @@ class Satellite extends CI_Controller {
 			'assets/js/sections/satellite_functions.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite_functions.js")),
 			'assets/js/sections/flightpath.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/flightpath.js")),
 			'assets/js/leaflet/L.Maidenhead.js',
+			'assets/js/leaflet/geocoding.js',
 		];
 
 		$homegrid = explode(',', $this->stations->find_gridsquare());
@@ -302,7 +303,7 @@ class Satellite extends CI_Controller {
 		} else {
 			$tles[]=$this->satellite_model->get_tle($input_sat);
 		}
-		return $tles; 
+		return $tles;
 	}
 
 	function calcPasses($sat_tles, $yourgrid, $date, $mintime, $minelevation, $timezone = 'UTC') {

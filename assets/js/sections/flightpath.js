@@ -356,6 +356,7 @@ var sats = (function (L, d3, satelliteJs) {
         html += '<tr><td><span>Altitude</span></td><td align="right"><span id="satalt"></span></td></tr>';
         html += '<tr><td><span>Azimuth</span></td><td align="right"><span id="az"></span></td></tr>';
         html += '<tr><td><span>Elevation</span></td><td align="right"><span id="ele"></span></td></tr>';
+		html += '<tr><td><span>Gridsquare</span></td><td align="right"><span id="grid"></span></td></tr>';
         html += '<tr><td><input type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"></td><td><span> ' + lang_gen_hamradio_gridsquares + '</span></td></tr>';
         html += "</table>";
         div.innerHTML = html;
@@ -395,6 +396,7 @@ var sats = (function (L, d3, satelliteJs) {
 			$("#ele").html(ele);
 			$("#satorbit").html(sat.getOrbitType());
 			$("#satalt").html(Math.round(sat.altitude() * 1,60934)+" km");
+			$("#grid").html(latLngToLocator(sat._position.lat,sat._position.lng));
 		});
 		return;
 	};
