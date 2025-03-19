@@ -213,7 +213,7 @@ class Eqslmethods_model extends CI_Model {
 
 		// adding qslmsg if it isn't blank
 		if ($qsl['COL_QSLMSG'] != '') {
-			$qsl['COL_QSLMSG'] = str_replace(array(chr(10), chr(13),'<','>',':','_'), array(' ', ' ','','',' ',' '), $qsl['COL_QSLMSG']);
+			$qsl['COL_QSLMSG'] = str_replace(array(chr(10), chr(13)), array(' ', ' '), $qsl['COL_QSLMSG']);
 			$adif .= "%3C";
 			$adif .= "QSLMSG";
 			$adif .= "%3A";
