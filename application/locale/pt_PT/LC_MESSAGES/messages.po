@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-19 09:53+0000\n"
+"POT-Creation-Date: 2025-03-19 18:00+0000\n"
 "PO-Revision-Date: 2025-03-12 19:25+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -89,25 +89,17 @@ msgstr ""
 #: application/controllers/Reg1test.php:99
 #: application/controllers/Reg1test.php:127
 #: application/controllers/Reg1test.php:161
-#: application/controllers/Satellite.php:18
-#: application/controllers/Satellite.php:63
-#: application/controllers/Satellite.php:70
-#: application/controllers/Satellite.php:79
-#: application/controllers/Satellite.php:98
-#: application/controllers/Satellite.php:118
-#: application/controllers/Satellite.php:126
-#: application/controllers/Satellite.php:134
-#: application/controllers/Satellite.php:148
-#: application/controllers/Satellite.php:166
-#: application/controllers/Satellite.php:177
-#: application/controllers/Satellite.php:193
-#: application/controllers/Satellite.php:222
-#: application/controllers/Satellite.php:233
-#: application/controllers/Satellite.php:255
-#: application/controllers/Satellite.php:275
-#: application/controllers/Satellite.php:288
-#: application/controllers/Satellite.php:296
-#: application/controllers/Satellite.php:367
+#: application/controllers/Satellite.php:13
+#: application/controllers/Satellite.php:17
+#: application/controllers/Satellite.php:62
+#: application/controllers/Satellite.php:69
+#: application/controllers/Satellite.php:77
+#: application/controllers/Satellite.php:96
+#: application/controllers/Satellite.php:116
+#: application/controllers/Satellite.php:124
+#: application/controllers/Satellite.php:132
+#: application/controllers/Satellite.php:146
+#: application/controllers/Satellite.php:164
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
 #: application/controllers/Simplefle.php:7
@@ -1499,7 +1491,7 @@ msgstr "Estado"
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:286
 #: application/views/satellite/pass.php:31
-#: application/views/satellite/pass.php:527
+#: application/views/satellite/pass.php:79
 #: application/views/search/cqzones_result.php:12
 #: application/views/search/ituzones_result.php:12
 #: application/views/search/result.php:49
@@ -2163,11 +2155,11 @@ msgstr "Editar definições do CAT"
 msgid "Export EDI"
 msgstr "Exportar EDI"
 
-#: application/controllers/Satellite.php:65
+#: application/controllers/Satellite.php:64
 msgid "Create Satellite"
 msgstr "Criar satélite"
 
-#: application/controllers/Satellite.php:92
+#: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
 msgstr "Editar satélite"
 
@@ -3725,7 +3717,7 @@ msgstr "Mostrar"
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:255
 #: application/views/satellite/flightpath.php:38
-#: application/views/satellite/pass.php:496
+#: application/views/satellite/pass.php:47
 #: application/views/satellite/passtable.php:5
 #: application/views/satellite/skedtable.php:7
 #: application/views/satellite/skedtable.php:56
@@ -3778,7 +3770,6 @@ msgstr "QRZ.com"
 
 #: application/views/activated_gridmap/index.php:86
 #: application/views/gridmap/index.php:130
-#: application/views/satellite/flightpath.php:46
 msgid "Plot"
 msgstr "Traçar"
 
@@ -3970,7 +3961,7 @@ msgstr "Há dados diferentes para DOK no teu log em comparação com DCL."
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:22
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:67
-#: application/views/qso/index.php:103 application/views/satellite/pass.php:476
+#: application/views/qso/index.php:103 application/views/satellite/pass.php:35
 #: application/views/satellite/skedtable.php:57
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/ituzones_result.php:7
@@ -12001,45 +11992,33 @@ msgid "Satellite passes"
 msgstr "Passagens de satélites"
 
 #: application/views/satellite/pass.php:11
-#: application/views/satellite/pass.php:507
+#: application/views/satellite/pass.php:59
 msgid "Min. Satellite Elevation"
 msgstr "Elevação Mínima do Satélite"
 
 #: application/views/satellite/pass.php:15
-#: application/views/satellite/pass.php:511
+#: application/views/satellite/pass.php:63
 msgid "Min. Azimuth"
 msgstr "Azimute mínimo"
 
 #: application/views/satellite/pass.php:23
-#: application/views/satellite/pass.php:519
+#: application/views/satellite/pass.php:71
 msgid "Max. Azimuth"
 msgstr "Azimute máximo"
 
-#: application/views/satellite/pass.php:35
-msgid "Altitude (meters)"
-msgstr "Altitude (metros)"
-
-#: application/views/satellite/pass.php:39 application/views/user/edit.php:194
-msgid "Timezone"
-msgstr "Fuso horário"
-
-#: application/views/satellite/pass.php:480
+#: application/views/satellite/pass.php:39
 msgid "Min. time"
 msgstr "Tempo mínimo"
 
-#: application/views/satellite/pass.php:488
-msgid "Max. time"
-msgstr "Tempo máximo"
-
-#: application/views/satellite/pass.php:533
+#: application/views/satellite/pass.php:85
 msgid "Load predictions"
 msgstr "Carregar previsões"
 
-#: application/views/satellite/pass.php:534
+#: application/views/satellite/pass.php:86
 msgid "Add sked partner"
 msgstr "Adicionar parceiro de sked"
 
-#: application/views/satellite/pass.php:536
+#: application/views/satellite/pass.php:88
 msgid "No TLE information detected. Please update TLE's."
 msgstr "Nenhuma informação TLE detectada. Por favor, atualize os TLE's."
 
@@ -12049,44 +12028,48 @@ msgid "AOS Time"
 msgstr "Tempo AOS"
 
 #: application/views/satellite/passtable.php:7
+#: application/views/satellite/skedtable.php:12
+msgid "LOS Time"
+msgstr "Tempo LOS"
+
+#: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:9
 #: application/views/satellite/skedtable.php:60
 #: application/views/sattimers/index.php:46
 msgid "Duration"
 msgstr "Duração"
 
-#: application/views/satellite/passtable.php:8
-#: application/views/satellite/skedtable.php:10
-msgid "AOS Azimuth"
-msgstr "AOS Azimute"
-
 #: application/views/satellite/passtable.php:9
+msgid "Path"
+msgstr ""
+
+#: application/views/satellite/passtable.php:10
 #: application/views/satellite/skedtable.php:11
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
 msgstr "Elevação Máxima"
 
-#: application/views/satellite/passtable.php:10
-#: application/views/satellite/skedtable.php:12
-msgid "LOS Time"
-msgstr "Tempo LOS"
-
 #: application/views/satellite/passtable.php:11
+#: application/views/satellite/skedtable.php:10
+msgid "AOS Azimuth"
+msgstr "AOS Azimute"
+
+#: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:13
 msgid "LOS Azimuth"
 msgstr "Azimute LOS"
 
-#: application/views/satellite/passtable.php:30
+#: application/views/satellite/passtable.php:35
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
 msgstr "Falha na pesquisa!"
 
-#: application/views/satellite/passtable.php:31
+#: application/views/satellite/passtable.php:36
 msgid "No passes found. Please check the input parameters."
 msgstr ""
 "Nenhuma passagem encontrada. Por favor, verifique os parâmetros de entrada."
 
-#: application/views/satellite/passtable.php:40
+#: application/views/satellite/passtable.php:45
 #: application/views/satellite/skedtable.php:93
 msgid "min"
 msgstr "minuto"
@@ -13619,6 +13602,10 @@ msgstr "Língua do Wavelog"
 msgid "Choose Wavelog language."
 msgstr "Escolha a língua do Wavelog."
 
+#: application/views/user/edit.php:194
+msgid "Timezone"
+msgstr "Fuso horário"
+
 #: application/views/user/edit.php:202
 msgid "Date Format"
 msgstr "Formato de Data"
@@ -14738,6 +14725,12 @@ msgstr "Submeter pedido"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recebido"
+
+#~ msgid "Altitude (meters)"
+#~ msgstr "Altitude (metros)"
+
+#~ msgid "Max. time"
+#~ msgstr "Tempo máximo"
 
 #~ msgid "Show QSO's"
 #~ msgstr "Mostrar contactos"
