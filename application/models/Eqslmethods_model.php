@@ -56,11 +56,11 @@ class Eqslmethods_model extends CI_Model {
 				log_message('error', 'eQSL Error for '.$data['user_eqsl_name']);
 				break;
 			} elseif ($status == 'Nick Error') {
-				log_message('error', 'eQSL Nickname-Error for User '.$data['user_eqsl_name'].' with Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile: '.($qsl['eqsl_station_id'] ?? '').' Nickname will be removed!');
+				log_message('error', 'eQSL error for user '.$data['user_eqsl_name'].' with QTH Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile '.($qsl['eqsl_station_id'] ?? '').'. eQSL QTH Nickname will be removed from station location!');
 				$this->disable_eqsl_station_id($userid,$qsl['eqsl_station_id']);
 				break;
 			} elseif ($status == 'Login Error') {
-				log_message('error', 'eQSL Credentials-Error (User, Pass or Nickname) for '.$data['user_eqsl_name'].' Login will be disabled!');
+				log_message('error', 'eQSL credentials error (user, pass or QTH Nickname) for '.$data['user_eqsl_name'].'. Login will be disabled!');
 				$this->disable_eqsl_uid($userid);
 				break;
 			}
@@ -302,7 +302,7 @@ class Eqslmethods_model extends CI_Model {
 					$this->eqsl_mark_invalid($qsl['COL_PRIMARY_KEY']);
 					$status = "Invalid";
 				} elseif (stristr($result, "No match on APP_EQSL_QTH_NICKNAME")) {
-					$msg = __("eQSL-Nickname doesn't exist at eQSL");
+					$msg = __("QTH Nickname does not exist at eQSL");
 					$this->session->set_flashdata('warning', $msg);
 					$status = "Nick Error";
 				} elseif (stristr($result, "Bad record: Duplicate")) {
