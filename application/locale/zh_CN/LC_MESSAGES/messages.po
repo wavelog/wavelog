@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-19 09:53+0000\n"
-"PO-Revision-Date: 2025-03-12 05:34+0000\n"
+"POT-Creation-Date: 2025-03-15 20:46+0000\n"
+"PO-Revision-Date: 2025-03-17 17:33+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -61,10 +61,10 @@ msgstr ""
 #: application/controllers/Dxcalendar.php:8
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
-#: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:366
-#: application/controllers/Eqsl.php:433 application/controllers/Eqsl.php:449
-#: application/controllers/Eqsl.php:510 application/controllers/Hamsat.php:13
+#: application/controllers/Eqsl.php:231 application/controllers/Eqsl.php:255
+#: application/controllers/Eqsl.php:294 application/controllers/Eqsl.php:361
+#: application/controllers/Eqsl.php:428 application/controllers/Eqsl.php:444
+#: application/controllers/Eqsl.php:505 application/controllers/Hamsat.php:13
 #: application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
 #: application/controllers/Kmlexport.php:33
@@ -132,6 +132,10 @@ msgstr ""
 #: application/controllers/User.php:1537
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:366
+#: application/controllers/Eqsl.php:433 application/controllers/Eqsl.php:449
+#: application/controllers/Eqsl.php:510
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -955,28 +959,19 @@ msgstr "eQSL QSO 上传"
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "您未设置 eQSL 的账户信息！"
 
-#: application/controllers/Eqsl.php:195
-msgid "User/Pass wrong for eQSL"
-msgstr ""
-
-#: application/controllers/Eqsl.php:199
-#, php-format
-msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
-
-#: application/controllers/Eqsl.php:437
+#: application/controllers/Eqsl.php:432 application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
 msgstr "eQSL 工具"
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:480 application/controllers/Eqsl.php:485
 msgid " / Errors: "
 msgstr " / 错误： "
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:480 application/controllers/Eqsl.php:485
 msgid "Successfully downloaded: "
 msgstr "下载成功： "
 
-#: application/controllers/Eqsl.php:494
+#: application/controllers/Eqsl.php:489 application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
 msgstr "eQSL 卡片图像下载"
 
@@ -2955,37 +2950,33 @@ msgstr "无效的角色！"
 msgid "Error adding Club Member!"
 msgstr "添加集体台站成员错误！"
 
+#: application/models/Eqslmethods_model.php:287
 #: application/models/Eqslmethods_model.php:292
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "您的 eQSL 用户名或密码错误。"
 
+#: application/models/Eqslmethods_model.php:293
 #: application/models/Eqslmethods_model.php:297
 msgid "Something went wrong with eQSL.cc!"
 msgstr "eQSL 服务异常！"
 
-#: application/models/Eqslmethods_model.php:308
-msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
-
+#: application/models/Eqslmethods_model.php:309
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL 网站出了一些问题，请稍后重试。"
 
+#: application/models/Eqslmethods_model.php:315
 #: application/models/Eqslmethods_model.php:322
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr "上传的 QSO 有问题，您可能需要手动录入。"
 
+#: application/models/Eqslmethods_model.php:321
 #: application/models/Eqslmethods_model.php:327
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr "eQSL 网站似乎更改了地址，请在 GitHub 上创建一个 issue。"
-
-#: application/models/Eqslmethods_model.php:333
-msgid ""
-"An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr ""
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -3832,7 +3823,7 @@ msgstr "数量"
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
 msgid "Show QSOs"
-msgstr ""
+msgstr "显示 QSO"
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
@@ -4118,6 +4109,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
 "if they match to the chosen station-location."
 msgstr ""
+"如果选择此选项，Wavelog 将尝试导入 %s所有%s ADIF 通联记录，不管它们是否与所选"
+"的台站位置匹配。"
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4173,7 +4166,7 @@ msgstr "导出没有上传到 LoTW 的 QSO"
 
 #: application/views/adif/import.php:240
 msgid "Export QSOs"
-msgstr ""
+msgstr "导出 QSO"
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
@@ -7035,7 +7028,7 @@ msgstr "VUCC 网格"
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
 msgid "# of QSOs worked"
-msgstr ""
+msgstr "已完成的 QSO 数量"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -7897,7 +7890,7 @@ msgstr "希腊语"
 
 #: application/views/debug/index.php:677
 msgid "Hungarian"
-msgstr ""
+msgstr "匈牙利语"
 
 #: application/views/debug/index.php:678
 msgid "Italian"
@@ -10658,7 +10651,7 @@ msgstr "添加到打印队列中"
 
 #: application/views/oqrs/qsolist.php:197
 msgid "No QSOs were found. It seems you were not active at this time."
-msgstr ""
+msgstr "未找到 QSO 。似乎您在此时间段并未进行过通联。"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -10936,7 +10929,7 @@ msgstr "没有找到需要打印的 QSL 信息！"
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
-msgstr ""
+msgstr "未找到额外的 QSO。这意味着它们可能已经在队列中。"
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -14173,6 +14166,24 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#: application/controllers/Eqsl.php:195
+msgid "User/Pass wrong for eQSL"
+msgstr ""
+
+#: application/controllers/Eqsl.php:199
+#, php-format
+msgid "No such eQSL QTH Nickname: %s"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:308
+msgid "QTH Nickname does not exist at eQSL"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:333
+msgid ""
+"An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
+msgstr ""
 
 #~ msgid "Show QSO's"
 #~ msgstr "显示 QSO"

@@ -5,12 +5,13 @@
 # Michael Skolsky <r1blh@yandex.ru>, 2024, 2025.
 # "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
+# Pascal HB9HCG <hb9hcg@uska.ch>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-19 09:53+0000\n"
-"PO-Revision-Date: 2025-03-04 21:04+0000\n"
-"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
+"POT-Creation-Date: 2025-03-15 20:46+0000\n"
+"PO-Revision-Date: 2025-03-16 23:16+0000\n"
+"Last-Translator: Pascal HB9HCG <hb9hcg@uska.ch>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
 "Language: ru_RU\n"
@@ -57,10 +58,10 @@ msgstr ""
 #: application/controllers/Dxcalendar.php:8
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
-#: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:366
-#: application/controllers/Eqsl.php:433 application/controllers/Eqsl.php:449
-#: application/controllers/Eqsl.php:510 application/controllers/Hamsat.php:13
+#: application/controllers/Eqsl.php:231 application/controllers/Eqsl.php:255
+#: application/controllers/Eqsl.php:294 application/controllers/Eqsl.php:361
+#: application/controllers/Eqsl.php:428 application/controllers/Eqsl.php:444
+#: application/controllers/Eqsl.php:505 application/controllers/Hamsat.php:13
 #: application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
 #: application/controllers/Kmlexport.php:33
@@ -128,6 +129,10 @@ msgstr ""
 #: application/controllers/User.php:1537
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:366
+#: application/controllers/Eqsl.php:433 application/controllers/Eqsl.php:449
+#: application/controllers/Eqsl.php:510
 msgid "You're not allowed to do that!"
 msgstr "Вам нельзя это делать!"
 
@@ -957,28 +962,19 @@ msgstr "загрузка QSO в eQSL"
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "Вы не указали свои учётные данные eQSL.cc!"
 
-#: application/controllers/Eqsl.php:195
-msgid "User/Pass wrong for eQSL"
-msgstr ""
-
-#: application/controllers/Eqsl.php:199
-#, php-format
-msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
-
-#: application/controllers/Eqsl.php:437
+#: application/controllers/Eqsl.php:432 application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
 msgstr "инструменты eQSL"
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:480 application/controllers/Eqsl.php:485
 msgid " / Errors: "
 msgstr " / Ошибки: "
 
-#: application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:480 application/controllers/Eqsl.php:485
 msgid "Successfully downloaded: "
 msgstr "Успешно скачано: "
 
-#: application/controllers/Eqsl.php:494
+#: application/controllers/Eqsl.php:489 application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
 msgstr "скачать изображения eQSL"
 
@@ -2463,7 +2459,7 @@ msgstr "Аналитика антенн"
 
 #: application/controllers/Statistics.php:305
 msgid "Satellite QSOs"
-msgstr ""
+msgstr "QSO через спутник"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:298
@@ -3004,23 +3000,23 @@ msgstr "Недостаточный уровень разрешений!"
 msgid "Error adding Club Member!"
 msgstr "Ошибка при добавлении оператора коллективной станции!"
 
+#: application/models/Eqslmethods_model.php:287
 #: application/models/Eqslmethods_model.php:292
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Ваше имя пользователя и/или пароль для eQSL неверны."
 
+#: application/models/Eqslmethods_model.php:293
 #: application/models/Eqslmethods_model.php:297
 msgid "Something went wrong with eQSL.cc!"
 msgstr "С eQSL.cc что-то пошло не так!"
 
-#: application/models/Eqslmethods_model.php:308
-msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
-
+#: application/models/Eqslmethods_model.php:309
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr ""
 "eQSL.cc испытывает проблемы. Пожалуйста, попробуйте экспортировать QSO позже."
 
+#: application/models/Eqslmethods_model.php:315
 #: application/models/Eqslmethods_model.php:322
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
@@ -3029,17 +3025,13 @@ msgstr ""
 "При загрузке одного из QSO произошла ошибка. Возможно, вам стоит произвести "
 "загрузку вручную."
 
+#: application/models/Eqslmethods_model.php:321
 #: application/models/Eqslmethods_model.php:327
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Похоже, что сайт eQSL изменился. Пожалуйста, создайте сообщение о проблеме "
 "на GitHub."
-
-#: application/models/Eqslmethods_model.php:333
-msgid ""
-"An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr ""
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -3890,7 +3882,7 @@ msgstr "Счётчик"
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
 msgid "Show QSOs"
-msgstr ""
+msgstr "Показать лог QSO"
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
@@ -4239,7 +4231,7 @@ msgstr "Отметить экспортированные QSO как незаг�
 
 #: application/views/adif/import.php:240
 msgid "Export QSOs"
-msgstr ""
+msgstr "Экспортировать QSO"
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
@@ -14700,6 +14692,24 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#: application/controllers/Eqsl.php:195
+msgid "User/Pass wrong for eQSL"
+msgstr ""
+
+#: application/controllers/Eqsl.php:199
+#, php-format
+msgid "No such eQSL QTH Nickname: %s"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:308
+msgid "QTH Nickname does not exist at eQSL"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:333
+msgid ""
+"An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
+msgstr ""
 
 #~ msgid "Show QSO's"
 #~ msgstr "Показать QSO"
