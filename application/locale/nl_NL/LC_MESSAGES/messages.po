@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-15 20:46+0000\n"
+"POT-Creation-Date: 2025-03-19 09:53+0000\n"
 "PO-Revision-Date: 2025-03-16 23:16+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -57,10 +57,10 @@ msgstr ""
 #: application/controllers/Dxcalendar.php:8
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
-#: application/controllers/Eqsl.php:231 application/controllers/Eqsl.php:255
-#: application/controllers/Eqsl.php:294 application/controllers/Eqsl.php:361
-#: application/controllers/Eqsl.php:428 application/controllers/Eqsl.php:444
-#: application/controllers/Eqsl.php:505 application/controllers/Hamsat.php:13
+#: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
+#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:366
+#: application/controllers/Eqsl.php:433 application/controllers/Eqsl.php:449
+#: application/controllers/Eqsl.php:510 application/controllers/Hamsat.php:13
 #: application/controllers/Hrdlog.php:36
 #: application/controllers/Kmlexport.php:18
 #: application/controllers/Kmlexport.php:33
@@ -128,10 +128,6 @@ msgstr ""
 #: application/controllers/User.php:1537
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
-#: application/controllers/Eqsl.php:236 application/controllers/Eqsl.php:260
-#: application/controllers/Eqsl.php:299 application/controllers/Eqsl.php:366
-#: application/controllers/Eqsl.php:433 application/controllers/Eqsl.php:449
-#: application/controllers/Eqsl.php:510
 msgid "You're not allowed to do that!"
 msgstr "Je mag dat niet doen!"
 
@@ -960,19 +956,28 @@ msgstr "eQSL QSO Upload"
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr "Je hebt je eQSL.cc gegevens nog niet ingesteld!"
 
-#: application/controllers/Eqsl.php:432 application/controllers/Eqsl.php:437
+#: application/controllers/Eqsl.php:195
+msgid "User/Pass wrong for eQSL"
+msgstr ""
+
+#: application/controllers/Eqsl.php:199
+#, php-format
+msgid "No such eQSL QTH Nickname: %s"
+msgstr ""
+
+#: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
 msgstr "eQSL-hulpmiddelen"
 
-#: application/controllers/Eqsl.php:480 application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:485
 msgid " / Errors: "
 msgstr " / Fouten: "
 
-#: application/controllers/Eqsl.php:480 application/controllers/Eqsl.php:485
+#: application/controllers/Eqsl.php:485
 msgid "Successfully downloaded: "
 msgstr "Succesvol gedownload: "
 
-#: application/controllers/Eqsl.php:489 application/controllers/Eqsl.php:494
+#: application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
 msgstr "eQSL-kaart afbeelding downloaden"
 
@@ -2998,22 +3003,22 @@ msgstr "Ongeldig machtigingsniveau!"
 msgid "Error adding Club Member!"
 msgstr "Fout bij het toevoegen van clublid!"
 
-#: application/models/Eqslmethods_model.php:287
 #: application/models/Eqslmethods_model.php:292
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Je eQSL-gebruikersnaam en/of wachtwoord is onjuist."
 
-#: application/models/Eqslmethods_model.php:293
 #: application/models/Eqslmethods_model.php:297
 msgid "Something went wrong with eQSL.cc!"
 msgstr "Er is iets misgegaan met eQSL.cc!"
 
-#: application/models/Eqslmethods_model.php:309
+#: application/models/Eqslmethods_model.php:308
+msgid "QTH Nickname does not exist at eQSL"
+msgstr ""
+
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr "eQSL.cc ondervindt problemen. Probeer later QSOs te exporteren."
 
-#: application/models/Eqslmethods_model.php:315
 #: application/models/Eqslmethods_model.php:322
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
@@ -3021,13 +3026,17 @@ msgid ""
 msgstr ""
 "Er was een fout in een van de QSOs. Je zou ze handmatig kunnen uploaden."
 
-#: application/models/Eqslmethods_model.php:321
 #: application/models/Eqslmethods_model.php:327
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 "Het lijkt erop dat de eQSL-site is veranderd. Open alsjeblieft een issue op "
 "GitHub."
+
+#: application/models/Eqslmethods_model.php:333
+msgid ""
+"An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
+msgstr ""
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -14702,24 +14711,6 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
-
-#: application/controllers/Eqsl.php:195
-msgid "User/Pass wrong for eQSL"
-msgstr ""
-
-#: application/controllers/Eqsl.php:199
-#, php-format
-msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
-
-#: application/models/Eqslmethods_model.php:308
-msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
-
-#: application/models/Eqslmethods_model.php:333
-msgid ""
-"An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr ""
 
 #~ msgid "Show QSO's"
 #~ msgstr "Toon QSO's"
