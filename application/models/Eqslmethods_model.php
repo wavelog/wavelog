@@ -298,6 +298,9 @@ class Eqslmethods_model extends CI_Model {
 					log_message('error', 'eQSL at QSO-ID: '.$qsl['COL_PRIMARY_KEY']); // No leftover-Debug, but Find the faulty QSO for not known errors!
 					$this->session->set_flashdata('warning', $msg);
 					$status = "Error";
+				} elseif (stristr($result, "Bad record: Duplicate")) {
+					$status = "Duplicate";
+					$this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
 				} elseif (stristr($result, "Result: 0 out of 1 records added")) {
 					$this->eqsl_mark_invalid($qsl['COL_PRIMARY_KEY']);
 					$status = "Invalid";
@@ -305,9 +308,6 @@ class Eqslmethods_model extends CI_Model {
 					$msg = __("QTH Nickname does not exist at eQSL");
 					$this->session->set_flashdata('warning', $msg);
 					$status = "Nick Error";
-				} elseif (stristr($result, "Bad record: Duplicate")) {
-					$status = "Duplicate";
-					$this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
 				} else {
 					log_message("Error","eQSL: Uncaught exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']);
 				}
