@@ -6,6 +6,7 @@
 	const homelat = "<?php echo $latlng[0]; ?>";
 	const homelon = "<?php echo $latlng[1]; ?>";
 	var icon_home_url = "<?php echo base_url();?>assets/images/dot.png";
+	var tileUrl = "<?php echo $this->optionslib->get_option('option_map_tile_server'); ?>"
 </script>
 <script type="text/javascript">
     var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
