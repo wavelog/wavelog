@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-20 09:40+0000\n"
+"POT-Creation-Date: 2025-03-20 17:00+0000\n"
 "PO-Revision-Date: 2025-03-16 23:16+0000\n"
 "Last-Translator: Pascal HB9HCG <hb9hcg@uska.ch>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -686,7 +686,7 @@ msgstr "Недопустимый тип сообщения."
 msgid "Email settings not configured."
 msgstr "Параметры электронной почты не настроены."
 
-#: application/controllers/Club.php:227 application/views/api/index.php:62
+#: application/controllers/Club.php:227 application/views/api/index.php:68
 #: application/views/satellite/index.php:79
 msgid "Unknown"
 msgstr "Неизвестно"
@@ -2098,7 +2098,7 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 
 #: application/controllers/Radio.php:115
 #: application/controllers/Stationsetup.php:359
-#: application/views/api/index.php:68
+#: application/views/api/index.php:74
 #: application/views/club/permissions.php:248
 #: application/views/contesting/add.php:59 application/views/cron/index.php:58
 #: application/views/interface_assets/footer.php:603
@@ -2117,7 +2117,7 @@ msgstr "Редактировать"
 
 #: application/controllers/Radio.php:116
 #: application/controllers/Stationsetup.php:372
-#: application/views/api/index.php:75
+#: application/views/api/index.php:81
 #: application/views/club/permissions.php:304
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
@@ -4045,7 +4045,7 @@ msgid "CBR Import"
 msgstr "Импорт CBR"
 
 #: application/views/adif/import.php:64 application/views/adif/import.php:329
-#: application/views/api/index.php:16 application/views/dashboard/index.php:172
+#: application/views/api/index.php:22 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -4504,19 +4504,27 @@ msgstr ""
 "только получать данные от Wavelog."
 
 #: application/views/api/index.php:13
+msgid "Links to 3rd-Party-Software which works with Wavelog:"
+msgstr ""
+
+#: application/views/api/index.php:16
+msgid "More Tools"
+msgstr ""
+
+#: application/views/api/index.php:19
 msgid "API URL"
 msgstr "URL API"
 
-#: application/views/api/index.php:13 application/views/api/index.php:48
+#: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/cron/index.php:22 application/views/debug/index.php:46
 msgid "Copy to clipboard"
 msgstr "Скопировать в буфер обмена"
 
-#: application/views/api/index.php:13
+#: application/views/api/index.php:19
 msgid "The API URL for this Wavelog instance is"
 msgstr "URL API этого сервера Wavelog"
 
-#: application/views/api/index.php:14 application/views/dxcalendar/index.php:15
+#: application/views/api/index.php:20 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33 application/views/radio/index.php:26
 #: application/views/sattimers/index.php:67
 #: application/views/sattimers/index.php:69
@@ -4528,13 +4536,13 @@ msgstr "URL API этого сервера Wavelog"
 msgid "Info"
 msgstr "Информация"
 
-#: application/views/api/index.php:14
+#: application/views/api/index.php:20
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
 msgstr "Хорошей практикой является удаление ненужных ключей API."
 
-#: application/views/api/index.php:16
+#: application/views/api/index.php:22
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
@@ -4542,29 +4550,29 @@ msgstr ""
 "На клубных станциях API-ключи являются личными и не подлежат обмену. "
 "Пользователи клубных станций могут видеть только свои собственные ключи."
 
-#: application/views/api/index.php:24
+#: application/views/api/index.php:30
 msgid "API Key"
 msgstr "Ключ API"
 
-#: application/views/api/index.php:25 application/views/cron/edit.php:30
+#: application/views/api/index.php:31 application/views/cron/edit.php:30
 #: application/views/cron/index.php:53
 #: application/views/search/stored_queries.php:8
 msgid "Description"
 msgstr "Описание"
 
-#: application/views/api/index.php:26
+#: application/views/api/index.php:32
 msgid "Last Used"
 msgstr "Использовался последний раз"
 
-#: application/views/api/index.php:28
+#: application/views/api/index.php:34
 msgid "Created By"
 msgstr "Создано"
 
-#: application/views/api/index.php:30
+#: application/views/api/index.php:36
 msgid "Permissions"
 msgstr "Разрешения"
 
-#: application/views/api/index.php:31 application/views/cron/index.php:54
+#: application/views/api/index.php:37 application/views/cron/index.php:54
 #: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:38
 #: application/views/mode/index.php:43
@@ -4575,7 +4583,7 @@ msgstr "Разрешения"
 msgid "Status"
 msgstr "Статус"
 
-#: application/views/api/index.php:32
+#: application/views/api/index.php:38
 #: application/views/club/permissions.php:226
 #: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
@@ -4585,32 +4593,32 @@ msgstr "Статус"
 msgid "Actions"
 msgstr "Действия"
 
-#: application/views/api/index.php:58
+#: application/views/api/index.php:64
 msgid "Read & Write"
 msgstr "Чтение и Запись"
 
-#: application/views/api/index.php:60
+#: application/views/api/index.php:66
 msgid "Read-Only"
 msgstr "Только Чтение"
 
-#: application/views/api/index.php:70
+#: application/views/api/index.php:76
 msgid "Test"
 msgstr "Проверка"
 
-#: application/views/api/index.php:73
+#: application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
 msgstr "Вы уверены, что хотите удалить ключ API %s?"
 
-#: application/views/api/index.php:86
+#: application/views/api/index.php:92
 msgid "You have no API Keys."
 msgstr "У вас нет ключей API."
 
-#: application/views/api/index.php:90
+#: application/views/api/index.php:96
 msgid "Create a read & write key"
 msgstr "Создать ключ с правами 'Чтение и Запись'"
 
-#: application/views/api/index.php:91
+#: application/views/api/index.php:97
 msgid "Create a read-only key"
 msgstr "Создать ключ с правами 'Только Чтение'"
 
