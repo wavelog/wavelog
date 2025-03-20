@@ -687,7 +687,7 @@ msgid "Email settings not configured."
 msgstr "电子邮箱没有设置。"
 
 #: application/controllers/Club.php:227 application/views/api/index.php:62
-#: application/views/satellite/index.php:79
+#: application/views/satellite/index.php:79 application/views/api/index.php:68
 msgid "Unknown"
 msgstr "未知"
 
@@ -2091,7 +2091,7 @@ msgstr "默认（点击释放）"
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:97
-#: application/views/user/index.php:203
+#: application/views/user/index.php:203 application/views/api/index.php:74
 msgid "Edit"
 msgstr "编辑"
 
@@ -2119,6 +2119,7 @@ msgstr "编辑"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
+#: application/views/api/index.php:81
 msgid "Delete"
 msgstr "删除"
 
@@ -3993,7 +3994,7 @@ msgstr "CBR 导入"
 #: application/views/dashboard/index.php:197
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
-#: application/views/options/maptiles.php:48
+#: application/views/options/maptiles.php:48 application/views/api/index.php:22
 msgid "Important"
 msgstr "重要"
 
@@ -4411,16 +4412,17 @@ msgstr ""
 "您需要为每一个应用单独生成一个 API Key，根据需要创建 读-写 或 只读 权限的 "
 "API Key。"
 
-#: application/views/api/index.php:13
+#: application/views/api/index.php:13 application/views/api/index.php:19
 msgid "API URL"
 msgstr "API URL"
 
 #: application/views/api/index.php:13 application/views/api/index.php:48
 #: application/views/cron/index.php:22 application/views/debug/index.php:46
+#: application/views/api/index.php:19 application/views/api/index.php:54
 msgid "Copy to clipboard"
 msgstr "复制到剪贴板"
 
-#: application/views/api/index.php:13
+#: application/views/api/index.php:13 application/views/api/index.php:19
 msgid "The API URL for this Wavelog instance is"
 msgstr "本站的 API URL 是"
 
@@ -4432,17 +4434,17 @@ msgstr "本站的 API URL 是"
 #: application/views/sattimers/index.php:73
 #: application/views/sattimers/index.php:75
 #: application/views/sattimers/index.php:77
-#: application/views/search/filter.php:72
+#: application/views/search/filter.php:72 application/views/api/index.php:20
 msgid "Info"
 msgstr "消息"
 
-#: application/views/api/index.php:14
+#: application/views/api/index.php:14 application/views/api/index.php:20
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
 msgstr "如应用不再使用，建议删除对应的 API Key。"
 
-#: application/views/api/index.php:16
+#: application/views/api/index.php:16 application/views/api/index.php:22
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
@@ -4450,25 +4452,26 @@ msgstr ""
 "在集体台站的API key是个人的并且不共享。集体台站的用户只能看见他们自己的API "
 "key。"
 
-#: application/views/api/index.php:24
+#: application/views/api/index.php:24 application/views/api/index.php:30
 msgid "API Key"
 msgstr "API Key"
 
 #: application/views/api/index.php:25 application/views/cron/edit.php:30
 #: application/views/cron/index.php:53
 #: application/views/search/stored_queries.php:8
+#: application/views/api/index.php:31
 msgid "Description"
 msgstr "说明"
 
-#: application/views/api/index.php:26
+#: application/views/api/index.php:26 application/views/api/index.php:32
 msgid "Last Used"
 msgstr "上次使用"
 
-#: application/views/api/index.php:28
+#: application/views/api/index.php:28 application/views/api/index.php:34
 msgid "Created By"
 msgstr "创建者"
 
-#: application/views/api/index.php:30
+#: application/views/api/index.php:30 application/views/api/index.php:36
 msgid "Permissions"
 msgstr "权限"
 
@@ -4479,7 +4482,7 @@ msgstr "权限"
 #: application/views/oqrs/showrequests.php:91
 #: application/views/sattimers/index.php:39
 #: application/views/stationsetup/stationsetup.php:31
-#: application/views/timeline/index.php:201
+#: application/views/timeline/index.php:201 application/views/api/index.php:37
 msgid "Status"
 msgstr "状态"
 
@@ -4490,35 +4493,36 @@ msgstr "状态"
 #: application/views/logbookadvanced/index.php:588
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
 #: application/views/user/index.php:160 application/views/webadif/export.php:45
+#: application/views/api/index.php:38
 msgid "Actions"
 msgstr "操作"
 
-#: application/views/api/index.php:58
+#: application/views/api/index.php:58 application/views/api/index.php:64
 msgid "Read & Write"
 msgstr "读 & 写"
 
-#: application/views/api/index.php:60
+#: application/views/api/index.php:60 application/views/api/index.php:66
 msgid "Read-Only"
 msgstr "只读"
 
-#: application/views/api/index.php:70
+#: application/views/api/index.php:70 application/views/api/index.php:76
 msgid "Test"
 msgstr "测试"
 
-#: application/views/api/index.php:73
+#: application/views/api/index.php:73 application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
 msgstr "你确定想要删除 API Key %s ？"
 
-#: application/views/api/index.php:86
+#: application/views/api/index.php:86 application/views/api/index.php:92
 msgid "You have no API Keys."
 msgstr "无 APi Key。"
 
-#: application/views/api/index.php:90
+#: application/views/api/index.php:90 application/views/api/index.php:96
 msgid "Create a read & write key"
 msgstr "创建 读&写 权限的 API Key"
 
-#: application/views/api/index.php:91
+#: application/views/api/index.php:91 application/views/api/index.php:97
 msgid "Create a read-only key"
 msgstr "创建 只读 权限的 API Key"
 
@@ -14165,6 +14169,14 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#: application/views/api/index.php:13
+msgid "Links to 3rd-Party-Software which works with Wavelog:"
+msgstr ""
+
+#: application/views/api/index.php:16
+msgid "More Tools"
+msgstr ""
 
 #~ msgid "Altitude (meters)"
 #~ msgstr "高度（米）"
