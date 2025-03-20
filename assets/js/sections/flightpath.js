@@ -321,7 +321,7 @@ var sats = (function (L, d3, satelliteJs) {
       center: [20, 0],
     //   attributionControl: false,
       layers: [
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        L.tileLayer(tileUrl, {
         //   noWrap: false,
         }),
         svgLayer
