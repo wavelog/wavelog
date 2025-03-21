@@ -5623,7 +5623,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $station_ids);
 
 		//load only for the station_callsign given
-		$this->db->where('COL_STATION_CALLSIGN', xss_clean($station_callsign));
+		$this->db->where('COL_STATION_CALLSIGN', trim(xss_clean($station_callsign)));
 
 		//load only for the given contest id
 		$this->db->where('COL_CONTEST_ID', xss_clean($contest_id));
