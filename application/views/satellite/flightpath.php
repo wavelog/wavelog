@@ -40,13 +40,12 @@
 			<select class="form-select my-1 me-sm-2 w-auto"  id="sats" onchange="plot_sat()">
 				<?php foreach($satellites as $sat) {
 					echo '<option value="' . $sat->satname . '"';
-					if ($sat->satname == ($selsat ?? '')) { echo ' selected'; }
+					if ($sat->satname == $lastworkedsat) { echo ' selected'; }
 					echo '>' . $sat->satname . '</option>'."\n";
 				} ?>
 			</select>
 
 
-		<input type="hidden" id="selsat" value="<?php echo ($selsat ?? ''); ?>">
 	</form>
 
 </div>
