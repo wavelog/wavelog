@@ -484,4 +484,37 @@ class Update_model extends CI_Model {
 		return;
 	}
 
+	function update_hams_of_note() {
+		$this->db->empty_table("hams_of_note");
+		$this->db->query("ALTER TABLE hams_of_note AUTO_INCREMENT 1");
+		$file = 'https://www.ham2k.com/data/hams-of-note.txt';
+		$handle = fopen($file, "r");
+		$i = 0;
+		while (false !== ($data = fgets($handle))) {
+			$line = trim($data);
+			if ($line != "" && $line[0] != '#') {
+				$index = strpos($line, ' ');
+				$call = substr($line, 0, $index);
+				$name = substr($line, strpos($line, ' '));
+				$linkname = $link = '';
+				if (strpos($name, '[')) {
+					$linkname = substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1));
+					$link= substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1));
+					$name = substr($name, 0, strpos($name, '['));
+				}
+				$hon[$i]['callsign'] = $call;
+				$hon[$i]['description'] = $name;
+				$hon[$i]['linkname'] = $linkname;
+				$hon[$i]['link'] = $link;
+				if (($i % 100) == 0) {
+					$this->db->insert_batch('hams_of_note', $hon);
+					unset($hon);
+				}
+				$i++;
+			}
+		}
+		$this->db->insert_batch('hams_of_note', $hon);
+		return;
+	}
+
 }

@@ -489,6 +489,15 @@ class Update extends CI_Controller {
        $this->load->view('interface_assets/footer');
     }
 
+    public function update_hamsofnote() {
+       $this->load->model('Update_model');
+       $bodyData['satupdates'] = $this->Update_model->update_hams_of_note();
+       $data['page_title'] = __("Update of Hams of Note");
+       $this->load->view('interface_assets/header', $data);
+       $this->load->view('update/hamsofnote', $bodyData);
+       $this->load->view('interface_assets/footer');
+    }
+
 	function version_check() {
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
