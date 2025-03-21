@@ -488,9 +488,16 @@ class Update_model extends CI_Model {
 		$this->db->empty_table("hams_of_note");
 		$this->db->query("ALTER TABLE hams_of_note AUTO_INCREMENT 1");
 		$file = 'https://www.ham2k.com/data/hams-of-note.txt';
-		$handle = fopen($file, "r");
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $file);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($ch);
+		curl_close($ch);
 		$i = 0;
-		while (false !== ($data = fgets($handle))) {
+		$lines = explode("\n", $response);
+		foreach($lines as $data) {
 			$line = trim($data);
 			if ($line != "" && $line[0] != '#') {
 				$index = strpos($line, ' ');
