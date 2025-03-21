@@ -28,6 +28,7 @@ class Satellite_model extends CI_Model {
 		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
 		$sql = "select COL_SAT_NAME as sat from " . $this->config->item('table_name') .
 			" where station_id in (" . $location_list . ")" .
+			" AND COL_PROP_MODE = 'SAT' AND COL_SAT_NAME is not null AND COL_SAT_NAME != '' ".
 			"order by COL_TIME_ON DESC LIMIT 1";
 
 		$query = $this->db->query($sql);
