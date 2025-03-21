@@ -491,7 +491,7 @@ class Update extends CI_Controller {
 
     public function update_hamsofnote() {
        $this->load->model('Update_model');
-       $bodyData['satupdates'] = $this->Update_model->update_hams_of_note();
+       $bodyData['hamsofnote'] = $this->Update_model->update_hams_of_note();
        $data['page_title'] = __("Update of Hams of Note");
        $this->load->view('interface_assets/header', $data);
        $this->load->view('update/hamsofnote', $bodyData);

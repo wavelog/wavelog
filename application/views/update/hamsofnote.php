@@ -2,11 +2,11 @@
 <h2><?php echo $page_title; ?></h2>
 
 <?php
-if ($satupdates) {
+if ($hamsofnote) {
    echo '<table class="table table-striped table-hover">';
-   echo '<tr><th>'.__('Name').'</th><th>'.__('Display Name').'</th><th>'.__('Start Date').'</th><th>'.__('End Date').'</th><th>'.__('Status').'</th></tr>';
-   foreach ($satupdates as $sat) {
-      echo('<tr><td>'.$sat['name'].'</td><td>'.$sat['displayname'].'</td><td>'.$sat['startDate'].'</td><td>'.$sat['endDate'].'</td><td>'.$sat['status'].'</td></tr>');
+   echo '<tr><th>'.__('Callsign').'</th><th>'.__('Name / Description').'</th></tr>';
+   foreach ($hamsofnote as $hamofnote) {
+      echo('<tr><td>'.$hamofnote['callsign'].'</td><td>'.$hamofnote['name'].' <a target="_blank" href="'.$hamofnote['link'].'">'.$hamofnote['linkname'].'</a></td></tr>');
    }
    echo '</table>';
 } else {

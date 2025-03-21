@@ -488,6 +488,7 @@ class Update_model extends CI_Model {
 		$this->db->empty_table("hams_of_note");
 		$this->db->query("ALTER TABLE hams_of_note AUTO_INCREMENT 1");
 		$file = 'https://www.ham2k.com/data/hams-of-note.txt';
+		$result = array();
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $file);
 		curl_setopt($ch, CURLOPT_HEADER, false);
@@ -504,12 +505,13 @@ class Update_model extends CI_Model {
 				$index = strpos($line, ' ');
 				$call = substr($line, 0, $index);
 				$name = substr($line, strpos($line, ' '));
-				$linkname = $link = '';
+				$linkname = $link = null;
 				if (strpos($name, '[')) {
 					$linkname = substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1));
 					$link= substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1));
 					$name = substr($name, 0, strpos($name, '['));
 				}
+				array_push($result, array('callsign' => $call, 'name' => $name, 'linkname' => $linkname, 'link' => $link));
 				$hon[$i]['callsign'] = $call;
 				$hon[$i]['description'] = $name;
 				$hon[$i]['linkname'] = $linkname;
@@ -522,7 +524,7 @@ class Update_model extends CI_Model {
 			}
 		}
 		$this->db->insert_batch('hams_of_note', $hon);
-		return;
+		return $result;
 	}
 
 }
