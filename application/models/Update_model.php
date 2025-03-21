@@ -491,6 +491,7 @@ class Update_model extends CI_Model {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $file);
 		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($ch);
