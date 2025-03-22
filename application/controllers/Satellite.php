@@ -192,7 +192,7 @@ class Satellite extends CI_Controller {
 		$this->load->model('stations');
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites_with_tle();
-		$data['lastworkedsat'] = $this->satellite_model->get_last_worked_sat();
+		$data['selsat']=strtoupper($sat ?? $this->satellite_model->get_last_worked_sat());
 
 		$footerData = [];
 		$footerData['scripts'] = [
