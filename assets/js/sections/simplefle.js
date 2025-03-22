@@ -247,7 +247,7 @@ function handleInput() {
 
 		// First, search for <...>- and [...]-Patterns, which may contain comments (... or additional fields) / qsl-notes
 		let addInfoMatches = row.matchAll(/<([^>]*)>|\[([^\]]*)\]/g);
-		addInfoMatches.forEach((item) => {
+		for (const item of addInfoMatches) {
 			row = row.replace(item[0], "");
 			let kv;
 			if (item[0][0] == '<' && (kv = item[1].match(/^([a-z_]+): *(.*)$/))) {
@@ -257,7 +257,7 @@ function handleInput() {
 			} else {
 				add_info.comment = (('comment' in add_info)?add_info.comment+' ': '')+item[1];
 			}
-		});
+		}
 
 		// Now split the remaining line by spaces and match patterns on those
 		var itemNumber = 0;
