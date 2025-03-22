@@ -34,7 +34,7 @@
                                         <label for="station_callsign" class="form-label mb-0"><?= __("Station Callsign"); ?></label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control uppercase" id="station_callsign" name="station_callsign" placeholder="4W7EST" required>
+                                        <input type="text" class="form-control uppercase" id="station_callsign" pattern="^\S+$" name="station_callsign" placeholder="4W7EST" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3 align-items-center">
