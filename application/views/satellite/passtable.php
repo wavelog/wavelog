@@ -1,6 +1,7 @@
 <?php
 if (isset($filtered)) {
-	echo '<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
+	echo '<table style="width:100%" class="satpasstable table-sm table table-bordered table-hover table-striped table-condensed text-center">
+			<thead>
 				<tr id="toptable">
 					<th>' . __("Satellite") . '</th>
 					<th>' . __("AOS Time") . '</th>
@@ -10,7 +11,9 @@ if (isset($filtered)) {
 					<th>' . __("Max Elevation") . '</th>
 					<th>' . __("AOS Azimuth") . '</th>
 					<th>' . __("LOS Azimuth") . '</th>
-				</tr>';
+				</tr>
+			</thead>
+			<tbody>';
 			foreach ($filtered as $pass) {
 				$aos_az = round($pass->visible_aos_az);
 				$los_az = round($pass->visible_los_az);
@@ -29,7 +32,7 @@ if (isset($filtered)) {
 				echo '<td>' . $los_az . ' ° (' . azDegreesToDirection($pass->visible_los_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$los_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '</tr>';
 			}
-			echo '</table>';
+			echo '</tbody></table>';
 } else {
 	echo '<div style="text-align: center !important">';
 	echo '<h2>'.__('Search failed!').'</h2>';

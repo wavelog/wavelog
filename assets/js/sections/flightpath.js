@@ -1,21 +1,21 @@
 var satmarker;
-var maidenhead;
-var leafletMap;
+let maidenhead;
+let leafletMap;
 var icon_dot_url = base_url + "assets/icons/saticon.png";
-var saticon = L.icon({ iconUrl: icon_dot_url, iconSize: [30, 30] });
+let saticon = L.icon({ iconUrl: icon_dot_url, iconSize: [30, 30] });
 
-var homeicon = L.icon({ iconUrl: icon_home_url, iconSize: [15, 15] });
+let homeicon = L.icon({ iconUrl: icon_home_url, iconSize: [15, 15] });
 
-var observerGd = {
+let observerGd = {
 	longitude: satellite.degreesToRadians(homelon),
 	latitude: satellite.degreesToRadians(homelat),
 	height: 0.370
 };
 
-var sats = (function (L, d3, satelliteJs) {
-  var RADIANS = Math.PI / 180;
-  var DEGREES = 180 / Math.PI;
-  var R_EARTH = 6378.137; // equatorial radius (km)
+let sats = (function (L, d3, satelliteJs) {
+  let RADIANS = Math.PI / 180;
+  let DEGREES = 180 / Math.PI;
+  let R_EARTH = 6378.137; // equatorial radius (km)
 
   /* =============================================== */
   /* =============== CLOCK ========================= */
@@ -53,10 +53,10 @@ var sats = (function (L, d3, satelliteJs) {
   /* ==================================================== */
 
 	function satrecToFeature(satrec, date, props) {		// DJ7NT: This is never called
-		var properties = props || {};
-		var positionAndVelocity = satelliteJs.propagate(satrec, date);
-		var gmst = satelliteJs.gstime(date);
-		var positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, gmst);
+		let properties = props || {};
+		let positionAndVelocity = satelliteJs.propagate(satrec, date);
+		let gmst = satelliteJs.gstime(date);
+		let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, gmst);
 		properties.height = positionGd.height;
 		return {
 			type: "FeatureCollection",
@@ -106,10 +106,10 @@ var sats = (function (L, d3, satelliteJs) {
   };
 
   TLE.prototype.features = function (tles) {
-    var date = this._date || d3.now();
+    let date = this._date || d3.now();
 
     return tles.map(function (d) {
-      var satrec = satelliteJs.twoline2satrec.apply(null, this._lines(d));
+      let satrec = satelliteJs.twoline2satrec.apply(null, this._lines(d));
       return satrecToFeature(satrec, date, this._properties(d));
     });
   };
@@ -143,7 +143,7 @@ var sats = (function (L, d3, satelliteJs) {
    */
   function parseTle(tleString) {
     // remove last newline so that we can properly split all the lines
-    var lines = tleString.replace(/\r?\n$/g, '').split(/\r?\n/);
+    let lines = tleString.replace(/\r?\n$/g, '').split(/\r?\n/);
 
     return lines.reduce(function (acc, cur, index) {
       if (index % 2 === 0) acc.push([]);
@@ -187,10 +187,10 @@ var sats = (function (L, d3, satelliteJs) {
    */
 	Satellite.prototype.update = function () {
 		try {
-			var positionAndVelocity = satelliteJs.propagate(this._satrec, this._date);
-			var positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, this._gmst);
-			var positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, this._gmst);
-			var lA = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
+			let positionAndVelocity = satelliteJs.propagate(this._satrec, this._date);
+			let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, this._gmst);
+			let positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, this._gmst);
+			let lA = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
 
 			this._lookAngles = {
 				azimuth: lA.azimuth * DEGREES,
@@ -214,7 +214,7 @@ var sats = (function (L, d3, satelliteJs) {
    * @returns {GeoJSON.Polygon} GeoJSON describing the satellite's current footprint on the Earth
    */
   Satellite.prototype.getFootprint = function () {
-    var theta = this._halfAngle * RADIANS;
+    let theta = this._halfAngle * RADIANS;
 
     coreAngle = this._coreAngle(theta, this._altitude, R_EARTH) * DEGREES;
 
@@ -299,13 +299,13 @@ var sats = (function (L, d3, satelliteJs) {
   /* =============================================== */
 
   // Approximate date the tle data was aquired from https://www.space-track.org/#recent
-  // var TLE_DATA_DATE = new Date(2024, 04, 18).getTime();
-  var TLE_DATA_DATE = Date.now();
+  // let TLE_DATA_DATE = new Date(2024, 04, 18).getTime();
+  let TLE_DATA_DATE = Date.now();
 
-  var attributionControl;
-  var activeClock;
-  var sats;
-  var svgLayer;
+  let attributionControl;
+  let activeClock;
+  let sats;
+  let svgLayer;
 
   function projectPointCurry(map) {
     return function (x, y) {
@@ -334,7 +334,7 @@ var sats = (function (L, d3, satelliteJs) {
 			title: satellite,
 			zIndex: 1000,
 		}
-	).addTo(leafletMap);
+	).addTo(leafletMap).on('click', displayUpComingPasses);
 
 	L.marker(
 		[homelat, homelon], {
@@ -345,11 +345,11 @@ var sats = (function (L, d3, satelliteJs) {
 	).addTo(leafletMap);
 
 	/*Legend specific*/
-    var legend = L.control({ position: "topright" });
+    let legend = L.control({ position: "topright" });
 
     legend.onAdd = function(map) {
-        var div = L.DomUtil.create("div", "legend");
-        var html = "<h4>Satellite Details</h4>";
+        let div = L.DomUtil.create("div", "legend");
+        let html = "<h4>Satellite Details</h4>";
         html += "<table>";
         html += '<tr><td><span>Satellite</span></td><td align="right"><span id="satname"></span></td></tr>';
         html += '<tr><td><span>Orbit</span></td><td align="right"><span id="satorbit"></span></td></tr>';
@@ -371,7 +371,7 @@ var sats = (function (L, d3, satelliteJs) {
       prefix: ''
     }).addTo(leafletMap);
 
-    var transform = d3.geoTransform({
+    let transform = d3.geoTransform({
       point: projectPointCurry(leafletMap)
     });
 
@@ -383,8 +383,8 @@ var sats = (function (L, d3, satelliteJs) {
 	function updateSats(date) {
 		sats.forEach(function (sat) {
 			sat.setDate(date).update();
-			var az = (Math.round((sat._lookAngles.azimuth*100),2)/100).toFixed(2);
-			var ele = (Math.round((sat._lookAngles.elevation*100),2)/100).toFixed(2);
+			let az = (Math.round((sat._lookAngles.azimuth*100),2)/100).toFixed(2);
+			let ele = (Math.round((sat._lookAngles.elevation*100),2)/100).toFixed(2);
 			if (ele > 0) {
 				az = "<b>"+az+"°</b>";
 				ele = "<b>"+ele+"°</b>";
@@ -410,7 +410,7 @@ var sats = (function (L, d3, satelliteJs) {
       .rate(1)
       .date(TLE_DATA_DATE);
     sats = parsedTles.map(function (tle) {
-      var sat = new Satellite(tle, new Date());
+      let sat = new Satellite(tle, new Date());
       sat.halfAngle(30);
       // sat.halfAngle(sat.getOrbitType() === 'LEO' ? Math.random() * (30 - 15) + 15 : Math.random() * 4 + 1);
       return sat;
@@ -440,10 +440,10 @@ var sats = (function (L, d3, satelliteJs) {
   }
 
   function draw() {
-    var transform = d3.geoTransform({
+    let transform = d3.geoTransform({
       point: projectPointCurry(leafletMap)
     });
-    var geoPath = d3.geoPath()
+    let geoPath = d3.geoPath()
       .projection(transform);
 
     d3.select(svgLayer._container)
@@ -471,9 +471,8 @@ var sats = (function (L, d3, satelliteJs) {
   };
 
   function animateSats(elapsed) {
-    var dateInMs = activeClock.elapsed(elapsed)
-      .date();
-    var date = new Date(dateInMs);
+    let dateInMs = activeClock.elapsed(elapsed).date();
+    let date = new Date(dateInMs);
     attributionControl.setPrefix(date);
 
     updateSats(date);
@@ -494,7 +493,7 @@ var sats = (function (L, d3, satelliteJs) {
  }(window.L, window.d3, window.satellite))
 
 function plot_sat() {
-	var container = L.DomUtil.get('sat_map');
+	let container = L.DomUtil.get('sat_map');
 	if(container != null){
 		container._leaflet_id = null;
 		container.remove();
@@ -534,3 +533,61 @@ $( document ).ready(function() {
 		plot_sat();
 	}
 });
+
+function displayUpComingPasses(e) {
+	$.ajax({
+		url: base_url + 'index.php/satellite/searchPasses',
+        type: 'post',
+        data: {'sat': $("#sats").val(),
+            'yourgrid': homegrid,
+            'minelevation': 0,
+            'minazimuth': 0,
+            'maxazimuth': 360,
+            'date': new Date().toISOString().slice(0, 10),
+            'mintime': new Date().toISOString().slice(11, 13),
+        },
+		success: function (html) {
+			let dialog = new BootstrapDialog({
+			title: lang_gen_hamradio_upcoming_passes + ' ' + $("#sats").val(),
+				size: BootstrapDialog.SIZE_WIDE,
+				cssClass: 'qso-dialog',
+				nl2br: false,
+				message: html,
+				onshown: function(dialog) {
+					$('[data-bs-toggle="tooltip"]').tooltip();
+					$('.satpasstable').DataTable({
+					"pageLength": 25,
+						responsive: false,
+						ordering: false,
+						"scrollY":        "550px",
+						"scrollCollapse": true,
+						"paging":         false,
+						"scrollX": true,
+						"language": {
+							url: getDataTablesLanguageUrl(),
+						},
+						dom: 'Bfrtip',
+						buttons: [
+							{
+								extend: 'csv',
+								className: 'mb-1 btn btn-primary', // Bootstrap classes
+									init: function(api, node, config) {
+										$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+								},
+							}
+						]
+					});
+				},
+				buttons: [{
+				label: lang_admin_close,
+					action: function (dialogItself) {
+						dialogItself.close();
+					}
+					}]
+			});
+			dialog.realize();
+			$('#satcontainer').append(dialog.getModal());
+			dialog.open();
+		}
+	});
+}
