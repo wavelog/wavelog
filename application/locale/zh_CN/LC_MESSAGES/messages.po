@@ -10,12 +10,13 @@
 # hellofinch <543933756@qq.com>, 2024, 2025.
 # wxy <xy.8789aime@foxmail.com>, 2024.
 # YuanRetro <lijiaxuan1811@163.com>, 2025.
+# 李宇翔 <lyx8851@qq.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-20 17:00+0000\n"
-"PO-Revision-Date: 2025-03-17 17:33+0000\n"
-"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
+"POT-Creation-Date: 2025-03-19 18:00+0000\n"
+"PO-Revision-Date: 2025-03-20 09:40+0000\n"
+"Last-Translator: 李宇翔 <lyx8851@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -685,8 +686,8 @@ msgstr "无效的消息类型。"
 msgid "Email settings not configured."
 msgstr "电子邮箱没有设置。"
 
-#: application/controllers/Club.php:227 application/views/api/index.php:68
-#: application/views/satellite/index.php:79
+#: application/controllers/Club.php:227 application/views/api/index.php:62
+#: application/views/satellite/index.php:79 application/views/api/index.php:68
 msgid "Unknown"
 msgstr "未知"
 
@@ -949,12 +950,12 @@ msgstr "您未设置 eQSL 的账户信息！"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "eQSL 的用户名或密码错误"
 
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "没有找到昵称为：%s的eQSL QTH"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
@@ -2077,7 +2078,7 @@ msgstr "默认（点击释放）"
 
 #: application/controllers/Radio.php:115
 #: application/controllers/Stationsetup.php:359
-#: application/views/api/index.php:74
+#: application/views/api/index.php:68
 #: application/views/club/permissions.php:248
 #: application/views/contesting/add.php:59 application/views/cron/index.php:58
 #: application/views/interface_assets/footer.php:603
@@ -2090,13 +2091,13 @@ msgstr "默认（点击释放）"
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:97
-#: application/views/user/index.php:203
+#: application/views/user/index.php:203 application/views/api/index.php:74
 msgid "Edit"
 msgstr "编辑"
 
 #: application/controllers/Radio.php:116
 #: application/controllers/Stationsetup.php:372
-#: application/views/api/index.php:81
+#: application/views/api/index.php:75
 #: application/views/club/permissions.php:304
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
@@ -2118,6 +2119,7 @@ msgstr "编辑"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
+#: application/views/api/index.php:81
 msgid "Delete"
 msgstr "删除"
 
@@ -2957,7 +2959,7 @@ msgstr "eQSL 服务异常！"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "QTH 别名在 eQSL 中不存在"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -2977,7 +2979,7 @@ msgstr "eQSL 网站似乎更改了地址，请在 GitHub 上创建一个 issue�
 #: application/models/Eqslmethods_model.php:333
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr ""
+msgstr "上传 QSO 时发生未捕获的错误。也许 eQSL 出现了问题"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -3647,13 +3649,14 @@ msgstr "显示"
 #: application/views/interface_assets/header.php:192
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:255
-#: application/views/satellite/flightpath.php:39
+#: application/views/satellite/flightpath.php:38
 #: application/views/satellite/pass.php:47
 #: application/views/satellite/passtable.php:5
 #: application/views/satellite/skedtable.php:7
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:24
+#: application/views/satellite/flightpath.php:39
 msgid "Satellite"
 msgstr "卫星"
 
@@ -3986,12 +3989,12 @@ msgid "CBR Import"
 msgstr "CBR 导入"
 
 #: application/views/adif/import.php:64 application/views/adif/import.php:329
-#: application/views/api/index.php:22 application/views/dashboard/index.php:172
+#: application/views/api/index.php:16 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
-#: application/views/options/maptiles.php:48
+#: application/views/options/maptiles.php:48 application/views/api/index.php:22
 msgid "Important"
 msgstr "重要"
 
@@ -4409,28 +4412,21 @@ msgstr ""
 "您需要为每一个应用单独生成一个 API Key，根据需要创建 读-写 或 只读 权限的 "
 "API Key。"
 
-#: application/views/api/index.php:13
-msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr ""
-
-#: application/views/api/index.php:16
-msgid "More Tools"
-msgstr ""
-
-#: application/views/api/index.php:19
+#: application/views/api/index.php:13 application/views/api/index.php:19
 msgid "API URL"
 msgstr "API URL"
 
-#: application/views/api/index.php:19 application/views/api/index.php:54
+#: application/views/api/index.php:13 application/views/api/index.php:48
 #: application/views/cron/index.php:22 application/views/debug/index.php:46
+#: application/views/api/index.php:19 application/views/api/index.php:54
 msgid "Copy to clipboard"
 msgstr "复制到剪贴板"
 
-#: application/views/api/index.php:19
+#: application/views/api/index.php:13 application/views/api/index.php:19
 msgid "The API URL for this Wavelog instance is"
 msgstr "本站的 API URL 是"
 
-#: application/views/api/index.php:20 application/views/dxcalendar/index.php:15
+#: application/views/api/index.php:14 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33 application/views/radio/index.php:26
 #: application/views/sattimers/index.php:67
 #: application/views/sattimers/index.php:69
@@ -4438,17 +4434,17 @@ msgstr "本站的 API URL 是"
 #: application/views/sattimers/index.php:73
 #: application/views/sattimers/index.php:75
 #: application/views/sattimers/index.php:77
-#: application/views/search/filter.php:72
+#: application/views/search/filter.php:72 application/views/api/index.php:20
 msgid "Info"
 msgstr "消息"
 
-#: application/views/api/index.php:20
+#: application/views/api/index.php:14 application/views/api/index.php:20
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
 msgstr "如应用不再使用，建议删除对应的 API Key。"
 
-#: application/views/api/index.php:22
+#: application/views/api/index.php:16 application/views/api/index.php:22
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
@@ -4456,75 +4452,77 @@ msgstr ""
 "在集体台站的API key是个人的并且不共享。集体台站的用户只能看见他们自己的API "
 "key。"
 
-#: application/views/api/index.php:30
+#: application/views/api/index.php:24 application/views/api/index.php:30
 msgid "API Key"
 msgstr "API Key"
 
-#: application/views/api/index.php:31 application/views/cron/edit.php:30
+#: application/views/api/index.php:25 application/views/cron/edit.php:30
 #: application/views/cron/index.php:53
 #: application/views/search/stored_queries.php:8
+#: application/views/api/index.php:31
 msgid "Description"
 msgstr "说明"
 
-#: application/views/api/index.php:32
+#: application/views/api/index.php:26 application/views/api/index.php:32
 msgid "Last Used"
 msgstr "上次使用"
 
-#: application/views/api/index.php:34
+#: application/views/api/index.php:28 application/views/api/index.php:34
 msgid "Created By"
 msgstr "创建者"
 
-#: application/views/api/index.php:36
+#: application/views/api/index.php:30 application/views/api/index.php:36
 msgid "Permissions"
 msgstr "权限"
 
-#: application/views/api/index.php:37 application/views/cron/index.php:54
+#: application/views/api/index.php:31 application/views/cron/index.php:54
 #: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:38
 #: application/views/mode/index.php:43
 #: application/views/oqrs/showrequests.php:91
 #: application/views/sattimers/index.php:39
 #: application/views/stationsetup/stationsetup.php:31
-#: application/views/timeline/index.php:201
+#: application/views/timeline/index.php:201 application/views/api/index.php:37
 msgid "Status"
 msgstr "状态"
 
-#: application/views/api/index.php:38
+#: application/views/api/index.php:32
 #: application/views/club/permissions.php:226
 #: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:588
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
 #: application/views/user/index.php:160 application/views/webadif/export.php:45
+#: application/views/api/index.php:38
 msgid "Actions"
 msgstr "操作"
 
-#: application/views/api/index.php:64
+#: application/views/api/index.php:58 application/views/api/index.php:64
 msgid "Read & Write"
 msgstr "读 & 写"
 
-#: application/views/api/index.php:66
+#: application/views/api/index.php:60 application/views/api/index.php:66
 msgid "Read-Only"
 msgstr "只读"
 
-#: application/views/api/index.php:76
+#: application/views/api/index.php:70 application/views/api/index.php:76
 msgid "Test"
 msgstr "测试"
 
-#: application/views/api/index.php:79
+#: application/views/api/index.php:73 application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
 msgstr "你确定想要删除 API Key %s ？"
 
-#: application/views/api/index.php:92
+#: application/views/api/index.php:86 application/views/api/index.php:92
 msgid "You have no API Keys."
 msgstr "无 APi Key。"
 
-#: application/views/api/index.php:96
+#: application/views/api/index.php:90 application/views/api/index.php:96
 msgid "Create a read & write key"
 msgstr "创建 读&写 权限的 API Key"
 
-#: application/views/api/index.php:97
+#: application/views/api/index.php:91 application/views/api/index.php:97
 msgid "Create a read-only key"
 msgstr "创建 只读 权限的 API Key"
 
@@ -9361,6 +9359,7 @@ msgstr "西西里岛"
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
+#: application/views/satellite/flightpath.php:11
 #: application/views/satellite/flightpath.php:12
 msgctxt "Map Options"
 msgid "Gridsquares"
@@ -11636,7 +11635,7 @@ msgstr "持续时间"
 
 #: application/views/satellite/passtable.php:9
 msgid "Path"
-msgstr ""
+msgstr "卫星路径"
 
 #: application/views/satellite/passtable.php:10
 #: application/views/satellite/skedtable.php:11
@@ -14170,6 +14169,14 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#: application/views/api/index.php:13
+msgid "Links to 3rd-Party-Software which works with Wavelog:"
+msgstr ""
+
+#: application/views/api/index.php:16
+msgid "More Tools"
+msgstr ""
 
 #~ msgid "Altitude (meters)"
 #~ msgstr "高度（米）"
