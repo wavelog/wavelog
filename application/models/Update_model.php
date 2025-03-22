@@ -487,7 +487,7 @@ class Update_model extends CI_Model {
 	function update_hams_of_note() {
 		$this->db->empty_table("hams_of_note");
 		$this->db->query("ALTER TABLE hams_of_note AUTO_INCREMENT 1");
-		$file = 'https://www.ham2k.com/data/hams-of-note.txt';
+		$file = 'https://api.ham2k.net/data/ham2k/hams-of-note.txt';
 		$result = array();
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $file);
