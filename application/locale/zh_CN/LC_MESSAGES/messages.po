@@ -10,12 +10,13 @@
 # hellofinch <543933756@qq.com>, 2024, 2025.
 # wxy <xy.8789aime@foxmail.com>, 2024.
 # YuanRetro <lijiaxuan1811@163.com>, 2025.
+# 李宇翔 <lyx8851@qq.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-20 17:00+0000\n"
-"PO-Revision-Date: 2025-03-17 17:33+0000\n"
-"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
+"POT-Creation-Date: 2025-03-22 21:29+0000\n"
+"PO-Revision-Date: 2025-03-20 09:40+0000\n"
+"Last-Translator: 李宇翔 <lyx8851@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -949,12 +950,12 @@ msgstr "您未设置 eQSL 的账户信息！"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "eQSL 的用户名或密码错误"
 
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "没有找到昵称为：%s的eQSL QTH"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
@@ -2957,7 +2958,7 @@ msgstr "eQSL 服务异常！"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "QTH 别名在 eQSL 中不存在"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -2977,7 +2978,7 @@ msgstr "eQSL 网站似乎更改了地址，请在 GitHub 上创建一个 issue�
 #: application/models/Eqslmethods_model.php:333
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr ""
+msgstr "上传 QSO 时发生未捕获的错误。也许 eQSL 出现了问题"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -3647,9 +3648,9 @@ msgstr "显示"
 #: application/views/interface_assets/header.php:192
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:255
-#: application/views/satellite/flightpath.php:39
+#: application/views/satellite/flightpath.php:41
 #: application/views/satellite/pass.php:47
-#: application/views/satellite/passtable.php:5
+#: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:7
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
@@ -9361,7 +9362,7 @@ msgstr "西西里岛"
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
-#: application/views/satellite/flightpath.php:12
+#: application/views/satellite/flightpath.php:13
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "网格"
@@ -11617,53 +11618,53 @@ msgstr "添加通联伙伴"
 msgid "No TLE information detected. Please update TLE's."
 msgstr "没有找到TLE信息，请更新TLE信息。"
 
-#: application/views/satellite/passtable.php:6
+#: application/views/satellite/passtable.php:7
 #: application/views/satellite/skedtable.php:8
 msgid "AOS Time"
 msgstr "AOS 时间"
 
-#: application/views/satellite/passtable.php:7
+#: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:12
 msgid "LOS Time"
 msgstr "LOS 时间"
 
-#: application/views/satellite/passtable.php:8
+#: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:9
 #: application/views/satellite/skedtable.php:60
 #: application/views/sattimers/index.php:46
 msgid "Duration"
 msgstr "持续时间"
 
-#: application/views/satellite/passtable.php:9
-msgid "Path"
-msgstr ""
-
 #: application/views/satellite/passtable.php:10
+msgid "Path"
+msgstr "卫星路径"
+
+#: application/views/satellite/passtable.php:11
 #: application/views/satellite/skedtable.php:11
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
 msgstr "最大仰角"
 
-#: application/views/satellite/passtable.php:11
+#: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:10
 msgid "AOS Azimuth"
 msgstr "AOS 方位角"
 
-#: application/views/satellite/passtable.php:12
+#: application/views/satellite/passtable.php:13
 #: application/views/satellite/skedtable.php:13
 msgid "LOS Azimuth"
 msgstr "LOS 方位角"
 
-#: application/views/satellite/passtable.php:35
+#: application/views/satellite/passtable.php:38
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
 msgstr "搜索失败！"
 
-#: application/views/satellite/passtable.php:36
+#: application/views/satellite/passtable.php:39
 msgid "No passes found. Please check the input parameters."
 msgstr "没有找到卫星通过。请检查输入参数。"
 
-#: application/views/satellite/passtable.php:45
+#: application/views/satellite/passtable.php:48
 #: application/views/satellite/skedtable.php:93
 msgid "min"
 msgstr "分钟"

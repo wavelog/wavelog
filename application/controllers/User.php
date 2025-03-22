@@ -1155,7 +1155,7 @@ class User extends CI_Controller {
 		$stationdata = [
 			'user_id' => $this->session->userdata('user_id'),
 			'station_name' => $this->input->post('station_name', true),
-			'station_callsign' => $this->input->post('station_callsign', true),
+			'station_callsign' => trim($this->input->post('station_callsign', true)),
 			'station_dxcc' => $this->input->post('station_dxcc', true),
 			'station_cqz' => $this->input->post('station_cqz', true),
 			'station_ituz' => $this->input->post('station_ituz', true),

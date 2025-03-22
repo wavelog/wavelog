@@ -1225,7 +1225,7 @@ class Logbook_model extends CI_Model {
 		}
 
 		$station_profile = $this->stations->profile_clean($stationId);
-		$stationCallsign = $station_profile->station_callsign;
+		$stationCallsign = trim($station_profile->station_callsign);
 		$iotaRef = $station_profile->station_iota ?? '';
 		$sotaRef = $station_profile->station_sota ?? '';
 		$wwffRef = $station_profile->station_wwff ?? '';
@@ -3631,8 +3631,8 @@ class Logbook_model extends CI_Model {
 
 		$binding[] = $datetime;
 		$binding[] = $datetime;
-		$binding[] = $callsign ?? '';
-		$binding[] = $station_callsign;
+		$binding[] = trim($callsign ?? '');
+		$binding[] = trim($station_callsign);
 		$binding[] = $band;
 		$binding[] = $mode;
 
@@ -3830,7 +3830,7 @@ class Logbook_model extends CI_Model {
 		$station_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 
 		foreach ($records as $record) {
-			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg);
+			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, trim($operatorName), $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg);
 			if ($one_error['error'] ?? '' != '') {
 				$custom_errors .= $one_error['error'] . "<br/>";
 			} else {	// No Errors / QSO doesn't exist so far
@@ -3845,7 +3845,7 @@ class Logbook_model extends CI_Model {
 							'COL_BAND' => $record['band'],
 							'COL_BAND_RX' => $record['band_rx'] ?? '',
 							'COL_MODE' => $record['mode'],
-							'COL_STATION_CALLSIGN' => $station_profile->station_callsign,
+							'COL_STATION_CALLSIGN' => trim($station_profile->station_callsign),
 							'COL_MY_GRIDSQUARE' => $station_profile->station_gridsquare,
 						);
 						array_push($amsat_qsos, $data);
@@ -3897,7 +3897,7 @@ class Logbook_model extends CI_Model {
 		if (($station_id != 0) && (!(isset($record['station_callsign'])))) {
 			$record['station_callsign'] = $station_profile_call;
 		}
-		if ((!$skipStationCheck) && ($station_id != 0) && (strtoupper($record['station_callsign']) != strtoupper($station_profile_call))) {     // Check if station_call from import matches profile ONLY when submitting via GUI.
+		if ((!$skipStationCheck) && ($station_id != 0) && (trim(strtoupper($record['station_callsign'])) != trim(strtoupper($station_profile_call)))) {     // Check if station_call from import matches profile ONLY when submitting via GUI.
 			$returner['error'] =sprintf(__("Wrong station callsign %s while importing QSO with %s for %s: SKIPPED") .
 				"<br>".__("Check %s for hints about errors in ADIF files."),
 				'<b>'.htmlentities($record['station_callsign'] ?? '').'</b>',($record['call'] ?? ''),'<b>'.($station_profile_call ?? '').'</b>',"<a target=\"_blank\" href=\"https://github.com/wavelog/Wavelog/wiki/ADIF-file-can't-be-imported\">Wavelog Wiki</a>");
@@ -4397,7 +4397,7 @@ class Logbook_model extends CI_Model {
 				'COL_BAND' => $band ?? '',
 				'COL_BAND_RX' => $band_rx ?? '',
 				'COL_BIOGRAPHY' => (!empty($record['biography'])) ? $record['biography'] : '',
-				'COL_CALL' => (!empty($record['call'])) ? strtoupper($record['call']) : '',
+				'COL_CALL' => trim((!empty($record['call'])) ? strtoupper($record['call']) : ''),
 				'COL_CHECK' => (!empty($record['check'])) ? $record['check'] : '',
 				'COL_CLASS' => (!empty($record['class'])) ? $record['class'] : '',
 				'COL_CLUBLOG_QSO_UPLOAD_DATE' => $input_clublog_qslsdate,
@@ -4538,7 +4538,7 @@ class Logbook_model extends CI_Model {
 				//convert to integer to make sure no invalid entries are imported
 				'COL_SRX_STRING' => (!empty($record['srx_string'])) ? $record['srx_string'] : '',
 				'COL_STATE' => (!empty($record['state'])) ? strtoupper($record['state']) : '',
-				'COL_STATION_CALLSIGN' => (!empty($record['station_callsign'])) ? $record['station_callsign'] : '',
+				'COL_STATION_CALLSIGN' => trim((!empty($record['station_callsign'])) ? $record['station_callsign'] : ''),
 				//convert to integer to make sure no invalid entries are imported
 				'COL_STX' => (!empty($record['stx'])) ? (int)$record['stx'] : null,
 				'COL_STX_STRING' => (!empty($record['stx_string'])) ? $record['stx_string'] : '',
@@ -5266,7 +5266,7 @@ class Logbook_model extends CI_Model {
 			if ($station_callsign == '') {
 				$this->db->where(array('col_station_callsign' => NULL));
 			} else {
-				$this->db->where('col_station_callsign', $station_callsign);
+				$this->db->where('col_station_callsign', trim($station_callsign));
 			}
 			$this->db->update($this->config->item('table_name'), $data);
 			if ($this->db->affected_rows() > 0) {
@@ -5623,7 +5623,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where_in('station_id', $station_ids);
 
 		//load only for the station_callsign given
-		$this->db->where('COL_STATION_CALLSIGN', xss_clean($station_callsign));
+		$this->db->where('COL_STATION_CALLSIGN', trim(xss_clean($station_callsign)));
 
 		//load only for the given contest id
 		$this->db->where('COL_CONTEST_ID', xss_clean($contest_id));

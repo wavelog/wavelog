@@ -208,6 +208,7 @@ class Satellite extends CI_Controller {
 
 		$this->load->library('Qra');
 		$pageData['latlng'] = $this->qra->qra2latlong($homegrid[0]);
+		$pageData['homegrid'] = $homegrid[0];
 		// Render Page
 		$pageData['page_title'] = "Satellite Flightpath";
 		$this->load->view('interface_assets/header', $pageData);

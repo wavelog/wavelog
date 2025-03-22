@@ -71,7 +71,7 @@ if ($dxcc_list->result() > 0) {
 
 					<div class="mb-3">
 						<label for="stationCallsignInput"><?= __("Station Callsign"); ?></label>
-						<input type="text" class="form-control uppercase" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" value="<?php if(set_value('station_callsign') != "") { echo set_value('station_callsign'); } else { echo $my_station_profile->station_callsign; } ?>" required>
+						<input type="text" class="form-control uppercase" pattern="^\S+$" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" value="<?php if(set_value('station_callsign') != "") { echo set_value('station_callsign'); } else { echo $my_station_profile->station_callsign; } ?>" required>
 						<small id="stationCallsignInputHelp" class="form-text text-muted"><?= __("Station callsign. For example: 4W7EST/P"); ?></small>
 					</div>
 

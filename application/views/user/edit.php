@@ -136,7 +136,7 @@
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?php if ($clubstation) { echo __("Special/Club Callsign"); } else { echo __("Callsign"); } ?></label>
-										<input class="form-control uppercase" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
+										<input class="form-control uppercase" type="text" name="user_callsign" pattern="^\S+$" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
 											<?php if(isset($callsign_error)) { echo "<small class=\"badge bg-danger\">".$callsign_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
