@@ -51,7 +51,7 @@ class Migration_add_hams_of_note extends CI_Migration
 					'status' => 'disabled',
 					'description' => 'Update Hams Of Notes',
 					'function' => 'index.php/update/update_hamsofnote',
-					'expression' => '45 4 * * *',
+					'expression' => '30 1 * * 1',
 					'last_run' => null,
 					'next_run' => null
 				));
