@@ -3,7 +3,7 @@ if (isset($filtered)) {
 	echo '<table style="width:100%" class="satpasstable table-sm table table-bordered table-hover table-striped table-condensed text-center">
 			<thead>
 				<tr id="toptable">
-					<th>' . __("Satellite") . '</th>
+					<th>' . __("Satellite") . ' <i class="fa-solid fa-satellite"></i></th>
 					<th>' . __("AOS Time") . '</th>
 					<th>' . __("LOS Time") . '</th>
 					<th>' . __("Duration") . '</th>
