@@ -192,6 +192,7 @@ class Satellite extends CI_Controller {
 		$this->load->model('stations');
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites_with_tle();
+		$data['selsat']=strtoupper($sat ?? $this->satellite_model->get_last_worked_sat());
 
 		$footerData = [];
 		$footerData['scripts'] = [
@@ -208,11 +209,10 @@ class Satellite extends CI_Controller {
 		$this->load->library('Qra');
 		$pageData['latlng'] = $this->qra->qra2latlong($homegrid[0]);
 		$pageData['homegrid'] = $homegrid[0];
-		$data['selsat'] = strtoupper($sat ?? '');
 		// Render Page
 		$pageData['page_title'] = "Satellite Flightpath";
 		$this->load->view('interface_assets/header', $pageData);
-		$this->load->view('satellite/flightpath',$data);
+		$this->load->view('satellite/flightpath', $data);
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
