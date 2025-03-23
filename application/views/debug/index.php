@@ -554,10 +554,15 @@
                             <td><?php echo $wwff_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
-						<tr>
+			<tr>
                             <td><?= __("TLE update"); ?></td>
                             <td><?php echo $tle_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_tle'); ?>"><?= __("Update"); ?></a></td>
+                        </tr>
+			<tr>
+                            <td><?= __("Hams Of Note update"); ?></td>
+                            <td><?php echo $hon_update->last_run ?? __("never"); ?></td>
+                            <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_hamsofnote'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                     </table>
                 </div>
