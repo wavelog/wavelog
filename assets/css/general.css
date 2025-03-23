@@ -1054,6 +1054,34 @@ label {
 	border-style: solid;
 }
 
+.satellite-label {
+    background-color: rgb(52, 55, 56) !important;
+    color: rgb(255, 255, 255) !important;
+    border: 1px solid #fff; /* White border */
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+/* Modify the tooltip's arrow (triangle) */
+.satellite-label::before {
+    border-top-color: rgb(52, 55, 56) !important; /* Triangle color (matches background) */
+    border-width: 6px; /* Keep same size */
+}
+
+/* Create a white border effect around the triangle */
+.satellite-label::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 8px; /* Slightly larger than ::before */
+    border-color: white transparent transparent transparent; /* White top border */
+    bottom: -16px; /* Match ::before position */
+    left: 50%;
+    transform: translateX(-50%);
+	z-index: -1;
+}
+
+
 .blank-row {
 	height: 20px !important;
 }

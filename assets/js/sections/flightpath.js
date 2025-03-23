@@ -1,9 +1,12 @@
 var satmarker;
 let maidenhead;
 let leafletMap;
-var icon_dot_url = base_url + "assets/icons/saticon.png";
-let saticon = L.icon({ iconUrl: icon_dot_url, iconSize: [30, 30] });
-
+let saticon = L.divIcon({
+    html: '<i class="fa-solid fa-satellite" style="font-size: 24px; color: black; -webkit-text-stroke: 1px white;"></i>',
+    className: '', // Prevents default Leaflet styles
+    iconSize: [30, 30],
+    iconAnchor: [15, 15] // Center the icon
+});
 let homeicon = L.icon({ iconUrl: icon_home_url, iconSize: [15, 15] });
 
 let observerGd = {
@@ -335,6 +338,15 @@ let sats = (function (L, d3, satelliteJs) {
 			zIndex: 1000,
 		}
 	).addTo(leafletMap).on('click', displayUpComingPasses);
+
+	// Add an always-visible label (tooltip)
+	satmarker.bindTooltip(satellite, {
+		permanent: true,  // Always visible
+		direction: "top", // Position label above the marker
+		offset: [0, -20], // Adjust position
+		className: "satellite-label" // Optional: Custom CSS
+		// className: "leaflet-popup-content-wrapper" // Optional: Custom CSS
+	});
 
 	L.marker(
 		[homelat, homelon], {
