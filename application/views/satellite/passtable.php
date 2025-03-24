@@ -21,12 +21,24 @@ if (isset($filtered)) {
 				$los_ics=Predict_Time::daynum2readable($pass->visible_los, $zone, 'Y-m-d\TH:i:s\z');
 				$ics='create_ics/'.$pass->satname.'/'.$aos_ics.'/'.$los_ics;
 				$max_el = round($pass->max_el);
+				$max_el_az = round($pass->visible_max_el_az);
+				$scale = 25;
 				echo '<tr>';
 				echo '<td>' . $pass->satname . '</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_los, $zone, $format) . '</td>';
 				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->visible_aos, $zone, $format), Predict_Time::daynum2readable($pass->visible_los, $zone, $format), $format) . '</td>';
-				echo '<td style="white-space: nowrap;"><a href="flightpath/'.$pass->satname.'"><span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span><span style="margin-left: 10px;"><i class="fas fa-mound fa-xs"></i></span><span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$los_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></a></td>';
+				echo '<td><a href="flightpath/'.$pass->satname.'"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" width="'.($scale*2).'" height="'.($scale*2).'">
+					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 9).'" stroke="darkgrey" stroke-width="1" fill="none" />
+					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 6).'" stroke="darkgrey" stroke-width="1" fill="none" />
+					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 3).'" stroke="darkgrey" stroke-width="1" fill="none" />
+					<line x1="0" y1="'.$scale.'" x2="100" y2="'.$scale.'" stroke="darkgrey" stroke-width="1" />
+					<line x1="'.$scale.'" y1="0" x2="'.$scale.'" y2="100" stroke="darkgrey" stroke-width="1" />
+					<circle cx="'.((($scale / 10 * 9) * cos(deg2rad($aos_az+270)))+$scale).'" cy="'.((($scale / 10 * 9) * sin(deg2rad($aos_az+270)))+$scale).'" r="1" stroke="green" stroke-width="5" fill="none" />
+					<circle cx="'.((($scale / 10 * 9) * cos(deg2rad($los_az+270)))+$scale).'" cy="'.((($scale / 10 * 9) * sin(deg2rad($los_az+270)))+$scale).'" r="1" stroke="red" stroke-width="5" fill="none" />
+					<circle cx="'.((($scale / 10 * 9) * cos(deg2rad($max_el_az+270)))+$scale).'" cy="'.((($scale / 10 * 9) * sin(deg2rad($max_el_az+270)))+$scale).'" r="1" stroke="blue" stroke-width="5" fill="none" />
+					svg></a></td>';
 				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->visible_aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '<td>' . $los_az . ' ° (' . azDegreesToDirection($pass->visible_los_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$los_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
