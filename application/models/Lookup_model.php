@@ -51,40 +51,44 @@ class Lookup_model extends CI_Model{
 		switch ($queryinfo['type']) {
 		case 'dxcc':
 			$sqlquerytypestring .= " and col_dxcc = ?";
-			$binds[]=$queryinfo['dxcc'];
+			$binds[] = $queryinfo['dxcc'];
 			break;
 		case 'iota':
 			$sqlquerytypestring .= " and col_iota = ?";
-			$binds[]=$queryinfo['iota'];
+			$binds[] = $queryinfo['iota'];
 			break;
 		case 'vucc':
 			$sqlquerytypestring .= " and (col_gridsquare like ? or col_vucc_grids like ?)";
-			$binds[]='%'.$fixedgrid.'%';
-			$binds[]='%'.$fixedgrid.'%';
+			$binds[] = '%'.$fixedgrid.'%';
+			$binds[] = '%'.$fixedgrid.'%';
 			break;
 		case 'cq':
 			$sqlquerytypestring .= " and col_cqz = ?";
-			$binds[]=$queryinfo['cqz'];
+			$binds[] = $queryinfo['cqz'];
 			break;
 		case 'was':
 			$sqlquerytypestring .= " and col_state = ? and COL_DXCC in ('291', '6', '110')";
-			$binds[]=$queryinfo['was'];
+			$binds[] = $queryinfo['was'];
 			break;
 		case 'sota':
 			$sqlquerytypestring .= " and col_sota_ref = ?";
-			$binds[]=$queryinfo['sota'];
+			$binds[] = $queryinfo['sota'];
+			break;
+		case 'pota':
+			$sqlquerytypestring .= " and col_pota_ref = ?";
+			$binds[] = $queryinfo['pota'];
 			break;
 		case 'wwff':
 			$sqlquerytypestring .= " and col_wwff_ref = ?";
-			$binds[]=$queryinfo['wwff'];
+			$binds[] = $queryinfo['wwff'];
 			break;
 		case 'itu':
 			$sqlquerytypestring .= " and col_ituz = ?";
-			$binds[]=$queryinfo['ituz'];
+			$binds[] = $queryinfo['ituz'];
 			break;
 		case 'continent':
 			$sqlquerytypestring .= " and col_cont = ?";
-			$binds[]=$queryinfo['continent'];
+			$binds[] = $queryinfo['continent'];
 			break;
 		default: break;
 		}
@@ -96,11 +100,9 @@ class Lookup_model extends CI_Model{
 	 */
 	function getQueryData($queryinfo, $confirmedtype) {
 		// If user inputs longer grid than 4 chars, we use only the first 4
-		$binds=[];
-
+		$binds = [];
 
 		$sqlquerytypestring = '';
-
 
 		if ($confirmedtype == 'confirmed') {
 			$user_default_confirmation = $this->session->userdata('user_default_confirmation');
