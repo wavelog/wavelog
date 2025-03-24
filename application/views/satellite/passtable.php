@@ -22,7 +22,13 @@ if (isset($filtered)) {
 				$ics='create_ics/'.$pass->satname.'/'.$aos_ics.'/'.$los_ics;
 				$max_el = round($pass->max_el);
 				$max_el_az = round($pass->visible_max_el_az);
-				$scale = 25;
+				$scale = 95;
+				$aos_x=((($scale / 10 * 9) * cos(deg2rad($aos_az+270)))+$scale);
+				$aos_y=((($scale / 10 * 9) * sin(deg2rad($aos_az+270)))+$scale);
+				$los_x=((($scale / 10 * 9) * cos(deg2rad($los_az+270)))+$scale);
+				$los_y=((($scale / 10 * 9) * sin(deg2rad($los_az+270)))+$scale);
+				$tco_x=((($scale / 10 * 9) * cos(deg2rad($max_el_az+270)))+$scale);
+				$tco_y=((($scale / 10 * 9) * sin(deg2rad($max_el_az+270)))+$scale);
 				echo '<tr>';
 				echo '<td>' . $pass->satname . '</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
@@ -33,11 +39,11 @@ if (isset($filtered)) {
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 9).'" stroke="darkgrey" stroke-width="1" fill="none" />
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 6).'" stroke="darkgrey" stroke-width="1" fill="none" />
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 3).'" stroke="darkgrey" stroke-width="1" fill="none" />
-					<line x1="0" y1="'.$scale.'" x2="100" y2="'.$scale.'" stroke="darkgrey" stroke-width="1" />
-					<line x1="'.$scale.'" y1="0" x2="'.$scale.'" y2="100" stroke="darkgrey" stroke-width="1" />
-					<circle cx="'.((($scale / 10 * 9) * cos(deg2rad($aos_az+270)))+$scale).'" cy="'.((($scale / 10 * 9) * sin(deg2rad($aos_az+270)))+$scale).'" r="1" stroke="green" stroke-width="5" fill="none" />
-					<circle cx="'.((($scale / 10 * 9) * cos(deg2rad($los_az+270)))+$scale).'" cy="'.((($scale / 10 * 9) * sin(deg2rad($los_az+270)))+$scale).'" r="1" stroke="red" stroke-width="5" fill="none" />
-					<circle cx="'.((($scale / 10 * 9) * cos(deg2rad($max_el_az+270)))+$scale).'" cy="'.((($scale / 10 * 9) * sin(deg2rad($max_el_az+270)))+$scale).'" r="1" stroke="blue" stroke-width="5" fill="none" />
+					<line x1="0" y1="'.$scale.'" x2="'.($scale*2).'" y2="'.$scale.'" stroke="darkgrey" stroke-width="1" />
+					<line x1="'.$scale.'" y1="0" x2="'.$scale.'" y2="'.($scale*2).'" stroke="darkgrey" stroke-width="1" />
+					<circle cx="'.$aos_x.'" cy="'.$aos_y.'" r="1" stroke="green" stroke-width="5" fill="none" />
+					<circle cx="'.$los_x.'" cy="'.$los_y.'" r="1" stroke="red" stroke-width="5" fill="none" />
+					<circle cx="'.$tco_x.'" cy="'.$tco_y.'" r="1" stroke="blue" stroke-width="5" fill="none" />
 					svg></a></td>';
 				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->visible_aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
