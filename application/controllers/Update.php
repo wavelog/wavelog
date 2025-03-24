@@ -489,6 +489,21 @@ class Update extends CI_Controller {
        $this->load->view('interface_assets/footer');
     }
 
+	public function update_hamsofnote() {
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+		$this->load->model('Update_model');
+		$bodyData['hamsofnote'] = $this->Update_model->update_hams_of_note();
+		if ($this->session->userdata('user_type') == '99') {
+			$data['page_title'] = __("Update of Hams of Note");
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('update/hamsofnote', $bodyData);
+			$this->load->view('interface_assets/footer');
+		} else {
+			echo "Hams of note updated. Inserted ".count($bodyData['hamsofnote'])." records.";
+		}
+	}
+
 	function version_check() {
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');

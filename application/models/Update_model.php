@@ -484,4 +484,47 @@ class Update_model extends CI_Model {
 		return;
 	}
 
+	function update_hams_of_note() {
+		$this->db->empty_table("hams_of_note");
+		$this->db->query("ALTER TABLE hams_of_note AUTO_INCREMENT 1");
+		$file = 'https://api.ham2k.net/data/ham2k/hams-of-note.txt';
+		$result = array();
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $file);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		$i = 0;
+		$lines = explode("\n", $response);
+		foreach($lines as $data) {
+			$line = trim($data);
+			if ($line != "" && $line[0] != '#') {
+				$index = strpos($line, ' ');
+				$call = substr($line, 0, $index);
+				$name = substr($line, strpos($line, ' '));
+				$linkname = $link = null;
+				if (strpos($name, '[')) {
+					$linkname = substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1));
+					$link= substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1));
+					$name = substr($name, 0, strpos($name, '['));
+				}
+				array_push($result, array('callsign' => $call, 'name' => $name, 'linkname' => $linkname, 'link' => $link));
+				$hon[$i]['callsign'] = $call;
+				$hon[$i]['description'] = $name;
+				$hon[$i]['linkname'] = $linkname;
+				$hon[$i]['link'] = $link;
+				if (($i % 100) == 0) {
+					$this->db->insert_batch('hams_of_note', $hon);
+					unset($hon);
+				}
+				$i++;
+			}
+		}
+		$this->db->insert_batch('hams_of_note', $hon);
+		return $result;
+	}
+
 }

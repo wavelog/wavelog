@@ -157,6 +157,24 @@ class Lookup extends CI_Controller {
 		}
 	}
 
+	public function ham_of_note($call) {
+		session_write_close();
+
+		if($call) {
+			$call = str_replace("-","/",$call);
+			$uppercase_callsign = strtoupper($call);
+		}
+
+		$this->load->model('Pota');
+		$query = $this->Pota->ham_of_note($uppercase_callsign);
+		if ($query->row()) {
+			header('Content-Type: application/json');
+			echo json_encode($query->row());
+		} else {
+			return null;
+		}
+	}
+
 	public function get_state_list() {
 		$this->load->library('subdivisions');
 
