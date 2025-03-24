@@ -44,7 +44,7 @@ if (isset($filtered)) {
 					<circle cx="'.$aos_x.'" cy="'.$aos_y.'" r="1" stroke="green" stroke-width="5" fill="none" />
 					<circle cx="'.$los_x.'" cy="'.$los_y.'" r="1" stroke="red" stroke-width="5" fill="none" />
 					<circle cx="'.$tco_x.'" cy="'.$tco_y.'" r="1" stroke="blue" stroke-width="5" fill="none" />
-					svg></a></td>';
+					</svg></a></td>';
 				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->visible_aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '<td>' . $los_az . ' ° (' . azDegreesToDirection($pass->visible_los_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$los_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
