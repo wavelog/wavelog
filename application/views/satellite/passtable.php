@@ -33,8 +33,8 @@ if (isset($filtered)) {
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 9).'" stroke="darkgrey" stroke-width="1" fill="none" />
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 6).'" stroke="darkgrey" stroke-width="1" fill="none" />
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 3).'" stroke="darkgrey" stroke-width="1" fill="none" />
-					<line x1="0" y1="'.$scale.'" x2="100" y2="'.$scale.'" stroke="darkgrey" stroke-width="1" />
-					<line x1="'.$scale.'" y1="0" x2="'.$scale.'" y2="100" stroke="darkgrey" stroke-width="1" />
+					<line x1="0" y1="'.$scale.'" x2="'.($scale*2).'" y2="'.$scale.'" stroke="darkgrey" stroke-width="1" />
+					<line x1="'.$scale.'" y1="0" x2="'.$scale.'" y2="'.($scale*2).'" stroke="darkgrey" stroke-width="1" />
 					<circle cx="'.((($scale / 10 * 9) * cos(deg2rad($aos_az+270)))+$scale).'" cy="'.((($scale / 10 * 9) * sin(deg2rad($aos_az+270)))+$scale).'" r="1" stroke="green" stroke-width="5" fill="none" />
 					<circle cx="'.((($scale / 10 * 9) * cos(deg2rad($los_az+270)))+$scale).'" cy="'.((($scale / 10 * 9) * sin(deg2rad($los_az+270)))+$scale).'" r="1" stroke="red" stroke-width="5" fill="none" />
 					<circle cx="'.((($scale / 10 * 9) * cos(deg2rad($max_el_az+270)))+$scale).'" cy="'.((($scale / 10 * 9) * sin(deg2rad($max_el_az+270)))+$scale).'" r="1" stroke="blue" stroke-width="5" fill="none" />
