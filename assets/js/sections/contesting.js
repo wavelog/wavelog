@@ -15,6 +15,7 @@ $(document).ready(async function () {
 
 	// Storing the contestid in contest session
 	$('#contestname, #copyexchangeto, #exchangesequence_select, #band, #mode, #frequency, #radio').change(function () {
+		var formdata = new FormData(document.getElementById("qso_input"));
 		setSession(formdata);
 	});
 

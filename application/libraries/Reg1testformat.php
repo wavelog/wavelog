@@ -143,7 +143,7 @@ class Reg1testformat {
 
          $qsorow .= ($newdxcc ? 'N' : '') . ';'; //flag if DXCC is new
 
-         $qsorow .= ";\r\n"; //flag for duplicate QSO. Leave empty as Wavelog does not have this.
+         $qsorow .= "\r\n"; //flag for duplicate QSO. Leave empty as Wavelog does not have this. Do not include a semicolon at the end as this is optional
 
          //add row to overall result
          $result['formatted_qso'] .= $qsorow;

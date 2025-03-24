@@ -45,7 +45,11 @@ class Dxcluster_model extends CI_Model {
 		if (strlen($jsonraw)>20) {
 			$spotsout=[];
 			foreach($json as $singlespot){
-				$spotband = $this->frequency->GetBand($singlespot->frequency*1000);
+				if (is_numeric($singlespot->frequency)) {
+					$spotband = $this->frequency->GetBand($singlespot->frequency*1000);
+				} else {
+					continue;
+				}
 				$singlespot->band=$spotband;
 				if (($band != 'All') && ($band != $spotband)) { continue; }
 				$datetimecurrent = new DateTime("now", new DateTimeZone('UTC')); // Today's Date/Time

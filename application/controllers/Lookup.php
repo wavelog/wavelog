@@ -58,6 +58,7 @@ class Lookup extends CI_Controller {
 			$data['dxcc'] = xss_clean($this->input->post('dxcc'));
 			$data['was']  = xss_clean($this->input->post('was'));
 			$data['sota'] = xss_clean($this->input->post('sota'));
+			$data['pota'] = xss_clean($this->input->post('pota'));
 			$data['grid'] = xss_clean($this->input->post('grid'));
 			$data['iota'] = xss_clean($this->input->post('iota'));
 			$data['cqz']  = xss_clean($this->input->post('cqz'));
@@ -153,6 +154,24 @@ class Lookup extends CI_Controller {
 
 		if ($query->row()) {
 			echo $query->row()->COL_DARC_DOK;
+		}
+	}
+
+	public function ham_of_note($call) {
+		session_write_close();
+
+		if($call) {
+			$call = str_replace("-","/",$call);
+			$uppercase_callsign = strtoupper($call);
+		}
+
+		$this->load->model('Pota');
+		$query = $this->Pota->ham_of_note($uppercase_callsign);
+		if ($query->row()) {
+			header('Content-Type: application/json');
+			echo json_encode($query->row());
+		} else {
+			return null;
 		}
 	}
 

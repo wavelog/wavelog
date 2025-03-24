@@ -787,7 +787,7 @@ function changeLookupType(type) {
         $('#quicklookupdxcc').show();
     } else if (type == "iota") {
         $('#quicklookupiota').show();
-    } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw") {
+    } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw" || type == "pota") {
         $('#quicklookuptext').show();
     } else if (type == "cq") {
         $('#quicklookupcqz').show();
@@ -818,6 +818,7 @@ function getLookupResult() {
 			wwff: $('#quicklookuptext').val(),
 			lotw: $('#quicklookuptext').val(),
 			ituz: $('#quicklookupituz').val(),
+			pota: $('#quicklookuptext').val(),
 			continent: $('#quicklookupcontinent').val(),
 		},
 		success: function (html) {
@@ -841,7 +842,7 @@ function getDxccResult(dxcc, name) {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-            $('.dxccsummary').remove();
+			$('.dxccsummary').remove();
             $('.qsopane').append('<div class="dxccsummary col-sm-12"><br><div class="card"><div class="card-header dxccsummaryheader" data-bs-toggle="collapse" data-bs-target=".dxccsummarybody">' + lang_dxccsummary_for + name + '</div><div class="card-body collapse dxccsummarybody"></div></div></div>');
             $('.dxccsummarybody').append(html);
 			$('.dxccsummaryheader').click(function(){

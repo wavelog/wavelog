@@ -200,7 +200,7 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
                         <td>' . __("Country") . '</td>
                         <td>' . __("Status") . '</td>
                         <td>' . __("End Date") . '</td>
-                        <td>' . __("Show QSO's") . '</td>
+                        <td>' . __("Show QSOs") . '</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -235,7 +235,7 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
                         <td>#</td>
                         <td>'.__("Date").'</td>
                         <td>'.__("Prefecture").'</td>
-                        <td>'.__("Show QSO's").'</td>
+                        <td>'.__("Show QSOs").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -263,7 +263,7 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
                         <td>#</td>
                         <td>' . __("Date") . '</td>
                         <td>' . __("State") . '</td>
-                        <td>' . __("Show QSO's") . '</td>
+                        <td>' . __("Show QSOs") . '</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -295,7 +295,7 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
                         <td>'.__("IOTA").'</td>
                         <td>'.__("Name").'</td>
                         <td>'.__("Prefix").'</td>
-                        <td>'.__("Show QSO's").'</td>
+                        <td>'.__("Show QSOs").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -325,7 +325,7 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                         <td>#</td>
                         <td>'.__("Date").'</td>
                         <td>'.__("CQ Zone").'</td>
-                        <td>'.__("Show QSO's").'</td>
+                        <td>'.__("Show QSOs").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -354,7 +354,7 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                         <td>'.__("Date").'</td>
                         <td>'.__("Time").'</td>
                         <td>'.__("Gridsquare").'</td>
-                        <td>'.__("Show QSO's").'</td>
+                        <td>'.__("Show QSOs").'</td>
                     </tr>
                 </thead>
                 <tbody>';

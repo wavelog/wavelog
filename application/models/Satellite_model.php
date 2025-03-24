@@ -22,6 +22,23 @@ class Satellite_model extends CI_Model {
 		return $this->db->query($sql)->result();
 	}
 
+	function get_last_worked_sat() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
+		$sql = "select COL_SAT_NAME as sat from " . $this->config->item('table_name') .
+			" where station_id in (" . $location_list . ")" .
+			" AND COL_PROP_MODE = 'SAT' AND COL_SAT_NAME is not null AND COL_SAT_NAME != '' ".
+			"order by COL_TIME_ON DESC LIMIT 1";
+
+		$query = $this->db->query($sql);
+		$row = $query->row();
+		if (isset($row)) {
+			return ($row->sat);
+		}
+		return null;
+	}
+
 	function delete($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
@@ -110,6 +127,7 @@ class Satellite_model extends CI_Model {
 	function satellite_data() {
 		$this->db->select('COALESCE(NULLIF(satellite.name, \'\'), satellite.displayname) AS satellite, satellitemode.name AS satmode, satellitemode.uplink_mode AS Uplink_Mode, satellitemode.uplink_freq AS Uplink_Freq, satellitemode.downlink_mode AS Downlink_Mode, satellitemode.downlink_freq AS Downlink_Freq');
 		$this->db->join('satellitemode', 'satellite.id = satellitemode.satelliteid', 'LEFT OUTER');
+		$this->db->order_by('satellite', 'ASC');
 		$query = $this->db->get('satellite');
 		return $query->result();
 	}

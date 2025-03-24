@@ -131,6 +131,7 @@
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>
                   <small id="callsign_info" class="badge text-bg-secondary"></small> <a id="lotw_link"><small id="lotw_info" class="badge text-bg-success"></small></a>
+                  <p id="ham_of_note_line" style="margin-top: 5px; display: none"><small id="ham_of_note_info"></small><small><a id="ham_of_note_link"></a></small></p>
                 </div>
               </div>
 
@@ -305,7 +306,7 @@
           <div class="tab-pane fade" id="station" role="tabpanel" aria-labelledby="station-tab">
             <div class="mb-3">
               <label for="stationProfile"><?= __("Station Location"); ?></label>
-              <select id="stationProfile" class="form-select" name="station_profile">
+              <select id="stationProfile" class="form-select" name="station_profile" onChange="panMap(this.value);">
                 <?php
                    $power = '';
                       foreach ($stations->result() as $stationrow) {

@@ -49,14 +49,18 @@ class Eqslmethods_model extends CI_Model {
 		foreach ($qslsnotsent->result_array() as $qsl) {
 			$data['user_eqsl_name'] = $qsl['station_callsign'];
 			$adif = $this->generateAdif($qsl, $data);
-			
+
 			$status = $this->uploadQso($adif, $qsl);
 
 			if ($status == 'Error') {
 				log_message('error', 'eQSL Error for '.$data['user_eqsl_name']);
 				break;
+			} elseif ($status == 'Nick Error') {
+				log_message('error', 'eQSL error for user '.$data['user_eqsl_name'].' with QTH Nickname '.($qsl['eqslqthnickname'] ?? '').' at station_profile '.($qsl['eqsl_station_id'] ?? '').'. eQSL QTH Nickname will be removed from station location!');
+				$this->disable_eqsl_station_id($userid,$qsl['eqsl_station_id']);
+				break;
 			} elseif ($status == 'Login Error') {
-				log_message('error', 'eQSL Credentials-Error for '.$data['user_eqsl_name'].' Login will be disabled!');
+				log_message('error', 'eQSL credentials error (user, pass or QTH Nickname) for '.$data['user_eqsl_name'].'. Login will be disabled!');
 				$this->disable_eqsl_uid($userid);
 				break;
 			}
@@ -215,7 +219,7 @@ class Eqslmethods_model extends CI_Model {
 			$adif .= "%3A";
 			$adif .= strlen($qsl['COL_QSLMSG']);
 			$adif .= "%3E";
-			$adif .= str_replace('&', '%26', $qsl['COL_QSLMSG']);
+			$adif .= rawurlencode($qsl['COL_QSLMSG']);
 			$adif .= "%20";
 		}
 
@@ -261,6 +265,7 @@ class Eqslmethods_model extends CI_Model {
 		// basic curl options for all requests
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 
 		// use the URL we built
 		curl_setopt($ch, CURLOPT_URL, $adif);
@@ -288,20 +293,23 @@ class Eqslmethods_model extends CI_Model {
 					log_message('error', 'eQSL: '.$msg);
 					$this->session->set_flashdata('warning', $msg);
 					$status = "Login Error";
+				} elseif (stristr($result, "Result: 0 out of 0 records added")) {
+					$msg = __("Something went wrong with eQSL.cc!");
+					log_message('error', 'eQSL at QSO-ID: '.$qsl['COL_PRIMARY_KEY']); // No leftover-Debug, but Find the faulty QSO for not known errors!
+					$this->session->set_flashdata('warning', $msg);
+					$status = "Error";
+				} elseif (stristr($result, "Bad record: Duplicate")) {
+					$status = "Duplicate";
+					$this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
+				} elseif (stristr($result, "Result: 0 out of 1 records added")) {
+					$this->eqsl_mark_invalid($qsl['COL_PRIMARY_KEY']);
+					$status = "Invalid";
+				} elseif (stristr($result, "No match on APP_EQSL_QTH_NICKNAME")) {
+					$msg = __("QTH Nickname does not exist at eQSL");
+					$this->session->set_flashdata('warning', $msg);
+					$status = "Nick Error";
 				} else {
-					if (stristr($result, "Result: 0 out of 0 records added")) {
-						$msg = __("Something went wrong with eQSL.cc!");
-						log_message('error', 'eQSL: '.$msg);
-						$this->session->set_flashdata('warning', $msg);
-						$status = "Error";
-					} else {
-						if (stristr($result, "Bad record: Duplicate")) {
-							$status = "Duplicate";
-
-							# Mark the QSL as sent if this is a dupe.
-							$this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
-						}
-					}
+					log_message("Error","eQSL: Uncaught exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']);
 				}
 			}
 		} else {
@@ -310,20 +318,21 @@ class Eqslmethods_model extends CI_Model {
 				log_message('error', 'eQSL: '.$msg);
 				$this->session->set_flashdata('warning', $msg);
 				$status = "Error";
+			} elseif ($chi['http_code'] == "400") {
+				$msg = __("There was an error in one of the QSOs. You might want to manually upload them.");
+				log_message('error', 'eQSL: '.$msg);
+				$this->session->set_flashdata('warning', $msg);
+				$status = "Error";
+			} elseif ($chi['http_code'] == "404") {
+				$msg = __("It seems that the eQSL site has changed. Please open up an issue on GitHub.");
+				log_message('error', 'eQSL: '.$msg);
+				$this->session->set_flashdata('warning', $msg);
+				$status = "Error";
 			} else {
-				if ($chi['http_code'] == "400") {
-					$msg = __("There was an error in one of the QSOs. You might want to manually upload them.");
-					log_message('error', 'eQSL: '.$msg);
-					$this->session->set_flashdata('warning', $msg);
-					$status = "Error";
-				} else {
-					if ($chi['http_code'] == "404") {
-						$msg = __("It seems that the eQSL site has changed. Please open up an issue on GitHub.");
-						log_message('error', 'eQSL: '.$msg);
-						$this->session->set_flashdata('warning', $msg);
-						$status = "Error";
-					}
-				}
+				log_message("Error","eQSL: Uncaught HTTP-exception at QSO-ID: ".$qsl['COL_PRIMARY_KEY']);
+				$msg = __("An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups");
+				$this->session->set_flashdata('warning', $msg);
+				$status= "Error";
 			}
 		}
 		return $status;
@@ -354,6 +363,13 @@ class Eqslmethods_model extends CI_Model {
 				$this->db->update($this->config->item('table_name'), $data);
 			}
 		}
+	}
+
+	function disable_eqsl_station_id($user_id,$station_id) {
+		$sql='update station_profile set eqslqthnickname=null where user_id=? and station_id=?';
+		$bindings=[$user_id,$station_id];
+		$this->db->query($sql,$bindings);
+		return;
 	}
 
 	function disable_eqsl_uid($userid) {
@@ -396,7 +412,7 @@ class Eqslmethods_model extends CI_Model {
 			array_push($logbooks_locations_array, -9999);
 		}
 
-		$this->db->select('station_profile.*, ' . $this->config->item('table_name') . '.COL_PRIMARY_KEY, ' . $this->config->item('table_name') . '.COL_TIME_ON, ' . $this->config->item('table_name') . '.COL_CALL, ' . $this->config->item('table_name') . '.COL_MODE, ' . $this->config->item('table_name') . '.COL_SUBMODE, ' . $this->config->item('table_name') . '.COL_BAND, ' . $this->config->item('table_name') . '.COL_COMMENT, ' . $this->config->item('table_name') . '.COL_RST_SENT, ' . $this->config->item('table_name') . '.COL_PROP_MODE, ' . $this->config->item('table_name') . '.COL_SAT_NAME, ' . $this->config->item('table_name') . '.COL_SAT_MODE, ' . $this->config->item('table_name') . '.COL_QSLMSG');
+		$this->db->select('station_profile.*, ' . $this->config->item('table_name') . '.COL_PRIMARY_KEY, ' . $this->config->item('table_name') . '.COL_TIME_ON, ' . $this->config->item('table_name') . '.COL_CALL, ' . $this->config->item('table_name') . '.COL_MODE, ' . $this->config->item('table_name') . '.COL_SUBMODE, ' . $this->config->item('table_name') . '.COL_BAND, ' . $this->config->item('table_name') . '.COL_COMMENT, ' . $this->config->item('table_name') . '.COL_RST_SENT, ' . $this->config->item('table_name') . '.COL_PROP_MODE, ' . $this->config->item('table_name') . '.COL_SAT_NAME, ' . $this->config->item('table_name') . '.COL_SAT_MODE, ' . $this->config->item('table_name') . '.COL_QSLMSG, '. $this->config->item('table_name') . '.station_id as eqsl_station_id');
 		$this->db->from('station_profile');
 		$this->db->join($this->config->item('table_name'), 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where("coalesce(station_profile.eqslqthnickname, '') <> ''");
@@ -409,6 +425,7 @@ class Eqslmethods_model extends CI_Model {
 		$this->db->or_where($this->config->item('table_name') . '.COL_EQSL_QSL_SENT', 'N');
 		$this->db->group_end();
 		$this->db->where_in('station_profile.station_id', $logbooks_locations_array);
+		$this->db->order_by($this->config->item('table_name') . '.COL_TIME_ON','ASC');
 
 		return $this->db->get();
 	}
@@ -453,6 +470,19 @@ class Eqslmethods_model extends CI_Model {
 		$this->db->update($this->config->item('table_name'), $data);
 
 		return "eQSL Sent";
+	}
+
+	function eqsl_mark_invalid($primarykey) {
+		$data = array(
+			'COL_EQSL_QSLSDATE' => date('Y-m-d H:i:s'), // eQSL doesn't give us a date, so let's use current
+			'COL_EQSL_QSL_SENT' => 'I',
+		);
+
+		$this->db->where('COL_PRIMARY_KEY', $primarykey);
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return "eQSL Invalid";
 	}
 
 	// Returns all the distinct callsign, eqsl nick pair for the current user/supplied user

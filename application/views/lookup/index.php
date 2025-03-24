@@ -6,6 +6,7 @@
 			<option value="vucc"><?= __("Gridsquare"); ?></option>
 			<option value="iota"><?= __("IOTA"); ?></option>
 			<option value="itu"><?= __("ITU Zone"); ?></option>
+			<option value="pota"><?= __("POTA"); ?></option>
 			<option value="sota"><?= __("SOTA"); ?></option>
 			<option value="was"><?= __("US State"); ?></option>
 			<option value="wwff"><?= __("WWFF"); ?></option>

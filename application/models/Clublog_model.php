@@ -21,7 +21,7 @@ class Clublog_model extends CI_Model
 		$clean_passord = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
 
-		$return = "No QSO's to upload";
+		$return = "No QSOs to upload";
 
 		$this->config->load('config');
 
@@ -196,7 +196,7 @@ class Clublog_model extends CI_Model
 						$return .= $log."<br>";
 					}
 
-					$log = "QSO's for Callsign: '" . $station_row->station_callsign . "' were successfully downloaded";
+					$log = "QSOs for Callsign: '" . $station_row->station_callsign . "' were successfully downloaded";
 					log_message('info', $log);
 					$return .= $log."<br>";
 				}

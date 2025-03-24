@@ -506,6 +506,7 @@ $('#btn_fullreset').on("click", function () {
 
 function reset_to_default() {
 	reset_fields();
+	panMap(activeStationId);
 	$("#stationProfile").val(activeStationId);
 	$("#selectPropagation").val("");
 	$("#frequency_rx").val("");
@@ -525,6 +526,10 @@ function reset_fields() {
 	$('#continent').val("");
 	$('#email').val("");
 	$('#region').val("");
+	$('#ham_of_note_info').text("");
+	$('#ham_of_note_link').html("");
+	$('#ham_of_note_link').removeAttr('href');
+	$('#ham_of_note_line').hide();
 	$('#lotw_info').text("");
 	$('#lotw_info').attr('data-bs-original-title', "");
 	$('#lotw_info').removeClass("lotw_info_red");
@@ -722,6 +727,15 @@ $("#callsign").on("focusout", function () {
 				} else {
 					dok_selectize.clear();
 				}
+
+				$.getJSON(base_url + 'index.php/lookup/ham_of_note/' + $('#callsign').val().toUpperCase().replaceAll('Ø', '0').replaceAll('/','-'), function (result) {
+					if (result) {
+						$('#ham_of_note_info').text(result.description);
+						$('#ham_of_note_link').html(result.linkname);
+						$('#ham_of_note_link').attr('href', result.link);
+						$('#ham_of_note_line').show("slow");
+					}
+				});
 
 				$('#dxcc_id').val(result.dxcc.adif).multiselect('refresh');
 				await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
@@ -1252,6 +1266,22 @@ function testTimeOffConsistency() {
 		return false;
 	}
 	return true;
+}
+
+function panMap(stationProfileIndex) {
+	$.ajax({
+		url: base_url + 'index.php/station/stationProfileCoords/'+stationProfileIndex,
+		type: 'get',
+		success: function(data) {
+			result = JSON.parse(data);
+			if (typeof result[0] !== "undefined" && typeof result[1] !== "undefined") {
+				mymap.panTo([result[0], result[1]]);
+				pos = result;
+			}
+		},
+		error: function() {
+		},
+	});
 }
 
 $(document).ready(function () {

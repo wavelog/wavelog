@@ -13,10 +13,16 @@ if ($qsoarray) {
             <tbody>';
 	foreach ($qsoarray as $sat => $mode) {
         	echo '<tr><th>'. $sat .'</th>';
-		foreach ($mode as $singlemode) {
-			echo '<td>'.$singlemode.'</td>';
+		foreach ($mode as $cmode => $singlemode) {
+			echo '<td>';
+			if (($singlemode ?? '-') != '-') { 
+				echo "<a href=\"javascript:displaySatQsos('".$sat."','".$cmode."')\">".$singlemode."</a>"; 
+			} else {
+				echo '-';
+			}
+			echo '</td>';
 		}
-        	echo '<th>' . $sattotal[$sat] . '</th>';
+        	echo "<th><a href=\"javascript:displaySatQsos('".$sat."');\">".$sattotal[$sat] . '</a></th>';
 		echo '</tr>';
 	}
     echo '</tbody><tfoot><tr><th>'.__("Total").'</th>';

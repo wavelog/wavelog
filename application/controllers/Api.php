@@ -635,17 +635,22 @@ class API extends CI_Controller {
 	*/
 
 	function statistics($key = null) {
+		$this->load->model('api_model');
+		if ((($key ?? '') != '') && ($this->api_model->authorize($key) != 0)) {
+			$this->load->model('logbook_model');
+			$data['todays_qsos'] = $this->logbook_model->todays_qsos(null, $key);
+			$data['total_qsos'] = $this->logbook_model->total_qsos(null, $key);
+			$data['month_qsos'] = $this->logbook_model->month_qsos(null, $key);
+			$data['year_qsos'] = $this->logbook_model->year_qsos(null, $key);
+		} else { # for Downcompat
+			$data['todays_qsos'] = 0;
+			$data['total_qsos'] = 0;
+			$data['month_qsos'] = 0;
+			$data['year_qsos'] = 0;
+		}
 		header('Content-type: application/json');
-		$this->load->model('logbook_model');
-
-		$data['todays_qsos'] = $this->logbook_model->todays_qsos(null, $key);
-		$data['total_qsos'] = $this->logbook_model->total_qsos(null, $key);
-		$data['month_qsos'] = $this->logbook_model->month_qsos(null, $key);
-		$data['year_qsos'] = $this->logbook_model->year_qsos(null, $key);
-
 		http_response_code(201);
 		echo json_encode(['Today' => $data['todays_qsos'], 'total_qsos' => $data['total_qsos'], 'month_qsos' => $data['month_qsos'], 'year_qsos' => $data['year_qsos']]);
-
 	}
 
 	function private_lookup() {

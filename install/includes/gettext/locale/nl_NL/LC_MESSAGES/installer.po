@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-23 10:57+0000\n"
-"PO-Revision-Date: 2025-01-30 13:11+0000\n"
-"Last-Translator: PE1PQX <Andre@pe1pqx.eu>\n"
+"POT-Creation-Date: 2025-03-12 13:41+0000\n"
+"PO-Revision-Date: 2025-03-13 22:16+0000\n"
+"Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
 "installer/nl/>\n"
 "Language: nl_NL\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -82,50 +82,54 @@ msgid "Greek"
 msgstr "Grieks"
 
 #: install/includes/interface_assets/footer.php:71
+msgid "Hungarian"
+msgstr "Hongaars"
+
+#: install/includes/interface_assets/footer.php:72
 msgid "Italian"
 msgstr "Italiaans"
 
-#: install/includes/interface_assets/footer.php:72
+#: install/includes/interface_assets/footer.php:73
 msgid "Latvian"
 msgstr "Lets"
 
-#: install/includes/interface_assets/footer.php:73
+#: install/includes/interface_assets/footer.php:74
 msgid "Lithuanian"
 msgstr "Litouws"
 
-#: install/includes/interface_assets/footer.php:74
+#: install/includes/interface_assets/footer.php:75
 msgid "Montenegrin"
 msgstr "Montenegrijnse"
 
-#: install/includes/interface_assets/footer.php:75
+#: install/includes/interface_assets/footer.php:76
 msgid "Polish"
 msgstr "Pools"
 
-#: install/includes/interface_assets/footer.php:76
+#: install/includes/interface_assets/footer.php:77
 msgid "Portuguese"
 msgstr "Portugees"
 
-#: install/includes/interface_assets/footer.php:77
+#: install/includes/interface_assets/footer.php:78
 msgid "Russian"
 msgstr "Russisch"
 
-#: install/includes/interface_assets/footer.php:78
+#: install/includes/interface_assets/footer.php:79
 msgid "Serbian"
 msgstr "Servisch"
 
-#: install/includes/interface_assets/footer.php:79
+#: install/includes/interface_assets/footer.php:80
 msgid "Slovenian"
 msgstr "Sloveens"
 
-#: install/includes/interface_assets/footer.php:80
+#: install/includes/interface_assets/footer.php:81
 msgid "Spanish"
 msgstr "Spaans"
 
-#: install/includes/interface_assets/footer.php:81
+#: install/includes/interface_assets/footer.php:82
 msgid "Swedish"
 msgstr "Zweeds"
 
-#: install/includes/interface_assets/footer.php:82
+#: install/includes/interface_assets/footer.php:83
 msgid "Turkish"
 msgstr "Turks"
 
@@ -168,9 +172,9 @@ msgid ""
 "logging software. Follow the steps in each tab to configure and install "
 "Wavelog on your server."
 msgstr ""
-"Deze installatie zal u door de stappen begeleiden om Wavelog te "
-"installeren.<BR>Wavelog is een sterke web-gebaseerde radio logging systeem. "
-"Volg de stappen op ieder blad om Wavelog te configureren en installeren."
+"Deze installatie zal u door de stappen begeleiden om Wavelog te installeren."
+"<BR>Wavelog is een sterke web-gebaseerde radio logging systeem. Volg de "
+"stappen op ieder blad om Wavelog te configureren en installeren."
 
 #: install/index.php:69
 msgid "Discussions"
@@ -277,7 +281,8 @@ msgstr ""
 #: install/index.php:321
 msgid ""
 "After that, you have to restart your webserver and start the installer again."
-msgstr "Daarna moet je de webserver herstarten en de installer opnieuw starten."
+msgstr ""
+"Daarna moet je de webserver herstarten en de installer opnieuw starten."
 
 #: install/index.php:322
 #, php-format
@@ -341,11 +346,11 @@ msgid ""
 "an XML subscription. HamQTH does not always provide the locator information."
 msgstr ""
 "Deze configuratie is optioneel. Het opzoeken van roepnamen zal beschikbaar "
-"zijn voor alle gebruikers van deze installatie. Je kunt kiezen tussen "
-"QRZ.com en HamQTH. Terwijl HamQTH ook zonder gebruikersnaam en wachtwoord "
-"werkt, heb je inloggegevens nodig voor QRZ.com. Om ook de Call Locator in "
-"QRZ.com te krijgen, heb je een XML-abonnement nodig. HamQTH biedt niet "
-"altijd de locatorinformatie."
+"zijn voor alle gebruikers van deze installatie. Je kunt kiezen tussen QRZ."
+"com en HamQTH. Terwijl HamQTH ook zonder gebruikersnaam en wachtwoord werkt, "
+"heb je inloggegevens nodig voor QRZ.com. Om ook de Call Locator in QRZ.com "
+"te krijgen, heb je een XML-abonnement nodig. HamQTH biedt niet altijd de "
+"locatorinformatie."
 
 #: install/index.php:368 install/index.php:449 install/index.php:901
 msgid "Username"
@@ -437,8 +442,8 @@ msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
-"Normaal 'localhost'<br>Optioneel '[host]:[poort]'. Standaard poort: "
-"3306.<br>In een docker omgeving type 'wavelog_db'."
+"Normaal 'localhost'<br>Optioneel '[host]:[poort]'. Standaard poort: 3306."
+"<br>In een docker omgeving type 'wavelog_db'."
 
 #: install/index.php:443
 msgid "Database Name"

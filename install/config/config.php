@@ -73,8 +73,8 @@ $config['qrzcq_password'] = '%qrzcq_password%';
 | QRZ.ru Login Options
 |--------------------------------------------------------------------------
 |
-| 	'qrzru_username'	QRZru.com user login
-|	'qrzru_password'	QRZru.com user password
+| 	'qrzru_username'	QRZ.ru user login
+|	'qrzru_password'	QRZ.ru user password
 */
 $config['qrzru_username'] = '%qrzru_username%';
 $config['qrzru_password'] = '%qrzru_password%';

@@ -171,4 +171,13 @@ class Station extends CI_Controller
 		redirect('stationsetup');
 	}
 
+	public function stationProfileCoords($id) {
+		$id = $this->security->xss_clean($id);
+		$this->load->model('stations');
+		if ($this->stations->check_station_is_accessible($id)) {
+			$coords = $this->stations->lookupProfileCoords($id);
+			print json_encode($coords);
+		}
+	}
+
 }

@@ -121,23 +121,23 @@ class Awards extends CI_Controller {
 		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
 		if($this->input->method() === 'post') {
-			$postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
-			$postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
-			$postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
-			$postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
-			$postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
-			$postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
-			$postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
-			$postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+			$postdata['qsl'] = ($this->input->post('qsl',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['lotw'] = ($this->input->post('lotw',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['eqsl'] = ($this->input->post('eqsl',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['qrz'] = ($this->input->post('qrz',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['clublog'] = ($this->input->post('clublog',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['worked'] = ($this->input->post('worked',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['confirmed'] = ($this->input->post('confirmed',true) ?? 0)  == 0 ? NULL: 1;
+			$postdata['notworked'] = ($this->input->post('notworked',true) ?? 0)  == 0 ? NULL: 1;
 
-			$postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
-			$postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
-			$postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
-			$postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
-			$postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
-			$postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
-			$postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
-			$postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
+			$postdata['includedeleted'] = ($this->input->post('includedeleted',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Africa'] = ($this->input->post('Africa',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Asia'] = ($this->input->post('Asia',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Europe'] = ($this->input->post('Europe',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['NorthAmerica'] = ($this->input->post('NorthAmerica',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['SouthAmerica'] = ($this->input->post('SouthAmerica',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Oceania'] = ($this->input->post('Oceania',true) ?? 0) == 0 ? NULL: 1;
+			$postdata['Antarctica'] = ($this->input->post('Antarctica',true) ?? 0) == 0 ? NULL: 1;
 			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
@@ -145,12 +145,13 @@ class Awards extends CI_Controller {
 		} else { // Setting default values at first load of page
 			$postdata['qsl'] = 1;
 			$postdata['lotw'] = 1;
-			$postdata['eqsl'] = 0;
-			$postdata['qrz'] = 0;
+			$postdata['eqsl'] = NULL;
+			$postdata['qrz'] = NULL;
+			$postdata['clublog'] = NULL;
 			$postdata['worked'] = 1;
 			$postdata['confirmed'] = 1;
 			$postdata['notworked'] = 1;
-			$postdata['includedeleted'] = 0;
+			$postdata['includedeleted'] = NULL;
 			$postdata['Africa'] = 1;
 			$postdata['Asia'] = 1;
 			$postdata['Europe'] = 1;
@@ -173,6 +174,7 @@ class Awards extends CI_Controller {
 
 		// Render Page
 		$data['page_title'] = sprintf(__("Awards - %s"), __("DXCC"));
+		$data['posted_band']=$postdata['band'];
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/dxcc/index');
 		$this->load->view('interface_assets/footer');
@@ -812,34 +814,36 @@ class Awards extends CI_Controller {
 	    $data['modes'] = $this->modes->active(); // Used in the view for mode select
 
 	    if($this->input->method() === 'post') {
-		    $postdata['qsl'] = 1;
-		    $postdata['lotw'] = 1;
-		    $postdata['eqsl'] = 0;
-		    $postdata['qrz'] = 0;
-		    $postdata['clublog'] = 0;
-		    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked')) ?? NULL;
-		    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed')) ?? NULL;
-		    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked')) ?? NULL;
-		    $postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted')) ?? NULL;
-		    $postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa')) ?? NULL;
-		    $postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia')) ?? NULL;
-		    $postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe')) ?? NULL;
-		    $postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica')) ?? NULL;
-		    $postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica')) ?? NULL;
-		    $postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania')) ?? NULL;
-		    $postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica')) ?? NULL;
+		    $postdata['qsl'] = ($this->input->post('qsl',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['lotw'] = ($this->input->post('lotw',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['eqsl'] = ($this->input->post('eqsl',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['qrz'] = ($this->input->post('qrz',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['clublog'] = ($this->input->post('clublog',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['worked'] = ($this->input->post('worked',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['confirmed'] = ($this->input->post('confirmed',true) ?? 0)  == 0 ? NULL: 1;
+		    $postdata['notworked'] = ($this->input->post('notworked',true) ?? 0)  == 0 ? NULL: 1;
+
+		    $postdata['includedeleted'] = ($this->input->post('includedeleted',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['Africa'] = ($this->input->post('Africa',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['Asia'] = ($this->input->post('Asia',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['Europe'] = ($this->input->post('Europe',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['NorthAmerica'] = ($this->input->post('NorthAmerica',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['SouthAmerica'] = ($this->input->post('SouthAmerica',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['Oceania'] = ($this->input->post('Oceania',true) ?? 0) == 0 ? NULL: 1;
+		    $postdata['Antarctica'] = ($this->input->post('Antarctica',true) ?? 0) == 0 ? NULL: 1;
+
 		    $postdata['band'] = $this->security->xss_clean($this->input->post('band')) ?? NULL;
 		    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode')) ?? NULL;
 	    } else { // Setting default values at first load of page
 		    $postdata['qsl'] = 1;
 		    $postdata['lotw'] = 1;
-		    $postdata['eqsl'] = 0;
-		    $postdata['qrz'] = 0;
-		    $postdata['clublog'] = 0;
+		    $postdata['eqsl'] = NULL;
+		    $postdata['qrz'] = NULL;
+		    $postdata['clublog'] = NULL;
 		    $postdata['worked'] = 1;
 		    $postdata['confirmed'] = 1;
 		    $postdata['notworked'] = 1;
-		    $postdata['includedeleted'] = 0;
+		    $postdata['includedeleted'] = NULL;
 		    $postdata['Africa'] = 1;
 		    $postdata['Asia'] = 1;
 		    $postdata['Europe'] = 1;
@@ -854,6 +858,7 @@ class Awards extends CI_Controller {
 	    $iotalist = $this->iota->fetchIota($postdata, $location_list);
 	    $data['iota_array'] = $this->iota->get_iota_array($iotalist, $bands, $postdata, $location_list);
 	    $data['iota_summary'] = $this->iota->get_iota_summary($bands, $postdata, $location_list);
+	    $data['posted_band']=$postdata['band'];
 
 	    // Render Page
 	    $data['page_title'] = sprintf(__("Awards - %s"), __("IOTA (Island On The Air)"));
@@ -1461,55 +1466,57 @@ class Awards extends CI_Controller {
         This displays the DXCC map
     */
     public function dxcc_map() {
-        $this->load->model('dxcc');
-        $this->load->model('bands');
+	    $this->load->model('dxcc');
+	    $this->load->model('bands');
 
-        $bands[] = $this->security->xss_clean($this->input->post('band'));
+	    $bands[] = $this->security->xss_clean($this->input->post('band'));
 
-        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
-        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
-        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
-        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
-        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
-        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
-        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
-        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
-        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
-        $postdata['includedeleted'] = $this->input->post('includedeleted') == 0 ? NULL: 1;
-        $postdata['Africa'] = $this->input->post('Africa') == 0 ? NULL: 1;
-        $postdata['Asia'] = $this->input->post('Asia') == 0 ? NULL: 1;
-        $postdata['Europe'] = $this->input->post('Europe') == 0 ? NULL: 1;
-        $postdata['NorthAmerica'] = $this->input->post('NorthAmerica') == 0 ? NULL: 1;
-        $postdata['SouthAmerica'] = $this->input->post('SouthAmerica') == 0 ? NULL: 1;
-        $postdata['Oceania'] = $this->input->post('Oceania') == 0 ? NULL: 1;
-        $postdata['Antarctica'] = $this->input->post('Antarctica') == 0 ? NULL: 1;
-        $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
-        $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
+	    $postdata['qsl'] = ($this->input->post('qsl',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['lotw'] = ($this->input->post('lotw',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['eqsl'] = ($this->input->post('eqsl',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['qrz'] = ($this->input->post('qrz',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['clublog'] = ($this->input->post('clublog',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['worked'] = ($this->input->post('worked',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['confirmed'] = ($this->input->post('confirmed',true) ?? 0)  == 0 ? NULL: 1;
+	    $postdata['notworked'] = ($this->input->post('notworked',true) ?? 0)  == 0 ? NULL: 1;
 
-        $dxcclist = $this->dxcc->fetchdxcc($postdata);
-        if ($dxcclist[0]->adif == "0") {
-            unset($dxcclist[0]);
-        }
+	    $postdata['includedeleted'] = ($this->input->post('includedeleted',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Africa'] = ($this->input->post('Africa',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Asia'] = ($this->input->post('Asia',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Europe'] = ($this->input->post('Europe',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['NorthAmerica'] = ($this->input->post('NorthAmerica',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['SouthAmerica'] = ($this->input->post('SouthAmerica',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Oceania'] = ($this->input->post('Oceania',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Antarctica'] = ($this->input->post('Antarctica',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+	    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	    $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
+	    $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 
-        $dxcc_array = $this->dxcc->get_dxcc_array($dxcclist, $bands, $postdata);
 
-        $i = 0;
+	    $dxcclist = $this->dxcc->fetchdxcc($postdata);
+	    if ($dxcclist[0]->adif == "0") {
+		    unset($dxcclist[0]);
+	    }
 
-        foreach ($dxcclist as $dxcc) {
-            $newdxcc[$i]['adif'] = $dxcc->adif;
-            $newdxcc[$i]['prefix'] = $dxcc->prefix;
-            $newdxcc[$i]['name'] = ucwords(strtolower($dxcc->name), "- (/");
-            if ($dxcc->Enddate!=null) {
-                $newdxcc[$i]['name'] .= ' (deleted)';
-            }
-            $newdxcc[$i]['lat'] = $dxcc->lat;
-            $newdxcc[$i]['long'] = $dxcc->long;
-            $newdxcc[$i++]['status'] = isset($dxcc_array[$dxcc->adif]) ? $this->returnStatus($dxcc_array[$dxcc->adif]) : 'x';
-        }
+	    $dxcc_array = $this->dxcc->get_dxcc_array($dxcclist, $bands, $postdata);
 
-        header('Content-Type: application/json');
-        echo json_encode($newdxcc);
+	    $i = 0;
+
+	    foreach ($dxcclist as $dxcc) {
+		    $newdxcc[$i]['adif'] = $dxcc->adif;
+		    $newdxcc[$i]['prefix'] = $dxcc->prefix;
+		    $newdxcc[$i]['name'] = ucwords(strtolower($dxcc->name), "- (/");
+		    if ($dxcc->Enddate!=null) {
+			    $newdxcc[$i]['name'] .= ' (deleted)';
+		    }
+		    $newdxcc[$i]['lat'] = $dxcc->lat;
+		    $newdxcc[$i]['long'] = $dxcc->long;
+		    $newdxcc[$i++]['status'] = isset($dxcc_array[$dxcc->adif]) ? $this->returnStatus($dxcc_array[$dxcc->adif]) : 'x';
+	    }
+
+	    header('Content-Type: application/json');
+	    echo json_encode($newdxcc);
     }
 
     /*
@@ -1553,58 +1560,61 @@ class Awards extends CI_Controller {
         This displays the IOTA map
     */
     public function iota_map() {
-        $this->load->model('iota');
-        $this->load->model('bands');
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->load->model('iota');
+	    $this->load->model('bands');
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		if (!$logbooks_locations_array) {
-			return null;
-		}
+	    if (!$logbooks_locations_array) {
+		    return null;
+	    }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+	    $location_list = "'".implode("','",$logbooks_locations_array)."'";
+	    $bands[] = $this->security->xss_clean($this->input->post('band'));
 
+	    $postdata['qsl'] = ($this->input->post('qsl',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['lotw'] = ($this->input->post('lotw',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['eqsl'] = ($this->input->post('eqsl',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['qrz'] = ($this->input->post('qrz',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['clublog'] = ($this->input->post('clublog',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['worked'] = ($this->input->post('worked',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['confirmed'] = ($this->input->post('confirmed',true) ?? 0)  == 0 ? NULL: 1;
+	    $postdata['notworked'] = ($this->input->post('notworked',true) ?? 0)  == 0 ? NULL: 1;
 
-        $bands[] = $this->security->xss_clean($this->input->post('band'));
+	    $postdata['includedeleted'] = ($this->input->post('includedeleted',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Africa'] = ($this->input->post('Africa',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Asia'] = ($this->input->post('Asia',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Europe'] = ($this->input->post('Europe',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['NorthAmerica'] = ($this->input->post('NorthAmerica',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['SouthAmerica'] = ($this->input->post('SouthAmerica',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Oceania'] = ($this->input->post('Oceania',true) ?? 0) == 0 ? NULL: 1;
+	    $postdata['Antarctica'] = ($this->input->post('Antarctica',true) ?? 0) == 0 ? NULL: 1;
 
-        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
-        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
-        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
-        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
-        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
-        $postdata['band'] = $this->input->post('band');
-	$postdata['mode'] = $this->input->post('mode');
-        $postdata['includedeleted'] = $this->input->post('includedeleted') == 0 ? NULL: 1;
-        $postdata['Africa'] = $this->input->post('Africa') == 0 ? NULL: 1;
-        $postdata['Asia'] = $this->input->post('Asia') == 0 ? NULL: 1;
-        $postdata['Europe'] = $this->input->post('Europe') == 0 ? NULL: 1;
-        $postdata['NorthAmerica'] = $this->input->post('NorthAmerica') == 0 ? NULL: 1;
-        $postdata['SouthAmerica'] = $this->input->post('SouthAmerica') == 0 ? NULL: 1;
-        $postdata['Oceania'] = $this->input->post('Oceania') == 0 ? NULL: 1;
-        $postdata['Antarctica'] = $this->input->post('Antarctica') == 0 ? NULL: 1;
+	    $postdata['band'] = $this->security->xss_clean($this->input->post('band')) ?? NULL;
+	    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode')) ?? NULL;
 
-        $iotalist = $this->iota->fetchIota($postdata, $location_list);
+	    $iotalist = $this->iota->fetchIota($postdata, $location_list);
 
-        $iota_array = $this->iota->get_iota_array($iotalist, $bands, $postdata, $location_list);
+	    $iota_array = $this->iota->get_iota_array($iotalist, $bands, $postdata, $location_list);
 
-        $i = 0;
+	    $i = 0;
 
-        foreach ($iotalist as $iota) {
-            $newiota[$i]['tag'] = $iota->tag;
-            $newiota[$i]['prefix'] = $iota->prefix;
-            $newiota[$i]['name'] = ucwords(strtolower($iota->name), "- (/");
-            if ($iota->status == 'D') {
-                $newiota[$i]['name'] .= ' (deleted)';
-            }
-            $newiota[$i]['lat1'] = $iota->lat1;
-            $newiota[$i]['lon1'] = $iota->lon1;
-            $newiota[$i]['lat2'] = $iota->lat2;
-            $newiota[$i]['lon2'] = $iota->lon2;
-            $newiota[$i++]['status'] = isset($iota_array[$iota->tag]) ? $this->returnStatus($iota_array[$iota->tag]) : 'x';
-        }
+	    foreach ($iotalist as $iota) {
+		    $newiota[$i]['tag'] = $iota->tag;
+		    $newiota[$i]['prefix'] = $iota->prefix;
+		    $newiota[$i]['name'] = ucwords(strtolower($iota->name), "- (/");
+		    if ($iota->status == 'D') {
+			    $newiota[$i]['name'] .= ' (deleted)';
+		    }
+		    $newiota[$i]['lat1'] = $iota->lat1;
+		    $newiota[$i]['lon1'] = $iota->lon1;
+		    $newiota[$i]['lat2'] = $iota->lat2;
+		    $newiota[$i]['lon2'] = $iota->lon2;
+		    $newiota[$i++]['status'] = isset($iota_array[$iota->tag]) ? $this->returnStatus($iota_array[$iota->tag]) : 'x';
+	    }
 
-        header('Content-Type: application/json');
-        echo json_encode($newiota);
+	    header('Content-Type: application/json');
+	    echo json_encode($newiota);
     }
 
     function returnStatus($string) {
@@ -1917,7 +1927,7 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	public function wae ()	{
+	public function wae () {
 		$this->load->model('wae');
 		$this->load->model('modes');
 		$this->load->model('bands');
@@ -1995,4 +2005,15 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
+	public function seven3on73 () {
+
+		// Grab all worked stations on AO-73
+		$this->load->model('Seven3on73');
+		$data['seven3on73_array'] = $this->Seven3on73->get_all();
+
+		$data['page_title'] = sprintf(__("Awards - %s"), __("73 on 73"));
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/73on73/index');
+		$this->load->view('interface_assets/footer');
+	}
 }

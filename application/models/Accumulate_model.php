@@ -42,7 +42,7 @@ class Accumulate_model extends CI_Model
 	    if ($period == "year") {
 		    $sql = "select year(thcv.col_time_on) year";
 	    } else if ($period == "month") {
-		    $sql = "select date_format(col_time_on, '%Y-%m') year";
+		    $sql = "select date_format(thcv.col_time_on, '%Y-%m') year";
 	    }
 
 	    $sql .= ", coalesce(y.tot, 0) tot
@@ -68,7 +68,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -100,14 +100,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " and col_dxcc = x.col_dxcc";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+		if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -201,7 +210,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -241,7 +250,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -253,7 +262,7 @@ class Accumulate_model extends CI_Model
 			    $binding[] = $propmode;
 		    }
 	    }
-	    
+
 	    if ($mode != 'All') {
 		    $sql .= " and (col_mode = ? or col_submode = ?)";
 		    $binding[] = $mode;
@@ -281,7 +290,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -345,7 +354,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -386,7 +395,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -427,7 +436,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -490,7 +499,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -528,7 +537,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -566,7 +575,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -629,7 +638,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -667,7 +676,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -705,7 +714,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -774,7 +783,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -825,7 +834,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -888,7 +897,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -926,7 +935,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode
@@ -964,7 +973,7 @@ class Accumulate_model extends CI_Model
 		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
-		    }	
+		    }
 		    if ( $propmode == 'NoSAT' ) {		// All without SAT
 			    $sql .= " and col_prop_mode !='SAT'";
 		    } elseif ($propmode == 'None') {	// Empty Propmode

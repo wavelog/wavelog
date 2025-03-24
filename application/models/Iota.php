@@ -7,6 +7,9 @@ class IOTA extends CI_Model {
 
 	function get_iota_array($iotaArray, $bands, $postdata, $location_list) {
 		foreach ($bands as $band) {             	// Looping through bands and iota to generate the array needed for display
+			if (($postdata['band'] != 'SAT') && ($band == 'SAT')) {
+				continue;
+			}
 			foreach ($iotaArray as $iota) {
 				$iotaMatrix[$iota->tag]['prefix'] = $iota->prefix;
 				$iotaMatrix[$iota->tag]['name'] = $iota->name;
@@ -64,12 +67,17 @@ class IOTA extends CI_Model {
 
 		$sql = "SELECT distinct UPPER(col_iota) as tag FROM " . $this->config->item('table_name') . " thcv
 			join iota on thcv.col_iota = iota.tag
-			where station_id in (" . $location_list .  ") and thcv.col_iota is not null";
+			where station_id in (" . $location_list . ") and thcv.col_iota is not null";
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $postdata['mode'];
 			$binding[] = $postdata['mode'];
+		}
+		if ($band == 'SAT') {
+			$sql .= " and col_prop_mode='SAT'";
+		} else {
+			$sql.=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 		}
 
 		$sql .= $this->genfunctions->addBandToQuery($band,$binding);
@@ -98,6 +106,11 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $postdata['mode'];
 			$binding[] = $postdata['mode'];
+		}
+		if ($band == 'SAT') {
+			$sql .= " and col_prop_mode='SAT'";
+		} else {
+			$sql.=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 		}
 
 		$sql .= $this->genfunctions->addBandToQuery($band,$binding);
@@ -142,6 +155,8 @@ class IOTA extends CI_Model {
 					$sql .= " and col_band = ?";
 					$binding[] = $postdata['band'];
 				}
+			} else {
+				$sql.=" and (col_prop_mode != 'SAT' or col_prop_mode is null)";
 			}
 			$sql .= ")";
 		}
@@ -157,13 +172,18 @@ class IOTA extends CI_Model {
 
 		$sql = "SELECT distinct UPPER(col_iota) as tag FROM " . $this->config->item('table_name') . " thcv
 			join iota on thcv.col_iota = iota.tag
-			where station_id in (" . $location_list .  ") and thcv.col_iota is not null
-			and not exists (select 1 from ". $this->config->item('table_name') . " where station_id = ". $location_list .  " and col_iota = thcv.col_iota)";
+			where station_id in (" . $location_list . ") and thcv.col_iota is not null
+			and not exists (select 1 from ". $this->config->item('table_name') . " where station_id in (". $location_list . ") and col_iota = thcv.col_iota)";
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $postdata['mode'];
 			$binding[] = $postdata['mode'];
+		}
+		if ($postdata['band'] == 'SAT') {
+			$sql .= " and col_prop_mode='SAT'";
+		} else {
+			$sql.=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 		}
 
 		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$binding);
@@ -190,13 +210,18 @@ class IOTA extends CI_Model {
 
 		$sql = "SELECT distinct UPPER(col_iota) as tag FROM " . $this->config->item('table_name') . " thcv
 			join iota on thcv.col_iota = iota.tag
-			where station_id in (" . $location_list .  ") and thcv.col_iota is not null";
+			where station_id in (" . $location_list . ") and thcv.col_iota is not null";
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $postdata['mode'];
 			$binding[] = $postdata['mode'];
+		}
+		if ($postdata['band'] == 'SAT') {
+			$sql .= " and col_prop_mode='SAT'";
+		} else {
+			$sql.=" and (col_prop_mode!='SAT' or col_prop_mode is null)";
 		}
 
 		if ($postdata['includedeleted'] == NULL) {
