@@ -697,7 +697,7 @@ $("#callsign").on("focusout", function () {
 					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign.replace('Ø', '0'));
 					$('#lotw_link').attr('target', "_blank");
 					$('#lotw_info').attr('data-bs-toggle', "tooltip");
-					if (result.lotw_days == 1) { 
+					if (result.lotw_days == 1) {
 						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_day_ago);
 					} else {
 						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_days_ago.replace('%x', result.lotw_days));
@@ -853,9 +853,11 @@ $("#callsign").on("focusout", function () {
 				/* display past QSOs */
 				$('#partial_view').html(result.partial);
 
-				// Get DXX Summary
-				getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
-			} 
+				// Get DXCC Summary
+				loadAwardTabs(function() {
+					getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
+				});
+			}
 			// else {
 			// 	console.log("Callsigns do not match, skipping lookup");
 			// 	console.log("Typed Callsign: " + $('#callsign').val());
@@ -867,6 +869,190 @@ $("#callsign").on("focusout", function () {
 		resetDefaultQSOFields();
 	}
 })
+
+// This function executes the call to the backend for fetching cq summary and inserted table below qso entry
+function getCqResult() {
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'cq',
+			cqz: $('#cqz').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+            $('#cq-summary').empty();
+            $('#cq-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching was summary and inserted table below qso entry
+function getWasResult() {
+	if ($('#stateDropdown').val() === '') return;
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'was',
+			was: $('#stateDropdown').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+            $('#state-summary').empty();
+            $('#state-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching sota summary and inserted table below qso entry
+function getSotaResult() {
+	if ($('#sota_ref').val() === '') return;
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'sota',
+			sota: $('#sota_ref').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+            $('#sota-summary').empty();
+            $('#sota-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching pota summary and inserted table below qso entry
+function getPotaResult() {
+	if ($('#pota_ref').val() === '') return;
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'pota',
+			pota: $('#pota_ref').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+            $('#pota-summary').empty();
+            $('#pota-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching continent summary and inserted table below qso entry
+function getContinentResult() {
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'continent',
+			continent: $('#continent').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+            $('#continent-summary').empty();
+            $('#continent-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching wwff summary and inserted table below qso entry
+function getWwffResult() {
+	if ($('#wwff_ref').val() === '') return;
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'wwff',
+			wwff: $('#wwff_ref').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+            $('#wwff-summary').empty();
+            $('#wwff-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching gridsquare summary and inserted table below qso entry
+function getGridsquareResult() {
+	if ($('#locator').val() === '') return;
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'vucc',
+			grid: $('#locator').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+            $('#gridsquare-summary').empty();
+            $('#gridsquare-summary').append(html);
+		}
+	});
+}
+
+function loadAwardTabs(callback) {
+    $.ajax({
+        url: base_url + 'index.php/qso/getAwardTabs',
+        type: 'post',
+        data: {},
+        success: function (html) {
+            $('.awardpane').remove();
+            $('.qsopane').append('<div class="awardpane col-sm-12"></div>');
+            $('.awardpane').append(html);
+
+            // Execute callback if provided
+            if (typeof callback === "function") {
+                callback();
+            }
+
+			$("a[href='#cq-summary']").on('shown.bs.tab', function(e) {
+				getCqResult();
+			});
+
+			$("a[href='#state-summary']").on('shown.bs.tab', function(e) {
+				getWasResult();
+			});
+
+			$("a[href='#pota-summary']").on('shown.bs.tab', function(e) {
+				getPotaResult();
+			});
+
+			$("a[href='#continent-summary']").on('shown.bs.tab', function(e) {
+				getContinentResult();
+			});
+
+			$("a[href='#sota-summary']").on('shown.bs.tab', function(e) {
+				getSotaResult();
+			});
+
+			$("a[href='#gridsquare-summary']").on('shown.bs.tab', function(e) {
+				getGridsquareResult();
+			});
+
+			$("a[href='#wwff-summary']").on('shown.bs.tab', function(e) {
+				getWwffResult();
+			});
+        }
+    });
+}
 
 /* time input shortcut */
 $('#start_time').on('change', function () {
@@ -1219,7 +1405,7 @@ function resetDefaultQSOFields() {
 	$('#stateDropdown').val("");
 	$('#callsign-image').attr('style', 'display: none;');
 	$('#callsign-image-content').text("");
-	$('.dxccsummary').remove();
+	$('.awardpane').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
 }
 
