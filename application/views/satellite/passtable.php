@@ -22,7 +22,7 @@ if (isset($filtered)) {
 				$ics='create_ics/'.$pass->satname.'/'.$aos_ics.'/'.$los_ics;
 				$max_el = round($pass->max_el);
 				$max_el_az = round($pass->visible_max_el_az);
-				$scale = 95;
+				$scale = 100;
 				$aos_x=((($scale / 10 * 9) * cos(deg2rad($aos_az+270)))+$scale);
 				$aos_y=((($scale / 10 * 9) * sin(deg2rad($aos_az+270)))+$scale);
 				$los_x=((($scale / 10 * 9) * cos(deg2rad($los_az+270)))+$scale);
@@ -44,8 +44,10 @@ if (isset($filtered)) {
 					<circle cx="'.$aos_x.'" cy="'.$aos_y.'" r="1" stroke="green" stroke-width="5" fill="none" />
 					<circle cx="'.$los_x.'" cy="'.$los_y.'" r="1" stroke="red" stroke-width="5" fill="none" />
 					<circle cx="'.$tco_x.'" cy="'.$tco_y.'" r="1" stroke="blue" stroke-width="5" fill="none" />
+					<line x1="'.$scale.'" y1="'.$scale.'" x2="'.((($scale / 10 * 9) * cos(deg2rad($max_el_az+270)))+$scale).'" y2="'.((($scale / 10 * 9) * sin(deg2rad($max_el_az+270)))+$scale).'" stroke="blue" stroke-width="1" fill="none" />
+					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.(($scale / 10 * 9)*(1-($max_el/90))).'" stroke="purple" stroke-width="1" fill="none" />
 					</svg></a></td>';
-				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>';
+				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span> ('.$max_el_az.' ° az)</td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->visible_aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '<td>' . $los_az . ' ° (' . azDegreesToDirection($pass->visible_los_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$los_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '</tr>';
