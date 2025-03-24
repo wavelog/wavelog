@@ -185,33 +185,88 @@ let sats = (function (L, d3, satelliteJs) {
     this._orbitType = this.orbitTypeFromAlt(this._altitude); // LEO, MEO, or GEO
   };
 
-  /**
-   * Updates satellite position and altitude based on current TLE and date
-   */
-	Satellite.prototype.update = function () {
-		try {
-			let positionAndVelocity = satelliteJs.propagate(this._satrec, this._date);
-			let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, this._gmst);
-			let positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, this._gmst);
-			let lA = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
+function computePath(satrec, date, minutesBack, minutesAhead, stepSeconds) {
+    let pastSegments = [[]]; // Store separate path segments for past
+    let futureSegments = [[]]; // Store separate path segments for future
+    let lastLng = null;
 
-			this._lookAngles = {
-				azimuth: lA.azimuth * DEGREES,
-				elevation: lA.elevation * DEGREES,
-				rangeSat: lA.rangeSat
-			};
-			this._position = {
-				lat: positionGd.latitude * DEGREES,
-				lng: positionGd.longitude * DEGREES
-			};
-			this._altitude = positionGd.height;
-			satmarker.setLatLng(this._position);
-		} catch (e) {
-			// Malicious // non-calcable SAT Found
-		} finally  {
-			return this;
-		}
-	};
+    for (let t = -minutesBack * 60; t <= minutesAhead * 60; t += stepSeconds) {
+        let newDate = new Date(date.getTime() + t * 1000);
+        let gmst = satelliteJs.gstime(newDate);
+        let positionAndVelocity = satelliteJs.propagate(satrec, newDate);
+        if (!positionAndVelocity.position) continue;
+
+        let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, gmst);
+        let lat = positionGd.latitude * DEGREES;
+        let lng = positionGd.longitude * DEGREES;
+
+        // Handle Antimeridian crossing
+        if (lastLng !== null && Math.abs(lng - lastLng) > 180) {
+            if (t < 0) {
+                pastSegments.push([]); // Start a new segment for past path
+            } else {
+                futureSegments.push([]); // Start a new segment for future path
+            }
+        }
+
+        // Add the current point to the correct segment
+        if (t < 0) {
+            pastSegments[pastSegments.length - 1].push([lat, lng]);
+        } else {
+            futureSegments[futureSegments.length - 1].push([lat, lng]);
+        }
+
+        lastLng = lng; // Update last longitude
+    }
+    return { pastSegments, futureSegments };
+}
+
+// Update function with Antimeridian-safe polylines
+Satellite.prototype.update = function () {
+    try {
+        let positionAndVelocity = satelliteJs.propagate(this._satrec, this._date);
+        let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, this._gmst);
+		let positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, this._gmst);
+		let lA = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
+
+		this._lookAngles = {
+			azimuth: lA.azimuth * DEGREES,
+			elevation: lA.elevation * DEGREES,
+			rangeSat: lA.rangeSat
+		};
+
+        this._position = {
+            lat: positionGd.latitude * DEGREES,
+            lng: positionGd.longitude * DEGREES
+        };
+        this._altitude = positionGd.height;
+
+        // Update satellite marker
+        satmarker.setLatLng(this._position);
+
+        // Comput	e paths with Antimeridian handling
+        let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 60, 60, 10);
+
+        // Remove old polylines if they exist
+        if (this._pastTrajectories) {
+            this._pastTrajectories.forEach(poly => leafletMap.removeLayer(poly));
+        }
+        if (this._futureTrajectories) {
+            this._futureTrajectories.forEach(poly => leafletMap.removeLayer(poly));
+        }
+
+        // Draw new segments
+        this._pastTrajectories = pastSegments.map(segment =>
+            L.polyline(segment, { color: 'red' }).addTo(leafletMap)
+        );
+        this._futureTrajectories = futureSegments.map(segment =>
+            L.polyline(segment, { color: 'blue' }).addTo(leafletMap)
+        );
+
+    } catch (e) {
+        console.error("Error updating satellite:", e);
+    }
+};
 
   /**
    * @returns {GeoJSON.Polygon} GeoJSON describing the satellite's current footprint on the Earth
