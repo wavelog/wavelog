@@ -424,6 +424,8 @@ Satellite.prototype.update = function () {
         html += '<tr><td><span>Azimuth</span></td><td align="right"><span id="az"></span></td></tr>';
         html += '<tr><td><span>Elevation</span></td><td align="right"><span id="ele"></span></td></tr>';
 		html += '<tr><td><span>Gridsquare</span></td><td align="right"><span id="grid"></span></td></tr>';
+		html += '<tr><td><span>Status</span></td><td align="right"><span id="status"></span></td></tr>';
+		html += '<tr><td><span>Visible</span></td><td align="right"><span id="visibility"></span></td></tr>';
         html += '<tr><td><input type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"></td><td><span> ' + lang_gen_hamradio_gridsquares + '</span></td></tr>';
         html += "</table>";
         div.innerHTML = html;
@@ -450,23 +452,67 @@ Satellite.prototype.update = function () {
 	function updateSats(date) {
 		sats.forEach(function (sat) {
 			sat.setDate(date).update();
-			let az = (Math.round((sat._lookAngles.azimuth*100),2)/100).toFixed(2);
-			let ele = (Math.round((sat._lookAngles.elevation*100),2)/100).toFixed(2);
-			if (ele > 0) {
-				az = "<b>"+az+"°</b>";
-				ele = "<b>"+ele+"°</b>";
-			} else {
-				az = az+"°";
-				ele = ele+"°";
+			let az = (Math.round((sat._lookAngles.azimuth * 100), 2) / 100).toFixed(2);
+			let ele = (Math.round((sat._lookAngles.elevation * 100), 2) / 100).toFixed(2);
+
+			if (ele > 0) { // Satellite is in view
+				az = "<b>" + az + "°</b>";
+				ele = "<b>" + ele + "°</b>";
+				let nextLOS = findNextEvent(sat, date, 1440, "LOS");
+				$("#status").html(nextLOS ? `LOS in ${nextLOS}` : "Satellite in view");
+				$("#visibility").html("<div class='bg-success awardsBgSuccess text-center'>Yes</div>");
+			} else { // Satellite is below horizon
+				let nextAOS = findNextEvent(sat, date, 1440, "AOS");
+				$("#status").html(nextAOS ? `AOS in ${nextAOS}` : "No AOS found in next 24h");
+				$("#visibility").html("<div class='bg-danger awardsBgDanger text-center'>No</div>");
 			}
+
 			$("#az").html(az);
 			$("#ele").html(ele);
 			$("#satorbit").html(sat.getOrbitType());
-			$("#satalt").html(Math.round(sat.altitude() * 1,60934)+" km");
-			$("#grid").html(latLngToLocator(sat._position.lat,sat._position.lng));
+			$("#satalt").html(Math.round(sat.altitude() * 1.60934) + " km");
+			$("#grid").html(latLngToLocator(sat._position.lat, sat._position.lng));
 		});
-		return;
-	};
+	}
+
+	function findNextEvent(sat, observerDate, maxMinutesAhead = 1440, eventType = "AOS") {
+		let stepSeconds = 1;
+		let currentTime = new Date(observerDate);
+
+		let lastElevation = -90; // Default below horizon
+		for (let t = 0; t <= maxMinutesAhead * 60; t += stepSeconds) {
+			let futureTime = new Date(currentTime.getTime() + t * 1000);
+			let gmst = satelliteJs.gstime(futureTime);
+			let positionAndVelocity = satelliteJs.propagate(sat._satrec, futureTime);
+			if (!positionAndVelocity.position) continue;
+
+			let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, gmst);
+			let positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, gmst);
+			let lookAngles = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
+			let elevation = lookAngles.elevation;
+
+			if (eventType === "AOS" && lastElevation <= 0 && elevation > 0) {
+				let timeDiff = Math.round((futureTime - currentTime) / 1000); // Seconds
+				return formatCountdown(timeDiff);
+			}
+
+			if (eventType === "LOS" && lastElevation > 0 && elevation <= 0) {
+				let timeDiff = Math.round((futureTime - currentTime) / 1000); // Seconds
+				return formatCountdown(timeDiff);
+			}
+
+			lastElevation = elevation; // Store previous elevation
+		}
+		return null; // No event found
+	}
+
+	function formatCountdown(seconds) {
+		let min = Math.floor(seconds / 60);
+		let sec = seconds % 60;
+		return `${min}m ${sec}s`;
+	}
+
+
 
   /**
    * Create satellite objects for each record in the TLEs and begin animation
