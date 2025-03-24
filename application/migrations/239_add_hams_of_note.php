@@ -43,7 +43,7 @@ class Migration_add_hams_of_note extends CI_Migration
 			$this->db->query("ALTER TABLE hams_of_note ADD INDEX `callsign` (`callsign`)");
 		}
 
-		if ($this->chk4cron('update_update_hon') == 0) {
+		if ($this->chk4cron('update_update_hamsofnote') == 0) {
 			$data = array(
 				array(
 					'id' => 'update_update_hamsofnote',
