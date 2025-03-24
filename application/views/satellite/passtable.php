@@ -27,8 +27,8 @@ if (isset($filtered)) {
 				$aos_y=((($scale / 10 * 9) * sin(deg2rad($aos_az+270)))+$scale);
 				$los_x=((($scale / 10 * 9) * cos(deg2rad($los_az+270)))+$scale);
 				$los_y=((($scale / 10 * 9) * sin(deg2rad($los_az+270)))+$scale);
-				$tco_x=((($scale / 10 * 9) * cos(deg2rad($max_el_az+270)))+$scale);
-				$tco_y=((($scale / 10 * 9) * sin(deg2rad($max_el_az+270)))+$scale);
+				$tca_x=((($scale / 10 * 9) * cos(deg2rad($max_el_az+270)))+$scale);
+				$tca_y=((($scale / 10 * 9) * sin(deg2rad($max_el_az+270)))+$scale);
 				echo '<tr>';
 				echo '<td>' . $pass->satname . '</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
@@ -43,7 +43,7 @@ if (isset($filtered)) {
 					<line x1="'.$scale.'" y1="0" x2="'.$scale.'" y2="'.($scale*2).'" stroke="darkgrey" stroke-width="1" />
 					<circle cx="'.$aos_x.'" cy="'.$aos_y.'" r="1" stroke="green" stroke-width="5" fill="none" />
 					<circle cx="'.$los_x.'" cy="'.$los_y.'" r="1" stroke="red" stroke-width="5" fill="none" />
-					<circle cx="'.$tco_x.'" cy="'.$tco_y.'" r="1" stroke="blue" stroke-width="5" fill="none" />
+					<circle cx="'.$tca_x.'" cy="'.$tca_y.'" r="1" stroke="blue" stroke-width="5" fill="none" />
 					</svg></a></td>';
 				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->visible_aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
