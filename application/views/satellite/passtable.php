@@ -23,12 +23,9 @@ if (isset($filtered)) {
 				$max_el = round($pass->max_el);
 				$max_el_az = round($pass->visible_max_el_az);
 				$scale = 95;
-				$aos_x=((($scale / 10 * 9) * cos(deg2rad($aos_az+270)))+$scale);
-				$aos_y=((($scale / 10 * 9) * sin(deg2rad($aos_az+270)))+$scale);
-				$los_x=((($scale / 10 * 9) * cos(deg2rad($los_az+270)))+$scale);
-				$los_y=((($scale / 10 * 9) * sin(deg2rad($los_az+270)))+$scale);
-				$tca_x=((($scale / 10 * 9) * cos(deg2rad($max_el_az+270)))+$scale);
-				$tca_y=((($scale / 10 * 9) * sin(deg2rad($max_el_az+270)))+$scale);
+				$aos=sat2pol($aos_az,0,$scale);
+				$los=sat2pol($los_az,0,$scale);
+				$tca=sat2pol($max_el_az,$max_el,$scale);
 				echo '<tr>';
 				echo '<td>' . $pass->satname . '</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
@@ -41,9 +38,11 @@ if (isset($filtered)) {
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 3).'" stroke="darkgrey" stroke-width="1" fill="none" />
 					<line x1="0" y1="'.$scale.'" x2="'.($scale*2).'" y2="'.$scale.'" stroke="darkgrey" stroke-width="1" />
 					<line x1="'.$scale.'" y1="0" x2="'.$scale.'" y2="'.($scale*2).'" stroke="darkgrey" stroke-width="1" />
-					<circle cx="'.$aos_x.'" cy="'.$aos_y.'" r="1" stroke="green" stroke-width="5" fill="none" />
-					<circle cx="'.$los_x.'" cy="'.$los_y.'" r="1" stroke="red" stroke-width="5" fill="none" />
-					<circle cx="'.$tca_x.'" cy="'.$tca_y.'" r="1" stroke="blue" stroke-width="5" fill="none" />
+					<circle cx="'.$aos[0].'" cy="'.$aos[1].'" r="1" stroke="green" stroke-width="5" fill="none" />
+					<circle cx="'.$los[0].'" cy="'.$los[1].'" r="1" stroke="red" stroke-width="5" fill="none" />
+					<circle cx="'.$tca[0].'" cy="'.$tca[1].'" r="1" stroke="blue" stroke-width="5" fill="none" />
+					<path d="M '.$aos[0].' '.$aos[1].' Q '.$tca[0].' '.$tca[1].' '.$tca[0].' '.$tca[1].' Q '.$los[0].' '.$los[1].' '.$los[0].' '.$los[1].'" fill="none" stroke="blue" stroke-width="2" />
+					<!-- <path d="M '.$aos[0].' '.$aos[1].' Q '.$tca[0].' '.$tca[1].' '.$los[0].' '.$los[1].'" fill="none" stroke="blue" stroke-width="2" /> -->
 					</svg></a></td>';
 				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->visible_aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
@@ -56,6 +55,14 @@ if (isset($filtered)) {
 	echo '<h2>'.__('Search failed!').'</h2>';
 	echo '<p>'.__('No passes found. Please check the input parameters.').'</p>';
 	echo '</div>';
+}
+
+function sat2pol($azimuth_deg, $elevation_deg,$scale) {
+	$azimuth_rad = deg2rad(270+$azimuth_deg);
+	$r = (90 - $elevation_deg)/90;
+	$x = ($r * cos($azimuth_rad)*($scale / 10 * 9))+$scale;
+	$y = ($r * sin($azimuth_rad)*($scale / 10 * 9))+$scale;
+	return array($x, $y);
 }
 
 function returntimediff($start, $end, $format) {
