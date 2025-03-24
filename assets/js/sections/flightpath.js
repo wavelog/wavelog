@@ -456,16 +456,17 @@ Satellite.prototype.update = function () {
 			let ele = (Math.round((sat._lookAngles.elevation * 100), 2) / 100).toFixed(2);
 
 			if (ele > 0) { // Satellite is in view
-				az = "<b>" + az + "°</b>";
-				ele = "<b>" + ele + "°</b>";
 				let nextLOS = findNextEvent(sat, date, 1440, "LOS");
-				$("#status").html(nextLOS ? `LOS in ${nextLOS}` : "Satellite in view");
+				$("#status").html(nextLOS ? `LOS in ${nextLOS}` : "No LOS found in next 24h");
 				$("#visibility").html("<div class='bg-success awardsBgSuccess text-center'>Yes</div>");
 			} else { // Satellite is below horizon
 				let nextAOS = findNextEvent(sat, date, 1440, "AOS");
 				$("#status").html(nextAOS ? `AOS in ${nextAOS}` : "No AOS found in next 24h");
 				$("#visibility").html("<div class='bg-danger awardsBgDanger text-center'>No</div>");
 			}
+
+			az = "<b>" + az + "°</b>";
+			ele = "<b>" + ele + "°</b>";
 
 			$("#az").html(az);
 			$("#ele").html(ele);
