@@ -1,3 +1,4 @@
+let lastUpdateTime = 0; // Track the last update time
 var satmarker;
 let maidenhead;
 let leafletMap;
@@ -585,13 +586,17 @@ Satellite.prototype.update = function () {
   };
 
   function animateSats(elapsed) {
-    let dateInMs = activeClock.elapsed(elapsed).date();
-    let date = new Date(dateInMs);
-    attributionControl.setPrefix(date);
+	  let dateInMs = activeClock.elapsed(elapsed).date();
+	  let date = new Date(dateInMs);
+	  attributionControl.setPrefix(date);
 
-    updateSats(date);
-    draw();
-    window.requestAnimationFrame(animateSats);
+	  if (dateInMs - lastUpdateTime >= 1000) { // Only update every 1 second
+		  updateSats(date);
+		  lastUpdateTime = dateInMs;
+	  }
+
+	  draw();
+	  window.requestAnimationFrame(animateSats);
   }
 
   function start(data) {
