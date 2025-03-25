@@ -8,7 +8,7 @@ if (isset($filtered)) {
 					<th>' . __("LOS Time") . '</th>
 					<th>' . __("Duration") . '</th>
 					<th style="white-space: nowrap">' . __("Path") . '</th>
-					<th>' . __("Max Elevation") . '</th>
+					<th>' . __("Max Elevation (Azimuth)") . '</th>
 					<th>' . __("AOS Azimuth") . '</th>
 					<th>' . __("LOS Azimuth") . '</th>
 				</tr>
@@ -44,7 +44,7 @@ if (isset($filtered)) {
 					<circle cx="'.$tca[0].'" cy="'.$tca[1].'" r="1" stroke="blue" stroke-width="5" fill="none" />
 					<path d="M '.$aos[0].' '.$aos[1].' Q '.$control[0].' '.$control[1].' '.$los[0].' '.$los[1].'" fill="none" stroke="blue" stroke-width="2" />
 					</svg></a></td>';
-				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>';
+				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span> <small><small>('.$max_el_az.' °)</small></small></td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '<td>' . $los_az . ' ° (' . azDegreesToDirection($pass->los_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$los_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '</tr>';
