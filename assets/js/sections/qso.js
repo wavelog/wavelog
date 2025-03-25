@@ -1090,35 +1090,76 @@ function loadAwardTabs(callback) {
                 callback();
             }
 
-			$("a[href='#cq-summary']").on('shown.bs.tab', function(e) {
-				getCqResult();
+			$("a[href='#cq-summary']").on('shown.bs.tab', function (e) {
+				let $targetPane = $('#cq-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getCqResult();
+				}
 			});
 
 			$("a[href='#state-summary']").on('shown.bs.tab', function(e) {
-				getWasResult();
+				let $targetPane = $('#state-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getWasResult();
+				}
 			});
 
 			$("a[href='#pota-summary']").on('shown.bs.tab', function(e) {
-				getPotaResult();
+				let $targetPane = $('#pota-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getPotaResult();
+				}
 			});
 
 			$("a[href='#continent-summary']").on('shown.bs.tab', function(e) {
-				getContinentResult();
+				let $targetPane = $('#continent-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getContinentResult();
+				}
 			});
 
 			$("a[href='#sota-summary']").on('shown.bs.tab', function(e) {
-				getSotaResult();
+				let $targetPane = $('#sota-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getSotaResult();
+				}
 			});
 
 			$("a[href='#gridsquare-summary']").on('shown.bs.tab', function(e) {
-				getGridsquareResult();
+				let $targetPane = $('#gridsquare-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getGridsquareResult();
+				}
 			});
 
 			$("a[href='#wwff-summary']").on('shown.bs.tab', function(e) {
-				getWwffResult();
+				let $targetPane = $('#wwff-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getWwffResult();
+				}
 			});
+
 			$("a[href='#iota-summary']").on('shown.bs.tab', function(e) {
-				getIotaResult();
+				let $targetPane = $('#iota-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getIotaResult();
+				}
 			});
         }
     });

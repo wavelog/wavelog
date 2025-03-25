@@ -831,22 +831,27 @@ function getLookupResult() {
 
 // This function executes the call to the backend for fetching dxcc summary and inserted table below qso entry
 function getDxccResult(dxcc, name) {
-	$.ajax({
-		url: base_url + 'index.php/lookup/search',
-		type: 'post',
-		data: {
-			type: 'dxcc',
-			dxcc: dxcc,
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
-		},
-		success: function (html) {
-			$('#dxcc-summary').empty();
-            $('#dxcc-summary').append('Showing summary for DXCC ' + name + '.');
-            $('#dxcc-summary').append(html);
-		}
-	});
+	let $targetPane = $('#dxcc-summary');
+
+	if (!$targetPane.data("loaded")) {
+		$targetPane.data("loaded", true); // Mark as loaded
+		$.ajax({
+			url: base_url + 'index.php/lookup/search',
+			type: 'post',
+			data: {
+				type: 'dxcc',
+				dxcc: dxcc,
+				reduced_mode: true,
+				current_band: $('#band').val(),
+				current_mode: $('#mode').val(),
+			},
+			success: function (html) {
+				$('#dxcc-summary').empty();
+				$('#dxcc-summary').append('Showing summary for DXCC ' + name + '.');
+				$('#dxcc-summary').append(html);
+			}
+		});
+	}
 }
 
 function displayQsl(id) {
