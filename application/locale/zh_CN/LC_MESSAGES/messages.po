@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-24 10:40+0000\n"
+"POT-Creation-Date: 2025-03-25 09:25+0000\n"
 "PO-Revision-Date: 2025-03-24 08:20+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -11651,10 +11651,8 @@ msgid "Path"
 msgstr "卫星路径"
 
 #: application/views/satellite/passtable.php:11
-#: application/views/satellite/skedtable.php:11
-#: application/views/sattimers/index.php:45
-msgid "Max Elevation"
-msgstr "最大仰角"
+msgid "Max Elevation (Azimuth)"
+msgstr ""
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:10
@@ -11666,16 +11664,16 @@ msgstr "AOS 方位角"
 msgid "LOS Azimuth"
 msgstr "LOS 方位角"
 
-#: application/views/satellite/passtable.php:38
+#: application/views/satellite/passtable.php:55
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
 msgstr "搜索失败！"
 
-#: application/views/satellite/passtable.php:39
+#: application/views/satellite/passtable.php:56
 msgid "No passes found. Please check the input parameters."
 msgstr "没有找到卫星通过。请检查输入参数。"
 
-#: application/views/satellite/passtable.php:48
+#: application/views/satellite/passtable.php:73
 #: application/views/satellite/skedtable.php:93
 msgid "min"
 msgstr "分钟"
@@ -11683,6 +11681,11 @@ msgstr "分钟"
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
 msgstr "网格"
+
+#: application/views/satellite/skedtable.php:11
+#: application/views/sattimers/index.php:45
+msgid "Max Elevation"
+msgstr "最大仰角"
 
 #: application/views/satellite/skedtable.php:58
 msgid "Sked AOS Time"
