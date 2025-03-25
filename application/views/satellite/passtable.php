@@ -39,10 +39,10 @@ if (isset($filtered)) {
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 3).'" stroke="darkgrey" stroke-width="1" fill="none" />
 					<line x1="0" y1="'.$scale.'" x2="'.($scale*2).'" y2="'.$scale.'" stroke="darkgrey" stroke-width="1" />
 					<line x1="'.$scale.'" y1="0" x2="'.$scale.'" y2="'.($scale*2).'" stroke="darkgrey" stroke-width="1" />
+					<path d="M '.$aos[0].' '.$aos[1].' Q '.$control[0].' '.$control[1].' '.$los[0].' '.$los[1].'" fill="none" stroke="#7878FF" stroke-width="2" />
 					<circle cx="'.$aos[0].'" cy="'.$aos[1].'" r="1" stroke="green" stroke-width="5" fill="none" />
 					<circle cx="'.$los[0].'" cy="'.$los[1].'" r="1" stroke="red" stroke-width="5" fill="none" />
 					<circle cx="'.$tca[0].'" cy="'.$tca[1].'" r="1" stroke="#4444FF" stroke-width="5" fill="none" />
-					<path d="M '.$aos[0].' '.$aos[1].' Q '.$control[0].' '.$control[1].' '.$los[0].' '.$los[1].'" fill="none" stroke="#7878FF" stroke-width="2" />
 					</svg></a></td>';
 				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span> <small><small>('.$max_el_az.' °)</small></small></td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
