@@ -1,9 +1,17 @@
 let lastUpdateTime = 0; // Track the last update time
 var satmarker;
+var satBearing = 0;
+var lastPos = 0;
 let maidenhead;
 let leafletMap;
 let saticon = L.divIcon({
     html: '<i class="fa-solid fa-satellite" style="font-size: 24px; color: black; -webkit-text-stroke: 1px white;"></i>',
+    className: '', // Prevents default Leaflet styles
+    iconSize: [30, 30],
+    iconAnchor: [15, 15] // Center the icon
+});
+let diricon = L.divIcon({
+    html: '<i class="fa-solid fa-arrow-up" style="font-size: 24px; color: black; -webkit-text-stroke: 1px white;"></i>',
     className: '', // Prevents default Leaflet styles
     iconSize: [30, 30],
     iconAnchor: [15, 15] // Center the icon
@@ -240,10 +248,28 @@ Satellite.prototype.update = function () {
             lat: positionGd.latitude * DEGREES,
             lng: positionGd.longitude * DEGREES
         };
+        this._direction = {
+            lat: positionGd.latitude * DEGREES,
+            lng: positionGd.longitude * DEGREES
+        };
         this._altitude = positionGd.height;
 
         // Update satellite marker
+        satBearing = bearing(lastPos['lat'], lastPos['lng'], this._position['lat'], this._position['lng']).toFixed(0);
+        dirmarker.setRotationAngle(satBearing);
+        zoomLevel = leafletMap.getZoom();
         satmarker.setLatLng(this._position);
+        let dist = 20;
+        lastPos = this._position;
+        if (satBearing >= 0 && satBearing < 90) {
+           dirmarker.setLatLng({lat: (this._position['lat']-(dist/zoomLevel)), lng: this._position['lng']});
+        } else if (satBearing >= 90 && satBearing < 180) {
+           dirmarker.setLatLng({lat: (this._position['lat']-(dist/zoomLevel)), lng: (this._position['lng']-(dist/zoomLevel))});
+        } else if (satBearing >= 180 && satBearing < 270) {
+           dirmarker.setLatLng({lat: (this._position['lat']+(dist/zoomLevel)), lng: (this._position['lng']+(dist/zoomLevel))});
+        } else {
+           dirmarker.setLatLng({lat: (this._position['lat']-(dist/zoomLevel)), lng: (this._position['lng']+(dist/zoomLevel))});
+        }
 
         // Comput	e paths with Antimeridian handling
         let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 60, 60, 10);
@@ -394,6 +420,14 @@ Satellite.prototype.update = function () {
 			zIndex: 1000,
 		}
 	).addTo(leafletMap).on('click', displayUpComingPasses);
+
+	dirmarker = L.marker(
+		[10, 10], {
+			icon: diricon,
+			title: satellite,
+			zIndex: 1000,
+		}
+	).addTo(leafletMap);
 
 	// Add an always-visible label (tooltip)
 	satmarker.bindTooltip(satellite, {
@@ -709,4 +743,27 @@ function displayUpComingPasses(e) {
 			dialog.open();
 		}
 	});
+}
+
+// Converts from degrees to radians.
+function toRadians(degrees) {
+  return degrees * Math.PI / 180;
+};
+
+// Converts from radians to degrees.
+function toDegrees(radians) {
+  return radians * 180 / Math.PI;
+}
+
+function bearing(startLat, startLng, destLat, destLng){
+  startLat = toRadians(startLat);
+  startLng = toRadians(startLng);
+  destLat = toRadians(destLat);
+  destLng = toRadians(destLng);
+
+  y = Math.sin(destLng - startLng) * Math.cos(destLat);
+  x = Math.cos(startLat) * Math.sin(destLat) - Math.sin(startLat) * Math.cos(destLat) * Math.cos(destLng - startLng);
+  brng = Math.atan2(y, x);
+  brng = toDegrees(brng);
+  return (brng + 360) % 360;
 }
