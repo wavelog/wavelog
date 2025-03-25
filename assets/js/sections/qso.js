@@ -995,6 +995,30 @@ function getContinentResult() {
 	});
 }
 
+// This function executes the call to the backend for fetching iota summary and inserted table below qso entry
+function getIotaResult() {
+	$('#iota-summary').empty();
+	if ($('#iota_ref').val() === '') {
+		$('#iota-summary').append('IOTA input needs to be filled to show a summary!');
+		return;
+	}
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'iota',
+			continent: $('#iota_ref').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+			$('#iota-summary').append('Showing summary for IOTA ' + $('#iota_ref').val() + '.');
+            $('#iota-summary').append(html);
+		}
+	});
+}
+
 // This function executes the call to the backend for fetching wwff summary and inserted table below qso entry
 function getWwffResult() {
 	$('#wwff-summary').empty();
@@ -1087,6 +1111,9 @@ function loadAwardTabs(callback) {
 
 			$("a[href='#wwff-summary']").on('shown.bs.tab', function(e) {
 				getWwffResult();
+			});
+			$("a[href='#iota-summary']").on('shown.bs.tab', function(e) {
+				getIotaResult();
 			});
         }
     });
