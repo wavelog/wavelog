@@ -326,7 +326,9 @@ $("#sat_name").on('change', function () {
 		$("#selectPropagation").val("");
 		stop_az_ele_ticker();
 	} else {
-		get_tles();
+		if (qso_manual != 1) {
+			get_tles();
+		}
 	}
 });
 
