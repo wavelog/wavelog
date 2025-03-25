@@ -222,19 +222,19 @@ function computePath(satrec, date, minutesBack, minutesAhead, stepSeconds) {
     return { pastSegments, futureSegments };
 }
 
-// Update function with Antimeridian-safe polylines
+// Update function for satellite
 Satellite.prototype.update = function () {
     try {
         let positionAndVelocity = satelliteJs.propagate(this._satrec, this._date);
         let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, this._gmst);
-		let positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, this._gmst);
-		let lA = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
+        let positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, this._gmst);
+        let lA = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
 
-		this._lookAngles = {
-			azimuth: lA.azimuth * DEGREES,
-			elevation: lA.elevation * DEGREES,
-			rangeSat: lA.rangeSat
-		};
+        this._lookAngles = {
+            azimuth: lA.azimuth * DEGREES,
+            elevation: lA.elevation * DEGREES,
+            rangeSat: lA.rangeSat
+        };
 
         this._position = {
             lat: positionGd.latitude * DEGREES,
@@ -245,8 +245,8 @@ Satellite.prototype.update = function () {
         // Update satellite marker
         satmarker.setLatLng(this._position);
 
-        // Comput	e paths with Antimeridian handling
-        let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 60, 60, 10);
+        // Compute paths with Antimeridian handling
+        let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
 
         // Remove old polylines if they exist
         if (this._pastTrajectories) {
@@ -256,18 +256,68 @@ Satellite.prototype.update = function () {
             this._futureTrajectories.forEach(poly => leafletMap.removeLayer(poly));
         }
 
-        // Draw new segments
+        // Draw new trajectory segments
         this._pastTrajectories = pastSegments.map(segment =>
             L.polyline(segment, { color: 'red' }).addTo(leafletMap)
         );
         this._futureTrajectories = futureSegments.map(segment =>
-            L.polyline(segment, { color: 'blue' }).addTo(leafletMap)
+            L.polyline(segment, { color: 'green' }).addTo(leafletMap)
         );
+
+        // 📌 **Fix Arrow Direction Using Ground Track Bearing**
+        let nextDate = new Date(this._date.getTime() + 10000); // 5 sec into the future
+        let nextPos = satelliteJs.propagate(this._satrec, nextDate);
+        let nextGd = satelliteJs.eciToGeodetic(nextPos.position, this._gmst);
+
+        let nextLat = nextGd.latitude * DEGREES;
+        let nextLng = nextGd.longitude * DEGREES;
+
+        let heading = getBearing(this._position.lat, this._position.lng, nextLat, nextLng);
+
+        // Remove old arrow marker if it exists
+        if (this._directionArrow) {
+            leafletMap.removeLayer(this._directionArrow);
+        }
+
+        // Define arrow icon using an SVG
+        let arrowIcon = L.divIcon({
+            className: "custom-arrow",
+            html: `<div style="
+                transform: rotate(${heading-90}deg);
+                font-size: 20px;
+                color: yellow;
+                ">➤</div>`, // Unicode arrow
+            iconSize: [20, 20],
+            iconAnchor: [15, -15]
+        });
+
+        // Offset the arrow slightly ahead of the satellite position
+        let arrowOffset = 0.1; // Small offset factor
+        let arrowLat = this._position.lat + arrowOffset * Math.sin(heading * (Math.PI / 180));
+        let arrowLng = this._position.lng + arrowOffset * Math.cos(heading * (Math.PI / 180));
+
+        // Add the arrow marker
+        this._directionArrow = L.marker([arrowLat, arrowLng], { icon: arrowIcon }).addTo(leafletMap);
 
     } catch (e) {
         console.error("Error updating satellite:", e);
     }
 };
+
+/**
+ * Compute bearing (heading) between two lat/lng points
+ */
+function getBearing(lat1, lng1, lat2, lng2) {
+    let phi1 = lat1 * Math.PI / 180;
+    let phi2 = lat2 * Math.PI / 180;
+    let deltaPi = (lng2 - lng1) * Math.PI / 180;
+
+    let y = Math.sin(deltaPi) * Math.cos(phi2);
+    let x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaPi);
+    let theta = Math.atan2(y, x);
+
+    return (theta * 180 / Math.PI + 360) % 360; // Normalize to 0-360
+}
 
   /**
    * @returns {GeoJSON.Polygon} GeoJSON describing the satellite's current footprint on the Earth
@@ -390,7 +440,6 @@ Satellite.prototype.update = function () {
 	satmarker = L.marker(
 		[0, 0], {
 			icon: saticon,
-			title: satellite,
 			zIndex: 1000,
 		}
 	).addTo(leafletMap).on('click', displayUpComingPasses);
@@ -400,8 +449,8 @@ Satellite.prototype.update = function () {
 		permanent: true,  // Always visible
 		direction: "top", // Position label above the marker
 		offset: [0, -20], // Adjust position
+		title: satellite,
 		className: "satellite-label" // Optional: Custom CSS
-		// className: "leaflet-popup-content-wrapper" // Optional: Custom CSS
 	});
 
 	L.marker(
@@ -472,7 +521,7 @@ Satellite.prototype.update = function () {
 			$("#az").html(az);
 			$("#ele").html(ele);
 			$("#satorbit").html(sat.getOrbitType());
-			$("#satalt").html(Math.round(sat.altitude() * 1.60934) + " km");
+			$("#satalt").html(Math.round(sat.altitude()) + " km");
 			$("#grid").html(latLngToLocator(sat._position.lat, sat._position.lng));
 		});
 	}
