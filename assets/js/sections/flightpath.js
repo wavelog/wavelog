@@ -416,7 +416,6 @@ Satellite.prototype.update = function () {
 	satmarker = L.marker(
 		[0, 0], {
 			icon: saticon,
-			title: satellite,
 			zIndex: 1000,
 		}
 	).addTo(leafletMap).on('click', displayUpComingPasses);
@@ -431,11 +430,11 @@ Satellite.prototype.update = function () {
 
 	// Add an always-visible label (tooltip)
 	satmarker.bindTooltip(satellite, {
+		title: satellite,
 		permanent: true,  // Always visible
 		direction: "top", // Position label above the marker
 		offset: [0, -20], // Adjust position
 		className: "satellite-label" // Optional: Custom CSS
-		// className: "leaflet-popup-content-wrapper" // Optional: Custom CSS
 	});
 
 	L.marker(
