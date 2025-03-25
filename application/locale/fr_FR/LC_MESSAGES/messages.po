@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-24 10:40+0000\n"
+"POT-Creation-Date: 2025-03-25 09:25+0000\n"
 "PO-Revision-Date: 2025-02-25 06:19+0000\n"
 "Last-Translator: remy56k <remy@bubocode.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -11817,9 +11817,7 @@ msgid "Path"
 msgstr ""
 
 #: application/views/satellite/passtable.php:11
-#: application/views/satellite/skedtable.php:11
-#: application/views/sattimers/index.php:45
-msgid "Max Elevation"
+msgid "Max Elevation (Azimuth)"
 msgstr ""
 
 #: application/views/satellite/passtable.php:12
@@ -11832,22 +11830,27 @@ msgstr ""
 msgid "LOS Azimuth"
 msgstr ""
 
-#: application/views/satellite/passtable.php:38
+#: application/views/satellite/passtable.php:55
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
 msgstr ""
 
-#: application/views/satellite/passtable.php:39
+#: application/views/satellite/passtable.php:56
 msgid "No passes found. Please check the input parameters."
 msgstr ""
 
-#: application/views/satellite/passtable.php:48
+#: application/views/satellite/passtable.php:73
 #: application/views/satellite/skedtable.php:93
 msgid "min"
 msgstr ""
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
+msgstr ""
+
+#: application/views/satellite/skedtable.php:11
+#: application/views/sattimers/index.php:45
+msgid "Max Elevation"
 msgstr ""
 
 #: application/views/satellite/skedtable.php:58

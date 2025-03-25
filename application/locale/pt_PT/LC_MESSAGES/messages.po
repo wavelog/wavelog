@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-24 10:40+0000\n"
+"POT-Creation-Date: 2025-03-25 09:25+0000\n"
 "PO-Revision-Date: 2025-03-12 19:25+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -12063,10 +12063,8 @@ msgid "Path"
 msgstr ""
 
 #: application/views/satellite/passtable.php:11
-#: application/views/satellite/skedtable.php:11
-#: application/views/sattimers/index.php:45
-msgid "Max Elevation"
-msgstr "Elevação Máxima"
+msgid "Max Elevation (Azimuth)"
+msgstr ""
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:10
@@ -12078,17 +12076,17 @@ msgstr "AOS Azimute"
 msgid "LOS Azimuth"
 msgstr "Azimute LOS"
 
-#: application/views/satellite/passtable.php:38
+#: application/views/satellite/passtable.php:55
 #: application/views/satellite/skedtable.php:83
 msgid "Search failed!"
 msgstr "Falha na pesquisa!"
 
-#: application/views/satellite/passtable.php:39
+#: application/views/satellite/passtable.php:56
 msgid "No passes found. Please check the input parameters."
 msgstr ""
 "Nenhuma passagem encontrada. Por favor, verifique os parâmetros de entrada."
 
-#: application/views/satellite/passtable.php:48
+#: application/views/satellite/passtable.php:73
 #: application/views/satellite/skedtable.php:93
 msgid "min"
 msgstr "minuto"
@@ -12096,6 +12094,11 @@ msgstr "minuto"
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
 msgstr "Grelha"
+
+#: application/views/satellite/skedtable.php:11
+#: application/views/sattimers/index.php:45
+msgid "Max Elevation"
+msgstr "Elevação Máxima"
 
 #: application/views/satellite/skedtable.php:58
 msgid "Sked AOS Time"
