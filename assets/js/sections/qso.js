@@ -905,8 +905,8 @@ function getCqResult() {
 
 // This function executes the call to the backend for fetching was summary and inserted table below qso entry
 function getWasResult() {
+	$('#state-summary').empty();
 	if ($('#stateDropdown').val() === '') {
-		$('#state-summary').empty();
 		$('#state-summary').append('State input needs to be filled to show a summary!');
 		return;
 	}
@@ -921,7 +921,6 @@ function getWasResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-            $('#state-summary').empty();
 			$('#state-summary').append('Showing summary for US state ' + $('#stateDropdown').val() + '.');
             $('#state-summary').append(html);
 		}
@@ -930,8 +929,8 @@ function getWasResult() {
 
 // This function executes the call to the backend for fetching sota summary and inserted table below qso entry
 function getSotaResult() {
+	$('#sota-summary').empty();
 	if ($('#sota_ref').val() === '') {
-		$('#sota-summary').empty();
 		$('#sota-summary').append('SOTA input needs to be filled to show a summary!');
 		return;
 	}
@@ -946,7 +945,6 @@ function getSotaResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-            $('#sota-summary').empty();
 			$('#sota-summary').append('Showing summary for SOTA ' + $('#sota_ref').val() + '.');
             $('#sota-summary').append(html);
 		}
@@ -955,8 +953,8 @@ function getSotaResult() {
 
 // This function executes the call to the backend for fetching pota summary and inserted table below qso entry
 function getPotaResult() {
+	$('#pota-summary').empty();
 	if ($('#pota_ref').val() === '') {
-		$('#pota-summary').empty();
 		$('#pota-summary').append('POTA input needs to be filled to show a summary!');
 		return;
 	}
@@ -971,7 +969,6 @@ function getPotaResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-            $('#pota-summary').empty();
 			$('#pota-summary').append('Showing summary for POTA ' + $('#pota_ref').val() + '.');
             $('#pota-summary').append(html);
 		}
@@ -1000,8 +997,8 @@ function getContinentResult() {
 
 // This function executes the call to the backend for fetching wwff summary and inserted table below qso entry
 function getWwffResult() {
+	$('#wwff-summary').empty();
 	if ($('#wwff_ref').val() === '') {
-		$('#wwff-summary').empty();
 		$('#wwff-summary').append('WWFF input needs to be filled to show a summary!');
 		return;
 	}
@@ -1016,7 +1013,6 @@ function getWwffResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-            $('#wwff-summary').empty();
 			$('#wwff-summary').append('Showing summary for WWFF ' + $('#wwff_ref').val() + '.');
             $('#wwff-summary').append(html);
 		}
@@ -1025,10 +1021,13 @@ function getWwffResult() {
 
 // This function executes the call to the backend for fetching gridsquare summary and inserted table below qso entry
 function getGridsquareResult() {
+	$('#gridsquare-summary').empty();
 	if ($('#locator').val() === '') {
-		$('#gridsquare-summary').empty();
 		$('#gridsquare-summary').append('Gridsquare input needs to be filled to show a summary!');
 		return;
+	}
+	if ($('#locator').val().includes(',')) {
+		$('#gridsquare-summary').append('Summary only shows for the first grid entered. <br />');
 	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
@@ -1041,8 +1040,7 @@ function getGridsquareResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-            $('#gridsquare-summary').empty();
-			$('#gridsquare-summary').append('Showing summary for gridsquare ' + $('#locator').val() + '.');
+			$('#gridsquare-summary').append('Showing summary for gridsquare ' + $('#locator').val().substring(0, 4) + '.');
             $('#gridsquare-summary').append(html);
 		}
 	});
