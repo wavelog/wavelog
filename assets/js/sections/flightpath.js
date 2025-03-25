@@ -246,7 +246,7 @@ Satellite.prototype.update = function () {
         satmarker.setLatLng(this._position);
 
         // Compute paths with Antimeridian handling
-        let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 60, 60, 10);
+        let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
 
         // Remove old polylines if they exist
         if (this._pastTrajectories) {
