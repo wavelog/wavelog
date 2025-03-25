@@ -1161,9 +1161,40 @@ function loadAwardTabs(callback) {
 					getIotaResult();
 				}
 			});
+
+			$('.dxcc-summary-reload').click(function (event) {
+				let $targetPane = $('#dxcc-summary');
+				$targetPane.data("loaded", false); // Mark as loaded
+				getDxccResult($('#dxcc_id').val(), $('#dxcc_id option:selected').text());
+			});
+			$('.iota-summary-reload').click(function (event) {
+				getIotaResult();
+			});
+			$('.wwff-summary-reload').click(function (event) {
+				getWwffResult();
+			});
+			$('.pota-summary-reload').click(function (event) {
+				getPotaResult();
+			});
+			$('.sota-summary-reload').click(function (event) {
+				getSotaResult();
+			});
+			$('.cq-summary-reload').click(function (event) {
+				getCqResult();
+			});
+			$('.state-summary-reload').click(function (event) {
+				getStateResult();
+			});
+			$('.continent-summary-reload').click(function (event) {
+				getContinentResult();
+			});
+			$('.gridsquare-summary-reload').click(function (event) {
+				getGridsquareResult();
+			});
         }
     });
 }
+
 
 /* time input shortcut */
 $('#start_time').on('change', function () {
