@@ -324,8 +324,39 @@ $("#sat_name").on('change', function () {
 	if (sat == "") {
 		$("#sat_mode").val("");
 		$("#selectPropagation").val("");
+		stop_az_ele_ticker();
+	} else {
+		get_tles();
 	}
 });
+
+function stop_az_ele_ticker() {
+	console.log('Stop filling Az/Ele here');
+}
+
+function start_az_ele_ticker(tle) {
+	console.log('Start filling Az/Ele here');
+	console.log(tle);
+}
+
+function get_tles() {
+	stop_az_ele_ticker();
+	$.ajax({
+		url: base_url + 'index.php/satellite/get_tle',
+		type: 'post',
+		data: {
+			sat: $("#sat_name").val(),
+		},
+		success: function (data) {
+			if (data !== null) {
+				start_az_ele_ticker(data);
+			}
+		},
+		error: function (data) {
+			console.log('Something went wrong while trying to fetch TLE for sat: '+$("#sat_name"));
+		},
+	});
+}
 
 $('#stateDropdown').on('change', function () {
 	var state = $("#stateDropdown option:selected").text();
@@ -516,6 +547,7 @@ function reset_to_default() {
 	$("#sat_mode").val("");
 	$("#ant_az").val("");
 	$("#ant_el").val("");
+	stop_az_ele_ticker();
 }
 
 /* Function: reset_fields is used to reset the fields on the QSO page */
