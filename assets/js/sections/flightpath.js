@@ -261,7 +261,7 @@ Satellite.prototype.update = function () {
             L.polyline(segment, { color: 'red' }).addTo(leafletMap)
         );
         this._futureTrajectories = futureSegments.map(segment =>
-            L.polyline(segment, { color: 'blue' }).addTo(leafletMap)
+            L.polyline(segment, { color: 'green' }).addTo(leafletMap)
         );
 
         // 📌 **Fix Arrow Direction Using Ground Track Bearing**
