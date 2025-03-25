@@ -842,7 +842,8 @@ function getDxccResult(dxcc, name) {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-            $('#dxcc-summary').empty();
+			$('#dxcc-summary').empty();
+            $('#dxcc-summary').append('Showing summary for DXCC ' + name + '.');
             $('#dxcc-summary').append(html);
 		}
 	});

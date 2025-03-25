@@ -897,6 +897,7 @@ function getCqResult() {
 		},
 		success: function (html) {
             $('#cq-summary').empty();
+			$('#cq-summary').append('Showing summary for CQ zone ' + $('#cqz').val() + '.');
             $('#cq-summary').append(html);
 		}
 	});
@@ -904,7 +905,11 @@ function getCqResult() {
 
 // This function executes the call to the backend for fetching was summary and inserted table below qso entry
 function getWasResult() {
-	if ($('#stateDropdown').val() === '') return;
+	if ($('#stateDropdown').val() === '') {
+		$('#state-summary').empty();
+		$('#state-summary').append('State input needs to be filled to show a summary!');
+		return;
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
@@ -917,6 +922,7 @@ function getWasResult() {
 		},
 		success: function (html) {
             $('#state-summary').empty();
+			$('#state-summary').append('Showing summary for US state ' + $('#stateDropdown').val() + '.');
             $('#state-summary').append(html);
 		}
 	});
@@ -924,7 +930,11 @@ function getWasResult() {
 
 // This function executes the call to the backend for fetching sota summary and inserted table below qso entry
 function getSotaResult() {
-	if ($('#sota_ref').val() === '') return;
+	if ($('#sota_ref').val() === '') {
+		$('#sota-summary').empty();
+		$('#sota-summary').append('SOTA input needs to be filled to show a summary!');
+		return;
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
@@ -937,6 +947,7 @@ function getSotaResult() {
 		},
 		success: function (html) {
             $('#sota-summary').empty();
+			$('#sota-summary').append('Showing summary for SOTA ' + $('#sota_ref').val() + '.');
             $('#sota-summary').append(html);
 		}
 	});
@@ -944,7 +955,11 @@ function getSotaResult() {
 
 // This function executes the call to the backend for fetching pota summary and inserted table below qso entry
 function getPotaResult() {
-	if ($('#pota_ref').val() === '') return;
+	if ($('#pota_ref').val() === '') {
+		$('#pota-summary').empty();
+		$('#pota-summary').append('POTA input needs to be filled to show a summary!');
+		return;
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
@@ -957,6 +972,7 @@ function getPotaResult() {
 		},
 		success: function (html) {
             $('#pota-summary').empty();
+			$('#pota-summary').append('Showing summary for POTA ' + $('#pota_ref').val() + '.');
             $('#pota-summary').append(html);
 		}
 	});
@@ -976,6 +992,7 @@ function getContinentResult() {
 		},
 		success: function (html) {
             $('#continent-summary').empty();
+			$('#continent-summary').append('Showing summary for continent ' + $('#continent').val() + '.');
             $('#continent-summary').append(html);
 		}
 	});
@@ -983,7 +1000,11 @@ function getContinentResult() {
 
 // This function executes the call to the backend for fetching wwff summary and inserted table below qso entry
 function getWwffResult() {
-	if ($('#wwff_ref').val() === '') return;
+	if ($('#wwff_ref').val() === '') {
+		$('#wwff-summary').empty();
+		$('#wwff-summary').append('WWFF input needs to be filled to show a summary!');
+		return;
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
@@ -996,6 +1017,7 @@ function getWwffResult() {
 		},
 		success: function (html) {
             $('#wwff-summary').empty();
+			$('#wwff-summary').append('Showing summary for WWFF ' + $('#wwff_ref').val() + '.');
             $('#wwff-summary').append(html);
 		}
 	});
@@ -1003,7 +1025,11 @@ function getWwffResult() {
 
 // This function executes the call to the backend for fetching gridsquare summary and inserted table below qso entry
 function getGridsquareResult() {
-	if ($('#locator').val() === '') return;
+	if ($('#locator').val() === '') {
+		$('#gridsquare-summary').empty();
+		$('#gridsquare-summary').append('Gridsquare input needs to be filled to show a summary!');
+		return;
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
@@ -1016,6 +1042,7 @@ function getGridsquareResult() {
 		},
 		success: function (html) {
             $('#gridsquare-summary').empty();
+			$('#gridsquare-summary').append('Showing summary for gridsquare ' + $('#locator').val() + '.');
             $('#gridsquare-summary').append(html);
 		}
 	});
