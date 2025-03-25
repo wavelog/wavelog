@@ -332,13 +332,39 @@ $("#sat_name").on('change', function () {
 	}
 });
 
+
+var satupdater;
+
 function stop_az_ele_ticker() {
 	console.log('Stop filling Az/Ele here');
+	clearInterval(satupdater);
 }
 
 function start_az_ele_ticker(tle) {
 	console.log('Start filling Az/Ele here');
 	console.log(tle);
+  	const lines = tle.tle.trim().split('\n');
+
+	// Initialize a satellite record
+	var satrec = satellite.twoline2satrec(lines[0], lines[1]);
+
+	// Define the observer's location in radians
+	var observerGd = {
+		longitude: satellite.degreesToRadians(0),
+		latitude: satellite.degreesToRadians(0),
+		height: 0.370
+	};
+
+	function updateAzEl() {
+		var time = new Date();
+		var positionAndVelocity = satellite.propagate(satrec, time);
+		var gmst = satellite.gstime(time);
+		var positionEcf = satellite.eciToEcf(positionAndVelocity.position, gmst);
+		var observerEcf = satellite.geodeticToEcf(observerGd);
+		var lookAngles = satellite.ecfToLookAngles(observerGd, positionEcf);
+		console.log(lookAngles);
+	}
+	satupdater=setInterval(updateAzEl, 1000);
 }
 
 function get_tles() {
