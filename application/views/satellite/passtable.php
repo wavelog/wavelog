@@ -26,6 +26,7 @@ if (isset($filtered)) {
 				$aos=sat2pol($aos_az,0,$scale);
 				$los=sat2pol($los_az,0,$scale);
 				$tca=sat2pol($max_el_az,$max_el,$scale);
+				$control = array(2 * $tca[0] - ($aos[0] + $los[0]) / 2, 2 * $tca[1] - ($aos[1] + $los[1]) / 2);	// Calc Controlpoints for Bezier-Curve
 				echo '<tr>';
 				echo '<td>' . $pass->satname . '</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
@@ -41,8 +42,7 @@ if (isset($filtered)) {
 					<circle cx="'.$aos[0].'" cy="'.$aos[1].'" r="1" stroke="green" stroke-width="5" fill="none" />
 					<circle cx="'.$los[0].'" cy="'.$los[1].'" r="1" stroke="red" stroke-width="5" fill="none" />
 					<circle cx="'.$tca[0].'" cy="'.$tca[1].'" r="1" stroke="blue" stroke-width="5" fill="none" />
-					<path d="M '.$aos[0].' '.$aos[1].' Q '.$tca[0].' '.$tca[1].' '.$tca[0].' '.$tca[1].' Q '.$los[0].' '.$los[1].' '.$los[0].' '.$los[1].'" fill="none" stroke="blue" stroke-width="2" />
-					<!-- <path d="M '.$aos[0].' '.$aos[1].' Q '.$tca[0].' '.$tca[1].' '.$los[0].' '.$los[1].'" fill="none" stroke="blue" stroke-width="2" /> -->
+					<path d="M '.$aos[0].' '.$aos[1].' Q '.$control[0].' '.$control[1].' '.$los[0].' '.$los[1].'" fill="none" stroke="blue" stroke-width="2" />
 					</svg></a></td>';
 				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
