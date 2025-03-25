@@ -314,9 +314,9 @@ function getBearing(lat1, lng1, lat2, lng2) {
 
     let y = Math.sin(deltaPi) * Math.cos(phi2);
     let x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaPi);
-    let θ = Math.atan2(y, x);
+    let theta = Math.atan2(y, x);
 
-    return (θ * 180 / Math.PI + 360) % 360; // Normalize to 0-360
+    return (theta * 180 / Math.PI + 360) % 360; // Normalize to 0-360
 }
 
   /**
