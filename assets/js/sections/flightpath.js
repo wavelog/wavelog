@@ -308,12 +308,12 @@ Satellite.prototype.update = function () {
  * Compute bearing (heading) between two lat/lng points
  */
 function getBearing(lat1, lng1, lat2, lng2) {
-    let φ1 = lat1 * Math.PI / 180;
-    let φ2 = lat2 * Math.PI / 180;
-    let Δλ = (lng2 - lng1) * Math.PI / 180;
+    let phi1 = lat1 * Math.PI / 180;
+    let phi2 = lat2 * Math.PI / 180;
+    let deltaPi = (lng2 - lng1) * Math.PI / 180;
 
-    let y = Math.sin(Δλ) * Math.cos(φ2);
-    let x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
+    let y = Math.sin(deltaPi) * Math.cos(phi2);
+    let x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaPi);
     let θ = Math.atan2(y, x);
 
     return (θ * 180 / Math.PI + 360) % 360; // Normalize to 0-360
