@@ -521,7 +521,7 @@ function getBearing(lat1, lng1, lat2, lng2) {
 			$("#az").html(az);
 			$("#ele").html(ele);
 			$("#satorbit").html(sat.getOrbitType());
-			$("#satalt").html(Math.round(sat.altitude() * 1.60934) + " km");
+			$("#satalt").html(Math.round(sat.altitude()) + " km");
 			$("#grid").html(latLngToLocator(sat._position.lat, sat._position.lng));
 		});
 	}
