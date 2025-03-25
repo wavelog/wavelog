@@ -953,23 +953,28 @@ function getSotaResult() {
 
 // This function executes the call to the backend for fetching pota summary and inserted table below qso entry
 function getPotaResult() {
+	let potaref = $('#pota_ref').val();
 	$('#pota-summary').empty();
-	if ($('#pota_ref').val() === '') {
+	if (potaref === '') {
 		$('#pota-summary').append('POTA input needs to be filled to show a summary!');
 		return;
+	}
+	if (potaref.includes(',')) {
+		$('#pota-summary').append('Summary only shows for the first POTA entered. <br />');
+		potaref = potaref.split(',')[0].trim();
 	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
 		data: {
 			type: 'pota',
-			pota: $('#pota_ref').val(),
-            reduced_mode: true,
+			pota: potaref,
+            reduced_mode: false,
             current_band: $('#band').val(),
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-			$('#pota-summary').append('Showing summary for POTA ' + $('#pota_ref').val() + '.');
+			$('#pota-summary').append('Showing summary for POTA ' + potaref + '.');
             $('#pota-summary').append(html);
 		}
 	});
