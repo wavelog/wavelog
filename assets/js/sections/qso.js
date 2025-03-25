@@ -337,7 +337,11 @@ var satupdater;
 
 function stop_az_ele_ticker() {
 	console.log('Stop filling Az/Ele here');
-	clearInterval(satupdater);
+	if (satupdater) {
+		clearInterval(satupdater);
+	}
+	$("#ant_az").val('');
+	$("#ant_el").val('');
 }
 
 function start_az_ele_ticker(tle) {
@@ -362,7 +366,10 @@ function start_az_ele_ticker(tle) {
 		var positionEcf = satellite.eciToEcf(positionAndVelocity.position, gmst);
 		var observerEcf = satellite.geodeticToEcf(observerGd);
 		var lookAngles = satellite.ecfToLookAngles(observerGd, positionEcf);
-		console.log(lookAngles);
+		let az=(satellite.radiansToDegrees(lookAngles.azimuth).toFixed(2));
+		let el=(satellite.radiansToDegrees(lookAngles.elevation).toFixed(2));
+		$("#ant_az").val(az);
+		$("#ant_el").val(el);
 	}
 	satupdater=setInterval(updateAzEl, 1000);
 }
