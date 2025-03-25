@@ -22,7 +22,7 @@ if (isset($filtered)) {
 				$ics='create_ics/'.$pass->satname.'/'.$aos_ics.'/'.$los_ics;
 				$max_el = round($pass->max_el);
 				$max_el_az = round($pass->maxel_az);
-				$scale = 95;
+				$scale = 25;
 				$aos=sat2pol($aos_az,0,$scale);
 				$los=sat2pol($los_az,0,$scale);
 				$tca=sat2pol($max_el_az,$max_el,$scale);
