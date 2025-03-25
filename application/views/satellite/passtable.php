@@ -44,7 +44,7 @@ if (isset($filtered)) {
 					<circle cx="'.$los[0].'" cy="'.$los[1].'" r="1" stroke="red" stroke-width="5" fill="none" />
 					<circle cx="'.$tca[0].'" cy="'.$tca[1].'" r="1" stroke="#4444FF" stroke-width="5" fill="none" />
 					</svg></a></td>';
-				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate(-'.$max_el.'deg);"><i class="fas fa-arrow-right fa-xs"></i></span> <small><small>('.$max_el_az.' °)</small></small></td>';
+				echo '<td>' . $max_el . ' °<span style="margin-left: 10px; display: inline-block; transform: rotate('.($max_el_az>180 ? ($max_el-180) : (-1*$max_el)).'deg);"><i class="fas fa-arrow-right fa-xs"></i></span> <small><small>('.$max_el_az.' °)</small></small></td>';
 				echo '<td>' . $aos_az . ' ° (' . azDegreesToDirection($pass->aos_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$aos_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '<td>' . $los_az . ' ° (' . azDegreesToDirection($pass->los_az) . ')<span style="margin-left: 10px; display: inline-block; transform: rotate('.(-45+$los_az).'deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>';
 				echo '</tr>';
