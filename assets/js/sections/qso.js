@@ -910,6 +910,12 @@ function getWasResult() {
 		$('#state-summary').append(lang_summary_warning_empty_state);
 		return;
 	}
+
+	let dxccid = $('#dxcc_id').val();
+	if (!['291', '6', '110'].includes(dxccid)) {
+		$('#state-summary').append(lang_summary_state_valid);
+		return;
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
@@ -1183,7 +1189,7 @@ function loadAwardTabs(callback) {
 				getCqResult();
 			});
 			$('.state-summary-reload').click(function (event) {
-				getStateResult();
+				getWasResult();
 			});
 			$('.continent-summary-reload').click(function (event) {
 				getContinentResult();

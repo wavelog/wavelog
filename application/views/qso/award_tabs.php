@@ -15,7 +15,8 @@
 	var lang_summary_warning_empty_wwff = '<?= __("WWFF input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_gridsquare = '<?= __("Gridsquare input needs to be filled to show a summary!"); ?>';
 	var lang_summary_info_only_first_pota = '<?= __("Summary only shows for the first POTA entered."); ?>';
-	var lang_summary_info_only_first_gridsquare = '<?= __("'Summary only shows for the first gridsquare entered."); ?>';
+	var lang_summary_info_only_first_gridsquare = '<?= __("Summary only shows for the first gridsquare entered."); ?>';
+	var lang_summary_state_valid = '<?= __("Summary only shows for US states."); ?>';
 </script>
 <div class="card">
 	<div class="card-header">
