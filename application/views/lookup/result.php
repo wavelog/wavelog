@@ -22,6 +22,9 @@ foreach ($result as $mode => $value) {
 			}
 		}
 	}
+	if (strtoupper($mode) == strtoupper($current_mode)) {
+		$showRow = true;
+	}
 
 	if ($showRow) {
 		echo '<tr><td>' . strtoupper($mode) . '</td>';
