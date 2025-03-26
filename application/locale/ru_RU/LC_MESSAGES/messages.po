@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-03-26 08:18+0000\n"
-"PO-Revision-Date: 2025-03-16 23:16+0000\n"
-"Last-Translator: Pascal HB9HCG <hb9hcg@uska.ch>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"PO-Revision-Date: 2025-03-26 22:02+0000\n"
+"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -953,12 +953,12 @@ msgstr "Вы не указали свои учётные данные eQSL.cc!"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "Неправильный логин/пароль для eQSL"
 
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "Нет такого псевдонима eQSL QTH: %s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
@@ -3012,7 +3012,7 @@ msgstr "С eQSL.cc что-то пошло не так!"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "Псевдоним QTH не существует на eQSL"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -3037,7 +3037,7 @@ msgstr ""
 #: application/models/Eqslmethods_model.php:333
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr ""
+msgstr "Произошла необработанная ошибка при загрузке QSO. Возможно, у eQSL сбой"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -4178,6 +4178,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
 "if they match to the chosen station-location."
 msgstr ""
+"Если выбрано, Wavelog попытается импортировать %sвсе%s QSO из ADIF, "
+"независимо от того, соответствуют ли они выбранному профилю QTH."
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4511,11 +4513,11 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr ""
+msgstr "Ссылки на стороннее ПО, которое работает с Wavelog:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
-msgstr ""
+msgstr "Больше инструментов"
 
 #: application/views/api/index.php:19
 msgid "API URL"
@@ -5245,7 +5247,7 @@ msgstr "Океания"
 #: application/views/awards/dxcc/index.php:120
 #: application/views/awards/iota/index.php:120
 msgid "Every band (w/o SAT)"
-msgstr ""
+msgstr "Каждый диапазон (без SAT)"
 
 #: application/views/awards/dxcc/index.php:189
 msgid "Show DXCC Map"
@@ -7268,7 +7270,7 @@ msgstr "Квадрат VUCC"
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
 msgid "# of QSOs worked"
-msgstr ""
+msgstr "Количество проведенных QSO"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
@@ -8175,7 +8177,7 @@ msgstr "Греческий"
 
 #: application/views/debug/index.php:682
 msgid "Hungarian"
-msgstr ""
+msgstr "Венгерский"
 
 #: application/views/debug/index.php:683
 msgid "Italian"
@@ -10332,7 +10334,7 @@ msgstr "Ручная синхронизация"
 
 #: application/views/lotw_views/index.php:145
 msgid "running..."
-msgstr ""
+msgstr "запущен..."
 
 #: application/views/lotw_views/upload_cert.php:8
 #: application/views/lotw_views/upload_cert.php:33
@@ -11037,7 +11039,7 @@ msgstr "Добавить в очередь печати"
 
 #: application/views/oqrs/qsolist.php:197
 msgid "No QSOs were found. It seems you were not active at this time."
-msgstr ""
+msgstr "Связей не найдено. Похоже, вы не были активны в это время."
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11329,6 +11331,7 @@ msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
+"Дополнительных QSO не найдено. Это значит, что они, вероятно, уже в очереди."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -11980,7 +11983,7 @@ msgstr "Синхронизировать спутники с LoTW"
 
 #: application/views/satellite/index.php:31
 msgid "Update Satellite TLE"
-msgstr ""
+msgstr "Обновить TLE"
 
 #: application/views/satellite/index.php:42
 msgid "TLE"
@@ -12040,11 +12043,11 @@ msgstr "Продолжительность"
 
 #: application/views/satellite/passtable.php:10
 msgid "Path"
-msgstr ""
+msgstr "Траектория"
 
 #: application/views/satellite/passtable.php:11
 msgid "Max Elevation (Azimuth)"
-msgstr ""
+msgstr "Максимальное возвышение (азимут)"
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:10
@@ -13404,7 +13407,7 @@ msgstr ""
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
-msgstr ""
+msgstr "Название / Описание"
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
