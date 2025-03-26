@@ -1,4 +1,15 @@
 $(document).ready(function () {
+	function btn_pwd_showhide() {
+		if ($(this).closest('div').find('input[type="password"]').length>0) {
+			$(this).closest('div').find('input[type="password"]').attr('type','text');
+			$(this).closest('div').find('.fa-eye-slash').removeClass('fa-eye-slash').addClass('fa-eye');
+		} else {
+			$(this).closest('div').find('input[type="text"]').attr('type','password');
+			$(this).closest('div').find('.fa-eye').removeClass('fa-eye').addClass('fa-eye-slash');
+		}
+	}
+	$('.btn-pwd-showhide').off('click').on('click', btn_pwd_showhide );
+
 	$("#station_locations_table").DataTable({
 		stateSave: true,
 		language: {
