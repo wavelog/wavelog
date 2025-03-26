@@ -357,8 +357,8 @@ function start_az_ele_ticker(tle) {
 
 	// Define the observer's location in radians
 	var observerGd = {
-		longitude: satellite.degreesToRadians(latlng[0]),
-		latitude: satellite.degreesToRadians(latlng[1]),
+		longitude: satellite.degreesToRadians(latlng[1]),
+		latitude: satellite.degreesToRadians(latlng[0]),
 		height: 0.370
 	};
 
