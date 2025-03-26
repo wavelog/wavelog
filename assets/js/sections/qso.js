@@ -371,8 +371,8 @@ function start_az_ele_ticker(tle) {
 		var lookAngles = satellite.ecfToLookAngles(observerGd, positionEcf);
 		let az=(satellite.radiansToDegrees(lookAngles.azimuth).toFixed(2));
 		let el=(satellite.radiansToDegrees(lookAngles.elevation).toFixed(2));
-		$("#ant_az").val(az);
-		$("#ant_el").val(el);
+		$("#ant_az").val(parseFloat(az).toFixed(1));
+		$("#ant_el").val(parseFloat(el).toFixed(1));
 	}
 	satupdater=setInterval(updateAzEl, 1000);
 }
