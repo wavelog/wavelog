@@ -39,6 +39,7 @@ $('#stationProfile').on('change', function () {
 		data: { 'stationProfile': stationProfile },
 		success: function (res) {
 			$('#transmit_power').val(res.station_power);
+			latlng=[res.lat,res.lng];
 		},
 		error: function () {
 			$('#transmit_power').val('');
@@ -354,8 +355,8 @@ function start_az_ele_ticker(tle) {
 
 	// Define the observer's location in radians
 	var observerGd = {
-		longitude: satellite.degreesToRadians(0),
-		latitude: satellite.degreesToRadians(0),
+		longitude: satellite.degreesToRadians(latlng[0]),
+		latitude: satellite.degreesToRadians(latlng[1]),
 		height: 0.370
 	};
 
