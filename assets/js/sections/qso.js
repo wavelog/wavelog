@@ -649,6 +649,10 @@ $("#callsign").on("focusout", function () {
 							$('#callsign').removeClass("confirmedGrid");
 							$('#callsign').removeClass("newGrid");
 							$('#callsign').attr('title', '');
+							$('#ham_of_note_info').text("");
+							$('#ham_of_note_link').html("");
+							$('#ham_of_note_link').removeAttr('href');
+							$('#ham_of_note_line').hide();
 
 							if (result.confirmed) {
 								$('#callsign').addClass("confirmedGrid");
@@ -669,6 +673,10 @@ $("#callsign").on("focusout", function () {
 							$('#callsign').removeClass("workedGrid");
 							$('#callsign').removeClass("newGrid");
 							$('#callsign').attr('title', '');
+							$('#ham_of_note_info').text("");
+							$('#ham_of_note_link').html("");
+							$('#ham_of_note_link').removeAttr('href');
+							$('#ham_of_note_line').hide();
 
 							if (result.confirmed) {
 								$('#callsign').addClass("confirmedGrid");
