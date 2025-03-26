@@ -40,6 +40,7 @@ $('#stationProfile').on('change', function () {
 		success: function (res) {
 			$('#transmit_power').val(res.station_power);
 			latlng=[res.lat,res.lng];
+			$("#sat_name").change();
 		},
 		error: function () {
 			$('#transmit_power').val('');
@@ -218,6 +219,9 @@ $(document).on("click", "#fav_del", function (event) {
 
 $(document).on("click", "#fav_recall", function (event) {
 	$('#sat_name').val(favs[this.innerText].sat_name);
+	if (favs[this.innerText].sat_name) {
+		$("#sat_name").change();
+	}
 	$('#sat_mode').val(favs[this.innerText].sat_mode);
 	$('#band_rx').val(favs[this.innerText].band_rx);
 	$('#band').val(favs[this.innerText].band);
@@ -346,8 +350,6 @@ function stop_az_ele_ticker() {
 }
 
 function start_az_ele_ticker(tle) {
-	console.log('Start filling Az/Ele here');
-	console.log(tle);
   	const lines = tle.tle.trim().split('\n');
 
 	// Initialize a satellite record
