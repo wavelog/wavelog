@@ -602,7 +602,7 @@
 
             <div class="mb-3">
               <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
-              <input type="number" inputmode="decimal" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" />
+              <input type="number" inputmode="decimal" step="0.1" min="-5" max="90" class="form-control" id="ant_el" name="ant_el" />
               <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
             </div>
           </div>
