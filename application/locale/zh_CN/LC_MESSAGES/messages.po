@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-26 08:18+0000\n"
-"PO-Revision-Date: 2025-03-24 08:20+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
+"POT-Creation-Date: 2025-03-24 10:40+0000\n"
+"PO-Revision-Date: 2025-03-25 09:25+0000\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -718,13 +718,14 @@ msgstr "Clublog 未配置用户账户。"
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/qso/edit_ajax.php:431
 #: application/views/search/search_result_ajax.php:124
-#: application/views/station_profile/edit.php:353
+#: application/views/station_profile/edit.php:352
 #: application/views/timeline/index.php:68
 #: application/views/update/index.php:20 application/views/user/edit.php:606
 #: application/views/user/edit.php:740
 #: application/views/view_log/partial/log_ajax.php:149
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
+#: application/views/station_profile/edit.php:353
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -2245,11 +2246,12 @@ msgstr "修改台站地址： "
 #: application/views/qslprint/index.php:20 application/views/qso/index.php:308
 #: application/views/search/search_result_ajax.php:18
 #: application/views/station_profile/create.php:305
-#: application/views/station_profile/edit.php:462
+#: application/views/station_profile/edit.php:455
 #: application/views/user/edit.php:361
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
+#: application/views/station_profile/edit.php:462
 msgid "Station Location"
 msgstr "电台站地址"
 
@@ -2313,10 +2315,12 @@ msgstr "错误，链接已正在使用！"
 #: application/views/options/version_dialog.php:66
 #: application/views/station_profile/create.php:238
 #: application/views/station_profile/create.php:260
-#: application/views/station_profile/edit.php:340
-#: application/views/station_profile/edit.php:397
+#: application/views/station_profile/edit.php:339
+#: application/views/station_profile/edit.php:393
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:491 application/views/user/edit.php:500
+#: application/views/station_profile/edit.php:340
+#: application/views/station_profile/edit.php:397
 msgid "Disabled"
 msgstr "已禁用"
 
@@ -2556,7 +2560,7 @@ msgstr "LoTW 卫星数据更新"
 
 #: application/controllers/Update.php:498
 msgid "Update of Hams of Note"
-msgstr ""
+msgstr "Hams of Note 更新"
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:288
@@ -6279,12 +6283,12 @@ msgstr ""
 #: application/views/station_profile/create.php:276
 #: application/views/station_profile/create.php:287
 #: application/views/station_profile/create.php:294
-#: application/views/station_profile/edit.php:358
-#: application/views/station_profile/edit.php:366
-#: application/views/station_profile/edit.php:395
-#: application/views/station_profile/edit.php:420
+#: application/views/station_profile/edit.php:357
+#: application/views/station_profile/edit.php:365
+#: application/views/station_profile/edit.php:391
+#: application/views/station_profile/edit.php:413
+#: application/views/station_profile/edit.php:431
 #: application/views/station_profile/edit.php:438
-#: application/views/station_profile/edit.php:445
 #: application/views/user/edit.php:234 application/views/user/edit.php:378
 #: application/views/user/edit.php:389 application/views/user/edit.php:400
 #: application/views/user/edit.php:410 application/views/user/edit.php:420
@@ -6294,6 +6298,11 @@ msgstr ""
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
 #: application/views/user/edit.php:992
+#: application/views/station_profile/edit.php:358
+#: application/views/station_profile/edit.php:366
+#: application/views/station_profile/edit.php:395
+#: application/views/station_profile/edit.php:420
+#: application/views/station_profile/edit.php:445
 msgid "Yes"
 msgstr "是"
 
@@ -6335,12 +6344,12 @@ msgstr "是"
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/create.php:286
 #: application/views/station_profile/create.php:293
-#: application/views/station_profile/edit.php:359
-#: application/views/station_profile/edit.php:367
-#: application/views/station_profile/edit.php:396
-#: application/views/station_profile/edit.php:421
+#: application/views/station_profile/edit.php:358
+#: application/views/station_profile/edit.php:366
+#: application/views/station_profile/edit.php:392
+#: application/views/station_profile/edit.php:414
+#: application/views/station_profile/edit.php:432
 #: application/views/station_profile/edit.php:439
-#: application/views/station_profile/edit.php:446
 #: application/views/user/edit.php:236 application/views/user/edit.php:379
 #: application/views/user/edit.php:390 application/views/user/edit.php:401
 #: application/views/user/edit.php:411 application/views/user/edit.php:421
@@ -6350,6 +6359,11 @@ msgstr "是"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
+#: application/views/station_profile/edit.php:359
+#: application/views/station_profile/edit.php:367
+#: application/views/station_profile/edit.php:396
+#: application/views/station_profile/edit.php:421
+#: application/views/station_profile/edit.php:446
 msgid "No"
 msgstr "否"
 
@@ -7057,10 +7071,11 @@ msgstr "标识符"
 #: application/views/options/appearance.php:90
 #: application/views/options/appearance.php:99
 #: application/views/station_profile/create.php:262
-#: application/views/station_profile/edit.php:342
+#: application/views/station_profile/edit.php:341
 #: application/views/stationsetup/stationsetup.php:73
 #: application/views/user/edit.php:492 application/views/user/edit.php:501
 #: application/views/user/edit.php:858
+#: application/views/station_profile/edit.php:342
 msgid "Enabled"
 msgstr "已启用"
 
@@ -7818,7 +7833,7 @@ msgstr "TLE 更新"
 
 #: application/views/debug/index.php:563
 msgid "Hams Of Note update"
-msgstr ""
+msgstr "更新 Hams of Note"
 
 #: application/views/debug/index.php:572
 msgid "QSO-DB Maintenance"
@@ -11651,8 +11666,10 @@ msgid "Path"
 msgstr "卫星路径"
 
 #: application/views/satellite/passtable.php:11
-msgid "Max Elevation (Azimuth)"
-msgstr ""
+#: application/views/satellite/skedtable.php:11
+#: application/views/sattimers/index.php:45
+msgid "Max Elevation"
+msgstr "最大仰角"
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:10
@@ -11664,28 +11681,26 @@ msgstr "AOS 方位角"
 msgid "LOS Azimuth"
 msgstr "LOS 方位角"
 
-#: application/views/satellite/passtable.php:55
+#: application/views/satellite/passtable.php:38
 #: application/views/satellite/skedtable.php:83
+#: application/views/satellite/passtable.php:55
 msgid "Search failed!"
 msgstr "搜索失败！"
 
+#: application/views/satellite/passtable.php:39
 #: application/views/satellite/passtable.php:56
 msgid "No passes found. Please check the input parameters."
 msgstr "没有找到卫星通过。请检查输入参数。"
 
-#: application/views/satellite/passtable.php:73
+#: application/views/satellite/passtable.php:48
 #: application/views/satellite/skedtable.php:93
+#: application/views/satellite/passtable.php:73
 msgid "min"
 msgstr "分钟"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
 msgstr "网格"
-
-#: application/views/satellite/skedtable.php:11
-#: application/views/sattimers/index.php:45
-msgid "Max Elevation"
-msgstr "最大仰角"
 
 #: application/views/satellite/skedtable.php:58
 msgid "Sked AOS Time"
@@ -12423,11 +12438,13 @@ msgid ""
 msgstr "定义一个发送给对方的 QSO 默认消息（适用于 eQSL 等）。"
 
 #: application/views/station_profile/create.php:207
+#: application/views/station_profile/edit.php:355
 #: application/views/station_profile/edit.php:356
 msgid "Ignore Clublog Upload"
 msgstr "忽略 Clublog 上传"
 
 #: application/views/station_profile/create.php:212
+#: application/views/station_profile/edit.php:360
 #: application/views/station_profile/edit.php:361
 msgid ""
 "If enabled, the QSOs made from this location will not be uploaded to "
@@ -12438,27 +12455,32 @@ msgstr ""
 "Clublog 上的呼号是否配置正确"
 
 #: application/views/station_profile/create.php:215
+#: application/views/station_profile/edit.php:363
 #: application/views/station_profile/edit.php:364
 msgid "ClubLog Realtime Upload"
 msgstr "ClubLog 实时上传"
 
 #: application/views/station_profile/create.php:224
+#: application/views/station_profile/edit.php:379
 #: application/views/station_profile/edit.php:380
 msgid "HRDLog.net Username"
 msgstr "HRDLog.net 用户名"
 
 #: application/views/station_profile/create.php:226
+#: application/views/station_profile/edit.php:381
 #: application/views/station_profile/edit.php:382
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr "HRDlog.net 注册用户名，通常为呼号。"
 
 #: application/views/station_profile/create.php:229
+#: application/views/station_profile/edit.php:384
 #: application/views/station_profile/edit.php:385
 msgid "HRDLog.net API Key"
 msgstr "HRDLog.net API Key"
 
 #: application/views/station_profile/create.php:231
+#: application/views/station_profile/edit.php:386
 #: application/views/station_profile/edit.php:390
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
@@ -12466,11 +12488,13 @@ msgid "Create your API Code on your %s"
 msgstr "为 %s 创建 API Code"
 
 #: application/views/station_profile/create.php:231
+#: application/views/station_profile/edit.php:386
 #: application/views/station_profile/edit.php:390
 msgid "HRDLog.net Userprofile page"
 msgstr "HRDLog.net 个人页面"
 
 #: application/views/station_profile/create.php:234
+#: application/views/station_profile/edit.php:389
 #: application/views/station_profile/edit.php:393
 msgid "HRDLog.net Logbook Realtime Upload"
 msgstr "HRDLog.net Logbook 实时上传"
@@ -12490,6 +12514,7 @@ msgid "Test API-Key"
 msgstr "Test API-Key"
 
 #: application/views/station_profile/create.php:255
+#: application/views/station_profile/edit.php:333
 #: application/views/station_profile/edit.php:334
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
@@ -12497,27 +12522,32 @@ msgid "Find your API key on %s"
 msgstr "在 %s 这里查看 API Key"
 
 #: application/views/station_profile/create.php:255
+#: application/views/station_profile/edit.php:333
 #: application/views/station_profile/edit.php:334
 msgid "the QRZ.com Logbook settings page"
 msgstr "QRZ.com Logbook 设置页面"
 
 #: application/views/station_profile/create.php:258
+#: application/views/station_profile/edit.php:337
 #: application/views/station_profile/edit.php:338
 msgid "QRZ.com Logbook Upload"
 msgstr "QRZ.com Logbook 上传"
 
 #: application/views/station_profile/create.php:261
+#: application/views/station_profile/edit.php:340
 #: application/views/station_profile/edit.php:341
 msgid "Realtime"
 msgstr "实时"
 
 #: application/views/station_profile/create.php:269
+#: application/views/station_profile/edit.php:406
 #: application/views/station_profile/edit.php:410
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
 msgstr "QO-100 Dx Club API Key"
 
 #: application/views/station_profile/create.php:271
+#: application/views/station_profile/edit.php:408
 #: application/views/station_profile/edit.php:415
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
@@ -12525,36 +12555,43 @@ msgid "Create your API key on your %s"
 msgstr "为 %s 创建 API Key"
 
 #: application/views/station_profile/create.php:271
+#: application/views/station_profile/edit.php:408
 #: application/views/station_profile/edit.php:415
 msgid "QO-100 Dx Club's profile page"
 msgstr "QO-100 Dx Club 个人页面"
 
 #: application/views/station_profile/create.php:274
+#: application/views/station_profile/edit.php:411
 #: application/views/station_profile/edit.php:418
 msgid "QO-100 Dx Club Realtime Upload"
 msgstr "QO-100 Dx Club 实时上传"
 
 #: application/views/station_profile/create.php:284
+#: application/views/station_profile/edit.php:429
 #: application/views/station_profile/edit.php:436
 msgid "OQRS Enabled"
 msgstr "OQRS 已启用"
 
 #: application/views/station_profile/create.php:291
+#: application/views/station_profile/edit.php:436
 #: application/views/station_profile/edit.php:443
 msgid "OQRS Email alert"
 msgstr "OQRS 邮件提醒"
 
 #: application/views/station_profile/create.php:296
+#: application/views/station_profile/edit.php:441
 #: application/views/station_profile/edit.php:448
 msgid "Make sure email is set up under admin and global options."
 msgstr "确认邮件功能在站点设置中已配置。"
 
 #: application/views/station_profile/create.php:299
+#: application/views/station_profile/edit.php:444
 #: application/views/station_profile/edit.php:451
 msgid "OQRS Text"
 msgstr "OQRS 文本"
 
 #: application/views/station_profile/create.php:301
+#: application/views/station_profile/edit.php:446
 #: application/views/station_profile/edit.php:453
 msgid "Some info you want to add regarding QSL'ing."
 msgstr "QSL 的额外信息。"
@@ -12947,7 +12984,7 @@ msgstr ""
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
-msgstr ""
+msgstr "名称 / 描述"
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
@@ -14189,6 +14226,10 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#: application/views/satellite/passtable.php:11
+msgid "Max Elevation (Azimuth)"
+msgstr ""
 
 #~ msgid "Altitude (meters)"
 #~ msgstr "高度（米）"

@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-26 08:18+0000\n"
-"PO-Revision-Date: 2025-03-12 19:25+0000\n"
-"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
+"POT-Creation-Date: 2025-03-25 09:25+0000\n"
+"PO-Revision-Date: 2025-03-26 08:18+0000\n"
+"Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -719,13 +719,14 @@ msgstr "Nenhum utilizador configurou o Clublog."
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/qso/edit_ajax.php:431
 #: application/views/search/search_result_ajax.php:124
-#: application/views/station_profile/edit.php:353
+#: application/views/station_profile/edit.php:352
 #: application/views/timeline/index.php:68
 #: application/views/update/index.php:20 application/views/user/edit.php:606
 #: application/views/user/edit.php:740
 #: application/views/view_log/partial/log_ajax.php:149
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
+#: application/views/station_profile/edit.php:353
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -954,12 +955,12 @@ msgstr "Não definiste as tuas credenciais eQSL.cc!"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "Utilizador/Palavra-passe errados para eQSL"
 
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "Nenhuma abreviatura de QTH eQSL: %s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
@@ -2268,11 +2269,12 @@ msgstr "Editar localização da estação: "
 #: application/views/qslprint/index.php:20 application/views/qso/index.php:308
 #: application/views/search/search_result_ajax.php:18
 #: application/views/station_profile/create.php:305
-#: application/views/station_profile/edit.php:462
+#: application/views/station_profile/edit.php:455
 #: application/views/user/edit.php:361
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
+#: application/views/station_profile/edit.php:462
 msgid "Station Location"
 msgstr "Localização da estação"
 
@@ -2336,10 +2338,12 @@ msgstr "Erro. A ligação já está a ser utilizada!"
 #: application/views/options/version_dialog.php:66
 #: application/views/station_profile/create.php:238
 #: application/views/station_profile/create.php:260
-#: application/views/station_profile/edit.php:340
-#: application/views/station_profile/edit.php:397
+#: application/views/station_profile/edit.php:339
+#: application/views/station_profile/edit.php:393
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:491 application/views/user/edit.php:500
+#: application/views/station_profile/edit.php:340
+#: application/views/station_profile/edit.php:397
 msgid "Disabled"
 msgstr "Desativado"
 
@@ -2587,7 +2591,7 @@ msgstr "Atualização SAT LoTW"
 
 #: application/controllers/Update.php:498
 msgid "Update of Hams of Note"
-msgstr ""
+msgstr "Atualização dos radioamadores nas notas"
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:288
@@ -3019,7 +3023,7 @@ msgstr "Algo correu mal com o eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "A abreviatura QTH não existe no eQSL"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -3043,6 +3047,8 @@ msgstr ""
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
+"Ocorreu um erro não capturado ao carregar QSOs. Talvez o eQSL esteja com "
+"problemas"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -3941,7 +3947,7 @@ msgstr "Erros de DOK"
 
 #: application/views/adif/dcl_success.php:26
 msgid "There is different data for DOK in your log compared to DCL"
-msgstr "Há dados diferentes para DOK no teu log em comparação com DCL."
+msgstr "Há dados diferentes para DOK no teu log em comparação com DCL"
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/awards/73on73/index.php:32
@@ -4523,11 +4529,11 @@ msgstr ""
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr ""
+msgstr "Ligações de softwares de terceiros que funcionam com o Wavelog:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
-msgstr ""
+msgstr "Mais ferramentas"
 
 #: application/views/api/index.php:19
 msgid "API URL"
@@ -6485,12 +6491,12 @@ msgstr ""
 #: application/views/station_profile/create.php:276
 #: application/views/station_profile/create.php:287
 #: application/views/station_profile/create.php:294
-#: application/views/station_profile/edit.php:358
-#: application/views/station_profile/edit.php:366
-#: application/views/station_profile/edit.php:395
-#: application/views/station_profile/edit.php:420
+#: application/views/station_profile/edit.php:357
+#: application/views/station_profile/edit.php:365
+#: application/views/station_profile/edit.php:391
+#: application/views/station_profile/edit.php:413
+#: application/views/station_profile/edit.php:431
 #: application/views/station_profile/edit.php:438
-#: application/views/station_profile/edit.php:445
 #: application/views/user/edit.php:234 application/views/user/edit.php:378
 #: application/views/user/edit.php:389 application/views/user/edit.php:400
 #: application/views/user/edit.php:410 application/views/user/edit.php:420
@@ -6500,6 +6506,11 @@ msgstr ""
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
 #: application/views/user/edit.php:992
+#: application/views/station_profile/edit.php:358
+#: application/views/station_profile/edit.php:366
+#: application/views/station_profile/edit.php:395
+#: application/views/station_profile/edit.php:420
+#: application/views/station_profile/edit.php:445
 msgid "Yes"
 msgstr "Sim"
 
@@ -6541,12 +6552,12 @@ msgstr "Sim"
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/create.php:286
 #: application/views/station_profile/create.php:293
-#: application/views/station_profile/edit.php:359
-#: application/views/station_profile/edit.php:367
-#: application/views/station_profile/edit.php:396
-#: application/views/station_profile/edit.php:421
+#: application/views/station_profile/edit.php:358
+#: application/views/station_profile/edit.php:366
+#: application/views/station_profile/edit.php:392
+#: application/views/station_profile/edit.php:414
+#: application/views/station_profile/edit.php:432
 #: application/views/station_profile/edit.php:439
-#: application/views/station_profile/edit.php:446
 #: application/views/user/edit.php:236 application/views/user/edit.php:379
 #: application/views/user/edit.php:390 application/views/user/edit.php:401
 #: application/views/user/edit.php:411 application/views/user/edit.php:421
@@ -6556,6 +6567,11 @@ msgstr "Sim"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
+#: application/views/station_profile/edit.php:359
+#: application/views/station_profile/edit.php:367
+#: application/views/station_profile/edit.php:396
+#: application/views/station_profile/edit.php:421
+#: application/views/station_profile/edit.php:446
 msgid "No"
 msgstr "Não"
 
@@ -7288,10 +7304,11 @@ msgstr "Identificador"
 #: application/views/options/appearance.php:90
 #: application/views/options/appearance.php:99
 #: application/views/station_profile/create.php:262
-#: application/views/station_profile/edit.php:342
+#: application/views/station_profile/edit.php:341
 #: application/views/stationsetup/stationsetup.php:73
 #: application/views/user/edit.php:492 application/views/user/edit.php:501
 #: application/views/user/edit.php:858
+#: application/views/station_profile/edit.php:342
 msgid "Enabled"
 msgstr "Ativado"
 
@@ -8079,7 +8096,7 @@ msgstr "Atualização de TLE"
 
 #: application/views/debug/index.php:563
 msgid "Hams Of Note update"
-msgstr ""
+msgstr "Atualização dos Hams que estão nas notas"
 
 #: application/views/debug/index.php:572
 msgid "QSO-DB Maintenance"
@@ -12060,11 +12077,11 @@ msgstr "Duração"
 
 #: application/views/satellite/passtable.php:10
 msgid "Path"
-msgstr ""
+msgstr "Caminho"
 
 #: application/views/satellite/passtable.php:11
 msgid "Max Elevation (Azimuth)"
-msgstr ""
+msgstr "Elevação máxima (Azimute)"
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:10
@@ -12881,11 +12898,13 @@ msgstr ""
 "contacto para esta localização de estação."
 
 #: application/views/station_profile/create.php:207
+#: application/views/station_profile/edit.php:355
 #: application/views/station_profile/edit.php:356
 msgid "Ignore Clublog Upload"
 msgstr "Ignorar envio para o Clublog"
 
 #: application/views/station_profile/create.php:212
+#: application/views/station_profile/edit.php:360
 #: application/views/station_profile/edit.php:361
 msgid ""
 "If enabled, the QSOs made from this location will not be uploaded to "
@@ -12897,16 +12916,19 @@ msgstr ""
 "verifique se o indicativo está corretamente configurado no Clublog"
 
 #: application/views/station_profile/create.php:215
+#: application/views/station_profile/edit.php:363
 #: application/views/station_profile/edit.php:364
 msgid "ClubLog Realtime Upload"
 msgstr "Envio em tempo real para o ClubLog"
 
 #: application/views/station_profile/create.php:224
+#: application/views/station_profile/edit.php:379
 #: application/views/station_profile/edit.php:380
 msgid "HRDLog.net Username"
 msgstr "Nome de utilizador do HRDLog.net"
 
 #: application/views/station_profile/create.php:226
+#: application/views/station_profile/edit.php:381
 #: application/views/station_profile/edit.php:382
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
@@ -12915,11 +12937,13 @@ msgstr ""
 "indicativo)."
 
 #: application/views/station_profile/create.php:229
+#: application/views/station_profile/edit.php:384
 #: application/views/station_profile/edit.php:385
 msgid "HRDLog.net API Key"
 msgstr "Chave API do HRDLog.net"
 
 #: application/views/station_profile/create.php:231
+#: application/views/station_profile/edit.php:386
 #: application/views/station_profile/edit.php:390
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
@@ -12927,11 +12951,13 @@ msgid "Create your API Code on your %s"
 msgstr "Crie o seu código API no seu %s"
 
 #: application/views/station_profile/create.php:231
+#: application/views/station_profile/edit.php:386
 #: application/views/station_profile/edit.php:390
 msgid "HRDLog.net Userprofile page"
 msgstr "Página de perfil do utilizador HRDLog.net"
 
 #: application/views/station_profile/create.php:234
+#: application/views/station_profile/edit.php:389
 #: application/views/station_profile/edit.php:393
 msgid "HRDLog.net Logbook Realtime Upload"
 msgstr "Envio em tempo real para o Logbook do HRDLog.net"
@@ -12951,6 +12977,7 @@ msgid "Test API-Key"
 msgstr "Chave API de testes"
 
 #: application/views/station_profile/create.php:255
+#: application/views/station_profile/edit.php:333
 #: application/views/station_profile/edit.php:334
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
@@ -12958,27 +12985,32 @@ msgid "Find your API key on %s"
 msgstr "Pode encontrar a sua chave API em %s"
 
 #: application/views/station_profile/create.php:255
+#: application/views/station_profile/edit.php:333
 #: application/views/station_profile/edit.php:334
 msgid "the QRZ.com Logbook settings page"
 msgstr "a página de definições do logbook do QRZ.com"
 
 #: application/views/station_profile/create.php:258
+#: application/views/station_profile/edit.php:337
 #: application/views/station_profile/edit.php:338
 msgid "QRZ.com Logbook Upload"
 msgstr "Envio do log para o Logbook do QRZ.com"
 
 #: application/views/station_profile/create.php:261
+#: application/views/station_profile/edit.php:340
 #: application/views/station_profile/edit.php:341
 msgid "Realtime"
 msgstr "Tempo real"
 
 #: application/views/station_profile/create.php:269
+#: application/views/station_profile/edit.php:406
 #: application/views/station_profile/edit.php:410
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
 msgstr "Chave API do QO-100 Dx Club"
 
 #: application/views/station_profile/create.php:271
+#: application/views/station_profile/edit.php:408
 #: application/views/station_profile/edit.php:415
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
@@ -12986,26 +13018,31 @@ msgid "Create your API key on your %s"
 msgstr "Crie a sua chave API em %s"
 
 #: application/views/station_profile/create.php:271
+#: application/views/station_profile/edit.php:408
 #: application/views/station_profile/edit.php:415
 msgid "QO-100 Dx Club's profile page"
 msgstr "Página de perfil do QO-100 Dx Club"
 
 #: application/views/station_profile/create.php:274
+#: application/views/station_profile/edit.php:411
 #: application/views/station_profile/edit.php:418
 msgid "QO-100 Dx Club Realtime Upload"
 msgstr "Envio em tempo real do log para o QO-100 Dx Club"
 
 #: application/views/station_profile/create.php:284
+#: application/views/station_profile/edit.php:429
 #: application/views/station_profile/edit.php:436
 msgid "OQRS Enabled"
 msgstr "OQRS ativado"
 
 #: application/views/station_profile/create.php:291
+#: application/views/station_profile/edit.php:436
 #: application/views/station_profile/edit.php:443
 msgid "OQRS Email alert"
 msgstr "Alerta de email OQRS"
 
 #: application/views/station_profile/create.php:296
+#: application/views/station_profile/edit.php:441
 #: application/views/station_profile/edit.php:448
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
@@ -13013,11 +13050,13 @@ msgstr ""
 "administração e globais."
 
 #: application/views/station_profile/create.php:299
+#: application/views/station_profile/edit.php:444
 #: application/views/station_profile/edit.php:451
 msgid "OQRS Text"
 msgstr "Texto OQRS"
 
 #: application/views/station_profile/create.php:301
+#: application/views/station_profile/edit.php:446
 #: application/views/station_profile/edit.php:453
 msgid "Some info you want to add regarding QSL'ing."
 msgstr "Alguma informação que queira acrescentar sobre as QSL's."
@@ -13442,7 +13481,7 @@ msgstr ""
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
-msgstr ""
+msgstr "Nome / Descrição"
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
