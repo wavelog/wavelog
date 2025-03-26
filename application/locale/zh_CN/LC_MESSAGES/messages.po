@@ -725,6 +725,7 @@ msgstr "Clublog 未配置用户账户。"
 #: application/views/view_log/partial/log_ajax.php:149
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
+#: application/views/station_profile/edit.php:353
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -2250,6 +2251,7 @@ msgstr "修改台站地址： "
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
+#: application/views/station_profile/edit.php:462
 msgid "Station Location"
 msgstr "电台站地址"
 
@@ -2317,6 +2319,8 @@ msgstr "错误，链接已正在使用！"
 #: application/views/station_profile/edit.php:393
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:491 application/views/user/edit.php:500
+#: application/views/station_profile/edit.php:340
+#: application/views/station_profile/edit.php:397
 msgid "Disabled"
 msgstr "已禁用"
 
@@ -6294,6 +6298,11 @@ msgstr ""
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
 #: application/views/user/edit.php:992
+#: application/views/station_profile/edit.php:358
+#: application/views/station_profile/edit.php:366
+#: application/views/station_profile/edit.php:395
+#: application/views/station_profile/edit.php:420
+#: application/views/station_profile/edit.php:445
 msgid "Yes"
 msgstr "是"
 
@@ -6350,6 +6359,11 @@ msgstr "是"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
+#: application/views/station_profile/edit.php:359
+#: application/views/station_profile/edit.php:367
+#: application/views/station_profile/edit.php:396
+#: application/views/station_profile/edit.php:421
+#: application/views/station_profile/edit.php:446
 msgid "No"
 msgstr "否"
 
@@ -7061,6 +7075,7 @@ msgstr "标识符"
 #: application/views/stationsetup/stationsetup.php:73
 #: application/views/user/edit.php:492 application/views/user/edit.php:501
 #: application/views/user/edit.php:858
+#: application/views/station_profile/edit.php:342
 msgid "Enabled"
 msgstr "已启用"
 
@@ -12424,11 +12439,13 @@ msgstr "定义一个发送给对方的 QSO 默认消息（适用于 eQSL 等）�
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:355
+#: application/views/station_profile/edit.php:356
 msgid "Ignore Clublog Upload"
 msgstr "忽略 Clublog 上传"
 
 #: application/views/station_profile/create.php:212
 #: application/views/station_profile/edit.php:360
+#: application/views/station_profile/edit.php:361
 msgid ""
 "If enabled, the QSOs made from this location will not be uploaded to "
 "Clublog. If this is deactivated on it's own please check if the Call is "
@@ -12439,27 +12456,32 @@ msgstr ""
 
 #: application/views/station_profile/create.php:215
 #: application/views/station_profile/edit.php:363
+#: application/views/station_profile/edit.php:364
 msgid "ClubLog Realtime Upload"
 msgstr "ClubLog 实时上传"
 
 #: application/views/station_profile/create.php:224
 #: application/views/station_profile/edit.php:379
+#: application/views/station_profile/edit.php:380
 msgid "HRDLog.net Username"
 msgstr "HRDLog.net 用户名"
 
 #: application/views/station_profile/create.php:226
 #: application/views/station_profile/edit.php:381
+#: application/views/station_profile/edit.php:382
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr "HRDlog.net 注册用户名，通常为呼号。"
 
 #: application/views/station_profile/create.php:229
 #: application/views/station_profile/edit.php:384
+#: application/views/station_profile/edit.php:385
 msgid "HRDLog.net API Key"
 msgstr "HRDLog.net API Key"
 
 #: application/views/station_profile/create.php:231
 #: application/views/station_profile/edit.php:386
+#: application/views/station_profile/edit.php:390
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
@@ -12467,11 +12489,13 @@ msgstr "为 %s 创建 API Code"
 
 #: application/views/station_profile/create.php:231
 #: application/views/station_profile/edit.php:386
+#: application/views/station_profile/edit.php:390
 msgid "HRDLog.net Userprofile page"
 msgstr "HRDLog.net 个人页面"
 
 #: application/views/station_profile/create.php:234
 #: application/views/station_profile/edit.php:389
+#: application/views/station_profile/edit.php:393
 msgid "HRDLog.net Logbook Realtime Upload"
 msgstr "HRDLog.net Logbook 实时上传"
 
@@ -12491,6 +12515,7 @@ msgstr "Test API-Key"
 
 #: application/views/station_profile/create.php:255
 #: application/views/station_profile/edit.php:333
+#: application/views/station_profile/edit.php:334
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
@@ -12498,27 +12523,32 @@ msgstr "在 %s 这里查看 API Key"
 
 #: application/views/station_profile/create.php:255
 #: application/views/station_profile/edit.php:333
+#: application/views/station_profile/edit.php:334
 msgid "the QRZ.com Logbook settings page"
 msgstr "QRZ.com Logbook 设置页面"
 
 #: application/views/station_profile/create.php:258
 #: application/views/station_profile/edit.php:337
+#: application/views/station_profile/edit.php:338
 msgid "QRZ.com Logbook Upload"
 msgstr "QRZ.com Logbook 上传"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:340
+#: application/views/station_profile/edit.php:341
 msgid "Realtime"
 msgstr "实时"
 
 #: application/views/station_profile/create.php:269
 #: application/views/station_profile/edit.php:406
+#: application/views/station_profile/edit.php:410
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
 msgstr "QO-100 Dx Club API Key"
 
 #: application/views/station_profile/create.php:271
 #: application/views/station_profile/edit.php:408
+#: application/views/station_profile/edit.php:415
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
@@ -12526,36 +12556,43 @@ msgstr "为 %s 创建 API Key"
 
 #: application/views/station_profile/create.php:271
 #: application/views/station_profile/edit.php:408
+#: application/views/station_profile/edit.php:415
 msgid "QO-100 Dx Club's profile page"
 msgstr "QO-100 Dx Club 个人页面"
 
 #: application/views/station_profile/create.php:274
 #: application/views/station_profile/edit.php:411
+#: application/views/station_profile/edit.php:418
 msgid "QO-100 Dx Club Realtime Upload"
 msgstr "QO-100 Dx Club 实时上传"
 
 #: application/views/station_profile/create.php:284
 #: application/views/station_profile/edit.php:429
+#: application/views/station_profile/edit.php:436
 msgid "OQRS Enabled"
 msgstr "OQRS 已启用"
 
 #: application/views/station_profile/create.php:291
 #: application/views/station_profile/edit.php:436
+#: application/views/station_profile/edit.php:443
 msgid "OQRS Email alert"
 msgstr "OQRS 邮件提醒"
 
 #: application/views/station_profile/create.php:296
 #: application/views/station_profile/edit.php:441
+#: application/views/station_profile/edit.php:448
 msgid "Make sure email is set up under admin and global options."
 msgstr "确认邮件功能在站点设置中已配置。"
 
 #: application/views/station_profile/create.php:299
 #: application/views/station_profile/edit.php:444
+#: application/views/station_profile/edit.php:451
 msgid "OQRS Text"
 msgstr "OQRS 文本"
 
 #: application/views/station_profile/create.php:301
 #: application/views/station_profile/edit.php:446
+#: application/views/station_profile/edit.php:453
 msgid "Some info you want to add regarding QSL'ing."
 msgstr "QSL 的额外信息。"
 
