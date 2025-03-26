@@ -37,7 +37,12 @@ foreach ($result as $mode => $value) {
 			'itu' => $ituz,
 			'continent' => $continent,
 			'pota' => $pota,
+			'dxcc2' => $dxcc
 		];
+
+		if ($type == 'dxcc') {
+			$type = 'dxcc2';
+		}
 
 		foreach ($value as $key => $val) {
 			$searchPhrase = isset($typeMapping[$type]) ? str_replace("&", "%26", $typeMapping[$type]) : '';
