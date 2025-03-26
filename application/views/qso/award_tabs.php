@@ -41,7 +41,7 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" id="state-summary-tab" data-bs-toggle="tab" href="#state-summary" role="tab" aria-controls="state-summary" aria-selected="false"><?= __("State"); ?> <i class="state-summary-reload fas fa-sync"></i></a>
+				<a class="nav-link" id="state-summary-tab" data-bs-toggle="tab" href="#state-summary" role="tab" aria-controls="state-summary" aria-selected="false"><?= __("US State"); ?> <i class="state-summary-reload fas fa-sync"></i></a>
 			</li>
 
 			<li class="nav-item">

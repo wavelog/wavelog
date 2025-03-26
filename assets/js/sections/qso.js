@@ -1012,7 +1012,7 @@ function getIotaResult() {
 		type: 'post',
 		data: {
 			type: 'iota',
-			continent: $('#iota_ref').val(),
+			iota: $('#iota_ref').val(),
             reduced_mode: true,
             current_band: $('#band').val(),
             current_mode: $('#mode').val(),
