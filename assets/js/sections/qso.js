@@ -897,7 +897,7 @@ function getCqResult() {
 		},
 		success: function (html) {
             $('#cq-summary').empty();
-			$('#cq-summary').append('Showing summary for CQ zone ' + $('#cqz').val() + '.');
+			$('#cq-summary').append(lang_summary_cq + ' ' + $('#cqz').val() + '.');
             $('#cq-summary').append(html);
 		}
 	});
@@ -907,7 +907,7 @@ function getCqResult() {
 function getWasResult() {
 	$('#state-summary').empty();
 	if ($('#stateDropdown').val() === '') {
-		$('#state-summary').append('State input needs to be filled to show a summary!');
+		$('#state-summary').append(lang_summary_warning_empty_state);
 		return;
 	}
 	$.ajax({
@@ -921,7 +921,7 @@ function getWasResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-			$('#state-summary').append('Showing summary for US state ' + $('#stateDropdown').val() + '.');
+			$('#state-summary').append(lang_summary_state + ' ' + $('#stateDropdown').val() + '.');
             $('#state-summary').append(html);
 		}
 	});
@@ -931,7 +931,7 @@ function getWasResult() {
 function getSotaResult() {
 	$('#sota-summary').empty();
 	if ($('#sota_ref').val() === '') {
-		$('#sota-summary').append('SOTA input needs to be filled to show a summary!');
+		$('#sota-summary').append(lang_summary_warning_empty_sota);
 		return;
 	}
 	$.ajax({
@@ -945,7 +945,7 @@ function getSotaResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-			$('#sota-summary').append('Showing summary for SOTA ' + $('#sota_ref').val() + '.');
+			$('#sota-summary').append(lang_summary_sota + ' ' + $('#sota_ref').val() + '.');
             $('#sota-summary').append(html);
 		}
 	});
@@ -956,11 +956,11 @@ function getPotaResult() {
 	let potaref = $('#pota_ref').val();
 	$('#pota-summary').empty();
 	if (potaref === '') {
-		$('#pota-summary').append('POTA input needs to be filled to show a summary!');
+		$('#pota-summary').append(lang_summary_warning_empty_pota);
 		return;
 	}
 	if (potaref.includes(',')) {
-		$('#pota-summary').append('Summary only shows for the first POTA entered. <br />');
+		$('#pota-summary').append(lang_summary_info_only_first_pota + '<br />');
 		potaref = potaref.split(',')[0].trim();
 	}
 	$.ajax({
@@ -969,12 +969,12 @@ function getPotaResult() {
 		data: {
 			type: 'pota',
 			pota: potaref,
-            reduced_mode: false,
+            reduced_mode: true,
             current_band: $('#band').val(),
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-			$('#pota-summary').append('Showing summary for POTA ' + potaref + '.');
+			$('#pota-summary').append(lang_summary_pota + ' ' + potaref + '.');
             $('#pota-summary').append(html);
 		}
 	});
@@ -994,7 +994,7 @@ function getContinentResult() {
 		},
 		success: function (html) {
             $('#continent-summary').empty();
-			$('#continent-summary').append('Showing summary for continent ' + $('#continent').val() + '.');
+			$('#continent-summary').append(lang_summary_continent + ' ' + $('#continent').val() + '.');
             $('#continent-summary').append(html);
 		}
 	});
@@ -1004,7 +1004,7 @@ function getContinentResult() {
 function getIotaResult() {
 	$('#iota-summary').empty();
 	if ($('#iota_ref').val() === '') {
-		$('#iota-summary').append('IOTA input needs to be filled to show a summary!');
+		$('#iota-summary').append(lang_summary_warning_empty_iota);
 		return;
 	}
 	$.ajax({
@@ -1018,7 +1018,7 @@ function getIotaResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-			$('#iota-summary').append('Showing summary for IOTA ' + $('#iota_ref').val() + '.');
+			$('#iota-summary').append(lang_summary_iota + ' ' + $('#iota_ref').val() + '.');
             $('#iota-summary').append(html);
 		}
 	});
@@ -1028,7 +1028,7 @@ function getIotaResult() {
 function getWwffResult() {
 	$('#wwff-summary').empty();
 	if ($('#wwff_ref').val() === '') {
-		$('#wwff-summary').append('WWFF input needs to be filled to show a summary!');
+		$('#wwff-summary').append(lang_summary_warning_empty_wwff);
 		return;
 	}
 	$.ajax({
@@ -1042,7 +1042,7 @@ function getWwffResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-			$('#wwff-summary').append('Showing summary for WWFF ' + $('#wwff_ref').val() + '.');
+			$('#wwff-summary').append(lang_summary_wwff + ' ' + $('#wwff_ref').val() + '.');
             $('#wwff-summary').append(html);
 		}
 	});
@@ -1052,11 +1052,11 @@ function getWwffResult() {
 function getGridsquareResult() {
 	$('#gridsquare-summary').empty();
 	if ($('#locator').val() === '') {
-		$('#gridsquare-summary').append('Gridsquare input needs to be filled to show a summary!');
+		$('#gridsquare-summary').append(lang_summary_warning_empty_gridsquare);
 		return;
 	}
 	if ($('#locator').val().includes(',')) {
-		$('#gridsquare-summary').append('Summary only shows for the first grid entered. <br />');
+		$('#gridsquare-summary').append(lang_summary_info_only_first_gridsquare + '<br />');
 	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
@@ -1069,7 +1069,7 @@ function getGridsquareResult() {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-			$('#gridsquare-summary').append('Showing summary for gridsquare ' + $('#locator').val().substring(0, 4) + '.');
+			$('#gridsquare-summary').append(lang_summary_gridsquare + ' ' + $('#locator').val().substring(0, 4) + '.');
             $('#gridsquare-summary').append(html);
 		}
 	});

@@ -847,7 +847,7 @@ function getDxccResult(dxcc, name) {
 			},
 			success: function (html) {
 				$('#dxcc-summary').empty();
-				$('#dxcc-summary').append('Showing summary for DXCC ' + name + '.');
+				$('#dxcc-summary').append(lang_summary_dxcc + ' ' + name + '.');
 				$('#dxcc-summary').append(html);
 			}
 		});

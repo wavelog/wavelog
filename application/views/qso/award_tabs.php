@@ -1,3 +1,22 @@
+<script type="text/javascript">
+    var lang_summary_dxcc = '<?= __("Showing summary for DXCC"); ?>';
+    var lang_summary_state = '<?= __("Showing summary for US State"); ?>';
+    var lang_summary_cq = '<?= __("Showing summary for CQ zone"); ?>';
+    var lang_summary_wwff = '<?= __("Showing summary for WWFF"); ?>';
+    var lang_summary_pota = '<?= __("Showing summary for POTA"); ?>';
+    var lang_summary_sota = '<?= __("Showing summary for SOTA"); ?>';
+    var lang_summary_iota = '<?= __("Showing summary for IOTA"); ?>';
+    var lang_summary_continent = '<?= __("Showing summary for continent"); ?>';
+    var lang_summary_gridsquare = '<?= __("Showing summary for gridsquare"); ?>';
+	var lang_summary_warning_empty_state = '<?= __("State input needs to be filled to show a summary!"); ?>';
+	var lang_summary_warning_empty_sota = '<?= __("SOTA input needs to be filled to show a summary!"); ?>';
+	var lang_summary_warning_empty_pota = '<?= __("POTA input needs to be filled to show a summary!"); ?>';
+	var lang_summary_warning_empty_iota = '<?= __("IOTA input needs to be filled to show a summary!"); ?>';
+	var lang_summary_warning_empty_wwff = '<?= __("WWFF input needs to be filled to show a summary!"); ?>';
+	var lang_summary_warning_empty_gridsquare = '<?= __("Gridsquare input needs to be filled to show a summary!"); ?>';
+	var lang_summary_info_only_first_pota = '<?= __("Summary only shows for the first POTA entered."); ?>';
+	var lang_summary_info_only_first_gridsquare = '<?= __("'Summary only shows for the first gridsquare entered."); ?>';
+</script>
 <div class="card">
 	<div class="card-header">
 		<ul style="font-size: 15px;" class="nav nav-tabs card-header-tabs pull-right" id="awardTab" role="tablist">
@@ -26,11 +45,11 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" id="pota-summary-tab" data-bs-toggle="tab" href="#pota-summary" role="tab" aria-controls="pota-summary" aria-selected="false"><?= __("Pota"); ?> <i class="pota-summary-reload fas fa-sync"></i></a>
+				<a class="nav-link" id="pota-summary-tab" data-bs-toggle="tab" href="#pota-summary" role="tab" aria-controls="pota-summary" aria-selected="false"><?= __("POTA"); ?> <i class="pota-summary-reload fas fa-sync"></i></a>
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" id="sota-summary-tab" data-bs-toggle="tab" href="#sota-summary" role="tab" aria-controls="sota-summary" aria-selected="false"><?= __("Sota"); ?> <i class="sota-summary-reload fas fa-sync"></i></a>
+				<a class="nav-link" id="sota-summary-tab" data-bs-toggle="tab" href="#sota-summary" role="tab" aria-controls="sota-summary" aria-selected="false"><?= __("SOTA"); ?> <i class="sota-summary-reload fas fa-sync"></i></a>
 			</li>
 
 			<li class="nav-item">
