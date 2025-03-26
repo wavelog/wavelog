@@ -596,7 +596,7 @@ function reset_fields() {
 	mymap.setView(pos, 12);
 	mymap.removeLayer(markers);
 	$('.callsign-suggest').hide();
-	$('.dxccsummary').remove();
+	$('.awardpane').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
 	clearTimeout();
