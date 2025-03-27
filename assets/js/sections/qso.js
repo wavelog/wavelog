@@ -347,7 +347,7 @@ function stop_az_ele_ticker() {
 }
 
 function start_az_ele_ticker(tle) {
-  	const lines = tle.tle.trim().split('\n');
+	const lines = tle.tle.trim().split('\n');
 
 	// Initialize a satellite record
 	var satrec = satellite.twoline2satrec(lines[0], lines[1]);
@@ -362,23 +362,27 @@ function start_az_ele_ticker(tle) {
 	function updateAzEl() {
 		let dateParts=$('#start_date').val().split("-");
 		let timeParts=$("#start_time").val().split(":");
-		if ((dateParts.length == 3) && (timeParts.length >= 2)) {
+		try {
 			var time = new Date(Date.UTC(
 				parseInt(dateParts[2]),parseInt(dateParts[1])-1,parseInt(dateParts[0]),
 				parseInt(timeParts[0]),parseInt(timeParts[1]),(parseInt(timeParts[2] ?? 0))
 			));
-		} else {
-			var time = new Date();
-		}
-		var positionAndVelocity = satellite.propagate(satrec, time);
-		var gmst = satellite.gstime(time);
-		var positionEcf = satellite.eciToEcf(positionAndVelocity.position, gmst);
-		var observerEcf = satellite.geodeticToEcf(observerGd);
-		var lookAngles = satellite.ecfToLookAngles(observerGd, positionEcf);
-		let az=(satellite.radiansToDegrees(lookAngles.azimuth).toFixed(2));
-		let el=(satellite.radiansToDegrees(lookAngles.elevation).toFixed(2));
-		$("#ant_az").val(parseFloat(az).toFixed(1));
-		$("#ant_el").val(parseFloat(el).toFixed(1));
+			if (isNaN(time.getTime())) {
+				throw new Error("Invalid date");
+			}
+			var positionAndVelocity = satellite.propagate(satrec, time);
+			var gmst = satellite.gstime(time);
+			var positionEcf = satellite.eciToEcf(positionAndVelocity.position, gmst);
+			var observerEcf = satellite.geodeticToEcf(observerGd);
+			var lookAngles = satellite.ecfToLookAngles(observerGd, positionEcf);
+			let az=(satellite.radiansToDegrees(lookAngles.azimuth).toFixed(2));
+			let el=(satellite.radiansToDegrees(lookAngles.elevation).toFixed(2));
+			$("#ant_az").val(parseFloat(az).toFixed(1));
+			$("#ant_el").val(parseFloat(el).toFixed(1));
+		} catch(e) {
+			$("#ant_az").val('');
+			$("#ant_el").val('');
+		} 
 	}
 	satupdater=setInterval(updateAzEl, 1000);
 }
