@@ -396,6 +396,10 @@ function get_tles() {
 	});
 }
 
+if ($("#sat_name").val() !== '') {
+	get_tles();
+}
+
 $('#stateDropdown').on('change', function () {
 	var state = $("#stateDropdown option:selected").text();
 	if (state != "") {
@@ -1009,6 +1013,7 @@ $('#band').on('change', function () {
 	$("#sat_mode").val("");
 	set_qrg();
 	$("#callsign").blur();
+	stop_az_ele_ticker();
 });
 
 /* On Key up Calculate Bearing and Distance */
