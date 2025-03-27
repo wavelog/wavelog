@@ -331,9 +331,7 @@ $("#sat_name").on('change', function () {
 		$("#selectPropagation").val("");
 		stop_az_ele_ticker();
 	} else {
-		if (qso_manual != 1) {
-			get_tles();
-		}
+		get_tles();
 	}
 });
 
@@ -341,7 +339,6 @@ $("#sat_name").on('change', function () {
 var satupdater;
 
 function stop_az_ele_ticker() {
-	console.log('Stop filling Az/Ele here');
 	if (satupdater) {
 		clearInterval(satupdater);
 	}
@@ -363,7 +360,16 @@ function start_az_ele_ticker(tle) {
 	};
 
 	function updateAzEl() {
-		var time = new Date();
+		let dateParts=$('#start_date').val().split("-");
+		let timeParts=$("#start_time").val().split(":");
+		if ((dateParts.length == 3) && (timeParts.length >= 2)) {
+			var time = new Date(Date.UTC(
+				parseInt(dateParts[2]),parseInt(dateParts[1])-1,parseInt(dateParts[0]),
+				parseInt(timeParts[0]),parseInt(timeParts[1]),(parseInt(timeParts[2] ?? 0))
+			));
+		} else {
+			var time = new Date();
+		}
 		var positionAndVelocity = satellite.propagate(satrec, time);
 		var gmst = satellite.gstime(time);
 		var positionEcf = satellite.eciToEcf(positionAndVelocity.position, gmst);
