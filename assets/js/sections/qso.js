@@ -596,7 +596,7 @@ function reset_fields() {
 	mymap.setView(pos, 12);
 	mymap.removeLayer(markers);
 	$('.callsign-suggest').hide();
-	$('.dxccsummary').remove();
+	$('.awardpane').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
 	clearTimeout();
@@ -709,7 +709,7 @@ $("#callsign").on("focusout", function () {
 					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign.replace('Ø', '0'));
 					$('#lotw_link').attr('target', "_blank");
 					$('#lotw_info').attr('data-bs-toggle', "tooltip");
-					if (result.lotw_days == 1) { 
+					if (result.lotw_days == 1) {
 						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_day_ago);
 					} else {
 						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_days_ago.replace('%x', result.lotw_days));
@@ -874,9 +874,11 @@ $("#callsign").on("focusout", function () {
 				/* display past QSOs */
 				$('#partial_view').html(result.partial);
 
-				// Get DXX Summary
-				getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
-			} 
+				// Get DXCC Summary
+				loadAwardTabs(function() {
+					getDxccResult(result.dxcc.adif, convert_case(result.dxcc.entity));
+				});
+			}
 			// else {
 			// 	console.log("Callsigns do not match, skipping lookup");
 			// 	console.log("Typed Callsign: " + $('#callsign').val());
@@ -888,6 +890,325 @@ $("#callsign").on("focusout", function () {
 		resetDefaultQSOFields();
 	}
 })
+
+// This function executes the call to the backend for fetching cq summary and inserted table below qso entry
+function getCqResult() {
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'cq',
+			cqz: $('#cqz').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+            $('#cq-summary').empty();
+			$('#cq-summary').append(lang_summary_cq + ' ' + $('#cqz').val() + '.');
+            $('#cq-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching was summary and inserted table below qso entry
+function getWasResult() {
+	$('#state-summary').empty();
+	if ($('#stateDropdown').val() === '') {
+		$('#state-summary').append(lang_summary_warning_empty_state);
+		return;
+	}
+
+	let dxccid = $('#dxcc_id').val();
+	if (!['291', '6', '110'].includes(dxccid)) {
+		$('#state-summary').append(lang_summary_state_valid);
+		return;
+	}
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'was',
+			was: $('#stateDropdown').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+			$('#state-summary').append(lang_summary_state + ' ' + $('#stateDropdown').val() + '.');
+            $('#state-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching sota summary and inserted table below qso entry
+function getSotaResult() {
+	$('#sota-summary').empty();
+	if ($('#sota_ref').val() === '') {
+		$('#sota-summary').append(lang_summary_warning_empty_sota);
+		return;
+	}
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'sota',
+			sota: $('#sota_ref').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+			$('#sota-summary').append(lang_summary_sota + ' ' + $('#sota_ref').val() + '.');
+            $('#sota-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching pota summary and inserted table below qso entry
+function getPotaResult() {
+	let potaref = $('#pota_ref').val();
+	$('#pota-summary').empty();
+	if (potaref === '') {
+		$('#pota-summary').append(lang_summary_warning_empty_pota);
+		return;
+	}
+	if (potaref.includes(',')) {
+		$('#pota-summary').append(lang_summary_info_only_first_pota + '<br />');
+		potaref = potaref.split(',')[0].trim();
+	}
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'pota',
+			pota: potaref,
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+			$('#pota-summary').append(lang_summary_pota + ' ' + potaref + '.');
+            $('#pota-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching continent summary and inserted table below qso entry
+function getContinentResult() {
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'continent',
+			continent: $('#continent').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+            $('#continent-summary').empty();
+			$('#continent-summary').append(lang_summary_continent + ' ' + $('#continent').val() + '.');
+            $('#continent-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching iota summary and inserted table below qso entry
+function getIotaResult() {
+	$('#iota-summary').empty();
+	if ($('#iota_ref').val() === '') {
+		$('#iota-summary').append(lang_summary_warning_empty_iota);
+		return;
+	}
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'iota',
+			iota: $('#iota_ref').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+			$('#iota-summary').append(lang_summary_iota + ' ' + $('#iota_ref').val() + '.');
+            $('#iota-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching wwff summary and inserted table below qso entry
+function getWwffResult() {
+	$('#wwff-summary').empty();
+	if ($('#wwff_ref').val() === '') {
+		$('#wwff-summary').append(lang_summary_warning_empty_wwff);
+		return;
+	}
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'wwff',
+			wwff: $('#wwff_ref').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+			$('#wwff-summary').append(lang_summary_wwff + ' ' + $('#wwff_ref').val() + '.');
+            $('#wwff-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching gridsquare summary and inserted table below qso entry
+function getGridsquareResult() {
+	$('#gridsquare-summary').empty();
+	if ($('#locator').val() === '') {
+		$('#gridsquare-summary').append(lang_summary_warning_empty_gridsquare);
+		return;
+	}
+	if ($('#locator').val().includes(',')) {
+		$('#gridsquare-summary').append(lang_summary_info_only_first_gridsquare + '<br />');
+	}
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'vucc',
+			grid: $('#locator').val(),
+            reduced_mode: true,
+            current_band: $('#band').val(),
+            current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+			$('#gridsquare-summary').append(lang_summary_gridsquare + ' ' + $('#locator').val().substring(0, 4) + '.');
+            $('#gridsquare-summary').append(html);
+		}
+	});
+}
+
+function loadAwardTabs(callback) {
+    $.ajax({
+        url: base_url + 'index.php/qso/getAwardTabs',
+        type: 'post',
+        data: {},
+        success: function (html) {
+            $('.awardpane').remove();
+            $('.qsopane').append('<div class="awardpane col-sm-12"></div>');
+            $('.awardpane').append(html);
+
+            // Execute callback if provided
+            if (typeof callback === "function") {
+                callback();
+            }
+
+			$("a[href='#cq-summary']").on('shown.bs.tab', function (e) {
+				let $targetPane = $('#cq-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getCqResult();
+				}
+			});
+
+			$("a[href='#state-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#state-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getWasResult();
+				}
+			});
+
+			$("a[href='#pota-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#pota-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getPotaResult();
+				}
+			});
+
+			$("a[href='#continent-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#continent-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getContinentResult();
+				}
+			});
+
+			$("a[href='#sota-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#sota-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getSotaResult();
+				}
+			});
+
+			$("a[href='#gridsquare-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#gridsquare-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getGridsquareResult();
+				}
+			});
+
+			$("a[href='#wwff-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#wwff-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getWwffResult();
+				}
+			});
+
+			$("a[href='#iota-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#iota-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getIotaResult();
+				}
+			});
+
+			$('.dxcc-summary-reload').click(function (event) {
+				let $targetPane = $('#dxcc-summary');
+				$targetPane.data("loaded", false); // Mark as loaded
+				getDxccResult($('#dxcc_id').val(), $('#dxcc_id option:selected').text());
+			});
+			$('.iota-summary-reload').click(function (event) {
+				getIotaResult();
+			});
+			$('.wwff-summary-reload').click(function (event) {
+				getWwffResult();
+			});
+			$('.pota-summary-reload').click(function (event) {
+				getPotaResult();
+			});
+			$('.sota-summary-reload').click(function (event) {
+				getSotaResult();
+			});
+			$('.cq-summary-reload').click(function (event) {
+				getCqResult();
+			});
+			$('.state-summary-reload').click(function (event) {
+				getWasResult();
+			});
+			$('.continent-summary-reload').click(function (event) {
+				getContinentResult();
+			});
+			$('.gridsquare-summary-reload').click(function (event) {
+				getGridsquareResult();
+			});
+        }
+    });
+}
+
 
 /* time input shortcut */
 $('#start_time').on('change', function () {
@@ -1240,7 +1561,7 @@ function resetDefaultQSOFields() {
 	$('#stateDropdown').val("");
 	$('#callsign-image').attr('style', 'display: none;');
 	$('#callsign-image-content').text("");
-	$('.dxccsummary').remove();
+	$('.awardpane').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
 }
 

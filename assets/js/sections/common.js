@@ -831,25 +831,27 @@ function getLookupResult() {
 
 // This function executes the call to the backend for fetching dxcc summary and inserted table below qso entry
 function getDxccResult(dxcc, name) {
-	$.ajax({
-		url: base_url + 'index.php/lookup/search',
-		type: 'post',
-		data: {
-			type: 'dxcc',
-			dxcc: dxcc,
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
-		},
-		success: function (html) {
-			$('.dxccsummary').remove();
-            $('.qsopane').append('<div class="dxccsummary col-sm-12"><br><div class="card"><div class="card-header dxccsummaryheader" data-bs-toggle="collapse" data-bs-target=".dxccsummarybody">' + lang_dxccsummary_for + name + '</div><div class="card-body collapse dxccsummarybody"></div></div></div>');
-            $('.dxccsummarybody').append(html);
-			$('.dxccsummaryheader').click(function(){
-				$('.dxccsummaryheader').toggleClass('dxccsummaryheaderopened');
-			});
-		}
-	});
+	let $targetPane = $('#dxcc-summary');
+
+	if (!$targetPane.data("loaded")) {
+		$targetPane.data("loaded", true); // Mark as loaded
+		$.ajax({
+			url: base_url + 'index.php/lookup/search',
+			type: 'post',
+			data: {
+				type: 'dxcc',
+				dxcc: dxcc,
+				reduced_mode: true,
+				current_band: $('#band').val(),
+				current_mode: $('#mode').val(),
+			},
+			success: function (html) {
+				$('#dxcc-summary').empty();
+				$('#dxcc-summary').append(lang_summary_dxcc + ' ' + name + '.');
+				$('#dxcc-summary').append(html);
+			}
+		});
+	}
 }
 
 function displayQsl(id) {
