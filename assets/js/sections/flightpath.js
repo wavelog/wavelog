@@ -475,6 +475,7 @@ function getBearing(lat1, lng1, lat2, lng2) {
         html += '<tr><td><span>Elevation</span></td><td align="right"><span id="ele"></span></td></tr>';
 		html += '<tr><td><span>Gridsquare</span></td><td align="right"><span id="grid"></span></td></tr>';
 		html += '<tr><td><span>Status</span></td><td align="right"><span id="status"></span></td></tr>';
+		html += '<tr><td><span id="LAOS">AOS Az</span></td><td align="right"><span id="osaz"></span></td></tr>';
 		html += '<tr><td><span>Visible</span></td><td align="right"><span id="visibility"></span></td></tr>';
         html += '<tr><td><input type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"></td><td><span> ' + lang_gen_hamradio_gridsquares + '</span></td></tr>';
         html += "</table>";
@@ -506,13 +507,17 @@ function getBearing(lat1, lng1, lat2, lng2) {
 			let ele = (Math.round((sat._lookAngles.elevation * 100), 2) / 100).toFixed(2);
 
 			if (ele > 0) { // Satellite is in view
-				let nextLOS = findNextEvent(sat, date, 1440, "LOS");
+				let [nextLOS,losaz] = findNextEvent(sat, date, 1440, "LOS");
 				$("#status").html(nextLOS ? `LOS in ${nextLOS}` : "No LOS found in next 24h");
 				$("#visibility").html("<div class='bg-success awards BgSuccess text-center'>Yes</div>");
+				$("#LAOS").html('LOS Az');
+				$("#osaz").html(losaz+'&deg;');
 			} else { // Satellite is below horizon
-				let nextAOS = findNextEvent(sat, date, 1440, "AOS");
+				let [nextAOS,aosaz] = findNextEvent(sat, date, 1440, "AOS");
 				$("#status").html(nextAOS ? `AOS in ${nextAOS}` : "No AOS found in next 24h");
 				$("#visibility").html("<div class='bg-danger awards BgDanger text-center'>No</div>");
+				$("#LAOS").html('AOS Az');
+				$("#osaz").html(aosaz+'&deg;');
 			}
 
 			az = "<b>" + az + "°</b>";
@@ -544,17 +549,19 @@ function getBearing(lat1, lng1, lat2, lng2) {
 
 			if (eventType === "AOS" && lastElevation <= 0 && elevation > 0) {
 				let timeDiff = Math.round((futureTime - currentTime) / 1000); // Seconds
-				return formatCountdown(timeDiff);
+				let aosaz = (Math.round((satelliteJs.radiansToDegrees(lookAngles.azimuth) * 100), 2) / 100).toFixed(2);
+				return [formatCountdown(timeDiff), aosaz];
 			}
 
 			if (eventType === "LOS" && lastElevation > 0 && elevation <= 0) {
 				let timeDiff = Math.round((futureTime - currentTime) / 1000); // Seconds
-				return formatCountdown(timeDiff);
+				let losaz = (Math.round((satelliteJs.radiansToDegrees(lookAngles.azimuth) * 100), 2) / 100).toFixed(2);
+				return [formatCountdown(timeDiff),losaz];
 			}
 
 			lastElevation = elevation; // Store previous elevation
 		}
-		return null; // No event found
+		return [null,null]; // No event found
 	}
 
 	function formatCountdown(seconds) {
