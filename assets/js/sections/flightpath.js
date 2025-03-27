@@ -503,8 +503,8 @@ function getBearing(lat1, lng1, lat2, lng2) {
 	function updateSats(date) {
 		sats.forEach(function (sat) {
 			sat.setDate(date).update();
-			let az = (Math.round((sat._lookAngles.azimuth * 100), 2) / 100).toFixed(2);
-			let ele = (Math.round((sat._lookAngles.elevation * 100), 2) / 100).toFixed(2);
+			let az = (Math.round((sat._lookAngles.azimuth * 10), 2) / 10).toFixed(1);
+			let ele = (Math.round((sat._lookAngles.elevation * 10), 2) / 10).toFixed(1);
 
 			if (ele > 0) { // Satellite is in view
 				let [nextLOS,losaz] = findNextEvent(sat, date, 1440, "LOS");
@@ -531,6 +531,22 @@ function getBearing(lat1, lng1, lat2, lng2) {
 		});
 	}
 
+	function rdat(date,rnd2) {
+		const seconds = date.getSeconds();
+		const remainder = seconds % rnd2;
+		if (remainder < (rnd2/2)) {
+			date.setSeconds(seconds - remainder);
+		} else {
+			date.setSeconds(seconds + (rnd2 - remainder));
+			// Handle wrap-around if necessary
+			if (date.getSeconds() >= 60) {
+				date.setMinutes(date.getMinutes() + 1);
+				date.setSeconds(0);
+			}
+		}
+		return date;
+	}
+
 	function findNextEvent(sat, observerDate, maxMinutesAhead = 1440, eventType = "AOS") {
 		let stepSeconds = 1;
 		let currentTime = new Date(observerDate);
@@ -538,6 +554,7 @@ function getBearing(lat1, lng1, lat2, lng2) {
 		let lastElevation = -90; // Default below horizon
 		for (let t = 0; t <= maxMinutesAhead * 60; t += stepSeconds) {
 			let futureTime = new Date(currentTime.getTime() + t * 1000);
+			futureTime=rdat(futureTime,10);
 			let gmst = satelliteJs.gstime(futureTime);
 			let positionAndVelocity = satelliteJs.propagate(sat._satrec, futureTime);
 			if (!positionAndVelocity.position) continue;
@@ -549,13 +566,13 @@ function getBearing(lat1, lng1, lat2, lng2) {
 
 			if (eventType === "AOS" && lastElevation <= 0 && elevation > 0) {
 				let timeDiff = Math.round((futureTime - currentTime) / 1000); // Seconds
-				let aosaz = (Math.round((satelliteJs.radiansToDegrees(lookAngles.azimuth) * 100), 2) / 100).toFixed(2);
+				let aosaz = (Math.round((satelliteJs.radiansToDegrees(lookAngles.azimuth) * 10), 2) / 10).toFixed(1);
 				return [formatCountdown(timeDiff), aosaz];
 			}
 
 			if (eventType === "LOS" && lastElevation > 0 && elevation <= 0) {
 				let timeDiff = Math.round((futureTime - currentTime) / 1000); // Seconds
-				let losaz = (Math.round((satelliteJs.radiansToDegrees(lookAngles.azimuth) * 100), 2) / 100).toFixed(2);
+				let losaz = (Math.round((satelliteJs.radiansToDegrees(lookAngles.azimuth) * 10), 2) / 10).toFixed(1);
 				return [formatCountdown(timeDiff),losaz];
 			}
 
