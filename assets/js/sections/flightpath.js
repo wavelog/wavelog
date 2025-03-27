@@ -245,59 +245,62 @@ Satellite.prototype.update = function () {
         // Update satellite marker
         satmarker.setLatLng(this._position);
 
-        // Compute paths with Antimeridian handling
-        let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
+        if (this._altitude < 35700 || this._altitude > 36000) {
 
-        // Remove old polylines if they exist
-        if (this._pastTrajectories) {
-            this._pastTrajectories.forEach(poly => leafletMap.removeLayer(poly));
+           // Compute paths with Antimeridian handling
+           let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
+
+           // Remove old polylines if they exist
+           if (this._pastTrajectories) {
+               this._pastTrajectories.forEach(poly => leafletMap.removeLayer(poly));
+           }
+           if (this._futureTrajectories) {
+               this._futureTrajectories.forEach(poly => leafletMap.removeLayer(poly));
+           }
+
+           // Draw new trajectory segments
+           this._pastTrajectories = pastSegments.map(segment =>
+               L.polyline(segment, { color: 'red' }).addTo(leafletMap)
+           );
+           this._futureTrajectories = futureSegments.map(segment =>
+               L.polyline(segment, { color: 'green' }).addTo(leafletMap)
+           );
+
+           // 📌 **Fix Arrow Direction Using Ground Track Bearing**
+           let nextDate = new Date(this._date.getTime() + 10000); // 5 sec into the future
+           let nextPos = satelliteJs.propagate(this._satrec, nextDate);
+           let nextGd = satelliteJs.eciToGeodetic(nextPos.position, this._gmst);
+
+           let nextLat = nextGd.latitude * DEGREES;
+           let nextLng = nextGd.longitude * DEGREES;
+
+           let heading = getBearing(this._position.lat, this._position.lng, nextLat, nextLng);
+
+           // Remove old arrow marker if it exists
+           if (this._directionArrow) {
+               leafletMap.removeLayer(this._directionArrow);
+           }
+
+           // Define arrow icon using an SVG
+           let arrowIcon = L.divIcon({
+               className: "custom-arrow",
+               html: `<div style="
+                   transform: rotate(${heading-90}deg);
+                   font-size: 20px;
+                   color: yellow;
+                   ">➤</div>`, // Unicode arrow
+               iconSize: [20, 20],
+               iconAnchor: [15, -15]
+           });
+
+           // Offset the arrow slightly ahead of the satellite position
+           let arrowOffset = 0.1; // Small offset factor
+           let arrowLat = this._position.lat + arrowOffset * Math.sin(heading * (Math.PI / 180));
+           let arrowLng = this._position.lng + arrowOffset * Math.cos(heading * (Math.PI / 180));
+
+           // Add the arrow marker
+           this._directionArrow = L.marker([arrowLat, arrowLng], { icon: arrowIcon }).addTo(leafletMap);
         }
-        if (this._futureTrajectories) {
-            this._futureTrajectories.forEach(poly => leafletMap.removeLayer(poly));
-        }
-
-        // Draw new trajectory segments
-        this._pastTrajectories = pastSegments.map(segment =>
-            L.polyline(segment, { color: 'red' }).addTo(leafletMap)
-        );
-        this._futureTrajectories = futureSegments.map(segment =>
-            L.polyline(segment, { color: 'green' }).addTo(leafletMap)
-        );
-
-        // 📌 **Fix Arrow Direction Using Ground Track Bearing**
-        let nextDate = new Date(this._date.getTime() + 10000); // 5 sec into the future
-        let nextPos = satelliteJs.propagate(this._satrec, nextDate);
-        let nextGd = satelliteJs.eciToGeodetic(nextPos.position, this._gmst);
-
-        let nextLat = nextGd.latitude * DEGREES;
-        let nextLng = nextGd.longitude * DEGREES;
-
-        let heading = getBearing(this._position.lat, this._position.lng, nextLat, nextLng);
-
-        // Remove old arrow marker if it exists
-        if (this._directionArrow) {
-            leafletMap.removeLayer(this._directionArrow);
-        }
-
-        // Define arrow icon using an SVG
-        let arrowIcon = L.divIcon({
-            className: "custom-arrow",
-            html: `<div style="
-                transform: rotate(${heading-90}deg);
-                font-size: 20px;
-                color: yellow;
-                ">➤</div>`, // Unicode arrow
-            iconSize: [20, 20],
-            iconAnchor: [15, -15]
-        });
-
-        // Offset the arrow slightly ahead of the satellite position
-        let arrowOffset = 0.1; // Small offset factor
-        let arrowLat = this._position.lat + arrowOffset * Math.sin(heading * (Math.PI / 180));
-        let arrowLng = this._position.lng + arrowOffset * Math.cos(heading * (Math.PI / 180));
-
-        // Add the arrow marker
-        this._directionArrow = L.marker([arrowLat, arrowLng], { icon: arrowIcon }).addTo(leafletMap);
 
     } catch (e) {
         console.error("Error updating satellite:", e);
