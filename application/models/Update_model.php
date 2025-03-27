@@ -509,12 +509,12 @@ class Update_model extends CI_Model {
 				$line = trim($data);
 				if ($line != "" && $line[0] != '#') {
 					$index = strpos($line, ' ');
-					$call = substr($line, 0, $index);
-					$name = substr($line, strpos($line, ' '));
+					$call = $this->security->xss_clean(substr($line, 0, $index));
+					$name = $this->security->xss_clean(substr($line, strpos($line, ' ')));
 					$linkname = $link = null;
 					if (strpos($name, '[')) {
-						$linkname = substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1));
-						$link= substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1));
+						$linkname = $this->security->xss_clean(substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1)));
+						$link= $this->security->xss_clean(substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1)));
 						$name = substr($name, 0, strpos($name, '['));
 					}
 					array_push($result, array('callsign' => $call, 'name' => $name, 'linkname' => $linkname, 'link' => $link));
