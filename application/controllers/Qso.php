@@ -668,7 +668,7 @@ class QSO extends CI_Controller {
 
 	/**
 	 * Open the API url which causes the browser to open the QSO live logging and populate the callsign with the data from the API
-	 * 
+	 *
 	 * Usage example:
 	 * 			https://<URL to Wavelog>/index.php/qso/log_qso?callsign=4W7EST
 	 */
@@ -697,7 +697,7 @@ class QSO extends CI_Controller {
 	}
 
 	/**
-	 * Easy modal Loader 
+	 * Easy modal Loader
 	 * Used for Share Modal in QSO Details view
 	 */
 	function getShareModal() {
@@ -710,5 +710,9 @@ class QSO extends CI_Controller {
 		}
 
 		$this->load->view('qso/components/share_modal', $data, false);
+	}
+
+	function getAwardTabs() {
+		$this->load->view('qso/award_tabs');
 	}
 }

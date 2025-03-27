@@ -12,8 +12,8 @@ msgstr ""
 "POT-Creation-Date: 2025-03-26 08:18+0000\n"
 "PO-Revision-Date: 2025-03-26 22:02+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -341,6 +341,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
+#: application/views/qso/award_tabs.php:25
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -428,6 +429,7 @@ msgstr " и "
 #: application/views/user/edit.php:353
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/views/qso/award_tabs.php:53
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -448,6 +450,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:307 application/views/user/edit.php:330
 #: application/views/user/edit.php:354
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/views/qso/award_tabs.php:57
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -469,6 +472,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:308 application/views/user/edit.php:331
 #: application/views/user/edit.php:355
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/qso/award_tabs.php:49
 msgid "POTA"
 msgstr "POTA"
 
@@ -1435,6 +1439,7 @@ msgstr "Страна"
 #: application/views/user/edit.php:328 application/views/user/edit.php:352
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/views/qso/award_tabs.php:41
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1505,6 +1510,7 @@ msgstr "Область/штат"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
+#: application/views/qso/award_tabs.php:37
 msgid "Gridsquare"
 msgstr "QTH локатор"
 
@@ -3037,7 +3043,8 @@ msgstr ""
 #: application/models/Eqslmethods_model.php:333
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr "Произошла необработанная ошибка при загрузке QSO. Возможно, у eQSL сбой"
+msgstr ""
+"Произошла необработанная ошибка при загрузке QSO. Возможно, у eQSL сбой"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -5408,6 +5415,7 @@ msgstr "Кантон"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
 #: application/views/interface_assets/header.php:174
+#: application/views/qso/award_tabs.php:29
 msgid "CQ"
 msgstr "CQ"
 
@@ -5841,6 +5849,7 @@ msgstr "Дипломы - Worked All Continents (WAC)"
 #: application/views/logbookadvanced/useroptions.php:154
 #: application/views/lookup/index.php:4 application/views/qso/edit_ajax.php:262
 #: application/views/qso/index.php:391 application/views/view_log/qso.php:342
+#: application/views/qso/award_tabs.php:33
 msgid "Continent"
 msgstr "Континент"
 
@@ -10157,6 +10166,7 @@ msgid "Default on"
 msgstr "По умолчанию включено"
 
 #: application/views/lookup/index.php:11
+#: application/views/qso/award_tabs.php:45
 msgid "US State"
 msgstr "Штат США"
 
@@ -14717,6 +14727,78 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#: application/views/qso/award_tabs.php:2
+msgid "Showing summary for DXCC"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:3
+msgid "Showing summary for US State"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:4
+msgid "Showing summary for CQ zone"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:5
+msgid "Showing summary for WWFF"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:6
+msgid "Showing summary for POTA"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:7
+msgid "Showing summary for SOTA"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:8
+msgid "Showing summary for IOTA"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:9
+msgid "Showing summary for continent"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:10
+msgid "Showing summary for gridsquare"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:11
+msgid "State input needs to be filled to show a summary!"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:12
+msgid "SOTA input needs to be filled to show a summary!"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:13
+msgid "POTA input needs to be filled to show a summary!"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:14
+msgid "IOTA input needs to be filled to show a summary!"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:15
+msgid "WWFF input needs to be filled to show a summary!"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:16
+msgid "Gridsquare input needs to be filled to show a summary!"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:17
+msgid "Summary only shows for the first POTA entered."
+msgstr ""
+
+#: application/views/qso/award_tabs.php:18
+msgid "Summary only shows for the first gridsquare entered."
+msgstr ""
+
+#: application/views/qso/award_tabs.php:19
+msgid "Summary only shows for US states."
+msgstr ""
 
 #~ msgid "Altitude (meters)"
 #~ msgstr "Высота (метры)"
