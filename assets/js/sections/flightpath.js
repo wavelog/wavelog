@@ -245,26 +245,27 @@ Satellite.prototype.update = function () {
         // Update satellite marker
         satmarker.setLatLng(this._position);
 
-        // Compute paths with Antimeridian handling
-        let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
-
-        // Remove old polylines if they exist
-        if (this._pastTrajectories) {
-            this._pastTrajectories.forEach(poly => leafletMap.removeLayer(poly));
-        }
-        if (this._futureTrajectories) {
-            this._futureTrajectories.forEach(poly => leafletMap.removeLayer(poly));
-        }
-
-        // Draw new trajectory segments
-        this._pastTrajectories = pastSegments.map(segment =>
-            L.polyline(segment, { color: 'red' }).addTo(leafletMap)
-        );
-        this._futureTrajectories = futureSegments.map(segment =>
-            L.polyline(segment, { color: 'green' }).addTo(leafletMap)
-        );
-
         if (this._altitude < 35700 || this._altitude > 36000) {
+
+           // Compute paths with Antimeridian handling
+           let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
+
+           // Remove old polylines if they exist
+           if (this._pastTrajectories) {
+               this._pastTrajectories.forEach(poly => leafletMap.removeLayer(poly));
+           }
+           if (this._futureTrajectories) {
+               this._futureTrajectories.forEach(poly => leafletMap.removeLayer(poly));
+           }
+
+           // Draw new trajectory segments
+           this._pastTrajectories = pastSegments.map(segment =>
+               L.polyline(segment, { color: 'red' }).addTo(leafletMap)
+           );
+           this._futureTrajectories = futureSegments.map(segment =>
+               L.polyline(segment, { color: 'green' }).addTo(leafletMap)
+           );
+
            // 📌 **Fix Arrow Direction Using Ground Track Bearing**
            let nextDate = new Date(this._date.getTime() + 10000); // 5 sec into the future
            let nextPos = satelliteJs.propagate(this._satrec, nextDate);
