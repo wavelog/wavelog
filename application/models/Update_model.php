@@ -523,14 +523,17 @@ class Update_model extends CI_Model {
 						$hon[$i]['description'] = $name;
 						$hon[$i]['linkname'] = $linkname;
 						$hon[$i]['link'] = $link;
+						$i++;
 						if (($i % 100) == 0) {
 							$this->db->insert_batch('hams_of_note', $hon);
 							unset($hon);
+							$i=0;	// reset $i to see if there's something more at the end
 						}
-						$i++;
 					}
 				}
-				$this->db->insert_batch('hams_of_note', $hon);
+				if ($i>0) {	// Leftovers?
+					$this->db->insert_batch('hams_of_note', $hon);
+				}
 			} else {
 				$result=null;
 			}
