@@ -9,6 +9,7 @@
       <?php } ?>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/dxcluster'); ?>"><?= __("DXCluster"); ?></a></li>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/maptiles'); ?>"><?= __("Maptiles Server"); ?></a></li>
+			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/hon'); ?>"><?= __("Hams Of Note"); ?></a></li>
 			<li class="list-group-item"><a class="nav-link" href="<?php echo site_url('options/version_dialog'); ?>"><?= __("Version Info"); ?></a></li>
 		</ul>
 	</div>
