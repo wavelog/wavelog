@@ -549,7 +549,7 @@
 									<div class="dropdown-divider"></div>
 									<li><a class="dropdown-item quickswitcher disabled"><?= __("Active Logbook"); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
 									<div class="dropdown-divider"></div>
-									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station locations"><?= __("Station Setup"); ?>...</a></li>
+									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="<?= __("You miss station-locations here? Go to stationsetup and fav them");?>" ><?= __("Station Setup"); ?>...<i class="fa fa-question-circle" title="<?= __("You miss station-locations here? Go to stationsetup and fav them"); ?>"></i></a></li>
 								</ul>
 							</li>
 							<?php } ?>
