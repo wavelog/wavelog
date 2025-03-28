@@ -514,13 +514,13 @@ function getBearing(lat1, lng1, lat2, lng2) {
 				$("#status").html(nextLOS ? `LOS in ${nextLOS}` : "No LOS found in next 24h");
 				$("#visibility").html("<div class='bg-success awards BgSuccess text-center'>Yes</div>");
 				$("#LAOS").html('LOS Az');
-				$("#osaz").html(losaz+'&deg;');
+				$("#osaz").html(losaz !== null ? losaz+'&deg;' : 'n/a');
 			} else { // Satellite is below horizon
 				let [nextAOS,aosaz] = findNextEvent(sat, date, 1440, "AOS");
 				$("#status").html(nextAOS ? `AOS in ${nextAOS}` : "No AOS found in next 24h");
 				$("#visibility").html("<div class='bg-danger awards BgDanger text-center'>No</div>");
 				$("#LAOS").html('AOS Az');
-				$("#osaz").html(aosaz+'&deg;');
+				$("#osaz").html(aosaz !== null ? aosaz+'&deg;' : 'n/a');
 			}
 
 			az = "<b>" + az + "°</b>";
