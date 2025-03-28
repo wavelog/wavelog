@@ -39,6 +39,8 @@ $('#stationProfile').on('change', function () {
 		data: { 'stationProfile': stationProfile },
 		success: function (res) {
 			$('#transmit_power').val(res.station_power);
+			latlng=[res.lat,res.lng];
+			$("#sat_name").change();
 		},
 		error: function () {
 			$('#transmit_power').val('');
@@ -217,6 +219,9 @@ $(document).on("click", "#fav_del", function (event) {
 
 $(document).on("click", "#fav_recall", function (event) {
 	$('#sat_name').val(favs[this.innerText].sat_name);
+	if (favs[this.innerText].sat_name) {
+		$("#sat_name").change();
+	}
 	$('#sat_mode').val(favs[this.innerText].sat_mode);
 	$('#band_rx').val(favs[this.innerText].band_rx);
 	$('#band').val(favs[this.innerText].band);
@@ -324,8 +329,86 @@ $("#sat_name").on('change', function () {
 	if (sat == "") {
 		$("#sat_mode").val("");
 		$("#selectPropagation").val("");
+		stop_az_ele_ticker();
+	} else {
+		get_tles();
 	}
 });
+
+
+var satupdater;
+
+function stop_az_ele_ticker() {
+	if (satupdater) {
+		clearInterval(satupdater);
+	}
+	$("#ant_az").val('');
+	$("#ant_el").val('');
+}
+
+function start_az_ele_ticker(tle) {
+	const lines = tle.tle.trim().split('\n');
+
+	// Initialize a satellite record
+	var satrec = satellite.twoline2satrec(lines[0], lines[1]);
+
+	// Define the observer's location in radians
+	var observerGd = {
+		longitude: satellite.degreesToRadians(latlng[1]),
+		latitude: satellite.degreesToRadians(latlng[0]),
+		height: 0.370
+	};
+
+	function updateAzEl() {
+		let dateParts=$('#start_date').val().split("-");
+		let timeParts=$("#start_time").val().split(":");
+		try {
+			var time = new Date(Date.UTC(
+				parseInt(dateParts[2]),parseInt(dateParts[1])-1,parseInt(dateParts[0]),
+				parseInt(timeParts[0]),parseInt(timeParts[1]),(parseInt(timeParts[2] ?? 0))
+			));
+			if (isNaN(time.getTime())) {
+				throw new Error("Invalid date");
+			}
+			var positionAndVelocity = satellite.propagate(satrec, time);
+			var gmst = satellite.gstime(time);
+			var positionEcf = satellite.eciToEcf(positionAndVelocity.position, gmst);
+			var observerEcf = satellite.geodeticToEcf(observerGd);
+			var lookAngles = satellite.ecfToLookAngles(observerGd, positionEcf);
+			let az=(satellite.radiansToDegrees(lookAngles.azimuth).toFixed(2));
+			let el=(satellite.radiansToDegrees(lookAngles.elevation).toFixed(2));
+			$("#ant_az").val(parseFloat(az).toFixed(1));
+			$("#ant_el").val(parseFloat(el).toFixed(1));
+		} catch(e) {
+			$("#ant_az").val('');
+			$("#ant_el").val('');
+		} 
+	}
+	satupdater=setInterval(updateAzEl, 1000);
+}
+
+function get_tles() {
+	stop_az_ele_ticker();
+	$.ajax({
+		url: base_url + 'index.php/satellite/get_tle',
+		type: 'post',
+		data: {
+			sat: $("#sat_name").val(),
+		},
+		success: function (data) {
+			if (data !== null) {
+				start_az_ele_ticker(data);
+			}
+		},
+		error: function (data) {
+			console.log('Something went wrong while trying to fetch TLE for sat: '+$("#sat_name"));
+		},
+	});
+}
+
+if ($("#sat_name").val() !== '') {
+	get_tles();
+}
 
 $('#stateDropdown').on('change', function () {
 	var state = $("#stateDropdown option:selected").text();
@@ -516,6 +599,7 @@ function reset_to_default() {
 	$("#sat_mode").val("");
 	$("#ant_az").val("");
 	$("#ant_el").val("");
+	stop_az_ele_ticker();
 }
 
 /* Function: reset_fields is used to reset the fields on the QSO page */
@@ -1268,6 +1352,7 @@ $('#band').on('change', function () {
 	$("#sat_mode").val("");
 	set_qrg();
 	$("#callsign").blur();
+	stop_az_ele_ticker();
 });
 
 /* On Key up Calculate Bearing and Distance */
