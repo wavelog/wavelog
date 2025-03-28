@@ -507,7 +507,7 @@
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-map-marker-alt"></i> | <i class="fas fa-book"></i></a>
 								<ul class="dropdown-menu dropdown-menu-right header-dropdown">
-									<li><a class="dropdown-item disabled"><?= __("Select a Location"); ?></a></li>
+									<li><a class="dropdown-item disabled"><?= __("Select a Location"); ?>:</a></li>
 									<?php
 									// let's get all stations for the logged in user
 									$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
