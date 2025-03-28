@@ -511,6 +511,9 @@ class Update_model extends CI_Model {
 					if ($line != "" && $line[0] != '#') {
 						$index = strpos($line, ' ');
 						$call = $this->security->xss_clean(substr($line, 0, $index));
+						if (preg_match('/[^a-zA-Z0-9\/]/', $call)) {
+							continue;
+						}
 						$name = $this->security->xss_clean(substr($line, strpos($line, ' ')));
 						$linkname = $link = null;
 						if (strpos($name, '[')) {
