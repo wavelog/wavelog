@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-27 06:15+0000\n"
+"POT-Creation-Date: 2025-03-28 07:01+0000\n"
 "PO-Revision-Date: 2025-02-11 12:33+0000\n"
 "Last-Translator: tviitkar <tambet@viitkar.ee>\n"
 "Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -68,7 +68,7 @@ msgstr ""
 #: application/controllers/Lotw.php:377 application/controllers/Lotw.php:400
 #: application/controllers/Lotw.php:754 application/controllers/Lotw.php:838
 #: application/controllers/Lotw.php:943 application/controllers/Mode.php:15
-#: application/controllers/Notes.php:10 application/controllers/Options.php:15
+#: application/controllers/Notes.php:10 application/controllers/Options.php:14
 #: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:136
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
 #: application/controllers/Qrz.php:285 application/controllers/Qsl.php:12
@@ -588,8 +588,8 @@ msgstr "Muuda sagedusala"
 
 #: application/controllers/Bandmap.php:28
 #: application/controllers/Bandmap.php:69
-#: application/controllers/Options.php:137
-#: application/controllers/Options.php:148
+#: application/controllers/Options.php:160
+#: application/controllers/Options.php:171
 #: application/views/options/sidebar.php:10
 msgid "DXCluster"
 msgstr "DX klaster"
@@ -1786,136 +1786,148 @@ msgstr "Märge"
 msgid "Edit Note"
 msgstr "Muuda märget"
 
-#: application/controllers/Options.php:31
-#: application/controllers/Options.php:41
-#: application/controllers/Options.php:56
+#: application/controllers/Options.php:23
+#: application/controllers/Options.php:33
+#: application/controllers/Options.php:48
+#: application/controllers/Options.php:125
 #: application/controllers/Options.php:136
-#: application/controllers/Options.php:147
-#: application/controllers/Options.php:184
-#: application/controllers/Options.php:195
-#: application/controllers/Options.php:228
-#: application/controllers/Options.php:239
-#: application/controllers/Options.php:309
-#: application/controllers/Options.php:319
-#: application/controllers/Options.php:386
-#: application/controllers/Options.php:405
-#: application/controllers/Options.php:481
-#: application/controllers/Options.php:491
+#: application/controllers/Options.php:159
+#: application/controllers/Options.php:170
+#: application/controllers/Options.php:207
+#: application/controllers/Options.php:218
+#: application/controllers/Options.php:251
+#: application/controllers/Options.php:262
+#: application/controllers/Options.php:332
+#: application/controllers/Options.php:342
+#: application/controllers/Options.php:409
+#: application/controllers/Options.php:428
+#: application/controllers/Options.php:504
+#: application/controllers/Options.php:514
 msgid "Wavelog Options"
 msgstr "Wavelog valikud"
 
-#: application/controllers/Options.php:42
-#: application/controllers/Options.php:57
+#: application/controllers/Options.php:34
+#: application/controllers/Options.php:49
 #: application/views/options/sidebar.php:4
 msgid "Appearance"
 msgstr "Välimus"
 
-#: application/controllers/Options.php:78
-#: application/controllers/Options.php:86
-#: application/controllers/Options.php:94
-#: application/controllers/Options.php:102
-#: application/controllers/Options.php:110
-#: application/controllers/Options.php:118
-#: application/controllers/Options.php:126
+#: application/controllers/Options.php:67
+#: application/controllers/Options.php:75
+#: application/controllers/Options.php:83
+#: application/controllers/Options.php:91
+#: application/controllers/Options.php:99
+#: application/controllers/Options.php:107
+#: application/controllers/Options.php:115
 msgid "Options saved"
 msgstr ""
 
-#: application/controllers/Options.php:165
+#: application/controllers/Options.php:126
+#: application/controllers/Options.php:137
+#: application/views/options/sidebar.php:12
+msgid "Hams Of Note"
+msgstr ""
+
+#: application/controllers/Options.php:152
+msgid "Hams-Of-Not URL changed to "
+msgstr ""
+
+#: application/controllers/Options.php:188
 msgid "de continent changed to "
 msgstr ""
 
-#: application/controllers/Options.php:170
+#: application/controllers/Options.php:193
 msgid "Maximum age of spots changed to "
 msgstr ""
 
-#: application/controllers/Options.php:175
+#: application/controllers/Options.php:198
 msgid "DXCluster Cache URL changed to "
 msgstr ""
 
-#: application/controllers/Options.php:185
-#: application/controllers/Options.php:196
+#: application/controllers/Options.php:208
+#: application/controllers/Options.php:219
 msgid "Radio Settings"
 msgstr "Raadio sätted"
 
-#: application/controllers/Options.php:217
+#: application/controllers/Options.php:240
 msgid "Radio Timeout Warning changed to "
 msgstr ""
 
-#: application/controllers/Options.php:229
-#: application/controllers/Options.php:240
+#: application/controllers/Options.php:252
+#: application/controllers/Options.php:263
 #: application/views/options/sidebar.php:6
 msgid "Email"
 msgstr "E-mail"
 
-#: application/controllers/Options.php:297
+#: application/controllers/Options.php:320
 msgid "The settings were saved successfully."
 msgstr "Sätted edukalt salvestatud."
 
-#: application/controllers/Options.php:299
+#: application/controllers/Options.php:322
 msgid "Something went wrong with saving the settings. Try again."
 msgstr "Sätete salvestamine ebaõnnestus. Proovi uuesti."
 
-#: application/controllers/Options.php:310
-#: application/controllers/Options.php:320
+#: application/controllers/Options.php:333
+#: application/controllers/Options.php:343
 #: application/views/options/sidebar.php:8
 msgid "OQRS Options"
 msgstr ""
 
-#: application/controllers/Options.php:333
+#: application/controllers/Options.php:356
 msgid "OQRS options have been saved."
 msgstr ""
 
-#: application/controllers/Options.php:373
-#: application/controllers/Options.php:378
+#: application/controllers/Options.php:396
+#: application/controllers/Options.php:401
 msgid "Testmail failed. Something went wrong."
 msgstr ""
 
-#: application/controllers/Options.php:375
+#: application/controllers/Options.php:398
 msgid "Testmail sent. Email settings seem to be correct."
 msgstr ""
 
-#: application/controllers/Options.php:387
-#: application/controllers/Options.php:406
+#: application/controllers/Options.php:410
+#: application/controllers/Options.php:429
 #: application/views/options/sidebar.php:11
 msgid "Maptiles Server"
 msgstr "Maptiles-i server"
 
-#: application/controllers/Options.php:465
+#: application/controllers/Options.php:488
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
 
-#: application/controllers/Options.php:469
+#: application/controllers/Options.php:492
 msgid "Maptile Options saved!"
 msgstr ""
 
-#: application/controllers/Options.php:471
+#: application/controllers/Options.php:494
 msgid "Maptile Options could not be saved!"
 msgstr ""
 
-#: application/controllers/Options.php:482
-#: application/controllers/Options.php:492
+#: application/controllers/Options.php:505
+#: application/controllers/Options.php:515
 msgid "Version Info Settings"
 msgstr ""
 
-#: application/controllers/Options.php:498
+#: application/controllers/Options.php:521
 msgid "Version Info Header changed to"
 msgstr ""
 
-#: application/controllers/Options.php:502
+#: application/controllers/Options.php:525
 msgid "Version Info Mode changed to"
 msgstr ""
 
-#: application/controllers/Options.php:507
+#: application/controllers/Options.php:530
 msgid "Version Info Custom Text saved!"
 msgstr ""
 
-#: application/controllers/Options.php:518
+#: application/controllers/Options.php:541
 msgid "Version Info will be shown to all users again"
 msgstr "Versiooni info kuvatakse kõikidele kasutajatele"
 
-#: application/controllers/Options.php:526
+#: application/controllers/Options.php:549
 msgid "Version Info will not be shown to any user"
 msgstr "Versiooni infot ei kuvata ühelegi kasutajale"
 
@@ -4357,7 +4369,7 @@ msgstr ""
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:106
 #: application/views/options/dxcluster.php:67
-#: application/views/options/email.php:112
+#: application/views/options/email.php:112 application/views/options/hon.php:44
 #: application/views/options/maptiles.php:80
 #: application/views/options/oqrs.php:63
 #: application/views/options/radios.php:45
@@ -8360,7 +8372,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:138
 #: application/views/interface_assets/header.php:491
-#: application/views/options/sidebar.php:12
+#: application/views/options/sidebar.php:13
 msgid "Version Info"
 msgstr ""
 
@@ -10192,6 +10204,26 @@ msgstr ""
 
 #: application/views/options/email.php:117
 msgid "The email will be sent to the address defined in your account settings."
+msgstr ""
+
+#: application/views/options/hon.php:38
+msgid "Provider for Hams Of Note"
+msgstr ""
+
+#: application/views/options/hon.php:39
+#, php-format
+msgid ""
+"The URL which provides the Hams Of Note List. See example and how it works "
+"here %s"
+msgstr ""
+
+#: application/views/options/hon.php:39
+msgid "Wiki"
+msgstr ""
+
+#: application/views/options/hon.php:41
+#, php-format
+msgid "URL of the Hams Of Note List. e.g. %s"
 msgstr ""
 
 #: application/views/options/index.php:13
