@@ -26,6 +26,7 @@ class Pota extends CI_Model {
 
 	function ham_of_note($callsign) {
 		$this->db->where('callsign', $callsign);
+		$this->db->order_by('description asc');
 		$this->db->limit(1);
 
 		return $this->db->get('hams_of_note');
