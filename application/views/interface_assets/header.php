@@ -507,7 +507,7 @@
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-map-marker-alt"></i> | <i class="fas fa-book"></i></a>
 								<ul class="dropdown-menu dropdown-menu-right header-dropdown">
-									<li><a class="dropdown-item disabled"><?= __("Select a Location"); ?>:</a></li>
+									<li><a class="dropdown-item disabled"><?= __("Select a Location"); ?></a></li>
 									<?php
 									// let's get all stations for the logged in user
 									$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
@@ -549,7 +549,7 @@
 									<div class="dropdown-divider"></div>
 									<li><a class="dropdown-item quickswitcher disabled"><?= __("Active Logbook"); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
 									<div class="dropdown-divider"></div>
-									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station locations"><?= __("Station Setup"); ?>...</a></li>
+									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="<?= __("You miss station-locations here? Go to stationsetup and fav them");?>" ><?= __("Station Setup"); ?>...<i class="fa fa-question-circle" title="<?= __("You miss station-locations here? Go to stationsetup and fav them"); ?>"></i></a></li>
 								</ul>
 							</li>
 							<?php } ?>
