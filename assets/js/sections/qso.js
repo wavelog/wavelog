@@ -382,7 +382,7 @@ function start_az_ele_ticker(tle) {
 		} catch(e) {
 			$("#ant_az").val('');
 			$("#ant_el").val('');
-		} 
+		}
 	}
 	satupdater=setInterval(updateAzEl, 1000);
 }
@@ -1058,8 +1058,53 @@ function getPotaResult() {
 		return;
 	}
 	if (potaref.includes(',')) {
-		$('#pota-summary').append(lang_summary_info_only_first_pota + '<br />');
-		potaref = potaref.split(',')[0].trim();
+		let values = potaref.split(',').map(function(v) {
+            return v.trim();
+        }).filter(function(v) {
+            return v;
+        });
+		let tabContent = $('#pota-summary'); // Tab content container
+		tabContent.append('<div class="card"><div class="card-header"><ul style="font-size: 15px;" class="nav nav-tabs card-header-tabs pull-right" id="awardPotaTab" role="tablist"></ul></div></div>');
+		tabContent.append('<div class="card-body"><div class="tab-content potatablist"></div>');
+
+		values.forEach(function(value, index) {
+			let tabId = `pota-tab-${index}`;
+			let contentId = `pota-content-${index}`;
+
+			// Append new tab
+			$('#awardPotaTab').append(`
+				<li class="nav-item">
+					<a class="nav-link ${index === 0 ? 'active' : ''}" id="${tabId}-tab" data-bs-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="${index === 0}">
+						${value.toUpperCase()}
+					</a>
+				</li>
+			`);
+
+			// Append new tab content
+			$('.potatablist').append(`
+				<div class="tab-pane fade ${index === 0 ? 'show active' : ''}" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}-tab">
+				</div>
+			`);
+
+			// Make AJAX request
+			$.ajax({
+				url: base_url + 'index.php/lookup/search',
+				type: 'POST',
+				data: { type: 'pota',
+						pota: value.trim(),
+						reduced_mode: true,
+						current_band: $('#band').val(),
+						current_mode: $('#mode').val()
+					},
+				success: function(response) {
+					$(`#${contentId}`).html(response); // Append response to correct tab
+				},
+				error: function(xhr, status, error) {
+					$(`#${contentId}`).html(`<div class="text-danger">Error loading data for ${value}</div>`);
+				}
+			});
+		});
+		return;
 	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
@@ -1154,7 +1199,53 @@ function getGridsquareResult() {
 		return;
 	}
 	if ($('#locator').val().includes(',')) {
-		$('#gridsquare-summary').append(lang_summary_info_only_first_gridsquare + '<br />');
+		let values = $('#locator').val().split(',').map(function(v) {
+            return v.trim();
+        }).filter(function(v) {
+            return v;
+        });
+		let tabContent = $('#gridsquare-summary'); // Tab content container
+		tabContent.append('<div class="card"><div class="card-header"><ul style="font-size: 15px;" class="nav nav-tabs card-header-tabs pull-right" id="awardGridTab" role="tablist"></ul></div></div>');
+		tabContent.append('<div class="card-body"><div class="tab-content gridtablist"></div>');
+
+		values.forEach(function(value, index) {
+			let tabId = `grid-tab-${index}`;
+			let contentId = `grid-content-${index}`;
+
+			// Append new tab
+			$('#awardGridTab').append(`
+				<li class="nav-item">
+					<a class="nav-link ${index === 0 ? 'active' : ''}" id="${tabId}-tab" data-bs-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="${index === 0}">
+						${value.toUpperCase()}
+					</a>
+				</li>
+			`);
+
+			// Append new tab content
+			$('.gridtablist').append(`
+				<div class="tab-pane fade ${index === 0 ? 'show active' : ''}" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}-tab">
+				</div>
+			`);
+
+			// Make AJAX request
+			$.ajax({
+				url: base_url + 'index.php/lookup/search',
+				type: 'POST',
+				data: { type: 'vucc',
+						grid: value.trim(),
+						reduced_mode: true,
+						current_band: $('#band').val(),
+						current_mode: $('#mode').val()
+					},
+				success: function(response) {
+					$(`#${contentId}`).html(response); // Append response to correct tab
+				},
+				error: function(xhr, status, error) {
+					$(`#${contentId}`).html(`<div class="text-danger">Error loading data for ${value}</div>`);
+				}
+			});
+		});
+		return;
 	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
