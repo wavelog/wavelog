@@ -173,7 +173,6 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		$callbook = $this->logbook_model->loadCallBook($qso['COL_CALL'], $this->config->item('use_fullname'));
-		$callbook['distance'] = 5;
 
 		if ($callbook['callsign'] ?? "" !== "") {
 			$this->load->model('stations');
