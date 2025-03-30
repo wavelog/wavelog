@@ -15,97 +15,105 @@ function setRst(mode) {
 }
 
 function qsl_rcvd(id, method) {
-    $(".ld-ext-right-r-"+method).addClass('running');
-    $(".ld-ext-right-r-"+method).prop('disabled', true);
-    $.ajax({
-        url: base_url + 'index.php/qso/qsl_rcvd_ajax',
-        type: 'post',
-        data: {'id': id,
-            'method': method
-        },
-        success: function(data) {
-            $(".ld-ext-right-r-"+method).removeClass('running');
-            $(".ld-ext-right-r-"+method).prop('disabled', false);
-            if (data.message == 'OK') {
-                $("#qsl_" + id).find("span:eq(1)").attr('class', 'qsl-green'); // Paints arrow green
-                $("#qrz_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // marks the QRZ Upload as modified
-                $(".qsl_rcvd_" + id).remove(); // removes choice from menu
-            }
-            else {
-                $(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
-            }
-        }
-    });
+	$(".ld-ext-right-r-"+method).addClass('running');
+	$(".ld-ext-right-r-"+method).prop('disabled', true);
+	$.ajax({
+		url: base_url + 'index.php/qso/qsl_rcvd_ajax',
+		type: 'post',
+		data: {'id': id,
+			'method': method
+		},
+		success: function(data) {
+			$(".ld-ext-right-r-"+method).removeClass('running');
+			$(".ld-ext-right-r-"+method).prop('disabled', false);
+			if (data.message == 'OK') {
+				$("#qsl_" + id).find("span:eq(1)").attr('class', 'qsl-green'); // Paints arrow green
+				if ($("#qrz_"+ id).find("span:eq(0)").hasClass("qrz-green")) {
+					$("#qrz_" + id).find("span:eq(0)").attr('class', 'qrz-yellow'); // marks the QRZ Upload as modified
+				}
+				$(".qsl_rcvd_" + id).remove(); // removes choice from menu
+			}
+			else {
+				$(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
+			}
+		}
+	});
 }
 
 function qsl_sent(id, method) {
-    $.ajax({
-        url: base_url + 'index.php/qso/qsl_sent_ajax',
-        type: 'post',
-        data: {'id': id,
-            'method': method
-        },
-        success: function(data) {
-            if (data.message == 'OK') {
-                $("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-green'); // Paints arrow green
-                $("#qrz_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // marks the QRZ Upload as modified
-                $(".qsl_sent_" + id).remove(); // removes choice from menu
-            }
-            else {
-                $(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
-            }
-        }
-    });
+	$.ajax({
+		url: base_url + 'index.php/qso/qsl_sent_ajax',
+		type: 'post',
+		data: {'id': id,
+			'method': method
+		},
+		success: function(data) {
+			if (data.message == 'OK') {
+				$("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-green'); // Paints arrow green
+				if ($("#qrz_"+ id).find("span:eq(0)").hasClass("qrz-green")) {
+					$("#qrz_" + id).find("span:eq(0)").attr('class', 'qrz-yellow'); // marks the QRZ Upload as modified
+				}
+				$(".qsl_sent_" + id).remove(); // removes choice from menu
+			}
+			else {
+				$(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
+			}
+		}
+	});
 }
 
 // Function: qsl_requested
 // Marks QSL card requested against the QSO.
 function qsl_requested(id, method) {
-    $(".ld-ext-right-t-"+method).addClass('running');
-    $(".ld-ext-right-t-"+method).prop('disabled', true);
-    $.ajax({
-        url: base_url + 'index.php/qso/qsl_requested_ajax',
-        type: 'post',
-        data: {'id': id,
-            'method': method
-        },
-        success: function(data) {
-            $(".ld-ext-right-t-"+method).removeClass('running');
-            $(".ld-ext-right-t-"+method).prop('disabled', false);
-            if (data.message == 'OK') {
-                $("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // Paints arrow yellow
-                $("#qrz_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // marks the QRZ Upload as modified
-            }
-            else {
-                $(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
-            }
-        }
-    });
+	$(".ld-ext-right-t-"+method).addClass('running');
+	$(".ld-ext-right-t-"+method).prop('disabled', true);
+	$.ajax({
+		url: base_url + 'index.php/qso/qsl_requested_ajax',
+		type: 'post',
+		data: {'id': id,
+			'method': method
+		},
+		success: function(data) {
+			$(".ld-ext-right-t-"+method).removeClass('running');
+			$(".ld-ext-right-t-"+method).prop('disabled', false);
+			if (data.message == 'OK') {
+				$("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // Paints arrow yellow
+				if ($("#qrz_"+ id).find("span:eq(0)").hasClass("qrz-green")) {
+					$("#qrz_" + id).find("span:eq(0)").attr('class', 'qrz-yellow'); // marks the QRZ Upload as modified
+				}
+			}
+			else {
+				$(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
+			}
+		}
+	});
 }
 
 // Function: qsl_ignore
 // Marks QSL card ignore against the QSO.
 function qsl_ignore(id, method) {
-    $(".ld-ext-right-ignore").addClass('running');
-    $(".ld-ext-right-ignore").prop('disabled', true);
-    $.ajax({
-        url: base_url + 'index.php/qso/qsl_ignore_ajax',
-        type: 'post',
-        data: {'id': id,
-            'method': method
-        },
-        success: function(data) {
-            $(".ld-ext-right-ignore").removeClass('running');
-            $(".ld-ext-right-ignore").prop('disabled', false);
-            if (data.message == 'OK') {
-                $("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-grey'); // Paints arrow grey
-                $("#qrz_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // marks the QRZ Upload as modified
-            }
-            else {
-                $(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
-            }
-        }
-    });
+	$(".ld-ext-right-ignore").addClass('running');
+	$(".ld-ext-right-ignore").prop('disabled', true);
+	$.ajax({
+		url: base_url + 'index.php/qso/qsl_ignore_ajax',
+		type: 'post',
+		data: {'id': id,
+			'method': method
+		},
+		success: function(data) {
+			$(".ld-ext-right-ignore").removeClass('running');
+			$(".ld-ext-right-ignore").prop('disabled', false);
+			if (data.message == 'OK') {
+				$("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-grey'); // Paints arrow grey
+				if ($("#qrz_"+ id).find("span:eq(0)").hasClass("qrz-green")) {
+					$("#qrz_" + id).find("span:eq(0)").attr('class', 'qrz-yellow'); // marks the QRZ Upload as modified
+				}
+			}
+			else {
+				$(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
+			}
+		}
+	});
 }
 
 function displayQso(id) {
