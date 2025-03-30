@@ -1880,7 +1880,7 @@ class Logbook_model extends CI_Model {
 			);
 
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
-			$this->db->where('COL_QSL_SENT !=', 'Y');
+			$this->db->where('COL_QSL_RCVD !=', 'Y');
 
 			$this->db->update($this->config->item('table_name'), $data);
 			if ($this->db->affected_rows()>0) {	// Only set to modified if REALLY modified
