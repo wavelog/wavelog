@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-31 04:51+0000\n"
+"POT-Creation-Date: 2025-03-31 11:52+0000\n"
 "PO-Revision-Date: 2025-03-31 04:51+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -692,6 +692,7 @@ msgstr "电子邮箱没有设置。"
 
 #: application/controllers/Club.php:227 application/views/api/index.php:68
 #: application/views/satellite/index.php:79
+#: application/views/satellite/satinfo.php:51
 msgid "Unknown"
 msgstr "未知"
 
@@ -1212,6 +1213,7 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:425
 #: application/views/satellite/index.php:41
+#: application/views/satellite/satinfo.php:13
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
@@ -1307,6 +1309,7 @@ msgstr "eQSL"
 #: application/views/qslprint/qsolist.php:9
 #: application/views/qso/components/previous_contacts.php:77
 #: application/views/qso/edit_ajax.php:121 application/views/qso/index.php:141
+#: application/views/satellite/satinfo.php:7
 #: application/views/search/cqzones_result.php:10
 #: application/views/search/ituzones_result.php:10
 #: application/views/search/lotw_unconfirmed_result.php:8
@@ -3098,6 +3101,7 @@ msgstr "未确认"
 
 #: application/models/Logbook_model.php:4691
 #: application/views/satellite/index.php:67
+#: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "未知"
@@ -3692,6 +3696,7 @@ msgstr "卫星"
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
 #: application/views/satellite/index.php:39
+#: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
 msgid "Orbit"
@@ -5364,6 +5369,7 @@ msgstr "显示IOTA地图"
 #: application/views/logbookadvanced/useroptions.php:54
 #: application/views/lotw/satupdate.php:7
 #: application/views/qso/edit_ajax.php:172 application/views/qso/index.php:197
+#: application/views/satellite/satinfo.php:6
 #: application/views/search/result.php:16
 #: application/views/search/search_result_ajax.php:19
 #: application/views/stationsetup/stationsetup.php:30
@@ -6291,6 +6297,7 @@ msgstr ""
 #: application/views/satellite/edit.php:34
 #: application/views/satellite/index.php:73
 #: application/views/satellite/index.php:86
+#: application/views/satellite/satinfo.php:45
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
 #: application/views/station_profile/create.php:217
@@ -6347,6 +6354,7 @@ msgstr "是"
 #: application/views/satellite/edit.php:35
 #: application/views/satellite/index.php:76
 #: application/views/satellite/index.php:88
+#: application/views/satellite/satinfo.php:48
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/create.php:218
@@ -11638,6 +11646,7 @@ msgstr "输入卫星的模式"
 
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
+#: application/views/satellite/satinfo.php:8
 msgid "Uplink mode"
 msgstr "上行模式"
 
@@ -11647,6 +11656,7 @@ msgstr "输入上行的调制方式"
 
 #: application/views/satellite/create.php:56
 #: application/views/satellite/edit.php:53
+#: application/views/satellite/satinfo.php:9
 msgid "Uplink frequency"
 msgstr "上行频率"
 
@@ -11656,6 +11666,7 @@ msgstr "输入上行的信号频率（单位 Hz）"
 
 #: application/views/satellite/create.php:63
 #: application/views/satellite/edit.php:54
+#: application/views/satellite/satinfo.php:10
 msgid "Downlink mode"
 msgstr "下行模式"
 
@@ -11665,6 +11676,7 @@ msgstr "输入下行的调制方式"
 
 #: application/views/satellite/create.php:68
 #: application/views/satellite/edit.php:55
+#: application/views/satellite/satinfo.php:11
 msgid "Downlink frequency"
 msgstr "下行频率"
 
@@ -11793,6 +11805,10 @@ msgstr "没有找到卫星通过。请检查输入参数。"
 #: application/views/satellite/skedtable.php:93
 msgid "min"
 msgstr "分钟"
+
+#: application/views/satellite/satinfo.php:14
+msgid "TLE date"
+msgstr ""
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
