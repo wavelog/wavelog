@@ -28,7 +28,7 @@ if (isset($filtered)) {
 				$tca=sat2pol($max_el_az,$max_el,$scale);
 				$control = array(2 * $tca[0] - ($aos[0] + $los[0]) / 2, 2 * $tca[1] - ($aos[1] + $los[1]) / 2);	// Calc Controlpoints for Bezier-Curve
 				echo '<tr>';
-				echo '<td>' . $pass->satname . '</td>';
+				echo '<td>' . $pass->satname . ' <i class="satelliteinfo fa fa-info-circle"></i></td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->los, $zone, $format) . '</td>';
 				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->aos, $zone, $format), Predict_Time::daynum2readable($pass->los, $zone, $format), $format) . '</td>';
