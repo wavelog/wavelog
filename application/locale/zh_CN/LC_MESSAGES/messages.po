@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-31 11:52+0000\n"
-"PO-Revision-Date: 2025-03-31 04:51+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
+"POT-Creation-Date: 2025-03-31 04:51+0000\n"
+"PO-Revision-Date: 2025-03-31 11:52+0000\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1213,12 +1213,12 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:425
 #: application/views/satellite/index.php:41
-#: application/views/satellite/satinfo.php:13
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:603
 #: application/views/user/edit.php:716 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/satellite/satinfo.php:13
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1309,7 +1309,6 @@ msgstr "eQSL"
 #: application/views/qslprint/qsolist.php:9
 #: application/views/qso/components/previous_contacts.php:77
 #: application/views/qso/edit_ajax.php:121 application/views/qso/index.php:141
-#: application/views/satellite/satinfo.php:7
 #: application/views/search/cqzones_result.php:10
 #: application/views/search/ituzones_result.php:10
 #: application/views/search/lotw_unconfirmed_result.php:8
@@ -1326,6 +1325,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/satellite/satinfo.php:7
 msgid "Mode"
 msgstr "模式"
 
@@ -1847,7 +1847,7 @@ msgstr "Hams Of Note"
 
 #: application/controllers/Options.php:152
 msgid "Hams-Of-Note URL changed to "
-msgstr ""
+msgstr "Hams-Of-Note 的网址已更换为 "
 
 #: application/controllers/Options.php:188
 msgid "de continent changed to "
@@ -1859,7 +1859,7 @@ msgstr "报告的最长寿命为 "
 
 #: application/controllers/Options.php:198
 msgid "DXCluster Cache URL changed to "
-msgstr "DXCluster Cache 的网址已更换为： "
+msgstr "DXCluster Cache 的网址已更换为 "
 
 #: application/controllers/Options.php:208
 #: application/controllers/Options.php:219
@@ -3101,8 +3101,8 @@ msgstr "未确认"
 
 #: application/models/Logbook_model.php:4691
 #: application/views/satellite/index.php:67
-#: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/views/satellite/satinfo.php:41
 msgid "unknown"
 msgstr "未知"
 
@@ -3696,9 +3696,9 @@ msgstr "卫星"
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
 #: application/views/satellite/index.php:39
-#: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
+#: application/views/satellite/satinfo.php:12
 msgid "Orbit"
 msgstr "环绕"
 
@@ -5369,7 +5369,6 @@ msgstr "显示IOTA地图"
 #: application/views/logbookadvanced/useroptions.php:54
 #: application/views/lotw/satupdate.php:7
 #: application/views/qso/edit_ajax.php:172 application/views/qso/index.php:197
-#: application/views/satellite/satinfo.php:6
 #: application/views/search/result.php:16
 #: application/views/search/search_result_ajax.php:19
 #: application/views/stationsetup/stationsetup.php:30
@@ -5380,6 +5379,7 @@ msgstr "显示IOTA地图"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
+#: application/views/satellite/satinfo.php:6
 msgid "Name"
 msgstr "名称"
 
@@ -6297,7 +6297,6 @@ msgstr ""
 #: application/views/satellite/edit.php:34
 #: application/views/satellite/index.php:73
 #: application/views/satellite/index.php:86
-#: application/views/satellite/satinfo.php:45
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
 #: application/views/station_profile/create.php:217
@@ -6320,6 +6319,7 @@ msgstr ""
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
 #: application/views/user/edit.php:992
+#: application/views/satellite/satinfo.php:45
 msgid "Yes"
 msgstr "是"
 
@@ -6354,7 +6354,6 @@ msgstr "是"
 #: application/views/satellite/edit.php:35
 #: application/views/satellite/index.php:76
 #: application/views/satellite/index.php:88
-#: application/views/satellite/satinfo.php:48
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/create.php:218
@@ -6377,6 +6376,7 @@ msgstr "是"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
+#: application/views/satellite/satinfo.php:48
 msgid "No"
 msgstr "否"
 
@@ -8990,7 +8990,7 @@ msgstr "选择电台站位置"
 
 #: application/views/interface_assets/header.php:552
 msgid "You miss station-locations here? Go to stationsetup and fav them"
-msgstr ""
+msgstr "您错过了这里的台站位置？前往台站设置并收藏它们"
 
 #: application/views/interface_assets/header.php:589
 msgid "Extras"
@@ -11009,7 +11009,7 @@ msgstr "显示 DXCC 的摘要信息"
 
 #: application/views/qso/award_tabs.php:3
 msgid "Showing summary for US State"
-msgstr ""
+msgstr "显示通联美国各州总结"
 
 #: application/views/qso/award_tabs.php:4
 msgid "Showing summary for CQ zone"
@@ -11073,7 +11073,7 @@ msgstr "摘要信息仅显示第一个输入的网格。"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "仅为通联美国各州显示总结。"
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -11805,10 +11805,6 @@ msgstr "没有找到卫星通过。请检查输入参数。"
 #: application/views/satellite/skedtable.php:93
 msgid "min"
 msgstr "分钟"
-
-#: application/views/satellite/satinfo.php:14
-msgid "TLE date"
-msgstr ""
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
@@ -14321,6 +14317,10 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#: application/views/satellite/satinfo.php:14
+msgid "TLE date"
+msgstr ""
 
 #~ msgid "Hams-Of-Not URL changed to "
 #~ msgstr "Hams-Of-Note 地址更改为 "
