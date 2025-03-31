@@ -149,7 +149,7 @@ class Options extends CI_Controller {
 		} else {
 			$hon_url_update = $this->optionslib->update('hon_url', $this->input->post('hon_url'), 'yes');
 			if($hon_url_update == TRUE) {
-				$this->session->set_flashdata('success', __("Hams-Of-Not URL changed to ").$this->input->post('hon_url',true));
+				$this->session->set_flashdata('success', __("Hams-Of-Note URL changed to ").$this->input->post('hon_url',true));
 			}
 			redirect('/options/hon');
 		}
