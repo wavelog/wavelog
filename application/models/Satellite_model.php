@@ -12,6 +12,21 @@ class Satellite_model extends CI_Model {
 		return $this->db->query($sql)->result();
 	}
 
+	function get_satellite_information($satname = null) {
+		$bindings = [];
+		$sql = "select satellite.id, satellite.name as satname, satellitemode.name as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw, tle.updated, satellitemode.uplink_mode, satellitemode.downlink_mode, FORMAT((satellitemode.uplink_freq / 1000000), 3) AS uplink_freq, FORMAT((satellitemode.downlink_freq / 1000000), 3) AS downlink_freq
+		from satellite
+		left outer join satellitemode on satellite.id = satellitemode.satelliteid
+		left outer join tle on satellite.id = tle.satelliteid ";
+
+		if ($satname != null) {
+			$sql .= " where satellite.name = ? ";
+			$bindings[] = $satname;
+		}
+
+		return $this->db->query($sql, $bindings)->result();
+	}
+
 	function get_all_satellites_with_tle() {
 		$sql = "select satellite.id, satellite.name as satname, tle.tle
 		from satellite
