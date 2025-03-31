@@ -23,8 +23,35 @@
 		echo '<td>' . $sat->uplink_freq . '</td>';
 		echo '<td>' . $sat->downlink_mode . '</td>';
 		echo '<td>' . $sat->downlink_freq . '</td>';
-		echo '<td>' . $sat->orbit . '</td>';
-		echo '<td>' . $sat->lotw . '</td>';
+		echo '<td><span class="badge ';
+		switch (strtoupper($sat->orbit ?? '')) {
+		case 'LEO':
+			echo 'bg-primary';
+			break;
+		case 'MEO':
+			echo 'bg-info';
+			break;
+		case 'GEO':
+			echo 'bg-secondary';
+			break;
+		default:
+			echo 'bg-warning';
+			break;
+		}
+		echo '">'.($sat->orbit ?? __('unknown')).'</span></td>';
+		echo '<td>';
+					switch ($sat->lotw) {
+					case 'Y':
+						echo '<span class="badge bg-success">'.__("Yes").'</span>';
+						break;
+					case 'N':
+						echo '<span class="badge bg-danger">'.__("No").'</span>';
+						break;
+					default:
+						echo '<span class="badge bg-warning">'.__("Unknown").'</span>';
+						break;
+					}
+					echo '</td>';
 		echo '<td>' . $sat->updated . '</td>';
 		echo '</tr>';
 	}
