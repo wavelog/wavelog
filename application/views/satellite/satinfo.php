@@ -52,7 +52,7 @@
 						break;
 					}
 					echo '</td>';
-		echo '<td>' . $sat->updated . '</td>';
+		echo '<td>' . date($custom_date_format . " H:i", strtotime($sat->updated)) . '</td>';
 		echo '</tr>';
 	}
 		echo '</tbody>
