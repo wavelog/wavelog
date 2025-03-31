@@ -527,4 +527,13 @@ class Satellite extends CI_Controller {
 		// Calculate the day number
 		return Predict_Time::unix2daynum($timestamp, 0);
 	}
+
+	public function getSatelliteInfo() {
+		$satname = $this->security->xss_clean($this->input->post('sat', true));
+		$this->load->model('satellite_model');
+
+		$data['satinfo'] = $this->satellite_model->get_satellite_information($satname);
+
+		$this->load->view('satellite/satinfo', $data);
+	}
 }
