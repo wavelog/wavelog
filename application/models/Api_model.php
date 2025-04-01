@@ -16,9 +16,9 @@ class API_Model extends CI_Model {
 		$impersonate = $this->session->userdata('impersonate');
 
 		if ($clubstation == 1 && $impersonate == 1) {
-			$sql = "SELECT api.*, users.user_callsign 
-					FROM api 
-					JOIN users ON api.created_by = users.user_id 
+			$sql = "SELECT api.*, users.user_callsign
+					FROM api
+					JOIN users ON api.created_by = users.user_id
 					WHERE api.user_id = ?";
 			$binding[] = $user_id;
 
@@ -77,7 +77,7 @@ class API_Model extends CI_Model {
 	// Generate API Key
 	function generate_key($rights, $creator = NULL) {
 
-		// Generate Unique Key	
+		// Generate Unique Key
 		$data['key'] = "wl" . substr(md5(uniqid(rand(), true)), 19);
 		$data['rights'] = $rights;
 
@@ -140,5 +140,43 @@ class API_Model extends CI_Model {
 
 		$this->load->model('user_model');
 		$this->user_model->set_last_seen($user_id);
+	}
+
+	function get_qsos_grouped_by_mode($station_id) {
+        $binding[] = $station_id;
+
+        $sql = "
+            SELECT count(1) count, col_mode, col_submode
+			FROM " . $this->config->item('table_name') . " qsos
+			WHERE qsos.station_id =  ?
+			group by col_mode, col_submode
+		";
+
+		return $this->db->query($sql, $binding);
+	}
+
+	function get_qsos_total($station_id) {
+		$binding[] = $station_id;
+
+        $sql = "
+            SELECT count(1) count
+			FROM " . $this->config->item('table_name') . " qsos
+			WHERE qsos.station_id =  ?
+		";
+
+		return $this->db->query($sql, $binding);
+	}
+
+	function get_qsos_this_year($station_id) {
+		$binding[] = $station_id;
+
+        $sql = "
+            SELECT count(1) count
+			FROM " . $this->config->item('table_name') . " qsos
+			WHERE qsos.station_id =  ?
+			and year(col_time_on) = year(now())
+		";
+
+		return $this->db->query($sql, $binding);
 	}
 }

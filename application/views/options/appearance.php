@@ -67,16 +67,6 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="dashboardMap"><?= __("Dashboard Map"); ?></label>
-                            <select class="form-select" id="dashboardMap" name="dashboardMap" aria-describedby="dashboardMapHelp" required>
-                                <option value='true' <?php if($this->optionslib->get_option('dashboard_map') == "true") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
-                                <option value='false' <?php if($this->optionslib->get_option('dashboard_map') == "false") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
-                                <option value='map_at_right' <?php if($this->optionslib->get_option('dashboard_map') == "map_at_right") { echo "selected=\"selected\""; } ?>><?= __("Map at right"); ?></option>
-                            </select>
-                            <small id="dashboardMapHelp" class="form-text text-muted"><?= __("This allows the map on the dashboard to be disabled or placed on the right."); ?></small>
-                        </div>
-
-                        <div class="mb-3">
                             <label for="logbookMap"><?= __("Logbook Map"); ?></label>
                             <select class="form-select" id="logbookMap" name="logbookMap" aria-describedby="logbookMapHelp" required>
                                 <option value='true' <?php if($this->optionslib->get_option('logbook_map') == "true") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>

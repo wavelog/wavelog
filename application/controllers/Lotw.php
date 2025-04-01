@@ -527,7 +527,17 @@ class Lotw extends CI_Controller {
 				$record['qsl_rcvd'] = $config['lotw_rcvd_mark'];
 			}
 
-			$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign'], $station_ids);
+			// SAT-Name not given? Create array-key and fill with null
+			if (!(array_key_exists('sat_name', $record))) {
+				$record['sat_name']=null;
+			}
+
+			// Prop-Mode not given? Create array-key and fill with null
+			if (!(array_key_exists('prop_mode', $record))) {
+				$record['prop_mode']=null;
+			}
+
+			$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['prop_mode'], $record['sat_name'], $record['station_callsign'], $station_ids);
 
 			if($status[0] == "Found") {
 				$qso_id4lotw=$status[1];
@@ -582,12 +592,18 @@ class Lotw extends CI_Controller {
 					$dxcc = "";
 				}
 
-				$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign'],$qso_id4lotw, $station_ids, $dxcc, $ant_path);
+				if (isset($record['country'])) {
+					$country = $record['country'];
+				} else {
+					$country = "";
+				}
+
+				$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign'],$qso_id4lotw, $station_ids, $dxcc, $country, $ant_path);
 
 				$table .= "<tr>";
 				$table .= "<td>".$record['station_callsign']."</td>";
 				$table .= "<td>".$time_on."</td>";
-				$table .= "<td>".$record['call']."</td>";
+				$table .= "<td><a id=\"view_lotw_qso\" href=\"javascript:displayQso(".$status[1].")\">".$record['call']."</a></td>";
 				$table .= "<td>".$record['mode']."</td>";
 				$table .= "<td>".$record['qsl_rcvd']."</td>";
 				$table .= "<td>".$qsl_date."</td>";

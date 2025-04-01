@@ -200,7 +200,8 @@ class User extends CI_Controller {
 				$data['user_callsign'] = $this->input->post('user_callsign');
 				$data['user_locator'] = $this->input->post('user_locator');
 				$data['user_timezone'] = $this->input->post('user_timezone');
-				$data['user_measurement_base'] = $this->input->post('user_measurement_base');
+				$data['user_measurement_base'] = $this->input->post('user_measurement_base') ?? 'K';
+				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 				$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 				$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 				$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -246,6 +247,7 @@ class User extends CI_Controller {
 				$this->input->post('user_locator'),
 				$this->input->post('user_timezone'),
 				$this->input->post('user_measurement_base'),
+				$this->input->post('user_dashboard_map') ?? 'Y',
 				$this->input->post('user_date_format'),
 				$this->input->post('user_stylesheet'),
 				$this->input->post('user_qth_lookup'),
@@ -283,6 +285,10 @@ class User extends CI_Controller {
 				$this->input->post('user_clublog_name'),
 				$this->input->post('user_clublog_password'),
 				$this->input->post('user_winkey'),
+				$this->input->post('on_air_widget_enabled'),
+				$this->input->post('on_air_widget_display_last_seen'),
+				$this->input->post('on_air_widget_show_only_most_recent_radio'),
+				$this->input->post('qso_widget_display_qso_time'),
 				$this->input->post('clubstation') == '1' ? true : false
 				)) {
 				// Check for errors
@@ -313,6 +319,7 @@ class User extends CI_Controller {
 			$data['user_callsign'] = $this->input->post('user_callsign');
 			$data['user_locator'] = $this->input->post('user_locator');
 			$data['user_measurement_base'] = $this->input->post('user_measurement_base');
+			$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 			$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 			$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 			$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -342,7 +349,7 @@ class User extends CI_Controller {
 	function edit() {
 		$this->load->model('user_model');
 		if ( ($this->session->userdata('user_id') == '') || ((!$this->user_model->authorize(99)) && ($this->session->userdata('user_id') != $this->uri->segment(3))) ) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-		if ( $this->config->item('special_callsign') && $this->session->userdata('user_type') != '99' && $this->config->item('sc_hide_usermenu') ) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if (!clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$query = $this->user_model->get_by_id($this->uri->segment(3));
 
 		$data['existing_languages'] = $this->config->item('languages');
@@ -668,6 +675,15 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('user_dashboard_map')) {
+				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_map','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($dkey_opt)>0) {
+					$data['user_dashboard_map'] = $dkey_opt[0]->option_value;
+				}
+			}
+
 			if($this->input->post('user_hamsat_workable_only')) {
 				$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only', false);
 			} else {
@@ -767,6 +783,12 @@ class User extends CI_Controller {
 			$data['user_dashboard_last_qso_count'] = ($this->user_options_model->get_options('dashboard', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? DASHBOARD_DEFAULT_QSOS_COUNT);
 			$data['user_qso_page_last_qso_count'] = ($this->user_options_model->get_options('qso_tab', array('option_name'=>'last_qso_count', 'option_key' => 'count'), $this->uri->segment(3))->row()->option_value ?? QSO_PAGE_DEFAULT_QSOS_COUNT);
 
+			$data['on_air_widget_enabled'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'enabled'), $this->uri->segment(3))->row()->option_value ?? "false");
+			$data['on_air_widget_display_last_seen'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_last_seen'), $this->uri->segment(3))->row()->option_value ?? "false");
+			$data['on_air_widget_show_only_most_recent_radio'] = ($this->user_options_model->get_options('widget', array('option_name'=>'on_air', 'option_key' => 'display_only_most_recent_radio'), $this->uri->segment(3))->row()->option_value ?? "true");
+			$data['on_air_widget_url'] = site_url('widgets/on_air/' . $q->slug);
+			$data['qso_widget_display_qso_time'] = ($this->user_options_model->get_options('widget', array('option_name'=>'qso', 'option_key' => 'display_qso_time'), $this->uri->segment(3))->row()->option_value ?? "false");
+
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
@@ -864,6 +886,10 @@ class User extends CI_Controller {
 			$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
 			$data['user_dashboard_last_qso_count'] = $this->input->post('user_dashboard_last_qso_count', true);
 			$data['user_qso_page_last_qso_count'] = $this->input->post('user_qso_page_last_qso_count', true);
+			$data['on_air_widget_enabled'] = $this->input->post('on_air_widget_enabled', true);
+			$data['on_air_widget_display_last_seen'] = $this->input->post('on_air_widget_display_last_seen', true);
+			$data['on_air_widget_show_only_most_recent_radio'] = $this->input->post('on_air_widget_show_only_most_recent_radio', true);
+			$data['qso_widget_display_qso_time'] = $this->input->post('qso_widget_display_qso_time', true);
 
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
@@ -1129,7 +1155,7 @@ class User extends CI_Controller {
 		$stationdata = [
 			'user_id' => $this->session->userdata('user_id'),
 			'station_name' => $this->input->post('station_name', true),
-			'station_callsign' => $this->input->post('station_callsign', true),
+			'station_callsign' => trim($this->input->post('station_callsign', true)),
 			'station_dxcc' => $this->input->post('station_dxcc', true),
 			'station_cqz' => $this->input->post('station_cqz', true),
 			'station_ituz' => $this->input->post('station_ituz', true),
@@ -1578,7 +1604,7 @@ class User extends CI_Controller {
 		$this->input->set_cookie($cookie);
 
 		// log out on the regular way
-		$msg = ['notice', sprintf(__("You have been logged out of the clubstation %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
+		$msg = ['notice', sprintf(__("You have been logged out of the account %s. Welcome back, %s, to your personal account!"), $club->user_callsign, $source_user->user_callsign)];
 		$this->logout($msg, false);
 	}
 }

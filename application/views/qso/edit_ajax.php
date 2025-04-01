@@ -24,6 +24,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
+				<div id="error-messages-qso-edit"></div>
                 <?php echo validation_errors(); ?>
                 <form name="qsos" id="qsoform">
                     <div class="card">
@@ -45,7 +46,6 @@
                         </div>
 
                         <div class="card-body">
-
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-qso" role="tabpanel" aria-labelledby="nav-qso-tab">
                                     <div class="row">
@@ -694,8 +694,8 @@
 
                                 <div class="actions">
                                     <a class="btn btn-danger" href="javascript:qso_delete(<?php echo $qso->COL_PRIMARY_KEY; ?>, '<?php echo $qso->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
+									<button id="update_from_callbook" type="button" class="btn btn-warning ld-ext-right" onclick="single_callbook_update();"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?><div class="ld ld-ring ld-spin"></div></button>
                                     <div class="float-end">
-                                        <button id="update_from_callbook" type="button" class="btn btn-warning ld-ext-right" onclick="single_callbook_update();"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?><div class="ld ld-ring ld-spin"></div></button>
                                         <button id="show" type="button" name="download" class="btn btn-primary" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>
                                     </div>
                                 </div>

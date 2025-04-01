@@ -45,7 +45,7 @@ class Lookup extends CI_Controller {
 		} else {
 			$this->load->model('bands');
 
-			if ($this->input->post('type') == 'itu') {
+			if ($this->input->post('type') == 'itu' || $this->input->post('type') == 'continent') {
 				$data['bands'] = $this->bands->get_worked_bands();
 			} else {
 				$data['bands'] = $this->bands->get_worked_bands(xss_clean($this->input->post('type')));
@@ -58,11 +58,13 @@ class Lookup extends CI_Controller {
 			$data['dxcc'] = xss_clean($this->input->post('dxcc'));
 			$data['was']  = xss_clean($this->input->post('was'));
 			$data['sota'] = xss_clean($this->input->post('sota'));
+			$data['pota'] = xss_clean($this->input->post('pota'));
 			$data['grid'] = xss_clean($this->input->post('grid'));
 			$data['iota'] = xss_clean($this->input->post('iota'));
 			$data['cqz']  = xss_clean($this->input->post('cqz'));
 			$data['wwff'] = xss_clean($this->input->post('wwff'));
 			$data['ituz'] = xss_clean($this->input->post('ituz'));
+			$data['continent'] = xss_clean($this->input->post('continent'));
 			$data['location_list'] = $location_list;
 
 			$data['result'] = $this->lookup_model->getSearchResult($data);
@@ -74,22 +76,22 @@ class Lookup extends CI_Controller {
 	public function scp() {
 		session_write_close();
 		$uppercase_callsign = strtoupper($this->input->post('callsign', TRUE) ?? '');
-	
+
 		// SCP results from logbook
 		$this->load->model('logbook_model');
-	
+
 		$arCalls = array();
-	
+
 		$query = $this->logbook_model->get_callsigns($uppercase_callsign);
-	
+
 		foreach ($query->result() as $row) {
 			$normalized_call = str_replace('0', 'Ø', $row->COL_CALL);
 			$arCalls[$normalized_call] = true;
 		}
-	
+
 		// SCP results from Club Log master scp db
 		$file = 'updates/clublog_scp.txt';
-	
+
 		if (is_readable($file)) {
 			$lines = file($file, FILE_IGNORE_NEW_LINES);
 			$input = preg_quote($uppercase_callsign, '~');
@@ -107,10 +109,10 @@ class Lookup extends CI_Controller {
 				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
 			}
 		}
-	
+
 		// SCP results from master scp https://www.supercheckpartial.com
 		$file = 'updates/MASTER.SCP';
-	
+
 		if (is_readable($file)) {
 			$lines = file($file, FILE_IGNORE_NEW_LINES);
 			$input = preg_quote($uppercase_callsign, '~');
@@ -128,10 +130,10 @@ class Lookup extends CI_Controller {
 				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
 			}
 		}
-	
+
 		// Sort and print unique calls
 		ksort($arCalls);
-	
+
 		foreach (array_keys($arCalls) as $strCall) {
 			echo " " . $strCall . " ";
 		}
@@ -141,6 +143,7 @@ class Lookup extends CI_Controller {
 		session_write_close();
 
 		if($call) {
+			$call = str_replace("-","/",$call);
 			$uppercase_callsign = strtoupper($call);
 		}
 
@@ -151,6 +154,24 @@ class Lookup extends CI_Controller {
 
 		if ($query->row()) {
 			echo $query->row()->COL_DARC_DOK;
+		}
+	}
+
+	public function ham_of_note($call) {
+		session_write_close();
+
+		if($call) {
+			$call = str_replace("-","/",$call);
+			$uppercase_callsign = strtoupper($call);
+		}
+
+		$this->load->model('Pota');
+		$query = $this->Pota->ham_of_note($uppercase_callsign);
+		if ($query->row()) {
+			header('Content-Type: application/json');
+			echo json_encode($query->row());
+		} else {
+			return null;
 		}
 	}
 

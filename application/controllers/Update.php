@@ -465,7 +465,7 @@ class Update extends CI_Controller {
 		}
     }
 
-    public function update_tle() {
+    public function update_tle($returnpath = 'debug') {
         $this->load->model('Update_model');
         $result = $this->Update_model->tle();
         if($this->session->userdata('user_type') == '99') {
@@ -474,7 +474,7 @@ class Update extends CI_Controller {
 			} else {
 				$this->session->set_flashdata('error', __("TLE Update failed. Result: ") . "'" . $result . "'");
 			}
-			redirect('debug');
+			redirect($returnpath);
 		} else {
         	echo $result;
 		}
@@ -488,6 +488,21 @@ class Update extends CI_Controller {
        $this->load->view('lotw/satupdate', $bodyData);
        $this->load->view('interface_assets/footer');
     }
+
+	public function update_hamsofnote() {
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+		$this->load->model('Update_model');
+		$bodyData['hamsofnote'] = $this->Update_model->update_hams_of_note();
+		if ($this->session->userdata('user_type') == '99') {
+			$data['page_title'] = __("Update of Hams of Note");
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('update/hamsofnote', $bodyData);
+			$this->load->view('interface_assets/footer');
+		} else {
+			echo "Hams of note updated. Inserted ".count($bodyData['hamsofnote'])." records.";
+		}
+	}
 
 	function version_check() {
 		// set the last run in cron table for the correct cron id

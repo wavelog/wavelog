@@ -117,7 +117,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 <?php if ($results) { ?>
 
 <div class="table-responsive">
-    <table style="width:100%" class="table contacttable table-striped table-hover">
+    <table style="width:100%" id="contacttable" class="table contacttable table-striped table-hover">
         <thead>
             <tr class="titles">
                 <th><?= __("Date"); ?></th>

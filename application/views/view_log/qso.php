@@ -370,10 +370,10 @@
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->COL_CONTEST_ID != null) { ?>
+                    <?php if($row->contestname != null) { ?>
                     <tr>
                         <td><?= __("Contest Name"); ?></td>
-                        <td><?php echo $row->COL_CONTEST_ID; ?></td>
+                        <td><?php echo $row->contestname; ?></td>
                     </tr>
                     <?php } ?>
 

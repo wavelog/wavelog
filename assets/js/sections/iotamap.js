@@ -26,7 +26,7 @@ function load_iota_map() {
             Antarctica: +$('#Antarctica').prop('checked'),
         },
         success: function(data) {
-            load_iota_map2(data, worked, confirmed, notworked);
+            load_iota_map2(data, +$('#worked').prop('checked'), +$('#confirmed').prop('checked'), +$('#notworked').prop('checked'));
         },
         error: function() {
             

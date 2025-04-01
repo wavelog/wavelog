@@ -194,6 +194,6 @@ if ($qsos->result() != NULL) {
 
 	<?php
 } else {
-	echo '<div class="alert alert-danger">' . __("No QSO's were found. It seems you were not active at this time.") . '</div>';
+	echo '<div class="alert alert-danger">' . __("No QSOs were found. It seems you were not active at this time.") . '</div>';
 }
 ?>

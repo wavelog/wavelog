@@ -94,14 +94,6 @@ class Options extends CI_Controller {
 				$this->session->set_flashdata('success', __("Options saved"));
 			}
 
-			// Update dashboard map within the options system
-			$dashboard_map_update_status = $this->optionslib->update('dashboard_map', $this->input->post('dashboardMap'), 'yes');
-
-			// If dashboard map update is complete set a flashsession with a success note
-			if($dashboard_map_update_status == TRUE) {
-				$this->session->set_flashdata('success', __("Options saved"));
-			}
-
 			// Update logbook map within the options system
 			$logbook_map_update_status = $this->optionslib->update('logbook_map', $this->input->post('logbookMap'), 'yes');
 

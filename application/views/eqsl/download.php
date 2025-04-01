@@ -50,7 +50,7 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 	$timestamp = strtotime($qsl['COL_TIME_ON']);
 	echo "<td>".date($custom_date_format, $timestamp)."</td>";
 	echo "<td>".date('H:i', $timestamp)."</td>";
-	echo "<td>".str_replace("0","&Oslash;",$qsl['COL_CALL'])."</td>";
+	echo "<td><a id=\"view_eqsl_qso\" href=\"javascript:displayQso(".$qsl['COL_PRIMARY_KEY'].")\">".str_replace("0","&Oslash;",$qsl['COL_CALL'])."</a></td>";
 	echo "<td>".$qsl['COL_MODE']."</td>";
 	if(isset($qsl['COL_SUBMODE'])) {
 		echo "<td>".$qsl['COL_SUBMODE']."</td>";

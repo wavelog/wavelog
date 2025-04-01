@@ -41,8 +41,7 @@
 
 	<div class="mb-3">
 		<label for="inputTitle"><?= __("Note Contents"); ?></label>
-		<div id="quillArea"></div>
-		<textarea name="content" style="display:none" id="hiddenArea"></textarea>
+		<textarea name="content" style="display:none" id="notes"></textarea>
 	</div>
 
 	<button type="submit" value="Submit" class="btn btn-primary"><?= __("Save Note"); ?></button>

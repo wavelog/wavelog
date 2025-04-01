@@ -17,20 +17,21 @@ $(function() {
 				{
 					'targets': 1, "type":"num",
 					'createdCell':  function (td, cellData, rowData, row, col) {
-						$(td).addClass("kHz"); 
+						$(td).addClass("kHz");
 					}
 				},
 				{
 					'targets': 2,
 					'createdCell':  function (td, cellData, rowData, row, col) {
-						$(td).addClass("spotted_call"); 
+						$(td).addClass("spotted_call");
 						$(td).attr( "title", lang_click_to_prepare_logging);
 					}
 				}
 			],
 			"language": {
 				url: getDataTablesLanguageUrl(),
-			}
+			},
+			"search": { "smart": true },
 		});
 		return table;
 	}
@@ -84,7 +85,7 @@ $(function() {
 							}
 							lotw_badge='<a id="lotw_badge" style="float: right;" href="https://lotw.arrl.org/lotwuser/act?act='+single.spotted+'" target="_blank"><small id="lotw_infox" class="badge text-bg-success '+lclass+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was '+single.dxcc_spotted.lotw_user+' days ago">L</small></a>';
 						}
-							
+
 						data[0]=[];
 						data[0].push(single.when_pretty);
 						data[0].push(single.frequency*1);
@@ -97,9 +98,20 @@ $(function() {
 							dxcc_wked_info=((dxcc_wked_info != '' ?'<span class="'+dxcc_wked_info+'">' : '')+single.dxcc_spotted.entity+(dxcc_wked_info != '' ? '</span>' : ''));
 						}
 						data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+dxcc_wked_info+'</a>');
+
+						if (single.cnfmd_continent) {
+							continent_wked_info="text-success";
+						} else if (single.worked_continent) {
+							continent_wked_info="text-warning";
+						} else {
+							continent_wked_info="text-danger";
+						}
+						continent_wked_info = ((continent_wked_info != '' ?'<span class="'+continent_wked_info+'">' : '')+single.dxcc_spotted.cont+(continent_wked_info != '' ? '</span>' : ''));
+
+						data[0].push(continent_wked_info);
 						data[0].push(single.spotter);
 						data[0].push(single.message || '');
-						if (single.worked_call) {
+						if ((single.worked_call) && ((single.last_wked || '') != '')) {
 							data[0].push(single.last_wked.LAST_QSO+' in '+single.last_wked.LAST_MODE);
 						} else {
 							data[0].push('');
@@ -109,12 +121,12 @@ $(function() {
 							oldtable.each( function (srow) {
 								if (JSON.stringify(srow) === JSON.stringify(data[0])) {
 									update=true;
-								} 
+								}
 							});
 							if (!update) { 	// Sth. Fresh? So highlight
 								table.rows.add(data).draw().nodes().to$().addClass("fresh");
-							} else { 
-								table.rows.add(data).draw(); 
+							} else {
+								table.rows.add(data).draw();
 							}
 						} else {
 							table.rows.add(data).draw();
@@ -141,17 +153,18 @@ $(function() {
 	function highlight_current_qrg(qrg) {
 		var table=get_dtable();
 		// var table=$('.spottable').DataTable();
-		table.rows().every(function() {
-			var d=this.data();
+		table.rows().eq(0).each( function ( index ) {
+			let row = table.row( index );
+			var d=row.data();
 			var distance=Math.abs(parseInt(d[1])-qrg);
 			if (distance<=20) {
 				distance++;
 				alpha=(.5/distance);
-				this.nodes().to$().css('--bs-table-bg', 'rgba(0,0,255,' + alpha + ')');
-				this.nodes().to$().css('--bs-table-accent-bg', 'rgba(0,0,255,' + alpha + ')');
+				$(row.node()).css('--bs-table-bg', 'rgba(0,0,255,' + alpha + ')');
+				$(row.node()).css('--bs-table-accent-bg', 'rgba(0,0,255,' + alpha + ')');
 			} else {
-				this.nodes().to$().css('--bs-table-bg', '');
-				this.nodes().to$().css('--bs-table-accent-bg', '');
+				$(row.node()).css('--bs-table-bg', '');
+				$(row.node()).css('--bs-table-accent-bg', '');
 			}
 		});
 	}
@@ -203,7 +216,7 @@ $(function() {
 		}
 		bc_qsowin.postMessage('ping');
 	},500);
-	
+
 	let bc2qso = new BroadcastChannel('qso_wish');
 
 	// set some times
@@ -276,7 +289,7 @@ $(function() {
 			$('#menutoggle_i').addClass('fa-arrow-down');
 		}
 	});
-	
+
 	var CatCallbackURL = "http://127.0.0.1:54321";
 	var updateFromCAT = function() {
 

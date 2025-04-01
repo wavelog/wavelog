@@ -5,9 +5,9 @@
             <script>
             var lang_awards_info_button = "<?= __("Award Info"); ?>";
             var lang_award_info_ln1 = "<?= __("WAE Award"); ?>";
-            var lang_award_info_ln2 = "";
-            var lang_award_info_ln3 = "";
-            var lang_award_info_ln4 = "";
+            var lang_award_info_ln2 = "<?= __("The oldest and most renowned of all DARC certificates is awarded for contacts with amateur radio stations in European countries and on islands listed in the WAE country list on different bands."); ?>";
+            var lang_award_info_ln3 = "<?= __("The WAE will be issued in the following modes: CW, SSB, Phone, RTTY, FT8,  Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE I, WAE TOP and the WAE Trophy."); ?>";
+            var lang_award_info_ln4 = "<?= sprintf(__("Official information and the rules can be found in this document: %s."), "<a href='https://www.darc.de/en/der-club/referate/committee-dx/diplome/wae-award/' target='_blank'>https://www.darc.de/en/der-club/referate/committee-dx/diplome/wae-award/</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
@@ -73,7 +73,7 @@
             </div>
 
             <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="band"><?= __("Band"); ?></label>
+                <label class="col-md-2 control-label" for="band2"><?= __("Band"); ?></label>
                 <div class="col-md-2">
                     <select id="band2" name="band" class="form-select form-select-sm">
                         <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band"); ?></option>
@@ -87,7 +87,7 @@
             </div>
             <div id="satrow" class="mb-3 row" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
 			<?php if (count($sats_available) != 0) { ?>
-                <label class="col-md-2 control-label" id="satslabel" for="distplot_sats"><?= __("Satellite"); ?></label>
+                <label class="col-md-2 control-label" id="satslabel" for="sats"><?= __("Satellite"); ?></label>
 				<div class="col-md-2">
                 <select class="form-select form-select-sm"  id="sats" name="sats">
                     <option value="All" <?php if ($this->input->post('sats') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?= __("All")?></option>

@@ -40,6 +40,13 @@ class Callbook {
 				}
 				return $this->hamqth($this->ci->config->item('hamqth_username'), $this->ci->config->item('hamqth_password'), $callsign);
 				break;
+			case 'qrzru':
+				if ($this->ci->config->item('qrzru_username') == null || $this->ci->config->item('qrzru_password') == null) {
+					$callbook['error'] = 'Lookup not configured. Please review configuration.';
+					return $callbook;
+				}
+				return $this->qrzru($this->ci->config->item('qrzru_username'), $this->ci->config->item('qrzru_password'), $callsign);
+				break;
 			default:
 				$callbook['error'] = 'No callbook defined. Please review configuration.';
 				return $callbook;
@@ -129,6 +136,33 @@ class Callbook {
 			$plaincall = $this->get_plaincall($callsign);
 			// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
 			$callbook = $this->ci->hamqth->search($plaincall, $this->ci->session->userdata('hamqth_session_key'), true);
+		}
+
+		return $callbook;
+	}
+
+	function qrzru($username, $password, $callsign) {
+		if (!$this->ci->load->is_loaded('qrzru')) {
+			$this->ci->load->library('qrzru');
+		}
+
+		if (!$this->ci->session->userdata('qrzru_session_key')) {
+			$result = $this->ci->qrzru->session($username, $password);
+			$this->ci->session->set_userdata('qrzru_session_key', $result);
+		}
+
+		$callbook = $this->ci->qrzru->search($callsign, $this->ci->session->userdata('qrzru_session_key'));
+
+		if ($callbook['error'] ?? '' == 'Session does not exist or expired') {
+			$qrzru_session_key = $this->ci->qrzru->session($username, $password);
+			$this->ci->session->set_userdata('qrzru_session_key', $qrzru_session_key);
+			$callbook = $this->ci->qrzru->search($callsign, $this->ci->session->userdata('qrzru_session_key'));
+		}
+
+		if (strpos($callbook['error'] ?? '', 'Callsign not found') !== false && strpos($callsign, "/") !== false) {
+			$plaincall = $this->get_plaincall($callsign);
+			// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
+			$callbook = $this->ci->qrzru->search($plaincall, $this->ci->session->userdata('qrzru_session_key'), true);
 		}
 
 		return $callbook;

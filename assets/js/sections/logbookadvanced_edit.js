@@ -15,7 +15,7 @@ function editQsos() {
 	}
 	var id_list=[];
 	elements.each(function() {
-		let id = $(this).first().closest('tr').data('qsoID')
+		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, ''); // Removes non-numeric characters
 		id_list.push(id);
 	});
 

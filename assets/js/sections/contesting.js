@@ -12,6 +12,20 @@ $(document).ready(async function () {
 	localStorage.clear();
 	set_qrg();
 	qrg_inputtype();
+
+	// Storing the contestid in contest session
+	$('#contestname, #copyexchangeto, #exchangesequence_select, #band, #mode, #frequency, #radio').change(function () {
+		var formdata = new FormData(document.getElementById("qso_input"));
+		setSession(formdata);
+	});
+
+	// Storing the exchange type in contest session
+	$('#exchangetype').change(function () {
+		var exchangetype = $("#exchangetype").val();
+		setExchangetype(exchangetype);
+		var formdata = new FormData(document.getElementById("qso_input"));
+		setSession(formdata);
+	});
 });
 
 // Always update the contestname
@@ -152,20 +166,6 @@ $('#moreSettingsButton').click(function () {
 	$('#moreSettingsModal').modal('show');
 });
 
-// Storing the contestid in contest session
-$('#contestname, #copyexchangeto, #exchangesequence_select, #band, #mode, #frequency, #radio').change(function () {
-	var formdata = new FormData(document.getElementById("qso_input"));
-	setSession(formdata);
-});
-
-// Storing the exchange type in contest session
-$('#exchangetype').change(function () {
-	var exchangetype = $("#exchangetype").val();
-	setExchangetype(exchangetype);
-	var formdata = new FormData(document.getElementById("qso_input"));
-	setSession(formdata);
-});
-
 async function setSession(formdata) {
     formdata.set('copyexchangeto',$("#copyexchangeto option:selected").index());
 	await $.ajax({
@@ -187,7 +187,7 @@ if ( ! manual ) {
 	});
 
 	$(function ($) {
-		          handleDate = setInterval(function() { getUTCDateStamp($('.input_date')); }, 1000);
+		handleDate = setInterval(function() { getUTCDateStamp($('.input_date')); }, 1000);
 	});
 }
 

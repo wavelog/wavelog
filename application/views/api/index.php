@@ -10,6 +10,12 @@
 		<div class="card-body">
 			<p class="card-text"><?= __("The Wavelog API (Application Programming Interface) lets third party systems access Wavelog in a controlled way. Access to the API is managed via API keys."); ?></p>
 			<p class="card-text"><?= __("You will need to generate an API key for each tool you wish to use (e.g. WLgate). Generate a read-write key if the application needs to send data to Wavelog. Generate a read-only key if the application only needs to obtain data from Wavelog."); ?></p>
+			<p class="card-text"><?= __("Links to 3rd-Party-Software which works with Wavelog:")?><ul>
+			<li><a href="https://github.com/wavelog/WaveLogGate/releases" target="_thirdparty">WaveLogGate</a></li>
+			<li><a href="https://sourceforge.net/projects/wsjt-x-improved/files/" target="_thirdparty">WSJT-X Improved Plus</a></li>
+			<li><a href="https://github.com/wavelog/Wavelog/wiki/Third-Party-Tools" target="_thirdparty"><?=__("More Tools")?></a></li>
+			</ul>
+			</p>
 			<p class="card-text"><span class="badge text-bg-warning"><?= __("API URL"); ?></span> <?= __("The API URL for this Wavelog instance is"); ?>: <span class="api-url" id="apiUrl"><code class="ms-3 me-3"><?php echo base_url(); ?></code></span><span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onClick='copyApiUrl()'><i class="copy-icon fas fa-copy"></i></span></p>
 			<p class="card-text"><span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("It's good practice to delete a key if you are no longer using the associated application."); ?></p>
 			<?php if ($clubmode) { ?>

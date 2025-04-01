@@ -26,7 +26,7 @@ class Timeline_model extends CI_Model {
 
 	public function get_timeline_dxcc($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew) {
 		$binding = [];
-		$sql = "select min(date(COL_TIME_ON)) date, prefix, col_country, end, adif from "
+		$sql = "select min(date(COL_TIME_ON)) date, prefix, dxcc_entities.name as dxcc_name, end, adif from "
 			.$this->config->item('table_name'). " thcv
 			join dxcc_entities on thcv.col_dxcc = dxcc_entities.adif
 			where station_id in (" . $location_list . ") and col_dxcc > 0 ";
@@ -63,11 +63,10 @@ class Timeline_model extends CI_Model {
 
 		$sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $clublog, $qrz);
 
-		$sql .= " group by col_dxcc, col_country
+		$sql .= " group by col_dxcc
 			order by date desc";
 
 		$query = $this->db->query($sql, $binding);
-
 		return $query->result();
 	}
 
@@ -371,10 +370,19 @@ class Timeline_model extends CI_Model {
 			$grids = explode(",", $gridSplit->gridsquare);
 			foreach($grids as $key) {
 				$grid_four = strtoupper(substr(trim($key),0,4));
-				if (!array_search($grid_four, array_column($timeline, 'gridsquare'))) {
+				$index = array_search($grid_four, array_column($timeline, 'gridsquare'));
+				if ($index === false) {
+					// Doesn't exist, add new entry
 					$timeline[] = array(
 						'gridsquare' => $grid_four,
-						'date'       => $gridSplit->date);
+						'date'       => $gridSplit->date
+					);
+				} else {
+					// Exists, check the date
+					if ($gridSplit->date < $timeline[$index]['date']) {
+						// Update only if the new date is older
+						$timeline[$index]['date'] = $gridSplit->date;
+					}
 				}
 			}
 		}
@@ -472,7 +480,6 @@ class Timeline_model extends CI_Model {
 		$sql .= " and col_vucc_grids <> ''";
 
 		$query = $this->db->query($sql, $binding);
-
 		return $query->result();
 	}
 

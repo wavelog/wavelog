@@ -33,6 +33,7 @@ class Stations extends CI_Model {
 		$this->db->select('station_profile.*, dxcc_entities.name as station_country, dxcc_entities.end as dxcc_end');
 		$this->db->where('user_id', $userid);
 		$this->db->join('dxcc_entities','station_profile.station_dxcc = dxcc_entities.adif','left outer');
+		$this->db->order_by('station_profile.station_callsign asc, station_profile.station_profile_name asc');
 		return $this->db->get('station_profile');
 	}
 
@@ -133,7 +134,7 @@ class Stations extends CI_Model {
 			'station_pota' =>  xss_clean(strtoupper($this->input->post('pota', true))),
 			'station_sig' =>  xss_clean(strtoupper($this->input->post('sig', true))),
 			'station_sig_info' =>  xss_clean(strtoupper($this->input->post('sig_info', true))),
-			'station_callsign' =>  xss_clean(strtoupper($this->input->post('station_callsign', true))),
+			'station_callsign' =>  trim(xss_clean(strtoupper($this->input->post('station_callsign', true)))),
 			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
 			'station_dxcc' =>  xss_clean($this->input->post('dxcc', true)),
 			'station_cnty' =>  $county,
@@ -195,7 +196,7 @@ class Stations extends CI_Model {
 			'station_pota' => xss_clean(strtoupper($this->input->post('pota', true))),
 			'station_sig' => xss_clean(strtoupper($this->input->post('sig', true))),
 			'station_sig_info' => xss_clean(strtoupper($this->input->post('sig_info', true))),
-			'station_callsign' => xss_clean(strtoupper($this->input->post('station_callsign', true))),
+			'station_callsign' => trim(xss_clean(strtoupper($this->input->post('station_callsign', true)))),
 			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
 			'station_dxcc' => xss_clean($this->input->post('dxcc', true)),
 			'station_cnty' =>  $county,
@@ -599,6 +600,21 @@ class Stations extends CI_Model {
 		if (!empty($station_active)) { list($station_lat, $station_lng) = $this->qra->qra2latlong($station_active->station_gridsquare); }
 		if (($station_lat!=0)&&($station_lng!=0)) { $_jsonresult = array('lat'=>$station_lat,'lng'=>$station_lng,'html'=>$station_active->station_gridsquare,'label'=>$station_active->station_profile_name,'icon'=>'stationIcon'); }
 		return (count($_jsonresult)>0)?(array('station'=>$_jsonresult)):array();
+	}
+
+	public function lookupProfileCoords($stationid) {
+		$sql = "SELECT station_gridsquare FROM station_profile WHERE station_id = ?;";
+		$query = $this->db->query($sql, $stationid);
+		if ($query->num_rows() == 1) {
+			$row = $query->row();
+			if ($row->station_gridsquare != '') {
+				if (!$this->load->is_loaded('Qra')) {
+					$this->load->library('Qra');
+				}
+				return $this->qra->qra2latlong($row->station_gridsquare);
+			}
+		}
+		return false;
 	}
 }
 

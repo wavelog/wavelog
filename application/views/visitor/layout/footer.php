@@ -239,12 +239,20 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
                 dom: 'Bfrtip',
                 buttons: [
                    {
-                      extend: 'csv',
-                      text: '<?= __("CSV"); ?>'
+						extend: 'csv',
+						text: '<?= __("CSV"); ?>',
+						className: 'mb-1 btn btn-primary', // Bootstrap classes
+						init: function(api, node, config) {
+							$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+						},
                    },
                    {
                       extend: 'clear',
-                      text: '<?= __("Clear"); ?>'
+                      text: '<?= __("Clear"); ?>',
+					  className: 'mb-1 btn btn-primary', // Bootstrap classes
+						init: function(api, node, config) {
+							$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+						},
                    }
                 ]
             });

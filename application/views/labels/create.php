@@ -8,7 +8,7 @@
 		</div>
 	<?php } ?>
 
-<?php echo validation_errors(); ?>
+<?php echo validation_errors('<div class="alert alert-danger" role="alert">','</div>'); ?>
 
 <form method="post" action="<?php echo site_url('labels/create'); ?>" name="create_label_type">
 

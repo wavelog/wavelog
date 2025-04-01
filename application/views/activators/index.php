@@ -98,7 +98,7 @@ function write_activators($activators_array, $vucc_grids, $custom_date_format, $
                         <td>' . __("Callsign") . '</td>
                         <td>' . __("Count") . '</td>
                         <td>' . __("Gridsquares") . '</td>
-                        <td>' . __("Show QSO's") . '</td>
+                        <td>' . __("Show QSOs") . '</td>
                         <td>' . __("Show Map") . '</td>
                     </tr>
                 </thead>

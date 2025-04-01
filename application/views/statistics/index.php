@@ -17,7 +17,7 @@
 		var lang_statistics_operators = "<?= __("Operators")?>";
 		var lang_statistics_number_of_qso_worked_each_year = "<?= __("Number of QSOs worked each year")?>";
 		var lang_statistics_year = "<?= __("Year")?>";
-		var lang_statistics_number_of_qso_worked = "<?= __("# of QSO's worked")?>";
+		var lang_statistics_number_of_qso_worked = "<?= __("# of QSOs worked")?>";
 		var lang_gen_hamradio_mode = "<?= __("Mode")?>";
 		var lang_gen_hamradio_band = "<?= __("Band")?>";
 		var lang_gen_hamradio_operator = "<?= __("Operator")?>";

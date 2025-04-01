@@ -275,8 +275,8 @@ function qso_edit(id) {
 
                     if ($('#dxcc_id_edit').val() == '291' || $('#dxcc_id_edit').val() == '110' || $('#dxcc_id_edit').val() == '6') {
                         $('#location_us_county_edit').show();
-                    } else {    
-                        $('#location_us_county_edit').hide();    
+                    } else {
+                        $('#location_us_county_edit').hide();
                     }
 
                     var state = $("#stateDropdownEdit option:selected").text();
@@ -541,11 +541,16 @@ function qso_save() {
         contentType: false,
         type: 'POST',
         success: function (dataofconfirm) {
-            $(".edit-dialog").modal('hide');
-            $(".qso-dialog").modal('hide');
-            if (reload_after_qso_safe == true) {
-                location.reload();
-            }
+		if (dataofconfirm.success) {
+			$(".edit-dialog").modal('hide');
+			$(".qso-dialog").modal('hide');
+			if (reload_after_qso_safe == true) {
+				location.reload();
+			}
+		} else {
+			$("#error-messages-qso-edit").html('<div class="alert alert-danger alert-dismissible fade show" role="alert">'+dataofconfirm.detail+'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+			$(".modal-body").animate({ scrollTop: 0 }, 'fast');
+		}
         },
         error: function(xhr, status, error) {
             console.log(xhr.responseText);
@@ -744,7 +749,9 @@ function spawnLookupModal(searchphrase, searchtype) {
                         $('#quicklookuptype').val(searchtype);
                         if (searchtype == 'dxcc') {
                             $("#quicklookupdxcc").val(searchphrase);
-                        } else if (searchtype == 'iota') {
+                        } else if (searchtype == 'continent') {
+                            $("#quicklookupcontinent").val(searchphrase);
+						} else if (searchtype == 'iota') {
                             $("#quicklookupiota").val(searchphrase);
                         } else if (searchtype == 'cq') {
                             $("#quicklookupcqz").val(searchphrase);
@@ -775,11 +782,12 @@ function changeLookupType(type) {
 	$('#quicklookupituz').hide();
 	$('#quicklookupwas').hide();
 	$('#quicklookuptext').hide();
+	$('#quicklookupcontinent').hide();
     if (type == "dxcc") {
         $('#quicklookupdxcc').show();
     } else if (type == "iota") {
         $('#quicklookupiota').show();
-    } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw") {
+    } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw" || type == "pota") {
         $('#quicklookuptext').show();
     } else if (type == "cq") {
         $('#quicklookupcqz').show();
@@ -787,7 +795,9 @@ function changeLookupType(type) {
         $('#quicklookupituz').show();
     } else if (type == "was") {
         $('#quicklookupwas').show();
-    }
+    } else if (type == "continent") {
+        $('#quicklookupcontinent').show();
+	}
 }
 
 // This function executes the call to the backend for fetching queryresult and displays the table in the dialog
@@ -808,6 +818,8 @@ function getLookupResult() {
 			wwff: $('#quicklookuptext').val(),
 			lotw: $('#quicklookuptext').val(),
 			ituz: $('#quicklookupituz').val(),
+			pota: $('#quicklookuptext').val(),
+			continent: $('#quicklookupcontinent').val(),
 		},
 		success: function (html) {
 			$('#lookupresulttable').html(html);
@@ -830,7 +842,7 @@ function getDxccResult(dxcc, name) {
             current_mode: $('#mode').val(),
 		},
 		success: function (html) {
-            $('.dxccsummary').remove();
+			$('.dxccsummary').remove();
             $('.qsopane').append('<div class="dxccsummary col-sm-12"><br><div class="card"><div class="card-header dxccsummaryheader" data-bs-toggle="collapse" data-bs-target=".dxccsummarybody">' + lang_dxccsummary_for + name + '</div><div class="card-body collapse dxccsummarybody"></div></div></div>');
             $('.dxccsummarybody').append(html);
 			$('.dxccsummaryheader').click(function(){

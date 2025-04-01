@@ -14,7 +14,7 @@
 	</ul>
 		</div>
 	  <div class="card-body">
-	    <p class="card-text"><?php echo nl2br($row->note); ?></p>
+	  	<textarea name="content" style="display:none" id="notes_view"><?php echo $row->note; ?></textarea>
 
 	    <a href="<?php echo site_url('notes/edit'); ?>/<?php echo $row->id; ?>" class="btn btn-primary"><i class="fas fa-edit"></i> <?= __("Edit Note"); ?></a>
 

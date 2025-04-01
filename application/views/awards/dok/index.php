@@ -17,7 +17,7 @@
             <fieldset>
 
             <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="band"><?= __("DOK / SDOK"); ?></label>
+                <label class="col-md-2 control-label" for="doks"><?= __("DOK / SDOK"); ?></label>
                 <div class="col-md-2">
                     <select id="doks" name="doks" class="form-select form-select-sm">
                         <option value="both" <?php if ($this->input->post('doks') == "both" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("DOK + SDOK"); ?></option>
@@ -74,7 +74,7 @@
             </div>
 
            <div class="mb-3 row">
-               <label class="col-md-2 control-label" for="band"><?= __("Band"); ?></label>
+               <label class="col-md-2 control-label" for="band2"><?= __("Band"); ?></label>
                <div class="col-md-2">
                    <select id="band2" name="band" class="form-select form-select-sm">
                        <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band"); ?></option>
