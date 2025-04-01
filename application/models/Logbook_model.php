@@ -18,7 +18,7 @@ class Logbook_model extends CI_Model {
 	/* Add QSO to Logbook */
 	function create_qso() {
 
-		$callsign = str_replace('Ø', '0', $this->input->post('callsign'));
+		$callsign = trim(str_replace('Ø', '0', $this->input->post('callsign')));
 		// Join date+time
 		$datetime = date("Y-m-d", strtotime($this->input->post('start_date'))) . " " . $this->input->post('start_time');
 		if (($this->input->post('end_time') ?? '') != '') {
