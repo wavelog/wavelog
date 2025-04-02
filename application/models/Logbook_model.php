@@ -4597,7 +4597,7 @@ class Logbook_model extends CI_Model {
 
 			if ($apicall) {
 				$this->load->library('Mh');
-                		$this->mh->wl_event('qso/logged_api/'.($this->session->userdata('user_id') ?? 'API'), json_encode($data));
+                		$this->mh->wl_event('qso/logged/api/'.($this->session->userdata('user_id') ?? 'API'), json_encode($data));
 			}
 			// Save QSO
 			if ($batchmode) {
