@@ -444,6 +444,8 @@ class Logbook_model extends CI_Model {
 		}
 
 		$this->add_qso($data, $skipexport = false);
+		$this->load->library('Mh');
+                $this->mh->wl_event('qso/logged/'.$this->session->userdata('user_id'), json_encode($data));
 	}
 
 	public function check_last_lotw($call) {	// Fetch difference in days when $call has last updated LotW
