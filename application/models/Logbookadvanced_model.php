@@ -443,13 +443,18 @@ class Logbookadvanced_model extends CI_Model {
 			return 'ORDER BY qsos.COL_TIME_ON desc';
 		} else {
 			$sortorder = explode(',', $sortorder);
+			if (strtoupper($sortorder[1] ?? '') == 'ASC') {
+				$sortorder[1]='asc';
+			} else {
+				$sortorder[1]='desc';
+			}
 
 			if ($this->session->userdata('user_lotw_name') != "" && $this->session->userdata('user_eqsl_name') != ""){
 				switch($sortorder[0]) {
 					case 1: return 'ORDER BY qsos.COL_TIME_ON ' . $sortorder[1];
 					case 2: return 'ORDER BY station_profile.station_callsign ' . $sortorder[1];
 					case 3: return 'ORDER BY qsos.COL_CALL ' . $sortorder[1];
-					case 4: return 'ORDER BY qsos.COL_MODE' .  $sortorder[1] . ', qsos.COL_SUBMODE ' . $sortorder[1];
+					case 4: return 'ORDER BY qsos.COL_MODE ' .  $sortorder[1] . ', qsos.COL_SUBMODE ' . $sortorder[1];
 					case 7: return 'ORDER BY qsos.COL_BAND ' . $sortorder[1] . ', qsos.COL_SAT_NAME ' . $sortorder[1];
 					case 16: return 'ORDER BY qsos.COL_COUNTRY ' . $sortorder[1];
 					case 17: return 'ORDER BY qso.COL_STATE ' . $sortorder[1];
@@ -464,7 +469,7 @@ class Logbookadvanced_model extends CI_Model {
 					case 1: return 'ORDER BY qsos.COL_TIME_ON ' . $sortorder[1];
 					case 2: return 'ORDER BY station_profile.station_callsign ' . $sortorder[1];
 					case 3: return 'ORDER BY qsos.COL_CALL ' . $sortorder[1];
-					case 4: return 'ORDER BY qsos.COL_MODE' .  $sortorder[1] . ', qsos.COL_SUBMODE ' . $sortorder[1];
+					case 4: return 'ORDER BY qsos.COL_MODE ' .  $sortorder[1] . ', qsos.COL_SUBMODE ' . $sortorder[1];
 					case 7: return 'ORDER BY qsos.COL_BAND ' . $sortorder[1] . ', qsos.COL_SAT_NAME ' . $sortorder[1];
 					case 15: return 'ORDER BY qsos.COL_COUNTRY ' . $sortorder[1];
 					case 16: return 'ORDER BY qso.COL_STATE ' . $sortorder[1];
@@ -479,7 +484,7 @@ class Logbookadvanced_model extends CI_Model {
 					case 1: return 'ORDER BY qsos.COL_TIME_ON ' . $sortorder[1];
 					case 2: return 'ORDER BY station_profile.station_callsign ' . $sortorder[1];
 					case 3: return 'ORDER BY qsos.COL_CALL ' . $sortorder[1];
-					case 4: return 'ORDER BY qsos.COL_MODE' .  $sortorder[1] . ', qsos.COL_SUBMODE ' . $sortorder[1];
+					case 4: return 'ORDER BY qsos.COL_MODE ' .  $sortorder[1] . ', qsos.COL_SUBMODE ' . $sortorder[1];
 					case 7: return 'ORDER BY qsos.COL_BAND ' . $sortorder[1] . ', qsos.COL_SAT_NAME ' . $sortorder[1];
 					case 14: return 'ORDER BY qsos.COL_COUNTRY ' . $sortorder[1];
 					case 15: return 'ORDER BY qso.COL_STATE ' . $sortorder[1];
