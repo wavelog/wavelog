@@ -69,7 +69,7 @@ $('#callsign').on('input', function () {
 	$(this).val($(this).val().replace(/\s/g, ''));
 	$(this).val($(this).val().replace(/0/g, 'Ø'));
 	$(this).val($(this).val().replace(/\./g, '/P'));
-	$(this).val($(this).val().replace(/\W/g, ''));
+	$(this).val($(this).val().replace(/\ /g, ''));
 });
 
 $('#locator').on('input', function () {
