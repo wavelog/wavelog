@@ -38,7 +38,7 @@ class Mh {
 
 	public function disconnect() {
 		if ($this->mqtt) {
-			log_message('error', 'disconnect from MQTT broker');
+			log_message('debug', 'disconnect from MQTT broker');
 			$this->mqtt->close();
 		}
 	}
@@ -48,7 +48,10 @@ class Mh {
 			if (!($this->mqtt)) {
 				$this->connect();
 			}
-			$this->publish($this->mqsettings['prefix'].$topic, $message);
+			if ($this->mqtt) {	// Failsafe. Check if REALLY connected before trying to puv
+				log_message('debug', 'published '.$this->mqsettings['prefix'].$topic.' -> '.$message.' to MQTT broker');
+				$this->publish($this->mqsettings['prefix'].$topic, $message);
+			}
 		}
 	}
 
