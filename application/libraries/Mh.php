@@ -12,6 +12,8 @@ class Mh {
 		$this->ci = & get_instance();
 		$this->mqsettings['server']=($this->ci->config->item('mqtt_server') ?? '');
 		$this->mqsettings['port']=($this->ci->config->item('mqtt_port') ?? 1883);
+		$this->mqsettings['user']=($this->ci->config->item('mqtt_username') ?? null);
+		$this->mqsettings['pass']=($this->ci->config->item('mqtt_password') ?? null);
 		$this->mqsettings['prefix']=($this->ci->config->item('mqtt_prefix') ?? 'wavelog/');
 	}
 
@@ -24,7 +26,7 @@ class Mh {
 			try {
 				$this->mqtt = @new Wavelog\phpMQTT($server, $port, $clientId);
 
-				if (!@$this->mqtt->connect(true, NULL)) {
+				if (!@$this->mqtt->connect(true, NULL, $this->mqsettings['user'],$this->mqsettings['pass'])) {
 					throw new Exception('Failed to connect to MQTT broker');
 				}
 				register_shutdown_function([$this, 'disconnect']);
