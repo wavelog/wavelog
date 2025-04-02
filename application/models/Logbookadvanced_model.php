@@ -443,6 +443,11 @@ class Logbookadvanced_model extends CI_Model {
 			return 'ORDER BY qsos.COL_TIME_ON desc';
 		} else {
 			$sortorder = explode(',', $sortorder);
+			if (strtoupper($sortorder[1] ?? '') == 'ASC') {
+				$sortorder[1]='asc';
+			} else {
+				$sortorder[1]='desc';
+			}
 
 			if ($this->session->userdata('user_lotw_name') != "" && $this->session->userdata('user_eqsl_name') != ""){
 				switch($sortorder[0]) {
