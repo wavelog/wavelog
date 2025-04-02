@@ -4595,6 +4595,10 @@ class Logbook_model extends CI_Model {
 				}
 			}
 
+			if ($apicall) {
+				$this->load->library('Mh');
+                		$this->mh->wl_event('qso/logged_api/'.($this->session->userdata('user_id') ?? 'API'), json_encode($data));
+			}
 			// Save QSO
 			if ($batchmode) {
 				$raw_qso = $this->add_qso($data, $skipexport, $batchmode);
@@ -4603,10 +4607,6 @@ class Logbook_model extends CI_Model {
 				$raw_qso = '';
 			} else {
 				$this->add_qso($data, $skipexport);
-			}
-			if ($apicall) {
-				$this->load->library('Mh');
-                		$this->mh->wl_event('qso/logged_api/'.($this->session->userdata('user_id') ?? 'API'), json_encode($data));
 			}
 
 		} else {
