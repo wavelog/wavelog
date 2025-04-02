@@ -4603,6 +4603,10 @@ class Logbook_model extends CI_Model {
 				$raw_qso = '';
 			} else {
 				$this->add_qso($data, $skipexport);
+				if ($apicall) {
+					$this->load->library('Mh');
+                			$this->mh->wl_event('qso/logged/'.$this->session->userdata('user_id'), json_encode($data));
+				}
 			}
 
 		} else {
