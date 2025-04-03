@@ -83,9 +83,9 @@
 					?>
 					<?php echo '<td style="text-align: center; vertical-align: middle;">';
 					if ($sat->updated != null) {
-						echo '<span class="badge bg-success" data-bs-toggle="tooltip" title="Last TLE updated was ' . date($custom_date_format . " H:i", strtotime($sat->updated)) . '">'.__("Yes").'</span>';
+						echo '<button class="btn btn-sm btn-success" onclick="editTle(' . $sat->id . ');" data-bs-toggle="tooltip" title="Last TLE updated was ' . date($custom_date_format . " H:i", strtotime($sat->updated)) . '">'.__("Yes").'</i></button>';
 					} else {
-						echo '<span class="badge bg-danger">'.__("No").'</span>';
+						echo '<button class="btn btn-sm btn-danger" onclick="editTle(' . $sat->id . ');">'.__("No").'</button>';
 					}
 
 					echo '</td>';

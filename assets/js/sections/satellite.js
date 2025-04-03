@@ -30,6 +30,153 @@ $(document).ready(function () {
 		return $("<textarea/>").text(out).html();
 	}
 
+function editTle(id) {
+	$.ajax({
+		url: base_url + 'index.php/satellite/editTleDialog',
+		type: 'post',
+		data: {
+			'id': id
+		},
+		success: function (html) {
+			BootstrapDialog.show({
+				title: 'Edit satellite TLE',
+				size: BootstrapDialog.SIZE_NORMAL,
+				cssClass: 'create-band-dialog',
+				nl2br: false,
+				message: html,
+				buttons: [{
+					label: lang_admin_close,
+					action: function (dialogItself) {
+						dialogItself.close();
+						location.reload();
+					}
+				}]
+			});
+		}
+	});
+}
+
+function saveTle(id) {
+	$('.alert').remove();
+    var tle = document.getElementById('tle-input-' + id).value.trim();
+    var validation = validateTLE(tle);
+
+    if (validation !== true) {
+		$(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">TLE Validation Failed: ' + validation + '</div>');
+        return;
+    }
+    console.log("Saving TLE:", tle);
+    $.ajax({
+		url: base_url + 'index.php/satellite/saveTle',
+		type: 'post',
+		data: {
+			'id': id,
+			'tle': tle
+		},
+		success: function (html) {
+			$(".bootstrap-dialog-message").prepend('<div class="alert alert-success">TLE saved.</div>');
+			$(".tleinfo").remove();
+		}
+	});
+}
+
+function tleChecksum(line) {
+    let sum = 0;
+
+    // Process only the first 68 characters
+    for (let i = 0; i < 68; i++) {
+        let char = line[i];
+        if (!isNaN(char) && char !== ' ') {
+            sum += parseInt(char);
+        } else if (char === '-') {
+            sum += 1;
+        }
+    }
+
+    // Convert last character (checksum) to an integer
+    let expectedChecksum = parseInt(line[68]);
+    return sum % 10 === expectedChecksum;
+}
+
+function validateTLE(tle) {
+    const lines = tle.trim().split("\n");
+
+    // Must have either 2 or 3 lines
+    if (lines.length < 2 || lines.length > 3) {
+        return "Invalid TLE format: Must have 2 or 3 lines.";
+    }
+
+    let line1, line2, line3;
+
+    if (lines.length === 3) {
+        line1 = lines[0].trim(); // Name (optional)
+        line2 = lines[1].trim(); // First data line
+        line3 = lines[2].trim(); // Second data line
+    } else {
+        line1 = null; // No name
+        line2 = lines[0].trim();
+        line3 = lines[1].trim();
+    }
+
+    // Check if the first data line starts with '1' and has 69 characters
+    if (!line2.startsWith('1') || line2.length !== 69) {
+        return "Invalid Line 1: Must start with '1' and be 69 characters long.";
+    }
+
+    // Check if the second data line starts with '2' and has 69 characters
+    if (!line3.startsWith('2') || line3.length !== 69) {
+        return "Invalid Line 2: Must start with '2' and be 69 characters long.";
+    }
+
+    // Validate checksum
+    if (!tleChecksum(line2)) {
+        return "Checksum error on Line 1.";
+    }
+    if (!tleChecksum(line3)) {
+        return "Checksum error on Line 2.";
+    }
+
+    return true; // Valid TLE
+}
+
+function deleteTle(id) {
+	BootstrapDialog.confirm({
+		title: "DANGER",
+		message: "Warning! Are you sure you want to delete TLE for this satellite?",
+		type: BootstrapDialog.TYPE_DANGER,
+		closable: true,
+		draggable: true,
+		btnOKClass: 'btn-danger',
+		callback: function(result) {
+			if (result) {
+				$.ajax({
+					url: base_url + 'index.php/satellite/deleteTle',
+					type: 'post',
+					data: {
+						'id': id
+					},
+					success: function(data) {
+						$(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">The TLE has been deleted!</div>');
+						$(".tleinfo").remove();
+					},
+					error: function() {
+						$(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">The TLE could not be deleted. Please try again!</div>');
+					},
+				});
+			}
+		}
+	});
+}
+
+function addTle(id) {
+	$(".addtlebutton").remove();
+	$(".tleinfo").append(
+		'<div class="tle-input-group">' +
+			'<textarea type="text" class="form-control tle-input" id="tle-input-' + id + '" placeholder="Paste TLE here..." rows="5"></textarea>' +
+			'<br /><button class="btn btn-sm btn-primary savetlebutton" onclick="saveTle(' + id + ');">Save TLE</button>' +
+		'</div>'
+	);
+}
 
 function createSatelliteDialog() {
 	$.ajax({
