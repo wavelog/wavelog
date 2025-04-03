@@ -8,6 +8,18 @@ let saticon = L.divIcon({
     iconSize: [30, 30],
     iconAnchor: [15, 15] // Center the icon
 });
+let pasticon = L.divIcon({
+    html: '<i class="fa-solid fa-satellite" style="font-size: 24px; opacity: 0.75; color: grey; -webkit-text-stroke: 1px white;"></i>',
+    className: '',
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
+});
+let futureicon = L.divIcon({
+    html: '<i class="fa-solid fa-satellite" style="font-size: 24px; opacity: 0.75; color: grey; -webkit-text-stroke: 1px white;"></i>',
+    className: '',
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
+});
 let homeicon = L.icon({ iconUrl: icon_home_url, iconSize: [15, 15] });
 
 let observerGd = {
@@ -249,6 +261,8 @@ Satellite.prototype.update = function () {
 
            // Compute paths with Antimeridian handling
            let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
+           pastmarker.setLatLng({lat: pastSegments[0][0][0], lng: pastSegments[0][0][1]});
+           futuremarker.setLatLng({lat: futureSegments[(futureSegments.length - 1)][futureSegments[(futureSegments.length - 1)].length - 1][0], lng: futureSegments[(futureSegments.length - 1)][futureSegments[(futureSegments.length - 1)].length - 1][(futureSegments.length - 1)]});
 
            // Remove old polylines if they exist
            if (this._pastTrajectories) {
@@ -446,6 +460,22 @@ function getBearing(lat1, lng1, lat2, lng2) {
 			zIndex: 1000,
 		}
 	).addTo(leafletMap).on('click', displayUpComingPasses);
+
+	pastmarker = L.marker(
+		[0, 0], {
+			icon: pasticon,
+			zIndex: 1000,
+		}
+	).addTo(leafletMap);
+	pastmarker.bindTooltip("-90 min", { permanent: true, offset: [15, 15], className: '', opacity: 0.65 });
+
+	futuremarker = L.marker(
+		[0, 0], {
+			icon: futureicon,
+			zIndex: 1000,
+		}
+	).addTo(leafletMap);
+	futuremarker.bindTooltip("+90 min", { permanent: true, offset: [15, 15], className: '', opacity: 0.65 });
 
 	// Add an always-visible label (tooltip)
 	satmarker.bindTooltip(satellite, {
