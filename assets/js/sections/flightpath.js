@@ -449,6 +449,7 @@ function getBearing(lat1, lng1, lat2, lng2) {
     svgLayer = L.svg();
     leafletMap = L.map('sat_map', {
       zoom: 3,
+      minZoom: 1,
       center: [20, 0],
     //   attributionControl: false,
       layers: [
