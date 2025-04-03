@@ -259,6 +259,11 @@ Satellite.prototype.update = function () {
 
         if (this._altitude < 35700 || this._altitude > 36000) {
 
+           pastmarker.remove();
+           futuremarker.remove();
+
+           pastmarker.addTo(leafletMap)
+           futuremarker.addTo(leafletMap)
            // Compute paths with Antimeridian handling
            let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
            pastmarker.setLatLng({lat: pastSegments[0][0][0], lng: pastSegments[0][0][1]});
@@ -466,7 +471,7 @@ function getBearing(lat1, lng1, lat2, lng2) {
 			icon: pasticon,
 			zIndex: 1000,
 		}
-	).addTo(leafletMap);
+	);
 	pastmarker.bindTooltip("-90 min", { permanent: true, offset: [15, 15], className: '', opacity: 0.65 });
 
 	futuremarker = L.marker(
@@ -474,7 +479,7 @@ function getBearing(lat1, lng1, lat2, lng2) {
 			icon: futureicon,
 			zIndex: 1000,
 		}
-	).addTo(leafletMap);
+	);
 	futuremarker.bindTooltip("+90 min", { permanent: true, offset: [15, 15], className: '', opacity: 0.65 });
 
 	// Add an always-visible label (tooltip)
