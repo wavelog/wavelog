@@ -62,7 +62,7 @@ function saveTle(id) {
     var validation = validateTLE(tle);
 
     if (validation !== true) {
-		$(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">TLE Validation Failed: ' + validation + '</div>');
+		$(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">' + lang_tle_validation_failed + ' ' + validation + '</div>');
         return;
     }
     console.log("Saving TLE:", tle);
@@ -74,7 +74,7 @@ function saveTle(id) {
 			'tle': tle
 		},
 		success: function (html) {
-			$(".bootstrap-dialog-message").prepend('<div class="alert alert-success">TLE saved.</div>');
+			$(".bootstrap-dialog-message").prepend('<div class="alert alert-success">'+lang_tle_saved+'</div>');
 			$(".tleinfo").remove();
 		}
 	});
@@ -103,7 +103,7 @@ function validateTLE(tle) {
 
     // Must have either 2 or 3 lines
     if (lines.length < 2 || lines.length > 3) {
-        return "Invalid TLE format: Must have 2 or 3 lines.";
+        return lang_tle_invalid_tle_format;
     }
 
     let line1, line2, line3;
@@ -120,20 +120,20 @@ function validateTLE(tle) {
 
     // Check if the first data line starts with '1' and has 69 characters
     if (!line2.startsWith('1') || line2.length !== 69) {
-        return "Invalid Line 1: Must start with '1' and be 69 characters long.";
+        return lang_tle_invalid_tle_line1;
     }
 
     // Check if the second data line starts with '2' and has 69 characters
     if (!line3.startsWith('2') || line3.length !== 69) {
-        return "Invalid Line 2: Must start with '2' and be 69 characters long.";
+        return lang_tle_invalid_tle_line2;
     }
 
     // Validate checksum
     if (!tleChecksum(line2)) {
-        return "Checksum error on Line 1.";
+        return lang_tle_checksum_error_line1;
     }
     if (!tleChecksum(line3)) {
-        return "Checksum error on Line 2.";
+        return lang_tle_checksum_error_line2;
     }
 
     return true; // Valid TLE
@@ -142,7 +142,7 @@ function validateTLE(tle) {
 function deleteTle(id) {
 	BootstrapDialog.confirm({
 		title: "DANGER",
-		message: "Warning! Are you sure you want to delete TLE for this satellite?",
+		message: lang_tle_delete_warning,
 		type: BootstrapDialog.TYPE_DANGER,
 		closable: true,
 		draggable: true,
@@ -156,11 +156,11 @@ function deleteTle(id) {
 						'id': id
 					},
 					success: function(data) {
-						$(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">The TLE has been deleted!</div>');
+						$(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">'+lang_tle_deleted+'</div>');
 						$(".tleinfo").remove();
 					},
 					error: function() {
-						$(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">The TLE could not be deleted. Please try again!</div>');
+						$(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">'+lang_tle_could_not_delete+'</div>');
 					},
 				});
 			}
@@ -172,8 +172,8 @@ function addTle(id) {
 	$(".addtlebutton").remove();
 	$(".tleinfo").append(
 		'<div class="tle-input-group">' +
-			'<textarea type="text" class="form-control tle-input" id="tle-input-' + id + '" placeholder="Paste TLE here..." rows="5"></textarea>' +
-			'<br /><button class="btn btn-sm btn-primary savetlebutton" onclick="saveTle(' + id + ');">Save TLE</button>' +
+			'<textarea type="text" class="form-control tle-input" id="tle-input-' + id + '" placeholder="'+lang_tle_paste_tle+'" rows="5"></textarea>' +
+			'<br /><button class="btn btn-sm btn-primary savetlebutton" onclick="saveTle(' + id + ');">'+lang_tle_save_tle+'</button>' +
 		'</div>'
 	);
 }

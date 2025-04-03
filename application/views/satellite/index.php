@@ -1,3 +1,18 @@
+<script type="text/javascript">
+	let lang_tle_saved = '<?= "TLE saved."; ?>';
+	let lang_tle_validation_failed = '<?= "TLE Validation Failed:"; ?>';
+	let lang_tle_edit_satellite_tle = '<?= "Edit satellite TLE"; ?>';
+	let lang_tle_invalid_tle_format = '<?= "Invalid TLE format: Must have 2 or 3 lines."; ?>';
+	let lang_tle_invalid_tle_line1 = '<?= "Invalid Line 1: Must start with 1 and be 69 characters long."; ?>';
+	let lang_tle_invalid_tle_line2 = '<?= "Invalid Line 2: Must start with 2 and be 69 characters long."; ?>';
+	let lang_tle_checksum_error_line1 = '<?= "Checksum error on Line 1."; ?>';
+	let lang_tle_checksum_error_line2 = '<?= "Checksum error on Line 2."; ?>';
+	let lang_tle_delete_warning = '<?= "Warning! Are you sure you want to delete TLE for this satellite?"; ?>';
+	let lang_tle_deleted = '<?= "The TLE has been deleted!"; ?>';
+	let lang_tle_could_not_delete = '<?= "The TLE could not be deleted. Please try again!"; ?>';
+	let lang_tle_save_tle = '<?= "Save TLE"; ?>';
+	let lang_tle_paste_tle = '<?= "Paste TLE here..."; ?>';
+</script>
 <div class="container">
 
 <br>
