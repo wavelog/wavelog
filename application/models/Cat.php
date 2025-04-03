@@ -23,10 +23,16 @@
 			// Let's keep uplink_freq, downlink_freq, uplink_mode and downlink_mode for backward compatibility
 			$data = array(
 				'prop_mode' => $prop_mode,
-				'power' => $result['power'] ?? NULL,
 				'sat_name' => $result['sat_name'] ?? NULL,
 				'timestamp' => $timestamp,
 			);
+
+			if ( (isset($result['power'])) && ($result['power'] != "NULL") && ($result['power'] != '') && (is_numeric($result['power']))) {
+				$data['power'] = $result['power'];
+			} else {
+				unset($data['power']);	// Do not update power since it isn't provided or not numeric
+			}
+
 			if ( (isset($result['frequency'])) && ($result['frequency'] != "NULL") && ($result['frequency'] != '') && (is_numeric($result['frequency']))) {
 				$data['frequency'] = $result['frequency'];
 			} else {
@@ -36,6 +42,7 @@
 					unset($data['frequency']);	// Do not update Frequency since it wasn't provided
 				}
 			}
+
 			if (isset($result['mode']) && $result['mode'] != "NULL") {
 				$data['mode'] = $result['mode'];
 			} else {
