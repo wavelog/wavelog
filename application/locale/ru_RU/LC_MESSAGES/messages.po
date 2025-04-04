@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-03-31 11:52+0000\n"
-"PO-Revision-Date: 2025-04-04 01:22+0000\n"
+"PO-Revision-Date: 2025-04-04 05:16+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/ru/>\n"
@@ -836,7 +836,7 @@ msgstr "Не работает"
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:443
 msgid "SOTA CSV Export"
-msgstr "Экспорт SOTA CSV"
+msgstr "Экспорт SOTA в CSV"
 
 #: application/controllers/Dashboard.php:130
 #: application/controllers/Visitor.php:134
@@ -5641,7 +5641,7 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
-"POTA работает так же, как и SOTA, с Активаторами и Охотниками. Есть "
+"POTA устроено так же, как и SOTA, с Активаторами и Охотниками. Есть "
 "несколько категорий дипломов, основанных на количестве парков, "
 "географических районах и т. д."
 
@@ -7452,7 +7452,7 @@ msgstr "Экспорт вашего журнала для загрузки в SO
 
 #: application/views/csv/index.php:11
 msgid "Only QSOs with SOTA information will be exported!"
-msgstr "Только QSO с информацией SOTA будут экспортированы!"
+msgstr "Будут экспортированы только QSO с информацией SOTA!"
 
 #: application/views/csv/index.php:92 application/views/dxatlas/index.php:92
 #: application/views/eqsl/download.php:43
@@ -11420,47 +11420,47 @@ msgstr "Показ сводки по IOTA"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for continent"
-msgstr ""
+msgstr "Показ сводки по континентам"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for gridsquare"
-msgstr ""
+msgstr "Показ сводки для квадратам"
 
 #: application/views/qso/award_tabs.php:11
 msgid "State input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить штат!"
 
 #: application/views/qso/award_tabs.php:12
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить SOTA!"
 
 #: application/views/qso/award_tabs.php:13
 msgid "POTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить POTA!"
 
 #: application/views/qso/award_tabs.php:14
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить IOTA!"
 
 #: application/views/qso/award_tabs.php:15
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить WWFF!"
 
 #: application/views/qso/award_tabs.php:16
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить квадрат!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "Summary only shows for the first POTA entered."
-msgstr ""
+msgstr "Сводка отображается только для первого введенного POTA."
 
 #: application/views/qso/award_tabs.php:18
 msgid "Summary only shows for the first gridsquare entered."
-msgstr ""
+msgstr "Сводка отображается только для первого введенного квадрата."
 
 #: application/views/qso/award_tabs.php:19
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "Сводка отображается только для штатов США."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -12208,7 +12208,7 @@ msgstr "мин"
 
 #: application/views/satellite/satinfo.php:14
 msgid "TLE date"
-msgstr ""
+msgstr "Дата TLE"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
@@ -12615,7 +12615,7 @@ msgstr "Референции"
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr "Рефы могут быть либо %sS%sOTA, %sI%sOTA, %sP%sOTA, либо %sW%sWFF"
+msgstr "Референции могут быть %sS%sOTA, %sI%sOTA, %sP%sOTA, либо %sW%sWFF"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
@@ -13841,7 +13841,7 @@ msgstr "Если включено, квадрат будет определён 
 
 #: application/views/user/edit.php:407
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr "Автозаполнение квадрата и названия саммита SOTA."
+msgstr "Автозаполнение квадрата и названия SOTA."
 
 #: application/views/user/edit.php:413 application/views/user/edit.php:423
 #: application/views/user/edit.php:433
