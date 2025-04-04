@@ -267,7 +267,7 @@ Satellite.prototype.update = function () {
            // Compute paths with Antimeridian handling
            let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
            pastmarker.setLatLng({lat: pastSegments[0][0][0], lng: pastSegments[0][0][1]});
-           futuremarker.setLatLng({lat: futureSegments[(futureSegments.length - 1)][futureSegments[(futureSegments.length - 1)].length - 1][0], lng: futureSegments[(futureSegments.length - 1)][futureSegments[(futureSegments.length - 1)].length - 1][(futureSegments.length - 1)]});
+           futuremarker.setLatLng({lat: futureSegments[(futureSegments.length - 2)][futureSegments[(futureSegments.length - 2)].length - 1][0], lng: futureSegments[(futureSegments.length - 2)][futureSegments[(futureSegments.length - 2)].length - 1][(futureSegments.length - 2)]});
 
            // Remove old polylines if they exist
            if (this._pastTrajectories) {
