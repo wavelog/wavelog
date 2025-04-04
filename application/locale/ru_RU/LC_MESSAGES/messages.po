@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-31 11:52+0000\n"
-"PO-Revision-Date: 2025-03-26 22:02+0000\n"
+"POT-Creation-Date: 2025-04-04 05:15+0000\n"
+"PO-Revision-Date: 2025-04-04 05:16+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -100,6 +100,8 @@ msgstr ""
 #: application/controllers/Satellite.php:132
 #: application/controllers/Satellite.php:146
 #: application/controllers/Satellite.php:164
+#: application/controllers/Satellite.php:572
+#: application/controllers/Satellite.php:581
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
 #: application/controllers/Simplefle.php:7
@@ -691,7 +693,7 @@ msgid "Email settings not configured."
 msgstr "Параметры электронной почты не настроены."
 
 #: application/controllers/Club.php:227 application/views/api/index.php:68
-#: application/views/satellite/index.php:79
+#: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
 msgid "Unknown"
 msgstr "Неизвестно"
@@ -836,7 +838,7 @@ msgstr "Не работает"
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:443
 msgid "SOTA CSV Export"
-msgstr "Экспорт SOTA CSV"
+msgstr "Экспорт SOTA в CSV"
 
 #: application/controllers/Dashboard.php:130
 #: application/controllers/Visitor.php:134
@@ -1222,7 +1224,7 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:169
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:425
-#: application/views/satellite/index.php:41
+#: application/views/satellite/index.php:56
 #: application/views/satellite/satinfo.php:13
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
@@ -1853,11 +1855,11 @@ msgstr "Настройки сохранены"
 #: application/controllers/Options.php:137
 #: application/views/options/sidebar.php:12
 msgid "Hams Of Note"
-msgstr ""
+msgstr "Заметки о корреспондентах"
 
 #: application/controllers/Options.php:152
 msgid "Hams-Of-Note URL changed to "
-msgstr ""
+msgstr "URL \"Заметок о корреспондентах\" изменен на "
 
 #: application/controllers/Options.php:188
 msgid "de continent changed to "
@@ -2127,7 +2129,7 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:619
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
-#: application/views/satellite/index.php:43
+#: application/views/satellite/index.php:58
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
@@ -2153,7 +2155,7 @@ msgstr "Редактировать"
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:57
-#: application/views/satellite/index.php:44
+#: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
@@ -2602,7 +2604,7 @@ msgstr "Обновление спутников для LoTW"
 
 #: application/controllers/Update.php:498
 msgid "Update of Hams of Note"
-msgstr ""
+msgstr "Обновить \"Заметки о корреспондентах\""
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:288
@@ -3157,7 +3159,7 @@ msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:4691
-#: application/views/satellite/index.php:67
+#: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
@@ -3754,7 +3756,7 @@ msgstr "Спутник"
 #: application/views/logbookadvanced/index.php:264
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
-#: application/views/satellite/index.php:39
+#: application/views/satellite/index.php:54
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
@@ -5641,7 +5643,7 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
-"POTA работает так же, как и SOTA, с Активаторами и Охотниками. Есть "
+"POTA устроено так же, как и SOTA, с Активаторами и Охотниками. Есть "
 "несколько категорий дипломов, основанных на количестве парков, "
 "географических районах и т. д."
 
@@ -6488,8 +6490,8 @@ msgstr ""
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
-#: application/views/satellite/index.php:73
-#: application/views/satellite/index.php:86
+#: application/views/satellite/index.php:88
+#: application/views/satellite/index.php:101
 #: application/views/satellite/satinfo.php:45
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
@@ -6545,8 +6547,8 @@ msgstr "Да"
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
-#: application/views/satellite/index.php:76
-#: application/views/satellite/index.php:88
+#: application/views/satellite/index.php:91
+#: application/views/satellite/index.php:103
 #: application/views/satellite/satinfo.php:48
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
@@ -7452,7 +7454,7 @@ msgstr "Экспорт вашего журнала для загрузки в SO
 
 #: application/views/csv/index.php:11
 msgid "Only QSOs with SOTA information will be exported!"
-msgstr "Только QSO с информацией SOTA будут экспортированы!"
+msgstr "Будут экспортированы только QSO с информацией SOTA!"
 
 #: application/views/csv/index.php:92 application/views/dxatlas/index.php:92
 #: application/views/eqsl/download.php:43
@@ -8110,7 +8112,7 @@ msgstr "Обновление TLE"
 
 #: application/views/debug/index.php:563
 msgid "Hams Of Note update"
-msgstr ""
+msgstr "Обновление \"Заметок о корреспондентах\""
 
 #: application/views/debug/index.php:572
 msgid "QSO-DB Maintenance"
@@ -9165,7 +9167,7 @@ msgstr "Общие настройки"
 
 #: application/views/interface_assets/header.php:296
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:25
+#: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
 msgid "Satellites"
@@ -9289,6 +9291,8 @@ msgstr "Выберите профиль QTH"
 #: application/views/interface_assets/header.php:552
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
+"Не видите нужных профилей QTH? Перейдите в \"Настройки станции\" и добавьте "
+"их в избранное"
 
 #: application/views/interface_assets/header.php:589
 msgid "Extras"
@@ -9637,7 +9641,7 @@ msgstr "Получено из Clublog"
 
 #: application/views/logbookadvanced/edit.php:85
 #: application/views/satellite/edit.php:51
-#: application/views/satellite/index.php:40
+#: application/views/satellite/index.php:55
 msgid "SAT Mode"
 msgstr "Спутниковый режим"
 
@@ -10283,7 +10287,7 @@ msgid "Import LoTW Matches"
 msgstr "Импортировать совпадения с LoTW"
 
 #: application/views/lotw/satupdate.php:7
-#: application/views/satellite/index.php:38
+#: application/views/satellite/index.php:53
 msgid "Display Name"
 msgstr "Отображаемое название"
 
@@ -10750,7 +10754,7 @@ msgstr "Емэйл будет отпрален на адрес, указанны
 
 #: application/views/options/hon.php:38
 msgid "Provider for Hams Of Note"
-msgstr ""
+msgstr "Провайдер \"Заметок о корреспондентах\""
 
 #: application/views/options/hon.php:39
 #, php-format
@@ -10758,15 +10762,17 @@ msgid ""
 "The URL which provides the Hams Of Note List. See example and how it works "
 "here %s"
 msgstr ""
+"URL, которая предоставляет список \"Заметок о корреспондентах\". Пример и "
+"как это работает, смотри здесь %s"
 
 #: application/views/options/hon.php:39
 msgid "Wiki"
-msgstr ""
+msgstr "Вики"
 
 #: application/views/options/hon.php:41
 #, php-format
 msgid "URL of the Hams Of Note List. e.g. %s"
-msgstr ""
+msgstr "URL списка \"Заметок о корреспондентах\", например, %s"
 
 #: application/views/options/index.php:13
 msgid ""
@@ -11388,75 +11394,75 @@ msgstr ""
 
 #: application/views/qso/award_tabs.php:2
 msgid "Showing summary for DXCC"
-msgstr ""
+msgstr "Показ сводки по DXCC"
 
 #: application/views/qso/award_tabs.php:3
 msgid "Showing summary for US State"
-msgstr ""
+msgstr "Показ сводки по штатам США"
 
 #: application/views/qso/award_tabs.php:4
 msgid "Showing summary for CQ zone"
-msgstr ""
+msgstr "Показ сводки по зонам CQ"
 
 #: application/views/qso/award_tabs.php:5
 msgid "Showing summary for WWFF"
-msgstr ""
+msgstr "Показ сводки по WWFF"
 
 #: application/views/qso/award_tabs.php:6
 msgid "Showing summary for POTA"
-msgstr ""
+msgstr "Показ сводки по POTA"
 
 #: application/views/qso/award_tabs.php:7
 msgid "Showing summary for SOTA"
-msgstr ""
+msgstr "Показ сводки по SOTA"
 
 #: application/views/qso/award_tabs.php:8
 msgid "Showing summary for IOTA"
-msgstr ""
+msgstr "Показ сводки по IOTA"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for continent"
-msgstr ""
+msgstr "Показ сводки по континентам"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for gridsquare"
-msgstr ""
+msgstr "Показ сводки для квадратам"
 
 #: application/views/qso/award_tabs.php:11
 msgid "State input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить штат!"
 
 #: application/views/qso/award_tabs.php:12
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить SOTA!"
 
 #: application/views/qso/award_tabs.php:13
 msgid "POTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить POTA!"
 
 #: application/views/qso/award_tabs.php:14
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить IOTA!"
 
 #: application/views/qso/award_tabs.php:15
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить WWFF!"
 
 #: application/views/qso/award_tabs.php:16
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Для показа сводки нужно заполнить квадрат!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "Summary only shows for the first POTA entered."
-msgstr ""
+msgstr "Сводка отображается только для первого введенного POTA."
 
 #: application/views/qso/award_tabs.php:18
 msgid "Summary only shows for the first gridsquare entered."
-msgstr ""
+msgstr "Сводка отображается только для первого введенного квадрата."
 
 #: application/views/qso/award_tabs.php:19
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "Сводка отображается только для штатов США."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -12014,7 +12020,7 @@ msgstr "Отображаемое / открытое название спутн�
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
-#: application/views/satellite/index.php:37
+#: application/views/satellite/index.php:52
 msgid "LoTW Name"
 msgstr "Название для LoTW"
 
@@ -12102,19 +12108,19 @@ msgstr "Сохранить спутник"
 msgid "Add satellite mode"
 msgstr "Добавить вид модуляции (для спутника)"
 
-#: application/views/satellite/index.php:29
+#: application/views/satellite/index.php:44
 msgid "Add a satellite"
 msgstr "Добавить спутник"
 
-#: application/views/satellite/index.php:30
+#: application/views/satellite/index.php:45
 msgid "Sync Satellites from LoTW"
 msgstr "Синхронизировать спутники с LoTW"
 
-#: application/views/satellite/index.php:31
+#: application/views/satellite/index.php:46
 msgid "Update Satellite TLE"
 msgstr "Обновить TLE"
 
-#: application/views/satellite/index.php:42
+#: application/views/satellite/index.php:57
 msgid "TLE"
 msgstr "TLE"
 
@@ -12204,7 +12210,7 @@ msgstr "мин"
 
 #: application/views/satellite/satinfo.php:14
 msgid "TLE date"
-msgstr ""
+msgstr "Дата TLE"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
@@ -12227,6 +12233,14 @@ msgstr "Время LOS для скеда"
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
 "Перекрывающихся орбит не найдено. Пожалуйста, проверьте исходные параметры."
+
+#: application/views/satellite/tleinfo.php:8
+msgid "Delete TLE"
+msgstr ""
+
+#: application/views/satellite/tleinfo.php:11
+msgid "Add TLE"
+msgstr ""
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -12611,7 +12625,7 @@ msgstr "Референции"
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr "Рефы могут быть либо %sS%sOTA, %sI%sOTA, %sP%sOTA, либо %sW%sWFF"
+msgstr "Референции могут быть %sS%sOTA, %sI%sOTA, %sP%sOTA, либо %sW%sWFF"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
@@ -13837,7 +13851,7 @@ msgstr "Если включено, квадрат будет определён 
 
 #: application/views/user/edit.php:407
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr "Автозаполнение квадрата и названия саммита SOTA."
+msgstr "Автозаполнение квадрата и названия SOTA."
 
 #: application/views/user/edit.php:413 application/views/user/edit.php:423
 #: application/views/user/edit.php:433

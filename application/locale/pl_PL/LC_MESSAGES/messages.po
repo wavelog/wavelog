@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-31 11:52+0000\n"
+"POT-Creation-Date: 2025-04-04 05:15+0000\n"
 "PO-Revision-Date: 2025-01-30 21:18+0000\n"
 "Last-Translator: Maciej SP2FE <wavelog@sp2fe.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -101,6 +101,8 @@ msgstr ""
 #: application/controllers/Satellite.php:132
 #: application/controllers/Satellite.php:146
 #: application/controllers/Satellite.php:164
+#: application/controllers/Satellite.php:572
+#: application/controllers/Satellite.php:581
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
 #: application/controllers/Simplefle.php:7
@@ -690,7 +692,7 @@ msgid "Email settings not configured."
 msgstr "Email nie został skonfigurowany."
 
 #: application/controllers/Club.php:227 application/views/api/index.php:68
-#: application/views/satellite/index.php:79
+#: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
 msgid "Unknown"
 msgstr "Nieznane"
@@ -1220,7 +1222,7 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:169
 #: application/views/qslprint/qsolist.php:184
 #: application/views/qso/edit_ajax.php:425
-#: application/views/satellite/index.php:41
+#: application/views/satellite/index.php:56
 #: application/views/satellite/satinfo.php:13
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
@@ -2127,7 +2129,7 @@ msgstr "Domyślnie (kliknij, aby zwolnić)"
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:619
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
-#: application/views/satellite/index.php:43
+#: application/views/satellite/index.php:58
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
@@ -2153,7 +2155,7 @@ msgstr "Edytuj"
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:57
-#: application/views/satellite/index.php:44
+#: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
@@ -3140,7 +3142,7 @@ msgid "unconfirmed"
 msgstr "niepotwierdzone"
 
 #: application/models/Logbook_model.php:4691
-#: application/views/satellite/index.php:67
+#: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
@@ -3737,7 +3739,7 @@ msgstr "Satelita"
 #: application/views/logbookadvanced/index.php:264
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
-#: application/views/satellite/index.php:39
+#: application/views/satellite/index.php:54
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
@@ -6333,8 +6335,8 @@ msgstr ""
 #: application/views/satellite/create.php:75
 #: application/views/satellite/edit.php:31
 #: application/views/satellite/edit.php:34
-#: application/views/satellite/index.php:73
-#: application/views/satellite/index.php:86
+#: application/views/satellite/index.php:88
+#: application/views/satellite/index.php:101
 #: application/views/satellite/satinfo.php:45
 #: application/views/search/result.php:74
 #: application/views/station_profile/create.php:209
@@ -6390,8 +6392,8 @@ msgstr "Tak"
 #: application/views/satellite/create.php:76
 #: application/views/satellite/edit.php:32
 #: application/views/satellite/edit.php:35
-#: application/views/satellite/index.php:76
-#: application/views/satellite/index.php:88
+#: application/views/satellite/index.php:91
+#: application/views/satellite/index.php:103
 #: application/views/satellite/satinfo.php:48
 #: application/views/search/result.php:76
 #: application/views/station_profile/create.php:210
@@ -8870,7 +8872,7 @@ msgstr "Ustawienia globalne"
 
 #: application/views/interface_assets/header.php:296
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:25
+#: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
 msgid "Satellites"
@@ -9335,7 +9337,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/edit.php:85
 #: application/views/satellite/edit.php:51
-#: application/views/satellite/index.php:40
+#: application/views/satellite/index.php:55
 msgid "SAT Mode"
 msgstr ""
 
@@ -9976,7 +9978,7 @@ msgid "Import LoTW Matches"
 msgstr ""
 
 #: application/views/lotw/satupdate.php:7
-#: application/views/satellite/index.php:38
+#: application/views/satellite/index.php:53
 msgid "Display Name"
 msgstr ""
 
@@ -11619,7 +11621,7 @@ msgstr ""
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
-#: application/views/satellite/index.php:37
+#: application/views/satellite/index.php:52
 msgid "LoTW Name"
 msgstr ""
 
@@ -11705,19 +11707,19 @@ msgstr ""
 msgid "Add satellite mode"
 msgstr ""
 
-#: application/views/satellite/index.php:29
+#: application/views/satellite/index.php:44
 msgid "Add a satellite"
 msgstr ""
 
-#: application/views/satellite/index.php:30
+#: application/views/satellite/index.php:45
 msgid "Sync Satellites from LoTW"
 msgstr ""
 
-#: application/views/satellite/index.php:31
+#: application/views/satellite/index.php:46
 msgid "Update Satellite TLE"
 msgstr ""
 
-#: application/views/satellite/index.php:42
+#: application/views/satellite/index.php:57
 msgid "TLE"
 msgstr ""
 
@@ -11828,6 +11830,14 @@ msgstr ""
 
 #: application/views/satellite/skedtable.php:84
 msgid "No overlapping passes found. Please check the input parameters."
+msgstr ""
+
+#: application/views/satellite/tleinfo.php:8
+msgid "Delete TLE"
+msgstr ""
+
+#: application/views/satellite/tleinfo.php:11
+msgid "Add TLE"
 msgstr ""
 
 #: application/views/sattimers/index.php:15

@@ -4207,7 +4207,7 @@ class Logbook_model extends CI_Model {
 	 qslrdate, qslsdate
 	 */
 
-			if (isset($record['qslrdate'])) {
+			if (($record['qslrdate'] ?? '') != '') {
 				if (validateADIFDate($record['qslrdate']) == true) {
 					$input_qslrdate = $record['qslrdate'];
 				} else {
@@ -4218,7 +4218,7 @@ class Logbook_model extends CI_Model {
 				$input_qslrdate = NULL;
 			}
 
-			if (isset($record['qslsdate'])) {
+			if (($record['qslsdate'] ?? '') != '') {
 				if (validateADIFDate($record['qslsdate']) == true) {
 					$input_qslsdate = $record['qslsdate'];
 				} else {
@@ -4279,7 +4279,7 @@ class Logbook_model extends CI_Model {
 
 			if ($markClublog != NULL) {
 				$input_clublog_qslsdate = $date = date("Y-m-d H:i:s", strtotime("now"));
-			} elseif (isset($record['clublog_qso_upload_date'])) {
+			} elseif (($record['clublog_qso_upload_date'] ?? '') != '') {
 				if (validateADIFDate($record['clublog_qso_upload_date']) == true) {
 					$input_clublog_qslsdate = $record['clublog_qso_upload_date'];
 				} else {
@@ -4299,7 +4299,7 @@ class Logbook_model extends CI_Model {
 				$input_lotw_qsl_rcvd = NULL;
 			}
 
-			if (isset($record['lotw_qslrdate'])) {
+			if (($record['lotw_qslrdate'] ?? '') != '') {
 				if (validateADIFDate($record['lotw_qslrdate']) == true) {
 					$input_lotw_qslrdate = $record['lotw_qslrdate'];
 				} else {
@@ -4320,7 +4320,7 @@ class Logbook_model extends CI_Model {
 
 			if ($markLotw != NULL) {
 				$input_lotw_qslsdate = $date = date("Y-m-d H:i:s", strtotime("now"));
-			} elseif (isset($record['lotw_qslsdate'])) {
+			} elseif (($record['lotw_qslsdate'] ?? '') != '') {
 				if (validateADIFDate($record['lotw_qslsdate']) == true) {
 					$input_lotw_qslsdate = $record['lotw_qslsdate'];
 				} else {

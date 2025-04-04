@@ -62,6 +62,33 @@ class Satellite_model extends CI_Model {
 		$this->db->delete('satellite', array('id' => $clean_id));
 	}
 
+
+	function deleteTle($id) {
+		// Delete TLE
+		$this->db->delete('tle', array('satelliteid' => $id));
+	}
+
+	function saveTle($id, $tle) {
+		$tlelines = explode("\n", trim($tle)); // Trim to remove extra spaces or newlines
+		$lineCount = count($tlelines);
+
+		if ($lineCount === 3) {
+			$tleline1 = trim($tlelines[1]); // First data line
+			$tleline2 = trim($tlelines[2]); // Second data line
+		} else {
+			$tleline1 = trim($tlelines[0]);
+			$tleline2 = trim($tlelines[1]);
+		}
+
+		$data = array(
+			'satelliteid' 	=> $id,
+			'tle'			=> $tleline1 . "\n" . $tleline2,
+		);
+		$this->db->insert('tle', $data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
+	}
+
 	function deleteSatMode($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
@@ -162,7 +189,7 @@ class Satellite_model extends CI_Model {
 	}
 
 	function get_tle($sat) {
-		$this->db->select('satellite.name AS satellite, tle.tle');
+		$this->db->select('satellite.name AS satellite, tle.tle, tle.updated');
 		$this->db->join('tle', 'satellite.id = tle.satelliteid');
 		$this->db->where('name', $sat);
 		$query = $this->db->get('satellite');
