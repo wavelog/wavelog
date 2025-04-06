@@ -271,6 +271,7 @@ class Satellite extends CI_Controller {
 			} else {	// All SATs
 				$data = $this->calcPasses($tles, $yourgrid, $date, $mintime,$minelevation);
 			}
+
 			$this->load->view('satellite/passtable', $data);
 		}
 		catch (Exception $e) {
@@ -526,5 +527,63 @@ class Satellite extends CI_Controller {
 
 		// Calculate the day number
 		return Predict_Time::unix2daynum($timestamp, 0);
+	}
+
+	public function getSatelliteInfo() {
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		$data['custom_date_format'] = $custom_date_format;
+
+		$satname = $this->security->xss_clean($this->input->post('sat', true));
+		$this->load->model('satellite_model');
+
+		$data['satinfo'] = $this->satellite_model->get_satellite_information($satname);
+
+		$this->load->view('satellite/satinfo', $data);
+	}
+
+	public function editTleDialog() {
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		$data['custom_date_format'] = $custom_date_format;
+
+		$id = $this->security->xss_clean($this->input->post('id', true));
+		$this->load->model('satellite_model');
+
+		$data['satinfo'] = $this->satellite_model->getsatellite($id)->result();
+		$data['tleinfo'] = $this->satellite_model->get_tle($data['satinfo'][0]->name);
+
+		$this->load->view('satellite/tleinfo', $data);
+	}
+
+	public function deleteTle() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$id = $this->input->post('id', true);
+		$this->load->model('satellite_model');
+
+		$data['satinfo'] = $this->satellite_model->deleteTle($id);
+	}
+
+	public function saveTle() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$id = $this->input->post('id', true);
+		$tle = $this->input->post('tle', true);
+		$this->load->model('satellite_model');
+
+		$this->satellite_model->saveTle($id, $tle);
 	}
 }

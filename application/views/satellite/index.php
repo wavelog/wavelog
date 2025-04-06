@@ -1,3 +1,18 @@
+<script type="text/javascript">
+	let lang_tle_saved = '<?= "TLE saved."; ?>';
+	let lang_tle_validation_failed = '<?= "TLE Validation Failed:"; ?>';
+	let lang_tle_edit_satellite_tle = '<?= "Edit satellite TLE"; ?>';
+	let lang_tle_invalid_tle_format = '<?= "Invalid TLE format: Must have 2 or 3 lines."; ?>';
+	let lang_tle_invalid_tle_line1 = '<?= "Invalid Line 1: Must start with 1 and be 69 characters long."; ?>';
+	let lang_tle_invalid_tle_line2 = '<?= "Invalid Line 2: Must start with 2 and be 69 characters long."; ?>';
+	let lang_tle_checksum_error_line1 = '<?= "Checksum error on Line 1."; ?>';
+	let lang_tle_checksum_error_line2 = '<?= "Checksum error on Line 2."; ?>';
+	let lang_tle_delete_warning = '<?= "Warning! Are you sure you want to delete TLE for this satellite?"; ?>';
+	let lang_tle_deleted = '<?= "The TLE has been deleted!"; ?>';
+	let lang_tle_could_not_delete = '<?= "The TLE could not be deleted. Please try again!"; ?>';
+	let lang_tle_save_tle = '<?= "Save TLE"; ?>';
+	let lang_tle_paste_tle = '<?= "Paste TLE here..."; ?>';
+</script>
 <div class="container">
 
 <br>
@@ -83,9 +98,9 @@
 					?>
 					<?php echo '<td style="text-align: center; vertical-align: middle;">';
 					if ($sat->updated != null) {
-						echo '<span class="badge bg-success" data-bs-toggle="tooltip" title="Last TLE updated was ' . date($custom_date_format . " H:i", strtotime($sat->updated)) . '">'.__("Yes").'</span>';
+						echo '<button class="btn btn-sm btn-success" onclick="editTle(' . $sat->id . ');" data-bs-toggle="tooltip" title="Last TLE updated was ' . date($custom_date_format . " H:i", strtotime($sat->updated)) . '">'.__("Yes").'</i></button>';
 					} else {
-						echo '<span class="badge bg-danger">'.__("No").'</span>';
+						echo '<button class="btn btn-sm btn-danger" onclick="editTle(' . $sat->id . ');">'.__("No").'</button>';
 					}
 
 					echo '</td>';

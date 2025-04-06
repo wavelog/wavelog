@@ -485,9 +485,11 @@ class Update_model extends CI_Model {
 	}
 
 	function update_hams_of_note() {
-		$this->db->empty_table("hams_of_note");
-		$this->db->query("ALTER TABLE hams_of_note AUTO_INCREMENT 1");
-		$file = 'https://api.ham2k.net/data/ham2k/hams-of-note.txt';
+		if (($this->optionslib->get_option('hon_url') ?? '') == '') {
+			$file = 'https://api.ham2k.net/data/ham2k/hams-of-note.txt';
+		} else {
+			$file = $this->optionslib->get_option('hon_url');
+		}
 		$result = array();
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $file);
@@ -496,34 +498,51 @@ class Update_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($ch);
+		$http_result = curl_getinfo($ch);
 		curl_close($ch);
-		$i = 0;
-		$lines = explode("\n", $response);
-		foreach($lines as $data) {
-			$line = trim($data);
-			if ($line != "" && $line[0] != '#') {
-				$index = strpos($line, ' ');
-				$call = substr($line, 0, $index);
-				$name = substr($line, strpos($line, ' '));
-				$linkname = $link = null;
-				if (strpos($name, '[')) {
-					$linkname = substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1));
-					$link= substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1));
-					$name = substr($name, 0, strpos($name, '['));
+		if ($http_result['http_code'] == "200") {
+			$lines = explode("\n", $response);
+			if (count($lines) > 0) {	// Check if there was data, otherwise skip parsing / truncating the table and preserve whats there
+				$this->db->empty_table("hams_of_note");
+				$this->db->query("ALTER TABLE hams_of_note AUTO_INCREMENT 1");
+				$i = 0;
+				foreach($lines as $data) {
+					$line = trim($data);
+					if ($line != "" && $line[0] != '#') {
+						$index = strpos($line, ' ');
+						$call = $this->security->xss_clean(substr($line, 0, $index));
+						if (preg_match('/[^a-zA-Z0-9\/]/', $call)) {
+							continue;
+						}
+						$name = $this->security->xss_clean(substr($line, strpos($line, ' ')));
+						$linkname = $link = null;
+						if (strpos($name, '[')) {
+							$linkname = $this->security->xss_clean(substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1)));
+							$link= $this->security->xss_clean(substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1)));
+							$name = substr($name, 0, strpos($name, '['));
+						}
+						array_push($result, array('callsign' => $call, 'name' => $name, 'linkname' => $linkname, 'link' => $link));
+						$hon[$i]['callsign'] = $call;
+						$hon[$i]['description'] = $name;
+						$hon[$i]['linkname'] = $linkname;
+						$hon[$i]['link'] = $link;
+						$i++;
+						if (($i % 100) == 0) {
+							$this->db->insert_batch('hams_of_note', $hon);
+							unset($hon);
+							$i=0;	// reset $i to see if there's something more at the end
+						}
+					}
 				}
-				array_push($result, array('callsign' => $call, 'name' => $name, 'linkname' => $linkname, 'link' => $link));
-				$hon[$i]['callsign'] = $call;
-				$hon[$i]['description'] = $name;
-				$hon[$i]['linkname'] = $linkname;
-				$hon[$i]['link'] = $link;
-				if (($i % 100) == 0) {
+				if ($i>0) {	// Leftovers?
 					$this->db->insert_batch('hams_of_note', $hon);
-					unset($hon);
 				}
-				$i++;
+			} else {
+				$result=null;
 			}
+		} else {
+			$result=null;
 		}
-		$this->db->insert_batch('hams_of_note', $hon);
 		return $result;
 	}
 

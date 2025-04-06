@@ -46,7 +46,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		$active_station_id = $this->stations->find_active();
-        $station_profile = $this->stations->profile($active_station_id);
+		$station_profile = $this->stations->profile($active_station_id);
 
 		$pageData = [];
 		$pageData['datePlaceholder'] = 'DD/MM/YYYY';
@@ -175,7 +175,10 @@ class Logbookadvanced extends CI_Controller {
 		$callbook = $this->logbook_model->loadCallBook($qso['COL_CALL'], $this->config->item('use_fullname'));
 
 		if ($callbook['callsign'] ?? "" !== "") {
-			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook);
+			$this->load->model('stations');
+			$active_station_id = $this->stations->find_active();
+			$station_profile = $this->stations->profile($active_station_id)->row_array();
+			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook, $station_profile['station_gridsquare']);
 			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
 		}
 

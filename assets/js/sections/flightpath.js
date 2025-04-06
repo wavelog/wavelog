@@ -1,3 +1,4 @@
+let lastUpdateTime = 0; // Track the last update time
 var satmarker;
 let maidenhead;
 let leafletMap;
@@ -6,6 +7,18 @@ let saticon = L.divIcon({
     className: '', // Prevents default Leaflet styles
     iconSize: [30, 30],
     iconAnchor: [15, 15] // Center the icon
+});
+let pasticon = L.divIcon({
+    html: '<i class="fa-solid fa-satellite" style="font-size: 24px; opacity: 0.75; color: grey; -webkit-text-stroke: 1px white;"></i>',
+    className: '',
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
+});
+let futureicon = L.divIcon({
+    html: '<i class="fa-solid fa-satellite" style="font-size: 24px; opacity: 0.75; color: grey; -webkit-text-stroke: 1px white;"></i>',
+    className: '',
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
 });
 let homeicon = L.icon({ iconUrl: icon_home_url, iconSize: [15, 15] });
 
@@ -185,33 +198,148 @@ let sats = (function (L, d3, satelliteJs) {
     this._orbitType = this.orbitTypeFromAlt(this._altitude); // LEO, MEO, or GEO
   };
 
-  /**
-   * Updates satellite position and altitude based on current TLE and date
-   */
-	Satellite.prototype.update = function () {
-		try {
-			let positionAndVelocity = satelliteJs.propagate(this._satrec, this._date);
-			let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, this._gmst);
-			let positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, this._gmst);
-			let lA = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
+function computePath(satrec, date, minutesBack, minutesAhead, stepSeconds) {
+    let pastSegments = [[]]; // Store separate path segments for past
+    let futureSegments = [[]]; // Store separate path segments for future
+    let lastLng = null;
 
-			this._lookAngles = {
-				azimuth: lA.azimuth * DEGREES,
-				elevation: lA.elevation * DEGREES,
-				rangeSat: lA.rangeSat
-			};
-			this._position = {
-				lat: positionGd.latitude * DEGREES,
-				lng: positionGd.longitude * DEGREES
-			};
-			this._altitude = positionGd.height;
-			satmarker.setLatLng(this._position);
-		} catch (e) {
-			// Malicious // non-calcable SAT Found
-		} finally  {
-			return this;
-		}
-	};
+    for (let t = -minutesBack * 60; t <= minutesAhead * 60; t += stepSeconds) {
+        let newDate = new Date(date.getTime() + t * 1000);
+        let gmst = satelliteJs.gstime(newDate);
+        let positionAndVelocity = satelliteJs.propagate(satrec, newDate);
+        if (!positionAndVelocity.position) continue;
+
+        let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, gmst);
+        let lat = positionGd.latitude * DEGREES;
+        let lng = positionGd.longitude * DEGREES;
+
+        // Handle Antimeridian crossing
+        if (lastLng !== null && Math.abs(lng - lastLng) > 180) {
+            if (t < 0) {
+                pastSegments.push([]); // Start a new segment for past path
+            } else {
+                futureSegments.push([]); // Start a new segment for future path
+            }
+        }
+
+        // Add the current point to the correct segment
+        if (t < 0) {
+            pastSegments[pastSegments.length - 1].push([lat, lng]);
+        } else {
+            futureSegments[futureSegments.length - 1].push([lat, lng]);
+        }
+
+        lastLng = lng; // Update last longitude
+    }
+    return { pastSegments, futureSegments };
+}
+
+// Update function for satellite
+Satellite.prototype.update = function () {
+    try {
+        let positionAndVelocity = satelliteJs.propagate(this._satrec, this._date);
+        let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, this._gmst);
+        let positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, this._gmst);
+        let lA = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
+
+        this._lookAngles = {
+            azimuth: lA.azimuth * DEGREES,
+            elevation: lA.elevation * DEGREES,
+            rangeSat: lA.rangeSat
+        };
+
+        this._position = {
+            lat: positionGd.latitude * DEGREES,
+            lng: positionGd.longitude * DEGREES
+        };
+        this._altitude = positionGd.height;
+
+        // Update satellite marker
+        satmarker.setLatLng(this._position);
+
+        if (this._altitude < 35700 || this._altitude > 36000) {
+
+           pastmarker.remove();
+           futuremarker.remove();
+
+           pastmarker.addTo(leafletMap)
+           futuremarker.addTo(leafletMap)
+           // Compute paths with Antimeridian handling
+           let { pastSegments, futureSegments } = computePath(this._satrec, this._date, 100, 100, 10);
+           pastmarker.setLatLng({lat: pastSegments[0][0][0], lng: pastSegments[0][0][1]});
+           futuremarker.setLatLng({lat: futureSegments[(futureSegments.length - 1)][futureSegments[(futureSegments.length - 1)].length - 1][0], lng: futureSegments[(futureSegments.length - 1)][futureSegments[(futureSegments.length - 1)].length - 1][1]});
+
+           // Remove old polylines if they exist
+           if (this._pastTrajectories) {
+               this._pastTrajectories.forEach(poly => leafletMap.removeLayer(poly));
+           }
+           if (this._futureTrajectories) {
+               this._futureTrajectories.forEach(poly => leafletMap.removeLayer(poly));
+           }
+
+           // Draw new trajectory segments
+           this._pastTrajectories = pastSegments.map(segment =>
+               L.polyline(segment, { color: 'red' }).addTo(leafletMap)
+           );
+           this._futureTrajectories = futureSegments.map(segment =>
+               L.polyline(segment, { color: 'green' }).addTo(leafletMap)
+           );
+
+           // 📌 **Fix Arrow Direction Using Ground Track Bearing**
+           let nextDate = new Date(this._date.getTime() + 10000); // 5 sec into the future
+           let nextPos = satelliteJs.propagate(this._satrec, nextDate);
+           let nextGd = satelliteJs.eciToGeodetic(nextPos.position, this._gmst);
+
+           let nextLat = nextGd.latitude * DEGREES;
+           let nextLng = nextGd.longitude * DEGREES;
+
+           let heading = getBearing(this._position.lat, this._position.lng, nextLat, nextLng);
+
+           // Remove old arrow marker if it exists
+           if (this._directionArrow) {
+               leafletMap.removeLayer(this._directionArrow);
+           }
+
+           // Define arrow icon using an SVG
+           let arrowIcon = L.divIcon({
+               className: "custom-arrow",
+               html: `<div style="
+                   transform: rotate(${heading-90}deg);
+                   font-size: 20px;
+                   color: yellow;
+                   ">➤</div>`, // Unicode arrow
+               iconSize: [20, 20],
+               iconAnchor: [15, -15]
+           });
+
+           // Offset the arrow slightly ahead of the satellite position
+           let arrowOffset = 0.1; // Small offset factor
+           let arrowLat = this._position.lat + arrowOffset * Math.sin(heading * (Math.PI / 180));
+           let arrowLng = this._position.lng + arrowOffset * Math.cos(heading * (Math.PI / 180));
+
+           // Add the arrow marker
+           this._directionArrow = L.marker([arrowLat, arrowLng], { icon: arrowIcon }).addTo(leafletMap);
+        }
+
+    } catch (e) {
+        console.error("Error updating satellite:", e);
+    }
+};
+
+/**
+ * Compute bearing (heading) between two lat/lng points
+ */
+function getBearing(lat1, lng1, lat2, lng2) {
+    let phi1 = lat1 * Math.PI / 180;
+    let phi2 = lat2 * Math.PI / 180;
+    let deltaPi = (lng2 - lng1) * Math.PI / 180;
+
+    let y = Math.sin(deltaPi) * Math.cos(phi2);
+    let x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaPi);
+    let theta = Math.atan2(y, x);
+
+    return (theta * 180 / Math.PI + 360) % 360; // Normalize to 0-360
+}
 
   /**
    * @returns {GeoJSON.Polygon} GeoJSON describing the satellite's current footprint on the Earth
@@ -321,6 +449,7 @@ let sats = (function (L, d3, satelliteJs) {
     svgLayer = L.svg();
     leafletMap = L.map('sat_map', {
       zoom: 3,
+      minZoom: 1,
       center: [20, 0],
     //   attributionControl: false,
       layers: [
@@ -334,18 +463,33 @@ let sats = (function (L, d3, satelliteJs) {
 	satmarker = L.marker(
 		[0, 0], {
 			icon: saticon,
-			title: satellite,
 			zIndex: 1000,
 		}
 	).addTo(leafletMap).on('click', displayUpComingPasses);
+
+	pastmarker = L.marker(
+		[0, 0], {
+			icon: pasticon,
+			zIndex: 1000,
+		}
+	);
+	pastmarker.bindTooltip("-90 min", { permanent: true, offset: [15, 15], className: '', opacity: 0.65 });
+
+	futuremarker = L.marker(
+		[0, 0], {
+			icon: futureicon,
+			zIndex: 1000,
+		}
+	);
+	futuremarker.bindTooltip("+90 min", { permanent: true, offset: [15, 15], className: '', opacity: 0.65 });
 
 	// Add an always-visible label (tooltip)
 	satmarker.bindTooltip(satellite, {
 		permanent: true,  // Always visible
 		direction: "top", // Position label above the marker
 		offset: [0, -20], // Adjust position
+		title: satellite,
 		className: "satellite-label" // Optional: Custom CSS
-		// className: "leaflet-popup-content-wrapper" // Optional: Custom CSS
 	});
 
 	L.marker(
@@ -369,6 +513,9 @@ let sats = (function (L, d3, satelliteJs) {
         html += '<tr><td><span>Azimuth</span></td><td align="right"><span id="az"></span></td></tr>';
         html += '<tr><td><span>Elevation</span></td><td align="right"><span id="ele"></span></td></tr>';
 		html += '<tr><td><span>Gridsquare</span></td><td align="right"><span id="grid"></span></td></tr>';
+		html += '<tr><td><span>Status</span></td><td align="right"><span id="status"></span></td></tr>';
+		html += '<tr><td><span id="LAOS">AOS Az</span></td><td align="right"><span id="osaz"></span></td></tr>';
+		html += '<tr><td><span>Visible</span></td><td align="right"><span id="visibility"></span></td></tr>';
         html += '<tr><td><input type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"></td><td><span> ' + lang_gen_hamradio_gridsquares + '</span></td></tr>';
         html += "</table>";
         div.innerHTML = html;
@@ -395,23 +542,74 @@ let sats = (function (L, d3, satelliteJs) {
 	function updateSats(date) {
 		sats.forEach(function (sat) {
 			sat.setDate(date).update();
-			let az = (Math.round((sat._lookAngles.azimuth*100),2)/100).toFixed(2);
-			let ele = (Math.round((sat._lookAngles.elevation*100),2)/100).toFixed(2);
-			if (ele > 0) {
-				az = "<b>"+az+"°</b>";
-				ele = "<b>"+ele+"°</b>";
-			} else {
-				az = az+"°";
-				ele = ele+"°";
+			let az = (Math.round((sat._lookAngles.azimuth * 10), 2) / 10).toFixed(1);
+			let ele = (Math.round((sat._lookAngles.elevation * 10), 2) / 10).toFixed(1);
+
+			if (ele > 0) { // Satellite is in view
+				let [nextLOS,losaz] = findNextEvent(sat, date, 1440, "LOS");
+				$("#status").html(nextLOS ? `LOS in ${nextLOS}` : "No LOS found in next 24h");
+				$("#visibility").html("<div class='bg-success awards BgSuccess text-center'>Yes</div>");
+				$("#LAOS").html('LOS Az');
+				$("#osaz").html(losaz !== null ? losaz+'&deg;' : 'n/a');
+			} else { // Satellite is below horizon
+				let [nextAOS,aosaz] = findNextEvent(sat, date, 1440, "AOS");
+				$("#status").html(nextAOS ? `AOS in ${nextAOS}` : "No AOS found in next 24h");
+				$("#visibility").html("<div class='bg-danger awards BgDanger text-center'>No</div>");
+				$("#LAOS").html('AOS Az');
+				$("#osaz").html(aosaz !== null ? aosaz+'&deg;' : 'n/a');
 			}
+
+			az = "<b>" + az + "°</b>";
+			ele = "<b>" + ele + "°</b>";
+
 			$("#az").html(az);
 			$("#ele").html(ele);
 			$("#satorbit").html(sat.getOrbitType());
-			$("#satalt").html(Math.round(sat.altitude() * 1,60934)+" km");
-			$("#grid").html(latLngToLocator(sat._position.lat,sat._position.lng));
+			$("#satalt").html(Math.round(sat.altitude()) + " km");
+			$("#grid").html(latLngToLocator(sat._position.lat, sat._position.lng));
 		});
-		return;
-	};
+	}
+
+	function findNextEvent(sat, observerDate, maxMinutesAhead = 1440, eventType = "AOS") {
+		let stepSeconds = 1;
+		let currentTime = new Date(observerDate);
+
+		let lastElevation = -90; // Default below horizon
+		for (let t = 0; t <= maxMinutesAhead * 60; t += stepSeconds) {
+			let futureTime = new Date(currentTime.getTime() + t * 1000);
+			let gmst = satelliteJs.gstime(futureTime);
+			let positionAndVelocity = satelliteJs.propagate(sat._satrec, futureTime);
+			if (!positionAndVelocity.position) continue;
+
+			let positionGd = satelliteJs.eciToGeodetic(positionAndVelocity.position, gmst);
+			let positionEcf = satelliteJs.eciToEcf(positionAndVelocity.position, gmst);
+			let lookAngles = satelliteJs.ecfToLookAngles(observerGd, positionEcf);
+			let elevation = lookAngles.elevation;
+
+			if (eventType === "AOS" && lastElevation <= 0 && elevation > 0) {
+				let timeDiff = Math.round((futureTime - currentTime) / 1000); // Seconds
+				let aosaz = (Math.round((satelliteJs.radiansToDegrees(lookAngles.azimuth) * 10), 2) / 10).toFixed(1);
+				return [formatCountdown(timeDiff), aosaz];
+			}
+
+			if (eventType === "LOS" && lastElevation > 0 && elevation <= 0) {
+				let timeDiff = Math.round((futureTime - currentTime) / 1000); // Seconds
+				let losaz = (Math.round((satelliteJs.radiansToDegrees(lookAngles.azimuth) * 10), 2) / 10).toFixed(1);
+				return [formatCountdown(timeDiff),losaz];
+			}
+
+			lastElevation = elevation; // Store previous elevation
+		}
+		return [null,null]; // No event found
+	}
+
+	function formatCountdown(seconds) {
+		let min = Math.floor(seconds / 60);
+		let sec = seconds % 60;
+		return `${min}m ${sec}s`;
+	}
+
+
 
   /**
    * Create satellite objects for each record in the TLEs and begin animation
@@ -483,13 +681,17 @@ let sats = (function (L, d3, satelliteJs) {
   };
 
   function animateSats(elapsed) {
-    let dateInMs = activeClock.elapsed(elapsed).date();
-    let date = new Date(dateInMs);
-    attributionControl.setPrefix(date);
+	  let dateInMs = activeClock.elapsed(elapsed).date();
+	  let date = new Date(dateInMs);
+	  attributionControl.setPrefix(date);
 
-    updateSats(date);
-    draw();
-    window.requestAnimationFrame(animateSats);
+	  if (dateInMs - lastUpdateTime >= 1000) { // Only update every 1 second
+		  updateSats(date);
+		  lastUpdateTime = dateInMs;
+	  }
+
+	  draw();
+	  window.requestAnimationFrame(animateSats);
   }
 
   function start(data) {
@@ -589,6 +791,9 @@ function displayUpComingPasses(e) {
 							}
 						]
 					});
+					$('.satelliteinfo').click(function (event) {
+						getSatelliteInfo(this);
+					});
 				},
 				buttons: [{
 				label: lang_admin_close,
@@ -602,4 +807,32 @@ function displayUpComingPasses(e) {
 			dialog.open();
 		}
 	});
+}
+
+function getSatelliteInfo(element) {
+	var satname = $(element).closest('td').contents().first().text().trim();
+	$.ajax({
+        url: base_url + 'index.php/satellite/getSatelliteInfo',
+        type: 'post',
+        data: {'sat': satname,
+        },
+        success: function (html) {
+			BootstrapDialog.show({
+				title: 'Satellite information',
+				size: BootstrapDialog.SIZE_WIDE,
+				cssClass: 'information-dialog',
+				nl2br: false,
+				message: html,
+				buttons: [{
+					label: lang_admin_close,
+					action: function (dialogItself) {
+						dialogItself.close();
+					}
+				}]
+			});
+        },
+        error: function(e) {
+
+        }
+    });
 }

@@ -22,46 +22,52 @@ foreach ($result as $mode => $value) {
 			}
 		}
 	}
+	if (strtoupper($mode) == strtoupper($current_mode)) {
+		$showRow = true;
+	}
 
 	if ($showRow) {
-		echo '<tr>
-				<td>'. strtoupper($mode) .'</td>';
-		foreach ($value as $key => $val) {
-			switch($type) {
-				// function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl) {
+		echo '<tr><td>' . strtoupper($mode) . '</td>';
 
-				case 'dxcc': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $dxcc).'","' . $key . '","All","All","' . $mode . '","DXCC2")\'>'  . $val . '</a>'; break;
-				case 'iota': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $iota).'","' . $key . '","All","All","' . $mode . '","IOTA")\'>'   . $val . '</a>'; break;
-				case 'vucc': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $grid).'","' . $key . '","All","All","' . $mode . '","VUCC")\'>'   . $val . '</a>'; break;
-				case 'cq':  $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $cqz).'","'  . $key . '","All","All","' . $mode . '","CQZone")\'>' . $val . '</a>'; break;
-				case 'was':  $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $was).'","'  . $key . '","All","All","' . $mode . '","WAS")\'>'    . $val . '</a>'; break;
-				case 'sota': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $sota).'","' . $key . '","All","All","' . $mode . '","SOTA")\'>'   . $val . '</a>'; break;
-				case 'pota': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $pota).'","' . $key . '","All","All","' . $mode . '","POTA")\'>'   . $val . '</a>'; break;
-				case 'wwff': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $wwff).'","' . $key . '","All","All","' . $mode . '","WWFF")\'>'   . $val . '</a>'; break;
-				case 'itu': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $ituz).'","' . $key . '","All","All","' . $mode . '","ITU")\'>'   . $val . '</a>'; break;
-				case 'continent': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $continent).'","' . $key . '","All","All","' . $mode . '","WAC")\'>'   . $val . '</a>'; break;
-			}
+		$typeMapping = [
+			'dxcc' => $dxcc,
+			'iota' => $iota,
+			'vucc' => substr(trim($grid), 0, 4),
+			'cq' => $cqz,
+			'was' => $was,
+			'sota' => $sota,
+			'wwff' => $wwff,
+			'itu' => $ituz,
+			'continent' => $continent,
+			'pota' => $pota,
+			'dxcc2' => $dxcc
+		];
 
-			if ($current_band == $key && strtoupper($current_mode )== strtoupper($mode)) {
-				$info = '<td class=\'border-3 border-danger\'>';
-			} else {
-				$info = '<td>';
-			}
-
-			if ($val == 'W') {
-				$info .= '<div class=\'bg-danger awardsBgDanger\'>' . $linkinfo . '</div>';
-			}
-			else if ($val == 'C') {
-				$info .= '<div class=\'bg-success awardsBgSuccess\'>' . $linkinfo . '</div>';
-			}
-			else {
-				$info .= $val;
-			}
-
-			$info .= '</td>';
-
-			echo $info;
+		if ($type == 'dxcc') {
+			$type = 'dxcc2';
 		}
+
+		foreach ($value as $key => $val) {
+			$searchPhrase = isset($typeMapping[$type]) ? str_replace("&", "%26", $typeMapping[$type]) : '';
+
+			$linkinfo = $searchPhrase
+				? "<a href='javascript:displayContacts(\"$searchPhrase\",\"$key\",\"All\",\"All\",\"$mode\",\"" . strtoupper($type) . "\")'>$val</a>"
+				: $val;
+
+			$tdClass = ($current_band == $key && strtoupper($current_mode) == strtoupper($mode))
+				? "class='border-3 border-danger'"
+				: '';
+
+			$content = $val;
+			if ($val === 'W') {
+				$content = "<div class='bg-danger awardsBgDanger'>$linkinfo</div>";
+			} elseif ($val === 'C') {
+				$content = "<div class='bg-success awardsBgSuccess'>$linkinfo</div>";
+			}
+
+			echo "<td $tdClass>$content</td>";
+		}
+
 		echo '</tr>';
 	}
 }

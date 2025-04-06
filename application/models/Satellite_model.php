@@ -12,6 +12,21 @@ class Satellite_model extends CI_Model {
 		return $this->db->query($sql)->result();
 	}
 
+	function get_satellite_information($satname = null) {
+		$bindings = [];
+		$sql = "select satellite.id, satellite.name as satname, satellitemode.name as modename, satellite.displayname, satellite.orbit, satellite.lotw as lotw, tle.updated, satellitemode.uplink_mode, satellitemode.downlink_mode, FORMAT((satellitemode.uplink_freq / 1000000), 3) AS uplink_freq, FORMAT((satellitemode.downlink_freq / 1000000), 3) AS downlink_freq
+		from satellite
+		left outer join satellitemode on satellite.id = satellitemode.satelliteid
+		left outer join tle on satellite.id = tle.satelliteid ";
+
+		if ($satname != null) {
+			$sql .= " where satellite.name = ? ";
+			$bindings[] = $satname;
+		}
+
+		return $this->db->query($sql, $bindings)->result();
+	}
+
 	function get_all_satellites_with_tle() {
 		$sql = "select satellite.id, satellite.name as satname, tle.tle
 		from satellite
@@ -45,6 +60,33 @@ class Satellite_model extends CI_Model {
 
 		// Delete Satellite
 		$this->db->delete('satellite', array('id' => $clean_id));
+	}
+
+
+	function deleteTle($id) {
+		// Delete TLE
+		$this->db->delete('tle', array('satelliteid' => $id));
+	}
+
+	function saveTle($id, $tle) {
+		$tlelines = explode("\n", trim($tle)); // Trim to remove extra spaces or newlines
+		$lineCount = count($tlelines);
+
+		if ($lineCount === 3) {
+			$tleline1 = trim($tlelines[1]); // First data line
+			$tleline2 = trim($tlelines[2]); // Second data line
+		} else {
+			$tleline1 = trim($tlelines[0]);
+			$tleline2 = trim($tlelines[1]);
+		}
+
+		$data = array(
+			'satelliteid' 	=> $id,
+			'tle'			=> $tleline1 . "\n" . $tleline2,
+		);
+		$this->db->insert('tle', $data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
 	}
 
 	function deleteSatMode($id) {
@@ -147,7 +189,7 @@ class Satellite_model extends CI_Model {
 	}
 
 	function get_tle($sat) {
-		$this->db->select('satellite.name AS satellite, tle.tle');
+		$this->db->select('satellite.name AS satellite, tle.tle, tle.updated');
 		$this->db->join('tle', 'satellite.id = tle.satelliteid');
 		$this->db->where('name', $sat);
 		$query = $this->db->get('satellite');
