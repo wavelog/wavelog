@@ -600,6 +600,7 @@ function reset_to_default() {
 	$("#sat_mode").val("");
 	$("#ant_az").val("");
 	$("#ant_el").val("");
+	$("#distance").val("");
 	stop_az_ele_ticker();
 }
 
@@ -649,6 +650,7 @@ function reset_fields() {
 	$('#qso-last-table').show();
 	$('#partial_view').hide();
 	$('.callsign-suggest').hide();
+	$("#distance").val("");
 	setRst($(".mode").val());
 	var $select = $('#sota_ref').selectize();
 	var selectize = $select[0].selectize;
@@ -1716,6 +1718,7 @@ function resetDefaultQSOFields() {
 	$('#locator_info').text("");
 	$('#country').val("");
 	$('#continent').val("");
+	$("#distance").val("");
 	$('#email').val("");
 	$('#region').val("");
 	$('#dxcc_id').val("").multiselect('refresh');
