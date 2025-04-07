@@ -206,6 +206,9 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'qslmsg' || column == 'stationpower') {
 		value = $("#editTextInput").val();
 	}
+	if (column == 'distance') {
+		value = $("#editDistanceInput").val();
+	}
 
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/saveBatchEditQsos',
@@ -258,6 +261,8 @@ function changeEditType(type) {
 	$('#editEqsl').hide();
 	$('#editRegion').hide();
 	$('#editClublog').hide();
+	$('#editDistanceInputLabel').hide();
+	$('#editDistanceInput').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -309,6 +314,9 @@ function changeEditType(type) {
 		$('#editClublog').show();
 	} else if (type == "") {
 		$('#saveButton').prop("disabled", true);
+	} else if (type == "distance") {
+		$('#editDistanceInput').show();
+		$('#editDistanceInputLabel').show();
 	}
 }
 
