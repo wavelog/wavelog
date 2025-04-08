@@ -99,7 +99,7 @@ class Counties extends CI_Model
 
 		$bandslots_list = "'".implode("','",$bandslots)."'";
 
-        $sql = "select distinct COL_CNTY, COL_STATE
+        $sql = "select distinct UPPER(COL_CNTY) AS COL_CNTY, COL_STATE
                 from " . $this->config->item('table_name') . " thcv
                  where station_id in (" . $location_list . ")" .
                  " and col_band in (" . $bandslots_list . ")" .
