@@ -1,5 +1,7 @@
 /application/config/database.php
 /application/config/config.php
+/application/config/*/config.php
+/application/config/*/database.php
 /application/logs/*
 /application/cache/*
 /backup/*.adi
@@ -25,5 +27,3 @@ sync.sh
 .demo
 .htaccess
 .user.ini
-/application/config/*/config.php
-/application/config/*/database.php
