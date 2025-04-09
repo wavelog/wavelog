@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-04 05:15+0000\n"
+"POT-Creation-Date: 2025-04-09 08:17+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -477,8 +477,8 @@ msgid "POTA"
 msgstr "POTA"
 
 #: application/controllers/Awards.php:596
-msgid "CQ Magazine WAZ"
-msgstr "CQ Magazin WAZ"
+msgid "CQ WAZ (Worked All Zones)"
+msgstr ""
 
 #: application/controllers/Awards.php:657
 #: application/views/accumulate/index.php:54
@@ -4695,13 +4695,11 @@ msgstr "Diploma US County"
 #: application/views/awards/counties/index.php:8
 #, php-format
 msgid ""
-"The United States of America Counties Award (USA-CA), sponsored by CQ "
-"magazine, is issued for confirmed two-way radio contacts with specified "
-"numbers of U.S. counties under rules and conditions you can find %s."
+"The United States of America Counties Award (USA-CA), sponsored by MARAC "
+"(Mobile Amateur Radio Awards Club), is issued for confirmed two-way radio "
+"contacts with specified numbers of U.S. counties under rules and conditions "
+"you can find %s."
 msgstr ""
-"United States of America Counties Award (USA-CA), sponzorisana od strane CQ "
-"Maganzina, izdaje se za potvrđene veze sa određenim brojem U.S.A. okruga pod "
-"uslovima koje možete pronaći %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -4782,36 +4780,33 @@ msgid "Hover over a zone"
 msgstr "Pomerite miša preko CQ zone / ITU zone"
 
 #: application/views/awards/cq/index.php:20
-msgid "CQ Magazine WAZ Award"
-msgstr "CQ Magazin WAZ Award"
+msgid "CQ WAZ (Worked All Zones) Award"
+msgstr ""
 
 #: application/views/awards/cq/index.php:21
 msgid ""
-"The CQ Magazine is located in the US and one of the most popular amateur "
-"radio magazines in the world. The magazine first appeared in January 1945 "
-"and focuses on awards and the practical aspects of amateur radio."
+"The CQ Magazine was located in the US and one of the most popular amateur "
+"radio magazines in the world. They stopped service by the end of 2023. The "
+"magazine first appeared in January 1945 and focuses on awards and the "
+"practical aspects of amateur radio."
 msgstr ""
-"Sedište CQ Magazina je u USA i jedan je od najpopularnijih radio magazina na "
-"svetu. Prvi broj Magazina izdat je u januaru 1945. i težište mu je na "
-"diplomama i praktičnim aspektima amaterskog radija."
 
 #: application/views/awards/cq/index.php:22
 msgid ""
 "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to "
-"all 40 CQ Zones along with the corresponding confirmation."
+"all 40 CQ Zones along with the corresponding confirmation. Since the CQ "
+"Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
+"N4BAA."
 msgstr ""
-"WAZ Award znači \"Worked All Zones\" i zahteva radio-kontakte sa svih 40 CQ "
-"Zona, uz povrđene podatke o vezama."
 
 #: application/views/awards/cq/index.php:23
 #, php-format
-msgctxt "uses 'CQ Magazine'"
-msgid "You can find all the information and rules on the Website of the %s."
-msgstr "Informacije i pravila možete pronaći na web sajtu %s."
+msgid "You can find all the information and rules on the Website of N4BAA: %s"
+msgstr ""
 
 #: application/views/awards/cq/index.php:25
-msgid "Awards - CQ Magazine WAZ"
-msgstr "Diplome - CQ Magazin WAZ"
+msgid "Awards - CQ WAZ"
+msgstr ""
 
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
@@ -5373,7 +5368,6 @@ msgid "Canton"
 msgstr "Kanton"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
-#: application/views/interface_assets/header.php:174
 #: application/views/qso/award_tabs.php:29
 msgid "CQ"
 msgstr "CQ"
@@ -8959,6 +8953,10 @@ msgstr ""
 #: application/views/interface_assets/header.php:172
 msgid "International"
 msgstr "Međunarodno"
+
+#: application/views/interface_assets/header.php:174
+msgid "CQ WAZ"
+msgstr ""
 
 #: application/views/interface_assets/header.php:178
 msgid "ITU"
@@ -14656,6 +14654,46 @@ msgstr "Pošaljite zahtev"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid "CQ Magazine WAZ"
+#~ msgstr "CQ Magazin WAZ"
+
+#, php-format
+#~ msgid ""
+#~ "The United States of America Counties Award (USA-CA), sponsored by CQ "
+#~ "magazine, is issued for confirmed two-way radio contacts with specified "
+#~ "numbers of U.S. counties under rules and conditions you can find %s."
+#~ msgstr ""
+#~ "United States of America Counties Award (USA-CA), sponzorisana od strane "
+#~ "CQ Maganzina, izdaje se za potvrđene veze sa određenim brojem U.S.A. "
+#~ "okruga pod uslovima koje možete pronaći %s."
+
+#~ msgid "CQ Magazine WAZ Award"
+#~ msgstr "CQ Magazin WAZ Award"
+
+#~ msgid ""
+#~ "The CQ Magazine is located in the US and one of the most popular amateur "
+#~ "radio magazines in the world. The magazine first appeared in January 1945 "
+#~ "and focuses on awards and the practical aspects of amateur radio."
+#~ msgstr ""
+#~ "Sedište CQ Magazina je u USA i jedan je od najpopularnijih radio magazina "
+#~ "na svetu. Prvi broj Magazina izdat je u januaru 1945. i težište mu je na "
+#~ "diplomama i praktičnim aspektima amaterskog radija."
+
+#~ msgid ""
+#~ "The WAZ Award stands for 'Worked All Zones' and requires radio contacts "
+#~ "to all 40 CQ Zones along with the corresponding confirmation."
+#~ msgstr ""
+#~ "WAZ Award znači \"Worked All Zones\" i zahteva radio-kontakte sa svih 40 "
+#~ "CQ Zona, uz povrđene podatke o vezama."
+
+#, php-format
+#~ msgctxt "uses 'CQ Magazine'"
+#~ msgid "You can find all the information and rules on the Website of the %s."
+#~ msgstr "Informacije i pravila možete pronaći na web sajtu %s."
+
+#~ msgid "Awards - CQ Magazine WAZ"
+#~ msgstr "Diplome - CQ Magazin WAZ"
 
 #~ msgid "Altitude (meters)"
 #~ msgstr "Visina (metri)"
