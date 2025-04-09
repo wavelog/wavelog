@@ -35,7 +35,8 @@
 
 	<h2><?php echo $page_title; ?></h2>
 
-	<form class="d-flex align-items-center">
+	<?php if ($satellites) { ?>
+		<form class="d-flex align-items-center">
 			<label class="my-1 me-2" id="satslabel" for="distplot_sats"><?= __("Satellite"); ?></label>
 			<select class="form-select my-1 me-sm-2 w-auto"  id="sats" onchange="plot_sat()">
 				<?php foreach($satellites as $sat) {
@@ -44,12 +45,17 @@
 					echo '>' . $sat->satname . '</option>'."\n";
 				} ?>
 			</select>
+		</form>
+
+		<?php } else { ?>
+			<?= "No satellites with TLE found. Please update via CRON or satellite page."; ?>
+		<?php } ?>
 
 
-	</form>
 
 </div>
-
-<div id="satcontainer">
-	<div id="sat_map" class="map-leaflet" style="width: 100%; height: 85vh"></div>
-</div>
+<?php if ($satellites) { ?>
+	<div id="satcontainer">
+		<div id="sat_map" class="map-leaflet" style="width: 100%; height: 85vh"></div>
+	</div>
+<?php } ?>
