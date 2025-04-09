@@ -171,7 +171,7 @@
 							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item dropdown-toggle dropdown-toggle-submenu" data-bs-toggle="dropdown" href="#"><i class="fas fa-globe"></i> <?= __("International"); ?></a>
 									<ul class="submenu dropdown-menu">
-										<li><a class="dropdown-item" href="<?php echo site_url('awards/cq'); ?>"><i class="fas fa-trophy"></i> <?= __("CQ"); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/cq'); ?>"><i class="fas fa-trophy"></i> <?= __("CQ WAZ"); ?></a></li>
 										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/dxcc'); ?>"><i class="fas fa-trophy"></i> <?= __("DXCC"); ?></a></li>
 										<div class="dropdown-divider"></div>
