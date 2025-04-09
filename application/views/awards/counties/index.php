@@ -5,7 +5,7 @@
             <script>
             var lang_awards_info_button = "<?= __("Award Info"); ?>";
             var lang_award_info_ln1 = "<?= __("US County Award"); ?>";
-            var lang_award_info_ln2 = "<?= sprintf(__("The United States of America Counties Award (USA-CA), sponsored by CQ magazine, is issued for confirmed two-way radio contacts with specified numbers of U.S. counties under rules and conditions you can find %s."), "<a href='https://cq-amateur-radio.com/cq_awards/cq_usa_ca_awards/cq_usa_ca_awards.html' target='_blank'>" . __("here") . "</a>"); ?>";
+            var lang_award_info_ln2 = "<?= sprintf(__("The United States of America Counties Award (USA-CA), sponsored by MARAC (Mobile Amateur Radio Awards Club), is issued for confirmed two-way radio contacts with specified numbers of U.S. counties under rules and conditions you can find %s."), "<a href='http://www.marac.org/' target='_blank'>" . __("here") . "</a>"); ?>";
             var lang_award_info_ln3 = "<?= __("USA-CA is available to all licensed amateurs worldwide and is issued to individuals for all county contacts made, regardless of callsigns used, operating locations, or dates."); ?>";
             var lang_award_info_ln4 = "<?= __("Special USA-CA awards are also available to SWLs on a heard basis."); ?>";
             </script>
