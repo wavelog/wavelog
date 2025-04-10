@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-04 05:15+0000\n"
+"POT-Creation-Date: 2025-04-09 08:17+0000\n"
 "PO-Revision-Date: 2025-03-26 08:18+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -480,8 +480,8 @@ msgid "POTA"
 msgstr "POTA"
 
 #: application/controllers/Awards.php:596
-msgid "CQ Magazine WAZ"
-msgstr "CQ Magazine WAZ"
+msgid "CQ WAZ (Worked All Zones)"
+msgstr ""
 
 #: application/controllers/Awards.php:657
 #: application/views/accumulate/index.php:54
@@ -4768,14 +4768,11 @@ msgstr "Premio del Condado de EE. UU"
 #: application/views/awards/counties/index.php:8
 #, php-format
 msgid ""
-"The United States of America Counties Award (USA-CA), sponsored by CQ "
-"magazine, is issued for confirmed two-way radio contacts with specified "
-"numbers of U.S. counties under rules and conditions you can find %s."
+"The United States of America Counties Award (USA-CA), sponsored by MARAC "
+"(Mobile Amateur Radio Awards Club), is issued for confirmed two-way radio "
+"contacts with specified numbers of U.S. counties under rules and conditions "
+"you can find %s."
 msgstr ""
-"El Premio de Condados de los Estados Unidos de América (USA-CA), patrocinado "
-"por la revista CQ, se otorga por contactos de radio bidireccionales "
-"confirmados con un número especificado de condados de EE. UU. bajo reglas y "
-"condiciones que puedes encontrar %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -4857,38 +4854,33 @@ msgid "Hover over a zone"
 msgstr "Pasa el cursor sobre una zona CQ/ITU"
 
 #: application/views/awards/cq/index.php:20
-msgid "CQ Magazine WAZ Award"
-msgstr "Premio WAZ de la revista CQ"
+msgid "CQ WAZ (Worked All Zones) Award"
+msgstr ""
 
 #: application/views/awards/cq/index.php:21
 msgid ""
-"The CQ Magazine is located in the US and one of the most popular amateur "
-"radio magazines in the world. The magazine first appeared in January 1945 "
-"and focuses on awards and the practical aspects of amateur radio."
+"The CQ Magazine was located in the US and one of the most popular amateur "
+"radio magazines in the world. They stopped service by the end of 2023. The "
+"magazine first appeared in January 1945 and focuses on awards and the "
+"practical aspects of amateur radio."
 msgstr ""
-"La revista CQ se encuentra en los EE. UU. y es una de las revistas de "
-"radioaficionados más populares del mundo. La revista apareció por primera "
-"vez en enero de 1945 y se centra en premios y aspectos prácticos de la "
-"radioafición."
 
 #: application/views/awards/cq/index.php:22
 msgid ""
 "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to "
-"all 40 CQ Zones along with the corresponding confirmation."
+"all 40 CQ Zones along with the corresponding confirmation. Since the CQ "
+"Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
+"N4BAA."
 msgstr ""
-"El premio WAZ significa 'Worked All Zones' y requiere contactos de radio con "
-"las 40 zonas CQ junto con la confirmación correspondiente."
 
 #: application/views/awards/cq/index.php:23
 #, php-format
-msgctxt "uses 'CQ Magazine'"
-msgid "You can find all the information and rules on the Website of the %s."
+msgid "You can find all the information and rules on the Website of N4BAA: %s"
 msgstr ""
-"Puedes encontrar toda la información y las reglas en el sitio web del %s."
 
 #: application/views/awards/cq/index.php:25
-msgid "Awards - CQ Magazine WAZ"
-msgstr "Premios - CQ Magazine WAZ"
+msgid "Awards - CQ WAZ"
+msgstr ""
 
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
@@ -5454,7 +5446,6 @@ msgid "Canton"
 msgstr "Cantón"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
-#: application/views/interface_assets/header.php:174
 #: application/views/qso/award_tabs.php:29
 msgid "CQ"
 msgstr "CQ"
@@ -9122,6 +9113,10 @@ msgstr "Estadísticas de indicativos"
 #: application/views/interface_assets/header.php:172
 msgid "International"
 msgstr "Internacional"
+
+#: application/views/interface_assets/header.php:174
+msgid "CQ WAZ"
+msgstr ""
 
 #: application/views/interface_assets/header.php:178
 msgid "ITU"
@@ -14939,6 +14934,49 @@ msgstr "Enviar solicitud"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recibido"
+
+#~ msgid "CQ Magazine WAZ"
+#~ msgstr "CQ Magazine WAZ"
+
+#, php-format
+#~ msgid ""
+#~ "The United States of America Counties Award (USA-CA), sponsored by CQ "
+#~ "magazine, is issued for confirmed two-way radio contacts with specified "
+#~ "numbers of U.S. counties under rules and conditions you can find %s."
+#~ msgstr ""
+#~ "El Premio de Condados de los Estados Unidos de América (USA-CA), "
+#~ "patrocinado por la revista CQ, se otorga por contactos de radio "
+#~ "bidireccionales confirmados con un número especificado de condados de EE. "
+#~ "UU. bajo reglas y condiciones que puedes encontrar %s."
+
+#~ msgid "CQ Magazine WAZ Award"
+#~ msgstr "Premio WAZ de la revista CQ"
+
+#~ msgid ""
+#~ "The CQ Magazine is located in the US and one of the most popular amateur "
+#~ "radio magazines in the world. The magazine first appeared in January 1945 "
+#~ "and focuses on awards and the practical aspects of amateur radio."
+#~ msgstr ""
+#~ "La revista CQ se encuentra en los EE. UU. y es una de las revistas de "
+#~ "radioaficionados más populares del mundo. La revista apareció por primera "
+#~ "vez en enero de 1945 y se centra en premios y aspectos prácticos de la "
+#~ "radioafición."
+
+#~ msgid ""
+#~ "The WAZ Award stands for 'Worked All Zones' and requires radio contacts "
+#~ "to all 40 CQ Zones along with the corresponding confirmation."
+#~ msgstr ""
+#~ "El premio WAZ significa 'Worked All Zones' y requiere contactos de radio "
+#~ "con las 40 zonas CQ junto con la confirmación correspondiente."
+
+#, php-format
+#~ msgctxt "uses 'CQ Magazine'"
+#~ msgid "You can find all the information and rules on the Website of the %s."
+#~ msgstr ""
+#~ "Puedes encontrar toda la información y las reglas en el sitio web del %s."
+
+#~ msgid "Awards - CQ Magazine WAZ"
+#~ msgstr "Premios - CQ Magazine WAZ"
 
 #~ msgid "Altitude (meters)"
 #~ msgstr "Altitud (metros)"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-04 05:15+0000\n"
-"PO-Revision-Date: 2025-03-31 04:51+0000\n"
+"POT-Creation-Date: 2025-04-09 08:17+0000\n"
+"PO-Revision-Date: 2025-04-06 17:11+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -475,8 +475,8 @@ msgid "POTA"
 msgstr "POTA"
 
 #: application/controllers/Awards.php:596
-msgid "CQ Magazine WAZ"
-msgstr "CQ Magazine WAZ"
+msgid "CQ WAZ (Worked All Zones)"
+msgstr ""
 
 #: application/controllers/Awards.php:657
 #: application/views/accumulate/index.php:54
@@ -837,7 +837,7 @@ msgstr "SOTA CSV-export"
 #: application/controllers/Dashboard.php:130
 #: application/controllers/Visitor.php:134
 msgid "Dashboard"
-msgstr ""
+msgstr "Instrumentpanel"
 
 #: application/controllers/Dayswithqso.php:17
 #: application/views/dayswithqso/index.php:2
@@ -847,31 +847,31 @@ msgstr "Dagar med QSOs"
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
-msgstr ""
+msgstr "Felsöka"
 
 #: application/controllers/Debug.php:155
 msgid "Migrate data now"
-msgstr ""
+msgstr "Migrera data nu"
 
 #: application/controllers/Debug.php:158
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "Migreringen är redan klar. Köra igen?"
 
 #: application/controllers/Debug.php:162
 msgid "No data to migrate"
-msgstr ""
+msgstr "Inga data att migrera"
 
 #: application/controllers/Debug.php:166 application/controllers/Debug.php:171
 msgid "No migration possible"
-msgstr ""
+msgstr "Ingen migration möjlig"
 
 #: application/controllers/Debug.php:236
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelog uppdaterades framgångsrikt!"
 
 #: application/controllers/Debug.php:254
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr ""
+msgstr "Selfupdate() är inte tillgänglig. Kontrollera felloggen."
 
 #: application/controllers/Debug.php:298
 msgid ""
@@ -879,16 +879,19 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
+"Filöverföringen var framgångsrik, men kontrollera också manuellt. Om allt "
+"verkar rätt kan du ta bort mapparna 'assets/qslcard' och 'images/"
+"eqsl_card_images'."
 
 #: application/controllers/Debug.php:301
 msgid "File Migration failed. Please check the Error Log."
-msgstr ""
+msgstr "Filöverföring misslyckades. Kontrollera felloggen."
 
 #: application/controllers/Distancerecords.php:67
 #: application/controllers/Distancerecords.php:86
 #: application/views/interface_assets/header.php:154
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "Satellitavståndsrekord"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -900,77 +903,77 @@ msgstr "Arbetade avstånd"
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
 msgid "QSOs with"
-msgstr ""
+msgstr "QSOn med"
 
 #: application/controllers/Distances.php:83
 msgid "and band"
-msgstr ""
+msgstr "och band"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
-msgstr ""
+msgstr "och utbredning"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:441
 msgid "DX Atlas Gridsquare Export"
-msgstr ""
+msgstr "DX Atlas Gridsquare Export"
 
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:267
 msgid "DX Calendar"
-msgstr ""
+msgstr "DX Kalender"
 
 #: application/controllers/Eqsl.php:34
 #: application/views/dashboard/index.php:386
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
-msgstr ""
+msgstr "eQSL-kort"
 
 #: application/controllers/Eqsl.php:127
 msgid "eQSL Import"
-msgstr ""
+msgstr "eQSL-import"
 
 #: application/controllers/Eqsl.php:137
 msgid "eQSL Import Information"
-msgstr ""
+msgstr "eQSL Importinformation"
 
 #: application/controllers/Eqsl.php:154
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "eQSL-smeknamn i stationsprofiler är inte definierade!"
 
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
-msgstr ""
+msgstr "eQSL QSO-uppladdning"
 
 #: application/controllers/Eqsl.php:173
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "Du har inte definierat dina eQSL.cc-uppgifter!"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "Användarnamn/lösenord fel för eQSL"
 
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "Inget sådant eQSL QTH Smeknamn: %s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
-msgstr ""
+msgstr "eQSL-verktyg"
 
 #: application/controllers/Eqsl.php:485
 msgid " / Errors: "
-msgstr ""
+msgstr " / Fel: "
 
 #: application/controllers/Eqsl.php:485
 msgid "Successfully downloaded: "
-msgstr ""
+msgstr "Framgångsrikt nedladdad: "
 
 #: application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
-msgstr ""
+msgstr "eQSL-kortbildnedladdning"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:146
@@ -984,107 +987,107 @@ msgstr "Totala gridsquares arbetade"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
-msgstr ""
+msgstr "Hamsat - Satellit Roving"
 
 #: application/controllers/Hrdlog.php:74
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d QSO är nu uppladdat till HRDlog"
+msgstr[1] "%d QSOs är nu uppladdade till HRDlog"
 
 #: application/controllers/Hrdlog.php:79
 msgid "No QSOs found to upload."
-msgstr ""
+msgstr "Inga QSOn hittades för att ladda upp."
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:439
 #: application/views/kml/index.php:3
 msgid "KML Export"
-msgstr ""
+msgstr "KML-export"
 
 #: application/controllers/Labels.php:40 application/views/labels/index.php:30
 msgid "QSL Card Labels"
-msgstr ""
+msgstr "QSL-kortetiketter"
 
 #: application/controllers/Labels.php:71
 msgid "Create Label Type"
-msgstr ""
+msgstr "Skapa etikett typ"
 
 #: application/controllers/Labels.php:78 application/controllers/Labels.php:419
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
-msgstr ""
+msgstr "Etikett Namn"
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:420
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:76
 msgid "Paper Type"
-msgstr ""
+msgstr "Papperstyp"
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:421
 #: application/views/labels/index.php:42 application/views/labels/index.php:77
 msgid "Measurement"
-msgstr ""
+msgstr "Mått"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:422
 msgid "Top Margin"
-msgstr ""
+msgstr "Övre marginal"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:423
 msgid "Left Margin"
-msgstr ""
+msgstr "Vänster marginal"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:424
 msgid "QSLs Horizontally"
-msgstr ""
+msgstr "QSL-kort horisontellt"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:425
 msgid "QSLs Vertically"
-msgstr ""
+msgstr "QSL-kort vertikalt"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:426
 msgid "Horizontal Space"
-msgstr ""
+msgstr "Horisontellt utrymme"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:427
 msgid "Vertical Space"
-msgstr ""
+msgstr "Vertikalt utrymme"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:428
 msgid "Label width"
-msgstr ""
+msgstr "Etikettbredd"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:429
 msgid "Label height"
-msgstr ""
+msgstr "Etiketthöjd"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:430
 msgid "Size of Font"
-msgstr ""
+msgstr "Teckenstorlek"
 
 #: application/controllers/Labels.php:90 application/controllers/Labels.php:431
 msgid "Number of QSOs on label"
-msgstr ""
+msgstr "Antal QSOn på etiketten"
 
 #: application/controllers/Labels.php:115
 msgid "Create Paper Type"
-msgstr ""
+msgstr "Skapa papperstyp"
 
 #: application/controllers/Labels.php:119
 #: application/controllers/Labels.php:478
 msgid "Paper Name"
-msgstr ""
+msgstr "Pappersnamn"
 
 #: application/controllers/Labels.php:120
 #: application/controllers/Labels.php:479
 msgid "Paper Width"
-msgstr ""
+msgstr "Pappersbredd"
 
 #: application/controllers/Labels.php:121
 #: application/controllers/Labels.php:480
 msgid "Paper Height"
-msgstr ""
+msgstr "Pappershöjd"
 
 #: application/controllers/Labels.php:132
 #: application/controllers/Labels.php:488
@@ -1092,16 +1095,18 @@ msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
 msgstr ""
+"Din papperstyp kunde inte sparas. Kom ihåg att den inte kan ha samma namn "
+"som en befintlig papperstyp."
 
 #: application/controllers/Labels.php:209
 #: application/controllers/Labels.php:212
 msgid "You need to assign a paperType to the label before printing"
-msgstr ""
+msgstr "Du måste tilldela en papperstyp till etiketten innan du skriver ut"
 
 #: application/controllers/Labels.php:219
 #: application/controllers/Labels.php:222
 msgid "You need to create a label and set it to be used for print."
-msgstr ""
+msgstr "Du måste skapa en etikett och välja den för utskrift."
 
 #: application/controllers/Labels.php:229
 #: application/controllers/Labels.php:232
@@ -1109,34 +1114,36 @@ msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
 msgstr ""
+"Något gick fel! Etiketten kunde inte genereras. Kontrollera etikettstorlek "
+"och teckenstorlek."
 
 #: application/controllers/Labels.php:255
 msgid "0 QSOs found for print!"
-msgstr ""
+msgstr "0 QSOn hittades för utskrift!"
 
 #: application/controllers/Labels.php:408
 msgid "Edit Label"
-msgstr ""
+msgstr "Redigera etikett"
 
 #: application/controllers/Labels.php:437
 msgid "Label was saved."
-msgstr ""
+msgstr "Etiketten sparades."
 
 #: application/controllers/Labels.php:445
 msgid "Label was deleted."
-msgstr ""
+msgstr "Etiketten raderades."
 
 #: application/controllers/Labels.php:467
 msgid "Edit Paper"
-msgstr ""
+msgstr "Redigera papper"
 
 #: application/controllers/Labels.php:492
 msgid "Paper was saved."
-msgstr ""
+msgstr "Pappret sparades."
 
 #: application/controllers/Labels.php:505
 msgid "Paper was deleted."
-msgstr ""
+msgstr "Papperet raderades."
 
 #: application/controllers/Logbook.php:37
 msgid ""
@@ -1182,7 +1189,7 @@ msgstr "Loggbok"
 #: application/views/timeline/index.php:56 application/views/user/edit.php:602
 #: application/views/user/edit.php:706
 msgid "QSL"
-msgstr ""
+msgstr "QSL"
 
 #: application/controllers/Logbook.php:664
 #: application/views/activated_gridmap/index.php:66
@@ -1217,7 +1224,7 @@ msgstr ""
 #: application/views/user/edit.php:716 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
 msgid "LoTW"
-msgstr ""
+msgstr "LoTW"
 
 #: application/controllers/Logbook.php:667
 #: application/views/activated_gridmap/index.php:74
@@ -1249,7 +1256,7 @@ msgstr ""
 #: application/views/timeline/index.php:64 application/views/user/edit.php:604
 #: application/views/user/edit.php:724 application/views/user/edit.php:790
 msgid "eQSL"
-msgstr ""
+msgstr "eQSL"
 
 #: application/controllers/Logbook.php:1282
 #: application/controllers/Radio.php:46
@@ -1324,7 +1331,7 @@ msgstr ""
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
 msgid "Mode"
-msgstr ""
+msgstr "Trafiksätt"
 
 #: application/controllers/Logbook.php:1283
 #: application/views/awards/73on73/index.php:37
@@ -1352,7 +1359,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
 msgid "RST (S)"
-msgstr ""
+msgstr "RST (S)"
 
 #: application/controllers/Logbook.php:1284
 #: application/views/awards/73on73/index.php:36
@@ -1381,7 +1388,7 @@ msgstr ""
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
 msgid "RST (R)"
-msgstr ""
+msgstr "RST (R)"
 
 #: application/controllers/Logbook.php:1285
 #: application/views/dashboard/index.php:7
@@ -1430,7 +1437,7 @@ msgstr "Land"
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
 msgid "IOTA"
-msgstr ""
+msgstr "IOTA"
 
 #: application/controllers/Logbook.php:1290
 #: application/views/awards/counties/details.php:12
@@ -1458,7 +1465,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
 msgid "State"
-msgstr ""
+msgstr "Delstat"
 
 #: application/controllers/Logbook.php:1291
 #: application/views/activated_gridmap/index.php:106
@@ -1501,7 +1508,7 @@ msgstr ""
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
 msgid "Gridsquare"
-msgstr ""
+msgstr "Rutnätsruta"
 
 #: application/controllers/Logbook.php:1292
 #: application/views/activated_gridmap/index.php:108
@@ -1527,7 +1534,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
 msgid "Distance"
-msgstr ""
+msgstr "Avstånd"
 
 #: application/controllers/Logbook.php:1293
 #: application/views/accumulate/index.php:21
@@ -1603,7 +1610,7 @@ msgstr ""
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
 msgid "Band"
-msgstr ""
+msgstr "Band"
 
 #: application/controllers/Logbook.php:1294
 #: application/controllers/Radio.php:45 application/views/bandmap/list.php:120
@@ -1679,11 +1686,11 @@ msgstr "Struket DXCC"
 
 #: application/controllers/Logbookadvanced.php:31
 msgid "Advanced logbook"
-msgstr ""
+msgstr "Avancerad loggbok"
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
-msgstr ""
+msgstr "Snabb uppslagning"
 
 #: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
 #: application/controllers/Lotw.php:125 application/views/adif/import.php:27
@@ -1692,19 +1699,19 @@ msgstr ""
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:762 application/views/visitor/index.php:328
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/controllers/Lotw.php:150
 msgid "Certificate Imported."
-msgstr ""
+msgstr "Certifikat importerat."
 
 #: application/controllers/Lotw.php:157
 msgid "Certificate Updated."
-msgstr ""
+msgstr "Certifikat uppdaterat."
 
 #: application/controllers/Lotw.php:383
 msgid "Certificate Deleted."
-msgstr ""
+msgstr "Certifikat raderat."
 
 #: application/controllers/Lotw.php:412
 #, php-format
@@ -1712,65 +1719,67 @@ msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
+"Hittade inget certifikat i filen %s. Om filnamnet innehåller 'key-only' är "
+"detta vanligtvis en certifikatförfrågan som ännu inte har behandlats av LoTW."
 
 #: application/controllers/Lotw.php:645
 msgid "LoTW ADIF Information"
-msgstr ""
+msgstr "LoTW ADIF-information"
 
 #: application/controllers/Lotw.php:811 application/controllers/Lotw.php:814
 #, php-format
 msgid "LoTW login failed for user %s: %s."
-msgstr ""
+msgstr "LoTW-inloggning misslyckades för användare %s: %s."
 
 #: application/controllers/Lotw.php:814
 msgid "Username/password incorrect"
-msgstr ""
+msgstr "Användarnamn/lösenord felaktigt"
 
 #: application/controllers/Lotw.php:817
 msgid "LoTW login OK!"
-msgstr ""
+msgstr "LoTW-inloggning OK!"
 
 #: application/controllers/Lotw.php:821
 msgid "LoTW currently not available. Try again later."
-msgstr ""
+msgstr "LoTW är för närvarande inte tillgänglig. Försök igen senare."
 
 #: application/controllers/Lotw.php:826
 msgid "No LoTW credentials provided."
-msgstr ""
+msgstr "Inga LoTW detaljer angivna."
 
 #: application/controllers/Lotw.php:844
 msgid "LoTW ADIF Import"
-msgstr ""
+msgstr "LoTW ADIF-import"
 
 #: application/controllers/Lotw.php:870 application/controllers/Lotw.php:978
 msgid "You have not defined your ARRL LoTW credentials!"
-msgstr ""
+msgstr "Du har inte angivit dina ARRL LoTW-uppgifter!"
 
 #: application/controllers/Lotw.php:945
 msgid "LoTW .TQ8 Upload"
-msgstr ""
+msgstr "LoTW .TQ8 uppladdning"
 
 #: application/controllers/Lotw.php:1023
 msgid "Your ARRL username and/or password is incorrect."
-msgstr ""
+msgstr "Ditt ARRL-användarnamn och/eller lösenord är felaktigt."
 
 #: application/controllers/Lotw.php:1042 application/controllers/Lotw.php:1047
 msgid "LoTW .TQ8 Sent"
-msgstr ""
+msgstr "LoTW .TQ8 skickad"
 
 #: application/controllers/Lotw.php:1054
 msgid "LoTW .TQ8 Not Sent"
-msgstr ""
+msgstr "LoTW .TQ8 Ej skickad"
 
 #: application/controllers/Mode.php:25
 #: application/views/interface_assets/header.php:292
 #: application/views/mode/index.php:27
 msgid "Modes"
-msgstr ""
+msgstr "Trafiksätt"
 
 #: application/controllers/Mode.php:62
 msgid "Edit Mode"
-msgstr ""
+msgstr "Redigera Trafiksätt"
 
 #: application/controllers/Notes.php:18
 #: application/views/interface_assets/header.php:134
@@ -1786,12 +1795,12 @@ msgstr "Anteckningar"
 
 #: application/controllers/Notes.php:37
 msgid "Add Notes"
-msgstr ""
+msgstr "Lägg till anteckningar"
 
 #: application/controllers/Notes.php:64
 #: application/views/oqrs/showrequests.php:88
 msgid "Note"
-msgstr ""
+msgstr "Anteckning"
 
 #: application/controllers/Notes.php:92 application/views/notes/edit.php:7
 #: application/views/notes/view.php:19
@@ -1832,17 +1841,17 @@ msgstr "Utseende"
 #: application/controllers/Options.php:107
 #: application/controllers/Options.php:115
 msgid "Options saved"
-msgstr ""
+msgstr "Alternativ sparade"
 
 #: application/controllers/Options.php:126
 #: application/controllers/Options.php:137
 #: application/views/options/sidebar.php:12
 msgid "Hams Of Note"
-msgstr ""
+msgstr "Kända radioamatörer"
 
 #: application/controllers/Options.php:152
 msgid "Hams-Of-Note URL changed to "
-msgstr ""
+msgstr "Kända radioamatörer URL ändrades till "
 
 #: application/controllers/Options.php:188
 msgid "de continent changed to "
@@ -1873,11 +1882,11 @@ msgstr "E-post"
 
 #: application/controllers/Options.php:320
 msgid "The settings were saved successfully."
-msgstr ""
+msgstr "Inställningarna sparades framgångsrikt."
 
 #: application/controllers/Options.php:322
 msgid "Something went wrong with saving the settings. Try again."
-msgstr ""
+msgstr "Något gick fel vid sparandet av inställningarna. Försök igen."
 
 #: application/controllers/Options.php:333
 #: application/controllers/Options.php:343
@@ -1892,65 +1901,66 @@ msgstr "OQRS-alternativ har sparats."
 #: application/controllers/Options.php:396
 #: application/controllers/Options.php:401
 msgid "Testmail failed. Something went wrong."
-msgstr ""
+msgstr "Testmail misslyckades. Något gick fel."
 
 #: application/controllers/Options.php:398
 msgid "Testmail sent. Email settings seem to be correct."
-msgstr ""
+msgstr "Testmail skickad. E-postinställningarna verkar vara korrekta."
 
 #: application/controllers/Options.php:410
 #: application/controllers/Options.php:429
 #: application/views/options/sidebar.php:11
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Kartrutor Server"
 
 #: application/controllers/Options.php:488
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
 msgstr ""
+"Kartrutor cache kunde inte tas bort. Ta bort mappen manuellt. Sökväg: %s"
 
 #: application/controllers/Options.php:492
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "Kartrutor alternativ sparade!"
 
 #: application/controllers/Options.php:494
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "Kartrutor alternativ kunde inte sparas!"
 
 #: application/controllers/Options.php:505
 #: application/controllers/Options.php:515
 msgid "Version Info Settings"
-msgstr ""
+msgstr "Versionsinformation Inställningar"
 
 #: application/controllers/Options.php:521
 msgid "Version Info Header changed to"
-msgstr ""
+msgstr "Versionsinfohuvud ändrades till"
 
 #: application/controllers/Options.php:525
 msgid "Version Info Mode changed to"
-msgstr ""
+msgstr "Versionsinfoläge ändrad till"
 
 #: application/controllers/Options.php:530
 msgid "Version Info Custom Text saved!"
-msgstr ""
+msgstr "Versionsinformation anpassad text sparad!"
 
 #: application/controllers/Options.php:541
 msgid "Version Info will be shown to all users again"
-msgstr ""
+msgstr "Versionsinformation kommer att visas för alla användare igen"
 
 #: application/controllers/Options.php:549
 msgid "Version Info will not be shown to any user"
-msgstr ""
+msgstr "Versionsinformation kommer inte att visas för någon användare"
 
 #: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:92
 #: application/controllers/Oqrs.php:104
 msgid "Log Search & OQRS"
-msgstr ""
+msgstr "Loggsökning & OQRS"
 
 #: application/controllers/Oqrs.php:67
 msgid "Invalid Station ID"
-msgstr ""
+msgstr "Ogiltigt stations-ID"
 
 #: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:466
@@ -1959,45 +1969,47 @@ msgstr "OQRS Förfrågningar"
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
-msgstr ""
+msgstr "QRB-kalkylator"
 
 #: application/controllers/Qrbcalc.php:49
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "Latitud: %s, Longitud: %s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Avståndet mellan %s och %s är %s mile."
+msgstr[1] "Avståndet mellan %s och %s är %s miles."
 
 #: application/controllers/Qrbcalc.php:57
-#, php-format
+#, fuzzy, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Avståndet mellan %s och %s är %s nautiska mil."
+msgstr[1] "Avståndet mellan %s och %s är %s nautiska mil."
 
 #: application/controllers/Qrbcalc.php:60
-#, php-format
+#, fuzzy, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Avståndet mellan %s och %s är %s kilometer."
+msgstr[1] "Avståndet mellan %s och %s är %s kilometer."
 
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "Bäringen är %s."
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
 msgstr ""
+"Negativa latituder är söder om ekvatorn, negativa longituder är väster om "
+"Greenwich."
 
 #: application/controllers/Qrz.php:204
 #: application/views/interface_assets/header.php:479
@@ -2006,11 +2018,11 @@ msgstr "QRZ Loggbok"
 
 #: application/controllers/Qrz.php:287
 msgid "QRZ QSL Import"
-msgstr ""
+msgstr "QRZ QSL-import"
 
 #: application/controllers/Qrz.php:344
 msgid "QRZ ADIF Information"
-msgstr ""
+msgstr "QRZ ADIF-information"
 
 #: application/controllers/Qsl.php:25 application/views/dashboard/index.php:321
 #: application/views/dashboard/index.php:338
@@ -2021,11 +2033,11 @@ msgstr "QSL-kort"
 
 #: application/controllers/Qsl.php:35
 msgid "Upload QSL Cards"
-msgstr ""
+msgstr "Ladda upp QSL-kort"
 
 #: application/controllers/Qslmanagement.php:14
 msgid "QSL Card Management"
-msgstr ""
+msgstr "Hantering av QSL-kort"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
@@ -2033,19 +2045,19 @@ msgstr "Skriv ut begärda QSL"
 
 #: application/controllers/Qso.php:107
 msgid "Add QSO"
-msgstr ""
+msgstr "Lägg till QSO"
 
 #: application/controllers/Qso.php:685
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "Du måste vara inloggad för att komma åt den här URL:en."
 
 #: application/controllers/Qso.php:691
 msgid "Call Transfer"
-msgstr ""
+msgstr "Överför Anropssignal"
 
 #: application/controllers/Qso.php:698
 msgid "No callsign provided."
-msgstr ""
+msgstr "Ingen anropssignal angiven."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:489
@@ -2057,11 +2069,11 @@ msgstr "Hårdvarugränssnitt"
 #: application/views/contesting/index.php:152
 #: application/views/qso/index.php:321
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: application/controllers/Radio.php:47
 msgid "Timestamp"
-msgstr ""
+msgstr "Tidsstämpel"
 
 #: application/controllers/Radio.php:49
 #: application/views/logbookadvanced/index.php:632
@@ -2075,25 +2087,25 @@ msgstr "Alternativ"
 #: application/controllers/Radio.php:50 application/views/debug/index.php:312
 #: application/views/qso/index.php:720
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: application/controllers/Radio.php:63
 msgid "UNKNOWN"
-msgstr ""
+msgstr "OKÄND"
 
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:156
 #: application/views/qso/index.php:325
 msgid "last updated"
-msgstr ""
+msgstr "senast uppdaterad"
 
 #: application/controllers/Radio.php:106 application/controllers/Radio.php:109
 msgid "Set as default radio"
-msgstr ""
+msgstr "Ställ in som standardradio"
 
 #: application/controllers/Radio.php:111
 msgid "Default (click to release)"
-msgstr ""
+msgstr "Standard (klicka för att släppa)"
 
 #: application/controllers/Radio.php:115
 #: application/controllers/Stationsetup.php:359
@@ -2143,28 +2155,28 @@ msgstr "Radera"
 
 #: application/controllers/Radio.php:122
 msgid "No CAT interfaced radios found."
-msgstr ""
+msgstr "Inga CAT-anslutna radioapparater hittades."
 
 #: application/controllers/Radio.php:137 application/views/radio/index.php:2
 msgid "Edit CAT Settings"
-msgstr ""
+msgstr "Redigera CAT-inställningar"
 
 #: application/controllers/Reg1test.php:22
 msgid "Export EDI"
-msgstr ""
+msgstr "Exportera EDI"
 
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
-msgstr ""
+msgstr "Skapa satellit"
 
 #: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
-msgstr ""
+msgstr "Redigera satellit"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
 msgid "You have no station locations. Go %s to create it!"
-msgstr ""
+msgstr "Du har inga stationplatser. Gå %s för att skapa en stationsplats!"
 
 #: application/controllers/Sattimers.php:41
 #: application/views/awards/counties/index.php:8
@@ -2173,12 +2185,12 @@ msgstr ""
 #: application/views/awards/was/index.php:23
 #: application/views/simplefle/index.php:16
 msgid "here"
-msgstr ""
+msgstr "här"
 
 #: application/controllers/Sattimers.php:44
 #: application/views/sattimers/index.php:13
 msgid "Satellite Timers"
-msgstr ""
+msgstr "Satellittimers"
 
 #: application/controllers/Search.php:19
 #: application/views/continents/index.php:49
@@ -2209,21 +2221,23 @@ msgstr ""
 
 #: application/controllers/Search.php:28
 msgid "Search & Filter Logbook"
-msgstr ""
+msgstr "Sök & filtrera loggbok"
 
 #: application/controllers/Search.php:58
 msgid "Incorrectly logged CQ zones"
-msgstr ""
+msgstr "Felaktigt loggade CQ-zoner"
 
 #: application/controllers/Search.php:70
 msgid "Incorrectly logged ITU zones"
-msgstr ""
+msgstr "Felaktigt loggade ITU-zoner"
 
 #: application/controllers/Search.php:82
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
 msgstr ""
+"QSOs obekräftade på LoTW, men anropssignalen har laddats upp till LoTW efter "
+"QSO-datum"
 
 #: application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
@@ -2236,7 +2250,7 @@ msgstr ""
 #: application/controllers/Visitor.php:476
 #: application/controllers/Widgets.php:68
 msgid "Unknown Public Page."
-msgstr ""
+msgstr "Okänd offentlig sida."
 
 #: application/controllers/Staticmap.php:150
 #: application/controllers/Visitor.php:76
@@ -2245,16 +2259,16 @@ msgstr ""
 #: application/controllers/Visitor.php:472
 #: application/controllers/Widgets.php:64
 msgid "Empty Logbook"
-msgstr ""
+msgstr "Tom loggbok"
 
 #: application/controllers/Station.php:37
 #: application/controllers/Stationsetup.php:226
 msgid "Create Station Location"
-msgstr ""
+msgstr "Skapa stationsplats"
 
 #: application/controllers/Station.php:52
 msgid "Edit Station Location: "
-msgstr ""
+msgstr "Redigera stationsplats: "
 
 #: application/controllers/Station.php:61 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
@@ -2273,20 +2287,20 @@ msgstr "Stationsplats"
 
 #: application/controllers/Station.php:80
 msgid "Duplicate Station Location:"
-msgstr ""
+msgstr "Duplicera stationsplats:"
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:405
 #: application/views/interface_assets/header.php:552
 msgid "Station Setup"
-msgstr ""
+msgstr "Stationsinställning"
 
 #: application/controllers/Stationsetup.php:50
 #: application/controllers/Stationsetup.php:68
 #: application/controllers/Stationsetup.php:395
 #: application/controllers/Stationsetup.php:409
 msgid "Not allowed"
-msgstr ""
+msgstr "Inte tillåtet"
 
 #: application/controllers/Stationsetup.php:72
 #: application/controllers/Stationsetup.php:86
@@ -2298,28 +2312,28 @@ msgstr ""
 #: application/views/qso/index.php:679 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:102
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: application/controllers/Stationsetup.php:159
 #: application/views/stationsetup/stationsetup.php:22
 msgid "Create Station Logbook"
-msgstr ""
+msgstr "Skapa stationsloggbok"
 
 #: application/controllers/Stationsetup.php:166
 msgid "Edit container name"
-msgstr ""
+msgstr "Redigera behållarens namn"
 
 #: application/controllers/Stationsetup.php:181
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Redigera länkade platser"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
-msgstr ""
+msgstr "Redigera besökarwebbplats"
 
 #: application/controllers/Stationsetup.php:212
 msgid "Error. Link is already in use!"
-msgstr ""
+msgstr "Fel. Länken används redan!"
 
 #: application/controllers/Stationsetup.php:253
 #: application/views/options/appearance.php:57
@@ -2336,19 +2350,19 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:491 application/views/user/edit.php:500
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiverad"
 
 #: application/controllers/Stationsetup.php:261
 #: application/views/stationsetup/stationsetup.php:44
 msgid "Set as Active Logbook"
-msgstr ""
+msgstr "Ange som aktiv loggbok"
 
 #: application/controllers/Stationsetup.php:263
 #: application/views/interface_assets/header.php:550
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
-msgstr ""
+msgstr "Aktiv loggbok"
 
 #: application/controllers/Stationsetup.php:270
 #: application/views/stationsetup/stationsetup.php:55
@@ -2356,31 +2370,34 @@ msgid ""
 "Are you sure you want to delete the following station logbook? You must re-"
 "link any locations linked here to another logbook.: "
 msgstr ""
+"Är du säker på att du vill radera följande stationsloggbok? Du måste länka "
+"om alla platser som är kopplade här till en annan loggbok. "
 
 #: application/controllers/Stationsetup.php:280
 #: application/views/stationsetup/stationsetup.php:65
 msgid "View Public Page for Logbook: "
-msgstr ""
+msgstr "Visa offentlig sida för loggbok: "
 
 #: application/controllers/Stationsetup.php:281
 msgid "Are you sure you want to delete the public slug?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort den offentliga sluggen?"
 
 #: application/controllers/Stationsetup.php:349
 #: application/views/stationsetup/stationsetup.php:154
 msgid ""
 "Are you sure you want to make the following station the active station: "
 msgstr ""
+"Är du säker på att du vill göra följande station till den aktiva stationen: "
 
 #: application/controllers/Stationsetup.php:349
 #: application/views/stationsetup/stationsetup.php:154
 msgid "Set Active"
-msgstr ""
+msgstr "Aktivera"
 
 #: application/controllers/Stationsetup.php:351
 #: application/views/stationsetup/stationsetup.php:156
 msgid "Active Station"
-msgstr ""
+msgstr "Aktiv station"
 
 #: application/controllers/Stationsetup.php:354
 #: application/views/interface_assets/header.php:117
@@ -2390,24 +2407,24 @@ msgstr ""
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
 msgid "QSO"
-msgstr ""
+msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:363
 #: application/views/stationsetup/stationsetup.php:185
 msgid "Are you sure you want to delete all QSOs within this station profile?"
-msgstr ""
+msgstr "Är du säker på att du vill radera alla QSOs inom denna stationsprofil?"
 
 #: application/controllers/Stationsetup.php:363
 #: application/views/stationsetup/stationsetup.php:136
 #: application/views/stationsetup/stationsetup.php:187
 msgid "Empty Log"
-msgstr ""
+msgstr "Tom logg"
 
 #: application/controllers/Stationsetup.php:367
 #: application/views/stationsetup/stationsetup.php:129
 #: application/views/stationsetup/stationsetup.php:168
 msgid "Copy"
-msgstr ""
+msgstr "Kopiera"
 
 #: application/controllers/Stationsetup.php:372
 #: application/views/stationsetup/stationsetup.php:191
@@ -2416,6 +2433,8 @@ msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
 "within this station profile."
 msgstr ""
+"Är du säker på att du vill ta bort stationsprofilen '%s'? Detta kommer att "
+"radera alla QSOs inom denna stationsprofil."
 
 #: application/controllers/Stationsetup.php:379
 #: application/views/qso/edit_ajax.php:236
@@ -2428,7 +2447,7 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
-msgstr ""
+msgstr "Redigera alternativ för exportkarta"
 
 #: application/controllers/Statistics.php:26
 #: application/views/interface_assets/header.php:140
@@ -2439,17 +2458,17 @@ msgstr "Statistik"
 #: application/views/interface_assets/header.php:144
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
-msgstr ""
+msgstr "QSL-statistik"
 
 #: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:142
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
-msgstr ""
+msgstr "Antennanalys"
 
 #: application/controllers/Statistics.php:305
 msgid "Satellite QSOs"
-msgstr ""
+msgstr "Satellit-QSOs"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:298
@@ -2458,11 +2477,11 @@ msgstr "Teman"
 
 #: application/controllers/Themes.php:46
 msgid "Create Theme"
-msgstr ""
+msgstr "Skapa tema"
 
 #: application/controllers/Themes.php:65
 msgid "Edit Theme"
-msgstr ""
+msgstr "Redigera tema"
 
 #: application/controllers/Timeline.php:15
 #: application/views/interface_assets/header.php:158
@@ -2478,27 +2497,27 @@ msgstr "Tidplotter"
 
 #: application/controllers/Update.php:26
 msgid "Updates"
-msgstr ""
+msgstr "Uppdateringar"
 
 #: application/controllers/Update.php:71
 msgid "Preparing DXCC-Entries: "
-msgstr ""
+msgstr "Förbereder DXCC-poster: "
 
 #: application/controllers/Update.php:136
 msgid "Preparing DXCC Exceptions: "
-msgstr ""
+msgstr "Förbereder DXCC-undantag: "
 
 #: application/controllers/Update.php:187
 msgid "Preparing DXCC Prefixes: "
-msgstr ""
+msgstr "Förbereder DXCC-prefix: "
 
 #: application/controllers/Update.php:275
 msgid "DONE"
-msgstr ""
+msgstr "KLAR"
 
 #: application/controllers/Update.php:289
 msgid "Updating..."
-msgstr ""
+msgstr "Uppdaterar..."
 
 #: application/controllers/Update.php:292
 msgid "Dxcc Entities:"
@@ -4242,7 +4261,7 @@ msgstr ""
 
 #: application/views/adif/import.php:307
 msgid "Ignore QSOs that cannot be matched."
-msgstr "Ignore QSOs that cannot be matched"
+msgstr "Ignorera QSOs som inte kan matchas."
 
 #: application/views/adif/import.php:309
 msgid ""
@@ -4623,9 +4642,10 @@ msgstr ""
 #: application/views/awards/counties/index.php:8
 #, php-format
 msgid ""
-"The United States of America Counties Award (USA-CA), sponsored by CQ "
-"magazine, is issued for confirmed two-way radio contacts with specified "
-"numbers of U.S. counties under rules and conditions you can find %s."
+"The United States of America Counties Award (USA-CA), sponsored by MARAC "
+"(Mobile Amateur Radio Awards Club), is issued for confirmed two-way radio "
+"contacts with specified numbers of U.S. counties under rules and conditions "
+"you can find %s."
 msgstr ""
 
 #: application/views/awards/counties/index.php:9
@@ -4702,30 +4722,32 @@ msgid "Hover over a zone"
 msgstr ""
 
 #: application/views/awards/cq/index.php:20
-msgid "CQ Magazine WAZ Award"
+msgid "CQ WAZ (Worked All Zones) Award"
 msgstr ""
 
 #: application/views/awards/cq/index.php:21
 msgid ""
-"The CQ Magazine is located in the US and one of the most popular amateur "
-"radio magazines in the world. The magazine first appeared in January 1945 "
-"and focuses on awards and the practical aspects of amateur radio."
+"The CQ Magazine was located in the US and one of the most popular amateur "
+"radio magazines in the world. They stopped service by the end of 2023. The "
+"magazine first appeared in January 1945 and focuses on awards and the "
+"practical aspects of amateur radio."
 msgstr ""
 
 #: application/views/awards/cq/index.php:22
 msgid ""
 "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to "
-"all 40 CQ Zones along with the corresponding confirmation."
+"all 40 CQ Zones along with the corresponding confirmation. Since the CQ "
+"Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
+"N4BAA."
 msgstr ""
 
 #: application/views/awards/cq/index.php:23
 #, php-format
-msgctxt "uses 'CQ Magazine'"
-msgid "You can find all the information and rules on the Website of the %s."
+msgid "You can find all the information and rules on the Website of N4BAA: %s"
 msgstr ""
 
 #: application/views/awards/cq/index.php:25
-msgid "Awards - CQ Magazine WAZ"
+msgid "Awards - CQ WAZ"
 msgstr ""
 
 #: application/views/awards/cq/index.php:34
@@ -5239,7 +5261,6 @@ msgid "Canton"
 msgstr ""
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
-#: application/views/interface_assets/header.php:174
 #: application/views/qso/award_tabs.php:29
 msgid "CQ"
 msgstr ""
@@ -8605,6 +8626,10 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:172
 msgid "International"
+msgstr ""
+
+#: application/views/interface_assets/header.php:174
+msgid "CQ WAZ"
 msgstr ""
 
 #: application/views/interface_assets/header.php:178
@@ -13152,7 +13177,7 @@ msgstr "WWFF auto lookup gridsquare och namn för reference."
 
 #: application/views/user/edit.php:427
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr "POTA auto lookup gridsquare  och namn för park."
+msgstr "POTA auto lookup gridsquare och namn för park."
 
 #: application/views/user/edit.php:436
 msgid "Number of previous contacts displayed on QSO page."
@@ -13910,7 +13935,7 @@ msgstr "QSL-kort har mottagits"
 
 #: application/views/view_log/qso.php:527
 msgid "This station uses LoTW."
-msgstr "Denna station använder LoTW. Den senaste uppladdningen var"
+msgstr "Denna station använder LoTW."
 
 #: application/views/view_log/qso.php:532
 #: application/views/view_log/qso.php:542
@@ -14071,6 +14096,9 @@ msgstr ""
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr ""
+
+#~ msgid "CQ Magazine WAZ"
+#~ msgstr "CQ Magazine WAZ"
 
 #~ msgid "Dashboard Map"
 #~ msgstr "Dashboard karta"
