@@ -48,7 +48,7 @@
 		</form>
 
 		<?php } else { ?>
-			<?= "No satellites with TLE found. Please update via CRON or satellite page. If you have no access to do this, ask your admin!"; ?>
+			<?= __("No satellites with TLE found. Please update via CRON or satellite page. If you have no access to do this, ask your admin!"); ?>
 		<?php } ?>
 
 
