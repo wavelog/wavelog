@@ -192,7 +192,15 @@ class Core
 		$template_path 	= 'config/config.php';
 		$output_path 	= '../application/config/config.php';
 		if (isset($_ENV['CI_ENV'])) {
-			$output_path 	= '../application/config/'.$_ENV['CI_ENV'].'/config.php';
+			$output_path = '../application/config/'.$_ENV['CI_ENV'].'/config.php';
+			$output_dir = dirname($output_path);
+			if (!is_dir($output_dir)) {
+				if (!mkdir($output_dir, 0755, true)) {
+					log_message('error', 'Failed to create directory: ' . $output_dir);
+					return false;
+				}
+				log_message('info', 'Directory created: ' . $output_dir);
+			}
 			log_message('info', 'CI_ENV is set to ' . $_ENV['CI_ENV'] . '. Using ' . $_ENV['CI_ENV'] . ' config.php config path.');
 		} else {
 			log_message('info', 'CI_ENV is not set. Using default config.php config path.');
