@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-03-12 13:41+0000\n"
+"POT-Creation-Date: 2025-04-13 16:15+0000\n"
 "PO-Revision-Date: 2025-03-24 08:20+0000\n"
 "Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.wavelog.org/projects/wavelog/"
@@ -196,7 +196,7 @@ msgstr "Wiki"
 msgid "Thank you for installing Wavelog!"
 msgstr "Köszönjük, hogy telepítetted a Wavelogot!"
 
-#: install/index.php:71 install/index.php:74 install/index.php:1032
+#: install/index.php:71 install/index.php:74 install/index.php:1033
 msgid "Language"
 msgstr "Nyelv"
 
@@ -204,7 +204,7 @@ msgstr "Nyelv"
 msgid "Select a language"
 msgstr "Nyelv kiválasztása"
 
-#: install/index.php:96 install/index.php:417
+#: install/index.php:96 install/index.php:418
 msgid "Close"
 msgstr "Bezárás"
 
@@ -352,32 +352,32 @@ msgstr ""
 "használhasd a hívójelkeresőt, XML előfizetésre lesz szükséged. A HamQTH nem "
 "mindig adja meg a lokátor adatait."
 
-#: install/index.php:368 install/index.php:449 install/index.php:901
+#: install/index.php:369 install/index.php:450 install/index.php:902
 msgid "Username"
 msgstr "Felhasználónév"
 
-#: install/index.php:371 install/index.php:453 install/index.php:911
+#: install/index.php:372 install/index.php:454 install/index.php:912
 msgid "Password"
 msgstr "Jelszó"
 
-#: install/index.php:376
+#: install/index.php:377
 msgid "Callbook Username"
 msgstr "Hívójellista Felhasználónév"
 
-#: install/index.php:379
+#: install/index.php:380
 msgid "Callbook Password"
 msgstr "Hívójellista Jelszó"
 
-#: install/index.php:381
+#: install/index.php:382
 #, php-format
 msgid "Password can't contain %s or be empty"
 msgstr "A jelszó nem tartalmazhat %s-t vagy nem lehet üres"
 
-#: install/index.php:386
+#: install/index.php:387
 msgid "Good to know:"
 msgstr "Jó tudni:"
 
-#: install/index.php:387
+#: install/index.php:388
 msgid ""
 "Use your callsign as your username for QRZ.com. The XML API does not support "
 "email addresses."
@@ -385,21 +385,21 @@ msgstr ""
 "Használd a hívójelét a QRZ.com felhasználóneveként. Az XML API nem támogatja "
 "az e-mail címeket."
 
-#: install/index.php:390 install/index.php:395
+#: install/index.php:391 install/index.php:396
 msgid "Advanced Settings"
 msgstr "Részletes beállítások"
 
-#: install/index.php:398
+#: install/index.php:399
 msgid "These settings should only be set if you know what you're doing."
 msgstr ""
 "Ezeket a beállításokat csak akkor érdemes megváltoztatni, ha tudod, mit "
 "csinálsz."
 
-#: install/index.php:401
+#: install/index.php:402
 msgid "Error Logs"
 msgstr "Hibanaplók"
 
-#: install/index.php:402
+#: install/index.php:403
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
@@ -408,27 +408,27 @@ msgstr ""
 "nagyobb értékének beállításával. Csak akkor engedélyezd ezt, ha valóban "
 "szüksége van rá."
 
-#: install/index.php:407
+#: install/index.php:408
 msgid "0 - No logs"
 msgstr "0 - Nincs naplózás"
 
-#: install/index.php:408
+#: install/index.php:409
 msgid "1 - Error messages"
 msgstr "1 - Hibaüzenetek"
 
-#: install/index.php:409
+#: install/index.php:410
 msgid "2 - Debug messages"
 msgstr "2 - Hibakeresési üzenetek"
 
-#: install/index.php:410
+#: install/index.php:411
 msgid "3 - Info messages"
 msgstr "3 - Információs üzenetek"
 
-#: install/index.php:411
+#: install/index.php:412
 msgid "4 - All messages"
 msgstr "4 - Minden üzenet"
 
-#: install/index.php:433
+#: install/index.php:434
 msgid ""
 "To properly install Wavelog you already should have setup a mariadb/mysql "
 "database. Provide the parameters here."
@@ -436,41 +436,41 @@ msgstr ""
 "A Wavelog megfelelő telepítéséhez be kell állítanod egy mariadb/mysql "
 "adatbázist. Itt add meg a paramétereket."
 
-#: install/index.php:437
+#: install/index.php:438
 msgid "Hostname or IP"
 msgstr "Hostnév vagy IP"
 
-#: install/index.php:437
+#: install/index.php:438
 msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
-"Általában 'localhost'.<br>Opcionálisan '[host]:[port]'. Alapértelmezett port:"
-" 3306.<br>Egy docker compose telepítésben írja be a hogy 'wavelog-db'."
+"Általában 'localhost'.<br>Opcionálisan '[host]:[port]'. Alapértelmezett "
+"port: 3306.<br>Egy docker compose telepítésben írja be a hogy 'wavelog-db'."
 
-#: install/index.php:443
+#: install/index.php:444
 msgid "Database Name"
 msgstr "Adatbázis neve"
 
-#: install/index.php:443
+#: install/index.php:444
 msgid "Name of the Database"
 msgstr "Az adatbázis neve"
 
-#: install/index.php:449
+#: install/index.php:450
 msgid "Username of the Database User which has full access to the database."
 msgstr ""
 "Az adatbázis-felhasználó felhasználóneve, aki teljes hozzáféréssel "
 "rendelkezik az adatbázishoz."
 
-#: install/index.php:453
+#: install/index.php:454
 msgid "Password of the Database User"
 msgstr "Az adatbázis-felhasználó jelszava"
 
-#: install/index.php:457
+#: install/index.php:458
 msgid "Connection Test"
 msgstr "Csatlakozási teszt"
 
-#: install/index.php:468
+#: install/index.php:469
 msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
@@ -479,138 +479,138 @@ msgstr ""
 "összes mezőt, és kattintsál a folytatás gombra. Ügyelj arra, hogy "
 "biztonságos jelszót használjál."
 
-#: install/index.php:469
+#: install/index.php:470
 msgid "All fields are required!"
 msgstr "Minden mező kitöltése kötelező!"
 
-#: install/index.php:477
+#: install/index.php:478
 msgid "First Name"
 msgstr "Keresztnév"
 
-#: install/index.php:481
+#: install/index.php:482
 msgid "DXCC"
 msgstr "DXCC"
 
-#: install/index.php:483
+#: install/index.php:484
 msgid "Please select one"
 msgstr "Kérjük, válasszál egyet"
 
-#: install/index.php:484 install/index.php:490 install/index.php:514
-#: install/index.php:526 install/index.php:529 install/index.php:534
-#: install/index.php:535 install/index.php:544 install/index.php:548
-#: install/index.php:563 install/index.php:576 install/index.php:577
-#: install/index.php:581 install/index.php:602 install/index.php:609
-#: install/index.php:611 install/index.php:612 install/index.php:614
-#: install/index.php:618 install/index.php:619 install/index.php:620
-#: install/index.php:624 install/index.php:625 install/index.php:644
-#: install/index.php:652 install/index.php:658 install/index.php:665
-#: install/index.php:666 install/index.php:672 install/index.php:674
-#: install/index.php:676 install/index.php:694 install/index.php:699
-#: install/index.php:700 install/index.php:714 install/index.php:729
-#: install/index.php:730 install/index.php:734 install/index.php:745
-#: install/index.php:746 install/index.php:751 install/index.php:755
-#: install/index.php:757 install/index.php:758 install/index.php:765
-#: install/index.php:780 install/index.php:782 install/index.php:799
-#: install/index.php:802 install/index.php:807 install/index.php:810
-#: install/index.php:813 install/index.php:823 install/index.php:829
-#: install/index.php:833 install/index.php:839 install/index.php:842
-#: install/index.php:845 install/index.php:850 install/index.php:876
-#: install/index.php:882 install/index.php:884 install/index.php:1690
+#: install/index.php:485 install/index.php:491 install/index.php:515
+#: install/index.php:527 install/index.php:530 install/index.php:535
+#: install/index.php:536 install/index.php:545 install/index.php:549
+#: install/index.php:564 install/index.php:577 install/index.php:578
+#: install/index.php:582 install/index.php:603 install/index.php:610
+#: install/index.php:612 install/index.php:613 install/index.php:615
+#: install/index.php:619 install/index.php:620 install/index.php:621
+#: install/index.php:625 install/index.php:626 install/index.php:645
+#: install/index.php:653 install/index.php:659 install/index.php:666
+#: install/index.php:667 install/index.php:673 install/index.php:675
+#: install/index.php:677 install/index.php:695 install/index.php:700
+#: install/index.php:701 install/index.php:715 install/index.php:730
+#: install/index.php:731 install/index.php:735 install/index.php:746
+#: install/index.php:747 install/index.php:752 install/index.php:756
+#: install/index.php:758 install/index.php:759 install/index.php:766
+#: install/index.php:781 install/index.php:783 install/index.php:800
+#: install/index.php:803 install/index.php:808 install/index.php:811
+#: install/index.php:814 install/index.php:824 install/index.php:830
+#: install/index.php:834 install/index.php:840 install/index.php:843
+#: install/index.php:846 install/index.php:851 install/index.php:877
+#: install/index.php:883 install/index.php:885 install/index.php:1691
 msgid "Deleted DXCC"
 msgstr "Törölt DXCC"
 
-#: install/index.php:891
+#: install/index.php:892
 msgid "Last Name"
 msgstr "Vezetéknév"
 
-#: install/index.php:895
+#: install/index.php:896
 msgid "Callsign"
 msgstr "Hívójel"
 
-#: install/index.php:905
+#: install/index.php:906
 msgid "Gridsquare/Locator"
 msgstr "Gridsquare/Lokátor"
 
-#: install/index.php:915
+#: install/index.php:916
 msgid "City"
 msgstr "Város"
 
-#: install/index.php:921
+#: install/index.php:922
 msgid "Confirm Password"
 msgstr "Jelszó megerősítése"
 
-#: install/index.php:925
+#: install/index.php:926
 msgid "Timezone"
 msgstr "Időzóna"
 
-#: install/index.php:1028
+#: install/index.php:1029
 msgid "E-Mail Address"
 msgstr "E-mail cím"
 
-#: install/index.php:1050
+#: install/index.php:1051
 msgid "Checklist"
 msgstr "Checklist"
 
-#: install/index.php:1055
+#: install/index.php:1056
 msgid "Pre-Checks"
 msgstr "Előzetes ellenőrzések"
 
-#: install/index.php:1064
+#: install/index.php:1065
 msgid "Configuration"
 msgstr "Konfiguráció"
 
-#: install/index.php:1073
+#: install/index.php:1074
 msgid "Database"
 msgstr "Adatbázis"
 
-#: install/index.php:1082
+#: install/index.php:1083
 msgid "First User"
 msgstr "Első felhasználó"
 
-#: install/index.php:1092
+#: install/index.php:1093
 msgid "Nearly done!"
 msgstr "Majdnem kész!"
 
-#: install/index.php:1094
+#: install/index.php:1095
 msgid "You prepared all neccessary steps."
 msgstr "Előkészítetted az összes szükséges lépést."
 
-#: install/index.php:1095
+#: install/index.php:1096
 msgid "We now can install Wavelog. This process can take a few minutes."
 msgstr ""
 "Most már telepíthetjük a Wavelogot. Ez a folyamat néhány percet vehet "
 "igénybe."
 
-#: install/index.php:1101
+#: install/index.php:1102
 msgid "Reset"
 msgstr "Reset"
 
-#: install/index.php:1106
+#: install/index.php:1107
 msgid "Installer Reset"
 msgstr "Installer Reset"
 
-#: install/index.php:1109
+#: install/index.php:1110
 msgid "Do you really want to reset all data and start from scratch?"
 msgstr ""
 "Tényleg vissza akarod állítani az összes adatot, és mindent elölről kezdeni?"
 
-#: install/index.php:1112
+#: install/index.php:1113
 msgid "Yes"
 msgstr "Igen"
 
-#: install/index.php:1113
+#: install/index.php:1114
 msgid "No"
 msgstr "Nem"
 
-#: install/index.php:1123
+#: install/index.php:1124
 msgid "Back"
 msgstr "Vissza"
 
-#: install/index.php:1124
+#: install/index.php:1125
 msgid "Continue"
 msgstr "Folytatás"
 
-#: install/index.php:1202
+#: install/index.php:1203
 msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
@@ -618,11 +618,11 @@ msgstr ""
 "Nem folytathatod. Oldd meg a pirossal jelölt problémákat, indítsd újra a "
 "webszerverét, és töltsd be újra ezt az oldalt."
 
-#: install/index.php:1329
+#: install/index.php:1330
 msgid "Password can't contain ' / \\ < >"
 msgstr "A jelszó nem tartalmazhat ' / \\ < >"
 
-#: install/index.php:1333
+#: install/index.php:1334
 msgid ""
 "The callsign should not contain any pre- or suffixes as it is used as "
 "personal operator callsign."
@@ -630,7 +630,7 @@ msgstr ""
 "A hívójel nem tartalmazhat elő- vagy utótagokat, mivel ez a személyes "
 "hívójeled lesz a redszerben."
 
-#: install/index.php:1345
+#: install/index.php:1346
 msgid ""
 "The callsign can not contain any special characters. It's your personal "
 "callsign without any pre- or suffixes."
@@ -638,20 +638,20 @@ msgstr ""
 "A hívójel nem tartalmazhat különleges karaktereket. Ez a te személyes "
 "hívójeled elő- vagy utótagok nélkül."
 
-#: install/index.php:1478
+#: install/index.php:1479
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
 "Hiba: Legalább a Hostnév/IP, az adatbázis neve és a felhasználónév szükséges."
 
-#: install/index.php:1488
+#: install/index.php:1489
 msgid "Connecting..."
 msgstr "Csatlakozás..."
 
-#: install/index.php:1512
+#: install/index.php:1513
 msgid "Connection was successful and your database should be compatible."
 msgstr "A kapcsolat sikeres volt, és az adatbázis kompatibilis."
 
-#: install/index.php:1516
+#: install/index.php:1517
 msgid ""
 "Connection was successful but your database seems too old for Wavelog. You "
 "can try to continue but you could run into issues."
@@ -659,20 +659,20 @@ msgstr ""
 "A kapcsolat sikeres volt, de az adatbázis túl öregnek tűnik a Waveloghoz. "
 "Megpróbálhatod folytatni, de problémákba ütközhetsz."
 
-#: install/index.php:1516
+#: install/index.php:1517
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
 msgstr "A minimális verzió a MySQL esetében %s, a MariaDB esetében %s."
 
-#: install/index.php:1636
+#: install/index.php:1637
 msgid "Search"
 msgstr "Keresés"
 
-#: install/index.php:1673
+#: install/index.php:1674
 msgid "At least one field is empty."
 msgstr "Legalább egy mező üres."
 
-#: install/index.php:1692
+#: install/index.php:1693
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -682,7 +682,7 @@ msgstr ""
 "érvényes. Ellenőrizd, hogy melyik DXCC a helyes az adott helyhez. Ha biztos "
 "vagy benne, hagyd figyelmen kívül ezt a figyelmeztetést."
 
-#: install/index.php:1716
+#: install/index.php:1717
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
@@ -690,7 +690,7 @@ msgstr ""
 "Úgy tűnik, hogy a Locator nem a megfelelő formátumban van. Úgy kellene "
 "kinéznie, mint AA11AA (6 karakteres rácsos helymeghatározó)."
 
-#: install/index.php:1730
+#: install/index.php:1731
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
@@ -698,35 +698,35 @@ msgstr ""
 "Az e-mail cím nem tűnik helyesnek. Győződjél meg róla, hogy érvényes e-mail "
 "címről van szó"
 
-#: install/index.php:1757
+#: install/index.php:1758
 msgid "Password should be at least 8 characters long"
 msgstr "A jelszónak legalább 8 karakter hosszúnak kell lennie"
 
-#: install/index.php:1766
+#: install/index.php:1767
 msgid "Passwords do not match"
 msgstr "A jelszavak nem egyeznek"
 
-#: install/index.php:1822
+#: install/index.php:1823
 msgid "Install Now"
 msgstr "Telepítse most"
 
-#: install/index.php:1826
+#: install/index.php:1827
 msgid "Install not possible. Checklist incomplete."
 msgstr "Telepítés nem lehetséges. Checklist hiányos."
 
-#: install/index.php:1938
+#: install/index.php:1939
 msgid "PHP Module missing"
 msgstr "PHP modul hiányzik"
 
-#: install/index.php:1940
+#: install/index.php:1941
 msgid "The following PHP modules are missing:"
 msgstr "A következő PHP modulok hiányoznak:"
 
-#: install/index.php:1941
+#: install/index.php:1942
 msgid "Without this module the Wavelog Installer does not work!"
 msgstr "E nélkül a modul nélkül a Wavelog telepítő nem működik!"
 
-#: install/index.php:1942
+#: install/index.php:1943
 msgid "Please install the required modules and restart the webserver."
 msgstr "Kérjük, telepítsd a szükséges modulokat és indítsd újra a webszervert."
 
