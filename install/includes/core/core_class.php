@@ -222,7 +222,7 @@ class Core
 		$new  = str_replace("%directory%", $data['directory'], $new);
 		$new  = str_replace("%callbook%", $data['global_call_lookup'], $new);
 
-		$callbooks = ['qrz', 'hamqth', 'qrzcq'];
+		$callbooks = ['qrz', 'hamqth', 'qrzcq', 'qrzru'];
 		
 		if (in_array($data['global_call_lookup'], $callbooks)) {
 			$c_username = '%' . $data['global_call_lookup'] . '_username%';
