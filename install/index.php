@@ -360,6 +360,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 													<option value="hamqth" selected>HamQTH</option>
 													<option value="qrz">QRZ.com</option>
 													<option value="qrzcq">QRZCQ.com</option>
+													<option value="qrzru">QRZ.ru</option>
 												</select>
 											</div>
 											<div class="row">
