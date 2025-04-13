@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-09 08:17+0000\n"
-"PO-Revision-Date: 2025-04-10 16:27+0000\n"
+"POT-Creation-Date: 2025-04-11 06:56+0000\n"
+"PO-Revision-Date: 2025-04-12 15:47+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/de/>\n"
@@ -3756,7 +3756,7 @@ msgstr "Anzeigen"
 #: application/views/interface_assets/header.php:192
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:255
-#: application/views/satellite/flightpath.php:41
+#: application/views/satellite/flightpath.php:40
 #: application/views/satellite/pass.php:47
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:7
@@ -4779,8 +4779,8 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"Der United States of America Counties Award (USA-CA), gesponsert von MARAC ("
-"Mobile Amateur Radio Awards Club), wird für bestätigte Zwei-Wege-"
+"Der United States of America Counties Award (USA-CA), gesponsert von MARAC "
+"(Mobile Amateur Radio Awards Club), wird für bestätigte Zwei-Wege-"
 "Funkkontakte mit einer bestimmten Anzahl von US-Countys unter den Regeln und "
 "Bedingungen vergeben, die du %s finden kannst."
 
@@ -9745,7 +9745,7 @@ msgstr "Sizilien"
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
-#: application/views/satellite/flightpath.php:13
+#: application/views/satellite/flightpath.php:11
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Locator"
@@ -12149,6 +12149,15 @@ msgstr "Satellit speichern"
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
 msgstr "Satellitenmodus hinzufügen"
+
+#: application/views/satellite/flightpath.php:51
+msgid ""
+"No satellites with TLE found. Please update via CRON or satellite page. If "
+"you have no access to do this, ask your admin!"
+msgstr ""
+"Keine Satelliten mit TLE Daten gefunden. Bitte über Cronmanager oder "
+"Satellitenseite aktualisieren. Wenn du keinen Zugriff darauf hast, frag "
+"deinen Admin!"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"

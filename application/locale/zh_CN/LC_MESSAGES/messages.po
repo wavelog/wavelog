@@ -15,11 +15,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-09 08:17+0000\n"
+"POT-Creation-Date: 2025-04-11 06:56+0000\n"
 "PO-Revision-Date: 2025-04-10 10:16+0000\n"
 "Last-Translator: Jian ke <bg8ixz@hotmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3677,7 +3677,7 @@ msgstr "显示"
 #: application/views/interface_assets/header.php:192
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:255
-#: application/views/satellite/flightpath.php:41
+#: application/views/satellite/flightpath.php:40
 #: application/views/satellite/pass.php:47
 #: application/views/satellite/passtable.php:6
 #: application/views/satellite/skedtable.php:7
@@ -4660,10 +4660,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
-"\""
-"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通联"
-"的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
+"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
+"效通联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -4752,8 +4751,8 @@ msgid ""
 "practical aspects of amateur radio."
 msgstr ""
 "《CQ》杂志（总部位于美国）曾是全球最具影响力的业余无线电期刊之一，已于 2023 "
-"年底结束运营。这份创刊于 1945 年 1 "
-"月的专业刊物，始终以推动业余无线电奖项体系发展和传播实用操作技术为核心内容。"
+"年底结束运营。这份创刊于 1945 年 1 月的专业刊物，始终以推动业余无线电奖项体系"
+"发展和传播实用操作技术为核心内容。"
 
 #: application/views/awards/cq/index.php:22
 msgid ""
@@ -9418,7 +9417,7 @@ msgstr "西西里岛"
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
-#: application/views/satellite/flightpath.php:13
+#: application/views/satellite/flightpath.php:11
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "网格"
@@ -11719,6 +11718,12 @@ msgstr "保存卫星"
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
 msgstr "添加卫星模式"
+
+#: application/views/satellite/flightpath.php:51
+msgid ""
+"No satellites with TLE found. Please update via CRON or satellite page. If "
+"you have no access to do this, ask your admin!"
+msgstr ""
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
