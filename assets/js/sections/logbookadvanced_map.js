@@ -329,12 +329,12 @@ function loadMap(data, iconsList) {
 
 		if (this.confirmed && iconsList.qsoconfirm.icon !== "0") {
 			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false});
-			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom'});
+			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom', className: "lba-label"});
 			marker2.addTo(map).bindPopup(popupmessage2);
 			linecolor = iconsList.qsoconfirm.color;
 		} else {
 			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false});
-			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom'});
+			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom', className: "lba-label"});
 			marker2.addTo(map).bindPopup(popupmessage2);
 			linecolor = iconsList.qso.color;
 		}
