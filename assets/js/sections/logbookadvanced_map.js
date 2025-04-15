@@ -124,6 +124,28 @@ function toggleGridsquares(bool) {
 	}
 };
 
+function toggleCallsigns(bool) {
+	if (!bool) {
+		map.eachLayer(function(l) {
+			if (l.getTooltip()) {
+				var tooltip = l.getTooltip();
+				l.unbindTooltip().bindTooltip(tooltip, {
+					permanent: false
+				})
+			}
+		});
+	} else {
+		map.eachLayer(function(l) {
+			if (l.getTooltip()) {
+				var tooltip = l.getTooltip();
+				l.unbindTooltip().bindTooltip(tooltip, {
+					permanent: true
+				})
+			}
+		});
+	}
+};
+
 const ituzonenames = [
 	["60","-160"],
 	["55","-125"],
@@ -232,16 +254,16 @@ function loadMap(data, iconsList) {
 		$(".coordinates").remove();
 		$("#lba_div").append('<div id="advancedmap" class="map-leaflet"></div>');
 		$("#lba_div").append('<div class="coordinates d-flex">' +
-        '<div class="cohidden">' + lang_gen_hamradio_latitude + '&nbsp;</div>' +
-        '<div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>' +
-        '<div class="cohidden">' + lang_gen_hamradio_longitude + '&nbsp;</div>' +
-        '<div class="cohidden col-auto text-success fw-bold" id="lngDeg"></div>' +
-        '<div class="cohidden">' + lang_gen_hamradio_gridsquare + '&nbsp;</div>' +
-        '<div class="cohidden col-auto text-success fw-bold" id="locator"></div>' +
-        '<div class="cohidden">' + lang_gen_hamradio_distance + '&nbsp;</div>' +
-        '<div class="cohidden col-auto text-success fw-bold" id="distance"></div>' +
-        '<div class="cohidden">' + lang_gen_hamradio_bearing + '&nbsp;</div>' +
-        '<div class="cohidden col-auto text-success fw-bold" id="bearing"></div>' +
+		'<div class="cohidden">' + lang_gen_hamradio_latitude + '&nbsp;</div>' +
+		'<div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>' +
+		'<div class="cohidden">' + lang_gen_hamradio_longitude + '&nbsp;</div>' +
+		'<div class="cohidden col-auto text-success fw-bold" id="lngDeg"></div>' +
+		'<div class="cohidden">' + lang_gen_hamradio_gridsquare + '&nbsp;</div>' +
+		'<div class="cohidden col-auto text-success fw-bold" id="locator"></div>' +
+		'<div class="cohidden">' + lang_gen_hamradio_distance + '&nbsp;</div>' +
+		'<div class="cohidden col-auto text-success fw-bold" id="distance"></div>' +
+		'<div class="cohidden">' + lang_gen_hamradio_bearing + '&nbsp;</div>' +
+		'<div class="cohidden col-auto text-success fw-bold" id="bearing"></div>' +
 		'<div class="cohidden">' + lang_gen_hamradio_cqzone + '&nbsp;</div>' +
 		'<div class="cohidden col-auto text-success fw-bold" id="cqzonedisplay"></div>' +
 		'<div class="cohidden">' + lang_gen_hamradio_ituzone + '&nbsp;</div>' +
@@ -306,10 +328,14 @@ function loadMap(data, iconsList) {
 		bounds.extend(lat_lng);
 
 		if (this.confirmed && iconsList.qsoconfirm.icon !== "0") {
-			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false});
+			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom', className: "lba-label"});
+			marker2.addTo(map).bindPopup(popupmessage2);
 			linecolor = iconsList.qsoconfirm.color;
 		} else {
-			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false});
+			marker2.bindTooltip(this.callsign.replaceAll('0', 'Ø'), {permanent: false, direction: 'bottom', className: "lba-label"});
+			marker2.addTo(map).bindPopup(popupmessage2);
 			linecolor = iconsList.qso.color;
 		}
 
@@ -344,6 +370,7 @@ function loadMap(data, iconsList) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div>' + counter + " QSO" +(counter > 1 ? 's' : '') +" plotted</div>";
 		div.innerHTML += '<input type="checkbox" onclick="toggleFunction(this.checked)" ' + (typeof path_lines !== 'undefined' && path_lines ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_pathlines + '</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleCallsigns(this.checked)" ' + (typeof callsign_layer !== 'undefined' && callsign_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_callsigns + '</span><br>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleCqZones(this.checked)" ' + (typeof cqzones_layer !== 'undefined' && cqzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_cq_zones + '</span><br>';
 		div.innerHTML += '<input type="checkbox" onclick="toggleItuZones(this.checked)" ' + (typeof ituzones_layer !== 'undefined' && ituzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_itu_zones + '</span><br>';
