@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-04-15 07:58+0000\n"
-"PO-Revision-Date: 2025-04-12 15:47+0000\n"
+"PO-Revision-Date: 2025-04-16 09:16+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4348,36 +4348,46 @@ msgid ""
 "from both your already imported ADIF file, as well as the CBR file you are "
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
+"Använd den här funktionen innan du ändrar några QSOn i Wavelog, eftersom den "
+"här funktionen använder Tävlings ID, samt datum- och tidsinformation från "
+"både din redan importerade ADIF-fil och CBR-filen du är på väg att ladda upp "
+"för att matcha QSOn och endast korrigera relevant data."
 
 #: application/views/adif/import.php:334
 msgid "Contest Name, only if Contest ID in CBR is different"
-msgstr ""
+msgstr "Tävlingens namn, endast om tävlings-ID i CBR är annorlunda"
 
 #: application/views/adif/import.php:334
 msgid "Optional"
-msgstr ""
+msgstr "Valfritt"
 
 #: application/views/adif/import.php:344
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
+"Ett serienummer är ALLTID en del av utbytet för båda parter i denna tävling."
 
 #: application/views/adif/import.php:346
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
+"Om du eller din partner bara ibland utbyter serienummer, lämna detta "
+"omarkerat."
 
 #: application/views/adif/import.php:347
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
 msgstr ""
+"Om det är omarkerat, kommer detta att radera det standardserienummer som ("
+"till exempel) N1MM+ producerar. Om det är markerat, kommer det att korrigera "
+"serienumret om det behövs."
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
-msgstr ""
+msgstr "ADIF-filen kunde inte tolkas korrekt."
 
 #: application/views/adif/import_failed.php:16
 msgid ""
@@ -4385,26 +4395,29 @@ msgid ""
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
 msgstr ""
+"Minst ett av ADIF-fälten kunde inte tolkas och/eller infogas i databasen. "
+"Kontrollera den importerade ADIF-filen. Du kan använda en online ADIF-"
+"filkontroll. Till exempel:"
 
 #: application/views/adif/import_success.php:17
 msgid "Yay, its imported!"
-msgstr ""
+msgstr "Jippie, den är importerad!"
 
 #: application/views/adif/import_success.php:18
 msgid "The ADIF File has been imported."
-msgstr ""
+msgstr "ADIF-filen har importerats."
 
 #: application/views/adif/import_success.php:22
 msgid "Dupes were inserted!"
-msgstr ""
+msgstr "Dubbletter har importerats!"
 
 #: application/views/adif/import_success.php:24
 msgid "Dupes were skipped."
-msgstr ""
+msgstr "Dubbletter har hoppats över."
 
 #: application/views/adif/import_success.php:30
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr ""
+msgstr "Du importerade minst 1 QSO som innehåller ett tävlings-ID."
 
 #: application/views/adif/import_success.php:31
 msgid ""
@@ -4412,43 +4425,48 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
+"Ibland, beroende på din tävlingsloggningsprogramvara, kommer dina utbyten "
+"inte att importeras korrekt från det programmets ADIF. Om du vill rätta till "
+"det, byt till CBR Import-fliken på ADIF Import-sidan."
 
 #: application/views/adif/import_success.php:32
 msgid "We found the following numbers of QSOs for the following contest IDs:"
-msgstr ""
+msgstr "Vi hittade följande antal QSOn för följande tävlings-ID:n:"
 
 #: application/views/adif/import_success.php:44
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Importdetaljer / möjliga problem"
 
 #: application/views/adif/import_success.php:45
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"Du kan ha ADIF-fel, QSO:erna har ändå lagts till. Vänligen kontrollera "
+"följande information:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
 #: application/views/qrz/mark_qrz.php:12
 #: application/views/webadif/mark_webadif.php:12
 msgid "QSOs marked"
-msgstr ""
+msgstr "QSOn markerade"
 
 #: application/views/adif/mark_lotw.php:15
 msgid "Yay, its done!"
-msgstr ""
+msgstr "Jippie, det är klart!"
 
 #: application/views/adif/mark_lotw.php:16
 msgid "The QSOs are marked as exported to LoTW."
-msgstr ""
+msgstr "QSOn är markerade som exporterade till LoTW."
 
 #: application/views/api/description.php:15
 msgid "Editing Description for API Key"
-msgstr ""
+msgstr "Redigera beskrivning för API-nyckel"
 
 #: application/views/api/description.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr ""
+msgstr "Enkelt namn för att beskriva vad du använder detta API till."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
@@ -4468,12 +4486,12 @@ msgstr ""
 #: application/views/satellite/create.php:82
 #: application/views/simplefle/index.php:22
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:488
 msgid "API Keys"
-msgstr ""
+msgstr "API-nycklar"
 
 #: application/views/api/index.php:11
 msgid ""
@@ -4481,6 +4499,9 @@ msgid ""
 "access Wavelog in a controlled way. Access to the API is managed via API "
 "keys."
 msgstr ""
+"Wavelog API (Application Programming Interface) låter tredjepartssystem få "
+"tillgång till Wavelog på ett kontrollerat sätt. Tillgång till API:et "
+"hanteras via API-nycklar."
 
 #: application/views/api/index.php:12
 msgid ""
@@ -4489,18 +4510,22 @@ msgid ""
 "Wavelog. Generate a read-only key if the application only needs to obtain "
 "data from Wavelog."
 msgstr ""
+"Du måste generera en API-nyckel för varje verktyg du vill använda (t.ex. "
+"WLgate). Generera en läs-skriv-nyckel om applikationen behöver skicka data "
+"till Wavelog. Generera en skrivskyddad nyckel om applikationen bara behöver "
+"hämta data från Wavelog."
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr ""
+msgstr "Länkar till tredjepartsprogramvara som fungerar med Wavelog:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
-msgstr ""
+msgstr "Fler verktyg"
 
 #: application/views/api/index.php:19
 msgid "API URL"
-msgstr ""
+msgstr "API URL"
 
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/cron/index.php:22 application/views/debug/index.php:46
@@ -4509,7 +4534,7 @@ msgstr "Kopiera till clipboard"
 
 #: application/views/api/index.php:19
 msgid "The API URL for this Wavelog instance is"
-msgstr ""
+msgstr "API-URL:en för denna Wavelog-instans är"
 
 #: application/views/api/index.php:20 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33 application/views/radio/index.php:26
@@ -4521,41 +4546,45 @@ msgstr ""
 #: application/views/sattimers/index.php:77
 #: application/views/search/filter.php:72
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: application/views/api/index.php:20
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
 msgstr ""
+"Det är bra praxis att ta bort en nyckel om du inte längre använder den "
+"associerade applikationen."
 
 #: application/views/api/index.php:22
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"På klubbstationer är API-nycklarna personliga och delas inte. Användare av "
+"klubbstationer kan bara se sina egna nycklar."
 
 #: application/views/api/index.php:30
 msgid "API Key"
-msgstr ""
+msgstr "API-nyckel"
 
 #: application/views/api/index.php:31 application/views/cron/edit.php:30
 #: application/views/cron/index.php:53
 #: application/views/search/stored_queries.php:8
 msgid "Description"
-msgstr ""
+msgstr "Beskrivning"
 
 #: application/views/api/index.php:32
 msgid "Last Used"
-msgstr ""
+msgstr "Senast använd"
 
 #: application/views/api/index.php:34
 msgid "Created By"
-msgstr ""
+msgstr "Skapad av"
 
 #: application/views/api/index.php:36
 msgid "Permissions"
-msgstr ""
+msgstr "Behörighet"
 
 #: application/views/api/index.php:37 application/views/cron/index.php:54
 #: application/views/lotw/satupdate.php:7
@@ -4566,7 +4595,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:31
 #: application/views/timeline/index.php:201
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: application/views/api/index.php:38
 #: application/views/club/permissions.php:226
@@ -4576,36 +4605,36 @@ msgstr ""
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
 #: application/views/user/index.php:160 application/views/webadif/export.php:45
 msgid "Actions"
-msgstr ""
+msgstr "Åtgärder"
 
 #: application/views/api/index.php:64
 msgid "Read & Write"
-msgstr ""
+msgstr "Läsa & skriva"
 
 #: application/views/api/index.php:66
 msgid "Read-Only"
-msgstr ""
+msgstr "Skrivskyddad"
 
 #: application/views/api/index.php:76
 msgid "Test"
-msgstr ""
+msgstr "Testa"
 
 #: application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort API-nyckeln %s?"
 
 #: application/views/api/index.php:92
 msgid "You have no API Keys."
-msgstr ""
+msgstr "Du har inga API-nycklar."
 
 #: application/views/api/index.php:96
 msgid "Create a read & write key"
-msgstr ""
+msgstr "Skapa en läs- och skrivnyckel"
 
 #: application/views/api/index.php:97
 msgid "Create a read-only key"
-msgstr ""
+msgstr "Skapa en skrivskyddad nyckel"
 
 #: application/views/awards/73on73/index.php:6
 #: application/views/awards/73on73/index.php:13
