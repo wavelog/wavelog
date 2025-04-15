@@ -1054,6 +1054,34 @@ label {
 	border-style: solid;
 }
 
+.lba-label {
+    background-color: rgb(52, 55, 56) !important;
+    color: rgb(255, 255, 255) !important;
+    border: 1px solid #fff; /* White border */
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+/* Modify the tooltip's arrow (triangle) */
+.lba-label::before {
+    border-bottom-color: rgb(52, 55, 56) !important; /* Triangle color (matches background) */
+    border-width: 6px; /* Keep same size */
+}
+
+/* Create a white border effect around the triangle */
+.lba-label::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0 8px 8px 8px; /* triangle pointing down */
+    border-color: transparent transparent white transparent; /* white bottom border */
+    top: -8px; /* place above the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1; /* optional: to place it behind */
+}
+
+
 .satellite-label {
     background-color: rgb(52, 55, 56) !important;
     color: rgb(255, 255, 255) !important;
