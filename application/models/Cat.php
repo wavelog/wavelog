@@ -91,7 +91,7 @@
 				$data['user_id'] = $user_id;
 				$data['operator'] = $operator;
 				$this->db->insert('cat', $data);
-				if (($this->ci->config->item('mqtt_server') ?? '') != '') {
+				if (($this->config->item('mqtt_server') ?? '') != '') {
                 			$this->mh->wl_event('cat/'.$user_id, json_encode(array_merge($data,$eventdata)));
 				}
 			}
