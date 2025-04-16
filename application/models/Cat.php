@@ -81,7 +81,7 @@
 					$this->db->where('id', $radio_id);
 					$this->db->where('user_id', $user_id);
 					$this->db->update('cat', $data);
-					if (($this->ci->config->item('mqtt_server') ?? '') != '') {
+					if (($this->config->item('mqtt_server') ?? '') != '') {
                 				$this->mh->wl_event('cat/'.$user_id, json_encode(array_merge($data,$eventdata)));
 					}
 				}
