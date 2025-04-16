@@ -14,6 +14,7 @@
     var lang_gen_hamradio_distance = '<?= __("Distance"); ?>';
     var lang_gen_hamradio_bearing = '<?= __("Bearing"); ?>';
     var lang_gen_hamradio_pathlines = '<?= _pgettext("Map Options", "Path lines"); ?>';
+    var lang_gen_hamradio_callsigns = '<?= __("Show Callsigns"); ?>';
     var lang_gen_hamradio_cq_zones = '<?= _pgettext("Map Options", "CQ Zones"); ?>';
     var lang_gen_hamradio_itu_zones = '<?= _pgettext("Map Options", "ITU Zones"); ?>';
     var lang_gen_hamradio_nightshadow = '<?= _pgettext("Map Options", "Night Shadow"); ?>';
