@@ -172,6 +172,7 @@ class Dashboard extends CI_Controller {
 		}
 
 		$data['total_countries_needed'] = count($dxcc->result()) - $current;
+
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('dashboard/index');
 		$this->load->view('interface_assets/footer', $footerData);
