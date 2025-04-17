@@ -515,6 +515,10 @@ class Update_model extends CI_Model {
 							continue;
 						}
 						$name = $this->security->xss_clean(substr($line, strpos($line, ' ')));
+						if (strlen($name) > 256) {
+							$name = substr($name, 0, 256);
+							log_message('error', 'Hams Of Note '.$call.': Name too long. Truncated.');
+						}
 						$linkname = $link = null;
 						if (strpos($name, '[')) {
 							$linkname = $this->security->xss_clean(substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1)));
