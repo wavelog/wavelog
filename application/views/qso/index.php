@@ -5,6 +5,8 @@
   var lang_qso_title_previous_contacts = "<?= __("Previous Contacts"); ?>";
   var lang_qso_title_times_worked_before = "<?= __("times worked before"); ?>";
   var lang_qso_title_not_worked_before = "<?= __("Not worked before"); ?>";
+  var lang_qso_more = "<?= __("more"); ?>";
+  var lang_qso_less = "<?= __("less"); ?>";
   var lang_dxccsummary_for = "<?= __("DXCC Summary for "); ?>";
   var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
   var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days

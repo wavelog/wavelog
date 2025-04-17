@@ -825,13 +825,37 @@ $("#callsign").on("focusout", function () {
 
 				$.getJSON(base_url + 'index.php/lookup/ham_of_note/' + $('#callsign').val().toUpperCase().replaceAll('Ø', '0').replaceAll('/','-'), function (result) {
 					if (result) {
-						$('#ham_of_note_info').text(result.description);
-						$('#ham_of_note_link').html(result.linkname);
-						$('#ham_of_note_link').attr('href', result.link);
+						$('#ham_of_note_info').html('<span class="minimize">'+result.description+'</span>');
+						if (result.link != null) {
+							$('#ham_of_note_link').html(" "+result.linkname);
+							$('#ham_of_note_link').attr('href', result.link);
+						}
 						$('#ham_of_note_line').show("slow");
+
+						var minimized_elements = $('span.minimize');
+						var maxlen = 50;
+
+						minimized_elements.each(function(){
+							var t = $(this).text();
+							if(t.length < maxlen) return;
+							$(this).html(
+								t.slice(0,maxlen)+'<span>... </span><a href="#" class="more">'+lang_qso_more+'</a><span style="display:none;">'+ t.slice(maxlen,t.length)+' <a href="#" class="less">'+lang_qso_less+'</a></span>'
+							);
+						});
+
+						$('a.more', minimized_elements).click(function(event){
+							event.preventDefault();
+							$(this).hide().prev().hide();
+							$(this).next().show();
+						});
+
+						$('a.less', minimized_elements).click(function(event){
+							event.preventDefault();
+							$(this).parent().hide().prev().show().prev().show();
+						});
+
 					}
 				});
-
 				$('#dxcc_id').val(result.dxcc.adif).multiselect('refresh');
 				await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
 				if (result.callsign_cqz != '' && (result.callsign_cqz >= 1 && result.callsign_cqz <= 40)) {
