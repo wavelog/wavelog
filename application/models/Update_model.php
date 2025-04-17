@@ -543,7 +543,7 @@ class Update_model extends CI_Model {
 						}
 						array_push($result, array('callsign' => $call, 'name' => $name, 'linkname' => $linkname, 'link' => $link));
 						$hon[$i]['callsign'] = $call;
-						$hon[$i]['description'] = $name;
+						$hon[$i]['description'] = trim($name);
 						$hon[$i]['linkname'] = $linkname;
 						$hon[$i]['link'] = $link;
 						$i++;
