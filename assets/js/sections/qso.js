@@ -826,7 +826,7 @@ $("#callsign").on("focusout", function () {
 				$.getJSON(base_url + 'index.php/lookup/ham_of_note/' + $('#callsign').val().toUpperCase().replaceAll('Ø', '0').replaceAll('/','-'), function (result) {
 					if (result) {
 						$('#ham_of_note_info').text(result.description);
-						$('#ham_of_note_link').html(result.linkname);
+						$('#ham_of_note_link').html(" "+result.linkname);
 						$('#ham_of_note_link').attr('href', result.link);
 						$('#ham_of_note_line').show("slow");
 					}
