@@ -1004,15 +1004,19 @@ $("#callsign").on("focusout", function () {
 
 // This function executes the call to the backend for fetching cq summary and inserted table below qso entry
 function getCqResult() {
+	satOrBand = $('#band').val();
+	if ($('#selectPropagation').val() == 'SAT') {
+		satOrBand = 'SAT';
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
 		data: {
 			type: 'cq',
 			cqz: $('#cqz').val(),
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
+			reduced_mode: true,
+			current_band: satOrBand,
+			current_mode: $('#mode').val(),
 		},
 		success: function (html) {
             $('#cq-summary').empty();
@@ -1035,15 +1039,19 @@ function getWasResult() {
 		$('#state-summary').append(lang_summary_state_valid);
 		return;
 	}
+	satOrBand = $('#band').val();
+	if ($('#selectPropagation').val() == 'SAT') {
+		satOrBand = 'SAT';
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
 		data: {
 			type: 'was',
 			was: $('#stateDropdown').val(),
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
+			reduced_mode: true,
+			current_band: satOrBand,
+			current_mode: $('#mode').val(),
 		},
 		success: function (html) {
 			$('#state-summary').append(lang_summary_state + ' ' + $('#stateDropdown').val() + '.');
@@ -1059,15 +1067,19 @@ function getSotaResult() {
 		$('#sota-summary').append(lang_summary_warning_empty_sota);
 		return;
 	}
+	satOrBand = $('#band').val();
+	if ($('#selectPropagation').val() == 'SAT') {
+		satOrBand = 'SAT';
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
 		data: {
 			type: 'sota',
 			sota: $('#sota_ref').val(),
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
+			reduced_mode: true,
+			current_band: satOrBand,
+			current_mode: $('#mode').val(),
 		},
 		success: function (html) {
 			$('#sota-summary').append(lang_summary_sota + ' ' + $('#sota_ref').val() + '.');
@@ -1083,6 +1095,10 @@ function getPotaResult() {
 	if (potaref === '') {
 		$('#pota-summary').append(lang_summary_warning_empty_pota);
 		return;
+	}
+	satOrBand = $('#band').val();
+	if ($('#selectPropagation').val() == 'SAT') {
+		satOrBand = 'SAT';
 	}
 	if (potaref.includes(',')) {
 		let values = potaref.split(',').map(function(v) {
@@ -1120,7 +1136,7 @@ function getPotaResult() {
 				data: { type: 'pota',
 						pota: value.trim(),
 						reduced_mode: true,
-						current_band: $('#band').val(),
+						current_band: satOrBand,
 						current_mode: $('#mode').val()
 					},
 				success: function(response) {
@@ -1139,9 +1155,9 @@ function getPotaResult() {
 		data: {
 			type: 'pota',
 			pota: potaref,
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
+			reduced_mode: true,
+			current_band: satOrBand,
+			current_mode: $('#mode').val(),
 		},
 		success: function (html) {
 			$('#pota-summary').append(lang_summary_pota + ' ' + potaref + '.');
@@ -1152,15 +1168,19 @@ function getPotaResult() {
 
 // This function executes the call to the backend for fetching continent summary and inserted table below qso entry
 function getContinentResult() {
+	satOrBand = $('#band').val();
+	if ($('#selectPropagation').val() == 'SAT') {
+		satOrBand = 'SAT';
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
 		data: {
 			type: 'continent',
 			continent: $('#continent').val(),
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
+				reduced_mode: true,
+				current_band: satOrBand,
+				current_mode: $('#mode').val(),
 		},
 		success: function (html) {
             $('#continent-summary').empty();
@@ -1172,6 +1192,10 @@ function getContinentResult() {
 
 // This function executes the call to the backend for fetching iota summary and inserted table below qso entry
 function getIotaResult() {
+	satOrBand = $('#band').val();
+	if ($('#selectPropagation').val() == 'SAT') {
+		satOrBand = 'SAT';
+	}
 	$('#iota-summary').empty();
 	if ($('#iota_ref').val() === '') {
 		$('#iota-summary').append(lang_summary_warning_empty_iota);
@@ -1183,9 +1207,9 @@ function getIotaResult() {
 		data: {
 			type: 'iota',
 			iota: $('#iota_ref').val(),
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
+				reduced_mode: true,
+				current_band: satOrBand,
+				current_mode: $('#mode').val(),
 		},
 		success: function (html) {
 			$('#iota-summary').append(lang_summary_iota + ' ' + $('#iota_ref').val() + '.');
@@ -1201,15 +1225,19 @@ function getWwffResult() {
 		$('#wwff-summary').append(lang_summary_warning_empty_wwff);
 		return;
 	}
+	satOrBand = $('#band').val();
+	if ($('#selectPropagation').val() == 'SAT') {
+		satOrBand = 'SAT';
+	}
 	$.ajax({
 		url: base_url + 'index.php/lookup/search',
 		type: 'post',
 		data: {
 			type: 'wwff',
 			wwff: $('#wwff_ref').val(),
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
+				reduced_mode: true,
+				current_band: satOrBand,
+				current_mode: $('#mode').val(),
 		},
 		success: function (html) {
 			$('#wwff-summary').append(lang_summary_wwff + ' ' + $('#wwff_ref').val() + '.');
@@ -1224,6 +1252,10 @@ function getGridsquareResult() {
 	if ($('#locator').val() === '') {
 		$('#gridsquare-summary').append(lang_summary_warning_empty_gridsquare);
 		return;
+	}
+	satOrBand = $('#band').val();
+	if ($('#selectPropagation').val() == 'SAT') {
+		satOrBand = 'SAT';
 	}
 	if ($('#locator').val().includes(',')) {
 		let values = $('#locator').val().split(',').map(function(v) {
@@ -1261,7 +1293,7 @@ function getGridsquareResult() {
 				data: { type: 'vucc',
 						grid: value.trim(),
 						reduced_mode: true,
-						current_band: $('#band').val(),
+						current_band: satOrBand,
 						current_mode: $('#mode').val()
 					},
 				success: function(response) {
@@ -1280,9 +1312,9 @@ function getGridsquareResult() {
 		data: {
 			type: 'vucc',
 			grid: $('#locator').val(),
-            reduced_mode: true,
-            current_band: $('#band').val(),
-            current_mode: $('#mode').val(),
+				reduced_mode: true,
+				current_band: satOrBand,
+				current_mode: $('#mode').val(),
 		},
 		success: function (html) {
 			$('#gridsquare-summary').append(lang_summary_gridsquare + ' ' + $('#locator').val().substring(0, 4) + '.');
