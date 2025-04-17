@@ -514,27 +514,27 @@ class Update_model extends CI_Model {
 						if (preg_match('/[^a-zA-Z0-9\/]/', $call)) {
 							continue;
 						}
-						$name = $this->security->xss_clean(substr($line, strpos($line, ' ')));
+						$name = ltrim($this->security->xss_clean(substr($line, strpos($line, ' '))));
 						$truncated = false;
-						if (strlen($name) > 256) {
-							$name = substr($name, 0, 256);
+						if (mb_strlen($name, 'UTF-8') > 256) {
+							$name = mb_substr($name, 0, 256, 'UTF-8');
 							$truncated = true;
 						}
 						$linkname = $link = null;
 						if (strpos($name, '[')) {
-							$linkname = $this->security->xss_clean(substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1)));
-							if (strlen($linkname) > 256) {
-								$linkname = substr($linkname, 0, 256);
+							$linkname = $this->security->xss_clean(mb_substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1)));
+							if (mb_strlen($linkname, 'UTF-8') > 256) {
+								$linkname = mb_substr($linkname, 0, 256, 'UTF-8');
 								$truncated = true;
 							}
-							$link= $this->security->xss_clean(substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1)));
-							if (strlen($link) > 256) {
-								$link= substr($link, 0, 256);
+							$link= $this->security->xss_clean(mb_substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1)));
+							if (mb_strlen($link, 'UTF-8') > 256) {
+								$link= mb_substr($link, 0, 256, 'UTF-8');
 								$truncated = true;
 							}
-							$name = substr($name, 0, strpos($name, '['));
-							if (strlen($name) > 256) {
-								$name = substr($name, 0, 256);
+							$name = mb_substr($name, 0, strpos($name, '['));
+							if (mb_strlen($name, 'UTF-8') > 256) {
+								$name = mb_substr($name, 0, 256, 'UTF-8');
 								$truncated = true;
 							}
 						}
