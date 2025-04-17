@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-17 08:53+0000\n"
+"POT-Creation-Date: 2025-04-17 09:11+0000\n"
 "PO-Revision-Date: 2025-04-14 10:59+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -3022,95 +3022,95 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:1218
+#: application/models/Logbook_model.php:1230
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
-#: application/models/Logbook_model.php:1223
+#: application/models/Logbook_model.php:1235
 msgid "No Call given"
 msgstr "没有提供呼号"
 
-#: application/models/Logbook_model.php:1452
+#: application/models/Logbook_model.php:1464
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
-#: application/models/Logbook_model.php:3901
+#: application/models/Logbook_model.php:3913
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:3902
+#: application/models/Logbook_model.php:3914
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
-#: application/models/Logbook_model.php:3914
+#: application/models/Logbook_model.php:3926
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:3914
+#: application/models/Logbook_model.php:3926
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
 
-#: application/models/Logbook_model.php:4213
+#: application/models/Logbook_model.php:4225
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4224
+#: application/models/Logbook_model.php:4236
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4285
+#: application/models/Logbook_model.php:4297
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4305
+#: application/models/Logbook_model.php:4317
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4326
+#: application/models/Logbook_model.php:4338
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4607
+#: application/models/Logbook_model.php:4630
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4668
+#: application/models/Logbook_model.php:4691
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4674
+#: application/models/Logbook_model.php:4697
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4679
+#: application/models/Logbook_model.php:4702
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4682
+#: application/models/Logbook_model.php:4705
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4685
+#: application/models/Logbook_model.php:4708
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4688
+#: application/models/Logbook_model.php:4711
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4691
+#: application/models/Logbook_model.php:4714
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5514
+#: application/models/Logbook_model.php:5537
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
