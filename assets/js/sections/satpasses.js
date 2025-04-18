@@ -174,6 +174,7 @@ function loadPassSettings(settings_id) {
             } else {
                 $('#addskedpartner').hide();
             }
+            searchpasses();
         },
         error: function(e) {
             alert('Error loading settings');
