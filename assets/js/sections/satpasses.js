@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    loadPassSettingsList();
+}); 
+
 function searchpasses() {
 	$(".ld-ext-right-plot").addClass('running');
     $(".ld-ext-right-plot").prop('disabled', true);
@@ -55,7 +59,7 @@ function getSatelliteInfo(element) {
         },
         success: function (html) {
 			BootstrapDialog.show({
-				title: 'Satellite information',
+				title: lang_gen_hamradio_sat_info,
 				size: BootstrapDialog.SIZE_WIDE,
 				cssClass: 'information-dialog',
 				nl2br: false,
@@ -107,7 +111,7 @@ function addskedpartner() {
 		$('#satlist option[value=""]').remove();
 	} else {
 		$('#addskedpartner').hide();
-		$('#satlist').prepend('<option value="">All</option>');
+		$('#satlist').prepend('<option value="">' + lang_general_word_all + '</option>');
 	}
 }
 
@@ -118,3 +122,97 @@ $('#satlist').change(function () {
 		$('#addsked').prop('disabled', false);
     }
 });
+
+function savePassSettings() {
+    $.ajax({
+        url: base_url + 'index.php/satellite/savePassSettings',
+        type: 'post',
+        data: {
+            'setting_name': $("#settingsName").val(),
+            'minelevation': $("#minelevation").val(),
+            'minazimuth': $("#minazimuth").val(),
+            'maxazimuth': $("#maxazimuth").val(),
+            'grid': $("#yourgrid").val(),
+            'sat': $("#satlist").val(),
+            'sked_minelevation': $("#minskedelevation").val(),
+            'sked_minazimuth': $("#minskedazimuth").val(),
+            'sked_maxazimuth': $("#maxskedazimuth").val(),
+            'sked_grid': $("#skedgrid").val(),
+        },
+        success: function (result) {
+            loadPassSettingsList();
+            $('#saveSettingsModal').modal('hide');
+            $("#settingsName").val('');
+        },
+        error: function(e) {
+            alert('Error saving settings');
+            console.log(e);
+        }
+    });
+}
+
+function loadPassSettings(settings_id) {
+    $.ajax({
+        url: base_url + 'index.php/satellite/loadPassSettings',
+        type: 'post',
+        data: {
+            'settings_id': settings_id,
+        },
+        success: function (result) {
+            let settings = JSON.parse(result);
+            $("#minelevation").val(settings.minelevation);
+            $("#minazimuth").val(settings.minazimuth);
+            $("#maxazimuth").val(settings.maxazimuth);
+            $("#yourgrid").val(settings.grid);
+            $("#satlist").val(settings.sat);
+            if (settings.sat != '') {
+                $('#addskedpartner').show();
+                $("#minskedelevation").val(settings.sked_minelevation);
+                $("#minskedazimuth").val(settings.sked_minazimuth);
+                $("#maxskedazimuth").val(settings.sked_maxazimuth);
+                $("#skedgrid").val(settings.sked_grid);
+            } else {
+                $('#addskedpartner').hide();
+            }
+            searchpasses();
+        },
+        error: function(e) {
+            alert('Error loading settings');
+            console.log(e);
+        }
+    });
+}
+
+function delPassSettings(settings_id) {
+    if (!confirm('Are you sure you want to delete this settings?')) {
+        return;
+    }
+    $.ajax({
+        url: base_url + 'index.php/satellite/delPassSettings',
+        type: 'post',
+        data: {
+            'settings_id': settings_id,
+        },
+        success: function (result) {
+            loadPassSettingsList();
+        },
+        error: function(e) {
+            alert('Error deleting settings');
+            console.log(e);
+        }
+    });
+}
+
+function loadPassSettingsList() {
+    $("#passSettingsList").html('');
+    $.ajax({
+        url: base_url + 'index.php/satellite/getPassSettingsList',
+        success: function (result) {
+            $("#passSettingsList").html(result);
+        },
+        error: function(e) {
+            alert('Error loading settings list');
+            console.log(e);
+        }
+    });
+}

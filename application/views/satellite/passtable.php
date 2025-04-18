@@ -32,7 +32,7 @@ if (isset($filtered)) {
 				echo '<td>' . Predict_Time::daynum2readable($pass->aos, $zone, $format) . '<span style="margin-left: 10px; display: inline-block;"><a href="' . $ics.'" target="newics"><i class="fas fa-calendar-plus"></i></a><span></td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->los, $zone, $format) . '</td>';
 				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->aos, $zone, $format), Predict_Time::daynum2readable($pass->los, $zone, $format), $format) . '</td>';
-				echo '<td><a href="flightpath/'.$pass->satname.'"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+				echo '<td><a href="flightpath/'.$pass->satname.'" target="_blank"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" width="'.($scale*2).'" height="'.($scale*2).'">
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 9).'" stroke="darkgrey" stroke-width="1" fill="none" />
 					<circle cx="'.$scale.'" cy="'.$scale.'" r="'.($scale / 10 * 6).'" stroke="darkgrey" stroke-width="1" fill="none" />
