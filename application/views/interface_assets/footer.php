@@ -55,7 +55,7 @@
     var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
-
+    var lang_gen_hamradio_sat_info = "<?= __("Satellite Information"); ?>";
 </script>
 
 <!-- General JS Files used across Wavelog -->

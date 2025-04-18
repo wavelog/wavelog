@@ -59,7 +59,7 @@ function getSatelliteInfo(element) {
         },
         success: function (html) {
 			BootstrapDialog.show({
-				title: 'Satellite information',
+				title: lang_gen_hamradio_sat_info,
 				size: BootstrapDialog.SIZE_WIDE,
 				cssClass: 'information-dialog',
 				nl2br: false,
