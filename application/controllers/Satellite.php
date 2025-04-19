@@ -315,7 +315,6 @@ class Satellite extends CI_Controller {
 			$msg['ok'] = 'Error';
 			$msg['message'] = __("Failed to save pass settings!");
 		} else {
-			echo json_encode(array('ok' => 'OK', 'message' => __("Pass settings saved!")));
 			$msg['ok'] = 'OK';
 			$msg['message'] = __("Pass settings saved!");
 		}
