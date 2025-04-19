@@ -165,7 +165,7 @@ function loadPassSettings(settings_id) {
             $("#maxazimuth").val(settings.maxazimuth);
             $("#yourgrid").val(settings.grid);
             $("#satlist").val(settings.sat);
-            if (settings.sat != '') {
+            if (settings.sat != '' && settings.sked_grid != '') {
                 $('#addskedpartner').show();
                 $("#minskedelevation").val(settings.sked_minelevation);
                 $("#minskedazimuth").val(settings.sked_minazimuth);
