@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-18 14:03+0000\n"
+"POT-Creation-Date: 2025-04-20 08:12+0000\n"
 "PO-Revision-Date: 2025-04-19 07:49+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -100,8 +100,8 @@ msgstr ""
 #: application/controllers/Satellite.php:132
 #: application/controllers/Satellite.php:146
 #: application/controllers/Satellite.php:164
-#: application/controllers/Satellite.php:659
-#: application/controllers/Satellite.php:668
+#: application/controllers/Satellite.php:658
+#: application/controllers/Satellite.php:667
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
 #: application/controllers/Simplefle.php:7
@@ -123,8 +123,6 @@ msgstr ""
 #: application/controllers/User.php:1537
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
-#: application/controllers/Satellite.php:658
-#: application/controllers/Satellite.php:667
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
 
@@ -2193,28 +2191,27 @@ msgstr "Editar satélite"
 msgid "Failed to save pass settings!"
 msgstr "Falha ao guardar as definições de passagens!"
 
-#: application/controllers/Satellite.php:318
-#: application/controllers/Satellite.php:320
+#: application/controllers/Satellite.php:319
 msgid "Pass settings saved!"
 msgstr "Configurações de passagens guardadas!"
 
-#: application/controllers/Satellite.php:333
+#: application/controllers/Satellite.php:332
 msgid "No settings found!"
 msgstr "Nenhuma configuração encontrada!"
 
-#: application/controllers/Satellite.php:347
+#: application/controllers/Satellite.php:346
 msgid "Failed to delete pass settings!"
 msgstr "Falha ao eliminar as definições de passagem!"
 
-#: application/controllers/Satellite.php:349
+#: application/controllers/Satellite.php:348
 msgid "Pass settings deleted!"
 msgstr "Configurações de passagem apagadas!"
 
-#: application/controllers/Satellite.php:359
+#: application/controllers/Satellite.php:358
 msgid "Saved Pass Settings"
 msgstr "Configurações de Passagens Guardadas"
 
-#: application/controllers/Satellite.php:376
+#: application/controllers/Satellite.php:375
 msgid "No presets available"
 msgstr "Nenhuma predefinição disponível"
 
@@ -14770,6 +14767,10 @@ msgstr ""
 msgid "last sent"
 msgstr "último enviado"
 
+#: application/views/view_log/partial/log_ajax.php:458
+msgid "Result"
+msgstr ""
+
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
 msgstr "Detalhes do contacto"
@@ -15011,10 +15012,6 @@ msgstr "Submeter pedido"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recebido"
-
-#: application/views/view_log/partial/log_ajax.php:458
-msgid "Result"
-msgstr ""
 
 #~ msgid "CQ Magazine WAZ"
 #~ msgstr "CQ Magazine WAZ"
