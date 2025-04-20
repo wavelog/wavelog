@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-20 08:12+0000\n"
-"PO-Revision-Date: 2025-04-16 09:16+0000\n"
+"POT-Creation-Date: 2025-04-19 07:49+0000\n"
+"PO-Revision-Date: 2025-04-20 08:12+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -2185,31 +2185,31 @@ msgstr "Bewerk satelliet"
 
 #: application/controllers/Satellite.php:316
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "Opslaan van overgang instellingen mislukt!"
 
 #: application/controllers/Satellite.php:319
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "Overgang instellingen opgeslagen!"
 
 #: application/controllers/Satellite.php:332
 msgid "No settings found!"
-msgstr ""
+msgstr "Geen instellingen gevonden!"
 
 #: application/controllers/Satellite.php:346
 msgid "Failed to delete pass settings!"
-msgstr ""
+msgstr "Verwijderen van overgang instellingen mislukt!"
 
 #: application/controllers/Satellite.php:348
 msgid "Pass settings deleted!"
-msgstr ""
+msgstr "Instellingen voor overgang verwijderd!"
 
 #: application/controllers/Satellite.php:358
 msgid "Saved Pass Settings"
-msgstr ""
+msgstr "Overgang instellingen opgeslagen"
 
 #: application/controllers/Satellite.php:375
 msgid "No presets available"
-msgstr ""
+msgstr "Geen voorkeuze beschikbaar"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
@@ -8885,7 +8885,7 @@ msgstr "verouderd"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Satellite Information"
-msgstr ""
+msgstr "Satellietinformatie"
 
 #: application/views/interface_assets/footer.php:139
 #: application/views/interface_assets/header.php:491
@@ -11714,11 +11714,11 @@ msgstr "Niet eerder gewerkt"
 
 #: application/views/qso/index.php:8
 msgid "more"
-msgstr ""
+msgstr "meer"
 
 #: application/views/qso/index.php:9
 msgid "less"
-msgstr ""
+msgstr "minder"
 
 #: application/views/qso/index.php:10
 msgid "DXCC Summary for "
@@ -12191,7 +12191,7 @@ msgstr "Satelliet passages"
 
 #: application/views/satellite/pass.php:10
 msgid "Your station"
-msgstr ""
+msgstr "Jouw station"
 
 #: application/views/satellite/pass.php:12
 #: application/views/satellite/pass.php:60
@@ -12214,7 +12214,7 @@ msgstr "Min. tijd"
 
 #: application/views/satellite/pass.php:58
 msgid "Sked partner"
-msgstr ""
+msgstr "Sked-partner"
 
 #: application/views/satellite/pass.php:86
 msgid "Load predictions"
@@ -12226,23 +12226,23 @@ msgstr "Voeg sked-partner toe"
 
 #: application/views/satellite/pass.php:89
 msgid "Presets"
-msgstr ""
+msgstr "Voorkeuze"
 
 #: application/views/satellite/pass.php:91
 msgid "Save current settings"
-msgstr ""
+msgstr "Huidige instellingen opslaan"
 
 #: application/views/satellite/pass.php:100
 msgid "Save Settings"
-msgstr ""
+msgstr "Instellingen opslaan"
 
 #: application/views/satellite/pass.php:104
 msgid "Settings Name"
-msgstr ""
+msgstr "Instellingen Naam"
 
 #: application/views/satellite/pass.php:105
 msgid "Enter a name"
-msgstr ""
+msgstr "Voer een naam in"
 
 #: application/views/satellite/pass.php:116
 msgid "No TLE information detected. Please update TLE's."
@@ -12325,7 +12325,7 @@ msgstr "Geen overlappende passages gevonden. Controleer de invoerparameters."
 #: application/views/satellite/tleinfo.php:6
 #, php-format
 msgid "TLE information for %s (last updated: %s)"
-msgstr ""
+msgstr "TLE-informatie voor %s (laatst bijgewerkt: %s)"
 
 #: application/views/satellite/tleinfo.php:8
 msgid "Delete TLE"
@@ -12334,7 +12334,7 @@ msgstr "Verwijder TLE"
 #: application/views/satellite/tleinfo.php:10
 #, php-format
 msgid "No TLE information found for %s"
-msgstr ""
+msgstr "Geen TLE-informatie gevonden voor %s"
 
 #: application/views/satellite/tleinfo.php:11
 msgid "Add TLE"
@@ -14741,10 +14741,6 @@ msgstr ""
 msgid "last sent"
 msgstr "laatst verzonden"
 
-#: application/views/view_log/partial/log_ajax.php:458
-msgid "Result"
-msgstr ""
-
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
 msgstr "QSO-gegevens"
@@ -14986,6 +14982,10 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#: application/views/view_log/partial/log_ajax.php:458
+msgid "Result"
+msgstr ""
 
 #~ msgid "CQ Magazine WAZ"
 #~ msgstr "CQ Magazine WAZ"
