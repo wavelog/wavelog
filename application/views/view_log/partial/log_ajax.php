@@ -451,7 +451,13 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
                 </td>
             <?php } ?>
             </tr>
-            <?php $i++; } ?>
+            <?php $i++; } 
+		if ($i>1) {
+			echo '<caption>'.$i.' '.__("Results").'</caption>'; 
+		} elseif ($i==1) {
+			echo '<caption>'.$i.' '.__("Result").'</caption>'; 
+		}
+	    ?>
                             </tbody>
     </table></div>
     <?php } ?>
