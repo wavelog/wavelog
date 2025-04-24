@@ -570,89 +570,6 @@ class Dcl extends CI_Controller {
 		}
 	}
 
-	public function check_lotw_credentials () {
-		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-			redirect('dashboard');
-			exit();
-		}
-		$ret=[];
-		$ret['status']='';
-
-
-		$raw = file_get_contents("php://input");
-		try {
-			$obj = json_decode($raw,true);
-		} catch (Exception $e) {
-			$ret['status']='failed_wrongcall';
-			log_message("Error",$ret['status']);
-		} finally {
-			$lotw_user=$obj['lotw_user'] ?? '';
-			$lotw_pass=$obj['lotw_pass'] ?? '';
-		}
-		$raw='';
-
-		$pw_placeholder = '**********';
-		if ($lotw_pass == $pw_placeholder) {	// User comes with unaltered credentials - take them from database
-			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
-			$q = $query->row();
-			$data['user_lotw_name'] = urlencode($q->user_lotw_name ?? '');
-			$data['user_lotw_password'] = urlencode($q->user_lotw_password ?? '');
-		} else {
-			$data['user_lotw_name'] = urlencode($lotw_user ?? '');
-			$data['user_lotw_password'] = urlencode($lotw_pass ?? '');
-		}
-
-		if ((($data['user_lotw_name'] ?? '') != '') && (($data['user_lotw_password'] ?? '') != '') && ($ret['status'] != 'failed_wrongcall')) {
-
-			// Get URL for downloading LoTW
-			$query = $query = $this->db->query('SELECT lotw_login_url FROM config');
-			$q = $query->row();
-			$lotw_url = $q->lotw_login_url;
-
-			// Validate that LoTW credentials are not empty
-			// TODO: We don't actually see the error message
-			if ($data['user_lotw_name'] == '' || $data['user_lotw_password'] == '') {
-				$ret='No Creds set';
-			}
-
-			// Build URL for LoTW report file
-			$lotw_url .= "?";
-			$lotw_url .= "login=" . $data['user_lotw_name'];
-			$lotw_url .= "&password=" . $data['user_lotw_password'];
-
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $lotw_url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-			$content = curl_exec($ch);
-			if ($content) {
-				if(curl_errno($ch)) {
-					$ret['status']='failed';
-					$ret['details']== sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
-				} else if (str_contains($content,"Username/password incorrect</I>")) {
-					$ret['status']='failed_wrong_creds';
-					$ret['details']= sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], __("Username/password incorrect"));
-				} else {
-					$ret['status']='OK';
-					$ret['details']= __("LoTW login OK!");
-				}
-			} else {
-				$ret['status']='failed_na';
-				$ret['details']= __("LoTW currently not available. Try again later.");
-			}
-		} else {
-			if (($ret['status'] ?? '') == '') {
-				$ret['status']='failed_nocred';
-				$ret['details']= __("No LoTW credentials provided.");
-			}
-		}
-		header("Content-type: application/json");
-		echo json_encode($ret);
-		return $ret;
-	}
-
 	public function import() {	// Is only called via frontend. Cron uses "upload". within download the download is called
 		$this->load->model('user_model');
 		$this->load->model('Stations');
@@ -663,7 +580,7 @@ class Dcl extends CI_Controller {
 		}
 
 		$station_ids=$this->Stations->all_station_ids_of_user($this->session->userdata['user_id']);
-		$data['page_title'] = __("LoTW ADIF Import");
+		$data['page_title'] = __("DCL ADIF Import");
 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'adi|ADI';
@@ -672,58 +589,57 @@ class Dcl extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-		if (($this->input->post('lotwimport') == 'fetch') && (!($this->config->item('disable_manual_lotw')))) {
-			$file = $config['upload_path'] . 'lotwreport_download_'.$this->session->userdata('user_id').'.adi';
+		if (($this->input->post('dclimport') == 'fetch') && (!($this->config->item('disable_manual_dcl')))) {
+			$file = $config['upload_path'] . 'dclreport_download_'.$this->session->userdata('user_id').'.adi';
 
 			// Get credentials for LoTW
 			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
 			$q = $query->row();
-			$data['user_lotw_name'] = urlencode($q->user_lotw_name ?? '');
-			$data['user_lotw_password'] = urlencode($q->user_lotw_password ?? '');
+			$data['user_dcl_name'] = urlencode($q->user_dcl_name ?? '');
+			$data['user_dcl_password'] = urlencode($q->user_dcl_password ?? '');
 
 			// Get URL for downloading LoTW
-			$query = $query = $this->db->query('SELECT lotw_download_url FROM config');
+			$query = $query = $this->db->query('SELECT dcl_download_url FROM config');
 			$q = $query->row();
-			$lotw_url = $q->lotw_download_url;
+			$dcl_url = $q->dcl_download_url;
 
 			// Validate that LoTW credentials are not empty
 			// TODO: We don't actually see the error message
-			if ($data['user_lotw_name'] == '' || $data['user_lotw_password'] == '') {
-				$this->session->set_flashdata('warning', __("You have not defined your ARRL LoTW credentials!")); redirect('lotw/import');
+			if ($data['user_dcl_name'] == '' || $data['user_dcl_password'] == '') {
+				$this->session->set_flashdata('warning', __("You have not defined your ARRL LoTW credentials!")); redirect('dcl/import');
 			}
 
 			$customDate = $this->input->post('from');
 
 			if ($customDate != NULL) {
-				$lotw_last_qsl_date = date($customDate);
+				$dcl_last_qsl_date = date($customDate);
 			} else {
 				// Query the logbook to determine when the last LoTW confirmation was
-				$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($this->session->userdata['user_id'])));
+				$dcl_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->dcl_last_qsl_date($this->session->userdata['user_id'])));
 			}
 
-			// Build URL for LoTW report file
-			$lotw_url .= "?";
-			$lotw_url .= "login=" . $data['user_lotw_name'];
-			$lotw_url .= "&password=" . $data['user_lotw_password'];
-			$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
+			$dcl_url .= "?";
+			$dcl_url .= "login=" . $data['user_dcl_name'];
+			$dcl_url .= "&password=" . $data['user_dcl_password'];
+			$dcl_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
 
-			$lotw_url .= "&qso_qslsince=";
-			$lotw_url .= "$lotw_last_qsl_date";
+			$dcl_url .= "&qso_qslsince=";
+			$dcl_url .= "$dcl_last_qsl_date";
 
 			if ($this->input->post('callsign') != '0') {
-				$lotw_url .= "&qso_owncall=".$this->input->post('callsign');
+				$dcl_url .= "&qso_owncall=".$this->input->post('callsign');
 			}
 
 			if (is_writable(dirname($file)) && (!file_exists($file) || is_writable($file))) {
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $lotw_url);
+				curl_setopt($ch, CURLOPT_URL, $dcl_url);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
 				if(curl_errno($ch)) {
-					print "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+					print "DCL download failed for user ".$data['user_dcl_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 				} else if (str_contains($content,"Username/password incorrect</I>")) {
-					print "LoTW download failed for user ".$data['user_lotw_name'].": Username/password incorrect";
+					print "DCL download failed for user ".$data['user_dcl_name'].": key incorrect";
 				} else {
 					file_put_contents($file, $content);
 					ini_set('memory_limit', '-1');
@@ -739,26 +655,18 @@ class Dcl extends CI_Controller {
 				$data['callsigns'] = $this->Stations->callsigns_of_user($this->session->userdata('user_id'));
 
 				$this->load->view('interface_assets/header', $data);
-				$this->load->view('lotw/import', $data);
+				$this->load->view('dcl_views/import', $data);
 				$this->load->view('interface_assets/footer');
 			}
 		} else {
-			if (!$this->upload->do_upload()) {
-
-				$data['error'] = $this->upload->display_errors();
 				$this->load->model('Stations');
 				$data['callsigns'] = $this->Stations->callsigns_of_user($this->session->userdata('user_id'));
 
 				$this->load->view('interface_assets/header', $data);
-				$this->load->view('lotw/import', $data);
+				$this->load->view('dcl_views/import', $data);
 				$this->load->view('interface_assets/footer');
-			} else {
-				$data = array('upload_data' => $this->upload->data());
-
-				$this->loadFromFile('./uploads/'.$data['upload_data']['file_name'], $station_ids);
-			}
 		}
-	} // end function
+	} 
 
 	public function export() {
 		$this->load->model('user_model');
