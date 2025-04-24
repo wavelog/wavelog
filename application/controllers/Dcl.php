@@ -164,7 +164,7 @@ class Dcl extends CI_Controller {
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 
-				//Execute the request
+				// todo: uncomment when ready
 				// $result = curl_exec($ch);
 
 				if(curl_errno($ch)){
@@ -178,7 +178,6 @@ class Dcl extends CI_Controller {
 					}
 				}
 
-				// $pos = strpos($result, "<!-- .UPL.  accepted -->");
 				$pos = true;
 
 				if ($pos === false) {
@@ -192,35 +191,29 @@ class Dcl extends CI_Controller {
 						continue;
 					}
 				} else {
-					// Upload of TQ8 was successfull
-
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful - ".$filename_for_saving."<br>";
-
 					$this->Dcl_model->last_upload($data['dcl_key_info']->call, "Success", $this->session->userdata('user_id'));
-
 					// Mark QSOs as Sent
 					foreach ($qso_id_array as $qso_number) {
+						// todo: uncomment when ready
 						// $this->Logbook_model->mark_dcl_sent($qso_number);
 					}
 				}
 
-				// Delete TQ8 File - This is done regardless of whether upload was succcessful
+				// todo: uncomment when ready
 				// unlink(realpath($filename_for_saving));
 			}
 		} else {
-			echo "No Station Profiles found to upload to LoTW";
+			echo "No Station Profiles found to upload to DCL";
 		}
 
-			/*
-			|	Download QSO Matches from LoTW
-			 */
 		if ($this->user_model->authorize(2)) {
 			echo "<br><br>";
 			$sync_user_id=$this->session->userdata('user_id');
 		} else {
 			$sync_user_id=null;
 		}
-		echo $this->lotw_download($sync_user_id);
+		echo $this->dcl_download($sync_user_id);
 	}
 
 	public function delete_key($call) {
@@ -442,7 +435,7 @@ class Dcl extends CI_Controller {
 	|	downloading matching QSOs.
 	|
 	 */
-	function lotw_download($sync_user_id = null) {
+	function dcl_download($sync_user_id = null) {
 		$this->load->model('user_model');
 		$this->load->model('logbook_model');
 		$this->load->model('Stations');
