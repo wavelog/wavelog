@@ -5343,6 +5343,19 @@ class Logbook_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_dcl_qsos_to_upload($station_id) {
+
+		$sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
+			' left join station_profile on thcv.station_id = station_profile.station_id' .
+			' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
+			' where thcv.station_id = ?' .
+			' and (COL_DCL_QSL_SENT not in ("Y","I") OR COL_DCL_QSL_SENT is null)';
+		$binding[] = $station_id;
+
+		$query = $this->db->query($sql, $binding);
+		return $query;
+	}
+
 	function get_lotw_qsos_to_upload($station_id, $start_date, $end_date) {
 
 		$this->db->select('COL_PRIMARY_KEY,COL_CALL, COL_BAND, COL_BAND_RX, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_FREQ, COL_FREQ_RX, COL_GRIDSQUARE, COL_SAT_NAME, COL_PROP_MODE, COL_LOTW_QSL_SENT, station_id');
@@ -5360,6 +5373,21 @@ class Logbook_model extends CI_Model {
 		$query = $this->db->get($this->config->item('table_name'));
 
 		return $query;
+	}
+
+	function mark_dcl_sent($qso_id) {
+
+		$data = array(
+			'COL_DCL_QSLSDATE' => date("Y-m-d H:i:s"),
+			'COL_DCL_QSL_SENT' => 'Y',
+		);
+
+
+		$this->db->where('COL_PRIMARY_KEY', $qso_id);
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return "Updated";
 	}
 
 	function mark_lotw_sent($qso_id) {

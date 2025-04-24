@@ -42,41 +42,7 @@ class Dcl extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Function: cert_upload
-	|--------------------------------------------------------------------------
-	|
-	| Nothing fancy just shows the cert_upload form for uploading p12 files
-	|
-	 */
-	public function cert_upload() {
-		$this->load->model('user_model');
-		$this->load->model('dxcc');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-
-		// Load DXCC Countrys List
-		$data['dxcc_list'] = $this->dxcc->list();
-
-		// Set Page Title
-		$data['page_title'] = __("Logbook of the World");
-
-		// Load Views
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('lotw_views/upload_cert', array('error' => ' ' ));
-		$this->load->view('interface_assets/footer');
-	}
-
-
-    /*
-	|--------------------------------------------------------------------------
-	| Function: lotw_upload
-	|--------------------------------------------------------------------------
-	|
-	| This function Uploads to LoTW
-	|
-     */
-	public function lotw_upload() {
+	public function dcl_upload() {
 
 		$this->load->model('user_model');
 		$this->user_model->authorize(2);
@@ -87,6 +53,10 @@ class Dcl extends CI_Controller {
 
 		// Get Station Profile Data
 		$this->load->model('Stations');
+
+		if (!$this->load->is_loaded('AdifHelper')) {
+			$this->load->library('AdifHelper');
+		}
 
 		if ($this->user_model->authorize(2)) {
 			if (!($this->config->item('disable_manual_lotw'))) {
@@ -111,37 +81,28 @@ class Dcl extends CI_Controller {
 
 			foreach ($station_profiles->result() as $station_profile) {
 
+				log_message("Error",$station_profile->station_id);
 				// Get Certificate Data
-				$this->load->model('Lotw_model');
+				$this->load->model('Dcl_model');
 				$data['station_profile'] = $station_profile;
-				$data['lotw_cert_info'] = $this->Lotw_model->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc, $station_profile->user_id);
-
-				// If Station Profile has no LoTW Cert continue on.
-				if(!isset($data['lotw_cert_info']->cert_dxcc_id)) {
-					echo $station_profile->station_callsign.": No LoTW certificate for station callsign found.<br>";
+				$key_info = $this->Dcl_model->find_key($station_profile->station_callsign, $station_profile->user_id);
+				if (($key_info ?? '') == '') {
 					continue;
 				}
 
-				// Check if LoTW certificate itself is valid
-				// Validty of QSO dates will be checked later
-				$current_date = date('Y-m-d H:i:s');
-				if ($current_date <= $data['lotw_cert_info']->date_created) {
-					echo $data['lotw_cert_info']->callsign.": LoTW certificate not valid yet!";
-					continue;
-				}
-				if ($current_date >= $data['lotw_cert_info']->date_expires) {
-					echo $data['lotw_cert_info']->callsign.": LoTW certificate expired!";
-					continue;
-				}
+				$data['dcl_key_info']=new stdClass();
+				$data['dcl_key_info']->call = $key_info[0]->option_key ?? '';
+				$data['dcl_key_info'] = json_decode($key_info[0]->option_value ?? '');
 
-				// Get QSOs
+				// If Station Profile has no DCL Key continue on.
+				if (($data['dcl_key_info']->call ?? '') == '') {
+					echo $station_profile->station_callsign.": No DCL Key for station callsign found.<br>";
+					continue;
+				}
 
 				$this->load->model('Logbook_model');
 
-				// First mark QSOs with unsupported propagation modes as ignore
-				$this->Logbook_model->mark_lotw_ignore($data['station_profile']->station_id);
-
-				$data['qsos'] = $this->Logbook_model->get_lotw_qsos_to_upload($data['station_profile']->station_id, $data['lotw_cert_info']->qso_start_date, $data['lotw_cert_info']->qso_end_date);
+				$data['qsos'] = $this->Logbook_model->get_dcl_qsos_to_upload($data['station_profile']->station_id);
 
 				// Nothing to upload
 				if(empty($data['qsos']->result())){
@@ -156,28 +117,22 @@ class Dcl extends CI_Controller {
 				}
 
 				// Build File to save
-				$adif_to_save = $this->load->view('lotw_views/adif_views/adif_export', $data, TRUE);
-				if (strpos($adif_to_save, '<SIGN_LOTW_V2.0:1:6>')) {
-					// Signing failed
-					echo "Signing failed.";
-					continue;
-				}
-
+				$adif_to_save = $this->load->view('adif/data/dcl.php', $data, TRUE);
+				
 				// create folder to store upload file
-				if (!file_exists('./uploads/lotw')) {
-					mkdir('./uploads/lotw', 0775, true);
+				if (!file_exists('./uploads/dcl')) {
+					mkdir('./uploads/dcl', 0775, true);
 				}
 
 				// Build Filename
-				$filename_for_saving = './uploads/lotw/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($data['lotw_cert_info']->callsign))."-".date("Y-m-d-H-i-s")."-wavelog.tq8";
+				$filename_for_saving = './uploads/dcl/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($data['dcl_key_info']->call))."-".date("Y-m-d-H-i-s")."-wavelog.adif";
 
-				$gzdata = gzencode($adif_to_save, 9);
 				$fp = fopen($filename_for_saving, "w");
-				fwrite($fp, $gzdata);
+				fwrite($fp, $adif_to_save);
 				fclose($fp);
 
 				//The URL that accepts the file upload.
-				$url = 'https://lotw.arrl.org/lotw/upload';
+				$url = 'https://dclnext.darc.de';
 
 				//The name of the field for the uploaded file.
 				$uploadFieldName = 'upfile';
@@ -210,11 +165,11 @@ class Dcl extends CI_Controller {
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 
 				//Execute the request
-				$result = curl_exec($ch);
+				// $result = curl_exec($ch);
 
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
-					$this->Lotw_model->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
+					$this->Dcl_model->last_upload($data['dcl_key_info']->call, "Upload failed", $this->session->userdata('user_id'));
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo "Timeout reached. Stopping subsequent uploads.<br>";
 						break;
@@ -223,12 +178,13 @@ class Dcl extends CI_Controller {
 					}
 				}
 
-				$pos = strpos($result, "<!-- .UPL.  accepted -->");
+				// $pos = strpos($result, "<!-- .UPL.  accepted -->");
+				$pos = true;
 
 				if ($pos === false) {
 					// Upload of TQ8 Failed for unknown reason
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
-					$this->Lotw_model->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
+					$this->Dcl_model->last_upload($data['dcl_key_info']->call, "Upload failed", $this->session->userdata('user_id'));
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo "Timeout reached. Stopping subsequent uploads.<br>";
 						break;
@@ -240,16 +196,16 @@ class Dcl extends CI_Controller {
 
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful - ".$filename_for_saving."<br>";
 
-					$this->Lotw_model->last_upload($data['lotw_cert_info']->lotw_cert_id, "Success");
+					$this->Dcl_model->last_upload($data['dcl_key_info']->call, "Success", $this->session->userdata('user_id'));
 
 					// Mark QSOs as Sent
 					foreach ($qso_id_array as $qso_number) {
-						$this->Logbook_model->mark_lotw_sent($qso_number);
+						// $this->Logbook_model->mark_dcl_sent($qso_number);
 					}
 				}
 
 				// Delete TQ8 File - This is done regardless of whether upload was succcessful
-				unlink(realpath($filename_for_saving));
+				// unlink(realpath($filename_for_saving));
 			}
 		} else {
 			echo "No Station Profiles found to upload to LoTW";

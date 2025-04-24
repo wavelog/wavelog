@@ -31,53 +31,18 @@ class Dcl_model extends CI_Model {
 		$this->user_options_model->del_option('dcl', 'dcl_key',array('option_key' => $call));
 	}
 
-	function last_upload($key, $message) {
+	function last_upload($key, $message, $user_id) {
+		$this->load->model('user_options_model');
+		$dclrkey=$this->user_options_model->get_options('dcl', array('option_name'=>'dcl_key'), $user_id)->result();
+		$dclkey = json_decode($dclrkey[0]->option_value ?? '');
+		$dclkey->call = $dclrkey[0]->option_key ?? '';
+		$dclnewkey=$dclkey;
 
 		if ($message == "Success") {
-			$data = array(
-				'last_upload' => date("Y-m-d H:i:s"),
-				'last_upload_status' => $message,
-			);
-
-			$this->db->where('lotw_cert_id', $certID);
-			$this->db->update('lotw_certs', $data);
-			return "Updated";
+			$dclnewkey->last_sync=date("Y-m-d H:i:s");
+			$this->user_options_model->set_option('dcl', 'dcl_key', array($dclkey->call => json_encode($dclnewkey)),  $user_id);
 		}
-		else if ($message == "Upload failed") {
-			$data = array(
-				'last_upload_fail' => date("Y-m-d H:i:s"),
-				'last_upload_status' => $message,
-			);
-
-			$this->db->where('lotw_cert_id', $certID);
-			$this->db->update('lotw_certs', $data);
-			return "Updated";
-		}
+		return "Updated";
 	}
-
-   function lotw_cert_expired($user_id, $date) {
-      $array = array('user_id' => $user_id, 'date_expires <' => $date);
-      $this->db->where($array);
-      $query = $this->db->get('lotw_certs');
-
-      if ($query->num_rows() > 0) {
-         return true;
-      } else {
-         return false;
-      }
-   }
-
-   function lotw_cert_expiring($user_id, $date) {
-      $array = array('user_id' => $user_id, 'DATE_SUB(date_expires, INTERVAL 30 DAY) <' => $date, 'date_expires >' => $date);
-      $this->db->where($array);
-      $query = $this->db->get('lotw_certs');
-
-      if ($query->num_rows() > 0) {
-         return true;
-      } else {
-         return false;
-      }
-   }
-
 }
 ?>
