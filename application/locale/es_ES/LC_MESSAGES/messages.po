@@ -13,16 +13,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-04-20 08:12+0000\n"
-"PO-Revision-Date: 2025-03-26 08:18+0000\n"
+"PO-Revision-Date: 2025-04-24 17:59+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/es/>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -481,7 +481,7 @@ msgstr "POTA"
 
 #: application/controllers/Awards.php:596
 msgid "CQ WAZ (Worked All Zones)"
-msgstr ""
+msgstr "CQ WAZ (Trabajado en Todas las Zonas)"
 
 #: application/controllers/Awards.php:657
 #: application/views/accumulate/index.php:54
@@ -1861,11 +1861,11 @@ msgstr "Opciones guardadas"
 #: application/controllers/Options.php:137
 #: application/views/options/sidebar.php:12
 msgid "Hams Of Note"
-msgstr ""
+msgstr "Radioaficionados destacados"
 
 #: application/controllers/Options.php:152
 msgid "Hams-Of-Note URL changed to "
-msgstr ""
+msgstr "La URL de Hams-Of-Note cambió a "
 
 #: application/controllers/Options.php:188
 msgid "de continent changed to "
@@ -2192,31 +2192,31 @@ msgstr "Editar satélite"
 
 #: application/controllers/Satellite.php:316
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "¡Error al guardar la configuración de la contraseña!"
 
 #: application/controllers/Satellite.php:319
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "¡Configuraciones de contraseña guardadas!"
 
 #: application/controllers/Satellite.php:332
 msgid "No settings found!"
-msgstr ""
+msgstr "¡No se encontraron configuraciones!"
 
 #: application/controllers/Satellite.php:346
 msgid "Failed to delete pass settings!"
-msgstr ""
+msgstr "¡Error al eliminar la configuración de la contraseña!"
 
 #: application/controllers/Satellite.php:348
 msgid "Pass settings deleted!"
-msgstr ""
+msgstr "¡Configuraciones de la contraseña eliminadas!"
 
 #: application/controllers/Satellite.php:358
 msgid "Saved Pass Settings"
-msgstr ""
+msgstr "Configuraciones de la contraseña guardadas"
 
 #: application/controllers/Satellite.php:375
 msgid "No presets available"
-msgstr ""
+msgstr "No hay preajustes disponibles"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
@@ -4805,6 +4805,10 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
+"El Premio de Condados de los Estados Unidos de América (USA-CA), patrocinado "
+"por MARAC (Mobile Amateur Radio Awards Club), se emite por contactos de "
+"radio bidireccionales confirmados con un número especificado de condados de "
+"EE. UU. bajo reglas y condiciones que puedes encontrar %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -4887,7 +4891,7 @@ msgstr "Pasa el cursor sobre una zona CQ/ITU"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ WAZ (Worked All Zones) Award"
-msgstr ""
+msgstr "Premio CQ WAZ (Worked All Zones)"
 
 #: application/views/awards/cq/index.php:21
 msgid ""
@@ -4896,6 +4900,10 @@ msgid ""
 "magazine first appeared in January 1945 and focuses on awards and the "
 "practical aspects of amateur radio."
 msgstr ""
+"La revista CQ estaba ubicada en los EE. UU. y era una de las revistas de "
+"radioaficionados más populares del mundo. Dejaron de publicarse a finales de "
+"2023. La revista apareció por primera vez en enero de 1945 y se centra en "
+"premios y los aspectos prácticos de la radioafición."
 
 #: application/views/awards/cq/index.php:22
 msgid ""
@@ -4904,15 +4912,21 @@ msgid ""
 "Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
 "N4BAA."
 msgstr ""
+"El premio WAZ significa 'Worked All Zones' y requiere contactos de radio con "
+"las 40 zonas CQ junto con la confirmación correspondiente. Dado que la "
+"revista CQ ya no existe, los premios CQ WAZ ahora son gestionados "
+"directamente por N4BAA."
 
 #: application/views/awards/cq/index.php:23
 #, php-format
 msgid "You can find all the information and rules on the Website of N4BAA: %s"
 msgstr ""
+"Puedes encontrar toda la información y las reglas en el sitio web de N4BAA: "
+"%s"
 
 #: application/views/awards/cq/index.php:25
 msgid "Awards - CQ WAZ"
-msgstr ""
+msgstr "Premios - CQ WAZ"
 
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
@@ -8927,7 +8941,7 @@ msgstr "obsoleto"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Satellite Information"
-msgstr ""
+msgstr "Información del satélite"
 
 #: application/views/interface_assets/footer.php:139
 #: application/views/interface_assets/header.php:491
@@ -9154,7 +9168,7 @@ msgstr "Internacional"
 
 #: application/views/interface_assets/header.php:174
 msgid "CQ WAZ"
-msgstr ""
+msgstr "CQ WAZ"
 
 #: application/views/interface_assets/header.php:178
 msgid "ITU"
@@ -9363,6 +9377,8 @@ msgstr "Selecciona una ubicación"
 #: application/views/interface_assets/header.php:552
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
+"¿Te faltan ubicaciones de estaciones aquí? Ve a la configuración de "
+"estaciones y márcalas como favoritas"
 
 #: application/views/interface_assets/header.php:589
 msgid "Extras"
@@ -9786,7 +9802,7 @@ msgstr "Sicilia"
 
 #: application/views/logbookadvanced/edit.php:197
 msgid "Distance (in km). Leave blank to remove distance."
-msgstr ""
+msgstr "Distancia (en km). Dejar en blanco para eliminar la distancia."
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
@@ -9804,7 +9820,7 @@ msgstr "Líneas de trayectoria"
 
 #: application/views/logbookadvanced/index.php:17
 msgid "Show Callsigns"
-msgstr ""
+msgstr "Mostrar indicativos"
 
 #: application/views/logbookadvanced/index.php:18
 #: application/views/logbookadvanced/useroptions.php:198
@@ -10835,7 +10851,7 @@ msgstr ""
 
 #: application/views/options/hon.php:38
 msgid "Provider for Hams Of Note"
-msgstr ""
+msgstr "Proveedor para Radioaficionados Destacados"
 
 #: application/views/options/hon.php:39
 #, php-format
@@ -10843,15 +10859,17 @@ msgid ""
 "The URL which provides the Hams Of Note List. See example and how it works "
 "here %s"
 msgstr ""
+"La URL que proporciona la lista de Hams Of Note. Vea el ejemplo y cómo "
+"funciona aquí %s"
 
 #: application/views/options/hon.php:39
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: application/views/options/hon.php:41
 #, php-format
 msgid "URL of the Hams Of Note List. e.g. %s"
-msgstr ""
+msgstr "URL de la lista de Hams Of Note. por ejemplo, %s"
 
 #: application/views/options/index.php:13
 msgid ""
@@ -11477,75 +11495,77 @@ msgstr ""
 
 #: application/views/qso/award_tabs.php:2
 msgid "Showing summary for DXCC"
-msgstr ""
+msgstr "Mostrando resumen para DXCC"
 
 #: application/views/qso/award_tabs.php:3
 msgid "Showing summary for US State"
-msgstr ""
+msgstr "Mostrando resumen para los estados de EE. UU"
 
 #: application/views/qso/award_tabs.php:4
 msgid "Showing summary for CQ zone"
-msgstr ""
+msgstr "Mostrando resumen para la zona CQ"
 
 #: application/views/qso/award_tabs.php:5
 msgid "Showing summary for WWFF"
-msgstr ""
+msgstr "Mostrando resumen para WWFF"
 
 #: application/views/qso/award_tabs.php:6
 msgid "Showing summary for POTA"
-msgstr ""
+msgstr "Mostrando resumen para POTA"
 
 #: application/views/qso/award_tabs.php:7
 msgid "Showing summary for SOTA"
-msgstr ""
+msgstr "Mostrando resumen para SOTA"
 
 #: application/views/qso/award_tabs.php:8
 msgid "Showing summary for IOTA"
-msgstr ""
+msgstr "Mostrando resumen para IOTA"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for continent"
-msgstr ""
+msgstr "Mostrando resumen para los continentes"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for gridsquare"
-msgstr ""
+msgstr "Mostrando resumen para las cuadrículas"
 
 #: application/views/qso/award_tabs.php:11
 msgid "State input needs to be filled to show a summary!"
-msgstr ""
+msgstr "¡Es necesario completar la entrada del estado para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:12
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "¡Es necesario completar la entrada de SOTA para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:13
 msgid "POTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "¡Es necesario completar la entrada de POTA para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:14
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "¡Es necesario completar la entrada de IOTA para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:15
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr ""
+msgstr "¡Es necesario completar la entrada de WWFF para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:16
 msgid "Gridsquare input needs to be filled to show a summary!"
 msgstr ""
+"¡Es necesario completar la entrada del cuadrícula para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "Summary only shows for the first POTA entered."
-msgstr ""
+msgstr "El resumen solo se muestra para el primer POTA ingresado."
 
 #: application/views/qso/award_tabs.php:18
 msgid "Summary only shows for the first gridsquare entered."
 msgstr ""
+"El resumen solo se muestra para el primer cuadrado de cuadrícula ingresado."
 
 #: application/views/qso/award_tabs.php:19
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "El resumen solo se muestra para los estados de EE. UU."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
@@ -11754,11 +11774,11 @@ msgstr "No ha contactado antes"
 
 #: application/views/qso/index.php:8
 msgid "more"
-msgstr ""
+msgstr "más"
 
 #: application/views/qso/index.php:9
 msgid "less"
-msgstr ""
+msgstr "menos"
 
 #: application/views/qso/index.php:10
 msgid "DXCC Summary for "
@@ -12206,6 +12226,9 @@ msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
 msgstr ""
+"No se encontraron satélites con TLE. Por favor, actualiza a través de CRON o "
+"la página de satélites. Si no tienes acceso para hacerlo, ¡pregunta a tu "
+"administrador!"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
@@ -12229,7 +12252,7 @@ msgstr "Pasos de satélites"
 
 #: application/views/satellite/pass.php:10
 msgid "Your station"
-msgstr ""
+msgstr "Tu estación"
 
 #: application/views/satellite/pass.php:12
 #: application/views/satellite/pass.php:60
@@ -12252,7 +12275,7 @@ msgstr "Tiempo mín"
 
 #: application/views/satellite/pass.php:58
 msgid "Sked partner"
-msgstr ""
+msgstr "Compañero de sked"
 
 #: application/views/satellite/pass.php:86
 msgid "Load predictions"
@@ -12264,23 +12287,23 @@ msgstr "Agregar socio de sked"
 
 #: application/views/satellite/pass.php:89
 msgid "Presets"
-msgstr ""
+msgstr "Preajustes"
 
 #: application/views/satellite/pass.php:91
 msgid "Save current settings"
-msgstr ""
+msgstr "Guardar la configuración actual"
 
 #: application/views/satellite/pass.php:100
 msgid "Save Settings"
-msgstr ""
+msgstr "Guardar configuraciones"
 
 #: application/views/satellite/pass.php:104
 msgid "Settings Name"
-msgstr ""
+msgstr "Nombre de configuración"
 
 #: application/views/satellite/pass.php:105
 msgid "Enter a name"
-msgstr ""
+msgstr "Introduce un nombre"
 
 #: application/views/satellite/pass.php:116
 msgid "No TLE information detected. Please update TLE's."
@@ -12338,7 +12361,7 @@ msgstr "min"
 
 #: application/views/satellite/satinfo.php:14
 msgid "TLE date"
-msgstr ""
+msgstr "Fecha TLE"
 
 #: application/views/satellite/skedtable.php:6
 msgid "Grid"
@@ -12366,20 +12389,20 @@ msgstr ""
 #: application/views/satellite/tleinfo.php:6
 #, php-format
 msgid "TLE information for %s (last updated: %s)"
-msgstr ""
+msgstr "Información TLE para %s (última actualización: %s)"
 
 #: application/views/satellite/tleinfo.php:8
 msgid "Delete TLE"
-msgstr ""
+msgstr "Eliminar TLE"
 
 #: application/views/satellite/tleinfo.php:10
 #, php-format
 msgid "No TLE information found for %s"
-msgstr ""
+msgstr "No se encontró información TLE para %s"
 
 #: application/views/satellite/tleinfo.php:11
 msgid "Add TLE"
-msgstr ""
+msgstr "Agregar TLE"
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -14793,7 +14816,7 @@ msgstr "último enviado"
 
 #: application/views/view_log/partial/log_ajax.php:458
 msgid "Result"
-msgstr ""
+msgstr "Resultado"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
