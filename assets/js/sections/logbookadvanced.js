@@ -589,6 +589,36 @@ $(document).ready(function () {
 		processNextCallbookItem();
 	});
 
+	$('#helpButton').click(function (event) {
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/helpDialog',
+			type: 'post',
+			success: function (html) {
+				BootstrapDialog.show({
+					title: 'Advanced Logbook Help',
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					nl2br: false,
+					message: html,
+					buttons: [
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							$('#optionButton').prop("disabled", false);
+							dialogItself.close();
+						}
+					}],
+					onhide: function(dialogRef){
+						$('#optionButton').prop("disabled", false);
+					},
+				});
+			}
+		});
+
+	});
+
 	$('#deleteQsos').click(function (event) {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
