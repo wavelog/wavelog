@@ -20,6 +20,7 @@
     var lang_gen_hamradio_nightshadow = '<?= _pgettext("Map Options", "Night Shadow"); ?>';
     var lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
     var lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
+	var lang_gen_advanced_logbook_help = '<?= __("Advanced Logbook Help"); ?>';
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
@@ -488,7 +489,7 @@ $options = json_decode($options);
                 </div>
                 <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="qslvia"><?= __("QSL via"); ?></label>
-                    <input type="search" name="qslvia" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                    <input onclick="this.select()" type="search" name="qslvia" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                 </div>
                 <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="qslimages"><?= __("QSL Images"); ?></label>
@@ -637,8 +638,11 @@ $options = json_decode($options);
 						<i class="fas fa-trash-alt"></i>
 					</button>
 				<?php } ?>
-				<button type="reset" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="resetButton" style="white-space: nowrap;">
+				<button type="reset" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="resetButton" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Reset"); ?>">
 					<i class="fas fa-undo"></i> <?= __("Reset"); ?>
+				</button>
+				<button type="button" class="btn btn-sm btn-success me-1 flex-grow-0 mb-2" id="helpButton" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Help"); ?>">
+					<i class="fa fa-question"></i>
 				</button>
 			</div>
 		</div>
