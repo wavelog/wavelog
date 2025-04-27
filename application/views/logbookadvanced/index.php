@@ -20,6 +20,7 @@
     var lang_gen_hamradio_nightshadow = '<?= _pgettext("Map Options", "Night Shadow"); ?>';
     var lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
     var lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
+	var lang_gen_advanced_logbook_help = '<?= __("Advanced Logbook Help"); ?>';
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {

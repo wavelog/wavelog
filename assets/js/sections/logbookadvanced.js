@@ -595,7 +595,7 @@ $(document).ready(function () {
 			type: 'post',
 			success: function (html) {
 				BootstrapDialog.show({
-					title: 'Advanced Logbook Help',
+					title: lang_gen_advanced_logbook_help,
 					size: BootstrapDialog.SIZE_NORMAL,
 					cssClass: 'options',
 					nl2br: false,
