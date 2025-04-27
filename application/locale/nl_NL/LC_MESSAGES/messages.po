@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-04-27 14:52+0000\n"
-"PO-Revision-Date: 2025-04-21 21:16+0000\n"
+"PO-Revision-Date: 2025-04-28 09:54+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -9749,59 +9749,64 @@ msgstr "Afstand (in km). Laat leeg om afstand te verwijderen."
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
-msgstr ""
+msgstr "In de tekstinvoer zoekopdrachten kun je op de volgende manier zoeken:"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "* - means search for everything."
-msgstr ""
+msgstr "* - betekent zoek naar alles."
 
 #: application/views/logbookadvanced/help.php:3
 msgid "Remove star and leave blank, means to search where column is empty."
-msgstr ""
+msgstr "Ster verwijderen en leeg laten, betekent zoeken waar kolom leeg is."
 
 #: application/views/logbookadvanced/help.php:4
 msgid "!empty - means to search where column is not empty."
-msgstr ""
+msgstr "!leeg - betekent zoeken waar de kolom niet leeg is."
 
 #: application/views/logbookadvanced/help.php:6
 msgid ""
 "The dupe search checks for duplicate QSOs with the same callsign, mode, "
 "submode, station callsign, band and satellite within 1500 seconds."
 msgstr ""
+"De dupe-zoekopdracht controleert op dubbele QSO's met dezelfde roepnaam, "
+"modus, submodus, stationroepnaam, band en satelliet binnen 1500 seconden."
 
 #: application/views/logbookadvanced/help.php:8
 msgid "The invalid search checks for the following conditions:"
-msgstr ""
+msgstr "De ongeldige zoekopdracht controleert op de volgende voorwaarden:"
 
 #: application/views/logbookadvanced/help.php:9
 msgid "Mode is blank or set to 0."
-msgstr ""
+msgstr "De modus is leeg of ingesteld op 0."
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Band is blank."
-msgstr ""
+msgstr "Band is leeg."
 
 #: application/views/logbookadvanced/help.php:11
 msgid "Callsign is blank."
-msgstr ""
+msgstr "Roepnaam is leeg."
 
 #: application/views/logbookadvanced/help.php:12
 msgid "Time and date is not set."
-msgstr ""
+msgstr "Tijd en datum zijn niet ingesteld."
 
 #: application/views/logbookadvanced/help.php:13
 msgid "Date is set to 1970-01-01."
-msgstr ""
+msgstr "De datum is ingesteld op 1970-01-01."
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
-msgstr ""
+msgstr "Continent anders dan AF, AN, AS, EU, NA, OC of SA."
 
 #: application/views/logbookadvanced/help.php:16
 msgid ""
 "The map uses the same search criteria as the normal search. All QSOs in the "
 "search result will be mapped, unless you have checked one or more QSOs."
 msgstr ""
+"De kaart gebruikt dezelfde zoekcriteria als de normale zoekopdracht. Alle "
+"QSO's in het zoekresultaat worden in kaart gebracht, tenzij je een of meer "
+"QSO's hebt aangevinkt."
 
 #: application/views/logbookadvanced/help.php:18
 msgid ""
@@ -9809,6 +9814,9 @@ msgid ""
 "will be exported (all for selected location), unless you have checked one or "
 "more QSOs."
 msgstr ""
+"De ADIF-export gebruikt dezelfde zoekcriteria als de normale zoekopdracht. "
+"Alle QSO's worden geëxporteerd (alle voor de geselecteerde locatie), tenzij "
+"je een of meer QSO's hebt aangevinkt."
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
@@ -9848,7 +9856,7 @@ msgstr "Nacht schaduw"
 
 #: application/views/logbookadvanced/index.php:23
 msgid "Advanced Logbook Help"
-msgstr ""
+msgstr "Geavanceerde logboekhulp"
 
 #: application/views/logbookadvanced/index.php:194
 msgid "From"
