@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-27 14:52+0000\n"
-"PO-Revision-Date: 2025-04-16 09:16+0000\n"
+"POT-Creation-Date: 2025-04-20 08:12+0000\n"
+"PO-Revision-Date: 2025-04-27 14:52+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -183,7 +183,7 @@ msgstr "Fält inte bekräftade"
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:393
 msgid "Total fields worked"
-msgstr "Totalt antal fält bearbetade"
+msgstr "Totalt antal fält kontaktade"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -282,7 +282,7 @@ msgstr "API-nyckel %s har tagits bort"
 #: application/views/interface_assets/header.php:170
 #: application/views/qso/edit_ajax.php:36
 msgid "Awards"
-msgstr "Utmärkelser"
+msgstr "Diplom"
 
 #: application/controllers/Awards.php:92 application/controllers/Awards.php:176
 #: application/controllers/Awards.php:332
@@ -305,18 +305,19 @@ msgstr "Utmärkelser"
 #: application/controllers/Awards.php:2014
 #, php-format
 msgid "Awards - %s"
-msgstr "Utmärkelser - %s"
+msgstr "Diplom - %s"
 
 #: application/controllers/Awards.php:92
 #: application/views/awards/dok/index.php:149
 #: application/views/bands/index.php:47
 #: application/views/contesting/index.php:58
 #: application/views/interface_assets/header.php:216
-#: application/views/logbookadvanced/index.php:730
+#: application/views/logbookadvanced/index.php:726
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:275
 #: application/views/qso/index.php:566 application/views/user/edit.php:660
 #: application/views/view_log/qso.php:460
+#: application/views/logbookadvanced/index.php:730
 msgid "DOK"
 msgstr "DOK"
 
@@ -327,8 +328,8 @@ msgstr "DOK"
 #: application/views/interface_assets/header.php:176
 #: application/views/kml/index.php:47
 #: application/views/logbookadvanced/edit.php:9
-#: application/views/logbookadvanced/index.php:206
-#: application/views/logbookadvanced/index.php:709
+#: application/views/logbookadvanced/index.php:205
+#: application/views/logbookadvanced/index.php:705
 #: application/views/logbookadvanced/qslcarousel.php:35
 #: application/views/logbookadvanced/useroptions.php:90
 #: application/views/lookup/index.php:5
@@ -341,12 +342,14 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
+#: application/views/logbookadvanced/index.php:206
+#: application/views/logbookadvanced/index.php:709
 msgid "DXCC"
 msgstr "DXCC"
 
 #: application/controllers/Awards.php:256
 msgid "Awards - WAJA"
-msgstr "Utmärkelser - WAJA"
+msgstr "Diplom - WAJA"
 
 #: application/controllers/Awards.php:332 application/views/bands/index.php:51
 #: application/views/interface_assets/header.php:232
@@ -411,7 +414,7 @@ msgstr " och "
 #: application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:200
 #: application/views/logbookadvanced/edit.php:20
-#: application/views/logbookadvanced/index.php:324
+#: application/views/logbookadvanced/index.php:323
 #: application/views/logbookadvanced/useroptions.php:114
 #: application/views/lookup/index.php:10
 #: application/views/qslcard/searchresult.php:17
@@ -429,6 +432,7 @@ msgstr " och "
 #: application/views/user/edit.php:353
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/views/logbookadvanced/index.php:324
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -438,7 +442,7 @@ msgstr "SOTA"
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:188
 #: application/views/logbookadvanced/edit.php:22
-#: application/views/logbookadvanced/index.php:344
+#: application/views/logbookadvanced/index.php:343
 #: application/views/logbookadvanced/useroptions.php:122
 #: application/views/lookup/index.php:12
 #: application/views/qso/award_tabs.php:57
@@ -450,6 +454,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:307 application/views/user/edit.php:330
 #: application/views/user/edit.php:354
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/views/logbookadvanced/index.php:344
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -459,8 +464,8 @@ msgstr "WWFF"
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:204
 #: application/views/logbookadvanced/edit.php:15
-#: application/views/logbookadvanced/index.php:328
-#: application/views/logbookadvanced/index.php:724
+#: application/views/logbookadvanced/index.php:327
+#: application/views/logbookadvanced/index.php:720
 #: application/views/logbookadvanced/useroptions.php:110
 #: application/views/lookup/index.php:9 application/views/qso/award_tabs.php:49
 #: application/views/qso/components/previous_contacts.php:84
@@ -471,6 +476,8 @@ msgstr "WWFF"
 #: application/views/user/edit.php:308 application/views/user/edit.php:331
 #: application/views/user/edit.php:355
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/logbookadvanced/index.php:328
+#: application/views/logbookadvanced/index.php:724
 msgid "POTA"
 msgstr "POTA"
 
@@ -482,7 +489,7 @@ msgstr "CQ WAZ (Worked All Zones)"
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
-msgstr "Arbetat alla stater (WAS)"
+msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:719 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:210
@@ -509,12 +516,12 @@ msgstr "Loggvy - Län"
 
 #: application/controllers/Awards.php:911
 msgid "Awards - "
-msgstr "Utmärkelser - "
+msgstr "Diplom - "
 
 #: application/controllers/Awards.php:928
 #: application/controllers/Awards.php:960
 msgid "Gridsquares worked"
-msgstr "Rutnätrutor bearbetade"
+msgstr "Rutnätsrutor kontaktade"
 
 #: application/controllers/Awards.php:929
 #: application/controllers/Awards.php:961
@@ -538,7 +545,7 @@ msgstr "SIG"
 
 #: application/controllers/Awards.php:1166
 msgid "Awards - SIG - "
-msgstr "Utmärkelser - SIG - "
+msgstr "Diplom - SIG - "
 
 #: application/controllers/Awards.php:1795
 #: application/views/awards/itu/index.php:20
@@ -549,7 +556,7 @@ msgstr "ITU-zoner"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:186
 msgid "Worked All Continents (WAC)"
-msgstr "Arbetat alla kontinenter (WAC)"
+msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2002
 msgid "WAE"
@@ -898,7 +905,7 @@ msgstr "Satellitavståndsrekord"
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:152
 msgid "Distances Worked"
-msgstr "Arbetade avstånd"
+msgstr "Avstånd kontaktade"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
@@ -983,7 +990,7 @@ msgstr "Gridsquare karta"
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
-msgstr "Totala gridsquares arbetade"
+msgstr "Totala gridsquares kontaktade"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -1179,7 +1186,7 @@ msgstr "Loggbok"
 #: application/views/awards/waja/index.php:55
 #: application/views/awards/was/index.php:55
 #: application/views/gridmap/index.php:101
-#: application/views/logbookadvanced/index.php:691
+#: application/views/logbookadvanced/index.php:687
 #: application/views/logbookadvanced/useroptions.php:66
 #: application/views/oqrs/qsolist.php:12
 #: application/views/qslprint/qslprint.php:28
@@ -1188,6 +1195,7 @@ msgstr "Loggbok"
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:48
 #: application/views/timeline/index.php:56 application/views/user/edit.php:602
 #: application/views/user/edit.php:706
+#: application/views/logbookadvanced/index.php:691
 msgid "QSL"
 msgstr "QSL"
 
@@ -1293,8 +1301,8 @@ msgstr "eQSL"
 #: application/views/gridmap/index.php:67 application/views/hamsat/index.php:33
 #: application/views/kml/index.php:31
 #: application/views/logbookadvanced/edit.php:13
-#: application/views/logbookadvanced/index.php:235
-#: application/views/logbookadvanced/index.php:667
+#: application/views/logbookadvanced/index.php:234
+#: application/views/logbookadvanced/index.php:663
 #: application/views/logbookadvanced/qslcarousel.php:32
 #: application/views/logbookadvanced/useroptions.php:34
 #: application/views/mode/index.php:40
@@ -1330,6 +1338,8 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/logbookadvanced/index.php:235
+#: application/views/logbookadvanced/index.php:667
 msgid "Mode"
 msgstr "Trafiksätt"
 
@@ -1339,7 +1349,7 @@ msgstr "Trafiksätt"
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:174
 #: application/views/contesting/index.php:260
-#: application/views/logbookadvanced/index.php:670
+#: application/views/logbookadvanced/index.php:666
 #: application/views/logbookadvanced/useroptions.php:38
 #: application/views/qslcard/searchresult.php:13
 #: application/views/qslcard/searchresult.php:29
@@ -1358,6 +1368,7 @@ msgstr "Trafiksätt"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
+#: application/views/logbookadvanced/index.php:670
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -1367,7 +1378,7 @@ msgstr "RST (S)"
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:198
 #: application/views/contesting/index.php:261
-#: application/views/logbookadvanced/index.php:673
+#: application/views/logbookadvanced/index.php:669
 #: application/views/logbookadvanced/useroptions.php:42
 #: application/views/qslcard/searchresult.php:14
 #: application/views/qslcard/searchresult.php:30
@@ -1387,6 +1398,7 @@ msgstr "RST (S)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
+#: application/views/logbookadvanced/index.php:673
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -1416,8 +1428,8 @@ msgstr "Land"
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:202
 #: application/views/logbookadvanced/edit.php:11
-#: application/views/logbookadvanced/index.php:332
-#: application/views/logbookadvanced/index.php:721
+#: application/views/logbookadvanced/index.php:331
+#: application/views/logbookadvanced/index.php:717
 #: application/views/logbookadvanced/qslcarousel.php:38
 #: application/views/logbookadvanced/useroptions.php:106
 #: application/views/lookup/index.php:7
@@ -1436,6 +1448,8 @@ msgstr "Land"
 #: application/views/user/edit.php:328 application/views/user/edit.php:352
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/views/logbookadvanced/index.php:332
+#: application/views/logbookadvanced/index.php:721
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1448,8 +1462,8 @@ msgstr "IOTA"
 #: application/views/dashboard/index.php:12
 #: application/views/logbookadvanced/edit.php:23
 #: application/views/logbookadvanced/edit.php:77
-#: application/views/logbookadvanced/index.php:227
-#: application/views/logbookadvanced/index.php:712
+#: application/views/logbookadvanced/index.php:226
+#: application/views/logbookadvanced/index.php:708
 #: application/views/logbookadvanced/qslcarousel.php:36
 #: application/views/logbookadvanced/useroptions.php:94
 #: application/views/qslcard/searchresult.php:18
@@ -1464,6 +1478,8 @@ msgstr "IOTA"
 #: application/views/user/edit.php:332 application/views/user/edit.php:356
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/logbookadvanced/index.php:227
+#: application/views/logbookadvanced/index.php:712
 msgid "State"
 msgstr "Delstat"
 
@@ -1479,8 +1495,8 @@ msgstr "Delstat"
 #: application/views/labels/index.php:125
 #: application/views/logbookadvanced/edit.php:10
 #: application/views/logbookadvanced/index.php:12
-#: application/views/logbookadvanced/index.php:231
-#: application/views/logbookadvanced/index.php:679
+#: application/views/logbookadvanced/index.php:230
+#: application/views/logbookadvanced/index.php:675
 #: application/views/logbookadvanced/qslcarousel.php:39
 #: application/views/logbookadvanced/useroptions.php:50
 #: application/views/lookup/index.php:6
@@ -1507,6 +1523,8 @@ msgstr "Delstat"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
+#: application/views/logbookadvanced/index.php:231
+#: application/views/logbookadvanced/index.php:679
 msgid "Gridsquare"
 msgstr "Rutnätsruta"
 
@@ -1520,7 +1538,7 @@ msgstr "Rutnätsruta"
 #: application/views/gridmap/index.php:154
 #: application/views/logbookadvanced/edit.php:36
 #: application/views/logbookadvanced/index.php:14
-#: application/views/logbookadvanced/index.php:760
+#: application/views/logbookadvanced/index.php:756
 #: application/views/logbookadvanced/useroptions.php:158
 #: application/views/qslcard/searchresult.php:20
 #: application/views/qslcard/searchresult.php:36
@@ -1534,6 +1552,7 @@ msgstr "Rutnätsruta"
 #: application/views/user/edit.php:358
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/views/logbookadvanced/index.php:760
 msgid "Distance"
 msgstr "Avstånd"
 
@@ -1572,8 +1591,8 @@ msgstr "Avstånd"
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:10 application/views/kml/index.php:19
 #: application/views/logbookadvanced/edit.php:5
-#: application/views/logbookadvanced/index.php:246
-#: application/views/logbookadvanced/index.php:676
+#: application/views/logbookadvanced/index.php:245
+#: application/views/logbookadvanced/index.php:672
 #: application/views/logbookadvanced/qslcarousel.php:33
 #: application/views/logbookadvanced/useroptions.php:46
 #: application/views/oqrs/notinlogform.php:10
@@ -1610,6 +1629,8 @@ msgstr "Avstånd"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/views/logbookadvanced/index.php:246
+#: application/views/logbookadvanced/index.php:676
 msgid "Band"
 msgstr "Band"
 
@@ -1637,8 +1658,8 @@ msgstr "Frekvens"
 #: application/controllers/Radio.php:43
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:14
-#: application/views/logbookadvanced/index.php:348
-#: application/views/logbookadvanced/index.php:742
+#: application/views/logbookadvanced/index.php:347
+#: application/views/logbookadvanced/index.php:738
 #: application/views/logbookadvanced/useroptions.php:134
 #: application/views/qslcard/searchresult.php:23
 #: application/views/qslcard/searchresult.php:55
@@ -1654,6 +1675,8 @@ msgstr "Frekvens"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:684
 #: application/views/visitor/index.php:39
+#: application/views/logbookadvanced/index.php:348
+#: application/views/logbookadvanced/index.php:742
 msgid "Operator"
 msgstr "Operatör"
 
@@ -1666,7 +1689,7 @@ msgstr "Operatör"
 #: application/views/dxatlas/index.php:65
 #: application/views/interface_assets/footer.php:743
 #: application/views/kml/index.php:54
-#: application/views/logbookadvanced/index.php:219
+#: application/views/logbookadvanced/index.php:218
 #: application/views/lookup/index.php:46
 #: application/views/lotw_views/index.php:49
 #: application/views/qso/components/previous_contacts.php:59
@@ -1682,6 +1705,7 @@ msgstr "Operatör"
 #: application/views/view_log/partial/log_ajax.php:30
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:678
+#: application/views/logbookadvanced/index.php:219
 msgid "Deleted DXCC"
 msgstr "Struket DXCC"
 
@@ -2077,11 +2101,12 @@ msgid "Timestamp"
 msgstr "Tidsstämpel"
 
 #: application/controllers/Radio.php:49
-#: application/views/logbookadvanced/index.php:634
+#: application/views/logbookadvanced/index.php:633
 #: application/views/lotw_views/index.php:40
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
+#: application/views/logbookadvanced/index.php:634
 msgid "Options"
 msgstr "Alternativ"
 
@@ -2116,7 +2141,7 @@ msgstr "Standard (klicka för att släppa)"
 #: application/views/interface_assets/footer.php:604
 #: application/views/interface_assets/footer.php:613
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
-#: application/views/logbookadvanced/index.php:621
+#: application/views/logbookadvanced/index.php:620
 #: application/views/mode/index.php:64 application/views/satellite/edit.php:56
 #: application/views/satellite/index.php:58
 #: application/views/search/stored_queries.php:21
@@ -2124,6 +2149,7 @@ msgstr "Standard (klicka för att släppa)"
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/logbookadvanced/index.php:621
 msgid "Edit"
 msgstr "Redigera"
 
@@ -2138,7 +2164,7 @@ msgstr "Redigera"
 #: application/views/interface_assets/footer.php:2682
 #: application/views/interface_assets/footer.php:2700
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
-#: application/views/logbookadvanced/index.php:637
+#: application/views/logbookadvanced/index.php:636
 #: application/views/lotw_views/index.php:111
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:71
@@ -2151,6 +2177,7 @@ msgstr "Redigera"
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
+#: application/views/logbookadvanced/index.php:637
 msgid "Delete"
 msgstr "Radera"
 
@@ -2176,31 +2203,31 @@ msgstr "Redigera satellit"
 
 #: application/controllers/Satellite.php:316
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "Det gick inte att spara passinställningarna!"
 
 #: application/controllers/Satellite.php:319
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "Passinställningar sparade!"
 
 #: application/controllers/Satellite.php:332
 msgid "No settings found!"
-msgstr ""
+msgstr "Inga inställningar hittade!"
 
 #: application/controllers/Satellite.php:346
 msgid "Failed to delete pass settings!"
-msgstr ""
+msgstr "Det gick inte att ta bort passinställningarna!"
 
 #: application/controllers/Satellite.php:348
 msgid "Pass settings deleted!"
-msgstr ""
+msgstr "Inställningar för pass raderade!"
 
 #: application/controllers/Satellite.php:358
 msgid "Saved Pass Settings"
-msgstr ""
+msgstr "Sparade passinställningar"
 
 #: application/controllers/Satellite.php:375
 msgid "No presets available"
-msgstr ""
+msgstr "Inga förinställningar tillgängliga"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
@@ -2226,7 +2253,7 @@ msgstr "Satellittimers"
 #: application/views/interface_assets/footer.php:40
 #: application/views/interface_assets/header.php:356
 #: application/views/interface_assets/header.php:363
-#: application/views/logbookadvanced/index.php:610
+#: application/views/logbookadvanced/index.php:609
 #: application/views/oqrs/index.php:28
 #: application/views/oqrs/showrequests.php:67
 #: application/views/qslcard/searchform.php:8
@@ -2245,6 +2272,7 @@ msgstr "Satellittimers"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/logbookadvanced/index.php:610
 msgid "Search"
 msgstr "Sök"
 
@@ -3364,24 +3392,24 @@ msgstr "Skillnad"
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
-#: application/views/logbookadvanced/index.php:237
-#: application/views/logbookadvanced/index.php:248
-#: application/views/logbookadvanced/index.php:259
-#: application/views/logbookadvanced/index.php:268
-#: application/views/logbookadvanced/index.php:277
-#: application/views/logbookadvanced/index.php:302
-#: application/views/logbookadvanced/index.php:313
-#: application/views/logbookadvanced/index.php:360
-#: application/views/logbookadvanced/index.php:385
-#: application/views/logbookadvanced/index.php:396
-#: application/views/logbookadvanced/index.php:407
-#: application/views/logbookadvanced/index.php:417
-#: application/views/logbookadvanced/index.php:427
-#: application/views/logbookadvanced/index.php:438
-#: application/views/logbookadvanced/index.php:449
-#: application/views/logbookadvanced/index.php:460
-#: application/views/logbookadvanced/index.php:471
-#: application/views/logbookadvanced/index.php:482
+#: application/views/logbookadvanced/index.php:236
+#: application/views/logbookadvanced/index.php:247
+#: application/views/logbookadvanced/index.php:258
+#: application/views/logbookadvanced/index.php:267
+#: application/views/logbookadvanced/index.php:276
+#: application/views/logbookadvanced/index.php:301
+#: application/views/logbookadvanced/index.php:312
+#: application/views/logbookadvanced/index.php:359
+#: application/views/logbookadvanced/index.php:384
+#: application/views/logbookadvanced/index.php:395
+#: application/views/logbookadvanced/index.php:406
+#: application/views/logbookadvanced/index.php:416
+#: application/views/logbookadvanced/index.php:426
+#: application/views/logbookadvanced/index.php:437
+#: application/views/logbookadvanced/index.php:448
+#: application/views/logbookadvanced/index.php:459
+#: application/views/logbookadvanced/index.php:470
+#: application/views/logbookadvanced/index.php:481
 #: application/views/lotw/import.php:55
 #: application/views/oqrs/showrequests.php:33
 #: application/views/oqrs/showrequests.php:49
@@ -3406,6 +3434,24 @@ msgstr "Skillnad"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:690
 #: application/views/visitor/layout/footer.php:172
+#: application/views/logbookadvanced/index.php:237
+#: application/views/logbookadvanced/index.php:248
+#: application/views/logbookadvanced/index.php:259
+#: application/views/logbookadvanced/index.php:268
+#: application/views/logbookadvanced/index.php:277
+#: application/views/logbookadvanced/index.php:302
+#: application/views/logbookadvanced/index.php:313
+#: application/views/logbookadvanced/index.php:360
+#: application/views/logbookadvanced/index.php:385
+#: application/views/logbookadvanced/index.php:396
+#: application/views/logbookadvanced/index.php:407
+#: application/views/logbookadvanced/index.php:417
+#: application/views/logbookadvanced/index.php:427
+#: application/views/logbookadvanced/index.php:438
+#: application/views/logbookadvanced/index.php:449
+#: application/views/logbookadvanced/index.php:460
+#: application/views/logbookadvanced/index.php:471
+#: application/views/logbookadvanced/index.php:482
 msgid "All"
 msgstr "Alla"
 
@@ -3448,11 +3494,13 @@ msgstr "Period"
 #: application/views/distances/index.php:53
 #: application/views/gridmap/index.php:38
 #: application/views/logbookadvanced/edit.php:16
-#: application/views/logbookadvanced/index.php:275
-#: application/views/logbookadvanced/index.php:748
+#: application/views/logbookadvanced/index.php:274
+#: application/views/logbookadvanced/index.php:744
 #: application/views/logbookadvanced/useroptions.php:142
 #: application/views/timeline/index.php:79
 #: application/views/view_log/qso.php:230
+#: application/views/logbookadvanced/index.php:275
+#: application/views/logbookadvanced/index.php:748
 msgid "Propagation"
 msgstr "Utbredning"
 
@@ -3467,8 +3515,9 @@ msgstr "Alla utom SAT"
 #: application/views/distances/index.php:58
 #: application/views/gridmap/index.php:42
 #: application/views/logbookadvanced/edit.php:175
-#: application/views/logbookadvanced/index.php:361
+#: application/views/logbookadvanced/index.php:360
 #: application/views/timeline/index.php:84
+#: application/views/logbookadvanced/index.php:361
 msgid "None/Empty"
 msgstr "Inget"
 
@@ -3477,10 +3526,11 @@ msgstr "Inget"
 #: application/views/distances/index.php:59
 #: application/views/dxatlas/index.php:95
 #: application/views/gridmap/index.php:44 application/views/kml/index.php:80
-#: application/views/logbookadvanced/index.php:279
+#: application/views/logbookadvanced/index.php:278
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:450
 #: application/views/timeline/index.php:85
 #: application/views/view_log/qso.php:233
+#: application/views/logbookadvanced/index.php:279
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr "Flygplans Scatter"
@@ -3490,10 +3540,11 @@ msgstr "Flygplans Scatter"
 #: application/views/distances/index.php:60
 #: application/views/dxatlas/index.php:96
 #: application/views/gridmap/index.php:45 application/views/kml/index.php:81
-#: application/views/logbookadvanced/index.php:280
+#: application/views/logbookadvanced/index.php:279
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:451
 #: application/views/timeline/index.php:86
 #: application/views/view_log/qso.php:236
+#: application/views/logbookadvanced/index.php:280
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr "Aurora"
@@ -3503,10 +3554,11 @@ msgstr "Aurora"
 #: application/views/distances/index.php:61
 #: application/views/dxatlas/index.php:97
 #: application/views/gridmap/index.php:46 application/views/kml/index.php:82
-#: application/views/logbookadvanced/index.php:281
+#: application/views/logbookadvanced/index.php:280
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:452
 #: application/views/timeline/index.php:87
 #: application/views/view_log/qso.php:239
+#: application/views/logbookadvanced/index.php:281
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr "Aurora-E"
@@ -3516,10 +3568,11 @@ msgstr "Aurora-E"
 #: application/views/distances/index.php:62
 #: application/views/dxatlas/index.php:98
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:83
-#: application/views/logbookadvanced/index.php:282
+#: application/views/logbookadvanced/index.php:281
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:453
 #: application/views/timeline/index.php:88
 #: application/views/view_log/qso.php:242
+#: application/views/logbookadvanced/index.php:282
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr "Back scatter"
@@ -3529,10 +3582,11 @@ msgstr "Back scatter"
 #: application/views/distances/index.php:63
 #: application/views/dxatlas/index.php:99
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:84
-#: application/views/logbookadvanced/index.php:283
+#: application/views/logbookadvanced/index.php:282
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:454
 #: application/views/timeline/index.php:89
 #: application/views/view_log/qso.php:245
+#: application/views/logbookadvanced/index.php:283
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr "EchoLink"
@@ -3542,10 +3596,11 @@ msgstr "EchoLink"
 #: application/views/distances/index.php:64
 #: application/views/dxatlas/index.php:100
 #: application/views/gridmap/index.php:49 application/views/kml/index.php:85
-#: application/views/logbookadvanced/index.php:284
+#: application/views/logbookadvanced/index.php:283
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:455
 #: application/views/timeline/index.php:90
 #: application/views/view_log/qso.php:248
+#: application/views/logbookadvanced/index.php:284
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr "Earth-Moon-Earth"
@@ -3555,10 +3610,11 @@ msgstr "Earth-Moon-Earth"
 #: application/views/distances/index.php:65
 #: application/views/dxatlas/index.php:101
 #: application/views/gridmap/index.php:50 application/views/kml/index.php:86
-#: application/views/logbookadvanced/index.php:285
+#: application/views/logbookadvanced/index.php:284
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:456
 #: application/views/timeline/index.php:91
 #: application/views/view_log/qso.php:251
+#: application/views/logbookadvanced/index.php:285
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr "Sporadisk E"
@@ -3568,10 +3624,11 @@ msgstr "Sporadisk E"
 #: application/views/distances/index.php:66
 #: application/views/dxatlas/index.php:102
 #: application/views/gridmap/index.php:51 application/views/kml/index.php:87
-#: application/views/logbookadvanced/index.php:286
+#: application/views/logbookadvanced/index.php:285
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:457
 #: application/views/timeline/index.php:92
 #: application/views/view_log/qso.php:254
+#: application/views/logbookadvanced/index.php:286
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr "Fältjusterade oregelbundenheter"
@@ -3581,10 +3638,11 @@ msgstr "Fältjusterade oregelbundenheter"
 #: application/views/distances/index.php:67
 #: application/views/dxatlas/index.php:103
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:88
-#: application/views/logbookadvanced/index.php:287
+#: application/views/logbookadvanced/index.php:286
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:458
 #: application/views/timeline/index.php:93
 #: application/views/view_log/qso.php:257
+#: application/views/logbookadvanced/index.php:287
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr "F2-reflektion"
@@ -3594,10 +3652,11 @@ msgstr "F2-reflektion"
 #: application/views/distances/index.php:68
 #: application/views/dxatlas/index.php:104
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:89
-#: application/views/logbookadvanced/index.php:288
+#: application/views/logbookadvanced/index.php:287
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:459
 #: application/views/timeline/index.php:94
 #: application/views/view_log/qso.php:260
+#: application/views/logbookadvanced/index.php:288
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr "Internet-assisterad"
@@ -3607,10 +3666,11 @@ msgstr "Internet-assisterad"
 #: application/views/distances/index.php:69
 #: application/views/dxatlas/index.php:105
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:90
-#: application/views/logbookadvanced/index.php:289
+#: application/views/logbookadvanced/index.php:288
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:460
 #: application/views/timeline/index.php:95
 #: application/views/view_log/qso.php:263
+#: application/views/logbookadvanced/index.php:289
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr "Ionoscatter"
@@ -3620,10 +3680,11 @@ msgstr "Ionoscatter"
 #: application/views/distances/index.php:70
 #: application/views/dxatlas/index.php:106
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:91
-#: application/views/logbookadvanced/index.php:290
+#: application/views/logbookadvanced/index.php:289
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:461
 #: application/views/timeline/index.php:96
 #: application/views/view_log/qso.php:266
+#: application/views/logbookadvanced/index.php:290
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr "IRLP"
@@ -3633,10 +3694,11 @@ msgstr "IRLP"
 #: application/views/distances/index.php:71
 #: application/views/dxatlas/index.php:107
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:92
-#: application/views/logbookadvanced/index.php:291
+#: application/views/logbookadvanced/index.php:290
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:462
 #: application/views/timeline/index.php:97
 #: application/views/view_log/qso.php:269
+#: application/views/logbookadvanced/index.php:291
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr "Meteor scatter"
@@ -3646,10 +3708,11 @@ msgstr "Meteor scatter"
 #: application/views/distances/index.php:72
 #: application/views/dxatlas/index.php:108
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:93
-#: application/views/logbookadvanced/index.php:292
+#: application/views/logbookadvanced/index.php:291
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:463
 #: application/views/timeline/index.php:98
 #: application/views/view_log/qso.php:272
+#: application/views/logbookadvanced/index.php:292
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Markbunden eller atmosfärisk repeater eller transponder"
@@ -3659,10 +3722,11 @@ msgstr "Markbunden eller atmosfärisk repeater eller transponder"
 #: application/views/distances/index.php:73
 #: application/views/dxatlas/index.php:109
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:94
-#: application/views/logbookadvanced/index.php:293
+#: application/views/logbookadvanced/index.php:292
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:464
 #: application/views/timeline/index.php:99
 #: application/views/view_log/qso.php:275
+#: application/views/logbookadvanced/index.php:293
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr "Regnscatter"
@@ -3672,10 +3736,11 @@ msgstr "Regnscatter"
 #: application/views/distances/index.php:74
 #: application/views/dxatlas/index.php:110
 #: application/views/gridmap/index.php:59 application/views/kml/index.php:95
-#: application/views/logbookadvanced/index.php:294
+#: application/views/logbookadvanced/index.php:293
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:465
 #: application/views/timeline/index.php:100
 #: application/views/view_log/qso.php:278
+#: application/views/logbookadvanced/index.php:294
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "Satellit"
@@ -3685,10 +3750,11 @@ msgstr "Satellit"
 #: application/views/distances/index.php:75
 #: application/views/dxatlas/index.php:111
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:96
-#: application/views/logbookadvanced/index.php:295
+#: application/views/logbookadvanced/index.php:294
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:466
 #: application/views/timeline/index.php:101
 #: application/views/view_log/qso.php:281
+#: application/views/logbookadvanced/index.php:295
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr "Trans-ekvatoriell"
@@ -3698,10 +3764,11 @@ msgstr "Trans-ekvatoriell"
 #: application/views/distances/index.php:76
 #: application/views/dxatlas/index.php:112
 #: application/views/gridmap/index.php:61 application/views/kml/index.php:97
-#: application/views/logbookadvanced/index.php:296
+#: application/views/logbookadvanced/index.php:295
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:467
 #: application/views/timeline/index.php:102
 #: application/views/view_log/qso.php:284
+#: application/views/logbookadvanced/index.php:296
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr "Troposfärisk ducting"
@@ -3750,7 +3817,7 @@ msgstr "Visa"
 #: application/views/gridmap/index.php:25 application/views/hamsat/index.php:32
 #: application/views/interface_assets/header.php:192
 #: application/views/logbookadvanced/edit.php:19
-#: application/views/logbookadvanced/index.php:257
+#: application/views/logbookadvanced/index.php:256
 #: application/views/satellite/flightpath.php:40
 #: application/views/satellite/pass.php:48
 #: application/views/satellite/passtable.php:6
@@ -3758,6 +3825,7 @@ msgstr "Visa"
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:24
+#: application/views/logbookadvanced/index.php:257
 msgid "Satellite"
 msgstr "Satellit"
 
@@ -3769,13 +3837,14 @@ msgstr "Satellit"
 #: application/views/callstats/index.php:35
 #: application/views/distances/index.php:44
 #: application/views/gridmap/index.php:80
-#: application/views/logbookadvanced/index.php:266
+#: application/views/logbookadvanced/index.php:265
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
 #: application/views/satellite/index.php:54
 #: application/views/satellite/satinfo.php:12
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:101
+#: application/views/logbookadvanced/index.php:266
 msgid "Orbit"
 msgstr "Bana"
 
@@ -4632,9 +4701,10 @@ msgstr "Status"
 #: application/views/club/permissions.php:226
 #: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
-#: application/views/logbookadvanced/index.php:590
+#: application/views/logbookadvanced/index.php:589
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
 #: application/views/user/index.php:160 application/views/webadif/export.php:45
+#: application/views/logbookadvanced/index.php:590
 msgid "Actions"
 msgstr "Åtgärder"
 
@@ -4710,17 +4780,19 @@ msgstr "Skapa en skrivskyddad nyckel"
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:13
 msgid "Award Info"
-msgstr ""
+msgstr "Diplominformation"
 
 #: application/views/awards/73on73/index.php:7
 msgid "73 on 73 Award"
-msgstr ""
+msgstr "73 på 73 Diplom"
 
 #: application/views/awards/73on73/index.php:8
 msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Paul Stoetzer N8HM sponsrar ett diplom för kontakter gjorda via AO-73 "
+"(FUNcube-1) amatörradiosatellit."
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:23
@@ -4731,14 +4803,14 @@ msgstr ""
 #: application/views/awards/wwff/index.php:10
 #, php-format
 msgid "For more information, please visit: %s."
-msgstr ""
+msgstr "För mer information, besök: %s."
 
 #: application/views/awards/73on73/index.php:31
 #: application/views/awards/jcc/index.php:151
 #: application/views/awards/waja/index.php:153
 #: application/views/distancerecords/index.php:13
 msgid "Number"
-msgstr ""
+msgstr "Nummer"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -4747,15 +4819,15 @@ msgstr ""
 #: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
 msgid "Filtering on"
-msgstr ""
+msgstr "Filtrering på"
 
 #: application/views/awards/counties/details.php:13
 msgid "County"
-msgstr ""
+msgstr "Län"
 
 #: application/views/awards/counties/index.php:7
 msgid "US County Award"
-msgstr ""
+msgstr "US County Award"
 
 #: application/views/awards/counties/index.php:8
 #, php-format
@@ -4765,6 +4837,10 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
+"United States of America Counties Award (USA-CA), sponsrad av MARAC (Mobile "
+"Amateur Radio Awards Club), utfärdas för bekräftade tvåvägs radiokontakter "
+"med specificerade antal amerikanska län enligt regler och villkor som du kan "
+"hitta %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -4772,18 +4848,21 @@ msgid ""
 "individuals for all county contacts made, regardless of callsigns used, "
 "operating locations, or dates."
 msgstr ""
+"USA-CA är tillgänglig för alla licensierade radioamatörer världen över och "
+"utfärdas till individer för alla kontakter med län, oavsett vilka "
+"anropssignaler som används, var de befinner sig eller datum."
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
-msgstr ""
+msgstr "Särskilda USA-CA-diplom är också tillgängliga för kortvågslyssnare."
 
 #: application/views/awards/counties/index.php:21
 msgid "Counties Worked"
-msgstr ""
+msgstr "Kontaktade län"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "Län bekräftade"
 
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:176
@@ -4812,15 +4891,15 @@ msgstr ""
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
 msgid "Total"
-msgstr ""
+msgstr "Totalt"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:150 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80 application/views/kml/index.php:65
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:22
-#: application/views/logbookadvanced/index.php:300
-#: application/views/logbookadvanced/index.php:715
+#: application/views/logbookadvanced/index.php:299
+#: application/views/logbookadvanced/index.php:711
 #: application/views/logbookadvanced/qslcarousel.php:37
 #: application/views/logbookadvanced/useroptions.php:98
 #: application/views/lookup/index.php:3 application/views/qso/edit_ajax.php:308
@@ -4832,16 +4911,16 @@ msgstr ""
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
 msgid "CQ Zone"
-msgstr ""
+msgstr "CQ-zon"
 
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "Hovra över en zon"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ WAZ (Worked All Zones) Award"
-msgstr ""
+msgstr "CQ WAZ (Worked All Zones) Award"
 
 #: application/views/awards/cq/index.php:21
 msgid ""
@@ -4850,6 +4929,10 @@ msgid ""
 "magazine first appeared in January 1945 and focuses on awards and the "
 "practical aspects of amateur radio."
 msgstr ""
+"CQ Magazine i USA var en av de mest populära amatörradiotidningarna i "
+"världen. De upphörde med sin verksamhet i slutet av 2023. Tidningen dök upp "
+"första gången i januari 1945 och fokuserade på diplom och de praktiska "
+"aspekterna av amatörradio."
 
 #: application/views/awards/cq/index.php:22
 msgid ""
@@ -4858,15 +4941,18 @@ msgid ""
 "Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
 "N4BAA."
 msgstr ""
+"WAZ-diplomet står för 'Worked All Zones' och kräver radiokontakter med alla "
+"40 CQ-zoner tillsammans med motsvarande bekräftelser. Eftersom CQ Magazine "
+"inte längre finns, hanteras nu CQ WAZ Awards direkt av N4BAA."
 
 #: application/views/awards/cq/index.php:23
 #, php-format
 msgid "You can find all the information and rules on the Website of N4BAA: %s"
-msgstr ""
+msgstr "Du kan hitta all information och regler på N4BAA:s webbplats: %s"
 
 #: application/views/awards/cq/index.php:25
 msgid "Awards - CQ WAZ"
-msgstr ""
+msgstr "Diplom - CQ WAZ"
 
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
@@ -4905,7 +4991,7 @@ msgstr "Körda"
 #: application/views/awards/waja/index.php:37
 #: application/views/awards/was/index.php:37
 msgid "Show worked"
-msgstr ""
+msgstr "Visa kontaktade"
 
 #: application/views/awards/cq/index.php:42
 #: application/views/awards/dok/index.php:45
@@ -4920,7 +5006,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:41
 #: application/views/awards/was/index.php:41
 msgid "Show confirmed"
-msgstr ""
+msgstr "Visa bekräftade"
 
 #: application/views/awards/cq/index.php:46
 #: application/views/awards/dxcc/index.php:51
@@ -4934,7 +5020,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:45
 #: application/views/awards/was/index.php:45
 msgid "Show not worked"
-msgstr ""
+msgstr "Visa ej kontaktade"
 
 #: application/views/awards/cq/index.php:52
 #: application/views/awards/dok/index.php:51
@@ -4949,7 +5035,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:51
 #: application/views/awards/was/index.php:51
 msgid "Show QSO with QSL Type"
-msgstr ""
+msgstr "Visa QSO med QSL-typ"
 
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/iota/index.php:61
@@ -4975,16 +5061,16 @@ msgstr "QSL-kort"
 #: application/views/awards/was/index.php:111
 #: application/views/continents/index.php:50
 #: application/views/logbookadvanced/index.php:641
-#: application/views/logbookadvanced/index.php:642
 #: application/views/oqrs/showrequests.php:68
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:664
+#: application/views/logbookadvanced/index.php:642
 msgid "Reset"
 msgstr "Återställ"
 
 #: application/views/awards/cq/index.php:115
 msgid "Show CQ Zone Map"
-msgstr ""
+msgstr "Visa CQ-zonkarta"
 
 #: application/views/awards/cq/index.php:124
 #: application/views/awards/dxcc/index.php:199
@@ -4995,7 +5081,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:128
 #: application/views/awards/was/index.php:124
 msgid "Table"
-msgstr ""
+msgstr "Tabell"
 
 #: application/views/awards/cq/index.php:127
 #: application/views/awards/dok/index.php:128
@@ -5008,10 +5094,10 @@ msgstr ""
 #: application/views/awards/wab/index.php:108
 #: application/views/awards/waja/index.php:131
 #: application/views/awards/was/index.php:127
-#: application/views/logbookadvanced/index.php:626
+#: application/views/logbookadvanced/index.php:625
 #: application/views/logbookadvanced/useroptions.php:7
 msgid "Map"
-msgstr ""
+msgstr "Karta"
 
 #: application/views/awards/cq/index.php:167
 #: application/views/awards/dok/index.php:165
@@ -5026,7 +5112,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:170
 #: application/views/awards/was/index.php:170
 msgid "Summary"
-msgstr ""
+msgstr "Sammanfattning"
 
 #: application/views/awards/cq/index.php:180
 #: application/views/awards/dok/index.php:178
@@ -5041,7 +5127,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:184
 #: application/views/awards/was/index.php:183
 msgid "Total worked"
-msgstr ""
+msgstr "Totalt kontaktade"
 
 #: application/views/awards/cq/index.php:187
 #: application/views/awards/dok/index.php:185
@@ -5056,11 +5142,11 @@ msgstr ""
 #: application/views/awards/waja/index.php:191
 #: application/views/awards/was/index.php:190
 msgid "Total confirmed"
-msgstr ""
+msgstr "Totalt bekräftade"
 
 #: application/views/awards/dok/index.php:7
 msgid "DOK Award"
-msgstr ""
+msgstr "DOK Award"
 
 #: application/views/awards/dok/index.php:8
 msgid ""
@@ -5071,6 +5157,12 @@ msgid ""
 "'Deutscher Ortsverband Kenner' (English: 'German Local Association "
 "Identifier')."
 msgstr ""
+"Tyskland sträcker sig över 630 km från öst till väst och nästan 900 km från "
+"norr till söder. Ungefär 70 000 av Tysklands 82 miljoner invånare är "
+"licensierade radioamatörer, varav mer än 40 000 är medlemmar i DARC. DOK är "
+"ett system som ger individuella lokala avdelningar en identifierare och "
+"betyder 'Deutscher Ortsverband Kenner' (svenska: 'Tysk lokal "
+"föreningsidentifierare')."
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -5079,10 +5171,14 @@ msgid ""
 "or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK "
 "is a common mistake, often being logged as the letter O."
 msgstr ""
+"DOK består av en bokstav för distriktet och ett tvåsiffrigt nummer för den "
+"lokala avdelningen, som P03 Friedrichshafen (staden för 'Hamradio-"
+"utställningen') eller F41 Baunatal (platsen för DARC-högkvarteret). Obs: En "
+"nolla i en DOK är ett vanligt misstag, ofta loggad som bokstaven O."
 
 #: application/views/awards/dok/index.php:10
 msgid "DARC website"
-msgstr ""
+msgstr "DARC webbplats"
 
 #: application/views/awards/dok/index.php:10
 #, php-format
@@ -5091,14 +5187,16 @@ msgid ""
 "This information is provided by the %s. Information about the DOK Awards and "
 "its rules can be found %s."
 msgstr ""
+"Denna information tillhandahålls av %s. Information om DOK Awards och dess "
+"regler finns %s."
 
 #: application/views/awards/dok/index.php:20
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:23
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:37
 #: application/views/awards/dxcc/index.php:39
@@ -5110,7 +5208,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:33
 #: application/views/awards/was/index.php:33
 msgid "Worked / Confirmed"
-msgstr ""
+msgstr "Kontaktad / Bekräftad"
 
 #: application/views/awards/dok/index.php:80
 #: application/views/awards/helvetia/index.php:76
@@ -5121,15 +5219,15 @@ msgstr ""
 #: application/views/awards/waja/index.php:80
 #: application/views/awards/was/index.php:76
 msgid "Every band"
-msgstr ""
+msgstr "Varje band"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
-msgstr ""
+msgstr "DXCC-Diplom"
 
 #: application/views/awards/dxcc/index.php:15
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
-msgstr ""
+msgstr "'Hur man räknar länder som kontaktats, ett nytt DX-poängsystem'"
 
 #: application/views/awards/dxcc/index.php:15
 #, php-format
@@ -5138,17 +5236,20 @@ msgid ""
 "DXCC List is based on an article created in 1935 by Clinton B. DeSoto, "
 "W1CBD, titled %s."
 msgstr ""
+"DXCC står för 'DX Century Club', ett diplom baserad på kontaktade länder. "
+"DXCC-listan är baserad på en artikel skapad 1935 av Clinton B. DeSoto, "
+"W1CBD, med titeln %s."
 
 #: application/views/awards/dxcc/index.php:16
 #: application/views/awards/wac/index.php:11
 msgid "ARRL website"
-msgstr ""
+msgstr "ARRL webbplats"
 
 #: application/views/awards/dxcc/index.php:16
 #: application/views/awards/wac/index.php:11
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
-msgstr ""
+msgstr "Du kan hitta all information om DXCC Award på %s."
 
 #: application/views/awards/dxcc/index.php:17
 msgid ""
@@ -5158,21 +5259,27 @@ msgid ""
 "will find Deleted DXCC entities also in the lists on Wavelog. Be aware that "
 "these DXCC entities are outdated and no longer valid."
 msgstr ""
+"Viktig notering: Med tiden har kriterierna för DXCC-listan ändrats. Listan "
+"förblir oförändrad tills en enhet inte längre uppfyller de kriterier under "
+"vilka den lades till, då flyttas den till den borttagna listan. Du hittar "
+"borttagna DXCC-enheter även i listorna på Wavelog. Var medveten om att dessa "
+"DXCC-enheter är föråldrade och inte längre giltiga."
 
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/iota/index.php:33
 msgid "Include deleted"
-msgstr ""
+msgstr "Inkludera strukna"
 
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:87
 #: application/views/bandmap/index.php:37 application/views/bandmap/list.php:87
 #: application/views/logbookadvanced/edit.php:177
-#: application/views/logbookadvanced/index.php:363
+#: application/views/logbookadvanced/index.php:362
 #: application/views/lookup/index.php:59
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:398
 #: application/views/view_log/qso.php:350
+#: application/views/logbookadvanced/index.php:363
 msgid "Antarctica"
 msgstr "Antarktis"
 
@@ -5180,11 +5287,12 @@ msgstr "Antarktis"
 #: application/views/awards/iota/index.php:91
 #: application/views/bandmap/index.php:36 application/views/bandmap/list.php:86
 #: application/views/logbookadvanced/edit.php:176
-#: application/views/logbookadvanced/index.php:362
+#: application/views/logbookadvanced/index.php:361
 #: application/views/lookup/index.php:58
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:397
 #: application/views/view_log/qso.php:347
+#: application/views/logbookadvanced/index.php:362
 msgid "Africa"
 msgstr "Afrika"
 
@@ -5192,11 +5300,12 @@ msgstr "Afrika"
 #: application/views/awards/iota/index.php:95
 #: application/views/bandmap/index.php:38 application/views/bandmap/list.php:88
 #: application/views/logbookadvanced/edit.php:179
-#: application/views/logbookadvanced/index.php:365
+#: application/views/logbookadvanced/index.php:364
 #: application/views/lookup/index.php:61
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:399
 #: application/views/view_log/qso.php:353
+#: application/views/logbookadvanced/index.php:365
 msgid "Asia"
 msgstr "Asien"
 
@@ -5204,11 +5313,12 @@ msgstr "Asien"
 #: application/views/awards/iota/index.php:99
 #: application/views/bandmap/index.php:39 application/views/bandmap/list.php:89
 #: application/views/logbookadvanced/edit.php:180
-#: application/views/logbookadvanced/index.php:366
+#: application/views/logbookadvanced/index.php:365
 #: application/views/lookup/index.php:62
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:400
 #: application/views/view_log/qso.php:356
+#: application/views/logbookadvanced/index.php:366
 msgid "Europe"
 msgstr "Europa"
 
@@ -5216,11 +5326,12 @@ msgstr "Europa"
 #: application/views/awards/iota/index.php:103
 #: application/views/bandmap/index.php:40 application/views/bandmap/list.php:90
 #: application/views/logbookadvanced/edit.php:178
-#: application/views/logbookadvanced/index.php:364
+#: application/views/logbookadvanced/index.php:363
 #: application/views/lookup/index.php:60
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:401
 #: application/views/view_log/qso.php:359
+#: application/views/logbookadvanced/index.php:364
 msgid "North America"
 msgstr "Nordamerika"
 
@@ -5228,11 +5339,12 @@ msgstr "Nordamerika"
 #: application/views/awards/iota/index.php:107
 #: application/views/bandmap/index.php:42 application/views/bandmap/list.php:92
 #: application/views/logbookadvanced/edit.php:181
-#: application/views/logbookadvanced/index.php:367
+#: application/views/logbookadvanced/index.php:366
 #: application/views/lookup/index.php:63
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:403
 #: application/views/view_log/qso.php:365
+#: application/views/logbookadvanced/index.php:367
 msgid "South America"
 msgstr "Sydamerika"
 
@@ -5240,26 +5352,27 @@ msgstr "Sydamerika"
 #: application/views/awards/iota/index.php:111
 #: application/views/bandmap/index.php:41 application/views/bandmap/list.php:91
 #: application/views/logbookadvanced/edit.php:182
-#: application/views/logbookadvanced/index.php:368
+#: application/views/logbookadvanced/index.php:367
 #: application/views/lookup/index.php:64
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:402
 #: application/views/view_log/qso.php:362
+#: application/views/logbookadvanced/index.php:368
 msgid "Oceania"
 msgstr "Oceanien"
 
 #: application/views/awards/dxcc/index.php:120
 #: application/views/awards/iota/index.php:120
 msgid "Every band (w/o SAT)"
-msgstr ""
+msgstr "Varje band (utan SAT)"
 
 #: application/views/awards/dxcc/index.php:189
 msgid "Show DXCC Map"
-msgstr ""
+msgstr "Visa DXCC-karta"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "DXCC Name"
-msgstr ""
+msgstr "DXCC-namn"
 
 #: application/views/awards/dxcc/index.php:226
 #: application/views/awards/iota/index.php:196
@@ -5267,12 +5380,12 @@ msgstr ""
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: application/views/awards/ffma/index.php:8
 #: application/views/interface_assets/header.php:258
 msgid "Fred Fish Memorial Award"
-msgstr ""
+msgstr "Fred Fish Memorial Award"
 
 #: application/views/awards/ffma/index.php:9
 msgid ""
@@ -5280,21 +5393,24 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
+"Fred Fish Memorial Award skapades till ära för Fred Fish, W5FF (SK), som var "
+"den första radioamatören som kontaktade och bekräftade alla 488 Maidenhead-"
+"rutnät i de 48 sammanhängande delstaterna i USA på 6 meter."
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
-msgstr ""
+msgstr "Diplomet ges till de amatörer som kan upprepa W5FF:s prestation."
 
 #: application/views/awards/ffma/index.php:11
 #, php-format
 msgid "For more information, you can visit this link: %s."
-msgstr ""
+msgstr "För mer information kan du besöka denna länk: %s."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
-msgstr ""
+msgstr "US Gridmaster Award"
 
 #: application/views/awards/gridmaster/index.php:9
 msgid ""
@@ -5303,6 +5419,10 @@ msgid ""
 "operators worldwide who manage to work all 488 grid squares in the USA via "
 "satellite and can provide QSL confirmations for each contact."
 msgstr ""
+"GridMaster Award är det mest prestigefyllda AMSAT-diplomet, först "
+"introducerat 2014 av Star Comm Group. Det är tillgängligt för alla "
+"radioamatörer världen över som lyckas kontakta i alla 488 rutnät i USA via "
+"satellit och kan tillhandahålla QSL-bekräftelser för varje kontakt."
 
 #: application/views/awards/gridmaster/index.php:10
 #, php-format
@@ -5316,25 +5436,34 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
+"Officiell information från %s: Tvåvägskommunikation måste upprättas via "
+"amatörsatellit med varje ruta. Det krävs ingen minimal signalrapport. "
+"Kontakter måste göras från samma plats eller från platser som inte är mer än "
+"200 kilometer ifrån varandra. Sökandens intygande i ansökan om diplomet "
+"fungerar som bekräftelse på att avståndsregeln följs. Individer kan ansöka "
+"om och beviljas flera GridMaster-diplom när de uppnås från en annan plats, "
+"som ligger i en annan 200-kilometerscirkel."
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
-msgstr ""
+msgstr "webbplats"
 
 #: application/views/awards/gridmaster/index.php:11
 #: application/views/awards/gridmaster/index.php:16
 msgid "This map shows only QSOs worked on SAT."
-msgstr ""
+msgstr "Den här kartan visar endast QSOs som kontaktats på SAT."
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Gridmaster-diplom"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Gridmaster Award utformades ursprungligen för de 488 rutorna som skulle "
+"kontaktas i USA."
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -5342,19 +5471,22 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"På den här kartan visas rutorna för denna specifika DXCC. Detta är inget "
+"officiellt diplom utan visar bara de rutor som kontaktats enligt US "
+"Gridmaster Award-reglerna för denna DXCC."
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "Hovra över en kanton"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr ""
+msgstr "HELVETIA 26 | SCHWEIZ Diplom"
 
 #: application/views/awards/helvetia/index.php:21
 msgid ""
@@ -5363,6 +5495,10 @@ msgid ""
 "activities on the bands by encouraging contacts across as many Swiss cantons "
 "as possible on multiple bands."
 msgstr ""
+"USKA (Unionen av schweiziska kortvågsamatörer) sponsrar två diplom, HELVETIA "
+"26 (H26) Award och SWITZERLAND Award, som syftar till att främja aktiviteter "
+"på banden genom att uppmuntra kontakter över så många schweiziska kantoner "
+"som möjligt på flera band."
 
 #: application/views/awards/helvetia/index.php:22
 msgid ""
@@ -5370,25 +5506,29 @@ msgid ""
 "(including SHF and UHF) bands. Valid connections for these awards date back "
 "to January 1, 1980"
 msgstr ""
+"Dessa diplom finns i två versioner: en för HF-band och den andra för VHF "
+"(inklusive SHF och UHF) band. Giltiga kontakter för dessa diplom går "
+"tillbaka till den 1 januari 1980"
 
 #: application/views/awards/helvetia/index.php:114
 msgid "Show Helvetia Map"
-msgstr ""
+msgstr "Visa Helvetia-kartan"
 
 #: application/views/awards/helvetia/index.php:151
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
 #: application/views/qso/award_tabs.php:29
 msgid "CQ"
-msgstr ""
+msgstr "CQ"
 
 #: application/views/awards/iota/index.php:16
 msgid "IOTA Awards"
-msgstr ""
+msgstr "IOTA-diplom"
 
 #: application/views/awards/iota/index.php:17
+#, fuzzy
 msgid ""
 "IOTA is an exciting and innovative activity program that has captured the "
 "interest of thousands of radio amateurs worldwide. Established in 1964, it "
@@ -5396,6 +5536,11 @@ msgid ""
 "enhance the experience of all those active on the amateur bands. To achieve "
 "this, it draws on the widespread mystique surrounding islands."
 msgstr ""
+"IOTA är ett spännande och innovativt aktivitetsprogram som har fångat "
+"intresset hos tusentals radioamatörer världen över. Etablerat 1964, främjar "
+"det radiokontakter med stationer belägna på öar runt om i världen för att "
+"förbättra upplevelsen för alla som är aktiva på amatörbanden. För att uppnå "
+"detta drar det nytta av den utbredda mystiken kring öar."
 
 #: application/views/awards/iota/index.php:18
 msgid ""
@@ -5411,19 +5556,29 @@ msgid ""
 "an Honor Roll and annual listings, as well as recognizing it with "
 "certificates and prestigious awards."
 msgstr ""
+"Det administreras av Islands On The Air (IOTA) Ltd (kallat IOTA Management) "
+"i samarbete med Radio Society of Great Britain (RSGB). IOTA Management har "
+"grupperat världens öar i cirka 1200 'IOTA-grupper', var och en med olika "
+"antal 'räknare', som är kvalificerade öar. Dessa listor publiceras i IOTA-"
+"katalogen och på IOTA:s webbplats. Målet för IOTA Island Chaser är att få "
+"radiokontakt med minst en räknare i så många av dessa grupper som möjligt. "
+"Programmet har en väl definierad uppsättning regler och uppmuntrar vänlig "
+"tävling bland deltagarna genom att publicera deltagarnas prestationer i en "
+"Honor Roll och årliga listor, samt erkänna det med certifikat och "
+"prestigefyllda diplom."
 
 #: application/views/awards/iota/index.php:19
 #, php-format
 msgid "You can also find this information on %s."
-msgstr ""
+msgstr "Du kan också hitta denna information på %s."
 
 #: application/views/awards/iota/index.php:29
 msgid "Deleted IOTA"
-msgstr ""
+msgstr "Struken IOTA"
 
 #: application/views/awards/iota/index.php:158
 msgid "Show IOTA Map"
-msgstr ""
+msgstr "Visa IOTA-karta"
 
 #: application/views/awards/iota/index.php:197
 #: application/views/contesting/add.php:25
@@ -5432,7 +5587,7 @@ msgstr ""
 #: application/views/contesting/index.php:223
 #: application/views/dashboard/index.php:18
 #: application/views/labels/index.php:41 application/views/labels/index.php:75
-#: application/views/logbookadvanced/index.php:682
+#: application/views/logbookadvanced/index.php:678
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:54
 #: application/views/lotw/satupdate.php:7
@@ -5449,18 +5604,18 @@ msgstr ""
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
 msgid "Name"
-msgstr ""
+msgstr "Namn"
 
 #: application/views/awards/iota/index.php:199
 msgid "Deleted"
-msgstr ""
+msgstr "Raderad"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:150
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:21
-#: application/views/logbookadvanced/index.php:311
-#: application/views/logbookadvanced/index.php:718
+#: application/views/logbookadvanced/index.php:310
+#: application/views/logbookadvanced/index.php:714
 #: application/views/logbookadvanced/useroptions.php:102
 #: application/views/lookup/index.php:8 application/views/qso/edit_ajax.php:316
 #: application/views/qso/index.php:433
@@ -5469,7 +5624,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:170
 #: application/views/user/modals/first_login_wizard.php:84
 msgid "ITU Zone"
-msgstr ""
+msgstr "ITU-zon"
 
 #: application/views/awards/itu/index.php:21
 msgid ""
@@ -5478,30 +5633,35 @@ msgid ""
 "broadcasting zones as defined by the International Telecommunications Union "
 "(ITU)."
 msgstr ""
+"Det klassiska Worked ITU Zones-diplomet kan erhållas genom att visa bevis på "
+"att ha kontaktat landbaserade amatörradiostationer i minst 70 av de 75 "
+"sändningszoner som definieras av Internationella teleunionen (ITU)."
 
 #: application/views/awards/itu/index.php:22
 #, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr ""
+msgstr "Du kan hitta mer information på webbplatsen för %s."
 
 #: application/views/awards/itu/index.php:25
 msgid "Awards - ITU Zones"
-msgstr ""
+msgstr "Diplom - ITU-zoner"
 
 #: application/views/awards/itu/index.php:115
 msgid "Show ITU Zone Map"
-msgstr ""
+msgstr "Visa ITU-zonkarta"
 
 #: application/views/awards/jcc/index.php:16
 msgid "JCC - Japan Century Cities Award"
-msgstr ""
+msgstr "JCC - Japan Century Cities Award"
 
 #: application/views/awards/jcc/index.php:17
 msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
 msgstr ""
+"Kan hävdas efter att ha kontaktat (hört) och mottagit QSL-kort från "
+"amatörstationer belägna i minst 100 olika städer i Japan."
 
 #: application/views/awards/jcc/index.php:18
 msgid ""
@@ -5510,24 +5670,29 @@ msgid ""
 "however names of city may be omitted. An additional sticker will be issued "
 "at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
+"JCC-200, 300, 400, 500, 600, 700 och 800 kommer att utfärdas som separata "
+"diplom. En lista över QSL-kort bör ordnas i ordning efter JCC-"
+"referensnummer, men stadsnamn kan utelämnas. En extra klistermärke kommer "
+"att utfärdas vid var 50:e kontakt som 150, 250, 350, 450, 550, 650, 750 "
+"städer."
 
 #: application/views/awards/jcc/index.php:115
 msgid "Show JCC Map"
-msgstr ""
+msgstr "Visa JCC-karta"
 
 #: application/views/awards/jcc/index.php:116
 #: application/views/cabrillo/index.php:209 application/views/cfd/index.php:25
 #: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
 #: application/views/kml/index.php:113 application/views/reg1test/index.php:145
 msgid "Export"
-msgstr ""
+msgstr "Exportera"
 
 #: application/views/awards/jcc/index.php:126
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:456
 msgid "Results"
-msgstr ""
+msgstr "Resultat"
 
 #: application/views/awards/jcc/index.php:152
 #: application/views/search/result.php:21
@@ -5539,11 +5704,11 @@ msgstr "Stad"
 #: application/views/dashboard/index.php:429
 #: application/views/distances/index.php:23
 msgid "SAT"
-msgstr ""
+msgstr "SAT"
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
-msgstr ""
+msgstr "POTA-diplom"
 
 #: application/views/awards/pota/index.php:8
 msgid ""
@@ -5551,6 +5716,9 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
+"Parks on the Air® (POTA) startade i början av 2017 när ARRL:s National Parks "
+"on the Air specialevenemang avslutades. En grupp volontärer ville fortsätta "
+"det roliga bortom det ettåriga evenemanget, och så föddes POTA."
 
 #: application/views/awards/pota/index.php:9
 msgid ""
@@ -5558,6 +5726,9 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
+"POTA fungerar på liknande sätt som SOTA, med aktiverare och jägare. För "
+"diplomen finns det flera kategorier baserade på antalet parker, geografiska "
+"områden och mer."
 
 #: application/views/awards/pota/index.php:10
 #, php-format
@@ -5566,6 +5737,8 @@ msgid ""
 "For more information about the available awards and categories, please visit "
 "the %s."
 msgstr ""
+"För mer information om de tillgängliga diplomen och kategorierna, vänligen "
+"besök %s."
 
 #: application/views/awards/pota/index.php:31
 #: application/views/qso/index.php:247 application/views/qso/index.php:540
@@ -5574,30 +5747,32 @@ msgstr ""
 #: application/views/user/edit.php:652 application/views/view_log/qso.php:403
 #: application/views/view_log/qso.php:719
 msgid "POTA Reference(s)"
-msgstr ""
+msgstr "POTA-referens(er)"
 
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/rac/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "Hovra över en provins"
 
 #: application/views/awards/rac/index.php:106
 msgid "Show RAC Map"
-msgstr ""
+msgstr "Visa RAC-karta"
 
 #: application/views/awards/sig/index.php:7
 msgid "SIG Information"
-msgstr ""
+msgstr "SIG-information"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
 "The SIG or Signature Category provides the possibility to use any kind of "
 "'Award Signature' for awards that are not implemented in Wavelog."
 msgstr ""
+"SIG eller Signature Category ger möjlighet att använda vilken typ av 'Award "
+"Signature' som helst för diplom som inte är implementerade i Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -5605,6 +5780,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of signature markers."
 msgstr ""
+"Anledningen till detta är att det vanliga ADIF-formatet endast erbjuder "
+"några få dedikerade fält för vissa diplom. SIG gör det fortfarande möjligt "
+"att använda och utvärdera alla andra typer av signaturmarkörer."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -5612,62 +5790,68 @@ msgid ""
 "marker, which is also visible in the award evaluation, and 'SIG INFO,' which "
 "contains a description of the signature. Both fields are freely customizable."
 msgstr ""
+"I QSO-behandlingen hittar du två fält: 'SIG' innehåller den faktiska "
+"markören, som också är synlig i utvärderingen av diplomet, och 'SIG INFO,' "
+"som innehåller en beskrivning av signaturen. Båda fälten kan anpassas fritt."
 
 #: application/views/awards/sig/index.php:21
 msgid "Award Type"
-msgstr ""
+msgstr "Diplomtyp"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
 #: application/views/distances/index.php:12
 #: application/views/timeplotter/index.php:4
 msgid "Number of QSOs"
-msgstr ""
+msgstr "Antal QSOn"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr ""
+msgstr "Antal referenser"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:23
 msgid "Reference"
-msgstr ""
+msgstr "Referens"
 
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/awards/sota/index.php:24
-#: application/views/logbookadvanced/index.php:658
+#: application/views/logbookadvanced/index.php:654
 #: application/views/logbookadvanced/qslcarousel.php:31
 #: application/views/logbookadvanced/useroptions.php:22
 #: application/views/qslmanagement/index.php:23
 #: application/views/qso/components/previous_contacts.php:6
 #: application/views/search/lotw_unconfirmed_result.php:7
 #: application/views/view_log/qso.php:72
+#: application/views/logbookadvanced/index.php:658
 msgid "Date/Time"
 msgstr "Datum/Tid"
 
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/awards/sota/index.php:27
 msgid "RST Sent"
-msgstr ""
+msgstr "RST skickat"
 
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:28
 msgid "RST Received"
-msgstr ""
+msgstr "RST mottaget"
 
 #: application/views/awards/sig/qso_list.php:34
 msgid "Export QSOs to ADIF"
-msgstr ""
+msgstr "Exportera QSOn till ADIF"
 
 #: application/views/awards/sota/index.php:7
 msgid "SOTA Awards"
-msgstr ""
+msgstr "SOTA-diplom"
 
 #: application/views/awards/sota/index.php:8
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
 msgstr ""
+"SOTA (Summits On The Air) är ett diplom system för radioamatörer som "
+"uppmuntrar portabel verksamhet i bergsområden."
 
 #: application/views/awards/sota/index.php:9
 msgid ""
@@ -5679,58 +5863,70 @@ msgid ""
 "trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA "
 "online database."
 msgstr ""
+"Det är fullt operativt i nästan hundra länder världen över. Varje land har "
+"sin egen förening som definierar de erkända SOTA-topparna inom den "
+"föreningen. Varje topp ger aktiverare och jägare en poäng relaterad till "
+"toppens höjd. Certifikat finns tillgängliga för olika poäng, vilket leder "
+"till de prestigefyllda 'Mountain Goat' och 'Shack Sloth' troféerna. En "
+"hederslista för aktiverare och jägare upprätthålls i SOTA:s online-databas."
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
-msgstr ""
+msgstr "VUCC - VHF/UHF Century Club Award"
 
 #: application/views/awards/vucc/index.php:8
 msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
 msgstr ""
+"VHF/UHF Century Club Award ges för ett minsta antal kontaktade och "
+"bekräftade rutnät på ett önskat band."
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:10
 #, php-format
 msgid "Official information and the rules can be found in this document: %s."
-msgstr ""
+msgstr "Officiell information och regler finns i det här dokumentet: %s."
 
 #: application/views/awards/vucc/index.php:10
 msgid "Only VHF/UHF bands are relevant."
-msgstr ""
+msgstr "Endast VHF/UHF-band är relevanta."
 
 #: application/views/awards/vucc/index.php:22
 msgid "Grids Worked"
-msgstr ""
+msgstr "Rutnät kontaktade"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Confirmed"
-msgstr ""
+msgstr "Rutnät bekräftade"
 
 #: application/views/awards/wab/index.php:12
 msgid "WAB - Worked All Britain Award"
-msgstr ""
+msgstr "WAB - Worked All Britain Award"
 
 #: application/views/awards/wab/index.php:13
 msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
+"WAB, Worked All Britain-rutor inom amatörradio, uppmuntrar licensierade "
+"radioamatörer att kontakta alla rutor i Storbritannien."
 
 #: application/views/awards/wab/index.php:14
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
 msgstr ""
+"Kan hävdas efter att ha kontaktat amatörstationer belägna i det erforderliga "
+"antalet rutor, beskrivna på sidan som länkas nedan."
 
 #: application/views/awards/wab/index.php:109
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr ""
+msgstr "WAB-ruta"
 
 #: application/views/awards/wac/index.php:9
 msgid ""
@@ -5738,26 +5934,32 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"Sponsrad av International Amateur Radio Union (IARU), Worked All Continents-"
+"diplomet delas ut för att ha kontaktad och bekräftat alla de sex "
+"kontinenterna. Dessa är Nordamerika, Sydamerika, Oceanien, Asien, Europa och "
+"Afrika."
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "Diplom - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:151
 #: application/views/continents/index.php:62
 #: application/views/logbookadvanced/edit.php:27
-#: application/views/logbookadvanced/index.php:358
-#: application/views/logbookadvanced/index.php:757
+#: application/views/logbookadvanced/index.php:357
+#: application/views/logbookadvanced/index.php:753
 #: application/views/logbookadvanced/useroptions.php:154
 #: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:33
 #: application/views/qso/edit_ajax.php:262 application/views/qso/index.php:394
 #: application/views/view_log/qso.php:342
+#: application/views/logbookadvanced/index.php:358
+#: application/views/logbookadvanced/index.php:757
 msgid "Continent"
 msgstr "Kontinent"
 
 #: application/views/awards/wae/index.php:7
 msgid "WAE Award"
-msgstr ""
+msgstr "WAE Award"
 
 #: application/views/awards/wae/index.php:8
 msgid ""
@@ -5765,6 +5967,9 @@ msgid ""
 "contacts with amateur radio stations in European countries and on islands "
 "listed in the WAE country list on different bands."
 msgstr ""
+"Det äldsta och mest kända av alla DARC-certifikat delas ut för kontakter med "
+"amatörradiostationer i europeiska länder och öar som finns med på WAE-"
+"landlistan på olika band."
 
 #: application/views/awards/wae/index.php:9
 msgid ""
@@ -5772,29 +5977,35 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
+"WAE diplomet kan utfärdas för följande trafiksätt: CW, SSB, Phone, RTTY, "
+"FT8, Digital och Blandade trafiksätt. Det utfärdas i fem klasser: WAE III, "
+"WAE II, WAE I, WAE TOP och WAE Trophy."
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
-msgstr ""
+msgstr "WAE Namn"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefektur"
 
 #: application/views/awards/waja/index.php:4
 msgid "Hover over a prefecture"
-msgstr ""
+msgstr "Hovra över en prefektur"
 
 #: application/views/awards/waja/index.php:19
 msgid "WAJA - Worked All Japan prefectures Award"
-msgstr ""
+msgstr "WAJA - Worked All Japan prefectures Award"
 
 #: application/views/awards/waja/index.php:20
+#, fuzzy
 msgid ""
 "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham "
 "radio operators to work all the prefectures in Japan."
 msgstr ""
+"WAJA, Worked All Japan-prefekturer i amatörradio, uppmuntrar licensierade "
+"radioamatörer att kontakta alla prefekturer i Japan."
 
 #: application/views/awards/waja/index.php:21
 msgid ""
@@ -5803,28 +6014,32 @@ msgid ""
 "QSL cards should be arranged in order of WAJA (HAJA) reference number, "
 "however names of prefectures may be omitted."
 msgstr ""
+"Kan utfärdas för att ha kontaktat (hört) och fått ett QSL-kort från en "
+"amatörstation belägen i var och en av de 47 prefekturerna i Japan. En lista "
+"över QSL-kort bör ordnas i ordning efter WAJA (HAJA) referensnummer, men "
+"namnen på prefekturerna kan utelämnas."
 
 #: application/views/awards/waja/index.php:118
 msgid "Show WAJA Map"
-msgstr ""
+msgstr "Visa WAJA-karta"
 
 #: application/views/awards/waja/index.php:154
 #: application/views/timeline/index.php:237
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefektur"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
 msgid "State"
-msgstr ""
+msgstr "Delstat"
 
 #: application/views/awards/was/index.php:4
 msgid "Hover over a state"
-msgstr ""
+msgstr "Hovra över en stat"
 
 #: application/views/awards/was/index.php:20
 msgid "WAS Award"
-msgstr ""
+msgstr "WAS Award"
 
 #: application/views/awards/was/index.php:21
 msgid ""
@@ -5833,8 +6048,13 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
+"ARRL:s mest populära diplom är Worked All States Award. Tusentals och åter "
+"tusentals diplom har delats ut till radioamatörer runt om i världen. Under "
+"ARRL:s 101:a år har de omdesignat certifikaten och programmet i hopp om att "
+"effektivisera och förbättra diplomprogrammet."
 
 #: application/views/awards/was/index.php:22
+#, fuzzy
 msgid ""
 "The WAS (Worked All States) Award is available to all amateurs worldwide who "
 "submit proof with written confirmation of contacts with each of the 50 "
@@ -5842,27 +6062,36 @@ msgid ""
 "possessions must be members of ARRL to apply for a WAS. Applicants from "
 "outside the U.S. are exempt from this requirement."
 msgstr ""
+"WAS (Worked All States) Award är tillgängligt för alla radioamatörer världen "
+"över som lämnar in bevis med skriftlig bekräftelse på kontakter med var och "
+"en av de 50 delstaterna i USA. Amatörer i USA och dess besittningar måste "
+"vara medlemmar i ARRL för att ansöka om en WAS. Sökande utanför USA är "
+"undantagna från detta krav."
 
 #: application/views/awards/was/index.php:23
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
-msgstr ""
+msgstr "All information och regler för ARRL WAS Award finns %s."
 
 #: application/views/awards/was/index.php:114
 msgid "Show WAS Map"
-msgstr ""
+msgstr "Visa WAS-karta"
 
 #: application/views/awards/wwff/index.php:7
 msgid "WWFF - World Wide Flora and Fauna Award"
-msgstr ""
+msgstr "WWFF - World Wide Flora and Fauna Award"
 
 #: application/views/awards/wwff/index.php:8
+#, fuzzy
 msgid ""
 "WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham "
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
+"WWFF, World Wide Flora and Fauna inom amatörradio, uppmuntrar licensierade "
+"radioamatörer att lämna sina stationer och köra portabelt i skyddade flora- "
+"och faunaområden (PFF) världen över."
 
 #: application/views/awards/wwff/index.php:9
 msgid ""
@@ -5870,6 +6099,9 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
+"Mer än 26 000 skyddade flora- och faunaområden (PFF) världen över är redan "
+"registrerade i WWFF-katalogen. Jägare och aktiverare kan ansöka om färgglada "
+"diplom, både globalt och nationellt."
 
 #: application/views/awards/wwff/index.php:31
 #: application/views/qso/index.php:235 application/views/qso/index.php:527
@@ -5878,17 +6110,19 @@ msgstr ""
 #: application/views/user/edit.php:648 application/views/view_log/qso.php:396
 #: application/views/view_log/qso.php:712
 msgid "WWFF Reference"
-msgstr ""
+msgstr "WWFF-referens"
 
 #: application/views/backup/adif_view.php:7
 msgid ""
 "The backup of your log completed successfully. The output can be found at"
 msgstr ""
+"Säkerhetskopieringen av din logg slutfördes framgångsrikt. Kopian finns på"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
 msgstr ""
+"Du kan automatisera denna process genom att göra den till ett cronjobb."
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -5896,38 +6130,46 @@ msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
+"Något gick fel under säkerhetskopieringsprocessen. Kontrollera att "
+"säkerhetskopieringsmappen finns och är skrivbar av din webbserveranvändare/-"
+"grupp."
 
 #: application/views/backup/main.php:17
 msgid ""
 "Some of the data stored in Wavelog can be exported so that you can keep a "
 "backup copy elsewhere."
 msgstr ""
+"En del av den data som lagras i Wavelog kan exporteras så att du kan spara "
+"en säkerhetskopia någon annanstans."
 
 #: application/views/backup/main.php:18
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
 msgstr ""
+"Att skapa säkerhetskopior regelbundet för att skydda dina data rekommenderas."
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
-msgstr ""
+msgstr "Säkerhetskopiera ADIF-data"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
-msgstr ""
+msgstr "Säkerhetskopiera anteckningar"
 
 #: application/views/backup/notes_view.php:7
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
+"Säkerhetskopieringen av dina anteckningar slutfördes framgångsrikt. Kopian "
+"finns på"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:56
 msgid "BandMap"
-msgstr ""
+msgstr "Bandkarta"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:59
 msgid "BandList"
-msgstr ""
+msgstr "BandLista"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:69
 #: application/views/contesting/index.php:19
@@ -5935,144 +6177,149 @@ msgstr ""
 #: application/views/contesting/index.php:154
 #: application/views/qso/index.php:325
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:83
 msgid "Spots de"
-msgstr ""
+msgstr "Spots de"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
-msgstr ""
+msgstr "Popup blockerades! Tillåt pop-ups för den här webbplatsen permanent."
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Klicka för att förbereda loggning."
 
 #: application/views/bandmap/list.php:76
 msgid "DXCC-Status"
-msgstr ""
+msgstr "DXCC-status"
 
 #: application/views/bandmap/list.php:81
 msgid "Not Confirmed"
-msgstr ""
+msgstr "Inte bekräftad"
 
 #: application/views/bandmap/list.php:123
 msgid "WAC"
-msgstr ""
+msgstr "WAC"
 
 #: application/views/bandmap/list.php:124
 msgid "Spotter"
-msgstr ""
+msgstr "Spotter"
 
 #: application/views/bandmap/list.php:125
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
 msgid "Message"
-msgstr ""
+msgstr "Meddelande"
 
 #: application/views/bandmap/list.php:126
 msgid "Last Worked"
-msgstr ""
+msgstr "Senast kontaktad"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr ""
+msgstr "Namn på band (t.ex. 20m)"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:61
 msgid "Bandgroup"
-msgstr ""
+msgstr "Bandgrupp"
 
 #: application/views/bands/create.php:31 application/views/bands/edit.php:13
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
-msgstr ""
+msgstr "Namn på bandgrupp (t.ex. hf, vhf, uhf, shf)"
 
 #: application/views/bands/create.php:34 application/views/bands/edit.php:16
 #: application/views/bands/index.php:62
 msgid "SSB QRG"
-msgstr ""
+msgstr "SSB QRG"
 
 #: application/views/bands/create.php:36 application/views/bands/edit.php:18
 msgid "Frequency for SSB QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frekvens för SSB QRG i bandet (måste vara i Hz)"
 
 #: application/views/bands/create.php:39 application/views/bands/edit.php:21
 #: application/views/bands/index.php:63
 msgid "DATA QRG"
-msgstr ""
+msgstr "DATA QRG"
 
 #: application/views/bands/create.php:41 application/views/bands/edit.php:23
 msgid "Frequency for DATA QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frekvens för DATA QRG i bandet (måste vara i Hz)"
 
 #: application/views/bands/create.php:44 application/views/bands/edit.php:26
 #: application/views/bands/index.php:64
 msgid "CW QRG"
-msgstr ""
+msgstr "CW QRG"
 
 #: application/views/bands/create.php:46 application/views/bands/edit.php:28
 msgid "Frequency for CW QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frekvens för CW QRG i bandet (måste vara i Hz)"
 
 #: application/views/bands/index.php:36
 msgid ""
 "Using the band list you can control which bands are shown when creating a "
 "new QSO."
 msgstr ""
+"Med hjälp av bandlistan kan du kontrollera vilka band som visas när du "
+"skapar ett ny QSO."
 
 #: application/views/bands/index.php:37
+#, fuzzy
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
 msgstr ""
+"Aktiva band kommer att visas i QSO-rullgardinsmenyn 'Band', medan inaktiva "
+"band kommer att döljas och kan inte väljas."
 
 #: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:392
 #: application/views/qso/index.php:259 application/views/qso/index.php:552
 #: application/views/user/edit.php:656 application/views/view_log/qso.php:425
 #: application/views/view_log/qso.php:726
 msgid "Sig"
-msgstr ""
+msgstr "Sig"
 
 #: application/views/bands/index.php:56 application/views/qso/edit_ajax.php:361
 #: application/views/qso/index.php:491
 msgid "USA County"
-msgstr ""
+msgstr "USA län"
 
 #: application/views/bands/index.php:58
 #: application/views/interface_assets/header.php:230
 msgid "WAJA"
-msgstr ""
+msgstr "WAJA"
 
 #: application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:254
 msgid "WAS"
-msgstr ""
+msgstr "WAS"
 
 #: application/views/bands/index.php:65
 msgid "QRG Unit"
-msgstr ""
+msgstr "QRG-enhet"
 
 #: application/views/bands/index.php:98
 msgid "Hz"
-msgstr ""
+msgstr "Hz"
 
 #: application/views/bands/index.php:99
 msgid "kHz"
-msgstr ""
+msgstr "kHz"
 
 #: application/views/bands/index.php:100
 msgid "MHz"
-msgstr ""
+msgstr "MHz"
 
 #: application/views/bands/index.php:101
 msgid "GHz"
-msgstr ""
+msgstr "GHz"
 
 #: application/views/bands/index.php:151 application/views/bands/index.php:157
 msgid "Create a band"
-msgstr ""
+msgstr "Skapa ett band"
 
 #: application/views/bands/index.php:152
 #: application/views/club/permissions.php:142
@@ -6090,82 +6337,82 @@ msgstr "Stäng"
 
 #: application/views/bands/index.php:153
 msgid "Warning! Are you sure you want to delete the following band: "
-msgstr ""
+msgstr "Varning! Är du säker på att du vill ta bort följande band: "
 
 #: application/views/bands/index.php:154
 msgid "Warning! Are you sure you want to activate all bands?"
-msgstr ""
+msgstr "Varning! Är du säker på att du vill aktivera alla band?"
 
 #: application/views/bands/index.php:155
 msgid "Warning! Are you sure you want to deactivate all bands?"
-msgstr ""
+msgstr "Varning! Är du säker på att du vill avaktivera alla band?"
 
 #: application/views/bands/index.php:158
 #: application/views/contesting/add.php:77 application/views/mode/index.php:89
 msgid "Activate All"
-msgstr ""
+msgstr "Aktivera alla"
 
 #: application/views/bands/index.php:159
 #: application/views/contesting/add.php:78 application/views/mode/index.php:90
 msgid "Deactivate All"
-msgstr ""
+msgstr "Inaktivera alla"
 
 #: application/views/cabrillo/cbr_success.php:12
 msgid "Results of CBR Contest Data Update"
-msgstr ""
+msgstr "Resultat av CBR Contest Datauppdatering"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
 "Your contest QSOs have been updated using the values of your Cabrillo file."
-msgstr ""
+msgstr "Dina tävlings-QSOn har uppdaterats med värdena från din Cabrillo-fil."
 
 #: application/views/cabrillo/cbr_success.php:19
 msgid "No QSOs were updated by your Cabrillo file."
-msgstr ""
+msgstr "Inga QSOn uppdaterades av din Cabrillo-fil."
 
 #: application/views/cabrillo/cbr_success.php:25
 msgid "CBR errors"
-msgstr ""
+msgstr "CBR-fel"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
 #: application/views/reg1test/index.php:2
 #: application/views/reg1test/index.php:36
 msgid "Proceed"
-msgstr ""
+msgstr "Fortsätt"
 
 #: application/views/cabrillo/index.php:3
 #: application/views/reg1test/index.php:3
 msgid "Select Year"
-msgstr ""
+msgstr "Välj år"
 
 #: application/views/cabrillo/index.php:4
 #: application/views/reg1test/index.php:4
 msgid "Select Contest"
-msgstr ""
+msgstr "Välj tävling"
 
 #: application/views/cabrillo/index.php:5
 #: application/views/reg1test/index.php:5
 msgid "Select Date Range"
-msgstr ""
+msgstr "Välj datumintervall"
 
 #: application/views/cabrillo/index.php:6
 #: application/views/reg1test/index.php:7
 msgid "No contests were found for this station location!"
-msgstr ""
+msgstr "Inga tävlingar hittades för den här station platsen!"
 
 #: application/views/cabrillo/index.php:16
 msgid "Export a contest to a Cabrillo log"
-msgstr ""
+msgstr "Exportera en tävling till en Cabrillo-logg"
 
 #: application/views/cabrillo/index.php:28
 msgid "Select Station Location:"
-msgstr ""
+msgstr "Välj stationsplats:"
 
 #: application/views/cabrillo/index.php:44
 #: application/views/reg1test/index.php:53
 msgid "Club"
-msgstr ""
+msgstr "Klubb"
 
 #: application/views/cabrillo/index.php:48
 msgid ""
@@ -6185,9 +6432,10 @@ msgid ""
 msgstr ""
 
 #: application/views/cabrillo/index.php:48
-#: application/views/logbookadvanced/index.php:600
+#: application/views/logbookadvanced/index.php:599
 #: application/views/qso/index.php:283
 #: application/views/station_profile/edit.php:92
+#: application/views/logbookadvanced/index.php:600
 msgid "Location"
 msgstr "QTH"
 
@@ -6293,15 +6541,15 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:155
 #: application/views/logbookadvanced/edit.php:161
 #: application/views/logbookadvanced/edit.php:167
-#: application/views/logbookadvanced/index.php:386
-#: application/views/logbookadvanced/index.php:397
-#: application/views/logbookadvanced/index.php:428
-#: application/views/logbookadvanced/index.php:439
-#: application/views/logbookadvanced/index.php:450
-#: application/views/logbookadvanced/index.php:461
-#: application/views/logbookadvanced/index.php:472
-#: application/views/logbookadvanced/index.php:483
-#: application/views/logbookadvanced/index.php:498
+#: application/views/logbookadvanced/index.php:385
+#: application/views/logbookadvanced/index.php:396
+#: application/views/logbookadvanced/index.php:427
+#: application/views/logbookadvanced/index.php:438
+#: application/views/logbookadvanced/index.php:449
+#: application/views/logbookadvanced/index.php:460
+#: application/views/logbookadvanced/index.php:471
+#: application/views/logbookadvanced/index.php:482
+#: application/views/logbookadvanced/index.php:497
 #: application/views/lookup/lotwuser.php:12
 #: application/views/qso/edit_ajax.php:441
 #: application/views/qso/edit_ajax.php:474
@@ -6341,6 +6589,15 @@ msgstr ""
 #: application/views/user/edit.php:886 application/views/user/edit.php:906
 #: application/views/user/edit.php:935 application/views/user/edit.php:967
 #: application/views/user/edit.php:992
+#: application/views/logbookadvanced/index.php:386
+#: application/views/logbookadvanced/index.php:397
+#: application/views/logbookadvanced/index.php:428
+#: application/views/logbookadvanced/index.php:439
+#: application/views/logbookadvanced/index.php:450
+#: application/views/logbookadvanced/index.php:461
+#: application/views/logbookadvanced/index.php:472
+#: application/views/logbookadvanced/index.php:483
+#: application/views/logbookadvanced/index.php:498
 msgid "Yes"
 msgstr "Ja"
 
@@ -6350,15 +6607,15 @@ msgstr "Ja"
 #: application/views/logbookadvanced/edit.php:156
 #: application/views/logbookadvanced/edit.php:162
 #: application/views/logbookadvanced/edit.php:168
-#: application/views/logbookadvanced/index.php:387
-#: application/views/logbookadvanced/index.php:398
-#: application/views/logbookadvanced/index.php:429
-#: application/views/logbookadvanced/index.php:440
-#: application/views/logbookadvanced/index.php:451
-#: application/views/logbookadvanced/index.php:462
-#: application/views/logbookadvanced/index.php:473
-#: application/views/logbookadvanced/index.php:484
-#: application/views/logbookadvanced/index.php:499
+#: application/views/logbookadvanced/index.php:386
+#: application/views/logbookadvanced/index.php:397
+#: application/views/logbookadvanced/index.php:428
+#: application/views/logbookadvanced/index.php:439
+#: application/views/logbookadvanced/index.php:450
+#: application/views/logbookadvanced/index.php:461
+#: application/views/logbookadvanced/index.php:472
+#: application/views/logbookadvanced/index.php:483
+#: application/views/logbookadvanced/index.php:498
 #: application/views/lookup/lotwuser.php:14
 #: application/views/qso/edit_ajax.php:440
 #: application/views/qso/edit_ajax.php:473
@@ -6398,6 +6655,15 @@ msgstr "Ja"
 #: application/views/user/edit.php:861 application/views/user/edit.php:877
 #: application/views/user/edit.php:905 application/views/user/edit.php:936
 #: application/views/user/edit.php:966 application/views/user/edit.php:991
+#: application/views/logbookadvanced/index.php:387
+#: application/views/logbookadvanced/index.php:398
+#: application/views/logbookadvanced/index.php:429
+#: application/views/logbookadvanced/index.php:440
+#: application/views/logbookadvanced/index.php:451
+#: application/views/logbookadvanced/index.php:462
+#: application/views/logbookadvanced/index.php:473
+#: application/views/logbookadvanced/index.php:484
+#: application/views/logbookadvanced/index.php:499
 msgid "No"
 msgstr "Nej"
 
@@ -6675,12 +6941,13 @@ msgstr ""
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
-#: application/views/logbookadvanced/index.php:769
+#: application/views/logbookadvanced/index.php:765
 #: application/views/logbookadvanced/useroptions.php:170
 #: application/views/qrz/export.php:39
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:14
 #: application/views/webadif/export.php:41
+#: application/views/logbookadvanced/index.php:769
 msgid "Profile name"
 msgstr ""
 
@@ -6750,11 +7017,13 @@ msgstr ""
 #: application/views/contesting/index.php:228
 #: application/views/hamsat/index.php:31
 #: application/views/logbookadvanced/edit.php:7
-#: application/views/logbookadvanced/index.php:374
-#: application/views/logbookadvanced/index.php:745
+#: application/views/logbookadvanced/index.php:373
+#: application/views/logbookadvanced/index.php:741
 #: application/views/logbookadvanced/useroptions.php:138
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:300
 #: application/views/view_log/qso.php:222
+#: application/views/logbookadvanced/index.php:374
+#: application/views/logbookadvanced/index.php:745
 msgid "Comment"
 msgstr "Notering"
 
@@ -6787,11 +7056,13 @@ msgstr ""
 
 #: application/views/contestcalendar/index.php:21
 #: application/views/logbookadvanced/edit.php:24
-#: application/views/logbookadvanced/index.php:353
-#: application/views/logbookadvanced/index.php:751
+#: application/views/logbookadvanced/index.php:352
+#: application/views/logbookadvanced/index.php:747
 #: application/views/logbookadvanced/useroptions.php:146
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
+#: application/views/logbookadvanced/index.php:353
+#: application/views/logbookadvanced/index.php:751
 msgid "Contest"
 msgstr ""
 
@@ -7419,14 +7690,14 @@ msgstr "Mottagen"
 #: application/views/dashboard/index.php:355
 #: application/views/logbookadvanced/edit.php:149
 #: application/views/logbookadvanced/edit.php:169
-#: application/views/logbookadvanced/index.php:388
-#: application/views/logbookadvanced/index.php:399
-#: application/views/logbookadvanced/index.php:430
-#: application/views/logbookadvanced/index.php:441
-#: application/views/logbookadvanced/index.php:452
-#: application/views/logbookadvanced/index.php:463
-#: application/views/logbookadvanced/index.php:474
-#: application/views/logbookadvanced/index.php:485
+#: application/views/logbookadvanced/index.php:387
+#: application/views/logbookadvanced/index.php:398
+#: application/views/logbookadvanced/index.php:429
+#: application/views/logbookadvanced/index.php:440
+#: application/views/logbookadvanced/index.php:451
+#: application/views/logbookadvanced/index.php:462
+#: application/views/logbookadvanced/index.php:473
+#: application/views/logbookadvanced/index.php:484
 #: application/views/oqrs/qsolist.php:56 application/views/oqrs/qsolist.php:98
 #: application/views/qslprint/qsolist.php:66
 #: application/views/qslprint/qsolist.php:108
@@ -7449,7 +7720,14 @@ msgstr "Mottagen"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:399
 #: src/QSLManager/QSO.php:444 src/QSLManager/QSO.php:504
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764
+#: src/QSLManager/QSO.php:764 application/views/logbookadvanced/index.php:388
+#: application/views/logbookadvanced/index.php:399
+#: application/views/logbookadvanced/index.php:430
+#: application/views/logbookadvanced/index.php:441
+#: application/views/logbookadvanced/index.php:452
+#: application/views/logbookadvanced/index.php:463
+#: application/views/logbookadvanced/index.php:474
+#: application/views/logbookadvanced/index.php:485
 msgid "Requested"
 msgstr "Begärd"
 
@@ -8620,6 +8898,7 @@ msgstr ""
 "ignorera denna varning."
 
 #: application/views/interface_assets/footer.php:798
+#: application/views/logbookadvanced/index.php:604
 #: application/views/logbookadvanced/index.php:605
 msgid "Callsign: "
 msgstr ""
@@ -8866,9 +9145,10 @@ msgid "Log"
 msgstr ""
 
 #: application/views/interface_assets/header.php:362
-#: application/views/logbookadvanced/index.php:537
+#: application/views/logbookadvanced/index.php:536
 #: application/views/oqrs/index.php:27 application/views/user/edit.php:481
 #: application/views/visitor/layout/header.php:95
+#: application/views/logbookadvanced/index.php:537
 msgid "Search Callsign"
 msgstr ""
 
@@ -9251,9 +9531,11 @@ msgid "Please choose the column to be edited:"
 msgstr ""
 
 #: application/views/logbookadvanced/edit.php:17
+#: application/views/logbookadvanced/index.php:490
+#: application/views/logbookadvanced/index.php:681
+#: application/views/logbookadvanced/useroptions.php:58
 #: application/views/logbookadvanced/index.php:491
 #: application/views/logbookadvanced/index.php:685
-#: application/views/logbookadvanced/useroptions.php:58
 msgid "QSL via"
 msgstr ""
 
@@ -9286,16 +9568,18 @@ msgid "eQSL Received"
 msgstr ""
 
 #: application/views/logbookadvanced/edit.php:32
-#: application/views/logbookadvanced/index.php:772
+#: application/views/logbookadvanced/index.php:768
 #: application/views/logbookadvanced/useroptions.php:174
+#: application/views/logbookadvanced/index.php:772
 msgid "Station power"
 msgstr ""
 
 #: application/views/logbookadvanced/edit.php:33
-#: application/views/logbookadvanced/index.php:739
+#: application/views/logbookadvanced/index.php:735
 #: application/views/logbookadvanced/useroptions.php:130
 #: application/views/qso/edit_ajax.php:327 application/views/qso/index.php:407
 #: application/views/view_log/qso.php:475
+#: application/views/logbookadvanced/index.php:739
 msgid "Region"
 msgstr ""
 
@@ -9325,6 +9609,8 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:157
 #: application/views/logbookadvanced/edit.php:163
 #: application/views/logbookadvanced/edit.php:170
+#: application/views/logbookadvanced/index.php:368
+#: application/views/logbookadvanced/index.php:616
 #: application/views/logbookadvanced/index.php:369
 #: application/views/logbookadvanced/index.php:617
 msgid "Invalid"
@@ -9332,6 +9618,10 @@ msgstr ""
 
 #: application/views/logbookadvanced/edit.php:151
 #: application/views/logbookadvanced/edit.php:171
+#: application/views/logbookadvanced/index.php:400
+#: application/views/logbookadvanced/index.php:442
+#: application/views/logbookadvanced/index.php:464
+#: application/views/logbookadvanced/index.php:486
 #: application/views/logbookadvanced/index.php:401
 #: application/views/logbookadvanced/index.php:443
 #: application/views/logbookadvanced/index.php:465
@@ -9383,69 +9673,6 @@ msgstr ""
 msgid "Distance (in km). Leave blank to remove distance."
 msgstr ""
 
-#: application/views/logbookadvanced/help.php:1
-msgid "In the text input searches, you can search in the following way:"
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:2
-msgid "* - means search for everything."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:3
-msgid "Remove star and leave blank, means to search where column is empty."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:4
-msgid "!empty - means to search where column is not empty."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:6
-msgid ""
-"The dupe search checks for duplicate QSOs with the same callsign, mode, "
-"submode, station callsign, band and satellite within 1500 seconds."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:8
-msgid "The invalid search checks for the following conditions:"
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:9
-msgid "Mode is blank or set to 0."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:10
-msgid "Band is blank."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:11
-msgid "Callsign is blank."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:12
-msgid "Time and date is not set."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:13
-msgid "Date is set to 1970-01-01."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:14
-msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:16
-msgid ""
-"The map uses the same search criteria as the normal search. All QSOs in the "
-"search result will be mapped, unless you have checked one or more QSOs."
-msgstr ""
-
-#: application/views/logbookadvanced/help.php:18
-msgid ""
-"The ADIF export uses the same search criteria as the normal search. All QSOs "
-"will be exported (all for selected location), unless you have checked one or "
-"more QSOs."
-msgstr ""
-
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
 #: application/views/satellite/flightpath.php:11
@@ -9482,25 +9709,35 @@ msgctxt "Map Options"
 msgid "Night Shadow"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:23
-msgid "Advanced Logbook Help"
-msgstr ""
-
+#: application/views/logbookadvanced/index.php:193
 #: application/views/logbookadvanced/index.php:194
 msgid "From"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:197
 #: application/views/logbookadvanced/index.php:198
 msgid "To"
 msgstr "to"
 
-#: application/views/logbookadvanced/index.php:202
-#: application/views/logbookadvanced/index.php:664
+#: application/views/logbookadvanced/index.php:201
+#: application/views/logbookadvanced/index.php:660
 #: application/views/logbookadvanced/useroptions.php:30
 #: application/views/oqrs/showrequests.php:42
+#: application/views/logbookadvanced/index.php:202
+#: application/views/logbookadvanced/index.php:664
 msgid "Dx"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:202
+#: application/views/logbookadvanced/index.php:227
+#: application/views/logbookadvanced/index.php:231
+#: application/views/logbookadvanced/index.php:324
+#: application/views/logbookadvanced/index.php:328
+#: application/views/logbookadvanced/index.php:344
+#: application/views/logbookadvanced/index.php:348
+#: application/views/logbookadvanced/index.php:353
+#: application/views/logbookadvanced/index.php:374
+#: application/views/logbookadvanced/index.php:491
 #: application/views/logbookadvanced/index.php:203
 #: application/views/logbookadvanced/index.php:228
 #: application/views/logbookadvanced/index.php:232
@@ -9514,19 +9751,21 @@ msgstr ""
 msgid "Empty"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:277
 #: application/views/logbookadvanced/index.php:278
 msgctxt "Propagation Mode"
 msgid "None/Empty"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:382
 #: application/views/logbookadvanced/index.php:383
 msgid "QSL sent"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:389
-#: application/views/logbookadvanced/index.php:431
-#: application/views/logbookadvanced/index.php:453
-#: application/views/logbookadvanced/index.php:475
+#: application/views/logbookadvanced/index.php:388
+#: application/views/logbookadvanced/index.php:430
+#: application/views/logbookadvanced/index.php:452
+#: application/views/logbookadvanced/index.php:474
 #: application/views/oqrs/qsolist.php:53 application/views/oqrs/qsolist.php:95
 #: application/views/qslprint/qsolist.php:63
 #: application/views/qslprint/qsolist.php:105
@@ -9540,17 +9779,21 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:209
 #: application/views/view_log/partial/log_ajax.php:247
 #: src/QSLManager/QSO.php:396 src/QSLManager/QSO.php:441
+#: application/views/logbookadvanced/index.php:389
+#: application/views/logbookadvanced/index.php:431
+#: application/views/logbookadvanced/index.php:453
+#: application/views/logbookadvanced/index.php:475
 msgid "Queued"
 msgstr "Köad"
 
-#: application/views/logbookadvanced/index.php:390
-#: application/views/logbookadvanced/index.php:400
-#: application/views/logbookadvanced/index.php:432
-#: application/views/logbookadvanced/index.php:442
-#: application/views/logbookadvanced/index.php:454
-#: application/views/logbookadvanced/index.php:464
-#: application/views/logbookadvanced/index.php:476
-#: application/views/logbookadvanced/index.php:486
+#: application/views/logbookadvanced/index.php:389
+#: application/views/logbookadvanced/index.php:399
+#: application/views/logbookadvanced/index.php:431
+#: application/views/logbookadvanced/index.php:441
+#: application/views/logbookadvanced/index.php:453
+#: application/views/logbookadvanced/index.php:463
+#: application/views/logbookadvanced/index.php:475
+#: application/views/logbookadvanced/index.php:485
 #: application/views/oqrs/qsolist.php:59 application/views/oqrs/qsolist.php:101
 #: application/views/oqrs/qsolist.php:166
 #: application/views/oqrs/qsolist.php:181
@@ -9582,19 +9825,29 @@ msgstr "Köad"
 #: src/QSLManager/QSO.php:500 src/QSLManager/QSO.php:523
 #: src/QSLManager/QSO.php:625 src/QSLManager/QSO.php:686
 #: src/QSLManager/QSO.php:735 src/QSLManager/QSO.php:760
+#: application/views/logbookadvanced/index.php:390
+#: application/views/logbookadvanced/index.php:400
+#: application/views/logbookadvanced/index.php:432
+#: application/views/logbookadvanced/index.php:442
+#: application/views/logbookadvanced/index.php:454
+#: application/views/logbookadvanced/index.php:464
+#: application/views/logbookadvanced/index.php:476
+#: application/views/logbookadvanced/index.php:486
 msgid "Invalid (Ignore)"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:393
 #: application/views/logbookadvanced/index.php:394
 msgid "QSL received"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:404
 #: application/views/logbookadvanced/index.php:405
 msgid "QSL send. method"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:408
-#: application/views/logbookadvanced/index.php:418
+#: application/views/logbookadvanced/index.php:407
+#: application/views/logbookadvanced/index.php:417
 #: application/views/oqrs/qsolist.php:69 application/views/oqrs/qsolist.php:111
 #: application/views/oqrs/request.php:45
 #: application/views/oqrs/request_grouped.php:49
@@ -9610,11 +9863,13 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:228
 #: application/views/view_log/partial/log_ajax.php:266
 #: src/QSLManager/QSO.php:419 src/QSLManager/QSO.php:462
+#: application/views/logbookadvanced/index.php:408
+#: application/views/logbookadvanced/index.php:418
 msgid "Bureau"
 msgstr "Byrå"
 
-#: application/views/logbookadvanced/index.php:409
-#: application/views/logbookadvanced/index.php:419
+#: application/views/logbookadvanced/index.php:408
+#: application/views/logbookadvanced/index.php:418
 #: application/views/oqrs/qsolist.php:72 application/views/oqrs/qsolist.php:114
 #: application/views/oqrs/showrequests.php:13
 #: application/views/qslprint/qslprint.php:6
@@ -9628,11 +9883,13 @@ msgstr "Byrå"
 #: application/views/view_log/partial/log_ajax.php:231
 #: application/views/view_log/partial/log_ajax.php:269
 #: src/QSLManager/QSO.php:422 src/QSLManager/QSO.php:465
+#: application/views/logbookadvanced/index.php:409
+#: application/views/logbookadvanced/index.php:419
 msgid "Direct"
 msgstr "Direkt"
 
-#: application/views/logbookadvanced/index.php:410
-#: application/views/logbookadvanced/index.php:420
+#: application/views/logbookadvanced/index.php:409
+#: application/views/logbookadvanced/index.php:419
 #: application/views/oqrs/qsolist.php:78 application/views/oqrs/qsolist.php:120
 #: application/views/oqrs/showrequests.php:14
 #: application/views/qslprint/qslprint.php:7
@@ -9646,252 +9903,311 @@ msgstr "Direkt"
 #: application/views/view_log/partial/log_ajax.php:237
 #: application/views/view_log/partial/log_ajax.php:275
 #: src/QSLManager/QSO.php:428 src/QSLManager/QSO.php:471
+#: application/views/logbookadvanced/index.php:410
+#: application/views/logbookadvanced/index.php:420
 msgid "Electronic"
 msgstr "Elektronisk"
 
-#: application/views/logbookadvanced/index.php:411
-#: application/views/logbookadvanced/index.php:421
+#: application/views/logbookadvanced/index.php:410
+#: application/views/logbookadvanced/index.php:420
 #: application/views/oqrs/qsolist.php:117
 #: application/views/qslprint/qsolist.php:127
 #: application/views/qso/edit_ajax.php:457
 #: application/views/qso/edit_ajax.php:490 application/views/qso/index.php:645
 #: application/views/search/search_result_ajax.php:247
 #: application/views/view_log/partial/log_ajax.php:272
+#: application/views/logbookadvanced/index.php:411
+#: application/views/logbookadvanced/index.php:421
 msgid "Manager"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:414
 #: application/views/logbookadvanced/index.php:415
 msgid "QSL recv. method"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:424
 #: application/views/logbookadvanced/index.php:425
 msgid "LoTW sent"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:435
 #: application/views/logbookadvanced/index.php:436
 msgid "LoTW received"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:446
 #: application/views/logbookadvanced/index.php:447
 msgid "Clublog sent"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:457
 #: application/views/logbookadvanced/index.php:458
 msgid "Clublog received"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:468
 #: application/views/logbookadvanced/index.php:469
 msgid "eQSL sent"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:479
 #: application/views/logbookadvanced/index.php:480
 msgid "eQSL received"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:494
 #: application/views/logbookadvanced/index.php:495
 msgid "QSL Images"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:506
 #: application/views/logbookadvanced/index.php:507
 msgid "Warning! Are you sure you want to delete the marked QSO(s)?"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/index.php:510
 msgid "With selected: "
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:511
+#: application/views/logbookadvanced/index.php:510
 #: application/views/qso/edit_ajax.php:697
+#: application/views/logbookadvanced/index.php:511
 msgid "Update from Callbook"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:511
 #: application/views/logbookadvanced/index.php:512
 msgid "Queue Bureau"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:512
 #: application/views/logbookadvanced/index.php:513
 msgid "Queue Direct"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:513
 #: application/views/logbookadvanced/index.php:514
 msgid "Queue Electronic"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:514
 #: application/views/logbookadvanced/index.php:515
 msgid "Sent (Bureau)"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:515
 #: application/views/logbookadvanced/index.php:516
 msgid "Sent (Direct)"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:516
 #: application/views/logbookadvanced/index.php:517
 msgid "Sent (Electronic)"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:517
 #: application/views/logbookadvanced/index.php:518
 msgid "Not Sent"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:518
 #: application/views/logbookadvanced/index.php:519
 msgid "QSL Not Required"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:519
 #: application/views/logbookadvanced/index.php:520
 msgid "Not Received"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:520
 #: application/views/logbookadvanced/index.php:521
 msgid "Received (Bureau)"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:521
 #: application/views/logbookadvanced/index.php:522
 msgid "Received (Direct)"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:522
 #: application/views/logbookadvanced/index.php:523
 msgid "Received (Electronic)"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:523
 #: application/views/logbookadvanced/index.php:524
 msgid "Create ADIF"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:524
 #: application/views/logbookadvanced/index.php:525
 msgid "Print Label"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:525
 #: application/views/logbookadvanced/index.php:526
 msgid "QSL Slideshow"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:531
 #: application/views/logbookadvanced/index.php:532
 msgid "Quicksearch with selected: "
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:533
 #: application/views/logbookadvanced/index.php:534
 msgid "Search Date"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:539
 #: application/views/logbookadvanced/index.php:540
 msgid "Search DXCC"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:542
 #: application/views/logbookadvanced/index.php:543
 msgid "Search State"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:545
 #: application/views/logbookadvanced/index.php:546
 msgid "Search Gridsquare"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:548
 #: application/views/logbookadvanced/index.php:549
 msgid "Search CQ Zone"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:551
 #: application/views/logbookadvanced/index.php:552
 msgid "Search ITU Zone"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:554
 #: application/views/logbookadvanced/index.php:555
 msgid "Search Mode"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:557
 #: application/views/logbookadvanced/index.php:558
 msgid "Search Band"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:560
 #: application/views/logbookadvanced/index.php:561
 msgid "Search IOTA"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:563
 #: application/views/logbookadvanced/index.php:564
 msgid "Search SOTA"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:566
 #: application/views/logbookadvanced/index.php:567
 msgid "Search POTA"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:569
 #: application/views/logbookadvanced/index.php:570
 msgid "Search WWFF"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:572
 #: application/views/logbookadvanced/index.php:573
 msgid "Search Operator"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:579
 #: application/views/logbookadvanced/index.php:580
 msgid "Quickfilters"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:582
 #: application/views/logbookadvanced/index.php:583
 msgid "QSL Filters"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:586
+#: application/views/logbookadvanced/index.php:585
 #: application/views/mode/index.php:80
+#: application/views/logbookadvanced/index.php:586
 msgid "Filters"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:593
+#: application/views/logbookadvanced/index.php:592
 #: application/views/oqrs/showrequests.php:56
+#: application/views/logbookadvanced/index.php:593
 msgid "# Results"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:613
 #: application/views/logbookadvanced/index.php:614
 msgid "Dupes"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:629
 #: application/views/logbookadvanced/index.php:630
 msgid "Globe map"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:661
+#: application/views/logbookadvanced/index.php:657
 #: application/views/logbookadvanced/useroptions.php:26
 #: application/views/oqrs/showrequests.php:31
+#: application/views/logbookadvanced/index.php:661
 msgid "De"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:700
+#: application/views/logbookadvanced/index.php:696
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/qso/edit_ajax.php:428
 #: application/views/timeline/index.php:72 application/views/user/edit.php:605
+#: application/views/logbookadvanced/index.php:700
 msgid "QRZ"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:703
+#: application/views/logbookadvanced/index.php:699
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/qso/edit_ajax.php:524
+#: application/views/logbookadvanced/index.php:703
 msgid "QSL Msg (S)"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:706
+#: application/views/logbookadvanced/index.php:702
 #: application/views/logbookadvanced/useroptions.php:86
 #: application/views/qso/edit_ajax.php:533
+#: application/views/logbookadvanced/index.php:706
 msgid "QSL Msg (R)"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:754
+#: application/views/logbookadvanced/index.php:750
 #: application/views/logbookadvanced/useroptions.php:150
+#: application/views/logbookadvanced/index.php:754
 msgid "My Refs"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:759
 #: application/views/logbookadvanced/index.php:763
 msgid "Ant az"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:763
+#: application/views/logbookadvanced/index.php:759
 #: application/views/logbookadvanced/useroptions.php:162
+#: application/views/logbookadvanced/index.php:763
 msgid "Antenna azimuth"
 msgstr ""
 
+#: application/views/logbookadvanced/index.php:762
 #: application/views/logbookadvanced/index.php:766
 msgid "Ant el"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:766
+#: application/views/logbookadvanced/index.php:762
 #: application/views/logbookadvanced/useroptions.php:166
+#: application/views/logbookadvanced/index.php:766
 msgid "Antenna elevation"
 msgstr ""
 
@@ -14355,6 +14671,73 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:1
+msgid "In the text input searches, you can search in the following way:"
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:2
+msgid "* - means search for everything."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:3
+msgid "Remove star and leave blank, means to search where column is empty."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:4
+msgid "!empty - means to search where column is not empty."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:6
+msgid ""
+"The dupe search checks for duplicate QSOs with the same callsign, mode, "
+"submode, station callsign, band and satellite within 1500 seconds."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:8
+msgid "The invalid search checks for the following conditions:"
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:9
+msgid "Mode is blank or set to 0."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:10
+msgid "Band is blank."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:11
+msgid "Callsign is blank."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:12
+msgid "Time and date is not set."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:13
+msgid "Date is set to 1970-01-01."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:14
+msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:16
+msgid ""
+"The map uses the same search criteria as the normal search. All QSOs in the "
+"search result will be mapped, unless you have checked one or more QSOs."
+msgstr ""
+
+#: application/views/logbookadvanced/help.php:18
+msgid ""
+"The ADIF export uses the same search criteria as the normal search. All QSOs "
+"will be exported (all for selected location), unless you have checked one or "
+"more QSOs."
+msgstr ""
+
+#: application/views/logbookadvanced/index.php:23
+msgid "Advanced Logbook Help"
 msgstr ""
 
 #~ msgid "CQ Magazine WAZ"
