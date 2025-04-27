@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-04-20 08:12+0000\n"
 "PO-Revision-Date: 2025-04-27 14:54+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4910,6 +4910,8 @@ msgstr "Totalt"
 #: application/views/timeline/index.php:327
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
+#: application/views/logbookadvanced/index.php:300
+#: application/views/logbookadvanced/index.php:715
 msgid "CQ Zone"
 msgstr "CQ-zon"
 
@@ -5096,6 +5098,7 @@ msgstr "Tabell"
 #: application/views/awards/was/index.php:127
 #: application/views/logbookadvanced/index.php:625
 #: application/views/logbookadvanced/useroptions.php:7
+#: application/views/logbookadvanced/index.php:626
 msgid "Map"
 msgstr "Karta"
 
@@ -5528,7 +5531,6 @@ msgid "IOTA Awards"
 msgstr "IOTA-diplom"
 
 #: application/views/awards/iota/index.php:17
-#, fuzzy
 msgid ""
 "IOTA is an exciting and innovative activity program that has captured the "
 "interest of thousands of radio amateurs worldwide. Established in 1964, it "
@@ -5603,6 +5605,7 @@ msgstr "Visa IOTA-karta"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
+#: application/views/logbookadvanced/index.php:682
 msgid "Name"
 msgstr "Namn"
 
@@ -5623,6 +5626,8 @@ msgstr "Raderad"
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:170
 #: application/views/user/modals/first_login_wizard.php:84
+#: application/views/logbookadvanced/index.php:311
+#: application/views/logbookadvanced/index.php:718
 msgid "ITU Zone"
 msgstr "ITU-zon"
 
@@ -5999,7 +6004,6 @@ msgid "WAJA - Worked All Japan prefectures Award"
 msgstr "WAJA - Worked All Japan prefectures Award"
 
 #: application/views/awards/waja/index.php:20
-#, fuzzy
 msgid ""
 "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham "
 "radio operators to work all the prefectures in Japan."
@@ -6054,7 +6058,6 @@ msgstr ""
 "effektivisera och förbättra diplomprogrammet."
 
 #: application/views/awards/was/index.php:22
-#, fuzzy
 msgid ""
 "The WAS (Worked All States) Award is available to all amateurs worldwide who "
 "submit proof with written confirmation of contacts with each of the 50 "
@@ -6083,7 +6086,6 @@ msgid "WWFF - World Wide Flora and Fauna Award"
 msgstr "WWFF - World Wide Flora and Fauna Award"
 
 #: application/views/awards/wwff/index.php:8
-#, fuzzy
 msgid ""
 "WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham "
 "radio operators to leave their shacks and operate portable in Protected "
@@ -6267,7 +6269,6 @@ msgstr ""
 "skapar ett ny QSO."
 
 #: application/views/bands/index.php:37
-#, fuzzy
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
