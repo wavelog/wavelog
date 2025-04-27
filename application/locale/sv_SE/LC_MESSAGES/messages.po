@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-04-20 08:12+0000\n"
-"PO-Revision-Date: 2025-04-16 09:16+0000\n"
+"PO-Revision-Date: 2025-04-27 14:52+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -183,7 +183,7 @@ msgstr "Fält inte bekräftade"
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:393
 msgid "Total fields worked"
-msgstr "Totalt antal fält bearbetade"
+msgstr "Totalt antal fält kontaktade"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -282,7 +282,7 @@ msgstr "API-nyckel %s har tagits bort"
 #: application/views/interface_assets/header.php:170
 #: application/views/qso/edit_ajax.php:36
 msgid "Awards"
-msgstr "Utmärkelser"
+msgstr "Diplom"
 
 #: application/controllers/Awards.php:92 application/controllers/Awards.php:176
 #: application/controllers/Awards.php:332
@@ -305,7 +305,7 @@ msgstr "Utmärkelser"
 #: application/controllers/Awards.php:2014
 #, php-format
 msgid "Awards - %s"
-msgstr "Utmärkelser - %s"
+msgstr "Diplom - %s"
 
 #: application/controllers/Awards.php:92
 #: application/views/awards/dok/index.php:149
@@ -346,7 +346,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:256
 msgid "Awards - WAJA"
-msgstr "Utmärkelser - WAJA"
+msgstr "Diplom - WAJA"
 
 #: application/controllers/Awards.php:332 application/views/bands/index.php:51
 #: application/views/interface_assets/header.php:232
@@ -482,7 +482,7 @@ msgstr "CQ WAZ (Worked All Zones)"
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
-msgstr "Arbetat alla stater (WAS)"
+msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:719 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:210
@@ -509,12 +509,12 @@ msgstr "Loggvy - Län"
 
 #: application/controllers/Awards.php:911
 msgid "Awards - "
-msgstr "Utmärkelser - "
+msgstr "Diplom - "
 
 #: application/controllers/Awards.php:928
 #: application/controllers/Awards.php:960
 msgid "Gridsquares worked"
-msgstr "Rutnätrutor bearbetade"
+msgstr "Rutnätsrutor kontaktade"
 
 #: application/controllers/Awards.php:929
 #: application/controllers/Awards.php:961
@@ -538,7 +538,7 @@ msgstr "SIG"
 
 #: application/controllers/Awards.php:1166
 msgid "Awards - SIG - "
-msgstr "Utmärkelser - SIG - "
+msgstr "Diplom - SIG - "
 
 #: application/controllers/Awards.php:1795
 #: application/views/awards/itu/index.php:20
@@ -549,7 +549,7 @@ msgstr "ITU-zoner"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:186
 msgid "Worked All Continents (WAC)"
-msgstr "Arbetat alla kontinenter (WAC)"
+msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Awards.php:2002
 msgid "WAE"
@@ -898,7 +898,7 @@ msgstr "Satellitavståndsrekord"
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:152
 msgid "Distances Worked"
-msgstr "Arbetade avstånd"
+msgstr "Avstånd kontaktade"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
@@ -983,7 +983,7 @@ msgstr "Gridsquare karta"
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
-msgstr "Totala gridsquares arbetade"
+msgstr "Totala gridsquares kontaktade"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -2176,31 +2176,31 @@ msgstr "Redigera satellit"
 
 #: application/controllers/Satellite.php:316
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "Det gick inte att spara passinställningarna!"
 
 #: application/controllers/Satellite.php:319
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "Passinställningar sparade!"
 
 #: application/controllers/Satellite.php:332
 msgid "No settings found!"
-msgstr ""
+msgstr "Inga inställningar hittade!"
 
 #: application/controllers/Satellite.php:346
 msgid "Failed to delete pass settings!"
-msgstr ""
+msgstr "Det gick inte att ta bort passinställningarna!"
 
 #: application/controllers/Satellite.php:348
 msgid "Pass settings deleted!"
-msgstr ""
+msgstr "Inställningar för pass raderade!"
 
 #: application/controllers/Satellite.php:358
 msgid "Saved Pass Settings"
-msgstr ""
+msgstr "Sparade passinställningar"
 
 #: application/controllers/Satellite.php:375
 msgid "No presets available"
-msgstr ""
+msgstr "Inga förinställningar tillgängliga"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
@@ -4710,17 +4710,19 @@ msgstr "Skapa en skrivskyddad nyckel"
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:13
 msgid "Award Info"
-msgstr ""
+msgstr "Diplominformation"
 
 #: application/views/awards/73on73/index.php:7
 msgid "73 on 73 Award"
-msgstr ""
+msgstr "73 på 73 Diplom"
 
 #: application/views/awards/73on73/index.php:8
 msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Paul Stoetzer N8HM sponsrar ett diplom för kontakter gjorda via AO-73 "
+"(FUNcube-1) amatörradiosatellit."
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:23
@@ -4731,14 +4733,14 @@ msgstr ""
 #: application/views/awards/wwff/index.php:10
 #, php-format
 msgid "For more information, please visit: %s."
-msgstr ""
+msgstr "För mer information, besök: %s."
 
 #: application/views/awards/73on73/index.php:31
 #: application/views/awards/jcc/index.php:151
 #: application/views/awards/waja/index.php:153
 #: application/views/distancerecords/index.php:13
 msgid "Number"
-msgstr ""
+msgstr "Nummer"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -4747,15 +4749,15 @@ msgstr ""
 #: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
 msgid "Filtering on"
-msgstr ""
+msgstr "Filtrering på"
 
 #: application/views/awards/counties/details.php:13
 msgid "County"
-msgstr ""
+msgstr "Län"
 
 #: application/views/awards/counties/index.php:7
 msgid "US County Award"
-msgstr ""
+msgstr "US County Award"
 
 #: application/views/awards/counties/index.php:8
 #, php-format
@@ -4765,6 +4767,10 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
+"United States of America Counties Award (USA-CA), sponsrad av MARAC (Mobile "
+"Amateur Radio Awards Club), utfärdas för bekräftade tvåvägs radiokontakter "
+"med specificerade antal amerikanska län enligt regler och villkor som du kan "
+"hitta %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -4772,18 +4778,21 @@ msgid ""
 "individuals for all county contacts made, regardless of callsigns used, "
 "operating locations, or dates."
 msgstr ""
+"USA-CA är tillgänglig för alla licensierade radioamatörer världen över och "
+"utfärdas till individer för alla kontakter med län, oavsett vilka "
+"anropssignaler som används, var de befinner sig eller datum."
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
-msgstr ""
+msgstr "Särskilda USA-CA-diplom är också tillgängliga för kortvågslyssnare."
 
 #: application/views/awards/counties/index.php:21
 msgid "Counties Worked"
-msgstr ""
+msgstr "Kontaktade län"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "Län bekräftade"
 
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:176
@@ -4812,7 +4821,7 @@ msgstr ""
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
 msgid "Total"
-msgstr ""
+msgstr "Totalt"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:150 application/views/csv/index.php:80
@@ -4832,16 +4841,16 @@ msgstr ""
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
 msgid "CQ Zone"
-msgstr ""
+msgstr "CQ-zon"
 
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "Hovra över en zon"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ WAZ (Worked All Zones) Award"
-msgstr ""
+msgstr "CQ WAZ (Worked All Zones) Award"
 
 #: application/views/awards/cq/index.php:21
 msgid ""
@@ -4850,6 +4859,10 @@ msgid ""
 "magazine first appeared in January 1945 and focuses on awards and the "
 "practical aspects of amateur radio."
 msgstr ""
+"CQ Magazine i USA var en av de mest populära amatörradiotidningarna i "
+"världen. De upphörde med sin verksamhet i slutet av 2023. Tidningen dök upp "
+"första gången i januari 1945 och fokuserade på diplom och de praktiska "
+"aspekterna av amatörradio."
 
 #: application/views/awards/cq/index.php:22
 msgid ""
@@ -4858,15 +4871,18 @@ msgid ""
 "Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
 "N4BAA."
 msgstr ""
+"WAZ-diplomet står för 'Worked All Zones' och kräver radiokontakter med alla "
+"40 CQ-zoner tillsammans med motsvarande bekräftelser. Eftersom CQ Magazine "
+"inte längre finns, hanteras nu CQ WAZ Awards direkt av N4BAA."
 
 #: application/views/awards/cq/index.php:23
 #, php-format
 msgid "You can find all the information and rules on the Website of N4BAA: %s"
-msgstr ""
+msgstr "Du kan hitta all information och regler på N4BAA:s webbplats: %s"
 
 #: application/views/awards/cq/index.php:25
 msgid "Awards - CQ WAZ"
-msgstr ""
+msgstr "Diplom - CQ WAZ"
 
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
@@ -4905,7 +4921,7 @@ msgstr "Körda"
 #: application/views/awards/waja/index.php:37
 #: application/views/awards/was/index.php:37
 msgid "Show worked"
-msgstr ""
+msgstr "Visa kontaktade"
 
 #: application/views/awards/cq/index.php:42
 #: application/views/awards/dok/index.php:45
@@ -4920,7 +4936,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:41
 #: application/views/awards/was/index.php:41
 msgid "Show confirmed"
-msgstr ""
+msgstr "Visa bekräftade"
 
 #: application/views/awards/cq/index.php:46
 #: application/views/awards/dxcc/index.php:51
@@ -4934,7 +4950,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:45
 #: application/views/awards/was/index.php:45
 msgid "Show not worked"
-msgstr ""
+msgstr "Visa ej kontaktade"
 
 #: application/views/awards/cq/index.php:52
 #: application/views/awards/dok/index.php:51
@@ -4949,7 +4965,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:51
 #: application/views/awards/was/index.php:51
 msgid "Show QSO with QSL Type"
-msgstr ""
+msgstr "Visa QSO med QSL-typ"
 
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/iota/index.php:61
@@ -4983,7 +4999,7 @@ msgstr "Återställ"
 
 #: application/views/awards/cq/index.php:115
 msgid "Show CQ Zone Map"
-msgstr ""
+msgstr "Visa CQ-zonkarta"
 
 #: application/views/awards/cq/index.php:124
 #: application/views/awards/dxcc/index.php:199
@@ -4994,7 +5010,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:128
 #: application/views/awards/was/index.php:124
 msgid "Table"
-msgstr ""
+msgstr "Tabell"
 
 #: application/views/awards/cq/index.php:127
 #: application/views/awards/dok/index.php:128
@@ -5010,7 +5026,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:625
 #: application/views/logbookadvanced/useroptions.php:7
 msgid "Map"
-msgstr ""
+msgstr "Karta"
 
 #: application/views/awards/cq/index.php:167
 #: application/views/awards/dok/index.php:165
@@ -5025,7 +5041,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:170
 #: application/views/awards/was/index.php:170
 msgid "Summary"
-msgstr ""
+msgstr "Sammanfattning"
 
 #: application/views/awards/cq/index.php:180
 #: application/views/awards/dok/index.php:178
@@ -5040,7 +5056,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:184
 #: application/views/awards/was/index.php:183
 msgid "Total worked"
-msgstr ""
+msgstr "Totalt kontaktade"
 
 #: application/views/awards/cq/index.php:187
 #: application/views/awards/dok/index.php:185
@@ -5055,11 +5071,11 @@ msgstr ""
 #: application/views/awards/waja/index.php:191
 #: application/views/awards/was/index.php:190
 msgid "Total confirmed"
-msgstr ""
+msgstr "Totalt bekräftade"
 
 #: application/views/awards/dok/index.php:7
 msgid "DOK Award"
-msgstr ""
+msgstr "DOK Award"
 
 #: application/views/awards/dok/index.php:8
 msgid ""
@@ -5070,6 +5086,12 @@ msgid ""
 "'Deutscher Ortsverband Kenner' (English: 'German Local Association "
 "Identifier')."
 msgstr ""
+"Tyskland sträcker sig över 630 km från öst till väst och nästan 900 km från "
+"norr till söder. Ungefär 70 000 av Tysklands 82 miljoner invånare är "
+"licensierade radioamatörer, varav mer än 40 000 är medlemmar i DARC. DOK är "
+"ett system som ger individuella lokala avdelningar en identifierare och "
+"betyder 'Deutscher Ortsverband Kenner' (svenska: 'Tysk lokal "
+"föreningsidentifierare')."
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -5078,10 +5100,14 @@ msgid ""
 "or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK "
 "is a common mistake, often being logged as the letter O."
 msgstr ""
+"DOK består av en bokstav för distriktet och ett tvåsiffrigt nummer för den "
+"lokala avdelningen, som P03 Friedrichshafen (staden för 'Hamradio-"
+"utställningen') eller F41 Baunatal (platsen för DARC-högkvarteret). Obs: En "
+"nolla i en DOK är ett vanligt misstag, ofta loggad som bokstaven O."
 
 #: application/views/awards/dok/index.php:10
 msgid "DARC website"
-msgstr ""
+msgstr "DARC webbplats"
 
 #: application/views/awards/dok/index.php:10
 #, php-format
@@ -5090,14 +5116,16 @@ msgid ""
 "This information is provided by the %s. Information about the DOK Awards and "
 "its rules can be found %s."
 msgstr ""
+"Denna information tillhandahålls av %s. Information om DOK Awards och dess "
+"regler finns %s."
 
 #: application/views/awards/dok/index.php:20
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:23
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:37
 #: application/views/awards/dxcc/index.php:39
@@ -5109,7 +5137,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:33
 #: application/views/awards/was/index.php:33
 msgid "Worked / Confirmed"
-msgstr ""
+msgstr "Kontaktad / Bekräftad"
 
 #: application/views/awards/dok/index.php:80
 #: application/views/awards/helvetia/index.php:76
@@ -5120,15 +5148,15 @@ msgstr ""
 #: application/views/awards/waja/index.php:80
 #: application/views/awards/was/index.php:76
 msgid "Every band"
-msgstr ""
+msgstr "Varje band"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
-msgstr ""
+msgstr "DXCC-Diplom"
 
 #: application/views/awards/dxcc/index.php:15
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
-msgstr ""
+msgstr "'Hur man räknar länder som kontaktats, ett nytt DX-poängsystem'"
 
 #: application/views/awards/dxcc/index.php:15
 #, php-format
@@ -5137,17 +5165,20 @@ msgid ""
 "DXCC List is based on an article created in 1935 by Clinton B. DeSoto, "
 "W1CBD, titled %s."
 msgstr ""
+"DXCC står för 'DX Century Club', ett diplom baserad på kontaktade länder. "
+"DXCC-listan är baserad på en artikel skapad 1935 av Clinton B. DeSoto, "
+"W1CBD, med titeln %s."
 
 #: application/views/awards/dxcc/index.php:16
 #: application/views/awards/wac/index.php:11
 msgid "ARRL website"
-msgstr ""
+msgstr "ARRL webbplats"
 
 #: application/views/awards/dxcc/index.php:16
 #: application/views/awards/wac/index.php:11
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
-msgstr ""
+msgstr "Du kan hitta all information om DXCC Award på %s."
 
 #: application/views/awards/dxcc/index.php:17
 msgid ""
@@ -5157,11 +5188,16 @@ msgid ""
 "will find Deleted DXCC entities also in the lists on Wavelog. Be aware that "
 "these DXCC entities are outdated and no longer valid."
 msgstr ""
+"Viktig notering: Med tiden har kriterierna för DXCC-listan ändrats. Listan "
+"förblir oförändrad tills en enhet inte längre uppfyller de kriterier under "
+"vilka den lades till, då flyttas den till den borttagna listan. Du hittar "
+"borttagna DXCC-enheter även i listorna på Wavelog. Var medveten om att dessa "
+"DXCC-enheter är föråldrade och inte längre giltiga."
 
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/iota/index.php:33
 msgid "Include deleted"
-msgstr ""
+msgstr "Inkludera strukna"
 
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:87
@@ -5250,15 +5286,15 @@ msgstr "Oceanien"
 #: application/views/awards/dxcc/index.php:120
 #: application/views/awards/iota/index.php:120
 msgid "Every band (w/o SAT)"
-msgstr ""
+msgstr "Varje band (utan SAT)"
 
 #: application/views/awards/dxcc/index.php:189
 msgid "Show DXCC Map"
-msgstr ""
+msgstr "Visa DXCC-karta"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "DXCC Name"
-msgstr ""
+msgstr "DXCC-namn"
 
 #: application/views/awards/dxcc/index.php:226
 #: application/views/awards/iota/index.php:196
@@ -5266,12 +5302,12 @@ msgstr ""
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: application/views/awards/ffma/index.php:8
 #: application/views/interface_assets/header.php:258
 msgid "Fred Fish Memorial Award"
-msgstr ""
+msgstr "Fred Fish Memorial Award"
 
 #: application/views/awards/ffma/index.php:9
 msgid ""
@@ -5279,21 +5315,24 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
+"Fred Fish Memorial Award skapades till ära för Fred Fish, W5FF (SK), som var "
+"den första radioamatören som kontaktade och bekräftade alla 488 Maidenhead-"
+"rutnät i de 48 sammanhängande delstaterna i USA på 6 meter."
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
-msgstr ""
+msgstr "Diplomet ges till de amatörer som kan upprepa W5FF:s prestation."
 
 #: application/views/awards/ffma/index.php:11
 #, php-format
 msgid "For more information, you can visit this link: %s."
-msgstr ""
+msgstr "För mer information kan du besöka denna länk: %s."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
-msgstr ""
+msgstr "US Gridmaster Award"
 
 #: application/views/awards/gridmaster/index.php:9
 msgid ""
@@ -5302,6 +5341,10 @@ msgid ""
 "operators worldwide who manage to work all 488 grid squares in the USA via "
 "satellite and can provide QSL confirmations for each contact."
 msgstr ""
+"GridMaster Award är det mest prestigefyllda AMSAT-diplomet, först "
+"introducerat 2014 av Star Comm Group. Det är tillgängligt för alla "
+"radioamatörer världen över som lyckas kontakta i alla 488 rutnät i USA via "
+"satellit och kan tillhandahålla QSL-bekräftelser för varje kontakt."
 
 #: application/views/awards/gridmaster/index.php:10
 #, php-format
@@ -5315,25 +5358,34 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
+"Officiell information från %s: Tvåvägskommunikation måste upprättas via "
+"amatörsatellit med varje ruta. Det krävs ingen minimal signalrapport. "
+"Kontakter måste göras från samma plats eller från platser som inte är mer än "
+"200 kilometer ifrån varandra. Sökandens intygande i ansökan om diplomet "
+"fungerar som bekräftelse på att avståndsregeln följs. Individer kan ansöka "
+"om och beviljas flera GridMaster-diplom när de uppnås från en annan plats, "
+"som ligger i en annan 200-kilometerscirkel."
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
-msgstr ""
+msgstr "webbplats"
 
 #: application/views/awards/gridmaster/index.php:11
 #: application/views/awards/gridmaster/index.php:16
 msgid "This map shows only QSOs worked on SAT."
-msgstr ""
+msgstr "Den här kartan visar endast QSOs som kontaktats på SAT."
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Gridmaster-diplom"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Gridmaster Award utformades ursprungligen för de 488 rutorna som skulle "
+"kontaktas i USA."
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -5341,19 +5393,22 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"På den här kartan visas rutorna för denna specifika DXCC. Detta är inget "
+"officiellt diplom utan visar bara de rutor som kontaktats enligt US "
+"Gridmaster Award-reglerna för denna DXCC."
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "Hovra över en kanton"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr ""
+msgstr "HELVETIA 26 | SCHWEIZ Diplom"
 
 #: application/views/awards/helvetia/index.php:21
 msgid ""
@@ -5362,6 +5417,10 @@ msgid ""
 "activities on the bands by encouraging contacts across as many Swiss cantons "
 "as possible on multiple bands."
 msgstr ""
+"USKA (Unionen av schweiziska kortvågsamatörer) sponsrar två diplom, HELVETIA "
+"26 (H26) Award och SWITZERLAND Award, som syftar till att främja aktiviteter "
+"på banden genom att uppmuntra kontakter över så många schweiziska kantoner "
+"som möjligt på flera band."
 
 #: application/views/awards/helvetia/index.php:22
 msgid ""
@@ -5369,25 +5428,29 @@ msgid ""
 "(including SHF and UHF) bands. Valid connections for these awards date back "
 "to January 1, 1980"
 msgstr ""
+"Dessa diplom finns i två versioner: en för HF-band och den andra för VHF ("
+"inklusive SHF och UHF) band. Giltiga kontakter för dessa diplom går tillbaka "
+"till den 1 januari 1980"
 
 #: application/views/awards/helvetia/index.php:114
 msgid "Show Helvetia Map"
-msgstr ""
+msgstr "Visa Helvetia-kartan"
 
 #: application/views/awards/helvetia/index.php:151
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
 #: application/views/qso/award_tabs.php:29
 msgid "CQ"
-msgstr ""
+msgstr "CQ"
 
 #: application/views/awards/iota/index.php:16
 msgid "IOTA Awards"
-msgstr ""
+msgstr "IOTA-diplom"
 
 #: application/views/awards/iota/index.php:17
+#, fuzzy
 msgid ""
 "IOTA is an exciting and innovative activity program that has captured the "
 "interest of thousands of radio amateurs worldwide. Established in 1964, it "
@@ -5395,6 +5458,11 @@ msgid ""
 "enhance the experience of all those active on the amateur bands. To achieve "
 "this, it draws on the widespread mystique surrounding islands."
 msgstr ""
+"IOTA är ett spännande och innovativt aktivitetsprogram som har fångat "
+"intresset hos tusentals radioamatörer världen över. Etablerat 1964, främjar "
+"det radiokontakter med stationer belägna på öar runt om i världen för att "
+"förbättra upplevelsen för alla som är aktiva på amatörbanden. För att uppnå "
+"detta drar det nytta av den utbredda mystiken kring öar."
 
 #: application/views/awards/iota/index.php:18
 msgid ""
@@ -5410,19 +5478,29 @@ msgid ""
 "an Honor Roll and annual listings, as well as recognizing it with "
 "certificates and prestigious awards."
 msgstr ""
+"Det administreras av Islands On The Air (IOTA) Ltd (kallat IOTA Management) "
+"i samarbete med Radio Society of Great Britain (RSGB). IOTA Management har "
+"grupperat världens öar i cirka 1200 'IOTA-grupper', var och en med olika "
+"antal 'räknare', som är kvalificerade öar. Dessa listor publiceras i IOTA-"
+"katalogen och på IOTA:s webbplats. Målet för IOTA Island Chaser är att få "
+"radiokontakt med minst en räknare i så många av dessa grupper som möjligt. "
+"Programmet har en väl definierad uppsättning regler och uppmuntrar vänlig "
+"tävling bland deltagarna genom att publicera deltagarnas prestationer i en "
+"Honor Roll och årliga listor, samt erkänna det med certifikat och "
+"prestigefyllda diplom."
 
 #: application/views/awards/iota/index.php:19
 #, php-format
 msgid "You can also find this information on %s."
-msgstr ""
+msgstr "Du kan också hitta denna information på %s."
 
 #: application/views/awards/iota/index.php:29
 msgid "Deleted IOTA"
-msgstr ""
+msgstr "Struken IOTA"
 
 #: application/views/awards/iota/index.php:158
 msgid "Show IOTA Map"
-msgstr ""
+msgstr "Visa IOTA-karta"
 
 #: application/views/awards/iota/index.php:197
 #: application/views/contesting/add.php:25
@@ -5448,11 +5526,11 @@ msgstr ""
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
 msgid "Name"
-msgstr ""
+msgstr "Namn"
 
 #: application/views/awards/iota/index.php:199
 msgid "Deleted"
-msgstr ""
+msgstr "Raderad"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:150
@@ -5468,7 +5546,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:170
 #: application/views/user/modals/first_login_wizard.php:84
 msgid "ITU Zone"
-msgstr ""
+msgstr "ITU-zon"
 
 #: application/views/awards/itu/index.php:21
 msgid ""
@@ -5477,30 +5555,35 @@ msgid ""
 "broadcasting zones as defined by the International Telecommunications Union "
 "(ITU)."
 msgstr ""
+"Det klassiska Worked ITU Zones-diplomet kan erhållas genom att visa bevis på "
+"att ha kontaktat landbaserade amatörradiostationer i minst 70 av de 75 "
+"sändningszoner som definieras av Internationella teleunionen (ITU)."
 
 #: application/views/awards/itu/index.php:22
 #, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr ""
+msgstr "Du kan hitta mer information på webbplatsen för %s."
 
 #: application/views/awards/itu/index.php:25
 msgid "Awards - ITU Zones"
-msgstr ""
+msgstr "Diplom - ITU-zoner"
 
 #: application/views/awards/itu/index.php:115
 msgid "Show ITU Zone Map"
-msgstr ""
+msgstr "Visa ITU-zonkarta"
 
 #: application/views/awards/jcc/index.php:16
 msgid "JCC - Japan Century Cities Award"
-msgstr ""
+msgstr "JCC - Japan Century Cities Award"
 
 #: application/views/awards/jcc/index.php:17
 msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
 msgstr ""
+"Kan hävdas efter att ha kontaktat (hört) och mottagit QSL-kort från "
+"amatörstationer belägna i minst 100 olika städer i Japan."
 
 #: application/views/awards/jcc/index.php:18
 msgid ""
@@ -5509,24 +5592,29 @@ msgid ""
 "however names of city may be omitted. An additional sticker will be issued "
 "at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
+"JCC-200, 300, 400, 500, 600, 700 och 800 kommer att utfärdas som separata "
+"diplom. En lista över QSL-kort bör ordnas i ordning efter JCC-"
+"referensnummer, men stadsnamn kan utelämnas. En extra klistermärke kommer "
+"att utfärdas vid var 50:e kontakt som 150, 250, 350, 450, 550, 650, 750 "
+"städer."
 
 #: application/views/awards/jcc/index.php:115
 msgid "Show JCC Map"
-msgstr ""
+msgstr "Visa JCC-karta"
 
 #: application/views/awards/jcc/index.php:116
 #: application/views/cabrillo/index.php:209 application/views/cfd/index.php:25
 #: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
 #: application/views/kml/index.php:113 application/views/reg1test/index.php:145
 msgid "Export"
-msgstr ""
+msgstr "Exportera"
 
 #: application/views/awards/jcc/index.php:126
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:456
 msgid "Results"
-msgstr ""
+msgstr "Resultat"
 
 #: application/views/awards/jcc/index.php:152
 #: application/views/search/result.php:21
@@ -5538,11 +5626,11 @@ msgstr "Stad"
 #: application/views/dashboard/index.php:429
 #: application/views/distances/index.php:23
 msgid "SAT"
-msgstr ""
+msgstr "SAT"
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
-msgstr ""
+msgstr "POTA-diplom"
 
 #: application/views/awards/pota/index.php:8
 msgid ""
@@ -5550,6 +5638,9 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
+"Parks on the Air® (POTA) startade i början av 2017 när ARRL:s National Parks "
+"on the Air specialevenemang avslutades. En grupp volontärer ville fortsätta "
+"det roliga bortom det ettåriga evenemanget, och så föddes POTA."
 
 #: application/views/awards/pota/index.php:9
 msgid ""
@@ -5557,6 +5648,9 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
+"POTA fungerar på liknande sätt som SOTA, med aktiverare och jägare. För "
+"diplomen finns det flera kategorier baserade på antalet parker, geografiska "
+"områden och mer."
 
 #: application/views/awards/pota/index.php:10
 #, php-format
@@ -5565,6 +5659,8 @@ msgid ""
 "For more information about the available awards and categories, please visit "
 "the %s."
 msgstr ""
+"För mer information om de tillgängliga diplomen och kategorierna, vänligen "
+"besök %s."
 
 #: application/views/awards/pota/index.php:31
 #: application/views/qso/index.php:247 application/views/qso/index.php:540
@@ -5573,30 +5669,32 @@ msgstr ""
 #: application/views/user/edit.php:652 application/views/view_log/qso.php:403
 #: application/views/view_log/qso.php:719
 msgid "POTA Reference(s)"
-msgstr ""
+msgstr "POTA-referens(er)"
 
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/rac/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "Hovra över en provins"
 
 #: application/views/awards/rac/index.php:106
 msgid "Show RAC Map"
-msgstr ""
+msgstr "Visa RAC-karta"
 
 #: application/views/awards/sig/index.php:7
 msgid "SIG Information"
-msgstr ""
+msgstr "SIG-information"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
 "The SIG or Signature Category provides the possibility to use any kind of "
 "'Award Signature' for awards that are not implemented in Wavelog."
 msgstr ""
+"SIG eller Signature Category ger möjlighet att använda vilken typ av 'Award "
+"Signature' som helst för diplom som inte är implementerade i Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -5604,6 +5702,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of signature markers."
 msgstr ""
+"Anledningen till detta är att det vanliga ADIF-formatet endast erbjuder "
+"några få dedikerade fält för vissa diplom. SIG gör det fortfarande möjligt "
+"att använda och utvärdera alla andra typer av signaturmarkörer."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -5611,26 +5712,29 @@ msgid ""
 "marker, which is also visible in the award evaluation, and 'SIG INFO,' which "
 "contains a description of the signature. Both fields are freely customizable."
 msgstr ""
+"I QSO-behandlingen hittar du två fält: 'SIG' innehåller den faktiska "
+"markören, som också är synlig i utvärderingen av diplomet, och 'SIG INFO,' "
+"som innehåller en beskrivning av signaturen. Båda fälten kan anpassas fritt."
 
 #: application/views/awards/sig/index.php:21
 msgid "Award Type"
-msgstr ""
+msgstr "Diplomtyp"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
 #: application/views/distances/index.php:12
 #: application/views/timeplotter/index.php:4
 msgid "Number of QSOs"
-msgstr ""
+msgstr "Antal QSOn"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr ""
+msgstr "Antal referenser"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:23
 msgid "Reference"
-msgstr ""
+msgstr "Referens"
 
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/awards/sota/index.php:24
@@ -5647,26 +5751,28 @@ msgstr "Datum/Tid"
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/awards/sota/index.php:27
 msgid "RST Sent"
-msgstr ""
+msgstr "RST skickat"
 
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:28
 msgid "RST Received"
-msgstr ""
+msgstr "RST mottaget"
 
 #: application/views/awards/sig/qso_list.php:34
 msgid "Export QSOs to ADIF"
-msgstr ""
+msgstr "Exportera QSOn till ADIF"
 
 #: application/views/awards/sota/index.php:7
 msgid "SOTA Awards"
-msgstr ""
+msgstr "SOTA-diplom"
 
 #: application/views/awards/sota/index.php:8
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
 msgstr ""
+"SOTA (Summits On The Air) är ett diplom system för radioamatörer som "
+"uppmuntrar portabel verksamhet i bergsområden."
 
 #: application/views/awards/sota/index.php:9
 msgid ""
@@ -5678,58 +5784,70 @@ msgid ""
 "trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA "
 "online database."
 msgstr ""
+"Det är fullt operativt i nästan hundra länder världen över. Varje land har "
+"sin egen förening som definierar de erkända SOTA-topparna inom den "
+"föreningen. Varje topp ger aktiverare och jägare en poäng relaterad till "
+"toppens höjd. Certifikat finns tillgängliga för olika poäng, vilket leder "
+"till de prestigefyllda 'Mountain Goat' och 'Shack Sloth' troféerna. En "
+"hederslista för aktiverare och jägare upprätthålls i SOTA:s online-databas."
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
-msgstr ""
+msgstr "VUCC - VHF/UHF Century Club Award"
 
 #: application/views/awards/vucc/index.php:8
 msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
 msgstr ""
+"VHF/UHF Century Club Award ges för ett minsta antal kontaktade och "
+"bekräftade rutnät på ett önskat band."
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:10
 #, php-format
 msgid "Official information and the rules can be found in this document: %s."
-msgstr ""
+msgstr "Officiell information och regler finns i det här dokumentet: %s."
 
 #: application/views/awards/vucc/index.php:10
 msgid "Only VHF/UHF bands are relevant."
-msgstr ""
+msgstr "Endast VHF/UHF-band är relevanta."
 
 #: application/views/awards/vucc/index.php:22
 msgid "Grids Worked"
-msgstr ""
+msgstr "Rutnät kontaktade"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Confirmed"
-msgstr ""
+msgstr "Rutnät bekräftade"
 
 #: application/views/awards/wab/index.php:12
 msgid "WAB - Worked All Britain Award"
-msgstr ""
+msgstr "WAB - Worked All Britain Award"
 
 #: application/views/awards/wab/index.php:13
 msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
+"WAB, Worked All Britain-rutor inom amatörradio, uppmuntrar licensierade "
+"radioamatörer att kontakta alla rutor i Storbritannien."
 
 #: application/views/awards/wab/index.php:14
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
 msgstr ""
+"Kan hävdas efter att ha kontaktat amatörstationer belägna i det erforderliga "
+"antalet rutor, beskrivna på sidan som länkas nedan."
 
 #: application/views/awards/wab/index.php:109
 msgid "List"
-msgstr ""
+msgstr "Lista"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr ""
+msgstr "WAB-ruta"
 
 #: application/views/awards/wac/index.php:9
 msgid ""
@@ -5737,10 +5855,14 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"Sponsrad av International Amateur Radio Union (IARU), Worked All Continents-"
+"diplomet delas ut för att ha kontaktad och bekräftat alla de sex "
+"kontinenterna. Dessa är Nordamerika, Sydamerika, Oceanien, Asien, Europa och "
+"Afrika."
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "Diplom - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:151
 #: application/views/continents/index.php:62
@@ -5756,7 +5878,7 @@ msgstr "Kontinent"
 
 #: application/views/awards/wae/index.php:7
 msgid "WAE Award"
-msgstr ""
+msgstr "WAE Award"
 
 #: application/views/awards/wae/index.php:8
 msgid ""
@@ -5764,6 +5886,9 @@ msgid ""
 "contacts with amateur radio stations in European countries and on islands "
 "listed in the WAE country list on different bands."
 msgstr ""
+"Det äldsta och mest kända av alla DARC-certifikat delas ut för kontakter med "
+"amatörradiostationer i europeiska länder och öar som finns med på WAE-"
+"landlistan på olika band."
 
 #: application/views/awards/wae/index.php:9
 msgid ""
@@ -5771,29 +5896,35 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
+"WAE diplomet kan utfärdas för följande trafiksätt: CW, SSB, Phone, RTTY, "
+"FT8, Digital och Blandade trafiksätt. Det utfärdas i fem klasser: WAE III, "
+"WAE II, WAE I, WAE TOP och WAE Trophy."
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
-msgstr ""
+msgstr "WAE Namn"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefektur"
 
 #: application/views/awards/waja/index.php:4
 msgid "Hover over a prefecture"
-msgstr ""
+msgstr "Hovra över en prefektur"
 
 #: application/views/awards/waja/index.php:19
 msgid "WAJA - Worked All Japan prefectures Award"
-msgstr ""
+msgstr "WAJA - Worked All Japan prefectures Award"
 
 #: application/views/awards/waja/index.php:20
+#, fuzzy
 msgid ""
 "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham "
 "radio operators to work all the prefectures in Japan."
 msgstr ""
+"WAJA, Worked All Japan-prefekturer i amatörradio, uppmuntrar licensierade "
+"radioamatörer att kontakta alla prefekturer i Japan."
 
 #: application/views/awards/waja/index.php:21
 msgid ""
@@ -5802,28 +5933,32 @@ msgid ""
 "QSL cards should be arranged in order of WAJA (HAJA) reference number, "
 "however names of prefectures may be omitted."
 msgstr ""
+"Kan utfärdas för att ha kontaktat (hört) och fått ett QSL-kort från en "
+"amatörstation belägen i var och en av de 47 prefekturerna i Japan. En lista "
+"över QSL-kort bör ordnas i ordning efter WAJA (HAJA) referensnummer, men "
+"namnen på prefekturerna kan utelämnas."
 
 #: application/views/awards/waja/index.php:118
 msgid "Show WAJA Map"
-msgstr ""
+msgstr "Visa WAJA-karta"
 
 #: application/views/awards/waja/index.php:154
 #: application/views/timeline/index.php:237
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefektur"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
 msgid "State"
-msgstr ""
+msgstr "Delstat"
 
 #: application/views/awards/was/index.php:4
 msgid "Hover over a state"
-msgstr ""
+msgstr "Hovra över en stat"
 
 #: application/views/awards/was/index.php:20
 msgid "WAS Award"
-msgstr ""
+msgstr "WAS Award"
 
 #: application/views/awards/was/index.php:21
 msgid ""
@@ -5832,8 +5967,13 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
+"ARRL:s mest populära diplom är Worked All States Award. Tusentals och åter "
+"tusentals diplom har delats ut till radioamatörer runt om i världen. Under "
+"ARRL:s 101:a år har de omdesignat certifikaten och programmet i hopp om att "
+"effektivisera och förbättra diplomprogrammet."
 
 #: application/views/awards/was/index.php:22
+#, fuzzy
 msgid ""
 "The WAS (Worked All States) Award is available to all amateurs worldwide who "
 "submit proof with written confirmation of contacts with each of the 50 "
@@ -5841,27 +5981,36 @@ msgid ""
 "possessions must be members of ARRL to apply for a WAS. Applicants from "
 "outside the U.S. are exempt from this requirement."
 msgstr ""
+"WAS (Worked All States) Award är tillgängligt för alla radioamatörer världen "
+"över som lämnar in bevis med skriftlig bekräftelse på kontakter med var och "
+"en av de 50 delstaterna i USA. Amatörer i USA och dess besittningar måste "
+"vara medlemmar i ARRL för att ansöka om en WAS. Sökande utanför USA är "
+"undantagna från detta krav."
 
 #: application/views/awards/was/index.php:23
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
-msgstr ""
+msgstr "All information och regler för ARRL WAS Award finns %s."
 
 #: application/views/awards/was/index.php:114
 msgid "Show WAS Map"
-msgstr ""
+msgstr "Visa WAS-karta"
 
 #: application/views/awards/wwff/index.php:7
 msgid "WWFF - World Wide Flora and Fauna Award"
-msgstr ""
+msgstr "WWFF - World Wide Flora and Fauna Award"
 
 #: application/views/awards/wwff/index.php:8
+#, fuzzy
 msgid ""
 "WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham "
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
+"WWFF, World Wide Flora and Fauna inom amatörradio, uppmuntrar licensierade "
+"radioamatörer att lämna sina stationer och köra portabelt i skyddade flora- "
+"och faunaområden (PFF) världen över."
 
 #: application/views/awards/wwff/index.php:9
 msgid ""
@@ -5869,6 +6018,9 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
+"Mer än 26 000 skyddade flora- och faunaområden (PFF) världen över är redan "
+"registrerade i WWFF-katalogen. Jägare och aktiverare kan ansöka om färgglada "
+"diplom, både globalt och nationellt."
 
 #: application/views/awards/wwff/index.php:31
 #: application/views/qso/index.php:235 application/views/qso/index.php:527
@@ -5877,17 +6029,18 @@ msgstr ""
 #: application/views/user/edit.php:648 application/views/view_log/qso.php:396
 #: application/views/view_log/qso.php:712
 msgid "WWFF Reference"
-msgstr ""
+msgstr "WWFF-referens"
 
 #: application/views/backup/adif_view.php:7
 msgid ""
 "The backup of your log completed successfully. The output can be found at"
 msgstr ""
+"Säkerhetskopieringen av din logg slutfördes framgångsrikt. Kopian finns på"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr ""
+msgstr "Du kan automatisera denna process genom att göra den till ett cronjobb."
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -5895,38 +6048,46 @@ msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
+"Något gick fel under säkerhetskopieringsprocessen. Kontrollera att "
+"säkerhetskopieringsmappen finns och är skrivbar av din webbserveranvändare/"
+"-grupp."
 
 #: application/views/backup/main.php:17
 msgid ""
 "Some of the data stored in Wavelog can be exported so that you can keep a "
 "backup copy elsewhere."
 msgstr ""
+"En del av den data som lagras i Wavelog kan exporteras så att du kan spara "
+"en säkerhetskopia någon annanstans."
 
 #: application/views/backup/main.php:18
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
 msgstr ""
+"Att skapa säkerhetskopior regelbundet för att skydda dina data rekommenderas."
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
-msgstr ""
+msgstr "Säkerhetskopiera ADIF-data"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
-msgstr ""
+msgstr "Säkerhetskopiera anteckningar"
 
 #: application/views/backup/notes_view.php:7
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
+"Säkerhetskopieringen av dina anteckningar slutfördes framgångsrikt. Kopian "
+"finns på"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:56
 msgid "BandMap"
-msgstr ""
+msgstr "Bandkarta"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:59
 msgid "BandList"
-msgstr ""
+msgstr "BandLista"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:69
 #: application/views/contesting/index.php:19
@@ -5934,144 +6095,149 @@ msgstr ""
 #: application/views/contesting/index.php:154
 #: application/views/qso/index.php:325
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:83
 msgid "Spots de"
-msgstr ""
+msgstr "Spots de"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
-msgstr ""
+msgstr "Popup blockerades! Tillåt pop-ups för den här webbplatsen permanent."
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Klicka för att förbereda loggning."
 
 #: application/views/bandmap/list.php:76
 msgid "DXCC-Status"
-msgstr ""
+msgstr "DXCC-status"
 
 #: application/views/bandmap/list.php:81
 msgid "Not Confirmed"
-msgstr ""
+msgstr "Inte bekräftad"
 
 #: application/views/bandmap/list.php:123
 msgid "WAC"
-msgstr ""
+msgstr "WAC"
 
 #: application/views/bandmap/list.php:124
 msgid "Spotter"
-msgstr ""
+msgstr "Spotter"
 
 #: application/views/bandmap/list.php:125
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
 msgid "Message"
-msgstr ""
+msgstr "Meddelande"
 
 #: application/views/bandmap/list.php:126
 msgid "Last Worked"
-msgstr ""
+msgstr "Senast kontaktad"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr ""
+msgstr "Namn på band (t.ex. 20m)"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:61
 msgid "Bandgroup"
-msgstr ""
+msgstr "Bandgrupp"
 
 #: application/views/bands/create.php:31 application/views/bands/edit.php:13
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
-msgstr ""
+msgstr "Namn på bandgrupp (t.ex. hf, vhf, uhf, shf)"
 
 #: application/views/bands/create.php:34 application/views/bands/edit.php:16
 #: application/views/bands/index.php:62
 msgid "SSB QRG"
-msgstr ""
+msgstr "SSB QRG"
 
 #: application/views/bands/create.php:36 application/views/bands/edit.php:18
 msgid "Frequency for SSB QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frekvens för SSB QRG i bandet (måste vara i Hz)"
 
 #: application/views/bands/create.php:39 application/views/bands/edit.php:21
 #: application/views/bands/index.php:63
 msgid "DATA QRG"
-msgstr ""
+msgstr "DATA QRG"
 
 #: application/views/bands/create.php:41 application/views/bands/edit.php:23
 msgid "Frequency for DATA QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frekvens för DATA QRG i bandet (måste vara i Hz)"
 
 #: application/views/bands/create.php:44 application/views/bands/edit.php:26
 #: application/views/bands/index.php:64
 msgid "CW QRG"
-msgstr ""
+msgstr "CW QRG"
 
 #: application/views/bands/create.php:46 application/views/bands/edit.php:28
 msgid "Frequency for CW QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frekvens för CW QRG i bandet (måste vara i Hz)"
 
 #: application/views/bands/index.php:36
 msgid ""
 "Using the band list you can control which bands are shown when creating a "
 "new QSO."
 msgstr ""
+"Med hjälp av bandlistan kan du kontrollera vilka band som visas när du "
+"skapar ett ny QSO."
 
 #: application/views/bands/index.php:37
+#, fuzzy
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
 msgstr ""
+"Aktiva band kommer att visas i QSO-rullgardinsmenyn 'Band', medan inaktiva "
+"band kommer att döljas och kan inte väljas."
 
 #: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:392
 #: application/views/qso/index.php:259 application/views/qso/index.php:552
 #: application/views/user/edit.php:656 application/views/view_log/qso.php:425
 #: application/views/view_log/qso.php:726
 msgid "Sig"
-msgstr ""
+msgstr "Sig"
 
 #: application/views/bands/index.php:56 application/views/qso/edit_ajax.php:361
 #: application/views/qso/index.php:491
 msgid "USA County"
-msgstr ""
+msgstr "USA län"
 
 #: application/views/bands/index.php:58
 #: application/views/interface_assets/header.php:230
 msgid "WAJA"
-msgstr ""
+msgstr "WAJA"
 
 #: application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:254
 msgid "WAS"
-msgstr ""
+msgstr "WAS"
 
 #: application/views/bands/index.php:65
 msgid "QRG Unit"
-msgstr ""
+msgstr "QRG-enhet"
 
 #: application/views/bands/index.php:98
 msgid "Hz"
-msgstr ""
+msgstr "Hz"
 
 #: application/views/bands/index.php:99
 msgid "kHz"
-msgstr ""
+msgstr "kHz"
 
 #: application/views/bands/index.php:100
 msgid "MHz"
-msgstr ""
+msgstr "MHz"
 
 #: application/views/bands/index.php:101
 msgid "GHz"
-msgstr ""
+msgstr "GHz"
 
 #: application/views/bands/index.php:151 application/views/bands/index.php:157
 msgid "Create a band"
-msgstr ""
+msgstr "Skapa ett band"
 
 #: application/views/bands/index.php:152
 #: application/views/club/permissions.php:142
@@ -6089,82 +6255,82 @@ msgstr "Stäng"
 
 #: application/views/bands/index.php:153
 msgid "Warning! Are you sure you want to delete the following band: "
-msgstr ""
+msgstr "Varning! Är du säker på att du vill ta bort följande band: "
 
 #: application/views/bands/index.php:154
 msgid "Warning! Are you sure you want to activate all bands?"
-msgstr ""
+msgstr "Varning! Är du säker på att du vill aktivera alla band?"
 
 #: application/views/bands/index.php:155
 msgid "Warning! Are you sure you want to deactivate all bands?"
-msgstr ""
+msgstr "Varning! Är du säker på att du vill avaktivera alla band?"
 
 #: application/views/bands/index.php:158
 #: application/views/contesting/add.php:77 application/views/mode/index.php:89
 msgid "Activate All"
-msgstr ""
+msgstr "Aktivera alla"
 
 #: application/views/bands/index.php:159
 #: application/views/contesting/add.php:78 application/views/mode/index.php:90
 msgid "Deactivate All"
-msgstr ""
+msgstr "Inaktivera alla"
 
 #: application/views/cabrillo/cbr_success.php:12
 msgid "Results of CBR Contest Data Update"
-msgstr ""
+msgstr "Resultat av CBR Contest Datauppdatering"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
 "Your contest QSOs have been updated using the values of your Cabrillo file."
-msgstr ""
+msgstr "Dina tävlings-QSOn har uppdaterats med värdena från din Cabrillo-fil."
 
 #: application/views/cabrillo/cbr_success.php:19
 msgid "No QSOs were updated by your Cabrillo file."
-msgstr ""
+msgstr "Inga QSOn uppdaterades av din Cabrillo-fil."
 
 #: application/views/cabrillo/cbr_success.php:25
 msgid "CBR errors"
-msgstr ""
+msgstr "CBR-fel"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
 #: application/views/reg1test/index.php:2
 #: application/views/reg1test/index.php:36
 msgid "Proceed"
-msgstr ""
+msgstr "Fortsätt"
 
 #: application/views/cabrillo/index.php:3
 #: application/views/reg1test/index.php:3
 msgid "Select Year"
-msgstr ""
+msgstr "Välj år"
 
 #: application/views/cabrillo/index.php:4
 #: application/views/reg1test/index.php:4
 msgid "Select Contest"
-msgstr ""
+msgstr "Välj tävling"
 
 #: application/views/cabrillo/index.php:5
 #: application/views/reg1test/index.php:5
 msgid "Select Date Range"
-msgstr ""
+msgstr "Välj datumintervall"
 
 #: application/views/cabrillo/index.php:6
 #: application/views/reg1test/index.php:7
 msgid "No contests were found for this station location!"
-msgstr ""
+msgstr "Inga tävlingar hittades för den här station platsen!"
 
 #: application/views/cabrillo/index.php:16
 msgid "Export a contest to a Cabrillo log"
-msgstr ""
+msgstr "Exportera en tävling till en Cabrillo-logg"
 
 #: application/views/cabrillo/index.php:28
 msgid "Select Station Location:"
-msgstr ""
+msgstr "Välj stationsplats:"
 
 #: application/views/cabrillo/index.php:44
 #: application/views/reg1test/index.php:53
 msgid "Club"
-msgstr ""
+msgstr "Klubb"
 
 #: application/views/cabrillo/index.php:48
 msgid ""
