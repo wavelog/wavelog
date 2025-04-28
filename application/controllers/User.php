@@ -202,6 +202,7 @@ class User extends CI_Controller {
 				$data['user_timezone'] = $this->input->post('user_timezone');
 				$data['user_measurement_base'] = $this->input->post('user_measurement_base') ?? 'K';
 				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
+				$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
 				$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 				$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 				$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -289,6 +290,7 @@ class User extends CI_Controller {
 				$this->input->post('on_air_widget_display_last_seen'),
 				$this->input->post('on_air_widget_show_only_most_recent_radio'),
 				$this->input->post('qso_widget_display_qso_time'),
+				$this->input->post('user_dashboard_banner') ?? 'Y',
 				$this->input->post('clubstation') == '1' ? true : false
 				)) {
 				// Check for errors
@@ -320,6 +322,7 @@ class User extends CI_Controller {
 			$data['user_locator'] = $this->input->post('user_locator');
 			$data['user_measurement_base'] = $this->input->post('user_measurement_base');
 			$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
+			$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
 			$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 			$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 			$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -684,6 +687,15 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('user_dashboard_banner')) {
+				$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dashboard_banner','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($dkey_opt)>0) {
+					$data['user_dashboard_banner'] = $dkey_opt[0]->option_value;
+				}
+			}
+
 			if($this->input->post('user_hamsat_workable_only')) {
 				$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only', false);
 			} else {
@@ -793,7 +805,7 @@ class User extends CI_Controller {
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
 		} else {
-			// Data was submitted for saving - save updated options in DB 
+			// Data was submitted for saving - save updated options in DB
 			unset($data);
 			switch($this->user_model->edit($this->input->post())) {
 				// Check for errors
@@ -1094,7 +1106,7 @@ class User extends CI_Controller {
 				}
 				$this->user_model->set_last_seen($data['user']->user_id);
 				redirect('dashboard');
-			
+
 			} else if ($login_attempt === 2) {
 				$this->session->set_flashdata('warning', __("You can't login to a clubstation directly. Use your personal account instead."));
 				redirect('user/login');
@@ -1125,19 +1137,19 @@ class User extends CI_Controller {
 		}
 
 		$this->user_model->clear_session();
-		
+
 		if ($custom_message != null && is_array($custom_message)) {
 			$this->input->set_cookie('tmp_msg', json_encode([$custom_message[0], $custom_message[1]]), 10, '');
 		} else {
 			$this->input->set_cookie('tmp_msg', json_encode(['notice', sprintf(__("User %s logged out."), $user_name)]), 10, '');
 		}
-		
+
 		redirect('user/login');
 	}
 
 	/**
 	 * First Login Wizard
-	 * 
+	 *
 	 * Form Data to create the first station location
 	 */
 	function firstlogin_wizard_form() {
@@ -1465,7 +1477,7 @@ class User extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		// is the source user still logged in? 
+		// is the source user still logged in?
 		// We fetch the source user from database to also make sure the user exists. We could use source_uid directly, but this is more secure
 		if ($this->session->userdata('user_id') !=  $this->user_model->get_by_id($source_uid)->row()->user_id) {
 			$this->session->set_flashdata('error', __("You can't impersonate another user while you're not logged in as the source user"));
@@ -1509,7 +1521,7 @@ class User extends CI_Controller {
 		} else {
 			if(!$source_user || !$this->user_model->authorize(99)) {
 				$this->session->set_flashdata('error', __("You're not allowed to do that!"));
-				redirect('dashboard'); 
+				redirect('dashboard');
 			} else {
 				$custom_sessiondata['p_level'] = 99;  // if the user is an admin he also should have full rights in the clubstations
 			}
@@ -1525,8 +1537,8 @@ class User extends CI_Controller {
 		// TODO: Find a solution for sessiondata 'radio', so a user would be able to use e.g. his own radio while impersonating another user
 		// Due the fact that the user is now impersonating another user, he can't use his default radio anymore
 		$this->session->set_userdata('source_uid', $source_uid);
-		$this->user_model->update_session($target_uid, null, true, $custom_sessiondata); 
-		
+		$this->user_model->update_session($target_uid, null, true, $custom_sessiondata);
+
 		// Redirect to the dashboard, the user should now be logged in as the other user
 		redirect('dashboard');
 	}
