@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-04-27 14:52+0000\n"
-"PO-Revision-Date: 2025-04-21 21:16+0000\n"
-"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"PO-Revision-Date: 2025-04-28 09:54+0000\n"
+"Last-Translator: 李宇翔 <lyx8851@qq.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -9461,66 +9461,69 @@ msgstr "距离（公里）。留空以删除距离。"
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
-msgstr ""
+msgstr "在文本输入搜索中，您可以通过以下方式进行搜索："
 
 #: application/views/logbookadvanced/help.php:2
 msgid "* - means search for everything."
-msgstr ""
+msgstr "* -表示搜索所有的。"
 
 #: application/views/logbookadvanced/help.php:3
 msgid "Remove star and leave blank, means to search where column is empty."
-msgstr ""
+msgstr "去掉星号并留空，表示搜索列为空的地方。"
 
 #: application/views/logbookadvanced/help.php:4
 msgid "!empty - means to search where column is not empty."
-msgstr ""
+msgstr "!empty - 表示搜索列不为空的地方。"
 
 #: application/views/logbookadvanced/help.php:6
 msgid ""
 "The dupe search checks for duplicate QSOs with the same callsign, mode, "
 "submode, station callsign, band and satellite within 1500 seconds."
-msgstr ""
+msgstr "“重复”是检查所有在1500秒内具有相同呼号、模式、子模式、电台呼号、频带和卫星的"
+"重复QSO。"
 
 #: application/views/logbookadvanced/help.php:8
 msgid "The invalid search checks for the following conditions:"
-msgstr ""
+msgstr "“无效”搜索检查以下条件："
 
 #: application/views/logbookadvanced/help.php:9
 msgid "Mode is blank or set to 0."
-msgstr ""
+msgstr "Mode为空或设置为0。"
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Band is blank."
-msgstr ""
+msgstr "波段是空白的。"
 
 #: application/views/logbookadvanced/help.php:11
 msgid "Callsign is blank."
-msgstr ""
+msgstr "呼号是空白的。"
 
 #: application/views/logbookadvanced/help.php:12
 msgid "Time and date is not set."
-msgstr ""
+msgstr "时间和日期没有设定。"
 
 #: application/views/logbookadvanced/help.php:13
 msgid "Date is set to 1970-01-01."
-msgstr ""
+msgstr "日期被设置为1970-01-01。"
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
-msgstr ""
+msgstr "不同于AF， AN， AS， EU， NA， OC或SA的大洲。"
 
 #: application/views/logbookadvanced/help.php:16
 msgid ""
 "The map uses the same search criteria as the normal search. All QSOs in the "
 "search result will be mapped, unless you have checked one or more QSOs."
-msgstr ""
+msgstr "该地图使用与普通搜索相同的搜索条件。搜索结果中的所有QSO都将显示在地图上，除非"
+"您选中了一个或多个QSO。"
 
 #: application/views/logbookadvanced/help.php:18
 msgid ""
 "The ADIF export uses the same search criteria as the normal search. All QSOs "
 "will be exported (all for selected location), unless you have checked one or "
 "more QSOs."
-msgstr ""
+msgstr "ADIF导出使用与普通搜索相同的搜索条件。所有的QSO将被导出（选中的台站地址），除"
+"非您选中了一个或多个QSO。"
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
@@ -9560,7 +9563,7 @@ msgstr "夜晚阴影"
 
 #: application/views/logbookadvanced/index.php:23
 msgid "Advanced Logbook Help"
-msgstr ""
+msgstr "高级日志帮助"
 
 #: application/views/logbookadvanced/index.php:194
 msgid "From"
