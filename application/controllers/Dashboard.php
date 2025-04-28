@@ -13,18 +13,18 @@ class Dashboard extends CI_Controller {
 
 		// Database connections
 		$this->load->model('logbook_model');
-		
+
 		// LoTW infos
 		$this->load->model('Lotw_model');
 		$current_date = date('Y-m-d H:i:s');
 		$data['lotw_cert_expired'] = $this->Lotw_model->lotw_cert_expired($this->session->userdata('user_id'), $current_date);
 		$data['lotw_cert_expiring'] = $this->Lotw_model->lotw_cert_expiring($this->session->userdata('user_id'), $current_date);
-		
-		
+
+
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		
+
 		if (($logbooks_locations_array[0]>-1) && (!(in_array($this->stations->find_active(),$logbooks_locations_array)))) {
 			$data['active_not_linked']=true;
 		} else {
@@ -71,6 +71,12 @@ class Dashboard extends CI_Controller {
 			$data['dashboard_map'] = $this->session->userdata('user_dashboard_map') ?? 'Y';
 		} else {
 			$data['dashboard_map'] = 'N';
+		}
+
+		if (($this->session->userdata('user_dashboard_banner') ?? '') != '') {
+			$data['dashboard_banner'] = $this->session->userdata('user_dashboard_banner') ?? 'Y';
+		} else {
+			$data['dashboard_banner'] = 'N';
 		}
 
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();

@@ -75,14 +75,6 @@ class Options extends CI_Controller {
 				$this->session->set_flashdata('success', __("Options saved"));
 			}
 
-			// Update dashboard banner within the options system
-			$dasboard_banner_update_status = $this->optionslib->update('dashboard_banner', $this->input->post('dashboardBanner'), 'yes');
-
-			// If dashboard banner update is complete set a flashsession with a success note
-			if($dasboard_banner_update_status == TRUE) {
-				$this->session->set_flashdata('success', __("Options saved"));
-			}
-
 			// Update logbook map within the options system
 			$logbook_map_update_status = $this->optionslib->update('logbook_map', $this->input->post('logbookMap'), 'yes');
 
@@ -524,7 +516,7 @@ class Options extends CI_Controller {
 		if($version_dialog_mode_update == TRUE) {
 			$this->session->set_flashdata('success1', __("Version Info Mode changed to")." "."'".$this->input->post('version_dialog_mode')."'");
 		}
-		if ($this->input->post('version_dialog_mode') == "both" || $this->input->post('version_dialog_mode') == "custom_text" ) { 
+		if ($this->input->post('version_dialog_mode') == "both" || $this->input->post('version_dialog_mode') == "custom_text" ) {
 			$version_dialog_custom_text_update = $this->optionslib->update('version_dialog_text', $this->input->post('version_dialog_custom_text'), 'yes');
 			if($version_dialog_custom_text_update == TRUE) {
 				$this->session->set_flashdata('success2', __("Version Info Custom Text saved!"));
