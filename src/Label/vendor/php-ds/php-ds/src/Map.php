@@ -287,7 +287,7 @@ final class Map implements Collection, \ArrayAccess
      * @psalm-param (callable(TKey, TValue): bool)|null $callback
      * @psalm-return Map<TKey, TValue>
      */
-    public function filter(callable $callback = null): Map
+    public function filter(?callable $callback = null): Map
     {
         $filtered = new self();
 
@@ -552,7 +552,7 @@ final class Map implements Collection, \ArrayAccess
      *
      * @psalm-return Map<TKey, TValue>
      */
-    public function slice(int $offset, int $length = null): Map
+    public function slice(int $offset, ?int $length = null): Map
     {
         $map = new self();
 
@@ -578,7 +578,7 @@ final class Map implements Collection, \ArrayAccess
      *
      * @psalm-param (callable(TValue, TValue): int)|null $comparator
      */
-    public function sort(callable $comparator = null)
+    public function sort(?callable $comparator = null)
     {
         if ($comparator) {
             usort($this->pairs, function($a, $b) use ($comparator) {
@@ -603,7 +603,7 @@ final class Map implements Collection, \ArrayAccess
      * @psalm-param (callable(TValue, TValue): int)|null $comparator
      * @psalm-return Map<TKey, TValue>
      */
-    public function sorted(callable $comparator = null): Map
+    public function sorted(?callable $comparator = null): Map
     {
         $copy = $this->copy();
         $copy->sort($comparator);
@@ -619,7 +619,7 @@ final class Map implements Collection, \ArrayAccess
      *
      * @psalm-param (callable(TKey, TKey): int)|null $comparator
      */
-    public function ksort(callable $comparator = null)
+    public function ksort(?callable $comparator = null)
     {
         if ($comparator) {
             usort($this->pairs, function($a, $b) use ($comparator) {
@@ -644,7 +644,7 @@ final class Map implements Collection, \ArrayAccess
      * @psalm-param (callable(TKey, TKey): int)|null $comparator
      * @psalm-return Map<TKey, TValue>
      */
-    public function ksorted(callable $comparator = null): Map
+    public function ksorted(?callable $comparator = null): Map
     {
         $copy = $this->copy();
         $copy->ksort($comparator);

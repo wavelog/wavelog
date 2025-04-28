@@ -175,7 +175,7 @@ final class Set implements Collection, \ArrayAccess
      * @psalm-param (callable(TValue): bool)|null $callback
      * @psalm-return Set<TValue>
      */
-    public function filter(callable $callback = null): Set
+    public function filter(?callable $callback = null): Set
     {
         return new self(array_filter($this->toArray(), $callback ?: 'boolval'));
     }
@@ -241,7 +241,7 @@ final class Set implements Collection, \ArrayAccess
      *
      * @param string|null $glue
      */
-    public function join(string $glue = null): string
+    public function join(?string $glue = null): string
     {
         return implode($glue ?? '', $this->toArray());
     }
@@ -345,7 +345,7 @@ final class Set implements Collection, \ArrayAccess
      *                    at that offset in the set. If offset is negative,
      *                    the set will start that far from the end.
      *
-     * @param int $length If a length is given and is positive, the resulting
+     * @param int|null $length If a length is given and is positive, the resulting
      *                    set will have up to that many values in it.
      *                    If the requested length results in an overflow, only
      *                    values up to the end of the set will be included.
@@ -361,7 +361,7 @@ final class Set implements Collection, \ArrayAccess
      *
      * @psalm-return Set<TValue>
      */
-    public function slice(int $offset, int $length = null): Set
+    public function slice(int $offset, ?int $length = null): Set
     {
         $sliced = new self();
         $sliced->table = $this->table->slice($offset, $length);
@@ -377,7 +377,7 @@ final class Set implements Collection, \ArrayAccess
      *
      * @psalm-param (callable(TValue, TValue): int)|null $comparator
      */
-    public function sort(callable $comparator = null)
+    public function sort(?callable $comparator = null)
     {
         $this->table->ksort($comparator);
     }
@@ -394,7 +394,7 @@ final class Set implements Collection, \ArrayAccess
      * @psalm-param (callable(TValue, TValue): int)|null $comparator
      * @psalm-return Set<TValue>
      */
-    public function sorted(callable $comparator = null): Set
+    public function sorted(?callable $comparator = null): Set
     {
         $sorted = $this->copy();
         $sorted->table->ksort($comparator);
