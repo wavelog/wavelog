@@ -138,61 +138,74 @@ class ADIF_Parser
 
 	//the following function does the processing of the array into its key and value pairs
 	public function record_to_array($record)
-	{
-		$return = array();
-		for($a = 0; $a < mb_strlen($record, "UTF-8"); $a++)
-		{
-			if(mb_substr($record, $a, 1, "UTF-8") == '<') //find the start of the tag
-			{
-				$tag_name = "";
-				$value = "";
-				$len_str = "";
-				$len = 0;
-				$a++; //go past the <
-				while((mb_substr($record, $a, 1, "UTF-8") != ':') && ($a<=mb_strlen($record, "UTF-8"))) //get the tag
-				{
-					$tag_name = $tag_name.mb_substr($record, $a, 1, "UTF-8"); //append this char to the tag name
-					$a++;
-					// Prevent iterating $a past record length
-					if ($a == mb_strlen($record, "UTF-8")) {
-						return;
-					}
-				};
-				$a++; //iterate past the colon
-				while(mb_substr($record, $a, 1, "UTF-8") != '>' && mb_substr($record, $a, 1, "UTF-8") != ':' && ($a<=mb_strlen($record, "UTF-8")))
-				{
-					$len_str = $len_str.mb_substr($record, $a, 1, "UTF-8");
-					$a++;
-				};
-				if(mb_substr($record, $a, 1, "UTF-8") == ':')
-				{
-					while((mb_substr($record, $a, 1, "UTF-8") != '>') && ($a<=mb_strlen($record, "UTF-8")))
-					{
-						$a++;
-					};
-				};
-				$len = (int)$len_str;
-				$a++;
+{
+	$return = array();
+	$length = mb_strlen($record, "UTF-8");
 
-				$value = mb_substr($record, $a, $len, "UTF-8");
-				$a = $a + $len - 1;
-				$return[mb_strtolower($tag_name, "UTF-8")] = $value;
-			};
-			//skip comments
-			if(mb_substr($record, $a, 1, "UTF-8") == "#")
-			{
-				while($a < mb_strlen($record, "UTF-8"))
-				{
-					if(mb_substr($record, $a, 1, "UTF-8") == "\n")
-					{
-						break;
-					}
+	for ($a = 0; $a < $length; $a++) {
+		if (mb_substr($record, $a, 1, "UTF-8") == '<') {
+			$tag_name = "";
+			$value = "";
+			$len_str = "";
+			$len = 0;
+			$a++; //go past the <
+
+			while ($a < $length && mb_substr($record, $a, 1, "UTF-8") != ':') { //get the tag
+				$tag_name .= mb_substr($record, $a, 1, "UTF-8");
+				$a++;
+			}
+
+			// If we reached the end unexpectedly, exit
+			if ($a >= $length) break;
+
+			$a++; //iterate past the colon
+
+			// Get length string
+			while ($a < $length && mb_substr($record, $a, 1, "UTF-8") != '>' && mb_substr($record, $a, 1, "UTF-8") != ':') {
+				$len_str .= mb_substr($record, $a, 1, "UTF-8");
+				$a++;
+			}
+
+			// If malformed tag or no length string, skip this tag
+			if (!ctype_digit($len_str)) {
+				continue;
+			}
+
+			$len = (int)$len_str;
+
+			// Skip extra colon if present
+			if ($a < $length && mb_substr($record, $a, 1, "UTF-8") == ':') {
+				while ($a < $length && mb_substr($record, $a, 1, "UTF-8") != '>') {
 					$a++;
 				}
 			}
-		};
-		return $return;
+
+			$a++; // past >
+
+			// Validate there are enough characters left
+			if (($a + $len) > $length) {
+				// Not enough characters for the value; skip this tag
+				break;
+			}
+
+			$value = mb_substr($record, $a, $len, "UTF-8");
+			$a += $len - 1; // adjust for loop increment
+			$return[mb_strtolower($tag_name, "UTF-8")] = $value;
+		}
+
+		// skip comments
+		if (mb_substr($record, $a, 1, "UTF-8") == "#") {
+			while ($a < $length) {
+				if (mb_substr($record, $a, 1, "UTF-8") == "\n") {
+					break;
+				}
+				$a++;
+			}
+		}
 	}
+
+	return $return;
+}
 
 	//finds the next record in the file
 	public function get_record()
