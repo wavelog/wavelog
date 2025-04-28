@@ -26,10 +26,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-04-27 14:52+0000\n"
-"PO-Revision-Date: 2025-04-22 19:10+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2025-04-28 09:54+0000\n"
+"Last-Translator: Fabian Franz BSc <franz.fabian.94@gmail.com>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -9789,15 +9789,17 @@ msgstr "Distanz (in km). Leer lassen, um Distanzwert zu entfernen."
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
-msgstr ""
+msgstr "Du kannst in den Suchtexteingabefeldern wie folgt suchen:"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "* - means search for everything."
-msgstr ""
+msgstr "* - bedeutet suche nach Allem."
 
 #: application/views/logbookadvanced/help.php:3
 msgid "Remove star and leave blank, means to search where column is empty."
 msgstr ""
+"Entferne den Stern und lasse das Feld leer um nach Einträgen zu suchen, bei "
+"denen die Spalte leer ist."
 
 #: application/views/logbookadvanced/help.php:4
 msgid "!empty - means to search where column is not empty."
@@ -9808,6 +9810,9 @@ msgid ""
 "The dupe search checks for duplicate QSOs with the same callsign, mode, "
 "submode, station callsign, band and satellite within 1500 seconds."
 msgstr ""
+"Die Duplikatsuche prüft auf doppelte QSOs mit dem gleichen Rufzeichen, "
+"Modus, Unter Modus, Stationsrufzeichen, Band und Satelliten in den letzten "
+"1500 Sekunden."
 
 #: application/views/logbookadvanced/help.php:8
 msgid "The invalid search checks for the following conditions:"
@@ -9815,33 +9820,36 @@ msgstr ""
 
 #: application/views/logbookadvanced/help.php:9
 msgid "Mode is blank or set to 0."
-msgstr ""
+msgstr "Modus ist leer oder 0."
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Band is blank."
-msgstr ""
+msgstr "Band ist leer."
 
 #: application/views/logbookadvanced/help.php:11
 msgid "Callsign is blank."
-msgstr ""
+msgstr "Rufzeichen ist leer."
 
 #: application/views/logbookadvanced/help.php:12
 msgid "Time and date is not set."
-msgstr ""
+msgstr "Zeit und Datum wurden nicht gesetzt."
 
 #: application/views/logbookadvanced/help.php:13
 msgid "Date is set to 1970-01-01."
-msgstr ""
+msgstr "Datum würde auf den 1.1.1970 gesetzt."
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
-msgstr ""
+msgstr "Kontinent unterscheidet sich von AF, AN, AS, EU, NA, OC und SA."
 
 #: application/views/logbookadvanced/help.php:16
 msgid ""
 "The map uses the same search criteria as the normal search. All QSOs in the "
 "search result will be mapped, unless you have checked one or more QSOs."
 msgstr ""
+"Die Karte verwendet die gleichen Suchkriterien wie die normale Suche. Alle "
+"QSOs in den Suchergebnissen werden dargestellt, sofern du nicht ein oder "
+"mehrere QSOs markiert hast."
 
 #: application/views/logbookadvanced/help.php:18
 msgid ""
@@ -9849,6 +9857,9 @@ msgid ""
 "will be exported (all for selected location), unless you have checked one or "
 "more QSOs."
 msgstr ""
+"Der ADIF-Export verwendet die gleichen Suchkriterien wie die normale Suche. "
+"Alle QSOs werden (für einen Standort) exportiert, sofern du nicht ein- oder "
+"mehrere QSOs markiert hast."
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
@@ -9888,7 +9899,7 @@ msgstr "Nachtschatten"
 
 #: application/views/logbookadvanced/index.php:23
 msgid "Advanced Logbook Help"
-msgstr ""
+msgstr "Fortgeschrittene Logbuch-Hilfe"
 
 #: application/views/logbookadvanced/index.php:194
 msgid "From"
