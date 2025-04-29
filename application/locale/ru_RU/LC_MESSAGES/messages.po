@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-04-28 11:52+0000\n"
-"PO-Revision-Date: 2025-04-20 12:21+0000\n"
+"PO-Revision-Date: 2025-04-30 16:16+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -9762,59 +9762,67 @@ msgstr "Дистанция (в км). Оставьте пустым, чтобы 
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
-msgstr ""
+msgstr "В текстовом поиске вы можете искать следующим образом:"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "* - means search for everything."
-msgstr ""
+msgstr "* - означает искать всё."
 
 #: application/views/logbookadvanced/help.php:3
 msgid "Remove star and leave blank, means to search where column is empty."
 msgstr ""
+"Удалить звёздочку и оставить пустым, значит искать строки, где столбец "
+"пустой."
 
 #: application/views/logbookadvanced/help.php:4
 msgid "!empty - means to search where column is not empty."
-msgstr ""
+msgstr "!пусто - означает искать строки, где столбец не пустой."
 
 #: application/views/logbookadvanced/help.php:6
 msgid ""
 "The dupe search checks for duplicate QSOs with the same callsign, mode, "
 "submode, station callsign, band and satellite within 1500 seconds."
 msgstr ""
+"Поиск дубликатов проверяет наличие повторяющихся QSO с тем же позывным "
+"корреспондента, видом/подвидом модуляции, своим позывным, диапазоном и "
+"спутником в течение 1500 секунд."
 
 #: application/views/logbookadvanced/help.php:8
 msgid "The invalid search checks for the following conditions:"
-msgstr ""
+msgstr "Поиск недопустимых значений включает следующие условия:"
 
 #: application/views/logbookadvanced/help.php:9
 msgid "Mode is blank or set to 0."
-msgstr ""
+msgstr "Вид модуляции не заполнен или имеет значение 0."
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Band is blank."
-msgstr ""
+msgstr "Диапазон не заполнен."
 
 #: application/views/logbookadvanced/help.php:11
 msgid "Callsign is blank."
-msgstr ""
+msgstr "Позывной не заполнен."
 
 #: application/views/logbookadvanced/help.php:12
 msgid "Time and date is not set."
-msgstr ""
+msgstr "Время и дата не заполнены."
 
 #: application/views/logbookadvanced/help.php:13
 msgid "Date is set to 1970-01-01."
-msgstr ""
+msgstr "Дата установлена на 1970-01-01."
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
-msgstr ""
+msgstr "Континент, отличается от AF, AN, AS, EU, NA, OC или SA."
 
 #: application/views/logbookadvanced/help.php:16
 msgid ""
 "The map uses the same search criteria as the normal search. All QSOs in the "
 "search result will be mapped, unless you have checked one or more QSOs."
 msgstr ""
+"Карта использует те же критерии, что и обычный поиск. Все найденные QSO "
+"будут отображены на карте, если только вы не выбрали одно или несколько QSO "
+"для отображения."
 
 #: application/views/logbookadvanced/help.php:18
 msgid ""
