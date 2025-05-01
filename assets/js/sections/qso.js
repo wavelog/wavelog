@@ -137,8 +137,9 @@ $("#qso_input").off('submit').on('submit', function (e) {
 				saveToBacklog(JSON.stringify(this.data),manual_addon);
 				prepare_next_qso(saveQsoButtonText);
 				$("#noticer").removeClass("");
-				$("#noticer").addClass("alert alert-warning");
-				$("#noticer").html("Timeout while adding QSO. QSO written to LOCAL Backlog");
+				$("#noticer").addClass("alert alert-info");
+				$("#noticer").html("QSO Added to Backlog");
+				$("#noticer").show();
 				$("#noticer").fadeOut(5000);
 			}
 		});
@@ -156,22 +157,28 @@ function prepare_next_qso(saveQsoButtonText) {
 	$("#callsign").trigger("focus");
 }
 
+var processingBL=false;
+
 async function processBacklog() {
-	const Qsobacklog = JSON.parse(localStorage.getItem('qso-backlog')) || [];
-	for (const entry of [...Qsobacklog]) { 
-		try {
-			await $.ajax({url: base_url + 'index.php/qso' + entry.manual_addon,  method: 'POST', type: 'post', data: JSON.parse(entry.data), 
-			success: function(resdata) {
-				Qsobacklog.splice(Qsobacklog.findIndex(e => e.id === entry.id), 1);
-			}, 
-			error: function() { 
+	if (!processingBL) {
+		processingBL=true;
+		const Qsobacklog = JSON.parse(localStorage.getItem('qso-backlog')) || [];
+		for (const entry of [...Qsobacklog]) { 
+			try {
+				await $.ajax({url: base_url + 'index.php/qso' + entry.manual_addon,  method: 'POST', type: 'post', data: JSON.parse(entry.data), 
+					success: function(resdata) {
+						Qsobacklog.splice(Qsobacklog.findIndex(e => e.id === entry.id), 1);
+					}, 
+					error: function() { 
+						entry.attempts++;
+					}});
+			} catch (error) {
 				entry.attempts++;
-			}});
-		} catch (error) {
-			entry.attempts++;
+			}
 		}
+		localStorage.setItem('qso-backlog', JSON.stringify(Qsobacklog));
+		processingBL=false;
 	}
-	localStorage.setItem('qso-backlog', JSON.stringify(Qsobacklog));
 }
 
 function saveToBacklog(formData,manual_addon) {
