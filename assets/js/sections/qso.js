@@ -111,6 +111,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 			url: base_url + 'index.php/qso' + manual_addon,
 			method: 'POST',
 			type: 'post',
+			timeout: 10000,
 			data: $(this).serialize(),
 			success: function (resdata) {
 				result = JSON.parse(resdata);
