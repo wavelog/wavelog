@@ -124,6 +124,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 					$("#noticer").show();
 					prepare_next_qso(saveQsoButtonText);
 					$("#noticer").fadeOut(2000);
+					processBacklog();	// If we have success with the live-QSO, we could also process the backlog
 				} else {
 					$("#noticer").removeClass("");
 					$("#noticer").addClass("alert alert-warning");
@@ -157,7 +158,6 @@ function prepare_next_qso(saveQsoButtonText) {
 
 async function processBacklog() {
 	const Qsobacklog = JSON.parse(localStorage.getItem('qso-backlog')) || [];
-
 	for (const entry of [...Qsobacklog]) { 
 		try {
 			await $.ajax({url: base_url + 'index.php/qso' + entry.manual_addon,  method: 'POST', type: 'post', data: JSON.parse(entry.data), 
@@ -171,7 +171,6 @@ async function processBacklog() {
 			entry.attempts++;
 		}
 	}
-
 	localStorage.setItem('qso-backlog', JSON.stringify(Qsobacklog));
 }
 
@@ -188,7 +187,8 @@ function saveToBacklog(formData,manual_addon) {
 	localStorage.setItem('qso-backlog', JSON.stringify(backlog));
 }
 
-
+window.addEventListener('beforeunload', processBacklog());	// process possible QSO-Backlog on unload of page
+window.addEventListener('pagehide', processBacklog());		// process possible QSO-Backlog on Hide of page (Mobile-Browsers)
 
 $('#reset_time').on("click", function () {
 	var now = new Date();
