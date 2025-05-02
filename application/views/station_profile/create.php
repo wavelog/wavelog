@@ -28,6 +28,20 @@ if ($dxcc_list->result() > 0) {
 		</div>
 	<?php } ?>
 
+	<?php if($this->session->flashdata('notice')) { ?>
+		<div id="message" >
+		<?php echo $this->session->flashdata('notice'); ?>
+		</div>
+	<?php } ?>
+
+	<?php $this->load->helper('form'); ?>
+
+	<?php if(validation_errors()) { ?>
+		<div class="alert alert-danger">
+			<?php echo validation_errors(); ?>
+		</div>
+	<?php } ?>
+
 <div class="card">
   <div class="card-header">
     <?php echo $page_title; ?>
@@ -35,16 +49,6 @@ if ($dxcc_list->result() > 0) {
   <div class="card-body">
     <h5 class="card-title"></h5>
     <p class="card-text"></p>
-
-		<?php if($this->session->flashdata('notice')) { ?>
-			<div id="message" >
-			<?php echo $this->session->flashdata('notice'); ?>
-			</div>
-		<?php } ?>
-
-		<?php $this->load->helper('form'); ?>
-
-		<?php echo validation_errors(); ?>
 
 		<form method="post" action="<?php echo site_url('station/create'); ?>" name="create_profile">
 		  <div class="mb-3">

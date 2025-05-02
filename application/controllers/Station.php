@@ -32,6 +32,7 @@ class Station extends CI_Controller
 
 		$this->form_validation->set_rules('station_profile_name', 'Station Profile Name', 'required');
 		$this->form_validation->set_rules('dxcc', 'DXCC', 'required');
+		$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Create Station Location");
@@ -52,6 +53,7 @@ class Station extends CI_Controller
 			$data['page_title'] = __("Edit Station Location: ") . $data['my_station_profile']->station_profile_name;
 
 			$this->form_validation->set_rules('dxcc', 'DXCC', 'required');
+			$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator');
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view('interface_assets/header', $data);
 				$this->load->view('station_profile/edit');
@@ -177,6 +179,16 @@ class Station extends CI_Controller
 		if ($this->stations->check_station_is_accessible($id)) {
 			$coords = $this->stations->lookupProfileCoords($id);
 			print json_encode($coords);
+		}
+	}
+
+	function check_locator($grid = '') {
+		$this->load->library('Qra');
+		if ($this->qra->validate_grid($grid)) {
+			return true;
+		} else {
+			$this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
+			return false;
 		}
 	}
 
