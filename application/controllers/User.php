@@ -1177,7 +1177,7 @@ class User extends CI_Controller {
 		log_message('debug', 'First Login Wizard Form Data: '.print_r($stationdata, true));
 
 		if (!$this->check_locator($stationdata['station_locator'])) {
-			$this->session->set_flashdata('fl_wiz_error', __("Invalid Locator!"));
+			$this->session->set_flashdata('fl_wiz_error', sprintf(__("Please check value for grid locator (%s)"), strtoupper($stationdata['station_locator'])));
 			redirect('dashboard');
 		}
 
