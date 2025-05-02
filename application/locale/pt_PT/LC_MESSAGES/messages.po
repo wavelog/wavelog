@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-04-28 11:52+0000\n"
-"PO-Revision-Date: 2025-04-21 21:16+0000\n"
+"PO-Revision-Date: 2025-04-29 13:16+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -9772,59 +9772,67 @@ msgstr "Distância (em km). Deixe em branco para remover a distância."
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
-msgstr ""
+msgstr "Nas pesquisas de entrada de texto, pode pesquisar da seguinte forma:"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "* - means search for everything."
-msgstr ""
+msgstr "* - significa procurar por tudo."
 
 #: application/views/logbookadvanced/help.php:3
 msgid "Remove star and leave blank, means to search where column is empty."
 msgstr ""
+"Remover estrela e deixar em branco, significa procurar onde a coluna está "
+"vazia."
 
 #: application/views/logbookadvanced/help.php:4
 msgid "!empty - means to search where column is not empty."
-msgstr ""
+msgstr "!vazio - significa procurar onde a coluna não está vazia."
 
 #: application/views/logbookadvanced/help.php:6
 msgid ""
 "The dupe search checks for duplicate QSOs with the same callsign, mode, "
 "submode, station callsign, band and satellite within 1500 seconds."
 msgstr ""
+"A pesquisa de duplicados verifica contactos duplicados com o mesmo "
+"indicativo, modo, submodo, indicativo da estação, banda e satélite dentro de "
+"1500 segundos."
 
 #: application/views/logbookadvanced/help.php:8
 msgid "The invalid search checks for the following conditions:"
-msgstr ""
+msgstr "As verificações de pesquisa inválida consideram as seguintes condições:"
 
 #: application/views/logbookadvanced/help.php:9
 msgid "Mode is blank or set to 0."
-msgstr ""
+msgstr "O modo está em branco ou definido como 0."
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Band is blank."
-msgstr ""
+msgstr "A banda está vazia."
 
 #: application/views/logbookadvanced/help.php:11
 msgid "Callsign is blank."
-msgstr ""
+msgstr "O indicativo está em branco."
 
 #: application/views/logbookadvanced/help.php:12
 msgid "Time and date is not set."
-msgstr ""
+msgstr "Hora e data não estão definidas."
 
 #: application/views/logbookadvanced/help.php:13
 msgid "Date is set to 1970-01-01."
-msgstr ""
+msgstr "A data está definida para 1970-01-01."
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
-msgstr ""
+msgstr "Continente diferente de AF, AN, AS, EU, NA, OC ou SA."
 
 #: application/views/logbookadvanced/help.php:16
 msgid ""
 "The map uses the same search criteria as the normal search. All QSOs in the "
 "search result will be mapped, unless you have checked one or more QSOs."
 msgstr ""
+"O mapa usa os mesmos critérios de pesquisa que a pesquisa normal. Todos os "
+"contactos no resultado da pesquisa serão mapeados, a menos que tenhas "
+"selecionado um ou mais contactos."
 
 #: application/views/logbookadvanced/help.php:18
 msgid ""
@@ -9832,6 +9840,9 @@ msgid ""
 "will be exported (all for selected location), unless you have checked one or "
 "more QSOs."
 msgstr ""
+"A exportação ADIF usa os mesmos critérios de pesquisa que a pesquisa normal. "
+"Todos os contactos serão exportados (todos para a localização selecionada), "
+"a menos que você tenha marcado um ou mais contactos."
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
@@ -9871,7 +9882,7 @@ msgstr "Sombra nocturna"
 
 #: application/views/logbookadvanced/index.php:23
 msgid "Advanced Logbook Help"
-msgstr ""
+msgstr "Ajuda Avançada do logbook"
 
 #: application/views/logbookadvanced/index.php:194
 msgid "From"
@@ -14166,7 +14177,7 @@ msgstr "Selecione o número de QSOs mais recentes a serem exibidos no painel."
 
 #: application/views/user/edit.php:615
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
-msgstr ""
+msgstr "Escolha o número de contactos mais recentes a serem exibidos no painel."
 
 #: application/views/user/edit.php:619
 msgid "Show Dashboard Map"
