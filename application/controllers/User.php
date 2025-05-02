@@ -1408,7 +1408,7 @@ class User extends CI_Controller {
 		if ($this->qra->validate_grid($grid)) {
 			return true;
 		} else {
-			$this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
+			$this->form_validation->set_message('check_locator', sprintf(__("Please check value for grid locator (%s)"), strtoupper($grid)));
 			return false;
 		}
 	}
