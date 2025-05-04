@@ -53,19 +53,19 @@ if ($dxcc_list->result() > 0) {
 		<form method="post" action="<?php echo site_url('station/create'); ?>" name="create_profile">
 		  <div class="mb-3">
 		    <label for="stationNameInput"><?= __("Location Name"); ?></label>
-		    <input type="text" class="form-control" name="station_profile_name" id="stationNameInput" aria-describedby="stationNameInputHelp" placeholder="<?php echo _pgettext("Station Location Setup", "Home QTH"); ?>" required>
+		    <input type="text" class="form-control" name="station_profile_name" id="stationNameInput" aria-describedby="stationNameInputHelp" placeholder="<?php echo _pgettext("Station Location Setup", "Home QTH"); ?>" value="<?php if(isset($station_profile_name)) { echo $station_profile_name; } ?>" required>
 		    <small id="stationNameInputHelp" class="form-text text-muted"><?= sprintf(__("Shortname for the station location. For example: %s"), _pgettext("Station Location Setup", "Home QTH")); ?></small>
 		  </div>
 
 			<div class="mb-3">
 		    <label for="stationCallsignInput"><?= __("Station Callsign"); ?></label>
-		    <input type="text" class="form-control uppercase" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" placeholder="4W7EST" required>
+		    <input type="text" class="form-control uppercase" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" placeholder="4W7EST" value="<?php if(isset($station_callsign)) { echo $station_callsign; } ?>" required>
 		    <small id="stationCallsignInputHelp" class="form-text text-muted"><?= __("Station callsign. For example: 4W7EST/P"); ?></small>
 		  </div>
 
 			<div class="mb-3">
 		    <label for="stationPowerInput"><?= __("Station Power (W)"); ?></label>
-		    <input type="number" class="form-control" name="station_power" id="stationPowerInput" step="1" aria-describedby="stationPowerInputHelp" placeholder="10">
+		    <input type="number" class="form-control" name="station_power" id="stationPowerInput" step="1" aria-describedby="stationPowerInputHelp" placeholder="10" value="<?php if(isset($station_power)) { echo $station_power; } ?>">
 		    <small id="stationPowerInputHelp" class="form-text text-muted"><?= __("Default station power in Watt. Overwritten by CAT."); ?></small>
 		  </div>
 		  <div class="mb-3">
@@ -85,7 +85,7 @@ if ($dxcc_list->result() > 0) {
 
 		  <div class="mb-3">
 		    <label for="stationCityInput"><?= __("Station City"); ?></label>
-		    <input type="text" class="form-control" name="city" id="stationCityInput" aria-describedby="stationCityInputHelp">
+		    <input type="text" class="form-control" name="city" id="stationCityInput" aria-describedby="stationCityInputHelp" value="<?php if(isset($city)) { echo $city; } ?>">
 		    <small id="stationCityInputHelp" class="form-text text-muted"><?= __("Station city. For example: Oslo"); ?></small>
 		  </div>
 
@@ -167,37 +167,37 @@ if ($dxcc_list->result() > 0) {
 
 		  <div class="mb-3">
 		    <label for="stationSOTAInput"><?= __("SOTA Reference"); ?></label>
-		    <input type="text" class="form-control uppercase" name="sota" id="stationSOTAInput" aria-describedby="stationSOTAInputHelp">
+		    <input type="text" class="form-control uppercase" name="sota" id="stationSOTAInput" aria-describedby="stationSOTAInputHelp" value="<?php if(isset($sota)) { echo $sota; } ?>">
 		    <small id="stationSOTAInputHelp" class="form-text text-muted"><?= sprintf(__("Station SOTA reference. You can look up SOTA references at the %s."), "<a target='_blank' href='https://www.sotamaps.org/'>".__("SOTA Maps website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationWWFFInput"><?= __("WWFF Reference"); ?></label>
-		    <input type="text" class="form-control uppercase" name="wwff" id="stationWWFFInput" aria-describedby="stationWWFFInputHelp">
+		    <input type="text" class="form-control uppercase" name="wwff" id="stationWWFFInput" aria-describedby="stationWWFFInputHelp" value="<?php if(isset($wwff)) { echo $wwff; } ?>">
 		    <small id="stationWWFFInputHelp" class="form-text text-muted"><?= sprintf(__("Station WWFF reference. You can look up WWFF references at the %s."), "<a target='_blank' href='https://www.cqgma.org/mvs/'>".__("GMA Map website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationPOTAInput"><?= __("POTA Reference(s)"); ?></label>
-		    <input type="text" class="form-control uppercase" name="pota" id="stationPOTAInput" aria-describedby="stationPOTAInputHelp">
+		    <input type="text" class="form-control uppercase" name="pota" id="stationPOTAInput" aria-describedby="stationPOTAInputHelp" value="<?php if(isset($pota)) { echo $pota; } ?>">
 		    <small id="stationPOTAInputHelp" class="form-text text-muted"><?= sprintf(__("Station POTA reference(s). Multiple comma separated values allowed. You can look up POTA references at the %s."), "<a target='_blank' href='https://pota.app/#/map/'>".__("POTA Map website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationSigInput"><?= __("Signature Name"); ?></label>
-		    <input type="text" class="form-control uppercase" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp">
+		    <input type="text" class="form-control uppercase" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp" value="<?php if(isset($sig)) { echo $sig; } ?>">
 		    <small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Signature (e.g. GMA).."); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationSigInfoInput"><?= __("Signature Information"); ?></label>
-		    <input type="text" class="form-control uppercase" name="sig_info" id="stationSigInfoInput" aria-describedby="stationSigInfoInputHelp">
+		    <input type="text" class="form-control uppercase" name="sig_info" id="stationSigInfoInput" aria-describedby="stationSigInfoInputHelp" value="<?php if(isset($sig_info)) { echo $sig_info; } ?>">
 		    <small id="stationSigInfoInput" class="form-text text-muted"><?= __("Station Signature Info (e.g. DA/NW-357)."); ?></small>
 		  </div>
 
             <div class="mb-3">
                 <label for="eqslNickname"><?php echo _pgettext("Probably no translation needed","eQSL QTH Nickname"); ?></label>
-                <input type="text" class="form-control" name="eqslnickname" id="eqslNickname" aria-describedby="eqslhelp">
+                <input type="text" class="form-control" name="eqslnickname" id="eqslNickname" aria-describedby="eqslhelp" value="<?php if(isset($eqslnickname)) { echo $eqslnickname; } ?>">
                 <small id="eqslhelp" class="form-text text-muted"><?= __("The QTH Nickname which is configured in your eQSL Profile"); ?></small>
             </div>
 
@@ -226,12 +226,12 @@ if ($dxcc_list->result() > 0) {
             <div class="row">
 				<div class="mb-3 col-sm-3">
 					<label for="hrdlog_username"><?= __("HRDLog.net Username"); ?></label>
-                    <input type="text" class="form-control" name="hrdlog_username" id="hrdlog_username" aria-describedby="hrdlog_usernameHelp">
+					<input type="text" class="form-control" name="hrdlog_username" id="hrdlog_username" aria-describedby="hrdlog_usernameHelp" value="<?php if(isset($hrdlog_username)) { echo $hrdlog_username; } ?>">
                     <small id="hrdlog_usernameHelp" class="form-text text-muted"><?= __("The username you are registered with at HRDlog.net (usually your callsign)."); ?></a></small>
                 </div>
                 <div class="mb-3 col-sm-3">
 					<label for="hrdlog_code"><?= __("HRDLog.net API Key"); ?></label>
-                    <input type="text" class="form-control" name="hrdlog_code" id="hrdlog_code" aria-describedby="hrdlog_codeHelp">
+					<input type="text" class="form-control" name="hrdlog_code" id="hrdlog_code" aria-describedby="hrdlog_codeHelp" value="<?php if(isset($hrdlog_code)) { echo $hrdlog_code; } ?>">
                     <small id="hrdlog_codeHelp" class="form-text text-muted"><?= sprintf(_pgettext("HRDLog.net Userprofile page", "Create your API Code on your %s"), "<a href='http://www.hrdlog.net/EditUser.aspx' target='_blank'>".__("HRDLog.net Userprofile page")."</a>"); ?></a></small>
                 </div>
                 <div class="mb-3 col-sm-3">
@@ -252,7 +252,7 @@ if ($dxcc_list->result() > 0) {
                 <div class="mb-3 col-sm-6">
                     <label for="qrzApiKey"><?php echo _pgettext("Probably no translation needed","QRZ.com Logbook API Key"); ?></label>
 					<div class="input-group">
-                    	<input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp">
+						<input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp" value="<?php if(isset($qrzapikey)) { echo $qrzapikey; } ?>">
 						<button class="btn btn-secondary" type="button" id="qrz_apitest_btn"><?= __("Test API-Key"); ?></button>
 					</div>
 					<div class="alert mt-3" style="display: none;" id="qrz_apitest_msg"></div>
@@ -271,7 +271,7 @@ if ($dxcc_list->result() > 0) {
 			<div class="row">
 				<div class="mb-3 col-sm-6">
 					<label for="webadifApiKey"><?php echo _pgettext("Probably no translation needed","QO-100 Dx Club API Key"); ?></label>
-					<input type="text" class="form-control" name="webadifapikey" id="webadifApiKey" aria-describedby="webadifApiKeyHelp">
+					<input type="text" class="form-control" name="webadifapikey" id="webadifApiKey" aria-describedby="webadifApiKeyHelp" value="<?php if(isset($webadifapikey)) { echo $webadifapikey; } ?>">
 					<small id="webadifApiKeyHelp" class="form-text text-muted"><?= sprintf(_pgettext("QO-100 Dx Club's profile page", "Create your API key on your %s"), "<a href='https://qo100dx.club' target='_blank'>".__("QO-100 Dx Club's profile page")."</a>"); ?></a></small>
 				</div>
 				<div class="mb-3 col-sm-6">
@@ -301,7 +301,7 @@ if ($dxcc_list->result() > 0) {
 					</div>
 			<div class="mb-3">
 				<label for="oqrstext"><?= __("OQRS Text"); ?></label>
-				<input type="text" class="form-control" name="oqrstext" id="oqrstext" aria-describedby="oqrstextHelp">
+				<input type="text" class="form-control" name="oqrstext" id="oqrstext" aria-describedby="oqrstextHelp" value="<?php if(isset($oqrstext)) { echo $oqrstext; } ?>">
 				<small id="oqrstextHelp" class="form-text text-muted"><?= __("Some info you want to add regarding QSL'ing."); ?></small>
 			</div>
 <?php } ?>
