@@ -36,7 +36,36 @@ class Station extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Create Station Location");
+			$data['station_profile_name'] = $this->input->post('station_profile_name');
+			$data['station_callsign'] = $this->input->post('station_callsign');
+			$data['station_power'] = $this->input->post('station_power');
+			$data['dxcc'] = $this->input->post('dxcc');
+			$data['city'] = $this->input->post('city');
+			$data['station_state'] = $this->input->post('station_state');
+			$data['station_cnty'] = $this->input->post('station_cnty');
+			$data['station_cq'] = $this->input->post('station_cq');
+			$data['station_itu'] = $this->input->post('station_itu');
 			$data['gridsquare'] = $this->input->post('gridsquare');
+			$data['iota'] = $this->input->post('iota');
+			$data['sota'] = $this->input->post('sota');
+			$data['wwff'] = $this->input->post('wwff');
+			$data['pota'] = $this->input->post('pota');
+			$data['sig'] = $this->input->post('sig');
+			$data['sig_info'] = $this->input->post('sig_info');
+			$data['eqslnickname'] = $this->input->post('eqslnickname');
+			$data['eqsl_default_qslmsg'] = $this->input->post('eqsl_default_qslmsg');
+			$data['clublogignore'] = $this->input->post('clublogignore');
+			$data['clublogrealtime'] = $this->input->post('clublogrealtime');
+			$data['hrdlog_username'] = $this->input->post('hrdlog_username');
+			$data['hrdlog_code'] = $this->input->post('hrdlog_code');
+			$data['hrdlogrealtime'] = $this->input->post('hrdlogrealtime');
+			$data['qrzapikey'] = $this->input->post('qrzapikey');
+			$data['qrzrealtime'] = $this->input->post('qrzrealtime');
+			$data['webadifapikey'] = $this->input->post('webadifapikey');
+			$data['webadifrealtime'] = $this->input->post('webadifrealtime');
+			$data['oqrs'] = $this->input->post('oqrs');
+			$data['oqrsemail'] = $this->input->post('oqrsemail');
+			$data['oqrstext'] = $this->input->post('oqrstext');
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('station_profile/create', $data);
 			$this->load->view('interface_assets/footer');
