@@ -139,7 +139,7 @@ if ($dxcc_list->result() > 0) {
 		    <label for="stationGridsquareInput"><?= __("Station Gridsquare"); ?></label>
 
 			<div class="input-group mb-3">
-			<input type="text" class="form-control uppercase" name="gridsquare" id="stationGridsquareInput" aria-describedby="stationGridInputHelp" required>
+			<input type="text" class="form-control uppercase" name="gridsquare" id="stationGridsquareInput" aria-describedby="stationGridInputHelp" value="<?php if(isset($gridsquare)) { echo $gridsquare; } ?>" required>
 			<div class="input-group-append">
 				<button type="button" class="btn btn-outline-secondary" onclick="getLocation()"><i class="fas fa-compass"></i> <?= __("Get Gridsquare"); ?></button>
 			</div>

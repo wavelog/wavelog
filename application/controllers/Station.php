@@ -36,8 +36,9 @@ class Station extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Create Station Location");
+			$data['gridsquare'] = $this->input->post('gridsquare');
 			$this->load->view('interface_assets/header', $data);
-			$this->load->view('station_profile/create');
+			$this->load->view('station_profile/create', $data);
 			$this->load->view('interface_assets/footer');
 		} else {
 			$this->stations->add();
