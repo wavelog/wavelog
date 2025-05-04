@@ -3,13 +3,13 @@ var dxccarray = [];
 
 <?php
 if ($dxcc_list->result() > 0) {
-	foreach ($dxcc_list->result() as $dxcc) {
+	foreach ($dxcc_list->result() as $dxcc_item) {
 	?>
 		var dxcc = {
-			adif: <?php echo $dxcc->adif; ?>,
-			name: "<?php echo $dxcc->name; ?>",
-			cq: <?php echo $dxcc->cqz; ?>,
-			itu: <?php echo $dxcc->ituz; ?>,
+			adif: <?php echo $dxcc_item->adif; ?>,
+			name: "<?php echo $dxcc_item->name; ?>",
+			cq: <?php echo $dxcc_item->cqz; ?>,
+			itu: <?php echo $dxcc_item->ituz; ?>,
 		};
 		dxccarray.push(dxcc);
 	<?php
@@ -72,9 +72,9 @@ if ($dxcc_list->result() > 0) {
 		    <label for="stationDXCCInput"><?= __("Station DXCC"); ?></label>
 				<?php if ($dxcc_list->num_rows() > 0) { ?>
 				<select class="form-control" id="dxcc_id" name="dxcc" aria-describedby="stationCallsignInputHelp" required>
-				<option value="" selected><?= _("Please select one"); ?></option>
-				<?php foreach ($dxcc_list->result() as $dxcc) { ?>
-				<option value="<?php echo $dxcc->adif; ?>"><?php echo ucwords(strtolower($dxcc->name)) . ' - ' . $dxcc->prefix; if ($dxcc->end != NULL) echo ' ('.__("Deleted DXCC").')';?>
+				<option value="" <?php if (!isset($dxcc) || $dxcc == "") { echo "selected"; } ?>><?= _("Please select one"); ?></option>
+				<?php foreach ($dxcc_list->result() as $dxcc_item) { ?>
+				<option value="<?php echo $dxcc_item->adif; ?>" <?php if(isset($dxcc) && $dxcc_item->adif == $dxcc) { echo "selected='selected'"; } ?>><?php echo ucwords(strtolower($dxcc_item->name)) . ' - ' . $dxcc_item->prefix; if ($dxcc_item->end != NULL) echo ' ('.__("Deleted DXCC").')';?>
 				</option>
 				<?php } ?>
 				</select>
