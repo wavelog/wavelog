@@ -111,6 +111,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 			url: base_url + 'index.php/qso' + manual_addon,
 			method: 'POST',
 			type: 'post',
+			timeout: 10000,
 			data: $(this).serialize(),
 			success: function (resdata) {
 				result = JSON.parse(resdata);
@@ -122,14 +123,9 @@ $("#qso_input").off('submit').on('submit', function (e) {
 					$("#noticer").addClass("alert alert-info");
 					$("#noticer").html("QSO Added");
 					$("#noticer").show();
-					reset_fields();
-					htmx.trigger("#qso-last-table", "qso_event")
-					$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
-					$("#callsign").val("");
+					prepare_next_qso(saveQsoButtonText);
 					$("#noticer").fadeOut(2000);
-					var triggerEl = document.querySelector('#myTab a[href="#qso"]')
-					bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
-					$("#callsign").trigger("focus");
+					processBacklog();	// If we have success with the live-QSO, we could also process the backlog
 				} else {
 					$("#noticer").removeClass("");
 					$("#noticer").addClass("alert alert-warning");
@@ -139,16 +135,68 @@ $("#qso_input").off('submit').on('submit', function (e) {
 				}
 			},
 			error: function () {
+				saveToBacklog(JSON.stringify(this.data),manual_addon);
+				prepare_next_qso(saveQsoButtonText);
 				$("#noticer").removeClass("");
-				$("#noticer").addClass("alert alert-warning");
-				$("#noticer").html("Timeout while adding QSO. NOT added");
+				$("#noticer").addClass("alert alert-info");
+				$("#noticer").html("QSO Added to Backlog");
 				$("#noticer").show();
-				$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
+				$("#noticer").fadeOut(5000);
 			}
 		});
 	}
 	return false;
 });
+
+function prepare_next_qso(saveQsoButtonText) {
+	reset_fields();
+	htmx.trigger("#qso-last-table", "qso_event")
+	$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
+	$("#callsign").val("");
+	var triggerEl = document.querySelector('#myTab a[href="#qso"]')
+	bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
+	$("#callsign").trigger("focus");
+}
+
+var processingBL=false;
+
+async function processBacklog() {
+	if (!processingBL) {
+		processingBL=true;
+		const Qsobacklog = JSON.parse(localStorage.getItem('qso-backlog')) || [];
+		for (const entry of [...Qsobacklog]) { 
+			try {
+				await $.ajax({url: base_url + 'index.php/qso' + entry.manual_addon,  method: 'POST', type: 'post', data: JSON.parse(entry.data), 
+					success: function(resdata) {
+						Qsobacklog.splice(Qsobacklog.findIndex(e => e.id === entry.id), 1);
+					}, 
+					error: function() { 
+						entry.attempts++;
+					}});
+			} catch (error) {
+				entry.attempts++;
+			}
+		}
+		localStorage.setItem('qso-backlog', JSON.stringify(Qsobacklog));
+		processingBL=false;
+	}
+}
+
+function saveToBacklog(formData,manual_addon) {
+	const backlog = JSON.parse(localStorage.getItem('qso-backlog')) || [];
+	const entry = {
+		id: Date.now(), 
+		timestamp: new Date().toISOString(),
+		data: formData,
+		manual_addon: manual_addon,
+		attempts: 0 
+	};
+	backlog.push(entry);
+	localStorage.setItem('qso-backlog', JSON.stringify(backlog));
+}
+
+window.addEventListener('beforeunload', processBacklog());	// process possible QSO-Backlog on unload of page
+window.addEventListener('pagehide', processBacklog());		// process possible QSO-Backlog on Hide of page (Mobile-Browsers)
 
 $('#reset_time').on("click", function () {
 	var now = new Date();
@@ -1855,13 +1903,19 @@ $(document).ready(function () {
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 
-	// Clear the localStorage for the qrg units, except the quicklogCallsign
+	// Clear the localStorage for the qrg units, except the quicklogCallsign and a possible backlog
 	let quicklogCallsign = localStorage.getItem('quicklogCallsign');
+	let QsoBacklog = localStorage.getItem('qso-backlog');
+
 	localStorage.clear();
 	if (quicklogCallsign) {
 		localStorage.setItem('quicklogCallsign', quicklogCallsign);
 	}
 	set_qrg();
+
+	if (QsoBacklog) {
+		localStorage.setItem('qso-backlog', QsoBacklog);
+	}
 
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
 	.focus(function () {
