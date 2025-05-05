@@ -111,8 +111,8 @@ if ($dxcc_list->result() > 0) {
 				<select class="form-select" id="stationCQZoneInput" name="station_cq" required>
 					<?php
 					for ($i = 1; $i<=40; $i++) {
-						echo '<option value='. $i;
-
+						echo '<option value='.$i;
+						if(isset($station_cq) && $station_cq!= '' && $station_cq == $i) { echo " selected='selected'"; }
 						echo '>'. $i .'</option>';
 					}
 					?>
@@ -126,7 +126,7 @@ if ($dxcc_list->result() > 0) {
 					<?php
 					for ($i = 1; $i<=90; $i++) {
 						echo '<option value='. $i;
-
+						if(isset($station_itu) && $station_itu!= '' && $station_itu == $i) { echo " selected='selected'"; }
 						echo '>'. $i .'</option>';
 					}
 					?>
