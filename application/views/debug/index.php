@@ -135,7 +135,7 @@
                         </tr>
 
                         <tr>
-                            <td>/cache</td>
+                            <td>/application/cache</td>
                             <td>
                                 <?php if ($cache_folder == true) { ?>
                                     <span class="badge text-bg-success"><?= __("Success"); ?></span>
