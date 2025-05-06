@@ -18,7 +18,7 @@
     <table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
 
 	<tr>
-		<td><?= __("Award Type"); ?></td>
+		<td><?= __("Special Interest Group"); ?></td>
         <td><?= __("Number of QSOs"); ?></td>
         <td><?= __("Number of Refs"); ?></td>
     </tr>
