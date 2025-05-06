@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-28 11:52+0000\n"
+"POT-Creation-Date: 2025-05-06 20:31+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Lithuanian <https://translate.wavelog.org/projects/wavelog/"
@@ -5483,26 +5483,29 @@ msgstr ""
 
 #: application/views/awards/sig/index.php:8
 msgid ""
-"The SIG or Signature Category provides the possibility to use any kind of "
-"'Award Signature' for awards that are not implemented in Wavelog."
+"The SIG or Special Interest Group Category provides the possibility to use "
+"any kind of 'Special Interest Group Award' for awards that are not "
+"implemented in Wavelog."
 msgstr ""
 
 #: application/views/awards/sig/index.php:9
 msgid ""
 "The reason for this is that the common ADIF format provides only a few "
 "dedicated fields for certain awards. SIG still makes it possible to use and "
-"evaluate all other types of signature markers."
+"evaluate all other types of markers for special interest groups."
 msgstr ""
 
 #: application/views/awards/sig/index.php:10
 msgid ""
-"In the QSO processing, you will find two fields: 'SIG' contains the actual "
-"marker, which is also visible in the award evaluation, and 'SIG INFO,' which "
-"contains a description of the signature. Both fields are freely customizable."
+"In the QSO processing, you will find two fields: 'SIG' contains the "
+"abbreviation of the name of the special interest group which is also visible "
+"in the award evaluation, and 'SIG INFO,' which contains the actual "
+"reference(s). Both fields are freely customizable."
 msgstr ""
 
 #: application/views/awards/sig/index.php:21
-msgid "Award Type"
+#: application/views/station_profile/edit.php:284
+msgid "Special Interest Group"
 msgstr ""
 
 #: application/views/awards/sig/index.php:22
@@ -12445,22 +12448,21 @@ msgstr ""
 
 #: application/views/station_profile/create.php:183
 #: application/views/station_profile/edit.php:287
-msgid "Signature Name"
+msgid "Special Interest Group Name"
 msgstr ""
 
 #: application/views/station_profile/create.php:185
-#: application/views/station_profile/edit.php:289
-msgid "Station Signature (e.g. GMA).."
+msgid "Station Special Interest Group Name (e.g. GMA)."
 msgstr ""
 
 #: application/views/station_profile/create.php:189
 #: application/views/station_profile/edit.php:293
-msgid "Signature Information"
+msgid "Special Interest Group Information"
 msgstr ""
 
 #: application/views/station_profile/create.php:191
 #: application/views/station_profile/edit.php:295
-msgid "Station Signature Info (e.g. DA/NW-357)."
+msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
 msgstr ""
 
 #: application/views/station_profile/create.php:195
@@ -12625,8 +12627,8 @@ msgstr ""
 msgid "Zones"
 msgstr ""
 
-#: application/views/station_profile/edit.php:284
-msgid "Signature"
+#: application/views/station_profile/edit.php:289
+msgid "Station Special Interest Group Name (e.g. GMA).."
 msgstr ""
 
 #: application/views/stationsetup/create.php:17

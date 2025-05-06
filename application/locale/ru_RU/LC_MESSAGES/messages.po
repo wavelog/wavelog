@@ -12,8 +12,8 @@ msgstr ""
 "POT-Creation-Date: 2025-04-28 11:52+0000\n"
 "PO-Revision-Date: 2025-05-06 08:16+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12921,8 +12921,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -13641,8 +13641,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -13997,8 +13998,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:381
 msgid ""
@@ -15059,6 +15060,56 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#: application/views/awards/sig/index.php:8
+msgid ""
+"The SIG or Special Interest Group Category provides the possibility to use "
+"any kind of 'Special Interest Group Award' for awards that are not "
+"implemented in Wavelog."
+msgstr ""
+
+#: application/views/awards/sig/index.php:9
+msgid ""
+"The reason for this is that the common ADIF format provides only a few "
+"dedicated fields for certain awards. SIG still makes it possible to use and "
+"evaluate all other types of markers for special interest groups."
+msgstr ""
+
+#: application/views/awards/sig/index.php:10
+msgid ""
+"In the QSO processing, you will find two fields: 'SIG' contains the "
+"abbreviation of the name of the special interest group which is also visible "
+"in the award evaluation, and 'SIG INFO,' which contains the actual "
+"reference(s). Both fields are freely customizable."
+msgstr ""
+
+#: application/views/awards/sig/index.php:21
+#: application/views/station_profile/edit.php:284
+msgid "Special Interest Group"
+msgstr ""
+
+#: application/views/station_profile/create.php:183
+#: application/views/station_profile/edit.php:287
+msgid "Special Interest Group Name"
+msgstr ""
+
+#: application/views/station_profile/create.php:185
+msgid "Station Special Interest Group Name (e.g. GMA)."
+msgstr ""
+
+#: application/views/station_profile/create.php:189
+#: application/views/station_profile/edit.php:293
+msgid "Special Interest Group Information"
+msgstr ""
+
+#: application/views/station_profile/create.php:191
+#: application/views/station_profile/edit.php:295
+msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
+msgstr ""
+
+#: application/views/station_profile/edit.php:289
+msgid "Station Special Interest Group Name (e.g. GMA).."
+msgstr ""
 
 #~ msgid "CQ Magazine WAZ"
 #~ msgstr "CQ Magazine WAZ"
