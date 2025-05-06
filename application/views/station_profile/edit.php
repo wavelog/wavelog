@@ -281,18 +281,18 @@ if ($dxcc_list->result() > 0) {
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
-				<h5 class="card-header"><?= __("Signature"); ?></h5>
+				<h5 class="card-header"><?= __("Special Interest Group"); ?></h5>
 				<div class="card-body">
 					<div class="mb-3">
-						<label for="stationSigInput"><?= __("Signature Name"); ?></label>
+						<label for="stationSigInput"><?= __("Special Interest Group Name"); ?></label>
 						<input type="text" class="form-control uppercase" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp" value="<?php if(set_value('sig') != "") { echo set_value('sig'); } else { echo $my_station_profile->station_sig; } ?>">
-						<small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Signature (e.g. GMA).."); ?></small>
+						<small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Special Interest Group Name (e.g. GMA).."); ?></small>
 					</div>
 
 					<div class="mb-3">
-						<label for="stationSigInfoInput"><?= __("Signature Information"); ?></label>
+						<label for="stationSigInfoInput"><?= __("Special Interest Group Information"); ?></label>
 						<input type="text" class="form-control uppercase" name="sig_info" id="stationSigInfoInput" aria-describedby="stationSigInfoInputHelp" value="<?php if(set_value('sig_info') != "") { echo set_value('sig_info'); } else { echo $my_station_profile->station_sig_info; } ?>">
-						<small id="stationSigInfoInputHelp" class="form-text text-muted"><?= __("Station Signature Info (e.g. DA/NW-357)."); ?></small>
+						<small id="stationSigInfoInputHelp" class="form-text text-muted"><?= __("Station Special Interest Group Info (e.g. DA/NW-357)."); ?></small>
 					</div>
 				</div>
 			</div>
