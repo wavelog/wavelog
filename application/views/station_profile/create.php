@@ -156,7 +156,9 @@ if ($dxcc_list->result() > 0) {
 
                     <?php
                     foreach($iota_list as $i){
-                        echo '<option value=' . $i->tag . '>' . $i->tag . ' - ' . $i->name . '</option>';
+                        echo '<option value='.$i->tag;
+                        if(isset($iota) && $i->tag == $iota) { echo " selected='selected'"; }
+                        echo '>'.$i->tag.' - '.$i->name.'</option>';
                     }
                     ?>
 
@@ -186,7 +188,7 @@ if ($dxcc_list->result() > 0) {
 		  <div class="mb-3">
 		    <label for="stationSigInput"><?= __("Signature Name"); ?></label>
 		    <input type="text" class="form-control uppercase" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp" value="<?php if(isset($sig)) { echo $sig; } ?>">
-		    <small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Signature (e.g. GMA).."); ?></small>
+		    <small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Signature (e.g. GMA)."); ?></small>
 		  </div>
 
 		  <div class="mb-3">
@@ -204,22 +206,22 @@ if ($dxcc_list->result() > 0) {
 			<div class="mb-3">
 				<label for="eqslDefaultQSLMsg"><?= __("Default QSLMSG"); ?></label>
 				<label class="position-absolute end-0 mb-2 me-3" for="eqslDefaultQSLMsg" id="charsLeft"> </label>
-				<textarea class="form-control" name="eqsl_default_qslmsg" id="eqslDefaultQSLMsg" aria-describedby="eqsldefaultqslmsghelp" maxlength="240" rows="2" style="width:100%;"></textarea>
+				<textarea class="form-control" name="eqsl_default_qslmsg" id="eqslDefaultQSLMsg" aria-describedby="eqsldefaultqslmsghelp" maxlength="240" rows="2" style="width:100%;"><?php if (isset($eqsl_default_qslmsg) && $eqsl_default_qslmsg != "") { echo $eqsl_default_qslmsg; } ?></textarea>
 				<small id="eqsldefaultqslmsghelp" class="form-text text-muted"><?= __("Define a default message that will be populated and sent for each QSO for this station location."); ?></small>
 			</div>
 			<div class="mb-3">
 				<label for="clublogignore"><?= __("Ignore Clublog Upload"); ?></label>
 				<select class="form-select" id="clublogignore" name="clublogignore">
-					<option value="1" ><?= __("Yes"); ?></option>
-					<option value="0" selected><?= __("No"); ?></option>
+					<option value="1" <?php if (isset($clublogignore) && $clublogignore == 1) { echo ' selected="selected"'; } ?>><?= __("Yes"); ?></option>
+					<option value="0" <?php if (!isset($clublogignore) || $clublogignore != 1) { echo ' selected="selected"'; } ?>><?= __("No"); ?></option>
 				</select>
 				<small class="form-text text-muted"><?= __("If enabled, the QSOs made from this location will not be uploaded to Clublog. If this is deactivated on it's own please check if the Call is properly configured at Clublog"); ?></small>
 			</div>
             <div class="mb-3" id="clublogrealtimediv">
 				<label for="clublogrealtime"><?= __("ClubLog Realtime Upload"); ?></label>
 				<select class="form-select" id="clublogrealtime" name="clublogrealtime">
-					<option value="1"><?= __("Yes"); ?></option>
-					<option value="0" selected><?= __("No"); ?></option>
+					<option value="1" <?php if (isset($clublogrealtime) && $clublogrealtime == 1) { echo ' selected="selected"'; } ?>><?= __("Yes"); ?></option>
+					<option value="0" <?php if (!isset($clublogrealtime) || $clublogrealtime != 1) { echo ' selected="selected"'; } ?>><?= __("No"); ?></option>
 				</select>
 			</div>
 
@@ -237,10 +239,10 @@ if ($dxcc_list->result() > 0) {
                 <div class="mb-3 col-sm-3">
                     <label for="hrdlogrealtime"><?= __("HRDLog.net Logbook Realtime Upload"); ?></label>
 					<select class="form-select" id="hrdlogrealtime" name="hrdlogrealtime">
-                        <option value="1"><?= __("Yes"); ?></option>
-                        <option value="0" selected><?= __("No"); ?></option>
-                        <option value="-1" selected><?= __("Disabled"); ?></option>
-                    </select>
+						<option value="1" <?php if (isset($hrdlogrealtime) && $hrdlogrealtime == 1) { echo ' selected="selected"'; } ?>><?= __("Yes"); ?></option>
+						<option value="0" <?php if (isset($hrdlogrealtime) && $hrdlogrealtime == 0) { echo ' selected="selected"'; } ?>><?= __("No"); ?></option>
+						<option value="-1" <?php if (!isset($hrdlogrealtime) || ($hrdlogrealtime != 1 && $hrdlogrealtime != 0)) { echo ' selected="selected"'; } ?>><?= __("Disabled"); ?></option>
+					</select>
                 </div>
             </div>
 
@@ -261,9 +263,9 @@ if ($dxcc_list->result() > 0) {
                 <div class="mb-3 col-sm-6">
                     <label for="qrzrealtime"><?= __("QRZ.com Logbook Upload"); ?></label>
                     <select class="form-select" id="qrzrealtime" name="qrzrealtime">
-                        <option value="-1" selected><?= __("Disabled"); ?></option>
-                        <option value="1"><?= __("Realtime"); ?></option>
-                        <option value="0"><?= __("Enabled"); ?></option>
+                        <option value="-1" <?php if (!isset($qrzrealtime) || ($qrzrealtime != 1 && $qrzrealtime != 0)) { echo ' selected="selected"'; } ?>><?= __("Disabled"); ?></option>
+                        <option value="1" <?php if (isset($qrzrealtime) && $qrzrealtime == 1) { echo ' selected="selected"'; } ?>><?= __("Realtime"); ?></option>
+                        <option value="0" <?php if (isset($qrzrealtime) && $qrzrealtime == 0) { echo ' selected="selected"'; } ?>><?= __("Enabled"); ?></option>
                     </select>
                 </div>
             </div>
@@ -277,8 +279,8 @@ if ($dxcc_list->result() > 0) {
 				<div class="mb-3 col-sm-6">
 					<label for="webadifrealtime"><?= __("QO-100 Dx Club Realtime Upload"); ?></label>
 					<select class="form-select" id="webadifrealtime" name="webadifrealtime">
-						<option value="1"><?= __("Yes"); ?></option>
-						<option value="0" selected><?= __("No"); ?></option>
+						<option value="1" <?php if (isset($webadifrealtime) && $webadifrealtime == 1) { echo ' selected="selected"'; } ?>><?= __("Yes"); ?></option>
+						<option value="0" <?php if (!isset($webadifrealtime) || $webadifrealtime != 1) { echo ' selected="selected"'; } ?>><?= __("No"); ?></option>
 					</select>
 				</div>
 			</div>
@@ -287,15 +289,15 @@ if ($dxcc_list->result() > 0) {
 			<div class="mb-3">
 				<label for="oqrs"><?= __("OQRS Enabled"); ?></label>
 				<select class="form-select" id="oqrs" name="oqrs">
-					<option value="0"><?= __("No"); ?></option>
-					<option value="1"><?= __("Yes"); ?></option>
+					<option value="0" <?php if (!isset($oqrs) || $oqrs != 1) { echo ' selected="selected"'; } ?>><?= __("No"); ?></option>
+					<option value="1" <?php if (isset($oqrs) && $oqrs == 1) { echo ' selected="selected"'; } ?>><?= __("Yes"); ?></option>
 				</select>
 			</div>
 			<div class="mb-3">
 						<label for="oqrs"><?= __("OQRS Email alert"); ?></label>
 						<select class="form-select" id="oqrsemail" name="oqrsemail">
-						<option value="0"><?= __("No"); ?></option>
-						<option value="1"><?= __("Yes"); ?></option>
+						<option value="0" <?php if (!isset($oqrsemail) || $oqrsemail != 1) { echo ' selected="selected"'; } ?>><?= __("No"); ?></option>
+						<option value="1" <?php if (isset($oqrsemail) && $oqrsemail == 1) { echo ' selected="selected"'; } ?>><?= __("Yes"); ?></option>
 						</select>
 						<small id="oqrsemailHelp" class="form-text text-muted"><?= __("Make sure email is set up under admin and global options."); ?></small>
 					</div>
