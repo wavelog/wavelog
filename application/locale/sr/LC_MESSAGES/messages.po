@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-28 11:52+0000\n"
+"POT-Creation-Date: 2025-05-06 20:31+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -5649,35 +5649,30 @@ msgstr "SIG informacije"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
-"The SIG or Signature Category provides the possibility to use any kind of "
-"'Award Signature' for awards that are not implemented in Wavelog."
+"The SIG or Special Interest Group Category provides the possibility to use "
+"any kind of 'Special Interest Group Award' for awards that are not "
+"implemented in Wavelog."
 msgstr ""
-"SIG ili Signature Category pruža mogućnost da se koristi bilo koja vrsta "
-"'Award Signature' za diplome koje nisu implementirane u Wavelogu."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
 "The reason for this is that the common ADIF format provides only a few "
 "dedicated fields for certain awards. SIG still makes it possible to use and "
-"evaluate all other types of signature markers."
+"evaluate all other types of markers for special interest groups."
 msgstr ""
-"Razlog za ovo je da obični ADIF format ima samo nekoliko dodatnih polja za "
-"određene diplome. SIG se koristi za proširenje ovih mogućnost i procenu "
-"drugih markera potpisa."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
-"In the QSO processing, you will find two fields: 'SIG' contains the actual "
-"marker, which is also visible in the award evaluation, and 'SIG INFO,' which "
-"contains a description of the signature. Both fields are freely customizable."
+"In the QSO processing, you will find two fields: 'SIG' contains the "
+"abbreviation of the name of the special interest group which is also visible "
+"in the award evaluation, and 'SIG INFO,' which contains the actual "
+"reference(s). Both fields are freely customizable."
 msgstr ""
-"Tokom obrade QSO, pronaći ćete dva polja: 'SIG' koji sadrži stvarnu oznaku, "
-"koja je takođe vidljiva prilikom ispitaivanja diplome, i 'SIG INFO' koje "
-"sadrži opis potpisa. Oba polja su slobodna za prilagođavanje po želji."
 
 #: application/views/awards/sig/index.php:21
-msgid "Award Type"
-msgstr "Vrsta diplome"
+#: application/views/station_profile/edit.php:284
+msgid "Special Interest Group"
+msgstr ""
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -12941,23 +12936,22 @@ msgstr ""
 
 #: application/views/station_profile/create.php:183
 #: application/views/station_profile/edit.php:287
-msgid "Signature Name"
-msgstr "Ime oznake (signature)"
+msgid "Special Interest Group Name"
+msgstr ""
 
 #: application/views/station_profile/create.php:185
-#: application/views/station_profile/edit.php:289
-msgid "Station Signature (e.g. GMA).."
-msgstr "Oznaka stanice (npr. GMA).."
+msgid "Station Special Interest Group Name (e.g. GMA)."
+msgstr ""
 
 #: application/views/station_profile/create.php:189
 #: application/views/station_profile/edit.php:293
-msgid "Signature Information"
-msgstr "Informacija oznake"
+msgid "Special Interest Group Information"
+msgstr ""
 
 #: application/views/station_profile/create.php:191
 #: application/views/station_profile/edit.php:295
-msgid "Station Signature Info (e.g. DA/NW-357)."
-msgstr "Informacija o oznaci stanice (npr. DA/NW-357)."
+msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
+msgstr ""
 
 #: application/views/station_profile/create.php:195
 #: application/views/station_profile/edit.php:308
@@ -13129,9 +13123,9 @@ msgstr "Neke informacije koje želite dodati a tiču se razmene QSL karata."
 msgid "Zones"
 msgstr "Zone"
 
-#: application/views/station_profile/edit.php:284
-msgid "Signature"
-msgstr "Oznaka (Signature)"
+#: application/views/station_profile/edit.php:289
+msgid "Station Special Interest Group Name (e.g. GMA).."
+msgstr ""
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
@@ -14827,6 +14821,51 @@ msgstr "Pošaljite zahtev"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid ""
+#~ "The SIG or Signature Category provides the possibility to use any kind of "
+#~ "'Award Signature' for awards that are not implemented in Wavelog."
+#~ msgstr ""
+#~ "SIG ili Signature Category pruža mogućnost da se koristi bilo koja vrsta "
+#~ "'Award Signature' za diplome koje nisu implementirane u Wavelogu."
+
+#~ msgid ""
+#~ "The reason for this is that the common ADIF format provides only a few "
+#~ "dedicated fields for certain awards. SIG still makes it possible to use "
+#~ "and evaluate all other types of signature markers."
+#~ msgstr ""
+#~ "Razlog za ovo je da obični ADIF format ima samo nekoliko dodatnih polja "
+#~ "za određene diplome. SIG se koristi za proširenje ovih mogućnost i "
+#~ "procenu drugih markera potpisa."
+
+#~ msgid ""
+#~ "In the QSO processing, you will find two fields: 'SIG' contains the "
+#~ "actual marker, which is also visible in the award evaluation, and 'SIG "
+#~ "INFO,' which contains a description of the signature. Both fields are "
+#~ "freely customizable."
+#~ msgstr ""
+#~ "Tokom obrade QSO, pronaći ćete dva polja: 'SIG' koji sadrži stvarnu "
+#~ "oznaku, koja je takođe vidljiva prilikom ispitaivanja diplome, i 'SIG "
+#~ "INFO' koje sadrži opis potpisa. Oba polja su slobodna za prilagođavanje "
+#~ "po želji."
+
+#~ msgid "Award Type"
+#~ msgstr "Vrsta diplome"
+
+#~ msgid "Signature Name"
+#~ msgstr "Ime oznake (signature)"
+
+#~ msgid "Station Signature (e.g. GMA).."
+#~ msgstr "Oznaka stanice (npr. GMA).."
+
+#~ msgid "Signature Information"
+#~ msgstr "Informacija oznake"
+
+#~ msgid "Station Signature Info (e.g. DA/NW-357)."
+#~ msgstr "Informacija o oznaci stanice (npr. DA/NW-357)."
+
+#~ msgid "Signature"
+#~ msgstr "Oznaka (Signature)"
 
 #~ msgid "CQ Magazine WAZ"
 #~ msgstr "CQ Magazin WAZ"
