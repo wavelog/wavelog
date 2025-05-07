@@ -59,8 +59,8 @@ class Clublog_model extends CI_Model
 							if ($this->config->item('directory') != "") {
 								$filepath = $_SERVER['DOCUMENT_ROOT'] . "/" . $this->config->item('directory') . "/" . $file_info['server_path'];
 							} else {
+								$filepath = $_SERVER['DOCUMENT_ROOT'] . "/" . $file_info['server_path'];
 							}
-							$filepath = $_SERVER['DOCUMENT_ROOT'] . "/" . $file_info['server_path'];
 
 							// Check if the file actually exists
 							if (!file_exists($filepath)) {
