@@ -62,6 +62,13 @@ class Clublog_model extends CI_Model
 								$filepath = $_SERVER['DOCUMENT_ROOT'] . "/" . $file_info['server_path'];
 							}
 
+							// Check if the file actually exists
+							if (!file_exists($filepath)) {
+								$return .=  " Clublog upload for " . $station_row->station_callsign . ' failed. Upload file could not be created.';
+								log_message('info', $return);
+								return $return . "\n";
+							}
+
 							if (function_exists('curl_file_create')) { // php 5.5+
 								$cFile = curl_file_create($filepath);
 							} else { //
@@ -80,8 +87,8 @@ class Clublog_model extends CI_Model
 									'callsign' => $station_row->station_callsign,
 									'api' => $this->clublog_identifier,
 									'file' => $cFile
-								)
-							);
+									)
+								);
 
 							// output the response
 							curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
