@@ -25,11 +25,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-28 11:52+0000\n"
+"POT-Creation-Date: 2025-05-06 20:31+0000\n"
 "PO-Revision-Date: 2025-04-29 13:16+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5746,37 +5746,30 @@ msgstr "SIG-Information"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
-"The SIG or Signature Category provides the possibility to use any kind of "
-"'Award Signature' for awards that are not implemented in Wavelog."
+"The SIG or Special Interest Group Category provides the possibility to use "
+"any kind of 'Special Interest Group Award' for awards that are not "
+"implemented in Wavelog."
 msgstr ""
-"Die SIG- oder Signature-Kategorie ermöglicht die Verwendung beliebiger "
-"'Diplom-Identifikationen' für Diplome, die nicht in Wavelog implementiert "
-"sind."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
 "The reason for this is that the common ADIF format provides only a few "
 "dedicated fields for certain awards. SIG still makes it possible to use and "
-"evaluate all other types of signature markers."
+"evaluate all other types of markers for special interest groups."
 msgstr ""
-"Der Grund dafür ist, dass das gängige ADIF-Format nur wenige dedizierte "
-"Felder für bestimmte Diplome bietet. SIG ermöglicht es dennoch, alle anderen "
-"Arten von Signaturmarkierungen zu verwenden und auszuwerten."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
-"In the QSO processing, you will find two fields: 'SIG' contains the actual "
-"marker, which is also visible in the award evaluation, and 'SIG INFO,' which "
-"contains a description of the signature. Both fields are freely customizable."
+"In the QSO processing, you will find two fields: 'SIG' contains the "
+"abbreviation of the name of the special interest group which is also visible "
+"in the award evaluation, and 'SIG INFO,' which contains the actual "
+"reference(s). Both fields are freely customizable."
 msgstr ""
-"Im QSO-Verarbeitung findest du zwei Felder: 'SIG' enthält die tatsächliche "
-"Markierung, die auch in der Auswertung der Auszeichnung sichtbar ist, und "
-"'SIG INFO', das eine Beschreibung der Signatur enthält. Beide Felder sind "
-"frei anpassbar."
 
 #: application/views/awards/sig/index.php:21
-msgid "Award Type"
-msgstr "Diplom Kategorie"
+#: application/views/station_profile/edit.php:284
+msgid "Special Interest Group"
+msgstr ""
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -13179,23 +13172,22 @@ msgstr ""
 
 #: application/views/station_profile/create.php:183
 #: application/views/station_profile/edit.php:287
-msgid "Signature Name"
-msgstr "Signatur-Bezeichnung"
+msgid "Special Interest Group Name"
+msgstr ""
 
 #: application/views/station_profile/create.php:185
-#: application/views/station_profile/edit.php:289
-msgid "Station Signature (e.g. GMA).."
-msgstr "Signatur/Referenz der Station (z.B. GMA).."
+msgid "Station Special Interest Group Name (e.g. GMA)."
+msgstr ""
 
 #: application/views/station_profile/create.php:189
 #: application/views/station_profile/edit.php:293
-msgid "Signature Information"
-msgstr "Signatur-Information"
+msgid "Special Interest Group Information"
+msgstr ""
 
 #: application/views/station_profile/create.php:191
 #: application/views/station_profile/edit.php:295
-msgid "Station Signature Info (e.g. DA/NW-357)."
-msgstr "Signatur/Referenz-Information der Station (z.B. DA/NW-357)."
+msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
+msgstr ""
 
 #: application/views/station_profile/create.php:195
 #: application/views/station_profile/edit.php:308
@@ -13368,9 +13360,9 @@ msgstr "Einige Informationen, die du zum QSL-Vorgang hinzufügen möchtest."
 msgid "Zones"
 msgstr "Zonen"
 
-#: application/views/station_profile/edit.php:284
-msgid "Signature"
-msgstr "Signaturen"
+#: application/views/station_profile/edit.php:289
+msgid "Station Special Interest Group Name (e.g. GMA).."
+msgstr ""
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
@@ -15127,6 +15119,52 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid ""
+#~ "The SIG or Signature Category provides the possibility to use any kind of "
+#~ "'Award Signature' for awards that are not implemented in Wavelog."
+#~ msgstr ""
+#~ "Die SIG- oder Signature-Kategorie ermöglicht die Verwendung beliebiger "
+#~ "'Diplom-Identifikationen' für Diplome, die nicht in Wavelog implementiert "
+#~ "sind."
+
+#~ msgid ""
+#~ "The reason for this is that the common ADIF format provides only a few "
+#~ "dedicated fields for certain awards. SIG still makes it possible to use "
+#~ "and evaluate all other types of signature markers."
+#~ msgstr ""
+#~ "Der Grund dafür ist, dass das gängige ADIF-Format nur wenige dedizierte "
+#~ "Felder für bestimmte Diplome bietet. SIG ermöglicht es dennoch, alle "
+#~ "anderen Arten von Signaturmarkierungen zu verwenden und auszuwerten."
+
+#~ msgid ""
+#~ "In the QSO processing, you will find two fields: 'SIG' contains the "
+#~ "actual marker, which is also visible in the award evaluation, and 'SIG "
+#~ "INFO,' which contains a description of the signature. Both fields are "
+#~ "freely customizable."
+#~ msgstr ""
+#~ "Im QSO-Verarbeitung findest du zwei Felder: 'SIG' enthält die "
+#~ "tatsächliche Markierung, die auch in der Auswertung der Auszeichnung "
+#~ "sichtbar ist, und 'SIG INFO', das eine Beschreibung der Signatur enthält. "
+#~ "Beide Felder sind frei anpassbar."
+
+#~ msgid "Award Type"
+#~ msgstr "Diplom Kategorie"
+
+#~ msgid "Signature Name"
+#~ msgstr "Signatur-Bezeichnung"
+
+#~ msgid "Station Signature (e.g. GMA).."
+#~ msgstr "Signatur/Referenz der Station (z.B. GMA).."
+
+#~ msgid "Signature Information"
+#~ msgstr "Signatur-Information"
+
+#~ msgid "Station Signature Info (e.g. DA/NW-357)."
+#~ msgstr "Signatur/Referenz-Information der Station (z.B. DA/NW-357)."
+
+#~ msgid "Signature"
+#~ msgstr "Signaturen"
 
 #~ msgid "CQ Magazine WAZ"
 #~ msgstr "CQ Magazin WAZ"

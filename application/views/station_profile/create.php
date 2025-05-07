@@ -188,13 +188,13 @@ if ($dxcc_list->result() > 0) {
 		  <div class="mb-3">
 		    <label for="stationSigInput"><?= __("Signature Name"); ?></label>
 		    <input type="text" class="form-control uppercase" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp" value="<?php if(isset($sig)) { echo $sig; } ?>">
-		    <small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Signature (e.g. GMA)."); ?></small>
+		    <small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Special Interest Group Name (e.g. GMA)."); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationSigInfoInput"><?= __("Signature Information"); ?></label>
 		    <input type="text" class="form-control uppercase" name="sig_info" id="stationSigInfoInput" aria-describedby="stationSigInfoInputHelp" value="<?php if(isset($sig_info)) { echo $sig_info; } ?>">
-		    <small id="stationSigInfoInput" class="form-text text-muted"><?= __("Station Signature Info (e.g. DA/NW-357)."); ?></small>
+		    <small id="stationSigInfoInput" class="form-text text-muted"><?= __("Station Special Interest Group Info (e.g. DA/NW-357)."); ?></small>
 		  </div>
 
             <div class="mb-3">

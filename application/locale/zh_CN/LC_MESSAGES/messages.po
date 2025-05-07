@@ -15,11 +15,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-04-28 11:52+0000\n"
+"POT-Creation-Date: 2025-05-06 20:31+0000\n"
 "PO-Revision-Date: 2025-04-30 16:16+0000\n"
 "Last-Translator: hellofinch <543933756@qq.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5576,32 +5576,30 @@ msgstr "SIG 信息"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
-"The SIG or Signature Category provides the possibility to use any kind of "
-"'Award Signature' for awards that are not implemented in Wavelog."
+"The SIG or Special Interest Group Category provides the possibility to use "
+"any kind of 'Special Interest Group Award' for awards that are not "
+"implemented in Wavelog."
 msgstr ""
-"SIG 或签名类别提供了对 Wavelog 中未实施的奖励使用任何类型的“奖励签名”的可能。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
 "The reason for this is that the common ADIF format provides only a few "
 "dedicated fields for certain awards. SIG still makes it possible to use and "
-"evaluate all other types of signature markers."
+"evaluate all other types of markers for special interest groups."
 msgstr ""
-"其原因是常见的 ADIF 格式仅为某些奖项提供了几个专用字段 SIG 仍然可以使用和评估"
-"所有其他类型的签名标记。"
 
 #: application/views/awards/sig/index.php:10
 msgid ""
-"In the QSO processing, you will find two fields: 'SIG' contains the actual "
-"marker, which is also visible in the award evaluation, and 'SIG INFO,' which "
-"contains a description of the signature. Both fields are freely customizable."
+"In the QSO processing, you will find two fields: 'SIG' contains the "
+"abbreviation of the name of the special interest group which is also visible "
+"in the award evaluation, and 'SIG INFO,' which contains the actual "
+"reference(s). Both fields are freely customizable."
 msgstr ""
-"在 QSO 处理中，您会发现两个字段：“SIG”包含实际标记，在奖励评估中也可见，“SIG "
-"INFO”包含签名的描述 这两个字段都可以自由定制。"
 
 #: application/views/awards/sig/index.php:21
-msgid "Award Type"
-msgstr "奖项种类"
+#: application/views/station_profile/edit.php:284
+msgid "Special Interest Group"
+msgstr ""
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -12699,23 +12697,22 @@ msgstr ""
 
 #: application/views/station_profile/create.php:183
 #: application/views/station_profile/edit.php:287
-msgid "Signature Name"
-msgstr "签名名称"
+msgid "Special Interest Group Name"
+msgstr ""
 
 #: application/views/station_profile/create.php:185
-#: application/views/station_profile/edit.php:289
-msgid "Station Signature (e.g. GMA).."
-msgstr "台站签名 (例如 TU 73)。"
+msgid "Station Special Interest Group Name (e.g. GMA)."
+msgstr ""
 
 #: application/views/station_profile/create.php:189
 #: application/views/station_profile/edit.php:293
-msgid "Signature Information"
-msgstr "签名信息"
+msgid "Special Interest Group Information"
+msgstr ""
 
 #: application/views/station_profile/create.php:191
 #: application/views/station_profile/edit.php:295
-msgid "Station Signature Info (e.g. DA/NW-357)."
-msgstr "签名信息 (例如 DA/NW-357)."
+msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
+msgstr ""
 
 #: application/views/station_profile/create.php:195
 #: application/views/station_profile/edit.php:308
@@ -12881,9 +12878,9 @@ msgstr "QSL 的额外信息。"
 msgid "Zones"
 msgstr "分区"
 
-#: application/views/station_profile/edit.php:284
-msgid "Signature"
-msgstr "签名"
+#: application/views/station_profile/edit.php:289
+msgid "Station Special Interest Group Name (e.g. GMA).."
+msgstr ""
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
@@ -14523,6 +14520,48 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#~ msgid ""
+#~ "The SIG or Signature Category provides the possibility to use any kind of "
+#~ "'Award Signature' for awards that are not implemented in Wavelog."
+#~ msgstr ""
+#~ "SIG 或签名类别提供了对 Wavelog 中未实施的奖励使用任何类型的“奖励签名”的可"
+#~ "能。"
+
+#~ msgid ""
+#~ "The reason for this is that the common ADIF format provides only a few "
+#~ "dedicated fields for certain awards. SIG still makes it possible to use "
+#~ "and evaluate all other types of signature markers."
+#~ msgstr ""
+#~ "其原因是常见的 ADIF 格式仅为某些奖项提供了几个专用字段 SIG 仍然可以使用和"
+#~ "评估所有其他类型的签名标记。"
+
+#~ msgid ""
+#~ "In the QSO processing, you will find two fields: 'SIG' contains the "
+#~ "actual marker, which is also visible in the award evaluation, and 'SIG "
+#~ "INFO,' which contains a description of the signature. Both fields are "
+#~ "freely customizable."
+#~ msgstr ""
+#~ "在 QSO 处理中，您会发现两个字段：“SIG”包含实际标记，在奖励评估中也可"
+#~ "见，“SIG INFO”包含签名的描述 这两个字段都可以自由定制。"
+
+#~ msgid "Award Type"
+#~ msgstr "奖项种类"
+
+#~ msgid "Signature Name"
+#~ msgstr "签名名称"
+
+#~ msgid "Station Signature (e.g. GMA).."
+#~ msgstr "台站签名 (例如 TU 73)。"
+
+#~ msgid "Signature Information"
+#~ msgstr "签名信息"
+
+#~ msgid "Station Signature Info (e.g. DA/NW-357)."
+#~ msgstr "签名信息 (例如 DA/NW-357)."
+
+#~ msgid "Signature"
+#~ msgstr "签名"
 
 #~ msgid "CQ Magazine WAZ"
 #~ msgstr "CQ 杂志 WAZ"

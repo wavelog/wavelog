@@ -124,7 +124,7 @@
                     <p><?= __("This verifies that the folders used by Wavelog have read and write permissions by PHP."); ?></p>
                     <table width="100%">
                         <tr>
-                            <td>/backup</td>
+                            <td>backup</td>
                             <td>
                                 <?php if ($backup_folder == true) { ?>
                                     <span class="badge text-bg-success"><?= __("Success"); ?></span>
@@ -135,7 +135,7 @@
                         </tr>
 
                         <tr>
-                            <td>/cache</td>
+                            <td>application/cache</td>
                             <td>
                                 <?php if ($cache_folder == true) { ?>
                                     <span class="badge text-bg-success"><?= __("Success"); ?></span>
@@ -146,7 +146,7 @@
                         </tr>
 
                         <tr>
-                            <td>/updates</td>
+                            <td>updates</td>
                             <td>
                                 <?php if ($updates_folder == true) { ?>
                                     <span class="badge text-bg-success"><?= __("Success"); ?></span>
@@ -157,7 +157,7 @@
                         </tr>
 
                         <tr>
-                            <td>/uploads</td>
+                            <td>uploads</td>
                             <td>
                                 <?php if ($uploads_folder == true) { ?>
                                     <span class="badge text-bg-success"><?= __("Success"); ?></span>
@@ -169,7 +169,7 @@
 
                         <?php if (isset($userdata_enabled)) { ?>
                             <tr>
-                                <td>/userdata</td>
+                                <td>userdata</td>
                                 <td>
                                     <?php if ($userdata_folder == true) { ?>
                                         <span class="badge text-bg-success"><?= __("Success"); ?></span>
