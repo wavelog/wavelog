@@ -28,7 +28,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-05-06 20:31+0000\n"
 "PO-Revision-Date: 2025-05-07 09:31+0000\n"
-"Last-Translator: flothom <flo.thomas@web.de>\n"
+"Last-Translator: Mathias Regner <mabregner@gmail.com>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/de/>\n"
 "Language: de_DE\n"
@@ -5751,6 +5751,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"Die Kategorie SIG oder Special Interest Group bietet die Möglichkeit, jede "
+"Art von \"Special Interest Group Award\" für Auszeichnungen zu verwenden, "
+"die nicht in Wavelog implementiert sind."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -5758,6 +5761,10 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"Der Grund dafür ist, dass das gängige ADIF-Format nur wenige spezielle "
+"Felder für bestimmte Auszeichnungen vorsieht. Die SIG ermöglicht es dennoch, "
+"alle anderen Arten von Markern für spezielle Interessengruppen zu verwenden "
+"und auszuwerten."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -5766,11 +5773,15 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"In der QSO-Bearbeitung finden Sie zwei Felder: 'SIG' enthält die Abkürzung "
+"des Namens der Interessengruppe, die auch in der Award-Auswertung sichtbar "
+"ist, und 'SIG INFO', das die eigentliche(n) Referenz(en) enthält. Beide "
+"Felder sind frei anpassbar."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:284
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Besondere Interessengruppe (SIG)"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -13174,21 +13185,23 @@ msgstr ""
 #: application/views/station_profile/create.php:183
 #: application/views/station_profile/edit.php:287
 msgid "Special Interest Group Name"
-msgstr ""
+msgstr "Name der Besonderen Interessengruppe (SIG)"
 
 #: application/views/station_profile/create.php:185
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr ""
+msgstr "Name der Besonderen Interessengruppe (SIG) (z. B. GMA)."
 
 #: application/views/station_profile/create.php:189
 #: application/views/station_profile/edit.php:293
 msgid "Special Interest Group Information"
-msgstr ""
+msgstr "Informationen für Besondere Interessengruppe (SIG)"
 
 #: application/views/station_profile/create.php:191
 #: application/views/station_profile/edit.php:295
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
 msgstr ""
+"Informationen über Besondere Interessengruppen (SIG) Stationen (z. B. DA/"
+"NW-357)."
 
 #: application/views/station_profile/create.php:195
 #: application/views/station_profile/edit.php:308
@@ -13363,7 +13376,7 @@ msgstr "Zonen"
 
 #: application/views/station_profile/edit.php:289
 msgid "Station Special Interest Group Name (e.g. GMA).."
-msgstr ""
+msgstr "Name der besonderen Interessengruppen (SIG) Station (z. B. GMA)."
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
