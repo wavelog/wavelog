@@ -43,7 +43,11 @@ if ($dxcc_list->result() > 0) {
 
 	<?php $this->load->helper('form'); ?>
 
-	<?php echo validation_errors(); ?>
+   <?php if(validation_errors()) { ?>
+      <div class="alert alert-danger">
+         <?php echo validation_errors(); ?>
+      </div>
+   <?php } ?>
 
 	<?php if($my_station_profile->station_id != NULL) {
 		$form_action = __("Update");

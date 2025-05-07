@@ -30,7 +30,6 @@
 
 	<?php if(validation_errors()) { ?>
     <div class="alert alert-danger">
-    	<a class="btn-close" data-bs-dismiss="alert">x</a>
  		<?php echo validation_errors(); ?>
     </div>
 	<?php } ?>
