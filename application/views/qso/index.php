@@ -256,14 +256,14 @@
 
               <?php if ($user_sig_to_qso_tab ?? false) { ?>
               <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label" for="sig"><?= __("Sig"); ?></label>
+                <label class="col-sm-3 col-form-label" for="sig"><?= __("SIG"); ?></label>
                 <div class="col-sm-9">
                   <input class="form-control text-uppercase" id="sig" tabindex="15" type="text" name="sig" value="" />
                 </div>
               </div>
 
               <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label" for="sig_info"><?= __("Sig Info"); ?></label>
+                <label class="col-sm-3 col-form-label" for="sig_info"><?= __("SIG Info"); ?></label>
                 <div class="col-sm-9">
                   <input class="form-control text-uppercase" id="sig_info" tabindex="16" type="text" name="sig_info" value="" />
                 </div>
@@ -549,13 +549,13 @@
 
             <?php if (!$user_sig_to_qso_tab ?? false) { ?>
             <div class="mb-3">
-              <label for="sig"><?= __("Sig"); ?></label>
+              <label for="sig"><?= __("SIG"); ?></label>
               <input class="form-control text-uppercase" id="sig" type="text" name="sig" value="" />
               <small id="sigHelp" class="form-text text-muted"><?= __("For example: GMA"); ?></small>
             </div>
 
             <div class="mb-3">
-              <label for="sig_info"><?= __("Sig Info"); ?></label>
+              <label for="sig_info"><?= __("SIG Info"); ?></label>
               <input class="form-control text-uppercase" id="sig_info" type="text" name="sig_info" value="" />
               <small id="sigInfoHelp" class="form-text text-muted"><?= __("For example: DA/NW-357"); ?></small>
             </div>
