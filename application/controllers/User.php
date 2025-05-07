@@ -1177,7 +1177,7 @@ class User extends CI_Controller {
 		log_message('debug', 'First Login Wizard Form Data: '.print_r($stationdata, true));
 
 		if (!$this->check_locator($stationdata['station_locator'])) {
-			$this->session->set_flashdata('fl_wiz_error', __("Invalid Locator!"));
+			$this->session->set_flashdata('fl_wiz_error', sprintf(__("Please check value for grid locator (%s)"), strtoupper($stationdata['station_locator'])));
 			redirect('dashboard');
 		}
 
@@ -1404,20 +1404,11 @@ class User extends CI_Controller {
 		}
 		// Allow empty locator
 		if (preg_match('/^$/', $grid)) return true;
-		// Allow 6-digit locator
-		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
-		// Allow 4-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 4-digit grid line
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 4-digit grid corner
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-		// Allow 2-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
-		// Allow 8-digit locator
-		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
-		else {
-			$this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
+		$this->load->library('Qra');
+		if ($this->qra->validate_grid($grid)) {
+			return true;
+		} else {
+			$this->form_validation->set_message('check_locator', sprintf(__("Please check value for grid locator (%s)"), strtoupper($grid)));
 			return false;
 		}
 	}
