@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-05-07 17:29+0000\n"
+"POT-Creation-Date: 2025-05-07 19:26+0000\n"
 "PO-Revision-Date: 2025-04-24 17:59+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -538,6 +538,10 @@ msgstr "Diploma Memorial Fred Fish (FFMA)"
 #: application/controllers/Awards.php:1148
 #: application/views/interface_assets/header.php:180
 #: application/views/logbookadvanced/useroptions.php:126
+#: application/views/qso/edit_ajax.php:392 application/views/qso/index.php:259
+#: application/views/qso/index.php:552 application/views/user/edit.php:666
+#: application/views/view_log/qso.php:425
+#: application/views/view_log/qso.php:726
 msgid "SIG"
 msgstr "SIG"
 
@@ -6255,10 +6259,7 @@ msgstr ""
 "Las bandas activas se mostrarán en la lista desplegable de 'Bandas' en QSO, "
 "mientras que las bandas inactivas se ocultarán y no pueden ser seleccionadas."
 
-#: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:392
-#: application/views/qso/index.php:259 application/views/qso/index.php:552
-#: application/views/user/edit.php:666 application/views/view_log/qso.php:425
-#: application/views/view_log/qso.php:726
+#: application/views/bands/index.php:54
 msgid "Sig"
 msgstr "Señal"
 
@@ -11734,8 +11735,8 @@ msgstr "Elevación de la antena en grados decimales."
 #: application/views/qso/index.php:558 application/views/user/edit.php:666
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
-msgid "Sig Info"
-msgstr "Información de señal"
+msgid "SIG Info"
+msgstr ""
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:617
@@ -15130,6 +15131,9 @@ msgstr "Enviar solicitud"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recibido"
+
+#~ msgid "Sig Info"
+#~ msgstr "Información de señal"
 
 #~ msgid "Invalid Locator!"
 #~ msgstr "¡Locator inválido!"
