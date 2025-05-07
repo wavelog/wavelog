@@ -115,7 +115,6 @@ class Station extends CI_Controller
 			$data['copy_from'] = $data['my_station_profile']->station_id;
 			$data['my_station_profile']->station_id = NULL;
 			$data['my_station_profile']->station_profile_name = '';
-			$this->load->library('form_validation');
 			$this->form_validation->set_rules('gridsquare', 'Locator', 'callback_check_locator');
 
 			if ($this->form_validation->run() == FALSE) {
