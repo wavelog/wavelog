@@ -681,7 +681,63 @@ class User_Model extends CI_Model {
 					}
 				}
 			} else { // Update failurecount
+				// TODO: this is not ideal
+				// it would be better if every user had an attribute like ldap_user
+				// this way we could check that and then decide if we match against our database
+				// or against the ldap server
+				if ($this->config->item("enable_ldap")) {
+					$connection = @ldap_connect($this->config->item("ldap_uri"));
+					ldap_set_option($connection, LDAP_OPT_PROTOCOL_VERSION, 3);
+
+					$user = $this->config->item('ldap_user');
+					$basedn = $this->config->item('ldap_basedn');
+					$dn = str_replace("%user", $username, "$user,$basedn");
+					$bind = @ldap_bind($connection, $dn, $password);
+
+					if ($bind) {
+						return 1;
+					}
+				}
+
 				$this->db->query("UPDATE users SET login_attempts = login_attempts+1 WHERE user_id = ?", [$u->row()->user_id]);
+			}
+		} else {
+			if ($this->config->item("enable_ldap")) {
+				// connect to ldap server
+				$connection = ldap_connect($this->config->item("ldap_uri"));
+				ldap_set_option($connection, LDAP_OPT_PROTOCOL_VERSION, 3);
+				$user = $this->config->item('ldap_user');
+				$basedn = $this->config->item('ldap_basedn');
+				$dn = str_replace("%user", $username, "$user,$basedn");
+				$bind =	ldap_bind($connection, $dn , $password);
+				if ($bind) {
+					// we are authenticated, but user does not exist -> create one
+					$filter = str_replace("%user", $username, $this->config->item("ldap_filter"));
+					$result = ldap_search($connection, $basedn, $filter);
+					$info = ldap_get_entries($connection, $result);
+
+					if ($info["count"] != 1) {
+						return 0;
+					}
+
+					$mail = $info[0][$this->config->item("ldap_mail")][0];
+					$firstname = $info[0][$this->config->item("ldap_firstname")][0];
+					$name = $info[0][$this->config->item("ldap_name")][0];
+					$call = $info[0][$this->config->item("ldap_call")][0];
+					$this->add($username, random_bytes(32), $mail, 3, $firstname, $name, $call, "AA00AA", 0,
+						null, null, null, null, null, null, null,
+						null, null, null, null, null, null, null,
+						null, null, null, null,
+						null, null, null, null, null,
+						null, null, null, null, null,
+						null, null, null, null,
+						null, null, null, null, null, null,
+						null, null, null, null,
+						null, null, 0);
+					return 1;
+				} else {
+					return 0;
+				}
 			}
 		}
 		return 0;

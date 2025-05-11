@@ -798,4 +798,27 @@ $config['enable_eqsl_massdownload'] = false;
  |--------------------------------------------------------------------------
   */
 
-  $config['disable_user_stats'] = false;
+$config['disable_user_stats'] = false;
+
+/*
+* LDAP Configuration
+* ldap_uri: the uri of the ldap server
+* ldap_basedn: the dn used to find users informtion, eg ou=member,dc=club,dc=com
+* ldap_user: this is prepended to ldap_basedn to find the user, %user is replaced by the username entered in the login field
+* ldap_filter: this is used the query the user when creating it
+*
+* ldap_mail: the attribute containing the users mail address
+* ldap_firstname: the attribute containing the users firstname
+* ldap_name: the attribute containing the users name
+* ldap_call: the attribute containing the users callsign
+* */
+$config['enable_ldap'] = false;
+$config['ldap_uri'] = 'ldaps://my.server:636';
+$config['ldap_basedn'] = 'ou=member,dc=club,dc=com';
+$config['ldap_user'] = 'uid=%user';
+$config['ldap_filter'] = '(&(uid=%user))';
+
+$config['ldap_mail'] = 'mail';
+$config['ldap_firstname'] = 'cn';
+$config['ldap_name'] = 'sn';
+$config['ldap_call'] = 'uid';
