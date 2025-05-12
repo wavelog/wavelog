@@ -45,7 +45,7 @@
 	?>
 	
 	<tr>
-		td style="text-align: center"><a target="_blank" href="https://www.cqgma.org/zinfo.php?ref=<?php echo $row->COL_WWFF_REF; ?>"><?php echo $row->COL_WWFF_REF; ?></a></td>
+		<td style="text-align: center"><a target="_blank" href="https://www.cqgma.org/zinfo.php?ref=<?php echo $row->COL_WWFF_REF; ?>"><?php echo $row->COL_WWFF_REF; ?></a></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
 		<td style="text-align: center"><a href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo $row->COL_CALL; ?></a></td>
