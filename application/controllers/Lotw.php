@@ -541,6 +541,9 @@ class Lotw extends CI_Controller {
 
 			if($status[0] == "Found") {
 				$qso_id4lotw=$status[1];
+
+				$call = str_replace("0", "&Oslash;", $record['call']);
+
 				if (isset($record['state'])) {
 					$state = $record['state'];
 				} else {
@@ -603,7 +606,7 @@ class Lotw extends CI_Controller {
 				$table .= "<tr>";
 				$table .= "<td>".$record['station_callsign']."</td>";
 				$table .= "<td>".$time_on."</td>";
-				$table .= "<td><a id=\"view_lotw_qso\" href=\"javascript:displayQso(".$status[1].")\">".$record['call']."</a></td>";
+				$table .= "<td><a id=\"view_lotw_qso\" href=\"javascript:displayQso(".$status[1].")\">".$call."</a></td>";
 				$table .= "<td>".$record['mode']."</td>";
 				$table .= "<td>".$record['qsl_rcvd']."</td>";
 				$table .= "<td>".$qsl_date."</td>";
