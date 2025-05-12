@@ -12,14 +12,15 @@
 # YuanRetro <lijiaxuan1811@163.com>, 2025.
 # 李宇翔 <lyx8851@qq.com>, 2025.
 # Tao Xu <angelxutao@gmail.com>, 2025.
+# BH3HNI <mmf@live.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-05-11 08:19+0000\n"
-"PO-Revision-Date: 2025-04-30 16:16+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"PO-Revision-Date: 2025-05-12 10:12+0000\n"
+"Last-Translator: BH3HNI <mmf@live.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,12 +135,12 @@ msgstr "您不能这么做！"
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:160
 msgid "Accumulated Statistics"
-msgstr "累积统计"
+msgstr "统计汇总"
 
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr "激活的网格地图"
+msgstr "已激活网格地图"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:927
@@ -157,17 +158,17 @@ msgstr "网格"
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
-msgstr "已确认的网格"
+msgstr "已确认网格"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
-msgstr "未确认的网格"
+msgstr "未确认网格"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "总激活的网格"
+msgstr "总激活网格"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:36
@@ -210,7 +211,7 @@ msgstr "有效日期"
 
 #: application/controllers/Adif.php:20
 msgid "date incorrect"
-msgstr "日期有误"
+msgstr "日期错误"
 
 #: application/controllers/Adif.php:134
 #: application/views/interface_assets/header.php:435
@@ -224,7 +225,7 @@ msgstr "ADIF 导入"
 
 #: application/controllers/Adif.php:206
 msgid "Unsupported Filetype"
-msgstr "文件类型不支持"
+msgstr "不支持的文件类型"
 
 #: application/controllers/Adif.php:260
 #: application/views/adif/import_failed.php:12
@@ -238,7 +239,7 @@ msgstr "用户台站信息无效"
 #: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
-msgstr "ADIF 已导入"
+msgstr "ADIF 导入完成"
 
 #: application/controllers/Adif.php:293
 msgid "DCL Import"
@@ -246,7 +247,7 @@ msgstr "导入 DCL"
 
 #: application/controllers/Adif.php:351
 msgid "DCL Data Imported"
-msgstr "DCL 数据已导入"
+msgstr "DCL 数据导入完成"
 
 #: application/controllers/Api.php:14
 msgid "API"
@@ -258,11 +259,11 @@ msgstr "API 说明"
 
 #: application/controllers/Api.php:38
 msgid "API Key is required. Do not change this field"
-msgstr "API Key 为必须，请勿修改此字段"
+msgstr "API Key为必填项，请勿修改此字段"
 
 #: application/controllers/Api.php:44
 msgid "Edit API Description"
-msgstr "编辑 API 说明内容"
+msgstr "编辑 API 说明"
 
 #: application/controllers/Api.php:56
 #, php-format
@@ -386,7 +387,7 @@ msgstr "日志视图"
 #: application/controllers/Awards.php:459
 #: application/controllers/Callstats.php:101
 msgid " and band "
-msgstr " 并且波段为 "
+msgstr " 并且频段为 "
 
 #: application/controllers/Awards.php:462
 #: application/controllers/Callstats.php:104
@@ -396,7 +397,7 @@ msgstr " 并且卫星 "
 #: application/controllers/Awards.php:465
 #: application/controllers/Callstats.php:107
 msgid " and orbit type "
-msgstr " 并且环绕类型 "
+msgstr " 并且轨道类型 "
 
 #: application/controllers/Awards.php:469
 #: application/controllers/Callstats.php:111
@@ -484,13 +485,13 @@ msgstr "POTA"
 
 #: application/controllers/Awards.php:596
 msgid "CQ WAZ (Worked All Zones)"
-msgstr "CQ WAZ（通联所有CQ分区）"
+msgstr "CQ WAZ(通联所有分区)"
 
 #: application/controllers/Awards.php:657
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
-msgstr "通联全部州奖（WAS）"
+msgstr "通联全部美国州奖(WAS)"
 
 #: application/controllers/Awards.php:719 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:210
@@ -503,17 +504,17 @@ msgstr "H26"
 
 #: application/controllers/Awards.php:864
 msgid "IOTA (Island On The Air)"
-msgstr "IOTA（空中岛屿）"
+msgstr "IOTA(空中之岛)"
 
 #: application/controllers/Awards.php:875
 #: application/controllers/Awards.php:889
 #: application/views/interface_assets/header.php:252
 msgid "US Counties"
-msgstr "美国各县"
+msgstr "美国县奖"
 
 #: application/controllers/Awards.php:904
 msgid "Log View - Counties"
-msgstr "日志视图 - 县（美国）"
+msgstr "日志视图 - 县(美国)"
 
 #: application/controllers/Awards.php:911
 msgid "Awards - "
@@ -522,21 +523,21 @@ msgstr "奖项 - "
 #: application/controllers/Awards.php:928
 #: application/controllers/Awards.php:960
 msgid "Gridsquares worked"
-msgstr "已通联的网格"
+msgstr "已通联网格"
 
 #: application/controllers/Awards.php:929
 #: application/controllers/Awards.php:961
 msgid "Gridsquares confirmed on LoTW"
-msgstr "在 LoTW 上确认的网格"
+msgstr "LoTW已确认网格"
 
 #: application/controllers/Awards.php:930
 #: application/controllers/Awards.php:962
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "通过纸质 QSL 确认的网格"
+msgstr "通过纸质QSL已确认网格"
 
 #: application/controllers/Awards.php:947
 msgid "Fred Fish Memorial Award (FFMA)"
-msgstr "Fred Fish 纪念奖（FFMA）"
+msgstr "弗雷德·菲什纪念奖(FFMA)"
 
 #: application/controllers/Awards.php:1148
 #: application/views/interface_assets/header.php:180
@@ -555,13 +556,13 @@ msgstr "奖项 - SIG - "
 #: application/controllers/Awards.php:1795
 #: application/views/awards/itu/index.php:20
 msgid "ITU Zones"
-msgstr "ITU 分区"
+msgstr "ITU分区"
 
 #: application/controllers/Awards.php:1924
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:186
 msgid "Worked All Continents (WAC)"
-msgstr "通联世界大洲奖（WAC）"
+msgstr "通联世界大洲奖(WAC)"
 
 #: application/controllers/Awards.php:2002
 msgid "WAE"
@@ -591,15 +592,15 @@ msgstr "笔记 - 备份"
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:67
 msgid "Bands"
-msgstr "波段"
+msgstr "频段"
 
 #: application/controllers/Band.php:39 application/controllers/Mode.php:41
 msgid "Create Mode"
-msgstr "创建新模式"
+msgstr "创建模式"
 
 #: application/controllers/Band.php:64 application/views/bands/index.php:150
 msgid "Edit Band"
-msgstr "编辑波段"
+msgstr "编辑频段"
 
 #: application/controllers/Bandmap.php:28
 #: application/controllers/Bandmap.php:69
@@ -619,19 +620,19 @@ msgstr "Cabrillo 导入"
 
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
-msgstr "损坏的 CBR 文件 - 没有通联数据或文件头不完整。"
+msgstr "CBR文件损坏 - 未找到QSO数据或文件头不完整。"
 
 #: application/controllers/Cabrillo.php:243
 #, php-format
 msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
-msgstr ""
-"%d 条通联记录未找到或不止一条通联记录批评 CBR 文件。跳过是一个安全的方式。"
+msgstr "未找到匹配CBR文件条件的%d "
+"条QSO记录，或找到超过1条符合条件的QSO记录。出于安全考虑，已跳过。"
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
-msgstr "CBR 数据已导入"
+msgstr "CBR 数据导入完成"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
@@ -654,11 +655,11 @@ msgstr "集体台站成员"
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr "无效的用户ID！"
+msgstr "用户ID无效！"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
-msgstr "这个用户不是集体台站。"
+msgstr "该用户不是集体台站。"
 
 #: application/controllers/Club.php:56
 #: application/views/club/permissions.php:10
@@ -671,15 +672,15 @@ msgstr "集体台站权限"
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr "无效的集体台站 ID！"
+msgstr "集体台站ID无效！"
 
 #: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
-msgstr "无法通知用户。请检查你电子邮箱设置。"
+msgstr "未能通知用户。请检查您的邮件设置。"
 
 #: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
-msgstr "集体站成员角色已更新。"
+msgstr "集体台站成员权限已更新。"
 
 #: application/controllers/Club.php:156
 msgid "User removed from club."
@@ -687,15 +688,15 @@ msgstr "成员已从集体台站中移除。"
 
 #: application/controllers/Club.php:158
 msgid "User could not be removed from club."
-msgstr "成员不能移出集体台站。"
+msgstr "无法将成员移出集体台站。"
 
 #: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr "无效的消息类型。"
+msgstr "消息类型无效。"
 
 #: application/controllers/Club.php:220
 msgid "Email settings not configured."
-msgstr "电子邮箱没有设置。"
+msgstr "邮件设置未配置。"
 
 #: application/controllers/Club.php:227 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
@@ -708,14 +709,14 @@ msgstr "未知"
 #: application/controllers/Lotw.php:27 application/controllers/Qrz.php:14
 #: application/controllers/Update.php:16
 msgid "Maintenance Mode is active. Try again later."
-msgstr "已开启维护模式，请稍后重试。"
+msgstr "维护模式已启用，请稍后重试。"
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
 #: application/controllers/Clublog.php:126
 #: application/controllers/Clublog.php:163
 msgid "No user has configured Clublog."
-msgstr "Clublog 未配置用户账户。"
+msgstr "未找到配置Clublog的用户。"
 
 #: application/controllers/Clublog.php:89
 #: application/controllers/Logbook.php:673
@@ -741,7 +742,7 @@ msgstr "Clublog"
 
 #: application/controllers/Clublog.php:145
 msgid "Clublog QSL Import"
-msgstr "导入 Clublog QSL 记录"
+msgstr "Clublog QSL 导入"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:269
@@ -750,37 +751,37 @@ msgstr "比赛日历"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr "暂无法获取比赛日志，请稍后尝试"
+msgstr "比赛日历服务不可用，请稍后重试。"
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:7
 msgid "Contest Logging"
-msgstr "比赛日志"
+msgstr "比赛日志记录"
 
 #: application/controllers/Contesting.php:123
 #: application/views/interface_assets/header.php:294
 msgid "Contests"
-msgstr "比赛"
+msgstr "比赛列表"
 
 #: application/controllers/Contesting.php:137
 msgid "Update Contest"
-msgstr "更新竞赛"
+msgstr "更新比赛"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/iota/index.php:83
 #: application/views/interface_assets/header.php:164
 msgid "Continents"
-msgstr "大陆"
+msgstr "大洲列表"
 
 #: application/controllers/Cron.php:38
 #: application/views/interface_assets/header.php:304
 msgid "Cron Manager"
-msgstr "Cron 管理器"
+msgstr "计划任务管理器"
 
 #: application/controllers/Cron.php:154 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
-msgstr "编辑 Cron"
+msgstr "编辑计划任务"
 
 #: application/controllers/Cron.php:218 application/controllers/Cron.php:219
 #: application/views/cron/index.php:83 application/views/cron/index.php:85
@@ -806,7 +807,7 @@ msgstr "失败"
 
 #: application/controllers/Cron.php:234 application/views/cron/index.php:74
 msgid "pending"
-msgstr "等待中"
+msgstr "待处理"
 
 #: application/controllers/Cron.php:239 application/views/cron/index.php:79
 msgid "disabled"
@@ -822,18 +823,15 @@ msgstr "OK"
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
-msgstr ""
-"上次执行是 %s 秒之前。 %s 请检查主 Cron 任务，应当设置为每分钟执行 (* * * * "
-"*)。"
+msgstr "上次执行在 %s 秒前。%s请检查您的主计划任务！它应当每分钟运行一次(* * * * *)。"
 
 #: application/controllers/Cron.php:285
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
-msgstr ""
-"上次执行是 %s 分钟之前。 %s 您的 Cron 任务似乎没有配置好，%s 它应当设置为每分"
-"钟执行 (* * * * *)。"
+msgstr "上次执行是 %s 分钟之前。 %s 您的 计划任务似乎没有配置好，%s "
+"它应当设置为每分钟执行 (* * * * *)。"
 
 #: application/controllers/Cron.php:290 application/views/cron/index.php:29
 msgctxt "Master Cron"
@@ -848,13 +846,13 @@ msgstr "SOTA CSV 导出"
 #: application/controllers/Dashboard.php:136
 #: application/controllers/Visitor.php:134
 msgid "Dashboard"
-msgstr "仪表板"
+msgstr "仪表盘"
 
 #: application/controllers/Dayswithqso.php:17
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:156
 msgid "Days with QSOs"
-msgstr "天数"
+msgstr "QSO天数"
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
@@ -866,7 +864,7 @@ msgstr "立即迁移数据"
 
 #: application/controllers/Debug.php:158
 msgid "Migration already done. Run again?"
-msgstr "迁移已完成，是否重新迁移？"
+msgstr "数据迁移已完成，是否重新运行？"
 
 #: application/controllers/Debug.php:162
 msgid "No data to migrate"
@@ -878,20 +876,19 @@ msgstr "无法迁移"
 
 #: application/controllers/Debug.php:236
 msgid "Wavelog was updated successfully!"
-msgstr "Wavelog已更新成功！"
+msgstr "Wavelog更新成功！"
 
 #: application/controllers/Debug.php:254
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr "Selfupdate()不可用。请检查错误日志。"
+msgstr "自动更新不可用。请检查错误日志。"
 
 #: application/controllers/Debug.php:298
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
-msgstr ""
-"文件迁移成功，请手动检查是否完整。如果一切正常，您可以删除文件夹“assets/"
-"qslcard”和“images/eqsl_card_images”。"
+msgstr "文件迁移成功，请手动检查。若一切正常，您可以删除文件夹“assets/qslcard”和“"
+"images/eqsl_card_images”。"
 
 #: application/controllers/Debug.php:301
 msgid "File Migration failed. Please check the Error Log."
@@ -901,14 +898,14 @@ msgstr "文件迁移失败。请检查错误日志。"
 #: application/controllers/Distancerecords.php:86
 #: application/views/interface_assets/header.php:154
 msgid "Satellite Distance Records"
-msgstr "卫星距离记录"
+msgstr "卫星通联距离记录"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:152
 msgid "Distances Worked"
-msgstr "距离"
+msgstr "通联距离"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
@@ -917,7 +914,7 @@ msgstr "QSO 与"
 
 #: application/controllers/Distances.php:83
 msgid "and band"
-msgstr "和波段"
+msgstr "和频段"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
@@ -926,12 +923,12 @@ msgstr "和传播方式"
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:441
 msgid "DX Atlas Gridsquare Export"
-msgstr "DX Atlas Gridsquare 导出"
+msgstr "DX Atlas 网格导出"
 
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:267
 msgid "DX Calendar"
-msgstr "DX 日志"
+msgstr "DX 日历"
 
 #: application/controllers/Eqsl.php:34
 #: application/views/dashboard/index.php:386
@@ -950,7 +947,7 @@ msgstr "eQSL 导入信息"
 
 #: application/controllers/Eqsl.php:154
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr "未在台站设置中配置 eQSL Nicknames！"
+msgstr "电台配置中未定义eQSL昵称！"
 
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
@@ -958,7 +955,7 @@ msgstr "eQSL QSO 上传"
 
 #: application/controllers/Eqsl.php:173
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr "您未设置 eQSL 的账户信息！"
+msgstr "您尚未配置eQSL.cc账号信息！"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
@@ -967,7 +964,7 @@ msgstr "eQSL 的用户名或密码错误"
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr "没有找到昵称为：%s的eQSL QTH"
+msgstr "不存在该eQSL QTH昵称：%s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
@@ -983,7 +980,7 @@ msgstr "下载成功： "
 
 #: application/controllers/Eqsl.php:494
 msgid "eQSL Card Image Download"
-msgstr "eQSL 卡片图像下载"
+msgstr "eQSL 卡片图片下载"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:146
@@ -12704,7 +12701,7 @@ msgstr "签名名称"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr ""
+msgstr "电台所属兴趣组名称（如：GMA）"
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
@@ -12713,7 +12710,7 @@ msgstr "签名信息"
 #: application/views/station_profile/create.php:197
 #: application/views/station_profile/edit.php:299
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
-msgstr ""
+msgstr "电台兴趣组标识（如：DA/NW-357）"
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:312
@@ -12881,15 +12878,15 @@ msgstr "分区"
 
 #: application/views/station_profile/edit.php:291
 msgid "Special Interest Group Name"
-msgstr ""
+msgstr "兴趣组名称"
 
 #: application/views/station_profile/edit.php:293
 msgid "Station Special Interest Group Name (e.g. GMA).."
-msgstr ""
+msgstr "电台所属兴趣组名称(如:GMA).."
 
 #: application/views/station_profile/edit.php:297
 msgid "Special Interest Group Information"
-msgstr ""
+msgstr "电台兴趣组信息"
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
