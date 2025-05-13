@@ -5404,6 +5404,10 @@ class Logbook_model extends CI_Model {
 		);
 		$this->db->where("station_id", $station_id);
 		$this->db->group_start();
+			$this->db->where('COL_LOTW_QSL_SENT !=', 'I');
+			$this->db->or_where('COL_LOTW_QSL_SENT', null);
+		$this->db->group_end();
+		$this->db->group_start();
 			$this->db->where('COL_PROP_MODE', 'SAT');
 			$this->db->group_start();
 				$this->db->where('COL_SAT_NAME', '');
