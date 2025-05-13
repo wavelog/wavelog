@@ -5408,10 +5408,12 @@ class Logbook_model extends CI_Model {
 			$this->db->or_where('COL_LOTW_QSL_SENT', null);
 		$this->db->group_end();
 		$this->db->group_start();
-			$this->db->where('COL_PROP_MODE', 'SAT');
 			$this->db->group_start();
-				$this->db->where('COL_SAT_NAME', '');
-				$this->db->or_where('COL_SAT_NAME', null);
+				$this->db->where('COL_PROP_MODE', 'SAT');
+				$this->db->group_start();
+					$this->db->where('COL_SAT_NAME', '');
+					$this->db->or_where('COL_SAT_NAME', null);
+				$this->db->group_end();
 			$this->db->group_end();
 			// Only add check for unsupported SATs if not empty. Otherwise SQL will fail
 			if (!empty($invalid_sats)) {
