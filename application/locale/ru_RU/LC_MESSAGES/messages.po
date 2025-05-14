@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-05-13 10:28+0000\n"
-"PO-Revision-Date: 2025-05-06 08:16+0000\n"
+"PO-Revision-Date: 2025-05-14 09:38+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2337,7 +2337,7 @@ msgstr "Дубликат профиля QTH:"
 #: application/controllers/User.php:1180 application/controllers/User.php:1411
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "Пожалуйста, проверьте значение QTH локатора (%s)"
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:405
@@ -5730,6 +5730,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"Категория SIG или \"Группа по интересам\" предоставляет возможность "
+"использовать любой вариант 'Диплома группы по интеерсам' для дипломов, "
+"которые не реализованы в Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -5737,6 +5740,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"Причина этого в том, что общий формат ADIF предоставляет только несколько "
+"специальных полей для определенных дипломов. SIG все же позволяет "
+"использовать и оценивать все другие типы маркеров для групп по интересам."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -5745,11 +5751,14 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"В обработке QSO вы найдете два поля: 'SIG' содержит аббревиатуру названия "
+"группы по интересам, которая также видна в оценке диплома, а 'SIG INFO' "
+"содержит фактические данные. Оба поля можно свободно настраивать."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Группа по интересам"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -11701,7 +11710,7 @@ msgstr "Возвышение антенны в десятичных градус
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
 msgid "SIG Info"
-msgstr ""
+msgstr "Информация SIG"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:617
@@ -13135,7 +13144,7 @@ msgstr "Имя подписи"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr ""
+msgstr "Название группы по интересам (например, GMA)."
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
@@ -13144,7 +13153,7 @@ msgstr "Информация о подписи"
 #: application/views/station_profile/create.php:197
 #: application/views/station_profile/edit.php:299
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
-msgstr ""
+msgstr "Данные SIG (например, DA/NW-357)."
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:312
@@ -13318,15 +13327,15 @@ msgstr "Зоны"
 
 #: application/views/station_profile/edit.php:291
 msgid "Special Interest Group Name"
-msgstr ""
+msgstr "Название группы по интересам"
 
 #: application/views/station_profile/edit.php:293
 msgid "Station Special Interest Group Name (e.g. GMA).."
-msgstr ""
+msgstr "Название группы по интересам (например, GMA)."
 
 #: application/views/station_profile/edit.php:297
 msgid "Special Interest Group Information"
-msgstr ""
+msgstr "Данные SIG"
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
