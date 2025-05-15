@@ -34,6 +34,7 @@
 			<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
 			<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
 			<option value="distance"><?= __("Distance"); ?></option>
+			<option value="stxstring"><?= __("Exch (S)"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
