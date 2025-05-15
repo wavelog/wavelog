@@ -781,6 +781,7 @@ class Logbookadvanced_model extends CI_Model {
 			case "clublogreceived": $column = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS'; break;
 			case "region": $column = 'COL_REGION'; break;
 			case "distance": $column = 'COL_DISTANCE'; break;
+			case "stxstring": $column = 'COL_STX_STRING'; break;
 			default: return;
 		}
 
