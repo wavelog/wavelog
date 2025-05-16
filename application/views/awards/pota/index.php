@@ -50,7 +50,7 @@
 		<td style="text-align: center"><a target="_blank" href="https://pota.app/#/park/<?php echo $reference; ?>"><?php echo $reference; ?></a></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
-		<td style="text-align: center"><?php echo $row->COL_CALL; ?></td>
+		<td style="text-align: center"><a href="javascript:displayQso(<?php echo $row->COL_PRIMARY_KEY; ?>)"><?php echo $row->COL_CALL; ?></a></td>
 		<td style="text-align: center"><?php if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo $row->COL_BAND; } ?></td>
 		<td style="text-align: center"><?php echo $row->COL_RST_SENT; ?></td>
 		<td style="text-align: center"><?php echo $row->COL_RST_RCVD; ?></td>

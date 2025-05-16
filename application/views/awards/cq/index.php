@@ -17,12 +17,12 @@
   <div id="awardInfoButton">
     <script>
       var lang_awards_info_button = "<?= __("Award Info"); ?>";
-      var lang_award_info_ln1 = "<?= __("CQ Magazine WAZ Award"); ?>";
-      var lang_award_info_ln2 = "<?= __("The CQ Magazine is located in the US and one of the most popular amateur radio magazines in the world. The magazine first appeared in January 1945 and focuses on awards and the practical aspects of amateur radio."); ?>";
-      var lang_award_info_ln3 = "<?= __("The WAZ Award stands for 'Worked All Zones' and requires radio contacts to all 40 CQ Zones along with the corresponding confirmation."); ?>";
-      var lang_award_info_ln4 = "<?= sprintf(_pgettext("uses 'CQ Magazine'", "You can find all the information and rules on the Website of the %s."), "<a href='https://cq-amateur-radio.com/cq_awards/cq_waz_awards/index_cq_waz_award.html' target='_blank'>CQ Magazine</a>"); ?>";
+      var lang_award_info_ln1 = "<?= __("CQ WAZ (Worked All Zones) Award"); ?>";
+      var lang_award_info_ln2 = "<?= __("The CQ Magazine was located in the US and one of the most popular amateur radio magazines in the world. They stopped service by the end of 2023. The magazine first appeared in January 1945 and focuses on awards and the practical aspects of amateur radio."); ?>";
+      var lang_award_info_ln3 = "<?= __("The WAZ Award stands for 'Worked All Zones' and requires radio contacts to all 40 CQ Zones along with the corresponding confirmation. Since the CQ Magazine does no longer exists the CQ WAZ Awards is now managed directly by N4BAA."); ?>";
+      var lang_award_info_ln4 = "<?= sprintf(__("You can find all the information and rules on the Website of N4BAA: %s"), "<a href='https://n4baa.com/cqwaz.html' target='_blank'>N4BAA.com</a>"); ?>";
     </script>
-    <h2><?= __("Awards - CQ Magazine WAZ"); ?></h2>
+    <h2><?= __("Awards - CQ WAZ"); ?></h2>
     <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
   </div>
   <!-- End of Award Info Box -->

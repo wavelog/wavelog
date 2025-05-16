@@ -33,6 +33,8 @@
 			<option value="region"><?= __("Region"); ?></option>
 			<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
 			<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
+			<option value="distance"><?= __("Distance"); ?></option>
+			<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -192,4 +194,7 @@
 			<option value="SI"><?= __("Shetland Islands"); ?></option>
 			<option value="SY"><?= __("Sicily"); ?></option>
 		</select>
+
+		<label style="display:none" id="editDistanceInputLabel" class="mx-2 w-auto" for="editDistanceInput"><?= __("Distance (in km). Leave blank to remove distance."); ?></label>
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editDistanceInput" type="text" name="editDistanceInput" placeholder="" aria-label="editDistanceInput">
 	</form>

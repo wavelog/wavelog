@@ -51,22 +51,23 @@ class Clublog_model extends CI_Model
 							$return = 'Unable to write the file - Make the folder Upload folder has write permissions.';
 						} else {
 
-							$file_info = get_file_info('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
-
 							// initialise the curl request
 							$request = curl_init('https://clublog.org/putlogs.php');
+							$filepath = realpath('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
 
-							if ($this->config->item('directory') != "") {
-								$filepath = $_SERVER['DOCUMENT_ROOT'] . "/" . $this->config->item('directory') . "/" . $file_info['server_path'];
-							} else {
-								$filepath = $_SERVER['DOCUMENT_ROOT'] . "/" . $file_info['server_path'];
+							// Check if the file actually exists
+							if (!file_exists($filepath)) {
+								$return .=  " Clublog upload for " . $station_row->station_callsign . ' failed. Upload file could not be created.';
+								log_message('error', $return);
+								return $return . "\n";
 							}
 
 							if (function_exists('curl_file_create')) { // php 5.5+
 								$cFile = curl_file_create($filepath);
-							} else { //
-								$cFile = '@' . realpath($filepath);
+							} else {
+								$cFile = '@' . $filepath;
 							}
+							$cFile->setPostFilename(basename($filepath));
 
 							// send a file
 							curl_setopt($request, CURLOPT_POST, true);
@@ -80,8 +81,8 @@ class Clublog_model extends CI_Model
 									'callsign' => $station_row->station_callsign,
 									'api' => $this->clublog_identifier,
 									'file' => $cFile
-								)
-							);
+									)
+								);
 
 							// output the response
 							curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
@@ -92,7 +93,6 @@ class Clublog_model extends CI_Model
 								$return =  curl_error($request);
 							}
 							curl_close($request);
-
 
 							// If Clublog Accepts mark the QSOs
 							if (($httpcode == 200) || (preg_match('/\baccepted\b/', $response))) {

@@ -843,6 +843,10 @@ function getDxccResult(dxcc, name) {
 
 	if (!$targetPane.data("loaded")) {
 		$targetPane.data("loaded", true); // Mark as loaded
+			satOrBand = $('#band').val();
+			if ($('#selectPropagation').val() == 'SAT') {
+				satOrBand = 'SAT';
+			}
 		$.ajax({
 			url: base_url + 'index.php/lookup/search',
 			type: 'post',
@@ -850,7 +854,7 @@ function getDxccResult(dxcc, name) {
 				type: 'dxcc',
 				dxcc: dxcc,
 				reduced_mode: true,
-				current_band: $('#band').val(),
+				current_band: satOrBand,
 				current_mode: $('#mode').val(),
 			},
 			success: function (html) {

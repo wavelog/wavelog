@@ -243,7 +243,7 @@ class Lotw extends CI_Controller {
 				// Nothing to upload
 				if(empty($data['qsos']->result())){
 					if ($this->user_model->authorize(2)) {	// Only be verbose if we have a session
-						echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): No QSOs to upload.<br>";
+						echo str_replace("0", "&Oslash;", $station_profile->station_callsign)." (".$station_profile->station_profile_name."): No QSOs to upload.<br>";
 					}
 					continue;
 				}
@@ -541,6 +541,9 @@ class Lotw extends CI_Controller {
 
 			if($status[0] == "Found") {
 				$qso_id4lotw=$status[1];
+
+				$call = str_replace("0", "&Oslash;", $record['call']);
+
 				if (isset($record['state'])) {
 					$state = $record['state'];
 				} else {
@@ -603,12 +606,12 @@ class Lotw extends CI_Controller {
 				$table .= "<tr>";
 				$table .= "<td>".$record['station_callsign']."</td>";
 				$table .= "<td>".$time_on."</td>";
-				$table .= "<td><a id=\"view_lotw_qso\" href=\"javascript:displayQso(".$status[1].")\">".$record['call']."</a></td>";
+				$table .= "<td><a id=\"view_lotw_qso\" href=\"javascript:displayQso(".$status[1].")\">".$call."</a></td>";
 				$table .= "<td>".$record['mode']."</td>";
 				$table .= "<td>".$record['qsl_rcvd']."</td>";
 				$table .= "<td>".$qsl_date."</td>";
 				$table .= "<td>".$state."</td>";
-				$table .= "<td>".($qsl_gridsquare != '' ? $qsl_gridsquare : $qsl_vucc_grids)."</td>";
+				$table .= "<td>".(($qsl_gridsquare != '' ? $qsl_gridsquare : ($record['gridsquare'] ?? '')) ?? $qsl_vucc_grids)."</td>";
 				$table .= "<td>".$iota."</td>";
 				$table .= "<td>QSO Record: ".$status[0]."</td>";
 				$table .= "<td>LoTW Record: ".$lotw_status."</td>";

@@ -685,4 +685,8 @@ class Logbookadvanced extends CI_Controller {
 		header("Content-Type: application/json");
 		print json_encode($result);
 	}
+
+	public function helpDialog() {
+		$this->load->view('logbookadvanced/help');
+	}
 }

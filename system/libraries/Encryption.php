@@ -365,10 +365,10 @@ class CI_Encryption {
 	 * Encrypt
 	 *
 	 * @param	string	$data	Input data
-	 * @param	array	$params	Input parameters
+	 * @param	array|null	$params	Input parameters
 	 * @return	string
 	 */
-	public function encrypt($data, array $params = NULL)
+	public function encrypt($data, ?array $params = NULL)
 	{
 		if (($params = $this->_get_params($params)) === FALSE)
 		{
@@ -500,10 +500,10 @@ class CI_Encryption {
 	 * Decrypt
 	 *
 	 * @param	string	$data	Encrypted data
-	 * @param	array	$params	Input parameters
+	 * @param	array|null	$params	Input parameters
 	 * @return	string
 	 */
-	public function decrypt($data, array $params = NULL)
+	public function decrypt($data, ?array $params = NULL)
 	{
 		if (($params = $this->_get_params($params)) === FALSE)
 		{

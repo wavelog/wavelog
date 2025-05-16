@@ -570,6 +570,16 @@ class Stations extends CI_Model {
 		}
 	}
 
+	public function get_user_from_station($stationid) {
+		if (($stationid ?? '') != '') {
+			$sql="select u.* from users u inner join station_profile sp on (u.user_id=sp.user_id) where sp.station_id = ?";
+			$query = $this->db->query($sql, $stationid);
+			return $query->row();
+		} else {
+			return false;
+		}
+	}
+
 	public function check_station_against_user($stationid, $userid) {
 		$this->db->select('station_id');
 		$this->db->where('user_id', $userid);

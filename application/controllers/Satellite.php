@@ -292,6 +292,92 @@ class Satellite extends CI_Controller {
 		}
 	}
 
+	public function savePassSettings() {
+
+		$settings = [];
+		$msg = [];
+
+		$settings['name']         	= $this->input->post('setting_name', true);
+		$settings['minelevation']  	= $this->input->post('minelevation', true);
+		$settings['minazimuth']    	= $this->input->post('minazimuth', true);
+		$settings['maxazimuth']    	= $this->input->post('maxazimuth', true);
+		$settings['grid']          	= $this->input->post('grid', true);
+		$settings['sat']           	= $this->input->post('sat', true);
+		
+		$settings['sked_minelevation'] 	= $this->input->post('sked_minelevation', true) ?? '';
+		$settings['sked_minazimuth']   	= $this->input->post('sked_minazimuth', true) ?? '';
+		$settings['sked_maxazimuth']  	= $this->input->post('sked_maxazimuth', true) ?? '';
+		$settings['sked_grid']         	= $this->input->post('sked_grid', true) ?? '';
+
+		$settings_id  				= md5($settings['name']);
+		if(!$this->user_options_model->set_option('sat_pass_settings', $settings_id, array('data' => json_encode($settings)))) {
+			log_message('error', 'Failed to save pass settings; User: '.$this->session->userdata('user_id').'; Settings: '.json_encode($settings));
+			$msg['ok'] = 'Error';
+			$msg['message'] = __("Failed to save pass settings!");
+		} else {
+			$msg['ok'] = 'OK';
+			$msg['message'] = __("Pass settings saved!");
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($msg);
+	}
+
+	public function loadPassSettings() {
+
+		$settings_id = $this->input->post('settings_id', true) ?? '';
+		$settings = $this->user_options_model->get_options('sat_pass_settings', array('option_name' => $settings_id))->row();
+
+		if ($settings == false) {
+			echo json_encode(array('ok' => 'Error', 'message' => __("No settings found!")));
+			return;
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($settings->option_value);
+	}
+
+	public function delPassSettings() {
+
+		$settings_id = $this->input->post('settings_id', true);
+
+		if(!$this->user_options_model->del_option('sat_pass_settings', $settings_id)) {
+			log_message('error', 'Failed to delete pass settings; User: '.$this->session->userdata('user_id').'; settings id: '.$settings_id);
+			echo json_encode(array('ok' => 'Error', 'message' => __("Failed to delete pass settings!")));
+		} else {
+			echo json_encode(array('ok' => 'OK', 'message' => __("Pass settings deleted!")));
+		}
+	}
+
+	public function getPassSettingsList() {
+
+		$sat_pass_settings = $this->user_options_model->get_options('sat_pass_settings', null, $this->session->userdata('user_id'))->result();
+
+		$r = '';
+		if (!empty($sat_pass_settings)) {
+			$r .= '<li class="dropdown-header">'.__("Saved Pass Settings").'</li>';
+			foreach ($sat_pass_settings as $setting) {
+				$value = json_decode($setting->option_value);
+				$settings_id  = $setting->option_name;
+		
+				$r .= 	'<li>
+							<div class="dropdown-item d-flex justify-content-between align-items-center">
+								<button type="button" class="btn d-flex align-items-center" onclick="loadPassSettings(\''. $settings_id .'\')">
+									<i class="fas fa-download me-2"></i>'. $value->name .'
+								</button>
+								<button type="button" class="btn btn-sm bg-danger d-flex align-items-center" onclick="delPassSettings(\''. $settings_id .'\')">
+									<i class="fas fa-trash-alt"></i>
+								</button>
+							</div>
+						</li>';
+			}
+		} else {
+			$r .= '<li><p class="text-muted text-center">'.__("No presets available").'</p></li>';
+		}
+
+		echo $r;
+	}
+
 	public function get_tle_for_predict() {
 
 		$input_sat = $this->security->xss_clean($this->input->post('sat'));

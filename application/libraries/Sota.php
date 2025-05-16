@@ -43,7 +43,7 @@ class Sota
 
 	// fetches the summit information from SOTA
 	public function info($summit) {
-		$url = 'https://api2.sota.org.uk/api/summits/' . $summit;
+		$url = 'https://api-db2.sota.org.uk/api/summits/' . $summit;
 
 		// Let's use cURL instead of file_get_contents
 		// begin script

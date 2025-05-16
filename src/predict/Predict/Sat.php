@@ -126,12 +126,12 @@ class Predict_Sat
 
     /** Initialise satellite data.
      *  @param sat The satellite to initialise.
-     *  @param qth Optional QTH info, use (0,0) if NULL.
+     *  @param qth|null Optional QTH info, use (0,0) if NULL.
      *
      * This function calculates the satellite data at t = 0, ie. epoch time
      * The function is called automatically by gtk_sat_data_read_sat.
      */
-    public function sat_data_init_sat(Predict_Sat $sat, Predict_QTH $qth = null)
+    public function sat_data_init_sat(Predict_Sat $sat, ?Predict_QTH $qth = null)
     {
         $obs_geodetic = new Predict_Geodetic();
         $obs_set = new Predict_ObsSet();

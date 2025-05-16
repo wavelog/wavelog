@@ -422,7 +422,7 @@
 
                     <?php if($row->COL_SIG != null) { ?>
                     <tr>
-                        <td><?= __("Sig"); ?></td>
+                        <td><?= __("SIG"); ?></td>
                         <?php
                         switch ($row->COL_SIG) {
                         case "GMA":
@@ -438,7 +438,7 @@
 
                     <?php if($row->COL_SIG_INFO != null) { ?>
                     <tr>
-                        <td><?= __("Sig Info"); ?></td>
+                        <td><?= __("SIG Info"); ?></td>
                         <?php
                         switch ($row->COL_SIG) {
                         case "GMA":
@@ -723,12 +723,12 @@
 
                     <?php if($row->station_sig) { ?>
                     <tr>
-                        <td><?= __("Station") . ' ' . __("Sig"); ?></td>
+                        <td><?= __("Station") . ' ' . __("SIG"); ?></td>
                         <td><?php echo $row->station_sig; ?></td>
                     </tr>
 
                     <tr>
-                        <td><?= __("Station") . ' ' . __("Sig Info"); ?></td>
+                        <td><?= __("Station") . ' ' . __("SIG Info"); ?></td>
                         <td><?php echo $row->station_sig_info; ?></td>
                     </tr>
                     <?php } ?>

@@ -105,9 +105,9 @@ class Update_model extends CI_Model {
             return  "Something went wrong with fetching the SOTA file";
         }
 
-        $data = fgetcsv($csvhandle, 1000, ","); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle, 1000, ","); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle, 1000, ",");
+        $data = fgetcsv($csvhandle, 1000, ",", '"', '\\'); // Skip line we are not interested in
+        $data = fgetcsv($csvhandle, 1000, ",", '"', '\\'); // Skip line we are not interested in
+        $data = fgetcsv($csvhandle, 1000, ",", '"', '\\');
         $sotafilehandle = fopen($sotafile, 'w');
 
         if ($sotafilehandle === FALSE) {
@@ -120,7 +120,7 @@ class Update_model extends CI_Model {
                 fwrite($sotafilehandle, $data[0] . PHP_EOL);
                 $nCount++;
             }
-        } while ($data = fgetcsv($csvhandle, 1000, ","));
+        } while ($data = fgetcsv($csvhandle, 1000, ",", '"', '\\'));
 
         fclose($csvhandle);
         fclose($sotafilehandle);
@@ -157,11 +157,11 @@ class Update_model extends CI_Model {
             return "FAILED: Could not write to wwff.txt file";
         }
 
-        $data = str_getcsv($csv, "\n");
+        $data = str_getcsv($csv, "\n", '"', '\\');
         $nCount = 0;
         foreach ($data as $idx => $row) {
             if ($idx == 0) continue; // Skip line we are not interested in
-            $row = str_getcsv($row, ',');
+            $row = str_getcsv($row, ',', '"', '\\');
             if ($row[0]) {
                 fwrite($wwfffilehandle, $row[0] . PHP_EOL);
                 $nCount++;
@@ -201,11 +201,11 @@ class Update_model extends CI_Model {
         if ($potafilehandle === FALSE) {
             return "FAILED: Could not write to pota.txt file";
         }
-        $data = str_getcsv($csv, "\n");
+        $data = str_getcsv($csv, "\n", '"', '\\');
         $nCount = 0;
         foreach ($data as $idx => $row) {
             if ($idx == 0) continue; // Skip line we are not interested in
-            $row = str_getcsv($row, ',');
+            $row = str_getcsv($row, ',', '"', '\\');
             if ($row[0]) {
                 fwrite($potafilehandle, $row[0] . PHP_EOL);
                 $nCount++;
@@ -240,7 +240,7 @@ class Update_model extends CI_Model {
         $this->db->empty_table("lotw_users");
         $this->db->query("ALTER TABLE lotw_users AUTO_INCREMENT 1");
         $i = 0;
-        $data = fgetcsv($handle, 1000, ",");
+        $data = fgetcsv($handle, 1000, ",", '"', '\\');
         do {
             if ($data[0]) {
                 $lotwdata[$i]['callsign'] = $data[0];
@@ -252,7 +252,7 @@ class Update_model extends CI_Model {
                 }
                 $i++;
             }
-        } while ($data = fgetcsv($handle, 1000, ","));
+        } while ($data = fgetcsv($handle, 1000, ",", '"', '\\'));
         fclose($handle);
 
         $this->db->insert_batch('lotw_users', $lotwdata);
@@ -476,7 +476,7 @@ class Update_model extends CI_Model {
 	function update_norad_ids() {
 		$csvfile = 'https://www.df2et.de/cqrlog/lotw_norad.csv';
 		$csvhandle = fopen($csvfile, "r");
-		while (false !== ($data = fgetcsv($csvhandle, 1000, ","))) {
+		while (false !== ($data = fgetcsv($csvhandle, 1000, ",", '"', '\\'))) {
 			$this->db->set('norad_id', $data[1]);
 			$this->db->where('name', $data[0]);
 			$this->db->update('satellite');
@@ -515,15 +515,35 @@ class Update_model extends CI_Model {
 							continue;
 						}
 						$name = $this->security->xss_clean(substr($line, strpos($line, ' ')));
+						$truncated = false;
+						if (mb_strlen($name, 'UTF-8') > 256) {
+							$name = mb_substr($name, 0, 256, 'UTF-8');
+							$truncated = true;
+						}
 						$linkname = $link = null;
 						if (strpos($name, '[')) {
 							$linkname = $this->security->xss_clean(substr($name, strpos($name, '[')+1, (strpos($name, ']') - strpos($name, '[')-1)));
+							if (mb_strlen($linkname, 'UTF-8') > 256) {
+								$linkname = mb_substr($linkname, 0, 256, 'UTF-8');
+								$truncated = true;
+							}
 							$link= $this->security->xss_clean(substr($name, strpos($name, '(')+1, (strpos($name, ')') - strpos($name, '(')-1)));
+							if (mb_strlen($link, 'UTF-8') > 256) {
+								$link= mb_substr($link, 0, 256, 'UTF-8');
+								$truncated = true;
+							}
 							$name = substr($name, 0, strpos($name, '['));
+							if (mb_strlen($name, 'UTF-8') > 256) {
+								$name = mb_substr($name, 0, 256, 'UTF-8');
+								$truncated = true;
+							}
+						}
+						if ($truncated == true) {
+							log_message('error', 'Hams Of Note '.$call.': Data too long. Truncated at 256 characters.');
 						}
 						array_push($result, array('callsign' => $call, 'name' => $name, 'linkname' => $linkname, 'link' => $link));
 						$hon[$i]['callsign'] = $call;
-						$hon[$i]['description'] = $name;
+						$hon[$i]['description'] = trim($name);
 						$hon[$i]['linkname'] = $linkname;
 						$hon[$i]['link'] = $link;
 						$i++;
