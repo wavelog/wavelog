@@ -248,7 +248,7 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
                    },
                    {
                       extend: 'clear',
-                      text: '<?= __("Clear"); ?>',
+                      text: '<?= __("Clear Filter"); ?>',
 					  className: 'mb-1 btn btn-primary', // Bootstrap classes
 						init: function(api, node, config) {
 							$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
