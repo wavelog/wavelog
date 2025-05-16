@@ -2,7 +2,7 @@
 
 class Visitor_model extends CI_Model {
 
-	function get_qsos($num, $StationLocationsArray, $band = '', $continent = '', $orbit = '', $contest = '', $start_date = '', $end_date = '') {
+	function get_qsos($num, $StationLocationsArray, $band = '', $continent = '', $orbit = '', $contest = '', $start_date = '', $end_date = '', $day = '') {
 		$this->db->select($this->config->item('table_name').'.*, station_profile.*');
 		$this->db->from($this->config->item('table_name'));
 
@@ -11,13 +11,21 @@ class Visitor_model extends CI_Model {
 			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME', 'left');
 		}
 
-		if ($start_date != '') {
-			$start_date = date('Y-m-d', strtotime($start_date));
-			$this->db->where($this->config->item('table_name').'.COL_TIME_ON >=', $start_date);
-		}
-		if ($end_date != '') {
-			$end_date = date('Y-m-d', strtotime($end_date));
-			$this->db->where($this->config->item('table_name').'.COL_TIME_ON <=', $end_date);
+		if ($day != '') {
+			if ($day == 'today') {
+				$this->db->where('DATE('.$this->config->item('table_name').'.COL_TIME_ON) = CURDATE()');
+			} elseif ($day == 'yesterday') {
+				$this->db->where('DATE('.$this->config->item('table_name').'.COL_TIME_ON) = CURDATE() - INTERVAL 1 DAY');
+			}
+		} else {
+			if ($start_date != '') {
+				$start_date = date('Y-m-d', strtotime($start_date));
+				$this->db->where($this->config->item('table_name').'.COL_TIME_ON >=', $start_date);
+			}
+			if ($end_date != '') {
+				$end_date = date('Y-m-d', strtotime($end_date));
+				$this->db->where($this->config->item('table_name').'.COL_TIME_ON <=', $end_date);
+			}
 		}
 
 		if ($band != '') {

@@ -35,6 +35,7 @@ class Staticmap extends CI_Controller {
 
         $start_date = $this->input->get('start_date', TRUE) ?? 'noStart';   // Format YYYY-MM-DD
         $end_date = $this->input->get('end_date', TRUE) ?? 'noEnd';          // Format YYYY-MM-DD
+        $day = $this->input->get('day', TRUE) ?? '';
 
         // if the user defines an Satellite Orbit, we need to set the band to SAT
         if ($orbit != 'nOrb') {
@@ -119,7 +120,8 @@ class Staticmap extends CI_Controller {
                      . $contest
                      . $start_date
                      . $end_date
-                     . $watermark;   
+                     . $day
+                     . $watermark;
 
         $filename = crc32('staticmap_' . $slug) . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
         $filepath = $cacheDir . '/' . $filename;
@@ -182,7 +184,8 @@ class Staticmap extends CI_Controller {
                     $orbit == 'nOrb' ? '' : $orbit, 
                     $contest == 'nContest' ? '' : $contest,
                     $start_date == 'noStart' ? '' : $start_date,
-                    $end_date == 'noEnd' ? '' : $end_date
+                    $end_date == 'noEnd' ? '' : $end_date,
+                    $day
                 );
 
                 $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones, $watermark);
