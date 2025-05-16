@@ -231,17 +231,11 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
                 "scrollY":        "500px",
                 "scrollCollapse": true,
                 "paging":         true,
-                "layout": {
-                  "topEnd": {
-                     "search": {
-                        "text": 'Filter Results'
-                     }
-                  }
-                },
                 "scrollX": true,
                 "order": [ 0, 'desc' ],
                 "language": {
                   url: getDataTablesLanguageUrl(),
+                     search: '<?= __("Filter Results"); ?>',
                 },
                 dom: 'Bfrtip',
                 buttons: [
