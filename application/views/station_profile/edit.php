@@ -138,7 +138,7 @@ if ($dxcc_list->result() > 0) {
 
 					<!-- US County -->
 					<div class="mb-3" id="location_us_county">
-						<label for="stationCntyInput"><?= __("Station County"); ?></label>
+						<label for="stationCntyInputEdit"><?= __("Station County"); ?></label>
 						<input type="text" class="form-control" name="station_cnty" id="stationCntyInputEdit" aria-describedby="stationCntyInputHelp" value="<?php if(set_value('station_cnty') != "") { echo set_value('station_cnty'); } else { echo $my_station_profile->station_cnty; } ?>">
 						<small id="stationCntyInputHelp" class="form-text text-muted"><?= __("Station County (Only used for USA/Alaska/Hawaii)."); ?></small>
 					</div>
