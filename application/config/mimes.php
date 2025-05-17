@@ -10,6 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 return array(
+	'adi' => array('application/octet-stream','text/plain', 'audio/x-hx-aac-adif'),
+	'adif' => array('application/octet-stream','text/plain', 'audio/x-hx-aac-adif'),
+	'ADI' => array('application/octet-stream','text/plain', 'audio/x-hx-aac-adif'),
+	'ADIF' => array('application/octet-stream','text/plain', 'audio/x-hx-aac-adif'),
 	'hqx'	=>	array('application/mac-binhex40', 'application/mac-binhex', 'application/x-binhex40', 'application/x-mac-binhex40'),
 	'cpt'	=>	'application/mac-compactpro',
 	'csv'	=>	array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain'),
@@ -56,7 +60,7 @@ return array(
 	'z'	=>	'application/x-compress',
 	'xhtml'	=>	'application/xhtml+xml',
 	'xht'	=>	'application/xhtml+xml',
-	'zip'	=>	array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/s-compressed', 'multipart/x-zip'),
+	'zip'	=>	array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/s-compressed', 'multipart/x-zip', 'application/octet-stream'),
 	'rar'	=>	array('application/x-rar', 'application/rar', 'application/x-rar-compressed'),
 	'mid'	=>	'audio/midi',
 	'midi'	=>	'audio/midi',
