@@ -18,10 +18,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-05-16 13:22+0000\n"
-"PO-Revision-Date: 2025-05-15 18:42+0000\n"
+"PO-Revision-Date: 2025-05-18 11:38+0000\n"
 "Last-Translator: Lu Chang <chinaluchang@live.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -529,7 +529,7 @@ msgstr "已通联网格"
 #: application/controllers/Awards.php:929
 #: application/controllers/Awards.php:961
 msgid "Gridsquares confirmed on LoTW"
-msgstr "LoTW已确认网格"
+msgstr "LoTW 已确认网格"
 
 #: application/controllers/Awards.php:930
 #: application/controllers/Awards.php:962
@@ -563,7 +563,7 @@ msgstr "ITU分区"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:186
 msgid "Worked All Continents (WAC)"
-msgstr "通联世界大洲奖(WAC)"
+msgstr "通联世界大洲奖（WAC）"
 
 #: application/controllers/Awards.php:2002
 msgid "WAE"
@@ -718,7 +718,7 @@ msgstr "维护模式已启用，请稍后重试。"
 #: application/controllers/Clublog.php:126
 #: application/controllers/Clublog.php:163
 msgid "No user has configured Clublog."
-msgstr "未找到配置Clublog的用户。"
+msgstr "未找到配置 Clublog 的用户。"
 
 #: application/controllers/Clublog.php:89
 #: application/controllers/Logbook.php:673
@@ -856,7 +856,7 @@ msgstr "仪表盘"
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:156
 msgid "Days with QSOs"
-msgstr "QSO天数"
+msgstr "QSO 天数"
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
@@ -7515,11 +7515,11 @@ msgstr "通联连续记录"
 
 #: application/views/dayswithqso/index.php:27
 msgid "QSOs of Year"
-msgstr "今年的QSO"
+msgstr "今年的 QSO"
 
 #: application/views/dayswithqso/index.php:35
 msgid "Number of days with QSOs each year"
-msgstr "本年QSO总数"
+msgstr "每年的 QSO 天数"
 
 #: application/views/dayswithqso/index.php:51
 msgid "Days"
@@ -7535,7 +7535,7 @@ msgstr "每年各月的通联数量统计"
 
 #: application/views/dayswithqso/index.php:87
 msgid "QSOs per Year"
-msgstr "每年的QSO"
+msgstr "每年的 QSO"
 
 #: application/views/dayswithqso/index.php:95
 msgid "Less"
@@ -12420,18 +12420,16 @@ msgstr "尚无选项"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
-msgstr ""
-"FLE 语法是一种简单的语法，用于快速记录 QSO。它的工作原理是，您只需输入每个 "
-"QSO 的更改部分。"
+msgstr "在开始记录 QSO 之前，请注意如下基本规则。"
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
-msgstr "在每一行上，只写与上一个 QSO 不同的数据。"
+msgstr "每个新的 QSO 需新起一行。"
 
 #: application/views/simplefle/syntax_help.php:3
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
-msgstr "例如，如果您在 20m 上与 DF3CB 进行了两次 QSO，您可以这样写。"
+msgstr "在每一行上，只写与上一个 QSO 不同的数据。"
 
 #: application/views/simplefle/syntax_help.php:4
 msgid ""
@@ -12440,15 +12438,13 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
-"如果您不提供任何 RST 信息，语法将使用 59 (599 用于数据)。我们的下一个 QSO 不"
-"是双方都是 59，所以我们首先提供发送的 RST 信息。它比第一个 QSO 晚了 2 分钟。"
+"首先，确保您已经在左侧表格填写了日期、电台呼号和操作员呼号。主要数据包括波段"
+"（或以 MHz 为单位的 QRG ，例如 '7.145'）、模式和时间。在时间后，您填写第一个 "
+"QSO，基本上就是呼号。"
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
-msgstr ""
-"第一个 QSO 是在 21:34，第二个 QSO 在 21:36，比第一个 QSO 晚了 2 分钟。我们写"
-"下 6，因为这是这里唯一改变的数据。关于波段和模式的信息没有改变，因此省略了这"
-"些数据。"
+msgstr "以第一个 QSO 为例，它始于 UTC 时间 21:34，于 20m SSB 与 4W7EST 通讯。"
 
 #: application/views/simplefle/syntax_help.php:10
 msgid ""
@@ -12456,9 +12452,9 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
-"我们的下一个 QSO 是在 2021 年 5 月 14 日的 21:40，我们将波段更改为 40m，但仍"
-"然在 SSB 上。如果没有给出 RST 信息，语法将为每个新的 QSO 使用 59。因此，我们"
-"可以添加另一个 QSO，它在两天后的同一时间发生。日期必须是 YYYY-MM-DD 格式。"
+"如果您不提供任何 RST 信息，语法默认值为 59 （数据模式为 599）。"
+"因为我们的下一个 QSO 不是双方都是 59，所以我们首先提供发送的 RST 信息。"
+"它比第一个 QSO 晚了 2 分钟。"
 
 #: application/views/simplefle/syntax_help.php:16
 msgid ""
@@ -12466,8 +12462,8 @@ msgid ""
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
-"上个 QSO 是 21:34，下一个是 2 分钟后的 21:36，我们只输入 6，因为只有这一个字"
-"符有变化。波段信息未改变，该部分被忽略。"
+"第一个 QSO 时间为 21:34，第二个 QSO 时间为 2 分钟后的 21:36。我们只输入 "
+"6，因为只有这一个字符有变化。波段与模式信息并未改变，因此无需填写该部分。"
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -12476,9 +12472,10 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
-"下一个 QSO 是 2021-05-14 21:40 分，这个通联在 40m 也是 SSB 模式，如果未提供 "
-"RST 程序仍将使用 59 来记录 QSO。基于此，如果两天后有同样的通联，我们可以输入 "
-"YYYY-MM-DD 的日期格式（仅输入差异部分）来记录。"
+"下一个 QSO 时间为 2021-05-14 21:40 ，这个通联仍然为 SSB 模式，但是波段变为了 "
+"40m。如果未提供 RST，程序仍将使用 59 来记录每个新的 QSO。因此，"
+"我们可以添加另一个在两天后于同一时间进行的 QSO。日期必须采用 YYYY-MM-DD "
+"格式。"
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
@@ -12519,9 +12516,8 @@ msgstr ""
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
-msgstr ""
-"在这里，第一个QSO使用设置的1作为序列号，第二个QSO将使用2作为序列号。如果您想"
-"清除您发送的交换码，使用“,-”："
+msgstr "在这里，第一个 QSO 使用设置的 1 作为序列号，第二个 QSO 将使用 2 "
+"作为序列号。如果您想清除您发送的交换码，使用“,-”："
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
@@ -12736,7 +12732,7 @@ msgstr "eQSL QTH Nickname"
 #: application/views/station_profile/create.php:203
 #: application/views/station_profile/edit.php:314
 msgid "The QTH Nickname which is configured in your eQSL Profile"
-msgstr "eQSL 中设置过的 QTH Nichname"
+msgstr "在 eQSL 中设置过的 QTH 昵称"
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:317
@@ -13538,9 +13534,7 @@ msgstr ""
 msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
-msgstr ""
-"在日志 QSO 部分中显示由 qrz.com 中 hamqth.com 配置文件所获得的对方个人资料图"
-"片。"
+msgstr "在日志 QSO 部分中显示由 qrz.com 或 hamqth.com 所获得的对方个人资料图片。"
 
 #: application/views/user/edit.php:380
 msgid ""
@@ -13619,7 +13613,7 @@ msgstr "在主菜单显示快速切换台址按钮"
 
 #: application/views/user/edit.php:486
 msgid "UTC Time in Menu"
-msgstr "主菜单显示 UTC Time"
+msgstr "主菜单显示 UTC 时间"
 
 #: application/views/user/edit.php:491
 msgid "Show the current UTC Time in the menu"
@@ -13779,7 +13773,7 @@ msgstr "on-Air 插件"
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
-msgstr "注意：为了使用这个插件，你需要至少一个CAT电台设置并使其正常工作。"
+msgstr "注意：为了使用这个插件，你至少需要设置一个 CAT 电台并使其正常工作。"
 
 #: application/views/user/edit.php:879
 #, php-format
@@ -14374,7 +14368,7 @@ msgstr "QSL 卡片已经由卡片管理员收妥"
 
 #: application/views/view_log/qso.php:518
 msgid "QSL Card has been received"
-msgstr "QSL Card 已被接收"
+msgstr "QSL 卡已被接收"
 
 #: application/views/view_log/qso.php:527
 msgid "This station uses LoTW."
@@ -14437,7 +14431,7 @@ msgstr "eQSL 图片"
 
 #: application/views/visitor/layout/footer.php:238
 msgid "Filter Results"
-msgstr ""
+msgstr "筛选结果"
 
 #: application/views/visitor/layout/footer.php:244
 msgid "CSV"
@@ -14445,7 +14439,7 @@ msgstr "CSV"
 
 #: application/views/visitor/layout/footer.php:252
 msgid "Clear Filter"
-msgstr ""
+msgstr "清空过滤器"
 
 #: application/views/visitor/layout/header.php:74
 msgid "OQRS"
