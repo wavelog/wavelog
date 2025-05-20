@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-05-16 13:22+0000\n"
-"PO-Revision-Date: 2025-05-19 06:49+0000\n"
+"PO-Revision-Date: 2025-05-20 15:16+0000\n"
 "Last-Translator: Lu Chang <chinaluchang@live.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -260,7 +260,7 @@ msgstr "API 说明"
 
 #: application/controllers/Api.php:38
 msgid "API Key is required. Do not change this field"
-msgstr "API Key为必填项，请勿修改此字段"
+msgstr "API Key 为必填项，请勿修改此字段"
 
 #: application/controllers/Api.php:44
 msgid "Edit API Description"
@@ -277,16 +277,16 @@ msgstr "无效的 API 权限"
 
 #: application/controllers/Api.php:82
 msgid "API Key generated"
-msgstr "API Key 已生成"
+msgstr "已生成 API Key"
 
 #: application/controllers/Api.php:84
 msgid "API Key could not be generated"
-msgstr "API Key 无法生成"
+msgstr "无法生成 API Key"
 
 #: application/controllers/Api.php:98
 #, php-format
 msgid "API Key %s has been deleted"
-msgstr "API Key %s 已删除"
+msgstr "已删除 API Key %s"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:170
@@ -656,7 +656,7 @@ msgstr "集体台站成员"
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr "用户ID无效！"
+msgstr "用户 ID 无效！"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
@@ -673,7 +673,7 @@ msgstr "集体台站权限"
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr "集体台站ID无效！"
+msgstr "集体台站 ID 无效！"
 
 #: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
@@ -1155,7 +1155,7 @@ msgstr "纸张已删除。"
 msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
-msgstr "没有找到日志本。您需要在电台站日志下添加一个日志本! 在这里添加："
+msgstr "没有找到日志本。您需要在电台站日志下添加一个日志本！在这里添加："
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -1724,8 +1724,9 @@ msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
-"文件 %s 中未找到呼号证书，如果文件名包含了 'key-only' 则此文件大概率是呼号证"
-"书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
+"未能在文件 %s 中找到呼号证书。如果文件名包含了 'key-"
+"only'，则此文件通常为呼号证书的申请文件，LoTW "
+"的工作人员依此来发放正式的呼号证书。"
 
 #: application/controllers/Lotw.php:648
 msgid "LoTW ADIF Information"
@@ -1734,7 +1735,7 @@ msgstr "LoTW ADIF 信息"
 #: application/controllers/Lotw.php:814 application/controllers/Lotw.php:817
 #, php-format
 msgid "LoTW login failed for user %s: %s."
-msgstr "LoTW 用户 %s 登录失败: %s。"
+msgstr "LoTW 用户 %s 登录失败：%s。"
 
 #: application/controllers/Lotw.php:817
 msgid "Username/password incorrect"
@@ -2274,7 +2275,7 @@ msgstr "QSO 尚未在 LoTW 确认，但已在 QSO 日期后上传呼号"
 #: application/controllers/Visitor.php:476
 #: application/controllers/Widgets.php:68
 msgid "Unknown Public Page."
-msgstr "公开页面未知。"
+msgstr "未知的公开页面。"
 
 #: application/controllers/Staticmap.php:152
 #: application/controllers/Visitor.php:76
@@ -2363,7 +2364,7 @@ msgstr "编辑访客地址"
 
 #: application/controllers/Stationsetup.php:212
 msgid "Error. Link is already in use!"
-msgstr "错误，链接已正在使用！"
+msgstr "错误，链接已被使用！"
 
 #: application/controllers/Stationsetup.php:253
 #: application/views/options/appearance.php:57
@@ -2658,7 +2659,7 @@ msgstr "用户名 %s 已被使用！"
 #: application/controllers/User.php:301
 #, php-format
 msgid "E-mail %s already in use!"
-msgstr "E-mail %s 已经被使用！"
+msgstr "E-mail %s 已被使用！"
 
 #: application/controllers/User.php:304
 msgid "Invalid Password!"
@@ -2777,8 +2778,7 @@ msgstr "电梯站位置"
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
-msgstr ""
-"电台站创建成功！欢迎来到 Wavelog ！为了完成电台站设置，请 %s 点击这里 %s 。"
+msgstr "电台站创建成功！欢迎来到 Wavelog ！为了完成电台站设置，请 %s点击这里%s 。"
 
 #: application/controllers/User.php:1191
 msgid "Station setup failed! Please set up your station manually."
@@ -2867,7 +2867,7 @@ msgstr "快速返回功能因安全哈希过期而被禁用，请重新登录以
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
 "personal account!"
-msgstr "你已经登出 %s 。欢迎回来回到您的私人账户，%s ！"
+msgstr "你已经登出 %s 。欢迎回到您的私人账户，%s ！"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
@@ -2909,7 +2909,7 @@ msgstr "用户禁用了 on-air 插件"
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
-msgstr "找不到CAT接口的电台。您需要至少配置一个电台接口。"
+msgstr "找不到 CAT 接口的电台。您需要至少配置一个电台接口。"
 
 #: application/controllers/Widgets.php:329
 msgid "User not found by slug"
@@ -3060,7 +3060,7 @@ msgstr "集体台站 ID 有误"
 
 #: application/models/Logbook_model.php:1235
 msgid "No Call given"
-msgstr "没有提供呼号"
+msgstr "未提供呼号"
 
 #: application/models/Logbook_model.php:1464
 msgid "DXCC has to be Numeric"
@@ -3084,7 +3084,7 @@ msgstr "QSO 时间"
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
-msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
+msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，未导入"
 
 #: application/models/Logbook_model.php:4225
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3158,7 +3158,7 @@ msgstr "方位角"
 
 #: application/models/Update_model.php:304
 msgid "Newer release available:"
-msgstr "有可用新版本："
+msgstr "有新版本可用："
 
 #: application/models/Update_model.php:308
 msgid "You are running the latest version."
@@ -4508,7 +4508,7 @@ msgstr "本站的 API URL 是"
 #: application/views/sattimers/index.php:77
 #: application/views/search/filter.php:72
 msgid "Info"
-msgstr "消息"
+msgstr "信息"
 
 #: application/views/api/index.php:20
 msgid ""
@@ -4586,7 +4586,7 @@ msgstr "你确定想要删除 API Key %s ？"
 
 #: application/views/api/index.php:92
 msgid "You have no API Keys."
-msgstr "无 APi Key。"
+msgstr "无 API Key。"
 
 #: application/views/api/index.php:96
 msgid "Create a read & write key"
@@ -4649,9 +4649,8 @@ msgstr "73 on 73 奖"
 msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
-msgstr ""
-"Paul Stoetzer (N8HM )正在赞助一个关于使用AO-73 (FUNcube-1)业余卫星进行通联的"
-"奖项。"
+msgstr "Paul Stoetzer (N8HM )正在赞助一个关于使用AO-73 (FUNcube-1) "
+"业余卫星进行通联的奖项。"
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:23
@@ -4926,7 +4925,7 @@ msgstr "重置筛选条件"
 
 #: application/views/awards/cq/index.php:115
 msgid "Show CQ Zone Map"
-msgstr "查看CQ分区地图"
+msgstr "查看 CQ 分区地图"
 
 #: application/views/awards/cq/index.php:124
 #: application/views/awards/dxcc/index.php:199
@@ -5109,10 +5108,10 @@ msgid ""
 "will find Deleted DXCC entities also in the lists on Wavelog. Be aware that "
 "these DXCC entities are outdated and no longer valid."
 msgstr ""
-"重要提示：随着时间的推移，DXCC 列表的标准已经发生变化 该列表将保持不变，直到"
-"实体不再满足添加该实体时所依据的标准，此时该实体将被移至“已删除列表” 您还会"
-"在 Wavelog 的列表中找到已删除的 DXCC 实体 请注意，这些 DXCC 实体已过时且不再"
-"有效（如 伪满洲国曾经也是一个合法的 DXCC 实体）。"
+"重要说明：随着时间的推移，DXCC "
+"列表的标准已发生变化。该列表保持不变，直到某个实体不再符合添加它时所依据的标"
+"准时，它才会被移至删除列表。您也可以在 Wavelog 上的列表中找到已删除的 DXCC "
+"实体。请注意，这些 DXCC 实体已经过时，不再有效。"
 
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/iota/index.php:33
@@ -5206,7 +5205,7 @@ msgstr "大洋洲"
 #: application/views/awards/dxcc/index.php:120
 #: application/views/awards/iota/index.php:120
 msgid "Every band (w/o SAT)"
-msgstr "所有频段 (不包含卫星)"
+msgstr "所有频段 (不含卫星)"
 
 #: application/views/awards/dxcc/index.php:189
 msgid "Show DXCC Map"
@@ -5276,10 +5275,11 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
-"来自 %s 的官方信息：必须通过业余卫星与每个网格建立双向通信。没有最低信号报告"
-"要求。联络必须在同一位置或相距不超过200公里的不同位置进行。申请人在奖项申请中"
-"的声明即为遵守距离规则的保证。当从另一个200公里范围内的不同位置达成时，个人可"
-"以申请并获得多个GridMaster奖项。"
+"来自 %s "
+"的官方信息：必须通过业余卫星与每个网格建立双向通信。没有最低信号报告要求。"
+"联络必须在同一位置或相距不超过 200 "
+"公里的不同位置进行。申请人在奖项申请中的声明即为遵守距离规则的保证。当从另一"
+"个200公里范围内的不同位置达成时，个人可以申请并获得多个 GridMaster 奖项。"
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
@@ -5383,12 +5383,14 @@ msgid ""
 "an Honor Roll and annual listings, as well as recognizing it with "
 "certificates and prestigious awards."
 msgstr ""
-"它由Islands On The Air (IOTA) Ltd（简称IOTA Management）与英国无线电协会"
-"（RSGB）合作管理 IOTA管理层将世界上的岛屿分为大约1200个“IOTA组”，每个组都有不"
-"同数量的“counters”，这些“counters”都是合格的岛屿 这些列表发布在 IOTA 目录和 "
-"IOTA 网站上 IOTA Island Chaser 的目标是与尽可能多的这些组中的至少一个进行无线"
-"电通联 该计划有一套明确的规则，通过在荣誉榜和年度名单中公布参与者的表现，并通"
-"过证书和享有盛誉的奖项来认可，鼓励追逐者之间的友好竞争。"
+"它由Islands On The Air (IOTA) Ltd（简称 IOTA "
+"Management）与英国无线电协会（RSGB）合作管理 "
+"IOTA管理层将世界上的岛屿分为大约1200个“IOTA组”，每个组都有不同数量的“counters"
+"”，这些“counters”都是合格的岛屿 这些列表发布在 IOTA 目录和 IOTA 网站上 IOTA "
+"Island Chaser "
+"的目标是与尽可能多的这些组中的至少一个进行无线电通联。该计划有一套明确的规则"
+"，通过在荣誉榜和年度名单中公布参与者的表现，并通过证书和享有盛誉的奖项来认可"
+"，鼓励追逐者之间的友好竞争。"
 
 #: application/views/awards/iota/index.php:19
 #, php-format
@@ -5488,9 +5490,9 @@ msgid ""
 "however names of city may be omitted. An additional sticker will be issued "
 "at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
-"此外 JCC 还有数量为 200, 300, 400, 500, 600, 700 and 800 的奖项类别。QSL 卡片"
-"应记录 JCC 标识代号，城市名称为无效。额外的贴纸会在每 50 个通联记录发放，如 "
-"150, 250, 350, 450, 550, 650, 750 个城市数量。"
+"JCC-200、300、400、500、600、700 和 800 将作为单独奖项颁发。QSL 卡清单应按 "
+"JCC 编号顺序排列，但城市名称可以省略。每联系 50 个城市（如 "
+"150、250、350、450、550、650 和 750 个城市）将额外收到一张贴纸。"
 
 #: application/views/awards/jcc/index.php:115
 msgid "Show JCC Map"
@@ -5532,9 +5534,9 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
-"Parks on the Air® (POTA 中文又名 空中花园) 于 2017 年初启动，当时 ARRL 的 "
-"National Parks on the Air 特别活动结束后 一群爱好者希望在一年的活动之后继续享"
-"受乐趣，因此，POTA 诞生了。"
+"空中公园®（POTA）始于 2017 年初。在当年，ARRL 的 “空中国家公园 "
+"”特别活动已经结束，一群志愿者希望在为期一年的活动结束后继续延续这种乐趣，"
+"于是 POTA 诞生了。"
 
 #: application/views/awards/pota/index.php:9
 msgid ""
@@ -5585,17 +5587,16 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG或 Special Interest Group 类别提供了对未在Wavelog中实施的奖励使用任何类型"
-"的“Special Interest Group 奖励”的可能性。"
+"SIG 或特别兴趣小组类别（Special Interest Group "
+"Category）允许用户使用任意的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
 "The reason for this is that the common ADIF format provides only a few "
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
-msgstr ""
-"原因是常见的ADIF格式仅为某些奖项提供了一些专用字段。SIG仍然使 special "
-"interest groups 使用和评估所有其他类型的标记成为可能。"
+msgstr "此原因为，常见的 ADIF 格式仅为某些奖项提供了一些专用字段。SIG "
+"仍然可以为特别兴趣小组使用和评估所有其他类型的标记。"
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -5604,14 +5605,14 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
-"在QSO处理中，您会发现两个字段：“SIG”是 special interest group 名称的缩写，该"
-"团体在奖项评估中也可见，而“SIG INFO”则包含实际参考。这两个字段都可以自由定"
-"制。"
+"在 QSO 处理中，您会发现两个字段：“SIG”是特别兴趣小组（special interest "
+"groups）名称的缩写，该团体在奖项评估中也可见，而“SIG "
+"INFO”则包含实际参考。这两个字段都可以自由定制。"
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
 msgid "Special Interest Group"
-msgstr "Special Interest Group"
+msgstr "特别兴趣小组"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -5653,7 +5654,7 @@ msgstr "我给出的信号报告"
 
 #: application/views/awards/sig/qso_list.php:34
 msgid "Export QSOs to ADIF"
-msgstr "将QSO导出至ADIF文件"
+msgstr "将 QSO 导出至 ADIF 文件"
 
 #: application/views/awards/sota/index.php:7
 msgid "SOTA Awards"
@@ -5663,8 +5664,7 @@ msgstr "SOTA 奖状"
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
-msgstr ""
-"SOTA（空中山峰）是一项针对无线电业余爱好者的奖励计划，鼓励在山区进行便携式操"
+msgstr "SOTA（山峰通联）是一项针对无线电业余爱好者的奖励计划，鼓励在山区进行便携式操"
 "作。"
 
 #: application/views/awards/sota/index.php:9
@@ -5734,7 +5734,7 @@ msgstr "表格"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr "WAB分区"
+msgstr "WAB 分区"
 
 #: application/views/awards/wac/index.php:9
 msgid ""
@@ -5780,8 +5780,9 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
-"WAE将以以下模式发布：CW、SSB、Phone、RTTY、FT 8、数字和混合模式。它分为五个级"
-"别：WAE III、WAE II、WAE I、WAE Top和WAE Trophy。"
+"WAE 将以以下模式发布：CW、SSB、Phone、RTTY、FT "
+"8、数字和混合模式。它分为五个级别：WAE III、WAE II、WAE I、WAE Top 和 WAE "
+"Trophy。"
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
@@ -5935,7 +5936,7 @@ msgstr "建议定期创建备份以保护您的数据。"
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
-msgstr "备份ADIF数据"
+msgstr "备份 ADIF 数据"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
@@ -6621,11 +6622,11 @@ msgstr "当前没有用户可以访问这个集体台站。"
 
 #: application/views/club/permissions.php:220
 msgid "Firstname"
-msgstr "名"
+msgstr "姓 (Firstname)"
 
 #: application/views/club/permissions.php:221
 msgid "Lastname"
-msgstr "姓"
+msgstr "名 (Lastname)"
 
 #: application/views/club/permissions.php:223
 #: application/views/user/edit.php:56 application/views/user/index.php:152
@@ -6739,7 +6740,7 @@ msgstr "上传的 QSO 数量"
 
 #: application/views/clublog/export.php:69
 msgid "The next automatic Download from Clublog-QSLs will happen at: "
-msgstr "下次 Clublog QSL 记录同步时间： "
+msgstr "下一次从 Clublog-QSLs 自动下载将在： "
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
@@ -6769,7 +6770,7 @@ msgstr "查看所有过境"
 
 #: application/views/components/hamsat/table.php:14
 msgid "Private feed key empty. Please set the feed key in your profile."
-msgstr "私有源密钥为空。请在个人资料中设置订阅源密钥。"
+msgstr "Private Feed Key 为空。请在个人资料中设置。"
 
 #: application/views/components/hamsat/table.php:19
 msgid "No upcoming activations found. Please check back later."
@@ -7169,7 +7170,7 @@ msgstr "每天凌晨"
 
 #: application/views/cron/edit.php:48
 msgid "Every Monday at 03:00"
-msgstr "每周一 03:00"
+msgstr "每周一的 03:00"
 
 #: application/views/cron/edit.php:49
 msgid "First Day of Every Month at midnight"
@@ -7736,7 +7737,7 @@ msgstr "您的认证方式已过时，可能存在风险隐患"
 #: application/views/debug/index.php:195 application/views/debug/index.php:212
 #, php-format
 msgid "Please edit your %s File:"
-msgstr "请编辑您的%s文件："
+msgstr "请编辑您的 %s 文件："
 
 #: application/views/debug/index.php:196
 msgid ""
@@ -9327,7 +9328,7 @@ msgstr "开始打印编号？"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
-msgstr "请选择编辑的列："
+msgstr "请选择需要编辑的列："
 
 #: application/views/logbookadvanced/edit.php:17
 #: application/views/logbookadvanced/index.php:491
@@ -9515,7 +9516,7 @@ msgstr "日期被设置为 1970-01-01。"
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
-msgstr "与 AF、 AN、AS、EU、NA、OC或 SA 不同的大洲。"
+msgstr "与 AF、 AN、AS、EU、NA、OC 或 SA 不同的大洲。"
 
 #: application/views/logbookadvanced/help.php:16
 msgid ""
@@ -10099,9 +10100,10 @@ msgid ""
 "have all confirmations since chosen date, or since your last LoTW "
 "confirmation (fetched from your log), up until now."
 msgstr ""
-"Wavelog 将会使用储存在您用户信息当中的 LoTW 用户名和密码从 LoTW 上为您下载报"
-"告。Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 LoTW QSL 确"
-"认信息（目前日志当中）以来的所有确认。注：LoTW 的下载功能仅能导出 QSL 记录。"
+"Wavelog 将使用您用户配置文件中的 LoTW 用户名和密码，为您从 LoTW 下载报告。"
+"Wavelog 下载的报告将包含自所选日期或您上次 LoTW "
+"确认（从您的日志中获取）以来的所有确认信息。注：LoTW 的下载功能仅能导出 QSL "
+"记录。"
 
 #: application/views/lotw/import.php:66
 msgid "Import LoTW Matches"
@@ -10269,7 +10271,7 @@ msgstr "更新模式"
 
 #: application/views/mode/index.php:3
 msgid "Warning! Are you sure you want to delete the following mode?:"
-msgstr "警告！确定删除下述模型吗？："
+msgstr "警告！确定删除下述模式吗？："
 
 #: application/views/mode/index.php:4
 msgid "Warning! Are you sure you want to activate all modes?"
@@ -10400,11 +10402,11 @@ msgstr "此功能可使 Wavelog Github 地址显示在公开页面中"
 
 #: application/views/options/appearance.php:88
 msgid "Public Login Button"
-msgstr "公开登陆按钮"
+msgstr "公开登录按钮"
 
 #: application/views/options/appearance.php:93
 msgid "This enables the button to login to Wavelog in the public view"
-msgstr "此功能可使登陆按钮显示在公开页面中"
+msgstr "此功能可使登录按钮显示在公开页面中"
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
@@ -10472,7 +10474,7 @@ msgstr "无加密"
 
 #: application/views/options/email.php:60
 msgid "Choose whether emails should be sent with TLS or SSL."
-msgstr "选择邮件将会通过 TLS 还是 SSL 发送。"
+msgstr "选择使用 TLS 还是 SSL 发送电子邮件。"
 
 #: application/views/options/email.php:64
 msgid "Email Sender Name"
@@ -10510,8 +10512,7 @@ msgstr "SMTP 端口"
 msgid ""
 "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is "
 "used -> '465'"
-msgstr ""
-"邮件服务器的SMTP端口，例如：如果使用了TLS -> '587'，如果使用了SSL -> '465'"
+msgstr "邮件服务器的 SMTP 端口，例如：使用 TLS 时为 '587'，使用 SSL 时为 '465'"
 
 #: application/views/options/email.php:96
 msgid "SMTP Username"
@@ -10699,7 +10700,7 @@ msgstr "版本信息模式"
 
 #: application/views/options/version_dialog.php:57
 msgid "Only Release Notes"
-msgstr "只有发布版的更新内容"
+msgstr "只有版本发布说明"
 
 #: application/views/options/version_dialog.php:60
 msgid "Only Custom Text"
@@ -10707,16 +10708,15 @@ msgstr "只有自定义文字"
 
 #: application/views/options/version_dialog.php:63
 msgid "Release Notes and Custom Text"
-msgstr "发布版的更新内容和自定义文字"
+msgstr "版本发布说明和自定义文字"
 
 #: application/views/options/version_dialog.php:68
 msgid ""
 "The Version Info is shown to every user. The user has the option to dismiss "
 "the dialog after he read it. Select if you want to show only release notes "
 "(fetched from github), only custom text or both."
-msgstr ""
-"版本信息将会对所有用户显示. 用户可以选择在阅读后关闭对话框，选择是否显示 "
-"GitHub 上发布版的更新内容还是自定义文字，或者两者。"
+msgstr "版本信息会显示给每个用户。用户在阅读后可以选择取消对话框。选择是否只显示从 "
+"Github 获取版本发布说明、只显示自定义文本或两者均显示。"
 
 #: application/views/options/version_dialog.php:72
 msgid "Version Info Custom Text"
@@ -11013,7 +11013,7 @@ msgstr "QSO 已标记为导出至 QRZ Logbook。"
 #: application/views/qslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
-msgstr "您已使用了 %s 的硬盘空间来存储 QSL 卡片"
+msgstr "您已使用 %s 硬盘空间来存储 QSL 卡片"
 
 #: application/views/qslcard/index.php:67
 msgid "Add Qsos"
@@ -11263,7 +11263,7 @@ msgstr "以 W 为单位的功率（只需要填写数值）。"
 #: application/views/reg1test/index.php:114
 #: application/views/view_log/qso.php:691
 msgid "Transmit Power (W)"
-msgstr "发射功率(W)"
+msgstr "发射功率 (W)"
 
 #: application/views/qso/edit_ajax.php:165
 msgid "Used for VUCC MultiGrids"
@@ -11321,7 +11321,7 @@ msgstr "天线仰角（以十进制度为单位）。"
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
 msgid "SIG Info"
-msgstr "SIG Info"
+msgstr "SIG 信息"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:617
@@ -11361,7 +11361,7 @@ msgstr "获取该站的 eQSL 默认消息。"
 
 #: application/views/qso/edit_ajax.php:536
 msgid "Note: Not editable. Only displayed here."
-msgstr "注意：这里不可编辑，只是用来在这里显示。"
+msgstr "注：不可编辑。仅在此处显示。"
 
 #: application/views/qso/edit_ajax.php:580
 #: application/views/view_log/partial/log_ajax.php:353
@@ -12335,7 +12335,7 @@ msgstr "确认保存 QSO 到日志并清空会话？"
 
 #: application/views/simplefle/index.php:37
 msgid "QSO Logged!"
-msgstr "QSO 已记录!"
+msgstr "QSO 已记录！"
 
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
