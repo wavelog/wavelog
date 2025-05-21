@@ -202,7 +202,7 @@ class Lookup extends CI_Controller {
     public function get_county() {
         $json = [];
 
-        if(!empty($this->security->xss_clean($this->input->get("query")))) {
+        if(!empty($this->security->xss_clean($this->input->get("state")))) {
             $county = $this->security->xss_clean($this->input->get("state"));
             $cleanedcounty = explode('(', $county);
             $cleanedcounty = trim($cleanedcounty[0]);
