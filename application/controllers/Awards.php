@@ -1239,6 +1239,123 @@ class Awards extends CI_Controller {
         echo json_encode($states);
     }
 
+	public function wap() {
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/wapmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wapmap_geojson.js")),
+			'assets/js/sections/wapmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wapmap.js")),
+			'assets/js/leaflet/L.Maidenhead.js',
+		];
+
+        $this->load->model('wap');
+		$this->load->model('modes');
+        $this->load->model('bands');
+
+        $data['worked_bands'] = $this->bands->get_worked_bands('wap');
+		$data['modes'] = $this->modes->active(); // Used in the view for mode select
+
+        if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
+            if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+                $bands = $data['worked_bands'];
+            }
+            else {
+                $bands[] = $this->security->xss_clean($this->input->post('band'));
+            }
+        }
+        else {
+            $bands = $data['worked_bands'];
+        }
+
+        $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+
+        if($this->input->method() === 'post') {
+            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+            $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+            $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+            $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+            $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+        }
+        else { // Setting default values at first load of page
+            $postdata['qsl'] = 1;
+            $postdata['lotw'] = 1;
+            $postdata['eqsl'] = 0;
+            $postdata['qrz'] = 0;
+            $postdata['worked'] = 1;
+            $postdata['confirmed'] = 1;
+            $postdata['notworked'] = 1;
+            $postdata['band'] = 'All';
+			$postdata['mode'] = 'All';
+        }
+
+        $data['wap_array'] = $this->wap->get_wap_array($bands, $postdata);
+        $data['wap_summary'] = $this->wap->get_wap_summary($bands, $postdata);
+
+        // Render Page
+        $data['page_title'] = sprintf(__("Awards - %s"), __("WAP"));
+        $this->load->view('interface_assets/header', $data);
+        $this->load->view('awards/wap/index');
+        $this->load->view('interface_assets/footer', $footerData);
+    }
+
+	/*
+        function WAP_map
+
+        This displays the WAP Worked All The Netherlands Provinces map and requires the $band_type and $mode_type
+    */
+    public function wap_map() {
+		$stateString = 'DR,FL,FR,GD,GR,LB,NB,NH,OV,UT,ZH,ZL';
+		$wapArray = explode(',', $stateString);
+
+        $this->load->model('wap');
+
+		$bands[] = $this->security->xss_clean($this->input->post('band'));
+
+        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+
+        $wap_array = $this->wap->get_wap_array($bands, $postdata);
+
+        $states = array();
+
+		foreach ($wapArray as $state) {             // Generating array for use in the table
+            $states[$state] = '-';                   // Inits each state's count
+        }
+
+
+        foreach ($wap_array as $was => $value) {
+            foreach ($value  as $key) {
+                if($key != "") {
+                    if (strpos($key, '>W<') !== false) {
+                        $states[$was] = 'W';
+                        break;
+                    }
+                    if (strpos($key, '>C<') !== false) {
+                        $states[$was] = 'C';
+                        break;
+                    }
+                    if (strpos($key, '-') !== false) {
+                        $states[$was] = '-';
+                        break;
+                    }
+                }
+            }
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($states);
+    }
+
 	/*
         function RAC_map
 
