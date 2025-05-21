@@ -582,6 +582,10 @@ class Logbook_model extends CI_Model {
 				$this->db->where('COL_STATE', $searchphrase);
 				$this->db->where_in('COL_DXCC', ['291', '6', '110']);
 				break;
+			case 'WAP':
+				$this->db->where('COL_STATE', $searchphrase);
+				$this->db->where_in('COL_DXCC', ['263']);
+				break;
 			case 'RAC':
 				$this->db->where('COL_STATE', $searchphrase);
 				$this->db->where_in('COL_DXCC', ['1']);
@@ -1463,8 +1467,8 @@ class Logbook_model extends CI_Model {
 		} else {
 			$retvals['detail']=__("DXCC has to be Numeric");
 			return $retvals;
-		}		
-		
+		}
+
 		$data = array(
 			'COL_TIME_ON' => $time_on,
 			'COL_TIME_OFF' => $time_off,
