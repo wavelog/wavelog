@@ -1296,7 +1296,7 @@ class Logbook_model extends CI_Model {
 
 		if (is_numeric($this->input->post('dxcc_id'))) {
 			$dxcc=$this->input->post('dxcc_id');
-			if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated Conuty?
+			if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated County?
 				$uscounty = $this->input->post('usa_county');
 			} elseif ($this->input->post('usa_county') && $this->input->post('input_state_edit')) {	// Both filled (and no comma - because that fits one above)
 				switch ($dxcc) {
