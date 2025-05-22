@@ -15,7 +15,6 @@ $wap = 0;
 $waja = 0;
 $was = 0;
 $wwff = 0;
-$pawap = 0;
 ?>
 <div class="container">
 
@@ -126,7 +125,7 @@ $pawap = 0;
 						<th class="master_helvetia"><input type="checkbox" <?php if ($helvetia > 0) echo 'checked';?>></th>
 						<th class="master_iota"><input type="checkbox" <?php if ($iota > 0) echo 'checked';?>></th>
 						<th class="master_jcc"><input type="checkbox" <?php if ($jcc > 0) echo 'checked';?>></th>
-						<th class="master_pawap"><input type="checkbox" <?php if ($pawap > 0) echo 'checked';?>></th>
+						<th class="master_pawap"><input type="checkbox" <?php if ($wap > 0) echo 'checked';?>></th>
 						<th class="master_pota"><input type="checkbox" <?php if ($pota > 0) echo 'checked';?>></th>
 						<th class="master_rac"><input type="checkbox" <?php if ($rac > 0) echo 'checked';?>></th>
 						<th class="master_sig"><input type="checkbox" <?php if ($sig > 0) echo 'checked';?>></th>
