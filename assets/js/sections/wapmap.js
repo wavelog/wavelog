@@ -10,7 +10,7 @@ const states = 'DR,FL,FR,GD,GR,LB,NB,NH,OV,UT,ZH,ZL';
 const wapmarkers = [
     [ "52.9", "6.6" ],    // DR Drenthe
     [ "52.5", "5.5" ],    // FL Flevoland
-    [ "53.2", "7.7" ],    // FR Friesland
+    [ "53.2", "5.7" ],    // FR Friesland
     [ "52.0", "6.0" ],     // GD Gelderland
     [ "53.3", "6.8" ],     // GR Groningen
     [ "51.3", "5.9" ],     // LB Limburg
