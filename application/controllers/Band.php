@@ -121,32 +121,32 @@ class Band extends CI_Controller {
 		return;
     }
 
-	public function saveBand() {
-		$id 				= $this->security->xss_clean($this->input->post('id'));
-		$band['status'] 	= $this->security->xss_clean($this->input->post('status'));
-		$band['cq'] 		= $this->security->xss_clean($this->input->post('cq'));
-		$band['dok'] 		= $this->security->xss_clean($this->input->post('dok'));
-		$band['dxcc'] 		= $this->security->xss_clean($this->input->post('dxcc'));
-		$band['helvetia'] 	= $this->security->xss_clean($this->input->post('helvetia'));
-		$band['iota'] 		= $this->security->xss_clean($this->input->post('iota'));
-		$band['jcc'] 		= $this->security->xss_clean($this->input->post('jcc'));
-		$band['pota'] 		= $this->security->xss_clean($this->input->post('pota'));
-		$band['rac'] 		= $this->security->xss_clean($this->input->post('rac'));
-		$band['sig'] 		= $this->security->xss_clean($this->input->post('sig'));
-		$band['sota']		= $this->security->xss_clean($this->input->post('sota'));
-		$band['uscounties'] = $this->security->xss_clean($this->input->post('uscounties'));
-		$band['wap'] 		= $this->security->xss_clean($this->input->post('wap'));
-		$band['was'] 		= $this->security->xss_clean($this->input->post('was'));
-		$band['wwff'] 		= $this->security->xss_clean($this->input->post('wwff'));
-		$band['vucc'] 		= $this->security->xss_clean($this->input->post('vucc'));
-		$band['waja'] 		= $this->security->xss_clean($this->input->post('waja'));
+    public function saveBand() {
+	    $id 				= $this->security->xss_clean($this->input->post('id'));
+	    $band['status'] 	= $this->security->xss_clean($this->input->post('status'));
+	    $band['cq'] 		= $this->security->xss_clean($this->input->post('cq'));
+	    $band['dok'] 		= $this->security->xss_clean($this->input->post('dok'));
+	    $band['dxcc'] 		= $this->security->xss_clean($this->input->post('dxcc'));
+	    $band['helvetia'] 	= $this->security->xss_clean($this->input->post('helvetia'));
+	    $band['iota'] 		= $this->security->xss_clean($this->input->post('iota'));
+	    $band['jcc'] 		= $this->security->xss_clean($this->input->post('jcc'));
+	    $band['pota'] 		= $this->security->xss_clean($this->input->post('pota'));
+	    $band['rac'] 		= $this->security->xss_clean($this->input->post('rac'));
+	    $band['sig'] 		= $this->security->xss_clean($this->input->post('sig'));
+	    $band['sota']		= $this->security->xss_clean($this->input->post('sota'));
+	    $band['uscounties'] = $this->security->xss_clean($this->input->post('uscounties'));
+	    $band['wap'] 		= $this->security->xss_clean($this->input->post('wap'));
+	    $band['was'] 		= $this->security->xss_clean($this->input->post('was'));
+	    $band['wwff'] 		= $this->security->xss_clean($this->input->post('wwff'));
+	    $band['vucc'] 		= $this->security->xss_clean($this->input->post('vucc'));
+	    $band['waja'] 		= $this->security->xss_clean($this->input->post('waja'));
 
-		$this->load->model('bands');
-        $this->bands->saveBand($id, $band);
+	    $this->load->model('bands');
+	    $this->bands->saveBand($id, $band);
 
-		header('Content-Type: application/json');
-        echo json_encode(array('message' => 'OK'));
-		return;
+	    header('Content-Type: application/json');
+	    echo json_encode(array('message' => 'OK'));
+	    return;
     }
 
 	public function saveBandAward() {

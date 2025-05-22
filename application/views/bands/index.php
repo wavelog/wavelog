@@ -56,8 +56,8 @@ $wwff = 0;
 							<th><?= __("SOTA"); ?></th>
 							<th><?= __("USA County"); ?></th>
 							<th><?= __("VUCC"); ?></th>
-							<th><?= __("WAJA"); ?></th>
 							<th><?= __("WAP"); ?></th>
+							<th><?= __("WAJA"); ?></th>
 							<th><?= __("WAS"); ?></th>
 							<th><?= __("WWFF"); ?></th>
 							<th><?= __("Bandgroup"); ?></th>
@@ -125,13 +125,13 @@ $wwff = 0;
 						<th class="master_helvetia"><input type="checkbox" <?php if ($helvetia > 0) echo 'checked';?>></th>
 						<th class="master_iota"><input type="checkbox" <?php if ($iota > 0) echo 'checked';?>></th>
 						<th class="master_jcc"><input type="checkbox" <?php if ($jcc > 0) echo 'checked';?>></th>
-						<th class="master_pawap"><input type="checkbox" <?php if ($pawap > 0) echo 'checked';?>></th>
 						<th class="master_pota"><input type="checkbox" <?php if ($pota > 0) echo 'checked';?>></th>
 						<th class="master_rac"><input type="checkbox" <?php if ($rac > 0) echo 'checked';?>></th>
 						<th class="master_sig"><input type="checkbox" <?php if ($sig > 0) echo 'checked';?>></th>
 						<th class="master_sota"><input type="checkbox" <?php if ($sota > 0) echo 'checked';?>></th>
 						<th class="master_uscounties"><input type="checkbox" <?php if ($uscounties > 0) echo 'checked';?>></th>
 						<th class="master_vucc"><input type="checkbox" <?php if ($vucc > 0) echo 'checked';?>></th>
+						<th class="master_wap"><input type="checkbox" <?php if ($wap > 0) echo 'checked';?>></th>
 						<th class="master_waja"><input type="checkbox" <?php if ($waja > 0) echo 'checked';?>></th>
 						<th class="master_was"><input type="checkbox" <?php if ($was > 0) echo 'checked';?>></th>
 						<th class="master_wwff"><input type="checkbox" <?php if ($wwff > 0) echo 'checked';?>></th>
