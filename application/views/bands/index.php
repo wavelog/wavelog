@@ -15,6 +15,7 @@ $wap = 0;
 $waja = 0;
 $was = 0;
 $wwff = 0;
+$pawap = 0;
 ?>
 <div class="container">
 
