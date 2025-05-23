@@ -281,11 +281,27 @@ function qso_edit(id) {
 
                     $('[data-bs-toggle="tooltip"]').tooltip();
 
-                    if ($('#dxcc_id_edit').val() == '291' || $('#dxcc_id_edit').val() == '110' || $('#dxcc_id_edit').val() == '6') {
-                        $('#location_us_county_edit').show();
-                    } else {
-                        $('#location_us_county_edit').hide();
-                    }
+					switch ($('#dxcc_id_edit').val()) {
+						case '6':
+						case '110':
+						case '291':
+						case '15':
+						case '54':
+						case '61':
+						case '126':
+						case '151':
+						case '288':
+						case '339':
+						case '170':
+						case '21':
+						case '29':
+						case '32':
+						case '281':
+							$('#location_us_county_edit').show();
+							break;
+						default:
+							$('#location_us_county_edit').hide();
+					}
 
                     var state = $("#stateDropdownEdit option:selected").text();
                     if (state != "") {
@@ -623,12 +639,34 @@ async function updateStateDropdown(dxcc_field, state_label, county_div, county_i
         });
     }
 
-    if (selectedDxcc.val() == '291' || selectedDxcc.val() == '110' || selectedDxcc.val() == '6') {
-        $(county_div).show();
-    } else {
-        $(county_div).hide();
-        $(county_input).val();
-    }
+	switch (selectedDxcc.val()) {
+		case '6':
+		case '110':
+		case '291': 
+			$(county_div).find('.form-control').hide();
+			$(county_div).find('.selectize-control').show();
+			$(county_div).show();
+			break;
+		case '15':
+		case '54':
+		case '61':
+		case '126':
+		case '151':
+		case '288':
+		case '339':
+		case '170':
+		case '21':
+		case '29':
+		case '32':
+		case '281':
+			$(county_div).find('.form-control').show();
+			$(county_div).find('.selectize-control').hide();
+			$(county_div).show();
+			break;
+		default:
+			$(county_div).hide();
+			$(county_input).val();
+	}
 }
 
 function spawnQrbCalculator(locator1, locator2) {

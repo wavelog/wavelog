@@ -461,40 +461,65 @@ if ($("#sat_name").val() !== '') {
 
 $('#stateDropdown').on('change', function () {
 	var state = $("#stateDropdown option:selected").text();
+	var dxcc = $("#dxcc_id option:selected").val();
+	
+	
+	
 	if (state != "") {
-		$("#stationCntyInputQso").prop('disabled', false);
-
-		$('#stationCntyInputQso').selectize({
-			maxItems: 1,
-			closeAfterSelect: true,
-			loadThrottle: 250,
-			valueField: 'name',
-			labelField: 'name',
-			searchField: 'name',
-			options: [],
-			create: false,
-			load: function (query, callback) {
-				var state = $("#stateDropdown option:selected").text();
-
-				if (!query || state == "") return callback();
-				$.ajax({
-					url: base_url + 'index.php/qso/get_county',
-					type: 'GET',
-					dataType: 'json',
-					data: {
-						query: query,
-						state: state,
-					},
-					error: function () {
-						callback();
-					},
-					success: function (res) {
-						callback(res);
+		switch (dxcc) {
+			case '6':
+			case '110':
+			case '291': 
+				$("#stationCntyInputQso").prop('disabled', false);
+				$('#stationCntyInputQso').selectize({
+					maxItems: 1,
+					closeAfterSelect: true,
+					loadThrottle: 250,
+					valueField: 'name',
+					labelField: 'name',
+					searchField: 'name',
+					options: [],
+					create: false,
+					load: function (query, callback) {
+						var state = $("#stateDropdown option:selected").text();
+		
+						if (!query || state == "") return callback();
+						$.ajax({
+							url: base_url + 'index.php/qso/get_county',
+							type: 'GET',
+							dataType: 'json',
+							data: {
+								query: query,
+								state: state,
+							},
+							error: function () {
+								callback();
+							},
+							success: function (res) {
+								callback(res);
+							}
+						});
 					}
 				});
-			}
-		});
-
+				break;
+			case '15':
+			case '54':
+			case '61':
+			case '126':
+			case '151':
+			case '288':
+			case '339':
+			case '170':
+			case '21':
+			case '29':
+			case '32':
+			case '281':
+				$("#stationCntyInputQso").prop('disabled', false);
+				break;
+			default:
+				$("#stationCntyInputQso").prop('disabled', true);
+		}
+		
 	} else {
 		$("#stationCntyInputQso").prop('disabled', true);
 		//$('#stationCntyInputQso')[0].selectize.destroy();
