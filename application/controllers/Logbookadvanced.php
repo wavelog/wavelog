@@ -604,7 +604,6 @@ class Logbookadvanced extends CI_Controller {
 		$this->user_options_model->set_option('LogbookAdvanced', 'LogbookAdvanced', $obj);
 
 
-		$lba_map['gridsquare_layer']=(xss_clean($this->input->post('gridsquare_layer')) ?? '') == '' ? false : 
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'gridsquare_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('gridsquare_layer')))));
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'path_lines',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('path_lines')))));
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'cqzones_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('cqzone_layer')))));
