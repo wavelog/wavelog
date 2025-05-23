@@ -11,6 +11,7 @@ $sig = 0;
 $sota = 0;
 $uscounties = 0;
 $vucc = 0;
+$wap = 0;
 $waja = 0;
 $was = 0;
 $wwff = 0;
@@ -55,6 +56,7 @@ $wwff = 0;
 							<th><?= __("SOTA"); ?></th>
 							<th><?= __("USA County"); ?></th>
 							<th><?= __("VUCC"); ?></th>
+							<th><?= __("WAP"); ?></th>
 							<th><?= __("WAJA"); ?></th>
 							<th><?= __("WAS"); ?></th>
 							<th><?= __("WWFF"); ?></th>
@@ -86,6 +88,7 @@ $wwff = 0;
 								<td style="text-align: center; vertical-align: middle;" class='sota_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->sota == 1) {echo 'checked'; $sota++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='uscounties_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->uscounties == 1) {echo 'checked'; $uscounties++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='vucc_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->vucc == 1) {echo 'checked'; $vucc++;}?>></td>
+								<td style="text-align: center; vertical-align: middle;" class='wap_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->wap == 1) {echo 'checked'; $wap++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='waja_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->waja == 1) {echo 'checked'; $waja++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='was_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->was == 1) {echo 'checked'; $was++;}?>></td>
 								<td style="text-align: center; vertical-align: middle;" class='wwff_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->wwff == 1) {echo 'checked'; $wwff++;}?>></td>
@@ -128,6 +131,7 @@ $wwff = 0;
 						<th class="master_sota"><input type="checkbox" <?php if ($sota > 0) echo 'checked';?>></th>
 						<th class="master_uscounties"><input type="checkbox" <?php if ($uscounties > 0) echo 'checked';?>></th>
 						<th class="master_vucc"><input type="checkbox" <?php if ($vucc > 0) echo 'checked';?>></th>
+						<th class="master_wap"><input type="checkbox" <?php if ($wap > 0) echo 'checked';?>></th>
 						<th class="master_waja"><input type="checkbox" <?php if ($waja > 0) echo 'checked';?>></th>
 						<th class="master_was"><input type="checkbox" <?php if ($was > 0) echo 'checked';?>></th>
 						<th class="master_wwff"><input type="checkbox" <?php if ($wwff > 0) echo 'checked';?>></th>

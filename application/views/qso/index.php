@@ -134,7 +134,7 @@
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>
                   <small id="callsign_info" class="badge text-bg-secondary"></small> <a id="lotw_link"><small id="lotw_info" class="badge text-bg-success"></small></a>
-                  <p id="ham_of_note_line" style="margin-top: 5px; display: none"><small id="ham_of_note_info"></small><small><a id="ham_of_note_link"></a></small></p>
+                  <p id="ham_of_note_line" style="margin-top: 5px; display: none"><small id="ham_of_note_info"></small><small><a id="ham_of_note_link" target="_blank"></a></small></p>
                 </div>
               </div>
 
@@ -256,14 +256,14 @@
 
               <?php if ($user_sig_to_qso_tab ?? false) { ?>
               <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label" for="sig"><?= __("Sig"); ?></label>
+                <label class="col-sm-3 col-form-label" for="sig"><?= __("SIG"); ?></label>
                 <div class="col-sm-9">
                   <input class="form-control text-uppercase" id="sig" tabindex="15" type="text" name="sig" value="" />
                 </div>
               </div>
 
               <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label" for="sig_info"><?= __("Sig Info"); ?></label>
+                <label class="col-sm-3 col-form-label" for="sig_info"><?= __("SIG Info"); ?></label>
                 <div class="col-sm-9">
                   <input class="form-control text-uppercase" id="sig_info" tabindex="16" type="text" name="sig_info" value="" />
                 </div>
@@ -549,13 +549,13 @@
 
             <?php if (!$user_sig_to_qso_tab ?? false) { ?>
             <div class="mb-3">
-              <label for="sig"><?= __("Sig"); ?></label>
+              <label for="sig"><?= __("SIG"); ?></label>
               <input class="form-control text-uppercase" id="sig" type="text" name="sig" value="" />
               <small id="sigHelp" class="form-text text-muted"><?= __("For example: GMA"); ?></small>
             </div>
 
             <div class="mb-3">
-              <label for="sig_info"><?= __("Sig Info"); ?></label>
+              <label for="sig_info"><?= __("SIG Info"); ?></label>
               <input class="form-control text-uppercase" id="sig_info" type="text" name="sig_info" value="" />
               <small id="sigInfoHelp" class="form-text text-muted"><?= __("For example: DA/NW-357"); ?></small>
             </div>

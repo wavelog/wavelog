@@ -50,21 +50,12 @@
                                 </select>
                             <small id="themeHelp" class="form-text text-muted"><?= __("Global Theme Choice, this is used when users arent logged in."); ?></small>
                         </div>
-                        
-                        
+
+
                             <select class="form-select" id="globalSearch" name="globalSearch" style="display: none;">
                                 <option value='true' <?php if($this->optionslib->get_option('global_search') == "true") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
                                 <option value='false' <?php if($this->optionslib->get_option('global_search') == "false") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
                             </select>
-
-                        <div class="mb-3">
-                            <label for="dashboardBanner"><?= __("Dashboard Notification Banner"); ?></label>
-                            <select class="form-select" id="dashboardBanner" name="dashboardBanner" aria-describedby="dashboardBannerHelp" required>
-                                <option value='true' <?php if($this->optionslib->get_option('dashboard_banner') == "true") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
-                                <option value='false' <?php if($this->optionslib->get_option('dashboard_banner') == "false") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
-                            </select>
-                            <small id="dashboardBannerHelp" class="form-text text-muted"><?= __("This allows to disable the global notification banner on the dashboard."); ?></small>
-                        </div>
 
                         <div class="mb-3">
                             <label for="logbookMap"><?= __("Logbook Map"); ?></label>

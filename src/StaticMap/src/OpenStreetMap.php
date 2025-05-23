@@ -21,10 +21,10 @@ class OpenStreetMap
      * @param int $zoom Zoom
      * @param int $imageWidth Width of the generated map image
      * @param int $imageHeight Height of the generated map image
-     * @param TileLayer $tileLayer Tile server configuration, defaults to OpenStreetMaps tile server
+     * @param TileLayer|null $tileLayer Tile server configuration, defaults to OpenStreetMaps tile server
      * @param int $tileSize Tile size in pixels
      */
-    public static function createFromLatLngZoom(LatLng $centerMap, int $zoom, int $imageWidth, int $imageHeight, TileLayer $tileLayer = null, int $tileSize = 256): OpenStreetMap
+    public static function createFromLatLngZoom(LatLng $centerMap, int $zoom, int $imageWidth, int $imageHeight, ?TileLayer $tileLayer = null, int $tileSize = 256): OpenStreetMap
     {
         return new OpenStreetMap($centerMap, $zoom, $imageWidth, $imageHeight, $tileLayer, $tileSize);
     }
@@ -36,11 +36,11 @@ class OpenStreetMap
      * @param int $padding Padding to add before top left and after bottom right position.
      * @param int $imageWidth Width of the generated map image
      * @param int $imageHeight Height of the generated map image
-     * @param TileLayer $tileLayer Tile server configuration, defaults to OpenStreetMaps tile server
+     * @param TileLayer|null $tileLayer Tile server configuration, defaults to OpenStreetMaps tile server
      * @param int $tileSize Tile size in pixels
      * @return OpenStreetMap
      */
-    public static function createFromBoundingBox(LatLng $topLeft, LatLng $bottomRight, int $padding, int $imageWidth, int $imageHeight, TileLayer $tileLayer = null, int $tileSize = 256): OpenStreetMap
+    public static function createFromBoundingBox(LatLng $topLeft, LatLng $bottomRight, int $padding, int $imageWidth, int $imageHeight, ?TileLayer $tileLayer = null, int $tileSize = 256): OpenStreetMap
     {
         if ($tileLayer === null) {
             $tileLayer = TileLayer::defaultTileLayer();
@@ -73,10 +73,10 @@ class OpenStreetMap
      * @param int $zoom Zoom
      * @param int $imageWidth Width of the generated map image
      * @param int $imageHeight Height of the generated map image
-     * @param TileLayer $tileLayer Tile server configuration, defaults to OpenStreetMaps tile server
+     * @param TileLayer|null $tileLayer Tile server configuration, defaults to OpenStreetMaps tile server
      * @param int $tileSize Tile size in pixels
      */
-    public function __construct(LatLng $centerMap, int $zoom, int $imageWidth, int $imageHeight, TileLayer $tileLayer = null, int $tileSize = 256)
+    public function __construct(LatLng $centerMap, int $zoom, int $imageWidth, int $imageHeight, ?TileLayer $tileLayer = null, int $tileSize = 256)
     {
         if ($tileLayer === null) {
             $tileLayer = TileLayer::defaultTileLayer();

@@ -169,7 +169,7 @@ class Distances_model extends CI_Model
 
 		if (!$this->valid_locator($stationgrid)) {
 			header('Content-Type: application/json');
-			echo json_encode(array('Error' => 'Error. There is a problem with the gridsquare set in your profile!'));
+			echo json_encode(array('Error' => 'Error. There is a problem with the gridsquare ('.$stationgrid.') set in your profile!'));
 			exit;
 		} else {
 			// Making the array we will use for plotting, we save occurrences of the length of each qso in the array
