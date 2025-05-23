@@ -159,9 +159,12 @@
 
 
     foreach ($mapoptions as $mo) {
-        if ($mo != null) {
-            echo "var " . $mo->option_name . "=" . $mo->option_value . ";";
-        }
+	    if ($mo != null) {
+		    if (($mo->option_key == 'boolean') && (($mo->option_value ?? '') == '')) {
+			    $mo->option_value='false';
+		    }
+		    echo "var " . $mo->option_name . "=" . $mo->option_value . ";";
+	    }
     }
     ?>
     var tileUrl = "<?php echo $this->optionslib->get_option('option_map_tile_server'); ?>"
