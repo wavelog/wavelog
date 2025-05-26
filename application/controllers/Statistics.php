@@ -120,7 +120,7 @@ class Statistics extends CI_Controller {
 
 		//get year if present
 		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		
+
 		//load stats
 		$total_operators = $this->logbook_model->total_operators($yr);
 
@@ -306,5 +306,22 @@ class Statistics extends CI_Controller {
 		$data['filter'] = $sat;
 
 		$this->load->view('statistics/details', $data);
+	}
+
+	public function initials() {
+		$this->load->model('modes');
+		$this->load->model('bands');
+
+		$data['modes'] = $this->modes->active();
+
+		$data['worked_bands'] = $this->bands->get_worked_bands();
+
+		// Set Page Title
+		$data['page_title'] = __("EME Initials");
+
+		// Load Views
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('statistics/initials');
+		$this->load->view('interface_assets/footer');
 	}
 }
