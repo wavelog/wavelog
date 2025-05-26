@@ -15,8 +15,8 @@ $(".activatorstable").DataTable({
 
 function showinitials() {
 	var data = {
-        mode: $('#band').val(),
-        band: $('#mode').val()
+        band: $('#band').val(),
+        mode: $('#mode').val()
     };
 
 	$.ajax({
