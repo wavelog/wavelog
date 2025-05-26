@@ -7,7 +7,6 @@
                     <label class="col-md-1 control-label" for="band"><?= __("Band") ?></label>
                     <div class="col-md-3">
                         <select id="band" name="band" class="form-select">
-                            <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
                             <?php foreach($worked_bands as $band) {
                                 echo '<option value="' . $band . '"';
                                 if ($this->input->post('band') == $band) echo ' selected';

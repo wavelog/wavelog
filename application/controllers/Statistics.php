@@ -314,7 +314,7 @@ class Statistics extends CI_Controller {
 
 		$data['modes'] = $this->modes->active();
 
-		$data['worked_bands'] = $this->bands->get_worked_bands();
+		$data['worked_bands'] = $this->bands->get_worked_bands_eme();
 
 		// Set Page Title
 		$data['page_title'] = __("EME Initials");
