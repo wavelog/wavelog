@@ -309,10 +309,10 @@ class Statistics extends CI_Controller {
 	}
 
 	public function initials() {
-		$this->load->model('modes');
+		$this->load->model('stats');
 		$this->load->model('bands');
 
-		$data['modes'] = $this->modes->active();
+		$data['modes'] = $this->stats->get_eme_modes();
 
 		$data['worked_bands'] = $this->bands->get_worked_bands_eme();
 

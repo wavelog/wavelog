@@ -951,6 +951,29 @@
 		return $result->result();
 	}
 
+	function get_eme_modes() {
+
+		$modes = array();
+
+		$this->db->select('distinct col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->where($this->config->item('table_name').'.col_prop_mode', 'EME');
+		$this->db->order_by('col_mode, col_submode', 'ASC');
+
+		$query = $this->db->get($this->config->item('table_name'));
+
+		foreach($query->result() as $mode){
+			if ($mode->col_submode == null || $mode->col_submode == "") {
+				array_push($modes, $mode->col_mode);
+			} else {
+				array_push($modes, $mode->col_submode);
+			}
+		}
+
+		return $modes;
+	}
+
 }
 
 ?>

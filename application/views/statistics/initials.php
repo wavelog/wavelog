@@ -9,9 +9,7 @@
 						<div class="w-auto">
 							<select id="band" name="band" class="form-select">
 								<?php foreach($worked_bands as $band) {
-									echo '<option value="' . $band . '"';
-									if ($this->input->post('band') == $band) echo ' selected';
-									echo '>' . $band . '</option>'."\n";
+									echo '<option value="' . $band . '">' . $band . '</option>'."\n";
 								} ?>
 							</select>
 						</div>
@@ -21,16 +19,8 @@
 							<select id="mode" name="mode" class="form-select">
 								<option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
 								<?php
-								foreach($modes->result() as $mode){
-									if ($mode->submode == null) {
-										echo '<option value="' . $mode->mode . '"';
-										if ($this->input->post('mode') == $mode->mode) echo ' selected';
-										echo '>' . $mode->mode . '</option>'."\n";
-									} else {
-										echo '<option value="' . $mode->submode . '"';
-										if ($this->input->post('mode') == $mode->submode) echo ' selected';
-										echo '>' . $mode->submode . '</option>'."\n";
-									}
+								foreach($modes as $mode){
+										echo '<option value="' . $mode . '">' . $mode . '</option>'."\n";
 								}
 								?>
 							</select>
