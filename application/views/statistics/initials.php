@@ -5,8 +5,8 @@
 		<form>
 			<!-- Select Basic -->
 					<div class="mb-3 row">
-						<label class="col-md-1 control-label" for="band"><?= __("Band") ?></label>
-						<div class="col-md-3">
+						<label class="w-auto control-label" for="band"><?= __("Band") ?></label>
+						<div class="w-auto">
 							<select id="band" name="band" class="form-select">
 								<?php foreach($worked_bands as $band) {
 									echo '<option value="' . $band . '"';
@@ -16,8 +16,8 @@
 							</select>
 						</div>
 
-						<label class="col-md-1 control-label" for="mode"><?= __("Mode") ?></label>
-						<div class="col-md-3">
+						<label class="w-auto control-label" for="mode"><?= __("Mode") ?></label>
+						<div class="w-auto">
 							<select id="mode" name="mode" class="form-select">
 								<option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
 								<?php
@@ -35,10 +35,8 @@
 								?>
 							</select>
 						</div>
-					</div>
-					<div class="mb-3 row">
-					<label class="col-md-1 control-label" for="button1id"></label>
-					<div class="col-md-10">
+					<label class="w-auto control-label" for="button1id"></label>
+					<div class="w-auto">
 						<button onclick="showinitials();" type="button" name="button1id" class="btn btn-primary"><?= __("Show") ?></button>
 					</div>
 				</div>
