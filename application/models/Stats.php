@@ -929,7 +929,7 @@
 			return null;
 		}
 
-		$sql = "SELECT col_call, min(col_time_on) firstworked, col_band FROM ".$this->config->item('table_name');
+		$sql = "SELECT col_call, min(col_time_on) firstworked, col_band, min(col_primary_key) qsoid FROM ".$this->config->item('table_name');
 
 		$sql .= " where station_id in (" . implode(',',$logbooks_locations_array) . ") and col_prop_mode ='EME'";
 

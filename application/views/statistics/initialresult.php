@@ -29,7 +29,7 @@ if ($intials_array) {
                 <td>' . $line->col_call . '</td>
                 <td>' . $line->col_band . '</td>
                 <td></td>
-                <td><a href=javascript:displayContacts()>' . __("Show") . '</a></td>
+                <td><a href=javascript:displayQso(' . $line->qsoid . ')>' . __("Show") . '</a></td>
 		</tr>';
 	}
 
