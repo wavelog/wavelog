@@ -10,20 +10,21 @@
 # Christian Egger <zone11@mac.com>, 2025.
 # remy56k <remy@bubocode.fr>, 2025.
 # André Aubin <andre@andral.xyz>, 2025.
+# KARIM MALFI <karim.malfi@sfr.fr>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-05-23 07:03+0000\n"
-"PO-Revision-Date: 2025-04-01 09:52+0000\n"
-"Last-Translator: André Aubin <andre@andral.xyz>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"PO-Revision-Date: 2025-05-26 12:50+0000\n"
+"Last-Translator: KARIM MALFI <karim.malfi@sfr.fr>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -126,16 +127,19 @@ msgstr ""
 #: application/controllers/User.php:1540
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#, fuzzy
 msgid "You're not allowed to do that!"
 msgstr "Vous n'as pas le droit de faire ça !"
 
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:160
+#, fuzzy
 msgid "Accumulated Statistics"
 msgstr "Statistiques accumulées"
 
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
+#, fuzzy
 msgid "Activated Gridsquare Map"
 msgstr "Carte des Locator activés"
 
@@ -148,145 +152,173 @@ msgstr "Carte des Locator activés"
 #: application/views/interface_assets/footer.php:47
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
+#, fuzzy
 msgid "Gridsquares"
 msgstr "Locator"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:386
+#, fuzzy
 msgid "Gridsquares confirmed"
 msgstr "Locator confirmés"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:387
+#, fuzzy
 msgid "Gridsquares not confirmed"
 msgstr "Locator non confirmés"
 
 #: application/controllers/Activated_gridmap.php:34
+#, fuzzy
 msgid "Total gridsquares activated"
 msgstr "Total des Locator activés"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:390
+#, fuzzy
 msgid "Fields"
 msgstr "Champs"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:391
+#, fuzzy
 msgid "Fields confirmed"
 msgstr "Champs confirmés"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:38
 #: application/controllers/Visitor.php:392
+#, fuzzy
 msgid "Fields not confirmed"
 msgstr "Champs non confirmés"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:393
+#, fuzzy
 msgid "Total fields worked"
 msgstr "Nombre total de champs travaillés"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:150
+#, fuzzy
 msgid "Gridsquare Activators"
 msgstr "Activateurs de Locator"
 
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
+#, fuzzy
 msgid "Activators Map"
 msgstr "Carte des Activateurs"
 
 #: application/controllers/Adif.php:18
+#, fuzzy
 msgid "valid date"
 msgstr "date de validité"
 
 #: application/controllers/Adif.php:20
+#, fuzzy
 msgid "date incorrect"
 msgstr "date incorrecte"
 
 #: application/controllers/Adif.php:134
 #: application/views/interface_assets/header.php:441
+#, fuzzy
 msgid "ADIF Import / Export"
 msgstr "Importer / Exporter ADIF"
 
 #: application/controllers/Adif.php:165 application/views/adif/import.php:21
 #: application/views/lotw/import.php:3
+#, fuzzy
 msgid "ADIF Import"
 msgstr "Importer ADIF"
 
 #: application/controllers/Adif.php:206
+#, fuzzy
 msgid "Unsupported Filetype"
 msgstr "Type de fichier non pris en charge"
 
 #: application/controllers/Adif.php:260
 #: application/views/adif/import_failed.php:12
+#, fuzzy
 msgid "ADIF Import failed!"
 msgstr "Échec de l'import ADIF !"
 
 #: application/controllers/Adif.php:274
+#, fuzzy
 msgid "Station Profile not valid for User"
 msgstr "Profil de station non valide pour l'utilisateur"
 
 #: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
+#, fuzzy
 msgid "ADIF Imported"
 msgstr "ADIF importé"
 
 #: application/controllers/Adif.php:293
+#, fuzzy
 msgid "DCL Import"
 msgstr "Import DCL"
 
 #: application/controllers/Adif.php:351
+#, fuzzy
 msgid "DCL Data Imported"
 msgstr "Données DCL importées"
 
 #: application/controllers/Api.php:14
+#, fuzzy
 msgid "API"
 msgstr "API"
 
 #: application/controllers/Api.php:37 application/views/api/description.php:26
+#, fuzzy
 msgid "API Description"
 msgstr "Description de l'API"
 
 #: application/controllers/Api.php:38
+#, fuzzy
 msgid "API Key is required. Do not change this field"
 msgstr "La clé API est requise, ne modifiez pas ce champ"
 
 #: application/controllers/Api.php:44
+#, fuzzy
 msgid "Edit API Description"
 msgstr "Modifier de l'API"
 
 #: application/controllers/Api.php:56
-#, php-format
+#, fuzzy, php-format
 msgid "API Key %s description has been updated."
 msgstr "Les informations sur la clé API %s a été mise à jour."
 
 #: application/controllers/Api.php:68
+#, fuzzy
 msgid "Invalid API rights"
 msgstr "Droits d'API invalides"
 
 #: application/controllers/Api.php:82
+#, fuzzy
 msgid "API Key generated"
 msgstr "Clé API générée"
 
 #: application/controllers/Api.php:84
+#, fuzzy
 msgid "API Key could not be generated"
 msgstr "La clé API n'a pas pu être générée"
 
 #: application/controllers/Api.php:98
-#, php-format
+#, fuzzy, php-format
 msgid "API Key %s has been deleted"
 msgstr "La clé API %s a été supprimée"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:170
 #: application/views/qso/edit_ajax.php:36
+#, fuzzy
 msgid "Awards"
 msgstr "Trophées"
 
@@ -310,7 +342,7 @@ msgstr "Trophées"
 #: application/controllers/Awards.php:2041
 #: application/controllers/Awards.php:2119
 #: application/controllers/Awards.php:2131
-#, php-format
+#, fuzzy, php-format
 msgid "Awards - %s"
 msgstr "Trophées - %s"
 
@@ -324,6 +356,7 @@ msgstr "Trophées - %s"
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:275
 #: application/views/qso/index.php:566 application/views/user/edit.php:670
 #: application/views/view_log/qso.php:460
+#, fuzzy
 msgid "DOK"
 msgstr "DOK"
 
@@ -348,24 +381,29 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
+#, fuzzy
 msgid "DXCC"
 msgstr "DXCC"
 
 #: application/controllers/Awards.php:256
+#, fuzzy
 msgid "Awards - WAJA"
 msgstr "Trophées - WAJA"
 
 #: application/controllers/Awards.php:332 application/views/bands/index.php:52
 #: application/views/interface_assets/header.php:232
+#, fuzzy
 msgid "JCC"
 msgstr "JCC"
 
 #: application/controllers/Awards.php:380 application/views/bands/index.php:58
 #: application/views/interface_assets/header.php:182
+#, fuzzy
 msgid "VUCC"
 msgstr "VUCC"
 
 #: application/controllers/Awards.php:410
+#, fuzzy
 msgid "Log View - VUCC"
 msgstr "Vue du journal - VUCC"
 
@@ -379,36 +417,43 @@ msgstr "Vue du journal - VUCC"
 #: application/controllers/Timeline.php:135
 #: application/controllers/Timeline.php:138
 #: application/controllers/Timeline.php:141
+#, fuzzy
 msgid "Log View"
 msgstr "Vue du journal"
 
 #: application/controllers/Awards.php:459
 #: application/controllers/Callstats.php:101
+#, fuzzy
 msgid " and band "
 msgstr " et bande "
 
 #: application/controllers/Awards.php:462
 #: application/controllers/Callstats.php:104
+#, fuzzy
 msgid " and sat "
 msgstr " et satellite "
 
 #: application/controllers/Awards.php:465
 #: application/controllers/Callstats.php:107
+#, fuzzy
 msgid " and orbit type "
 msgstr " et une orbite "
 
 #: application/controllers/Awards.php:469
 #: application/controllers/Callstats.php:111
+#, fuzzy
 msgid " and propagation "
 msgstr " et une propagation "
 
 #: application/controllers/Awards.php:472
 #: application/controllers/Callstats.php:114
+#, fuzzy
 msgid " and mode "
 msgstr " et le mode "
 
 #: application/controllers/Awards.php:475
 #: application/controllers/Callstats.php:117
+#, fuzzy
 msgid " and "
 msgstr " et "
 
@@ -436,6 +481,7 @@ msgstr " et "
 #: application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#, fuzzy
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -609,6 +655,7 @@ msgstr "Modifier la bande"
 #: application/controllers/Options.php:152
 #: application/controllers/Options.php:163
 #: application/views/options/sidebar.php:10
+#, fuzzy
 msgid "DXCluster"
 msgstr "DXCluster"
 
