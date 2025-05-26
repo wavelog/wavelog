@@ -39,8 +39,9 @@
 				<div class="mb-3 row">
                 <label class="col-md-1 control-label" for="button1id"></label>
                 <div class="col-md-10">
-                    <button id="showinitials();" type="button" name="button1id" class="btn btn-primary"><?= __("Show") ?></button>
+                    <button onclick="showinitials();" type="button" name="button1id" class="btn btn-primary"><?= __("Show") ?></button>
                 </div>
             </div>
 	</form>
+	<div class="resulttable"></div>
 </div>

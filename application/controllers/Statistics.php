@@ -319,9 +319,23 @@ class Statistics extends CI_Controller {
 		// Set Page Title
 		$data['page_title'] = __("EME Initials");
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/initials.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/initials.js")),
+		];
+
 		// Load Views
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('statistics/initials');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	public function getInitials() {
+		$band = xss_clean($this->input->post('band'));
+		$mode = xss_clean($this->input->post('mode'));
+
+		$this->load->model('stats');
+		$data['intials_array'] = $this->stats->getInitialsFromDb($band, $mode);
+		$this->load->view('statistics/initialresult', $data);
 	}
 }

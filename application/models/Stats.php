@@ -918,6 +918,10 @@
 
 		return $this->db->get($this->config->item('table_name'));
 	}
+
+	public function getInitialsFromDb($band, $mode) {
+
+	}
 }
 
 ?>
