@@ -37,5 +37,5 @@ if ($intials_array) {
 
 		echo '</tbody></table>';
 } else {
-	echo __("No EME QSO(s) was found.");
+	echo __("No EME QSOs were found.");
 }
