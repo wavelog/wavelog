@@ -929,7 +929,7 @@
 			return null;
 		}
 
-		$sql = "select thcv.col_call, thcv.col_time_on, thcv.col_band, thcv.col_mode, thcv.col_submode, thcv.col_primary_key FROM ". $this->config->item('table_name') . " thcv";
+		$sql = "select thcv.col_call, thcv.col_time_on, thcv.col_band, thcv.col_mode, thcv.col_submode, thcv.col_primary_key, thcv.col_vucc_grids, thcv.col_gridsquare FROM ". $this->config->item('table_name') . " thcv";
 
 		$sql .= " join (SELECT col_call, min(col_time_on) firstworked, col_band, min(col_primary_key) qsoid FROM ".$this->config->item('table_name');
 
