@@ -4,7 +4,7 @@
 	<?php if ($worked_bands) { ?>
 		<form>
 			<!-- Select Basic -->
-					<div class="mb-3 row">
+					<div class="mb-3 d-flex align-items-center row">
 						<label class="w-auto control-label" for="band"><?= __("Band") ?></label>
 						<div class="w-auto">
 							<select id="band" name="band" class="form-select">
