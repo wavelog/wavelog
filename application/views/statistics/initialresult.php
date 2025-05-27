@@ -22,14 +22,14 @@ if ($intials_array) {
                 <tbody>';
 		$i = 1;
 	foreach ($intials_array as $line) {
-        $date_as_timestamp = strtotime($line->firstworked ?? '1970-01-01 00:00:00');
+        $date_as_timestamp = strtotime($line->col_time_on ?? '1970-01-01 00:00:00');
         echo '<tr>
                 <td>' . $i++ . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_call . '</td>
                 <td>' . $line->col_band . '</td>
-                <td></td>
-                <td><a href=javascript:displayQso(' . $line->qsoid . ')>' . __("Show") . '</a></td>
+                <td>' . ($line->col_submode ?? $line->col_mode) . '</td>
+                <td><a href=javascript:displayQso(' . $line->col_primary_key . ')>' . __("Show") . '</a></td>
 		</tr>';
 	}
 
