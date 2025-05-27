@@ -33,7 +33,7 @@
 		</form>
 		<div class="resulttable"></div>
 	<?php } else {
-		echo __("No EME QSO(s) was found.");
+		echo __("No EME QSOs were found.");
 	} ?>
 
 </div>
