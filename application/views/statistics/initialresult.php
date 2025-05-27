@@ -13,10 +13,10 @@ if ($intials_array) {
                     <tr>
                         <th>#</th>
                         <th>' . __("Date") . '</th>
+                        <th>' . __("Time") . '</th>
                         <th>' . __("Callsign") . '</th>
 						<th>' . __("Band") . '</th>
 						<th>' . __("Mode") . '</th>
-                        <th>' . __("Show QSOs") . '</th>
                     </tr>
                 </thead>
                 <tbody>';
@@ -26,10 +26,10 @@ if ($intials_array) {
         echo '<tr>
                 <td>' . $i++ . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $line->col_call . '</td>
+                <td>' . date('H:i', $date_as_timestamp) . '</td>
+                <td><a href=javascript:displayQso(' . $line->col_primary_key . ')>' . $line->col_call . '</a></td>
                 <td>' . $line->col_band . '</td>
                 <td>' . ($line->col_submode ?? $line->col_mode) . '</td>
-                <td><a href=javascript:displayQso(' . $line->col_primary_key . ')>' . __("Show") . '</a></td>
 		</tr>';
 	}
 
