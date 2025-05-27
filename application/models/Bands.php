@@ -391,6 +391,25 @@ class Bands extends CI_Model {
 
 		return $worked_slots;
 	}
+
+	function get_worked_bands_eme() {
+		if (!$this->logbooks_locations_array) {
+			return array();
+		}
+
+		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
+
+		// get all worked slots from database
+		$data = $this->db->query(
+			"SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` WHERE station_id in (" . $location_list . ") AND COL_PROP_MODE = 'EME'"
+		);
+		$worked_slots = array();
+		foreach($data->result() as $row){
+			array_push($worked_slots, $row->COL_BAND);
+		}
+
+		return $worked_slots;
+	}
 }
 
 ?>
