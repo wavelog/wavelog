@@ -7,7 +7,7 @@
 					<div class="mb-3 d-flex align-items-center row">
 						<label class="w-auto control-label" for="band"><?= __("Band") ?></label>
 						<div class="w-auto">
-							<select id="band" name="band" class="form-select">
+							<select id="band" name="band" class="form-select form-select-sm">
 								<?php foreach($worked_bands as $band) {
 									echo '<option value="' . $band . '">' . $band . '</option>'."\n";
 								} ?>
@@ -16,7 +16,7 @@
 
 						<label class="w-auto control-label" for="mode"><?= __("Mode") ?></label>
 						<div class="w-auto">
-							<select id="mode" name="mode" class="form-select">
+							<select id="mode" name="mode" class="form-select form-select-sm">
 								<option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
 								<?php
 								foreach($modes as $mode){
@@ -27,7 +27,7 @@
 						</div>
 					<label class="w-auto control-label" for="button1id"></label>
 					<div class="w-auto">
-						<button onclick="showinitials();" type="button" name="button1id" class="btn btn-primary"><?= __("Show") ?></button>
+						<button onclick="showinitials();" type="button" name="button1id" class="btn btn-sm btn-primary"><?= __("Show") ?></button>
 					</div>
 				</div>
 		</form>

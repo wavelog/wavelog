@@ -8,15 +8,15 @@ if ($intials_array) {
         // Get Default date format from /config/wavelog.php
         $custom_date_format = $this->config->item('qso_date_format');
     }
-    echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
+    echo '<table style="width:100%" class="table table-sm intialstable table-bordered table-hover table-striped table-condensed text-center">
 			<thead>
                     <tr>
-                        <td>#</td>
-                        <td>' . __("Date") . '</td>
-                        <td>' . __("Callsign") . '</td>
-						<td>' . __("Band") . '</td>
-						<td>' . __("Mode") . '</td>
-                        <td>' . __("Show QSOs") . '</td>
+                        <th>#</th>
+                        <th>' . __("Date") . '</th>
+                        <th>' . __("Callsign") . '</th>
+						<th>' . __("Band") . '</th>
+						<th>' . __("Mode") . '</th>
+                        <th>' . __("Show QSOs") . '</th>
                     </tr>
                 </thead>
                 <tbody>';

@@ -26,7 +26,7 @@ function showinitials() {
 		success: function (html) {
 			$(".resulttable").empty();
 			$(".resulttable").html(html);
-			$(".qsotable").DataTable();
+			$(".intialstable").DataTable();
 		},
 	});
 }
