@@ -1,18 +1,3 @@
-$(".activatorstable").DataTable({
-	pageLength: 25,
-	responsive: false,
-	ordering: false,
-	scrollY: "500px",
-	scrollCollapse: true,
-	paging: false,
-	scrollX: true,
-	language: {
-		url: getDataTablesLanguageUrl(),
-	},
-	dom: "Bfrtip",
-	buttons: ["csv"],
-});
-
 function showinitials() {
 	var data = {
         band: $('#band').val(),
@@ -26,7 +11,20 @@ function showinitials() {
 		success: function (html) {
 			$(".resulttable").empty();
 			$(".resulttable").html(html);
-			$(".intialstable").DataTable();
+			$(".intialstable").DataTable({
+				pageLength: 25,
+				responsive: false,
+				ordering: false,
+				scrollY: "500px",
+				scrollCollapse: true,
+				paging: false,
+				scrollX: true,
+				language: {
+					url: getDataTablesLanguageUrl(),
+				},
+				dom: "Bfrtip",
+				buttons: ["csv"],
+			});
 		},
 	});
 }
