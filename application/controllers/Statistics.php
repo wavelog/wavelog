@@ -120,7 +120,7 @@ class Statistics extends CI_Controller {
 
 		//get year if present
 		$yr = xss_clean($this->input->post('yr')) ?? 'All';
-		
+
 		//load stats
 		$total_operators = $this->logbook_model->total_operators($yr);
 
@@ -306,5 +306,36 @@ class Statistics extends CI_Controller {
 		$data['filter'] = $sat;
 
 		$this->load->view('statistics/details', $data);
+	}
+
+	public function initials() {
+		$this->load->model('stats');
+		$this->load->model('bands');
+
+		$data['modes'] = $this->stats->get_eme_modes();
+
+		$data['worked_bands'] = $this->bands->get_worked_bands_eme();
+
+		// Set Page Title
+		$data['page_title'] = __("EME Initials");
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/initials.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/initials.js")),
+		];
+
+		// Load Views
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('statistics/initials');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	public function getInitials() {
+		$band = xss_clean($this->input->post('band'));
+		$mode = xss_clean($this->input->post('mode'));
+
+		$this->load->model('stats');
+		$data['intials_array'] = $this->stats->getInitialsFromDb($band, $mode);
+		$this->load->view('statistics/initialresult', $data);
 	}
 }
