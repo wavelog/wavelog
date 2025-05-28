@@ -1030,15 +1030,41 @@ $("#callsign").on("focusout", function () {
 				}
 
 				/*
-					* Update county with returned value
+					* Update county with returned value for USA only for now
+					* and make sure control is enabled for others 
+					* with cnty info
 					*/
-				selectize_usa_county('#stateDropdown', '#stationCntyInputQso');
-				if ($('#stationCntyInputQso').has('option').length == 0 && result.callsign_us_county != "") {
-					var county_select = $('#stationCntyInputQso').selectize();
-					var county_selectize = county_select[0].selectize;
-					county_selectize.addOption({ name: result.callsign_us_county });
-					county_selectize.setValue(result.callsign_us_county, false);
-				}
+				var dxcc = $('#dxcc_id').val();
+				switch (dxcc) {
+					case '6':
+					case '110':
+					case '291': 
+						selectize_usa_county('#stateDropdown', '#stationCntyInputQso');
+						if ($('#stationCntyInputQso').has('option').length == 0 && result.callsign_us_county != "") {
+							var county_select = $('#stationCntyInputQso').selectize();
+							var county_selectize = county_select[0].selectize;
+							county_selectize.addOption({ name: result.callsign_us_county });
+							county_selectize.setValue(result.callsign_us_county, false);
+						}
+						break;
+					case '15':
+					case '54':
+					case '61':
+					case '126':
+					case '151':
+					case '288':
+					case '339':
+					case '170':
+					case '21':
+					case '29':
+					case '32':
+					case '281':
+						$("#stationCntyInputQso").prop('disabled', false);
+						break;
+					default:
+						$("#stationCntyInputQso").prop('disabled', false);
+					}
+				
 
 				if (result.timesWorked != "") {
 					if (result.timesWorked == '0') {
