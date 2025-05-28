@@ -281,32 +281,35 @@ function qso_edit(id) {
 
                     $('[data-bs-toggle="tooltip"]').tooltip();
 
-					switch ($('#dxcc_id_edit').val()) {
-						case '6':
-						case '110':
-						case '291':
-						case '15':
-						case '54':
-						case '61':
-						case '126':
-						case '151':
-						case '288':
-						case '339':
-						case '170':
-						case '21':
-						case '29':
-						case '32':
-						case '281':
-							$('#location_us_county_edit').show();
-							break;
-						default:
-							$('#location_us_county_edit').hide();
-					}
-
+                    var dxcc = $('#dxcc_id_edit').val();
                     var state = $("#stateDropdownEdit option:selected").text();
-                    if (state != "") {
-                        $("#stationCntyInputEdit").prop('disabled', false);
-                        selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
+                    switch (dxcc) {
+                       case '6':
+                       case '110':
+                       case '291':
+                          if (state != "") {
+                             $("#stationCntyInputEdit").prop('disabled', false);
+                             selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
+                          }
+                          $('#location_us_county_edit').show();
+                          break;
+                       case '15':
+                       case '54':
+                       case '61':
+                       case '126':
+                       case '151':
+                       case '288':
+                       case '339':
+                       case '170':
+                       case '21':
+                       case '29':
+                       case '32':
+                       case '281':
+                          $("#stationCntyInputEdit").prop('disabled', false);
+                          $('#location_us_county_edit').show();
+                          break;
+                       default:
+                          $('#location_us_county_edit').show();
                     }
 
                     var unsupported_lotw_prop_modes = [];
@@ -336,15 +339,32 @@ function qso_edit(id) {
                     });
 
                     $('#stateDropdownEdit').change(function(){
+                        var dxcc = $('#dxcc_id_edit').val();
+                       console.log("TEST: "+dxcc);
                         var state = $("#stateDropdownEdit option:selected").text();
-                        if (state != "") {
-                            $("#stationCntyInputEdit").prop('disabled', false);
-
-                            selectize_usa_county('#stateDropdownEdit', '#stationCntyInputEdit');
-
-                        } else {
-                            $("#stationCntyInputEdit").prop('disabled', true);
-                            $("#stationCntyInputEdit").val("");
+                        switch (dxcc) {
+                            case '6':
+                            case '110':
+                            case '291':
+                                 if (state != "") {
+                                     $("#stationCntyInputEdit").prop('disabled', false);
+                                     selectize_usa_county('#stateDropdownEdit', '#stationCntyInputEdit');
+                                 }
+                                 break;
+                            case '15':
+                            case '54':
+                            case '61':
+                            case '126':
+                            case '151':
+                            case '288':
+                            case '339':
+                            case '170':
+                            case '21':
+                            case '29':
+                            case '32':
+                            case '281':
+                                 $("#stationCntyInputEdit").prop('disabled', false);
+                                 break;
                         }
                     });
 

@@ -463,8 +463,6 @@ $('#stateDropdown').on('change', function () {
 	var state = $("#stateDropdown option:selected").text();
 	var dxcc = $("#dxcc_id option:selected").val();
 	
-	
-	
 	if (state != "") {
 		switch (dxcc) {
 			case '6':
