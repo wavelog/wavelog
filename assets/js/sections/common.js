@@ -613,10 +613,10 @@ function selectize_usa_county(state_field, county_field) {
         searchField: 'name',
         options: [],
         create: false,
+        preload: true,
         load: function(query, callback) {
             var state = $(state_field + ' option:selected').text();
 
-            if (!query || state == "") return callback();
             $.ajax({
                 url: base_url + 'index.php/lookup/get_county',
                 type: 'GET',
