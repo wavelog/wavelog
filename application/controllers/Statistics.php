@@ -334,7 +334,33 @@ class Statistics extends CI_Controller {
 		$band = xss_clean($this->input->post('band'));
 		$mode = xss_clean($this->input->post('mode'));
 
+		if ($this->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $this->config->item('measurement_base');
+		} else {
+			$measurement_base = $this->session->userdata('user_measurement_base');
+		}
+
+		switch ($measurement_base) {
+			case 'M':
+				$unit = "mi";
+				$factor = 0.621371;
+				break;
+			case 'K':
+				$unit = "km";
+				$factor = 1;
+				break;
+			case 'N':
+				$unit = "nmi";
+				$factor = 0.539957;
+				break;
+			default:
+				$unit = "km";
+				$factor = 1;
+				break;
+		}
 		$this->load->model('stats');
+		$data['factor'] = $factor;
+		$data['unit'] = $unit;
 		$data['intials_array'] = $this->stats->getInitialsFromDb($band, $mode);
 		$this->load->view('statistics/initialresult', $data);
 	}
