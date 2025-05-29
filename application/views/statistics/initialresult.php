@@ -18,7 +18,7 @@ if ($intials_array) {
 						<th>' . __("Band") . '</th>
 						<th>' . __("Mode") . '</th>
 						<th>' . __("Gridsquare") . '</th>
-						<th style="text-align: right">' . __("Distance") . '</th>
+						<th style="text-align: right !important">' . __("Distance") . '</th>
                     </tr>
                 </thead>
                 <tbody>';
