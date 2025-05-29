@@ -363,7 +363,11 @@ function qso_edit(id) {
                             case '29':
                             case '32':
                             case '281':
-                                 $("#stationCntyInputEdit").prop('disabled', false);
+								 if (state != "") {
+									 $("#stationCntyInputEdit").prop('disabled', false);
+								 } else {
+									 $("#stationCntyInputEdit").prop('disabled', true);
+								 }
                                  break;
                         }
                     });
@@ -680,12 +684,13 @@ async function updateStateDropdown(dxcc_field, state_label, county_div, county_i
 		case '32':
 		case '281':
 			$(county_div).find('.form-control').show();
+			$(county_div).find('.form-control').prop('disabled', true);
 			$(county_div).find('.selectize-control').hide();
 			$(county_div).show();
 			break;
 		default:
 			$(county_div).hide();
-			$(county_input).val();
+			$(county_input).val('');
 	}
 }
 

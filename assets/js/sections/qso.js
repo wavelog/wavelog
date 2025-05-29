@@ -735,6 +735,7 @@ function reset_fields() {
 	var $select = $('#darc_dok').selectize();
 	var selectize = $select[0].selectize;
 	selectize.clear();
+	$('#stationCntyInputQso').val("");
 	$select = $('#stationCntyInputQso').selectize();
 	selectize = $select[0].selectize;
 	selectize.clear();
@@ -1057,7 +1058,12 @@ $("#callsign").on("focusout", function () {
 					case '29':
 					case '32':
 					case '281':
-						$("#stationCntyInputQso").prop('disabled', false);
+						if (result.callsign_state == "") {
+							$("#stationCntyInputQso").prop('disabled', true);
+						} else {
+							$("#stationCntyInputQso").prop('disabled', false);
+							$("#stationCntyInputQso").val(result.callsign_us_county);
+						}
 						break;
 					default:
 						$("#stationCntyInputQso").prop('disabled', false);
