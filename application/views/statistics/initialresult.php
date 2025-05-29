@@ -18,7 +18,7 @@ if ($intials_array) {
 						<th>' . __("Band") . '</th>
 						<th>' . __("Mode") . '</th>
 						<th>' . __("Gridsquare") . '</th>
-						<th>' . __("Distance") . '</th>
+						<th style="text-align: right">' . __("Distance") . '</th>
                     </tr>
                 </thead>
                 <tbody>';
@@ -33,7 +33,7 @@ if ($intials_array) {
                 <td>' . $line->col_band . '</td>
                 <td>' . (empty($line->col_submode) ? ($line->col_mode ?? '') : $line->col_submode) . '</td>
 				<td>' . (empty($line->col_vucc_grids) ? ($line->col_gridsquare ?? '') : $line->col_vucc_grids) . '</td>
-                <td>'.sprintf("%.01f", (floatval($line->col_distance) * $factor)); echo ' '.$unit.'</td>
+                <td style="text-align: right">'.sprintf("%.01f", (floatval($line->col_distance) * $factor)); echo ' '.$unit.'</td>
 		</tr>';
 	}
 
