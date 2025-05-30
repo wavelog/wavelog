@@ -292,7 +292,7 @@ class Search extends CI_Controller {
 	function fetchQueryResult($json, $returnquery) {
 		$search_items = json_decode($json, true);
 
-		$this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
+		$this->db->select($this->config->item('table_name').'.*, station_profile.station_profile_name, station_profile.station_gridsquare, station_profile.station_city,station_profile.station_iota,station_profile.station_callsign, dxcc_entities.name as station_country');
 
 		$this->db->group_start();
 		$this->buildWhere($search_items);
