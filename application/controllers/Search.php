@@ -39,9 +39,7 @@ class Search extends CI_Controller {
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('search/filter');
 			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
+		} else {
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('search/filter');
 			$this->load->view('interface_assets/footer');
