@@ -358,7 +358,7 @@
                                             </select>
                                         </div>
                                         <div style="display: none;" class="mb-3 col-sm-6" id="location_us_county_edit">
-                                            <label for="stationCntyInput"><?= __("USA County"); ?></label>
+                                            <label for="stationCntyInput"><?= __("Station County"); ?></label>
                                             <input class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo $qso->COL_CNTY; ?>" />
                                         </div>
                                     </div>

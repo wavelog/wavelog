@@ -114,11 +114,28 @@ class Stations extends CI_Model {
 			$state = xss_clean($this->input->post('station_state', true));
 		}
 
-		// Check if DXCC is USA, Alaska or Hawaii. If not true, we clear the County field due to complex adif specs
-		if (($this->input->post('dxcc') == 291 || $this->input->post('dxcc') == 006 || $this->input->post('dxcc') == 110) && $this->input->post('station_cnty') !="") {
-			$county = xss_clean($this->input->post('station_cnty', true));
-		} else {
-			$county = '';
+		// Check if DXCC is USA, Alaska or Hawaii, RU, UR, and others with subareas. 
+		// If not true, we clear the County field due to complex adif specs
+		switch ($this->input->post('dxcc')) {
+			case 6:
+			case 110:
+			case 291: 
+			case 15:
+			case 54:
+			case 61:
+			case 126:
+			case 151:
+			case 288:
+			case 339:
+			case 170:
+			case 21:
+			case 29:
+			case 32:
+			case 281:
+				$county = xss_clean($this->input->post('station_cnty', true));
+				break;
+			default:
+				$county = '';
 		}
 
 		// Create data array with field values
@@ -179,11 +196,28 @@ class Stations extends CI_Model {
 			$state = xss_clean($this->input->post('station_state', true));
 		}
 
-		// Check if DXCC is USA, Alaska or Hawaii. If not true, we clear the County field due to complex adif specs
-		if (($this->input->post('dxcc') == 291 || $this->input->post('dxcc') == 006 || $this->input->post('dxcc') == 110) && $this->input->post('station_cnty') !="") {
-			$county = xss_clean($this->input->post('station_cnty', true));
-		} else {
-			$county = '';
+		// Check if DXCC is USA, Alaska or Hawaii, RU, UR, and others with subareas. 
+		// If not true, we clear the County field due to complex adif specs
+		switch ($this->input->post('dxcc')) {
+			case 6:
+			case 110:
+			case 291: 
+			case 15:
+			case 54:
+			case 61:
+			case 126:
+			case 151:
+			case 288:
+			case 339:
+			case 170:
+			case 21:
+			case 29:
+			case 32:
+			case 281:
+				$county = xss_clean($this->input->post('station_cnty', true));
+				break;
+			default:
+				$county = '';
 		}
 
 		$data = array(
