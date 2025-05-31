@@ -24,7 +24,7 @@
         <div class="card-body">
 			<div class="tab-content">
 				<div class="tab-pane active" id="export" role="tabpanel" aria-labelledby="export-tab">
-            <?php if (($next_run_up ?? '') != '') { echo "<p>".__("The next automatic Upload to QRZ will happen at: ").$next_run_up."</p>"; } ?>
+            <?php if (($next_run_up ?? '') != '') { echo "<p>".__("The next automatic Upload to QRZ will happen at: ").$next_run_up." UTC</p>"; } ?>
             <p><?= __("Here you can see all QSOs which have not been previously uploaded to a QRZ logbook."); ?></p>
             <p><?= __("You need to set a QRZ Logbook API key in your station profile. Only station profiles with an API Key set are displayed."); ?></p>
             <?php if (!($this->config->item('disable_manual_qrz'))) { echo '<p><span class="badge text-bg-warning">Warning</span> This might take a while as QSO uploads are processed sequentially.</p>'; } ?>
