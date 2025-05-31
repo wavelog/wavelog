@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-05-29 20:11+0000\n"
-"PO-Revision-Date: 2025-05-19 06:49+0000\n"
-"Last-Translator: Ethan Carter Edwards <ethan@ethancedwards.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/es/>\n"
+"PO-Revision-Date: 2025-06-01 06:13+0000\n"
+"Last-Translator: David Quental <ct1drb72@gmail.com>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -552,7 +552,7 @@ msgstr "Diplomas - SIG - "
 
 #: application/controllers/Awards.php:1298 application/views/bands/index.php:59
 msgid "WAP"
-msgstr ""
+msgstr "WAP"
 
 #: application/controllers/Awards.php:1912
 #: application/views/awards/itu/index.php:20
@@ -2358,7 +2358,7 @@ msgstr "Ubicación de estación duplicada:"
 #: application/controllers/User.php:1180 application/controllers/User.php:1411
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "Por favor, verifica el valor del localizador de cuadrícula (%s)"
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:413
@@ -2545,7 +2545,7 @@ msgstr "QSOs por satélite"
 #: application/controllers/Statistics.php:320
 #: application/views/interface_assets/header.php:168
 msgid "EME Initials"
-msgstr ""
+msgstr "Iniciales EME"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:306
@@ -5802,6 +5802,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"La categoría SIG o Grupo de Interés Especial ofrece la posibilidad de "
+"utilizar cualquier tipo de 'Premio de Grupo de Interés Especial' para "
+"premios que no están implementados en Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -5809,6 +5812,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"La razón por esto es que el formato común de ADIF solo ofrece pocos campos "
+"dedicados para premios específicos. SIG lo hace posible para usar y evaluar "
+"otros tipos de marcadores para grupos de interés especiales."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -5817,6 +5823,10 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"En el procesamiento de QSO, encontrarás dos campos: 'SIG' contiene la "
+"abreviatura del nombre del grupo de interés especial que también es visible "
+"en la evaluación del premio, y 'SIG INFO,' que contiene la(s) referencia(s) "
+"real(es). Ambos campos son totalmente personalizables."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
@@ -6059,11 +6069,11 @@ msgstr "Prefectura"
 #: application/views/awards/wap/index.php:3
 msgctxt "The Netherlands Province"
 msgid "Province"
-msgstr ""
+msgstr "Provincia"
 
 #: application/views/awards/wap/index.php:20
 msgid "VRZA WAP Award"
-msgstr ""
+msgstr "Premio WAP de VRZA"
 
 #: application/views/awards/wap/index.php:21
 msgid ""
@@ -6075,6 +6085,14 @@ msgid ""
 "Amateurs). Both organizations are active in organizing events, contests, and "
 "training, and they represent Dutch amateurs nationally and internationally."
 msgstr ""
+"Los Países Bajos se extienden aproximadamente 300 km de norte a sur y unos "
+"200 km de este a oeste. De los 18 millones de habitantes del país, alrededor "
+"de 11,500 son operadores de radioaficionados con licencia. Las "
+"organizaciones de radioaficionados más grandes en los Países Bajos son VERON "
+"(Vereniging voor Experimenteel Radio Onderzoek in Nederland) y VRZA ("
+"Vereniging voor Radio Zend Amateurs). Ambas organizaciones están activas en "
+"la organización de eventos, concursos y formación, y representan a los "
+"aficionados holandeses a nivel nacional e internacional."
 
 #: application/views/awards/wap/index.php:22
 msgid ""
@@ -6084,20 +6102,26 @@ msgid ""
 "encourages operators to engage with a diverse range of stations across the "
 "country, promoting both national connectivity and operational skill."
 msgstr ""
+"La VRZA (Vereniging voor Radio Zend Amateurs) ofrece el premio Worked All "
+"Provinces (WAP) a los operadores de radioaficionados que han confirmado "
+"contactos con estaciones en cada una de las doce provincias de los Países "
+"Bajos. Este premio anima a los operadores a interactuar con una diversa gama "
+"de estaciones en todo el país, promoviendo tanto la conectividad nacional "
+"como la habilidad operativa."
 
 #: application/views/awards/wap/index.php:23
 #, php-format
 msgctxt "uses 'here'"
 msgid "Information about the WAP Awards and its rules can be found %s."
-msgstr ""
+msgstr "Información sobre los premios WAP y sus reglas se puede encontrar %s."
 
 #: application/views/awards/wap/index.php:114
 msgid "Show WAP Map"
-msgstr ""
+msgstr "Mostrar mapa WAP"
 
 #: application/views/awards/wap/index.php:151
 msgid "Province"
-msgstr ""
+msgstr "Provincia"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -9304,11 +9328,11 @@ msgstr "Suiza"
 
 #: application/views/interface_assets/header.php:252
 msgid "The Netherlands"
-msgstr ""
+msgstr "Los Países Bajos"
 
 #: application/views/interface_assets/header.php:254
 msgid "WAP Worked All Provinces"
-msgstr ""
+msgstr "WAP Trabajado Todas las Provincias"
 
 #: application/views/interface_assets/header.php:258
 msgid "USA"
@@ -9904,58 +9928,68 @@ msgstr "Distancia (en km). Dejar en blanco para eliminar la distancia."
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
 msgstr ""
+"En las búsquedas de entrada de texto, puedes buscar de la siguiente manera:"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "* - means search for everything."
-msgstr ""
+msgstr "*-significa busca para todo."
 
 #: application/views/logbookadvanced/help.php:3
 msgid "Remove star and leave blank, means to search where column is empty."
 msgstr ""
+"Eliminar estrella y dejar en blanco, significa buscar donde la columna está "
+"vacía."
 
 #: application/views/logbookadvanced/help.php:4
 msgid "!empty - means to search where column is not empty."
-msgstr ""
+msgstr "!empty - significa buscar donde la columna no está vacía."
 
 #: application/views/logbookadvanced/help.php:6
 msgid ""
 "The dupe search checks for duplicate QSOs with the same callsign, mode, "
 "submode, station callsign, band and satellite within 1500 seconds."
 msgstr ""
+"La búsqueda de duplicados verifica QSOs duplicados con el mismo indicativo, "
+"modo, submodo, indicativo de estación, banda y satélite dentro de 1500 "
+"segundos."
 
 #: application/views/logbookadvanced/help.php:8
 msgid "The invalid search checks for the following conditions:"
 msgstr ""
+"Las comprobaciones de búsqueda no válidas para las siguientes condiciones:"
 
 #: application/views/logbookadvanced/help.php:9
 msgid "Mode is blank or set to 0."
-msgstr ""
+msgstr "El modo está en blanco o configurado en 0."
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Band is blank."
-msgstr ""
+msgstr "La banda está en blanco."
 
 #: application/views/logbookadvanced/help.php:11
 msgid "Callsign is blank."
-msgstr ""
+msgstr "El indicativo está en blanco."
 
 #: application/views/logbookadvanced/help.php:12
 msgid "Time and date is not set."
-msgstr ""
+msgstr "La hora y la fecha no están configuradas."
 
 #: application/views/logbookadvanced/help.php:13
 msgid "Date is set to 1970-01-01."
-msgstr ""
+msgstr "La fecha está establecida en 1970-01-01."
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
-msgstr ""
+msgstr "Continente diferente de AF, AN, AS, EU, NA, OC o SA."
 
 #: application/views/logbookadvanced/help.php:16
 msgid ""
 "The map uses the same search criteria as the normal search. All QSOs in the "
 "search result will be mapped, unless you have checked one or more QSOs."
 msgstr ""
+"El mapa utiliza los mismos criterios de búsqueda que la búsqueda normal. "
+"Todos los QSOs en el resultado de la búsqueda se mapearán, a menos que hayas "
+"marcado uno o más QSOs."
 
 #: application/views/logbookadvanced/help.php:18
 msgid ""
@@ -9963,6 +9997,9 @@ msgid ""
 "will be exported (all for selected location), unless you have checked one or "
 "more QSOs."
 msgstr ""
+"La exportación ADIF utiliza los mismos criterios de búsqueda que la búsqueda "
+"normal. Se exportarán todos los QSOs (todos para la ubicación seleccionada), "
+"a menos que hayas marcado uno o más QSOs."
 
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:194
@@ -10002,7 +10039,7 @@ msgstr "Sombra Nocturna"
 
 #: application/views/logbookadvanced/index.php:23
 msgid "Advanced Logbook Help"
-msgstr ""
+msgstr "Ayuda avanzada del libro de registro"
 
 #: application/views/logbookadvanced/index.php:197
 msgid "From"
@@ -11837,7 +11874,7 @@ msgstr "Elevación de la antena en grados decimales."
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
 msgid "SIG Info"
-msgstr ""
+msgstr "Información SIG"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:617
@@ -13285,7 +13322,7 @@ msgstr "Nombre de la Firma"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr ""
+msgstr "Nombre del Grupo de Interés Especial de la Estación (por ejemplo, GMA)."
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
@@ -13295,6 +13332,8 @@ msgstr "Información de la Firma"
 #: application/views/station_profile/edit.php:299
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
 msgstr ""
+"Información del Grupo de Interés Especial de la Estación (por ejemplo, DA/"
+"NW-357)."
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:312
@@ -13469,15 +13508,16 @@ msgstr "Zonas"
 
 #: application/views/station_profile/edit.php:291
 msgid "Special Interest Group Name"
-msgstr ""
+msgstr "Nombre del Grupo de Interés Especial"
 
 #: application/views/station_profile/edit.php:293
 msgid "Station Special Interest Group Name (e.g. GMA).."
 msgstr ""
+"Nombre del Grupo de Interés Especial de la Estación (por ejemplo, GMA).."
 
 #: application/views/station_profile/edit.php:297
 msgid "Special Interest Group Information"
-msgstr ""
+msgstr "Información del Grupo de Interés Especial"
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
@@ -13685,7 +13725,7 @@ msgstr "Indicativos únicos"
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
-msgstr ""
+msgstr "No se encontraron QSOs EME."
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
@@ -14314,7 +14354,7 @@ msgstr "Selecciona el número de QSOs más recientes para mostrar en el panel."
 
 #: application/views/user/edit.php:614
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
-msgstr ""
+msgstr "Elige el número de QSOs más recientes para mostrar en el panel."
 
 #: application/views/user/edit.php:618
 msgid "Show Dashboard Map"
@@ -15121,7 +15161,7 @@ msgstr "imagen de eQSL"
 
 #: application/views/visitor/layout/footer.php:238
 msgid "Filter Results"
-msgstr ""
+msgstr "Filtrar resultados"
 
 #: application/views/visitor/layout/footer.php:244
 msgid "CSV"
@@ -15129,7 +15169,7 @@ msgstr "CSV"
 
 #: application/views/visitor/layout/footer.php:252
 msgid "Clear Filter"
-msgstr ""
+msgstr "Borrar filtro"
 
 #: application/views/visitor/layout/header.php:74
 msgid "OQRS"
