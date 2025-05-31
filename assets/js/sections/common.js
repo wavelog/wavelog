@@ -642,7 +642,8 @@ function selectize_usa_county(state_field, county_field) {
 
 async function updateStateDropdown(dxcc_field, state_label, county_div, county_input, dropdown = '#stateDropdown') {
     var selectedDxcc = $(dxcc_field);
-
+	var selectedState = $(dropdown);
+	
     if (selectedDxcc.val() !== "") {
         await $.ajax({
             url: base_url + "index.php/lookup/get_state_list",
@@ -684,7 +685,12 @@ async function updateStateDropdown(dxcc_field, state_label, county_div, county_i
 		case '32':
 		case '281':
 			$(county_div).find('.form-control').show();
-			$(county_div).find('.form-control').prop('disabled', true);
+			var state = selectedState.val();
+			if (state == '') {
+				$(county_div).find('.form-control').prop('disabled', true);
+			} else {
+				$(county_div).find('.form-control').prop('disabled', false);
+			}
 			$(county_div).find('.selectize-control').hide();
 			$(county_div).show();
 			break;
