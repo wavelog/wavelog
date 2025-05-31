@@ -1,0 +1,111 @@
+
+services:
+  wavelog-db:
+    image: mariadb:11.3
+    container_name: wavelog-db
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=America/Chicago
+      - MARIADB_RANDOM_ROOT_PASSWORD=yes
+      - MARIADB_DATABASE=wavelog
+      - MARIADB_USER=wavelog
+      - MARIADB_PASSWORD= #Set a strong password for the database.
+    volumes:
+      - wavelog-db:/var/lib/mysql #Can leave as is and allow Docker to setup volume or use volumes top-level to set for local environment.
+    networks:
+      - wavelog_default #Change to use for local environment. Do not expose over traefik if used.
+
+  wavelog:
+    build:
+      context: .
+      dockerfile: Dockerfile #Leave as-is to use hardened Dockerfile.
+      args:
+        APP_UID: #Set UID for non-root docker user.
+        APP_GID: #Set GID for non-root docker user.
+    container_name: wavelog
+    depends_on:
+      - wavelog-db
+    restart: unless-stopped
+    user: UID:GID #Replace with your UID:GID used in Dockerfile.
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=America/Chicago
+      - CI_ENV=docker
+      #- CHROOT_DIRECTORY= Set this to the root of docker volume dir. Delete if using docker managed volumes.
+    volumes:
+      - wavelog-config:/var/www/html/application/config/docker
+      - wavelog-uploads:/var/www/html/uploads
+      - wavelog-userdata:/var/www/html/userdata
+    #ports: Only needed if not using traefik proxy configuration.
+      #- 8080:80
+    networks:
+      - traefik_proxy # Replace with default docker network if not using traefik configuration.
+      - wavelog_default
+    #labels: Uncomment if using traefik reverse proxy.
+      #- "traefik.enable=true"
+      #- "traefik.docker.network=traefik_proxy" <-Set this to match your traefik network.
+      #- "traefik.http.routers.wavelog-secure.entrypoints=https" <-Set this to match your traefik https entrypoint.
+      #- "traefik.http.routers.wavelog-secure.rule=Host(`HOSTNAME.HERE.tld`)" <-Change this to match your hostSNI.
+      #- "traefik.http.routers.wavelog-secure.service=wavelog-wavelog"
+      #- "traefik.http.routers.wavelog-secure.tls=true"
+      #- "traefik.http.routers.wavelog-secure.tls.certResolver=letsencrypt"
+
+  dxcache: #Follow instructions at https://github.com/int2001/DXClusterAPI.
+    image: ghcr.io/int2001/dxclusterapi:latest
+    container_name: dxcache
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      - wavelog
+    environment:
+      MAXCACHE: 500
+      WEBPORT: 8192
+      WAVELOG_URL: http[s]://[wavelog.instance.hostname/index.php/api/lookup #Wavelog-API-Endpoint for 
+      WAVELOG_KEY: #wavelog API key here. 
+      WEBURL: /t	# sub-url. e.g. if "/t" the application can be reached via "http://[ip]/t/stats" et
+      DXHOST: dxc.ai9t.com
+      DXPORT: 7300
+      DXCALL: N0CAL #Put your callsign here.
+      POTA_INTEGRATION: true
+      POTA_POLLING_INTERVAL: 60
+    networks:
+      - wavelog_default
+    ports:
+      - 8192:8192
+networks:
+  traefik_proxy:
+    external: true
+
+  wavelog_default:
+
+volumes: #Use these if you manage your docker volume locations. Remove driver, driver_opts, and device if docker managed volumes.
+  wavelog-db:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /set/to/volume/wavelog-db #Set this to your wavelog-db directory. 
+  wavelog-config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /set/to/volume/wavelog-config #Set this to your wavelog-config directory e.g. wavelog/app-data.
+  wavelog-uploads:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /set/to/volume/wavelog-uploads #Set this to your wavelog-uploads directory e.g. wavelog/app-data.
+  wavelog-userdata:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /set/to/volume/wavelog-userdata #Set this to your wavelog-userdata directory e.g. wavelog/app-data
