@@ -21,7 +21,7 @@
         <div class="card-body">
 			<div class="tab-content">
 				<div class="tab-pane active" id="export" role="tabpanel" aria-labelledby="export-tab">
-            <?php if (($next_run_up ?? '') != '') { echo "<p>".__("The next automatic Upload to Clublog will happen at: ").$next_run_up."</p>"; } ?>
+            <?php if (($next_run_up ?? '') != '') { echo "<p>".__("The next automatic Upload to Clublog will happen at: ").$next_run_up." UTC</p>"; } ?>
             <p><?= __("Here you can see all QSOs which have not been previously uploaded to a Clublog logbook."); ?></p>
             <p><?= __("You need to set a username and password in your user account. You will also need to enable upload for each station profile ."); ?></p>
 <?php

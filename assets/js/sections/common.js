@@ -290,7 +290,7 @@ function qso_edit(id) {
                     var state = $("#stateDropdownEdit option:selected").text();
                     if (state != "") {
                         $("#stationCntyInputEdit").prop('disabled', false);
-                        selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
+                        selectize_usa_county('#stateDropdownEdit', '#stationCntyInputEdit');
                     }
 
                     var unsupported_lotw_prop_modes = [];
@@ -577,10 +577,10 @@ function selectize_usa_county(state_field, county_field) {
         searchField: 'name',
         options: [],
         create: false,
+        preload: true,
         load: function(query, callback) {
             var state = $(state_field + ' option:selected').text();
 
-            if (!query || state == "") return callback();
             $.ajax({
                 url: base_url + 'index.php/lookup/get_county',
                 type: 'GET',
