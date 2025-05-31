@@ -18,11 +18,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-05-29 20:11+0000\n"
-"PO-Revision-Date: 2025-05-26 12:50+0000\n"
-"Last-Translator: BG8LNG <qrz@bg8lng.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"POT-Creation-Date: 2025-05-27 08:29+0000\n"
+"PO-Revision-Date: 2025-05-28 13:16+0000\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1547,12 +1547,12 @@ msgstr "网格坐标"
 #: application/views/qslcard/searchresult.php:84
 #: application/views/qso/components/previous_contacts.php:87
 #: application/views/search/search_result_ajax.php:14
-#: application/views/statistics/initialresult.php:21
 #: application/views/user/edit.php:253 application/views/user/edit.php:276
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/views/statistics/initialresult.php:21
 msgid "Distance"
 msgstr "距离"
 
@@ -2517,7 +2517,7 @@ msgstr "卫星通联"
 #: application/controllers/Statistics.php:320
 #: application/views/interface_assets/header.php:168
 msgid "EME Initials"
-msgstr ""
+msgstr "EME 首通记录"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:306
@@ -3045,7 +3045,7 @@ msgstr "eQSL 服务异常！"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr "QTH 别名在 eQSL 中不存在"
+msgstr "QTH 昵称在 eQSL 中不存在"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -4733,9 +4733,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
-"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
-"效通联的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
+"\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通"
+"联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5635,8 +5635,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -7432,7 +7432,7 @@ msgstr[0] "您今天有 %d 个 QSO"
 
 #: application/views/dashboard/index.php:172
 msgid "You have made no QSOs today; time to turn on the radio!"
-msgstr "你今天还没进行 QSO，是时候打开你的电台开始通联了！"
+msgstr "你今天还没进行 QSO，是时候打开电台开始通联了！"
 
 #: application/views/dashboard/index.php:179
 msgid "Attention: you need to set an active station location."
@@ -7461,7 +7461,7 @@ msgstr "你的 %s LoTW 证书 %s 至少有一个快过期了！"
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] "已达最大。已显示 %d 个先前的通联"
+msgstr[0] "已显示最多 %d 个先前通联"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
@@ -12836,7 +12836,7 @@ msgstr "电台兴趣组标识（如：DA/NW-357）。"
 #: application/views/station_profile/edit.php:312
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr "eQSL QTH Nickname"
+msgstr "eQSL QTH 昵称"
 
 #: application/views/station_profile/create.php:203
 #: application/views/station_profile/edit.php:314
@@ -13195,10 +13195,10 @@ msgstr "所有"
 msgid "Unique callsigns"
 msgstr "呼号"
 
-#: application/views/statistics/initialresult.php:42
+#: application/views/statistics/initialresult.php:40
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
-msgstr ""
+msgstr "未找到EME通联记录。"
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
@@ -13353,8 +13353,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -15024,8 +15024,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
