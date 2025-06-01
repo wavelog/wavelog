@@ -195,6 +195,6 @@
 			<option value="SY"><?= __("Sicily"); ?></option>
 		</select>
 
-		<label style="display:none" id="editDistanceInputLabel" class="mx-2 w-auto" for="editDistanceInput"><?= __("Distance (in km). Leave blank to remove distance."); ?></label>
+		<label style="display:none" id="editDistanceInputLabel" class="mx-2 w-auto" for="editDistanceInput"><?= __("Distance (in km). Leave blank to recalculate distance. (It will only work if a gridsquare is set)."); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editDistanceInput" type="text" name="editDistanceInput" placeholder="" aria-label="editDistanceInput">
 	</form>
