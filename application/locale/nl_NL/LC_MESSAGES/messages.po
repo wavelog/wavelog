@@ -3131,18 +3131,23 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Geen stationprofielen met HRDlog-gegevens gevonden."
 
 #: application/models/Logbook_model.php:1234
+#: application/models/Logbook_model.php:1245
 msgid "Station ID not allowed"
 msgstr "Station-ID niet toegestaan"
 
 #: application/models/Logbook_model.php:1239
+#: application/models/Logbook_model.php:1250
 msgid "No Call given"
 msgstr "Geen roepnaam gegeven"
 
 #: application/models/Logbook_model.php:1468
+#: application/models/Logbook_model.php:1320
+#: application/models/Logbook_model.php:1494
 msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
 #: application/models/Logbook_model.php:3917
+#: application/models/Logbook_model.php:3943
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3150,15 +3155,18 @@ msgstr ""
 "OVERGESLAGEN"
 
 #: application/models/Logbook_model.php:3918
+#: application/models/Logbook_model.php:3944
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Controleer %s voor hints over fouten in ADIF-bestanden."
 
 #: application/models/Logbook_model.php:3930
+#: application/models/Logbook_model.php:3956
 msgid "QSO on"
 msgstr "QSO vanaf"
 
 #: application/models/Logbook_model.php:3930
+#: application/models/Logbook_model.php:3956
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3167,51 +3175,63 @@ msgstr ""
 "is niet geïmporteerd. Het is ongeldig"
 
 #: application/models/Logbook_model.php:4229
+#: application/models/Logbook_model.php:4255
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4240
+#: application/models/Logbook_model.php:4266
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4301
+#: application/models/Logbook_model.php:4327
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4321
+#: application/models/Logbook_model.php:4347
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslrdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4342
+#: application/models/Logbook_model.php:4368
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslsdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4634
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4660
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
 #: application/models/Logbook_model.php:4695
+#: application/models/Logbook_model.php:4721
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
 #: application/models/Logbook_model.php:4701
+#: application/models/Logbook_model.php:4727
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4706
+#: application/models/Logbook_model.php:4732
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
 #: application/models/Logbook_model.php:4709
+#: application/models/Logbook_model.php:4735
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
 #: application/models/Logbook_model.php:4712
+#: application/models/Logbook_model.php:4738
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
 #: application/models/Logbook_model.php:4715
+#: application/models/Logbook_model.php:4741
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
@@ -3219,6 +3239,7 @@ msgstr "onbevestigd"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4744
 msgid "unknown"
 msgstr "onbekend"
 
@@ -3233,6 +3254,7 @@ msgstr "onbekend"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5582
 msgid "Bearing"
 msgstr "Koers"
 
@@ -13132,6 +13154,7 @@ msgstr "Stationsstaat. Geldt alleen voor bepaalde landen."
 
 #: application/views/station_profile/create.php:103
 #: application/views/station_profile/edit.php:141
+#: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:491
 msgid "Station County"
 msgstr "Station County"
 
@@ -15205,6 +15228,11 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#: application/views/station_profile/create.php:105
+#: application/views/station_profile/edit.php:143
+msgid "Station County (Only used for specific DXCCs)."
+msgstr ""
 
 #~ msgid "Sig Info"
 #~ msgstr "Speciale activiteiten of interesse groep informatie"

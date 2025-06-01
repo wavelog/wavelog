@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-06-01 06:13+0000\n"
+"POT-Creation-Date: 2025-06-01 06:51+0000\n"
 "PO-Revision-Date: 2024-12-23 15:29+0000\n"
 "Last-Translator: \"Fatih ÖNDER (TB1TFO)\" <fatih05onder@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3070,95 +3070,96 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:1234
+#: application/models/Logbook_model.php:1245
 msgid "Station ID not allowed"
 msgstr ""
 
-#: application/models/Logbook_model.php:1239
+#: application/models/Logbook_model.php:1250
 msgid "No Call given"
 msgstr ""
 
-#: application/models/Logbook_model.php:1468
+#: application/models/Logbook_model.php:1320
+#: application/models/Logbook_model.php:1494
 msgid "DXCC has to be Numeric"
 msgstr ""
 
-#: application/models/Logbook_model.php:3917
+#: application/models/Logbook_model.php:3943
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:3918
+#: application/models/Logbook_model.php:3944
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 
-#: application/models/Logbook_model.php:3930
+#: application/models/Logbook_model.php:3956
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:3930
+#: application/models/Logbook_model.php:3956
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:4229
+#: application/models/Logbook_model.php:4255
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4240
+#: application/models/Logbook_model.php:4266
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4301
+#: application/models/Logbook_model.php:4327
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4321
+#: application/models/Logbook_model.php:4347
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4342
+#: application/models/Logbook_model.php:4368
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4634
+#: application/models/Logbook_model.php:4660
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:4695
+#: application/models/Logbook_model.php:4721
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4701
+#: application/models/Logbook_model.php:4727
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4706
+#: application/models/Logbook_model.php:4732
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4709
+#: application/models/Logbook_model.php:4735
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4712
+#: application/models/Logbook_model.php:4738
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4715
+#: application/models/Logbook_model.php:4741
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4718
+#: application/models/Logbook_model.php:4744
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr ""
 
-#: application/models/Logbook_model.php:5556
+#: application/models/Logbook_model.php:5582
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -6033,8 +6034,7 @@ msgstr ""
 msgid "Sig"
 msgstr "İmza"
 
-#: application/views/bands/index.php:57 application/views/qso/edit_ajax.php:361
-#: application/views/qso/index.php:491
+#: application/views/bands/index.php:57
 msgid "USA County"
 msgstr "ABD İlçesi"
 
@@ -11229,6 +11229,12 @@ msgstr ""
 msgid "Antenna elevation in decimal degrees."
 msgstr ""
 
+#: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:491
+#: application/views/station_profile/create.php:103
+#: application/views/station_profile/edit.php:141
+msgid "Station County"
+msgstr ""
+
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:266
 #: application/views/qso/index.php:558 application/views/user/edit.php:666
 #: application/views/view_log/qso.php:441
@@ -12460,14 +12466,9 @@ msgstr ""
 msgid "Station state. Applies to certain countries only."
 msgstr ""
 
-#: application/views/station_profile/create.php:103
-#: application/views/station_profile/edit.php:141
-msgid "Station County"
-msgstr ""
-
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
-msgid "Station County (Only used for USA/Alaska/Hawaii)."
+msgid "Station County (Only used for specific DXCCs)."
 msgstr ""
 
 #: application/views/station_profile/create.php:120
