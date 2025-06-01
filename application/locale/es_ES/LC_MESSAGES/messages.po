@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-05-29 20:11+0000\n"
 "PO-Revision-Date: 2025-06-01 06:13+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/es/>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -125,6 +125,7 @@ msgstr ""
 #: application/controllers/User.php:1540
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Search.php:12
 msgid "You're not allowed to do that!"
 msgstr "¡No está permitido hacer eso!"
 
@@ -2281,22 +2282,23 @@ msgstr "Temporizadores de satélite"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/controllers/Search.php:17
 msgid "Search"
 msgstr "Buscar"
 
-#: application/controllers/Search.php:28
+#: application/controllers/Search.php:28 application/controllers/Search.php:26
 msgid "Search & Filter Logbook"
 msgstr "Buscar y filtrar el libro de registro"
 
-#: application/controllers/Search.php:58
+#: application/controllers/Search.php:58 application/controllers/Search.php:54
 msgid "Incorrectly logged CQ zones"
 msgstr "Zonas CQ registradas incorrectamente"
 
-#: application/controllers/Search.php:70
+#: application/controllers/Search.php:70 application/controllers/Search.php:66
 msgid "Incorrectly logged ITU zones"
 msgstr "Zonas ITU registradas incorrectamente"
 
-#: application/controllers/Search.php:82
+#: application/controllers/Search.php:82 application/controllers/Search.php:78
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -6089,8 +6091,8 @@ msgstr ""
 "200 km de este a oeste. De los 18 millones de habitantes del país, alrededor "
 "de 11,500 son operadores de radioaficionados con licencia. Las "
 "organizaciones de radioaficionados más grandes en los Países Bajos son VERON "
-"(Vereniging voor Experimenteel Radio Onderzoek in Nederland) y VRZA ("
-"Vereniging voor Radio Zend Amateurs). Ambas organizaciones están activas en "
+"(Vereniging voor Experimenteel Radio Onderzoek in Nederland) y VRZA "
+"(Vereniging voor Radio Zend Amateurs). Ambas organizaciones están activas en "
 "la organización de eventos, concursos y formación, y representan a los "
 "aficionados holandeses a nivel nacional e internacional."
 
@@ -8131,8 +8133,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Ve a tu carpeta application/config y compara config.sample.php con tu config."
-"php"
+"Ve a tu carpeta application/config y compara config.sample.php con tu "
+"config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -13322,7 +13324,8 @@ msgstr "Nombre de la Firma"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr "Nombre del Grupo de Interés Especial de la Estación (por ejemplo, GMA)."
+msgstr ""
+"Nombre del Grupo de Interés Especial de la Estación (por ejemplo, GMA)."
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
@@ -13845,8 +13848,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nueva carpeta en 'assets/css/' y sube un archivo 'bootstrap.min."
-"css' que contenga reglas de estilo básicas. Usamos los temas de %s"
+"Crea una nueva carpeta en 'assets/css/' y sube un archivo "
+"'bootstrap.min.css' que contenga reglas de estilo básicas. Usamos los temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -13895,8 +13899,8 @@ msgid ""
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
 "Haz clic aquí en 'Agregar un tema' y escribe los datos necesarios. Escribe "
-"los nombres de archivo para los logotipos %ssin%s la extensión de archivo '."
-"png'"
+"los nombres de archivo para los logotipos %ssin%s la extensión de archivo "
+"'.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"

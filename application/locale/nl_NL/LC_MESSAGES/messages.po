@@ -122,6 +122,7 @@ msgstr ""
 #: application/controllers/User.php:1540
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Search.php:12
 msgid "You're not allowed to do that!"
 msgstr "Je mag dat niet doen!"
 
@@ -2274,22 +2275,23 @@ msgstr "Satelliet timers"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/controllers/Search.php:17
 msgid "Search"
 msgstr "Zoeken"
 
-#: application/controllers/Search.php:28
+#: application/controllers/Search.php:28 application/controllers/Search.php:26
 msgid "Search & Filter Logbook"
 msgstr "Zoek & filter logboek"
 
-#: application/controllers/Search.php:58
+#: application/controllers/Search.php:58 application/controllers/Search.php:54
 msgid "Incorrectly logged CQ zones"
 msgstr "Onjuist gelogde CQ-zones"
 
-#: application/controllers/Search.php:70
+#: application/controllers/Search.php:70 application/controllers/Search.php:66
 msgid "Incorrectly logged ITU zones"
 msgstr "Onjuist geregistreerde ITU-zones"
 
-#: application/controllers/Search.php:82
+#: application/controllers/Search.php:82 application/controllers/Search.php:78
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
