@@ -1020,6 +1020,9 @@ class Logbookadvanced_model extends CI_Model {
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_DISTANCE' && $value == '') {
+			$this->update_distances($ids);
+			$skipqrzupdate = true;
 		} else {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".".$column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
@@ -1036,6 +1039,38 @@ class Logbookadvanced_model extends CI_Model {
 
 		return array('message' => 'OK');
     }
+
+	public function update_distances($ids) {
+		$idarray = (json_decode($ids, true));
+		ini_set('memory_limit', '-1');
+		$this->db->trans_start();
+		$this->db->select("COL_PRIMARY_KEY, COL_GRIDSQUARE, COL_ANT_PATH, station_gridsquare");
+		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
+
+		$this->db->where("COL_GRIDSQUARE is NOT NULL");
+		$this->db->where("COL_GRIDSQUARE != ''");
+		$this->db->where("COL_GRIDSQUARE != station_gridsquare");
+		$this->db->where_in("COL_PRIMARY_KEY", $idarray);
+		$query = $this->db->get($this->config->item('table_name'));
+
+		if ($query->num_rows() > 0) {
+			if (!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
+			foreach ($query->result() as $row) {
+				$ant_path = $row->COL_ANT_PATH ?? null;
+				$distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K', $ant_path);
+				$data = array(
+					'COL_DISTANCE' => $distance,
+				);
+
+				$this->db->where(array('COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY));
+				$this->db->update($this->config->item('table_name'), $data);
+			}
+		}
+		$this->db->trans_complete();
+	}
+
 
 	function deleteQsos($ids) {
 		$this->db->trans_start();
