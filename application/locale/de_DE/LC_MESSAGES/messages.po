@@ -26,11 +26,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-05-29 20:11+0000\n"
+"POT-Creation-Date: 2025-06-02 12:02+0000\n"
 "PO-Revision-Date: 2025-06-02 14:17+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,7 +119,7 @@ msgstr ""
 #: application/controllers/Satellite.php:658
 #: application/controllers/Satellite.php:667
 #: application/controllers/Sattimers.php:9
-#: application/controllers/Search.php:13
+#: application/controllers/Search.php:12
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:17
 #: application/controllers/Stationsetup.php:15
@@ -139,7 +139,6 @@ msgstr ""
 #: application/controllers/User.php:1540
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
-#: application/controllers/Search.php:12
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
@@ -2266,7 +2265,7 @@ msgstr "hier"
 msgid "Satellite Timers"
 msgstr "Satelliten-Timer"
 
-#: application/controllers/Search.php:19
+#: application/controllers/Search.php:17
 #: application/views/continents/index.php:49
 #: application/views/interface_assets/footer.php:40
 #: application/views/interface_assets/header.php:364
@@ -2290,23 +2289,22 @@ msgstr "Satelliten-Timer"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
-#: application/controllers/Search.php:17
 msgid "Search"
 msgstr "Suche"
 
-#: application/controllers/Search.php:28 application/controllers/Search.php:26
+#: application/controllers/Search.php:26
 msgid "Search & Filter Logbook"
 msgstr "Suche & Filter Logbuch"
 
-#: application/controllers/Search.php:58 application/controllers/Search.php:54
+#: application/controllers/Search.php:54
 msgid "Incorrectly logged CQ zones"
 msgstr "Nicht korrekt geloggte CQ-Zonen"
 
-#: application/controllers/Search.php:70 application/controllers/Search.php:66
+#: application/controllers/Search.php:66
 msgid "Incorrectly logged ITU zones"
 msgstr "Falsch geloggte ITU-Zonen"
 
-#: application/controllers/Search.php:82 application/controllers/Search.php:78
+#: application/controllers/Search.php:78
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -3153,23 +3151,19 @@ msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
-#: application/models/Logbook_model.php:1234
 #: application/models/Logbook_model.php:1245
 msgid "Station ID not allowed"
 msgstr "Stations ID nicht erlaubt"
 
-#: application/models/Logbook_model.php:1239
 #: application/models/Logbook_model.php:1250
 msgid "No Call given"
 msgstr "Kein Rufzeichen angegeben"
 
-#: application/models/Logbook_model.php:1468
 #: application/models/Logbook_model.php:1320
 #: application/models/Logbook_model.php:1494
 msgid "DXCC has to be Numeric"
 msgstr "DXCC muss numerisch sein"
 
-#: application/models/Logbook_model.php:3917
 #: application/models/Logbook_model.php:3943
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3177,18 +3171,15 @@ msgstr ""
 "Falscher Stationscall %s im QSO mit %s für das Stationsprofil %s: Nicht "
 "importiert"
 
-#: application/models/Logbook_model.php:3918
 #: application/models/Logbook_model.php:3944
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Schaue im %s für Tipps zu möglichen Fehlern in der ADIF-Datei."
 
-#: application/models/Logbook_model.php:3930
 #: application/models/Logbook_model.php:3956
 msgid "QSO on"
 msgstr "QSO am"
 
-#: application/models/Logbook_model.php:3930
 #: application/models/Logbook_model.php:3956
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3197,76 +3188,63 @@ msgstr ""
 "Du hast versucht, ein QSO ohne angegebenes Rufzeichen zu importieren. Dieses "
 "QSO wurde nicht importiert. Es ist ungültig"
 
-#: application/models/Logbook_model.php:4229
 #: application/models/Logbook_model.php:4255
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4240
 #: application/models/Logbook_model.php:4266
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4301
 #: application/models/Logbook_model.php:4327
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4321
 #: application/models/Logbook_model.php:4347
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4342
 #: application/models/Logbook_model.php:4368
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4634
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4660
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
-#: application/models/Logbook_model.php:4695
 #: application/models/Logbook_model.php:4721
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:4701
 #: application/models/Logbook_model.php:4727
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4706
 #: application/models/Logbook_model.php:4732
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:4709
 #: application/models/Logbook_model.php:4735
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:4712
 #: application/models/Logbook_model.php:4738
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:4715
 #: application/models/Logbook_model.php:4741
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:4718
+#: application/models/Logbook_model.php:4744
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4744
 msgid "unknown"
 msgstr "unbekannt"
 
-#: application/models/Logbook_model.php:5556
+#: application/models/Logbook_model.php:5582
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3277,7 +3255,6 @@ msgstr "unbekannt"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5582
 msgid "Bearing"
 msgstr "Peilung"
 
@@ -4470,8 +4447,8 @@ msgstr ""
 "ebenfalls bereitstellt, importieren, um diese Daten in Wavelog zu korrigeren."
 
 #: application/views/adif/import.php:328
-#: application/views/lotw_views/index.php:137
 #: application/views/adif/import_success.php:31
+#: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Information"
 
@@ -4551,12 +4528,10 @@ msgstr "Duplikate wurden eingefügt!"
 msgid "Dupes were skipped."
 msgstr "evtl. vorhandene Duplikate wurden übersprungen."
 
-#: application/views/adif/import_success.php:30
-#: application/views/adif/import_success.php:33
-msgid "You imported at least 1 QSO containing a contest ID."
-msgstr "Du hast mindestens 1 QSO mit einer Contest-ID importiert."
-
 #: application/views/adif/import_success.php:31
+msgid "Contest logs imported"
+msgstr "Contest Logs importiert"
+
 #: application/views/adif/import_success.php:33
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
@@ -4567,17 +4542,18 @@ msgstr ""
 "richtig aus der ADIF dieser Software importiert. Wenn du das korrigieren "
 "möchtest, wechsle zum CBR-Import-Tab der ADIF-Importseite."
 
-#: application/views/adif/import_success.php:32
+#: application/views/adif/import_success.php:33
+msgid "You imported at least 1 QSO containing a contest ID."
+msgstr "Du hast mindestens 1 QSO mit einer Contest-ID importiert."
+
 #: application/views/adif/import_success.php:34
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr "Wir haben die folgende QSOs für die folgenden Contest-IDs gefunden:"
 
-#: application/views/adif/import_success.php:44
 #: application/views/adif/import_success.php:47
 msgid "Import details / possible problems"
 msgstr "Details zum Import / Mögliche Probleme"
 
-#: application/views/adif/import_success.php:45
 #: application/views/adif/import_success.php:48
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
@@ -6403,8 +6379,7 @@ msgstr ""
 msgid "Sig"
 msgstr "Sig"
 
-#: application/views/bands/index.php:57 application/views/qso/edit_ajax.php:361
-#: application/views/qso/index.php:491
+#: application/views/bands/index.php:57
 msgid "USA County"
 msgstr "US-County"
 
@@ -8830,8 +8805,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
-"eQSL.cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
+"cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -9935,8 +9910,12 @@ msgid "Sicily"
 msgstr "Sizilien"
 
 #: application/views/logbookadvanced/edit.php:198
-msgid "Distance (in km). Leave blank to remove distance."
-msgstr "Distanz (in km). Leer lassen, um Distanzwert zu entfernen."
+msgid ""
+"Distance (in km). Leave blank to recalculate distance. (It will only work if "
+"a gridsquare is set)."
+msgstr ""
+"Distanz (in km). Leer lassen, um die Distanz neu zu berechnen. (Funktioniert "
+"nur bei eingetragenem Planquadrat)."
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
@@ -11000,8 +10979,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
-"'wavelog@example.com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
+"com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
@@ -11881,6 +11860,12 @@ msgstr "Antennen-Elevation (°)"
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:608
 msgid "Antenna elevation in decimal degrees."
 msgstr "Elevation der Antenne in Dezimalgrad."
+
+#: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:491
+#: application/views/station_profile/create.php:103
+#: application/views/station_profile/edit.php:141
+msgid "Station County"
+msgstr "Stations County"
 
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:266
 #: application/views/qso/index.php:558 application/views/user/edit.php:666
@@ -13040,9 +13025,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
-"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
-"im wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
+"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
+"wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -13210,16 +13195,10 @@ msgstr "Stations Stadt. Zum Beispiel: Oslo"
 msgid "Station state. Applies to certain countries only."
 msgstr "Stations Staat. Ist nur für ausgewählte Länder verfügbar."
 
-#: application/views/station_profile/create.php:103
-#: application/views/station_profile/edit.php:141
-#: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:491
-msgid "Station County"
-msgstr "Stations County"
-
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
-msgid "Station County (Only used for USA/Alaska/Hawaii)."
-msgstr "Station County (Nur für USA/Alaska/Hawaii)."
+msgid "Station County (Only used for specific DXCCs)."
+msgstr "Stations County (Nur bei bestimmten DXCCs verwendet)."
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:169
@@ -13859,9 +13838,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
-"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
-"enthält. Wir verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
+"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
+"verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -15301,22 +15280,11 @@ msgstr "Anfrage senden"
 msgid "Rcvd"
 msgstr "Rcvd"
 
-#: application/views/station_profile/create.php:105
-#: application/views/station_profile/edit.php:143
-msgid "Station County (Only used for specific DXCCs)."
-msgstr "Stations County (Nur bei bestimmten DXCCs verwendet)."
+#~ msgid "Distance (in km). Leave blank to remove distance."
+#~ msgstr "Distanz (in km). Leer lassen, um Distanzwert zu entfernen."
 
-#: application/views/logbookadvanced/edit.php:198
-msgid ""
-"Distance (in km). Leave blank to recalculate distance. (It will only work if "
-"a gridsquare is set)."
-msgstr ""
-"Distanz (in km). Leer lassen, um die Distanz neu zu berechnen. (Funktioniert "
-"nur bei eingetragenem Planquadrat)."
-
-#: application/views/adif/import_success.php:31
-msgid "Contest logs imported"
-msgstr "Contest Logs importiert"
+#~ msgid "Station County (Only used for USA/Alaska/Hawaii)."
+#~ msgstr "Station County (Nur für USA/Alaska/Hawaii)."
 
 #~ msgid "Invalid Locator!"
 #~ msgstr "Ungültiger Locator!"

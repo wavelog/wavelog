@@ -18,11 +18,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-05-27 08:29+0000\n"
+"POT-Creation-Date: 2025-06-02 12:02+0000\n"
 "PO-Revision-Date: 2025-06-02 06:40+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +111,7 @@ msgstr ""
 #: application/controllers/Satellite.php:658
 #: application/controllers/Satellite.php:667
 #: application/controllers/Sattimers.php:9
-#: application/controllers/Search.php:13
+#: application/controllers/Search.php:12
 #: application/controllers/Simplefle.php:7
 #: application/controllers/Station.php:17
 #: application/controllers/Stationsetup.php:15
@@ -131,7 +131,6 @@ msgstr ""
 #: application/controllers/User.php:1540
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
-#: application/controllers/Search.php:12
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -1548,12 +1547,12 @@ msgstr "网格坐标"
 #: application/views/qslcard/searchresult.php:84
 #: application/views/qso/components/previous_contacts.php:87
 #: application/views/search/search_result_ajax.php:14
+#: application/views/statistics/initialresult.php:21
 #: application/views/user/edit.php:253 application/views/user/edit.php:276
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
-#: application/views/statistics/initialresult.php:21
 msgid "Distance"
 msgstr "距离"
 
@@ -2238,7 +2237,7 @@ msgstr "这里"
 msgid "Satellite Timers"
 msgstr "卫星时钟"
 
-#: application/controllers/Search.php:19
+#: application/controllers/Search.php:17
 #: application/views/continents/index.php:49
 #: application/views/interface_assets/footer.php:40
 #: application/views/interface_assets/header.php:364
@@ -2262,23 +2261,22 @@ msgstr "卫星时钟"
 #: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
-#: application/controllers/Search.php:17
 msgid "Search"
 msgstr "搜索"
 
-#: application/controllers/Search.php:28 application/controllers/Search.php:26
+#: application/controllers/Search.php:26
 msgid "Search & Filter Logbook"
 msgstr "搜索 & 过滤日志"
 
-#: application/controllers/Search.php:58 application/controllers/Search.php:54
+#: application/controllers/Search.php:54
 msgid "Incorrectly logged CQ zones"
 msgstr "CQ 分区记录错误"
 
-#: application/controllers/Search.php:70 application/controllers/Search.php:66
+#: application/controllers/Search.php:66
 msgid "Incorrectly logged ITU zones"
 msgstr "ITU 区域记录错误"
 
-#: application/controllers/Search.php:82 application/controllers/Search.php:78
+#: application/controllers/Search.php:78
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -3082,116 +3080,96 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:1234
 #: application/models/Logbook_model.php:1245
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
-#: application/models/Logbook_model.php:1239
 #: application/models/Logbook_model.php:1250
 msgid "No Call given"
 msgstr "未提供呼号"
 
-#: application/models/Logbook_model.php:1468
 #: application/models/Logbook_model.php:1320
 #: application/models/Logbook_model.php:1494
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
-#: application/models/Logbook_model.php:3917
 #: application/models/Logbook_model.php:3943
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:3918
 #: application/models/Logbook_model.php:3944
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
-#: application/models/Logbook_model.php:3930
 #: application/models/Logbook_model.php:3956
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:3930
 #: application/models/Logbook_model.php:3956
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，未导入"
 
-#: application/models/Logbook_model.php:4229
 #: application/models/Logbook_model.php:4255
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4240
 #: application/models/Logbook_model.php:4266
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4301
 #: application/models/Logbook_model.php:4327
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4321
 #: application/models/Logbook_model.php:4347
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4342
 #: application/models/Logbook_model.php:4368
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4634
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4660
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4695
 #: application/models/Logbook_model.php:4721
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4701
 #: application/models/Logbook_model.php:4727
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4706
 #: application/models/Logbook_model.php:4732
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4709
 #: application/models/Logbook_model.php:4735
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4712
 #: application/models/Logbook_model.php:4738
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4715
 #: application/models/Logbook_model.php:4741
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4718
+#: application/models/Logbook_model.php:4744
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4744
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5556
+#: application/models/Logbook_model.php:5582
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3202,7 +3180,6 @@ msgstr "未知"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5582
 msgid "Bearing"
 msgstr "方位角"
 
@@ -4369,8 +4346,8 @@ msgstr ""
 "Cabrillo文件来在Wavelog中重写该数据。"
 
 #: application/views/adif/import.php:328
-#: application/views/lotw_views/index.php:137
 #: application/views/adif/import_success.php:31
+#: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "信息"
 
@@ -4442,12 +4419,10 @@ msgstr "已添加重复项！"
 msgid "Dupes were skipped."
 msgstr "已跳过重复项。"
 
-#: application/views/adif/import_success.php:30
-#: application/views/adif/import_success.php:33
-msgid "You imported at least 1 QSO containing a contest ID."
-msgstr "你已经导入至少一个包含比赛ID的通联记录。"
-
 #: application/views/adif/import_success.php:31
+msgid "Contest logs imported"
+msgstr ""
+
 #: application/views/adif/import_success.php:33
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
@@ -4457,17 +4432,18 @@ msgstr ""
 "有时，根据您的竞赛记录软件，您的通联记录无法从该软件ADIF正确导入。如果您想更"
 "正该问题，请切换到“ADIF导入”页面的“CBP导入”选项卡。"
 
-#: application/views/adif/import_success.php:32
+#: application/views/adif/import_success.php:33
+msgid "You imported at least 1 QSO containing a contest ID."
+msgstr "你已经导入至少一个包含比赛ID的通联记录。"
+
 #: application/views/adif/import_success.php:34
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr "我们找到了以下竞赛 ID 的以下 QSO 数量："
 
-#: application/views/adif/import_success.php:44
 #: application/views/adif/import_success.php:47
 msgid "Import details / possible problems"
 msgstr "导入详情 / 存在错误"
 
-#: application/views/adif/import_success.php:45
 #: application/views/adif/import_success.php:48
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
@@ -4763,9 +4739,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
-"\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通"
-"联的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
+"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
+"效通联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5665,8 +5641,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
-"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
+"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -6189,8 +6165,7 @@ msgstr ""
 msgid "Sig"
 msgstr "设备"
 
-#: application/views/bands/index.php:57 application/views/qso/edit_ajax.php:361
-#: application/views/qso/index.php:491
+#: application/views/bands/index.php:57
 msgid "USA County"
 msgstr "县(美国)"
 
@@ -9604,8 +9579,10 @@ msgid "Sicily"
 msgstr "西西里岛"
 
 #: application/views/logbookadvanced/edit.php:198
-msgid "Distance (in km). Leave blank to remove distance."
-msgstr "距离（公里）。留空以删除距离。"
+msgid ""
+"Distance (in km). Leave blank to recalculate distance. (It will only work if "
+"a gridsquare is set)."
+msgstr ""
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
@@ -11461,6 +11438,12 @@ msgstr "天线仰角（°）"
 msgid "Antenna elevation in decimal degrees."
 msgstr "天线仰角（以十进制度为单位）。"
 
+#: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:491
+#: application/views/station_profile/create.php:103
+#: application/views/station_profile/edit.php:141
+msgid "Station County"
+msgstr "台站县"
+
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:266
 #: application/views/qso/index.php:558 application/views/user/edit.php:666
 #: application/views/view_log/qso.php:441
@@ -12732,16 +12715,10 @@ msgstr "台站坐落城市，如 Beijing"
 msgid "Station state. Applies to certain countries only."
 msgstr "台站州（特定国家可用）。"
 
-#: application/views/station_profile/create.php:103
-#: application/views/station_profile/edit.php:141
-#: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:491
-msgid "Station County"
-msgstr "台站县"
-
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
-msgid "Station County (Only used for USA/Alaska/Hawaii)."
-msgstr "台站的县 (仅用于 美国本土/阿拉斯加/夏威夷)。"
+msgid "Station County (Only used for specific DXCCs)."
+msgstr "台站县（仅限特定DXCC）。"
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:169
@@ -13226,7 +13203,7 @@ msgstr "所有"
 msgid "Unique callsigns"
 msgstr "呼号"
 
-#: application/views/statistics/initialresult.php:40
+#: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
 msgstr "未找到EME通联记录。"
@@ -13384,8 +13361,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
-"'.png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
+"png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -14690,20 +14667,11 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
-#: application/views/station_profile/create.php:105
-#: application/views/station_profile/edit.php:143
-msgid "Station County (Only used for specific DXCCs)."
-msgstr "台站县（仅限特定DXCC）。"
+#~ msgid "Distance (in km). Leave blank to remove distance."
+#~ msgstr "距离（公里）。留空以删除距离。"
 
-#: application/views/logbookadvanced/edit.php:198
-msgid ""
-"Distance (in km). Leave blank to recalculate distance. (It will only work if "
-"a gridsquare is set)."
-msgstr ""
-
-#: application/views/adif/import_success.php:31
-msgid "Contest logs imported"
-msgstr ""
+#~ msgid "Station County (Only used for USA/Alaska/Hawaii)."
+#~ msgstr "台站的县 (仅用于 美国本土/阿拉斯加/夏威夷)。"
 
 #~ msgid "Sig Info"
 #~ msgstr "Sig 属性"
@@ -15070,8 +15038,8 @@ msgstr ""
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
-#~ "有 .png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
+#~ "png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
