@@ -4461,6 +4461,7 @@ msgstr ""
 
 #: application/views/adif/import.php:328
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import_success.php:31
 msgid "Information"
 msgstr "Información"
 
@@ -4541,10 +4542,12 @@ msgid "Dupes were skipped."
 msgstr "Se omitieron los duplicados."
 
 #: application/views/adif/import_success.php:30
+#: application/views/adif/import_success.php:33
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "Has importado al menos 1 QSO que contiene un ID de concurso."
 
 #: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:33
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4556,16 +4559,19 @@ msgstr ""
 "de Importación ADIF."
 
 #: application/views/adif/import_success.php:32
+#: application/views/adif/import_success.php:34
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 "Encontramos los siguientes números de QSOs para los siguientes IDs de "
 "concurso:"
 
 #: application/views/adif/import_success.php:44
+#: application/views/adif/import_success.php:47
 msgid "Import details / possible problems"
 msgstr "Detalles de importación / posibles problemas"
 
 #: application/views/adif/import_success.php:45
+#: application/views/adif/import_success.php:48
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -15322,6 +15328,10 @@ msgstr ""
 msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "
 "a gridsquare is set)."
+msgstr ""
+
+#: application/views/adif/import_success.php:31
+msgid "Contest logs imported"
 msgstr ""
 
 #~ msgid "Sig Info"
