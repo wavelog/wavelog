@@ -148,9 +148,9 @@ class Satellite extends CI_Controller {
 		$id 						= $this->security->xss_clean($this->input->post('id'));
 		$satmode['name'] 			= $this->security->xss_clean($this->input->post('name'));
 		$satmode['uplink_mode'] 	= $this->security->xss_clean($this->input->post('uplink_mode'));
-		$satmode['uplink_freq'] 	= $this->security->xss_clean($this->input->post('uplink_freq'));
+		$satmode['uplink_freq'] 	= filter_var($this->security->xss_clean($this->input->post('uplink_freq')),FILTER_VALIDATE_INT);
 		$satmode['downlink_mode'] 	= $this->security->xss_clean($this->input->post('downlink_mode'));
-		$satmode['downlink_freq'] 	= $this->security->xss_clean($this->input->post('downlink_freq'));
+		$satmode['downlink_freq'] 	= filter_var($this->security->xss_clean($this->input->post('downlink_freq')),FILTER_VALIDATE_INT);;
 
 		$this->load->model('satellite_model');
 		$this->satellite_model->saveSatelliteMode($id, $satmode);
