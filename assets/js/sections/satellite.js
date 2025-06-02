@@ -404,9 +404,23 @@ function addSatMode() {
 	$('.satmodetable tbody').append($('<tr class="editRow">')
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
+		.append(
+		$('<td>', {
+			class: 'row_data bg-danger',
+			contenteditable: 'true',
+			style: 'text-align: center; vertical-align: middle;',
+			oninput: 'this.textContent = this.textContent.replace(/[^0-9.]/g, "")'
+		})
+		)
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
-		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
-		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
+		.append(
+		$('<td>', {
+			class: 'row_data bg-danger',
+			contenteditable: 'true',
+			style: 'text-align: center; vertical-align: middle;',
+			oninput: 'this.textContent = this.textContent.replace(/[^0-9.]/g, "")'
+		})
+		)
 		.append($('<td id="saveButton" style="text-align: center; vertical-align: middle;">').append('<button type="button" class="btn btn-sm btn-success savenewline">Save</button>'))
 		.append($('<td id="cancelButton" style="text-align: center; vertical-align: middle;">').append('<button type="button" class="btn btn-sm btn-danger cancelnewline">Cancel</button>'))
 	)
