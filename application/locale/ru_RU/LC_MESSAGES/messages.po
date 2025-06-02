@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-06-02 12:02+0000\n"
-"PO-Revision-Date: 2025-05-26 12:50+0000\n"
+"POT-Creation-Date: 2025-06-01 06:51+0000\n"
+"PO-Revision-Date: 2025-06-02 06:40+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -3030,7 +3030,7 @@ msgstr "Федеральное государство"
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr "Графство"
+msgstr "Район"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
@@ -4422,8 +4422,8 @@ msgstr ""
 "экспортированный из этого ПО, чтобы переписать эти данные в Wavelog."
 
 #: application/views/adif/import.php:328
-#: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import_success.php:31
 msgid "Information"
 msgstr "Информация"
 
@@ -4503,10 +4503,12 @@ msgstr "Дубликаты добавлены!"
 msgid "Dupes were skipped."
 msgstr "Дубликаты игнорированы."
 
-#: application/views/adif/import_success.php:31
-msgid "Contest logs imported"
-msgstr ""
+#: application/views/adif/import_success.php:30
+#: application/views/adif/import_success.php:33
+msgid "You imported at least 1 QSO containing a contest ID."
+msgstr "Вы импортировали, как минимум, 1 QSO с идентификатором контеста."
 
+#: application/views/adif/import_success.php:31
 #: application/views/adif/import_success.php:33
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
@@ -4518,19 +4520,18 @@ msgstr ""
 "этого программного обеспечения. Если хотите это исправить, переключитесь на "
 "вкладку CBR Import на странице импорта ADIF."
 
-#: application/views/adif/import_success.php:33
-msgid "You imported at least 1 QSO containing a contest ID."
-msgstr "Вы импортировали, как минимум, 1 QSO с идентификатором контеста."
-
+#: application/views/adif/import_success.php:32
 #: application/views/adif/import_success.php:34
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 "Мы нашли следующие количества QSO для следующих идентификаторов контестов:"
 
+#: application/views/adif/import_success.php:44
 #: application/views/adif/import_success.php:47
 msgid "Import details / possible problems"
 msgstr "Детали импорта / возможные проблемы"
 
+#: application/views/adif/import_success.php:45
 #: application/views/adif/import_success.php:48
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
@@ -4819,7 +4820,7 @@ msgstr "Отфильтровано по"
 
 #: application/views/awards/counties/details.php:13
 msgid "County"
-msgstr "Графство"
+msgstr "Район"
 
 #: application/views/awards/counties/index.php:7
 msgid "US County Award"
@@ -6351,7 +6352,7 @@ msgstr "Sig"
 
 #: application/views/bands/index.php:57
 msgid "USA County"
-msgstr "Графство США"
+msgstr "Округ США"
 
 #: application/views/bands/index.php:60
 #: application/views/interface_assets/header.php:232
@@ -9884,10 +9885,8 @@ msgid "Sicily"
 msgstr "Сицилия"
 
 #: application/views/logbookadvanced/edit.php:198
-msgid ""
-"Distance (in km). Leave blank to recalculate distance. (It will only work if "
-"a gridsquare is set)."
-msgstr ""
+msgid "Distance (in km). Leave blank to remove distance."
+msgstr "Дистанция (в км). Оставьте пустым, чтобы удалить запись о дистанции."
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
@@ -11831,7 +11830,7 @@ msgstr "Возвышение антенны в десятичных градус
 #: application/views/station_profile/create.php:103
 #: application/views/station_profile/edit.php:141
 msgid "Station County"
-msgstr "Графство/район"
+msgstr "Район (округ)"
 
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:266
 #: application/views/qso/index.php:558 application/views/user/edit.php:666
@@ -13056,8 +13055,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -13155,7 +13154,7 @@ msgstr "Штат/область станции. Применимо только 
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
 msgid "Station County (Only used for specific DXCCs)."
-msgstr ""
+msgstr "Район (округ) станции (используется только для определенных DXCC)."
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:169
@@ -13661,7 +13660,7 @@ msgstr "по уникальным позывным"
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
-msgstr ""
+msgstr "EME QSO не найдено."
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
@@ -13781,8 +13780,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14137,8 +14137,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:380
 msgid ""
@@ -15208,9 +15208,15 @@ msgstr "Отправить запрос"
 msgid "Rcvd"
 msgstr "Получено"
 
-#~ msgid "Distance (in km). Leave blank to remove distance."
-#~ msgstr ""
-#~ "Дистанция (в км). Оставьте пустым, чтобы удалить запись о дистанции."
+#: application/views/logbookadvanced/edit.php:198
+msgid ""
+"Distance (in km). Leave blank to recalculate distance. (It will only work if "
+"a gridsquare is set)."
+msgstr ""
+
+#: application/views/adif/import_success.php:31
+msgid "Contest logs imported"
+msgstr ""
 
 #~ msgid "Station County (Only used for USA/Alaska/Hawaii)."
 #~ msgstr "Графство/район станции. (Используется только для некоторых стран)."
