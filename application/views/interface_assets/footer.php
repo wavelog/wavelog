@@ -1116,6 +1116,22 @@ $($('#callsign')).on('keypress',function(e) {
     attribution: '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>',
     id: 'mapbox.streets'
   }).addTo(mymap);
+  mymap.on('click', function(e) {
+    $.ajax({
+      url: base_url + 'index.php/logbook/latlngqrajson',
+      type: 'post',
+      data: {
+        lat: e.latlng.lat,
+        lng: e.latlng.lng
+      },
+      success: function(data) {
+        result = JSON.parse(data);
+        $('#locator').val(result).trigger('input');
+      },
+      error: function() {
+      },
+    });
+  });
 
 </script>
 

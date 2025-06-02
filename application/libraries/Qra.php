@@ -217,6 +217,24 @@ class Qra {
 		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
 		return false;
 	}
+
+	function latlong2qra($lat, $lng) {
+		$longitude = intval($lng) + 180;
+		$latitude = intval($lat) + 90;
+
+		$letterA = ord('A');
+		$numberZero = ord('0');
+
+		$locator = chr($letterA + intval($longitude / 20));
+		$locator .= chr($letterA + intval($latitude / 10));
+		$locator .= chr($numberZero + intval(($longitude % 20) / 2));
+		$locator .= chr($numberZero + intval($latitude % 10));
+		$locator .= chr($letterA + intval(($longitude - intval($longitude / 2) * 2) / (2 / 24)));
+		$locator .= chr($letterA + intval(($latitude - intval($latitude / 1) * 1 ) / (1 / 24)));
+
+		return $locator;
+	}
+
 }
 
 
