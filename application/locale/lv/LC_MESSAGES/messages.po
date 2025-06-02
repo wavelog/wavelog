@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-06-02 06:39+0000\n"
+"POT-Creation-Date: 2025-06-02 12:02+0000\n"
 "PO-Revision-Date: 2024-11-19 01:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Latvian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4321,6 +4321,7 @@ msgid ""
 msgstr ""
 
 #: application/views/adif/import.php:328
+#: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr ""
@@ -4386,26 +4387,30 @@ msgstr ""
 msgid "Dupes were skipped."
 msgstr ""
 
-#: application/views/adif/import_success.php:30
-msgid "You imported at least 1 QSO containing a contest ID."
+#: application/views/adif/import_success.php:31
+msgid "Contest logs imported"
 msgstr ""
 
-#: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:33
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
 
-#: application/views/adif/import_success.php:32
+#: application/views/adif/import_success.php:33
+msgid "You imported at least 1 QSO containing a contest ID."
+msgstr ""
+
+#: application/views/adif/import_success.php:34
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 
-#: application/views/adif/import_success.php:44
+#: application/views/adif/import_success.php:47
 msgid "Import details / possible problems"
 msgstr ""
 
-#: application/views/adif/import_success.php:45
+#: application/views/adif/import_success.php:48
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"

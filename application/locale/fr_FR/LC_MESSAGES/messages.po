@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-06-02 06:39+0000\n"
+"POT-Creation-Date: 2025-06-02 12:02+0000\n"
 "PO-Revision-Date: 2025-05-26 12:50+0000\n"
 "Last-Translator: KARIM MALFI <karim.malfi@sfr.fr>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4438,6 +4438,7 @@ msgstr ""
 "logiciel fournit également pour réécrire ces données dans Wavelog."
 
 #: application/views/adif/import.php:328
+#: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Information"
@@ -4519,11 +4520,11 @@ msgstr "Des doublons ont été insérés !"
 msgid "Dupes were skipped."
 msgstr "Les doublons ont été ignorés."
 
-#: application/views/adif/import_success.php:30
-msgid "You imported at least 1 QSO containing a contest ID."
-msgstr "Vous avez importé au moins 1 QSO contenant un identifiant de concours."
-
 #: application/views/adif/import_success.php:31
+msgid "Contest logs imported"
+msgstr ""
+
+#: application/views/adif/import_success.php:33
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4534,17 +4535,21 @@ msgstr ""
 "corriger cela, passez à l'onglet d'importation CBR de la page d'importation "
 "ADIF."
 
-#: application/views/adif/import_success.php:32
+#: application/views/adif/import_success.php:33
+msgid "You imported at least 1 QSO containing a contest ID."
+msgstr "Vous avez importé au moins 1 QSO contenant un identifiant de concours."
+
+#: application/views/adif/import_success.php:34
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 "Nous avons trouvé les nombres de QSOs suivants pour les identifiants de "
 "concours suivants :"
 
-#: application/views/adif/import_success.php:44
+#: application/views/adif/import_success.php:47
 msgid "Import details / possible problems"
 msgstr "Détails d'importation / problèmes possibles"
 
-#: application/views/adif/import_success.php:45
+#: application/views/adif/import_success.php:48
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
