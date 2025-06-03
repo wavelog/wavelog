@@ -1127,6 +1127,7 @@ mymap.on('mousemove', onQsoMapMove);
 
   L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
     maxZoom: 18,
+    minZoom: 1,
     attribution: '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>',
     id: 'mapbox.streets'
   }).addTo(mymap);
@@ -1159,7 +1160,7 @@ mymap.on('mousemove', onQsoMapMove);
 	var lat = LatLng.lat;
 	var lng = LatLng.lng;
 	var locator = latLngToLocator(lat,lng);
-	$('#qsomapgrid').html(locator);
+	$('#qsomapgrid').html(locator.toUpperCase());
   }
   function toggleGridsquares(bool) {
 	if(!bool) {
