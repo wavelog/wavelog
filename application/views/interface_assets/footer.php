@@ -1117,20 +1117,7 @@ $($('#callsign')).on('keypress',function(e) {
     id: 'mapbox.streets'
   }).addTo(mymap);
   mymap.on('click', function(e) {
-    $.ajax({
-      url: base_url + 'index.php/logbook/latlngqrajson',
-      type: 'post',
-      data: {
-        lat: e.latlng.lat,
-        lng: e.latlng.lng
-      },
-      success: function(data) {
-        result = JSON.parse(data);
-        $('#locator').val(result).trigger('input');
-      },
-      error: function() {
-      },
-    });
+    $('#locator').val((latLngToLocator(e.latlng.lat, e.latlng.lng).toUpperCase()));
   });
 
 </script>
