@@ -1082,11 +1082,25 @@ $($('#callsign')).on('keypress',function(e) {
         $user_gridsquare = ($active_station_info->station_gridsquare ?? '');
     }
 ?>
-
+<style>
+.grid-text {
+  word-wrap: normal !important;
+}
+</style>
 <script>
+  var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
+  var maidenhead;
   var markers = L.layerGroup();
   var pos = [51.505, -0.09];
-  var mymap = L.map('qsomap').setView(pos, 12);
+  var mymap = L.map('qsomap', {
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+			position: 'topleft'
+		},
+}).setView(pos, 12);
+
+maidenhead = L.maidenheadqrb().addTo(mymap);
+mymap.on('mousemove', onQsoMapMove);
   $.ajax({
      url: base_url + 'index.php/logbook/qralatlngjson',
      type: 'post',
@@ -1113,12 +1127,48 @@ $($('#callsign')).on('keypress',function(e) {
 
   L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
     maxZoom: 18,
+    minZoom: 1,
     attribution: '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>',
     id: 'mapbox.streets'
   }).addTo(mymap);
   mymap.on('click', function(e) {
     $('#locator').val((latLngToLocator(e.latlng.lat, e.latlng.lng).toUpperCase()));
+	if (mymap._isFullscreen) {
+    	mymap.toggleFullscreen(); // only exits if in fullscreen
+  	}
   });
+
+   var legend = L.control({ position: "topright" });
+
+    legend.onAdd = function(mymap) {
+        var div = L.DomUtil.create("div", "legend");
+        div.innerHTML += '<div id="qsomapgrid"></div>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
+        return div;
+    };
+
+    legend.addTo(mymap);
+
+    if (typeof gridsquare_layer !== 'undefined') {
+		toggleGridsquares(gridsquare_layer);
+	} else {
+		toggleGridsquares(false);
+	}
+
+  function onQsoMapMove(event) {
+	var LatLng = event.latlng;
+	var lat = LatLng.lat;
+	var lng = LatLng.lng;
+	var locator = latLngToLocator(lat,lng);
+	$('#qsomapgrid').html(locator.toUpperCase());
+  }
+  function toggleGridsquares(bool) {
+	if(!bool) {
+		mymap.removeLayer(maidenhead);
+	} else {
+		maidenhead.addTo(mymap);
+	}
+};
 
 </script>
 
