@@ -1084,6 +1084,7 @@ $($('#callsign')).on('keypress',function(e) {
 ?>
 
 <script>
+  var maidenhead;
   var markers = L.layerGroup();
   var pos = [51.505, -0.09];
   var mymap = L.map('qsomap', {
@@ -1092,7 +1093,8 @@ $($('#callsign')).on('keypress',function(e) {
 			position: 'topleft'
 		},
 }).setView(pos, 12);
-var maidenhead = L.maidenheadqrb().addTo(mymap);
+
+maidenhead = L.maidenheadqrb().addTo(mymap);
 mymap.on('mousemove', onQsoMapMove);
   $.ajax({
      url: base_url + 'index.php/logbook/qralatlngjson',
@@ -1141,6 +1143,12 @@ mymap.on('mousemove', onQsoMapMove);
 
     legend.addTo(mymap);
 
+    if (typeof gridsquare_layer !== 'undefined') {
+		toggleGridsquares(gridsquare_layer);
+	} else {
+		toggleGridsquares(false);
+	}
+
   function onQsoMapMove(event) {
 	var LatLng = event.latlng;
 	var lat = LatLng.lat;
@@ -1148,6 +1156,13 @@ mymap.on('mousemove', onQsoMapMove);
 	var locator = latLngToLocator(lat,lng);
 	$('#qsomapgrid').html(locator);
   }
+  function toggleGridsquares(bool) {
+	if(!bool) {
+		mymap.removeLayer(maidenhead);
+	} else {
+		maidenhead.addTo(mymap);
+	}
+};
 
 </script>
 
