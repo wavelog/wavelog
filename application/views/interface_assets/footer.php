@@ -1133,6 +1133,7 @@ mymap.on('mousemove', onQsoMapMove);
   }).addTo(mymap);
   mymap.on('click', function(e) {
     $('#locator').val((latLngToLocator(e.latlng.lat, e.latlng.lng).toUpperCase()));
+    $('#locator').trigger('input');
 	if (mymap._isFullscreen) {
     	mymap.toggleFullscreen(); // only exits if in fullscreen
   	}
