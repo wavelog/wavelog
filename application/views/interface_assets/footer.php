@@ -1086,7 +1086,14 @@ $($('#callsign')).on('keypress',function(e) {
 <script>
   var markers = L.layerGroup();
   var pos = [51.505, -0.09];
-  var mymap = L.map('qsomap').setView(pos, 12);
+  var mymap = L.map('qsomap', {
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+			position: 'topleft'
+		},
+}).setView(pos, 12);
+var maidenhead = L.maidenheadqrb().addTo(mymap);
+mymap.on('mousemove', onQsoMapMove);
   $.ajax({
      url: base_url + 'index.php/logbook/qralatlngjson',
      type: 'post',
@@ -1118,7 +1125,29 @@ $($('#callsign')).on('keypress',function(e) {
   }).addTo(mymap);
   mymap.on('click', function(e) {
     $('#locator').val((latLngToLocator(e.latlng.lat, e.latlng.lng).toUpperCase()));
+	if (mymap._isFullscreen) {
+    	mymap.toggleFullscreen(); // only exits if in fullscreen
+  	}
   });
+
+   var legend = L.control({ position: "topright" });
+
+    legend.onAdd = function(mymap) {
+        var div = L.DomUtil.create("div", "legend");
+        div.innerHTML += '<div id="qsomapgrid"></div>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span>Gridsquare</span><br>';
+        return div;
+    };
+
+    legend.addTo(mymap);
+
+  function onQsoMapMove(event) {
+	var LatLng = event.latlng;
+	var lat = LatLng.lat;
+	var lng = LatLng.lng;
+	var locator = latLngToLocator(lat,lng);
+	$('#qsomapgrid').html(locator);
+  }
 
 </script>
 
