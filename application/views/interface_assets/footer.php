@@ -1084,6 +1084,7 @@ $($('#callsign')).on('keypress',function(e) {
 ?>
 
 <script>
+  var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
   var maidenhead;
   var markers = L.layerGroup();
   var pos = [51.505, -0.09];
@@ -1137,7 +1138,7 @@ mymap.on('mousemove', onQsoMapMove);
     legend.onAdd = function(mymap) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div id="qsomapgrid"></div>';
-		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span>Gridsquare</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
         return div;
     };
 
