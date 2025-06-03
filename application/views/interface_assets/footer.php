@@ -1082,7 +1082,11 @@ $($('#callsign')).on('keypress',function(e) {
         $user_gridsquare = ($active_station_info->station_gridsquare ?? '');
     }
 ?>
-
+<style>
+.grid-text {
+  word-wrap: normal !important;
+}
+</style>
 <script>
   var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
   var maidenhead;
