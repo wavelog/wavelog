@@ -1116,6 +1116,9 @@ $($('#callsign')).on('keypress',function(e) {
     attribution: '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>',
     id: 'mapbox.streets'
   }).addTo(mymap);
+  mymap.on('click', function(e) {
+    $('#locator').val((latLngToLocator(e.latlng.lat, e.latlng.lng).toUpperCase()));
+  });
 
 </script>
 
