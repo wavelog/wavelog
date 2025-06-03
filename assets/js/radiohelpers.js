@@ -34,7 +34,7 @@ function frequencyToBand(frequency) {
 	else if(result >= 50000000 && result <= 56000000) {
 		return '6m';
 	}
-	else if(result >= 70000000 && result <= 70500000) {
+	else if(result >= 70000000 && result <= 75000000) {
 		return '4m';
 	}
 	else if(result >= 144000000 && result <= 148000000) {
