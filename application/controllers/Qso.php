@@ -103,6 +103,11 @@ class QSO extends CI_Controller {
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg',array('option_name'=>'key_station_id','option_key'=>$data['active_station_profile']))->result();
 		$data['qslmsg'] = (isset($options_object[0]->option_value))?$options_object[0]->option_value:'';
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/leaflet/geocoding.js',
+		];
+
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Add QSO");
 			if (validation_errors() != '') {	// we're coming from a failed ajax-call
@@ -110,7 +115,7 @@ class QSO extends CI_Controller {
 			} else {	// we're not coming from a POST
 				$this->load->view('interface_assets/header', $data);
 				$this->load->view('qso/index');
-				$this->load->view('interface_assets/footer');
+				$this->load->view('interface_assets/footer', $footerData);
 			}
 		} else {
 			// Store Basic QSO Info for reuse
