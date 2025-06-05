@@ -1846,6 +1846,9 @@ $(document).ready(function(){
 	<?php if ($this->uri->segment(1) == "webadif") { ?>
 		<script src="<?php echo base_url(); ?>assets/js/sections/webadif.js"></script>
 	<?php } ?>
+	<?php if ($this->uri->segment(1) == "wavelog") { ?>
+		<script src="<?php echo base_url(); ?>assets/js/sections/wavelog.js"></script>
+	<?php } ?>
 
 <?php if ($this->uri->segment(2) == "dxcc" || $this->uri->segment(2) == "wae") { ?>
 <script>

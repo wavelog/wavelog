@@ -569,6 +569,38 @@ class Stations extends CI_Model {
 		return $this->db->query($sql,$bindings);
 	}
 
+	function stations_with_wavelog_api_key() {
+		$bindings=[];
+		$sql="
+			SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, notc.c notcount, totc.c totcount
+			FROM station_profile
+			LEFT OUTER JOIN (
+				SELECT qsos.station_id, COUNT(qsos.COL_PRIMARY_KEY) c
+				FROM %s qsos
+				LEFT JOIN wavelog ON qsos.COL_PRIMARY_KEY = wavelog.qso_id
+				WHERE wavelog.qso_id IS NULL
+				GROUP BY qsos.station_id
+			) notc ON station_profile.station_id = notc.station_id
+			LEFT JOIN (
+				SELECT qsos.station_id, COUNT(qsos.COL_PRIMARY_KEY) c
+				FROM %s qsos
+				WHERE 1
+				GROUP BY qsos.station_id
+			) totc ON station_profile.station_id = totc.station_id
+			WHERE COALESCE(station_profile.wavelog_apikey, '') <> ''
+			AND COALESCE(station_profile.wavelog_apiurl, '') <> ''
+			AND COALESCE(station_profile.wavelog_profileid, '') <> 0
+			AND station_profile.user_id = ?
+		";
+		$bindings[]=$this->session->userdata('user_id');
+		$sql=sprintf(
+			$sql,
+			$this->config->item('table_name'),
+			$this->config->item('table_name')
+		);
+		return $this->db->query($sql,$bindings);
+	}
+
     /*
 	*	Function: are_eqsl_nicks_defined
 	*	Description: Returns number of station profiles with eqslnicknames
