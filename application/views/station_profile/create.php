@@ -226,6 +226,13 @@ if ($dxcc_list->result() > 0) {
 					<input type="number" class="form-control" name="wavelog_profileid" id="wavelog_profileid" step="1" aria-describedby="wavelog_profileidHelp" placeholder="1" value="<?php if(isset($wavelog_profileid)) { echo $wavelog_profileid; } ?>">
                     <small id="wavelog_profileidHelp" class="form-text text-muted"><?= __("ID of the station profile to sync to."); ?></a></small>
                 </div>
+                <div class="mb-3 col-sm-3">
+				<label for="wavelog_realtime"><?= __("Wavelog Realtime Upload"); ?></label>
+				<select class="form-select" id="wavelog_realtime" name="wavelog_realtime">
+					<option value="1" <?php if (isset($wavelog_realtime) && $wavelog_realtime == 1) { echo ' selected="selected"'; } ?>><?= __("Yes"); ?></option>
+					<option value="0" <?php if (!isset($wavelog_realtime) || $wavelog_realtime != 1) { echo ' selected="selected"'; } ?>><?= __("No"); ?></option>
+				</select>
+                </div>
             </div>
 
 			<div class="mb-3">

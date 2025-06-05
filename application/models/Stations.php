@@ -175,6 +175,7 @@ class Stations extends CI_Model {
 			'wavelog_apiurl' => xss_clean($this->input->post('wavelog_apiurl', true)),
 			'wavelog_apikey' => xss_clean($this->input->post('wavelog_apikey', true)),
 			'wavelog_profileid' => xss_clean($this->input->post('wavelog_profileid', true)),
+			'wavelog_realtime' => xss_clean($this->input->post('wavelog_realtime', true)),
 		);
 
 		// Insert Records & return insert id //
@@ -257,6 +258,7 @@ class Stations extends CI_Model {
 			'wavelog_apiurl' => xss_clean($this->input->post('wavelog_apiurl', true)),
 			'wavelog_apikey' => xss_clean($this->input->post('wavelog_apikey', true)),
 			'wavelog_profileid' => xss_clean($this->input->post('wavelog_profileid', true)),
+			'wavelog_realtime' => xss_clean($this->input->post('wavelog_realtime', true)),
 		);
 
 		$this->db->where('user_id', $this->session->userdata('user_id'));

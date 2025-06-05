@@ -23,6 +23,12 @@ public function up() {
 			);
 			$this->dbforge->add_column('station_profile', $fields);
 		}
+		if (!$this->db->field_exists('wavelog_realtime', 'station_profile')) {
+			$fields = array(
+				'wavelog_realtime tinyint(1) DEFAULT 0'
+			);
+			$this->dbforge->add_column('station_profile', $fields);
+		}
 
 		if (!$this->db->table_exists('wavelog')) {
 			$this->dbforge->add_field(array(
@@ -46,9 +52,20 @@ public function up() {
 	}
 
 	public function down() {
-		$this->dbforge->drop_column('station_profile', 'wavelog_apiurl');
-		$this->dbforge->drop_column('station_profile', 'wavelog_apikey');
-		$this->dbforge->drop_column('station_profile', 'wavelog_profileid');
-		$this->dbforge->drop_table('wavelog');
+		if ($this->db->field_exists('wavelog_apiurl', 'station_profile')) {
+			$this->dbforge->drop_column('station_profile', 'wavelog_apiurl');
+		}
+		if ($this->db->field_exists('wavelog_apikey', 'station_profile')) {
+			$this->dbforge->drop_column('station_profile', 'wavelog_apikey');
+		}
+		if ($this->db->field_exists('wavelog_profileid', 'station_profile')) {
+			$this->dbforge->drop_column('station_profile', 'wavelog_profileid');
+		}
+		if ($this->db->field_exists('wavelog_realtime', 'station_profile')) {
+			$this->dbforge->drop_column('station_profile', 'wavelog_realtime');
+		}
+		if ($this->db->table_exists('wavelog')) {
+			$this->dbforge->drop_table('wavelog');
+		}
     }
 }

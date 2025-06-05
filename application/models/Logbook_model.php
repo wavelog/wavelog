@@ -888,7 +888,7 @@ class Logbook_model extends CI_Model {
 
 				$result = $this->exists_wavelog_api_key($data['station_id']);
 				// Push qso to upstream Wavelog instance
-				if (isset($result->wavelog_apikey)) {
+				if ($result->wavelog_realtime != 0 && isset($result->wavelog_apikey)) {
 					if (!$this->load->is_loaded('AdifHelper')) {
 						$this->load->library('AdifHelper');
 					}
@@ -985,7 +985,7 @@ class Logbook_model extends CI_Model {
 	 * Function checks if a Wavelog API Key exists in the table with the given station id
 	*/
 	function exists_wavelog_api_key($station_id) {
-		$sql = 'select wavelog_apiurl, wavelog_apikey, wavelog_profileid from station_profile
+		$sql = 'select wavelog_apiurl, wavelog_apikey, wavelog_profileid, wavelog_realtime from station_profile
 		  where station_id = ?';
 
 		$query = $this->db->query($sql, $station_id);
