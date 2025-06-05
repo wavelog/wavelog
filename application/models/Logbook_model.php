@@ -885,6 +885,23 @@ class Logbook_model extends CI_Model {
 						$this->mark_webadif_qsos_sent([$last_id]);
 					}
 				}
+
+				$result = $this->exists_wavelog_api_key($data['station_id']);
+				// Push qso to upstream Wavelog instance
+				if (isset($result->wavelog_apikey)) {
+					if (!$this->load->is_loaded('AdifHelper')) {
+						$this->load->library('AdifHelper');
+					}
+					$qso = $this->get_qso($last_id, true)->result();
+
+					$adif = $this->adifhelper->getAdifLine($qso[0]);
+					$result = $this->push_qso_to_wavelog(
+						$result->wavelog_apiurl,
+						$result->wavelog_apikey,
+						$result->wavelog_profileid,
+						$adif
+					);
+				}
 			}
 		}
 	}
@@ -948,6 +965,24 @@ class Logbook_model extends CI_Model {
 	*/
 	function exists_webadif_api_key($station_id) {
 		$sql = 'select webadifapikey, webadifapiurl, webadifrealtime from station_profile
+		  where station_id = ?';
+
+		$query = $this->db->query($sql, $station_id);
+
+		$result = $query->row();
+
+		if ($result) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * Function checks if a Wavelog API Key exists in the table with the given station id
+	*/
+	function exists_wavelog_api_key($station_id) {
+		$sql = 'select wavelog_apiurl, wavelog_apikey, wavelog_profileid from station_profile
 		  where station_id = ?';
 
 		$query = $this->db->query($sql, $station_id);
@@ -1085,6 +1120,38 @@ class Logbook_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		$content = curl_exec($ch); // TODO: better error handling
+		$errors = curl_error($ch);
+		$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		curl_close($ch);
+		return $response === 200;
+	}
+
+	/*
+	 * Function uploads a QSO to an upstream Wavelog instance
+	 * using URL, api key and profile id
+	 * $adif contains a line with the QSO in the ADIF format.
+	 */
+	function push_qso_to_wavelog($url, $apikey, $profileid, $adif): bool {
+
+		$headers = array(
+			'Content-Type: application/json',
+		);
+
+		if (substr($url, -17) !== "index.php/api/qso") {
+			$url .= 'index.php/api/qso';
+		}
+
+		$arr = array('key' => $apikey, 'station_profile_id' => $profileid, 'type' => 'adif', 'string' => trim(preg_replace('/[\r\n]/', '', $adif)));
+
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arr));
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		$content = curl_exec($ch);
 		$errors = curl_error($ch);
 		$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);

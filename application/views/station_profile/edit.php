@@ -354,6 +354,33 @@ if ($dxcc_list->result() > 0) {
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
+				<h5 class="card-header"><?= __("Wavelog"); ?></h5>
+				<div class="card-body">
+					<div class="mb-3">
+						<label for="wavelog_apiurl"><?= __("Wavelog API URL"); ?></label>
+						<input type="text" class="form-control" name="wavelog_apiurl" id="wavelog_apiurl" aria-describedby="wavelog_apiurlHelp" value="<?php if(set_value('wavelog_apiurl') != "") { echo set_value('wavelog_apiurl'); } else { echo $my_station_profile->wavelog_apiurl; } ?>">
+						<small id="wavelog_apiurlHelp" class="form-text text-muted"><?= __("API URL for the Wavelog instance the QSOs should be synced to."); ?></a></small>
+					</div>
+					<div class="mb-3">
+						<label for="wavelog_apikey"><?= __("Wavelog API Key"); ?></label>
+						<div class="input-group">
+							<input type="password" class="form-control" name="wavelog_apikey" id="wavelog_apikey" aria-describedby="wavelog_apikeyHelp" value="<?php if(set_value('wavelog_apikey') != "") { echo set_value('wavelog_apikey'); } else { echo $my_station_profile->wavelog_apikey; } ?>">
+							<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
+						</div>
+						<small id="wavelog_apikeyHelp" class="form-text text-muted"><?= __("API key for the Wavelog instance."); ?></small>
+					</div>
+					<div class="mb-3">
+						<label for="wavelog_profileid"><?= __("Station Profile ID"); ?></label>
+						<input type="number" class="form-control" name="wavelog_profileid" step="1" id="wavelog_profileidInput" aria-describedby="wavelog_profileidInputHelp" value="<?php if(set_value('wavelog_profileid') != "") { echo set_value('wavelog_profileid'); } else { echo $my_station_profile->wavelog_profileid; } ?>">
+						<small id="wavelog_profileidHelp" class="form-text text-muted"><?= __("ID of the station profile to sync to."); ?></small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md">
+			<div class="card">
 				<h5 class="card-header"><?= __("Clublog"); ?></h5> <!-- This does not need Multilanguage Support -->
 				<div class="card-body">
 					<div class="mb-3">

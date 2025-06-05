@@ -209,6 +209,25 @@ if ($dxcc_list->result() > 0) {
 				<textarea class="form-control" name="eqsl_default_qslmsg" id="eqslDefaultQSLMsg" aria-describedby="eqsldefaultqslmsghelp" maxlength="240" rows="2" style="width:100%;"><?php if (isset($eqsl_default_qslmsg) && $eqsl_default_qslmsg != "") { echo $eqsl_default_qslmsg; } ?></textarea>
 				<small id="eqsldefaultqslmsghelp" class="form-text text-muted"><?= __("Define a default message that will be populated and sent for each QSO for this station location."); ?></small>
 			</div>
+
+            <div class="row">
+				<div class="mb-3 col-sm-3">
+					<label for="wavelog_apiurl"><?= __("Wavelog API URL"); ?></label>
+					<input type="text" class="form-control" name="wavelog_apiurl" id="wavelog_apiurl" aria-describedby="wavelog_apiurlHelp" value="<?php if(isset($wavelog_apiurl)) { echo $wavelog_apiurl; } ?>">
+                    <small id="wavelog_apiurlHelp" class="form-text text-muted"><?= __(" API URL for the Wavelog instance the QSOs should be synced to."); ?></a></small>
+                </div>
+                <div class="mb-3 col-sm-3">
+					<label for="wavelog_apikey"><?= __("Wavelog API Key"); ?></label>
+					<input type="text" class="form-control" name="wavelog_apikey" id="wavelog_apikey" aria-describedby="wavelog_apikeyHelp" value="<?php if(isset($wavelog_apikey)) { echo $wavelog_apikey; } ?>">
+                    <small id="wavelog_apikeyHelp" class="form-text text-muted"><?= __("API key for the Wavelog instance."); ?></a></small>
+                </div>
+                <div class="mb-3 col-sm-3">
+					<label for="wavelog_profileid"><?= __(" Station Profile ID"); ?></label>
+					<input type="number" class="form-control" name="wavelog_profileid" id="wavelog_profileid" step="1" aria-describedby="wavelog_profileidHelp" placeholder="1" value="<?php if(isset($wavelog_profileid)) { echo $wavelog_profileid; } ?>">
+                    <small id="wavelog_profileidHelp" class="form-text text-muted"><?= __("ID of the station profile to sync to."); ?></a></small>
+                </div>
+            </div>
+
 			<div class="mb-3">
 				<label for="clublogignore"><?= __("Ignore Clublog Upload"); ?></label>
 				<select class="form-select" id="clublogignore" name="clublogignore">

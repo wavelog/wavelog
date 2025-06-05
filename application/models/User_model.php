@@ -991,10 +991,11 @@ class User_Model extends CI_Model {
 					station_profile_name, station_gridsquare, station_city, station_iota, station_sota, station_callsign, station_power,
 					station_dxcc, station_cnty, station_cq, station_itu, station_active, eqslqthnickname, state, qrzapikey, county,
 					station_sig, station_sig_info, qrzrealtime, user_id, station_wwff, station_pota, oqrs, oqrs_text, oqrs_email,
-					webadifapikey, webadifapiurl, webadifrealtime, clublogignore, clublogrealtime, hrdlogrealtime, hrdlog_code, hrdlog_username
+					webadifapikey, webadifapiurl, webadifrealtime, clublogignore, clublogrealtime, hrdlogrealtime, hrdlog_code, hrdlog_username,
+					wavelog_apiurl, wavelog_apikey, wavelog_profileid
 				) VALUES (
 					?, ?, '', '', '', ?, NULL, ?, '', ?, ?, 1, '', '', '', '', '', '', 0, ?, '', '', 0, '', 0, '',
-					'https://qo100dx.club/api', 0, 0, 0, 0, '', ''
+					'https://qo100dx.club/api', 0, 0, 0, 0, '', '', '', '', ''
 				)", [
 					$stationdata['station_name'],
 					strtoupper($stationdata['station_locator']),

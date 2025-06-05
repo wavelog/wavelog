@@ -172,6 +172,9 @@ class Stations extends CI_Model {
 			'webadifapikey' => xss_clean($this->input->post('webadifapikey', true)),
 			'webadifapiurl' => 'https://qo100dx.club/api',
 			'webadifrealtime' => xss_clean($this->input->post('webadifrealtime', true)),
+			'wavelog_apiurl' => xss_clean($this->input->post('wavelog_apiurl', true)),
+			'wavelog_apikey' => xss_clean($this->input->post('wavelog_apikey', true)),
+			'wavelog_profileid' => xss_clean($this->input->post('wavelog_profileid', true)),
 		);
 
 		// Insert Records & return insert id //
@@ -251,6 +254,9 @@ class Stations extends CI_Model {
 			'webadifapikey' => xss_clean($this->input->post('webadifapikey', true)),
 			'webadifapiurl' => 'https://qo100dx.club/api',
 			'webadifrealtime' => xss_clean($this->input->post('webadifrealtime', true)),
+			'wavelog_apiurl' => xss_clean($this->input->post('wavelog_apiurl', true)),
+			'wavelog_apikey' => xss_clean($this->input->post('wavelog_apikey', true)),
+			'wavelog_profileid' => xss_clean($this->input->post('wavelog_profileid', true)),
 		);
 
 		$this->db->where('user_id', $this->session->userdata('user_id'));
