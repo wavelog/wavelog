@@ -14,6 +14,11 @@ class Logbookadvanced_model extends CI_Model {
 		$conditions = [];
 		$binding = [$searchCriteria['user_id']];
 
+		if (isset($searchCriteria['qsoids']) && ($searchCriteria['qsoids'] !== '')) {
+			$ids2fetch = $searchCriteria['qsoids'];
+			$conditions[] = "qsos.COL_PRIMARY_KEY in (".$ids2fetch.")";
+		}
+
 		if ((isset($searchCriteria['dupes'])) && ($searchCriteria['dupes'] !== '')) {
 			$id_sql="select GROUP_CONCAT(col_primary_key separator ',') as qsoids, COL_CALL, COL_MODE, COL_SUBMODE, station_callsign, COL_SAT_NAME, COL_BAND,  min(col_time_on) Mintime, max(col_time_on) Maxtime from " . $this->config->item('table_name') . "
 				 join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id = ?

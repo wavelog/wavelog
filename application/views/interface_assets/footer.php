@@ -508,6 +508,20 @@ $(function () {
         }
     });
 
+	function open_in_lba() {
+		var user_id = <?php echo $this->session->userdata('user_id'); ?>;
+		var elements = $('.table tbody tr');
+
+		var id_list=[];
+		elements.each(function() {
+			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '')
+			id_list.push(id);
+		});
+
+		localStorage.setItem(`user_${user_id}_qsoids`, id_list);
+		window.location.href = base_url + 'index.php/logbookadvanced';
+	}
+
     function run_query() {
         $(".alert").remove();
         $(".runbutton").addClass('running');
@@ -518,7 +532,8 @@ $(function () {
             })
             .done(function(data) {
 
-                $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_stored_query(' + id + ')">'+"<?= __("Export to ADIF"); ?>"+'</button>');
+                $('.exportbutton').html('<button class="btn btn-sm btn-primary me-1" onclick="export_stored_query(' + id + ')">'+"<?= __("Export to ADIF"); ?>"+'</button>');
+				$('.exportbutton').append('<button class="btn btn-sm btn-primary me-1" id="btn-lba" onclick="open_in_lba();"><?= __("Open in the Advanced Logbook"); ?></button>');
                 $('.card-body.result').empty();
                 $(".search-results-box").show();
 
@@ -654,7 +669,8 @@ $(function () {
                     search: JSON.stringify(result, null, 2)
                 })
                 .done(function(data) {
-                    $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_search_result();">'+"<?= __("Export to ADIF"); ?>"+'</button>');
+                    $('.exportbutton').html('<button class="btn btn-sm btn-primary me-1" onclick="export_search_result();">'+"<?= __("Export to ADIF"); ?>"+'</button>');
+					$('.exportbutton').append('<button class="btn btn-sm btn-primary me-1" id="btn-lba" onclick="open_in_lba();"><?= __("Open in the Advanced Logbook"); ?></button>');
 
                     $('.card-body.result').empty();
                     $(".search-results-box").show();

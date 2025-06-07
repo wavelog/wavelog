@@ -147,6 +147,7 @@ class Logbookadvanced extends CI_Controller {
 			'invalid' => xss_clean($this->input->post('invalid')),
 			'continent' => xss_clean($this->input->post('continent')),
 			'comment' => xss_clean($this->input->post('comment')),
+			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
 
 		$qsos = [];
