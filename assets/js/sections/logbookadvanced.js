@@ -1349,6 +1349,7 @@ function saveOptions() {
 				qslmsgr: $('input[name="qslmsgr"]').is(':checked') ? true : false,
 				dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
 				state: $('input[name="state"]').is(':checked') ? true : false,
+				county: $('input[name="county"]').is(':checked') ? true : false,
 				cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
 				ituzone: $('input[name="ituzone"]').is(':checked') ? true : false,
 				iota: $('input[name="iota"]').is(':checked') ? true : false,

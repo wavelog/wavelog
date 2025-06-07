@@ -95,6 +95,10 @@
 			<td><div class="form-check"><input class="form-check-input" name="state" type="checkbox" <?php if (($options->state->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
+			<td><?= __("County"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="county" type="checkbox" <?php if (($options->county->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
 			<td><?= __("CQ Zone"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="cqzone" type="checkbox" <?php if (($options->cqzone->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
