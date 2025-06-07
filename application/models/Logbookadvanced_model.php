@@ -99,7 +99,7 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "date(COL_TIME_ON) <= ?";
 			$binding[] = $to;
 		}
-		if ($searchCriteria['de'] !== 'All') {
+		if ($searchCriteria['de'] !== 'All' && $searchCriteria['qsoids'] === '') {
 			if ($searchCriteria['de'] == '') {
 				$stationids = 'null';
 			} else {
