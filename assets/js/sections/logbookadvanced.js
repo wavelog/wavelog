@@ -461,17 +461,18 @@ $(document).ready(function () {
 	$('#searchForm').submit(function (e) {
 		let container = L.DomUtil.get('advancedmap');
 		let selectedlocations = $('#de').val();
+		let qsoids = '';
 		if (Array.isArray(selectedlocations) && selectedlocations.length === 0) {
 			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select at least 1 location to do a search!',
-				type: BootstrapDialog.TYPE_INFO,
-				closable: false,
-				draggable: false,
-				callback: function (result) {
-				}
-			});
-			return false;
+					title: 'INFO',
+					message: 'You need to select at least 1 location to do a search!',
+					type: BootstrapDialog.TYPE_INFO,
+					closable: false,
+					draggable: false,
+					callback: function (result) {
+					}
+				});
+				return false;
 		}
 
 		if(container != null){
@@ -486,8 +487,12 @@ $(document).ready(function () {
 
 		localStorage.setItem(`user_${user_id}_qsoresults`, this.qsoresults.value);
 		localStorage.setItem(`user_${user_id}_selectedlocations`, $('#de').val());
-
 		$('#searchButton').prop("disabled", true).addClass("running");
+
+		if (localStorage.hasOwnProperty(`user_${user_id}_qsoids`)) {
+			qsoids = localStorage.getItem(`user_${user_id}_qsoids`);
+			localStorage.removeItem(`user_${user_id}_qsoids`);
+		}
 		$.ajax({
 			url: this.action,
 			type: 'post',
@@ -530,11 +535,17 @@ $(document).ready(function () {
 				invalid: this.invalid.value,
 				continent: this.continent.value,
 				comment: this.comment.value,
+				qsoids: qsoids
 			},
 			dataType: 'json',
 			success: function (data) {
 				$('#searchButton').prop("disabled", false).removeClass("running");
 				loadQSOTable(data);
+				if (qsoids !== '') {
+					$('#checkBoxAll').prop("checked", true);
+					$('#checkBoxAll').trigger('change');
+				}
+				$('#checkBoxAll').prop("checked", false);
 			},
 			error: function (data) {
 				$('#searchButton').prop("disabled", false).removeClass("running");

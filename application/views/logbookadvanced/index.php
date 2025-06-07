@@ -212,7 +212,7 @@ $options = json_decode($options);
                         </div>
                         <div <?php if (($options->dxcc->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="dxcc"><?= __("DXCC"); ?></label>
-                            <select class="form-control form-control-sm" id="dxcc" name="dxcc">
+                            <select class="form-select form-select-sm" id="dxcc" name="dxcc">
                                 <option value="">-</option>
                                 <?php
                                 foreach ($dxccarray as $dxcc) {
@@ -610,7 +610,7 @@ $options = json_decode($options);
 					<option value="5000">5000</option>
 				</select>
 				<label class="me-2" for="de"><?= __("Location"); ?></label>
-				<select class="form-control form-control-sm w-auto me-2" id="de" name="de" multiple="multiple">
+				<select class="form-select form-select-sm w-auto me-2" id="de" name="de" multiple="multiple">
 					<?php foreach ($station_profile->result() as $station) { ?>
 						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
 							echo " selected =\"selected\""; } ?>>
