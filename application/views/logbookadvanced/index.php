@@ -330,7 +330,7 @@ $options = json_decode($options);
                     <div class="row">
 							<div <?php if (($options->county->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="county"><?= __("County"); ?></label>
-                            <input onclick="this.select()" type="text" name="sota" id="sota" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                            <input onclick="this.select()" type="text" name="county" id="county" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
                         </div>
                         <div <?php if (($options->sota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="sota"><?= __("SOTA"); ?></label>
