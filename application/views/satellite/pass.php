@@ -1,3 +1,6 @@
+<script type="text/javascript">
+    var user_id = <?php echo $this->session->userdata('user_id'); ?>;
+</script>
 <div class="container container-fluid">
 <br>
 <h2><?= __("Satellite passes"); ?></h2>

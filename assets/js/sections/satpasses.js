@@ -13,9 +13,20 @@ $(document).ready(function() {
 		inheritClass: true,
 		includeSelectAllOption: true
 	});
+
+	if (localStorage.hasOwnProperty(`user_${user_id}_selectedsatellites`)) {
+		const selectedSatellites = localStorage.getItem(`user_${user_id}_selectedsatellites`);
+		const satelliteArray = selectedSatellites ? selectedSatellites.split(',') : [];
+		// First, deselect all options
+		$('#satlist').multiselect('deselectAll', false);
+
+		// Then, select the stored locations
+		$('#satlist').multiselect('select', satelliteArray);
+	}
 });
 
 function searchpasses() {
+	localStorage.setItem(`user_${user_id}_selectedsatellites`, $('#satlist').val());
 	$(".ld-ext-right-plot").addClass('running');
     $(".ld-ext-right-plot").prop('disabled', true);
     $('#searchpass').prop("disabled", true);
