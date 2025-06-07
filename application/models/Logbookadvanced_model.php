@@ -244,6 +244,18 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_STATE, '') = ''";
 		}
 
+		if ($searchCriteria['county'] !== '*' && $searchCriteria['county'] !== '') {
+			if (strtolower($searchCriteria['county']) == '!empty') {
+				$conditions[] = "COL_CNTY <> ''";
+			} else {
+				$conditions[] = "COL_CNTY like ?";
+				$binding[] = '%' . $searchCriteria['county'] . '%';
+			}
+		}
+		if ($searchCriteria['county'] == '') {
+			$conditions[] = "coalesce(COL_CNTY, '') = ''";
+		}
+
 		if ($searchCriteria['cqzone'] !== '') {
 			$conditions[] = "COL_CQZ = ?";
 			$binding[] = $searchCriteria['cqzone'];

@@ -124,6 +124,7 @@ class Logbookadvanced extends CI_Controller {
 			'propmode' => xss_clean($this->input->post('propmode')),
 			'gridsquare' => xss_clean($this->input->post('gridsquare')),
 			'state' => xss_clean($this->input->post('state')),
+			'county' => xss_clean($this->input->post('county')),
 			'cqzone' => xss_clean($this->input->post('cqzone')),
 			'ituzone' => xss_clean($this->input->post('ituzone')),
 			'qsoresults' => xss_clean($this->input->post('qsoresults')),
@@ -311,6 +312,7 @@ class Logbookadvanced extends CI_Controller {
 			'propmode' => '',
 			'gridsquare' => '*',
 			'state' => '*',
+			'county' => '*',
 			'cqzone' => '',
 			'ituzone' => '',
 			'qsoresults' => count($this->input->post('ids')),
@@ -358,6 +360,7 @@ class Logbookadvanced extends CI_Controller {
 			'propmode' => xss_clean($this->input->post('propmode')),
 			'gridsquare' => xss_clean($this->input->post('gridsquare')),
 			'state' => xss_clean($this->input->post('state')),
+			'county' => xss_clean($this->input->post('county')),
 			'cqzone' => xss_clean($this->input->post('cqzone')),
 			'ituzone' => xss_clean($this->input->post('ituzone')),
 			'qsoresults' => xss_clean($this->input->post('qsoresults')),
@@ -576,6 +579,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['qslmsgr']['show'] = $this->def_boolean($this->input->post('qslmsgr'));
 		$json_string['dxcc']['show'] = $this->def_boolean($this->input->post('dxcc'));
 		$json_string['state']['show'] = $this->def_boolean($this->input->post('state'));
+		$json_string['county']['show'] = $this->def_boolean($this->input->post('county'));
 		$json_string['cqzone']['show'] = $this->def_boolean($this->input->post('cqzone'));
 		$json_string['ituzone']['show'] = $this->def_boolean($this->input->post('ituzone'));
 		$json_string['iota']['show'] = $this->def_boolean($this->input->post('iota'));

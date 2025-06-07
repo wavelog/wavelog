@@ -63,7 +63,8 @@
             \"distance\":{\"show\":\"true\"},
             \"region\":{\"show\":\"true\"},
             \"antennaazimuth\":{\"show\":\"true\"},
-            \"antennaelevation\":{\"show\":\"true\"}
+            \"antennaelevation\":{\"show\":\"true\"},
+            \"county\":{\"show\":\"true\"},
         }";
     }
     $current_opts = json_decode($options);
@@ -154,6 +155,10 @@
     }
     if (!isset($current_opts->antennaelevation)) {
         echo "\nvar o_template = { antennaelevation: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->county)) {
+        echo "\nvar o_template = { county: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -323,6 +328,10 @@ $options = json_decode($options);
                         </div>
                     </div>
                     <div class="row">
+							<div <?php if (($options->county->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                            <label class="form-label" for="county"><?= __("County"); ?></label>
+                            <input onclick="this.select()" type="text" name="county" id="county" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                        </div>
                         <div <?php if (($options->sota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="sota"><?= __("SOTA"); ?></label>
                             <input onclick="this.select()" type="text" name="sota" id="sota" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
@@ -713,6 +722,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->state->show ?? "true") == "true") {
                         echo '<th>' . __("State") . '</th>';
+                    } ?>
+					<?php if (($options->county->show ?? "true") == "true") {
+                        echo '<th>' . __("County") . '</th>';
                     } ?>
                     <?php if (($options->cqzone->show ?? "true") == "true") {
                         echo '<th>' . __("CQ Zone") . '</th>';

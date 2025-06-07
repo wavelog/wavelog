@@ -86,6 +86,9 @@ function updateRow(qso) {
 	if ((user_options.state.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.state);
 	}
+	if ((user_options.county.show ?? 'true') == "true"){
+		cells.eq(c++).html(qso.county);
+	}
 	if ((user_options.cqzone.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.cqzone);
 	}
@@ -279,6 +282,9 @@ function loadQSOTable(rows) {
 		}
 		if ((user_options.state.show ?? 'true') == "true"){
 			data.push(qso.state);
+		}
+		if ((user_options.county.show ?? 'true') == "true"){
+			data.push(qso.county);
 		}
 		if ((user_options.cqzone.show ?? 'true') == "true"){
 			data.push(qso.cqzone);
@@ -502,6 +508,7 @@ $(document).ready(function () {
 				propmode: this.propmode.value,
 				gridsquare: this.gridsquare.value,
 				state: this.state.value,
+				county: this.county.value,
 				qsoresults: this.qsoresults.value,
 				sats: this.sats.value,
 				orbits: this.orbits.value,
@@ -1343,6 +1350,7 @@ function saveOptions() {
 				qslmsgr: $('input[name="qslmsgr"]').is(':checked') ? true : false,
 				dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
 				state: $('input[name="state"]').is(':checked') ? true : false,
+				county: $('input[name="county"]').is(':checked') ? true : false,
 				cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
 				ituzone: $('input[name="ituzone"]').is(':checked') ? true : false,
 				iota: $('input[name="iota"]').is(':checked') ? true : false,
