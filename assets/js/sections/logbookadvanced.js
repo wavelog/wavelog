@@ -508,6 +508,7 @@ $(document).ready(function () {
 				propmode: this.propmode.value,
 				gridsquare: this.gridsquare.value,
 				state: this.state.value,
+				county: this.county.value,
 				qsoresults: this.qsoresults.value,
 				sats: this.sats.value,
 				orbits: this.orbits.value,
