@@ -266,11 +266,7 @@ class Satellite extends CI_Controller {
 			$date = $this->security->xss_clean($this->input->post('date'));
 			$mintime = $this->security->xss_clean($this->input->post('mintime'));
 			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
-			if (($this->security->xss_clean($this->input->post('sat')) ?? '') != '') {	// specific SAT
-				$data = $this->calcPass($tles[0], $yourgrid, $date, $mintime, $minelevation);
-			} else {	// All SATs
-				$data = $this->calcPasses($tles, $yourgrid, $date, $mintime,$minelevation);
-			}
+			$data = $this->calcPasses($tles, $yourgrid, $date, $mintime,$minelevation);
 
 			$this->load->view('satellite/passtable', $data);
 		}
@@ -380,16 +376,20 @@ class Satellite extends CI_Controller {
 
 	public function get_tle_for_predict() {
 
-		$input_sat = $this->security->xss_clean($this->input->post('sat'));
+		$input_sat = (array) ($this->security->xss_clean($this->input->post('sat')) ?? []);
 		$this->load->model('satellite_model');
 		$tles=[];
-		if (($input_sat ?? '') == '') {
-			$satellites = $this->satellite_model->get_all_satellites_with_tle();
-			foreach ($satellites as $sat) {
+		$satellites = $this->satellite_model->get_all_satellites_with_tle();
+		foreach ($satellites as $sat) {			// Loop through known SATs
+			if ( (count($input_sat) > 0) && !((count($input_sat) == 1) && (($input_sat[0] ?? '') == '')) ) {		// User wants specific SATs (which isn't "All" or empty)??
+				if (in_array($sat->satname,$input_sat)) {
+					$tles[]=$this->satellite_model->get_tle($sat->satname);
+				} else {
+					continue;
+				}
+			} else {				// No specific SAT, but all
 				$tles[]=$this->satellite_model->get_tle($sat->satname);
 			}
-		} else {
-			$tles[]=$this->satellite_model->get_tle($input_sat);
 		}
 		return $tles;
 	}
