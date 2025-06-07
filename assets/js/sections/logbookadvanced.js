@@ -545,6 +545,7 @@ $(document).ready(function () {
 					$('#checkBoxAll').prop("checked", true);
 					$('#checkBoxAll').trigger('change');
 				}
+				$('#checkBoxAll').prop("checked", false);
 			},
 			error: function (data) {
 				$('#searchButton').prop("disabled", false).removeClass("running");
