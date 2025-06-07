@@ -1,6 +1,5 @@
 var tablex;
 $(document).ready(function () {
-	$("#dt-search-0").val("XX");
 	tablex = $('.sattable').DataTable({
 		"pageLength": 25,
 		"language": {
