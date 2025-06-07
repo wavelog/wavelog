@@ -45,6 +45,7 @@ class QSO
 	private string $iota;
 	private string $continent;
 	private string $region;
+	private string $county;
 	/** @var string[] */
 	private string $deVUCCGridsquares;
 	private string $dxGridsquare;
@@ -249,6 +250,7 @@ class QSO
 		$this->cqzone = $data['COL_CQZ'] === null ? '' : $this->getCqLink($data['COL_CQZ']);
 		$this->ituzone = $data['COL_ITUZ'] === null ? '' : $this->getItuLink($data['COL_ITUZ']);
 		$this->state = ($data['COL_STATE'] === null) ? '' :$data['COL_STATE'];
+		$this->county = ($data['COL_CNTY'] === null) ? '' :$data['COL_CNTY'];
 		if ($data['adif'] == '0') {
 			$this->dxcc = '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.$data['dxccname'].'</a>';
 		} else {
@@ -1244,7 +1246,8 @@ class QSO
 			'distance' => $this->getFormattedDistance(),
 			'region' => $this->region,
 			'antennaelevation' => $this->antennaelevation == null ? null : $this->antennaelevation.'°',
-			'antennaazimuth' => $this->antennaazimuth == null ? null : $this->antennaazimuth.'°'
+			'antennaazimuth' => $this->antennaazimuth == null ? null : $this->antennaazimuth.'°',
+			'county' => $this->county
 		];
 	}
 

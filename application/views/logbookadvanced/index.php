@@ -63,7 +63,8 @@
             \"distance\":{\"show\":\"true\"},
             \"region\":{\"show\":\"true\"},
             \"antennaazimuth\":{\"show\":\"true\"},
-            \"antennaelevation\":{\"show\":\"true\"}
+            \"antennaelevation\":{\"show\":\"true\"},
+            \"county\":{\"show\":\"true\"},
         }";
     }
     $current_opts = json_decode($options);
@@ -154,6 +155,10 @@
     }
     if (!isset($current_opts->antennaelevation)) {
         echo "\nvar o_template = { antennaelevation: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->county)) {
+        echo "\nvar o_template = { county: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -713,6 +718,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->state->show ?? "true") == "true") {
                         echo '<th>' . __("State") . '</th>';
+                    } ?>
+					<?php if (($options->county->show ?? "true") == "true") {
+                        echo '<th>' . __("County") . '</th>';
                     } ?>
                     <?php if (($options->cqzone->show ?? "true") == "true") {
                         echo '<th>' . __("CQ Zone") . '</th>';

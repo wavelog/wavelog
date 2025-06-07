@@ -86,6 +86,9 @@ function updateRow(qso) {
 	if ((user_options.state.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.state);
 	}
+	if ((user_options.county.show ?? 'true') == "true"){
+		cells.eq(c++).html(qso.county);
+	}
 	if ((user_options.cqzone.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.cqzone);
 	}
@@ -279,6 +282,9 @@ function loadQSOTable(rows) {
 		}
 		if ((user_options.state.show ?? 'true') == "true"){
 			data.push(qso.state);
+		}
+		if ((user_options.county.show ?? 'true') == "true"){
+			data.push(qso.county);
 		}
 		if ((user_options.cqzone.show ?? 'true') == "true"){
 			data.push(qso.cqzone);
