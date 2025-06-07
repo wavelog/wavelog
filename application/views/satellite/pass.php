@@ -1,3 +1,6 @@
+<script type="text/javascript">
+    var user_id = <?php echo $this->session->userdata('user_id'); ?>;
+</script>
 <div class="container container-fluid">
 <br>
 <h2><?= __("Satellite passes"); ?></h2>
@@ -8,6 +11,17 @@
 			<?php if ($satellites) { ?>
 
 			<h4><?= __("Your station"); ?></h4>
+			<div class="mb-3 w-auto d-flex flex-column">
+				<label for="satlist" class="my-1 me-sm-2 w-auto">
+					<?= __("Satellite"); ?>
+					<i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" title="Only satellites with TLE data are shown here!"></i>
+				</label>
+				<select id="satlist" multiple class="my-1 me-sm-2 w-auto form-select form-select-sm">
+					<?php foreach($satellites as $sat): ?>
+						<option value="<?= $sat->satname; ?>"><?= $sat->satname; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" id="label_minelevation" for="minelevation"><?= __("Min. Satellite Elevation"); ?></label>
 				<input class="my-1 me-sm-2 w-auto form-control form-control-sm" id="minelevation" type="number" min="0" max="90" name="minelevation" value="0" />
@@ -43,15 +57,6 @@
                             <option value="<?= $i ?>" <?= ($i == gmdate("H")) ? 'selected' : '' ?>><?= $i ?>:00</option>
                         <?php endfor; ?>
 						</select>
-				</div>
-                <div class="mb-3 w-auto">
-					<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satlist"><?= __("Satellite"); ?>   <i class="fa fa-question-circle" aria-hidden="true" data-bs-toggle="tooltip" title="Only satellites with TLE data are shown here!"></i></label>
-					<select class="my-1 me-sm-2 w-auto form-select form-select-sm"  id="satlist">
-						<option value=""><?= __("All"); ?></option>
-						<?php foreach($satellites as $sat) {
-							echo '<option value="' . $sat->satname . '"' . '>' . $sat->satname . '</option>'."\n";
-						} ?>
-					</select>
 				</div>
 
 				<div id="addskedpartner" style="display:none" class="row">
