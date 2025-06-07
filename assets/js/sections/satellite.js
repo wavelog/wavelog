@@ -1,5 +1,6 @@
+var tablex;
 $(document).ready(function () {
-	$('.sattable').DataTable({
+	tablex = $('.sattable').DataTable({
 		"pageLength": 25,
 		"language": {
 			url: getDataTablesLanguageUrl(),
@@ -14,6 +15,10 @@ $(document).ready(function () {
 			url: getDataTablesLanguageUrl(),
 		}
 	});
+
+	var presetSearch = sessionStorage.getItem('datatableSearch') || '';
+	sessionStorage.removeItem('datatableSearch');
+	tablex.search(presetSearch).draw();
 
 	$(document).on('click','.deleteSatmode', function (e) {
 		deleteSatmode(e.currentTarget.id,e.currentTarget.attributes.infotext.value);
@@ -48,6 +53,7 @@ function editTle(id) {
 					label: lang_admin_close,
 					action: function (dialogItself) {
 						dialogItself.close();
+						sessionStorage.setItem('datatableSearch', tablex.search());
 						location.reload();
 					}
 				}]
@@ -245,6 +251,7 @@ function editSatelliteDialog(id) {
 					label: lang_admin_close,
 					action: function (dialogItself) {
 						dialogItself.close();
+						sessionStorage.setItem('datatableSearch', tablex.search());
 						location.reload();
 					}
 				}]
@@ -269,6 +276,7 @@ function saveUpdatedSatellite(form) {
 					'orbit': form.orbit.value,
 			},
 			success: function (html) {
+				sessionStorage.setItem('datatableSearch', tablex.search());
 				location.reload();
 			}
 		});
