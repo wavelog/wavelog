@@ -280,7 +280,7 @@ class Satellite extends CI_Controller {
 
 		try {
 			$tle = $this->get_tle_for_predict();
-			$this->calcSkedPass($tle[0]);
+			$this->calcSkedPasses($tle);
 		}
 		catch (Exception $e) {
 			header("Content-type: application/json");
@@ -543,32 +543,39 @@ class Satellite extends CI_Controller {
 
 	}
 
-	function calcSkedPass($tle) {
+	function calcSkedPasses($tles) {
+		$overlaps=[];
+		foreach ($tles as $tle) {
 
-		$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
-		$date = $this->security->xss_clean($this->input->post('date'));
-		$mintime = $this->security->xss_clean($this->input->post('mintime'));
-		$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
+			$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
+			$date = $this->security->xss_clean($this->input->post('date'));
+			$mintime = $this->security->xss_clean($this->input->post('mintime'));
+			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
 
-		$homePass =	$this->calcPass($tle, $yourgrid, $date, $mintime, $minelevation);
+			$homePass =	$this->calcPass($tle, $yourgrid, $date, $mintime, $minelevation);
 
-		$skedgrid = $this->security->xss_clean($this->input->post('skedgrid'));
-		$minskedelevation = $this->security->xss_clean($this->input->post('minskedelevation'));
+			$skedgrid = $this->security->xss_clean($this->input->post('skedgrid'));
+			$minskedelevation = $this->security->xss_clean($this->input->post('minskedelevation'));
 
-		$skedPass = $this->calcPass($tle, $skedgrid, $date, $mintime, $minskedelevation);
+			$skedPass = $this->calcPass($tle, $skedgrid, $date, $mintime, $minskedelevation);
 
-		// Get Date format
-		if ($this->session->userdata('user_date_format')) {
-			// If Logged in and session exists
-			$custom_date_format = $this->session->userdata('user_date_format');
-		} else {
-			// Get Default date format from /config/wavelog.php
-			$custom_date_format = $this->config->item('qso_date_format');
+			// Get Date format
+			if ($this->session->userdata('user_date_format')) {
+				// If Logged in and session exists
+				$custom_date_format = $this->session->userdata('user_date_format');
+			} else {
+				// Get Default date format from /config/wavelog.php
+				$custom_date_format = $this->config->item('qso_date_format');
+			}
+
+			$data['format'] = $custom_date_format . ' H:i:s';
+
+			array_push($overlaps, ...$this->findOverlaps($homePass, $skedPass));
 		}
-
-		$data['format'] = $custom_date_format . ' H:i:s';
-
-		$data['overlaps'] = $this->findOverlaps($homePass, $skedPass);
+		usort($overlaps, function($a, $b) {
+			return $a['grid1']->aos <=> $b['grid1']->aos;
+		});
+		$data['overlaps'] = $overlaps;
 		$data['yourgrid'] = $yourgrid;
 		$data['skedgrid'] = $skedgrid;
 		$data['date'] = $date;
