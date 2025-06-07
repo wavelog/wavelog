@@ -276,6 +276,7 @@ function saveUpdatedSatellite(form) {
 					'orbit': form.orbit.value,
 			},
 			success: function (html) {
+				sessionStorage.setItem('datatableSearch', tablex.search());
 				location.reload();
 			}
 		});
