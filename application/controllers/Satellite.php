@@ -248,6 +248,7 @@ class Satellite extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
+			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
 			'assets/js/sections/satpasses.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satpasses.js")),
 		];
 
@@ -299,7 +300,7 @@ class Satellite extends CI_Controller {
 		$settings['maxazimuth']    	= $this->input->post('maxazimuth', true);
 		$settings['grid']          	= $this->input->post('grid', true);
 		$settings['sat']           	= $this->input->post('sat', true);
-		
+
 		$settings['sked_minelevation'] 	= $this->input->post('sked_minelevation', true) ?? '';
 		$settings['sked_minazimuth']   	= $this->input->post('sked_minazimuth', true) ?? '';
 		$settings['sked_maxazimuth']  	= $this->input->post('sked_maxazimuth', true) ?? '';
@@ -355,7 +356,7 @@ class Satellite extends CI_Controller {
 			foreach ($sat_pass_settings as $setting) {
 				$value = json_decode($setting->option_value);
 				$settings_id  = $setting->option_name;
-		
+
 				$r .= 	'<li>
 							<div class="dropdown-item d-flex justify-content-between align-items-center">
 								<button type="button" class="btn d-flex align-items-center" onclick="loadPassSettings(\''. $settings_id .'\')">
