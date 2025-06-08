@@ -13,6 +13,25 @@ class Dcl extends CI_Controller {
 		}
 	}
 
+	public function key_import() {
+		$this->load->library('Permissions');
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
+		$token=($this->input->get('token',true) ?? '');
+		if ($token != '') {
+			log_message('Error',$token);
+			// todo: Token import // Show / etc.
+			$data['page_title'] = __("DCL Key Import");
+			$data['token'] = $token;
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('dcl_views/key_import',$data);
+			$this->load->view('interface_assets/footer');
+		} else {
+			redirect('https://dings.dcl.darc.de/token?wohin='.base_url().'dcl/key_import');
+		}
+	}
+
 	public function index() {
 		$this->load->library('Permissions');
 		$this->load->model('user_model');
