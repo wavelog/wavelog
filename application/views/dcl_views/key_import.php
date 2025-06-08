@@ -1,4 +1,4 @@
-<div class="container lotw">
+<div class="container dcl">
 
 	<h2><?= __("DCL Key Import"); ?></h2>
 
