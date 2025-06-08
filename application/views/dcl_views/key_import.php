@@ -16,6 +16,11 @@
 
 			<div class="mb-3">
 				<b><?= __("Received DCL-Key"); ?></b>:<pre><?php echo $token; ?></pre>
+				<?php if ($is_valid) { ?>
+					Key is valid
+				<?php } else { ?>
+					Key is invalid
+				<?php } ?>
 			</div>
 				<button type="button" value="import" class="btn btn-primary"><?= __("Import"); ?></button>
 		</div>

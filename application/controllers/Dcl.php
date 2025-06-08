@@ -18,9 +18,13 @@ class Dcl extends CI_Controller {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
+		$sig=($this->input->get('sig',true) ?? '');
 		$token=($this->input->get('token',true) ?? '');
-		if ($token != '') {
+		if ( ($sig != '') && ($token != '')) {
 			log_message('Error',$token);
+			$sig = sodium_base642bin($sig, SODIUM_BASE64_VARIANT_URLSAFE);
+			$public_key=sodium_base642bin('nV46R47wlLDOJAkSs5RT00wzgz3z98uZFxjo3FSkxeg=',SODIUM_BASE64_VARIANT_URLSAFE);
+			$data['is_valid']=sodium_crypto_sign_verify_detached($sig, $token, $public_key);
 			// todo: Token import // Show / etc.
 			$data['page_title'] = __("DCL Key Import");
 			$data['token'] = $token;
