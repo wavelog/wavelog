@@ -63,7 +63,8 @@
             \"distance\":{\"show\":\"true\"},
             \"region\":{\"show\":\"true\"},
             \"antennaazimuth\":{\"show\":\"true\"},
-            \"antennaelevation\":{\"show\":\"true\"}
+            \"antennaelevation\":{\"show\":\"true\"},
+            \"county\":{\"show\":\"true\"},
         }";
     }
     $current_opts = json_decode($options);
@@ -156,6 +157,10 @@
         echo "\nvar o_template = { antennaelevation: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
+	if (!isset($current_opts->county)) {
+        echo "\nvar o_template = { county: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
 
 
     foreach ($mapoptions as $mo) {
@@ -207,7 +212,7 @@ $options = json_decode($options);
                         </div>
                         <div <?php if (($options->dxcc->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="dxcc"><?= __("DXCC"); ?></label>
-                            <select class="form-control form-control-sm" id="dxcc" name="dxcc">
+                            <select class="form-select form-select-sm" id="dxcc" name="dxcc">
                                 <option value="">-</option>
                                 <?php
                                 foreach ($dxccarray as $dxcc) {
@@ -323,6 +328,10 @@ $options = json_decode($options);
                         </div>
                     </div>
                     <div class="row">
+							<div <?php if (($options->county->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                            <label class="form-label" for="county"><?= __("County"); ?></label>
+                            <input onclick="this.select()" type="text" name="county" id="county" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                        </div>
                         <div <?php if (($options->sota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="sota"><?= __("SOTA"); ?></label>
                             <input onclick="this.select()" type="text" name="sota" id="sota" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
@@ -601,7 +610,7 @@ $options = json_decode($options);
 					<option value="5000">5000</option>
 				</select>
 				<label class="me-2" for="de"><?= __("Location"); ?></label>
-				<select class="form-control form-control-sm w-auto me-2" id="de" name="de" multiple="multiple">
+				<select class="form-select form-select-sm w-auto me-2" id="de" name="de" multiple="multiple">
 					<?php foreach ($station_profile->result() as $station) { ?>
 						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
 							echo " selected =\"selected\""; } ?>>
@@ -713,6 +722,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->state->show ?? "true") == "true") {
                         echo '<th>' . __("State") . '</th>';
+                    } ?>
+					<?php if (($options->county->show ?? "true") == "true") {
+                        echo '<th>' . __("County") . '</th>';
                     } ?>
                     <?php if (($options->cqzone->show ?? "true") == "true") {
                         echo '<th>' . __("CQ Zone") . '</th>';

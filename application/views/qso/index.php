@@ -488,7 +488,7 @@
             </div>
 
             <div class="mb-3" id="location_us_county">
-                <label for="stationCntyInputQso"><?= __("USA County"); ?></label>
+                <label for="stationCntyInputQso"><?= __("Station County"); ?></label>
                 <input class="form-control" id="stationCntyInputQso" type="text" name="county" value="" />
             </div>
 
