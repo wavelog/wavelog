@@ -489,8 +489,14 @@ $(document).ready(function () {
 		localStorage.setItem(`user_${user_id}_selectedlocations`, $('#de').val());
 		$('#searchButton').prop("disabled", true).addClass("running");
 
+		let qsoresults = this.qsoresults.value;
+
 		if (localStorage.hasOwnProperty(`user_${user_id}_qsoids`)) {
 			qsoids = localStorage.getItem(`user_${user_id}_qsoids`);
+
+			qsoresults = qsoids
+				.split(',')
+				.filter(i => i.trim() !== '').length;
 			localStorage.removeItem(`user_${user_id}_qsoids`);
 		}
 		$.ajax({
@@ -514,7 +520,7 @@ $(document).ready(function () {
 				gridsquare: this.gridsquare.value,
 				state: this.state.value,
 				county: this.county.value,
-				qsoresults: this.qsoresults.value,
+				qsoresults: qsoresults,
 				sats: this.sats.value,
 				orbits: this.orbits.value,
 				cqzone: this.cqzone.value,
