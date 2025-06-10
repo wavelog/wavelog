@@ -706,8 +706,6 @@ $(document).ready(function () {
 	});
 
 	$('#exportAdif').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-
 		$('#exportAdif').prop("disabled", true);
 		const id_list = getSelectedIdsForMap();
 
@@ -1117,9 +1115,9 @@ $(document).ready(function () {
 	}
 
 	$('#printLabel').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: 'INFO',
 				message: 'You need to select at least 1 row to print a label!',
@@ -1149,7 +1147,7 @@ $(document).ready(function () {
 						label: 'Print',
 						cssClass: 'btn-primary btn-sm',
 						action: function (dialogItself) {
-							printlabel();
+							printlabel(id_list);
 							dialogItself.close();
 						}
 					},
@@ -1263,9 +1261,7 @@ function handleQslReceived(sent, method, tag) {
 	});
 }
 
-function printlabel() {
-	const id_list = getSelectedIdsForMap();
-
+function printlabel(id_list) {
 	let markchecked = $('#markprinted')[0].checked;
 
 	$.ajax({
