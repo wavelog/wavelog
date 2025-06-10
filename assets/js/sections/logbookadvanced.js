@@ -912,9 +912,9 @@ $(document).ready(function () {
 	});
 
 	$('#qslSlideshow').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: 'INFO',
 				message: 'You need to select a least 1 row to display a QSL card!',
@@ -927,7 +927,7 @@ $(document).ready(function () {
 			return;
 		}
 		$('#qslSlideshow').prop("disabled", true);
-		const id_list = getSelectedIds();
+
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/qslSlideshow',
 			type: 'post',
