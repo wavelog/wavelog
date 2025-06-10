@@ -25,6 +25,15 @@ $('#selectPropagation').change(function () {
 	}
 });
 
+function getSelectedIds() {
+	let id_list = [];
+	$('#qsoList tbody input:checked').each(function () {
+		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+		id_list.push(id);
+	});
+	return id_list;
+}
+
 function updateRow(qso) {
 	let row = $('#qsoID-' + qso.qsoID);
 	let cells = row.find('td');
@@ -644,9 +653,9 @@ $(document).ready(function () {
 	});
 
 	$('#deleteQsos').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: 'INFO',
 				message: 'You need to select a least 1 row to delete!',
@@ -658,12 +667,6 @@ $(document).ready(function () {
 			});
 			return;
 		}
-
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '')
-			id_list.push(id);
-		});
 
 		$('#deleteQsos').prop("disabled", true);
 
@@ -685,9 +688,8 @@ $(document).ready(function () {
 							'ids': JSON.stringify(id_list, null, 2)
 						},
 						success: function(data) {
-							elements.each(function() {
-								let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-								var row = $("#qsoID-" + id);
+							id_list.forEach(function(id) {
+								let row = $("#qsoID-" + id);
 								table.row(row).remove();
 							});
 							$('#deleteQsos').prop("disabled", false);
@@ -707,12 +709,7 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 
 		$('#exportAdif').prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
-			unselectQsoID(id);
-		});
+		const id_list = getSelectedIdsForMap();
 
 		xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -930,11 +927,7 @@ $(document).ready(function () {
 			return;
 		}
 		$('#qslSlideshow').prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
-		});
+		const id_list = getSelectedIds();
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/qslSlideshow',
 			type: 'post',
@@ -1199,9 +1192,9 @@ $(document).ready(function () {
 });
 
 function handleQsl(sent, method, tag) {
-	var elements = $('#qsoList tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
+	const id_list = getSelectedIdsForMap();
+
+	if (id_list.length === 0) {
 		BootstrapDialog.alert({
 			title: 'INFO',
 			message: 'You need to select a least 1 row!',
@@ -1213,12 +1206,9 @@ function handleQsl(sent, method, tag) {
 		});
 		return;
 	}
+
 	$('#'+tag).prop("disabled", true);
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
-	});
+
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/update_qsl',
 		type: 'post',
@@ -1239,9 +1229,9 @@ function handleQsl(sent, method, tag) {
 }
 
 function handleQslReceived(sent, method, tag) {
-	var elements = $('#qsoList tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
+	const id_list = getSelectedIdsForMap();
+
+	if (id_list.length === 0) {
 		BootstrapDialog.alert({
 			title: 'INFO',
 			message: 'You need to select a least 1 row!',
@@ -1253,12 +1243,7 @@ function handleQslReceived(sent, method, tag) {
 		});
 		return;
 	}
-	$('#'+tag).prop("disabled", true);
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
-	});
+
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/update_qsl_received',
 		type: 'post',
@@ -1278,17 +1263,11 @@ function handleQslReceived(sent, method, tag) {
 	});
 }
 
-
 function printlabel() {
-	let id_list=[];
-	let elements = $('#qsoList tbody input:checked');
-	let nElements = elements.length;
+	const id_list = getSelectedIdsForMap();
+
 	let markchecked = $('#markprinted')[0].checked;
 
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
-	});
 	$.ajax({
 		url: base_url + 'index.php/labels/printids',
 		type: 'post',
