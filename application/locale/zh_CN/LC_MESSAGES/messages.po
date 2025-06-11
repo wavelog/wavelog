@@ -132,6 +132,8 @@ msgstr ""
 #: application/controllers/User.php:1540
 #: application/controllers/User_options.php:9
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Satellite.php:666
+#: application/controllers/Satellite.php:675
 msgid "You're not allowed to do that!"
 msgstr "请不要这样操作！"
 
@@ -1526,6 +1528,8 @@ msgstr "州"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
+#: application/views/satellite/pass.php:46
+#: application/views/satellite/pass.php:85
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -2191,30 +2195,37 @@ msgid "Edit Satellite"
 msgstr "编辑卫星"
 
 #: application/controllers/Satellite.php:316
+#: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
 msgstr "过境设置保存失败！"
 
 #: application/controllers/Satellite.php:319
+#: application/controllers/Satellite.php:316
 msgid "Pass settings saved!"
 msgstr "过境设置已保存！"
 
 #: application/controllers/Satellite.php:332
+#: application/controllers/Satellite.php:329
 msgid "No settings found!"
 msgstr "未找到设置！"
 
 #: application/controllers/Satellite.php:346
+#: application/controllers/Satellite.php:343
 msgid "Failed to delete pass settings!"
 msgstr "过境设置删除失败！"
 
 #: application/controllers/Satellite.php:348
+#: application/controllers/Satellite.php:345
 msgid "Pass settings deleted!"
 msgstr "过境设置已删除！"
 
 #: application/controllers/Satellite.php:358
+#: application/controllers/Satellite.php:355
 msgid "Saved Pass Settings"
 msgstr "保存的过境设置"
 
 #: application/controllers/Satellite.php:375
+#: application/controllers/Satellite.php:372
 msgid "No presets available"
 msgstr "无可用预设"
 
@@ -3770,6 +3781,9 @@ msgstr "显示"
 #: application/views/satellite/skedtable.php:56
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:24
+#: application/views/satellite/pass.php:16
+#: application/views/satellite/skedtable.php:6
+#: application/views/satellite/skedtable.php:35
 msgid "Satellite"
 msgstr "卫星"
 
@@ -4030,6 +4044,8 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/view_log/partial/log_ajax.php:189
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/satellite/pass.php:50
+#: application/views/satellite/skedtable.php:7
 msgid "Date"
 msgstr "日期"
 
@@ -4511,6 +4527,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:110
 #: application/views/simplefle/index.php:22
+#: application/views/satellite/pass.php:115
 msgid "Save"
 msgstr "保存"
 
@@ -4762,9 +4779,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
-"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
-"效通联的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
+"\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通"
+"联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5664,8 +5681,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -6607,6 +6624,7 @@ msgstr "是的，切换！"
 #: application/views/satellite/pass.php:109
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
+#: application/views/satellite/pass.php:114
 msgid "Cancel"
 msgstr "取消"
 
@@ -12027,75 +12045,95 @@ msgid "TLE"
 msgstr "TLE"
 
 #: application/views/satellite/pass.php:3
+#: application/views/satellite/pass.php:6
 msgid "Satellite passes"
 msgstr "卫星过境"
 
 #: application/views/satellite/pass.php:10
+#: application/views/satellite/pass.php:13
 msgid "Your station"
 msgstr "您的台站"
 
 #: application/views/satellite/pass.php:12
 #: application/views/satellite/pass.php:60
+#: application/views/satellite/pass.php:26
+#: application/views/satellite/pass.php:65
 msgid "Min. Satellite Elevation"
 msgstr "最低仰角"
 
 #: application/views/satellite/pass.php:16
 #: application/views/satellite/pass.php:64
+#: application/views/satellite/pass.php:30
+#: application/views/satellite/pass.php:69
 msgid "Min. Azimuth"
 msgstr "最小方位角"
 
 #: application/views/satellite/pass.php:24
 #: application/views/satellite/pass.php:72
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:77
 msgid "Max. Azimuth"
 msgstr "最大方位角"
 
 #: application/views/satellite/pass.php:40
+#: application/views/satellite/pass.php:54
 msgid "Min. time"
 msgstr "最小时间"
 
 #: application/views/satellite/pass.php:58
+#: application/views/satellite/pass.php:63
 msgid "Sked partner"
 msgstr "预约通联友台"
 
 #: application/views/satellite/pass.php:86
+#: application/views/satellite/pass.php:91
 msgid "Load predictions"
 msgstr "加载预测"
 
 #: application/views/satellite/pass.php:87
+#: application/views/satellite/pass.php:92
 msgid "Add sked partner"
 msgstr "添加通联伙伴"
 
 #: application/views/satellite/pass.php:89
+#: application/views/satellite/pass.php:94
 msgid "Presets"
 msgstr "预设"
 
 #: application/views/satellite/pass.php:91
+#: application/views/satellite/pass.php:96
 msgid "Save current settings"
 msgstr "保存当前设置"
 
 #: application/views/satellite/pass.php:100
+#: application/views/satellite/pass.php:105
 msgid "Save Settings"
 msgstr "保存设置"
 
 #: application/views/satellite/pass.php:104
+#: application/views/satellite/pass.php:109
 msgid "Settings Name"
 msgstr "设置名称"
 
 #: application/views/satellite/pass.php:105
+#: application/views/satellite/pass.php:110
 msgid "Enter a name"
 msgstr "输入一个名称"
 
 #: application/views/satellite/pass.php:116
+#: application/views/satellite/pass.php:121
 msgid "No TLE information detected. Please update TLE's."
 msgstr "没有找到 TLE 信息，请更新 TLE 信息。"
 
 #: application/views/satellite/passtable.php:7
 #: application/views/satellite/skedtable.php:8
+#: application/views/satellite/skedtable.php:36
 msgid "AOS Time"
 msgstr "AOS 时间"
 
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:40
 msgid "LOS Time"
 msgstr "LOS 时间"
 
@@ -12103,6 +12141,8 @@ msgstr "LOS 时间"
 #: application/views/satellite/skedtable.php:9
 #: application/views/satellite/skedtable.php:60
 #: application/views/sattimers/index.php:46
+#: application/views/satellite/skedtable.php:10
+#: application/views/satellite/skedtable.php:37
 msgid "Duration"
 msgstr "持续时间"
 
@@ -12116,16 +12156,19 @@ msgstr "最大仰角（方向角）"
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:10
+#: application/views/satellite/skedtable.php:38
 msgid "AOS Azimuth"
 msgstr "AOS 方位角"
 
 #: application/views/satellite/passtable.php:13
 #: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:41
 msgid "LOS Azimuth"
 msgstr "LOS 方位角"
 
 #: application/views/satellite/passtable.php:55
 #: application/views/satellite/skedtable.php:83
+#: application/views/satellite/skedtable.php:84
 msgid "Search failed!"
 msgstr "搜索失败！"
 
@@ -12135,6 +12178,7 @@ msgstr "没有找到卫星通过。请检查输入参数。"
 
 #: application/views/satellite/passtable.php:73
 #: application/views/satellite/skedtable.php:93
+#: application/views/satellite/skedtable.php:94
 msgid "min"
 msgstr "分钟"
 
@@ -12143,23 +12187,28 @@ msgid "TLE date"
 msgstr "TLE date"
 
 #: application/views/satellite/skedtable.php:6
+#: application/views/satellite/skedtable.php:34
 msgid "Grid"
 msgstr "网格"
 
 #: application/views/satellite/skedtable.php:11
 #: application/views/sattimers/index.php:45
+#: application/views/satellite/skedtable.php:39
 msgid "Max Elevation"
 msgstr "最大仰角"
 
 #: application/views/satellite/skedtable.php:58
+#: application/views/satellite/skedtable.php:8
 msgid "Sked AOS Time"
 msgstr "预计信号捕获时间"
 
 #: application/views/satellite/skedtable.php:59
+#: application/views/satellite/skedtable.php:9
 msgid "Sked LOS Time"
 msgstr "预计信号消失时间"
 
 #: application/views/satellite/skedtable.php:84
+#: application/views/satellite/skedtable.php:85
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr "未发现重叠传输。请检查输入参数。"
 
@@ -13391,8 +13440,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -15068,8 +15117,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""

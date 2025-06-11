@@ -1287,3 +1287,9 @@ svg text.month { fill: #AAA; }
    --dt-row-hover: transparent !important;
    --dt-row-stripe: transparent !important;
 }
+
+/* Target the bootstrap-multiselect button */
+.btn.dropdown-toggle.multiselect {
+  position: relative;
+  padding-right: 30px; /* room for arrow */
+}
