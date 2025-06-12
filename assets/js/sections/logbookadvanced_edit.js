@@ -1,7 +1,7 @@
 function editQsos() {
-	var elements = $('#qsoList tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
+	const id_list = getSelectedIds();
+
+	if (id_list.length === 0) {
 		BootstrapDialog.alert({
 			title: 'INFO',
 			message: 'You need to select at least 1 row to use batch edit!',
@@ -13,11 +13,6 @@ function editQsos() {
 		});
 		return;
 	}
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, ''); // Removes non-numeric characters
-		id_list.push(id);
-	});
 
 	$('#editButton').prop("disabled", true);
 

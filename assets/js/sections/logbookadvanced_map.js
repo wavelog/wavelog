@@ -506,184 +506,123 @@ function loadMapOptions(data) {
 	loadMap(data, iconsList)
 }
 
-function mapQsos(form) {
-	$('#mapButton').prop("disabled", true).addClass("running");
+function getFormData(form) {
+	return {
+		dateFrom: form.dateFrom.value,
+		dateTo: form.dateTo.value,
+		de: $('#de').val(),
+		dx: form.dx.value,
+		mode: form.mode.value,
+		band: form.band.value,
+		qslSent: form.qslSent.value,
+		qslReceived: form.qslReceived.value,
+		qslSentMethod: form.qslSentMethod.value,
+		qslReceivedMethod: form.qslReceivedMethod.value,
+		iota: form.iota.value,
+		operator: form.operator.value,
+		dxcc: form.dxcc.value,
+		propmode: form.propmode.value,
+		gridsquare: form.gridsquare.value,
+		state: form.state.value,
+		county: form.county.value,
+		qsoresults: form.qsoresults.value,
+		sats: form.sats.value,
+		orbits: form.orbits.value,
+		cqzone: form.cqzone.value,
+		ituzone: form.cqzone.value,
+		lotwSent: form.lotwSent.value,
+		lotwReceived: form.lotwReceived.value,
+		clublogSent: form.clublogSent.value,
+		clublogReceived: form.clublogReceived.value,
+		eqslSent: form.eqslSent.value,
+		eqslReceived: form.eqslReceived.value,
+		qslvia: $('[name="qslvia"]').val(),
+		sota: form.sota.value,
+		pota: form.pota.value,
+		wwff: form.wwff.value,
+		qslimages: form.qslimages.value,
+		continent: form.continent.value,
+		contest: form.contest.value,
+		comment: form.comment.value
+	};
+}
 
-	var id_list=[];
-	var elements = $('#qsoList tbody input:checked');
-	var nElements = elements.length;
+function hideQsoTable() {
+	$("#qsoList, #qsoList_wrapper, #qsoList_info").attr("Hidden", true);
+}
 
-	elements.each(function() {
-		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, ''); // Removes non-numeric characters
+function ensureMapContainer() {
+	let amap = $('#advancedmap').val();
+	if (amap === undefined) {
+		$("#lba_div").append('<div id="advancedmap" class="map-leaflet"></div>');
+	}
+}
+
+
+function getSelectedIdsForMap() {
+	let id_list = [];
+	$('#qsoList tbody input:checked').each(function () {
+		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
 		id_list.push(id);
 		unselectQsoID(id);
 	});
+	return id_list;
+}
 
-	$("#qsoList").attr("Hidden", true);
-	$("#qsoList_wrapper").attr("Hidden", true);
-	$("#qsoList_info").attr("Hidden", true);
-
-	amap = $('#advancedmap').val();
-	if (amap == undefined) {
-		$("#lba_div").append('<div id="advancedmap" class="map-leaflet"></div>');
+function handleMapping(form, successCallback, cleanupCallback = null) {
+	if (cleanupCallback) {
+		cleanupCallback();
 	}
 
-		if (id_list.length > 0) {
-			$.ajax({
-				url: base_url + 'index.php/logbookadvanced/mapSelectedQsos',
-				type: 'post',
-				data: {
-					ids: id_list,
-					de: $('#de').val()
-				},
-				success: function(data) {
-					loadMapOptions(data);
-				},
-				error: function() {
-					$('#mapButton').prop("disabled", false).removeClass("running");
-				},
-			});
-		} else {
-			$.ajax({
-				url: base_url + 'index.php/logbookadvanced/mapQsos',
-				type: 'post',
-				data: {
-					dateFrom: form.dateFrom.value,
-					dateTo: form.dateTo.value,
-					de: $('#de').val(),
-					dx: form.dx.value,
-					mode: form.mode.value,
-					band: form.band.value,
-					qslSent: form.qslSent.value,
-					qslReceived: form.qslReceived.value,
-					qslSentMethod: this.qslSentMethod.value,
-					qslReceivedMethod: this.qslReceivedMethod.value,
-					iota: form.iota.value,
-					dxcc: form.dxcc.value,
-					propmode: form.propmode.value,
-					gridsquare: form.gridsquare.value,
-					state: form.state.value,
-					county: form.county.value,
-					qsoresults: form.qsoresults.value,
-					sats: form.sats.value,
-					orbits: form.orbits.value,
-					cqzone: form.cqzone.value,
-					lotwSent: form.lotwSent.value,
-					lotwReceived: form.lotwReceived.value,
-					eqslSent: form.eqslSent.value,
-					eqslReceived: form.eqslReceived.value,
-					qslvia: $('[name="qslvia"]').val(),
-					sota: form.sota.value,
-					pota: form.pota.value,
-					operator: form.operator.value,
-					wwff: form.wwff.value,
-					qslimages: form.qslimages.value,
-					continent: form.continent.value,
-					contest: form.contest.value,
-					comment: form.comment.value
-				},
-				success: function(data) {
-					loadMapOptions(data);
-				},
-				error: function() {
-					$('#mapButton').prop("disabled", false).removeClass("running");
-				},
-			});
+	$('#mapButton').prop("disabled", true).addClass("running");
+
+	const id_list = getSelectedIdsForMap();
+	hideQsoTable();
+	ensureMapContainer();
+
+	const ajaxOptions = {
+		type: 'post',
+		success: function (data) {
+			successCallback(data);
+		},
+		error: function () {
+			$('#mapButton').prop("disabled", false).removeClass("running");
 		}
 	};
 
-function mapGlobeQsos(form) {
-	var container = L.DomUtil.get('advancedmap');
-	if(container != null){
-		container._leaflet_id = null;
-		container.remove();
-		$(".coordinates").remove();
-	}
-
-	var id_list=[];
-	var elements = $('#qsoList tbody input:checked');
-	var nElements = elements.length;
-
-	elements.each(function() {
-		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, ''); // Removes non-numeric characters
-		id_list.push(id);
-		unselectQsoID(id);
-	});
-
-	$("#qsoList").attr("Hidden", true);
-	$("#qsoList_wrapper").attr("Hidden", true);
-	$("#qsoList_info").attr("Hidden", true);
-
-	amap = $('#advancedmap').val();
-	if (amap == undefined) {
-		$("#lba_div").append('<div id="advancedmap" class="map-leaflet"></div>');
-	}
-
 	if (id_list.length > 0) {
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/mapSelectedQsos',
-			type: 'post',
-			data: {
-				ids: id_list,
-				de: $('#de').val()
-			},
-			success: function(data) {
-				globemap(data);
-			},
-			error: function() {
-
-				},
-			});
-		} else {
-			$.ajax({
-				url: base_url + 'index.php/logbookadvanced/mapQsos',
-				type: 'post',
-				data: {
-					dateFrom: form.dateFrom.value,
-					dateTo: form.dateTo.value,
-					de: $('#de').val(),
-					dx: form.dx.value,
-					mode: form.mode.value,
-					band: form.band.value,
-					qslSent: form.qslSent.value,
-					qslReceived: form.qslReceived.value,
-					qslSentMethod: this.qslSentMethod.value,
-					qslReceivedMethod: this.qslReceivedMethod.value,
-					iota: form.iota.value,
-					dxcc: form.dxcc.value,
-					propmode: form.propmode.value,
-					gridsquare: form.gridsquare.value,
-					state: form.state.value,
-					county: form.county.value,
-					qsoresults: form.qsoresults.value,
-					sats: form.sats.value,
-					orbits: form.orbits.value,
-					cqzone: form.cqzone.value,
-					lotwSent: form.lotwSent.value,
-					lotwReceived: form.lotwReceived.value,
-					eqslSent: form.eqslSent.value,
-					eqslReceived: form.eqslReceived.value,
-					qslvia: $('[name="qslvia"]').val(),
-					sota: form.sota.value,
-					pota: form.pota.value,
-					operator: form.operator.value,
-					wwff: form.wwff.value,
-					qslimages: form.qslimages.value,
-					continent: form.continent.value,
-					contest: form.contest.value,
-					comment: form.comment.value
-				},
-				success: function(data) {
-					globemap(data);
-				},
-				error: function() {
-
-			},
-		});
+		ajaxOptions.url = base_url + 'index.php/logbookadvanced/mapSelectedQsos';
+		ajaxOptions.data = {
+			ids: id_list,
+			de: $('#de').val()
+		};
+	} else {
+		ajaxOptions.url = base_url + 'index.php/logbookadvanced/mapQsos';
+		ajaxOptions.data = getFormData(form);
 	}
-};
+
+	$.ajax(ajaxOptions);
+}
+
+
+function mapQsos(form) {
+	handleMapping(form, loadMapOptions);
+}
+
+function mapGlobeQsos(form) {
+	handleMapping(form, globemap, function () {
+		const container = L.DomUtil.get('advancedmap');
+		if (container) {
+			container._leaflet_id = null;
+			container.remove();
+			$(".coordinates").remove();
+		}
+	});
+}
+
 
 function globemap(x) {
+	$('#mapButton').prop("disabled", false).removeClass("running");
 	globePayArc=[];
 	globePayLab=[];
 	x.forEach((element) => {
