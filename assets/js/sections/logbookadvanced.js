@@ -65,6 +65,9 @@ function updateRow(qso) {
 	if ((user_options.name.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.name);
 	}
+	if ((user_options.qth.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.qth);
+	}
 	if ((user_options.qslvia.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qslVia);
 	}
@@ -261,6 +264,9 @@ function loadQSOTable(rows) {
 		}
 		if ((user_options.name.show ?? 'true') == "true"){
 			data.push(qso.name);
+		}
+		if ((user_options.qth.show ?? 'true') == "true"){
+			data.push(qso.qth);
 		}
 		if ((user_options.qslvia.show ?? 'true') == "true"){
 			data.push(qso.qslVia);

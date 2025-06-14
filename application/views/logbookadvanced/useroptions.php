@@ -55,6 +55,10 @@
 			<td><div class="form-check"><input class="form-check-input" name="name" type="checkbox" <?php if (($options->name->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
+			<td><?= __("QTH"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="qth" type="checkbox" <?php if (($options->qth->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
 			<td><?= __("QSL via"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="qslvia" type="checkbox" <?php if (($options->qslvia->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
