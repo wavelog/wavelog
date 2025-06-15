@@ -248,6 +248,7 @@ class Satellite extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
+			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
 			'assets/js/sections/satpasses.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satpasses.js")),
 		];
 
@@ -266,11 +267,7 @@ class Satellite extends CI_Controller {
 			$date = $this->security->xss_clean($this->input->post('date'));
 			$mintime = $this->security->xss_clean($this->input->post('mintime'));
 			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
-			if (($this->security->xss_clean($this->input->post('sat')) ?? '') != '') {	// specific SAT
-				$data = $this->calcPass($tles[0], $yourgrid, $date, $mintime, $minelevation);
-			} else {	// All SATs
-				$data = $this->calcPasses($tles, $yourgrid, $date, $mintime,$minelevation);
-			}
+			$data = $this->calcPasses($tles, $yourgrid, $date, $mintime,$minelevation);
 
 			$this->load->view('satellite/passtable', $data);
 		}
@@ -284,7 +281,7 @@ class Satellite extends CI_Controller {
 
 		try {
 			$tle = $this->get_tle_for_predict();
-			$this->calcSkedPass($tle[0]);
+			$this->calcSkedPasses($tle);
 		}
 		catch (Exception $e) {
 			header("Content-type: application/json");
@@ -303,7 +300,7 @@ class Satellite extends CI_Controller {
 		$settings['maxazimuth']    	= $this->input->post('maxazimuth', true);
 		$settings['grid']          	= $this->input->post('grid', true);
 		$settings['sat']           	= $this->input->post('sat', true);
-		
+
 		$settings['sked_minelevation'] 	= $this->input->post('sked_minelevation', true) ?? '';
 		$settings['sked_minazimuth']   	= $this->input->post('sked_minazimuth', true) ?? '';
 		$settings['sked_maxazimuth']  	= $this->input->post('sked_maxazimuth', true) ?? '';
@@ -359,7 +356,7 @@ class Satellite extends CI_Controller {
 			foreach ($sat_pass_settings as $setting) {
 				$value = json_decode($setting->option_value);
 				$settings_id  = $setting->option_name;
-		
+
 				$r .= 	'<li>
 							<div class="dropdown-item d-flex justify-content-between align-items-center">
 								<button type="button" class="btn d-flex align-items-center" onclick="loadPassSettings(\''. $settings_id .'\')">
@@ -380,16 +377,20 @@ class Satellite extends CI_Controller {
 
 	public function get_tle_for_predict() {
 
-		$input_sat = $this->security->xss_clean($this->input->post('sat'));
+		$input_sat = (array) ($this->security->xss_clean($this->input->post('sat')) ?? []);
 		$this->load->model('satellite_model');
 		$tles=[];
-		if (($input_sat ?? '') == '') {
-			$satellites = $this->satellite_model->get_all_satellites_with_tle();
-			foreach ($satellites as $sat) {
+		$satellites = $this->satellite_model->get_all_satellites_with_tle();
+		foreach ($satellites as $sat) {			// Loop through known SATs
+			if ( (count($input_sat) > 0) && !((count($input_sat) == 1) && (($input_sat[0] ?? '') == '')) ) {		// User wants specific SATs (which isn't "All" or empty)??
+				if (in_array($sat->satname,$input_sat)) {
+					$tles[]=$this->satellite_model->get_tle($sat->satname);
+				} else {
+					continue;
+				}
+			} else {				// No specific SAT, but all
 				$tles[]=$this->satellite_model->get_tle($sat->satname);
 			}
-		} else {
-			$tles[]=$this->satellite_model->get_tle($input_sat);
 		}
 		return $tles;
 	}
@@ -543,32 +544,39 @@ class Satellite extends CI_Controller {
 
 	}
 
-	function calcSkedPass($tle) {
+	function calcSkedPasses($tles) {
+		$overlaps=[];
+		foreach ($tles as $tle) {
 
-		$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
-		$date = $this->security->xss_clean($this->input->post('date'));
-		$mintime = $this->security->xss_clean($this->input->post('mintime'));
-		$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
+			$yourgrid = $this->security->xss_clean($this->input->post('yourgrid'));
+			$date = $this->security->xss_clean($this->input->post('date'));
+			$mintime = $this->security->xss_clean($this->input->post('mintime'));
+			$minelevation = $this->security->xss_clean($this->input->post('minelevation'));
 
-		$homePass =	$this->calcPass($tle, $yourgrid, $date, $mintime, $minelevation);
+			$homePass =	$this->calcPass($tle, $yourgrid, $date, $mintime, $minelevation);
 
-		$skedgrid = $this->security->xss_clean($this->input->post('skedgrid'));
-		$minskedelevation = $this->security->xss_clean($this->input->post('minskedelevation'));
+			$skedgrid = $this->security->xss_clean($this->input->post('skedgrid'));
+			$minskedelevation = $this->security->xss_clean($this->input->post('minskedelevation'));
 
-		$skedPass = $this->calcPass($tle, $skedgrid, $date, $mintime, $minskedelevation);
+			$skedPass = $this->calcPass($tle, $skedgrid, $date, $mintime, $minskedelevation);
 
-		// Get Date format
-		if ($this->session->userdata('user_date_format')) {
-			// If Logged in and session exists
-			$custom_date_format = $this->session->userdata('user_date_format');
-		} else {
-			// Get Default date format from /config/wavelog.php
-			$custom_date_format = $this->config->item('qso_date_format');
+			// Get Date format
+			if ($this->session->userdata('user_date_format')) {
+				// If Logged in and session exists
+				$custom_date_format = $this->session->userdata('user_date_format');
+			} else {
+				// Get Default date format from /config/wavelog.php
+				$custom_date_format = $this->config->item('qso_date_format');
+			}
+
+			$data['format'] = $custom_date_format . ' H:i:s';
+
+			array_push($overlaps, ...$this->findOverlaps($homePass, $skedPass));
 		}
-
-		$data['format'] = $custom_date_format . ' H:i:s';
-
-		$data['overlaps'] = $this->findOverlaps($homePass, $skedPass);
+		usort($overlaps, function($a, $b) {
+			return $a['grid1']->aos <=> $b['grid1']->aos;
+		});
+		$data['overlaps'] = $overlaps;
 		$data['yourgrid'] = $yourgrid;
 		$data['skedgrid'] = $skedgrid;
 		$data['date'] = $date;

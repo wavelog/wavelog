@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-06-07 14:14+0000\n"
-"PO-Revision-Date: 2025-06-03 06:45+0000\n"
+"POT-Creation-Date: 2025-06-11 06:03+0000\n"
+"PO-Revision-Date: 2025-06-08 17:16+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -99,8 +99,8 @@ msgstr ""
 #: application/controllers/Satellite.php:132
 #: application/controllers/Satellite.php:146
 #: application/controllers/Satellite.php:164
-#: application/controllers/Satellite.php:658
-#: application/controllers/Satellite.php:667
+#: application/controllers/Satellite.php:666
+#: application/controllers/Satellite.php:675
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:12
 #: application/controllers/Simplefle.php:7
@@ -1512,8 +1512,8 @@ msgstr "Staat"
 #: application/views/qso/award_tabs.php:37
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:290
-#: application/views/satellite/pass.php:32
-#: application/views/satellite/pass.php:80
+#: application/views/satellite/pass.php:46
+#: application/views/satellite/pass.php:85
 #: application/views/search/cqzones_result.php:12
 #: application/views/search/ituzones_result.php:12
 #: application/views/search/result.php:49
@@ -2202,31 +2202,31 @@ msgstr "Nieuwe satelliet invoeren"
 msgid "Edit Satellite"
 msgstr "Bewerk satelliet"
 
-#: application/controllers/Satellite.php:316
+#: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
 msgstr "Opslaan van overgang instellingen mislukt!"
 
-#: application/controllers/Satellite.php:319
+#: application/controllers/Satellite.php:316
 msgid "Pass settings saved!"
 msgstr "Overgang instellingen opgeslagen!"
 
-#: application/controllers/Satellite.php:332
+#: application/controllers/Satellite.php:329
 msgid "No settings found!"
 msgstr "Geen instellingen gevonden!"
 
-#: application/controllers/Satellite.php:346
+#: application/controllers/Satellite.php:343
 msgid "Failed to delete pass settings!"
 msgstr "Verwijderen van overgang instellingen mislukt!"
 
-#: application/controllers/Satellite.php:348
+#: application/controllers/Satellite.php:345
 msgid "Pass settings deleted!"
 msgstr "Instellingen voor overgang verwijderd!"
 
-#: application/controllers/Satellite.php:358
+#: application/controllers/Satellite.php:355
 msgid "Saved Pass Settings"
 msgstr "Overgang instellingen opgeslagen"
 
-#: application/controllers/Satellite.php:375
+#: application/controllers/Satellite.php:372
 msgid "No presets available"
 msgstr "Geen voorkeuze beschikbaar"
 
@@ -3429,7 +3429,6 @@ msgstr "Verschil"
 #: application/views/oqrs/showrequests.php:49
 #: application/views/oqrs/showrequests.php:62
 #: application/views/qslprint/index.php:22
-#: application/views/satellite/pass.php:50
 #: application/views/search/cqzones.php:33
 #: application/views/search/ituzones.php:33
 #: application/views/search/lotw_unconfirmed.php:34
@@ -3816,10 +3815,10 @@ msgstr "Toon"
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:265
 #: application/views/satellite/flightpath.php:40
-#: application/views/satellite/pass.php:48
+#: application/views/satellite/pass.php:16
 #: application/views/satellite/passtable.php:6
-#: application/views/satellite/skedtable.php:7
-#: application/views/satellite/skedtable.php:56
+#: application/views/satellite/skedtable.php:6
+#: application/views/satellite/skedtable.php:35
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:24
 msgid "Satellite"
@@ -4066,8 +4065,8 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:22
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:70
-#: application/views/qso/index.php:106 application/views/satellite/pass.php:36
-#: application/views/satellite/skedtable.php:57
+#: application/views/qso/index.php:106 application/views/satellite/pass.php:50
+#: application/views/satellite/skedtable.php:7
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/ituzones_result.php:7
 #: application/views/search/search_result_ajax.php:89
@@ -4594,7 +4593,7 @@ msgstr "Eenvoudige naam om te beschrijven waarvoor je deze API gebruikt."
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
-#: application/views/satellite/pass.php:110
+#: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "Opslaan"
@@ -6792,7 +6791,7 @@ msgstr "Ja, overschakelen!"
 #: application/views/club/permissions.php:327
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:38
-#: application/views/satellite/pass.php:109
+#: application/views/satellite/pass.php:114
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
@@ -9078,7 +9077,7 @@ msgstr "Exporteren naar ADIF"
 #: application/views/interface_assets/footer.php:536
 #: application/views/interface_assets/footer.php:673
 msgid "Open in the Advanced Logbook"
-msgstr ""
+msgstr "Openen in het geavanceerde logboek"
 
 #: application/views/interface_assets/footer.php:580
 msgid "Warning! Are you sure you want delete this stored query?"
@@ -12415,82 +12414,82 @@ msgstr "Satelliet TLE bijwerken"
 msgid "TLE"
 msgstr "TLE"
 
-#: application/views/satellite/pass.php:3
+#: application/views/satellite/pass.php:6
 msgid "Satellite passes"
 msgstr "Satelliet passages"
 
-#: application/views/satellite/pass.php:10
+#: application/views/satellite/pass.php:13
 msgid "Your station"
 msgstr "Jouw station"
 
-#: application/views/satellite/pass.php:12
-#: application/views/satellite/pass.php:60
+#: application/views/satellite/pass.php:26
+#: application/views/satellite/pass.php:65
 msgid "Min. Satellite Elevation"
 msgstr "Min. Satelliet Elevatie"
 
-#: application/views/satellite/pass.php:16
-#: application/views/satellite/pass.php:64
+#: application/views/satellite/pass.php:30
+#: application/views/satellite/pass.php:69
 msgid "Min. Azimuth"
 msgstr "Min. Azimut"
 
-#: application/views/satellite/pass.php:24
-#: application/views/satellite/pass.php:72
+#: application/views/satellite/pass.php:38
+#: application/views/satellite/pass.php:77
 msgid "Max. Azimuth"
 msgstr "Max. Azimut"
 
-#: application/views/satellite/pass.php:40
+#: application/views/satellite/pass.php:54
 msgid "Min. time"
 msgstr "Min. tijd"
 
-#: application/views/satellite/pass.php:58
+#: application/views/satellite/pass.php:63
 msgid "Sked partner"
 msgstr "Sked-partner"
 
-#: application/views/satellite/pass.php:86
+#: application/views/satellite/pass.php:91
 msgid "Load predictions"
 msgstr "Laad voorspellingen"
 
-#: application/views/satellite/pass.php:87
+#: application/views/satellite/pass.php:92
 msgid "Add sked partner"
 msgstr "Voeg sked-partner toe"
 
-#: application/views/satellite/pass.php:89
+#: application/views/satellite/pass.php:94
 msgid "Presets"
 msgstr "Voorkeuze"
 
-#: application/views/satellite/pass.php:91
+#: application/views/satellite/pass.php:96
 msgid "Save current settings"
 msgstr "Huidige instellingen opslaan"
 
-#: application/views/satellite/pass.php:100
+#: application/views/satellite/pass.php:105
 msgid "Save Settings"
 msgstr "Instellingen opslaan"
 
-#: application/views/satellite/pass.php:104
+#: application/views/satellite/pass.php:109
 msgid "Settings Name"
 msgstr "Instellingen Naam"
 
-#: application/views/satellite/pass.php:105
+#: application/views/satellite/pass.php:110
 msgid "Enter a name"
 msgstr "Voer een naam in"
 
-#: application/views/satellite/pass.php:116
+#: application/views/satellite/pass.php:121
 msgid "No TLE information detected. Please update TLE's."
 msgstr "Geen TLE-informatie gedetecteerd. Werk de TLE's bij."
 
 #: application/views/satellite/passtable.php:7
-#: application/views/satellite/skedtable.php:8
+#: application/views/satellite/skedtable.php:36
 msgid "AOS Time"
 msgstr "AOS Tijd"
 
 #: application/views/satellite/passtable.php:8
-#: application/views/satellite/skedtable.php:12
+#: application/views/satellite/skedtable.php:40
 msgid "LOS Time"
 msgstr "LOS-tijd"
 
 #: application/views/satellite/passtable.php:9
-#: application/views/satellite/skedtable.php:9
-#: application/views/satellite/skedtable.php:60
+#: application/views/satellite/skedtable.php:10
+#: application/views/satellite/skedtable.php:37
 #: application/views/sattimers/index.php:46
 msgid "Duration"
 msgstr "Duur"
@@ -12504,17 +12503,17 @@ msgid "Max Elevation (Azimuth)"
 msgstr "Maximale elevatie (azimut)"
 
 #: application/views/satellite/passtable.php:12
-#: application/views/satellite/skedtable.php:10
+#: application/views/satellite/skedtable.php:38
 msgid "AOS Azimuth"
 msgstr "AOS Azimut"
 
 #: application/views/satellite/passtable.php:13
-#: application/views/satellite/skedtable.php:13
+#: application/views/satellite/skedtable.php:41
 msgid "LOS Azimuth"
 msgstr "LOS Azimut"
 
 #: application/views/satellite/passtable.php:55
-#: application/views/satellite/skedtable.php:83
+#: application/views/satellite/skedtable.php:84
 msgid "Search failed!"
 msgstr "Zoeken mislukt!"
 
@@ -12523,7 +12522,7 @@ msgid "No passes found. Please check the input parameters."
 msgstr "Geen passages gevonden. Controleer de invoerparameters."
 
 #: application/views/satellite/passtable.php:73
-#: application/views/satellite/skedtable.php:93
+#: application/views/satellite/skedtable.php:94
 msgid "min"
 msgstr "min"
 
@@ -12531,24 +12530,24 @@ msgstr "min"
 msgid "TLE date"
 msgstr "TLE datum"
 
-#: application/views/satellite/skedtable.php:6
+#: application/views/satellite/skedtable.php:8
+msgid "Sked AOS Time"
+msgstr "Sked AOS Tijd"
+
+#: application/views/satellite/skedtable.php:9
+msgid "Sked LOS Time"
+msgstr "Sked LOS Tijd"
+
+#: application/views/satellite/skedtable.php:34
 msgid "Grid"
 msgstr "Vak"
 
-#: application/views/satellite/skedtable.php:11
+#: application/views/satellite/skedtable.php:39
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
 msgstr "Maximale Elevatie"
 
-#: application/views/satellite/skedtable.php:58
-msgid "Sked AOS Time"
-msgstr "Sked AOS Tijd"
-
-#: application/views/satellite/skedtable.php:59
-msgid "Sked LOS Time"
-msgstr "Sked LOS Tijd"
-
-#: application/views/satellite/skedtable.php:84
+#: application/views/satellite/skedtable.php:85
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr "Geen overlappende passages gevonden. Controleer de invoerparameters."
 
