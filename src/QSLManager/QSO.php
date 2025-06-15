@@ -28,6 +28,7 @@ class QSO
 	private string $satelliteMode;
 	private string $satelliteName;
 	private string $name;
+	private string $qth;
 	private string $email;
 	private string $address;
 	private string $deGridsquare;
@@ -195,6 +196,7 @@ class QSO
 		$this->satelliteName = $data['COL_SAT_NAME'] != '' ? (isset($data['orbit']) && $data['orbit'] != '' ? $data['COL_SAT_NAME']." (".$data['orbit'].") " : $data['COL_SAT_NAME']) : '';
 
 		$this->name = $data['COL_NAME'] ?? '';
+		$this->qth = $data['COL_QTH'] ?? '';
 		$this->email = $data['COL_EMAIL'] ?? '';
 		$this->address = $data['COL_ADDRESS'] ?? '';
 
@@ -1247,7 +1249,8 @@ class QSO
 			'region' => $this->region,
 			'antennaelevation' => $this->antennaelevation == null ? null : $this->antennaelevation.'°',
 			'antennaazimuth' => $this->antennaazimuth == null ? null : $this->antennaazimuth.'°',
-			'county' => $this->county
+			'county' => $this->county,
+			'qth' => $this->qth
 		];
 	}
 

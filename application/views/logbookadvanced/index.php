@@ -65,6 +65,7 @@
             \"antennaazimuth\":{\"show\":\"true\"},
             \"antennaelevation\":{\"show\":\"true\"},
             \"county\":{\"show\":\"true\"},
+            \"qth\":{\"show\":\"true\"},
         }";
     }
     $current_opts = json_decode($options);
@@ -159,6 +160,10 @@
     }
 	if (!isset($current_opts->county)) {
         echo "\nvar o_template = { county: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->qth)) {
+        echo "\nvar o_template = { qth: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -692,6 +697,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->name->show ?? "true") == "true") {
                         echo '<th>' . __("Name") . '</th>';
+                    } ?>
+					<?php if (($options->qth->show ?? "true") == "true") {
+                        echo '<th>' . __("QTH") . '</th>';
                     } ?>
                     <?php if (($options->qslvia->show ?? "true") == "true") {
                         echo '<th>' . __("QSL via") . '</th>';
