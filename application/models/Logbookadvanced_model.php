@@ -254,14 +254,22 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_CNTY, '') = ''";
 		}
 
-		if ($searchCriteria['cqzone'] !== '') {
-			$conditions[] = "COL_CQZ = ?";
-			$binding[] = $searchCriteria['cqzone'];
+		if ($searchCriteria['cqzone'] !== 'All') {
+			if ($searchCriteria['cqzone'] == '') {
+				$conditions[] = "(COL_CQZ = '' or COL_CQZ is null)";
+			} else {
+				$conditions[] = "COL_CQZ = ?";
+				$binding[] = $searchCriteria['cqzone'];
+			}
 		}
 
-		if ($searchCriteria['ituzone'] !== '') {
-			$conditions[] = "COL_ITUZ = ?";
-			$binding[] = $searchCriteria['ituzone'];
+		if ($searchCriteria['ituzone'] !== 'All') {
+			if ($searchCriteria['ituzone'] == '') {
+				$conditions[] = "(COL_ITUZ = '' or COL_ITUZ is null)";
+			} else {
+				$conditions[] = "COL_ITUZ = ?";
+				$binding[] = $searchCriteria['ituzone'];
+			}
 		}
 
 		if ($searchCriteria['qslvia'] !== '*' && $searchCriteria['qslvia'] !== '') {

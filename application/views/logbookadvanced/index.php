@@ -312,7 +312,8 @@ $options = json_decode($options);
                         <div <?php if (($options->cqzone->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="cqzone"><?= __("CQ Zone"); ?></label>
                             <select id="cqzone" name="cqzone" class="form-select form-select-sm">
-                                <option value=""><?= __("All"); ?></option>
+                                <option value="All"><?= __("All"); ?></option>
+                                <option value=""><?= __("Empty"); ?></option>
                                 <?php
                                 for ($i = 1; $i <= 40; $i++) {
                                     echo '<option value="' . $i . '">' . $i . '</option>';
@@ -323,7 +324,8 @@ $options = json_decode($options);
                         <div <?php if (($options->ituzone->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="ituzone"><?= __("ITU Zone"); ?></label>
                             <select id="ituzone" name="ituzone" class="form-select form-select-sm">
-                                <option value=""><?= __("All"); ?></option>
+                                <option value="All"><?= __("All"); ?></option>
+                                <option value=""><?= __("Empty"); ?></option>
                                 <?php
                                 for ($i = 1; $i <= 90; $i++) {
                                     echo '<option value="' . $i . '">' . $i . '</option>';
