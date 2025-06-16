@@ -522,6 +522,7 @@ $options = json_decode($options);
         <div class="actionbody collapse">
             <script>
                 var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
+                var lang_filter_actions_delete_warning_details = '<?= __(" QSO(s) will be deleted"); ?>';
             </script>
             <div class="mb-2 btn-group">
                 <span class="h6 me-1"><?= __("With selected: "); ?></span>
