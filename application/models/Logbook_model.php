@@ -1220,7 +1220,7 @@ class Logbook_model extends CI_Model {
 		}
 		if ($amsat_source_grid != '') {
 			$datearray = date_parse_from_format("Y-m-d H:i:s", $data['COL_TIME_ON']);
-			$url = 'https://amsat.org/status/submit.php?SatSubmit=yes&Confirm=yes&SatName=' . $sat_name . '&SatYear=' . $datearray['year'] . '&SatMonth=' . str_pad($datearray['month'], 2, '0', STR_PAD_LEFT) . '&SatDay=' . str_pad($datearray['day'], 2, '0', STR_PAD_LEFT) . '&SatHour=' . str_pad($datearray['hour'], 2, '0', STR_PAD_LEFT) . '&SatPeriod=' . (intdiv(($datearray['minute'] - 1), 15)) . '&SatCall=' . $data['COL_STATION_CALLSIGN'] . '&SatReport=Heard&SatGridSquare=' . $amsat_source_grid;
+			$url = 'https://amsat.org/status/submit.php?SatSubmit=yes&Confirm=yes&SatName=' . $sat_name . '&SatYear=' . $datearray['year'] . '&SatMonth=' . str_pad($datearray['month'], 2, '0', STR_PAD_LEFT) . '&SatDay=' . str_pad($datearray['day'], 2, '0', STR_PAD_LEFT) . '&SatHour=' . str_pad($datearray['hour'], 2, '0', STR_PAD_LEFT) . '&SatPeriod=' . (intdiv(($datearray['minute'] - 1), 15)) . '&SatCall=' . $data['COL_STATION_CALLSIGN'] . '&SatReport=Heard&SatGridSquare=' . substr($amsat_source_grid,0,6);
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
