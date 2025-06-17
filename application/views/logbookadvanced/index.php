@@ -606,9 +606,16 @@ $options = json_decode($options);
 					<i class="fas fa-filter"></i> <?= __("Filters"); ?>
 				</button>
 				<?php if(clubaccess_check(9)) { ?>
-				<button type="button" class="btn btn-sm btn-success me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;">
-					<i class="fas fa-tasks"></i> <?= __("Actions"); ?>
-				</button>
+					<div class="btn-group me-1" role="group">
+						<button type="button" class="btn btn-sm btn-success lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;">
+							<i class="fas fa-tasks"></i> <?= __("Actions"); ?>
+						</button>
+						<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-success dropdown-toggle flex-grow-0 mb-2" data-bs-toggle="dropdown" aria-expanded="false"></button>
+						<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+							<li><button type="button" class="dropdown-item" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button></li>
+							<li><button type="button" class="dropdown-item" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button></li>
+						</ul>
+					</div>
 				<?php } ?>
 				<label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
 				<select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
@@ -654,16 +661,6 @@ $options = json_decode($options);
 					<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" aria-label="<?= __("Options"); ?>" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Options"); ?>">
 						<i class="fas fa-cog"></i>
 					</button>
-					<div class="btn-group me-1" role="group">
-						<button type="button" class="btn btn-sm btn-success ld-ext-right flex-grow-0 mb-2" style="white-space: nowrap;">
-							<i class="fas fa-screwdriver-wrench"></i><div class="ld ld-ring ld-spin"></div>
-						</button>
-						<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-success dropdown-toggle flex-grow-0 mb-2" data-bs-toggle="dropdown" aria-expanded="false"></button>
-						<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-							<li><button type="button" class="dropdown-item" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button></li>
-							<li><button type="button" class="dropdown-item" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button></li>
-						</ul>
-					</div>
 					<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
 						<i class="fas fa-trash-alt"></i>
 					</button>
