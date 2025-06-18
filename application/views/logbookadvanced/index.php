@@ -544,6 +544,8 @@ $options = json_decode($options);
                 <button type="button" class="btn btn-sm btn-info me-1" id="exportAdif"><?= __("Create ADIF"); ?></button>
                 <button type="button" class="btn btn-sm btn-info me-1" id="printLabel"><?= __("Print Label"); ?></button>
                 <button type="button" class="btn btn-sm btn-info me-1" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
+				<button type="button" class="btn btn-sm btn-success me-1" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button>
+				<button type="button" class="btn btn-sm btn-success me-1" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button>
             </div>
         </div>
 		<?php } ?>
@@ -606,16 +608,9 @@ $options = json_decode($options);
 					<i class="fas fa-filter"></i> <?= __("Filters"); ?>
 				</button>
 				<?php if(clubaccess_check(9)) { ?>
-					<div class="btn-group me-1" role="group">
-						<button type="button" class="btn btn-sm btn-success lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;">
-							<i class="fas fa-tasks"></i> <?= __("Actions"); ?>
-						</button>
-						<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-success dropdown-toggle flex-grow-0 mb-2" data-bs-toggle="dropdown" aria-expanded="false"></button>
-						<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-							<li><button type="button" class="dropdown-item" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button></li>
-							<li><button type="button" class="dropdown-item" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button></li>
-						</ul>
-					</div>
+				<button type="button" class="btn btn-sm btn-success lba_buttons me-1 flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;">
+					<i class="fas fa-tasks"></i> <?= __("Actions"); ?>
+				</button>
 				<?php } ?>
 				<label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
 				<select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
@@ -720,12 +715,12 @@ $options = json_decode($options);
                     <?php if (($options->qsl->show ?? "true") == "true") {
                         echo '<th>' . __("QSL") . '</th>';
                     } ?>
-                    <?php if ($this->session->userdata('user_eqsl_name') != ""  && ($options->eqsl->show ?? "true") == "true") {
-                        echo '<th class="eqslconfirmation">eQSL</th>';
-                    } ?>
-                    <?php if ($this->session->userdata('user_lotw_name') != "" && ($options->lotw->show ?? "true") == "true") {
-                        echo '<th class="lotwconfirmation">LoTW</th>';
-                    } ?>
+					<?php if (($options->eqsl->show ?? "true") == "true") {
+						echo '<th class="eqslconfirmation">eQSL</th>';
+					} ?>
+					<?php if (($options->lotw->show ?? "true") == "true") {
+						echo '<th class="lotwconfirmation">LoTW</th>';
+					} ?>
                     <?php if (($options->qrz->show ?? "true") == "true") {
                         echo '<th class="qrz">' . __("QRZ") . '</th>';
                     } ?>
