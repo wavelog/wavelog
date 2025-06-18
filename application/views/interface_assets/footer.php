@@ -949,6 +949,7 @@ function findincorrectcqzones() {
 	    if (isDarkModeTheme()) {
 		    $(".buttons-csv").css("color", "white");
 	    }
+		$('#btn-lba').removeAttr('hidden');
 	    $(document).ready(function() {
 		    var target = document.body;
 		    var observer = new MutationObserver(function() {
@@ -994,6 +995,7 @@ function findincorrectituzones() {
 	    if (isDarkModeTheme()) {
 		    $(".buttons-csv").css("color", "white");
 	    }
+		$('#btn-lba').removeAttr('hidden');
 
 	    $(document).ready(function() {
 		    var target = document.body;
