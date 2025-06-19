@@ -65,6 +65,9 @@ function updateRow(qso) {
 	if ((user_options.name.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.name);
 	}
+	if ((user_options.qth.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.qth);
+	}
 	if ((user_options.qslvia.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qslVia);
 	}
@@ -261,6 +264,9 @@ function loadQSOTable(rows) {
 		}
 		if ((user_options.name.show ?? 'true') == "true"){
 			data.push(qso.name);
+		}
+		if ((user_options.qth.show ?? 'true') == "true"){
+			data.push(qso.qth);
 		}
 		if ((user_options.qslvia.show ?? 'true') == "true"){
 			data.push(qso.qslVia);
@@ -674,7 +680,7 @@ $(document).ready(function () {
 
 		BootstrapDialog.confirm({
 			title: lang_general_word_danger,
-			message: lang_filter_actions_delete_warning,
+			message: lang_filter_actions_delete_warning+'<br/>'+id_list.length+lang_filter_actions_delete_warning_details,
 			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
@@ -1369,6 +1375,7 @@ function saveOptions() {
 				cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
 				ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
 				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
+				qth: $('input[name="qth"]').is(':checked') ? true : false,
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);
