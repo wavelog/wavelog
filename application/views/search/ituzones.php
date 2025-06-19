@@ -35,8 +35,9 @@
                     <option value="<?php echo $station->station_id; ?>"><?= __("Callsign"); ?>: <?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                     <?php } ?>
                     </select>
-		    <div class="col-sm-2">
+		    <div class="col-sm-3">
 		    	<button onclick="findincorrectituzones();" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> <?= __("Search"); ?></button>
+				<button hidden="true" type="button" class="btn btn-sm btn-outline-primary me-1" id="btn-lba" onclick="open_in_lba();"><?= __("Open in the Advanced Logbook"); ?></button>
 		    </div>
 		  </div>
 		</form>

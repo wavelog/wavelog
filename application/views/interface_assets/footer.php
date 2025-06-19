@@ -508,20 +508,6 @@ $(function () {
         }
     });
 
-	function open_in_lba() {
-		var user_id = <?php echo $this->session->userdata('user_id'); ?>;
-		var elements = $('.table tbody tr');
-
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '')
-			id_list.push(id);
-		});
-
-		localStorage.setItem(`user_${user_id}_qsoids`, id_list);
-		window.location.href = base_url + 'index.php/logbookadvanced';
-	}
-
     function run_query() {
         $(".alert").remove();
         $(".runbutton").addClass('running');
@@ -886,6 +872,20 @@ function showActivatorsMap(call, count, grids) {
 
 <?php if ($this->uri->segment(1) == "search") { ?>
 <script type="text/javascript">
+	function open_in_lba() {
+		var user_id = <?php echo $this->session->userdata('user_id'); ?>;
+		var elements = $('.table tbody tr');
+
+		var id_list=[];
+		elements.each(function() {
+			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '')
+			id_list.push(id);
+		});
+
+		localStorage.setItem(`user_${user_id}_qsoids`, id_list);
+		window.location.href = base_url + 'index.php/logbookadvanced';
+	}
+
 i=0;
 
 function findlotwunconfirmed(){
@@ -949,6 +949,7 @@ function findincorrectcqzones() {
 	    if (isDarkModeTheme()) {
 		    $(".buttons-csv").css("color", "white");
 	    }
+		$('#btn-lba').removeAttr('hidden');
 	    $(document).ready(function() {
 		    var target = document.body;
 		    var observer = new MutationObserver(function() {
@@ -994,6 +995,7 @@ function findincorrectituzones() {
 	    if (isDarkModeTheme()) {
 		    $(".buttons-csv").css("color", "white");
 	    }
+		$('#btn-lba').removeAttr('hidden');
 
 	    $(document).ready(function() {
 		    var target = document.body;
@@ -1015,6 +1017,7 @@ function findincorrectituzones() {
 function searchButtonPress() {
     if (event) { event.preventDefault(); }
     if ($('#callsign').val()) {
+		$('#btn-lba').removeAttr('hidden');
         let fixedcall = $('#callsign').val().trim();
         $('#partial_view').load("logbook/search_result/" + fixedcall.replaceAll('Ø', '0'), function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
