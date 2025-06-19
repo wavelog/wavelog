@@ -963,6 +963,94 @@ $(document).ready(function () {
 		});
 	});
 
+	$('#fixCqZones').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select at least 1 row to fix CQ Zones!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixCqZones',
+			type: 'POST',
+			data: { 'ids': JSON.stringify(id_list, null, 2) },
+			success: function (response) {
+				if (response != []) {
+					$.each(response, function(k, v) {
+						updateRow(this);
+						unselectQsoID(this.qsoID);
+					});
+				}
+				BootstrapDialog.alert({
+					title: 'SUCCESS',
+					message: 'CQ Zones updated successfully!',
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: 'ERROR',
+					message: 'There was a problem fixing CQ Zones.',
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	});
+
+	$('#fixItuZones').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select at least 1 row to fix ITU Zones!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixItuZones',
+			type: 'post',
+			data: {
+				'ids': JSON.stringify(id_list, null, 2)
+			},
+			success: function (response) {
+				if (response != []) {
+					$.each(response, function(k, v) {
+						updateRow(this);
+						unselectQsoID(this.qsoID);
+					});
+				}
+				BootstrapDialog.alert({
+					title: 'SUCCESS',
+					message: 'ITU Zones updated successfully!',
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: 'ERROR',
+					message: 'There was a problem fixing ITU Zones.',
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	});
+
 	function dupeSearch() {
 		$("#dupes").val("Y");
 		$('#dupeButton').prop('disabled', true).addClass('running');
