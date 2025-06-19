@@ -289,10 +289,10 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function qslSlideshow() {
-		$cleanids = $this->security->xss_clean($this->input->post('ids'));
-        $this->load->model('logbookadvanced_model');
-        $data['qslimages'] = $this->logbookadvanced_model->getQslsForQsoIds($cleanids);
-        $this->load->view('logbookadvanced/qslcarousel', $data);
+		$cleanids = json_decode($this->security->xss_clean($this->input->post('ids')));
+		$this->load->model('logbookadvanced_model');
+		$data['qslimages'] = $this->logbookadvanced_model->getQslsForQsoIds($cleanids);
+		$this->load->view('logbookadvanced/qslcarousel', $data);
 	}
 
 	public function mapSelectedQsos() {
@@ -318,7 +318,7 @@ class Logbookadvanced extends CI_Controller {
 			'county' => '*',
 			'cqzone' => 'All',
 			'ituzone' => 'All',
-			'qsoresults' => count($this->input->post('ids')),
+			'qsoresults' => count(json_decode($this->input->post('ids',true))),
 			'sats' => '',
 			'orbits' => '',
 			'lotwSent' => '',
@@ -336,7 +336,7 @@ class Logbookadvanced extends CI_Controller {
 			'contest' => '*',
 			'continent' => '',
 			'comment' => '*',
-			'ids' => xss_clean($this->input->post('ids')),
+			'ids' => json_decode(xss_clean($this->input->post('ids'))),
 			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
 
