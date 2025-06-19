@@ -97,6 +97,15 @@ function set_timers() {
 	}, 100);
 }
 
+function invalidAntEl() {
+	var saveQsoButtonText = $("#saveQso").html();
+	$("#noticer").removeClass("");
+	$("#noticer").addClass("alert alert-warning");
+	$("#noticer").html(lang_invalid_ant_el+" "+parseFloat($("#ant_el").val()).toFixed(1));
+	$("#noticer").show();
+	$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
+}
+
 $("#qso_input").off('submit').on('submit', function (e) {
 	var _submit = true;
 	if ((typeof qso_manual !== "undefined") && (qso_manual == "1")) {
