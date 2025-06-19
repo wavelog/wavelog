@@ -104,10 +104,8 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	public function search() {
-		$this->load->model('logbookadvanced_model');
-
-		$searchCriteria = array(
+	function mapParameters() {
+		return array(
 			'user_id' => (int)$this->session->userdata('user_id'),
 			'dateFrom' => xss_clean($this->input->post('dateFrom')),
 			'dateTo' => xss_clean($this->input->post('dateTo')),
@@ -149,7 +147,12 @@ class Logbookadvanced extends CI_Controller {
 			'comment' => xss_clean($this->input->post('comment')),
 			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
+	}
 
+	public function search() {
+		$this->load->model('logbookadvanced_model');
+
+		$searchCriteria = $this->mapParameters();
 		$qsos = [];
 
 		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
@@ -213,10 +216,9 @@ class Logbookadvanced extends CI_Controller {
 		set_time_limit(0);
 		$this->load->model('logbookadvanced_model');
 
-		$postdata = $this->input->post();
-		$postdata['user_id'] = (int)$this->session->userdata('user_id');
-		$postdata['qsoresults'] = 'All';
-		$postdata['de'] = explode(',', $postdata['de']);
+		$postdata = $this->mapParameters();
+		$postdata['de'] = explode(',', $postdata['de']); // The reason for doing this different, is that the parameter is sent in differently than the regular search
+		$postdata['qsoresults'] = 'All'; // We want all the QSOs regardless of what is set in the qsoresults, to be able to export all QSOs with the filter critera
 		$data['qsos'] = $this->logbookadvanced_model->getSearchResult($postdata);
 
 		$this->load->view('adif/data/exportall', $data);
@@ -314,8 +316,8 @@ class Logbookadvanced extends CI_Controller {
 			'gridsquare' => '*',
 			'state' => '*',
 			'county' => '*',
-			'cqzone' => '',
-			'ituzone' => '',
+			'cqzone' => 'All',
+			'ituzone' => 'All',
 			'qsoresults' => count($this->input->post('ids')),
 			'sats' => '',
 			'orbits' => '',
@@ -334,7 +336,8 @@ class Logbookadvanced extends CI_Controller {
 			'contest' => '*',
 			'continent' => '',
 			'comment' => '*',
-			'ids' => xss_clean($this->input->post('ids'))
+			'ids' => xss_clean($this->input->post('ids')),
+			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
@@ -344,45 +347,7 @@ class Logbookadvanced extends CI_Controller {
 	public function mapQsos() {
         $this->load->model('logbookadvanced_model');
 
-		$searchCriteria = array(
-			'user_id' => (int)$this->session->userdata('user_id'),
-			'dateFrom' => xss_clean($this->input->post('dateFrom')),
-			'dateTo' => xss_clean($this->input->post('dateTo')),
-			'de' => xss_clean($this->input->post('de')),
-			'dx' => xss_clean($this->input->post('dx')),
-			'mode' => xss_clean($this->input->post('mode')),
-			'band' => xss_clean($this->input->post('band')),
-			'qslSent' => xss_clean($this->input->post('qslSent')),
-			'qslReceived' => xss_clean($this->input->post('qslReceived')),
-			'qslSentMethod' => xss_clean($this->input->post('qslSentMethod')),
-			'qslReceivedMethod' => xss_clean($this->input->post('qslReceivedMethod')),
-			'iota' => xss_clean($this->input->post('iota')),
-			'dxcc' => xss_clean($this->input->post('dxcc')),
-			'propmode' => xss_clean($this->input->post('propmode')),
-			'gridsquare' => xss_clean($this->input->post('gridsquare')),
-			'state' => xss_clean($this->input->post('state')),
-			'county' => xss_clean($this->input->post('county')),
-			'cqzone' => xss_clean($this->input->post('cqzone')),
-			'ituzone' => xss_clean($this->input->post('ituzone')),
-			'qsoresults' => xss_clean($this->input->post('qsoresults')),
-			'sats' => xss_clean($this->input->post('sats')),
-			'orbits' => xss_clean($this->input->post('orbits')),
-			'lotwSent' => xss_clean($this->input->post('lotwSent')),
-			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
-			'eqslSent' => xss_clean($this->input->post('eqslSent')),
-			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
-			'clublogSent' => xss_clean($this->input->post('clublogSent')),
-			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
-			'qslvia' => xss_clean($this->input->post('qslvia')),
-			'sota' => xss_clean($this->input->post('sota')),
-			'pota' => xss_clean($this->input->post('pota')),
-			'wwff' => xss_clean($this->input->post('wwff')),
-			'operator' => xss_clean($this->input->post('operator')),
-			'contest' => xss_clean($this->input->post('contest')),
-			'qslimages' => xss_clean($this->input->post('qslimages')),
-			'continent' => xss_clean($this->input->post('continent')),
-			'comment' => xss_clean($this->input->post('comment')),
-		);
+		$searchCriteria = $this->mapParameters();
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
 		$this->prepareMappedQSos($result);
@@ -602,6 +567,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['antennaazimuth']['show'] = $this->def_boolean($this->input->post('antennaazimuth'));
 		$json_string['antennaelevation']['show'] = $this->def_boolean($this->input->post('antennaelevation'));
 		$json_string['region']['show'] = $this->def_boolean($this->input->post('region'));
+		$json_string['qth']['show'] = $this->def_boolean($this->input->post('qth'));
 
 		$obj['column_settings']= json_encode($json_string);
 
@@ -700,5 +666,76 @@ class Logbookadvanced extends CI_Controller {
 
 	public function helpDialog() {
 		$this->load->view('logbookadvanced/help');
+	}
+
+	public function fixCqZones() {
+		if(!clubaccess_check(9)) return;
+
+		$ids = xss_clean($this->input->post('ids'));
+
+		$this->load->model('logbookadvanced_model');
+		$this->logbookadvanced_model->fixCqZones($ids);
+
+		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
+
+		$results = $data->result('array');
+
+        $qsos = [];
+        foreach ($results as $data) {
+            $qsos[] = new QSO($data);
+        }
+
+		$q = [];
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		foreach ($qsos as $qso) {
+			$q[] = $qso->toArray();
+		}
+
+		header("Content-Type: application/json");
+		print json_encode($q);
+
+	}
+
+	public function fixItuZones() {
+		if(!clubaccess_check(9)) return;
+
+		$ids = xss_clean($this->input->post('ids'));
+
+		$this->load->model('logbookadvanced_model');
+		$this->logbookadvanced_model->fixItuZones($ids);
+
+		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
+
+		$results = $data->result('array');
+
+        $qsos = [];
+        foreach ($results as $data) {
+            $qsos[] = new QSO($data);
+        }
+
+		$q = [];
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		foreach ($qsos as $qso) {
+			$q[] = $qso->toArray();
+		}
+
+		header("Content-Type: application/json");
+		print json_encode($q);
 	}
 }

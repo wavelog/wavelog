@@ -65,6 +65,7 @@
             \"antennaazimuth\":{\"show\":\"true\"},
             \"antennaelevation\":{\"show\":\"true\"},
             \"county\":{\"show\":\"true\"},
+            \"qth\":{\"show\":\"true\"},
         }";
     }
     $current_opts = json_decode($options);
@@ -159,6 +160,10 @@
     }
 	if (!isset($current_opts->county)) {
         echo "\nvar o_template = { county: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->qth)) {
+        echo "\nvar o_template = { qth: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -307,7 +312,8 @@ $options = json_decode($options);
                         <div <?php if (($options->cqzone->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="cqzone"><?= __("CQ Zone"); ?></label>
                             <select id="cqzone" name="cqzone" class="form-select form-select-sm">
-                                <option value=""><?= __("All"); ?></option>
+                                <option value="All"><?= __("All"); ?></option>
+                                <option value=""><?= __("Empty"); ?></option>
                                 <?php
                                 for ($i = 1; $i <= 40; $i++) {
                                     echo '<option value="' . $i . '">' . $i . '</option>';
@@ -318,7 +324,8 @@ $options = json_decode($options);
                         <div <?php if (($options->ituzone->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="ituzone"><?= __("ITU Zone"); ?></label>
                             <select id="ituzone" name="ituzone" class="form-select form-select-sm">
-                                <option value=""><?= __("All"); ?></option>
+                                <option value="All"><?= __("All"); ?></option>
+                                <option value=""><?= __("Empty"); ?></option>
                                 <?php
                                 for ($i = 1; $i <= 90; $i++) {
                                     echo '<option value="' . $i . '">' . $i . '</option>';
@@ -517,6 +524,7 @@ $options = json_decode($options);
         <div class="actionbody collapse">
             <script>
                 var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
+                var lang_filter_actions_delete_warning_details = '<?= __(" QSO(s) will be deleted"); ?>';
             </script>
             <div class="mb-2 btn-group">
                 <span class="h6 me-1"><?= __("With selected: "); ?></span>
@@ -536,6 +544,8 @@ $options = json_decode($options);
                 <button type="button" class="btn btn-sm btn-info me-1" id="exportAdif"><?= __("Create ADIF"); ?></button>
                 <button type="button" class="btn btn-sm btn-info me-1" id="printLabel"><?= __("Print Label"); ?></button>
                 <button type="button" class="btn btn-sm btn-info me-1" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
+				<button type="button" class="btn btn-sm btn-success me-1" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button>
+				<button type="button" class="btn btn-sm btn-success me-1" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button>
             </div>
         </div>
 		<?php } ?>
@@ -598,7 +608,7 @@ $options = json_decode($options);
 					<i class="fas fa-filter"></i> <?= __("Filters"); ?>
 				</button>
 				<?php if(clubaccess_check(9)) { ?>
-				<button type="button" class="btn btn-sm btn-success me-1 lba_buttons flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;">
+				<button type="button" class="btn btn-sm btn-success lba_buttons me-1 flex-grow-0 mb-2" data-bs-toggle="collapse" data-bs-target=".actionbody" style="white-space: nowrap;">
 					<i class="fas fa-tasks"></i> <?= __("Actions"); ?>
 				</button>
 				<?php } ?>
@@ -643,9 +653,9 @@ $options = json_decode($options);
 					</ul>
 				</div>
 				<?php if(clubaccess_check(9)) { ?>
-				<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" aria-label="<?= __("Options"); ?>" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Options"); ?>">
-					<i class="fas fa-cog"></i>
-				</button>
+					<button type="options" class="btn btn-sm btn-primary me-1 flex-grow-0 mb-2" id="optionButton" aria-label="<?= __("Options"); ?>" style="white-space: nowrap;" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Options"); ?>">
+						<i class="fas fa-cog"></i>
+					</button>
 					<button type="button" class="btn btn-sm btn-danger me-1 flex-grow-0 mb-2" id="deleteQsos" style="white-space: nowrap;" aria-label="<?= __("Delete"); ?>"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?= __("Delete"); ?>">
 						<i class="fas fa-trash-alt"></i>
 					</button>
@@ -693,6 +703,9 @@ $options = json_decode($options);
                     <?php if (($options->name->show ?? "true") == "true") {
                         echo '<th>' . __("Name") . '</th>';
                     } ?>
+					<?php if (($options->qth->show ?? "true") == "true") {
+                        echo '<th>' . __("QTH") . '</th>';
+                    } ?>
                     <?php if (($options->qslvia->show ?? "true") == "true") {
                         echo '<th>' . __("QSL via") . '</th>';
                     } ?>
@@ -702,12 +715,12 @@ $options = json_decode($options);
                     <?php if (($options->qsl->show ?? "true") == "true") {
                         echo '<th>' . __("QSL") . '</th>';
                     } ?>
-                    <?php if ($this->session->userdata('user_eqsl_name') != ""  && ($options->eqsl->show ?? "true") == "true") {
-                        echo '<th class="eqslconfirmation">eQSL</th>';
-                    } ?>
-                    <?php if ($this->session->userdata('user_lotw_name') != "" && ($options->lotw->show ?? "true") == "true") {
-                        echo '<th class="lotwconfirmation">LoTW</th>';
-                    } ?>
+					<?php if (($options->eqsl->show ?? "true") == "true") {
+						echo '<th class="eqslconfirmation">eQSL</th>';
+					} ?>
+					<?php if (($options->lotw->show ?? "true") == "true") {
+						echo '<th class="lotwconfirmation">LoTW</th>';
+					} ?>
                     <?php if (($options->qrz->show ?? "true") == "true") {
                         echo '<th class="qrz">' . __("QRZ") . '</th>';
                     } ?>

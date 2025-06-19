@@ -25,6 +25,15 @@ $('#selectPropagation').change(function () {
 	}
 });
 
+function getSelectedIds() {
+	let id_list = [];
+	$('#qsoList tbody input:checked').each(function () {
+		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+		id_list.push(id);
+	});
+	return id_list;
+}
+
 function updateRow(qso) {
 	let row = $('#qsoID-' + qso.qsoID);
 	let cells = row.find('td');
@@ -55,6 +64,9 @@ function updateRow(qso) {
 	}
 	if ((user_options.name.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.name);
+	}
+	if ((user_options.qth.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.qth);
 	}
 	if ((user_options.qslvia.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qslVia);
@@ -252,6 +264,9 @@ function loadQSOTable(rows) {
 		}
 		if ((user_options.name.show ?? 'true') == "true"){
 			data.push(qso.name);
+		}
+		if ((user_options.qth.show ?? 'true') == "true"){
+			data.push(qso.qth);
 		}
 		if ((user_options.qslvia.show ?? 'true') == "true"){
 			data.push(qso.qslVia);
@@ -489,8 +504,14 @@ $(document).ready(function () {
 		localStorage.setItem(`user_${user_id}_selectedlocations`, $('#de').val());
 		$('#searchButton').prop("disabled", true).addClass("running");
 
+		let qsoresults = this.qsoresults.value;
+
 		if (localStorage.hasOwnProperty(`user_${user_id}_qsoids`)) {
 			qsoids = localStorage.getItem(`user_${user_id}_qsoids`);
+
+			qsoresults = qsoids
+				.split(',')
+				.filter(i => i.trim() !== '').length;
 			localStorage.removeItem(`user_${user_id}_qsoids`);
 		}
 		$.ajax({
@@ -514,7 +535,7 @@ $(document).ready(function () {
 				gridsquare: this.gridsquare.value,
 				state: this.state.value,
 				county: this.county.value,
-				qsoresults: this.qsoresults.value,
+				qsoresults: qsoresults,
 				sats: this.sats.value,
 				orbits: this.orbits.value,
 				cqzone: this.cqzone.value,
@@ -638,9 +659,9 @@ $(document).ready(function () {
 	});
 
 	$('#deleteQsos').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: 'INFO',
 				message: 'You need to select a least 1 row to delete!',
@@ -653,19 +674,13 @@ $(document).ready(function () {
 			return;
 		}
 
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '')
-			id_list.push(id);
-		});
-
 		$('#deleteQsos').prop("disabled", true);
 
 		var table = $('#qsoList').DataTable();
 
 		BootstrapDialog.confirm({
 			title: lang_general_word_danger,
-			message: lang_filter_actions_delete_warning,
+			message: lang_filter_actions_delete_warning+'<br/>'+id_list.length+lang_filter_actions_delete_warning_details,
 			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
@@ -679,9 +694,8 @@ $(document).ready(function () {
 							'ids': JSON.stringify(id_list, null, 2)
 						},
 						success: function(data) {
-							elements.each(function() {
-								let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-								var row = $("#qsoID-" + id);
+							id_list.forEach(function(id) {
+								let row = $("#qsoID-" + id);
 								table.row(row).remove();
 							});
 							$('#deleteQsos').prop("disabled", false);
@@ -698,15 +712,8 @@ $(document).ready(function () {
 	});
 
 	$('#exportAdif').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-
 		$('#exportAdif').prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
-			unselectQsoID(id);
-		});
+		const id_list = getSelectedIdsForMap();
 
 		xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -909,9 +916,9 @@ $(document).ready(function () {
 	});
 
 	$('#qslSlideshow').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: 'INFO',
 				message: 'You need to select a least 1 row to display a QSL card!',
@@ -924,11 +931,7 @@ $(document).ready(function () {
 			return;
 		}
 		$('#qslSlideshow').prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
-		});
+
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/qslSlideshow',
 			type: 'post',
@@ -955,6 +958,94 @@ $(document).ready(function () {
 					onhide: function(dialogRef){
 						$('#qslSlideshow').prop("disabled", false);
 					},
+				});
+			}
+		});
+	});
+
+	$('#fixCqZones').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select at least 1 row to fix CQ Zones!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixCqZones',
+			type: 'POST',
+			data: { 'ids': JSON.stringify(id_list, null, 2) },
+			success: function (response) {
+				if (response != []) {
+					$.each(response, function(k, v) {
+						updateRow(this);
+						unselectQsoID(this.qsoID);
+					});
+				}
+				BootstrapDialog.alert({
+					title: 'SUCCESS',
+					message: 'CQ Zones updated successfully!',
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: 'ERROR',
+					message: 'There was a problem fixing CQ Zones.',
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	});
+
+	$('#fixItuZones').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select at least 1 row to fix ITU Zones!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixItuZones',
+			type: 'post',
+			data: {
+				'ids': JSON.stringify(id_list, null, 2)
+			},
+			success: function (response) {
+				if (response != []) {
+					$.each(response, function(k, v) {
+						updateRow(this);
+						unselectQsoID(this.qsoID);
+					});
+				}
+				BootstrapDialog.alert({
+					title: 'SUCCESS',
+					message: 'ITU Zones updated successfully!',
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: 'ERROR',
+					message: 'There was a problem fixing ITU Zones.',
+					type: BootstrapDialog.TYPE_DANGER
 				});
 			}
 		});
@@ -1118,9 +1209,9 @@ $(document).ready(function () {
 	}
 
 	$('#printLabel').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: 'INFO',
 				message: 'You need to select at least 1 row to print a label!',
@@ -1150,7 +1241,7 @@ $(document).ready(function () {
 						label: 'Print',
 						cssClass: 'btn-primary btn-sm',
 						action: function (dialogItself) {
-							printlabel();
+							printlabel(id_list);
 							dialogItself.close();
 						}
 					},
@@ -1193,9 +1284,9 @@ $(document).ready(function () {
 });
 
 function handleQsl(sent, method, tag) {
-	var elements = $('#qsoList tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
+	const id_list = getSelectedIdsForMap();
+
+	if (id_list.length === 0) {
 		BootstrapDialog.alert({
 			title: 'INFO',
 			message: 'You need to select a least 1 row!',
@@ -1207,12 +1298,9 @@ function handleQsl(sent, method, tag) {
 		});
 		return;
 	}
+
 	$('#'+tag).prop("disabled", true);
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
-	});
+
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/update_qsl',
 		type: 'post',
@@ -1233,9 +1321,9 @@ function handleQsl(sent, method, tag) {
 }
 
 function handleQslReceived(sent, method, tag) {
-	var elements = $('#qsoList tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
+	const id_list = getSelectedIdsForMap();
+
+	if (id_list.length === 0) {
 		BootstrapDialog.alert({
 			title: 'INFO',
 			message: 'You need to select a least 1 row!',
@@ -1247,12 +1335,7 @@ function handleQslReceived(sent, method, tag) {
 		});
 		return;
 	}
-	$('#'+tag).prop("disabled", true);
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
-	});
+
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/update_qsl_received',
 		type: 'post',
@@ -1272,17 +1355,9 @@ function handleQslReceived(sent, method, tag) {
 	});
 }
 
-
-function printlabel() {
-	let id_list=[];
-	let elements = $('#qsoList tbody input:checked');
-	let nElements = elements.length;
+function printlabel(id_list) {
 	let markchecked = $('#markprinted')[0].checked;
 
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
-	});
 	$.ajax({
 		url: base_url + 'index.php/labels/printids',
 		type: 'post',
@@ -1388,6 +1463,7 @@ function saveOptions() {
 				cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
 				ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
 				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
+				qth: $('input[name="qth"]').is(':checked') ? true : false,
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);
