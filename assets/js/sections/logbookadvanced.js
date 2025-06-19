@@ -1,7 +1,7 @@
 var callBookProcessingDialog = null;
 var inCallbookProcessing = false;
 var inCallbookItemProcessing = false;
-
+let lastChecked = null;
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -221,7 +221,7 @@ function loadQSOTable(rows) {
 		let qso = rows[i];
 
 		var data = [];
-		data.push('<div class="form-check"><input class="form-check-input" type="checkbox" /></div>');
+		data.push('<div class="form-check"><input class="row-check form-check-input" type="checkbox" /></div>');
 		if ((user_options.datetime.show ?? 'true') == "true"){
 			if (qso.datetime === '') {
 				data.push('<span class="bg-danger">Missing date</span>');
@@ -369,6 +369,36 @@ function loadQSOTable(rows) {
 	// table.draw();
 	table.columns.adjust().draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
+
+	document.querySelectorAll('.row-check').forEach(checkbox => {
+		checkbox.addEventListener('click', function (e) {
+			const checkboxes = document.querySelectorAll('.row-check');
+
+			if (e.shiftKey && lastChecked) {
+				const checkboxes = Array.from(document.querySelectorAll('.row-check'));
+				let start = checkboxes.indexOf(this);
+				let end = checkboxes.indexOf(lastChecked);
+
+				[start, end] = [Math.min(start, end), Math.max(start, end)];
+
+				for (let i = start; i <= end; i++) {
+					const checkbox = checkboxes[i];
+					checkbox.checked = lastChecked.checked;
+
+					// jQuery wrapper
+					const $row = $(checkbox).closest('tr');
+
+					if (lastChecked.checked) {
+						$row.addClass('activeRow');
+					} else {
+						$row.removeClass('activeRow');
+					}
+				}
+			}
+
+			lastChecked = this;
+		});
+	});
 }
 
 $.fn.dataTable.ext.type.order['numbersort-pre'] = function(data) {
