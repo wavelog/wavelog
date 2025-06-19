@@ -29,11 +29,12 @@
 	  	<form method="post" action="" id="search_box" name="test">
 		  <div class="mb-3 row">
 		    <label for="callsign" class="col-sm-2 col-form-label"><?= __("Callsign / Gridsquare"); ?></label>
-		    <div class="col-sm-8">
+		    <div class="col-sm-7">
 		      <input type="text" class="form-control" id="callsign" value="<?php if ($this->input->post('callsign') !== null) { echo htmlspecialchars($this->input->post('callsign')); }; ?>">
 		    </div>
-		    <div class="col-sm-2">
+		    <div class="col-sm-3">
 		    	<button onclick="searchButtonPress()" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> <?= __("Search"); ?></button>
+				<button hidden="true" type="button" class="btn btn-sm btn-outline-primary me-1" id="btn-lba" onclick="open_in_lba();"><?= __("Open in the Advanced Logbook"); ?></button>
 		    </div>
 		  </div>
 		</form>
