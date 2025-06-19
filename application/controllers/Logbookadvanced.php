@@ -289,10 +289,10 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function qslSlideshow() {
-		$cleanids = $this->security->xss_clean($this->input->post('ids'));
-        $this->load->model('logbookadvanced_model');
-        $data['qslimages'] = $this->logbookadvanced_model->getQslsForQsoIds($cleanids);
-        $this->load->view('logbookadvanced/qslcarousel', $data);
+		$cleanids = json_decode($this->security->xss_clean($this->input->post('ids')));
+		$this->load->model('logbookadvanced_model');
+		$data['qslimages'] = $this->logbookadvanced_model->getQslsForQsoIds($cleanids);
+		$this->load->view('logbookadvanced/qslcarousel', $data);
 	}
 
 	public function mapSelectedQsos() {
