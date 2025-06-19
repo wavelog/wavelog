@@ -966,7 +966,7 @@ $(document).ready(function () {
 			url: base_url + 'index.php/logbookadvanced/qslSlideshow',
 			type: 'post',
 			data: {
-				ids: id_list,
+				ids: JSON.stringify(id_list),
 			},
 			success: function (html) {
 				BootstrapDialog.show({

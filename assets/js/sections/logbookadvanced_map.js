@@ -593,7 +593,7 @@ function handleMapping(form, successCallback, cleanupCallback = null) {
 	if (id_list.length > 0) {
 		ajaxOptions.url = base_url + 'index.php/logbookadvanced/mapSelectedQsos';
 		ajaxOptions.data = {
-			ids: id_list,
+			ids: JSON.stringify(id_list),
 			de: $('#de').val()
 		};
 	} else {
