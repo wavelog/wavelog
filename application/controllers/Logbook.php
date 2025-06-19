@@ -1030,6 +1030,9 @@ class Logbook extends CI_Controller {
 			$params[] = $clean_station_id;
 		}
 
+		$sql .= " order by thcv.col_time_on desc
+		limit 5000";
+
 		$query = $this->db->query($sql, $params);
 
 		$data['qsos'] = $query;
@@ -1076,7 +1079,7 @@ class Logbook extends CI_Controller {
 		}
 
 		$sql .= " order by thcv.col_time_on desc
-		limit 1000";
+		limit 5000";
 
 		$query = $this->db->query($sql, $params);
 
