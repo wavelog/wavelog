@@ -15,14 +15,43 @@
 			</div>
 
 			<div class="mb-3">
-				<b><?= __("Received DCL-Key"); ?></b>:<pre><?php echo $token; ?></pre>
-				<?php if ($is_valid) { ?>
-					Key is valid
-				<?php } else { ?>
-					Key is invalid
+				<?php if (($is_valid) && ($dcl_info)) { ?>
+					<b><?= __("Received a valid DCL-Key"); ?></b>
+					<br/><?= __("DOK History"); ?>:
+					<table class="table-sm table table-hover table-striped table-condensed dataTable">
+						<tr>
+						<th>DOK</th>
+						<th><?= __("Validity"); ?></th>
+						</tr>
+				<?php 
+					foreach ($dcl_info->DOKs as $key => $value) {
+						echo "<tr>";
+						echo "<td>".$value->dok."</td>";
+						echo "<td>".date($date_format,strtotime($value->startDate)).' - '.(date($date_format,strtotime($value->endDate ?? '20991231')))."</td>";
+						echo "</tr>";
+					}
+				?>
+					</table>
+					<br/>
+					<?= __("Call History"); ?>:
+					<table class="table-sm table table-hover table-striped table-condensed dataTable">
+						<tr>
+						<th><?= __("Call"); ?></th>
+						<th><?= __("Validity"); ?></th>
+						</tr>
+				<?php
+					foreach ($dcl_info->Callsigns as $key => $value) {
+						echo "<tr>";
+						echo "<td>".$value->callsign."</td>";
+						echo "<td>".date($date_format,strtotime($value->startDate)).' - '.(date($date_format,strtotime($value->endDate ?? '20991231')))."</td>";
+						echo "</tr>";
+					}
+					echo "</table>";
+				} else { ?>
+					<b><?= __("Received an invalid DCL-Key. Please check your DCL-Login, and try again"); ?></b>
 				<?php } ?>
 			</div>
-				<button type="button" value="import" class="btn btn-primary"><?= __("Import"); ?></button>
+				<button type="button" value="import" class="btn btn-primary"><?= __("Import Key"); ?></button>
 		</div>
 	</div>
 </div>

@@ -34,19 +34,21 @@ class Dcl_model extends CI_Model {
 	function get_dcl_info($token) {
 		if (($token ?? '') != '') {
 			try {
-				$dclUrl = 'https://dings.dcl.darc.de/api/getuserinfo/'+$token;
+				$dclUrl = 'https://dings.dcl.darc.de/api/getuserinfo/'.$token;
 
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL, $dclUrl);
 				curl_setopt($ch, CURLOPT_HEADER, array('Content-Type: application/json' , "Authorization: Bearer ".$token));
 				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog DCL Connector');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_HEADER, false);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 				$rawdcldata = curl_exec($ch);
 				curl_close($ch);
-				if (strlen($dcldata)>100) {
+				if (strlen($rawdcldata)>100) {
 					$dcldata=json_decode($rawdcldata);
 					// todo: process Data from DCL (Contains valid call(s), valid date, DOK)
+					return $dcldata;
 				}
 			} catch (Exception $e) {
 				return false;

@@ -17,6 +17,7 @@ class Dcl extends CI_Controller {
 		$this->load->library('Permissions');
 		$this->load->model('user_model');
 		$this->load->model('dcl_model');
+		$data['date_format']=$this->session->userdata('user_date_format') ?? $this->config->item('qso_date_format');
 		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$sig=($this->input->get('sig',true) ?? '');
@@ -27,7 +28,7 @@ class Dcl extends CI_Controller {
 			$data['page_title'] = __("DCL Key Import");
 			$data['token'] = $token;
 			if ($data['is_valid']) {
-				$data['dcl_info']=$this->dcl_model->get_info($token);
+				$data['dcl_info']=$this->dcl_model->get_dcl_info($token);
 			} else {
 				$data['dcl_info']='';
 			}
