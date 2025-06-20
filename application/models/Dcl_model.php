@@ -34,7 +34,7 @@ class Dcl_model extends CI_Model {
 	function get_dcl_info($token) {
 		if (($token ?? '') != '') {
 			try {
-				$dclUrl = 'https://dings.dcl.darc.de/api/get_info';
+				$dclUrl = 'https://dings.dcl.darc.de/api/getuserinfo/'+$token;
 
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL, $dclUrl);

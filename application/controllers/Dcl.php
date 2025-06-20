@@ -26,6 +26,11 @@ class Dcl extends CI_Controller {
 			// todo: Token import // Show / etc.
 			$data['page_title'] = __("DCL Key Import");
 			$data['token'] = $token;
+			if ($data['is_valid']) {
+				$data['dcl_info']=$this->dcl_model->get_info($token);
+			} else {
+				$data['dcl_info']='';
+			}
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('dcl_views/key_import',$data);
 			$this->load->view('interface_assets/footer');
