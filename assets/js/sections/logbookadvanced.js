@@ -366,8 +366,11 @@ function loadQSOTable(rows) {
 		table.rows(createdRow).nodes().to$().data('qsoID', qso.qsoID);
 	//	table.row(createdRow).node().to$().attr("id", 'qsoID-' + qso.qsoID);
 	}
-	// table.draw();
-	table.columns.adjust().draw();
+	try {
+		table.columns.adjust().draw();
+	} catch (e) {
+		table.draw();
+	}
 	$('[data-bs-toggle="tooltip"]').tooltip();
 
 	document.querySelectorAll('.row-check').forEach(checkbox => {
