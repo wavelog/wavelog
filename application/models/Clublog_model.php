@@ -173,7 +173,7 @@ class Clublog_model extends CI_Model
 				curl_close($request);
 
 				if (curl_errno($request)) {
-					$log .= curl_error($request)."<br>";
+					$log = curl_error($request)."<br>";
 				} elseif (preg_match_all('/Login rejected/', $response)) {
 					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
 					$log = "Wrong Clublog username and password for Callsign: '" . $station_row->station_callsign . "'. 'LOGIN REJECTED'.";
