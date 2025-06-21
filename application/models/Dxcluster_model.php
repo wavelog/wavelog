@@ -3,7 +3,7 @@
 use Wavelog\Dxcc\Dxcc;
 
 class Dxcluster_model extends CI_Model {
-	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '') {
+	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '', $mode = 'All') {
 		$this->load->helper(array('psr4_autoloader'));
 
 		if($this->session->userdata('user_date_format')) {
@@ -52,6 +52,7 @@ class Dxcluster_model extends CI_Model {
 				}
 				$singlespot->band=$spotband;
 				if (($band != 'All') && ($band != $spotband)) { continue; }
+				if (($mode != 'All') && ($mode != $this->modefilter($singlespot, $mode))) { continue; }
 				$datetimecurrent = new DateTime("now", new DateTimeZone('UTC')); // Today's Date/Time
 				$datetimespot = new DateTime($singlespot->when, new DateTimeZone('UTC'));
 				$spotage = $datetimecurrent->diff($datetimespot);
@@ -111,6 +112,15 @@ class Dxcluster_model extends CI_Model {
 			return '';
 		}
 
+	}
+
+	function modefilter($spot, $mode) {
+		if ($mode == 'cw') {
+			if (isset($spot->message) && stripos($spot->message, 'cw') !== false) {
+				return true;
+			}
+		}
+		return false;
 	}
 
     public function dxc_qrg_lookup($qrg, $maxage = 120) {
