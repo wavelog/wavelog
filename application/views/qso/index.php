@@ -1,4 +1,28 @@
 <div class="container qso_panel">
+<?php
+// Get Date format
+if($this->session->userdata('user_date_format')) {
+    // If Logged in and session exists
+    $date_format = $this->session->userdata('user_date_format');
+} else {
+    // Get Default date format from /config/wavelog.php
+    $date_format = $this->config->item('qso_date_format');
+}
+
+// Convert PHP date format to appropriate input pattern for validation
+switch ($date_format) {
+    case "d/m/y": $current_pattern = '[0-3][0-9]/[0-1][0-9]/[0-9]{2}'; break;
+    case "d/m/Y": $current_pattern = '[0-3][0-9]/[0-1][0-9]/[0-9]{4}'; break;
+    case "m/d/y": $current_pattern = '[0-1][0-9]/[0-3][0-9]/[0-9]{2}'; break;
+    case "m/d/Y": $current_pattern = '[0-1][0-9]/[0-3][0-9]/[0-9]{4}'; break;
+    case "d.m.Y": $current_pattern = '[0-3][0-9]\.[0-1][0-9]\.[0-9]{4}'; break;
+    case "y/m/d": $current_pattern = '[0-9]{2}/[0-1][0-9]/[0-3][0-9]'; break;
+    case "Y-m-d": $current_pattern = '[0-9]{4}-[0-1][0-9]-[0-3][0-9]'; break;
+    case "M d, Y": $current_pattern = '[A-Za-z]{3}\s[0-3][0-9],\s[0-9]{4}'; break;
+    case "M d, y": $current_pattern = '[A-Za-z]{3}\s[0-3][0-9],\s[0-9]{2}'; break;
+    default: $current_pattern = '[0-3][0-9]-[0-1][0-9]-[0-9]{4}'; $date_format = 'd-m-Y';
+}
+?>
 <script language="javascript">
   var qso_manual  = "<?php echo $manual_mode; ?>";
   var text_error_timeoff_less_timeon = "<?= __("TimeOff is less than TimeOn"); ?>";
@@ -11,6 +35,7 @@
   var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
   var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days
   var latlng=[<?php echo $lat.','.$lng;?>];
+  var user_date_format = "<?php echo $date_format; ?>"; // Pass the user's date format to JavaScript
 </script>
 
 <div class="row qsopane">
@@ -64,11 +89,12 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="qso" role="tabpanel" aria-labelledby="qso-tab">
                       <!-- HTML for Date/Time -->
-              <?php if ($this->session->userdata('user_qso_end_times')  == 1) { ?>
+              <?php
+              if ($this->session->userdata('user_qso_end_times')  == 1) { ?>
               <div class="row">
                 <div class="mb-3 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-4">
                   <label for="start_date"><?= __("Date"); ?></label>
-                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date('d-m-Y'); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
+                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date($date_format); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="<?php echo $current_pattern; ?>">
                 </div>
 
                 <div class="mb-3 col-sm-6 col-md-6 col-lg-4 col-xl-4 col-4 ps-0 pe-0">
@@ -96,7 +122,7 @@
                 <?php if ( $manual_mode == 0 ) { ?>
                   <input class="input_start_time" type="hidden" id="start_time"  name="start_time"value="<?php echo date('H:i:s'); ?>" />
                   <input class="input_end_time" type="hidden" id="end_time"  name="end_time"value="<?php echo date('H:i:s'); ?>" />
-                  <input class="input_date" type="hidden" id="start_date" name="start_date" value="<?php echo date('d-m-Y'); ?>" />
+                  <input class="input_date" type="hidden" id="start_date" name="start_date" value="<?php echo date($date_format); ?>" />
                 <?php } ?>
               </div>
 
@@ -104,7 +130,7 @@
               <div class="row">
                 <div class="mb-3 col-6">
                   <label for="start_date"><?= __("Date"); ?></label>
-                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date('d-m-Y'); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
+                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date($date_format); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="<?php echo $current_pattern; ?>">
                 </div>
 
                 <div class="mb-3 col-6">
@@ -119,7 +145,7 @@
 
                 <?php if ( $manual_mode == 0 ) { ?>
                   <input class="input_start_time" type="hidden" id="start_time"  name="start_time"value="<?php echo date('H:i:s'); ?>" />
-                  <input class="input_date" type="hidden" id="start_date" name="start_date" value="<?php echo date('d-m-Y'); ?>" />
+                  <input class="input_date" type="hidden" id="start_date" name="start_date" value="<?php echo date($date_format); ?>" />
                 <?php } ?>
               </div>
               <?php } ?>
