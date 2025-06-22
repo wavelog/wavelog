@@ -151,12 +151,22 @@ class Logbookadvanced extends CI_Controller {
 
 	public function search() {
 		$this->load->model('logbookadvanced_model');
+		if(!$this->load->is_loaded('DxccFlag')) {
+			$this->load->library('DxccFlag');
+		}
 
 		$searchCriteria = $this->mapParameters();
 		$qsos = [];
 
 		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
-			$qsos[] = $qso->toArray();
+			$qsoArray = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$qsoArray['flag'] = ' '.$flag;
+			} else {
+				$qsoArray['flag'] = '';
+			}
+			$qsos[] = $qsoArray;
 		}
 
 		header("Content-Type: application/json");
