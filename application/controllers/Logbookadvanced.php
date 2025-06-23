@@ -16,6 +16,9 @@ class Logbookadvanced extends CI_Controller {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
+		if(!$this->load->is_loaded('DxccFlag')) {
+			$this->load->library('DxccFlag');
+		}
 	}
 
 	function index() {
@@ -151,9 +154,6 @@ class Logbookadvanced extends CI_Controller {
 
 	public function search() {
 		$this->load->model('logbookadvanced_model');
-		if(!$this->load->is_loaded('DxccFlag')) {
-			$this->load->library('DxccFlag');
-		}
 
 		$searchCriteria = $this->mapParameters();
 		$qsos = [];
@@ -250,14 +250,21 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -280,14 +287,21 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -444,9 +458,6 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-		if(!$this->load->is_loaded('DxccFlag')) {
-			$this->load->library('DxccFlag');
-		}
 
 		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
 		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
@@ -483,9 +494,6 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-		if(!$this->load->is_loaded('DxccFlag')) {
-			$this->load->library('DxccFlag');
-		}
 
 		$latlng1 = $this->qra->qra2latlong($mygrid);
 		$latlng2[0] = $lat;
@@ -632,10 +640,10 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		// Get Date format
@@ -648,7 +656,14 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -690,10 +705,10 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		// Get Date format
@@ -706,7 +721,14 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -726,10 +748,10 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		// Get Date format
@@ -742,7 +764,14 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
