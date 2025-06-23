@@ -3,16 +3,24 @@
 class Usermodes extends CI_Model {
 
 	function all() {
+		$options_object = $this->user_options_model->get_options('usermodes', array('option_name' => 'enabled_usermodes', 'option_key' => 'json_modes'))->result();
+		$usermodes = json_decode($options_object[0]->option_value ?? '[]');
+		$this->db->where('active', 1);	// Show only those which are not globally deactivated
 		$this->db->order_by('mode', 'ASC');
 		$this->db->order_by('submode', 'ASC');
-		return $this->db->get('adif_modes');
-	}
-
-	function active() {
-		$this->db->where('active', 1);
-		$this->db->order_by('mode', 'ASC');
-		$this->db->order_by('submode', 'ASC');
-		return $this->db->get('adif_modes');
+		$modes=$this->db->get('adif_modes');
+		$retmodes=[];
+		foreach ($modes->result() as $row) {
+			if (count($usermodes)>0) {
+				if (in_array($row->mode.'/'.($row_submode ?? ''), $usermodes)) {
+					$row->active=1;
+				} else {
+					$row->active=0;
+				}
+			}
+			$retmodes[]=$row;
+		}
+		return $retmodes;
 	}
 
 	function mode($id) {
