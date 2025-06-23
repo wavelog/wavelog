@@ -563,7 +563,7 @@ class Logbookadvanced_model extends CI_Model {
 		} else {
 			$sql = "UPDATE " . $this->config->item('table_name') ."
 				SET
-				COL_QSLRDATE = CURRENT_TIMESTAMP,
+				COL_QSLSDATE = CURRENT_TIMESTAMP,
 				COL_QSL_SENT = ?,
 				COL_QSL_SENT_VIA = ?,
 				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE
