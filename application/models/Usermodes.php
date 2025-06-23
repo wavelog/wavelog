@@ -23,8 +23,6 @@ class Usermodes extends CI_Model {
 		return $this->db->get('adif_modes');
 	}
 
-
-
 	function activate($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
