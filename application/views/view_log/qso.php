@@ -529,7 +529,7 @@
 
                     <?php if($row->COL_LOTW_QSL_RCVD == "Y" && $row->COL_LOTW_QSLRDATE != null) { ?>
                     <h3><?= __("LoTW"); ?></h3>
-                    <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo date($custom_date_format, $timestamp); echo " ".date('H:i', $timestamp);?> UTC.</p>
+                    <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo date($custom_date_format, $timestamp); if (date('H:i', $timestamp) != '00:00') { echo " ".date('H:i', $timestamp);?> UTC<?php } ?>.</p>
                     <?php } ?>
 
 					<?php if($row->COL_LOTW_QSL_RCVD == "Y" && $row->COL_LOTW_QSLRDATE == null) { ?>
