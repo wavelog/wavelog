@@ -293,7 +293,7 @@ function loadQSOTable(rows) {
 			data.push(qso.qslMessageR);
 		}
 		if ((user_options.dxcc.show ?? 'true') == "true"){
-			data.push(qso.dxcc+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
+			data.push(qso.dxcc+qso.flag+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
 		}
 		if ((user_options.state.show ?? 'true') == "true"){
 			data.push(qso.state);
