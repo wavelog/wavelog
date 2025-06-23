@@ -43,6 +43,7 @@ class QSO
 	private string $ituzone;
 	private string $state;
 	private string $dxcc;
+	private string $dxccid;
 	private string $iota;
 	private string $continent;
 	private string $region;
@@ -258,6 +259,7 @@ class QSO
 		} else {
 			$this->dxcc = (($data['dxccname'] ?? null) === null) ? '- NONE -' : '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.ucwords(strtolower($data['dxccname']), "- (/").'</a>';
 		}
+		$this->dxccid = $data['adif'];
 		$this->iota = ($data['COL_IOTA'] === null) ? '' : $this->getIotaLink($data['COL_IOTA']);
 		if (array_key_exists('end', $data)) {
 			$this->end = ($data['end'] === null) ? null : DateTime::createFromFormat("Y-m-d", $data['end'], new DateTimeZone('UTC'));
@@ -1175,6 +1177,11 @@ class QSO
 		return '<span id="dxcc">' . $this->dxcc . '</span>';
 	}
 
+	public function getDXCCId(): string
+	{
+		return $this->dxccid;
+	}
+
 	public function getCqzone(): string
 	{
 		return '<span id="cqzone">' . $this->cqzone . '</span>';
@@ -1223,6 +1230,7 @@ class QSO
 			'qslMessageR' => $this->getQSLMsgRcvd(),
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),
+			'dxccid' => $this->getDXCCId(),
 			'state' => $this->getState(),
 			'pota' => $this->getFormattedPota(),
 			'operator' => $this->getOperator(),
