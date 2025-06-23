@@ -17,7 +17,7 @@ class QSO extends CI_Controller {
 		$this->load->model('stations');
 		$this->load->model('logbook_model');
 		$this->load->model('user_model');
-		$this->load->model('modes');
+		$this->load->model('usermodes');
 		$this->load->model('bands');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
@@ -40,7 +40,7 @@ class QSO extends CI_Controller {
 		$data['query'] = $this->logbook_model->last_custom($this->session->userdata('qso_page_last_qso_count'));
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
 		$data['iota'] = $this->logbook_model->fetchIota();
-		$data['modes'] = $this->modes->active();
+		$data['modes'] = $this->usermodes->active();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
 		[$data['lat'], $data['lng']] = $this->qra->qra2latlong($this->stations->gridsquare_from_station($this->stations->find_active()));
 		$data['user_default_band'] = $this->session->userdata('user_default_band');

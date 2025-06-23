@@ -17,8 +17,8 @@ class Usermode extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->model('modes');
-		$data['modes'] = $this->modes->all();
+		$this->load->model('usermodes');
+		$data['modes'] = $this->usermodes->all();
 		// Render Page
 		$data['page_title'] = __("Modes");
 		$this->load->view('interface_assets/header', $data);
@@ -27,7 +27,7 @@ class Usermode extends CI_Controller {
 	}
 
 	public function activate() {
-		$id = $this->input->post('id');
+		$id = $this->input->post('id',true);
 		$this->load->model('usermodes');
 		$this->usermodes->activate($id);
 		header('Content-Type: application/json');
@@ -36,7 +36,7 @@ class Usermode extends CI_Controller {
 	}
 
 	public function deactivate() {
-		$id = $this->input->post('id');
+		$id = $this->input->post('id',true);
 		$this->load->model('usermodes');
 		$this->usermodes->deactivate($id);
 		header('Content-Type: application/json');

@@ -1,6 +1,4 @@
 <script>
-	var lang_create_mode = "<?= __("Create mode"); ?>";
-	var lang_mode_deletion_confirm = "<?= __("Warning! Are you sure you want to delete the following mode?:"); ?>";
 	var lang_active_all_confirm = "<?= __("Warning! Are you sure you want to activate all modes?"); ?>";
 	var lang_deactive_all_confirm = "<?= __("Warning! Are you sure you want to deactivate all modes?"); ?>";
 	var lang_deactivate_mode = "<?= __("Deactivate"); ?>";
@@ -41,13 +39,11 @@
 					<th class="select-filter" scope="col"><?= __("Sub-Mode"); ?></th>
 					<th class="select-filter" scope="col">SSB / DATA / CW</th>
 					<th class="select-filter" scope="col"><?= __("Status"); ?></th>
-                    <th scope="col"></th>
-					<th scope="col"></th>
-					<th scope="col"></th>
+                    			<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($modes->result() as $row) { ?>
+				<?php foreach ($modes as $row) { ?>
 				<tr>
 					<td style="text-align: center; vertical-align: middle;" ><?php echo $row->mode;?></td>
 					<td style="text-align: center; vertical-align: middle;" ><?php echo $row->submode;?></td>
@@ -60,13 +56,7 @@
                             echo "<button onclick='javascript:activateMode(". $row->id . ")' class='btn_" . $row->id . " btn btn-primary btn-sm'>" . __("Activate") . "</button>";
                         };?>
                     </td>
-					<td style="text-align: center; vertical-align: middle;" >
-						<a href="<?php echo site_url('mode/edit')."/".$row->id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> <?= __("Edit"); ?></a>
-					</td>
-					<td style="text-align: center; vertical-align: middle;" >
-						<a href="javascript:deleteMode('<?php echo $row->id; ?>', '<?php echo $row->mode; ?>');" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i> <?= __("Delete"); ?></a>
-                    </td>
-				</tr>
+		</tr>
 
 				<?php } ?>
 			</tbody>
@@ -85,7 +75,6 @@
 	</div>
   <br/>
   <p>
-	  	<button onclick="createModeDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Create a Mode"); ?></button>
   		<button onclick="activateAllModes();" class="btn btn-primary btn-sm"><?= __("Activate All"); ?></button>
 		<button onclick="deactivateAllModes();" class="btn btn-primary btn-sm"><?= __("Deactivate All"); ?> </button>
 	</p>
