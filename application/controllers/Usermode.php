@@ -18,13 +18,11 @@ class Usermode extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('modes');
-
 		$data['modes'] = $this->modes->all();
-
 		// Render Page
 		$data['page_title'] = __("Modes");
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('mode/index');
+		$this->load->view('usermode/index');
 		$this->load->view('interface_assets/footer');
 	}
 
