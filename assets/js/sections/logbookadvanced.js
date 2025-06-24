@@ -93,7 +93,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.qslMessageR);
 	}
 	if ((user_options.dxcc.show ?? 'true') == "true"){
-		cells.eq(c++).html(qso.dxcc);
+		cells.eq(c++).html(qso.dxcc+qso.flag);
 	}
 	if ((user_options.state.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.state);
