@@ -57,12 +57,10 @@ class Usermodes extends CI_Model {
 	function activate($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
-		$data = array(
-			'active' => '1',
-		);
-		$this->db->where('id', $clean_id);
-		$this->db->update('adif_modes', $data);
-		return true;
+		$options_object = $this->user_options_model->get_options('usermodes', array('option_name' => 'enabled_usermodes', 'option_key' => 'json_modes'))->result();
+		$usermodes = json_decode($options_object[0]->option_value ?? '[]');
+		$mode2act=$this->mode($id)->result()->mode.'/'.($this->mode($id)->result()->submode ?? '');
+		return $mode2act;
 	}
 
 	function deactivate($id) {

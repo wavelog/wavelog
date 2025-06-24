@@ -2348,6 +2348,10 @@ $('#sats').change(function(){
         <?php } ?>
 
 
+    <?php if ($this->uri->segment(1) == "usermode") { ?>
+		<script src="<?php echo base_url(); ?>assets/js/sections/usermode.js"></script>
+    <?php } ?>
+
     <?php if ($this->uri->segment(1) == "mode") { ?>
 		<script src="<?php echo base_url(); ?>assets/js/sections/mode.js"></script>
     <?php } ?>

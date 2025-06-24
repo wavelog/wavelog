@@ -64,8 +64,6 @@
 				<tr>
 					<th></th>
 					<th></th>
-					<th></th>
-					<th></th>
 					<th><---</th>
 					<th><?= __("Filters"); ?></th>
 					<th></th>
