@@ -56,7 +56,6 @@ class Usermodes extends CI_Model {
 
 	function activate($id) {
 		$clean_id = $this->security->xss_clean($id);
-		$mode2act=$this->mode($clean_id)->result()[0]->mode.'~'.($this->mode($clean_id)->result()[0]->submode ?? '');
 
 		$modes=[];
 		$raw_modes=$this->all();
@@ -75,7 +74,6 @@ class Usermodes extends CI_Model {
 
 	function deactivate($id) {
 		$clean_id = $this->security->xss_clean($id);
-		$mode2act=$this->mode($clean_id)->result()[0]->mode.'~'.($this->mode($clean_id)->result()[0]->submode ?? '');
 
 		$modes=[];
 		$raw_modes=$this->all();
