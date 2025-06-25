@@ -36,7 +36,7 @@ $('.modetable').DataTable({
 
 function deactivateMode(modeid) {
 	$.ajax({
-		url: base_url + 'index.php/mode/deactivate',
+		url: base_url + 'index.php/usermode/deactivate',
 		type: 'post',
 		data: { 'id': modeid },
 		success: function (html) {
@@ -51,7 +51,7 @@ function deactivateMode(modeid) {
 
 function activateMode(modeid) {
 	$.ajax({
-		url: base_url + 'index.php/mode/activate',
+		url: base_url + 'index.php/usermode/activate',
 		type: 'post',
 		data: { 'id': modeid },
 		success: function (html) {
@@ -60,33 +60,6 @@ function activateMode(modeid) {
 			$('.btn_' + modeid).removeClass('btn-primary');
 			$('.btn_' + modeid).addClass('btn-secondary');
 			$('.btn_' + modeid).attr('onclick', 'deactivateMode(' + modeid + ')')
-		}
-	});
-}
-
-function deleteMode(id, mode) {
-	BootstrapDialog.confirm({
-		title: lang_general_word_danger,
-		message: lang_mode_deletion_confirm + ' ' + mode,
-		type: BootstrapDialog.TYPE_DANGER,
-		closable: true,
-		draggable: true,
-		btnOKClass: 'btn-danger',
-		btnCancelLabel: lang_general_word_cancel,
-		btnOKLabel: lang_general_word_ok,
-		callback: function (result) {
-			if (result) {
-				$.ajax({
-					url: base_url + 'index.php/mode/delete',
-					type: 'post',
-					data: {
-						'id': id
-					},
-					success: function (data) {
-						$(".mode_" + id).parent("tr:first").remove(); // removes mode from table
-					}
-				});
-			}
 		}
 	});
 }
@@ -104,7 +77,7 @@ function activateAllModes() {
 		callback: function (result) {
 			if (result) {
 				$.ajax({
-					url: base_url + 'index.php/mode/activateall',
+					url: base_url + 'index.php/usermode/activateall',
 					type: 'post',
 					success: function (data) {
 						location.reload();
@@ -128,7 +101,7 @@ function deactivateAllModes() {
 		callback: function (result) {
 			if (result) {
 				$.ajax({
-					url: base_url + 'index.php/mode/deactivateall',
+					url: base_url + 'index.php/usermode/deactivateall',
 					type: 'post',
 					success: function (data) {
 						location.reload();
