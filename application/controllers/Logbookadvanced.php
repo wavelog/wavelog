@@ -16,6 +16,9 @@ class Logbookadvanced extends CI_Controller {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
+		if(!$this->load->is_loaded('DxccFlag')) {
+			$this->load->library('DxccFlag');
+		}
 	}
 
 	function index() {
@@ -104,10 +107,8 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	public function search() {
-		$this->load->model('logbookadvanced_model');
-
-		$searchCriteria = array(
+	function mapParameters() {
+		return array(
 			'user_id' => (int)$this->session->userdata('user_id'),
 			'dateFrom' => xss_clean($this->input->post('dateFrom')),
 			'dateTo' => xss_clean($this->input->post('dateTo')),
@@ -124,6 +125,7 @@ class Logbookadvanced extends CI_Controller {
 			'propmode' => xss_clean($this->input->post('propmode')),
 			'gridsquare' => xss_clean($this->input->post('gridsquare')),
 			'state' => xss_clean($this->input->post('state')),
+			'county' => xss_clean($this->input->post('county')),
 			'cqzone' => xss_clean($this->input->post('cqzone')),
 			'ituzone' => xss_clean($this->input->post('ituzone')),
 			'qsoresults' => xss_clean($this->input->post('qsoresults')),
@@ -146,12 +148,25 @@ class Logbookadvanced extends CI_Controller {
 			'invalid' => xss_clean($this->input->post('invalid')),
 			'continent' => xss_clean($this->input->post('continent')),
 			'comment' => xss_clean($this->input->post('comment')),
+			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
+	}
 
+	public function search() {
+		$this->load->model('logbookadvanced_model');
+
+		$searchCriteria = $this->mapParameters();
 		$qsos = [];
 
 		foreach ($this->logbookadvanced_model->searchQsos($searchCriteria) as $qso) {
-			$qsos[] = $qso->toArray();
+			$qsoArray = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$qsoArray['flag'] = ' '.$flag;
+			} else {
+				$qsoArray['flag'] = '';
+			}
+			$qsos[] = $qsoArray;
 		}
 
 		header("Content-Type: application/json");
@@ -211,10 +226,9 @@ class Logbookadvanced extends CI_Controller {
 		set_time_limit(0);
 		$this->load->model('logbookadvanced_model');
 
-		$postdata = $this->input->post();
-		$postdata['user_id'] = (int)$this->session->userdata('user_id');
-		$postdata['qsoresults'] = 'All';
-		$postdata['de'] = explode(',', $postdata['de']);
+		$postdata = $this->mapParameters();
+		$postdata['de'] = explode(',', $postdata['de']); // The reason for doing this different, is that the parameter is sent in differently than the regular search
+		$postdata['qsoresults'] = 'All'; // We want all the QSOs regardless of what is set in the qsoresults, to be able to export all QSOs with the filter critera
 		$data['qsos'] = $this->logbookadvanced_model->getSearchResult($postdata);
 
 		$this->load->view('adif/data/exportall', $data);
@@ -236,14 +250,21 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -266,14 +287,21 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -285,10 +313,10 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function qslSlideshow() {
-		$cleanids = $this->security->xss_clean($this->input->post('ids'));
-        $this->load->model('logbookadvanced_model');
-        $data['qslimages'] = $this->logbookadvanced_model->getQslsForQsoIds($cleanids);
-        $this->load->view('logbookadvanced/qslcarousel', $data);
+		$cleanids = json_decode($this->security->xss_clean($this->input->post('ids')));
+		$this->load->model('logbookadvanced_model');
+		$data['qslimages'] = $this->logbookadvanced_model->getQslsForQsoIds($cleanids);
+		$this->load->view('logbookadvanced/qslcarousel', $data);
 	}
 
 	public function mapSelectedQsos() {
@@ -311,9 +339,10 @@ class Logbookadvanced extends CI_Controller {
 			'propmode' => '',
 			'gridsquare' => '*',
 			'state' => '*',
-			'cqzone' => '',
-			'ituzone' => '',
-			'qsoresults' => count($this->input->post('ids')),
+			'county' => '*',
+			'cqzone' => 'All',
+			'ituzone' => 'All',
+			'qsoresults' => count(json_decode($this->input->post('ids',true))),
 			'sats' => '',
 			'orbits' => '',
 			'lotwSent' => '',
@@ -331,7 +360,8 @@ class Logbookadvanced extends CI_Controller {
 			'contest' => '*',
 			'continent' => '',
 			'comment' => '*',
-			'ids' => xss_clean($this->input->post('ids'))
+			'ids' => json_decode(xss_clean($this->input->post('ids'))),
+			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
@@ -341,44 +371,7 @@ class Logbookadvanced extends CI_Controller {
 	public function mapQsos() {
         $this->load->model('logbookadvanced_model');
 
-		$searchCriteria = array(
-			'user_id' => (int)$this->session->userdata('user_id'),
-			'dateFrom' => xss_clean($this->input->post('dateFrom')),
-			'dateTo' => xss_clean($this->input->post('dateTo')),
-			'de' => xss_clean($this->input->post('de')),
-			'dx' => xss_clean($this->input->post('dx')),
-			'mode' => xss_clean($this->input->post('mode')),
-			'band' => xss_clean($this->input->post('band')),
-			'qslSent' => xss_clean($this->input->post('qslSent')),
-			'qslReceived' => xss_clean($this->input->post('qslReceived')),
-			'qslSentMethod' => xss_clean($this->input->post('qslSentMethod')),
-			'qslReceivedMethod' => xss_clean($this->input->post('qslReceivedMethod')),
-			'iota' => xss_clean($this->input->post('iota')),
-			'dxcc' => xss_clean($this->input->post('dxcc')),
-			'propmode' => xss_clean($this->input->post('propmode')),
-			'gridsquare' => xss_clean($this->input->post('gridsquare')),
-			'state' => xss_clean($this->input->post('state')),
-			'cqzone' => xss_clean($this->input->post('cqzone')),
-			'ituzone' => xss_clean($this->input->post('ituzone')),
-			'qsoresults' => xss_clean($this->input->post('qsoresults')),
-			'sats' => xss_clean($this->input->post('sats')),
-			'orbits' => xss_clean($this->input->post('orbits')),
-			'lotwSent' => xss_clean($this->input->post('lotwSent')),
-			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
-			'eqslSent' => xss_clean($this->input->post('eqslSent')),
-			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
-			'clublogSent' => xss_clean($this->input->post('clublogSent')),
-			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
-			'qslvia' => xss_clean($this->input->post('qslvia')),
-			'sota' => xss_clean($this->input->post('sota')),
-			'pota' => xss_clean($this->input->post('pota')),
-			'wwff' => xss_clean($this->input->post('wwff')),
-			'operator' => xss_clean($this->input->post('operator')),
-			'contest' => xss_clean($this->input->post('contest')),
-			'qslimages' => xss_clean($this->input->post('qslimages')),
-			'continent' => xss_clean($this->input->post('continent')),
-			'comment' => xss_clean($this->input->post('comment')),
-		);
+		$searchCriteria = $this->mapParameters();
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
 		$this->prepareMappedQSos($result);
@@ -465,9 +458,6 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-		if(!$this->load->is_loaded('DxccFlag')) {
-			$this->load->library('DxccFlag');
-		}
 
 		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
 		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
@@ -504,9 +494,6 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-		if(!$this->load->is_loaded('DxccFlag')) {
-			$this->load->library('DxccFlag');
-		}
 
 		$latlng1 = $this->qra->qra2latlong($mygrid);
 		$latlng2[0] = $lat;
@@ -558,45 +545,47 @@ class Logbookadvanced extends CI_Controller {
 	public function setUserOptions() {
 		if(!clubaccess_check(9)) return;
 
-		$json_string['datetime']['show'] = $this->input->post('datetime');
-		$json_string['de']['show'] = $this->input->post('de');
-		$json_string['dx']['show'] = $this->input->post('dx');
-		$json_string['mode']['show'] = $this->input->post('mode');
-		$json_string['rstr']['show'] = $this->input->post('rstr');
-		$json_string['rsts']['show'] = $this->input->post('rsts');
-		$json_string['band']['show'] = $this->input->post('band');
-		$json_string['myrefs']['show'] = $this->input->post('myrefs');
-		$json_string['name']['show'] = $this->input->post('name');
-		$json_string['qslvia']['show'] = $this->input->post('qslvia');
-		$json_string['qsl']['show'] = $this->input->post('qsl');
-		$json_string['lotw']['show'] = $this->input->post('lotw');
-		$json_string['eqsl']['show'] = $this->input->post('eqsl');
-		$json_string['clublog']['show'] = $this->input->post('clublog');
-		$json_string['qslmsgs']['show'] = $this->input->post('qslmsgs');
-		$json_string['qslmsgr']['show'] = $this->input->post('qslmsgr');
-		$json_string['dxcc']['show'] = $this->input->post('dxcc');
-		$json_string['state']['show'] = $this->input->post('state');
-		$json_string['cqzone']['show'] = $this->input->post('cqzone');
-		$json_string['ituzone']['show'] = $this->input->post('ituzone');
-		$json_string['iota']['show'] = $this->input->post('iota');
-		$json_string['pota']['show'] = $this->input->post('pota');
-		$json_string['operator']['show'] = $this->input->post('operator');
-		$json_string['comment']['show'] = $this->input->post('comment');
-		$json_string['propagation']['show'] = $this->input->post('propagation');
-		$json_string['contest']['show'] = $this->input->post('contest');
-		$json_string['gridsquare']['show'] = $this->input->post('gridsquare');
-		$json_string['sota']['show'] = $this->input->post('sota');
-		$json_string['dok']['show'] = $this->input->post('dok');
-		$json_string['sig']['show'] = $this->input->post('sig');
-		$json_string['wwff']['show'] = $this->input->post('wwff');
-		$json_string['continent']['show'] = $this->input->post('continent');
-		$json_string['qrz']['show'] = $this->input->post('qrz');
-		$json_string['profilename']['show'] = $this->input->post('profilename');
-		$json_string['stationpower']['show'] = $this->input->post('stationpower');
-		$json_string['distance']['show'] = $this->input->post('distance');
-		$json_string['antennaazimuth']['show'] = $this->input->post('antennaazimuth');
-		$json_string['antennaelevation']['show'] = $this->input->post('antennaelevation');
-		$json_string['region']['show'] = $this->input->post('region');
+		$json_string['datetime']['show'] = $this->def_boolean($this->input->post('datetime'),'true');
+		$json_string['de']['show'] = $this->def_boolean($this->input->post('de'),'true');
+		$json_string['dx']['show'] = $this->def_boolean($this->input->post('dx'),'true');
+		$json_string['mode']['show'] = $this->def_boolean($this->input->post('mode'),'true');
+		$json_string['rstr']['show'] = $this->def_boolean($this->input->post('rstr'));
+		$json_string['rsts']['show'] = $this->def_boolean($this->input->post('rsts'));
+		$json_string['band']['show'] = $this->def_boolean($this->input->post('band'));
+		$json_string['myrefs']['show'] = $this->def_boolean($this->input->post('myrefs'));
+		$json_string['name']['show'] = $this->def_boolean($this->input->post('name'));
+		$json_string['qslvia']['show'] = $this->def_boolean($this->input->post('qslvia'));
+		$json_string['qsl']['show'] = $this->def_boolean($this->input->post('qsl'));
+		$json_string['lotw']['show'] = $this->def_boolean($this->input->post('lotw'));
+		$json_string['eqsl']['show'] = $this->def_boolean($this->input->post('eqsl'));
+		$json_string['clublog']['show'] = $this->def_boolean($this->input->post('clublog'));
+		$json_string['qslmsgs']['show'] = $this->def_boolean($this->input->post('qslmsgs'));
+		$json_string['qslmsgr']['show'] = $this->def_boolean($this->input->post('qslmsgr'));
+		$json_string['dxcc']['show'] = $this->def_boolean($this->input->post('dxcc'));
+		$json_string['state']['show'] = $this->def_boolean($this->input->post('state'));
+		$json_string['county']['show'] = $this->def_boolean($this->input->post('county'));
+		$json_string['cqzone']['show'] = $this->def_boolean($this->input->post('cqzone'));
+		$json_string['ituzone']['show'] = $this->def_boolean($this->input->post('ituzone'));
+		$json_string['iota']['show'] = $this->def_boolean($this->input->post('iota'));
+		$json_string['pota']['show'] = $this->def_boolean($this->input->post('pota'));
+		$json_string['operator']['show'] = $this->def_boolean($this->input->post('operator'));
+		$json_string['comment']['show'] = $this->def_boolean($this->input->post('comment'));
+		$json_string['propagation']['show'] = $this->def_boolean($this->input->post('propagation'));
+		$json_string['contest']['show'] = $this->def_boolean($this->input->post('contest'));
+		$json_string['gridsquare']['show'] = $this->def_boolean($this->input->post('gridsquare'));
+		$json_string['sota']['show'] = $this->def_boolean($this->input->post('sota'));
+		$json_string['dok']['show'] = $this->def_boolean($this->input->post('dok'));
+		$json_string['sig']['show'] = $this->def_boolean($this->input->post('sig'));
+		$json_string['wwff']['show'] = $this->def_boolean($this->input->post('wwff'));
+		$json_string['continent']['show'] = $this->def_boolean($this->input->post('continent'));
+		$json_string['qrz']['show'] = $this->def_boolean($this->input->post('qrz'));
+		$json_string['profilename']['show'] = $this->def_boolean($this->input->post('profilename'));
+		$json_string['stationpower']['show'] = $this->def_boolean($this->input->post('stationpower'));
+		$json_string['distance']['show'] = $this->def_boolean($this->input->post('distance'));
+		$json_string['antennaazimuth']['show'] = $this->def_boolean($this->input->post('antennaazimuth'));
+		$json_string['antennaelevation']['show'] = $this->def_boolean($this->input->post('antennaelevation'));
+		$json_string['region']['show'] = $this->def_boolean($this->input->post('region'));
+		$json_string['qth']['show'] = $this->def_boolean($this->input->post('qth'));
 
 		$obj['column_settings']= json_encode($json_string);
 
@@ -604,11 +593,18 @@ class Logbookadvanced extends CI_Controller {
 		$this->user_options_model->set_option('LogbookAdvanced', 'LogbookAdvanced', $obj);
 
 
-		$this->user_options_model->set_option('LogbookAdvancedMap', 'gridsquare_layer',  array('boolean' => xss_clean($this->input->post('gridsquare_layer'))));
-		$this->user_options_model->set_option('LogbookAdvancedMap', 'path_lines',  array('boolean' => xss_clean($this->input->post('path_lines'))));
-		$this->user_options_model->set_option('LogbookAdvancedMap', 'cqzones_layer',  array('boolean' => xss_clean($this->input->post('cqzone_layer'))));
-		$this->user_options_model->set_option('LogbookAdvancedMap', 'ituzones_layer',  array('boolean' => xss_clean($this->input->post('ituzone_layer'))));
-		$this->user_options_model->set_option('LogbookAdvancedMap', 'nightshadow_layer',  array('boolean' => xss_clean($this->input->post('nightshadow_layer'))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'gridsquare_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('gridsquare_layer')))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'path_lines',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('path_lines')))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'cqzones_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('cqzone_layer')))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'ituzones_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('ituzone_layer')))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'nightshadow_layer',  array('boolean' => $this->def_boolean(xss_clean($this->input->post('nightshadow_layer')))));
+	}
+
+	private function def_boolean($value, $default_value='false') {
+		if ((($value ?? '') == '') || (($value != 'false') && ($value != 'true'))) {
+			$value = $default_value;
+		}
+		return $value;
 	}
 
 	public function editDialog() {
@@ -644,10 +640,10 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		// Get Date format
@@ -660,7 +656,14 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -688,5 +691,90 @@ class Logbookadvanced extends CI_Controller {
 
 	public function helpDialog() {
 		$this->load->view('logbookadvanced/help');
+	}
+
+	public function fixCqZones() {
+		if(!clubaccess_check(9)) return;
+
+		$ids = xss_clean($this->input->post('ids'));
+
+		$this->load->model('logbookadvanced_model');
+		$this->logbookadvanced_model->fixCqZones($ids);
+
+		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
+
+		$results = $data->result('array');
+
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
+
+		$q = [];
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		foreach ($qsos as $qso) {
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
+		}
+
+		header("Content-Type: application/json");
+		print json_encode($q);
+
+	}
+
+	public function fixItuZones() {
+		if(!clubaccess_check(9)) return;
+
+		$ids = xss_clean($this->input->post('ids'));
+
+		$this->load->model('logbookadvanced_model');
+		$this->logbookadvanced_model->fixItuZones($ids);
+
+		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
+
+		$results = $data->result('array');
+
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
+
+		$q = [];
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		foreach ($qsos as $qso) {
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
+		}
+
+		header("Content-Type: application/json");
+		print json_encode($q);
 	}
 }

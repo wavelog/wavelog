@@ -97,6 +97,15 @@ function set_timers() {
 	}, 100);
 }
 
+function invalidAntEl() {
+	var saveQsoButtonText = $("#saveQso").html();
+	$("#noticer").removeClass("");
+	$("#noticer").addClass("alert alert-warning");
+	$("#noticer").html(lang_invalid_ant_el+" "+parseFloat($("#ant_el").val()).toFixed(1));
+	$("#noticer").show();
+	$("#saveQso").html(saveQsoButtonText).prop("disabled", false);
+}
+
 $("#qso_input").off('submit').on('submit', function (e) {
 	var _submit = true;
 	if ((typeof qso_manual !== "undefined") && (qso_manual == "1")) {
@@ -461,40 +470,63 @@ if ($("#sat_name").val() !== '') {
 
 $('#stateDropdown').on('change', function () {
 	var state = $("#stateDropdown option:selected").text();
+	var dxcc = $("#dxcc_id option:selected").val();
+	
 	if (state != "") {
-		$("#stationCntyInputQso").prop('disabled', false);
-
-		$('#stationCntyInputQso').selectize({
-			maxItems: 1,
-			closeAfterSelect: true,
-			loadThrottle: 250,
-			valueField: 'name',
-			labelField: 'name',
-			searchField: 'name',
-			options: [],
-			create: false,
-			load: function (query, callback) {
-				var state = $("#stateDropdown option:selected").text();
-
-				if (!query || state == "") return callback();
-				$.ajax({
-					url: base_url + 'index.php/qso/get_county',
-					type: 'GET',
-					dataType: 'json',
-					data: {
-						query: query,
-						state: state,
-					},
-					error: function () {
-						callback();
-					},
-					success: function (res) {
-						callback(res);
+		switch (dxcc) {
+			case '6':
+			case '110':
+			case '291': 
+				$("#stationCntyInputQso").prop('disabled', false);
+				$('#stationCntyInputQso').selectize({
+					maxItems: 1,
+					closeAfterSelect: true,
+					loadThrottle: 250,
+					valueField: 'name',
+					labelField: 'name',
+					searchField: 'name',
+					options: [],
+					create: false,
+					load: function (query, callback) {
+						var state = $("#stateDropdown option:selected").text();
+		
+						if (!query || state == "") return callback();
+						$.ajax({
+							url: base_url + 'index.php/qso/get_county',
+							type: 'GET',
+							dataType: 'json',
+							data: {
+								query: query,
+								state: state,
+							},
+							error: function () {
+								callback();
+							},
+							success: function (res) {
+								callback(res);
+							}
+						});
 					}
 				});
-			}
-		});
-
+				break;
+			case '15':
+			case '54':
+			case '61':
+			case '126':
+			case '151':
+			case '288':
+			case '339':
+			case '170':
+			case '21':
+			case '29':
+			case '32':
+			case '281':
+				$("#stationCntyInputQso").prop('disabled', false);
+				break;
+			default:
+				$("#stationCntyInputQso").prop('disabled', true);
+		}
+		
 	} else {
 		$("#stationCntyInputQso").prop('disabled', true);
 		//$('#stationCntyInputQso')[0].selectize.destroy();
@@ -712,6 +744,7 @@ function reset_fields() {
 	var $select = $('#darc_dok').selectize();
 	var selectize = $select[0].selectize;
 	selectize.clear();
+	$('#stationCntyInputQso').val("");
 	$select = $('#stationCntyInputQso').selectize();
 	selectize = $select[0].selectize;
 	selectize.clear();
@@ -1005,15 +1038,46 @@ $("#callsign").on("focusout", function () {
 				}
 
 				/*
-					* Update county with returned value
+					* Update county with returned value for USA only for now
+					* and make sure control is enabled for others 
+					* with cnty info
 					*/
-				selectize_usa_county('#stateDropdown', '#stationCntyInputQso');
-				if ($('#stationCntyInputQso').has('option').length == 0 && result.callsign_us_county != "") {
-					var county_select = $('#stationCntyInputQso').selectize();
-					var county_selectize = county_select[0].selectize;
-					county_selectize.addOption({ name: result.callsign_us_county });
-					county_selectize.setValue(result.callsign_us_county, false);
-				}
+				var dxcc = $('#dxcc_id').val();
+				switch (dxcc) {
+					case '6':
+					case '110':
+					case '291': 
+						selectize_usa_county('#stateDropdown', '#stationCntyInputQso');
+						if ($('#stationCntyInputQso').has('option').length == 0 && result.callsign_us_county != "") {
+							var county_select = $('#stationCntyInputQso').selectize();
+							var county_selectize = county_select[0].selectize;
+							county_selectize.addOption({ name: result.callsign_us_county });
+							county_selectize.setValue(result.callsign_us_county, false);
+						}
+						break;
+					case '15':
+					case '54':
+					case '61':
+					case '126':
+					case '151':
+					case '288':
+					case '339':
+					case '170':
+					case '21':
+					case '29':
+					case '32':
+					case '281':
+						if (result.callsign_state == "") {
+							$("#stationCntyInputQso").prop('disabled', true);
+						} else {
+							$("#stationCntyInputQso").prop('disabled', false);
+							$("#stationCntyInputQso").val(result.callsign_us_county);
+						}
+						break;
+					default:
+						$("#stationCntyInputQso").prop('disabled', false);
+					}
+				
 
 				if (result.timesWorked != "") {
 					if (result.timesWorked == '0') {

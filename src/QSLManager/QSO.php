@@ -28,6 +28,7 @@ class QSO
 	private string $satelliteMode;
 	private string $satelliteName;
 	private string $name;
+	private string $qth;
 	private string $email;
 	private string $address;
 	private string $deGridsquare;
@@ -42,9 +43,11 @@ class QSO
 	private string $ituzone;
 	private string $state;
 	private string $dxcc;
+	private string $dxccid;
 	private string $iota;
 	private string $continent;
 	private string $region;
+	private string $county;
 	/** @var string[] */
 	private string $deVUCCGridsquares;
 	private string $dxGridsquare;
@@ -194,6 +197,7 @@ class QSO
 		$this->satelliteName = $data['COL_SAT_NAME'] != '' ? (isset($data['orbit']) && $data['orbit'] != '' ? $data['COL_SAT_NAME']." (".$data['orbit'].") " : $data['COL_SAT_NAME']) : '';
 
 		$this->name = $data['COL_NAME'] ?? '';
+		$this->qth = $data['COL_QTH'] ?? '';
 		$this->email = $data['COL_EMAIL'] ?? '';
 		$this->address = $data['COL_ADDRESS'] ?? '';
 
@@ -249,11 +253,13 @@ class QSO
 		$this->cqzone = $data['COL_CQZ'] === null ? '' : $this->getCqLink($data['COL_CQZ']);
 		$this->ituzone = $data['COL_ITUZ'] === null ? '' : $this->getItuLink($data['COL_ITUZ']);
 		$this->state = ($data['COL_STATE'] === null) ? '' :$data['COL_STATE'];
+		$this->county = ($data['COL_CNTY'] === null) ? '' :$data['COL_CNTY'];
 		if ($data['adif'] == '0') {
 			$this->dxcc = '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.$data['dxccname'].'</a>';
 		} else {
 			$this->dxcc = (($data['dxccname'] ?? null) === null) ? '- NONE -' : '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.ucwords(strtolower($data['dxccname']), "- (/").'</a>';
 		}
+		$this->dxccid = $data['adif'];
 		$this->iota = ($data['COL_IOTA'] === null) ? '' : $this->getIotaLink($data['COL_IOTA']);
 		if (array_key_exists('end', $data)) {
 			$this->end = ($data['end'] === null) ? null : DateTime::createFromFormat("Y-m-d", $data['end'], new DateTimeZone('UTC'));
@@ -1171,6 +1177,11 @@ class QSO
 		return '<span id="dxcc">' . $this->dxcc . '</span>';
 	}
 
+	public function getDXCCId(): string
+	{
+		return $this->dxccid;
+	}
+
 	public function getCqzone(): string
 	{
 		return '<span id="cqzone">' . $this->cqzone . '</span>';
@@ -1219,6 +1230,7 @@ class QSO
 			'qslMessageR' => $this->getQSLMsgRcvd(),
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),
+			'dxccid' => $this->getDXCCId(),
 			'state' => $this->getState(),
 			'pota' => $this->getFormattedPota(),
 			'operator' => $this->getOperator(),
@@ -1244,7 +1256,9 @@ class QSO
 			'distance' => $this->getFormattedDistance(),
 			'region' => $this->region,
 			'antennaelevation' => $this->antennaelevation == null ? null : $this->antennaelevation.'°',
-			'antennaazimuth' => $this->antennaazimuth == null ? null : $this->antennaazimuth.'°'
+			'antennaazimuth' => $this->antennaazimuth == null ? null : $this->antennaazimuth.'°',
+			'county' => $this->county,
+			'qth' => $this->qth
 		];
 	}
 

@@ -10,6 +10,7 @@
   var lang_dxccsummary_for = "<?= __("DXCC Summary for "); ?>";
   var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
   var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days
+  var lang_invalid_ant_el = "<?= __("Invalid value for antenna elevation:"); ?>";
   var latlng=[<?php echo $lat.','.$lng;?>];
 </script>
 
@@ -23,7 +24,7 @@
       <div class="card-header">
         <ul style="font-size: 15px;" class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="qsp-tab" data-bs-toggle="tab" href="#qso" role="tab" aria-controls="qso" aria-selected="true"><?= __("QSO"); ?><?php if ($manual_mode == 0) { echo " <span class=\"badge text-bg-success\">" . __("LIVE") . "</span>"; }; if ($manual_mode == 1) { echo " <span class=\"badge text-bg-danger\">" . __("POST") . "</span>"; } ?></a>
+            <a class="nav-link active" id="qso-tab" data-bs-toggle="tab" href="#qso" role="tab" aria-controls="qso" aria-selected="true"><?= __("QSO"); ?><?php if ($manual_mode == 0) { echo " <span class=\"badge text-bg-success\">" . __("LIVE") . "</span>"; }; if ($manual_mode == 1) { echo " <span class=\"badge text-bg-danger\">" . __("POST") . "</span>"; } ?></a>
           </li>
 
           <li class="nav-item">
@@ -143,7 +144,7 @@
                   <label for="mode"><?= __("Mode"); ?></label>
                   <select id="mode" tabindex="1" class="form-select mode form-select-sm" name="mode">
                   <?php
-                      foreach($modes->result() as $mode){
+                      foreach($modes as $mode){
                         if ($mode->submode == null) {
                           printf("<option value=\"%s\" %s>%s</option>", $mode->mode, $this->session->userdata('mode')==$mode->mode?"selected=\"selected\"":"",$mode->mode);
                         } else {
@@ -488,7 +489,7 @@
             </div>
 
             <div class="mb-3" id="location_us_county">
-                <label for="stationCntyInputQso"><?= __("USA County"); ?></label>
+                <label for="stationCntyInputQso"><?= __("Station County"); ?></label>
                 <input class="form-control" id="stationCntyInputQso" type="text" name="county" value="" />
             </div>
 
@@ -604,7 +605,7 @@
 
             <div class="mb-3">
               <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
-              <input type="number" inputmode="decimal" step="0.1" min="-5" max="90" class="form-control" id="ant_el" name="ant_el" />
+              <input type="number" inputmode="decimal" step="0.1" min="-5" max="90" class="form-control" id="ant_el" name="ant_el" onInvalid="invalidAntEl()" />
               <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
             </div>
           </div>

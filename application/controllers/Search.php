@@ -3,52 +3,48 @@
 class Search extends CI_Controller {
 
 
-    function __construct()
-    {
-        parent::__construct();
+	function __construct() {
+		parent::__construct();
 
-        $this->load->helper(array('form', 'url'));
-        if($this->optionslib->get_option('global_search') != "true") {
-            $this->load->model('user_model');
-            if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-        }
-    }
-
-	public function index()
-	{
-		$data['page_title'] = __("Search");
-
-        $this->load->view('interface_assets/header', $data);
-		$this->load->view('search/main');
-        $this->load->view('interface_assets/footer');
+		$this->load->helper(array('form', 'url'));
+		if($this->optionslib->get_option('global_search') != "true") {
+			$this->load->model('user_model');
+			if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		}
 	}
 
-    // Filter is for advanced searching and filtering of the logbook
-    public function filter() {
-        $data['page_title'] = __("Search & Filter Logbook");
+	public function index() {
+		$data['page_title'] = __("Search");
 
-        $this->load->library('form_validation');
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('search/main');
+		$this->load->view('interface_assets/footer');
+	}
 
-        $this->load->model('Search_filter');
+	// Filter is for advanced searching and filtering of the logbook
+	public function filter() {
+		$data['page_title'] = __("Search & Filter Logbook");
 
-        $data['get_table_names'] = $this->Search_filter->get_table_columns();
+		$this->load->library('form_validation');
+
+		$this->load->model('Search_filter');
+
+		$data['get_table_names'] = $this->Search_filter->get_table_columns();
 		$data['stored_queries'] = $this->Search_filter->get_stored_queries();
 
-        //print_r($this->Search_filter->get_table_columns());
+		//print_r($this->Search_filter->get_table_columns());
 
-        if ($this->form_validation->run() == FALSE)
-        {
-            $this->load->view('interface_assets/header', $data);
-            $this->load->view('search/filter');
-            $this->load->view('interface_assets/footer');
-        }
-        else
-        {
-            $this->load->view('interface_assets/header', $data);
-            $this->load->view('search/filter');
-            $this->load->view('interface_assets/footer');
-        }
-    }
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('search/filter');
+			$this->load->view('interface_assets/footer');
+		} else {
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('search/filter');
+			$this->load->view('interface_assets/footer');
+		}
+	}
 
 	// Searches for incorrect CQ Zones
 	public function incorrect_cq_zones() {
@@ -62,17 +58,17 @@ class Search extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-		// Searches for incorrect ITU Zones
-		public function incorrect_itu_zones() {
-			$this->load->model('stations');
+	// Searches for incorrect ITU Zones
+	public function incorrect_itu_zones() {
+		$this->load->model('stations');
 
-			$data['station_profile'] = $this->stations->all_of_user();
-			$data['page_title'] = __("Incorrectly logged ITU zones");
+		$data['station_profile'] = $this->stations->all_of_user();
+		$data['page_title'] = __("Incorrectly logged ITU zones");
 
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('search/ituzones');
-			$this->load->view('interface_assets/footer');
-		}
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('search/ituzones');
+		$this->load->view('interface_assets/footer');
+	}
 
 	// Searches for unconfirmed Lotw QSOs where QSO partner has uploaded to LoTW after the QSO date
 	public function lotw_unconfirmed() {
@@ -86,10 +82,10 @@ class Search extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-    function json_result() {
+	function json_result() {
 		$result = $this->fetchQueryResult(($this->input->post('search', TRUE) ?? ''), FALSE);
 		echo json_encode($result->result_array());
-    }
+	}
 
 	function get_stored_queries() {
 		$this->load->model('Search_filter');
@@ -123,6 +119,9 @@ class Search extends CI_Controller {
 		$sql = $sql[0]->query;
 
 		if (stristr($sql, 'select') && !stristr($sql, 'delete') && !stristr($sql, 'update')) {
+			if (!(strpos(strtolower($sql),'limit'))) {
+				$sql.=' limit 5000';
+			}
 			$data['results'] = $this->db->query($sql);
 
 			$this->load->view('search/search_result_ajax', $data);
@@ -163,8 +162,7 @@ class Search extends CI_Controller {
 		$this->db->update('queries', $data);
 	}
 
-	function buildWhere(array $object, string $condition = null): void
-	{
+	function buildWhere(array $object, string $condition = null): void {
 		/*
 		 * The $object is one of the following:
 		 * - a group, with 'condition' and 'rules' keys
@@ -297,7 +295,7 @@ class Search extends CI_Controller {
 	function fetchQueryResult($json, $returnquery) {
 		$search_items = json_decode($json, true);
 
-		$this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
+		$this->db->select($this->config->item('table_name').'.*, station_profile.station_profile_name, station_profile.station_gridsquare, station_profile.station_city, station_profile.station_iota, station_profile.station_callsign, station_profile.station_sota, station_profile.station_wwff, station_profile.station_dxcc, station_profile.station_pota, station_profile.station_cq, station_profile.station_itu, station_profile.station_sig, station_profile.station_sig_info, station_profile.station_cnty, station_profile.county, station_profile.state, dxcc_entities.name as station_country');
 
 		$this->db->group_start();
 		$this->buildWhere($search_items);

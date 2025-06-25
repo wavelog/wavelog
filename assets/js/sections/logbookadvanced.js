@@ -1,7 +1,7 @@
 var callBookProcessingDialog = null;
 var inCallbookProcessing = false;
 var inCallbookItemProcessing = false;
-
+let lastChecked = null;
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -25,125 +25,140 @@ $('#selectPropagation').change(function () {
 	}
 });
 
+function getSelectedIds() {
+	let id_list = [];
+	$('#qsoList tbody input:checked').each(function () {
+		let id = $(this).closest('tr').attr('id')?.replace(/\D/g, '');
+		id_list.push(id);
+	});
+	return id_list;
+}
+
 function updateRow(qso) {
 	let row = $('#qsoID-' + qso.qsoID);
 	let cells = row.find('td');
 	let c = 1;
-	if (user_options.datetime.show == "true"){
+	if ((user_options.datetime.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qsoDateTime);
 	}
-	if (user_options.de.show == "true"){
+	if ((user_options.de.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.de);
 	}
-	if (user_options.dx.show == "true"){
+	if ((user_options.dx.show ?? 'true') == "true"){
 		cells.eq(c++).html('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx.replaceAll('0', 'Ø')+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + '">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
 	}
-	if (user_options.mode.show == "true"){
+	if ((user_options.mode.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.mode);
 	}
-	if (user_options.rsts.show == "true"){
+	if ((user_options.rsts.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.rstS);
 	}
-	if (user_options.rstr.show == "true"){
+	if ((user_options.rstr.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.rstR);
 	}
-	if (user_options.band.show == "true"){
+	if ((user_options.band.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.band);
 	}
-	if ( (user_options.gridsquare) && (user_options.gridsquare.show == "true")){
+	if ( (user_options.gridsquare) && ((user_options.gridsquare.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.gridsquare);
 	}
-	if (user_options.name.show == "true"){
+	if ((user_options.name.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.name);
 	}
-	if (user_options.qslvia.show == "true"){
+	if ((user_options.qth.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.qth);
+	}
+	if ((user_options.qslvia.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qslVia);
 	}
-	if (user_options.clublog.show == "true"){
+	if ((user_options.clublog.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.clublog);
 	}
-	if (user_options.qsl.show == "true"){
+	if ((user_options.qsl.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.qsl);
 	}
-	if ($(".eqslconfirmation")[0] && user_options.eqsl.show == "true"){
+	if ($(".eqslconfirmation")[0] && ((user_options.eqsl.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.eqsl);
 	}
-	if ($(".lotwconfirmation")[0] && user_options.lotw.show == "true"){
+	if ($(".lotwconfirmation")[0] && ((user_options.lotw.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.lotw);
 	}
-	if (user_options.qrz.show == "true"){
+	if ((user_options.qrz.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.qrz);
 	}
-	if (user_options.qslmsgs.show == "true"){
+	if ((user_options.qslmsgs.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qslMessage);
 	}
-	if (user_options.qslmsgr.show == "true"){
+	if ((user_options.qslmsgr.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qslMessageR);
 	}
-	if (user_options.dxcc.show == "true"){
-		cells.eq(c++).html(qso.dxcc);
+	if ((user_options.dxcc.show ?? 'true') == "true"){
+		cells.eq(c++).html(qso.dxcc+qso.flag);
 	}
-	if (user_options.state.show == "true"){
+	if ((user_options.state.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.state);
 	}
-	if (user_options.cqzone.show == "true"){
+	if ((user_options.county.show ?? 'true') == "true"){
+		cells.eq(c++).html(qso.county);
+	}
+	if ((user_options.cqzone.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.cqzone);
 	}
-	if (user_options.ituzone.show == "true"){
+	if ((user_options.ituzone.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.ituzone);
 	}
-	if (user_options.iota.show == "true"){
+	if ((user_options.iota.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.iota);
 	}
-	if (user_options.pota.show == "true"){
+	if ((user_options.pota.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.pota);
 	}
-	if ( (user_options.sota) && (user_options.sota.show == "true")){
+	if ((user_options.sota) && ((user_options.sota.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.sota);
 	}
-	if ( (user_options.dok) && (user_options.dok.show == "true")){
+	if ((user_options.dok) && ((user_options.dok.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.dok);
 	}
-	if ( (user_options.wwff) && (user_options.wwff.show == "true")){
+	if ((user_options.wwff) && ((user_options.wwff.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.wwff);
 	}
-	if ( (user_options.sig) && (user_options.sig.show == "true")){
+	if ((user_options.sig) && ((user_options.sig.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.sig);
 	}
-	if ( (user_options.region) && (user_options.region.show == "true")){
+	if ((user_options.region) && ((user_options.region.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.region);
 	}
-	if ( (user_options.operator) && (user_options.operator.show == "true")){
+	if ((user_options.operator) && ((user_options.operator.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.operator);
 	}
-	if ( (user_options.comment) && (user_options.comment.show == "true")){
+	if ((user_options.comment) && ((user_options.comment.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.comment);
 	}
-	if ( (user_options.propagation) && (user_options.propagation.show == "true")){
+	if ((user_options.propagation) && ((user_options.propagation.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.propagation);
 	}
-	if ( (user_options.contest) && (user_options.contest.show == "true")){
+	if ((user_options.contest) && ((user_options.contest.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.contest);
 	}
-	if (user_options.myrefs.show == "true"){
+	if ((user_options.myrefs.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.deRefs);
 	}
-	if (user_options.continent.show == "true"){
+	if ((user_options.continent.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.continent);
 	}
-	if (user_options.distance.show == "true"){
+	if ((user_options.distance.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.distance);
 	}
-	if (user_options.antennaazimuth.show == "true"){
+	if ((user_options.antennaazimuth.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.antennaazimuth);
 	}
-	if (user_options.antennaelevation.show == "true"){
+	if ((user_options.antennaelevation.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.antennaelevation);
 	}
-	if (user_options.profilename.show == "true"){
+	if ((user_options.profilename.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.profilename);
 	}
-	if (user_options.stationpower.show == "true"){
+	if ((user_options.stationpower.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.stationpower);
 	}
 
@@ -206,138 +221,144 @@ function loadQSOTable(rows) {
 		let qso = rows[i];
 
 		var data = [];
-		data.push('<div class="form-check"><input class="form-check-input" type="checkbox" /></div>');
-		if (user_options.datetime.show == "true"){
+		data.push('<div class="form-check"><input class="row-check form-check-input" type="checkbox" /></div>');
+		if ((user_options.datetime.show ?? 'true') == "true"){
 			if (qso.datetime === '') {
 				data.push('<span class="bg-danger">Missing date</span>');
 			} else {
 				data.push(qso.qsoDateTime);
 			}
 		}
-		if (user_options.de.show == "true"){
+		if ((user_options.de.show ?? 'true') == "true"){
 			data.push(qso.de.replaceAll('0', 'Ø'));
 		}
-		if (user_options.dx.show == "true"){
+		if ((user_options.dx.show ?? 'true') == "true"){
 			if (qso.dx === '') {
 				data.push('<span class="bg-danger">Missing callsign</span>');
 			} else {
 				data.push('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx.replaceAll('0', 'Ø')+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + ' ">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
 			}
 		}
-		if (user_options.mode.show == "true"){
+		if ((user_options.mode.show ?? 'true') == "true"){
 			if (qso.mode === '') {
 				data.push('<span class="bg-danger">Missing mode</span>');
 			} else {
 				data.push(qso.mode);
 			}
 		}
-		if (user_options.rsts.show == "true"){
+		if ((user_options.rsts.show ?? 'true') == "true"){
 			data.push(qso.rstS);
 		}
-		if (user_options.rstr.show == "true"){
+		if ((user_options.rstr.show ?? 'true') == "true"){
 			data.push(qso.rstR);
 		}
-		if (user_options.band.show == "true"){
+		if ((user_options.band.show ?? 'true') == "true"){
 			if (qso.band === '') {
 				data.push('<span class="bg-danger">Missing band</span>');
 			} else {
 				data.push(qso.band);
 			}
 		}
-		if (user_options.gridsquare.show == "true"){
+		if ((user_options.gridsquare.show ?? 'true') == "true"){
 			data.push(qso.gridsquare);
 		}
-		if (user_options.name.show == "true"){
+		if ((user_options.name.show ?? 'true') == "true"){
 			data.push(qso.name);
 		}
-		if (user_options.qslvia.show == "true"){
+		if ((user_options.qth.show ?? 'true') == "true"){
+			data.push(qso.qth);
+		}
+		if ((user_options.qslvia.show ?? 'true') == "true"){
 			data.push(qso.qslVia);
 		}
-		if (user_options.clublog.show == "true"){
+		if ((user_options.clublog.show ?? 'true') == "true"){
 			data.push(qso.clublog);
 		}
-		if (user_options.qsl.show == "true"){
+		if ((user_options.qsl.show ?? 'true') == "true"){
 			data.push(qso.qsl);
 		}
-		if ($(".eqslconfirmation")[0] && user_options.eqsl.show == "true"){
+		if ($(".eqslconfirmation")[0] && (user_options.eqsl.show ?? 'true') == "true"){
 			data.push(qso.eqsl);
 		}
-		if ($(".lotwconfirmation")[0] && user_options.lotw.show == "true"){
+		if ($(".lotwconfirmation")[0] && (user_options.lotw.show ?? 'true') == "true"){
 			data.push(qso.lotw);
 		}
-		if (user_options.qrz.show == "true"){
+		if ((user_options.qrz.show ?? 'true') == "true"){
 			data.push(qso.qrz);
 		}
-		if (user_options.qslmsgs.show == "true"){
+		if ((user_options.qslmsgs.show ?? 'true') == "true"){
 			data.push(qso.qslMessage);
 		}
-		if (user_options.qslmsgr.show == "true"){
+		if ((user_options.qslmsgr.show ?? 'true') == "true"){
 			data.push(qso.qslMessageR);
 		}
-		if (user_options.dxcc.show == "true"){
-			data.push(qso.dxcc+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
+		if ((user_options.dxcc.show ?? 'true') == "true"){
+			data.push(qso.dxcc+qso.flag+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
 		}
-		if (user_options.state.show == "true"){
+		if ((user_options.state.show ?? 'true') == "true"){
 			data.push(qso.state);
 		}
-		if (user_options.cqzone.show == "true"){
+		if ((user_options.county.show ?? 'true') == "true"){
+			data.push(qso.county);
+		}
+		if ((user_options.cqzone.show ?? 'true') == "true"){
 			data.push(qso.cqzone);
 		}
-		if (user_options.ituzone.show == "true"){
+		if ((user_options.ituzone.show ?? 'true') == "true"){
 			data.push(qso.ituzone);
 		}
-		if (user_options.iota.show == "true"){
+		if ((user_options.iota.show ?? 'true') == "true"){
 			data.push(qso.iota);
 		}
-		if (user_options.pota.show == "true"){
+		if ((user_options.pota.show ?? 'true') == "true"){
 			data.push(qso.pota);
 		}
-		if (user_options.sota.show == "true"){
+		if ((user_options.sota.show ?? 'true') == "true"){
 			data.push(qso.sota);
 		}
-		if (user_options.dok.show == "true"){
+		if ((user_options.dok.show ?? 'true') == "true"){
 			data.push(qso.dok);
 		}
-		if (user_options.wwff.show == "true"){
+		if ((user_options.wwff.show ?? 'true') == "true"){
 			data.push(qso.wwff);
 		}
-		if (user_options.sig.show == "true"){
+		if ((user_options.sig.show ?? 'true') == "true"){
 			data.push(qso.sig);
 		}
-		if (user_options.region.show == "true"){
+		if ((user_options.region.show ?? 'true') == "true"){
 			data.push(qso.region);
 		}
-		if (user_options.operator.show == "true"){
+		if ((user_options.operator.show ?? 'true') == "true"){
 			data.push(qso.operator);
 		}
-		if (user_options.comment.show == "true"){
+		if ((user_options.comment.show ?? 'true') == "true"){
 			data.push(qso.comment);
 		}
-		if (user_options.propagation.show == "true"){
+		if ((user_options.propagation.show ?? 'true') == "true"){
 			data.push(qso.propagation);
 		}
-		if (user_options.contest.show == "true"){
+		if ((user_options.contest.show ?? 'true') == "true"){
 			data.push(qso.contest);
 		}
-		if (user_options.myrefs.show == "true"){
+		if ((user_options.myrefs.show ?? 'true') == "true"){
 			data.push(qso.deRefs);
 		}
-		if (user_options.continent.show == "true"){
+		if ((user_options.continent.show ?? 'true') == "true"){
 			data.push(qso.continent);
 		}
-		if (user_options.distance.show == "true"){
+		if ((user_options.distance.show ?? 'true') == "true"){
 			data.push(qso.distance);
 		}
-		if (user_options.antennaazimuth.show == "true"){
+		if ((user_options.antennaazimuth.show ?? 'true') == "true"){
 			data.push(qso.antennaazimuth);
 		}
-		if (user_options.antennaelevation.show == "true"){
+		if ((user_options.antennaelevation.show ?? 'true') == "true"){
 			data.push(qso.antennaelevation);
 		}
-		if (user_options.profilename.show == "true"){
+		if ((user_options.profilename.show ?? 'true') == "true"){
 			data.push(qso.profilename);
 		}
-		if (user_options.stationpower.show == "true"){
+		if ((user_options.stationpower.show ?? 'true') == "true"){
 			data.push(qso.stationpower);
 		}
 		data.id='qsoID-' + qso.qsoID;
@@ -345,9 +366,42 @@ function loadQSOTable(rows) {
 		table.rows(createdRow).nodes().to$().data('qsoID', qso.qsoID);
 	//	table.row(createdRow).node().to$().attr("id", 'qsoID-' + qso.qsoID);
 	}
-	// table.draw();
-	table.columns.adjust().draw();
+	try {
+		table.columns.adjust().draw();
+	} catch (e) {
+		table.draw();
+	}
 	$('[data-bs-toggle="tooltip"]').tooltip();
+
+	document.querySelectorAll('.row-check').forEach(checkbox => {
+		checkbox.addEventListener('click', function (e) {
+			const checkboxes = document.querySelectorAll('.row-check');
+
+			if (e.shiftKey && lastChecked) {
+				const checkboxes = Array.from(document.querySelectorAll('.row-check'));
+				let start = checkboxes.indexOf(this);
+				let end = checkboxes.indexOf(lastChecked);
+
+				[start, end] = [Math.min(start, end), Math.max(start, end)];
+
+				for (let i = start; i <= end; i++) {
+					const checkbox = checkboxes[i];
+					checkbox.checked = lastChecked.checked;
+
+					// jQuery wrapper
+					const $row = $(checkbox).closest('tr');
+
+					if (lastChecked.checked) {
+						$row.addClass('activeRow');
+					} else {
+						$row.removeClass('activeRow');
+					}
+				}
+			}
+
+			lastChecked = this;
+		});
+	});
 }
 
 $.fn.dataTable.ext.type.order['numbersort-pre'] = function(data) {
@@ -455,17 +509,18 @@ $(document).ready(function () {
 	$('#searchForm').submit(function (e) {
 		let container = L.DomUtil.get('advancedmap');
 		let selectedlocations = $('#de').val();
+		let qsoids = '';
 		if (Array.isArray(selectedlocations) && selectedlocations.length === 0) {
 			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select at least 1 location to do a search!',
-				type: BootstrapDialog.TYPE_INFO,
-				closable: false,
-				draggable: false,
-				callback: function (result) {
-				}
-			});
-			return false;
+					title: 'INFO',
+					message: 'You need to select at least 1 location to do a search!',
+					type: BootstrapDialog.TYPE_INFO,
+					closable: false,
+					draggable: false,
+					callback: function (result) {
+					}
+				});
+				return false;
 		}
 
 		if(container != null){
@@ -480,8 +535,18 @@ $(document).ready(function () {
 
 		localStorage.setItem(`user_${user_id}_qsoresults`, this.qsoresults.value);
 		localStorage.setItem(`user_${user_id}_selectedlocations`, $('#de').val());
-
 		$('#searchButton').prop("disabled", true).addClass("running");
+
+		let qsoresults = this.qsoresults.value;
+
+		if (localStorage.hasOwnProperty(`user_${user_id}_qsoids`)) {
+			qsoids = localStorage.getItem(`user_${user_id}_qsoids`);
+
+			qsoresults = qsoids
+				.split(',')
+				.filter(i => i.trim() !== '').length;
+			localStorage.removeItem(`user_${user_id}_qsoids`);
+		}
 		$.ajax({
 			url: this.action,
 			type: 'post',
@@ -502,7 +567,8 @@ $(document).ready(function () {
 				propmode: this.propmode.value,
 				gridsquare: this.gridsquare.value,
 				state: this.state.value,
-				qsoresults: this.qsoresults.value,
+				county: this.county.value,
+				qsoresults: qsoresults,
 				sats: this.sats.value,
 				orbits: this.orbits.value,
 				cqzone: this.cqzone.value,
@@ -523,11 +589,17 @@ $(document).ready(function () {
 				invalid: this.invalid.value,
 				continent: this.continent.value,
 				comment: this.comment.value,
+				qsoids: qsoids
 			},
 			dataType: 'json',
 			success: function (data) {
 				$('#searchButton').prop("disabled", false).removeClass("running");
 				loadQSOTable(data);
+				if (qsoids !== '') {
+					$('#checkBoxAll').prop("checked", true);
+					$('#checkBoxAll').trigger('change');
+				}
+				$('#checkBoxAll').prop("checked", false);
 			},
 			error: function (data) {
 				$('#searchButton').prop("disabled", false).removeClass("running");
@@ -620,9 +692,9 @@ $(document).ready(function () {
 	});
 
 	$('#deleteQsos').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: 'INFO',
 				message: 'You need to select a least 1 row to delete!',
@@ -635,19 +707,13 @@ $(document).ready(function () {
 			return;
 		}
 
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '')
-			id_list.push(id);
-		});
-
 		$('#deleteQsos').prop("disabled", true);
 
 		var table = $('#qsoList').DataTable();
 
 		BootstrapDialog.confirm({
 			title: lang_general_word_danger,
-			message: lang_filter_actions_delete_warning,
+			message: lang_filter_actions_delete_warning+'<br/>'+id_list.length+lang_filter_actions_delete_warning_details,
 			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
@@ -661,9 +727,8 @@ $(document).ready(function () {
 							'ids': JSON.stringify(id_list, null, 2)
 						},
 						success: function(data) {
-							elements.each(function() {
-								let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-								var row = $("#qsoID-" + id);
+							id_list.forEach(function(id) {
+								let row = $("#qsoID-" + id);
 								table.row(row).remove();
 							});
 							$('#deleteQsos').prop("disabled", false);
@@ -680,15 +745,8 @@ $(document).ready(function () {
 	});
 
 	$('#exportAdif').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-
 		$('#exportAdif').prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
-			unselectQsoID(id);
-		});
+		const id_list = getSelectedIdsForMap();
 
 		xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -891,9 +949,9 @@ $(document).ready(function () {
 	});
 
 	$('#qslSlideshow').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: 'INFO',
 				message: 'You need to select a least 1 row to display a QSL card!',
@@ -906,16 +964,12 @@ $(document).ready(function () {
 			return;
 		}
 		$('#qslSlideshow').prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-			id_list.push(id);
-		});
+
 		$.ajax({
 			url: base_url + 'index.php/logbookadvanced/qslSlideshow',
 			type: 'post',
 			data: {
-				ids: id_list,
+				ids: JSON.stringify(id_list),
 			},
 			success: function (html) {
 				BootstrapDialog.show({
@@ -937,6 +991,94 @@ $(document).ready(function () {
 					onhide: function(dialogRef){
 						$('#qslSlideshow').prop("disabled", false);
 					},
+				});
+			}
+		});
+	});
+
+	$('#fixCqZones').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select at least 1 row to fix CQ Zones!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixCqZones',
+			type: 'POST',
+			data: { 'ids': JSON.stringify(id_list, null, 2) },
+			success: function (response) {
+				if (response != []) {
+					$.each(response, function(k, v) {
+						updateRow(this);
+						unselectQsoID(this.qsoID);
+					});
+				}
+				BootstrapDialog.alert({
+					title: 'SUCCESS',
+					message: 'CQ Zones updated successfully!',
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: 'ERROR',
+					message: 'There was a problem fixing CQ Zones.',
+					type: BootstrapDialog.TYPE_DANGER
+				});
+			}
+		});
+	});
+
+	$('#fixItuZones').click(function (event) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select at least 1 row to fix ITU Zones!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return;
+		}
+
+		$.ajax({
+			url: base_url + 'index.php/logbookadvanced/fixItuZones',
+			type: 'post',
+			data: {
+				'ids': JSON.stringify(id_list, null, 2)
+			},
+			success: function (response) {
+				if (response != []) {
+					$.each(response, function(k, v) {
+						updateRow(this);
+						unselectQsoID(this.qsoID);
+					});
+				}
+				BootstrapDialog.alert({
+					title: 'SUCCESS',
+					message: 'ITU Zones updated successfully!',
+					type: BootstrapDialog.TYPE_SUCCESS
+				});
+			},
+			error: function () {
+				BootstrapDialog.alert({
+					title: 'ERROR',
+					message: 'There was a problem fixing ITU Zones.',
+					type: BootstrapDialog.TYPE_DANGER
 				});
 			}
 		});
@@ -1100,9 +1242,9 @@ $(document).ready(function () {
 	}
 
 	$('#printLabel').click(function (event) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
+		const id_list = getSelectedIds();
+
+		if (id_list.length === 0) {
 			BootstrapDialog.alert({
 				title: 'INFO',
 				message: 'You need to select at least 1 row to print a label!',
@@ -1132,7 +1274,7 @@ $(document).ready(function () {
 						label: 'Print',
 						cssClass: 'btn-primary btn-sm',
 						action: function (dialogItself) {
-							printlabel();
+							printlabel(id_list);
 							dialogItself.close();
 						}
 					},
@@ -1175,9 +1317,9 @@ $(document).ready(function () {
 });
 
 function handleQsl(sent, method, tag) {
-	var elements = $('#qsoList tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
+	const id_list = getSelectedIdsForMap();
+
+	if (id_list.length === 0) {
 		BootstrapDialog.alert({
 			title: 'INFO',
 			message: 'You need to select a least 1 row!',
@@ -1189,12 +1331,9 @@ function handleQsl(sent, method, tag) {
 		});
 		return;
 	}
+
 	$('#'+tag).prop("disabled", true);
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
-	});
+
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/update_qsl',
 		type: 'post',
@@ -1215,9 +1354,9 @@ function handleQsl(sent, method, tag) {
 }
 
 function handleQslReceived(sent, method, tag) {
-	var elements = $('#qsoList tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
+	const id_list = getSelectedIdsForMap();
+
+	if (id_list.length === 0) {
 		BootstrapDialog.alert({
 			title: 'INFO',
 			message: 'You need to select a least 1 row!',
@@ -1229,12 +1368,7 @@ function handleQslReceived(sent, method, tag) {
 		});
 		return;
 	}
-	$('#'+tag).prop("disabled", true);
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
-	});
+
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/update_qsl_received',
 		type: 'post',
@@ -1254,17 +1388,9 @@ function handleQslReceived(sent, method, tag) {
 	});
 }
 
-
-function printlabel() {
-	let id_list=[];
-	let elements = $('#qsoList tbody input:checked');
-	let nElements = elements.length;
+function printlabel(id_list) {
 	let markchecked = $('#markprinted')[0].checked;
 
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
-		id_list.push(id);
-	});
 	$.ajax({
 		url: base_url + 'index.php/labels/printids',
 		type: 'post',
@@ -1343,6 +1469,7 @@ function saveOptions() {
 				qslmsgr: $('input[name="qslmsgr"]').is(':checked') ? true : false,
 				dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
 				state: $('input[name="state"]').is(':checked') ? true : false,
+				county: $('input[name="county"]').is(':checked') ? true : false,
 				cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
 				ituzone: $('input[name="ituzone"]').is(':checked') ? true : false,
 				iota: $('input[name="iota"]').is(':checked') ? true : false,
@@ -1369,6 +1496,7 @@ function saveOptions() {
 				cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
 				ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
 				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
+				qth: $('input[name="qth"]').is(':checked') ? true : false,
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);

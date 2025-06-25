@@ -179,8 +179,19 @@ class Logbook_model extends CI_Model {
 			$submode = $this->input->post('mode');
 		}
 
+		// Represent cnty with "state,cnty" only for USA
+		// Others do no need it
+		
 		if ($this->input->post('county') && $this->input->post('input_state')) {
-			$clean_county_input = trim($this->input->post('input_state')) . "," . trim($this->input->post('county'));
+			switch ($dxcc_id) {
+				case 6:
+				case 110:
+				case 291:
+					$clean_county_input = trim($this->input->post('input_state')) . "," . trim($this->input->post('county'));
+					break;
+				default:
+					$clean_county_input = trim($this->input->post('county'));
+			}
 		} else {
 			$clean_county_input = null;
 		}
@@ -581,6 +592,10 @@ class Logbook_model extends CI_Model {
 			case 'WAS':
 				$this->db->where('COL_STATE', $searchphrase);
 				$this->db->where_in('COL_DXCC', ['291', '6', '110']);
+				break;
+			case 'WAP':
+				$this->db->where('COL_STATE', $searchphrase);
+				$this->db->where_in('COL_DXCC', ['263']);
 				break;
 			case 'RAC':
 				$this->db->where('COL_STATE', $searchphrase);
@@ -1205,7 +1220,7 @@ class Logbook_model extends CI_Model {
 		}
 		if ($amsat_source_grid != '') {
 			$datearray = date_parse_from_format("Y-m-d H:i:s", $data['COL_TIME_ON']);
-			$url = 'https://amsat.org/status/submit.php?SatSubmit=yes&Confirm=yes&SatName=' . $sat_name . '&SatYear=' . $datearray['year'] . '&SatMonth=' . str_pad($datearray['month'], 2, '0', STR_PAD_LEFT) . '&SatDay=' . str_pad($datearray['day'], 2, '0', STR_PAD_LEFT) . '&SatHour=' . str_pad($datearray['hour'], 2, '0', STR_PAD_LEFT) . '&SatPeriod=' . (intdiv(($datearray['minute'] - 1), 15)) . '&SatCall=' . $data['COL_STATION_CALLSIGN'] . '&SatReport=Heard&SatGridSquare=' . $amsat_source_grid;
+			$url = 'https://amsat.org/status/submit.php?SatSubmit=yes&Confirm=yes&SatName=' . $sat_name . '&SatYear=' . $datearray['year'] . '&SatMonth=' . str_pad($datearray['month'], 2, '0', STR_PAD_LEFT) . '&SatDay=' . str_pad($datearray['day'], 2, '0', STR_PAD_LEFT) . '&SatHour=' . str_pad($datearray['hour'], 2, '0', STR_PAD_LEFT) . '&SatPeriod=' . (intdiv(($datearray['minute'] - 1), 15)) . '&SatCall=' . $data['COL_STATION_CALLSIGN'] . '&SatReport=Heard&SatGridSquare=' . substr($amsat_source_grid,0,6);
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
@@ -1283,12 +1298,27 @@ class Logbook_model extends CI_Model {
 			$srx_string = null;
 		}
 
-		if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated Conuty?
-			$uscounty = $this->input->post('usa_county');
-		} elseif ($this->input->post('usa_county') && $this->input->post('input_state_edit')) {	// Both filled (and no comma - because that fits one above)
-			$uscounty = trim($this->input->post('input_state_edit') . "," . $this->input->post('usa_county'));
-		} else {	// nothing from above?
-			$uscounty = null;
+		if (is_numeric($this->input->post('dxcc_id'))) {
+			$dxcc=$this->input->post('dxcc_id');
+			if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated County?
+				$uscounty = $this->input->post('usa_county');
+			} elseif ($this->input->post('usa_county') && $this->input->post('input_state_edit')) {	// Both filled (and no comma - because that fits one above)
+				switch ($dxcc) {
+					case 6:
+					case 110:
+					case 291:
+						$uscounty = trim($this->input->post('input_state_edit') . "," . $this->input->post('usa_county'));
+						break;
+					default:
+						$uscounty = $this->input->post('usa_county');
+				}
+			} else {	// nothing from above?
+				$uscounty = null;
+			}
+			
+		} else {
+			$retvals['detail']=__("DXCC has to be Numeric");
+			return $retvals;
 		}
 
 		if ($this->input->post('qsl_sent')) {
@@ -1463,8 +1493,8 @@ class Logbook_model extends CI_Model {
 		} else {
 			$retvals['detail']=__("DXCC has to be Numeric");
 			return $retvals;
-		}		
-		
+		}
+
 		$data = array(
 			'COL_TIME_ON' => $time_on,
 			'COL_TIME_OFF' => $time_off,

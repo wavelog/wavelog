@@ -3,20 +3,18 @@ use Wavelog\QSLManager\QSO;
 
 class Logbookadvanced_model extends CI_Model {
 
-	private $logbooks_locations_array;
-	public function __construct()
-	{
-		$this->load->model('logbooks_model');
-		$this->logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-	}
-
 	public function searchDb($searchCriteria) {
 		$conditions = [];
 		$binding = [$searchCriteria['user_id']];
 
+		if (isset($searchCriteria['qsoids']) && ($searchCriteria['qsoids'] !== '')) {
+			$ids2fetch = $searchCriteria['qsoids'];
+			$conditions[] = "qsos.COL_PRIMARY_KEY in (".$ids2fetch.")";
+		}
+
 		if ((isset($searchCriteria['dupes'])) && ($searchCriteria['dupes'] !== '')) {
 			$id_sql="select GROUP_CONCAT(col_primary_key separator ',') as qsoids, COL_CALL, COL_MODE, COL_SUBMODE, station_callsign, COL_SAT_NAME, COL_BAND,  min(col_time_on) Mintime, max(col_time_on) Maxtime from " . $this->config->item('table_name') . "
-				 join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id = ?
+				join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id = ?
 				group by col_call, col_mode, COL_SUBMODE, STATION_CALLSIGN, col_band, COL_SAT_NAME having count(*) > 1 AND TIMESTAMPDIFF(SECOND, Mintime, Maxtime) < 1500";
 			$id_query = $this->db->query($id_sql, $searchCriteria['user_id']);
 			$ids2fetch = '';
@@ -94,7 +92,7 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "date(COL_TIME_ON) <= ?";
 			$binding[] = $to;
 		}
-		if ($searchCriteria['de'] !== 'All') {
+		if ($searchCriteria['de'] !== 'All' && $searchCriteria['qsoids'] === '') {
 			if ($searchCriteria['de'] == '') {
 				$stationids = 'null';
 			} else {
@@ -244,14 +242,34 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_STATE, '') = ''";
 		}
 
-		if ($searchCriteria['cqzone'] !== '') {
-			$conditions[] = "COL_CQZ = ?";
-			$binding[] = $searchCriteria['cqzone'];
+		if ($searchCriteria['county'] !== '*' && $searchCriteria['county'] !== '') {
+			if (strtolower($searchCriteria['county']) == '!empty') {
+				$conditions[] = "COL_CNTY <> ''";
+			} else {
+				$conditions[] = "COL_CNTY like ?";
+				$binding[] = '%' . $searchCriteria['county'] . '%';
+			}
+		}
+		if ($searchCriteria['county'] == '') {
+			$conditions[] = "coalesce(COL_CNTY, '') = ''";
 		}
 
-		if ($searchCriteria['ituzone'] !== '') {
-			$conditions[] = "COL_ITUZ = ?";
-			$binding[] = $searchCriteria['ituzone'];
+		if ($searchCriteria['cqzone'] !== 'All') {
+			if ($searchCriteria['cqzone'] == '') {
+				$conditions[] = "(COL_CQZ = '' or COL_CQZ is null)";
+			} else {
+				$conditions[] = "COL_CQZ = ?";
+				$binding[] = $searchCriteria['cqzone'];
+			}
+		}
+
+		if ($searchCriteria['ituzone'] !== 'All') {
+			if ($searchCriteria['ituzone'] == '') {
+				$conditions[] = "(COL_ITUZ = '' or COL_ITUZ is null)";
+			} else {
+				$conditions[] = "COL_ITUZ = ?";
+				$binding[] = $searchCriteria['ituzone'];
+			}
 		}
 
 		if ($searchCriteria['qslvia'] !== '*' && $searchCriteria['qslvia'] !== '') {
@@ -464,7 +482,7 @@ class Logbookadvanced_model extends CI_Model {
 		$order = $this->getSortorder($sortorder);
 
         $sql = "
-            SELECT qsos.*, lotw_users.*, station_profile.*, dxcc_entities.name AS station_country, dxcc_entities.adif as adif, d2.name as dxccname, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
+            SELECT qsos.*, lotw_users.*, station_profile.*, dxcc_entities.name AS station_country, d2.adif as adif, d2.name as dxccname, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
 			LEFT OUTER JOIN dxcc_entities ON qsos.COL_MY_DXCC = dxcc_entities.adif
@@ -545,7 +563,7 @@ class Logbookadvanced_model extends CI_Model {
 		} else {
 			$sql = "UPDATE " . $this->config->item('table_name') ."
 				SET
-				COL_QSLRDATE = CURRENT_TIMESTAMP,
+				COL_QSLSDATE = CURRENT_TIMESTAMP,
 				COL_QSL_SENT = ?,
 				COL_QSL_SENT_VIA = ?,
 				COL_QRZCOM_QSO_UPLOAD_STATUS = CASE
@@ -739,8 +757,9 @@ class Logbookadvanced_model extends CI_Model {
         $this->db->select('*');
 		$this->db->from($this->config->item('table_name'));
         $this->db->join('qsl_images', 'qsl_images.qsoid = ' . $this->config->item('table_name') . '.col_primary_key');
+		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
         $this->db->where_in('qsoid', $ids);
-		$this->db->where_in('station_id', $this->logbooks_locations_array);
         $this->db->order_by("id", "desc");
 
         return $this->db->get()->result();
@@ -1020,6 +1039,9 @@ class Logbookadvanced_model extends CI_Model {
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_DISTANCE' && $value == '') {
+			$this->update_distances($ids);
+			$skipqrzupdate = true;
 		} else {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".".$column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
@@ -1036,6 +1058,38 @@ class Logbookadvanced_model extends CI_Model {
 
 		return array('message' => 'OK');
     }
+
+	public function update_distances($ids) {
+		$idarray = (json_decode($ids, true));
+		ini_set('memory_limit', '-1');
+		$this->db->trans_start();
+		$this->db->select("COL_PRIMARY_KEY, COL_GRIDSQUARE, COL_ANT_PATH, station_gridsquare");
+		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
+
+		$this->db->where("COL_GRIDSQUARE is NOT NULL");
+		$this->db->where("COL_GRIDSQUARE != ''");
+		$this->db->where("COL_GRIDSQUARE != station_gridsquare");
+		$this->db->where_in("COL_PRIMARY_KEY", $idarray);
+		$query = $this->db->get($this->config->item('table_name'));
+
+		if ($query->num_rows() > 0) {
+			if (!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
+			foreach ($query->result() as $row) {
+				$ant_path = $row->COL_ANT_PATH ?? null;
+				$distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K', $ant_path);
+				$data = array(
+					'COL_DISTANCE' => $distance,
+				);
+
+				$this->db->where(array('COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY));
+				$this->db->update($this->config->item('table_name'), $data);
+			}
+		}
+		$this->db->trans_complete();
+	}
+
 
 	function deleteQsos($ids) {
 		$this->db->trans_start();
@@ -1061,5 +1115,22 @@ class Logbookadvanced_model extends CI_Model {
 
 		$query = $this->db->query($sql, array($dxccid));
 		return $query->result();
+    }
+
+	function fixCqZones($ids) {
+		$sql = "UPDATE ".$this->config->item('table_name')." JOIN dxcc_entities ON ". $this->config->item('table_name').".col_dxcc = dxcc_entities.adif JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_CQZ = dxcc_entities.cqz" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
+	}
+
+
+	function fixItuZones($ids) {
+		$sql = "UPDATE ".$this->config->item('table_name')." JOIN dxcc_entities ON ". $this->config->item('table_name').".col_dxcc = dxcc_entities.adif JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_ITUZ = dxcc_entities.ituz" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 if ($qsos->result() != NULL) {
-	echo __("The following QSOs were found to have an incorrect ITU zone that this DXCC normally has (a maximum of 1000 QSOs are shown):");
+	echo __("The following QSOs were found to have an incorrect ITU zone that this DXCC normally has (a maximum of 5000 QSOs are shown):");
 	echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed">
 	<thead>
 	<tr>
@@ -29,7 +29,7 @@ if ($qsos->result() != NULL) {
 	$i = 0;
 
 	foreach ($qsos->result() as $qso) {
-		echo '<tr>';
+		echo '<tr id="qso_'. $qso->COL_PRIMARY_KEY .'">';
 		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date($custom_date_format, $timestamp); echo '</td>';
 		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qso->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
 		echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",strtoupper($qso->COL_CALL)) . '</a></td>';

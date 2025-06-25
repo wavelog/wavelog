@@ -348,6 +348,7 @@
 											<option value="Name" <?php if ($user_column5 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
 											<option value="Location" <?php if ($user_column5 == "Location") { echo " selected =\"selected\""; } ?>><?= __("Station Location"); ?></option>
 											<option value="Bearing" <?php if ($user_column5 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
+											<option value="Propagation" <?php if ($user_column5 == "Propagation") { echo " selected =\"selected\""; } ?>><?= __("Propagation"); ?></option>
 										</select>
 									</div>
 								</div>

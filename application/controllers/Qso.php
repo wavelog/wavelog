@@ -17,7 +17,7 @@ class QSO extends CI_Controller {
 		$this->load->model('stations');
 		$this->load->model('logbook_model');
 		$this->load->model('user_model');
-		$this->load->model('modes');
+		$this->load->model('usermodes');
 		$this->load->model('bands');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
@@ -40,7 +40,7 @@ class QSO extends CI_Controller {
 		$data['query'] = $this->logbook_model->last_custom($this->session->userdata('qso_page_last_qso_count'));
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
 		$data['iota'] = $this->logbook_model->fetchIota();
-		$data['modes'] = $this->modes->active();
+		$data['modes'] = $this->usermodes->active();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
 		[$data['lat'], $data['lng']] = $this->qra->qra2latlong($this->stations->gridsquare_from_station($this->stations->find_active()));
 		$data['user_default_band'] = $this->session->userdata('user_default_band');
@@ -103,6 +103,11 @@ class QSO extends CI_Controller {
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg',array('option_name'=>'key_station_id','option_key'=>$data['active_station_profile']))->result();
 		$data['qslmsg'] = (isset($options_object[0]->option_value))?$options_object[0]->option_value:'';
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/leaflet/geocoding.js',
+		];
+
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Add QSO");
 			if (validation_errors() != '') {	// we're coming from a failed ajax-call
@@ -110,7 +115,7 @@ class QSO extends CI_Controller {
 			} else {	// we're not coming from a POST
 				$this->load->view('interface_assets/header', $data);
 				$this->load->view('qso/index');
-				$this->load->view('interface_assets/footer');
+				$this->load->view('interface_assets/footer', $footerData);
 			}
 		} else {
 			// Store Basic QSO Info for reuse
