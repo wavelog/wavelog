@@ -62,10 +62,6 @@ class Usermodes extends CI_Model {
 		foreach ($raw_modes as $row) {
 			if (($row->id == $clean_id) || ($row->active == 1)) {
 				$modes[]=$row->mode.'~'.($row->submode ?? '');
-				// Also activate main mode if not active to keep mode/submode ordering in dropdown menu
-				if (array_search($row->mode.'~', $modes) === false) {
-					$modes[] = $row->mode.'~';
-				}
 			}
 		}
 		$this->user_options_model->set_option('usermodes', 'enabled_usermodes',  array('json_modes' => json_encode($modes)));
