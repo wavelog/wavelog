@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-06-24 09:53+0000\n"
+"POT-Creation-Date: 2025-06-25 09:54+0000\n"
 "PO-Revision-Date: 2024-11-01 08:53+0000\n"
 "Last-Translator: Plamen Panteleev <lz1ppl@abv.bg>\n"
 "Language-Team: Bulgarian <https://translate.wavelog.org/projects/wavelog/"
@@ -118,6 +118,7 @@ msgstr ""
 #: application/controllers/User.php:1498 application/controllers/User.php:1514
 #: application/controllers/User.php:1540
 #: application/controllers/User_options.php:9
+#: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
 msgstr "Не ви е позволено да направите това!"
@@ -204,7 +205,7 @@ msgid "date incorrect"
 msgstr "датата не е вярна"
 
 #: application/controllers/Adif.php:134
-#: application/views/interface_assets/header.php:443
+#: application/views/interface_assets/header.php:444
 msgid "ADIF Import / Export"
 msgstr "ADIF Импорт/Експорт"
 
@@ -634,7 +635,7 @@ msgid "Callsign statistics"
 msgstr ""
 
 #: application/controllers/Cfdexport.php:20
-#: application/views/interface_assets/header.php:457
+#: application/views/interface_assets/header.php:458
 msgid "CFD Export"
 msgstr ""
 
@@ -832,7 +833,7 @@ msgid "Not running"
 msgstr ""
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:451
+#: application/views/interface_assets/header.php:452
 msgid "SOTA CSV Export"
 msgstr ""
 
@@ -913,7 +914,7 @@ msgid "and propagation"
 msgstr ""
 
 #: application/controllers/Dxatlas.php:19
-#: application/views/interface_assets/header.php:449
+#: application/views/interface_assets/header.php:450
 msgid "DX Atlas Gridsquare Export"
 msgstr ""
 
@@ -1000,7 +1001,7 @@ msgid "No QSOs found to upload."
 msgstr ""
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:447
+#: application/views/interface_assets/header.php:448
 #: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr ""
@@ -1325,6 +1326,7 @@ msgstr ""
 #: application/views/timeline/index.php:19 application/views/user/edit.php:243
 #: application/views/user/edit.php:266 application/views/user/edit.php:289
 #: application/views/user/edit.php:312 application/views/user/edit.php:336
+#: application/views/usermode/index.php:38
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
@@ -1699,7 +1701,7 @@ msgstr ""
 
 #: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
 #: application/controllers/Lotw.php:125 application/views/adif/import.php:27
-#: application/views/interface_assets/header.php:484
+#: application/views/interface_assets/header.php:485
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:773 application/views/visitor/index.php:328
@@ -1774,9 +1776,10 @@ msgstr ""
 msgid "LoTW .TQ8 Not Sent"
 msgstr ""
 
-#: application/controllers/Mode.php:25
+#: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:300
-#: application/views/mode/index.php:27
+#: application/views/interface_assets/header.php:416
+#: application/views/mode/index.php:27 application/views/usermode/index.php:25
 msgid "Modes"
 msgstr ""
 
@@ -1964,7 +1967,7 @@ msgid "Invalid Station ID"
 msgstr ""
 
 #: application/controllers/Oqrs.php:134
-#: application/views/interface_assets/header.php:474
+#: application/views/interface_assets/header.php:475
 msgid "OQRS Requests"
 msgstr ""
 
@@ -2011,7 +2014,7 @@ msgid ""
 msgstr ""
 
 #: application/controllers/Qrz.php:204
-#: application/views/interface_assets/header.php:487
+#: application/views/interface_assets/header.php:488
 msgid "QRZ Logbook"
 msgstr ""
 
@@ -2059,7 +2062,7 @@ msgid "No callsign provided."
 msgstr ""
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:497
+#: application/views/interface_assets/header.php:498
 msgid "Hardware Interfaces"
 msgstr ""
 
@@ -2131,10 +2134,10 @@ msgstr ""
 #: application/views/club/permissions.php:304
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:2716
-#: application/views/interface_assets/footer.php:2734
-#: application/views/interface_assets/footer.php:2755
-#: application/views/interface_assets/footer.php:2773
+#: application/views/interface_assets/footer.php:2720
+#: application/views/interface_assets/footer.php:2738
+#: application/views/interface_assets/footer.php:2759
+#: application/views/interface_assets/footer.php:2777
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:659
 #: application/views/lotw_views/index.php:111
@@ -2323,7 +2326,7 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:413
-#: application/views/interface_assets/header.php:560
+#: application/views/interface_assets/header.php:561
 msgid "Station Setup"
 msgstr ""
 
@@ -2390,7 +2393,7 @@ msgid "Set as Active Logbook"
 msgstr ""
 
 #: application/controllers/Stationsetup.php:263
-#: application/views/interface_assets/header.php:558
+#: application/views/interface_assets/header.php:559
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -2889,7 +2892,7 @@ msgstr ""
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
-#: application/views/interface_assets/header.php:488
+#: application/views/interface_assets/header.php:489
 msgid "QO-100 Dx Club Upload"
 msgstr ""
 
@@ -4196,7 +4199,7 @@ msgstr ""
 #: application/views/adif/import.php:190
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:565
-#: application/views/interface_assets/footer.php:2487
+#: application/views/interface_assets/footer.php:2491
 msgid "DANGER"
 msgstr ""
 
@@ -4477,7 +4480,7 @@ msgid "Save"
 msgstr ""
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:496
+#: application/views/interface_assets/header.php:497
 msgid "API Keys"
 msgstr ""
 
@@ -4571,6 +4574,7 @@ msgstr ""
 #: application/views/sattimers/index.php:39
 #: application/views/stationsetup/stationsetup.php:31
 #: application/views/timeline/index.php:201
+#: application/views/usermode/index.php:41
 msgid "Status"
 msgstr "Състояние"
 
@@ -4911,7 +4915,7 @@ msgstr ""
 #: application/views/awards/iota/index.php:61
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
-#: application/views/interface_assets/footer.php:2466
+#: application/views/interface_assets/footer.php:2470
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
@@ -6109,11 +6113,13 @@ msgstr ""
 
 #: application/views/bands/index.php:162
 #: application/views/contesting/add.php:77 application/views/mode/index.php:89
+#: application/views/usermode/index.php:76
 msgid "Activate All"
 msgstr ""
 
 #: application/views/bands/index.php:163
 #: application/views/contesting/add.php:78 application/views/mode/index.php:90
+#: application/views/usermode/index.php:77
 msgid "Deactivate All"
 msgstr ""
 
@@ -6856,10 +6862,12 @@ msgstr ""
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:538
+#: application/views/interface_assets/header.php:539
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
+#: application/views/usermode/index.php:6
+#: application/views/usermode/index.php:51
 msgid "Active"
 msgstr ""
 
@@ -6871,13 +6879,15 @@ msgstr ""
 
 #: application/views/contesting/add.php:40
 #: application/views/contesting/add.php:49 application/views/mode/index.php:7
-#: application/views/mode/index.php:60
+#: application/views/mode/index.php:60 application/views/usermode/index.php:5
+#: application/views/usermode/index.php:56
 msgid "Activate"
 msgstr ""
 
 #: application/views/contesting/add.php:42
 #: application/views/contesting/add.php:47 application/views/mode/index.php:6
-#: application/views/mode/index.php:58
+#: application/views/mode/index.php:58 application/views/usermode/index.php:4
+#: application/views/usermode/index.php:54
 msgid "Deactivate"
 msgstr ""
 
@@ -8394,10 +8404,10 @@ msgid "QSL Date"
 msgstr ""
 
 #: application/views/eqslcard/index.php:64
-#: application/views/interface_assets/footer.php:2717
-#: application/views/interface_assets/footer.php:2735
-#: application/views/interface_assets/footer.php:2756
-#: application/views/interface_assets/footer.php:2774
+#: application/views/interface_assets/footer.php:2721
+#: application/views/interface_assets/footer.php:2739
+#: application/views/interface_assets/footer.php:2760
+#: application/views/interface_assets/footer.php:2778
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:763
 msgid "View"
@@ -8541,7 +8551,7 @@ msgid "Satellite Information"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:139
-#: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:500
 #: application/views/options/sidebar.php:13
 msgid "Version Info"
 msgstr ""
@@ -8669,43 +8679,43 @@ msgstr ""
 msgid "Total count"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2468
+#: application/views/interface_assets/footer.php:2472
 msgid "QSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2488
+#: application/views/interface_assets/footer.php:2492
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2528
+#: application/views/interface_assets/footer.php:2532
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2530
+#: application/views/interface_assets/footer.php:2534
 msgid "eQSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2728
-#: application/views/interface_assets/footer.php:2767
+#: application/views/interface_assets/footer.php:2732
+#: application/views/interface_assets/footer.php:2771
 #: application/views/view_log/qso.php:753
 msgid "QSL image file"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2747
+#: application/views/interface_assets/footer.php:2751
 msgid "Front QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2785
+#: application/views/interface_assets/footer.php:2789
 msgid "Back QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2796
-#: application/views/interface_assets/footer.php:2821
+#: application/views/interface_assets/footer.php:2800
+#: application/views/interface_assets/footer.php:2825
 msgid "Add additional QSOs to a QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2832
+#: application/views/interface_assets/footer.php:2836
 msgid "Something went wrong. Please try again!"
 msgstr ""
 
@@ -8909,93 +8919,93 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: application/views/interface_assets/header.php:420
+#: application/views/interface_assets/header.php:421
 msgid "Switch to Clubstation:"
 msgstr ""
 
-#: application/views/interface_assets/header.php:424
+#: application/views/interface_assets/header.php:425
 #, php-format
 msgid "Switch to %s"
 msgstr ""
 
-#: application/views/interface_assets/header.php:428
+#: application/views/interface_assets/header.php:429
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr ""
 
-#: application/views/interface_assets/header.php:437
+#: application/views/interface_assets/header.php:438
 msgid "No Clubstations available"
 msgstr ""
 
-#: application/views/interface_assets/header.php:445
+#: application/views/interface_assets/header.php:446
 msgid "Other Export Options"
 msgstr ""
 
-#: application/views/interface_assets/header.php:453
+#: application/views/interface_assets/header.php:454
 msgid "Cabrillo Export"
 msgstr ""
 
-#: application/views/interface_assets/header.php:455
+#: application/views/interface_assets/header.php:456
 msgid "EDI Export"
 msgstr ""
 
-#: application/views/interface_assets/header.php:479
+#: application/views/interface_assets/header.php:480
 msgid "QSL Queue"
 msgstr ""
 
-#: application/views/interface_assets/header.php:480
+#: application/views/interface_assets/header.php:481
 msgid "Labels"
 msgstr ""
 
-#: application/views/interface_assets/header.php:482
+#: application/views/interface_assets/header.php:483
 msgid "Third-Party Services"
 msgstr ""
 
-#: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:486
 msgid "eQSL Import / Export"
 msgstr ""
 
-#: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:487
 msgid "HRDLog Logbook"
 msgstr ""
 
-#: application/views/interface_assets/header.php:489
+#: application/views/interface_assets/header.php:490
 msgid "Clublog Import / Export"
 msgstr ""
 
-#: application/views/interface_assets/header.php:500
+#: application/views/interface_assets/header.php:501
 #: application/views/logbookadvanced/index.php:666
 msgid "Help"
 msgstr ""
 
-#: application/views/interface_assets/header.php:501
+#: application/views/interface_assets/header.php:502
 msgid "Forum"
-msgstr ""
-
-#: application/views/interface_assets/header.php:505
-#, php-format
-msgid "Stop impersonate and switch back to %s"
 msgstr ""
 
 #: application/views/interface_assets/header.php:506
 #, php-format
+msgid "Stop impersonate and switch back to %s"
+msgstr ""
+
+#: application/views/interface_assets/header.php:507
+#, php-format
 msgid "Switch back to %s"
 msgstr ""
 
-#: application/views/interface_assets/header.php:510
+#: application/views/interface_assets/header.php:511
 msgid "Logout"
 msgstr ""
 
-#: application/views/interface_assets/header.php:518
+#: application/views/interface_assets/header.php:519
 msgid "Select a Location"
 msgstr ""
 
-#: application/views/interface_assets/header.php:560
+#: application/views/interface_assets/header.php:561
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 
-#: application/views/interface_assets/header.php:597
+#: application/views/interface_assets/header.php:598
 msgid "Extras"
 msgstr ""
 
@@ -9870,7 +9880,7 @@ msgid "QSL Filters"
 msgstr ""
 
 #: application/views/logbookadvanced/index.php:608
-#: application/views/mode/index.php:80
+#: application/views/mode/index.php:80 application/views/usermode/index.php:68
 msgid "Filters"
 msgstr ""
 
@@ -10205,6 +10215,8 @@ msgstr ""
 
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:9 application/views/mode/index.php:55
+#: application/views/usermode/index.php:7
+#: application/views/usermode/index.php:51
 msgid "Not active"
 msgstr ""
 
@@ -10224,27 +10236,27 @@ msgstr ""
 msgid "Warning! Are you sure you want to delete the following mode?:"
 msgstr ""
 
-#: application/views/mode/index.php:4
+#: application/views/mode/index.php:4 application/views/usermode/index.php:2
 msgid "Warning! Are you sure you want to activate all modes?"
 msgstr ""
 
-#: application/views/mode/index.php:5
+#: application/views/mode/index.php:5 application/views/usermode/index.php:3
 msgid "Warning! Are you sure you want to deactivate all modes?"
 msgstr ""
 
-#: application/views/mode/index.php:31
+#: application/views/mode/index.php:31 application/views/usermode/index.php:29
 msgid ""
 "Using the modes list you can control which modes are shown when creating a "
 "new QSO."
 msgstr ""
 
-#: application/views/mode/index.php:34
+#: application/views/mode/index.php:34 application/views/usermode/index.php:32
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
 msgstr ""
 
-#: application/views/mode/index.php:41
+#: application/views/mode/index.php:41 application/views/usermode/index.php:39
 msgid "Sub-Mode"
 msgstr ""
 

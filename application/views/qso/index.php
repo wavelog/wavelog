@@ -144,7 +144,7 @@
                   <label for="mode"><?= __("Mode"); ?></label>
                   <select id="mode" tabindex="1" class="form-select mode form-select-sm" name="mode">
                   <?php
-                      foreach($modes->result() as $mode){
+                      foreach($modes as $mode){
                         if ($mode->submode == null) {
                           printf("<option value=\"%s\" %s>%s</option>", $mode->mode, $this->session->userdata('mode')==$mode->mode?"selected=\"selected\"":"",$mode->mode);
                         } else {
