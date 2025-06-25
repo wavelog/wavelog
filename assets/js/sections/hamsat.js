@@ -64,6 +64,18 @@ function loadActivationsTable(rows, show_workable_only) {
 		}
 	};
 
+	var target = document.body;
+	var observer = new MutationObserver(function() {
+		$('#dt-search-0').on('keyup', function (e) {
+			tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+			$(this).val(tocrappyzero);
+			$(this).trigger("input");
+		});
+	});
+	var config = { childList: true, subtree: true};
+	// pass in the target node, as well as the observer options
+	observer.observe(target, config);
+
 	uninitialized.each(function() {
 		$.fn.dataTable.moment(custom_date_format);
 		$(this).DataTable({

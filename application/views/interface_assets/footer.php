@@ -2083,6 +2083,17 @@ $('#sats').change(function(){
     if (isDarkModeTheme()) {
         $(".buttons-csv").css("color", "white");
     }
+		var target = document.body;
+		var observer = new MutationObserver(function() {
+			$('#dt-search-0').on('keyup', function (e) {
+				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				$(this).val(tocrappyzero);
+				$(this).trigger("input");
+			});
+		});
+		var config = { childList: true, subtree: true};
+		// pass in the target node, as well as the observer options
+		observer.observe(target, config);
     </script>
 <?php } ?>
 
@@ -2945,6 +2956,17 @@ function viewEqsl(picture, callsign) {
 		if (isDarkModeTheme()) {
 			$(".buttons-csv").css("color", "white");
 		}
+		var target = document.body;
+		var observer = new MutationObserver(function() {
+			$('#dt-search-0').on('keyup', function (e) {
+				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				$(this).val(tocrappyzero);
+				$(this).trigger("input");
+			});
+		});
+		var config = { childList: true, subtree: true};
+		// pass in the target node, as well as the observer options
+		observer.observe(target, config);
 	</script>
 <?php } ?>
 
@@ -3130,6 +3152,17 @@ function viewEqsl(picture, callsign) {
             if (isDarkModeTheme()) {
                $('[class*="buttons"]').css("color", "white");
             }
+            var target = document.body;
+            var observer = new MutationObserver(function() {
+               $('#dt-search-0').on('keyup', function (e) {
+                  tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+                  $(this).val(tocrappyzero);
+                  $(this).trigger("input");
+               });
+            });
+            var config = { childList: true, subtree: true};
+            // pass in the target node, as well as the observer options
+            observer.observe(target, config);
         </script>
     <?php } else if ($this->uri->segment(2) == "pota") { ?>
         <script>
@@ -3175,6 +3208,17 @@ function viewEqsl(picture, callsign) {
             if (isDarkModeTheme()) {
                $('[class*="buttons"]').css("color", "white");
             }
+		var target = document.body;
+		var observer = new MutationObserver(function() {
+			$('#dt-search-0').on('keyup', function (e) {
+				tocrappyzero=$(this).val().toUpperCase().replaceAll(/0/g, 'Ø');
+				$(this).val(tocrappyzero);
+				$(this).trigger("input");
+			});
+		});
+		var config = { childList: true, subtree: true};
+		// pass in the target node, as well as the observer options
+		observer.observe(target, config);
         </script>
     <?php } else if ($this->uri->segment(2) == "dok") { ?>
         <script>
