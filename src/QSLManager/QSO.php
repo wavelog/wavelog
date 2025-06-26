@@ -259,7 +259,7 @@ class QSO
 		} else {
 			$this->dxcc = (($data['dxccname'] ?? null) === null) ? '- NONE -' : '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.ucwords(strtolower($data['dxccname']), "- (/").'</a>';
 		}
-		$this->dxccid = $data['adif'];
+		$this->dxccid = $data['adif'] ?? '0';
 		$this->iota = ($data['COL_IOTA'] === null) ? '' : $this->getIotaLink($data['COL_IOTA']);
 		if (array_key_exists('end', $data)) {
 			$this->end = ($data['end'] === null) ? null : DateTime::createFromFormat("Y-m-d", $data['end'], new DateTimeZone('UTC'));
