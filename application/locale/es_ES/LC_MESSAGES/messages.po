@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-06-25 09:54+0000\n"
+"POT-Creation-Date: 2025-06-28 06:48+0000\n"
 "PO-Revision-Date: 2025-06-01 06:13+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4220,8 +4220,10 @@ msgid "Select Station Location"
 msgstr "Seleccione la Localización de la Estación"
 
 #: application/views/adif/import.php:82
-msgid "Type in the operators callsign of the imported QSOs"
-msgstr "Escribe el indicativo del operador de los QSOs importados"
+msgid ""
+"Type in the operators callsign of the imported QSOs. Leave empty to use the "
+"operator callsign in the ADIF file."
+msgstr ""
 
 #: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
@@ -15353,6 +15355,9 @@ msgstr "Enviar solicitud"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recibido"
+
+#~ msgid "Type in the operators callsign of the imported QSOs"
+#~ msgstr "Escribe el indicativo del operador de los QSOs importados"
 
 #~ msgid ""
 #~ "The following QSOs were found to have an incorrect CQ zone that this DXCC "
