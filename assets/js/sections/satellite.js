@@ -2,6 +2,9 @@ var tablex;
 $(document).ready(function () {
 	tablex = $('.sattable').DataTable({
 		"pageLength": 25,
+		"language": {
+			url: getDataTablesLanguageUrl(),
+		},
 		responsive: false,
 		ordering: true,
 		"scrollY": "500px",
