@@ -2,11 +2,8 @@ var tablex;
 $(document).ready(function () {
 	tablex = $('.sattable').DataTable({
 		"pageLength": 25,
-		"language": {
-			url: getDataTablesLanguageUrl(),
-		},
 		responsive: false,
-		ordering: false,
+		ordering: true,
 		"scrollY": "500px",
 		"scrollCollapse": true,
 		"paging": false,
@@ -18,7 +15,7 @@ $(document).ready(function () {
 
 	var presetSearch = sessionStorage.getItem('datatableSearch') || '';
 	sessionStorage.removeItem('datatableSearch');
-	tablex.search(presetSearch).draw();
+	tablex.search(presetSearch);
 
 	$(document).on('click','.deleteSatmode', function (e) {
 		deleteSatmode(e.currentTarget.id,e.currentTarget.attributes.infotext.value);
