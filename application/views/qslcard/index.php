@@ -90,8 +90,11 @@
 			<?php if (is_array($qslarray->result())): ?>
 				<?php foreach ($qslarray->result() as $qsl): ?>
 					<?php
+					$qslDate = null;
 					$timestamp = strtotime($qsl->COL_TIME_ON);
-					$qslDate = strtotime($qsl->COL_QSLRDATE ?? '');
+					if (!empty($qsl->COL_QSLRDATE)) {
+						$qslDate = date($custom_date_format, strtotime($qsl->COL_QSLRDATE));
+					}
 					$band = ($qsl->COL_SAT_NAME != null) ? $qsl->COL_SAT_NAME : strtolower($qsl->COL_BAND);
 					$mode = $qsl->COL_SUBMODE == null ? $qsl->COL_MODE : $qsl->COL_SUBMODE;
 
@@ -102,7 +105,7 @@
 					$user_id = $this->session->userdata('user_id');
 
 					// Build correct image path: userdata/[user_id]/qsl_card/[filename]
-					$image_path = base_url() . $userdata_dir . '/' . $user_id . '/qsl_card/' . $filename;
+					$image_path = $this->paths->getPathQsl() . '/' . $filename;
 					?>
 					<div class="waterfall-item">
 						<div class="card h-100">
@@ -114,13 +117,13 @@
 								<p class="card-text">
 									<?= $mode ?> | <?= $band ?><br>
 									<?= date($custom_date_format, $timestamp) ?> <?= date('H:i', $timestamp) ?><br>
-									<?= __("QSL Date") ?>: <?= date($custom_date_format, $qslDate) ?>
+									<?= $qslDate == '' ? '' : __("QSL Date") . ': ' . $qslDate ?>
 								</p>
 							</div>
 							<div class="card-footer text-center">
 								<div class="btn-group btn-group-sm" role="group">
-									<button onclick="deleteQsl('<?= $qsl->id ?>')" class="btn btn-danger"><?= __("Delete") ?></button>
-									<button onclick="addQsosToQsl('<?= $qsl->filename ?>')" class="btn btn-success"><?= __("Add Qsos") ?></button>
+									<button onclick="deleteQsl('<?= $qsl->id ?>')" class="me-1 btn btn-danger"><?= __("Delete") ?></button>
+									<button onclick="addQsosToQsl('<?= $qsl->filename ?>')" class="me-1 btn btn-success"><?= __("Add Qsos") ?></button>
 								</div>
 							</div>
 						</div>
@@ -131,73 +134,6 @@
 	</div>
 
 </div>
-
-<style>
-	.qsl-gallery .waterfall-grid {
-		column-count: 4;
-		column-gap: 20px;
-	}
-
-	.qsl-gallery .waterfall-item {
-		break-inside: avoid;
-		margin-bottom: 20px;
-		display: inline-block;
-		width: 100%;
-	}
-
-	@media (max-width: 767px) {
-		.qsl-gallery .waterfall-grid {
-			column-count: 1;
-		}
-	}
-
-	@media (min-width: 768px) and (max-width: 991px) {
-		.qsl-gallery .waterfall-grid {
-			column-count: 2;
-		}
-	}
-
-	@media (min-width: 992px) and (max-width: 1199px) {
-		.qsl-gallery .waterfall-grid {
-			column-count: 3;
-		}
-	}
-
-	.qsl-gallery .card-img-container {
-		overflow: hidden;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: #f8f9fa;
-	}
-
-	.qsl-gallery .qsl-card-img {
-		object-fit: contain;
-		width: 100%;
-		cursor: pointer;
-		transition: transform 0.2s ease;
-	}
-
-	.qsl-gallery .qsl-card-img:hover {
-		transform: scale(1.03);
-	}
-
-	.qsl-gallery .card:hover {
-		box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-	}
-
-	.qsl-gallery .card {
-		display: flex;
-		flex-direction: column;
-		transition: box-shadow 0.3s ease;
-	}
-
-	.qsl-gallery .card-body {
-		flex-grow: 1;
-		display: flex;
-		flex-direction: column;
-	}
-</style>
 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {

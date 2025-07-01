@@ -1293,3 +1293,68 @@ svg text.month { fill: #AAA; }
   position: relative;
   padding-right: 30px; /* room for arrow */
 }
+
+.qsl-gallery .waterfall-grid {
+		column-count: 4;
+		column-gap: 20px;
+	}
+
+	.qsl-gallery .waterfall-item {
+		break-inside: avoid;
+		margin-bottom: 20px;
+		display: inline-block;
+		width: 100%;
+	}
+
+	@media (max-width: 767px) {
+		.qsl-gallery .waterfall-grid {
+			column-count: 1;
+		}
+	}
+
+	@media (min-width: 768px) and (max-width: 991px) {
+		.qsl-gallery .waterfall-grid {
+			column-count: 2;
+		}
+	}
+
+	@media (min-width: 992px) and (max-width: 1199px) {
+		.qsl-gallery .waterfall-grid {
+			column-count: 3;
+		}
+	}
+
+	.qsl-gallery .card-img-container {
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #f8f9fa;
+	}
+
+	.qsl-gallery .qsl-card-img {
+		object-fit: contain;
+		width: 100%;
+		cursor: pointer;
+		transition: transform 0.2s ease;
+	}
+
+	.qsl-gallery .qsl-card-img:hover {
+		transform: scale(1.03);
+	}
+
+	.qsl-gallery .card:hover {
+		box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	}
+
+	.qsl-gallery .card {
+		display: flex;
+		flex-direction: column;
+		transition: box-shadow 0.3s ease;
+	}
+
+	.qsl-gallery .card-body {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
