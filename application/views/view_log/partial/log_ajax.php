@@ -183,7 +183,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 <?php
 	if ($results) {
 		$tableid = "contacttable";
-		if (isset($ispopup)) {
+		if (!empty($ispopup)) {
 			$tableid = "displaycontactstable";
 		}
 
