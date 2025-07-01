@@ -474,6 +474,7 @@ class Awards extends CI_Controller {
 		if (!empty($qsltype)) {
 			$data['filter'] .= __(" and ").implode('/', $qsltype);
 		}
+		$data['ispopup'] = true;
 		$this->load->view('awards/details', $data);
 	}
 
