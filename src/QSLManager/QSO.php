@@ -18,6 +18,8 @@ class QSO
 	private string $submode;
 	private ?string $band;
 	private string $bandRX;
+	private string $frequency;
+	private string $frequencyRX;
 	private string $rstR;
 	private string $srx;
 	private string $srxstring;
@@ -186,6 +188,8 @@ class QSO
 		$this->submode = $data['COL_SUBMODE'] ?? '';
 		$this->band = $data['COL_BAND'];
 		$this->bandRX = $data['COL_BAND_RX'] ?? '';
+		$this->frequency = $data['COL_FREQ'] ?? '';
+		$this->frequencyRX = $data['COL_FREQ_RX'] ?? '';
 		$this->rstR = $data['COL_RST_RCVD'] ?? '';
 		$this->rstS = $data['COL_RST_SENT'] ?? '';
 		$this->srx = $data['COL_SRX'] ?? '';
@@ -830,22 +834,6 @@ class QSO
 	/**
 	 * @return string
 	 */
-	public function getBand(): string
-	{
-		return $this->band;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getBandRX(): string
-	{
-		return $this->bandRX;
-	}
-
-	/**
-	 * @return string
-	 */
 	public function getRstR(): string
 	{
 		$returnstring = '';
@@ -1258,7 +1246,8 @@ class QSO
 			'antennaelevation' => $this->antennaelevation == null ? null : $this->antennaelevation.'°',
 			'antennaazimuth' => $this->antennaazimuth == null ? null : $this->antennaazimuth.'°',
 			'county' => $this->county,
-			'qth' => $this->qth
+			'qth' => $this->qth,
+			'frequency' => $this->getFormattedFrequency(),
 		];
 	}
 
@@ -1344,6 +1333,25 @@ class QSO
 		$label .= " " . $this->band;
 		if ($this->bandRX !== '' && $this->band !== '') {
 			$label .= "/" . $this->bandRX;
+		}
+		return trim($label);
+	}
+
+	private function getFormattedFrequency(): string
+	{
+		$label = "";
+		if ($this->propagationMode !== '') {
+			$label .= $this->propagationMode;
+			if ($this->satelliteName !== '') {
+				$label .= " " . $this->satelliteName;
+				if ($this->satelliteMode !== '') {
+					$label .= " " . $this->satelliteMode;
+				}
+			}
+		}
+		$label .= " " . $this->frequency;
+		if ($this->frequencyRX !== '' && $this->frequency !== '') {
+			$label .= "/" . $this->frequencyRX;
 		}
 		return trim($label);
 	}

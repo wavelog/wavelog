@@ -66,6 +66,7 @@
             \"antennaelevation\":{\"show\":\"true\"},
             \"county\":{\"show\":\"true\"},
             \"qth\":{\"show\":\"true\"},
+            \"frequency\":{\"show\":\"true\"},
         }";
     }
     $current_opts = json_decode($options);
@@ -164,6 +165,10 @@
     }
 	if (!isset($current_opts->qth)) {
         echo "\nvar o_template = { qth: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->frequency)) {
+        echo "\nvar o_template = { frequency: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -700,6 +705,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->band->show ?? "true") == "true") {
                         echo '<th>' . __("Band") . '</th>';
+                    } ?>
+					<?php if (($options->frequency->show ?? "true") == "true") {
+                        echo '<th>' . __("Frequency") . '</th>';
                     } ?>
                     <?php if (($options->gridsquare->show ?? "true") == "true") {
                         echo '<th>' . __("Gridsquare") . '</th>';

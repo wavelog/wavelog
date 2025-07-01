@@ -59,6 +59,9 @@ function updateRow(qso) {
 	if ((user_options.band.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.band);
 	}
+	if ((user_options.frequency.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.frequency);
+	}
 	if ( (user_options.gridsquare) && ((user_options.gridsquare.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.gridsquare);
 	}
@@ -258,6 +261,9 @@ function loadQSOTable(rows) {
 			} else {
 				data.push(qso.band);
 			}
+		}
+		if ((user_options.frequency.show ?? 'true') == "true"){
+			data.push(qso.frequency);
 		}
 		if ((user_options.gridsquare.show ?? 'true') == "true"){
 			data.push(qso.gridsquare);
