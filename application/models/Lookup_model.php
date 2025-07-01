@@ -90,6 +90,10 @@ class Lookup_model extends CI_Model{
 			$sqlquerytypestring .= " and col_cont = ?";
 			$binds[] = $queryinfo['continent'];
 			break;
+		case 'dok':
+			$sqlquerytypestring .= " and col_darc_dok = ?";
+			$binds[] = $queryinfo['dok'];
+			break;
 		default: break;
 		}
 		return $sqlquerytypestring;
