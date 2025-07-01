@@ -64,6 +64,7 @@ class Lookup extends CI_Controller {
 			$data['cqz']  = xss_clean($this->input->post('cqz'));
 			$data['wwff'] = xss_clean($this->input->post('wwff'));
 			$data['ituz'] = xss_clean($this->input->post('ituz'));
+			$data['dok'] = xss_clean($this->input->post('dok'));
 			$data['continent'] = xss_clean($this->input->post('continent'));
 			$data['location_list'] = $location_list;
 

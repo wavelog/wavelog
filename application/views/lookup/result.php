@@ -40,7 +40,8 @@ foreach ($result as $mode => $value) {
 			'itu' => $ituz,
 			'continent' => $continent,
 			'pota' => $pota,
-			'dxcc2' => $dxcc
+			'dxcc2' => $dxcc,
+			'dok' => $dok
 		];
 
 		if ($type == 'dxcc') {
