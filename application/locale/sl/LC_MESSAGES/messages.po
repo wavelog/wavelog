@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-01 18:29+0000\n"
+"POT-Creation-Date: 2025-07-02 04:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1302,7 +1302,7 @@ msgstr ""
 #: application/views/oqrs/request_grouped.php:11
 #: application/views/oqrs/showrequests.php:84
 #: application/views/public_search/result.php:15
-#: application/views/qslcard/index.php:29
+#: application/views/qslcard/index.php:40
 #: application/views/qslcard/searchresult.php:12
 #: application/views/qslcard/searchresult.php:28
 #: application/views/qslcard/searchresult.php:44
@@ -1586,7 +1586,7 @@ msgstr ""
 #: application/views/oqrs/request_grouped.php:10
 #: application/views/oqrs/showrequests.php:83
 #: application/views/public_search/result.php:16
-#: application/views/qslcard/index.php:32
+#: application/views/qslcard/index.php:43
 #: application/views/qslcard/searchresult.php:21
 #: application/views/qslcard/searchresult.php:37
 #: application/views/qslcard/searchresult.php:39
@@ -2144,7 +2144,8 @@ msgstr ""
 #: application/views/lotw_views/index.php:111
 #: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:71
-#: application/views/qslcard/index.php:65
+#: application/views/qslcard/index.php:76
+#: application/views/qslcard/index.php:125
 #: application/views/satellite/edit.php:57
 #: application/views/satellite/index.php:59
 #: application/views/search/stored_queries.php:22
@@ -3890,7 +3891,7 @@ msgstr ""
 #: application/views/lotw_views/index.php:32
 #: application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:12
-#: application/views/qslcard/index.php:28
+#: application/views/qslcard/index.php:39
 #: application/views/qslcard/searchform.php:3
 #: application/views/qslprint/index.php:24
 #: application/views/qslprint/qslprint.php:21
@@ -3993,7 +3994,7 @@ msgstr ""
 #: application/views/oqrs/qsolist.php:7 application/views/oqrs/request.php:15
 #: application/views/oqrs/request_grouped.php:8
 #: application/views/public_search/result.php:13
-#: application/views/qslcard/index.php:30
+#: application/views/qslcard/index.php:41
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:22
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:71
@@ -4032,7 +4033,7 @@ msgstr ""
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:31
 #: application/views/hamsat/index.php:29 application/views/oqrs/qsolist.php:8
-#: application/views/qslcard/index.php:31
+#: application/views/qslcard/index.php:42
 #: application/views/qslcard/searchresult.php:6
 #: application/views/qslprint/qslprint.php:23
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:112
@@ -8406,7 +8407,8 @@ msgid "You are using %s of disk space to store eQSL Card assets"
 msgstr ""
 
 #: application/views/eqslcard/index.php:35
-#: application/views/qslcard/index.php:33
+#: application/views/qslcard/index.php:44
+#: application/views/qslcard/index.php:120
 msgid "QSL Date"
 msgstr ""
 
@@ -8415,7 +8417,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:2739
 #: application/views/interface_assets/footer.php:2760
 #: application/views/interface_assets/footer.php:2778
-#: application/views/qslcard/index.php:66
+#: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:763
 msgid "View"
 msgstr ""
@@ -10979,7 +10981,16 @@ msgstr ""
 msgid "You are using %s of disk space to store QSL Card assets"
 msgstr ""
 
-#: application/views/qslcard/index.php:67
+#: application/views/qslcard/index.php:17
+msgid "List View"
+msgstr ""
+
+#: application/views/qslcard/index.php:18
+msgid "Gallery View"
+msgstr ""
+
+#: application/views/qslcard/index.php:78
+#: application/views/qslcard/index.php:126
 msgid "Add Qsos"
 msgstr ""
 
