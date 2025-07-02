@@ -536,6 +536,7 @@ function loadLogbookTable(rows) {
 }
 
 function loadLocationTable(rows) {
+	$.fn.dataTable.moment(custom_date_format + ' HH:mm');
 	var uninitialized = $('#station_locations_table').filter(function() {
 		return !$.fn.DataTable.isDataTable(this);
 	});
@@ -556,7 +557,11 @@ function loadLocationTable(rows) {
 				{ 'targets':0,
 				  'createdCell':  function (td, cellData, rowData, row, col) {
 				  			(td).attr('data-order', 1);	// not sure how to add ID dynamic here
-						  }
+					}
+				},
+				{
+					targets: 5,
+					type: 'datetime-moment'
 				}
 			]
 		});
@@ -576,6 +581,7 @@ function loadLocationTable(rows) {
 		data.push(locations.station_callsign);
 		data.push(locations.station_country);
 		data.push(locations.station_gridsquare);
+		data.push(locations.station_lastqso);
 		data.push(locations.station_badge);
 		data.push(locations.station_linked);
 		data.push(locations.station_edit);
