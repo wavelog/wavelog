@@ -29,8 +29,32 @@ class Stationsetup extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts'] = [
+			'assets/js/moment.min.js',
+			'assets/js/datetime-moment.js',
 			'assets/js/sections/stationsetup.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/stationsetup.js")),
 		];
+
+				// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
+		}
+
+		switch ($data['custom_date_format']) {
+			case "d/m/y": $data['custom_date_format'] = 'DD/MM/YY'; break;
+			case "d/m/Y": $data['custom_date_format'] = 'DD/MM/YYYY'; break;
+			case "m/d/y": $data['custom_date_format'] = 'MM/DD/YY'; break;
+			case "m/d/Y": $data['custom_date_format'] = 'MM/DD/YYYY'; break;
+			case "d.m.Y": $data['custom_date_format'] = 'DD.MM.YYYY'; break;
+			case "y/m/d": $data['custom_date_format'] = 'YY/MM/DD'; break;
+			case "Y-m-d": $data['custom_date_format'] = 'YYYY-MM-DD'; break;
+			case "M d, Y": $data['custom_date_format'] = 'MMM DD, YYYY'; break;
+			case "M d, y": $data['custom_date_format'] = 'MMM DD, YY'; break;
+			default: $data['custom_date_format'] = 'DD/MM/YYYY';
+		}
 
 		// Render Page
 		$data['page_title'] = __("Station Setup");

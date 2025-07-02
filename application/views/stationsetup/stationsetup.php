@@ -1,3 +1,6 @@
+<script type="text/javascript">
+    var custom_date_format = "<?php echo $custom_date_format ?>";
+</script>
 <div class="container">
 
     <br>
