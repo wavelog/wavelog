@@ -99,8 +99,7 @@
 				</div>
 					<label class="w-auto control-label" for="orbit"><?= __("Orbit") ?></label>
 					<div class="w-auto">
-						<select id="orbitel" name="orbitel" class="form-select">
-							<option value="All" <?php if ($this->input->post('orbit') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
+						<select id="orbitel" name="orbitel" class="form-select" multiple="multiple">
 							<?php
 							foreach($orbits as $orbit){
 									echo '<option value="' . $orbit . '"';

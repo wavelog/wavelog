@@ -806,8 +806,8 @@
 			$binding[] = trim($sat);
 		}
 
-		if ($orbit !== 'All' && $orbit !== '') {
-			$conditions[] = "orbit = ?";
+		if ($orbit !== '') {
+			$conditions[] = "orbit in ?";
 			$binding[] = $orbit;
 		}
 
@@ -864,7 +864,7 @@
 			$binding[] = $mode;
 		}
 
-		if ($orbit !== 'All' && $orbit !== '') {
+		if ($orbit !== '') {
 			$conditions[] = "orbit in ?";
 			$binding[] = $orbit;
 		}
