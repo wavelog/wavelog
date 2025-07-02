@@ -362,7 +362,7 @@ class Stationsetup extends CI_Controller {
 
 	private function stationlinked2html($linked) {
 		if ($linked == 1) {
-			return '<i class="fa fa-check text-success" aria-hidden="true"></i>';
+			return '<i class="fa fa-check text-success" aria-hidden="true"></i><span class="d-none">yes</span>';
 		}
 		return '<i class="fa fa-times text-danger" aria-hidden="true"></i>';
 	}

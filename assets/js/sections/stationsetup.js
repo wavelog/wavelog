@@ -555,7 +555,7 @@ function loadLocationTable(rows) {
 			},
 			'columnDefs': [
 				{ 'targets':0,
-				  'createdCell':  function (td, cellData, rowData, row, col) {
+					'createdCell':  function (td, cellData, rowData, row, col) {
 				  			(td).attr('data-order', 1);	// not sure how to add ID dynamic here
 					}
 				},
@@ -594,8 +594,22 @@ function loadLocationTable(rows) {
 
 		let createdRow = table.row.add(data).index();
 	}
+	// Clear filters from previous session
+	table.search('');
+	table.columns().search('');
+	table.state.clear();  // Optional: clear all saved state
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
+}
+
+function filterlocations() {
+	var table = $('#station_locations_table').DataTable();
+	table.column(7).search('yes').draw();
+}
+
+function removefilterlocations() {
+	var table = $('#station_locations_table').DataTable();
+	table.column(7).search('').draw();
 }
 
 function linkLocations() {
