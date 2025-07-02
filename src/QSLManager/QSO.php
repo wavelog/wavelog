@@ -106,6 +106,8 @@ class QSO
 	private string $morse_key_type;
 	private string $qslmsg_rcvd;
 
+	private $CI;
+
 	/**
 	 * @param array $data Does no validation, it's assumed to be a row from the database in array format
 	 */
@@ -168,14 +170,14 @@ class QSO
 
 		$this->qsoID = $data['COL_PRIMARY_KEY'];
 
-		$CI =& get_instance();
+		$this->CI =& get_instance();
 		// Get Date format
-		if($CI->session->userdata('user_date_format')) {
+		if($this->CI->session->userdata('user_date_format')) {
 			// If Logged in and session exists
-			$custom_date_format = $CI->session->userdata('user_date_format');
+			$custom_date_format = $this->CI->session->userdata('user_date_format');
 		} else {
 			// Get Default date format from /config/wavelog.php
-			$custom_date_format = $CI->config->item('qso_date_format');
+			$custom_date_format = $this->CI->config->item('qso_date_format');
 		}
 		$this->qsoDateTime = date($custom_date_format . " H:i", strtotime($data['COL_TIME_ON'] ?? '1970-01-01 00:00:00'));
 
@@ -288,10 +290,10 @@ class QSO
 		$this->antennaazimuth = $data['COL_ANT_AZ'] ?? '';
 		$this->antennaelevation = $data['COL_ANT_EL'] ?? '';
 
-		if ($CI->session->userdata('user_measurement_base') == NULL) {
-			$measurement_base = $CI->config->item('measurement_base');
+		if ($this->CI->session->userdata('user_measurement_base') == NULL) {
+			$measurement_base = $this->CI->config->item('measurement_base');
 		} else {
-			$measurement_base = $CI->session->userdata('user_measurement_base');
+			$measurement_base = $this->CI->session->userdata('user_measurement_base');
 		}
 
 		$this->measurement_base = $measurement_base;
@@ -393,8 +395,6 @@ class QSO
 	 */
 	function getQSLString($data, $custom_date_format): string
 	{
-		$CI =& get_instance();
-
 		$qslstring = '<span ';
 
 		if ($data['COL_QSL_SENT'] != "N") {
@@ -494,8 +494,6 @@ class QSO
 	 */
 	function getLotwString($data, $custom_date_format): string
 	{
-		$CI =& get_instance();
-
 		$lotwstring = '<span ';
 
 		$timestamp = '';
@@ -550,8 +548,6 @@ class QSO
 	 * @return string
 	 */
 	function getClublogString($data, $custom_date_format): string {
-		$CI =& get_instance();
-
 		$clublogstring = '<span ';
 
 		if ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "Y") {
@@ -605,8 +601,6 @@ class QSO
 	 * @return string
 	 */
 	function getDclString($data, $custom_date_format): string {
-		$CI =& get_instance();
-
 		$dclstring = '<span ';
 
 		if ($data['COL_DCL_QSL_SENT'] == "Y") {
@@ -666,8 +660,6 @@ class QSO
 	}
 
 	function getQrzString($data, $custom_date_format): string {
-		$CI =& get_instance();
-
 		$qrzstring = '<span ';
 
 		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "Y") {
@@ -729,8 +721,6 @@ class QSO
 
 	function getEqslString($data, $custom_date_format): string
 	{
-		$CI =& get_instance();
-
 		$eqslstring = '<span ';
 
 		$timestamp = '';
@@ -1339,19 +1329,13 @@ class QSO
 
 	private function getFormattedFrequency(): string
 	{
-		$label = "";
-		if ($this->propagationMode !== '') {
-			$label .= $this->propagationMode;
-			if ($this->satelliteName !== '') {
-				$label .= " " . $this->satelliteName;
-				if ($this->satelliteMode !== '') {
-					$label .= " " . $this->satelliteMode;
-				}
-			}
+		$label = '';
+		if ($this->frequency !== 0 && $this->frequency !== '') {
+			$label .= $this->CI->frequency->qrg_conversion($this->frequency ?? 0);
 		}
-		$label .= " " . $this->frequency;
-		if ($this->frequencyRX !== '' && $this->frequency !== '') {
-			$label .= "/" . $this->frequencyRX;
+
+		if ($this->frequencyRX !== '' && $this->frequencyRX !== 0 && $this->frequency !== '' && $this->frequency !== 0) {
+			$label .= "/" . $this->CI->frequency->qrg_conversion($this->frequencyRX ?? 0);
 		}
 		return trim($label);
 	}
