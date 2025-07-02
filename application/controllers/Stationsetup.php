@@ -17,12 +17,13 @@ class Stationsetup extends CI_Controller {
 
 	public function index() {
 		$this->load->model('stations');
+		$this->load->model('stationsetup_model');
 		$this->load->model('Logbook_model');
 		$this->load->model('logbooks_model');
 
 		$data['my_logbooks'] = $this->logbooks_model->show_all();
 
-		$data['stations'] = $this->stations->all_with_count();
+		$data['stations'] = $this->stationsetup_model->get_all_locations();
 		$data['current_active'] = $this->stations->find_active();
 		$data['is_there_qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 
@@ -290,9 +291,10 @@ class Stationsetup extends CI_Controller {
 
 	public function fetchLocations() {
 		$this->load->model('stations');
+		$this->load->model('stationsetup_model');
 		$this->load->model('Logbook_model');
 
-		$result = $this->stations->all_with_count()->result();
+		$result = $this->stationsetup_model->get_all_locations()->result();
 		$current_active = $this->stations->find_active();
 		$data['is_there_qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 
@@ -313,9 +315,25 @@ class Stationsetup extends CI_Controller {
 			$single->station_delete = $this->stationdelete2html($entry->station_id, $entry->station_profile_name, $entry->station_active);
 			$single->station_favorite = $this->stationfavorite2html($entry->station_id, $quickswitch_enabled);
 			$single->station_linked = $this->stationlinked2html($entry->linked);
+			$single->station_lastqso = $this->stationformattedlastqsodate2html($entry->lastqsodate);
 			array_push($hres,$single);
 		}
 		echo json_encode($hres);
+	}
+
+	private function stationformattedlastqsodate2html($lastqsodate) {
+		$CI =& get_instance();
+		// Get Date format
+		if($CI->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $CI->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $CI->config->item('qso_date_format');
+		}
+		if ($lastqsodate == null) return '';
+
+		return date($custom_date_format . " H:i", strtotime($lastqsodate ?? '1970-01-01 00:00:00'));
 	}
 
 	private function stationlinked2html($linked) {

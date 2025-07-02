@@ -8,7 +8,7 @@ class Stationsetup_model extends CI_Model {
 
 		if ($session) {
 			$this->db->where('user_id', $this->session->userdata('user_id'));
-		} 
+		}
 		$this->db->where('logbook_id', $clean_id);
 		return $this->db->get('station_logbooks');
 	}
@@ -219,6 +219,18 @@ class Stationsetup_model extends CI_Model {
 		} else {
 			return -1;
 		}
+	}
+
+	function get_all_locations() {
+		$this->db->select('station_profile.*, dxcc_entities.name as station_country, dxcc_entities.end as dxcc_end, count('.$this->config->item('table_name').'.station_id) as qso_total, (select max(col_time_on) from '.$this->config->item('table_name').' where station_id = station_profile.station_id) lastqsodate, exists(select 1 from station_logbooks_relationship where station_location_id = station_profile.station_id and station_logbook_id = '.($this->session->userdata('active_station_logbook') ?? 0).') as linked');
+        $this->db->from('station_profile');
+        $this->db->join($this->config->item('table_name'),'station_profile.station_id = '.$this->config->item('table_name').'.station_id','left');
+        $this->db->join('dxcc_entities','station_profile.station_dxcc = dxcc_entities.adif','left outer');
+		$this->db->group_by('station_profile.station_id');
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->or_where('station_profile.user_id =', NULL);
+
+		return $this->db->get();
 	}
 }
 
