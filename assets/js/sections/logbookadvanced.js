@@ -59,6 +59,9 @@ function updateRow(qso) {
 	if ((user_options.band.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.band);
 	}
+	if ((user_options.frequency.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.frequency);
+	}
 	if ( (user_options.gridsquare) && ((user_options.gridsquare.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.gridsquare);
 	}
@@ -258,6 +261,9 @@ function loadQSOTable(rows) {
 			} else {
 				data.push(qso.band);
 			}
+		}
+		if ((user_options.frequency.show ?? 'true') == "true"){
+			data.push(qso.frequency);
 		}
 		if ((user_options.gridsquare.show ?? 'true') == "true"){
 			data.push(qso.gridsquare);
@@ -1498,6 +1504,7 @@ function saveOptions() {
 				ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
 				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
 				qth: $('input[name="qth"]').is(':checked') ? true : false,
+				frequency: $('input[name="frequency"]').is(':checked') ? true : false,
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);
