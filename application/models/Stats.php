@@ -865,7 +865,7 @@
 		}
 
 		if ($orbit !== 'All' && $orbit !== '') {
-			$conditions[] = "orbit = ?";
+			$conditions[] = "orbit in ?";
 			$binding[] = $orbit;
 		}
 

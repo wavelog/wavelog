@@ -59,8 +59,7 @@
 					<div hidden class="orbits_dropdown  d-flex align-items-center gap-3">
 						<label class="w-auto control-label" for="orbit"><?= __("Orbit") ?></label>
 						<div class="w-auto">
-							<select id="orbit" name="orbit" class="form-select">
-								<option value="All" <?php if ($this->input->post('orbit') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
+							<select id="orbit" name="orbit" class="form-select" multiple="multiple">
 								<?php
 								foreach($orbits as $orbit){
 										echo '<option value="' . $orbit . '"';
