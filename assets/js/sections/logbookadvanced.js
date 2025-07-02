@@ -1504,6 +1504,7 @@ function saveOptions() {
 				ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
 				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
 				qth: $('input[name="qth"]').is(':checked') ? true : false,
+				frequency: $('input[name="frequency"]').is(':checked') ? true : false,
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);
