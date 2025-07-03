@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-02 15:54+0000\n"
+"POT-Creation-Date: 2025-07-03 07:26+0000\n"
 "PO-Revision-Date: 2025-06-28 13:07+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -323,6 +323,7 @@ msgstr "Diplomas - %s"
 #: application/views/logbookadvanced/index.php:770
 #: application/views/logbookadvanced/useroptions.php:130
 #: application/views/lookup/index.php:14
+#: application/views/qso/award_tabs.php:39
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:276
 #: application/views/qso/index.php:567 application/views/user/edit.php:671
 #: application/views/view_log/qso.php:460
@@ -342,7 +343,7 @@ msgstr "DOK"
 #: application/views/logbookadvanced/useroptions.php:98
 #: application/views/lookup/index.php:5
 #: application/views/lotw_views/index.php:33
-#: application/views/qso/award_tabs.php:25
+#: application/views/qso/award_tabs.php:27
 #: application/views/qso/edit_ajax.php:234 application/views/qso/index.php:375
 #: application/views/search/cqzones_result.php:15
 #: application/views/search/ituzones_result.php:15
@@ -428,7 +429,7 @@ msgstr " y "
 #: application/views/qslcard/searchresult.php:49
 #: application/views/qslcard/searchresult.php:65
 #: application/views/qslcard/searchresult.php:81
-#: application/views/qso/award_tabs.php:53
+#: application/views/qso/award_tabs.php:59
 #: application/views/qso/components/previous_contacts.php:82
 #: application/views/qso/edit_ajax.php:376
 #: application/views/search/search_result_ajax.php:9
@@ -450,7 +451,7 @@ msgstr "SOTA"
 #: application/views/logbookadvanced/index.php:372
 #: application/views/logbookadvanced/useroptions.php:134
 #: application/views/lookup/index.php:12
-#: application/views/qso/award_tabs.php:57
+#: application/views/qso/award_tabs.php:63
 #: application/views/qso/components/previous_contacts.php:83
 #: application/views/qso/edit_ajax.php:386
 #: application/views/search/search_result_ajax.php:10
@@ -471,7 +472,7 @@ msgstr "WWFF"
 #: application/views/logbookadvanced/index.php:356
 #: application/views/logbookadvanced/index.php:764
 #: application/views/logbookadvanced/useroptions.php:122
-#: application/views/lookup/index.php:9 application/views/qso/award_tabs.php:49
+#: application/views/lookup/index.php:9 application/views/qso/award_tabs.php:55
 #: application/views/qso/components/previous_contacts.php:84
 #: application/views/qso/edit_ajax.php:382
 #: application/views/search/search_result_ajax.php:11
@@ -1457,7 +1458,7 @@ msgstr "País"
 #: application/views/qslcard/searchresult.php:48
 #: application/views/qslcard/searchresult.php:64
 #: application/views/qslcard/searchresult.php:80
-#: application/views/qso/award_tabs.php:41
+#: application/views/qso/award_tabs.php:47
 #: application/views/qso/components/previous_contacts.php:81
 #: application/views/qso/edit_ajax.php:367
 #: application/views/search/search_result_ajax.php:8
@@ -1520,7 +1521,7 @@ msgstr "Estado"
 #: application/views/qslcard/searchresult.php:51
 #: application/views/qslcard/searchresult.php:67
 #: application/views/qslcard/searchresult.php:83
-#: application/views/qso/award_tabs.php:37
+#: application/views/qso/award_tabs.php:43
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:291
 #: application/views/satellite/pass.php:46
@@ -5584,7 +5585,7 @@ msgid "Canton"
 msgstr "Cantón"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:47
-#: application/views/qso/award_tabs.php:29
+#: application/views/qso/award_tabs.php:31
 msgid "CQ"
 msgstr "CQ"
 
@@ -6028,7 +6029,7 @@ msgstr "Premios - Trabajado Todos los Continentes (WAC)"
 #: application/views/logbookadvanced/index.php:386
 #: application/views/logbookadvanced/index.php:797
 #: application/views/logbookadvanced/useroptions.php:166
-#: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:33
+#: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:35
 #: application/views/qso/edit_ajax.php:262 application/views/qso/index.php:395
 #: application/views/view_log/qso.php:342
 msgid "Continent"
@@ -10568,7 +10569,7 @@ msgid "Default on"
 msgstr "Predeterminado activado"
 
 #: application/views/lookup/index.php:11
-#: application/views/qso/award_tabs.php:45
+#: application/views/qso/award_tabs.php:51
 msgid "US State"
 msgstr "Estado de EE.UU"
 
@@ -11801,48 +11802,56 @@ msgid "Showing summary for IOTA"
 msgstr "Mostrando resumen para IOTA"
 
 #: application/views/qso/award_tabs.php:9
+msgid "Showing summary for DOK"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:10
 msgid "Showing summary for continent"
 msgstr "Mostrando resumen para los continentes"
 
-#: application/views/qso/award_tabs.php:10
+#: application/views/qso/award_tabs.php:11
 msgid "Showing summary for gridsquare"
 msgstr "Mostrando resumen para las cuadrículas"
 
-#: application/views/qso/award_tabs.php:11
+#: application/views/qso/award_tabs.php:12
 msgid "State input needs to be filled to show a summary!"
 msgstr "¡Es necesario completar la entrada del estado para mostrar un resumen!"
 
-#: application/views/qso/award_tabs.php:12
+#: application/views/qso/award_tabs.php:13
 msgid "SOTA input needs to be filled to show a summary!"
 msgstr "¡Es necesario completar la entrada de SOTA para mostrar un resumen!"
 
-#: application/views/qso/award_tabs.php:13
+#: application/views/qso/award_tabs.php:14
 msgid "POTA input needs to be filled to show a summary!"
 msgstr "¡Es necesario completar la entrada de POTA para mostrar un resumen!"
 
-#: application/views/qso/award_tabs.php:14
+#: application/views/qso/award_tabs.php:15
 msgid "IOTA input needs to be filled to show a summary!"
 msgstr "¡Es necesario completar la entrada de IOTA para mostrar un resumen!"
 
-#: application/views/qso/award_tabs.php:15
+#: application/views/qso/award_tabs.php:16
+msgid "DOK input needs to be filled to show a summary!"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:17
 msgid "WWFF input needs to be filled to show a summary!"
 msgstr "¡Es necesario completar la entrada de WWFF para mostrar un resumen!"
 
-#: application/views/qso/award_tabs.php:16
+#: application/views/qso/award_tabs.php:18
 msgid "Gridsquare input needs to be filled to show a summary!"
 msgstr ""
 "¡Es necesario completar la entrada del cuadrícula para mostrar un resumen!"
 
-#: application/views/qso/award_tabs.php:17
+#: application/views/qso/award_tabs.php:19
 msgid "Summary only shows for the first POTA entered."
 msgstr "El resumen solo se muestra para el primer POTA ingresado."
 
-#: application/views/qso/award_tabs.php:18
+#: application/views/qso/award_tabs.php:20
 msgid "Summary only shows for the first gridsquare entered."
 msgstr ""
 "El resumen solo se muestra para el primer cuadrado de cuadrícula ingresado."
 
-#: application/views/qso/award_tabs.php:19
+#: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for US states."
 msgstr "El resumen solo se muestra para los estados de EE. UU."
 

@@ -6,12 +6,14 @@
     var lang_summary_pota = '<?= __("Showing summary for POTA"); ?>';
     var lang_summary_sota = '<?= __("Showing summary for SOTA"); ?>';
     var lang_summary_iota = '<?= __("Showing summary for IOTA"); ?>';
+	var lang_summary_dok = '<?= __("Showing summary for DOK"); ?>';
     var lang_summary_continent = '<?= __("Showing summary for continent"); ?>';
     var lang_summary_gridsquare = '<?= __("Showing summary for gridsquare"); ?>';
 	var lang_summary_warning_empty_state = '<?= __("State input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_sota = '<?= __("SOTA input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_pota = '<?= __("POTA input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_iota = '<?= __("IOTA input needs to be filled to show a summary!"); ?>';
+	var lang_summary_warning_empty_dok = '<?= __("DOK input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_wwff = '<?= __("WWFF input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_gridsquare = '<?= __("Gridsquare input needs to be filled to show a summary!"); ?>';
 	var lang_summary_info_only_first_pota = '<?= __("Summary only shows for the first POTA entered."); ?>';
@@ -31,6 +33,10 @@
 
 			<li class="nav-item">
 				<a class="nav-link" id="continent-summary-tab" data-bs-toggle="tab" href="#continent-summary" role="tab" aria-controls="continent-summary" aria-selected="false"><?= __("Continent"); ?> <i class="continent-summary-reload fas fa-sync"></i></a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" id="dok-summary-tab" data-bs-toggle="tab" href="#dok-summary" role="tab" aria-controls="dok-summary" aria-selected="false"><?= __("DOK"); ?> <i class="dok-summary-reload fas fa-sync"></i></a>
 			</li>
 
 			<li class="nav-item">
@@ -63,6 +69,7 @@
 			<div class="tab-pane fade show active" id="dxcc-summary" role="tabpanel" aria-labelledby="dxcc-summary-tab"></div>
 			<div class="tab-pane fade" id="cq-summary" role="tabpanel" aria-labelledby="cq-summary-tab"></div>
 			<div class="tab-pane fade" id="continent-summary" role="tabpanel" aria-labelledby="continent-summary-tab"></div>
+			<div class="tab-pane fade" id="dok-summary" role="tabpanel" aria-labelledby="dok-summary-tab"></div>
 			<div class="tab-pane fade" id="gridsquare-summary" role="tabpanel" aria-labelledby="gridsquare-summary-tab"></div>
 			<div class="tab-pane fade" id="iota-summary" role="tabpanel" aria-labelledby="iota-summary-tab"></div>
 			<div class="tab-pane fade" id="state-summary" role="tabpanel" aria-labelledby="state-summary-tab"></div>

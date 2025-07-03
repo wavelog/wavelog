@@ -324,6 +324,7 @@ msgstr "Prémios - %s"
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:276
 #: application/views/qso/index.php:567 application/views/user/edit.php:671
 #: application/views/view_log/qso.php:460
+#: application/views/qso/award_tabs.php:39
 msgid "DOK"
 msgstr "DOK"
 
@@ -348,6 +349,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
+#: application/views/qso/award_tabs.php:27
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -436,6 +438,7 @@ msgstr " e "
 #: application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/views/qso/award_tabs.php:59
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -457,6 +460,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:295 application/views/user/edit.php:318
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/views/qso/award_tabs.php:63
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -478,6 +482,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/views/qso/award_tabs.php:55
 msgid "POTA"
 msgstr "POTA"
 
@@ -1464,6 +1469,7 @@ msgstr "País"
 #: application/views/user/edit.php:316 application/views/user/edit.php:340
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/views/qso/award_tabs.php:47
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1536,6 +1542,7 @@ msgstr "Estado"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
+#: application/views/qso/award_tabs.php:43
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
@@ -5575,6 +5582,7 @@ msgstr "Cantão"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:47
 #: application/views/qso/award_tabs.php:29
+#: application/views/qso/award_tabs.php:31
 msgid "CQ"
 msgstr "CQ"
 
@@ -6018,6 +6026,7 @@ msgstr "Diplomas - Worked All Continents (WAC)"
 #: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:33
 #: application/views/qso/edit_ajax.php:262 application/views/qso/index.php:395
 #: application/views/view_log/qso.php:342
+#: application/views/qso/award_tabs.php:35
 msgid "Continent"
 msgstr "Continente"
 
@@ -10536,6 +10545,7 @@ msgstr "Predefinição ligada"
 
 #: application/views/lookup/index.php:11
 #: application/views/qso/award_tabs.php:45
+#: application/views/qso/award_tabs.php:51
 msgid "US State"
 msgstr "Estado dos EUA"
 
@@ -11771,47 +11781,58 @@ msgid "Showing summary for IOTA"
 msgstr "Resumo de exibição para IOTA"
 
 #: application/views/qso/award_tabs.php:9
+#: application/views/qso/award_tabs.php:10
 msgid "Showing summary for continent"
 msgstr "Resumo de exibição para continentes"
 
 #: application/views/qso/award_tabs.php:10
+#: application/views/qso/award_tabs.php:11
 msgid "Showing summary for gridsquare"
 msgstr "Resumo de exibição para QTH locators"
 
 #: application/views/qso/award_tabs.php:11
+#: application/views/qso/award_tabs.php:12
 msgid "State input needs to be filled to show a summary!"
 msgstr "O campo de estado precisa ser preenchido para mostrar um resumo!"
 
 #: application/views/qso/award_tabs.php:12
+#: application/views/qso/award_tabs.php:13
 msgid "SOTA input needs to be filled to show a summary!"
 msgstr "A entrada SOTA precisa ser preenchida para mostrar um resumo!"
 
 #: application/views/qso/award_tabs.php:13
+#: application/views/qso/award_tabs.php:14
 msgid "POTA input needs to be filled to show a summary!"
 msgstr "É necessário preencher a entrada POTA para mostrar um resumo!"
 
 #: application/views/qso/award_tabs.php:14
+#: application/views/qso/award_tabs.php:15
 msgid "IOTA input needs to be filled to show a summary!"
 msgstr "A entrada IOTA precisa ser preenchida para mostrar um resumo!"
 
 #: application/views/qso/award_tabs.php:15
+#: application/views/qso/award_tabs.php:17
 msgid "WWFF input needs to be filled to show a summary!"
 msgstr "A entrada WWFF precisa ser preenchida para mostrar um resumo!"
 
 #: application/views/qso/award_tabs.php:16
+#: application/views/qso/award_tabs.php:18
 msgid "Gridsquare input needs to be filled to show a summary!"
 msgstr ""
 "A entrada do QTH Locator precisa ser preenchida para mostrar um resumo!"
 
 #: application/views/qso/award_tabs.php:17
+#: application/views/qso/award_tabs.php:19
 msgid "Summary only shows for the first POTA entered."
 msgstr "Apenas o resumo do primeiro POTA inserido é exibido."
 
 #: application/views/qso/award_tabs.php:18
+#: application/views/qso/award_tabs.php:20
 msgid "Summary only shows for the first gridsquare entered."
 msgstr "Apenas o resumo do primeiro QTH Locator inserido é exibido."
 
 #: application/views/qso/award_tabs.php:19
+#: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for US states."
 msgstr "O resumo só aparece para os estados dos EUA."
 
@@ -15343,6 +15364,14 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show only locations from the active logbook"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:9
+msgid "Showing summary for DOK"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:16
+msgid "DOK input needs to be filled to show a summary!"
 msgstr ""
 
 #~ msgid "Type in the operators callsign of the imported QSOs"
