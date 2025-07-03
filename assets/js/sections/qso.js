@@ -1330,6 +1330,26 @@ function getDokResult() {
 	});
 }
 
+// This function executes the call to the backend for fetching SAT summary and inserts table below qso entry
+function getSatResult() {
+	$('#sat-summary').empty();
+	if ($('#selectPropagation').val() != 'SAT') {
+		$('#sat-summary').append(lang_summary_warning_empty_sat);
+		return;
+	}
+	$.ajax({
+		url: base_url + 'index.php/lookup/sat',
+		type: 'post',
+		data: {
+			callsign: $('#callsign').val().replace('Ø', '0'),
+		},
+		success: function (html) {
+			$('#sat-summary').append(lang_summary_sat + ' ' + $('#callsign').val().toUpperCase() + '.');
+			$('#sat-summary').append(html);
+		}
+	});
+}
+
 // This function executes the call to the backend for fetching iota summary and inserts table below qso entry
 function getIotaResult() {
 	satOrBand = $('#band').val();
@@ -1550,6 +1570,15 @@ function loadAwardTabs(callback) {
 				}
 			});
 
+			$("a[href='#sat-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#sat-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getSatResult();
+				}
+			});
+
 			$("a[href='#dok-summary']").on('shown.bs.tab', function(e) {
 				let $targetPane = $('#dok-summary');
 
@@ -1590,6 +1619,9 @@ function loadAwardTabs(callback) {
 			});
 			$('.gridsquare-summary-reload').click(function (event) {
 				getGridsquareResult();
+			});
+			$('.sat-summary-reload').click(function (event) {
+				getSatResult();
 			});
         }
     });

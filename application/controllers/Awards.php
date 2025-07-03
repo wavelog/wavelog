@@ -456,10 +456,10 @@ class Awards extends CI_Controller {
 
 		// Render Page
 		$data['page_title'] = __("Log View")." - " . $type;
-		$data['filter'] = $type." ".$searchphrase.__(" and band ").$band;
+		$data['filter'] = (($type != $band) ? $type : '')." ".$searchphrase.__(" and band ").$band;
 		if ($band == 'SAT') {
 			if ($sat != 'All' && $sat != null) {
-				$data['filter'] .= __(" and sat ").$sat;
+				$data['filter'] .= __(" and satellite ").$sat;
 			}
 			if ($orbit != 'All' && $orbit != null) {
 				$data['filter'] .= __(" and orbit type ").$orbit;
@@ -469,7 +469,7 @@ class Awards extends CI_Controller {
 			$data['filter'] .= __(" and propagation ").$propagation;
 		}
 		if ($mode != null && strtolower($mode) != 'all') {
-			$data['filter'] .= __(" and mode ").$mode;
+			$data['filter'] .= __(" and mode ").strtoupper($mode);
 		}
 		if (!empty($qsltype)) {
 			$data['filter'] .= __(" and ").implode('/', $qsltype);

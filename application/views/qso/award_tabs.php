@@ -1,20 +1,22 @@
 <script type="text/javascript">
-    var lang_summary_dxcc = '<?= __("Showing summary for DXCC"); ?>';
-    var lang_summary_state = '<?= __("Showing summary for US State"); ?>';
-    var lang_summary_cq = '<?= __("Showing summary for CQ zone"); ?>';
-    var lang_summary_wwff = '<?= __("Showing summary for WWFF"); ?>';
-    var lang_summary_pota = '<?= __("Showing summary for POTA"); ?>';
-    var lang_summary_sota = '<?= __("Showing summary for SOTA"); ?>';
-    var lang_summary_iota = '<?= __("Showing summary for IOTA"); ?>';
+	var lang_summary_dxcc = '<?= __("Showing summary for DXCC"); ?>';
+	var lang_summary_state = '<?= __("Showing summary for US State"); ?>';
+	var lang_summary_cq = '<?= __("Showing summary for CQ zone"); ?>';
+	var lang_summary_wwff = '<?= __("Showing summary for WWFF"); ?>';
+	var lang_summary_pota = '<?= __("Showing summary for POTA"); ?>';
+	var lang_summary_sota = '<?= __("Showing summary for SOTA"); ?>';
+	var lang_summary_iota = '<?= __("Showing summary for IOTA"); ?>';
 	var lang_summary_dok = '<?= __("Showing summary for DOK"); ?>';
-    var lang_summary_continent = '<?= __("Showing summary for continent"); ?>';
-    var lang_summary_gridsquare = '<?= __("Showing summary for gridsquare"); ?>';
+	var lang_summary_sat = '<?= __("Showing summary for satellite QSOs with"); ?>';
+	var lang_summary_continent = '<?= __("Showing summary for continent"); ?>';
+	var lang_summary_gridsquare = '<?= __("Showing summary for gridsquare"); ?>';
 	var lang_summary_warning_empty_state = '<?= __("State input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_sota = '<?= __("SOTA input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_pota = '<?= __("POTA input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_iota = '<?= __("IOTA input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_dok = '<?= __("DOK input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_wwff = '<?= __("WWFF input needs to be filled to show a summary!"); ?>';
+	var lang_summary_warning_empty_sat = '<?= __("Propagation mode needs to be 'SAT' to show a summary!"); ?>';
 	var lang_summary_warning_empty_gridsquare = '<?= __("Gridsquare input needs to be filled to show a summary!"); ?>';
 	var lang_summary_info_only_first_pota = '<?= __("Summary only shows for the first POTA entered."); ?>';
 	var lang_summary_info_only_first_gridsquare = '<?= __("Summary only shows for the first gridsquare entered."); ?>';
@@ -62,6 +64,10 @@
 			<li class="nav-item">
 				<a class="nav-link" id="wwff-summary-tab" data-bs-toggle="tab" href="#wwff-summary" role="tab" aria-controls="wwff-summary" aria-selected="false"><?= __("WWFF"); ?> <i class="wwff-summary-reload fas fa-sync"></i></a>
 			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" id="sat-summary-tab" data-bs-toggle="tab" href="#sat-summary" role="tab" aria-controls="sat-summary" aria-selected="false"><?= __("Satellite"); ?> <i class="sat-summary-reload fas fa-sync"></i></a>
+			</li>
 		</ul>
 	</div>
 	<div class="card-body">
@@ -76,6 +82,7 @@
 			<div class="tab-pane fade" id="pota-summary" role="tabpanel" aria-labelledby="pota-summary-tab"></div>
 			<div class="tab-pane fade" id="sota-summary" role="tabpanel" aria-labelledby="sota-summary-tab"></div>
 			<div class="tab-pane fade" id="wwff-summary" role="tabpanel" aria-labelledby="wwff-summary-tab"></div>
+			<div class="tab-pane fade" id="sat-summary" role="tabpanel" aria-labelledby="sat-summary-tab"></div>
 		</div>
 	</div>
 </div>
