@@ -173,13 +173,13 @@ async function processBacklog() {
 	if (!processingBL) {
 		processingBL=true;
 		const Qsobacklog = JSON.parse(localStorage.getItem('qso-backlog')) || [];
-		for (const entry of [...Qsobacklog]) { 
+		for (const entry of [...Qsobacklog]) {
 			try {
-				await $.ajax({url: base_url + 'index.php/qso' + entry.manual_addon,  method: 'POST', type: 'post', data: JSON.parse(entry.data), 
+				await $.ajax({url: base_url + 'index.php/qso' + entry.manual_addon,  method: 'POST', type: 'post', data: JSON.parse(entry.data),
 					success: function(resdata) {
 						Qsobacklog.splice(Qsobacklog.findIndex(e => e.id === entry.id), 1);
-					}, 
-					error: function() { 
+					},
+					error: function() {
 						entry.attempts++;
 					}});
 			} catch (error) {
@@ -194,11 +194,11 @@ async function processBacklog() {
 function saveToBacklog(formData,manual_addon) {
 	const backlog = JSON.parse(localStorage.getItem('qso-backlog')) || [];
 	const entry = {
-		id: Date.now(), 
+		id: Date.now(),
 		timestamp: new Date().toISOString(),
 		data: formData,
 		manual_addon: manual_addon,
-		attempts: 0 
+		attempts: 0
 	};
 	backlog.push(entry);
 	localStorage.setItem('qso-backlog', JSON.stringify(backlog));
@@ -471,12 +471,12 @@ if ($("#sat_name").val() !== '') {
 $('#stateDropdown').on('change', function () {
 	var state = $("#stateDropdown option:selected").text();
 	var dxcc = $("#dxcc_id option:selected").val();
-	
+
 	if (state != "") {
 		switch (dxcc) {
 			case '6':
 			case '110':
-			case '291': 
+			case '291':
 				$("#stationCntyInputQso").prop('disabled', false);
 				$('#stationCntyInputQso').selectize({
 					maxItems: 1,
@@ -489,7 +489,7 @@ $('#stateDropdown').on('change', function () {
 					create: false,
 					load: function (query, callback) {
 						var state = $("#stateDropdown option:selected").text();
-		
+
 						if (!query || state == "") return callback();
 						$.ajax({
 							url: base_url + 'index.php/qso/get_county',
@@ -526,7 +526,7 @@ $('#stateDropdown').on('change', function () {
 			default:
 				$("#stationCntyInputQso").prop('disabled', true);
 		}
-		
+
 	} else {
 		$("#stationCntyInputQso").prop('disabled', true);
 		//$('#stationCntyInputQso')[0].selectize.destroy();
@@ -1039,14 +1039,14 @@ $("#callsign").on("focusout", function () {
 
 				/*
 					* Update county with returned value for USA only for now
-					* and make sure control is enabled for others 
+					* and make sure control is enabled for others
 					* with cnty info
 					*/
 				var dxcc = $('#dxcc_id').val();
 				switch (dxcc) {
 					case '6':
 					case '110':
-					case '291': 
+					case '291':
 						selectize_usa_county('#stateDropdown', '#stationCntyInputQso');
 						if ($('#stationCntyInputQso').has('option').length == 0 && result.callsign_us_county != "") {
 							var county_select = $('#stationCntyInputQso').selectize();
@@ -1077,7 +1077,7 @@ $("#callsign").on("focusout", function () {
 					default:
 						$("#stationCntyInputQso").prop('disabled', false);
 					}
-				
+
 
 				if (result.timesWorked != "") {
 					if (result.timesWorked == '0') {
@@ -1278,7 +1278,7 @@ function getPotaResult() {
 	});
 }
 
-// This function executes the call to the backend for fetching continent summary and inserted table below qso entry
+// This function executes the call to the backend for fetching continent summary and inserts table below qso entry
 function getContinentResult() {
 	satOrBand = $('#band').val();
 	if ($('#selectPropagation').val() == 'SAT') {
@@ -1302,7 +1302,35 @@ function getContinentResult() {
 	});
 }
 
-// This function executes the call to the backend for fetching iota summary and inserted table below qso entry
+// This function executes the call to the backend for fetching DOK summary and inserts table below qso entry
+function getDokResult() {
+	satOrBand = $('#band').val();
+	if ($('#selectPropagation').val() == 'SAT') {
+		satOrBand = 'SAT';
+	}
+	$('#dok-summary').empty();
+	if ($('#darc_dok').val() === '') {
+		$('#dok-summary').append(lang_summary_warning_empty_dok);
+		return;
+	}
+	$.ajax({
+		url: base_url + 'index.php/lookup/search',
+		type: 'post',
+		data: {
+			type: 'dok',
+			dok: $('#darc_dok').val(),
+				reduced_mode: true,
+				current_band: satOrBand,
+				current_mode: $('#mode').val(),
+		},
+		success: function (html) {
+			$('#dok-summary').append(lang_summary_dok + ' ' + $('#darc_dok').val() + '.');
+            $('#dok-summary').append(html);
+		}
+	});
+}
+
+// This function executes the call to the backend for fetching iota summary and inserts table below qso entry
 function getIotaResult() {
 	satOrBand = $('#band').val();
 	if ($('#selectPropagation').val() == 'SAT') {
@@ -1330,7 +1358,7 @@ function getIotaResult() {
 	});
 }
 
-// This function executes the call to the backend for fetching wwff summary and inserted table below qso entry
+// This function executes the call to the backend for fetching wwff summary and inserts table below qso entry
 function getWwffResult() {
 	$('#wwff-summary').empty();
 	if ($('#wwff_ref').val() === '') {
@@ -1358,7 +1386,7 @@ function getWwffResult() {
 	});
 }
 
-// This function executes the call to the backend for fetching gridsquare summary and inserted table below qso entry
+// This function executes the call to the backend for fetching gridsquare summary and inserts table below qso entry
 function getGridsquareResult() {
 	$('#gridsquare-summary').empty();
 	if ($('#locator').val() === '') {
@@ -1522,6 +1550,15 @@ function loadAwardTabs(callback) {
 				}
 			});
 
+			$("a[href='#dok-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#dok-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getDokResult();
+				}
+			});
+
 			$('.dxcc-summary-reload').click(function (event) {
 				let $targetPane = $('#dxcc-summary');
 				$targetPane.data("loaded", false); // Mark as loaded
@@ -1529,6 +1566,9 @@ function loadAwardTabs(callback) {
 			});
 			$('.iota-summary-reload').click(function (event) {
 				getIotaResult();
+			});
+			$('.dok-summary-reload').click(function (event) {
+				getDokResult();
 			});
 			$('.wwff-summary-reload').click(function (event) {
 				getWwffResult();
