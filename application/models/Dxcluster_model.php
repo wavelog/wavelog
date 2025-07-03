@@ -114,9 +114,21 @@ class Dxcluster_model extends CI_Model {
 
 	}
 
+	// We need to build functions that check the frequency limit
+	// Right now this is just a proof of concept to determine mode
 	function modefilter($spot, $mode) {
 		if ($mode == 'cw') {
 			if (isset($spot->message) && stripos($spot->message, 'cw') !== false) {
+				return true;
+			}
+		}
+		if ($mode == 'digi') {
+			if (isset($spot->message) && stripos($spot->message, 'ft8') !== false) {
+				return true;
+			}
+		}
+		if ($mode == 'phone') {
+			if (isset($spot->message) && stripos($spot->message, 'ssb') !== false) {
 				return true;
 			}
 		}
