@@ -583,6 +583,11 @@ class Logbook_model extends CI_Model {
 					}
 				}
 				break;
+			case 'SAT':
+				$this->db->where('COL_CALL', $searchphrase);
+				$this->db->where('COL_PROP_MODE', 'SAT');
+				$this->db->where('COL_SAT_NAME', $sat);
+				break;
 			case 'CQZone':
 				$this->db->where('COL_CQZ', $searchphrase);
 				break;

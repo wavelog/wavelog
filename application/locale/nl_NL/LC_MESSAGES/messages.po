@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-03 07:26+0000\n"
+"POT-Creation-Date: 2025-07-03 18:18+0000\n"
 "PO-Revision-Date: 2025-06-28 23:54+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -320,7 +320,7 @@ msgstr "Awards - %s"
 #: application/views/logbookadvanced/index.php:770
 #: application/views/logbookadvanced/useroptions.php:130
 #: application/views/lookup/index.php:14
-#: application/views/qso/award_tabs.php:39
+#: application/views/qso/award_tabs.php:41
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:276
 #: application/views/qso/index.php:567 application/views/user/edit.php:671
 #: application/views/view_log/qso.php:460
@@ -340,7 +340,7 @@ msgstr "DOK"
 #: application/views/logbookadvanced/useroptions.php:98
 #: application/views/lookup/index.php:5
 #: application/views/lotw_views/index.php:33
-#: application/views/qso/award_tabs.php:27
+#: application/views/qso/award_tabs.php:29
 #: application/views/qso/edit_ajax.php:234 application/views/qso/index.php:375
 #: application/views/search/cqzones_result.php:15
 #: application/views/search/ituzones_result.php:15
@@ -388,9 +388,8 @@ msgid " and band "
 msgstr " en band "
 
 #: application/controllers/Awards.php:462
-#: application/controllers/Callstats.php:104
-msgid " and sat "
-msgstr " en satelliet "
+msgid " and satellite "
+msgstr ""
 
 #: application/controllers/Awards.php:465
 #: application/controllers/Callstats.php:107
@@ -426,7 +425,7 @@ msgstr " en "
 #: application/views/qslcard/searchresult.php:49
 #: application/views/qslcard/searchresult.php:65
 #: application/views/qslcard/searchresult.php:81
-#: application/views/qso/award_tabs.php:59
+#: application/views/qso/award_tabs.php:61
 #: application/views/qso/components/previous_contacts.php:82
 #: application/views/qso/edit_ajax.php:376
 #: application/views/search/search_result_ajax.php:9
@@ -448,7 +447,7 @@ msgstr "SOTA"
 #: application/views/logbookadvanced/index.php:372
 #: application/views/logbookadvanced/useroptions.php:134
 #: application/views/lookup/index.php:12
-#: application/views/qso/award_tabs.php:63
+#: application/views/qso/award_tabs.php:65
 #: application/views/qso/components/previous_contacts.php:83
 #: application/views/qso/edit_ajax.php:386
 #: application/views/search/search_result_ajax.php:10
@@ -469,7 +468,7 @@ msgstr "WWFF"
 #: application/views/logbookadvanced/index.php:356
 #: application/views/logbookadvanced/index.php:764
 #: application/views/logbookadvanced/useroptions.php:122
-#: application/views/lookup/index.php:9 application/views/qso/award_tabs.php:55
+#: application/views/lookup/index.php:9 application/views/qso/award_tabs.php:57
 #: application/views/qso/components/previous_contacts.php:84
 #: application/views/qso/edit_ajax.php:382
 #: application/views/search/search_result_ajax.php:11
@@ -642,6 +641,10 @@ msgstr "CBR-gegevens geïmporteerd"
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
 msgstr "Roepnaam statistieken"
+
+#: application/controllers/Callstats.php:104
+msgid " and sat "
+msgstr " en satelliet "
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:458
@@ -1451,7 +1454,7 @@ msgstr "Land"
 #: application/views/qslcard/searchresult.php:48
 #: application/views/qslcard/searchresult.php:64
 #: application/views/qslcard/searchresult.php:80
-#: application/views/qso/award_tabs.php:47
+#: application/views/qso/award_tabs.php:49
 #: application/views/qso/components/previous_contacts.php:81
 #: application/views/qso/edit_ajax.php:367
 #: application/views/search/search_result_ajax.php:8
@@ -1514,7 +1517,7 @@ msgstr "Staat"
 #: application/views/qslcard/searchresult.php:51
 #: application/views/qslcard/searchresult.php:67
 #: application/views/qslcard/searchresult.php:83
-#: application/views/qso/award_tabs.php:43
+#: application/views/qso/award_tabs.php:45
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/qso/edit_ajax.php:157 application/views/qso/index.php:291
 #: application/views/satellite/pass.php:46
@@ -3137,36 +3140,36 @@ msgstr "HRDlog: Geen QSOs gevonden om te uploaden voor de station roepnaam: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Geen stationprofielen met HRDlog-gegevens gevonden."
 
-#: application/models/Logbook_model.php:1245
+#: application/models/Logbook_model.php:1250
 msgid "Station ID not allowed"
 msgstr "Station-ID niet toegestaan"
 
-#: application/models/Logbook_model.php:1250
+#: application/models/Logbook_model.php:1255
 msgid "No Call given"
 msgstr "Geen roepnaam gegeven"
 
-#: application/models/Logbook_model.php:1320
-#: application/models/Logbook_model.php:1494
+#: application/models/Logbook_model.php:1325
+#: application/models/Logbook_model.php:1499
 msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
-#: application/models/Logbook_model.php:3944
+#: application/models/Logbook_model.php:3949
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Verkeerde station roepnaam %s bij het importeren van QSO met %s voor %s: "
 "OVERGESLAGEN"
 
-#: application/models/Logbook_model.php:3945
+#: application/models/Logbook_model.php:3950
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Controleer %s voor hints over fouten in ADIF-bestanden."
 
-#: application/models/Logbook_model.php:3957
+#: application/models/Logbook_model.php:3962
 msgid "QSO on"
 msgstr "QSO vanaf"
 
-#: application/models/Logbook_model.php:3957
+#: application/models/Logbook_model.php:3962
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3174,63 +3177,63 @@ msgstr ""
 "Je hebt geprobeerd een QSO te importeren zonder een opgegeven CALL. Dit QSO "
 "is niet geïmporteerd. Het is ongeldig"
 
-#: application/models/Logbook_model.php:4256
+#: application/models/Logbook_model.php:4261
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4267
+#: application/models/Logbook_model.php:4272
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4328
+#: application/models/Logbook_model.php:4333
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4348
+#: application/models/Logbook_model.php:4353
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslrdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4369
+#: application/models/Logbook_model.php:4374
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslsdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4661
+#: application/models/Logbook_model.php:4666
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
-#: application/models/Logbook_model.php:4722
+#: application/models/Logbook_model.php:4727
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
-#: application/models/Logbook_model.php:4728
+#: application/models/Logbook_model.php:4733
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4733
+#: application/models/Logbook_model.php:4738
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
-#: application/models/Logbook_model.php:4736
+#: application/models/Logbook_model.php:4741
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
-#: application/models/Logbook_model.php:4739
+#: application/models/Logbook_model.php:4744
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
-#: application/models/Logbook_model.php:4742
+#: application/models/Logbook_model.php:4747
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-#: application/models/Logbook_model.php:4745
+#: application/models/Logbook_model.php:4750
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "onbekend"
 
-#: application/models/Logbook_model.php:5583
+#: application/models/Logbook_model.php:5588
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3823,6 +3826,7 @@ msgstr "Toon"
 #: application/views/interface_assets/header.php:194
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/logbookadvanced/index.php:275
+#: application/views/qso/award_tabs.php:69
 #: application/views/satellite/flightpath.php:40
 #: application/views/satellite/pass.php:16
 #: application/views/satellite/passtable.php:6
@@ -5561,7 +5565,7 @@ msgid "Canton"
 msgstr "Kanton"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:47
-#: application/views/qso/award_tabs.php:31
+#: application/views/qso/award_tabs.php:33
 msgid "CQ"
 msgstr "CQ"
 
@@ -6003,7 +6007,7 @@ msgstr "Awards - Worked All Continents (WAC)"
 #: application/views/logbookadvanced/index.php:386
 #: application/views/logbookadvanced/index.php:797
 #: application/views/logbookadvanced/useroptions.php:166
-#: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:35
+#: application/views/lookup/index.php:4 application/views/qso/award_tabs.php:37
 #: application/views/qso/edit_ajax.php:262 application/views/qso/index.php:395
 #: application/views/view_log/qso.php:342
 msgid "Continent"
@@ -10505,7 +10509,7 @@ msgid "Default on"
 msgstr "Standaard aan"
 
 #: application/views/lookup/index.php:11
-#: application/views/qso/award_tabs.php:51
+#: application/views/qso/award_tabs.php:53
 msgid "US State"
 msgstr "Amerikaanse staat"
 
@@ -11741,52 +11745,60 @@ msgid "Showing summary for DOK"
 msgstr ""
 
 #: application/views/qso/award_tabs.php:10
+msgid "Showing summary for satellite QSOs with"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:11
 msgid "Showing summary for continent"
 msgstr "Samenvatting tonen voor continent"
 
-#: application/views/qso/award_tabs.php:11
+#: application/views/qso/award_tabs.php:12
 msgid "Showing summary for gridsquare"
 msgstr "Samenvatting weergeven voor locator vakken"
 
-#: application/views/qso/award_tabs.php:12
+#: application/views/qso/award_tabs.php:13
 msgid "State input needs to be filled to show a summary!"
 msgstr "De invoer moet worden ingevuld om een samenvatting te tonen!"
 
-#: application/views/qso/award_tabs.php:13
+#: application/views/qso/award_tabs.php:14
 msgid "SOTA input needs to be filled to show a summary!"
 msgstr "SOTA-invoer moet worden ingevuld om een samenvatting te tonen!"
 
-#: application/views/qso/award_tabs.php:14
+#: application/views/qso/award_tabs.php:15
 msgid "POTA input needs to be filled to show a summary!"
 msgstr "POTA-invoer moet worden ingevuld om een samenvatting te tonen!"
 
-#: application/views/qso/award_tabs.php:15
+#: application/views/qso/award_tabs.php:16
 msgid "IOTA input needs to be filled to show a summary!"
 msgstr "IOTA-invoer moet worden ingevuld om een samenvatting te tonen!"
 
-#: application/views/qso/award_tabs.php:16
+#: application/views/qso/award_tabs.php:17
 msgid "DOK input needs to be filled to show a summary!"
 msgstr ""
 
-#: application/views/qso/award_tabs.php:17
+#: application/views/qso/award_tabs.php:18
 msgid "WWFF input needs to be filled to show a summary!"
 msgstr "WWFF-invoer moet worden ingevuld om een samenvatting te tonen!"
 
-#: application/views/qso/award_tabs.php:18
+#: application/views/qso/award_tabs.php:19
+msgid "Propagation mode needs to be 'SAT' to show a summary!"
+msgstr ""
+
+#: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
 msgstr "Lokatorvak-invoer moet worden ingevuld om een samenvatting te tonen!"
 
-#: application/views/qso/award_tabs.php:19
+#: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
 msgstr "Samenvatting wordt alleen weergegeven voor de eerste ingevoerde POTA."
 
-#: application/views/qso/award_tabs.php:20
+#: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
 msgstr ""
 "Samenvatting wordt alleen weergegeven voor het eerste lokatorvak dat is "
 "ingevoerd."
 
-#: application/views/qso/award_tabs.php:21
+#: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
 msgstr "Samenvatting wordt alleen weergegeven voor VS staten."
 
