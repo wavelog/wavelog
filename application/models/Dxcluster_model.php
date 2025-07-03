@@ -117,87 +117,67 @@ class Dxcluster_model extends CI_Model {
 	// We need to build functions that check the frequency limit
 	// Right now this is just a proof of concept to determine mode
 	function modefilter($spot, $mode) {
-		if ($mode == 'cw') {
-			if ($this->getMode($spot->frequency) == 'CW') {
+		$mode = strtolower($mode); // Normalize case
+
+		if ($this->isFrequencyInMode($spot->frequency, $mode)) {
+			return true;
+		}
+
+		// Fallbacks using message keywords
+		if (isset($spot->message)) {
+			$message = strtolower($spot->message);
+			if ($mode === 'cw' && strpos($message, 'cw') !== false) {
 				return true;
 			}
-			if (isset($spot->message) && stripos($spot->message, 'cw') !== false) {
+			if ($mode === 'digi' && (strpos($message, 'ft8') !== false || strpos($message, 'rtty') !== false || strpos($message, 'sstv') !== false)) {
 				return true;
 			}
 		}
-		if ($mode == 'digi') {
-			if (isset($spot->message) && stripos($spot->message, 'ft8') !== false) {
-				return true;
-			}
-		}
-		if ($mode == 'phone') {
-			if (isset($spot->message) && stripos($spot->message, 'ssb') !== false) {
-				return true;
-			}
-		}
+
 		return false;
 	}
 
-	function getMode($frequency) {
-		if ($frequency > 1800000 && $frequency < 1840000) {
-			return "CW";
-		} else if ($frequency > 3500000 && $frequency < 3600000) {
-			return "CW";
-		} else if ($frequency > 5350000 && $frequency < 5367000) {
-			return "CW";
-		} else if ($frequency > 7000000 && $frequency < 7040000) {
-			return "CW";
-		} else if ($frequency > 10100000 && $frequency < 10130000) {
-			return "CW";
-		} else if ($frequency > 14000000 && $frequency < 14070000) {
-			return "CW";
-		} else if ($frequency > 18068000 && $frequency < 18096000) {
-			return "CW";
-		} else if ($frequency > 21000000 && $frequency < 21070000) {
-			return "CW";
-		} else if ($frequency > 24890000 && $frequency < 24910000) {
-			return "CW";
-		} else if ($frequency > 28000000 && $frequency < 28070000) {
-			return "CW";
-		} else if ($frequency > 50000000 && $frequency < 50109000) {
-			return "CW";
-		} else if ($frequency > 69000000 && $frequency < 71000000) {
-			return "CW";
-		} else if ($frequency > 140000000 && $frequency < 150000000) {
-			return "CW";
-		} else if ($frequency > 218000000 && $frequency < 226000000) {
-			return "CW";
-		} else if ($frequency > 420000000 && $frequency < 450000000) {
-			return "CW";
-		} else if ($frequency > 900000000 && $frequency < 930000000) {
-			return "CW";
-		} else if ($frequency > 1200000000 && $frequency < 1300000000) {
-			return "CW";
-		} else if ($frequency > 2200000000 && $frequency < 2600000000) {
-			return "CW";
-		} else if ($frequency > 3000000000 && $frequency < 4000000000) {
-			return "CW";;
-		} else if ($frequency > 5000000000 && $frequency < 6000000000) {
-			return "CW";
-		} else if ($frequency > 9000000000 && $frequency < 11000000000) {
-			return "CW";
-		} else if ($frequency > 23000000000 && $frequency < 25000000000) {
-			return "CW";
-		} else if ($frequency > 46000000000 && $frequency < 55000000000) {
-			return "CW";
-		} else if ($frequency > 75000000000 && $frequency < 82000000000) {
-			return "CW";
-		} else if ($frequency > 120000000000 && $frequency < 125000000000) {
-			return "CW";
-		} else if ($frequency > 133000000000 && $frequency < 150000000000) {
-			return "CW";
-		} else if ($frequency > 240000000000 && $frequency < 250000000000) {
-			return "CW";
-		} else if ($frequency >= 250000000000) {
-			return "CW";
+function isFrequencyInMode($frequency, $mode) {
+	$bandMap = [
+		['mode' => 'cw',    'range' => [1800, 1840]],
+		['mode' => 'phone', 'range' => [1840, 2000]],
+		['mode' => 'cw',    'range' => [3500, 3600]],
+		['mode' => 'phone', 'range' => [3700, 4000]],
+		['mode' => 'cw',    'range' => [5350, 5367]],
+		['mode' => 'phone', 'range' => [5350, 5367]],
+		['mode' => 'digi',  'range' => [5350, 5367]],
+		['mode' => 'cw',    'range' => [7000, 7040]],
+		['mode' => 'phone', 'range' => [7100, 7300]],
+		['mode' => 'cw',    'range' => [10100, 10130]],
+		['mode' => 'digi',  'range' => [10100, 10130]],
+		['mode' => 'cw',    'range' => [14000, 14070]],
+		['mode' => 'phone', 'range' => [14125, 14350]],
+		['mode' => 'cw',    'range' => [18068, 18096]],
+		['mode' => 'phone', 'range' => [18110, 18168]],
+		['mode' => 'cw',    'range' => [21000, 21070]],
+		['mode' => 'phone', 'range' => [21125, 21450]],
+		['mode' => 'cw',    'range' => [24890, 24910]],
+		['mode' => 'phone', 'range' => [24930, 24990]],
+		['mode' => 'cw',    'range' => [28000, 28070]],
+		['mode' => 'phone', 'range' => [28125, 29700]],
+		['mode' => 'cw',    'range' => [50000, 50109]],
+		['mode' => 'phone', 'range' => [50110, 52000]],
+	];
+
+	foreach ($bandMap as $entry) {
+		if ($entry['mode'] === $mode) {
+			[$low, $high] = $entry['range'];
+			if ($frequency >= $low && $frequency < $high) {
+				return true;
+			}
 		}
-		return 'Unknown';
 	}
+
+	return false;
+}
+
+
+
 
     public function dxc_qrg_lookup($qrg, $maxage = 120) {
 		$this->load->helper(array('psr4_autoloader'));
