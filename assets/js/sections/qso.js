@@ -1570,6 +1570,15 @@ function loadAwardTabs(callback) {
 				}
 			});
 
+			$("a[href='#sat-summary']").on('shown.bs.tab', function(e) {
+				let $targetPane = $('#sat-summary');
+
+				if (!$targetPane.data("loaded")) {
+					$targetPane.data("loaded", true); // Mark as loaded
+					getSatResult();
+				}
+			});
+
 			$("a[href='#dok-summary']").on('shown.bs.tab', function(e) {
 				let $targetPane = $('#dok-summary');
 
