@@ -118,6 +118,9 @@ class Dxcluster_model extends CI_Model {
 	// Right now this is just a proof of concept to determine mode
 	function modefilter($spot, $mode) {
 		if ($mode == 'cw') {
+			if ($this->getMode($spot->frequency) == 'CW') {
+				return true;
+			}
 			if (isset($spot->message) && stripos($spot->message, 'cw') !== false) {
 				return true;
 			}
@@ -133,6 +136,67 @@ class Dxcluster_model extends CI_Model {
 			}
 		}
 		return false;
+	}
+
+	function getMode($frequency) {
+		if ($frequency > 1800000 && $frequency < 1840000) {
+			return "CW";
+		} else if ($frequency > 3500000 && $frequency < 3600000) {
+			return "CW";
+		} else if ($frequency > 5350000 && $frequency < 5367000) {
+			return "CW";
+		} else if ($frequency > 7000000 && $frequency < 7040000) {
+			return "CW";
+		} else if ($frequency > 10100000 && $frequency < 10130000) {
+			return "CW";
+		} else if ($frequency > 14000000 && $frequency < 14070000) {
+			return "CW";
+		} else if ($frequency > 18068000 && $frequency < 18096000) {
+			return "CW";
+		} else if ($frequency > 21000000 && $frequency < 21070000) {
+			return "CW";
+		} else if ($frequency > 24890000 && $frequency < 24910000) {
+			return "CW";
+		} else if ($frequency > 28000000 && $frequency < 28070000) {
+			return "CW";
+		} else if ($frequency > 50000000 && $frequency < 50109000) {
+			return "CW";
+		} else if ($frequency > 69000000 && $frequency < 71000000) {
+			return "CW";
+		} else if ($frequency > 140000000 && $frequency < 150000000) {
+			return "CW";
+		} else if ($frequency > 218000000 && $frequency < 226000000) {
+			return "CW";
+		} else if ($frequency > 420000000 && $frequency < 450000000) {
+			return "CW";
+		} else if ($frequency > 900000000 && $frequency < 930000000) {
+			return "CW";
+		} else if ($frequency > 1200000000 && $frequency < 1300000000) {
+			return "CW";
+		} else if ($frequency > 2200000000 && $frequency < 2600000000) {
+			return "CW";
+		} else if ($frequency > 3000000000 && $frequency < 4000000000) {
+			return "CW";;
+		} else if ($frequency > 5000000000 && $frequency < 6000000000) {
+			return "CW";
+		} else if ($frequency > 9000000000 && $frequency < 11000000000) {
+			return "CW";
+		} else if ($frequency > 23000000000 && $frequency < 25000000000) {
+			return "CW";
+		} else if ($frequency > 46000000000 && $frequency < 55000000000) {
+			return "CW";
+		} else if ($frequency > 75000000000 && $frequency < 82000000000) {
+			return "CW";
+		} else if ($frequency > 120000000000 && $frequency < 125000000000) {
+			return "CW";
+		} else if ($frequency > 133000000000 && $frequency < 150000000000) {
+			return "CW";
+		} else if ($frequency > 240000000000 && $frequency < 250000000000) {
+			return "CW";
+		} else if ($frequency >= 250000000000) {
+			return "CW";
+		}
+		return 'Unknown';
 	}
 
     public function dxc_qrg_lookup($qrg, $maxage = 120) {
