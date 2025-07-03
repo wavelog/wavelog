@@ -45,6 +45,7 @@ class Migration_add_bandedges extends CI_Migration {
 			// Insert initial data (for all users: userid = -1)
 			$data = [
 				['userid' => -1, 'frequencyfrom' => 1800000,  'frequencyto' => 1840000,  'mode' => 'cw'],
+				['userid' => -1, 'frequencyfrom' => 1840000,  'frequencyto' => 2000000,  'mode' => 'phone'],
 				['userid' => -1, 'frequencyfrom' => 3500000,  'frequencyto' => 3600000,  'mode' => 'cw'],
 				['userid' => -1, 'frequencyfrom' => 3700000,  'frequencyto' => 4000000,  'mode' => 'phone'],
 				['userid' => -1, 'frequencyfrom' => 5350000,  'frequencyto' => 5367000,  'mode' => 'cw'],
@@ -54,6 +55,16 @@ class Migration_add_bandedges extends CI_Migration {
 				['userid' => -1, 'frequencyfrom' => 14000000, 'frequencyto' => 14070000, 'mode' => 'cw'],
 				['userid' => -1, 'frequencyfrom' => 14125000, 'frequencyto' => 14350000, 'mode' => 'phone'],
 				['userid' => -1, 'frequencyfrom' => 14070000, 'frequencyto' => 14125000, 'mode' => 'digi'],
+				['userid' => -1, 'frequencyfrom' => 18068000, 'frequencyto' => 18096000, 'mode' => 'cw'],
+				['userid' => -1, 'frequencyfrom' => 18110000, 'frequencyto' => 18168000, 'mode' => 'phone'],
+				['userid' => -1, 'frequencyfrom' => 21000000, 'frequencyto' => 21070000, 'mode' => 'cw'],
+				['userid' => -1, 'frequencyfrom' => 21125000, 'frequencyto' => 21450000, 'mode' => 'phone'],
+				['userid' => -1, 'frequencyfrom' => 24890000, 'frequencyto' => 24910000, 'mode' => 'cw'],
+				['userid' => -1, 'frequencyfrom' => 24930000, 'frequencyto' => 24990000, 'mode' => 'phone'],
+				['userid' => -1, 'frequencyfrom' => 28000000, 'frequencyto' => 28070000, 'mode' => 'cw'],
+				['userid' => -1, 'frequencyfrom' => 28125000, 'frequencyto' => 29700000, 'mode' => 'phone'],
+				['userid' => -1, 'frequencyfrom' => 50000000, 'frequencyto' => 50109000, 'mode' => 'cw'],
+				['userid' => -1, 'frequencyfrom' => 50110000, 'frequencyto' => 52000000, 'mode' => 'phone']
 			];
 
 			$this->db->insert_batch('bandedges', $data);
