@@ -1296,6 +1296,10 @@ class QSO
 		} else {
 			$dokstring = $this->dxDARCDOK;
 		}
+		if ($dokstring !== '') {
+			$dokstring .= '<a href="javascript:spawnLookupModal(\''.$this->dxDARCDOK.'\',\'dok\');"> <i class="fas fa-globe"></a>';
+		}
+
 		return $dokstring;
 	}
 
