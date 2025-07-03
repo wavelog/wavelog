@@ -2,6 +2,25 @@
 
 class Lookup_model extends CI_Model{
 
+	function getSatResult($queryinfo){
+		foreach ($queryinfo['sats'] as $sat) {
+			$resultArray[$sat] = '-';
+		}
+		$sql = "SELECT DISTINCT(COL_SAT_NAME) FROM ".$this->config->item('table_name')." WHERE COL_PROP_MODE = 'SAT' AND COL_CALL = ?;";
+		$binds[] = $queryinfo['callsign'];
+		$query = $this->db->query($sql,$binds);
+		foreach ($query->result() as $workedsat) {
+			$resultArray[$workedsat->COL_SAT_NAME] = 'W';
+		}
+		$sql = "SELECT DISTINCT(COL_SAT_NAME) FROM ".$this->config->item('table_name')." WHERE COL_PROP_MODE = 'SAT' AND COL_CALL = ?";
+		$sql .= $this->buildConfirmationString('confirmed');
+		$query = $this->db->query($sql,$binds);
+		foreach ($query->result() as $confirmedsat) {
+			$resultArray[$confirmedsat->COL_SAT_NAME] = 'C';
+		}
+		return $resultArray;
+	}
+
 	function getSearchResult($queryinfo){
 		$modes = $this->get_worked_modes($queryinfo['location_list']);
 
@@ -107,41 +126,8 @@ class Lookup_model extends CI_Model{
 		$binds = [];
 
 		$sqlquerytypestring = '';
+		$sqlqueryconfirmationstring = $this->buildConfirmationString($confirmedtype);
 
-		if ($confirmedtype == 'confirmed') {
-			$user_default_confirmation = $this->session->userdata('user_default_confirmation');
-			$extrawhere='';
-			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
-				$extrawhere="COL_QSL_RCVD='Y'";
-			}
-			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
-				if ($extrawhere!='') {
-					$extrawhere.=" OR";
-				}
-				$extrawhere.=" COL_LOTW_QSL_RCVD='Y'";
-			}
-			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) {
-				if ($extrawhere!='') {
-					$extrawhere.=" OR";
-				}
-				$extrawhere.=" COL_EQSL_QSL_RCVD='Y'";
-			}
-
-			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
-				if ($extrawhere!='') {
-					$extrawhere.=" OR";
-				}
-				$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
-			}
-
-			if (($confirmedtype == 'confirmed') && ($extrawhere != '')){
-				$sqlqueryconfirmationstring = " and (".$extrawhere.")";
-			} else {
-				$sqlqueryconfirmationstring = ' and (1=0)';
-			}
-		} else {
-			$sqlqueryconfirmationstring = '';
-		}
 		// Fetching info for all modes and bands except satellite
 		$sql = "SELECT distinct col_band, lower(col_mode) as col_mode FROM " . $this->config->item('table_name') . " thcv";
 
@@ -197,6 +183,44 @@ class Lookup_model extends CI_Model{
 		$query = $this->db->query($sql,$binds);
 
 		return $query->result();
+	}
+
+	function buildConfirmationString ($confirmedtype) {
+		if ($confirmedtype == 'confirmed') {
+			$user_default_confirmation = $this->session->userdata('user_default_confirmation');
+			$extrawhere='';
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
+				$extrawhere="COL_QSL_RCVD='Y'";
+			}
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_LOTW_QSL_RCVD='Y'";
+			}
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_EQSL_QSL_RCVD='Y'";
+			}
+
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+			}
+
+			if (($confirmedtype == 'confirmed') && ($extrawhere != '')){
+				$sqlqueryconfirmationstring = " and (".$extrawhere.")";
+			} else {
+				$sqlqueryconfirmationstring = ' and (1=0)';
+			}
+		} else {
+			$sqlqueryconfirmationstring = '';
+		}
+		return $sqlqueryconfirmationstring;
 	}
 
 	/*

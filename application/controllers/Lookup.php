@@ -74,6 +74,18 @@ class Lookup extends CI_Controller {
 
 	}
 
+	public function sat() {
+		$this->load->model('lookup_model');
+		$this->load->model('bands');
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$data['location_list'] = "'".implode("','",$logbooks_locations_array)."'";
+		$data['callsign'] = xss_clean($this->input->post('callsign'));
+		$data['sats'] = $this->bands->get_worked_sats();
+		$data['result'] = $this->lookup_model->getSatResult($data);
+		$this->load->view('lookup/satresult', $data);
+	}
+
 	public function scp() {
 		session_write_close();
 		$uppercase_callsign = strtoupper($this->input->post('callsign', TRUE) ?? '');
