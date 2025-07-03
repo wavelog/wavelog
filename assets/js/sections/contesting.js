@@ -52,6 +52,22 @@ function disabledContestnameSelect(disabled) {
 	}
 }
 
+function reset_dialog() {
+	BootstrapDialog.confirm({
+			title: lang_general_word_danger,
+			message: lang_contest_reset_session,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-danger',
+			callback: function(result) {
+				if(result) {
+					reset_contest_session();
+				}
+			}
+	});
+}
+
 // Resets the logging form and deletes session from database
 async function reset_contest_session() {
 	await $.ajax({
