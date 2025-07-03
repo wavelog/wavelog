@@ -13,6 +13,7 @@
 	var lang_summary_warning_empty_sota = '<?= __("SOTA input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_pota = '<?= __("POTA input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_iota = '<?= __("IOTA input needs to be filled to show a summary!"); ?>';
+	var lang_summary_warning_empty_dok = '<?= __("DOK input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_wwff = '<?= __("WWFF input needs to be filled to show a summary!"); ?>';
 	var lang_summary_warning_empty_gridsquare = '<?= __("Gridsquare input needs to be filled to show a summary!"); ?>';
 	var lang_summary_info_only_first_pota = '<?= __("Summary only shows for the first POTA entered."); ?>';

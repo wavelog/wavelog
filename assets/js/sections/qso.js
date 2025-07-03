@@ -1310,7 +1310,7 @@ function getDokResult() {
 	}
 	$('#dok-summary').empty();
 	if ($('#darc_dok').val() === '') {
-		$('#dok-summary').append(lang_summary_warning_empty_iota);
+		$('#dok-summary').append(lang_summary_warning_empty_dok);
 		return;
 	}
 	$.ajax({
