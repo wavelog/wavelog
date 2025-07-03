@@ -3,6 +3,17 @@
 use Wavelog\Dxcc\Dxcc;
 
 class Dxcluster_model extends CI_Model {
+
+    protected $bandedges = [];
+
+    public function __construct() {
+
+        // Load bandedges into a class property
+		$this->db->where('userid', -1);
+        $query = $this->db->get('bandedges');
+        $this->bandedges = $query->result_array(); // or ->result() if you want objects
+    }
+
 	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '', $mode = 'All') {
 		$this->load->helper(array('psr4_autoloader'));
 
@@ -137,47 +148,22 @@ class Dxcluster_model extends CI_Model {
 		return false;
 	}
 
-function isFrequencyInMode($frequency, $mode) {
-	$bandMap = [
-		['mode' => 'cw',    'range' => [1800, 1840]],
-		['mode' => 'phone', 'range' => [1840, 2000]],
-		['mode' => 'cw',    'range' => [3500, 3600]],
-		['mode' => 'phone', 'range' => [3700, 4000]],
-		['mode' => 'cw',    'range' => [5350, 5367]],
-		['mode' => 'phone', 'range' => [5350, 5367]],
-		['mode' => 'digi',  'range' => [5350, 5367]],
-		['mode' => 'cw',    'range' => [7000, 7040]],
-		['mode' => 'phone', 'range' => [7100, 7300]],
-		['mode' => 'cw',    'range' => [10100, 10130]],
-		['mode' => 'digi',  'range' => [10100, 10130]],
-		['mode' => 'cw',    'range' => [14000, 14070]],
-		['mode' => 'phone', 'range' => [14125, 14350]],
-		['mode' => 'cw',    'range' => [18068, 18096]],
-		['mode' => 'phone', 'range' => [18110, 18168]],
-		['mode' => 'cw',    'range' => [21000, 21070]],
-		['mode' => 'phone', 'range' => [21125, 21450]],
-		['mode' => 'cw',    'range' => [24890, 24910]],
-		['mode' => 'phone', 'range' => [24930, 24990]],
-		['mode' => 'cw',    'range' => [28000, 28070]],
-		['mode' => 'phone', 'range' => [28125, 29700]],
-		['mode' => 'cw',    'range' => [50000, 50109]],
-		['mode' => 'phone', 'range' => [50110, 52000]],
-	];
+	public function isFrequencyInMode($frequency, $mode) {
+        // Ensure frequency is in Hz if input is in kHz
+        if ($frequency < 1_000_000) {
+            $frequency *= 1000;
+        }
 
-	foreach ($bandMap as $entry) {
-		if ($entry['mode'] === $mode) {
-			[$low, $high] = $entry['range'];
-			if ($frequency >= $low && $frequency < $high) {
-				return true;
-			}
-		}
-	}
+        foreach ($this->bandedges as $band) {
+            if (strtolower($band['mode']) === strtolower($mode)) {
+                if ($frequency >= $band['frequencyfrom'] && $frequency < $band['frequencyto']) {
+                    return true;
+                }
+            }
+        }
 
-	return false;
-}
-
-
-
+        return false;
+    }
 
     public function dxc_qrg_lookup($qrg, $maxage = 120) {
 		$this->load->helper(array('psr4_autoloader'));
