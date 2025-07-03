@@ -180,10 +180,17 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 
 ?>
 
-<?php if ($results) { ?>
+<?php
+	if ($results) {
+		$tableid = "contacttable";
+		if (!empty($ispopup)) {
+			$tableid = "displaycontactstable";
+		}
+
+?>
 
 <div class="table-responsive">
-    <table style="width:100%" id="contacttable" class="table contacttable table-striped table-hover">
+    <table style="width:100%" id="<?= $tableid ?>" class="table <?= $tableid ?> table-striped table-hover">
         <thead>
             <tr class="titles">
                 <th><?= __("Date"); ?></th>

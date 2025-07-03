@@ -19,7 +19,7 @@ function displayDistanceQsos(sat) {
 					onshown: function(dialog) {
 						modalloading=false;
 						$('[data-bs-toggle="tooltip"]').tooltip();
-						$('.contacttable').DataTable({
+						$('.displaycontactstable').DataTable({
 							"pageLength": 25,
 							responsive: false,
 							ordering: false,

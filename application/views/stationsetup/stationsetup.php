@@ -1,3 +1,6 @@
+<script type="text/javascript">
+    var custom_date_format = "<?php echo $custom_date_format ?>";
+</script>
 <div class="container">
 
     <br>
@@ -98,7 +101,7 @@
 					<?= __("The 'Linked' column shows if the station location is linked with the Active Logbook selected above."); ?>
 				</p>
 
-						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a></p>
+						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a> <button onclick="filterlocations();" class="btn btn-sm btn-success"><?= __("Show only locations from the active logbook"); ?></button> <button onclick="removefilterlocations();" class="btn btn-sm btn-success"><?= __("Show all locations"); ?></button></p>
 
 <?php if($current_active == 0) { ?>
 <div class="alert alert-danger" role="alert">
@@ -123,6 +126,7 @@
 			<th scope="col"><?= __("Station Callsign"); ?></th>
 			<th scope="col"><?= __("Country"); ?></th>
 			<th scope="col"><?= __("Gridsquare"); ?></th>
+			<th scope="col"><?= __("Last QSO"); ?></th>
 			<th></th>
 			<th scope="col"><?= __("Linked"); ?></th>
 			<th scope="col"><?= __("Edit"); ?></th>
@@ -149,6 +153,7 @@
 			<td><?php echo $row->station_callsign;?></td>
 			<td><?php echo $row->station_country == '' ? __("Please select one") : $row->station_country; if ($row->dxcc_end != NULL) { echo ' <span class="badge bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
 			<td><?php echo $row->station_gridsquare;?></td>
+			<td></td>
 			<td>
 				<?php if($row->station_active != 1) { ?>
 					<a href="<?php echo site_url('station/set_active/').$current_active."/".$row->station_id; ?>" class="btn btn-outline-secondary btn-sm" onclick="return confirm('<?= __("Are you sure you want to make the following station the active station: "); ?> <?php echo $row->station_profile_name; ?>');"><?= __("Set Active"); ?></a>

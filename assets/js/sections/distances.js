@@ -169,7 +169,7 @@ function getDistanceQsos(distance) {
 				message: html,
 				onshown: function(dialog) {
 						$('[data-bs-toggle="tooltip"]').tooltip();
-						$('.contacttable').DataTable({
+						$('.displaycontactstable').DataTable({
 						"pageLength": 25,
 						responsive: false,
 						ordering: false,

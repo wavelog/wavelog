@@ -48,6 +48,7 @@ class DXCC extends CI_Model {
 	 */
 	function list_current($orderer = 'name') {
 		$this->db->where('end', null);
+		$this->db->where('adif !=', 0);
 
 		if ($orderer == 'name') {
 			$this->db->order_by('name', 'ASC');

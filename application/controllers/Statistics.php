@@ -304,6 +304,7 @@ class Statistics extends CI_Controller {
 
 		$data['page_title'] = __("Log View")." - " . __("Satellite QSOs");
 		$data['filter'] = $sat;
+		$data['ispopup'] = true;
 
 		$this->load->view('statistics/details', $data);
 	}

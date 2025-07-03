@@ -231,16 +231,32 @@ class Update_model extends CI_Model {
         $mtime = $mtime[1] + $mtime[0];
         $starttime = $mtime;
 
-        $file = 'https://lotw.arrl.org/lotw-user-activity.csv';
+        $url = 'https://lotw.arrl.org/lotw-user-activity.csv';
 
-        $handle = fopen($file, "r");
-        if ($handle === FALSE) {
-            return "Something went wrong with fetching the LoTW uses file";
+        $f = fopen('php://temp', 'w+');
+        if ($f === FALSE) {
+           return "Something went wrong creating the temporary LoTW users file";
         }
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog LoTW Updater');
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_FILE, $f);
+        curl_exec($ch);
+        if (curl_getinfo($ch, CURLINFO_HTTP_CODE) != 200) {
+           return "Something went wrong with fetching the LoTW users file";
+        }
+        rewind($f);
+        if (count(fgetcsv($f, 1000, ",", '"', '\\')) == 1) {
+           fclose($f);
+           return "File format of LoTW users file does not match expected format. Update skipped!";
+        }
+
+        rewind($f);
         $this->db->empty_table("lotw_users");
         $this->db->query("ALTER TABLE lotw_users AUTO_INCREMENT 1");
         $i = 0;
-        $data = fgetcsv($handle, 1000, ",", '"', '\\');
+        $data = fgetcsv($f, 1000, ",", '"', '\\');
         do {
             if ($data[0]) {
                 $lotwdata[$i]['callsign'] = $data[0];
@@ -248,12 +264,11 @@ class Update_model extends CI_Model {
                 if (($i % 2000) == 0) {
                     $this->db->insert_batch('lotw_users', $lotwdata);
                     unset($lotwdata);
-                    // echo 'Record ' . $i . '<br />';
                 }
                 $i++;
             }
-        } while ($data = fgetcsv($handle, 1000, ",", '"', '\\'));
-        fclose($handle);
+        } while ($data = fgetcsv($f, 1000, ",", '"', '\\'));
+        fclose($f);
 
         $this->db->insert_batch('lotw_users', $lotwdata);
 

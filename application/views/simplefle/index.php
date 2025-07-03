@@ -108,7 +108,7 @@
 								<?php } ?>
 							</select>
 							<div class="alert alert-danger" role="alert" id="warningStationCall" style="display: none"> </div>
-							<small class="form-text text-muted"><?= sprintf(__("If you did operate from a new location, first create a new %sStation Location%s"), '<a href="'.site_url('station').'">', '</a>'); ?></small>
+							<small class="form-text text-muted"><?= sprintf(__("If you did operate from a new location, first create a new %sStation Location%s"), '<a href="'.site_url('stationsetup').'" target="_self">', '</a>'); ?></small>
 						</div>
 					</div>
 					<?php if (clubaccess_check(9)) { ?>

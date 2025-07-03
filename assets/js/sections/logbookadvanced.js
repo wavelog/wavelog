@@ -59,6 +59,9 @@ function updateRow(qso) {
 	if ((user_options.band.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.band);
 	}
+	if ((user_options.frequency.show ?? 'true') == "true"){
+		cells.eq(c++).text(qso.frequency);
+	}
 	if ( (user_options.gridsquare) && ((user_options.gridsquare.show ?? 'true') == "true")){
 		cells.eq(c++).html(qso.gridsquare);
 	}
@@ -93,7 +96,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.qslMessageR);
 	}
 	if ((user_options.dxcc.show ?? 'true') == "true"){
-		cells.eq(c++).html(qso.dxcc);
+		cells.eq(c++).html(qso.dxcc+qso.flag);
 	}
 	if ((user_options.state.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.state);
@@ -259,6 +262,9 @@ function loadQSOTable(rows) {
 				data.push(qso.band);
 			}
 		}
+		if ((user_options.frequency.show ?? 'true') == "true"){
+			data.push(qso.frequency);
+		}
 		if ((user_options.gridsquare.show ?? 'true') == "true"){
 			data.push(qso.gridsquare);
 		}
@@ -293,7 +299,7 @@ function loadQSOTable(rows) {
 			data.push(qso.qslMessageR);
 		}
 		if ((user_options.dxcc.show ?? 'true') == "true"){
-			data.push(qso.dxcc+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
+			data.push(qso.dxcc+qso.flag+(qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
 		}
 		if ((user_options.state.show ?? 'true') == "true"){
 			data.push(qso.state);
@@ -589,7 +595,8 @@ $(document).ready(function () {
 				invalid: this.invalid.value,
 				continent: this.continent.value,
 				comment: this.comment.value,
-				qsoids: qsoids
+				qsoids: qsoids,
+				dok: this.dok.value
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -1497,6 +1504,7 @@ function saveOptions() {
 				ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
 				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
 				qth: $('input[name="qth"]').is(':checked') ? true : false,
+				frequency: $('input[name="frequency"]').is(':checked') ? true : false,
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);
