@@ -23,4 +23,5 @@ $(document).ready(function () {
       inheritClass: true,
       includeSelectAllOption: true
    });
+
 })
