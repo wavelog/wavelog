@@ -7,21 +7,22 @@
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
 # Pascal HB9HCG <hb9hcg@uska.ch>, 2025.
 # Alexey Khromov <zxalexis@gmail.com>, 2025.
+# Aleksey Ubozhenko R3DHX <mstadmin@ramsdr.ru>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-03 19:16+0000\n"
-"PO-Revision-Date: 2025-06-25 15:34+0000\n"
-"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"PO-Revision-Date: 2025-07-04 06:44+0000\n"
+"Last-Translator: Aleksey Ubozhenko R3DHX <mstadmin@ramsdr.ru>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.11\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -4221,6 +4222,8 @@ msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
 msgstr ""
+"Введите позывной оператора для импортируемых QSO. Оставьте пустым, чтобы "
+"использовать позывной оператора из файла ADIF."
 
 #: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
@@ -5187,7 +5190,7 @@ msgstr "Всего сработано"
 #: application/views/awards/wap/index.php:190
 #: application/views/awards/was/index.php:190
 msgid "Total confirmed"
-msgstr "Всего пожтверждено"
+msgstr "Всего подтверждено"
 
 #: application/views/awards/dok/index.php:7
 msgid "DOK Award"
@@ -7334,7 +7337,7 @@ msgstr ""
 
 #: application/views/contesting/index.php:3
 msgid "Are you really sure you want to start a new contest session?"
-msgstr ""
+msgstr "Вы действительно уверены, что хотите начать новую сессию для конкурса?"
 
 #: application/views/contesting/index.php:7
 msgid "Start new Contest Session"
@@ -11762,11 +11765,11 @@ msgstr "Показ сводки по IOTA"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for DOK"
-msgstr ""
+msgstr "Показать резюме для DOK"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for satellite QSOs with"
-msgstr ""
+msgstr "Показать резюме для QSO через спутник с"
 
 #: application/views/qso/award_tabs.php:11
 msgid "Showing summary for continent"
@@ -11802,7 +11805,7 @@ msgstr "Для показа сводки нужно заполнить WWFF!"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Propagation mode needs to be 'SAT' to show a summary!"
-msgstr ""
+msgstr "Режим прохождения должен быть 'SAT' чтобы показать сводку!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
@@ -13681,11 +13684,11 @@ msgstr "Создать профиль QTH"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show all locations"
-msgstr ""
+msgstr "Показать все местоположения"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show only locations from the active logbook"
-msgstr ""
+msgstr "Показать местоположения только для активного журнала"
 
 #: application/views/stationsetup/stationsetup.php:108
 msgid ""
@@ -13713,7 +13716,7 @@ msgstr "Пожалуйста, переназначьте их в "
 
 #: application/views/stationsetup/stationsetup.php:129
 msgid "Last QSO"
-msgstr ""
+msgstr "Последний QSO"
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"
@@ -13758,7 +13761,7 @@ msgstr "Возвышение"
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:61
 msgid "Years"
-msgstr "по годам"
+msgstr "По годам"
 
 #: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
