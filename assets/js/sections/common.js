@@ -643,7 +643,7 @@ function selectize_usa_county(state_field, county_field) {
 async function updateStateDropdown(dxcc_field, state_label, county_div, county_input, dropdown = '#stateDropdown') {
     var selectedDxcc = $(dxcc_field);
 	var selectedState = $(dropdown);
-	
+
     if (selectedDxcc.val() !== "") {
         await $.ajax({
             url: base_url + "index.php/lookup/get_state_list",
@@ -667,7 +667,7 @@ async function updateStateDropdown(dxcc_field, state_label, county_div, county_i
 	switch (selectedDxcc.val()) {
 		case '6':
 		case '110':
-		case '291': 
+		case '291':
 			$(county_div).find('.form-control').hide();
 			$(county_div).find('.selectize-control').show();
 			$(county_div).show();
@@ -864,7 +864,7 @@ function changeLookupType(type) {
         $('#quicklookupdxcc').show();
     } else if (type == "iota") {
         $('#quicklookupiota').show();
-    } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw" || type == "pota") {
+    } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw" || type == "pota" || type == "dok") {
         $('#quicklookuptext').show();
     } else if (type == "cq") {
         $('#quicklookupcqz').show();
@@ -897,6 +897,7 @@ function getLookupResult() {
 			ituz: $('#quicklookupituz').val(),
 			pota: $('#quicklookuptext').val(),
 			continent: $('#quicklookupcontinent').val(),
+			dok: $('#quicklookuptext').val(),
 		},
 		success: function (html) {
 			$('#lookupresulttable').html(html);

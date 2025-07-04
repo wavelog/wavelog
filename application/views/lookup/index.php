@@ -11,6 +11,7 @@
 			<option value="was"><?= __("US State"); ?></option>
 			<option value="wwff"><?= __("WWFF"); ?></option>
 			<option value="lotw"><?= __("LoTW user"); ?></option>
+			<option value="dok"><?= __("DOK"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 		<input style="display:none" class="form-control input-group-sm w-auto" id="quicklookuptext" type="text" name="searchfield" placeholder="" aria-label="Search">

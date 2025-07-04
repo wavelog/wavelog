@@ -583,6 +583,11 @@ class Logbook_model extends CI_Model {
 					}
 				}
 				break;
+			case 'SAT':
+				$this->db->where('COL_CALL', $searchphrase);
+				$this->db->where('COL_PROP_MODE', 'SAT');
+				$this->db->where('COL_SAT_NAME', $sat);
+				break;
 			case 'CQZone':
 				$this->db->where('COL_CQZ', $searchphrase);
 				break;
@@ -3530,6 +3535,7 @@ class Logbook_model extends CI_Model {
 			$this->db->where_in($this->config->item('table_name') . '.station_id', $logbooks_locations_array);
 			$this->db->where($this->config->item('table_name') . '.COL_COUNTRY !=', 'Invalid');
 			$this->db->where('dxcc_entities.end is null');
+			$this->db->where('dxcc_entities.adif != 0');
 			$query = $this->db->get($this->config->item('table_name'));
 
 			return $query->num_rows();

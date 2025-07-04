@@ -16,6 +16,9 @@ class Logbookadvanced extends CI_Controller {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
+		if(!$this->load->is_loaded('DxccFlag')) {
+			$this->load->library('DxccFlag');
+		}
 	}
 
 	function index() {
@@ -145,15 +148,13 @@ class Logbookadvanced extends CI_Controller {
 			'invalid' => xss_clean($this->input->post('invalid')),
 			'continent' => xss_clean($this->input->post('continent')),
 			'comment' => xss_clean($this->input->post('comment')),
-			'qsoids' => xss_clean($this->input->post('qsoids'))
+			'qsoids' => xss_clean($this->input->post('qsoids')),
+			'dok' => xss_clean($this->input->post('dok'))
 		);
 	}
 
 	public function search() {
 		$this->load->model('logbookadvanced_model');
-		if(!$this->load->is_loaded('DxccFlag')) {
-			$this->load->library('DxccFlag');
-		}
 
 		$searchCriteria = $this->mapParameters();
 		$qsos = [];
@@ -195,12 +196,21 @@ class Logbookadvanced extends CI_Controller {
 			$station_profile = $this->stations->profile($active_station_id)->row_array();
 			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook, $station_profile['station_gridsquare']);
 			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
+
+			$qsoObj = new QSO($qso);		// Redirection via Object to clean/convert QSO (get rid of cols)
+			$cleaned_qso=$qsoObj->toArray();	// And back to Array for the JSON
+
+			$flag = $this->dxccflag->get($qsoObj->getDXCCId());
+			if ($flag != null) {
+				$cleaned_qso['flag'] = ' '.$flag;
+			} else {
+				$cleaned_qso['flag'] = '';
+			}
+
 		}
 
-		$qsoObj = new QSO($qso);
-
 		header("Content-Type: application/json");
-		echo json_encode($qsoObj->toArray());
+		echo json_encode($cleaned_qso);
 	}
 
 	function export_to_adif() {
@@ -250,14 +260,21 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -280,14 +297,21 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -346,6 +370,7 @@ class Logbookadvanced extends CI_Controller {
 			'contest' => '*',
 			'continent' => '',
 			'comment' => '*',
+			'dok' => '*',
 			'ids' => json_decode(xss_clean($this->input->post('ids'))),
 			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
@@ -444,9 +469,6 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-		if(!$this->load->is_loaded('DxccFlag')) {
-			$this->load->library('DxccFlag');
-		}
 
 		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base, $qso['COL_ANT_PATH']) . $var_dist;
 		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2, $qso['COL_ANT_PATH']) . "&#186;";
@@ -483,9 +505,6 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-		if(!$this->load->is_loaded('DxccFlag')) {
-			$this->load->library('DxccFlag');
-		}
 
 		$latlng1 = $this->qra->qra2latlong($mygrid);
 		$latlng2[0] = $lat;
@@ -578,6 +597,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['antennaelevation']['show'] = $this->def_boolean($this->input->post('antennaelevation'));
 		$json_string['region']['show'] = $this->def_boolean($this->input->post('region'));
 		$json_string['qth']['show'] = $this->def_boolean($this->input->post('qth'));
+		$json_string['frequency']['show'] = $this->def_boolean($this->input->post('frequency'));
 
 		$obj['column_settings']= json_encode($json_string);
 
@@ -632,10 +652,10 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		// Get Date format
@@ -648,7 +668,14 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -690,10 +717,10 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		// Get Date format
@@ -706,7 +733,14 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");
@@ -726,10 +760,10 @@ class Logbookadvanced extends CI_Controller {
 
 		$results = $data->result('array');
 
-        $qsos = [];
-        foreach ($results as $data) {
-            $qsos[] = new QSO($data);
-        }
+		$qsos = [];
+		foreach ($results as $data) {
+			$qsos[] = new QSO($data);
+		}
 
 		$q = [];
 		// Get Date format
@@ -742,7 +776,14 @@ class Logbookadvanced extends CI_Controller {
 		}
 
 		foreach ($qsos as $qso) {
-			$q[] = $qso->toArray();
+			$singleQso = $qso->toArray();
+			$flag = $this->dxccflag->get($qso->getDXCCId());
+			if ($flag != null) {
+				$singleQso['flag'] = ' '.$flag;
+			} else {
+				$singleQso['flag'] = '';
+			}
+			$q[]=$singleQso;
 		}
 
 		header("Content-Type: application/json");

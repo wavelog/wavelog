@@ -642,6 +642,14 @@ class API extends CI_Controller {
 			case 'RTTY-R':
 				$obj['mode'] = 'RTTY';
 				break;
+			case 'USB-D':
+			case 'USB-D1':
+				$obj['mode'] = 'USB';
+				break;
+			case 'LSB-D':
+			case 'LSB-D1':
+				$obj['mode'] = 'LSB';
+				break;
 		}
 
 

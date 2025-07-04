@@ -53,7 +53,7 @@
 								<td style="text-align: left; vertical-align: middle;">
 									<?php
 									$l = $this->config->item('auth_level');
-									echo $l[$row->user_type];
+									echo $l[$row->user_type] ?? '';
 									?>
 								</td>
 								<td style="text-align: left; vertical-align: middle;">
