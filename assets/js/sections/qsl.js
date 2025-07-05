@@ -24,12 +24,11 @@ function getConfirmations() {
 				scrollCollapse: true,
 				paging: false,
 				scrollX: true,
-				sortable: true,
+				ordering: false,
 				language: {
 					url: getDataTablesLanguageUrl(),
 				},
 				dom: "Bfrtip",
-				order: [1, 'desc'],
 				buttons: [
 					{
 						extend: 'csv'

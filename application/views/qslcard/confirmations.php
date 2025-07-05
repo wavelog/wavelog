@@ -4,15 +4,6 @@
 
 	<h2><?php echo $page_title; ?></h2>
 
-	<?php
-	if ($this->session->userdata('user_date_format')) {
-		// If Logged in and session exists
-		$custom_date_format = $this->session->userdata('user_date_format');
-	} else {
-		// Get Default date format from /config/wavelog.php
-		$custom_date_format = $this->config->item('qso_date_format');
-	}
-	?>
 
 <div class="d-flex mt-2">
 	<form class="form confirmationform">
