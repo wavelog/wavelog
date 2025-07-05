@@ -16,7 +16,6 @@ if ($result) { ?>
 					<th><?= __("QSO date"); ?></th>
 					<th><?= __("Mode"); ?></th>
 					<th><?= __("Band"); ?></th>
-					<th><?= __("Sat"); ?></th>
 					<th><?= __("Confirmation date"); ?></th>
 					<th><?= __("Type"); ?></th>
 				</tr>
@@ -30,9 +29,8 @@ if ($result) { ?>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_call;?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo date($custom_date_format, $qsotimestamp) . ' ' . date('H:i', $qsotimestamp)?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_submode == null ? $qso->col_mode : $qso->col_submode;?></td>
-						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_band;?></td>
-						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_sat_name;?></td>
-						<td style="text-align: center; vertical-align: middle;" ><?php  echo date($custom_date_format, $confirmationtimestamp);
+						<td style="text-align: center; vertical-align: middle;" ><?php if($qso->col_sat_name != null) { echo $qso->col_sat_name; } else { echo strtolower($qso->col_band); };?></td>
+						<td style="text-align: center; vertical-align: middle;" ><?php echo date($custom_date_format, $confirmationtimestamp);
 						if (date('H:i:s', $confirmationtimestamp) !== '00:00:00') {
 							echo ' ' . date('H:i', $confirmationtimestamp);
 						}?></td>
