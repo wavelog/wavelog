@@ -28,6 +28,19 @@ class Band extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
+	public function edges()
+	{
+		$this->load->model('bands');
+
+		$data['bands'] = $this->bands->get_all_bandedges_for_user();
+
+		// Render Page
+		$data['page_title'] = __("Bands");
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('bands/bandedges');
+		$this->load->view('interface_assets/footer');
+	}
+
 	public function create()
 	{
 		$this->load->model('bands');
