@@ -99,6 +99,22 @@ class Bands extends CI_Model {
 		return $this->db->get()->result();
 	}
 
+	function get_all_bandedges_for_user() {
+		$this->db->from('bandedges');
+		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
+
+		$result = $this->db->get()->result();
+
+		if ($result) {
+			return $result;
+		}
+
+		$this->db->from('bandedges');
+		$this->db->where('bandedges.userid', -1);
+
+		return $this->db->get()->result();
+	}
+
 	function all() {
 		return $this->bandslots;
 	}

@@ -413,6 +413,7 @@
 									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?= __("Station Setup"); ?></a></li>
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?= __("Bands"); ?></a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('band/edges'); ?>" title="Manage Band Edgeds"><i class="fas fa-cog"></i> <?= __("Band Edges"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('usermode'); ?>" title="Manage Modes"><i class="fas fa-cog"></i> <?= __("Modes"); ?></a></li>
 
 								<?php if ($this->config->item('special_callsign') && $this->session->userdata('clubstation') == 0) { ?>
