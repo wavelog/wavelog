@@ -2840,17 +2840,6 @@ function viewEqsl(picture, callsign) {
 		});
 	}
 
-	function searchAdditionalQsos(filename) {
-		$.ajax({
-			url: base_url + 'index.php/qsl/searchQsos',
-			type: 'post',
-			data: {'callsign': $('#callsign').val(), 'filename': filename},
-			success: function(html) {
-				$('#searchresult').empty();
-				$('#searchresult').append(html);
-			}
-		});
-	}
 </script>
 <?php if ($this->uri->segment(1) == "contesting" && ($this->uri->segment(2) != "add" && $this->uri->segment(2) != "edit")) { ?>
     <script>
