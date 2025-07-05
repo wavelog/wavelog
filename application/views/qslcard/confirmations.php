@@ -19,7 +19,7 @@
 					<option value="clublog">Clublog</option>
 				</select>
 			</div>
-			<button id="confirmations" type="button" name="plot" class="w-auto btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-plot" onclick="getConfirmations(this.form,'false')"><?= __("Show"); ?><div class="ld ld-ring ld-spin"></div></button>
+			<button id="confirmationbutton" type="button" name="plot" class="w-auto btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-plot" onclick="getConfirmations(this.form,'false')"><?= __("Show"); ?><div class="ld ld-ring ld-spin"></div></button>
 		</div>
 	</form>
 </div>

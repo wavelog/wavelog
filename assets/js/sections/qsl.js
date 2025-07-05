@@ -11,6 +11,7 @@ function searchAdditionalQsos(filename) {
 }
 
 function getConfirmations() {
+	$('#confirmationbutton').prop("disabled", true).addClass("running");
 	$.ajax({
 		url: base_url + 'index.php/qsl/searchConfirmations',
 		type: 'post',
@@ -39,6 +40,7 @@ function getConfirmations() {
 					}
 				]
 			});
+			$('#confirmationbutton').prop("disabled", false).removeClass("running");
 		}
 	});
 }
