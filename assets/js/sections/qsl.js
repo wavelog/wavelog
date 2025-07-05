@@ -20,7 +20,7 @@ function getConfirmations() {
 			$('#searchresult').append(html);
 			$(".confirmationtable").DataTable({
 				responsive: false,
-				scrollY: "400px",
+				scrollY: window.innerHeight - $('.confirmationform').innerHeight() - 250,
 				scrollCollapse: true,
 				paging: false,
 				scrollX: true,
