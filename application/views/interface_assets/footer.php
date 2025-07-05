@@ -261,7 +261,6 @@ function stopImpersonate_modal() {
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chartjs-plugin-piechart-outlabels.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/statistics.js"></script>
 <?php } ?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/antennaanalytics.js"></script>
 
 <?php if ($this->uri->segment(1) == "continents") { ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chart.js"></script>
