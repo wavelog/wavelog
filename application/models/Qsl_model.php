@@ -189,23 +189,21 @@ class Qsl_model extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-		$bindings = [];
-
 		$table = $this->config->item('table_name');
 		$sql_parts = array();
 
 		if ($confirmationtype == 'qsl' || $confirmationtype == 'All') {
 			$sql_parts[] = "
-				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_qslrdate AS rxdate, 'QSL' AS type
+				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_qslrdate AS rxdate, 'QSL Card' AS type
 				FROM $table
-				WHERE station_id IN ($location_list) AND col_qslrdate IS NOT NULL AND col_qsl_rcvd = 'Y'
+				WHERE station_id IN ($location_list) AND col_qslrdate IS NOT NULL AND col_qslrdate != '' AND col_qsl_rcvd = 'Y'
 			";
 		}
 		if ($confirmationtype == 'lotw' || $confirmationtype == 'All') {
 			$sql_parts[] = "
 				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_lotw_qslrdate AS rxdate, 'LoTW' AS type
 				FROM $table
-				WHERE station_id IN ($location_list) AND col_lotw_qslrdate IS NOT NULL AND col_lotw_qsl_rcvd = 'Y'
+				WHERE station_id IN ($location_list) AND col_lotw_qslrdate IS NOT NULL AND col_lotw_qslrdate != '' AND col_lotw_qsl_rcvd = 'Y'
 			";
 		}
 		if ($confirmationtype == 'eqsl' || $confirmationtype == 'All') {
@@ -219,14 +217,14 @@ class Qsl_model extends CI_Model {
 			$sql_parts[] = "
 				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_qrzcom_qso_download_date AS rxdate, 'QRZ.com' AS type
 				FROM $table
-				WHERE station_id IN ($location_list) AND col_qrzcom_qso_download_date IS NOT NULL AND col_qrzcom_qso_download_status = 'Y'
+				WHERE station_id IN ($location_list) AND col_qrzcom_qso_download_date IS NOT NULL AND col_qrzcom_qso_download_date != '' AND col_qrzcom_qso_download_status = 'Y'
 			";
 		}
 		if ($confirmationtype == 'clublog' || $confirmationtype == 'All') {
 			$sql_parts[] = "
 				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_clublog_qso_download_date AS rxdate, 'Clublog' AS type
 				FROM $table
-				WHERE station_id IN ($location_list) AND col_clublog_qso_download_date IS NOT NULL AND col_clublog_qso_download_status = 'Y'
+				WHERE station_id IN ($location_list) AND col_clublog_qso_download_date IS NOT NULL AND col_clublog_qso_download_date != '' AND col_clublog_qso_download_status = 'Y'
 			";
 		}
 
@@ -237,7 +235,7 @@ class Qsl_model extends CI_Model {
 		$sql = implode(" UNION ALL ", $sql_parts);
 		$sql .= " ORDER BY rxdate DESC";
 
-		$query = $this->db->query($sql, $bindings);
+		$query = $this->db->query($sql);
 
 		return $query->result();
 	}
