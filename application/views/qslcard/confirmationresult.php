@@ -29,7 +29,7 @@ if ($result) { ?>
 					<tr>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_call;?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo date($custom_date_format, $qsotimestamp) . ' ' . date('H:i', $qsotimestamp)?></td>
-						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_mode;?></td>
+						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_submode == null ? $qso->col_mode : $qso->col_submode;?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_band;?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_sat_name;?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php  echo date($custom_date_format, $confirmationtimestamp);
