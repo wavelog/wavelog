@@ -1,6 +1,6 @@
 <?php if ($result) { ?>
 	<div class="table-responsive">
-		<table style="width:100%" class="bandtable table table-sm table-striped text-center">
+		<table style="width:100%" class="confirmationtable table table-sm table-striped text-center">
 			<thead>
 				<tr>
 					<th><?= __("Callsign"); ?></th>
