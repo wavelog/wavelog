@@ -3,7 +3,7 @@
 	<br>
 
 	<h2><?php echo $page_title; ?></h2>
-
+	<?= __("A maximum of 1000 rows are shown in the table. This is for performance reasons."); ?>
 
 <div class="d-flex mt-2">
 	<form class="form confirmationform">
