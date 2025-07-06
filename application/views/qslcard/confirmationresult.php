@@ -26,7 +26,7 @@ if ($result) { ?>
 					$confirmationtimestamp = strtotime($qso->rxdate);
 					?>
 					<tr>
-						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_call;?></td>
+						<td style="text-align: center; vertical-align: middle;" ><a href="javascript:displayQso('<?php echo $qso->col_primary_key; ?>')"><?php echo $qso->col_call; ?></a></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo date($custom_date_format, $qsotimestamp) . ' ' . date('H:i', $qsotimestamp)?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->col_submode == null ? $qso->col_mode : $qso->col_submode;?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php if($qso->col_sat_name != null) { echo $qso->col_sat_name; } else { echo strtolower($qso->col_band); };?></td>
