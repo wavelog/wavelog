@@ -12,8 +12,8 @@ msgstr ""
 "POT-Creation-Date: 2025-07-04 13:15+0000\n"
 "PO-Revision-Date: 2025-07-05 04:42+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1643,6 +1643,7 @@ msgstr "Afstand"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/views/awards/sota/index.php:34
 msgid "Band"
 msgstr "Band"
 
@@ -3943,6 +3944,7 @@ msgstr "Minimum aantal"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
+#: application/views/awards/sota/index.php:60
 msgid "Nothing found!"
 msgstr "Niets gevonden!"
 
@@ -3990,6 +3992,7 @@ msgstr "Niets gevonden!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:656
+#: application/views/awards/sota/index.php:33
 msgid "Callsign"
 msgstr "Roepnaam"
 
@@ -4093,6 +4096,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/awards/sota/index.php:31
 msgid "Date"
 msgstr "Datum"
 
@@ -4125,6 +4129,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/awards/sota/index.php:32
 msgid "Time"
 msgstr "Tijd"
 
@@ -5866,6 +5871,7 @@ msgstr "Aantal referenties"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:23
+#: application/views/awards/sota/index.php:30
 msgid "Reference"
 msgstr "Referentie"
 
@@ -5883,11 +5889,13 @@ msgstr "Datum/Tijd"
 
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/awards/sota/index.php:27
+#: application/views/awards/sota/index.php:35
 msgid "RST Sent"
 msgstr "RST verzonden"
 
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:28
+#: application/views/awards/sota/index.php:36
 msgid "RST Received"
 msgstr "RST ontvangen"
 
