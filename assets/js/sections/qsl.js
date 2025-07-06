@@ -11,6 +11,20 @@ function searchAdditionalQsos(filename) {
 }
 
 function getConfirmations() {
+	let selectedQslTypes = $('#confirmationtype').val();
+	if (Array.isArray(selectedQslTypes) && selectedQslTypes.length === 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select at least one QSL type to do a search!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
+		return false;
+	}
+
 	$('#confirmationbutton').prop("disabled", true).addClass("running");
 	$.ajax({
 		url: base_url + 'index.php/qsl/searchConfirmations',
@@ -44,3 +58,18 @@ function getConfirmations() {
 		}
 	});
 }
+
+$(document).ready(function () {
+	$('#confirmationtype').multiselect({
+		// template is needed for bs5 support
+		enableFiltering: true,
+		enableCaseInsensitiveFiltering: true,
+		filterPlaceholder: lang_general_word_search,
+		templates: {
+			button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+		},
+		numberDisplayed: 1,
+		inheritClass: true,
+		includeSelectAllOption: true
+	});
+});
