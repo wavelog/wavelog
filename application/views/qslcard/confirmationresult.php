@@ -37,6 +37,9 @@ if ($result) { ?>
 						if ($qso->qslcount ?? 0 != 0) {
 							echo ' <a href="javascript:displayQsl('.$qso->col_primary_key.');"><i class="fa fa-id-card"></i></a>';
 						}
+						if ($qso->type == 'eQSL') {
+							echo ' <a href="'.site_url('eqsl/image/'.$qso->col_primary_key).'" data-fancybox="images" data-width="528" data-height="336"><i class="fa fa-id-card"></i></a>';
+						}
 						?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->type;?></td>
 					</tr>
