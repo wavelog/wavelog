@@ -7,11 +7,18 @@ class Dxcluster_model extends CI_Model {
     protected $bandedges = [];
 
     public function __construct() {
+		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
+		$query = $this->db->get('bandedges');
+        $result = $query->result_array();
 
-        // Load bandedges into a class property
-		$this->db->where('userid', -1);
-        $query = $this->db->get('bandedges');
-        $this->bandedges = $query->result_array(); // or ->result() if you want objects
+		if ($result) {
+			$this->bandedges = $result;
+		} else {
+			// Load bandedges into a class property
+			$this->db->where('userid', -1);
+			$query = $this->db->get('bandedges');
+			$this->bandedges = $query->result_array();
+		}
     }
 
 	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '', $mode = 'All') {
