@@ -23,6 +23,8 @@
 							<th><?= __("Frequency from (Hz)"); ?></th>
 							<th><?= __("Frequency to (Hz)"); ?></th>
 							<th><?= __("Mode"); ?></th>
+							<th><?= __("Edit"); ?></th>
+							<th><?= __("Delete"); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -31,6 +33,8 @@
 								<td style="text-align: center; vertical-align: middle;" ><?php echo $band->frequencyfrom;?></td>
 								<td style="text-align: center; vertical-align: middle;" ><?php echo $band->frequencyto;?></td>
 								<td style="text-align: center; vertical-align: middle;" ><?php echo $band->mode;?></td>
+								<td id="editButton" style="text-align: center; vertical-align: middle;"><button id="<?php echo $band->id ?>" class="btn btn-sm btn-success editBandEdge"><i class="fas fa-edit"></i></button></td>
+								<td id="deleteButton" style="text-align: center; vertical-align: middle;"><button id="<?php echo $band->id; ?>'" class="deleteBandEdge btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td>
 							</tr>
 
 						<?php } ?>
