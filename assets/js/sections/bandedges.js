@@ -8,6 +8,9 @@ function editBandEdge(id) {
         '<td style="text-align: center; vertical-align: middle;" id="saveButton">' + '<button type="button" class="btn btn-sm btn-success" onclick="saveChanges(' + id + ');' + '">Save</button>' + '</td>'
     );
 
+	// Get the current mode value from the cell
+	var currentMode = $("#mode_" + id).text().trim().toLowerCase();
+
 	var tbl_row = $(".bandedge_" + id).closest('tr');
 	tbl_row.addClass('editRow');
 	tbl_row.find('.row_data')
@@ -19,19 +22,62 @@ function editBandEdge(id) {
 		$(this).attr('original_entry', $(this).html());
 	});
 
+	// Build the select with the current mode selected
+	var selectHtml = '<select id="mode_select_' + id + '" style="text-align-last: center;" class="d-inline-block w-auto text-center form-control form-control-sm">';
+	selectHtml += '<option value="phone"' + (currentMode === 'phone' ? ' selected' : '') + '>phone</option>';
+	selectHtml += '<option value="cw"' + (currentMode === 'cw' ? ' selected' : '') + '>cw</option>';
+	selectHtml += '<option value="digi"' + (currentMode === 'digi' ? ' selected' : '') + '>digi</option>';
+	selectHtml += '</select>';
+
+	// Replace the cell content with the select
+	$("#mode_" + id).html(selectHtml);
+
 	$('#frequencyfrom_' + id).focus();
 }
 
 function saveChanges(id) {
 	$('.addsatmode').prop("disabled", false);
+	var frequencyfrom = $('#frequencyfrom_'+id).first().closest('td').html();
+	var frequencyto = $('#frequencyto_'+id).first().closest('td').html();
+	var mode = $('#mode_select_'+id).val();
+
+	if (!$.isNumeric(frequencyfrom) || !$.isNumeric(frequencyto)) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: "Please enter valid numbers for frequency.",
+			type: BootstrapDialog.TYPE_INFO,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-info',
+			callback: function (result) {
+				// Callback function after the dialog is closed
+			}
+		});
+		return;
+	}
+	if (frequencyfrom >= frequencyto) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: "The 'From' frequency must be less than the 'To' frequency.",
+			type: BootstrapDialog.TYPE_INFO,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-info',
+			callback: function (result) {
+				// Callback function after the dialog is closed
+			}
+		});
+		return;
+	}
+
 	$.ajax({
 		url: base_url + 'index.php/band/saveBandEdgeChanges',
 		type: 'post',
 		data: {
 			'id': id,
-			'frequencyfrom': $('#frequencyfrom_'+id).first().closest('td').html(),
-			'frequencyto': $('#frequencyto_'+id).first().closest('td').html(),
-			'mode': $('#mode_'+id).first().closest('td').html(),
+			'frequencyfrom': frequencyfrom,
+			'frequencyto': frequencyto,
+			'mode': mode,
 		},
 		success: function (data) {
 
@@ -66,6 +112,7 @@ function restoreLine(id) {
 	$(".bandedge_" + id).find("#saveButton").replaceWith(
         '<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button onclick="editBandEdge(' + id + ')" type="button" class="btn btn-sm btn-success editBandEdge" id="' + id + '"><i class="fas fa-edit"></i></button>' + '</td>'
     );
+	$("#mode_" + id).html($("#mode_select_" + id).val());
 }
 
 function saveUpdatedBandEdge(form) {

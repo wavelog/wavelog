@@ -32,7 +32,7 @@
 							<tr class="bandedge_<?php echo $band->id ?>">
 								<td id="frequencyfrom_<?php echo $band->id ?>" class="row_data" style="text-align: center; vertical-align: middle;" ><?php echo $band->frequencyfrom;?></td>
 								<td id="frequencyto_<?php echo $band->id ?>" class="row_data" style="text-align: center; vertical-align: middle;" ><?php echo $band->frequencyto;?></td>
-								<td id="mode_<?php echo $band->id ?>" class="row_data" style="text-align: center; vertical-align: middle;" ><?php echo $band->mode;?></td>
+								<td class="text-center" id="mode_<?php echo $band->id ?>" class="row_data" style="text-align: center; vertical-align: middle;" ><?php echo $band->mode;?></td>
 								<td id="editButton" style="text-align: center; vertical-align: middle;"><button onclick="editBandEdge(<?php echo $band->id ?>)" id="<?php echo $band->id ?>" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button></td>
 								<td id="deleteButton" style="text-align: center; vertical-align: middle;"><button id="<?php echo $band->id; ?>" class="deleteBandEdge btn btn-sm btn-danger" onclick="deleteBandEdge(<?php echo $band->id ?>)"><i class="fas fa-trash-alt"></i></button></td>
 							</tr>
