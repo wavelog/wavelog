@@ -194,35 +194,35 @@ class Qsl_model extends CI_Model {
 
 		if ($confirmationtype == 'qsl' || $confirmationtype == 'All') {
 			$sql_parts[] = "
-				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_qslrdate AS rxdate, 'QSL Card' AS type
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_qslrdate AS rxdate, 'QSL Card' AS type, exists(select 1 from qsl_images where qsoid = $table.COL_PRIMARY_KEY) as qslcount
 				FROM $table
 				WHERE station_id IN ($location_list) AND col_qslrdate IS NOT NULL AND col_qslrdate != '' AND col_qsl_rcvd = 'Y'
 			";
 		}
 		if ($confirmationtype == 'lotw' || $confirmationtype == 'All') {
 			$sql_parts[] = "
-				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_lotw_qslrdate AS rxdate, 'LoTW' AS type
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_lotw_qslrdate AS rxdate, 'LoTW' AS type, 0 as qslcount
 				FROM $table
 				WHERE station_id IN ($location_list) AND col_lotw_qslrdate IS NOT NULL AND col_lotw_qslrdate != '' AND col_lotw_qsl_rcvd = 'Y'
 			";
 		}
 		if ($confirmationtype == 'eqsl' || $confirmationtype == 'All') {
 			$sql_parts[] = "
-				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_eqsl_qslrdate AS rxdate, 'eQSL' AS type
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_eqsl_qslrdate AS rxdate, 'eQSL' AS type, 0 as qslcount
 				FROM $table
 				WHERE station_id IN ($location_list) AND col_eqsl_qslrdate IS NOT NULL AND col_eqsl_qslrdate != '' AND col_eqsl_qsl_rcvd = 'Y'
 			";
 		}
 		if ($confirmationtype == 'qrz' || $confirmationtype == 'All') {
 			$sql_parts[] = "
-				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_qrzcom_qso_download_date AS rxdate, 'QRZ.com' AS type
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_qrzcom_qso_download_date AS rxdate, 'QRZ.com' AS type, 0 as qslcount
 				FROM $table
 				WHERE station_id IN ($location_list) AND col_qrzcom_qso_download_date IS NOT NULL AND col_qrzcom_qso_download_date != '' AND col_qrzcom_qso_download_status = 'Y'
 			";
 		}
 		if ($confirmationtype == 'clublog' || $confirmationtype == 'All') {
 			$sql_parts[] = "
-				SELECT col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_clublog_qso_download_date AS rxdate, 'Clublog' AS type
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_clublog_qso_download_date AS rxdate, 'Clublog' AS type, 0 as qslcount
 				FROM $table
 				WHERE station_id IN ($location_list) AND col_clublog_qso_download_date IS NOT NULL AND col_clublog_qso_download_date != '' AND col_clublog_qso_download_status = 'Y'
 			";

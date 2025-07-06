@@ -33,7 +33,11 @@ if ($result) { ?>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo date($custom_date_format, $confirmationtimestamp);
 						if (date('H:i:s', $confirmationtimestamp) !== '00:00:00') {
 							echo ' ' . date('H:i', $confirmationtimestamp);
-						}?></td>
+						}
+						if ($qso->qslcount ?? 0 != 0) {
+							echo ' <a href="javascript:displayQsl('.$qso->col_primary_key.');"><i class="fa fa-id-card"></i></a>';
+						}
+						?></td>
 						<td style="text-align: center; vertical-align: middle;" ><?php echo $qso->type;?></td>
 					</tr>
 
