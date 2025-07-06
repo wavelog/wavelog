@@ -198,4 +198,17 @@ class Band extends CI_Controller {
 		echo json_encode(array('message' => 'OK'));
 		return;
 	}
+
+	public function saveBandEdgeChanges() {
+		$this->load->model('bands');
+
+		$id = $this->security->xss_clean($this->input->post('id', true));
+		$frequencyfrom = $this->security->xss_clean($this->input->post('frequencyfrom', true));
+		$frequencyto = $this->security->xss_clean($this->input->post('frequencyto', true));
+		$mode = $this->security->xss_clean($this->input->post('mode', true));
+
+		$this->bands->saveBandEdgeChanges($id, $frequencyfrom, $frequencyto, $mode);
+		echo json_encode(array('message' => 'OK'));
+		return;
+	}
 }
