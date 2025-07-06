@@ -233,7 +233,7 @@ class Qsl_model extends CI_Model {
 		}
 
 		$sql = implode(" UNION ALL ", $sql_parts);
-		$sql .= " ORDER BY rxdate DESC";
+		$sql = "SELECT * FROM ( $sql ) AS unioned_results ORDER BY rxdate DESC LIMIT 1000";
 
 		$query = $this->db->query($sql);
 
