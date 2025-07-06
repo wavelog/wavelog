@@ -109,10 +109,32 @@ class Bands extends CI_Model {
 			return $result;
 		}
 
+		$this->insert_band_edges_for_user();
+
 		$this->db->from('bandedges');
 		$this->db->where('bandedges.userid', -1);
 
 		return $this->db->get()->result();
+	}
+
+	function insert_band_edges_for_user() {
+		// Get band edges from default user
+		$this->db->from('bandedges');
+		$this->db->where('bandedges.userid', -1);
+		$result = $this->db->get()->result();
+
+		if ($result) {
+			foreach($result as $edge) {
+				$data = array(
+					'frequencyfrom' => $edge->frequencyfrom,
+					'frequencyto' => $edge->frequencyto,
+					'mode' => $edge->mode,
+					'userid' => $this->session->userdata('user_id')
+				);
+				$this->db->insert('bandedges', $data);
+			}
+		}
+		return true;
 	}
 
 	function all() {
@@ -425,6 +447,14 @@ class Bands extends CI_Model {
 		}
 
 		return $worked_slots;
+	}
+
+	function deletebandedge($id) {
+		// Clean ID
+		$clean_id = $this->security->xss_clean($id);
+
+		// Delete Bandedge
+		$this->db->delete('bandedges', array('id' => $clean_id, 'userid' => $this->session->userdata('user_id')));
 	}
 }
 

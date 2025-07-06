@@ -34,11 +34,16 @@ class Band extends CI_Controller {
 
 		$data['bands'] = $this->bands->get_all_bandedges_for_user();
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/bandedges.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/bandedges.js")),
+		];
+
 		// Render Page
 		$data['page_title'] = __("Bands");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('bands/bandedges');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	public function create()
@@ -183,5 +188,14 @@ class Band extends CI_Controller {
 
 		$this->user_options_model->set_option('frequency', 'unit', array($band => $unit));
 		$this->session->set_userdata('qrgunit_'.$band, $unit);
+	}
+
+	public function deletebandedge() {
+		$id = $this->input->post('id');
+		$this->load->model('bands');
+		$this->bands->deletebandedge($id);
+		header('Content-Type: application/json');
+		echo json_encode(array('message' => 'OK'));
+		return;
 	}
 }
