@@ -35,6 +35,48 @@ function editBandEdge(id) {
 	$('#frequencyfrom_' + id).focus();
 }
 
+function createBandEdge() {
+	$('.addsatmode').prop("disabled", true);
+	BootstrapDialog.show({
+		title: 'Add Band Edge',
+		message: '',
+		buttons: [{
+			label: 'Save',
+			cssClass: 'btn-success',
+			action: function (dialogItself) {
+				var form = dialogItself.getModalBody().find('form')[0];
+				if (form.band.value == "") {
+					dialogItself.getModalBody().prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a band!</div>');
+				}
+				else {
+					$.ajax({
+						url: base_url + 'index.php/band/savebandedge',
+						type: 'post',
+						data: {
+							'band': form.band.value,
+							'bandgroup': form.bandgroup.value,
+							'ssbqrg': form.ssbqrg.value,
+							'dataqrg': form.dataqrg.value,
+							'cwqrg': form.cwqrg.value
+						},
+						success: function (html) {
+							location.reload();
+						}
+					});
+					dialogItself.close();
+				}
+			}
+		}, {
+			label: 'Cancel',
+			cssClass: 'btn-danger',
+			action: function (dialogItself) {
+				dialogItself.close();
+				$('.addsatmode').prop("disabled", false);
+			}
+		}]
+	});
+}
+
 function saveChanges(id) {
 	$('.addsatmode').prop("disabled", false);
 	var frequencyfrom = $('#frequencyfrom_'+id).first().closest('td').html();
