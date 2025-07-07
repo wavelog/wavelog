@@ -1,4 +1,5 @@
 function editBandEdge(id) {
+	$('.addnewrowbutton').prop("disabled", true);
 
     $(".bandedge_" + id).find("#deleteButton").replaceWith(
         '<td style="text-align: center; vertical-align: middle;" id="cancelButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="cancelChanges(' + id + ');' + '">Cancel</button>' + '</td>'
@@ -36,7 +37,7 @@ function editBandEdge(id) {
 }
 
 function saveChanges(id) {
-	$('.addsatmode').prop("disabled", false);
+	$('.addnewrowbutton').prop("disabled", false);
 	var frequencyfrom = $('#frequencyfrom_'+id).first().closest('td').html();
 	var frequencyto = $('#frequencyto_'+id).first().closest('td').html();
 	var mode = $('#mode_select_'+id).val();
@@ -88,7 +89,7 @@ function saveChanges(id) {
 }
 
 function cancelChanges(id) {
-	$('.addsatmode').prop("disabled", false);
+	$('.addnewrowbutton').prop("disabled", false);
 	var tbl_row = $(".bandedge_" + id).closest('tr');
 	tbl_row.find('.row_data').each(function(index, val)
 	{
@@ -141,6 +142,7 @@ function deleteBandEdge(id) {
 }
 
 function addBandEdgeRow() {
+	$('.addnewrowbutton').prop("disabled", true);
     // Prevent multiple add rows
     if ($('.bandtable tbody tr.add-row').length) return;
 
@@ -171,9 +173,36 @@ function saveNewBandEdgeRow() {
     var frequencyto = $('#new_frequencyto').val();
     var mode = $('#new_mode').val();
 
-    // Add your validation here
+	if (!$.isNumeric(frequencyfrom) || !$.isNumeric(frequencyto)) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: "Please enter valid numbers for frequency.",
+			type: BootstrapDialog.TYPE_INFO,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-info',
+			callback: function (result) {
+				// Callback function after the dialog is closed
+			}
+		});
+		return;
+	}
+	if (frequencyfrom >= frequencyto) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: "The 'From' frequency must be less than the 'To' frequency.",
+			type: BootstrapDialog.TYPE_INFO,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-info',
+			callback: function (result) {
+				// Callback function after the dialog is closed
+			}
+		});
+		return;
+	}
 
-    $.ajax({
+	$.ajax({
         url: base_url + 'index.php/band/savebandedge',
         type: 'post',
         data: {
@@ -189,4 +218,5 @@ function saveNewBandEdgeRow() {
 
 function cancelNewBandEdgeRow() {
     $('.bandtable tbody tr.add-row').remove();
+	$('.addnewrowbutton').prop("disabled", false);
 }
