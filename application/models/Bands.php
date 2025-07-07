@@ -457,17 +457,21 @@ class Bands extends CI_Model {
 		$this->db->delete('bandedges', array('id' => $clean_id, 'userid' => $this->session->userdata('user_id')));
 	}
 
-	function saveBandEdgeChanges($id, $frequencyfrom, $frequencyto, $mode) {
+	function saveBandEdge($id, $frequencyfrom, $frequencyto, $mode) {
 		$data = array(
 			'frequencyfrom' => $frequencyfrom,
 			'frequencyto' => $frequencyto,
-			'mode' => $mode
+			'mode' => $mode,
+			'userid' => $this->session->userdata('user_id')
 		);
 
-		$this->db->where('id', $id);
-		$this->db->where('userid', $this->session->userdata('user_id'));
-
-		return $this->db->update('bandedges', $data);
+		if ($id > 0) {
+			$this->db->where('id', $id);
+			$this->db->where('userid', $this->session->userdata('user_id'));
+			return $this->db->update('bandedges', $data);
+		} else {
+			return $this->db->insert('bandedges', $data);
+		}
 	}
 }
 

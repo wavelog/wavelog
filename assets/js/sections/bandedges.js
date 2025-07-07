@@ -113,7 +113,7 @@ function saveChanges(id) {
 	}
 
 	$.ajax({
-		url: base_url + 'index.php/band/saveBandEdgeChanges',
+		url: base_url + 'index.php/band/saveBandEdge',
 		type: 'post',
 		data: {
 			'id': id,
