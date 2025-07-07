@@ -170,55 +170,37 @@ function updateRow(qso) {
 }
 
 function loadQSOTable(rows) {
-	var uninitialized = $('#qsoList').filter(function() {
-		return !$.fn.DataTable.isDataTable(this);
-	});
+	const $table = $('#qsoList');
 
-	uninitialized.each(function() {
+	// Prevent initializing if already a DataTable
+	if ($.fn.DataTable.isDataTable($table)) {
+		$table.DataTable().clear().destroy();
+	}
+
+	const langUrl = getDataTablesLanguageUrl();
+
+	const initTable = function(language) {
 		$.fn.dataTable.moment(custom_date_format + ' HH:mm');
-		$(this).DataTable({
+
+		const table = $table.DataTable({
 			searching: false,
 			responsive: false,
 			ordering: true,
+			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
+			scrollCollapse: true,
+			paging: false,
+			language: language,
 			createdRow: function (row, data, dataIndex) {
-				$(row).attr('id',data.id);
+				$(row).attr('id', data.id);
 			},
-			"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
-			"scrollCollapse": true,
-			"paging":         false,
-			// "scrollX": true,
-			"language": {
-				url: getDataTablesLanguageUrl(),
-			},
-			"columnDefs": [
+			columnDefs: [
 				{ orderable: false, targets: 0 },
-				{
-					"targets": $(".distance-column-sort").index(),
-					"type": "numbersort", // use the custom sort type from the previous example
-				},
-				{
-					"targets": $(".antennaazimuth-column-sort").index(),
-					"type": "numbersort",
-				},
-				{
-					"targets": $(".antennaelevation-column-sort").index(),
-					"type": "numbersort",
-				},
-				{
-					"targets": $(".stationpower-column-sort").index(),
-					"type": "numbersort",
-				},
+				{ targets: $(".distance-column-sort").index(), type: "numbersort" },
+				{ targets: $(".antennaazimuth-column-sort").index(), type: "numbersort" },
+				{ targets: $(".antennaelevation-column-sort").index(), type: "numbersort" },
+				{ targets: $(".stationpower-column-sort").index(), type: "numbersort" },
 			]
-			// colReorder: {
-			// 	order: [0, 2,1,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18]
-			// 	// order: [0, customsortorder]
-			//   },
 		});
-	});
-
-	var table = $('#qsoList').DataTable();
-
-	table.clear();
 
 	for (i = 0; i < rows.length; i++) {
 		let qso = rows[i];
@@ -373,41 +355,44 @@ function loadQSOTable(rows) {
 	//	table.row(createdRow).node().to$().attr("id", 'qsoID-' + qso.qsoID);
 	}
 	try {
-		table.columns.adjust().draw();
+		table.columns.adjust().draw(true);
 	} catch (e) {
-		table.draw();
+		table.draw(true);
 	}
 	$('[data-bs-toggle="tooltip"]').tooltip();
 
-	document.querySelectorAll('.row-check').forEach(checkbox => {
-		checkbox.addEventListener('click', function (e) {
-			const checkboxes = document.querySelectorAll('.row-check');
-
-			if (e.shiftKey && lastChecked) {
+		document.querySelectorAll('.row-check').forEach(checkbox => {
+			checkbox.addEventListener('click', function (e) {
 				const checkboxes = Array.from(document.querySelectorAll('.row-check'));
-				let start = checkboxes.indexOf(this);
-				let end = checkboxes.indexOf(lastChecked);
+				if (e.shiftKey && lastChecked) {
+					let start = checkboxes.indexOf(this);
+					let end = checkboxes.indexOf(lastChecked);
+					[start, end] = [Math.min(start, end), Math.max(start, end)];
 
-				[start, end] = [Math.min(start, end), Math.max(start, end)];
-
-				for (let i = start; i <= end; i++) {
-					const checkbox = checkboxes[i];
-					checkbox.checked = lastChecked.checked;
-
-					// jQuery wrapper
-					const $row = $(checkbox).closest('tr');
-
-					if (lastChecked.checked) {
-						$row.addClass('activeRow');
-					} else {
-						$row.removeClass('activeRow');
+					for (let i = start; i <= end; i++) {
+						checkboxes[i].checked = lastChecked.checked;
+						$(checkboxes[i]).closest('tr').toggleClass('activeRow', lastChecked.checked);
 					}
 				}
-			}
-
-			lastChecked = this;
+				lastChecked = this;
+			});
 		});
-	});
+	};
+
+	if (langUrl) {
+		// Load language file first
+		$.getJSON(langUrl)
+			.done(function(language) {
+				initTable(language);
+			})
+			.fail(function() {
+				console.error("Failed to load DataTables language file at " + langUrl);
+				initTable({});  // fallback to default English
+			});
+	} else {
+		// No language file needed (English)
+		initTable({});
+	}
 }
 
 $.fn.dataTable.ext.type.order['numbersort-pre'] = function(data) {
