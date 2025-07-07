@@ -42,7 +42,7 @@
 					<table>
 					<br />
 
-					<button onclick="createBandEdge();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a bandedge"); ?></button>
+					<button onclick="addBandEdgeRow();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a bandedge"); ?></button>
 			</div>
   			<br/>
 			<p>

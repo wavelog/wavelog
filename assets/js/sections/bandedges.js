@@ -35,48 +35,6 @@ function editBandEdge(id) {
 	$('#frequencyfrom_' + id).focus();
 }
 
-function createBandEdge() {
-	$('.addsatmode').prop("disabled", true);
-	BootstrapDialog.show({
-		title: 'Add Band Edge',
-		message: '',
-		buttons: [{
-			label: 'Save',
-			cssClass: 'btn-success',
-			action: function (dialogItself) {
-				var form = dialogItself.getModalBody().find('form')[0];
-				if (form.band.value == "") {
-					dialogItself.getModalBody().prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a band!</div>');
-				}
-				else {
-					$.ajax({
-						url: base_url + 'index.php/band/savebandedge',
-						type: 'post',
-						data: {
-							'band': form.band.value,
-							'bandgroup': form.bandgroup.value,
-							'ssbqrg': form.ssbqrg.value,
-							'dataqrg': form.dataqrg.value,
-							'cwqrg': form.cwqrg.value
-						},
-						success: function (html) {
-							location.reload();
-						}
-					});
-					dialogItself.close();
-				}
-			}
-		}, {
-			label: 'Cancel',
-			cssClass: 'btn-danger',
-			action: function (dialogItself) {
-				dialogItself.close();
-				$('.addsatmode').prop("disabled", false);
-			}
-		}]
-	});
-}
-
 function saveChanges(id) {
 	$('.addsatmode').prop("disabled", false);
 	var frequencyfrom = $('#frequencyfrom_'+id).first().closest('td').html();
@@ -157,29 +115,6 @@ function restoreLine(id) {
 	$("#mode_" + id).html($("#mode_select_" + id).val());
 }
 
-function saveUpdatedBandEdge(form) {
-	$(".alert").remove();
-	if (form.band.value == "") {
-		$('#edit_band_dialog').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a band!</div>');
-	}
-	else {
-		$.ajax({
-			url: base_url + 'index.php/band/saveupdatedbandedge',
-			type: 'post',
-			data: {'id': form.id.value,
-				'band': form.band.value,
-				'bandgroup': form.bandgroup.value,
-				'ssbqrg': form.ssbqrg.value,
-				'dataqrg': form.dataqrg.value,
-				'cwqrg': form.cwqrg.value
-			},
-			success: function (html) {
-				location.reload();
-			}
-		});
-	}
-}
-
 function deleteBandEdge(id) {
 	BootstrapDialog.confirm({
 		title: lang_general_word_danger,
@@ -203,4 +138,55 @@ function deleteBandEdge(id) {
 			}
 		}
 	});
+}
+
+function addBandEdgeRow() {
+    // Prevent multiple add rows
+    if ($('.bandtable tbody tr.add-row').length) return;
+
+    var newRow = `
+        <tr class="add-row">
+            <td><input type="text" class="form-control form-control-sm" id="new_frequencyfrom"></td>
+            <td><input type="text" class="form-control form-control-sm" id="new_frequencyto"></td>
+            <td>
+                <select id="new_mode" class="form-control form-control-sm">
+                    <option value="phone">phone</option>
+                    <option value="cw">cw</option>
+                    <option value="digi">digi</option>
+                </select>
+            </td>
+            <td style="text-align: center;">
+                <button type="button" class="btn btn-sm btn-success" onclick="saveNewBandEdgeRow()">Save</button>
+            </td>
+            <td style="text-align: center;">
+                <button type="button" class="btn btn-sm btn-danger" onclick="cancelNewBandEdgeRow()">Cancel</button>
+            </td>
+        </tr>
+    `;
+    $('.bandtable tbody').prepend(newRow);
+}
+
+function saveNewBandEdgeRow() {
+    var frequencyfrom = $('#new_frequencyfrom').val();
+    var frequencyto = $('#new_frequencyto').val();
+    var mode = $('#new_mode').val();
+
+    // Add your validation here
+
+    $.ajax({
+        url: base_url + 'index.php/band/savebandedge',
+        type: 'post',
+        data: {
+            'frequencyfrom': frequencyfrom,
+            'frequencyto': frequencyto,
+            'mode': mode,
+		},
+        success: function (html) {
+            location.reload();
+        }
+    });
+}
+
+function cancelNewBandEdgeRow() {
+    $('.bandtable tbody tr.add-row').remove();
 }

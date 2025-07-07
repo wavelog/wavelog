@@ -102,6 +102,7 @@ class Bands extends CI_Model {
 	function get_all_bandedges_for_user() {
 		$this->db->from('bandedges');
 		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
+		$this->db->order_by('frequencyfrom', 'ASC');
 
 		$result = $this->db->get()->result();
 
@@ -113,6 +114,7 @@ class Bands extends CI_Model {
 
 		$this->db->from('bandedges');
 		$this->db->where('bandedges.userid', -1);
+		$this->db->order_by('frequencyfrom', 'ASC');
 
 		return $this->db->get()->result();
 	}
