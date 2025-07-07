@@ -141,7 +141,7 @@ class Qsl_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
-	// return path of qsl file : u=url / p=real path 
+	// return path of qsl file : u=url / p=real path
 	function get_imagePath($pathorurl='u', $user_id=null) {
 
 		// test if new folder directory option is enabled
@@ -178,4 +178,66 @@ class Qsl_model extends CI_Model {
 			return 'assets/qslcard';
 		}
 	}
+
+	function getConfirmations($confirmationtype) {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$table = $this->config->item('table_name');
+		$sql_parts = array();
+
+		if (in_array('qsl', $confirmationtype)) {
+			$sql_parts[] = "
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_qslrdate AS rxdate, 'QSL Card' AS type,
+					EXISTS (SELECT 1 FROM qsl_images WHERE qsoid = $table.COL_PRIMARY_KEY) AS qslcount
+				FROM $table
+				WHERE station_id IN ($location_list) AND col_qslrdate IS NOT NULL AND coalesce(col_qslrdate, '') <> '' AND col_qsl_rcvd = 'Y'
+			";
+		}
+		if (in_array('lotw', $confirmationtype)) {
+			$sql_parts[] = "
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_lotw_qslrdate AS rxdate, 'LoTW' AS type, 0 as qslcount
+				FROM $table
+				WHERE station_id IN ($location_list) AND col_lotw_qslrdate IS NOT NULL AND coalesce(col_lotw_qslrdate, '') <> '' AND col_lotw_qsl_rcvd = 'Y'
+			";
+		}
+		if (in_array('eqsl', $confirmationtype)) {
+			$sql_parts[] = "
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_eqsl_qslrdate AS rxdate, 'eQSL' AS type, 0 as qslcount
+				FROM $table
+				WHERE station_id IN ($location_list) AND col_eqsl_qslrdate IS NOT NULL AND coalesce(col_eqsl_qslrdate, '') <> '' AND col_eqsl_qsl_rcvd = 'Y'
+			";
+		}
+		if (in_array('qrz', $confirmationtype)) {
+			$sql_parts[] = "
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_qrzcom_qso_download_date AS rxdate, 'QRZ.com' AS type, 0 as qslcount
+				FROM $table
+				WHERE station_id IN ($location_list) AND col_qrzcom_qso_download_date IS NOT NULL AND coalesce(col_qrzcom_qso_download_date, '') <> '' AND col_qrzcom_qso_download_status = 'Y'
+			";
+		}
+		if (in_array('clublog', $confirmationtype)) {
+			$sql_parts[] = "
+				SELECT col_primary_key, col_call, col_time_on, col_mode, col_submode, col_band, col_sat_name, col_clublog_qso_download_date AS rxdate, 'Clublog' AS type, 0 as qslcount
+				FROM $table
+				WHERE station_id IN ($location_list) AND col_clublog_qso_download_date IS NOT NULL AND coalesce(col_clublog_qso_download_date, '') <> '' AND col_clublog_qso_download_status = 'Y'
+			";
+		}
+
+		if (count($sql_parts) == 0) {
+			return array();
+		}
+
+		$sql = implode(" UNION ALL ", $sql_parts);
+		$sql = "SELECT * FROM ( $sql ) AS unioned_results ORDER BY rxdate DESC LIMIT 1000";
+
+		$query = $this->db->query($sql);
+
+		return $query->result();
+	}
 }
+
