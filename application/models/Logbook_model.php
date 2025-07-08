@@ -890,6 +890,26 @@ class Logbook_model extends CI_Model {
 						$this->mark_webadif_qsos_sent([$last_id]);
 					}
 				}
+
+				$result = $this->exists_wavelog_api_key($data['station_id']);
+				// Push qso to upstream Wavelog instance
+				if ($result->wavelog_realtime != 0 && isset($result->wavelog_apikey)) {
+					if (!$this->load->is_loaded('AdifHelper')) {
+						$this->load->library('AdifHelper');
+					}
+					$qso = $this->get_qso($last_id, true)->result();
+
+					$adif = $this->adifhelper->getAdifLine($qso[0]);
+					$result = $this->push_qso_to_wavelog(
+						$result->wavelog_apiurl,
+						$result->wavelog_apikey,
+						$result->wavelog_profileid,
+						$adif
+					);
+					if ($result) {
+						$this->mark_wavelog_qsos_sent([$last_id]);
+					}
+				}
 			}
 		}
 	}
@@ -953,6 +973,24 @@ class Logbook_model extends CI_Model {
 	*/
 	function exists_webadif_api_key($station_id) {
 		$sql = 'select webadifapikey, webadifapiurl, webadifrealtime from station_profile
+		  where station_id = ?';
+
+		$query = $this->db->query($sql, $station_id);
+
+		$result = $query->row();
+
+		if ($result) {
+			return $result;
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * Function checks if a Wavelog API Key exists in the table with the given station id
+	*/
+	function exists_wavelog_api_key($station_id) {
+		$sql = 'select wavelog_apiurl, wavelog_apikey, wavelog_profileid, wavelog_realtime from station_profile
 		  where station_id = ?';
 
 		$query = $this->db->query($sql, $station_id);
@@ -1097,6 +1135,38 @@ class Logbook_model extends CI_Model {
 	}
 
 	/*
+	 * Function uploads a QSO to an upstream Wavelog instance
+	 * using URL, api key and profile id
+	 * $adif contains a line with the QSO in the ADIF format.
+	 */
+	function push_qso_to_wavelog($url, $apikey, $profileid, $adif): bool {
+
+		$headers = array(
+			'Content-Type: application/json',
+		);
+
+		if (substr($url, -17) !== "index.php/api/qso") {
+			$url .= 'index.php/api/qso';
+		}
+
+		$arr = array('key' => $apikey, 'station_profile_id' => $profileid, 'type' => 'adif', 'string' => trim(preg_replace('/[\r\n]/', '', $adif)));
+
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arr));
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		$content = curl_exec($ch);
+		$errors = curl_error($ch);
+		$response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		curl_close($ch);
+		return $response === 201;
+	}
+
+	/*
    * Function marks QSOs as uploaded to Clublog
    * $primarykey is the unique id for that QSO in the logbook
    */
@@ -1150,7 +1220,7 @@ class Logbook_model extends CI_Model {
 
 	/*
 	* Function marks QSOs as uploaded to WebADIF.
-	* $qsoIDs is an arroy of unique id for the QSOs in the logbook
+	* $qsoIDs is an array of unique id for the QSOs in the logbook
 	*/
 	function mark_webadif_qsos_sent(array $qsoIDs) {
 		$data = [];
@@ -1162,6 +1232,23 @@ class Logbook_model extends CI_Model {
 			];
 		}
 		$this->db->insert_batch('webadif', $data);
+		return true;
+	}
+
+	/*
+	* Function marks QSOs as uploaded to upstream Wavelog.
+	* $qsoIDs is an array of unique id for the QSOs in the logbook
+	*/
+	function mark_wavelog_qsos_sent(array $qsoIDs) {
+		$data = [];
+		$now = date("Y-m-d H:i:s", strtotime("now"));
+		foreach ($qsoIDs as $qsoID) {
+			$data[] = [
+				'upload_date' => $now,
+				'qso_id' => $qsoID,
+			];
+		}
+		$this->db->insert_batch('wavelog', $data);
 		return true;
 	}
 
@@ -2208,6 +2295,44 @@ class Logbook_model extends CI_Model {
 			WHERE qsos.station_id = ?
 			AND qsos.COL_SAT_NAME = 'QO-100'
 			AND webadif.upload_date IS NULL
+		";
+		$binding[] = $station_id;
+
+		if ($from) {
+			$from = DateTime::createFromFormat('d/m/Y', $from);
+			$from = $from->format('Y-m-d');
+
+			$sql .= "  AND qsos.COL_TIME_ON >= ?";
+			$binding[] = $from;
+		}
+		if ($to) {
+			$to = DateTime::createFromFormat('d/m/Y', $to);
+			$to = $to->format('Y-m-d');
+
+			$sql .= "  AND qsos.COL_TIME_ON <= ?";
+			$binding[] = $to;
+		}
+
+		return $this->db->query($sql, $binding);
+	}
+
+	/*
+     * Function returns the QSOs from the logbook, which have not been either marked as uploaded to upstream Wavelog
+     */
+	function get_wavelog_qsos($station_id, $from = null, $to = null, $trusted = false) {
+		$binding = [];
+		$this->load->model('stations');
+		if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
+			return;
+		}
+		$sql = "
+			SELECT qsos.*, station_profile.*, dxcc_entities.name as station_country
+			FROM " . $this->config->item('table_name') . " qsos
+			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
+			LEFT JOIN dxcc_entities on qsos.col_my_dxcc = dxcc_entities.adif
+			LEFT OUTER JOIN wavelog ON qsos.COL_PRIMARY_KEY = wavelog.qso_id
+			WHERE qsos.station_id = ?
+			AND wavelog.upload_date IS NULL
 		";
 		$binding[] = $station_id;
 
