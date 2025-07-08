@@ -695,7 +695,7 @@ function getBearing(lat1, lng1, lat2, lng2) {
   }
 
   function start(data) {
-	init(data.satellite);
+	init((data.satellite != '' ? (data.satellite+' ('+data.displayname+')') : data.displayname));
 	initSats(parseTle(data.tle));
   }
 
@@ -726,7 +726,7 @@ function plot_sat() {
 		},
 		success: function (data) {
 			sats.start(data);
-			$("#satname").html($("#sats").val());
+			$("#satname").html($("#sats :selected").text());
 		},
 		error: function (data) {
 			alert('Something went wrong!');
