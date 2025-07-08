@@ -695,7 +695,7 @@ function getBearing(lat1, lng1, lat2, lng2) {
   }
 
   function start(data) {
-	init((data.satellite != '' ? (data.displayname+' ('+data.satellite+')') : data.displayname));
+	init((data.satellite != '' ? (data.satellite+' ('+data.displayname+')') : data.displayname));
 	initSats(parseTle(data.tle));
   }
 

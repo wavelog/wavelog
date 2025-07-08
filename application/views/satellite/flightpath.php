@@ -42,7 +42,7 @@
 				<?php foreach($satellites as $sat) {
 					echo '<option value="' . $sat->satname . '"';
 					if ($sat->satname == $selsat) { echo ' selected'; }
-					echo '>' . ($sat->satname != null ? ($sat->displayname.' ('.$sat->satname.')') : $sat->displayname). '</option>'."\n";
+					echo '>' . ($sat->satname != null ? ($sat->satname.' ('.$sat->displayname.')') : $sat->displayname). '</option>'."\n";
 				} ?>
 			</select>
 		</form>
