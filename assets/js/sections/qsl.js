@@ -27,7 +27,7 @@ function getConfirmations() {
 
 	$('#confirmationbutton').prop("disabled", true).addClass("running");
 	$.ajax({
-		url: base_url + 'index.php/qsl/searchConfirmations',
+		url: base_url + 'index.php/generic_qsl/searchConfirmations',
 		type: 'post',
 		data: {'type': $('#confirmationtype').val()},
 		success: function(html) {

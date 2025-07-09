@@ -2374,7 +2374,7 @@ $('#sats').change(function(){
 	<script src="<?php echo base_url(); ?>assets/js/sections/timeplot.js"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "qsl" || $this->uri->segment(1) == "eqsl") {
+<?php if ($this->uri->segment(1) == "generic_qsl" || $this->uri->segment(1) == "qsl" || $this->uri->segment(1) == "eqsl") {
     	// Get Date format
 	if($this->session->userdata('user_date_format')) {
 		// If Logged in and session exists
@@ -2409,6 +2409,8 @@ $('#sats').change(function(){
         };
     </script>
     <?php if ($this->uri->segment(1) == "qsl") {
+        $qsl_eqsl_table = '.qsltable';
+    } else if ($this->uri->segment(1) == "generic_qsl") {
         $qsl_eqsl_table = '.qsltable';
     } else if ($this->uri->segment(1) == "eqsl") {
         $qsl_eqsl_table = '.eqsltable';
