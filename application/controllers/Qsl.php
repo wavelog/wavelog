@@ -35,7 +35,6 @@ class Qsl extends CI_Controller {
         $this->load->view('interface_assets/footer', $footerData);
     }
 
-
     public function upload() {
         // Render Page
         $data['page_title'] = __("Upload QSL Cards");

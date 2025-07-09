@@ -17,6 +17,8 @@ class Generic_qsl extends CI_Controller {
 		// Render Page
 		$data['page_title'] = __("Confirmations");
 
+		$pageData['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
@@ -24,7 +26,7 @@ class Generic_qsl extends CI_Controller {
 		];
 
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('qslcard/confirmations');
+		$this->load->view('qslcard/confirmations', $pageData);
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
