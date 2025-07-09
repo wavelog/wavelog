@@ -36,13 +36,6 @@ class Qsl extends CI_Controller {
     }
 
 
-	public function searchConfirmations() {
-		$this->load->model('qsl_model');
-		$confirmationtype = xss_clean($this->input->post('type'));
-		$data['result'] = $this->qsl_model->getConfirmations($confirmationtype);
-		$this->load->view('qslcard/confirmationresult', $data);
-	}
-
     public function upload() {
         // Render Page
         $data['page_title'] = __("Upload QSL Cards");
