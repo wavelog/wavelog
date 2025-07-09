@@ -35,31 +35,6 @@ class Qsl extends CI_Controller {
         $this->load->view('interface_assets/footer', $footerData);
     }
 
-	// View for filtering and showing confirmations on LoTW/QSL/eQSL/QRZ/HRDLog/Clublog
-    public function confirmations() {
-		// Render Page
-		$data['page_title'] = __("Confirmations");
-
-		$pageData['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
-
-		$footerData = [];
-		$footerData['scripts'] = [
-			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
-			'assets/js/sections/qsl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/qsl.js")),
-		];
-
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('qslcard/confirmations', $pageData);
-		$this->load->view('interface_assets/footer', $footerData);
-    }
-
-	public function searchConfirmations() {
-		$this->load->model('qsl_model');
-		$confirmationtype = xss_clean($this->input->post('type'));
-		$data['result'] = $this->qsl_model->getConfirmations($confirmationtype);
-		$this->load->view('qslcard/confirmationresult', $data);
-	}
-
     public function upload() {
         // Render Page
         $data['page_title'] = __("Upload QSL Cards");

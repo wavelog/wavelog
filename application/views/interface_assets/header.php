@@ -110,7 +110,7 @@
 							<?php } ?>
 							<li><a class="dropdown-item" href="<?php echo site_url('eqsl'); ?>" title="eQSL"><i class="fa fa-id-card"></i> <?= __("View eQSL Cards"); ?></a></li>
 							<div class="dropdown-divider"></div>
-							<li><a class="dropdown-item" href="<?php echo site_url('qsl/confirmations'); ?>" title="eQSL"><i class="fa fa-id-card"></i> <?= __("View last confirmations"); ?></a></li>
+							<li><a class="dropdown-item" href="<?php echo site_url('generic_qsl/confirmations'); ?>" title="eQSL"><i class="fa fa-id-card"></i> <?= __("View last confirmations"); ?></a></li>
 						</ul>
 					</li>
 
