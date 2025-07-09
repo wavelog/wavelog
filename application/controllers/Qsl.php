@@ -38,7 +38,9 @@ class Qsl extends CI_Controller {
 	// View for filtering and showing confirmations on LoTW/QSL/eQSL/QRZ/HRDLog/Clublog
     public function confirmations() {
 		// Render Page
-        $data['page_title'] = __("Confirmations");
+		$data['page_title'] = __("Confirmations");
+
+		$pageData['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
 
 		$footerData = [];
 		$footerData['scripts'] = [
@@ -46,9 +48,9 @@ class Qsl extends CI_Controller {
 			'assets/js/sections/qsl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/qsl.js")),
 		];
 
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('qslcard/confirmations');
-        $this->load->view('interface_assets/footer', $footerData);
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('qslcard/confirmations', $pageData);
+		$this->load->view('interface_assets/footer', $footerData);
     }
 
 	public function searchConfirmations() {
