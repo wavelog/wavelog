@@ -459,6 +459,21 @@ class Bands extends CI_Model {
 		$this->db->delete('bandedges', array('id' => $clean_id, 'userid' => $this->session->userdata('user_id')));
 	}
 
+	function check4overlapEdges($id, $frequencyfrom, $frequencyto, $mode) {
+		$edges = $this->bands->get_all_bandedges_for_user();
+		foreach ($edges as $item) {
+			if ($item->id == ($id ?? -1000)) {
+				continue;
+			}
+			$from = (int)$item->frequencyfrom;
+			$to = (int)$item->frequencyto;
+			if (!($frequencyto < $from || $frequencyfrom > $to)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	function saveBandEdge($id, $frequencyfrom, $frequencyto, $mode) {
 		$data = array(
 			'frequencyfrom' => $frequencyfrom,

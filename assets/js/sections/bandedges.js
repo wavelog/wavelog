@@ -81,7 +81,8 @@ function saveChanges(id) {
 			'mode': mode,
 		},
 		success: function (data) {
-
+				// todo: reload table if data.message == 'OK'
+				// todo: else show warning "oerlap" and reload aswell
 		}
 	});
 
