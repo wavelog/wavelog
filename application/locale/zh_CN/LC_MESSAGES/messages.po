@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-09 13:19+0000\n"
+"POT-Creation-Date: 2025-07-10 13:08+0000\n"
 "PO-Revision-Date: 2025-07-07 07:04+0000\n"
 "Last-Translator: BH3HNI <mmf@live.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -219,7 +219,7 @@ msgid "date incorrect"
 msgstr "日期错误"
 
 #: application/controllers/Adif.php:134
-#: application/views/interface_assets/header.php:446
+#: application/views/interface_assets/header.php:447
 msgid "ADIF Import / Export"
 msgstr "ADIF 导入/导出"
 
@@ -339,7 +339,7 @@ msgid "DOK"
 msgstr "DOK"
 
 #: application/controllers/Awards.php:176 application/views/awards/index.php:7
-#: application/views/bandmap/list.php:122 application/views/bands/index.php:49
+#: application/views/bandmap/list.php:129 application/views/bands/index.php:49
 #: application/views/csv/index.php:58 application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:11
 #: application/views/interface_assets/header.php:180
@@ -598,19 +598,19 @@ msgstr "ADIF - 备份"
 msgid "Notes - Backup"
 msgstr "笔记 - 备份"
 
-#: application/controllers/Band.php:25 application/views/bands/index.php:29
-#: application/views/bands/index.php:33
+#: application/controllers/Band.php:25 application/controllers/Band.php:43
+#: application/views/bands/index.php:29 application/views/bands/index.php:33
 #: application/views/interface_assets/header.php:417
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:67
 msgid "Bands"
 msgstr "频段"
 
-#: application/controllers/Band.php:39 application/controllers/Mode.php:41
+#: application/controllers/Band.php:57 application/controllers/Mode.php:41
 msgid "Create Mode"
 msgstr "创建模式"
 
-#: application/controllers/Band.php:64 application/views/bands/index.php:154
+#: application/controllers/Band.php:82 application/views/bands/index.php:154
 msgid "Edit Band"
 msgstr "编辑频段"
 
@@ -657,7 +657,7 @@ msgid " and sat "
 msgstr " 并且卫星 "
 
 #: application/controllers/Cfdexport.php:20
-#: application/views/interface_assets/header.php:460
+#: application/views/interface_assets/header.php:461
 msgid "CFD Export"
 msgstr "CFD 导出"
 
@@ -858,7 +858,7 @@ msgid "Not running"
 msgstr "未运行"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
-#: application/views/interface_assets/header.php:454
+#: application/views/interface_assets/header.php:455
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV 导出"
 
@@ -941,7 +941,7 @@ msgid "and propagation"
 msgstr "和传播方式"
 
 #: application/controllers/Dxatlas.php:19
-#: application/views/interface_assets/header.php:452
+#: application/views/interface_assets/header.php:453
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas 网格导出"
 
@@ -1031,7 +1031,7 @@ msgid "No QSOs found to upload."
 msgstr "无 QSO 可供上传。"
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:450
+#: application/views/interface_assets/header.php:451
 #: application/views/kml/index.php:3
 msgid "KML Export"
 msgstr "KML 导出"
@@ -1306,6 +1306,8 @@ msgstr "eQSL"
 #: application/views/awards/waja/index.php:91
 #: application/views/awards/wap/index.php:87
 #: application/views/awards/was/index.php:87
+#: application/views/bandmap/list.php:109
+#: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:49
 #: application/views/components/hamsat/table.php:30
 #: application/views/contesting/index.php:114
@@ -1653,7 +1655,7 @@ msgid "Band"
 msgstr "频段"
 
 #: application/controllers/Logbook.php:1297
-#: application/controllers/Radio.php:45 application/views/bandmap/list.php:120
+#: application/controllers/Radio.php:45 application/views/bandmap/list.php:127
 #: application/views/contesting/index.php:144
 #: application/views/dashboard/index.php:16
 #: application/views/logbookadvanced/index.php:710
@@ -1736,7 +1738,7 @@ msgstr "快速查找"
 
 #: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
 #: application/controllers/Lotw.php:125 application/views/adif/import.php:27
-#: application/views/interface_assets/header.php:487
+#: application/views/interface_assets/header.php:488
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:773 application/views/visitor/index.php:328
@@ -1815,7 +1817,7 @@ msgstr "LoTW .TQ8 未发送"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:302
-#: application/views/interface_assets/header.php:418
+#: application/views/interface_assets/header.php:419
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
 msgid "Modes"
 msgstr "模式"
@@ -2004,7 +2006,7 @@ msgid "Invalid Station ID"
 msgstr "无效站台 ID"
 
 #: application/controllers/Oqrs.php:134
-#: application/views/interface_assets/header.php:477
+#: application/views/interface_assets/header.php:478
 msgid "OQRS Requests"
 msgstr "OQRS"
 
@@ -2048,7 +2050,7 @@ msgid ""
 msgstr "负数纬度表示南纬，负数经度表示西经。"
 
 #: application/controllers/Qrz.php:204
-#: application/views/interface_assets/header.php:490
+#: application/views/interface_assets/header.php:491
 msgid "QRZ Logbook"
 msgstr "QRZ 日志簿"
 
@@ -2096,7 +2098,7 @@ msgid "No callsign provided."
 msgstr "未提供呼号。"
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:500
+#: application/views/interface_assets/header.php:501
 msgid "Hardware Interfaces"
 msgstr "硬件接口"
 
@@ -2145,7 +2147,7 @@ msgstr "默认（点击释放）"
 
 #: application/controllers/Radio.php:115
 #: application/controllers/Stationsetup.php:401
-#: application/views/api/index.php:74
+#: application/views/api/index.php:74 application/views/bands/bandedges.php:32
 #: application/views/club/permissions.php:248
 #: application/views/contesting/add.php:59 application/views/cron/index.php:58
 #: application/views/interface_assets/footer.php:605
@@ -2164,7 +2166,7 @@ msgstr "编辑"
 
 #: application/controllers/Radio.php:116
 #: application/controllers/Stationsetup.php:414
-#: application/views/api/index.php:81
+#: application/views/api/index.php:81 application/views/bands/bandedges.php:33
 #: application/views/club/permissions.php:304
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
@@ -2361,7 +2363,7 @@ msgstr "请检查网格定位的值 ( %s )"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:415
-#: application/views/interface_assets/header.php:563
+#: application/views/interface_assets/header.php:564
 msgid "Station Setup"
 msgstr "设置台站"
 
@@ -2428,7 +2430,7 @@ msgid "Set as Active Logbook"
 msgstr "设置为正在使用的日志"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:561
+#: application/views/interface_assets/header.php:562
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -2931,7 +2933,7 @@ msgstr "导出地图"
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
-#: application/views/interface_assets/header.php:491
+#: application/views/interface_assets/header.php:492
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
 
@@ -3342,7 +3344,8 @@ msgstr "差异"
 #: application/views/awards/wap/index.php:90
 #: application/views/awards/was/index.php:90
 #: application/views/bandmap/list.php:78 application/views/bandmap/list.php:85
-#: application/views/bandmap/list.php:97 application/views/bands/index.php:120
+#: application/views/bandmap/list.php:97 application/views/bandmap/list.php:111
+#: application/views/bands/index.php:120
 #: application/views/cabrillo/index.php:69
 #: application/views/callstats/index.php:10
 #: application/views/callstats/index.php:24
@@ -4014,7 +4017,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/awards/pota/index.php:32
 #: application/views/awards/sota/index.php:31
 #: application/views/awards/wwff/index.php:32
-#: application/views/bandmap/list.php:119
+#: application/views/bandmap/list.php:126
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:99
 #: application/views/contesting/index.php:257
@@ -4059,7 +4062,7 @@ msgstr "日期"
 #: application/views/awards/pota/index.php:33
 #: application/views/awards/sota/index.php:32
 #: application/views/awards/wwff/index.php:33
-#: application/views/bandmap/list.php:119
+#: application/views/bandmap/list.php:126
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:104
 #: application/views/contesting/index.php:257
@@ -4089,7 +4092,7 @@ msgstr "时间"
 
 #: application/views/adif/dcl_success.php:31
 #: application/views/awards/vucc/band.php:18
-#: application/views/bandmap/list.php:121
+#: application/views/bandmap/list.php:128
 #: application/views/contesting/index.php:258
 #: application/views/debug/index.php:586 application/views/debug/index.php:621
 #: application/views/dxcalendar/index.php:12
@@ -4539,7 +4542,7 @@ msgid "Save"
 msgstr "保存"
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:499
+#: application/views/interface_assets/header.php:500
 msgid "API Keys"
 msgstr "API 密钥"
 
@@ -6138,24 +6141,74 @@ msgstr "DXCC 状态"
 msgid "Not Confirmed"
 msgstr "未确认"
 
-#: application/views/bandmap/list.php:123
+#: application/views/bandmap/list.php:112
+msgid "Phone"
+msgstr ""
+
+#: application/views/bandmap/list.php:113
+msgid "CW"
+msgstr ""
+
+#: application/views/bandmap/list.php:114
+msgid "Digi"
+msgstr ""
+
+#: application/views/bandmap/list.php:130
 msgid "WAC"
 msgstr "WAC"
 
-#: application/views/bandmap/list.php:124
+#: application/views/bandmap/list.php:131
 msgid "Spotter"
 msgstr "Spotter"
 
-#: application/views/bandmap/list.php:125
+#: application/views/bandmap/list.php:132
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
 msgid "Message"
 msgstr "消息"
 
-#: application/views/bandmap/list.php:126
+#: application/views/bandmap/list.php:133
 msgid "Last Worked"
 msgstr "最后工作"
+
+#: application/views/bands/bandedges.php:2
+msgid "Please enter valid numbers for frequency"
+msgstr ""
+
+#: application/views/bands/bandedges.php:3
+msgid "The 'From' frequency must be less than the 'To' frequency."
+msgstr ""
+
+#: application/views/bands/bandedges.php:4
+msgid "The Frequency overlaps with an existing entry."
+msgstr ""
+
+#: application/views/bands/bandedges.php:5
+msgid "Are you sure you want to delete this band edge?"
+msgstr ""
+
+#: application/views/bands/bandedges.php:17
+msgid "Bandedges"
+msgstr ""
+
+#: application/views/bands/bandedges.php:22
+msgid ""
+"Using the bandedges list you can control the mode classification in the "
+"cluster."
+msgstr ""
+
+#: application/views/bands/bandedges.php:29
+msgid "Frequency from (Hz)"
+msgstr ""
+
+#: application/views/bands/bandedges.php:30
+msgid "Frequency to (Hz)"
+msgstr ""
+
+#: application/views/bands/bandedges.php:65
+msgid "Add a bandedge"
+msgstr ""
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
@@ -7035,7 +7088,7 @@ msgstr "ADIF 名称"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:541
+#: application/views/interface_assets/header.php:542
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -8786,7 +8839,7 @@ msgid "Satellite Information"
 msgstr "卫星信息"
 
 #: application/views/interface_assets/footer.php:139
-#: application/views/interface_assets/header.php:502
+#: application/views/interface_assets/header.php:503
 #: application/views/options/sidebar.php:13
 msgid "Version Info"
 msgstr "版本信息"
@@ -9160,93 +9213,97 @@ msgstr "操作员：%s"
 msgid "Account"
 msgstr "账户信息"
 
-#: application/views/interface_assets/header.php:423
+#: application/views/interface_assets/header.php:418
+msgid "Band Edges"
+msgstr ""
+
+#: application/views/interface_assets/header.php:424
 msgid "Switch to Clubstation:"
 msgstr "切换到集体台站："
 
-#: application/views/interface_assets/header.php:427
+#: application/views/interface_assets/header.php:428
 #, php-format
 msgid "Switch to %s"
 msgstr "切换到 %s"
 
-#: application/views/interface_assets/header.php:431
+#: application/views/interface_assets/header.php:432
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr "管理 %s"
 
-#: application/views/interface_assets/header.php:440
+#: application/views/interface_assets/header.php:441
 msgid "No Clubstations available"
 msgstr "没有可用的集体台站"
 
-#: application/views/interface_assets/header.php:448
+#: application/views/interface_assets/header.php:449
 msgid "Other Export Options"
 msgstr "其它导出选项"
 
-#: application/views/interface_assets/header.php:456
+#: application/views/interface_assets/header.php:457
 msgid "Cabrillo Export"
 msgstr "Cabrillo 导出"
 
-#: application/views/interface_assets/header.php:458
+#: application/views/interface_assets/header.php:459
 msgid "EDI Export"
 msgstr "EDI 导出"
 
-#: application/views/interface_assets/header.php:482
+#: application/views/interface_assets/header.php:483
 msgid "QSL Queue"
 msgstr "QSL 队列"
 
-#: application/views/interface_assets/header.php:483
+#: application/views/interface_assets/header.php:484
 msgid "Labels"
 msgstr "标签"
 
-#: application/views/interface_assets/header.php:485
+#: application/views/interface_assets/header.php:486
 msgid "Third-Party Services"
 msgstr "第三方服务"
 
-#: application/views/interface_assets/header.php:488
+#: application/views/interface_assets/header.php:489
 msgid "eQSL Import / Export"
 msgstr "eQSL 导入/导出"
 
-#: application/views/interface_assets/header.php:489
+#: application/views/interface_assets/header.php:490
 msgid "HRDLog Logbook"
 msgstr "HRDLog 日志簿"
 
-#: application/views/interface_assets/header.php:492
+#: application/views/interface_assets/header.php:493
 msgid "Clublog Import / Export"
 msgstr "Clublog 导入/导出"
 
-#: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:504
 #: application/views/logbookadvanced/index.php:675
 msgid "Help"
 msgstr "帮助"
 
-#: application/views/interface_assets/header.php:504
+#: application/views/interface_assets/header.php:505
 msgid "Forum"
 msgstr "论坛"
 
-#: application/views/interface_assets/header.php:508
+#: application/views/interface_assets/header.php:509
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr "登出并返回到 %s"
 
-#: application/views/interface_assets/header.php:509
+#: application/views/interface_assets/header.php:510
 #, php-format
 msgid "Switch back to %s"
 msgstr "切换回 %s"
 
-#: application/views/interface_assets/header.php:513
+#: application/views/interface_assets/header.php:514
 msgid "Logout"
 msgstr "注销"
 
-#: application/views/interface_assets/header.php:521
+#: application/views/interface_assets/header.php:522
 msgid "Select a Location"
 msgstr "选择电台站位置"
 
-#: application/views/interface_assets/header.php:563
+#: application/views/interface_assets/header.php:564
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr "您错过了这里的台站位置？前往台站设置并收藏它们"
 
-#: application/views/interface_assets/header.php:600
+#: application/views/interface_assets/header.php:601
 msgid "Extras"
 msgstr "额外"
 
