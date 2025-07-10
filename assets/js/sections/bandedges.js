@@ -44,9 +44,9 @@ function saveChanges(id) {
 
 	if (!$.isNumeric(frequencyfrom) || !$.isNumeric(frequencyto)) {
 		BootstrapDialog.alert({
-			title: 'INFO',
+			title: 'Error',
 			message: lang_edge_invalid_number,
-			type: BootstrapDialog.TYPE_INFO,
+			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
 			btnOKClass: 'btn-info',
@@ -58,9 +58,9 @@ function saveChanges(id) {
 	}
 	if (frequencyfrom >= frequencyto) {
 		BootstrapDialog.alert({
-			title: 'INFO',
+			title: 'Error',
 			message: lang_edge_from_gt_to,
-			type: BootstrapDialog.TYPE_INFO,
+			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
 			btnOKClass: 'btn-info',
@@ -85,9 +85,9 @@ function saveChanges(id) {
 			console.log(response);
 			if ((response.message ?? '') !== 'OK') {
 				BootstrapDialog.alert({
-					title: 'INFO',
+					title: 'Error',
 					message: lang_edge_overlap,
-					type: BootstrapDialog.TYPE_INFO,
+					type: BootstrapDialog.TYPE_DANGER,
 					closable: true,
 					draggable: true,
 					btnOKClass: 'btn-info',
@@ -188,9 +188,9 @@ function saveNewBandEdgeRow() {
 
 	if (!$.isNumeric(frequencyfrom) || !$.isNumeric(frequencyto)) {
 		BootstrapDialog.alert({
-			title: 'INFO',
+			title: 'Error',
 			message: lang_edge_invalid_number,
-			type: BootstrapDialog.TYPE_INFO,
+			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
 			btnOKClass: 'btn-info',
@@ -202,9 +202,9 @@ function saveNewBandEdgeRow() {
 	}
 	if (frequencyfrom >= frequencyto) {
 		BootstrapDialog.alert({
-			title: 'INFO',
+			title: 'Error',
 			message: lang_edge_from_gt_to,
-			type: BootstrapDialog.TYPE_INFO,
+			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
 			btnOKClass: 'btn-info',
@@ -228,9 +228,9 @@ function saveNewBandEdgeRow() {
 			console.log(response);
 			if ((response.message ?? '') !== 'OK') {
 				BootstrapDialog.alert({
-					title: 'INFO',
+					title: 'Error',
 					message: lang_edge_overlap,
-					type: BootstrapDialog.TYPE_INFO,
+					type: BootstrapDialog.TYPE_DANGER,
 					closable: true,
 					draggable: true,
 					btnOKClass: 'btn-info',
