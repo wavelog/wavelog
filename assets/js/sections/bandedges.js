@@ -179,6 +179,7 @@ function addBandEdgeRow() {
         </tr>
     `;
     $('.bandtable tbody').prepend(newRow);
+    $('#bandtable').DataTable().table().container().getElementsByClassName('dt-scroll-body')[0].scrollTop = 0;
 }
 
 function saveNewBandEdgeRow() {

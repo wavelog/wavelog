@@ -23,7 +23,7 @@
 			</p>
 			<div class="table-responsive">
 
-				<table style="width:100%" class="bandtable table table-sm table-striped">
+				<table id="bandtable" style="width:100%"class="bandtable table table-sm table-striped">
 					<thead>
 						<tr>
 							<th><?= __("Frequency from (Hz)"); ?></th>
