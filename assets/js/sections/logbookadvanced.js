@@ -359,6 +359,7 @@ function loadQSOTable(rows) {
 	} catch (e) {
 		table.draw(true);
 	}
+	rebind_checkbox_trigger();
 	$('[data-bs-toggle="tooltip"]').tooltip();
 
 		document.querySelectorAll('.row-check').forEach(checkbox => {
@@ -1291,7 +1292,13 @@ $(document).ready(function () {
 		});
 	});
 
+	rebind_checkbox_trigger();
 
+	$('#searchForm').submit();
+
+});
+
+function rebind_checkbox_trigger() {
 	$('#checkBoxAll').change(function (event) {
 		if (this.checked) {
 			$('#qsoList tbody tr').each(function (i) {
@@ -1303,10 +1310,7 @@ $(document).ready(function () {
 			});
 		}
 	});
-
-	$('#searchForm').submit();
-
-});
+}
 
 function handleQsl(sent, method, tag) {
 	const id_list = getSelectedIdsForMap();
