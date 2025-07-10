@@ -206,9 +206,17 @@ class Band extends CI_Controller {
 		$frequencyfrom = $this->security->xss_clean($this->input->post('frequencyfrom', true));
 		$frequencyto = $this->security->xss_clean($this->input->post('frequencyto', true));
 		$mode = $this->security->xss_clean($this->input->post('mode', true));
-
-		$this->bands->saveBandEdge($id, $frequencyfrom, $frequencyto, $mode);
-		echo json_encode(array('message' => 'OK'));
+		if ((is_numeric($frequencyfrom)) && (is_numeric($frequencyfrom))) {
+			$overlap=$this->bands->check4overlapEdges($id, $frequencyfrom, $frequencyto, $mode);
+			if (!($overlap)) {
+				$this->bands->saveBandEdge($id, $frequencyfrom, $frequencyto, $mode);
+				echo json_encode(array('message' => 'OK'));
+			} else {
+				echo json_encode(array('message' => 'Overlapping'));
+			}
+		} else {
+			echo json_encode(array('message' => 'No Number entered'));
+		}
 		return;
 	}
 }

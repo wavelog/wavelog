@@ -1,3 +1,9 @@
+<script>
+     var lang_edge_invalid_number = "<?= __("Please enter valid numbers for frequency"); ?>";
+     var lang_edge_from_gt_to = "<?= __("The 'From' frequency must be less than the 'To' frequency."); ?>";
+     var lang_edge_overlap = "<?= __("The Frequency overlaps with an existing entry."); ?>";
+     var lang_edge_remove = "<?= __("Are you sure you want to delete this band edge?"); ?>";
+</script>
 <div class="container">
 
 	<br>

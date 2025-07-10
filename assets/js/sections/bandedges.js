@@ -45,7 +45,7 @@ function saveChanges(id) {
 	if (!$.isNumeric(frequencyfrom) || !$.isNumeric(frequencyto)) {
 		BootstrapDialog.alert({
 			title: 'INFO',
-			message: "Please enter valid numbers for frequency.",
+			message: lang_edge_invalid_number,
 			type: BootstrapDialog.TYPE_INFO,
 			closable: true,
 			draggable: true,
@@ -59,7 +59,7 @@ function saveChanges(id) {
 	if (frequencyfrom >= frequencyto) {
 		BootstrapDialog.alert({
 			title: 'INFO',
-			message: "The 'From' frequency must be less than the 'To' frequency.",
+			message: lang_edge_from_gt_to,
 			type: BootstrapDialog.TYPE_INFO,
 			closable: true,
 			draggable: true,
@@ -81,11 +81,24 @@ function saveChanges(id) {
 			'mode': mode,
 		},
 		success: function (data) {
-
+			response=JSON.parse(data);
+			console.log(response);
+			if ((response.message ?? '') !== 'OK') {
+				BootstrapDialog.alert({
+					title: 'INFO',
+					message: lang_edge_overlap,
+					type: BootstrapDialog.TYPE_INFO,
+					closable: true,
+					draggable: true,
+					btnOKClass: 'btn-info',
+					callback: function (result) {
+						location.reload();
+					}
+				});
+			}
 		}
 	});
-
-    restoreLine(id);
+	restoreLine(id);
 }
 
 function cancelChanges(id) {
@@ -119,7 +132,7 @@ function restoreLine(id) {
 function deleteBandEdge(id) {
 	BootstrapDialog.confirm({
 		title: lang_general_word_danger,
-		message: 'Are you sure you want to delete this band edge?',
+		message: lang_edge_remove,
 		type: BootstrapDialog.TYPE_DANGER,
 		closable: true,
 		draggable: true,
@@ -169,14 +182,14 @@ function addBandEdgeRow() {
 }
 
 function saveNewBandEdgeRow() {
-    var frequencyfrom = $('#new_frequencyfrom').val();
-    var frequencyto = $('#new_frequencyto').val();
-    var mode = $('#new_mode').val();
+	var frequencyfrom = $('#new_frequencyfrom').val();
+	var frequencyto = $('#new_frequencyto').val();
+	var mode = $('#new_mode').val();
 
 	if (!$.isNumeric(frequencyfrom) || !$.isNumeric(frequencyto)) {
 		BootstrapDialog.alert({
 			title: 'INFO',
-			message: "Please enter valid numbers for frequency.",
+			message: lang_edge_invalid_number,
 			type: BootstrapDialog.TYPE_INFO,
 			closable: true,
 			draggable: true,
@@ -190,7 +203,7 @@ function saveNewBandEdgeRow() {
 	if (frequencyfrom >= frequencyto) {
 		BootstrapDialog.alert({
 			title: 'INFO',
-			message: "The 'From' frequency must be less than the 'To' frequency.",
+			message: lang_edge_from_gt_to,
 			type: BootstrapDialog.TYPE_INFO,
 			closable: true,
 			draggable: true,
@@ -203,17 +216,33 @@ function saveNewBandEdgeRow() {
 	}
 
 	$.ajax({
-        url: base_url + 'index.php/band/savebandedge',
-        type: 'post',
-        data: {
-            'frequencyfrom': frequencyfrom,
-            'frequencyto': frequencyto,
-            'mode': mode,
+		url: base_url + 'index.php/band/saveBandEdge',
+		type: 'post',
+		data: {
+			'frequencyfrom': frequencyfrom,
+			'frequencyto': frequencyto,
+			'mode': mode,
 		},
-        success: function (html) {
-            location.reload();
-        }
-    });
+		success: function (data) {
+			response=JSON.parse(data);
+			console.log(response);
+			if ((response.message ?? '') !== 'OK') {
+				BootstrapDialog.alert({
+					title: 'INFO',
+					message: lang_edge_overlap,
+					type: BootstrapDialog.TYPE_INFO,
+					closable: true,
+					draggable: true,
+					btnOKClass: 'btn-info',
+					callback: function (result) {
+						location.reload();
+					}
+				});
+			} else {
+				location.reload();
+			}
+		}
+	});
 }
 
 function cancelNewBandEdgeRow() {
