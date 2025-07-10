@@ -25,9 +25,9 @@ function editBandEdge(id) {
 
 	// Build the select with the current mode selected
 	var selectHtml = '<select id="mode_select_' + id + '" style="text-align-last: center;" class="d-inline-block w-auto text-center form-control form-control-sm">';
-	selectHtml += '<option value="phone"' + (currentMode === 'phone' ? ' selected' : '') + '>phone</option>';
-	selectHtml += '<option value="cw"' + (currentMode === 'cw' ? ' selected' : '') + '>cw</option>';
-	selectHtml += '<option value="digi"' + (currentMode === 'digi' ? ' selected' : '') + '>digi</option>';
+	selectHtml += '<option value="phone"' + (currentMode === 'phone' ? ' selected' : '') + '>Phone</option>';
+	selectHtml += '<option value="cw"' + (currentMode === 'cw' ? ' selected' : '') + '>CW</option>';
+	selectHtml += '<option value="digi"' + (currentMode === 'digi' ? ' selected' : '') + '>Digi</option>';
 	selectHtml += '</select>';
 
 	// Replace the cell content with the select
@@ -165,9 +165,9 @@ function addBandEdgeRow() {
             <td><input type="text" class="form-control form-control-sm" id="new_frequencyto"></td>
             <td>
                 <select id="new_mode" class="form-control form-control-sm">
-                    <option value="phone">phone</option>
-                    <option value="cw">cw</option>
-                    <option value="digi">digi</option>
+                    <option value="phone">Phone</option>
+                    <option value="cw">CW</option>
+                    <option value="digi">Digi</option>
                 </select>
             </td>
             <td style="text-align: center;">
