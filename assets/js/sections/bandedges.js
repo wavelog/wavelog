@@ -82,7 +82,6 @@ function saveChanges(id) {
 		},
 		success: function (data) {
 			response=JSON.parse(data);
-			console.log(response);
 			if ((response.message ?? '') !== 'OK') {
 				BootstrapDialog.alert({
 					title: 'Error',
@@ -226,7 +225,6 @@ function saveNewBandEdgeRow() {
 		},
 		success: function (data) {
 			response=JSON.parse(data);
-			console.log(response);
 			if ((response.message ?? '') !== 'OK') {
 				BootstrapDialog.alert({
 					title: 'Error',
