@@ -125,7 +125,7 @@ function restoreLine(id) {
 	$(".bandedge_" + id).find("#saveButton").replaceWith(
         '<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button onclick="editBandEdge(' + id + ')" type="button" class="btn btn-sm btn-success editBandEdge" id="' + id + '"><i class="fas fa-edit"></i></button>' + '</td>'
     );
-	$("#mode_" + id).html($("#mode_select_" + id).val());
+	$("#mode_" + id).html($("#mode_select_" + id +" :selected").text());
 }
 
 function deleteBandEdge(id) {
