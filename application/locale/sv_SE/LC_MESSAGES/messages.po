@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-10 13:08+0000\n"
-"PO-Revision-Date: 2025-04-29 13:16+0000\n"
+"POT-Creation-Date: 2025-07-09 13:19+0000\n"
+"PO-Revision-Date: 2025-07-10 13:08+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -207,6 +207,7 @@ msgid "date incorrect"
 msgstr "datum felaktigt"
 
 #: application/controllers/Adif.php:134
+#: application/views/interface_assets/header.php:446
 #: application/views/interface_assets/header.php:447
 msgid "ADIF Import / Export"
 msgstr "ADIF Import / Export"
@@ -327,7 +328,7 @@ msgid "DOK"
 msgstr "DOK"
 
 #: application/controllers/Awards.php:176 application/views/awards/index.php:7
-#: application/views/bandmap/list.php:129 application/views/bands/index.php:49
+#: application/views/bandmap/list.php:122 application/views/bands/index.php:49
 #: application/views/csv/index.php:58 application/views/dxatlas/index.php:58
 #: application/views/dxcalendar/index.php:11
 #: application/views/interface_assets/header.php:180
@@ -347,6 +348,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
+#: application/views/bandmap/list.php:129
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -388,7 +390,7 @@ msgstr " och band "
 
 #: application/controllers/Awards.php:462
 msgid " and satellite "
-msgstr ""
+msgstr " och satellit "
 
 #: application/controllers/Awards.php:465
 #: application/controllers/Callstats.php:107
@@ -551,7 +553,7 @@ msgstr "Diplom - SIG - "
 
 #: application/controllers/Awards.php:1299 application/views/bands/index.php:59
 msgid "WAP"
-msgstr ""
+msgstr "WAP"
 
 #: application/controllers/Awards.php:1913
 #: application/views/awards/itu/index.php:20
@@ -586,19 +588,22 @@ msgstr "ADIF - Säkerhetskopia"
 msgid "Notes - Backup"
 msgstr "Anteckningar - Säkerhetskopiera"
 
-#: application/controllers/Band.php:25 application/controllers/Band.php:43
-#: application/views/bands/index.php:29 application/views/bands/index.php:33
+#: application/controllers/Band.php:25 application/views/bands/index.php:29
+#: application/views/bands/index.php:33
 #: application/views/interface_assets/header.php:417
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:67
+#: application/controllers/Band.php:43
 msgid "Bands"
 msgstr "Band"
 
-#: application/controllers/Band.php:57 application/controllers/Mode.php:41
+#: application/controllers/Band.php:39 application/controllers/Mode.php:41
+#: application/controllers/Band.php:57
 msgid "Create Mode"
 msgstr "Skapa trafiksätt"
 
-#: application/controllers/Band.php:82 application/views/bands/index.php:154
+#: application/controllers/Band.php:64 application/views/bands/index.php:154
+#: application/controllers/Band.php:82
 msgid "Edit Band"
 msgstr "Redigera band"
 
@@ -645,6 +650,7 @@ msgid " and sat "
 msgstr " och sat "
 
 #: application/controllers/Cfdexport.php:20
+#: application/views/interface_assets/header.php:460
 #: application/views/interface_assets/header.php:461
 msgid "CFD Export"
 msgstr "CFD-export"
@@ -847,6 +853,7 @@ msgid "Not running"
 msgstr "Inte igång"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
+#: application/views/interface_assets/header.php:454
 #: application/views/interface_assets/header.php:455
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV-export"
@@ -931,6 +938,7 @@ msgid "and propagation"
 msgstr "och utbredning"
 
 #: application/controllers/Dxatlas.php:19
+#: application/views/interface_assets/header.php:452
 #: application/views/interface_assets/header.php:453
 msgid "DX Atlas Gridsquare Export"
 msgstr "DX Atlas Gridsquare Export"
@@ -994,7 +1002,7 @@ msgstr "eQSL-kortbildnedladdning"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
-msgstr ""
+msgstr "Bekräftelser"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:148
@@ -1022,8 +1030,9 @@ msgid "No QSOs found to upload."
 msgstr "Inga QSOn hittades för att ladda upp."
 
 #: application/controllers/Kmlexport.php:24
-#: application/views/interface_assets/header.php:451
+#: application/views/interface_assets/header.php:450
 #: application/views/kml/index.php:3
+#: application/views/interface_assets/header.php:451
 msgid "KML Export"
 msgstr "KML-export"
 
@@ -1303,8 +1312,6 @@ msgstr "eQSL"
 #: application/views/awards/waja/index.php:91
 #: application/views/awards/wap/index.php:87
 #: application/views/awards/was/index.php:87
-#: application/views/bandmap/list.php:109
-#: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:49
 #: application/views/components/hamsat/table.php:30
 #: application/views/contesting/index.php:114
@@ -1360,7 +1367,8 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:18
+#: application/views/widgets/qsos.php:18 application/views/bandmap/list.php:109
+#: application/views/bands/bandedges.php:31
 msgid "Mode"
 msgstr "Trafiksätt"
 
@@ -1652,7 +1660,7 @@ msgid "Band"
 msgstr "Band"
 
 #: application/controllers/Logbook.php:1297
-#: application/controllers/Radio.php:45 application/views/bandmap/list.php:127
+#: application/controllers/Radio.php:45 application/views/bandmap/list.php:120
 #: application/views/contesting/index.php:144
 #: application/views/dashboard/index.php:16
 #: application/views/logbookadvanced/index.php:710
@@ -1670,6 +1678,7 @@ msgstr "Band"
 #: application/views/user/edit.php:335
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:36
+#: application/views/bandmap/list.php:127
 msgid "Frequency"
 msgstr "Frekvens"
 
@@ -1735,10 +1744,11 @@ msgstr "Snabb uppslagning"
 
 #: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
 #: application/controllers/Lotw.php:125 application/views/adif/import.php:27
-#: application/views/interface_assets/header.php:488
+#: application/views/interface_assets/header.php:487
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:773 application/views/visitor/index.php:328
+#: application/views/interface_assets/header.php:488
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -1814,8 +1824,9 @@ msgstr "LoTW .TQ8 Ej skickad"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:302
-#: application/views/interface_assets/header.php:419
+#: application/views/interface_assets/header.php:418
 #: application/views/mode/index.php:27 application/views/usermode/index.php:25
+#: application/views/interface_assets/header.php:419
 msgid "Modes"
 msgstr "Trafiksätt"
 
@@ -2004,6 +2015,7 @@ msgid "Invalid Station ID"
 msgstr "Ogiltigt stations-ID"
 
 #: application/controllers/Oqrs.php:134
+#: application/views/interface_assets/header.php:477
 #: application/views/interface_assets/header.php:478
 msgid "OQRS Requests"
 msgstr "OQRS Förfrågningar"
@@ -2053,6 +2065,7 @@ msgstr ""
 "Greenwich."
 
 #: application/controllers/Qrz.php:204
+#: application/views/interface_assets/header.php:490
 #: application/views/interface_assets/header.php:491
 msgid "QRZ Logbook"
 msgstr "QRZ Loggbok"
@@ -2101,6 +2114,7 @@ msgid "No callsign provided."
 msgstr "Ingen anropssignal angiven."
 
 #: application/controllers/Radio.php:17
+#: application/views/interface_assets/header.php:500
 #: application/views/interface_assets/header.php:501
 msgid "Hardware Interfaces"
 msgstr "Hårdvarugränssnitt"
@@ -2150,7 +2164,7 @@ msgstr "Standard (klicka för att släppa)"
 
 #: application/controllers/Radio.php:115
 #: application/controllers/Stationsetup.php:401
-#: application/views/api/index.php:74 application/views/bands/bandedges.php:32
+#: application/views/api/index.php:74
 #: application/views/club/permissions.php:248
 #: application/views/contesting/add.php:59 application/views/cron/index.php:58
 #: application/views/interface_assets/footer.php:605
@@ -2164,12 +2178,13 @@ msgstr "Standard (klicka för att släppa)"
 #: application/views/stationsetup/stationsetup.php:170
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/bands/bandedges.php:32
 msgid "Edit"
 msgstr "Redigera"
 
 #: application/controllers/Radio.php:116
 #: application/controllers/Stationsetup.php:414
-#: application/views/api/index.php:81 application/views/bands/bandedges.php:33
+#: application/views/api/index.php:81
 #: application/views/club/permissions.php:304
 #: application/views/club/permissions.php:326
 #: application/views/contesting/add.php:62
@@ -2192,6 +2207,7 @@ msgstr "Redigera"
 #: application/views/stationsetup/stationsetup.php:197
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
+#: application/views/bands/bandedges.php:33
 msgid "Delete"
 msgstr "Radera"
 
@@ -2364,10 +2380,11 @@ msgstr "Duplicera stationsplats:"
 #: application/controllers/User.php:1180 application/controllers/User.php:1411
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "Kontrollera värdet för rutnätslokatorn (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:415
+#: application/views/interface_assets/header.php:563
 #: application/views/interface_assets/header.php:564
 msgid "Station Setup"
 msgstr "Stationsinställning"
@@ -2435,9 +2452,10 @@ msgid "Set as Active Logbook"
 msgstr "Ange som aktiv loggbok"
 
 #: application/controllers/Stationsetup.php:288
-#: application/views/interface_assets/header.php:562
+#: application/views/interface_assets/header.php:561
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
+#: application/views/interface_assets/header.php:562
 msgid "Active Logbook"
 msgstr "Aktiv loggbok"
 
@@ -2550,7 +2568,7 @@ msgstr "Satellit-QSOs"
 #: application/controllers/Statistics.php:322
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
-msgstr ""
+msgstr "EME-initialer"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:308
@@ -2963,6 +2981,7 @@ msgstr "Exportera karta"
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
+#: application/views/interface_assets/header.php:491
 #: application/views/interface_assets/header.php:492
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Ladda upp"
@@ -3383,8 +3402,7 @@ msgstr "Skillnad"
 #: application/views/awards/wap/index.php:90
 #: application/views/awards/was/index.php:90
 #: application/views/bandmap/list.php:78 application/views/bandmap/list.php:85
-#: application/views/bandmap/list.php:97 application/views/bandmap/list.php:111
-#: application/views/bands/index.php:120
+#: application/views/bandmap/list.php:97 application/views/bands/index.php:120
 #: application/views/cabrillo/index.php:69
 #: application/views/callstats/index.php:10
 #: application/views/callstats/index.php:24
@@ -3456,6 +3474,7 @@ msgstr "Skillnad"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:701
 #: application/views/visitor/layout/footer.php:172
+#: application/views/bandmap/list.php:111
 msgid "All"
 msgstr "Alla"
 
@@ -4056,7 +4075,7 @@ msgstr "Det finns olika data för DOK i din logg jämfört med DCL"
 #: application/views/awards/pota/index.php:32
 #: application/views/awards/sota/index.php:31
 #: application/views/awards/wwff/index.php:32
-#: application/views/bandmap/list.php:126
+#: application/views/bandmap/list.php:119
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:99
 #: application/views/contesting/index.php:257
@@ -4092,7 +4111,7 @@ msgstr "Det finns olika data för DOK i din logg jämfört med DCL"
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
-#: application/views/widgets/qsos.php:16
+#: application/views/widgets/qsos.php:16 application/views/bandmap/list.php:126
 msgid "Date"
 msgstr "Datum"
 
@@ -4101,7 +4120,7 @@ msgstr "Datum"
 #: application/views/awards/pota/index.php:33
 #: application/views/awards/sota/index.php:32
 #: application/views/awards/wwff/index.php:33
-#: application/views/bandmap/list.php:126
+#: application/views/bandmap/list.php:119
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:104
 #: application/views/contesting/index.php:257
@@ -4126,12 +4145,13 @@ msgstr "Datum"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/bandmap/list.php:126
 msgid "Time"
 msgstr "Tid"
 
 #: application/views/adif/dcl_success.php:31
 #: application/views/awards/vucc/band.php:18
-#: application/views/bandmap/list.php:128
+#: application/views/bandmap/list.php:121
 #: application/views/contesting/index.php:258
 #: application/views/debug/index.php:586 application/views/debug/index.php:621
 #: application/views/dxcalendar/index.php:12
@@ -4144,7 +4164,7 @@ msgstr "Tid"
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:200
 #: application/views/visitor/index.php:156
-#: application/views/widgets/qsos.php:17
+#: application/views/widgets/qsos.php:17 application/views/bandmap/list.php:128
 msgid "Call"
 msgstr "Signal"
 
@@ -4218,6 +4238,8 @@ msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
 msgstr ""
+"Ange operatörens anropssignal för importerade QSOn. Lämna tomt för att "
+"använda operatörens anropssignal i ADIF-filen."
 
 #: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
@@ -4531,7 +4553,7 @@ msgstr "Dubbletter har hoppats över."
 
 #: application/views/adif/import_success.php:31
 msgid "Contest logs imported"
-msgstr ""
+msgstr "Tävlingsloggar importerade"
 
 #: application/views/adif/import_success.php:33
 msgid ""
@@ -4608,6 +4630,7 @@ msgid "Save"
 msgstr "Spara"
 
 #: application/views/api/index.php:8
+#: application/views/interface_assets/header.php:499
 #: application/views/interface_assets/header.php:500
 msgid "API Keys"
 msgstr "API-nycklar"
@@ -5802,6 +5825,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"SIG- eller Special Interest Group-kategorin gör det möjligt att använda alla "
+"typer av 'Special Interest Group Award' för utmärkelser som inte är "
+"implementerade i Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -5809,6 +5835,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"Anledningen till detta är att det vanliga ADIF-formatet endast erbjuder "
+"några få dedikerade fält för vissa utmärkelser. SIG gör det möjligt att "
+"använda och utvärdera andra typer av markörer för specialintressegrupper."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -5817,11 +5846,15 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"Vid bearbetning av QSO hittar du två fält: 'SIG' innehåller förkortningen av "
+"namnet på specialintressegruppen som också syns i utvärderingen av "
+"utmärkelsen, och 'SIG INFO,' som innehåller den faktiska referensen/"
+"referenserna. Båda fälten är fritt anpassningsbara."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Specialintressegrupp"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -6051,11 +6084,11 @@ msgstr "Prefektur"
 #: application/views/awards/wap/index.php:3
 msgctxt "The Netherlands Province"
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/wap/index.php:20
 msgid "VRZA WAP Award"
-msgstr ""
+msgstr "VRZA WAP Award"
 
 #: application/views/awards/wap/index.php:21
 msgid ""
@@ -6067,6 +6100,14 @@ msgid ""
 "Amateurs). Both organizations are active in organizing events, contests, and "
 "training, and they represent Dutch amateurs nationally and internationally."
 msgstr ""
+"Nederländerna sträcker sig ungefär 300 km från norr till söder och cirka 200 "
+"km från öst till väst. Av landets 18 miljoner invånare är omkring 11 500 "
+"licensierade radioamatörer. De största amatörradioorganisationerna i "
+"Nederländerna är VERON (Vereniging voor Experimenteel Radio Onderzoek in "
+"Nederland) och VRZA (Vereniging voor Radio Zend Amateurs). Båda "
+"organisationerna är aktiva i att organisera evenemang, tävlingar och "
+"utbildning, och de representerar nederländska amatörer nationellt och "
+"internationellt."
 
 #: application/views/awards/wap/index.php:22
 msgid ""
@@ -6076,20 +6117,26 @@ msgid ""
 "encourages operators to engage with a diverse range of stations across the "
 "country, promoting both national connectivity and operational skill."
 msgstr ""
+"VRZA (Vereniging voor Radio Zend Amateurs) erbjuder Worked All Provinces "
+"(WAP)-utmärkelsen till radioamatörer som har bekräftade kontakter med "
+"stationer i var och en av de tolv provinserna i Nederländerna. Denna "
+"utmärkelse uppmuntrar operatörer att engagera sig med ett brett utbud av "
+"stationer över hela landet, vilket främjar både nationell anslutning och "
+"operativ skicklighet."
 
 #: application/views/awards/wap/index.php:23
 #, php-format
 msgctxt "uses 'here'"
 msgid "Information about the WAP Awards and its rules can be found %s."
-msgstr ""
+msgstr "Information om WAP Awards och dess regler finns %s."
 
 #: application/views/awards/wap/index.php:114
 msgid "Show WAP Map"
-msgstr ""
+msgstr "Visa WAP-karta"
 
 #: application/views/awards/wap/index.php:151
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -6260,74 +6307,28 @@ msgstr "DXCC-status"
 msgid "Not Confirmed"
 msgstr "Inte bekräftad"
 
-#: application/views/bandmap/list.php:112
-msgid "Phone"
-msgstr ""
-
-#: application/views/bandmap/list.php:113
-msgid "CW"
-msgstr ""
-
-#: application/views/bandmap/list.php:114
-msgid "Digi"
-msgstr ""
-
+#: application/views/bandmap/list.php:123
 #: application/views/bandmap/list.php:130
 msgid "WAC"
 msgstr "WAC"
 
+#: application/views/bandmap/list.php:124
 #: application/views/bandmap/list.php:131
 msgid "Spotter"
 msgstr "Spotter"
 
-#: application/views/bandmap/list.php:132
+#: application/views/bandmap/list.php:125
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
+#: application/views/bandmap/list.php:132
 msgid "Message"
 msgstr "Meddelande"
 
+#: application/views/bandmap/list.php:126
 #: application/views/bandmap/list.php:133
 msgid "Last Worked"
 msgstr "Senast kontaktad"
-
-#: application/views/bands/bandedges.php:2
-msgid "Please enter valid numbers for frequency"
-msgstr ""
-
-#: application/views/bands/bandedges.php:3
-msgid "The 'From' frequency must be less than the 'To' frequency."
-msgstr ""
-
-#: application/views/bands/bandedges.php:4
-msgid "The Frequency overlaps with an existing entry."
-msgstr ""
-
-#: application/views/bands/bandedges.php:5
-msgid "Are you sure you want to delete this band edge?"
-msgstr ""
-
-#: application/views/bands/bandedges.php:17
-msgid "Bandedges"
-msgstr ""
-
-#: application/views/bands/bandedges.php:22
-msgid ""
-"Using the bandedges list you can control the mode classification in the "
-"cluster."
-msgstr ""
-
-#: application/views/bands/bandedges.php:29
-msgid "Frequency from (Hz)"
-msgstr ""
-
-#: application/views/bands/bandedges.php:30
-msgid "Frequency to (Hz)"
-msgstr ""
-
-#: application/views/bands/bandedges.php:65
-msgid "Add a bandedge"
-msgstr ""
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
@@ -7230,12 +7231,13 @@ msgstr "ADIF-namn"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:542
+#: application/views/interface_assets/header.php:541
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#: application/views/interface_assets/header.php:542
 msgid "Active"
 msgstr "Aktiv"
 
@@ -7317,7 +7319,7 @@ msgstr "Du måste starta en ny session innan du kan ändra tävlingsnamnet!"
 
 #: application/views/contesting/index.php:3
 msgid "Are you really sure you want to start a new contest session?"
-msgstr ""
+msgstr "Är du verkligen säker på att du vill starta en ny tävlingssession?"
 
 #: application/views/contesting/index.php:7
 msgid "Start new Contest Session"
@@ -7641,44 +7643,45 @@ msgstr "Endast QSOn med SOTA-information kommer att exporteras!"
 #: application/views/eqslcard/index.php:33 application/views/kml/index.php:77
 #: application/views/qso/edit_ajax.php:189 application/views/qso/index.php:448
 msgid "Propagation Mode"
-msgstr ""
+msgstr "Utbredningstyp"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
-msgstr ""
+msgstr "RSTS"
 
 #: application/views/dashboard/index.php:6
 msgid "RSTR"
-msgstr ""
+msgstr "RSTR"
 
 #: application/views/dashboard/index.php:111
 msgid ""
 "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
+"Du behöver uppgradera din PHP-version. Minsta version är 7.4. Din version är"
 
 #: application/views/dashboard/index.php:117
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
-msgstr ""
+msgstr "En ny version av Wavelog har publicerats. Se: %s."
 
 #: application/views/dashboard/index.php:125
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
-msgstr ""
+msgstr "Du måste uppdatera landsfilerna! Klicka %shär%s för att göra det."
 
 #: application/views/dashboard/index.php:133
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr ""
+msgstr "Du har inga stationsplatser. Klicka %shär%s för att göra det."
 
 #: application/views/dashboard/index.php:141
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr ""
+msgstr "Du har ingen stationsloggbok. Klicka %shär%s för att göra det."
 
 #: application/views/dashboard/index.php:149
 #, php-format
@@ -7687,19 +7690,23 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
+"Din aktiva stationsplats är inte länkad till din loggbok. Klicka %shär%s för "
+"att göra det."
 
 #: application/views/dashboard/index.php:157
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
 msgstr ""
+"Du har ingen station kopplad till din loggbok. Klicka %shär%s för att göra "
+"det."
 
 #: application/views/dashboard/index.php:166
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du har haft %d QSO idag"
+msgstr[1] "Du har haft %d QSOn idag"
 
 #: application/views/dashboard/index.php:172
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -7714,36 +7721,38 @@ msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr ""
+"Du har teman utan definierat temaläge. Be administratören att redigera "
+"temana."
 
 #: application/views/dashboard/index.php:193
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
-msgstr ""
+msgstr "Minst ett av dina %sLoTW-certifikat%s har gått ut!"
 
 #: application/views/dashboard/index.php:197
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
-msgstr ""
+msgstr "Minst ett av dina %sLoTW-certifikat%s håller på att gå ut!"
 
 #: application/views/dashboard/index.php:274
 #: application/views/qso/index.php:784
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Max. %d tidigare kontakt visas"
+msgstr[1] "Max. %d tidigare kontakter visas"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
-msgstr ""
+msgstr "QSOn-uppdelning"
 
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
-msgstr ""
+msgstr "DXCC-fördelning"
 
 #: application/views/dashboard/index.php:330
 #: application/views/visitor/index.php:279
@@ -7857,63 +7866,63 @@ msgstr "Begärd"
 #: application/views/dashboard/index.php:365
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:428
 msgid "VUCC-Grids"
-msgstr ""
+msgstr "VUCC-rutnät"
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
-msgstr ""
+msgstr "Antal QSOn för denna veckodag"
 
 #: application/views/dayswithqso/index.php:4
 msgid "Number of QSOs for this month of the year"
-msgstr ""
+msgstr "Antal QSOn för denna månad på året"
 
 #: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
-msgstr ""
+msgstr "Veckodagarna"
 
 #: application/views/dayswithqso/index.php:21
 msgid "Months of the year"
-msgstr ""
+msgstr "Månader på året"
 
 #: application/views/dayswithqso/index.php:24
 msgid "Streaks"
-msgstr ""
+msgstr "Serier"
 
 #: application/views/dayswithqso/index.php:27
 msgid "QSOs of Year"
-msgstr ""
+msgstr "Årets QSOn"
 
 #: application/views/dayswithqso/index.php:35
 msgid "Number of days with QSOs each year"
-msgstr ""
+msgstr "Antal dagar med QSOn varje år"
 
 #: application/views/dayswithqso/index.php:51
 msgid "Days"
-msgstr ""
+msgstr "Dagar"
 
 #: application/views/dayswithqso/index.php:67
 msgid "QSOs breakdown by day of the week"
-msgstr ""
+msgstr "QSOn uppdelade efter veckodag"
 
 #: application/views/dayswithqso/index.php:73
 msgid "QSOs breakdown by month of the year"
-msgstr ""
+msgstr "QSOn uppdelade per månad på året"
 
 #: application/views/dayswithqso/index.php:87
 msgid "QSOs per Year"
-msgstr ""
+msgstr "QSOn per år"
 
 #: application/views/dayswithqso/index.php:95
 msgid "Less"
-msgstr ""
+msgstr "Mindre"
 
 #: application/views/dayswithqso/index.php:100
 msgid "More"
-msgstr ""
+msgstr "Mer"
 
 #: application/views/dayswithqso/index.php:102
 msgid "Calendar with QSOs"
@@ -8937,8 +8946,9 @@ msgid "Satellite Information"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:139
-#: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:502
 #: application/views/options/sidebar.php:13
+#: application/views/interface_assets/header.php:503
 msgid "Version Info"
 msgstr ""
 
@@ -9312,96 +9322,113 @@ msgstr ""
 msgid "Account"
 msgstr "Användarkontoinformation"
 
-#: application/views/interface_assets/header.php:418
-msgid "Band Edges"
-msgstr ""
-
+#: application/views/interface_assets/header.php:423
 #: application/views/interface_assets/header.php:424
 msgid "Switch to Clubstation:"
 msgstr ""
 
+#: application/views/interface_assets/header.php:427
 #: application/views/interface_assets/header.php:428
 #, php-format
 msgid "Switch to %s"
 msgstr ""
 
+#: application/views/interface_assets/header.php:431
 #: application/views/interface_assets/header.php:432
 #, php-format
 msgctxt "Managing a Club Callsign"
 msgid "Manage %s"
 msgstr ""
 
+#: application/views/interface_assets/header.php:440
 #: application/views/interface_assets/header.php:441
 msgid "No Clubstations available"
 msgstr ""
 
+#: application/views/interface_assets/header.php:448
 #: application/views/interface_assets/header.php:449
 msgid "Other Export Options"
 msgstr ""
 
+#: application/views/interface_assets/header.php:456
 #: application/views/interface_assets/header.php:457
 msgid "Cabrillo Export"
 msgstr ""
 
+#: application/views/interface_assets/header.php:458
 #: application/views/interface_assets/header.php:459
 msgid "EDI Export"
 msgstr ""
 
+#: application/views/interface_assets/header.php:482
 #: application/views/interface_assets/header.php:483
 msgid "QSL Queue"
 msgstr ""
 
+#: application/views/interface_assets/header.php:483
 #: application/views/interface_assets/header.php:484
 msgid "Labels"
 msgstr "Etiketter"
 
+#: application/views/interface_assets/header.php:485
 #: application/views/interface_assets/header.php:486
 msgid "Third-Party Services"
 msgstr ""
 
+#: application/views/interface_assets/header.php:488
 #: application/views/interface_assets/header.php:489
 msgid "eQSL Import / Export"
 msgstr ""
 
+#: application/views/interface_assets/header.php:489
 #: application/views/interface_assets/header.php:490
 msgid "HRDLog Logbook"
 msgstr "HRDLog Loggbok"
 
+#: application/views/interface_assets/header.php:492
 #: application/views/interface_assets/header.php:493
 msgid "Clublog Import / Export"
 msgstr ""
 
-#: application/views/interface_assets/header.php:504
+#: application/views/interface_assets/header.php:503
 #: application/views/logbookadvanced/index.php:675
+#: application/views/interface_assets/header.php:504
 msgid "Help"
 msgstr "Hjälp"
 
+#: application/views/interface_assets/header.php:504
 #: application/views/interface_assets/header.php:505
 msgid "Forum"
 msgstr ""
 
+#: application/views/interface_assets/header.php:508
 #: application/views/interface_assets/header.php:509
 #, php-format
 msgid "Stop impersonate and switch back to %s"
 msgstr ""
 
+#: application/views/interface_assets/header.php:509
 #: application/views/interface_assets/header.php:510
 #, php-format
 msgid "Switch back to %s"
 msgstr ""
 
+#: application/views/interface_assets/header.php:513
 #: application/views/interface_assets/header.php:514
 msgid "Logout"
 msgstr "Logga ut"
 
+#: application/views/interface_assets/header.php:521
 #: application/views/interface_assets/header.php:522
 msgid "Select a Location"
 msgstr ""
 
+#: application/views/interface_assets/header.php:563
 #: application/views/interface_assets/header.php:564
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
 
+#: application/views/interface_assets/header.php:600
 #: application/views/interface_assets/header.php:601
 msgid "Extras"
 msgstr ""
@@ -14892,6 +14919,60 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
+msgstr ""
+
+#: application/views/bandmap/list.php:112
+msgid "Phone"
+msgstr ""
+
+#: application/views/bandmap/list.php:113
+msgid "CW"
+msgstr ""
+
+#: application/views/bandmap/list.php:114
+msgid "Digi"
+msgstr ""
+
+#: application/views/bands/bandedges.php:2
+msgid "Please enter valid numbers for frequency"
+msgstr ""
+
+#: application/views/bands/bandedges.php:3
+msgid "The 'From' frequency must be less than the 'To' frequency."
+msgstr ""
+
+#: application/views/bands/bandedges.php:4
+msgid "The Frequency overlaps with an existing entry."
+msgstr ""
+
+#: application/views/bands/bandedges.php:5
+msgid "Are you sure you want to delete this band edge?"
+msgstr ""
+
+#: application/views/bands/bandedges.php:17
+msgid "Bandedges"
+msgstr ""
+
+#: application/views/bands/bandedges.php:22
+msgid ""
+"Using the bandedges list you can control the mode classification in the "
+"cluster."
+msgstr ""
+
+#: application/views/bands/bandedges.php:29
+msgid "Frequency from (Hz)"
+msgstr ""
+
+#: application/views/bands/bandedges.php:30
+msgid "Frequency to (Hz)"
+msgstr ""
+
+#: application/views/bands/bandedges.php:65
+msgid "Add a bandedge"
+msgstr ""
+
+#: application/views/interface_assets/header.php:418
+msgid "Band Edges"
 msgstr ""
 
 #~ msgid "Type in the operators callsign of the imported QSOs"
