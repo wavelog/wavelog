@@ -28,6 +28,24 @@ class Band extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
+	public function edges()
+	{
+		$this->load->model('bands');
+
+		$data['bands'] = $this->bands->get_all_bandedges_for_user();
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/bandedges.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/bandedges.js")),
+		];
+
+		// Render Page
+		$data['page_title'] = __("Bands");
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('bands/bandedges');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
 	public function create()
 	{
 		$this->load->model('bands');
@@ -170,5 +188,35 @@ class Band extends CI_Controller {
 
 		$this->user_options_model->set_option('frequency', 'unit', array($band => $unit));
 		$this->session->set_userdata('qrgunit_'.$band, $unit);
+	}
+
+	public function deletebandedge() {
+		$id = $this->input->post('id');
+		$this->load->model('bands');
+		$this->bands->deletebandedge($id);
+		header('Content-Type: application/json');
+		echo json_encode(array('message' => 'OK'));
+		return;
+	}
+
+	public function saveBandEdge() {
+		$this->load->model('bands');
+
+		$id = $this->security->xss_clean($this->input->post('id', true));
+		$frequencyfrom = $this->security->xss_clean($this->input->post('frequencyfrom', true));
+		$frequencyto = $this->security->xss_clean($this->input->post('frequencyto', true));
+		$mode = $this->security->xss_clean($this->input->post('mode', true));
+		if ((is_numeric($frequencyfrom)) && (is_numeric($frequencyfrom))) {
+			$overlap=$this->bands->check4overlapEdges($id, $frequencyfrom, $frequencyto, $mode);
+			if (!($overlap)) {
+				$this->bands->saveBandEdge($id, $frequencyfrom, $frequencyto, $mode);
+				echo json_encode(array('message' => 'OK'));
+			} else {
+				echo json_encode(array('message' => 'Overlapping'));
+			}
+		} else {
+			echo json_encode(array('message' => 'No Number entered'));
+		}
+		return;
 	}
 }
