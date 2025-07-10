@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-09 13:19+0000\n"
-"PO-Revision-Date: 2025-04-29 13:16+0000\n"
+"PO-Revision-Date: 2025-07-10 13:08+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -388,7 +388,7 @@ msgstr " och band "
 
 #: application/controllers/Awards.php:462
 msgid " and satellite "
-msgstr ""
+msgstr " och satellit "
 
 #: application/controllers/Awards.php:465
 #: application/controllers/Callstats.php:107
@@ -551,7 +551,7 @@ msgstr "Diplom - SIG - "
 
 #: application/controllers/Awards.php:1299 application/views/bands/index.php:59
 msgid "WAP"
-msgstr ""
+msgstr "WAP"
 
 #: application/controllers/Awards.php:1913
 #: application/views/awards/itu/index.php:20
@@ -994,7 +994,7 @@ msgstr "eQSL-kortbildnedladdning"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
-msgstr ""
+msgstr "Bekräftelser"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:148
@@ -2362,7 +2362,7 @@ msgstr "Duplicera stationsplats:"
 #: application/controllers/User.php:1180 application/controllers/User.php:1411
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "Kontrollera värdet för rutnätslokatorn (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:415
@@ -2548,7 +2548,7 @@ msgstr "Satellit-QSOs"
 #: application/controllers/Statistics.php:322
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
-msgstr ""
+msgstr "EME-initialer"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:308
@@ -4215,6 +4215,8 @@ msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
 msgstr ""
+"Ange operatörens anropssignal för importerade QSOn. Lämna tomt för att "
+"använda operatörens anropssignal i ADIF-filen."
 
 #: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
@@ -4528,7 +4530,7 @@ msgstr "Dubbletter har hoppats över."
 
 #: application/views/adif/import_success.php:31
 msgid "Contest logs imported"
-msgstr ""
+msgstr "Tävlingsloggar importerade"
 
 #: application/views/adif/import_success.php:33
 msgid ""
@@ -5799,6 +5801,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"SIG- eller Special Interest Group-kategorin gör det möjligt att använda alla "
+"typer av 'Special Interest Group Award' för utmärkelser som inte är "
+"implementerade i Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -5806,6 +5811,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"Anledningen till detta är att det vanliga ADIF-formatet endast erbjuder "
+"några få dedikerade fält för vissa utmärkelser. SIG gör det möjligt att "
+"använda och utvärdera andra typer av markörer för specialintressegrupper."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -5814,11 +5822,15 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"Vid bearbetning av QSO hittar du två fält: 'SIG' innehåller förkortningen av "
+"namnet på specialintressegruppen som också syns i utvärderingen av "
+"utmärkelsen, och 'SIG INFO,' som innehåller den faktiska referensen/"
+"referenserna. Båda fälten är fritt anpassningsbara."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Specialintressegrupp"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -6048,11 +6060,11 @@ msgstr "Prefektur"
 #: application/views/awards/wap/index.php:3
 msgctxt "The Netherlands Province"
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/wap/index.php:20
 msgid "VRZA WAP Award"
-msgstr ""
+msgstr "VRZA WAP Award"
 
 #: application/views/awards/wap/index.php:21
 msgid ""
@@ -6064,6 +6076,14 @@ msgid ""
 "Amateurs). Both organizations are active in organizing events, contests, and "
 "training, and they represent Dutch amateurs nationally and internationally."
 msgstr ""
+"Nederländerna sträcker sig ungefär 300 km från norr till söder och cirka 200 "
+"km från öst till väst. Av landets 18 miljoner invånare är omkring 11 500 "
+"licensierade radioamatörer. De största amatörradioorganisationerna i "
+"Nederländerna är VERON (Vereniging voor Experimenteel Radio Onderzoek in "
+"Nederland) och VRZA (Vereniging voor Radio Zend Amateurs). Båda "
+"organisationerna är aktiva i att organisera evenemang, tävlingar och "
+"utbildning, och de representerar nederländska amatörer nationellt och "
+"internationellt."
 
 #: application/views/awards/wap/index.php:22
 msgid ""
@@ -6073,20 +6093,26 @@ msgid ""
 "encourages operators to engage with a diverse range of stations across the "
 "country, promoting both national connectivity and operational skill."
 msgstr ""
+"VRZA (Vereniging voor Radio Zend Amateurs) erbjuder Worked All Provinces "
+"(WAP)-utmärkelsen till radioamatörer som har bekräftade kontakter med "
+"stationer i var och en av de tolv provinserna i Nederländerna. Denna "
+"utmärkelse uppmuntrar operatörer att engagera sig med ett brett utbud av "
+"stationer över hela landet, vilket främjar både nationell anslutning och "
+"operativ skicklighet."
 
 #: application/views/awards/wap/index.php:23
 #, php-format
 msgctxt "uses 'here'"
 msgid "Information about the WAP Awards and its rules can be found %s."
-msgstr ""
+msgstr "Information om WAP Awards och dess regler finns %s."
 
 #: application/views/awards/wap/index.php:114
 msgid "Show WAP Map"
-msgstr ""
+msgstr "Visa WAP-karta"
 
 #: application/views/awards/wap/index.php:151
 msgid "Province"
-msgstr ""
+msgstr "Provins"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -7264,7 +7290,7 @@ msgstr "Du måste starta en ny session innan du kan ändra tävlingsnamnet!"
 
 #: application/views/contesting/index.php:3
 msgid "Are you really sure you want to start a new contest session?"
-msgstr ""
+msgstr "Är du verkligen säker på att du vill starta en ny tävlingssession?"
 
 #: application/views/contesting/index.php:7
 msgid "Start new Contest Session"
@@ -7588,44 +7614,45 @@ msgstr "Endast QSOn med SOTA-information kommer att exporteras!"
 #: application/views/eqslcard/index.php:33 application/views/kml/index.php:77
 #: application/views/qso/edit_ajax.php:189 application/views/qso/index.php:448
 msgid "Propagation Mode"
-msgstr ""
+msgstr "Utbredningstyp"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
-msgstr ""
+msgstr "RSTS"
 
 #: application/views/dashboard/index.php:6
 msgid "RSTR"
-msgstr ""
+msgstr "RSTR"
 
 #: application/views/dashboard/index.php:111
 msgid ""
 "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
+"Du behöver uppgradera din PHP-version. Minsta version är 7.4. Din version är"
 
 #: application/views/dashboard/index.php:117
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
-msgstr ""
+msgstr "En ny version av Wavelog har publicerats. Se: %s."
 
 #: application/views/dashboard/index.php:125
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
-msgstr ""
+msgstr "Du måste uppdatera landsfilerna! Klicka %shär%s för att göra det."
 
 #: application/views/dashboard/index.php:133
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr ""
+msgstr "Du har inga stationsplatser. Klicka %shär%s för att göra det."
 
 #: application/views/dashboard/index.php:141
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr ""
+msgstr "Du har ingen stationsloggbok. Klicka %shär%s för att göra det."
 
 #: application/views/dashboard/index.php:149
 #, php-format
@@ -7634,19 +7661,23 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
+"Din aktiva stationsplats är inte länkad till din loggbok. Klicka %shär%s för "
+"att göra det."
 
 #: application/views/dashboard/index.php:157
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
 msgstr ""
+"Du har ingen station kopplad till din loggbok. Klicka %shär%s för att göra "
+"det."
 
 #: application/views/dashboard/index.php:166
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du har haft %d QSO idag"
+msgstr[1] "Du har haft %d QSOn idag"
 
 #: application/views/dashboard/index.php:172
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -7661,36 +7692,38 @@ msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr ""
+"Du har teman utan definierat temaläge. Be administratören att redigera "
+"temana."
 
 #: application/views/dashboard/index.php:193
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
-msgstr ""
+msgstr "Minst ett av dina %sLoTW-certifikat%s har gått ut!"
 
 #: application/views/dashboard/index.php:197
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
-msgstr ""
+msgstr "Minst ett av dina %sLoTW-certifikat%s håller på att gå ut!"
 
 #: application/views/dashboard/index.php:274
 #: application/views/qso/index.php:784
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Max. %d tidigare kontakt visas"
+msgstr[1] "Max. %d tidigare kontakter visas"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
-msgstr ""
+msgstr "QSOn-uppdelning"
 
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
-msgstr ""
+msgstr "DXCC-fördelning"
 
 #: application/views/dashboard/index.php:330
 #: application/views/visitor/index.php:279
@@ -7804,63 +7837,63 @@ msgstr "Begärd"
 #: application/views/dashboard/index.php:365
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:428
 msgid "VUCC-Grids"
-msgstr ""
+msgstr "VUCC-rutnät"
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
-msgstr ""
+msgstr "Antal QSOn för denna veckodag"
 
 #: application/views/dayswithqso/index.php:4
 msgid "Number of QSOs for this month of the year"
-msgstr ""
+msgstr "Antal QSOn för denna månad på året"
 
 #: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
-msgstr ""
+msgstr "Veckodagarna"
 
 #: application/views/dayswithqso/index.php:21
 msgid "Months of the year"
-msgstr ""
+msgstr "Månader på året"
 
 #: application/views/dayswithqso/index.php:24
 msgid "Streaks"
-msgstr ""
+msgstr "Serier"
 
 #: application/views/dayswithqso/index.php:27
 msgid "QSOs of Year"
-msgstr ""
+msgstr "Årets QSOn"
 
 #: application/views/dayswithqso/index.php:35
 msgid "Number of days with QSOs each year"
-msgstr ""
+msgstr "Antal dagar med QSOn varje år"
 
 #: application/views/dayswithqso/index.php:51
 msgid "Days"
-msgstr ""
+msgstr "Dagar"
 
 #: application/views/dayswithqso/index.php:67
 msgid "QSOs breakdown by day of the week"
-msgstr ""
+msgstr "QSOn uppdelade efter veckodag"
 
 #: application/views/dayswithqso/index.php:73
 msgid "QSOs breakdown by month of the year"
-msgstr ""
+msgstr "QSOn uppdelade per månad på året"
 
 #: application/views/dayswithqso/index.php:87
 msgid "QSOs per Year"
-msgstr ""
+msgstr "QSOn per år"
 
 #: application/views/dayswithqso/index.php:95
 msgid "Less"
-msgstr ""
+msgstr "Mindre"
 
 #: application/views/dayswithqso/index.php:100
 msgid "More"
-msgstr ""
+msgstr "Mer"
 
 #: application/views/dayswithqso/index.php:102
 msgid "Calendar with QSOs"
