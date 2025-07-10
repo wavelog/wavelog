@@ -10,8 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Migration_add_bandedges extends CI_Migration {
 
-    public function up()
-    {
+	public function up() {
 		if (!$this->db->table_exists('bandedges')) {
 			// Create the bandedges table
 			$this->dbforge->add_field([
@@ -92,11 +91,12 @@ class Migration_add_bandedges extends CI_Migration {
 
 			$this->db->insert_batch('bandedges', $data);
 		}
-    }
+	}
 
-    public function down()
-    {
-        $this->dbforge->drop_table('bandedges');
-    }
+	public function down() {
+		if ($this->db->table_exists('bandedges')) {
+			$this->dbforge->drop_table('bandedges');
+		}
+	}
 }
 
