@@ -53,9 +53,10 @@ $(function() {
 				if (dxspots.length>0) {
 					dxspots.sort(SortByQrg);
 					dxspots.forEach((single) => {
+						if ((cwn == 'notwkd') && ((single.worked_dxcc))) { return; }
 						if ((cwn == 'wkd') && (!(single.worked_dxcc))) { return; }
 						if ((cwn == 'cnf') && (!(single.cnfmd_dxcc))) { return; }
-						if ((cwn == 'ucnf') && ((single.cnfmd_dxcc))) { return; }
+						if ((cwn == 'ucnf') && (!(single.worked_dxcc) || single.cnfmd_dxcc)) { return; }
 						spots2render++;
 						var data=[];
 						if (single.cnfmd_dxcc) {

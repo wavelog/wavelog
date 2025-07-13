@@ -76,9 +76,10 @@
 			<label class="my-1 me-2" for="cwnSelect"><?= __("DXCC-Status"); ?></label>
 			<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="cwnSelect" name="dxcluster_cwn" aria-describedby="dxcluster_cwnHelp" required>
 				<option value="All"><?= __("All"); ?></option>
+				<option value="notwkd"><?= __("Not worked"); ?></option>
 				<option value="wkd"><?= __("Worked"); ?></option>
 				<option value="cnf"><?= __("Confirmed"); ?></option>
-				<option value="ucnf"><?= __("Not Confirmed"); ?></option>
+				<option value="ucnf"><?= __("Worked, not Confirmed"); ?></option>
 			</select>
 			<label class="my-1 me-2" for="decontSelect"><?= __("Spots de"); ?></label>
 			<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="decontSelect" name="dxcluster_decont" aria-describedby="dxcluster_decontHelp" required>
