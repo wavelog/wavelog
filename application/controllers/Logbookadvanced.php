@@ -196,17 +196,16 @@ class Logbookadvanced extends CI_Controller {
 			$station_profile = $this->stations->profile($active_station_id)->row_array();
 			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qso['COL_PRIMARY_KEY'], $qso, $callbook, $station_profile['station_gridsquare']);
 			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
+		}
 
-			$qsoObj = new QSO($qso);		// Redirection via Object to clean/convert QSO (get rid of cols)
-			$cleaned_qso=$qsoObj->toArray();	// And back to Array for the JSON
+		$qsoObj = new QSO($qso);		// Redirection via Object to clean/convert QSO (get rid of cols)
+		$cleaned_qso = $qsoObj->toArray();	// And back to Array for the JSON
 
-			$flag = $this->dxccflag->get($qsoObj->getDXCCId());
-			if ($flag != null) {
-				$cleaned_qso['flag'] = ' '.$flag;
-			} else {
-				$cleaned_qso['flag'] = '';
-			}
-
+		$flag = $this->dxccflag->get($qsoObj->getDXCCId());
+		if ($flag != null) {
+			$cleaned_qso['flag'] = ' ' . $flag;
+		} else {
+			$cleaned_qso['flag'] = '';
 		}
 
 		header("Content-Type: application/json");
