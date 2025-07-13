@@ -426,13 +426,14 @@ function processNextCallbookItem() {
 		},
 		dataType: 'json',
 		success: function (data) {
-			if (data != []) {
+			if (data && data.dx) {
 				updateRow(data);
-				unselectQsoID(id);
 			}
+			unselectQsoID(id);
 			setTimeout("processNextCallbookItem()", 50);
 		},
 		error: function (data) {
+			unselectQsoID(id);
 			setTimeout("processNextCallbookItem()", 50);
 		},
 	});
