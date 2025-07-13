@@ -53,9 +53,9 @@
 					<div class="mb-3 w-auto">
 						<label class="my-1 me-sm-2 w-auto" for="mintime"><?= __("Min. time"); ?></label>
 						<select class="my-1 me-sm-2 w-auto form-select form-select-sm" id="mintime" name="mintime">
-                        <?php for ($i = 0; $i <= 24; $i += 1): ?>
-                            <option value="<?= $i ?>" <?= ($i == gmdate("H")) ? 'selected' : '' ?>><?= $i ?>:00</option>
-                        <?php endfor; ?>
+							<?php for ($i = 0; $i <= 24; $i += 1): ?>
+								<option value="<?= $i ?>" <?= ($i == gmdate("H")) ? 'selected' : '' ?>><?= $i ?>:00</option>
+							<?php endfor; ?>
 						</select>
 				</div>
 
@@ -121,9 +121,9 @@
 			<?= __("No TLE information detected. Please update TLE's.")?>
 		<?php } ?>
 	</div>
-    <div id="resultpasses">
+	<div id="resultpasses">
 
-    </div>
+	</div>
 </div>
 </div>
 </div>

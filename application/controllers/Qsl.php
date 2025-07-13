@@ -10,7 +10,7 @@ class Qsl extends CI_Controller {
         parent::__construct();
         $this->load->model('user_model');
         if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-	      if(($this->config->item('disable_qsl') ?? false)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); exit; }
+		if(($this->config->item('disable_qsl') ?? false)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); exit; }
     }
 
     // Default view when loading controller.
@@ -25,9 +25,14 @@ class Qsl extends CI_Controller {
         $data['page_title'] = __("QSL Cards");
         $data['qslarray'] = $this->qsl_model->getQsoWithQslList();
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/qsl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/qsl.js")),
+		];
+
         $this->load->view('interface_assets/header', $data);
         $this->load->view('qslcard/index');
-        $this->load->view('interface_assets/footer');
+        $this->load->view('interface_assets/footer', $footerData);
     }
 
     public function upload() {

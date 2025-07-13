@@ -185,27 +185,34 @@ function mark_qsl_sent(id, method) {
     });
 }
 
-$('#checkBoxAll').change(function (event) {
-	if (this.checked) {
-		$('.qslprint tbody tr').each(function (i) {
+var target = document.body;
+var box_observer = new MutationObserver(function() {
+	$('#checkBoxAll').change(function (event) {
+		if (this.checked) {
+			$('.qslprint tbody tr').each(function (i) {
+				$(this).closest('tr').addClass('activeRow');
+				$(this).closest('tr').find("input[type=checkbox]").prop("checked", true);
+			});
+		} else {
+			$('.qslprint tbody tr').each(function (i) {
+				$(this).closest('tr').removeClass('activeRow');
+				$(this).closest('tr').find("input[type=checkbox]").prop("checked", false);
+			});
+		}
+	});
+	$('.qslprint').on('click', 'input[type="checkbox"]', function() {
+		if ($(this).is(":checked")) {
 			$(this).closest('tr').addClass('activeRow');
-			$(this).closest('tr').find("input[type=checkbox]").prop("checked", true);
-		});
-	} else {
-		$('.qslprint tbody tr').each(function (i) {
+		} else {
 			$(this).closest('tr').removeClass('activeRow');
-			$(this).closest('tr').find("input[type=checkbox]").prop("checked", false);
-		});
-	}
-});
+		}
+	});
 
-$('.qslprint').on('click', 'input[type="checkbox"]', function() {
-	if ($(this).is(":checked")) {
-		$(this).closest('tr').addClass('activeRow');
-	} else {
-		$(this).closest('tr').removeClass('activeRow');
-	}
+
 });
+var config = { childList: true, subtree: true};
+box_observer.observe(target, config);
+
 
 function markSelectedQsos() {
 	var elements = $('.qslprint tbody input:checked');

@@ -332,6 +332,7 @@
                 },
                 success: async function(response) {
                     if (response == 'success') {
+                        localStorage.clear();
                         running(field, false);
                         await log_message('debug', 'Successfully created .lock file in folder /install');
                         resolve();

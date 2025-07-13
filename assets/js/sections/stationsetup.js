@@ -536,6 +536,7 @@ function loadLogbookTable(rows) {
 }
 
 function loadLocationTable(rows) {
+	$.fn.dataTable.moment(custom_date_format + ' HH:mm');
 	var uninitialized = $('#station_locations_table').filter(function() {
 		return !$.fn.DataTable.isDataTable(this);
 	});
@@ -554,9 +555,13 @@ function loadLocationTable(rows) {
 			},
 			'columnDefs': [
 				{ 'targets':0,
-				  'createdCell':  function (td, cellData, rowData, row, col) {
+					'createdCell':  function (td, cellData, rowData, row, col) {
 				  			(td).attr('data-order', 1);	// not sure how to add ID dynamic here
-						  }
+					}
+				},
+				{
+					targets: 5,
+					type: 'datetime-moment'
 				}
 			]
 		});
@@ -576,6 +581,7 @@ function loadLocationTable(rows) {
 		data.push(locations.station_callsign);
 		data.push(locations.station_country);
 		data.push(locations.station_gridsquare);
+		data.push(locations.station_lastqso);
 		data.push(locations.station_badge);
 		data.push(locations.station_linked);
 		data.push(locations.station_edit);
@@ -588,8 +594,22 @@ function loadLocationTable(rows) {
 
 		let createdRow = table.row.add(data).index();
 	}
+	// Clear filters from previous session
+	table.search('');
+	table.columns().search('');
+	table.state.clear();  // Optional: clear all saved state
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
+}
+
+function filterlocations() {
+	var table = $('#station_locations_table').DataTable();
+	table.column(7).search('yes').draw();
+}
+
+function removefilterlocations() {
+	var table = $('#station_locations_table').DataTable();
+	table.column(7).search('').draw();
 }
 
 function linkLocations() {

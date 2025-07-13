@@ -242,6 +242,18 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "coalesce(COL_STATE, '') = ''";
 		}
 
+		if ($searchCriteria['dok'] !== '*' && $searchCriteria['dok'] !== '') {
+			if (strtolower($searchCriteria['dok']) == '!empty') {
+				$conditions[] = "COL_DARC_DOK <> ''";
+			} else {
+				$conditions[] = "COL_DARC_DOK like ?";
+				$binding[] = $searchCriteria['dok'];
+			}
+		}
+		if ($searchCriteria['dok'] == '') {
+			$conditions[] = "coalesce(COL_DARC_DOK, '') = ''";
+		}
+
 		if ($searchCriteria['county'] !== '*' && $searchCriteria['county'] !== '') {
 			if (strtolower($searchCriteria['county']) == '!empty') {
 				$conditions[] = "COL_CNTY <> ''";
@@ -653,6 +665,10 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_CNTY'] = $callbook['state'].','.$callbook['us_county'];
 			$updated = true;
 		}
+		if (!empty($callbook['county']) && empty($qso['COL_CNTY'])) {
+			$updatedData['COL_CNTY'] = $callbook['county'];
+			$updated = true;
+		}
 		if (!empty($callbook['qslmgr']) && empty($qso['COL_QSL_VIA'])) {
 			$updatedData['COL_QSL_VIA'] = $callbook['qslmgr'];
 			$updated = true;
@@ -849,26 +865,30 @@ class Logbookadvanced_model extends CI_Model {
 
 			$query = $this->db->query($sql, array($value, $value2, $frequencyBand, $frequencyBandRx, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_GRIDSQUARE') {
-			if(!$this->load->is_loaded('Qra')) {
-			    $this->load->library('Qra');
-		    }
-			$latlng=$this->qra->qra2latlong(trim(xss_clean($value) ?? ''));
-			if ($latlng[1] ?? '--' != '--') {
-				if (strpos(trim(xss_clean($value) ?? ''), ',') !== false) {
-					$grid_value = null;
-					$vucc_value = strtoupper(preg_replace('/\s+/', '', xss_clean($value) ?? ''));
-				} else {
-					$vucc_value = null;
-					$grid_value = strtoupper(trim(xss_clean($value) ?? ''));
+			if ($value == '') {
+				$grid_value = null;
+				$vucc_value = null;
+			} else {
+				if(!$this->load->is_loaded('Qra')) {
+					 $this->load->library('Qra');
+				 }
+				$latlng=$this->qra->qra2latlong(trim(xss_clean($value) ?? ''));
+				if ($latlng[1] ?? '--' != '--') {
+					if (strpos(trim(xss_clean($value) ?? ''), ',') !== false) {
+						$grid_value = null;
+						$vucc_value = strtoupper(preg_replace('/\s+/', '', xss_clean($value) ?? ''));
+					} else {
+						$vucc_value = null;
+						$grid_value = strtoupper(trim(xss_clean($value) ?? ''));
+					}
+
 				}
-
-				$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
-					" SET " . $this->config->item('table_name').".COL_GRIDSQUARE = ?" .
-					", " . $this->config->item('table_name').".COL_VUCC_GRIDS = ?" .
-					" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
-
-				$query = $this->db->query($sql, array($grid_value, $vucc_value, json_decode($ids, true), $this->session->userdata('user_id')));
 			}
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+				" SET " . $this->config->item('table_name').".COL_GRIDSQUARE = ?" .
+				", " . $this->config->item('table_name').".COL_VUCC_GRIDS = ?" .
+				" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+			$query = $this->db->query($sql, array($grid_value, $vucc_value, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_MODE') {
 
 			$this->load->model('logbook_model');

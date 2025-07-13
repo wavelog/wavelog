@@ -76,9 +76,10 @@
 			<label class="my-1 me-2" for="cwnSelect"><?= __("DXCC-Status"); ?></label>
 			<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="cwnSelect" name="dxcluster_cwn" aria-describedby="dxcluster_cwnHelp" required>
 				<option value="All"><?= __("All"); ?></option>
+				<option value="notwkd"><?= __("Not worked"); ?></option>
 				<option value="wkd"><?= __("Worked"); ?></option>
 				<option value="cnf"><?= __("Confirmed"); ?></option>
-				<option value="ucnf"><?= __("Not Confirmed"); ?></option>
+				<option value="ucnf"><?= __("Worked, not Confirmed"); ?></option>
 			</select>
 			<label class="my-1 me-2" for="decontSelect"><?= __("Spots de"); ?></label>
 			<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="decontSelect" name="dxcluster_decont" aria-describedby="dxcluster_decontHelp" required>
@@ -106,30 +107,38 @@
 				}
 				?>
 			</select>
+			<label class="my-1 me-2" for="mode"><?= __("Mode"); ?></label>
+			<select id="mode" class="form-select form-select-sm my-1 me-sm-2 w-auto" name="mode">
+				<option value="All"><?= __("All"); ?></option>
+				<option value="phone"><?= __("Phone"); ?></option>
+				<option value="cw"><?= __("CW"); ?></option>
+				<option value="digi"><?= __("Digi"); ?></option>
+			</select>
 		</div>
 		</div>
 
 </div>
 
 		<p>
+<div class='m-2'>
+	<table style="width:100%;" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
+		<thead>
+			<tr class="log_title titles">
+				<th style="width:200px;"><?= __("Date"); ?>/<?= __("Time"); ?></th>
+				<th style="width:150px;"><?= __("Frequency"); ?></th>
+				<th><?= __("Call"); ?></th>
+				<th><?= __("DXCC"); ?></th>
+				<th style="width:30px;"><?= __("WAC"); ?></th>
+				<th style="width:150px;"><?= __("Spotter"); ?></th>
+				<th><?= __("Message"); ?></th>
+				<th><?= __("Last Worked"); ?></th>
+			</tr>
+		</thead>
 
-		<table style="width:100%;" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
-			<thead>
-				<tr class="log_title titles">
-					<th style="width:200px;"><?= __("Date"); ?>/<?= __("Time"); ?></th>
-					<th style="width:150px;"><?= __("Frequency"); ?></th>
-					<th><?= __("Call"); ?></th>
-					<th><?= __("DXCC"); ?></th>
-					<th style="width:30px;"><?= __("WAC"); ?></th>
-					<th style="width:150px;"><?= __("Spotter"); ?></th>
-					<th><?= __("Message"); ?></th>
-					<th><?= __("Last Worked"); ?></th>
-				</tr>
-			</thead>
-
-			<tbody class="spots_table_contents">
-			</tbody>
-		</table>
+		<tbody class="spots_table_contents">
+		</tbody>
+	</table>
+</div>
 	</div>
 
 

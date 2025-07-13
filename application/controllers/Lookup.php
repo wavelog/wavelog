@@ -64,6 +64,7 @@ class Lookup extends CI_Controller {
 			$data['cqz']  = xss_clean($this->input->post('cqz'));
 			$data['wwff'] = xss_clean($this->input->post('wwff'));
 			$data['ituz'] = xss_clean($this->input->post('ituz'));
+			$data['dok'] = xss_clean($this->input->post('dok'));
 			$data['continent'] = xss_clean($this->input->post('continent'));
 			$data['location_list'] = $location_list;
 
@@ -71,6 +72,18 @@ class Lookup extends CI_Controller {
 			$this->load->view('lookup/result', $data);
 		}
 
+	}
+
+	public function sat() {
+		$this->load->model('lookup_model');
+		$this->load->model('bands');
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$data['location_list'] = "'".implode("','",$logbooks_locations_array)."'";
+		$data['callsign'] = xss_clean($this->input->post('callsign'));
+		$data['sats'] = $this->bands->get_worked_sats();
+		$data['result'] = $this->lookup_model->getSatResult($data);
+		$this->load->view('lookup/satresult', $data);
 	}
 
 	public function scp() {

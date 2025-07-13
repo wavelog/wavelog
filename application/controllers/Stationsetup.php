@@ -17,19 +17,44 @@ class Stationsetup extends CI_Controller {
 
 	public function index() {
 		$this->load->model('stations');
+		$this->load->model('stationsetup_model');
 		$this->load->model('Logbook_model');
 		$this->load->model('logbooks_model');
 
 		$data['my_logbooks'] = $this->logbooks_model->show_all();
 
-		$data['stations'] = $this->stations->all_with_count();
+		$data['stations'] = $this->stationsetup_model->get_all_locations();
 		$data['current_active'] = $this->stations->find_active();
 		$data['is_there_qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 
 		$footerData = [];
 		$footerData['scripts'] = [
+			'assets/js/moment.min.js',
+			'assets/js/datetime-moment.js',
 			'assets/js/sections/stationsetup.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/stationsetup.js")),
 		];
+
+				// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
+		}
+
+		switch ($data['custom_date_format']) {
+			case "d/m/y": $data['custom_date_format'] = 'DD/MM/YY'; break;
+			case "d/m/Y": $data['custom_date_format'] = 'DD/MM/YYYY'; break;
+			case "m/d/y": $data['custom_date_format'] = 'MM/DD/YY'; break;
+			case "m/d/Y": $data['custom_date_format'] = 'MM/DD/YYYY'; break;
+			case "d.m.Y": $data['custom_date_format'] = 'DD.MM.YYYY'; break;
+			case "y/m/d": $data['custom_date_format'] = 'YY/MM/DD'; break;
+			case "Y-m-d": $data['custom_date_format'] = 'YYYY-MM-DD'; break;
+			case "M d, Y": $data['custom_date_format'] = 'MMM DD, YYYY'; break;
+			case "M d, y": $data['custom_date_format'] = 'MMM DD, YY'; break;
+			default: $data['custom_date_format'] = 'DD/MM/YYYY';
+		}
 
 		// Render Page
 		$data['page_title'] = __("Station Setup");
@@ -290,9 +315,10 @@ class Stationsetup extends CI_Controller {
 
 	public function fetchLocations() {
 		$this->load->model('stations');
+		$this->load->model('stationsetup_model');
 		$this->load->model('Logbook_model');
 
-		$result = $this->stations->all_with_count()->result();
+		$result = $this->stationsetup_model->get_all_locations()->result();
 		$current_active = $this->stations->find_active();
 		$data['is_there_qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 
@@ -313,14 +339,30 @@ class Stationsetup extends CI_Controller {
 			$single->station_delete = $this->stationdelete2html($entry->station_id, $entry->station_profile_name, $entry->station_active);
 			$single->station_favorite = $this->stationfavorite2html($entry->station_id, $quickswitch_enabled);
 			$single->station_linked = $this->stationlinked2html($entry->linked);
+			$single->station_lastqso = $this->stationformattedlastqsodate2html($entry->lastqsodate);
 			array_push($hres,$single);
 		}
 		echo json_encode($hres);
 	}
 
+	private function stationformattedlastqsodate2html($lastqsodate) {
+		$CI =& get_instance();
+		// Get Date format
+		if($CI->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $CI->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $CI->config->item('qso_date_format');
+		}
+		if ($lastqsodate == null) return '';
+
+		return date($custom_date_format . " H:i", strtotime($lastqsodate ?? '1970-01-01 00:00:00'));
+	}
+
 	private function stationlinked2html($linked) {
 		if ($linked == 1) {
-			return '<i class="fa fa-check text-success" aria-hidden="true"></i>';
+			return '<i class="fa fa-check text-success" aria-hidden="true"></i><span class="d-none">yes</span>';
 		}
 		return '<i class="fa fa-times text-danger" aria-hidden="true"></i>';
 	}

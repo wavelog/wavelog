@@ -16,6 +16,20 @@ function plot_satel() {
 	if (elevationChart) {
 		elevationChart.destroy();
 	}
+	let selectedOrbits = $('#orbitel').val();
+	if (Array.isArray(selectedOrbits) && selectedOrbits.length === 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select at least one orbit type location to do a search!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
+		return false;
+	}
+
 	$.ajax({
 		url: base_url + 'index.php/statistics/get_elevation_data',
 		type: 'post',
@@ -110,6 +124,21 @@ function plot_azimuth() {
 	if (azimuthChart) {
 		azimuthChart.destroy();
 	}
+	let band = $('#band').val();
+	let selectedOrbits = $('#orbit').val();
+	if (band == 'SAT' && Array.isArray(selectedOrbits) && selectedOrbits.length === 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select at least one orbit type location to do a search!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
+		return false;
+	}
+
 	$.ajax({
 		url: base_url + 'index.php/statistics/get_azimuth_data',
 		type: 'post',
@@ -189,3 +218,34 @@ function plot_azimuth() {
 		}
 	});
 }
+
+
+$(document).ready(function () {
+	if ($('#orbit').length) {
+		$('#orbit').multiselect({
+			enableFiltering: true,
+			enableCaseInsensitiveFiltering: true,
+			filterPlaceholder: lang_general_word_search,
+			templates: {
+				button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+			},
+			numberDisplayed: 1,
+			inheritClass: true,
+			includeSelectAllOption: true
+		});
+	}
+
+	if ($('#orbitel').length) {
+		$('#orbitel').multiselect({
+			enableFiltering: true,
+			enableCaseInsensitiveFiltering: true,
+			filterPlaceholder: lang_general_word_search,
+			templates: {
+				button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+			},
+			numberDisplayed: 1,
+			inheritClass: true,
+			includeSelectAllOption: true
+		});
+	}
+})

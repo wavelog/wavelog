@@ -148,7 +148,8 @@ class Logbookadvanced extends CI_Controller {
 			'invalid' => xss_clean($this->input->post('invalid')),
 			'continent' => xss_clean($this->input->post('continent')),
 			'comment' => xss_clean($this->input->post('comment')),
-			'qsoids' => xss_clean($this->input->post('qsoids'))
+			'qsoids' => xss_clean($this->input->post('qsoids')),
+			'dok' => xss_clean($this->input->post('dok'))
 		);
 	}
 
@@ -197,10 +198,18 @@ class Logbookadvanced extends CI_Controller {
 			$qso = $this->logbookadvanced_model->getQsosForAdif(json_encode($qsoID), $this->session->userdata('user_id'))->row_array();
 		}
 
-		$qsoObj = new QSO($qso);
+		$qsoObj = new QSO($qso);		// Redirection via Object to clean/convert QSO (get rid of cols)
+		$cleaned_qso = $qsoObj->toArray();	// And back to Array for the JSON
+
+		$flag = $this->dxccflag->get($qsoObj->getDXCCId());
+		if ($flag != null) {
+			$cleaned_qso['flag'] = ' ' . $flag;
+		} else {
+			$cleaned_qso['flag'] = '';
+		}
 
 		header("Content-Type: application/json");
-		echo json_encode($qsoObj->toArray());
+		echo json_encode($cleaned_qso);
 	}
 
 	function export_to_adif() {
@@ -360,6 +369,7 @@ class Logbookadvanced extends CI_Controller {
 			'contest' => '*',
 			'continent' => '',
 			'comment' => '*',
+			'dok' => '*',
 			'ids' => json_decode(xss_clean($this->input->post('ids'))),
 			'qsoids' => xss_clean($this->input->post('qsoids'))
 		);
@@ -586,6 +596,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['antennaelevation']['show'] = $this->def_boolean($this->input->post('antennaelevation'));
 		$json_string['region']['show'] = $this->def_boolean($this->input->post('region'));
 		$json_string['qth']['show'] = $this->def_boolean($this->input->post('qth'));
+		$json_string['frequency']['show'] = $this->def_boolean($this->input->post('frequency'));
 
 		$obj['column_settings']= json_encode($json_string);
 

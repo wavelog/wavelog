@@ -261,7 +261,8 @@ class Statistics extends CI_Controller {
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/chart.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/chart.js")),
-			'assets/js/sections/antennastats.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/antennestats.js")),
+			'assets/js/sections/antennastats.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/antennastats.js")),
+			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
 		];
 
 		// Load Views
@@ -304,6 +305,7 @@ class Statistics extends CI_Controller {
 
 		$data['page_title'] = __("Log View")." - " . __("Satellite QSOs");
 		$data['filter'] = $sat;
+		$data['ispopup'] = true;
 
 		$this->load->view('statistics/details', $data);
 	}
