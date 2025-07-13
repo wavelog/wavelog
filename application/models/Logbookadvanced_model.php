@@ -665,6 +665,10 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_CNTY'] = $callbook['state'].','.$callbook['us_county'];
 			$updated = true;
 		}
+		if (!empty($callbook['county']) && empty($qso['COL_CNTY'])) {
+			$updatedData['COL_CNTY'] = $callbook['county'];
+			$updated = true;
+		}
 		if (!empty($callbook['qslmgr']) && empty($qso['COL_QSL_VIA'])) {
 			$updatedData['COL_QSL_VIA'] = $callbook['qslmgr'];
 			$updated = true;
