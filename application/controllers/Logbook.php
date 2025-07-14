@@ -76,8 +76,23 @@ class Logbook extends CI_Controller {
 
 	function json($tempcallsign, $tempband, $tempmode, $tempstation_id = null, $date = "", $count = 5) {
 		session_write_close();
-		if (($date ?? '') != '') {
-			$date=date("Y-m-d",strtotime($date));
+
+		// Normalize the date only if it's not empty
+		if (!empty($date)) {
+			// Get user-preferred date format
+			if ($this->session->userdata('user_date_format')) {
+				$date_format = $this->session->userdata('user_date_format');
+			} else {
+				$date_format = $this->config->item('qso_date_format');
+			}
+			$date = urldecode($date);
+			$dt = DateTime::createFromFormat($date_format, $date);
+			if ($dt !== false) {
+				$date = $dt->format('Y-m-d'); // or any normalized format
+			} else {
+				// Invalid date for the expected format, handle gracefully
+				$date = null;
+			}
 		}
 		// Cleaning for security purposes
 		$callsign = $this->security->xss_clean($tempcallsign);
