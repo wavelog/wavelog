@@ -4791,9 +4791,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
-"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
-"效通联的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
+"\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通"
+"联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5342,8 +5342,8 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
-"Fred Fish 纪念奖是为了纪念 Fred Fish, W5FF (SK) 而设立，他是第一个在 6 "
-"米频段上通联并确认了美国 48 个邻近地区的所有 488 个网格的业余爱好者。"
+"Fred Fish 纪念奖是为了纪念 Fred Fish, W5FF (SK) 而设立，他是第一个在 6 米频段"
+"上通联并确认了美国 48 个邻近地区的所有 488 个网格的业余爱好者。"
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
@@ -5695,8 +5695,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -6266,7 +6266,8 @@ msgstr "使用频段列表，您可以控制创建新 QSO 时显示哪些频段�
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
-msgstr "启用的频段将显示在 QSO“频段”下拉列表中，而停用的频段将被隐藏且无法选择。"
+msgstr ""
+"启用的频段将显示在 QSO“频段”下拉列表中，而停用的频段将被隐藏且无法选择。"
 
 #: application/views/bands/index.php:55
 msgid "Sig"
@@ -9156,6 +9157,7 @@ msgid "SAT Timers"
 msgstr "卫星过境时钟"
 
 #: application/views/interface_assets/header.php:287
+#: application/controllers/Satellite.php:213
 msgid "Satellite Flightpath"
 msgstr "卫星轨迹"
 
@@ -9177,6 +9179,7 @@ msgstr "全局选项"
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
+#: application/controllers/Satellite.php:55
 msgid "Satellites"
 msgstr "卫星"
 
@@ -10561,7 +10564,8 @@ msgstr "您可以指定哪些模式显示在创建 QSO 时出现的列表中。"
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
-msgstr "启用的模式将显示在 QSO 模式的下拉菜单中，而停用的模式将被隐藏且无法选择。"
+msgstr ""
+"启用的模式将显示在 QSO 模式的下拉菜单中，而停用的模式将被隐藏且无法选择。"
 
 #: application/views/mode/index.php:41 application/views/usermode/index.php:39
 msgid "Sub-Mode"
@@ -12792,8 +12796,8 @@ msgid ""
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
-"第一个 QSO 时间为 21:34，第二个 QSO 时间为 2 分钟后的 21:36。我们只输入 "
-"6，因为只有这一个字符有变化。频段与模式信息并未改变，因此无需填写该部分。"
+"第一个 QSO 时间为 21:34，第二个 QSO 时间为 2 分钟后的 21:36。我们只输入 6，因"
+"为只有这一个字符有变化。频段与模式信息并未改变，因此无需填写该部分。"
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -12803,9 +12807,8 @@ msgid ""
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
 "下一个 QSO 时间为 2021-05-14 21:40 ，这个通联仍然为 SSB 模式，但是频段变为了 "
-"40m。如果未提供 RST，程序仍将使用 59 来记录每个新的 QSO。因此，"
-"我们可以添加另一个在两天后于同一时间进行的 QSO。日期必须采用 YYYY-MM-DD "
-"格式。"
+"40m。如果未提供 RST，程序仍将使用 59 来记录每个新的 QSO。因此，我们可以添加另"
+"一个在两天后于同一时间进行的 QSO。日期必须采用 YYYY-MM-DD 格式。"
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
@@ -13582,8 +13585,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -13617,7 +13620,8 @@ msgstr "通联的呼号（最大 5）"
 msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
-msgstr "时间图表能分析您在何时与某 CQ 分区 或 DXCC 实体，于指定频段进行过通联。"
+msgstr ""
+"时间图表能分析您在何时与某 CQ 分区 或 DXCC 实体，于指定频段进行过通联。"
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
@@ -14883,6 +14887,10 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
+#: application/controllers/Satellite.php:256
+msgid "Satellite pass"
+msgstr ""
+
 #~ msgid "Not Confirmed"
 #~ msgstr "未确认"
 
@@ -15272,8 +15280,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
