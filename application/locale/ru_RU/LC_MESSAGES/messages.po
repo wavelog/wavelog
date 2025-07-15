@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-13 10:52+0000\n"
+"POT-Creation-Date: 2025-07-15 16:11+0000\n"
 "PO-Revision-Date: 2025-07-09 07:13+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2221,6 +2221,15 @@ msgstr "Изменить настройки CAT"
 msgid "Export EDI"
 msgstr "Экспорт EDI"
 
+#: application/controllers/Satellite.php:55
+#: application/views/interface_assets/header.php:306
+#: application/views/notes/add.php:38 application/views/notes/edit.php:39
+#: application/views/satellite/index.php:40
+#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:111
+msgid "Satellites"
+msgstr "Спутники"
+
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
 msgstr "Добавить спутник"
@@ -2228,6 +2237,15 @@ msgstr "Добавить спутник"
 #: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
 msgstr "Редактировать спутник"
+
+#: application/controllers/Satellite.php:213
+#: application/views/interface_assets/header.php:287
+msgid "Satellite Flightpath"
+msgstr "Траектория полета спутника"
+
+#: application/controllers/Satellite.php:256
+msgid "Satellite pass"
+msgstr ""
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
@@ -9451,10 +9469,6 @@ msgstr "Активность на диапазонах"
 msgid "SAT Timers"
 msgstr "Спутниковые таймеры"
 
-#: application/views/interface_assets/header.php:287
-msgid "Satellite Flightpath"
-msgstr "Траектория полета спутника"
-
 #: application/views/interface_assets/header.php:289
 msgid "Satellite Pass"
 msgstr "Прохождение спутника"
@@ -9467,14 +9481,6 @@ msgstr "Администрирование"
 #: application/views/interface_assets/header.php:300
 msgid "Global Options"
 msgstr "Общие настройки"
-
-#: application/views/interface_assets/header.php:306
-#: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
-msgid "Satellites"
-msgstr "Спутники"
 
 #: application/views/interface_assets/header.php:312
 msgid "Update Country Files"

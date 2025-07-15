@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-13 10:52+0000\n"
+"POT-Creation-Date: 2025-07-15 16:11+0000\n"
 "PO-Revision-Date: 2025-07-07 07:04+0000\n"
 "Last-Translator: BH3HNI <mmf@live.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -2204,6 +2204,15 @@ msgstr "编辑 CAT 设置"
 msgid "Export EDI"
 msgstr "导出 EDI"
 
+#: application/controllers/Satellite.php:55
+#: application/views/interface_assets/header.php:306
+#: application/views/notes/add.php:38 application/views/notes/edit.php:39
+#: application/views/satellite/index.php:40
+#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:111
+msgid "Satellites"
+msgstr "卫星"
+
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
 msgstr "创建卫星信息"
@@ -2211,6 +2220,15 @@ msgstr "创建卫星信息"
 #: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
 msgstr "编辑卫星"
+
+#: application/controllers/Satellite.php:213
+#: application/views/interface_assets/header.php:287
+msgid "Satellite Flightpath"
+msgstr "卫星轨迹"
+
+#: application/controllers/Satellite.php:256
+msgid "Satellite pass"
+msgstr ""
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
@@ -9155,10 +9173,6 @@ msgstr "波段地图"
 msgid "SAT Timers"
 msgstr "卫星过境时钟"
 
-#: application/views/interface_assets/header.php:287
-msgid "Satellite Flightpath"
-msgstr "卫星轨迹"
-
 #: application/views/interface_assets/header.php:289
 msgid "Satellite Pass"
 msgstr "卫星过境"
@@ -9171,14 +9185,6 @@ msgstr "管理员"
 #: application/views/interface_assets/header.php:300
 msgid "Global Options"
 msgstr "全局选项"
-
-#: application/views/interface_assets/header.php:306
-#: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
-msgid "Satellites"
-msgstr "卫星"
 
 #: application/views/interface_assets/header.php:312
 msgid "Update Country Files"
