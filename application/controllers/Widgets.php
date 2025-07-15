@@ -48,7 +48,7 @@ class Widgets extends CI_Controller {
 
 		// date format
 		$data['date_format'] = $this->config->item('qso_date_format'); // date format from /config/wavelog.php
-		
+
 		$this->load->model('logbook_model');
 		$this->load->model('logbooks_model');
 		$this->load->model('stationsetup_model');
@@ -72,7 +72,7 @@ class Widgets extends CI_Controller {
 			$user_id = $this->stationsetup_model->public_slug_exists_userid($logbook_slug);
 			$widget_options = $this->get_qso_widget_options($user_id);
 
-			$data['show_time'] = $widget_options->display_qso_time;			
+			$data['show_time'] = $widget_options->display_qso_time;
 			$data['last_qsos_list'] = $this->logbook_model->get_last_qsos($qso_count, $logbooks_locations_array);
 
 			$this->load->view('widgets/qsos', $data);
@@ -88,9 +88,9 @@ class Widgets extends CI_Controller {
 			return;
 		}
 
-		$slug = $this->input->get('slug', TRUE);
-		if ($slug != null) {
-			$data['logo_url'] = base_url() . 'index.php/visitor/' . $slug;
+		$data['slug'] = $this->input->get('slug', TRUE);
+		if ($data['slug'] != null) {
+			$data['logo_url'] = base_url() . 'index.php/visitor/' . $data['slug'];
 		} else {
 			$data['logo_url'] = 'https://github.com/wavelog/wavelog';
 		}

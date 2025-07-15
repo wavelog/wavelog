@@ -89,8 +89,14 @@ class Oqrs extends CI_Controller {
 
 	public function get_qsos_grouped() {
 		$this->load->model('oqrs_model');
-		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE));
+		$this->load->model('publicsearch');
+
+		$slug = $this->input->post('slug', TRUE);
+		$userid = $this->publicsearch->get_userid_for_slug($slug);
+
+		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE), $userid);
 		$data['callsign'] = $this->input->post('callsign', TRUE);
+		$data['userid'] = $this->input->post('userid', TRUE);
 
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);

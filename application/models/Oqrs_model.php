@@ -10,7 +10,7 @@ class Oqrs_model extends CI_Model {
     function get_station_info($station_id) {
 
 		$binding = [];
-        $sql = 'select 
+        $sql = 'select
         count(*) as count,
         min(col_time_on) as mindate,
         max(col_time_on) as maxdate
@@ -67,17 +67,19 @@ class Oqrs_model extends CI_Model {
 	/*
 	 * Builds query depending on what we are searching for
 	 */
-	function getQueryDataGrouped($callsign) {
+	function getQueryDataGrouped($callsign, $userid) {
 
         $binding = [];
 
-        $sql = 'select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, col_band, station_callsign, station_profile_name, l.station_id from ' . $this->config->item('table_name') . ' as l join station_profile on l.station_id = station_profile.station_id where station_profile.oqrs = "1" and l.col_call = ? and l.col_prop_mode != "SAT"';
+        $sql = 'select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, col_band, station_callsign, station_profile_name, l.station_id from ' . $this->config->item('table_name') . ' as l join station_profile on l.station_id = station_profile.station_id where station_profile.oqrs = "1" and l.col_call = ? and l.col_prop_mode != "SAT" and station_profile.user_id = ?';
 		$binding[] = $callsign;
+		$binding[] = $userid;
 
-		$sql .= ' union all select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, "SAT" col_band, station_callsign, station_profile_name, l.station_id from ' . 
-			$this->config->item('table_name') . ' l' . 
-			' join station_profile on l.station_id = station_profile.station_id where station_profile.oqrs = "1" and col_call = ? and col_prop_mode = "SAT"';
+		$sql .= ' union all select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, "SAT" col_band, station_callsign, station_profile_name, l.station_id from ' .
+			$this->config->item('table_name') . ' l' .
+			' join station_profile on l.station_id = station_profile.station_id where station_profile.oqrs = "1" and col_call = ? and col_prop_mode = "SAT" and station_profile.user_id = ?';
 		$binding[] = $callsign;
+		$binding[] = $userid;
 
         $query = $this->db->query($sql, $binding);
 
@@ -145,7 +147,7 @@ class Oqrs_model extends CI_Model {
 				$data['status'] = '2';
 			}
 			$data['qsoid'] = $qsoid;
-	
+
 			$this->db->insert('oqrs', $data);
 			if(!in_array($postdata['station_id'], $station_ids)){
 				array_push($station_ids, $postdata['station_id']);
@@ -178,9 +180,9 @@ class Oqrs_model extends CI_Model {
 				$data['status'] = '2';
 			}
 			$data['qsoid'] = $qsoid;
-	
+
 			$this->db->insert('oqrs', $data);
-			
+
 			if(!in_array($qso[4], $station_ids)){
 				array_push($station_ids, $qso[4]);
 			}
@@ -228,7 +230,7 @@ class Oqrs_model extends CI_Model {
 
 		$binding = [];
 
-		$sql = 'select * from ' . $this->config->item('table_name') . 
+		$sql = 'select * from ' . $this->config->item('table_name') .
 		' where (col_band = ? or col_prop_mode = ?)
 		 and col_call = ?
 		 and date(col_time_on) = ?
@@ -236,7 +238,7 @@ class Oqrs_model extends CI_Model {
 		 or col_submode = ?)
 		 and timediff(time(col_time_on), ?) <= 3000
 		 and station_id = ?';
-		
+
 		$binding[] = $qsodata['band'];
 		$binding[] = $qsodata['band'];
 		$binding[] = $qsodata['requestcallsign'];
@@ -245,7 +247,7 @@ class Oqrs_model extends CI_Model {
 		$binding[] = $qsodata['mode'];
 		$binding[] = $qsodata['time'];
 		$binding[] = $qsodata['station_id'];
-		
+
 		$query = $this->db->query($sql, $binding);
 
 		if ($result = $query->result()) {
@@ -310,9 +312,9 @@ class Oqrs_model extends CI_Model {
 		$data = array(
 			'status' => '2',
 	   );
-   
+
 	   $this->db->where('id', $id);
-   
+
 	   $this->db->update('oqrs', $data);
 	}
 
@@ -325,7 +327,7 @@ class Oqrs_model extends CI_Model {
 
 		if ($query->num_rows() > 0)
 		{
-			$row = $query->row(); 
+			$row = $query->row();
 			return $row->oqrs_text;
 		}
 
@@ -341,7 +343,7 @@ class Oqrs_model extends CI_Model {
 
 		if ($query->num_rows() > 0)
 		{
-			$row = $query->row(); 
+			$row = $query->row();
 			return $row->oqrs_email;
 		}
 
