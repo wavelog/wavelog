@@ -677,6 +677,44 @@
 							</div>
 						</div>
 					</div>
+
+					<?php if (!($this->config->item('disable_oqrs') ?? false)) { ?>
+
+					<div class="row mb-3">
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?= __("Online QSL request (OQRS) settings"); ?></div>
+									<div class="card-body">
+										<div class="row">
+											<div class="mb-3">
+												<label for="global_oqrs_text"><?= __("Global text"); ?></label>
+												<input type="text" name="global_oqrs_text" class="form-control" id="global_oqrs_text" aria-describedby="global_oqrs_text" value="<?php echo $global_oqrs_text ?? ''; ?>">
+												<small id="global_oqrs_text_help" class="form-text text-muted"><?= __("This text is an optional text that can be displayed on top of the OQRS page."); ?></small>
+											</div>
+											<div class="mb-3">
+												<label for="oqrs_grouped_search"><?= __("Grouped search"); ?></label>
+												<select name="oqrs_grouped_search" class="form-select" id="oqrs_grouped_search">
+													<option value="off" <?php if($oqrs_grouped_search ?? '' == "off") { echo "selected=\"selected\""; } ?>><?= __("Off"); ?></option>
+													<option value="on" <?php if($oqrs_grouped_search ?? '' == "on") { echo "selected=\"selected\""; } ?>><?= __("On"); ?></option>
+												</select>
+												<small id="oqrs_grouped_search_help" class="form-text text-muted"><?= __("When this is on, all station locations with OQRS active, will be searched at once."); ?></small>
+											</div>
+
+											<div class="mb-3">
+												<label for="oqrs_grouped_search_show_station_name"><?= __("Show station location name in grouped search results"); ?></label>
+												<select name="oqrs_grouped_search_show_station_name" class="form-select" id="oqrs_grouped_search_show_station_name">
+													<option value="off" <?php if($oqrs_grouped_search_show_station_name ?? '' == "off") { echo "selected=\"selected\""; } ?>><?= __("Off"); ?></option>
+													<option value="on" <?php if($oqrs_grouped_search_show_station_name ?? ''== "on") { echo "selected=\"selected\""; } ?>><?= __("On"); ?></option>
+												</select>
+												<small id="oqrs_grouped_search_show_station_name_help" class="form-text text-muted"><?= __("If grouped search is ON, you can decide if the name of the station location shall be shown in the results table."); ?></small>
+											</div>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+
+					<?php }	?>
 				</div>
 			</div>
 		</div>
