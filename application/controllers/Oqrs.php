@@ -52,7 +52,7 @@ class Oqrs extends CI_Controller {
 		$data['page_title'] = __("Log Search & OQRS");
 		$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()->option_value;
 		$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()->option_value;
-		$data['groupedSearchShowStationName'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search_show_station_name','option_key'=>'boolean'), $data['userid'])->row()->option_value;
+
 
 		$this->load->view('visitor/layout/header', $data);
 		$this->load->view('oqrs/index');
@@ -93,6 +93,7 @@ class Oqrs extends CI_Controller {
 
 		$slug = $this->input->post('slug', TRUE);
 		$userid = $this->publicsearch->get_userid_for_slug($slug);
+		$data['groupedSearchShowStationName'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search_show_station_name','option_key'=>'boolean'), $userid)->row()->option_value;
 
 		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE), $userid);
 		$data['callsign'] = $this->input->post('callsign', TRUE);
