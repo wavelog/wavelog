@@ -36,11 +36,11 @@ $(function() {
 		return table;
 	}
 
-	function fill_list(band,de,maxAgeMinutes,cwn) {
+	function fill_list(band, de, maxAgeMinutes, cwn, mode) {
 		// var table = $('.spottable').DataTable();
 		var table = get_dtable();
 		if ((band != '') && (band !== undefined)) {
-			let dxurl = dxcluster_provider + "/spots/" + band + "/" +maxAgeMinutes + "/" + de;
+			let dxurl = dxcluster_provider + "/spots/" + band + "/" +maxAgeMinutes + "/" + de + "/" + mode;
 			$.ajax({
 				url: dxurl,
 				cache: false,
@@ -53,9 +53,10 @@ $(function() {
 				if (dxspots.length>0) {
 					dxspots.sort(SortByQrg);
 					dxspots.forEach((single) => {
+						if ((cwn == 'notwkd') && ((single.worked_dxcc))) { return; }
 						if ((cwn == 'wkd') && (!(single.worked_dxcc))) { return; }
 						if ((cwn == 'cnf') && (!(single.cnfmd_dxcc))) { return; }
-						if ((cwn == 'ucnf') && ((single.cnfmd_dxcc))) { return; }
+						if ((cwn == 'ucnf') && (!(single.worked_dxcc) || single.cnfmd_dxcc)) { return; }
 						spots2render++;
 						var data=[];
 						if (single.cnfmd_dxcc) {
@@ -172,22 +173,27 @@ $(function() {
 	var table=get_dtable();
 	table.order([1, 'asc']);
 	table.clear();
-	fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(),dxcluster_maxage,$('#cwnSelect option:selected').val());
-	setInterval(function () { fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(),dxcluster_maxage,$('#cwnSelect option:selected').val()); },60000);
+	fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
+	setInterval(function () { fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val()); },60000);
 
 	$("#cwnSelect").on("change",function() {
 		table.clear();
-		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(),dxcluster_maxage,$('#cwnSelect option:selected').val());
+		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
 	});
 
 	$("#decontSelect").on("change",function() {
 		table.clear();
-		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(),dxcluster_maxage,$('#cwnSelect option:selected').val());
+		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
 	});
 
 	$("#band").on("change",function() {
 		table.clear();
-		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(),dxcluster_maxage,$('#cwnSelect option:selected').val());
+		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
+	});
+
+	$("#mode").on("change",function() {
+		table.clear();
+		fill_list($('#band option:selected').val(), $('#decontSelect option:selected').val(), dxcluster_maxage, $('#cwnSelect option:selected').val(), $('#mode option:selected').val());
 	});
 
 	$("#spottertoggle").on("click", function() {

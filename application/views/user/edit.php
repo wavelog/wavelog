@@ -466,8 +466,8 @@
 										<label for="quicklog_enter"><?= __("Quicklog - Action on press Enter"); ?></label>
 										<?php if(!isset($user_quicklog_enter)) { $user_quicklog_enter='0'; }?>
 										<select class="form-select" id="quicklog_enter" name="user_quicklog_enter">
-											<option value="0" <?php if ($user_quicklog_enter == 0) { echo " selected =\"selected\""; } ?>><?= __("Log Callsign"); ?></option>
 											<option value="1" <?php if ($user_quicklog_enter == 1) { echo " selected =\"selected\""; } ?>><?= __("Search Callsign"); ?></option>
+											<option value="0" <?php if ($user_quicklog_enter == 0) { echo " selected =\"selected\""; } ?>><?= __("Log Callsign"); ?></option>
 										</select>
 										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("What action should be performed when Enter is pressed in the quicklog field?"); ?></small>
 									</div>

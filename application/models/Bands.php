@@ -99,6 +99,46 @@ class Bands extends CI_Model {
 		return $this->db->get()->result();
 	}
 
+	function get_all_bandedges_for_user() {
+		$this->db->from('bandedges');
+		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
+		$this->db->order_by('frequencyfrom', 'ASC');
+
+		$result = $this->db->get()->result();
+
+		if ($result) {
+			return $result;
+		}
+
+		$this->insert_band_edges_for_user();
+
+		$this->db->from('bandedges');
+		$this->db->where('bandedges.userid', -1);
+		$this->db->order_by('frequencyfrom', 'ASC');
+
+		return $this->db->get()->result();
+	}
+
+	function insert_band_edges_for_user() {
+		// Get band edges from default user
+		$this->db->from('bandedges');
+		$this->db->where('bandedges.userid', -1);
+		$result = $this->db->get()->result();
+
+		if ($result) {
+			foreach($result as $edge) {
+				$data = array(
+					'frequencyfrom' => $edge->frequencyfrom,
+					'frequencyto' => $edge->frequencyto,
+					'mode' => $edge->mode,
+					'userid' => $this->session->userdata('user_id')
+				);
+				$this->db->insert('bandedges', $data);
+			}
+		}
+		return true;
+	}
+
 	function all() {
 		return $this->bandslots;
 	}
@@ -409,6 +449,46 @@ class Bands extends CI_Model {
 		}
 
 		return $worked_slots;
+	}
+
+	function deletebandedge($id) {
+		// Clean ID
+		$clean_id = $this->security->xss_clean($id);
+
+		// Delete Bandedge
+		$this->db->delete('bandedges', array('id' => $clean_id, 'userid' => $this->session->userdata('user_id')));
+	}
+
+	function check4overlapEdges($id, $frequencyfrom, $frequencyto, $mode) {
+		$edges = $this->bands->get_all_bandedges_for_user();
+		foreach ($edges as $item) {
+			if ($item->id == ($id ?? -1000)) {
+				continue;
+			}
+			$from = (int)$item->frequencyfrom;
+			$to = (int)$item->frequencyto;
+			if (!($frequencyto < $from || $frequencyfrom > $to)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	function saveBandEdge($id, $frequencyfrom, $frequencyto, $mode) {
+		$data = array(
+			'frequencyfrom' => $frequencyfrom,
+			'frequencyto' => $frequencyto,
+			'mode' => $mode,
+			'userid' => $this->session->userdata('user_id')
+		);
+
+		if ($id > 0) {
+			$this->db->where('id', $id);
+			$this->db->where('userid', $this->session->userdata('user_id'));
+			return $this->db->update('bandedges', $data);
+		} else {
+			return $this->db->insert('bandedges', $data);
+		}
 	}
 }
 

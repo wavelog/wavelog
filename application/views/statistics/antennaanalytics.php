@@ -14,7 +14,7 @@
 	</div>
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><br />
-		<form class="form">
+		<form class="form" name="azForm" id="azForm">
 			<div class="mb-3 d-flex align-items-center gap-3">
                     <label class="w-auto control-label" for="band"><?= __("Band") ?></label>
                     <div class="w-auto">
@@ -59,13 +59,10 @@
 					<div hidden class="orbits_dropdown  d-flex align-items-center gap-3">
 						<label class="w-auto control-label" for="orbit"><?= __("Orbit") ?></label>
 						<div class="w-auto">
-							<select id="orbit" name="orbit" class="form-select">
-								<option value="All" <?php if ($this->input->post('orbit') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
+							<select id="orbit" name="orbit" class="form-select" multiple="multiple">
 								<?php
 								foreach($orbits as $orbit){
-										echo '<option value="' . $orbit . '"';
-										if ($this->input->post('orbit') == $orbit) echo ' selected';
-										echo '>' . $orbit . '</option>'."\n";
+										echo '<option value="'.$orbit.'" selected>' . $orbit . '</option>'."\n";
 								}
 								?>
 							</select>
@@ -83,7 +80,7 @@
 		</div>
 
         <div class="tab-pane fade show" id="elevation" role="tabpanel" aria-labelledby="elevation-tab"><br />
-			<form>
+			<form class="form" name="elForm" id="elForm">
 			<div class="mb-3 d-flex align-items-center gap-3">
 				<label class="w-auto control-label" for="sat"><?= __("Sat") ?></label>
 				<div class="w-auto">
@@ -100,13 +97,10 @@
 				</div>
 					<label class="w-auto control-label" for="orbit"><?= __("Orbit") ?></label>
 					<div class="w-auto">
-						<select id="orbitel" name="orbitel" class="form-select">
-							<option value="All" <?php if ($this->input->post('orbit') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
+						<select id="orbitel" name="orbitel" class="form-select" multiple="multiple">
 							<?php
 							foreach($orbits as $orbit){
-									echo '<option value="' . $orbit . '"';
-									if ($this->input->post('orbit') == $orbit) echo ' selected';
-									echo '>' . $orbit . '</option>'."\n";
+									echo '<option value="'.$orbit.'" selected>' . $orbit . '</option>'."\n";
 							}
 							?>
 						</select>

@@ -3,7 +3,25 @@
 use Wavelog\Dxcc\Dxcc;
 
 class Dxcluster_model extends CI_Model {
-	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '') {
+
+    protected $bandedges = [];
+
+    public function __construct() {
+		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
+		$query = $this->db->get('bandedges');
+        $result = $query->result_array();
+
+		if ($result) {
+			$this->bandedges = $result;
+		} else {
+			// Load bandedges into a class property
+			$this->db->where('userid', -1);
+			$query = $this->db->get('bandedges');
+			$this->bandedges = $query->result_array();
+		}
+    }
+
+	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '', $mode = 'All') {
 		$this->load->helper(array('psr4_autoloader'));
 
 		if($this->session->userdata('user_date_format')) {
@@ -52,6 +70,7 @@ class Dxcluster_model extends CI_Model {
 				}
 				$singlespot->band=$spotband;
 				if (($band != 'All') && ($band != $spotband)) { continue; }
+				if (($mode != 'All') && ($mode != $this->modefilter($singlespot, $mode))) { continue; }
 				$datetimecurrent = new DateTime("now", new DateTimeZone('UTC')); // Today's Date/Time
 				$datetimespot = new DateTime($singlespot->when, new DateTimeZone('UTC'));
 				$spotage = $datetimecurrent->diff($datetimespot);
@@ -112,6 +131,46 @@ class Dxcluster_model extends CI_Model {
 		}
 
 	}
+
+	// We need to build functions that check the frequency limit
+	// Right now this is just a proof of concept to determine mode
+	function modefilter($spot, $mode) {
+		$mode = strtolower($mode); // Normalize case
+
+		if ($this->isFrequencyInMode($spot->frequency, $mode)) {
+			return true;
+		}
+
+		// Fallbacks using message keywords
+		if (isset($spot->message)) {
+			$message = strtolower($spot->message);
+			if ($mode === 'cw' && strpos($message, 'cw') !== false) {
+				return true;
+			}
+			if ($mode === 'digi' && (strpos($message, 'ft8') !== false || strpos($message, 'rtty') !== false || strpos($message, 'sstv') !== false)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public function isFrequencyInMode($frequency, $mode) {
+        // Ensure frequency is in Hz if input is in kHz
+        if ($frequency < 1_000_000) {
+            $frequency *= 1000;
+        }
+
+        foreach ($this->bandedges as $band) {
+            if (strtolower($band['mode']) === strtolower($mode)) {
+                if ($frequency >= $band['frequencyfrom'] && $frequency < $band['frequencyto']) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     public function dxc_qrg_lookup($qrg, $maxage = 120) {
 		$this->load->helper(array('psr4_autoloader'));
