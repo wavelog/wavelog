@@ -4609,7 +4609,8 @@ msgstr "如应用不再使用，建议删除对应的 API Key。"
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
-msgstr "集体台站中 API key 是个人的并且不共享。集体台站的用户只能看见他们自己的 API "
+msgstr ""
+"集体台站中 API key 是个人的并且不共享。集体台站的用户只能看见他们自己的 API "
 "key。"
 
 #: application/views/api/index.php:30
@@ -5119,9 +5120,9 @@ msgid ""
 "Identifier')."
 msgstr ""
 "德国从东到西绵延 630 多公里，从北到南绵延近 900 公里。德国 8200 万居民中约有 "
-"70,000 人是有执照的 HAM，其中 40,000 多人是 DARC 的成员 DOK "
-"是一个为各个地方分会提供标识符的系统，其意思是“Deutscher Ortsverband "
-"Kenner”（中文：“德国地方协会标识符”）。"
+"70,000 人是有执照的 HAM，其中 40,000 多人是 DARC 的成员 DOK 是一个为各个地方"
+"分会提供标识符的系统，其意思是“Deutscher Ortsverband Kenner”（中文：“德国地方"
+"协会标识符”）。"
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -5955,10 +5956,9 @@ msgid ""
 "training, and they represent Dutch amateurs nationally and internationally."
 msgstr ""
 "荷兰南北长约 300 公里，东西宽约 200 公里。在该国的 1800 万人口中，大约有 "
-"11500 名持证业余无线电操作员。荷兰最大的无线电协会是 "
-"VERON（荷兰实验无线电研究协会）和 "
-"VRZA（荷兰业余无线电爱好者协会）。这两个组织都积极组织活动、比赛和培训，并在"
-"国内和国际上代表荷兰业余爱好者。"
+"11500 名持证业余无线电操作员。荷兰最大的无线电协会是 VERON（荷兰实验无线电研"
+"究协会）和 VRZA（荷兰业余无线电爱好者协会）。这两个组织都积极组织活动、比赛和"
+"培训，并在国内和国际上代表荷兰业余爱好者。"
 
 #: application/views/awards/wap/index.php:22
 msgid ""
@@ -6006,9 +6006,9 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
-"ARRL 最受欢迎的奖项是“Worked All States Award”。已向世界各地的 HAM "
-"颁发了数以千计的奖项。在 ARRL 成立 101 "
-"周年之际，他们重新设计了证书和项目，希望能够精简和完善奖励项目。"
+"ARRL 最受欢迎的奖项是“Worked All States Award”。已向世界各地的 HAM 颁发了数以"
+"千计的奖项。在 ARRL 成立 101 周年之际，他们重新设计了证书和项目，希望能够精简"
+"和完善奖励项目。"
 
 #: application/views/awards/was/index.php:22
 msgid ""
@@ -13032,7 +13032,8 @@ msgstr "POTA Map 网站"
 msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
-msgstr "台站的 POTA 标识符，可以使用多个值（逗号分隔）。您可在 %s 查看 POTA 标识符。"
+msgstr ""
+"台站的 POTA 标识符，可以使用多个值（逗号分隔）。您可在 %s 查看 POTA 标识符。"
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
@@ -14566,7 +14567,8 @@ msgid ""
 "You are about to convert this club station to a regular user account. The "
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
-msgstr "您即将把此集体台站用户转换为普通用户。集体台站用户可以再次登录但是所有的集体"
+msgstr ""
+"您即将把此集体台站用户转换为普通用户。集体台站用户可以再次登录但是所有的集体"
 "台站角色将被移除。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:146
@@ -14574,7 +14576,8 @@ msgid ""
 "You are about to convert this user account to a club station. The user will "
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
-msgstr "您即将把此普通用户转换为集体台站用户。这个用户将不再能够登录并且账号将被转换"
+msgstr ""
+"您即将把此普通用户转换为集体台站用户。这个用户将不再能够登录并且账号将被转换"
 "为集体台站账号。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:149
@@ -14887,6 +14890,12 @@ msgstr "收"
 #: application/controllers/Satellite.php:256
 msgid "Satellite pass"
 msgstr "卫星过境"
+
+#: application/views/search/cqzones_result.php:3
+msgid ""
+"The following QSOs were found to have an incorrect CQ zone that this DXCC "
+"normally has (a maximum of 5000 QSOs are shown):"
+msgstr ""
 
 #~ msgid "Not Confirmed"
 #~ msgstr "未确认"
