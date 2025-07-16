@@ -77,6 +77,7 @@
 		<?= __("Portuguese"); ?>
 		<?= __("Russian"); ?>
 		<?= __("Serbian"); ?>
+		<?= __("Slovak"); ?>
 		<?= __("Slovenian"); ?>
 		<?= __("Spanish"); ?>
 		<?= __("Swedish"); ?>

@@ -16,12 +16,13 @@
 # Lu Chang <chinaluchang@live.com>, 2025.
 # BG8LNG <qrz@bg8lng.com>, 2025.
 # FengziLeo <fengzileo@vip.qq.com>, 2025.
+# BG9JDI <lyx8851@qq.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-13 10:52+0000\n"
-"PO-Revision-Date: 2025-07-07 07:04+0000\n"
-"Last-Translator: BH3HNI <mmf@live.com>\n"
+"POT-Creation-Date: 2025-07-16 12:44+0000\n"
+"PO-Revision-Date: 2025-07-16 12:32+0000\n"
+"Last-Translator: Lu Chang <chinaluchang@live.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -400,7 +401,7 @@ msgstr " 并且频段为 "
 
 #: application/controllers/Awards.php:462
 msgid " and satellite "
-msgstr ""
+msgstr " 和卫星 "
 
 #: application/controllers/Awards.php:465
 #: application/controllers/Callstats.php:107
@@ -1004,7 +1005,7 @@ msgstr "eQSL 卡片图片下载"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
-msgstr ""
+msgstr "已确认的"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:148
@@ -1175,7 +1176,7 @@ msgstr "纸张已删除。"
 msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
-msgstr "没有找到日志本。您需要在电台站日志下添加一个日志本！在这里添加："
+msgstr "没有找到日志簿。您需要在电台站日志下添加一个日志簿！在这里添加："
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:21
@@ -2204,6 +2205,15 @@ msgstr "编辑 CAT 设置"
 msgid "Export EDI"
 msgstr "导出 EDI"
 
+#: application/controllers/Satellite.php:55
+#: application/views/interface_assets/header.php:306
+#: application/views/notes/add.php:38 application/views/notes/edit.php:39
+#: application/views/satellite/index.php:40
+#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:111
+msgid "Satellites"
+msgstr "卫星"
+
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
 msgstr "创建卫星信息"
@@ -2211,6 +2221,15 @@ msgstr "创建卫星信息"
 #: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
 msgstr "编辑卫星"
+
+#: application/controllers/Satellite.php:213
+#: application/views/interface_assets/header.php:287
+msgid "Satellite Flightpath"
+msgstr "卫星轨迹"
+
+#: application/controllers/Satellite.php:256
+msgid "Satellite pass"
+msgstr "卫星过境"
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
@@ -3980,7 +3999,7 @@ msgstr "DCL DOK 更新结果"
 #: application/views/adif/dcl_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr "耶，更新了！"
+msgstr "耶，已更新！"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
@@ -4609,7 +4628,7 @@ msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
-"在集体台站的API key是个人的并且不共享。集体台站的用户只能看见他们自己的API "
+"集体台站中 API key 是个人的并且不共享。集体台站的用户只能看见他们自己的 API "
 "key。"
 
 #: application/views/api/index.php:30
@@ -5118,10 +5137,10 @@ msgid ""
 "'Deutscher Ortsverband Kenner' (English: 'German Local Association "
 "Identifier')."
 msgstr ""
-"德国从东到西绵延 630 多公里，从北到南绵延近 900 公里 德国 8200 万居民中约有 "
-"70,000 人是有执照的HAM，其中 40,000 多人是 DARC 的成员 DOK 是一个为各个地方分"
-"会提供标识符的系统，其意思是“Deutscher Ortsverband Kenner”（英语：“德国地方协"
-"会标识符”）。"
+"德国从东到西绵延 630 多公里，从北到南绵延近 900 公里。德国 8200 万居民中约有 "
+"70,000 人是有执照的 HAM，其中 40,000 多人是 DARC 的成员 DOK 是一个为各个地方"
+"分会提供标识符的系统，其意思是“Deutscher Ortsverband Kenner”（中文：“德国地方"
+"协会标识符”）。"
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -5177,7 +5196,7 @@ msgstr "通联过 / 已确认"
 #: application/views/awards/wap/index.php:76
 #: application/views/awards/was/index.php:76
 msgid "Every band"
-msgstr "各个波段"
+msgstr "各个频段"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
@@ -5341,7 +5360,7 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
-"Fred Fish 纪念奖是为了纪念 Fred Fish, W5FF (SK) 而设立，他是第一个在 6 米波段"
+"Fred Fish 纪念奖是为了纪念 Fred Fish, W5FF (SK) 而设立，他是第一个在 6 米频段"
 "上通联并确认了美国 48 个邻近地区的所有 488 个网格的业余爱好者。"
 
 #: application/views/awards/ffma/index.php:10
@@ -5435,7 +5454,7 @@ msgid ""
 "as possible on multiple bands."
 msgstr ""
 "USKA（瑞士短波业余爱好者联盟）设立两个奖项：HELVETIA 26（H26）奖和 "
-"SWITZERLAND 奖，旨在通过鼓励在多个波段上通联尽可能多的瑞士州。"
+"SWITZERLAND 奖，旨在通过鼓励在多个频段上通联尽可能多的瑞士州。"
 
 #: application/views/awards/helvetia/index.php:22
 msgid ""
@@ -5954,10 +5973,10 @@ msgid ""
 "Amateurs). Both organizations are active in organizing events, contests, and "
 "training, and they represent Dutch amateurs nationally and internationally."
 msgstr ""
-"荷兰南北长约300公里，东西宽约200公里。在该国的1800万人口中，大约有11500名持证"
-"业余无线电操作员。荷兰最大的无线电协会是VERON（荷兰实验无线电研究协会）和VRZA"
-"（荷兰业余无线电爱好者协会）。这两个组织都积极组织活动、比赛和培训，并在国内"
-"和国际上代表荷兰业余爱好者。"
+"荷兰南北长约 300 公里，东西宽约 200 公里。在该国的 1800 万人口中，大约有 "
+"11500 名持证业余无线电操作员。荷兰最大的无线电协会是 VERON（荷兰实验无线电研"
+"究协会）和 VRZA（荷兰业余无线电爱好者协会）。这两个组织都积极组织活动、比赛和"
+"培训，并在国内和国际上代表荷兰业余爱好者。"
 
 #: application/views/awards/wap/index.php:22
 msgid ""
@@ -6005,9 +6024,9 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
-"ARRL 最受欢迎的奖项是“Worked All States Award” 已向世界各地的HAM颁发了数以千"
-"计的奖项 在ARRL成立101周年之际，他们重新设计了证书和项目，希望能够精简和完善"
-"奖励项目。"
+"ARRL 最受欢迎的奖项是“Worked All States Award”。已向世界各地的 HAM 颁发了数以"
+"千计的奖项。在 ARRL 成立 101 周年之际，他们重新设计了证书和项目，希望能够精简"
+"和完善奖励项目。"
 
 #: application/views/awards/was/index.php:22
 msgid ""
@@ -6107,11 +6126,11 @@ msgstr "您的笔记备份已成功完成。输出可在以下位置找到"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:56
 msgid "BandMap"
-msgstr "波段地图"
+msgstr "频段地图"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:59
 msgid "BandList"
-msgstr "波段列表"
+msgstr "频段列表"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:69
 #: application/views/contesting/index.php:20
@@ -6123,7 +6142,7 @@ msgstr "无"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:84
 msgid "Spots de"
-msgstr "Spots de"
+msgstr "来自"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
@@ -6144,19 +6163,19 @@ msgstr "未通联"
 
 #: application/views/bandmap/list.php:82
 msgid "Worked, not Confirmed"
-msgstr ""
+msgstr "通联过，但未获得确认"
 
 #: application/views/bandmap/list.php:113
 msgid "Phone"
-msgstr ""
+msgstr "Phone"
 
 #: application/views/bandmap/list.php:114
 msgid "CW"
-msgstr ""
+msgstr "CW"
 
 #: application/views/bandmap/list.php:115
 msgid "Digi"
-msgstr ""
+msgstr "Digi"
 
 #: application/views/bandmap/list.php:131
 msgid "WAC"
@@ -6175,54 +6194,54 @@ msgstr "消息"
 
 #: application/views/bandmap/list.php:134
 msgid "Last Worked"
-msgstr "最后工作"
+msgstr "最近通联"
 
 #: application/views/bands/bandedges.php:2
 msgid "Please enter valid numbers for frequency"
-msgstr ""
+msgstr "请输入有效的频率"
 
 #: application/views/bands/bandedges.php:3
 msgid "The 'From' frequency must be less than the 'To' frequency."
-msgstr ""
+msgstr "起始频率必须小于结束频率。"
 
 #: application/views/bands/bandedges.php:4
 msgid "The Frequency overlaps with an existing entry."
-msgstr ""
+msgstr "频率与现有的条目有重叠。"
 
 #: application/views/bands/bandedges.php:5
 msgid "Are you sure you want to delete this band edge?"
-msgstr ""
+msgstr "确定要删除这个频段边界吗？"
 
 #: application/views/bands/bandedges.php:17
 msgid "Bandedges"
-msgstr ""
+msgstr "频段边界"
 
 #: application/views/bands/bandedges.php:22
 msgid ""
 "Using the bandedges list you can control the mode classification in the "
 "cluster."
-msgstr ""
+msgstr "使用频段边界列表可以控制集群中的模式分类。"
 
 #: application/views/bands/bandedges.php:29
 msgid "Frequency from (Hz)"
-msgstr ""
+msgstr "起始频率（Hz）"
 
 #: application/views/bands/bandedges.php:30
 msgid "Frequency to (Hz)"
-msgstr ""
+msgstr "结束频率（Hz）"
 
 #: application/views/bands/bandedges.php:65
 msgid "Add a bandedge"
-msgstr ""
+msgstr "添加一个频段边界"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr "波段名称（例如：20m）"
+msgstr "频段名称（例如：20m）"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:63
 msgid "Bandgroup"
-msgstr "波段"
+msgstr "频段组"
 
 #: application/views/bands/create.php:31 application/views/bands/edit.php:13
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
@@ -6235,7 +6254,7 @@ msgstr "SSB 频率"
 
 #: application/views/bands/create.php:36 application/views/bands/edit.php:18
 msgid "Frequency for SSB QRG in band (must be in Hz)"
-msgstr "波段中 SSB 的频率（以 Hz 为单位）"
+msgstr "频段中 SSB 的频率（以 Hz 为单位）"
 
 #: application/views/bands/create.php:39 application/views/bands/edit.php:21
 #: application/views/bands/index.php:65
@@ -6244,7 +6263,7 @@ msgstr "DATA 频率"
 
 #: application/views/bands/create.php:41 application/views/bands/edit.php:23
 msgid "Frequency for DATA QRG in band (must be in Hz)"
-msgstr "波段中 DATA 的频率（以 Hz 为单位）"
+msgstr "频段中 DATA 的频率（以 Hz 为单位）"
 
 #: application/views/bands/create.php:44 application/views/bands/edit.php:26
 #: application/views/bands/index.php:66
@@ -6253,20 +6272,20 @@ msgstr "CW 频率"
 
 #: application/views/bands/create.php:46 application/views/bands/edit.php:28
 msgid "Frequency for CW QRG in band (must be in Hz)"
-msgstr "波段中 CW 的频率（以 Hz 为单位）"
+msgstr "频段中 CW 的频率（以 Hz 为单位）"
 
 #: application/views/bands/index.php:37
 msgid ""
 "Using the band list you can control which bands are shown when creating a "
 "new QSO."
-msgstr "使用波段列表，您可以控制创建新 QSO 时显示哪些波段。"
+msgstr "使用频段列表，您可以控制创建新 QSO 时显示哪些频段。"
 
 #: application/views/bands/index.php:38
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
 msgstr ""
-"启用的波段将显示在 QSO“波段”下拉列表中，而停用的频段将被隐藏且无法选择。"
+"启用的频段将显示在 QSO“频段”下拉列表中，而停用的频段将被隐藏且无法选择。"
 
 #: application/views/bands/index.php:55
 msgid "Sig"
@@ -6308,7 +6327,7 @@ msgstr "GHz"
 
 #: application/views/bands/index.php:155 application/views/bands/index.php:161
 msgid "Create a band"
-msgstr "创建波段"
+msgstr "创建频段"
 
 #: application/views/bands/index.php:156
 #: application/views/club/permissions.php:142
@@ -6326,15 +6345,15 @@ msgstr "关闭"
 
 #: application/views/bands/index.php:157
 msgid "Warning! Are you sure you want to delete the following band: "
-msgstr "警告！ 您确定要删除以下波段： "
+msgstr "警告！ 您确定要删除以下频段： "
 
 #: application/views/bands/index.php:158
 msgid "Warning! Are you sure you want to activate all bands?"
-msgstr "警告！你要启用所有波段吗？"
+msgstr "警告！你要启用所有频段吗？"
 
 #: application/views/bands/index.php:159
 msgid "Warning! Are you sure you want to deactivate all bands?"
-msgstr "警告！你要停用所有波段吗？"
+msgstr "警告！你要停用所有频段吗？"
 
 #: application/views/bands/index.php:162
 #: application/views/contesting/add.php:77 application/views/mode/index.php:89
@@ -6442,11 +6461,11 @@ msgstr "辅助类型(Assisted)"
 
 #: application/views/cabrillo/index.php:67
 msgid "Category Band"
-msgstr "波段类型(Band)"
+msgstr "频段类型(Band)"
 
 #: application/views/cabrillo/index.php:93
 msgid "Light/Laser"
-msgstr "浅色/高光"
+msgstr "光/激光"
 
 #: application/views/cabrillo/index.php:94
 msgid "VHF-3-BAND and VHF-FM-ONLY (ARRL VHF Contests only)"
@@ -6755,7 +6774,7 @@ msgstr "删除 QSO"
 
 #: application/views/club/permissions.php:85
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
-msgstr "管理台站设置（编辑/创建日志本和位置）"
+msgstr "管理台站设置（编辑/创建日志簿和位置）"
 
 #: application/views/club/permissions.php:93
 msgid "Manage Third-Party services"
@@ -6891,7 +6910,7 @@ msgstr "角色：%s"
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
 msgid "Upload Logbook"
-msgstr "上传日志本"
+msgstr "上传日志簿"
 
 #: application/views/clublog/export.php:14
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
@@ -7532,7 +7551,7 @@ msgstr "您没有台站位置。单击%s这里%s进行更新。"
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr "您没有日志本。单击%s这里%s进行更新。"
+msgstr "您没有日志簿。单击%s这里%s进行更新。"
 
 #: application/views/dashboard/index.php:149
 #, php-format
@@ -7540,13 +7559,13 @@ msgctxt "Dashboard Warning"
 msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
-msgstr "您当前活跃的电台位置并没有链接到你的日志本。单击 %s这里%s 进行设置。"
+msgstr "您当前活跃的电台位置并没有链接到你的日志簿。单击 %s这里%s 进行设置。"
 
 #: application/views/dashboard/index.php:157
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
-msgstr "您的日志本没有绑定电台。单击 %s这里%s 进行设置。"
+msgstr "您的日志簿没有绑定电台。单击 %s这里%s 进行设置。"
 
 #: application/views/dashboard/index.php:166
 #, php-format
@@ -8033,7 +8052,7 @@ msgstr "未安装"
 
 #: application/views/debug/index.php:441
 msgid "Git Information"
-msgstr "Git信息"
+msgstr "Git 信息"
 
 #: application/views/debug/index.php:445
 msgid "Branch"
@@ -8246,18 +8265,22 @@ msgid "Serbian"
 msgstr "塞尔维亚语"
 
 #: application/views/debug/index.php:691
+msgid "Slovak"
+msgstr ""
+
+#: application/views/debug/index.php:692
 msgid "Slovenian"
 msgstr "斯洛文尼亚语"
 
-#: application/views/debug/index.php:692
+#: application/views/debug/index.php:693
 msgid "Spanish"
 msgstr "西班牙语"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:694
 msgid "Swedish"
 msgstr "瑞典语"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:695
 msgid "Turkish"
 msgstr "土耳其语"
 
@@ -8298,7 +8321,7 @@ msgstr "通联的呼号（最多显示 5 个）"
 
 #: application/views/distances/index.php:19
 msgid "Band selection"
-msgstr "波段选择"
+msgstr "频段选择"
 
 #: application/views/dxatlas/index.php:3
 msgid "DX Atlas Export"
@@ -8316,11 +8339,11 @@ msgstr "只有有网格座标的 QSO 才会被导出！"
 
 #: application/views/dxcalendar/index.php:9
 msgid "Date from"
-msgstr "日期从"
+msgstr "开始日期"
 
 #: application/views/dxcalendar/index.php:10
 msgid "Date to"
-msgstr "日期到"
+msgstr "结束日期"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:489
@@ -8686,7 +8709,7 @@ msgstr "如果你有很多 QSO 需要上传到 eQSL，请使用此功能以防�
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr "您已使用 %s 的硬盘空间来存储 eQSL 卡片图片"
+msgstr "您已使用 %s 的硬盘空间来存储 eQSL 卡片数据"
 
 #: application/views/eqslcard/index.php:35
 #: application/views/qslcard/index.php:44
@@ -8718,13 +8741,13 @@ msgstr "您的个人资料"
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
-msgstr "标记QSO"
+msgstr "标记 QSO"
 
 #: application/views/hrdlog/export.php:22
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "HRDLog logbook."
-msgstr "您可以在此看到所有尚未上传到HRDLog日志的QSO。"
+msgstr "您可以在此看到所有尚未上传到 HRDLog 日志的 QSO。"
 
 #: application/views/hrdlog/export.php:23
 msgid ""
@@ -9033,15 +9056,15 @@ msgstr "详细日志"
 
 #: application/views/interface_assets/header.php:108
 msgid "View QSL Cards"
-msgstr "浏览 QSL 卡片"
+msgstr "查看 QSL 卡片"
 
 #: application/views/interface_assets/header.php:111
 msgid "View eQSL Cards"
-msgstr "浏览 eQSL 卡片"
+msgstr "查看 eQSL 卡片"
 
 #: application/views/interface_assets/header.php:113
 msgid "View last confirmations"
-msgstr ""
+msgstr "查看最近的确认"
 
 #: application/views/interface_assets/header.php:121
 msgid "Live QSO"
@@ -9149,15 +9172,11 @@ msgstr "US Gridmaster"
 
 #: application/views/interface_assets/header.php:283
 msgid "Bandmap"
-msgstr "波段地图"
+msgstr "频段地图"
 
 #: application/views/interface_assets/header.php:285
 msgid "SAT Timers"
 msgstr "卫星过境时钟"
-
-#: application/views/interface_assets/header.php:287
-msgid "Satellite Flightpath"
-msgstr "卫星轨迹"
 
 #: application/views/interface_assets/header.php:289
 msgid "Satellite Pass"
@@ -9171,14 +9190,6 @@ msgstr "管理员"
 #: application/views/interface_assets/header.php:300
 msgid "Global Options"
 msgstr "全局选项"
-
-#: application/views/interface_assets/header.php:306
-#: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
-msgid "Satellites"
-msgstr "卫星"
 
 #: application/views/interface_assets/header.php:312
 msgid "Update Country Files"
@@ -9216,7 +9227,7 @@ msgstr "账户信息"
 
 #: application/views/interface_assets/header.php:418
 msgid "Band Edges"
-msgstr ""
+msgstr "频段边界"
 
 #: application/views/interface_assets/header.php:424
 msgid "Switch to Clubstation:"
@@ -9758,7 +9769,7 @@ msgstr "Mode为空或设置为 0。"
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Band is blank."
-msgstr "波段是空白的。"
+msgstr "频段是空白的。"
 
 #: application/views/logbookadvanced/help.php:11
 msgid "Callsign is blank."
@@ -10518,7 +10529,7 @@ msgstr "ADIF 标准中的子模式（Sub-mode）名称"
 
 #: application/views/mode/create.php:42 application/views/mode/edit.php:53
 msgid "Defines the QRG-segment in bandplan."
-msgstr "定义波段中的 QRG 信息。"
+msgstr "定义频段中的 QRG 信息。"
 
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:9 application/views/mode/index.php:55
@@ -10562,7 +10573,7 @@ msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
 msgstr ""
-"启用的模式将显示在 QSO 模式的下拉菜单中，而非启用的模式将被隐藏，无法选择。"
+"启用的模式将显示在 QSO 模式的下拉菜单中，而停用的模式将被隐藏且无法选择。"
 
 #: application/views/mode/index.php:41 application/views/usermode/index.php:39
 msgid "Sub-Mode"
@@ -11162,7 +11173,7 @@ msgstr "搜索结果：%s"
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] "有 %d 个波段区间"
+msgstr[0] "有 %d 个频段区间"
 
 #: application/views/oqrs/result.php:33
 #, php-format
@@ -11302,7 +11313,7 @@ msgstr "未找到确认信息。"
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
-msgstr "为保障运行流畅，表格数据限制在1000行以内。"
+msgstr "为保障运行流畅，表格数据限制在 1000 行以内。"
 
 #: application/views/qslcard/confirmations.php:11
 msgid "Confirmation type"
@@ -11311,7 +11322,7 @@ msgstr "确认类型"
 #: application/views/qslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
-msgstr "您已使用 %s 硬盘空间来存储 QSL 卡片"
+msgstr "您已使用 %s 硬盘空间来存储 QSL 卡片数据"
 
 #: application/views/qslcard/index.php:17
 msgid "List View"
@@ -11376,7 +11387,7 @@ msgstr "之前的 QSL"
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
-msgstr "%s 列显示之前在相同波段和模式下已发送到相同电台的 QSL 数量。"
+msgstr "%s 列显示之前在相同频段和模式下已发送到相同电台的 QSL 数量。"
 
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
@@ -11472,7 +11483,7 @@ msgstr "显示 IOTA 的摘要信息"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for DOK"
-msgstr "DOK分区汇总"
+msgstr "DOK 分区汇总"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for satellite QSOs with"
@@ -11504,7 +11515,7 @@ msgstr "需要填写 IOTA 字段以显示摘要信息！"
 
 #: application/views/qso/award_tabs.php:17
 msgid "DOK input needs to be filled to show a summary!"
-msgstr "必须填写DOK字段才能显示统计摘要！"
+msgstr "必须填写 DOK 字段才能显示统计摘要！"
 
 #: application/views/qso/award_tabs.php:18
 msgid "WWFF input needs to be filled to show a summary!"
@@ -11950,7 +11961,7 @@ msgstr "请稍等…"
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr "选择波段"
+msgstr "选择频段"
 
 #: application/views/reg1test/index.php:8
 msgid ""
@@ -12069,13 +12080,13 @@ msgstr "天线距地面的高度。"
 
 #: application/views/reg1test/index.php:134
 msgid "Band multiplicator"
-msgstr "波段系数"
+msgstr "频段系数"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
-msgstr "波段系数。通常为 1。只在根据竞赛积分规则下更改。"
+msgstr "频段系数。通常为 1。只在根据竞赛积分规则下更改。"
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
@@ -12422,7 +12433,7 @@ msgstr "台站地址："
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
-"normally has (a maximum of 5000 QSOs are shown)::"
+"normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
 "发现以下通联（QSO）的 CQ 区域与该 DXCC 通常的区域不符（最多显示 5000 个通"
 "联）："
@@ -12616,7 +12627,7 @@ msgstr "关闭并加载示例数据"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr "找不到波段！"
+msgstr "找不到频段！"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
@@ -12624,7 +12635,7 @@ msgstr "找不到模式！"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr "时间未设定！"
+msgstr "未设定时间！"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
@@ -12646,7 +12657,7 @@ msgstr "警告！您确定要重置日志会话吗？"
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
-msgstr "警告！您不能记录 QSO 列表，因为某些 QSO 没有定义波段和模式！"
+msgstr "警告！您不能记录 QSO 列表，因为某些 QSO 没有定义频段和模式！"
 
 #: application/views/simplefle/index.php:33
 msgid ""
@@ -12769,7 +12780,7 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
-"首先，确保您已经在左侧表格填写了日期、电台呼号和操作员呼号。主要数据包括波段"
+"首先，确保您已经在左侧表格填写了日期、电台呼号和操作员呼号。主要数据包括频段"
 "（或以 MHz 为单位的 QRG ，例如 '7.145'）、模式和时间。在时间后，您填写第一个 "
 "QSO，基本上就是呼号。"
 
@@ -12794,7 +12805,7 @@ msgid ""
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
 "第一个 QSO 时间为 21:34，第二个 QSO 时间为 2 分钟后的 21:36。我们只输入 6，因"
-"为只有这一个字符有变化。波段与模式信息并未改变，因此无需填写该部分。"
+"为只有这一个字符有变化。频段与模式信息并未改变，因此无需填写该部分。"
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -12803,7 +12814,7 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
-"下一个 QSO 时间为 2021-05-14 21:40 ，这个通联仍然为 SSB 模式，但是波段变为了 "
+"下一个 QSO 时间为 2021-05-14 21:40 ，这个通联仍然为 SSB 模式，但是频段变为了 "
 "40m。如果未提供 RST，程序仍将使用 59 来记录每个新的 QSO。因此，我们可以添加另"
 "一个在两天后于同一时间进行的 QSO。日期必须采用 YYYY-MM-DD 格式。"
 
@@ -13030,7 +13041,7 @@ msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
-"台站的 POTA 标识符，可以使用多个值（逗号分隔），可在 %s 查看 POTA 目录。"
+"台站的 POTA 标识符，可以使用多个值（逗号分隔）。您可在 %s 查看 POTA 标识符。"
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
@@ -13197,7 +13208,7 @@ msgstr "OQRS 邮件提醒"
 #: application/views/station_profile/create.php:302
 #: application/views/station_profile/edit.php:452
 msgid "Make sure email is set up under admin and global options."
-msgstr "确认邮件功能在站点设置中已配置。"
+msgstr "请确认已在站点设置中配置了邮件功能。"
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:455
@@ -13445,7 +13456,7 @@ msgstr "文件夹名称"
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
-msgstr "在 assets/css 下装有主题资源的文件夹名称。"
+msgstr "这是在 assets/css 下存放主题资源 CSS 文件的文件夹名称。"
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
@@ -13618,7 +13629,7 @@ msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
-"时间图表能分析您在何时与某 CQ 分区 或 DXCC 实体，于指定波段进行过通联。"
+"时间图表能分析您在何时与某 CQ 分区 或 DXCC 实体，于指定频段进行过通联。"
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
@@ -13755,7 +13766,7 @@ msgstr "密码"
 
 #: application/views/user/edit.php:74
 msgid "Don't share this password with operators!"
-msgstr "不用把这个密码分享给操作员们！"
+msgstr "不要把此密码分享给操作员！"
 
 #: application/views/user/edit.php:84
 msgid "User Role"
@@ -14050,11 +14061,11 @@ msgstr "默认值"
 
 #: application/views/user/edit.php:695
 msgid "Settings for Default Band and Confirmation"
-msgstr "默认波段和 QSL 确认方式设置"
+msgstr "默认频段和 QSL 确认方式设置"
 
 #: application/views/user/edit.php:698
 msgid "Default Band"
-msgstr "默认波段"
+msgstr "默认频段"
 
 #: application/views/user/edit.php:708
 msgid "Default QSL-Methods"
@@ -14298,7 +14309,7 @@ msgstr "账号锁定"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
-msgstr "由于过多的登录尝试，此账号已被锁定。"
+msgstr "由于登录尝试次数过多，此账号已被锁定。"
 
 #: application/views/user/index.php:76 application/views/user/index.php:188
 msgid "Locations"
@@ -14445,7 +14456,7 @@ msgid ""
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
 "在您开始记录 QSO 之前，我们需要设置您的第一个电台站。您可以在我们的 %s wiki "
-"%s 中找到更多关于电台站位置和日志本如何工作的信息！"
+"%s 中找到更多关于电台站位置和日志簿如何工作的信息！"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
@@ -14455,7 +14466,7 @@ msgstr "请提供一些额外的信息来让 Wavelog 可以创建您的第一个
 
 #: application/views/user/modals/first_login_wizard.php:29
 msgid "Home QTH"
-msgstr "Home QTH"
+msgstr "基地台 QTH"
 
 #: application/views/user/modals/first_login_wizard.php:62
 msgid "Station Zones"
@@ -14520,13 +14531,13 @@ msgstr "语言："
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
-msgstr "密码重置邮件已成功发送给用户。你现在可以关闭这个对话框了。"
+msgstr "已成功向用户发送密码重置邮件。你现在可以关闭这个对话框了。"
 
 #: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
-msgstr "密码重置邮件没有发送给用户。你确定全局设置中的 Email 设置正确吗？"
+msgstr "未能向用户发送密码重置邮件。你确定全局设置中的 Email 设置正确吗？"
 
 #: application/views/user/modals/more_actions_modal.php:99
 msgid ""
@@ -14537,7 +14548,7 @@ msgstr ""
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
-msgstr "你想给这个用户发送密码充值邮件吗？"
+msgstr "你想给这个用户发送密码重置邮件吗？"
 
 #: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
@@ -14565,8 +14576,8 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
-"您将转换这个集体台站用户成一个普通用户。集体台站用户可以再次登录但是所有的集"
-"体台站角色将被移除。请小心使用！"
+"您即将把此集体台站用户转换为普通用户。集体台站用户可以再次登录但是所有的集体"
+"台站角色将被移除。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:146
 msgid ""
@@ -14574,7 +14585,7 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
-"您将要转换这个普通用户为集体台站用户。这个用户将不再能够登录并且账号将被转换"
+"您即将把此普通用户转换为集体台站用户。这个用户将不再能够登录并且账号将被转换"
 "为集体台站账号。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:149
@@ -14883,6 +14894,13 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#~ msgid ""
+#~ "The following QSOs were found to have an incorrect CQ zone that this DXCC "
+#~ "normally has (a maximum of 5000 QSOs are shown)::"
+#~ msgstr ""
+#~ "发现以下通联（QSO）的 CQ 区域与该 DXCC 通常的区域不符（最多显示 5000 个通"
+#~ "联）："
 
 #~ msgid "Not Confirmed"
 #~ msgstr "未确认"

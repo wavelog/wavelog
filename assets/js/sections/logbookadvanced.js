@@ -409,27 +409,31 @@ function processNextCallbookItem() {
 	if (nElements == 0) {
 		inCallbookProcessing = false;
 		callBookProcessingDialog.close();
+		let table = $('#qsoList').DataTable();
+		table.draw(false);
 		return;
 	}
 
-	callBookProcessingDialog.setMessage("Retrieving callbook data : " + nElements + " remaining");
+	let id = elements.first().closest('tr').attr('id')?.replace(/\D/g, ''); // Removes non-numeric characters
 
-	unselectQsoID(elements.first().closest('tr').attr('id')?.replace(/\D/g, '')); // Removes non-numeric characters
+	callBookProcessingDialog.setMessage("Retrieving callbook data : " + nElements + " remaining");
 
 	$.ajax({
 		url: site_url + '/logbookadvanced/updateFromCallbook',
 		type: 'post',
 		data: {
-			qsoID: elements.first().closest('tr').attr('id')?.replace(/\D/g, '')
+			qsoID: id
 		},
 		dataType: 'json',
 		success: function (data) {
-			if (data != []) {
+			if (data && data.dx) {
 				updateRow(data);
 			}
+			unselectQsoID(id);
 			setTimeout("processNextCallbookItem()", 50);
 		},
 		error: function (data) {
+			unselectQsoID(id);
 			setTimeout("processNextCallbookItem()", 50);
 		},
 	});

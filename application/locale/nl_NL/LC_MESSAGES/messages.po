@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-13 10:52+0000\n"
-"PO-Revision-Date: 2025-07-11 19:35+0000\n"
+"POT-Creation-Date: 2025-07-16 12:44+0000\n"
+"PO-Revision-Date: 2025-07-16 04:48+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -2216,6 +2216,15 @@ msgstr "CAT-instellingen bewerken"
 msgid "Export EDI"
 msgstr "EDI exporteren"
 
+#: application/controllers/Satellite.php:55
+#: application/views/interface_assets/header.php:306
+#: application/views/notes/add.php:38 application/views/notes/edit.php:39
+#: application/views/satellite/index.php:40
+#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:111
+msgid "Satellites"
+msgstr "Satellieten"
+
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
 msgstr "Nieuwe satelliet invoeren"
@@ -2223,6 +2232,15 @@ msgstr "Nieuwe satelliet invoeren"
 #: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
 msgstr "Bewerk satelliet"
+
+#: application/controllers/Satellite.php:213
+#: application/views/interface_assets/header.php:287
+msgid "Satellite Flightpath"
+msgstr "Satellietbaan"
+
+#: application/controllers/Satellite.php:256
+msgid "Satellite pass"
+msgstr "Satellietovergang"
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
@@ -6323,7 +6341,7 @@ msgstr "Niet gewerkt"
 
 #: application/views/bandmap/list.php:82
 msgid "Worked, not Confirmed"
-msgstr ""
+msgstr "Gewerkt maar niet bevestigd"
 
 #: application/views/bandmap/list.php:113
 msgid "Phone"
@@ -8492,18 +8510,22 @@ msgid "Serbian"
 msgstr "Servisch"
 
 #: application/views/debug/index.php:691
+msgid "Slovak"
+msgstr ""
+
+#: application/views/debug/index.php:692
 msgid "Slovenian"
 msgstr "Sloveens"
 
-#: application/views/debug/index.php:692
+#: application/views/debug/index.php:693
 msgid "Spanish"
 msgstr "Spaans"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:694
 msgid "Swedish"
 msgstr "Zweeds"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:695
 msgid "Turkish"
 msgstr "Turks"
 
@@ -9434,10 +9456,6 @@ msgstr "Bandkaart"
 msgid "SAT Timers"
 msgstr "SAT-timers"
 
-#: application/views/interface_assets/header.php:287
-msgid "Satellite Flightpath"
-msgstr "Satellietbaan"
-
 #: application/views/interface_assets/header.php:289
 msgid "Satellite Pass"
 msgstr "Satellietovergang"
@@ -9450,14 +9468,6 @@ msgstr "Beheerder"
 #: application/views/interface_assets/header.php:300
 msgid "Global Options"
 msgstr "Globale opties"
-
-#: application/views/interface_assets/header.php:306
-#: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
-msgid "Satellites"
-msgstr "Satellieten"
 
 #: application/views/interface_assets/header.php:312
 msgid "Update Country Files"
@@ -12816,10 +12826,8 @@ msgstr "Locatie van het station:"
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
-"normally has (a maximum of 5000 QSOs are shown)::"
+"normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
-"De volgende QSOs bleken een onjuiste CQ-zone te hebben die deze DXCC normaal "
-"heeft (maximaal 5000 QSOs worden getoond):"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
@@ -15430,6 +15438,13 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#~ msgid ""
+#~ "The following QSOs were found to have an incorrect CQ zone that this DXCC "
+#~ "normally has (a maximum of 5000 QSOs are shown)::"
+#~ msgstr ""
+#~ "De volgende QSOs bleken een onjuiste CQ-zone te hebben die deze DXCC "
+#~ "normaal heeft (maximaal 5000 QSOs worden getoond):"
 
 #~ msgid "Not Confirmed"
 #~ msgstr "Niet bevestigd"
