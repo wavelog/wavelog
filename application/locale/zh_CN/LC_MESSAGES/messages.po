@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-13 10:52+0000\n"
-"PO-Revision-Date: 2025-07-15 16:11+0000\n"
+"PO-Revision-Date: 2025-07-16 04:48+0000\n"
 "Last-Translator: Lu Chang <chinaluchang@live.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -1176,7 +1176,7 @@ msgstr "纸张已删除。"
 msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
-msgstr "没有找到日志本。您需要在电台站日志下添加一个日志本！在这里添加："
+msgstr "没有找到日志簿。您需要在电台站日志下添加一个日志簿！在这里添加："
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:21
@@ -3981,7 +3981,7 @@ msgstr "DCL DOK 更新结果"
 #: application/views/adif/dcl_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr "耶，更新了！"
+msgstr "耶，已更新！"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
@@ -4609,8 +4609,7 @@ msgstr "如应用不再使用，建议删除对应的 API Key。"
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
-msgstr ""
-"在集体台站的API key是个人的并且不共享。集体台站的用户只能看见他们自己的API "
+msgstr "集体台站中 API key 是个人的并且不共享。集体台站的用户只能看见他们自己的 API "
 "key。"
 
 #: application/views/api/index.php:30
@@ -5119,10 +5118,10 @@ msgid ""
 "'Deutscher Ortsverband Kenner' (English: 'German Local Association "
 "Identifier')."
 msgstr ""
-"德国从东到西绵延 630 多公里，从北到南绵延近 900 公里 德国 8200 万居民中约有 "
-"70,000 人是有执照的HAM，其中 40,000 多人是 DARC 的成员 DOK 是一个为各个地方分"
-"会提供标识符的系统，其意思是“Deutscher Ortsverband Kenner”（英语：“德国地方协"
-"会标识符”）。"
+"德国从东到西绵延 630 多公里，从北到南绵延近 900 公里。德国 8200 万居民中约有 "
+"70,000 人是有执照的 HAM，其中 40,000 多人是 DARC 的成员 DOK "
+"是一个为各个地方分会提供标识符的系统，其意思是“Deutscher Ortsverband "
+"Kenner”（中文：“德国地方协会标识符”）。"
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -5955,10 +5954,11 @@ msgid ""
 "Amateurs). Both organizations are active in organizing events, contests, and "
 "training, and they represent Dutch amateurs nationally and internationally."
 msgstr ""
-"荷兰南北长约300公里，东西宽约200公里。在该国的1800万人口中，大约有11500名持证"
-"业余无线电操作员。荷兰最大的无线电协会是VERON（荷兰实验无线电研究协会）和VRZA"
-"（荷兰业余无线电爱好者协会）。这两个组织都积极组织活动、比赛和培训，并在国内"
-"和国际上代表荷兰业余爱好者。"
+"荷兰南北长约 300 公里，东西宽约 200 公里。在该国的 1800 万人口中，大约有 "
+"11500 名持证业余无线电操作员。荷兰最大的无线电协会是 "
+"VERON（荷兰实验无线电研究协会）和 "
+"VRZA（荷兰业余无线电爱好者协会）。这两个组织都积极组织活动、比赛和培训，并在"
+"国内和国际上代表荷兰业余爱好者。"
 
 #: application/views/awards/wap/index.php:22
 msgid ""
@@ -6006,9 +6006,9 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
-"ARRL 最受欢迎的奖项是“Worked All States Award” 已向世界各地的HAM颁发了数以千"
-"计的奖项 在ARRL成立101周年之际，他们重新设计了证书和项目，希望能够精简和完善"
-"奖励项目。"
+"ARRL 最受欢迎的奖项是“Worked All States Award”。已向世界各地的 HAM "
+"颁发了数以千计的奖项。在 ARRL 成立 101 "
+"周年之际，他们重新设计了证书和项目，希望能够精简和完善奖励项目。"
 
 #: application/views/awards/was/index.php:22
 msgid ""
@@ -6756,7 +6756,7 @@ msgstr "删除 QSO"
 
 #: application/views/club/permissions.php:85
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
-msgstr "管理台站设置（编辑/创建日志本和位置）"
+msgstr "管理台站设置（编辑/创建日志簿和位置）"
 
 #: application/views/club/permissions.php:93
 msgid "Manage Third-Party services"
@@ -6892,7 +6892,7 @@ msgstr "角色：%s"
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
 msgid "Upload Logbook"
-msgstr "上传日志本"
+msgstr "上传日志簿"
 
 #: application/views/clublog/export.php:14
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
@@ -7533,7 +7533,7 @@ msgstr "您没有台站位置。单击%s这里%s进行更新。"
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr "您没有日志本。单击%s这里%s进行更新。"
+msgstr "您没有日志簿。单击%s这里%s进行更新。"
 
 #: application/views/dashboard/index.php:149
 #, php-format
@@ -7541,13 +7541,13 @@ msgctxt "Dashboard Warning"
 msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
-msgstr "您当前活跃的电台位置并没有链接到你的日志本。单击 %s这里%s 进行设置。"
+msgstr "您当前活跃的电台位置并没有链接到你的日志簿。单击 %s这里%s 进行设置。"
 
 #: application/views/dashboard/index.php:157
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
-msgstr "您的日志本没有绑定电台。单击 %s这里%s 进行设置。"
+msgstr "您的日志簿没有绑定电台。单击 %s这里%s 进行设置。"
 
 #: application/views/dashboard/index.php:166
 #, php-format
@@ -8034,7 +8034,7 @@ msgstr "未安装"
 
 #: application/views/debug/index.php:441
 msgid "Git Information"
-msgstr "Git信息"
+msgstr "Git 信息"
 
 #: application/views/debug/index.php:445
 msgid "Branch"
@@ -12627,7 +12627,7 @@ msgstr "找不到模式！"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr "时间未设定！"
+msgstr "未设定时间！"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
@@ -13032,8 +13032,7 @@ msgstr "POTA Map 网站"
 msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
-msgstr ""
-"台站的 POTA 标识符，可以使用多个值（逗号分隔），可在 %s 查看 POTA 目录。"
+msgstr "台站的 POTA 标识符，可以使用多个值（逗号分隔）。您可在 %s 查看 POTA 标识符。"
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
@@ -13200,7 +13199,7 @@ msgstr "OQRS 邮件提醒"
 #: application/views/station_profile/create.php:302
 #: application/views/station_profile/edit.php:452
 msgid "Make sure email is set up under admin and global options."
-msgstr "确认邮件功能在站点设置中已配置。"
+msgstr "请确认已在站点设置中配置了邮件功能。"
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:455
@@ -13448,7 +13447,7 @@ msgstr "文件夹名称"
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
-msgstr "在 assets/css 下装有主题资源的文件夹名称。"
+msgstr "这是在 assets/css 下存放主题资源 CSS 文件的文件夹名称。"
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
@@ -13758,7 +13757,7 @@ msgstr "密码"
 
 #: application/views/user/edit.php:74
 msgid "Don't share this password with operators!"
-msgstr "不用把这个密码分享给操作员们！"
+msgstr "不要把此密码分享给操作员！"
 
 #: application/views/user/edit.php:84
 msgid "User Role"
@@ -14301,7 +14300,7 @@ msgstr "账号锁定"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
-msgstr "由于过多的登录尝试，此账号已被锁定。"
+msgstr "由于登录尝试次数过多，此账号已被锁定。"
 
 #: application/views/user/index.php:76 application/views/user/index.php:188
 msgid "Locations"
@@ -14448,7 +14447,7 @@ msgid ""
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
 "在您开始记录 QSO 之前，我们需要设置您的第一个电台站。您可以在我们的 %s wiki "
-"%s 中找到更多关于电台站位置和日志本如何工作的信息！"
+"%s 中找到更多关于电台站位置和日志簿如何工作的信息！"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
@@ -14458,7 +14457,7 @@ msgstr "请提供一些额外的信息来让 Wavelog 可以创建您的第一个
 
 #: application/views/user/modals/first_login_wizard.php:29
 msgid "Home QTH"
-msgstr "Home QTH"
+msgstr "基地台 QTH"
 
 #: application/views/user/modals/first_login_wizard.php:62
 msgid "Station Zones"
@@ -14523,13 +14522,13 @@ msgstr "语言："
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
-msgstr "密码重置邮件已成功发送给用户。你现在可以关闭这个对话框了。"
+msgstr "已成功向用户发送密码重置邮件。你现在可以关闭这个对话框了。"
 
 #: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
-msgstr "密码重置邮件没有发送给用户。你确定全局设置中的 Email 设置正确吗？"
+msgstr "未能向用户发送密码重置邮件。你确定全局设置中的 Email 设置正确吗？"
 
 #: application/views/user/modals/more_actions_modal.php:99
 msgid ""
@@ -14540,7 +14539,7 @@ msgstr ""
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
-msgstr "你想给这个用户发送密码充值邮件吗？"
+msgstr "你想给这个用户发送密码重置邮件吗？"
 
 #: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
@@ -14567,17 +14566,15 @@ msgid ""
 "You are about to convert this club station to a regular user account. The "
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
-msgstr ""
-"您将转换这个集体台站用户成一个普通用户。集体台站用户可以再次登录但是所有的集"
-"体台站角色将被移除。请小心使用！"
+msgstr "您即将把此集体台站用户转换为普通用户。集体台站用户可以再次登录但是所有的集体"
+"台站角色将被移除。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:146
 msgid ""
 "You are about to convert this user account to a club station. The user will "
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
-msgstr ""
-"您将要转换这个普通用户为集体台站用户。这个用户将不再能够登录并且账号将被转换"
+msgstr "您即将把此普通用户转换为集体台站用户。这个用户将不再能够登录并且账号将被转换"
 "为集体台站账号。请小心使用！"
 
 #: application/views/user/modals/more_actions_modal.php:149
@@ -14889,7 +14886,7 @@ msgstr "收"
 
 #: application/controllers/Satellite.php:256
 msgid "Satellite pass"
-msgstr ""
+msgstr "卫星过境"
 
 #~ msgid "Not Confirmed"
 #~ msgstr "未确认"
