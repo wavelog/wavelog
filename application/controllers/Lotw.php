@@ -223,11 +223,11 @@ class Lotw extends CI_Controller {
 				// Validty of QSO dates will be checked later
 				$current_date = date('Y-m-d H:i:s');
 				if ($current_date <= $data['lotw_cert_info']->date_created) {
-					echo $data['lotw_cert_info']->callsign.": LoTW certificate not valid yet!";
+					echo $data['lotw_cert_info']->callsign.": LoTW certificate not valid yet!<br>";
 					continue;
 				}
 				if ($current_date >= $data['lotw_cert_info']->date_expires) {
-					echo $data['lotw_cert_info']->callsign.": LoTW certificate expired!";
+					echo $data['lotw_cert_info']->callsign.": LoTW certificate expired!<br>";
 					continue;
 				}
 
@@ -256,7 +256,7 @@ class Lotw extends CI_Controller {
 				$adif_to_save = $this->load->view('lotw_views/adif_views/adif_export', $data, TRUE);
 				if (strpos($adif_to_save, '<SIGN_LOTW_V2.0:1:6>')) {
 					// Signing failed
-					echo "Signing failed.";
+					echo "Signing failed.<br>";
 					continue;
 				}
 
