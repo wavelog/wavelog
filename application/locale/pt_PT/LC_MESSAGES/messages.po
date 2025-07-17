@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-13 10:52+0000\n"
-"PO-Revision-Date: 2025-07-13 18:53+0000\n"
+"POT-Creation-Date: 2025-07-17 15:22+0000\n"
+"PO-Revision-Date: 2025-07-17 13:35+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -374,7 +374,7 @@ msgstr "Visualização do log - VUCC"
 #: application/controllers/Awards.php:458
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:306
+#: application/controllers/Statistics.php:321
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -2220,6 +2220,15 @@ msgstr "Editar definições do CAT"
 msgid "Export EDI"
 msgstr "Exportar EDI"
 
+#: application/controllers/Satellite.php:55
+#: application/views/interface_assets/header.php:306
+#: application/views/notes/add.php:38 application/views/notes/edit.php:39
+#: application/views/satellite/index.php:40
+#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:111
+msgid "Satellites"
+msgstr "Satélites"
+
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
 msgstr "Criar satélite"
@@ -2227,6 +2236,15 @@ msgstr "Criar satélite"
 #: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
 msgstr "Editar satélite"
+
+#: application/controllers/Satellite.php:213
+#: application/views/interface_assets/header.php:287
+msgid "Satellite Flightpath"
+msgstr "Trajectória de Satélite"
+
+#: application/controllers/Satellite.php:256
+msgid "Satellite pass"
+msgstr "Passagem Satélite"
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
@@ -2547,23 +2565,23 @@ msgstr "Editar opções do mapa de exportação"
 msgid "Statistics"
 msgstr "Estatísticas"
 
-#: application/controllers/Statistics.php:238
+#: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:146
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Estatísticas de QSL"
 
-#: application/controllers/Statistics.php:253
+#: application/controllers/Statistics.php:268
 #: application/views/interface_assets/header.php:144
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "Análise da Antena"
 
-#: application/controllers/Statistics.php:306
+#: application/controllers/Statistics.php:321
 msgid "Satellite QSOs"
 msgstr "Contactos via satélite"
 
-#: application/controllers/Statistics.php:322
+#: application/controllers/Statistics.php:337
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
 msgstr "Iniciais EME"
@@ -8517,18 +8535,22 @@ msgid "Serbian"
 msgstr "Sérvio"
 
 #: application/views/debug/index.php:691
+msgid "Slovak"
+msgstr "Eslovaco"
+
+#: application/views/debug/index.php:692
 msgid "Slovenian"
 msgstr "Esloveno"
 
-#: application/views/debug/index.php:692
+#: application/views/debug/index.php:693
 msgid "Spanish"
 msgstr "Espanhol"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:694
 msgid "Swedish"
 msgstr "Sueco"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:695
 msgid "Turkish"
 msgstr "Turco"
 
@@ -9461,10 +9483,6 @@ msgstr "Mapa de Bandas"
 msgid "SAT Timers"
 msgstr "Tempos satélite"
 
-#: application/views/interface_assets/header.php:287
-msgid "Satellite Flightpath"
-msgstr "Trajectória de Satélite"
-
 #: application/views/interface_assets/header.php:289
 msgid "Satellite Pass"
 msgstr "Passagem de Satélite"
@@ -9477,14 +9495,6 @@ msgstr "Administrador"
 #: application/views/interface_assets/header.php:300
 msgid "Global Options"
 msgstr "Opções Globais"
-
-#: application/views/interface_assets/header.php:306
-#: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
-msgid "Satellites"
-msgstr "Satélites"
 
 #: application/views/interface_assets/header.php:312
 msgid "Update Country Files"
@@ -12853,7 +12863,7 @@ msgstr "Localização da estação:"
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
-"normally has (a maximum of 5000 QSOs are shown)::"
+"normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
 "Os seguintes contactos foram encontrados com uma zona CQ incorreta que este "
 "DXCC normalmente possui (um máximo de 5000 contactos são mostrados):"
@@ -15466,6 +15476,13 @@ msgstr "Submeter pedido"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recebido"
+
+#~ msgid ""
+#~ "The following QSOs were found to have an incorrect CQ zone that this DXCC "
+#~ "normally has (a maximum of 5000 QSOs are shown)::"
+#~ msgstr ""
+#~ "Os seguintes contactos foram encontrados com uma zona CQ incorreta que "
+#~ "este DXCC normalmente possui (um máximo de 5000 contactos são mostrados):"
 
 #~ msgid "Not Confirmed"
 #~ msgstr "Não confirmado"

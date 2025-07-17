@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-13 10:52+0000\n"
-"PO-Revision-Date: 2025-07-09 07:13+0000\n"
+"POT-Creation-Date: 2025-07-17 15:22+0000\n"
+"PO-Revision-Date: 2025-07-16 04:48+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -376,7 +376,7 @@ msgstr "Журнал — VUCC"
 #: application/controllers/Awards.php:458
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:306
+#: application/controllers/Statistics.php:321
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -2221,6 +2221,15 @@ msgstr "Изменить настройки CAT"
 msgid "Export EDI"
 msgstr "Экспорт EDI"
 
+#: application/controllers/Satellite.php:55
+#: application/views/interface_assets/header.php:306
+#: application/views/notes/add.php:38 application/views/notes/edit.php:39
+#: application/views/satellite/index.php:40
+#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:111
+msgid "Satellites"
+msgstr "Спутники"
+
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
 msgstr "Добавить спутник"
@@ -2228,6 +2237,15 @@ msgstr "Добавить спутник"
 #: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
 msgstr "Редактировать спутник"
+
+#: application/controllers/Satellite.php:213
+#: application/views/interface_assets/header.php:287
+msgid "Satellite Flightpath"
+msgstr "Траектория полета спутника"
+
+#: application/controllers/Satellite.php:256
+msgid "Satellite pass"
+msgstr "Прохождение спутника"
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
@@ -2544,23 +2562,23 @@ msgstr "Редактировать настройка экспорта карт�
 msgid "Statistics"
 msgstr "Статистика"
 
-#: application/controllers/Statistics.php:238
+#: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:146
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Статистика QSL"
 
-#: application/controllers/Statistics.php:253
+#: application/controllers/Statistics.php:268
 #: application/views/interface_assets/header.php:144
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "Аналитика антенн"
 
-#: application/controllers/Statistics.php:306
+#: application/controllers/Statistics.php:321
 msgid "Satellite QSOs"
 msgstr "QSO через спутник"
 
-#: application/controllers/Statistics.php:322
+#: application/controllers/Statistics.php:337
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
 msgstr "Первые EME контакты"
@@ -6325,19 +6343,19 @@ msgstr "Не сработано"
 
 #: application/views/bandmap/list.php:82
 msgid "Worked, not Confirmed"
-msgstr ""
+msgstr "Сработано, не подтверждено"
 
 #: application/views/bandmap/list.php:113
 msgid "Phone"
-msgstr ""
+msgstr "Phone"
 
 #: application/views/bandmap/list.php:114
 msgid "CW"
-msgstr ""
+msgstr "CW"
 
 #: application/views/bandmap/list.php:115
 msgid "Digi"
-msgstr ""
+msgstr "Digi"
 
 #: application/views/bandmap/list.php:131
 msgid "WAC"
@@ -6360,41 +6378,43 @@ msgstr "Последнее сработанное"
 
 #: application/views/bands/bandedges.php:2
 msgid "Please enter valid numbers for frequency"
-msgstr ""
+msgstr "Пожалуйста, введите допустимое значение для частоты"
 
 #: application/views/bands/bandedges.php:3
 msgid "The 'From' frequency must be less than the 'To' frequency."
-msgstr ""
+msgstr "Значение частоты 'От' должно быть меньше значения частоты 'До'."
 
 #: application/views/bands/bandedges.php:4
 msgid "The Frequency overlaps with an existing entry."
-msgstr ""
+msgstr "Частота пересекается с существующей записью."
 
 #: application/views/bands/bandedges.php:5
 msgid "Are you sure you want to delete this band edge?"
-msgstr ""
+msgstr "Вы уверены, что хотите удалить эту границу диапазона?"
 
 #: application/views/bands/bandedges.php:17
 msgid "Bandedges"
-msgstr ""
+msgstr "Границы диапазонов"
 
 #: application/views/bands/bandedges.php:22
 msgid ""
 "Using the bandedges list you can control the mode classification in the "
 "cluster."
 msgstr ""
+"Используя список границ диапазона, вы можете контролировать классификацию "
+"режимов в кластере."
 
 #: application/views/bands/bandedges.php:29
 msgid "Frequency from (Hz)"
-msgstr ""
+msgstr "Частота \"От\" (Гц)"
 
 #: application/views/bands/bandedges.php:30
 msgid "Frequency to (Hz)"
-msgstr ""
+msgstr "Частота \"До\" (Гц)"
 
 #: application/views/bands/bandedges.php:65
 msgid "Add a bandedge"
-msgstr ""
+msgstr "Добавить границу диапазона"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
@@ -8513,18 +8533,22 @@ msgid "Serbian"
 msgstr "Сербский"
 
 #: application/views/debug/index.php:691
+msgid "Slovak"
+msgstr ""
+
+#: application/views/debug/index.php:692
 msgid "Slovenian"
 msgstr "Словенский"
 
-#: application/views/debug/index.php:692
+#: application/views/debug/index.php:693
 msgid "Spanish"
 msgstr "Испанский"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:694
 msgid "Swedish"
 msgstr "Шведский"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:695
 msgid "Turkish"
 msgstr "Турецкий"
 
@@ -9451,10 +9475,6 @@ msgstr "Активность на диапазонах"
 msgid "SAT Timers"
 msgstr "Спутниковые таймеры"
 
-#: application/views/interface_assets/header.php:287
-msgid "Satellite Flightpath"
-msgstr "Траектория полета спутника"
-
 #: application/views/interface_assets/header.php:289
 msgid "Satellite Pass"
 msgstr "Прохождение спутника"
@@ -9467,14 +9487,6 @@ msgstr "Администрирование"
 #: application/views/interface_assets/header.php:300
 msgid "Global Options"
 msgstr "Общие настройки"
-
-#: application/views/interface_assets/header.php:306
-#: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
-msgid "Satellites"
-msgstr "Спутники"
 
 #: application/views/interface_assets/header.php:312
 msgid "Update Country Files"
@@ -9512,7 +9524,7 @@ msgstr "Информация об аккаунте"
 
 #: application/views/interface_assets/header.php:418
 msgid "Band Edges"
-msgstr ""
+msgstr "Границы диапазона"
 
 #: application/views/interface_assets/header.php:424
 msgid "Switch to Clubstation:"
@@ -12832,10 +12844,8 @@ msgstr "Профиль QTH:"
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
-"normally has (a maximum of 5000 QSOs are shown)::"
+"normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
-"Было обнаружено, что в следующих QSO указана неправильная зона CQ, которая "
-"обычно соответствует этому DXCC (показано максимум 5000 QSO):"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
@@ -15426,6 +15436,13 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#~ msgid ""
+#~ "The following QSOs were found to have an incorrect CQ zone that this DXCC "
+#~ "normally has (a maximum of 5000 QSOs are shown)::"
+#~ msgstr ""
+#~ "Было обнаружено, что в следующих QSO указана неправильная зона CQ, "
+#~ "которая обычно соответствует этому DXCC (показано максимум 5000 QSO):"
 
 #~ msgid "Not Confirmed"
 #~ msgstr "Не подтверждено"

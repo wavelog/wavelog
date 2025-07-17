@@ -52,7 +52,7 @@ class Satellite extends CI_Controller {
 		];
 
 		// Render Page
-		$pageData['page_title'] = "Satellites";
+		$pageData['page_title'] = __("Satellites");
 		$this->load->view('interface_assets/header', $pageData);
 		$this->load->view('satellite/index');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -210,7 +210,7 @@ class Satellite extends CI_Controller {
 		$pageData['latlng'] = $this->qra->qra2latlong($homegrid[0]);
 		$pageData['homegrid'] = $homegrid[0];
 		// Render Page
-		$pageData['page_title'] = "Satellite Flightpath";
+		$pageData['page_title'] = __("Satellite Flightpath");
 		$this->load->view('interface_assets/header', $pageData);
 		$this->load->view('satellite/flightpath', $data);
 		$this->load->view('interface_assets/footer', $footerData);
@@ -253,7 +253,7 @@ class Satellite extends CI_Controller {
 		];
 
 		// Render Page
-		$pageData['page_title'] = "Satellite pass";
+		$pageData['page_title'] = __("Satellite pass");
 		$this->load->view('interface_assets/header', $pageData);
 		$this->load->view('satellite/pass');
 		$this->load->view('interface_assets/footer', $footerData);

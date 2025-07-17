@@ -72,16 +72,31 @@ class Statistics extends CI_Controller {
 		$modestats = array();
 
 		$i = 0;
-		$modestats[$i]['mode'] = 'ssb';
-		$modestats[$i++]['total'] = $this->logbook_model->total_ssb($yr);
-		$modestats[$i]['mode'] = 'cw';
-		$modestats[$i++]['total'] = $this->logbook_model->total_cw($yr);
-		$modestats[$i]['mode'] = 'fm';
-		$modestats[$i++]['total'] = $this->logbook_model->total_fm($yr);
-		$modestats[$i]['mode'] = 'am';
-		$modestats[$i++]['total'] = $this->logbook_model->total_am($yr);
-		$modestats[$i]['mode'] = 'digi';
-		$modestats[$i]['total'] = $this->logbook_model->total_digi($yr);
+		$ssb = $this->logbook_model->total_ssb($yr);
+		$cw = $this->logbook_model->total_cw($yr);
+		$fm = $this->logbook_model->total_fm($yr);
+		$am = $this->logbook_model->total_am($yr);
+		$digi = $this->logbook_model->total_digi($yr);
+		if ($ssb > 0) {
+			$modestats[$i]['mode'] = 'ssb';
+			$modestats[$i++]['total'] = $ssb;
+		}
+		if ($cw > 0) {
+			$modestats[$i]['mode'] = 'cw';
+			$modestats[$i++]['total'] = $cw;
+		}
+		if ($fm > 0) {
+			$modestats[$i]['mode'] = 'fm';
+			$modestats[$i++]['total'] = $fm;
+		}
+		if ($am > 0) {
+			$modestats[$i]['mode'] = 'am';
+			$modestats[$i++]['total'] = $am;
+		}
+		if ($digi > 0) {
+			$modestats[$i]['mode'] = 'digi';
+			$modestats[$i]['total'] = $digi;
+		}
 		usort($modestats, fn($a, $b) => $b['total'] <=> $a['total']);
 
 		header('Content-Type: application/json');

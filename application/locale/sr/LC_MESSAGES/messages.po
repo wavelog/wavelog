@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-13 10:52+0000\n"
+"POT-Creation-Date: 2025-07-17 15:22+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -373,7 +373,7 @@ msgstr "Pregled loga - VUCC"
 #: application/controllers/Awards.php:458
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:306
+#: application/controllers/Statistics.php:321
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -2212,6 +2212,15 @@ msgstr "Uredi CAT podešavanja"
 msgid "Export EDI"
 msgstr "Izvoz EDI"
 
+#: application/controllers/Satellite.php:55
+#: application/views/interface_assets/header.php:306
+#: application/views/notes/add.php:38 application/views/notes/edit.php:39
+#: application/views/satellite/index.php:40
+#: application/views/statistics/index.php:50
+#: application/views/statistics/index.php:111
+msgid "Satellites"
+msgstr "Sateliti"
+
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
 msgstr "Kreiraj satelit"
@@ -2219,6 +2228,15 @@ msgstr "Kreiraj satelit"
 #: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
 msgstr "Uredi satelit"
+
+#: application/controllers/Satellite.php:213
+#: application/views/interface_assets/header.php:287
+msgid "Satellite Flightpath"
+msgstr "Putanja leta satelita"
+
+#: application/controllers/Satellite.php:256
+msgid "Satellite pass"
+msgstr ""
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
@@ -2537,23 +2555,23 @@ msgstr "Uredite opcije za izvoz mape"
 msgid "Statistics"
 msgstr "Statistika"
 
-#: application/controllers/Statistics.php:238
+#: application/controllers/Statistics.php:253
 #: application/views/interface_assets/header.php:146
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Statistika QSL karata"
 
-#: application/controllers/Statistics.php:253
+#: application/controllers/Statistics.php:268
 #: application/views/interface_assets/header.php:144
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "Analitika Antena"
 
-#: application/controllers/Statistics.php:306
+#: application/controllers/Statistics.php:321
 msgid "Satellite QSOs"
 msgstr ""
 
-#: application/controllers/Statistics.php:322
+#: application/controllers/Statistics.php:337
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
 msgstr ""
@@ -8372,18 +8390,22 @@ msgid "Serbian"
 msgstr "Srpski"
 
 #: application/views/debug/index.php:691
-msgid "Slovenian"
+msgid "Slovak"
 msgstr ""
 
 #: application/views/debug/index.php:692
+msgid "Slovenian"
+msgstr ""
+
+#: application/views/debug/index.php:693
 msgid "Spanish"
 msgstr "Španski"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:694
 msgid "Swedish"
 msgstr "Švedski"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:695
 msgid "Turkish"
 msgstr "Turski"
 
@@ -9292,10 +9314,6 @@ msgstr "Mapa opsega"
 msgid "SAT Timers"
 msgstr "SAT vremena"
 
-#: application/views/interface_assets/header.php:287
-msgid "Satellite Flightpath"
-msgstr "Putanja leta satelita"
-
 #: application/views/interface_assets/header.php:289
 msgid "Satellite Pass"
 msgstr "Preleti satelita"
@@ -9308,14 +9326,6 @@ msgstr "Admin"
 #: application/views/interface_assets/header.php:300
 msgid "Global Options"
 msgstr "Globalne opcije"
-
-#: application/views/interface_assets/header.php:306
-#: application/views/notes/add.php:38 application/views/notes/edit.php:39
-#: application/views/satellite/index.php:40
-#: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
-msgid "Satellites"
-msgstr "Sateliti"
 
 #: application/views/interface_assets/header.php:312
 msgid "Update Country Files"
@@ -12627,7 +12637,7 @@ msgstr "Stanična lokacija:"
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
-"normally has (a maximum of 5000 QSOs are shown)::"
+"normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
 
 #: application/views/search/cqzones_result.php:14
