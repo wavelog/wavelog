@@ -320,7 +320,7 @@ class Lotw extends CI_Controller {
 					}
 				}
 
-				$pos = strpos($result, "<!-- .UPL.  accepted -->");
+				$pos = strpos($result, "<!-- .UPL. accepted -->");
 
 				if ($pos === false) {
 					// Upload of TQ8 Failed for unknown reason
