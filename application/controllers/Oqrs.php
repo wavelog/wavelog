@@ -53,7 +53,6 @@ class Oqrs extends CI_Controller {
 		$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()->option_value ?? '';
 		$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()->option_value;
 
-
 		$this->load->view('visitor/layout/header', $data);
 		$this->load->view('oqrs/index');
 		$this->load->view('interface_assets/footer');
