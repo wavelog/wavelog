@@ -79,9 +79,9 @@ class Widgets extends CI_Controller {
 		}
 	}
 
-	public function oqrs($user_callsign = 'CALL MISSING') {
+	public function oqrs($slug) {
 		$this->load->model('oqrs_model');
-		$data['slug'] = $this->input->get('slug', TRUE);
+		$data['slug'] = $this->security->xss_clean($slug);
 		$this->load->model('publicsearch');
 		$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
 		$stations = $this->oqrs_model->get_oqrs_stations($data['userid']);
@@ -109,7 +109,7 @@ class Widgets extends CI_Controller {
 			$data['theme'] = $this->config->item('option_theme');
 		}
 
-		$data['user_callsign'] = strtoupper($this->security->xss_clean($user_callsign));
+		$data['user_callsign'] = strtoupper($this->security->xss_clean($slug));
 		$this->load->view('widgets/oqrs', $data);
 	}
 

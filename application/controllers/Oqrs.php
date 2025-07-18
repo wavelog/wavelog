@@ -104,11 +104,15 @@ class Oqrs extends CI_Controller {
 
 		$slug = $this->input->post('slug', TRUE);
 		$userid = $this->publicsearch->get_userid_for_slug($slug);
+		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
+		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
 		$data['groupedSearchShowStationName'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search_show_station_name','option_key'=>'boolean'), $userid)->row()->option_value;
 
 		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE), $userid);
 		$data['callsign'] = $this->input->post('callsign', TRUE);
 		$data['userid'] = $this->input->post('userid', TRUE);
+		$data['slug'] = $this->input->post('slug', TRUE);
 
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
