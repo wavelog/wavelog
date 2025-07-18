@@ -48,7 +48,7 @@ class Oqrs extends CI_Controller {
 		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
 		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
 		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
-		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
+		$data['stations'] = $this->oqrs_model->get_oqrs_stations($data['userid']);
 		$data['page_title'] = __("Log Search & OQRS");
 		$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()->option_value ?? '';
 		$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()->option_value;
@@ -102,7 +102,7 @@ class Oqrs extends CI_Controller {
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
 		} else {
-			$data['stations'] = $this->oqrs_model->get_oqrs_stations();
+			$data['stations'] = $this->oqrs_model->get_oqrs_stations($userid);
 			$data['page_title'] = __("Log Search & OQRS");
 			$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
 			$data['groupedSearch'] = 'on';
@@ -160,7 +160,7 @@ class Oqrs extends CI_Controller {
 
 		$this->load->model('oqrs_model');
 		$data['result'] = $this->oqrs_model->getOqrsRequests($location_list);
-		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
+		$data['stations'] = $this->oqrs_model->get_oqrs_stations((int)$this->session->userdata('user_id'));
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('oqrs/showrequests');

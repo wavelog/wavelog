@@ -2,8 +2,9 @@
 
 class Oqrs_model extends CI_Model {
 
-    function get_oqrs_stations() {
+    function get_oqrs_stations($userid) {
         $this->db->where('oqrs', "1");
+		$this->db->where('user_id', $userid);
 		return $this->db->get('station_profile');
 	}
 
