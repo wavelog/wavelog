@@ -886,9 +886,9 @@ class User extends CI_Controller {
 						$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))));
 						$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))));
 
-						$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>xss_clean($this->input->post('global_oqrs_text', true))));
-						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>xss_clean($this->input->post('oqrs_grouped_search', true))));
-						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>xss_clean($this->input->post('oqrs_grouped_search_show_station_name', true))));
+						$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>$this->input->post('global_oqrs_text', true)));
+						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)));
+						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>$this->input->post('oqrs_grouped_search_show_station_name', true)));
 
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));
 						redirect('user/edit/'.$this->uri->segment(3));
