@@ -36,21 +36,34 @@ class Oqrs extends CI_Controller {
 	public function index($public_slug = NULL) {
 		$this->load->model('oqrs_model');
 		$this->load->model('publicsearch');
+		$this->load->model('stationsetup_model');
 
 		if ($public_slug === NULL) {
-			return;
+			show_404(__("Unknown Public Page."));
 		}
 
-		$slug = $this->security->xss_clean($public_slug);
-		$data['slug'] = $slug;
-		$data['userid'] = $this->publicsearch->get_userid_for_slug($slug);
-		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
-		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
-		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
-		$data['stations'] = $this->oqrs_model->get_oqrs_stations($data['userid']);
-		$data['page_title'] = __("Log Search & OQRS");
-		$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()->option_value ?? '';
-		$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()->option_value;
+		$data['slug'] = $this->security->xss_clean($public_slug);
+        // check if the public slug exists
+        $logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($data['slug']);
+        if ($logbook_id == false) {
+            $data['userid'] = null;
+			$data['oqrs_enabled'] = null;
+			$data['public_search_enabled'] = false;
+			$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+			$data['stations'] = null;
+			$data['page_title'] = __("Log Search & OQRS");
+			$data['global_oqrs_text'] = '';
+			$data['groupedSearch'] = false;
+        } else {
+			$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
+			$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($data['slug']);
+			$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($data['slug']);
+			$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+			$data['stations'] = $this->oqrs_model->get_oqrs_stations($data['userid'])->result();
+			$data['page_title'] = __("Log Search & OQRS");
+			$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()->option_value ?? '';
+			$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()->option_value;
+		}
 
 		$this->load->view('visitor/layout/header', $data);
 		$this->load->view('oqrs/index');

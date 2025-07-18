@@ -48,7 +48,7 @@
 				</div>
                 <?php
 			} else {
-		  if ($stations->result() != NULL) { ?>
+		  if ($stations) { ?>
 
                 <form class="d-flex align-items-center" enctype="multipart/form-data">
                     <label class="my-1 me-2" for="station"><?= __("Select station"); ?>: </label>
