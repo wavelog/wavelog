@@ -35,15 +35,6 @@ class Migration_move_oqrs_global_to_user extends CI_Migration {
 
     public function down()
     {
-		// $this->db->query("insert into options (option_name, option_value)
-		// 	select option_name, option_value from user_options where option_type = 'oqrs' and option_name = 'global_oqrs_text';");
 
-		// $this->db->query("insert into options (option_name, option_value)
-		// 	select 'groupedSearch', option_value from user_options where option_type = 'oqrs' and option_name = 'oqrs_grouped_search';");
-
-		// $this->db->query("insert into options (option_name, option_value)
-		// 	select 'groupedSearchShowStationName', option_value from user_options where option_type = 'oqrs' and option_name = 'oqrs_grouped_search_show_station_name';");
-
-		$this->db->query("delete from user_options where option_type = 'oqrs' and option_name in ('global_oqrs_text', 'oqrs_grouped_search', 'oqrs_grouped_search_show_station_name');");
     }
 }

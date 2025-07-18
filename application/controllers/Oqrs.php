@@ -113,7 +113,7 @@ class Oqrs extends CI_Controller {
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
 		} else {
-			$data['stations'] = $this->oqrs_model->get_oqrs_stations($userid);
+			$data['stations'] = $this->oqrs_model->get_oqrs_stations($userid)->result();
 			$data['page_title'] = __("Log Search & OQRS");
 			$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
 			$data['groupedSearch'] = 'on';
