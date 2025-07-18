@@ -1334,13 +1334,17 @@ class QSO
 	private function getFormattedFrequency(): string
 	{
 		$label = '';
-		if ($this->frequency !== 0 && $this->frequency !== '') {
+		if ($this->frequency) {
 			$label .= $this->CI->frequency->qrg_conversion($this->frequency ?? 0);
 		}
 
-		if ($this->frequencyRX !== '' && $this->frequencyRX !== 0 && $this->frequency !== '' && $this->frequency !== 0) {
-			$label .= "/" . $this->CI->frequency->qrg_conversion($this->frequencyRX ?? 0);
+		if ($this->frequencyRX && $this->frequency) {
+			$converted_rx = $this->CI->frequency->qrg_conversion($this->frequencyRX);
+			if ($converted_rx) {
+				$label .= "/" . $converted_rx;
+			}
 		}
+
 		return trim($label);
 	}
 
