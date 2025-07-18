@@ -291,6 +291,16 @@ $config['languages'] = array(
 		'code'      => 'sr',
 		'flag'      => 'rs',
 	),
+	'slovak' => array(
+		'name'      => 'Slovák',
+		'name_en'   => 'Slovak',
+		'folder'    => 'slovak',
+		'locale'    => 'sk',
+		'gettext'   => 'sk',
+		'direction' => 'ltr',
+		'code'      => 'sk',
+		'flag'      => 'sk',
+	),
     'slovenian' => array(
         'name'      => 'Slovenščina',
         'name_en'   => 'Slovenian',
