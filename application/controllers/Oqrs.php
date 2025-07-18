@@ -59,7 +59,7 @@ class Oqrs extends CI_Controller {
 			$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($data['slug']);
 			$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($data['slug']);
 			$data['disable_oqrs'] = $this->config->item('disable_oqrs');
-			$data['stations'] = $this->oqrs_model->get_oqrs_stations($data['userid'])->result();
+			$data['stations'] = $this->oqrs_model->get_oqrs_stations($data['userid']);
 			$data['page_title'] = __("Log Search & OQRS");
 			$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()->option_value ?? '';
 			$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()->option_value;
