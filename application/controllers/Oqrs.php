@@ -36,7 +36,6 @@ class Oqrs extends CI_Controller {
 	public function index($public_slug = NULL) {
 		$this->load->model('oqrs_model');
 		$this->load->model('publicsearch');
-		$this->load->model('user_options_model');
 
 		if ($public_slug === NULL) {
 			return;
