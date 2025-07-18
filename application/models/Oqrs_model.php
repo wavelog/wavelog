@@ -192,15 +192,19 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function delete_oqrs_line($id) {
-		$binding = [];
-        $sql = 'delete from oqrs where id = ?';
-		$binding[] = $id;
+		$binding = [$id, $this->session->userdata('user_id')];
 
-        $query = $this->db->query($sql, $binding);
+		$sql = '
+			DELETE oqrs
+			FROM oqrs
+			JOIN station_profile ON station_profile.station_id = oqrs.station_id
+			WHERE oqrs.id = ? AND station_profile.user_id = ?
+		';
 
-        return true;
+		$query = $this->db->query($sql, $binding);
+
+		return true;
 	}
-
 
 	// Status:
 	// 0 = open request
