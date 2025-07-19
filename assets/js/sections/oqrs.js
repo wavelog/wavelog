@@ -49,7 +49,7 @@ function searchOqrsGrouped() {
     $.ajax({
         url: base_url+'index.php/oqrs/get_qsos_grouped',
         type: 'post',
-        data: {'callsign': ($("#oqrssearch").val() || '').toUpperCase()},
+        data: {'callsign': ($("#oqrssearch").val() || '').toUpperCase(), 'slug': $("#slug").val()},
         success: function (data) {
             $(".searchinfo").append(data);
             $('.qsotime').change(function() {

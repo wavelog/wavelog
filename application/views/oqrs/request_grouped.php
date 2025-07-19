@@ -26,9 +26,8 @@
                     echo '<td><input class="form-control" type="date" name="date" value="" id="date"></td>';
                     echo '<td><input class="form-control qsotime" type="text" name="time" value="" id="time" maxlength="5" placeholder="hh:mm"></td>';
                     echo '<td id="band">'. $qso->col_band .'</td>';
-                    echo '<td id="mode">'; echo $qso->col_submode == null ? strtoupper($qso->col_mode) : strtoupper($qso->col_submode);  echo '</td>';      
+                    echo '<td id="mode">'; echo $qso->col_submode == null ? strtoupper($qso->col_mode) : strtoupper($qso->col_submode);  echo '</td>';
                     echo '<td>'. $qso->station_callsign .'</td>';
-                    $showStationName = $this->optionslib->get_option('groupedSearchShowStationName');
                     if ($showStationName == 'on'):
                         echo '<td>'. $qso->station_profile_name .'</td>';
                     endif;
