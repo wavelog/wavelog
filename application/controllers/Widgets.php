@@ -83,13 +83,14 @@ class Widgets extends CI_Controller {
 		$this->load->model('oqrs_model');
 		$data['slug'] = $this->security->xss_clean($slug);
 		$this->load->model('publicsearch');
-		$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
-		$stations = $this->oqrs_model->get_oqrs_stations($data['userid']);
+		$this->load->model('stationsetup_model');
 
-		if ($stations->result() === NULL) {
+		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($data['slug']);
+        if ($logbook_id == false) {
 			show_404(__("No stations found that are using Wavelog OQRS."));
 			return;
-		}
+        }
+		$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
 
 		if ($data['slug'] != null) {
 			$data['logo_url'] = base_url() . 'index.php/visitor/' . $data['slug'];
