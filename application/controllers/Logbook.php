@@ -54,8 +54,6 @@ class Logbook extends CI_Controller {
 				$data['qra'] = "none";
 		}
 
-
-
 		// load the view
 		$data['page_title'] = __("Logbook");
 
@@ -79,6 +77,10 @@ class Logbook extends CI_Controller {
 
 		// Normalize the date only if it's not empty
 		if (!empty($date)) {
+			if (strpos($date, '_') !== false) {
+				// Replace slashes with dashes for URL processing
+				$date = str_replace('_', '/', $date);
+			}
 			// Get user-preferred date format
 			if ($this->session->userdata('user_date_format')) {
 				$date_format = $this->session->userdata('user_date_format');

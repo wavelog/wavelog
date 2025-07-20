@@ -830,9 +830,13 @@ $("#callsign").on("focusout", function () {
 		}
 		const json_mode = $("#mode").val();
 
-		var find_callsign = $(this).val().toUpperCase();
-		var callsign = find_callsign;
-		const startDate = encodeURIComponent($('#start_date').val());
+		let find_callsign = $(this).val().toUpperCase();
+		let callsign = find_callsign;
+		let startDate = $('#start_date').val();
+		if (startDate.includes('/')) {
+			startDate = startDate.replaceAll('/', '_');
+		}
+		startDate = encodeURIComponent(startDate);
 		const stationProfile = $('#stationProfile').val();
 
 		find_callsign = find_callsign.replace(/\//g, "-");
