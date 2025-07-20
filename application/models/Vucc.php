@@ -133,6 +133,7 @@ class VUCC extends CI_Model
         if ($band != 'All') {
             if ($band == 'SAT') {
                 $sql .= " and col_prop_mode ='" . $band . "'";
+                $sql .= " and coalesce(COL_SAT_NAME, '') != ''";
             } else {
                 $sql .= " and col_prop_mode !='SAT'";
                 $sql .= " and col_band ='" . $band . "'";
@@ -176,6 +177,7 @@ class VUCC extends CI_Model
 	    if ($band != 'All') {
 		    if ($band == 'SAT') {
 			    $sql .= " and log.col_prop_mode ='" . $band . "'";
+			    $sql .= " and coalesce(COL_SAT_NAME, '') != ''";
 		    } else {
 			    $sql .= " and log.col_prop_mode !='SAT'";
 			    $sql .= " and log.col_band ='" . $band . "'";
@@ -278,6 +280,7 @@ class VUCC extends CI_Model
         if ($band != 'All') {
             if ($band == 'SAT') {
                 $sql .= " and col_prop_mode ='" . $band . "'";
+                $sql .= " and coalesce(COL_SAT_NAME, '') != ''";
             } else {
                 $sql .= " and col_prop_mode !='SAT'";
                 $sql .= " and col_band ='" . $band . "'";
