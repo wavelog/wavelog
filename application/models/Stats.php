@@ -71,6 +71,56 @@
 		return $this->db->get($this->config->item('table_name'));
 	}
 
+	function unique_sat_grids($yr = 'All') {
+		$qsoView = array();
+
+		$sats = $this->get_sats($yr);
+		$modes = $this->get_sat_modes($yr);
+
+		$satunique = $this->getUniqueSatGridsSat($yr);
+		$modeunique = $this->getUniqueSatGridModes($yr);
+
+		// Generating the band/mode table
+		foreach ($sats as $sat) {
+			$sattotal[$sat] = 0;
+			foreach ($modes as $mode) {
+				$qsoView [$sat][$mode] = '-';
+			}
+		}
+
+		foreach ($satunique as $sat) {
+			$satgrids[$sat->sat] = $sat->grids;
+		}
+
+		foreach ($modeunique as $mode) {
+			//if ($mode->col_submode == null) {
+			if ($mode->col_submode == null || $mode->col_submode == "") {
+				$modegrids[$mode->col_mode] = $mode->grids;
+			} else {
+				$modegrids[$mode->col_submode] = $mode->grids;
+			}
+		}
+
+		// Populating array with worked
+		$workedQso = $this->getUniqueSatGrids($yr);
+
+		foreach ($workedQso as $line) {
+			//if ($line->col_submode == null) {
+			if ($line->col_submode == null || $line->col_submode == "") {
+				$qsoView [$line->sat] [$line->col_mode] = $line->grids;
+			} else {
+				$qsoView [$line->sat] [$line->col_submode] = $line->grids;
+			}
+		}
+
+		$result['qsoView'] = $qsoView;
+		$result['satunique'] = $satgrids ?? '';
+		$result['modeunique'] = $modegrids ?? '';
+		$result['total'] = $this->getUniqueSatGridsTotal($yr);
+
+		return $result;
+	}
+
 	function unique_sat_callsigns($yr = 'All') {
 		$qsoView = array();
 
@@ -175,6 +225,72 @@
 		return $result;
 	}
 
+	function getUniqueSatGridsSat($yr = 'All') {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		// Select required columns without aggregation
+		$this->db->select('distinct col_gridsquare, col_vucc_grids, upper(col_sat_name) as sat', FALSE);
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
+		$this->db->where_in('station_id', $logbooks_locations_array);
+
+		$query = $this->db->get($this->config->item('table_name'));
+		$rows = $query->result();
+
+		// Prepare result array: sat => unique grids set
+		$satGrids = [];
+
+		foreach ($rows as $row) {
+			$sat = $row->sat;
+
+			if (!isset($satGrids[$sat])) {
+				$satGrids[$sat] = [];
+			}
+
+			// Process col_gridsquare
+			if (!empty($row->col_gridsquare)) {
+				$grid = strtoupper(substr(trim($row->col_gridsquare), 0, 4));
+				if ($grid !== '') {
+					$satGrids[$sat][$grid] = true;
+				}
+			}
+
+			// Process col_vucc_grids: comma-separated
+			if (!empty($row->col_vucc_grids)) {
+				$vuccParts = explode(',', $row->col_vucc_grids);
+				foreach ($vuccParts as $part) {
+					$grid = strtoupper(substr(trim($part), 0, 4));
+					if ($grid !== '') {
+						$satGrids[$sat][$grid] = true;
+					}
+				}
+			}
+		}
+
+		// Now convert to result array like your original query result format
+		$result = [];
+		foreach ($satGrids as $sat => $grids) {
+			$result[] = (object)[
+				'sat'   => $sat,
+				'grids' => count($grids),
+			];
+		}
+
+		return $result;
+	}
+
 	function getUniqueSatCallsignsSat($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -201,6 +317,73 @@
 
 		return $query->result();
 	}
+
+
+	function getUniqueSatGrids($yr = 'All') {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$this->db->distinct();
+		$this->db->select([
+			'col_gridsquare',
+			'col_vucc_grids',
+			'upper(col_sat_name) AS sat',
+			'col_mode',
+			'coalesce(col_submode, "") AS col_submode'
+		], FALSE);
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
+		$this->db->where_in('station_id', $logbooks_locations_array);
+
+		$query = $this->db->get($this->config->item('table_name'));
+		$rows = $query->result();
+
+		$comboGrids = [];
+
+		foreach($rows as $row) {
+			$key = $row->sat.'|'.$row->col_mode.'|'.$row->col_submode;
+			if(!isset($comboGrids[$key])) {
+				$comboGrids[$key] = [];
+			}
+
+			if(!empty($row->col_gridsquare)) {
+				$grid = strtoupper(substr(trim($row->col_gridsquare), 0, 4));
+				if($grid) $comboGrids[$key][$grid] = true;
+			}
+
+			if(!empty($row->col_vucc_grids)) {
+				$grids = explode(',', $row->col_vucc_grids);
+				foreach($grids as $vuccgrid) {
+					$grid = strtoupper(substr(trim($vuccgrid), 0, 4));
+					if($grid) $comboGrids[$key][$grid] = true;
+				}
+			}
+		}
+
+		$result = [];
+		foreach($comboGrids as $key => $gridSet) {
+			list($sat, $mode, $submode) = explode('|', $key, 3);
+			$result[] = (object) [
+				'sat'        => $sat,
+				'grids'      => count($gridSet),
+				'col_mode'   => $mode,
+				'col_submode'=> $submode,
+			];
+		}
+
+		return $result;
+	}
+
 
 	function getUniqueSatCallsigns($yr = 'All') {
 		$this->load->model('logbooks_model');
@@ -279,6 +462,33 @@
 		return $query->result();
 	}
 
+	function getUniqueSatGridModes($yr = 'All') {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$bands = array();
+
+		$this->db->select('count(distinct substr(col_gridsquare,1,4)) as grids, col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where('col_prop_mode', 'SAT');
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->group_by('col_mode, coalesce(col_submode, "")');
+
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->result();
+	}
+
 	function getUniqueSatCallsignsModes($yr = 'All') {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -330,6 +540,51 @@
 
 		return $query->result();
 	}
+
+	function getUniqueSatGridsTotal($yr = 'All') {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$this->db->select('distinct col_gridsquare, col_vucc_grids', FALSE);
+		if ($yr != 'All') {
+			$syr = date($yr.'-01-01 00:00:00');
+			$eyr = date($yr.'-12-31 23:59:59');
+			$this->db->where('COL_TIME_ON >=', $syr);
+			$this->db->where('COL_TIME_ON <=', $eyr);
+		}
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+
+		$query = $this->db->get($this->config->item('table_name'));
+		$rows = $query->result();
+
+		$uniqueGrids = [];
+
+		foreach ($rows as $row) {
+			if (!empty($row->col_gridsquare)) {
+				$grid = strtoupper(substr(trim($row->col_gridsquare), 0, 4));
+				if ($grid !== '') {
+					$uniqueGrids[$grid] = true;
+				}
+			}
+			if (!empty($row->col_vucc_grids)) {
+				$grids = explode(',', $row->col_vucc_grids);
+				foreach ($grids as $g) {
+					$grid = strtoupper(substr(trim($g), 0, 4));
+					if ($grid !== '') {
+						$uniqueGrids[$grid] = true;
+					}
+				}
+			}
+		}
+		return (object) ['grids' => count($uniqueGrids)];
+	}
+
 
 	function getUniqueSatCallsignsTotal($yr = 'All') {
 		$this->load->model('logbooks_model');

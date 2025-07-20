@@ -191,6 +191,23 @@ class Statistics extends CI_Controller {
 		$this->load->view('statistics/satuniquetable', $total_qsos);
 	}
 
+	public function get_unique_sat_grids() {
+		$this->load->model('stats');
+
+		$total_qsos = array();
+
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		$result = $this->stats->unique_sat_grids($yr);
+		$total_qsos['qsoarray'] = $result['qsoView'];
+		$total_qsos['satunique'] = $result['satunique'];
+		$total_qsos['modeunique'] = $result['modeunique'];
+		$total_qsos['total'] = $result['total'];
+		$total_qsos['sats'] = $this->stats->get_sats($yr);
+		$total_qsos['modes'] = $this->stats->get_sat_modes($yr);
+
+		$this->load->view('statistics/satuniquegridtable', $total_qsos);
+	}
+
 	public function get_unique_callsigns() {
 		$this->load->model('stats');
 
