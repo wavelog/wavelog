@@ -63,6 +63,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -102,6 +103,7 @@ class Accumulate_model extends CI_Model
 
 		if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -141,6 +143,7 @@ class Accumulate_model extends CI_Model
 	    if ($band != 'All') {
 		    if ($band == 'SAT') {
 			    $sql .= " and col_prop_mode = ?";
+			    $sql .= " and coalesce(col_sat_name,'' != ''";
 			    $binding[] = $band;
 		    } else {
 			    $sql .= " and col_prop_mode !='SAT'";
@@ -205,6 +208,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -245,6 +249,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -285,6 +290,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -349,6 +355,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -390,6 +397,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -431,6 +439,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -494,6 +503,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -532,6 +542,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -570,6 +581,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -633,6 +645,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -671,6 +684,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -709,6 +723,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -778,6 +793,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -829,6 +845,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -892,6 +909,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -930,6 +948,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
@@ -968,6 +987,7 @@ class Accumulate_model extends CI_Model
 
 	    if ($band == 'SAT') {				// Left for compatibility reasons
 		    $sql .= " and col_prop_mode = ?";
+		    $sql .= " and coalesce(col_sat_name,'' != ''";
 		    $binding[] = $band;
 	    } else {					// Not SAT
 		    if ($band != 'All') {			// Band set? Take care of it
