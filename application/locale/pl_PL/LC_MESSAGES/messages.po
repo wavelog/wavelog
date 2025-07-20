@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-17 15:22+0000\n"
+"POT-Creation-Date: 2025-07-20 16:49+0000\n"
 "PO-Revision-Date: 2025-01-30 21:18+0000\n"
 "Last-Translator: Maciej SP2FE <wavelog@sp2fe.eu>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -375,7 +375,7 @@ msgstr "Podgląd Logu - VUCC"
 #: application/controllers/Awards.php:458
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:321
+#: application/controllers/Statistics.php:338
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -2560,23 +2560,23 @@ msgstr "Edytuj opcje eksportu mapy"
 msgid "Statistics"
 msgstr "Podstawowe statystyki"
 
-#: application/controllers/Statistics.php:253
+#: application/controllers/Statistics.php:270
 #: application/views/interface_assets/header.php:146
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Statystyki QSL"
 
-#: application/controllers/Statistics.php:268
+#: application/controllers/Statistics.php:285
 #: application/views/interface_assets/header.php:144
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "Analiza anteny"
 
-#: application/controllers/Statistics.php:321
+#: application/controllers/Statistics.php:338
 msgid "Satellite QSOs"
 msgstr ""
 
-#: application/controllers/Statistics.php:337
+#: application/controllers/Statistics.php:354
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
 msgstr ""
@@ -4892,6 +4892,8 @@ msgstr "Potwierdzone hrabstwa"
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
 #: application/views/statistics/satqsotable.php:28
+#: application/views/statistics/satuniquegridtable.php:10
+#: application/views/statistics/satuniquegridtable.php:22
 #: application/views/statistics/satuniquetable.php:10
 #: application/views/statistics/satuniquetable.php:22
 #: application/views/statistics/uniquetable.php:10
@@ -13353,6 +13355,10 @@ msgstr ""
 #: application/views/statistics/index.php:117
 msgid "Unique callsigns"
 msgstr "Unikalne znaki wywoławcze"
+
+#: application/views/statistics/index.php:120
+msgid "Unique Grids"
+msgstr ""
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
