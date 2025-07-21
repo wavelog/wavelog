@@ -288,13 +288,47 @@ $("#reset_start_time").on("click", function () {
 	});
 
 	// Update the start date
-	$("#start_date").val(
-		("0" + now.getUTCDate()).slice(-2) +
-		"-" +
-		("0" + (now.getUTCMonth() + 1)).slice(-2) +
-		"-" +
-		now.getUTCFullYear()
-	);
+	var day = ("0" + now.getUTCDate()).slice(-2);
+	var month = ("0" + (now.getUTCMonth() + 1)).slice(-2);
+	var year = now.getUTCFullYear();
+	var short_year = year.toString().slice(-2);
+	var formatted_date;
+	switch (user_date_format) {
+		case "d/m/y":
+			formatted_date = day + "/" + month + "/" + short_year;
+			break;
+		case "d/m/Y":
+			formatted_date = day + "/" + month + "/" + year;
+			break;
+		case "m/d/y":
+			formatted_date = month + "/" + day + "/" + short_year;
+			break;
+		case "m/d/Y":
+			formatted_date = month + "/" + day + "/" + year;
+			break;
+		case "d.m.Y":
+			formatted_date = day + "." + month + "." + year;
+			break;
+		case "y/m/d":
+			formatted_date = short_year + "/" + month + "/" + day;
+			break;
+		case "Y-m-d":
+			formatted_date = year + "-" + month + "-" + day;
+			break;
+		case "M d, Y":
+			// Need to get the month name abbreviation
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + year;
+			break;
+		case "M d, y":
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + short_year;
+			break;
+		default:
+			// Default to d-m-Y format as shown in the PHP code
+			formatted_date = day + "-" + month + "-" + year;
+	}
+	$("#start_date").val(formatted_date);
 });
 
 // Event listener for resetting end time
