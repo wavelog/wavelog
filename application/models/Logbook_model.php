@@ -24,6 +24,13 @@ class Logbook_model extends CI_Model {
 			$date_format = $this->config->item('qso_date_format');
 		}
 
+		$get_manual_mode = $this->input->get('manual', TRUE);
+		if ($get_manual_mode == '1') {
+			$time_format = 'H:i';
+		} else {
+			$time_format = 'H:i:s';
+		}
+
 		// Get input values
 		$start_date = $this->input->post('start_date'); // e.g., "14/07/2025"
 		$start_time = $this->input->post('start_time'); // e.g., "08:11:36"
@@ -32,7 +39,7 @@ class Logbook_model extends CI_Model {
 		$callsign = trim(str_replace('Ø', '0', $this->input->post('callsign')));
 
 		// Parse datetime using createFromFormat
-		$datetime_obj = DateTime::createFromFormat("$date_format H:i:s", "$start_date $start_time");
+		$datetime_obj = DateTime::createFromFormat("$date_format $time_format", "$start_date $start_time");
 
 		if ($datetime_obj === false) {
 			// Handle parse error gracefully (optional: log error)
