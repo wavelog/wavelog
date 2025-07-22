@@ -77,6 +77,7 @@ function echo_qsl_method($method) {
 		</div>
 	</form>
 </div>
+
 <table style="width:100%" class="table-sm oqrstable table table-striped table-bordered table-hover table-condensed text-center" id="qsoList">
 	<thead>
 		<tr>
@@ -97,26 +98,6 @@ function echo_qsl_method($method) {
 		</tr>
 	</thead>
 	<tbody>
-		<?php
-		/*foreach ($result as $qso) {
-			echo '<tr class="oqrsid_'.$qso->id.'" oqrsid="'.$qso->id.'">';
-			echo '<td><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
-			echo '<td>'. $qso->requesttime .'</td>';
-			echo '<td>'. $qso->date .'</td>';
-			echo '<td>'. $qso->time .'</td>';
-			echo '<td>'. $qso->band .'</td>';
-			echo '<td>'. $qso->mode .'</td>';
-			echo '<td>'. $qso->requestcallsign .'</td>';
-			echo '<td>'. $qso->station_callsign .'</td>';
-			echo '<td>'. $qso->email .'</td>';
-			echo '<td>'. $qso->note .'</td>';
-			echo '<td>'; echo_qsl_method($qso->qslroute); echo '</td>';
-			echo '<td><button class="btn btn-primary btn-sm" type="button" onclick="searchLog(\''. $qso->requestcallsign .'\');"><i class="fas fa-search"></i> Call</button>
-				<button class="btn btn-primary btn-sm" type="button" onclick="searchLogTimeDate(\''. $qso->id .'\');"><i class="fas fa-search"></i> Date/Time</button>
-				</td>';
-			echo '<td>'; echo_status($qso->status); echo '</td>';
-			echo '</tr>';
-		}*/
-		?>
+
 	</tbody>
 </table>

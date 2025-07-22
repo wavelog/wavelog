@@ -387,7 +387,7 @@ function loadOqrsTable(rows) {
 
 	uninitialized.each(function() {
 	$(this).DataTable({
-			searching: false,
+			searching: true,
 			responsive: false,
 			ordering: true,
 			createdRow: function (row, data, dataIndex) {
@@ -425,9 +425,8 @@ function loadOqrsTable(rows) {
 			qso.note,
 			echo_qsl_method(qso.qslroute),
 			echo_searchlog_button(qso.requestcallsign, qso.id),
-            echo_status(qso.status),
+			echo_status(qso.status),
 		];
-
 		data.id='oqrsID_' + qso.id;
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('oqrsID', qso.id);

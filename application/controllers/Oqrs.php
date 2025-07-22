@@ -283,6 +283,15 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function search() {
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
 		$this->load->model('oqrs_model');
 
 		$searchCriteria = array(
@@ -294,6 +303,11 @@ class Oqrs extends CI_Controller {
 		);
 
 		$qsos = $this->oqrs_model->searchOqrs($searchCriteria);
+		foreach ($qsos as &$qso) {
+			$qso['requesttime'] = date($custom_date_format . " H:i", strtotime($qso['requesttime']));
+			$qso['date'] = date($custom_date_format, strtotime($qso['date']));
+			$qso['time'] = date('H:i', strtotime($qso['time']));
+		}
 
 		header("Content-Type: application/json");
 		print json_encode($qsos);
