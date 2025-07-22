@@ -3881,7 +3881,7 @@ class Logbook_model extends CI_Model {
 			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, trim($operatorName), $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg);
 			if ($one_error['error'] ?? '' != '') {
 				// surpress dupe errors if wished
-				if($one_error['errortype'] == "Dupe" and !$dupesaserrors){
+				if(($one_error['errortype'] ?? '') == "Dupe" and !$dupesaserrors){
 					$custom_errors .= '';
 				}else{
 					$custom_errors .= $one_error['error'] . "<br/>";
