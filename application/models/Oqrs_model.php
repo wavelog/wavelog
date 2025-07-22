@@ -210,6 +210,8 @@ class Oqrs_model extends CI_Model {
 	// 0 = open request
 	// 1 = not in log request
 	// 2 = request done, means we found a match in the log
+	// 3 = pending
+	// 4 = request rejected
 	function save_not_in_log($postdata) {
 		$qsos = $postdata['qsos'];
 		foreach($qsos as $qso) {

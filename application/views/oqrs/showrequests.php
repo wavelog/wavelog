@@ -5,6 +5,8 @@ function echo_status($status) {
 		case '0': echo __("Open request"); break;
 		case '1': echo __("Not in log request"); break;
 		case '2': echo __("Request done"); break;
+		case '3': echo __("Pending requests"); break;
+		case '4': echo __("Request rejected"); break;
 	}
 }
 function echo_qsl_method($method) {
@@ -50,6 +52,8 @@ function echo_qsl_method($method) {
 					<option value="0"><?= __("Open request"); ?></option>
 					<option value="1"><?= __("Not in log request"); ?></option>
 					<option value="2"><?= __("Request done"); ?></option>
+					<option value="3"><?= __("Pending requests"); ?></option>
+					<option value="4"><?= __("Request rejected"); ?></option>
 				</select>
 			</div>
 			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
