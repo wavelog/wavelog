@@ -208,6 +208,12 @@ class API extends CI_Controller {
 		$userid = $this->api_model->key_userid($obj['key']);
 		$created_by = $this->api_model->key_created_by($obj['key']);
 
+		//check if dupes should count as errors
+		$dupesaserrors = true;
+		if(isset($obj['dupesaserrors'])) {
+		   $dupesaserrors = (bool)$obj['dupesaserrors'];
+		}
+
 		/**
 		 * As the API key user could use it also for clubstations we need to do an additional check here. Only if clubstations are enabled
 		 *
@@ -277,7 +283,7 @@ class API extends CI_Controller {
 				};
 				$record='';	// free memory
 				gc_collect_cycles();
-				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, false, false, true, false, true, false);
+				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, false, false, true, false, true, false, $dupesaserrors);
 				if ($custom_errors) {
 					$adif_errors++;
 				}

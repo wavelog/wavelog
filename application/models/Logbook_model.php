@@ -3861,7 +3861,7 @@ class Logbook_model extends CI_Model {
 		return '1900-01-01 00:00:00.000';
 	}
 
-	function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
+	function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $dupesaserrors = true) {
 		$this->load->model('user_model');
 		$custom_errors = '';
 		$a_qsos = [];
@@ -3880,7 +3880,12 @@ class Logbook_model extends CI_Model {
 		foreach ($records as $record) {
 			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $markDcl, $skipexport, trim($operatorName), $apicall, $skipStationCheck, true, $station_id_ok, $station_profile, $station_qslmsg);
 			if ($one_error['error'] ?? '' != '') {
-				$custom_errors .= $one_error['error'] . "<br/>";
+				// surpress dupe errors if wished
+				if($one_error['errortype'] == "Dupe" and !$dupesaserrors){
+					$custom_errors .= '';
+				}else{
+					$custom_errors .= $one_error['error'] . "<br/>";
+				}
 			} else {	// No Errors / QSO doesn't exist so far
 				array_push($a_qsos, $one_error['raw_qso'] ?? '');
 				if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT' && $amsat_status_upload) {
@@ -3937,6 +3942,10 @@ class Logbook_model extends CI_Model {
 			}
 		}
 
+		//error handling variables
+		$my_error = "";
+		$my_error_type = "";
+
 		if ($station_profile == null) {
 			$station_profile = $this->stations->profile_clean($station_id);
 		}
@@ -3949,10 +3958,9 @@ class Logbook_model extends CI_Model {
 			$returner['error'] =sprintf(__("Wrong station callsign %s while importing QSO with %s for %s: SKIPPED") .
 				"<br>".__("Check %s for hints about errors in ADIF files."),
 				'<b>'.htmlentities($record['station_callsign'] ?? '').'</b>',($record['call'] ?? ''),'<b>'.($station_profile_call ?? '').'</b>',"<a target=\"_blank\" href=\"https://github.com/wavelog/Wavelog/wiki/ADIF-file-can't-be-imported\">Wavelog Wiki</a>");
+			$returner['errortype'] = "Wrong_Callsign";
 			return ($returner);
 		}
-
-		$my_error = "";
 
 		// Join date+time
 		$time_on = date('Y-m-d', strtotime($record['qso_date'] ?? '1970-01-01')) . " " . date('H:i:s', strtotime($record['time_on'] ?? '00:00:00'));
@@ -3960,6 +3968,7 @@ class Logbook_model extends CI_Model {
 		if (($record['call'] ?? '') == '') {
 			log_message("Error", "Trying to import QSO without Call for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Band: " . ($record['band'] ?? ''));
 			$returner['error']=__("QSO on")." ".$time_on.": ".__("You tried to import a QSO without any given CALL. This QSO wasn't imported. It's invalid");
+			$returner['errortype'] = "No_Callsign";
 			return($returner);
 		}
 
@@ -4664,10 +4673,12 @@ class Logbook_model extends CI_Model {
 
 		} else {
 			$my_error .= "Date/Time: " . ($time_on ?? 'N/A') . " Callsign: " . ($record['call'] ?? 'N/A') . " Band: " . ($band ?? 'N/A') . " ".__("Duplicate for")." ". ($station_profile_call ?? 'N/A') . "<br>";
+			$my_error_type = "Dupe";
 		}
 
 		if ($batchmode) {
 			$returner['error'] = $my_error ?? '';
+			$returner['errortype'] = $my_error_type ?? '';
 		} else {
 			$returner = $my_error;
 		}
