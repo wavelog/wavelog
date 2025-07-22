@@ -352,7 +352,7 @@ function copyApiKey(apiKey) {
 
 function copyApiUrl() {
    var apiUrlField = $('#apiUrl');
-   navigator.clipboard.writeText("<?php echo base_url(); ?>").then(function() {
+   navigator.clipboard.writeText("<?php echo site_url(); ?>").then(function() {
    });
    apiUrlField.addClass('flash-copy')
       .delay('1000').queue(function() {
