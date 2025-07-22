@@ -4268,6 +4268,7 @@ class Logbook_model extends CI_Model {
 				} else {
 					$input_qslrdate = NULL;
 					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the qslrdate is invalid (YYYYMMDD)").": " . $record['qslrdate'] . "<br>";
+					$my_error_type = "Content_Error";
 				}
 			} else {
 				$input_qslrdate = NULL;
@@ -4279,6 +4280,7 @@ class Logbook_model extends CI_Model {
 				} else {
 					$input_qslsdate = NULL;
 					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the qslsdate is invalid (YYYYMMDD)").": " . $record['qslsdate'] . "<br>";
+					$my_error_type = "Content_Error";
 				}
 			} else {
 				$input_qslsdate = NULL;
@@ -4340,6 +4342,7 @@ class Logbook_model extends CI_Model {
 				} else {
 					$input_clublog_qslsdate = NULL;
 					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the clublog_qso_upload_date is invalid (YYYYMMDD)").": " . $record['clublog_qso_upload_date'] . "<br>";
+					$my_error_type = "Content_Error";
 				}
 			} else {
 				$input_clublog_qslsdate = NULL;
@@ -4360,6 +4363,7 @@ class Logbook_model extends CI_Model {
 				} else {
 					$input_lotw_qslrdate = NULL;
 					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the lotw_qslrdate is invalid (YYYYMMDD)").": " . $record['lotw_qslrdate'] . "<br>";
+					$my_error_type = "Content_Error";
 				}
 			} else {
 				$input_lotw_qslrdate = NULL;
@@ -4381,6 +4385,7 @@ class Logbook_model extends CI_Model {
 				} else {
 					$input_lotw_qslsdate = NULL;
 					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the lotw_qslsdate is invalid (YYYYMMDD)").": " . $record['lotw_qslsdate'] . "<br>";
+					$my_error_type = "Content_Error";
 				}
 			} else {
 				$input_lotw_qslsdate = NULL;
