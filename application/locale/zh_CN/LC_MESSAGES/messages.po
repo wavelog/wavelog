@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-16 12:44+0000\n"
-"PO-Revision-Date: 2025-07-16 12:32+0000\n"
+"POT-Creation-Date: 2025-07-20 16:49+0000\n"
+"PO-Revision-Date: 2025-07-17 13:35+0000\n"
 "Last-Translator: Lu Chang <chinaluchang@live.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -384,7 +384,7 @@ msgstr "日志视图 - VUCC"
 #: application/controllers/Awards.php:458
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:306
+#: application/controllers/Statistics.php:338
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -2540,23 +2540,23 @@ msgstr "编辑导出地图选项"
 msgid "Statistics"
 msgstr "统计"
 
-#: application/controllers/Statistics.php:238
+#: application/controllers/Statistics.php:270
 #: application/views/interface_assets/header.php:146
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "QSL 统计信息"
 
-#: application/controllers/Statistics.php:253
+#: application/controllers/Statistics.php:285
 #: application/views/interface_assets/header.php:144
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "天线分析"
 
-#: application/controllers/Statistics.php:306
+#: application/controllers/Statistics.php:338
 msgid "Satellite QSOs"
 msgstr "卫星通联"
 
-#: application/controllers/Statistics.php:322
+#: application/controllers/Statistics.php:354
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
 msgstr "EME 首通记录"
@@ -4856,6 +4856,8 @@ msgstr "已确认的县"
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
 #: application/views/statistics/satqsotable.php:28
+#: application/views/statistics/satuniquegridtable.php:10
+#: application/views/statistics/satuniquegridtable.php:22
 #: application/views/statistics/satuniquetable.php:10
 #: application/views/statistics/satuniquetable.php:22
 #: application/views/statistics/uniquetable.php:10
@@ -8266,7 +8268,7 @@ msgstr "塞尔维亚语"
 
 #: application/views/debug/index.php:691
 msgid "Slovak"
-msgstr ""
+msgstr "斯洛伐克语"
 
 #: application/views/debug/index.php:692
 msgid "Slovenian"
@@ -13434,6 +13436,10 @@ msgstr "所有"
 #: application/views/statistics/index.php:117
 msgid "Unique callsigns"
 msgstr "呼号"
+
+#: application/views/statistics/index.php:120
+msgid "Unique Grids"
+msgstr ""
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
