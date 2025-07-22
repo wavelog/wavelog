@@ -337,7 +337,17 @@ function searchLog(callsign) {
                 nl2br: false,
                 message: html,
                 onshown: function(dialog) {
-                    $('[data-bs-toggle="tooltip"]').tooltip();
+					$('.qsolist').DataTable({
+							searching: true,
+							responsive: false,
+							ordering: true,
+							"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+							"scrollCollapse": true,
+							"paging":         false,
+							"scrollX": true,
+							"order": [ 0, 'asc' ],
+							'white-space': 'nowrap',
+					});
                 },
                 buttons: [{
                     label: lang_admin_close,
@@ -368,6 +378,17 @@ function searchLogTimeDate(id) {
                 message: html,
                 onshown: function(dialog) {
                     $('[data-bs-toggle="tooltip"]').tooltip();
+					$('.qsolist').DataTable({
+							searching: true,
+							responsive: false,
+							ordering: true,
+							"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+							"scrollCollapse": true,
+							"paging":         false,
+							"scrollX": true,
+							"order": [ 0, 'asc' ],
+							'white-space': 'nowrap',
+					});
                 },
                 buttons: [{
                     label: lang_admin_close,
@@ -397,9 +418,6 @@ function loadOqrsTable(rows) {
 			"scrollCollapse": true,
 			"paging":         false,
 			"scrollX": true,
-			// "language": {
-            //     url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
-            // },
 			"order": [ 0, 'asc' ],
             'white-space': 'nowrap',
 		});
