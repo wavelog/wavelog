@@ -26,11 +26,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-22 19:45+0000\n"
+"POT-Creation-Date: 2025-07-23 08:28+0000\n"
 "PO-Revision-Date: 2025-07-22 19:46+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +90,7 @@ msgstr ""
 #: application/controllers/Lotw.php:755 application/controllers/Lotw.php:839
 #: application/controllers/Lotw.php:944 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:14
-#: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:136
+#: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
 #: application/controllers/Qrz.php:285 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:49
@@ -133,11 +133,11 @@ msgstr ""
 #: application/controllers/Update.php:351 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
-#: application/controllers/User.php:354 application/controllers/User.php:355
-#: application/controllers/User.php:913 application/controllers/User.php:932
-#: application/controllers/User.php:1157 application/controllers/User.php:1298
-#: application/controllers/User.php:1498 application/controllers/User.php:1514
-#: application/controllers/User.php:1540
+#: application/controllers/User.php:362 application/controllers/User.php:363
+#: application/controllers/User.php:956 application/controllers/User.php:975
+#: application/controllers/User.php:1200 application/controllers/User.php:1341
+#: application/controllers/User.php:1541 application/controllers/User.php:1557
+#: application/controllers/User.php:1583
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
@@ -625,7 +625,7 @@ msgstr "Bearbeite Band"
 #: application/controllers/Bandmap.php:69
 #: application/controllers/Options.php:152
 #: application/controllers/Options.php:163
-#: application/views/options/sidebar.php:10
+#: application/views/options/sidebar.php:7
 msgid "DXCluster"
 msgstr "DX-Cluster"
 
@@ -760,7 +760,7 @@ msgstr "Kein Benutzer hat Clublog konfiguriert."
 #: application/views/station_profile/edit.php:357
 #: application/views/timeline/index.php:68
 #: application/views/update/index.php:20 application/views/user/edit.php:595
-#: application/views/user/edit.php:751
+#: application/views/user/edit.php:789
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
@@ -1231,7 +1231,7 @@ msgstr "Logbuch"
 #: application/views/qslprint/qsolist.php:17
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:49
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
-#: application/views/user/edit.php:717
+#: application/views/user/edit.php:755
 msgid "QSL"
 msgstr "QSL"
 
@@ -1266,7 +1266,7 @@ msgstr "QSL"
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
-#: application/views/user/edit.php:727 application/views/view_log/qso.php:531
+#: application/views/user/edit.php:765 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
 msgid "LoTW"
 msgstr "LoTW"
@@ -1300,7 +1300,7 @@ msgstr "LoTW"
 #: application/views/search/search_result_ajax.php:273
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
-#: application/views/user/edit.php:735 application/views/user/edit.php:801
+#: application/views/user/edit.php:773 application/views/user/edit.php:839
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1760,7 +1760,7 @@ msgstr "Schnellsuche"
 #: application/views/interface_assets/header.php:488
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
-#: application/views/user/edit.php:773 application/views/visitor/index.php:328
+#: application/views/user/edit.php:811 application/views/visitor/index.php:328
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -1883,12 +1883,10 @@ msgstr "Editiere Notiz"
 #: application/controllers/Options.php:210
 #: application/controllers/Options.php:243
 #: application/controllers/Options.php:254
-#: application/controllers/Options.php:324
-#: application/controllers/Options.php:334
-#: application/controllers/Options.php:401
-#: application/controllers/Options.php:420
-#: application/controllers/Options.php:496
-#: application/controllers/Options.php:506
+#: application/controllers/Options.php:369
+#: application/controllers/Options.php:388
+#: application/controllers/Options.php:464
+#: application/controllers/Options.php:474
 msgid "Wavelog Options"
 msgstr "Wavelog-Optionen"
 
@@ -1909,7 +1907,7 @@ msgstr "Optionen gespeichert"
 
 #: application/controllers/Options.php:118
 #: application/controllers/Options.php:129
-#: application/views/options/sidebar.php:12
+#: application/views/options/sidebar.php:9
 msgid "Hams Of Note"
 msgstr "Hams Of Note"
 
@@ -1952,32 +1950,22 @@ msgstr "Die Einstellungen wurden erfolgreich gespeichert."
 msgid "Something went wrong with saving the settings. Try again."
 msgstr "Beim Speichern ist was schief gelaufen. Probiere es erneut."
 
-#: application/controllers/Options.php:325
-#: application/controllers/Options.php:335
-#: application/views/options/sidebar.php:8
-msgid "OQRS Options"
-msgstr "OQRS-Optionen"
-
-#: application/controllers/Options.php:348
-msgid "OQRS options have been saved."
-msgstr "OQRS-Einstellungen wurden gespeichert."
-
-#: application/controllers/Options.php:388
-#: application/controllers/Options.php:393
+#: application/controllers/Options.php:356
+#: application/controllers/Options.php:361
 msgid "Testmail failed. Something went wrong."
 msgstr "Die Testmail wurde nicht versandt. Da ist was schief gelaufen."
 
-#: application/controllers/Options.php:390
+#: application/controllers/Options.php:358
 msgid "Testmail sent. Email settings seem to be correct."
 msgstr "Testmail gesendet. E-Mail Einstellungen scheinen korrekt zu sein."
 
-#: application/controllers/Options.php:402
-#: application/controllers/Options.php:421
-#: application/views/options/sidebar.php:11
+#: application/controllers/Options.php:370
+#: application/controllers/Options.php:389
+#: application/views/options/sidebar.php:8
 msgid "Maptiles Server"
 msgstr "Maptiles-Server"
 
-#: application/controllers/Options.php:480
+#: application/controllers/Options.php:448
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
@@ -1985,49 +1973,62 @@ msgstr ""
 "Maptile-Cache konnte nicht entfernt werden. Lösche den Ordner manuell. Pfad: "
 "%s"
 
-#: application/controllers/Options.php:484
+#: application/controllers/Options.php:452
 msgid "Maptile Options saved!"
 msgstr "Maptile-Optionen gespeichert!"
 
-#: application/controllers/Options.php:486
+#: application/controllers/Options.php:454
 msgid "Maptile Options could not be saved!"
 msgstr "Maptile-Optionen konnten nicht gespeichert werden!"
 
-#: application/controllers/Options.php:497
-#: application/controllers/Options.php:507
+#: application/controllers/Options.php:465
+#: application/controllers/Options.php:475
 msgid "Version Info Settings"
 msgstr "Versionsinfo-Einstellungen"
 
-#: application/controllers/Options.php:513
+#: application/controllers/Options.php:481
 msgid "Version Info Header changed to"
 msgstr "Überschrift der Versionsinfo geändert zu"
 
-#: application/controllers/Options.php:517
+#: application/controllers/Options.php:485
 msgid "Version Info Mode changed to"
 msgstr "Versionsinfo-Modus geändert zu"
 
-#: application/controllers/Options.php:522
+#: application/controllers/Options.php:490
 msgid "Version Info Custom Text saved!"
 msgstr "Benutzerdefinierter Text der Versionsinfo gespeichert!"
 
-#: application/controllers/Options.php:533
+#: application/controllers/Options.php:501
 msgid "Version Info will be shown to all users again"
 msgstr "Versionsinfo wird wieder allen Benutzern angezeigt"
 
-#: application/controllers/Options.php:541
+#: application/controllers/Options.php:509
 msgid "Version Info will not be shown to any user"
 msgstr "Versionsinfo wird keinem Benutzer angezeigt"
 
-#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:92
-#: application/controllers/Oqrs.php:104
+#: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
+#: application/controllers/Staticmap.php:25
+#: application/controllers/Staticmap.php:156
+#: application/controllers/Visitor.php:50
+#: application/controllers/Visitor.php:81
+#: application/controllers/Visitor.php:148
+#: application/controllers/Visitor.php:175
+#: application/controllers/Visitor.php:210
+#: application/controllers/Visitor.php:476
+#: application/controllers/Widgets.php:68
+msgid "Unknown Public Page."
+msgstr "Unbekannte Öffentliche Seite."
+
+#: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
+#: application/controllers/Oqrs.php:121 application/controllers/Oqrs.php:133
 msgid "Log Search & OQRS"
 msgstr "Logsuche & OQRS"
 
-#: application/controllers/Oqrs.php:67
+#: application/controllers/Oqrs.php:85
 msgid "Invalid Station ID"
 msgstr "Ungültige Stations-ID"
 
-#: application/controllers/Oqrs.php:134
+#: application/controllers/Oqrs.php:163
 #: application/views/interface_assets/header.php:478
 msgid "OQRS Requests"
 msgstr "OQRS-Anforderungen"
@@ -2311,7 +2312,7 @@ msgstr "Satelliten-Timer"
 #: application/views/interface_assets/header.php:366
 #: application/views/interface_assets/header.php:373
 #: application/views/logbookadvanced/index.php:641
-#: application/views/oqrs/index.php:28
+#: application/views/oqrs/index.php:29
 #: application/views/oqrs/showrequests.php:67
 #: application/views/qslcard/searchform.php:8
 #: application/views/search/cqzones.php:4
@@ -2352,19 +2353,6 @@ msgstr ""
 "Unbestätigte QSOs auf LoTW, bei denen das Rufzeichen nach dem QSO-Datum "
 "Daten zu LoTW hochgeladen hat"
 
-#: application/controllers/Staticmap.php:20
-#: application/controllers/Staticmap.php:25
-#: application/controllers/Staticmap.php:156
-#: application/controllers/Visitor.php:50
-#: application/controllers/Visitor.php:81
-#: application/controllers/Visitor.php:148
-#: application/controllers/Visitor.php:175
-#: application/controllers/Visitor.php:210
-#: application/controllers/Visitor.php:476
-#: application/controllers/Widgets.php:68
-msgid "Unknown Public Page."
-msgstr "Unbekannte Öffentliche Seite."
-
 #: application/controllers/Staticmap.php:152
 #: application/controllers/Visitor.php:76
 #: application/controllers/Visitor.php:171
@@ -2403,7 +2391,7 @@ msgid "Duplicate Station Location:"
 msgstr "Doppelter Stationsstandort:"
 
 #: application/controllers/Station.php:221
-#: application/controllers/User.php:1180 application/controllers/User.php:1411
+#: application/controllers/User.php:1223 application/controllers/User.php:1454
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Bitte den Wert für den Locator (%s) überprüfen"
@@ -2753,44 +2741,44 @@ msgstr "Ungültige Parameter!"
 msgid "Add User"
 msgstr "Füge Benutzer hinzu"
 
-#: application/controllers/User.php:298
+#: application/controllers/User.php:303
 #, php-format
 msgid "Username %s already in use!"
 msgstr "Benutzername %s bereits vergeben!"
 
-#: application/controllers/User.php:301
+#: application/controllers/User.php:306
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "E-Mail %s wird bereits verwendet!"
 
-#: application/controllers/User.php:304
+#: application/controllers/User.php:309
 msgid "Invalid Password!"
 msgstr "Ungültiges Passwort!"
 
-#: application/controllers/User.php:308
+#: application/controllers/User.php:313
 #, php-format
 msgid "User %s added!"
 msgstr "Benutzer %s hinzugefügt!"
 
-#: application/controllers/User.php:312
+#: application/controllers/User.php:317
 msgid "Users"
 msgstr "Benutzer"
 
-#: application/controllers/User.php:398
+#: application/controllers/User.php:406
 #: application/views/club/permissions.php:253
 msgid "Edit User"
 msgstr "Bearbeite Benutzer"
 
-#: application/controllers/User.php:853 application/controllers/User.php:856
+#: application/controllers/User.php:893 application/controllers/User.php:896
 #, php-format
 msgid "User %s edited"
 msgstr "Benutzer %s bearbeitet"
 
-#: application/controllers/User.php:916
+#: application/controllers/User.php:959
 msgid "Profile"
 msgstr "Profil"
 
-#: application/controllers/User.php:981
+#: application/controllers/User.php:1024
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -2798,29 +2786,29 @@ msgstr ""
 "Herzlichen Glückwunsch! Wavelog wurde erfolgreich installiert. Du kannst "
 "dich nun anmelden."
 
-#: application/controllers/User.php:1020
+#: application/controllers/User.php:1063
 msgid "This is not allowed!"
 msgstr "Das ist nicht erlaubt!"
 
-#: application/controllers/User.php:1055 application/controllers/User.php:1066
+#: application/controllers/User.php:1098 application/controllers/User.php:1109
 msgid "Login failed. Try again."
 msgstr "Login fehlgeschlagen. Bitte erneut versuchen."
 
-#: application/controllers/User.php:1073
+#: application/controllers/User.php:1116
 #: application/views/interface_assets/header.php:386
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Anmeldung"
 
-#: application/controllers/User.php:1111
+#: application/controllers/User.php:1154
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "Du kannst dich nicht direkt bei einer Clubstation einloggen. Verwende "
 "stattdessen deinen persönlichen Account."
 
-#: application/controllers/User.php:1114
+#: application/controllers/User.php:1157
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -2828,7 +2816,7 @@ msgstr ""
 "Dein Konto ist gesperrt, da es zu viele fehlgeschlagene Anmeldeversuche gab. "
 "Bitte setze dein Passwort zurück."
 
-#: application/controllers/User.php:1118
+#: application/controllers/User.php:1161
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2839,22 +2827,22 @@ msgstr ""
 "kontaktiere bitte den Administrator. Nur Administratoren können sich derzeit "
 "einloggen."
 
-#: application/controllers/User.php:1121
+#: application/controllers/User.php:1164
 msgid "Incorrect username or password!"
 msgstr "Falscher Benutzername oder Passwort!"
 
-#: application/controllers/User.php:1144
+#: application/controllers/User.php:1187
 #, php-format
 msgid "User %s logged out."
 msgstr "Benutzer %s ausgeloggt."
 
-#: application/controllers/User.php:1160
+#: application/controllers/User.php:1203
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Stationsname"
 
-#: application/controllers/User.php:1161 application/views/debug/index.php:589
+#: application/controllers/User.php:1204 application/views/debug/index.php:589
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:61
 #: application/views/station_profile/edit.php:77
@@ -2864,27 +2852,27 @@ msgstr "Stationsname"
 msgid "Station Callsign"
 msgstr "Stationsrufzeichen"
 
-#: application/controllers/User.php:1162
+#: application/controllers/User.php:1205
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "Stations-DXCC"
 
-#: application/controllers/User.php:1163
+#: application/controllers/User.php:1206
 msgid "Station CQ Zone"
 msgstr "Station CQ-Zone"
 
-#: application/controllers/User.php:1164
+#: application/controllers/User.php:1207
 msgid "Station ITU Zone"
 msgstr "Station ITU-Zone"
 
-#: application/controllers/User.php:1165
+#: application/controllers/User.php:1208
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr "Station Locator"
 
-#: application/controllers/User.php:1188
+#: application/controllers/User.php:1231
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2893,35 +2881,35 @@ msgstr ""
 "Station erfolgreich erstellt! Willkommen bei Wavelog! Um die Einrichtung "
 "deiner Station abzuschliessen, klicke %shier%s."
 
-#: application/controllers/User.php:1191
+#: application/controllers/User.php:1234
 msgid "Station setup failed! Please set up your station manually."
 msgstr "Stationssetup fehlgeschlagen! Bitte richte deine Station manuell ein."
 
-#: application/controllers/User.php:1208
+#: application/controllers/User.php:1251
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Passwort Reset ist in der Demo nicht verfügbar!"
 
-#: application/controllers/User.php:1221
+#: application/controllers/User.php:1264
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: application/controllers/User.php:1272
+#: application/controllers/User.php:1315
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "E-Mail Einstellungen sind nicht korrekt."
 
-#: application/controllers/User.php:1276 application/controllers/User.php:1281
+#: application/controllers/User.php:1319 application/controllers/User.php:1324
 msgid "Password Reset Processed."
 msgstr "Passwort Zurücksetzen angefordert."
 
-#: application/controllers/User.php:1382
+#: application/controllers/User.php:1425
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
-#: application/controllers/User.php:1433
+#: application/controllers/User.php:1476
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -2930,7 +2918,7 @@ msgstr ""
 "Du kannst derzeit keinen anderen Benutzer imitieren. Du musst %s auf %s in "
 "deiner config.php setzen!"
 
-#: application/controllers/User.php:1447
+#: application/controllers/User.php:1490
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -2939,15 +2927,15 @@ msgstr ""
 "Du kannst derzeit keinen anderen Benutzer imitieren. Bitte ändere zuerst den "
 "encryption_key in deiner config.php Datei!"
 
-#: application/controllers/User.php:1454
+#: application/controllers/User.php:1497
 msgid "Invalid Hash"
 msgstr "Ungültiger Hash"
 
-#: application/controllers/User.php:1467
+#: application/controllers/User.php:1510
 msgid "The impersonation hash is too old. Please try again."
 msgstr "Der Übernahme-Hash ist zu alt. Bitte versuche es erneut."
 
-#: application/controllers/User.php:1474
+#: application/controllers/User.php:1517
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -2955,15 +2943,15 @@ msgstr ""
 "Du kannst keinen Benutzer imitieren, solange du nicht als Ausgangs-Benutzer "
 "eingeloggt bist"
 
-#: application/controllers/User.php:1480
+#: application/controllers/User.php:1523
 msgid "There was a problem with your session. Please try again."
 msgstr "Es gab ein Problem mit deiner Sitzung. Bitte versuche es erneut."
 
-#: application/controllers/User.php:1487
+#: application/controllers/User.php:1530
 msgid "The requested user to impersonate does not exist"
 msgstr "Der angeforderte Benutzer zum Imitieren existiert nicht"
 
-#: application/controllers/User.php:1508
+#: application/controllers/User.php:1551
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -2971,13 +2959,13 @@ msgstr ""
 "Konnte die korrekte Berechtigungsstufe für die Clubstation nicht bestimmen. "
 "Logge dich aus und wieder ein. Versuche es danach noch einmal."
 
-#: application/controllers/User.php:1553 application/controllers/User.php:1565
-#: application/controllers/User.php:1571 application/controllers/User.php:1580
-#: application/controllers/User.php:1588
+#: application/controllers/User.php:1596 application/controllers/User.php:1608
+#: application/controllers/User.php:1614 application/controllers/User.php:1623
+#: application/controllers/User.php:1631
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Ups.. Etwas ist schiefgelaufen. Versuch, dich nochmal einzuloggen."
 
-#: application/controllers/User.php:1594
+#: application/controllers/User.php:1637
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -2985,7 +2973,7 @@ msgstr ""
 "Die Möglichkeit, schnell zurückzukehren, wurde deaktiviert, nachdem der "
 "Sicherheitsschlüssel abgelaufen ist. Bitte melde dich erneut an."
 
-#: application/controllers/User.php:1610
+#: application/controllers/User.php:1653
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -3019,20 +3007,20 @@ msgstr ""
 "Unbekannte öffentliche Seite, bitte stelle sicher, dass der öffentliche Slug "
 "korrekt ist."
 
-#: application/controllers/Widgets.php:87 application/views/oqrs/index.php:69
+#: application/controllers/Widgets.php:92 application/views/oqrs/index.php:70
 msgid "No stations found that are using Wavelog OQRS."
 msgstr "Keine Stationen gefunden, welche Wavelog OQRS benutzen."
 
-#: application/controllers/Widgets.php:139
-#: application/controllers/Widgets.php:148
+#: application/controllers/Widgets.php:140
+#: application/controllers/Widgets.php:149
 msgid "User slug not specified"
 msgstr "Kurz-URL nicht angegeben"
 
-#: application/controllers/Widgets.php:159
+#: application/controllers/Widgets.php:160
 msgid "User has on-air widget disabled"
 msgstr "On-Air Widget wurde vom Nutzer deaktiviert"
 
-#: application/controllers/Widgets.php:218
+#: application/controllers/Widgets.php:219
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
@@ -3040,11 +3028,11 @@ msgstr ""
 "Keine Geräte mit CAT-Verbindung gefunden. Du musst mindestens ein Gerät "
 "konfigurieren."
 
-#: application/controllers/Widgets.php:329
+#: application/controllers/Widgets.php:330
 msgid "User not found by slug"
 msgstr "Nutzer nicht über Kurz-URL gefunden"
 
-#: application/controllers/Widgets.php:332
+#: application/controllers/Widgets.php:333
 msgid "Multiple users found by slug"
 msgstr "Mehrere Nutzer über Kurz-URL gefunden"
 
@@ -3509,7 +3497,7 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:17
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
-#: application/views/user/edit.php:701
+#: application/views/user/edit.php:739
 #: application/views/visitor/layout/footer.php:172
 msgid "All"
 msgstr "Alle"
@@ -3929,7 +3917,7 @@ msgstr "Bestätigung"
 #: application/views/awards/waja/index.php:67
 #: application/views/awards/wap/index.php:67
 #: application/views/awards/was/index.php:67
-#: application/views/gridmap/index.php:125 application/views/user/edit.php:743
+#: application/views/gridmap/index.php:125 application/views/user/edit.php:781
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4663,7 +4651,6 @@ msgstr "Einfacher Name, um zu beschreiben, wofür du diese API verwendest."
 #: application/views/options/dxcluster.php:67
 #: application/views/options/email.php:112 application/views/options/hon.php:44
 #: application/views/options/maptiles.php:80
-#: application/views/options/oqrs.php:63
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
@@ -6399,7 +6386,7 @@ msgstr "Spotter"
 #: application/views/bandmap/list.php:133
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
-#: application/views/oqrs/request_grouped.php:58
+#: application/views/oqrs/request_grouped.php:57
 msgid "Message"
 msgstr "Nachricht"
 
@@ -6603,7 +6590,7 @@ msgid "CBR errors"
 msgstr "CBR-Fehler"
 
 #: application/views/cabrillo/index.php:2
-#: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
+#: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:60
 #: application/views/reg1test/index.php:2
 #: application/views/reg1test/index.php:36
 msgid "Proceed"
@@ -6822,10 +6809,10 @@ msgstr ""
 #: application/views/user/edit.php:409 application/views/user/edit.php:419
 #: application/views/user/edit.php:448 application/views/user/edit.php:459
 #: application/views/user/edit.php:569 application/views/user/edit.php:622
-#: application/views/user/edit.php:873 application/views/user/edit.php:889
-#: application/views/user/edit.php:897 application/views/user/edit.php:917
-#: application/views/user/edit.php:946 application/views/user/edit.php:978
-#: application/views/user/edit.php:1003
+#: application/views/user/edit.php:911 application/views/user/edit.php:927
+#: application/views/user/edit.php:935 application/views/user/edit.php:955
+#: application/views/user/edit.php:984 application/views/user/edit.php:1016
+#: application/views/user/edit.php:1041
 msgid "Yes"
 msgstr "Ja"
 
@@ -6880,9 +6867,9 @@ msgstr "Ja"
 #: application/views/user/edit.php:449 application/views/user/edit.php:460
 #: application/views/user/edit.php:551 application/views/user/edit.php:555
 #: application/views/user/edit.php:570 application/views/user/edit.php:624
-#: application/views/user/edit.php:872 application/views/user/edit.php:888
-#: application/views/user/edit.php:916 application/views/user/edit.php:947
-#: application/views/user/edit.php:977 application/views/user/edit.php:1002
+#: application/views/user/edit.php:910 application/views/user/edit.php:926
+#: application/views/user/edit.php:954 application/views/user/edit.php:985
+#: application/views/user/edit.php:1015 application/views/user/edit.php:1040
 msgid "No"
 msgstr "Nein"
 
@@ -7631,7 +7618,7 @@ msgstr "Identifikator"
 #: application/views/station_profile/edit.php:346
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:481 application/views/user/edit.php:490
-#: application/views/user/edit.php:633 application/views/user/edit.php:869
+#: application/views/user/edit.php:633 application/views/user/edit.php:907
 msgid "Enabled"
 msgstr "Eingeschaltet"
 
@@ -9182,7 +9169,7 @@ msgstr "Satelliten-Information"
 
 #: application/views/interface_assets/footer.php:139
 #: application/views/interface_assets/header.php:503
-#: application/views/options/sidebar.php:13
+#: application/views/options/sidebar.php:10
 msgid "Version Info"
 msgstr "Versionsinfo"
 
@@ -10295,7 +10282,7 @@ msgstr "QSL-Send. Methode"
 #: application/views/logbookadvanced/index.php:446
 #: application/views/oqrs/qsolist.php:69 application/views/oqrs/qsolist.php:111
 #: application/views/oqrs/request.php:45
-#: application/views/oqrs/request_grouped.php:49
+#: application/views/oqrs/request_grouped.php:48
 #: application/views/oqrs/showrequests.php:12
 #: application/views/qslprint/qslprint.php:5
 #: application/views/qslprint/qsolist.php:79
@@ -11302,48 +11289,6 @@ msgstr "Text für das Copyright-Tag."
 msgid "Reset to Defaults"
 msgstr "Auf Standardeinstellungen zurücksetzen"
 
-#: application/views/options/oqrs.php:39
-msgid "Global text"
-msgstr "Globaler Text"
-
-#: application/views/options/oqrs.php:41
-msgid ""
-"This text is an optional text that can be displayed on top of the OQRS page."
-msgstr ""
-"Dies ist ein optionaler Text, der auf oben auf der OQRS Seite angezeigt "
-"werden kann."
-
-#: application/views/options/oqrs.php:45
-msgid "Grouped search"
-msgstr "Gruppierte Suche"
-
-#: application/views/options/oqrs.php:47 application/views/options/oqrs.php:56
-msgid "Off"
-msgstr "Aus"
-
-#: application/views/options/oqrs.php:48 application/views/options/oqrs.php:57
-msgid "On"
-msgstr "An"
-
-#: application/views/options/oqrs.php:50
-msgid ""
-"When this is on, all station locations with OQRS active, will be searched at "
-"once."
-msgstr "Wenn aktiviert, werden alle Stationsstandorte auf einmal durchsucht."
-
-#: application/views/options/oqrs.php:54
-msgid "Show station location name in grouped search results"
-msgstr "Zeige den Name des Stationsstandorts in der gruppierten Suche"
-
-#: application/views/options/oqrs.php:59
-msgid ""
-"If grouped search is ON, you can decide if the name of the station location "
-"shall be shown in the results table."
-msgstr ""
-"Wenn die gruppierte Suche eingeschaltet ist, kannst du hier entscheiden, ob "
-"der Name des Stationsstandortes in der Ergebnistabelle gezeigt werden soll "
-"oder nicht."
-
 #: application/views/options/radios.php:38
 msgid "Radio Timeout Warning"
 msgstr "Funkgeräte-Timeout-Warnung"
@@ -11450,7 +11395,7 @@ msgstr ""
 "Diese Suche wird alle Stationsstandorte durchsuchen, in denen OQRS aktiviert "
 "ist."
 
-#: application/views/oqrs/index.php:53
+#: application/views/oqrs/index.php:54
 msgid "Select station"
 msgstr "Station auswählen"
 
@@ -11474,13 +11419,13 @@ msgstr "Zeile hinzufügen"
 
 #: application/views/oqrs/notinlogform.php:30
 #: application/views/oqrs/request.php:56
-#: application/views/oqrs/request_grouped.php:60
+#: application/views/oqrs/request_grouped.php:59
 msgid "Any extra information we need to know about?"
 msgstr "Gibt es weitere Informationen, über die wir Bescheid wissen sollten?"
 
 #: application/views/oqrs/notinlogform.php:34
 #: application/views/oqrs/request.php:60
-#: application/views/oqrs/request_grouped.php:64
+#: application/views/oqrs/request_grouped.php:63
 #: application/views/oqrs/showrequests.php:87
 #: application/views/qso/edit_ajax.php:275 application/views/qso/index.php:574
 #: application/views/user/index.php:29 application/views/user/index.php:154
@@ -11490,7 +11435,7 @@ msgstr "E-Mail"
 
 #: application/views/oqrs/notinlogform.php:36
 #: application/views/oqrs/request.php:62
-#: application/views/oqrs/request_grouped.php:66
+#: application/views/oqrs/request_grouped.php:65
 msgid "Your e-mail address where we can contact you"
 msgstr "Deine E-Mail-Adresse, wo wir dich kontaktieren können"
 
@@ -11558,21 +11503,21 @@ msgstr ""
 "die Anfrage ab."
 
 #: application/views/oqrs/request.php:40
-#: application/views/oqrs/request_grouped.php:44
+#: application/views/oqrs/request_grouped.php:43
 msgid "QSL Route"
 msgstr "QSL-Route"
 
 #: application/views/oqrs/request.php:50
-#: application/views/oqrs/request_grouped.php:54
+#: application/views/oqrs/request_grouped.php:53
 msgid "Direct (write address in message below)"
 msgstr "Direkt (Schreibe deine Adresse ins Nachrichten-Feld unten)"
 
 #: application/views/oqrs/request.php:66
-#: application/views/oqrs/request_grouped.php:70
+#: application/views/oqrs/request_grouped.php:69
 msgid "Submit request"
 msgstr "Anfrage senden"
 
-#: application/views/oqrs/request_grouped.php:73
+#: application/views/oqrs/request_grouped.php:72
 #: application/views/oqrs/result.php:40
 msgid "No QSOs found in the log."
 msgstr "Keine QSOs im Log gefunden."
@@ -14622,59 +14567,105 @@ msgstr ""
 "Die aktivierten Elemente werden auf dem QSO-Reiter statt des allgemeinen "
 "Reiters angezeigt."
 
-#: application/views/user/edit.php:687
+#: application/views/user/edit.php:686
+msgid "Online QSL request (OQRS) settings"
+msgstr ""
+
+#: application/views/user/edit.php:690
+msgid "Global text"
+msgstr "Globaler Text"
+
+#: application/views/user/edit.php:692
+msgid ""
+"This text is an optional text that can be displayed on top of the OQRS page."
+msgstr ""
+"Dies ist ein optionaler Text, der auf oben auf der OQRS Seite angezeigt "
+"werden kann."
+
+#: application/views/user/edit.php:695
+msgid "Grouped search"
+msgstr "Gruppierte Suche"
+
+#: application/views/user/edit.php:697 application/views/user/edit.php:706
+msgid "Off"
+msgstr "Aus"
+
+#: application/views/user/edit.php:698 application/views/user/edit.php:707
+msgid "On"
+msgstr "An"
+
+#: application/views/user/edit.php:700
+msgid ""
+"When this is on, all station locations with OQRS active, will be searched at "
+"once."
+msgstr "Wenn aktiviert, werden alle Stationsstandorte auf einmal durchsucht."
+
+#: application/views/user/edit.php:704
+msgid "Show station location name in grouped search results"
+msgstr "Zeige den Name des Stationsstandorts in der gruppierten Suche"
+
+#: application/views/user/edit.php:709
+msgid ""
+"If grouped search is ON, you can decide if the name of the station location "
+"shall be shown in the results table."
+msgstr ""
+"Wenn die gruppierte Suche eingeschaltet ist, kannst du hier entscheiden, ob "
+"der Name des Stationsstandortes in der Ergebnistabelle gezeigt werden soll "
+"oder nicht."
+
+#: application/views/user/edit.php:725
 msgid "Default Values"
 msgstr "Standardwerte/Favoriten"
 
-#: application/views/user/edit.php:695
+#: application/views/user/edit.php:733
 msgid "Settings for Default Band and Confirmation"
 msgstr "Einstellung für Standardband und -bestätigungsmethode"
 
-#: application/views/user/edit.php:698
+#: application/views/user/edit.php:736
 msgid "Default Band"
 msgstr "Standardband"
 
-#: application/views/user/edit.php:708
+#: application/views/user/edit.php:746
 msgid "Default QSL-Methods"
 msgstr "Standard QSL-Methoden"
 
-#: application/views/user/edit.php:765
+#: application/views/user/edit.php:803
 msgid "Third Party Services"
 msgstr "Externe Dienste"
 
-#: application/views/user/edit.php:776
+#: application/views/user/edit.php:814
 msgid "Logbook of The World (LoTW) Username"
 msgstr "Logbook of The World (LoTW) Benutzername"
 
-#: application/views/user/edit.php:782
+#: application/views/user/edit.php:820
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Logbook of The World (LoTW) Passwort"
 
-#: application/views/user/edit.php:786
+#: application/views/user/edit.php:824
 msgid "Test Login"
 msgstr "Login Test"
 
-#: application/views/user/edit.php:804
+#: application/views/user/edit.php:842
 msgid "eQSL.cc Username"
 msgstr "eQSL.cc Benutzername"
 
-#: application/views/user/edit.php:810
+#: application/views/user/edit.php:848
 msgid "eQSL.cc Password"
 msgstr "eQSL.cc Passwort"
 
-#: application/views/user/edit.php:827
+#: application/views/user/edit.php:865
 msgid "Club Log"
 msgstr "Club Log"
 
-#: application/views/user/edit.php:830
+#: application/views/user/edit.php:868
 msgid "Club Log Email/Callsign"
 msgstr "Club Log Email/Rufzeichen"
 
-#: application/views/user/edit.php:836
+#: application/views/user/edit.php:874
 msgid "Club Log Password"
 msgstr "Club Log Passwort"
 
-#: application/views/user/edit.php:841
+#: application/views/user/edit.php:879
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -14684,15 +14675,15 @@ msgstr ""
 "generieren, um Clublog in Wavelog zu nutzen. Besuche %sdeine Clublog-"
 "Einstellungsseite%s, um dies zu tun."
 
-#: application/views/user/edit.php:858
+#: application/views/user/edit.php:896
 msgid "Widgets"
 msgstr "Widgets"
 
-#: application/views/user/edit.php:866
+#: application/views/user/edit.php:904
 msgid "On-Air widget"
 msgstr "On-Air Widget"
 
-#: application/views/user/edit.php:876
+#: application/views/user/edit.php:914
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
@@ -14700,16 +14691,16 @@ msgstr ""
 "Hinweis: Wenn du dieses Widget nutzen möchtest, solltest du mindestens einen "
 "Transceiver via CAT konfiguriert haben."
 
-#: application/views/user/edit.php:880
+#: application/views/user/edit.php:918
 #, php-format
 msgid "When enabled, widget will be available at %s."
 msgstr "Wenn diese Einstellung aktiviert ist, findest du das Widget unter %s."
 
-#: application/views/user/edit.php:885
+#: application/views/user/edit.php:923
 msgid "Display \"Last seen\" time"
 msgstr "Zeige \"Zuletzt gesehen\"-Zeit an"
 
-#: application/views/user/edit.php:891
+#: application/views/user/edit.php:929
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
@@ -14717,15 +14708,15 @@ msgstr ""
 "Mit dieser Einstellung kannst du beeinflussen, ob die Zeit aus 'Zuletzt "
 "gesehen' im Widget angezeigt werden soll, oder nicht."
 
-#: application/views/user/edit.php:894
+#: application/views/user/edit.php:932
 msgid "Display only most recently updated radio"
 msgstr "Zeige nur zuletzt aktualisierten CAT-Transceiver an"
 
-#: application/views/user/edit.php:898
+#: application/views/user/edit.php:936
 msgid "No, show all radios"
 msgstr "Nein, Zeige alle CAT-Transceiver"
 
-#: application/views/user/edit.php:900
+#: application/views/user/edit.php:938
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -14737,15 +14728,15 @@ msgstr ""
 "geupdated wurde. Hast du nur einen CAT-TRX, so hat diese Einstellung keinen "
 "Effekt."
 
-#: application/views/user/edit.php:910
+#: application/views/user/edit.php:948
 msgid "QSOs widget"
 msgstr "QSOs-Widget"
 
-#: application/views/user/edit.php:913
+#: application/views/user/edit.php:951
 msgid "Display exact QSO time"
 msgstr "Zeige genaue QSO-Zeit an"
 
-#: application/views/user/edit.php:919
+#: application/views/user/edit.php:957
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
@@ -14753,44 +14744,44 @@ msgstr ""
 "Diese Einstellung steuert, ob die genaue QSO-Zeit im QSO-Widget angezeigt "
 "werden soll oder nicht."
 
-#: application/views/user/edit.php:932
+#: application/views/user/edit.php:970
 msgid "Miscellaneous"
 msgstr "Verschiedenes"
 
-#: application/views/user/edit.php:940
+#: application/views/user/edit.php:978
 msgid "AMSAT Status Upload"
 msgstr "AMSAT Status-Upload"
 
-#: application/views/user/edit.php:943
+#: application/views/user/edit.php:981
 msgid "Upload status of SAT QSOs to"
 msgstr "Status von SAT-QSOs hochladen auf"
 
-#: application/views/user/edit.php:957
+#: application/views/user/edit.php:995
 msgid "Mastodonserver"
 msgstr "Mastodonserver"
 
-#: application/views/user/edit.php:960
+#: application/views/user/edit.php:998
 msgid "URL of Mastodonserver"
 msgstr "URL des Mastodonservers"
 
-#: application/views/user/edit.php:962
+#: application/views/user/edit.php:1000
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Haupt-URL deines Mastodon-Servers, z.B. %s"
 
-#: application/views/user/edit.php:971
+#: application/views/user/edit.php:1009
 msgid "Experimental"
 msgstr "Experimentell"
 
-#: application/views/user/edit.php:971
+#: application/views/user/edit.php:1009
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
-#: application/views/user/edit.php:974
+#: application/views/user/edit.php:1012
 msgid "Winkeyer Features Enabled"
 msgstr "Winkeyer-Features eingeschaltet"
 
-#: application/views/user/edit.php:980
+#: application/views/user/edit.php:1018
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -14799,25 +14790,25 @@ msgstr ""
 "Die Winkeyer-Unterstützung in Wavelog ist sehr experimentell. Lies zuerst "
 "das Wiki auf %s, bevor du es aktivierst."
 
-#: application/views/user/edit.php:991
+#: application/views/user/edit.php:1029
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:994
+#: application/views/user/edit.php:1032
 msgid "Private Feed Key"
 msgstr "Privater Feed-Schlüssel"
 
-#: application/views/user/edit.php:996
+#: application/views/user/edit.php:1034
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Schau in deinem Profil unter %s."
 
-#: application/views/user/edit.php:999
+#: application/views/user/edit.php:1037
 msgid "Show Workable Passes Only"
 msgstr "Zeige nur Überflüge an, die gearbeitet werden können"
 
-#: application/views/user/edit.php:1005
+#: application/views/user/edit.php:1043
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -14825,7 +14816,7 @@ msgstr ""
 "Wenn aktiviert, werden nur sichtbare Überflüge basierend auf dem Locator des "
 "hams.at Profils angezeigt. Dazu muss der Private Feed Key konfiguriert sein."
 
-#: application/views/user/edit.php:1017
+#: application/views/user/edit.php:1055
 msgid "Save Account"
 msgstr "Speichere Kontoänderungen"
 
@@ -15509,13 +15500,19 @@ msgstr "Fordere eine QSL-Karte für dein QSO mit %s an."
 msgid "Your Callsign:"
 msgstr "Dein Rufzeichen:"
 
-#: application/views/widgets/oqrs.php:90
+#: application/views/widgets/oqrs.php:91
 msgid "Submit Request"
 msgstr "Anfrage senden"
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid "OQRS Options"
+#~ msgstr "OQRS-Optionen"
+
+#~ msgid "OQRS options have been saved."
+#~ msgstr "OQRS-Einstellungen wurden gespeichert."
 
 #~ msgid ""
 #~ "The following QSOs were found to have an incorrect CQ zone that this DXCC "
