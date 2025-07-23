@@ -83,6 +83,7 @@ class Widgets extends CI_Controller {
 		$this->load->model('oqrs_model');
 		$this->load->model('publicsearch');
 		$this->load->model('stationsetup_model');
+		$this->load->model('user_model');
 		
 		$data['slug'] = $this->security->xss_clean($slug);
 
@@ -106,7 +107,8 @@ class Widgets extends CI_Controller {
 			$data['theme'] = $this->config->item('option_theme');
 		}
 
-		$data['user_callsign'] = strtoupper($this->security->xss_clean($slug));
+		$user = $this->user_model->get_by_id($data['userid'])->row();
+		$data['user_callsign'] = strtoupper($user->user_callsign);
 		$this->load->view('widgets/oqrs', $data);
 	}
 
