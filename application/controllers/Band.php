@@ -154,6 +154,7 @@ class Band extends CI_Controller {
 	    $band['sota']		= $this->security->xss_clean($this->input->post('sota'));
 	    $band['uscounties'] = $this->security->xss_clean($this->input->post('uscounties'));
 	    $band['wap'] 		= $this->security->xss_clean($this->input->post('wap'));
+	    $band['wapc'] 		= $this->security->xss_clean($this->input->post('wapc'));
 	    $band['was'] 		= $this->security->xss_clean($this->input->post('was'));
 	    $band['wwff'] 		= $this->security->xss_clean($this->input->post('wwff'));
 	    $band['vucc'] 		= $this->security->xss_clean($this->input->post('vucc'));
