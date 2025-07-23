@@ -1,6 +1,6 @@
-<!-- 
- 
-This is an OQRS widget to place in your QRZ.com Bio or somewhere else. 
+<!--
+
+This is an OQRS widget to place in your QRZ.com Bio or somewhere else.
 
 To use this widget insert this Element:
 
@@ -87,6 +87,7 @@ To use this widget insert this Element:
                         </div>
                         <div class="col-auto">
                             <input type="hidden" name="widget" value="true">
+							<input hidden class="form-control me-sm-2 w-auto" id="slug" type="search" name="slug" value = '<?php echo $slug; ?>'>
                             <button type="submit" class="btn btn-sm btn-primary"><?= __("Submit Request"); ?></button>
                         </div>
                     </div>

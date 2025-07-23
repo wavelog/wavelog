@@ -70,9 +70,29 @@ $("a[href='#satuniquetab']").on('shown.bs.tab', function(e) {
 	$("#yr").show();
 });
 
+$("a[href='#satuniquegridtab']").on('shown.bs.tab', function(e) {
+	uniqueSatGrids();
+	activeTab='uniqueSatGrids()'
+	$("#yr").show();
+});
+
 $("#yr").on('change',function(e) {
 	eval(activeTab);
 });
+
+function uniqueSatGrids() {
+    $.ajax({
+        url: base_url+'index.php/statistics/get_unique_sat_grids',
+        type: 'post',
+	data: { yr: $("#yr option:selected").val() },
+        success: function (data) {
+	    $(".satuniquegrid").html('');
+            if (data.length > 0) {
+                $(".satuniquegrid").html(data);
+            }
+        }
+    });
+}
 
 function uniqueSatCallsigns() {
     $.ajax({
