@@ -36,16 +36,34 @@ class Oqrs extends CI_Controller {
 	public function index($public_slug = NULL) {
 		$this->load->model('oqrs_model');
 		$this->load->model('publicsearch');
+		$this->load->model('stationsetup_model');
 
-       	$slug = $this->security->xss_clean($public_slug);
-		$data['slug'] = $slug;
-		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
-		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
-		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
-		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
-		$data['page_title'] = __("Log Search & OQRS");
-		$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
-		$data['groupedSearch'] = $this->optionslib->get_option('groupedSearch');
+		if ($public_slug === NULL) {
+			show_404(__("Unknown Public Page."));
+		}
+
+		$data['slug'] = $this->security->xss_clean($public_slug);
+        // check if the public slug exists
+        $logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($data['slug']);
+        if ($logbook_id == false) {
+            $data['userid'] = null;
+			$data['oqrs_enabled'] = null;
+			$data['public_search_enabled'] = false;
+			$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+			$data['stations'] = null;
+			$data['page_title'] = __("Log Search & OQRS");
+			$data['global_oqrs_text'] = '';
+			$data['groupedSearch'] = false;
+        } else {
+			$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
+			$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($data['slug']);
+			$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($data['slug']);
+			$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+			$data['stations'] = $this->oqrs_model->get_oqrs_stations($data['userid']);
+			$data['page_title'] = __("Log Search & OQRS");
+			$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()->option_value ?? '';
+			$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()->option_value;
+		}
 
 		$this->load->view('visitor/layout/header', $data);
 		$this->load->view('oqrs/index');
@@ -82,13 +100,24 @@ class Oqrs extends CI_Controller {
 
 	public function get_qsos_grouped() {
 		$this->load->model('oqrs_model');
-		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE));
+		$this->load->model('publicsearch');
+
+		$slug = $this->input->post('slug', TRUE);
+		$userid = $this->publicsearch->get_userid_for_slug($slug);
+		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
+		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
+		$data['groupedSearchShowStationName'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search_show_station_name','option_key'=>'boolean'), $userid)->row()->option_value;
+
+		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE), $userid);
 		$data['callsign'] = $this->input->post('callsign', TRUE);
+		$data['userid'] = $this->input->post('userid', TRUE);
+		$data['slug'] = $this->input->post('slug', TRUE);
 
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
 		} else {
-			$data['stations'] = $this->oqrs_model->get_oqrs_stations();
+			$data['stations'] = $this->oqrs_model->get_oqrs_stations($userid)->result();
 			$data['page_title'] = __("Log Search & OQRS");
 			$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
 			$data['groupedSearch'] = 'on';
@@ -146,7 +175,7 @@ class Oqrs extends CI_Controller {
 
 		$this->load->model('oqrs_model');
 		$data['result'] = $this->oqrs_model->getOqrsRequests($location_list);
-		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
+		$data['stations'] = $this->oqrs_model->get_oqrs_stations((int)$this->session->userdata('user_id'));
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('oqrs/showrequests');
@@ -199,9 +228,9 @@ class Oqrs extends CI_Controller {
 			$this->load->model('user_model');
 
 			$email = $this->user_model->get_email_address($id);
-			
+
 			$this->load->model('oqrs_model');
-			
+
 			$sendEmail = $this->oqrs_model->getOqrsEmailSetting($id);
 
 			if($email != "" && $sendEmail == "1") {
