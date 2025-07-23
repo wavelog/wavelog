@@ -81,9 +81,11 @@ class Widgets extends CI_Controller {
 
 	public function oqrs($slug) {
 		$this->load->model('oqrs_model');
-		$data['slug'] = $this->security->xss_clean($slug);
 		$this->load->model('publicsearch');
 		$this->load->model('stationsetup_model');
+		$this->load->model('user_model');
+		
+		$data['slug'] = $this->security->xss_clean($slug);
 
 		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($data['slug']);
         if ($logbook_id == false) {
@@ -91,16 +93,11 @@ class Widgets extends CI_Controller {
 			return;
         }
 		$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
+		$data['logo_url'] = site_url('visitor') . '/' . $data['slug'];
 
-		if ($data['slug'] != null) {
-			$data['logo_url'] = base_url() . 'index.php/visitor/' . $data['slug'];
-		} else {
-			$data['logo_url'] = 'https://github.com/wavelog/wavelog';
-		}
-
-		$this->load->model('themes_model');
 		$theme = $this->input->get('theme', TRUE);
 		if ($theme != null) {
+			$this->load->model('themes_model');
 			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
 				$data['theme'] = $theme;
 			} else {
@@ -110,7 +107,8 @@ class Widgets extends CI_Controller {
 			$data['theme'] = $this->config->item('option_theme');
 		}
 
-		$data['user_callsign'] = strtoupper($this->security->xss_clean($slug));
+		$user = $this->user_model->get_by_id($data['userid'])->row();
+		$data['user_callsign'] = strtoupper($user->user_callsign);
 		$this->load->view('widgets/oqrs', $data);
 	}
 
