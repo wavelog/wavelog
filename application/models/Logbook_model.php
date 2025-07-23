@@ -638,6 +638,10 @@ class Logbook_model extends CI_Model {
 				$this->db->where('COL_STATE', $state);
 				$this->db->where('COL_DXCC', '339');
 				break;
+			case 'WAPC':
+				$this->db->where('COL_STATE', $searchphrase);
+				$this->db->where('COL_DXCC', '318');
+				break;
 			case 'QSLRDATE':
 				$this->db->where('date(COL_QSLRDATE)=date(SYSDATE())');
 				break;
