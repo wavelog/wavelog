@@ -25,6 +25,7 @@
 		if ($groupedSearch == 'on') {
 			echo __("This search will search in all station locations where OQRS is active.").'<br /><br /><form class="d-flex align-items-center" onsubmit="return false;"><label class="my-1 me-2" for="oqrssearch">' . __("Enter your callsign") . ': </label>
 			<input class="form-control me-sm-2 w-auto" id="oqrssearch" type="search" name="callsign" placeholder="' . __("Search Callsign") . '" aria-label="Search" '.$callsign_value.' required="required">
+			<input hidden class="form-control me-sm-2 w-auto" id="slug" type="search" name="slug" value = '.$slug.'>
 			<button onclick="searchOqrsGrouped();" class="btn btn-sm btn-primary" id="stationbuttonsubmit" type="button"><i class="fas fa-search"></i> ' . __("Search") . '</button>
 			</form>';
 			echo '<div class="searchinfo"></div>';
@@ -47,7 +48,7 @@
 				</div>
                 <?php
 			} else {
-		  if ($stations->result() != NULL) { ?>
+		  if ($stations) { ?>
 
                 <form class="d-flex align-items-center" enctype="multipart/form-data">
                     <label class="my-1 me-2" for="station"><?= __("Select station"); ?>: </label>

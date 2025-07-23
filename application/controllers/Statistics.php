@@ -72,16 +72,31 @@ class Statistics extends CI_Controller {
 		$modestats = array();
 
 		$i = 0;
-		$modestats[$i]['mode'] = 'ssb';
-		$modestats[$i++]['total'] = $this->logbook_model->total_ssb($yr);
-		$modestats[$i]['mode'] = 'cw';
-		$modestats[$i++]['total'] = $this->logbook_model->total_cw($yr);
-		$modestats[$i]['mode'] = 'fm';
-		$modestats[$i++]['total'] = $this->logbook_model->total_fm($yr);
-		$modestats[$i]['mode'] = 'am';
-		$modestats[$i++]['total'] = $this->logbook_model->total_am($yr);
-		$modestats[$i]['mode'] = 'digi';
-		$modestats[$i]['total'] = $this->logbook_model->total_digi($yr);
+		$ssb = $this->logbook_model->total_ssb($yr);
+		$cw = $this->logbook_model->total_cw($yr);
+		$fm = $this->logbook_model->total_fm($yr);
+		$am = $this->logbook_model->total_am($yr);
+		$digi = $this->logbook_model->total_digi($yr);
+		if ($ssb > 0) {
+			$modestats[$i]['mode'] = 'ssb';
+			$modestats[$i++]['total'] = $ssb;
+		}
+		if ($cw > 0) {
+			$modestats[$i]['mode'] = 'cw';
+			$modestats[$i++]['total'] = $cw;
+		}
+		if ($fm > 0) {
+			$modestats[$i]['mode'] = 'fm';
+			$modestats[$i++]['total'] = $fm;
+		}
+		if ($am > 0) {
+			$modestats[$i]['mode'] = 'am';
+			$modestats[$i++]['total'] = $am;
+		}
+		if ($digi > 0) {
+			$modestats[$i]['mode'] = 'digi';
+			$modestats[$i]['total'] = $digi;
+		}
 		usort($modestats, fn($a, $b) => $b['total'] <=> $a['total']);
 
 		header('Content-Type: application/json');
@@ -174,6 +189,23 @@ class Statistics extends CI_Controller {
 		$total_qsos['modes'] = $this->stats->get_sat_modes($yr);
 
 		$this->load->view('statistics/satuniquetable', $total_qsos);
+	}
+
+	public function get_unique_sat_grids() {
+		$this->load->model('stats');
+
+		$total_qsos = array();
+
+		$yr = xss_clean($this->input->post('yr')) ?? 'All';
+		$result = $this->stats->unique_sat_grids($yr);
+		$total_qsos['qsoarray'] = $result['qsoView'];
+		$total_qsos['satunique'] = $result['satunique'];
+		$total_qsos['modeunique'] = $result['modeunique'];
+		$total_qsos['total'] = $result['total'];
+		$total_qsos['sats'] = $this->stats->get_sats($yr);
+		$total_qsos['modes'] = $this->stats->get_sat_modes($yr);
+
+		$this->load->view('statistics/satuniquegridtable', $total_qsos);
 	}
 
 	public function get_unique_callsigns() {
