@@ -309,7 +309,7 @@ class WAPC extends CI_Model {
 		} else if ($band == 'All') {
 			$this->load->model('bands');
 
-			$bandslots = ['160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m','70cm'];
+			$bandslots = $this->bands->get_worked_bands('wapc');
 
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 
@@ -344,7 +344,7 @@ class WAPC extends CI_Model {
 			$bindings[]=$band;
 		} else if ($band == 'All') {
 			$this->load->model('bands');
-			$bandslots = ['160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m','70cm'];
+			$bandslots = $this->bands->get_worked_bands('wapc');
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 			$sql .= " and thcv.col_band in (" . $bandslots_list . ")";
 			$sql .= " and thcv.col_prop_mode !='SAT'";

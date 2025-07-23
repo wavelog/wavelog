@@ -187,7 +187,7 @@ class Awards extends CI_Controller {
 		$this->load->model('modes');
 		$this->load->model('bands');
 
-		$data['worked_bands'] = ['160m','80m','40m','30m','20m','17m','15m','12m','10m','6m','2m','70cm'];;
+		$data['worked_bands'] = $this->bands->get_worked_bands('wapc');
 		$data['modes'] = $this->modes->active();
 
 		if ($this->input->post('band') != NULL) {   			// Band is not set when page first loads.
