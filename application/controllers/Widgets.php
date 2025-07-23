@@ -93,9 +93,9 @@ class Widgets extends CI_Controller {
 		$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
 		$data['logo_url'] = base_url() . 'index.php/visitor/' . $data['slug'];
 
-		$this->load->model('themes_model');
 		$theme = $this->input->get('theme', TRUE);
 		if ($theme != null) {
+			$this->load->model('themes_model');
 			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
 				$data['theme'] = $theme;
 			} else {
