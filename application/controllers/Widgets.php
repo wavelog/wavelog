@@ -93,7 +93,7 @@ class Widgets extends CI_Controller {
 			return;
         }
 		$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
-		$data['logo_url'] = base_url() . 'index.php/visitor/' . $data['slug'];
+		$data['logo_url'] = site_url('visitor') . '/' . $data['slug'];
 
 		$theme = $this->input->get('theme', TRUE);
 		if ($theme != null) {
