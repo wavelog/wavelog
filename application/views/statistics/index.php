@@ -116,6 +116,9 @@
 						<li class="nav-item">
 							<a class="nav-link" id="satunique-tab" data-bs-toggle="tab" href="#satuniquetab" role="tab" aria-controls="satuniquetab" aria-selected="false"><?= __("Unique callsigns"); ?></a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="satunique-tab" data-bs-toggle="tab" href="#satuniquegridtab" role="tab" aria-controls="satuniquegridtab" aria-selected="false"><?= __("Unique Grids"); ?></a>
+						</li>
 					</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="sattab" role="tabpanel" aria-labelledby="sat-tab">
@@ -128,6 +131,10 @@
 					</div>
 					<div class="tab-pane fade" id="satuniquetab" role="tabpanel" aria-labelledby="satunique-tab">
 						<div class="satunique" style="margin-top: 20px;">
+						</div>
+					</div>
+					<div class="tab-pane fade" id="satuniquegridtab" role="tabpanel" aria-labelledby="satuniquegrid-tab">
+						<div class="satuniquegrid" style="margin-top: 20px;">
 						</div>
 					</div>
 				</div>

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-17 15:22+0000\n"
+"POT-Creation-Date: 2025-07-22 19:45+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -69,9 +69,9 @@ msgstr ""
 #: application/controllers/Logbookadvanced.php:16
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:79 application/controllers/Lotw.php:105
-#: application/controllers/Lotw.php:377 application/controllers/Lotw.php:400
-#: application/controllers/Lotw.php:757 application/controllers/Lotw.php:841
-#: application/controllers/Lotw.php:946 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:375 application/controllers/Lotw.php:398
+#: application/controllers/Lotw.php:755 application/controllers/Lotw.php:839
+#: application/controllers/Lotw.php:944 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:14
 #: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:136
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
@@ -373,7 +373,7 @@ msgstr "Pregled loga - VUCC"
 #: application/controllers/Awards.php:458
 #: application/controllers/Callstats.php:100
 #: application/controllers/Distancerecords.php:86
-#: application/controllers/Statistics.php:321
+#: application/controllers/Statistics.php:338
 #: application/controllers/Timeline.php:126
 #: application/controllers/Timeline.php:129
 #: application/controllers/Timeline.php:132
@@ -1752,11 +1752,11 @@ msgstr "Sertifikat je uvezen."
 msgid "Certificate Updated."
 msgstr "Sertifikat je ažuriran."
 
-#: application/controllers/Lotw.php:383
+#: application/controllers/Lotw.php:381
 msgid "Certificate Deleted."
 msgstr "Sertifikat je izbrisan."
 
-#: application/controllers/Lotw.php:412
+#: application/controllers/Lotw.php:410
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1765,52 +1765,52 @@ msgstr ""
 "Nije pronađen sertifikat %s. Ako naziv datoteke sadrži 'key-only' to je "
 "tipično zahtev za sertifikat koji još nije obrađen od strane LoTW."
 
-#: application/controllers/Lotw.php:648
+#: application/controllers/Lotw.php:646
 msgid "LoTW ADIF Information"
 msgstr "Informacija o LoTW ADIF"
 
-#: application/controllers/Lotw.php:814 application/controllers/Lotw.php:817
+#: application/controllers/Lotw.php:812 application/controllers/Lotw.php:815
 #, php-format
 msgid "LoTW login failed for user %s: %s."
 msgstr ""
 
-#: application/controllers/Lotw.php:817
+#: application/controllers/Lotw.php:815
 msgid "Username/password incorrect"
 msgstr ""
 
-#: application/controllers/Lotw.php:820
+#: application/controllers/Lotw.php:818
 msgid "LoTW login OK!"
 msgstr ""
 
-#: application/controllers/Lotw.php:824
+#: application/controllers/Lotw.php:822
 msgid "LoTW currently not available. Try again later."
 msgstr ""
 
-#: application/controllers/Lotw.php:829
+#: application/controllers/Lotw.php:827
 msgid "No LoTW credentials provided."
 msgstr ""
 
-#: application/controllers/Lotw.php:847
+#: application/controllers/Lotw.php:845
 msgid "LoTW ADIF Import"
 msgstr "Uvoz LoTW ADIF"
 
-#: application/controllers/Lotw.php:873 application/controllers/Lotw.php:981
+#: application/controllers/Lotw.php:871 application/controllers/Lotw.php:979
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Niste definisali vaše ARRL LoTW kredencijale!"
 
-#: application/controllers/Lotw.php:948
+#: application/controllers/Lotw.php:946
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 učitavanje"
 
-#: application/controllers/Lotw.php:1026
+#: application/controllers/Lotw.php:1024
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Vaše ARRL korisničko ime i/ili lozinka su netačni."
 
-#: application/controllers/Lotw.php:1045 application/controllers/Lotw.php:1050
+#: application/controllers/Lotw.php:1043 application/controllers/Lotw.php:1048
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 je poslat"
 
-#: application/controllers/Lotw.php:1057
+#: application/controllers/Lotw.php:1055
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 nije poslat"
 
@@ -2555,23 +2555,23 @@ msgstr "Uredite opcije za izvoz mape"
 msgid "Statistics"
 msgstr "Statistika"
 
-#: application/controllers/Statistics.php:253
+#: application/controllers/Statistics.php:270
 #: application/views/interface_assets/header.php:146
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
 msgstr "Statistika QSL karata"
 
-#: application/controllers/Statistics.php:268
+#: application/controllers/Statistics.php:285
 #: application/views/interface_assets/header.php:144
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
 msgstr "Analitika Antena"
 
-#: application/controllers/Statistics.php:321
+#: application/controllers/Statistics.php:338
 msgid "Satellite QSOs"
 msgstr ""
 
-#: application/controllers/Statistics.php:337
+#: application/controllers/Statistics.php:354
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
 msgstr ""
@@ -4891,6 +4891,8 @@ msgstr "Potvrđenih okruga"
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
 #: application/views/statistics/satqsotable.php:28
+#: application/views/statistics/satuniquegridtable.php:10
+#: application/views/statistics/satuniquegridtable.php:22
 #: application/views/statistics/satuniquetable.php:10
 #: application/views/statistics/satuniquetable.php:22
 #: application/views/statistics/uniquetable.php:10
@@ -13665,6 +13667,10 @@ msgstr "Sve godine"
 #: application/views/statistics/index.php:117
 msgid "Unique callsigns"
 msgstr "Jedinstvenih pozivnih znakova"
+
+#: application/views/statistics/index.php:120
+msgid "Unique Grids"
+msgstr ""
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
