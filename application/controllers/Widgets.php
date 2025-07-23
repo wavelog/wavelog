@@ -81,9 +81,10 @@ class Widgets extends CI_Controller {
 
 	public function oqrs($slug) {
 		$this->load->model('oqrs_model');
-		$data['slug'] = $this->security->xss_clean($slug);
 		$this->load->model('publicsearch');
 		$this->load->model('stationsetup_model');
+		
+		$data['slug'] = $this->security->xss_clean($slug);
 
 		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($data['slug']);
         if ($logbook_id == false) {
