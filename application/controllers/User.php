@@ -158,6 +158,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_locator', 'Locator', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
 		$this->form_validation->set_rules('user_email', 'EMail', 'required|callback_check_email');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|valid_email');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
 		$data['user_add'] = true;
@@ -382,6 +383,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
 		$this->form_validation->set_rules('user_email', 'EMail', 'required|callback_check_email');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|valid_email');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
 		$data['user_form_action'] = site_url('user/edit')."/".$this->uri->segment(3);
@@ -1260,6 +1262,7 @@ class User extends CI_Controller {
 			$this->load->library('form_validation');
 
 			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 
 			if ($this->form_validation->run() == FALSE)
 			{
