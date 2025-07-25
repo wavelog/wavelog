@@ -151,6 +151,7 @@ class User extends CI_Controller {
 		$this->load->library('Genfunctions');
 
 		$this->form_validation->set_rules('user_name', 'Username', 'required');
+		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		$this->form_validation->set_rules('user_type', 'Type', 'required');
@@ -373,6 +374,7 @@ class User extends CI_Controller {
 		$this->load->library('Genfunctions');
 
 		$this->form_validation->set_rules('user_name', 'Username', 'required|xss_clean');
+		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required|xss_clean');
 		if($this->session->userdata('user_type') == 99)
 		{
@@ -1443,6 +1445,15 @@ class User extends CI_Controller {
 			}
 		} else {
 			redirect('user/login');
+		}
+	}
+
+	function check_username($username) {
+		if (($this->session->userdata('user_name') != $username) && ($this->user_model->exists($username) > 0)) {
+			$this->form_validation->set_message('check_username', sprintf(__("Couldn't set account to this username. Please try another one than \"%s\"."), $username));
+			return FALSE;
+		} else {
+			return TRUE;
 		}
 	}
 
