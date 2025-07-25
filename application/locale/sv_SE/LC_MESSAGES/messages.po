@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-25 06:46+0000\n"
-"PO-Revision-Date: 2025-07-21 20:35+0000\n"
+"POT-Creation-Date: 2025-07-23 12:43+0000\n"
+"PO-Revision-Date: 2025-07-25 00:52+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -352,7 +352,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:252
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Diplom - WAPC"
 
 #: application/controllers/Awards.php:331
 msgid "Awards - WAJA"
@@ -3169,20 +3169,24 @@ msgstr "Ingen anropssignal angiven"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
+#: application/models/Logbook_model.php:3953
 #: application/models/Logbook_model.php:3950
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
+#: application/models/Logbook_model.php:3954
 #: application/models/Logbook_model.php:3951
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Kolla %s för tips om fel i ADIF-filer."
 
+#: application/models/Logbook_model.php:3966
 #: application/models/Logbook_model.php:3963
 msgid "QSO on"
 msgstr "QSO kl"
 
+#: application/models/Logbook_model.php:3966
 #: application/models/Logbook_model.php:3963
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3191,63 +3195,76 @@ msgstr ""
 "Du försökte importera ett QSO utan angivet CALL. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
+#: application/models/Logbook_model.php:4265
 #: application/models/Logbook_model.php:4262
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:4276
 #: application/models/Logbook_model.php:4273
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:4337
 #: application/models/Logbook_model.php:4334
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:4357
 #: application/models/Logbook_model.php:4354
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:4378
 #: application/models/Logbook_model.php:4375
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:4667
+#: application/models/Logbook_model.php:4670
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4667
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
+#: application/models/Logbook_model.php:4731
 #: application/models/Logbook_model.php:4728
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
+#: application/models/Logbook_model.php:4737
 #: application/models/Logbook_model.php:4734
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
+#: application/models/Logbook_model.php:4742
 #: application/models/Logbook_model.php:4739
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
+#: application/models/Logbook_model.php:4745
 #: application/models/Logbook_model.php:4742
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
+#: application/models/Logbook_model.php:4748
 #: application/models/Logbook_model.php:4745
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
+#: application/models/Logbook_model.php:4751
 #: application/models/Logbook_model.php:4748
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:4751
+#: application/models/Logbook_model.php:4754
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4751
 msgid "unknown"
 msgstr "Okänd"
 
-#: application/models/Logbook_model.php:5589
+#: application/models/Logbook_model.php:5592
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3258,6 +3275,7 @@ msgstr "Okänd"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5589
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -6155,7 +6173,7 @@ msgstr "Provins"
 
 #: application/views/awards/wapc/index.php:7
 msgid "WAPC - Worked All Provinces of China"
-msgstr ""
+msgstr "WAPC - Worked All Provinces of China"
 
 #: application/views/awards/wapc/index.php:8
 msgid ""
@@ -6164,16 +6182,22 @@ msgid ""
 "municipalities, autonomous regions, and special administrative regions of "
 "China, fostering a deeper understanding of China."
 msgstr ""
+"WAPC-diplomet, utfärdat av Mulan DX Club, syftar till att främja "
+"kommunikation mellan radioamatörer världen över och operatörer i alla "
+"provinser, kommuner, autonoma regioner och särskilda administrativa regioner "
+"i Kina, för att främja en djupare förståelse för Kina."
 
 #: application/views/awards/wapc/index.php:9
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
 msgstr ""
+"Diplomet kan uppnås genom långsiktig ackumulering av kontakter eller uppnås "
+"i en enda insats under den årliga WAPC-tävlingen."
 
 #: application/views/awards/wapc/index.php:118
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -6487,7 +6511,7 @@ msgstr "USA län"
 #: application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:220
 msgid "WAPC"
-msgstr ""
+msgstr "WAPC"
 
 #: application/views/bands/index.php:62
 #: application/views/interface_assets/header.php:240
@@ -9392,7 +9416,7 @@ msgstr "Kanada"
 
 #: application/views/interface_assets/header.php:218
 msgid "China"
-msgstr ""
+msgstr "Kina"
 
 #: application/views/interface_assets/header.php:224
 msgid "Germany"
@@ -11632,57 +11656,61 @@ msgstr "Du använder %s av diskutrymmet för att lagra QSL-korttillgångar"
 
 #: application/views/qslcard/index.php:17
 msgid "List View"
-msgstr ""
+msgstr "Listvy"
 
 #: application/views/qslcard/index.php:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Gallerivy"
 
 #: application/views/qslcard/index.php:78
 #: application/views/qslcard/index.php:126
 msgid "Add Qsos"
-msgstr ""
+msgstr "Lägg till Qson"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
-msgstr ""
+msgstr "Lägg till i QSL"
 
 #: application/views/qslmanagement/index.php:13
 msgid "Incoming QSL Cards"
-msgstr ""
+msgstr "Inkommande QSL-kort"
 
 #: application/views/qslmanagement/index.php:25
 msgid "Report"
-msgstr ""
+msgstr "Rapport"
 
 #: application/views/qslmanagement/index.php:26
 msgid "Option"
-msgstr ""
+msgstr "Alternativ"
 
 #: application/views/qslmanagement/index.php:46
 msgid "Outgoing QSL Cards"
-msgstr ""
+msgstr "Utgående QSL-kort"
 
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
-msgstr ""
+msgstr "Exportera begärda QSL-kort för utskrift"
 
 #: application/views/qslprint/index.php:29
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
+"Här kan du exportera begärda QSL som CSV- eller ADIF-filer för utskrift och, "
+"om du vill, markera dem som skickade."
 
 #: application/views/qslprint/index.php:31
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
 msgstr ""
+"Begärda QSL är alla QSOs med ett värde av 'Begärd' eller 'I kö' i deras 'QSL "
+"skickat'-fält."
 
 #: application/views/qslprint/index.php:32
 #: application/views/qslprint/qslprint.php:32
 msgid "Previous QSL"
-msgstr ""
+msgstr "Föregående QSL"
 
 #: application/views/qslprint/index.php:32
 #, php-format
@@ -11690,170 +11718,174 @@ msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
 msgstr ""
+"Kolumnen %s visar hur många QSL som har skickats till samma station tidigare "
+"på samma band och läge."
 
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
 msgid "Send Method"
-msgstr ""
+msgstr "Skicka Via"
 
 #: application/views/qslprint/qslprint.php:33
 msgid "Mark as sent"
-msgstr ""
+msgstr "Markera som skickat"
 
 #: application/views/qslprint/qslprint.php:34
 msgid "Remove"
-msgstr ""
+msgstr "Ta bort"
 
 #: application/views/qslprint/qslprint.php:35
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
-msgstr ""
+msgstr "QSO-lista"
 
 #: application/views/qslprint/qslprint.php:71
 msgid "Mark selected QSOs as sent"
-msgstr ""
+msgstr "Markera valda QSOn som skickade"
 
 #: application/views/qslprint/qslprint.php:72
 msgid "Remove selected QSOs from the queue"
-msgstr ""
+msgstr "Ta bort valda QSOn från kön"
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export selected QSOs to ADIF-file"
-msgstr ""
+msgstr "Exportera valda QSOn till ADIF-fil"
 
 #: application/views/qslprint/qslprint.php:75
 msgid "Export CSV-file"
-msgstr ""
+msgstr "Exportera CSV-fil"
 
 #: application/views/qslprint/qslprint.php:75
 msgid "Export requested QSLs to CSV-file"
-msgstr ""
+msgstr "Exportera begärda QSL till CSV-fil"
 
 #: application/views/qslprint/qslprint.php:77
 msgid "Export ADIF"
-msgstr ""
+msgstr "Exportera ADIF"
 
 #: application/views/qslprint/qslprint.php:77
 msgid "Export requested QSLs to ADIF-file"
-msgstr ""
+msgstr "Exportera begärda QSL till ADIF-fil"
 
 #: application/views/qslprint/qslprint.php:79
 msgid "Mark QSLs as printed"
-msgstr ""
+msgstr "Markera QSL som utskrivna"
 
 #: application/views/qslprint/qslprint.php:79
 msgid "Mark requested QSLs as sent"
-msgstr ""
+msgstr "Markera begärda QSL som skickade"
 
 #: application/views/qslprint/qslprint.php:83
 msgid "No QSLs to print were found!"
-msgstr ""
+msgstr "Inga QSL att skriva ut hittades!"
 
 #: application/views/qslprint/qsolist.php:207
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
+"Inga ytterligare QSOn hittades. Det betyder att de förmodligen redan är i "
+"kön."
 
 #: application/views/qso/award_tabs.php:2
 msgid "Showing summary for DXCC"
-msgstr ""
+msgstr "Visar sammanfattning för DXCC"
 
 #: application/views/qso/award_tabs.php:3
 msgid "Showing summary for US State"
-msgstr ""
+msgstr "Visar sammanfattning för amerikansk delstat"
 
 #: application/views/qso/award_tabs.php:4
 msgid "Showing summary for CQ zone"
-msgstr ""
+msgstr "Visar sammanfattning för CQ-zon"
 
 #: application/views/qso/award_tabs.php:5
 msgid "Showing summary for WWFF"
-msgstr ""
+msgstr "Visar sammanfattning för WWFF"
 
 #: application/views/qso/award_tabs.php:6
 msgid "Showing summary for POTA"
-msgstr ""
+msgstr "Visar sammanfattning för POTA"
 
 #: application/views/qso/award_tabs.php:7
 msgid "Showing summary for SOTA"
-msgstr ""
+msgstr "Visar sammanfattning för SOTA"
 
 #: application/views/qso/award_tabs.php:8
 msgid "Showing summary for IOTA"
-msgstr ""
+msgstr "Visar sammanfattning för IOTA"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for DOK"
-msgstr ""
+msgstr "Visar sammanfattning för DOK"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for satellite QSOs with"
-msgstr ""
+msgstr "Visar sammanfattning för satellit-QSOn med"
 
 #: application/views/qso/award_tabs.php:11
 msgid "Showing summary for continent"
-msgstr ""
+msgstr "Visar sammanfattning för kontinent"
 
 #: application/views/qso/award_tabs.php:12
 msgid "Showing summary for gridsquare"
-msgstr ""
+msgstr "Visar sammanfattning för rutnäts rutor"
 
 #: application/views/qso/award_tabs.php:13
 msgid "State input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Delstats fältet måste fyllas i för att visa en sammanfattning!"
 
 #: application/views/qso/award_tabs.php:14
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "SOTA fältet måste fyllas i för att visa en sammanfattning!"
 
 #: application/views/qso/award_tabs.php:15
 msgid "POTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "POTA fältet måste fyllas i för att visa en sammanfattning!"
 
 #: application/views/qso/award_tabs.php:16
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "IOTA fältet måste fyllas i för att visa en sammanfattning!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "DOK input needs to be filled to show a summary!"
-msgstr ""
+msgstr "DOK fältet måste fyllas i för att visa en sammanfattning!"
 
 #: application/views/qso/award_tabs.php:18
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr ""
+msgstr "WWFF fältet måste fyllas i för att visa en sammanfattning!"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Propagation mode needs to be 'SAT' to show a summary!"
-msgstr ""
+msgstr "Utbredningssättet måste vara 'SAT' för att visa en sammanfattning!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Rutnätsruta fältet måste fyllas i för att visa en sammanfattning!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
-msgstr ""
+msgstr "Sammanfattningen visas endast för den första POTA som anges."
 
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
-msgstr ""
+msgstr "Sammanfattningen visas endast för den första rutnätsrutan som anges."
 
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "Sammanfattning visas endast för amerikanska delstater."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
-msgstr ""
+msgstr "Posta inlägg på X"
 
 #: application/views/qso/components/share_modal.php:6
 msgid "Post on Bluesky"
-msgstr ""
+msgstr "Posta inlägg på Bluesky"
 
 #: application/views/qso/components/share_modal.php:10
 msgid "Toot on Mastodon"
-msgstr ""
+msgstr "Posta Toot på Mastodon"
 
 #: application/views/qso/components/winkeysettings.php:3
 #: application/views/qso/components/winkeysettings.php:19
@@ -11862,7 +11894,7 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:67
 #, php-format
 msgid "Function %d - Name"
-msgstr ""
+msgstr "Funktion %d - Namn"
 
 #: application/views/qso/components/winkeysettings.php:10
 #: application/views/qso/components/winkeysettings.php:26
@@ -11871,27 +11903,27 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:74
 #, php-format
 msgid "Function %d - Macro"
-msgstr ""
+msgstr "Funktion %d - Makro"
 
 #: application/views/qso/edit_ajax.php:35
 msgid "Sats"
-msgstr ""
+msgstr "Sateliter"
 
 #: application/views/qso/edit_ajax.php:53
 msgid "Start Date/Time"
-msgstr ""
+msgstr "Startdatum/-tid"
 
 #: application/views/qso/edit_ajax.php:58
 msgid "End Date/Time"
-msgstr ""
+msgstr "Slutdatum/-tid"
 
 #: application/views/qso/edit_ajax.php:78
 msgid "RX Frequency"
-msgstr ""
+msgstr "RX Frekvens"
 
 #: application/views/qso/edit_ajax.php:101
 msgid "RX Band"
-msgstr ""
+msgstr "RX-band"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:360
 msgid "Give power value in Watts. Include only numbers in the input."
@@ -11905,54 +11937,54 @@ msgstr "Effekt (W)"
 
 #: application/views/qso/edit_ajax.php:165
 msgid "Used for VUCC MultiGrids"
-msgstr ""
+msgstr "Används för VUCC MultiGrids"
 
 #: application/views/qso/edit_ajax.php:221 application/views/qso/index.php:472
 msgid "Antenna Path"
-msgstr ""
+msgstr "Antennväg"
 
 #: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:475
 #: application/views/view_log/qso.php:162
 msgid "Greyline"
-msgstr ""
+msgstr "Grålinje"
 
 #: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:476
 msgid "Other"
-msgstr ""
+msgstr "Annat"
 
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:477
 #: application/views/view_log/qso.php:153
 msgid "Short Path"
-msgstr ""
+msgstr "Kort väg"
 
 #: application/views/qso/edit_ajax.php:227 application/views/qso/index.php:478
 #: application/views/view_log/qso.php:156
 msgid "Long Path"
-msgstr ""
+msgstr "Lång väg"
 
 #: application/views/qso/edit_ajax.php:284
 msgid "Sat Name"
-msgstr ""
+msgstr "Sat Namn"
 
 #: application/views/qso/edit_ajax.php:289
 msgid "Sat Mode"
-msgstr ""
+msgstr "Sat Trafiksätt"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:601
 msgid "Antenna Azimuth (°)"
-msgstr ""
+msgstr "Antennens azimut (°)"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:603
 msgid "Antenna azimuth in decimal degrees."
-msgstr ""
+msgstr "Antennens azimuth i decimalgrader."
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:607
 msgid "Antenna Elevation (°)"
-msgstr ""
+msgstr "Antennens elevation (°)"
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:609
 msgid "Antenna elevation in decimal degrees."
-msgstr ""
+msgstr "Antennens elevation i decimalgrader."
 
 #: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:492
 #: application/views/station_profile/create.php:103

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-25 06:46+0000\n"
-"PO-Revision-Date: 2025-07-21 20:35+0000\n"
+"POT-Creation-Date: 2025-07-23 12:43+0000\n"
+"PO-Revision-Date: 2025-07-24 07:16+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -354,7 +354,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:252
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Awards - WAPC"
 
 #: application/controllers/Awards.php:331
 msgid "Awards - WAJA"
@@ -3180,6 +3180,7 @@ msgstr "Geen roepnaam gegeven"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
+#: application/models/Logbook_model.php:3953
 #: application/models/Logbook_model.php:3950
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3187,15 +3188,18 @@ msgstr ""
 "Verkeerde station roepnaam %s bij het importeren van QSO met %s voor %s: "
 "OVERGESLAGEN"
 
+#: application/models/Logbook_model.php:3954
 #: application/models/Logbook_model.php:3951
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Controleer %s voor hints over fouten in ADIF-bestanden."
 
+#: application/models/Logbook_model.php:3966
 #: application/models/Logbook_model.php:3963
 msgid "QSO on"
 msgstr "QSO vanaf"
 
+#: application/models/Logbook_model.php:3966
 #: application/models/Logbook_model.php:3963
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3204,63 +3208,76 @@ msgstr ""
 "Je hebt geprobeerd een QSO te importeren zonder een opgegeven CALL. Dit QSO "
 "is niet geïmporteerd. Het is ongeldig"
 
+#: application/models/Logbook_model.php:4265
 #: application/models/Logbook_model.php:4262
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:4276
 #: application/models/Logbook_model.php:4273
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:4337
 #: application/models/Logbook_model.php:4334
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:4357
 #: application/models/Logbook_model.php:4354
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslrdate is ongeldig (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:4378
 #: application/models/Logbook_model.php:4375
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslsdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4667
+#: application/models/Logbook_model.php:4670
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4667
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
+#: application/models/Logbook_model.php:4731
 #: application/models/Logbook_model.php:4728
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
+#: application/models/Logbook_model.php:4737
 #: application/models/Logbook_model.php:4734
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4742
 #: application/models/Logbook_model.php:4739
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
+#: application/models/Logbook_model.php:4745
 #: application/models/Logbook_model.php:4742
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
+#: application/models/Logbook_model.php:4748
 #: application/models/Logbook_model.php:4745
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
+#: application/models/Logbook_model.php:4751
 #: application/models/Logbook_model.php:4748
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-#: application/models/Logbook_model.php:4751
+#: application/models/Logbook_model.php:4754
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4751
 msgid "unknown"
 msgstr "onbekend"
 
-#: application/models/Logbook_model.php:5589
+#: application/models/Logbook_model.php:5592
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3271,6 +3288,7 @@ msgstr "onbekend"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5589
 msgid "Bearing"
 msgstr "Koers"
 
@@ -6188,7 +6206,7 @@ msgstr "Provincie"
 
 #: application/views/awards/wapc/index.php:7
 msgid "WAPC - Worked All Provinces of China"
-msgstr ""
+msgstr "WAPC - Alle provincies van China gewerkt"
 
 #: application/views/awards/wapc/index.php:8
 msgid ""
@@ -6197,16 +6215,23 @@ msgid ""
 "municipalities, autonomous regions, and special administrative regions of "
 "China, fostering a deeper understanding of China."
 msgstr ""
+"De WAPC Award, uitgegeven door de Mulan DX Club, heeft als doel de "
+"communicatie te bevorderen tussen radioamateurs wereldwijd en operators in "
+"alle provincies, gemeenten, autonome regio's en speciale administratieve "
+"regio's van China, om zo een dieper begrip van China te stimuleren."
 
 #: application/views/awards/wapc/index.php:9
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
 msgstr ""
+"De onderscheiding kan worden verdiend door langdurige accumulatie van "
+"contacten of behaald worden in een enkele inspanning tijdens de jaarlijkse "
+"WAPC Contest."
 
 #: application/views/awards/wapc/index.php:118
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -6520,7 +6545,7 @@ msgstr "USA County"
 #: application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:220
 msgid "WAPC"
-msgstr ""
+msgstr "WAPC"
 
 #: application/views/bands/index.php:62
 #: application/views/interface_assets/header.php:240
@@ -9444,7 +9469,7 @@ msgstr "Canada"
 
 #: application/views/interface_assets/header.php:218
 msgid "China"
-msgstr ""
+msgstr "China"
 
 #: application/views/interface_assets/header.php:224
 msgid "Germany"
@@ -14562,7 +14587,7 @@ msgstr ""
 
 #: application/views/user/edit.php:686
 msgid "Online QSL request (OQRS) settings"
-msgstr ""
+msgstr "Instellingen voor online QSL-aanvraag (OQRS)"
 
 #: application/views/user/edit.php:690
 msgid "Global text"
