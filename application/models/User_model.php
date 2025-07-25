@@ -19,7 +19,7 @@ class User_Model extends CI_Model {
 		// Clean ID
 		$clean_username = $this->security->xss_clean($username);
 
-		$this->db->where('user_name', $clean_username);
+		$this->db->where('upper(user_name)', strtoupper($clean_username));
 		$r = $this->db->get($this->config->item('auth_table'));
 		return $r;
 	}
