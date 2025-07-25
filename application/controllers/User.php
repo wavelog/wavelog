@@ -1445,7 +1445,7 @@ class User extends CI_Controller {
 
 	function check_email($mail) {
 		if (($this->session->userdata('user_email') != $mail) && ($this->user_model->exists_by_email($mail) > 0)) {
-			$this->form_validation->set_message('check_email', sprintf(__("Couldn't set account to this email. Please try another address than (%s)"),$mail));
+			$this->form_validation->set_message('check_email', sprintf(__("Couldn't set account to this email. Please try another address than \"%s\"."), $mail));
 			return FALSE;
 		} else {
 			return TRUE;
