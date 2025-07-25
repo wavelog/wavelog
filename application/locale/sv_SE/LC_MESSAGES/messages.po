@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-25 12:10+0000\n"
-"PO-Revision-Date: 2025-07-25 18:29+0000\n"
+"PO-Revision-Date: 2025-07-26 06:19+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sv/>\n"
@@ -12219,19 +12219,19 @@ msgstr "Stopp"
 
 #: application/views/qso/index.php:731
 msgid "Tune"
-msgstr ""
+msgstr "Stämma av"
 
 #: application/views/qso/index.php:732
 msgid "Stop Tune"
-msgstr ""
+msgstr "Stoppa stämma av"
 
 #: application/views/qso/index.php:738
 msgid "CW Speed"
-msgstr ""
+msgstr "CW-hastighet"
 
 #: application/views/qso/index.php:743
 msgid "Send"
-msgstr ""
+msgstr "Sänd"
 
 #: application/views/qso/index.php:753
 msgid "Suggestions"
@@ -12243,15 +12243,15 @@ msgstr "Profilbild"
 
 #: application/views/qso/log_qso.php:9
 msgid "Redirecting to QSO logging page..."
-msgstr ""
+msgstr "Omdirigerar till QSO-loggningssidan..."
 
 #: application/views/qso/log_qso.php:75
 msgid "The data was redirected. You can close this window."
-msgstr ""
+msgstr "Data omdirigerades. Du kan stänga detta fönster."
 
 #: application/views/radio/edit.php:18
 msgid "CAT URL"
-msgstr ""
+msgstr "CAT URL"
 
 #: application/views/radio/edit.php:20
 #, php-format
@@ -12259,29 +12259,34 @@ msgid ""
 "Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
 "(/) and QRG is added automatically. Default is %s"
 msgstr ""
+"Anropad URL när en spot på DXCluster klickas. Observera: Det avslutande "
+"snedstrecket (/) och QRG läggs till automatiskt. Standard är %s"
 
 #: application/views/radio/index.php:20
 msgid "Active Radios"
-msgstr ""
+msgstr "Aktiva radioapparater"
 
 #: application/views/radio/index.php:23
 msgid "Below is a list of active radios that are connected to Wavelog."
 msgstr ""
+"Nedan är en lista över aktiva radioapparater som är anslutna till Wavelog."
 
 #: application/views/radio/index.php:24
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
 msgstr ""
+"Om du inte har anslutit några radioapparater än, se API-sidan för att "
+"generera API-nycklar."
 
 #: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
-msgstr ""
+msgstr "Du kan ta reda på hur du använder %s i wikin."
 
 #: application/views/radio/index.php:26
 msgid "radio functions"
-msgstr ""
+msgstr "radiofunktioner"
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
@@ -12289,21 +12294,23 @@ msgstr "Vänta lite..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr ""
+msgstr "Välj band"
 
 #: application/views/reg1test/index.php:8
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
 msgstr ""
+"Band under 50 MHz är inte giltiga för EDI REG1TEST-formatet och kommer att "
+"producera ogiltiga filer."
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr ""
+msgstr "Exportera en tävling till en REG1TEST EDI-logg"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
-msgstr ""
+msgstr "Skickat utbyte"
 
 #: application/views/reg1test/index.php:50
 msgid ""
@@ -12311,127 +12318,135 @@ msgid ""
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
+"Utbytet som skickades under tävlingen. Kan vara vilken typ av information "
+"som helst, t.ex. provins, DOK, län, stat, effekt, namn. Maxlängd: 6 tecken."
 
 #: application/views/reg1test/index.php:55
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
 msgstr ""
+"Beskriver anropssignalen för radioklubben där operatören/operatörerna är "
+"medlemmar. T.ex. kan användas om poäng samlas till klubben."
 
 #: application/views/reg1test/index.php:66
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "Anropssignal för ansvarig operatör"
 
 #: application/views/reg1test/index.php:72
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
 msgstr ""
+"Lista över alla operatörer. Separeras med ett semikolon ';'. Den ansvariga "
+"operatören behövs inte här."
 
 #: application/views/reg1test/index.php:75
 msgid "Contest Address 1"
-msgstr ""
+msgstr "Tävlingsadress 1"
 
 #: application/views/reg1test/index.php:77
 msgid "Address of the QTH used during the contest."
-msgstr ""
+msgstr "Adress till QTH som användes under tävlingen."
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "Tävling Adress 2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "Operatöradress 1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "Adress till den ansvariga operatören."
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "Operatöradress 2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "Operatöradress Postnummer"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "Operatör Adress Stad"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "Operatör Adress Land"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "Operatörens telefonnummer"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "Beskrivning av sändarutrustning"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
-msgstr ""
+msgstr "Kort beskrivning av den använda utrustningen."
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
-msgstr ""
+msgstr "Sändareffekt under tävlingen i Watt."
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "Mottagningsutrustning beskrivning"
 
 #: application/views/reg1test/index.php:121
 msgid "If you used another gear for RX, then describe it here."
-msgstr ""
+msgstr "Om du använde en annan utrustning för RX, beskriv den här."
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
-msgstr ""
+msgstr "Antennbeskrivning"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
-msgstr ""
+msgstr "Vilken typ av antenn användes."
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "Antennhöjd över marken (m)"
 
 #: application/views/reg1test/index.php:131
 msgid "Height of the antenna above the ground."
-msgstr ""
+msgstr "Höjd på antennen över marken."
 
 #: application/views/reg1test/index.php:134
 msgid "Band multiplicator"
-msgstr ""
+msgstr "Bandmultiplikator"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
 msgstr ""
+"Bandmultiplikator. Detta är vanligtvis 1. Ändra endast detta om det är "
+"nödvändigt enligt tävlingspoängreglerna."
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
-msgstr ""
+msgstr "Några andra kommentarer."
 
 #: application/views/satellite/create.php:23
 msgid "Satellite Display Name"
-msgstr ""
+msgstr "Satellitens visningsnamn"
 
 #: application/views/satellite/create.php:25
 #: application/views/satellite/edit.php:9
 msgid "Display / cleartext name of the satellite"
-msgstr ""
+msgstr "Visa / klartextnamn på satelliten"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:52
 msgid "LoTW Name"
-msgstr ""
+msgstr "LoTW-namn"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
@@ -12439,134 +12454,138 @@ msgid ""
 "Satellite name as accepted by LoTW. Not necessarily the same as the display "
 "name. Can be set/changed later when added to LoTW."
 msgstr ""
+"Satellitnamn som accepteras av LoTW. Inte nödvändigtvis samma som "
+"visningsnamnet. Kan ställas in/ändras senare när det läggs till i LoTW."
 
 #: application/views/satellite/create.php:41
 #: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
-msgstr ""
+msgstr "Ange vilken omloppsbana satelliten har (LEO, MEO, GEO)"
 
 #: application/views/satellite/create.php:44
 msgid "Satellite mode name"
-msgstr ""
+msgstr "Satellitens trafiksätt namn"
 
 #: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
-msgstr ""
+msgstr "Ange satellitens trafiksätt"
 
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
 #: application/views/satellite/satinfo.php:8
 msgid "Uplink mode"
-msgstr ""
+msgstr "Uplink trafiksätt"
 
 #: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
-msgstr ""
+msgstr "Ange modulation som används för upplänk"
 
 #: application/views/satellite/create.php:56
 #: application/views/satellite/edit.php:53
 #: application/views/satellite/satinfo.php:9
 msgid "Uplink frequency"
-msgstr ""
+msgstr "Uplänk-frekvens"
 
 #: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
-msgstr ""
+msgstr "Ange frekvens (i Hz) som används för upplänk"
 
 #: application/views/satellite/create.php:63
 #: application/views/satellite/edit.php:54
 #: application/views/satellite/satinfo.php:10
 msgid "Downlink mode"
-msgstr ""
+msgstr "Nedlänkstrafiksätt"
 
 #: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
-msgstr ""
+msgstr "Ange modulation som används för nedlänk"
 
 #: application/views/satellite/create.php:68
 #: application/views/satellite/edit.php:55
 #: application/views/satellite/satinfo.php:11
 msgid "Downlink frequency"
-msgstr ""
+msgstr "Nedlänksfrekvens"
 
 #: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
-msgstr ""
+msgstr "Ange frekvens (i Hz) som används för nedlänk"
 
 #: application/views/satellite/create.php:73
 #: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
-msgstr ""
+msgstr "Accepterad av LoTW"
 
 #: application/views/satellite/create.php:78
 #: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
-msgstr ""
+msgstr "Ställ in på ja endast om satelliten accepteras av min LoTW"
 
 #: application/views/satellite/edit.php:7
 msgid "Satellite Display Name "
-msgstr ""
+msgstr "Satellitens visningsnamn "
 
 #: application/views/satellite/edit.php:42
 msgid "Save satellite"
-msgstr ""
+msgstr "Spara satellit"
 
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
-msgstr ""
+msgstr "Lägg till satellittrafiksätt"
 
 #: application/views/satellite/flightpath.php:51
 msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
 msgstr ""
+"Inga satelliter med TLE hittades. Uppdatera via CRON eller satellitsidan. Om "
+"du inte har tillgång till detta, fråga din admin!"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
-msgstr ""
+msgstr "Lägg till en satellit"
 
 #: application/views/satellite/index.php:45
 msgid "Sync Satellites from LoTW"
-msgstr ""
+msgstr "Synka satelliter från LoTW"
 
 #: application/views/satellite/index.php:46
 msgid "Update Satellite TLE"
-msgstr ""
+msgstr "Uppdatera satellit TLE"
 
 #: application/views/satellite/index.php:57
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:6
 msgid "Satellite passes"
-msgstr ""
+msgstr "Satellitpassager"
 
 #: application/views/satellite/pass.php:13
 msgid "Your station"
-msgstr ""
+msgstr "Din station"
 
 #: application/views/satellite/pass.php:26
 #: application/views/satellite/pass.php:65
 msgid "Min. Satellite Elevation"
-msgstr ""
+msgstr "Min. satellit elevation"
 
 #: application/views/satellite/pass.php:30
 #: application/views/satellite/pass.php:69
 msgid "Min. Azimuth"
-msgstr ""
+msgstr "Min. azimut"
 
 #: application/views/satellite/pass.php:38
 #: application/views/satellite/pass.php:77
 msgid "Max. Azimuth"
-msgstr ""
+msgstr "Max. Azimut"
 
 #: application/views/satellite/pass.php:54
 msgid "Min. time"
-msgstr ""
+msgstr "Min. tid"
 
 #: application/views/satellite/pass.php:63
 msgid "Sked partner"
-msgstr ""
+msgstr "Sked-partner"
 
 #: application/views/satellite/pass.php:91
 msgid "Load predictions"
