@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-23 12:43+0000\n"
+"POT-Creation-Date: 2025-07-25 06:46+0000\n"
 "PO-Revision-Date: 2025-07-25 00:52+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -3194,25 +3194,21 @@ msgstr "Nenhum indicativo fornecido"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tem de ser numérico"
 
-#: application/models/Logbook_model.php:3953
 #: application/models/Logbook_model.php:3950
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
-#: application/models/Logbook_model.php:3954
 #: application/models/Logbook_model.php:3951
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
-#: application/models/Logbook_model.php:3966
 #: application/models/Logbook_model.php:3963
 msgid "QSO on"
 msgstr "Contacto em"
 
-#: application/models/Logbook_model.php:3966
 #: application/models/Logbook_model.php:3963
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3221,76 +3217,63 @@ msgstr ""
 "Tentou importar um contacto sem nenhum CALL dado. Este contacto não foi "
 "importado. É inválido"
 
-#: application/models/Logbook_model.php:4265
 #: application/models/Logbook_model.php:4262
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4276
 #: application/models/Logbook_model.php:4273
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4337
 #: application/models/Logbook_model.php:4334
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4357
 #: application/models/Logbook_model.php:4354
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4378
 #: application/models/Logbook_model.php:4375
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4670
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4667
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:4731
 #: application/models/Logbook_model.php:4728
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
-#: application/models/Logbook_model.php:4737
 #: application/models/Logbook_model.php:4734
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4742
 #: application/models/Logbook_model.php:4739
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
-#: application/models/Logbook_model.php:4745
 #: application/models/Logbook_model.php:4742
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
-#: application/models/Logbook_model.php:4748
 #: application/models/Logbook_model.php:4745
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
-#: application/models/Logbook_model.php:4751
 #: application/models/Logbook_model.php:4748
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:4754
+#: application/models/Logbook_model.php:4751
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4751
 msgid "unknown"
 msgstr "desconhecido"
 
-#: application/models/Logbook_model.php:5592
+#: application/models/Logbook_model.php:5589
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3301,7 +3284,6 @@ msgstr "desconhecido"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5589
 msgid "Bearing"
 msgstr "Direção"
 
@@ -11211,8 +11193,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” "
-"(sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
+"com” (sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -14089,9 +14071,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
-"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
-"de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
+"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14446,8 +14427,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
-"HamQTH.com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
+"com na secção de registo de contacto."
 
 #: application/views/user/edit.php:381
 msgid ""
