@@ -3841,13 +3841,10 @@ class Logbook_model extends CI_Model {
 		    WHERE station_profile.user_id=? and station_profile.qrzapikey is not null";
 		$query = $this->db->query($sql, array($user_id));
 		$row = $query->row();
-		if (isset($row) && (($row->QSOS ?? 0) == 0)) {	// Abort / Set LASTQSO to future if no QSO is in Log to prevent processing QRZ-Data
+		if (($row->QSOS ?? 0) == 0) {	// Abort / Set LASTQSO to future if no QSO is in Log to prevent processing QRZ-Data
 			return '2999-12-31';
-		}
-		if (isset($row) && (($row->MAXDATE ?? '') != '')) {
-			return $row->MAXDATE;
 		} else {
-			return '1900-01-01';
+			return $row->MAXDATE;	// Maxdate is always set, if there's at least one QSO. either to the real qsl-date or to the coalesce 1900-01-01
 		}
 	}
 
