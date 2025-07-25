@@ -61,7 +61,7 @@ class User_Model extends CI_Model {
 
 		$clean_email = $this->security->xss_clean($email);
 
-		$this->db->where('user_email', $clean_email);
+		$this->db->where('upper(user_email)', strtoupper($clean_email));
 		$r = $this->db->get($this->config->item('auth_table'));
 		return $r;
 	}
@@ -524,6 +524,7 @@ class User_Model extends CI_Model {
 		$userdata = array(
 			'user_id'		 => $u->row()->user_id,
 			'user_name'		 => $u->row()->user_name,
+			'user_email'		 => $u->row()->user_email,
 			'user_type'		 => $u->row()->user_type,
 			'user_callsign'		 => $u->row()->user_callsign,
 			'operator_callsign'	 => ((($this->session->userdata('operator_callsign') ?? '') == '') ? $u->row()->user_callsign : $this->session->userdata('operator_callsign')),
