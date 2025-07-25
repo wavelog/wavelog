@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-25 12:10+0000\n"
-"PO-Revision-Date: 2025-07-25 00:52+0000\n"
+"PO-Revision-Date: 2025-07-25 18:29+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2897,12 +2897,14 @@ msgstr "Återställ lösenord"
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr ""
+"Kunde inte använda detta användarnamn. Vänligen försök med ett annat än "
+"\"%s\"."
 
 #: application/controllers/User.php:1462
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
-msgstr ""
+msgstr "Kunde inte använda denna e-post. Försök med en annan adress än \"%s\"."
 
 #: application/controllers/User.php:1501
 #, php-format
@@ -11984,24 +11986,24 @@ msgstr "Antennens elevation i decimalgrader."
 #: application/views/station_profile/create.php:103
 #: application/views/station_profile/edit.php:141
 msgid "Station County"
-msgstr ""
+msgstr "Station County"
 
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:267
 #: application/views/qso/index.php:559 application/views/user/edit.php:667
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
 msgid "SIG Info"
-msgstr ""
+msgstr "SIG Info"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:618
 #: application/views/qso/index.php:662
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "Obs: Exporteras till tredjepartstjänster."
 
 #: application/views/qso/edit_ajax.php:450
 msgid "Sent Method"
-msgstr ""
+msgstr "Skickat metod"
 
 #: application/views/qso/edit_ajax.php:453
 #: application/views/qso/edit_ajax.php:486 application/views/qso/index.php:639
@@ -12011,7 +12013,7 @@ msgstr "Metod"
 
 #: application/views/qso/edit_ajax.php:463
 msgid "Sent Via"
-msgstr ""
+msgstr "Skickat via"
 
 #: application/views/qso/edit_ajax.php:477
 #: application/views/qso/edit_ajax.php:518
@@ -12019,19 +12021,19 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:593
 #: application/views/qso/edit_ajax.php:620
 msgid "Verified (Match)"
-msgstr ""
+msgstr "Verifierad (Match)"
 
 #: application/views/qso/edit_ajax.php:483
 msgid "Received Method"
-msgstr ""
+msgstr "Mottaget metod"
 
 #: application/views/qso/edit_ajax.php:524 application/views/qso/index.php:659
 msgid "Get the default message for eQSL, for this station."
-msgstr ""
+msgstr "Hämta standardmeddelandet för eQSL, för denna station."
 
 #: application/views/qso/edit_ajax.php:536
 msgid "Note: Not editable. Only displayed here."
-msgstr ""
+msgstr "Obs: Ej redigerbar. Endast visad här."
 
 #: application/views/qso/edit_ajax.php:580
 #: application/views/view_log/partial/log_ajax.php:426
@@ -12039,19 +12041,19 @@ msgstr ""
 #: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:618
 #: src/QSLManager/QSO.php:677
 msgid "Modified"
-msgstr ""
+msgstr "Modifierad"
 
 #: application/views/qso/edit_ajax.php:639
 msgid "Change Station Profile"
-msgstr ""
+msgstr "Ändra stationsprofil"
 
 #: application/views/qso/edit_ajax.php:679
 msgid "Exchange (R)"
-msgstr ""
+msgstr "Utbyte (R)"
 
 #: application/views/qso/edit_ajax.php:684
 msgid "Exchange (S)"
-msgstr ""
+msgstr "Utbyte (S)"
 
 #: application/views/qso/edit_ajax.php:696
 #: application/views/search/search_result_ajax.php:449
@@ -12062,11 +12064,11 @@ msgstr "Radera QSO"
 
 #: application/views/qso/edit_ajax.php:699
 msgid "Save changes"
-msgstr ""
+msgstr "Spara ändringar"
 
 #: application/views/qso/index.php:4
 msgid "TimeOff is less than TimeOn"
-msgstr ""
+msgstr "Tid Av är mindre än Tid På"
 
 #: application/views/qso/index.php:5 application/views/qso/index.php:770
 msgid "Previous Contacts"
@@ -12074,66 +12076,66 @@ msgstr "Föregående QSOn"
 
 #: application/views/qso/index.php:6
 msgid "times worked before"
-msgstr ""
+msgstr "tidigare kontakter"
 
 #: application/views/qso/index.php:7
 msgid "Not worked before"
-msgstr ""
+msgstr "Ingen tidigare kontakt"
 
 #: application/views/qso/index.php:8
 msgid "more"
-msgstr ""
+msgstr "mer"
 
 #: application/views/qso/index.php:9
 msgid "less"
-msgstr ""
+msgstr "mindre"
 
 #: application/views/qso/index.php:10
 msgid "DXCC Summary for "
-msgstr ""
+msgstr "DXCC-sammanfattning för "
 
 #: application/views/qso/index.php:11
 msgid "LoTW User. Last upload was 1 day ago."
-msgstr ""
+msgstr "LoTW-användare. Senaste uppladdningen var för 1 dag sedan."
 
 #: application/views/qso/index.php:12
 #, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr ""
+msgstr "LoTW-användare. Senaste uppladdningen var för %x dagar sedan."
 
 #: application/views/qso/index.php:13
 msgid "Invalid value for antenna elevation:"
-msgstr ""
+msgstr "Ogiltigt värde för antenn elevation:"
 
 #: application/views/qso/index.php:27
 msgid "LIVE"
-msgstr ""
+msgstr "LIVE"
 
 #: application/views/qso/index.php:27
 msgid "POST"
-msgstr ""
+msgstr "INLÄGG"
 
 #: application/views/qso/index.php:40
 #: application/views/statistics/antennaanalytics.php:45
 #: application/views/statistics/antennaanalytics.php:85
 msgid "Sat"
-msgstr ""
+msgstr "Satelit"
 
 #: application/views/qso/index.php:55
 msgid "Add Band/Mode to Favs"
-msgstr ""
+msgstr "Lägg till Band/Trafiksätt till favoriterna"
 
 #: application/views/qso/index.php:76
 msgid "Time on"
-msgstr ""
+msgstr "Tid på"
 
 #: application/views/qso/index.php:88
 msgid "Time off"
-msgstr ""
+msgstr "Tid av"
 
 #: application/views/qso/index.php:131
 msgid "Search DXCluster for latest Spot"
-msgstr ""
+msgstr "Sök DXCluster efter senaste Spot"
 
 #: application/views/qso/index.php:208 application/views/qso/index.php:498
 #: application/views/station_profile/create.php:153
@@ -12141,7 +12143,7 @@ msgstr ""
 #: application/views/user/edit.php:651 application/views/view_log/qso.php:382
 #: application/views/view_log/qso.php:698
 msgid "IOTA Reference"
-msgstr ""
+msgstr "IOTA-referens"
 
 #: application/views/qso/index.php:224 application/views/qso/index.php:515
 #: application/views/station_profile/create.php:171
@@ -12149,7 +12151,7 @@ msgstr ""
 #: application/views/user/edit.php:655 application/views/view_log/qso.php:389
 #: application/views/view_log/qso.php:705
 msgid "SOTA Reference"
-msgstr ""
+msgstr "SOTA-referens"
 
 #: application/views/qso/index.php:334 application/views/view_log/qso.php:101
 msgid "Frequency (RX)"
@@ -12157,7 +12159,7 @@ msgstr "Frekvens (RX)"
 
 #: application/views/qso/index.php:339
 msgid "Band (RX)"
-msgstr ""
+msgstr "Band (RX)"
 
 #: application/views/qso/index.php:517
 msgid "For example: GM/NS-001."
@@ -12185,7 +12187,7 @@ msgstr "Exempel: Q03"
 
 #: application/views/qso/index.php:576
 msgid "E-mail address of QSO-partner"
-msgstr ""
+msgstr "E-postadress till QSO-partner"
 
 #: application/views/qso/index.php:585 application/views/view_log/qso.php:296
 msgid "Satellite Name"
@@ -12197,23 +12199,23 @@ msgstr "Satellite-mode"
 
 #: application/views/qso/index.php:659
 msgid "QSL MSG"
-msgstr ""
+msgstr "QSL MSG"
 
 #: application/views/qso/index.php:678
 msgid "Reset to Default"
-msgstr ""
+msgstr "Återställ till standardinställningar"
 
 #: application/views/qso/index.php:719
 msgid "Winkey"
-msgstr ""
+msgstr "Winkey"
 
 #: application/views/qso/index.php:721
 msgid "Connect"
-msgstr ""
+msgstr "Anslut"
 
 #: application/views/qso/index.php:730
 msgid "Stop"
-msgstr ""
+msgstr "Stopp"
 
 #: application/views/qso/index.php:731
 msgid "Tune"
