@@ -151,12 +151,15 @@ class User extends CI_Controller {
 		$this->load->library('Genfunctions');
 
 		$this->form_validation->set_rules('user_name', 'Username', 'required');
+		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		$this->form_validation->set_rules('user_type', 'Type', 'required');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|callback_check_email');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|valid_email');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
 		$data['user_add'] = true;
@@ -371,6 +374,7 @@ class User extends CI_Controller {
 		$this->load->library('Genfunctions');
 
 		$this->form_validation->set_rules('user_name', 'Username', 'required|xss_clean');
+		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required|xss_clean');
 		if($this->session->userdata('user_type') == 99)
 		{
@@ -380,6 +384,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_lastname', 'Last name', 'required|xss_clean');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|callback_check_email');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|valid_email');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
 		$data['user_form_action'] = site_url('user/edit')."/".$this->uri->segment(3);
@@ -1258,6 +1264,7 @@ class User extends CI_Controller {
 			$this->load->library('form_validation');
 
 			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -1438,6 +1445,24 @@ class User extends CI_Controller {
 			}
 		} else {
 			redirect('user/login');
+		}
+	}
+
+	function check_username($username) {
+		if (($this->session->userdata('user_name') != $username) && ($this->user_model->exists($username) > 0)) {
+			$this->form_validation->set_message('check_username', sprintf(__("Couldn't set account to this username. Please try another one than \"%s\"."), $username));
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+
+	function check_email($mail) {
+		if (($this->session->userdata('user_email') != $mail) && ($this->user_model->exists_by_email($mail) > 0)) {
+			$this->form_validation->set_message('check_email', sprintf(__("Couldn't set account to this email. Please try another address than \"%s\"."), $mail));
+			return FALSE;
+		} else {
+			return TRUE;
 		}
 	}
 

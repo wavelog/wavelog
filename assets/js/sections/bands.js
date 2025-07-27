@@ -229,6 +229,7 @@ function saveBand(id) {
 			'uscounties': $(".uscounties_"+id+" input[type='checkbox']").is(":checked"),
 			'waja': $(".waja_"+id+" input[type='checkbox']").is(":checked"),
 			'wap': $(".wap_"+id+" input[type='checkbox']").is(":checked"),
+			'wapc': $(".wapc_"+id+" input[type='checkbox']").is(":checked"),
 			'was': $(".was_"+id+" input[type='checkbox']").is(":checked"),
 			'wwff': $(".wwff_"+id+" input[type='checkbox']").is(":checked"),
 			'vucc': $(".vucc_"+id+" input[type='checkbox']").is(":checked")
