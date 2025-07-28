@@ -146,7 +146,7 @@ L.Maidenhead = L.LayerGroup.extend({
       var y = lat;
       var precision = d4[map.getZoom()];
       while (x < -180) {x += 360;}
-      while (x > 180) {x -=360;}
+      while (x >= 180) {x -=360;}
       x = x + 180;
       y = y + 90;
       locator = locator + d1[Math.floor(x/20)] + d1[Math.floor(y/10)];
