@@ -192,6 +192,14 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function delete_oqrs_line($id) {
+		$sql = 'update ' . $this->config->item('table_name') . ' set COL_QSL_SENT = "N", COL_QSLSDATE = "", COL_QSL_SENT_VIA = ""
+		where COL_PRIMARY_KEY = (select oqrs.qsoid from oqrs join station_profile on station_profile.station_id = oqrs.station_id where oqrs.id = ? and station_profile.user_id = ?)';
+		$binding = [$id, $this->session->userdata('user_id')];
+
+		$this->db->query($sql, $binding);
+
+		$binding = [];
+
 		$binding = [$id, $this->session->userdata('user_id')];
 
 		$sql = '
