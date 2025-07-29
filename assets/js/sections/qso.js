@@ -331,6 +331,78 @@ $("#reset_start_time").on("click", function () {
 	$("#start_date").val(formatted_date);
 });
 
+function parseUserDate(user_provided_date) {	// creates JS-Date out of user-provided date with user_date_format
+	var parts, day, month, year;
+	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	switch (user_date_format) {
+		case "d/m/y":
+			parts = user_provided_date.split("/");
+			day = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			year = 2000 + parseInt(parts[2], 10);
+			break;
+		case "d/m/Y":
+			parts = user_provided_date.split("/");
+			day = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			year = parseInt(parts[2], 10);
+			break;
+		case "m/d/y":
+			parts = user_provided_date.split("/");
+			month = parseInt(parts[0], 10) - 1;
+			day = parseInt(parts[1], 10);
+			year = 2000 + parseInt(parts[2], 10);
+			break;
+		case "m/d/Y":
+			parts = user_provided_date.split("/");
+			month = parseInt(parts[0], 10) - 1;
+			day = parseInt(parts[1], 10);
+			year = parseInt(parts[2], 10);
+			break;
+		case "d.m.Y":
+			parts = user_provided_date.split(".");
+			day = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			year = parseInt(parts[2], 10);
+			break;
+		case "y/m/d":
+			parts = user_provided_date.split("/");
+			year = 2000 + parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			day = parseInt(parts[2], 10);
+			break;
+		case "Y-m-d":
+			parts = user_provided_date.split("-");
+			year = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			day = parseInt(parts[2], 10);
+			break;
+		case "M d, Y":
+			// Example: Jul 28, 2025
+			parts = user_provided_date.replace(',', '').split(' ');
+			month = monthNames.indexOf(parts[0]);
+			if (month === -1) return null;
+			day = parseInt(parts[1], 10);
+			year = parseInt(parts[2], 10);
+			break;
+		case "M d, y":
+			// Example: Jul 28, 25
+			parts = user_provided_date.replace(',', '').split(' ');
+			month = monthNames.indexOf(parts[0]);
+			if (month === -1) return null;
+			day = parseInt(parts[1], 10);
+			year = 2000 + parseInt(parts[2], 10);
+			break;
+		default: // fallback "d-m-Y"
+			parts = user_provided_date.split("-");
+			day = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			year = parseInt(parts[2], 10);
+	}
+	if (isNaN(day) || day < 1 || day > 31 || isNaN(month) || month < 0 || month > 11 || isNaN(year)) return null; 
+	return new Date(year, month, day);
+}
+
 // Event listener for resetting end time
 $("#reset_end_time").on("click", function () {
 	var now = new Date();
@@ -495,11 +567,11 @@ function start_az_ele_ticker(tle) {
 	};
 
 	function updateAzEl() {
-		let dateParts=$('#start_date').val().split("-");
+		let dateParts=parseUserDate($('#start_date').val());
 		let timeParts=$("#start_time").val().split(":");
 		try {
 			var time = new Date(Date.UTC(
-				parseInt(dateParts[2]),parseInt(dateParts[1])-1,parseInt(dateParts[0]),
+				dateParts.getFullYear(),dateParts.getMonth(),dateParts.getDate(),
 				parseInt(timeParts[0]),parseInt(timeParts[1]),(parseInt(timeParts[2] ?? 0))
 			));
 			if (isNaN(time.getTime())) {
