@@ -244,6 +244,11 @@ class Oqrs extends CI_Controller {
 				$this->load->library('email');
 
 				if($this->optionslib->get_option('emailProtocol') == "smtp") {
+					if ($this->optionslib->get_option('smtpHost') == '') {
+						log_message('error', 'OQRS request email message failed. Email settings are not configured properly.');
+						return;
+					}
+
 					$config = Array(
 						'protocol' => $this->optionslib->get_option('emailProtocol'),
 						'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
