@@ -634,6 +634,44 @@ $(document).ready(function () {
 		});
 	});
 
+	$('#addOqrsToQueue').click(function (event) {
+		var elements = $('.oqrstable tbody input:checked');
+		var nElements = elements.length;
+		if (nElements == 0) {
+			return;
+		}
+
+		$('#addOqrsToQueue').prop("disabled", true);
+
+		var table = $('.oqrstable').DataTable();
+
+		BootstrapDialog.confirm({
+			title: 'WARNING',
+			message: 'Warning! Are you sure you want to add marked OQRS request(s) to the QSL queue?' ,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-warning',
+			callback: function(result) {
+				if(result) {
+					elements.each(function() {
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
+						$.ajax({
+							url: base_url + 'index.php/oqrs/add_oqrs_to_print_queue',
+							type: 'post',
+							data: {'id': id
+							},
+							success: function(data) {
+								$('#searchForm').submit();
+							}
+						});
+					})
+				}
+				$('#addOqrsToQueue').prop("disabled", false);
+			}
+		});
+	});
+
 
 	$('#checkBoxAll').change(function (event) {
 		if (this.checked) {

@@ -299,6 +299,16 @@ class Oqrs_model extends CI_Model {
 		return 0;
 	}
 
+	function add_oqrs_to_print_queue($id) {
+		$sql = 'SELECT * FROM oqrs join station_profile on oqrs.station_id = station_profile.station_id WHERE oqrs.id = ? AND station_profile.user_id = ?';
+		$binding = [$id, $this->session->userdata('user_id')];
+		$query = $this->db->query($sql, $binding);
+
+		if ($query->num_rows() > 0) {
+			$this->paperqsl_requested($query->row()->qsoid, $query->row()->qslroute);
+		}
+	}
+
 	// Set Paper to requested
 	function paperqsl_requested($qso_id, $method) {
 		$data = array(

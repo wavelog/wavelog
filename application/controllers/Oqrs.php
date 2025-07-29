@@ -281,6 +281,13 @@ class Oqrs extends CI_Controller {
 		}
 	}
 
+	public function add_oqrs_to_print_queue() {
+		$this->load->model('oqrs_model');
+		$id = $this->input->post('id', TRUE);
+
+		$this->oqrs_model->add_oqrs_to_print_queue($id);
+	}
+
 	public function mark_oqrs_line_as_done() {
 		$this->load->model('oqrs_model');
 		$id = $this->input->post('id', TRUE);

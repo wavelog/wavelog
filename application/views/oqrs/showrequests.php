@@ -53,7 +53,7 @@ function echo_qsl_method($method) {
 					<option value="1"><?= __("Not in log request"); ?></option>
 					<option value="2"><?= __("Done / sent"); ?></option>
 					<option value="3"><?= __("Pending"); ?></option>
-					<option value="4"><?= __("Request"); ?></option>
+					<option value="4"><?= __("Rejected"); ?></option>
 				</select>
 			</div>
 			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
@@ -71,7 +71,7 @@ function echo_qsl_method($method) {
 				<button type="submit" class="btn btn-sm btn-primary" id="searchButton"><?= __("Search"); ?></button>
 				<button type="reset" class="btn btn-sm btn-danger" id="resetButton"><?= __("Reset"); ?></button>
 				<span class="h6"><?= __("With selected"); ?>:</span>
-				<button type="button" class="btn btn-sm btn-success" id="markOqrs"><?= __("Set as open"); ?></button>
+				<button type="button" class="btn btn-sm btn-success" id="addOqrsToQueue"><?= __("Add to queue"); ?></button>
 				<button type="button" class="btn btn-sm btn-success" id="markOqrs"><?= __("Mark as done"); ?></button>
 				<button type="button" class="btn btn-sm btn-warning" id="rejectOqrs"><?= __("Reject"); ?></button>
 				<button type="button" class="btn btn-sm btn-danger" id="deleteOqrs"><?= __("Delete"); ?></button>
