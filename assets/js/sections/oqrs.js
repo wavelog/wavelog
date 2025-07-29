@@ -549,9 +549,9 @@ $(document).ready(function () {
 								table.row(row).remove().draw(false);
 							}
 						});
-						$('#deleteOqrs').prop("disabled", false);
 					})
 				}
+				$('#deleteOqrs').prop("disabled", false);
 			}
 		});
 	});

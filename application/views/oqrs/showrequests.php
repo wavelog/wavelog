@@ -30,7 +30,7 @@ function echo_qsl_method($method) {
 	<form id="searchForm" name="searchForm" action="<?php echo base_url()."index.php/oqrs/search";?>" method="post">
 		<div class="row">
 			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
-				<label class="form-label" for="de"><?= __("De"); ?></label>
+				<label class="form-label" for="de"><?= __("Location"); ?></label>
 				<select id="de" name="de" class="form-select form-select-sm">
 					<option value=""><?= __("All"); ?></option>
 					<?php
@@ -41,7 +41,7 @@ function echo_qsl_method($method) {
 				</select>
 			</div>
 			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
-				<label class="form-label" for="dx"><?= __("Dx"); ?></label>
+				<label class="form-label" for="dx"><?= __("Request callsign"); ?></label>
 				<input type="text" name="dx" id="dx" class="form-control form-control-sm" value="">
 			</div>
 
@@ -71,6 +71,7 @@ function echo_qsl_method($method) {
 				<button type="submit" class="btn btn-sm btn-primary" id="searchButton"><?= __("Search"); ?></button>
 				<button type="reset" class="btn btn-sm btn-danger" id="resetButton"><?= __("Reset"); ?></button>
 				<span class="h6"><?= __("With selected"); ?>:</span>
+				<button type="button" class="btn btn-sm btn-success" id="markOqrs"><?= __("Set as open"); ?></button>
 				<button type="button" class="btn btn-sm btn-success" id="markOqrs"><?= __("Mark as done"); ?></button>
 				<button type="button" class="btn btn-sm btn-warning" id="rejectOqrs"><?= __("Reject"); ?></button>
 				<button type="button" class="btn btn-sm btn-danger" id="deleteOqrs"><?= __("Delete"); ?></button>
