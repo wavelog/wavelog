@@ -214,6 +214,28 @@ class Oqrs_model extends CI_Model {
 		return true;
 	}
 
+	function reject_oqrs_line($id) {
+		$sql = 'update ' . $this->config->item('table_name') . ' set COL_QSL_SENT = "N", COL_QSLSDATE = "", COL_QSL_SENT_VIA = ""
+		where COL_PRIMARY_KEY = (select oqrs.qsoid from oqrs join station_profile on station_profile.station_id = oqrs.station_id where oqrs.id = ? and station_profile.user_id = ?)';
+		$binding = [$id, $this->session->userdata('user_id')];
+
+		$this->db->query($sql, $binding);
+
+		$binding = [];
+
+		$binding = [$id, $this->session->userdata('user_id')];
+
+		$sql = 'UPDATE oqrs
+			JOIN station_profile ON station_profile.station_id = oqrs.station_id
+			SET oqrs.status = 4
+			WHERE oqrs.id = ?
+			AND station_profile.user_id = ?';
+
+		$query = $this->db->query($sql, $binding);
+
+		return true;
+	}
+
 	// Status:
 	// 0 = open request
 	// 1 = not in log request

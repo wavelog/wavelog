@@ -457,6 +457,8 @@ function echo_status(status) {
 		case '0': return 'Open request'; break;
 		case '1': return 'Not in log request'; break;
 		case '2': return 'Request done'; break;
+		case '3': return 'Request pending'; break;
+		case '4': return 'Request rejected'; break;
         default: return '';
 	}
 }
@@ -556,6 +558,44 @@ $(document).ready(function () {
 		});
 	});
 
+	$('#rejectOqrs').click(function (event) {
+		var elements = $('.oqrstable tbody input:checked');
+		var nElements = elements.length;
+		if (nElements == 0) {
+			return;
+		}
+
+		$('#rejectOqrs').prop("disabled", true);
+
+		var table = $('.oqrstable').DataTable();
+
+		BootstrapDialog.confirm({
+			title: 'WARNING',
+			message: 'Warning! Are you sure you want to reject the marked OQRS request(s)?' ,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-warning',
+			callback: function(result) {
+				if(result) {
+					elements.each(function() {
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
+						$.ajax({
+							url: base_url + 'index.php/oqrs/reject_oqrs_line',
+							type: 'post',
+							data: {'id': id
+							},
+							success: function(data) {
+								$('#searchForm').submit();
+							}
+						});
+					})
+					$('#rejectOqrs').prop("disabled", false);
+				}
+			}
+		});
+	});
+
 	$('#markOqrs').click(function (event) {
 		var elements = $('.oqrstable tbody input:checked');
 		var nElements = elements.length;
@@ -587,9 +627,9 @@ $(document).ready(function () {
 								$('#searchForm').submit();
 							}
 						});
-						$('#markOqrs').prop("disabled", false);
 					})
 				}
+				$('#markOqrs').prop("disabled", false);
 			}
 		});
 	});

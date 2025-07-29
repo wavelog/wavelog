@@ -202,6 +202,12 @@ class Oqrs extends CI_Controller {
 		$this->oqrs_model->delete_oqrs_line($id);
 	}
 
+	public function reject_oqrs_line() {
+		$id = $this->input->post('id', TRUE);
+		$this->load->model('oqrs_model');
+		$this->oqrs_model->reject_oqrs_line($id);
+	}
+
 	public function search_log() {
 		$this->load->model('oqrs_model');
 		$callsign = $this->input->post('callsign', TRUE);
