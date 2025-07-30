@@ -331,4 +331,8 @@ class Oqrs extends CI_Controller {
 		print json_encode($qsos);
 	}
 
+	public function status_info() {
+		$this->load->view('oqrs/status_info');
+	}
+
 }

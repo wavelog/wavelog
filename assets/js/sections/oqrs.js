@@ -558,6 +558,28 @@ $(document).ready(function () {
 		});
 	});
 
+	$('.statusinfo').click(function (event) {
+		$.ajax({
+        url: base_url + 'index.php/oqrs/status_info',
+        type: 'post',
+        success: function(html) {
+            BootstrapDialog.show({
+                title: lang_oqrs_status_message,
+                size: BootstrapDialog.SIZE_NORMAL,
+                cssClass: 'qso-dialog',
+                nl2br: false,
+                message: html,
+                buttons: [{
+                    label: lang_admin_close,
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+        }
+    });
+	});
+
 	$('#rejectOqrs').click(function (event) {
 		var elements = $('.oqrstable tbody input:checked');
 		var nElements = elements.length;

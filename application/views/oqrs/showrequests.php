@@ -12,6 +12,7 @@
 	let lang_oqrs_warning_reject = '<?= __("Warning! Are you sure you want to reject the marked OQRS request(s)?"); ?>';
 	let lang_oqrs_warning_mark = '<?= __("Warning! Are you sure you want to mark the marked OQRS request(s)?"); ?>';
 	let lang_oqrs_warning_add_to_queue = '<?= __("Warning! Are you sure you want to add the marked OQRS request(s) to the queue?"); ?>';
+	let lang_oqrs_status_message = '<?= __("OQRS Status Information"); ?>';
 </script>
 
 <div class="container-fluid oqrs pt-3 ps-4 pe-4">
@@ -25,7 +26,7 @@
 <div class="row">
 	<form id="searchForm" name="searchForm" action="<?php echo base_url()."index.php/oqrs/search";?>" method="post">
 		<div class="row">
-			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
+			<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
 				<label class="form-label" for="de"><?= __("Location"); ?></label>
 				<select id="de" name="de" class="form-select form-select-sm">
 					<option value=""><?= __("All"); ?></option>
@@ -36,13 +37,13 @@
 					?>
 				</select>
 			</div>
-			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
+			<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
 				<label class="form-label" for="dx"><?= __("Request callsign"); ?></label>
 				<input type="text" name="dx" id="dx" class="form-control form-control-sm" value="">
 			</div>
 
-			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
-				<label for="status"><?= __("OQRS Status"); ?></label>
+			<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
+				<label for="status"><?= __("OQRS Status"); ?> <i class="statusinfo far fa-question-circle" aria-hidden="true"></i></label>
 				<select id="status" name="status" class="form-select form-select-sm">
 					<option value=""><?= __("All"); ?></option>
 					<option value="0"><?= __("Open request"); ?></option>
@@ -52,7 +53,7 @@
 					<option value="4"><?= __("Rejected"); ?></option>
 				</select>
 			</div>
-			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
+			<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
 				<label for="oqrsResults"><?= __("# Results"); ?></label>
 				<select id="oqrsResults" name="oqrsResults" class="form-select form-select-sm">
 					<option value="50">50</option>
