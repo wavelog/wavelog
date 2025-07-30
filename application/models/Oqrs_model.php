@@ -142,12 +142,14 @@ class Oqrs_model extends CI_Model {
 				'status' 			=> '0',
 			);
 
-			$qsoid = $this->check_oqrs($data);
+			if ($this->get_auto_queue_option($postdata['station_id']) == 'on') {
+				$qsoid = $this->check_oqrs($data);
 
-			if ($qsoid > 0) {
-				$data['status'] = '2';
+				if ($qsoid > 0) {
+					$data['status'] = '2';
+				}
+				$data['qsoid'] = $qsoid;
 			}
-			$data['qsoid'] = $qsoid;
 
 			$this->db->insert('oqrs', $data);
 			if(!in_array($postdata['station_id'], $station_ids)){
@@ -175,12 +177,14 @@ class Oqrs_model extends CI_Model {
 				'status' 			=> '0',
 			);
 
-			$qsoid = $this->check_oqrs($data);
+			if ($this->get_auto_queue_option($qso[4]) == 'on') {
+				$qsoid = $this->check_oqrs($data);
 
-			if ($qsoid > 0) {
-				$data['status'] = '2';
+				if ($qsoid > 0) {
+					$data['status'] = '2';
+				}
+				$data['qsoid'] = $qsoid;
 			}
-			$data['qsoid'] = $qsoid;
 
 			$this->db->insert('oqrs', $data);
 
@@ -263,8 +267,19 @@ class Oqrs_model extends CI_Model {
 		}
 	}
 
-	function check_oqrs($qsodata) {
+	function get_auto_queue_option($station_id) {
+		$this->load->model('stations');
+		$user = $this->stations->get_user_from_station($station_id);
 
+		$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_auto_matching','option_key'=>'boolean'), $user->user_id)->result();
+		if (count($qkey_opt) > 0) {
+			return $qkey_opt[0]->option_value;
+		}
+
+		return 'on';
+	}
+
+	function check_oqrs($qsodata) {
 		$binding = [];
 
 		$sql = 'select * from ' . $this->config->item('table_name') .
@@ -334,7 +349,6 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function search_log_time_date($time, $date, $band, $mode) {
-
 		$binding = [];
 
 		$sql = 'select * from ' . $this->config->item('table_name') . ' thcv
