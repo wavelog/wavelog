@@ -11,20 +11,21 @@
 # remy56k <remy@bubocode.fr>, 2025.
 # André Aubin <andre@andral.xyz>, 2025.
 # KARIM MALFI <karim.malfi@sfr.fr>, 2025.
+# Stephane Tauziede <contact@f4izc.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-26 07:21+0000\n"
-"PO-Revision-Date: 2025-05-26 12:50+0000\n"
-"Last-Translator: KARIM MALFI <karim.malfi@sfr.fr>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"PO-Revision-Date: 2025-07-31 03:15+0000\n"
+"Last-Translator: Stephane Tauziede <contact@f4izc.com>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -399,7 +400,7 @@ msgstr " et bande "
 
 #: application/controllers/Awards.php:537
 msgid " and satellite "
-msgstr ""
+msgstr " et satellite "
 
 #: application/controllers/Awards.php:540
 #: application/controllers/Callstats.php:107
@@ -582,7 +583,7 @@ msgstr "WAE"
 #: application/controllers/Awards.php:2207
 #: application/views/interface_assets/header.php:198
 msgid "73 on 73"
-msgstr ""
+msgstr "73 sur 73"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:316
@@ -1012,7 +1013,7 @@ msgstr "eQSL : Téléchargement des cartes/images"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
-msgstr ""
+msgstr "Confirmations"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:148
@@ -2244,7 +2245,7 @@ msgstr "Export EDI"
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
 msgid "Satellites"
-msgstr ""
+msgstr "Satellites"
 
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
@@ -2273,23 +2274,23 @@ msgstr ""
 
 #: application/controllers/Satellite.php:329
 msgid "No settings found!"
-msgstr ""
+msgstr "Aucuns réglages trouvés !"
 
 #: application/controllers/Satellite.php:343
 msgid "Failed to delete pass settings!"
-msgstr ""
+msgstr "Echec de suppression des paramètres du passage !"
 
 #: application/controllers/Satellite.php:345
 msgid "Pass settings deleted!"
-msgstr ""
+msgstr "Paramètres du passage supprimés !"
 
 #: application/controllers/Satellite.php:355
 msgid "Saved Pass Settings"
-msgstr ""
+msgstr "Réglages du passage enregistrés"
 
 #: application/controllers/Satellite.php:372
 msgid "No presets available"
-msgstr ""
+msgstr "Aucun préréglage disponible"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
@@ -2400,7 +2401,7 @@ msgstr "Emplacement de la station en double :"
 #: application/controllers/User.php:1229 application/controllers/User.php:1479
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "Merci de vérifier le grid locator (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:421
@@ -2580,7 +2581,7 @@ msgstr "Analyse d'antenne"
 
 #: application/controllers/Statistics.php:338
 msgid "Satellite QSOs"
-msgstr ""
+msgstr "Satellite QSOs"
 
 #: application/controllers/Statistics.php:354
 #: application/views/interface_assets/header.php:170
@@ -8823,10 +8824,14 @@ msgid ""
 "There are no QSOs whose eQSL card images have not yet been downloaded. Go "
 "log some more QSOs!"
 msgstr ""
+"Il n'y a pas de QSO pour lesquels une image de carte eQSL na pas encore été "
+"téléchargée. Faites de nouveaux QSO !"
 
 #: application/views/eqsl/export.php:31
 msgid "Below is a table of QSOs that have not yet been sent to eQSL."
 msgstr ""
+"Ci-dessous voici le tableau des QSOs qui n'ont pas encore été envoyés sur "
+"eQSL."
 
 #: application/views/eqsl/export.php:33
 msgid ""
@@ -8837,20 +8842,24 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
+"Cliquer sur 'Téléverser les QSOs' enverra les informations de QSO vers "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
-msgstr ""
+msgstr "Les QSOs suivant ont été envoyés à eQSL."
 
 #: application/views/eqsl/export.php:51
 msgid ""
 "There are no QSOs that need to be sent to eQSL at this time. Go log some "
 "more QSOs!"
 msgstr ""
+"Il n'y a pas de QSOs nécessitant d'être envoyés a eQSL pour le moment. Allez "
+"faire davantage de QSOs !"
 
 #: application/views/eqsl/import.php:28
 msgid "The next automatic sync with eQSL will happen at: "
-msgstr ""
+msgstr "La prochaine synchronisation automatique avec eQSL sera réalisée à : "
 
 #: application/views/eqsl/import.php:31
 msgid "Import from file..."
@@ -8858,7 +8867,7 @@ msgstr "Importer depuis un fichier..."
 
 #: application/views/eqsl/import.php:34
 msgid "Download Inbox"
-msgstr ""
+msgstr "Télécharger la Boite de Réception"
 
 #: application/views/eqsl/import.php:34
 #, php-format
@@ -8879,17 +8888,20 @@ msgstr "Les fichiers de log doivent être au format .adi"
 
 #: application/views/eqsl/import.php:53
 msgid "Import directly from eQSL"
-msgstr ""
+msgstr "Importer directement depuis eQSL"
 
 #: application/views/eqsl/tools.php:27
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
 msgstr ""
+"Ceci ne téléversera AUCUN QSO. Cela marquera juste les QSO comment envoyés. "
+"Si vous utiliser ce bouton vous devrez les téléverser manuellement sur le "
+"site web de eQSL.cc."
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
-msgstr ""
+msgstr "Marquer tous les QSO comme Envoyés à eQSL"
 
 #: application/views/eqsl/tools.php:29
 msgid ""
@@ -8902,13 +8914,13 @@ msgstr ""
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr ""
+msgstr "Vous utilisez %s d'espace disque pour stocker les Cartes eQSL"
 
 #: application/views/eqslcard/index.php:35
 #: application/views/qslcard/index.php:44
 #: application/views/qslcard/index.php:120
 msgid "QSL Date"
-msgstr ""
+msgstr "Date de la QSL"
 
 #: application/views/eqslcard/index.php:64
 #: application/views/interface_assets/footer.php:2779
@@ -8926,6 +8938,8 @@ msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
 msgstr ""
+"Il est impossible de filtrer uniquement les passages exploitable sans clé "
+"privée de flux. Merci de paramétrer la clé de flux dans %s."
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
@@ -8941,22 +8955,27 @@ msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "HRDLog logbook."
 msgstr ""
+"Ici vous pouvez voir tous les QSOs qui n'ont pas été envoyés vers un carnet "
+"HRDLog précédemment."
 
 #: application/views/hrdlog/export.php:23
 msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
 msgstr ""
+"Vous devez paramétrer une clé d'API HDRLog dans le profile de votre station. "
+"Seules les profiles de station contenant une clé d'API sont affichés."
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "Le Code peut être demandé à %s"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
 msgstr ""
+"Cela peut prendre un moment car les QSO sont envoyés de manière séquentielle."
 
 #: application/views/hrdlog/export.php:60
 msgid ""
