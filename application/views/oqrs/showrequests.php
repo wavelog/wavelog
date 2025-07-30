@@ -1,23 +1,19 @@
-<?php
+<script type="text/javascript">
+	let lang_oqrs_status_open_request = '<?= __("Open request"); ?>';
+	let lang_oqrs_status_not_in_log_request = '<?= __("Not in log request"); ?>';
+	let lang_oqrs_status_request_done = '<?= __("Request done"); ?>';
+	let lang_oqrs_status_pending_requests = '<?= __("Pending requests"); ?>';
+	let lang_oqrs_status_request_rejected = '<?= __("Request rejected"); ?>';
+	let lang_oqrs_qsl_method_bureau = '<?= __("Bureau"); ?>';
+	let lang_oqrs_qsl_method_direct = '<?= __("Direct"); ?>';
+	let lang_oqrs_qsl_method_electronic = '<?= __("Electronic"); ?>';
+	let lang_oqrs_error_request = '<?= __("An error ocurred while making the request"); ?>';
+	let lang_oqrs_warning_delete = '<?= __("Warning! Are you sure you want to delete the marked OQRS request(s)?"); ?>';
+	let lang_oqrs_warning_reject = '<?= __("Warning! Are you sure you want to reject the marked OQRS request(s)?"); ?>';
+	let lang_oqrs_warning_mark = '<?= __("Warning! Are you sure you want to mark the marked OQRS request(s)?"); ?>';
+	let lang_oqrs_warning_add_to_queue = '<?= __("Warning! Are you sure you want to add the marked OQRS request(s) to the queue?"); ?>';
+</script>
 
-function echo_status($status) {
-	switch($status) {
-		case '0': echo __("Open request"); break;
-		case '1': echo __("Not in log request"); break;
-		case '2': echo __("Request done"); break;
-		case '3': echo __("Pending requests"); break;
-		case '4': echo __("Request rejected"); break;
-	}
-}
-function echo_qsl_method($method) {
-	switch(strtoupper($method)) {
-		case 'B': echo __("Bureau"); break;
-		case 'D': echo __("Direct"); break;
-		case 'E': echo __("Electronic"); break;
-	}
-}
-
-?>
 <div class="container-fluid oqrs pt-3 ps-4 pe-4">
 	<h2><?php echo $page_title; ?></h2>
 	<?php if ($this->session->flashdata('message')) { ?>

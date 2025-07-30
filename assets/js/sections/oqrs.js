@@ -454,19 +454,19 @@ function loadOqrsTable(rows) {
 
 function echo_status(status) {
 	switch(status.toUpperCase()) {
-		case '0': return 'Open request'; break;
-		case '1': return 'Not in log request'; break;
-		case '2': return 'Request done'; break;
-		case '3': return 'Request pending'; break;
-		case '4': return 'Request rejected'; break;
+		case '0': return lang_oqrs_status_open_request; break;
+		case '1': return lang_oqrs_status_not_in_log_request; break;
+		case '2': return lang_oqrs_status_request_done; break;
+		case '3': return lang_oqrs_status_pending_requests; break;
+		case '4': return lang_oqrs_status_request_rejected; break;
         default: return '';
 	}
 }
 function echo_qsl_method(method) {
 	switch(method.toUpperCase()) {
-		case 'B': return 'Bureau'; break;
-		case 'D': return 'Direct'; break;
-		case 'E': return 'Electronic'; break;
+		case 'B': return lang_oqrs_qsl_method_bureau; break;
+		case 'D': return lang_oqrs_qsl_method_direct; break;
+		case 'E': return lang_oqrs_qsl_method_electronic; break;
         default: return '';
 	}
 }
@@ -499,7 +499,7 @@ $(document).ready(function () {
 				$('#searchButton').prop("disabled", false);
 				BootstrapDialog.alert({
 					title: 'ERROR',
-					message: 'An error ocurred while making the request',
+					message: lang_oqrs_error_request,
 					type: BootstrapDialog.TYPE_DANGER,
 					closable: false,
 					draggable: false,
@@ -532,7 +532,7 @@ $(document).ready(function () {
 
 		BootstrapDialog.confirm({
 			title: 'DANGER',
-			message: 'Warning! Are you sure you want to delete the marked OQRS request(s)?' ,
+			message: lang_oqrs_warning_delete,
 			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
@@ -571,7 +571,7 @@ $(document).ready(function () {
 
 		BootstrapDialog.confirm({
 			title: 'WARNING',
-			message: 'Warning! Are you sure you want to reject the marked OQRS request(s)?' ,
+			message: lang_oqrs_warning_reject,
 			type: BootstrapDialog.TYPE_WARNING,
 			closable: true,
 			draggable: true,
@@ -609,7 +609,7 @@ $(document).ready(function () {
 
 		BootstrapDialog.confirm({
 			title: 'DANGER',
-			message: 'Warning! Are you sure you want to mark OQRS request(s) as done?' ,
+			message: lang_oqrs_warning_mark,
 			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
@@ -647,7 +647,7 @@ $(document).ready(function () {
 
 		BootstrapDialog.confirm({
 			title: 'WARNING',
-			message: 'Warning! Are you sure you want to add marked OQRS request(s) to the QSL queue?' ,
+			message: lang_oqrs_warning_add_to_queue,
 			type: BootstrapDialog.TYPE_WARNING,
 			closable: true,
 			draggable: true,
