@@ -708,6 +708,15 @@
 												</select>
 												<small id="oqrs_grouped_search_show_station_name_help" class="form-text text-muted"><?= __("If grouped search is ON, you can decide if the name of the station location shall be shown in the results table."); ?></small>
 											</div>
+
+											<div class="mb-3">
+												<label for="oqrs_auto_matching"><?= __("Automatic OQRS matching"); ?></label>
+												<select name="oqrs_auto_matching" class="form-select" id="oqrs_auto_matching">
+													<option value="off" <?php if(($oqrs_auto_matching ?? 'on') == "off") { echo "selected=\"selected\""; } ?>><?= __("Off"); ?></option>
+													<option value="on" <?php if(($oqrs_auto_matching ?? 'on') == "on") { echo "selected=\"selected\""; } ?>><?= __("On"); ?></option>
+												</select>
+												<small id="oqrs_auto_matching_help" class="form-text text-muted"><?= __("If this is on, automatic OQRS matching will happen, and the system will try to match incoming requests with existing logs automatically."); ?></small>
+											</div>
 										</div>
 									</div>
 							</div>
