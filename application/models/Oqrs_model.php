@@ -151,7 +151,22 @@ class Oqrs_model extends CI_Model {
 				$data['qsoid'] = $qsoid;
 			}
 
-			$this->db->insert('oqrs', $data);
+			// Check if this entry already exists in the oqrs table on the same date
+			$this->db->from('oqrs');
+			$this->db->where([
+				'date' => $data['date'],
+				'band' => $data['band'],
+				'mode' => $data['mode'],
+				'requestcallsign' => $data['requestcallsign'],
+				'station_id' => $data['station_id']
+			]);
+
+			$exists = $this->db->get()->num_rows() > 0;
+
+			if (!$exists) {
+				$this->db->insert('oqrs', $data);
+			}
+
 			if(!in_array($postdata['station_id'], $station_ids)){
 				array_push($station_ids, $postdata['station_id']);
 			}
@@ -163,7 +178,7 @@ class Oqrs_model extends CI_Model {
 	function save_oqrs_request_grouped($postdata) {
 		$station_ids = array();
 		$qsos = $postdata['qsos'];
-		foreach($qsos as $qso) {
+		foreach ($qsos as $qso) {
 			$data = array(
 				'date' 				=> $qso[0],
 				'time'	 			=> $qso[1],
@@ -186,12 +201,27 @@ class Oqrs_model extends CI_Model {
 				$data['qsoid'] = $qsoid;
 			}
 
-			$this->db->insert('oqrs', $data);
+			// Check if this entry already exists in the oqrs table on the same date
+			$this->db->from('oqrs');
+			$this->db->where([
+				'date' => $data['date'],
+				'band' => $data['band'],
+				'mode' => $data['mode'],
+				'requestcallsign' => $data['requestcallsign'],
+				'station_id' => $data['station_id']
+			]);
 
-			if(!in_array($qso[4], $station_ids)){
+			$exists = $this->db->get()->num_rows() > 0;
+
+			if (!$exists) {
+				$this->db->insert('oqrs', $data);
+			}
+
+			if (!in_array($qso[4], $station_ids)){
 				array_push($station_ids, $qso[4]);
 			}
 		}
+
 		return $station_ids;
 	}
 
