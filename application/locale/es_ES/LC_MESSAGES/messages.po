@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-31 16:27+0000\n"
-"PO-Revision-Date: 2025-06-28 13:07+0000\n"
+"POT-Creation-Date: 2025-07-26 07:21+0000\n"
+"PO-Revision-Date: 2025-07-29 17:14+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/es/>\n"
@@ -357,7 +357,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:252
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Premios - WAPC"
 
 #: application/controllers/Awards.php:331
 msgid "Awards - WAJA"
@@ -397,7 +397,7 @@ msgstr " y banda "
 
 #: application/controllers/Awards.php:537
 msgid " and satellite "
-msgstr ""
+msgstr " y satélite "
 
 #: application/controllers/Awards.php:540
 #: application/controllers/Callstats.php:107
@@ -1010,7 +1010,7 @@ msgstr "Descargar Imagen de Tarjeta eQSL"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
-msgstr ""
+msgstr "Confirmaciones"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:148
@@ -2258,7 +2258,7 @@ msgstr "Trayectoria de vuelo del satélite"
 
 #: application/controllers/Satellite.php:256
 msgid "Satellite pass"
-msgstr ""
+msgstr "Paso de satélite"
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
@@ -2917,12 +2917,16 @@ msgstr "Restablecer Contraseña"
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr ""
+"No se pudo establecer la cuenta con este nombre de usuario. Por favor, "
+"intenta con otro diferente a \"%s\"."
 
 #: application/controllers/User.php:1462
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr ""
+"No se pudo configurar la cuenta con este correo electrónico. Por favor, "
+"intenta con otra dirección que no sea \"%s\"."
 
 #: application/controllers/User.php:1501
 #, php-format
@@ -6230,7 +6234,7 @@ msgstr "Provincia"
 
 #: application/views/awards/wapc/index.php:7
 msgid "WAPC - Worked All Provinces of China"
-msgstr ""
+msgstr "WAPC - Trabajadas Todas las Provincias de China"
 
 #: application/views/awards/wapc/index.php:8
 msgid ""
@@ -6239,16 +6243,23 @@ msgid ""
 "municipalities, autonomous regions, and special administrative regions of "
 "China, fostering a deeper understanding of China."
 msgstr ""
+"El premio WAPC, emitido por el Mulan DX Club, tiene como objetivo promover "
+"la comunicación entre operadores de radioaficionados de todo el mundo y "
+"operadores en todas las provincias, municipios, regiones autónomas y "
+"regiones administrativas especiales de China, fomentando un entendimiento "
+"más profundo de China."
 
 #: application/views/awards/wapc/index.php:9
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
 msgstr ""
+"El premio se puede obtener mediante la acumulación a largo plazo de "
+"contactos o lograrse en un solo esfuerzo durante el concurso anual WAPC."
 
 #: application/views/awards/wapc/index.php:118
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -6428,19 +6439,19 @@ msgstr "No logrados"
 
 #: application/views/bandmap/list.php:82
 msgid "Worked, not Confirmed"
-msgstr ""
+msgstr "Trabajado, no confirmado"
 
 #: application/views/bandmap/list.php:113
 msgid "Phone"
-msgstr ""
+msgstr "Fonía"
 
 #: application/views/bandmap/list.php:114
 msgid "CW"
-msgstr ""
+msgstr "CW"
 
 #: application/views/bandmap/list.php:115
 msgid "Digi"
-msgstr ""
+msgstr "Digi"
 
 #: application/views/bandmap/list.php:131
 msgid "WAC"
@@ -6463,41 +6474,43 @@ msgstr "Última vez trabajado"
 
 #: application/views/bands/bandedges.php:2
 msgid "Please enter valid numbers for frequency"
-msgstr ""
+msgstr "Por favor, introduce números válidos para la frecuencia"
 
 #: application/views/bands/bandedges.php:3
 msgid "The 'From' frequency must be less than the 'To' frequency."
-msgstr ""
+msgstr "La frecuencia 'Desde' debe ser menor que la frecuencia 'Hasta'."
 
 #: application/views/bands/bandedges.php:4
 msgid "The Frequency overlaps with an existing entry."
-msgstr ""
+msgstr "La frecuencia se superpone con una entrada existente."
 
 #: application/views/bands/bandedges.php:5
 msgid "Are you sure you want to delete this band edge?"
-msgstr ""
+msgstr "¿Estás seguro de que quieres eliminar este borde de banda?"
 
 #: application/views/bands/bandedges.php:17
 msgid "Bandedges"
-msgstr ""
+msgstr "Bordes de banda"
 
 #: application/views/bands/bandedges.php:22
 msgid ""
 "Using the bandedges list you can control the mode classification in the "
 "cluster."
 msgstr ""
+"Usando la lista de bordes de banda, puedes controlar la clasificación de "
+"modo en el clúster."
 
 #: application/views/bands/bandedges.php:29
 msgid "Frequency from (Hz)"
-msgstr ""
+msgstr "Frecuencia desde (Hz)"
 
 #: application/views/bands/bandedges.php:30
 msgid "Frequency to (Hz)"
-msgstr ""
+msgstr "Frecuencia a (Hz)"
 
 #: application/views/bands/bandedges.php:65
 msgid "Add a bandedge"
-msgstr ""
+msgstr "Añadir un borde de banda"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
@@ -6566,7 +6579,7 @@ msgstr "Condado USA"
 #: application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:220
 msgid "WAPC"
-msgstr ""
+msgstr "WAPC"
 
 #: application/views/bands/index.php:62
 #: application/views/interface_assets/header.php:240
@@ -7506,6 +7519,7 @@ msgstr ""
 #: application/views/contesting/index.php:3
 msgid "Are you really sure you want to start a new contest session?"
 msgstr ""
+"¿Estás realmente seguro de que quieres comenzar una nueva sesión de concurso?"
 
 #: application/views/contesting/index.php:7
 msgid "Start new Contest Session"
@@ -8329,8 +8343,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Ve a tu carpeta application/config y compara config.sample.php con tu config."
-"php"
+"Ve a tu carpeta application/config y compara config.sample.php con tu "
+"config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -8587,55 +8601,51 @@ msgstr "Húngaro"
 msgid "Italian"
 msgstr "Italiano"
 
-#: application/views/debug/index.php:684
-msgid "Japanese"
-msgstr ""
-
-#: application/views/debug/index.php:685
+#: application/views/debug/index.php:684 application/views/debug/index.php:685
 msgid "Latvian"
 msgstr "Letón"
 
-#: application/views/debug/index.php:686
+#: application/views/debug/index.php:685 application/views/debug/index.php:686
 msgid "Lithuanian"
 msgstr "Lituano"
 
-#: application/views/debug/index.php:687
+#: application/views/debug/index.php:686 application/views/debug/index.php:687
 msgid "Montenegrin"
 msgstr "Montenegrino"
 
-#: application/views/debug/index.php:688
+#: application/views/debug/index.php:687 application/views/debug/index.php:688
 msgid "Polish"
 msgstr "Polaco"
 
-#: application/views/debug/index.php:689
+#: application/views/debug/index.php:688 application/views/debug/index.php:689
 msgid "Portuguese"
 msgstr "Portugués"
 
-#: application/views/debug/index.php:690
+#: application/views/debug/index.php:689 application/views/debug/index.php:690
 msgid "Russian"
 msgstr "Ruso"
 
-#: application/views/debug/index.php:691
+#: application/views/debug/index.php:690 application/views/debug/index.php:691
 msgid "Serbian"
 msgstr "Serbio"
 
-#: application/views/debug/index.php:692
+#: application/views/debug/index.php:691
 msgid "Slovak"
-msgstr ""
+msgstr "Eslovaco"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:692 application/views/debug/index.php:693
 msgid "Slovenian"
 msgstr "Esloveno"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:693 application/views/debug/index.php:694
 msgid "Spanish"
 msgstr "Español"
 
-#: application/views/debug/index.php:695
+#: application/views/debug/index.php:694 application/views/debug/index.php:695
 msgid "Swedish"
 msgstr "Sueco"
 
-#: application/views/debug/index.php:696
+#: application/views/debug/index.php:695 application/views/debug/index.php:696
 msgid "Turkish"
 msgstr "Turco"
 
@@ -9459,7 +9469,7 @@ msgstr "Ver Tarjetas eQSL"
 
 #: application/views/interface_assets/header.php:113
 msgid "View last confirmations"
-msgstr ""
+msgstr "Ver las últimas confirmaciones"
 
 #: application/views/interface_assets/header.php:121
 msgid "Live QSO"
@@ -9515,7 +9525,7 @@ msgstr "Canadá"
 
 #: application/views/interface_assets/header.php:218
 msgid "China"
-msgstr ""
+msgstr "China"
 
 #: application/views/interface_assets/header.php:224
 msgid "Germany"
@@ -9626,7 +9636,7 @@ msgstr "Información de la Cuenta"
 
 #: application/views/interface_assets/header.php:424
 msgid "Band Edges"
-msgstr ""
+msgstr "Límites de banda"
 
 #: application/views/interface_assets/header.php:430
 msgid "Switch to Clubstation:"
@@ -11745,11 +11755,11 @@ msgstr "Los QSOs están marcados como exportados al libro de registro de QRZ."
 
 #: application/views/qslcard/confirmationresult.php:16
 msgid "QSO date"
-msgstr ""
+msgstr "Fecha de QSO"
 
 #: application/views/qslcard/confirmationresult.php:20
 msgid "Confirmation date"
-msgstr ""
+msgstr "Fecha de confirmación"
 
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
@@ -11758,17 +11768,19 @@ msgstr "Tipo"
 
 #: application/views/qslcard/confirmationresult.php:54
 msgid "No confirmations found."
-msgstr ""
+msgstr "No se encontraron confirmaciones."
 
 #: application/views/qslcard/confirmations.php:6
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
 msgstr ""
+"Se muestran un máximo de 1000 filas en la tabla. Esto es por razones de "
+"rendimiento."
 
 #: application/views/qslcard/confirmations.php:11
 msgid "Confirmation type"
-msgstr ""
+msgstr "Tipo de confirmación"
 
 #: application/views/qslcard/index.php:10
 #, php-format
@@ -11779,11 +11791,11 @@ msgstr ""
 
 #: application/views/qslcard/index.php:17
 msgid "List View"
-msgstr ""
+msgstr "Vista de lista"
 
 #: application/views/qslcard/index.php:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Vista de galería"
 
 #: application/views/qslcard/index.php:78
 #: application/views/qslcard/index.php:126
@@ -11940,11 +11952,11 @@ msgstr "Mostrando resumen para IOTA"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for DOK"
-msgstr ""
+msgstr "Mostrando resumen para DOK"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for satellite QSOs with"
-msgstr ""
+msgstr "Mostrando resumen para los QSOs por satélite con"
 
 #: application/views/qso/award_tabs.php:11
 msgid "Showing summary for continent"
@@ -11972,7 +11984,7 @@ msgstr "¡Es necesario completar la entrada de IOTA para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "DOK input needs to be filled to show a summary!"
-msgstr ""
+msgstr "¡Es necesario completar la entrada DOK para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:18
 msgid "WWFF input needs to be filled to show a summary!"
@@ -11980,7 +11992,7 @@ msgstr "¡Es necesario completar la entrada de WWFF para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Propagation mode needs to be 'SAT' to show a summary!"
-msgstr ""
+msgstr "El modo de propagación debe ser 'SAT' para mostrar un resumen!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
@@ -12915,6 +12927,9 @@ msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Los siguientes QSOs fueron encontrados de tener una zona incorrecta de CQ "
+"que esta entidad de DXCC normalmente tiene (un máximo de 5000 QSOs son "
+"mostrados)::"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
@@ -13883,11 +13898,11 @@ msgstr "Crear una Localización de Estación"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show all locations"
-msgstr ""
+msgstr "Mostrar todas las ubicaciones"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show only locations from the active logbook"
-msgstr ""
+msgstr "Mostrar solo ubicaciones del libro de registro activo"
 
 #: application/views/stationsetup/stationsetup.php:108
 msgid ""
@@ -13915,7 +13930,7 @@ msgstr "Por favor, reasignelas en "
 
 #: application/views/stationsetup/stationsetup.php:129
 msgid "Last QSO"
-msgstr ""
+msgstr "Último QSO"
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"
@@ -13983,7 +13998,7 @@ msgstr "Indicativos únicos"
 
 #: application/views/statistics/index.php:120
 msgid "Unique Grids"
-msgstr ""
+msgstr "Cuadrículas únicas"
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
@@ -14108,8 +14123,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nueva carpeta en 'assets/css/' y sube un archivo 'bootstrap.min."
-"css' que contenga reglas de estilo básicas. Usamos los temas de %s"
+"Crea una nueva carpeta en 'assets/css/' y sube un archivo "
+"'bootstrap.min.css' que contenga reglas de estilo básicas. Usamos los temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14158,8 +14174,8 @@ msgid ""
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
 "Haz clic aquí en 'Agregar un tema' y escribe los datos necesarios. Escribe "
-"los nombres de archivo para los logotipos %ssin%s la extensión de archivo '."
-"png'"
+"los nombres de archivo para los logotipos %ssin%s la extensión de archivo "
+"'.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -14654,7 +14670,7 @@ msgstr ""
 
 #: application/views/user/edit.php:686
 msgid "Online QSL request (OQRS) settings"
-msgstr ""
+msgstr "Configuración de solicitud de QSL en línea (OQRS)"
 
 #: application/views/user/edit.php:690
 msgid "Global text"
@@ -15592,6 +15608,10 @@ msgstr "Enviar solicitud"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recibido"
+
+#: application/views/debug/index.php:684
+msgid "Japanese"
+msgstr ""
 
 #~ msgid "OQRS Options"
 #~ msgstr "Opciones OQRS"
