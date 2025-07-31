@@ -146,7 +146,7 @@ class Oqrs_model extends CI_Model {
 				$qsoid = $this->check_oqrs($data);
 
 				if ($qsoid > 0) {
-					$data['status'] = '2';
+					$data['status'] = '3';
 				}
 				$data['qsoid'] = $qsoid;
 			}
@@ -196,7 +196,7 @@ class Oqrs_model extends CI_Model {
 				$qsoid = $this->check_oqrs($data);
 
 				if ($qsoid > 0) {
-					$data['status'] = '2';
+					$data['status'] = '3';
 				}
 				$data['qsoid'] = $qsoid;
 			}
