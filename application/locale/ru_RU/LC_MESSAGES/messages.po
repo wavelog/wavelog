@@ -14,8 +14,8 @@ msgstr ""
 "POT-Creation-Date: 2025-07-26 07:21+0000\n"
 "PO-Revision-Date: 2025-07-29 02:35+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -8571,31 +8571,31 @@ msgstr "Венгерский"
 msgid "Italian"
 msgstr "Итальянский"
 
-#: application/views/debug/index.php:684
+#: application/views/debug/index.php:684 application/views/debug/index.php:685
 msgid "Latvian"
 msgstr "Латышский"
 
-#: application/views/debug/index.php:685
+#: application/views/debug/index.php:685 application/views/debug/index.php:686
 msgid "Lithuanian"
 msgstr "Литовский"
 
-#: application/views/debug/index.php:686
+#: application/views/debug/index.php:686 application/views/debug/index.php:687
 msgid "Montenegrin"
 msgstr "Черногорский"
 
-#: application/views/debug/index.php:687
+#: application/views/debug/index.php:687 application/views/debug/index.php:688
 msgid "Polish"
 msgstr "Польский"
 
-#: application/views/debug/index.php:688
+#: application/views/debug/index.php:688 application/views/debug/index.php:689
 msgid "Portuguese"
 msgstr "Португальский"
 
-#: application/views/debug/index.php:689
+#: application/views/debug/index.php:689 application/views/debug/index.php:690
 msgid "Russian"
 msgstr "Русский"
 
-#: application/views/debug/index.php:690
+#: application/views/debug/index.php:690 application/views/debug/index.php:691
 msgid "Serbian"
 msgstr "Сербский"
 
@@ -8603,19 +8603,19 @@ msgstr "Сербский"
 msgid "Slovak"
 msgstr "Словацкий"
 
-#: application/views/debug/index.php:692
+#: application/views/debug/index.php:692 application/views/debug/index.php:693
 msgid "Slovenian"
 msgstr "Словенский"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:693 application/views/debug/index.php:694
 msgid "Spanish"
 msgstr "Испанский"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:694 application/views/debug/index.php:695
 msgid "Swedish"
 msgstr "Шведский"
 
-#: application/views/debug/index.php:695
+#: application/views/debug/index.php:695 application/views/debug/index.php:696
 msgid "Turkish"
 msgstr "Турецкий"
 
@@ -13308,8 +13308,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -14049,8 +14049,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14405,8 +14406,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:381
 msgid ""
@@ -15518,6 +15519,10 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#: application/views/debug/index.php:684
+msgid "Japanese"
+msgstr ""
 
 #~ msgid "OQRS Options"
 #~ msgstr "OQRS"
