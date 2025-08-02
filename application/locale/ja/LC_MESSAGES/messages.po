@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:27+0000\n"
-"PO-Revision-Date: 2025-08-01 14:17+0000\n"
+"PO-Revision-Date: 2025-08-03 06:48+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/ja/>\n"
@@ -612,19 +612,19 @@ msgstr "バンドを編集"
 #: application/controllers/Options.php:163
 #: application/views/options/sidebar.php:7
 msgid "DXCluster"
-msgstr ""
+msgstr "DXクラスター"
 
 #: application/controllers/Cabrillo.php:20
 msgid "Export Cabrillo"
-msgstr ""
+msgstr "Cabrillo 形式でエクスポート"
 
 #: application/controllers/Cabrillo.php:150
 msgid "Cabrillo Import"
-msgstr ""
+msgstr "Cabrillo インポート"
 
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
-msgstr ""
+msgstr "壊れた CBR ファイル - QSO データがないか、不完全なヘッダーが見つかりません。"
 
 #: application/controllers/Cabrillo.php:243
 #, php-format
@@ -632,78 +632,80 @@ msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
 msgstr ""
+"QSO %d が見つかりませんでした、または CBR ファイルの基準に一致する QSO が 1 "
+"つ以上見つかりました。安全対策としてスキップします。"
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
-msgstr ""
+msgstr "CBRデータのインポート"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "コールサインの統計"
 
 #: application/controllers/Callstats.php:104
 msgid " and sat "
-msgstr ""
+msgstr " and sat "
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:467
 msgid "CFD Export"
-msgstr ""
+msgstr "CFDエクスポート"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
-msgstr ""
+msgstr "クラブ役員"
 
 #: application/controllers/Club.php:24
 msgid "Club Member"
-msgstr ""
+msgstr "クラブ会員"
 
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "ユーザーIDが無効です。"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
-msgstr ""
+msgstr "このユーザーはクラブステーションではありません。"
 
 #: application/controllers/Club.php:56
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
-msgstr ""
+msgstr "クラブの権限"
 
 #: application/controllers/Club.php:118 application/controllers/Club.php:147
 #: application/controllers/Club.php:174 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "無効なクラブIDです。"
 
 #: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
-msgstr ""
+msgstr "ユーザーに通知できませんでした。メール設定を確認してください。"
 
 #: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "クラブ メンバーの権限が更新されました。"
 
 #: application/controllers/Club.php:156
 msgid "User removed from club."
-msgstr ""
+msgstr "ユーザーはクラブから削除されました。"
 
 #: application/controllers/Club.php:158
 msgid "User could not be removed from club."
-msgstr ""
+msgstr "ユーザーをクラブから削除できませんでした。"
 
 #: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr ""
+msgstr "メッセージ タイプが無効です。"
 
 #: application/controllers/Club.php:220
 msgid "Email settings not configured."
-msgstr ""
+msgstr "電子メール設定が構成されていません。"
 
 #: application/controllers/Club.php:227 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
