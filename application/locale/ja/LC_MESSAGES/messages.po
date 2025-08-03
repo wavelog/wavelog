@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:27+0000\n"
-"PO-Revision-Date: 2025-08-01 14:17+0000\n"
+"PO-Revision-Date: 2025-08-03 18:01+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/ja/>\n"
@@ -612,19 +612,19 @@ msgstr "バンドを編集"
 #: application/controllers/Options.php:163
 #: application/views/options/sidebar.php:7
 msgid "DXCluster"
-msgstr ""
+msgstr "DXクラスター"
 
 #: application/controllers/Cabrillo.php:20
 msgid "Export Cabrillo"
-msgstr ""
+msgstr "Cabrillo 形式でエクスポート"
 
 #: application/controllers/Cabrillo.php:150
 msgid "Cabrillo Import"
-msgstr ""
+msgstr "Cabrillo インポート"
 
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
-msgstr ""
+msgstr "壊れた CBR ファイル - QSO データがないか、不完全なヘッダーが見つかりません。"
 
 #: application/controllers/Cabrillo.php:243
 #, php-format
@@ -632,98 +632,100 @@ msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
 msgstr ""
+"QSO %d が見つかりませんでした、または CBR ファイルの基準に一致する QSO が 1 "
+"つ以上見つかりました。安全対策としてスキップします。"
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
-msgstr ""
+msgstr "CBRデータのインポート"
 
 #: application/controllers/Callstats.php:19
 #: application/views/callstats/index.php:2
 msgid "Callsign statistics"
-msgstr ""
+msgstr "コールサインの統計"
 
 #: application/controllers/Callstats.php:104
 msgid " and sat "
-msgstr ""
+msgstr " and sat "
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:467
 msgid "CFD Export"
-msgstr ""
+msgstr "CFDエクスポート"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
-msgstr ""
+msgstr "クラブ役員"
 
 #: application/controllers/Club.php:24
 msgid "Club Member"
-msgstr ""
+msgstr "クラブ会員"
 
 #: application/controllers/Club.php:44 application/models/Club_model.php:75
 #: application/models/Club_model.php:149 application/models/Club_model.php:191
 msgid "Invalid User ID!"
-msgstr ""
+msgstr "無効なユーザーIDです！"
 
 #: application/controllers/Club.php:52
 msgid "This user is not a club station."
-msgstr ""
+msgstr "このユーザーはクラブステーションではありません。"
 
 #: application/controllers/Club.php:56
 #: application/views/club/permissions.php:10
 #: application/views/user/index.php:215
 msgid "Club Permissions"
-msgstr ""
+msgstr "クラブの権限"
 
 #: application/controllers/Club.php:118 application/controllers/Club.php:147
 #: application/controllers/Club.php:174 application/models/Club_model.php:22
 #: application/models/Club_model.php:70 application/models/Club_model.php:144
 #: application/models/Club_model.php:186
 msgid "Invalid Club ID!"
-msgstr ""
+msgstr "無効なクラブIDです！"
 
 #: application/controllers/Club.php:130
 msgid "User could not be notified. Please check your email settings."
-msgstr ""
+msgstr "ユーザーに通知できませんでした。メール設定を確認してください。"
 
 #: application/controllers/Club.php:134
 msgid "Club member permissions have been updated."
-msgstr ""
+msgstr "クラブ メンバーの権限が更新されました。"
 
 #: application/controllers/Club.php:156
 msgid "User removed from club."
-msgstr ""
+msgstr "ユーザーはクラブから削除されました。"
 
 #: application/controllers/Club.php:158
 msgid "User could not be removed from club."
-msgstr ""
+msgstr "ユーザーをクラブから削除できませんでした。"
 
 #: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr ""
+msgstr "メッセージ タイプが無効です。"
 
 #: application/controllers/Club.php:220
 msgid "Email settings not configured."
-msgstr ""
+msgstr "電子メール設定が構成されていません。"
 
 #: application/controllers/Club.php:227 application/views/api/index.php:68
 #: application/views/satellite/index.php:94
 #: application/views/satellite/satinfo.php:51
 msgid "Unknown"
-msgstr ""
+msgstr "不明"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Eqsl.php:13 application/controllers/Hrdlog.php:19
 #: application/controllers/Lotw.php:27 application/controllers/Qrz.php:14
 #: application/controllers/Update.php:16
 msgid "Maintenance Mode is active. Try again later."
-msgstr ""
+msgstr "現在メンテナンス中です。しばらくしてからもう一度お試しください。"
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
 #: application/controllers/Clublog.php:126
 #: application/controllers/Clublog.php:163
 msgid "No user has configured Clublog."
-msgstr ""
+msgstr "Clublog を設定しているユーザーはいません。"
 
 #: application/controllers/Clublog.php:89
 #: application/controllers/Logbook.php:690
@@ -746,50 +748,51 @@ msgstr ""
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
 msgid "Clublog"
-msgstr ""
+msgstr "Clublog"
 
 #: application/controllers/Clublog.php:145
 msgid "Clublog QSL Import"
-msgstr ""
+msgstr "Clublog QSLインポート"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:285
 msgid "Contest Calendar"
-msgstr ""
+msgstr "コンテストカレンダー"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr ""
+msgstr "コンテストカレンダーにアクセスできません。しばらくしてからもう一度お試しくだ"
+"さい"
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:8
 msgid "Contest Logging"
-msgstr ""
+msgstr "コンテストログ"
 
 #: application/controllers/Contesting.php:123
 #: application/views/interface_assets/header.php:310
 msgid "Contests"
-msgstr ""
+msgstr "コンテスト"
 
 #: application/controllers/Contesting.php:137
 msgid "Update Contest"
-msgstr ""
+msgstr "コンテストの更新"
 
 #: application/controllers/Continents.php:26
 #: application/views/awards/dxcc/index.php:83
 #: application/views/awards/iota/index.php:83
 #: application/views/interface_assets/header.php:166
 msgid "Continents"
-msgstr ""
+msgstr "大陸"
 
 #: application/controllers/Cron.php:38
 #: application/views/interface_assets/header.php:320
 msgid "Cron Manager"
-msgstr ""
+msgstr "Cronマネージャー"
 
 #: application/controllers/Cron.php:154 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
-msgstr ""
+msgstr "Cronジョブを編集する"
 
 #: application/controllers/Cron.php:218 application/controllers/Cron.php:219
 #: application/views/cron/index.php:83 application/views/cron/index.php:85
@@ -799,32 +802,32 @@ msgstr ""
 #: application/views/debug/index.php:549 application/views/debug/index.php:554
 #: application/views/debug/index.php:559 application/views/debug/index.php:564
 msgid "never"
-msgstr ""
+msgstr "一度もない"
 
 #: application/controllers/Cron.php:219
 msgid "calculating..."
-msgstr ""
+msgstr "計算中..."
 
 #: application/controllers/Cron.php:230 application/views/cron/index.php:70
 msgid "healthy"
-msgstr ""
+msgstr "健康"
 
 #: application/controllers/Cron.php:232 application/views/cron/index.php:72
 msgid "failed"
-msgstr ""
+msgstr "失敗した"
 
 #: application/controllers/Cron.php:234 application/views/cron/index.php:74
 msgid "pending"
-msgstr ""
+msgstr "保留中"
 
 #: application/controllers/Cron.php:239 application/views/cron/index.php:79
 msgid "disabled"
-msgstr ""
+msgstr "無効"
 
 #: application/controllers/Cron.php:278
 #: application/views/interface_assets/footer.php:39
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: application/controllers/Cron.php:282
 #, php-format
@@ -832,50 +835,53 @@ msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
+"最後の実行から%s秒以上経過しています。%sマスターのcron設定を確認してください"
+"！1分ごとに実行されるように設定する必要があります（* * * * *）。"
 
 #: application/controllers/Cron.php:285
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
-msgstr ""
+msgstr "最後の実行から%s分以上経過しています。%sマスタークロンが実行されていないよう"
+"です！%s毎分実行されるべきです（* * * * *）。"
 
 #: application/controllers/Cron.php:290 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "実行されていません"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:461
 msgid "SOTA CSV Export"
-msgstr ""
+msgstr "SOTA CSVエクスポート"
 
 #: application/controllers/Dashboard.php:136
 #: application/controllers/Visitor.php:134
 msgid "Dashboard"
-msgstr ""
+msgstr "ダッシュボード"
 
 #: application/controllers/Dayswithqso.php:17
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:158
 msgid "Days with QSOs"
-msgstr ""
+msgstr "QSOのある日数"
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
-msgstr ""
+msgstr "デバッグ"
 
 #: application/controllers/Debug.php:155
 msgid "Migrate data now"
-msgstr ""
+msgstr "今すぐデータを移行する"
 
 #: application/controllers/Debug.php:158
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "移行はすでに完了しています。もう一度実行しますか?"
 
 #: application/controllers/Debug.php:162
 msgid "No data to migrate"
-msgstr ""
+msgstr "移行するデータがありません"
 
 #: application/controllers/Debug.php:166 application/controllers/Debug.php:171
 msgid "No migration possible"
