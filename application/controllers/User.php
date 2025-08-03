@@ -1449,7 +1449,7 @@ class User extends CI_Controller {
 	}
 
 	function check_username($username) {
-		if (($this->session->userdata('user_name') != $username) && ($this->user_model->exists($username) > 0)) {
+		if (!($this->user_model->authorize(99)) &&  ($this->session->userdata('user_name') != $username) && ($this->user_model->exists($username) > 0)) {
 			$this->form_validation->set_message('check_username', sprintf(__("Couldn't set account to this username. Please try another one than \"%s\"."), $username));
 			return FALSE;
 		} else {
