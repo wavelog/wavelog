@@ -70,6 +70,7 @@
 		<?= __("Greek"); ?>
 		<?= __("Hungarian"); ?>
 		<?= __("Italian"); ?>
+		<?= __("Japanese"); ?>
 		<?= __("Latvian"); ?>
 		<?= __("Lithuanian"); ?>
 		<?= __("Montenegrin"); ?>
