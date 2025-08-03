@@ -92,7 +92,17 @@ class cron extends CI_Controller {
 						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
 						echo "CRON: " . $cron->id . " -> RUNNING...\n";
 
-						$url = local_url() . $cron->function;
+						if (ENVIRONMENT == "docker") {
+							// In Docker, we use the localhost[:80] to call the cron directly inside the container
+							$url = 'http://localhost/' . $cron->function;
+							log_message('debug', 'Docker Environment detected. Using URL: ' . $url);
+						} else {
+							// In other environments, we use the local_url() function to get the default url
+							// Even this local_url() helper created in https://github.com/wavelog/wavelog/pull/795 is not really necessary anymore
+							// we keep it in case of users do fancy things with it. It doesn't hurt to have it here as it usually returns the base_url
+							// from the config.php file.
+							$url = local_url() . $cron->function;
+						}
                         if (ENVIRONMENT == "development") {
 						    echo "CRON: " . $cron->id . " -> URL: " . $url . "\n";
                         }
