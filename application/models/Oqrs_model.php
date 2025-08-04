@@ -143,12 +143,16 @@ class Oqrs_model extends CI_Model {
 			);
 
 			if ($this->get_auto_queue_option($postdata['station_id']) == 'on') {
-				$qsoid = $this->check_oqrs($data);
+				if($this->get_direct_auto_queue_option($postdata['station_id']) == 'off' && $data['qslroute'] == 'D') {
+					$data['qsoid'] = 0; // Explicitly set qsoid when skipping auto-queue
+				} else {
+					$qsoid = $this->check_oqrs($data);
 
-				if ($qsoid > 0) {
-					$data['status'] = '3';
+					if ($qsoid > 0) {
+						$data['status'] = '3';
+					}
+					$data['qsoid'] = $qsoid;
 				}
-				$data['qsoid'] = $qsoid;
 			}
 
 			// Check if this entry already exists in the oqrs table on the same date
@@ -193,12 +197,16 @@ class Oqrs_model extends CI_Model {
 			);
 
 			if ($this->get_auto_queue_option($qso[4]) == 'on') {
-				$qsoid = $this->check_oqrs($data);
+				if($this->get_direct_auto_queue_option($qso[4]) == 'off' && $data['qslroute'] == 'D') {
+					$data['qsoid'] = 0; // Explicitly set qsoid when skipping auto-queue
+				} else {
+					$qsoid = $this->check_oqrs($data);
 
-				if ($qsoid > 0) {
-					$data['status'] = '3';
+					if ($qsoid > 0) {
+						$data['status'] = '3';
+					}
+					$data['qsoid'] = $qsoid;
 				}
-				$data['qsoid'] = $qsoid;
 			}
 
 			// Check if this entry already exists in the oqrs table on the same date
@@ -302,6 +310,18 @@ class Oqrs_model extends CI_Model {
 		$user = $this->stations->get_user_from_station($station_id);
 
 		$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_auto_matching','option_key'=>'boolean'), $user->user_id)->result();
+		if (count($qkey_opt) > 0) {
+			return $qkey_opt[0]->option_value;
+		}
+
+		return 'on';
+	}
+
+	function get_direct_auto_queue_option($station_id) {
+		$this->load->model('stations');
+		$user = $this->stations->get_user_from_station($station_id);
+
+		$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_direct_auto_matching','option_key'=>'boolean'), $user->user_id)->result();
 		if (count($qkey_opt) > 0) {
 			return $qkey_opt[0]->option_value;
 		}

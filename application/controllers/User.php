@@ -239,6 +239,7 @@ class User extends CI_Controller {
 				$data['oqrs_grouped_search'] = $this->input->post('oqrs_grouped_search') ?? 'off';
 				$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name') ?? 'off';
 				$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching') ?? 'on';
+				$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching') ?? 'on';
 				$this->load->view('user/edit', $data);
 			} else {
 				$this->load->view('user/edit', $data);
@@ -302,7 +303,8 @@ class User extends CI_Controller {
 				$this->input->post('global_oqrs_text') ?? '',
 				$this->input->post('oqrs_grouped_search') ?? 'off',
 				$this->input->post('oqrs_grouped_search_show_station_name') ?? 'off',
-				$this->input->post('oqrs_auto_matching') ?? 'on')
+				$this->input->post('oqrs_auto_matching') ?? 'on',
+				$this->input->post('oqrs_direct_auto_matching') ?? 'on')
 			) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
@@ -358,6 +360,8 @@ class User extends CI_Controller {
 			$data['global_oqrs_text'] = $this->input->post('global_oqrs_text') ?? '';
 			$data['oqrs_grouped_search'] = $this->input->post('oqrs_grouped_search') ?? 'off';
 			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name') ?? 'off';
+			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching') ?? 'on';
+			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching') ?? 'on';
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
 		}
@@ -812,6 +816,15 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('oqrs_direct_auto_matching')) {
+				$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', false);
+			} else {
+				$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_direct_auto_matching','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($qkey_opt) > 0) {
+					$data['oqrs_direct_auto_matching'] = $qkey_opt[0]->option_value;
+				}
+			}
+
 			// [MAP Custom] GET user options //
 			$options_object = $this->user_options_model->get_options('map_custom')->result();
 			if (count($options_object)>0) {
@@ -908,6 +921,7 @@ class User extends CI_Controller {
 						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)));
 						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>$this->input->post('oqrs_grouped_search_show_station_name', true)));
 						$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)));
+						$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)));
 
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));
 						redirect('user/edit/'.$this->uri->segment(3));
@@ -965,6 +979,7 @@ class User extends CI_Controller {
 			$data['oqrs_grouped_search'] = $this->input->post('oqrs_grouped_search', true);
 			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name', true);
 			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching', true);
+			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', true);
 
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
