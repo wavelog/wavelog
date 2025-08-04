@@ -68,7 +68,7 @@
 				<button type="submit" class="btn btn-sm btn-primary" id="searchButton"><?= __("Search"); ?></button>
 				<button type="reset" class="btn btn-sm btn-danger" id="resetButton"><?= __("Reset"); ?></button>
 				<span class="h6"><?= __("With selected"); ?>:</span>
-				<button type="button" class="btn btn-sm btn-success" id="addOqrsToQueue"><?= __("Add to queue"); ?></button>
+				<button type="button" class="btn btn-sm btn-success" id="addOqrsToQueue"><?= __("Add to print queue"); ?></button>
 				<button type="button" class="btn btn-sm btn-success" id="markOqrs"><?= __("Mark as done"); ?></button>
 				<button type="button" class="btn btn-sm btn-warning" id="rejectOqrs"><?= __("Reject"); ?></button>
 				<button type="button" class="btn btn-sm btn-danger" id="deleteOqrs"><?= __("Delete"); ?></button>
