@@ -443,6 +443,7 @@ function loadOqrsTable(rows) {
 			qso.note,
 			echo_qsl_method(qso.qslroute),
 			echo_searchlog_button(qso.requestcallsign, qso.id),
+			echo_linked_qso(qso.qsoid),
 			echo_status(qso.status),
 		];
 		data.id='oqrsID_' + qso.id;
@@ -450,6 +451,14 @@ function loadOqrsTable(rows) {
 		table.rows(createdRow).nodes().to$().data('oqrsID', qso.id);
 	}
     table.columns.adjust().draw();
+}
+
+function echo_linked_qso(qsoid) {
+	if (qsoid > 0) {
+		return '<span class="text-success"><i class="fas fa-check"></i></span>';
+	} else {
+		return '<span class="text-danger"><i class="fas fa-times"></i></span>';
+	}
 }
 
 function echo_status(status) {

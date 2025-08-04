@@ -92,6 +92,7 @@
 			<th><?= __("Note"); ?></th>
 			<th><?= __("QSL route"); ?></th>
 			<th><?= __("Check log"); ?></th>
+			<th><?= __("QSO linked"); ?></th>
 			<th><?= __("Status"); ?></th>
 
 		</tr>
