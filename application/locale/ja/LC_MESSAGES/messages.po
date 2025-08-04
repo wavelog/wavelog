@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:27+0000\n"
-"PO-Revision-Date: 2025-08-03 18:01+0000\n"
+"PO-Revision-Date: 2025-08-04 05:44+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/ja/>\n"
@@ -885,15 +885,15 @@ msgstr "移行するデータがありません"
 
 #: application/controllers/Debug.php:166 application/controllers/Debug.php:171
 msgid "No migration possible"
-msgstr ""
+msgstr "移行はできません"
 
 #: application/controllers/Debug.php:236
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelogが正常に更新されました！"
 
 #: application/controllers/Debug.php:254
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr ""
+msgstr "Selfupdate() が利用できません。エラーログを確認してください。"
 
 #: application/controllers/Debug.php:298
 msgid ""
@@ -901,82 +901,84 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
+"ファイルの移行は成功しましたが、手動でもご確認ください。問題がなければ、「"
+"assets/qslcard」と「images/eqsl_card_images」フォルダを削除してください。"
 
 #: application/controllers/Debug.php:301
 msgid "File Migration failed. Please check the Error Log."
-msgstr ""
+msgstr "ファイルの移行に失敗しました。エラーログを確認してください。"
 
 #: application/controllers/Distancerecords.php:67
 #: application/controllers/Distancerecords.php:86
 #: application/views/interface_assets/header.php:156
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "衛星距離記録"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:154
 msgid "Distances Worked"
-msgstr ""
+msgstr "移動距離"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
 msgid "QSOs with"
-msgstr ""
+msgstr "QSO相手"
 
 #: application/controllers/Distances.php:83
 msgid "and band"
-msgstr ""
+msgstr "およびバンド"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
-msgstr ""
+msgstr "および伝播"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:459
 msgid "DX Atlas Gridsquare Export"
-msgstr ""
+msgstr "DX アトラス グリッドスクエア エクスポート"
 
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:283
 msgid "DX Calendar"
-msgstr ""
+msgstr "DXカレンダー"
 
 #: application/controllers/Eqsl.php:34
 #: application/views/dashboard/index.php:386
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
-msgstr ""
+msgstr "eQSLカード"
 
 #: application/controllers/Eqsl.php:127
 msgid "eQSL Import"
-msgstr ""
+msgstr "eQSLインポート"
 
 #: application/controllers/Eqsl.php:137
 msgid "eQSL Import Information"
-msgstr ""
+msgstr "eQSLインポート情報"
 
 #: application/controllers/Eqsl.php:154
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "eQSLのニックネームがステーションプロファイルで定義されていません！"
 
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
-msgstr ""
+msgstr "eQSL QSOアップロード"
 
 #: application/controllers/Eqsl.php:173
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "eQSL.ccの認証情報を設定していません！"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "eQSLのユーザー名/パスワードが間違っています"
 
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "そのような eQSL QTH ニックネームはありません: %s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
