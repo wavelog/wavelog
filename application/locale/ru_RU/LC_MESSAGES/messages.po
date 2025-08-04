@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-31 16:27+0000\n"
+"POT-Creation-Date: 2025-08-04 05:44+0000\n"
 "PO-Revision-Date: 2025-07-29 02:35+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -48,7 +48,7 @@ msgstr ""
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:162
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:172
 #: application/controllers/Csv.php:8 application/controllers/Csv.php:31
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Debug.php:10
@@ -797,11 +797,11 @@ msgstr "Континенты"
 msgid "Cron Manager"
 msgstr "Диспетчер задач"
 
-#: application/controllers/Cron.php:154 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:164 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Редактирование задачи"
 
-#: application/controllers/Cron.php:218 application/controllers/Cron.php:219
+#: application/controllers/Cron.php:228 application/controllers/Cron.php:229
 #: application/views/cron/index.php:83 application/views/cron/index.php:85
 #: application/views/cron/index.php:87 application/views/debug/index.php:523
 #: application/views/debug/index.php:529 application/views/debug/index.php:534
@@ -811,32 +811,32 @@ msgstr "Редактирование задачи"
 msgid "never"
 msgstr "никогда"
 
-#: application/controllers/Cron.php:219
+#: application/controllers/Cron.php:229
 msgid "calculating..."
 msgstr "расчёт..."
 
-#: application/controllers/Cron.php:230 application/views/cron/index.php:70
+#: application/controllers/Cron.php:240 application/views/cron/index.php:70
 msgid "healthy"
 msgstr "норма"
 
-#: application/controllers/Cron.php:232 application/views/cron/index.php:72
+#: application/controllers/Cron.php:242 application/views/cron/index.php:72
 msgid "failed"
 msgstr "ошибка"
 
-#: application/controllers/Cron.php:234 application/views/cron/index.php:74
+#: application/controllers/Cron.php:244 application/views/cron/index.php:74
 msgid "pending"
 msgstr "в ожидании"
 
-#: application/controllers/Cron.php:239 application/views/cron/index.php:79
+#: application/controllers/Cron.php:249 application/views/cron/index.php:79
 msgid "disabled"
 msgstr "отключено"
 
-#: application/controllers/Cron.php:278
+#: application/controllers/Cron.php:288
 #: application/views/interface_assets/footer.php:39
 msgid "OK"
 msgstr "ОК"
 
-#: application/controllers/Cron.php:282
+#: application/controllers/Cron.php:292
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -845,7 +845,7 @@ msgstr ""
 "Последний запуск произошел более %s секунд назад.%sПроверьте ваш основной "
 "cron! Он должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:285
+#: application/controllers/Cron.php:295
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -854,7 +854,7 @@ msgstr ""
 "Последний запуск произошел более %s минут назад.%sПохоже, ваш Mastercron не "
 "работает!%sОн должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:290 application/views/cron/index.php:29
+#: application/controllers/Cron.php:300 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Не работает"

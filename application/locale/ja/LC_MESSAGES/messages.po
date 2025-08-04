@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-07-31 16:27+0000\n"
 "PO-Revision-Date: 2025-08-04 05:44+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,7 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Cron.php:172
 msgid "You're not allowed to do that!"
 msgstr "それは許されません！"
 
@@ -624,7 +625,8 @@ msgstr "Cabrillo インポート"
 
 #: application/controllers/Cabrillo.php:197
 msgid "Broken CBR file - no QSO data or incomplete header found."
-msgstr "壊れた CBR ファイル - QSO データがないか、不完全なヘッダーが見つかりません。"
+msgstr ""
+"壊れた CBR ファイル - QSO データがないか、不完全なヘッダーが見つかりません。"
 
 #: application/controllers/Cabrillo.php:243
 #, php-format
@@ -761,7 +763,8 @@ msgstr "コンテストカレンダー"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr "コンテストカレンダーにアクセスできません。しばらくしてからもう一度お試しくだ"
+msgstr ""
+"コンテストカレンダーにアクセスできません。しばらくしてからもう一度お試しくだ"
 "さい"
 
 #: application/controllers/Contesting.php:52
@@ -791,6 +794,7 @@ msgid "Cron Manager"
 msgstr "Cronマネージャー"
 
 #: application/controllers/Cron.php:154 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:164
 msgid "Edit Cronjob"
 msgstr "Cronジョブを編集する"
 
@@ -801,52 +805,60 @@ msgstr "Cronジョブを編集する"
 #: application/views/debug/index.php:539 application/views/debug/index.php:544
 #: application/views/debug/index.php:549 application/views/debug/index.php:554
 #: application/views/debug/index.php:559 application/views/debug/index.php:564
+#: application/controllers/Cron.php:228 application/controllers/Cron.php:229
 msgid "never"
 msgstr "一度もない"
 
-#: application/controllers/Cron.php:219
+#: application/controllers/Cron.php:219 application/controllers/Cron.php:229
 msgid "calculating..."
 msgstr "計算中..."
 
 #: application/controllers/Cron.php:230 application/views/cron/index.php:70
+#: application/controllers/Cron.php:240
 msgid "healthy"
 msgstr "健康"
 
 #: application/controllers/Cron.php:232 application/views/cron/index.php:72
+#: application/controllers/Cron.php:242
 msgid "failed"
 msgstr "失敗した"
 
 #: application/controllers/Cron.php:234 application/views/cron/index.php:74
+#: application/controllers/Cron.php:244
 msgid "pending"
 msgstr "保留中"
 
 #: application/controllers/Cron.php:239 application/views/cron/index.php:79
+#: application/controllers/Cron.php:249
 msgid "disabled"
 msgstr "無効"
 
 #: application/controllers/Cron.php:278
 #: application/views/interface_assets/footer.php:39
+#: application/controllers/Cron.php:288
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:282
+#: application/controllers/Cron.php:282 application/controllers/Cron.php:292
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
-"最後の実行から%s秒以上経過しています。%sマスターのcron設定を確認してください"
-"！1分ごとに実行されるように設定する必要があります（* * * * *）。"
+"最後の実行から%s秒以上経過しています。%sマスターのcron設定を確認してくださ"
+"い！1分ごとに実行されるように設定する必要があります（* * * * *）。"
 
-#: application/controllers/Cron.php:285
+#: application/controllers/Cron.php:285 application/controllers/Cron.php:295
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
-msgstr "最後の実行から%s分以上経過しています。%sマスタークロンが実行されていないよう"
+msgstr ""
+"最後の実行から%s分以上経過しています。%sマスタークロンが実行されていないよう"
 "です！%s毎分実行されるべきです（* * * * *）。"
 
 #: application/controllers/Cron.php:290 application/views/cron/index.php:29
+#: application/controllers/Cron.php:300
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "実行されていません"
@@ -901,8 +913,8 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
-"ファイルの移行は成功しましたが、手動でもご確認ください。問題がなければ、「"
-"assets/qslcard」と「images/eqsl_card_images」フォルダを削除してください。"
+"ファイルの移行は成功しましたが、手動でもご確認ください。問題がなければ、"
+"「assets/qslcard」と「images/eqsl_card_images」フォルダを削除してください。"
 
 #: application/controllers/Debug.php:301
 msgid "File Migration failed. Please check the Error Log."
