@@ -7,21 +7,22 @@
 # Bartek <achtachtel@gmail.com>, 2024.
 # Stanisław Korzeń <stasiek.linux@outlook.com>, 2024.
 # Limes <github@limes.com.pl>, 2024.
+# Artur Greficz <sq7acp@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-04 05:44+0000\n"
-"PO-Revision-Date: 2025-01-30 21:18+0000\n"
-"Last-Translator: Maciej SP2FE <wavelog@sp2fe.eu>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"PO-Revision-Date: 2025-08-05 07:10+0000\n"
+"Last-Translator: Artur Greficz <sq7acp@gmail.com>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -356,7 +357,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:252
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Nagrody - WAPC"
 
 #: application/controllers/Awards.php:331
 msgid "Awards - WAJA"
@@ -396,7 +397,7 @@ msgstr " i pasmo "
 
 #: application/controllers/Awards.php:537
 msgid " and satellite "
-msgstr ""
+msgstr " satelity "
 
 #: application/controllers/Awards.php:540
 #: application/controllers/Callstats.php:107
@@ -489,13 +490,13 @@ msgstr "POTA"
 
 #: application/controllers/Awards.php:672
 msgid "CQ WAZ (Worked All Zones)"
-msgstr ""
+msgstr "CQ WAZ ( Wszystkie zaliczone strefy)"
 
 #: application/controllers/Awards.php:733
 #: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
-msgstr "Worked All States (WAS)"
+msgstr "Zaliczone wszystkie Stany (WAS)"
 
 #: application/controllers/Awards.php:795 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:214
@@ -559,7 +560,7 @@ msgstr "Nagrody - SIG - "
 
 #: application/controllers/Awards.php:1374 application/views/bands/index.php:60
 msgid "WAP"
-msgstr ""
+msgstr "WAP"
 
 #: application/controllers/Awards.php:1988
 #: application/views/awards/itu/index.php:20
@@ -579,7 +580,7 @@ msgstr "WAE"
 #: application/controllers/Awards.php:2207
 #: application/views/interface_assets/header.php:198
 msgid "73 on 73"
-msgstr ""
+msgstr "73 z 73"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:316
@@ -659,7 +660,7 @@ msgstr "Eksport CFD"
 
 #: application/controllers/Club.php:23
 msgid "Club Officer"
-msgstr ""
+msgstr "Członek klubu"
 
 #: application/controllers/Club.php:24
 msgid "Club Member"
@@ -706,7 +707,7 @@ msgstr "Nie udało się usunąć użytkownika z klubu."
 
 #: application/controllers/Club.php:201
 msgid "Invalid message type."
-msgstr ""
+msgstr "Nieprawidłowa treść wiadomości."
 
 #: application/controllers/Club.php:220
 msgid "Email settings not configured."
@@ -757,7 +758,7 @@ msgstr "Clublog"
 
 #: application/controllers/Clublog.php:145
 msgid "Clublog QSL Import"
-msgstr ""
+msgstr "Import QSL z Clublogu"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:285
@@ -979,12 +980,12 @@ msgstr "Nie zdefiniowałeś swoich danych logowania do eQSL.cc!"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "Użytkownik/Hasło nieprawidłowe dla eQSL"
 
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "Nie ma takiej nazwy z eQSL w polu QTH: %s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
@@ -1004,7 +1005,7 @@ msgstr "Pobieranie kart eQSL"
 
 #: application/controllers/Generic_qsl.php:18
 msgid "Confirmations"
-msgstr ""
+msgstr "Potwierdzenia"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:148
@@ -1903,11 +1904,11 @@ msgstr "Opcje zapisane"
 #: application/controllers/Options.php:129
 #: application/views/options/sidebar.php:9
 msgid "Hams Of Note"
-msgstr ""
+msgstr "Hams of the Note"
 
 #: application/controllers/Options.php:144
 msgid "Hams-Of-Note URL changed to "
-msgstr ""
+msgstr "Hams-Of-Note zmieniono adres URL na: "
 
 #: application/controllers/Options.php:180
 msgid "de continent changed to "
@@ -2250,39 +2251,39 @@ msgstr "Edytuj satelitę"
 #: application/controllers/Satellite.php:213
 #: application/views/interface_assets/header.php:293
 msgid "Satellite Flightpath"
-msgstr ""
+msgstr "Trasa lotu satelity"
 
 #: application/controllers/Satellite.php:256
 msgid "Satellite pass"
-msgstr ""
+msgstr "Przelot satelitów"
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "Nie udało się zapisać ustawień przelotu!"
 
 #: application/controllers/Satellite.php:316
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "Trasy przelotu zapisane!"
 
 #: application/controllers/Satellite.php:329
 msgid "No settings found!"
-msgstr ""
+msgstr "Nie znaleziono ustawień!"
 
 #: application/controllers/Satellite.php:343
 msgid "Failed to delete pass settings!"
-msgstr ""
+msgstr "Nie udało się usunąć ustawień przelotu!"
 
 #: application/controllers/Satellite.php:345
 msgid "Pass settings deleted!"
-msgstr ""
+msgstr "Trasy przelotu usnieto!"
 
 #: application/controllers/Satellite.php:355
 msgid "Saved Pass Settings"
-msgstr ""
+msgstr "Zapisano trasy przelotu"
 
 #: application/controllers/Satellite.php:372
 msgid "No presets available"
-msgstr ""
+msgstr "Brak ustawień wstępnych"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
@@ -2393,7 +2394,7 @@ msgstr "Duplikuj lokalizację stacji:"
 #: application/controllers/User.php:1229 application/controllers/User.php:1479
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "Sprawdź wartość dla lokalizatora (%s)"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:421
@@ -2573,7 +2574,7 @@ msgstr "Analiza anteny"
 
 #: application/controllers/Statistics.php:338
 msgid "Satellite QSOs"
-msgstr ""
+msgstr "QSO przez Satelity"
 
 #: application/controllers/Statistics.php:354
 #: application/views/interface_assets/header.php:170
@@ -2643,59 +2644,59 @@ msgstr "Prefiksy DXCC:"
 
 #: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
-msgstr ""
+msgstr "SCP Ładowanie zakończone sukcesem. Rezultaty: "
 
 #: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
-msgstr ""
+msgstr "SCP Ładowanie zakończone błędem. Rezulat: "
 
 #: application/controllers/Update.php:385
 msgid "LoTW Users Update complete. Result: "
-msgstr ""
+msgstr "Użytkownicy LoTW aktualizacja zakończona sukcesem. Rezultaty: "
 
 #: application/controllers/Update.php:387
 msgid "LoTW Users Update failed. Result: "
-msgstr ""
+msgstr "Użytkownicy LoTW aktualizacja zakończona błedem. Rezulataty: "
 
 #: application/controllers/Update.php:404
 msgid "DOK Update complete. Result: "
-msgstr ""
+msgstr "DOK aktualizacja zakończona sukcesem. Rezultat: "
 
 #: application/controllers/Update.php:406
 msgid "DOK Update failed. Result: "
-msgstr ""
+msgstr "DOK aktualizacja zakończona niepowodzeniem. Rezultat: "
 
 #: application/controllers/Update.php:423
 msgid "SOTA Update complete. Result: "
-msgstr ""
+msgstr "SOTA aktualizacja zakończona sukcesemm. Rezultat: "
 
 #: application/controllers/Update.php:425
 msgid "SOTA Update failed. Result: "
-msgstr ""
+msgstr "SOTA aktualizacja zakończona niepowodzeniem. Rezultat: "
 
 #: application/controllers/Update.php:442
 msgid "WWFF Update complete. Result: "
-msgstr ""
+msgstr "WWFF aktualizacja zakończona sukcesem. Rezultat: "
 
 #: application/controllers/Update.php:444
 msgid "WWFF Update failed. Result: "
-msgstr ""
+msgstr "WWFF aktualizacja zakończona niepowodzeniem. Rezultat: "
 
 #: application/controllers/Update.php:458
 msgid "POTA Update complete. Result: "
-msgstr ""
+msgstr "POTA aktualizacja zakończona sukcesem. Rezultat: "
 
 #: application/controllers/Update.php:460
 msgid "POTA Update failed. Result: "
-msgstr ""
+msgstr "POTA aktualizacja zakończona niepowodzeniem. Rezultat: "
 
 #: application/controllers/Update.php:473
 msgid "TLE Update complete. Result: "
-msgstr ""
+msgstr "TLE aktualizacja zakończona sukcesem. Rezultat: "
 
 #: application/controllers/Update.php:475
 msgid "TLE Update failed. Result: "
-msgstr ""
+msgstr "TLE aktualizacja zakończona niepowodzeniem. Rezultat: "
 
 #: application/controllers/Update.php:486
 msgid "LoTW SAT Update"
@@ -2703,7 +2704,7 @@ msgstr "Aktualizacja LoTW SAT"
 
 #: application/controllers/Update.php:498
 msgid "Update of Hams of Note"
-msgstr ""
+msgstr "Hams of Note aktualizacja zakończona sukcesem."
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:304
@@ -2712,19 +2713,19 @@ msgstr "Konta użytkowników"
 
 #: application/controllers/User.php:96
 msgid "Invalid User ID or missing modal!"
-msgstr ""
+msgstr "Nieprawidłowy identyfikator użytkownika lub brakujący moduł!"
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
-msgstr ""
+msgstr "Użytkownik odblokowany!"
 
 #: application/controllers/User.php:110
 msgid "Failed to unlock user!"
-msgstr ""
+msgstr "Nie udało się odblokować użytkownika!"
 
 #: application/controllers/User.php:114
 msgid "User not found!"
-msgstr ""
+msgstr "Użytkownik nie znaleziony !"
 
 #: application/controllers/User.php:127
 msgid "Invalid Parameter!"
@@ -2782,7 +2783,7 @@ msgstr ""
 
 #: application/controllers/User.php:1069
 msgid "This is not allowed!"
-msgstr ""
+msgstr "To nie jest dozwolone!"
 
 #: application/controllers/User.php:1104 application/controllers/User.php:1115
 msgid "Login failed. Try again."
@@ -2807,6 +2808,8 @@ msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr ""
+"Twoje konto jest zablokowane, z powodu zbyt wielu nieudanych prób logowania. "
+"Proszę zresetować hasło."
 
 #: application/controllers/User.php:1167
 msgid ""
@@ -2831,7 +2834,7 @@ msgstr "Użytkownik %s wylogowany."
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
-msgstr ""
+msgstr "Nazwa Stacji"
 
 #: application/controllers/User.php:1210 application/views/debug/index.php:589
 #: application/views/public_search/result.php:17
@@ -2841,27 +2844,27 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:126
 #: application/views/user/modals/first_login_wizard.php:34
 msgid "Station Callsign"
-msgstr ""
+msgstr "Znak Stacji"
 
 #: application/controllers/User.php:1211
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
-msgstr ""
+msgstr "Podmiot DXCC Stacji"
 
 #: application/controllers/User.php:1212
 msgid "Station CQ Zone"
-msgstr ""
+msgstr "CQ ZONE Stacji"
 
 #: application/controllers/User.php:1213
 msgid "Station ITU Zone"
-msgstr ""
+msgstr "Strefa ITU Stacji"
 
 #: application/controllers/User.php:1214
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
-msgstr ""
+msgstr "Lokator Stacji"
 
 #: application/controllers/User.php:1237
 #, php-format
@@ -2869,10 +2872,13 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
+"Stacja utworzona z sukcesem! Witamy w Wavelogu! Aby zakończyć konfigurację "
+"stacji, kliknij %shere%s."
 
 #: application/controllers/User.php:1240
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
+"Konfiguracja stacji nie powiodła się! Proszę ustawić swoją stację ręcznie."
 
 #: application/controllers/User.php:1257
 msgid "Password Reset is disabled on the Demo!"
@@ -2902,13 +2908,15 @@ msgstr "Resetuj hasło"
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
-msgstr ""
+msgstr "Nie można ustawić konta z tą nazwą. Spróbuj innej niż \"%s\"."
 
 #: application/controllers/User.php:1462
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr ""
+"Nie mogę ustawić konta na ten e-mail. Proszę spróbować innego adresu niż "
+"\"%s\"."
 
 #: application/controllers/User.php:1501
 #, php-format
@@ -2916,6 +2924,8 @@ msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
 msgstr ""
+"Obecnie nie możesz podszywać się pod innego użytkownika. Musisz ustawić % na "
+"% w swoim config.php!"
 
 #: application/controllers/User.php:1515
 #: application/views/user/modals/admin_impersonate_modal.php:36
@@ -2955,6 +2965,8 @@ msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
+"Nie udało się określić prawidłowego poziomu uprawnień dla stacji klubowej. "
+"Spróbuj ponownie po ponownym zalogowaniu."
 
 #: application/controllers/User.php:1621 application/controllers/User.php:1633
 #: application/controllers/User.php:1639 application/controllers/User.php:1648
@@ -2967,6 +2979,8 @@ msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr ""
+"Zdolność do szybkiego powrotu została wyłączona po wygaśnięciu hash "
+"zabezpieczenia. Proszę się zalogować jeszcze raz."
 
 #: application/controllers/User.php:1678
 #, php-format
@@ -2974,6 +2988,7 @@ msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"Wylogowano Cię z konta %. Witamy z powrotem, %, na swoim koncie osobistym!"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
@@ -3010,13 +3025,15 @@ msgstr ""
 
 #: application/controllers/Widgets.php:160
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "Użytkownik ma wyłączony widget ON AIR"
 
 #: application/controllers/Widgets.php:219
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
 msgstr ""
+"Nie znaleziono radia z interfejsami CAT. Musisz mieć skonfigurowany "
+"przynajmniej jeden interfejs radiowy."
 
 #: application/controllers/Widgets.php:330
 msgid "User not found by slug"
@@ -3110,11 +3127,11 @@ msgstr "Miasto / Ku / Gun"
 
 #: application/models/Club_model.php:154
 msgid "Invalid Permission Level!"
-msgstr ""
+msgstr "Nieprawidłowy poziom uprawnień!"
 
 #: application/models/Club_model.php:169
 msgid "Error adding Club Member!"
-msgstr ""
+msgstr "Błąd dodawania członka klubu!"
 
 #: application/models/Eqslmethods_model.php:292
 msgid "Your eQSL username and/or password is incorrect."
@@ -3126,7 +3143,7 @@ msgstr "Coś poszło nie tak z eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "Nazwa QTH nie istnieje w eQSL"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -3165,16 +3182,16 @@ msgstr "HRDlog: Nie znaleziono profili stacji z danymi logowania HRDlog."
 
 #: application/models/Logbook_model.php:1289
 msgid "Station ID not allowed"
-msgstr ""
+msgstr "Numer identyfikacyjny stacji nie jest dozwolony"
 
 #: application/models/Logbook_model.php:1294
 msgid "No Call given"
-msgstr ""
+msgstr "Nie przyznano znaku"
 
 #: application/models/Logbook_model.php:1364
 #: application/models/Logbook_model.php:1538
 msgid "DXCC has to be Numeric"
-msgstr ""
+msgstr "DXCC musi być numeryczne"
 
 #: application/models/Logbook_model.php:3985
 #, php-format
