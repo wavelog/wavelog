@@ -389,6 +389,7 @@ class Oqrs_model extends CI_Model {
 
 	function search_log($callsign) {
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->join('oqrs', 'oqrs.qsoid = '.$this->config->item('table_name').'.COL_PRIMARY_KEY', 'left');
 		// always filter user. this ensures that no inaccesible QSOs will be returned
 		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 		$this->db->where('COL_CALL like "%'.$callsign.'%"');
@@ -402,7 +403,9 @@ class Oqrs_model extends CI_Model {
 		$binding = [];
 
 		$sql = 'select * from ' . $this->config->item('table_name') . ' thcv
-		 join station_profile on thcv.station_id = station_profile.station_id where (col_band = ? or col_prop_mode = ?)
+		 join station_profile on thcv.station_id = station_profile.station_id
+		 left join oqrs on oqrs.qsoid = thcv.COL_PRIMARY_KEY
+		 where (col_band = ? or col_prop_mode = ?)
 		 and date(col_time_on) = ?
 		 and (col_mode = ?
 		 or col_submode = ?)

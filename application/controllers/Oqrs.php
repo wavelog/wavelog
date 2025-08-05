@@ -214,17 +214,30 @@ class Oqrs extends CI_Controller {
 
         $data['qsos'] = $this->oqrs_model->search_log($callsign);
 
-		$this->load->view('qslprint/qsolist', $data);
+		$this->load->view('oqrs/qsolist', $data);
 	}
 
 	public function search_log_time_date() {
-		$this->load->model('oqrs_model');
+		// Get user-preferred date format
+		if ($this->session->userdata('user_date_format')) {
+			$date_format = $this->session->userdata('user_date_format');
+		} else {
+			$date_format = $this->config->item('qso_date_format');
+		}
+
 		$time = $this->input->post('time', TRUE);
 		$date = $this->input->post('date', TRUE);
 		$mode = $this->input->post('mode', TRUE);
 		$band = $this->input->post('band', TRUE);
 
-        $data['qsos'] = $this->oqrs_model->search_log_time_date($time, $date, $band, $mode);
+		// Parse datetime using createFromFormat
+		$datetime_obj = DateTime::createFromFormat("$date_format", "$date");
+
+		$formatted_date = $datetime_obj->format('Y-m-d'); // Format for SQL DATE comparison
+
+		$this->load->model('oqrs_model');
+
+        $data['qsos'] = $this->oqrs_model->search_log_time_date($time, $formatted_date, $band, $mode);
 
 		$this->load->view('oqrs/qsolist', $data);
 	}

@@ -1,6 +1,6 @@
 <?php
 if ($qsos->result() != NULL) {
-	echo '<table style="width:100%" class="qsolist table-sm table-bordered table-hover table-striped table-condensed">
+	echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed">
 	<thead>
 	<tr>
 	<th style=\'text-align: center\'>'.__("Callsign").'</th>
@@ -17,6 +17,7 @@ if ($qsos->result() != NULL) {
 		echo '<th style=\'text-align: center\'>' . __("LoTW") . '</th>';
 	}
 	echo '<th style=\'text-align: center\'></th>
+	<th style=\'text-align: center\'></th>
 	</tr>
 	</thead><tbody>';
 
@@ -185,7 +186,8 @@ if ($qsos->result() != NULL) {
 			echo '>&#9660;</span>';
 			echo '</td>';
 		}
-		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'><button onclick="addQsoToPrintQueue(\''.$qsl->COL_PRIMARY_KEY.'\')" class="btn btn-sm btn-success">' . __("Add to print queue") . '</button></td>';
+		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'>' . return_add_print_button($qsl->COL_PRIMARY_KEY, $qsl->COL_QSL_SENT) . '</td>';
+		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'>' . return_add_link_qso_button($qsl->COL_PRIMARY_KEY, $qsl->qsoid) . '</td>';
 		echo '</tr>';
 	}
 
@@ -196,4 +198,18 @@ if ($qsos->result() != NULL) {
 } else {
 	echo '<div class="alert alert-danger">' . __("No QSOs were found. It seems you were not active at this time.") . '</div>';
 }
+
+function return_add_print_button($qso_id, $qslsent) {
+	if ($qslsent != 'R') return '<button onclick="addQsoToPrintQueue(\'' . $qso_id . '\')" class="btn btn-sm btn-success">' . __("Add to print queue") . '</button>';
+
+	return '';
+}
+
+function return_add_link_qso_button($qso_id, $qsoid) {
+	if ($qso_id != $qsoid) return '<button onclick="addLinkToOqrs(\'' . $qso_id . '\')" class="btn btn-sm btn-success">' . __("Link QSO to OQRS") . '</button>';
+
+	return '';
+}
+
+// COL_QSL_SENT
 ?>
