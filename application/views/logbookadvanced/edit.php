@@ -35,8 +35,8 @@
 			<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
 			<option value="distance"><?= __("Distance"); ?></option>
 			<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
-			<option value="rstr"><?= __("RSTS"); ?></option>
-			<option value="rsts"><?= __("RSTR"); ?></option>
+			<option value="rstr"><?= __("RSTR"); ?></option>
+			<option value="rsts"><?= __("RSTS"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
