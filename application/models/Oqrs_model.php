@@ -595,4 +595,25 @@ class Oqrs_model extends CI_Model {
 		return $this->db->affected_rows() > 0;
 	}
 
+	public function add_qso_match_to_oqrs($qsoid, $oqrsid) {
+		// Step 1: Check if this QSO belongs to the current user
+		$this->db->select('oqrs.id');
+		$this->db->from('oqrs');
+		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');
+		$this->db->where('oqrs.id', $oqrsid);
+		$this->db->where('oqrs.qsoid', 0); // Ensure we are adding a match to an empty qsoid
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$query = $this->db->get();
+
+		if ($query->num_rows() === 0) {
+			return false; // Not authorized or not found
+		}
+
+		// Step 2: Update if authorized
+		$this->db->where('id', $oqrsid);
+		$this->db->update('oqrs', ['qsoid' => $qsoid]);
+
+		return $this->db->affected_rows() > 0;
+	}
+
 }

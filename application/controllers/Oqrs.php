@@ -212,6 +212,7 @@ class Oqrs extends CI_Controller {
 		$this->load->model('oqrs_model');
 		$callsign = $this->input->post('callsign', TRUE);
 		$data['qsoid'] = $this->input->post('qsoid', TRUE);
+		$data['oqrsid'] = $this->input->post('oqrsid', TRUE);
 
         $data['qsos'] = $this->oqrs_model->search_log($callsign);
 
@@ -231,6 +232,7 @@ class Oqrs extends CI_Controller {
 		$mode = $this->input->post('mode', TRUE);
 		$band = $this->input->post('band', TRUE);
 		$data['qsoid'] = $this->input->post('qsoid', TRUE);
+		$data['oqrsid'] = $this->input->post('oqrsid', TRUE);
 
 		// Parse datetime using createFromFormat
 		$datetime_obj = DateTime::createFromFormat("$date_format", "$date");
@@ -357,6 +359,15 @@ class Oqrs extends CI_Controller {
 		$this->oqrs_model->delete_oqrs_qso_match($id, $qsoid);
 		header('Content-Type: application/json');
 		echo json_encode(array('status' => 'success', 'message' => __("QSO match deleted successfully.")));
+	}
+
+	public function add_qso_match_to_oqrs() {
+		$this->load->model('oqrs_model');
+		$qsoid = $this->input->post('qsoid', TRUE);
+		$oqrsid = $this->input->post('oqrsid', TRUE);
+		$this->oqrs_model->add_qso_match_to_oqrs($qsoid, $oqrsid);
+		header('Content-Type: application/json');
+		echo json_encode(array('status' => 'success', 'message' => __("QSO match added successfully.")));
 	}
 
 }
