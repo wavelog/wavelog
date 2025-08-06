@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:27+0000\n"
-"PO-Revision-Date: 2025-08-05 07:10+0000\n"
+"PO-Revision-Date: 2025-08-07 07:25+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1928,79 +1928,80 @@ msgstr "DXClusterキャッシュURLが変更されました "
 #: application/controllers/Options.php:200
 #: application/controllers/Options.php:211
 msgid "Radio Settings"
-msgstr ""
+msgstr "無線機の設定"
 
 #: application/controllers/Options.php:232
 msgid "Radio Timeout Warning changed to "
-msgstr ""
+msgstr "無線機のタイムアウト警告が次のように変更されました "
 
 #: application/controllers/Options.php:244
 #: application/controllers/Options.php:255
 #: application/views/options/sidebar.php:6
 msgid "Email"
-msgstr ""
+msgstr "メール"
 
 #: application/controllers/Options.php:312
 msgid "The settings were saved successfully."
-msgstr ""
+msgstr "設定は正常に保存されました。"
 
 #: application/controllers/Options.php:314
 msgid "Something went wrong with saving the settings. Try again."
-msgstr ""
+msgstr "設定の保存中にエラーが発生しました。もう一度お試しください。"
 
 #: application/controllers/Options.php:356
 #: application/controllers/Options.php:361
 msgid "Testmail failed. Something went wrong."
-msgstr ""
+msgstr "テストメールに失敗しました。問題が発生しました。"
 
 #: application/controllers/Options.php:358
 msgid "Testmail sent. Email settings seem to be correct."
-msgstr ""
+msgstr "テストメールを送信しました。メール設定は正しいようです。"
 
 #: application/controllers/Options.php:370
 #: application/controllers/Options.php:389
 #: application/views/options/sidebar.php:8
 msgid "Maptiles Server"
-msgstr ""
+msgstr "Maptiles サーバー"
 
 #: application/controllers/Options.php:448
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
-msgstr ""
+msgstr "Maptileキャッシュを削除できませんでした。フォルダを手動で削除してください。パ"
+"ス: %s"
 
 #: application/controllers/Options.php:452
 msgid "Maptile Options saved!"
-msgstr ""
+msgstr "Maptile オプションが保存されました!"
 
 #: application/controllers/Options.php:454
 msgid "Maptile Options could not be saved!"
-msgstr ""
+msgstr "Maptile オプションを保存できませんでした！"
 
 #: application/controllers/Options.php:465
 #: application/controllers/Options.php:475
 msgid "Version Info Settings"
-msgstr ""
+msgstr "バージョン情報設定"
 
 #: application/controllers/Options.php:481
 msgid "Version Info Header changed to"
-msgstr ""
+msgstr "バージョン情報ヘッダーが変更されました"
 
 #: application/controllers/Options.php:485
 msgid "Version Info Mode changed to"
-msgstr ""
+msgstr "バージョン情報モードが変更されました"
 
 #: application/controllers/Options.php:490
 msgid "Version Info Custom Text saved!"
-msgstr ""
+msgstr "バージョン情報カスタムテキストが保存されました!"
 
 #: application/controllers/Options.php:501
 msgid "Version Info will be shown to all users again"
-msgstr ""
+msgstr "バージョン情報がすべてのユーザーに再度表示されます"
 
 #: application/controllers/Options.php:509
 msgid "Version Info will not be shown to any user"
-msgstr ""
+msgstr "バージョン情報はどのユーザーにも表示されません"
 
 #: application/controllers/Oqrs.php:42 application/controllers/Staticmap.php:20
 #: application/controllers/Staticmap.php:25
@@ -2013,127 +2014,124 @@ msgstr ""
 #: application/controllers/Visitor.php:476
 #: application/controllers/Widgets.php:68
 msgid "Unknown Public Page."
-msgstr ""
+msgstr "不明な公開ページ。"
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
 #: application/controllers/Oqrs.php:121 application/controllers/Oqrs.php:133
 msgid "Log Search & OQRS"
-msgstr ""
+msgstr "ログ検索とOQRS"
 
 #: application/controllers/Oqrs.php:85
 msgid "Invalid Station ID"
-msgstr ""
+msgstr "無効なステーションID"
 
 #: application/controllers/Oqrs.php:163
 #: application/views/interface_assets/header.php:484
 msgid "OQRS Requests"
-msgstr ""
+msgstr "OQRSリクエスト"
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
-msgstr ""
+msgstr "QRB計算機"
 
 #: application/controllers/Qrbcalc.php:49
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "緯度: %s, 経度: %s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s と %s の間の距離は %s マイルです。"
 
 #: application/controllers/Qrbcalc.php:57
 #, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s と %s の間の距離は %s 海里です。"
 
 #: application/controllers/Qrbcalc.php:60
 #, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s と %s の間の距離は %s キロメートルです。"
 
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "ベアリングは %s 。"
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
-msgstr ""
+msgstr "負の緯度は赤道の南側、負の経度はグリニッジの西側です。"
 
 #: application/controllers/Qrz.php:204
 #: application/views/interface_assets/header.php:497
 msgid "QRZ Logbook"
-msgstr ""
+msgstr "QRZログブック"
 
 #: application/controllers/Qrz.php:287
 msgid "QRZ QSL Import"
-msgstr ""
+msgstr "QRZ QSLインポート"
 
 #: application/controllers/Qrz.php:344
 msgid "QRZ ADIF Information"
-msgstr ""
+msgstr "QRZ ADIF情報"
 
 #: application/controllers/Qsl.php:25 application/views/dashboard/index.php:321
 #: application/views/dashboard/index.php:338
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
 msgid "QSL Cards"
-msgstr ""
+msgstr "QSLカード"
 
 #: application/controllers/Qsl.php:40
 msgid "Upload QSL Cards"
-msgstr ""
+msgstr "QSLカードをアップロードする"
 
 #: application/controllers/Qslmanagement.php:14
 msgid "QSL Card Management"
-msgstr ""
+msgstr "QSLカード管理"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
-msgstr ""
+msgstr "リクエストされたQSLを印刷する"
 
 #: application/controllers/Qso.php:112
 msgid "Add QSO"
-msgstr ""
+msgstr "QSOを追加"
 
 #: application/controllers/Qso.php:690
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "この URL にアクセスするにはログインする必要があります。"
 
 #: application/controllers/Qso.php:696
 msgid "Call Transfer"
-msgstr ""
+msgstr "通話転送"
 
 #: application/controllers/Qso.php:703
 msgid "No callsign provided."
-msgstr ""
+msgstr "コールサインが提供されていません。"
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:507
 msgid "Hardware Interfaces"
-msgstr ""
+msgstr "ハードウェアインターフェース"
 
 #: application/controllers/Radio.php:41 application/views/bandmap/index.php:25
 #: application/views/bandmap/list.php:67
 #: application/views/contesting/index.php:153
 #: application/views/qso/index.php:350
 msgid "Radio"
-msgstr ""
+msgstr "無線"
 
 #: application/controllers/Radio.php:47
 msgid "Timestamp"
-msgstr ""
+msgstr "タイムスタンプ"
 
 #: application/controllers/Radio.php:49
 #: application/views/logbookadvanced/index.php:665
@@ -2142,30 +2140,30 @@ msgstr ""
 #: application/views/simplefle/index.php:185
 #: application/views/stationsetup/exportmapoptions.php:5
 msgid "Options"
-msgstr ""
+msgstr "オプション"
 
 #: application/controllers/Radio.php:50 application/views/debug/index.php:312
 #: application/views/qso/index.php:749
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: application/controllers/Radio.php:63
 msgid "UNKNOWN"
-msgstr ""
+msgstr "不明"
 
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:157
 #: application/views/qso/index.php:354
 msgid "last updated"
-msgstr ""
+msgstr "最終更新日"
 
 #: application/controllers/Radio.php:106 application/controllers/Radio.php:109
 msgid "Set as default radio"
-msgstr ""
+msgstr "デフォルトの無線機として設定"
 
 #: application/controllers/Radio.php:111
 msgid "Default (click to release)"
-msgstr ""
+msgstr "デフォルト（クリックして解除）"
 
 #: application/controllers/Radio.php:115
 #: application/controllers/Stationsetup.php:401
@@ -2184,7 +2182,7 @@ msgstr ""
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
 msgid "Edit"
-msgstr ""
+msgstr "編集"
 
 #: application/controllers/Radio.php:116
 #: application/controllers/Stationsetup.php:414
@@ -2212,19 +2210,19 @@ msgstr ""
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:762
 msgid "Delete"
-msgstr ""
+msgstr "削除"
 
 #: application/controllers/Radio.php:122
 msgid "No CAT interfaced radios found."
-msgstr ""
+msgstr "CAT インターフェースの無線機が見つかりません。"
 
 #: application/controllers/Radio.php:137 application/views/radio/index.php:2
 msgid "Edit CAT Settings"
-msgstr ""
+msgstr "CAT設定の編集"
 
 #: application/controllers/Reg1test.php:22
 msgid "Export EDI"
-msgstr ""
+msgstr "EDIエクスポート"
 
 #: application/controllers/Satellite.php:55
 #: application/views/interface_assets/header.php:312
@@ -2233,57 +2231,57 @@ msgstr ""
 #: application/views/statistics/index.php:50
 #: application/views/statistics/index.php:111
 msgid "Satellites"
-msgstr ""
+msgstr "衛星"
 
 #: application/controllers/Satellite.php:64
 msgid "Create Satellite"
-msgstr ""
+msgstr "衛星を作成"
 
 #: application/controllers/Satellite.php:90
 msgid "Edit Satellite"
-msgstr ""
+msgstr "衛星を編集"
 
 #: application/controllers/Satellite.php:213
 #: application/views/interface_assets/header.php:293
 msgid "Satellite Flightpath"
-msgstr ""
+msgstr "衛星飛行経路"
 
 #: application/controllers/Satellite.php:256
 msgid "Satellite pass"
-msgstr ""
+msgstr "衛星パス"
 
 #: application/controllers/Satellite.php:313
 msgid "Failed to save pass settings!"
-msgstr ""
+msgstr "パス設定の保存に失敗しました！"
 
 #: application/controllers/Satellite.php:316
 msgid "Pass settings saved!"
-msgstr ""
+msgstr "パス設定が保存されました!"
 
 #: application/controllers/Satellite.php:329
 msgid "No settings found!"
-msgstr ""
+msgstr "設定が見つかりません!"
 
 #: application/controllers/Satellite.php:343
 msgid "Failed to delete pass settings!"
-msgstr ""
+msgstr "パス設定の削除に失敗しました！"
 
 #: application/controllers/Satellite.php:345
 msgid "Pass settings deleted!"
-msgstr ""
+msgstr "パス設定が削除されました!"
 
 #: application/controllers/Satellite.php:355
 msgid "Saved Pass Settings"
-msgstr ""
+msgstr "保存されたパス設定"
 
 #: application/controllers/Satellite.php:372
 msgid "No presets available"
-msgstr ""
+msgstr "プリセットはありません"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
 msgid "You have no station locations. Go %s to create it!"
-msgstr ""
+msgstr "ステーションの場所がありません。進む %s が作成します!"
 
 #: application/controllers/Sattimers.php:41
 #: application/views/awards/counties/index.php:8
@@ -2294,12 +2292,12 @@ msgstr ""
 #: application/views/awards/was/index.php:23
 #: application/views/simplefle/index.php:16
 msgid "here"
-msgstr ""
+msgstr "ここ"
 
 #: application/controllers/Sattimers.php:44
 #: application/views/sattimers/index.php:13
 msgid "Satellite Timers"
-msgstr ""
+msgstr "衛星タイマー"
 
 #: application/controllers/Search.php:17
 #: application/views/continents/index.php:49
@@ -2326,25 +2324,25 @@ msgstr ""
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: application/controllers/Search.php:26
 msgid "Search & Filter Logbook"
-msgstr ""
+msgstr "ログブックの検索とフィルタリング"
 
 #: application/controllers/Search.php:54
 msgid "Incorrectly logged CQ zones"
-msgstr ""
+msgstr "誤って記録されたCQゾーン"
 
 #: application/controllers/Search.php:66
 msgid "Incorrectly logged ITU zones"
-msgstr ""
+msgstr "誤って記録されたITUゾーン"
 
 #: application/controllers/Search.php:78
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
-msgstr ""
+msgstr "LoTWでQSOが未確認だが、コールサインはQSO日以降にLoTWにアップロードされている"
 
 #: application/controllers/Staticmap.php:152
 #: application/controllers/Visitor.php:76
@@ -2353,16 +2351,16 @@ msgstr ""
 #: application/controllers/Visitor.php:472
 #: application/controllers/Widgets.php:64
 msgid "Empty Logbook"
-msgstr ""
+msgstr "空のログブック"
 
 #: application/controllers/Station.php:38
 #: application/controllers/Stationsetup.php:251
 msgid "Create Station Location"
-msgstr ""
+msgstr "ステーションの場所を作成する"
 
 #: application/controllers/Station.php:83
 msgid "Edit Station Location: "
-msgstr ""
+msgstr "ステーションの場所を編集: "
 
 #: application/controllers/Station.php:93 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
@@ -2377,30 +2375,30 @@ msgstr ""
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 msgid "Station Location"
-msgstr ""
+msgstr "衛星の場所"
 
 #: application/controllers/Station.php:112
 msgid "Duplicate Station Location:"
-msgstr ""
+msgstr "重複ステーションの場所:"
 
 #: application/controllers/Station.php:221
 #: application/controllers/User.php:1229 application/controllers/User.php:1479
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "グリッドロケータの値を確認してください（ %s )"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:421
 #: application/views/interface_assets/header.php:570
 msgid "Station Setup"
-msgstr ""
+msgstr "ステーションのセットアップ"
 
 #: application/controllers/Stationsetup.php:75
 #: application/controllers/Stationsetup.php:93
 #: application/controllers/Stationsetup.php:437
 #: application/controllers/Stationsetup.php:451
 msgid "Not allowed"
-msgstr ""
+msgstr "許可されていません"
 
 #: application/controllers/Stationsetup.php:97
 #: application/controllers/Stationsetup.php:111
@@ -2412,28 +2410,28 @@ msgstr ""
 #: application/views/qso/index.php:708 application/views/simplefle/index.php:39
 #: application/views/widgets/on_air.php:102
 msgid "Error"
-msgstr ""
+msgstr "エラー"
 
 #: application/controllers/Stationsetup.php:184
 #: application/views/stationsetup/stationsetup.php:25
 msgid "Create Station Logbook"
-msgstr ""
+msgstr "ステーションログブックを作成する"
 
 #: application/controllers/Stationsetup.php:191
 msgid "Edit container name"
-msgstr ""
+msgstr "コンテナ名を編集"
 
 #: application/controllers/Stationsetup.php:206
 msgid "Edit linked locations"
-msgstr ""
+msgstr "リンクされた場所を編集する"
 
 #: application/controllers/Stationsetup.php:215
 msgid "Edit visitor site"
-msgstr ""
+msgstr "訪問者サイトを編集する"
 
 #: application/controllers/Stationsetup.php:237
 msgid "Error. Link is already in use!"
-msgstr ""
+msgstr "エラー。リンクは既に使用中です！"
 
 #: application/controllers/Stationsetup.php:278
 #: application/views/options/appearance.php:57
@@ -2450,51 +2448,52 @@ msgstr ""
 #: application/views/user/edit.php:480 application/views/user/edit.php:489
 #: application/views/user/edit.php:634
 msgid "Disabled"
-msgstr ""
+msgstr "無効"
 
 #: application/controllers/Stationsetup.php:286
 #: application/views/stationsetup/stationsetup.php:47
 msgid "Set as Active Logbook"
-msgstr ""
+msgstr "アクティブなログブックとして設定"
 
 #: application/controllers/Stationsetup.php:288
 #: application/views/interface_assets/header.php:568
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
-msgstr ""
+msgstr "アクティブログブック"
 
 #: application/controllers/Stationsetup.php:295
 #: application/views/stationsetup/stationsetup.php:58
 msgid ""
 "Are you sure you want to delete the following station logbook? You must re-"
 "link any locations linked here to another logbook.: "
-msgstr ""
+msgstr "次のステーションのログブックを削除してもよろしいですか? "
+"ここにリンクされている場所を別のログブックに再リンクする必要があります。 "
 
 #: application/controllers/Stationsetup.php:305
 #: application/views/stationsetup/stationsetup.php:68
 msgid "View Public Page for Logbook: "
-msgstr ""
+msgstr "ログブックの公開ページを表示: "
 
 #: application/controllers/Stationsetup.php:306
 msgid "Are you sure you want to delete the public slug?"
-msgstr ""
+msgstr "パブリックスラッグを削除してもよろしいですか?"
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:159
 msgid ""
 "Are you sure you want to make the following station the active station: "
-msgstr ""
+msgstr "次のステーションをアクティブステーションにしますか? "
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:159
 msgid "Set Active"
-msgstr ""
+msgstr "アクティブに設定"
 
 #: application/controllers/Stationsetup.php:393
 #: application/views/stationsetup/stationsetup.php:161
 msgid "Active Station"
-msgstr ""
+msgstr "アクティブステーション"
 
 #: application/controllers/Stationsetup.php:396
 #: application/views/interface_assets/header.php:119
@@ -2504,24 +2503,24 @@ msgstr ""
 #: application/views/user/index.php:82 application/views/user/index.php:86
 #: application/views/user/index.php:193 application/views/user/index.php:195
 msgid "QSO"
-msgstr ""
+msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:190
 msgid "Are you sure you want to delete all QSOs within this station profile?"
-msgstr ""
+msgstr "この局プロファイル内のすべての QSO を削除してもよろしいですか?"
 
 #: application/controllers/Stationsetup.php:405
 #: application/views/stationsetup/stationsetup.php:140
 #: application/views/stationsetup/stationsetup.php:192
 msgid "Empty Log"
-msgstr ""
+msgstr "空のログ"
 
 #: application/controllers/Stationsetup.php:409
 #: application/views/stationsetup/stationsetup.php:133
 #: application/views/stationsetup/stationsetup.php:173
 msgid "Copy"
-msgstr ""
+msgstr "コピー"
 
 #: application/controllers/Stationsetup.php:414
 #: application/views/stationsetup/stationsetup.php:196
@@ -2529,7 +2528,8 @@ msgstr ""
 msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
 "within this station profile."
-msgstr ""
+msgstr "ステーションプロファイルを削除してもよろしいですか? %s '? これにより、"
+"この局プロファイル内のすべての QSO が削除されます。"
 
 #: application/controllers/Stationsetup.php:421
 #: application/views/qso/edit_ajax.php:236
@@ -2538,171 +2538,171 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:154
 #: application/views/user/modals/first_login_wizard.php:46
 msgid "Please select one"
-msgstr ""
+msgstr "1つ選択してください"
 
 #: application/controllers/Stationsetup.php:504
 msgid "Edit Export Map options"
-msgstr ""
+msgstr "エクスポートマップのオプションを編集"
 
 #: application/controllers/Statistics.php:26
 #: application/views/interface_assets/header.php:142
 msgid "Statistics"
-msgstr ""
+msgstr "統計"
 
 #: application/controllers/Statistics.php:270
 #: application/views/interface_assets/header.php:146
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
-msgstr ""
+msgstr "QSL統計"
 
 #: application/controllers/Statistics.php:285
 #: application/views/interface_assets/header.php:144
 #: application/views/statistics/antennaanalytics.php:3
 msgid "Antenna Analytics"
-msgstr ""
+msgstr "アンテナ分析"
 
 #: application/controllers/Statistics.php:338
 msgid "Satellite QSOs"
-msgstr ""
+msgstr "衛星QSO"
 
 #: application/controllers/Statistics.php:354
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
-msgstr ""
+msgstr "EMEイニシャル"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:314
 msgid "Themes"
-msgstr ""
+msgstr "テーマ"
 
 #: application/controllers/Themes.php:46
 msgid "Create Theme"
-msgstr ""
+msgstr "テーマを作成"
 
 #: application/controllers/Themes.php:65
 msgid "Edit Theme"
-msgstr ""
+msgstr "テーマを編集"
 
 #: application/controllers/Timeline.php:15
 #: application/views/interface_assets/header.php:160
 #: application/views/timeline/index.php:2
 msgid "Timeline"
-msgstr ""
+msgstr "タイムライン"
 
 #: application/controllers/Timeplotter.php:17
 #: application/views/interface_assets/header.php:164
 #: application/views/timeplotter/index.php:9
 msgid "Timeplotter"
-msgstr ""
+msgstr "タイムプロッター"
 
 #: application/controllers/Update.php:26
 msgid "Updates"
-msgstr ""
+msgstr "アップデート"
 
 #: application/controllers/Update.php:71
 msgid "Preparing DXCC-Entries: "
-msgstr ""
+msgstr "DXCCエントリの準備： "
 
 #: application/controllers/Update.php:136
 msgid "Preparing DXCC Exceptions: "
-msgstr ""
+msgstr "DXCC例外の準備： "
 
 #: application/controllers/Update.php:187
 msgid "Preparing DXCC Prefixes: "
-msgstr ""
+msgstr "DXCC プレフィックスの準備: "
 
 #: application/controllers/Update.php:275
 msgid "DONE"
-msgstr ""
+msgstr "終わり"
 
 #: application/controllers/Update.php:289
 msgid "Updating..."
-msgstr ""
+msgstr "更新中..."
 
 #: application/controllers/Update.php:292
 msgid "Dxcc Entities:"
-msgstr ""
+msgstr "Dxcc エンティティ:"
 
 #: application/controllers/Update.php:293
 msgid "Dxcc Exceptions:"
-msgstr ""
+msgstr "Dxcc 例外:"
 
 #: application/controllers/Update.php:294
 msgid "Dxcc Prefixes:"
-msgstr ""
+msgstr "Dxcc プレフィックス:"
 
 #: application/controllers/Update.php:365
 msgid "SCP Update complete. Result: "
-msgstr ""
+msgstr "SCP 更新が完了しました。結果: "
 
 #: application/controllers/Update.php:367
 msgid "SCP Update failed. Result: "
-msgstr ""
+msgstr "SCP 更新に失敗しました。結果: "
 
 #: application/controllers/Update.php:385
 msgid "LoTW Users Update complete. Result: "
-msgstr ""
+msgstr "LoTWユーザーのアップデートが完了しました。結果: "
 
 #: application/controllers/Update.php:387
 msgid "LoTW Users Update failed. Result: "
-msgstr ""
+msgstr "LoTWユーザーの更新に失敗しました。結果: "
 
 #: application/controllers/Update.php:404
 msgid "DOK Update complete. Result: "
-msgstr ""
+msgstr "DOK 更新が完了しました。結果: "
 
 #: application/controllers/Update.php:406
 msgid "DOK Update failed. Result: "
-msgstr ""
+msgstr "DOK 更新が完了しました。結果: "
 
 #: application/controllers/Update.php:423
 msgid "SOTA Update complete. Result: "
-msgstr ""
+msgstr "SOTAアップデートが完了しました。結果: "
 
 #: application/controllers/Update.php:425
 msgid "SOTA Update failed. Result: "
-msgstr ""
+msgstr "SOTA アップデートに失敗しました。結果: "
 
 #: application/controllers/Update.php:442
 msgid "WWFF Update complete. Result: "
-msgstr ""
+msgstr "WWFFアップデートが完了しました。結果: "
 
 #: application/controllers/Update.php:444
 msgid "WWFF Update failed. Result: "
-msgstr ""
+msgstr "WWFF アップデートに失敗しました。結果: "
 
 #: application/controllers/Update.php:458
 msgid "POTA Update complete. Result: "
-msgstr ""
+msgstr "POTA 更新が完了しました。結果: "
 
 #: application/controllers/Update.php:460
 msgid "POTA Update failed. Result: "
-msgstr ""
+msgstr "POTA 更新に失敗しました。結果: "
 
 #: application/controllers/Update.php:473
 msgid "TLE Update complete. Result: "
-msgstr ""
+msgstr "TLEアップデートが完了しました。結果: "
 
 #: application/controllers/Update.php:475
 msgid "TLE Update failed. Result: "
-msgstr ""
+msgstr "TLE 更新に失敗しました。結果: "
 
 #: application/controllers/Update.php:486
 msgid "LoTW SAT Update"
-msgstr ""
+msgstr "LoTW SATアップデート"
 
 #: application/controllers/Update.php:498
 msgid "Update of Hams of Note"
-msgstr ""
+msgstr "注目のハムの最新情報"
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:304
 msgid "User Accounts"
-msgstr ""
+msgstr "ユーザーアカウント"
 
 #: application/controllers/User.php:96
 msgid "Invalid User ID or missing modal!"
-msgstr ""
+msgstr "ユーザーIDが無効か、modalがありません!"
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
@@ -3994,7 +3994,7 @@ msgstr ""
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:656
 msgid "Callsign"
-msgstr ""
+msgstr "コールサイン"
 
 #: application/views/activators/index.php:99
 msgid "Count"
@@ -5038,7 +5038,7 @@ msgstr ""
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:675
 msgid "Reset"
-msgstr ""
+msgstr "リセット"
 
 #: application/views/awards/cq/index.php:115
 msgid "Show CQ Zone Map"
@@ -5610,7 +5610,7 @@ msgstr ""
 #: application/views/search/result.php:21
 #: application/views/view_log/qso.php:670
 msgid "City"
-msgstr ""
+msgstr "市"
 
 #: application/views/awards/jcc/index.php:187
 #: application/views/dashboard/index.php:429
@@ -6550,7 +6550,7 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:164
 #: application/views/logbookadvanced/edit.php:170
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #: application/views/cabrillo/index.php:197
 #: application/views/cabrillo/index.php:203
@@ -6611,7 +6611,7 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:165
 #: application/views/logbookadvanced/edit.php:171
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: application/views/cabrillo/index.php:201
 msgid "If the gridsquare was part of the exchange, you should select YES."
@@ -13584,11 +13584,11 @@ msgstr ""
 
 #: application/views/user/edit.php:116
 msgid "First Name"
-msgstr ""
+msgstr "ファーストネーム"
 
 #: application/views/user/edit.php:123
 msgid "Last Name"
-msgstr ""
+msgstr "苗字"
 
 #: application/views/user/edit.php:134
 msgid "Ham Radio"
@@ -13616,7 +13616,7 @@ msgstr ""
 
 #: application/views/user/edit.php:193
 msgid "Timezone"
-msgstr ""
+msgstr "タイムゾーン"
 
 #: application/views/user/edit.php:201
 msgid "Date Format"
@@ -14440,7 +14440,7 @@ msgstr ""
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
-msgstr ""
+msgstr "パスワードを認証する"
 
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
