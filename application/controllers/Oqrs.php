@@ -348,4 +348,13 @@ class Oqrs extends CI_Controller {
 		$this->load->view('oqrs/status_info');
 	}
 
+	public function delete_oqrs_qso_match() {
+		$this->load->model('oqrs_model');
+		$id = $this->input->post('id', TRUE);
+		$qsoid = $this->input->post('qsoid', TRUE);
+		$this->oqrs_model->delete_oqrs_qso_match($id, $qsoid);
+		header('Content-Type: application/json');
+		echo json_encode(array('status' => 'success', 'message' => __("QSO match deleted successfully.")));
+	}
+
 }

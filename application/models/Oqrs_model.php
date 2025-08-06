@@ -557,4 +557,42 @@ class Oqrs_model extends CI_Model {
 		}
 	}
 
+	public function delete_oqrs_qso_match2($id, $qsoid) {
+		$data = array(
+			'qsoid' => '0',
+		);
+		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');
+		$this->db->where('oqrs.id', $id);
+		$this->db->where('oqrs.qsoid', $qsoid);
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->update('oqrs', $data);
+
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function delete_oqrs_qso_match($id, $qsoid) {
+		// Step 1: Check if this QSO belongs to the current user
+		$this->db->select('oqrs.id');
+		$this->db->from('oqrs');
+		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');
+		$this->db->where('oqrs.id', $id);
+		$this->db->where('oqrs.qsoid', $qsoid);
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$query = $this->db->get();
+
+		if ($query->num_rows() === 0) {
+			return false; // Not authorized or not found
+		}
+
+		// Step 2: Update if authorized
+		$this->db->where('id', $id);
+		$this->db->update('oqrs', ['qsoid' => 0]);
+
+		return $this->db->affected_rows() > 0;
+	}
+
 }

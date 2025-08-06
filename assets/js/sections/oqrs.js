@@ -443,7 +443,7 @@ function loadOqrsTable(rows) {
 			qso.note,
 			echo_qsl_method(qso.qslroute),
 			echo_searchlog_button(qso.requestcallsign, qso.id),
-			echo_linked_qso(qso.qsoid),
+			echo_matched_qso(qso.qsoid, qso.id),
 			echo_status(qso.status),
 		];
 		data.id='oqrsID_' + qso.id;
@@ -453,9 +453,10 @@ function loadOqrsTable(rows) {
     table.columns.adjust().draw();
 }
 
-function echo_linked_qso(qsoid) {
+function echo_matched_qso(qsoid, oqrsid) {
 	if (qsoid > 0) {
-		return '<span class="text-success"><i class="fas fa-check"></i></span>';
+		return '<span class="me-1 pe-2 text-success"><i class="fas fa-check"></i></span> ' +
+		'<button type="button" onclick="deleteQsoMatch(' + qsoid + ',' + oqrsid + ');" class="btn btn-sm btn-outline-danger" style="white-space: nowrap;" aria-label="Delete QSO match" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete QSO match"><i class="fas fa-trash-alt"></i></button>';
 	} else {
 		return '<span class="text-danger"><i class="fas fa-times"></i></span>';
 	}
@@ -665,6 +666,8 @@ $(document).ready(function () {
 		});
 	});
 
+
+
 	$('#addOqrsToQueue').click(function (event) {
 		var elements = $('.oqrstable tbody input:checked');
 		var nElements = elements.length;
@@ -729,6 +732,45 @@ $(document).ready(function () {
     }
 
 });
+
+function deleteQsoMatch(qsoid, oqrsid) {
+		$('.deleteMatch').prop("disabled", true);
+
+		BootstrapDialog.confirm({
+			title: 'DANGER',
+			message: lang_oqrs_warning_delete_match,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-danger',
+			callback: function(result) {
+				if(result) {
+					$.ajax({
+						url: base_url + 'index.php/oqrs/delete_oqrs_qso_match',
+						type: 'post',
+						data: {'id': oqrsid,
+							'qsoid': qsoid
+						},
+						success: function(data) {
+							$('#searchForm').submit();
+						},
+						error: function (data) {
+							BootstrapDialog.alert({
+								title: 'ERROR',
+								message: 'An error ocurred while making the request',
+								type: BootstrapDialog.TYPE_DANGER,
+								closable: false,
+								draggable: false,
+								callback: function (result) {
+								}
+							});
+						},
+					});
+				}
+				$('.deleteMatch').prop("disabled", false);
+			}
+		});
+	}
 
 function selectQsoID(qsoID) {
 	var element = $("#oqrsID_" + qsoID);

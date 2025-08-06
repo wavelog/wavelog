@@ -13,6 +13,7 @@
 	let lang_oqrs_warning_mark = '<?= __("Warning! Are you sure you want to mark the marked OQRS request(s)?"); ?>';
 	let lang_oqrs_warning_add_to_queue = '<?= __("Warning! Are you sure you want to add the marked OQRS request(s) to the queue?"); ?>';
 	let lang_oqrs_status_message = '<?= __("OQRS Status Information"); ?>';
+	let lang_oqrs_warning_delete_match = '<?= __("Warning! Are you sure you want to delete the QSO match?"); ?>';
 </script>
 
 <div class="container-fluid oqrs pt-3 ps-4 pe-4">
@@ -92,7 +93,7 @@
 			<th><?= __("Note"); ?></th>
 			<th><?= __("QSL route"); ?></th>
 			<th><?= __("Check log"); ?></th>
-			<th><?= __("QSO linked"); ?></th>
+			<th><?= __("QSO Match"); ?></th>
 			<th><?= __("Status"); ?></th>
 
 		</tr>

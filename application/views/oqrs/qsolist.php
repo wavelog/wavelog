@@ -206,7 +206,7 @@ function return_add_print_button($qso_id, $qslsent) {
 }
 
 function return_add_link_qso_button($qso_id, $qsoid) {
-	if ($qso_id != $qsoid) return '<button onclick="addLinkToOqrs(\'' . $qso_id . '\')" class="btn btn-sm btn-success">' . __("Link QSO to OQRS") . '</button>';
+	if ($qso_id != $qsoid) return '<button onclick="addLinkToOqrs(\'' . $qso_id . '\')" class="btn btn-sm btn-success">' . __("Match QSO") . '</button>';
 
 	return '';
 }
