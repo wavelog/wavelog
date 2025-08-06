@@ -187,7 +187,7 @@ if ($qsos->result() != NULL) {
 			echo '</td>';
 		}
 		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'>' . return_add_print_button($qsl->COL_PRIMARY_KEY, $qsl->COL_QSL_SENT) . '</td>';
-		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'>' . return_add_link_qso_button($qsl->COL_PRIMARY_KEY, $qsl->qsoid) . '</td>';
+		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'>' . return_add_match_qso_button($qsl->COL_PRIMARY_KEY, $qsl->qsoid, $qsoid) . '</td>';
 		echo '</tr>';
 	}
 
@@ -205,11 +205,9 @@ function return_add_print_button($qso_id, $qslsent) {
 	return '';
 }
 
-function return_add_link_qso_button($qso_id, $qsoid) {
-	if ($qso_id != $qsoid) return '<button onclick="addLinkToOqrs(\'' . $qso_id . '\')" class="btn btn-sm btn-success">' . __("Match QSO") . '</button>';
+function return_add_match_qso_button($qso_id, $qsoid, $matchqsoid) {
+	if ($qso_id != $qsoid && $matchqsoid == 0) return '<button onclick="addLinkToOqrs(\'' . $qso_id . '\')" class="btn btn-sm btn-success">' . __("Match QSO") . '</button>';
 
 	return '';
 }
-
-// COL_QSL_SENT
 ?>

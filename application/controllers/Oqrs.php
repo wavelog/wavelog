@@ -211,6 +211,7 @@ class Oqrs extends CI_Controller {
 	public function search_log() {
 		$this->load->model('oqrs_model');
 		$callsign = $this->input->post('callsign', TRUE);
+		$data['qsoid'] = $this->input->post('qsoid', TRUE);
 
         $data['qsos'] = $this->oqrs_model->search_log($callsign);
 
@@ -229,6 +230,7 @@ class Oqrs extends CI_Controller {
 		$date = $this->input->post('date', TRUE);
 		$mode = $this->input->post('mode', TRUE);
 		$band = $this->input->post('band', TRUE);
+		$data['qsoid'] = $this->input->post('qsoid', TRUE);
 
 		// Parse datetime using createFromFormat
 		$datetime_obj = DateTime::createFromFormat("$date_format", "$date");

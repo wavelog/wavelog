@@ -323,11 +323,12 @@ function submitOqrsRequestGrouped() {
     }
 }
 
-function searchLog(callsign) {
+function searchLog(callsign, qsoid) {
     $.ajax({
         url: base_url + 'index.php/oqrs/search_log',
         type: 'post',
         data: {'callsign': callsign,
+                'qsoid': qsoid
         },
         success: function(html) {
             BootstrapDialog.show({
@@ -360,14 +361,15 @@ function searchLog(callsign) {
     });
 }
 
-function searchLogTimeDate(id) {
+function searchLogTimeDate(id, qsoid) {
     $.ajax({
         url: base_url + 'index.php/oqrs/search_log_time_date',
         type: 'post',
         data: {'time': $('#oqrsID_'+id+ ' td:nth-child(4)').text(),
             'date': $('#oqrsID_'+id+ ' td:nth-child(3)').text(),
             'band': $('#oqrsID_'+id+ ' td:nth-child(5)').text(),
-            'mode': $('#oqrsID_'+id+ ' td:nth-child(6)').text()
+            'mode': $('#oqrsID_'+id+ ' td:nth-child(6)').text(),
+            'qsoid': qsoid
         },
         success: function(html) {
             BootstrapDialog.show({
@@ -442,7 +444,7 @@ function loadOqrsTable(rows) {
 			qso.email,
 			qso.note,
 			echo_qsl_method(qso.qslroute),
-			echo_searchlog_button(qso.requestcallsign, qso.id),
+			echo_searchlog_button(qso.requestcallsign, qso.id, qso.qsoid),
 			echo_matched_qso(qso.qsoid, qso.id),
 			echo_status(qso.status),
 		];
@@ -481,9 +483,9 @@ function echo_qsl_method(method) {
 	}
 }
 
-function echo_searchlog_button(callsign, id) {
-    return '<button class="btn btn-primary btn-sm" type="button" onclick="searchLog(\'' + callsign + '\');"><i class="fas fa-search"></i> Call</button> ' +
-    '<button class="btn btn-primary btn-sm" type="button" onclick="searchLogTimeDate(' + id + ');"><i class="fas fa-search"></i> Date/Time</button>';
+function echo_searchlog_button(callsign, id, qsoid) {
+    return '<button class="btn btn-primary btn-sm" type="button" onclick="searchLog(\'' + callsign + '\', ' + qsoid + ');"><i class="fas fa-search"></i> Call</button> ' +
+    '<button class="btn btn-primary btn-sm" type="button" onclick="searchLogTimeDate(' + id + ', ' + qsoid + ');"><i class="fas fa-search"></i> Date/Time</button>';
 }
 
 $(document).ready(function () {
