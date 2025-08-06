@@ -817,6 +817,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "region": $column = 'COL_REGION'; break;
 			case "distance": $column = 'COL_DISTANCE'; break;
 			case "stxstring": $column = 'COL_STX_STRING'; break;
+			case "rstr": $column = 'COL_RST_RCVD'; break;
+			case "rsts": $column = 'COL_RST_SENT'; break;
 			default: return;
 		}
 

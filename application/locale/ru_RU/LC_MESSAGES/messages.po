@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-26 07:21+0000\n"
-"PO-Revision-Date: 2025-07-16 04:48+0000\n"
+"POT-Creation-Date: 2025-08-05 07:10+0000\n"
+"PO-Revision-Date: 2025-07-29 02:35+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -48,7 +48,7 @@ msgstr ""
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:162
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:172
 #: application/controllers/Csv.php:8 application/controllers/Csv.php:31
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Debug.php:10
@@ -357,7 +357,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:252
 msgid "Awards - WAPC"
-msgstr ""
+msgstr "Дипломы — WAPC"
 
 #: application/controllers/Awards.php:331
 msgid "Awards - WAJA"
@@ -797,11 +797,11 @@ msgstr "Континенты"
 msgid "Cron Manager"
 msgstr "Диспетчер задач"
 
-#: application/controllers/Cron.php:154 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:164 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Редактирование задачи"
 
-#: application/controllers/Cron.php:218 application/controllers/Cron.php:219
+#: application/controllers/Cron.php:228 application/controllers/Cron.php:229
 #: application/views/cron/index.php:83 application/views/cron/index.php:85
 #: application/views/cron/index.php:87 application/views/debug/index.php:523
 #: application/views/debug/index.php:529 application/views/debug/index.php:534
@@ -811,32 +811,32 @@ msgstr "Редактирование задачи"
 msgid "never"
 msgstr "никогда"
 
-#: application/controllers/Cron.php:219
+#: application/controllers/Cron.php:229
 msgid "calculating..."
 msgstr "расчёт..."
 
-#: application/controllers/Cron.php:230 application/views/cron/index.php:70
+#: application/controllers/Cron.php:240 application/views/cron/index.php:70
 msgid "healthy"
 msgstr "норма"
 
-#: application/controllers/Cron.php:232 application/views/cron/index.php:72
+#: application/controllers/Cron.php:242 application/views/cron/index.php:72
 msgid "failed"
 msgstr "ошибка"
 
-#: application/controllers/Cron.php:234 application/views/cron/index.php:74
+#: application/controllers/Cron.php:244 application/views/cron/index.php:74
 msgid "pending"
 msgstr "в ожидании"
 
-#: application/controllers/Cron.php:239 application/views/cron/index.php:79
+#: application/controllers/Cron.php:249 application/views/cron/index.php:79
 msgid "disabled"
 msgstr "отключено"
 
-#: application/controllers/Cron.php:278
+#: application/controllers/Cron.php:288
 #: application/views/interface_assets/footer.php:39
 msgid "OK"
 msgstr "ОК"
 
-#: application/controllers/Cron.php:282
+#: application/controllers/Cron.php:292
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -845,7 +845,7 @@ msgstr ""
 "Последний запуск произошел более %s секунд назад.%sПроверьте ваш основной "
 "cron! Он должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:285
+#: application/controllers/Cron.php:295
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -854,7 +854,7 @@ msgstr ""
 "Последний запуск произошел более %s минут назад.%sПохоже, ваш Mastercron не "
 "работает!%sОн должен запускаться каждую минуту (* * * * *)."
 
-#: application/controllers/Cron.php:290 application/views/cron/index.php:29
+#: application/controllers/Cron.php:300 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Не работает"
@@ -1389,6 +1389,7 @@ msgstr "Вид модуляции"
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:175
 #: application/views/contesting/index.php:261
+#: application/views/logbookadvanced/edit.php:39
 #: application/views/logbookadvanced/index.php:701
 #: application/views/logbookadvanced/useroptions.php:38
 #: application/views/qslcard/searchresult.php:13
@@ -1417,6 +1418,7 @@ msgstr "RST (TX)"
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:199
 #: application/views/contesting/index.php:262
+#: application/views/logbookadvanced/edit.php:38
 #: application/views/logbookadvanced/index.php:704
 #: application/views/logbookadvanced/useroptions.php:42
 #: application/views/qslcard/searchresult.php:14
@@ -1497,7 +1499,7 @@ msgstr "IOTA"
 #: application/views/contesting/index.php:62
 #: application/views/dashboard/index.php:12
 #: application/views/logbookadvanced/edit.php:23
-#: application/views/logbookadvanced/edit.php:78
+#: application/views/logbookadvanced/edit.php:80
 #: application/views/logbookadvanced/index.php:245
 #: application/views/logbookadvanced/index.php:749
 #: application/views/logbookadvanced/qslcarousel.php:36
@@ -2911,12 +2913,16 @@ msgstr "Сбросить пароль"
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr ""
+"Не удалось создать учетную запись с этим именем пользователя. Пожалуйста, "
+"попробуйте другое, не \"%s\"."
 
 #: application/controllers/User.php:1462
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr ""
+"Не удалось создать учетную запись с этим адресом электронной почты. "
+"Пожалуйста, попробуйте другой адрес, не \"%s\"."
 
 #: application/controllers/User.php:1501
 #, php-format
@@ -3564,7 +3570,7 @@ msgstr "Все, кроме спутников"
 #: application/views/callstats/index.php:69
 #: application/views/distances/index.php:58
 #: application/views/gridmap/index.php:42
-#: application/views/logbookadvanced/edit.php:176
+#: application/views/logbookadvanced/edit.php:178
 #: application/views/logbookadvanced/index.php:389
 #: application/views/timeline/index.php:84
 msgid "None/Empty"
@@ -5383,7 +5389,7 @@ msgstr "Включая удалённые"
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:87
 #: application/views/bandmap/index.php:37 application/views/bandmap/list.php:88
-#: application/views/logbookadvanced/edit.php:178
+#: application/views/logbookadvanced/edit.php:180
 #: application/views/logbookadvanced/index.php:391
 #: application/views/lookup/index.php:60
 #: application/views/options/dxcluster.php:56
@@ -5395,7 +5401,7 @@ msgstr "Антарктика"
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/iota/index.php:91
 #: application/views/bandmap/index.php:36 application/views/bandmap/list.php:87
-#: application/views/logbookadvanced/edit.php:177
+#: application/views/logbookadvanced/edit.php:179
 #: application/views/logbookadvanced/index.php:390
 #: application/views/lookup/index.php:59
 #: application/views/options/dxcluster.php:55
@@ -5407,7 +5413,7 @@ msgstr "Африка"
 #: application/views/awards/dxcc/index.php:95
 #: application/views/awards/iota/index.php:95
 #: application/views/bandmap/index.php:38 application/views/bandmap/list.php:89
-#: application/views/logbookadvanced/edit.php:180
+#: application/views/logbookadvanced/edit.php:182
 #: application/views/logbookadvanced/index.php:393
 #: application/views/lookup/index.php:62
 #: application/views/options/dxcluster.php:57
@@ -5419,7 +5425,7 @@ msgstr "Азия"
 #: application/views/awards/dxcc/index.php:99
 #: application/views/awards/iota/index.php:99
 #: application/views/bandmap/index.php:39 application/views/bandmap/list.php:90
-#: application/views/logbookadvanced/edit.php:181
+#: application/views/logbookadvanced/edit.php:183
 #: application/views/logbookadvanced/index.php:394
 #: application/views/lookup/index.php:63
 #: application/views/options/dxcluster.php:58
@@ -5431,7 +5437,7 @@ msgstr "Европа"
 #: application/views/awards/dxcc/index.php:103
 #: application/views/awards/iota/index.php:103
 #: application/views/bandmap/index.php:40 application/views/bandmap/list.php:91
-#: application/views/logbookadvanced/edit.php:179
+#: application/views/logbookadvanced/edit.php:181
 #: application/views/logbookadvanced/index.php:392
 #: application/views/lookup/index.php:61
 #: application/views/options/dxcluster.php:59
@@ -5443,7 +5449,7 @@ msgstr "Северная Америка"
 #: application/views/awards/dxcc/index.php:107
 #: application/views/awards/iota/index.php:107
 #: application/views/bandmap/index.php:42 application/views/bandmap/list.php:93
-#: application/views/logbookadvanced/edit.php:182
+#: application/views/logbookadvanced/edit.php:184
 #: application/views/logbookadvanced/index.php:395
 #: application/views/lookup/index.php:64
 #: application/views/options/dxcluster.php:61
@@ -5455,7 +5461,7 @@ msgstr "Южная Америка"
 #: application/views/awards/dxcc/index.php:111
 #: application/views/awards/iota/index.php:111
 #: application/views/bandmap/index.php:41 application/views/bandmap/list.php:92
-#: application/views/logbookadvanced/edit.php:183
+#: application/views/logbookadvanced/edit.php:185
 #: application/views/logbookadvanced/index.php:396
 #: application/views/lookup/index.php:65
 #: application/views/options/dxcluster.php:60
@@ -6200,7 +6206,7 @@ msgstr "Провинция"
 
 #: application/views/awards/wapc/index.php:7
 msgid "WAPC - Worked All Provinces of China"
-msgstr ""
+msgstr "WAPC - Провел связи со всеми провинциями Китая"
 
 #: application/views/awards/wapc/index.php:8
 msgid ""
@@ -6209,16 +6215,22 @@ msgid ""
 "municipalities, autonomous regions, and special administrative regions of "
 "China, fostering a deeper understanding of China."
 msgstr ""
+"Диплом WAPC, выдаваемый клубом Mulan DX, направлен на содействие общению "
+"между радиолюбителями по всему миру и операторами во всех провинциях, "
+"муниципалитетах, автономных регионах и специальных административных районах "
+"Китая, способствуя более глубокому пониманию Китая."
 
 #: application/views/awards/wapc/index.php:9
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
 msgstr ""
+"Диплом можно получить путем длительного накопления QSO или во время "
+"ежегодного контеста WAPC."
 
 #: application/views/awards/wapc/index.php:118
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
@@ -6535,7 +6547,7 @@ msgstr "Округ США"
 #: application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:220
 msgid "WAPC"
-msgstr ""
+msgstr "WAPC"
 
 #: application/views/bands/index.php:62
 #: application/views/interface_assets/header.php:240
@@ -6801,10 +6813,10 @@ msgstr ""
 
 #: application/views/cabrillo/index.php:196
 #: application/views/cabrillo/index.php:204
-#: application/views/logbookadvanced/edit.php:148
-#: application/views/logbookadvanced/edit.php:156
-#: application/views/logbookadvanced/edit.php:162
-#: application/views/logbookadvanced/edit.php:168
+#: application/views/logbookadvanced/edit.php:150
+#: application/views/logbookadvanced/edit.php:158
+#: application/views/logbookadvanced/edit.php:164
+#: application/views/logbookadvanced/edit.php:170
 #: application/views/logbookadvanced/index.php:414
 #: application/views/logbookadvanced/index.php:425
 #: application/views/logbookadvanced/index.php:456
@@ -6858,10 +6870,10 @@ msgstr "Да"
 
 #: application/views/cabrillo/index.php:197
 #: application/views/cabrillo/index.php:203
-#: application/views/logbookadvanced/edit.php:149
-#: application/views/logbookadvanced/edit.php:157
-#: application/views/logbookadvanced/edit.php:163
-#: application/views/logbookadvanced/edit.php:169
+#: application/views/logbookadvanced/edit.php:151
+#: application/views/logbookadvanced/edit.php:159
+#: application/views/logbookadvanced/edit.php:165
+#: application/views/logbookadvanced/edit.php:171
 #: application/views/logbookadvanced/index.php:415
 #: application/views/logbookadvanced/index.php:426
 #: application/views/logbookadvanced/index.php:457
@@ -7997,8 +8009,8 @@ msgid "Received"
 msgstr "Принято"
 
 #: application/views/dashboard/index.php:355
-#: application/views/logbookadvanced/edit.php:150
-#: application/views/logbookadvanced/edit.php:170
+#: application/views/logbookadvanced/edit.php:152
+#: application/views/logbookadvanced/edit.php:172
 #: application/views/logbookadvanced/index.php:416
 #: application/views/logbookadvanced/index.php:427
 #: application/views/logbookadvanced/index.php:458
@@ -8562,50 +8574,54 @@ msgid "Italian"
 msgstr "Итальянский"
 
 #: application/views/debug/index.php:684
+msgid "Japanese"
+msgstr ""
+
+#: application/views/debug/index.php:685
 msgid "Latvian"
 msgstr "Латышский"
 
-#: application/views/debug/index.php:685
+#: application/views/debug/index.php:686
 msgid "Lithuanian"
 msgstr "Литовский"
 
-#: application/views/debug/index.php:686
+#: application/views/debug/index.php:687
 msgid "Montenegrin"
 msgstr "Черногорский"
 
-#: application/views/debug/index.php:687
+#: application/views/debug/index.php:688
 msgid "Polish"
 msgstr "Польский"
 
-#: application/views/debug/index.php:688
+#: application/views/debug/index.php:689
 msgid "Portuguese"
 msgstr "Португальский"
 
-#: application/views/debug/index.php:689
+#: application/views/debug/index.php:690
 msgid "Russian"
 msgstr "Русский"
 
-#: application/views/debug/index.php:690
+#: application/views/debug/index.php:691
 msgid "Serbian"
 msgstr "Сербский"
 
-#: application/views/debug/index.php:691
-msgid "Slovak"
-msgstr ""
-
 #: application/views/debug/index.php:692
+msgid "Slovak"
+msgstr "Словацкий"
+
+#: application/views/debug/index.php:693
 msgid "Slovenian"
 msgstr "Словенский"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:694
 msgid "Spanish"
 msgstr "Испанский"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:695
 msgid "Swedish"
 msgstr "Шведский"
 
-#: application/views/debug/index.php:695
+#: application/views/debug/index.php:696
 msgid "Turkish"
 msgstr "Турецкий"
 
@@ -9474,7 +9490,7 @@ msgstr "Канада"
 
 #: application/views/interface_assets/header.php:218
 msgid "China"
-msgstr ""
+msgstr "Китай"
 
 #: application/views/interface_assets/header.php:224
 msgid "Germany"
@@ -10024,31 +10040,31 @@ msgstr "Получено из Clublog"
 msgid "Contest Exch (S)"
 msgstr "Контрольный номер (TX)"
 
-#: application/views/logbookadvanced/edit.php:87
+#: application/views/logbookadvanced/edit.php:89
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:55
 msgid "SAT Mode"
 msgstr "Спутниковый режим"
 
-#: application/views/logbookadvanced/edit.php:90
+#: application/views/logbookadvanced/edit.php:92
 msgid "Band TX"
 msgstr "Диапазон TX"
 
-#: application/views/logbookadvanced/edit.php:103
+#: application/views/logbookadvanced/edit.php:105
 msgid "Band RX"
 msgstr "Диапазон приёма"
 
-#: application/views/logbookadvanced/edit.php:151
-#: application/views/logbookadvanced/edit.php:158
-#: application/views/logbookadvanced/edit.php:164
-#: application/views/logbookadvanced/edit.php:171
+#: application/views/logbookadvanced/edit.php:153
+#: application/views/logbookadvanced/edit.php:160
+#: application/views/logbookadvanced/edit.php:166
+#: application/views/logbookadvanced/edit.php:173
 #: application/views/logbookadvanced/index.php:397
 #: application/views/logbookadvanced/index.php:648
 msgid "Invalid"
 msgstr "Недействительный"
 
-#: application/views/logbookadvanced/edit.php:152
-#: application/views/logbookadvanced/edit.php:172
+#: application/views/logbookadvanced/edit.php:154
+#: application/views/logbookadvanced/edit.php:174
 #: application/views/logbookadvanced/index.php:429
 #: application/views/logbookadvanced/index.php:471
 #: application/views/logbookadvanced/index.php:493
@@ -10056,47 +10072,47 @@ msgstr "Недействительный"
 msgid "Verified"
 msgstr "Верифицировано"
 
-#: application/views/logbookadvanced/edit.php:188
+#: application/views/logbookadvanced/edit.php:190
 #: application/views/qso/edit_ajax.php:330 application/views/qso/index.php:437
 msgid "NONE"
 msgstr "—"
 
-#: application/views/logbookadvanced/edit.php:189
+#: application/views/logbookadvanced/edit.php:191
 #: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:438
 msgid "African Italy"
 msgstr "Африканская Италия"
 
-#: application/views/logbookadvanced/edit.php:190
+#: application/views/logbookadvanced/edit.php:192
 #: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:439
 msgid "Bear Island"
 msgstr "Медвежий остров"
 
-#: application/views/logbookadvanced/edit.php:191
+#: application/views/logbookadvanced/edit.php:193
 #: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:440
 msgid "European Turkey"
 msgstr "Европейская Турция"
 
-#: application/views/logbookadvanced/edit.php:192
+#: application/views/logbookadvanced/edit.php:194
 #: application/views/qso/edit_ajax.php:334 application/views/qso/index.php:441
 msgid "ITU Vienna"
 msgstr "МСЭ Вена"
 
-#: application/views/logbookadvanced/edit.php:193
+#: application/views/logbookadvanced/edit.php:195
 #: application/views/qso/edit_ajax.php:335 application/views/qso/index.php:442
 msgid "Kosovo"
 msgstr "Косово"
 
-#: application/views/logbookadvanced/edit.php:194
+#: application/views/logbookadvanced/edit.php:196
 #: application/views/qso/edit_ajax.php:336 application/views/qso/index.php:443
 msgid "Shetland Islands"
 msgstr "Шетландские острова"
 
-#: application/views/logbookadvanced/edit.php:195
+#: application/views/logbookadvanced/edit.php:197
 #: application/views/qso/edit_ajax.php:337 application/views/qso/index.php:444
 msgid "Sicily"
 msgstr "Сицилия"
 
-#: application/views/logbookadvanced/edit.php:198
+#: application/views/logbookadvanced/edit.php:200
 msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "
 "a gridsquare is set)."
@@ -12864,6 +12880,9 @@ msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Было обнаружено, что в следующих QSO указана неправильная зона CQ, которая "
+"не совпадает с той, что обычно соответствует этому DXCC (показано максимум "
+"5000 QSO):"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
@@ -13911,7 +13930,7 @@ msgstr "по уникальным позывным"
 
 #: application/views/statistics/index.php:120
 msgid "Unique Grids"
-msgstr ""
+msgstr "Уникальные квадраты"
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
@@ -14572,7 +14591,7 @@ msgstr ""
 
 #: application/views/user/edit.php:686
 msgid "Online QSL request (OQRS) settings"
-msgstr ""
+msgstr "Настройки онлайн-запроса QSL (OQRS)"
 
 #: application/views/user/edit.php:690
 msgid "Global text"
