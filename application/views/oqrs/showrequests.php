@@ -2,7 +2,7 @@
 	let lang_oqrs_status_open_request = '<?= __("Open request"); ?>';
 	let lang_oqrs_status_not_in_log_request = '<?= __("Not in log request"); ?>';
 	let lang_oqrs_status_request_done = '<?= __("Request done"); ?>';
-	let lang_oqrs_status_pending_requests = '<?= __("Pending requests"); ?>';
+	let lang_oqrs_status_pending_request = '<?= __("Pending request"); ?>';
 	let lang_oqrs_status_request_rejected = '<?= __("Request rejected"); ?>';
 	let lang_oqrs_qsl_method_bureau = '<?= __("Bureau"); ?>';
 	let lang_oqrs_qsl_method_direct = '<?= __("Direct"); ?>';

@@ -483,7 +483,7 @@ function echo_status(status) {
 		case '0': return lang_oqrs_status_open_request; break;
 		case '1': return lang_oqrs_status_not_in_log_request; break;
 		case '2': return lang_oqrs_status_request_done; break;
-		case '3': return lang_oqrs_status_pending_requests; break;
+		case '3': return lang_oqrs_status_pending_request; break;
 		case '4': return lang_oqrs_status_request_rejected; break;
         default: return '';
 	}

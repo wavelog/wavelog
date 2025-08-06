@@ -158,6 +158,10 @@ class Qslprint_model extends CI_Model {
 		$this->db->where("COL_PRIMARY_KEY", $id);
 		$this->db->update($this->config->item('table_name'), $data);
 
+		$this->db->where('qsoid', $id);
+		$this->db->where_not_in('status', [2, 4]);
+		$this->db->update('oqrs', ['status' => '3']);
+
 		return true;
 	}
 
