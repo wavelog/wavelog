@@ -1,7 +1,7 @@
 <div class="alert alert-secondary" role="alert" style="margin-bottom: 0px !important;">
 	<div class="container">
 		<?php if ($results) { ?>
-			<p style="margin-bottom: 0px !important;"><?= __("Active Logbook"); ?>: <span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span><i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="right" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Displaying all QSOs of station locations which are linked to this logbook"); ?>"></i> </p>
+			<p style="margin-bottom: 0px !important;"><?= __("Active container"); ?>: <span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span><i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="right" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Displaying all QSOs of station locations which are linked to this logbook"); ?>"></i> </p>
 		<?php } ?>
 	</div>
 </div>
