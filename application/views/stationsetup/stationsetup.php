@@ -99,10 +99,10 @@
 					<?= __("Station Locations define operating locations, such as your QTH, a friends QTH, or a portable station."); ?><br>
 					<?= __("Similar to logbooks, a station profile keeps a set of QSOs together."); ?><br>
 					<?= __("Only one station may be active at a time. In the table below this is shown with the -Active Station- badge."); ?><br>
-					<?= __("The 'Linked' column shows if the station location is linked with the Active Logbook selected above."); ?>
+					<?= __("The 'Linked' column shows if the station location is linked with the Active container selected above."); ?>
 				</p>
 
-						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a> <button onclick="filterlocations();" class="btn btn-sm btn-success"><?= __("Show only locations from the active logbook"); ?></button> <button onclick="removefilterlocations();" class="btn btn-sm btn-success"><?= __("Show all locations"); ?></button></p>
+						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a> <button onclick="filterlocations();" class="btn btn-sm btn-success"><?= __("Show only locations from the active container"); ?></button> <button onclick="removefilterlocations();" class="btn btn-sm btn-success"><?= __("Show all locations"); ?></button></p>
 
 <?php if($current_active == 0) { ?>
 <div class="alert alert-danger" role="alert">
