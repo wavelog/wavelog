@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:28+0000\n"
-"PO-Revision-Date: 2025-08-05 07:10+0000\n"
+"PO-Revision-Date: 2025-08-07 07:25+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "installer/ja/>\n"
@@ -388,91 +388,101 @@ msgstr "QRZ.comのユーザー名にはコールサインを使用してくだ�
 
 #: install/index.php:391 install/index.php:396
 msgid "Advanced Settings"
-msgstr ""
+msgstr "詳細設定"
 
 #: install/index.php:399
 msgid "These settings should only be set if you know what you're doing."
-msgstr ""
+msgstr "これらの設定は、何をしているのかわかっている場合にのみ設定してください。"
 
 #: install/index.php:402
 msgid "Error Logs"
-msgstr ""
+msgstr "エラーログ"
 
 #: install/index.php:403
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
 msgstr ""
+"オプション: "
+"エラーログの記録を有効にするには、ログの閾値を0より大きい値に設定してください"
+"。この機能は、本当に必要である場合のみ有効にしてください。"
 
 #: install/index.php:408
 msgid "0 - No logs"
-msgstr ""
+msgstr "0 - ログなし"
 
 #: install/index.php:409
 msgid "1 - Error messages"
-msgstr ""
+msgstr "1 - エラーメッセージ"
 
 #: install/index.php:410
 msgid "2 - Debug messages"
-msgstr ""
+msgstr "2 - デバッグメッセージ"
 
 #: install/index.php:411
 msgid "3 - Info messages"
-msgstr ""
+msgstr "3 - 情報メッセージ"
 
 #: install/index.php:412
 msgid "4 - All messages"
-msgstr ""
+msgstr "4 - すべてのメッセージ"
 
 #: install/index.php:434
 msgid ""
 "To properly install Wavelog you already should have setup a mariadb/mysql "
 "database. Provide the parameters here."
 msgstr ""
+"Wavelogを正しくインストールするには、既にMariaDB/"
+"MySQLデータベースを設定済みである必要があります。ここでパラメーターを入力して"
+"ください。"
 
 #: install/index.php:438
 msgid "Hostname or IP"
-msgstr ""
+msgstr "ホスト名またはIPアドレス"
 
 #: install/index.php:438
 msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
+"通常は「localhost」です。<br>オプションで「[ホスト]:[ポート]"
+"」を指定できます。デフォルトのポートは3306です。<br>Docker "
+"Composeでのインストール時は「wavelog-db」と入力してください。"
 
 #: install/index.php:444
 msgid "Database Name"
-msgstr ""
+msgstr "データベース名"
 
 #: install/index.php:444
 msgid "Name of the Database"
-msgstr ""
+msgstr "データベース名"
 
 #: install/index.php:450
 msgid "Username of the Database User which has full access to the database."
-msgstr ""
+msgstr "データベースへのフルアクセス権を持つデータベース ユーザーのユーザー名。"
 
 #: install/index.php:454
 msgid "Password of the Database User"
-msgstr ""
+msgstr "データベースユーザーのパスワード"
 
 #: install/index.php:458
 msgid "Connection Test"
-msgstr ""
+msgstr "接続テスト"
 
 #: install/index.php:469
 msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
-msgstr ""
+msgstr "これでWavelogで最初のユーザーを作成できます。すべての項目に入力して「続行」を"
+"クリックしてください。安全なパスワードを使用してください。"
 
 #: install/index.php:470
 msgid "All fields are required!"
-msgstr ""
+msgstr "すべてのフィールドが必須です！"
 
 #: install/index.php:478
 msgid "First Name"
-msgstr ""
+msgstr "ファーストネーム"
 
 #: install/index.php:482
 msgid "DXCC"
@@ -480,7 +490,7 @@ msgstr "DXCC"
 
 #: install/index.php:484
 msgid "Please select one"
-msgstr ""
+msgstr "1つ選択してください"
 
 #: install/index.php:485 install/index.php:491 install/index.php:515
 #: install/index.php:527 install/index.php:530 install/index.php:535
@@ -508,97 +518,99 @@ msgstr "DXCCを削除しました"
 
 #: install/index.php:892
 msgid "Last Name"
-msgstr ""
+msgstr "苗字"
 
 #: install/index.php:896
 msgid "Callsign"
-msgstr ""
+msgstr "コールサイン"
 
 #: install/index.php:906
 msgid "Gridsquare/Locator"
-msgstr ""
+msgstr "グリッドスクエア/ロケーター"
 
 #: install/index.php:916
 msgid "City"
-msgstr ""
+msgstr "市"
 
 #: install/index.php:922
 msgid "Confirm Password"
-msgstr ""
+msgstr "パスワードを認証する"
 
 #: install/index.php:926
 msgid "Timezone"
-msgstr ""
+msgstr "タイムゾーン"
 
 #: install/index.php:1029
 msgid "E-Mail Address"
-msgstr ""
+msgstr "電子メールアドレス"
 
 #: install/index.php:1051
 msgid "Checklist"
-msgstr ""
+msgstr "チェックリスト"
 
 #: install/index.php:1056
 msgid "Pre-Checks"
-msgstr ""
+msgstr "事前チェック"
 
 #: install/index.php:1065
 msgid "Configuration"
-msgstr ""
+msgstr "構成"
 
 #: install/index.php:1074
 msgid "Database"
-msgstr ""
+msgstr "データベース"
 
 #: install/index.php:1083
 msgid "First User"
-msgstr ""
+msgstr "最初のユーザー"
 
 #: install/index.php:1093
 msgid "Nearly done!"
-msgstr ""
+msgstr "もうすぐ完了です！"
 
 #: install/index.php:1095
 msgid "You prepared all neccessary steps."
-msgstr ""
+msgstr "必要な手順をすべて準備しました。"
 
 #: install/index.php:1096
 msgid "We now can install Wavelog. This process can take a few minutes."
-msgstr ""
+msgstr "これでWavelogをインストールできます。このプロセスには数分かかる場合があります"
+"。"
 
 #: install/index.php:1102
 msgid "Reset"
-msgstr ""
+msgstr "リセット"
 
 #: install/index.php:1107
 msgid "Installer Reset"
-msgstr ""
+msgstr "インストーラのリセット"
 
 #: install/index.php:1110
 msgid "Do you really want to reset all data and start from scratch?"
-msgstr ""
+msgstr "本当にすべてのデータをリセットして最初からやり直しますか?"
 
 #: install/index.php:1113
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #: install/index.php:1114
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: install/index.php:1124
 msgid "Back"
-msgstr ""
+msgstr "戻る"
 
 #: install/index.php:1125
 msgid "Continue"
-msgstr ""
+msgstr "続く"
 
 #: install/index.php:1203
 msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
-msgstr ""
+msgstr "続行できません。赤でマークされた問題を解決し、ウェブサーバーを再起動してこの"
+"ページを再読み込みしてください。"
 
 #: install/index.php:1330
 msgid "Password can't contain ' / \\ < >"
@@ -641,7 +653,7 @@ msgstr ""
 
 #: install/index.php:1637
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: install/index.php:1674
 msgid "At least one field is empty."
