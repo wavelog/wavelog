@@ -283,7 +283,7 @@ class Stationsetup extends CI_Controller {
 
 	private function lbstate2html($id) {
 		if($this->session->userdata('active_station_logbook') != $id) {
-			$htmret='<button id="'.$id.'" class="setActiveLogbook btn btn-outline-primary btn-sm">'.__("Set as Active Logbook").'</button>';
+			$htmret='<button id="'.$id.'" class="setActiveLogbook btn btn-outline-primary btn-sm">'.__("Set as Active container").'</button>';
 		} else {
 			$htmret="<span class='badge text-bg-success'>" . __("Active Logbook") . "</span>";
 		}

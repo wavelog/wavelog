@@ -45,9 +45,9 @@
                                     <td><?php echo $row->logbook_name;?> <i id="<?php echo $row->logbook_id ?>" class="editContainerName fas fa-edit" role="button"></i></td>
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
-                                        <button id="<?php echo $row->logbook_id; ?>" class="setActiveLogbook btn btn-outline-primary btn-sm"><?= __("Set as Active Logbook")?></button>
+                                        <button id="<?php echo $row->logbook_id; ?>" class="setActiveLogbook btn btn-outline-primary btn-sm"><?= __("Set as Active container")?></button>
                                         <?php } else {
-											echo "<span class='badge bg-success'>" . __("Active Logbook") . "</span>";
+											echo "<span class='badge bg-success'>" . __("Active container") . "</span>";
 											}?>
                                     </td>
                                     <td>
