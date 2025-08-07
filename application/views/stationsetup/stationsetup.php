@@ -1,5 +1,6 @@
 <script type="text/javascript">
-    var custom_date_format = "<?php echo $custom_date_format ?>";
+    let custom_date_format = "<?php echo $custom_date_format ?>";
+	let lang_gen_create_container = '<?= __("Create a new container"); ?>';
 </script>
 <div class="container">
 
@@ -18,11 +19,11 @@
 
             <div class="card">
                 <div class="card-header">
-				<?= __("Station Logbooks")?>
+				<?= __("Container")?>
 					</div>
 					<div class="card-body">
-                    <p class="card-text"><?= __("Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle.")?></p>
-					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?= __("Create Station Logbook")?></a>
+                    <p class="card-text"><?= __("A container allows you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle.")?></p>
+					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?= __("Create a container")?></a>
 
 
 
@@ -122,7 +123,7 @@
 	<thead>
 		<tr>
 			<th scope="col"><?= __("ID"); ?></th>
-			<th scope="col"><?= __("Profile Name"); ?></th>
+			<th scope="col"><?= __("Name"); ?></th>
 			<th scope="col"><?= __("Station Callsign"); ?></th>
 			<th scope="col"><?= __("Country"); ?></th>
 			<th scope="col"><?= __("Gridsquare"); ?></th>
