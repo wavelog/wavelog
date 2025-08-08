@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:28+0000\n"
-"PO-Revision-Date: 2025-08-07 07:25+0000\n"
+"PO-Revision-Date: 2025-08-08 20:10+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "installer/ja/>\n"
@@ -614,42 +614,45 @@ msgstr "続行できません。赤でマークされた問題を解決し、ウ
 
 #: install/index.php:1330
 msgid "Password can't contain ' / \\ < >"
-msgstr ""
+msgstr "パスワードに '/\\<> を含めることはできません"
 
 #: install/index.php:1334
 msgid ""
 "The callsign should not contain any pre- or suffixes as it is used as "
 "personal operator callsign."
-msgstr ""
+msgstr "コールサインはオペレーター個人のコールサインとして使用されるため、接頭辞や接"
+"尾辞を含めることはできません。"
 
 #: install/index.php:1346
 msgid ""
 "The callsign can not contain any special characters. It's your personal "
 "callsign without any pre- or suffixes."
-msgstr ""
+msgstr "コールサインには特殊文字を含めることはできません。接頭辞や接尾辞のない、あな"
+"た専用のコールサインです。"
 
 #: install/index.php:1479
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
-msgstr ""
+msgstr "エラー: 少なくともホスト名/IP、データベース名、ユーザー名が必要です。"
 
 #: install/index.php:1489
 msgid "Connecting..."
-msgstr ""
+msgstr "接続中..."
 
 #: install/index.php:1513
 msgid "Connection was successful and your database should be compatible."
-msgstr ""
+msgstr "接続は成功し、データベースは互換性があるはずです。"
 
 #: install/index.php:1517
 msgid ""
 "Connection was successful but your database seems too old for Wavelog. You "
 "can try to continue but you could run into issues."
-msgstr ""
+msgstr "接続は成功しましたが、データベースがWavelogには古すぎるようです。続行すること"
+"はできますが、問題が発生する可能性があります。"
 
 #: install/index.php:1517
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
-msgstr ""
+msgstr "MySQLの最小バージョンは%s、MariaDBの最小バージョンは%sです。"
 
 #: install/index.php:1637
 msgid "Search"
@@ -657,7 +660,7 @@ msgstr "検索"
 
 #: install/index.php:1674
 msgid "At least one field is empty."
-msgstr ""
+msgstr "少なくとも 1 つのフィールドが空です。"
 
 #: install/index.php:1693
 msgid ""
@@ -665,6 +668,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"ここで少しお待ちください。選択したDXCCは古く、無効になっています。この特定の"
+"場所のDXCCが正しいかご確認ください。間違いがなければ、この警告は無視してくだ"
+"さい。"
 
 #: install/index.php:1717
 msgid ""
