@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:27+0000\n"
-"PO-Revision-Date: 2025-08-07 22:46+0000\n"
+"PO-Revision-Date: 2025-08-08 20:10+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/ja/>\n"
@@ -2728,71 +2728,74 @@ msgstr "ユーザーを追加"
 #: application/controllers/User.php:306
 #, php-format
 msgid "Username %s already in use!"
-msgstr ""
+msgstr "ユーザー名 %s は すでに使用されています!"
 
 #: application/controllers/User.php:309
 #, php-format
 msgid "E-mail %s already in use!"
-msgstr ""
+msgstr "Eメール %s は すでに使用されています!"
 
 #: application/controllers/User.php:312
 msgid "Invalid Password!"
-msgstr ""
+msgstr "パスワードが無効です!"
 
 #: application/controllers/User.php:316
 #, php-format
 msgid "User %s added!"
-msgstr ""
+msgstr "ユーザー %s が追加されました!"
 
 #: application/controllers/User.php:320
 msgid "Users"
-msgstr ""
+msgstr "ユーザー"
 
 #: application/controllers/User.php:412
 #: application/views/club/permissions.php:253
 msgid "Edit User"
-msgstr ""
+msgstr "ユーザーを編集"
 
 #: application/controllers/User.php:899 application/controllers/User.php:902
 #, php-format
 msgid "User %s edited"
-msgstr ""
+msgstr "ユーザー %s が編集されました"
 
 #: application/controllers/User.php:965
 msgid "Profile"
-msgstr ""
+msgstr "プロフィール"
 
 #: application/controllers/User.php:1030
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
-msgstr ""
+msgstr "おめでとうございます！Wavelog "
+"のインストールに成功しました。これで初回ログインが可能になります。"
 
 #: application/controllers/User.php:1069
 msgid "This is not allowed!"
-msgstr ""
+msgstr "これは許可されていません!"
 
 #: application/controllers/User.php:1104 application/controllers/User.php:1115
 msgid "Login failed. Try again."
-msgstr ""
+msgstr "ログインに失敗しました。もう一度お試しください。"
 
 #: application/controllers/User.php:1122
 #: application/views/interface_assets/header.php:392
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
-msgstr ""
+msgstr "ログイン"
 
 #: application/controllers/User.php:1160
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
-msgstr ""
+msgstr "clubstation "
+"に直接ログインすることはできません。代わりに個人アカウントをご利用ください。"
 
 #: application/controllers/User.php:1163
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
-msgstr ""
+msgstr "アカウントがロックされています。これは、ログイン試行が複数回失敗したためです"
+"。パスワードを再設定してください。"
 
 #: application/controllers/User.php:1167
 msgid ""
@@ -2800,21 +2803,24 @@ msgid ""
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
 msgstr ""
+"申し訳ございません。このインスタンスは現在メンテナンスモードです。このメッセ"
+"ージが予期せず表示されたり、繰り返し表示されたりする場合は、管理者にお問い合"
+"わせください。現在、ログインできるのは管理者のみです。"
 
 #: application/controllers/User.php:1170
 msgid "Incorrect username or password!"
-msgstr ""
+msgstr "ユーザー名またはパスワードが間違っています!"
 
 #: application/controllers/User.php:1193
 #, php-format
 msgid "User %s logged out."
-msgstr ""
+msgstr "ユーザー %s がログアウトしました。"
 
 #: application/controllers/User.php:1209
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
-msgstr ""
+msgstr "ステーション名"
 
 #: application/controllers/User.php:1210 application/views/debug/index.php:589
 #: application/views/public_search/result.php:17
@@ -2824,409 +2830,424 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:126
 #: application/views/user/modals/first_login_wizard.php:34
 msgid "Station Callsign"
-msgstr ""
+msgstr "ステーションのコールサイン"
 
 #: application/controllers/User.php:1211
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
-msgstr ""
+msgstr "DXCC局"
 
 #: application/controllers/User.php:1212
 msgid "Station CQ Zone"
-msgstr ""
+msgstr "ステーションCQゾーン"
 
 #: application/controllers/User.php:1213
 msgid "Station ITU Zone"
-msgstr ""
+msgstr "ITUゾーンステーション"
 
 #: application/controllers/User.php:1214
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
-msgstr ""
+msgstr "ステーションの検索"
 
 #: application/controllers/User.php:1237
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
-msgstr ""
+msgstr "ステーションが正常に作成されました！Wavelogへようこそ！ステーションの設定を完"
+"了するには、%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1240
 msgid "Station setup failed! Please set up your station manually."
-msgstr ""
+msgstr "ステーションのセットアップに失敗しました！手動でステーションを設定してくださ"
+"い。"
 
 #: application/controllers/User.php:1257
 msgid "Password Reset is disabled on the Demo!"
-msgstr ""
+msgstr "デモではパスワードのリセットが利用できません！"
 
 #: application/controllers/User.php:1271
 msgid "Forgot Password"
-msgstr ""
+msgstr "パスワードを忘れた"
 
 #: application/controllers/User.php:1322
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
-msgstr ""
+msgstr "メール設定が正しくありません。"
 
 #: application/controllers/User.php:1326 application/controllers/User.php:1331
 msgid "Password Reset Processed."
-msgstr ""
+msgstr "パスワードのリセットが完了しました。"
 
 #: application/controllers/User.php:1432
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
-msgstr ""
+msgstr "パスワードをリセットする"
 
 #: application/controllers/User.php:1453
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
-msgstr ""
+msgstr "このユーザー名でアカウントを設定できませんでした。別のユーザー名（%s "
+"以外）をお試しください。"
 
 #: application/controllers/User.php:1462
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
-msgstr ""
+msgstr "このメールアドレスでアカウントを設定できませんでした。別のアドレス（%s以外）"
+"をお試しください。"
 
 #: application/controllers/User.php:1501
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
-msgstr ""
+msgstr "現在、他のユーザーを装うことはできません。config.php ファイルで %s を %s "
+"に設定する必要があります！"
 
 #: application/controllers/User.php:1515
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
-msgstr ""
+msgstr "現在、他のユーザーを装うことはできません。まず、config.php ファイルの "
+"encryption_key を変更してください！"
 
 #: application/controllers/User.php:1522
 msgid "Invalid Hash"
-msgstr ""
+msgstr "無効なハッシュ"
 
 #: application/controllers/User.php:1535
 msgid "The impersonation hash is too old. Please try again."
-msgstr ""
+msgstr "偽装ハッシュが古すぎます。もう一度お試しください。"
 
 #: application/controllers/User.php:1542
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
-msgstr ""
+msgstr "ソースユーザーとしてログインしていない状態で、他のユーザーを装うことはできま"
+"せん"
 
 #: application/controllers/User.php:1548
 msgid "There was a problem with your session. Please try again."
-msgstr ""
+msgstr "セッションに問題が発生しました。もう一度お試しください。"
 
 #: application/controllers/User.php:1555
 msgid "The requested user to impersonate does not exist"
-msgstr ""
+msgstr "偽装を要求されたユーザーは存在しません"
 
 #: application/controllers/User.php:1576
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
-msgstr ""
+msgstr "クラブステーションの適切な権限レベルを判別できませんでした。再ログインしてか"
+"らもう一度お試しください。"
 
 #: application/controllers/User.php:1621 application/controllers/User.php:1633
 #: application/controllers/User.php:1639 application/controllers/User.php:1648
 #: application/controllers/User.php:1656
 msgid "Ups.. Something went wrong. Try to log back in."
-msgstr ""
+msgstr "おっと… 何か問題が発生しました。もう一度ログインしてみてください。"
 
 #: application/controllers/User.php:1662
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
-msgstr ""
+msgstr "セキュリティハッシュの有効期限が切れたため、すぐに復帰する機能は無効になって"
+"います。再度ログインしてください。"
 
 #: application/controllers/User.php:1678
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
 "personal account!"
-msgstr ""
+msgstr "アカウント「%s」からログアウトされました。%sさん、ご自身の個人アカウントへよ"
+"うこそ！"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
-msgstr ""
+msgstr "衛星グリッドスクエアマップ"
 
 #: application/controllers/Visitor.php:410
 #: application/views/stationsetup/stationsetup.php:38
 msgid "Public Search"
-msgstr ""
+msgstr "パブリックサーチ"
 
 #: application/controllers/Visitor.php:443
 msgid "Export Map"
-msgstr ""
+msgstr "マップをエクスポート"
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
 #: application/views/interface_assets/header.php:498
 msgid "QO-100 Dx Club Upload"
-msgstr ""
+msgstr "QO-100 Dxクラブアップロード"
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
-msgstr ""
+msgstr "不明な公開ページです。公開スラッグが正しいことを確認してください。"
 
 #: application/controllers/Widgets.php:92 application/views/oqrs/index.php:70
 msgid "No stations found that are using Wavelog OQRS."
-msgstr ""
+msgstr "Wavelog OQRS を使用しているステーションが見つかりません。"
 
 #: application/controllers/Widgets.php:140
 #: application/controllers/Widgets.php:149
 msgid "User slug not specified"
-msgstr ""
+msgstr "ユーザースラッグが指定されていません"
 
 #: application/controllers/Widgets.php:160
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "ユーザーはオンエアウィジェットを無効にしています"
 
 #: application/controllers/Widgets.php:219
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
-msgstr ""
+msgstr "CATインターフェースの無線が見つかりません。少なくとも1つの無線インターフェー"
+"スを設定する必要があります。"
 
 #: application/controllers/Widgets.php:330
 msgid "User not found by slug"
-msgstr ""
+msgstr "スラッグでユーザーが見つかりません"
 
 #: application/controllers/Widgets.php:333
 msgid "Multiple users found by slug"
-msgstr ""
+msgstr "スラッグで複数のユーザーが見つかりました"
 
 #: application/libraries/Callbook.php:93
 msgid "QRZCQ Error"
-msgstr ""
+msgstr "QRZCQ エラー"
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "県"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "地域"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "地域"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "部門"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "自治体"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "連邦州"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "郡"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "地区"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "広州"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "米国の州"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "県"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "州"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "米国の郡"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "市 / 区 / 郡"
 
 #: application/models/Club_model.php:154
 msgid "Invalid Permission Level!"
-msgstr ""
+msgstr "権限レベルが無効です!"
 
 #: application/models/Club_model.php:169
 msgid "Error adding Club Member!"
-msgstr ""
+msgstr "クラブメンバーの追加中にエラーが発生しました!"
 
 #: application/models/Eqslmethods_model.php:292
 msgid "Your eQSL username and/or password is incorrect."
-msgstr ""
+msgstr "eQSL ユーザー名またはパスワードが正しくありません。"
 
 #: application/models/Eqslmethods_model.php:297
 msgid "Something went wrong with eQSL.cc!"
-msgstr ""
+msgstr "eQSL.cc で問題が発生しました!"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "QTHニックネームはeQSLに存在しません"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
-msgstr ""
+msgstr "eQSL.cc に問題が発生しています。しばらくしてから QSO "
+"のエクスポートをお試しください。"
 
 #: application/models/Eqslmethods_model.php:322
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
-msgstr ""
+msgstr "QSOの1つにエラーが発生しました。手動でアップロードしてください。"
 
 #: application/models/Eqslmethods_model.php:327
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
-msgstr ""
+msgstr "eQSLサイトが変更されたようです。GitHubで問題を起こしてください。"
 
 #: application/models/Eqslmethods_model.php:333
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr ""
+msgstr "QSOのアップロード中に不明なエラーが発生しました。eQSLに問題がある可能性があり"
+"ます!"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
 "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: "
-msgstr ""
+msgstr "HRDlog: 局コールサインの QSO が hrdlog.net にアップロードされました: "
 
 #: application/models/Hrdlog_model.php:25
 msgid "HRDlog: No QSOs found to upload for the station callsign: "
-msgstr ""
+msgstr "HRDlog: 局のコールサインにアップロードする QSO が見つかりません: "
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
-msgstr ""
+msgstr "HRDlog: HRDlog 資格情報を持つステーション プロファイルが見つかりません。"
 
 #: application/models/Logbook_model.php:1289
 msgid "Station ID not allowed"
-msgstr ""
+msgstr "ステーションIDは許可されていません"
 
 #: application/models/Logbook_model.php:1294
 msgid "No Call given"
-msgstr ""
+msgstr "コールなし"
 
 #: application/models/Logbook_model.php:1364
 #: application/models/Logbook_model.php:1538
 msgid "DXCC has to be Numeric"
-msgstr ""
+msgstr "DXCCは数値でなければなりません"
 
 #: application/models/Logbook_model.php:3985
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgstr "%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s "
+"が検出されました: スキップされました"
 
 #: application/models/Logbook_model.php:3986
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
 
 #: application/models/Logbook_model.php:3998
 msgid "QSO on"
-msgstr ""
+msgstr "QSOオン"
 
 #: application/models/Logbook_model.php:3998
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
-msgstr ""
+msgstr "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
+"されませんでした。無効です!"
 
 #: application/models/Logbook_model.php:4297
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4308
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4369
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4389
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "lotw_qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4410
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "lotw_qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4702
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
-msgstr ""
+msgstr "複製用"
 
 #: application/models/Logbook_model.php:4763
 msgid "QSO could not be matched"
-msgstr ""
+msgstr "QSOが一致しませんでした"
 
 #: application/models/Logbook_model.php:4769
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
-msgstr ""
+msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
 #: application/models/Logbook_model.php:4774
 msgid "confirmed by award manager"
-msgstr ""
+msgstr "賞の管理者によって確認された"
 
 #: application/models/Logbook_model.php:4777
 msgid "confirmed by cross-check of DCL data"
-msgstr ""
+msgstr "DCLデータのクロスチェックによって確認された"
 
 #: application/models/Logbook_model.php:4780
 msgid "confirmation pending"
-msgstr ""
+msgstr "確認中"
 
 #: application/models/Logbook_model.php:4783
 msgid "unconfirmed"
-msgstr ""
+msgstr "未確認"
 
 #: application/models/Logbook_model.php:4786
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
-msgstr ""
+msgstr "不明"
 
 #: application/models/Logbook_model.php:5624
 #: application/views/activated_gridmap/index.php:110
@@ -3240,31 +3261,30 @@ msgstr ""
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
 msgid "Bearing"
-msgstr ""
+msgstr "ベアリング"
 
 #: application/models/Update_model.php:319
 msgid "Newer release available:"
-msgstr ""
+msgstr "新しいリリースが利用可能です:"
 
 #: application/models/Update_model.php:323
 msgid "You are running the latest version."
-msgstr ""
+msgstr "最新バージョンを実行しています。"
 
 #: application/models/Update_model.php:402
 msgid "cURL error:"
-msgstr ""
+msgstr "cURL エラー:"
 
 #: application/models/Update_model.php:437
 msgid "SAT already existing. LoTW status updated."
-msgstr ""
+msgstr "SAT は既に存在します。LoTW ステータスが更新されました。"
 
 #: application/models/Update_model.php:440
 #: application/models/Update_model.php:469
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "LoTWステータス %d 件の QSO が更新されました"
 
 #: application/models/Update_model.php:443
 msgid "SAT already existing. Updating LoTW status failed."
@@ -8847,6 +8867,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"ここで少しお待ちください。選択したDXCCは古く、無効になっています。この特定の"
+"場所のDXCCが正しいかご確認ください。間違いがなければ、この警告は無視してくだ"
+"さい。"
 
 #: application/views/interface_assets/footer.php:801
 #: application/views/logbookadvanced/index.php:636
