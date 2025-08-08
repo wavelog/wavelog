@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-07-31 16:27+0000\n"
+"POT-Creation-Date: 2025-08-05 07:10+0000\n"
 "PO-Revision-Date: 2025-08-08 20:10+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:162
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:172
 #: application/controllers/Csv.php:8 application/controllers/Csv.php:31
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Debug.php:10
@@ -122,7 +122,6 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
-#: application/controllers/Cron.php:172
 msgid "You're not allowed to do that!"
 msgstr "それは許されません！"
 
@@ -793,53 +792,46 @@ msgstr "大陸"
 msgid "Cron Manager"
 msgstr "Cronマネージャー"
 
-#: application/controllers/Cron.php:154 application/views/cron/edit.php:5
-#: application/controllers/Cron.php:164
+#: application/controllers/Cron.php:164 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Cronジョブを編集する"
 
-#: application/controllers/Cron.php:218 application/controllers/Cron.php:219
+#: application/controllers/Cron.php:228 application/controllers/Cron.php:229
 #: application/views/cron/index.php:83 application/views/cron/index.php:85
 #: application/views/cron/index.php:87 application/views/debug/index.php:523
 #: application/views/debug/index.php:529 application/views/debug/index.php:534
 #: application/views/debug/index.php:539 application/views/debug/index.php:544
 #: application/views/debug/index.php:549 application/views/debug/index.php:554
 #: application/views/debug/index.php:559 application/views/debug/index.php:564
-#: application/controllers/Cron.php:228 application/controllers/Cron.php:229
 msgid "never"
 msgstr "一度もない"
 
-#: application/controllers/Cron.php:219 application/controllers/Cron.php:229
+#: application/controllers/Cron.php:229
 msgid "calculating..."
 msgstr "計算中..."
 
-#: application/controllers/Cron.php:230 application/views/cron/index.php:70
-#: application/controllers/Cron.php:240
+#: application/controllers/Cron.php:240 application/views/cron/index.php:70
 msgid "healthy"
 msgstr "健康"
 
-#: application/controllers/Cron.php:232 application/views/cron/index.php:72
-#: application/controllers/Cron.php:242
+#: application/controllers/Cron.php:242 application/views/cron/index.php:72
 msgid "failed"
 msgstr "失敗した"
 
-#: application/controllers/Cron.php:234 application/views/cron/index.php:74
-#: application/controllers/Cron.php:244
+#: application/controllers/Cron.php:244 application/views/cron/index.php:74
 msgid "pending"
 msgstr "保留中"
 
-#: application/controllers/Cron.php:239 application/views/cron/index.php:79
-#: application/controllers/Cron.php:249
+#: application/controllers/Cron.php:249 application/views/cron/index.php:79
 msgid "disabled"
 msgstr "無効"
 
-#: application/controllers/Cron.php:278
-#: application/views/interface_assets/footer.php:39
 #: application/controllers/Cron.php:288
+#: application/views/interface_assets/footer.php:39
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:282 application/controllers/Cron.php:292
+#: application/controllers/Cron.php:292
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -848,7 +840,7 @@ msgstr ""
 "最後の実行から%s秒以上経過しています。%sマスターのcron設定を確認してくださ"
 "い！1分ごとに実行されるように設定する必要があります（* * * * *）。"
 
-#: application/controllers/Cron.php:285 application/controllers/Cron.php:295
+#: application/controllers/Cron.php:295
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -857,8 +849,7 @@ msgstr ""
 "最後の実行から%s分以上経過しています。%sマスタークロンが実行されていないよう"
 "です！%s毎分実行されるべきです（* * * * *）。"
 
-#: application/controllers/Cron.php:290 application/views/cron/index.php:29
-#: application/controllers/Cron.php:300
+#: application/controllers/Cron.php:300 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "実行されていません"
@@ -1389,6 +1380,7 @@ msgstr "モード"
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:175
 #: application/views/contesting/index.php:261
+#: application/views/logbookadvanced/edit.php:39
 #: application/views/logbookadvanced/index.php:701
 #: application/views/logbookadvanced/useroptions.php:38
 #: application/views/qslcard/searchresult.php:13
@@ -1417,6 +1409,7 @@ msgstr "RST (S)"
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:199
 #: application/views/contesting/index.php:262
+#: application/views/logbookadvanced/edit.php:38
 #: application/views/logbookadvanced/index.php:704
 #: application/views/logbookadvanced/useroptions.php:42
 #: application/views/qslcard/searchresult.php:14
@@ -1497,7 +1490,7 @@ msgstr "IOTA"
 #: application/views/contesting/index.php:62
 #: application/views/dashboard/index.php:12
 #: application/views/logbookadvanced/edit.php:23
-#: application/views/logbookadvanced/edit.php:78
+#: application/views/logbookadvanced/edit.php:80
 #: application/views/logbookadvanced/index.php:245
 #: application/views/logbookadvanced/index.php:749
 #: application/views/logbookadvanced/qslcarousel.php:36
@@ -1967,7 +1960,8 @@ msgstr "Maptiles サーバー"
 #, php-format
 msgid ""
 "Maptile cache could not be removed. Delete the folder manually. Path: %s"
-msgstr "Maptileキャッシュを削除できませんでした。フォルダを手動で削除してください。パ"
+msgstr ""
+"Maptileキャッシュを削除できませんでした。フォルダを手動で削除してください。パ"
 "ス: %s"
 
 #: application/controllers/Options.php:452
@@ -2342,7 +2336,8 @@ msgstr "誤って記録されたITUゾーン"
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
-msgstr "LoTWでQSOが未確認だが、コールサインはQSO日以降にLoTWにアップロードされている"
+msgstr ""
+"LoTWでQSOが未確認だが、コールサインはQSO日以降にLoTWにアップロードされている"
 
 #: application/controllers/Staticmap.php:152
 #: application/controllers/Visitor.php:76
@@ -2467,8 +2462,9 @@ msgstr "アクティブログブック"
 msgid ""
 "Are you sure you want to delete the following station logbook? You must re-"
 "link any locations linked here to another logbook.: "
-msgstr "次のステーションのログブックを削除してもよろしいですか? "
-"ここにリンクされている場所を別のログブックに再リンクする必要があります。 "
+msgstr ""
+"次のステーションのログブックを削除してもよろしいですか? ここにリンクされてい"
+"る場所を別のログブックに再リンクする必要があります。 "
 
 #: application/controllers/Stationsetup.php:305
 #: application/views/stationsetup/stationsetup.php:68
@@ -2528,8 +2524,9 @@ msgstr "コピー"
 msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
 "within this station profile."
-msgstr "ステーションプロファイルを削除してもよろしいですか? %s '? これにより、"
-"この局プロファイル内のすべての QSO が削除されます。"
+msgstr ""
+"ステーションプロファイルを削除してもよろしいですか? %s '? これにより、この局"
+"プロファイル内のすべての QSO が削除されます。"
 
 #: application/controllers/Stationsetup.php:421
 #: application/views/qso/edit_ajax.php:236
@@ -2766,8 +2763,9 @@ msgstr "プロフィール"
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
-msgstr "おめでとうございます！Wavelog "
-"のインストールに成功しました。これで初回ログインが可能になります。"
+msgstr ""
+"おめでとうございます！Wavelog のインストールに成功しました。これで初回ログイ"
+"ンが可能になります。"
 
 #: application/controllers/User.php:1069
 msgid "This is not allowed!"
@@ -2787,15 +2785,17 @@ msgstr "ログイン"
 #: application/controllers/User.php:1160
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
-msgstr "clubstation "
-"に直接ログインすることはできません。代わりに個人アカウントをご利用ください。"
+msgstr ""
+"clubstation に直接ログインすることはできません。代わりに個人アカウントをご利"
+"用ください。"
 
 #: application/controllers/User.php:1163
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
-msgstr "アカウントがロックされています。これは、ログイン試行が複数回失敗したためです"
-"。パスワードを再設定してください。"
+msgstr ""
+"アカウントがロックされています。これは、ログイン試行が複数回失敗したためで"
+"す。パスワードを再設定してください。"
 
 #: application/controllers/User.php:1167
 msgid ""
@@ -2803,9 +2803,9 @@ msgid ""
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
 msgstr ""
-"申し訳ございません。このインスタンスは現在メンテナンスモードです。このメッセ"
-"ージが予期せず表示されたり、繰り返し表示されたりする場合は、管理者にお問い合"
-"わせください。現在、ログインできるのは管理者のみです。"
+"申し訳ございません。このインスタンスは現在メンテナンスモードです。このメッ"
+"セージが予期せず表示されたり、繰り返し表示されたりする場合は、管理者にお問い"
+"合わせください。現在、ログインできるのは管理者のみです。"
 
 #: application/controllers/User.php:1170
 msgid "Incorrect username or password!"
@@ -2857,12 +2857,14 @@ msgstr "ステーションの検索"
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
-msgstr "ステーションが正常に作成されました！Wavelogへようこそ！ステーションの設定を完"
+msgstr ""
+"ステーションが正常に作成されました！Wavelogへようこそ！ステーションの設定を完"
 "了するには、%shere%sをクリックしてください。"
 
 #: application/controllers/User.php:1240
 msgid "Station setup failed! Please set up your station manually."
-msgstr "ステーションのセットアップに失敗しました！手動でステーションを設定してくださ"
+msgstr ""
+"ステーションのセットアップに失敗しました！手動でステーションを設定してくださ"
 "い。"
 
 #: application/controllers/User.php:1257
@@ -2893,14 +2895,16 @@ msgstr "パスワードをリセットする"
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
-msgstr "このユーザー名でアカウントを設定できませんでした。別のユーザー名（%s "
-"以外）をお試しください。"
+msgstr ""
+"このユーザー名でアカウントを設定できませんでした。別のユーザー名（%s 以外）を"
+"お試しください。"
 
 #: application/controllers/User.php:1462
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
-msgstr "このメールアドレスでアカウントを設定できませんでした。別のアドレス（%s以外）"
+msgstr ""
+"このメールアドレスでアカウントを設定できませんでした。別のアドレス（%s以外）"
 "をお試しください。"
 
 #: application/controllers/User.php:1501
@@ -2908,15 +2912,17 @@ msgstr "このメールアドレスでアカウントを設定できませんで
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
-msgstr "現在、他のユーザーを装うことはできません。config.php ファイルで %s を %s "
-"に設定する必要があります！"
+msgstr ""
+"現在、他のユーザーを装うことはできません。config.php ファイルで %s を %s に設"
+"定する必要があります！"
 
 #: application/controllers/User.php:1515
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
-msgstr "現在、他のユーザーを装うことはできません。まず、config.php ファイルの "
+msgstr ""
+"現在、他のユーザーを装うことはできません。まず、config.php ファイルの "
 "encryption_key を変更してください！"
 
 #: application/controllers/User.php:1522
@@ -2931,7 +2937,8 @@ msgstr "偽装ハッシュが古すぎます。もう一度お試しください
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
-msgstr "ソースユーザーとしてログインしていない状態で、他のユーザーを装うことはできま"
+msgstr ""
+"ソースユーザーとしてログインしていない状態で、他のユーザーを装うことはできま"
 "せん"
 
 #: application/controllers/User.php:1548
@@ -2946,7 +2953,8 @@ msgstr "偽装を要求されたユーザーは存在しません"
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
-msgstr "クラブステーションの適切な権限レベルを判別できませんでした。再ログインしてか"
+msgstr ""
+"クラブステーションの適切な権限レベルを判別できませんでした。再ログインしてか"
 "らもう一度お試しください。"
 
 #: application/controllers/User.php:1621 application/controllers/User.php:1633
@@ -2959,7 +2967,8 @@ msgstr "おっと… 何か問題が発生しました。もう一度ログイ�
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
-msgstr "セキュリティハッシュの有効期限が切れたため、すぐに復帰する機能は無効になって"
+msgstr ""
+"セキュリティハッシュの有効期限が切れたため、すぐに復帰する機能は無効になって"
 "います。再度ログインしてください。"
 
 #: application/controllers/User.php:1678
@@ -2967,7 +2976,8 @@ msgstr "セキュリティハッシュの有効期限が切れたため、すぐ
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
 "personal account!"
-msgstr "アカウント「%s」からログアウトされました。%sさん、ご自身の個人アカウントへよ"
+msgstr ""
+"アカウント「%s」からログアウトされました。%sさん、ご自身の個人アカウントへよ"
 "うこそ！"
 
 #: application/controllers/Visitor.php:216
@@ -3010,7 +3020,8 @@ msgstr "ユーザーはオンエアウィジェットを無効にしています
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
-msgstr "CATインターフェースの無線が見つかりません。少なくとも1つの無線インターフェー"
+msgstr ""
+"CATインターフェースの無線が見つかりません。少なくとも1つの無線インターフェー"
 "スを設定する必要があります。"
 
 #: application/controllers/Widgets.php:330
@@ -3125,8 +3136,9 @@ msgstr "QTHニックネームはeQSLに存在しません"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
-msgstr "eQSL.cc に問題が発生しています。しばらくしてから QSO "
-"のエクスポートをお試しください。"
+msgstr ""
+"eQSL.cc に問題が発生しています。しばらくしてから QSO のエクスポートをお試しく"
+"ださい。"
 
 #: application/models/Eqslmethods_model.php:322
 msgid ""
@@ -3142,7 +3154,8 @@ msgstr "eQSLサイトが変更されたようです。GitHubで問題を起こ�
 #: application/models/Eqslmethods_model.php:333
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr "QSOのアップロード中に不明なエラーが発生しました。eQSLに問題がある可能性があり"
+msgstr ""
+"QSOのアップロード中に不明なエラーが発生しました。eQSLに問題がある可能性があり"
 "ます!"
 
 #: application/models/Hrdlog_model.php:22
@@ -3156,7 +3169,8 @@ msgstr "HRDlog: 局のコールサインにアップロードする QSO が見�
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
-msgstr "HRDlog: HRDlog 資格情報を持つステーション プロファイルが見つかりません。"
+msgstr ""
+"HRDlog: HRDlog 資格情報を持つステーション プロファイルが見つかりません。"
 
 #: application/models/Logbook_model.php:1289
 msgid "Station ID not allowed"
@@ -3174,13 +3188,15 @@ msgstr "DXCCは数値でなければなりません"
 #: application/models/Logbook_model.php:3985
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr "%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s "
-"が検出されました: スキップされました"
+msgstr ""
+"%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s が検出"
+"されました: スキップされました"
 
 #: application/models/Logbook_model.php:3986
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr "ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
+msgstr ""
+"ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
 
 #: application/models/Logbook_model.php:3998
 msgid "QSO on"
@@ -3190,7 +3206,8 @@ msgstr "QSOオン"
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
-msgstr "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
+msgstr ""
+"コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
 "されませんでした。無効です!"
 
 #: application/models/Logbook_model.php:4297
@@ -3536,10 +3553,9 @@ msgstr ""
 #: application/views/callstats/index.php:69
 #: application/views/distances/index.php:58
 #: application/views/gridmap/index.php:42
-#: application/views/logbookadvanced/edit.php:176
+#: application/views/logbookadvanced/edit.php:178
 #: application/views/logbookadvanced/index.php:389
 #: application/views/timeline/index.php:84
-#: application/views/logbookadvanced/edit.php:178
 msgid "None/Empty"
 msgstr ""
 
@@ -5257,91 +5273,84 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:87
 #: application/views/bandmap/index.php:37 application/views/bandmap/list.php:88
-#: application/views/logbookadvanced/edit.php:178
+#: application/views/logbookadvanced/edit.php:180
 #: application/views/logbookadvanced/index.php:391
 #: application/views/lookup/index.php:60
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:425
 #: application/views/view_log/qso.php:350
-#: application/views/logbookadvanced/edit.php:180
 msgid "Antarctica"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/iota/index.php:91
 #: application/views/bandmap/index.php:36 application/views/bandmap/list.php:87
-#: application/views/logbookadvanced/edit.php:177
+#: application/views/logbookadvanced/edit.php:179
 #: application/views/logbookadvanced/index.php:390
 #: application/views/lookup/index.php:59
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:424
 #: application/views/view_log/qso.php:347
-#: application/views/logbookadvanced/edit.php:179
 msgid "Africa"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:95
 #: application/views/awards/iota/index.php:95
 #: application/views/bandmap/index.php:38 application/views/bandmap/list.php:89
-#: application/views/logbookadvanced/edit.php:180
+#: application/views/logbookadvanced/edit.php:182
 #: application/views/logbookadvanced/index.php:393
 #: application/views/lookup/index.php:62
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:426
 #: application/views/view_log/qso.php:353
-#: application/views/logbookadvanced/edit.php:182
 msgid "Asia"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:99
 #: application/views/awards/iota/index.php:99
 #: application/views/bandmap/index.php:39 application/views/bandmap/list.php:90
-#: application/views/logbookadvanced/edit.php:181
+#: application/views/logbookadvanced/edit.php:183
 #: application/views/logbookadvanced/index.php:394
 #: application/views/lookup/index.php:63
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:427
 #: application/views/view_log/qso.php:356
-#: application/views/logbookadvanced/edit.php:183
 msgid "Europe"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:103
 #: application/views/awards/iota/index.php:103
 #: application/views/bandmap/index.php:40 application/views/bandmap/list.php:91
-#: application/views/logbookadvanced/edit.php:179
+#: application/views/logbookadvanced/edit.php:181
 #: application/views/logbookadvanced/index.php:392
 #: application/views/lookup/index.php:61
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:428
 #: application/views/view_log/qso.php:359
-#: application/views/logbookadvanced/edit.php:181
 msgid "North America"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:107
 #: application/views/awards/iota/index.php:107
 #: application/views/bandmap/index.php:42 application/views/bandmap/list.php:93
-#: application/views/logbookadvanced/edit.php:182
+#: application/views/logbookadvanced/edit.php:184
 #: application/views/logbookadvanced/index.php:395
 #: application/views/lookup/index.php:64
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:430
 #: application/views/view_log/qso.php:365
-#: application/views/logbookadvanced/edit.php:184
 msgid "South America"
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:111
 #: application/views/awards/iota/index.php:111
 #: application/views/bandmap/index.php:41 application/views/bandmap/list.php:92
-#: application/views/logbookadvanced/edit.php:183
+#: application/views/logbookadvanced/edit.php:185
 #: application/views/logbookadvanced/index.php:396
 #: application/views/lookup/index.php:65
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:429
 #: application/views/view_log/qso.php:362
-#: application/views/logbookadvanced/edit.php:185
 msgid "Oceania"
 msgstr ""
 
@@ -6513,10 +6522,10 @@ msgstr ""
 
 #: application/views/cabrillo/index.php:196
 #: application/views/cabrillo/index.php:204
-#: application/views/logbookadvanced/edit.php:148
-#: application/views/logbookadvanced/edit.php:156
-#: application/views/logbookadvanced/edit.php:162
-#: application/views/logbookadvanced/edit.php:168
+#: application/views/logbookadvanced/edit.php:150
+#: application/views/logbookadvanced/edit.php:158
+#: application/views/logbookadvanced/edit.php:164
+#: application/views/logbookadvanced/edit.php:170
 #: application/views/logbookadvanced/index.php:414
 #: application/views/logbookadvanced/index.php:425
 #: application/views/logbookadvanced/index.php:456
@@ -6565,19 +6574,15 @@ msgstr ""
 #: application/views/user/edit.php:935 application/views/user/edit.php:955
 #: application/views/user/edit.php:984 application/views/user/edit.php:1016
 #: application/views/user/edit.php:1041
-#: application/views/logbookadvanced/edit.php:150
-#: application/views/logbookadvanced/edit.php:158
-#: application/views/logbookadvanced/edit.php:164
-#: application/views/logbookadvanced/edit.php:170
 msgid "Yes"
 msgstr "はい"
 
 #: application/views/cabrillo/index.php:197
 #: application/views/cabrillo/index.php:203
-#: application/views/logbookadvanced/edit.php:149
-#: application/views/logbookadvanced/edit.php:157
-#: application/views/logbookadvanced/edit.php:163
-#: application/views/logbookadvanced/edit.php:169
+#: application/views/logbookadvanced/edit.php:151
+#: application/views/logbookadvanced/edit.php:159
+#: application/views/logbookadvanced/edit.php:165
+#: application/views/logbookadvanced/edit.php:171
 #: application/views/logbookadvanced/index.php:415
 #: application/views/logbookadvanced/index.php:426
 #: application/views/logbookadvanced/index.php:457
@@ -6626,10 +6631,6 @@ msgstr "はい"
 #: application/views/user/edit.php:910 application/views/user/edit.php:926
 #: application/views/user/edit.php:954 application/views/user/edit.php:985
 #: application/views/user/edit.php:1015 application/views/user/edit.php:1040
-#: application/views/logbookadvanced/edit.php:151
-#: application/views/logbookadvanced/edit.php:159
-#: application/views/logbookadvanced/edit.php:165
-#: application/views/logbookadvanced/edit.php:171
 msgid "No"
 msgstr "いいえ"
 
@@ -7658,8 +7659,8 @@ msgid "Received"
 msgstr ""
 
 #: application/views/dashboard/index.php:355
-#: application/views/logbookadvanced/edit.php:150
-#: application/views/logbookadvanced/edit.php:170
+#: application/views/logbookadvanced/edit.php:152
+#: application/views/logbookadvanced/edit.php:172
 #: application/views/logbookadvanced/index.php:416
 #: application/views/logbookadvanced/index.php:427
 #: application/views/logbookadvanced/index.php:458
@@ -7690,8 +7691,7 @@ msgstr ""
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764 application/views/logbookadvanced/edit.php:152
-#: application/views/logbookadvanced/edit.php:172
+#: src/QSLManager/QSO.php:764
 msgid "Requested"
 msgstr ""
 
@@ -9579,96 +9579,78 @@ msgstr ""
 msgid "Contest Exch (S)"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:87
+#: application/views/logbookadvanced/edit.php:89
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:55
-#: application/views/logbookadvanced/edit.php:89
 msgid "SAT Mode"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:90
 #: application/views/logbookadvanced/edit.php:92
 msgid "Band TX"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:103
 #: application/views/logbookadvanced/edit.php:105
 msgid "Band RX"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:151
-#: application/views/logbookadvanced/edit.php:158
-#: application/views/logbookadvanced/edit.php:164
-#: application/views/logbookadvanced/edit.php:171
-#: application/views/logbookadvanced/index.php:397
-#: application/views/logbookadvanced/index.php:648
 #: application/views/logbookadvanced/edit.php:153
 #: application/views/logbookadvanced/edit.php:160
 #: application/views/logbookadvanced/edit.php:166
 #: application/views/logbookadvanced/edit.php:173
+#: application/views/logbookadvanced/index.php:397
+#: application/views/logbookadvanced/index.php:648
 msgid "Invalid"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:152
-#: application/views/logbookadvanced/edit.php:172
+#: application/views/logbookadvanced/edit.php:154
+#: application/views/logbookadvanced/edit.php:174
 #: application/views/logbookadvanced/index.php:429
 #: application/views/logbookadvanced/index.php:471
 #: application/views/logbookadvanced/index.php:493
 #: application/views/logbookadvanced/index.php:515
-#: application/views/logbookadvanced/edit.php:154
-#: application/views/logbookadvanced/edit.php:174
 msgid "Verified"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:188
-#: application/views/qso/edit_ajax.php:330 application/views/qso/index.php:437
 #: application/views/logbookadvanced/edit.php:190
+#: application/views/qso/edit_ajax.php:330 application/views/qso/index.php:437
 msgid "NONE"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:189
-#: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:438
 #: application/views/logbookadvanced/edit.php:191
+#: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:438
 msgid "African Italy"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:190
-#: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:439
 #: application/views/logbookadvanced/edit.php:192
+#: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:439
 msgid "Bear Island"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:191
-#: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:440
 #: application/views/logbookadvanced/edit.php:193
+#: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:440
 msgid "European Turkey"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:192
-#: application/views/qso/edit_ajax.php:334 application/views/qso/index.php:441
 #: application/views/logbookadvanced/edit.php:194
+#: application/views/qso/edit_ajax.php:334 application/views/qso/index.php:441
 msgid "ITU Vienna"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:193
-#: application/views/qso/edit_ajax.php:335 application/views/qso/index.php:442
 #: application/views/logbookadvanced/edit.php:195
+#: application/views/qso/edit_ajax.php:335 application/views/qso/index.php:442
 msgid "Kosovo"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:194
-#: application/views/qso/edit_ajax.php:336 application/views/qso/index.php:443
 #: application/views/logbookadvanced/edit.php:196
+#: application/views/qso/edit_ajax.php:336 application/views/qso/index.php:443
 msgid "Shetland Islands"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:195
-#: application/views/qso/edit_ajax.php:337 application/views/qso/index.php:444
 #: application/views/logbookadvanced/edit.php:197
+#: application/views/qso/edit_ajax.php:337 application/views/qso/index.php:444
 msgid "Sicily"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:198
 #: application/views/logbookadvanced/edit.php:200
 msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "
