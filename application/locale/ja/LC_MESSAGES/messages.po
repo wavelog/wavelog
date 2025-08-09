@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-05 07:10+0000\n"
-"PO-Revision-Date: 2025-08-08 20:10+0000\n"
+"PO-Revision-Date: 2025-08-10 08:25+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3154,9 +3154,8 @@ msgstr "eQSLサイトが変更されたようです。GitHubで問題を起こ�
 #: application/models/Eqslmethods_model.php:333
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
-msgstr ""
-"QSOのアップロード中に不明なエラーが発生しました。eQSLに問題がある可能性があり"
-"ます!"
+msgstr "QSOのアップロード中に不明なエラーが発生しました。eQSLに問題がある可能性があり"
+"ます"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -3206,9 +3205,8 @@ msgstr "QSOオン"
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
-msgstr ""
-"コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
-"されませんでした。無効です!"
+msgstr "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
+"されませんでした。無効です"
 
 #: application/models/Logbook_model.php:4297
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3305,51 +3303,51 @@ msgstr[0] "LoTWステータス %d 件の QSO が更新されました"
 
 #: application/models/Update_model.php:443
 msgid "SAT already existing. Updating LoTW status failed."
-msgstr ""
+msgstr "SAT は既に存在します。LoTW ステータスの更新に失敗しました。"
 
 #: application/models/Update_model.php:446
 msgid "SAT already existing. Ignored."
-msgstr ""
+msgstr "SAT はすでに存在します。無視されます。"
 
 #: application/models/Update_model.php:453
 msgid "SAT already existing. Display name updated."
-msgstr ""
+msgstr "SAT は既に存在します。表示名を更新しました。"
 
 #: application/models/Update_model.php:455
 msgid "SAT already existing. Updating display name failed."
-msgstr ""
+msgstr "SAT は既に存在します。表示名の更新に失敗しました。"
 
 #: application/models/Update_model.php:465
 msgid "New SAT. Inserted."
-msgstr ""
+msgstr "新しいSATを挿入しました。"
 
 #: application/models/Update_model.php:473
 msgid "New SAT. Insert failed."
-msgstr ""
+msgstr "新しい SAT。挿入に失敗しました。"
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
-msgstr ""
+msgstr "DXCCの累計交信数"
 
 #: application/views/accumulate/index.php:3
 msgid "Accumulated number of States worked"
-msgstr ""
+msgstr "作業した州の累計数"
 
 #: application/views/accumulate/index.php:4
 msgid "Accumulated number of IOTAs worked"
-msgstr ""
+msgstr "作業したIOTAの累計数"
 
 #: application/views/accumulate/index.php:5
 msgid "Accumulated number of CQ Zones worked"
-msgstr ""
+msgstr "累計CQゾーン数"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr ""
+msgstr "稼働したVUCCグリッドの累計数"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr ""
+msgstr "WAJAの累計稼働数"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:299
@@ -3360,28 +3358,28 @@ msgstr ""
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
 msgid "Year"
-msgstr ""
+msgstr "年"
 
 #: application/views/accumulate/index.php:9
 #: application/views/accumulate/index.php:67
 #: application/views/dayswithqso/index.php:15
 msgid "Yearly"
-msgstr ""
+msgstr "年間"
 
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:304
 #: application/views/visitor/index.php:255
 msgid "Month"
-msgstr ""
+msgstr "月"
 
 #: application/views/accumulate/index.php:11
 #: application/views/accumulate/index.php:73
 msgid "Monthly"
-msgstr ""
+msgstr "毎月"
 
 #: application/views/accumulate/index.php:12
 msgid "Difference"
-msgstr ""
+msgstr "違い"
 
 #: application/views/accumulate/index.php:24
 #: application/views/accumulate/index.php:34
@@ -3493,41 +3491,41 @@ msgstr ""
 #: application/views/user/edit.php:739
 #: application/views/visitor/layout/footer.php:172
 msgid "All"
-msgstr ""
+msgstr "全て"
 
 #: application/views/accumulate/index.php:50
 #: application/views/timeline/index.php:41
 msgid "Award"
-msgstr ""
+msgstr "アワード"
 
 #: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
-msgstr ""
+msgstr "DXセンチュリークラブ（DXCC）"
 
 #: application/views/accumulate/index.php:55
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
-msgstr ""
+msgstr "アイランズ・オン・ザ・エア（IOTA）"
 
 #: application/views/accumulate/index.php:56
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
-msgstr ""
+msgstr "全ゾーン作業（WAZ）"
 
 #: application/views/accumulate/index.php:57
 #: application/views/timeline/index.php:48
 msgid "VHF / UHF Century Club (VUCC)"
-msgstr ""
+msgstr "VHF / UHF センチュリークラブ (VUCC)"
 
 #: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
 msgid "Worked All Japan (WAJA)"
-msgstr ""
+msgstr "全国各地で活動（WAJA）"
 
 #: application/views/accumulate/index.php:62
 msgid "Period"
-msgstr ""
+msgstr "期間"
 
 #: application/views/accumulate/index.php:80
 #: application/views/callstats/index.php:65
@@ -3541,13 +3539,13 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/views/view_log/qso.php:230
 msgid "Propagation"
-msgstr ""
+msgstr "伝搬"
 
 #: application/views/accumulate/index.php:84
 #: application/views/distances/index.php:57
 #: application/views/timeline/index.php:83
 msgid "All but SAT"
-msgstr ""
+msgstr "SAT以外すべて"
 
 #: application/views/accumulate/index.php:85
 #: application/views/callstats/index.php:69
@@ -3557,7 +3555,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:389
 #: application/views/timeline/index.php:84
 msgid "None/Empty"
-msgstr ""
+msgstr "なし/空"
 
 #: application/views/accumulate/index.php:86
 #: application/views/callstats/index.php:71 application/views/csv/index.php:95
@@ -3571,7 +3569,7 @@ msgstr ""
 #: application/views/view_log/qso.php:233
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr ""
+msgstr "航空機の散乱"
 
 #: application/views/accumulate/index.php:87
 #: application/views/callstats/index.php:72 application/views/csv/index.php:96
@@ -3585,7 +3583,7 @@ msgstr ""
 #: application/views/view_log/qso.php:236
 msgctxt "Propagation Mode"
 msgid "Aurora"
-msgstr ""
+msgstr "オーロラ"
 
 #: application/views/accumulate/index.php:88
 #: application/views/callstats/index.php:73 application/views/csv/index.php:97
@@ -3599,7 +3597,7 @@ msgstr ""
 #: application/views/view_log/qso.php:239
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
-msgstr ""
+msgstr "オーロラE伝搬"
 
 #: application/views/accumulate/index.php:89
 #: application/views/callstats/index.php:74 application/views/csv/index.php:98
@@ -3613,7 +3611,7 @@ msgstr ""
 #: application/views/view_log/qso.php:242
 msgctxt "Propagation Mode"
 msgid "Back scatter"
-msgstr ""
+msgstr "後方散乱"
 
 #: application/views/accumulate/index.php:90
 #: application/views/callstats/index.php:75 application/views/csv/index.php:99
@@ -3627,7 +3625,7 @@ msgstr ""
 #: application/views/view_log/qso.php:245
 msgctxt "Propagation Mode"
 msgid "EchoLink"
-msgstr ""
+msgstr "エコーリンク"
 
 #: application/views/accumulate/index.php:91
 #: application/views/callstats/index.php:76 application/views/csv/index.php:100
@@ -3641,7 +3639,7 @@ msgstr ""
 #: application/views/view_log/qso.php:248
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr ""
+msgstr "地球-月-地球"
 
 #: application/views/accumulate/index.php:92
 #: application/views/callstats/index.php:77 application/views/csv/index.php:101
@@ -3655,7 +3653,7 @@ msgstr ""
 #: application/views/view_log/qso.php:251
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
-msgstr ""
+msgstr "Eスポ"
 
 #: application/views/accumulate/index.php:93
 #: application/views/callstats/index.php:78 application/views/csv/index.php:102
@@ -3669,7 +3667,7 @@ msgstr ""
 #: application/views/view_log/qso.php:254
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
-msgstr ""
+msgstr "磁場に沿った不規則性"
 
 #: application/views/accumulate/index.php:94
 #: application/views/callstats/index.php:79 application/views/csv/index.php:103
@@ -3683,7 +3681,7 @@ msgstr ""
 #: application/views/view_log/qso.php:257
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr ""
+msgstr "F2反射"
 
 #: application/views/accumulate/index.php:95
 #: application/views/callstats/index.php:80 application/views/csv/index.php:104
@@ -3697,7 +3695,7 @@ msgstr ""
 #: application/views/view_log/qso.php:260
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr ""
+msgstr "インターネット支援"
 
 #: application/views/accumulate/index.php:96
 #: application/views/callstats/index.php:81 application/views/csv/index.php:105
@@ -3711,7 +3709,7 @@ msgstr ""
 #: application/views/view_log/qso.php:263
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "イオノスキャッター"
 
 #: application/views/accumulate/index.php:97
 #: application/views/callstats/index.php:82 application/views/csv/index.php:106
@@ -3725,7 +3723,7 @@ msgstr ""
 #: application/views/view_log/qso.php:266
 msgctxt "Propagation Mode"
 msgid "IRLP"
-msgstr ""
+msgstr "IRLP"
 
 #: application/views/accumulate/index.php:98
 #: application/views/callstats/index.php:83 application/views/csv/index.php:107
@@ -3739,7 +3737,7 @@ msgstr ""
 #: application/views/view_log/qso.php:269
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
-msgstr ""
+msgstr "流星散乱"
 
 #: application/views/accumulate/index.php:99
 #: application/views/callstats/index.php:84 application/views/csv/index.php:108
@@ -3753,7 +3751,7 @@ msgstr ""
 #: application/views/view_log/qso.php:272
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "地上または大気圏の中継器またはトランスポンダー"
 
 #: application/views/accumulate/index.php:100
 #: application/views/callstats/index.php:85 application/views/csv/index.php:109
@@ -3767,7 +3765,7 @@ msgstr ""
 #: application/views/view_log/qso.php:275
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
-msgstr ""
+msgstr "雨散乱"
 
 #: application/views/accumulate/index.php:101
 #: application/views/callstats/index.php:86 application/views/csv/index.php:110
@@ -3781,7 +3779,7 @@ msgstr ""
 #: application/views/view_log/qso.php:278
 msgctxt "Propagation Mode"
 msgid "Satellite"
-msgstr ""
+msgstr "衛星"
 
 #: application/views/accumulate/index.php:102
 #: application/views/callstats/index.php:87 application/views/csv/index.php:111
@@ -3795,7 +3793,7 @@ msgstr ""
 #: application/views/view_log/qso.php:281
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "赤道横断"
 
 #: application/views/accumulate/index.php:103
 #: application/views/callstats/index.php:88 application/views/csv/index.php:112
@@ -3809,7 +3807,7 @@ msgstr ""
 #: application/views/view_log/qso.php:284
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
-msgstr ""
+msgstr "対流圏ダクト"
 
 #: application/views/accumulate/index.php:112
 #: application/views/activators/index.php:53
@@ -3845,7 +3843,7 @@ msgstr ""
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
 msgid "Show"
-msgstr ""
+msgstr "表示"
 
 #: application/views/activated_gridmap/index.php:20
 #: application/views/awards/dxcc/index.php:131
@@ -3869,7 +3867,7 @@ msgstr ""
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:24
 msgid "Satellite"
-msgstr ""
+msgstr "衛星"
 
 #: application/views/activated_gridmap/index.php:30
 #: application/views/awards/dxcc/index.php:147
@@ -3887,14 +3885,14 @@ msgstr ""
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:98
 msgid "Orbit"
-msgstr ""
+msgstr "軌道"
 
 #: application/views/activated_gridmap/index.php:50
 #: application/views/awards/wab/index.php:64
 #: application/views/gridmap/index.php:92
 #: application/views/timeline/index.php:52
 msgid "Confirmation"
-msgstr ""
+msgstr "確認"
 
 #: application/views/activated_gridmap/index.php:82
 #: application/views/awards/cq/index.php:68
@@ -3914,17 +3912,17 @@ msgstr ""
 #: application/views/awards/was/index.php:67
 #: application/views/gridmap/index.php:125 application/views/user/edit.php:781
 msgid "QRZ.com"
-msgstr ""
+msgstr "QRZ.com"
 
 #: application/views/activated_gridmap/index.php:86
 #: application/views/gridmap/index.php:130
 msgid "Plot"
-msgstr ""
+msgstr "プロット"
 
 #: application/views/activated_gridmap/index.php:87
 #: application/views/gridmap/index.php:131
 msgid "Clear Markers"
-msgstr ""
+msgstr "クリアマーカー"
 
 #: application/views/activated_gridmap/index.php:102
 #: application/views/awards/ffma/index.php:30
@@ -3932,7 +3930,7 @@ msgstr ""
 #: application/views/gridmap/index.php:148
 #: application/views/logbookadvanced/index.php:10
 msgid "Latitude"
-msgstr ""
+msgstr "緯度"
 
 #: application/views/activated_gridmap/index.php:104
 #: application/views/awards/ffma/index.php:32
@@ -3940,17 +3938,17 @@ msgstr ""
 #: application/views/gridmap/index.php:150
 #: application/views/logbookadvanced/index.php:11
 msgid "Longitude"
-msgstr ""
+msgstr "経度"
 
 #: application/views/activators/index.php:26
 msgctxt "Orbiter LEO or GEO"
 msgid "Both"
-msgstr ""
+msgstr "両方"
 
 #: application/views/activators/index.php:33
 #: application/views/callstats/index.php:92
 msgid "Minimum Count"
-msgstr ""
+msgstr "最小数"
 
 #: application/views/activators/index.php:76
 #: application/views/awards/73on73/index.php:65
@@ -3982,7 +3980,7 @@ msgstr ""
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
 msgid "Nothing found!"
-msgstr ""
+msgstr "何も見つかりません!"
 
 #: application/views/activators/index.php:98
 #: application/views/adif/import.php:75 application/views/adif/import.php:212
@@ -4034,7 +4032,7 @@ msgstr "コールサイン"
 
 #: application/views/activators/index.php:99
 msgid "Count"
-msgstr ""
+msgstr "カウント"
 
 #: application/views/activators/index.php:101
 #: application/views/callstats/index.php:150
@@ -4045,50 +4043,50 @@ msgstr ""
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
 msgid "Show QSOs"
-msgstr ""
+msgstr "QSOを表示"
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
-msgstr ""
+msgstr "地図を表示"
 
 #: application/views/adif/dcl_success.php:12
 msgid "Results of DCL DOK Update"
-msgstr ""
+msgstr "DCL DOKアップデートの結果"
 
 #: application/views/adif/dcl_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr ""
+msgstr "やった、更新されたよ！"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
-msgstr ""
+msgstr "DOK の DCL 情報が更新されました。"
 
 #: application/views/adif/dcl_success.php:19
 msgid "No QSOs found which could be updated."
-msgstr ""
+msgstr "更新できる QSO が見つかりません。"
 
 #: application/views/adif/dcl_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs ignored"
-msgstr ""
+msgstr "QSOは無視される"
 
 #: application/views/adif/dcl_success.php:22
 msgid "QSOs unmatched"
-msgstr ""
+msgstr "比類のないQSO"
 
 #: application/views/adif/dcl_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs updated"
-msgstr ""
+msgstr "QSOが更新されました"
 
 #: application/views/adif/dcl_success.php:25
 msgid "DOK Errors"
-msgstr ""
+msgstr "DOKエラー"
 
 #: application/views/adif/dcl_success.php:26
 msgid "There is different data for DOK in your log compared to DCL"
-msgstr ""
+msgstr "ログ内のDOKとDCLのデータが異なります"
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/awards/73on73/index.php:32
@@ -4133,7 +4131,7 @@ msgstr ""
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
 msgid "Date"
-msgstr ""
+msgstr "日付"
 
 #: application/views/adif/dcl_success.php:30
 #: application/views/awards/73on73/index.php:33
@@ -4166,7 +4164,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
 msgid "Time"
-msgstr ""
+msgstr "時間"
 
 #: application/views/adif/dcl_success.php:31
 #: application/views/awards/vucc/band.php:18
@@ -4185,31 +4183,31 @@ msgstr ""
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
 msgid "Call"
-msgstr ""
+msgstr "電話"
 
 #: application/views/adif/dcl_success.php:34
 msgid "DOK in Log"
-msgstr ""
+msgstr "ログ内のDOK"
 
 #: application/views/adif/dcl_success.php:35
 msgid "DOK in DCL"
-msgstr ""
+msgstr "DOK（DCL内）"
 
 #: application/views/adif/dcl_success.php:36
 msgid "DCL QSL Status"
-msgstr ""
+msgstr "DCL QSLステータス"
 
 #: application/views/adif/import.php:24
 msgid "ADIF Export"
-msgstr ""
+msgstr "ADIFエクスポート"
 
 #: application/views/adif/import.php:36 application/views/adif/import.php:282
 msgid "DARC DCL"
-msgstr ""
+msgstr "ダルクDCL"
 
 #: application/views/adif/import.php:45
 msgid "CBR Import"
-msgstr ""
+msgstr "CBRインポート"
 
 #: application/views/adif/import.php:64 application/views/adif/import.php:329
 #: application/views/api/index.php:22 application/views/dashboard/index.php:172
@@ -4219,15 +4217,15 @@ msgstr ""
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
 msgid "Important"
-msgstr ""
+msgstr "重要"
 
 #: application/views/adif/import.php:64
 msgid "Log Files must have the file type *.adi"
-msgstr ""
+msgstr "ログファイルのファイルタイプは*.adiである必要があります"
 
 #: application/views/adif/import.php:65 application/views/view_log/qso.php:771
 msgid "Maximum file upload size is "
-msgstr ""
+msgstr "最大ファイルアップロードサイズは "
 
 #: application/views/adif/import.php:65 application/views/adif/import.php:259
 #: application/views/adif/import.php:298
@@ -4242,7 +4240,7 @@ msgstr ""
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #: application/views/adif/import.php:69 application/views/adif/import.php:71
 #: application/views/adif/import.php:206 application/views/adif/import.php:254
@@ -4250,40 +4248,42 @@ msgstr ""
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
 msgid "Select Station Location"
-msgstr ""
+msgstr "ステーションを選択してください"
 
 #: application/views/adif/import.php:82
 msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
 msgstr ""
+"インポートしたQSOのオペレーターのコールサインを入力してください。ADIFファイル"
+"内のオペレーターのコールサインを使用する場合は、空欄のままにしてください。"
 
 #: application/views/adif/import.php:85
 msgid "Add QSOs to Contest"
-msgstr ""
+msgstr "コンテストにQSOを追加する"
 
 #: application/views/adif/import.php:87 application/views/adif/import.php:336
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
-msgstr ""
+msgstr "ノーコンテスト"
 
 #: application/views/adif/import.php:93
 msgid "ADIF File"
-msgstr ""
+msgstr "ADIF ファイル"
 
 #: application/views/adif/import.php:100
 msgid "Import duplicate QSOs"
-msgstr ""
+msgstr "重複したQSOをインポートする"
 
 #: application/views/adif/import.php:109
 msgid "Mark imported QSOs as uploaded to LoTW"
-msgstr ""
+msgstr "インポートしたQSOをLoTWにアップロード済みとしてマークする"
 
 #: application/views/adif/import.php:111 application/views/adif/import.php:121
 #: application/views/adif/import.php:131 application/views/adif/import.php:141
 #: application/views/adif/import.php:151 application/views/adif/import.php:161
 msgid "Select if ADIF being imported does not contain this information."
-msgstr ""
+msgstr "インポートする ADIF にこの情報が含まれていない場合に選択します。"
 
 #: application/views/adif/import.php:119
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
@@ -11821,7 +11821,7 @@ msgstr ""
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
-msgstr ""
+msgstr "お待ちください..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
