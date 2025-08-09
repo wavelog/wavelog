@@ -633,15 +633,4 @@ class Oqrs_model extends CI_Model {
 		return $this->db->affected_rows() > 0;
 	}
 
-	public function update_oqrs_set_done($qsoids) {
-		if (empty($qsoids)) {
-			return false;
-		}
-
-		$data = ['status' => '2'];
-		$this->db->where_in('qsoid', $qsoids);
-		return $this->db->update('oqrs', $data);
-
-	}
-
 }

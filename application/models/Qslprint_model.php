@@ -32,67 +32,34 @@ class Qslprint_model extends CI_Model {
 	/*
 	 * Updates the QSOs that do not have any COL_QSL_SENT_VIA set
 	 */
-	function update_qsos_bureau($station_ids) {
-		// Step 1: Select IDs to be updated
-		$this->db->select('col_primary_key');
-		$this->db->from($this->config->item('table_name'));
+	 function update_qsos_bureau($station_ids) {
+		$data = array(
+			'COL_QSLSDATE' => date('Y-m-d'),
+			'COL_QSL_SENT' => "Y",
+			'COL_QSL_SENT_VIA' => "B",
+		);
+
 		$this->db->where_in("station_id", $station_ids);
-		$this->db->where_in("COL_QSL_SENT", array("R", "Q"));
-		$this->db->where("coalesce(COL_QSL_SENT_VIA, '') = ''", null, false); // raw where for COALESCE
-		$query = $this->db->get();
+		$this->db->where_in("COL_QSL_SENT", array("R","Q"));
+		$this->db->where("coalesce(COL_QSL_SENT_VIA, '') = ''");
 
-		$ids = array_column($query->result_array(), 'col_primary_key');
-
-		if (!empty($ids)) {
-			// Step 2: Perform update
-			$data = array(
-				'COL_QSLSDATE' => date('Y-m-d'),
-				'COL_QSL_SENT' => "Y",
-				'COL_QSL_SENT_VIA' => "B",
-			);
-
-			$this->db->where_in('col_primary_key', $ids);
-			$this->db->update($this->config->item('table_name'), $data);
-		}
-
-		$this->load->model('oqrs_model');
-		$this->oqrs_model->update_oqrs_set_done($ids);
-
-		// Step 3: Return updated IDs
-		return $ids;
+		$this->db->update($this->config->item('table_name'), $data);
 	}
-
 
 	/*
 	 * Updates the QSOs that do have COL_QSL_SENT_VIA set
 	 */
 	function update_qsos($station_ids) {
-		// Step 1: Select IDs to be updated
-		$this->db->select('col_primary_key');
-		$this->db->from($this->config->item('table_name'));
+		$data = array(
+			'COL_QSLSDATE' => date('Y-m-d'),
+			'COL_QSL_SENT' => "Y",
+		);
+
 		$this->db->where_in("station_id", $station_ids);
-		$this->db->where_in("COL_QSL_SENT", array("R", "Q"));
-		$this->db->where("coalesce(COL_QSL_SENT_VIA, '') != ''", null, false); // raw where for COALESCE
-		$query = $this->db->get();
+		$this->db->where_in("COL_QSL_SENT", array("R","Q"));
+		$this->db->where("coalesce(COL_QSL_SENT_VIA, '') != ''");
 
-		$ids = array_column($query->result_array(), 'col_primary_key');
-
-		if (!empty($ids)) {
-			// Step 2: Perform update
-			$data = array(
-				'COL_QSLSDATE' => date('Y-m-d'),
-				'COL_QSL_SENT' => "Y",
-			);
-
-			$this->db->where_in('col_primary_key', $ids);
-			$this->db->update($this->config->item('table_name'), $data);
-		}
-
-		$this->load->model('oqrs_model');
-		$this->oqrs_model->update_oqrs_set_done($ids);
-
-		// Step 3: Return updated IDs
-		return $ids;
+		$this->db->update($this->config->item('table_name'), $data);
 	}
 
 	/*
