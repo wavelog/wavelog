@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:28+0000\n"
-"PO-Revision-Date: 2025-08-08 20:10+0000\n"
+"PO-Revision-Date: 2025-08-10 08:25+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "installer/ja/>\n"
@@ -676,115 +676,118 @@ msgstr ""
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
-msgstr ""
+msgstr "ロケータの形式が正しくないようです。AA11AA（6文字のグリッドロケータ）のように"
+"表記されている必要があります。"
 
 #: install/index.php:1731
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
-msgstr ""
+msgstr "メールアドレスが正しくないようです。有効なメールアドレスであることを確認して"
+"ください"
 
 #: install/index.php:1758
 msgid "Password should be at least 8 characters long"
-msgstr ""
+msgstr "パスワードは8文字以上である必要があります"
 
 #: install/index.php:1767
 msgid "Passwords do not match"
-msgstr ""
+msgstr "パスワードが一致しません"
 
 #: install/index.php:1823
 msgid "Install Now"
-msgstr ""
+msgstr "今すぐインストール"
 
 #: install/index.php:1827
 msgid "Install not possible. Checklist incomplete."
-msgstr ""
+msgstr "インストールできません。チェックリストが不完全です。"
 
 #: install/index.php:1939
 msgid "PHP Module missing"
-msgstr ""
+msgstr "PHPモジュールが見つかりません"
 
 #: install/index.php:1941
 msgid "The following PHP modules are missing:"
-msgstr ""
+msgstr "次の PHP モジュールが見つかりません:"
 
 #: install/index.php:1942
 msgid "Without this module the Wavelog Installer does not work!"
-msgstr ""
+msgstr "このモジュールがないと、Wavelog インストーラーは動作しません!"
 
 #: install/index.php:1943
 msgid "Please install the required modules and restart the webserver."
-msgstr ""
+msgstr "必要なモジュールをインストールし、Web サーバーを再起動してください。"
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "インストール"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "お待ちください..."
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "config.phpをapplication/config/にコピーする"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "database.phpをapplication/config/にコピーする"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "データベーステーブルの作成"
 
 #: install/run.php:24
 msgid "Running database migrations"
-msgstr ""
+msgstr "データベース移行の実行"
 
 #: install/run.php:27
 msgid "Updating DXCC data"
-msgstr ""
+msgstr "DXCCデータの更新"
 
 #: install/run.php:35
 msgid "Lock the installer"
-msgstr ""
+msgstr "インストーラーをロックする"
 
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
-msgstr ""
+msgstr "すべてのインストール手順が完了しました。ユーザーログインにリダイレクトします"
+"。 %s 秒..."
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
-msgstr ""
+msgstr "完了です。ユーザーログインへ移動 ->"
 
 #: install/run.php:46 install/run.php:125
 msgid "Show detailled debug log"
-msgstr ""
+msgstr "詳細なデバッグログを表示"
 
 #: install/run.php:127
 msgid "Hide detailled debug log"
-msgstr ""
+msgstr "詳細なデバッグログを非表示にする"
 
 #: install/run.php:182
 msgid "Could not create application/config/config.php"
-msgstr ""
+msgstr "application/config/config.php を作成できませんでした"
 
 #: install/run.php:217
 msgid "Could not create application/config/database.php"
-msgstr ""
+msgstr "application/config/database.php を作成できませんでした"
 
 #: install/run.php:251
 msgid "Could not create database tables"
-msgstr ""
+msgstr "データベーステーブルを作成できませんでした"
 
 #: install/run.php:281
 msgid "Could not run database migrations"
-msgstr ""
+msgstr "データベースの移行を実行できませんでした"
 
 #: install/run.php:309
 msgid "Could not update DXCC data"
-msgstr ""
+msgstr "DXCCデータを更新できませんでした"
 
 #: install/run.php:342
 msgid "Could not create install/.lock file"
-msgstr ""
+msgstr "インストール/.lock ファイルを作成できませんでした"
