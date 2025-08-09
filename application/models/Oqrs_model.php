@@ -118,6 +118,23 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function getOqrsRequests($location_list) {
+		$sql = 'select * from oqrs
+				join station_profile on oqrs.station_id = station_profile.station_id
+				join ' . $this->config->item('table_name') . ' as l on oqrs.qsoid = l.col_primary_key
+				where oqrs.station_id in (' . $location_list . ')';
+
+        $query = $this->db->query($sql);
+
+        $result = $query->result();
+
+		foreach ($result as $row) {
+			if (strtolower($row->col_qsl_sent) == 'y') {
+				$sql = 'update oqrs set status = 2 where qsoid = ? and status = 3 and requesttime > ?';
+				$binding = [$row->qsoid, $row->col_qslsdate];
+				$query = $this->db->query($sql, $binding);
+			}
+		}
+
         $sql = 'select * from oqrs join station_profile on oqrs.station_id = station_profile.station_id where oqrs.station_id in (' . $location_list . ')';
 
         $query = $this->db->query($sql);
