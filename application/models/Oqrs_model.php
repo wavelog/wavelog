@@ -15,7 +15,7 @@ class Oqrs_model extends CI_Model {
         count(*) as count,
         min(col_time_on) as mindate,
         max(col_time_on) as maxdate
-        from ' . $this->config->item('table_name') . ' where station_id = ?';
+        from ' . $this->config->item('table_name') . ' where station_id = ? and oqrs = 1';
 		$binding[] = $station_id;
 
         $query = $this->db->query($sql, $binding);
