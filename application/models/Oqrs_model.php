@@ -12,10 +12,10 @@ class Oqrs_model extends CI_Model {
 
 		$binding = [];
         $sql = 'select
-        count(*) as count,
-        min(col_time_on) as mindate,
-        max(col_time_on) as maxdate
-        from ' . $this->config->item('table_name') . ' where station_id = ? and oqrs = 1';
+        count(1) as count,
+        min(log.col_time_on) as mindate,
+        max(log.col_time_on) as maxdate
+        from ' . $this->config->item('table_name') . ' log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs=\'1\') where log.station_id = ?';
 		$binding[] = $station_id;
 
         $query = $this->db->query($sql, $binding);
@@ -52,11 +52,11 @@ class Oqrs_model extends CI_Model {
 
 		$binding = [];
 
-		$sql = 'select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, col_band from ' . $this->config->item('table_name') . ' where station_id = ? and col_call = ? and col_prop_mode != "SAT"';
+		$sql = 'select lower(log.col_mode) col_mode, coalesce(log.col_submode, "") col_submode, log.col_band from ' . $this->config->item('table_name') . ' log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs=\'1\') where log.station_id = ? and log.col_call = ? and log.col_prop_mode != "SAT"';
 		$binding[] = $station_id;
 		$binding[] = $callsign;
 
-		$sql .= ' union all select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, "SAT" col_band from ' . $this->config->item('table_name') . ' where station_id = ? and col_call = ? and col_prop_mode = "SAT"';
+		$sql .= ' union all select lower(log.col_mode) col_mode, coalesce(log.col_submode, "") col_submode, "SAT" col_band from ' . $this->config->item('table_name') . ' log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs=\'1\') where log.station_id = ? and log.col_call = ? and log.col_prop_mode = "SAT"';
 		$binding[] = $station_id;
 		$binding[] = $callsign;
 
@@ -98,7 +98,7 @@ class Oqrs_model extends CI_Model {
 	{
 		// get all worked modes from database
 		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_MODE`) as `COL_MODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id = ? order by COL_MODE ASC", $station_id
+			"SELECT distinct LOWER(log.`COL_MODE`) as `COL_MODE` FROM `" . $this->config->item('table_name') . "` log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs='1')  WHERE log.station_id = ? order by log.COL_MODE ASC", $station_id
 		);
 		$results = array();
 		foreach ($data->result() as $row) {
@@ -106,7 +106,7 @@ class Oqrs_model extends CI_Model {
 		}
 
 		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_SUBMODE`) as `COL_SUBMODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id = ? and coalesce(COL_SUBMODE, '') <> '' order by COL_SUBMODE ASC", $station_id
+			"SELECT distinct LOWER(log.`COL_SUBMODE`) as `COL_SUBMODE` FROM `" . $this->config->item('table_name') . "` log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs='1') WHERE log.station_id = ? and coalesce(log.COL_SUBMODE, '') <> '' order by log.COL_SUBMODE ASC", $station_id
 		);
 		foreach ($data->result() as $row) {
 			if (!in_array($row, $results)) {
@@ -128,7 +128,7 @@ class Oqrs_model extends CI_Model {
         $result = $query->result();
 
 		foreach ($result as $row) {
-			if (strtolower($row->col_qsl_sent) == 'y') {
+			if (strtolower($row->col_qsl_sent ?? '') == 'y') {
 				$sql = 'update oqrs set status = 2 where qsoid = ? and status = 3 and requesttime > ?';
 				$binding = [$row->qsoid, $row->col_qslsdate];
 				$query = $this->db->query($sql, $binding);
@@ -350,13 +350,14 @@ class Oqrs_model extends CI_Model {
 		$binding = [];
 
 		$sql = 'select * from ' . $this->config->item('table_name') .
-		' where (col_band = ? or col_prop_mode = ?)
-		 and col_call = ?
-		 and date(col_time_on) = ?
-		 and (col_mode = ?
-		 or col_submode = ?)
-		 and timediff(time(col_time_on), ?) <= 3000
-		 and station_id = ?';
+		' log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs=\'1\')
+		 where (log.col_band = ? or log.col_prop_mode = ?)
+		 and log.col_call = ?
+		 and date(log.col_time_on) = ?
+		 and (log.col_mode = ?
+		 or log.col_submode = ?)
+		 and timediff(time(log.col_time_on), ?) <= 3000
+		 and log.station_id = ?';
 
 		$binding[] = $qsodata['band'];
 		$binding[] = $qsodata['band'];
@@ -408,6 +409,7 @@ class Oqrs_model extends CI_Model {
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('oqrs', 'oqrs.qsoid = '.$this->config->item('table_name').'.COL_PRIMARY_KEY', 'left');
 		// always filter user. this ensures that no inaccesible QSOs will be returned
+		$this->db->where('station_profile.oqrs', '1');
 		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 		$this->db->where('COL_CALL like "%'.$callsign.'%"');
 		$this->db->order_by("COL_TIME_ON", "ASC");
@@ -420,7 +422,7 @@ class Oqrs_model extends CI_Model {
 		$binding = [];
 
 		$sql = 'select * from ' . $this->config->item('table_name') . ' thcv
-		 join station_profile on thcv.station_id = station_profile.station_id
+		 join station_profile on (thcv.station_id = station_profile.station_id and station_profile.oqrs=\'1\')
 		 left join oqrs on oqrs.qsoid = thcv.COL_PRIMARY_KEY
 		 where (col_band = ? or col_prop_mode = ?)
 		 and date(col_time_on) = ?
@@ -451,7 +453,7 @@ class Oqrs_model extends CI_Model {
 
 	function getQslInfo($station_id) {
 		$binding = [];
-		$sql = 'select oqrs_text from station_profile where station_id = ?';
+		$sql = 'select oqrs_text from station_profile where station_id = ? and oqrs=\'1\'';
 		$binding[] = $station_id;
 
 		$query = $this->db->query($sql, $binding);
@@ -467,7 +469,7 @@ class Oqrs_model extends CI_Model {
 
 	function getOqrsEmailSetting($station_id) {
 		$binding = [];
-		$sql = 'select oqrs_email from station_profile where station_id = ?';
+		$sql = 'select oqrs_email from station_profile where station_id = ? and oqrs=\'1\'';
 		$binding[] = $station_id;
 
 		$query = $this->db->query($sql, $binding);
@@ -512,7 +514,7 @@ class Oqrs_model extends CI_Model {
 		$sql = "
 			SELECT *, DATE_FORMAT(requesttime, \"%Y-%m-%d %H:%i\") as requesttime, DATE_FORMAT(time, \"%H:%i\") as time
 			FROM oqrs
-			INNER JOIN station_profile ON oqrs.station_id=station_profile.station_id
+			INNER JOIN station_profile ON (oqrs.station_id=station_profile.station_id and station_profile.oqrs='1')
 			WHERE station_profile.user_id =  ?
 			$where
 			ORDER BY oqrs.id
