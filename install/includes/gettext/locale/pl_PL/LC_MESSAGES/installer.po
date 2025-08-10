@@ -4,12 +4,13 @@
 #
 # Bartek <achtachtel@gmail.com>, 2024.
 # Maciej SP2FE <wavelog@sp2fe.eu>, 2025.
+# Artur Greficz <sq7acp@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:28+0000\n"
-"PO-Revision-Date: 2025-01-30 21:18+0000\n"
-"Last-Translator: Maciej SP2FE <wavelog@sp2fe.eu>\n"
+"PO-Revision-Date: 2025-08-05 07:10+0000\n"
+"Last-Translator: Artur Greficz <sq7acp@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "installer/pl/>\n"
 "Language: pl_PL\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
@@ -81,7 +82,7 @@ msgstr "Grecki"
 
 #: install/includes/interface_assets/footer.php:71
 msgid "Hungarian"
-msgstr ""
+msgstr "Węgierski"
 
 #: install/includes/interface_assets/footer.php:72
 msgid "Italian"
@@ -89,7 +90,7 @@ msgstr "Włoski"
 
 #: install/includes/interface_assets/footer.php:73
 msgid "Japanese"
-msgstr ""
+msgstr "Japoński"
 
 #: install/includes/interface_assets/footer.php:74
 msgid "Latvian"
@@ -121,7 +122,7 @@ msgstr "Serbski"
 
 #: install/includes/interface_assets/footer.php:81
 msgid "Slovak"
-msgstr ""
+msgstr "Słowacki"
 
 #: install/includes/interface_assets/footer.php:82
 msgid "Slovenian"
@@ -332,10 +333,14 @@ msgid ""
 "check your web server configuration. This is the base_url in your config."
 "php, which can be edited after the installation."
 msgstr ""
+"Jest to adres URL, w którym można uzyskać dostęp do tej instancji Wavelog po "
+"uruchomieniu instalatora. Jeśli nie wyświetla tego, czego oczekujesz, może "
+"być konieczne sprawdzenie konfiguracji serwera WWW. To jest base_url w Twoim "
+"config.php, który można edytować po instalacji."
 
 #: install/index.php:352
 msgid "Your final Wavelog URL"
-msgstr ""
+msgstr "Twój ostateczny adres Wavelog"
 
 #: install/index.php:358
 msgid "Optional: Global Callbook Lookup"
@@ -353,8 +358,8 @@ msgstr ""
 "dostępne dla wszystkich użytkowników tej instalacji. Możesz wybrać między "
 "QRZ.com a HamQTH. HamQTH działa również bez nazwy użytkownika i hasła, ale "
 "do QRZ.com będziesz potrzebować danych logowania. Aby uzyskać również "
-"lokalizator połączeń w QRZ.com, będziesz potrzebować subskrypcji XML. HamQTH "
-"nie zawsze dostarcza informacji o lokalizatorze."
+"lokator w QRZ.com, będziesz potrzebować subskrypcji XML. HamQTH nie zawsze "
+"dostarcza informacji o lokatorze."
 
 #: install/index.php:369 install/index.php:450 install/index.php:902
 msgid "Username"
@@ -366,16 +371,16 @@ msgstr "Hasło"
 
 #: install/index.php:377
 msgid "Callbook Username"
-msgstr "Nazwa użytkownika Callbook"
+msgstr "Nazwa użytkownika dziennika"
 
 #: install/index.php:380
 msgid "Callbook Password"
-msgstr "Hasło do Callbook"
+msgstr "Hasło do dziennika"
 
 #: install/index.php:382
 #, php-format
 msgid "Password can't contain %s or be empty"
-msgstr "Haslo nie moze zawierać %s ani być puste"
+msgstr "Haslo nie może zawierać %s ani być puste"
 
 #: install/index.php:387
 msgid "Good to know:"
@@ -528,7 +533,7 @@ msgstr "Znak wywoławczy"
 
 #: install/index.php:906
 msgid "Gridsquare/Locator"
-msgstr "Gridsquare/Locator"
+msgstr "Kwadrat/Lokator"
 
 #: install/index.php:916
 msgid "City"
@@ -552,7 +557,7 @@ msgstr "Lista kontrolna"
 
 #: install/index.php:1056
 msgid "Pre-Checks"
-msgstr "Wstępne kontrole"
+msgstr "Wstępne sprawdzenie"
 
 #: install/index.php:1065
 msgid "Configuration"
@@ -686,8 +691,8 @@ msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
-"Wydaje się, że lokalizator nie jest w poprawnym formacie. Powinien wyglądać "
-"jak AA11AA (6-znakowy lokalizator siatki)."
+"Wydaje się, że lokator nie jest w poprawnym formacie. Powinien wyglądać jak "
+"AA11AA (6-znakowy lokator)."
 
 #: install/index.php:1731
 msgid ""
