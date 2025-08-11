@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-05 07:10+0000\n"
-"PO-Revision-Date: 2025-08-10 08:25+0000\n"
+"PO-Revision-Date: 2025-08-11 20:46+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/ja/>\n"
@@ -4287,49 +4287,50 @@ msgstr "インポートする ADIF にこの情報が含まれていない場合
 
 #: application/views/adif/import.php:119
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
-msgstr ""
+msgstr "インポートしたQSOをeQSLログブックにアップロード済みとしてマークする"
 
 #: application/views/adif/import.php:129
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
-msgstr ""
+msgstr "インポートしたQSOをHRDLog.netログブックにアップロード済みとしてマークする"
 
 #: application/views/adif/import.php:139
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
-msgstr ""
+msgstr "インポートしたQSOをQRZログブックにアップロード済みとしてマークする"
 
 #: application/views/adif/import.php:149
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
-msgstr ""
+msgstr "インポートしたQSOをClublogログブックにアップロード済みとしてマークする"
 
 #: application/views/adif/import.php:159
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
-msgstr ""
+msgstr "インポートしたQSOをDCLログブックにアップロード済みとしてマークする"
 
 #: application/views/adif/import.php:169
 msgid "Use DXCC information from ADIF"
-msgstr ""
+msgstr "ADIFからのDXCC情報を使用する"
 
 #: application/views/adif/import.php:171
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
-msgstr ""
+msgstr "選択されていない場合、Wavelog は DXCC 情報を自動的に判別しようとします。"
 
 #: application/views/adif/import.php:180
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
-msgstr ""
+msgstr "インポート中は、オペレータコールとしてログインしているアカウントのコールサイ"
+"ンを常に使用してください"
 
 #: application/views/adif/import.php:190
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:565
 #: application/views/interface_assets/footer.php:2549
 msgid "DANGER"
-msgstr ""
+msgstr "危険"
 
 #: application/views/adif/import.php:190
 msgid "Ignore Stationcallsign on import"
-msgstr ""
+msgstr "インポート時にステーションコールサインを無視する"
 
 #: application/views/adif/import.php:192
 #, php-format
@@ -4337,6 +4338,9 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless "
 "if they match to the chosen station-location."
 msgstr ""
+"選択すると、WavelogはADIFのすべての %sall%s "
+"QSOをインポートしようとします。選択された局の位置と一致するかどうかに関わらず"
+"、すべてのQSOが対象となります。"
 
 #: application/views/adif/import.php:196 application/views/adif/import.php:313
 #: application/views/adif/import.php:351
@@ -4344,17 +4348,20 @@ msgstr ""
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
-msgstr ""
+msgstr "アップロード"
 
 #: application/views/adif/import.php:203
 msgid "Take your logbook file anywhere!"
-msgstr ""
+msgstr "ログブックファイルをどこにでも持ち歩けます!"
 
 #: application/views/adif/import.php:204
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr ""
+"ADIF をエクスポートすると、LoTW、Awards などのサードパーティ "
+"アプリケーションに連絡先をインポートしたり、バックアップを保存したりすること"
+"ができます。"
 
 #: application/views/adif/import.php:205
 #, php-format
@@ -4362,7 +4369,8 @@ msgctxt ""
 msgid ""
 "If you need more filtering, you can use %sthe Advanced Logbook%s to filter "
 "and export!"
-msgstr ""
+msgstr "さらにフィルタリングが必要な場合は、 %sthe Advanced Logbook%s "
+"をフィルタリングしてエクスポートします！"
 
 #: application/views/adif/import.php:216 application/views/adif/import.php:261
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
@@ -4371,7 +4379,7 @@ msgstr ""
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
 msgid "From date"
-msgstr ""
+msgstr "開始日"
 
 #: application/views/adif/import.php:219 application/views/adif/import.php:264
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
@@ -4380,40 +4388,40 @@ msgstr ""
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
 msgid "To date"
-msgstr ""
+msgstr "現在まで"
 
 #: application/views/adif/import.php:227
 msgid "Mark exported QSOs as uploaded to LoTW"
-msgstr ""
+msgstr "エクスポートしたQSOをLoTWにアップロード済みとしてマークする"
 
 #: application/views/adif/import.php:235
 msgid "Export QSOs not uploaded to LoTW"
-msgstr ""
+msgstr "LoTWにアップロードされていないQSOをエクスポートする"
 
 #: application/views/adif/import.php:240
 msgid "Export QSOs"
-msgstr ""
+msgstr "QSOをエクスポートする"
 
 #: application/views/adif/import.php:245
 msgid "Export Satellite-Only QSOs"
-msgstr ""
+msgstr "衛星のみのQSOをエクスポートする"
 
 #: application/views/adif/import.php:246
 msgid "Export All Satellite QSOs"
-msgstr ""
+msgstr "すべての衛星QSOをエクスポート"
 
 #: application/views/adif/import.php:248
 msgid "Export All Satellite QSOs Confirmed on LoTW"
-msgstr ""
+msgstr "LoTWで確認されたすべての衛星QSOをエクスポートする"
 
 #: application/views/adif/import.php:259 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
-msgstr ""
+msgstr "日付範囲が選択されていない場合は、すべての QSO がマークされます！"
 
 #: application/views/adif/import.php:267
 msgid "Mark QSOs as exported to LoTW"
-msgstr ""
+msgstr "QSOをLoTWにエクスポートとしてマークする"
 
 #: application/views/adif/import.php:282
 #, php-format
@@ -4423,36 +4431,42 @@ msgid ""
 "List). The downloaded ADIF file can be uploaded here in order to update QSOs "
 "with DOK info."
 msgstr ""
+"%s にアクセスし、確認済みの DOK "
+"を含むログブックをエクスポートしてください。プロセスを高速化するには、"
+"ダウンロードする QSO を DL のみに限定できます（つまり、プレフィックス "
+"リストに「DL」を入力します）。ダウンロードした ADIF "
+"ファイルをここにアップロードすることで、DOK 情報を用いて QSO を更新できます。"
 
 #: application/views/adif/import.php:289
 msgid "Only import DOK data from QSOs confirmed on DCL."
-msgstr ""
+msgstr "DCL で確認された QSO からの DOK データのみをインポートします。"
 
 #: application/views/adif/import.php:291
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
-msgstr ""
+msgstr "DCL 内の未確認 QSO のデータで DOK も更新する場合は、チェックを外します。"
 
 #: application/views/adif/import.php:298
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
-msgstr ""
+msgstr "ログ内の既存の DOK を DCL によって上書きします (異なる場合)。"
 
 #: application/views/adif/import.php:300
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
-msgstr ""
+msgstr "チェックすると、Wavelog は既存の DOK を DCL ログの DOK "
+"で強制的に上書きします。"
 
 #: application/views/adif/import.php:307
 msgid "Ignore QSOs that cannot be matched."
-msgstr ""
+msgstr "一致できない QSO は無視します。"
 
 #: application/views/adif/import.php:309
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
-msgstr ""
+msgstr "チェックを外すと、Wavelog で見つからなかった QSO に関する情報が表示されます。"
 
 #: application/views/adif/import.php:328
 msgid ""
@@ -4462,12 +4476,17 @@ msgid ""
 "can provide the Cabrillo file that this software also provides to rewrite "
 "that data in Wavelog."
 msgstr ""
+"他のログソフトウェアで作成されたコンテスト用のADIFファイルをインポートした場"
+"合、そのソフトウェアによっては、そのADIFファイルから交換データが正しくインポ"
+"ートされないことがあります。この問題を修正したい場合は、このソフトウェアで提"
+"供されるCabrilloファイルを使用して、Wavelogでそのデータを書き換えることができ"
+"ます。"
 
 #: application/views/adif/import.php:328
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
 msgid "Information"
-msgstr ""
+msgstr "情報"
 
 #: application/views/adif/import.php:329
 msgid ""
@@ -4476,36 +4495,43 @@ msgid ""
 "from both your already imported ADIF file, as well as the CBR file you are "
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
+"この機能は、コンテスト ID と、すでにインポートした ADIF ファイルと、"
+"これからアップロードする CBR ファイルの両方からの日時情報を使用して QSO "
+"を一致させ、関連データのみを修正するため、Wavelog で QSO "
+"について何かを変更する前に、この機能を使用してください。"
 
 #: application/views/adif/import.php:334
 msgid "Contest Name, only if Contest ID in CBR is different"
-msgstr ""
+msgstr "コンテスト名（CBRのコンテストIDが異なる場合のみ）"
 
 #: application/views/adif/import.php:334
 msgid "Optional"
-msgstr ""
+msgstr "オプション"
 
 #: application/views/adif/import.php:344
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
-msgstr ""
+msgstr "このコンテストでは、シリアルナンバーは必ず両当事者間で交換されます。"
 
 #: application/views/adif/import.php:346
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
-msgstr ""
+msgstr "あなたやパートナーがたまにしかシリアル番号を交換しない場合は、このチェックボ"
+"ックスをオフのままにしてください。"
 
 #: application/views/adif/import.php:347
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
 msgstr ""
+"チェックを外すと、（例えば）N1MM+が生成するデフォルトのシリアル番号が消去され"
+"ます。チェックを入れると、必要に応じてシリアル番号が修正されます。"
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
-msgstr ""
+msgstr "ADIF ファイルを正しく解析できませんでした。"
 
 #: application/views/adif/import_failed.php:16
 msgid ""
@@ -4513,26 +4539,29 @@ msgid ""
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
 msgstr ""
+"少なくとも1つのADIFフィールドを解析またはデータベースに挿入できませんでした。"
+"インポートしたADIFファイルを確認してください。オンラインのADIFファイルチェッ"
+"カーをご利用いただけます。例："
 
 #: application/views/adif/import_success.php:17
 msgid "Yay, its imported!"
-msgstr ""
+msgstr "やった、インポートされました！"
 
 #: application/views/adif/import_success.php:18
 msgid "The ADIF File has been imported."
-msgstr ""
+msgstr "ADIF ファイルがインポートされました。"
 
 #: application/views/adif/import_success.php:22
 msgid "Dupes were inserted!"
-msgstr ""
+msgstr "複製が挿入されました！"
 
 #: application/views/adif/import_success.php:24
 msgid "Dupes were skipped."
-msgstr ""
+msgstr "重複データはスキップされました。"
 
 #: application/views/adif/import_success.php:31
 msgid "Contest logs imported"
-msgstr ""
+msgstr "コンテストログをインポートしました"
 
 #: application/views/adif/import_success.php:33
 msgid ""
@@ -4540,47 +4569,51 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
+"コンテストログソフトウェアによっては、そのソフトウェアのADIFから交換データが"
+"正しくインポートされない場合があります。これを修正するには、ADIFインポートペ"
+"ージのCBRインポートタブに切り替えてください。"
 
 #: application/views/adif/import_success.php:33
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr ""
+msgstr "コンテスト ID を含む QSO を少なくとも 1 つインポートしました。"
 
 #: application/views/adif/import_success.php:34
 msgid "We found the following numbers of QSOs for the following contest IDs:"
-msgstr ""
+msgstr "次のコンテスト ID に対して、次の数の QSO が見つかりました。"
 
 #: application/views/adif/import_success.php:47
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "インポートの詳細 / 考えられる問題"
 
 #: application/views/adif/import_success.php:48
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
-msgstr ""
+msgstr "ADIFエラーが発生している可能性がありますが、QSOは追加されています。以下の情報"
+"をご確認ください。"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
 #: application/views/qrz/mark_qrz.php:12
 #: application/views/webadif/mark_webadif.php:12
 msgid "QSOs marked"
-msgstr ""
+msgstr "QSOマーク"
 
 #: application/views/adif/mark_lotw.php:15
 msgid "Yay, its done!"
-msgstr ""
+msgstr "やった！終わった！"
 
 #: application/views/adif/mark_lotw.php:16
 msgid "The QSOs are marked as exported to LoTW."
-msgstr ""
+msgstr "QSO は LoTW にエクスポートされたものとしてマークされます。"
 
 #: application/views/api/description.php:15
 msgid "Editing Description for API Key"
-msgstr ""
+msgstr "APIキーの説明を編集する"
 
 #: application/views/api/description.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr ""
+msgstr "この API の用途を説明する簡単な名前。"
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
@@ -4600,12 +4633,12 @@ msgstr ""
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:506
 msgid "API Keys"
-msgstr ""
+msgstr "APIキー"
 
 #: application/views/api/index.php:11
 msgid ""
@@ -4613,6 +4646,9 @@ msgid ""
 "access Wavelog in a controlled way. Access to the API is managed via API "
 "keys."
 msgstr ""
+"Wavelog "
+"APIを使用すると、サードパーティのシステムからWavelogへのアクセスを制御できま"
+"す。APIへのアクセスはAPIキーによって管理されます。"
 
 #: application/views/api/index.php:12
 msgid ""
@@ -4621,27 +4657,31 @@ msgid ""
 "Wavelog. Generate a read-only key if the application only needs to obtain "
 "data from Wavelog."
 msgstr ""
+"使用するツール（例：WLgate）ごとにAPIキーを生成する必要があります。アプリケー"
+"ションがWavelogにデータを送信する必要がある場合は、読み書き可能なキーを生成し"
+"てください。アプリケーションがWavelogからデータを取得するだけの場合は、読み取"
+"り専用キーを生成してください。"
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr ""
+msgstr "Wavelog で動作するサードパーティ製ソフトウェアへのリンク:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
-msgstr ""
+msgstr "その他のツール"
 
 #: application/views/api/index.php:19
 msgid "API URL"
-msgstr ""
+msgstr "API URL"
 
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/cron/index.php:22 application/views/debug/index.php:46
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "クリップボードにコピー"
 
 #: application/views/api/index.php:19
 msgid "The API URL for this Wavelog instance is"
-msgstr ""
+msgstr "このWavelogインスタンスのAPI URLは"
 
 #: application/views/api/index.php:20 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33 application/views/radio/index.php:26
@@ -4653,41 +4693,43 @@ msgstr ""
 #: application/views/sattimers/index.php:77
 #: application/views/search/filter.php:72
 msgid "Info"
-msgstr ""
+msgstr "情報"
 
 #: application/views/api/index.php:20
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
-msgstr ""
+msgstr "関連するアプリケーションをもう使用していない場合は、キーを削除することをお勧"
+"めします。"
 
 #: application/views/api/index.php:22
 msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
-msgstr ""
+msgstr "Clubstationsでは、APIキーは個人のものであり、共有されません。Clubstationユー"
+"ザーは自分のキーのみ確認できます。"
 
 #: application/views/api/index.php:30
 msgid "API Key"
-msgstr ""
+msgstr "APIキー"
 
 #: application/views/api/index.php:31 application/views/cron/edit.php:30
 #: application/views/cron/index.php:53
 #: application/views/search/stored_queries.php:8
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: application/views/api/index.php:32
 msgid "Last Used"
-msgstr ""
+msgstr "最後に使用したもの"
 
 #: application/views/api/index.php:34
 msgid "Created By"
-msgstr ""
+msgstr "作成者"
 
 #: application/views/api/index.php:36
 msgid "Permissions"
-msgstr ""
+msgstr "権限"
 
 #: application/views/api/index.php:37 application/views/cron/index.php:54
 #: application/views/lotw/satupdate.php:7
@@ -4699,7 +4741,7 @@ msgstr ""
 #: application/views/timeline/index.php:201
 #: application/views/usermode/index.php:41
 msgid "Status"
-msgstr ""
+msgstr "状態"
 
 #: application/views/api/index.php:38
 #: application/views/club/permissions.php:226
@@ -4709,36 +4751,36 @@ msgstr ""
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
 #: application/views/user/index.php:160 application/views/webadif/export.php:45
 msgid "Actions"
-msgstr ""
+msgstr "アクション"
 
 #: application/views/api/index.php:64
 msgid "Read & Write"
-msgstr ""
+msgstr "読み書き"
 
 #: application/views/api/index.php:66
 msgid "Read-Only"
-msgstr ""
+msgstr "読み取り専用"
 
 #: application/views/api/index.php:76
 msgid "Test"
-msgstr ""
+msgstr "テスト"
 
 #: application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "APIキーを削除してもよろしいですか？ %s ?"
 
 #: application/views/api/index.php:92
 msgid "You have no API Keys."
-msgstr ""
+msgstr "API キーがありません。"
 
 #: application/views/api/index.php:96
 msgid "Create a read & write key"
-msgstr ""
+msgstr "読み取り/書き込みキーを作成する"
 
 #: application/views/api/index.php:97
 msgid "Create a read-only key"
-msgstr ""
+msgstr "読み取り専用キーを作成する"
 
 #: application/views/awards/73on73/index.php:6
 #: application/views/awards/73on73/index.php:13
@@ -4787,17 +4829,19 @@ msgstr ""
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:13
 msgid "Award Info"
-msgstr ""
+msgstr "アワードの情報"
 
 #: application/views/awards/73on73/index.php:7
 msgid "73 on 73 Award"
-msgstr ""
+msgstr "73 on 73 アワード"
 
 #: application/views/awards/73on73/index.php:8
 msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Paul Stoetzer N8HM は、AO-73 (FUNcube-1) "
+"アマチュア無線衛星を介して行われた交信に対するアワードを後援しています。"
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:23
@@ -4808,14 +4852,14 @@ msgstr ""
 #: application/views/awards/wwff/index.php:10
 #, php-format
 msgid "For more information, please visit: %s."
-msgstr ""
+msgstr "詳細については、以下をご覧ください。 %s 。"
 
 #: application/views/awards/73on73/index.php:31
 #: application/views/awards/jcc/index.php:151
 #: application/views/awards/waja/index.php:153
 #: application/views/distancerecords/index.php:13
 msgid "Number"
-msgstr ""
+msgstr "番号"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -4824,18 +4868,18 @@ msgstr ""
 #: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
 msgid "Filtering on"
-msgstr ""
+msgstr "フィルタリング"
 
 #: application/views/awards/counties/details.php:13
 #: application/views/logbookadvanced/index.php:344
 #: application/views/logbookadvanced/index.php:752
 #: application/views/logbookadvanced/useroptions.php:106
 msgid "County"
-msgstr ""
+msgstr "郡"
 
 #: application/views/awards/counties/index.php:7
 msgid "US County Award"
-msgstr ""
+msgstr "US County Award"
 
 #: application/views/awards/counties/index.php:8
 #, php-format
@@ -4845,6 +4889,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
+"MARAC（モバイルアマチュア無線賞クラブ）が後援するアメリカ合衆国郡賞（USA-"
+"CA）は、以下の規則と条件の下で、指定された数の米国の郡との双方向の無線通信が"
+"確認された場合に授与されます。 %s 。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -4852,18 +4899,22 @@ msgid ""
 "individuals for all county contacts made, regardless of callsigns used, "
 "operating locations, or dates."
 msgstr ""
+"USA-CA "
+"は、世界中の免許を持つすべてのアマチュアが利用可能であり、使用されたコールサ"
+"イン、運用場所、日付に関係なく、行われたすべての郡の交信に対して個人に発行さ"
+"れます。"
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
-msgstr ""
+msgstr "特別のUSA-CA アワードは、SWLに対して聴取実績に基づいて授与されます。"
 
 #: application/views/awards/counties/index.php:21
 msgid "Counties Worked"
-msgstr ""
+msgstr "活動した郡"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "確認された郡"
 
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:176
@@ -4896,7 +4947,7 @@ msgstr ""
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
 msgid "Total"
-msgstr ""
+msgstr "合計"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:150 application/views/csv/index.php:80
@@ -4916,16 +4967,16 @@ msgstr ""
 #: application/views/timeplotter/index.php:44
 #: application/views/user/modals/first_login_wizard.php:74
 msgid "CQ Zone"
-msgstr ""
+msgstr "CQゾーン"
 
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "CQゾーン/ITUゾーンにマウスを移動します"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ WAZ (Worked All Zones) Award"
-msgstr ""
+msgstr "CQ WAZ（全ゾーン勤務）アワード"
 
 #: application/views/awards/cq/index.php:21
 msgid ""
@@ -4934,6 +4985,9 @@ msgid ""
 "magazine first appeared in January 1945 and focuses on awards and the "
 "practical aspects of amateur radio."
 msgstr ""
+"CQマガジンはアメリカで発行され、世界で最も人気のあるアマチュア無線雑誌の一つ"
+"でした。2023年末に廃刊となりました。この雑誌は1945年1月に創刊され、アマチュア"
+"無線の賞や実践的な側面に焦点を当てています。"
 
 #: application/views/awards/cq/index.php:22
 msgid ""
@@ -4942,6 +4996,10 @@ msgid ""
 "Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
 "N4BAA."
 msgstr ""
+"WAZアワードは「Worked All "
+"Zones（全ゾーンで交信）」の略で、40のCQゾーン全てへの無線交信とそれに伴う確認"
+"が必要です。CQマガジンが廃刊となったため、CQ "
+"WAZアワードは現在N4BAAによって直接運営されています。"
 
 #: application/views/awards/cq/index.php:23
 #, php-format
