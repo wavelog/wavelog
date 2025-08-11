@@ -356,7 +356,7 @@ class VUCC extends CI_Model
     /*
     * Builds the array to display worked/confirmed vucc on dashboard page
     */
-    function fetchVuccSummary($band = 'All') {
+    function fetchVuccSummary($band = 'All', $method='both') {
         $totalGridConfirmed = array();
         $totalGridWorked = array();
 
@@ -393,7 +393,7 @@ class VUCC extends CI_Model
             }
 
             // Getting all the confirmed grids
-            $col_gridsquare_confirmed = $this->get_vucc_summary($band, 'both');
+            $col_gridsquare_confirmed = $this->get_vucc_summary($band, $method);
 			$confirmedGridArray = array();
 
             if ($col_gridsquare_confirmed != null) {
@@ -405,7 +405,7 @@ class VUCC extends CI_Model
                 }
             }
 
-            $col_vucc_grids_confirmed = $this->get_vucc_summary_col_vucc($band, 'both');
+            $col_vucc_grids_confirmed = $this->get_vucc_summary_col_vucc($band, $method);
 
             if ($col_vucc_grids_confirmed != null) {
                 foreach ($col_vucc_grids_confirmed as $gridSplit) {

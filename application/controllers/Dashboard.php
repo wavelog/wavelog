@@ -130,8 +130,10 @@ class Dashboard extends CI_Controller {
 			$logbooks_locations_array
 		);
 
-		$data['vucc'] = $this->vucc->fetchVuccSummary();
-		$data['vuccSAT'] = $this->vucc->fetchVuccSummary('SAT');
+		$data['vucc'] = $this->vucc->fetchVuccSummary('All','both');
+		$data['vuccSAT'] = $this->vucc->fetchVuccSummary('SAT','both');
+		$data['vuccLoTW'] = $this->vucc->fetchVuccSummary('All','lotw');
+		$data['vuccSATLoTW'] = $this->vucc->fetchVuccSummary('SAT','lotw');
 
 		$data['page_title'] = __("Dashboard");
 

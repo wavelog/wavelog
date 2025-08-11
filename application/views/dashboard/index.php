@@ -440,6 +440,11 @@ function getDistance($distance) {
             <td width="25%"><?php echo $vucc['All']['confirmed']; ?></td>
             <td width="25%"><?php echo $vuccSAT['SAT']['confirmed'] ?? '0'; ?></td>
         </tr>
+        <tr>
+            <td width="50%"><?= __("Confirmed LoTW"); ?></td>
+            <td width="25%"><?php echo $vuccLoTW['All']['confirmed']; ?></td>
+            <td width="25%"><?php echo $vuccSATLoTW['SAT']['confirmed'] ?? '0'; ?></td>
+        </tr>
 
     </table>
     <?php } ?>
