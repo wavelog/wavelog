@@ -129,7 +129,7 @@ class Oqrs_model extends CI_Model {
 
 		foreach ($result as $row) {
 			if (strtolower($row->col_qsl_sent ?? '') == 'y') {
-				$sql = 'update oqrs set status = 2 where qsoid = ? and status = 3 and requesttime > ?';
+				$sql = 'update oqrs set status = 2 where qsoid = ? and status = 3 and requesttime < ?';
 				$binding = [$row->qsoid, $row->col_qslsdate];
 				$query = $this->db->query($sql, $binding);
 			}
