@@ -65,133 +65,149 @@
                     <p><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Maximum file upload size is ") ?><?php echo $max_upload; ?>B.</p>
 
                     <form class="form" id="upform" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="fhash" id="fhash" value="<?php echo hash('sha256', $this->session->userdata('user_callsign')); ?>">
-                        <div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
-                        <select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
-                            <option value="0"><?= __("Select Station Location") ?></option>
-                            <?php foreach ($station_profile->result() as $station) { ?>
-                                <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
-                                                                                        echo " selected =\"selected\"";
-                                                                                    } ?>><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
-                            <?php } ?>
-                        </select>
-                        <?php
-                        $show_operator_question = true;
-                        if ($this->config->item('special_callsign') && (!empty($club_operators))) {
-                            $show_operator_question = false; ?>
-                            <div class="small form-text text-muted"><?= __("Type in the operators callsign of the imported QSOs. Leave empty to use the operator callsign in the ADIF file.") ?></div>
-                            <input type="text"  name="club_operator" class="form-control mb-2 me-sm-2 w-50 w-lg-100" value="<?php echo ($this->session->userdata('cd_src_call') ?? ''); ?>">
-                        <?php } ?>
-                        <div class="small form-text text-muted"><?= __("Add QSOs to Contest") ?></div>
-                        <select name="contest" id="contest" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
-                            <option value="" selected><?= __("No Contest"); ?></option>
-                            <?php
-                            foreach ($contests as $contest) {
-                                echo '<option value="' . $contest['adifname'] . '">' . $contest['name'] . '</option>';
-                            } ?>
-                        </select>
-                        <label class="visually-hidden" for="inlineFormInputName2"><?= __("ADIF File") ?></label>
-                        <input class="form-control mb-2 me-sm-2 mt-1 w-50 w-lg-100" type="file" name="userfile" id="userfile" />
+						<div class="row mb-4">
+							<div class="col-md-6">
+								<input type="hidden" name="fhash" id="fhash" value="<?php echo hash('sha256', $this->session->userdata('user_callsign')); ?>">
 
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="skipDuplicate" value="1" id="skipDuplicate">
-                                    <label class="form-check-label" for="skipDuplicate"><?= __("Import duplicate QSOs") ?></label>
-                                </div>
-                            </div>
-                        </div>
+								<div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
+								<select name="station_profile" class="form-select mb-2 me-sm-2">
+									<option value="0"><?= __("Select Station Location") ?></option>
+									<?php foreach ($station_profile->result() as $station) { ?>
+										<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
+																								echo " selected =\"selected\"";
+																							} ?>><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
+									<?php } ?>
+								</select>
 
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="markLotw" value="1" id="markLotwImport">
-                                    <label class="form-check-label" for="markLotwImport"><?= __("Mark imported QSOs as uploaded to LoTW") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
-                            </div>
-                        </div>
+								<div class="small form-text text-muted"><?= __("Choose ADIF File") ?></div>
+								<input class="form-control" type="file" name="userfile" id="userfile" accept=".adi,.ADI,.adif,.ADIF" />
 
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="markEqsl" value="1" id="markEqslImport">
-                                    <label class="form-check-label" for="markEqslImport"><?= __("Mark imported QSOs as uploaded to eQSL Logbook") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
-                            </div>
-                        </div>
+							</div>
 
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="markHrd" value="1" id="markHrdImport">
-                                    <label class="form-check-label" for="markHrdImport"><?= __("Mark imported QSOs as uploaded to HRDLog.net Logbook") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
-                            </div>
-                        </div>
+							<div class="col-md-6">
+								<div class="small form-text text-muted"><?= __("Add QSOs to Contest") ?></div>
+								<select name="contest" id="contest" class="form-select mb-2 me-sm-2">
+									<option value="" selected><?= __("No Contest"); ?></option>
+									<?php
+									foreach ($contests as $contest) {
+										echo '<option value="' . $contest['adifname'] . '">' . $contest['name'] . '</option>';
+									} ?>
+								</select>
+								<?php
+								$show_operator_question = true;
+								if ($this->config->item('special_callsign') && (!empty($club_operators))) {
+									$show_operator_question = false; ?>
+									<div class="small form-text text-muted"><?= __("Type in the operators callsign of the imported QSOs. Leave empty to use the operator callsign in the ADIF file.") ?></div>
+									<input type="text"  name="club_operator" class="form-control mb-2 me-sm-2" value="<?php echo ($this->session->userdata('cd_src_call') ?? ''); ?>">
+								<?php } ?>
+							</div>
+						</div>
 
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="markQrz" value="1" id="markQrzImport">
-                                    <label class="form-check-label" for="markQrzImport"><?= __("Mark imported QSOs as uploaded to QRZ Logbook") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
-                            </div>
-                        </div>
+						<div class="card mb-3">
+							<div class="card-header">
+								<h6 class="mb-0">Basic Settings</h6>
+							</div>
+							<div class="card-body">
+								<div class="mb-3 row">
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="skipDuplicate" value="1" id="skipDuplicate">
+											<label class="form-check-label" for="skipDuplicate"><?= __("Import duplicate QSOs") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= __("Select if want to import QSOs, even if they already exist.") ?></div>
+									</div>
+										<div class="col-md-6">
+											<div class="form-check-inline">
+												<input class="form-check-input" type="checkbox" name="dxccAdif" value="1" id="dxccAdif">
+													<label class="form-check-label" for="dxccAdif"><?= __("Use DXCC information from ADIF") ?></label>
+											</div>
+											<div class="small form-text text-muted"><?= __("If not selected, Wavelog will attempt to determine DXCC information automatically.") ?></div>
+										</div>
+								</div>
 
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="markClublog" value="1" id="markClublogImport">
-                                    <label class="form-check-label" for="markClublogImport"><?= __("Mark imported QSOs as uploaded to Clublog Logbook") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
-                            </div>
-                        </div>
+								<div class="mb-3 row">
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="skipStationCheck" value="1" id="skipStationCheck">
+											<label class="form-check-label" for="skipStationCheck"><span class="badge text-bg-warning"><?= __("DANGER") ?></span> <?= __("Ignore Station callsign on import") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= sprintf(__("If selected, Wavelog will try to import %sall%s QSOs from the ADIF, regardless if they match to the chosen station-location."), '<b>', '</b>'); ?></div>
+									</div>
 
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="markDcl" value="1" id="markDclImport">
-                                    <label class="form-check-label" for="markDclImport"><?= __("Mark imported QSOs as uploaded to DCL Logbook") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
-                            </div>
-                        </div>
+								<?php if ($show_operator_question) { ?>
+										<div class="col-md-6">
+											<div class="form-check-inline">
+												<input class="form-check-input" type="checkbox" name="operatorName" value="1" id="operatorName">
+												<label class="form-check-label" for="operatorName"><?= __("Always use the logged-in account callsign as the operator call during import") ?></label>
+											</div>
+										</div>
+								<?php } ?>
+								</div>
 
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="dxccAdif" value="1" id="dxccAdif">
-                                    <label class="form-check-label" for="dxccAdif"><?= __("Use DXCC information from ADIF") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= __("If not selected, Wavelog will attempt to determine DXCC information automatically.") ?></div>
-                            </div>
-                        </div>
 
-                        <?php if ($show_operator_question) { ?>
-                            <div class="mb-3 row">
-                                <div class="col-md-10">
-                                    <div class="form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="operatorName" value="1" id="operatorName">
-                                        <label class="form-check-label" for="operatorName"><?= __("Always use the logged-in account callsign as the operator call during import") ?></label>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
+							</div>
+						</div>
 
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="skipStationCheck" value="1" id="skipStationCheck">
-                                    <label class="form-check-label" for="skipStationCheck"><span class="badge text-bg-warning"><?= __("DANGER") ?></span> <?= __("Ignore Stationcallsign on import") ?></label>
-                                </div>
-                                <div class="small form-text text-muted"><?= sprintf(__("If selected, Wavelog will try to import %sall%s QSOs of the ADIF, regardless if they match to the chosen station-location."), '<b>', '</b>'); ?></div>
-                            </div>
-                        </div>
+						<div class="card mb-3">
+							<div class="card-header">
+								<h6 class="mb-0">Mark QSOS as uploaded</h6>
+							</div>
+							<div class="card-body">
+								<div class="mb-3 row">
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="markLotw" value="1" id="markLotwImport">
+											<label class="form-check-label" for="markLotwImport"><?= __("Mark imported QSOs as uploaded to LoTW") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="markEqsl" value="1" id="markEqslImport">
+											<label class="form-check-label" for="markEqslImport"><?= __("Mark imported QSOs as uploaded to eQSL Logbook") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+									</div>
+								</div>
+
+								<div class="mb-3 row">
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="markHrd" value="1" id="markHrdImport">
+											<label class="form-check-label" for="markHrdImport"><?= __("Mark imported QSOs as uploaded to HRDLog.net Logbook") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="markQrz" value="1" id="markQrzImport">
+											<label class="form-check-label" for="markQrzImport"><?= __("Mark imported QSOs as uploaded to QRZ Logbook") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+									</div>
+								</div>
+
+								<div class="mb-3 row">
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="markClublog" value="1" id="markClublogImport">
+											<label class="form-check-label" for="markClublogImport"><?= __("Mark imported QSOs as uploaded to Clublog Logbook") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="markDcl" value="1" id="markDclImport">
+											<label class="form-check-label" for="markDclImport"><?= __("Mark imported QSOs as uploaded to DCL Logbook") ?></label>
+										</div>
+										<div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+									</div>
+								</div>
+							</div>
+						</div>
 
                         <button id="prepare_sub" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
                     </form>
