@@ -2186,6 +2186,12 @@ function panMap(stationProfileIndex) {
 	});
 }
 
+function clearQrgUnits() {
+	Object.keys(localStorage)
+		.filter(k => k.startsWith('qrgunit'))
+		.forEach(k => localStorage.removeItem(k));
+}
+
 $(document).ready(function () {
 	qrg_inputtype();
 	clearTimeout();
@@ -2193,18 +2199,8 @@ $(document).ready(function () {
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 
 	// Clear the localStorage for the qrg units, except the quicklogCallsign and a possible backlog
-	let quicklogCallsign = localStorage.getItem('quicklogCallsign');
-	let QsoBacklog = localStorage.getItem('qso-backlog');
-
-	localStorage.clear();
-	if (quicklogCallsign) {
-		localStorage.setItem('quicklogCallsign', quicklogCallsign);
-	}
+	clearQrgUnits();
 	set_qrg();
-
-	if (QsoBacklog) {
-		localStorage.setItem('qso-backlog', QsoBacklog);
-	}
 
 	$("#locator").popover({ placement: 'top', title: 'Gridsquare Formatting', content: "Enter multiple (4-digit) grids separated with commas. For example: IO77,IO78" })
 	.focus(function () {
