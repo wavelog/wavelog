@@ -11,7 +11,7 @@
             <th class="center"><?= __("Mode"); ?></th>
             <th class="center"><?= __("Callsign"); ?></th>
             <?php
-            $showStationName = $this->optionslib->get_option('groupedSearchShowStationName');
+            $showStationName = $groupedSearchShowStationName;
             if ($showStationName == 'on'): ?>
                 <th class="center"><?= __("Station Name"); ?></th>
             <?php endif; ?>

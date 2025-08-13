@@ -323,11 +323,13 @@ function submitOqrsRequestGrouped() {
     }
 }
 
-function searchLog(callsign) {
+function searchLog(callsign, qsoid, id) {
     $.ajax({
         url: base_url + 'index.php/oqrs/search_log',
         type: 'post',
         data: {'callsign': callsign,
+                'qsoid': qsoid,
+                'oqrsid': id
         },
         success: function(html) {
             BootstrapDialog.show({
@@ -337,7 +339,17 @@ function searchLog(callsign) {
                 nl2br: false,
                 message: html,
                 onshown: function(dialog) {
-                    $('[data-bs-toggle="tooltip"]').tooltip();
+					$('.qsolist').DataTable({
+							searching: true,
+							responsive: false,
+							ordering: true,
+							"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+							"scrollCollapse": true,
+							"paging":         false,
+							"scrollX": true,
+							"order": [ 0, 'asc' ],
+							'white-space': 'nowrap',
+					});
                 },
                 buttons: [{
                     label: lang_admin_close,
@@ -350,14 +362,28 @@ function searchLog(callsign) {
     });
 }
 
-function searchLogTimeDate(id) {
+function addQsoMatchToOqrs(qsoid, oqrsid) {
+    $.ajax({
+        url: base_url + 'index.php/oqrs/add_qso_match_to_oqrs',
+        type: 'post',
+        data: {'qsoid': qsoid, 'oqrsid': oqrsid},
+        success: function(html) {
+            BootstrapDialog.closeAll();
+			$('#searchForm').submit();
+        }
+    });
+}
+
+function searchLogTimeDate(id, qsoid) {
     $.ajax({
         url: base_url + 'index.php/oqrs/search_log_time_date',
         type: 'post',
         data: {'time': $('#oqrsID_'+id+ ' td:nth-child(4)').text(),
             'date': $('#oqrsID_'+id+ ' td:nth-child(3)').text(),
             'band': $('#oqrsID_'+id+ ' td:nth-child(5)').text(),
-            'mode': $('#oqrsID_'+id+ ' td:nth-child(6)').text()
+            'mode': $('#oqrsID_'+id+ ' td:nth-child(6)').text(),
+            'qsoid': qsoid,
+			'oqrsid': id
         },
         success: function(html) {
             BootstrapDialog.show({
@@ -368,6 +394,17 @@ function searchLogTimeDate(id) {
                 message: html,
                 onshown: function(dialog) {
                     $('[data-bs-toggle="tooltip"]').tooltip();
+					$('.qsolist').DataTable({
+							searching: true,
+							responsive: false,
+							ordering: true,
+							"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+							"scrollCollapse": true,
+							"paging":         false,
+							"scrollX": true,
+							"order": [ 0, 'asc' ],
+							'white-space': 'nowrap',
+					});
                 },
                 buttons: [{
                     label: lang_admin_close,
@@ -387,7 +424,7 @@ function loadOqrsTable(rows) {
 
 	uninitialized.each(function() {
 	$(this).DataTable({
-			searching: false,
+			searching: true,
 			responsive: false,
 			ordering: true,
 			createdRow: function (row, data, dataIndex) {
@@ -397,9 +434,6 @@ function loadOqrsTable(rows) {
 			"scrollCollapse": true,
 			"paging":         false,
 			"scrollX": true,
-			// "language": {
-            //     url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
-            // },
 			"order": [ 0, 'asc' ],
             'white-space': 'nowrap',
 		});
@@ -424,10 +458,10 @@ function loadOqrsTable(rows) {
 			qso.email,
 			qso.note,
 			echo_qsl_method(qso.qslroute),
-			echo_searchlog_button(qso.requestcallsign, qso.id),
-            echo_status(qso.status),
+			echo_searchlog_button(qso.requestcallsign, qso.id, qso.qsoid),
+			echo_matched_qso(qso.qsoid, qso.id),
+			echo_status(qso.status),
 		];
-
 		data.id='oqrsID_' + qso.id;
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('oqrsID', qso.id);
@@ -435,26 +469,37 @@ function loadOqrsTable(rows) {
     table.columns.adjust().draw();
 }
 
+function echo_matched_qso(qsoid, oqrsid) {
+	if (qsoid > 0) {
+		return '<span class="me-1 pe-2 text-success"><i class="fas fa-check"></i></span> ' +
+		'<button type="button" onclick="deleteQsoMatch(' + qsoid + ',' + oqrsid + ');" class="btn btn-sm btn-outline-danger" style="white-space: nowrap;" aria-label="Delete QSO match" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete QSO match"><i class="fas fa-trash-alt"></i></button>';
+	} else {
+		return '<span class="text-danger"><i class="fas fa-times"></i></span>';
+	}
+}
+
 function echo_status(status) {
 	switch(status.toUpperCase()) {
-		case '0': return 'Open request'; break;
-		case '1': return 'Not in log request'; break;
-		case '2': return 'Request done'; break;
+		case '0': return lang_oqrs_status_open_request; break;
+		case '1': return lang_oqrs_status_not_in_log_request; break;
+		case '2': return lang_oqrs_status_request_done; break;
+		case '3': return lang_oqrs_status_pending_request; break;
+		case '4': return lang_oqrs_status_request_rejected; break;
         default: return '';
 	}
 }
 function echo_qsl_method(method) {
 	switch(method.toUpperCase()) {
-		case 'B': return 'Bureau'; break;
-		case 'D': return 'Direct'; break;
-		case 'E': return 'Electronic'; break;
+		case 'B': return lang_oqrs_qsl_method_bureau; break;
+		case 'D': return lang_oqrs_qsl_method_direct; break;
+		case 'E': return lang_oqrs_qsl_method_electronic; break;
         default: return '';
 	}
 }
 
-function echo_searchlog_button(callsign, id) {
-    return '<button class="btn btn-primary btn-sm" type="button" onclick="searchLog(\'' + callsign + '\');"><i class="fas fa-search"></i> Call</button> ' +
-    '<button class="btn btn-primary btn-sm" type="button" onclick="searchLogTimeDate(' + id + ');"><i class="fas fa-search"></i> Date/Time</button>';
+function echo_searchlog_button(callsign, id, qsoid) {
+    return '<button class="btn btn-primary btn-sm" type="button" onclick="searchLog(\'' + callsign + '\', ' + qsoid + ', ' + id + ');"><i class="fas fa-search"></i> Call</button> ' +
+    '<button class="btn btn-primary btn-sm" type="button" onclick="searchLogTimeDate(' + id + ', ' + qsoid + ');"><i class="fas fa-search"></i> Date/Time</button>';
 }
 
 $(document).ready(function () {
@@ -480,7 +525,7 @@ $(document).ready(function () {
 				$('#searchButton').prop("disabled", false);
 				BootstrapDialog.alert({
 					title: 'ERROR',
-					message: 'An error ocurred while making the request',
+					message: lang_oqrs_error_request,
 					type: BootstrapDialog.TYPE_DANGER,
 					closable: false,
 					draggable: false,
@@ -513,7 +558,7 @@ $(document).ready(function () {
 
 		BootstrapDialog.confirm({
 			title: 'DANGER',
-			message: 'Warning! Are you sure you want to delete the marked OQRS request(s)?' ,
+			message: lang_oqrs_warning_delete,
 			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
@@ -532,8 +577,68 @@ $(document).ready(function () {
 								table.row(row).remove().draw(false);
 							}
 						});
-						$('#deleteOqrs').prop("disabled", false);
 					})
+				}
+				$('#deleteOqrs').prop("disabled", false);
+			}
+		});
+	});
+
+	$('.statusinfo').click(function (event) {
+		$.ajax({
+        url: base_url + 'index.php/oqrs/status_info',
+        type: 'post',
+        success: function(html) {
+            BootstrapDialog.show({
+                title: lang_oqrs_status_message,
+                size: BootstrapDialog.SIZE_NORMAL,
+                cssClass: 'qso-dialog',
+                nl2br: false,
+                message: html,
+                buttons: [{
+                    label: lang_admin_close,
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+        }
+    });
+	});
+
+	$('#rejectOqrs').click(function (event) {
+		var elements = $('.oqrstable tbody input:checked');
+		var nElements = elements.length;
+		if (nElements == 0) {
+			return;
+		}
+
+		$('#rejectOqrs').prop("disabled", true);
+
+		var table = $('.oqrstable').DataTable();
+
+		BootstrapDialog.confirm({
+			title: 'WARNING',
+			message: lang_oqrs_warning_reject,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-warning',
+			callback: function(result) {
+				if(result) {
+					elements.each(function() {
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
+						$.ajax({
+							url: base_url + 'index.php/oqrs/reject_oqrs_line',
+							type: 'post',
+							data: {'id': id
+							},
+							success: function(data) {
+								$('#searchForm').submit();
+							}
+						});
+					})
+					$('#rejectOqrs').prop("disabled", false);
 				}
 			}
 		});
@@ -552,7 +657,7 @@ $(document).ready(function () {
 
 		BootstrapDialog.confirm({
 			title: 'DANGER',
-			message: 'Warning! Are you sure you want to mark OQRS request(s) as done?' ,
+			message: lang_oqrs_warning_mark,
 			type: BootstrapDialog.TYPE_DANGER,
 			closable: true,
 			draggable: true,
@@ -570,9 +675,49 @@ $(document).ready(function () {
 								$('#searchForm').submit();
 							}
 						});
-						$('#markOqrs').prop("disabled", false);
 					})
 				}
+				$('#markOqrs').prop("disabled", false);
+			}
+		});
+	});
+
+
+
+	$('#addOqrsToQueue').click(function (event) {
+		var elements = $('.oqrstable tbody input:checked');
+		var nElements = elements.length;
+		if (nElements == 0) {
+			return;
+		}
+
+		$('#addOqrsToQueue').prop("disabled", true);
+
+		var table = $('.oqrstable').DataTable();
+
+		BootstrapDialog.confirm({
+			title: 'WARNING',
+			message: lang_oqrs_warning_add_to_queue,
+			type: BootstrapDialog.TYPE_WARNING,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-warning',
+			callback: function(result) {
+				if(result) {
+					elements.each(function() {
+						let id = $(this).first().closest('tr').attr('id')?.replace(/\D/g, '');
+						$.ajax({
+							url: base_url + 'index.php/oqrs/add_oqrs_to_print_queue',
+							type: 'post',
+							data: {'id': id
+							},
+							success: function(data) {
+								$('#searchForm').submit();
+							}
+						});
+					})
+				}
+				$('#addOqrsToQueue').prop("disabled", false);
 			}
 		});
 	});
@@ -603,6 +748,45 @@ $(document).ready(function () {
     }
 
 });
+
+function deleteQsoMatch(qsoid, oqrsid) {
+		$('.deleteMatch').prop("disabled", true);
+
+		BootstrapDialog.confirm({
+			title: 'DANGER',
+			message: lang_oqrs_warning_delete_match,
+			type: BootstrapDialog.TYPE_DANGER,
+			closable: true,
+			draggable: true,
+			btnOKClass: 'btn-danger',
+			callback: function(result) {
+				if(result) {
+					$.ajax({
+						url: base_url + 'index.php/oqrs/delete_oqrs_qso_match',
+						type: 'post',
+						data: {'id': oqrsid,
+							'qsoid': qsoid
+						},
+						success: function(data) {
+							$('#searchForm').submit();
+						},
+						error: function (data) {
+							BootstrapDialog.alert({
+								title: 'ERROR',
+								message: 'An error ocurred while making the request',
+								type: BootstrapDialog.TYPE_DANGER,
+								closable: false,
+								draggable: false,
+								callback: function (result) {
+								}
+							});
+						},
+					});
+				}
+				$('.deleteMatch').prop("disabled", false);
+			}
+		});
+	}
 
 function selectQsoID(qsoID) {
 	var element = $("#oqrsID_" + qsoID);
