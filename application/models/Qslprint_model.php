@@ -125,6 +125,10 @@ class Qslprint_model extends CI_Model {
 		$this->db->where("COL_PRIMARY_KEY", $id);
 		$this->db->update($this->config->item('table_name'), $data);
 
+		$this->db->where('qsoid', $id);
+		$this->db->where_not_in('status', [2, 4]);
+		$this->db->update('oqrs', ['status' => '3']);
+
 		return true;
 	}
 
@@ -150,18 +154,18 @@ class Qslprint_model extends CI_Model {
 		if (empty($qso_id)) {
 			return 0;
 		}
-	
+
 		$table_name = $this->config->item('table_name');
-		$sql = "SELECT COUNT(COL_PRIMARY_KEY) AS previous_qsl 
-				FROM $table_name 
+		$sql = "SELECT COUNT(COL_PRIMARY_KEY) AS previous_qsl
+				FROM $table_name
 				WHERE COL_QSL_SENT = 'Y'
 				AND station_id = (SELECT station_id FROM $table_name WHERE COL_PRIMARY_KEY = ?)
-				AND (COL_CALL, COL_MODE, COL_BAND, COALESCE(COL_SAT_NAME, '')) = 
-					(SELECT COL_CALL, COL_MODE, COL_BAND, COALESCE(COL_SAT_NAME, '') 
-					 FROM $table_name 
+				AND (COL_CALL, COL_MODE, COL_BAND, COALESCE(COL_SAT_NAME, '')) =
+					(SELECT COL_CALL, COL_MODE, COL_BAND, COALESCE(COL_SAT_NAME, '')
+					 FROM $table_name
 					 WHERE COL_PRIMARY_KEY = ?)
 				GROUP BY COL_CALL, COL_MODE, COL_BAND, COL_SAT_NAME";
-	
+
 		// we only return the count of previous QSLs as an integer
 		return (int) ($this->db->query($sql, [$qso_id, $qso_id])->row()->previous_qsl ?? 0);
 	}

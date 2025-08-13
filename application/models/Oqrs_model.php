@@ -12,10 +12,10 @@ class Oqrs_model extends CI_Model {
 
 		$binding = [];
         $sql = 'select
-        count(*) as count,
-        min(col_time_on) as mindate,
-        max(col_time_on) as maxdate
-        from ' . $this->config->item('table_name') . ' where station_id = ?';
+        count(1) as count,
+        min(log.col_time_on) as mindate,
+        max(log.col_time_on) as maxdate
+        from ' . $this->config->item('table_name') . ' log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs=\'1\') where log.station_id = ?';
 		$binding[] = $station_id;
 
         $query = $this->db->query($sql, $binding);
@@ -52,11 +52,11 @@ class Oqrs_model extends CI_Model {
 
 		$binding = [];
 
-		$sql = 'select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, col_band from ' . $this->config->item('table_name') . ' where station_id = ? and col_call = ? and col_prop_mode != "SAT"';
+		$sql = 'select lower(log.col_mode) col_mode, coalesce(log.col_submode, "") col_submode, log.col_band from ' . $this->config->item('table_name') . ' log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs=\'1\') where log.station_id = ? and log.col_call = ? and log.col_prop_mode != "SAT"';
 		$binding[] = $station_id;
 		$binding[] = $callsign;
 
-		$sql .= ' union all select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, "SAT" col_band from ' . $this->config->item('table_name') . ' where station_id = ? and col_call = ? and col_prop_mode = "SAT"';
+		$sql .= ' union all select lower(log.col_mode) col_mode, coalesce(log.col_submode, "") col_submode, "SAT" col_band from ' . $this->config->item('table_name') . ' log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs=\'1\') where log.station_id = ? and log.col_call = ? and log.col_prop_mode = "SAT"';
 		$binding[] = $station_id;
 		$binding[] = $callsign;
 
@@ -98,7 +98,7 @@ class Oqrs_model extends CI_Model {
 	{
 		// get all worked modes from database
 		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_MODE`) as `COL_MODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id = ? order by COL_MODE ASC", $station_id
+			"SELECT distinct LOWER(log.`COL_MODE`) as `COL_MODE` FROM `" . $this->config->item('table_name') . "` log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs='1')  WHERE log.station_id = ? order by log.COL_MODE ASC", $station_id
 		);
 		$results = array();
 		foreach ($data->result() as $row) {
@@ -106,7 +106,7 @@ class Oqrs_model extends CI_Model {
 		}
 
 		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_SUBMODE`) as `COL_SUBMODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id = ? and coalesce(COL_SUBMODE, '') <> '' order by COL_SUBMODE ASC", $station_id
+			"SELECT distinct LOWER(log.`COL_SUBMODE`) as `COL_SUBMODE` FROM `" . $this->config->item('table_name') . "` log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs='1') WHERE log.station_id = ? and coalesce(log.COL_SUBMODE, '') <> '' order by log.COL_SUBMODE ASC", $station_id
 		);
 		foreach ($data->result() as $row) {
 			if (!in_array($row, $results)) {
@@ -118,6 +118,23 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function getOqrsRequests($location_list) {
+		$sql = 'select * from oqrs
+				join station_profile on oqrs.station_id = station_profile.station_id
+				join ' . $this->config->item('table_name') . ' as l on oqrs.qsoid = l.col_primary_key
+				where oqrs.station_id in (' . $location_list . ')';
+
+        $query = $this->db->query($sql);
+
+        $result = $query->result();
+
+		foreach ($result as $row) {
+			if (strtolower($row->COL_QSL_SENT ?? '') == 'y') {
+				$sql = 'update oqrs set status = 2 where qsoid = ? and status = 3 and requesttime < ?';
+				$binding = [$row->qsoid, $row->COL_QSLSDATE];
+				$query = $this->db->query($sql, $binding);
+			}
+		}
+
         $sql = 'select * from oqrs join station_profile on oqrs.station_id = station_profile.station_id where oqrs.station_id in (' . $location_list . ')';
 
         $query = $this->db->query($sql);
@@ -142,14 +159,35 @@ class Oqrs_model extends CI_Model {
 				'status' 			=> '0',
 			);
 
-			$qsoid = $this->check_oqrs($data);
+			if ($this->get_auto_queue_option($postdata['station_id']) == 'on') {
+				if($this->get_direct_auto_queue_option($postdata['station_id']) == 'off' && $data['qslroute'] == 'D') {
+					$data['qsoid'] = null; // Explicitly set qsoid when skipping auto-queue
+				} else {
+					$qsoid = $this->check_oqrs($data);
 
-			if ($qsoid > 0) {
-				$data['status'] = '2';
+					if ($qsoid != null) {
+						$data['status'] = '3';
+					}
+					$data['qsoid'] = $qsoid;
+				}
 			}
-			$data['qsoid'] = $qsoid;
 
-			$this->db->insert('oqrs', $data);
+			// Check if this entry already exists in the oqrs table on the same date
+			$this->db->from('oqrs');
+			$this->db->where([
+				'date' => $data['date'],
+				'band' => $data['band'],
+				'mode' => $data['mode'],
+				'requestcallsign' => $data['requestcallsign'],
+				'station_id' => $data['station_id']
+			]);
+
+			$exists = $this->db->get()->num_rows() > 0;
+
+			if (!$exists) {
+				$this->db->insert('oqrs', $data);
+			}
+
 			if(!in_array($postdata['station_id'], $station_ids)){
 				array_push($station_ids, $postdata['station_id']);
 			}
@@ -161,7 +199,7 @@ class Oqrs_model extends CI_Model {
 	function save_oqrs_request_grouped($postdata) {
 		$station_ids = array();
 		$qsos = $postdata['qsos'];
-		foreach($qsos as $qso) {
+		foreach ($qsos as $qso) {
 			$data = array(
 				'date' 				=> $qso[0],
 				'time'	 			=> $qso[1],
@@ -175,23 +213,52 @@ class Oqrs_model extends CI_Model {
 				'status' 			=> '0',
 			);
 
-			$qsoid = $this->check_oqrs($data);
+			if ($this->get_auto_queue_option($qso[4]) == 'on') {
+				if($this->get_direct_auto_queue_option($qso[4]) == 'off' && $data['qslroute'] == 'D') {
+					$data['qsoid'] = null; // Explicitly set qsoid when skipping auto-queue
+				} else {
+					$qsoid = $this->check_oqrs($data);
 
-			if ($qsoid > 0) {
-				$data['status'] = '2';
+					if ($qsoid != null) {
+						$data['status'] = '3';
+					}
+					$data['qsoid'] = $qsoid;
+				}
 			}
-			$data['qsoid'] = $qsoid;
 
-			$this->db->insert('oqrs', $data);
+			// Check if this entry already exists in the oqrs table on the same date
+			$this->db->from('oqrs');
+			$this->db->where([
+				'date' => $data['date'],
+				'band' => $data['band'],
+				'mode' => $data['mode'],
+				'requestcallsign' => $data['requestcallsign'],
+				'station_id' => $data['station_id']
+			]);
 
-			if(!in_array($qso[4], $station_ids)){
+			$exists = $this->db->get()->num_rows() > 0;
+
+			if (!$exists) {
+				$this->db->insert('oqrs', $data);
+			}
+
+			if (!in_array($qso[4], $station_ids)){
 				array_push($station_ids, $qso[4]);
 			}
 		}
+
 		return $station_ids;
 	}
 
 	function delete_oqrs_line($id) {
+		$sql = 'update ' . $this->config->item('table_name') . ' set COL_QSL_SENT = "N", COL_QSLSDATE = null, COL_QSL_SENT_VIA = ""
+		where COL_PRIMARY_KEY = (select oqrs.qsoid from oqrs join station_profile on station_profile.station_id = oqrs.station_id where oqrs.id = ? and station_profile.user_id = ?)';
+		$binding = [$id, $this->session->userdata('user_id')];
+
+		$this->db->query($sql, $binding);
+
+		$binding = [];
+
 		$binding = [$id, $this->session->userdata('user_id')];
 
 		$sql = '
@@ -206,10 +273,34 @@ class Oqrs_model extends CI_Model {
 		return true;
 	}
 
+	function reject_oqrs_line($id) {
+		$sql = 'update ' . $this->config->item('table_name') . ' set COL_QSL_SENT = "N", COL_QSLSDATE = null, COL_QSL_SENT_VIA = ""
+		where COL_PRIMARY_KEY = (select oqrs.qsoid from oqrs join station_profile on station_profile.station_id = oqrs.station_id where oqrs.id = ? and station_profile.user_id = ?)';
+		$binding = [$id, $this->session->userdata('user_id')];
+
+		$this->db->query($sql, $binding);
+
+		$binding = [];
+
+		$binding = [$id, $this->session->userdata('user_id')];
+
+		$sql = 'UPDATE oqrs
+			JOIN station_profile ON station_profile.station_id = oqrs.station_id
+			SET oqrs.status = 4
+			WHERE oqrs.id = ?
+			AND station_profile.user_id = ?';
+
+		$query = $this->db->query($sql, $binding);
+
+		return true;
+	}
+
 	// Status:
 	// 0 = open request
 	// 1 = not in log request
 	// 2 = request done, means we found a match in the log
+	// 3 = pending
+	// 4 = request rejected
 	function save_not_in_log($postdata) {
 		$qsos = $postdata['qsos'];
 		foreach($qsos as $qso) {
@@ -224,25 +315,49 @@ class Oqrs_model extends CI_Model {
 				'email' 			=> $postdata['email'],
 				'qslroute' 			=> '',
 				'status' 			=> '1',
-				'qsoid' 			=> '0',
+				'qsoid' 			=> null,
 			);
 
 			$this->db->insert('oqrs', $data);
 		}
 	}
 
-	function check_oqrs($qsodata) {
+	function get_auto_queue_option($station_id) {
+		$this->load->model('stations');
+		$user = $this->stations->get_user_from_station($station_id);
 
+		$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_auto_matching','option_key'=>'boolean'), $user->user_id)->result();
+		if (count($qkey_opt) > 0) {
+			return $qkey_opt[0]->option_value;
+		}
+
+		return 'on';
+	}
+
+	function get_direct_auto_queue_option($station_id) {
+		$this->load->model('stations');
+		$user = $this->stations->get_user_from_station($station_id);
+
+		$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_direct_auto_matching','option_key'=>'boolean'), $user->user_id)->result();
+		if (count($qkey_opt) > 0) {
+			return $qkey_opt[0]->option_value;
+		}
+
+		return 'on';
+	}
+
+	function check_oqrs($qsodata) {
 		$binding = [];
 
 		$sql = 'select * from ' . $this->config->item('table_name') .
-		' where (col_band = ? or col_prop_mode = ?)
-		 and col_call = ?
-		 and date(col_time_on) = ?
-		 and (col_mode = ?
-		 or col_submode = ?)
-		 and timediff(time(col_time_on), ?) <= 3000
-		 and station_id = ?';
+		' log inner join station_profile on (station_profile.station_id=log.station_id and station_profile.oqrs=\'1\')
+		 where (log.col_band = ? or log.col_prop_mode = ?)
+		 and log.col_call = ?
+		 and date(log.col_time_on) = ?
+		 and (log.col_mode = ?
+		 or log.col_submode = ?)
+		 and timediff(time(log.col_time_on), ?) <= 3000
+		 and log.station_id = ?';
 
 		$binding[] = $qsodata['band'];
 		$binding[] = $qsodata['band'];
@@ -264,7 +379,17 @@ class Oqrs_model extends CI_Model {
 			return $id;
 		}
 
-		return 0;
+		return null;
+	}
+
+	function add_oqrs_to_print_queue($id) {
+		$sql = 'SELECT * FROM oqrs join station_profile on oqrs.station_id = station_profile.station_id WHERE oqrs.id = ? AND station_profile.user_id = ?';
+		$binding = [$id, $this->session->userdata('user_id')];
+		$query = $this->db->query($sql, $binding);
+
+		if ($query->num_rows() > 0) {
+			$this->paperqsl_requested($query->row()->qsoid, $query->row()->qslroute);
+		}
 	}
 
 	// Set Paper to requested
@@ -282,7 +407,9 @@ class Oqrs_model extends CI_Model {
 
 	function search_log($callsign) {
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->join('oqrs', 'oqrs.qsoid = '.$this->config->item('table_name').'.COL_PRIMARY_KEY', 'left');
 		// always filter user. this ensures that no inaccesible QSOs will be returned
+		$this->db->where('station_profile.oqrs', '1');
 		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 		$this->db->where('COL_CALL like "%'.$callsign.'%"');
 		$this->db->order_by("COL_TIME_ON", "ASC");
@@ -292,11 +419,12 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function search_log_time_date($time, $date, $band, $mode) {
-
 		$binding = [];
 
 		$sql = 'select * from ' . $this->config->item('table_name') . ' thcv
-		 join station_profile on thcv.station_id = station_profile.station_id where (col_band = ? or col_prop_mode = ?)
+		 join station_profile on (thcv.station_id = station_profile.station_id and station_profile.oqrs=\'1\')
+		 left join oqrs on oqrs.qsoid = thcv.COL_PRIMARY_KEY
+		 where (col_band = ? or col_prop_mode = ?)
 		 and date(col_time_on) = ?
 		 and (col_mode = ?
 		 or col_submode = ?)
@@ -325,7 +453,7 @@ class Oqrs_model extends CI_Model {
 
 	function getQslInfo($station_id) {
 		$binding = [];
-		$sql = 'select oqrs_text from station_profile where station_id = ?';
+		$sql = 'select oqrs_text from station_profile where station_id = ? and oqrs=\'1\'';
 		$binding[] = $station_id;
 
 		$query = $this->db->query($sql, $binding);
@@ -341,7 +469,7 @@ class Oqrs_model extends CI_Model {
 
 	function getOqrsEmailSetting($station_id) {
 		$binding = [];
-		$sql = 'select oqrs_email from station_profile where station_id = ?';
+		$sql = 'select oqrs_email from station_profile where station_id = ? and oqrs=\'1\'';
 		$binding[] = $station_id;
 
 		$query = $this->db->query($sql, $binding);
@@ -386,7 +514,7 @@ class Oqrs_model extends CI_Model {
 		$sql = "
 			SELECT *, DATE_FORMAT(requesttime, \"%Y-%m-%d %H:%i\") as requesttime, DATE_FORMAT(time, \"%H:%i\") as time
 			FROM oqrs
-			INNER JOIN station_profile ON oqrs.station_id=station_profile.station_id
+			INNER JOIN station_profile ON (oqrs.station_id=station_profile.station_id and station_profile.oqrs='1')
 			WHERE station_profile.user_id =  ?
 			$where
 			ORDER BY oqrs.id
@@ -446,6 +574,48 @@ class Oqrs_model extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+
+	public function delete_oqrs_qso_match($id, $qsoid) {
+		// Step 1: Check if this QSO belongs to the current user
+		$this->db->select('oqrs.id');
+		$this->db->from('oqrs');
+		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');
+		$this->db->where('oqrs.id', $id);
+		$this->db->where('oqrs.qsoid', $qsoid);
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$query = $this->db->get();
+
+		if ($query->num_rows() === 0) {
+			return false; // Not authorized or not found
+		}
+
+		// Step 2: Update if authorized
+		$this->db->where('id', $id);
+		$this->db->update('oqrs', ['qsoid' => null]);
+
+		return $this->db->affected_rows() > 0;
+	}
+
+	public function add_qso_match_to_oqrs($qsoid, $oqrsid) {
+		// Step 1: Check if this QSO belongs to the current user
+		$this->db->select('oqrs.id');
+		$this->db->from('oqrs');
+		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');
+		$this->db->where('oqrs.id', $oqrsid);
+		$this->db->where('oqrs.qsoid', 0); // Ensure we are adding a match to an empty qsoid
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$query = $this->db->get();
+
+		if ($query->num_rows() === 0) {
+			return false; // Not authorized or not found
+		}
+
+		// Step 2: Update if authorized
+		$this->db->where('id', $oqrsid);
+		$this->db->update('oqrs', ['qsoid' => $qsoid]);
+
+		return $this->db->affected_rows() > 0;
 	}
 
 }
