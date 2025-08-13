@@ -251,7 +251,7 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function delete_oqrs_line($id) {
-		$sql = 'update ' . $this->config->item('table_name') . ' set COL_QSL_SENT = "N", COL_QSLSDATE = "", COL_QSL_SENT_VIA = ""
+		$sql = 'update ' . $this->config->item('table_name') . ' set COL_QSL_SENT = "N", COL_QSLSDATE = null, COL_QSL_SENT_VIA = ""
 		where COL_PRIMARY_KEY = (select oqrs.qsoid from oqrs join station_profile on station_profile.station_id = oqrs.station_id where oqrs.id = ? and station_profile.user_id = ?)';
 		$binding = [$id, $this->session->userdata('user_id')];
 
@@ -274,7 +274,7 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function reject_oqrs_line($id) {
-		$sql = 'update ' . $this->config->item('table_name') . ' set COL_QSL_SENT = "N", COL_QSLSDATE = "", COL_QSL_SENT_VIA = ""
+		$sql = 'update ' . $this->config->item('table_name') . ' set COL_QSL_SENT = "N", COL_QSLSDATE = null, COL_QSL_SENT_VIA = ""
 		where COL_PRIMARY_KEY = (select oqrs.qsoid from oqrs join station_profile on station_profile.station_id = oqrs.station_id where oqrs.id = ? and station_profile.user_id = ?)';
 		$binding = [$id, $this->session->userdata('user_id')];
 
@@ -571,23 +571,6 @@ class Oqrs_model extends CI_Model {
 			} else {
 				return false;
 			}
-		} else {
-			return false;
-		}
-	}
-
-	public function delete_oqrs_qso_match2($id, $qsoid) {
-		$data = array(
-			'qsoid' => '0',
-		);
-		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');
-		$this->db->where('oqrs.id', $id);
-		$this->db->where('oqrs.qsoid', $qsoid);
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
-		$this->db->update('oqrs', $data);
-
-		if ($this->db->affected_rows() > 0) {
-			return true;
 		} else {
 			return false;
 		}
