@@ -161,11 +161,11 @@ class Oqrs_model extends CI_Model {
 
 			if ($this->get_auto_queue_option($postdata['station_id']) == 'on') {
 				if($this->get_direct_auto_queue_option($postdata['station_id']) == 'off' && $data['qslroute'] == 'D') {
-					$data['qsoid'] = 0; // Explicitly set qsoid when skipping auto-queue
+					$data['qsoid'] = null; // Explicitly set qsoid when skipping auto-queue
 				} else {
 					$qsoid = $this->check_oqrs($data);
 
-					if ($qsoid > 0) {
+					if ($qsoid != null) {
 						$data['status'] = '3';
 					}
 					$data['qsoid'] = $qsoid;
@@ -215,11 +215,11 @@ class Oqrs_model extends CI_Model {
 
 			if ($this->get_auto_queue_option($qso[4]) == 'on') {
 				if($this->get_direct_auto_queue_option($qso[4]) == 'off' && $data['qslroute'] == 'D') {
-					$data['qsoid'] = 0; // Explicitly set qsoid when skipping auto-queue
+					$data['qsoid'] = null; // Explicitly set qsoid when skipping auto-queue
 				} else {
 					$qsoid = $this->check_oqrs($data);
 
-					if ($qsoid > 0) {
+					if ($qsoid != null) {
 						$data['status'] = '3';
 					}
 					$data['qsoid'] = $qsoid;
@@ -315,7 +315,7 @@ class Oqrs_model extends CI_Model {
 				'email' 			=> $postdata['email'],
 				'qslroute' 			=> '',
 				'status' 			=> '1',
-				'qsoid' 			=> '0',
+				'qsoid' 			=> null,
 			);
 
 			$this->db->insert('oqrs', $data);
@@ -609,7 +609,7 @@ class Oqrs_model extends CI_Model {
 
 		// Step 2: Update if authorized
 		$this->db->where('id', $id);
-		$this->db->update('oqrs', ['qsoid' => 0]);
+		$this->db->update('oqrs', ['qsoid' => null]);
 
 		return $this->db->affected_rows() > 0;
 	}
