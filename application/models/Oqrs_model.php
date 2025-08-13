@@ -379,7 +379,7 @@ class Oqrs_model extends CI_Model {
 			return $id;
 		}
 
-		return 0;
+		return null;
 	}
 
 	function add_oqrs_to_print_queue($id) {
