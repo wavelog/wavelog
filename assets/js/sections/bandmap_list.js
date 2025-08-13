@@ -26,7 +26,13 @@ $(function() {
 						$(td).addClass("spotted_call");
 						$(td).attr( "title", lang_click_to_prepare_logging);
 					}
-				}
+				},
+				{
+					'targets': 8,
+					'createdCell':  function (td, cellData, rowData, row, col) {
+						$(td).addClass("mode");
+					}
+				},
 			],
 			"language": {
 				url: getDataTablesLanguageUrl(),
@@ -117,6 +123,7 @@ $(function() {
 						} else {
 							data[0].push('');
 						}
+						data[0].push(single.mode || '');
 						if (oldtable.length > 0) {
 							let update=false;
 							oldtable.each( function (srow) {
@@ -233,15 +240,18 @@ $(function() {
 		let ready_listener = true;
 		let call=this.innerText;
 		let qrg=''
+		let mode='';
 		if (this.parentNode.parentNode.className.indexOf('spotted_call')>=0) {
 			qrg=this.parentNode.parentNode.parentNode.cells[1].textContent*1000;
+			mode=this.parentNode.parentNode.parentNode.cells[8].textContent;
 		} else {
 			qrg=this.parentNode.parentNode.cells[1].textContent*1000;
+			mode=this.parentNode.parentNode.cells[8].textContent;
 		}
 
 		try {
-			irrelevant=fetch(CatCallbackURL + '/'+qrg).catch(() => {
-				openedWindow = window.open(CatCallbackURL + '/' + qrg);
+			irrelevant=fetch(CatCallbackURL + '/'+qrg+'/'+mode).catch(() => {
+				openedWindow = window.open(CatCallbackURL + '/' + qrg + '/' + mode);
 				openedWindow.close();
 			});
 		} finally {}

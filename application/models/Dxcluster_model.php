@@ -69,6 +69,7 @@ class Dxcluster_model extends CI_Model {
 					continue;
 				}
 				$singlespot->band=$spotband;
+				$singlespot->mode=$this->get_mode($singlespot);
 				if (($band != 'All') && ($band != $spotband)) { continue; }
 				if (($mode != 'All') && ($mode != $this->modefilter($singlespot, $mode))) { continue; }
 				$datetimecurrent = new DateTime("now", new DateTimeZone('UTC')); // Today's Date/Time
@@ -134,6 +135,25 @@ class Dxcluster_model extends CI_Model {
 
 	// We need to build functions that check the frequency limit
 	// Right now this is just a proof of concept to determine mode
+	function get_mode($spot) {
+		if ($this->Frequency2Mode($spot->frequency) != '') {
+			return $this->Frequency2Mode($spot->frequency);
+		}
+
+		// Fallbacks using message keywords
+		if (isset($spot->message)) {
+			$message = strtolower($spot->message);
+			if (strpos($message, 'cw') !== false) {
+				return 'cw';;
+			}
+			if ((strpos($message, 'ft8') !== false || strpos($message, 'rtty') !== false || strpos($message, 'sstv') !== false)) {
+				return 'digi';;
+			}
+		}
+
+		return '';
+	}
+
 	function modefilter($spot, $mode) {
 		$mode = strtolower($mode); // Normalize case
 
@@ -155,22 +175,36 @@ class Dxcluster_model extends CI_Model {
 		return false;
 	}
 
+	public function Frequency2Mode($frequency) {
+		// Ensure frequency is in Hz if input is in kHz
+		if ($frequency < 1_000_000) {
+			$frequency *= 1000;
+		}
+
+		foreach ($this->bandedges as $band) {
+			if ($frequency >= $band['frequencyfrom'] && $frequency < $band['frequencyto']) {
+				return $band['mode'];
+			}
+		}
+		return '';
+	}
+
 	public function isFrequencyInMode($frequency, $mode) {
-        // Ensure frequency is in Hz if input is in kHz
-        if ($frequency < 1_000_000) {
-            $frequency *= 1000;
-        }
+		// Ensure frequency is in Hz if input is in kHz
+		if ($frequency < 1_000_000) {
+			$frequency *= 1000;
+		}
 
-        foreach ($this->bandedges as $band) {
-            if (strtolower($band['mode']) === strtolower($mode)) {
-                if ($frequency >= $band['frequencyfrom'] && $frequency < $band['frequencyto']) {
-                    return true;
-                }
-            }
-        }
+		foreach ($this->bandedges as $band) {
+			if (strtolower($band['mode']) === strtolower($mode)) {
+				if ($frequency >= $band['frequencyfrom'] && $frequency < $band['frequencyto']) {
+					return true;
+				}
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
     public function dxc_qrg_lookup($qrg, $maxage = 120) {
 		$this->load->helper(array('psr4_autoloader'));
