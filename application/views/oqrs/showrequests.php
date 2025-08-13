@@ -1,21 +1,21 @@
-<?php
+<script type="text/javascript">
+	let lang_oqrs_status_open_request = '<?= __("Open request"); ?>';
+	let lang_oqrs_status_not_in_log_request = '<?= __("Not in log request"); ?>';
+	let lang_oqrs_status_request_done = '<?= __("Request done"); ?>';
+	let lang_oqrs_status_pending_request = '<?= __("Pending request"); ?>';
+	let lang_oqrs_status_request_rejected = '<?= __("Request rejected"); ?>';
+	let lang_oqrs_qsl_method_bureau = '<?= __("Bureau"); ?>';
+	let lang_oqrs_qsl_method_direct = '<?= __("Direct"); ?>';
+	let lang_oqrs_qsl_method_electronic = '<?= __("Electronic"); ?>';
+	let lang_oqrs_error_request = '<?= __("An error ocurred while making the request"); ?>';
+	let lang_oqrs_warning_delete = '<?= __("Warning! Are you sure you want to delete the marked OQRS request(s)?"); ?>';
+	let lang_oqrs_warning_reject = '<?= __("Warning! Are you sure you want to reject the marked OQRS request(s)?"); ?>';
+	let lang_oqrs_warning_mark = '<?= __("Warning! Are you sure you want to mark the marked OQRS request(s)?"); ?>';
+	let lang_oqrs_warning_add_to_queue = '<?= __("Warning! Are you sure you want to add the marked OQRS request(s) to the queue?"); ?>';
+	let lang_oqrs_status_message = '<?= __("OQRS Status Information"); ?>';
+	let lang_oqrs_warning_delete_match = '<?= __("Warning! Are you sure you want to delete the QSO match?"); ?>';
+</script>
 
-function echo_status($status) {
-	switch($status) {
-		case '0': echo __("Open request"); break;
-		case '1': echo __("Not in log request"); break;
-		case '2': echo __("Request done"); break;
-	}
-}
-function echo_qsl_method($method) {
-	switch(strtoupper($method)) {
-		case 'B': echo __("Bureau"); break;
-		case 'D': echo __("Direct"); break;
-		case 'E': echo __("Electronic"); break;
-	}
-}
-
-?>
 <div class="container-fluid oqrs pt-3 ps-4 pe-4">
 	<h2><?php echo $page_title; ?></h2>
 	<?php if ($this->session->flashdata('message')) { ?>
@@ -27,8 +27,8 @@ function echo_qsl_method($method) {
 <div class="row">
 	<form id="searchForm" name="searchForm" action="<?php echo base_url()."index.php/oqrs/search";?>" method="post">
 		<div class="row">
-			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
-				<label class="form-label" for="de"><?= __("De"); ?></label>
+			<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
+				<label class="form-label" for="de"><?= __("Location"); ?></label>
 				<select id="de" name="de" class="form-select form-select-sm">
 					<option value=""><?= __("All"); ?></option>
 					<?php
@@ -38,21 +38,23 @@ function echo_qsl_method($method) {
 					?>
 				</select>
 			</div>
-			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
-				<label class="form-label" for="dx"><?= __("Dx"); ?></label>
+			<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
+				<label class="form-label" for="dx"><?= __("Request callsign"); ?></label>
 				<input type="text" name="dx" id="dx" class="form-control form-control-sm" value="">
 			</div>
 
-			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
-				<label for="status"><?= __("OQRS Status"); ?></label>
+			<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
+				<label for="status"><?= __("OQRS Status"); ?> <i class="statusinfo far fa-question-circle" aria-hidden="true"></i></label>
 				<select id="status" name="status" class="form-select form-select-sm">
 					<option value=""><?= __("All"); ?></option>
 					<option value="0"><?= __("Open request"); ?></option>
 					<option value="1"><?= __("Not in log request"); ?></option>
-					<option value="2"><?= __("Request done"); ?></option>
+					<option value="2"><?= __("Done / sent"); ?></option>
+					<option value="3"><?= __("Pending"); ?></option>
+					<option value="4"><?= __("Rejected"); ?></option>
 				</select>
 			</div>
-			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
+			<div class="form-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
 				<label for="oqrsResults"><?= __("# Results"); ?></label>
 				<select id="oqrsResults" name="oqrsResults" class="form-select form-select-sm">
 					<option value="50">50</option>
@@ -67,12 +69,15 @@ function echo_qsl_method($method) {
 				<button type="submit" class="btn btn-sm btn-primary" id="searchButton"><?= __("Search"); ?></button>
 				<button type="reset" class="btn btn-sm btn-danger" id="resetButton"><?= __("Reset"); ?></button>
 				<span class="h6"><?= __("With selected"); ?>:</span>
-				<button type="button" class="btn btn-sm btn-warning" id="markOqrs"><?= __("Mark as done"); ?></button>
+				<button hidden type="button" class="btn btn-sm btn-success" id="addOqrsToQueue"><?= __("Add to print queue"); ?></button>
+				<button type="button" class="btn btn-sm btn-success" id="markOqrs"><?= __("Mark as done"); ?></button>
+				<button type="button" class="btn btn-sm btn-warning" id="rejectOqrs"><?= __("Reject"); ?></button>
 				<button type="button" class="btn btn-sm btn-danger" id="deleteOqrs"><?= __("Delete"); ?></button>
 			</div>
 		</div>
 	</form>
 </div>
+
 <table style="width:100%" class="table-sm oqrstable table table-striped table-bordered table-hover table-condensed text-center" id="qsoList">
 	<thead>
 		<tr>
@@ -88,31 +93,12 @@ function echo_qsl_method($method) {
 			<th><?= __("Note"); ?></th>
 			<th><?= __("QSL route"); ?></th>
 			<th><?= __("Check log"); ?></th>
+			<th><?= __("QSO Match"); ?></th>
 			<th><?= __("Status"); ?></th>
 
 		</tr>
 	</thead>
 	<tbody>
-		<?php
-		/*foreach ($result as $qso) {
-			echo '<tr class="oqrsid_'.$qso->id.'" oqrsid="'.$qso->id.'">';
-			echo '<td><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
-			echo '<td>'. $qso->requesttime .'</td>';
-			echo '<td>'. $qso->date .'</td>';
-			echo '<td>'. $qso->time .'</td>';
-			echo '<td>'. $qso->band .'</td>';
-			echo '<td>'. $qso->mode .'</td>';
-			echo '<td>'. $qso->requestcallsign .'</td>';
-			echo '<td>'. $qso->station_callsign .'</td>';
-			echo '<td>'. $qso->email .'</td>';
-			echo '<td>'. $qso->note .'</td>';
-			echo '<td>'; echo_qsl_method($qso->qslroute); echo '</td>';
-			echo '<td><button class="btn btn-primary btn-sm" type="button" onclick="searchLog(\''. $qso->requestcallsign .'\');"><i class="fas fa-search"></i> Call</button>
-				<button class="btn btn-primary btn-sm" type="button" onclick="searchLogTimeDate(\''. $qso->id .'\');"><i class="fas fa-search"></i> Date/Time</button>
-				</td>';
-			echo '<td>'; echo_status($qso->status); echo '</td>';
-			echo '</tr>';
-		}*/
-		?>
+
 	</tbody>
 </table>
