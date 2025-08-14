@@ -603,7 +603,7 @@ class Oqrs_model extends CI_Model {
 		$this->db->from('oqrs');
 		$this->db->join('station_profile', 'station_profile.station_id = oqrs.station_id');
 		$this->db->where('oqrs.id', $oqrsid);
-		$this->db->where('oqrs.qsoid', 0); // Ensure we are adding a match to an empty qsoid
+		$this->db->where('oqrs.qsoid IS NULL', null, false); // Ensure we are adding a match to an empty qsoid
 		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 		$query = $this->db->get();
 

@@ -206,7 +206,7 @@ function return_add_print_button($qso_id, $qslsent) {
 }
 
 function return_add_match_qso_button($qso_id, $qsoid, $matchqsoid, $oqrsid) {
-	if ($qso_id != $qsoid && $matchqsoid == 0) return '<button onclick="addQsoMatchToOqrs(\'' . $qso_id . '\', \'' . $oqrsid . '\')" class="btn btn-sm btn-success">' . __("Match QSO") . '</button>';
+	if ($qso_id != $qsoid && $matchqsoid == null) return '<button onclick="addQsoMatchToOqrs(\'' . $qso_id . '\', \'' . $oqrsid . '\')" class="btn btn-sm btn-success">' . __("Match QSO") . '</button>';
 
 	return '';
 }
