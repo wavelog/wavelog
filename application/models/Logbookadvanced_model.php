@@ -825,6 +825,9 @@ class Logbookadvanced_model extends CI_Model {
 
 		$this->db->trans_start();
 
+		if ($column == 'COL_DARC_DOK') {
+			$value=strtoupper($value);
+		}
 		if ($column == 'station_id') {
 
 			$this->load->model('stations');
