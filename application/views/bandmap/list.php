@@ -132,6 +132,7 @@
 				<th style="width:150px;"><?= __("Spotter"); ?></th>
 				<th><?= __("Message"); ?></th>
 				<th><?= __("Last Worked"); ?></th>
+				<th><?= __("Mode"); ?></th>
 			</tr>
 		</thead>
 
