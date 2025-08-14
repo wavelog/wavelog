@@ -200,5 +200,5 @@
 
 		<label style="display:none" id="editDistanceInputLabel" class="mx-2 w-auto" for="editDistanceInput"><?= __("Distance (in km). Leave blank to recalculate distance. (It will only work if a gridsquare is set)."); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editDistanceInput" type="text" name="editDistanceInput" placeholder="" aria-label="editDistanceInput">
-		<input style="display:none; text-transform: uppercase;" class="form-control form-control-sm w-auto" id="editDokInput" type="text" name="editDokInput" placeholder="" aria-label="editDokInput">
+		<input style="display:none" class="form-control form-control-sm w-auto uppercase" id="editDokInput" type="text" name="editDokInput" placeholder="" aria-label="editDokInput">
 	</form>
