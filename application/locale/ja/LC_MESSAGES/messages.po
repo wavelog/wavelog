@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-13 17:00+0000\n"
-"PO-Revision-Date: 2025-08-12 11:07+0000\n"
+"PO-Revision-Date: 2025-08-14 13:24+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2026,11 +2026,11 @@ msgstr "OQRSリクエスト"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "QSO マッチが正常に削除されました。"
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "QSO マッチが正常に追加されました。"
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -4262,7 +4262,7 @@ msgstr "ステーションを選択してください"
 
 #: application/views/adif/import.php:82
 msgid "Choose ADIF File"
-msgstr ""
+msgstr "ADIFファイルを選択"
 
 #: application/views/adif/import.php:88
 msgid "Add QSOs to Contest"
@@ -4287,7 +4287,7 @@ msgstr "重複したQSOをインポートする"
 
 #: application/views/adif/import.php:117
 msgid "Select if want to import QSOs, even if they already exist."
-msgstr ""
+msgstr "QSO がすでに存在する場合でもインポートする場合は選択します。"
 
 #: application/views/adif/import.php:122
 msgid "Use DXCC information from ADIF"
@@ -4309,7 +4309,7 @@ msgstr "危険"
 
 #: application/views/adif/import.php:132
 msgid "Ignore Station callsign on import"
-msgstr ""
+msgstr "インポート時にステーションのコールサインを無視する"
 
 #: application/views/adif/import.php:134
 #, php-format
@@ -4317,6 +4317,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"選択された場合、WavelogはADIFから%sall%sのQSOをインポートしようとします。選択"
+"された局の位置と一致するかどうかに関わらず、すべてのQSOが対象となります。"
 
 #: application/views/adif/import.php:141
 msgid ""
@@ -5467,12 +5469,12 @@ msgstr "DXCC 名称"
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: application/views/awards/ffma/index.php:8
 #: application/views/interface_assets/header.php:274
 msgid "Fred Fish Memorial Award"
-msgstr ""
+msgstr "Fred Fish Memorial Award"
 
 #: application/views/awards/ffma/index.php:9
 msgid ""
@@ -5480,21 +5482,24 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
+"Fred Fish Memorial Awardは、米国本土 48 州にある 488 個のメイデンヘッド "
+"グリッド スクエアすべてを 6 メートルで運用し確認した最初のアマチュアである "
+"Fred Fish、W5FF (SK) を記念して創設されました。"
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
-msgstr ""
+msgstr "このアワードは、W5FF の業績を再現できるアマチュアに授与されます。"
 
 #: application/views/awards/ffma/index.php:11
 #, php-format
 msgid "For more information, you can visit this link: %s."
-msgstr ""
+msgstr "詳細については、次のリンクをご覧ください。 %s 。"
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
-msgstr ""
+msgstr "GridMaster Award"
 
 #: application/views/awards/gridmaster/index.php:9
 msgid ""
@@ -5503,6 +5508,11 @@ msgid ""
 "operators worldwide who manage to work all 488 grid squares in the USA via "
 "satellite and can provide QSL confirmations for each contact."
 msgstr ""
+"GridMaster "
+"Awardは、AMSATで最も権威のある賞で、2014年にスターコムグループによって初めて"
+"導入されました。この賞は、衛星通信を介して米国の488グリッドスクエアすべてと交"
+"信し、各交信のQSL確認を提供できる世界中のすべてのアマチュア無線家が対象となり"
+"ます。"
 
 #: application/views/awards/gridmaster/index.php:10
 #, php-format
@@ -5516,25 +5526,32 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
+"%sからの公式情報：各グリッドとの間でアマチュア衛星を介した双方向通信を確立す"
+"る必要があります。最低限の信号報告は不要です。連絡は同じ場所から、または2つの"
+"場所が200キロメートル以上離れていない場所から行わなければなりません。申請者の"
+"申請書における誓約は、距離規則の遵守を証明するものとします。個人は、別の場所"
+"から達成した場合、異なる200キロメートルの円内にある場合、複数のGridMaster "
+"Awardを申請し、授与されることができます。"
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
-msgstr ""
+msgstr "Webサイト"
 
 #: application/views/awards/gridmaster/index.php:11
 #: application/views/awards/gridmaster/index.php:16
 msgid "This map shows only QSOs worked on SAT."
-msgstr ""
+msgstr "このマップには、SAT で行われた QSO のみが表示されます。"
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Gridmaster Award"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
-msgstr ""
+msgstr "Gridmaster Awardは、もともと米国で運用される 488 "
+"個のグリッドスクエアを対象に設計されました。"
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -5542,19 +5559,22 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"このマップには、特定のDXCCのグリッドが表示されています。これは公式のアワード"
+"ではなく、このDXCCの米国GridMaster "
+"Awardのルールに従って運用されたグリッドを示しているだけです。"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "カントン"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "カントンにマウスを移動"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr ""
+msgstr "HELVETIA 26 | SWITZERLANDアワード"
 
 #: application/views/awards/helvetia/index.php:21
 msgid ""
@@ -5563,30 +5583,35 @@ msgid ""
 "activities on the bands by encouraging contacts across as many Swiss cantons "
 "as possible on multiple bands."
 msgstr ""
+"USKA (スイス短波アマチュア連盟) "
+"は、複数のバンドでできるだけ多くのスイスの州との交信を奨励することにより、バ"
+"ンドでの活動を促進することを目的とした、HELVETIA 26 (H26) アワードと "
+"SWITZERLAND アワードの 2 つの賞を後援しています。"
 
 #: application/views/awards/helvetia/index.php:22
 msgid ""
 "These awards come in two versions: one for HF bands and the other for VHF "
 "(including SHF and UHF) bands. Valid connections for these awards date back "
 "to January 1, 1980"
-msgstr ""
+msgstr "このアワードには、HF帯用とVHF帯（SHFおよびUHFを含む）用の2種類があります。こ"
+"れらの賞の有効な接続は1980年1月1日以降に遡ります"
 
 #: application/views/awards/helvetia/index.php:114
 msgid "Show Helvetia Map"
-msgstr ""
+msgstr "ヘルベティア地図を表示"
 
 #: application/views/awards/helvetia/index.php:151
 msgid "Canton"
-msgstr ""
+msgstr "カントン"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:48
 #: application/views/qso/award_tabs.php:33
 msgid "CQ"
-msgstr ""
+msgstr "CQ"
 
 #: application/views/awards/iota/index.php:16
 msgid "IOTA Awards"
-msgstr ""
+msgstr "IOTAアワード"
 
 #: application/views/awards/iota/index.php:17
 msgid ""
@@ -5596,6 +5621,11 @@ msgid ""
 "enhance the experience of all those active on the amateur bands. To achieve "
 "this, it draws on the widespread mystique surrounding islands."
 msgstr ""
+"IOTAは、世界中の何千人ものアマチュア無線家の関心を集めている、刺激的で革新的"
+"な活動プログラムです。1964年に設立されたIOTAは、世界中の島々にある局との無線"
+"交信を促進し、アマチュアバンドで活動するすべての人々の体験を向上させることを"
+"目指しています。そのために、IOTAは島々を取り巻く広く知られる神秘的な雰囲気を"
+"活用しています。"
 
 #: application/views/awards/iota/index.php:18
 msgid ""
@@ -5611,19 +5641,28 @@ msgid ""
 "an Honor Roll and annual listings, as well as recognizing it with "
 "certificates and prestigious awards."
 msgstr ""
+"このプログラムは、Islands On The Air (IOTA) "
+"Ltd（以下、IOTAマネジメント）が英国無線協会（RSGB）と提携して運営しています。"
+"IOTAマネジメントは、世界中の島々を約1,200の「IOTAグループ」にグループ化してお"
+"り、各グループには資格を有する「カウンター」の数が異なります。これらのリスト"
+"はIOTAディレクトリとIOTAウェブサイトに掲載されています。IOTAアイランドチェイ"
+"サーの目的は、これらのグループのうち、できるだけ多くのカウンターと無線交信す"
+"ることです。このプログラムには明確なルールがあり、参加者の成績を名誉ロールと"
+"年間リストに掲載し、証明書や名誉ある賞を授与することで、チェイサー間の友好的"
+"な競争を促しています。"
 
 #: application/views/awards/iota/index.php:19
 #, php-format
 msgid "You can also find this information on %s."
-msgstr ""
+msgstr "この情報は%sでも確認できます。"
 
 #: application/views/awards/iota/index.php:29
 msgid "Deleted IOTA"
-msgstr ""
+msgstr "削除されたIOTA"
 
 #: application/views/awards/iota/index.php:158
 msgid "Show IOTA Map"
-msgstr ""
+msgstr "IOTAマップを表示"
 
 #: application/views/awards/iota/index.php:197
 #: application/views/contesting/add.php:25
@@ -5649,11 +5688,11 @@ msgstr ""
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 #: application/views/awards/iota/index.php:199
 msgid "Deleted"
-msgstr ""
+msgstr "削除済み"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:150
@@ -5669,7 +5708,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
 msgid "ITU Zone"
-msgstr ""
+msgstr "ITU ゾーン"
 
 #: application/views/awards/itu/index.php:21
 msgid ""
@@ -5678,16 +5717,19 @@ msgid ""
 "broadcasting zones as defined by the International Telecommunications Union "
 "(ITU)."
 msgstr ""
+"クラシック・ワークド ITU ゾーンアワードは、国際電気通信連合 (ITU) が定義する "
+"75 の放送ゾーンのうち少なくとも 70 "
+"の地上アマチュア無線局と交信したことの証拠を提示することで申請できます。"
 
 #: application/views/awards/itu/index.php:22
 #, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr ""
+msgstr "%sのウェブサイトで、さらに詳しい情報をご確認いただけます。"
 
 #: application/views/awards/itu/index.php:25
 msgid "Awards - ITU Zones"
-msgstr ""
+msgstr "アワード歴 - ITUゾーン"
 
 #: application/views/awards/itu/index.php:115
 msgid "Show ITU Zone Map"
