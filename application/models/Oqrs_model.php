@@ -425,7 +425,7 @@ class Oqrs_model extends CI_Model {
 		 join station_profile on (thcv.station_id = station_profile.station_id and station_profile.oqrs=\'1\')
 		 left join oqrs on oqrs.qsoid = thcv.COL_PRIMARY_KEY
 		 where date(col_time_on) = ?
-		 and timediff(time(col_time_on), ?) <= 3000
+		 AND TIME_TO_SEC(TIMEDIFF(TIME(col_time_on), ?)) <= 3000
 		 and station_profile.user_id = ?';
 		$binding[] = $date;
 		$binding[] = $time;
