@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-12 11:07+0000\n"
+"POT-Creation-Date: 2025-08-13 17:00+0000\n"
+"PO-Revision-Date: 2025-08-14 13:24+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -315,7 +315,6 @@ msgstr "アワード歴 - %s"
 #: application/views/bands/index.php:49
 #: application/views/contesting/index.php:59
 #: application/views/interface_assets/header.php:226
-#: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/index.php:348
 #: application/views/logbookadvanced/index.php:770
 #: application/views/logbookadvanced/useroptions.php:130
@@ -324,6 +323,7 @@ msgstr "アワード歴 - %s"
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:302
 #: application/views/qso/index.php:593 application/views/user/edit.php:671
 #: application/views/view_log/qso.php:460
+#: application/views/logbookadvanced/edit.php:37
 msgid "DOK"
 msgstr "DOK"
 
@@ -1315,7 +1315,6 @@ msgstr "eQSL"
 #: application/views/awards/wapc/index.php:79
 #: application/views/awards/was/index.php:87
 #: application/views/bandmap/list.php:110
-#: application/views/bandmap/list.php:135
 #: application/views/bands/bandedges.php:31
 #: application/views/callstats/index.php:49
 #: application/views/components/hamsat/table.php:30
@@ -1372,7 +1371,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:18
+#: application/views/widgets/qsos.php:18 application/views/bandmap/list.php:135
 msgid "Mode"
 msgstr "モード"
 
@@ -1382,7 +1381,7 @@ msgstr "モード"
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:175
 #: application/views/contesting/index.php:261
-#: application/views/logbookadvanced/edit.php:40
+#: application/views/logbookadvanced/edit.php:39
 #: application/views/logbookadvanced/index.php:701
 #: application/views/logbookadvanced/useroptions.php:38
 #: application/views/qslcard/searchresult.php:13
@@ -1402,6 +1401,7 @@ msgstr "モード"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
+#: application/views/logbookadvanced/edit.php:40
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -1411,7 +1411,7 @@ msgstr "RST (S)"
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:199
 #: application/views/contesting/index.php:262
-#: application/views/logbookadvanced/edit.php:39
+#: application/views/logbookadvanced/edit.php:38
 #: application/views/logbookadvanced/index.php:704
 #: application/views/logbookadvanced/useroptions.php:42
 #: application/views/qslcard/searchresult.php:14
@@ -1432,6 +1432,7 @@ msgstr "RST (S)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
+#: application/views/logbookadvanced/edit.php:39
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -1492,7 +1493,7 @@ msgstr "IOTA"
 #: application/views/contesting/index.php:62
 #: application/views/dashboard/index.php:12
 #: application/views/logbookadvanced/edit.php:23
-#: application/views/logbookadvanced/edit.php:81
+#: application/views/logbookadvanced/edit.php:80
 #: application/views/logbookadvanced/index.php:245
 #: application/views/logbookadvanced/index.php:749
 #: application/views/logbookadvanced/qslcarousel.php:36
@@ -1509,6 +1510,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/logbookadvanced/edit.php:81
 msgid "State"
 msgstr "州"
 
@@ -2028,11 +2030,11 @@ msgstr "OQRSリクエスト"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "QSO マッチが正常に削除されました。"
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "QSO マッチが正常に追加されました。"
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -3563,9 +3565,10 @@ msgstr "SAT以外すべて"
 #: application/views/callstats/index.php:69
 #: application/views/distances/index.php:58
 #: application/views/gridmap/index.php:42
-#: application/views/logbookadvanced/edit.php:179
+#: application/views/logbookadvanced/edit.php:178
 #: application/views/logbookadvanced/index.php:389
 #: application/views/timeline/index.php:84
+#: application/views/logbookadvanced/edit.php:179
 msgid "None/Empty"
 msgstr "なし/空"
 
@@ -4264,7 +4267,7 @@ msgstr "ステーションを選択してください"
 
 #: application/views/adif/import.php:82
 msgid "Choose ADIF File"
-msgstr ""
+msgstr "ADIFファイルを選択"
 
 #: application/views/adif/import.php:88
 msgid "Add QSOs to Contest"
@@ -4289,7 +4292,7 @@ msgstr "重複したQSOをインポートする"
 
 #: application/views/adif/import.php:117
 msgid "Select if want to import QSOs, even if they already exist."
-msgstr ""
+msgstr "QSO がすでに存在する場合でもインポートする場合は選択します。"
 
 #: application/views/adif/import.php:122
 msgid "Use DXCC information from ADIF"
@@ -4311,7 +4314,7 @@ msgstr "危険"
 
 #: application/views/adif/import.php:132
 msgid "Ignore Station callsign on import"
-msgstr ""
+msgstr "インポート時にステーションのコールサインを無視する"
 
 #: application/views/adif/import.php:134
 #, php-format
@@ -4319,6 +4322,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"選択された場合、WavelogはADIFから%sall%sのQSOをインポートしようとします。選択"
+"された局の位置と一致するかどうかに関わらず、すべてのQSOが対象となります。"
 
 #: application/views/adif/import.php:141
 msgid ""
@@ -5369,84 +5374,91 @@ msgstr "削除済みを含める"
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:87
 #: application/views/bandmap/index.php:37 application/views/bandmap/list.php:88
-#: application/views/logbookadvanced/edit.php:181
+#: application/views/logbookadvanced/edit.php:180
 #: application/views/logbookadvanced/index.php:391
 #: application/views/lookup/index.php:60
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:425
 #: application/views/view_log/qso.php:350
+#: application/views/logbookadvanced/edit.php:181
 msgid "Antarctica"
 msgstr "南極大陸"
 
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/iota/index.php:91
 #: application/views/bandmap/index.php:36 application/views/bandmap/list.php:87
-#: application/views/logbookadvanced/edit.php:180
+#: application/views/logbookadvanced/edit.php:179
 #: application/views/logbookadvanced/index.php:390
 #: application/views/lookup/index.php:59
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:424
 #: application/views/view_log/qso.php:347
+#: application/views/logbookadvanced/edit.php:180
 msgid "Africa"
 msgstr "アフリカ"
 
 #: application/views/awards/dxcc/index.php:95
 #: application/views/awards/iota/index.php:95
 #: application/views/bandmap/index.php:38 application/views/bandmap/list.php:89
-#: application/views/logbookadvanced/edit.php:183
+#: application/views/logbookadvanced/edit.php:182
 #: application/views/logbookadvanced/index.php:393
 #: application/views/lookup/index.php:62
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:426
 #: application/views/view_log/qso.php:353
+#: application/views/logbookadvanced/edit.php:183
 msgid "Asia"
 msgstr "アジア"
 
 #: application/views/awards/dxcc/index.php:99
 #: application/views/awards/iota/index.php:99
 #: application/views/bandmap/index.php:39 application/views/bandmap/list.php:90
-#: application/views/logbookadvanced/edit.php:184
+#: application/views/logbookadvanced/edit.php:183
 #: application/views/logbookadvanced/index.php:394
 #: application/views/lookup/index.php:63
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:427
 #: application/views/view_log/qso.php:356
+#: application/views/logbookadvanced/edit.php:184
 msgid "Europe"
 msgstr "ヨーロッパ"
 
 #: application/views/awards/dxcc/index.php:103
 #: application/views/awards/iota/index.php:103
 #: application/views/bandmap/index.php:40 application/views/bandmap/list.php:91
-#: application/views/logbookadvanced/edit.php:182
+#: application/views/logbookadvanced/edit.php:181
 #: application/views/logbookadvanced/index.php:392
 #: application/views/lookup/index.php:61
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:428
 #: application/views/view_log/qso.php:359
+#: application/views/logbookadvanced/edit.php:182
 msgid "North America"
 msgstr "北米"
 
 #: application/views/awards/dxcc/index.php:107
 #: application/views/awards/iota/index.php:107
 #: application/views/bandmap/index.php:42 application/views/bandmap/list.php:93
-#: application/views/logbookadvanced/edit.php:185
+#: application/views/logbookadvanced/edit.php:184
 #: application/views/logbookadvanced/index.php:395
 #: application/views/lookup/index.php:64
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:430
 #: application/views/view_log/qso.php:365
+#: application/views/logbookadvanced/edit.php:185
 msgid "South America"
 msgstr "南アメリカ"
 
 #: application/views/awards/dxcc/index.php:111
 #: application/views/awards/iota/index.php:111
 #: application/views/bandmap/index.php:41 application/views/bandmap/list.php:92
-#: application/views/logbookadvanced/edit.php:186
+#: application/views/logbookadvanced/edit.php:185
 #: application/views/logbookadvanced/index.php:396
 #: application/views/lookup/index.php:65
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:429
 #: application/views/view_log/qso.php:362
+#: application/views/logbookadvanced/edit.php:186
 msgid "Oceania"
 msgstr "オセアニア"
 
@@ -5469,12 +5481,12 @@ msgstr "DXCC 名称"
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: application/views/awards/ffma/index.php:8
 #: application/views/interface_assets/header.php:274
 msgid "Fred Fish Memorial Award"
-msgstr ""
+msgstr "Fred Fish Memorial Award"
 
 #: application/views/awards/ffma/index.php:9
 msgid ""
@@ -5482,21 +5494,24 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
+"Fred Fish Memorial Awardは、米国本土 48 州にある 488 個のメイデンヘッド グ"
+"リッド スクエアすべてを 6 メートルで運用し確認した最初のアマチュアである "
+"Fred Fish、W5FF (SK) を記念して創設されました。"
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
-msgstr ""
+msgstr "このアワードは、W5FF の業績を再現できるアマチュアに授与されます。"
 
 #: application/views/awards/ffma/index.php:11
 #, php-format
 msgid "For more information, you can visit this link: %s."
-msgstr ""
+msgstr "詳細については、次のリンクをご覧ください。 %s 。"
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
-msgstr ""
+msgstr "GridMaster Award"
 
 #: application/views/awards/gridmaster/index.php:9
 msgid ""
@@ -5505,6 +5520,10 @@ msgid ""
 "operators worldwide who manage to work all 488 grid squares in the USA via "
 "satellite and can provide QSL confirmations for each contact."
 msgstr ""
+"GridMaster Awardは、AMSATで最も権威のある賞で、2014年にスターコムグループに"
+"よって初めて導入されました。この賞は、衛星通信を介して米国の488グリッドスクエ"
+"アすべてと交信し、各交信のQSL確認を提供できる世界中のすべてのアマチュア無線家"
+"が対象となります。"
 
 #: application/views/awards/gridmaster/index.php:10
 #, php-format
@@ -5518,25 +5537,33 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
+"%sからの公式情報：各グリッドとの間でアマチュア衛星を介した双方向通信を確立す"
+"る必要があります。最低限の信号報告は不要です。連絡は同じ場所から、または2つの"
+"場所が200キロメートル以上離れていない場所から行わなければなりません。申請者の"
+"申請書における誓約は、距離規則の遵守を証明するものとします。個人は、別の場所"
+"から達成した場合、異なる200キロメートルの円内にある場合、複数のGridMaster "
+"Awardを申請し、授与されることができます。"
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
-msgstr ""
+msgstr "Webサイト"
 
 #: application/views/awards/gridmaster/index.php:11
 #: application/views/awards/gridmaster/index.php:16
 msgid "This map shows only QSOs worked on SAT."
-msgstr ""
+msgstr "このマップには、SAT で行われた QSO のみが表示されます。"
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Gridmaster Award"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Gridmaster Awardは、もともと米国で運用される 488 個のグリッドスクエアを対象に"
+"設計されました。"
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -5544,19 +5571,22 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"このマップには、特定のDXCCのグリッドが表示されています。これは公式のアワード"
+"ではなく、このDXCCの米国GridMaster Awardのルールに従って運用されたグリッドを"
+"示しているだけです。"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "カントン"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "カントンにマウスを移動"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr ""
+msgstr "HELVETIA 26 | SWITZERLANDアワード"
 
 #: application/views/awards/helvetia/index.php:21
 msgid ""
@@ -5565,6 +5595,10 @@ msgid ""
 "activities on the bands by encouraging contacts across as many Swiss cantons "
 "as possible on multiple bands."
 msgstr ""
+"USKA (スイス短波アマチュア連盟) は、複数のバンドでできるだけ多くのスイスの州"
+"との交信を奨励することにより、バンドでの活動を促進することを目的とした、"
+"HELVETIA 26 (H26) アワードと SWITZERLAND アワードの 2 つの賞を後援していま"
+"す。"
 
 #: application/views/awards/helvetia/index.php:22
 msgid ""
@@ -5572,23 +5606,25 @@ msgid ""
 "(including SHF and UHF) bands. Valid connections for these awards date back "
 "to January 1, 1980"
 msgstr ""
+"このアワードには、HF帯用とVHF帯（SHFおよびUHFを含む）用の2種類があります。こ"
+"れらの賞の有効な接続は1980年1月1日以降に遡ります"
 
 #: application/views/awards/helvetia/index.php:114
 msgid "Show Helvetia Map"
-msgstr ""
+msgstr "ヘルベティア地図を表示"
 
 #: application/views/awards/helvetia/index.php:151
 msgid "Canton"
-msgstr ""
+msgstr "カントン"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:48
 #: application/views/qso/award_tabs.php:33
 msgid "CQ"
-msgstr ""
+msgstr "CQ"
 
 #: application/views/awards/iota/index.php:16
 msgid "IOTA Awards"
-msgstr ""
+msgstr "IOTAアワード"
 
 #: application/views/awards/iota/index.php:17
 msgid ""
@@ -5598,6 +5634,11 @@ msgid ""
 "enhance the experience of all those active on the amateur bands. To achieve "
 "this, it draws on the widespread mystique surrounding islands."
 msgstr ""
+"IOTAは、世界中の何千人ものアマチュア無線家の関心を集めている、刺激的で革新的"
+"な活動プログラムです。1964年に設立されたIOTAは、世界中の島々にある局との無線"
+"交信を促進し、アマチュアバンドで活動するすべての人々の体験を向上させることを"
+"目指しています。そのために、IOTAは島々を取り巻く広く知られる神秘的な雰囲気を"
+"活用しています。"
 
 #: application/views/awards/iota/index.php:18
 msgid ""
@@ -5613,19 +5654,27 @@ msgid ""
 "an Honor Roll and annual listings, as well as recognizing it with "
 "certificates and prestigious awards."
 msgstr ""
+"このプログラムは、Islands On The Air (IOTA) Ltd（以下、IOTAマネジメント）が英"
+"国無線協会（RSGB）と提携して運営しています。IOTAマネジメントは、世界中の島々"
+"を約1,200の「IOTAグループ」にグループ化しており、各グループには資格を有する"
+"「カウンター」の数が異なります。これらのリストはIOTAディレクトリとIOTAウェブ"
+"サイトに掲載されています。IOTAアイランドチェイサーの目的は、これらのグループ"
+"のうち、できるだけ多くのカウンターと無線交信することです。このプログラムには"
+"明確なルールがあり、参加者の成績を名誉ロールと年間リストに掲載し、証明書や名"
+"誉ある賞を授与することで、チェイサー間の友好的な競争を促しています。"
 
 #: application/views/awards/iota/index.php:19
 #, php-format
 msgid "You can also find this information on %s."
-msgstr ""
+msgstr "この情報は%sでも確認できます。"
 
 #: application/views/awards/iota/index.php:29
 msgid "Deleted IOTA"
-msgstr ""
+msgstr "削除されたIOTA"
 
 #: application/views/awards/iota/index.php:158
 msgid "Show IOTA Map"
-msgstr ""
+msgstr "IOTAマップを表示"
 
 #: application/views/awards/iota/index.php:197
 #: application/views/contesting/add.php:25
@@ -5651,11 +5700,11 @@ msgstr ""
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 #: application/views/awards/iota/index.php:199
 msgid "Deleted"
-msgstr ""
+msgstr "削除済み"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:150
@@ -5671,7 +5720,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
 msgid "ITU Zone"
-msgstr ""
+msgstr "ITU ゾーン"
 
 #: application/views/awards/itu/index.php:21
 msgid ""
@@ -5680,16 +5729,19 @@ msgid ""
 "broadcasting zones as defined by the International Telecommunications Union "
 "(ITU)."
 msgstr ""
+"クラシック・ワークド ITU ゾーンアワードは、国際電気通信連合 (ITU) が定義する "
+"75 の放送ゾーンのうち少なくとも 70 の地上アマチュア無線局と交信したことの証拠"
+"を提示することで申請できます。"
 
 #: application/views/awards/itu/index.php:22
 #, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr ""
+msgstr "%sのウェブサイトで、さらに詳しい情報をご確認いただけます。"
 
 #: application/views/awards/itu/index.php:25
 msgid "Awards - ITU Zones"
-msgstr ""
+msgstr "アワード歴 - ITUゾーン"
 
 #: application/views/awards/itu/index.php:115
 msgid "Show ITU Zone Map"
@@ -6620,10 +6672,10 @@ msgstr ""
 
 #: application/views/cabrillo/index.php:196
 #: application/views/cabrillo/index.php:204
-#: application/views/logbookadvanced/edit.php:151
-#: application/views/logbookadvanced/edit.php:159
-#: application/views/logbookadvanced/edit.php:165
-#: application/views/logbookadvanced/edit.php:171
+#: application/views/logbookadvanced/edit.php:150
+#: application/views/logbookadvanced/edit.php:158
+#: application/views/logbookadvanced/edit.php:164
+#: application/views/logbookadvanced/edit.php:170
 #: application/views/logbookadvanced/index.php:414
 #: application/views/logbookadvanced/index.php:425
 #: application/views/logbookadvanced/index.php:456
@@ -6672,15 +6724,19 @@ msgstr ""
 #: application/views/user/edit.php:953 application/views/user/edit.php:973
 #: application/views/user/edit.php:1002 application/views/user/edit.php:1034
 #: application/views/user/edit.php:1059
+#: application/views/logbookadvanced/edit.php:151
+#: application/views/logbookadvanced/edit.php:159
+#: application/views/logbookadvanced/edit.php:165
+#: application/views/logbookadvanced/edit.php:171
 msgid "Yes"
 msgstr "はい"
 
 #: application/views/cabrillo/index.php:197
 #: application/views/cabrillo/index.php:203
-#: application/views/logbookadvanced/edit.php:152
-#: application/views/logbookadvanced/edit.php:160
-#: application/views/logbookadvanced/edit.php:166
-#: application/views/logbookadvanced/edit.php:172
+#: application/views/logbookadvanced/edit.php:151
+#: application/views/logbookadvanced/edit.php:159
+#: application/views/logbookadvanced/edit.php:165
+#: application/views/logbookadvanced/edit.php:171
 #: application/views/logbookadvanced/index.php:415
 #: application/views/logbookadvanced/index.php:426
 #: application/views/logbookadvanced/index.php:457
@@ -6729,6 +6785,10 @@ msgstr "はい"
 #: application/views/user/edit.php:928 application/views/user/edit.php:944
 #: application/views/user/edit.php:972 application/views/user/edit.php:1003
 #: application/views/user/edit.php:1033 application/views/user/edit.php:1058
+#: application/views/logbookadvanced/edit.php:152
+#: application/views/logbookadvanced/edit.php:160
+#: application/views/logbookadvanced/edit.php:166
+#: application/views/logbookadvanced/edit.php:172
 msgid "No"
 msgstr "いいえ"
 
@@ -7757,8 +7817,8 @@ msgid "Received"
 msgstr ""
 
 #: application/views/dashboard/index.php:355
-#: application/views/logbookadvanced/edit.php:153
-#: application/views/logbookadvanced/edit.php:173
+#: application/views/logbookadvanced/edit.php:152
+#: application/views/logbookadvanced/edit.php:172
 #: application/views/logbookadvanced/index.php:416
 #: application/views/logbookadvanced/index.php:427
 #: application/views/logbookadvanced/index.php:458
@@ -7789,7 +7849,8 @@ msgstr ""
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764
+#: src/QSLManager/QSO.php:764 application/views/logbookadvanced/edit.php:153
+#: application/views/logbookadvanced/edit.php:173
 msgid "Requested"
 msgstr ""
 
@@ -9673,82 +9734,101 @@ msgstr ""
 msgid "Clublog Received"
 msgstr ""
 
+#: application/views/logbookadvanced/edit.php:37
 #: application/views/logbookadvanced/edit.php:38
 msgid "Contest Exch (S)"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:90
+#: application/views/logbookadvanced/edit.php:89
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:55
+#: application/views/logbookadvanced/edit.php:90
 msgid "SAT Mode"
 msgstr ""
 
+#: application/views/logbookadvanced/edit.php:92
 #: application/views/logbookadvanced/edit.php:93
 msgid "Band TX"
 msgstr ""
 
+#: application/views/logbookadvanced/edit.php:105
 #: application/views/logbookadvanced/edit.php:106
 msgid "Band RX"
 msgstr ""
 
+#: application/views/logbookadvanced/edit.php:153
+#: application/views/logbookadvanced/edit.php:160
+#: application/views/logbookadvanced/edit.php:166
+#: application/views/logbookadvanced/edit.php:173
+#: application/views/logbookadvanced/index.php:397
+#: application/views/logbookadvanced/index.php:648
 #: application/views/logbookadvanced/edit.php:154
 #: application/views/logbookadvanced/edit.php:161
 #: application/views/logbookadvanced/edit.php:167
 #: application/views/logbookadvanced/edit.php:174
-#: application/views/logbookadvanced/index.php:397
-#: application/views/logbookadvanced/index.php:648
 msgid "Invalid"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:155
-#: application/views/logbookadvanced/edit.php:175
+#: application/views/logbookadvanced/edit.php:154
+#: application/views/logbookadvanced/edit.php:174
 #: application/views/logbookadvanced/index.php:429
 #: application/views/logbookadvanced/index.php:471
 #: application/views/logbookadvanced/index.php:493
 #: application/views/logbookadvanced/index.php:515
+#: application/views/logbookadvanced/edit.php:155
+#: application/views/logbookadvanced/edit.php:175
 msgid "Verified"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:191
+#: application/views/logbookadvanced/edit.php:190
 #: application/views/qso/edit_ajax.php:330 application/views/qso/index.php:437
+#: application/views/logbookadvanced/edit.php:191
 msgid "NONE"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:192
+#: application/views/logbookadvanced/edit.php:191
 #: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:438
+#: application/views/logbookadvanced/edit.php:192
 msgid "African Italy"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:193
+#: application/views/logbookadvanced/edit.php:192
 #: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:439
+#: application/views/logbookadvanced/edit.php:193
 msgid "Bear Island"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:194
+#: application/views/logbookadvanced/edit.php:193
 #: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:440
+#: application/views/logbookadvanced/edit.php:194
 msgid "European Turkey"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:195
+#: application/views/logbookadvanced/edit.php:194
 #: application/views/qso/edit_ajax.php:334 application/views/qso/index.php:441
+#: application/views/logbookadvanced/edit.php:195
 msgid "ITU Vienna"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:196
+#: application/views/logbookadvanced/edit.php:195
 #: application/views/qso/edit_ajax.php:335 application/views/qso/index.php:442
+#: application/views/logbookadvanced/edit.php:196
 msgid "Kosovo"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:197
+#: application/views/logbookadvanced/edit.php:196
 #: application/views/qso/edit_ajax.php:336 application/views/qso/index.php:443
+#: application/views/logbookadvanced/edit.php:197
 msgid "Shetland Islands"
 msgstr ""
 
-#: application/views/logbookadvanced/edit.php:198
+#: application/views/logbookadvanced/edit.php:197
 #: application/views/qso/edit_ajax.php:337 application/views/qso/index.php:444
+#: application/views/logbookadvanced/edit.php:198
 msgid "Sicily"
 msgstr ""
 
+#: application/views/logbookadvanced/edit.php:200
 #: application/views/logbookadvanced/edit.php:201
 msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "

@@ -8,7 +8,7 @@
 # Jörg Dorgeist <wavelog@dj7nt.de>, 2024, 2025.
 # Florian Wolters <wavelog@df2et.de>, 2024, 2025.
 # Byt3 <falko@205er.de>, 2024.
-# Kim - DG9VH <kim.huebel@gmail.com>, 2024.
+# Kim - DG9VH <kim.huebel@gmail.com>, 2024, 2025.
 # Fabian Berg <80885850+HB9HIL@users.noreply.github.com>, 2024.
 # Rasmus <DL4BS@users.noreply.translate.wavelog.org>, 2024.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2024, 2025.
@@ -27,10 +27,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-12 11:18+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2025-08-14 16:26+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -142,7 +142,7 @@ msgstr ""
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
-msgstr "Das ist dir nicht gestattet!"
+msgstr "Das ist Dir nicht gestattet!"
 
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:162
@@ -2049,11 +2049,11 @@ msgstr "OQRS-Anforderungen"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "QSO-Übereinstimmung erfolgreich gelöscht."
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "QSO-Übereinstimmung erfolgreich hinzugefügt."
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -11601,7 +11601,7 @@ msgstr "Zur Warteschlange hinzufügen"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "QSO-Übereinstimmung"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11677,41 +11677,45 @@ msgstr "Anfrage erledigt"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "Anstehende Anfragen"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "Anfrage zurückgewiesen"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "Während der Erzeugung der Anfrage ist ein Fehler aufgetreten"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
-msgstr ""
+msgstr "Achtung! Möchtest Du die markierten OQRS-Anfragen wirklich löschen?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
 msgstr ""
+"Achtung! Möchtest Du die markierten OQRS-Anfragen wirklich zurückweisen?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
 msgstr ""
+"Achtung! Möchtest Du die markierten OQRS-Anfragen wirklich kennzeichnen?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"Achtung! Möchtest Du die markierten OQRS-Anfragen wirklich zur Warteschlange "
+"hinzufügen?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "OQRS Status Informationen"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr ""
+msgstr "Achtung! Möchtest Du die QSO-Übereinstimmung wirklich löschen?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
@@ -11725,17 +11729,17 @@ msgstr "OQRS-Status"
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "Erledigt / gesendet"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "Anstehend"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "Zurückgewiesen"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
@@ -11747,7 +11751,7 @@ msgstr "Markiere als erledigt"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "Zurückweisen"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
@@ -11772,29 +11776,31 @@ msgstr "Log Check"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "QSO-Übereinstimmung"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "Die Anfrage ist derzeit offen und muss von Dir geprüft werden."
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"Die Anfrage ist nicht im Log enthalten, daher musst Du Dein Log überprüfen "
+"und die Anfrage bearbeiten."
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "Die Anfrage wurde bearbeitet und die QSL versendet."
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "Die Anfrage steht zur Bearbeitung an."
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "Die Anfrage wurde zurückgewiesen und wird nicht bearbeitet."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
@@ -13274,8 +13280,8 @@ msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
-"Achtung! Du hast entweder einen Contest ausgewählt aber keine Verbindung "
-"geloggt oder hast Contest-Daten geloggt ohne einen Contest auszuwählen."
+"Achtung! Du hast entweder einen Contest ausgewählt aber keinen Exchange "
+"eingetragen, oder hast Contest-Daten geloggt ohne einen Contest auszuwählen."
 
 #: application/views/simplefle/index.php:36
 msgid ""
@@ -14812,21 +14818,26 @@ msgstr ""
 
 #: application/views/user/edit.php:713
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "Automatische Bestimmung von OQRS-Übereinstimmungen"
 
 #: application/views/user/edit.php:718
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Wenn diese Option aktiviert ist, wird ein automatischer OQRS-Abgleich "
+"durchgeführt, und das System versucht, eingehende Anfragen automatisch mit "
+"vorhandenen Protokollen abzugleichen."
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Automatischer OQRS-Abgleich für direkte Anfragen"
 
 #: application/views/user/edit.php:727
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"Wenn diese Option aktiviert ist, erfolgt eine automatischer OQRS-Abgleich "
+"für direkte Anfragen."
 
 #: application/views/user/edit.php:743
 msgid "Default Values"
