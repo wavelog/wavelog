@@ -424,17 +424,10 @@ class Oqrs_model extends CI_Model {
 		$sql = 'select * from ' . $this->config->item('table_name') . ' thcv
 		 join station_profile on (thcv.station_id = station_profile.station_id and station_profile.oqrs=\'1\')
 		 left join oqrs on oqrs.qsoid = thcv.COL_PRIMARY_KEY
-		 where (col_band = ? or col_prop_mode = ?)
-		 and date(col_time_on) = ?
-		 and (col_mode = ?
-		 or col_submode = ?)
+		 where date(col_time_on) = ?
 		 and timediff(time(col_time_on), ?) <= 3000
 		 and station_profile.user_id = ?';
-		$binding[] = $band;
-		$binding[] = $band;
 		$binding[] = $date;
-		$binding[] = $mode;
-		$binding[] = $mode;
 		$binding[] = $time;
 		$binding[] = $this->session->userdata('user_id');
 
