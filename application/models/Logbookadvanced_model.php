@@ -816,6 +816,7 @@ class Logbookadvanced_model extends CI_Model {
 			case "clublogreceived": $column = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS'; break;
 			case "region": $column = 'COL_REGION'; break;
 			case "distance": $column = 'COL_DISTANCE'; break;
+			case "dok": $column = 'COL_DARC_DOK'; break;
 			case "stxstring": $column = 'COL_STX_STRING'; break;
 			case "rstr": $column = 'COL_RST_RCVD'; break;
 			case "rsts": $column = 'COL_RST_SENT'; break;
@@ -824,6 +825,9 @@ class Logbookadvanced_model extends CI_Model {
 
 		$this->db->trans_start();
 
+		if ($column == 'COL_DARC_DOK') {
+			$value=strtoupper($value);
+		}
 		if ($column == 'station_id') {
 
 			$this->load->model('stations');
