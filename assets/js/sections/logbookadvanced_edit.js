@@ -204,6 +204,9 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'distance') {
 		value = $("#editDistanceInput").val();
 	}
+	if (column == 'dok') {
+		value = $("#editDokInput").val();
+	}
 
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/saveBatchEditQsos',
@@ -258,6 +261,7 @@ function changeEditType(type) {
 	$('#editClublog').hide();
 	$('#editDistanceInputLabel').hide();
 	$('#editDistanceInput').hide();
+	$('#editDokInput').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -309,6 +313,8 @@ function changeEditType(type) {
 		$('#editClublog').show();
 	} else if (type == "") {
 		$('#saveButton').prop("disabled", true);
+	} else if (type == "dok") {
+		$('#editDokInput').show();
 	} else if (type == "distance") {
 		$('#editDistanceInput').show();
 		$('#editDistanceInputLabel').show();
