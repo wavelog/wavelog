@@ -4079,8 +4079,8 @@ class Logbook_model extends CI_Model {
 			$input_submode = $submode;
 		}
 
-		$input_submode = (($input_submode ?? '') == '') ? null : $input_submode;	// Make Sure submode is NULL if empty
-		$input_mode = (($input_mode ?? '') == '') ? null : $input_mode;	// Make Sure mode is NULL if empty
+		$input_submode = (($input_submode ?? '') == '') ? null : strtoupper($input_submode);	// Make Sure submode is NULL if empty
+		$input_mode = (($input_mode ?? '') == '') ? null : strtoupper($input_mode);	// Make Sure mode is NULL if empty
 
 
 		// Check if QSO is already in the database
