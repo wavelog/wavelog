@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-12 12:15+0000\n"
+"PO-Revision-Date: 2025-08-16 05:25+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -2038,11 +2038,11 @@ msgstr "Pedidos OQRS"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "Correspondência do contacto eliminada com sucesso."
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "Correspondência o contacto adicionada com sucesso."
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -11586,7 +11586,7 @@ msgstr "Adicionar à fila de impressão"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "Corresponder contacto"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11662,41 +11662,47 @@ msgstr "Pedido concluído"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "Pedido pendente"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "Pedido rejeitado"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "Ocorreu um erro ao fazer o pedido"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
 msgstr ""
+"Aviso! Tem a certeza de que deseja eliminar o(s) pedido(s) OQRS marcado(s)?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
 msgstr ""
+"Aviso! Tem a certeza de que deseja rejeitar o(s) pedido(s) OQRS marcado(s)?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
 msgstr ""
+"Aviso! Tem a certeza de que quer marcar o(s) pedido(s) OQRS assinalado(s)?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"Aviso! Tem a certeza de que deseja adicionar o(s) pedido(s) OQRS marcado(s) "
+"à fila?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "Informação de Status OQRS"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
 msgstr ""
+"Aviso! Tem a certeza de que deseja eliminar a correspondência do contacto?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
@@ -11710,17 +11716,17 @@ msgstr "Estado do OQRS"
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "Concluído / enviado"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "Pendente"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "Rejeitado"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
@@ -11732,7 +11738,7 @@ msgstr "Marcar como feito"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "Rejeitar"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
@@ -11757,29 +11763,31 @@ msgstr "Verificar log"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "Correspondência do contacto"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "O pedido está atualmente aberto e precisa ser revisto por si."
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"A solicitação não está no logbook, precisa verificar seu log e processar a "
+"solicitação."
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "O pedido foi processado e a QSL foi enviada."
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "O pedido ainda está a ser processado."
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "O pedido foi rejeitado e não será processado."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
@@ -14785,21 +14793,26 @@ msgstr ""
 
 #: application/views/user/edit.php:713
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "Correspondência automática OQRS"
 
 #: application/views/user/edit.php:718
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Se isto estiver ativado, a correspondência automática de OQRS acontecerá, e "
+"o sistema tentará corresponder automaticamente os pedidos recebidos com os "
+"registos log existentes."
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Correspondência automática de OQRS para pedidos via direto"
 
 #: application/views/user/edit.php:727
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"Se isto estiver ativado, a correspondência automática de OQRS para pedidos "
+"via direto acontecerá."
 
 #: application/views/user/edit.php:743
 msgid "Default Values"
