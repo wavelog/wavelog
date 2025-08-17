@@ -28,7 +28,6 @@
 				 			<th scope="col"><?= __("Callsign"); ?></th>
 							<th scope="col"><?= __("Valid from"); ?></th>
 							<th scope="col"><?= __("Valid till"); ?></th>
-							<th scope="col"><?= __("Options"); ?></th>
 						</tr>
 					</thead>
 				 
@@ -45,8 +44,6 @@
 								?>
 								<td><?php echo $vf; ?></td>
 								<td><?php echo $vt; ?></td>
-								<td>
-								</td>
 							</tr>
 						<?php }} ?>
 
