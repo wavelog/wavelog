@@ -125,7 +125,7 @@ class Dcl extends CI_Controller {
 
 				$this->load->model('Logbook_model');
 
-				$data['qsos'] = $this->Logbook_model->get_dcl_qsos_to_upload($data['station_profile']->station_id);
+				$data['qsos'] = $this->Logbook_model->get_dcl_qsos_to_upload($data['station_profile']->station_id,$key_info['vf'],$key_info['vt']);
 
 				// Nothing to upload
 				if(empty($data['qsos']->result())){
@@ -148,7 +148,7 @@ class Dcl extends CI_Controller {
 				}
 
 				// Build Filename
-				$filename_for_saving = './uploads/dcl/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($key_info))."-".date("Y-m-d-H-i-s")."-wavelog.adif";
+				$filename_for_saving = './uploads/dcl/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($key_info['token']))."-".date("Y-m-d-H-i-s")."-wavelog.adif";
 
 				$fp = fopen($filename_for_saving, "w");
 				fwrite($fp, $adif_to_save);

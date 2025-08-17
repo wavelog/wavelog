@@ -5415,14 +5415,17 @@ class Logbook_model extends CI_Model {
 		return $query->result();
 	}
 
-	function get_dcl_qsos_to_upload($station_id) {
+	function get_dcl_qsos_to_upload($station_id, $from, $till) {
 
 		$sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
 			' left join station_profile on thcv.station_id = station_profile.station_id' .
 			' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
 			' where thcv.station_id = ?' .
-			' and (COL_DCL_QSL_SENT not in ("Y","I") OR COL_DCL_QSL_SENT is null)';
+			' and (COL_DCL_QSL_SENT not in ("Y","I") OR COL_DCL_QSL_SENT is null)'.
+			' and COL_QSO_DATE>? and COL_QSO_DATE<?';
 		$binding[] = $station_id;
+		$binding[] = $from;
+		$binding[] = $till;
 
 		$query = $this->db->query($sql, $binding);
 		return $query;

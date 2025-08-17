@@ -20,8 +20,11 @@ class Dcl_model extends CI_Model {
 		$this->load->model('user_options_model');
 		$userkeys=$this->user_options_model->get_options('dcl', array('option_name'=>'dcl_key','option_key'=>'key'), $user_id)->result();
 		foreach ($userkeys->Callsigns as $item) {
-			if (isset($item['callsign']) && $item['callsign'] === $callsign) {
-				return $userkeys->UserKeys->token;
+			if (isset($item['callsign']) && strtoupper($item['callsign']) === strtoupper($callsign)) {
+				$key['token']=$userkeys->UserKeys->token;
+				$key['vt']=strtotime($item->startDate);
+				$key['vf']=strtotime($item->endDate ?? '2099-12-31');
+				return $key;
 			}
 		}
 		return '';
