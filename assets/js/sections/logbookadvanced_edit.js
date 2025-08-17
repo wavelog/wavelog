@@ -198,11 +198,17 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'region') {
 		value = $("#editRegion").val();
 	}
-	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'qslmsg' || column == 'stationpower' || column == 'stxstring') {
+	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'qslmsg' || column == 'stationpower' || column == 'stxstring' || column == 'rsts' || column == 'rstr') {
 		value = $("#editTextInput").val();
 	}
 	if (column == 'distance') {
 		value = $("#editDistanceInput").val();
+	}
+	if (column == 'dok') {
+		value = $("#editDokInput").val();
+	}
+	if (column == 'gridsquare') {
+		value = $("#editGridsquareInput").val();
 	}
 
 	$.ajax({
@@ -258,6 +264,8 @@ function changeEditType(type) {
 	$('#editClublog').hide();
 	$('#editDistanceInputLabel').hide();
 	$('#editDistanceInput').hide();
+	$('#editDokInput').hide();
+	$('#editGridsquareInput').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -301,7 +309,7 @@ function changeEditType(type) {
 		$('#editEqsl').show();
 	} else if (type == "continent") {
 		$('#editContinent').show();
-	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == "stationpower" || type == 'stxstring') {
+	} else if (type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg" || type == "stationpower" || type == 'stxstring' || type == 'rsts' || type == 'rstr') {
 		$('#editTextInput').show();
 	} else if (type == "region") {
 		$('#editRegion').show();
@@ -309,6 +317,10 @@ function changeEditType(type) {
 		$('#editClublog').show();
 	} else if (type == "") {
 		$('#saveButton').prop("disabled", true);
+	} else if (type == "dok") {
+		$('#editDokInput').show();
+	} else if (type == "gridsquare") {
+		$('#editGridsquareInput').show();
 	} else if (type == "distance") {
 		$('#editDistanceInput').show();
 		$('#editDistanceInputLabel').show();

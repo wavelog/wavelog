@@ -48,7 +48,7 @@ class Widgets extends CI_Controller {
 
 		// date format
 		$data['date_format'] = $this->config->item('qso_date_format'); // date format from /config/wavelog.php
-		
+
 		$this->load->model('logbook_model');
 		$this->load->model('logbooks_model');
 		$this->load->model('stationsetup_model');
@@ -72,32 +72,32 @@ class Widgets extends CI_Controller {
 			$user_id = $this->stationsetup_model->public_slug_exists_userid($logbook_slug);
 			$widget_options = $this->get_qso_widget_options($user_id);
 
-			$data['show_time'] = $widget_options->display_qso_time;			
+			$data['show_time'] = $widget_options->display_qso_time;
 			$data['last_qsos_list'] = $this->logbook_model->get_last_qsos($qso_count, $logbooks_locations_array);
 
 			$this->load->view('widgets/qsos', $data);
 		}
 	}
 
-	public function oqrs($user_callsign = 'CALL MISSING') {
+	public function oqrs($slug) {
 		$this->load->model('oqrs_model');
-		$stations = $this->oqrs_model->get_oqrs_stations();
+		$this->load->model('publicsearch');
+		$this->load->model('stationsetup_model');
+		$this->load->model('user_model');
+		
+		$data['slug'] = $this->security->xss_clean($slug);
 
-		if ($stations->result() === NULL) {
+		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($data['slug']);
+        if ($logbook_id == false) {
 			show_404(__("No stations found that are using Wavelog OQRS."));
 			return;
-		}
+        }
+		$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
+		$data['logo_url'] = site_url('visitor') . '/' . $data['slug'];
 
-		$slug = $this->input->get('slug', TRUE);
-		if ($slug != null) {
-			$data['logo_url'] = base_url() . 'index.php/visitor/' . $slug;
-		} else {
-			$data['logo_url'] = 'https://github.com/wavelog/wavelog';
-		}
-
-		$this->load->model('themes_model');
 		$theme = $this->input->get('theme', TRUE);
 		if ($theme != null) {
+			$this->load->model('themes_model');
 			if (($this->themes_model->get_theme_mode($theme) ?? '') != '') {
 				$data['theme'] = $theme;
 			} else {
@@ -107,7 +107,8 @@ class Widgets extends CI_Controller {
 			$data['theme'] = $this->config->item('option_theme');
 		}
 
-		$data['user_callsign'] = strtoupper($this->security->xss_clean($user_callsign));
+		$user = $this->user_model->get_by_id($data['userid'])->row();
+		$data['user_callsign'] = strtoupper($user->user_callsign);
 		$this->load->view('widgets/oqrs', $data);
 	}
 

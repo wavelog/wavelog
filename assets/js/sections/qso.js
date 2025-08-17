@@ -27,7 +27,50 @@ function getUTCTimeStamp(el) {
 
 function getUTCDateStamp(el) {
 	var now = new Date();
-	$(el).attr('value', ("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
+	var day = ("0" + now.getUTCDate()).slice(-2);
+	var month = ("0" + (now.getUTCMonth() + 1)).slice(-2);
+	var year = now.getUTCFullYear();
+	var short_year = year.toString().slice(-2);
+
+	// Format the date based on user_date_format passed from PHP
+	var formatted_date;
+	switch (user_date_format) {
+		case "d/m/y":
+			formatted_date = day + "/" + month + "/" + short_year;
+			break;
+		case "d/m/Y":
+			formatted_date = day + "/" + month + "/" + year;
+			break;
+		case "m/d/y":
+			formatted_date = month + "/" + day + "/" + short_year;
+			break;
+		case "m/d/Y":
+			formatted_date = month + "/" + day + "/" + year;
+			break;
+		case "d.m.Y":
+			formatted_date = day + "." + month + "." + year;
+			break;
+		case "y/m/d":
+			formatted_date = short_year + "/" + month + "/" + day;
+			break;
+		case "Y-m-d":
+			formatted_date = year + "-" + month + "-" + day;
+			break;
+		case "M d, Y":
+			// Need to get the month name abbreviation
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + year;
+			break;
+		case "M d, y":
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + short_year;
+			break;
+		default:
+			// Default to d-m-Y format as shown in the PHP code
+			formatted_date = day + "-" + month + "-" + year;
+	}
+
+	$(el).attr('value', formatted_date);
 }
 
 
@@ -245,14 +288,120 @@ $("#reset_start_time").on("click", function () {
 	});
 
 	// Update the start date
-	$("#start_date").val(
-		("0" + now.getUTCDate()).slice(-2) +
-		"-" +
-		("0" + (now.getUTCMonth() + 1)).slice(-2) +
-		"-" +
-		now.getUTCFullYear()
-	);
+	var day = ("0" + now.getUTCDate()).slice(-2);
+	var month = ("0" + (now.getUTCMonth() + 1)).slice(-2);
+	var year = now.getUTCFullYear();
+	var short_year = year.toString().slice(-2);
+	var formatted_date;
+	switch (user_date_format) {
+		case "d/m/y":
+			formatted_date = day + "/" + month + "/" + short_year;
+			break;
+		case "d/m/Y":
+			formatted_date = day + "/" + month + "/" + year;
+			break;
+		case "m/d/y":
+			formatted_date = month + "/" + day + "/" + short_year;
+			break;
+		case "m/d/Y":
+			formatted_date = month + "/" + day + "/" + year;
+			break;
+		case "d.m.Y":
+			formatted_date = day + "." + month + "." + year;
+			break;
+		case "y/m/d":
+			formatted_date = short_year + "/" + month + "/" + day;
+			break;
+		case "Y-m-d":
+			formatted_date = year + "-" + month + "-" + day;
+			break;
+		case "M d, Y":
+			// Need to get the month name abbreviation
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + year;
+			break;
+		case "M d, y":
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + short_year;
+			break;
+		default:
+			// Default to d-m-Y format as shown in the PHP code
+			formatted_date = day + "-" + month + "-" + year;
+	}
+	$("#start_date").val(formatted_date);
 });
+
+function parseUserDate(user_provided_date) {	// creates JS-Date out of user-provided date with user_date_format
+	var parts, day, month, year;
+	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	switch (user_date_format) {
+		case "d/m/y":
+			parts = user_provided_date.split("/");
+			day = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			year = 2000 + parseInt(parts[2], 10);
+			break;
+		case "d/m/Y":
+			parts = user_provided_date.split("/");
+			day = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			year = parseInt(parts[2], 10);
+			break;
+		case "m/d/y":
+			parts = user_provided_date.split("/");
+			month = parseInt(parts[0], 10) - 1;
+			day = parseInt(parts[1], 10);
+			year = 2000 + parseInt(parts[2], 10);
+			break;
+		case "m/d/Y":
+			parts = user_provided_date.split("/");
+			month = parseInt(parts[0], 10) - 1;
+			day = parseInt(parts[1], 10);
+			year = parseInt(parts[2], 10);
+			break;
+		case "d.m.Y":
+			parts = user_provided_date.split(".");
+			day = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			year = parseInt(parts[2], 10);
+			break;
+		case "y/m/d":
+			parts = user_provided_date.split("/");
+			year = 2000 + parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			day = parseInt(parts[2], 10);
+			break;
+		case "Y-m-d":
+			parts = user_provided_date.split("-");
+			year = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			day = parseInt(parts[2], 10);
+			break;
+		case "M d, Y":
+			// Example: Jul 28, 2025
+			parts = user_provided_date.replace(',', '').split(' ');
+			month = monthNames.indexOf(parts[0]);
+			if (month === -1) return null;
+			day = parseInt(parts[1], 10);
+			year = parseInt(parts[2], 10);
+			break;
+		case "M d, y":
+			// Example: Jul 28, 25
+			parts = user_provided_date.replace(',', '').split(' ');
+			month = monthNames.indexOf(parts[0]);
+			if (month === -1) return null;
+			day = parseInt(parts[1], 10);
+			year = 2000 + parseInt(parts[2], 10);
+			break;
+		default: // fallback "d-m-Y"
+			parts = user_provided_date.split("-");
+			day = parseInt(parts[0], 10);
+			month = parseInt(parts[1], 10) - 1;
+			year = parseInt(parts[2], 10);
+	}
+	if (isNaN(day) || day < 1 || day > 31 || isNaN(month) || month < 0 || month > 11 || isNaN(year)) return null; 
+	return new Date(year, month, day);
+}
 
 // Event listener for resetting end time
 $("#reset_end_time").on("click", function () {
@@ -287,6 +436,7 @@ $(document).on("click", "#fav_recall", function (event) {
 	$('#frequency').val(favs[this.innerText].frequency).trigger("change");
 	$('#selectPropagation').val(favs[this.innerText].prop_mode);
 	$('#mode').val(favs[this.innerText].mode).on("change");
+	setRst($('.mode').val());
 });
 
 
@@ -418,11 +568,11 @@ function start_az_ele_ticker(tle) {
 	};
 
 	function updateAzEl() {
-		let dateParts=$('#start_date').val().split("-");
+		let dateParts=parseUserDate($('#start_date').val());
 		let timeParts=$("#start_time").val().split(":");
 		try {
 			var time = new Date(Date.UTC(
-				parseInt(dateParts[2]),parseInt(dateParts[1])-1,parseInt(dateParts[0]),
+				dateParts.getFullYear(),dateParts.getMonth(),dateParts.getDate(),
 				parseInt(timeParts[0]),parseInt(timeParts[1]),(parseInt(timeParts[2] ?? 0))
 			));
 			if (isNaN(time.getTime())) {
@@ -777,9 +927,6 @@ $("#callsign").on("focusout", function () {
 
 		$("#noticer").fadeOut(1000);
 
-		// Temp store the callsign
-		var temp_callsign = $(this).val();
-
 		/* Find and populate DXCC */
 		$('.callsign-suggest').hide();
 
@@ -788,16 +935,23 @@ $("#callsign").on("focusout", function () {
 		} else {
 			var json_band = $("#band").val();
 		}
-		var json_mode = $("#mode").val();
+		const json_mode = $("#mode").val();
 
-		var find_callsign = $(this).val().toUpperCase();
-		var callsign = find_callsign;
+		let find_callsign = $(this).val().toUpperCase();
+		let callsign = find_callsign;
+		let startDate = $('#start_date').val();
+		if (startDate.includes('/')) {
+			startDate = startDate.replaceAll('/', '_');
+		}
+		startDate = encodeURIComponent(startDate);
+		const stationProfile = $('#stationProfile').val();
 
 		find_callsign = find_callsign.replace(/\//g, "-");
 		find_callsign = find_callsign.replaceAll('Ø', '0');
+		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}`;
 
 		// Replace / in a callsign with - to stop urls breaking
-		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val() + '/' + last_qsos_count, async function (result) {
+		lookupCall = $.getJSON(url, async function (result) {
 
 			// Make sure the typed callsign and json result match
 			if ($('#callsign').val().toUpperCase().replaceAll('Ø', '0') == result.callsign) {

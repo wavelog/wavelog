@@ -319,38 +319,6 @@ class Options extends CI_Controller {
 		}
 	}
 
-	function oqrs() {
-
-		$data['page_title'] = __("Wavelog Options");
-		$data['sub_heading'] = __("OQRS Options");
-
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('options/oqrs');
-		$this->load->view('interface_assets/footer');
-	}
-
-	function oqrs_save() {
-
-		$data['page_title'] = __("Wavelog Options");
-		$data['sub_heading'] = __("OQRS Options");
-
-		$this->load->helper(array('form', 'url'));
-
-		$this->load->library('form_validation');
-
-		$global_oqrs_text = $this->optionslib->update('global_oqrs_text', $this->input->post('global_oqrs_text'), null);
-
-		$global_oqrs_text = $this->optionslib->update('groupedSearch', $this->input->post('groupedSearch'), null);
-
-		$global_oqrs_text = $this->optionslib->update('groupedSearchShowStationName', $this->input->post('groupedSearchShowStationName'), null);
-
-		if($global_oqrs_text == TRUE) {
-			$this->session->set_flashdata('success', __("OQRS options have been saved."));
-		}
-
-		redirect('/options/oqrs');
-	}
-
 	function sendTestMail() {
 		$this->load->model('user_model');
 

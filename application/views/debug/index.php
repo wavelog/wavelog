@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <td><?= __("Base URL"); ?></td>
-                            <td><span id="baseUrl"><a href="<?php echo $this->config->item('base_url') ?>" target="_blank"><?php echo $this->config->item('base_url'); ?></a></span> <span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onclick='copyURL("<?php echo $this->config->item('base_url'); ?>")'><i class="copy-icon fas fa-copy"></span></td>
+                            <td><span id="baseUrl"><a href="<?php echo site_url(); ?>" target="_blank"><?php echo site_url(); ?></a></span> <span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onclick='copyURL("<?php echo site_url(); ?>")'><i class="copy-icon fas fa-copy"></span></td>
                         </tr>
                         <tr>
                             <td><?= __("Migration"); ?></td>
@@ -681,6 +681,7 @@
     <?= __("Greek"); ?>
     <?= __("Hungarian"); ?>
     <?= __("Italian"); ?>
+    <?= __("Japanese"); ?>
     <?= __("Latvian"); ?>
     <?= __("Lithuanian"); ?>
     <?= __("Montenegrin"); ?>
