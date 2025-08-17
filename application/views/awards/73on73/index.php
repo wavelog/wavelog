@@ -8,6 +8,7 @@
             var lang_award_info_ln2 = "<?= __("Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 (FUNcube-1) amateur radio satellite."); ?>";
             var lang_award_info_ln3 = "<?= sprintf(__("For more information, please visit: %s."), "<a href='https://amsat-uk.org/funcube/73-on-73-award/' target='_blank'>https://amsat-uk.org/funcube/73-on-73-award/</a>"); ?>";
             var lang_award_info_ln4 = "";
+            var lang_award_info_ln5 = "Fields taken for this Award: PROP_MODE=SAT, SAT_NAME='AO-73'";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
