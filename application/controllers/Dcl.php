@@ -7,18 +7,22 @@ class Dcl extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
 			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
 
+	public function save_key() {
+		$this->load->model('Dcl_model');
+		$this->Dcl_model->store_key($call);
+	}
 	public function key_import() {
 		$this->load->library('Permissions');
-		$this->load->model('user_model');
 		$this->load->model('dcl_model');
 		$data['date_format']=$this->session->userdata('user_date_format') ?? $this->config->item('qso_date_format');
-		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$sig=($this->input->get('sig',true) ?? '');
 		$token=($this->input->get('token',true) ?? '');
@@ -29,6 +33,7 @@ class Dcl extends CI_Controller {
 			$data['token'] = $token;
 			if ($data['is_valid']) {
 				$data['dcl_info']=$this->dcl_model->get_dcl_info($token);
+				$this->dcl_model->store_key(json_encode($data['dcl_info'] ?? ''));
 			} else {
 				$data['dcl_info']='';
 			}
@@ -47,13 +52,13 @@ class Dcl extends CI_Controller {
 
 		// Load required models for page generation
 		$this->load->model('Dcl_model');
+		$data['date_format']=$this->session->userdata('user_date_format') ?? $this->config->item('qso_date_format');
 
 		// Get Array of the logged in users LoTW certs.
 		$dclkeys=($this->Dcl_model->dcl_keys($this->session->userdata('user_id')) ?? '');
 		$i=0;
 		foreach ($dclkeys as $dclkey) {
 			$data['dcl_keys'][$i] = json_decode($dclkey->option_value ?? '');
-			$data['dcl_keys'][$i]->call = $dclkey->option_key ?? '';
 			$i++;
 		}
 
@@ -113,17 +118,8 @@ class Dcl extends CI_Controller {
 				$this->load->model('Dcl_model');
 				$data['station_profile'] = $station_profile;
 				$key_info = $this->Dcl_model->find_key($station_profile->station_callsign, $station_profile->user_id);
-				if (($key_info ?? '') == '') {
-					continue;
-				}
-
-				$data['dcl_key_info']=new stdClass();
-				$data['dcl_key_info']->call = $key_info[0]->option_key ?? '';
-				$data['dcl_key_info'] = json_decode($key_info[0]->option_value ?? '');
-
 				// If Station Profile has no DCL Key continue on.
-				if (($data['dcl_key_info']->call ?? '') == '') {
-					echo $station_profile->station_callsign.": No DCL Key for station callsign found.<br>";
+				if (($key_info ?? '') == '') {
 					continue;
 				}
 
@@ -152,7 +148,7 @@ class Dcl extends CI_Controller {
 				}
 
 				// Build Filename
-				$filename_for_saving = './uploads/dcl/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($data['dcl_key_info']->call))."-".date("Y-m-d-H-i-s")."-wavelog.adif";
+				$filename_for_saving = './uploads/dcl/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($key_info))."-".date("Y-m-d-H-i-s")."-wavelog.adif";
 
 				$fp = fopen($filename_for_saving, "w");
 				fwrite($fp, $adif_to_save);
@@ -196,7 +192,6 @@ class Dcl extends CI_Controller {
 
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
-					$this->Dcl_model->last_upload($data['dcl_key_info']->call, "Upload failed", $this->session->userdata('user_id'));
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo "Timeout reached. Stopping subsequent uploads.<br>";
 						break;
@@ -210,7 +205,6 @@ class Dcl extends CI_Controller {
 				if ($pos === false) {
 					// Upload of TQ8 Failed for unknown reason
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
-					$this->Dcl_model->last_upload($data['dcl_key_info']->call, "Upload failed", $this->session->userdata('user_id'));
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo "Timeout reached. Stopping subsequent uploads.<br>";
 						break;
@@ -219,7 +213,6 @@ class Dcl extends CI_Controller {
 					}
 				} else {
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful - ".$filename_for_saving."<br>";
-					$this->Dcl_model->last_upload($data['dcl_key_info']->call, "Success", $this->session->userdata('user_id'));
 					// Mark QSOs as Sent
 					foreach ($qso_id_array as $qso_number) {
 						// todo: uncomment when ready
@@ -243,12 +236,11 @@ class Dcl extends CI_Controller {
 		echo $this->dcl_download($sync_user_id);
 	}
 
-	public function delete_key($call) {
-		$call=str_replace('_','/',xss_clean($call));
+	public function delete_key() {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$this->load->model('Dcl_model');
-		$this->Dcl_model->delete_key($call);
+		$this->Dcl_model->delete_key();
 		$this->session->set_flashdata('success', __("Key Deleted."));
 		redirect('dcl');
 	}
@@ -467,73 +459,73 @@ class Dcl extends CI_Controller {
 		$this->load->model('logbook_model');
 		$this->load->model('Stations');
 
-		$query = $this->user_model->get_all_lotw_users();
+		$query = $this->user_model->get_all_dcl_users();
 
 		if ($query->num_rows() >= 1) {
 			$result = '';
 
-			// Get URL for downloading LoTW
-			$url_query = $this->db->query('SELECT lotw_download_url FROM config');
+			// Get URL for downloading DCL
+			$url_query = $this->db->query('SELECT dcl_download_url FROM config');
 			$q = $url_query->row();
-			$lotw_base_url = $q->lotw_download_url;
+			$dcl_base_url = $q->dcl_download_url;
 
 			foreach ($query->result() as $user) {
 				if ( ($sync_user_id != null) && ($sync_user_id != $user->user_id) ) { continue; }
 				$station_ids=$this->Stations->all_station_ids_of_user($user->user_id);
 				if ($station_ids == '') { continue; } // User has no Station-ID! next one
 
-				// Validate that LoTW credentials are not empty
+				// Validate that DCL credentials are not empty
 				// TODO: We don't actually see the error message
-				if ($user->user_lotw_password == '') {
-					$result = "You have not defined your ARRL LoTW credentials!";
+				if ($user->user_dcl_password == '') {
+					$result = "You have not defined your ARRL DCL credentials!";
 					continue;
 				}
 
 				$config['upload_path'] = './uploads/';
-				$file = $config['upload_path'] . 'lotwreport_download_'.$user->user_id.'_auto.adi';
+				$file = $config['upload_path'] . 'dclreport_download_'.$user->user_id.'_auto.adi';
 				if (file_exists($file) && ! is_writable($file)) {
 					$result = "Temporary download file ".$file." is not writable. Aborting!";
 					continue;
 				}
 
-				// Get credentials for LoTW
-				$data['user_lotw_name'] = urlencode($user->user_lotw_name);
-				$data['user_lotw_password'] = urlencode($user->user_lotw_password);
+				// Get credentials for DCL
+				$data['user_dcl_name'] = urlencode($user->user_dcl_name);
+				$data['user_dcl_password'] = urlencode($user->user_dcl_password);
 
-				$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($user->user_id)));
+				$dcl_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->dcl_last_qsl_date($user->user_id)));
 
-				// Build URL for LoTW report file
-				$lotw_url = $lotw_base_url."?";
-				$lotw_url .= "login=" . $data['user_lotw_name'];
-				$lotw_url .= "&password=" . $data['user_lotw_password'];
-				$lotw_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
+				// Build URL for DCL report file
+				$dcl_url = $dcl_base_url."?";
+				$dcl_url .= "login=" . $data['user_dcl_name'];
+				$dcl_url .= "&password=" . $data['user_dcl_password'];
+				$dcl_url .= "&qso_query=1&qso_qsl='yes'&qso_qsldetail='yes'&qso_mydetail='yes'";
 
-				$lotw_url .= "&qso_qslsince=";
-				$lotw_url .= "$lotw_last_qsl_date";
+				$dcl_url .= "&qso_qslsince=";
+				$dcl_url .= "$dcl_last_qsl_date";
 
 				if (! is_writable(dirname($file))) {
 					$result = "Temporary download directory ".dirname($file)." is not writable. Aborting!";
 					continue;
 				}
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $lotw_url);
+				curl_setopt($ch, CURLOPT_URL, $dcl_url);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
 				if(curl_errno($ch)) {
-					$result = "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+					$result = "DCL download failed for user ".$data['user_dcl_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 					if (curl_errno($ch) == 28) {  // break on timeout
 						$result .= "<br>Timeout reached. Stopping subsequent downloads.";
 						break;
 					}
 					continue;
 				} else if(str_contains($content,"Username/password incorrect</I>")) {
-					$result = "LoTW download failed for user ".$data['user_lotw_name'].": Username/password incorrect";
+					$result = "DCL download failed for user ".$data['user_dcl_name'].": Username/password incorrect";
 					continue;
 				}
 				file_put_contents($file, $content);
 				if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
-					$result = "Downloaded LoTW report for user ".$data['user_lotw_name']." is invalid. Check your credentials.";
+					$result = "Downloaded DCL report for user ".$data['user_dcl_name']." is invalid. Check your credentials.";
 					continue;
 				}
 
@@ -542,7 +534,7 @@ class Dcl extends CI_Controller {
 			}
 			return $result;
 		} else {
-			return "No LoTW User details found to carry out matches.";
+			return "No DCL User details found to carry out matches.";
 		}
 	}
 

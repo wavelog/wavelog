@@ -18,17 +18,22 @@ class Dcl_model extends CI_Model {
 
 	function find_key($callsign, $user_id) {
 		$this->load->model('user_options_model');
-		return $this->user_options_model->get_options('dcl', array('option_name'=>'dcl_key','option_key'=>$callsign), $user_id)->result();
+		$userkeys=$this->user_options_model->get_options('dcl', array('option_name'=>'dcl_key','option_key'=>'key'), $user_id)->result();
+		foreach ($userkeys->Callsigns as $item) {
+			if (isset($item['callsign']) && $item['callsign'] === $callsign) {
+				return $userkeys->UserKeys->token;
+			}
+		}
+		return '';
 	}
 
-	function store_key($user_id, $callsign, $date_created, $date_expires, $qso_start_date, $qso_end_date, $cert_key, $general_cert) {
+	function store_key($key) {
+		$this->load->model('user_options_model');
+		$this->user_options_model->set_option('dcl', 'dcl_key', array('key'=>$key));
 	}
 
-	function update_key($user_id, $callsign, $dxcc, $date_created, $date_expires, $qso_start_date, $qso_end_date, $cert_key, $general_cert) {
-	}
-
-	function delete_key($call) {
-		$this->user_options_model->del_option('dcl', 'dcl_key',array('option_key' => $call));
+	function delete_key() {
+		$this->user_options_model->del_option('dcl', 'dcl_key',array('option_key' => 'key'));
 	}
 
 	function get_dcl_info($token) {
@@ -67,20 +72,6 @@ class Dcl_model extends CI_Model {
 			log_message("Error","DCL: Error while checking signature: ".$e);
 			return false;
 		}
-	}
-
-	function last_upload($key, $message, $user_id) {
-		$this->load->model('user_options_model');
-		$dclrkey=$this->user_options_model->get_options('dcl', array('option_name'=>'dcl_key'), $user_id)->result();
-		$dclkey = json_decode($dclrkey[0]->option_value ?? '');
-		$dclkey->call = $dclrkey[0]->option_key ?? '';
-		$dclnewkey=$dclkey;
-
-		if ($message == "Success") {
-			$dclnewkey->last_sync=date("Y-m-d H:i:s");
-			$this->user_options_model->set_option('dcl', 'dcl_key', array($dclkey->call => json_encode($dclnewkey)),  $user_id);
-		}
-		return "Updated";
 	}
 }
 ?>

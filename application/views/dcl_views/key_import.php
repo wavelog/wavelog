@@ -51,7 +51,6 @@
 					<b><?= __("Received an invalid DCL-Key. Please check your DCL-Login, and try again"); ?></b>
 				<?php } ?>
 			</div>
-				<button type="button" value="import" class="btn btn-primary"><?= __("Import Key"); ?></button>
 		</div>
 	</div>
 </div>

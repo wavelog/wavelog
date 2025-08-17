@@ -6,6 +6,7 @@
 	<!-- Card Starts -->
 	<div class="card">
 		<div class="card-header">
+			<a class="btn btn-outline-danger btn-sm float-end" href="<?php echo site_url('dcl/delete_key'); ?>" role="button"><i class="far fa-trash-alt"></i> <?= __("Delete Keys"); ?></a>
 			<a class="btn btn-outline-success btn-sm float-end" href="<?php echo site_url('/dcl/key_import'); ?>" role="button"><i class="fas fa-cloud-upload-alt"></i> <?= __("Request DCL Key"); ?></a><i class="fab fa-expeditedssl"></i> <?= __("Available DCL-Keys"); ?>
 		</div>
 
@@ -25,33 +26,29 @@
 					<thead class="thead-light">
 						<tr>
 				 			<th scope="col"><?= __("Callsign"); ?></th>
-							<th scope="col"><?= __("Last Upload"); ?></th>
-							<th scope="col"><?= __("Key"); ?></th>
+							<th scope="col"><?= __("Valid from"); ?></th>
+							<th scope="col"><?= __("Valid till"); ?></th>
 							<th scope="col"><?= __("Options"); ?></th>
 						</tr>
 					</thead>
 				 
 					<tbody>
 
-						<?php foreach ($dcl_keys as $row) { ?>
+						<?php foreach ($dcl_keys as $row) { 
+							foreach ($row->Callsigns as $dcl_call) { 
+						?>
 							<tr>
-					      		<td><?php echo $row->call; ?></td>
+					      		<td><?php echo $dcl_call->callsign; ?></td>
+								<?php
+									$vf = date($date_format,strtotime($dcl_call->startDate));
+									$vt = date($date_format,strtotime($dcl_call->endDate ?? '2099-12-31'));
+								?>
+								<td><?php echo $vf; ?></td>
+								<td><?php echo $vt; ?></td>
 								<td>
-									<?php
-										$last_upload_ts = strtotime($row->last_sync ?? '1970-01-01');
-										$last_upload = date($this->config->item('qso_date_format').' H:i:s', $last_upload_ts);
-										if ($last_upload_ts == strtotime('1970-01-01')) { ?>
-											<span data-bs-toggle="tooltip" <?= sprintf(__("Last success: %s"), $last_upload); ?>" class="badge text-bg-danger"><?= __("Never"); ?></span>
-										<?php } else { ?>
-												<span class="badge text-bg-success"><?php echo $last_upload; ?></span>
-											<?php } ?>
-								</td>
-								<td><?php echo $row->key; ?>
-								<td>
-									<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('dcl/delete_key/'.str_replace('/','_',$row->call)); ?>" role="button"><i class="far fa-trash-alt"></i> <?= __("Delete"); ?></a>
 								</td>
 							</tr>
-						<?php } ?>
+						<?php }} ?>
 
 					</tbody>
 				</table>
