@@ -9,7 +9,7 @@
       var lang_award_info_ln2 = "<?= __("Sponsored by the International Amateur Radio Union (IARU), the Worked All Continents award is issued for working and confirming all six continents. These are North America, South America, Oceania, Asia, Europe and Africa."); ?>";
       var lang_award_info_ln3 = "";
       var lang_award_info_ln4 = "<?= sprintf(__("You can find all information about the DXCC Award on the %s."), "<a href='https://www.arrl.org/wac' target='_blank'>" . __("ARRL website") . "</a>"); ?>";
-      var lang_award_info_ln5 = "<?= __("Fields taken for this Award: Continent (must contain a valid continent-abbreviation!)"); ?>";
+      var lang_award_info_ln5 = "<?= __("Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a valid continent-abbreviation!"); ?>";
     </script>
     <h2><?= __("Awards - Worked All Continents (WAC)"); ?></h2>
     <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
