@@ -8,7 +8,7 @@
             var lang_award_info_ln2 = "<?= sprintf(__("The United States of America Counties Award (USA-CA), sponsored by MARAC (Mobile Amateur Radio Awards Club), is issued for confirmed two-way radio contacts with specified numbers of U.S. counties under rules and conditions you can find %s."), "<a href='http://www.marac.org/' target='_blank'>" . __("here") . "</a>"); ?>";
             var lang_award_info_ln3 = "<?= __("USA-CA is available to all licensed amateurs worldwide and is issued to individuals for all county contacts made, regardless of callsigns used, operating locations, or dates."); ?>";
             var lang_award_info_ln4 = "<?= __("Special USA-CA awards are also available to SWLs on a heard basis."); ?>";
-            var lang_award_info_ln5 = "<?= __("Fields taken for this Award: State, Stations County, DXCC (Must be 291,6 or 110)"); ?>";
+            var lang_award_info_ln5 = "<?= __("Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
