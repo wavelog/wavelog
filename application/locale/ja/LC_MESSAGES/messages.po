@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-16 05:25+0000\n"
+"PO-Revision-Date: 2025-08-18 05:25+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/ja/>\n"
@@ -6231,15 +6231,15 @@ msgstr ""
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
-msgstr ""
+msgstr "ARRL WAS アワードに関するすべての情報と規則は %s でご確認いただけます。"
 
 #: application/views/awards/was/index.php:114
 msgid "Show WAS Map"
-msgstr ""
+msgstr "WASマップを表示"
 
 #: application/views/awards/wwff/index.php:7
 msgid "WWFF - World Wide Flora and Fauna Award"
-msgstr ""
+msgstr "WWFF - World Wide Flora and Fauna アワード"
 
 #: application/views/awards/wwff/index.php:8
 msgid ""
@@ -6247,6 +6247,10 @@ msgid ""
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
+"WWFF (World Wide Flora and Fauna in Amateur Radio) "
+"は、アマチュア無線の免許を持つオペレーターが自宅を離れ、"
+"世界中の動植物保護地域 (PFF) "
+"でポータブル無線機を操作することを奨励しています。"
 
 #: application/views/awards/wwff/index.php:9
 msgid ""
@@ -6254,6 +6258,8 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
+"世界中で26,000以上の保護動植物地域（PFF）がWWFFディレクトリに登録されています"
+"。ハンターとアクティベーターは、世界および国内で多彩な賞に応募できます。"
 
 #: application/views/awards/wwff/index.php:31
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -6262,17 +6268,17 @@ msgstr ""
 #: application/views/user/edit.php:659 application/views/view_log/qso.php:396
 #: application/views/view_log/qso.php:712
 msgid "WWFF Reference"
-msgstr ""
+msgstr "WWFFリファレンス"
 
 #: application/views/backup/adif_view.php:7
 msgid ""
 "The backup of your log completed successfully. The output can be found at"
-msgstr ""
+msgstr "ログのバックアップが正常に完了しました。出力は次の場所にあります"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr ""
+msgstr "このプロセスを cronjob にすることで自動化できます。"
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -6280,38 +6286,41 @@ msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
+"バックアップ処理中に問題が発生しました。バックアップフォルダが存在し、Webサー"
+"バーのユーザー/グループが書き込み可能であることを確認してください。"
 
 #: application/views/backup/main.php:17
 msgid ""
 "Some of the data stored in Wavelog can be exported so that you can keep a "
 "backup copy elsewhere."
-msgstr ""
+msgstr "Wavelog に保存されているデータの一部はエクスポートできるので、"
+"別の場所にバックアップ コピーを保存できます。"
 
 #: application/views/backup/main.php:18
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
-msgstr ""
+msgstr "データを保護するには、定期的にバックアップを作成することをお勧めします。"
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
-msgstr ""
+msgstr "ADIFデータのバックアップ"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
-msgstr ""
+msgstr "バックアップノート"
 
 #: application/views/backup/notes_view.php:7
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
-msgstr ""
+msgstr "ノートのバックアップが正常に完了しました。出力は次の場所にあります"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:56
 msgid "BandMap"
-msgstr ""
+msgstr "バンドマップ"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:59
 msgid "BandList"
-msgstr ""
+msgstr "バンドリスト"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:69
 #: application/views/contesting/index.php:20
@@ -6319,52 +6328,53 @@ msgstr ""
 #: application/views/contesting/index.php:155
 #: application/views/qso/index.php:352
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:84
 msgid "Spots de"
-msgstr ""
+msgstr "スポット"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
-msgstr ""
+msgstr "ポップアップがブロックされました。このサイトのポップアップを永続的に許可して"
+"ください。"
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "クリックしてログ記録を準備します。"
 
 #: application/views/bandmap/list.php:76
 msgid "DXCC-Status"
-msgstr ""
+msgstr "DXCCステータス"
 
 #: application/views/bandmap/list.php:79
 #: application/views/interface_assets/footer.php:45
 msgid "Not worked"
-msgstr ""
+msgstr "機能していません"
 
 #: application/views/bandmap/list.php:82
 msgid "Worked, not Confirmed"
-msgstr ""
+msgstr "動作したが、確認されていない"
 
 #: application/views/bandmap/list.php:113
 msgid "Phone"
-msgstr ""
+msgstr "電話"
 
 #: application/views/bandmap/list.php:114
 msgid "CW"
-msgstr ""
+msgstr "CW"
 
 #: application/views/bandmap/list.php:115
 msgid "Digi"
-msgstr ""
+msgstr "デジ"
 
 #: application/views/bandmap/list.php:131
 msgid "WAC"
-msgstr ""
+msgstr "WAC"
 
 #: application/views/bandmap/list.php:132
 msgid "Spotter"
-msgstr ""
+msgstr "スポッター"
 
 #: application/views/bandmap/list.php:133
 #: application/views/oqrs/notinlogform.php:28
@@ -6372,148 +6382,151 @@ msgstr ""
 #: application/views/oqrs/request_grouped.php:57
 #: application/views/oqrs/status_info.php:5
 msgid "Message"
-msgstr ""
+msgstr "メッセージ"
 
 #: application/views/bandmap/list.php:134
 msgid "Last Worked"
-msgstr ""
+msgstr "最終作業日"
 
 #: application/views/bands/bandedges.php:2
 msgid "Please enter valid numbers for frequency"
-msgstr ""
+msgstr "周波数に有効な数値を入力してください"
 
 #: application/views/bands/bandedges.php:3
 msgid "The 'From' frequency must be less than the 'To' frequency."
-msgstr ""
+msgstr "「開始」周波数は「終了」周波数より小さくなければなりません。"
 
 #: application/views/bands/bandedges.php:4
 msgid "The Frequency overlaps with an existing entry."
-msgstr ""
+msgstr "周波数が既存のエントリと重複しています。"
 
 #: application/views/bands/bandedges.php:5
 msgid "Are you sure you want to delete this band edge?"
-msgstr ""
+msgstr "このバンドエッジを削除してもよろしいですか?"
 
 #: application/views/bands/bandedges.php:17
 msgid "Bandedges"
-msgstr ""
+msgstr "バンドエッジ"
 
 #: application/views/bands/bandedges.php:22
 msgid ""
 "Using the bandedges list you can control the mode classification in the "
 "cluster."
-msgstr ""
+msgstr "バンドエッジ リストを使用すると、クラスター内のモード分類を制御できます。"
 
 #: application/views/bands/bandedges.php:29
 msgid "Frequency from (Hz)"
-msgstr ""
+msgstr "周波数（Hz）"
 
 #: application/views/bands/bandedges.php:30
 msgid "Frequency to (Hz)"
-msgstr ""
+msgstr "周波数（Hz）"
 
 #: application/views/bands/bandedges.php:65
 msgid "Add a bandedge"
-msgstr ""
+msgstr "バンドエッジを追加する"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr ""
+msgstr "バンド名（例：20m）"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:65
 msgid "Bandgroup"
-msgstr ""
+msgstr "バンドグループ"
 
 #: application/views/bands/create.php:31 application/views/bands/edit.php:13
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
-msgstr ""
+msgstr "バンドグループ名（例：hf、vhf、uhf、shf）"
 
 #: application/views/bands/create.php:34 application/views/bands/edit.php:16
 #: application/views/bands/index.php:66
 msgid "SSB QRG"
-msgstr ""
+msgstr "SSB QRG"
 
 #: application/views/bands/create.php:36 application/views/bands/edit.php:18
 msgid "Frequency for SSB QRG in band (must be in Hz)"
-msgstr ""
+msgstr "バンド内のSSB QRGの周波数（Hz単位）"
 
 #: application/views/bands/create.php:39 application/views/bands/edit.php:21
 #: application/views/bands/index.php:67
 msgid "DATA QRG"
-msgstr ""
+msgstr "データQRG"
 
 #: application/views/bands/create.php:41 application/views/bands/edit.php:23
 msgid "Frequency for DATA QRG in band (must be in Hz)"
-msgstr ""
+msgstr "バンド内の DATA QRG の周波数（Hz 単位）"
 
 #: application/views/bands/create.php:44 application/views/bands/edit.php:26
 #: application/views/bands/index.php:68
 msgid "CW QRG"
-msgstr ""
+msgstr "CW QRG"
 
 #: application/views/bands/create.php:46 application/views/bands/edit.php:28
 msgid "Frequency for CW QRG in band (must be in Hz)"
-msgstr ""
+msgstr "バンド内のCW QRGの周波数（Hz単位）"
 
 #: application/views/bands/index.php:38
 msgid ""
 "Using the band list you can control which bands are shown when creating a "
 "new QSO."
-msgstr ""
+msgstr "バンド リストを使用すると、新しい QSO "
+"を作成するときに表示されるバンドを制御できます。"
 
 #: application/views/bands/index.php:39
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
-msgstr ""
+msgstr "アクティブなバンドは QSO "
+"の「バンド」ドロップダウンに表示されますが、非アクティブなバンドは非表示にな"
+"り、選択できません。"
 
 #: application/views/bands/index.php:56
 msgid "Sig"
-msgstr ""
+msgstr "Sig"
 
 #: application/views/bands/index.php:58
 msgid "USA County"
-msgstr ""
+msgstr "米国の郡"
 
 #: application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:220
 msgid "WAPC"
-msgstr ""
+msgstr "WAPC"
 
 #: application/views/bands/index.php:62
 #: application/views/interface_assets/header.php:240
 msgid "WAJA"
-msgstr ""
+msgstr "WAJA"
 
 #: application/views/bands/index.php:63
 #: application/views/interface_assets/header.php:270
 msgid "WAS"
-msgstr ""
+msgstr "WAS"
 
 #: application/views/bands/index.php:69
 msgid "QRG Unit"
-msgstr ""
+msgstr "QRGユニット"
 
 #: application/views/bands/index.php:104
 msgid "Hz"
-msgstr ""
+msgstr "Hz"
 
 #: application/views/bands/index.php:105
 msgid "kHz"
-msgstr ""
+msgstr "kHz"
 
 #: application/views/bands/index.php:106
 msgid "MHz"
-msgstr ""
+msgstr "MHz"
 
 #: application/views/bands/index.php:107
 msgid "GHz"
-msgstr ""
+msgstr "GHz"
 
 #: application/views/bands/index.php:159 application/views/bands/index.php:165
 msgid "Create a band"
-msgstr ""
+msgstr "バンドを作る"
 
 #: application/views/bands/index.php:160
 #: application/views/club/permissions.php:142
@@ -6531,84 +6544,84 @@ msgstr "近い"
 
 #: application/views/bands/index.php:161
 msgid "Warning! Are you sure you want to delete the following band: "
-msgstr ""
+msgstr "警告! 次のバンドを削除してもよろしいですか? "
 
 #: application/views/bands/index.php:162
 msgid "Warning! Are you sure you want to activate all bands?"
-msgstr ""
+msgstr "警告! すべてのバンドをアクティブ化してもよろしいですか?"
 
 #: application/views/bands/index.php:163
 msgid "Warning! Are you sure you want to deactivate all bands?"
-msgstr ""
+msgstr "警告! すべてのバンドを無効にしてもよろしいですか?"
 
 #: application/views/bands/index.php:166
 #: application/views/contesting/add.php:77 application/views/mode/index.php:89
 #: application/views/usermode/index.php:76
 msgid "Activate All"
-msgstr ""
+msgstr "すべてアクティブ化"
 
 #: application/views/bands/index.php:167
 #: application/views/contesting/add.php:78 application/views/mode/index.php:90
 #: application/views/usermode/index.php:77
 msgid "Deactivate All"
-msgstr ""
+msgstr "すべて非アクティブ化"
 
 #: application/views/cabrillo/cbr_success.php:12
 msgid "Results of CBR Contest Data Update"
-msgstr ""
+msgstr "CBRコンテストデータ更新結果"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
 "Your contest QSOs have been updated using the values of your Cabrillo file."
-msgstr ""
+msgstr "コンテスト QSO は、Cabrillo ファイルの値を使用して更新されました。"
 
 #: application/views/cabrillo/cbr_success.php:19
 msgid "No QSOs were updated by your Cabrillo file."
-msgstr ""
+msgstr "Cabrillo ファイルによって更新された QSO はありません。"
 
 #: application/views/cabrillo/cbr_success.php:25
 msgid "CBR errors"
-msgstr ""
+msgstr "CBRエラー"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:60
 #: application/views/reg1test/index.php:2
 #: application/views/reg1test/index.php:36
 msgid "Proceed"
-msgstr ""
+msgstr "進む"
 
 #: application/views/cabrillo/index.php:3
 #: application/views/reg1test/index.php:3
 msgid "Select Year"
-msgstr ""
+msgstr "年を選択"
 
 #: application/views/cabrillo/index.php:4
 #: application/views/reg1test/index.php:4
 msgid "Select Contest"
-msgstr ""
+msgstr "コンテストを選択"
 
 #: application/views/cabrillo/index.php:5
 #: application/views/reg1test/index.php:5
 msgid "Select Date Range"
-msgstr ""
+msgstr "日付範囲を選択"
 
 #: application/views/cabrillo/index.php:6
 #: application/views/reg1test/index.php:7
 msgid "No contests were found for this station location!"
-msgstr ""
+msgstr "このステーションの場所に対するコンテストは見つかりませんでした！"
 
 #: application/views/cabrillo/index.php:16
 msgid "Export a contest to a Cabrillo log"
-msgstr ""
+msgstr "コンテストをCabrilloログにエクスポートする"
 
 #: application/views/cabrillo/index.php:28
 msgid "Select Station Location:"
-msgstr ""
+msgstr "ステーションの場所を選択:"
 
 #: application/views/cabrillo/index.php:44
 #: application/views/reg1test/index.php:53
 msgid "Club"
-msgstr ""
+msgstr "クラブ"
 
 #: application/views/cabrillo/index.php:48
 msgid ""
@@ -6616,16 +6629,20 @@ msgid ""
 "For foreign stations LOCATION must be 'DX'. This information is required for "
 "IARU-HF and for all ARRL and CQ contests."
 msgstr ""
+"米国およびカナダの局の場合、「LOCATION」はARRLセクションの略称でなければなり"
+"ません。外国の局の場合、「LOCATION」は「DX」でなければなりません"
+"。この情報はIARU-HFおよびすべてのARRLおよびCQコンテストで必須です。"
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
-msgstr ""
+msgstr "RDXC コンテストの場合、これに RDA 番号が含まれます。"
 
 #: application/views/cabrillo/index.php:48
 msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
-msgstr ""
+msgstr "RSGB-IOTA コンテストの場合、この情報には IOTA 名 (IOTA "
+"参照コードではありません) が含まれます。"
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:631
@@ -6633,48 +6650,48 @@ msgstr ""
 #: application/views/qso/index.php:310
 #: application/views/station_profile/edit.php:96
 msgid "Location"
-msgstr ""
+msgstr "位置"
 
 #: application/views/cabrillo/index.php:52
 #: application/views/reg1test/index.php:58
 msgid "Category Operator"
-msgstr ""
+msgstr "カテゴリ オペレーター"
 
 #: application/views/cabrillo/index.php:60
 msgid "Category Assisted"
-msgstr ""
+msgstr "カテゴリーアシスト"
 
 #: application/views/cabrillo/index.php:67
 msgid "Category Band"
-msgstr ""
+msgstr "カテゴリーバンド"
 
 #: application/views/cabrillo/index.php:93
 msgid "Light/Laser"
-msgstr ""
+msgstr "光/レーザー"
 
 #: application/views/cabrillo/index.php:94
 msgid "VHF-3-BAND and VHF-FM-ONLY (ARRL VHF Contests only)"
-msgstr ""
+msgstr "VHF-3バンドおよびVHF-FMのみ（ARRL VHFコンテストのみ）"
 
 #: application/views/cabrillo/index.php:98
 msgid "Category Mode"
-msgstr ""
+msgstr "カテゴリーモード"
 
 #: application/views/cabrillo/index.php:109
 msgid "Category Power"
-msgstr ""
+msgstr "カテゴリーパワー"
 
 #: application/views/cabrillo/index.php:117
 msgid "Category Station"
-msgstr ""
+msgstr "カテゴリー ステーション"
 
 #: application/views/cabrillo/index.php:133
 msgid "Category Transmitter"
-msgstr ""
+msgstr "カテゴリー 送信機"
 
 #: application/views/cabrillo/index.php:143
 msgid "Category Time"
-msgstr ""
+msgstr "カテゴリー 時間"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -6682,47 +6699,47 @@ msgstr ""
 #: application/views/cabrillo/index.php:148
 #, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d 時間"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
-msgstr ""
+msgstr "カテゴリーオーバーレイ"
 
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:73
 msgid "Operators"
-msgstr ""
+msgstr "オペレーター"
 
 #: application/views/cabrillo/index.php:169
 #: application/views/reg1test/index.php:139
 msgid "Soapbox"
-msgstr ""
+msgstr "Soapbox"
 
 #: application/views/cabrillo/index.php:173
 msgid "Address"
-msgstr ""
+msgstr "住所"
 
 #: application/views/cabrillo/index.php:177
 msgid "Address City"
-msgstr ""
+msgstr "住所 都市名"
 
 #: application/views/cabrillo/index.php:181
 msgid "Address State/Province"
-msgstr ""
+msgstr "住所 州/県"
 
 #: application/views/cabrillo/index.php:185
 msgid "Address Postalcode"
-msgstr ""
+msgstr "住所 郵便番号"
 
 #: application/views/cabrillo/index.php:189
 msgid "Address Country"
-msgstr ""
+msgstr "住所 国名"
 
 #: application/views/cabrillo/index.php:193
 msgid "Certificate"
-msgstr ""
+msgstr "証明書"
 
 #: application/views/cabrillo/index.php:193
 msgid ""
@@ -6730,6 +6747,9 @@ msgid ""
 "postal mail by the contest sponsor. The contest sponsor may or may not honor "
 "this tag."
 msgstr ""
+"コンテスト主催者から郵送で紙の証明書を受け取ることを希望する場合は、その旨を"
+"明記してください（該当する場合）。コンテスト主催者はこのタグを承認するかどう"
+"かを決定できます。"
 
 #: application/views/cabrillo/index.php:196
 #: application/views/cabrillo/index.php:204
@@ -6847,25 +6867,26 @@ msgstr "いいえ"
 
 #: application/views/cabrillo/index.php:201
 msgid "If the gridsquare was part of the exchange, you should select YES."
-msgstr ""
+msgstr "グリッドスクエアが交換の一部であった場合は、「はい」を選択する必要があります"
+"。"
 
 #: application/views/cabrillo/index.php:201
 msgid "Include logged grids?"
-msgstr ""
+msgstr "ログに記録されたグリッドを含めますか?"
 
 #: application/views/cabrillo/index.php:215
 #: application/views/reg1test/index.php:150
 msgid "No contests were found in your log."
-msgstr ""
+msgstr "ログにコンテストが見つかりませんでした。"
 
 #: application/views/callstats/index.php:70
 #: application/views/gridmap/index.php:43
 msgid "All except SAT"
-msgstr ""
+msgstr "SATを除くすべて"
 
 #: application/views/callstats/index.php:149
 msgid "#QSOs"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/cfd/index.php:7
 #, php-format
