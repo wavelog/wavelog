@@ -3460,6 +3460,7 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:757
 #: application/views/visitor/layout/footer.php:172
+#: application/views/adif/import.php:228
 msgid "All"
 msgstr "所有"
 
@@ -3997,6 +3998,7 @@ msgstr "未找到！"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:656
+#: application/views/adif/import.php:234 application/views/adif/import.php:298
 msgid "Callsign"
 msgstr "呼号"
 
@@ -4172,6 +4174,7 @@ msgid "ADIF Export"
 msgstr "ADIF 导出"
 
 #: application/views/adif/import.php:36 application/views/adif/import.php:298
+#: application/views/adif/import.php:324
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -4186,6 +4189,7 @@ msgstr "CBR 导入"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/adif/import.php:371
 msgid "Important"
 msgstr "重要"
 
@@ -4209,6 +4213,7 @@ msgstr "最大上传文件大小是 "
 #: application/views/view_log/qso.php:771
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/adif/import.php:301 application/views/adif/import.php:340
 msgid "Warning"
 msgstr "注意"
 
@@ -4217,6 +4222,7 @@ msgstr "注意"
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
+#: application/views/adif/import.php:226 application/views/adif/import.php:296
 msgid "Select Station Location"
 msgstr "选择台站位置"
 
@@ -4230,6 +4236,7 @@ msgstr "向竞赛中添加 QSO"
 
 #: application/views/adif/import.php:90 application/views/adif/import.php:352
 #: application/views/simplefle/index.php:86
+#: application/views/adif/import.php:378
 msgid "No Contest"
 msgstr "无竞赛"
 
@@ -4273,8 +4280,9 @@ msgstr "导入时忽略台站呼号"
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
-msgstr "如果选择该选项，Wavelog 将尝试从 ADIF 中导入 %s所有%s "
-"QSO，而不管它们是否与所选的电台位置相匹配。"
+msgstr ""
+"如果选择该选项，Wavelog 将尝试从 ADIF 中导入 %s所有%s QSO，而不管它们是否与所"
+"选的电台位置相匹配。"
 
 #: application/views/adif/import.php:141
 msgid ""
@@ -4316,20 +4324,21 @@ msgstr "标记导入的 QSO 为已上传至 DCL Logbook"
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
+#: application/views/adif/import.php:355 application/views/adif/import.php:393
 msgid "Upload"
 msgstr "上传"
 
-#: application/views/adif/import.php:219
+#: application/views/adif/import.php:219 application/views/adif/import.php:220
 msgid "Take your logbook file anywhere!"
 msgstr "在其他地方保管、上传日志！"
 
-#: application/views/adif/import.php:220
+#: application/views/adif/import.php:220 application/views/adif/import.php:221
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr "导出 ADIF 以方便您将日志导入到 LoTW 等第三方应用程序或用以备份。"
 
-#: application/views/adif/import.php:221
+#: application/views/adif/import.php:221 application/views/adif/import.php:222
 #, php-format
 msgctxt ""
 msgid ""
@@ -4343,6 +4352,7 @@ msgstr "%s详细日志%s 中可使用更多过滤器选项，也可导出日志�
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/adif/import.php:245 application/views/adif/import.php:303
 msgid "From date"
 msgstr "起始日期"
 
@@ -4352,43 +4362,45 @@ msgstr "起始日期"
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
+#: application/views/adif/import.php:249 application/views/adif/import.php:306
 msgid "To date"
 msgstr "终止日期"
 
-#: application/views/adif/import.php:243
+#: application/views/adif/import.php:243 application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "将导出的 QSO 标记为已上传到 LoTW"
 
-#: application/views/adif/import.php:251
+#: application/views/adif/import.php:251 application/views/adif/import.php:275
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "导出没有上传到 LoTW 的 QSO"
 
-#: application/views/adif/import.php:256
+#: application/views/adif/import.php:256 application/views/adif/import.php:282
 msgid "Export QSOs"
 msgstr "导出 QSO"
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:261 application/views/adif/import.php:287
 msgid "Export Satellite-Only QSOs"
 msgstr "只导出卫星 QSO"
 
-#: application/views/adif/import.php:262
+#: application/views/adif/import.php:262 application/views/adif/import.php:288
 msgid "Export All Satellite QSOs"
 msgstr "导出所有卫星 QSO"
 
-#: application/views/adif/import.php:264
+#: application/views/adif/import.php:264 application/views/adif/import.php:290
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "导出 LoTW 上确认的所有卫星 QSO"
 
 #: application/views/adif/import.php:275 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
+#: application/views/adif/import.php:301
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "如果未选择日期范围，则所有 QSO 都将被标记！"
 
-#: application/views/adif/import.php:283
+#: application/views/adif/import.php:283 application/views/adif/import.php:309
 msgid "Mark QSOs as exported to LoTW"
 msgstr "将 QSO 标记为导出到 LoTW"
 
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:298 application/views/adif/import.php:324
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4399,37 +4411,37 @@ msgstr ""
 "前往 %s 导出已确认的 DOK，可选择仅导出 DL QSO 以加快速度。您可在此处上传已下"
 "载的 ADIF 日志，系统将以此更新 DOK 信息。"
 
-#: application/views/adif/import.php:305
+#: application/views/adif/import.php:305 application/views/adif/import.php:331
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "仅导入在 DCL 上确认的 QSO 的 DOK 数据。"
 
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:307 application/views/adif/import.php:333
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr "如果您还想使用 DCL 中未经确认的 QSO 的数据更新 DOK，请取消选中。"
 
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:314 application/views/adif/import.php:340
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "根据已有 DCL 覆盖 DOK 数据（如不同）。"
 
-#: application/views/adif/import.php:316
+#: application/views/adif/import.php:316 application/views/adif/import.php:342
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr "如果选中，Wavelog 将使用 DCL 日志中的 DOK 强制覆盖现有的 DOK 信息。"
 
-#: application/views/adif/import.php:323
+#: application/views/adif/import.php:323 application/views/adif/import.php:349
 msgid "Ignore QSOs that cannot be matched."
 msgstr "忽略无法匹配的 QSO。"
 
-#: application/views/adif/import.php:325
+#: application/views/adif/import.php:325 application/views/adif/import.php:351
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
 msgstr "如未选择，Wavelog 中未找到的 QSO 会被显示。"
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:344 application/views/adif/import.php:370
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4444,10 +4456,11 @@ msgstr ""
 #: application/views/adif/import.php:344
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import.php:370
 msgid "Information"
 msgstr "信息"
 
-#: application/views/adif/import.php:345
+#: application/views/adif/import.php:345 application/views/adif/import.php:371
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4458,27 +4471,27 @@ msgstr ""
 "导入的 ADIF 文件以及您即将上传的 CBP 文件中的日期和时间信息以匹配 QSO，并且仅"
 "更正相关数据。"
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:350 application/views/adif/import.php:376
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "比赛名称，仅当 CBP 中的比赛 ID 不同时"
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:350 application/views/adif/import.php:376
 msgid "Optional"
 msgstr "可选"
 
-#: application/views/adif/import.php:360
+#: application/views/adif/import.php:360 application/views/adif/import.php:386
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr "序列号始终是本次比赛双方交换的一部分。"
 
-#: application/views/adif/import.php:362
+#: application/views/adif/import.php:362 application/views/adif/import.php:388
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr "如果你和你的伙伴只是有时交换序列号，请不要勾选。"
 
-#: application/views/adif/import.php:363
+#: application/views/adif/import.php:363 application/views/adif/import.php:389
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -4841,9 +4854,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
-"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
-"效通联的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
+"\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通"
+"联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5758,8 +5771,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -13733,8 +13746,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -15096,6 +15109,18 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
+#: application/views/adif/import.php:108
+msgid "Basic Settings"
+msgstr ""
+
+#: application/views/adif/import.php:153
+msgid "Mark QSOs as uploaded"
+msgstr ""
+
+#: application/views/adif/import.php:260
+msgid "Export options"
+msgstr ""
+
 #~ msgid "ADIF File"
 #~ msgstr "ADIF 文件"
 
@@ -15512,8 +15537,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
