@@ -105,7 +105,7 @@
 
 						<div class="card mb-3">
 							<div class="card-header">
-								<h6 class="mb-0">Basic Settings</h6>
+								<h6 class="mb-0"><?= __("Basic Settings") ?></h6>
 							</div>
 							<div class="card-body">
 								<div class="mb-3 row">
@@ -150,7 +150,7 @@
 
 						<div class="card mb-3">
 							<div class="card-header">
-								<h6 class="mb-0">Mark QSOS as uploaded</h6>
+								<h6 class="mb-0"><?= __("Mark QSOs as uploaded") ?></h6>
 							</div>
 							<div class="card-body">
 								<div class="mb-3 row">
@@ -216,42 +216,68 @@
                 <div class="tab-pane fade" id="export" role="tabpanel" aria-labelledby="export-tab">
 
                     <form class="form" action="<?php echo site_url('adif/export_custom'); ?>" method="post" enctype="multipart/form-data">
+
                         <h5 class="card-title"><?= __("Take your logbook file anywhere!") ?> </h5>
                         <p class="card-text"><?= __("Exporting ADIFs allows you to import contacts into third party applications like LoTW, Awards or just for keeping a backup.") ?> </p>
                         <p class="card-text"><?= sprintf(_pgettext("", "If you need more filtering, you can use %sthe Advanced Logbook%s to filter and export!"), '<a href="' . site_url('logbookadvanced') . '">', "</a>"); ?>
-                        <div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
-                        <select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
-                            <option value="0"><?= __("All") ?></option>
-                            <?php foreach ($station_profile->result() as $station) { ?>
-                                <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
-                                                                                        echo " selected =\"selected\"";
-                                                                                    } ?>><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
-                            <?php } ?>
-                        </select>
-                        <br>
-                        <div class="small form-text text-muted"><?= __("From date") . ":"; ?></div>
-                        <input name="from" id="from" type="date" class="form-control w-auto">
-                        <br>
-                        <div class="small form-text text-muted"><?= __("To date") . ":"; ?></div>
-                        <input name="to" id="to" type="date" class="form-control w-auto">
+						<div class="row mb-4">
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
+									<select name="station_profile" class="form-select mb-2 me-sm-2">
+										<option value="0"><?= __("All") ?></option>
+										<?php foreach ($station_profile->result() as $station) { ?>
+											<option value="<?php echo $station->station_id; ?>"
+												<?php if ($station->station_id == $this->stations->find_active()) {
+													echo " selected =\"selected\"";
+												} ?>>
+												<?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)
+											</option>
+										<?php } ?>
+									</select>
+								</div>
+							</div>
 
-                        <br>
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="markLotw" value="1" id="markLotwExport">
-                                    <label class="form-check-label" for="markLotwExport"><?= __("Mark exported QSOs as uploaded to LoTW") ?></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-md-10">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="exportLotw" value="1" id="exportLotw">
-                                    <label class="form-check-label" for="exportLotw"><?= __("Export QSOs not uploaded to LoTW") ?></label>
-                                </div>
-                            </div>
-                        </div>
+							<div class="col-md-12">
+								<div class="col-md-6">
+									<div class="row">
+										<div class="col-6">
+											<div class="small form-text text-muted"><?= __("From date") . ":"; ?></div>
+											<input name="from" id="from" type="date" class="form-control">
+										</div>
+										<div class="col-6">
+											<div class="small form-text text-muted"><?= __("To date") . ":"; ?></div>
+											<input name="to" id="to" type="date" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="card mb-3">
+							<div class="card-header">
+								<h6 class="mb-0"><?= __("Export options") ?></h6>
+							</div>
+							<div class="card-body">
+								<div class="mb-3 row">
+									<div class="col-md-10">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="markLotw" value="1" id="markLotwExport">
+											<label class="form-check-label" for="markLotwExport"><?= __("Mark exported QSOs as uploaded to LoTW") ?></label>
+										</div>
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<div class="col-md-10">
+										<div class="form-check-inline">
+											<input class="form-check-input" type="checkbox" name="exportLotw" value="1" id="exportLotw">
+											<label class="form-check-label" for="exportLotw"><?= __("Export QSOs not uploaded to LoTW") ?></label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
                         <button type="submit" class="btn btn-sm btn-primary" value="Export"><?= __("Export QSOs") ?></button>
                     </form>
