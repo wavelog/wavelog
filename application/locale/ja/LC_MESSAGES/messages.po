@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-14 13:24+0000\n"
+"POT-Creation-Date: 2025-08-18 18:00+0000\n"
 "PO-Revision-Date: 2025-08-18 11:49+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3401,7 +3401,7 @@ msgstr "違い"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:224
+#: application/views/adif/import.php:228
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3995,8 +3995,8 @@ msgid "Nothing found!"
 msgstr "何も見つかりません!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:78 application/views/adif/import.php:228
-#: application/views/adif/import.php:272
+#: application/views/adif/import.php:78 application/views/adif/import.php:234
+#: application/views/adif/import.php:298
 #: application/views/awards/73on73/index.php:34
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
@@ -4213,7 +4213,7 @@ msgstr "DCL QSLステータス"
 msgid "ADIF Export"
 msgstr "ADIFエクスポート"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:298
+#: application/views/adif/import.php:36 application/views/adif/import.php:324
 msgid "DARC DCL"
 msgstr "ダルクDCL"
 
@@ -4221,7 +4221,7 @@ msgstr "ダルクDCL"
 msgid "CBR Import"
 msgstr "CBRインポート"
 
-#: application/views/adif/import.php:64 application/views/adif/import.php:345
+#: application/views/adif/import.php:64 application/views/adif/import.php:371
 #: application/views/api/index.php:22 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
@@ -4239,8 +4239,8 @@ msgstr "ログファイルのファイルタイプは*.adiである必要があ�
 msgid "Maximum file upload size is "
 msgstr "最大ファイルアップロードサイズは "
 
-#: application/views/adif/import.php:65 application/views/adif/import.php:275
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:65 application/views/adif/import.php:301
+#: application/views/adif/import.php:340
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:576 application/views/hrdlog/export.php:25
@@ -4255,7 +4255,7 @@ msgid "Warning"
 msgstr "警告"
 
 #: application/views/adif/import.php:72 application/views/adif/import.php:74
-#: application/views/adif/import.php:222 application/views/adif/import.php:270
+#: application/views/adif/import.php:226 application/views/adif/import.php:296
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -4270,7 +4270,7 @@ msgstr "ADIFファイルを選択"
 msgid "Add QSOs to Contest"
 msgstr "コンテストにQSOを追加する"
 
-#: application/views/adif/import.php:90 application/views/adif/import.php:352
+#: application/views/adif/import.php:90 application/views/adif/import.php:378
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "ノーコンテスト"
@@ -4282,6 +4282,10 @@ msgid ""
 msgstr ""
 "インポートしたQSOのオペレーターのコールサインを入力してください。ADIFファイル"
 "内のオペレーターのコールサインを使用する場合は、空欄のままにしてください。"
+
+#: application/views/adif/import.php:108
+msgid "Basic Settings"
+msgstr ""
 
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
@@ -4329,6 +4333,10 @@ msgstr ""
 "インポート中は、オペレータコールとしてログインしているアカウントのコールサイ"
 "ンを常に使用してください"
 
+#: application/views/adif/import.php:153
+msgid "Mark QSOs as uploaded"
+msgstr ""
+
 #: application/views/adif/import.php:160
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "インポートしたQSOをLoTWにアップロード済みとしてマークする"
@@ -4360,19 +4368,19 @@ msgstr "インポートしたQSOをClublogログブックにアップロード�
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "インポートしたQSOをDCLログブックにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:212 application/views/adif/import.php:329
-#: application/views/adif/import.php:367
+#: application/views/adif/import.php:212 application/views/adif/import.php:355
+#: application/views/adif/import.php:393
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "アップロード"
 
-#: application/views/adif/import.php:219
+#: application/views/adif/import.php:220
 msgid "Take your logbook file anywhere!"
 msgstr "ログブックファイルをどこにでも持ち歩けます!"
 
-#: application/views/adif/import.php:220
+#: application/views/adif/import.php:221
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4380,7 +4388,7 @@ msgstr ""
 "ADIF をエクスポートすると、LoTW、Awards などのサードパーティ アプリケーション"
 "に連絡先をインポートしたり、バックアップを保存したりすることができます。"
 
-#: application/views/adif/import.php:221
+#: application/views/adif/import.php:222
 #, php-format
 msgctxt ""
 msgid ""
@@ -4390,7 +4398,7 @@ msgstr ""
 "さらにフィルタリングが必要な場合は、 %sthe Advanced Logbook%s をフィルタリン"
 "グしてエクスポートします！"
 
-#: application/views/adif/import.php:232 application/views/adif/import.php:277
+#: application/views/adif/import.php:245 application/views/adif/import.php:303
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
 #: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4399,7 +4407,7 @@ msgstr ""
 msgid "From date"
 msgstr "開始日"
 
-#: application/views/adif/import.php:235 application/views/adif/import.php:280
+#: application/views/adif/import.php:249 application/views/adif/import.php:306
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -4408,40 +4416,44 @@ msgstr "開始日"
 msgid "To date"
 msgstr "現在まで"
 
-#: application/views/adif/import.php:243
+#: application/views/adif/import.php:260
+msgid "Export options"
+msgstr ""
+
+#: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "エクスポートしたQSOをLoTWにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:251
+#: application/views/adif/import.php:275
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "LoTWにアップロードされていないQSOをエクスポートする"
 
-#: application/views/adif/import.php:256
+#: application/views/adif/import.php:282
 msgid "Export QSOs"
 msgstr "QSOをエクスポートする"
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:287
 msgid "Export Satellite-Only QSOs"
 msgstr "衛星のみのQSOをエクスポートする"
 
-#: application/views/adif/import.php:262
+#: application/views/adif/import.php:288
 msgid "Export All Satellite QSOs"
 msgstr "すべての衛星QSOをエクスポート"
 
-#: application/views/adif/import.php:264
+#: application/views/adif/import.php:290
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "LoTWで確認されたすべての衛星QSOをエクスポートする"
 
-#: application/views/adif/import.php:275 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:301 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "日付範囲が選択されていない場合は、すべての QSO がマークされます！"
 
-#: application/views/adif/import.php:283
+#: application/views/adif/import.php:309
 msgid "Mark QSOs as exported to LoTW"
 msgstr "QSOをLoTWにエクスポートとしてマークする"
 
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:324
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4454,22 +4466,22 @@ msgstr ""
 "り、プレフィックス リストに「DL」を入力します）。ダウンロードした ADIF ファイ"
 "ルをここにアップロードすることで、DOK 情報を用いて QSO を更新できます。"
 
-#: application/views/adif/import.php:305
+#: application/views/adif/import.php:331
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "DCL で確認された QSO からの DOK データのみをインポートします。"
 
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:333
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr ""
 "DCL 内の未確認 QSO のデータで DOK も更新する場合は、チェックを外します。"
 
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:340
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "ログ内の既存の DOK を DCL によって上書きします (異なる場合)。"
 
-#: application/views/adif/import.php:316
+#: application/views/adif/import.php:342
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4477,18 +4489,18 @@ msgstr ""
 "チェックすると、Wavelog は既存の DOK を DCL ログの DOK で強制的に上書きしま"
 "す。"
 
-#: application/views/adif/import.php:323
+#: application/views/adif/import.php:349
 msgid "Ignore QSOs that cannot be matched."
 msgstr "一致できない QSO は無視します。"
 
-#: application/views/adif/import.php:325
+#: application/views/adif/import.php:351
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
 msgstr ""
 "チェックを外すと、Wavelog で見つからなかった QSO に関する情報が表示されます。"
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4502,13 +4514,13 @@ msgstr ""
 "提供されるCabrilloファイルを使用して、Wavelogでそのデータを書き換えることがで"
 "きます。"
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "情報"
 
-#: application/views/adif/import.php:345
+#: application/views/adif/import.php:371
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4520,21 +4532,21 @@ msgstr ""
 "関連データのみを修正するため、Wavelog で QSO について何かを変更する前に、この"
 "機能を使用してください。"
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "コンテスト名（CBRのコンテストIDが異なる場合のみ）"
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Optional"
 msgstr "オプション"
 
-#: application/views/adif/import.php:360
+#: application/views/adif/import.php:386
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr "このコンテストでは、シリアルナンバーは必ず両当事者間で交換されます。"
 
-#: application/views/adif/import.php:362
+#: application/views/adif/import.php:388
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4542,7 +4554,7 @@ msgstr ""
 "あなたやパートナーがたまにしかシリアル番号を交換しない場合は、このチェック"
 "ボックスをオフのままにしてください。"
 
-#: application/views/adif/import.php:363
+#: application/views/adif/import.php:389
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -5745,8 +5757,9 @@ msgstr "JCC - Japan Century Cities Award"
 msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
-msgstr "日本国内の少なくとも100の異なる都市に所在するアマチュア無線局と交信（受信）し"
-"、QSLカードを受け取ったことを証明できます。"
+msgstr ""
+"日本国内の少なくとも100の異なる都市に所在するアマチュア無線局と交信（受信）"
+"し、QSLカードを受け取ったことを証明できます。"
 
 #: application/views/awards/jcc/index.php:18
 msgid ""
@@ -5755,10 +5768,10 @@ msgid ""
 "however names of city may be omitted. An additional sticker will be issued "
 "at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
-"JCC-200、300、400、500、600、700、800はそれぞれ別のアワードとして発行されます"
-"。QSLカードのリストはJCC参照番号順に並べてください。ただし、都市名は省略して"
-"も構いません。150、250、350、450、550、650、750の都市と50交信ごとに、追加のス"
-"テッカーが発行されます。"
+"JCC-200、300、400、500、600、700、800はそれぞれ別のアワードとして発行されま"
+"す。QSLカードのリストはJCC参照番号順に並べてください。ただし、都市名は省略し"
+"ても構いません。150、250、350、450、550、650、750の都市と50交信ごとに、追加の"
+"ステッカーが発行されます。"
 
 #: application/views/awards/jcc/index.php:115
 msgid "Show JCC Map"
@@ -5800,10 +5813,9 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
-"Parks on the Air®（POTA）は、ARRLの特別イベント「National Parks on the "
-"Air」が終了した2017年初頭に始まりました。ボランティアグループが、この楽しいイ"
-"ベントを1年間のイベントを超えて継続したいと考えたことから、POTAが誕生しました"
-"。"
+"Parks on the Air®（POTA）は、ARRLの特別イベント「National Parks on the Air」"
+"が終了した2017年初頭に始まりました。ボランティアグループが、この楽しいイベン"
+"トを1年間のイベントを超えて継続したいと考えたことから、POTAが誕生しました。"
 
 #: application/views/awards/pota/index.php:9
 msgid ""
@@ -5855,9 +5867,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG または Special Interest Group カテゴリでは、Wavelog "
-"に実装されていない賞に対して、あらゆる種類の「Special Interest Group "
-"Award」を使用できる可能性があります。"
+"SIG または Special Interest Group カテゴリでは、Wavelog に実装されていない賞"
+"に対して、あらゆる種類の「Special Interest Group Award」を使用できる可能性が"
+"あります。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -5877,9 +5889,8 @@ msgid ""
 "reference(s). Both fields are freely customizable."
 msgstr ""
 "QSO処理には2つのフィールドがあります。「SIG」には、アワード評価にも表示される"
-"特別利益団体（SIG）名の略称が入り、「SIG "
-"INFO」には、実際の参照情報が含まれます。どちらのフィールドも自由にカスタマイ"
-"ズできます。"
+"特別利益団体（SIG）名の略称が入り、「SIG INFO」には、実際の参照情報が含まれま"
+"す。どちらのフィールドも自由にカスタマイズできます。"
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
@@ -5935,8 +5946,9 @@ msgstr "WARアワード"
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
-msgstr "SOTA (Summits On The Air) "
-"は、山岳地帯でのポータブル運用を奨励するアマチュア無線家向けの表彰制度です。"
+msgstr ""
+"SOTA (Summits On The Air) は、山岳地帯でのポータブル運用を奨励するアマチュア"
+"無線家向けの表彰制度です。"
 
 #: application/views/awards/sota/index.php:9
 msgid ""
@@ -5952,8 +5964,8 @@ msgstr ""
 "会内で認定されたSOTA山頂を定めています。登頂ごとに、アクティベーターとチェイ"
 "サーは山頂の高度に応じたスコアを獲得します。様々なスコアに応じて認定証が発行"
 "され、栄誉ある「マウンテンゴート」トロフィーと「シャック・スロス」トロフィー"
-"を獲得できます。アクティベーターとチェイサーの功績者名簿は、SOTAオンラインデ"
-"ータベースで管理されています。"
+"を獲得できます。アクティベーターとチェイサーの功績者名簿は、SOTAオンライン"
+"データベースで管理されています。"
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -5963,9 +5975,9 @@ msgstr "VUCC - VHF/UHF センチュリークラブアワード"
 msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
-msgstr "VHF/UHF センチュリー "
-"クラブアワードは、希望するバンドで最低限のグリッドスクエアを運用し、確認した"
-"場合に授与されます。"
+msgstr ""
+"VHF/UHF センチュリー クラブアワードは、希望するバンドで最低限のグリッドスクエ"
+"アを運用し、確認した場合に授与されます。"
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:10
@@ -5994,15 +6006,15 @@ msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
-"WAB (Worked All Britain squares in amateur Radio) "
-"は、免許を持ったアマチュア無線家がイギリス国内のすべてのスクエアで交信するこ"
-"とを奨励しています。"
+"WAB (Worked All Britain squares in amateur Radio) は、免許を持ったアマチュア"
+"無線家がイギリス国内のすべてのスクエアで交信することを奨励しています。"
 
 #: application/views/awards/wab/index.php:14
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
-msgstr "下記のリンク先のページに記載されている必要な数のマス目に位置するアマチュア局"
+msgstr ""
+"下記のリンク先のページに記載されている必要な数のマス目に位置するアマチュア局"
 "と交信したと主張できます。"
 
 #: application/views/awards/wab/index.php:109
@@ -6019,9 +6031,9 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
-"国際アマチュア無線連合（IARU）が主催する「全大陸制覇」アワードは、北米、南米"
-"、オセアニア、アジア、ヨーロッパ、アフリカの6大陸すべてで運用・確認を行った人"
-"に授与されます。"
+"国際アマチュア無線連合（IARU）が主催する「全大陸制覇」アワードは、北米、南"
+"米、オセアニア、アジア、ヨーロッパ、アフリカの6大陸すべてで運用・確認を行った"
+"人に授与されます。"
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
@@ -6050,9 +6062,8 @@ msgid ""
 "listed in the WAE country list on different bands."
 msgstr ""
 "すべての DARC 証明書の中で最も古く、最も有名な証明書は、ヨーロッパ諸国および "
-"WAE "
-"国リストに記載されている島々のさまざまなバンドのアマチュア無線局との交信に対"
-"して授与されます。"
+"WAE 国リストに記載されている島々のさまざまなバンドのアマチュア無線局との交信"
+"に対して授与されます。"
 
 #: application/views/awards/wae/index.php:9
 msgid ""
@@ -6060,9 +6071,8 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
-"WAEは、CW、SSB、電話、RTTY、FT8、   "
-"デジタル、および混合モードで発行されます。WAE III、WAE II、WAE I、WAE TOP、"
-"WAE Trophyの5つのクラスで発行されます。"
+"WAEは、CW、SSB、電話、RTTY、FT8、   デジタル、および混合モードで発行されま"
+"す。WAE III、WAE II、WAE I、WAE TOP、WAE Trophyの5つのクラスで発行されます。"
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
@@ -6085,7 +6095,8 @@ msgstr "WAJA - 全日本都道府県制覇アワード"
 msgid ""
 "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham "
 "radio operators to work all the prefectures in Japan."
-msgstr "WAJA（アマチュア無線で日本全国都道府県と交信）は、免許を取得したアマチュア無"
+msgstr ""
+"WAJA（アマチュア無線で日本全国都道府県と交信）は、免許を取得したアマチュア無"
 "線家が日本全国すべての都道府県で交信することを奨励しています。"
 
 #: application/views/awards/waja/index.php:21
@@ -6095,9 +6106,9 @@ msgid ""
 "QSL cards should be arranged in order of WAJA (HAJA) reference number, "
 "however names of prefectures may be omitted."
 msgstr ""
-"日本国内47都道府県にあるアマチュア局と交信（交信を聴取）し、QSLカードを受け取"
-"ったと主張できます。QSLカードのリストはWAJA（HAJA）参照番号順に並べますが、都"
-"道府県名は省略できます。"
+"日本国内47都道府県にあるアマチュア局と交信（交信を聴取）し、QSLカードを受け"
+"取ったと主張できます。QSLカードのリストはWAJA（HAJA）参照番号順に並べますが、"
+"都道府県名は省略できます。"
 
 #: application/views/awards/waja/index.php:118
 msgid "Show WAJA Map"
@@ -6128,10 +6139,10 @@ msgid ""
 "training, and they represent Dutch amateurs nationally and internationally."
 msgstr ""
 "オランダは南北約300km、東西約200kmに広がります。人口1,800万人のうち、約11,500"
-"人がアマチュア無線の免許を取得しています。オランダ最大のアマチュア無線団体は"
-"、VERON（オランダ実験無線協会）とVRZA（全アマチュア無線協会）です。両団体はイ"
-"ベント、コンテスト、トレーニングを積極的に開催し、オランダのアマチュア無線界"
-"を国内外で代表しています。"
+"人がアマチュア無線の免許を取得しています。オランダ最大のアマチュア無線団体"
+"は、VERON（オランダ実験無線協会）とVRZA（全アマチュア無線協会）です。両団体は"
+"イベント、コンテスト、トレーニングを積極的に開催し、オランダのアマチュア無線"
+"界を国内外で代表しています。"
 
 #: application/views/awards/wap/index.php:22
 msgid ""
@@ -6142,9 +6153,9 @@ msgid ""
 "country, promoting both national connectivity and operational skill."
 msgstr ""
 "VRZA（全オランダアマチュア無線連盟）は、オランダ全12州の各局との交信を確認し"
-"たアマチュア無線家に、Worked All "
-"Provinces（WAP）賞を授与しています。この賞は、オランダ全土の多様な局との交信"
-"を奨励し、全国規模の接続性と運用スキルの向上に貢献します。"
+"たアマチュア無線家に、Worked All Provinces（WAP）賞を授与しています。この賞"
+"は、オランダ全土の多様な局との交信を奨励し、全国規模の接続性と運用スキルの向"
+"上に貢献します。"
 
 #: application/views/awards/wap/index.php:23
 #, php-format
@@ -6172,16 +6183,16 @@ msgid ""
 "municipalities, autonomous regions, and special administrative regions of "
 "China, fostering a deeper understanding of China."
 msgstr ""
-"WAPCアワードは、Mulan DX "
-"Clubが発行する賞で、世界中のアマチュア無線愛好家と中国全土の省、市、自治区、"
-"特別行政区の無線愛好家との間の交流を促進し、中国に対する理解を深めることを目"
-"的としています。"
+"WAPCアワードは、Mulan DX Clubが発行する賞で、世界中のアマチュア無線愛好家と中"
+"国全土の省、市、自治区、特別行政区の無線愛好家との間の交流を促進し、中国に対"
+"する理解を深めることを目的としています。"
 
 #: application/views/awards/wapc/index.php:9
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
-msgstr "このアワードは、長期にわたる人脈の蓄積を通じて獲得することも、毎年開催される "
+msgstr ""
+"このアワードは、長期にわたる人脈の蓄積を通じて獲得することも、毎年開催される "
 "WAPC コンテストでの 1 回の努力で獲得することもできます。"
 
 #: application/views/awards/wapc/index.php:118
@@ -6208,10 +6219,9 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
-"ARRLで最も人気のある賞は、Worked All States "
-"Awardです。世界中のアマチュア無線家に何千もの賞が授与されてきました。ARRLは設"
-"立101周年を迎え、賞のプログラムの合理化と改善を目指し、賞状とプログラムを刷新"
-"しました。"
+"ARRLで最も人気のある賞は、Worked All States Awardです。世界中のアマチュア無線"
+"家に何千もの賞が授与されてきました。ARRLは設立101周年を迎え、賞のプログラムの"
+"合理化と改善を目指し、賞状とプログラムを刷新しました。"
 
 #: application/views/awards/was/index.php:22
 msgid ""
@@ -6221,17 +6231,17 @@ msgid ""
 "possessions must be members of ARRL to apply for a WAS. Applicants from "
 "outside the U.S. are exempt from this requirement."
 msgstr ""
-"WAS（Worked All "
-"States）賞は、アメリカ合衆国50州すべてとの交信を書面で確認する証明書を提出す"
-"る世界中のすべてのアマチュア無線家に授与されます。アメリカ合衆国およびその領"
-"土に居住するアマチュア無線家は、WASに応募するためにARRLの会員である必要があり"
-"ます。アメリカ合衆国外からの応募者はこの要件が免除されます。"
+"WAS（Worked All States）賞は、アメリカ合衆国50州すべてとの交信を書面で確認す"
+"る証明書を提出する世界中のすべてのアマチュア無線家に授与されます。アメリカ合"
+"衆国およびその領土に居住するアマチュア無線家は、WASに応募するためにARRLの会員"
+"である必要があります。アメリカ合衆国外からの応募者はこの要件が免除されます。"
 
 #: application/views/awards/was/index.php:23
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
-msgstr "ARRL WAS アワードに関するすべての情報と規則は %s でご確認いただけます。"
+msgstr ""
+"ARRL WAS アワードに関するすべての情報と規則は %s でご確認いただけます。"
 
 #: application/views/awards/was/index.php:114
 msgid "Show WAS Map"
@@ -6247,10 +6257,9 @@ msgid ""
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
-"WWFF (World Wide Flora and Fauna in Amateur Radio) "
-"は、アマチュア無線の免許を持つオペレーターが自宅を離れ、"
-"世界中の動植物保護地域 (PFF) "
-"でポータブル無線機を操作することを奨励しています。"
+"WWFF (World Wide Flora and Fauna in Amateur Radio) は、アマチュア無線の免許を"
+"持つオペレーターが自宅を離れ、世界中の動植物保護地域 (PFF) でポータブル無線機"
+"を操作することを奨励しています。"
 
 #: application/views/awards/wwff/index.php:9
 msgid ""
@@ -6258,8 +6267,8 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
-"世界中で26,000以上の保護動植物地域（PFF）がWWFFディレクトリに登録されています"
-"。ハンターとアクティベーターは、世界および国内で多彩な賞に応募できます。"
+"世界中で26,000以上の保護動植物地域（PFF）がWWFFディレクトリに登録されていま"
+"す。ハンターとアクティベーターは、世界および国内で多彩な賞に応募できます。"
 
 #: application/views/awards/wwff/index.php:31
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -6293,13 +6302,15 @@ msgstr ""
 msgid ""
 "Some of the data stored in Wavelog can be exported so that you can keep a "
 "backup copy elsewhere."
-msgstr "Wavelog に保存されているデータの一部はエクスポートできるので、"
-"別の場所にバックアップ コピーを保存できます。"
+msgstr ""
+"Wavelog に保存されているデータの一部はエクスポートできるので、別の場所にバッ"
+"クアップ コピーを保存できます。"
 
 #: application/views/backup/main.php:18
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
-msgstr "データを保護するには、定期的にバックアップを作成することをお勧めします。"
+msgstr ""
+"データを保護するには、定期的にバックアップを作成することをお勧めします。"
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
@@ -6336,7 +6347,8 @@ msgstr "スポット"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
-msgstr "ポップアップがブロックされました。このサイトのポップアップを永続的に許可して"
+msgstr ""
+"ポップアップがブロックされました。このサイトのポップアップを永続的に許可して"
 "ください。"
 
 #: application/views/bandmap/list.php:7
@@ -6412,7 +6424,8 @@ msgstr "バンドエッジ"
 msgid ""
 "Using the bandedges list you can control the mode classification in the "
 "cluster."
-msgstr "バンドエッジ リストを使用すると、クラスター内のモード分類を制御できます。"
+msgstr ""
+"バンドエッジ リストを使用すると、クラスター内のモード分類を制御できます。"
 
 #: application/views/bands/bandedges.php:29
 msgid "Frequency from (Hz)"
@@ -6470,16 +6483,17 @@ msgstr "バンド内のCW QRGの周波数（Hz単位）"
 msgid ""
 "Using the band list you can control which bands are shown when creating a "
 "new QSO."
-msgstr "バンド リストを使用すると、新しい QSO "
-"を作成するときに表示されるバンドを制御できます。"
+msgstr ""
+"バンド リストを使用すると、新しい QSO を作成するときに表示されるバンドを制御"
+"できます。"
 
 #: application/views/bands/index.php:39
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
-msgstr "アクティブなバンドは QSO "
-"の「バンド」ドロップダウンに表示されますが、非アクティブなバンドは非表示にな"
-"り、選択できません。"
+msgstr ""
+"アクティブなバンドは QSO の「バンド」ドロップダウンに表示されますが、非アク"
+"ティブなバンドは非表示になり、選択できません。"
 
 #: application/views/bands/index.php:56
 msgid "Sig"
@@ -6630,8 +6644,8 @@ msgid ""
 "IARU-HF and for all ARRL and CQ contests."
 msgstr ""
 "米国およびカナダの局の場合、「LOCATION」はARRLセクションの略称でなければなり"
-"ません。外国の局の場合、「LOCATION」は「DX」でなければなりません"
-"。この情報はIARU-HFおよびすべてのARRLおよびCQコンテストで必須です。"
+"ません。外国の局の場合、「LOCATION」は「DX」でなければなりません。この情報は"
+"IARU-HFおよびすべてのARRLおよびCQコンテストで必須です。"
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
@@ -6641,8 +6655,9 @@ msgstr "RDXC コンテストの場合、これに RDA 番号が含まれます�
 msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
-msgstr "RSGB-IOTA コンテストの場合、この情報には IOTA 名 (IOTA "
-"参照コードではありません) が含まれます。"
+msgstr ""
+"RSGB-IOTA コンテストの場合、この情報には IOTA 名 (IOTA 参照コードではありませ"
+"ん) が含まれます。"
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:631
@@ -6867,8 +6882,9 @@ msgstr "いいえ"
 
 #: application/views/cabrillo/index.php:201
 msgid "If the gridsquare was part of the exchange, you should select YES."
-msgstr "グリッドスクエアが交換の一部であった場合は、「はい」を選択する必要があります"
-"。"
+msgstr ""
+"グリッドスクエアが交換の一部であった場合は、「はい」を選択する必要がありま"
+"す。"
 
 #: application/views/cabrillo/index.php:201
 msgid "Include logged grids?"
@@ -6933,7 +6949,8 @@ msgid ""
 "In order for users to log QSOs with this club/special callsign, they need "
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
-msgstr "このクラブ/特別コールサインでQSOを記録するには、適切な権限が必要です。以下の"
+msgstr ""
+"このクラブ/特別コールサインでQSOを記録するには、適切な権限が必要です。以下の"
 "表にユーザーを追加し、適切な権限を設定してください。"
 
 #: application/views/club/permissions.php:14
@@ -7020,8 +7037,9 @@ msgstr "クラブに新しいユーザーを追加する"
 msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
-msgstr "%s Clubstation にユーザーを追加するには、そのユーザーが既にこの Wavelog "
-"サーバーに存在している必要があります。"
+msgstr ""
+"%s Clubstation にユーザーを追加するには、そのユーザーが既にこの Wavelog サー"
+"バーに存在している必要があります。"
 
 #: application/views/club/permissions.php:168
 msgid ""
@@ -7132,14 +7150,16 @@ msgstr "Clublog への次回の自動アップロードは次の時間に行わ�
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "Clublog logbook."
-msgstr "ここでは、これまで Clublog ログブックにアップロードされていないすべての QSO "
+msgstr ""
+"ここでは、これまで Clublog ログブックにアップロードされていないすべての QSO "
 "を見ることができます。"
 
 #: application/views/clublog/export.php:26
 msgid ""
 "You need to set a username and password in your user account. You will also "
 "need to enable upload for each station profile ."
-msgstr "ユーザーアカウントにユーザー名とパスワードを設定する必要があります。また、各"
+msgstr ""
+"ユーザーアカウントにユーザー名とパスワードを設定する必要があります。また、各"
 "ステーションプロファイルのアップロードを有効にする必要があります。"
 
 #: application/views/clublog/export.php:34
@@ -7185,8 +7205,9 @@ msgstr "Clublog-QSL からの次回の自動ダウンロードは次の時間に
 msgid ""
 "If no startdate is given then all QSOs after last confirmation will be "
 "downloaded/updated!"
-msgstr "開始日が指定されていない場合は、最終確認後のすべての QSO "
-"がダウンロード/更新されます！"
+msgstr ""
+"開始日が指定されていない場合は、最終確認後のすべての QSO がダウンロード/更新"
+"されます！"
 
 #: application/views/clublog/export.php:78
 msgid "Download from Clublog"
