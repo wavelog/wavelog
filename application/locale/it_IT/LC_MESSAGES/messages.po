@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-18 20:40+0000\n"
+"PO-Revision-Date: 2025-08-18 20:42+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/it/>\n"
@@ -11182,48 +11182,39 @@ msgid "Only spots by spotters from this continent are shown"
 msgstr "Vengono mostrati solo gli spot degli spotter di questo continente"
 
 #: application/views/options/email.php:45
-#, fuzzy
 msgid "Outgoing Protocol"
 msgstr "Protocollo in uscita"
 
 #: application/views/options/email.php:50
-#, fuzzy
 msgid "The protocol that will be used to send out emails."
-msgstr "Il protocollo che sarà utilizzato per inviare email."
+msgstr "Il protocollo che verrà utilizzato per inviare le email."
 
 #: application/views/options/email.php:54
-#, fuzzy
 msgid "SMTP Encryption"
 msgstr "Crittografia SMTP"
 
 #: application/views/options/email.php:56
-#, fuzzy
 msgid "No Encryption"
 msgstr "Nessuna crittografia"
 
 #: application/views/options/email.php:60
-#, fuzzy
 msgid "Choose whether emails should be sent with TLS or SSL."
 msgstr "Scegli se le email devono essere inviate con TLS o SSL."
 
 #: application/views/options/email.php:64
-#, fuzzy
 msgid "Email Sender Name"
-msgstr "Nome del mittente dell'email"
+msgstr "Nome da visualizzare come mittente dell'email"
 
 #: application/views/options/email.php:67
-#, fuzzy
 msgid "The email sender name, e.g. 'Wavelog'"
 msgstr "Il nome del mittente dell'email, ad esempio 'Wavelog'"
 
 #: application/views/options/email.php:72 application/views/user/edit.php:62
 #: application/views/user/forgot_password.php:47
-#, fuzzy
 msgid "Email Address"
 msgstr "Indirizzo email"
 
 #: application/views/options/email.php:75
-#, fuzzy
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
@@ -11231,12 +11222,10 @@ msgstr ""
 "'wavelog@example.com'"
 
 #: application/views/options/email.php:80
-#, fuzzy
 msgid "SMTP Host"
 msgstr "Host SMTP"
 
 #: application/views/options/email.php:83
-#, fuzzy
 msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
@@ -11245,12 +11234,10 @@ msgstr ""
 "'ssl://' o 'tls://')"
 
 #: application/views/options/email.php:88
-#, fuzzy
 msgid "SMTP Port"
 msgstr "Porta SMTP"
 
 #: application/views/options/email.php:91
-#, fuzzy
 msgid ""
 "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is "
 "used -> '465'"
@@ -11259,12 +11246,10 @@ msgstr ""
 "'587', se viene utilizzato SSL -> '465'"
 
 #: application/views/options/email.php:96
-#, fuzzy
 msgid "SMTP Username"
 msgstr "Nome utente SMTP"
 
 #: application/views/options/email.php:99
-#, fuzzy
 msgid ""
 "The username to log in to the mail server, usually this is the email address "
 "that is used."
@@ -11273,52 +11258,46 @@ msgstr ""
 "email che viene utilizzato."
 
 #: application/views/options/email.php:104
-#, fuzzy
 msgid "SMTP Password"
 msgstr "Password SMTP"
 
 #: application/views/options/email.php:107
-#, fuzzy
 msgid "The password to log in to the mail server."
 msgstr "La password per accedere al server di posta."
 
 #: application/views/options/email.php:116
-#, fuzzy
 msgid "Send Test-Mail"
-msgstr "Invia email di test"
+msgstr "Invia e-mail di prova"
 
 #: application/views/options/email.php:117
-#, fuzzy
 msgid "The email will be sent to the address defined in your account settings."
 msgstr ""
 "L'email verrà inviata all'indirizzo definito nelle impostazioni del tuo "
 "account."
 
 #: application/views/options/hon.php:38
-#, fuzzy
 msgid "Provider for Hams Of Note"
 msgstr "Fornitore per Hams of Note"
 
 #: application/views/options/hon.php:39
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "The URL which provides the Hams Of Note List. See example and how it works "
 "here %s"
 msgstr ""
-"L'URL che fornisce l'elenco dei Hams Of Note. Vedi l'esempio e come funziona "
-"qui %s"
+"L'URL che fornisce l'elenco Hams Of Note. Vedi l'esempio e come funziona qui "
+"%s"
 
 #: application/views/options/hon.php:39
 msgid "Wiki"
 msgstr "Documentazione"
 
 #: application/views/options/hon.php:41
-#, fuzzy, php-format
+#, php-format
 msgid "URL of the Hams Of Note List. e.g. %s"
-msgstr "URL dell'elenco dei Hams Of Note. ad esempio %s"
+msgstr "URL della lista Hams Of Note. es. %s"
 
 #: application/views/options/index.php:13
-#, fuzzy
 msgid ""
 "Wavelog Options are global settings used for all users of the installation, "
 "which are overridden if there's a setting on a user level."
@@ -11334,34 +11313,30 @@ msgid ""
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
 msgstr ""
-"Questo modifica la fonte della mappa in vari punti all'interno di Wavelog. "
-"Non cambiare valori qui a meno che tu non sia sicuro di quello che stai "
-"facendo. Prova ogni modifica sul tuo %sDashboard%s!"
+"Questo modifica la fonte della mappa in varie posizioni all'interno di "
+"Wavelog. Non cambiare alcun valore qui a meno che tu non sia sicuro di ciò "
+"che stai facendo. Testa ogni modifica sul tuo %sDashboard%s!"
 
 #: application/views/options/maptiles.php:50
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
 msgstr ""
-"Puoi trovare un elenco delle impostazioni testate e di tutti i valori "
-"predefiniti nella %sWavelog Wiki%s."
+"Puoi trovare un elenco delle impostazioni testate e tutti i valori "
+"predefiniti nel %sWavelog Wiki%s."
 
 #: application/views/options/maptiles.php:54
-#, fuzzy
 msgid "Maptiles Server URL"
-msgstr "URL del server delle mappe"
+msgstr "URL del server Maptiles"
 
 #: application/views/options/maptiles.php:56
-#, fuzzy
 msgid "URL of the map server which serves the maptiles."
-msgstr "URL del server della mappa che fornisce le mappe."
+msgstr "URL del server delle mappe che fornisce le mappe."
 
 #: application/views/options/maptiles.php:59
-#, fuzzy
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
-msgstr ""
-"URL del server Maptiles per le piastrelle scure - SOLO API Mappa Statica"
+msgstr "URL del server Maptiles per Dark Tiles - SOLO API mappa statica"
 
 #: application/views/options/maptiles.php:61
 #, fuzzy
