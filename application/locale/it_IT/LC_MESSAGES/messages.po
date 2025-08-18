@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-18 20:42+0000\n"
+"PO-Revision-Date: 2025-08-18 21:54+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/it/>\n"
@@ -8673,7 +8673,7 @@ msgstr "Dati QSO"
 #, fuzzy, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
 msgstr ""
-"i contatti sono stati tracciati.%s Il tuo contatto più lontano è stato con"
+"i contatti sono stati disegnati.%s Il tuo contatto più lontano è stato con"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
@@ -8807,7 +8807,7 @@ msgstr ""
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr "Nuova %s iscrizione su Wavelog!"
+msgstr "Nuova iscrizione di %s su Wavelog!"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -11105,7 +11105,6 @@ msgid "Public Maps"
 msgstr "Mappe pubbliche"
 
 #: application/views/options/appearance.php:75
-#, fuzzy
 msgid ""
 "This allows to disable all maps in the public view. This affects the main "
 "map and the gridsquares map."
@@ -11307,7 +11306,7 @@ msgstr ""
 "livello utente."
 
 #: application/views/options/maptiles.php:49
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This modifies the map source in various locations within Wavelog. Do not "
 "change any values here unless you are confident in what you are doing. Test "
@@ -11339,111 +11338,92 @@ msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
 msgstr "URL del server Maptiles per Dark Tiles - SOLO API mappa statica"
 
 #: application/views/options/maptiles.php:61
-#, fuzzy
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
 msgstr ""
-"URL del server della mappa che fornisce le mappe scure. Utilizzato solo per "
+"URL del server delle mappe che fornisce le mappe scure. Utilizzato solo per "
 "la Mappa Statica."
 
 #: application/views/options/maptiles.php:64
-#, fuzzy
 msgid "Subdomain System of Maptile Server"
-msgstr "Sistema di Sottodominio del Server Maptile"
+msgstr "Sistema di sottodomini del server Maptile"
 
 #: application/views/options/maptiles.php:66
-#, fuzzy
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
 msgstr ""
-"Sistema dei sottodomini su questo server ({s} nell'URL). Vengono utilizzati "
-"per il bilanciamento del carico."
+"Sistema dei sottodomini su questo server ({s} nell'URL). Sono usati per il "
+"bilanciamento del carico."
 
 #: application/views/options/maptiles.php:69
-#, fuzzy
 msgid "URL of the Copyright Source"
 msgstr "URL della fonte del copyright"
 
 #: application/views/options/maptiles.php:71
-#, fuzzy
 msgid "Source URL for the copyright tag."
-msgstr "URL sorgente per il tag di copyright."
+msgstr "URL di origine per il tag di copyright."
 
 #: application/views/options/maptiles.php:74
-#, fuzzy
 msgid "Name of the Copyright Source"
 msgstr "Nome della fonte del copyright"
 
 #: application/views/options/maptiles.php:76
-#, fuzzy
 msgid "Text for the copyright tag."
 msgstr "Testo per il tag di copyright."
 
 #: application/views/options/maptiles.php:81
-#, fuzzy
 msgid "Reset to Defaults"
 msgstr "Ripristina le impostazioni predefinite"
 
 #: application/views/options/radios.php:38
-#, fuzzy
 msgid "Radio Timeout Warning"
 msgstr "Avviso di timeout radio"
 
 #: application/views/options/radios.php:39
-#, fuzzy
 msgid ""
 "The Radio Timeout Warning is used on the QSO entry panel to alert you to "
 "radio interface disconnects."
 msgstr ""
-"L'avviso di timeout radio viene utilizzato nel pannello di inserimento QSO "
-"per avvertirti delle disconnessioni dell'interfaccia radio."
+"L'avviso di timeout della radio viene utilizzato nel pannello di inserimento "
+"QSO per avvisarti delle disconnessioni dell'interfaccia radio."
 
 #: application/views/options/radios.php:41
-#, fuzzy
 msgid "This number is in seconds."
 msgstr "Questo numero è in secondi."
 
 #: application/views/options/sidebar.php:5
-#, fuzzy
 msgid "Radios"
 msgstr "Radio"
 
 #: application/views/options/version_dialog.php:47
-#, fuzzy
 msgid "Version Info Header"
-msgstr "Informazioni sulla versione"
+msgstr "Intestazione delle informazioni sulla versione"
 
 #: application/views/options/version_dialog.php:49
-#, fuzzy
 msgid "You can change the header of the version info dialog."
 msgstr ""
 "Puoi cambiare l'intestazione della finestra di dialogo delle informazioni "
 "sulla versione."
 
 #: application/views/options/version_dialog.php:53
-#, fuzzy
 msgid "Version Info Mode"
 msgstr "Informazioni sulla versione"
 
 #: application/views/options/version_dialog.php:57
-#, fuzzy
 msgid "Only Release Notes"
 msgstr "Solo note di rilascio"
 
 #: application/views/options/version_dialog.php:60
-#, fuzzy
 msgid "Only Custom Text"
 msgstr "Solo testo personalizzato"
 
 #: application/views/options/version_dialog.php:63
-#, fuzzy
 msgid "Release Notes and Custom Text"
 msgstr "Note di rilascio e testo personalizzato"
 
 #: application/views/options/version_dialog.php:68
-#, fuzzy
 msgid ""
 "The Version Info is shown to every user. The user has the option to dismiss "
 "the dialog after he read it. Select if you want to show only release notes "
@@ -11455,45 +11435,38 @@ msgstr ""
 "personalizzato o entrambi."
 
 #: application/views/options/version_dialog.php:72
-#, fuzzy
 msgid "Version Info Custom Text"
 msgstr "Informazioni sulla versione Testo personalizzato"
 
 #: application/views/options/version_dialog.php:74
-#, fuzzy
 msgid "This is the custom text which is shown in the dialog."
 msgstr ""
 "Questo è il testo personalizzato che viene mostrato nella finestra di "
 "dialogo."
 
 #: application/views/options/version_dialog.php:84
-#, fuzzy
 msgid "Show/Hide Version Info Dialog for all Users"
 msgstr ""
-"Mostra/Nascondi la finestra delle informazioni sulla versione per tutti gli "
-"utenti"
+"Mostra/Nascondi finestra di dialogo delle informazioni sulla versione per "
+"tutti gli utenti"
 
 #: application/views/options/version_dialog.php:97
-#, fuzzy
 msgid "Show for all Users"
 msgstr "Mostra per tutti gli utenti"
 
 #: application/views/options/version_dialog.php:99
-#, fuzzy
 msgid ""
 "This will show the version dialog automatically to all users on their next "
 "page reload."
 msgstr ""
-"Questo mostrerà automaticamente il dialogo della versione a tutti gli utenti "
-"al loro prossimo ricaricamento della pagina."
+"Questo mostrerà automaticamente la finestra di dialogo della versione a "
+"tutti gli utenti al prossimo ricaricamento della pagina."
 
 #: application/views/options/version_dialog.php:104
-#, fuzzy
 msgid "Hide for all Users"
 msgstr "Nascondi per tutti gli utenti"
 
 #: application/views/options/version_dialog.php:106
-#, fuzzy
 msgid ""
 "This will deactivate the automatic popup of the version dialog for all users."
 msgstr ""
@@ -11501,29 +11474,24 @@ msgstr ""
 "versione per tutti gli utenti."
 
 #: application/views/oqrs/index.php:9
-#, fuzzy
 msgid "Request a QSL card"
-msgstr "Richiedi una carta QSL"
+msgstr "Richiedi una QSL"
 
 #: application/views/oqrs/index.php:27
-#, fuzzy
 msgid "Enter your callsign"
-msgstr "Inserisci il tuo indicativo"
+msgstr "Inserisci il tuo nominativo"
 
 #: application/views/oqrs/index.php:27
-#, fuzzy
 msgid "This search will search in all station locations where OQRS is active."
 msgstr ""
-"Questa ricerca verrà effettuata in tutte le località delle stazioni dove "
-"OQRS è attivo."
+"Questa ricerca cercherà in tutte le località delle stazioni dove OQRS è "
+"attivo."
 
 #: application/views/oqrs/index.php:54
-#, fuzzy
 msgid "Select station"
 msgstr "Seleziona stazione"
 
 #: application/views/oqrs/notinlogform.php:2
-#, fuzzy
 msgid ""
 "If you can't find your QSO in the log, please fill out the form below. You "
 "will be contacted after the log has been checked."
@@ -11535,19 +11503,16 @@ msgstr ""
 #: application/views/oqrs/notinlogform.php:9
 #: application/views/oqrs/request.php:16
 #: application/views/oqrs/request_grouped.php:9
-#, fuzzy
 msgid "Time (UTC)"
-msgstr "Tempo (UTC)"
+msgstr "Orario (UTC)"
 
 #: application/views/oqrs/notinlogform.php:24
-#, fuzzy
 msgid "Add line"
 msgstr "Aggiungi riga"
 
 #: application/views/oqrs/notinlogform.php:30
 #: application/views/oqrs/request.php:56
 #: application/views/oqrs/request_grouped.php:59
-#, fuzzy
 msgid "Any extra information we need to know about?"
 msgstr "C'è qualche informazione aggiuntiva che dobbiamo sapere?"
 
@@ -11558,21 +11523,18 @@ msgstr "C'è qualche informazione aggiuntiva che dobbiamo sapere?"
 #: application/views/qso/edit_ajax.php:275 application/views/qso/index.php:600
 #: application/views/user/index.php:29 application/views/user/index.php:154
 #: application/views/user/profile.php:24 application/views/view_log/qso.php:482
-#, fuzzy
 msgid "E-mail"
 msgstr "E-mail"
 
 #: application/views/oqrs/notinlogform.php:36
 #: application/views/oqrs/request.php:62
 #: application/views/oqrs/request_grouped.php:65
-#, fuzzy
 msgid "Your e-mail address where we can contact you"
 msgstr "Il tuo indirizzo e-mail dove possiamo contattarti"
 
 #: application/views/oqrs/notinlogform.php:40
-#, fuzzy
 msgid "Send not in log request"
-msgstr "Non inviare nella richiesta di log"
+msgstr "Invia richiesta non in log"
 
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:29
@@ -11610,30 +11572,25 @@ msgstr "Stazione"
 #: application/views/search/search_result_ajax.php:205
 #: application/views/view_log/partial/log_ajax.php:307
 #: src/QSLManager/QSO.php:435
-#, fuzzy
 msgid "Via"
-msgstr "Via"
+msgstr "Tramite"
 
 #: application/views/oqrs/qsolist.php:199
-#, fuzzy
 msgid "No QSOs were found. It seems you were not active at this time."
 msgstr "Nessun QSO trovato. Sembra che tu non fossi attivo in questo momento."
 
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
 #: application/views/qslprint/qsolist.php:198
-#, fuzzy
 msgid "Add to print queue"
 msgstr "Aggiungi alla coda di stampa"
 
 #: application/views/oqrs/qsolist.php:209
-#, fuzzy
 msgid "Match QSO"
 msgstr "Corrispondenza QSO"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
-#, fuzzy
 msgid ""
 "The following QSO(s) were found. Please fill out the date and time and "
 "submit your request."
@@ -11643,257 +11600,216 @@ msgstr ""
 
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:43
-#, fuzzy
 msgid "QSL Route"
 msgstr "Percorso QSL"
 
 #: application/views/oqrs/request.php:50
 #: application/views/oqrs/request_grouped.php:53
-#, fuzzy
 msgid "Direct (write address in message below)"
-msgstr "Diretto (scrivi l'indirizzo nel messaggio qui sotto)"
+msgstr "Direct (scrivi l'indirizzo nel messaggio qui sotto)"
 
 #: application/views/oqrs/request.php:66
 #: application/views/oqrs/request_grouped.php:69
-#, fuzzy
 msgid "Submit request"
 msgstr "Invia richiesta"
 
 #: application/views/oqrs/request_grouped.php:72
 #: application/views/oqrs/result.php:40
-#, fuzzy
 msgid "No QSOs found in the log."
 msgstr "Nessun QSO trovato nel registro."
 
 #: application/views/oqrs/result.php:5
-#, fuzzy, php-format
+#, php-format
 msgid "Log search result for %s"
-msgstr "Risultato della ricerca del log per %s"
+msgstr "Risultato della ricerca del registro per %s"
 
 #: application/views/oqrs/result.php:30
-#, fuzzy, php-format
+#, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] "ha %d slot per bande"
-msgstr[1] ""
+msgstr[0] "ha %d slot per banda"
+msgstr[1] "ha %d slot per bande"
 
 #: application/views/oqrs/result.php:33
-#, fuzzy, php-format
+#, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] "e ha %d QSO nel registro"
-msgstr[1] ""
+msgstr[0] "e ha %d QSO nel log"
+msgstr[1] "e ha %d QSO nel log"
 
 #: application/views/oqrs/result.php:37
-#, fuzzy
 msgid "Request QSL"
-msgstr "Richiesta QSL"
+msgstr "Richiedi QSL"
 
 #: application/views/oqrs/result.php:44
-#, fuzzy
 msgid "Not in log?"
 msgstr "Non nel registro?"
 
 #: application/views/oqrs/showrequests.php:2
 #: application/views/oqrs/showrequests.php:50
 #: application/views/oqrs/status_info.php:10
-#, fuzzy
 msgid "Open request"
 msgstr "Richiesta aperta"
 
 #: application/views/oqrs/showrequests.php:3
 #: application/views/oqrs/showrequests.php:51
 #: application/views/oqrs/status_info.php:14
-#, fuzzy
 msgid "Not in log request"
-msgstr "Non nella richiesta di log"
+msgstr "Richiedi not in log"
 
 #: application/views/oqrs/showrequests.php:4
-#, fuzzy
 msgid "Request done"
 msgstr "Richiesta completata"
 
 #: application/views/oqrs/showrequests.php:5
-#, fuzzy
 msgid "Pending request"
 msgstr "Richiesta in attesa"
 
 #: application/views/oqrs/showrequests.php:6
-#, fuzzy
 msgid "Request rejected"
 msgstr "Richiesta rifiutata"
 
 #: application/views/oqrs/showrequests.php:10
-#, fuzzy
 msgid "An error ocurred while making the request"
-msgstr "Si è verificato un errore durante l'invio della richiesta"
+msgstr "Si è verificato un errore durante la richiesta"
 
 #: application/views/oqrs/showrequests.php:11
-#, fuzzy
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
 msgstr ""
-"Attenzione! Sei sicuro di voler eliminare la richiesta OQRS contrassegnata?"
+"Attenzione! Sei sicuro di voler eliminare la/le richiesta/e OQRS "
+"contrassegnata/e?"
 
 #: application/views/oqrs/showrequests.php:12
-#, fuzzy
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
 msgstr ""
-"Attenzione! Sei sicuro di voler rifiutare la(s) richiesta(e) OQRS "
-"contrassegnata(e)?"
+"Attenzione! Sei sicuro di voler rifiutare la/le richiesta/e OQRS "
+"contrassegnata/e?"
 
 #: application/views/oqrs/showrequests.php:13
-#, fuzzy
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
 msgstr ""
-"Attenzione! Sei sicuro di voler contrassegnare la/e richiesta/e OQRS "
+"Attenzione! Sei sicuro di voler contrassegnare la/le richiesta/e OQRS "
 "contrassegnata/e?"
 
 #: application/views/oqrs/showrequests.php:14
-#, fuzzy
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
-"Attenzione! Sei sicuro di voler aggiungere la richiesta OQRS contrassegnata "
-"alla coda?"
+"Attenzione! Sei sicuro di voler aggiungere la/le richiesta/e OQRS "
+"contrassegnata/e alla coda?"
 
 #: application/views/oqrs/showrequests.php:15
-#, fuzzy
 msgid "OQRS Status Information"
 msgstr "Informazioni sullo stato OQRS"
 
 #: application/views/oqrs/showrequests.php:16
-#, fuzzy
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr "Attenzione! Sei sicuro di voler eliminare il match QSO?"
+msgstr "Attenzione! Sei sicuro di voler eliminare la corrispondenza QSO?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
-#, fuzzy
 msgid "Request callsign"
-msgstr "Richiesta indicativo"
+msgstr "Richiedi nominativo"
 
 #: application/views/oqrs/showrequests.php:47
-#, fuzzy
 msgid "OQRS Status"
 msgstr "Stato OQRS"
 
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
-#, fuzzy
 msgid "Done / sent"
 msgstr "Fatto / inviato"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
-#, fuzzy
 msgid "Pending"
-msgstr "In attesa"
+msgstr "in attesa"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
-#, fuzzy
 msgid "Rejected"
 msgstr "Rifiutato"
 
 #: application/views/oqrs/showrequests.php:71
-#, fuzzy
 msgid "With selected"
 msgstr "Con selezionato"
 
 #: application/views/oqrs/showrequests.php:73
-#, fuzzy
 msgid "Mark as done"
 msgstr "Segna come fatto"
 
 #: application/views/oqrs/showrequests.php:74
-#, fuzzy
 msgid "Reject"
-msgstr "Rifiutare"
+msgstr "Rifiuta"
 
 #: application/views/oqrs/showrequests.php:85
-#, fuzzy
 msgid "Time of request"
-msgstr "Tempo della richiesta"
+msgstr "Orario della richiesta"
 
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
-#, fuzzy
 msgid "QSO Date"
 msgstr "Data QSO"
 
 #: application/views/oqrs/showrequests.php:87
-#, fuzzy
 msgid "QSO Time"
-msgstr "Tempo QSO"
+msgstr "Orario QSO"
 
 #: application/views/oqrs/showrequests.php:94
-#, fuzzy
 msgid "QSL route"
 msgstr "Percorso QSL"
 
 #: application/views/oqrs/showrequests.php:95
-#, fuzzy
 msgid "Check log"
 msgstr "Controlla il registro"
 
 #: application/views/oqrs/showrequests.php:96
-#, fuzzy
 msgid "QSO Match"
 msgstr "Corrispondenza QSO"
 
 #: application/views/oqrs/status_info.php:11
-#, fuzzy
 msgid "The request is currently open, and needs to be reviewed by you."
 msgstr "La richiesta è attualmente aperta e deve essere esaminata da te."
 
 #: application/views/oqrs/status_info.php:15
-#, fuzzy
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
-"La richiesta non è nel registro, quindi è necessario controllare il registro "
-"e elaborare la richiesta."
+"La richiesta non è nel registro, quindi devi controllare il registro e "
+"elaborare la richiesta."
 
 #: application/views/oqrs/status_info.php:19
-#, fuzzy
 msgid "The request has been processed and the QSL has been sent."
-msgstr "La richiesta è stata elaborata e il QSL è stato inviato."
+msgstr "La richiesta è stata elaborata e la QSL è stata inviata."
 
 #: application/views/oqrs/status_info.php:23
-#, fuzzy
 msgid "The request is still being processed."
 msgstr "La richiesta è ancora in fase di elaborazione."
 
 #: application/views/oqrs/status_info.php:27
-#, fuzzy
 msgid "The request has been rejected and will not be processed."
-msgstr "La richiesta è stata rifiutata e non sarà elaborata."
+msgstr "La richiesta è stata respinta e non verrà elaborata."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
-#, fuzzy
 msgid "Searching for"
-msgstr "Cercando per"
+msgstr "Ricerca tramite"
 
 #: application/views/qrbcalc/index.php:3
-#, fuzzy
 msgid "Locator 1"
-msgstr "Indicatore 1"
+msgstr "Locatore 1"
 
 #: application/views/qrbcalc/index.php:10
-#, fuzzy
 msgid "Locator 2"
-msgstr "Locator 2"
+msgstr "Locatore 2"
 
 #: application/views/qrbcalc/index.php:20
-#, fuzzy
 msgid "Calculate"
-msgstr "Calcolare"
+msgstr "Calcola"
 
 #: application/views/qrz/export.php:27
-#, fuzzy
 msgid "The next automatic Upload to QRZ will happen at: "
 msgstr "Il prossimo caricamento automatico su QRZ avverrà alle: "
 
@@ -11906,17 +11822,15 @@ msgstr ""
 "QRZ."
 
 #: application/views/qrz/export.php:29
-#, fuzzy
 msgid ""
 "You need to set a QRZ Logbook API key in your station profile. Only station "
 "profiles with an API Key set are displayed."
 msgstr ""
-"È necessario impostare una chiave API del logbook QRZ nel tuo profilo "
-"stazione. Solo i profili stazione con una chiave API impostata vengono "
+"Devi impostare una chiave API del QRZ Logbook nel profilo della tua "
+"stazione. Solo i profili delle stazioni con una chiave API impostata vengono "
 "visualizzati."
 
 #: application/views/qrz/export.php:74
-#, fuzzy
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
 msgstr "Il prossimo download automatico da QRZ-QSLs avverrà alle: "
 
@@ -11925,350 +11839,292 @@ msgid "Download from QRZ Logbook"
 msgstr "Scarica da QRZ"
 
 #: application/views/qrz/export.php:109
-#, fuzzy
 msgid "Mark QSOs as exported to QRZ Logbook"
-msgstr "Contrassegna i QSOs come esportati nel registro QRZ"
+msgstr "Contrassegna i QSOs come esportati su QRZ"
 
 #: application/views/qrz/mark_qrz.php:16
-#, fuzzy
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr "I QSOs sono contrassegnati come esportati nel QRZ Logbook."
+msgstr "I QSO sono contrassegnati come esportati su QRZ."
 
 #: application/views/qslcard/confirmationresult.php:16
-#, fuzzy
 msgid "QSO date"
 msgstr "Data QSO"
 
 #: application/views/qslcard/confirmationresult.php:20
-#, fuzzy
 msgid "Confirmation date"
 msgstr "Data di conferma"
 
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
-#, fuzzy
 msgid "Type"
 msgstr "Tipo"
 
 #: application/views/qslcard/confirmationresult.php:54
-#, fuzzy
 msgid "No confirmations found."
 msgstr "Nessuna conferma trovata."
 
 #: application/views/qslcard/confirmations.php:6
-#, fuzzy
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
 msgstr ""
-"Nella tabella vengono mostrati un massimo di 1000 righe. Questo è per motivi "
-"di prestazioni."
+"Nella tabella sono mostrate un massimo di 1000 righe. Questo per motivi di "
+"prestazioni."
 
 #: application/views/qslcard/confirmations.php:11
-#, fuzzy
 msgid "Confirmation type"
 msgstr "Tipo di conferma"
 
 #: application/views/qslcard/index.php:10
-#, fuzzy, php-format
+#, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
 msgstr ""
 "Stai utilizzando %s dello spazio su disco per memorizzare le risorse delle "
-"schede QSL"
+"QSL"
 
 #: application/views/qslcard/index.php:17
-#, fuzzy
 msgid "List View"
-msgstr "Visualizzazione elenco"
+msgstr "Vista elenco"
 
 #: application/views/qslcard/index.php:18
-#, fuzzy
 msgid "Gallery View"
-msgstr "Visualizzazione Galleria"
+msgstr "Vista galleria"
 
 #: application/views/qslcard/index.php:78
 #: application/views/qslcard/index.php:126
-#, fuzzy
 msgid "Add Qsos"
-msgstr "Aggiungi Qsos"
+msgstr "Aggiungi QSO"
 
 #: application/views/qslcard/searchresult.php:193
-#, fuzzy
 msgid "Add to QSL"
 msgstr "Aggiungi alla QSL"
 
 #: application/views/qslmanagement/index.php:13
-#, fuzzy
 msgid "Incoming QSL Cards"
-msgstr "Cartoline QSL in arrivo"
+msgstr "QSL in arrivo"
 
 #: application/views/qslmanagement/index.php:25
-#, fuzzy
 msgid "Report"
 msgstr "Rapporto"
 
 #: application/views/qslmanagement/index.php:26
-#, fuzzy
 msgid "Option"
 msgstr "Opzione"
 
 #: application/views/qslmanagement/index.php:46
-#, fuzzy
 msgid "Outgoing QSL Cards"
-msgstr "Cartoline QSL in uscita"
+msgstr "QSL in uscita"
 
 #: application/views/qslprint/index.php:16
-#, fuzzy
 msgid "Export Requested QSLs for Printing"
-msgstr "Richiesta di esportazione delle QSL per la stampa"
+msgstr "Esporta le QSL richieste per la stampa"
 
 #: application/views/qslprint/index.php:29
-#, fuzzy
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
 "Qui puoi esportare le QSL richieste come file CSV o ADIF per la stampa e, "
-"facoltativamente, marcarle come inviate."
+"facoltativamente, segnarle come inviate."
 
 #: application/views/qslprint/index.php:31
-#, fuzzy
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
 msgstr ""
-"Le QSL richieste sono tutte le comunicazioni radio con un valore di "
-"'Richiesto' o 'In coda' nel campo 'QSL Inviata'."
+"Le QSL richieste sono tutti i QSO con un valore di 'Richiesto' o 'In coda' "
+"nel campo 'QSL Inviata'."
 
 #: application/views/qslprint/index.php:32
 #: application/views/qslprint/qslprint.php:32
-#, fuzzy
 msgid "Previous QSL"
 msgstr "QSL precedente"
 
 #: application/views/qslprint/index.php:32
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
 msgstr ""
-"La colonna %s mostra quanti QSL sono stati inviati alla stessa stazione in "
+"La colonna %s mostra quante QSL sono state inviate alla stessa stazione in "
 "precedenza sulla stessa banda e modalità."
 
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
-#, fuzzy
 msgid "Send Method"
-msgstr "Invia metodo"
+msgstr "Metodo di invio"
 
 #: application/views/qslprint/qslprint.php:33
-#, fuzzy
 msgid "Mark as sent"
-msgstr "Contrassegna come inviato"
+msgstr "Segna come inviato"
 
 #: application/views/qslprint/qslprint.php:34
-#, fuzzy
 msgid "Remove"
 msgstr "Rimuovi"
 
 #: application/views/qslprint/qslprint.php:35
 #: application/views/simplefle/index.php:147
-#, fuzzy
 msgid "QSO List"
 msgstr "Elenco QSO"
 
 #: application/views/qslprint/qslprint.php:71
-#, fuzzy
 msgid "Mark selected QSOs as sent"
-msgstr "Segna i QSO selezionati come inviati"
+msgstr "Contrassegna i QSO selezionati come inviati"
 
 #: application/views/qslprint/qslprint.php:72
-#, fuzzy
 msgid "Remove selected QSOs from the queue"
-msgstr "Rimuovi i QSOs selezionati dalla coda"
+msgstr "Rimuovi i QSO selezionati dalla coda"
 
 #: application/views/qslprint/qslprint.php:73
-#, fuzzy
 msgid "Export selected QSOs to ADIF-file"
-msgstr "Esporta i QSOs selezionati in un file ADIF"
+msgstr "Esporta i QSO selezionati in un file ADIF"
 
 #: application/views/qslprint/qslprint.php:75
-#, fuzzy
 msgid "Export CSV-file"
 msgstr "Esporta file CSV"
 
 #: application/views/qslprint/qslprint.php:75
-#, fuzzy
 msgid "Export requested QSLs to CSV-file"
 msgstr "Esporta le QSL richieste in un file CSV"
 
 #: application/views/qslprint/qslprint.php:77
-#, fuzzy
 msgid "Export ADIF"
 msgstr "Esporta ADIF"
 
 #: application/views/qslprint/qslprint.php:77
-#, fuzzy
 msgid "Export requested QSLs to ADIF-file"
-msgstr "Esporta le QSL richieste in file ADIF"
+msgstr "Esporta le QSL richieste in un file ADIF"
 
 #: application/views/qslprint/qslprint.php:79
-#, fuzzy
 msgid "Mark QSLs as printed"
-msgstr "Segna le QSL di Mark come stampate"
+msgstr "Segna le QSL come stampate"
 
 #: application/views/qslprint/qslprint.php:79
-#, fuzzy
 msgid "Mark requested QSLs as sent"
-msgstr "Mark ha richiesto le QSL come inviate"
+msgstr "Segna le QSL richieste come inviate"
 
 #: application/views/qslprint/qslprint.php:83
-#, fuzzy
 msgid "No QSLs to print were found!"
-msgstr "Nessun QSL da stampare è stato trovato!"
+msgstr "Nessuna QSL da stampare trovata!"
 
 #: application/views/qslprint/qsolist.php:207
-#, fuzzy
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
-"Non sono stati trovati ulteriori QSO. Ciò significa che probabilmente sono "
-"già in coda."
+"Non sono stati trovati ulteriori QSO. Questo significa che probabilmente "
+"sono già in coda."
 
 #: application/views/qso/award_tabs.php:2
-#, fuzzy
 msgid "Showing summary for DXCC"
-msgstr "Mostrando il riepilogo per DXCC"
+msgstr "Mostra il riepilogo per DXCC"
 
 #: application/views/qso/award_tabs.php:3
-#, fuzzy
 msgid "Showing summary for US State"
-msgstr "Mostrando il riepilogo per lo Stato americano"
+msgstr "Mostrando riepilogo per lo stato USA"
 
 #: application/views/qso/award_tabs.php:4
-#, fuzzy
 msgid "Showing summary for CQ zone"
 msgstr "Mostrando il riepilogo per la zona CQ"
 
 #: application/views/qso/award_tabs.php:5
-#, fuzzy
 msgid "Showing summary for WWFF"
 msgstr "Mostrando il riepilogo per WWFF"
 
 #: application/views/qso/award_tabs.php:6
-#, fuzzy
 msgid "Showing summary for POTA"
 msgstr "Mostrando il riepilogo per POTA"
 
 #: application/views/qso/award_tabs.php:7
-#, fuzzy
 msgid "Showing summary for SOTA"
 msgstr "Mostrando il riepilogo per SOTA"
 
 #: application/views/qso/award_tabs.php:8
-#, fuzzy
 msgid "Showing summary for IOTA"
 msgstr "Mostrando il riepilogo per IOTA"
 
 #: application/views/qso/award_tabs.php:9
-#, fuzzy
 msgid "Showing summary for DOK"
 msgstr "Mostrando il riepilogo per DOK"
 
 #: application/views/qso/award_tabs.php:10
-#, fuzzy
 msgid "Showing summary for satellite QSOs with"
-msgstr "Mostrando riepilogo per QSOs satellitari con"
+msgstr "Visualizzazione del riepilogo per i QSO satellitari con"
 
 #: application/views/qso/award_tabs.php:11
-#, fuzzy
 msgid "Showing summary for continent"
-msgstr "Mostrando il riepilogo per continente"
+msgstr "Mostrando il riepilogo per il continente"
 
 #: application/views/qso/award_tabs.php:12
-#, fuzzy
 msgid "Showing summary for gridsquare"
-msgstr "Mostrando il riepilogo per il quadrato di rete"
+msgstr "Mostrando il riepilogo per il locatore"
 
 #: application/views/qso/award_tabs.php:13
-#, fuzzy
 msgid "State input needs to be filled to show a summary!"
 msgstr "È necessario compilare i dati di input per mostrare un riepilogo!"
 
 #: application/views/qso/award_tabs.php:14
-#, fuzzy
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr "È necessario compilare l'input SOTA per mostrare un riepilogo!"
+msgstr "L'input SOTA deve essere compilato per mostrare un riepilogo!"
 
 #: application/views/qso/award_tabs.php:15
-#, fuzzy
 msgid "POTA input needs to be filled to show a summary!"
-msgstr "È necessario compilare l'input POTA per mostrare un riepilogo!"
+msgstr "L'input POTA deve essere compilato per mostrare un riepilogo!"
 
 #: application/views/qso/award_tabs.php:16
-#, fuzzy
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr "È necessario compilare l'input IOTA per mostrare un riepilogo!"
+msgstr "L'input IOTA deve essere compilato per mostrare un riepilogo!"
 
 #: application/views/qso/award_tabs.php:17
-#, fuzzy
 msgid "DOK input needs to be filled to show a summary!"
-msgstr "È necessario compilare l'input DOK per mostrare un riepilogo!"
+msgstr "L'input DOK deve essere compilato per mostrare un riepilogo!"
 
 #: application/views/qso/award_tabs.php:18
-#, fuzzy
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr "È necessario compilare l'input WWFF per mostrare un riepilogo!"
+msgstr "L'input WWFF deve essere compilato per mostrare un riepilogo!"
 
 #: application/views/qso/award_tabs.php:19
-#, fuzzy
 msgid "Propagation mode needs to be 'SAT' to show a summary!"
 msgstr ""
 "La modalità di propagazione deve essere 'SAT' per mostrare un riepilogo!"
 
 #: application/views/qso/award_tabs.php:20
-#, fuzzy
 msgid "Gridsquare input needs to be filled to show a summary!"
 msgstr ""
-"È necessario compilare il campo della griglia per mostrare un riepilogo!"
+"L'input del quadrato di griglia deve essere compilato per mostrare un "
+"riepilogo!"
 
 #: application/views/qso/award_tabs.php:21
-#, fuzzy
 msgid "Summary only shows for the first POTA entered."
-msgstr "Il riepilogo mostra solo per il primo POTA inserito."
+msgstr "Il riepilogo viene mostrato solo per il primo POTA inserito."
 
 #: application/views/qso/award_tabs.php:22
-#, fuzzy
 msgid "Summary only shows for the first gridsquare entered."
-msgstr "Il riepilogo mostra solo per il primo quadrato di rete inserito."
+msgstr ""
+"Il riepilogo viene mostrato solo per il primo quadrato di griglia inserito."
 
 #: application/views/qso/award_tabs.php:23
-#, fuzzy
 msgid "Summary only shows for US states."
-msgstr "Il riepilogo mostra solo per gli stati americani."
+msgstr "Il riepilogo mostra solo per gli stati USA."
 
 #: application/views/qso/components/share_modal.php:3
-#, fuzzy
 msgid "Post on X"
 msgstr "Pubblica su X"
 
 #: application/views/qso/components/share_modal.php:6
-#, fuzzy
 msgid "Post on Bluesky"
-msgstr "Post su Bluesky"
+msgstr "Pubblica su Bluesky"
 
 #: application/views/qso/components/share_modal.php:10
-#, fuzzy
 msgid "Toot on Mastodon"
-msgstr "Fischio su Mastodon"
+msgstr "Pubblica su Mastodon"
 
 #: application/views/qso/components/winkeysettings.php:3
 #: application/views/qso/components/winkeysettings.php:19
 #: application/views/qso/components/winkeysettings.php:35
 #: application/views/qso/components/winkeysettings.php:51
 #: application/views/qso/components/winkeysettings.php:67
-#, fuzzy, php-format
+#, php-format
 msgid "Function %d - Name"
 msgstr "Funzione %d - Nome"
 
@@ -12277,34 +12133,29 @@ msgstr "Funzione %d - Nome"
 #: application/views/qso/components/winkeysettings.php:42
 #: application/views/qso/components/winkeysettings.php:58
 #: application/views/qso/components/winkeysettings.php:74
-#, fuzzy, php-format
+#, php-format
 msgid "Function %d - Macro"
 msgstr "Funzione %d - Macro"
 
 #: application/views/qso/edit_ajax.php:35
-#, fuzzy
 msgid "Sats"
-msgstr "Sats"
+msgstr "Satelliti"
 
 #: application/views/qso/edit_ajax.php:53
-#, fuzzy
 msgid "Start Date/Time"
 msgstr "Data/Ora di Inizio"
 
 #: application/views/qso/edit_ajax.php:58
-#, fuzzy
 msgid "End Date/Time"
 msgstr "Data/Ora di Fine"
 
 #: application/views/qso/edit_ajax.php:78
-#, fuzzy
 msgid "RX Frequency"
 msgstr "Frequenza RX"
 
 #: application/views/qso/edit_ajax.php:101
-#, fuzzy
 msgid "RX Band"
-msgstr "RX Band"
+msgstr "Banda RX"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:386
 msgid "Give power value in Watts. Include only numbers in the input."
@@ -12317,72 +12168,59 @@ msgid "Transmit Power (W)"
 msgstr "Potenza di Trasmissione (W)"
 
 #: application/views/qso/edit_ajax.php:165
-#, fuzzy
 msgid "Used for VUCC MultiGrids"
 msgstr "Utilizzato per i VUCC MultiGrids"
 
 #: application/views/qso/edit_ajax.php:221 application/views/qso/index.php:498
-#, fuzzy
 msgid "Antenna Path"
 msgstr "Percorso dell'antenna"
 
 #: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:501
 #: application/views/view_log/qso.php:162
-#, fuzzy
 msgid "Greyline"
 msgstr "Greyline"
 
 #: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:502
-#, fuzzy
 msgid "Other"
-msgstr "Altra"
+msgstr "Altro"
 
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:503
 #: application/views/view_log/qso.php:153
-#, fuzzy
 msgid "Short Path"
-msgstr "Percorso Breve"
+msgstr "Percorso breve"
 
 #: application/views/qso/edit_ajax.php:227 application/views/qso/index.php:504
 #: application/views/view_log/qso.php:156
-#, fuzzy
 msgid "Long Path"
-msgstr "Lungo percorso"
+msgstr "Percorso lungo"
 
 #: application/views/qso/edit_ajax.php:284
-#, fuzzy
 msgid "Sat Name"
 msgstr "Nome del satellite"
 
 #: application/views/qso/edit_ajax.php:289
-#, fuzzy
 msgid "Sat Mode"
-msgstr "Modalità Satellitare"
+msgstr "Modalità satellite"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:627
-#, fuzzy
 msgid "Antenna Azimuth (°)"
 msgstr "Azimut dell'antenna (°)"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:629
-#, fuzzy
 msgid "Antenna azimuth in decimal degrees."
 msgstr "Azimut dell'antenna in gradi decimali."
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:633
-#, fuzzy
 msgid "Antenna Elevation (°)"
 msgstr "Elevazione dell'antenna (°)"
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:635
-#, fuzzy
 msgid "Antenna elevation in decimal degrees."
 msgstr "Elevazione dell'antenna in gradi decimali."
 
 #: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:518
 #: application/views/station_profile/create.php:103
 #: application/views/station_profile/edit.php:141
-#, fuzzy
 msgid "Station County"
 msgstr "Contea della Stazione"
 
@@ -12390,19 +12228,16 @@ msgstr "Contea della Stazione"
 #: application/views/qso/index.php:585 application/views/user/edit.php:667
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
-#, fuzzy
 msgid "SIG Info"
 msgstr "Informazioni SIG"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:644
 #: application/views/qso/index.php:688
-#, fuzzy
 msgid "Note: Gets exported to third-party services."
 msgstr "Nota: Viene esportato a servizi di terze parti."
 
 #: application/views/qso/edit_ajax.php:450
-#, fuzzy
 msgid "Sent Method"
 msgstr "Metodo di invio"
 
@@ -12413,7 +12248,6 @@ msgid "Method"
 msgstr "Metodo"
 
 #: application/views/qso/edit_ajax.php:463
-#, fuzzy
 msgid "Sent Via"
 msgstr "Inviato tramite"
 
@@ -12422,48 +12256,40 @@ msgstr "Inviato tramite"
 #: application/views/qso/edit_ajax.php:563
 #: application/views/qso/edit_ajax.php:593
 #: application/views/qso/edit_ajax.php:620
-#, fuzzy
 msgid "Verified (Match)"
 msgstr "Verificato (Corrisponde)"
 
 #: application/views/qso/edit_ajax.php:483
-#, fuzzy
 msgid "Received Method"
 msgstr "Metodo Ricevuto"
 
 #: application/views/qso/edit_ajax.php:524 application/views/qso/index.php:685
-#, fuzzy
 msgid "Get the default message for eQSL, for this station."
 msgstr "Ottieni il messaggio predefinito per eQSL, per questa stazione."
 
 #: application/views/qso/edit_ajax.php:536
-#, fuzzy
 msgid "Note: Not editable. Only displayed here."
-msgstr "Nota: Non modificabile. Solo visualizzato qui."
+msgstr "Nota: Non modificabile. Sola visualizzazione."
 
 #: application/views/qso/edit_ajax.php:580
 #: application/views/view_log/partial/log_ajax.php:426
 #: application/views/view_log/partial/log_ajax.php:438
 #: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:618
 #: src/QSLManager/QSO.php:677
-#, fuzzy
 msgid "Modified"
 msgstr "Modificato"
 
 #: application/views/qso/edit_ajax.php:639
-#, fuzzy
 msgid "Change Station Profile"
-msgstr "Cambia Profilo Stazione"
+msgstr "Cambia profilo stazione"
 
 #: application/views/qso/edit_ajax.php:679
-#, fuzzy
 msgid "Exchange (R)"
-msgstr "Scambio (R)"
+msgstr "Exchange ricevuto"
 
 #: application/views/qso/edit_ajax.php:684
-#, fuzzy
 msgid "Exchange (S)"
-msgstr "Scambio (S)"
+msgstr "Exchange inviato"
 
 #: application/views/qso/edit_ajax.php:696
 #: application/views/search/search_result_ajax.php:449
@@ -12473,41 +12299,34 @@ msgid "Delete QSO"
 msgstr "Cancella QSO"
 
 #: application/views/qso/edit_ajax.php:699
-#, fuzzy
 msgid "Save changes"
-msgstr "Salva modifiche"
+msgstr "Salva le modifiche"
 
 #: application/views/qso/index.php:29
-#, fuzzy
 msgid "TimeOff is less than TimeOn"
-msgstr "Il TempoLibero è inferiore al TempoAttivo"
+msgstr "L'ora di fine è prima dell'ora di inizio"
 
 #: application/views/qso/index.php:30 application/views/qso/index.php:796
 msgid "Previous Contacts"
 msgstr "Contatti Precedenti"
 
 #: application/views/qso/index.php:31
-#, fuzzy
 msgid "times worked before"
-msgstr "ore lavorate in precedenza"
+msgstr "volte collegato prima"
 
 #: application/views/qso/index.php:32
-#, fuzzy
 msgid "Not worked before"
-msgstr "Non ha mai lavorato prima"
+msgstr "Non ancora collegato"
 
 #: application/views/qso/index.php:33
-#, fuzzy
 msgid "more"
-msgstr "di più"
+msgstr "altro"
 
 #: application/views/qso/index.php:34
-#, fuzzy
 msgid "less"
-msgstr "meno"
+msgstr "di meno"
 
 #: application/views/qso/index.php:35
-#, fuzzy
 msgid "DXCC Summary for "
 msgstr "Riepilogo DXCC per "
 
@@ -12516,51 +12335,43 @@ msgid "LoTW User. Last upload was 1 day ago."
 msgstr "Utente LoTW. Ultimo caricamento: 1 giorno fa."
 
 #: application/views/qso/index.php:37
-#, fuzzy, php-format
+#, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr "Utente LoTW. L'ultima upload è stata %x giorni fa."
+msgstr "Utente LoTW. Ultimo caricamento %x giorni fa."
 
 #: application/views/qso/index.php:38
-#, fuzzy
 msgid "Invalid value for antenna elevation:"
 msgstr "Valore non valido per l'elevazione dell'antenna:"
 
 #: application/views/qso/index.php:53
-#, fuzzy
 msgid "LIVE"
-msgstr "VIVERE"
+msgstr "DAL VIVO"
 
 #: application/views/qso/index.php:53
-#, fuzzy
 msgid "POST"
-msgstr "POST"
+msgstr "PASSATO"
 
 #: application/views/qso/index.php:66
 #: application/views/statistics/antennaanalytics.php:45
 #: application/views/statistics/antennaanalytics.php:85
-#, fuzzy
 msgid "Sat"
-msgstr "Sabato"
+msgstr "Satellite"
 
 #: application/views/qso/index.php:81
-#, fuzzy
 msgid "Add Band/Mode to Favs"
-msgstr "Aggiungi Band/Modalità ai Preferiti"
+msgstr "Aggiungi Banda/Modo ai Preferiti"
 
 #: application/views/qso/index.php:102
-#, fuzzy
 msgid "Time on"
-msgstr "Tempo acceso"
+msgstr "Tempo di inizio"
 
 #: application/views/qso/index.php:114
-#, fuzzy
 msgid "Time off"
-msgstr "Tempo libero"
+msgstr "Tempo di fine"
 
 #: application/views/qso/index.php:157
-#, fuzzy
 msgid "Search DXCluster for latest Spot"
-msgstr "Cerca il DXCluster per l'ultima segnalazione"
+msgstr "Cerca DXCluster per l'ultimo Spot"
 
 #: application/views/qso/index.php:234 application/views/qso/index.php:524
 #: application/views/station_profile/create.php:153
@@ -12611,9 +12422,8 @@ msgid "For example: Q03"
 msgstr "Per esempio: Q03"
 
 #: application/views/qso/index.php:602
-#, fuzzy
 msgid "E-mail address of QSO-partner"
-msgstr "Indirizzo e-mail del partner QSO"
+msgstr "Indirizzo e-mail del corrispondente"
 
 #: application/views/qso/index.php:611 application/views/view_log/qso.php:296
 msgid "Satellite Name"
@@ -12624,44 +12434,36 @@ msgid "Satellite Mode"
 msgstr "Modo Satellite"
 
 #: application/views/qso/index.php:685
-#, fuzzy
 msgid "QSL MSG"
 msgstr "Messaggio QSL"
 
 #: application/views/qso/index.php:704
-#, fuzzy
 msgid "Reset to Default"
-msgstr "Ripristina le impostazioni predefinite"
+msgstr "Reimposta ai valori predefiniti"
 
 #: application/views/qso/index.php:745
-#, fuzzy
 msgid "Winkey"
 msgstr "Winkey"
 
 #: application/views/qso/index.php:747
-#, fuzzy
 msgid "Connect"
-msgstr "Collegare"
+msgstr "Connetti"
 
 #: application/views/qso/index.php:756
-#, fuzzy
 msgid "Stop"
-msgstr "Fermati"
+msgstr "Arresta"
 
 #: application/views/qso/index.php:757
-#, fuzzy
 msgid "Tune"
-msgstr "Melodia"
+msgstr "Sintonizza"
 
 #: application/views/qso/index.php:758
-#, fuzzy
 msgid "Stop Tune"
-msgstr "Ferma Tune"
+msgstr "Ferma la sintonia"
 
 #: application/views/qso/index.php:764
-#, fuzzy
 msgid "CW Speed"
-msgstr "CW Velocità"
+msgstr "Velocità CW"
 
 #: application/views/qso/index.php:769
 msgid "Send"
@@ -12676,42 +12478,36 @@ msgid "Profile Picture"
 msgstr "Immagine Profilo"
 
 #: application/views/qso/log_qso.php:9
-#, fuzzy
 msgid "Redirecting to QSO logging page..."
 msgstr "Reindirizzamento alla pagina di registrazione QSO..."
 
 #: application/views/qso/log_qso.php:75
-#, fuzzy
 msgid "The data was redirected. You can close this window."
 msgstr "I dati sono stati reindirizzati. Puoi chiudere questa finestra."
 
 #: application/views/radio/edit.php:18
-#, fuzzy
 msgid "CAT URL"
-msgstr "CAT URL"
+msgstr "Indirizzo CAT"
 
 #: application/views/radio/edit.php:20
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
 "(/) and QRG is added automatically. Default is %s"
 msgstr ""
-"URL chiamato quando un punto su DXCluster è cliccato. Nota: La barra finale "
-"(/) e QRG vengono aggiunti automaticamente. Il valore predefinito è %s"
+"URL chiamato quando viene cliccato uno spot su DXCluster. Nota: La barra "
+"finale (/) e QRG vengono aggiunti automaticamente. Predefinito è %s"
 
 #: application/views/radio/index.php:20
-#, fuzzy
 msgid "Active Radios"
-msgstr "Radio Attive"
+msgstr "Radio attive"
 
 #: application/views/radio/index.php:23
-#, fuzzy
 msgid "Below is a list of active radios that are connected to Wavelog."
 msgstr ""
 "Di seguito è riportato un elenco delle radio attive collegate a Wavelog."
 
 #: application/views/radio/index.php:24
-#, fuzzy
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
@@ -12720,12 +12516,11 @@ msgstr ""
 "generare le chiavi API."
 
 #: application/views/radio/index.php:26 application/views/search/filter.php:72
-#, fuzzy, php-format
+#, php-format
 msgid "You can find out how to use the %s in the wiki."
 msgstr "Puoi scoprire come utilizzare il %s nella wiki."
 
 #: application/views/radio/index.php:26
-#, fuzzy
 msgid "radio functions"
 msgstr "funzioni radio"
 
@@ -12734,285 +12529,236 @@ msgid "Please wait..."
 msgstr "Attendere prego..."
 
 #: application/views/reg1test/index.php:6
-#, fuzzy
 msgid "Select Band"
-msgstr "Seleziona Band"
+msgstr "Seleziona banda"
 
 #: application/views/reg1test/index.php:8
-#, fuzzy
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
 msgstr ""
-"Le bande al di sotto di 50 MHz non sono valide per il formato EDI REG1TEST e "
+"Le bande sotto i 50 MHz non sono valide per il formato EDI REG1TEST e "
 "produrranno file non validi."
 
 #: application/views/reg1test/index.php:18
-#, fuzzy
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr "Esporta un concorso in un registro EDI REG1TEST"
+msgstr "Esporta un contest in un log REG1TEST EDI"
 
 #: application/views/reg1test/index.php:48
-#, fuzzy
 msgid "Sent Exchange"
-msgstr "Scambio di invii"
+msgstr "Exchange inviato"
 
 #: application/views/reg1test/index.php:50
-#, fuzzy
 msgid ""
 "The exchange which was sent during the contest. Can be any type of "
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
-"Lo scambio inviato durante il concorso. Può essere qualsiasi tipo di "
-"informazione, ad es. Provincia, DOK, Contea, Stato, Potere, Nome. Lunghezza "
-"max: 6 caratteri."
+"L'exchange inviato durante il contest. Può essere qualsiasi tipo di "
+"informazione, ad esempio Provincia, DOK, Contea, Stato, Potenza, Nome. "
+"Lunghezza massima: 6 caratteri."
 
 #: application/views/reg1test/index.php:55
-#, fuzzy
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
 msgstr ""
-"Descrive il nominativo del club radioamatori di cui gli operatori sono "
-"membri. Ad esempio, può essere utilizzato se vengono accumulati punti per il "
-"club."
+"Descrive il nominativo del radio club di cui l'operatore/i è membro. Ad "
+"esempio, può essere utilizzato se i punti vengono accumulati per il club."
 
 #: application/views/reg1test/index.php:66
-#, fuzzy
 msgid "Callsign of responsible operator"
-msgstr "Nome in codice dell'operatore responsabile"
+msgstr "Nominativo dell'operatore responsabile"
 
 #: application/views/reg1test/index.php:72
-#, fuzzy
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
 msgstr ""
-"Elenco di tutti gli operatori. Separati da un punto e virgola ';'. "
+"Elenco di tutti gli operatori. Separati con un punto e virgola ';'. "
 "L'operatore responsabile non è necessario qui."
 
 #: application/views/reg1test/index.php:75
-#, fuzzy
 msgid "Contest Address 1"
 msgstr "Indirizzo Contest 1"
 
 #: application/views/reg1test/index.php:77
-#, fuzzy
 msgid "Address of the QTH used during the contest."
 msgstr "Indirizzo del QTH utilizzato durante il contest."
 
 #: application/views/reg1test/index.php:80
-#, fuzzy
 msgid "Contest Address 2"
 msgstr "Indirizzo Contest 2"
 
 #: application/views/reg1test/index.php:84
-#, fuzzy
 msgid "Operator Address 1"
 msgstr "Indirizzo Operatore 1"
 
 #: application/views/reg1test/index.php:86
-#, fuzzy
 msgid "Address of the responsible operator."
 msgstr "Indirizzo dell'operatore responsabile."
 
 #: application/views/reg1test/index.php:89
-#, fuzzy
 msgid "Operator Address 2"
 msgstr "Indirizzo Operatore 2"
 
 #: application/views/reg1test/index.php:93
-#, fuzzy
 msgid "Operator Address Postalcode"
-msgstr "Indirizzo Operatore Codice Postale"
+msgstr "Codice postale del operatore"
 
 #: application/views/reg1test/index.php:97
-#, fuzzy
 msgid "Operator Address City"
-msgstr "Indirizzo dell'operatore Città"
+msgstr "Città del operatore"
 
 #: application/views/reg1test/index.php:101
-#, fuzzy
 msgid "Operator Address Country"
-msgstr "Indirizzo dell'operatore Paese"
+msgstr "Paese del operatore"
 
 #: application/views/reg1test/index.php:105
-#, fuzzy
 msgid "Operator Phone Number"
 msgstr "Numero di telefono dell'operatore"
 
 #: application/views/reg1test/index.php:109
-#, fuzzy
 msgid "Transmit Equipment Description"
 msgstr "Descrizione dell'attrezzatura di trasmissione"
 
 #: application/views/reg1test/index.php:111
-#, fuzzy
 msgid "Short description of the used equipment."
-msgstr "Breve descrizione dell'attrezzatura utilizzata."
+msgstr "Breve descrizione dell'attrezzatura usata."
 
 #: application/views/reg1test/index.php:116
-#, fuzzy
 msgid "TX Power during the contest in Watt."
-msgstr "Potenza TX durante il concorso in Watt."
+msgstr "Potenza TX durante il contest in Watt."
 
 #: application/views/reg1test/index.php:119
-#, fuzzy
 msgid "Receive Equipment Description"
-msgstr "Ricevi la descrizione dell'attrezzatura"
+msgstr "Descrizione della apparecchiatura di ricezione"
 
 #: application/views/reg1test/index.php:121
-#, fuzzy
 msgid "If you used another gear for RX, then describe it here."
-msgstr "Se hai utilizzato un altro ingranaggio per RX, descrivilo qui."
+msgstr "Se hai usato un altro apparato per RX, descrivilo qui."
 
 #: application/views/reg1test/index.php:124
-#, fuzzy
 msgid "Antenna Description"
 msgstr "Descrizione dell'antenna"
 
 #: application/views/reg1test/index.php:126
-#, fuzzy
 msgid "What kind of antenna was used."
 msgstr "Che tipo di antenna è stata utilizzata."
 
 #: application/views/reg1test/index.php:129
-#, fuzzy
 msgid "Antenna Height Above Ground (m)"
-msgstr "Altezza dell'antenna sopra il terreno (m)"
+msgstr "Altezza dell'antenna sopra il suolo (m)"
 
 #: application/views/reg1test/index.php:131
-#, fuzzy
 msgid "Height of the antenna above the ground."
-msgstr "Altezza dell'antenna sopra il suolo."
+msgstr "Altezza dell'antenna sopra il terreno."
 
 #: application/views/reg1test/index.php:134
-#, fuzzy
 msgid "Band multiplicator"
 msgstr "Moltiplicatore di banda"
 
 #: application/views/reg1test/index.php:136
-#, fuzzy
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
 msgstr ""
-"Moltiplicatore di banda. Questo è solitamente 1. Cambia questo solo se "
-"necessario in base alle regole di punteggio del concorso."
+"Moltiplicatore di banda. Di solito è 1. Cambialo solo se necessario secondo "
+"le regole di punteggio del contest."
 
 #: application/views/reg1test/index.php:141
-#, fuzzy
 msgid "Any other remarks."
-msgstr "Qualsiasi altra osservazione."
+msgstr "Altri commenti."
 
 #: application/views/satellite/create.php:23
-#, fuzzy
 msgid "Satellite Display Name"
 msgstr "Nome visualizzato del satellite"
 
 #: application/views/satellite/create.php:25
 #: application/views/satellite/edit.php:9
-#, fuzzy
 msgid "Display / cleartext name of the satellite"
-msgstr "Nome visualizzato / in chiaro del satellite"
+msgstr "Nome visualizzato del satellite"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:52
-#, fuzzy
 msgid "LoTW Name"
 msgstr "Nome LoTW"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
-#, fuzzy
 msgid ""
 "Satellite name as accepted by LoTW. Not necessarily the same as the display "
 "name. Can be set/changed later when added to LoTW."
 msgstr ""
 "Nome del satellite come accettato da LoTW. Non necessariamente lo stesso del "
-"nome visualizzato. Può essere impostato/cambiato in seguito quando aggiunto "
-"a LoTW."
+"nome visualizzato. Può essere impostato/modificato successivamente quando "
+"aggiunto a LoTW."
 
 #: application/views/satellite/create.php:41
 #: application/views/satellite/edit.php:25
-#, fuzzy
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
 msgstr "Inserisci quale orbita ha il satellite (LEO, MEO, GEO)"
 
 #: application/views/satellite/create.php:44
-#, fuzzy
 msgid "Satellite mode name"
-msgstr "Nome della modalità satellitare"
+msgstr "Nome modalità satellite"
 
 #: application/views/satellite/create.php:46
-#, fuzzy
 msgid "Enter satellite mode"
-msgstr "Attiva la modalità satellite"
+msgstr "Inserisci la modalità satellite"
 
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
 #: application/views/satellite/satinfo.php:8
-#, fuzzy
 msgid "Uplink mode"
 msgstr "Modalità uplink"
 
 #: application/views/satellite/create.php:53
-#, fuzzy
 msgid "Enter modulation used for uplink"
-msgstr "Inserire la modulazione utilizzata per il collegamento in uplink"
+msgstr "Inserisci la modulazione utilizzata per l'up-link"
 
 #: application/views/satellite/create.php:56
 #: application/views/satellite/edit.php:53
 #: application/views/satellite/satinfo.php:9
-#, fuzzy
 msgid "Uplink frequency"
 msgstr "Frequenza di uplink"
 
 #: application/views/satellite/create.php:58
-#, fuzzy
 msgid "Enter frequency (in Hz) used for uplink"
 msgstr "Inserisci la frequenza (in Hz) utilizzata per l'uplink"
 
 #: application/views/satellite/create.php:63
 #: application/views/satellite/edit.php:54
 #: application/views/satellite/satinfo.php:10
-#, fuzzy
 msgid "Downlink mode"
-msgstr "Modalità di discesa"
+msgstr "Modalità di downlink"
 
 #: application/views/satellite/create.php:65
-#, fuzzy
 msgid "Enter modulation used for downlink"
-msgstr "Inserire la modulazione utilizzata per il downlink"
+msgstr "Inserisci la modulazione utilizzata per il downlink"
 
 #: application/views/satellite/create.php:68
 #: application/views/satellite/edit.php:55
 #: application/views/satellite/satinfo.php:11
-#, fuzzy
 msgid "Downlink frequency"
-msgstr "Frequenza di discesa"
+msgstr "Frequenza di downlink"
 
 #: application/views/satellite/create.php:70
-#, fuzzy
 msgid "Enter frequency (in Hz) used for downlink"
 msgstr "Inserisci la frequenza (in Hz) utilizzata per il downlink"
 
 #: application/views/satellite/create.php:73
 #: application/views/satellite/edit.php:28
-#, fuzzy
 msgid "Accepted by LoTW"
 msgstr "Accettato da LoTW"
 
 #: application/views/satellite/create.php:78
 #: application/views/satellite/edit.php:38
-#, fuzzy
 msgid "Set to yes only if satellite is accepted my LoTW"
-msgstr "Impostare su sì solo se il satellite è accettato dal mio LoTW"
+msgstr "Imposta su sì solo se il satellite è accettato dal mio LoTW"
 
 #: application/views/satellite/edit.php:7
-#, fuzzy
 msgid "Satellite Display Name "
 msgstr "Nome visualizzato del satellite "
 
@@ -13021,127 +12767,103 @@ msgid "Save satellite"
 msgstr "Salva satellite"
 
 #: application/views/satellite/edit.php:76
-#, fuzzy
 msgid "Add satellite mode"
 msgstr "Aggiungi la modalità satellite"
 
 #: application/views/satellite/flightpath.php:51
-#, fuzzy
 msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
 msgstr ""
-"Nessun satellite con TLE trovato. Si prega di aggiornare tramite CRON o "
-"pagina satellite. Se non si ha accesso per farlo, chiedere al proprio "
-"amministratore!"
+"Nessun satellite con TLE trovato. Aggiorna tramite CRON o pagina satellite. "
+"Se non hai accesso per farlo, chiedi al tuo amministratore!"
 
 #: application/views/satellite/index.php:44
-#, fuzzy
 msgid "Add a satellite"
 msgstr "Aggiungi un satellite"
 
 #: application/views/satellite/index.php:45
-#, fuzzy
 msgid "Sync Satellites from LoTW"
 msgstr "Sincronizza i satelliti da LoTW"
 
 #: application/views/satellite/index.php:46
-#, fuzzy
 msgid "Update Satellite TLE"
-msgstr "Aggiorna il TLE del satellite"
+msgstr "Aggiorna TLE del satellite"
 
 #: application/views/satellite/index.php:57
-#, fuzzy
 msgid "TLE"
 msgstr "TLE"
 
 #: application/views/satellite/pass.php:6
-#, fuzzy
 msgid "Satellite passes"
 msgstr "Passaggi dei satelliti"
 
 #: application/views/satellite/pass.php:13
-#, fuzzy
 msgid "Your station"
 msgstr "La tua stazione"
 
 #: application/views/satellite/pass.php:26
 #: application/views/satellite/pass.php:65
-#, fuzzy
 msgid "Min. Satellite Elevation"
-msgstr "Min. Elevazione del Satellite"
+msgstr "Elevazione minima del satellite"
 
 #: application/views/satellite/pass.php:30
 #: application/views/satellite/pass.php:69
-#, fuzzy
 msgid "Min. Azimuth"
-msgstr "Min. Azimut"
+msgstr "Azimut Min."
 
 #: application/views/satellite/pass.php:38
 #: application/views/satellite/pass.php:77
-#, fuzzy
 msgid "Max. Azimuth"
-msgstr "Azimut massimo"
+msgstr "Azimut max."
 
 #: application/views/satellite/pass.php:54
-#, fuzzy
 msgid "Min. time"
 msgstr "Tempo minimo"
 
 #: application/views/satellite/pass.php:63
-#, fuzzy
 msgid "Sked partner"
-msgstr "Partner di Sked"
+msgstr "Partner di sked"
 
 #: application/views/satellite/pass.php:91
-#, fuzzy
 msgid "Load predictions"
 msgstr "Carica le previsioni"
 
 #: application/views/satellite/pass.php:92
-#, fuzzy
 msgid "Add sked partner"
 msgstr "Aggiungi partner sked"
 
 #: application/views/satellite/pass.php:94
-#, fuzzy
 msgid "Presets"
 msgstr "Impostazioni predefinite"
 
 #: application/views/satellite/pass.php:96
-#, fuzzy
 msgid "Save current settings"
 msgstr "Salva le impostazioni attuali"
 
 #: application/views/satellite/pass.php:105
-#, fuzzy
 msgid "Save Settings"
 msgstr "Salva impostazioni"
 
 #: application/views/satellite/pass.php:109
-#, fuzzy
 msgid "Settings Name"
 msgstr "Nome delle impostazioni"
 
 #: application/views/satellite/pass.php:110
-#, fuzzy
 msgid "Enter a name"
 msgstr "Inserisci un nome"
 
 #: application/views/satellite/pass.php:121
-#, fuzzy
 msgid "No TLE information detected. Please update TLE's."
 msgstr "Nessuna informazione TLE rilevata. Si prega di aggiornare i TLE."
 
 #: application/views/satellite/passtable.php:7
 #: application/views/satellite/skedtable.php:36
-#, fuzzy
 msgid "AOS Time"
 msgstr "Tempo AOS"
 
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:40
-#, fuzzy
 msgid "LOS Time"
 msgstr "LOS Tempo"
 
@@ -13149,120 +12871,102 @@ msgstr "LOS Tempo"
 #: application/views/satellite/skedtable.php:10
 #: application/views/satellite/skedtable.php:37
 #: application/views/sattimers/index.php:46
-#, fuzzy
 msgid "Duration"
 msgstr "Durata"
 
 #: application/views/satellite/passtable.php:10
-#, fuzzy
 msgid "Path"
-msgstr "Sentiero"
+msgstr "Percorso"
 
 #: application/views/satellite/passtable.php:11
-#, fuzzy
 msgid "Max Elevation (Azimuth)"
-msgstr "Massima Elevazione (Azimuth)"
+msgstr "Massima elevazione (azimut)"
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:38
-#, fuzzy
 msgid "AOS Azimuth"
 msgstr "AOS Azimut"
 
 #: application/views/satellite/passtable.php:13
 #: application/views/satellite/skedtable.php:41
-#, fuzzy
 msgid "LOS Azimuth"
-msgstr "LOS Azimuth"
+msgstr "Azimut LOS"
 
 #: application/views/satellite/passtable.php:55
 #: application/views/satellite/skedtable.php:84
-#, fuzzy
 msgid "Search failed!"
 msgstr "Ricerca fallita!"
 
 #: application/views/satellite/passtable.php:56
-#, fuzzy
 msgid "No passes found. Please check the input parameters."
-msgstr "Nessun pass trovato. Si prega di controllare i parametri di input."
+msgstr "Nessun passaggio trovato. Controlla i parametri di input."
 
 #: application/views/satellite/passtable.php:73
 #: application/views/satellite/skedtable.php:94
-#, fuzzy
 msgid "min"
 msgstr "min"
 
 #: application/views/satellite/satinfo.php:14
-#, fuzzy
 msgid "TLE date"
-msgstr "data TLE"
+msgstr "Data TLE"
 
 #: application/views/satellite/skedtable.php:8
-#, fuzzy
 msgid "Sked AOS Time"
-msgstr "Tempo AOS Sked"
+msgstr "Orario AOS Sked"
 
 #: application/views/satellite/skedtable.php:9
-#, fuzzy
 msgid "Sked LOS Time"
-msgstr "Tempo di Sked LOS"
+msgstr "Orario Sked LOS"
 
 #: application/views/satellite/skedtable.php:34
-#, fuzzy
 msgid "Grid"
-msgstr "Griglia"
+msgstr "Locatore"
 
 #: application/views/satellite/skedtable.php:39
 #: application/views/sattimers/index.php:45
-#, fuzzy
 msgid "Max Elevation"
-msgstr "Massima Elevazione"
+msgstr "Massima elevazione"
 
 #: application/views/satellite/skedtable.php:85
-#, fuzzy
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
 "Nessun passaggio sovrapposto trovato. Si prega di controllare i parametri di "
 "input."
 
 #: application/views/satellite/tleinfo.php:6
-#, fuzzy, php-format
+#, php-format
 msgid "TLE information for %s (last updated: %s)"
 msgstr "Informazioni TLE per %s (ultimo aggiornamento: %s)"
 
 #: application/views/satellite/tleinfo.php:8
-#, fuzzy
 msgid "Delete TLE"
 msgstr "Elimina TLE"
 
 #: application/views/satellite/tleinfo.php:10
-#, fuzzy, php-format
+#, php-format
 msgid "No TLE information found for %s"
 msgstr "Nessuna informazione TLE trovata per %s"
 
 #: application/views/satellite/tleinfo.php:11
-#, fuzzy
 msgid "Add TLE"
 msgstr "Aggiungi TLE"
 
 #: application/views/sattimers/index.php:15
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This data comes from %s and is calculated for the current stationlocation "
 "grid %s."
 msgstr ""
-"Questi dati provengono da %s e sono calcolati per la rete della stazione "
-"attuale %s."
+"Questi dati provengono da %s e sono calcolati per la griglia della posizione "
+"attuale della stazione %s."
 
 #: application/views/sattimers/index.php:40
-#, fuzzy
 msgid "Time(d)-Out"
-msgstr "Tempo(d)-Fuori"
+msgstr "Timeout"
 
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
 #: application/views/statistics/antennaanalytics.php:8
-#, fuzzy
 msgid "Azimuth"
 msgstr "Azimut"
 
@@ -13270,7 +12974,6 @@ msgstr "Azimut"
 #: application/views/search/ituzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
-#, fuzzy
 msgid "Ready to find a QSO?"
 msgstr "Pronto a trovare un QSO?"
 
@@ -13279,16 +12982,14 @@ msgstr "Pronto a trovare un QSO?"
 #: application/views/search/ituzones.php:15
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
-#, fuzzy
 msgid "Advanced Search"
-msgstr "Ricerca Avanzata"
+msgstr "Ricerca avanzata"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
 #: application/views/search/ituzones.php:18
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
-#, fuzzy
 msgid "Incorrect CQ Zones"
 msgstr "Zone CQ errate"
 
@@ -13297,7 +12998,6 @@ msgstr "Zone CQ errate"
 #: application/views/search/ituzones.php:21
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
-#, fuzzy
 msgid "Incorrect ITU Zones"
 msgstr "Zone ITU errate"
 
@@ -13306,18 +13006,15 @@ msgstr "Zone ITU errate"
 #: application/views/search/ituzones.php:24
 #: application/views/search/lotw_unconfirmed.php:24
 #: application/views/search/main.php:24
-#, fuzzy
 msgid "QSOs unconfirmed on LoTW"
-msgstr "QSOs non confermati su LoTW"
+msgstr "QSO non confermati su LoTW"
 
 #: application/views/search/cqzones.php:31
 #: application/views/search/ituzones.php:31
-#, fuzzy
 msgid "Station location:"
-msgstr "Posizione della stazione:"
+msgstr "Luogo Stazione:"
 
 #: application/views/search/cqzones_result.php:3
-#, fuzzy
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
@@ -13326,47 +13023,39 @@ msgstr ""
 "normalmente ha (vengono mostrati un massimo di 5000 QSO):"
 
 #: application/views/search/cqzones_result.php:14
-#, fuzzy
 msgid "DXCC CQ Zone"
 msgstr "Zona CQ DXCC"
 
 #: application/views/search/cqzones_result.php:51
 #: application/views/search/ituzones_result.php:51
-#, fuzzy
 msgid "No incorrect CQ Zones were found."
-msgstr "Nessuna zona CQ errata è stata trovata."
+msgstr "Non sono state trovate zone CQ errate."
 
 #: application/views/search/filter.php:46
-#, fuzzy
 msgid "Save query"
 msgstr "Salva query"
 
 #: application/views/search/filter.php:53
-#, fuzzy
 msgid "Stored queries"
-msgstr "Query salvati"
+msgstr "Query salvate"
 
 #: application/views/search/filter.php:72
-#, fuzzy
 msgid "search filter functions"
 msgstr "funzioni di filtro di ricerca"
 
 #: application/views/search/filter.php:82
-#, fuzzy
 msgid "Search Results"
 msgstr "Risultati di ricerca"
 
 #: application/views/search/ituzones_result.php:3
-#, fuzzy
 msgid ""
 "The following QSOs were found to have an incorrect ITU zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
-"I seguenti QSO sono stati trovati con una zona ITU errata che questo DXCC ha "
-"normalmente (sono mostrati un massimo di 5000 QSO):"
+"I seguenti QSO sono stati trovati con una zona ITU errata che questo DXCC "
+"normalmente ha (vengono mostrati un massimo di 5000 QSO):"
 
 #: application/views/search/ituzones_result.php:14
-#, fuzzy
 msgid "DXCC ITU Zone"
 msgstr "Zona ITU DXCC"
 
