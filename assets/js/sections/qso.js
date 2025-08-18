@@ -436,6 +436,7 @@ $(document).on("click", "#fav_recall", function (event) {
 	$('#frequency').val(favs[this.innerText].frequency).trigger("change");
 	$('#selectPropagation').val(favs[this.innerText].prop_mode);
 	$('#mode').val(favs[this.innerText].mode).on("change");
+	setRst($('.mode').val());
 });
 
 

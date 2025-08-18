@@ -34,6 +34,7 @@
 			<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
 			<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
 			<option value="distance"><?= __("Distance"); ?></option>
+			<option value="dok"><?= __("DOK"); ?></option>
 			<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
 			<option value="rstr"><?= __("RST (R)"); ?></option>
 			<option value="rsts"><?= __("RST (S)"); ?></option>
@@ -199,4 +200,6 @@
 
 		<label style="display:none" id="editDistanceInputLabel" class="mx-2 w-auto" for="editDistanceInput"><?= __("Distance (in km). Leave blank to recalculate distance. (It will only work if a gridsquare is set)."); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editDistanceInput" type="text" name="editDistanceInput" placeholder="" aria-label="editDistanceInput">
+		<input style="display:none" class="form-control form-control-sm w-auto uppercase" id="editDokInput" type="text" name="editDokInput" placeholder="" aria-label="editDokInput">
+		<input style="display:none" class="form-control form-control-sm w-auto uppercase" id="editGridsquareInput" type="text" name="editGridsquareInput" placeholder="" aria-label="editGridsquareInput">
 	</form>
