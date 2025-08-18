@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-07-29 17:14+0000\n"
+"PO-Revision-Date: 2025-08-18 11:49+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/es/>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2041,11 +2041,11 @@ msgstr "Solicitudes OQRS"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "Coincidencia de QSO eliminada con éxito."
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "Coincidencia de QSO añadida con éxito."
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -4293,7 +4293,7 @@ msgstr "Seleccione la Localización de la Estación"
 
 #: application/views/adif/import.php:82
 msgid "Choose ADIF File"
-msgstr ""
+msgstr "Elegir archivo ADIF"
 
 #: application/views/adif/import.php:88
 msgid "Add QSOs to Contest"
@@ -4318,7 +4318,7 @@ msgstr "Importar QSOs duplicadas"
 
 #: application/views/adif/import.php:117
 msgid "Select if want to import QSOs, even if they already exist."
-msgstr ""
+msgstr "Selecciona si deseas importar QSOs, incluso si ya existen."
 
 #: application/views/adif/import.php:122
 msgid "Use DXCC information from ADIF"
@@ -4341,7 +4341,7 @@ msgstr "PELIGRO"
 
 #: application/views/adif/import.php:132
 msgid "Ignore Station callsign on import"
-msgstr ""
+msgstr "Ignorar el indicativo de la estación al importar"
 
 #: application/views/adif/import.php:134
 #, php-format
@@ -4349,6 +4349,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Si se selecciona, Wavelog intentará importar %stodos%s los QSOs del ADIF, "
+"independientemente de si coinciden con la ubicación de la estación elegida."
 
 #: application/views/adif/import.php:141
 msgid ""
@@ -8620,7 +8622,7 @@ msgstr "Italiano"
 
 #: application/views/debug/index.php:684
 msgid "Japanese"
-msgstr ""
+msgstr "Japonés"
 
 #: application/views/debug/index.php:685
 msgid "Latvian"
@@ -11613,7 +11615,7 @@ msgstr "Añadir a la cola de impresión"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "Coincidir QSO"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11689,41 +11691,50 @@ msgstr "Solicitud completada"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "Solicitud pendiente"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "Solicitud rechazada"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "Se produjo un error al realizar la solicitud"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que deseas eliminar la(s) solicitud(es) OQRS "
+"marcada(s)?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que deseas rechazar la(s) solicitud(es) OQRS "
+"marcada(s)?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que quieres marcar la(s) solicitud(es) OQRS "
+"marcada(s)?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que deseas agregar la(s) solicitud(es) OQRS "
+"marcada(s) a la cola?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "Información del estado de OQRS"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que deseas eliminar la coincidencia de QSO?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
@@ -11737,17 +11748,17 @@ msgstr "Estado de OQRS"
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "Hecho / enviado"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "Pendiente"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "Rechazado"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
@@ -11759,7 +11770,7 @@ msgstr "Marcar como hecho"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "Rechazar"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
@@ -11784,29 +11795,31 @@ msgstr "Revisar registro"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "Coincidencia de QSO"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "La solicitud está actualmente abierta y necesita ser revisada por ti."
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"La solicitud no está en el registro, así que necesitas revisar tu registro y "
+"procesar la solicitud."
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "La solicitud ha sido procesada y la QSL ha sido enviada."
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "La solicitud aún está siendo procesada."
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "La solicitud ha sido rechazada y no será procesada."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
@@ -14828,21 +14841,26 @@ msgstr ""
 
 #: application/views/user/edit.php:713
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "Coincidencia automática de OQRS"
 
 #: application/views/user/edit.php:718
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Si esto está activado, la coincidencia automática de OQRS ocurrirá, y el "
+"sistema intentará emparejar automáticamente las solicitudes entrantes con "
+"los registros existentes."
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Coincidencia automática de OQRS para solicitudes directas"
 
 #: application/views/user/edit.php:727
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"Si esto está activado, se realizará la coincidencia automática de OQRS para "
+"solicitudes directas."
 
 #: application/views/user/edit.php:743
 msgid "Default Values"
