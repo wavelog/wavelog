@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-18 05:25+0000\n"
+"PO-Revision-Date: 2025-08-18 17:10+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/it/>\n"
@@ -2562,8 +2562,9 @@ msgid "Please select one"
 msgstr "Per favore seleziona uno"
 
 #: application/controllers/Stationsetup.php:504
+#, fuzzy
 msgid "Edit Export Map options"
-msgstr ""
+msgstr "Modifica opzioni mappa di esportazione"
 
 #: application/controllers/Statistics.php:26
 #: application/views/interface_assets/header.php:142
@@ -2613,8 +2614,9 @@ msgstr "Linea temporale"
 #: application/controllers/Timeplotter.php:17
 #: application/views/interface_assets/header.php:164
 #: application/views/timeplotter/index.php:9
+#, fuzzy
 msgid "Timeplotter"
-msgstr ""
+msgstr "Timeplotter"
 
 #: application/controllers/Update.php:26
 msgid "Updates"
@@ -3063,35 +3065,41 @@ msgid "QRZCQ Error"
 msgstr "Errore QRZCQ"
 
 #: application/libraries/Subdivisions.php:31
+#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Provincia"
 
 #: application/libraries/Subdivisions.php:39
+#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "Oblast '"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
+#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Regione"
 
 #: application/libraries/Subdivisions.php:45
+#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Dipartimento"
 
 #: application/libraries/Subdivisions.php:49
+#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Municipalità"
 
 #: application/libraries/Subdivisions.php:51
+#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Stato federale"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
@@ -5602,15 +5610,15 @@ msgstr ""
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "Cantone"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "Muovi il cursore su un cantone"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr ""
+msgstr "HELVETIA 26 | PREMIO SVIZZERA"
 
 #: application/views/awards/helvetia/index.php:21
 msgid ""
@@ -5619,6 +5627,10 @@ msgid ""
 "activities on the bands by encouraging contacts across as many Swiss cantons "
 "as possible on multiple bands."
 msgstr ""
+"L'USKA (Union of Swiss Shortwave Amateurs) sponsorizza due premi: il Premio "
+"HELVETIA 26 (H26) e il Premio SVIZZERA. Questi sono volti a promuovere le "
+"attività radio incoraggiando i collegamenti nel maggior numero possibile di "
+"cantoni svizzeri su più bande."
 
 #: application/views/awards/helvetia/index.php:22
 msgid ""
@@ -5626,23 +5638,26 @@ msgid ""
 "(including SHF and UHF) bands. Valid connections for these awards date back "
 "to January 1, 1980"
 msgstr ""
+"Questi premi sono disponibili in due versioni: una per le bande HF e l'altra "
+"per le bande VHF (comprese SHF e UHF). I contatti validi per questi premi "
+"partono dal 1° gennaio 1980"
 
 #: application/views/awards/helvetia/index.php:114
 msgid "Show Helvetia Map"
-msgstr ""
+msgstr "Mostra mappa Svizzera"
 
 #: application/views/awards/helvetia/index.php:151
 msgid "Canton"
-msgstr ""
+msgstr "Cantone"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:48
 #: application/views/qso/award_tabs.php:33
 msgid "CQ"
-msgstr ""
+msgstr "CQ"
 
 #: application/views/awards/iota/index.php:16
 msgid "IOTA Awards"
-msgstr ""
+msgstr "Premi IOTA"
 
 #: application/views/awards/iota/index.php:17
 msgid ""
@@ -5652,6 +5667,12 @@ msgid ""
 "enhance the experience of all those active on the amateur bands. To achieve "
 "this, it draws on the widespread mystique surrounding islands."
 msgstr ""
+"IOTA è un programma di attività entusiasmante e innovativo che ha catturato "
+"l'interesse di migliaia di radioamatori in tutto il mondo. Nata nel 1964, "
+"promuove i contatti radio con le stazioni dislocate sulle isole di tutto il "
+"mondo per valorizzare l'esperienza di tutti coloro che sono attivi sulle "
+"bande amatoriali. Per raggiungere questo obiettivo, si basa sulla diffusione "
+"delle isole in giro per il mondo."
 
 #: application/views/awards/iota/index.php:18
 msgid ""
@@ -5667,19 +5688,30 @@ msgid ""
 "an Honor Roll and annual listings, as well as recognizing it with "
 "certificates and prestigious awards."
 msgstr ""
+"È gestito da Islands On The Air (IOTA) Ltd (denominata IOTA Management) in "
+"collaborazione con la Radio Society of Great Britain (RSGB). Gli "
+"organizzatori IOTA hanno raggruppato le isole del mondo in circa 1200 “"
+"gruppi IOTA”, ciascuno con un numero variabile di “contatori”, che sono "
+"isole qualificate. Questi elenchi sono pubblicati nella Directory IOTA e sul "
+"sito web IOTA. L'obiettivo dell'IOTA Island Chaser è quello di stabilire un "
+"contatto radio con almeno un contatore nel maggior numero possibile di "
+"questi gruppi. Il programma ha una serie di regole ben definite e incoraggia "
+"la competizione amichevole tra i cacciatori pubblicando i risultati dei "
+"partecipanti in un Albo d'Onore e in elenchi annuali, oltre a riconoscerli "
+"con certificati e premi prestigiosi."
 
 #: application/views/awards/iota/index.php:19
 #, php-format
 msgid "You can also find this information on %s."
-msgstr ""
+msgstr "Puoi trovare queste informazioni anche su %s."
 
 #: application/views/awards/iota/index.php:29
 msgid "Deleted IOTA"
-msgstr ""
+msgstr "IOTA eliminato"
 
 #: application/views/awards/iota/index.php:158
 msgid "Show IOTA Map"
-msgstr ""
+msgstr "Mostra mappa IOTA"
 
 #: application/views/awards/iota/index.php:197
 #: application/views/contesting/add.php:25
@@ -5705,11 +5737,11 @@ msgstr ""
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: application/views/awards/iota/index.php:199
 msgid "Deleted"
-msgstr ""
+msgstr "Eliminato"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:150
@@ -5724,40 +5756,51 @@ msgstr ""
 #: application/views/station_profile/create.php:124
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
+#, fuzzy
 msgid "ITU Zone"
-msgstr ""
+msgstr "Zona ITU"
 
 #: application/views/awards/itu/index.php:21
+#, fuzzy
 msgid ""
 "The Classic Worked ITU Zones award may be claimed by producing evidence of "
 "having contacted land based amateur radio stations in at least 70 of the 75 "
 "broadcasting zones as defined by the International Telecommunications Union "
 "(ITU)."
 msgstr ""
+"Il premio Classic Worked ITU Zones può essere richiesto producendo la prova "
+"di aver contattato stazioni radioamatoriali terrestri in almeno 70 delle 75 "
+"zone di trasmissione definite dall'Unione internazionale delle "
+"telecomunicazioni (ITU)."
 
 #: application/views/awards/itu/index.php:22
-#, php-format
+#, fuzzy, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr ""
+msgstr "Puoi trovare maggiori informazioni sul sito web di %s."
 
 #: application/views/awards/itu/index.php:25
+#, fuzzy
 msgid "Awards - ITU Zones"
-msgstr ""
+msgstr "Premi - Zone ITU"
 
 #: application/views/awards/itu/index.php:115
+#, fuzzy
 msgid "Show ITU Zone Map"
-msgstr ""
+msgstr "Mostra mappa della zona ITU"
 
 #: application/views/awards/jcc/index.php:16
 msgid "JCC - Japan Century Cities Award"
-msgstr ""
+msgstr "JCC - Japan Century Cities Award"
 
 #: application/views/awards/jcc/index.php:17
 msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
 msgstr ""
+"Può essere richiesto per aver contattato (ascoltato) e ricevuto una QSL da "
+"una stazione radioamatoriale situata in almeno 100 diverse città del "
+"Giappone."
 
 #: application/views/awards/jcc/index.php:18
 msgid ""
@@ -5766,24 +5809,29 @@ msgid ""
 "however names of city may be omitted. An additional sticker will be issued "
 "at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
+"JCC-200, 300, 400, 500, 600, 700 e 800 saranno emessi come premi separati. "
+"Un elenco di schede QSL deve essere disposto in ordine di numero di "
+"riferimento JCC, tuttavia i nomi delle città possono essere omessi. Un "
+"adesivo aggiuntivo verrà emesso ogni 50 contatti come 150, 250, 350, 450, "
+"550, 650, 750 città."
 
 #: application/views/awards/jcc/index.php:115
 msgid "Show JCC Map"
-msgstr ""
+msgstr "Mostra mappa JCC"
 
 #: application/views/awards/jcc/index.php:116
 #: application/views/cabrillo/index.php:209 application/views/cfd/index.php:25
 #: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
 #: application/views/kml/index.php:113 application/views/reg1test/index.php:145
 msgid "Export"
-msgstr ""
+msgstr "Esporta"
 
 #: application/views/awards/jcc/index.php:126
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:529
 msgid "Results"
-msgstr ""
+msgstr "Risultati"
 
 #: application/views/awards/jcc/index.php:152
 #: application/views/search/result.php:21
@@ -5795,11 +5843,11 @@ msgstr "Città"
 #: application/views/dashboard/index.php:429
 #: application/views/distances/index.php:23
 msgid "SAT"
-msgstr ""
+msgstr "SAT"
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
-msgstr ""
+msgstr "Premi POTA"
 
 #: application/views/awards/pota/index.php:8
 msgid ""
@@ -5807,6 +5855,10 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
+"Parks on the Air® (POTA) è iniziato nel 2017, quando si è concluso l'evento "
+"speciale Parchi Nazionali dell'ARRL. Un gruppo di volontari ha voluto "
+"continuare il divertimento oltre l'evento di un anno, e così è nata "
+"l'attività POTA."
 
 #: application/views/awards/pota/index.php:9
 msgid ""
@@ -5814,6 +5866,9 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
+"POTA funziona in modo simile a SOTA, con Attivatori e Cacciatori. Per i "
+"premi, ci sono diverse categorie in base al numero di parchi, aree "
+"geografiche e altro ancora."
 
 #: application/views/awards/pota/index.php:10
 #, php-format
@@ -5822,6 +5877,7 @@ msgid ""
 "For more information about the available awards and categories, please visit "
 "the %s."
 msgstr ""
+"Per ulteriori informazioni sui premi e le categorie disponibili, visita %s."
 
 #: application/views/awards/pota/index.php:31
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -5835,20 +5891,20 @@ msgstr "Referenza POTA"
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "Provincia"
 
 #: application/views/awards/rac/index.php:4
 #: application/views/awards/wap/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "Muovi il cursore su una provincia"
 
 #: application/views/awards/rac/index.php:106
 msgid "Show RAC Map"
-msgstr ""
+msgstr "Mostra mappa RAC"
 
 #: application/views/awards/sig/index.php:7
 msgid "SIG Information"
-msgstr ""
+msgstr "Informazioni SIG"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -5856,6 +5912,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"La categoria SIG o Special Interest Group offre la possibilità di utilizzare "
+"qualsiasi tipo di \"Special Interest Group Award\" per i premi che non sono "
+"implementati in Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -5863,6 +5922,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"La ragione di ciò è che il formato ADIF comune fornisce solo pochi campi "
+"dedicati per determinati premi. Selezionando SIG, si consente di utilizzare "
+"tutti gli altri tipi di marcatori per gruppi di interesse speciale."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -5871,27 +5933,31 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"Nell'elaborazione QSO, troverai due campi: \"SIG\" contiene l'abbreviazione "
+"del nome del gruppo di interesse speciale che è visibile anche nella "
+"valutazione del premio e \"SIG INFO\", che contiene il/i riferimento/i "
+"effettivo/i. Entrambe i campi sono liberamente personalizzabili."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Gruppo di interesse speciale"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
 #: application/views/distances/index.php:12
 #: application/views/timeplotter/index.php:4
 msgid "Number of QSOs"
-msgstr ""
+msgstr "Numero di collegamenti"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr ""
+msgstr "Numero di referenze"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:30
 msgid "Reference"
-msgstr ""
+msgstr "Riferenza"
 
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/logbookadvanced/index.php:689
@@ -5907,26 +5973,28 @@ msgstr "Data/Orario"
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/awards/sota/index.php:35
 msgid "RST Sent"
-msgstr ""
+msgstr "RST inviato"
 
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:36
 msgid "RST Received"
-msgstr ""
+msgstr "RST ricevuto"
 
 #: application/views/awards/sig/qso_list.php:34
 msgid "Export QSOs to ADIF"
-msgstr ""
+msgstr "Esporta QSO in ADIF"
 
 #: application/views/awards/sota/index.php:7
 msgid "SOTA Awards"
-msgstr ""
+msgstr "Premi SOTA"
 
 #: application/views/awards/sota/index.php:8
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
 msgstr ""
+"SOTA (Summits On The Air) è un programma di premi per radioamatori che "
+"incoraggia le operazioni in portatile su aree montane."
 
 #: application/views/awards/sota/index.php:9
 msgid ""
@@ -5938,58 +6006,74 @@ msgid ""
 "trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA "
 "online database."
 msgstr ""
+"È pienamente operativo in quasi un centinaio di paesi in tutto il mondo. "
+"Ogni paese ha una propria Associazione che definisce i vertici SOTA "
+"riconosciuti all'interno di tale Associazione. Ogni vetta guadagna agli "
+"attivatori e agli inseguitori un punteggio relativo all'altezza della vetta. "
+"Sono disponibili certificati per vari punteggi, che portano ai prestigiosi "
+"trofei \"Mountain Goat\" e \"Shack Sloth\". Un Albo d'Onore per Attivatori e "
+"Cacciatori è mantenuto nel database online SOTA."
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
-msgstr ""
+msgstr "Premio VUCC - VHF/UHF Century Club"
 
 #: application/views/awards/vucc/index.php:8
 msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
 msgstr ""
+"Il VHF/UHF Century Club Award viene assegnato per un numero minimo di "
+"locatori lavorati e confermati su una specifica banda."
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:10
 #, php-format
 msgid "Official information and the rules can be found in this document: %s."
 msgstr ""
+"Le informazioni ufficiali e le regole sono disponibili in questo documento: "
+"%s."
 
 #: application/views/awards/vucc/index.php:10
 msgid "Only VHF/UHF bands are relevant."
-msgstr ""
+msgstr "Sono considerate solo le bande VHF/UHF."
 
 #: application/views/awards/vucc/index.php:22
 msgid "Grids Worked"
-msgstr ""
+msgstr "Locatori Collegati"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Confirmed"
-msgstr ""
+msgstr "Locatori confermati"
 
 #: application/views/awards/wab/index.php:12
 msgid "WAB - Worked All Britain Award"
-msgstr ""
+msgstr "WAB - Premio Worked All Britain"
 
 #: application/views/awards/wab/index.php:13
 msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
+"WAB, Worked All Britain squares in Amateur Radio, incoraggia gli operatori "
+"radioamatoriali autorizzati a collegare tutti i locatori della Gran Bretagna."
 
 #: application/views/awards/wab/index.php:14
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
 msgstr ""
+"Può essere richiesto per aver contattato una stazione amatoriale situata "
+"nella quantità richiesta di locatori, descritta nella pagina collegata di "
+"seguito."
 
 #: application/views/awards/wab/index.php:109
 msgid "List"
-msgstr ""
+msgstr "Elenco"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr ""
+msgstr "Locatore WAB"
 
 #: application/views/awards/wac/index.php:9
 msgid ""
@@ -5997,10 +6081,14 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"Sponsorizzato dall'International Amateur Radio Union (IARU), il premio "
+"Worked All Continents viene assegnato per aver collegati e confermato tutti "
+"e sei i continenti. Si tratta di Nord America, Sud America, Oceania, Asia, "
+"Europa e Africa."
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "Premi - Collegati tutti i continenti (WAC)"
 
 #: application/views/awards/wac/index.php:151
 #: application/views/continents/index.php:62
@@ -6012,11 +6100,11 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:262 application/views/qso/index.php:421
 #: application/views/view_log/qso.php:342
 msgid "Continent"
-msgstr ""
+msgstr "Continente"
 
 #: application/views/awards/wae/index.php:7
 msgid "WAE Award"
-msgstr ""
+msgstr "Premio WAE"
 
 #: application/views/awards/wae/index.php:8
 msgid ""
@@ -6024,6 +6112,9 @@ msgid ""
 "contacts with amateur radio stations in European countries and on islands "
 "listed in the WAE country list on different bands."
 msgstr ""
+"Il più antico e rinomato di tutti i certificati DARC viene assegnato per i "
+"contatti con stazioni radioamatoriali nei paesi europei e sulle isole "
+"elencate nell'elenco dei paesi WAE su diverse bande."
 
 #: application/views/awards/wae/index.php:9
 msgid ""
@@ -6031,29 +6122,35 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
+"La WAE sarà emessa nelle seguenti modalità: CW, SSB, Phone, RTTY, FT8, "
+"Digital e Mixed. Viene rilasciato in cinque classi: WAE III, WAE II, WAE I, "
+"WAE TOP e il WAE Trophy."
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
-msgstr ""
+msgstr "Nome WAE"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefettura"
 
 #: application/views/awards/waja/index.php:4
 msgid "Hover over a prefecture"
-msgstr ""
+msgstr "Muovi il cursore su una prefettura"
 
 #: application/views/awards/waja/index.php:19
 msgid "WAJA - Worked All Japan prefectures Award"
-msgstr ""
+msgstr "WAJA - Worked All Japan Prefectures Award"
 
 #: application/views/awards/waja/index.php:20
 msgid ""
 "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham "
 "radio operators to work all the prefectures in Japan."
 msgstr ""
+"WAJA, Worked All Japan prefectures in Amateur Radio, incoraggia gli "
+"operatori radioamatoriali autorizzati a collegare tutte le prefetture del "
+"Giappone."
 
 #: application/views/awards/waja/index.php:21
 msgid ""
@@ -6062,24 +6159,29 @@ msgid ""
 "QSL cards should be arranged in order of WAJA (HAJA) reference number, "
 "however names of prefectures may be omitted."
 msgstr ""
+"Può essere richiesto per aver contattato (ascoltato) e ricevuto una carta "
+"QSL da una stazione amatoriale situata in ciascuna delle 47 prefetture del "
+"Giappone. Un elenco di schede QSL deve essere disposto in ordine di numero "
+"di riferimento WAJA (HAJA), tuttavia i nomi delle prefetture possono essere "
+"omessi."
 
 #: application/views/awards/waja/index.php:118
 msgid "Show WAJA Map"
-msgstr ""
+msgstr "Mostra mappa WAJA"
 
 #: application/views/awards/waja/index.php:154
 #: application/views/timeline/index.php:237
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefettura"
 
 #: application/views/awards/wap/index.php:3
 msgctxt "The Netherlands Province"
 msgid "Province"
-msgstr ""
+msgstr "Provincia"
 
 #: application/views/awards/wap/index.php:20
 msgid "VRZA WAP Award"
-msgstr ""
+msgstr "Premio VRZA WAP"
 
 #: application/views/awards/wap/index.php:21
 msgid ""
@@ -6091,6 +6193,14 @@ msgid ""
 "Amateurs). Both organizations are active in organizing events, contests, and "
 "training, and they represent Dutch amateurs nationally and internationally."
 msgstr ""
+"I Paesi Bassi si estendono per circa 300 km da nord a sud e per circa 200 km "
+"da est a ovest. Dei 18 milioni di abitanti del Paese, circa 11.500 sono "
+"radioamatori autorizzati. Le più grandi organizzazioni di radioamatori nei "
+"Paesi Bassi sono VERON (Vereniging voor Experimenteel Radio Onderzoek in "
+"Nederland) e VRZA (Vereniging voor Radio Zend Amateurs). Entrambe le "
+"organizzazioni sono attive nell'organizzazione di eventi, concorsi e corsi "
+"di formazione e rappresentano i radioamatori olandesi a livello nazionale e "
+"internazionale."
 
 #: application/views/awards/wap/index.php:22
 msgid ""
@@ -6100,25 +6210,32 @@ msgid ""
 "encourages operators to engage with a diverse range of stations across the "
 "country, promoting both national connectivity and operational skill."
 msgstr ""
+"Il VRZA (Vereniging voor Radio Zend Amateurs) offre il premio Worked All "
+"Provinces (WAP) ai radioamatori che hanno confermato i contatti con le "
+"stazioni in ciascuna delle dodici province dei Paesi Bassi. Questo premio "
+"incoraggia gli operatori a impegnarsi con una vasta gamma di stazioni in "
+"tutto il paese, promuovendo sia la connettività nazionale che le competenze "
+"operative."
 
 #: application/views/awards/wap/index.php:23
 #, php-format
 msgctxt "uses 'here'"
 msgid "Information about the WAP Awards and its rules can be found %s."
 msgstr ""
+"Le informazioni sui premi WAP e le sue regole sono disponibili presso: %s."
 
 #: application/views/awards/wap/index.php:114
 msgid "Show WAP Map"
-msgstr ""
+msgstr "Mostra mappa WAP"
 
 #: application/views/awards/wap/index.php:151
 #: application/views/awards/wapc/index.php:119
 msgid "Province"
-msgstr ""
+msgstr "Provincia"
 
 #: application/views/awards/wapc/index.php:7
 msgid "WAPC - Worked All Provinces of China"
-msgstr ""
+msgstr "WAPC - Collegate tutte le province della Cina"
 
 #: application/views/awards/wapc/index.php:8
 msgid ""
@@ -6127,29 +6244,35 @@ msgid ""
 "municipalities, autonomous regions, and special administrative regions of "
 "China, fostering a deeper understanding of China."
 msgstr ""
+"Il WAPC Award, emesso dal Mulan DX Club, mira a promuovere la comunicazione "
+"tra gli operatori radioamatoriali di tutto il mondo e gli operatori di tutte "
+"le province, comuni, regioni autonome e regioni amministrative speciali "
+"della Cina, promuovendo una più profonda comprensione della Cina."
 
 #: application/views/awards/wapc/index.php:9
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
 msgstr ""
+"Il premio può essere ottenuto attraverso l'accumulo a lungo termine di "
+"contatti o raggiunto in un unico sforzo durante il concorso annuale WAPC."
 
 #: application/views/awards/wapc/index.php:118
 msgid "Code"
-msgstr ""
+msgstr "Codice"
 
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
 msgid "State"
-msgstr ""
+msgstr "Regione"
 
 #: application/views/awards/was/index.php:4
 msgid "Hover over a state"
-msgstr ""
+msgstr "Muovi il cursore su uno stato"
 
 #: application/views/awards/was/index.php:20
 msgid "WAS Award"
-msgstr ""
+msgstr "Premio WAS"
 
 #: application/views/awards/was/index.php:21
 msgid ""
@@ -6158,6 +6281,10 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
+"Il premio più popolare dell'ARRL è il Worked All States Award. Migliaia e "
+"migliaia di premi sono stati assegnati ai radioamatori di tutto il mondo. "
+"Nel 101° anno di ARRL, hanno ridisegnato i certificati e il programma nella "
+"speranza di semplificare e migliorare il programma dei premi."
 
 #: application/views/awards/was/index.php:22
 msgid ""
@@ -6167,20 +6294,28 @@ msgid ""
 "possessions must be members of ARRL to apply for a WAS. Applicants from "
 "outside the U.S. are exempt from this requirement."
 msgstr ""
+"Il premio WAS (Worked All States) è disponibile per tutti i radioamatori in "
+"tutto il mondo che presentano prove con conferma scritta dei contatti con "
+"ciascuno dei 50 stati degli Stati Uniti d'America. I radioamatori negli "
+"Stati Uniti e nei suoi possedimenti devono essere membri di ARRL per "
+"richiedere un WAS. I richiedenti al di fuori degli Stati Uniti sono esenti "
+"da questo requisito."
 
 #: application/views/awards/was/index.php:23
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
 msgstr ""
+"Tutte le informazioni e le regole per l'ARRL WAS Award sono disponibili "
+"presso: %s."
 
 #: application/views/awards/was/index.php:114
 msgid "Show WAS Map"
-msgstr ""
+msgstr "Mostra mappa WAS"
 
 #: application/views/awards/wwff/index.php:7
 msgid "WWFF - World Wide Flora and Fauna Award"
-msgstr ""
+msgstr "WWFF - World Wide Flora and Fauna Award"
 
 #: application/views/awards/wwff/index.php:8
 msgid ""
@@ -6188,6 +6323,9 @@ msgid ""
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
+"WWFF, World Wide Flora and Fauna in Amateur Radio, incoraggia gli operatori "
+"radioamatoriali autorizzati a lasciare le loro case e operare in portatile "
+"nelle aree protette di flora e fauna (PFF) in tutto il mondo."
 
 #: application/views/awards/wwff/index.php:9
 msgid ""
@@ -6195,6 +6333,9 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
+"Più di 26.000 aree protette di flora e fauna (PFF) in tutto il mondo sono "
+"già registrate nella directory WWFF. Cacciatori e Attivatori possono "
+"richiedere premi, sia a livello globale che nazionale."
 
 #: application/views/awards/wwff/index.php:31
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -6209,11 +6350,13 @@ msgstr "Referenza WWFF"
 msgid ""
 "The backup of your log completed successfully. The output can be found at"
 msgstr ""
+"Il backup del registro è stato completato correttamente. L'output è "
+"disponibile all'indirizzo"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr ""
+msgstr "Potresti automatizzare questo processo rendendolo un cronjob."
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -6221,38 +6364,46 @@ msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
+"Si è verificato un errore durante il processo di backup. Verificare che la "
+"cartella di backup esista e sia scrivibile dall'utente / gruppo del server "
+"web."
 
 #: application/views/backup/main.php:17
 msgid ""
 "Some of the data stored in Wavelog can be exported so that you can keep a "
 "backup copy elsewhere."
 msgstr ""
+"Alcuni dei dati memorizzati in Wavelog possono essere esportati in modo da "
+"poter conservare una copia di backup altrove."
 
 #: application/views/backup/main.php:18
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
 msgstr ""
+"Si consiglia di creare backup su base regolare per proteggere i propri dati."
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
-msgstr ""
+msgstr "Backup dati ADIF"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
-msgstr ""
+msgstr "Backup delle note"
 
 #: application/views/backup/notes_view.php:7
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
+"Il backup delle note è stato completato correttamente. L'output è "
+"disponibile all'indirizzo"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:56
 msgid "BandMap"
-msgstr ""
+msgstr "BandMap"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:59
 msgid "BandList"
-msgstr ""
+msgstr "BandList"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:69
 #: application/views/contesting/index.php:20
@@ -6260,52 +6411,54 @@ msgstr ""
 #: application/views/contesting/index.php:155
 #: application/views/qso/index.php:352
 msgid "None"
-msgstr ""
+msgstr "Nessuna"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:84
 msgid "Spots de"
-msgstr ""
+msgstr "Spots da"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
 msgstr ""
+"Il pop-up è stato bloccato! Consenti i pop-up per questo sito in modo "
+"permanente."
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Fare clic per preparare il registro."
 
 #: application/views/bandmap/list.php:76
 msgid "DXCC-Status"
-msgstr ""
+msgstr "Stato DXCC"
 
 #: application/views/bandmap/list.php:79
 #: application/views/interface_assets/footer.php:45
 msgid "Not worked"
-msgstr ""
+msgstr "Non collegato"
 
 #: application/views/bandmap/list.php:82
 msgid "Worked, not Confirmed"
-msgstr ""
+msgstr "Collegato, non Confermato"
 
 #: application/views/bandmap/list.php:113
 msgid "Phone"
-msgstr ""
+msgstr "Fonia"
 
 #: application/views/bandmap/list.php:114
 msgid "CW"
-msgstr ""
+msgstr "CW"
 
 #: application/views/bandmap/list.php:115
 msgid "Digi"
-msgstr ""
+msgstr "DIGI"
 
 #: application/views/bandmap/list.php:131
 msgid "WAC"
-msgstr ""
+msgstr "WAC"
 
 #: application/views/bandmap/list.php:132
 msgid "Spotter"
-msgstr ""
+msgstr "Segnalatore"
 
 #: application/views/bandmap/list.php:133
 #: application/views/oqrs/notinlogform.php:28
@@ -6313,101 +6466,108 @@ msgstr ""
 #: application/views/oqrs/request_grouped.php:57
 #: application/views/oqrs/status_info.php:5
 msgid "Message"
-msgstr ""
+msgstr "Messaggio"
 
 #: application/views/bandmap/list.php:134
 msgid "Last Worked"
-msgstr ""
+msgstr "Ultimo collegato"
 
 #: application/views/bands/bandedges.php:2
 msgid "Please enter valid numbers for frequency"
-msgstr ""
+msgstr "Inserisci numeri validi per la frequenza"
 
 #: application/views/bands/bandedges.php:3
 msgid "The 'From' frequency must be less than the 'To' frequency."
-msgstr ""
+msgstr "La frequenza \"Da\" deve essere inferiore alla frequenza \"A\"."
 
 #: application/views/bands/bandedges.php:4
 msgid "The Frequency overlaps with an existing entry."
-msgstr ""
+msgstr "La Frequenza si sovrappone a una voce esistente."
 
 #: application/views/bands/bandedges.php:5
 msgid "Are you sure you want to delete this band edge?"
-msgstr ""
+msgstr "Si desidera eliminare questo elemento?"
 
 #: application/views/bands/bandedges.php:17
 msgid "Bandedges"
-msgstr ""
+msgstr "Limiti di banda"
 
 #: application/views/bands/bandedges.php:22
 msgid ""
 "Using the bandedges list you can control the mode classification in the "
 "cluster."
 msgstr ""
+"Utilizzando i limiti di banda è possibile controllare il filtraggio delle "
+"modalità nel cluster."
 
 #: application/views/bands/bandedges.php:29
 msgid "Frequency from (Hz)"
-msgstr ""
+msgstr "Frequenza da (Hz)"
 
 #: application/views/bands/bandedges.php:30
 msgid "Frequency to (Hz)"
-msgstr ""
+msgstr "Frequenza a (Hz)"
 
 #: application/views/bands/bandedges.php:65
 msgid "Add a bandedge"
-msgstr ""
+msgstr "Aggiungi un limite"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr ""
+msgstr "Nome della banda (ad es. 20 m)"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:65
+#, fuzzy
 msgid "Bandgroup"
-msgstr ""
+msgstr "Bandgroup"
 
 #: application/views/bands/create.php:31 application/views/bands/edit.php:13
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
-msgstr ""
+msgstr "Nome della banda (ad es. hf, vhf, uhf, shf)"
 
 #: application/views/bands/create.php:34 application/views/bands/edit.php:16
 #: application/views/bands/index.php:66
 msgid "SSB QRG"
-msgstr ""
+msgstr "SSB QRG"
 
 #: application/views/bands/create.php:36 application/views/bands/edit.php:18
 msgid "Frequency for SSB QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frequenza per SSB QRG in banda (deve essere in Hz)"
 
 #: application/views/bands/create.php:39 application/views/bands/edit.php:21
 #: application/views/bands/index.php:67
 msgid "DATA QRG"
-msgstr ""
+msgstr "DATI QRG"
 
 #: application/views/bands/create.php:41 application/views/bands/edit.php:23
 msgid "Frequency for DATA QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frequenza per QRG in modi digitali (deve essere in Hz)"
 
 #: application/views/bands/create.php:44 application/views/bands/edit.php:26
 #: application/views/bands/index.php:68
 msgid "CW QRG"
-msgstr ""
+msgstr "CW QRG"
 
 #: application/views/bands/create.php:46 application/views/bands/edit.php:28
 msgid "Frequency for CW QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frequenza per CW QRG (deve essere in Hz)"
 
 #: application/views/bands/index.php:38
 msgid ""
 "Using the band list you can control which bands are shown when creating a "
 "new QSO."
 msgstr ""
+"Utilizzando l'elenco delle bande è possibile controllare quali bande vengono "
+"mostrate quando si crea un nuovo QSO."
 
 #: application/views/bands/index.php:39
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
 msgstr ""
+"Le bande attive verranno visualizzate nel menu a discesa \"Banda\" del QSO, "
+"mentre le bande inattive verranno nascoste e non potranno essere selezionate."
 
 #: application/views/bands/index.php:56
 msgid "Sig"
@@ -6420,41 +6580,41 @@ msgstr "Contea USA"
 #: application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:220
 msgid "WAPC"
-msgstr ""
+msgstr "WAPC"
 
 #: application/views/bands/index.php:62
 #: application/views/interface_assets/header.php:240
 msgid "WAJA"
-msgstr ""
+msgstr "WAJA"
 
 #: application/views/bands/index.php:63
 #: application/views/interface_assets/header.php:270
 msgid "WAS"
-msgstr ""
+msgstr "WAS"
 
 #: application/views/bands/index.php:69
 msgid "QRG Unit"
-msgstr ""
+msgstr "Unità QRG"
 
 #: application/views/bands/index.php:104
 msgid "Hz"
-msgstr ""
+msgstr "Hz"
 
 #: application/views/bands/index.php:105
 msgid "kHz"
-msgstr ""
+msgstr "kHz"
 
 #: application/views/bands/index.php:106
 msgid "MHz"
-msgstr ""
+msgstr "MHz"
 
 #: application/views/bands/index.php:107
 msgid "GHz"
-msgstr ""
+msgstr "Ghz"
 
 #: application/views/bands/index.php:159 application/views/bands/index.php:165
 msgid "Create a band"
-msgstr ""
+msgstr "Crea una banda"
 
 #: application/views/bands/index.php:160
 #: application/views/club/permissions.php:142
@@ -6472,84 +6632,86 @@ msgstr "Chiudi"
 
 #: application/views/bands/index.php:161
 msgid "Warning! Are you sure you want to delete the following band: "
-msgstr ""
+msgstr "Attenzione! Sei sicuro di voler eliminare la seguente banda: "
 
 #: application/views/bands/index.php:162
 msgid "Warning! Are you sure you want to activate all bands?"
-msgstr ""
+msgstr "Attenzione! Sei sicuro di voler abilitare tutte le bande?"
 
 #: application/views/bands/index.php:163
 msgid "Warning! Are you sure you want to deactivate all bands?"
-msgstr ""
+msgstr "Attenzione! Sei sicuro di voler disattivare tutte le bande?"
 
 #: application/views/bands/index.php:166
 #: application/views/contesting/add.php:77 application/views/mode/index.php:89
 #: application/views/usermode/index.php:76
 msgid "Activate All"
-msgstr ""
+msgstr "Attiva tutto"
 
 #: application/views/bands/index.php:167
 #: application/views/contesting/add.php:78 application/views/mode/index.php:90
 #: application/views/usermode/index.php:77
 msgid "Deactivate All"
-msgstr ""
+msgstr "Disattiva tutto"
 
 #: application/views/cabrillo/cbr_success.php:12
 msgid "Results of CBR Contest Data Update"
-msgstr ""
+msgstr "Risultati dell'aggiornamento dei dati del CBR contest"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
 "Your contest QSOs have been updated using the values of your Cabrillo file."
 msgstr ""
+"I tuoi QSO del contest sono stati aggiornati utilizzando i valori del tuo "
+"file Cabrillo."
 
 #: application/views/cabrillo/cbr_success.php:19
 msgid "No QSOs were updated by your Cabrillo file."
-msgstr ""
+msgstr "Nessun QSO è stato aggiornato dal tuo file Cabrillo."
 
 #: application/views/cabrillo/cbr_success.php:25
 msgid "CBR errors"
-msgstr ""
+msgstr "Errori CBR"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:60
 #: application/views/reg1test/index.php:2
 #: application/views/reg1test/index.php:36
 msgid "Proceed"
-msgstr ""
+msgstr "Procedi"
 
 #: application/views/cabrillo/index.php:3
 #: application/views/reg1test/index.php:3
 msgid "Select Year"
-msgstr ""
+msgstr "Seleziona Anno"
 
 #: application/views/cabrillo/index.php:4
 #: application/views/reg1test/index.php:4
 msgid "Select Contest"
-msgstr ""
+msgstr "Seleziona Contest"
 
 #: application/views/cabrillo/index.php:5
 #: application/views/reg1test/index.php:5
 msgid "Select Date Range"
-msgstr ""
+msgstr "Seleziona Intervallo di date"
 
 #: application/views/cabrillo/index.php:6
 #: application/views/reg1test/index.php:7
 msgid "No contests were found for this station location!"
-msgstr ""
+msgstr "Non sono stati trovati contest per questa stazione!"
 
 #: application/views/cabrillo/index.php:16
 msgid "Export a contest to a Cabrillo log"
-msgstr ""
+msgstr "Esporta un contest in un file Cabrillo"
 
 #: application/views/cabrillo/index.php:28
 msgid "Select Station Location:"
-msgstr ""
+msgstr "Seleziona posizione stazione:"
 
 #: application/views/cabrillo/index.php:44
 #: application/views/reg1test/index.php:53
 msgid "Club"
-msgstr ""
+msgstr "Club"
 
 #: application/views/cabrillo/index.php:48
 msgid ""
@@ -6557,16 +6719,21 @@ msgid ""
 "For foreign stations LOCATION must be 'DX'. This information is required for "
 "IARU-HF and for all ARRL and CQ contests."
 msgstr ""
+"Per le stazioni USA e Canada la posizione deve essere l'abbreviazione della "
+"sezione ARRL. Per le stazioni estere la posizione deve essere \"DX\". Queste "
+"informazioni sono necessarie per IARU-HF e per tutti i concorsi ARRL e CQ."
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
-msgstr ""
+msgstr "Per il concorso RDXC questo contiene l'identificativo RDA."
 
 #: application/views/cabrillo/index.php:48
 msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
 msgstr ""
+"Per il concorso RSGB-IOTA queste informazioni contengono il nome IOTA (non "
+"il codice di riferimento IOTA)."
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:631
@@ -6579,43 +6746,43 @@ msgstr "Luogo"
 #: application/views/cabrillo/index.php:52
 #: application/views/reg1test/index.php:58
 msgid "Category Operator"
-msgstr ""
+msgstr "Categoria Operatore"
 
 #: application/views/cabrillo/index.php:60
 msgid "Category Assisted"
-msgstr ""
+msgstr "Categoria assistita"
 
 #: application/views/cabrillo/index.php:67
 msgid "Category Band"
-msgstr ""
+msgstr "Categoria banda"
 
 #: application/views/cabrillo/index.php:93
 msgid "Light/Laser"
-msgstr ""
+msgstr "Luce/Laser"
 
 #: application/views/cabrillo/index.php:94
 msgid "VHF-3-BAND and VHF-FM-ONLY (ARRL VHF Contests only)"
-msgstr ""
+msgstr "VHF-3-BAND e VHF-FM-ONLY (solo contest ARRL VHF)"
 
 #: application/views/cabrillo/index.php:98
 msgid "Category Mode"
-msgstr ""
+msgstr "Categoria Modo"
 
 #: application/views/cabrillo/index.php:109
 msgid "Category Power"
-msgstr ""
+msgstr "Categoria Potenza"
 
 #: application/views/cabrillo/index.php:117
 msgid "Category Station"
-msgstr ""
+msgstr "Categoria Stazione"
 
 #: application/views/cabrillo/index.php:133
 msgid "Category Transmitter"
-msgstr ""
+msgstr "Categoria Trasmettitore"
 
 #: application/views/cabrillo/index.php:143
 msgid "Category Time"
-msgstr ""
+msgstr "Categoria Orario"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -6623,47 +6790,47 @@ msgstr ""
 #: application/views/cabrillo/index.php:148
 #, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d Ore"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
-msgstr ""
+msgstr "Overlay Categoria"
 
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:73
 msgid "Operators"
-msgstr ""
+msgstr "Operatori"
 
 #: application/views/cabrillo/index.php:169
 #: application/views/reg1test/index.php:139
 msgid "Soapbox"
-msgstr ""
+msgstr "Testo libero"
 
 #: application/views/cabrillo/index.php:173
 msgid "Address"
-msgstr ""
+msgstr "Indirizzo"
 
 #: application/views/cabrillo/index.php:177
 msgid "Address City"
-msgstr ""
+msgstr "Città"
 
 #: application/views/cabrillo/index.php:181
 msgid "Address State/Province"
-msgstr ""
+msgstr "Stato/Provincia"
 
 #: application/views/cabrillo/index.php:185
 msgid "Address Postalcode"
-msgstr ""
+msgstr "Codice postale"
 
 #: application/views/cabrillo/index.php:189
 msgid "Address Country"
-msgstr ""
+msgstr "Nazione"
 
 #: application/views/cabrillo/index.php:193
 msgid "Certificate"
-msgstr ""
+msgstr "Certificato"
 
 #: application/views/cabrillo/index.php:193
 msgid ""
@@ -6671,6 +6838,9 @@ msgid ""
 "postal mail by the contest sponsor. The contest sponsor may or may not honor "
 "this tag."
 msgstr ""
+"Indicare se si desidera ricevere, se idoneo, un certificato cartaceo inviato "
+"tramite posta ordinaria dallo sponsor del concorso. Lo sponsor del concorso "
+"può seguire o meno questo tag."
 
 #: application/views/cabrillo/index.php:196
 #: application/views/cabrillo/index.php:204
@@ -6788,44 +6958,44 @@ msgstr "No"
 
 #: application/views/cabrillo/index.php:201
 msgid "If the gridsquare was part of the exchange, you should select YES."
-msgstr ""
+msgstr "Se il locatore faceva parte dello scambio, è necessario selezionare SÌ."
 
 #: application/views/cabrillo/index.php:201
 msgid "Include logged grids?"
-msgstr ""
+msgstr "Includere i locatori registrati?"
 
 #: application/views/cabrillo/index.php:215
 #: application/views/reg1test/index.php:150
 msgid "No contests were found in your log."
-msgstr ""
+msgstr "Non sono stati trovati contest nel tuo registro."
 
 #: application/views/callstats/index.php:70
 #: application/views/gridmap/index.php:43
 msgid "All except SAT"
-msgstr ""
+msgstr "Tutti tranne SAT"
 
 #: application/views/callstats/index.php:149
 msgid "#QSOs"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/cfd/index.php:7
 #, php-format
 msgid "Export of CFD-File for DARC-Toplist (See %s)"
-msgstr ""
+msgstr "Esportazione di file CFD per DARC-Toplist (vedere %s)"
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
-msgstr ""
+msgstr "Passa a un Club/Sezione"
 
 #: application/views/club/clubswitch_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch to %s?"
-msgstr ""
+msgstr "Sei sicuro di voler passare all'account %s?"
 
 #: application/views/club/clubswitch_modal.php:14
 #: application/views/user/modals/stop_impersonate_modal.php:13
 msgid "Yes, switch over!"
-msgstr ""
+msgstr "Sì, passa!"
 
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:205
@@ -6837,16 +7007,16 @@ msgstr ""
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: application/views/club/permissions.php:3
 #, php-format
 msgid "Club Permissions for %s"
-msgstr ""
+msgstr "Autorizzazioni Club/Sezione per %s"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
-msgstr ""
+msgstr "Torna indietro"
 
 #: application/views/club/permissions.php:13
 msgid ""
@@ -6854,134 +7024,170 @@ msgid ""
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
 msgstr ""
+"Affinché gli utenti possano registrare QSO con questo club/sezione/"
+"nominativo speciale, hanno bisogno di autorizzazioni apposite. Aggiungere "
+"gli utenti alla tabella sottostante e impostare l'autorizzazione appropriata."
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
-msgstr ""
+msgstr "Permessidisponibili"
 
 #: application/views/club/permissions.php:19
+#, fuzzy
 msgid "Available Permissions"
-msgstr ""
+msgstr "Autorizzazioni disponibili"
 
 #: application/views/club/permissions.php:26
 #: application/views/eqsl/download.php:45
+#, fuzzy
 msgid "Action"
-msgstr ""
+msgstr "Azione"
 
 #: application/views/club/permissions.php:33
+#, fuzzy
 msgid "Log QSOs via Web GUI (live and post)"
-msgstr ""
+msgstr "Registrare i QSO tramite Web GUI (live e post)"
 
 #: application/views/club/permissions.php:41
+#, fuzzy
 msgid "Log QSOs via API"
-msgstr ""
+msgstr "Registra QSO tramite API"
 
 #: application/views/club/permissions.php:49
+#, fuzzy
 msgid "Edit a QSO"
-msgstr ""
+msgstr "Modificare un QSO"
 
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
+#, fuzzy
 msgid "QSO was done by the operator"
-msgstr ""
+msgstr "Il QSO è stato fatto dall'operatore"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
+#, fuzzy
 msgid "QSO was done by another operator"
-msgstr ""
+msgstr "Il QSO è stato fatto da un altro operatore"
 
 #: application/views/club/permissions.php:67
+#, fuzzy
 msgid "Delete a QSO"
-msgstr ""
+msgstr "Eliminare un QSO"
 
 #: application/views/club/permissions.php:85
+#, fuzzy
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
-msgstr ""
+msgstr "Gestisci Stationsetup (modifica/crea registri e posizioni)"
 
 #: application/views/club/permissions.php:93
+#, fuzzy
 msgid "Manage Third-Party services"
-msgstr ""
+msgstr "Servizi di terze parti"
 
 #: application/views/club/permissions.php:101
+#, fuzzy
 msgid "Import QSO per ADIF"
-msgstr ""
+msgstr "Importa QSO per ADIF"
 
 #: application/views/club/permissions.php:110
+#, fuzzy
 msgid "Export QSO per ADIF"
-msgstr ""
+msgstr "Esporta QSO per ADIF"
 
 #: application/views/club/permissions.php:118
+#, fuzzy
 msgid "User Management"
-msgstr ""
+msgstr "Gestione utenti"
 
 #: application/views/club/permissions.php:123
+#, fuzzy
 msgid "Can create new users in Wavelog"
-msgstr ""
+msgstr "Può creare nuovi utenti in Wavelog"
 
 #: application/views/club/permissions.php:128
+#, fuzzy
 msgid "Can edit other users in Wavelog"
-msgstr ""
+msgstr "Può modificare altri utenti in Wavelog"
 
 #: application/views/club/permissions.php:133
+#, fuzzy
 msgid "Can edit Club permissions and add/remove users"
-msgstr ""
+msgstr "Può modificare le autorizzazioni del club e aggiungere/rimuovere utenti"
 
 #: application/views/club/permissions.php:151
+#, fuzzy
 msgid "Users with Permissions"
-msgstr ""
+msgstr "Utenti con autorizzazioni"
 
 #: application/views/club/permissions.php:161
+#, fuzzy
 msgid "Add new User to Club"
-msgstr ""
+msgstr "Aggiungi nuovo utente al club"
 
 #: application/views/club/permissions.php:167
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr ""
+"È possibile aggiungere utenti alla %s Clubstation solo se già esistenti su "
+"questo server Wavelog."
 
 #: application/views/club/permissions.php:168
+#, fuzzy
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
 msgstr ""
+"Se non esistono, chiedi al tuo amministratore Wavelog di creare un account "
+"per loro."
 
 #: application/views/club/permissions.php:169
+#, fuzzy
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
 msgstr ""
+"Cercare l'utente in base al suo nominativo o nome/cognome e selezionare il "
+"livello di autorizzazione."
 
 #: application/views/club/permissions.php:175
+#, fuzzy
 msgid "User (Callsign or Name)"
-msgstr ""
+msgstr "Utente (nominativo o nome)"
 
 #: application/views/club/permissions.php:176
 #: application/views/club/permissions.php:225
 #: application/views/club/permissions.php:269
+#, fuzzy
 msgid "Permission"
-msgstr ""
+msgstr "Autorizzazione"
 
 #: application/views/club/permissions.php:183
+#, fuzzy
 msgid "Type at least 2 characters."
-msgstr ""
+msgstr "Almeno 2 caratteri."
 
 #: application/views/club/permissions.php:194
+#, fuzzy
 msgid "Notify the user via email"
-msgstr ""
+msgstr "Avvisa l'utente via e-mail"
 
 #: application/views/club/permissions.php:213
+#, fuzzy
 msgid "No users currently have access to this club station."
-msgstr ""
+msgstr "Nessun utente ha attualmente accesso a questa club station."
 
 #: application/views/club/permissions.php:220
+#, fuzzy
 msgid "Firstname"
-msgstr ""
+msgstr "Nome"
 
 #: application/views/club/permissions.php:221
+#, fuzzy
 msgid "Lastname"
-msgstr ""
+msgstr "Cognome"
 
 #: application/views/club/permissions.php:223
 #: application/views/user/edit.php:56 application/views/user/index.php:152
@@ -6991,72 +7197,89 @@ msgid "Username"
 msgstr "Nome utente"
 
 #: application/views/club/permissions.php:224
+#, fuzzy
 msgid "E-Mail"
-msgstr ""
+msgstr "E-mail"
 
 #: application/views/club/permissions.php:244
+#, fuzzy
 msgid "Wavelog Administrator"
-msgstr ""
+msgstr "Amministratore Wavelog"
 
 #: application/views/club/permissions.php:261
+#, fuzzy
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
+"È possibile modificare il livello di autorizzazione degli utenti per questa "
+"Clubstation."
 
 #: application/views/club/permissions.php:268
+#, fuzzy
 msgid "User Callsign"
-msgstr ""
+msgstr "Indicativo di chiamata dell'utente"
 
 #: application/views/club/permissions.php:286
+#, fuzzy
 msgid "Notify the user via email about the change"
-msgstr ""
+msgstr "Notificare all'utente via e-mail la modifica"
 
 #: application/views/club/permissions.php:309
+#, fuzzy
 msgid "Delete User"
-msgstr ""
+msgstr "Elimina utente"
 
 #: application/views/club/permissions.php:316
+#, fuzzy
 msgid "Are you sure you want to delete this user from the club?"
-msgstr ""
+msgstr "Sei sicuro di voler cancellare questo utente dall'elenco?"
 
 #: application/views/club/permissions.php:320
-#, php-format
+#, fuzzy, php-format
 msgid "Callsign: %s"
-msgstr ""
+msgstr "Indicativo di chiamata: %s"
 
 #: application/views/club/permissions.php:321
-#, php-format
+#, fuzzy, php-format
 msgid "Role: %s"
-msgstr ""
+msgstr "- Ruolo: %s"
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
+#, fuzzy
 msgid "Upload Logbook"
-msgstr ""
+msgstr "Carica il diario di bordo"
 
 #: application/views/clublog/export.php:14
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
+#, fuzzy
 msgid "Download QSOs"
-msgstr ""
+msgstr "Scarica QSO"
 
 #: application/views/clublog/export.php:24
+#, fuzzy
 msgid "The next automatic Upload to Clublog will happen at: "
-msgstr ""
+msgstr "Il prossimo caricamento automatico su Clublog avverrà alle: "
 
 #: application/views/clublog/export.php:25
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "Clublog logbook."
 msgstr ""
+"Qui puoi vedere tutti i collegamenti che non sono stati precedentemente "
+"aggiunti a Clublog."
 
 #: application/views/clublog/export.php:26
+#, fuzzy
 msgid ""
 "You need to set a username and password in your user account. You will also "
 "need to enable upload for each station profile ."
 msgstr ""
+"Devi impostare un nome utente e una password nel tuo account utente. Dovrai "
+"anche abilitare il caricamento per ogni profilo di stazione."
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
@@ -7066,70 +7289,84 @@ msgstr ""
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:14
 #: application/views/webadif/export.php:41
+#, fuzzy
 msgid "Profile name"
-msgstr ""
+msgstr "Nome del profilo"
 
 #: application/views/clublog/export.php:35
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:91
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
+#, fuzzy
 msgid "Station callsign"
-msgstr ""
+msgstr "Indicativo di chiamata della stazione"
 
 #: application/views/clublog/export.php:36
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
+#, fuzzy
 msgid "Edited QSOs not uploaded"
-msgstr ""
+msgstr "QSO modificati non caricati"
 
 #: application/views/clublog/export.php:37
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:43
+#, fuzzy
 msgid "Total QSOs not uploaded"
-msgstr ""
+msgstr "Totale QSO non caricati"
 
 #: application/views/clublog/export.php:38
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
 #: application/views/webadif/export.php:44
+#, fuzzy
 msgid "Total QSOs uploaded"
-msgstr ""
+msgstr "Totale QSO caricati"
 
 #: application/views/clublog/export.php:69
+#, fuzzy
 msgid "The next automatic Download from Clublog-QSLs will happen at: "
-msgstr ""
+msgstr "Il prossimo download automatico da Clublog-QSLs avverrà a: "
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
 "If no startdate is given then all QSOs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
+"Se non viene specificata alcuna data di inizio, verranno scaricati/"
+"aggiornati tutti i QSO successivi all'ultima conferma!"
 
 #: application/views/clublog/export.php:78
+#, fuzzy
 msgid "Download from Clublog"
-msgstr ""
+msgstr "Scarica da Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
+#, fuzzy
 msgid "Hamsat - Satellite Rovers"
-msgstr ""
+msgstr "Hamsat - Rover satellitari"
 
 #: application/views/components/hamsat/table.php:4
 #: application/views/contestcalendar/index.php:11
 #: application/views/dxcalendar/index.php:4
 #: application/views/hamsat/index.php:8
+#, fuzzy
 msgid "This data comes from"
-msgstr ""
+msgstr "Questi dati provengono da"
 
 #: application/views/components/hamsat/table.php:11
+#, fuzzy
 msgid "Show All Passes"
-msgstr ""
+msgstr "Mostra tutti i pass"
 
 #: application/views/components/hamsat/table.php:14
+#, fuzzy
 msgid "Private feed key empty. Please set the feed key in your profile."
-msgstr ""
+msgstr "Chiave feed privato vuota. Imposta la chiave di feed nel tuo profilo."
 
 #: application/views/components/hamsat/table.php:19
+#, fuzzy
 msgid "No upcoming activations found. Please check back later."
-msgstr ""
+msgstr "Nessuna attivazione imminente trovata. Riprova più tardi."
 
 #: application/views/components/hamsat/table.php:28
 #: application/views/contesting/index.php:229
@@ -7145,30 +7382,36 @@ msgstr "Commento"
 
 #: application/views/components/hamsat/table.php:31
 #: application/views/hamsat/index.php:34
+#, fuzzy
 msgid "Gridsquare(s)"
-msgstr ""
+msgstr "Quadrato/i a griglia"
 
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
+#, fuzzy
 msgid "Workable"
-msgstr ""
+msgstr "Realizzabile"
 
 #: application/views/components/hamsat/table.php:134
+#, fuzzy
 msgctxt "Hamsat - Track Satellites"
 msgid "Track"
-msgstr ""
+msgstr "Traccia"
 
 #: application/views/components/hamsat/table.php:146
+#, fuzzy
 msgid "Sked"
-msgstr ""
+msgstr "Sked"
 
 #: application/views/components/radio_display_table.php:5
+#, fuzzy
 msgid "Radio Status"
-msgstr ""
+msgstr "Stato radio"
 
 #: application/views/contestcalendar/index.php:16
+#, fuzzy
 msgid "No Contests"
-msgstr ""
+msgstr "Nessun concorso"
 
 #: application/views/contestcalendar/index.php:21
 #: application/views/logbookadvanced/edit.php:24
@@ -7177,57 +7420,73 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:158
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
+#, fuzzy
 msgid "Contest"
-msgstr ""
+msgstr "Concorso"
 
 #: application/views/contestcalendar/index.php:22
+#, fuzzy
 msgid "Start"
-msgstr ""
+msgstr "Inizia"
 
 #: application/views/contestcalendar/index.php:23
+#, fuzzy
 msgid "End"
-msgstr ""
+msgstr "Fine"
 
 #: application/views/contestcalendar/index.php:24
+#, fuzzy
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 #: application/views/contestcalendar/index.php:33
+#, fuzzy
 msgid "Show Details"
-msgstr ""
+msgstr "Mostra dettagli"
 
 #: application/views/contestcalendar/index.php:45
 #: application/views/dashboard/index.php:339
 #: application/views/dashboard/index.php:366
 #: application/views/dashboard/index.php:387
 #: application/views/dashboard/index.php:408
+#, fuzzy
 msgid "Today"
-msgstr ""
+msgstr "Oggi"
 
 #: application/views/contestcalendar/index.php:55
+#, fuzzy
 msgid "Weekend"
-msgstr ""
+msgstr "Fine settimana"
 
 #: application/views/contestcalendar/index.php:66
+#, fuzzy
 msgid "Next Week"
-msgstr ""
+msgstr "Settimana successiva"
 
 #: application/views/contesting/add.php:16
+#, fuzzy
 msgid ""
 "Using the contest list, you can control which Contests are shown when "
 "logging QSOs in a contest."
 msgstr ""
+"Utilizzando l'elenco dei concorsi, puoi controllare quali concorsi vengono "
+"mostrati quando registri i QSO in un concorso."
 
 #: application/views/contesting/add.php:19
+#, fuzzy
 msgid ""
 "Active contests will be shown in the Contest Name drop-down, while inactive "
 "contests will be hidden and cannot be selected."
 msgstr ""
+"I concorsi attivi verranno visualizzati nel menu a discesa Nome concorso, "
+"mentre i concorsi inattivi verranno nascosti e non potranno essere "
+"selezionati."
 
 #: application/views/contesting/add.php:26
 #: application/views/contesting/create.php:30
+#, fuzzy
 msgid "ADIF Name"
-msgstr ""
+msgstr "Nome ADIF"
 
 #: application/views/contesting/add.php:27
 #: application/views/contesting/add.php:41
@@ -7240,65 +7499,78 @@ msgstr ""
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "Attivo"
 
 #: application/views/contesting/add.php:39
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:49
+#, fuzzy
 msgid "Not Active"
-msgstr ""
+msgstr "Non attiva"
 
 #: application/views/contesting/add.php:40
 #: application/views/contesting/add.php:49 application/views/mode/index.php:7
 #: application/views/mode/index.php:60 application/views/usermode/index.php:5
 #: application/views/usermode/index.php:56
+#, fuzzy
 msgid "Activate"
-msgstr ""
+msgstr "Attiva"
 
 #: application/views/contesting/add.php:42
 #: application/views/contesting/add.php:47 application/views/mode/index.php:6
 #: application/views/mode/index.php:58 application/views/usermode/index.php:4
 #: application/views/usermode/index.php:54
+#, fuzzy
 msgid "Deactivate"
-msgstr ""
+msgstr "Disattiva"
 
 #: application/views/contesting/add.php:54
+#, fuzzy
 msgid "DANGER!"
-msgstr ""
+msgstr "PERICOLO!"
 
 #: application/views/contesting/add.php:55
+#, fuzzy
 msgid "Warning! Are you sure you want to delete the following contest: "
 msgstr ""
+"Attenzione! Sei sicuro di voler eliminare il seguente concorso: Attenzione! "
+"Sei sicuro di voler eliminare il seguente concorso: "
 
 #: application/views/contesting/add.php:56
 msgid "Warning! Are you sure you want to activate all contests?"
-msgstr ""
+msgstr "Attenzione! Sei sicuro di voler abilitare tutti i contest?"
 
 #: application/views/contesting/add.php:57
+#, fuzzy
 msgid "Warning! Are you sure you want to deactivate all contests?"
-msgstr ""
+msgstr "Attenzione! Sei sicuro di voler disattivare tutti i concorsi?"
 
 #: application/views/contesting/add.php:73
 #: application/views/contesting/add.php:76
+#, fuzzy
 msgid "Add a Contest"
-msgstr ""
+msgstr "Aggiungi un concorso"
 
 #: application/views/contesting/create.php:26
 #: application/views/contesting/edit.php:33
+#, fuzzy
 msgid "Name of the Contest"
-msgstr ""
+msgstr "Nome del contest"
 
 #: application/views/contesting/create.php:32
 #: application/views/contesting/edit.php:39
+#, fuzzy
 msgid "Name of Contest in ADIF-specification"
-msgstr ""
+msgstr "Nome del concorso nella specifica ADIF"
 
 #: application/views/contesting/create.php:35
 #: application/views/station_profile/create.php:311
 #: application/views/station_profile/edit.php:59
+#, fuzzy
 msgid "Create"
-msgstr ""
+msgstr "Crea"
 
 #: application/views/contesting/edit.php:31
 #: application/views/contesting/index.php:30
@@ -7308,20 +7580,26 @@ msgid "Contest Name"
 msgstr "Nome Contest"
 
 #: application/views/contesting/edit.php:37
+#, fuzzy
 msgid "Contest ADIF Name"
-msgstr ""
+msgstr "Nome ADIF del concorso"
 
 #: application/views/contesting/edit.php:52
+#, fuzzy
 msgid "Set to active if to be listed in Contest-list"
-msgstr ""
+msgstr "Imposta su attivo se vuoi essere elencato nella lista dei concorsi"
 
 #: application/views/contesting/index.php:2
+#, fuzzy
 msgid "You need to start a new session before you can change the contest name!"
 msgstr ""
+"Devi iniziare una nuova sessione prima di poter cambiare il nome del "
+"concorso!"
 
 #: application/views/contesting/index.php:3
+#, fuzzy
 msgid "Are you really sure you want to start a new contest session?"
-msgstr ""
+msgstr "Avviare una nuova sessione?"
 
 #: application/views/contesting/index.php:7
 msgid "Start new Contest Session"
@@ -7332,51 +7610,63 @@ msgid "Exchange Type"
 msgstr "Tipologia Scambio"
 
 #: application/views/contesting/index.php:21
+#, fuzzy
 msgid "Exchange"
-msgstr ""
+msgstr "Scambia"
 
 #: application/views/contesting/index.php:23
 msgid "Serial"
 msgstr "Seriale"
 
 #: application/views/contesting/index.php:24
+#, fuzzy
 msgid "Serial + Exchange"
-msgstr ""
+msgstr "Serial + Exchange"
 
 #: application/views/contesting/index.php:25
+#, fuzzy
 msgid "Serial + Gridsquare"
-msgstr ""
+msgstr "Serial + Gridsquare"
 
 #: application/views/contesting/index.php:26
+#, fuzzy
 msgid "Serial + Gridsquare + Exchange"
-msgstr ""
+msgstr "Serial + Gridsquare + Exchange"
 
 #: application/views/contesting/index.php:41
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:649 application/views/qso/index.php:391
+#, fuzzy
 msgid "Operator Callsign"
-msgstr ""
+msgstr "Indicativo di chiamata dell'operatore"
 
 #: application/views/contesting/index.php:46
 #: application/views/contesting/index.php:51
+#, fuzzy
 msgid "More Settings"
-msgstr ""
+msgstr "Altre impostazioni"
 
 #: application/views/contesting/index.php:55
+#, fuzzy
 msgid "Copy received exchange to"
-msgstr ""
+msgstr "Copia scambio ricevuto su"
 
 #: application/views/contesting/index.php:57
+#, fuzzy
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr ""
+"Lo scambio viene copiato solo se corrisponde alle regole per il campo "
+"selezionato!"
 
 #: application/views/contesting/index.php:61
+#, fuzzy
 msgid "Age"
-msgstr ""
+msgstr "Età"
 
 #: application/views/contesting/index.php:63
+#, fuzzy
 msgid "RX Power (W)"
-msgstr ""
+msgstr "Potenza (W)"
 
 #: application/views/contesting/index.php:64
 msgid "Locator"
@@ -7386,18 +7676,23 @@ msgstr "Locatore"
 #: application/views/logbookadvanced/index.php:719
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/qso/edit_ajax.php:177
+#, fuzzy
 msgid "QTH"
-msgstr ""
+msgstr "oppure:"
 
 #: application/views/contesting/index.php:70
+#, fuzzy
 msgid "Sequence of Exchanges"
-msgstr ""
+msgstr "Sequenza di scambi"
 
 #: application/views/contesting/index.php:73
+#, fuzzy
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
 msgstr ""
+"Scegli in quale ordine desideri digitare i diversi report. Tuttavia, vengono "
+"visualizzati solo gli elementi contenuti nel tipo di scambio selezionato."
 
 #: application/views/contesting/index.php:78
 #: application/views/contesting/index.php:79
@@ -7407,7 +7702,7 @@ msgstr ""
 #: application/views/contesting/index.php:83
 msgctxt "Keep the translation short!"
 msgid "Exchange"
-msgstr ""
+msgstr "Exchange"
 
 #: application/views/contesting/index.php:78
 #: application/views/contesting/index.php:79
@@ -7417,7 +7712,7 @@ msgstr ""
 #: application/views/contesting/index.php:83
 msgctxt "Keep the translation short!"
 msgid "Grid"
-msgstr ""
+msgstr "Locatore"
 
 #: application/views/contesting/index.php:78
 #: application/views/contesting/index.php:79
@@ -7427,17 +7722,19 @@ msgstr ""
 #: application/views/contesting/index.php:83
 msgctxt "Keep the translation short!"
 msgid "Serial"
-msgstr ""
+msgstr "Progressivo"
 
 #: application/views/contesting/index.php:182
 #: application/views/contesting/index.php:265
 #: application/views/qso/edit_ajax.php:674
+#, fuzzy
 msgid "Serial (S)"
-msgstr ""
+msgstr "Seriale/I"
 
 #: application/views/contesting/index.php:187
+#, fuzzy
 msgid "Gridsquare (S)"
-msgstr ""
+msgstr "Griglia quadrata (S)"
 
 #: application/views/contesting/index.php:192
 #: application/views/contesting/index.php:263
@@ -7447,12 +7744,14 @@ msgstr "Scambio (I)"
 #: application/views/contesting/index.php:206
 #: application/views/contesting/index.php:266
 #: application/views/qso/edit_ajax.php:669
+#, fuzzy
 msgid "Serial (R)"
-msgstr ""
+msgstr "Seriale (R)"
 
 #: application/views/contesting/index.php:211
+#, fuzzy
 msgid "Gridsquare (R)"
-msgstr ""
+msgstr "Griglia quadrata (R)"
 
 #: application/views/contesting/index.php:216
 #: application/views/contesting/index.php:264
@@ -7460,8 +7759,9 @@ msgid "Exch (R)"
 msgstr "Scambio (R)"
 
 #: application/views/contesting/index.php:234
+#, fuzzy
 msgid "Reset QSO"
-msgstr ""
+msgstr "Reset QSO"
 
 #: application/views/contesting/index.php:235
 #: application/views/qso/index.php:707
@@ -7478,17 +7778,20 @@ msgstr "Log del Contest"
 
 #: application/views/contesting/index.php:268
 #: application/views/qso/edit_ajax.php:165
+#, fuzzy
 msgid "VUCC Gridsquare"
-msgstr ""
+msgstr "VUCC Gridsquare"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
+#, fuzzy
 msgid "# of QSOs worked"
-msgstr ""
+msgstr "N. di QSO lavorati"
 
 #: application/views/cron/edit.php:11
+#, fuzzy
 msgid "Identifier"
-msgstr ""
+msgstr "Identificatore"
 
 #: application/views/cron/edit.php:22
 #: application/views/options/appearance.php:56
@@ -7501,133 +7804,171 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:481 application/views/user/edit.php:490
 #: application/views/user/edit.php:633 application/views/user/edit.php:925
+#, fuzzy
 msgid "Enabled"
-msgstr ""
+msgstr "Abilitato"
 
 #: application/views/cron/edit.php:36 application/views/cron/index.php:55
+#, fuzzy
 msgid "Intervall"
-msgstr ""
+msgstr "Intervallo"
 
 #: application/views/cron/edit.php:38
+#, fuzzy
 msgid "Choose a preset from the dropdown"
-msgstr ""
+msgstr "Scegli una preimpostazione dal menu a discesa"
 
 #: application/views/cron/edit.php:43
+#, fuzzy
 msgid "Every 5 Minutes"
-msgstr ""
+msgstr "Ogni 5 minuti"
 
 #: application/views/cron/edit.php:44
+#, fuzzy
 msgid "Every 15 Minutes"
-msgstr ""
+msgstr "Ogni 15 minuti"
 
 #: application/views/cron/edit.php:45
+#, fuzzy
 msgid "Every Hour"
-msgstr ""
+msgstr "Ogni ora"
 
 #: application/views/cron/edit.php:46
+#, fuzzy
 msgid "Every 2 Hours"
-msgstr ""
+msgstr "每2小时"
 
 #: application/views/cron/edit.php:47
+#, fuzzy
 msgid "Every Day at Midnight"
-msgstr ""
+msgstr "Tutti i giorni a mezzanotte"
 
 #: application/views/cron/edit.php:48
+#, fuzzy
 msgid "Every Monday at 03:00"
-msgstr ""
+msgstr "Ogni lunedì alle 03:00"
 
 #: application/views/cron/edit.php:49
+#, fuzzy
 msgid "First Day of Every Month at midnight"
-msgstr ""
+msgstr "Primo giorno di ogni mese a mezzanotte"
 
 #: application/views/cron/edit.php:50
+#, fuzzy
 msgid "Every 2 Months at 02:00"
-msgstr ""
+msgstr "Ogni 2 mesi alle 02:00"
 
 #: application/views/cron/edit.php:62
+#, fuzzy
 msgid "OR"
-msgstr ""
+msgstr "OPPURE"
 
 #: application/views/cron/edit.php:63
+#, fuzzy
 msgid "Enter your own Cron Expression"
-msgstr ""
+msgstr "Inserisci la tua espressione Cron"
 
 #: application/views/cron/index.php:9
+#, fuzzy
 msgid "How it works"
-msgstr ""
+msgstr "Come funziona"
 
 #: application/views/cron/index.php:15
+#, fuzzy
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
 msgstr ""
+"Cron Manager assiste l'amministratore nella gestione dei cron job senza "
+"richiedere l'accesso alla CLI."
 
 #: application/views/cron/index.php:19
+#, fuzzy
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
 msgstr ""
+"Per eseguire i cron job in base ai dati riportati di seguito, rimuovere "
+"tutti i vecchi cron job e crearne uno nuovo:"
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
+#, fuzzy
 msgid "Status Master-Cron:"
-msgstr ""
+msgstr "Stato Master-Cron:"
 
 #: application/views/cron/index.php:33
+#, fuzzy
 msgctxt "PHP Version"
 msgid "Min. Version is"
-msgstr ""
+msgstr "La versione minima è"
 
 #: application/views/cron/index.php:33
+#, fuzzy
 msgid "PHP Version not supported."
-msgstr ""
+msgstr "Versione non supportata."
 
 #: application/views/cron/index.php:43
+#, fuzzy
 msgid "Cron List"
-msgstr ""
+msgstr "Cron List"
 
 #: application/views/cron/index.php:52
 #: application/views/stationsetup/stationsetup.php:124
+#, fuzzy
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: application/views/cron/index.php:56
+#, fuzzy
 msgid "Last Run"
-msgstr ""
+msgstr "Ultima esecuzione"
 
 #: application/views/cron/index.php:57
+#, fuzzy
 msgid "Next Run"
-msgstr ""
+msgstr "Prossima esecuzione"
 
 #: application/views/cron/index.php:102
+#, fuzzy
 msgid "Your Mastercron isn't running."
-msgstr ""
+msgstr "Il tuo Mastercron non funziona."
 
 #: application/views/cron/index.php:103
+#, fuzzy
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
 msgstr ""
+"Copia il cron sopra a un servizio cron esterno o nel cron del tuo server per "
+"utilizzare questo cron manager."
 
 #: application/views/cron/index.php:104
+#, fuzzy
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
 msgstr ""
+"Su un server linux di base con accesso alla shell, utilizzare questo comando "
+"per modificare i cron:"
 
 #: application/views/cron/index.php:111
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
 "%s"
 msgstr ""
+"Devi aggiornare la tua versione di PHP. La versione minima è %s. La tua "
+"versione è %s"
 
 #: application/views/csv/index.php:7
+#, fuzzy
 msgid "Export your logbook for SOTA uploads."
-msgstr ""
+msgstr "Esporta il tuo diario di bordo per i caricamenti SOTA."
 
 #: application/views/csv/index.php:11
+#, fuzzy
 msgid "Only QSOs with SOTA information will be exported!"
-msgstr ""
+msgstr "Verranno esportati solo i QSO con informazioni SOTA!"
 
 #: application/views/csv/index.php:92 application/views/dxatlas/index.php:92
 #: application/views/eqsl/download.php:43
@@ -7637,61 +7978,74 @@ msgid "Propagation Mode"
 msgstr "Modo di Propagazione"
 
 #: application/views/dashboard/index.php:5
+#, fuzzy
 msgid "RSTS"
-msgstr ""
+msgstr "RSTS"
 
 #: application/views/dashboard/index.php:6
+#, fuzzy
 msgid "RSTR"
-msgstr ""
+msgstr "RSTR"
 
 #: application/views/dashboard/index.php:111
+#, fuzzy
 msgid ""
 "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
+"Devi aggiornare la tua versione di PHP. La versione minima è 7.4. La tua "
+"versione è"
 
 #: application/views/dashboard/index.php:117
-#, php-format
+#, fuzzy, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
-msgstr ""
+msgstr "È stata pubblicata una nuova versione di Wavelog. Vedi: %s."
 
 #: application/views/dashboard/index.php:125
-#, php-format
+#, fuzzy, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
-msgstr ""
+msgstr "Devi aggiornare i file dei paesi! Clicca %shere%s per farlo."
 
 #: application/views/dashboard/index.php:133
-#, php-format
+#, fuzzy, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr ""
+msgstr "Non hai posizioni di stazione. Clicca %shere%s per farlo."
 
 #: application/views/dashboard/index.php:141
-#, php-format
+#, fuzzy, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr ""
+msgstr "Non hai un giornale di bordo della stazione. Clicca %shere%s per farlo."
 
 #: application/views/dashboard/index.php:149
-#, php-format
+#, fuzzy, php-format
 msgctxt "Dashboard Warning"
 msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
+"La posizione della stazione attiva non è collegata al registro. Clicca "
+"%shere%s per farlo."
 
 #: application/views/dashboard/index.php:157
-#, php-format
+#, fuzzy, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
 msgstr ""
+"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
+"AVAILABLE IN  16 HOURS 33 MINUTES 39 SECONDS VISIT HTTPS://"
+"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE."
 
 #: application/views/dashboard/index.php:166
-#, php-format
+#, fuzzy, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
 msgstr[0] ""
+"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
+"AVAILABLE IN  16 HOURS 33 MINUTES 36 SECONDS VISIT HTTPS://"
+"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 msgstr[1] ""
 
 #: application/views/dashboard/index.php:172
@@ -7703,29 +8057,42 @@ msgid "Attention: you need to set an active station location."
 msgstr "Attenzione: devi impostare un luogo di stazione attiva."
 
 #: application/views/dashboard/index.php:185
+#, fuzzy
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr ""
+"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
+"AVAILABLE IN  16 HOURS 33 MINUTES 33 SECONDS VISIT HTTPS://"
+"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE."
 
 #: application/views/dashboard/index.php:193
-#, php-format
+#, fuzzy, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
 msgstr ""
+"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
+"AVAILABLE IN  16 HOURS 33 MINUTES 30 SECONDS VISIT HTTPS://"
+"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 
 #: application/views/dashboard/index.php:197
-#, php-format
+#, fuzzy, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
 msgstr ""
+"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
+"AVAILABLE IN  16 HOURS 33 MINUTES 27 SECONDS VISIT HTTPS://"
+"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 
 #: application/views/dashboard/index.php:274
 #: application/views/qso/index.php:810
-#, php-format
+#, fuzzy, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
 msgstr[0] ""
+"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
+"AVAILABLE IN  16 HOURS 33 MINUTES 24 SECONDS VISIT HTTPS://"
+"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 msgstr[1] ""
 
 #: application/views/dashboard/index.php:290
@@ -7735,8 +8102,12 @@ msgstr "Riepilogo QSO"
 
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:262
+#, fuzzy
 msgid "DXCCs Breakdown"
 msgstr ""
+"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
+"AVAILABLE IN  16 HOURS 33 MINUTES 21 SECONDS VISIT HTTPS://"
+"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 
 #: application/views/dashboard/index.php:330
 #: application/views/visitor/index.php:279
@@ -7848,9 +8219,13 @@ msgid "Requested"
 msgstr "Richiesta"
 
 #: application/views/dashboard/index.php:365
+#, fuzzy
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr ""
+"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
+"AVAILABLE IN  16 HOURS 33 MINUTES 19 SECONDS VISIT HTTPS://"
+"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 
 #: application/views/dashboard/index.php:428
 msgid "VUCC-Grids"
