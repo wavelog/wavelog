@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-18 17:23+0000\n"
+"PO-Revision-Date: 2025-08-18 17:28+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/it/>\n"
@@ -2562,9 +2562,8 @@ msgid "Please select one"
 msgstr "Per favore seleziona uno"
 
 #: application/controllers/Stationsetup.php:504
-#, fuzzy
 msgid "Edit Export Map options"
-msgstr "Modifica opzioni mappa di esportazione"
+msgstr "Modifica opzioni di esportazione mappa"
 
 #: application/controllers/Statistics.php:26
 #: application/views/interface_assets/header.php:142
@@ -2614,7 +2613,6 @@ msgstr "Linea temporale"
 #: application/controllers/Timeplotter.php:17
 #: application/views/interface_assets/header.php:164
 #: application/views/timeplotter/index.php:9
-#, fuzzy
 msgid "Timeplotter"
 msgstr "Timeplotter"
 
@@ -3065,38 +3063,32 @@ msgid "QRZCQ Error"
 msgstr "Errore QRZCQ"
 
 #: application/libraries/Subdivisions.php:31
-#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
 msgstr "Provincia"
 
 #: application/libraries/Subdivisions.php:39
-#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr "Oblast '"
+msgstr "Regione"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
-#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
 msgstr "Regione"
 
 #: application/libraries/Subdivisions.php:45
-#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
 msgstr "Dipartimento"
 
 #: application/libraries/Subdivisions.php:49
-#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
 msgstr "Municipalità"
 
 #: application/libraries/Subdivisions.php:51
-#, fuzzy
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
 msgstr "Stato federale"
@@ -5575,6 +5567,14 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
+"Informazioni ufficiali da %s: È necessario stabilire una comunicazione "
+"bidirezionale tramite satellite amatoriale con ciascuna griglia. Non è "
+"richiesto alcun rapporto minimo sul segnale. I contatti devono essere "
+"effettuati dalla stessa posizione o da posizioni che non distano più di 200 "
+"chilometri l'una dall'altra. L'attestazione del richiedente nella domanda di "
+"premio funge da conferma del rispetto della regola della distanza. Gli "
+"individui possono richiedere e ottenere più premi GridMaster se ottenuti da "
+"un'altra posizione, che si trova in un cerchio diverso di 200 chilometri."
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
@@ -5756,12 +5756,10 @@ msgstr "Eliminato"
 #: application/views/station_profile/create.php:124
 #: application/views/station_profile/edit.php:174
 #: application/views/user/modals/first_login_wizard.php:84
-#, fuzzy
 msgid "ITU Zone"
 msgstr "Zona ITU"
 
 #: application/views/awards/itu/index.php:21
-#, fuzzy
 msgid ""
 "The Classic Worked ITU Zones award may be claimed by producing evidence of "
 "having contacted land based amateur radio stations in at least 70 of the 75 "
@@ -5774,18 +5772,16 @@ msgstr ""
 "telecomunicazioni (ITU)."
 
 #: application/views/awards/itu/index.php:22
-#, fuzzy, php-format
+#, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr "Puoi trovare maggiori informazioni sul sito web di %s."
+msgstr "Puoi trovare maggiori informazioni sul sito web %s."
 
 #: application/views/awards/itu/index.php:25
-#, fuzzy
 msgid "Awards - ITU Zones"
 msgstr "Premi - Zone ITU"
 
 #: application/views/awards/itu/index.php:115
-#, fuzzy
 msgid "Show ITU Zone Map"
 msgstr "Mostra mappa della zona ITU"
 
@@ -6518,7 +6514,6 @@ msgstr "Nome della banda (ad es. 20 m)"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:65
-#, fuzzy
 msgid "Bandgroup"
 msgstr "Bandgroup"
 
@@ -7899,6 +7894,7 @@ msgstr ""
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
 msgstr ""
+"Non hai alcuna stazione collegata al tuo registro. Clicca %squi%s per farlo."
 
 #: application/views/dashboard/index.php:166
 #, php-format
