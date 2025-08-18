@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-18 17:10+0000\n"
+"PO-Revision-Date: 2025-08-18 17:23+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/it/>\n"
@@ -7030,112 +7030,95 @@ msgstr ""
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
-msgstr "Permessidisponibili"
+msgstr "Permessi disponibili"
 
 #: application/views/club/permissions.php:19
-#, fuzzy
 msgid "Available Permissions"
 msgstr "Autorizzazioni disponibili"
 
 #: application/views/club/permissions.php:26
 #: application/views/eqsl/download.php:45
-#, fuzzy
 msgid "Action"
 msgstr "Azione"
 
 #: application/views/club/permissions.php:33
-#, fuzzy
 msgid "Log QSOs via Web GUI (live and post)"
 msgstr "Registrare i QSO tramite Web GUI (live e post)"
 
 #: application/views/club/permissions.php:41
-#, fuzzy
 msgid "Log QSOs via API"
 msgstr "Registra QSO tramite API"
 
 #: application/views/club/permissions.php:49
-#, fuzzy
 msgid "Edit a QSO"
 msgstr "Modificare un QSO"
 
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
-#, fuzzy
 msgid "QSO was done by the operator"
 msgstr "Il QSO è stato fatto dall'operatore"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
-#, fuzzy
 msgid "QSO was done by another operator"
 msgstr "Il QSO è stato fatto da un altro operatore"
 
 #: application/views/club/permissions.php:67
-#, fuzzy
 msgid "Delete a QSO"
 msgstr "Eliminare un QSO"
 
 #: application/views/club/permissions.php:85
-#, fuzzy
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
-msgstr "Gestisci Stationsetup (modifica/crea registri e posizioni)"
+msgstr "Gestisci stazione (modifica/crea registri e posizioni)"
 
 #: application/views/club/permissions.php:93
-#, fuzzy
 msgid "Manage Third-Party services"
 msgstr "Servizi di terze parti"
 
 #: application/views/club/permissions.php:101
-#, fuzzy
 msgid "Import QSO per ADIF"
 msgstr "Importa QSO per ADIF"
 
 #: application/views/club/permissions.php:110
-#, fuzzy
 msgid "Export QSO per ADIF"
 msgstr "Esporta QSO per ADIF"
 
 #: application/views/club/permissions.php:118
-#, fuzzy
 msgid "User Management"
 msgstr "Gestione utenti"
 
 #: application/views/club/permissions.php:123
-#, fuzzy
 msgid "Can create new users in Wavelog"
 msgstr "Può creare nuovi utenti in Wavelog"
 
 #: application/views/club/permissions.php:128
-#, fuzzy
 msgid "Can edit other users in Wavelog"
 msgstr "Può modificare altri utenti in Wavelog"
 
 #: application/views/club/permissions.php:133
-#, fuzzy
 msgid "Can edit Club permissions and add/remove users"
-msgstr "Può modificare le autorizzazioni del club e aggiungere/rimuovere utenti"
+msgstr ""
+"Può modificare le autorizzazioni del club/sezione e aggiungere/rimuovere "
+"utenti"
 
 #: application/views/club/permissions.php:151
-#, fuzzy
 msgid "Users with Permissions"
 msgstr "Utenti con autorizzazioni"
 
 #: application/views/club/permissions.php:161
-#, fuzzy
 msgid "Add new User to Club"
-msgstr "Aggiungi nuovo utente al club"
+msgstr "Aggiungi nuovo utente al club/sezione"
 
 #: application/views/club/permissions.php:167
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr ""
-"È possibile aggiungere utenti alla %s Clubstation solo se già esistenti su "
+"È possibile aggiungere utenti al club/sezione %s solo se già esistenti su "
 "questo server Wavelog."
 
 #: application/views/club/permissions.php:168
-#, fuzzy
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
@@ -7144,7 +7127,6 @@ msgstr ""
 "per loro."
 
 #: application/views/club/permissions.php:169
-#, fuzzy
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
@@ -7153,39 +7135,32 @@ msgstr ""
 "livello di autorizzazione."
 
 #: application/views/club/permissions.php:175
-#, fuzzy
 msgid "User (Callsign or Name)"
 msgstr "Utente (nominativo o nome)"
 
 #: application/views/club/permissions.php:176
 #: application/views/club/permissions.php:225
 #: application/views/club/permissions.php:269
-#, fuzzy
 msgid "Permission"
-msgstr "Autorizzazione"
+msgstr "Permessi"
 
 #: application/views/club/permissions.php:183
-#, fuzzy
 msgid "Type at least 2 characters."
-msgstr "Almeno 2 caratteri."
+msgstr "Indica almeno 2 caratteri."
 
 #: application/views/club/permissions.php:194
-#, fuzzy
 msgid "Notify the user via email"
 msgstr "Avvisa l'utente via e-mail"
 
 #: application/views/club/permissions.php:213
-#, fuzzy
 msgid "No users currently have access to this club station."
-msgstr "Nessun utente ha attualmente accesso a questa club station."
+msgstr "Nessun utente ha attualmente accesso a questo club/sezione."
 
 #: application/views/club/permissions.php:220
-#, fuzzy
 msgid "Firstname"
 msgstr "Nome"
 
 #: application/views/club/permissions.php:221
-#, fuzzy
 msgid "Lastname"
 msgstr "Cognome"
 
@@ -7197,70 +7172,60 @@ msgid "Username"
 msgstr "Nome utente"
 
 #: application/views/club/permissions.php:224
-#, fuzzy
 msgid "E-Mail"
 msgstr "E-mail"
 
 #: application/views/club/permissions.php:244
-#, fuzzy
 msgid "Wavelog Administrator"
 msgstr "Amministratore Wavelog"
 
 #: application/views/club/permissions.php:261
-#, fuzzy
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
-"È possibile modificare il livello di autorizzazione degli utenti per questa "
-"Clubstation."
+"È possibile modificare il livello di autorizzazione degli utenti per questo "
+"club/sezione."
 
 #: application/views/club/permissions.php:268
-#, fuzzy
 msgid "User Callsign"
 msgstr "Indicativo di chiamata dell'utente"
 
 #: application/views/club/permissions.php:286
-#, fuzzy
 msgid "Notify the user via email about the change"
 msgstr "Notificare all'utente via e-mail la modifica"
 
 #: application/views/club/permissions.php:309
-#, fuzzy
 msgid "Delete User"
 msgstr "Elimina utente"
 
 #: application/views/club/permissions.php:316
-#, fuzzy
 msgid "Are you sure you want to delete this user from the club?"
-msgstr "Sei sicuro di voler cancellare questo utente dall'elenco?"
+msgstr "Sei sicuro di voler cancellare questo utente dal club/sezione?"
 
 #: application/views/club/permissions.php:320
-#, fuzzy, php-format
+#, php-format
 msgid "Callsign: %s"
 msgstr "Indicativo di chiamata: %s"
 
 #: application/views/club/permissions.php:321
-#, fuzzy, php-format
+#, php-format
 msgid "Role: %s"
-msgstr "- Ruolo: %s"
+msgstr "Ruolo: %s"
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
-#, fuzzy
 msgid "Upload Logbook"
-msgstr "Carica il diario di bordo"
+msgstr "Carica registro di stazione"
 
 #: application/views/clublog/export.php:14
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
-#, fuzzy
 msgid "Download QSOs"
 msgstr "Scarica QSO"
 
 #: application/views/clublog/export.php:24
-#, fuzzy
 msgid "The next automatic Upload to Clublog will happen at: "
 msgstr "Il prossimo caricamento automatico su Clublog avverrà alle: "
 
@@ -7273,7 +7238,6 @@ msgstr ""
 "aggiunti a Clublog."
 
 #: application/views/clublog/export.php:26
-#, fuzzy
 msgid ""
 "You need to set a username and password in your user account. You will also "
 "need to enable upload for each station profile ."
@@ -7289,7 +7253,6 @@ msgstr ""
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:14
 #: application/views/webadif/export.php:41
-#, fuzzy
 msgid "Profile name"
 msgstr "Nome del profilo"
 
@@ -7297,32 +7260,27 @@ msgstr "Nome del profilo"
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:91
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
-#, fuzzy
 msgid "Station callsign"
 msgstr "Indicativo di chiamata della stazione"
 
 #: application/views/clublog/export.php:36
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
-#, fuzzy
 msgid "Edited QSOs not uploaded"
 msgstr "QSO modificati non caricati"
 
 #: application/views/clublog/export.php:37
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:43
-#, fuzzy
 msgid "Total QSOs not uploaded"
 msgstr "Totale QSO non caricati"
 
 #: application/views/clublog/export.php:38
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
 #: application/views/webadif/export.php:44
-#, fuzzy
 msgid "Total QSOs uploaded"
 msgstr "Totale QSO caricati"
 
 #: application/views/clublog/export.php:69
-#, fuzzy
 msgid "The next automatic Download from Clublog-QSLs will happen at: "
 msgstr "Il prossimo download automatico da Clublog-QSLs avverrà a: "
 
@@ -7335,13 +7293,11 @@ msgstr ""
 "aggiornati tutti i QSO successivi all'ultima conferma!"
 
 #: application/views/clublog/export.php:78
-#, fuzzy
 msgid "Download from Clublog"
 msgstr "Scarica da Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
-#, fuzzy
 msgid "Hamsat - Satellite Rovers"
 msgstr "Hamsat - Rover satellitari"
 
@@ -7349,22 +7305,18 @@ msgstr "Hamsat - Rover satellitari"
 #: application/views/contestcalendar/index.php:11
 #: application/views/dxcalendar/index.php:4
 #: application/views/hamsat/index.php:8
-#, fuzzy
 msgid "This data comes from"
 msgstr "Questi dati provengono da"
 
 #: application/views/components/hamsat/table.php:11
-#, fuzzy
 msgid "Show All Passes"
-msgstr "Mostra tutti i pass"
+msgstr "Mostra tutti i passaggi"
 
 #: application/views/components/hamsat/table.php:14
-#, fuzzy
 msgid "Private feed key empty. Please set the feed key in your profile."
 msgstr "Chiave feed privato vuota. Imposta la chiave di feed nel tuo profilo."
 
 #: application/views/components/hamsat/table.php:19
-#, fuzzy
 msgid "No upcoming activations found. Please check back later."
 msgstr "Nessuna attivazione imminente trovata. Riprova più tardi."
 
@@ -7382,36 +7334,30 @@ msgstr "Commento"
 
 #: application/views/components/hamsat/table.php:31
 #: application/views/hamsat/index.php:34
-#, fuzzy
 msgid "Gridsquare(s)"
-msgstr "Quadrato/i a griglia"
+msgstr "Locatore/i"
 
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
-#, fuzzy
 msgid "Workable"
-msgstr "Realizzabile"
+msgstr "Collegabile"
 
 #: application/views/components/hamsat/table.php:134
-#, fuzzy
 msgctxt "Hamsat - Track Satellites"
 msgid "Track"
 msgstr "Traccia"
 
 #: application/views/components/hamsat/table.php:146
-#, fuzzy
 msgid "Sked"
-msgstr "Sked"
+msgstr "Appuntamento"
 
 #: application/views/components/radio_display_table.php:5
-#, fuzzy
 msgid "Radio Status"
 msgstr "Stato radio"
 
 #: application/views/contestcalendar/index.php:16
-#, fuzzy
 msgid "No Contests"
-msgstr "Nessun concorso"
+msgstr "Nessun contest"
 
 #: application/views/contestcalendar/index.php:21
 #: application/views/logbookadvanced/edit.php:24
@@ -7420,27 +7366,22 @@ msgstr "Nessun concorso"
 #: application/views/logbookadvanced/useroptions.php:158
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
-#, fuzzy
 msgid "Contest"
-msgstr "Concorso"
+msgstr "Contest"
 
 #: application/views/contestcalendar/index.php:22
-#, fuzzy
 msgid "Start"
-msgstr "Inizia"
+msgstr "Inizio"
 
 #: application/views/contestcalendar/index.php:23
-#, fuzzy
 msgid "End"
 msgstr "Fine"
 
 #: application/views/contestcalendar/index.php:24
-#, fuzzy
 msgid "Link"
-msgstr "Link"
+msgstr "Collega"
 
 #: application/views/contestcalendar/index.php:33
-#, fuzzy
 msgid "Show Details"
 msgstr "Mostra dettagli"
 
@@ -7449,42 +7390,36 @@ msgstr "Mostra dettagli"
 #: application/views/dashboard/index.php:366
 #: application/views/dashboard/index.php:387
 #: application/views/dashboard/index.php:408
-#, fuzzy
 msgid "Today"
 msgstr "Oggi"
 
 #: application/views/contestcalendar/index.php:55
-#, fuzzy
 msgid "Weekend"
 msgstr "Fine settimana"
 
 #: application/views/contestcalendar/index.php:66
-#, fuzzy
 msgid "Next Week"
-msgstr "Settimana successiva"
+msgstr "Prossima settimana"
 
 #: application/views/contesting/add.php:16
-#, fuzzy
 msgid ""
 "Using the contest list, you can control which Contests are shown when "
 "logging QSOs in a contest."
 msgstr ""
-"Utilizzando l'elenco dei concorsi, puoi controllare quali concorsi vengono "
-"mostrati quando registri i QSO in un concorso."
+"Utilizzando l'elenco dei contest, puoi controllare quali contest vengono "
+"mostrati quando registri i QSO in un contest."
 
 #: application/views/contesting/add.php:19
-#, fuzzy
 msgid ""
 "Active contests will be shown in the Contest Name drop-down, while inactive "
 "contests will be hidden and cannot be selected."
 msgstr ""
-"I concorsi attivi verranno visualizzati nel menu a discesa Nome concorso, "
-"mentre i concorsi inattivi verranno nascosti e non potranno essere "
+"I contest attivi verranno visualizzati nel menu a discesa Nome concorso, "
+"mentre i contest inattivi verranno nascosti e non potranno essere "
 "selezionati."
 
 #: application/views/contesting/add.php:26
 #: application/views/contesting/create.php:30
-#, fuzzy
 msgid "ADIF Name"
 msgstr "Nome ADIF"
 
@@ -7499,22 +7434,19 @@ msgstr "Nome ADIF"
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
-#, fuzzy
 msgid "Active"
 msgstr "Attivo"
 
 #: application/views/contesting/add.php:39
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:49
-#, fuzzy
 msgid "Not Active"
-msgstr "Non attiva"
+msgstr "Non attivo"
 
 #: application/views/contesting/add.php:40
 #: application/views/contesting/add.php:49 application/views/mode/index.php:7
 #: application/views/mode/index.php:60 application/views/usermode/index.php:5
 #: application/views/usermode/index.php:56
-#, fuzzy
 msgid "Activate"
 msgstr "Attiva"
 
@@ -7522,53 +7454,43 @@ msgstr "Attiva"
 #: application/views/contesting/add.php:47 application/views/mode/index.php:6
 #: application/views/mode/index.php:58 application/views/usermode/index.php:4
 #: application/views/usermode/index.php:54
-#, fuzzy
 msgid "Deactivate"
 msgstr "Disattiva"
 
 #: application/views/contesting/add.php:54
-#, fuzzy
 msgid "DANGER!"
 msgstr "PERICOLO!"
 
 #: application/views/contesting/add.php:55
-#, fuzzy
 msgid "Warning! Are you sure you want to delete the following contest: "
-msgstr ""
-"Attenzione! Sei sicuro di voler eliminare il seguente concorso: Attenzione! "
-"Sei sicuro di voler eliminare il seguente concorso: "
+msgstr "Attenzione! Sei sicuro di voler eliminare il seguente contest: "
 
 #: application/views/contesting/add.php:56
 msgid "Warning! Are you sure you want to activate all contests?"
 msgstr "Attenzione! Sei sicuro di voler abilitare tutti i contest?"
 
 #: application/views/contesting/add.php:57
-#, fuzzy
 msgid "Warning! Are you sure you want to deactivate all contests?"
-msgstr "Attenzione! Sei sicuro di voler disattivare tutti i concorsi?"
+msgstr "Attenzione! Sei sicuro di voler disattivare tutti i contest?"
 
 #: application/views/contesting/add.php:73
 #: application/views/contesting/add.php:76
-#, fuzzy
 msgid "Add a Contest"
-msgstr "Aggiungi un concorso"
+msgstr "Aggiungi un contest"
 
 #: application/views/contesting/create.php:26
 #: application/views/contesting/edit.php:33
-#, fuzzy
 msgid "Name of the Contest"
 msgstr "Nome del contest"
 
 #: application/views/contesting/create.php:32
 #: application/views/contesting/edit.php:39
-#, fuzzy
 msgid "Name of Contest in ADIF-specification"
-msgstr "Nome del concorso nella specifica ADIF"
+msgstr "Nome del contest nella specifica ADIF"
 
 #: application/views/contesting/create.php:35
 #: application/views/station_profile/create.php:311
 #: application/views/station_profile/edit.php:59
-#, fuzzy
 msgid "Create"
 msgstr "Crea"
 
@@ -7580,26 +7502,21 @@ msgid "Contest Name"
 msgstr "Nome Contest"
 
 #: application/views/contesting/edit.php:37
-#, fuzzy
 msgid "Contest ADIF Name"
-msgstr "Nome ADIF del concorso"
+msgstr "Nome ADIF del contest"
 
 #: application/views/contesting/edit.php:52
-#, fuzzy
 msgid "Set to active if to be listed in Contest-list"
-msgstr "Imposta su attivo se vuoi essere elencato nella lista dei concorsi"
+msgstr "Imposta su attivo se deve essere elencato nella lista dei contest"
 
 #: application/views/contesting/index.php:2
-#, fuzzy
 msgid "You need to start a new session before you can change the contest name!"
 msgstr ""
-"Devi iniziare una nuova sessione prima di poter cambiare il nome del "
-"concorso!"
+"Devi iniziare una nuova sessione prima di poter cambiare il nome del contest!"
 
 #: application/views/contesting/index.php:3
-#, fuzzy
 msgid "Are you really sure you want to start a new contest session?"
-msgstr "Avviare una nuova sessione?"
+msgstr "Avviare una nuova sessione di contest?"
 
 #: application/views/contesting/index.php:7
 msgid "Start new Contest Session"
@@ -7610,63 +7527,53 @@ msgid "Exchange Type"
 msgstr "Tipologia Scambio"
 
 #: application/views/contesting/index.php:21
-#, fuzzy
 msgid "Exchange"
-msgstr "Scambia"
+msgstr "Exchange"
 
 #: application/views/contesting/index.php:23
 msgid "Serial"
 msgstr "Seriale"
 
 #: application/views/contesting/index.php:24
-#, fuzzy
 msgid "Serial + Exchange"
-msgstr "Serial + Exchange"
+msgstr "Progressivo + Exchange"
 
 #: application/views/contesting/index.php:25
-#, fuzzy
 msgid "Serial + Gridsquare"
-msgstr "Serial + Gridsquare"
+msgstr "Progressivo + Locatore"
 
 #: application/views/contesting/index.php:26
-#, fuzzy
 msgid "Serial + Gridsquare + Exchange"
-msgstr "Serial + Gridsquare + Exchange"
+msgstr "Progressivo + Locatore + Exchange"
 
 #: application/views/contesting/index.php:41
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:649 application/views/qso/index.php:391
-#, fuzzy
 msgid "Operator Callsign"
 msgstr "Indicativo di chiamata dell'operatore"
 
 #: application/views/contesting/index.php:46
 #: application/views/contesting/index.php:51
-#, fuzzy
 msgid "More Settings"
 msgstr "Altre impostazioni"
 
 #: application/views/contesting/index.php:55
-#, fuzzy
 msgid "Copy received exchange to"
 msgstr "Copia scambio ricevuto su"
 
 #: application/views/contesting/index.php:57
-#, fuzzy
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr ""
 "Lo scambio viene copiato solo se corrisponde alle regole per il campo "
 "selezionato!"
 
 #: application/views/contesting/index.php:61
-#, fuzzy
 msgid "Age"
 msgstr "Età"
 
 #: application/views/contesting/index.php:63
-#, fuzzy
 msgid "RX Power (W)"
-msgstr "Potenza (W)"
+msgstr "Potenza ricevuta (W)"
 
 #: application/views/contesting/index.php:64
 msgid "Locator"
@@ -7676,23 +7583,20 @@ msgstr "Locatore"
 #: application/views/logbookadvanced/index.php:719
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/qso/edit_ajax.php:177
-#, fuzzy
 msgid "QTH"
-msgstr "oppure:"
+msgstr "QTH"
 
 #: application/views/contesting/index.php:70
-#, fuzzy
 msgid "Sequence of Exchanges"
-msgstr "Sequenza di scambi"
+msgstr "Sequenza di exchange"
 
 #: application/views/contesting/index.php:73
-#, fuzzy
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
 msgstr ""
 "Scegli in quale ordine desideri digitare i diversi report. Tuttavia, vengono "
-"visualizzati solo gli elementi contenuti nel tipo di scambio selezionato."
+"visualizzati solo gli elementi contenuti nel tipo di exchange selezionato."
 
 #: application/views/contesting/index.php:78
 #: application/views/contesting/index.php:79
@@ -7727,14 +7631,12 @@ msgstr "Progressivo"
 #: application/views/contesting/index.php:182
 #: application/views/contesting/index.php:265
 #: application/views/qso/edit_ajax.php:674
-#, fuzzy
 msgid "Serial (S)"
-msgstr "Seriale/I"
+msgstr "Progressivo inviato"
 
 #: application/views/contesting/index.php:187
-#, fuzzy
 msgid "Gridsquare (S)"
-msgstr "Griglia quadrata (S)"
+msgstr "Locatore inviato"
 
 #: application/views/contesting/index.php:192
 #: application/views/contesting/index.php:263
@@ -7744,14 +7646,12 @@ msgstr "Scambio (I)"
 #: application/views/contesting/index.php:206
 #: application/views/contesting/index.php:266
 #: application/views/qso/edit_ajax.php:669
-#, fuzzy
 msgid "Serial (R)"
-msgstr "Seriale (R)"
+msgstr "Progressivo ricevuto"
 
 #: application/views/contesting/index.php:211
-#, fuzzy
 msgid "Gridsquare (R)"
-msgstr "Griglia quadrata (R)"
+msgstr "Locatore ricevuto"
 
 #: application/views/contesting/index.php:216
 #: application/views/contesting/index.php:264
@@ -7759,9 +7659,8 @@ msgid "Exch (R)"
 msgstr "Scambio (R)"
 
 #: application/views/contesting/index.php:234
-#, fuzzy
 msgid "Reset QSO"
-msgstr "Reset QSO"
+msgstr "Azzera QSO"
 
 #: application/views/contesting/index.php:235
 #: application/views/qso/index.php:707
@@ -7778,20 +7677,17 @@ msgstr "Log del Contest"
 
 #: application/views/contesting/index.php:268
 #: application/views/qso/edit_ajax.php:165
-#, fuzzy
 msgid "VUCC Gridsquare"
-msgstr "VUCC Gridsquare"
+msgstr "Locatore VUCC"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
-#, fuzzy
 msgid "# of QSOs worked"
-msgstr "N. di QSO lavorati"
+msgstr "Numero di collegamenti"
 
 #: application/views/cron/edit.php:11
-#, fuzzy
 msgid "Identifier"
-msgstr "Identificatore"
+msgstr "Identificativo"
 
 #: application/views/cron/edit.php:22
 #: application/views/options/appearance.php:56
@@ -7804,77 +7700,62 @@ msgstr "Identificatore"
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:481 application/views/user/edit.php:490
 #: application/views/user/edit.php:633 application/views/user/edit.php:925
-#, fuzzy
 msgid "Enabled"
 msgstr "Abilitato"
 
 #: application/views/cron/edit.php:36 application/views/cron/index.php:55
-#, fuzzy
 msgid "Intervall"
 msgstr "Intervallo"
 
 #: application/views/cron/edit.php:38
-#, fuzzy
 msgid "Choose a preset from the dropdown"
 msgstr "Scegli una preimpostazione dal menu a discesa"
 
 #: application/views/cron/edit.php:43
-#, fuzzy
 msgid "Every 5 Minutes"
 msgstr "Ogni 5 minuti"
 
 #: application/views/cron/edit.php:44
-#, fuzzy
 msgid "Every 15 Minutes"
 msgstr "Ogni 15 minuti"
 
 #: application/views/cron/edit.php:45
-#, fuzzy
 msgid "Every Hour"
 msgstr "Ogni ora"
 
 #: application/views/cron/edit.php:46
-#, fuzzy
 msgid "Every 2 Hours"
-msgstr "每2小时"
+msgstr "Ogni due ore"
 
 #: application/views/cron/edit.php:47
-#, fuzzy
 msgid "Every Day at Midnight"
 msgstr "Tutti i giorni a mezzanotte"
 
 #: application/views/cron/edit.php:48
-#, fuzzy
 msgid "Every Monday at 03:00"
 msgstr "Ogni lunedì alle 03:00"
 
 #: application/views/cron/edit.php:49
-#, fuzzy
 msgid "First Day of Every Month at midnight"
 msgstr "Primo giorno di ogni mese a mezzanotte"
 
 #: application/views/cron/edit.php:50
-#, fuzzy
 msgid "Every 2 Months at 02:00"
 msgstr "Ogni 2 mesi alle 02:00"
 
 #: application/views/cron/edit.php:62
-#, fuzzy
 msgid "OR"
 msgstr "OPPURE"
 
 #: application/views/cron/edit.php:63
-#, fuzzy
 msgid "Enter your own Cron Expression"
 msgstr "Inserisci la tua espressione Cron"
 
 #: application/views/cron/index.php:9
-#, fuzzy
 msgid "How it works"
 msgstr "Come funziona"
 
 #: application/views/cron/index.php:15
-#, fuzzy
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
@@ -7883,7 +7764,6 @@ msgstr ""
 "richiedere l'accesso alla CLI."
 
 #: application/views/cron/index.php:19
-#, fuzzy
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
@@ -7892,49 +7772,40 @@ msgstr ""
 "tutti i vecchi cron job e crearne uno nuovo:"
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
-#, fuzzy
 msgid "Status Master-Cron:"
 msgstr "Stato Master-Cron:"
 
 #: application/views/cron/index.php:33
-#, fuzzy
 msgctxt "PHP Version"
 msgid "Min. Version is"
 msgstr "La versione minima è"
 
 #: application/views/cron/index.php:33
-#, fuzzy
 msgid "PHP Version not supported."
 msgstr "Versione non supportata."
 
 #: application/views/cron/index.php:43
-#, fuzzy
 msgid "Cron List"
-msgstr "Cron List"
+msgstr "Lista Cron"
 
 #: application/views/cron/index.php:52
 #: application/views/stationsetup/stationsetup.php:124
-#, fuzzy
 msgid "ID"
 msgstr "ID"
 
 #: application/views/cron/index.php:56
-#, fuzzy
 msgid "Last Run"
 msgstr "Ultima esecuzione"
 
 #: application/views/cron/index.php:57
-#, fuzzy
 msgid "Next Run"
 msgstr "Prossima esecuzione"
 
 #: application/views/cron/index.php:102
-#, fuzzy
 msgid "Your Mastercron isn't running."
 msgstr "Il tuo Mastercron non funziona."
 
 #: application/views/cron/index.php:103
-#, fuzzy
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
@@ -7943,7 +7814,6 @@ msgstr ""
 "utilizzare questo cron manager."
 
 #: application/views/cron/index.php:104
-#, fuzzy
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -7952,7 +7822,7 @@ msgstr ""
 "per modificare i cron:"
 
 #: application/views/cron/index.php:111
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
 "%s"
@@ -7961,12 +7831,10 @@ msgstr ""
 "versione è %s"
 
 #: application/views/csv/index.php:7
-#, fuzzy
 msgid "Export your logbook for SOTA uploads."
-msgstr "Esporta il tuo diario di bordo per i caricamenti SOTA."
+msgstr "Esporta il tuo registro per i caricamenti SOTA."
 
 #: application/views/csv/index.php:11
-#, fuzzy
 msgid "Only QSOs with SOTA information will be exported!"
 msgstr "Verranno esportati solo i QSO con informazioni SOTA!"
 
@@ -7978,17 +7846,14 @@ msgid "Propagation Mode"
 msgstr "Modo di Propagazione"
 
 #: application/views/dashboard/index.php:5
-#, fuzzy
 msgid "RSTS"
 msgstr "RSTS"
 
 #: application/views/dashboard/index.php:6
-#, fuzzy
 msgid "RSTR"
 msgstr "RSTR"
 
 #: application/views/dashboard/index.php:111
-#, fuzzy
 msgid ""
 "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
@@ -7996,56 +7861,50 @@ msgstr ""
 "versione è"
 
 #: application/views/dashboard/index.php:117
-#, fuzzy, php-format
+#, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
 msgstr "È stata pubblicata una nuova versione di Wavelog. Vedi: %s."
 
 #: application/views/dashboard/index.php:125
-#, fuzzy, php-format
+#, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
-msgstr "Devi aggiornare i file dei paesi! Clicca %shere%s per farlo."
+msgstr "Devi aggiornare i file dei paesi! Clicca %squi%s per farlo."
 
 #: application/views/dashboard/index.php:133
-#, fuzzy, php-format
+#, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr "Non hai posizioni di stazione. Clicca %shere%s per farlo."
+msgstr "Non hai posizioni di stazione. Clicca %squi%s per crearla."
 
 #: application/views/dashboard/index.php:141
-#, fuzzy, php-format
+#, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr "Non hai un giornale di bordo della stazione. Clicca %shere%s per farlo."
+msgstr "Non hai un registro di stazione. Clicca %squi%s per crearlo."
 
 #: application/views/dashboard/index.php:149
-#, fuzzy, php-format
+#, php-format
 msgctxt "Dashboard Warning"
 msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
-"La posizione della stazione attiva non è collegata al registro. Clicca "
-"%shere%s per farlo."
+"La posizione della stazione attiva non è collegata al tuo registro. Clicca "
+"%squi%s per farlo."
 
 #: application/views/dashboard/index.php:157
-#, fuzzy, php-format
+#, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
 msgstr ""
-"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
-"AVAILABLE IN  16 HOURS 33 MINUTES 39 SECONDS VISIT HTTPS://"
-"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE."
 
 #: application/views/dashboard/index.php:166
-#, fuzzy, php-format
+#, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
 msgstr[0] ""
-"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
-"AVAILABLE IN  16 HOURS 33 MINUTES 36 SECONDS VISIT HTTPS://"
-"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 msgstr[1] ""
 
 #: application/views/dashboard/index.php:172
@@ -8057,42 +7916,29 @@ msgid "Attention: you need to set an active station location."
 msgstr "Attenzione: devi impostare un luogo di stazione attiva."
 
 #: application/views/dashboard/index.php:185
-#, fuzzy
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr ""
-"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
-"AVAILABLE IN  16 HOURS 33 MINUTES 33 SECONDS VISIT HTTPS://"
-"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE."
 
 #: application/views/dashboard/index.php:193
-#, fuzzy, php-format
+#, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
 msgstr ""
-"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
-"AVAILABLE IN  16 HOURS 33 MINUTES 30 SECONDS VISIT HTTPS://"
-"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 
 #: application/views/dashboard/index.php:197
-#, fuzzy, php-format
+#, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
 msgstr ""
-"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
-"AVAILABLE IN  16 HOURS 33 MINUTES 27 SECONDS VISIT HTTPS://"
-"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 
 #: application/views/dashboard/index.php:274
 #: application/views/qso/index.php:810
-#, fuzzy, php-format
+#, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
 msgstr[0] ""
-"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
-"AVAILABLE IN  16 HOURS 33 MINUTES 24 SECONDS VISIT HTTPS://"
-"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 msgstr[1] ""
 
 #: application/views/dashboard/index.php:290
@@ -8102,12 +7948,8 @@ msgstr "Riepilogo QSO"
 
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:262
-#, fuzzy
 msgid "DXCCs Breakdown"
 msgstr ""
-"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
-"AVAILABLE IN  16 HOURS 33 MINUTES 21 SECONDS VISIT HTTPS://"
-"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 
 #: application/views/dashboard/index.php:330
 #: application/views/visitor/index.php:279
@@ -8219,13 +8061,9 @@ msgid "Requested"
 msgstr "Richiesta"
 
 #: application/views/dashboard/index.php:365
-#, fuzzy
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr ""
-"MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY. NEXT "
-"AVAILABLE IN  16 HOURS 33 MINUTES 19 SECONDS VISIT HTTPS://"
-"MYMEMORY.TRANSLATED.NET/DOC/USAGELIMITS.PHP TO TRANSLATE MORE"
 
 #: application/views/dashboard/index.php:428
 msgid "VUCC-Grids"
