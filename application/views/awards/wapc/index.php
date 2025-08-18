@@ -8,6 +8,7 @@
             var lang_award_info_ln2 = "<?= __("The WAPC Award, issued by the Mulan DX Club, aims to promote communication between amateur radio operators worldwide and operators in all provinces, municipalities, autonomous regions, and special administrative regions of China, fostering a deeper understanding of China."); ?>";
             var lang_award_info_ln3 = "<?= __("The award can be earned through long-term accumulation of contacts or achieved in a single effort during the annual WAPC Contest."); ?>";
             var lang_award_info_ln4 = "<?= sprintf("Information about the WAPC Awards and its rules can be found %s.", "<a href='http://www.mulandxc.com/index/wapc_medal_app' target='_blank'>" . __("here") . "</a>"); ?>";
+            var lang_award_info_ln5 = "<?= __("Fields taken for this Award: DXCC (Must be one of China/318, HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid State (ADIF: DXCC and STATE)"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
