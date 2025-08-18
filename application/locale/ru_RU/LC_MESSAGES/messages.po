@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-13 06:31+0000\n"
+"PO-Revision-Date: 2025-08-18 17:10+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2036,11 +2036,11 @@ msgstr "Запросы OQRS"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "Совпадение QSO успешно удалено."
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "Совпадение QSO успешно добавлено."
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -8593,7 +8593,7 @@ msgstr "Итальянский"
 
 #: application/views/debug/index.php:684
 msgid "Japanese"
-msgstr "Японский."
+msgstr "Японский"
 
 #: application/views/debug/index.php:685
 msgid "Latvian"
@@ -11570,7 +11570,7 @@ msgstr "Добавить в очередь печати"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "Совпадение QSO"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11647,41 +11647,42 @@ msgstr "Запрос выполнен"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "Запрос в ожидании"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "Запрос отклонён"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "Произошла ошибка при выполнении запроса"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
-msgstr ""
+msgstr "Внимание! Вы уверены, что хотите удалить выбранные запросы OQRS?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
-msgstr ""
+msgstr "Внимание! Вы уверены, что хотите отклонить выбранные запросы OQRS?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
-msgstr ""
+msgstr "Внимание! Вы уверены, что хотите отметить выбранные запросы OQRS?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"Внимание! Вы уверены, что хотите добавить выбранные запросы OQRS в очередь?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "Информация о статусе OQRS"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr ""
+msgstr "Внимание! Вы уверены, что хотите удалить совпадение QSO?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
@@ -11695,17 +11696,17 @@ msgstr "Состояние OQRS"
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "Готово / отправлено"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "В ожидании"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "Отклонено"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
@@ -11717,7 +11718,7 @@ msgstr "Отметить как выполненные"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "Отклонить"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
@@ -11742,29 +11743,31 @@ msgstr "Проверить журнал"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "Совпадение QSO"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "Запрос в настоящее время открыт и нуждается в вашем рассмотрении."
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"Запрошенного QSO нет в журнале, поэтому вам нужно проверить журнал и "
+"обработать запрос."
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "Запрос обработан, и QSL отправлена."
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "Запрос обрабатывается."
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "Запрос был отклонен и не будет обработан."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
@@ -12942,7 +12945,7 @@ msgstr "Азимут"
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
 msgid "Ready to find a QSO?"
-msgstr "Готовы найти QSO?"
+msgstr "QSO"
 
 #: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
@@ -12966,7 +12969,7 @@ msgstr "Некорректные зоны CQ"
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "Incorrect ITU Zones"
-msgstr "Неправильные зоны ITU"
+msgstr "Некорректные зоны ITU"
 
 #: application/views/search/cqzones.php:24
 #: application/views/search/filter.php:32
@@ -14746,21 +14749,24 @@ msgstr ""
 
 #: application/views/user/edit.php:713
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "Автоматическая обработка OQRS"
 
 #: application/views/user/edit.php:718
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Если это включено, будет выполнена автоматическая обработка OQRS, т.е. "
+"система попытается автоматически сопоставить входящие запросы с "
+"существующими логами."
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Автоматическая обработка прямых запросов"
 
 #: application/views/user/edit.php:727
 msgid "If this is on, automatic OQRS matching for direct request will happen."
-msgstr ""
+msgstr "Если это включено, прямые запросы будут автоматически обработаны."
 
 #: application/views/user/edit.php:743
 msgid "Default Values"
