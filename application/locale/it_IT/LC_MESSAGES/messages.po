@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-14 13:24+0000\n"
+"POT-Creation-Date: 2025-08-18 18:00+0000\n"
 "PO-Revision-Date: 2025-08-18 21:54+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
-"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/it/>\n"
+"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/it/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3418,7 +3418,7 @@ msgstr "Differenza"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:224
+#: application/views/adif/import.php:228
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3519,7 +3519,6 @@ msgstr "Differenza"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:757
 #: application/views/visitor/layout/footer.php:172
-#: application/views/adif/import.php:228
 msgid "All"
 msgstr "Tutti"
 
@@ -4013,8 +4012,8 @@ msgid "Nothing found!"
 msgstr "Non ho trovato nulla!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:78 application/views/adif/import.php:228
-#: application/views/adif/import.php:272
+#: application/views/adif/import.php:78 application/views/adif/import.php:234
+#: application/views/adif/import.php:298
 #: application/views/awards/73on73/index.php:34
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
@@ -4057,7 +4056,6 @@ msgstr "Non ho trovato nulla!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:656
-#: application/views/adif/import.php:234 application/views/adif/import.php:298
 msgid "Callsign"
 msgstr "Indicativo di chiamata"
 
@@ -4232,8 +4230,7 @@ msgstr "Stato QSL DCL"
 msgid "ADIF Export"
 msgstr "Esportazione ADIF"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:298
-#: application/views/adif/import.php:324
+#: application/views/adif/import.php:36 application/views/adif/import.php:324
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -4241,14 +4238,13 @@ msgstr "DARC DCL"
 msgid "CBR Import"
 msgstr "Importazione CBR"
 
-#: application/views/adif/import.php:64 application/views/adif/import.php:345
+#: application/views/adif/import.php:64 application/views/adif/import.php:371
 #: application/views/api/index.php:22 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
-#: application/views/adif/import.php:371
 msgid "Important"
 msgstr "Importante"
 
@@ -4260,8 +4256,8 @@ msgstr "I file di log devono avere estensione *.adi"
 msgid "Maximum file upload size is "
 msgstr "Dimensione massima del file caricabile: "
 
-#: application/views/adif/import.php:65 application/views/adif/import.php:275
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:65 application/views/adif/import.php:301
+#: application/views/adif/import.php:340
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:576 application/views/hrdlog/export.php:25
@@ -4272,16 +4268,14 @@ msgstr "Dimensione massima del file caricabile: "
 #: application/views/view_log/qso.php:771
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
-#: application/views/adif/import.php:301 application/views/adif/import.php:340
 msgid "Warning"
 msgstr "Avviso"
 
 #: application/views/adif/import.php:72 application/views/adif/import.php:74
-#: application/views/adif/import.php:222 application/views/adif/import.php:270
+#: application/views/adif/import.php:226 application/views/adif/import.php:296
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
-#: application/views/adif/import.php:226 application/views/adif/import.php:296
 msgid "Select Station Location"
 msgstr "Seleziona posizione stazione"
 
@@ -4293,9 +4287,8 @@ msgstr "Scegli file ADIF"
 msgid "Add QSOs to Contest"
 msgstr "Aggiungi QSO al contest"
 
-#: application/views/adif/import.php:90 application/views/adif/import.php:352
+#: application/views/adif/import.php:90 application/views/adif/import.php:378
 #: application/views/simplefle/index.php:86
-#: application/views/adif/import.php:378
 msgid "No Contest"
 msgstr "No contest"
 
@@ -4306,6 +4299,10 @@ msgid ""
 msgstr ""
 "Digitare il nominativo degli operatori dei QSO importati. Lasciare vuoto per "
 "utilizzare il nominativo dell'operatore nel file ADIF."
+
+#: application/views/adif/import.php:108
+msgid "Basic Settings"
+msgstr ""
 
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
@@ -4355,6 +4352,10 @@ msgstr ""
 "Utilizzare sempre il nominativo dell'account connesso come nominativo "
 "dell'operatore durante l'importazione"
 
+#: application/views/adif/import.php:153
+msgid "Mark QSOs as uploaded"
+msgstr ""
+
 #: application/views/adif/import.php:160
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Contrassegna i QSO importati come caricati su LoTW"
@@ -4385,20 +4386,19 @@ msgstr "Contrassegna i QSO importati come caricati su Clublog"
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Contrassegna i QSO importati come caricati su DCL"
 
-#: application/views/adif/import.php:212 application/views/adif/import.php:329
-#: application/views/adif/import.php:367
+#: application/views/adif/import.php:212 application/views/adif/import.php:355
+#: application/views/adif/import.php:393
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
-#: application/views/adif/import.php:355 application/views/adif/import.php:393
 msgid "Upload"
 msgstr "Carica"
 
-#: application/views/adif/import.php:219 application/views/adif/import.php:220
+#: application/views/adif/import.php:220
 msgid "Take your logbook file anywhere!"
 msgstr "Porta il tuo log ovunque!"
 
-#: application/views/adif/import.php:220 application/views/adif/import.php:221
+#: application/views/adif/import.php:221
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4406,7 +4406,7 @@ msgstr ""
 "L'esportazione di ADIF consente di importare i contatti in applicazioni di "
 "terze parti come LoTW, Awards o semplicemente per mantenere un backup."
 
-#: application/views/adif/import.php:221 application/views/adif/import.php:222
+#: application/views/adif/import.php:222
 #, php-format
 msgctxt ""
 msgid ""
@@ -4416,63 +4416,64 @@ msgstr ""
 "Se hai bisogno di più filtri, puoi utilizzare %sla modalità avanzata%s per "
 "filtrare ed esportare il registro di stazione!"
 
-#: application/views/adif/import.php:232 application/views/adif/import.php:277
+#: application/views/adif/import.php:245 application/views/adif/import.php:303
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
 #: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
-#: application/views/adif/import.php:245 application/views/adif/import.php:303
 msgid "From date"
 msgstr "Dalla data"
 
-#: application/views/adif/import.php:235 application/views/adif/import.php:280
+#: application/views/adif/import.php:249 application/views/adif/import.php:306
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
-#: application/views/adif/import.php:249 application/views/adif/import.php:306
 msgid "To date"
 msgstr "Alla data"
 
-#: application/views/adif/import.php:243 application/views/adif/import.php:267
+#: application/views/adif/import.php:260
+msgid "Export options"
+msgstr ""
+
+#: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Contrassegna i QSO esportati come caricati su LoTW"
 
-#: application/views/adif/import.php:251 application/views/adif/import.php:275
+#: application/views/adif/import.php:275
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Esporta QSO non caricati su LoTW"
 
-#: application/views/adif/import.php:256 application/views/adif/import.php:282
+#: application/views/adif/import.php:282
 msgid "Export QSOs"
 msgstr "Esporta QSO"
 
-#: application/views/adif/import.php:261 application/views/adif/import.php:287
+#: application/views/adif/import.php:287
 msgid "Export Satellite-Only QSOs"
 msgstr "Esporta solo QSO via satellite"
 
-#: application/views/adif/import.php:262 application/views/adif/import.php:288
+#: application/views/adif/import.php:288
 msgid "Export All Satellite QSOs"
 msgstr "Esporta tutti i QSO via satellite"
 
-#: application/views/adif/import.php:264 application/views/adif/import.php:290
+#: application/views/adif/import.php:290
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Esporta tutti i QSO via satellite confermati su LoTW"
 
-#: application/views/adif/import.php:275 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:301 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
-#: application/views/adif/import.php:301
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr ""
 "Se non viene selezionato un intervallo di date, tutti i QSO verranno "
 "contrassegnati!"
 
-#: application/views/adif/import.php:283 application/views/adif/import.php:309
+#: application/views/adif/import.php:309
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Contrassegna i QSO come esportati in LoTW"
 
-#: application/views/adif/import.php:298 application/views/adif/import.php:324
+#: application/views/adif/import.php:324
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4486,11 +4487,11 @@ msgstr ""
 "scaricato può essere caricato qui per aggiornare i QSO con le informazioni "
 "DOK."
 
-#: application/views/adif/import.php:305 application/views/adif/import.php:331
+#: application/views/adif/import.php:331
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Importa solo i dati DOK da QSO confermati su DCL."
 
-#: application/views/adif/import.php:307 application/views/adif/import.php:333
+#: application/views/adif/import.php:333
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -4498,11 +4499,11 @@ msgstr ""
 "Deselezionare se si desidera aggiornare anche DOK con i dati dei QSO non "
 "confermati in DCL."
 
-#: application/views/adif/import.php:314 application/views/adif/import.php:340
+#: application/views/adif/import.php:340
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Sovrascrive il DOK esistente nel registro tramite DCL (se diverso)."
 
-#: application/views/adif/import.php:316 application/views/adif/import.php:342
+#: application/views/adif/import.php:342
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4510,11 +4511,11 @@ msgstr ""
 "Se selezionato, Wavelog sovrascriverà forzatamente il DOK esistente con il "
 "DOK dal registro DCL."
 
-#: application/views/adif/import.php:323 application/views/adif/import.php:349
+#: application/views/adif/import.php:349
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Ignora i QSO che non corrispondono."
 
-#: application/views/adif/import.php:325 application/views/adif/import.php:351
+#: application/views/adif/import.php:351
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -4522,7 +4523,7 @@ msgstr ""
 "Se deselezionato, verranno visualizzate le informazioni sui QSO che non sono "
 "state trovate nel Wavelog."
 
-#: application/views/adif/import.php:344 application/views/adif/import.php:370
+#: application/views/adif/import.php:370
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4536,14 +4537,13 @@ msgstr ""
 "fornire il file Cabrillo che questo software fornisce anche per riscrivere "
 "quei dati in Wavelog."
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
-#: application/views/adif/import.php:370
 msgid "Information"
 msgstr "Informazione"
 
-#: application/views/adif/import.php:345 application/views/adif/import.php:371
+#: application/views/adif/import.php:371
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4556,15 +4556,15 @@ msgstr ""
 "file CBR che si sta per caricare per corrispondere ai QSO e correggere solo "
 "i dati pertinenti."
 
-#: application/views/adif/import.php:350 application/views/adif/import.php:376
+#: application/views/adif/import.php:376
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Nome del contest, solo se l'ID del contest in CBR è diverso"
 
-#: application/views/adif/import.php:350 application/views/adif/import.php:376
+#: application/views/adif/import.php:376
 msgid "Optional"
 msgstr "Opzionale"
 
-#: application/views/adif/import.php:360 application/views/adif/import.php:386
+#: application/views/adif/import.php:386
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
@@ -4572,7 +4572,7 @@ msgstr ""
 "Un numero di serie è SEMPRE parte del exchange per entrambe i corrispondenti "
 "di questo contest."
 
-#: application/views/adif/import.php:362 application/views/adif/import.php:388
+#: application/views/adif/import.php:388
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4580,7 +4580,7 @@ msgstr ""
 "Se tu o il tuo partner vi scambiate solo di tanto in tanto i numeri "
 "progressivi, si prega di lasciare questa casella deselezionata."
 
-#: application/views/adif/import.php:363 application/views/adif/import.php:389
+#: application/views/adif/import.php:389
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -8341,8 +8341,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Vai alla tua cartella \"application/config\" (o \"application/config/docker\""
-") e confronta \"config.sample.php\" con il tuo \"config.php\""
+"Vai alla tua cartella \"application/config\" (o \"application/config/"
+"docker\") e confronta \"config.sample.php\" con il tuo \"config.php\""
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -8528,7 +8528,8 @@ msgstr "Riassegna"
 
 #: application/views/debug/index.php:643
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
-msgstr "Ogni QSO nel tuo database è assegnato a un profilo stazione (posizione)"
+msgstr ""
+"Ogni QSO nel tuo database è assegnato a un profilo stazione (posizione)"
 
 #: application/views/debug/index.php:643
 msgid "Everything ok"
@@ -8910,8 +8911,8 @@ msgstr ""
 "\n"
 "Questa è un'email di prova dalla tua istanza Wavelog.\n"
 "\n"
-"Se hai ricevuto questa email, le impostazioni della tua posta sono corrette."
-"\n"
+"Se hai ricevuto questa email, le impostazioni della tua posta sono "
+"corrette.\n"
 "\n"
 "Saluti,\n"
 "\n"
@@ -9342,7 +9343,8 @@ msgstr "La descrizione della query è stata aggiornata!"
 
 #: application/views/interface_assets/footer.php:619
 msgid "Something went wrong with the save. Please try again!"
-msgstr "Qualcosa è andato storto con il salvataggio. Ti preghiamo di riprovare!"
+msgstr ""
+"Qualcosa è andato storto con il salvataggio. Ti preghiamo di riprovare!"
 
 #: application/views/interface_assets/footer.php:748
 msgid ""
@@ -10225,8 +10227,8 @@ msgid ""
 "more QSOs."
 msgstr ""
 "L'esportazione ADIF utilizza gli stessi criteri di ricerca della ricerca "
-"normale. Tutti i QSO verranno esportati (tutti per la posizione selezionata)"
-", a meno che tu non abbia selezionato uno o più QSO."
+"normale. Tutti i QSO verranno esportati (tutti per la posizione "
+"selezionata), a meno che tu non abbia selezionato uno o più QSO."
 
 #: application/views/logbookadvanced/index.php:16
 #: application/views/logbookadvanced/useroptions.php:202
@@ -10823,7 +10825,8 @@ msgstr "Nome visualizzato"
 
 #: application/views/lotw_views/index.php:4
 msgid "Upload folder is not writable. Please contact your admin."
-msgstr "La cartella di upload non è scrivibile. Contatta il tuo amministratore."
+msgstr ""
+"La cartella di upload non è scrivibile. Contatta il tuo amministratore."
 
 #: application/views/lotw_views/index.php:8
 msgid "LoTW Import"
@@ -13060,7 +13063,6 @@ msgid "DXCC ITU Zone"
 msgstr "Zona ITU DXCC"
 
 #: application/views/search/lotw_unconfirmed.php:29
-#, fuzzy
 msgid ""
 "The search displays QSOs which are unconfirmed on LoTW, but the callsign "
 "worked has uploaded to LoTW after your QSO date."
@@ -13069,22 +13071,18 @@ msgstr ""
 "utilizzato è stato caricato su LoTW dopo la data del tuo QSO."
 
 #: application/views/search/lotw_unconfirmed.php:32
-#, fuzzy
 msgid "Station location"
 msgstr "Posizione della stazione"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
-#, fuzzy
 msgid "Last LoTW upload"
 msgstr "Ultimo upload su LoTW"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
-#, fuzzy
 msgid "No QSOs with outstanding LoTW upload were found."
 msgstr "Nessun QSO con caricamento LoTW eccezionale è stato trovato."
 
 #: application/views/search/main.php:31
-#, fuzzy
 msgid "Callsign / Gridsquare"
 msgstr "Callsign / Gridsquare"
 
@@ -13104,7 +13102,6 @@ msgid "Callbook Search for %s"
 msgstr "Ricerca nel Callbook per %s"
 
 #: application/views/search/result.php:39
-#, fuzzy
 msgid "Not Worked"
 msgstr "Non ha funzionato"
 
@@ -13157,28 +13154,23 @@ msgstr "Segna QSL non come richiesto"
 
 #: application/views/search/search_result_ajax.php:443
 #: application/views/view_log/partial/log_ajax.php:514
-#, fuzzy
 msgid "Lookup on QRZ.com"
 msgstr "Cerca su QRZ.com"
 
 #: application/views/search/search_result_ajax.php:445
 #: application/views/view_log/partial/log_ajax.php:516
-#, fuzzy
 msgid "Lookup on HamQTH"
 msgstr "Cerca su HamQTH"
 
 #: application/views/search/stored_queries.php:9
-#, fuzzy
 msgid "Query"
 msgstr "Query"
 
 #: application/views/simplefle/index.php:13
-#, fuzzy
 msgid "Simple Fast Log Entry (FLE)"
 msgstr "Inserimento rapido di log semplice (FLE)"
 
 #: application/views/simplefle/index.php:14
-#, fuzzy
 msgid ""
 "'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and "
 "efficiently. Due to its syntax, only a minimum of input is required to log "
@@ -13190,7 +13182,6 @@ msgstr ""
 "sforzo possibile."
 
 #: application/views/simplefle/index.php:15
-#, fuzzy
 msgid ""
 "FLE was originally written by DF3CB. He offers a program for Windows on his "
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
@@ -13213,57 +13204,46 @@ msgstr ""
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:184
-#, fuzzy
 msgid "Syntax Help"
 msgstr "Aiuto sulla Sintassi"
 
 #: application/views/simplefle/index.php:18
-#, fuzzy
 msgid "Syntax for FLE"
 msgstr "Sintassi per FLE"
 
 #: application/views/simplefle/index.php:19
-#, fuzzy
 msgid "Close and Load Sample Data"
 msgstr "Chiudi e carica i dati di esempio"
 
 #: application/views/simplefle/index.php:23
-#, fuzzy
 msgid "Band is missing!"
 msgstr "La banda è scomparsa!"
 
 #: application/views/simplefle/index.php:24
-#, fuzzy
 msgid "Mode is missing!"
 msgstr "La modalità è mancante!"
 
 #: application/views/simplefle/index.php:25
-#, fuzzy
 msgid "Time is not set!"
 msgstr "Il tempo non è impostato!"
 
 #: application/views/simplefle/index.php:26
-#, fuzzy
 msgid "Invalid date"
 msgstr "Data non valida"
 
 #: application/views/simplefle/index.php:29
-#, fuzzy
 msgid "Station Call is not selected"
 msgstr "La chiamata della stazione non è selezionata"
 
 #: application/views/simplefle/index.php:30
-#, fuzzy
 msgid "'Operator' Field is empty"
 msgstr "'Operatore' campo è vuoto"
 
 #: application/views/simplefle/index.php:31
-#, fuzzy
 msgid "Warning! Do you really want to reset everything?"
 msgstr "Attenzione! Vuoi davvero ripristinare tutto?"
 
 #: application/views/simplefle/index.php:32
-#, fuzzy
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
@@ -13272,7 +13252,6 @@ msgstr ""
 "banda e/o modalità definiti!"
 
 #: application/views/simplefle/index.php:33
-#, fuzzy
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
@@ -13281,7 +13260,6 @@ msgstr ""
 "tempo definito!"
 
 #: application/views/simplefle/index.php:34
-#, fuzzy
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
@@ -13290,7 +13268,6 @@ msgstr ""
 "la sessione di registrazione!"
 
 #: application/views/simplefle/index.php:35
-#, fuzzy
 msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
@@ -13299,7 +13276,6 @@ msgstr ""
 "o hai registrato i dati del concorso ma non hai selezionato un concorso."
 
 #: application/views/simplefle/index.php:36
-#, fuzzy
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
 msgstr ""
@@ -13307,19 +13283,16 @@ msgstr ""
 "sessione?"
 
 #: application/views/simplefle/index.php:37
-#, fuzzy
 msgid "QSO Logged!"
 msgstr "QSO registrato!"
 
 #: application/views/simplefle/index.php:38
-#, fuzzy
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
 msgstr ""
 "I QSO sono stati registrati con successo nel registro! I duplicati sono "
 "stati saltati."
 
 #: application/views/simplefle/index.php:40
-#, fuzzy
 msgid "An error occurred while saving the QSO to the logbook! Error: "
 msgstr ""
 "Si è verificato un errore durante il salvataggio del QSO nel registro! "
@@ -13330,22 +13303,18 @@ msgid "What is that?"
 msgstr "Che cosa è?"
 
 #: application/views/simplefle/index.php:47
-#, fuzzy
 msgid "Current UTC Time"
 msgstr "Tempo UTC attuale"
 
 #: application/views/simplefle/index.php:80
-#, fuzzy
 msgid "If you don't choose a date, today's date will be used."
 msgstr "Se non scegli una data, verrà utilizzata la data odierna."
 
 #: application/views/simplefle/index.php:92
-#, fuzzy
 msgid "You can add the entered QSOs to a contest."
 msgstr "Puoi aggiungere i QSOs inseriti a un concorso."
 
 #: application/views/simplefle/index.php:99
-#, fuzzy
 msgid "Station Call/Location"
 msgstr "Chiamata Stazione/Sede"
 
@@ -13359,23 +13328,19 @@ msgstr ""
 "Posizione%s"
 
 #: application/views/simplefle/index.php:117
-#, fuzzy
 msgid "e.g. OK2CQR"
 msgstr "e.g. OK2CQR"
 
 #: application/views/simplefle/index.php:120
-#, fuzzy
 msgid "This is callsign of the operator. Without any pre- or suffixes."
 msgstr ""
 "Questo è il segnale distintivo dell'operatore. Senza prefissi o suffissi."
 
 #: application/views/simplefle/index.php:133
-#, fuzzy
 msgid "Enter the Data"
 msgstr "Inserisci i dati"
 
 #: application/views/simplefle/index.php:162
-#, fuzzy
 msgid "Refs"
 msgstr "Riferimenti"
 
@@ -13385,38 +13350,31 @@ msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 msgstr "I riferimenti possono essere %sS%sOTA, %sI%sOTA, %sP%sOTA, o %sW%sWFF"
 
 #: application/views/simplefle/index.php:181
-#, fuzzy
 msgid "Reload QSO List"
 msgstr "Ricarica la lista QSO"
 
 #: application/views/simplefle/index.php:182
-#, fuzzy
 msgid "Save in Wavelog"
 msgstr "Salva in Wavelog"
 
 #: application/views/simplefle/index.php:183
-#, fuzzy
 msgid "Clear Logging Session"
 msgstr "Chiarire la sessione di registrazione"
 
 #: application/views/simplefle/options.php:20
-#, fuzzy
 msgid "No Options yet"
 msgstr "Nessuna opzione ancora"
 
 #: application/views/simplefle/syntax_help.php:1
-#, fuzzy
 msgid "Before starting to log a QSO, please note the basic rules."
 msgstr ""
 "Prima di iniziare a registrare un QSO, si prega di notare le regole di base."
 
 #: application/views/simplefle/syntax_help.php:2
-#, fuzzy
 msgid "- Each new QSO should be on a new line."
 msgstr "- Ogni nuovo QSO dovrebbe essere su una nuova riga."
 
 #: application/views/simplefle/syntax_help.php:3
-#, fuzzy
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr ""
@@ -13424,7 +13382,6 @@ msgstr ""
 "precedente."
 
 #: application/views/simplefle/syntax_help.php:4
-#, fuzzy
 msgid ""
 "To begin, ensure you have already filled in the form on the left with the "
 "date, station call, and operator's call. The main data includes the band (or "
@@ -13438,13 +13395,11 @@ msgstr ""
 "nominativo."
 
 #: application/views/simplefle/syntax_help.php:9
-#, fuzzy
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
 msgstr ""
 "Ad esempio, un QSO che è iniziato alle 21:34 (UTC) con 4W7EST su 20m SSB."
 
 #: application/views/simplefle/syntax_help.php:10
-#, fuzzy
 msgid ""
 "If you don't provide any RST information, the syntax will use 59 (599 for "
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
@@ -13456,7 +13411,6 @@ msgstr ""
 "il primo QSO."
 
 #: application/views/simplefle/syntax_help.php:16
-#, fuzzy
 msgid ""
 "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We "
 "write down 6 because this is the only data that changed here. The "
@@ -13467,7 +13421,6 @@ msgstr ""
 "su banda e modalità non sono cambiate, quindi questi dati sono omessi."
 
 #: application/views/simplefle/syntax_help.php:17
-#, fuzzy
 msgid ""
 "For our next QSO at 21:40 on 14th May, 2021, we changed the band to 40m but "
 "still on SSB. If no RST information is given, the syntax will use 59 for "
@@ -13481,27 +13434,22 @@ msgstr ""
 "data deve essere nel formato YYYY-MM-DD."
 
 #: application/views/simplefle/syntax_help.php:28
-#, fuzzy
 msgid "Additional informations can be submitted in the following way:"
 msgstr "Ulteriori informazioni possono essere inviate nel seguente modo:"
 
 #: application/views/simplefle/syntax_help.php:29
-#, fuzzy
 msgid "Notes:"
 msgstr "Note:"
 
 #: application/views/simplefle/syntax_help.php:33
-#, fuzzy
 msgid "Operator Name:"
 msgstr "Nome dell'operatore:"
 
 #: application/views/simplefle/syntax_help.php:37
-#, fuzzy
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
 msgstr "Messaggio QSL (Attenzione! Non visibile nel wavelog attualmente!):"
 
 #: application/views/simplefle/syntax_help.php:41
-#, fuzzy
 msgid "Contest exchange; serials or other exchange - or even both:"
 msgstr ""
 "Scambio di concorsi; scambi di seriali o altri scambi - o anche entrambi:"
@@ -13524,7 +13472,6 @@ msgstr ""
 "inviato. Per disattivare, utilizzare ‘,+0’:"
 
 #: application/views/simplefle/syntax_help.php:54
-#, fuzzy
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
@@ -13533,7 +13480,6 @@ msgstr ""
 "come numero di serie. Se vuoi cancellare il tuo scambio inviato, usa ',-':"
 
 #: application/views/simplefle/syntax_help.php:59
-#, fuzzy
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
@@ -13543,7 +13489,6 @@ msgstr ""
 "comunicazione 'D23' sarebbe stata impostata."
 
 #: application/views/simplefle/syntax_help.php:60
-#, fuzzy
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
@@ -13562,14 +13507,12 @@ msgstr ""
 
 #: application/views/station_profile/create.php:55
 #: application/views/station_profile/edit.php:71
-#, fuzzy
 msgid "Location Name"
 msgstr "Nome della posizione"
 
 #: application/views/station_profile/create.php:56
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
-#, fuzzy
 msgctxt "Station Location Setup"
 msgid "Home QTH"
 msgstr "Casa QTH"
@@ -13582,49 +13525,41 @@ msgstr "Nome abbreviato per la posizione della stazione. Ad esempio: %s"
 
 #: application/views/station_profile/create.php:63
 #: application/views/station_profile/edit.php:79
-#, fuzzy
 msgid "Station callsign. For example: 4W7EST/P"
 msgstr "Indicativo della stazione. Ad esempio: 4W7EST/P"
 
 #: application/views/station_profile/create.php:67
 #: application/views/station_profile/edit.php:83
-#, fuzzy
 msgid "Station Power (W)"
 msgstr "Potenza della stazione (W)"
 
 #: application/views/station_profile/create.php:69
 #: application/views/station_profile/edit.php:85
-#, fuzzy
 msgid "Default station power in Watt. Overwritten by CAT."
 msgstr "Potenza della stazione predefinita in Watt. Sovrascritta da CAT."
 
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:116
-#, fuzzy
 msgid "Station DXCC entity. For example: Bolivia"
 msgstr "Entità DXCC della stazione. Ad esempio: Bolivia"
 
 #: application/views/station_profile/create.php:87
 #: application/views/station_profile/edit.php:122
-#, fuzzy
 msgid "Station City"
 msgstr "Città della Stazione"
 
 #: application/views/station_profile/create.php:89
 #: application/views/station_profile/edit.php:124
-#, fuzzy
 msgid "Station city. For example: Oslo"
 msgstr "Città della stazione. Ad esempio: Oslo"
 
 #: application/views/station_profile/create.php:98
 #: application/views/station_profile/edit.php:136
-#, fuzzy
 msgid "Station state. Applies to certain countries only."
 msgstr "Stato della stazione. Si applica solo a certi paesi."
 
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
-#, fuzzy
 msgid "Station County (Only used for specific DXCCs)."
 msgstr "Contea della stazione (utilizzata solo per specifici DXCC)."
 
@@ -13641,7 +13576,6 @@ msgstr "Se non conosci la tua zona CQ, allora %s per trovarla!"
 #: application/views/station_profile/edit.php:169
 #: application/views/station_profile/edit.php:186
 #: application/views/station_profile/edit.php:210
-#, fuzzy
 msgid "click here"
 msgstr "clicca qui"
 
@@ -13655,13 +13589,11 @@ msgstr "Se non conosci la tua zona ITU, allora %s per trovarla!"
 #: application/views/station_profile/create.php:139
 #: application/views/station_profile/edit.php:198
 #: application/views/station_profile/edit.php:201
-#, fuzzy
 msgid "Station Gridsquare"
 msgstr "Griglia della Stazione"
 
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:206
-#, fuzzy
 msgid "Get Gridsquare"
 msgstr "Ottieni Griglia"
 
@@ -13678,7 +13610,6 @@ msgstr ""
 
 #: application/views/station_profile/create.php:149
 #: application/views/station_profile/edit.php:211
-#, fuzzy
 msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
@@ -13688,13 +13619,11 @@ msgstr ""
 
 #: application/views/station_profile/create.php:166
 #: application/views/station_profile/edit.php:236
-#, fuzzy
 msgid "Station IOTA reference. For example: EU-005"
 msgstr "Riferimento della stazione IOTA. Ad esempio: EU-005"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
-#, fuzzy
 msgid "IOTA World website"
 msgstr "Sito web di IOTA World"
 
@@ -13706,7 +13635,6 @@ msgstr "Puoi cercare i riferimenti IOTA su %s."
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
-#, fuzzy
 msgid "SOTA Maps website"
 msgstr "Sito web delle mappe SOTA"
 
@@ -13718,7 +13646,6 @@ msgstr "Riferimento Stazione SOTA. Puoi trovare i riferimenti SOTA al %s."
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
-#, fuzzy
 msgid "GMA Map website"
 msgstr "Sito web della mappa GMA"
 
@@ -13726,11 +13653,11 @@ msgstr "Sito web della mappa GMA"
 #: application/views/station_profile/edit.php:265
 #, fuzzy, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr "Riferimento della stazione WWFF. Puoi cercare i riferimenti WWFF su %s."
+msgstr ""
+"Riferimento della stazione WWFF. Puoi cercare i riferimenti WWFF su %s."
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
-#, fuzzy
 msgid "POTA Map website"
 msgstr "Sito web della mappa POTA"
 
@@ -13745,23 +13672,19 @@ msgstr ""
 "virgola. Puoi cercare i riferimenti POTA su %s."
 
 #: application/views/station_profile/create.php:189
-#, fuzzy
 msgid "Signature Name"
 msgstr "Nome della Firma"
 
 #: application/views/station_profile/create.php:191
-#, fuzzy
 msgid "Station Special Interest Group Name (e.g. GMA)."
 msgstr "Nome del Gruppo di Interesse Speciale della Stazione (ad esempio GMA)."
 
 #: application/views/station_profile/create.php:195
-#, fuzzy
 msgid "Signature Information"
 msgstr "Informazioni sulla firma"
 
 #: application/views/station_profile/create.php:197
 #: application/views/station_profile/edit.php:299
-#, fuzzy
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
 msgstr ""
 "Informazioni sul Gruppo di Interesse Speciale della Stazione (ad esempio DA/"
@@ -13769,26 +13692,22 @@ msgstr ""
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:312
-#, fuzzy
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
 msgstr "eQSL Soprannome QTH"
 
 #: application/views/station_profile/create.php:203
 #: application/views/station_profile/edit.php:314
-#, fuzzy
 msgid "The QTH Nickname which is configured in your eQSL Profile"
 msgstr "Il soprannome QTH che è configurato nel tuo profilo eQSL"
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:317
-#, fuzzy
 msgid "Default QSLMSG"
 msgstr "Messaggio QSL predefinito"
 
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/edit.php:320
-#, fuzzy
 msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
@@ -13798,13 +13717,11 @@ msgstr ""
 
 #: application/views/station_profile/create.php:213
 #: application/views/station_profile/edit.php:360
-#, fuzzy
 msgid "Ignore Clublog Upload"
 msgstr "Ignora il caricamento di Clublog"
 
 #: application/views/station_profile/create.php:218
 #: application/views/station_profile/edit.php:365
-#, fuzzy
 msgid ""
 "If enabled, the QSOs made from this location will not be uploaded to "
 "Clublog. If this is deactivated on it's own please check if the Call is "
@@ -13816,19 +13733,16 @@ msgstr ""
 
 #: application/views/station_profile/create.php:221
 #: application/views/station_profile/edit.php:368
-#, fuzzy
 msgid "ClubLog Realtime Upload"
 msgstr "Caricamento in tempo reale di ClubLog"
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:384
-#, fuzzy
 msgid "HRDLog.net Username"
 msgstr "Nome utente HRDLog.net"
 
 #: application/views/station_profile/create.php:232
 #: application/views/station_profile/edit.php:386
-#, fuzzy
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr ""
@@ -13837,7 +13751,6 @@ msgstr ""
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:389
-#, fuzzy
 msgid "HRDLog.net API Key"
 msgstr "HRDLog.net Chiave API"
 
@@ -13850,30 +13763,25 @@ msgstr "Crea il tuo codice API sul tuo %s"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
-#, fuzzy
 msgid "HRDLog.net Userprofile page"
 msgstr "Pagina del profilo utente HRDLog.net"
 
 #: application/views/station_profile/create.php:240
 #: application/views/station_profile/edit.php:397
-#, fuzzy
 msgid "HRDLog.net Logbook Realtime Upload"
 msgstr "HRDLog.net Diario di Carico in Tempo Reale"
 
 #: application/views/station_profile/create.php:250
 #: application/views/station_profile/edit.php:328
-#, fuzzy
 msgid "Subscription Required"
 msgstr "Abbonamento richiesto"
 
 #: application/views/station_profile/create.php:255
-#, fuzzy
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
 msgstr "Chiave API del logbook QRZ.com"
 
 #: application/views/station_profile/create.php:258
-#, fuzzy
 msgid "Test API-Key"
 msgstr "Testa API-Key"
 
@@ -13886,25 +13794,21 @@ msgstr "Trova la tua chiave API su %s"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
-#, fuzzy
 msgid "the QRZ.com Logbook settings page"
 msgstr "la pagina delle impostazioni del Logbook di QRZ.com"
 
 #: application/views/station_profile/create.php:264
 #: application/views/station_profile/edit.php:342
-#, fuzzy
 msgid "QRZ.com Logbook Upload"
 msgstr "Caricamento del registro QRZ.com"
 
 #: application/views/station_profile/create.php:267
 #: application/views/station_profile/edit.php:345
-#, fuzzy
 msgid "Realtime"
 msgstr "Tempo reale"
 
 #: application/views/station_profile/create.php:275
 #: application/views/station_profile/edit.php:414
-#, fuzzy
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
 msgstr "QO-100 Dx Club API Key"
@@ -13918,31 +13822,26 @@ msgstr "Crea la tua chiave API sul tuo %s"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
-#, fuzzy
 msgid "QO-100 Dx Club's profile page"
 msgstr "Pagina del profilo del QO-100 Dx Club"
 
 #: application/views/station_profile/create.php:280
 #: application/views/station_profile/edit.php:422
-#, fuzzy
 msgid "QO-100 Dx Club Realtime Upload"
 msgstr "QO-100 Dx Club Caricamento Reale"
 
 #: application/views/station_profile/create.php:290
 #: application/views/station_profile/edit.php:440
-#, fuzzy
 msgid "OQRS Enabled"
 msgstr "OQRS abilitato"
 
 #: application/views/station_profile/create.php:297
 #: application/views/station_profile/edit.php:447
-#, fuzzy
 msgid "OQRS Email alert"
 msgstr "Avviso email OQRS"
 
 #: application/views/station_profile/create.php:302
 #: application/views/station_profile/edit.php:452
-#, fuzzy
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
 "Assicurati che l'email sia configurata nelle opzioni amministrative e "
@@ -13950,107 +13849,87 @@ msgstr ""
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:455
-#, fuzzy
 msgid "OQRS Text"
 msgstr "Testo OQRS"
 
 #: application/views/station_profile/create.php:307
 #: application/views/station_profile/edit.php:457
-#, fuzzy
 msgid "Some info you want to add regarding QSL'ing."
 msgstr "Alcune informazioni che desideri aggiungere riguardo al QSL."
 
 #: application/views/station_profile/edit.php:153
-#, fuzzy
 msgid "Zones"
 msgstr "Zone"
 
 #: application/views/station_profile/edit.php:291
-#, fuzzy
 msgid "Special Interest Group Name"
 msgstr "Nome del Gruppo di Interesse Speciale"
 
 #: application/views/station_profile/edit.php:293
-#, fuzzy
 msgid "Station Special Interest Group Name (e.g. GMA).."
 msgstr "Nome del Gruppo di Interesse Speciale della Stazione (ad es. GMA) .."
 
 #: application/views/station_profile/edit.php:297
-#, fuzzy
 msgid "Special Interest Group Information"
 msgstr "Informazioni sul Gruppo di Interesse Speciale"
 
 #: application/views/stationsetup/create.php:17
-#, fuzzy
 msgid "Station Logbook Name"
 msgstr "Nome del Registro della Stazione"
 
 #: application/views/stationsetup/create.php:19
-#, fuzzy
 msgid "You can call a station logbook anything."
 msgstr "Puoi chiamare un registro di stazione in qualsiasi modo."
 
 #: application/views/stationsetup/edit.php:18
-#, fuzzy
 msgid "Container name"
 msgstr "Nome del contenitore"
 
 #: application/views/stationsetup/edit.php:20
-#, fuzzy
 msgid "You can call a container anything."
 msgstr "Puoi chiamare un contenitore in qualsiasi modo."
 
 #: application/views/stationsetup/exportmapoptions.php:11
-#, fuzzy
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
 msgstr "Sovrapposizione della zona CQ"
 
 #: application/views/stationsetup/exportmapoptions.php:15
-#, fuzzy
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
 msgstr "Sovrapposizione della griglia"
 
 #: application/views/stationsetup/exportmapoptions.php:19
-#, fuzzy
 msgctxt "Map Options"
 msgid "Night shadow overlay"
 msgstr "Sovrapposizione di ombra notturna"
 
 #: application/views/stationsetup/exportmapoptions.php:27
-#, fuzzy
 msgid "# QSOs shown"
 msgstr "# QSOs mostrati"
 
 #: application/views/stationsetup/exportmapoptions.php:46
-#, fuzzy
 msgid "Visit export map"
 msgstr "Visita la mappa di esportazione"
 
 #: application/views/stationsetup/linkedlocations.php:13
-#, fuzzy
 msgid "Select Available Station Locations"
 msgstr "Seleziona le posizioni delle stazioni disponibili"
 
 #: application/views/stationsetup/linkedlocations.php:25
-#, fuzzy
 msgid "Link Location"
 msgstr "Posizione del link"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:125
-#, fuzzy
 msgid "Profile Name"
 msgstr "Nome Profilo"
 
 #: application/views/stationsetup/linkedlocations.php:34
-#, fuzzy
 msgid "Unlink Station Location"
 msgstr "Disconnetti posizione della stazione"
 
 #: application/views/stationsetup/stationsetup.php:24
-#, fuzzy
 msgid ""
 "Station Logbooks allow you to group Station Locations, this allows you to "
 "see all the locations across one session from the logbook areas to the "
@@ -14063,22 +13942,18 @@ msgstr ""
 "posizioni ma fanno parte dello stesso DXCC o VUCC Circle."
 
 #: application/views/stationsetup/stationsetup.php:35
-#, fuzzy
 msgid "Linked locations"
 msgstr "Posizioni collegate"
 
 #: application/views/stationsetup/stationsetup.php:37
-#, fuzzy
 msgid "Visitor site"
 msgstr "Sito dei visitatori"
 
 #: application/views/stationsetup/stationsetup.php:94
-#, fuzzy
 msgid "Station Locations"
 msgstr "Posizioni delle stazioni"
 
 #: application/views/stationsetup/stationsetup.php:98
-#, fuzzy
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
@@ -14087,13 +13962,11 @@ msgstr ""
 "il QTH di un amico o una stazione portatile."
 
 #: application/views/stationsetup/stationsetup.php:99
-#, fuzzy
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
 msgstr ""
 "Simile ai logbook, un profilo della stazione tiene insieme un insieme di QSO."
 
 #: application/views/stationsetup/stationsetup.php:100
-#, fuzzy
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
@@ -14102,7 +13975,6 @@ msgstr ""
 "questo è mostrato con il badge -Stazione Attiva-."
 
 #: application/views/stationsetup/stationsetup.php:101
-#, fuzzy
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
@@ -14111,22 +13983,18 @@ msgstr ""
 "il Registro Attivo selezionato sopra."
 
 #: application/views/stationsetup/stationsetup.php:104
-#, fuzzy
 msgid "Create a Station Location"
 msgstr "Crea una posizione della stazione"
 
 #: application/views/stationsetup/stationsetup.php:104
-#, fuzzy
 msgid "Show all locations"
 msgstr "Mostra tutte le posizioni"
 
 #: application/views/stationsetup/stationsetup.php:104
-#, fuzzy
 msgid "Show only locations from the active logbook"
 msgstr "Mostra solo le posizioni dal diario di bordo attivo"
 
 #: application/views/stationsetup/stationsetup.php:108
-#, fuzzy
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
@@ -14135,7 +14003,6 @@ msgstr ""
 "su Chiamata->Posizione della stazione per selezionarne una."
 
 #: application/views/stationsetup/stationsetup.php:114
-#, fuzzy
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
@@ -14144,12 +14011,10 @@ msgstr ""
 "riassegnare i QSO ai profili della tua stazione."
 
 #: application/views/stationsetup/stationsetup.php:116
-#, fuzzy
 msgid "Maintenance"
 msgstr "Manutenzione"
 
 #: application/views/stationsetup/stationsetup.php:116
-#, fuzzy
 msgid "Please reassign them at "
 msgstr "Per favore, riassegna loro a "
 
@@ -14158,22 +14023,18 @@ msgid "Last QSO"
 msgstr "Ultimo QSO"
 
 #: application/views/stationsetup/stationsetup.php:131
-#, fuzzy
 msgid "Linked"
 msgstr "Collegato"
 
 #: application/views/stationsetup/stationsetup.php:138
-#, fuzzy
 msgid "Favorite"
 msgstr "Favorito"
 
 #: application/views/stationsetup/stationsetup.php:185
-#, fuzzy
 msgid "mark/unmark as favorite"
 msgstr "segna/non segnare come preferito"
 
 #: application/views/stationsetup/visitor.php:2
-#, fuzzy
 msgid ""
 "Setting a public slug allows you to share your logbook with anyone via a "
 "custom website address, this slug can contain letters & numbers only."
@@ -14183,22 +14044,18 @@ msgstr ""
 "solo lettere e numeri."
 
 #: application/views/stationsetup/visitor.php:3
-#, fuzzy
 msgid "Later it looks like this:"
 msgstr "Dopo appare così:"
 
 #: application/views/stationsetup/visitor.php:4
-#, fuzzy
 msgid "[your slug]"
 msgstr "[tuo slug]"
 
 #: application/views/stationsetup/visitor.php:10
-#, fuzzy
 msgid "Type in Public Slug choice"
 msgstr "Digita nella scelta Public Slug"
 
 #: application/views/stationsetup/visitor.php:17
-#, fuzzy
 msgid "Visit Public Page"
 msgstr "Visita la pagina pubblica"
 
@@ -14208,62 +14065,51 @@ msgstr "Elevazione"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:61
-#, fuzzy
 msgid "Years"
 msgstr "Anni"
 
 #: application/views/statistics/index.php:18
-#, fuzzy
 msgid "Number of QSOs worked each year"
 msgstr "Numero di QSOs lavorati ogni anno"
 
 #: application/views/statistics/index.php:31
-#, fuzzy
 msgid "Explore the logbook."
 msgstr "Esplora il diario di bordo."
 
 #: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
-#, fuzzy
 msgid "All Years"
 msgstr "Tutti gli anni"
 
 #: application/views/statistics/index.php:76
 #: application/views/statistics/index.php:117
-#, fuzzy
 msgid "Unique callsigns"
 msgstr "Chiamate uniche"
 
 #: application/views/statistics/index.php:120
-#, fuzzy
 msgid "Unique Grids"
 msgstr "Griglie Uniche"
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
-#, fuzzy
 msgid "No EME QSOs were found."
 msgstr "Nessun contatto EME è stato trovato."
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
-#, fuzzy
 msgid "Theme Name"
 msgstr "Nome del Tema"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
-#, fuzzy
 msgid "This is the name that is used to display the theme in the theme list."
 msgstr ""
 "Questo è il nome che viene utilizzato per visualizzare il tema nell'elenco "
 "dei temi."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
-#, fuzzy
 msgid "Folder Name"
 msgstr "Nome della cartella"
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
-#, fuzzy
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
@@ -14273,34 +14119,28 @@ msgstr ""
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
-#, fuzzy
 msgid "Theme Mode"
 msgstr "Modalità Temi"
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
-#, fuzzy
 msgid "Light"
 msgstr "Luce"
 
 #: application/views/themes/add.php:19 application/views/themes/edit.php:19
-#, fuzzy
 msgid "Dark"
 msgstr "Scuro"
 
 #: application/views/themes/add.php:21
-#, fuzzy
 msgid "This defines wherever the theme is a light or a dark one."
 msgstr "Questo definisce se il tema è chiaro o scuro."
 
 #: application/views/themes/add.php:25 application/views/themes/edit.php:25
 #: application/views/themes/index.php:85
-#, fuzzy
 msgid "Header Logo"
 msgstr "Logo intestazione"
 
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
-#, fuzzy
 msgid "Only PNG files with a size ratio of 1:1 are allowed."
 msgstr "Sono ammessi solo file PNG con un rapporto dimensionale di 1:1."
 
@@ -14315,7 +14155,6 @@ msgstr ""
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
-#, fuzzy
 msgid "Main Logo"
 msgstr "Logo Principale"
 
@@ -14329,12 +14168,10 @@ msgstr ""
 "schermata di accesso situata in assets/logo."
 
 #: application/views/themes/add.php:36
-#, fuzzy
 msgid "Add theme"
 msgstr "Aggiungi tema"
 
 #: application/views/themes/edit.php:21
-#, fuzzy
 msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
@@ -14343,17 +14180,14 @@ msgstr ""
 "logo."
 
 #: application/views/themes/edit.php:36
-#, fuzzy
 msgid "Update theme"
 msgstr "Aggiorna tema"
 
 #: application/views/themes/index.php:22
-#, fuzzy
 msgid "Themes list"
 msgstr "Elenco dei temi"
 
 #: application/views/themes/index.php:28
-#, fuzzy
 msgid ""
 "In this menu you can add and edit themes to Wavelog. The process of adding a "
 "theme is not really straightforward and should only be done by an admin who "
@@ -14364,17 +14198,15 @@ msgstr ""
 "solo da un amministratore consapevole delle proprie azioni."
 
 #: application/views/themes/index.php:29
-#, fuzzy
 msgid "Also, it has to be said that this feature is still under development."
-msgstr "Inoltre, va detto che questa funzionalità è ancora in fase di sviluppo."
+msgstr ""
+"Inoltre, va detto che questa funzionalità è ancora in fase di sviluppo."
 
 #: application/views/themes/index.php:35
-#, fuzzy
 msgid "Process of adding a new theme"
 msgstr "Processo di aggiunta di un nuovo tema"
 
 #: application/views/themes/index.php:41
-#, fuzzy
 msgid "1. Step"
 msgstr "1. Passo"
 
@@ -14384,17 +14216,14 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file "
-"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
-"di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
+"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
 
 #: application/views/themes/index.php:50
-#, fuzzy
 msgid "2. Step"
 msgstr "2. Passo"
 
 #: application/views/themes/index.php:53
-#, fuzzy
 msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
@@ -14403,12 +14232,10 @@ msgstr ""
 "codice CSS personalizzato lì."
 
 #: application/views/themes/index.php:59
-#, fuzzy
 msgid "3. Step"
 msgstr "3. Passo"
 
 #: application/views/themes/index.php:62
-#, fuzzy
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
@@ -14417,21 +14244,18 @@ msgstr ""
 "accesso e uno per l'intestazione."
 
 #: application/views/themes/index.php:63
-#, fuzzy
 msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Sono consentiti solo file PNG, e devono avere un rapporto di pixel di 1:1 ("
-"ad esempio, 1000px di altezza e 1000px di larghezza)."
+"Sono consentiti solo file PNG, e devono avere un rapporto di pixel di 1:1 "
+"(ad esempio, 1000px di altezza e 1000px di larghezza)."
 
 #: application/views/themes/index.php:64
-#, fuzzy
 msgid "Place the two logo files in the folder 'assets/logo/'"
 msgstr "Posiziona i due file del logo nella cartella 'assets/logo/'"
 
 #: application/views/themes/index.php:70
-#, fuzzy
 msgid "4. Step"
 msgstr "4. Passo"
 
@@ -14445,42 +14269,34 @@ msgstr ""
 "nomi dei file per i loghi %ssenza%s l'estensione del file '.png'"
 
 #: application/views/themes/index.php:83
-#, fuzzy
 msgid "Foldername"
 msgstr "Nome della cartella"
 
 #: application/views/themes/index.php:99
-#, fuzzy
 msgid "Please edit"
 msgstr "Per favore, modifica"
 
 #: application/views/themes/index.php:116
-#, fuzzy
 msgid "Add a Theme"
 msgstr "Aggiungi un tema"
 
 #: application/views/timeline/index.php:119
-#, fuzzy
 msgid "Only new in selected year"
 msgstr "Solo nuovo nell'anno selezionato"
 
 #: application/views/timeplotter/index.php:2
-#, fuzzy
 msgid "contacts were plotted"
 msgstr "i contatti sono stati tracciati"
 
 #: application/views/timeplotter/index.php:3
-#, fuzzy
 msgid "Time Distribution"
 msgstr "Distribuzione del Tempo"
 
 #: application/views/timeplotter/index.php:6
-#, fuzzy
 msgid "Callsign(s) worked (max 5)"
 msgstr "Callsign utilizzati (max 5)"
 
 #: application/views/timeplotter/index.php:10
-#, fuzzy
 msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
@@ -14490,22 +14306,18 @@ msgstr ""
 "su una banda selezionata."
 
 #: application/views/update/hamsofnote.php:7
-#, fuzzy
 msgid "Name / Description"
 msgstr "Nome / Descrizione"
 
 #: application/views/update/index.php:8
-#, fuzzy
 msgid "DXCC Lookup Data"
 msgstr "Dati di ricerca DXCC"
 
 #: application/views/update/index.php:12
-#, fuzzy
 msgid "Distance Data"
 msgstr "Dati sulla distanza"
 
 #: application/views/update/index.php:19
-#, fuzzy
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
@@ -14514,37 +14326,30 @@ msgstr ""
 "visualizzare le informazioni sul nominativo."
 
 #: application/views/update/index.php:20
-#, fuzzy
 msgid "This data is provided by"
 msgstr "Questi dati sono forniti da"
 
 #: application/views/update/index.php:24
-#, fuzzy
 msgid "You must install php-xml for this to work."
 msgstr "Devi installare php-xml affinché questo funzioni."
 
 #: application/views/update/index.php:27
-#, fuzzy
 msgid "Check for DXCC Data Updates"
 msgstr "Controlla gli aggiornamenti sui dati DXCC"
 
 #: application/views/update/index.php:28
-#, fuzzy
 msgid "Update DXCC Data"
 msgstr "Aggiorna i dati DXCC"
 
 #: application/views/update/index.php:30
-#, fuzzy
 msgid "Status:"
 msgstr "Stato:"
 
 #: application/views/update/index.php:34
-#, fuzzy
 msgid "Apply DXCC Data to Logbook"
 msgstr "Applica i dati DXCC al registro di bordo"
 
 #: application/views/update/index.php:36
-#, fuzzy
 msgid ""
 "After updating, Wavelog can fill in missing callsign information in the "
 "logbook using the newly-obtained DXCC data.\n"
@@ -14559,22 +14364,18 @@ msgstr ""
 "nel caso in cui siano cambiati."
 
 #: application/views/update/index.php:45
-#, fuzzy
 msgid "Check QSOs missing DXCC data"
 msgstr "Controlla i QSOs mancanti di dati DXCC"
 
 #: application/views/update/index.php:54 application/views/update/index.php:95
-#, fuzzy
 msgid "Re-check all QSOs in logbook"
 msgstr "Ricontrolla tutti i QSOs nel libretto di log"
 
 #: application/views/update/index.php:59
-#, fuzzy
 msgid "Apply Continent Data to Logbook"
 msgstr "Applica i dati del continente al registro di bordo"
 
 #: application/views/update/index.php:61
-#, fuzzy
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
@@ -14583,22 +14384,18 @@ msgstr ""
 "continente QSO per tutti i QSO in Wavelog che mancano di tali informazioni."
 
 #: application/views/update/index.php:68
-#, fuzzy
 msgid "Check QSOs missing continent data"
 msgstr "Controlla le QSOs mancanti di dati sul continente"
 
 #: application/views/update/index.php:80
-#, fuzzy
 msgid "Here you can update QSOs with missing distance information."
 msgstr "Qui puoi aggiornare i QSO con informazioni sulla distanza mancanti."
 
 #: application/views/update/index.php:86
-#, fuzzy
 msgid "Update distance data"
 msgstr "Aggiorna i dati sulla distanza"
 
 #: application/views/update/index.php:89
-#, fuzzy
 msgid ""
 "Use the following button to update the distance information for all your "
 "QSOs. Depending on the number of QSOs this might take some time to execute. "
@@ -14609,42 +14406,34 @@ msgstr ""
 "richiedere del tempo per essere eseguito. Ti preghiamo di avere pazienza."
 
 #: application/views/user/delete.php:5
-#, fuzzy
 msgid "Delete User Account"
 msgstr "Elimina account utente"
 
 #: application/views/user/delete.php:10
-#, fuzzy
 msgid "Are you sure you want to delete the user account"
 msgstr "Sei sicuro di voler eliminare l'account utente?"
 
 #: application/views/user/delete.php:14
-#, fuzzy
 msgid "No, do not delete this user"
 msgstr "No, non eliminare questo utente"
 
 #: application/views/user/delete.php:14
-#, fuzzy
 msgid "Yes, delete this user"
 msgstr "Sì, elimina questo utente"
 
 #: application/views/user/edit.php:6
-#, fuzzy
 msgid "Create Clubstation Account"
 msgstr "Crea un account Clubstation"
 
 #: application/views/user/edit.php:8
-#, fuzzy
 msgid "Create User Account"
 msgstr "Crea account utente"
 
 #: application/views/user/edit.php:11
-#, fuzzy
 msgid "Edit Account"
 msgstr "Modifica Account"
 
 #: application/views/user/edit.php:45
-#, fuzzy
 msgid "General Information"
 msgstr "Informazioni Generali"
 
@@ -14657,22 +14446,18 @@ msgid "Password"
 msgstr "Password"
 
 #: application/views/user/edit.php:74
-#, fuzzy
 msgid "Don't share this password with operators!"
 msgstr "Non condividere questa password con gli operatori!"
 
 #: application/views/user/edit.php:84
-#, fuzzy
 msgid "User Role"
 msgstr "Ruolo dell'utente"
 
 #: application/views/user/edit.php:113
-#, fuzzy
 msgid "Callsign Owner"
 msgstr "Proprietario del chiamante"
 
 #: application/views/user/edit.php:113
-#, fuzzy
 msgid "Personal"
 msgstr "Personale"
 
@@ -14685,32 +14470,26 @@ msgid "Last Name"
 msgstr "Cognome"
 
 #: application/views/user/edit.php:134
-#, fuzzy
 msgid "Ham Radio"
 msgstr "Radioamatori"
 
 #: application/views/user/edit.php:137
-#, fuzzy
 msgid "Special/Club Callsign"
 msgstr "Chiamata Speciale/Club"
 
 #: application/views/user/edit.php:160
-#, fuzzy
 msgid "Wavelog Preferences"
 msgstr "Preferenze di Wavelog"
 
 #: application/views/user/edit.php:171
-#, fuzzy
 msgid "Stylesheet"
 msgstr "Foglio di stile"
 
 #: application/views/user/edit.php:183
-#, fuzzy
 msgid "Wavelog Language"
 msgstr "Lingua Wavelog"
 
 #: application/views/user/edit.php:190
-#, fuzzy
 msgid "Choose Wavelog language."
 msgstr "Scegli la lingua Wavelog."
 
@@ -14719,38 +14498,31 @@ msgid "Timezone"
 msgstr "Fuso orario"
 
 #: application/views/user/edit.php:201
-#, fuzzy
 msgid "Date Format"
 msgstr "Formato della data"
 
 #: application/views/user/edit.php:214
-#, fuzzy
 msgid "Select how you would like dates shown when logged into your account."
 msgstr ""
 "Seleziona come desideri visualizzare le date quando accedi al tuo account."
 
 #: application/views/user/edit.php:218
-#, fuzzy
 msgid "Measurement preference"
 msgstr "Preferenza di misurazione"
 
 #: application/views/user/edit.php:222
-#, fuzzy
 msgid "Kilometers"
 msgstr "Chilometri"
 
 #: application/views/user/edit.php:223
-#, fuzzy
 msgid "Miles"
 msgstr "Miglia"
 
 #: application/views/user/edit.php:224
-#, fuzzy
 msgid "Nautical miles"
 msgstr "Miglia nautiche"
 
 #: application/views/user/edit.php:226
-#, fuzzy
 msgid "Choose which unit distances will be shown in"
 msgstr "Scegli quali unità di distanza devono essere mostrate in"
 
@@ -14779,17 +14551,14 @@ msgid "Choose column 5 (only for logbook)"
 msgstr "Scegli colonna 5 (solo per il logbook)"
 
 #: application/views/user/edit.php:361
-#, fuzzy
 msgid "QSO Logging Options"
 msgstr "Opzioni di registrazione QSO"
 
 #: application/views/user/edit.php:364
-#, fuzzy
 msgid "Log End Times for QSOs Separately"
 msgstr "Registra i tempi di fine per i QSO separatamente"
 
 #: application/views/user/edit.php:370
-#, fuzzy
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
@@ -14799,7 +14568,6 @@ msgstr ""
 "di inizio."
 
 #: application/views/user/edit.php:375
-#, fuzzy
 msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
@@ -14808,7 +14576,6 @@ msgstr ""
 "nella sezione log QSO."
 
 #: application/views/user/edit.php:381
-#, fuzzy
 msgid ""
 "Please set your qrz.com/hamqth.com credentials in the general config file."
 msgstr ""
@@ -14816,25 +14583,21 @@ msgstr ""
 "configurazione generale."
 
 #: application/views/user/edit.php:386
-#, fuzzy
 msgid "Location auto lookup."
 msgstr "Ricerca automatica della posizione."
 
 #: application/views/user/edit.php:392
-#, fuzzy
 msgid "If set, gridsquare is fetched based on location name."
 msgstr ""
 "Se impostato, il quadrato della griglia viene recuperato in base al nome "
 "della posizione."
 
 #: application/views/user/edit.php:396
-#, fuzzy
 msgid "SOTA auto lookup gridsquare and name for summit."
 msgstr "Ricerca automatica SOTA della griglia e del nome per la cima."
 
 #: application/views/user/edit.php:402 application/views/user/edit.php:412
 #: application/views/user/edit.php:422
-#, fuzzy
 msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
@@ -14843,37 +14606,30 @@ msgstr ""
 "dall'API e compilati nella posizione e nel localizzatore."
 
 #: application/views/user/edit.php:406
-#, fuzzy
 msgid "WWFF auto lookup gridsquare and name for reference."
 msgstr "Ricerca automatica della griglia e del nome WWFF per riferimento."
 
 #: application/views/user/edit.php:416
-#, fuzzy
 msgid "POTA auto lookup gridsquare and name for park."
 msgstr "POTA auto cerca quadrato di griglia e nome per il parco."
 
 #: application/views/user/edit.php:425
-#, fuzzy
 msgid "Number of previous contacts displayed on QSO page."
 msgstr "Numero di contatti precedenti visualizzati nella pagina QSO."
 
 #: application/views/user/edit.php:442
-#, fuzzy
 msgid "Menu Options"
 msgstr "Opzioni di menu"
 
 #: application/views/user/edit.php:445
-#, fuzzy
 msgid "Show notes in the main menu."
 msgstr "Mostra note nel menu principale."
 
 #: application/views/user/edit.php:456
-#, fuzzy
 msgid "Quicklog Field"
 msgstr "Campo Quicklog"
 
 #: application/views/user/edit.php:462
-#, fuzzy
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
@@ -14882,17 +14638,14 @@ msgstr ""
 "ricerca nell'intestazione."
 
 #: application/views/user/edit.php:466
-#, fuzzy
 msgid "Quicklog - Action on press Enter"
 msgstr "Quicklog - Azione al rilascio del tasto Invio"
 
 #: application/views/user/edit.php:470
-#, fuzzy
 msgid "Log Callsign"
 msgstr "Chiamata di log"
 
 #: application/views/user/edit.php:472
-#, fuzzy
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
 msgstr ""
@@ -14900,125 +14653,101 @@ msgstr ""
 "quicklog?"
 
 #: application/views/user/edit.php:478
-#, fuzzy
 msgid "Station Locations Quickswitch"
 msgstr "Posizioni delle stazioni Quickswitch"
 
 #: application/views/user/edit.php:483
-#, fuzzy
 msgid "Show the Station Locations Quickswitch in the main menu"
 msgstr "Mostra le posizioni delle stazioni Quickswitch nel menu principale"
 
 #: application/views/user/edit.php:487
-#, fuzzy
 msgid "UTC Time in Menu"
 msgstr "Tempo UTC nel menu"
 
 #: application/views/user/edit.php:492
-#, fuzzy
 msgid "Show the current UTC Time in the menu"
 msgstr "Mostra l'ora UTC attuale nel menu"
 
 #: application/views/user/edit.php:503
-#, fuzzy
 msgid "Map Settings"
 msgstr "Impostazioni della mappa"
 
 #: application/views/user/edit.php:510
-#, fuzzy
 msgid "Icon"
 msgstr "Icona"
 
 #: application/views/user/edit.php:513
-#, fuzzy
 msgid "Not display"
 msgstr "Non visualizzare"
 
 #: application/views/user/edit.php:517
-#, fuzzy
 msgid "Not displayed"
 msgstr "Non visualizzato"
 
 #: application/views/user/edit.php:526
-#, fuzzy
 msgid "QSO (by default)"
 msgstr "QSO (per impostazione predefinita)"
 
 #: application/views/user/edit.php:545
-#, fuzzy
 msgid "QSO (confirmed)"
 msgstr "QSO (confermato)"
 
 #: application/views/user/edit.php:546
-#, fuzzy
 msgid "(If 'No', displayed as 'QSO (by default))'"
 msgstr "(Se 'No', visualizzato come 'QSO (per impostazione predefinita))'"
 
 #: application/views/user/edit.php:565
-#, fuzzy
 msgid "Show Locator"
 msgstr "Mostra Localizzatore"
 
 #: application/views/user/edit.php:584
-#, fuzzy
 msgid "Previous QSL Type"
 msgstr "Tipo di QSL precedente"
 
 #: application/views/user/edit.php:588
-#, fuzzy
 msgid "Select the type of QSL to show in the previous QSOs section."
 msgstr ""
 "Seleziona il tipo di QSL da mostrare nella sezione delle precedenti QSOs."
 
 #: application/views/user/edit.php:604
-#, fuzzy
 msgid "Dashboard Settings"
 msgstr "Impostazioni della Dashboard"
 
 #: application/views/user/edit.php:608
-#, fuzzy
 msgid "Select the number of latest QSOs to be displayed on dashboard."
 msgstr "Seleziona il numero di ultimi QSOs da visualizzare nella dashboard."
 
 #: application/views/user/edit.php:615
-#, fuzzy
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
 msgstr "Scegli il numero di ultimi QSO da visualizzare nella dashboard."
 
 #: application/views/user/edit.php:619
-#, fuzzy
 msgid "Show Dashboard Map"
 msgstr "Mostra la mappa del cruscotto"
 
 #: application/views/user/edit.php:623
-#, fuzzy
 msgid "Map at right"
 msgstr "Mappa a destra"
 
 #: application/views/user/edit.php:626
-#, fuzzy
 msgid "Choose whether to show map on dashboard or not"
 msgstr "Scegli se mostrare la mappa sulla dashboard o meno"
 
 #: application/views/user/edit.php:630
-#, fuzzy
 msgid "Dashboard Notification Banner"
 msgstr "Banner di notifica della dashboard"
 
 #: application/views/user/edit.php:636
-#, fuzzy
 msgid "This allows to disable the global notification banner on the dashboard."
 msgstr ""
 "Questo consente di disabilitare il banner di notifica globale nella "
 "dashboard."
 
 #: application/views/user/edit.php:644
-#, fuzzy
 msgid "Show Reference Fields on QSO Tab"
 msgstr "Mostra i campi di riferimento nella scheda QSO"
 
 #: application/views/user/edit.php:648
-#, fuzzy
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
@@ -15026,17 +14755,14 @@ msgstr ""
 "scheda Generale."
 
 #: application/views/user/edit.php:686
-#, fuzzy
 msgid "Online QSL request (OQRS) settings"
 msgstr "Impostazioni della richiesta QSL online (OQRS)"
 
 #: application/views/user/edit.php:690
-#, fuzzy
 msgid "Global text"
 msgstr "Testo globale"
 
 #: application/views/user/edit.php:692
-#, fuzzy
 msgid ""
 "This text is an optional text that can be displayed on top of the OQRS page."
 msgstr ""
@@ -15044,24 +14770,20 @@ msgstr ""
 "pagina OQRS."
 
 #: application/views/user/edit.php:695
-#, fuzzy
 msgid "Grouped search"
 msgstr "Ricerca raggruppata"
 
 #: application/views/user/edit.php:697 application/views/user/edit.php:706
 #: application/views/user/edit.php:715 application/views/user/edit.php:724
-#, fuzzy
 msgid "Off"
 msgstr "Spento"
 
 #: application/views/user/edit.php:698 application/views/user/edit.php:707
 #: application/views/user/edit.php:716 application/views/user/edit.php:725
-#, fuzzy
 msgid "On"
 msgstr "Acceso"
 
 #: application/views/user/edit.php:700
-#, fuzzy
 msgid ""
 "When this is on, all station locations with OQRS active, will be searched at "
 "once."
@@ -15070,14 +14792,12 @@ msgstr ""
 "verranno cercate contemporaneamente."
 
 #: application/views/user/edit.php:704
-#, fuzzy
 msgid "Show station location name in grouped search results"
 msgstr ""
 "Mostra il nome della posizione della stazione nei risultati di ricerca "
 "raggruppati"
 
 #: application/views/user/edit.php:709
-#, fuzzy
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
@@ -15086,12 +14806,10 @@ msgstr ""
 "della stazione deve essere mostrato nella tabella dei risultati."
 
 #: application/views/user/edit.php:713
-#, fuzzy
 msgid "Automatic OQRS matching"
 msgstr "Corrispondenza OQRS automatica"
 
 #: application/views/user/edit.php:718
-#, fuzzy
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
@@ -15101,79 +14819,64 @@ msgstr ""
 "modo automatico."
 
 #: application/views/user/edit.php:722
-#, fuzzy
 msgid "Automatic OQRS matching for direct requests"
 msgstr "Abbinamento OQRS automatico per richieste dirette"
 
 #: application/views/user/edit.php:727
-#, fuzzy
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
 "Se questo è attivo, il matching automatico OQRS per la richiesta diretta "
 "avverrà."
 
 #: application/views/user/edit.php:743
-#, fuzzy
 msgid "Default Values"
 msgstr "Valori predefiniti"
 
 #: application/views/user/edit.php:751
-#, fuzzy
 msgid "Settings for Default Band and Confirmation"
 msgstr "Impostazioni per la banda predefinita e conferma"
 
 #: application/views/user/edit.php:754
-#, fuzzy
 msgid "Default Band"
 msgstr "Default Band"
 
 #: application/views/user/edit.php:764
-#, fuzzy
 msgid "Default QSL-Methods"
 msgstr "Metodi QSL predefiniti"
 
 #: application/views/user/edit.php:821
-#, fuzzy
 msgid "Third Party Services"
 msgstr "Servizi di terze parti"
 
 #: application/views/user/edit.php:832
-#, fuzzy
 msgid "Logbook of The World (LoTW) Username"
 msgstr "Nome utente del Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:838
-#, fuzzy
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Password del Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:842
-#, fuzzy
 msgid "Test Login"
 msgstr "Test di accesso"
 
 #: application/views/user/edit.php:860
-#, fuzzy
 msgid "eQSL.cc Username"
 msgstr "Nome utente eQSL.cc"
 
 #: application/views/user/edit.php:866
-#, fuzzy
 msgid "eQSL.cc Password"
 msgstr "Password eQSL.cc"
 
 #: application/views/user/edit.php:883
-#, fuzzy
 msgid "Club Log"
 msgstr "Club Log"
 
 #: application/views/user/edit.php:886
-#, fuzzy
 msgid "Club Log Email/Callsign"
 msgstr "Email/Callsign del Club"
 
 #: application/views/user/edit.php:892
-#, fuzzy
 msgid "Club Log Password"
 msgstr "Password del Club Log"
 
@@ -15188,17 +14891,14 @@ msgstr ""
 "%le impostazioni di Clublog%s per farlo."
 
 #: application/views/user/edit.php:914
-#, fuzzy
 msgid "Widgets"
 msgstr "Widget"
 
 #: application/views/user/edit.php:922
-#, fuzzy
 msgid "On-Air widget"
 msgstr "Widget On-Air"
 
 #: application/views/user/edit.php:932
-#, fuzzy
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
@@ -15212,12 +14912,10 @@ msgid "When enabled, widget will be available at %s."
 msgstr "Quando abilitato, il widget sarà disponibile su %s."
 
 #: application/views/user/edit.php:941
-#, fuzzy
 msgid "Display \"Last seen\" time"
 msgstr "Mostra il tempo di \"Ultima visualizzazione\""
 
 #: application/views/user/edit.php:947
-#, fuzzy
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
@@ -15226,17 +14924,14 @@ msgstr ""
 "visualizzato nel widget o meno."
 
 #: application/views/user/edit.php:950
-#, fuzzy
 msgid "Display only most recently updated radio"
 msgstr "Mostra solo la radio aggiornata più di recente"
 
 #: application/views/user/edit.php:954
-#, fuzzy
 msgid "No, show all radios"
 msgstr "No, mostra tutte le radio"
 
 #: application/views/user/edit.php:956
-#, fuzzy
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -15249,17 +14944,14 @@ msgstr ""
 "impostazione non ha effetto."
 
 #: application/views/user/edit.php:966
-#, fuzzy
 msgid "QSOs widget"
 msgstr "Widget QSOs"
 
 #: application/views/user/edit.php:969
-#, fuzzy
 msgid "Display exact QSO time"
 msgstr "Mostra l'ora esatta del QSO"
 
 #: application/views/user/edit.php:975
-#, fuzzy
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
@@ -15268,27 +14960,22 @@ msgstr ""
 "visualizzato nel widget QSO oppure no."
 
 #: application/views/user/edit.php:988
-#, fuzzy
 msgid "Miscellaneous"
 msgstr "Varie"
 
 #: application/views/user/edit.php:996
-#, fuzzy
 msgid "AMSAT Status Upload"
 msgstr "Caricamento dello stato AMSAT"
 
 #: application/views/user/edit.php:999
-#, fuzzy
 msgid "Upload status of SAT QSOs to"
 msgstr "Carica lo stato dei QSOs SAT su"
 
 #: application/views/user/edit.php:1013
-#, fuzzy
 msgid "Mastodonserver"
 msgstr "Mastodonserver"
 
 #: application/views/user/edit.php:1016
-#, fuzzy
 msgid "URL of Mastodonserver"
 msgstr "URL del server Mastodon"
 
@@ -15298,17 +14985,14 @@ msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "URL principale del tuo server Mastodon, ad esempio %s"
 
 #: application/views/user/edit.php:1027
-#, fuzzy
 msgid "Experimental"
 msgstr "Sperimentale"
 
 #: application/views/user/edit.php:1027
-#, fuzzy
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
 #: application/views/user/edit.php:1030
-#, fuzzy
 msgid "Winkeyer Features Enabled"
 msgstr "Caratteristiche Winkeyer abilitate"
 
@@ -15322,12 +15006,10 @@ msgstr ""
 "wiki su %s prima di abilitare."
 
 #: application/views/user/edit.php:1047
-#, fuzzy
 msgid "Hams.at"
 msgstr "Hams.at"
 
 #: application/views/user/edit.php:1050
-#, fuzzy
 msgid "Private Feed Key"
 msgstr "Chiave di alimentazione privata"
 
@@ -15338,12 +15020,10 @@ msgid "See your profile at %s."
 msgstr "Guarda il tuo profilo su %s."
 
 #: application/views/user/edit.php:1055
-#, fuzzy
 msgid "Show Workable Passes Only"
 msgstr "Mostra solo passaggi funzionanti"
 
 #: application/views/user/edit.php:1061
-#, fuzzy
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -15353,33 +15033,27 @@ msgstr ""
 "sia impostata."
 
 #: application/views/user/edit.php:1073
-#, fuzzy
 msgid "Save Account"
 msgstr "Salva Account"
 
 #: application/views/user/forgot_password.php:33
-#, fuzzy
 msgid "Forgot Password?"
 msgstr "Hai dimenticato la password?"
 
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
-#, fuzzy
 msgid "You can reset your password here."
 msgstr "Puoi reimpostare la tua password qui."
 
 #: application/views/user/index.php:11
-#, fuzzy
 msgid "User List"
 msgstr "Elenco utenti"
 
 #: application/views/user/index.php:14
-#, fuzzy
 msgid "Wavelog needs at least one user configured in order to operate."
 msgstr "Wavelog ha bisogno di almeno un utente configurato per funzionare."
 
 #: application/views/user/index.php:15
-#, fuzzy
 msgid ""
 "Users can be assigned roles which give them different permissions, such as "
 "adding QSOs to the logbook and accessing Wavelog APIs."
@@ -15388,7 +15062,6 @@ msgstr ""
 "permessi, come aggiungere QSO al registro e accedere alle API di Wavelog."
 
 #: application/views/user/index.php:16
-#, fuzzy
 msgid ""
 "The currently logged-in user is displayed at the upper-right of each page."
 msgstr ""
@@ -15396,7 +15069,6 @@ msgstr ""
 "ogni pagina."
 
 #: application/views/user/index.php:17
-#, fuzzy
 msgid ""
 "With the password reset button, you can send a user an email containing a "
 "link to reset their password. To achieve this, ensure that the email "
@@ -15408,70 +15080,57 @@ msgstr ""
 "correttamente."
 
 #: application/views/user/index.php:19
-#, fuzzy
 msgid "Create user"
 msgstr "Crea utente"
 
 #: application/views/user/index.php:31 application/views/user/index.php:158
-#, fuzzy
 msgid "Last seen"
 msgstr "Ultima volta vista"
 
 #: application/views/user/index.php:69 application/views/user/index.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:31
-#, fuzzy
 msgid "Never"
 msgstr "Mai"
 
 #: application/views/user/index.php:74
-#, fuzzy
 msgid "Account locked"
 msgstr "Account bloccato"
 
 #: application/views/user/index.php:74
-#, fuzzy
 msgid "Account was locked due to too many login attempts."
 msgstr "L'account è stato bloccato a causa di troppi tentativi di accesso."
 
 #: application/views/user/index.php:76 application/views/user/index.php:188
-#, fuzzy
 msgid "Locations"
 msgstr "Località"
 
 #: application/views/user/index.php:78 application/views/user/index.php:190
-#, fuzzy
 msgid "Logbooks"
 msgstr "Diari di bordo"
 
 #: application/views/user/index.php:81 application/views/user/index.php:193
-#, fuzzy
 msgid "Last QSO:"
 msgstr "Ultimo QSO:"
 
 #: application/views/user/index.php:85 application/views/user/index.php:195
-#, fuzzy
 msgid "No QSOs in Log"
 msgstr "Nessun QSO nel log"
 
 #: application/views/user/index.php:103 application/views/user/index.php:209
 #: application/views/user/modals/admin_impersonate_modal.php:43
-#, fuzzy
 msgid "Impersonate"
 msgstr "Impersonare"
 
 #: application/views/user/index.php:110 application/views/user/index.php:219
 #: application/views/user/modals/more_actions_modal.php:6
-#, fuzzy
 msgid "Other Actions"
 msgstr "Altre azioni"
 
 #: application/views/user/index.php:138
-#, fuzzy
 msgid "Clubstation List"
 msgstr "Elenco delle Clubstation"
 
 #: application/views/user/index.php:141
-#, fuzzy
 msgid ""
 "Clubstations in Wavelog are a unique way for clubs and special callsign "
 "events to handle multiple operators. A clubstation is basically a normal "
@@ -15483,32 +15142,26 @@ msgstr ""
 "e alcune restrizioni."
 
 #: application/views/user/index.php:143
-#, fuzzy
 msgid "Create Clubstation"
 msgstr "Crea Clubstation"
 
 #: application/views/user/index.php:156
-#, fuzzy
 msgid "Last Operator"
 msgstr "Ultimo Operatore"
 
 #: application/views/user/index.php:243
-#, fuzzy
 msgid "No Clubstations configures yet."
 msgstr "Nessuna configurazione di Clubstations ancora."
 
 #: application/views/user/login.php:36
-#, fuzzy
 msgid "MAINTENANCE MODE"
 msgstr "MODALITÀ MANUTENZIONE"
 
 #: application/views/user/login.php:56
-#, fuzzy
 msgid "Welcome to the Demo of Wavelog"
 msgstr "Benvenuti alla demo di Wavelog"
 
 #: application/views/user/login.php:57
-#, fuzzy
 msgid "This demo will be reset every night at 0200z."
 msgstr "Questa demo sarà ripristinata ogni notte alle 0200z."
 
@@ -16018,18 +15671,6 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
-msgstr ""
-
-#: application/views/adif/import.php:108
-msgid "Basic Settings"
-msgstr ""
-
-#: application/views/adif/import.php:153
-msgid "Mark QSOs as uploaded"
-msgstr ""
-
-#: application/views/adif/import.php:260
-msgid "Export options"
 msgstr ""
 
 #~ msgid "Sig Info"
