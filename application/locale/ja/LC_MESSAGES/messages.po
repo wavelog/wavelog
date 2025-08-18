@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-18 05:25+0000\n"
+"PO-Revision-Date: 2025-08-18 11:49+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/ja/>\n"
@@ -6891,21 +6891,21 @@ msgstr "#QSO"
 #: application/views/cfd/index.php:7
 #, php-format
 msgid "Export of CFD-File for DARC-Toplist (See %s)"
-msgstr ""
+msgstr "CFDファイルのDARC-Toplistへのエクスポート（%sを参照）"
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
-msgstr ""
+msgstr "Clubstationに切り替える"
 
 #: application/views/club/clubswitch_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch to %s?"
-msgstr ""
+msgstr "%s に切り替えてもよろしいですか？"
 
 #: application/views/club/clubswitch_modal.php:14
 #: application/views/user/modals/stop_impersonate_modal.php:13
 msgid "Yes, switch over!"
-msgstr ""
+msgstr "はい、切り替えます！"
 
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:205
@@ -6917,151 +6917,153 @@ msgstr ""
 #: application/views/user/modals/admin_impersonate_modal.php:45
 #: application/views/user/modals/stop_impersonate_modal.php:14
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: application/views/club/permissions.php:3
 #, php-format
 msgid "Club Permissions for %s"
-msgstr ""
+msgstr "%s に対するクラブの権限"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
-msgstr ""
+msgstr "戻る"
 
 #: application/views/club/permissions.php:13
 msgid ""
 "In order for users to log QSOs with this club/special callsign, they need "
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
-msgstr ""
+msgstr "このクラブ/特別コールサインでQSOを記録するには、適切な権限が必要です。以下の"
+"表にユーザーを追加し、適切な権限を設定してください。"
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
-msgstr ""
+msgstr "利用可能な権限を確認する"
 
 #: application/views/club/permissions.php:19
 msgid "Available Permissions"
-msgstr ""
+msgstr "利用可能な権限"
 
 #: application/views/club/permissions.php:26
 #: application/views/eqsl/download.php:45
 msgid "Action"
-msgstr ""
+msgstr "アクション"
 
 #: application/views/club/permissions.php:33
 msgid "Log QSOs via Web GUI (live and post)"
-msgstr ""
+msgstr "Web GUI 経由で QSO を記録 (ライブおよび投稿)"
 
 #: application/views/club/permissions.php:41
 msgid "Log QSOs via API"
-msgstr ""
+msgstr "API経由でQSOを記録する"
 
 #: application/views/club/permissions.php:49
 msgid "Edit a QSO"
-msgstr ""
+msgstr "QSOを編集する"
 
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
 msgid "QSO was done by the operator"
-msgstr ""
+msgstr "QSOはオペレーターによって行われた"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
 msgid "QSO was done by another operator"
-msgstr ""
+msgstr "QSOは別のオペレータによって行われた"
 
 #: application/views/club/permissions.php:67
 msgid "Delete a QSO"
-msgstr ""
+msgstr "QSOを削除する"
 
 #: application/views/club/permissions.php:85
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
-msgstr ""
+msgstr "ステーション設定の管理（ログブックと場所の編集/作成）"
 
 #: application/views/club/permissions.php:93
 msgid "Manage Third-Party services"
-msgstr ""
+msgstr "サードパーティのサービスを管理する"
 
 #: application/views/club/permissions.php:101
 msgid "Import QSO per ADIF"
-msgstr ""
+msgstr "ADIFのQSO数"
 
 #: application/views/club/permissions.php:110
 msgid "Export QSO per ADIF"
-msgstr ""
+msgstr "ADIF 向け QSO エクスポート"
 
 #: application/views/club/permissions.php:118
 msgid "User Management"
-msgstr ""
+msgstr "ユーザー管理"
 
 #: application/views/club/permissions.php:123
 msgid "Can create new users in Wavelog"
-msgstr ""
+msgstr "Wavelogで新しいユーザーを作成できます"
 
 #: application/views/club/permissions.php:128
 msgid "Can edit other users in Wavelog"
-msgstr ""
+msgstr "Wavelogで他のユーザーを編集できます"
 
 #: application/views/club/permissions.php:133
 msgid "Can edit Club permissions and add/remove users"
-msgstr ""
+msgstr "クラブの権限を編集し、ユーザーを追加/削除できます"
 
 #: application/views/club/permissions.php:151
 msgid "Users with Permissions"
-msgstr ""
+msgstr "権限を持つユーザー"
 
 #: application/views/club/permissions.php:161
 msgid "Add new User to Club"
-msgstr ""
+msgstr "クラブに新しいユーザーを追加する"
 
 #: application/views/club/permissions.php:167
 #, php-format
 msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
-msgstr ""
+msgstr "%s Clubstation にユーザーを追加するには、そのユーザーが既にこの Wavelog "
+"サーバーに存在している必要があります。"
 
 #: application/views/club/permissions.php:168
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
-msgstr ""
+msgstr "存在しない場合は、Wavelog 管理者にアカウントの作成を依頼してください。"
 
 #: application/views/club/permissions.php:169
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
-msgstr ""
+msgstr "コールサインまたは名/姓でユーザーを検索し、権限レベルを選択します。"
 
 #: application/views/club/permissions.php:175
 msgid "User (Callsign or Name)"
-msgstr ""
+msgstr "ユーザー（コールサインまたは名前）"
 
 #: application/views/club/permissions.php:176
 #: application/views/club/permissions.php:225
 #: application/views/club/permissions.php:269
 msgid "Permission"
-msgstr ""
+msgstr "許可"
 
 #: application/views/club/permissions.php:183
 msgid "Type at least 2 characters."
-msgstr ""
+msgstr "少なくとも 2 文字を入力してください。"
 
 #: application/views/club/permissions.php:194
 msgid "Notify the user via email"
-msgstr ""
+msgstr "ユーザーにメールで通知する"
 
 #: application/views/club/permissions.php:213
 msgid "No users currently have access to this club station."
-msgstr ""
+msgstr "現在、このクラブ ステーションにアクセスできるユーザーはいません。"
 
 #: application/views/club/permissions.php:220
 msgid "Firstname"
-msgstr ""
+msgstr "ファーストネーム"
 
 #: application/views/club/permissions.php:221
 msgid "Lastname"
-msgstr ""
+msgstr "姓"
 
 #: application/views/club/permissions.php:223
 #: application/views/user/edit.php:56 application/views/user/index.php:152
@@ -7072,47 +7074,47 @@ msgstr "ユーザー名"
 
 #: application/views/club/permissions.php:224
 msgid "E-Mail"
-msgstr ""
+msgstr "Eメール"
 
 #: application/views/club/permissions.php:244
 msgid "Wavelog Administrator"
-msgstr ""
+msgstr "Wavelog管理者"
 
 #: application/views/club/permissions.php:261
 msgid "You can modify the users permission level for this Clubstation."
-msgstr ""
+msgstr "この Clubstation のユーザーの権限レベルを変更できます。"
 
 #: application/views/club/permissions.php:268
 msgid "User Callsign"
-msgstr ""
+msgstr "ユーザーのコールサイン"
 
 #: application/views/club/permissions.php:286
 msgid "Notify the user via email about the change"
-msgstr ""
+msgstr "変更についてユーザーにメールで通知する"
 
 #: application/views/club/permissions.php:309
 msgid "Delete User"
-msgstr ""
+msgstr "ユーザーを削除"
 
 #: application/views/club/permissions.php:316
 msgid "Are you sure you want to delete this user from the club?"
-msgstr ""
+msgstr "このユーザーをクラブから削除してもよろしいですか?"
 
 #: application/views/club/permissions.php:320
 #, php-format
 msgid "Callsign: %s"
-msgstr ""
+msgstr "コールサイン: %s"
 
 #: application/views/club/permissions.php:321
 #, php-format
 msgid "Role: %s"
-msgstr ""
+msgstr "役割： %s"
 
 #: application/views/clublog/export.php:10
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
 msgid "Upload Logbook"
-msgstr ""
+msgstr "ログブックをアップロード"
 
 #: application/views/clublog/export.php:14
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
@@ -7120,23 +7122,25 @@ msgstr ""
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSOs"
-msgstr ""
+msgstr "QSOをダウンロード"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
-msgstr ""
+msgstr "Clublog への次回の自動アップロードは次の時間に行われます: "
 
 #: application/views/clublog/export.php:25
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "Clublog logbook."
-msgstr ""
+msgstr "ここでは、これまで Clublog ログブックにアップロードされていないすべての QSO "
+"を見ることができます。"
 
 #: application/views/clublog/export.php:26
 msgid ""
 "You need to set a username and password in your user account. You will also "
 "need to enable upload for each station profile ."
-msgstr ""
+msgstr "ユーザーアカウントにユーザー名とパスワードを設定する必要があります。また、各"
+"ステーションプロファイルのアップロードを有効にする必要があります。"
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
@@ -7147,45 +7151,46 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:14
 #: application/views/webadif/export.php:41
 msgid "Profile name"
-msgstr ""
+msgstr "プロフィール名"
 
 #: application/views/clublog/export.php:35
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:91
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
 msgid "Station callsign"
-msgstr ""
+msgstr "局のコールサイン"
 
 #: application/views/clublog/export.php:36
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
 msgid "Edited QSOs not uploaded"
-msgstr ""
+msgstr "編集されたQSOはアップロードされません"
 
 #: application/views/clublog/export.php:37
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:43
 msgid "Total QSOs not uploaded"
-msgstr ""
+msgstr "アップロードされていないQSOの合計"
 
 #: application/views/clublog/export.php:38
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
 #: application/views/webadif/export.php:44
 msgid "Total QSOs uploaded"
-msgstr ""
+msgstr "アップロードされたQSOの合計"
 
 #: application/views/clublog/export.php:69
 msgid "The next automatic Download from Clublog-QSLs will happen at: "
-msgstr ""
+msgstr "Clublog-QSL からの次回の自動ダウンロードは次の時間に行われます: "
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
 "If no startdate is given then all QSOs after last confirmation will be "
 "downloaded/updated!"
-msgstr ""
+msgstr "開始日が指定されていない場合は、最終確認後のすべての QSO "
+"がダウンロード/更新されます！"
 
 #: application/views/clublog/export.php:78
 msgid "Download from Clublog"
-msgstr ""
+msgstr "Clublogからダウンロード"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
