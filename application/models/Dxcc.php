@@ -132,7 +132,7 @@ class DXCC extends CI_Model {
 
 	private function cf_type($postdata,$qsl,$lotw,$eqsl,$qrz,$clublog) {
 		$string='';
-		if ((($qsl ?? 0)>0) && (($postdata['qrz'] ?? '') != '')) { $string.='Q'; }
+		if ((($qsl ?? 0)>0) && (($postdata['qsl'] ?? '') != '')) { $string.='Q'; }
 		if ((($lotw ?? 0)>0) && (($postdata['lotw'] ?? '') != '')) { $string.='L'; }
 		if ((($eqsl ?? 0)>0) && (($postdata['eqsl'] ?? '') != '')) { $string.='E'; }
 		if ((($qrz ?? 0)>0) && (($postdata['qrz'] ?? '') != '')) { $string.='Z'; }
