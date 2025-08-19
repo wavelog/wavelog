@@ -143,8 +143,6 @@
 										</div>
 								<?php } ?>
 								</div>
-								<button type="button" class="btn mb-2 btn-sm btn-success" onclick="toggleAll(this)"><?= __("Toggle all checkboxes") ?></button>
-
 							</div>
 						</div>
 
