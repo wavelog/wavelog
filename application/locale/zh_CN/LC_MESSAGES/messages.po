@@ -20,11 +20,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-19 13:34+0000\n"
-"PO-Revision-Date: 2025-08-18 18:00+0000\n"
+"POT-Creation-Date: 2025-08-18 18:00+0000\n"
+"PO-Revision-Date: 2025-08-19 06:53+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1718,7 +1718,7 @@ msgstr "操作员"
 #: application/controllers/Logbook.php:1336
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:28
-#: application/views/awards/dxcc/index.php:248
+#: application/views/awards/dxcc/index.php:241
 #: application/views/awards/wae/index.php:174
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:29
 #: application/views/dxatlas/index.php:65
@@ -1740,6 +1740,7 @@ msgstr "操作员"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:678
+#: application/views/awards/dxcc/index.php:248
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -3145,96 +3146,117 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
+#: application/models/Logbook_model.php:1289
 #: application/models/Logbook_model.php:1291
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
+#: application/models/Logbook_model.php:1294
 #: application/models/Logbook_model.php:1296
 msgid "No Call given"
 msgstr "未提供呼号"
 
+#: application/models/Logbook_model.php:1364
+#: application/models/Logbook_model.php:1538
 #: application/models/Logbook_model.php:1366
 #: application/models/Logbook_model.php:1540
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
+#: application/models/Logbook_model.php:3985
 #: application/models/Logbook_model.php:3987
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
+#: application/models/Logbook_model.php:3986
 #: application/models/Logbook_model.php:3988
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
+#: application/models/Logbook_model.php:3998
 #: application/models/Logbook_model.php:4000
 msgid "QSO on"
 msgstr "QSO 时间"
 
+#: application/models/Logbook_model.php:3998
 #: application/models/Logbook_model.php:4000
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，未导入"
 
+#: application/models/Logbook_model.php:4297
 #: application/models/Logbook_model.php:4299
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:4308
 #: application/models/Logbook_model.php:4310
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:4369
 #: application/models/Logbook_model.php:4371
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
+#: application/models/Logbook_model.php:4389
 #: application/models/Logbook_model.php:4391
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
+#: application/models/Logbook_model.php:4410
 #: application/models/Logbook_model.php:4412
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4704
+#: application/models/Logbook_model.php:4702
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4704
 msgid "Duplicate for"
 msgstr "内容重复"
 
+#: application/models/Logbook_model.php:4763
 #: application/models/Logbook_model.php:4765
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
+#: application/models/Logbook_model.php:4769
 #: application/models/Logbook_model.php:4771
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
+#: application/models/Logbook_model.php:4774
 #: application/models/Logbook_model.php:4776
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
+#: application/models/Logbook_model.php:4777
 #: application/models/Logbook_model.php:4779
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
+#: application/models/Logbook_model.php:4780
 #: application/models/Logbook_model.php:4782
 msgid "confirmation pending"
 msgstr "等待确认"
 
+#: application/models/Logbook_model.php:4783
 #: application/models/Logbook_model.php:4785
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4786
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4788
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5626
+#: application/models/Logbook_model.php:5624
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3245,6 +3267,7 @@ msgstr "未知"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5626
 msgid "Bearing"
 msgstr "方位角"
 
@@ -3926,7 +3949,7 @@ msgstr "最低数量"
 #: application/views/awards/counties/index.php:46
 #: application/views/awards/cq/index.php:198
 #: application/views/awards/dok/index.php:196
-#: application/views/awards/dxcc/index.php:335
+#: application/views/awards/dxcc/index.php:328
 #: application/views/awards/helvetia/index.php:200
 #: application/views/awards/iota/index.php:299
 #: application/views/awards/itu/index.php:198
@@ -3949,6 +3972,7 @@ msgstr "最低数量"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
+#: application/views/awards/dxcc/index.php:335
 msgid "Nothing found!"
 msgstr "未找到！"
 
@@ -4241,7 +4265,7 @@ msgstr "输入导入 QSO 的操作员呼号。留空以使用 ADIF 文件中的�
 
 #: application/views/adif/import.php:108
 msgid "Basic Settings"
-msgstr ""
+msgstr "基础设置"
 
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
@@ -4286,43 +4310,42 @@ msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr "在导入时始终使用登录账户的呼号作为操作员呼号"
 
-#: application/views/adif/import.php:151
-msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
-msgstr ""
+#: application/views/adif/import.php:153
+msgid "Mark QSOs as uploaded"
+msgstr "标记 QSO 为已上传"
 
-#: application/views/adif/import.php:158
+#: application/views/adif/import.php:160 application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "标记导入的 QSO 为已上传至 LoTW"
 
+#: application/views/adif/import.php:162 application/views/adif/import.php:170
+#: application/views/adif/import.php:180 application/views/adif/import.php:188
+#: application/views/adif/import.php:198 application/views/adif/import.php:206
 #: application/views/adif/import.php:160 application/views/adif/import.php:168
 #: application/views/adif/import.php:178 application/views/adif/import.php:186
 #: application/views/adif/import.php:196 application/views/adif/import.php:204
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "如果导入的 ADIF 文件不包含此信息，选择此项。"
 
-#: application/views/adif/import.php:166
+#: application/views/adif/import.php:168 application/views/adif/import.php:166
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "标记导入的 QSO 为已上传至 eQSL"
 
-#: application/views/adif/import.php:176
+#: application/views/adif/import.php:178 application/views/adif/import.php:176
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "标记导入的 QSO 为已上传至 HRDLog Logbook"
 
-#: application/views/adif/import.php:184
+#: application/views/adif/import.php:186 application/views/adif/import.php:184
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "标记导入的 QSO 为已上传至 QRZ Logbook"
 
-#: application/views/adif/import.php:194
+#: application/views/adif/import.php:196 application/views/adif/import.php:194
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "标记导入的 QSO 为已上传至 Clublog Logbook"
 
-#: application/views/adif/import.php:202
+#: application/views/adif/import.php:204 application/views/adif/import.php:202
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "标记导入的 QSO 为已上传至 DCL Logbook"
-
-#: application/views/adif/import.php:207
-msgid "Toggle all checkboxes"
-msgstr ""
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -4370,7 +4393,7 @@ msgstr "终止日期"
 
 #: application/views/adif/import.php:260
 msgid "Export options"
-msgstr ""
+msgstr "导出选项"
 
 #: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
@@ -4858,9 +4881,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
-"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
-"效通联的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
+"\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通"
+"联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -4886,7 +4909,7 @@ msgstr "已确认的县"
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:176
 #: application/views/awards/dok/index.php:174
-#: application/views/awards/dxcc/index.php:272
+#: application/views/awards/dxcc/index.php:265
 #: application/views/awards/helvetia/index.php:179
 #: application/views/awards/iota/index.php:234
 #: application/views/awards/itu/index.php:176
@@ -4913,6 +4936,7 @@ msgstr "已确认的县"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/awards/dxcc/index.php:272
 msgid "Total"
 msgstr "总计"
 
@@ -5135,7 +5159,7 @@ msgstr "地图"
 
 #: application/views/awards/cq/index.php:167
 #: application/views/awards/dok/index.php:165
-#: application/views/awards/dxcc/index.php:258
+#: application/views/awards/dxcc/index.php:251
 #: application/views/awards/helvetia/index.php:170
 #: application/views/awards/iota/index.php:221
 #: application/views/awards/itu/index.php:167
@@ -5147,12 +5171,13 @@ msgstr "地图"
 #: application/views/awards/wap/index.php:170
 #: application/views/awards/wapc/index.php:135
 #: application/views/awards/was/index.php:170
+#: application/views/awards/dxcc/index.php:258
 msgid "Summary"
 msgstr "概览"
 
 #: application/views/awards/cq/index.php:180
 #: application/views/awards/dok/index.php:178
-#: application/views/awards/dxcc/index.php:282
+#: application/views/awards/dxcc/index.php:275
 #: application/views/awards/helvetia/index.php:183
 #: application/views/awards/iota/index.php:242
 #: application/views/awards/itu/index.php:180
@@ -5164,12 +5189,13 @@ msgstr "概览"
 #: application/views/awards/wap/index.php:183
 #: application/views/awards/wapc/index.php:149
 #: application/views/awards/was/index.php:183
+#: application/views/awards/dxcc/index.php:282
 msgid "Total worked"
 msgstr "共通联"
 
 #: application/views/awards/cq/index.php:187
 #: application/views/awards/dok/index.php:185
-#: application/views/awards/dxcc/index.php:307
+#: application/views/awards/dxcc/index.php:300
 #: application/views/awards/helvetia/index.php:190
 #: application/views/awards/iota/index.php:268
 #: application/views/awards/itu/index.php:187
@@ -5181,6 +5207,7 @@ msgstr "共通联"
 #: application/views/awards/wap/index.php:190
 #: application/views/awards/wapc/index.php:156
 #: application/views/awards/was/index.php:190
+#: application/views/awards/dxcc/index.php:307
 msgid "Total confirmed"
 msgstr "共确认"
 
@@ -5399,43 +5426,17 @@ msgstr "所有频段 (不含卫星)"
 msgid "Show DXCC Map"
 msgstr "显示 DXCC 地图"
 
-#: application/views/awards/dxcc/index.php:220
-msgid "Legend:"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:221
-msgid "(Q)SL-Paper-Card"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:222
-msgid "(L)oTW"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:223
-msgid "(e)QSL"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:224
-msgid "QR(Z)-\"confirmation\""
-msgstr ""
-
 #: application/views/awards/dxcc/index.php:225
-msgid "(C)lublog"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:226
-msgid "(W)orked"
-msgstr ""
-
 #: application/views/awards/dxcc/index.php:232
 msgid "DXCC Name"
 msgstr "DXCC名称"
 
-#: application/views/awards/dxcc/index.php:233
+#: application/views/awards/dxcc/index.php:226
 #: application/views/awards/iota/index.php:196
 #: application/views/awards/wae/index.php:162
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
+#: application/views/awards/dxcc/index.php:233
 msgid "Prefix"
 msgstr "前缀"
 
@@ -5803,8 +5804,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -11303,41 +11304,41 @@ msgstr "请求完成"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "待处理请求"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "请求已拒绝"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "发送请求时发生错误"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
-msgstr ""
+msgstr "警告！您确定要删除标记的 OQRS 请求吗？"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
-msgstr ""
+msgstr "警告！您确定要拒绝标记的 OQRS 请求吗？"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
-msgstr ""
+msgstr "警告！您确定要标记标记的 OQRS 请求吗？"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
-msgstr ""
+msgstr "警告！您确定要将标记的 OQRS 请求添加到队列吗？"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "OQRS 状态信息"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr ""
+msgstr "警告！您确定要删除 OQRS 匹配吗？"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
@@ -11351,17 +11352,17 @@ msgstr "OQRS 状态"
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "已完成 / 已发送"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "待处理"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "已拒绝"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
@@ -11373,7 +11374,7 @@ msgstr "标记为完成"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "拒绝"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
@@ -11398,29 +11399,29 @@ msgstr "检查日志"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "QSO 匹配"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "该请求目前处于开放状态，需要您进行审核。"
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
-msgstr ""
+msgstr "该请求不在日志中，因此您需要检查日志并处理该请求。"
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "该请求已处理完毕，QSL已发送。"
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "该请求仍在处理中。"
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "该请求已被拒绝，将不会被处理。"
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
@@ -13778,8 +13779,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -14285,21 +14286,23 @@ msgstr "如果分组搜索被启用，台站名称将会显示在表格当中。
 
 #: application/views/user/edit.php:713
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "自动 OQRS 匹配"
 
 #: application/views/user/edit.php:718
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"如果此功能启用，系统将自动进行OQRS匹配，并尝试将传入的请求与现有日志自动匹"
+"配。"
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "对于直接请求的自动OQRS匹配"
 
 #: application/views/user/edit.php:727
 msgid "If this is on, automatic OQRS matching for direct request will happen."
-msgstr ""
+msgstr "如果此功能启用，直接请求将自动进行OQRS匹配。"
 
 #: application/views/user/edit.php:743
 msgid "Default Values"
@@ -15141,6 +15144,42 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
+#: application/views/adif/import.php:151
+msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
+msgstr ""
+
+#: application/views/adif/import.php:207
+msgid "Toggle all checkboxes"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:220
+msgid "Legend:"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:221
+msgid "(Q)SL-Paper-Card"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:222
+msgid "(L)oTW"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:223
+msgid "(e)QSL"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:224
+msgid "QR(Z)-\"confirmation\""
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:225
+msgid "(C)lublog"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:226
+msgid "(W)orked"
+msgstr ""
+
 #~ msgid "ADIF File"
 #~ msgstr "ADIF 文件"
 
@@ -15557,8 +15596,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""
