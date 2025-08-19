@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-01 14:17+0000\n"
-"Last-Translator: Lu Chang <chinaluchang@live.com>\n"
+"POT-Creation-Date: 2025-08-19 13:34+0000\n"
+"PO-Revision-Date: 2025-08-18 18:00+0000\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1718,7 +1718,7 @@ msgstr "操作员"
 #: application/controllers/Logbook.php:1336
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:28
-#: application/views/awards/dxcc/index.php:241
+#: application/views/awards/dxcc/index.php:248
 #: application/views/awards/wae/index.php:174
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:29
 #: application/views/dxatlas/index.php:65
@@ -2028,11 +2028,11 @@ msgstr "OQRS"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "QSO 匹配已成功删除。"
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "QSO 匹配已成功添加。"
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -3145,96 +3145,96 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:1289
+#: application/models/Logbook_model.php:1291
 msgid "Station ID not allowed"
 msgstr "集体台站 ID 有误"
 
-#: application/models/Logbook_model.php:1294
+#: application/models/Logbook_model.php:1296
 msgid "No Call given"
 msgstr "未提供呼号"
 
-#: application/models/Logbook_model.php:1364
-#: application/models/Logbook_model.php:1538
+#: application/models/Logbook_model.php:1366
+#: application/models/Logbook_model.php:1540
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
-#: application/models/Logbook_model.php:3985
+#: application/models/Logbook_model.php:3987
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:3986
+#: application/models/Logbook_model.php:3988
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
-#: application/models/Logbook_model.php:3998
+#: application/models/Logbook_model.php:4000
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:3998
+#: application/models/Logbook_model.php:4000
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，未导入"
 
-#: application/models/Logbook_model.php:4297
+#: application/models/Logbook_model.php:4299
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4308
+#: application/models/Logbook_model.php:4310
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4369
+#: application/models/Logbook_model.php:4371
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4389
+#: application/models/Logbook_model.php:4391
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4410
+#: application/models/Logbook_model.php:4412
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4702
+#: application/models/Logbook_model.php:4704
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4763
+#: application/models/Logbook_model.php:4765
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4769
+#: application/models/Logbook_model.php:4771
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4774
+#: application/models/Logbook_model.php:4776
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4777
+#: application/models/Logbook_model.php:4779
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4780
+#: application/models/Logbook_model.php:4782
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4783
+#: application/models/Logbook_model.php:4785
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4786
+#: application/models/Logbook_model.php:4788
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5624
+#: application/models/Logbook_model.php:5626
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3359,7 +3359,7 @@ msgstr "差异"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:224
+#: application/views/adif/import.php:228
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3926,7 +3926,7 @@ msgstr "最低数量"
 #: application/views/awards/counties/index.php:46
 #: application/views/awards/cq/index.php:198
 #: application/views/awards/dok/index.php:196
-#: application/views/awards/dxcc/index.php:328
+#: application/views/awards/dxcc/index.php:335
 #: application/views/awards/helvetia/index.php:200
 #: application/views/awards/iota/index.php:299
 #: application/views/awards/itu/index.php:198
@@ -3953,8 +3953,8 @@ msgid "Nothing found!"
 msgstr "未找到！"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:78 application/views/adif/import.php:228
-#: application/views/adif/import.php:272
+#: application/views/adif/import.php:78 application/views/adif/import.php:234
+#: application/views/adif/import.php:298
 #: application/views/awards/73on73/index.php:34
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
@@ -4171,7 +4171,7 @@ msgstr "DCL QSL 状态"
 msgid "ADIF Export"
 msgstr "ADIF 导出"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:298
+#: application/views/adif/import.php:36 application/views/adif/import.php:324
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -4179,7 +4179,7 @@ msgstr "DARC DCL"
 msgid "CBR Import"
 msgstr "CBR 导入"
 
-#: application/views/adif/import.php:64 application/views/adif/import.php:345
+#: application/views/adif/import.php:64 application/views/adif/import.php:371
 #: application/views/api/index.php:22 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
@@ -4197,8 +4197,8 @@ msgstr "日志文件的后缀必须是.adi"
 msgid "Maximum file upload size is "
 msgstr "最大上传文件大小是 "
 
-#: application/views/adif/import.php:65 application/views/adif/import.php:275
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:65 application/views/adif/import.php:301
+#: application/views/adif/import.php:340
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:576 application/views/hrdlog/export.php:25
@@ -4213,7 +4213,7 @@ msgid "Warning"
 msgstr "注意"
 
 #: application/views/adif/import.php:72 application/views/adif/import.php:74
-#: application/views/adif/import.php:222 application/views/adif/import.php:270
+#: application/views/adif/import.php:226 application/views/adif/import.php:296
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -4222,13 +4222,13 @@ msgstr "选择台站位置"
 
 #: application/views/adif/import.php:82
 msgid "Choose ADIF File"
-msgstr ""
+msgstr "选择 ADIF 文件"
 
 #: application/views/adif/import.php:88
 msgid "Add QSOs to Contest"
 msgstr "向竞赛中添加 QSO"
 
-#: application/views/adif/import.php:90 application/views/adif/import.php:352
+#: application/views/adif/import.php:90 application/views/adif/import.php:378
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "无竞赛"
@@ -4239,13 +4239,17 @@ msgid ""
 "operator callsign in the ADIF file."
 msgstr "输入导入 QSO 的操作员呼号。留空以使用 ADIF 文件中的操作员呼号。"
 
+#: application/views/adif/import.php:108
+msgid "Basic Settings"
+msgstr ""
+
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
 msgstr "导入重复的 QSO"
 
 #: application/views/adif/import.php:117
 msgid "Select if want to import QSOs, even if they already exist."
-msgstr ""
+msgstr "选择是否要导入 QSO，即使它们已经存在。"
 
 #: application/views/adif/import.php:122
 msgid "Use DXCC information from ADIF"
@@ -4266,7 +4270,7 @@ msgstr "警告"
 
 #: application/views/adif/import.php:132
 msgid "Ignore Station callsign on import"
-msgstr ""
+msgstr "导入时忽略台站呼号"
 
 #: application/views/adif/import.php:134
 #, php-format
@@ -4274,61 +4278,71 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"如果选择该选项，Wavelog 将尝试从 ADIF 中导入 %s所有%s QSO，而不管它们是否与所"
+"选的电台位置相匹配。"
 
 #: application/views/adif/import.php:141
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr "在导入时始终使用登录账户的呼号作为操作员呼号"
 
-#: application/views/adif/import.php:160
+#: application/views/adif/import.php:151
+msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
+msgstr ""
+
+#: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "标记导入的 QSO 为已上传至 LoTW"
 
-#: application/views/adif/import.php:162 application/views/adif/import.php:170
-#: application/views/adif/import.php:180 application/views/adif/import.php:188
-#: application/views/adif/import.php:198 application/views/adif/import.php:206
+#: application/views/adif/import.php:160 application/views/adif/import.php:168
+#: application/views/adif/import.php:178 application/views/adif/import.php:186
+#: application/views/adif/import.php:196 application/views/adif/import.php:204
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "如果导入的 ADIF 文件不包含此信息，选择此项。"
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:166
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "标记导入的 QSO 为已上传至 eQSL"
 
-#: application/views/adif/import.php:178
+#: application/views/adif/import.php:176
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "标记导入的 QSO 为已上传至 HRDLog Logbook"
 
-#: application/views/adif/import.php:186
+#: application/views/adif/import.php:184
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "标记导入的 QSO 为已上传至 QRZ Logbook"
 
-#: application/views/adif/import.php:196
+#: application/views/adif/import.php:194
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "标记导入的 QSO 为已上传至 Clublog Logbook"
 
-#: application/views/adif/import.php:204
+#: application/views/adif/import.php:202
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "标记导入的 QSO 为已上传至 DCL Logbook"
 
-#: application/views/adif/import.php:212 application/views/adif/import.php:329
-#: application/views/adif/import.php:367
+#: application/views/adif/import.php:207
+msgid "Toggle all checkboxes"
+msgstr ""
+
+#: application/views/adif/import.php:212 application/views/adif/import.php:355
+#: application/views/adif/import.php:393
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "上传"
 
-#: application/views/adif/import.php:219
+#: application/views/adif/import.php:220
 msgid "Take your logbook file anywhere!"
 msgstr "在其他地方保管、上传日志！"
 
-#: application/views/adif/import.php:220
+#: application/views/adif/import.php:221
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr "导出 ADIF 以方便您将日志导入到 LoTW 等第三方应用程序或用以备份。"
 
-#: application/views/adif/import.php:221
+#: application/views/adif/import.php:222
 #, php-format
 msgctxt ""
 msgid ""
@@ -4336,7 +4350,7 @@ msgid ""
 "and export!"
 msgstr "%s详细日志%s 中可使用更多过滤器选项，也可导出日志！"
 
-#: application/views/adif/import.php:232 application/views/adif/import.php:277
+#: application/views/adif/import.php:245 application/views/adif/import.php:303
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
 #: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4345,7 +4359,7 @@ msgstr "%s详细日志%s 中可使用更多过滤器选项，也可导出日志�
 msgid "From date"
 msgstr "起始日期"
 
-#: application/views/adif/import.php:235 application/views/adif/import.php:280
+#: application/views/adif/import.php:249 application/views/adif/import.php:306
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -4354,40 +4368,44 @@ msgstr "起始日期"
 msgid "To date"
 msgstr "终止日期"
 
-#: application/views/adif/import.php:243
+#: application/views/adif/import.php:260
+msgid "Export options"
+msgstr ""
+
+#: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "将导出的 QSO 标记为已上传到 LoTW"
 
-#: application/views/adif/import.php:251
+#: application/views/adif/import.php:275
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "导出没有上传到 LoTW 的 QSO"
 
-#: application/views/adif/import.php:256
+#: application/views/adif/import.php:282
 msgid "Export QSOs"
 msgstr "导出 QSO"
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:287
 msgid "Export Satellite-Only QSOs"
 msgstr "只导出卫星 QSO"
 
-#: application/views/adif/import.php:262
+#: application/views/adif/import.php:288
 msgid "Export All Satellite QSOs"
 msgstr "导出所有卫星 QSO"
 
-#: application/views/adif/import.php:264
+#: application/views/adif/import.php:290
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "导出 LoTW 上确认的所有卫星 QSO"
 
-#: application/views/adif/import.php:275 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:301 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "如果未选择日期范围，则所有 QSO 都将被标记！"
 
-#: application/views/adif/import.php:283
+#: application/views/adif/import.php:309
 msgid "Mark QSOs as exported to LoTW"
 msgstr "将 QSO 标记为导出到 LoTW"
 
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:324
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4398,37 +4416,37 @@ msgstr ""
 "前往 %s 导出已确认的 DOK，可选择仅导出 DL QSO 以加快速度。您可在此处上传已下"
 "载的 ADIF 日志，系统将以此更新 DOK 信息。"
 
-#: application/views/adif/import.php:305
+#: application/views/adif/import.php:331
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "仅导入在 DCL 上确认的 QSO 的 DOK 数据。"
 
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:333
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr "如果您还想使用 DCL 中未经确认的 QSO 的数据更新 DOK，请取消选中。"
 
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:340
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "根据已有 DCL 覆盖 DOK 数据（如不同）。"
 
-#: application/views/adif/import.php:316
+#: application/views/adif/import.php:342
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr "如果选中，Wavelog 将使用 DCL 日志中的 DOK 强制覆盖现有的 DOK 信息。"
 
-#: application/views/adif/import.php:323
+#: application/views/adif/import.php:349
 msgid "Ignore QSOs that cannot be matched."
 msgstr "忽略无法匹配的 QSO。"
 
-#: application/views/adif/import.php:325
+#: application/views/adif/import.php:351
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
 msgstr "如未选择，Wavelog 中未找到的 QSO 会被显示。"
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4440,13 +4458,13 @@ msgstr ""
 "的通联将无法从该软件的ADIF正确导入。如果您想更正该问题，可以提供该软件提供的"
 "Cabrillo文件来在Wavelog中重写该数据。"
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "信息"
 
-#: application/views/adif/import.php:345
+#: application/views/adif/import.php:371
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4457,27 +4475,27 @@ msgstr ""
 "导入的 ADIF 文件以及您即将上传的 CBP 文件中的日期和时间信息以匹配 QSO，并且仅"
 "更正相关数据。"
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "比赛名称，仅当 CBP 中的比赛 ID 不同时"
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Optional"
 msgstr "可选"
 
-#: application/views/adif/import.php:360
+#: application/views/adif/import.php:386
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr "序列号始终是本次比赛双方交换的一部分。"
 
-#: application/views/adif/import.php:362
+#: application/views/adif/import.php:388
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr "如果你和你的伙伴只是有时交换序列号，请不要勾选。"
 
-#: application/views/adif/import.php:363
+#: application/views/adif/import.php:389
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -4868,7 +4886,7 @@ msgstr "已确认的县"
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:176
 #: application/views/awards/dok/index.php:174
-#: application/views/awards/dxcc/index.php:265
+#: application/views/awards/dxcc/index.php:272
 #: application/views/awards/helvetia/index.php:179
 #: application/views/awards/iota/index.php:234
 #: application/views/awards/itu/index.php:176
@@ -5117,7 +5135,7 @@ msgstr "地图"
 
 #: application/views/awards/cq/index.php:167
 #: application/views/awards/dok/index.php:165
-#: application/views/awards/dxcc/index.php:251
+#: application/views/awards/dxcc/index.php:258
 #: application/views/awards/helvetia/index.php:170
 #: application/views/awards/iota/index.php:221
 #: application/views/awards/itu/index.php:167
@@ -5134,7 +5152,7 @@ msgstr "概览"
 
 #: application/views/awards/cq/index.php:180
 #: application/views/awards/dok/index.php:178
-#: application/views/awards/dxcc/index.php:275
+#: application/views/awards/dxcc/index.php:282
 #: application/views/awards/helvetia/index.php:183
 #: application/views/awards/iota/index.php:242
 #: application/views/awards/itu/index.php:180
@@ -5151,7 +5169,7 @@ msgstr "共通联"
 
 #: application/views/awards/cq/index.php:187
 #: application/views/awards/dok/index.php:185
-#: application/views/awards/dxcc/index.php:300
+#: application/views/awards/dxcc/index.php:307
 #: application/views/awards/helvetia/index.php:190
 #: application/views/awards/iota/index.php:268
 #: application/views/awards/itu/index.php:187
@@ -5381,11 +5399,39 @@ msgstr "所有频段 (不含卫星)"
 msgid "Show DXCC Map"
 msgstr "显示 DXCC 地图"
 
+#: application/views/awards/dxcc/index.php:220
+msgid "Legend:"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:221
+msgid "(Q)SL-Paper-Card"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:222
+msgid "(L)oTW"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:223
+msgid "(e)QSL"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:224
+msgid "QR(Z)-\"confirmation\""
+msgstr ""
+
 #: application/views/awards/dxcc/index.php:225
+msgid "(C)lublog"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:226
+msgid "(W)orked"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:232
 msgid "DXCC Name"
 msgstr "DXCC名称"
 
-#: application/views/awards/dxcc/index.php:226
+#: application/views/awards/dxcc/index.php:233
 #: application/views/awards/iota/index.php:196
 #: application/views/awards/wae/index.php:162
 #: application/views/timeline/index.php:199
@@ -11185,7 +11231,7 @@ msgstr "添加到打印队列中"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "匹配 QSO"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3

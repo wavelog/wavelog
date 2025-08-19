@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-08-14 13:24+0000\n"
+"POT-Creation-Date: 2025-08-19 13:34+0000\n"
+"PO-Revision-Date: 2025-08-18 20:40+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -1719,7 +1719,7 @@ msgstr "Operator"
 #: application/controllers/Logbook.php:1336
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:28
-#: application/views/awards/dxcc/index.php:241
+#: application/views/awards/dxcc/index.php:248
 #: application/views/awards/wae/index.php:174
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:29
 #: application/views/dxatlas/index.php:65
@@ -3195,36 +3195,36 @@ msgstr "HRDlog: Geen QSOs gevonden om te uploaden voor de stationsroepnaam: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Geen stationprofielen met HRDlog-gegevens gevonden."
 
-#: application/models/Logbook_model.php:1289
+#: application/models/Logbook_model.php:1291
 msgid "Station ID not allowed"
 msgstr "Station-ID niet toegestaan"
 
-#: application/models/Logbook_model.php:1294
+#: application/models/Logbook_model.php:1296
 msgid "No Call given"
 msgstr "Geen roepnaam gegeven"
 
-#: application/models/Logbook_model.php:1364
-#: application/models/Logbook_model.php:1538
+#: application/models/Logbook_model.php:1366
+#: application/models/Logbook_model.php:1540
 msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
-#: application/models/Logbook_model.php:3985
+#: application/models/Logbook_model.php:3987
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Verkeerde stationsroepnaam %s bij het importeren van QSO met %s voor %s: "
 "OVERGESLAGEN"
 
-#: application/models/Logbook_model.php:3986
+#: application/models/Logbook_model.php:3988
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Controleer %s voor hints over fouten in ADIF-bestanden."
 
-#: application/models/Logbook_model.php:3998
+#: application/models/Logbook_model.php:4000
 msgid "QSO on"
 msgstr "QSO vanaf"
 
-#: application/models/Logbook_model.php:3998
+#: application/models/Logbook_model.php:4000
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3232,63 +3232,63 @@ msgstr ""
 "Je hebt geprobeerd een QSO te importeren zonder een opgegeven CALL. Dit QSO "
 "is niet geïmporteerd. Het is ongeldig"
 
-#: application/models/Logbook_model.php:4297
+#: application/models/Logbook_model.php:4299
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4308
+#: application/models/Logbook_model.php:4310
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4369
+#: application/models/Logbook_model.php:4371
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4389
+#: application/models/Logbook_model.php:4391
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslrdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4410
+#: application/models/Logbook_model.php:4412
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslsdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4702
+#: application/models/Logbook_model.php:4704
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
-#: application/models/Logbook_model.php:4763
+#: application/models/Logbook_model.php:4765
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
-#: application/models/Logbook_model.php:4769
+#: application/models/Logbook_model.php:4771
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4774
+#: application/models/Logbook_model.php:4776
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
-#: application/models/Logbook_model.php:4777
+#: application/models/Logbook_model.php:4779
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
-#: application/models/Logbook_model.php:4780
+#: application/models/Logbook_model.php:4782
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
-#: application/models/Logbook_model.php:4783
+#: application/models/Logbook_model.php:4785
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-#: application/models/Logbook_model.php:4786
+#: application/models/Logbook_model.php:4788
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "onbekend"
 
-#: application/models/Logbook_model.php:5624
+#: application/models/Logbook_model.php:5626
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3414,7 +3414,7 @@ msgstr "Verschil"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:224
+#: application/views/adif/import.php:228
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3981,7 +3981,7 @@ msgstr "Minimum aantal"
 #: application/views/awards/counties/index.php:46
 #: application/views/awards/cq/index.php:198
 #: application/views/awards/dok/index.php:196
-#: application/views/awards/dxcc/index.php:328
+#: application/views/awards/dxcc/index.php:335
 #: application/views/awards/helvetia/index.php:200
 #: application/views/awards/iota/index.php:299
 #: application/views/awards/itu/index.php:198
@@ -4008,8 +4008,8 @@ msgid "Nothing found!"
 msgstr "Niets gevonden!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:78 application/views/adif/import.php:228
-#: application/views/adif/import.php:272
+#: application/views/adif/import.php:78 application/views/adif/import.php:234
+#: application/views/adif/import.php:298
 #: application/views/awards/73on73/index.php:34
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
@@ -4227,7 +4227,7 @@ msgstr "DCL QSL-status"
 msgid "ADIF Export"
 msgstr "ADIF Export"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:298
+#: application/views/adif/import.php:36 application/views/adif/import.php:324
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -4235,7 +4235,7 @@ msgstr "DARC DCL"
 msgid "CBR Import"
 msgstr "CBR Importeren"
 
-#: application/views/adif/import.php:64 application/views/adif/import.php:345
+#: application/views/adif/import.php:64 application/views/adif/import.php:371
 #: application/views/api/index.php:22 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
@@ -4253,8 +4253,8 @@ msgstr "Logbestanden moeten het bestandstype *.adi hebben"
 msgid "Maximum file upload size is "
 msgstr "Maximale bestandsgrootte voor uploaden is "
 
-#: application/views/adif/import.php:65 application/views/adif/import.php:275
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:65 application/views/adif/import.php:301
+#: application/views/adif/import.php:340
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:576 application/views/hrdlog/export.php:25
@@ -4269,7 +4269,7 @@ msgid "Warning"
 msgstr "Waarschuwing"
 
 #: application/views/adif/import.php:72 application/views/adif/import.php:74
-#: application/views/adif/import.php:222 application/views/adif/import.php:270
+#: application/views/adif/import.php:226 application/views/adif/import.php:296
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -4284,7 +4284,7 @@ msgstr "Kies ADIF-bestand"
 msgid "Add QSOs to Contest"
 msgstr "QSO's toevoegen aan contest"
 
-#: application/views/adif/import.php:90 application/views/adif/import.php:352
+#: application/views/adif/import.php:90 application/views/adif/import.php:378
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "Geen contest"
@@ -4296,6 +4296,10 @@ msgid ""
 msgstr ""
 "Typ het roepnaam van de operator in van de geïmporteerde QSO's. Laat leeg om "
 "de roepnaam van de operator in het ADIF-bestand te gebruiken."
+
+#: application/views/adif/import.php:108
+msgid "Basic Settings"
+msgstr "Basisinstellingen"
 
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
@@ -4344,49 +4348,57 @@ msgstr ""
 "Gebruik altijd de ingelogde accountroepnaam als de operatorroepnaam tijdens "
 "het importeren"
 
-#: application/views/adif/import.php:160
+#: application/views/adif/import.php:151
+msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
+msgstr ""
+
+#: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Markeer geïmporteerde QSOs als geüpload naar LoTW"
 
-#: application/views/adif/import.php:162 application/views/adif/import.php:170
-#: application/views/adif/import.php:180 application/views/adif/import.php:188
-#: application/views/adif/import.php:198 application/views/adif/import.php:206
+#: application/views/adif/import.php:160 application/views/adif/import.php:168
+#: application/views/adif/import.php:178 application/views/adif/import.php:186
+#: application/views/adif/import.php:196 application/views/adif/import.php:204
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "Selecteer als ADIF die informatie niet bevat bij het importeren."
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:166
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "Markeer geïmporteerde QSOs als geüpload naar eQSL logboek"
 
-#: application/views/adif/import.php:178
+#: application/views/adif/import.php:176
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "Markeer geïmporteerde QSOs als geüpload naar HRDLog.net logboek"
 
-#: application/views/adif/import.php:186
+#: application/views/adif/import.php:184
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "Markeer geïmporteerde QSOs als geüpload naar QRZ logbook"
 
-#: application/views/adif/import.php:196
+#: application/views/adif/import.php:194
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "Markeer geïmporteerde QSOs als geüpload naar Clublog logboek"
 
-#: application/views/adif/import.php:204
+#: application/views/adif/import.php:202
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Markeer geïmporteerde QSOs als geüpload naar DCL logbook"
 
-#: application/views/adif/import.php:212 application/views/adif/import.php:329
-#: application/views/adif/import.php:367
+#: application/views/adif/import.php:207
+msgid "Toggle all checkboxes"
+msgstr ""
+
+#: application/views/adif/import.php:212 application/views/adif/import.php:355
+#: application/views/adif/import.php:393
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Uploaden"
 
-#: application/views/adif/import.php:219
+#: application/views/adif/import.php:220
 msgid "Take your logbook file anywhere!"
 msgstr "Neem je logboekbestand overal mee naartoe!"
 
-#: application/views/adif/import.php:220
+#: application/views/adif/import.php:221
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4395,7 +4407,7 @@ msgstr ""
 "applicaties van derden zoals LoTW, Awards of gewoon voor het maken van een "
 "back-up."
 
-#: application/views/adif/import.php:221
+#: application/views/adif/import.php:222
 #, php-format
 msgctxt ""
 msgid ""
@@ -4405,7 +4417,7 @@ msgstr ""
 "Als je meer filtering nodig hebt, kun je %shet Geavanceerde Logboek%s "
 "gebruiken om te filteren en exporteren!"
 
-#: application/views/adif/import.php:232 application/views/adif/import.php:277
+#: application/views/adif/import.php:245 application/views/adif/import.php:303
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
 #: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4414,7 +4426,7 @@ msgstr ""
 msgid "From date"
 msgstr "Vanaf datum"
 
-#: application/views/adif/import.php:235 application/views/adif/import.php:280
+#: application/views/adif/import.php:249 application/views/adif/import.php:306
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -4423,40 +4435,44 @@ msgstr "Vanaf datum"
 msgid "To date"
 msgstr "Tot datum"
 
-#: application/views/adif/import.php:243
+#: application/views/adif/import.php:260
+msgid "Export options"
+msgstr "Exportopties"
+
+#: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Markeer geëxporteerde QSOs als geüpload naar LoTW"
 
-#: application/views/adif/import.php:251
+#: application/views/adif/import.php:275
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Exporteer QSO's die niet naar LoTW zijn geüpload"
 
-#: application/views/adif/import.php:256
+#: application/views/adif/import.php:282
 msgid "Export QSOs"
 msgstr "Exporteer QSO's"
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:287
 msgid "Export Satellite-Only QSOs"
 msgstr "Exporteer alleen satelliet-QSOs"
 
-#: application/views/adif/import.php:262
+#: application/views/adif/import.php:288
 msgid "Export All Satellite QSOs"
 msgstr "Exporteer alle satelliet-QSOs"
 
-#: application/views/adif/import.php:264
+#: application/views/adif/import.php:290
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Exporteer alle satelliet-QSOs bevestigd op LoTW"
 
-#: application/views/adif/import.php:275 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:301 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "Als er geen datumbereik is geselecteerd, worden alle QSOs gemarkeerd!"
 
-#: application/views/adif/import.php:283
+#: application/views/adif/import.php:309
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Markeer QSOs als geëxporteerd naar LoTW"
 
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:324
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4469,11 +4485,11 @@ msgstr ""
 "in de Prefixlijst zetten). Het gedownloade ADIF-bestand kan hier worden "
 "geüpload om QSOs bij te werken met DOK-informatie."
 
-#: application/views/adif/import.php:305
+#: application/views/adif/import.php:331
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Importeer alleen DOK-gegevens van QSO's die op DCL zijn bevestigd."
 
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:333
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -4481,11 +4497,11 @@ msgstr ""
 "Schakel uit als je DOK ook wilt bijwerken met gegevens van onbevestigde "
 "QSO's in DCL."
 
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:340
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Overschrijft bestaande DOK in log door DCL (indien anders)."
 
-#: application/views/adif/import.php:316
+#: application/views/adif/import.php:342
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4493,11 +4509,11 @@ msgstr ""
 "Als dit is aangevinkt, zal Wavelog bestaande DOK met DOK uit DCL-logboek "
 "geforceerd overschrijven."
 
-#: application/views/adif/import.php:323
+#: application/views/adif/import.php:349
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Negeer QSOs die niet kunnen worden bevestigd."
 
-#: application/views/adif/import.php:325
+#: application/views/adif/import.php:351
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -4505,7 +4521,7 @@ msgstr ""
 "Als dit niet is aangevinkt, wordt informatie over QSOs die niet in Wavelog "
 "konden worden gevonden, weergegeven."
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4519,13 +4535,13 @@ msgstr ""
 "software. Als je dat wilt corrigeren, kun je het Cabrillo-bestand dat deze "
 "software ook levert gebruiken om die gegevens in Wavelog te herschrijven."
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Informatie"
 
-#: application/views/adif/import.php:345
+#: application/views/adif/import.php:371
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4538,15 +4554,15 @@ msgstr ""
 "bestand dat je gaat uploaden om de QSOs te matchen en alleen relevante "
 "gegevens te corrigeren."
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Contest-naam, alleen als Contest-ID in CBR anders is"
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Optional"
 msgstr "Optioneel"
 
-#: application/views/adif/import.php:360
+#: application/views/adif/import.php:386
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
@@ -4554,7 +4570,7 @@ msgstr ""
 "Een serienummer maakt ALTIJD deel uit van de uitwisseling voor beide "
 "partijen in deze contest."
 
-#: application/views/adif/import.php:362
+#: application/views/adif/import.php:388
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4562,7 +4578,7 @@ msgstr ""
 "Als jij of je partner slechts af en toe serienummers uitwisselen, laat dit "
 "dan uitgevinkt."
 
-#: application/views/adif/import.php:363
+#: application/views/adif/import.php:389
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -4968,7 +4984,7 @@ msgstr "Counties bevestigd"
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:176
 #: application/views/awards/dok/index.php:174
-#: application/views/awards/dxcc/index.php:265
+#: application/views/awards/dxcc/index.php:272
 #: application/views/awards/helvetia/index.php:179
 #: application/views/awards/iota/index.php:234
 #: application/views/awards/itu/index.php:176
@@ -5219,7 +5235,7 @@ msgstr "Kaart"
 
 #: application/views/awards/cq/index.php:167
 #: application/views/awards/dok/index.php:165
-#: application/views/awards/dxcc/index.php:251
+#: application/views/awards/dxcc/index.php:258
 #: application/views/awards/helvetia/index.php:170
 #: application/views/awards/iota/index.php:221
 #: application/views/awards/itu/index.php:167
@@ -5236,7 +5252,7 @@ msgstr "Samenvatting"
 
 #: application/views/awards/cq/index.php:180
 #: application/views/awards/dok/index.php:178
-#: application/views/awards/dxcc/index.php:275
+#: application/views/awards/dxcc/index.php:282
 #: application/views/awards/helvetia/index.php:183
 #: application/views/awards/iota/index.php:242
 #: application/views/awards/itu/index.php:180
@@ -5253,7 +5269,7 @@ msgstr "Totaal gewerkt"
 
 #: application/views/awards/cq/index.php:187
 #: application/views/awards/dok/index.php:185
-#: application/views/awards/dxcc/index.php:300
+#: application/views/awards/dxcc/index.php:307
 #: application/views/awards/helvetia/index.php:190
 #: application/views/awards/iota/index.php:268
 #: application/views/awards/itu/index.php:187
@@ -5493,11 +5509,39 @@ msgstr "Elke band (zonder SAT)"
 msgid "Show DXCC Map"
 msgstr "Toon DXCC-kaart"
 
+#: application/views/awards/dxcc/index.php:220
+msgid "Legend:"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:221
+msgid "(Q)SL-Paper-Card"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:222
+msgid "(L)oTW"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:223
+msgid "(e)QSL"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:224
+msgid "QR(Z)-\"confirmation\""
+msgstr ""
+
 #: application/views/awards/dxcc/index.php:225
+msgid "(C)lublog"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:226
+msgid "(W)orked"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:232
 msgid "DXCC Name"
 msgstr "DXCC-naam"
 
-#: application/views/awards/dxcc/index.php:226
+#: application/views/awards/dxcc/index.php:233
 #: application/views/awards/iota/index.php:196
 #: application/views/awards/wae/index.php:162
 #: application/views/timeline/index.php:199
@@ -15664,6 +15708,9 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#~ msgid "Mark QSOs as uploaded"
+#~ msgstr "QSOs als geüpload markeren"
 
 #~ msgid "ADIF File"
 #~ msgstr "ADIF-bestand"
