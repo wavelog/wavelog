@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-18 18:00+0000\n"
-"PO-Revision-Date: 2025-08-19 08:30+0000\n"
+"PO-Revision-Date: 2025-08-19 09:57+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -9038,54 +9038,58 @@ msgstr ""
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
-msgstr ""
+msgstr "あなたのプロフィール"
 
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
-msgstr ""
+msgstr "QSOをマークする"
 
 #: application/views/hrdlog/export.php:22
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "HRDLog logbook."
-msgstr ""
+msgstr "ここでは、これまで HRDLog ログブックにアップロードされていないすべての QSO "
+"を確認できます。"
 
 #: application/views/hrdlog/export.php:23
 msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
 msgstr ""
+"ステーションプロフィールにHRDLogログブックAPIコードを設定する必要があります。"
+"APIキーが設定されているステーションプロフィールのみが表示されます。"
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "コードは%sから請求できます"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
-msgstr ""
+msgstr "QSO アップロードは順次処理されるため、時間がかかる場合があります。"
 
 #: application/views/hrdlog/export.php:60
 msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
-msgstr ""
+msgstr "有効なHRDlog設定を持つステーションロケーションが見つかりません。ステーション"
+"ロケーション設定でHRDlog認証情報を確認してください!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "QSOをHRDLogログブックにエクスポートしてマークする"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "やったー、完成しました！"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "QSO は、HRDLog ログブックにエクスポートされたものとしてマークされます。"
 
 #: application/views/interface_assets/footer.php:32
 #: application/views/search/search_result_ajax.php:417
@@ -9093,128 +9097,128 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:488
 #: application/views/view_log/qso.php:582
 msgid "Edit QSO"
-msgstr ""
+msgstr "QSOを編集"
 
 #: application/views/interface_assets/footer.php:33
 msgid "Share QSO"
-msgstr ""
+msgstr "QSOを共有する"
 
 #: application/views/interface_assets/footer.php:35
 msgid "ERROR"
-msgstr ""
+msgstr "エラー"
 
 #: application/views/interface_assets/footer.php:36
 msgid "Attention"
-msgstr ""
+msgstr "注意"
 
 #: application/views/interface_assets/footer.php:41
 msgid "Warning! Are you sure you want delete QSO with "
-msgstr ""
+msgstr "警告！QSOを削除してもよろしいですか？ "
 
 #: application/views/interface_assets/footer.php:42
 #: application/views/user/edit.php:522
 msgid "Colors"
-msgstr ""
+msgstr "色"
 
 #: application/views/interface_assets/footer.php:44
 msgid "Worked not confirmed"
-msgstr ""
+msgstr "動作確認はされていません"
 
 #: application/views/interface_assets/footer.php:50
 #: application/views/qso/index.php:701
 msgid "Clear"
-msgstr ""
+msgstr "クリア"
 
 #: application/views/interface_assets/footer.php:51
 #: application/views/qso/edit_ajax.php:213
 #: application/views/qso/edit_ajax.php:565
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
-msgstr ""
+msgstr "伝播モードは LoTW ではサポートされていません。LoTW QSL フィールドは無効です。"
 
 #: application/views/interface_assets/footer.php:52
 msgid "No states for this DXCC available"
-msgstr ""
+msgstr "このDXCCの状態は利用できません"
 
 #: application/views/interface_assets/footer.php:53
 msgid "Compute QRB and QTF"
-msgstr ""
+msgstr "QRBとQTFを計算する"
 
 #: application/views/interface_assets/footer.php:54
 msgid "Error in locators. Please check."
-msgstr ""
+msgstr "ロケータにエラーがあります。確認してください。"
 
 #: application/views/interface_assets/footer.php:55
 #: application/views/user/index.php:20 application/views/user/index.php:144
 msgid "Refresh List"
-msgstr ""
+msgstr "リストを更新"
 
 #: application/views/interface_assets/footer.php:56
 msgid "Please Wait ..."
-msgstr ""
+msgstr "お待ちください ..."
 
 #: application/views/interface_assets/footer.php:57
 msgctxt ""
 "Word for country states that are deprecated but kept for legacy reasons."
 msgid "deprecated"
-msgstr ""
+msgstr "非推奨"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Satellite Information"
-msgstr ""
+msgstr "衛星情報"
 
 #: application/views/interface_assets/footer.php:139
 #: application/views/interface_assets/header.php:509
 #: application/views/options/sidebar.php:10
 msgid "Version Info"
-msgstr ""
+msgstr "バージョン情報"
 
 #: application/views/interface_assets/footer.php:193
 #: application/views/interface_assets/footer.php:208
 msgid "Failed to load the modal. Please try again."
-msgstr ""
+msgstr "モーダルの読み込みに失敗しました。もう一度お試しください。"
 
 #: application/views/interface_assets/footer.php:455
 msgid "Description:"
-msgstr ""
+msgstr "説明："
 
 #: application/views/interface_assets/footer.php:458
 msgid "Query description"
-msgstr ""
+msgstr "クエリの説明"
 
 #: application/views/interface_assets/footer.php:474
 msgid "Your query has been saved!"
-msgstr ""
+msgstr "クエリが保存されました!"
 
 #: application/views/interface_assets/footer.php:476
 #: application/views/search/filter.php:49
 msgid "Edit queries"
-msgstr ""
+msgstr "クエリを編集する"
 
 #: application/views/interface_assets/footer.php:478
 msgid "Stored queries:"
-msgstr ""
+msgstr "保存されたクエリ:"
 
 #: application/views/interface_assets/footer.php:483
 #: application/views/search/filter.php:63
 msgid "Run Query"
-msgstr ""
+msgstr "クエリを実行"
 
 #: application/views/interface_assets/footer.php:495
 #: application/views/interface_assets/footer.php:631
 #: application/views/interface_assets/footer.php:701
 msgid "Stored Queries"
-msgstr ""
+msgstr "保存されたクエリ"
 
 #: application/views/interface_assets/footer.php:500
 #: application/views/interface_assets/footer.php:706
 msgid "You need to make a query before you search!"
-msgstr ""
+msgstr "検索する前にクエリを作成する必要があります!"
 
 #: application/views/interface_assets/footer.php:521
 #: application/views/interface_assets/footer.php:658
 #: application/views/search/filter.php:82
 msgid "Export to ADIF"
-msgstr ""
+msgstr "ADIFへのエクスポート"
 
 #: application/views/interface_assets/footer.php:522
 #: application/views/interface_assets/footer.php:659
@@ -9222,27 +9226,27 @@ msgstr ""
 #: application/views/search/ituzones.php:40
 #: application/views/search/main.php:37
 msgid "Open in the Advanced Logbook"
-msgstr ""
+msgstr "詳細ログブックで開く"
 
 #: application/views/interface_assets/footer.php:566
 msgid "Warning! Are you sure you want delete this stored query?"
-msgstr ""
+msgstr "警告! この保存されたクエリを削除してもよろしいですか?"
 
 #: application/views/interface_assets/footer.php:580
 msgid "The stored query has been deleted!"
-msgstr ""
+msgstr "保存されたクエリが削除されました!"
 
 #: application/views/interface_assets/footer.php:589
 msgid "The stored query could not be deleted. Please try again!"
-msgstr ""
+msgstr "保存されたクエリを削除できませんでした。もう一度お試しください!"
 
 #: application/views/interface_assets/footer.php:615
 msgid "The query description has been updated!"
-msgstr ""
+msgstr "クエリの説明が更新されました!"
 
 #: application/views/interface_assets/footer.php:619
 msgid "Something went wrong with the save. Please try again!"
-msgstr ""
+msgstr "保存中にエラーが発生しました。もう一度お試しください!"
 
 #: application/views/interface_assets/footer.php:748
 msgid ""
@@ -9257,15 +9261,15 @@ msgstr ""
 #: application/views/interface_assets/footer.php:801
 #: application/views/logbookadvanced/index.php:636
 msgid "Callsign: "
-msgstr ""
+msgstr "コールサイン: "
 
 #: application/views/interface_assets/footer.php:802
 msgid "Count: "
-msgstr ""
+msgstr "カウント： "
 
 #: application/views/interface_assets/footer.php:803
 msgid "Grids: "
-msgstr ""
+msgstr "グリッド: "
 
 #: application/views/interface_assets/footer.php:1111
 #: application/views/logbookadvanced/index.php:13
@@ -9273,12 +9277,12 @@ msgstr ""
 #: application/views/satellite/flightpath.php:11
 msgctxt "Map Options"
 msgid "Gridsquares"
-msgstr ""
+msgstr "グリッドスクエア"
 
 #: application/views/interface_assets/footer.php:1390
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
-msgstr ""
+msgstr "ログインしていません。%slogin%sしてください"
 
 #: application/views/interface_assets/footer.php:1604
 #: application/views/interface_assets/footer.php:1608
@@ -9287,56 +9291,56 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1752
 #: application/views/interface_assets/footer.php:1755
 msgid "grid square"
-msgstr ""
+msgstr "グリッドスクエア"
 
 #: application/views/interface_assets/footer.php:1611
 #: application/views/interface_assets/footer.php:1755
 msgid "Total count"
-msgstr ""
+msgstr "合計数"
 
 #: application/views/interface_assets/footer.php:2530
 msgid "QSL Card for "
-msgstr ""
+msgstr "QSLカード "
 
 #: application/views/interface_assets/footer.php:2550
 msgid "Warning! Are you sure you want to delete this QSL card?"
-msgstr ""
+msgstr "警告! このQSLカードを削除してもよろしいですか?"
 
 #: application/views/interface_assets/footer.php:2590
 #: application/views/view_log/qso.php:43
 msgid "eQSL Card"
-msgstr ""
+msgstr "eQSLカード"
 
 #: application/views/interface_assets/footer.php:2592
 msgid "eQSL Card for "
-msgstr ""
+msgstr "eQSLカード "
 
 #: application/views/interface_assets/footer.php:2790
 #: application/views/interface_assets/footer.php:2829
 #: application/views/view_log/qso.php:753
 msgid "QSL image file"
-msgstr ""
+msgstr "QSL画像ファイル"
 
 #: application/views/interface_assets/footer.php:2809
 msgid "Front QSL Card:"
-msgstr ""
+msgstr "表面QSLカード:"
 
 #: application/views/interface_assets/footer.php:2847
 msgid "Back QSL Card:"
-msgstr ""
+msgstr "裏面QSLカード:"
 
 #: application/views/interface_assets/footer.php:2858
 #: application/views/interface_assets/footer.php:2883
 msgid "Add additional QSOs to a QSL Card"
-msgstr ""
+msgstr "QSLカードにQSOを追加する"
 
 #: application/views/interface_assets/footer.php:2894
 msgid "Something went wrong. Please try again!"
-msgstr ""
+msgstr "問題が発生しました。もう一度お試しください!"
 
 #: application/views/interface_assets/header.php:87
 msgid "Developer Mode"
-msgstr ""
+msgstr "開発者モード"
 
 #: application/views/interface_assets/header.php:90
 msgid "Maintenance Mode"
