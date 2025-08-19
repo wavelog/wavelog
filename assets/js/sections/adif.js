@@ -6,10 +6,10 @@ $(document).ready(function(){
 		if (!(file)) {
 			return;
 		}
-		$("#prepare_sub").prop("disabled",true);
+		$("#prepare_sub").prop("disabled",true).addClass("running");
 		if (JSZip.support.blob) {	// Check if Browser supports ZIP
 			var zip = new JSZip();
-			//add all files to zip 
+			//add all files to zip
 			addFileToZip(file);
 			function addFileToZip(n) {
 				var arrayBuffer;
@@ -32,7 +32,7 @@ $(document).ready(function(){
 							return;
 						});
 					} else {
-						$("#prepare_sub").prop("disabled",false);
+						$("#prepare_sub").prop("disabled",false).removeClass("running");;
 						alert("Unsupported File. Must be ADIF");
 					}
 
@@ -58,3 +58,10 @@ $(document).ready(function(){
 	}
 
 });
+
+function toggleAll() {
+    const form = document.getElementById('upform');
+    const boxes = form.querySelectorAll('.form-check-input[type="checkbox"]');
+    const allChecked = Array.from(boxes).every(cb => cb.checked);
+    boxes.forEach(cb => cb.checked = !allChecked);
+}

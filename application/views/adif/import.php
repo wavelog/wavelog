@@ -209,7 +209,9 @@
 							</div>
 						</div>
 
-                        <button id="prepare_sub" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
+						<button type="button" class="btn mb-2 btn-sm btn-success" onclick="toggleAll()"><?= __("Toggle all checkboxes") ?></button>
+
+                        <button id="prepare_sub" class="btn btn-sm btn-primary mb-2 ld-ext-right" value="Upload"><?= __("Upload") ?><div class="ld ld-ring ld-spin"></div></button>
                     </form>
                 </div>
 
