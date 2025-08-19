@@ -1253,6 +1253,8 @@ class Logbook_model extends CI_Model {
 			}
 		} else if ($data['COL_SAT_NAME'] == 'CAS-3H') {
 			$sat_name = 'LilacSat-2';
+		} else if (preg_match('/TEV2-[1-9]/', $data['COL_SAT_NAME'])) {
+			$sat_name = str_replace('TEV2-', 'TEVEL2-', $data['COL_SAT_NAME']);
 		} else {
 			$sat_name = $data['COL_SAT_NAME'];
 		}
