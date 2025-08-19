@@ -98,7 +98,7 @@ class DXCC extends CI_Model {
 			if ($postdata['confirmed'] != NULL) {
 				$confirmedDXCC = $this->getDxccBandConfirmed($location_list, $band, $postdata);
 				foreach ($confirmedDXCC as $cdxcc) {
-					$dxccMatrix[$cdxcc->dxcc][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$cdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","'. $postdata['orbit'] . '","' . $postdata['mode'] . '","DXCC2","'.$qsl.'")\'>C</a></div>';
+					$dxccMatrix[$cdxcc->dxcc][$band] = '<div class="bg-success awardsBgSuccess" additional_successinfo=">C<"><a href=\'javascript:displayContacts("'.$cdxcc->dxcc.'","'. $band . '","'. $postdata['sat'] . '","'. $postdata['orbit'] . '","' . $postdata['mode'] . '","DXCC2","'.$qsl.'")\'>'.$this->cf_type($postdata, $cdxcc->qsl,$cdxcc->lotw, $cdxcc->eqsl, $cdxcc->qrz, $cdxcc->clublog).'</a></div>';
 				}
 			}
 		}
@@ -130,11 +130,22 @@ class DXCC extends CI_Model {
 		}
 	}
 
+	private function cf_type($postdata,$qsl,$lotw,$eqsl,$qrz,$clublog) {
+		$string='';
+		if ((($qsl ?? 0)>0) && (($postdata['qsl'] ?? '') != '')) { $string.='Q'; }
+		if ((($lotw ?? 0)>0) && (($postdata['lotw'] ?? '') != '')) { $string.='L'; }
+		if ((($eqsl ?? 0)>0) && (($postdata['eqsl'] ?? '') != '')) { $string.='E'; }
+		if ((($qrz ?? 0)>0) && (($postdata['qrz'] ?? '') != '')) { $string.='Z'; }
+		if ((($clublog ?? 0)>0) && (($postdata['clublog'] ?? '') != '')) { $string.='C'; }
+		if ($string == '') { $string='C'; }
+		return $string;
+	}
+
 	function getDxccBandConfirmed($location_list, $band, $postdata) {
 		$bindings=[];
-		$sql = "select adif as dxcc, name from dxcc_entities
+		$sql = "select adif as dxcc, name, lotw, qsl, eqsl, qrz, clublog from dxcc_entities
 				join (
-					select col_dxcc from ".$this->config->item('table_name')." thcv
+					select col_dxcc, sum(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,sum(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,sum(case when thcv.col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,sum(case when thcv.COL_QRZCOM_QSO_DOWNLOAD_STATUS= 'Y' then 1 else 0 end) as qrz,sum(case when thcv.COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y' then 1 else 0 end) as clublog from ".$this->config->item('table_name')." thcv
 					LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
 					where station_id in (" . $location_list .
 				  ") and col_dxcc > 0";
@@ -337,9 +348,9 @@ class DXCC extends CI_Model {
 
 	function getDxccConfirmed($location_list, $postdata) {
 		$bindings=[];
-		$sql = "SELECT adif as dxcc FROM dxcc_entities
+		$sql = "SELECT adif as dxcc, lotw, qsl, eqsl, qrz, clublog FROM dxcc_entities
 	    join (
-		select col_dxcc
+		select col_dxcc, sum(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,sum(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,sum(case when thcv.col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,sum(case when thcv.COL_QRZCOM_QSO_DOWNLOAD_STATUS= 'Y' then 1 else 0 end) as qrz,sum(case when thcv.COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y' then 1 else 0 end) as clublog
 		from ".$this->config->item('table_name')." thcv
 		LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
 		where station_id in (". $location_list .
@@ -434,6 +445,8 @@ class DXCC extends CI_Model {
 			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
 			$dxccSummary['worked'][$band] = $worked[0]->count;
 			$dxccSummary['confirmed'][$band] = $confirmed[0]->count;
+			$dxccSummary['confirmed_lotw'][$band] = $confirmed[0]->lotw;
+			$dxccSummary['confirmed_qsl'][$band] = $confirmed[0]->qsl;
 		}
 
 		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list);
@@ -506,7 +519,7 @@ class DXCC extends CI_Model {
 
 	function getSummaryByBandConfirmed($band, $postdata, $location_list) {
 		$bindings=[];
-		$sql = "SELECT count(distinct thcv.col_dxcc) as count FROM " . $this->config->item('table_name') . " thcv";
+		$sql = "SELECT count(distinct thcv.col_dxcc) as count, sum(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,sum(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,sum(case when thcv.col_eqsl_qsl_rcvd = 'Y'     then 1 else 0 end) as eqsl,sum(case when thcv.COL_QRZCOM_QSO_DOWNLOAD_STATUS= 'Y' then 1 else 0 end) as qrz,sum(case when thcv.COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y' then 1 else 0 end) as clublog FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name";
 		$sql .= " join dxcc_entities d on thcv.col_dxcc = d.adif";
 
