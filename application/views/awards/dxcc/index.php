@@ -217,6 +217,12 @@
     <?php
     $i = 1;
     if ($dxcc_array) {
+	    echo __('Legend:');
+	    echo '<pre>'.__("Q: QSL-Paper-Card")."\n";
+	    echo __("L: LoTW")."\n";
+	    echo __("E: eQSL")."\n";
+	    echo __('Z: QRZ-"confirmation"')."\n";
+	    echo __("C: Clublog").'</pre>';
 	    echo '
 		<table style="width:100%" class="table-sm table tabledxcc table-bordered table-hover table-striped table-condensed text-center">
 		    <thead>
