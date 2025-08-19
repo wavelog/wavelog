@@ -218,12 +218,12 @@
     $i = 1;
     if ($dxcc_array) {
 	    echo __('Legend:');
-	    echo '<pre>'.__("Q: QSL-Paper-Card")."\n";
-	    echo __("L: LoTW")."\n";
-	    echo __("E: eQSL")."\n";
-	    echo __('Z: QRZ-"confirmation"')."\n";
-	    echo __("C: Clublog")."\n";
-	    echo __("W: Worked").'</pre>';
+	    echo '<pre>'.__("(Q)SL-Paper-Card").", ";
+	    echo __("(L)oTW").", ";
+	    echo __("(e)QSL").", ";
+	    echo __('QR(Z)-"confirmation"').", ";
+	    echo __("(C)lublog").", ";
+	    echo __("(W)orked").'</pre>';
 	    echo '
 		<table style="width:100%" class="table-sm table tabledxcc table-bordered table-hover table-striped table-condensed text-center">
 		    <thead>
