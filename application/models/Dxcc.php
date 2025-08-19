@@ -348,9 +348,9 @@ class DXCC extends CI_Model {
 
 	function getDxccConfirmed($location_list, $postdata) {
 		$bindings=[];
-		$sql = "SELECT adif, lotw, qsl as dxcc FROM dxcc_entities
+		$sql = "SELECT adif as dxcc, lotw, qsl, eqsl, qrz, clublog FROM dxcc_entities
 	    join (
-		select col_dxcc, sum(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,sum(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,sum(case when thcv.col_eqsl_qsl_rcvd = 'Y'     then 1 else 0 end) as eqsl,sum(case when thcv.COL_QRZCOM_QSO_DOWNLOAD_STATUS= 'Y' then 1 else 0 end) as qrz,sum(case when thcv.COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y' then 1 else 0 end) as clublog
+		select col_dxcc, sum(case when thcv.col_lotw_qsl_rcvd ='Y' then 1 else 0 end) as lotw,sum(case when thcv.col_qsl_rcvd = 'Y' then 1 else 0 end) as qsl,sum(case when thcv.col_eqsl_qsl_rcvd = 'Y' then 1 else 0 end) as eqsl,sum(case when thcv.COL_QRZCOM_QSO_DOWNLOAD_STATUS= 'Y' then 1 else 0 end) as qrz,sum(case when thcv.COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y' then 1 else 0 end) as clublog
 		from ".$this->config->item('table_name')." thcv
 		LEFT JOIN satellite on thcv.COL_SAT_NAME = satellite.name
 		where station_id in (". $location_list .
@@ -454,8 +454,6 @@ class DXCC extends CI_Model {
 
 		$dxccSummary['worked']['Total'] = $workedTotal[0]->count;
 		$dxccSummary['confirmed']['Total'] = $confirmedTotal[0]->count;
-		$dxccSummary['confirmed_lotw']['Total'] = $confirmedTotal[0]->lotw;
-		$dxccSummary['confirmed_qsl']['Total'] = $confirmedTotal[0]->qsl;
 
 		return $dxccSummary;
 	}
