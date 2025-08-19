@@ -222,7 +222,8 @@
 	    echo __("L: LoTW")."\n";
 	    echo __("E: eQSL")."\n";
 	    echo __('Z: QRZ-"confirmation"')."\n";
-	    echo __("C: Clublog").'</pre>';
+	    echo __("C: Clublog")."\n";
+	    echo __("W: Worked").'</pre>';
 	    echo '
 		<table style="width:100%" class="table-sm table tabledxcc table-bordered table-hover table-striped table-condensed text-center">
 		    <thead>
