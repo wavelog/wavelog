@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-14 13:24+0000\n"
-"PO-Revision-Date: 2025-07-29 17:14+0000\n"
+"POT-Creation-Date: 2025-08-18 18:00+0000\n"
+"PO-Revision-Date: 2025-08-18 11:49+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/es/>\n"
@@ -2041,11 +2041,11 @@ msgstr "Solicitudes OQRS"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "Coincidencia de QSO eliminada con éxito."
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "Coincidencia de QSO añadida con éxito."
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -3430,7 +3430,7 @@ msgstr "Diferencia"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:224
+#: application/views/adif/import.php:228
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -4024,8 +4024,8 @@ msgid "Nothing found!"
 msgstr "¡Nada encontrado!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:78 application/views/adif/import.php:228
-#: application/views/adif/import.php:272
+#: application/views/adif/import.php:78 application/views/adif/import.php:234
+#: application/views/adif/import.php:298
 #: application/views/awards/73on73/index.php:34
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
@@ -4242,7 +4242,7 @@ msgstr "Estado de QSL de DCL"
 msgid "ADIF Export"
 msgstr "Exportar ADIF"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:298
+#: application/views/adif/import.php:36 application/views/adif/import.php:324
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -4250,7 +4250,7 @@ msgstr "DARC DCL"
 msgid "CBR Import"
 msgstr "Importación CBR"
 
-#: application/views/adif/import.php:64 application/views/adif/import.php:345
+#: application/views/adif/import.php:64 application/views/adif/import.php:371
 #: application/views/api/index.php:22 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
@@ -4268,8 +4268,8 @@ msgstr "Los archivos de registro deben tener el tipo de archivo *.adi"
 msgid "Maximum file upload size is "
 msgstr "El tamaño máximo del archivo subido es "
 
-#: application/views/adif/import.php:65 application/views/adif/import.php:275
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:65 application/views/adif/import.php:301
+#: application/views/adif/import.php:340
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:576 application/views/hrdlog/export.php:25
@@ -4284,7 +4284,7 @@ msgid "Warning"
 msgstr "Advertencia"
 
 #: application/views/adif/import.php:72 application/views/adif/import.php:74
-#: application/views/adif/import.php:222 application/views/adif/import.php:270
+#: application/views/adif/import.php:226 application/views/adif/import.php:296
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -4293,13 +4293,13 @@ msgstr "Seleccione la Localización de la Estación"
 
 #: application/views/adif/import.php:82
 msgid "Choose ADIF File"
-msgstr ""
+msgstr "Elegir archivo ADIF"
 
 #: application/views/adif/import.php:88
 msgid "Add QSOs to Contest"
 msgstr "Agregar QSOs al concurso"
 
-#: application/views/adif/import.php:90 application/views/adif/import.php:352
+#: application/views/adif/import.php:90 application/views/adif/import.php:378
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "Ninguno Contest"
@@ -4312,13 +4312,17 @@ msgstr ""
 "Escribe el indicativo del operador de los QSOs importados. Deja vacío para "
 "usar el indicativo del operador en el archivo ADIF."
 
+#: application/views/adif/import.php:108
+msgid "Basic Settings"
+msgstr ""
+
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
 msgstr "Importar QSOs duplicadas"
 
 #: application/views/adif/import.php:117
 msgid "Select if want to import QSOs, even if they already exist."
-msgstr ""
+msgstr "Selecciona si deseas importar QSOs, incluso si ya existen."
 
 #: application/views/adif/import.php:122
 msgid "Use DXCC information from ADIF"
@@ -4341,7 +4345,7 @@ msgstr "PELIGRO"
 
 #: application/views/adif/import.php:132
 msgid "Ignore Station callsign on import"
-msgstr ""
+msgstr "Ignorar el indicativo de la estación al importar"
 
 #: application/views/adif/import.php:134
 #, php-format
@@ -4349,6 +4353,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Si se selecciona, Wavelog intentará importar %stodos%s los QSOs del ADIF, "
+"independientemente de si coinciden con la ubicación de la estación elegida."
 
 #: application/views/adif/import.php:141
 msgid ""
@@ -4356,6 +4362,10 @@ msgid ""
 msgstr ""
 "Utiliza siempre el indicativo de la cuenta iniciada como el indicativo del "
 "operador durante la importación"
+
+#: application/views/adif/import.php:153
+msgid "Mark QSOs as uploaded"
+msgstr ""
 
 #: application/views/adif/import.php:160
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -4390,19 +4400,19 @@ msgstr ""
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Marca los QSOs importados como subidos al DCL Logbook"
 
-#: application/views/adif/import.php:212 application/views/adif/import.php:329
-#: application/views/adif/import.php:367
+#: application/views/adif/import.php:212 application/views/adif/import.php:355
+#: application/views/adif/import.php:393
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Subir"
 
-#: application/views/adif/import.php:219
+#: application/views/adif/import.php:220
 msgid "Take your logbook file anywhere!"
 msgstr "¡Lleve su archivo de libro de guardia a cualquier lugar!"
 
-#: application/views/adif/import.php:220
+#: application/views/adif/import.php:221
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4410,7 +4420,7 @@ msgstr ""
 "Exportar archivos ADIF le permite importar contactos en aplicaciones de "
 "terceros como LoTW, Diplomas o para simplemente tener una copia de seguridad."
 
-#: application/views/adif/import.php:221
+#: application/views/adif/import.php:222
 #, php-format
 msgctxt ""
 msgid ""
@@ -4420,7 +4430,7 @@ msgstr ""
 "Si necesitas más filtrado, puedes usar %sel Libro de Registro Avanzado%s "
 "para filtrar y exportar!"
 
-#: application/views/adif/import.php:232 application/views/adif/import.php:277
+#: application/views/adif/import.php:245 application/views/adif/import.php:303
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
 #: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4429,7 +4439,7 @@ msgstr ""
 msgid "From date"
 msgstr "Desde la fecha"
 
-#: application/views/adif/import.php:235 application/views/adif/import.php:280
+#: application/views/adif/import.php:249 application/views/adif/import.php:306
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -4438,41 +4448,45 @@ msgstr "Desde la fecha"
 msgid "To date"
 msgstr "Hasta la fecha"
 
-#: application/views/adif/import.php:243
+#: application/views/adif/import.php:260
+msgid "Export options"
+msgstr ""
+
+#: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Marcar QSOs exportados como subidos a LoTW"
 
-#: application/views/adif/import.php:251
+#: application/views/adif/import.php:275
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Exportar QSOs que no se hayan subido a LoTW"
 
-#: application/views/adif/import.php:256
+#: application/views/adif/import.php:282
 msgid "Export QSOs"
 msgstr "Exportar QSOs"
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:287
 msgid "Export Satellite-Only QSOs"
 msgstr "Exportar solo QSOs de satélite"
 
-#: application/views/adif/import.php:262
+#: application/views/adif/import.php:288
 msgid "Export All Satellite QSOs"
 msgstr "Exportar todos los QSOs de satélite"
 
-#: application/views/adif/import.php:264
+#: application/views/adif/import.php:290
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Exportar todos los QSOs de satélite confirmados en LoTW"
 
-#: application/views/adif/import.php:275 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:301 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr ""
 "¡Si no selecciona un rango de fechas entonces todos los QSOs serán marcados!"
 
-#: application/views/adif/import.php:283
+#: application/views/adif/import.php:309
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Marcar QSOs como exportados a LoTW"
 
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:324
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4485,11 +4499,11 @@ msgstr ""
 "'DL' en la Lista de Prefijos). El archivo ADIF descargado se puede subir "
 "aquí para actualizar los QSOs con la información de DOK."
 
-#: application/views/adif/import.php:305
+#: application/views/adif/import.php:331
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Solo importar datos DOK de los QSO confirmados en DCL."
 
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:333
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -4497,11 +4511,11 @@ msgstr ""
 "Si se deja desactivado, se actualizarán los datos DOK con datos de los QSO "
 "no confirmados en DCL."
 
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:340
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Sobrescribe el DOK existente en el registro por DCL (si es diferente)."
 
-#: application/views/adif/import.php:316
+#: application/views/adif/import.php:342
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4509,11 +4523,11 @@ msgstr ""
 "Si está activo, Wavelog forzará la sobreescritura de los DOK existentes con "
 "los DOK desde el libro de DCL."
 
-#: application/views/adif/import.php:323
+#: application/views/adif/import.php:349
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Ignorar QSOs que no concuerden."
 
-#: application/views/adif/import.php:325
+#: application/views/adif/import.php:351
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -4521,7 +4535,7 @@ msgstr ""
 "Si no se marca, se mostrará información sobre QSOs que no se pudo encontrar "
 "en Wavelog."
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4535,13 +4549,13 @@ msgstr ""
 "corregir eso, puedes proporcionar el archivo Cabrillo que este software "
 "también proporciona para reescribir esos datos en Wavelog."
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Información"
 
-#: application/views/adif/import.php:345
+#: application/views/adif/import.php:371
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4554,15 +4568,15 @@ msgstr ""
 "archivo CBR que estás a punto de subir para hacer coincidir los QSOs y solo "
 "corregir los datos relevantes."
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Nombre del concurso, solo si el ID del concurso en CBR es diferente"
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Optional"
 msgstr "Opcional"
 
-#: application/views/adif/import.php:360
+#: application/views/adif/import.php:386
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
@@ -4570,7 +4584,7 @@ msgstr ""
 "Un número de serie es SIEMPRE parte del intercambio para ambas partes en "
 "este concurso."
 
-#: application/views/adif/import.php:362
+#: application/views/adif/import.php:388
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4578,7 +4592,7 @@ msgstr ""
 "Si tú o tu pareja solo intercambian números de serie a veces, por favor deja "
 "esto sin marcar."
 
-#: application/views/adif/import.php:363
+#: application/views/adif/import.php:389
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -8620,7 +8634,7 @@ msgstr "Italiano"
 
 #: application/views/debug/index.php:684
 msgid "Japanese"
-msgstr ""
+msgstr "Japonés"
 
 #: application/views/debug/index.php:685
 msgid "Latvian"
@@ -11613,7 +11627,7 @@ msgstr "Añadir a la cola de impresión"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "Coincidir QSO"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11689,41 +11703,50 @@ msgstr "Solicitud completada"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "Solicitud pendiente"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "Solicitud rechazada"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "Se produjo un error al realizar la solicitud"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que deseas eliminar la(s) solicitud(es) OQRS "
+"marcada(s)?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que deseas rechazar la(s) solicitud(es) OQRS "
+"marcada(s)?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que quieres marcar la(s) solicitud(es) OQRS "
+"marcada(s)?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que deseas agregar la(s) solicitud(es) OQRS "
+"marcada(s) a la cola?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "Información del estado de OQRS"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
 msgstr ""
+"¡Advertencia! ¿Estás seguro de que deseas eliminar la coincidencia de QSO?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
@@ -11737,17 +11760,17 @@ msgstr "Estado de OQRS"
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "Hecho / enviado"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "Pendiente"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "Rechazado"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
@@ -11759,7 +11782,7 @@ msgstr "Marcar como hecho"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "Rechazar"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
@@ -11784,29 +11807,31 @@ msgstr "Revisar registro"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "Coincidencia de QSO"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "La solicitud está actualmente abierta y necesita ser revisada por ti."
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"La solicitud no está en el registro, así que necesitas revisar tu registro y "
+"procesar la solicitud."
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "La solicitud ha sido procesada y la QSL ha sido enviada."
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "La solicitud aún está siendo procesada."
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "La solicitud ha sido rechazada y no será procesada."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
@@ -14828,21 +14853,26 @@ msgstr ""
 
 #: application/views/user/edit.php:713
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "Coincidencia automática de OQRS"
 
 #: application/views/user/edit.php:718
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Si esto está activado, la coincidencia automática de OQRS ocurrirá, y el "
+"sistema intentará emparejar automáticamente las solicitudes entrantes con "
+"los registros existentes."
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Coincidencia automática de OQRS para solicitudes directas"
 
 #: application/views/user/edit.php:727
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"Si esto está activado, se realizará la coincidencia automática de OQRS para "
+"solicitudes directas."
 
 #: application/views/user/edit.php:743
 msgid "Default Values"

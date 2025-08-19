@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-14 13:24+0000\n"
+"POT-Creation-Date: 2025-08-18 18:00+0000\n"
 "PO-Revision-Date: 2025-07-31 03:15+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3399,7 +3399,7 @@ msgstr "Skillnad"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:224
+#: application/views/adif/import.php:228
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -3993,8 +3993,8 @@ msgid "Nothing found!"
 msgstr "Inget hittades!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:78 application/views/adif/import.php:228
-#: application/views/adif/import.php:272
+#: application/views/adif/import.php:78 application/views/adif/import.php:234
+#: application/views/adif/import.php:298
 #: application/views/awards/73on73/index.php:34
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
@@ -4211,7 +4211,7 @@ msgstr "DCL QSL-status"
 msgid "ADIF Export"
 msgstr "ADIF-export"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:298
+#: application/views/adif/import.php:36 application/views/adif/import.php:324
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -4219,7 +4219,7 @@ msgstr "DARC DCL"
 msgid "CBR Import"
 msgstr "CBR-import"
 
-#: application/views/adif/import.php:64 application/views/adif/import.php:345
+#: application/views/adif/import.php:64 application/views/adif/import.php:371
 #: application/views/api/index.php:22 application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
@@ -4237,8 +4237,8 @@ msgstr "Loggfil måste vara av format *.adi"
 msgid "Maximum file upload size is "
 msgstr "Maximal filuppladdningsstorlek är "
 
-#: application/views/adif/import.php:65 application/views/adif/import.php:275
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:65 application/views/adif/import.php:301
+#: application/views/adif/import.php:340
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:576 application/views/hrdlog/export.php:25
@@ -4253,7 +4253,7 @@ msgid "Warning"
 msgstr "Varning"
 
 #: application/views/adif/import.php:72 application/views/adif/import.php:74
-#: application/views/adif/import.php:222 application/views/adif/import.php:270
+#: application/views/adif/import.php:226 application/views/adif/import.php:296
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -4268,7 +4268,7 @@ msgstr ""
 msgid "Add QSOs to Contest"
 msgstr "Lägg till QSOn till tävlingen"
 
-#: application/views/adif/import.php:90 application/views/adif/import.php:352
+#: application/views/adif/import.php:90 application/views/adif/import.php:378
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "Ingen tävling"
@@ -4280,6 +4280,10 @@ msgid ""
 msgstr ""
 "Ange operatörens anropssignal för importerade QSOn. Lämna tomt för att "
 "använda operatörens anropssignal i ADIF-filen."
+
+#: application/views/adif/import.php:108
+msgid "Basic Settings"
+msgstr ""
 
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
@@ -4325,6 +4329,10 @@ msgstr ""
 "Använd alltid det inloggade kontots anropssignal som operatörsanrop vid "
 "import"
 
+#: application/views/adif/import.php:153
+msgid "Mark QSOs as uploaded"
+msgstr ""
+
 #: application/views/adif/import.php:160
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Markera importerade QSOn som uppladdade till LoTW"
@@ -4355,19 +4363,19 @@ msgstr "Markera importerade QSOn som uppladdade till Clublog Logbook"
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Markera importerade QSOn som uppladdade till DCL Logbook"
 
-#: application/views/adif/import.php:212 application/views/adif/import.php:329
-#: application/views/adif/import.php:367
+#: application/views/adif/import.php:212 application/views/adif/import.php:355
+#: application/views/adif/import.php:393
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Ladda upp"
 
-#: application/views/adif/import.php:219
+#: application/views/adif/import.php:220
 msgid "Take your logbook file anywhere!"
 msgstr "Ta med din loggbok var som helst!"
 
-#: application/views/adif/import.php:220
+#: application/views/adif/import.php:221
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4376,7 +4384,7 @@ msgstr ""
 "tredjepartsapplikationer som LoTW, Diplom eller bara för att ha en "
 "säkerhetskopia."
 
-#: application/views/adif/import.php:221
+#: application/views/adif/import.php:222
 #, php-format
 msgctxt ""
 msgid ""
@@ -4386,7 +4394,7 @@ msgstr ""
 "Om du behöver mer filtrering kan du använda %sden avancerade loggboken%s för "
 "att filtrera och exportera!"
 
-#: application/views/adif/import.php:232 application/views/adif/import.php:277
+#: application/views/adif/import.php:245 application/views/adif/import.php:303
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
 #: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4395,7 +4403,7 @@ msgstr ""
 msgid "From date"
 msgstr "Från datum"
 
-#: application/views/adif/import.php:235 application/views/adif/import.php:280
+#: application/views/adif/import.php:249 application/views/adif/import.php:306
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -4404,40 +4412,44 @@ msgstr "Från datum"
 msgid "To date"
 msgstr "Hittills"
 
-#: application/views/adif/import.php:243
+#: application/views/adif/import.php:260
+msgid "Export options"
+msgstr ""
+
+#: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Markera exporterade QSOn som uppladdade till LoTW"
 
-#: application/views/adif/import.php:251
+#: application/views/adif/import.php:275
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Exportera QSOn som inte har laddats upp till LoTW"
 
-#: application/views/adif/import.php:256
+#: application/views/adif/import.php:282
 msgid "Export QSOs"
 msgstr "Exportera QSOn"
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:287
 msgid "Export Satellite-Only QSOs"
 msgstr "Exportera endast satellit-QSOn"
 
-#: application/views/adif/import.php:262
+#: application/views/adif/import.php:288
 msgid "Export All Satellite QSOs"
 msgstr "Exportera alla satellit-QSOn"
 
-#: application/views/adif/import.php:264
+#: application/views/adif/import.php:290
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Exportera alla satellit-QSOn bekräftade på LoTW"
 
-#: application/views/adif/import.php:275 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:301 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "Om ett datumintervall inte är valt kommer alla QSOn att markeras!"
 
-#: application/views/adif/import.php:283
+#: application/views/adif/import.php:309
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Markera QSOn som exporterade till LoTW"
 
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:324
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4450,11 +4462,11 @@ msgstr ""
 "List). Den nedladdade ADIF-filen kan laddas upp här för att uppdatera QSOn "
 "med DOK-info."
 
-#: application/views/adif/import.php:305
+#: application/views/adif/import.php:331
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Importera endast DOK-data från QSOn bekräftade på DCL."
 
-#: application/views/adif/import.php:307
+#: application/views/adif/import.php:333
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -4462,11 +4474,11 @@ msgstr ""
 "Avmarkera om du också vill uppdatera DOK med data från obekräftade QSOn i "
 "DCL."
 
-#: application/views/adif/import.php:314
+#: application/views/adif/import.php:340
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Skriver över befintlig DOK i loggen med DCL (om annorlunda)."
 
-#: application/views/adif/import.php:316
+#: application/views/adif/import.php:342
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4474,11 +4486,11 @@ msgstr ""
 "Om markerad kommer Wavelog att tvinga överskrivning av befintlig DOK med DOK "
 "från DCL-logg."
 
-#: application/views/adif/import.php:323
+#: application/views/adif/import.php:349
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Ignorera QSOs som inte kan matchas."
 
-#: application/views/adif/import.php:325
+#: application/views/adif/import.php:351
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -4486,7 +4498,7 @@ msgstr ""
 "Om den inte markeras, kommer information om QSOn som inte kunde hittas i "
 "Wavelog att visas."
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4500,13 +4512,13 @@ msgstr ""
 "rätta till det kan du tillhandahålla Cabrillo-filen som denna programvara "
 "också tillhandahåller för att uppdatera den datan i Wavelog."
 
-#: application/views/adif/import.php:344
+#: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Information"
 
-#: application/views/adif/import.php:345
+#: application/views/adif/import.php:371
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4518,22 +4530,22 @@ msgstr ""
 "både din redan importerade ADIF-fil och CBR-filen du är på väg att ladda upp "
 "för att matcha QSOn och endast korrigera relevant data."
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Tävlingens namn, endast om tävlings-ID i CBR är annorlunda"
 
-#: application/views/adif/import.php:350
+#: application/views/adif/import.php:376
 msgid "Optional"
 msgstr "Valfritt"
 
-#: application/views/adif/import.php:360
+#: application/views/adif/import.php:386
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
 "Ett serienummer är ALLTID en del av utbytet för båda parter i denna tävling."
 
-#: application/views/adif/import.php:362
+#: application/views/adif/import.php:388
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4541,7 +4553,7 @@ msgstr ""
 "Om du eller din partner bara ibland utbyter serienummer, lämna detta "
 "omarkerat."
 
-#: application/views/adif/import.php:363
+#: application/views/adif/import.php:389
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
