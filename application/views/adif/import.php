@@ -143,14 +143,12 @@
 										</div>
 								<?php } ?>
 								</div>
-
-
 							</div>
 						</div>
 
 						<div class="card mb-3">
 							<div class="card-header">
-								<h6 class="mb-0"><?= __("Mark QSOs as uploaded") ?></h6>
+								<h6 class="mb-0"><?= __("Mark QSOs as uploaded (This does NOT upload QSOs to these services!)") ?></h6>
 							</div>
 							<div class="card-body">
 								<div class="mb-3 row">
@@ -206,10 +204,12 @@
 										<div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
 									</div>
 								</div>
+								<button type="button" class="btn mb-2 btn-sm btn-success" onclick="toggleAll(this)"><?= __("Toggle all checkboxes") ?></button>
 							</div>
 						</div>
 
-                        <button id="prepare_sub" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
+
+                        <button id="prepare_sub" class="btn btn-sm btn-primary mb-2 ld-ext-right" value="Upload"><?= __("Upload") ?><div class="ld ld-ring ld-spin"></div></button>
                     </form>
                 </div>
 

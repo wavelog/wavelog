@@ -4290,33 +4290,36 @@ msgstr "在导入时始终使用登录账户的呼号作为操作员呼号"
 msgid "Mark QSOs as uploaded"
 msgstr "标记 QSO 为已上传"
 
-#: application/views/adif/import.php:160
+#: application/views/adif/import.php:160 application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "标记导入的 QSO 为已上传至 LoTW"
 
 #: application/views/adif/import.php:162 application/views/adif/import.php:170
 #: application/views/adif/import.php:180 application/views/adif/import.php:188
 #: application/views/adif/import.php:198 application/views/adif/import.php:206
+#: application/views/adif/import.php:160 application/views/adif/import.php:168
+#: application/views/adif/import.php:178 application/views/adif/import.php:186
+#: application/views/adif/import.php:196 application/views/adif/import.php:204
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "如果导入的 ADIF 文件不包含此信息，选择此项。"
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:168 application/views/adif/import.php:166
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "标记导入的 QSO 为已上传至 eQSL"
 
-#: application/views/adif/import.php:178
+#: application/views/adif/import.php:178 application/views/adif/import.php:176
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "标记导入的 QSO 为已上传至 HRDLog Logbook"
 
-#: application/views/adif/import.php:186
+#: application/views/adif/import.php:186 application/views/adif/import.php:184
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "标记导入的 QSO 为已上传至 QRZ Logbook"
 
-#: application/views/adif/import.php:196
+#: application/views/adif/import.php:196 application/views/adif/import.php:194
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "标记导入的 QSO 为已上传至 Clublog Logbook"
 
-#: application/views/adif/import.php:204
+#: application/views/adif/import.php:204 application/views/adif/import.php:202
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "标记导入的 QSO 为已上传至 DCL Logbook"
 
@@ -4854,9 +4857,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
-"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
-"效通联的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
+"\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通"
+"联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5771,8 +5774,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -13746,8 +13749,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -14259,8 +14262,9 @@ msgstr "自动 OQRS 匹配"
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
-msgstr "如果此功能启用，系统将自动进行OQRS匹配，并尝试将传入的请求与现有日志自动匹配"
-"。"
+msgstr ""
+"如果此功能启用，系统将自动进行OQRS匹配，并尝试将传入的请求与现有日志自动匹"
+"配。"
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
@@ -15110,6 +15114,14 @@ msgstr "提交请求"
 msgid "Rcvd"
 msgstr "收"
 
+#: application/views/adif/import.php:151
+msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
+msgstr ""
+
+#: application/views/adif/import.php:207
+msgid "Toggle all checkboxes"
+msgstr ""
+
 #~ msgid "ADIF File"
 #~ msgstr "ADIF 文件"
 
@@ -15526,8 +15538,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""

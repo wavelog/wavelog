@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-08-18 18:00+0000\n"
 "PO-Revision-Date: 2025-08-19 08:30+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4337,34 +4337,37 @@ msgstr ""
 msgid "Mark QSOs as uploaded"
 msgstr "QSOをアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:160
+#: application/views/adif/import.php:160 application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "インポートしたQSOをLoTWにアップロード済みとしてマークする"
 
 #: application/views/adif/import.php:162 application/views/adif/import.php:170
 #: application/views/adif/import.php:180 application/views/adif/import.php:188
 #: application/views/adif/import.php:198 application/views/adif/import.php:206
+#: application/views/adif/import.php:160 application/views/adif/import.php:168
+#: application/views/adif/import.php:178 application/views/adif/import.php:186
+#: application/views/adif/import.php:196 application/views/adif/import.php:204
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "インポートする ADIF にこの情報が含まれていない場合に選択します。"
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:168 application/views/adif/import.php:166
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "インポートしたQSOをeQSLログブックにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:178
+#: application/views/adif/import.php:178 application/views/adif/import.php:176
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr ""
 "インポートしたQSOをHRDLog.netログブックにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:186
+#: application/views/adif/import.php:186 application/views/adif/import.php:184
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "インポートしたQSOをQRZログブックにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:196
+#: application/views/adif/import.php:196 application/views/adif/import.php:194
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "インポートしたQSOをClublogログブックにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:204
+#: application/views/adif/import.php:204 application/views/adif/import.php:202
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "インポートしたQSOをDCLログブックにアップロード済みとしてマークする"
 
@@ -7231,13 +7234,15 @@ msgstr "すべてのパスを表示"
 
 #: application/views/components/hamsat/table.php:14
 msgid "Private feed key empty. Please set the feed key in your profile."
-msgstr "プライベートフィードキーが空です。プロフィールでフィードキーを設定してくださ"
+msgstr ""
+"プライベートフィードキーが空です。プロフィールでフィードキーを設定してくださ"
 "い。"
 
 #: application/views/components/hamsat/table.php:19
 msgid "No upcoming activations found. Please check back later."
-msgstr "現在、予定されているアクティベーションはありません。後ほど再度ご確認ください"
-"。"
+msgstr ""
+"現在、予定されているアクティベーションはありません。後ほど再度ご確認くださ"
+"い。"
 
 #: application/views/components/hamsat/table.php:28
 #: application/views/contesting/index.php:229
@@ -7324,14 +7329,16 @@ msgstr "来週"
 msgid ""
 "Using the contest list, you can control which Contests are shown when "
 "logging QSOs in a contest."
-msgstr "コンテスト リストを使用すると、コンテストで QSO "
-"を記録するときにどのコンテストが表示されるかを制御できます。"
+msgstr ""
+"コンテスト リストを使用すると、コンテストで QSO を記録するときにどのコンテス"
+"トが表示されるかを制御できます。"
 
 #: application/views/contesting/add.php:19
 msgid ""
 "Active contests will be shown in the Contest Name drop-down, while inactive "
 "contests will be hidden and cannot be selected."
-msgstr "アクティブなコンテストは「コンテスト名」ドロップダウンに表示されますが、非ア"
+msgstr ""
+"アクティブなコンテストは「コンテスト名」ドロップダウンに表示されますが、非ア"
 "クティブなコンテストは非表示になり、選択できません。"
 
 #: application/views/contesting/add.php:26
@@ -7507,7 +7514,8 @@ msgstr "交換の順序"
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
-msgstr "各種レポートに入力する順序を選択してください。ただし、選択した交換タイプに含"
+msgstr ""
+"各種レポートに入力する順序を選択してください。ただし、選択した交換タイプに含"
 "まれる要素のみが表示されます。"
 
 #: application/views/contesting/index.php:78
@@ -7671,15 +7679,17 @@ msgstr "仕組み"
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
-msgstr "Cron マネージャーは、CLI アクセスを必要とせずに管理者が cron "
-"ジョブを管理するのを支援します。"
+msgstr ""
+"Cron マネージャーは、CLI アクセスを必要とせずに管理者が cron ジョブを管理する"
+"のを支援します。"
 
 #: application/views/cron/index.php:19
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
-msgstr "以下のデータに基づいて cron ジョブを実行するには、古い cron "
-"ジョブをすべて削除し、新しい cron ジョブを作成します。"
+msgstr ""
+"以下のデータに基づいて cron ジョブを実行するには、古い cron ジョブをすべて削"
+"除し、新しい cron ジョブを作成します。"
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
 msgid "Status Master-Cron:"
@@ -7719,14 +7729,16 @@ msgstr "Mastercron が実行されていません。"
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
-msgstr "この cron マネージャーを使用するには、上記の cron を外部の cron "
-"サービスまたはサーバーの cron にコピーします。"
+msgstr ""
+"この cron マネージャーを使用するには、上記の cron を外部の cron サービスまた"
+"はサーバーの cron にコピーします。"
 
 #: application/views/cron/index.php:104
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
-msgstr "シェル アクセスを備えた基本的な Linux サーバーでは、次のコマンドを使用して "
+msgstr ""
+"シェル アクセスを備えた基本的な Linux サーバーでは、次のコマンドを使用して "
 "cron を編集します。"
 
 #: application/views/cron/index.php:111
@@ -7734,7 +7746,8 @@ msgstr "シェル アクセスを備えた基本的な Linux サーバーでは�
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
 "%s"
-msgstr "PHPのバージョンをアップグレードする必要があります。最低バージョンは%sです。現"
+msgstr ""
+"PHPのバージョンをアップグレードする必要があります。最低バージョンは%sです。現"
 "在のバージョンは%sです"
 
 #: application/views/csv/index.php:7
@@ -7763,7 +7776,8 @@ msgstr "RSTR"
 #: application/views/dashboard/index.php:111
 msgid ""
 "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
-msgstr "PHPのバージョンをアップグレードする必要があります。最低バージョンは7.4です。"
+msgstr ""
+"PHPのバージョンをアップグレードする必要があります。最低バージョンは7.4です。"
 "現在のバージョンは"
 
 #: application/views/dashboard/index.php:117
@@ -7776,22 +7790,25 @@ msgstr "Wavelog の新バージョンがリリースされました。詳細は�
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
-msgstr "国別ファイルを更新する必要があります！%shere%sをクリックして更新してください"
-"。"
+msgstr ""
+"国別ファイルを更新する必要があります！%shere%sをクリックして更新してくださ"
+"い。"
 
 #: application/views/dashboard/index.php:133
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr "ステーションの場所が設定されていません。%shere%s "
-"をクリックして設定してください。"
+msgstr ""
+"ステーションの場所が設定されていません。%shere%s をクリックして設定してくださ"
+"い。"
 
 #: application/views/dashboard/index.php:141
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr "ステーションのログブックがありません。%shere%sをクリックして作成してください"
-"。"
+msgstr ""
+"ステーションのログブックがありません。%shere%sをクリックして作成してくださ"
+"い。"
 
 #: application/views/dashboard/index.php:149
 #, php-format
@@ -7799,15 +7816,17 @@ msgctxt "Dashboard Warning"
 msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
-msgstr "現在のステーション位置がログブックとリンクされていません。リンクするには、"
+msgstr ""
+"現在のステーション位置がログブックとリンクされていません。リンクするには、"
 "%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:157
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
-msgstr "ログブックにリンクされたステーションがありません。%shere%s "
-"をクリックしてリンクしてください。"
+msgstr ""
+"ログブックにリンクされたステーションがありません。%shere%s をクリックしてリン"
+"クしてください。"
 
 #: application/views/dashboard/index.php:166
 #, php-format
@@ -7827,7 +7846,8 @@ msgstr "注意: アクティブなステーションの場所を設定する必�
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
-msgstr "テーマが定義されていないテーマモードがあります。管理者にテーマの編集を依頼し"
+msgstr ""
+"テーマが定義されていないテーマモードがあります。管理者にテーマの編集を依頼し"
 "てください。"
 
 #: application/views/dashboard/index.php:193
@@ -7840,7 +7860,8 @@ msgstr "あなたの%sLoTW証明書%sのうち少なくとも1つが有効期限
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
-msgstr "あなたの%sLoTW証明書%sの少なくとも1つが、まもなく有効期限切れになります！"
+msgstr ""
+"あなたの%sLoTW証明書%sの少なくとも1つが、まもなく有効期限切れになります！"
 
 #: application/views/dashboard/index.php:274
 #: application/views/qso/index.php:810
@@ -8078,8 +8099,9 @@ msgstr "現在の連続記録（QSOが連続した日数）"
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
-msgstr "今日 QSO を行えば、連続記録をさらに伸ばすことができます... "
-"そうでなければ、現在の連続記録が破られてしまいます!"
+msgstr ""
+"今日 QSO を行えば、連続記録をさらに伸ばすことができます... そうでなければ、現"
+"在の連続記録が破られてしまいます!"
 
 #: application/views/dayswithqso/index.php:196
 msgid "No current streak found!"
@@ -8202,8 +8224,9 @@ msgstr "フォルダ権限"
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
-msgstr "これにより、Wavelog で使用されるフォルダーに PHP "
-"による読み取りおよび書き込み権限があるかどうかが確認されます。"
+msgstr ""
+"これにより、Wavelog で使用されるフォルダーに PHP による読み取りおよび書き込み"
+"権限があるかどうかが確認されます。"
 
 #: application/views/debug/index.php:130 application/views/debug/index.php:141
 #: application/views/debug/index.php:152 application/views/debug/index.php:163
@@ -8234,7 +8257,8 @@ msgstr "%s ファイルを編集してください:"
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
-msgstr "application/configフォルダに移動し、config.sample.phpとconfig.phpを比較します"
+msgstr ""
+"application/configフォルダに移動し、config.sample.phpとconfig.phpを比較します"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -8263,9 +8287,8 @@ msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
 msgstr ""
-"値を変更する %s を "
-"「flossie1234555541」以外の新しい暗号化キーに設定してください。安全で長いパス"
-"ワードを選択してください。（強く推奨）"
+"値を変更する %s を 「flossie1234555541」以外の新しい暗号化キーに設定してくだ"
+"さい。安全で長いパスワードを選択してください。（強く推奨）"
 
 #: application/views/debug/index.php:220
 msgid "You do not use the default encryption key"
@@ -8279,8 +8302,9 @@ msgstr "ユーザーデータの移行"
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
-msgstr "ここで、既存の QSL カードと eQSL カードを新しい userdata "
-"フォルダーに移行できます。"
+msgstr ""
+"ここで、既存の QSL カードと eQSL カードを新しい userdata フォルダーに移行でき"
+"ます。"
 
 #: application/views/debug/index.php:242
 msgid "Modules"
@@ -8397,7 +8421,8 @@ msgstr "QSO-DBメンテナンス"
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
-msgstr[0] "データベースには、ステーションプロファイル（位置情報）のない%d件のQSOが含まれ"
+msgstr[0] ""
+"データベースには、ステーションプロファイル（位置情報）のない%d件のQSOが含まれ"
 "ています"
 
 #: application/views/debug/index.php:614
@@ -8415,7 +8440,8 @@ msgstr "再割り当て"
 
 #: application/views/debug/index.php:643
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
-msgstr "データベース内のすべてのQSOはステーションプロファイル（場所）に割り当てられま"
+msgstr ""
+"データベース内のすべてのQSOはステーションプロファイル（場所）に割り当てられま"
 "す"
 
 #: application/views/debug/index.php:643
@@ -8540,8 +8566,9 @@ msgstr "トルコ語"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
-msgstr "このページには、グリッドスクエアに基づいて衛星ごとの距離記録がリストされます"
-"。"
+msgstr ""
+"このページには、グリッドスクエアに基づいて衛星ごとの距離記録がリストされま"
+"す。"
 
 #: application/views/distancerecords/index.php:20
 msgid "My Gridsquare"
@@ -8586,8 +8613,9 @@ msgstr "DXアトラスエクスポート"
 msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
-msgstr "作業済み/確認済みのグリッドスクエアを表示するには、ログブックを DX Atlas "
-"用にエクスポートします。"
+msgstr ""
+"作業済み/確認済みのグリッドスクエアを表示するには、ログブックを DX Atlas 用に"
+"エクスポートします。"
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
@@ -8666,9 +8694,8 @@ msgid ""
 msgstr ""
 "%s 様、\n"
 "\n"
-"Clubstation %s "
-"におけるご自身のアクセス権限が変更されました。このコールサインには、%s "
-"のアカウントからアクセス可能です。"
+"Clubstation %s におけるご自身のアクセス権限が変更されました。このコールサイン"
+"には、%s のアカウントからアクセス可能です。"
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
@@ -8705,8 +8732,8 @@ msgid ""
 msgstr ""
 "%s 様\n"
 "\n"
-"%s クラブステーションに追加されました。%s "
-"のアカウントからこのコールサインにアクセスできるようになりました。"
+"%s クラブステーションに追加されました。%s のアカウントからこのコールサインに"
+"アクセスできるようになりました。"
 
 #: application/views/email/club/new_member.php:9
 #, php-format
@@ -8849,7 +8876,8 @@ msgstr "eQSL.cc には QSO 確認待ちはありません"
 msgid ""
 "Below is a table of QSOs that have been confirmed on eQSL but QSL images "
 "have not been downloaded yet."
-msgstr "以下は、eQSL で確認されているが、QSL 画像がまだダウンロードされていない QSO "
+msgstr ""
+"以下は、eQSL で確認されているが、QSL 画像がまだダウンロードされていない QSO "
 "の表です。"
 
 #: application/views/eqsl/download.php:42
@@ -8871,8 +8899,8 @@ msgid ""
 "Wavelog will use the eQSL credentials from your Wavelog user profile to "
 "connect to eQSL and download confirmations."
 msgstr ""
-"Wavelogは、Wavelogのユーザープロファイルから取得したeQSLの認証情報を使用して"
-"、eQSLに接続し、確認メッセージをダウンロードします。"
+"Wavelogは、Wavelogのユーザープロファイルから取得したeQSLの認証情報を使用し"
+"て、eQSLに接続し、確認メッセージをダウンロードします。"
 
 #: application/views/eqsl/download.php:85
 msgid ""
@@ -8890,7 +8918,8 @@ msgstr ""
 msgid ""
 "There are no QSOs whose eQSL card images have not yet been downloaded. Go "
 "log some more QSOs!"
-msgstr "eQSLカード画像がまだダウンロードされていないQSOはありません。もっとQSOを記録"
+msgstr ""
+"eQSLカード画像がまだダウンロードされていないQSOはありません。もっとQSOを記録"
 "しましょう！"
 
 #: application/views/eqsl/export.php:31
@@ -8902,13 +8931,14 @@ msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
-"ステーション プロファイルで「eQSL QTH "
-"ニックネーム」フィールドが設定されており、その値が eQSL 内で設定した QTH "
-"ニックネームと一致していることを確認してください。"
+"ステーション プロファイルで「eQSL QTH ニックネーム」フィールドが設定されてお"
+"り、その値が eQSL 内で設定した QTH ニックネームと一致していることを確認してく"
+"ださい。"
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
-msgstr "「QSO をアップロード」をクリックすると、QSO 情報が eQSL.cc に送信されます。"
+msgstr ""
+"「QSO をアップロード」をクリックすると、QSO 情報が eQSL.cc に送信されます。"
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -8918,8 +8948,9 @@ msgstr "以下のQSOがeQSLに送信されました。"
 msgid ""
 "There are no QSOs that need to be sent to eQSL at this time. Go log some "
 "more QSOs!"
-msgstr "現時点ではeQSLに送信する必要のあるQSOはありません。もっとQSOを記録しましょう"
-"！"
+msgstr ""
+"現時点ではeQSLに送信する必要のあるQSOはありません。もっとQSOを記録しましょ"
+"う！"
 
 #: application/views/eqsl/import.php:28
 msgid "The next automatic sync with eQSL will happen at: "
@@ -8938,7 +8969,8 @@ msgstr "受信トレイをダウンロード"
 msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
-msgstr "eQSLからエクスポートしたADIFファイルを%sページからアップロードし、eQSL上でQSO"
+msgstr ""
+"eQSLからエクスポートしたADIFファイルを%sページからアップロードし、eQSL上でQSO"
 "を確認済みとしてマークします。"
 
 #: application/views/eqsl/import.php:35
@@ -8970,7 +9002,8 @@ msgstr "すべてのQSOをeQSLに送信済みとしてマークする"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr "eQSLにアップロードするQSOが大量にある場合、この機能を使用するとサーバーのタイ"
+msgstr ""
+"eQSLにアップロードするQSOが大量にある場合、この機能を使用するとサーバーのタイ"
 "ムアウトを回避できます。"
 
 #: application/views/eqslcard/index.php:10
@@ -8999,9 +9032,9 @@ msgstr "ビュー"
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
-msgstr "プライベート フィード "
-"キーがない場合、有効なパスだけをフィルタリングできません。%s にフィード "
-"キーを設定してください。"
+msgstr ""
+"プライベート フィード キーがない場合、有効なパスだけをフィルタリングできませ"
+"ん。%s にフィード キーを設定してください。"
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
@@ -15171,6 +15204,14 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
+msgstr ""
+
+#: application/views/adif/import.php:151
+msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
+msgstr ""
+
+#: application/views/adif/import.php:207
+msgid "Toggle all checkboxes"
 msgstr ""
 
 #~ msgid "ADIF File"

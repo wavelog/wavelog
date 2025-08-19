@@ -26,11 +26,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-18 18:00+0000\n"
+"POT-Creation-Date: 2025-08-19 08:30+0000\n"
 "PO-Revision-Date: 2025-08-18 20:42+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4372,41 +4372,45 @@ msgstr ""
 "Nutze während des Imports immer das eingeloggte Account-Rufzeichen als "
 "Operator-Rufzeichen"
 
-#: application/views/adif/import.php:153
-msgid "Mark QSOs as uploaded"
-msgstr "QSOs als hochgeladen markieren"
+#: application/views/adif/import.php:151
+msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
+msgstr ""
 
-#: application/views/adif/import.php:160
+#: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Markiere hochgeladene QSOs als bereits zu LoTW hochgeladen"
 
-#: application/views/adif/import.php:162 application/views/adif/import.php:170
-#: application/views/adif/import.php:180 application/views/adif/import.php:188
-#: application/views/adif/import.php:198 application/views/adif/import.php:206
+#: application/views/adif/import.php:160 application/views/adif/import.php:168
+#: application/views/adif/import.php:178 application/views/adif/import.php:186
+#: application/views/adif/import.php:196 application/views/adif/import.php:204
 msgid "Select if ADIF being imported does not contain this information."
 msgstr ""
 "Wähle dies aus, wenn die hochgeladene ADIF-Datei diese Information nicht "
 "enthält."
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:166
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "Markiere hochgeladene QSOs als bereits zu eQSL hochgeladen"
 
-#: application/views/adif/import.php:178
+#: application/views/adif/import.php:176
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "Markiere hochgeladene QSOs als bereits zu HRDlog.net hochgeladen"
 
-#: application/views/adif/import.php:186
+#: application/views/adif/import.php:184
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "Markiere hochgeladene QSOs als bereits zu QRZ.com hochgeladen"
 
-#: application/views/adif/import.php:196
+#: application/views/adif/import.php:194
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "Markiere hochgeladene QSOs als bereits zu Clublog hochgeladen"
 
-#: application/views/adif/import.php:204
+#: application/views/adif/import.php:202
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Markiere importierte QSOs als hochgeladen ins DCL-Logbuch"
+
+#: application/views/adif/import.php:207
+msgid "Toggle all checkboxes"
+msgstr ""
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -15745,6 +15749,9 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid "Mark QSOs as uploaded"
+#~ msgstr "QSOs als hochgeladen markieren"
 
 #~ msgid "ADIF File"
 #~ msgstr "ADIF-Datei"

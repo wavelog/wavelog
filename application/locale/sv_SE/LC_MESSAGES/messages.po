@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-18 18:00+0000\n"
+"POT-Creation-Date: 2025-08-19 08:30+0000\n"
 "PO-Revision-Date: 2025-07-31 03:15+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4329,39 +4329,43 @@ msgstr ""
 "Använd alltid det inloggade kontots anropssignal som operatörsanrop vid "
 "import"
 
-#: application/views/adif/import.php:153
-msgid "Mark QSOs as uploaded"
+#: application/views/adif/import.php:151
+msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
 
-#: application/views/adif/import.php:160
+#: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Markera importerade QSOn som uppladdade till LoTW"
 
-#: application/views/adif/import.php:162 application/views/adif/import.php:170
-#: application/views/adif/import.php:180 application/views/adif/import.php:188
-#: application/views/adif/import.php:198 application/views/adif/import.php:206
+#: application/views/adif/import.php:160 application/views/adif/import.php:168
+#: application/views/adif/import.php:178 application/views/adif/import.php:186
+#: application/views/adif/import.php:196 application/views/adif/import.php:204
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "Välj om ADIF som importeras inte innehåller denna information."
 
-#: application/views/adif/import.php:168
+#: application/views/adif/import.php:166
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "Markera importerade QSOn som uppladdade till eQSL Logbook"
 
-#: application/views/adif/import.php:178
+#: application/views/adif/import.php:176
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "Markera importerade QSOn som uppladdade till HRDLog.net Loggbok"
 
-#: application/views/adif/import.php:186
+#: application/views/adif/import.php:184
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "Markera importerade QSOn som uppladdade till QRZ Logbook"
 
-#: application/views/adif/import.php:196
+#: application/views/adif/import.php:194
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "Markera importerade QSOn som uppladdade till Clublog Logbook"
 
-#: application/views/adif/import.php:204
+#: application/views/adif/import.php:202
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Markera importerade QSOn som uppladdade till DCL Logbook"
+
+#: application/views/adif/import.php:207
+msgid "Toggle all checkboxes"
+msgstr ""
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
