@@ -148,7 +148,7 @@
 
 						<div class="card mb-3">
 							<div class="card-header">
-								<h6 class="mb-0"><?= __("Mark QSOs as uploaded") ?></h6>
+								<h6 class="mb-0"><?= __("Mark QSOs as uploaded (This does NOT upload QSOs to these services!)") ?></h6>
 							</div>
 							<div class="card-body">
 								<div class="mb-3 row">
