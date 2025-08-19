@@ -59,9 +59,9 @@ $(document).ready(function(){
 
 });
 
-function toggleAll() {
-    const form = document.getElementById('upform');
-    const boxes = form.querySelectorAll('.form-check-input[type="checkbox"]');
+function toggleAll(btn) {
+    const cardBody = btn.closest('.card-body');   // find the card body where the button lives
+    const boxes = cardBody.querySelectorAll('.form-check-input[type="checkbox"]');
     const allChecked = Array.from(boxes).every(cb => cb.checked);
     boxes.forEach(cb => cb.checked = !allChecked);
 }
