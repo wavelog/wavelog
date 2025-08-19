@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-19 08:30+0000\n"
-"PO-Revision-Date: 2025-08-19 09:04+0000\n"
+"PO-Revision-Date: 2025-08-19 09:57+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/it/>\n"
@@ -168,25 +168,25 @@ msgstr "Locatori totali attivati"
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:390
 msgid "Fields"
-msgstr "Campi"
+msgstr "Locatori principali"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:391
 msgid "Fields confirmed"
-msgstr "Campi confermati"
+msgstr "Locatori principali confermati"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:38
 #: application/controllers/Visitor.php:392
 msgid "Fields not confirmed"
-msgstr "Campi non confermati"
+msgstr "Locatori principali non confermati"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:393
 msgid "Total fields worked"
-msgstr "Campi totali lavorati"
+msgstr "Locatori principali totali collegati"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -568,7 +568,7 @@ msgstr "Zone ITU"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:190
 msgid "Worked All Continents (WAC)"
-msgstr "Lavorato in tutti i continenti (WAC)"
+msgstr "Collegato in tutti i continenti (WAC)"
 
 #: application/controllers/Awards.php:2195
 msgid "WAE"
@@ -1182,8 +1182,8 @@ msgid ""
 "No logbooks were found. You need to define a logbook under Station Logbooks! "
 "Do it here:"
 msgstr ""
-"Non è stato trovato nessun logbook. È necessario definire un logbook in "
-"Logbooks di Stazione! Vai qui:"
+"Non è stato trovato nessun registro di stazione. È necessario definirne uno "
+"nel menù dei registri di stazione! Vai qui:"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:21
@@ -2367,7 +2367,7 @@ msgstr ""
 #: application/controllers/Visitor.php:472
 #: application/controllers/Widgets.php:64
 msgid "Empty Logbook"
-msgstr "Registro di stazione vuoto"
+msgstr "Svuota registro di stazione"
 
 #: application/controllers/Station.php:38
 #: application/controllers/Stationsetup.php:251
@@ -3356,27 +3356,27 @@ msgstr "Nuovo inserimento SAT non riuscito."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
-msgstr "Numero totale di DXCC lavorati"
+msgstr "Numero totale di DXCC collegati"
 
 #: application/views/accumulate/index.php:3
 msgid "Accumulated number of States worked"
-msgstr "Numero totale di Stati lavorati"
+msgstr "Numero totale di Stati collegati"
 
 #: application/views/accumulate/index.php:4
 msgid "Accumulated number of IOTAs worked"
-msgstr "Numero totale di IOTA lavorate"
+msgstr "Numero totale di IOTA collegate"
 
 #: application/views/accumulate/index.php:5
 msgid "Accumulated number of CQ Zones worked"
-msgstr "Numero totale di zone CQ lavorate"
+msgstr "Numero totale di zone CQ collegate"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr "Numero totale di griglie VUCC collegate"
+msgstr "Numero totale di locatori VUCC collegati"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr "Numero totale di WAJA lavorate"
+msgstr "Numero totale di WAJA collegate"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:299
@@ -4400,7 +4400,7 @@ msgstr "Carica"
 
 #: application/views/adif/import.php:220
 msgid "Take your logbook file anywhere!"
-msgstr "Porta il tuo log ovunque!"
+msgstr "Porta il tuo registro di stazione ovunque!"
 
 #: application/views/adif/import.php:221
 msgid ""
@@ -4408,7 +4408,7 @@ msgid ""
 "like LoTW, Awards or just for keeping a backup."
 msgstr ""
 "L'esportazione di ADIF consente di importare i contatti in applicazioni di "
-"terze parti come LoTW, Awards o semplicemente per mantenere un backup."
+"terze parti come LoTW, premi o semplicemente per mantenere un backup."
 
 #: application/views/adif/import.php:222
 #, php-format
@@ -4633,7 +4633,7 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
-"A volte, a seconda del software di registrazione del concorso, i tuoi "
+"A volte, a seconda del software di registrazione del contest, i tuoi "
 "exchange non verranno importati correttamente da quel software ADIF. Se "
 "desideri correggerlo, passa alla scheda Importazione CBR della pagina "
 "Importazione ADIF."
@@ -4902,7 +4902,7 @@ msgstr "Informazioni sul premio"
 
 #: application/views/awards/73on73/index.php:7
 msgid "73 on 73 Award"
-msgstr "Award 73 su 73"
+msgstr "Premio 73 su 73"
 
 #: application/views/awards/73on73/index.php:8
 msgid ""
@@ -4948,7 +4948,7 @@ msgstr "Contea"
 
 #: application/views/awards/counties/index.php:7
 msgid "US County Award"
-msgstr "US County Award"
+msgstr "Premio Contee USA"
 
 #: application/views/awards/counties/index.php:8
 #, php-format
@@ -4980,7 +4980,7 @@ msgstr "I premi speciali USA-CA sono disponibili anche per gli ascolti SWL."
 
 #: application/views/awards/counties/index.php:21
 msgid "Counties Worked"
-msgstr "Contee lavorate"
+msgstr "Contee collegate"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Confirmed"
@@ -5104,7 +5104,7 @@ msgstr "Confermato"
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
-msgstr "Lavorato"
+msgstr "Collegato"
 
 #: application/views/awards/cq/index.php:38
 #: application/views/awards/dok/index.php:41
@@ -5538,7 +5538,7 @@ msgid ""
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
 "Il Fred Fish Memorial Award è stato creato in onore di Fred Fish, W5FF (SK), "
-"che è stato il primo radioamatore ad aver lavorato e confermato tutti i 488 "
+"che è stato il primo radioamatore ad aver collegato e confermato tutti i 488 "
 "locatori nei 48 Stati Uniti continentali sui 6 Metri."
 
 #: application/views/awards/ffma/index.php:10
@@ -5584,13 +5584,13 @@ msgid ""
 "circle."
 msgstr ""
 "Informazioni ufficiali da %s: È necessario stabilire una comunicazione "
-"bidirezionale tramite satellite amatoriale con ciascuna griglia. Non è "
+"bidirezionale tramite satellite amatoriale con ciascun locatore. Non è "
 "richiesto alcun rapporto minimo sul segnale. I contatti devono essere "
 "effettuati dalla stessa posizione o da posizioni che non distano più di 200 "
 "chilometri l'una dall'altra. L'attestazione del richiedente nella domanda di "
 "premio funge da conferma del rispetto della regola della distanza. Gli "
 "individui possono richiedere e ottenere più premi GridMaster se ottenuti da "
-"un'altra posizione, che si trova in un cerchio diverso di 200 chilometri."
+"un'altra posizione, che si trova in un raggio oltre i 200 chilometri."
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
@@ -5599,7 +5599,7 @@ msgstr "Sito web"
 #: application/views/awards/gridmaster/index.php:11
 #: application/views/awards/gridmaster/index.php:16
 msgid "This map shows only QSOs worked on SAT."
-msgstr "Questa mappa mostra solo i QSO lavorati su SAT."
+msgstr "Questa mappa mostra solo i QSO collegati via SAT."
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
@@ -5619,8 +5619,8 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
-"Su questa mappa sono mostrate le griglie per uno specifico DXCC. Questo non "
-"è un premio ufficiale, ma mostra solo le griglie che sono state lavorate "
+"Su questa mappa sono mostrati i locatori per uno specifico DXCC. Questo non "
+"è un premio ufficiale, ma mostra solo i locatori che sono state collegate "
 "secondo le regole del Gridmaster Award degli Stati Uniti per questo DXCC."
 
 #: application/views/awards/helvetia/index.php:3
@@ -6036,7 +6036,7 @@ msgid ""
 "confirmed gridsquares on a desired band."
 msgstr ""
 "Il VHF/UHF Century Club Award viene assegnato per un numero minimo di "
-"locatori lavorati e confermati su una specifica banda."
+"locatori collegati e confermati su una specifica banda."
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:10
@@ -6210,8 +6210,8 @@ msgstr ""
 "radioamatori autorizzati. Le più grandi organizzazioni di radioamatori nei "
 "Paesi Bassi sono VERON (Vereniging voor Experimenteel Radio Onderzoek in "
 "Nederland) e VRZA (Vereniging voor Radio Zend Amateurs). Entrambe le "
-"organizzazioni sono attive nell'organizzazione di eventi, concorsi e corsi "
-"di formazione e rappresentano i radioamatori olandesi a livello nazionale e "
+"organizzazioni sono attive nell'organizzazione di eventi, contest e corsi di "
+"formazione e rappresentano i radioamatori olandesi a livello nazionale e "
 "internazionale."
 
 #: application/views/awards/wap/index.php:22
@@ -6267,7 +6267,7 @@ msgid ""
 "achieved in a single effort during the annual WAPC Contest."
 msgstr ""
 "Il premio può essere ottenuto attraverso l'accumulo a lungo termine di "
-"contatti o raggiunto in un unico sforzo durante il concorso annuale WAPC."
+"contatti o raggiunto in un unico sforzo durante il contest annuale WAPC."
 
 #: application/views/awards/wapc/index.php:118
 msgid "Code"
@@ -6732,19 +6732,19 @@ msgid ""
 msgstr ""
 "Per le stazioni USA e Canada la posizione deve essere l'abbreviazione della "
 "sezione ARRL. Per le stazioni estere la posizione deve essere \"DX\". Queste "
-"informazioni sono necessarie per IARU-HF e per tutti i concorsi ARRL e CQ."
+"informazioni sono necessarie per IARU-HF e per tutti i contest ARRL e CQ."
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
-msgstr "Per il concorso RDXC questo contiene l'identificativo RDA."
+msgstr "Per il contest RDXC questo campo contiene l'identificativo RDA."
 
 #: application/views/cabrillo/index.php:48
 msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
 msgstr ""
-"Per il concorso RSGB-IOTA queste informazioni contengono il nome IOTA (non "
-"il codice di riferimento IOTA)."
+"Per il contest RSGB-IOTA queste informazioni contengono il nome IOTA (non il "
+"codice di riferimento IOTA)."
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:631
@@ -6850,8 +6850,8 @@ msgid ""
 "this tag."
 msgstr ""
 "Indicare se si desidera ricevere, se idoneo, un certificato cartaceo inviato "
-"tramite posta ordinaria dallo sponsor del concorso. Lo sponsor del concorso "
-"può seguire o meno questo tag."
+"tramite posta ordinaria dallo sponsor del contest. Lo sponsor del contest "
+"può onorare o meno questa richiesta."
 
 #: application/views/cabrillo/index.php:196
 #: application/views/cabrillo/index.php:204
@@ -7426,7 +7426,7 @@ msgid ""
 "Active contests will be shown in the Contest Name drop-down, while inactive "
 "contests will be hidden and cannot be selected."
 msgstr ""
-"I contest attivi verranno visualizzati nel menu a discesa Nome concorso, "
+"I contest attivi verranno visualizzati nel menu a discesa Nome contest, "
 "mentre i contest inattivi verranno nascosti e non potranno essere "
 "selezionati."
 
@@ -8675,7 +8675,7 @@ msgid "QSO Data"
 msgstr "Dati QSO"
 
 #: application/views/distances/index.php:9
-#, fuzzy, php-format
+#, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
 msgstr ""
 "i contatti sono stati disegnati.%s Il tuo contatto più lontano è stato con"
@@ -9483,7 +9483,7 @@ msgstr "QSO passati"
 
 #: application/views/interface_assets/header.php:125
 msgid "Simple Fast Log Entry"
-msgstr "Immissione rapida log"
+msgstr "Simple Fast Log Entry"
 
 #: application/views/interface_assets/header.php:128
 msgid "Live Contest Logging"
@@ -10987,7 +10987,7 @@ msgstr "Modalità di aggiornamento"
 
 #: application/views/mode/index.php:3
 msgid "Warning! Are you sure you want to delete the following mode?:"
-msgstr "Attenzione! Sei sicuro di voler eliminare la seguente modalità?"
+msgstr "Attenzione! Sei sicuro di voler eliminare la seguente modalità?:"
 
 #: application/views/mode/index.php:4 application/views/usermode/index.php:2
 msgid "Warning! Are you sure you want to activate all modes?"
@@ -11117,7 +11117,7 @@ msgid ""
 "map and the gridsquares map."
 msgstr ""
 "Questo consente di disabilitare tutte le mappe nella vista pubblica. Questo "
-"influisce sulla mappa principale e sulla mappa delle griglie."
+"influisce sulla mappa principale e sulla mappa dei locatori."
 
 #: application/views/options/appearance.php:79
 msgid "Public Github Button"
@@ -11126,8 +11126,7 @@ msgstr "Pulsante Github pubblico"
 #: application/views/options/appearance.php:84
 msgid "This enables the button to Wavelog's Github page in the public view"
 msgstr ""
-"Questo abilita il pulsante alla pagina Github di Wavelog nella vista "
-"pubblica."
+"Questo abilita il pulsante alla pagina Github di Wavelog nella vista pubblica"
 
 #: application/views/options/appearance.php:88
 msgid "Public Login Button"
@@ -12097,9 +12096,7 @@ msgstr ""
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
-"L'input del quadrato di griglia deve essere compilato per mostrare un "
-"riepilogo!"
+msgstr "Il locatore deve essere compilato per mostrare un riepilogo!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
@@ -12107,8 +12104,7 @@ msgstr "Il riepilogo viene mostrato solo per il primo POTA inserito."
 
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
-msgstr ""
-"Il riepilogo viene mostrato solo per il primo quadrato di griglia inserito."
+msgstr "Il riepilogo viene mostrato solo per il primo locatore inserito."
 
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
@@ -12817,12 +12813,12 @@ msgstr "Elevazione minima del satellite"
 #: application/views/satellite/pass.php:30
 #: application/views/satellite/pass.php:69
 msgid "Min. Azimuth"
-msgstr "Azimut Min."
+msgstr "Azimut Minimo"
 
 #: application/views/satellite/pass.php:38
 #: application/views/satellite/pass.php:77
 msgid "Max. Azimuth"
-msgstr "Azimut max."
+msgstr "Azimut massimo"
 
 #: application/views/satellite/pass.php:54
 msgid "Min. time"
@@ -12964,8 +12960,8 @@ msgid ""
 "This data comes from %s and is calculated for the current stationlocation "
 "grid %s."
 msgstr ""
-"Questi dati provengono da %s e sono calcolati per la griglia della posizione "
-"attuale della stazione %s."
+"Questi dati provengono da %s e sono calcolati per il locatore attuale della "
+"stazione %s."
 
 #: application/views/sattimers/index.php:40
 msgid "Time(d)-Out"
@@ -13276,8 +13272,8 @@ msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
-"Attenzione! O hai impostato un concorso, ma non hai incluso alcuno scambio, "
-"o hai registrato i dati del concorso ma non hai selezionato un concorso."
+"Attenzione! O hai impostato un contest, ma non hai incluso alcuno scambio, o "
+"hai registrato i dati del contest ma non hai selezionato un contest."
 
 #: application/views/simplefle/index.php:36
 msgid ""
@@ -13316,7 +13312,7 @@ msgstr "Se non scegli una data, verrà utilizzata la data odierna."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr "Puoi aggiungere i QSOs inseriti a un concorso."
+msgstr "Puoi aggiungere i QSO inseriti a un contest."
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
@@ -13454,8 +13450,7 @@ msgstr "Messaggio QSL (Attenzione! Non visibile nel wavelog attualmente!):"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
-msgstr ""
-"Scambio di concorsi; scambi di seriali o altri scambi - o anche entrambi:"
+msgstr "Scambio di contest; seriali o altri scambi - o anche entrambi:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -13593,12 +13588,12 @@ msgstr "Se non conosci la tua zona ITU, allora %s per trovarla!"
 #: application/views/station_profile/edit.php:198
 #: application/views/station_profile/edit.php:201
 msgid "Station Gridsquare"
-msgstr "Griglia della Stazione"
+msgstr "Locatore della stazione"
 
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:206
 msgid "Get Gridsquare"
-msgstr "Ottieni Griglia"
+msgstr "Ottieni locatore"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:210
@@ -13608,8 +13603,8 @@ msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
 "then %s!"
 msgstr ""
-"Locatore della stazione. Ad esempio: HM54AP. Se non conosci il tuo quadrato "
-"di griglia allora %s!"
+"Locatore della stazione. Ad esempio: HM54AP. Se non conosci il tuo locatore "
+"allora %s!"
 
 #: application/views/station_profile/create.php:149
 #: application/views/station_profile/edit.php:211
@@ -13617,8 +13612,8 @@ msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
 msgstr ""
-"Se ti trovi su una linea di griglia, inserisci più quadrati di griglia "
-"separati da virgole. Ad esempio: IO77,IO78,IO87,IO88."
+"Se ti trovi a metà tra più locatori, inserisci più locatori separati da "
+"virgole. Ad esempio: IO77,IO78,IO87,IO88."
 
 #: application/views/station_profile/create.php:166
 #: application/views/station_profile/edit.php:236
@@ -13771,7 +13766,7 @@ msgstr "Pagina del profilo utente HRDLog.net"
 #: application/views/station_profile/create.php:240
 #: application/views/station_profile/edit.php:397
 msgid "HRDLog.net Logbook Realtime Upload"
-msgstr "HRDLog.net Diario di Carico in Tempo Reale"
+msgstr "Caricamento in tempo reale su HRDLog.net"
 
 #: application/views/station_profile/create.php:250
 #: application/views/station_profile/edit.php:328
@@ -13781,7 +13776,7 @@ msgstr "Abbonamento richiesto"
 #: application/views/station_profile/create.php:255
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr "Chiave API del logbook QRZ.com"
+msgstr "Chiave API di QRZ.com"
 
 #: application/views/station_profile/create.php:258
 msgid "Test API-Key"
@@ -13797,12 +13792,12 @@ msgstr "Trova la tua chiave API su %s"
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 msgid "the QRZ.com Logbook settings page"
-msgstr "la pagina delle impostazioni del Logbook di QRZ.com"
+msgstr "la pagina delle impostazioni del registro di stazione di QRZ.com"
 
 #: application/views/station_profile/create.php:264
 #: application/views/station_profile/edit.php:342
 msgid "QRZ.com Logbook Upload"
-msgstr "Caricamento del registro QRZ.com"
+msgstr "Caricamento del registro su QRZ.com"
 
 #: application/views/station_profile/create.php:267
 #: application/views/station_profile/edit.php:345
@@ -13899,7 +13894,7 @@ msgstr "Sovrapposizione della zona CQ"
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr "Sovrapposizione della griglia"
+msgstr "Sovrapposizione dei locatori"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
@@ -13966,7 +13961,8 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:99
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
 msgstr ""
-"Simile ai logbook, un profilo della stazione tiene insieme un insieme di QSO."
+"Simile ai registri di stazione, un profilo della stazione raggruppa un "
+"insieme di QSO."
 
 #: application/views/stationsetup/stationsetup.php:100
 msgid ""
@@ -13982,7 +13978,7 @@ msgid ""
 "Logbook selected above."
 msgstr ""
 "La colonna 'Collegato' mostra se la posizione della stazione è collegata con "
-"il Registro Attivo selezionato sopra."
+"il registro di stazione attivo selezionato sopra."
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Create a Station Location"
@@ -13994,7 +13990,7 @@ msgstr "Mostra tutte le posizioni"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show only locations from the active logbook"
-msgstr "Mostra solo le posizioni dal diario di bordo attivo"
+msgstr "Mostra solo le posizioni dal registro di stazione"
 
 #: application/views/stationsetup/stationsetup.php:108
 msgid ""
@@ -14072,11 +14068,11 @@ msgstr "Anni"
 
 #: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
-msgstr "Numero di QSOs lavorati ogni anno"
+msgstr "Numero di QSOs collegati ogni anno"
 
 #: application/views/statistics/index.php:31
 msgid "Explore the logbook."
-msgstr "Esplora il diario di bordo."
+msgstr "Esplora il registro di stazione."
 
 #: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
@@ -14090,7 +14086,7 @@ msgstr "Chiamate uniche"
 
 #: application/views/statistics/index.php:120
 msgid "Unique Grids"
-msgstr "Griglie Uniche"
+msgstr "Locatori singoli"
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
@@ -14305,7 +14301,7 @@ msgid ""
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
 "Il Timeplotter è utilizzato per analizzare il tuo diario di lavoro e "
-"scoprire a quali orari hai lavorato in determinate zone CQ o in paesi DXCC "
+"scoprire a quali orari hai collegato in determinate zone CQ o in paesi DXCC "
 "su una banda selezionata."
 
 #: application/views/update/hamsofnote.php:7
@@ -14350,7 +14346,7 @@ msgstr "Stato:"
 
 #: application/views/update/index.php:34
 msgid "Apply DXCC Data to Logbook"
-msgstr "Applica i dati DXCC al registro di bordo"
+msgstr "Applica i dati DXCC al registro di stazione"
 
 #: application/views/update/index.php:36
 msgid ""
@@ -14363,8 +14359,8 @@ msgstr ""
 "Dopo l'aggiornamento, Wavelog può compilare le informazioni di callsign "
 "mancanti nel registro utilizzando i nuovi dati DXCC ottenuti.\n"
 "Puoi scegliere di controllare solo i QSOs nel registro che mancano di "
-"metadati DXCC oppure di ricontrollare l'intero registro e aggiornare anche i "
-"metadati esistenti, nel caso in cui siano cambiati."
+"metadati DXCC oppure di ricontrollare l'intero registro\n"
+"e aggiornare anche i metadati esistenti, nel caso in cui siano cambiati."
 
 #: application/views/update/index.php:45
 msgid "Check QSOs missing DXCC data"
@@ -14372,11 +14368,11 @@ msgstr "Controlla i QSOs mancanti di dati DXCC"
 
 #: application/views/update/index.php:54 application/views/update/index.php:95
 msgid "Re-check all QSOs in logbook"
-msgstr "Ricontrolla tutti i QSOs nel libretto di log"
+msgstr "Ricontrolla tutti i QSOs nel registro di stazione"
 
 #: application/views/update/index.php:59
 msgid "Apply Continent Data to Logbook"
-msgstr "Applica i dati del continente al registro di bordo"
+msgstr "Applica i dati del continente al registro di stazione"
 
 #: application/views/update/index.php:61
 msgid ""
@@ -14414,7 +14410,7 @@ msgstr "Elimina account utente"
 
 #: application/views/user/delete.php:10
 msgid "Are you sure you want to delete the user account"
-msgstr "Sei sicuro di voler eliminare l'account utente?"
+msgstr "Sei sicuro di voler eliminare l'account utente"
 
 #: application/views/user/delete.php:14
 msgid "No, do not delete this user"
@@ -14551,7 +14547,7 @@ msgstr "Scegli colonna 4"
 
 #: application/views/user/edit.php:330
 msgid "Choose column 5 (only for logbook)"
-msgstr "Scegli colonna 5 (solo per il logbook)"
+msgstr "Scegli colonna 5 (solo per il registro di stazione)"
 
 #: application/views/user/edit.php:361
 msgid "QSO Logging Options"
@@ -14592,12 +14588,11 @@ msgstr "Ricerca automatica della posizione."
 #: application/views/user/edit.php:392
 msgid "If set, gridsquare is fetched based on location name."
 msgstr ""
-"Se impostato, il quadrato della griglia viene recuperato in base al nome "
-"della posizione."
+"Se impostato, il locatore viene recuperato in base al nome della posizione."
 
 #: application/views/user/edit.php:396
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr "Ricerca automatica SOTA della griglia e del nome per la cima."
+msgstr "Ricerca automatica SOTA del locatore e del nome per la cima."
 
 #: application/views/user/edit.php:402 application/views/user/edit.php:412
 #: application/views/user/edit.php:422
@@ -14605,16 +14600,16 @@ msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
 msgstr ""
-"Se impostato, il nome e il quadrato della griglia vengono recuperati "
-"dall'API e compilati nella posizione e nel localizzatore."
+"Se impostato, il nome e il locatore vengono recuperati dall'API e compilati "
+"nella posizione e nel localizzatore."
 
 #: application/views/user/edit.php:406
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr "Ricerca automatica della griglia e del nome WWFF per riferimento."
+msgstr "Ricerca automatica del locatore e del nome WWFF per riferimento."
 
 #: application/views/user/edit.php:416
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr "POTA auto cerca quadrato di griglia e nome per il parco."
+msgstr "Ricerca automatica POTA di locatore e nome per il parco."
 
 #: application/views/user/edit.php:425
 msgid "Number of previous contacts displayed on QSO page."
@@ -14853,11 +14848,11 @@ msgstr "Servizi di terze parti"
 
 #: application/views/user/edit.php:832
 msgid "Logbook of The World (LoTW) Username"
-msgstr "Nome utente del Logbook of The World (LoTW)"
+msgstr "Nome utente di Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:838
 msgid "Logbook of The World (LoTW) Password"
-msgstr "Password del Logbook of The World (LoTW)"
+msgstr "Password di Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:842
 msgid "Test Login"
@@ -15031,7 +15026,7 @@ msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
-"Se abilitato, mostra solo i passaggi funzionanti basati sulla griglia "
+"Se abilitato, mostra solo i passaggi funzionanti basati sul locatore "
 "impostata nel tuo account hams.at. Richiede che la chiave del feed privato "
 "sia impostata."
 
@@ -15109,7 +15104,7 @@ msgstr "Località"
 
 #: application/views/user/index.php:78 application/views/user/index.php:190
 msgid "Logbooks"
-msgstr "Diari di bordo"
+msgstr "Registri di stazione"
 
 #: application/views/user/index.php:81 application/views/user/index.php:193
 msgid "Last QSO:"
@@ -15456,7 +15451,8 @@ msgstr "Non mostrare di nuovo"
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
 msgstr ""
-"Visualizzazione di tutti i QSO delle postazioni collegate a questo logbook"
+"Visualizzazione di tutti i QSO delle postazioni collegate a questo registro "
+"di stazione"
 
 #: application/views/view_log/partial/log_ajax.php:426
 #: application/views/view_log/partial/log_ajax.php:440
@@ -15651,8 +15647,8 @@ msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
 msgstr ""
-"Nessuno dei tuoi logbook è configurato per esportare dati all'API del QO-100 "
-"Dx Club."
+"Nessuno dei tuoi registri di stazione sono configurati per esportare dati "
+"all'API del QO-100 Dx Club."
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
