@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-19 08:30+0000\n"
-"PO-Revision-Date: 2025-08-18 21:54+0000\n"
+"PO-Revision-Date: 2025-08-19 09:04+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
-"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/it/>\n"
+"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/it/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1914,7 +1914,7 @@ msgstr "URL di Hams-Of-Note cambiato in "
 
 #: application/controllers/Options.php:180
 msgid "de continent changed to "
-msgstr ""
+msgstr "il continente del reporter è stato cambiato in "
 
 #: application/controllers/Options.php:185
 msgid "Maximum age of spots changed to "
@@ -3327,8 +3327,8 @@ msgstr "SAT già esistente. Stato LoTW aggiornato."
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
-msgstr[0] "Stato LoTW aggiornato per %d QSO"
-msgstr[1] "Stato LoTW aggiornato per %d QSO"
+msgstr[0] "Stato LoTW aggiornato per %d collegamento"
+msgstr[1] "Stato LoTW aggiornato per %d collegamenti"
 
 #: application/models/Update_model.php:443
 msgid "SAT already existing. Updating LoTW status failed."
@@ -4302,7 +4302,7 @@ msgstr ""
 
 #: application/views/adif/import.php:108
 msgid "Basic Settings"
-msgstr ""
+msgstr "Impostazioni di base"
 
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
@@ -4354,7 +4354,7 @@ msgstr ""
 
 #: application/views/adif/import.php:151
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
-msgstr ""
+msgstr "Segna i QSO come caricati (Questo NON carica i QSO su questi servizi!)"
 
 #: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -4388,7 +4388,7 @@ msgstr "Contrassegna i QSO importati come caricati su DCL"
 
 #: application/views/adif/import.php:207
 msgid "Toggle all checkboxes"
-msgstr ""
+msgstr "Seleziona tutte le caselle di controllo"
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -4440,7 +4440,7 @@ msgstr "Alla data"
 
 #: application/views/adif/import.php:260
 msgid "Export options"
-msgstr ""
+msgstr "Opzioni di esportazione"
 
 #: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
@@ -7953,8 +7953,8 @@ msgstr "Almeno uno dei tuoi certificati %sLoTW%s sta per scadere!"
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Viene mostrato fino a %d contatto precedente"
+msgstr[1] "Vengono mostrati fino a %d contatti precedenti"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
@@ -7964,7 +7964,7 @@ msgstr "Riepilogo QSO"
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
-msgstr ""
+msgstr "Stato DXCC"
 
 #: application/views/dashboard/index.php:330
 #: application/views/visitor/index.php:279
@@ -8078,27 +8078,27 @@ msgstr "Richiesta"
 #: application/views/dashboard/index.php:365
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:428
 msgid "VUCC-Grids"
-msgstr ""
+msgstr "Locatori VUCC"
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
-msgstr ""
+msgstr "Numero di QSO per questo giorno della settimana"
 
 #: application/views/dayswithqso/index.php:4
 msgid "Number of QSOs for this month of the year"
-msgstr ""
+msgstr "Numero di QSO per questo mese dell'anno"
 
 #: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
-msgstr ""
+msgstr "Giorni della settimana"
 
 #: application/views/dayswithqso/index.php:21
 msgid "Months of the year"
-msgstr ""
+msgstr "Mesi dell'anno"
 
 #: application/views/dayswithqso/index.php:24
 msgid "Streaks"
@@ -11641,8 +11641,8 @@ msgstr[1] "ha %d slot per bande"
 #, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] "e ha %d QSO nel log"
-msgstr[1] "e ha %d QSO nel log"
+msgstr[0] "e ha %d collegamento nel log"
+msgstr[1] "e ha %d collegamenti nel log"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
@@ -13091,19 +13091,19 @@ msgid "Callsign / Gridsquare"
 msgstr "Callsign / Gridsquare"
 
 #: application/views/search/result.php:2
-#, fuzzy, php-format
+#, php-format
 msgid "Results for %s"
 msgstr "Risultati per %s"
 
 #: application/views/search/result.php:4
-#, fuzzy, php-format
+#, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr "Spiacenti, ma non abbiamo trovato alcun QSO passato con %s"
+msgstr "Spiacenti, ma non abbiamo trovato alcun QSO con %s"
 
 #: application/views/search/result.php:6
-#, fuzzy, php-format
+#, php-format
 msgid "Callbook Search for %s"
-msgstr "Ricerca nel Callbook per %s"
+msgstr "Ricerca %s nel registro di stazione"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
@@ -13323,13 +13323,12 @@ msgid "Station Call/Location"
 msgstr "Chiamata Stazione/Sede"
 
 #: application/views/simplefle/index.php:111
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
-"Se operi da una nuova posizione, prima crea una nuova %sStazione di "
-"Posizione%s"
+"Se operi da una nuova posizione, crea prima una nuova %sStation Location%s"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
@@ -13349,9 +13348,9 @@ msgid "Refs"
 msgstr "Riferimenti"
 
 #: application/views/simplefle/index.php:174
-#, fuzzy, php-format
+#, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr "I riferimenti possono essere %sS%sOTA, %sI%sOTA, %sP%sOTA, o %sW%sWFF"
+msgstr "I riferimenti possono essere %sS%sOTA, %sI%sOTA, %sP%sOTA o %sW%sWFF"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
@@ -13501,13 +13500,13 @@ msgstr ""
 "supportati dall'importazione Wavelog:"
 
 #: application/views/simplefle/syntax_help.php:64
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
 "Un riepilogo completo di tutti i comandi e della sintassi necessaria può "
-"essere trovato in %questo articolo%s del nostro Wiki."
+"essere trovato in %squesto articolo%s del nostro Wiki."
 
 #: application/views/station_profile/create.php:55
 #: application/views/station_profile/edit.php:71
@@ -13523,9 +13522,9 @@ msgstr "Casa QTH"
 
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
-#, fuzzy, php-format
+#, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr "Nome abbreviato per la posizione della stazione. Ad esempio: %s"
+msgstr "Nome breve per la posizione della stazione. Ad esempio: %s"
 
 #: application/views/station_profile/create.php:63
 #: application/views/station_profile/edit.php:79
@@ -13569,7 +13568,7 @@ msgstr "Contea della stazione (utilizzata solo per specifici DXCC)."
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:169
-#, fuzzy, php-format
+#, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
 msgstr "Se non conosci la tua zona CQ, allora %s per trovarla!"
@@ -13585,7 +13584,7 @@ msgstr "clicca qui"
 
 #: application/views/station_profile/create.php:134
 #: application/views/station_profile/edit.php:186
-#, fuzzy, php-format
+#, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
 msgstr "Se non conosci la tua zona ITU, allora %s per trovarla!"
@@ -13603,13 +13602,13 @@ msgstr "Ottieni Griglia"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:210
-#, fuzzy, php-format
+#, php-format
 msgctxt "uses 'click here'"
 msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
 "then %s!"
 msgstr ""
-"Griglia della stazione. Ad esempio: HM54AP. Se non conosci il tuo quadrato "
+"Locatore della stazione. Ad esempio: HM54AP. Se non conosci il tuo quadrato "
 "di griglia allora %s!"
 
 #: application/views/station_profile/create.php:149
@@ -13633,9 +13632,9 @@ msgstr "Sito web di IOTA World"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
-#, fuzzy, php-format
+#, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr "Puoi cercare i riferimenti IOTA su %s."
+msgstr "Puoi cercare le referenze IOTA su %s."
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
@@ -13644,9 +13643,9 @@ msgstr "Sito web delle mappe SOTA"
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
-#, fuzzy, php-format
+#, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
-msgstr "Riferimento Stazione SOTA. Puoi trovare i riferimenti SOTA al %s."
+msgstr "Referenza stazione SOTA. Puoi trovare le referenze SOTA su %s."
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
@@ -13655,10 +13654,9 @@ msgstr "Sito web della mappa GMA"
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
-#, fuzzy, php-format
+#, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr ""
-"Riferimento della stazione WWFF. Puoi cercare i riferimenti WWFF su %s."
+msgstr "Referenza WWFF. Puoi trovare le referenze WWFF su %s."
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
@@ -13667,13 +13665,13 @@ msgstr "Sito web della mappa POTA"
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
-"Riferimento/i alla stazione POTA. Sono consentiti più valori separati da "
-"virgola. Puoi cercare i riferimenti POTA su %s."
+"Referenza POTA della stazione. Sono consentiti più valori separati da "
+"virgola. Puoi cercare le referenze POTA su %s."
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
@@ -13760,10 +13758,10 @@ msgstr "HRDLog.net Chiave API"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
-#, fuzzy, php-format
+#, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr "Crea il tuo codice API sul tuo %s"
+msgstr "Crea il tuo codice API tramite %s"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
@@ -13791,7 +13789,7 @@ msgstr "Testa API-Key"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
-#, fuzzy, php-format
+#, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
 msgstr "Trova la tua chiave API su %s"
@@ -13819,7 +13817,7 @@ msgstr "QO-100 Dx Club API Key"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
-#, fuzzy, php-format
+#, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
 msgstr "Crea la tua chiave API sul tuo %s"
@@ -14149,13 +14147,13 @@ msgid "Only PNG files with a size ratio of 1:1 are allowed."
 msgstr "Sono ammessi solo file PNG con un rapporto dimensionale di 1:1."
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the name of the file which is used as %s small %s Logo in the header "
 "placed in assets/logo."
 msgstr ""
 "Questo è il nome del file che viene utilizzato come %s piccolo %s Logo "
-"nell'intestazione posizionata in assets/logo."
+"nell'intestazione alla posizione del logo."
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
@@ -14163,13 +14161,13 @@ msgid "Main Logo"
 msgstr "Logo Principale"
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the name of the file which is used as %s big %s Logo in the login "
 "screen placed in assets/logo."
 msgstr ""
-"Questo è il nome del file che viene utilizzato come %s grande %s Logo nella "
-"schermata di accesso situata in assets/logo."
+"Questo è il nome del file che viene utilizzato come %s grande %s logo nella "
+"schermata di accesso situata nella posizione del logo."
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
@@ -14215,13 +14213,14 @@ msgid "1. Step"
 msgstr "1. Passo"
 
 #: application/views/themes/index.php:44
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14264,7 +14263,7 @@ msgid "4. Step"
 msgstr "4. Passo"
 
 #: application/views/themes/index.php:73
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
@@ -14362,10 +14361,10 @@ msgid ""
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
 "Dopo l'aggiornamento, Wavelog può compilare le informazioni di callsign "
-"mancanti nel registro utilizzando i nuovi dati DXCC ottenuti. Puoi scegliere "
-"di controllare solo i QSOs nel registro che mancano di metadati DXCC oppure "
-"di ricontrollare l'intero registro e aggiornare anche i metadati esistenti, "
-"nel caso in cui siano cambiati."
+"mancanti nel registro utilizzando i nuovi dati DXCC ottenuti.\n"
+"Puoi scegliere di controllare solo i QSOs nel registro che mancano di "
+"metadati DXCC oppure di ricontrollare l'intero registro e aggiornare anche i "
+"metadati esistenti, nel caso in cui siano cambiati."
 
 #: application/views/update/index.php:45
 msgid "Check QSOs missing DXCC data"
@@ -14885,14 +14884,14 @@ msgid "Club Log Password"
 msgstr "Password del Club Log"
 
 #: application/views/user/edit.php:897
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
 "Se hai abilitato l'autenticazione a due fattori (2FA) su Clublog, devi "
 "generare una password per l'app per utilizzare Clublog in Wavelog. Visita "
-"%le impostazioni di Clublog%s per farlo."
+"%sle impostazioni di Clublog%s per farlo."
 
 #: application/views/user/edit.php:914
 msgid "Widgets"
@@ -14911,7 +14910,7 @@ msgstr ""
 "configurata e funzionante."
 
 #: application/views/user/edit.php:936
-#, fuzzy, php-format
+#, php-format
 msgid "When enabled, widget will be available at %s."
 msgstr "Quando abilitato, il widget sarà disponibile su %s."
 
@@ -14984,7 +14983,7 @@ msgid "URL of Mastodonserver"
 msgstr "URL del server Mastodon"
 
 #: application/views/user/edit.php:1018
-#, fuzzy, php-format
+#, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "URL principale del tuo server Mastodon, ad esempio %s"
 
@@ -15001,7 +15000,7 @@ msgid "Winkeyer Features Enabled"
 msgstr "Caratteristiche Winkeyer abilitate"
 
 #: application/views/user/edit.php:1036
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
@@ -15018,7 +15017,7 @@ msgid "Private Feed Key"
 msgstr "Chiave di alimentazione privata"
 
 #: application/views/user/edit.php:1052
-#, fuzzy, php-format
+#, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Guarda il tuo profilo su %s."
@@ -15172,38 +15171,41 @@ msgstr "Questa demo sarà ripristinata ogni notte alle 0200z."
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Ulteriori informazioni su Wavelog su %sGithub%s."
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Hai dimenticato la password?"
 
 #: application/views/user/login.php:85
 msgid "Keep me logged in"
-msgstr ""
+msgstr "Tienimi connesso"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "(with Admin Rights)"
-msgstr ""
+msgstr "(con privilegi di amministratore)"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "Impersonate User"
-msgstr ""
+msgstr "Impersonare l'utente"
 
 #: application/views/user/modals/admin_impersonate_modal.php:9
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
 msgstr ""
+"Stai per impersonare un altro utente. Per tornare al tuo account "
+"amministratore, puoi utilizzare il pulsante di ritorno nel menu "
+"dell'intestazione."
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
 msgid "Do you want to impersonate this user?"
-msgstr ""
+msgstr "Vuoi impersonare questo utente?"
 
 #: application/views/user/modals/admin_impersonate_modal.php:14
 #: application/views/user/modals/more_actions_modal.php:12
 msgid "Username:"
-msgstr ""
+msgstr "Nome utente:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:18
 #: application/views/user/modals/more_actions_modal.php:16
@@ -15211,7 +15213,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:103
 #: application/views/user/modals/more_actions_modal.php:152
 msgid "Name:"
-msgstr ""
+msgstr "Nome:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:22
 #: application/views/user/modals/more_actions_modal.php:20
@@ -15219,7 +15221,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:104
 #: application/views/user/modals/more_actions_modal.php:153
 msgid "Callsign:"
-msgstr ""
+msgstr "Nominativo:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:26
 #: application/views/user/modals/more_actions_modal.php:24
@@ -15227,19 +15229,19 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:106
 #: application/views/user/modals/more_actions_modal.php:155
 msgid "E-Mail:"
-msgstr ""
+msgstr "E-mail:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:30
 msgid "Last Seen:"
-msgstr ""
+msgstr "Ultimo accesso:"
 
 #: application/views/user/modals/first_login_wizard.php:5
 msgid "First Login Wizard"
-msgstr ""
+msgstr "Procedura guidata per il primo accesso"
 
 #: application/views/user/modals/first_login_wizard.php:20
 msgid "Hello and Welcome to Wavelog!"
-msgstr ""
+msgstr "Ciao e benvenuto su Wavelog!"
 
 #: application/views/user/modals/first_login_wizard.php:21
 #, php-format
@@ -15248,54 +15250,60 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
+"Prima di poter iniziare a registrare i QSO, dobbiamo configurare la tua "
+"prima Posizione Stazione. Puoi trovare maggiori informazioni su come "
+"funzionano le Posizioni Stazione e i registri di stazione nel nostro %sWiki "
+"qui%s!"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
 "Please provide some additional information so that Wavelog can create your "
 "first Station:"
 msgstr ""
+"Fornisci ulteriori informazioni in modo che Wavelog possa creare la tua "
+"prima Stazione:"
 
 #: application/views/user/modals/first_login_wizard.php:29
 msgid "Home QTH"
-msgstr ""
+msgstr "QTH di casa"
 
 #: application/views/user/modals/first_login_wizard.php:62
 msgid "Station Zones"
-msgstr ""
+msgstr "Zone delle stazioni"
 
 #: application/views/user/modals/first_login_wizard.php:74
 #: application/views/user/modals/first_login_wizard.php:84
 #, php-format
 msgctxt "zone lookup"
 msgid "%sLookup%s"
-msgstr ""
+msgstr "%sRicerca%s"
 
 #: application/views/user/modals/first_login_wizard.php:102
 msgid "Save and Start Logging"
-msgstr ""
+msgstr "Salva e inizia a registrare collegamenti"
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
-msgstr ""
+msgstr "Seleziona un'azione da eseguire per l'utente:"
 
 #: application/views/user/modals/more_actions_modal.php:33
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "Sblocca utente"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "Invia un link per reimpostare la password via email"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to Clubstation"
-msgstr ""
+msgstr "Converti in club/sezione"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to User"
-msgstr ""
+msgstr "Converti in Utente"
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid ""
@@ -15303,60 +15311,71 @@ msgid ""
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
 msgstr ""
+"Stai per sbloccare l'utente qui sotto. L'utente è stato bloccato a causa di "
+"troppi tentativi di accesso falliti. Dopo lo sblocco, l'utente potrà "
+"accedere di nuovo."
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
 #: application/views/user/modals/more_actions_modal.php:151
 msgid "User:"
-msgstr ""
+msgstr "Utente:"
 
 #: application/views/user/modals/more_actions_modal.php:70
 #: application/views/user/modals/more_actions_modal.php:105
 #: application/views/user/modals/more_actions_modal.php:154
 msgid "Language:"
-msgstr ""
+msgstr "Lingua:"
 
 #: application/views/user/modals/more_actions_modal.php:89
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"Email per il reset della password inviato con successo all'utente. Puoi "
+"chiudere questa finestra di dialogo ora."
 
 #: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"L'email per il reset della password non può essere inviata all'utente. Le "
+"impostazioni email nelle opzioni globali sono configurate correttamente?"
 
 #: application/views/user/modals/more_actions_modal.php:99
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"Stai per inviare un link per reimpostare la password all'utente. L'utente "
+"potrà reimpostare la propria password cliccando sul link nell'email."
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
-msgstr ""
+msgstr "Vuoi inviare l'email di reimpostazione della password a questo utente?"
 
 #: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
-msgstr ""
+msgstr "Invia l'email"
 
 #: application/views/user/modals/more_actions_modal.php:126
 msgid "The account was successfully converted. You can now close this dialog."
 msgstr ""
+"L'account è stato convertito con successo. Ora puoi chiudere questa finestra "
+"di dialogo."
 
 #: application/views/user/modals/more_actions_modal.php:127
 msgid "The account could not be converted. An error has occurred."
-msgstr ""
+msgstr "L'account non può essere convertito. Si è verificato un errore."
 
 #: application/views/user/modals/more_actions_modal.php:135
 msgid "Convert this account into a normal user"
-msgstr ""
+msgstr "Converti questo account in un utente normale"
 
 #: application/views/user/modals/more_actions_modal.php:137
 msgid "Convert this account into a clubstation"
-msgstr ""
+msgstr "Converti questo account in un club/sezione"
 
 #: application/views/user/modals/more_actions_modal.php:144
 msgid ""
@@ -15364,6 +15383,9 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
+"Stai per convertire questo club/sezione in un account utente normale. "
+"L'utente potrà accedere nuovamente e tutti i permessi assegnati al club/"
+"sezione verranno rimossi. Usare con cautela!"
 
 #: application/views/user/modals/more_actions_modal.php:146
 msgid ""
@@ -15371,39 +15393,42 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
+"Stai per convertire questo account utente in una stazione club/sezione. "
+"L'utente non potrà più accedere e l'account verrà convertito in un account "
+"stazione club/sezione. Usare con cautela!"
 
 #: application/views/user/modals/more_actions_modal.php:149
 msgid "Are you sure you want to convert this account?"
-msgstr ""
+msgstr "Sei sicuro di voler convertire questo account?"
 
 #: application/views/user/modals/more_actions_modal.php:159
 msgid "Convert"
-msgstr ""
+msgstr "Converti"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "Torna all'utente principale"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch back to %s?"
-msgstr ""
+msgstr "Sei sicuro di voler tornare a %s?"
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "Livello"
 
 #: application/views/user/profile.php:39
 msgid "First name"
-msgstr ""
+msgstr "Nome"
 
 #: application/views/user/profile.php:44
 msgid "Last name"
-msgstr ""
+msgstr "Cognome"
 
 #: application/views/user/profile.php:50
 msgid "Edit profile"
-msgstr ""
+msgstr "Modifica profilo"
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
@@ -15412,34 +15437,37 @@ msgstr "Conferma password"
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
 msgstr ""
+"Nessun testo di dialogo della versione impostato. Vai al menu Admin e "
+"impostane uno."
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
-msgstr ""
+msgstr "Errore nell'analisi dei dati JSON o risultato vuoto da GitHub."
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
-msgstr ""
+msgstr "Errore nel recupero dei dati da GitHub."
 
 #: application/views/version_dialog/index.php:75
 msgid "Don't show again"
-msgstr ""
+msgstr "Non mostrare di nuovo"
 
 #: application/views/view_log/index.php:4
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
 msgstr ""
+"Visualizzazione di tutti i QSO delle postazioni collegate a questo logbook"
 
 #: application/views/view_log/partial/log_ajax.php:426
 #: application/views/view_log/partial/log_ajax.php:440
 #: src/QSLManager/QSO.php:567 src/QSLManager/QSO.php:622
 #: src/QSLManager/QSO.php:681
 msgid "last sent"
-msgstr ""
+msgstr "ultimo inviato"
 
 #: application/views/view_log/partial/log_ajax.php:531
 msgid "Result"
-msgstr ""
+msgstr "Risultato"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
@@ -15455,15 +15483,15 @@ msgstr "Distanza Totale"
 
 #: application/views/view_log/qso.php:159
 msgid "Other Path"
-msgstr ""
+msgstr "Altro percorso"
 
 #: application/views/view_log/qso.php:317
 msgid "Antenna Azimuth"
-msgstr ""
+msgstr "Azimut dell'antenna"
 
 #: application/views/view_log/qso.php:324
 msgid "Antenna Elevation"
-msgstr ""
+msgstr "Elevazione dell'antenna"
 
 #: application/views/view_log/qso.php:493
 msgid "QSL Card has been sent via the bureau"
@@ -15475,15 +15503,15 @@ msgstr "La cartolina QSL è stata inviata via diretta"
 
 #: application/views/view_log/qso.php:497
 msgid "QSL Card has been sent electronically"
-msgstr ""
+msgstr "La QSL è stata inviata elettronicamente"
 
 #: application/views/view_log/qso.php:499
 msgid "QSL Card has been sent via manager"
-msgstr ""
+msgstr "La QSL è stata inviata tramite manager"
 
 #: application/views/view_log/qso.php:501
 msgid "QSL Card has been sent"
-msgstr ""
+msgstr "La QSL è stata inviata"
 
 #: application/views/view_log/qso.php:510
 msgid "QSL Card has been received via the bureau"
@@ -15495,19 +15523,19 @@ msgstr "La cartolina QSL è stata ricevuta via diretta"
 
 #: application/views/view_log/qso.php:514
 msgid "QSL Card has been received electronically"
-msgstr ""
+msgstr "La QSL è stata ricevuta elettronicamente"
 
 #: application/views/view_log/qso.php:516
 msgid "QSL Card has been received via manager"
-msgstr ""
+msgstr "La QSL è stata ricevuta tramite manager"
 
 #: application/views/view_log/qso.php:518
 msgid "QSL Card has been received"
-msgstr ""
+msgstr "La QSL è stata ricevuta"
 
 #: application/views/view_log/qso.php:527
 msgid "This station uses LoTW."
-msgstr ""
+msgstr "Questa stazione utilizza LoTW."
 
 #: application/views/view_log/qso.php:532
 #: application/views/view_log/qso.php:542
@@ -15518,31 +15546,31 @@ msgstr "Questo QSO è stato confermato il"
 
 #: application/views/view_log/qso.php:537
 msgid "This QSO is confirmed on LoTW."
-msgstr ""
+msgstr "Questo QSO è confermato su LoTW."
 
 #: application/views/view_log/qso.php:551
 msgid "This QSO is confirmed on eQSL."
-msgstr ""
+msgstr "Questo QSO è confermato su eQSL."
 
 #: application/views/view_log/qso.php:561
 msgid "This QSO is confirmed on QRZ.com."
-msgstr ""
+msgstr "Questo QSO è confermato su QRZ.com."
 
 #: application/views/view_log/qso.php:571
 msgid "This QSO is confirmed on Clublog."
-msgstr ""
+msgstr "Questo QSO è confermato su Clublog."
 
 #: application/views/view_log/qso.php:584
 msgid "More QSOs"
-msgstr ""
+msgstr "Più QSO"
 
 #: application/views/view_log/qso.php:646
 msgid "Share"
-msgstr ""
+msgstr "Condividi"
 
 #: application/views/view_log/qso.php:652
 msgid "Details"
-msgstr ""
+msgstr "Dettagli"
 
 #: application/views/view_log/qso.php:779
 msgid "Uploaded QSL Card front image"
@@ -15562,53 +15590,60 @@ msgstr "Segna QSL Ricevuta (Elettronico)"
 
 #: application/views/view_log/qso.php:828
 msgid "eQSL picture"
-msgstr ""
+msgstr "immagine eQSL"
 
 #: application/views/visitor/layout/footer.php:238
 msgid "Filter Results"
-msgstr ""
+msgstr "Filtra risultati"
 
 #: application/views/visitor/layout/footer.php:244
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: application/views/visitor/layout/footer.php:252
 msgid "Clear Filter"
-msgstr ""
+msgstr "Cancella filtro"
 
 #: application/views/visitor/layout/header.php:74
 msgid "OQRS"
-msgstr ""
+msgstr "OQRS"
 
 #: application/views/visitor/layout/header.php:82
 msgid "Visit Wavelog on Github"
-msgstr ""
+msgstr "Visita Wavelog su Github"
 
 #: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
-msgstr ""
+msgstr "Per favore inserisci un nominativo!"
 
 #: application/views/webadif/export.php:22
 msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
 "to QO-100 Dx Club."
 msgstr ""
+"Qui puoi vedere e caricare tutti i QSO che non sono stati precedentemente "
+"caricati su QO-100 Dx Club."
 
 #: application/views/webadif/export.php:33
 msgid ""
 "You need to set a QO-100 Dx Club API key in your station profile. Only "
 "station profiles with an API Key are displayed."
 msgstr ""
+"Devi impostare una chiave API del QO-100 Dx Club nel profilo della tua "
+"stazione. Solo i profili delle stazioni con una chiave API vengono "
+"visualizzati."
 
 #: application/views/webadif/export.php:63
 msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
+"Attualmente non ci sono QSO in sospeso che devono essere caricati nell'API "
+"del QO-100 Dx Club."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
-msgstr ""
+msgstr "Accendi la tua stazione QO-100!"
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
@@ -15616,11 +15651,13 @@ msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
 msgstr ""
+"Nessuno dei tuoi logbook è configurato per esportare dati all'API del QO-100 "
+"Dx Club."
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 msgid "QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dx Club"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
@@ -15629,6 +15666,8 @@ msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
 "%s an API key."
 msgstr ""
+"Per configurare questa funzione, vai alla tua pagina profilo su %s e %s Crea "
+"%s una chiave API."
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
@@ -15637,45 +15676,49 @@ msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
 "created at the club."
 msgstr ""
+"Quindi, naviga verso il tuo %s e configura la tua stazione con la chiave che "
+"hai creato al club."
 
 #: application/views/webadif/export.php:83
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
 msgstr ""
+"Qui puoi contrassegnare come caricati i tuoi QSO che non sono stati "
+"precedentemente caricati su QO-100 Dx Club."
 
 #: application/views/webadif/export.php:107
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr ""
+msgstr "Segna i QSO come esportati al QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
-msgstr ""
+msgstr "I QSO sono contrassegnati come esportati al QO-100 Dx Club."
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
-msgstr ""
+msgstr "Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:76
 msgid "Wavelog OQRS Request"
-msgstr ""
+msgstr "Richiesta Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:79
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
-msgstr ""
+msgstr "Richiedi una QSL card per il tuo QSO con %s."
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
-msgstr ""
+msgstr "Il tuo nominativo:"
 
 #: application/views/widgets/oqrs.php:91
 msgid "Submit Request"
-msgstr ""
+msgstr "Invia richiesta"
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
-msgstr ""
+msgstr "Ricevuto"
 
 #~ msgid "Sig Info"
 #~ msgstr "Info Seg"
