@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-18 18:00+0000\n"
-"PO-Revision-Date: 2025-08-19 06:53+0000\n"
+"PO-Revision-Date: 2025-08-19 08:30+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/ja/>\n"
@@ -8654,7 +8654,7 @@ msgstr ""
 #: application/views/email/club/modified_member.php:3
 #, php-format
 msgid "Your permission level for Clubstation %s has been changed"
-msgstr ""
+msgstr "Clubstation %s におけるあなたの権限レベルが変更されました"
 
 #: application/views/email/club/modified_member.php:5
 #, php-format
@@ -8664,11 +8664,16 @@ msgid ""
 "Your permission level for Clubstation %s has been changed. You can access "
 "this callsign through your account at %s."
 msgstr ""
+"%s 様、\n"
+"\n"
+"Clubstation %s "
+"におけるご自身のアクセス権限が変更されました。このコールサインには、%s "
+"のアカウントからアクセス可能です。"
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
 msgid "Your new permission level is: %s"
-msgstr ""
+msgstr "新しい権限レベルは: %s"
 
 #: application/views/email/club/modified_member.php:11
 #: application/views/email/club/new_member.php:11
@@ -8679,11 +8684,16 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"ログインしてチェックしてみてください！\n"
+"\n"
+"よろしくお願いいたします\n"
+"\n"
+"ウェーブログ"
 
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr ""
+msgstr "Wavelogに新しい%s会員が登録されました！"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -8693,11 +8703,15 @@ msgid ""
 "You have been added to the Clubstation %s. You can now access this callsign "
 "through your account on %s."
 msgstr ""
+"%s 様\n"
+"\n"
+"%s クラブステーションに追加されました。%s "
+"のアカウントからこのコールサインにアクセスできるようになりました。"
 
 #: application/views/email/club/new_member.php:9
 #, php-format
 msgid "Your permission level is: %s"
-msgstr ""
+msgstr "あなたの権限レベルは: %s"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -8705,6 +8719,10 @@ msgid ""
 "\n"
 "You or someone else has requested a password reset on your Wavelog account."
 msgstr ""
+"こんにちは、\n"
+"\n"
+"あなたまたは他の誰かが、あなたのWavelogアカウントのパスワード再設定をリクエス"
+"トしました。"
 
 #: application/views/email/forgot_password.php:13
 msgid ""
@@ -8714,19 +8732,24 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"これを要求していない場合は無視してください。\n"
+"\n"
+"よろしくお願いいたします\n"
+"\n"
+"ウェーブログ"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
 msgid "Wavelog OQRS from %s"
-msgstr ""
+msgstr "Wavelog OQRS から %s"
 
 #: application/views/email/oqrs_request.php:6
 msgid "The user entered the following message: "
-msgstr ""
+msgstr "ユーザーは次のようなメッセージを入力しました: "
 
 #: application/views/email/oqrs_request.php:11
 msgid "The user did not enter any additional message."
-msgstr ""
+msgstr "ユーザーは追加のメッセージを入力しませんでした。"
 
 #: application/views/email/oqrs_request.php:14
 #, php-format
@@ -8735,6 +8758,9 @@ msgid ""
 "\n"
 "You got an OQRS request from %s."
 msgstr ""
+"こんにちは、\n"
+"\n"
+"%sからOQRSリクエストを受け取りました。"
 
 #: application/views/email/oqrs_request.php:20
 msgid ""
@@ -8744,10 +8770,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Wavelogにログインして処理してください。\n"
+"\n"
+"よろしくお願いいたします\n"
+"\n"
+"ウェーブログ"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
-msgstr ""
+msgstr "Wavelog テストメール"
 
 #: application/views/email/testmail.php:5
 msgid ""
@@ -8761,13 +8792,22 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"こんにちは、\n"
+"\n"
+"これは、あなたのWavelogインスタンスからのテストメールです。\n"
+"\n"
+"このメールを受け取った場合、メール設定は正しく設定されています。\n"
+"\n"
+"よろしくお願いします、\n"
+"\n"
+"Wavelog"
 
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
 #: application/views/eqsl/tools.php:11
 msgid "Upload QSOs"
-msgstr ""
+msgstr "QSOをアップロードする"
 
 #: application/views/eqsl/analysis.php:17
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
@@ -8775,61 +8815,64 @@ msgstr ""
 #: application/views/eqsl/tools.php:15
 #: application/views/interface_assets/header.php:281
 msgid "Tools"
-msgstr ""
+msgstr "ツール"
 
 #: application/views/eqsl/analysis.php:20
 #: application/views/eqsl/download.php:20 application/views/eqsl/export.php:19
 #: application/views/eqsl/import.php:18 application/views/eqsl/result.php:20
 #: application/views/eqsl/tools.php:19
 msgid "Download eQSL cards"
-msgstr ""
+msgstr "eQSLカードをダウンロード"
 
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
-msgstr ""
+msgstr "サブモード"
 
 #: application/views/eqsl/analysis.php:41
 msgid "eQSL Received Date"
-msgstr ""
+msgstr "eQSL受信日"
 
 #: application/views/eqsl/analysis.php:42
 msgid "Log Status"
-msgstr ""
+msgstr "ログステータス"
 
 #: application/views/eqsl/analysis.php:43 application/views/eqsl/result.php:38
 msgid "eQSL Status"
-msgstr ""
+msgstr "eQSLステータス"
 
 #: application/views/eqsl/analysis.php:68
 msgid "There are no QSO confirmations waiting for you at eQSL.cc"
-msgstr ""
+msgstr "eQSL.cc には QSO 確認待ちはありません"
 
 #: application/views/eqsl/download.php:31
 msgid ""
 "Below is a table of QSOs that have been confirmed on eQSL but QSL images "
 "have not been downloaded yet."
-msgstr ""
+msgstr "以下は、eQSL で確認されているが、QSL 画像がまだダウンロードされていない QSO "
+"の表です。"
 
 #: application/views/eqsl/download.php:42
 #: application/views/eqslcard/index.php:34
 #: application/views/view_log/qso.php:544
 msgid "QSL Message"
-msgstr ""
+msgstr "QSLメッセージ"
 
 #: application/views/eqsl/download.php:44
 msgid "eQSL Receive Date"
-msgstr ""
+msgstr "eQSL受信日"
 
 #: application/views/eqsl/download.php:72
 msgid "View/Download"
-msgstr ""
+msgstr "表示/ダウンロード"
 
 #: application/views/eqsl/download.php:83 application/views/eqsl/import.php:54
 msgid ""
 "Wavelog will use the eQSL credentials from your Wavelog user profile to "
 "connect to eQSL and download confirmations."
 msgstr ""
+"Wavelogは、Wavelogのユーザープロファイルから取得したeQSLの認証情報を使用して"
+"、eQSLに接続し、確認メッセージをダウンロードします。"
 
 #: application/views/eqsl/download.php:85
 msgid ""
@@ -8838,94 +8881,108 @@ msgid ""
 "to call this function several times depending on the amount of outstanding "
 "cards. This may run into a script timeout depending on the PHP configuration."
 msgstr ""
+"eQSL画像のダウンロードには約10秒という速度制限があるため、この関数の呼び出し"
+"には時間がかかります。そのため、未処理のカードの数によっては、この関数を複数"
+"回呼び出す必要がある場合があります。PHPの設定によっては、スクリプトがタイムア"
+"ウトする可能性があります。"
 
 #: application/views/eqsl/download.php:93
 msgid ""
 "There are no QSOs whose eQSL card images have not yet been downloaded. Go "
 "log some more QSOs!"
-msgstr ""
+msgstr "eQSLカード画像がまだダウンロードされていないQSOはありません。もっとQSOを記録"
+"しましょう！"
 
 #: application/views/eqsl/export.php:31
 msgid "Below is a table of QSOs that have not yet been sent to eQSL."
-msgstr ""
+msgstr "以下は、まだ eQSL に送信されていない QSO の表です。"
 
 #: application/views/eqsl/export.php:33
 msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
+"ステーション プロファイルで「eQSL QTH "
+"ニックネーム」フィールドが設定されており、その値が eQSL 内で設定した QTH "
+"ニックネームと一致していることを確認してください。"
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
-msgstr ""
+msgstr "「QSO をアップロード」をクリックすると、QSO 情報が eQSL.cc に送信されます。"
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
-msgstr ""
+msgstr "以下のQSOがeQSLに送信されました。"
 
 #: application/views/eqsl/export.php:51
 msgid ""
 "There are no QSOs that need to be sent to eQSL at this time. Go log some "
 "more QSOs!"
-msgstr ""
+msgstr "現時点ではeQSLに送信する必要のあるQSOはありません。もっとQSOを記録しましょう"
+"！"
 
 #: application/views/eqsl/import.php:28
 msgid "The next automatic sync with eQSL will happen at: "
-msgstr ""
+msgstr "eQSL との次の自動同期は次の時間に行われます: "
 
 #: application/views/eqsl/import.php:31
 msgid "Import from file..."
-msgstr ""
+msgstr "ファイルからインポート..."
 
 #: application/views/eqsl/import.php:34
 msgid "Download Inbox"
-msgstr ""
+msgstr "受信トレイをダウンロード"
 
 #: application/views/eqsl/import.php:34
 #, php-format
 msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
-msgstr ""
+msgstr "eQSLからエクスポートしたADIFファイルを%sページからアップロードし、eQSL上でQSO"
+"を確認済みとしてマークします。"
 
 #: application/views/eqsl/import.php:35
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr ""
+msgstr "ステーション(場所)を選択してください eQSL ファイルが属する場所:"
 
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
-msgstr ""
+msgstr "ログファイルのファイルタイプは .adi である必要があります"
 
 #: application/views/eqsl/import.php:53
 msgid "Import directly from eQSL"
-msgstr ""
+msgstr "eQSLから直接インポート"
 
 #: application/views/eqsl/tools.php:27
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
 msgstr ""
+"このボタンではQSOはアップロードされません。QSOを送信済みとしてマークするだけ"
+"です。このボタンを使用する場合は、eQSL.ccウェブサイトで手動でアップロードする"
+"必要があります。"
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
-msgstr ""
+msgstr "すべてのQSOをeQSLに送信済みとしてマークする"
 
 #: application/views/eqsl/tools.php:29
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr ""
+msgstr "eQSLにアップロードするQSOが大量にある場合、この機能を使用するとサーバーのタイ"
+"ムアウトを回避できます。"
 
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr ""
+msgstr "eQSL Cardの資産を保存するために、%sのディスク容量を使用しています"
 
 #: application/views/eqslcard/index.php:35
 #: application/views/qslcard/index.php:44
 #: application/views/qslcard/index.php:120
 msgid "QSL Date"
-msgstr ""
+msgstr "QSL日付"
 
 #: application/views/eqslcard/index.php:64
 #: application/views/interface_assets/footer.php:2779
@@ -8935,14 +8992,16 @@ msgstr ""
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:763
 msgid "View"
-msgstr ""
+msgstr "ビュー"
 
 #: application/views/hamsat/index.php:22
 #, php-format
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
-msgstr ""
+msgstr "プライベート フィード "
+"キーがない場合、有効なパスだけをフィルタリングできません。%s にフィード "
+"キーを設定してください。"
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
