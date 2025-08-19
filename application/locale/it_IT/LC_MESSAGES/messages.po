@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-19 08:30+0000\n"
+"POT-Creation-Date: 2025-08-19 13:34+0000\n"
 "PO-Revision-Date: 2025-08-19 17:14+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
-"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/it/>\n"
+"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/it/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1719,7 +1719,7 @@ msgstr "Operatore"
 #: application/controllers/Logbook.php:1336
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:28
-#: application/views/awards/dxcc/index.php:241
+#: application/views/awards/dxcc/index.php:248
 #: application/views/awards/wae/index.php:174
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:29
 #: application/views/dxatlas/index.php:65
@@ -1741,7 +1741,6 @@ msgstr "Operatore"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:678
-#: application/views/awards/dxcc/index.php:248
 msgid "Deleted DXCC"
 msgstr "DXCC eliminati"
 
@@ -3200,24 +3199,19 @@ msgstr "HRDlog: nessun QSO trovato da caricare per il nominativo di stazione: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: nessun profilo di stazione con credenziali HRDlog trovate."
 
-#: application/models/Logbook_model.php:1289
 #: application/models/Logbook_model.php:1291
 msgid "Station ID not allowed"
 msgstr "ID stazione non consentito"
 
-#: application/models/Logbook_model.php:1294
 #: application/models/Logbook_model.php:1296
 msgid "No Call given"
 msgstr "Nessun nominatio fornito"
 
-#: application/models/Logbook_model.php:1364
-#: application/models/Logbook_model.php:1538
 #: application/models/Logbook_model.php:1366
 #: application/models/Logbook_model.php:1540
 msgid "DXCC has to be Numeric"
 msgstr "DXCC deve essere numerico"
 
-#: application/models/Logbook_model.php:3985
 #: application/models/Logbook_model.php:3987
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3225,18 +3219,15 @@ msgstr ""
 "Callsign della stazione errato ( %s) durante l'importazione di QSO con %s "
 "per %s: SALTATO"
 
-#: application/models/Logbook_model.php:3986
 #: application/models/Logbook_model.php:3988
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Controlla %s per suggerimenti sugli errori nei file ADIF."
 
-#: application/models/Logbook_model.php:3998
 #: application/models/Logbook_model.php:4000
 msgid "QSO on"
 msgstr "QSO alle"
 
-#: application/models/Logbook_model.php:3998
 #: application/models/Logbook_model.php:4000
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3245,76 +3236,63 @@ msgstr ""
 "Hai tentato di importare un QSO senza alcun nominativo di chiamata. Questo "
 "QSO non è stato importato perchè non valido"
 
-#: application/models/Logbook_model.php:4297
 #: application/models/Logbook_model.php:4299
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "La data di ricezione QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4308
 #: application/models/Logbook_model.php:4310
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "La data di invio QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4369
 #: application/models/Logbook_model.php:4371
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "La data di upload Clublog non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4389
 #: application/models/Logbook_model.php:4391
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "La data di ricezione LoTW non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4410
 #: application/models/Logbook_model.php:4412
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "La data di invio LoTW non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4702
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4704
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicata"
 
-#: application/models/Logbook_model.php:4763
 #: application/models/Logbook_model.php:4765
 msgid "QSO could not be matched"
 msgstr "Impossibile abbinare QSO"
 
-#: application/models/Logbook_model.php:4769
 #: application/models/Logbook_model.php:4771
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confermato da LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4774
 #: application/models/Logbook_model.php:4776
 msgid "confirmed by award manager"
 msgstr "confermato dal responsabile del premio"
 
-#: application/models/Logbook_model.php:4777
 #: application/models/Logbook_model.php:4779
 msgid "confirmed by cross-check of DCL data"
 msgstr "confermato dal controllo incrociato dei dati DCL"
 
-#: application/models/Logbook_model.php:4780
 #: application/models/Logbook_model.php:4782
 msgid "confirmation pending"
 msgstr "Conferma in sospeso"
 
-#: application/models/Logbook_model.php:4783
 #: application/models/Logbook_model.php:4785
 msgid "unconfirmed"
 msgstr "Non confermato"
 
-#: application/models/Logbook_model.php:4786
+#: application/models/Logbook_model.php:4788
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4788
 msgid "unknown"
 msgstr "sconosciuto"
 
-#: application/models/Logbook_model.php:5624
+#: application/models/Logbook_model.php:5626
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3325,7 +3303,6 @@ msgstr "sconosciuto"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5626
 msgid "Bearing"
 msgstr "Direzione"
 
@@ -4008,7 +3985,7 @@ msgstr "Conteggio minimo"
 #: application/views/awards/counties/index.php:46
 #: application/views/awards/cq/index.php:198
 #: application/views/awards/dok/index.php:196
-#: application/views/awards/dxcc/index.php:328
+#: application/views/awards/dxcc/index.php:335
 #: application/views/awards/helvetia/index.php:200
 #: application/views/awards/iota/index.php:299
 #: application/views/awards/itu/index.php:198
@@ -4031,7 +4008,6 @@ msgstr "Conteggio minimo"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
-#: application/views/awards/dxcc/index.php:335
 msgid "Nothing found!"
 msgstr "Non ho trovato nulla!"
 
@@ -5013,7 +4989,7 @@ msgstr "Contee confermate"
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:176
 #: application/views/awards/dok/index.php:174
-#: application/views/awards/dxcc/index.php:265
+#: application/views/awards/dxcc/index.php:272
 #: application/views/awards/helvetia/index.php:179
 #: application/views/awards/iota/index.php:234
 #: application/views/awards/itu/index.php:176
@@ -5040,7 +5016,6 @@ msgstr "Contee confermate"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
-#: application/views/awards/dxcc/index.php:272
 msgid "Total"
 msgstr "Totale"
 
@@ -5266,7 +5241,7 @@ msgstr "Mappa"
 
 #: application/views/awards/cq/index.php:167
 #: application/views/awards/dok/index.php:165
-#: application/views/awards/dxcc/index.php:251
+#: application/views/awards/dxcc/index.php:258
 #: application/views/awards/helvetia/index.php:170
 #: application/views/awards/iota/index.php:221
 #: application/views/awards/itu/index.php:167
@@ -5278,13 +5253,12 @@ msgstr "Mappa"
 #: application/views/awards/wap/index.php:170
 #: application/views/awards/wapc/index.php:135
 #: application/views/awards/was/index.php:170
-#: application/views/awards/dxcc/index.php:258
 msgid "Summary"
 msgstr "Riepilogo"
 
 #: application/views/awards/cq/index.php:180
 #: application/views/awards/dok/index.php:178
-#: application/views/awards/dxcc/index.php:275
+#: application/views/awards/dxcc/index.php:282
 #: application/views/awards/helvetia/index.php:183
 #: application/views/awards/iota/index.php:242
 #: application/views/awards/itu/index.php:180
@@ -5296,13 +5270,12 @@ msgstr "Riepilogo"
 #: application/views/awards/wap/index.php:183
 #: application/views/awards/wapc/index.php:149
 #: application/views/awards/was/index.php:183
-#: application/views/awards/dxcc/index.php:282
 msgid "Total worked"
 msgstr "Totale collegati"
 
 #: application/views/awards/cq/index.php:187
 #: application/views/awards/dok/index.php:185
-#: application/views/awards/dxcc/index.php:300
+#: application/views/awards/dxcc/index.php:307
 #: application/views/awards/helvetia/index.php:190
 #: application/views/awards/iota/index.php:268
 #: application/views/awards/itu/index.php:187
@@ -5314,7 +5287,6 @@ msgstr "Totale collegati"
 #: application/views/awards/wap/index.php:190
 #: application/views/awards/wapc/index.php:156
 #: application/views/awards/was/index.php:190
-#: application/views/awards/dxcc/index.php:307
 msgid "Total confirmed"
 msgstr "Totale confermati"
 
@@ -5542,17 +5514,43 @@ msgstr "Ogni banda (senza SAT)"
 msgid "Show DXCC Map"
 msgstr "Mostra mappa DXCC"
 
+#: application/views/awards/dxcc/index.php:220
+msgid "Legend:"
+msgstr "Legenda:"
+
+#: application/views/awards/dxcc/index.php:221
+msgid "(Q)SL-Paper-Card"
+msgstr "(Q)SL-Cartacea"
+
+#: application/views/awards/dxcc/index.php:222
+msgid "(L)oTW"
+msgstr "(L)oTW"
+
+#: application/views/awards/dxcc/index.php:223
+msgid "(e)QSL"
+msgstr "(e)QSL"
+
+#: application/views/awards/dxcc/index.php:224
+msgid "QR(Z)-\"confirmation\""
+msgstr "Conferma QR(Z)"
+
 #: application/views/awards/dxcc/index.php:225
+msgid "(C)lublog"
+msgstr "(C)lublog"
+
+#: application/views/awards/dxcc/index.php:226
+msgid "(W)orked"
+msgstr "(W) Collegato"
+
 #: application/views/awards/dxcc/index.php:232
 msgid "DXCC Name"
 msgstr "Nome DXCC"
 
-#: application/views/awards/dxcc/index.php:226
+#: application/views/awards/dxcc/index.php:233
 #: application/views/awards/iota/index.php:196
 #: application/views/awards/wae/index.php:162
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
-#: application/views/awards/dxcc/index.php:233
 msgid "Prefix"
 msgstr "Prefisso"
 
@@ -14244,9 +14242,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file "
-"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
-"di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
+"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -15745,34 +15742,6 @@ msgstr "Invia richiesta"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ricevuto"
-
-#: application/views/awards/dxcc/index.php:220
-msgid "Legend:"
-msgstr "Legenda:"
-
-#: application/views/awards/dxcc/index.php:221
-msgid "(Q)SL-Paper-Card"
-msgstr "(Q)SL-Cartacea"
-
-#: application/views/awards/dxcc/index.php:222
-msgid "(L)oTW"
-msgstr "(L)oTW"
-
-#: application/views/awards/dxcc/index.php:223
-msgid "(e)QSL"
-msgstr "(e)QSL"
-
-#: application/views/awards/dxcc/index.php:224
-msgid "QR(Z)-\"confirmation\""
-msgstr "Conferma QR(Z)"
-
-#: application/views/awards/dxcc/index.php:225
-msgid "(C)lublog"
-msgstr "(C)lublog"
-
-#: application/views/awards/dxcc/index.php:226
-msgid "(W)orked"
-msgstr "(W) Collegato"
 
 #~ msgid "Sig Info"
 #~ msgstr "Info Seg"

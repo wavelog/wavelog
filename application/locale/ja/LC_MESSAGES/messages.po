@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-18 18:00+0000\n"
+"POT-Creation-Date: 2025-08-19 13:34+0000\n"
 "PO-Revision-Date: 2025-08-19 16:58+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1715,7 +1715,7 @@ msgstr "オペレーター"
 #: application/controllers/Logbook.php:1336
 #: application/controllers/Stationsetup.php:423
 #: application/views/awards/dxcc/index.php:28
-#: application/views/awards/dxcc/index.php:241
+#: application/views/awards/dxcc/index.php:248
 #: application/views/awards/wae/index.php:174
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:29
 #: application/views/dxatlas/index.php:65
@@ -1737,7 +1737,6 @@ msgstr "オペレーター"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:678
-#: application/views/awards/dxcc/index.php:248
 msgid "Deleted DXCC"
 msgstr "DXCCを削除しました"
 
@@ -3183,24 +3182,19 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: HRDlog 資格情報を持つステーション プロファイルが見つかりません。"
 
-#: application/models/Logbook_model.php:1289
 #: application/models/Logbook_model.php:1291
 msgid "Station ID not allowed"
 msgstr "ステーションIDは許可されていません"
 
-#: application/models/Logbook_model.php:1294
 #: application/models/Logbook_model.php:1296
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1364
-#: application/models/Logbook_model.php:1538
 #: application/models/Logbook_model.php:1366
 #: application/models/Logbook_model.php:1540
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:3985
 #: application/models/Logbook_model.php:3987
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3208,19 +3202,16 @@ msgstr ""
 "%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s が検出"
 "されました: スキップされました"
 
-#: application/models/Logbook_model.php:3986
 #: application/models/Logbook_model.php:3988
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 "ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
 
-#: application/models/Logbook_model.php:3998
 #: application/models/Logbook_model.php:4000
 msgid "QSO on"
 msgstr "QSOオン"
 
-#: application/models/Logbook_model.php:3998
 #: application/models/Logbook_model.php:4000
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3229,76 +3220,63 @@ msgstr ""
 "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
 "されませんでした。無効です"
 
-#: application/models/Logbook_model.php:4297
 #: application/models/Logbook_model.php:4299
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4308
 #: application/models/Logbook_model.php:4310
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4369
 #: application/models/Logbook_model.php:4371
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4389
 #: application/models/Logbook_model.php:4391
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4410
 #: application/models/Logbook_model.php:4412
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4702
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4704
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:4763
 #: application/models/Logbook_model.php:4765
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:4769
 #: application/models/Logbook_model.php:4771
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:4774
 #: application/models/Logbook_model.php:4776
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:4777
 #: application/models/Logbook_model.php:4779
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:4780
 #: application/models/Logbook_model.php:4782
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:4783
 #: application/models/Logbook_model.php:4785
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:4786
+#: application/models/Logbook_model.php:4788
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4788
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5624
+#: application/models/Logbook_model.php:5626
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3309,7 +3287,6 @@ msgstr "不明"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5626
 msgid "Bearing"
 msgstr "ベアリング"
 
@@ -3991,7 +3968,7 @@ msgstr "最小数"
 #: application/views/awards/counties/index.php:46
 #: application/views/awards/cq/index.php:198
 #: application/views/awards/dok/index.php:196
-#: application/views/awards/dxcc/index.php:328
+#: application/views/awards/dxcc/index.php:335
 #: application/views/awards/helvetia/index.php:200
 #: application/views/awards/iota/index.php:299
 #: application/views/awards/itu/index.php:198
@@ -4014,7 +3991,6 @@ msgstr "最小数"
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
-#: application/views/awards/dxcc/index.php:335
 msgid "Nothing found!"
 msgstr "何も見つかりません!"
 
@@ -4357,43 +4333,44 @@ msgstr ""
 "インポート中は、オペレータコールとしてログインしているアカウントのコールサイ"
 "ンを常に使用してください"
 
-#: application/views/adif/import.php:153
-msgid "Mark QSOs as uploaded"
-msgstr "QSOをアップロード済みとしてマークする"
+#: application/views/adif/import.php:151
+msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
+msgstr ""
 
-#: application/views/adif/import.php:160 application/views/adif/import.php:158
+#: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "インポートしたQSOをLoTWにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:162 application/views/adif/import.php:170
-#: application/views/adif/import.php:180 application/views/adif/import.php:188
-#: application/views/adif/import.php:198 application/views/adif/import.php:206
 #: application/views/adif/import.php:160 application/views/adif/import.php:168
 #: application/views/adif/import.php:178 application/views/adif/import.php:186
 #: application/views/adif/import.php:196 application/views/adif/import.php:204
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "インポートする ADIF にこの情報が含まれていない場合に選択します。"
 
-#: application/views/adif/import.php:168 application/views/adif/import.php:166
+#: application/views/adif/import.php:166
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "インポートしたQSOをeQSLログブックにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:178 application/views/adif/import.php:176
+#: application/views/adif/import.php:176
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr ""
 "インポートしたQSOをHRDLog.netログブックにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:186 application/views/adif/import.php:184
+#: application/views/adif/import.php:184
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "インポートしたQSOをQRZログブックにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:196 application/views/adif/import.php:194
+#: application/views/adif/import.php:194
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "インポートしたQSOをClublogログブックにアップロード済みとしてマークする"
 
-#: application/views/adif/import.php:204 application/views/adif/import.php:202
+#: application/views/adif/import.php:202
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "インポートしたQSOをDCLログブックにアップロード済みとしてマークする"
+
+#: application/views/adif/import.php:207
+msgid "Toggle all checkboxes"
+msgstr ""
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -4981,7 +4958,7 @@ msgstr "確認された郡"
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:176
 #: application/views/awards/dok/index.php:174
-#: application/views/awards/dxcc/index.php:265
+#: application/views/awards/dxcc/index.php:272
 #: application/views/awards/helvetia/index.php:179
 #: application/views/awards/iota/index.php:234
 #: application/views/awards/itu/index.php:176
@@ -5008,7 +4985,6 @@ msgstr "確認された郡"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
-#: application/views/awards/dxcc/index.php:272
 msgid "Total"
 msgstr "合計"
 
@@ -5231,7 +5207,7 @@ msgstr "地図"
 
 #: application/views/awards/cq/index.php:167
 #: application/views/awards/dok/index.php:165
-#: application/views/awards/dxcc/index.php:251
+#: application/views/awards/dxcc/index.php:258
 #: application/views/awards/helvetia/index.php:170
 #: application/views/awards/iota/index.php:221
 #: application/views/awards/itu/index.php:167
@@ -5243,13 +5219,12 @@ msgstr "地図"
 #: application/views/awards/wap/index.php:170
 #: application/views/awards/wapc/index.php:135
 #: application/views/awards/was/index.php:170
-#: application/views/awards/dxcc/index.php:258
 msgid "Summary"
 msgstr "まとめ"
 
 #: application/views/awards/cq/index.php:180
 #: application/views/awards/dok/index.php:178
-#: application/views/awards/dxcc/index.php:275
+#: application/views/awards/dxcc/index.php:282
 #: application/views/awards/helvetia/index.php:183
 #: application/views/awards/iota/index.php:242
 #: application/views/awards/itu/index.php:180
@@ -5261,13 +5236,12 @@ msgstr "まとめ"
 #: application/views/awards/wap/index.php:183
 #: application/views/awards/wapc/index.php:149
 #: application/views/awards/was/index.php:183
-#: application/views/awards/dxcc/index.php:282
 msgid "Total worked"
 msgstr "合計作業時間"
 
 #: application/views/awards/cq/index.php:187
 #: application/views/awards/dok/index.php:185
-#: application/views/awards/dxcc/index.php:300
+#: application/views/awards/dxcc/index.php:307
 #: application/views/awards/helvetia/index.php:190
 #: application/views/awards/iota/index.php:268
 #: application/views/awards/itu/index.php:187
@@ -5279,7 +5253,6 @@ msgstr "合計作業時間"
 #: application/views/awards/wap/index.php:190
 #: application/views/awards/wapc/index.php:156
 #: application/views/awards/was/index.php:190
-#: application/views/awards/dxcc/index.php:307
 msgid "Total confirmed"
 msgstr "確認された合計"
 
@@ -5504,17 +5477,43 @@ msgstr "すべてのバンド（SATを除く）"
 msgid "Show DXCC Map"
 msgstr "DXCCマップを表示"
 
+#: application/views/awards/dxcc/index.php:220
+msgid "Legend:"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:221
+msgid "(Q)SL-Paper-Card"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:222
+msgid "(L)oTW"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:223
+msgid "(e)QSL"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:224
+msgid "QR(Z)-\"confirmation\""
+msgstr ""
+
 #: application/views/awards/dxcc/index.php:225
+msgid "(C)lublog"
+msgstr ""
+
+#: application/views/awards/dxcc/index.php:226
+msgid "(W)orked"
+msgstr ""
+
 #: application/views/awards/dxcc/index.php:232
 msgid "DXCC Name"
 msgstr "DXCC 名称"
 
-#: application/views/awards/dxcc/index.php:226
+#: application/views/awards/dxcc/index.php:233
 #: application/views/awards/iota/index.php:196
 #: application/views/awards/wae/index.php:162
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
-#: application/views/awards/dxcc/index.php:233
 msgid "Prefix"
 msgstr "Prefix"
 
@@ -7847,8 +7846,8 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
-"現在のステーション位置がログブックとリンクされていません。リンクするには、"
-"%shere%s をクリックしてください。"
+"現在のステーション位置がログブックとリンクされていません。リンクするに"
+"は、%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:157
 #, php-format
@@ -15244,41 +15243,8 @@ msgstr ""
 msgid "Rcvd"
 msgstr ""
 
-#: application/views/adif/import.php:151
-msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
-msgstr ""
-
-#: application/views/adif/import.php:207
-msgid "Toggle all checkboxes"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:220
-msgid "Legend:"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:221
-msgid "(Q)SL-Paper-Card"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:222
-msgid "(L)oTW"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:223
-msgid "(e)QSL"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:224
-msgid "QR(Z)-\"confirmation\""
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:225
-msgid "(C)lublog"
-msgstr ""
-
-#: application/views/awards/dxcc/index.php:226
-msgid "(W)orked"
-msgstr ""
+#~ msgid "Mark QSOs as uploaded"
+#~ msgstr "QSOをアップロード済みとしてマークする"
 
 #~ msgid "ADIF File"
 #~ msgstr "ADIF ファイル"
