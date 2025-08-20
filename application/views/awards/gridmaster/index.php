@@ -16,6 +16,15 @@
                 var lang_award_info_ln3 = "<?= __("On this map the grids for the particular DXCC are shown. This is no official award but just showing the grids which were worked according to the US Gridmaster Award rules for this DXCC."); ?>";
                 var lang_award_info_ln4 = "<?= __("This map shows only QSOs worked on SAT."); ?>";
             <?php } ?>
+			<?php if (strtoupper($dxcc) == "DL") { ?>
+					var lang_award_info_ln5 = "<?= __("Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-Mode and SAT-Name"); ?>";
+			<?php } ?>
+			<?php if (strtoupper($dxcc) == "LX") { ?>
+					var lang_award_info_ln5 = "<?= __("Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, Propagation-Mode and SAT-Name"); ?>";
+			<?php } ?>
+			<?php if (strtoupper($dxcc) == "JA") { ?>
+					var lang_award_info_ln5 = "<?= __("Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-Mode and SAT-Name"); ?>";
+			<?php } ?>
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
