@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-19 13:34+0000\n"
-"PO-Revision-Date: 2025-08-19 16:58+0000\n"
+"PO-Revision-Date: 2025-08-20 16:24+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4335,7 +4335,8 @@ msgstr ""
 
 #: application/views/adif/import.php:151
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
-msgstr ""
+msgstr "QSO をアップロード済みとしてマークします (これにより QSO "
+"がこれらのサービスにアップロードされるわけではありません)"
 
 #: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -4370,7 +4371,7 @@ msgstr "インポートしたQSOをDCLログブックにアップロード済み
 
 #: application/views/adif/import.php:207
 msgid "Toggle all checkboxes"
-msgstr ""
+msgstr "すべてのチェックボックスを切り替える"
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -5479,31 +5480,31 @@ msgstr "DXCCマップを表示"
 
 #: application/views/awards/dxcc/index.php:220
 msgid "Legend:"
-msgstr ""
+msgstr "凡例："
 
 #: application/views/awards/dxcc/index.php:221
 msgid "(Q)SL-Paper-Card"
-msgstr ""
+msgstr "(Q)SL-紙カード"
 
 #: application/views/awards/dxcc/index.php:222
 msgid "(L)oTW"
-msgstr ""
+msgstr "(L)oTW"
 
 #: application/views/awards/dxcc/index.php:223
 msgid "(e)QSL"
-msgstr ""
+msgstr "(e)QSL"
 
 #: application/views/awards/dxcc/index.php:224
 msgid "QR(Z)-\"confirmation\""
-msgstr ""
+msgstr "QR(Z)-「確認」"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "(C)lublog"
-msgstr ""
+msgstr "(C)lublog"
 
 #: application/views/awards/dxcc/index.php:226
 msgid "(W)orked"
-msgstr ""
+msgstr "(W)作業した"
 
 #: application/views/awards/dxcc/index.php:232
 msgid "DXCC Name"
@@ -9588,396 +9589,400 @@ msgstr "%s を管理する"
 
 #: application/views/interface_assets/header.php:447
 msgid "No Clubstations available"
-msgstr ""
+msgstr "利用できるクラブステーションはありません"
 
 #: application/views/interface_assets/header.php:455
 msgid "Other Export Options"
-msgstr ""
+msgstr "その他のエクスポートオプション"
 
 #: application/views/interface_assets/header.php:463
 msgid "Cabrillo Export"
-msgstr ""
+msgstr "Cabrillo・エクスポート"
 
 #: application/views/interface_assets/header.php:465
 msgid "EDI Export"
-msgstr ""
+msgstr "EDIエクスポート"
 
 #: application/views/interface_assets/header.php:489
 msgid "QSL Queue"
-msgstr ""
+msgstr "QSLキュー"
 
 #: application/views/interface_assets/header.php:490
 msgid "Labels"
-msgstr ""
+msgstr "ラベル"
 
 #: application/views/interface_assets/header.php:492
 msgid "Third-Party Services"
-msgstr ""
+msgstr "サードパーティのサービス"
 
 #: application/views/interface_assets/header.php:495
 msgid "eQSL Import / Export"
-msgstr ""
+msgstr "eQSLインポート/エクスポート"
 
 #: application/views/interface_assets/header.php:496
 msgid "HRDLog Logbook"
-msgstr ""
+msgstr "HRDLog ログブック"
 
 #: application/views/interface_assets/header.php:499
 msgid "Clublog Import / Export"
-msgstr ""
+msgstr "Clublogのインポート/エクスポート"
 
 #: application/views/interface_assets/header.php:510
 #: application/views/logbookadvanced/index.php:675
 msgid "Help"
-msgstr ""
+msgstr "ヘルプ"
 
 #: application/views/interface_assets/header.php:511
 msgid "Forum"
-msgstr ""
+msgstr "フォーラム"
 
 #: application/views/interface_assets/header.php:515
 #, php-format
 msgid "Stop impersonate and switch back to %s"
-msgstr ""
+msgstr "%s へのなりすましを停止し、元に戻す"
 
 #: application/views/interface_assets/header.php:516
 #, php-format
 msgid "Switch back to %s"
-msgstr ""
+msgstr "%sに戻す"
 
 #: application/views/interface_assets/header.php:520
 msgid "Logout"
-msgstr ""
+msgstr "ログアウト"
 
 #: application/views/interface_assets/header.php:528
 msgid "Select a Location"
-msgstr ""
+msgstr "場所を選択"
 
 #: application/views/interface_assets/header.php:570
 msgid "You miss station-locations here? Go to stationsetup and fav them"
-msgstr ""
+msgstr "ステーションの位置が表示されていない場合は、駅設定画面に移動して、お気に入り"
+"登録してください"
 
 #: application/views/interface_assets/header.php:607
 msgid "Extras"
-msgstr ""
+msgstr "特典"
 
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
-msgstr ""
+msgstr "Google Earth で使用するために、ログブックを KML "
+"ファイルにエクスポートします。"
 
 #: application/views/labels/create.php:24
 msgid ""
 "Label name used for display purposes, so pick something meaningful, perhaps "
 "the label style."
-msgstr ""
+msgstr "ラベル名は表示目的で使用されるため、ラベル "
+"スタイルなど、意味のわかる名前を選択してください。"
 
 #: application/views/labels/create.php:39
 #: application/views/labels/createpaper.php:41
 #: application/views/labels/edit.php:41
 #: application/views/labels/editpaper.php:41
 msgid "Measurement used"
-msgstr ""
+msgstr "使用された測定方法"
 
 #: application/views/labels/create.php:42
 #: application/views/labels/createpaper.php:44
 #: application/views/labels/edit.php:44
 #: application/views/labels/editpaper.php:44
 msgid "Millimeters"
-msgstr ""
+msgstr "ミリメートル"
 
 #: application/views/labels/create.php:43
 #: application/views/labels/createpaper.php:45
 #: application/views/labels/edit.php:45
 #: application/views/labels/editpaper.php:45
 msgid "Inches"
-msgstr ""
+msgstr "インチ"
 
 #: application/views/labels/create.php:49 application/views/labels/edit.php:51
 msgid "Margin Top"
-msgstr ""
+msgstr "上余白"
 
 #: application/views/labels/create.php:52 application/views/labels/edit.php:54
 msgid "Top margin of labels"
-msgstr ""
+msgstr "ラベルの上余白"
 
 #: application/views/labels/create.php:55 application/views/labels/edit.php:57
 msgid "Margin Left"
-msgstr ""
+msgstr "左余白"
 
 #: application/views/labels/create.php:58 application/views/labels/edit.php:60
 msgid "Left margin of labels."
-msgstr ""
+msgstr "ラベルの左余白。"
 
 #: application/views/labels/create.php:63 application/views/labels/edit.php:65
 msgid "Labels horizontally"
-msgstr ""
+msgstr "水平にラベルを付ける"
 
 #: application/views/labels/create.php:66 application/views/labels/edit.php:68
 msgid "Number of labels horizontally across the page."
-msgstr ""
+msgstr "ページ全体の水平方向のラベルの数。"
 
 #: application/views/labels/create.php:69 application/views/labels/edit.php:71
 msgid "Labels vertically"
-msgstr ""
+msgstr "縦にラベルを付ける"
 
 #: application/views/labels/create.php:72 application/views/labels/edit.php:74
 msgid "Number of labels vertically across the page."
-msgstr ""
+msgstr "ページ全体の縦方向のラベルの数。"
 
 #: application/views/labels/create.php:77 application/views/labels/edit.php:79
 msgid "Horizontal space"
-msgstr ""
+msgstr "水平方向のスペース"
 
 #: application/views/labels/create.php:80 application/views/labels/edit.php:82
 msgid "Horizontal space between 2 labels."
-msgstr ""
+msgstr "2 つのラベル間の水平スペース。"
 
 #: application/views/labels/create.php:83 application/views/labels/edit.php:85
 msgid "Vertical space"
-msgstr ""
+msgstr "垂直空間"
 
 #: application/views/labels/create.php:86 application/views/labels/edit.php:88
 msgid "Vertical space between 2 labels."
-msgstr ""
+msgstr "2 つのラベル間の垂直スペース。"
 
 #: application/views/labels/create.php:91 application/views/labels/edit.php:93
 msgid "Width of label"
-msgstr ""
+msgstr "ラベルの幅"
 
 #: application/views/labels/create.php:94 application/views/labels/edit.php:96
 msgid "Total width of one label."
-msgstr ""
+msgstr "1 つのラベルの合計幅。"
 
 #: application/views/labels/create.php:97 application/views/labels/edit.php:99
 msgid "Height of label"
-msgstr ""
+msgstr "ラベルの高さ"
 
 #: application/views/labels/create.php:100
 #: application/views/labels/edit.php:102
 msgid "Total height of one label"
-msgstr ""
+msgstr "1つのラベルの合計高さ"
 
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:80
 msgid "Font Size"
-msgstr ""
+msgstr "フォントサイズ"
 
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
-msgstr ""
+msgstr "ラベルに使用するフォント サイズは大きくなりすぎないようにしてください。"
 
 #: application/views/labels/create.php:111
 #: application/views/labels/edit.php:113
 msgid "QSOs on label"
-msgstr ""
+msgstr "ラベル上のQSO"
 
 #: application/views/labels/create.php:117
 #: application/views/labels/edit.php:118
 msgid "Save Label Type"
-msgstr ""
+msgstr "ラベルタイプを保存"
 
 #: application/views/labels/createpaper.php:36
 #: application/views/labels/editpaper.php:36
 msgid "Paper Type Name"
-msgstr ""
+msgstr "用紙タイプ名"
 
 #: application/views/labels/createpaper.php:39
 #: application/views/labels/editpaper.php:39
 msgid "Paper name used for display purposes, so pick something meaningful."
-msgstr ""
+msgstr "用紙名は表示目的で使用されるため、意味のある名前を選択してください。"
 
 #: application/views/labels/createpaper.php:51
 #: application/views/labels/editpaper.php:51
 msgid "Width of paper"
-msgstr ""
+msgstr "紙の幅"
 
 #: application/views/labels/createpaper.php:54
 #: application/views/labels/editpaper.php:54
 #: application/views/labels/editpaper.php:60
 msgid "Total width of paper."
-msgstr ""
+msgstr "用紙の合計幅。"
 
 #: application/views/labels/createpaper.php:57
 #: application/views/labels/editpaper.php:57
 msgid "Height of paper"
-msgstr ""
+msgstr "紙の高さ"
 
 #: application/views/labels/createpaper.php:60
 msgid "Total height of paper"
-msgstr ""
+msgstr "紙全体の高さ"
 
 #: application/views/labels/createpaper.php:65
 #: application/views/labels/createpaper.php:71
 #: application/views/labels/editpaper.php:65
 #: application/views/labels/editpaper.php:71
 msgid "Orientation of paper"
-msgstr ""
+msgstr "紙の向き"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
 #: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Landscape"
-msgstr ""
+msgstr "風景"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
 #: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Portrait"
-msgstr ""
+msgstr "ポートレート"
 
 #: application/views/labels/createpaper.php:75
 #: application/views/labels/editpaper.php:75
 msgid "Save Paper Type"
-msgstr ""
+msgstr "用紙の種類を保存"
 
 #: application/views/labels/edit.php:24
 msgid ""
 "Label name used for display purposes so pick something meaningful perhaps "
 "the label style."
-msgstr ""
+msgstr "ラベル名は表示目的で使用されるため、ラベル "
+"スタイルなど意味のあるものを選択してください。"
 
 #: application/views/labels/index.php:2
 #: application/views/logbookadvanced/startatform.php:39
 msgid "Mark QSL as printed"
-msgstr ""
+msgstr "QSLを印刷済みとしてマークする"
 
 #: application/views/labels/index.php:3 application/views/labels/index.php:128
 msgid "Print"
-msgstr ""
+msgstr "印刷"
 
 #: application/views/labels/index.php:33
 msgid "Create New Label Type"
-msgstr ""
+msgstr "新しいラベルタイプを作成"
 
 #: application/views/labels/index.php:34
 msgid "Create New Paper Type"
-msgstr ""
+msgstr "新しい用紙タイプを作成する"
 
 #: application/views/labels/index.php:37
 msgid "Paper types"
-msgstr ""
+msgstr "紙の種類"
 
 #: application/views/labels/index.php:43 application/views/labels/index.php:78
 msgid "Width"
-msgstr ""
+msgstr "幅"
 
 #: application/views/labels/index.php:44 application/views/labels/index.php:79
 msgid "Height"
-msgstr ""
+msgstr "高さ"
 
 #: application/views/labels/index.php:45
 msgid "Used by labels"
-msgstr ""
+msgstr "ラベルで使用される"
 
 #: application/views/labels/index.php:46
 msgid "Orientation"
-msgstr ""
+msgstr "オリエンテーション"
 
 #: application/views/labels/index.php:71
 msgid "Label types"
-msgstr ""
+msgstr "ラベルの種類"
 
 #: application/views/labels/index.php:81
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
 msgid "QSOs"
-msgstr ""
+msgstr "QSO"
 
 #: application/views/labels/index.php:82
 msgid "Use For Print"
-msgstr ""
+msgstr "印刷用"
 
 #: application/views/labels/index.php:92
 msgid "No paper assigned"
-msgstr ""
+msgstr "課題が指定されていません"
 
 #: application/views/labels/index.php:117
 msgid "QSL Card Labels Pending"
-msgstr ""
+msgstr "QSLカードラベル保留中"
 
 #: application/views/labels/index.php:126
 msgid "QSOs Waiting"
-msgstr ""
+msgstr "QSO待機中"
 
 #: application/views/labels/index.php:127
 msgid "View QSOs"
-msgstr ""
+msgstr "QSOを表示"
 
 #: application/views/labels/startatform.php:4
 #: application/views/logbookadvanced/startatform.php:3
 msgid "Include Grid?"
-msgstr ""
+msgstr "グリッドを含めますか?"
 
 #: application/views/labels/startatform.php:10
 #: application/views/logbookadvanced/startatform.php:9
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
-msgstr ""
+msgstr "参照を含めますか？（SIG、SOTA、POTA、IOTA、WWFF；該当地域で利用可能な場合）"
 
 #: application/views/labels/startatform.php:16
 msgid "Include Via (if filled)?"
-msgstr ""
+msgstr "Via を含めますか (入力されている場合)?"
 
 #: application/views/labels/startatform.php:22
 msgid "Include QSLMSG (if filled)?"
-msgstr ""
+msgstr "QSLMSG を含めますか (入力した場合)?"
 
 #: application/views/labels/startatform.php:28
 msgid "Include TNX message?"
-msgstr ""
+msgstr "お礼 メッセージを含めますか?"
 
 #: application/views/labels/startatform.php:34
 #: application/views/logbookadvanced/startatform.php:33
 msgid "Start printing at?"
-msgstr ""
+msgstr "印刷開始時刻は？"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
-msgstr ""
+msgstr "編集する列を選択してください:"
 
 #: application/views/logbookadvanced/edit.php:17
 #: application/views/logbookadvanced/index.php:519
 #: application/views/logbookadvanced/index.php:722
 #: application/views/logbookadvanced/useroptions.php:66
 msgid "QSL via"
-msgstr ""
+msgstr "QSL経由"
 
 #: application/views/logbookadvanced/edit.php:18
 msgid "QSLMSG"
-msgstr ""
+msgstr "QSLメッセージ"
 
 #: application/views/logbookadvanced/edit.php:25
 msgid "LoTW Sent"
-msgstr ""
+msgstr "LoTW送信"
 
 #: application/views/logbookadvanced/edit.php:26
 msgid "LoTW Received"
-msgstr ""
+msgstr "LoTWを受信"
 
 #: application/views/logbookadvanced/edit.php:28
 msgid "QRZ Sent"
-msgstr ""
+msgstr "QRZ送信"
 
 #: application/views/logbookadvanced/edit.php:29
 msgid "QRZ Received"
-msgstr ""
+msgstr "QRZ受信"
 
 #: application/views/logbookadvanced/edit.php:30
 msgid "eQSL Sent"
-msgstr ""
+msgstr "eQSLを送信しました"
 
 #: application/views/logbookadvanced/edit.php:31
 msgid "eQSL Received"
-msgstr ""
+msgstr "eQSLを受信"
 
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:812
 #: application/views/logbookadvanced/useroptions.php:186
 msgid "Station power"
-msgstr ""
+msgstr "ステーション電力"
 
 #: application/views/logbookadvanced/edit.php:33
 #: application/views/logbookadvanced/index.php:779
@@ -9985,33 +9990,33 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:327 application/views/qso/index.php:434
 #: application/views/view_log/qso.php:475
 msgid "Region"
-msgstr ""
+msgstr "地域"
 
 #: application/views/logbookadvanced/edit.php:34
 msgid "Clublog Sent"
-msgstr ""
+msgstr "Clublog送信"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "Clublog Received"
-msgstr ""
+msgstr "Clublog受信"
 
 #: application/views/logbookadvanced/edit.php:38
 msgid "Contest Exch (S)"
-msgstr ""
+msgstr "コンテスト交換（S）"
 
 #: application/views/logbookadvanced/edit.php:90
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:55
 msgid "SAT Mode"
-msgstr ""
+msgstr "SATモード"
 
 #: application/views/logbookadvanced/edit.php:93
 msgid "Band TX"
-msgstr ""
+msgstr "バンドTX"
 
 #: application/views/logbookadvanced/edit.php:106
 msgid "Band RX"
-msgstr ""
+msgstr "バンドRX"
 
 #: application/views/logbookadvanced/edit.php:154
 #: application/views/logbookadvanced/edit.php:161
@@ -10020,7 +10025,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:397
 #: application/views/logbookadvanced/index.php:648
 msgid "Invalid"
-msgstr ""
+msgstr "無効"
 
 #: application/views/logbookadvanced/edit.php:155
 #: application/views/logbookadvanced/edit.php:175
@@ -10029,57 +10034,58 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:493
 #: application/views/logbookadvanced/index.php:515
 msgid "Verified"
-msgstr ""
+msgstr "検証済み"
 
 #: application/views/logbookadvanced/edit.php:191
 #: application/views/qso/edit_ajax.php:330 application/views/qso/index.php:437
 msgid "NONE"
-msgstr ""
+msgstr "なし"
 
 #: application/views/logbookadvanced/edit.php:192
 #: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:438
 msgid "African Italy"
-msgstr ""
+msgstr "アフリカのイタリア"
 
 #: application/views/logbookadvanced/edit.php:193
 #: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:439
 msgid "Bear Island"
-msgstr ""
+msgstr "ベアアイランド"
 
 #: application/views/logbookadvanced/edit.php:194
 #: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:440
 msgid "European Turkey"
-msgstr ""
+msgstr "ヨーロッパのトルコ"
 
 #: application/views/logbookadvanced/edit.php:195
 #: application/views/qso/edit_ajax.php:334 application/views/qso/index.php:441
 msgid "ITU Vienna"
-msgstr ""
+msgstr "ウィーン"
 
 #: application/views/logbookadvanced/edit.php:196
 #: application/views/qso/edit_ajax.php:335 application/views/qso/index.php:442
 msgid "Kosovo"
-msgstr ""
+msgstr "コソボ"
 
 #: application/views/logbookadvanced/edit.php:197
 #: application/views/qso/edit_ajax.php:336 application/views/qso/index.php:443
 msgid "Shetland Islands"
-msgstr ""
+msgstr "シェトランド諸島"
 
 #: application/views/logbookadvanced/edit.php:198
 #: application/views/qso/edit_ajax.php:337 application/views/qso/index.php:444
 msgid "Sicily"
-msgstr ""
+msgstr "シチリア島"
 
 #: application/views/logbookadvanced/edit.php:201
 msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "
 "a gridsquare is set)."
-msgstr ""
+msgstr "距離（km）。空白のままにすると距離が再計算されます。（グリッドスクエアが設定"
+"されている場合にのみ機能します）。"
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
-msgstr ""
+msgstr "テキスト入力検索では、次の方法で検索できます。"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "* - means search for everything."
