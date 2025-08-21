@@ -162,7 +162,7 @@ class Dcl extends CI_Controller {
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 
 				// todo: uncomment when ready
-				// $result = curl_exec($ch);
+				$result = curl_exec($ch);
 
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
@@ -186,7 +186,7 @@ class Dcl extends CI_Controller {
 						continue;
 					}
 				} else {
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful - ".$filename_for_saving."<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful <br>";
 					// Mark QSOs as Sent
 					foreach ($qso_id_array as $qso_number) {
 						// todo: uncomment when ready

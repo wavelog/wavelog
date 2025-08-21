@@ -5426,8 +5426,8 @@ class Logbook_model extends CI_Model {
 			' and (COL_DCL_QSL_SENT not in ("Y","I") OR COL_DCL_QSL_SENT is null)'.
 			' and COL_QSO_DATE>? and COL_QSO_DATE<?';
 		$binding[] = $station_id;
-		$binding[] = $from;
-		$binding[] = $till;
+		$binding[] = date('Y-m-d', $from);
+		$binding[] = date('Y-m-d', $till);
 
 		$query = $this->db->query($sql, $binding);
 		return $query;

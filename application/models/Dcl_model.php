@@ -25,8 +25,8 @@ class Dcl_model extends CI_Model {
 				foreach ($skey['Callsigns'] as $item) {
 					if (isset($item['callsign']) && strtoupper($item['callsign']) === strtoupper($callsign)) {
 						$key['token']=$skey['UserKeys']['token'];
-						$key['vt']=strtotime($item['startDate']);
-						$key['vf']=strtotime($item['endDate'] ?? '2099-12-31');
+						$key['vf']=strtotime($item['startDate']);
+						$key['vt']=strtotime($item['endDate'] ?? '2099-12-31');
 						return $key;
 					}
 				}

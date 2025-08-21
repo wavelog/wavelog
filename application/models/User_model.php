@@ -55,6 +55,13 @@ class User_Model extends CI_Model {
 		return $r;
 	}
 
+	// FUNCTION: object get_all_dcl_users
+	// Returns all users with dcl details
+	function get_all_dcl_users() {
+		// todo Clever (non-CI-)query to fetch all users with DCL-Tokens in option_table
+		return null;
+	}
+
 	// FUNCTION: object get_by_email($email)
 	// Retrieve a user by email address
 	function get_by_email($email) {
