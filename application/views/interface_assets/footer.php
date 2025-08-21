@@ -2610,7 +2610,8 @@ function viewEqsl(picture, callsign) {
         var awardInfoLines = [
             lang_award_info_ln2,
             lang_award_info_ln3,
-            lang_award_info_ln4
+            lang_award_info_ln4,
+            typeof lang_award_info_ln5 !== 'undefined' ? lang_award_info_ln5 : ''
         ];
         var awardInfoContent = "";
         awardInfoLines.forEach(function (line) {
