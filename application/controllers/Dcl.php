@@ -142,7 +142,7 @@ class Dcl extends CI_Controller {
 				$adif_to_post = $this->load->view('adif/data/dcl.php', $data, TRUE);
 				
 				//The URL that accepts the file upload.
-				$url = 'https://dings.dcl.darc.de/api/adiImport'; // todo: final URL
+				$url = 'https://dings.dcl.darc.de/api/adiImport'; // todo: change to final URL b4 release
 
 				//Initiate cURL
 				$ch = curl_init();
@@ -164,9 +164,8 @@ class Dcl extends CI_Controller {
 
 				curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload, true));
 
-				// todo: uncomment when ready
 				$result = curl_exec($ch);
-				log_message('Error',$result);
+				// todo: parse output from DCL (contains a lot of information within $result)
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					if (curl_errno($ch) == 28) {  // break on timeout
@@ -195,9 +194,6 @@ class Dcl extends CI_Controller {
 						// $this->Logbook_model->mark_dcl_sent($qso_number);
 					}
 				}
-
-				// todo: uncomment when ready
-				// unlink(realpath($filename_for_saving));
 			}
 		} else {
 			echo "No Station Profiles found to upload to DCL";
@@ -209,7 +205,7 @@ class Dcl extends CI_Controller {
 		} else {
 			$sync_user_id=null;
 		}
-		echo $this->dcl_download($sync_user_id);
+		// echo $this->dcl_download($sync_user_id);
 	}
 
 	public function delete_key() {
