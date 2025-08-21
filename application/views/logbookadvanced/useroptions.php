@@ -87,6 +87,10 @@
 			<td><div class="form-check"><input class="form-check-input" name="qrz" type="checkbox" <?php if (($options->qrz->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
+			<td><?= __("DCL"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="dcl" type="checkbox" <?php if (($options->dcl->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
 			<td><?= __("QSL Msg (S)"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="qslmsgs" type="checkbox" <?php if (($options->qslmsgs->show ?? "false") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
