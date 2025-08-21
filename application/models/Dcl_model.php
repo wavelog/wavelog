@@ -19,12 +19,17 @@ class Dcl_model extends CI_Model {
 	function find_key($callsign, $user_id) {
 		$this->load->model('user_options_model');
 		$userkeys=$this->user_options_model->get_options('dcl', array('option_name'=>'dcl_key','option_key'=>'key'), $user_id)->result();
-		foreach ($userkeys->Callsigns as $item) {
-			if (isset($item['callsign']) && strtoupper($item['callsign']) === strtoupper($callsign)) {
-				$key['token']=$userkeys->UserKeys->token;
-				$key['vt']=strtotime($item->startDate);
-				$key['vf']=strtotime($item->endDate ?? '2099-12-31');
-				return $key;
+		foreach ($userkeys as $raw_key) {
+			$skey=json_decode($raw_key->option_value, true);
+			if (isset($skey['Callsigns']) && is_array($skey['Callsigns'])) {
+				foreach ($skey['Callsigns'] as $item) {
+					if (isset($item['callsign']) && strtoupper($item['callsign']) === strtoupper($callsign)) {
+						$key['token']=$skey['UserKeys']['token'];
+						$key['vt']=strtotime($item['startDate']);
+						$key['vf']=strtotime($item['endDate'] ?? '2099-12-31');
+						return $key;
+					}
+				}
 			}
 		}
 		return '';
@@ -55,7 +60,6 @@ class Dcl_model extends CI_Model {
 				curl_close($ch);
 				if (strlen($rawdcldata)>100) {
 					$dcldata=json_decode($rawdcldata);
-					// todo: process Data from DCL (Contains valid call(s), valid date, DOK)
 					return $dcldata;
 				}
 			} catch (Exception $e) {

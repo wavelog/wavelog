@@ -91,7 +91,7 @@ class Dcl extends CI_Controller {
 		}
 
 		if ($this->user_model->authorize(2)) {
-			if (!($this->config->item('disable_manual_lotw'))) {
+			if (!($this->config->item('disable_manual_dcl'))) {
 				$station_profiles = $this->Stations->all_of_user($this->session->userdata('user_id'));
 				$sync_user_id=$this->session->userdata('user_id');
 			} else {
@@ -113,7 +113,6 @@ class Dcl extends CI_Controller {
 
 			foreach ($station_profiles->result() as $station_profile) {
 
-				log_message("Error",$station_profile->station_id);
 				// Get Certificate Data
 				$this->load->model('Dcl_model');
 				$data['station_profile'] = $station_profile;
@@ -140,28 +139,10 @@ class Dcl extends CI_Controller {
 				}
 
 				// Build File to save
-				$adif_to_save = $this->load->view('adif/data/dcl.php', $data, TRUE);
+				$adif_to_post = $this->load->view('adif/data/dcl.php', $data, TRUE);
 				
-				// create folder to store upload file
-				if (!file_exists('./uploads/dcl')) {
-					mkdir('./uploads/dcl', 0775, true);
-				}
-
-				// Build Filename
-				$filename_for_saving = './uploads/dcl/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($key_info['token']))."-".date("Y-m-d-H-i-s")."-wavelog.adif";
-
-				$fp = fopen($filename_for_saving, "w");
-				fwrite($fp, $adif_to_save);
-				fclose($fp);
-
 				//The URL that accepts the file upload.
-				$url = 'https://dclnext.darc.de';
-
-				//The name of the field for the uploaded file.
-				$uploadFieldName = 'upfile';
-
-				//The full path to the file that you want to upload
-				$filePath = realpath($filename_for_saving);
+				$url = 'http://127.0.0.1:9999'; // todo: final URL
 
 				//Initiate cURL
 				$ch = curl_init();
@@ -175,16 +156,9 @@ class Dcl extends CI_Controller {
 				//Tell cURL to return the output as a string.
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-				//Use the recommended way, creating a CURLFile object.
-				$uploadfile = curl_file_create($filePath);
-				$uploadfile->setPostFilename(basename($filePath));
+				curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'Content-Type: text/plain']);
 
-				//Setup our POST fields
-				$postFields = array(
-					$uploadFieldName => $uploadfile
-				);
-
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $adif_to_post);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 
 				// todo: uncomment when ready
