@@ -38,6 +38,8 @@
 			<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
 			<option value="rstr"><?= __("RST (R)"); ?></option>
 			<option value="rsts"><?= __("RST (S)"); ?></option>
+			<option value="dclsent"><?= __("DCL Sent"); ?></option>
+			<option value="dclreceived"><?= __("DCL Received"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -156,6 +158,12 @@
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQrz"  name="qrz">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editDcl"  name="dcl">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
 			<option value="I"><?= __("Invalid"); ?></option>
