@@ -142,7 +142,7 @@ class Dcl extends CI_Controller {
 				$adif_to_post = $this->load->view('adif/data/dcl.php', $data, TRUE);
 				
 				//The URL that accepts the file upload.
-				$url = 'http://127.0.0.1:9999'; // todo: final URL
+				$url = 'https://dings.dcl.darc.de/api/adiImport'; // todo: final URL
 
 				//Initiate cURL
 				$ch = curl_init();
@@ -156,14 +156,17 @@ class Dcl extends CI_Controller {
 				//Tell cURL to return the output as a string.
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-				curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'Content-Type: text/plain']);
-
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $adif_to_post);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+				
+				$payload=[];
+				$payload['key']=$key_info['token'];
+				$payload['adif']=$adif_to_post;
+
+				curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload, true));
 
 				// todo: uncomment when ready
 				$result = curl_exec($ch);
-
+				log_message('Error',$result);
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					if (curl_errno($ch) == 28) {  // break on timeout
@@ -177,7 +180,6 @@ class Dcl extends CI_Controller {
 				$pos = true;
 
 				if ($pos === false) {
-					// Upload of TQ8 Failed for unknown reason
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo "Timeout reached. Stopping subsequent uploads.<br>";
