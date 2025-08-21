@@ -1,6 +1,5 @@
 <div class="container dcl">
 <br>
-	<a class="btn btn-outline-primary btn-sm float-end" href="<?php echo site_url('/dcl/import'); ?>" role="button"><i class="fas fa-cloud-download-alt"></i> <?= __("DCL Import"); ?></a>
 	<h2><?= __("DCL"); ?></h2>
 
 	<!-- Card Starts -->
