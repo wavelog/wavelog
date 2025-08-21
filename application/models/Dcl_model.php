@@ -4,10 +4,10 @@ class Dcl_model extends CI_Model {
 
 	/*
 	|--------------------------------------------------------------------------
-	| Function: lotw_certs
+	| Function: dcl_keys
 	|--------------------------------------------------------------------------
 	|
-	| Returns all lotw_certs for a selected user via the $user_id parameter
+	| Returns all dcl_keys for a selected user via the $user_id parameter
 	|
 	*/
 	function dcl_keys($user_id) {
@@ -15,6 +15,14 @@ class Dcl_model extends CI_Model {
 		return $this->user_options_model->get_options('dcl', array('option_name'=>'dcl_key'), $user_id)->result();
 	}
 
+	/*
+	|--------------------------------------------------------------------------
+	| Function: find_key
+	|--------------------------------------------------------------------------
+	|
+	| Returns all dcl_keys for a selected user via the $user_id parameter which match also to the $callsign
+	|
+	*/
 
 	function find_key($callsign, $user_id) {
 		$this->load->model('user_options_model');
