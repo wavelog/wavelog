@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-20 19:04+0000\n"
-"PO-Revision-Date: 2025-08-22 06:44+0000\n"
+"PO-Revision-Date: 2025-08-22 07:34+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -10907,7 +10907,7 @@ msgstr "ファイルをアップロードする"
 
 #: application/views/lotw/import.php:24
 msgid "Download Report"
-msgstr ""
+msgstr "レポートをダウンロード"
 
 #: application/views/lotw/import.php:24
 #, php-format
@@ -10990,165 +10990,169 @@ msgstr "最終アップロード"
 
 #: application/views/lotw_views/index.php:84
 msgid "Expired"
-msgstr ""
+msgstr "期限切れ"
 
 #: application/views/lotw_views/index.php:86
 msgid "Expiring"
-msgstr ""
+msgstr "期限切れ"
 
 #: application/views/lotw_views/index.php:88
 msgid "Valid"
-msgstr ""
+msgstr "有効"
 
 #: application/views/lotw_views/index.php:98
 #, php-format
 msgid "Last success: %s"
-msgstr ""
+msgstr "最後の成功: %s"
 
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last fail: %s"
-msgstr ""
+msgstr "最後の失敗: %s"
 
 #: application/views/lotw_views/index.php:107
 msgid "Not Synced"
-msgstr ""
+msgstr "同期されていません"
 
 #: application/views/lotw_views/index.php:122
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr ""
+msgstr "このエリアを使用するには、LoTW p12 "
+"証明書をいくつかアップロードする必要があります。"
 
 #: application/views/lotw_views/index.php:141
 msgid "The next automatic sync with LoTW will happen at: "
-msgstr ""
+msgstr "LoTW との次の自動同期は次の時間に行われます: "
 
 #: application/views/lotw_views/index.php:143
 msgid "Manual Sync"
-msgstr ""
+msgstr "手動同期"
 
 #: application/views/lotw_views/index.php:145
 msgid "running..."
-msgstr ""
+msgstr "実行中..."
 
 #: application/views/lotw_views/upload_cert.php:8
 #: application/views/lotw_views/upload_cert.php:33
 msgid "Upload Logbook of the World .p12 Certificate"
-msgstr ""
+msgstr "Logbook of the World .p1証明書をアップロードしてください"
 
 #: application/views/lotw_views/upload_cert.php:19
 msgid "Export .p12 File Instructions"
-msgstr ""
+msgstr ".p12ファイルのエクスポート手順"
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Use at least version 2.7 of TQSL"
-msgstr ""
+msgstr "TQSLのバージョン2.7以上を使用してください"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
-msgstr ""
+msgstr "TQSLを開き、コールサイン証明書タブに移動します"
 
 #: application/views/lotw_views/upload_cert.php:24
 msgid "Right click on desired Callsign"
-msgstr ""
+msgstr "希望のコールサインを右クリック"
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Click 'Save Callsign Certificate File'"
-msgstr ""
+msgstr "「コールサイン証明書ファイルを保存」をクリックします"
 
 #: application/views/lotw_views/upload_cert.php:26
 msgid "Do not add a password"
-msgstr ""
+msgstr "パスワードを追加しないでください"
 
 #: application/views/lotw_views/upload_cert.php:27
 msgid "Upload File below"
-msgstr ""
+msgstr "以下のファイルをアップロードしてください"
 
 #: application/views/lotw_views/upload_cert.php:37
 msgid "Upload File"
-msgstr ""
+msgstr "ファイルをアップロード"
 
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
 msgid "ADIF Mode"
-msgstr ""
+msgstr "ADIFモード"
 
 #: application/views/mode/create.php:26 application/views/mode/edit.php:35
 msgid "Name of mode in ADIF-specification"
-msgstr ""
+msgstr "ADIF仕様におけるモード名"
 
 #: application/views/mode/create.php:30 application/views/mode/edit.php:39
 msgctxt "Name of sub-mode in ADIF-specification"
 msgid "ADIF Sub-Mode"
-msgstr ""
+msgstr "ADIFサブモード"
 
 #: application/views/mode/create.php:32 application/views/mode/edit.php:41
 msgid "Name of sub-mode in ADIF-specification"
-msgstr ""
+msgstr "ADIF仕様におけるサブモード名"
 
 #: application/views/mode/create.php:42 application/views/mode/edit.php:53
 msgid "Defines the QRG-segment in bandplan."
-msgstr ""
+msgstr "バンドプラン内の QRG セグメントを定義します。"
 
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:9 application/views/mode/index.php:55
 #: application/views/usermode/index.php:7
 #: application/views/usermode/index.php:51
 msgid "Not active"
-msgstr ""
+msgstr "非アクティブ"
 
 #: application/views/mode/create.php:51 application/views/mode/edit.php:64
 msgid "Set to active if to be listed in Modes-list"
-msgstr ""
+msgstr "モードリストにリストする場合はアクティブに設定"
 
 #: application/views/mode/create.php:54 application/views/mode/index.php:2
 msgid "Create mode"
-msgstr ""
+msgstr "作成モード"
 
 #: application/views/mode/edit.php:67
 msgid "Update mode"
-msgstr ""
+msgstr "更新モード"
 
 #: application/views/mode/index.php:3
 msgid "Warning! Are you sure you want to delete the following mode?:"
-msgstr ""
+msgstr "警告! 次のモードを削除してもよろしいですか?:"
 
 #: application/views/mode/index.php:4 application/views/usermode/index.php:2
 msgid "Warning! Are you sure you want to activate all modes?"
-msgstr ""
+msgstr "警告! すべてのモードを有効にしてもよろしいですか?"
 
 #: application/views/mode/index.php:5 application/views/usermode/index.php:3
 msgid "Warning! Are you sure you want to deactivate all modes?"
-msgstr ""
+msgstr "警告! すべてのモードを無効にしてもよろしいですか?"
 
 #: application/views/mode/index.php:31 application/views/usermode/index.php:29
 msgid ""
 "Using the modes list you can control which modes are shown when creating a "
 "new QSO."
-msgstr ""
+msgstr "モード リストを使用すると、新しい QSO "
+"を作成するときに表示されるモードを制御できます。"
 
 #: application/views/mode/index.php:34 application/views/usermode/index.php:32
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
-msgstr ""
+msgstr "アクティブなモードは QSO "
+"の「モード」ドロップダウンに表示されますが、非アクティブなモードは非表示にな"
+"り、選択できません。"
 
 #: application/views/mode/index.php:41 application/views/usermode/index.php:39
 msgid "Sub-Mode"
-msgstr ""
+msgstr "サブモード"
 
 #: application/views/mode/index.php:88
 msgid "Create a Mode"
-msgstr ""
+msgstr "モードを作成する"
 
 #: application/views/notes/add.php:6 application/views/notes/add.php:12
 #: application/views/notes/edit.php:13 application/views/notes/main.php:11
 #: application/views/notes/view.php:12
 msgid "Create Note"
-msgstr ""
+msgstr "メモを作成"
 
 #: application/views/notes/add.php:29 application/views/notes/edit.php:30
 msgid "Title"
-msgstr ""
+msgstr "タイトル"
 
 #: application/views/notes/add.php:34 application/views/notes/edit.php:35
 msgid "Category"
