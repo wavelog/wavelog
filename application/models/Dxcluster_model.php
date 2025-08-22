@@ -4,12 +4,13 @@ use Wavelog\Dxcc\Dxcc;
 
 class Dxcluster_model extends CI_Model {
 
-    protected $bandedges = [];
+ 	protected $bandedges = [];
 
-    public function __construct() {
+	public function __construct() {
+		$this->load->Model('Modes');
 		$this->db->where('bandedges.userid', $this->session->userdata('user_id'));
 		$query = $this->db->get('bandedges');
-        $result = $query->result_array();
+		$result = $query->result_array();
 
 		if ($result) {
 			$this->bandedges = $result;
@@ -19,7 +20,7 @@ class Dxcluster_model extends CI_Model {
 			$query = $this->db->get('bandedges');
 			$this->bandedges = $query->result_array();
 		}
-    }
+	}
 
 	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '', $mode = 'All') {
 		$this->load->helper(array('psr4_autoloader'));
@@ -98,12 +99,12 @@ class Dxcluster_model extends CI_Model {
 					}
 					if ( ($de != '') && ($de != 'Any') && (property_exists($singlespot->dxcc_spotter,'cont')) ){	// If we have a "de continent" and a filter-wish filter on that
 						if (strtolower($de) == strtolower($singlespot->dxcc_spotter->cont ?? '')) {
-							$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band) >= 1);
-							$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band) >= 1);
-							$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band) >= 1);
-							$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band) >= 1);
-							$singlespot->cnfmd_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band) >= 1);
-							$singlespot->worked_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band) >= 1);
+							$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+							$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+							$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+							$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+							$singlespot->cnfmd_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+							$singlespot->worked_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
 							if ($singlespot->worked_call) {
 								$singlespot->last_wked=$this->logbook_model->last_worked_callsign_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band)[0];
 								if ($this->session->userdata('user_date_format')) {
@@ -116,12 +117,12 @@ class Dxcluster_model extends CI_Model {
 							array_push($spotsout,$singlespot);
 						}
 					} else {	// No de continent? No Filter --> Just push
-						$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band) >= 1);
-						$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band) >= 1);
-						$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band) >= 1);
-						$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band) >= 1);
-						$singlespot->cnfmd_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band) >= 1);
-						$singlespot->worked_continent = ($this->check_if_continent_worked_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band) >= 1);
+						$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+						$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+						$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+						$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+						$singlespot->cnfmd_continent = ($this->check_if_continent_cnfmd_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
+						$singlespot->worked_continent = ($this->check_if_continent_worked_in_logbook($singlespot->dxcc_spotted->cont, $logbooks_locations_array, $singlespot->band, $singlespot->mode) >= 1);
 						array_push($spotsout,$singlespot);
 					}
 				}
@@ -250,7 +251,7 @@ class Dxcluster_model extends CI_Model {
 	    }
     }
 
-	function check_if_continent_worked_in_logbook($cont, $StationLocationsArray = null, $band = null) {
+	function check_if_continent_worked_in_logbook($cont, $StationLocationsArray = null, $band = null, $mode = null) {
 
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
@@ -262,6 +263,10 @@ class Dxcluster_model extends CI_Model {
 		$this->db->select('COL_CONT');
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_CONT', $cont);
+
+		if (isset($mode)) {
+			$this->db->where(" COL_MODE in ".$this->Modes->get_modes_from_qrgmode($mode,true));
+		}
 
 		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
@@ -276,7 +281,7 @@ class Dxcluster_model extends CI_Model {
 		return $query->num_rows();
 	}
 
-	function check_if_continent_cnfmd_in_logbook($cont, $StationLocationsArray = null, $band = null) {
+	function check_if_continent_cnfmd_in_logbook($cont, $StationLocationsArray = null, $band = null, $mode = null) {
 
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
@@ -314,6 +319,10 @@ class Dxcluster_model extends CI_Model {
 		$this->db->select('COL_CONT');
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_CONT', $cont);
+
+		if (isset($mode)) {
+			$this->db->where(" COL_MODE in ".$this->Modes->get_modes_from_qrgmode($mode,true));
+		}
 
 		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
