@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-20 19:04+0000\n"
+"POT-Creation-Date: 2025-08-22 07:13+0000\n"
 "PO-Revision-Date: 2025-08-22 07:37+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3182,24 +3182,19 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: HRDlog 資格情報を持つステーション プロファイルが見つかりません。"
 
-#: application/models/Logbook_model.php:1291
 #: application/models/Logbook_model.php:1292
 msgid "Station ID not allowed"
 msgstr "ステーションIDは許可されていません"
 
-#: application/models/Logbook_model.php:1296
 #: application/models/Logbook_model.php:1297
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1366
-#: application/models/Logbook_model.php:1540
 #: application/models/Logbook_model.php:1367
 #: application/models/Logbook_model.php:1541
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:3987
 #: application/models/Logbook_model.php:4004
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3207,19 +3202,16 @@ msgstr ""
 "%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s が検出"
 "されました: スキップされました"
 
-#: application/models/Logbook_model.php:3988
 #: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 "ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
 
-#: application/models/Logbook_model.php:4000
 #: application/models/Logbook_model.php:4017
 msgid "QSO on"
 msgstr "QSOオン"
 
-#: application/models/Logbook_model.php:4000
 #: application/models/Logbook_model.php:4017
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3228,76 +3220,63 @@ msgstr ""
 "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
 "されませんでした。無効です"
 
-#: application/models/Logbook_model.php:4299
 #: application/models/Logbook_model.php:4316
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4310
 #: application/models/Logbook_model.php:4327
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4371
 #: application/models/Logbook_model.php:4388
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4391
 #: application/models/Logbook_model.php:4408
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4412
 #: application/models/Logbook_model.php:4429
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4704
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4721
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:4765
 #: application/models/Logbook_model.php:4782
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:4771
 #: application/models/Logbook_model.php:4788
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:4776
 #: application/models/Logbook_model.php:4793
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:4779
 #: application/models/Logbook_model.php:4796
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:4782
 #: application/models/Logbook_model.php:4799
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:4785
 #: application/models/Logbook_model.php:4802
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4805
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4805
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5626
+#: application/models/Logbook_model.php:5643
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3308,7 +3287,6 @@ msgstr "不明"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5643
 msgid "Bearing"
 msgstr "ベアリング"
 
@@ -8046,8 +8024,8 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
-"現在のステーション位置がログブックとリンクされていません。リンクするには、"
-"%shere%s をクリックしてください。"
+"現在のステーション位置がログブックとリンクされていません。リンクするに"
+"は、%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:157
 #, php-format
@@ -11016,8 +10994,9 @@ msgstr "同期されていません"
 
 #: application/views/lotw_views/index.php:122
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr "このエリアを使用するには、LoTW p12 "
-"証明書をいくつかアップロードする必要があります。"
+msgstr ""
+"このエリアを使用するには、LoTW p12 証明書をいくつかアップロードする必要があり"
+"ます。"
 
 #: application/views/lotw_views/index.php:141
 msgid "The next automatic sync with LoTW will happen at: "
@@ -11125,16 +11104,17 @@ msgstr "警告! すべてのモードを無効にしてもよろしいですか?
 msgid ""
 "Using the modes list you can control which modes are shown when creating a "
 "new QSO."
-msgstr "モード リストを使用すると、新しい QSO "
-"を作成するときに表示されるモードを制御できます。"
+msgstr ""
+"モード リストを使用すると、新しい QSO を作成するときに表示されるモードを制御"
+"できます。"
 
 #: application/views/mode/index.php:34 application/views/usermode/index.php:32
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
-msgstr "アクティブなモードは QSO "
-"の「モード」ドロップダウンに表示されますが、非アクティブなモードは非表示にな"
-"り、選択できません。"
+msgstr ""
+"アクティブなモードは QSO の「モード」ドロップダウンに表示されますが、非アク"
+"ティブなモードは非表示になり、選択できません。"
 
 #: application/views/mode/index.php:41 application/views/usermode/index.php:39
 msgid "Sub-Mode"
@@ -11186,9 +11166,9 @@ msgid ""
 "data like ATU settings, beacons and general station notes and its better "
 "than paper as you can't lose them!"
 msgstr ""
-"現在、メモはありません。これらは、ATU "
-"設定、ビーコン、ステーションの一般的なメモなどのデータを保存する素晴らしい方"
-"法であり、紛失する心配がないので紙よりも優れています!"
+"現在、メモはありません。これらは、ATU 設定、ビーコン、ステーションの一般的な"
+"メモなどのデータを保存する素晴らしい方法であり、紛失する心配がないので紙より"
+"も優れています!"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
@@ -11198,7 +11178,8 @@ msgstr "メモを削除"
 msgid ""
 "Please provide your personal call sign. This makes sure that QSOs are logged "
 "and exported with correct operator information."
-msgstr "個人のコールサインを入力してください。これにより、QSOが正しいオペレータ情報と"
+msgstr ""
+"個人のコールサインを入力してください。これにより、QSOが正しいオペレータ情報と"
 "ともに記録・エクスポートされます。"
 
 #: application/views/operator/index.php:13
@@ -11216,8 +11197,9 @@ msgstr "テーマ"
 
 #: application/views/options/appearance.php:51
 msgid "Global Theme Choice, this is used when users arent logged in."
-msgstr "グローバル "
-"テーマの選択。これはユーザーがログインしていないときに使用されます。"
+msgstr ""
+"グローバル テーマの選択。これはユーザーがログインしていないときに使用されま"
+"す。"
 
 #: application/views/options/appearance.php:61
 msgid "Logbook Map"
@@ -14510,7 +14492,9 @@ msgid "Station Locations Quickswitch"
 msgstr ""
 
 #: application/views/user/edit.php:483
-msgid "Show the Station Locations Quickswitch in the main menu"
+msgid ""
+"Show the Station Locations Quickswitch in the main menu. You can add "
+"locations by adding them to favourites at the station setup page."
 msgstr ""
 
 #: application/views/user/edit.php:487
@@ -15476,12 +15460,6 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
-msgstr ""
-
-#: application/views/user/edit.php:483
-msgid ""
-"Show the Station Locations Quickswitch in the main menu. You can add "
-"locations by adding them to favourites at the station setup page."
 msgstr ""
 
 #~ msgid "Mark QSOs as uploaded"
