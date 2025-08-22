@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-21 20:20+0000\n"
-"PO-Revision-Date: 2025-08-19 19:22+0000\n"
+"POT-Creation-Date: 2025-08-20 19:04+0000\n"
+"PO-Revision-Date: 2025-08-22 03:46+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
-"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/it/>\n"
+"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/it/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -192,7 +192,7 @@ msgstr "Locatori principali totali collegati"
 #: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:152
 msgid "Gridsquare Activators"
-msgstr "Attivatori locatori"
+msgstr "Attivatori di locatori"
 
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
@@ -943,7 +943,7 @@ msgstr "e propagazione"
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:459
 msgid "DX Atlas Gridsquare Export"
-msgstr "Esporta DX Atlas Gridaquare"
+msgstr "Esporta Locatore DX Atlas"
 
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:283
@@ -1009,12 +1009,12 @@ msgstr "Conferme"
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:148
 msgid "Gridsquare Map"
-msgstr "Mappa Gridsquare"
+msgstr "Mappa locatori"
 
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
-msgstr "Gridsquare collegati totali"
+msgstr "Totale locatori collegati"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -3360,7 +3360,7 @@ msgstr "Numero totale di DXCC collegati"
 
 #: application/views/accumulate/index.php:3
 msgid "Accumulated number of States worked"
-msgstr "Numero totale di Stati collegati"
+msgstr "Numero totale di stati collegati"
 
 #: application/views/accumulate/index.php:4
 msgid "Accumulated number of IOTAs worked"
@@ -4928,6 +4928,8 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"Campi presi in considerazione per questo premio: Modalità di propagazione e "
+"Nome SAT (ADIF: PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:152
@@ -4989,6 +4991,9 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"Campi presi in considerazione per questo premio: Stato (ADIF: STATE), Contea "
+"della stazione (ADIF: CNTY), DXCC (Deve essere uno di 291 (U.S.A.), 6 "
+"(ALASKA) o 110 (HAWAII))"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -5092,7 +5097,7 @@ msgstr ""
 
 #: application/views/awards/cq/index.php:24
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
-msgstr ""
+msgstr "Campi presi in considerazione per questo premio: CQ-Zone (ADIF: CQZ)"
 
 #: application/views/awards/cq/index.php:26
 msgid "Awards - CQ WAZ"
@@ -5354,7 +5359,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:11
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr ""
+msgstr "Campi presi in considerazione per questo premio: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:21
 msgid "DOK / SDOK"
@@ -5441,6 +5446,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (Deve essere valido "
+"dalla lista DXCC-ADIF-Spec)"
 
 #: application/views/awards/dxcc/index.php:33
 #: application/views/awards/iota/index.php:34
@@ -5613,6 +5620,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (deve essere USA), "
+"Locatore (deve contenere una griglia da una delle 488 griglie "
+"continentali!), La banda deve essere 6M."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -5667,6 +5677,9 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (Deve essere USA), "
+"Locatore (Deve contenere un locatore da una delle 488 griglie "
+"continentali!), Modalità di propagazione e Nome SAT"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -5678,7 +5691,7 @@ msgid ""
 "worked in the USA."
 msgstr ""
 "Il premio Gridmaster è stato originariamente progettato per collegare tutti "
-"i 488 grid square negli Stati Uniti."
+"i 488 locatori degli Stati Uniti."
 
 #: application/views/awards/gridmaster/index.php:16
 msgid ""
@@ -5695,18 +5708,24 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (deve essere "
+"Germania), Locatore, Modalità di propagazione e Nome SAT"
 
 #: application/views/awards/gridmaster/index.php:23
 msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (deve essere "
+"Lussemburgo), Locatore, Modalità di propagazione e Nome SAT"
 
 #: application/views/awards/gridmaster/index.php:26
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (deve essere "
+"Giappone), Locatore, Modalità di propagazione e Nome SAT"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -5748,6 +5767,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (Deve essere Svizzera) "
+"e STATE (Deve contenere un'abbreviazione valida dello stato!)"
 
 #: application/views/awards/helvetia/index.php:115
 msgid "Show Helvetia Map"
@@ -5817,6 +5838,8 @@ msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
+"Campi presi in considerazione per questo premio: IOTA (ADIF: IOTA) deve "
+"contenere un riferimento IOTA valido"
 
 #: application/views/awards/iota/index.php:30
 msgid "Deleted IOTA"
@@ -5892,7 +5915,7 @@ msgstr "Puoi trovare maggiori informazioni sul sito web %s."
 
 #: application/views/awards/itu/index.php:24
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "Campi presi in considerazione per questo premio: Zona ITU (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:26
 msgid "Awards - ITU Zones"
@@ -5933,6 +5956,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (Giappone) e Contea "
+"(Deve contenere un riferimento valido!)"
 
 #: application/views/awards/jcc/index.php:116
 msgid "Show JCC Map"
@@ -6001,6 +6026,8 @@ msgstr ""
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Campi presi in considerazione per questo premio: POTA_REF (deve contenere il "
+"riferimento del parco)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -6166,6 +6193,8 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"Campi presi in considerazione per questo premio: Locatore e vucc_grids "
+"(ADIF: GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
@@ -6201,6 +6230,8 @@ msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"Campi presi in considerazione per questo premio: SIG (deve essere 'WAB') e "
+"SIG_INFO (deve contenere un WAB-Grid valido)"
 
 #: application/views/awards/wab/index.php:110
 msgid "List"
@@ -6226,6 +6257,8 @@ msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
+"Campi presi in considerazione per questo premio: Continente (tag ADIF "
+"'CONT'). Deve contenere un'abbreviazione valida del continente!"
 
 #: application/views/awards/wac/index.php:14
 msgid "Awards - Worked All Continents (WAC)"
@@ -6269,7 +6302,7 @@ msgstr ""
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr ""
+msgstr "Campi presi in considerazione per questo premio: Regione, DXCC"
 
 #: application/views/awards/wae/index.php:162
 msgid "WAE Name"
@@ -6315,6 +6348,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (Giappone) e STATE "
+"(Deve contenere una prefettura valida!)"
 
 #: application/views/awards/waja/index.php:119
 msgid "Show WAJA Map"
@@ -6380,6 +6415,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (Deve essere Paesi "
+"Bassi) e STATE (Deve contenere un'abbreviazione valida dello stato!)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
@@ -6420,6 +6457,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (deve essere uno tra "
+"Cina/318, Hong Kong/321, Macao/152, Taiwan/386, Isole Pratas/505 o Scoglio "
+"di Scarborough/506) e Stato valido (ADIF: DXCC e STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -6478,6 +6518,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
+"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra "
+"U.S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
+"uno stato U.S.A.!)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -6509,7 +6552,7 @@ msgstr ""
 
 #: application/views/awards/wwff/index.php:11
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr ""
+msgstr "Campi presi in considerazione per questo premio: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:32
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -8820,7 +8863,8 @@ msgstr "Turco"
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
-"Questa pagina elenca i record di distanza per satellite basati sui locatori."
+"Questa pagina elenca i record di distanza per satellite calcolati in base ai "
+"locatori."
 
 #: application/views/distancerecords/index.php:20
 msgid "My Gridsquare"
@@ -10319,8 +10363,8 @@ msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "
 "a gridsquare is set)."
 msgstr ""
-"Distanza (in km). Lascia vuoto per ricalcolare la distanza. (Funzionerà solo "
-"se è impostato un locatore)."
+"Distanza (in km). Lascia vuoto per ricalcolare la distanza. Funzionerà solo "
+"se è impostato un locatore."
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
@@ -13246,7 +13290,7 @@ msgstr "Nessun QSO con caricamento LoTW eccezionale è stato trovato."
 
 #: application/views/search/main.php:31
 msgid "Callsign / Gridsquare"
-msgstr "Callsign / Gridsquare"
+msgstr "Nominativo / Locatore"
 
 #: application/views/search/result.php:2
 #, php-format
@@ -14056,7 +14100,7 @@ msgstr "Sovrapposizione della zona CQ"
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr "Sovrapposizione dei locatori"
+msgstr "Mostra locatori"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
@@ -14376,8 +14420,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
-"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file "
+"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
+"di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14816,10 +14861,10 @@ msgid "Station Locations Quickswitch"
 msgstr "Posizioni delle stazioni Quickswitch"
 
 #: application/views/user/edit.php:483
-msgid ""
-"Show the Station Locations Quickswitch in the main menu. You can add "
-"locations by adding them to favourites at the station setup page."
+msgid "Show the Station Locations Quickswitch in the main menu"
 msgstr ""
+"Consente di commutare rapidamente tramite il menù Quickswitch tra le "
+"posizioni di stazione contrassegnate come preferite tra quelle impostate"
 
 #: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
@@ -15879,8 +15924,14 @@ msgstr "Invia richiesta"
 msgid "Rcvd"
 msgstr "Ricevuto"
 
-#~ msgid "Show the Station Locations Quickswitch in the main menu"
-#~ msgstr "Mostra le posizioni delle stazioni Quickswitch nel menu principale"
+#: application/views/user/edit.php:483
+msgid ""
+"Show the Station Locations Quickswitch in the main menu. You can add "
+"locations by adding them to favourites at the station setup page."
+msgstr ""
+"Mostra il cambio rapido delle postazioni nel menu principale. Puoi "
+"aggiungere posizioni alla lista contrassegnandole come preferite nella "
+"pagina di configurazione della stazione."
 
 #~ msgid "Sig Info"
 #~ msgstr "Info Seg"

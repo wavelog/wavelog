@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-21 20:20+0000\n"
-"PO-Revision-Date: 2025-08-21 06:12+0000\n"
+"POT-Creation-Date: 2025-08-20 19:04+0000\n"
+"PO-Revision-Date: 2025-08-21 17:11+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -4901,6 +4901,8 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"このアワードの対象となる項目：伝搬モードと衛星名（ADIF：PROP_MODE=SAT、"
+"SAT_NAME=『AO-73』）"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:152
@@ -4960,6 +4962,9 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"このアワードの応募時に入力するフィールド: 州 (ADIF: STATE)、ステーション郡 "
+"(ADIF: CNTY)、DXCC (291 (米国)、6 (アラスカ)、または 110 (ハワイ) のいずれか"
+"である必要があります)"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -5060,7 +5065,7 @@ msgstr "すべての情報とルールは、N4BAA の Web サイトで確認で�
 
 #: application/views/awards/cq/index.php:24
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
-msgstr ""
+msgstr "このアワードの対象となる分野: CQ-Zone (ADIF: CQZ)"
 
 #: application/views/awards/cq/index.php:26
 msgid "Awards - CQ WAZ"
@@ -5321,7 +5326,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:11
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr ""
+msgstr "このアワードに応募したフィールド: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:21
 msgid "DOK / SDOK"
@@ -5406,6 +5411,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
+"このアワードに入力するフィールド: DXCC (DXCC-ADIF-Spec-List から有効なものを"
+"選択する必要があります)"
 
 #: application/views/awards/dxcc/index.php:33
 #: application/views/awards/iota/index.php:34
@@ -5576,6 +5583,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
+"このアワードの対象となるフィールド: DXCC (米国である必要があります)、グリッド"
+"スクエア (本土の 488 のグリッドスクエアのいずれかからのグリッドが含まれている"
+"必要があります)、バンドは 6M である必要があります。"
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -5627,6 +5637,9 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"このアワードに応募するフィールド: DXCC (米国である必要があります)、グリッドス"
+"クエア (本土の 488 グリッドスクエアのいずれかのグリッドが含まれている必要があ"
+"ります)、伝播モード、SAT 名"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -5655,18 +5668,24 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"このアワードの応募に必要なフィールド: DXCC (ドイツである必要があります)、"
+"Gridsquare、伝播モード、SAT 名"
 
 #: application/views/awards/gridmaster/index.php:23
 msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
+"このアワードの応募に必要なフィールド: DXCC (ルクセンブルクであること)、"
+"Gridsquare、伝播モード、SAT 名"
 
 #: application/views/awards/gridmaster/index.php:26
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"このアワードの応募に必要なフィールド: DXCC (日本のみ)、Gridsquare、伝播モー"
+"ド、SAT名"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -5707,6 +5726,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"このアワードに入力するフィールド: DXCC (スイスである必要があります) および "
+"STATE (有効な州の略語が含まれている必要があります)"
 
 #: application/views/awards/helvetia/index.php:115
 msgid "Show Helvetia Map"
@@ -5772,6 +5793,8 @@ msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
+"このアワードに入力するフィールド: IOTA (ADIF: IOTA) には有効なIOTA参照が含ま"
+"れている必要があります"
 
 #: application/views/awards/iota/index.php:30
 msgid "Deleted IOTA"
@@ -5846,7 +5869,7 @@ msgstr "%sのウェブサイトで、さらに詳しい情報をご確認いた�
 
 #: application/views/awards/itu/index.php:24
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "このアワードの対象となる分野: ITUゾーン (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:26
 msgid "Awards - ITU Zones"
@@ -5885,6 +5908,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"このアワードの応募フィールド: DXCC (日本) および郡 (有効な参照が含まれている"
+"必要があります)"
 
 #: application/views/awards/jcc/index.php:116
 msgid "Show JCC Map"
@@ -5950,6 +5975,8 @@ msgstr "利用可能なアワードとカテゴリーに関する詳細情報は
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"このアワードに入力するフィールド: POTA_REF (Park-Reference を含める必要があり"
+"ます)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -6111,6 +6138,8 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"このアワードに応募されたフィールド: Gridsquare および vucc_grids (ADIF: "
+"GRIDSQUARE、VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
@@ -6145,6 +6174,8 @@ msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"このアワードに入力するフィールド: SIG (「WAB」である必要があります) および "
+"SIG_INFO (有効な WAB グリッドが含まれている必要があります)"
 
 #: application/views/awards/wab/index.php:110
 msgid "List"
@@ -6169,6 +6200,8 @@ msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
+"このアワードに入力されたフィールド：大陸（ADIFタグ「CONT」）。有効な大陸略語"
+"を含める必要があります！"
 
 #: application/views/awards/wac/index.php:14
 msgid "Awards - Worked All Continents (WAC)"
@@ -6211,7 +6244,7 @@ msgstr ""
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr ""
+msgstr "この賞の対象となる分野: 地域、DXCC"
 
 #: application/views/awards/wae/index.php:162
 msgid "WAE Name"
@@ -6254,6 +6287,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
+"このアワードに入力するフィールド: DXCC (日本) および STATE (有効な都道府県が"
+"含まれている必要があります)"
 
 #: application/views/awards/waja/index.php:119
 msgid "Show WAJA Map"
@@ -6313,6 +6348,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"このアワードに入力するフィールド: DXCC (オランダである必要があります) および "
+"STATE (有効な州の略語が含まれている必要があります)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
@@ -6352,6 +6389,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
+"このアワードの取得に必要なフィールド: DXCC (中国/318、香港/321、マカオ/152、"
+"台湾/386、プラタス島/505、またはスカボローリーフ/506 のいずれか) および有効な"
+"州 (ADIF: DXCC および州)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -6406,6 +6446,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
+"このアワードに入力するフィールド: DXCC (米国、アラスカ、ハワイのいずれか) お"
+"よび STATE (有効な米国の州の略語を含める必要があります)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -6436,7 +6478,7 @@ msgstr ""
 
 #: application/views/awards/wwff/index.php:11
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr ""
+msgstr "このアワードに応募したフィールド: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:32
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -7982,8 +8024,8 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
-"現在のステーション位置がログブックとリンクされていません。リンクするに"
-"は、%shere%s をクリックしてください。"
+"現在のステーション位置がログブックとリンクされていません。リンクするには、"
+"%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:157
 #, php-format
@@ -10527,160 +10569,160 @@ msgstr "Clublog 受信"
 
 #: application/views/logbookadvanced/index.php:497
 msgid "eQSL sent"
-msgstr ""
+msgstr "eQSLを送信しました"
 
 #: application/views/logbookadvanced/index.php:508
 msgid "eQSL received"
-msgstr ""
+msgstr "eQSLを受信"
 
 #: application/views/logbookadvanced/index.php:523
 msgid "QSL Images"
-msgstr ""
+msgstr "QSL画像"
 
 #: application/views/logbookadvanced/index.php:535
 msgid "Warning! Are you sure you want to delete the marked QSO(s)?"
-msgstr ""
+msgstr "警告! マークされたQSOを削除してもよろしいですか?"
 
 #: application/views/logbookadvanced/index.php:536
 msgid " QSO(s) will be deleted"
-msgstr ""
+msgstr " QSOは削除されます"
 
 #: application/views/logbookadvanced/index.php:539
 msgid "With selected: "
-msgstr ""
+msgstr "選択した場合: "
 
 #: application/views/logbookadvanced/index.php:540
 #: application/views/qso/edit_ajax.php:697
 msgid "Update from Callbook"
-msgstr ""
+msgstr "コールブックからの更新"
 
 #: application/views/logbookadvanced/index.php:541
 msgid "Queue Bureau"
-msgstr ""
+msgstr "Queue Bureau"
 
 #: application/views/logbookadvanced/index.php:542
 msgid "Queue Direct"
-msgstr ""
+msgstr "Queue Direct"
 
 #: application/views/logbookadvanced/index.php:543
 msgid "Queue Electronic"
-msgstr ""
+msgstr "Queue Electronic"
 
 #: application/views/logbookadvanced/index.php:544
 msgid "Sent (Bureau)"
-msgstr ""
+msgstr "送信（局）"
 
 #: application/views/logbookadvanced/index.php:545
 msgid "Sent (Direct)"
-msgstr ""
+msgstr "送信（直接）"
 
 #: application/views/logbookadvanced/index.php:546
 msgid "Sent (Electronic)"
-msgstr ""
+msgstr "送信済み（電子）"
 
 #: application/views/logbookadvanced/index.php:547
 msgid "Not Sent"
-msgstr ""
+msgstr "送信されませんでした"
 
 #: application/views/logbookadvanced/index.php:548
 msgid "QSL Not Required"
-msgstr ""
+msgstr "QSLは不要"
 
 #: application/views/logbookadvanced/index.php:549
 msgid "Not Received"
-msgstr ""
+msgstr "受信されませんでした"
 
 #: application/views/logbookadvanced/index.php:550
 msgid "Received (Bureau)"
-msgstr ""
+msgstr "受領（局）"
 
 #: application/views/logbookadvanced/index.php:551
 msgid "Received (Direct)"
-msgstr ""
+msgstr "受信（直接）"
 
 #: application/views/logbookadvanced/index.php:552
 msgid "Received (Electronic)"
-msgstr ""
+msgstr "受信済み（電子）"
 
 #: application/views/logbookadvanced/index.php:553
 msgid "Create ADIF"
-msgstr ""
+msgstr "ADIFを作成する"
 
 #: application/views/logbookadvanced/index.php:554
 msgid "Print Label"
-msgstr ""
+msgstr "ラベルを印刷"
 
 #: application/views/logbookadvanced/index.php:555
 msgid "QSL Slideshow"
-msgstr ""
+msgstr "QSLスライドショー"
 
 #: application/views/logbookadvanced/index.php:556
 msgid "Fix CQ Zones"
-msgstr ""
+msgstr "CQゾーンを修正"
 
 #: application/views/logbookadvanced/index.php:557
 msgid "Fix ITU Zones"
-msgstr ""
+msgstr "ITUゾーンを修正"
 
 #: application/views/logbookadvanced/index.php:563
 msgid "Quicksearch with selected: "
-msgstr ""
+msgstr "選択したクイック検索: "
 
 #: application/views/logbookadvanced/index.php:565
 msgid "Search Date"
-msgstr ""
+msgstr "検索日"
 
 #: application/views/logbookadvanced/index.php:571
 msgid "Search DXCC"
-msgstr ""
+msgstr "DXCCを検索"
 
 #: application/views/logbookadvanced/index.php:574
 msgid "Search State"
-msgstr ""
+msgstr "検索状態"
 
 #: application/views/logbookadvanced/index.php:577
 msgid "Search Gridsquare"
-msgstr ""
+msgstr "Gridsquareを検索"
 
 #: application/views/logbookadvanced/index.php:580
 msgid "Search CQ Zone"
-msgstr ""
+msgstr "CQゾーンを検索"
 
 #: application/views/logbookadvanced/index.php:583
 msgid "Search ITU Zone"
-msgstr ""
+msgstr "ITUゾーンを検索"
 
 #: application/views/logbookadvanced/index.php:586
 msgid "Search Mode"
-msgstr ""
+msgstr "検索モード"
 
 #: application/views/logbookadvanced/index.php:589
 msgid "Search Band"
-msgstr ""
+msgstr "検索バンド"
 
 #: application/views/logbookadvanced/index.php:592
 msgid "Search IOTA"
-msgstr ""
+msgstr "IOTAを検索"
 
 #: application/views/logbookadvanced/index.php:595
 msgid "Search SOTA"
-msgstr ""
+msgstr "SOTAを検索"
 
 #: application/views/logbookadvanced/index.php:598
 msgid "Search POTA"
-msgstr ""
+msgstr "POTAを検索"
 
 #: application/views/logbookadvanced/index.php:601
 msgid "Search WWFF"
-msgstr ""
+msgstr "WWFFを検索"
 
 #: application/views/logbookadvanced/index.php:604
 msgid "Search Operator"
-msgstr ""
+msgstr "検索演算子"
 
 #: application/views/logbookadvanced/index.php:611
 msgid "Quickfilters"
-msgstr ""
+msgstr "クイックフィルター"
 
 #: application/views/logbookadvanced/index.php:614
 msgid "QSL Filters"
@@ -14430,9 +14472,7 @@ msgid "Station Locations Quickswitch"
 msgstr ""
 
 #: application/views/user/edit.php:483
-msgid ""
-"Show the Station Locations Quickswitch in the main menu. You can add "
-"locations by adding them to favourites at the station setup page."
+msgid "Show the Station Locations Quickswitch in the main menu"
 msgstr ""
 
 #: application/views/user/edit.php:487
@@ -15398,6 +15438,12 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
+msgstr ""
+
+#: application/views/user/edit.php:483
+msgid ""
+"Show the Station Locations Quickswitch in the main menu. You can add "
+"locations by adding them to favourites at the station setup page."
 msgstr ""
 
 #~ msgid "Mark QSOs as uploaded"
