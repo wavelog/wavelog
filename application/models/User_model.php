@@ -58,8 +58,9 @@ class User_Model extends CI_Model {
 	// FUNCTION: object get_all_dcl_users
 	// Returns all users with dcl details
 	function get_all_dcl_users() {
-		// todo Clever (non-CI-)query to fetch all users with DCL-Tokens in option_table
-		return null;
+		$sql="SELECT distinct user_id from user_options where option_name='dcl_key' and option_key='key' and option_value is not null";
+		$resu=$this->db->query($sql);
+		return $resu->result();
 	}
 
 	// FUNCTION: object get_by_email($email)

@@ -8,7 +8,6 @@ class Dcl extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 
 		$this->load->model('user_model');
-		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
 			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
@@ -16,10 +15,12 @@ class Dcl extends CI_Controller {
 	}
 
 	public function save_key() {
+		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$this->load->model('Dcl_model');
 		$this->Dcl_model->store_key($call);
 	}
 	public function key_import() {
+		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$this->load->library('Permissions');
 		$this->load->model('dcl_model');
 		$data['date_format']=$this->session->userdata('user_date_format') ?? $this->config->item('qso_date_format');
@@ -46,6 +47,7 @@ class Dcl extends CI_Controller {
 	}
 
 	public function index() {
+		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$this->load->library('Permissions');
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
@@ -75,9 +77,11 @@ class Dcl extends CI_Controller {
 	}
 
 	public function dcl_upload() {
+		// Called as User: Upload for User (if manual sync isn't disabled
+		// Called from cron / without Session: iterate through stations, check for DCL-Key and upload
 
 		$this->load->model('user_model');
-		$this->user_model->authorize(2);
+		$this->load->model('Dcl_model');
 
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
@@ -114,7 +118,6 @@ class Dcl extends CI_Controller {
 			foreach ($station_profiles->result() as $station_profile) {
 
 				// Get Certificate Data
-				$this->load->model('Dcl_model');
 				$data['station_profile'] = $station_profile;
 				$key_info = $this->Dcl_model->find_key($station_profile->station_callsign, $station_profile->user_id);
 				// If Station Profile has no DCL Key continue on.
@@ -209,6 +212,7 @@ class Dcl extends CI_Controller {
 	}
 
 	public function delete_key() {
+		if (!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$this->load->model('Dcl_model');
