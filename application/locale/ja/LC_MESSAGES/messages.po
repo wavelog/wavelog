@@ -3183,19 +3183,24 @@ msgstr ""
 "HRDlog: HRDlog 資格情報を持つステーション プロファイルが見つかりません。"
 
 #: application/models/Logbook_model.php:1291
+#: application/models/Logbook_model.php:1292
 msgid "Station ID not allowed"
 msgstr "ステーションIDは許可されていません"
 
 #: application/models/Logbook_model.php:1296
+#: application/models/Logbook_model.php:1297
 msgid "No Call given"
 msgstr "コールなし"
 
 #: application/models/Logbook_model.php:1366
 #: application/models/Logbook_model.php:1540
+#: application/models/Logbook_model.php:1367
+#: application/models/Logbook_model.php:1541
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
 #: application/models/Logbook_model.php:3987
+#: application/models/Logbook_model.php:4004
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3203,16 +3208,19 @@ msgstr ""
 "されました: スキップされました"
 
 #: application/models/Logbook_model.php:3988
+#: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 "ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
 
 #: application/models/Logbook_model.php:4000
+#: application/models/Logbook_model.php:4017
 msgid "QSO on"
 msgstr "QSOオン"
 
 #: application/models/Logbook_model.php:4000
+#: application/models/Logbook_model.php:4017
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3221,51 +3229,63 @@ msgstr ""
 "されませんでした。無効です"
 
 #: application/models/Logbook_model.php:4299
+#: application/models/Logbook_model.php:4316
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4310
+#: application/models/Logbook_model.php:4327
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4371
+#: application/models/Logbook_model.php:4388
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4391
+#: application/models/Logbook_model.php:4408
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4412
+#: application/models/Logbook_model.php:4429
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate が無効です (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4704
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4721
 msgid "Duplicate for"
 msgstr "複製用"
 
 #: application/models/Logbook_model.php:4765
+#: application/models/Logbook_model.php:4782
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
 #: application/models/Logbook_model.php:4771
+#: application/models/Logbook_model.php:4788
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
 #: application/models/Logbook_model.php:4776
+#: application/models/Logbook_model.php:4793
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
 #: application/models/Logbook_model.php:4779
+#: application/models/Logbook_model.php:4796
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
 #: application/models/Logbook_model.php:4782
+#: application/models/Logbook_model.php:4799
 msgid "confirmation pending"
 msgstr "確認中"
 
 #: application/models/Logbook_model.php:4785
+#: application/models/Logbook_model.php:4802
 msgid "unconfirmed"
 msgstr "未確認"
 
@@ -3273,6 +3293,7 @@ msgstr "未確認"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4805
 msgid "unknown"
 msgstr "不明"
 
@@ -3287,6 +3308,7 @@ msgstr "不明"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5643
 msgid "Bearing"
 msgstr "ベアリング"
 
