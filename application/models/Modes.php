@@ -40,7 +40,7 @@ class Modes extends CI_Model {
 			}
 			return '('.implode(',', $modes).')';
 		} else {
-			return '()';
+			return "('')";
 		}
 	}
 
