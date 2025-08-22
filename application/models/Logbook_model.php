@@ -5,6 +5,7 @@ class Logbook_model extends CI_Model {
 	private $station_result = [];
 	public function __construct() {
 		$this->oop_populate_modes();
+		$this->load->Model('Modes');
 	}
 
 	private $oop_modes = [];
@@ -2375,7 +2376,7 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-	function check_if_callsign_cnfmd_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
+	function check_if_callsign_cnfmd_in_logbook($callsign, $StationLocationsArray = null, $band = null, $mode = null) {
 
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
@@ -2413,6 +2414,10 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COL_CALL');
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_CALL', $callsign);
+
+		if (isset($mode)) {
+			$this->db->where(" COL_MODE in ".$this->Modes->get_modes_from_qrgmode($mode,true));
+		}
 
 		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
@@ -2459,7 +2464,7 @@ class Logbook_model extends CI_Model {
 		return $query->result();
 	}
 
-	function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
+	function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray = null, $band = null, $mode = null) {
 
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
@@ -2471,6 +2476,10 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COL_CALL');
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_CALL', $callsign);
+
+		if (isset($mode)) {
+			$this->db->where(" COL_MODE in ".$this->Modes->get_modes_from_qrgmode($mode,true));
+		}
 
 		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
@@ -2485,7 +2494,7 @@ class Logbook_model extends CI_Model {
 		return $query->num_rows();
 	}
 
-	function check_if_dxcc_worked_in_logbook($dxcc, $StationLocationsArray = null, $band = null) {
+	function check_if_dxcc_worked_in_logbook($dxcc, $StationLocationsArray = null, $band = null, $mode = null) {
 
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
@@ -2497,6 +2506,10 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COL_DXCC');
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_DXCC', $dxcc);
+
+		if (isset($mode)) {
+			$this->db->where(" COL_MODE in ".$this->Modes->get_modes_from_qrgmode($mode,true));
+		}
 
 		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
@@ -2576,7 +2589,7 @@ class Logbook_model extends CI_Model {
 	}
 
 
-	function check_if_dxcc_cnfmd_in_logbook($dxcc, $StationLocationsArray = null, $band = null) {
+	function check_if_dxcc_cnfmd_in_logbook($dxcc, $StationLocationsArray = null, $band = null, $mode = null) {
 
 		if ($StationLocationsArray == null) {
 			$this->load->model('logbooks_model');
@@ -2614,6 +2627,10 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COL_DXCC');
 		$this->db->where_in('station_id', $logbooks_locations_array);
 		$this->db->where('COL_DXCC', $dxcc);
+
+		if (isset($mode)) {
+			$this->db->where(" COL_MODE in ".$this->Modes->get_modes_from_qrgmode($mode,true));
+		}
 
 		$band = ($band == 'All') ? null : $band;
 		if ($band != null && $band != 'SAT') {
