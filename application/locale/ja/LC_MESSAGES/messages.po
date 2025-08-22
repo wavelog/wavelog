@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-20 19:04+0000\n"
+"POT-Creation-Date: 2025-08-22 07:13+0000\n"
 "PO-Revision-Date: 2025-08-22 09:26+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3182,24 +3182,19 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: HRDlog 資格情報を持つステーション プロファイルが見つかりません。"
 
-#: application/models/Logbook_model.php:1291
 #: application/models/Logbook_model.php:1292
 msgid "Station ID not allowed"
 msgstr "ステーションIDは許可されていません"
 
-#: application/models/Logbook_model.php:1296
 #: application/models/Logbook_model.php:1297
 msgid "No Call given"
 msgstr "コールなし"
 
-#: application/models/Logbook_model.php:1366
-#: application/models/Logbook_model.php:1540
 #: application/models/Logbook_model.php:1367
 #: application/models/Logbook_model.php:1541
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:3987
 #: application/models/Logbook_model.php:4004
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3207,19 +3202,16 @@ msgstr ""
 "%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s が検出"
 "されました: スキップされました"
 
-#: application/models/Logbook_model.php:3988
 #: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 "ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
 
-#: application/models/Logbook_model.php:4000
 #: application/models/Logbook_model.php:4017
 msgid "QSO on"
 msgstr "QSOオン"
 
-#: application/models/Logbook_model.php:4000
 #: application/models/Logbook_model.php:4017
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3228,76 +3220,63 @@ msgstr ""
 "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
 "されませんでした。無効です"
 
-#: application/models/Logbook_model.php:4299
 #: application/models/Logbook_model.php:4316
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4310
 #: application/models/Logbook_model.php:4327
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4371
 #: application/models/Logbook_model.php:4388
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4391
 #: application/models/Logbook_model.php:4408
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4412
 #: application/models/Logbook_model.php:4429
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4704
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4721
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:4765
 #: application/models/Logbook_model.php:4782
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:4771
 #: application/models/Logbook_model.php:4788
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:4776
 #: application/models/Logbook_model.php:4793
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:4779
 #: application/models/Logbook_model.php:4796
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:4782
 #: application/models/Logbook_model.php:4799
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:4785
 #: application/models/Logbook_model.php:4802
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4805
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4805
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5626
+#: application/models/Logbook_model.php:5643
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3308,7 +3287,6 @@ msgstr "不明"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5643
 msgid "Bearing"
 msgstr "ベアリング"
 
@@ -8046,8 +8024,8 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
-"現在のステーション位置がログブックとリンクされていません。リンクするには、"
-"%shere%s をクリックしてください。"
+"現在のステーション位置がログブックとリンクされていません。リンクするに"
+"は、%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:157
 #, php-format
@@ -11249,7 +11227,8 @@ msgstr "公開 Github ボタン"
 
 #: application/views/options/appearance.php:84
 msgid "This enables the button to Wavelog's Github page in the public view"
-msgstr "これにより、WavelogのGithubページへのボタンがパブリックビューで有効になります"
+msgstr ""
+"これにより、WavelogのGithubページへのボタンがパブリックビューで有効になります"
 
 #: application/views/options/appearance.php:88
 msgid "Public Login Button"
@@ -11257,7 +11236,8 @@ msgstr "パブリックログインボタン"
 
 #: application/views/options/appearance.php:93
 msgid "This enables the button to login to Wavelog in the public view"
-msgstr "これにより、パブリックビューでWavelogにログインするためのボタンが有効になりま"
+msgstr ""
+"これにより、パブリックビューでWavelogにログインするためのボタンが有効になりま"
 "す"
 
 #: application/views/options/dxcluster.php:38
@@ -11273,9 +11253,9 @@ msgstr "DXクラスタAPI"
 msgid ""
 "The Provider of the DXCluster-Cache. You can set up your own Cache with %s "
 "or use a public one"
-msgstr "DXCluster-"
-"Cacheの提供元。%sを使用して独自のキャッシュを設定するか、公開されているものを"
-"利用できます"
+msgstr ""
+"DXCluster-Cacheの提供元。%sを使用して独自のキャッシュを設定するか、公開されて"
+"いるものを利用できます"
 
 #: application/views/options/dxcluster.php:41
 #, php-format
@@ -11356,8 +11336,9 @@ msgstr "SMTPホスト"
 msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
-msgstr "メールサーバーのホスト名、例: 'mail.example.com' ('ssl://' または 'tls://' "
-"なし)"
+msgstr ""
+"メールサーバーのホスト名、例: 'mail.example.com' ('ssl://' または 'tls://' な"
+"し)"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -11367,8 +11348,9 @@ msgstr "SMTPポート"
 msgid ""
 "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is "
 "used -> '465'"
-msgstr "メールサーバーの SMTP ポート。例: TLS が使用されている場合 -> '587'、SSL "
-"が使用されている場合 -> '465'"
+msgstr ""
+"メールサーバーの SMTP ポート。例: TLS が使用されている場合 -> '587'、SSL が使"
+"用されている場合 -> '465'"
 
 #: application/views/options/email.php:96
 msgid "SMTP Username"
@@ -11378,8 +11360,9 @@ msgstr "SMTPユーザー名"
 msgid ""
 "The username to log in to the mail server, usually this is the email address "
 "that is used."
-msgstr "メール サーバーにログインするためのユーザー名。通常は、"
-"これが使用される電子メール アドレスです。"
+msgstr ""
+"メール サーバーにログインするためのユーザー名。通常は、これが使用される電子"
+"メール アドレスです。"
 
 #: application/views/options/email.php:104
 msgid "SMTP Password"
@@ -11406,8 +11389,9 @@ msgstr "注目のハムプロバイダー"
 msgid ""
 "The URL which provides the Hams Of Note List. See example and how it works "
 "here %s"
-msgstr "「注目すべきハムのリスト」を提供するURLです。"
-"例と動作方法はこちらをご覧ください %s"
+msgstr ""
+"「注目すべきハムのリスト」を提供するURLです。例と動作方法はこちらをご覧くださ"
+"い %s"
 
 #: application/views/options/hon.php:39
 msgid "Wiki"
@@ -11423,9 +11407,8 @@ msgid ""
 "Wavelog Options are global settings used for all users of the installation, "
 "which are overridden if there's a setting on a user level."
 msgstr ""
-"Wavelog "
-"オプションは、インストールのすべてのユーザーに使用されるグローバル設定であり"
-"、ユーザー レベルで設定がある場合は上書きされます。"
+"Wavelog オプションは、インストールのすべてのユーザーに使用されるグローバル設"
+"定であり、ユーザー レベルで設定がある場合は上書きされます。"
 
 #: application/views/options/maptiles.php:49
 #, php-format
@@ -11443,8 +11426,9 @@ msgstr ""
 msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
-msgstr "テスト済みの設定一覧とすべてのデフォルト値は、%sWavelog Wiki%s "
-"に記載されています。"
+msgstr ""
+"テスト済みの設定一覧とすべてのデフォルト値は、%sWavelog Wiki%s に記載されてい"
+"ます。"
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
@@ -11462,8 +11446,9 @@ msgstr "ダークタイルの Maptiles サーバー URL - 静的マップ API �
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
-msgstr "ダークマップタイルを提供するマップサーバーのURL。静的マップでのみ使用されます"
-"。"
+msgstr ""
+"ダークマップタイルを提供するマップサーバーのURL。静的マップでのみ使用されま"
+"す。"
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
@@ -11473,7 +11458,8 @@ msgstr "Maptileサーバーのサブドメインシステム"
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
-msgstr "このサーバーのサブドメインのシステム（URL内の{s}）。これらは負荷分散に使用さ"
+msgstr ""
+"このサーバーのサブドメインのシステム（URL内の{s}）。これらは負荷分散に使用さ"
 "れます。"
 
 #: application/views/options/maptiles.php:69
@@ -11504,8 +11490,9 @@ msgstr "無線タイムアウト警告"
 msgid ""
 "The Radio Timeout Warning is used on the QSO entry panel to alert you to "
 "radio interface disconnects."
-msgstr "無線タイムアウト警告は、QSO "
-"入力パネルで無線インターフェイスの切断を警告するために使用されます。"
+msgstr ""
+"無線タイムアウト警告は、QSO 入力パネルで無線インターフェイスの切断を警告する"
+"ために使用されます。"
 
 #: application/views/options/radios.php:41
 msgid "This number is in seconds."
@@ -11570,8 +11557,9 @@ msgstr "すべてのユーザーに表示"
 msgid ""
 "This will show the version dialog automatically to all users on their next "
 "page reload."
-msgstr "これにより、次回ページを再読み込みしたときにすべてのユーザーにバージョン "
-"ダイアログが自動的に表示されます。"
+msgstr ""
+"これにより、次回ページを再読み込みしたときにすべてのユーザーにバージョン ダイ"
+"アログが自動的に表示されます。"
 
 #: application/views/options/version_dialog.php:104
 msgid "Hide for all Users"
@@ -11580,8 +11568,9 @@ msgstr "すべてのユーザーに対して非表示"
 #: application/views/options/version_dialog.php:106
 msgid ""
 "This will deactivate the automatic popup of the version dialog for all users."
-msgstr "これにより、すべてのユーザーに対してバージョン "
-"ダイアログの自動ポップアップが無効になります。"
+msgstr ""
+"これにより、すべてのユーザーに対してバージョン ダイアログの自動ポップアップが"
+"無効になります。"
 
 #: application/views/oqrs/index.php:9
 msgid "Request a QSL card"
@@ -11593,7 +11582,8 @@ msgstr "コールサインを入力してください"
 
 #: application/views/oqrs/index.php:27
 msgid "This search will search in all station locations where OQRS is active."
-msgstr "この検索では、OQRS がアクティブなすべてのステーションの場所を検索します。"
+msgstr ""
+"この検索では、OQRS がアクティブなすべてのステーションの場所を検索します。"
 
 #: application/views/oqrs/index.php:54
 msgid "Select station"
@@ -11603,7 +11593,8 @@ msgstr "ステーションを選択"
 msgid ""
 "If you can't find your QSO in the log, please fill out the form below. You "
 "will be contacted after the log has been checked."
-msgstr "ログにQSOが見つからない場合は、以下のフォームにご記入ください。ログを確認後、"
+msgstr ""
+"ログにQSOが見つからない場合は、以下のフォームにご記入ください。ログを確認後、"
 "ご連絡いたします。"
 
 #: application/views/oqrs/notinlogform.php:9
@@ -11683,7 +11674,8 @@ msgstr "経由"
 
 #: application/views/oqrs/qsolist.php:199
 msgid "No QSOs were found. It seems you were not active at this time."
-msgstr "QSOは見つかりませんでした。この時点ではアクティブではなかったようです。"
+msgstr ""
+"QSOは見つかりませんでした。この時点ではアクティブではなかったようです。"
 
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
@@ -11700,7 +11692,8 @@ msgstr "マッチQSO"
 msgid ""
 "The following QSO(s) were found. Please fill out the date and time and "
 "submit your request."
-msgstr "以下のQSOが見つかりました。日時を入力してリクエストを送信してください。"
+msgstr ""
+"以下のQSOが見つかりました。日時を入力してリクエストを送信してください。"
 
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:43
@@ -14538,7 +14531,9 @@ msgid "Station Locations Quickswitch"
 msgstr ""
 
 #: application/views/user/edit.php:483
-msgid "Show the Station Locations Quickswitch in the main menu"
+msgid ""
+"Show the Station Locations Quickswitch in the main menu. You can add "
+"locations by adding them to favourites at the station setup page."
 msgstr ""
 
 #: application/views/user/edit.php:487
@@ -15504,12 +15499,6 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
-msgstr ""
-
-#: application/views/user/edit.php:483
-msgid ""
-"Show the Station Locations Quickswitch in the main menu. You can add "
-"locations by adding them to favourites at the station setup page."
 msgstr ""
 
 #~ msgid "Mark QSOs as uploaded"
