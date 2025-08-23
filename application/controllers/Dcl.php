@@ -7,6 +7,7 @@ class Dcl extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 
+		if (!($this->config->item('enable_dcl_interface') ?? false)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); exit; }
 		$this->load->model('user_model');
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
 			echo __("Maintenance Mode is active. Try again later.")."\n";
