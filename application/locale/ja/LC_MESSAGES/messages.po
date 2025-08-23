@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-08-22 07:13+0000\n"
 "PO-Revision-Date: 2025-08-23 11:39+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11953,7 +11953,8 @@ msgstr "確認が見つかりません。"
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
-msgstr "表には最大1000行が表示されます。これはパフォーマンス上の理由によるものです。"
+msgstr ""
+"表には最大1000行が表示されます。これはパフォーマンス上の理由によるものです。"
 
 #: application/views/qslcard/confirmations.php:11
 msgid "Confirmation type"
@@ -12006,17 +12007,16 @@ msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
-"ここでは、要求された QSL を印刷用に CSV または ADIF "
-"ファイルとしてエクスポートし、必要に応じて送信済みとしてマークすることができ"
-"ます。"
+"ここでは、要求された QSL を印刷用に CSV または ADIF ファイルとしてエクスポー"
+"トし、必要に応じて送信済みとしてマークすることができます。"
 
 #: application/views/qslprint/index.php:31
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
-msgstr "リクエストされた QSL とは、「QSL "
-"送信」フィールドに「リクエスト済み」または「キューに登録済み」の値を持つ QSO "
-"のことです。"
+msgstr ""
+"リクエストされた QSL とは、「QSL 送信」フィールドに「リクエスト済み」または"
+"「キューに登録済み」の値を持つ QSO のことです。"
 
 #: application/views/qslprint/index.php:32
 #: application/views/qslprint/qslprint.php:32
@@ -12028,7 +12028,8 @@ msgstr "以前のQSL"
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
-msgstr "列%sは、同じバンドとモードで同じ局に過去に送信されたQSLの数を示しています。"
+msgstr ""
+"列%sは、同じバンドとモードで同じ局に過去に送信されたQSLの数を示しています。"
 
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
@@ -12092,7 +12093,8 @@ msgstr "印刷する QSL が見つかりません!"
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
-msgstr "追加のQSOは見つかりませんでした。おそらく既にキューに入っていると思われます。"
+msgstr ""
+"追加のQSOは見つかりませんでした。おそらく既にキューに入っていると思われます。"
 
 #: application/views/qso/award_tabs.php:2
 msgid "Showing summary for DXCC"
@@ -12234,7 +12236,8 @@ msgstr "RXバンド"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:386
 msgid "Give power value in Watts. Include only numbers in the input."
-msgstr "電力値はワット単位で入力してください。入力には数字のみを入力してください。"
+msgstr ""
+"電力値はワット単位で入力してください。入力には数字のみを入力してください。"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:384
 #: application/views/reg1test/index.php:114
@@ -12585,8 +12588,9 @@ msgstr "以下は、Wavelog に接続されているアクティブな無線機�
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
-msgstr "まだ無線を接続していない場合は、API ページを参照して API "
-"キーを生成してください。"
+msgstr ""
+"まだ無線を接続していない場合は、API ページを参照して API キーを生成してくださ"
+"い。"
 
 #: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
@@ -12609,8 +12613,9 @@ msgstr "バンドを選択"
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
-msgstr "50Mhz 未満の帯域は EDI REG1TEST "
-"形式では無効であり、無効なファイルが生成されます。"
+msgstr ""
+"50Mhz 未満の帯域は EDI REG1TEST 形式では無効であり、無効なファイルが生成され"
+"ます。"
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
@@ -12625,14 +12630,16 @@ msgid ""
 "The exchange which was sent during the contest. Can be any type of "
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
-msgstr "コンテスト中に送信された交換情報です。州、DOK、郡、州、電力、名前など、あらゆ"
+msgstr ""
+"コンテスト中に送信された交換情報です。州、DOK、郡、州、電力、名前など、あらゆ"
 "るタイプの情報を指定できます。最大文字数：6文字。"
 
 #: application/views/reg1test/index.php:55
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
-msgstr "オペレータが所属する無線クラブのコールサインを記述します。例：クラブにポイン"
+msgstr ""
+"オペレータが所属する無線クラブのコールサインを記述します。例：クラブにポイン"
 "トが貯まっている場合に使用できます。"
 
 #: application/views/reg1test/index.php:66
@@ -12643,7 +12650,8 @@ msgstr "担当オペレーターのコールサイン"
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
-msgstr "すべての演算子のリスト。セミコロン「;」で区切られます。ここでは担当演算子は必"
+msgstr ""
+"すべての演算子のリスト。セミコロン「;」で区切られます。ここでは担当演算子は必"
 "要ありません。"
 
 #: application/views/reg1test/index.php:75
@@ -12730,7 +12738,8 @@ msgstr "バンドマルチプライヤー"
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
-msgstr "バンドマルチプライヤー。通常は1です。コンテスト採点ルールに従って必要な場合に"
+msgstr ""
+"バンドマルチプライヤー。通常は1です。コンテスト採点ルールに従って必要な場合に"
 "のみ変更してください。"
 
 #: application/views/reg1test/index.php:141
@@ -12757,7 +12766,8 @@ msgstr "LoTW名"
 msgid ""
 "Satellite name as accepted by LoTW. Not necessarily the same as the display "
 "name. Can be set/changed later when added to LoTW."
-msgstr "LoTWで承認された衛星名。表示名と同じとは限りません。LoTWに追加する際に後から"
+msgstr ""
+"LoTWで承認された衛星名。表示名と同じとは限りません。LoTWに追加する際に後から"
 "設定/変更できます。"
 
 #: application/views/satellite/create.php:41
@@ -12840,9 +12850,8 @@ msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
 msgstr ""
-"TLE を持つサテライトが見つかりません。CRON "
-"またはサテライトページから更新してください。更新権限がない場合は、管理者にお"
-"問い合わせください！"
+"TLE を持つサテライトが見つかりません。CRON またはサテライトページから更新して"
+"ください。更新権限がない場合は、管理者にお問い合わせください！"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
@@ -15530,6 +15539,11 @@ msgstr ""
 
 #: application/views/station_profile/edit.php:309
 msgid "wiki"
+msgstr ""
+
+#: application/views/station_profile/edit.php:309
+#, php-format
+msgid "Trouble? Check the %swiki%s."
 msgstr ""
 
 #~ msgid "Mark QSOs as uploaded"
