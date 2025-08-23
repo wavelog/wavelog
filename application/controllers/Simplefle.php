@@ -96,10 +96,10 @@ class SimpleFLE extends CI_Controller {
 		}
 		$this->staticmap_model->remove_static_map_image($station_id);
 
-		if (empty($result)) {
+		if (empty($bulk_result)) {
 			echo "success";
 		} else {
-			echo json_encode($result);
+			echo json_encode($bulk_result);
 		}
 	}
 
