@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-22 07:13+0000\n"
-"PO-Revision-Date: 2025-08-22 20:13+0000\n"
+"PO-Revision-Date: 2025-08-23 11:39+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11922,272 +11922,277 @@ msgstr "QRZ-QSL からの次回の自動ダウンロードは次の時刻に行�
 
 #: application/views/qrz/export.php:83
 msgid "Download from QRZ Logbook"
-msgstr ""
+msgstr "QRZログブックからダウンロード"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
-msgstr ""
+msgstr "QSOをQRZログブックにエクスポートしてマークする"
 
 #: application/views/qrz/mark_qrz.php:16
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr ""
+msgstr "QSO は QRZ ログブックにエクスポートされたものとしてマークされます。"
 
 #: application/views/qslcard/confirmationresult.php:16
 msgid "QSO date"
-msgstr ""
+msgstr "QSO 日付"
 
 #: application/views/qslcard/confirmationresult.php:20
 msgid "Confirmation date"
-msgstr ""
+msgstr "確認日"
 
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
 msgid "Type"
-msgstr ""
+msgstr "タイプ"
 
 #: application/views/qslcard/confirmationresult.php:54
 msgid "No confirmations found."
-msgstr ""
+msgstr "確認が見つかりません。"
 
 #: application/views/qslcard/confirmations.php:6
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
-msgstr ""
+msgstr "表には最大1000行が表示されます。これはパフォーマンス上の理由によるものです。"
 
 #: application/views/qslcard/confirmations.php:11
 msgid "Confirmation type"
-msgstr ""
+msgstr "確認タイプ"
 
 #: application/views/qslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
-msgstr ""
+msgstr "あなたはディスク容量の%sをQSLカード資産の保存に使用しています"
 
 #: application/views/qslcard/index.php:17
 msgid "List View"
-msgstr ""
+msgstr "リストビュー"
 
 #: application/views/qslcard/index.php:18
 msgid "Gallery View"
-msgstr ""
+msgstr "ギャラリービュー"
 
 #: application/views/qslcard/index.php:78
 #: application/views/qslcard/index.php:126
 msgid "Add Qsos"
-msgstr ""
+msgstr "QSOSを追加"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
-msgstr ""
+msgstr "QSLに追加"
 
 #: application/views/qslmanagement/index.php:13
 msgid "Incoming QSL Cards"
-msgstr ""
+msgstr "受信QSLカード"
 
 #: application/views/qslmanagement/index.php:25
 msgid "Report"
-msgstr ""
+msgstr "報告"
 
 #: application/views/qslmanagement/index.php:26
 msgid "Option"
-msgstr ""
+msgstr "オプション"
 
 #: application/views/qslmanagement/index.php:46
 msgid "Outgoing QSL Cards"
-msgstr ""
+msgstr "送信QSLカード"
 
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
-msgstr ""
+msgstr "印刷用にリクエストされたQSLをエクスポートする"
 
 #: application/views/qslprint/index.php:29
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
+"ここでは、要求された QSL を印刷用に CSV または ADIF "
+"ファイルとしてエクスポートし、必要に応じて送信済みとしてマークすることができ"
+"ます。"
 
 #: application/views/qslprint/index.php:31
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
-msgstr ""
+msgstr "リクエストされた QSL とは、「QSL "
+"送信」フィールドに「リクエスト済み」または「キューに登録済み」の値を持つ QSO "
+"のことです。"
 
 #: application/views/qslprint/index.php:32
 #: application/views/qslprint/qslprint.php:32
 msgid "Previous QSL"
-msgstr ""
+msgstr "以前のQSL"
 
 #: application/views/qslprint/index.php:32
 #, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
-msgstr ""
+msgstr "列%sは、同じバンドとモードで同じ局に過去に送信されたQSLの数を示しています。"
 
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
 msgid "Send Method"
-msgstr ""
+msgstr "送信方法"
 
 #: application/views/qslprint/qslprint.php:33
 msgid "Mark as sent"
-msgstr ""
+msgstr "送信済みとしてマーク"
 
 #: application/views/qslprint/qslprint.php:34
 msgid "Remove"
-msgstr ""
+msgstr "取り除く"
 
 #: application/views/qslprint/qslprint.php:35
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
-msgstr ""
+msgstr "QSOリスト"
 
 #: application/views/qslprint/qslprint.php:71
 msgid "Mark selected QSOs as sent"
-msgstr ""
+msgstr "選択したQSOを送信済みとしてマークする"
 
 #: application/views/qslprint/qslprint.php:72
 msgid "Remove selected QSOs from the queue"
-msgstr ""
+msgstr "選択したQSOをキューから削除する"
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export selected QSOs to ADIF-file"
-msgstr ""
+msgstr "選択したQSOをADIFファイルにエクスポートする"
 
 #: application/views/qslprint/qslprint.php:75
 msgid "Export CSV-file"
-msgstr ""
+msgstr "CSVファイルのエクスポート"
 
 #: application/views/qslprint/qslprint.php:75
 msgid "Export requested QSLs to CSV-file"
-msgstr ""
+msgstr "リクエストされたQSLをCSVファイルにエクスポートする"
 
 #: application/views/qslprint/qslprint.php:77
 msgid "Export ADIF"
-msgstr ""
+msgstr "ADIFをエクスポート"
 
 #: application/views/qslprint/qslprint.php:77
 msgid "Export requested QSLs to ADIF-file"
-msgstr ""
+msgstr "リクエストされたQSLをADIFファイルにエクスポートする"
 
 #: application/views/qslprint/qslprint.php:79
 msgid "Mark QSLs as printed"
-msgstr ""
+msgstr "QSLを印刷どおりにマークする"
 
 #: application/views/qslprint/qslprint.php:79
 msgid "Mark requested QSLs as sent"
-msgstr ""
+msgstr "リクエストされたQSLを送信済みとしてマークする"
 
 #: application/views/qslprint/qslprint.php:83
 msgid "No QSLs to print were found!"
-msgstr ""
+msgstr "印刷する QSL が見つかりません!"
 
 #: application/views/qslprint/qsolist.php:207
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
-msgstr ""
+msgstr "追加のQSOは見つかりませんでした。おそらく既にキューに入っていると思われます。"
 
 #: application/views/qso/award_tabs.php:2
 msgid "Showing summary for DXCC"
-msgstr ""
+msgstr "DXCCの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:3
 msgid "Showing summary for US State"
-msgstr ""
+msgstr "米国の州の概要を表示しています"
 
 #: application/views/qso/award_tabs.php:4
 msgid "Showing summary for CQ zone"
-msgstr ""
+msgstr "CQゾーンの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:5
 msgid "Showing summary for WWFF"
-msgstr ""
+msgstr "WWFFの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:6
 msgid "Showing summary for POTA"
-msgstr ""
+msgstr "POTAの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:7
 msgid "Showing summary for SOTA"
-msgstr ""
+msgstr "SOTAの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:8
 msgid "Showing summary for IOTA"
-msgstr ""
+msgstr "IOTAの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for DOK"
-msgstr ""
+msgstr "DOKの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for satellite QSOs with"
-msgstr ""
+msgstr "衛星QSOの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:11
 msgid "Showing summary for continent"
-msgstr ""
+msgstr "大陸の概要を表示しています"
 
 #: application/views/qso/award_tabs.php:12
 msgid "Showing summary for gridsquare"
-msgstr ""
+msgstr "gridsquareの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:13
 msgid "State input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、状態入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:14
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、SOTA 入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:15
 msgid "POTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、POTA 入力を入力する必要があります。!"
 
 #: application/views/qso/award_tabs.php:16
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、IOTA 入力を入力する必要があります。!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "DOK input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、DOK 入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:18
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、WWFF 入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Propagation mode needs to be 'SAT' to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、伝播モードを「SAT」にする必要があります!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、Gridsquare 入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
-msgstr ""
+msgstr "概要は、最初に入力された POTA についてのみ表示されます。"
 
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
-msgstr ""
+msgstr "概要は、最初に入力したグリッドスクエアに対してのみ表示されます。"
 
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "概要は米国の州についてのみ表示されます。"
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
-msgstr ""
+msgstr "Xに投稿"
 
 #: application/views/qso/components/share_modal.php:6
 msgid "Post on Bluesky"
-msgstr ""
+msgstr "Blueskyに投稿する"
 
 #: application/views/qso/components/share_modal.php:10
 msgid "Toot on Mastodon"
-msgstr ""
+msgstr "マストドンで投稿する"
 
 #: application/views/qso/components/winkeysettings.php:3
 #: application/views/qso/components/winkeysettings.php:19
@@ -12196,7 +12201,7 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:67
 #, php-format
 msgid "Function %d - Name"
-msgstr ""
+msgstr "関数 %d - 名前"
 
 #: application/views/qso/components/winkeysettings.php:10
 #: application/views/qso/components/winkeysettings.php:26
@@ -12205,121 +12210,121 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:74
 #, php-format
 msgid "Function %d - Macro"
-msgstr ""
+msgstr "関数 %d - マクロ"
 
 #: application/views/qso/edit_ajax.php:35
 msgid "Sats"
-msgstr ""
+msgstr "衛星"
 
 #: application/views/qso/edit_ajax.php:53
 msgid "Start Date/Time"
-msgstr ""
+msgstr "開始日時"
 
 #: application/views/qso/edit_ajax.php:58
 msgid "End Date/Time"
-msgstr ""
+msgstr "終了日時"
 
 #: application/views/qso/edit_ajax.php:78
 msgid "RX Frequency"
-msgstr ""
+msgstr "受信周波数"
 
 #: application/views/qso/edit_ajax.php:101
 msgid "RX Band"
-msgstr ""
+msgstr "RXバンド"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:386
 msgid "Give power value in Watts. Include only numbers in the input."
-msgstr ""
+msgstr "電力値はワット単位で入力してください。入力には数字のみを入力してください。"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:384
 #: application/views/reg1test/index.php:114
 #: application/views/view_log/qso.php:691
 msgid "Transmit Power (W)"
-msgstr ""
+msgstr "送信電力（W）"
 
 #: application/views/qso/edit_ajax.php:165
 msgid "Used for VUCC MultiGrids"
-msgstr ""
+msgstr "VUCCマルチグリッドに使用"
 
 #: application/views/qso/edit_ajax.php:221 application/views/qso/index.php:498
 msgid "Antenna Path"
-msgstr ""
+msgstr "アンテナパス"
 
 #: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:501
 #: application/views/view_log/qso.php:162
 msgid "Greyline"
-msgstr ""
+msgstr "グレーライン"
 
 #: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:502
 msgid "Other"
-msgstr ""
+msgstr "他の"
 
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:503
 #: application/views/view_log/qso.php:153
 msgid "Short Path"
-msgstr ""
+msgstr "ショートパス"
 
 #: application/views/qso/edit_ajax.php:227 application/views/qso/index.php:504
 #: application/views/view_log/qso.php:156
 msgid "Long Path"
-msgstr ""
+msgstr "ロングパス"
 
 #: application/views/qso/edit_ajax.php:284
 msgid "Sat Name"
-msgstr ""
+msgstr "衛星の名前"
 
 #: application/views/qso/edit_ajax.php:289
 msgid "Sat Mode"
-msgstr ""
+msgstr "衛星モード"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:627
 msgid "Antenna Azimuth (°)"
-msgstr ""
+msgstr "アンテナ方位角（°）"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:629
 msgid "Antenna azimuth in decimal degrees."
-msgstr ""
+msgstr "アンテナの方位角（十進度）。"
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:633
 msgid "Antenna Elevation (°)"
-msgstr ""
+msgstr "アンテナ仰角（°）"
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:635
 msgid "Antenna elevation in decimal degrees."
-msgstr ""
+msgstr "アンテナの仰角（十進度）。"
 
 #: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:518
 #: application/views/station_profile/create.php:103
 #: application/views/station_profile/edit.php:141
 msgid "Station County"
-msgstr ""
+msgstr "ステーション郡"
 
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:293
 #: application/views/qso/index.php:585 application/views/user/edit.php:667
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
 msgid "SIG Info"
-msgstr ""
+msgstr "SIG情報"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:644
 #: application/views/qso/index.php:688
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "注: サードパーティのサービスにエクスポートされます。"
 
 #: application/views/qso/edit_ajax.php:450
 msgid "Sent Method"
-msgstr ""
+msgstr "送信方法"
 
 #: application/views/qso/edit_ajax.php:453
 #: application/views/qso/edit_ajax.php:486 application/views/qso/index.php:665
 #: application/views/qso/index.php:668
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 #: application/views/qso/edit_ajax.php:463
 msgid "Sent Via"
-msgstr ""
+msgstr "送信方法"
 
 #: application/views/qso/edit_ajax.php:477
 #: application/views/qso/edit_ajax.php:518
@@ -12327,19 +12332,19 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:593
 #: application/views/qso/edit_ajax.php:620
 msgid "Verified (Match)"
-msgstr ""
+msgstr "検証済み（一致）"
 
 #: application/views/qso/edit_ajax.php:483
 msgid "Received Method"
-msgstr ""
+msgstr "受信方法"
 
 #: application/views/qso/edit_ajax.php:524 application/views/qso/index.php:685
 msgid "Get the default message for eQSL, for this station."
-msgstr ""
+msgstr "この局の eQSL のデフォルト メッセージを取得します。"
 
 #: application/views/qso/edit_ajax.php:536
 msgid "Note: Not editable. Only displayed here."
-msgstr ""
+msgstr "注: 編集できません。ここにのみ表示されます。"
 
 #: application/views/qso/edit_ajax.php:580
 #: application/views/view_log/partial/log_ajax.php:426
@@ -12347,101 +12352,101 @@ msgstr ""
 #: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:618
 #: src/QSLManager/QSO.php:677
 msgid "Modified"
-msgstr ""
+msgstr "修正済み"
 
 #: application/views/qso/edit_ajax.php:639
 msgid "Change Station Profile"
-msgstr ""
+msgstr "ステーションプロファイルの変更"
 
 #: application/views/qso/edit_ajax.php:679
 msgid "Exchange (R)"
-msgstr ""
+msgstr "交換（R）"
 
 #: application/views/qso/edit_ajax.php:684
 msgid "Exchange (S)"
-msgstr ""
+msgstr "交換（S）"
 
 #: application/views/qso/edit_ajax.php:696
 #: application/views/search/search_result_ajax.php:449
 #: application/views/view_log/partial/log.php:159
 #: application/views/view_log/partial/log_ajax.php:520
 msgid "Delete QSO"
-msgstr ""
+msgstr "QSOを削除"
 
 #: application/views/qso/edit_ajax.php:699
 msgid "Save changes"
-msgstr ""
+msgstr "変更を保存"
 
 #: application/views/qso/index.php:29
 msgid "TimeOff is less than TimeOn"
-msgstr ""
+msgstr "TimeOff が TimeOn より短い"
 
 #: application/views/qso/index.php:30 application/views/qso/index.php:796
 msgid "Previous Contacts"
-msgstr ""
+msgstr "以前の連絡先"
 
 #: application/views/qso/index.php:31
 msgid "times worked before"
-msgstr ""
+msgstr "以前に働いた回数"
 
 #: application/views/qso/index.php:32
 msgid "Not worked before"
-msgstr ""
+msgstr "以前は機能していなかった"
 
 #: application/views/qso/index.php:33
 msgid "more"
-msgstr ""
+msgstr "もっと"
 
 #: application/views/qso/index.php:34
 msgid "less"
-msgstr ""
+msgstr "少ない"
 
 #: application/views/qso/index.php:35
 msgid "DXCC Summary for "
-msgstr ""
+msgstr "DXCC概要 "
 
 #: application/views/qso/index.php:36
 msgid "LoTW User. Last upload was 1 day ago."
-msgstr ""
+msgstr "LoTW ユーザー。最終アップロードは 1 日前です。"
 
 #: application/views/qso/index.php:37
 #, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr ""
+msgstr "LoTWユーザー。最終アップロードは %x 日前。"
 
 #: application/views/qso/index.php:38
 msgid "Invalid value for antenna elevation:"
-msgstr ""
+msgstr "アンテナの仰角の値が無効です:"
 
 #: application/views/qso/index.php:53
 msgid "LIVE"
-msgstr ""
+msgstr "ライブ"
 
 #: application/views/qso/index.php:53
 msgid "POST"
-msgstr ""
+msgstr "投稿"
 
 #: application/views/qso/index.php:66
 #: application/views/statistics/antennaanalytics.php:45
 #: application/views/statistics/antennaanalytics.php:85
 msgid "Sat"
-msgstr ""
+msgstr "衛星"
 
 #: application/views/qso/index.php:81
 msgid "Add Band/Mode to Favs"
-msgstr ""
+msgstr "バンド/モードをお気に入りに追加"
 
 #: application/views/qso/index.php:102
 msgid "Time on"
-msgstr ""
+msgstr "時間"
 
 #: application/views/qso/index.php:114
 msgid "Time off"
-msgstr ""
+msgstr "休暇"
 
 #: application/views/qso/index.php:157
 msgid "Search DXCluster for latest Spot"
-msgstr ""
+msgstr "DXClusterで最新のスポットを検索"
 
 #: application/views/qso/index.php:234 application/views/qso/index.php:524
 #: application/views/station_profile/create.php:153
@@ -12449,7 +12454,7 @@ msgstr ""
 #: application/views/user/edit.php:651 application/views/view_log/qso.php:382
 #: application/views/view_log/qso.php:698
 msgid "IOTA Reference"
-msgstr ""
+msgstr "IOTAリファレンス"
 
 #: application/views/qso/index.php:250 application/views/qso/index.php:541
 #: application/views/station_profile/create.php:171
@@ -12457,107 +12462,107 @@ msgstr ""
 #: application/views/user/edit.php:655 application/views/view_log/qso.php:389
 #: application/views/view_log/qso.php:705
 msgid "SOTA Reference"
-msgstr ""
+msgstr "SOTA リファレンス"
 
 #: application/views/qso/index.php:360 application/views/view_log/qso.php:101
 msgid "Frequency (RX)"
-msgstr ""
+msgstr "周波数（RX）"
 
 #: application/views/qso/index.php:365
 msgid "Band (RX)"
-msgstr ""
+msgstr "バンド（RX）"
 
 #: application/views/qso/index.php:543
 msgid "For example: GM/NS-001."
-msgstr ""
+msgstr "例：GM/NS-001。"
 
 #: application/views/qso/index.php:556
 msgid "For example: DLFF-0069."
-msgstr ""
+msgstr "例: DLFF-0069。"
 
 #: application/views/qso/index.php:569
 msgid "For example: PA-0150. Multiple values allowed."
-msgstr ""
+msgstr "例: PA-0150。複数の値を指定できます。"
 
 #: application/views/qso/index.php:581
 msgid "For example: GMA"
-msgstr ""
+msgstr "例: GMA"
 
 #: application/views/qso/index.php:587
 msgid "For example: DA/NW-357"
-msgstr ""
+msgstr "例: DA/NW-357"
 
 #: application/views/qso/index.php:595
 msgid "For example: Q03"
-msgstr ""
+msgstr "例: Q03"
 
 #: application/views/qso/index.php:602
 msgid "E-mail address of QSO-partner"
-msgstr ""
+msgstr "QSO相手のメールアドレス"
 
 #: application/views/qso/index.php:611 application/views/view_log/qso.php:296
 msgid "Satellite Name"
-msgstr ""
+msgstr "衛星名"
 
 #: application/views/qso/index.php:619 application/views/view_log/qso.php:310
 msgid "Satellite Mode"
-msgstr ""
+msgstr "衛星モード"
 
 #: application/views/qso/index.php:685
 msgid "QSL MSG"
-msgstr ""
+msgstr "QSLメッセージ"
 
 #: application/views/qso/index.php:704
 msgid "Reset to Default"
-msgstr ""
+msgstr "デフォルトにリセット"
 
 #: application/views/qso/index.php:745
 msgid "Winkey"
-msgstr ""
+msgstr "Winkey"
 
 #: application/views/qso/index.php:747
 msgid "Connect"
-msgstr ""
+msgstr "接続する"
 
 #: application/views/qso/index.php:756
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
 #: application/views/qso/index.php:757
 msgid "Tune"
-msgstr ""
+msgstr "チューニング"
 
 #: application/views/qso/index.php:758
 msgid "Stop Tune"
-msgstr ""
+msgstr "チューニングを停止"
 
 #: application/views/qso/index.php:764
 msgid "CW Speed"
-msgstr ""
+msgstr "CW速度"
 
 #: application/views/qso/index.php:769
 msgid "Send"
-msgstr ""
+msgstr "送信"
 
 #: application/views/qso/index.php:779
 msgid "Suggestions"
-msgstr ""
+msgstr "提案"
 
 #: application/views/qso/index.php:786
 msgid "Profile Picture"
-msgstr ""
+msgstr "プロフィール写真"
 
 #: application/views/qso/log_qso.php:9
 msgid "Redirecting to QSO logging page..."
-msgstr ""
+msgstr "QSO ログページにリダイレクトしています..."
 
 #: application/views/qso/log_qso.php:75
 msgid "The data was redirected. You can close this window."
-msgstr ""
+msgstr "データはリダイレクトされました。このウィンドウを閉じてください。"
 
 #: application/views/radio/edit.php:18
 msgid "CAT URL"
-msgstr ""
+msgstr "CAT URL"
 
 #: application/views/radio/edit.php:20
 #, php-format
@@ -12565,29 +12570,32 @@ msgid ""
 "Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
 "(/) and QRG is added automatically. Default is %s"
 msgstr ""
+"DXClusterのスポットをクリックした際に呼び出されるURL。注意：末尾のスラッシュ"
+"（/）とQRGは自動的に追加されます。デフォルトは%sです"
 
 #: application/views/radio/index.php:20
 msgid "Active Radios"
-msgstr ""
+msgstr "アクティブラジオ"
 
 #: application/views/radio/index.php:23
 msgid "Below is a list of active radios that are connected to Wavelog."
-msgstr ""
+msgstr "以下は、Wavelog に接続されているアクティブな無線機のリストです。"
 
 #: application/views/radio/index.php:24
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
-msgstr ""
+msgstr "まだ無線を接続していない場合は、API ページを参照して API "
+"キーを生成してください。"
 
 #: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
-msgstr ""
+msgstr "%s の使用方法については、ウィキでご確認いただけます。"
 
 #: application/views/radio/index.php:26
 msgid "radio functions"
-msgstr ""
+msgstr "ラジオ機能"
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
@@ -12595,326 +12603,335 @@ msgstr "お待ちください..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr ""
+msgstr "バンドを選択"
 
 #: application/views/reg1test/index.php:8
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
-msgstr ""
+msgstr "50Mhz 未満の帯域は EDI REG1TEST "
+"形式では無効であり、無効なファイルが生成されます。"
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr ""
+msgstr "コンテスト内容をREG1TEST EDIログにエクスポートする"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
-msgstr ""
+msgstr "送信済み交換"
 
 #: application/views/reg1test/index.php:50
 msgid ""
 "The exchange which was sent during the contest. Can be any type of "
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
-msgstr ""
+msgstr "コンテスト中に送信された交換情報です。州、DOK、郡、州、電力、名前など、あらゆ"
+"るタイプの情報を指定できます。最大文字数：6文字。"
 
 #: application/views/reg1test/index.php:55
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
-msgstr ""
+msgstr "オペレータが所属する無線クラブのコールサインを記述します。例：クラブにポイン"
+"トが貯まっている場合に使用できます。"
 
 #: application/views/reg1test/index.php:66
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "担当オペレーターのコールサイン"
 
 #: application/views/reg1test/index.php:72
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
-msgstr ""
+msgstr "すべての演算子のリスト。セミコロン「;」で区切られます。ここでは担当演算子は必"
+"要ありません。"
 
 #: application/views/reg1test/index.php:75
 msgid "Contest Address 1"
-msgstr ""
+msgstr "コンテストアドレス1"
 
 #: application/views/reg1test/index.php:77
 msgid "Address of the QTH used during the contest."
-msgstr ""
+msgstr "コンテスト中に使用された QTH のアドレス。"
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "コンテスト演説2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "オペレータアドレス1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "担当オペレータの住所。"
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "オペレータアドレス2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "オペレーター住所郵便番号"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "オペレーター住所市"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "オペレーター住所国"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "オペレーターの電話番号"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "送信機器の説明"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
-msgstr ""
+msgstr "使用された機器の簡単な説明。"
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
-msgstr ""
+msgstr "コンテスト中のTX出力（ワット単位）。"
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "受信機器の説明"
 
 #: application/views/reg1test/index.php:121
 msgid "If you used another gear for RX, then describe it here."
-msgstr ""
+msgstr "RX に別のギアを使用した場合は、ここで説明してください。"
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
-msgstr ""
+msgstr "アンテナの説明"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
-msgstr ""
+msgstr "どのようなアンテナが使用されたか。"
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "地上からのアンテナ高（m）"
 
 #: application/views/reg1test/index.php:131
 msgid "Height of the antenna above the ground."
-msgstr ""
+msgstr "地上からのアンテナの高さ。"
 
 #: application/views/reg1test/index.php:134
 msgid "Band multiplicator"
-msgstr ""
+msgstr "バンドマルチプライヤー"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
-msgstr ""
+msgstr "バンドマルチプライヤー。通常は1です。コンテスト採点ルールに従って必要な場合に"
+"のみ変更してください。"
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
-msgstr ""
+msgstr "その他ご意見があれば。"
 
 #: application/views/satellite/create.php:23
 msgid "Satellite Display Name"
-msgstr ""
+msgstr "衛星表示名"
 
 #: application/views/satellite/create.php:25
 #: application/views/satellite/edit.php:9
 msgid "Display / cleartext name of the satellite"
-msgstr ""
+msgstr "衛星の表示名/平文名"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:52
 msgid "LoTW Name"
-msgstr ""
+msgstr "LoTW名"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
 msgid ""
 "Satellite name as accepted by LoTW. Not necessarily the same as the display "
 "name. Can be set/changed later when added to LoTW."
-msgstr ""
+msgstr "LoTWで承認された衛星名。表示名と同じとは限りません。LoTWに追加する際に後から"
+"設定/変更できます。"
 
 #: application/views/satellite/create.php:41
 #: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
-msgstr ""
+msgstr "衛星の軌道を入力してください（LEO、MEO、GEO）"
 
 #: application/views/satellite/create.php:44
 msgid "Satellite mode name"
-msgstr ""
+msgstr "衛星モード名"
 
 #: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
-msgstr ""
+msgstr "衛星モードに入る"
 
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
 #: application/views/satellite/satinfo.php:8
 msgid "Uplink mode"
-msgstr ""
+msgstr "アップリンクモード"
 
 #: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
-msgstr ""
+msgstr "アップリンクに使用する変調を入力してください"
 
 #: application/views/satellite/create.php:56
 #: application/views/satellite/edit.php:53
 #: application/views/satellite/satinfo.php:9
 msgid "Uplink frequency"
-msgstr ""
+msgstr "アップリンク周波数"
 
 #: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
-msgstr ""
+msgstr "アップリンクに使用する周波数（Hz）を入力してください"
 
 #: application/views/satellite/create.php:63
 #: application/views/satellite/edit.php:54
 #: application/views/satellite/satinfo.php:10
 msgid "Downlink mode"
-msgstr ""
+msgstr "ダウンリンクモード"
 
 #: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
-msgstr ""
+msgstr "ダウンリンクに使用する変調を入力してください"
 
 #: application/views/satellite/create.php:68
 #: application/views/satellite/edit.php:55
 #: application/views/satellite/satinfo.php:11
 msgid "Downlink frequency"
-msgstr ""
+msgstr "ダウンリンク周波数"
 
 #: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
-msgstr ""
+msgstr "ダウンリンクに使用する周波数（Hz）を入力してください"
 
 #: application/views/satellite/create.php:73
 #: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
-msgstr ""
+msgstr "LoTWに承認されました"
 
 #: application/views/satellite/create.php:78
 #: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
-msgstr ""
+msgstr "衛星がLoTWに受け入れられる場合にのみ「はい」に設定します"
 
 #: application/views/satellite/edit.php:7
 msgid "Satellite Display Name "
-msgstr ""
+msgstr "衛星表示名 "
 
 #: application/views/satellite/edit.php:42
 msgid "Save satellite"
-msgstr ""
+msgstr "衛星を保存"
 
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
-msgstr ""
+msgstr "衛星モードを追加"
 
 #: application/views/satellite/flightpath.php:51
 msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
 msgstr ""
+"TLE を持つサテライトが見つかりません。CRON "
+"またはサテライトページから更新してください。更新権限がない場合は、管理者にお"
+"問い合わせください！"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
-msgstr ""
+msgstr "衛星を追加する"
 
 #: application/views/satellite/index.php:45
 msgid "Sync Satellites from LoTW"
-msgstr ""
+msgstr "LoTWからの衛星同期"
 
 #: application/views/satellite/index.php:46
 msgid "Update Satellite TLE"
-msgstr ""
+msgstr "衛星TLEの更新"
 
 #: application/views/satellite/index.php:57
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:6
 msgid "Satellite passes"
-msgstr ""
+msgstr "衛星通過"
 
 #: application/views/satellite/pass.php:13
 msgid "Your station"
-msgstr ""
+msgstr "あなたのステーション"
 
 #: application/views/satellite/pass.php:26
 #: application/views/satellite/pass.php:65
 msgid "Min. Satellite Elevation"
-msgstr ""
+msgstr "最小衛星仰角"
 
 #: application/views/satellite/pass.php:30
 #: application/views/satellite/pass.php:69
 msgid "Min. Azimuth"
-msgstr ""
+msgstr "最小方位角"
 
 #: application/views/satellite/pass.php:38
 #: application/views/satellite/pass.php:77
 msgid "Max. Azimuth"
-msgstr ""
+msgstr "最大方位角"
 
 #: application/views/satellite/pass.php:54
 msgid "Min. time"
-msgstr ""
+msgstr "最小時間"
 
 #: application/views/satellite/pass.php:63
 msgid "Sked partner"
-msgstr ""
+msgstr "Sked partner"
 
 #: application/views/satellite/pass.php:91
 msgid "Load predictions"
-msgstr ""
+msgstr "負荷予測"
 
 #: application/views/satellite/pass.php:92
 msgid "Add sked partner"
-msgstr ""
+msgstr "スケジューリングパートナーを追加する"
 
 #: application/views/satellite/pass.php:94
 msgid "Presets"
-msgstr ""
+msgstr "プリセット"
 
 #: application/views/satellite/pass.php:96
 msgid "Save current settings"
-msgstr ""
+msgstr "現在の設定を保存する"
 
 #: application/views/satellite/pass.php:105
 msgid "Save Settings"
-msgstr ""
+msgstr "設定を保存"
 
 #: application/views/satellite/pass.php:109
 msgid "Settings Name"
-msgstr ""
+msgstr "設定名"
 
 #: application/views/satellite/pass.php:110
 msgid "Enter a name"
-msgstr ""
+msgstr "名前を入力してください"
 
 #: application/views/satellite/pass.php:121
 msgid "No TLE information detected. Please update TLE's."
-msgstr ""
+msgstr "TLE情報が検出されませんでした。TLEを更新してください。"
 
 #: application/views/satellite/passtable.php:7
 #: application/views/satellite/skedtable.php:36
 msgid "AOS Time"
-msgstr ""
+msgstr "AOSチーム"
 
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:40
 msgid "LOS Time"
-msgstr ""
+msgstr "LOS時間"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:10
