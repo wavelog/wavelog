@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-23 11:42+0000\n"
-"PO-Revision-Date: 2025-07-31 03:15+0000\n"
+"PO-Revision-Date: 2025-08-24 06:41+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2025,11 +2025,11 @@ msgstr "OQRS Förfrågningar"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "QSO-matchning raderades framgångsrikt."
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
-msgstr ""
+msgstr "QSO-matchning har lagts till framgångsrikt."
 
 #: application/controllers/Qrbcalc.php:17
 msgid "QRB Calculator"
@@ -4262,7 +4262,7 @@ msgstr "Välj stationsplats"
 
 #: application/views/adif/import.php:82
 msgid "Choose ADIF File"
-msgstr ""
+msgstr "Välj ADIF-fil"
 
 #: application/views/adif/import.php:88
 msgid "Add QSOs to Contest"
@@ -4283,7 +4283,7 @@ msgstr ""
 
 #: application/views/adif/import.php:108
 msgid "Basic Settings"
-msgstr ""
+msgstr "Grundinställningar"
 
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
@@ -4291,7 +4291,7 @@ msgstr "Importera dubbletter av QSOn"
 
 #: application/views/adif/import.php:117
 msgid "Select if want to import QSOs, even if they already exist."
-msgstr ""
+msgstr "Välj om du vill importera QSOn, även om de redan finns."
 
 #: application/views/adif/import.php:122
 msgid "Use DXCC information from ADIF"
@@ -4313,7 +4313,7 @@ msgstr "FARA"
 
 #: application/views/adif/import.php:132
 msgid "Ignore Station callsign on import"
-msgstr ""
+msgstr "Ignorera stationsanropssignal vid import"
 
 #: application/views/adif/import.php:134
 #, php-format
@@ -4321,6 +4321,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Om vald, kommer Wavelog att försöka importera %salla%s QSOn från ADIF, "
+"oavsett om de matchar den valda stationens plats."
 
 #: application/views/adif/import.php:141
 msgid ""
@@ -4332,6 +4334,7 @@ msgstr ""
 #: application/views/adif/import.php:151
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
+"Markera QSOn som uppladdade (Detta laddar INTE upp QSOn till dessa tjänster!)"
 
 #: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -4365,7 +4368,7 @@ msgstr "Markera importerade QSOn som uppladdade till DCL Logbook"
 
 #: application/views/adif/import.php:207
 msgid "Toggle all checkboxes"
-msgstr ""
+msgstr "Växla alla kryssrutor"
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -4418,7 +4421,7 @@ msgstr "Hittills"
 
 #: application/views/adif/import.php:260
 msgid "Export options"
-msgstr ""
+msgstr "Exportalternativ"
 
 #: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
@@ -4900,6 +4903,8 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"Fält som använts för detta diplom: Utbrednings-Trafiksätt och SAT-Namn (ADIF:"
+" PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:152
@@ -4960,6 +4965,8 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"Fält som använts för detta diplom: Stat (ADIF: STATE), Stations län (ADIF: "
+"CNTY), DXCC (Måste vara en av 291 (U.S.A.), 6 (ALASKA) eller 110 (HAWAII))"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -5061,7 +5068,7 @@ msgstr "Du kan hitta all information och regler på N4BAA:s webbplats: %s"
 
 #: application/views/awards/cq/index.php:24
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
-msgstr ""
+msgstr "Fält som använts för detta diplom: CQ-Zon (ADIF: CQZ)"
 
 #: application/views/awards/cq/index.php:26
 msgid "Awards - CQ WAZ"
@@ -5323,7 +5330,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:11
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr ""
+msgstr "Fält som använts för detta diplom: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:21
 msgid "DOK / SDOK"
@@ -5409,6 +5416,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (Måste vara ett giltigt från DXCC-"
+"ADIF-Spec-List"
 
 #: application/views/awards/dxcc/index.php:33
 #: application/views/awards/iota/index.php:34
@@ -5510,31 +5519,31 @@ msgstr "Visa DXCC-karta"
 
 #: application/views/awards/dxcc/index.php:221
 msgid "Legend:"
-msgstr ""
+msgstr "Legend:"
 
 #: application/views/awards/dxcc/index.php:222
 msgid "(Q)SL-Paper-Card"
-msgstr ""
+msgstr "(Q)SL-papperskort"
 
 #: application/views/awards/dxcc/index.php:223
 msgid "(L)oTW"
-msgstr ""
+msgstr "(L)oTW"
 
 #: application/views/awards/dxcc/index.php:224
 msgid "(e)QSL"
-msgstr ""
+msgstr "(e)QSL"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "QR(Z)-\"confirmation\""
-msgstr ""
+msgstr "QR(Z)-\"bekräftelse\""
 
 #: application/views/awards/dxcc/index.php:226
 msgid "(C)lublog"
-msgstr ""
+msgstr "(C)lublog"
 
 #: application/views/awards/dxcc/index.php:227
 msgid "(W)orked"
-msgstr ""
+msgstr "(W) Kontaktad"
 
 #: application/views/awards/dxcc/index.php:233
 msgid "DXCC Name"
@@ -5579,6 +5588,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
+"Fält som använts för detta diplom: DXCC (Måste vara USA), Gridsquare (Måste "
+"innehålla en ruta från en av de 488 fastlandsrutorna!), Bandet måste vara 6M."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -5631,6 +5642,9 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (Måste vara USA), Gridsquare (Måste "
+"innehålla en ruta från en av de 488 fastlandsrutorna!), Trafiksätt och SAT-"
+"Namn"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -5659,18 +5673,24 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (måste vara Tyskland), Gridsquare, "
+"Utbrednings-Trafiksätt och SAT-Namn"
 
 #: application/views/awards/gridmaster/index.php:23
 msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (måste vara Luxemburg), Gridsquare, "
+"Utbrednings-Trafiksätt och SAT-Namn"
 
 #: application/views/awards/gridmaster/index.php:26
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (måste vara Japan), Gridsquare, "
+"Utbrednings-Trafiksätt och SAT-Namn"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -5712,6 +5732,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (Måste vara Schweiz) och STATE ("
+"Måste innehålla en giltig delstatsförkortning!)"
 
 #: application/views/awards/helvetia/index.php:115
 msgid "Show Helvetia Map"
@@ -5779,6 +5801,8 @@ msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
+"Fält som använts för detta diplom: IOTA (ADIF: IOTA) måste innehålla giltig "
+"IOTA-referens"
 
 #: application/views/awards/iota/index.php:30
 msgid "Deleted IOTA"
@@ -5853,7 +5877,7 @@ msgstr "Du kan hitta mer information på webbplatsen för %s."
 
 #: application/views/awards/itu/index.php:24
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "Fält som använts för detta diplom: ITU-Zon (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:26
 msgid "Awards - ITU Zones"
@@ -5893,6 +5917,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (Japan) och län (måste innehålla en "
+"giltig referens!)"
 
 #: application/views/awards/jcc/index.php:116
 msgid "Show JCC Map"
@@ -5961,6 +5987,7 @@ msgstr ""
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Fält som använts för detta diplom: POTA_REF (måste innehålla Park-Referens)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -6123,6 +6150,8 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"Fält som använts för detta diplom: Gridsquare och vucc_grids (ADIF: "
+"GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
@@ -6157,6 +6186,8 @@ msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"Fält som använts för detta diplom: SIG (måste vara 'WAB') och SIG_INFO (bör "
+"innehålla giltigt WAB-Grid)"
 
 #: application/views/awards/wab/index.php:110
 msgid "List"
@@ -6182,6 +6213,8 @@ msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
+"Fält som använts för detta diplom: Kontinent (ADIF-tag 'CONT'). Måste "
+"innehålla en giltig kontinentförkortning!"
 
 #: application/views/awards/wac/index.php:14
 msgid "Awards - Worked All Continents (WAC)"
@@ -6225,7 +6258,7 @@ msgstr ""
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr ""
+msgstr "Fält som använts för detta diplom: Region, DXCC"
 
 #: application/views/awards/wae/index.php:162
 msgid "WAE Name"
@@ -6269,6 +6302,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (Japan) och STATE (Måste innehålla "
+"en giltig prefektur!)"
 
 #: application/views/awards/waja/index.php:119
 msgid "Show WAJA Map"
@@ -6333,6 +6368,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (Måste vara Nederländerna) och STATE "
+"(Måste innehålla en giltig delstatsförkortning!)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
@@ -6373,6 +6410,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -6428,6 +6468,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
+"Fält som använts för detta diplom: DXCC (Måste vara en av USA, Alaska eller "
+"Hawaii) och STATE (Måste innehålla en giltig amerikansk delstatsförkortning!)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -6459,7 +6501,7 @@ msgstr ""
 
 #: application/views/awards/wwff/index.php:11
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr ""
+msgstr "Fält som använts för detta diplom: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:32
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -8697,7 +8739,7 @@ msgstr "Italienska"
 
 #: application/views/debug/index.php:684
 msgid "Japanese"
-msgstr ""
+msgstr "Japanska"
 
 #: application/views/debug/index.php:685
 msgid "Latvian"
@@ -11657,7 +11699,7 @@ msgstr "Lägg till i utskriftskön"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "Matcha QSO"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11733,41 +11775,49 @@ msgstr "Förfrågan klar"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "Väntande begäran"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "Begäran avslogs"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "Ett fel inträffade vid begäran"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
 msgstr ""
+"Varning! Är du säker på att du vill ta bort den markerade OQRS-begäran/"
+"begärningarna?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
 msgstr ""
+"Varning! Är du säker på att du vill avvisa den markerade OQRS-begäran/"
+"begärningarna?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
 msgstr ""
+"Varning! Är du säker på att du vill markera den markerade OQRS-begäran/"
+"begärandena?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"Varning! Är du säker på att du vill lägga till den markerade OQRS-förfrågan/"
+"förfrågningarna i kön?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "OQRS Statusinformation"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr ""
+msgstr "Varning! Är du säker på att du vill ta bort QSO-matchningen?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
@@ -11781,17 +11831,17 @@ msgstr "OQRS-status"
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "Klar / skickat"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "Väntande"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "Avvisad"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
@@ -11803,7 +11853,7 @@ msgstr "Markera som klar"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "Avvisa"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
@@ -11828,29 +11878,31 @@ msgstr "Kontrollera logg"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "QSO-matchning"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "Förfrågan är för närvarande öppen och behöver granskas av dig."
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"Begäran finns inte i loggen, så du behöver kontrollera din logg och behandla "
+"begäran."
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "Begäran har behandlats och QSL har skickats."
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "Begäran bearbetas fortfarande."
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "Begäran har avslagits och kommer inte att behandlas."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
@@ -13212,7 +13264,7 @@ msgstr "Fråga"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr ""
+msgstr "Enkel Snabb Loggpost (FLE)"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -13220,6 +13272,10 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
+"\"Fast Log Entry\", eller helt enkelt \"FLE\", är ett system för att logga "
+"QSOn mycket snabbt och effektivt. På grund av dess syntax krävs endast ett "
+"minimum av inmatning för att logga många QSOn med så liten ansträngning som "
+"möjligt."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -13227,6 +13283,9 @@ msgid ""
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
 "a web interface to log QSOs."
 msgstr ""
+"FLE skrevs ursprungligen av DF3CB. Han erbjuder ett program för Windows på "
+"sin webbplats. Simple FLE skrevs av OK2CQR baserat på DF3CB:s FLE och "
+"erbjuder ett webbgränssnitt för att logga QSOn."
 
 #: application/views/simplefle/index.php:16
 #, php-format
@@ -13235,165 +13294,179 @@ msgid ""
 "session and now SimpleFLE is also available in Wavelog. Information about "
 "the syntax and how FLE works can be found %s."
 msgstr ""
+"Ett vanligt användningsfall är om du måste importera dina pappersloggar från "
+"en utomhussession och nu finns SimpleFLE också tillgängligt i Wavelog. "
+"Information om syntaxen och hur FLE fungerar finns %s."
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:184
 msgid "Syntax Help"
-msgstr ""
+msgstr "Syntaxhjälp"
 
 #: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
-msgstr ""
+msgstr "Syntax för FLE"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
-msgstr ""
+msgstr "Stäng och ladda exempeldata"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr ""
+msgstr "Band saknas!"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr ""
+msgstr "Trafiksätt saknas!"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr ""
+msgstr "Tiden är inte inställd!"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
-msgstr ""
+msgstr "Ogiltigt datum"
 
 #: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
-msgstr ""
+msgstr "Stationsanrop är inte valt"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
-msgstr ""
+msgstr "Fältet 'Operatör' är tomt"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr ""
+msgstr "Varning! Vill du verkligen återställa allt?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
+"Varning! Du kan inte logga QSO-listan, eftersom vissa QSO saknar band och/"
+"eller trafiksätt!"
 
 #: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr ""
+"Varning! Du kan inte logga QSO-listan, eftersom vissa QSO inte har en tid "
+"definierad!"
 
 #: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
 msgstr ""
+"Vänligen Notera! Datafältet innehåller exempeldata. Rensa först "
+"loggningssessionen!"
 
 #: application/views/simplefle/index.php:35
 msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
+"Vänligen Notera! Antingen har du ställt in en tävling men inte inkluderat "
+"något utbyte, eller så har du loggat tävlingsdata men inte valt en tävling."
 
 #: application/views/simplefle/index.php:36
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
 msgstr ""
+"Är du säker på att du vill lägga till dessa QSO i loggen och rensa sessionen?"
 
 #: application/views/simplefle/index.php:37
 msgid "QSO Logged!"
-msgstr ""
+msgstr "QSO loggad!"
 
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
-msgstr ""
+msgstr "QSO:erna loggades framgångsrikt i loggboken! Dubbletter hoppades över."
 
 #: application/views/simplefle/index.php:40
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr ""
+msgstr "Ett fel uppstod när QSO sparades i loggboken! Fel: "
 
 #: application/views/simplefle/index.php:44
 msgid "What is that?"
-msgstr ""
+msgstr "Vad är det?"
 
 #: application/views/simplefle/index.php:47
 msgid "Current UTC Time"
-msgstr ""
+msgstr "Aktuell UTC-tid"
 
 #: application/views/simplefle/index.php:80
 msgid "If you don't choose a date, today's date will be used."
-msgstr ""
+msgstr "Om du inte väljer ett datum, kommer dagens datum att användas."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "Du kan lägga till inmatade QSOn till en tävling."
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
-msgstr ""
+msgstr "Stationsanrop/Plats"
 
 #: application/views/simplefle/index.php:111
 #, php-format
 msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
-msgstr ""
+msgstr "Om du körde från en ny plats, skapa först en ny %sStation Location%s"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
-msgstr ""
+msgstr "t.ex. OK2CQR"
 
 #: application/views/simplefle/index.php:120
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr ""
+msgstr "Detta är operatörens anropssignal. Utan några pre- eller suffix."
 
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
-msgstr ""
+msgstr "Ange datan"
 
 #: application/views/simplefle/index.php:162
 msgid "Refs"
-msgstr ""
+msgstr "Referenser"
 
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 msgstr ""
+"Referenserna kan vara antingen %sS%sOTA, %sI%sOTA, %sP%sOTA eller %sW%sWFF"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
-msgstr ""
+msgstr "Ladda om QSO-lista"
 
 #: application/views/simplefle/index.php:182
 msgid "Save in Wavelog"
-msgstr ""
+msgstr "Spara i Wavelog"
 
 #: application/views/simplefle/index.php:183
 msgid "Clear Logging Session"
-msgstr ""
+msgstr "Rensa loggningssession"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "Inga alternativ än"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
-msgstr ""
+msgstr "Innan du börjar logga ett QSO, notera de grundläggande reglerna."
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
-msgstr ""
+msgstr "- Varje nytt QSO ska vara på en ny rad."
 
 #: application/views/simplefle/syntax_help.php:3
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr ""
+"- På varje ny rad, skriv endast data som har ändrats från föregående QSO."
 
 #: application/views/simplefle/syntax_help.php:4
 msgid ""
@@ -13402,10 +13475,15 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
+"För att börja, se till att du redan har fyllt i formuläret till vänster med "
+"datum, stationsanrop och operatörens anrop. Huvuddata inkluderar bandet ("
+"eller QRG i MHz, t.ex. '7.145'), trafiksätt och tid. Efter tiden anger du "
+"den första QSO, vilket i huvudsak är anropssignalen."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
 msgstr ""
+"Till exempel, ett QSO som började klockan 21:34 (UTC) med 4W7EST på 20m SSB."
 
 #: application/views/simplefle/syntax_help.php:10
 msgid ""
@@ -13413,6 +13491,9 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
+"Om du inte ger någon RST-information, kommer syntaxen att använda 59 (599 "
+"för data). Vårt nästa QSO var inte 59 på båda sidor, så vi ger informationen "
+"med den skickade RST först. Det var 2 minuter senare än det första QSO."
 
 #: application/views/simplefle/syntax_help.php:16
 msgid ""
@@ -13420,6 +13501,9 @@ msgid ""
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
+"Den första QSO var klockan 21:34, och den andra två minuter senare klockan "
+"21:36. Vi skriver ner 6 eftersom detta är den enda datan som ändrades här. "
+"Informationen om band och trafiksätt ändrades inte, så denna data utelämnas."
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -13428,26 +13512,32 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
+"För vårt nästa QSO kl. 21:40 den 14 maj 2021 bytte vi band till 40m men "
+"fortfarande på SSB. Om ingen RST-information ges, kommer syntaxen att "
+"använda 59 för varje nytt QSO. Därför kan vi lägga till ett annat QSO som "
+"ägde rum exakt samma tid två dagar senare. Datumet måste vara i formatet ÅÅÅÅ"
+"-MM-DD."
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
-msgstr ""
+msgstr "Ytterligare information kan lämnas på följande sätt:"
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "Anteckningar:"
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "Operatörens namn:"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "QSL-meddelande (Varning! Inte synlig i wavelog just nu!):"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
 msgstr ""
+"Tävling utbyte; serienummer eller annat utbyte - eller till och med båda:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -13458,24 +13548,38 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"Mottaget utbyte måste föregås av en punkt '.', skickat utbyte med ett komma "
+"','. De sista två raderna är likvärdiga - dvs. mellanslag spelar ingen roll "
+"eftersom ordningen inte heller gör det. Utbyte du har skickat kommer "
+"automatiskt att inkluderas i nästa QSO, om det innehåller mottaget utbyte, "
+"eller om du använder ett enda komma ','. För att automatiskt öka det "
+"skickade serienumret, använd ',++' och ge ett initialt skickat utbyte. För "
+"att inaktivera, använd ',+0':"
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
+"Här använder första QSOt den inställda serien 1, och det andra QSOt kommer "
+"att använda 2 som serienummer. Om du vill radera ditt skickade utbyte, "
+"använd ',-':"
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
+"Först raderas all tidigare kommunikation, sedan ställs endast en serie in. "
+"Annars skulle den tidigare kommunikationen 'D23' också ha ställts in."
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
+"Du kan använda kommentarsyntaxen för att fylla i adif-fält som stöds av "
+"Wavelog-importen:"
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
@@ -13483,71 +13587,73 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"En fullständig sammanfattning av alla kommandon och den nödvändiga syntaxen "
+"finns i %sdenna artikel%s i vår Wiki."
 
 #: application/views/station_profile/create.php:55
 #: application/views/station_profile/edit.php:71
 msgid "Location Name"
-msgstr ""
+msgstr "Platsnamn"
 
 #: application/views/station_profile/create.php:56
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "Hem-QTH"
 
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "Kortnamn för stationens plats. Till exempel: %s"
 
 #: application/views/station_profile/create.php:63
 #: application/views/station_profile/edit.php:79
 msgid "Station callsign. For example: 4W7EST/P"
-msgstr ""
+msgstr "Stationsanropssignal. Till exempel: 4W7EST/P"
 
 #: application/views/station_profile/create.php:67
 #: application/views/station_profile/edit.php:83
 msgid "Station Power (W)"
-msgstr ""
+msgstr "Stationseffekt (W)"
 
 #: application/views/station_profile/create.php:69
 #: application/views/station_profile/edit.php:85
 msgid "Default station power in Watt. Overwritten by CAT."
-msgstr ""
+msgstr "Standardstationseffekt i Watt. Skriven över av CAT."
 
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:116
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr ""
+msgstr "Station DXCC-enhet. Till exempel: Bolivia"
 
 #: application/views/station_profile/create.php:87
 #: application/views/station_profile/edit.php:122
 msgid "Station City"
-msgstr ""
+msgstr "Station City"
 
 #: application/views/station_profile/create.php:89
 #: application/views/station_profile/edit.php:124
 msgid "Station city. For example: Oslo"
-msgstr ""
+msgstr "Stationsstad. Till exempel: Oslo"
 
 #: application/views/station_profile/create.php:98
 #: application/views/station_profile/edit.php:136
 msgid "Station state. Applies to certain countries only."
-msgstr ""
+msgstr "Stationsstatus. Gäller endast vissa länder."
 
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
 msgid "Station County (Only used for specific DXCCs)."
-msgstr ""
+msgstr "Stationslän (Används endast för specifika DXCC)."
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:169
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
-msgstr ""
+msgstr "Om du inte vet din CQ-zon, %s för att hitta den!"
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/create.php:134
@@ -13556,25 +13662,25 @@ msgstr ""
 #: application/views/station_profile/edit.php:186
 #: application/views/station_profile/edit.php:210
 msgid "click here"
-msgstr ""
+msgstr "klicka här"
 
 #: application/views/station_profile/create.php:134
 #: application/views/station_profile/edit.php:186
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
-msgstr ""
+msgstr "Om du inte vet din ITU-zon så %s för att hitta den!"
 
 #: application/views/station_profile/create.php:139
 #: application/views/station_profile/edit.php:198
 #: application/views/station_profile/edit.php:201
 msgid "Station Gridsquare"
-msgstr ""
+msgstr "Stationsrutnätsruta"
 
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:206
 msgid "Get Gridsquare"
-msgstr ""
+msgstr "Hämta rutnätsruta"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:210
@@ -13584,6 +13690,8 @@ msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
 "then %s!"
 msgstr ""
+"Stationsrutfältsruta. Till exempel: HM54AP. Om du inte vet din rutfältsruta "
+"så %s!"
 
 #: application/views/station_profile/create.php:149
 #: application/views/station_profile/edit.php:211
@@ -13591,16 +13699,18 @@ msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
 msgstr ""
+"Om du befinner dig på en rutnätslinje, ange flera rutnätsrutor separerade "
+"med kommatecken. Till exempel: IO77,IO78,IO87,IO88."
 
 #: application/views/station_profile/create.php:166
 #: application/views/station_profile/edit.php:236
 msgid "Station IOTA reference. For example: EU-005"
-msgstr ""
+msgstr "Stationens IOTA-referens. Till exempel: EU-005"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
 msgid "IOTA World website"
-msgstr ""
+msgstr "IOTA World webbplats"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
