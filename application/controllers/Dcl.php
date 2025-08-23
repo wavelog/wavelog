@@ -29,7 +29,6 @@ class Dcl extends CI_Controller {
 		$token=($this->input->get('token',true) ?? '');
 		if ( ($sig != '') && ($token != '')) {
 			$data['is_valid']=$this->dcl_model->check_dcl_sig($token,$sig);
-			// todo: Token import // Show / etc.
 			$data['page_title'] = __("DCL Key Import");
 			$data['token'] = $token;
 			if ($data['is_valid']) {
