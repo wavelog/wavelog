@@ -486,8 +486,8 @@ function handleInput() {
 			}
 
 			const tableRow = $(`<tr>
-			<td>${extraQsoDate}</td>
-			<td>${qsotime}</td>
+			<td>${utcDate}</td>
+			<td>${utcTime}</td>
 			<td>${callsign}</td>
 			<td><span data-bs-toggle="tooltip" data-placement="left" title="${freq}">${band}</span></td>
 			<td>${mode}</td>
