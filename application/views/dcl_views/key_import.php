@@ -11,7 +11,7 @@
 		<div class="card-body">
 			<div class="alert alert-info" role="alert">
 				<h5><?= __("Import Key"); ?></h5>
-				<?= __("You requested a key for DCL-Dataexchange. Please check carefully if it was you, who requested it, and confirm the Import below by pressing the Import-Button"); ?>
+				<?= __("You requested a key for DCL-Dataexchange, which was successful. The following data has been imported"); ?>
 			</div>
 
 			<div class="mb-3">
