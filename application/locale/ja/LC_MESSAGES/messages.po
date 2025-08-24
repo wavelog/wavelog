@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-22 07:13+0000\n"
+"POT-Creation-Date: 2025-08-24 13:27+0000\n"
 "PO-Revision-Date: 2025-08-24 06:41+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -229,17 +229,16 @@ msgstr "ADIF インポートに失敗しました!"
 msgid "Station Profile not valid for User"
 msgstr "ユーザーに対して有効なステーションプロファイルではありません"
 
-#: application/controllers/Adif.php:282
-#: application/views/adif/import_success.php:12
 #: application/controllers/Adif.php:283
+#: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIFインポート"
 
-#: application/controllers/Adif.php:293 application/controllers/Adif.php:294
+#: application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "DCLインポート"
 
-#: application/controllers/Adif.php:351 application/controllers/Adif.php:352
+#: application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "DCLデータのインポート"
 
@@ -3196,7 +3195,6 @@ msgstr "コールなし"
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
-#: application/models/Logbook_model.php:4004
 #: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3204,19 +3202,10 @@ msgstr ""
 "%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s が検出"
 "されました: スキップされました"
 
-#: application/models/Logbook_model.php:4005
-#: application/views/adif/import_success.php:58
-#, php-format
-msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
-"ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
-
-#: application/models/Logbook_model.php:4017
 #: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "QSOオン"
 
-#: application/models/Logbook_model.php:4017
 #: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3225,76 +3214,63 @@ msgstr ""
 "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
 "されませんでした。無効です"
 
-#: application/models/Logbook_model.php:4316
 #: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4327
 #: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4388
 #: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4408
 #: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4429
 #: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4721
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4722
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:4782
 #: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:4788
 #: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:4793
 #: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:4796
 #: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:4799
 #: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:4802
 #: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:4805
+#: application/models/Logbook_model.php:4806
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4806
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5643
+#: application/models/Logbook_model.php:5644
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3305,7 +3281,6 @@ msgstr "不明"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5644
 msgid "Bearing"
 msgstr "ベアリング"
 
@@ -4540,9 +4515,8 @@ msgstr ""
 "きます。"
 
 #: application/views/adif/import.php:370
-#: application/views/adif/import_success.php:31
-#: application/views/lotw_views/index.php:137
 #: application/views/adif/import_success.php:40
+#: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "情報"
 
@@ -4602,31 +4576,30 @@ msgstr ""
 "インポートしたADIFファイルを確認してください。オンラインのADIFファイルチェッ"
 "カーをご利用いただけます。例："
 
-#: application/views/adif/import_success.php:17
-msgid "Yay, its imported!"
-msgstr "やった、インポートされました！"
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr ""
 
-#: application/views/adif/import_success.php:18
 #: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "ADIF ファイルがインポートされました。"
 
-#: application/views/adif/import_success.php:22
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr ""
+
 #: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "複製が挿入されました！"
 
-#: application/views/adif/import_success.php:24
 #: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "重複データはスキップされました。"
 
-#: application/views/adif/import_success.php:31
 #: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "コンテストログをインポートしました"
 
-#: application/views/adif/import_success.php:33
 #: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
@@ -4637,22 +4610,24 @@ msgstr ""
 "正しくインポートされない場合があります。これを修正するには、ADIFインポート"
 "ページのCBRインポートタブに切り替えてください。"
 
-#: application/views/adif/import_success.php:33
 #: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "コンテスト ID を含む QSO を少なくとも 1 つインポートしました。"
 
-#: application/views/adif/import_success.php:34
 #: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr "次のコンテスト ID に対して、次の数の QSO が見つかりました。"
 
-#: application/views/adif/import_success.php:47
 #: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "インポートの詳細 / 考えられる問題"
 
-#: application/views/adif/import_success.php:48
+#: application/views/adif/import_success.php:58
+#, php-format
+msgid "Check %s for hints about errors in ADIF files."
+msgstr ""
+"ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
+
 #: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
@@ -8053,8 +8028,8 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
-"現在のステーション位置がログブックとリンクされていません。リンクするには、"
-"%shere%s をクリックしてください。"
+"現在のステーション位置がログブックとリンクされていません。リンクするに"
+"は、%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:157
 #, php-format
@@ -13952,6 +13927,11 @@ msgstr "ステーションの特別関心グループ(SIG)名（例：GMA）.."
 msgid "Special Interest Group Information"
 msgstr "特別関心グループ(SIG)情報"
 
+#: application/views/station_profile/edit.php:309
+#, php-format
+msgid "Trouble? Check the %swiki%s."
+msgstr "問題が発生しましたか？%swiki%sを確認してください。"
+
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
 msgstr "ステーションログブック名"
@@ -15771,26 +15751,14 @@ msgstr "リクエストを送信"
 msgid "Rcvd"
 msgstr "受信"
 
-#: application/views/station_profile/edit.php:309
-msgid "Trouble? Check the"
-msgstr "問題が発生しましたか？ 確認してください"
+#~ msgid "Yay, its imported!"
+#~ msgstr "やった、インポートされました！"
 
-#: application/views/station_profile/edit.php:309
-msgid "wiki"
-msgstr "週"
+#~ msgid "Trouble? Check the"
+#~ msgstr "問題が発生しましたか？ 確認してください"
 
-#: application/views/station_profile/edit.php:309
-#, php-format
-msgid "Trouble? Check the %swiki%s."
-msgstr "問題が発生しましたか？%swiki%sを確認してください。"
-
-#: application/views/adif/import_success.php:22
-msgid "Yay, it's imported!"
-msgstr ""
-
-#: application/views/adif/import_success.php:25
-msgid "Number of QSOs imported:"
-msgstr ""
+#~ msgid "wiki"
+#~ msgstr "週"
 
 #~ msgid "Mark QSOs as uploaded"
 #~ msgstr "QSOをアップロード済みとしてマークする"
