@@ -5456,7 +5456,7 @@ class Logbook_model extends CI_Model {
 			' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
 			' where thcv.station_id = ?' .
 			' and (COL_DCL_QSL_SENT not in ("Y","I") OR COL_DCL_QSL_SENT is null)'.
-			' and COL_QSO_DATE>? and COL_QSO_DATE<?';
+			' and COL_TIME_ON>? and COL_TIME_ON<?';
 		$binding[] = $station_id;
 		$binding[] = date('Y-m-d', $from);
 		$binding[] = date('Y-m-d', $till);
