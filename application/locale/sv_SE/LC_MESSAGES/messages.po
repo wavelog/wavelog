@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-23 11:42+0000\n"
-"PO-Revision-Date: 2025-08-24 06:41+0000\n"
+"PO-Revision-Date: 2025-08-24 12:50+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sv/>\n"
@@ -13716,34 +13716,34 @@ msgstr "IOTA World webbplats"
 #: application/views/station_profile/edit.php:237
 #, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr ""
+msgstr "Du kan slå upp IOTA-referenser på %s."
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
 msgid "SOTA Maps website"
-msgstr ""
+msgstr "SOTA Maps webbplats"
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
-msgstr ""
+msgstr "Station SOTA-referens. Du kan leta upp SOTA-referenser på %s."
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
 msgid "GMA Map website"
-msgstr ""
+msgstr "GMA-kartwebbplats"
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr ""
+msgstr "Station WWFF-referens. Du kan leta upp WWFF-referenser på %s."
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
 msgid "POTA Map website"
-msgstr ""
+msgstr "POTA Karta webbplats"
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
@@ -13752,39 +13752,41 @@ msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
+"Stationens POTA-referens(er). Flera kommaseparerade värden tillåtna. Du kan "
+"slå upp POTA-referenser på %s."
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
-msgstr ""
+msgstr "Signaturnamn"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr ""
+msgstr "Stationens specialintressegruppnamn (t.ex. GMA)."
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
-msgstr ""
+msgstr "Signaturinformation"
 
 #: application/views/station_profile/create.php:197
 #: application/views/station_profile/edit.php:299
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
-msgstr ""
+msgstr "Stationens specialintressegruppinfo (t.ex. DA/NW-357)."
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:312
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr ""
+msgstr "eQSL QTH Smeknamn"
 
 #: application/views/station_profile/create.php:203
 #: application/views/station_profile/edit.php:314
 msgid "The QTH Nickname which is configured in your eQSL Profile"
-msgstr ""
+msgstr "QTH-smeknamnet som är konfigurerat i din eQSL-profil"
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:317
 msgid "Default QSLMSG"
-msgstr ""
+msgstr "Standard QSL-meddelande"
 
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/edit.php:320
@@ -13792,11 +13794,13 @@ msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
 msgstr ""
+"Definiera ett standardmeddelande som kommer att fyllas i och skickas för "
+"varje QSO för denna stationsplats."
 
 #: application/views/station_profile/create.php:213
 #: application/views/station_profile/edit.php:360
 msgid "Ignore Clublog Upload"
-msgstr ""
+msgstr "Ignorera Clublog-uppladdning"
 
 #: application/views/station_profile/create.php:218
 #: application/views/station_profile/edit.php:365
@@ -13805,205 +13809,210 @@ msgid ""
 "Clublog. If this is deactivated on it's own please check if the Call is "
 "properly configured at Clublog"
 msgstr ""
+"Om det är aktiverad kommer QSOn gjorda från denna plats inte att laddas upp "
+"till Clublog. Om detta avaktiverats av sig själv, kontrollera om "
+"anropssignalen är korrekt konfigurerad på Clublog"
 
 #: application/views/station_profile/create.php:221
 #: application/views/station_profile/edit.php:368
 msgid "ClubLog Realtime Upload"
-msgstr ""
+msgstr "ClubLog Realtids-uppladdning"
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:384
 msgid "HRDLog.net Username"
-msgstr ""
+msgstr "HRDLog.net användarnamn"
 
 #: application/views/station_profile/create.php:232
 #: application/views/station_profile/edit.php:386
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr ""
+"Det användarnamn du är registrerad med på HRDlog.net (vanligtvis din "
+"anropssignal)."
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:389
 msgid "HRDLog.net API Key"
-msgstr ""
+msgstr "HRDLog.net API-nyckel"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr ""
+msgstr "Skapa din API-kod på din %s"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 msgid "HRDLog.net Userprofile page"
-msgstr ""
+msgstr "HRDLog.net användarprofilssida"
 
 #: application/views/station_profile/create.php:240
 #: application/views/station_profile/edit.php:397
 msgid "HRDLog.net Logbook Realtime Upload"
-msgstr ""
+msgstr "HRDLog.net Loggbok Realtidsuppladdning"
 
 #: application/views/station_profile/create.php:250
 #: application/views/station_profile/edit.php:328
 msgid "Subscription Required"
-msgstr ""
+msgstr "Prenumeration krävs"
 
 #: application/views/station_profile/create.php:255
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr ""
+msgstr "QRZ.com Loggbok API-nyckel"
 
 #: application/views/station_profile/create.php:258
 msgid "Test API-Key"
-msgstr ""
+msgstr "Testa API-nyckel"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
-msgstr ""
+msgstr "Hitta din API-nyckel på %s"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 msgid "the QRZ.com Logbook settings page"
-msgstr ""
+msgstr "QRZ.com Loggbok inställningssida"
 
 #: application/views/station_profile/create.php:264
 #: application/views/station_profile/edit.php:342
 msgid "QRZ.com Logbook Upload"
-msgstr ""
+msgstr "QRZ.com Loggbok Uppladdning"
 
 #: application/views/station_profile/create.php:267
 #: application/views/station_profile/edit.php:345
 msgid "Realtime"
-msgstr ""
+msgstr "Realtid"
 
 #: application/views/station_profile/create.php:275
 #: application/views/station_profile/edit.php:414
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
-msgstr ""
+msgstr "QO-100 Dx Club API-nyckel"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
-msgstr ""
+msgstr "Skapa din API-nyckel på din %s"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 msgid "QO-100 Dx Club's profile page"
-msgstr ""
+msgstr "QO-100 Dx Clubs profilsida"
 
 #: application/views/station_profile/create.php:280
 #: application/views/station_profile/edit.php:422
 msgid "QO-100 Dx Club Realtime Upload"
-msgstr ""
+msgstr "QO-100 Dx Club Realtids-Upladdning"
 
 #: application/views/station_profile/create.php:290
 #: application/views/station_profile/edit.php:440
 msgid "OQRS Enabled"
-msgstr ""
+msgstr "OQRS aktiverad"
 
 #: application/views/station_profile/create.php:297
 #: application/views/station_profile/edit.php:447
 msgid "OQRS Email alert"
-msgstr ""
+msgstr "OQRS e-postvarning"
 
 #: application/views/station_profile/create.php:302
 #: application/views/station_profile/edit.php:452
 msgid "Make sure email is set up under admin and global options."
-msgstr ""
+msgstr "Se till att e-post är konfigurerad under admin- och globala alternativ."
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:455
 msgid "OQRS Text"
-msgstr ""
+msgstr "OQRS-text"
 
 #: application/views/station_profile/create.php:307
 #: application/views/station_profile/edit.php:457
 msgid "Some info you want to add regarding QSL'ing."
-msgstr ""
+msgstr "Information du vill lägga till angående QSL hanteringen."
 
 #: application/views/station_profile/edit.php:153
 msgid "Zones"
-msgstr ""
+msgstr "Zoner"
 
 #: application/views/station_profile/edit.php:291
 msgid "Special Interest Group Name"
-msgstr ""
+msgstr "Namn på specialintressegrupp"
 
 #: application/views/station_profile/edit.php:293
 msgid "Station Special Interest Group Name (e.g. GMA).."
-msgstr ""
+msgstr "Stationens specialintressegruppnamn (t.ex. GMA).."
 
 #: application/views/station_profile/edit.php:297
 msgid "Special Interest Group Information"
-msgstr ""
+msgstr "Information om specialintressegrupp"
 
 #: application/views/station_profile/edit.php:309
 #, php-format
 msgid "Trouble? Check the %swiki%s."
-msgstr ""
+msgstr "Problem? Kolla %swiki%s."
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
-msgstr ""
+msgstr "Stationsloggbok Namn"
 
 #: application/views/stationsetup/create.php:19
 msgid "You can call a station logbook anything."
-msgstr ""
+msgstr "Du kan kalla en stationsloggbok vad som helst."
 
 #: application/views/stationsetup/edit.php:18
 msgid "Container name"
-msgstr ""
+msgstr "Containernamn"
 
 #: application/views/stationsetup/edit.php:20
 msgid "You can call a container anything."
-msgstr ""
+msgstr "Du kan kalla en container vad som helst."
 
 #: application/views/stationsetup/exportmapoptions.php:11
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
-msgstr ""
+msgstr "CQ-zonöverlägg"
 
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr ""
+msgstr "Rutnätsöverlägg"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
 msgid "Night shadow overlay"
-msgstr ""
+msgstr "Natt skugga överlägg"
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
-msgstr ""
+msgstr "# QSOn visas"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
-msgstr ""
+msgstr "Besök exportkarta"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
-msgstr ""
+msgstr "Välj tillgängliga stationsplatser"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr ""
+msgstr "Länka stationsplats"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:125
 msgid "Profile Name"
-msgstr ""
+msgstr "Profilnamn"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr ""
+msgstr "Avlänka stationsplats"
 
 #: application/views/stationsetup/stationsetup.php:24
 msgid ""
@@ -14012,114 +14021,133 @@ msgid ""
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
 msgstr ""
+"Stationsloggar låter dig gruppera stationsplatser, detta gör att du kan se "
+"alla platser under en session när stations loggen analyseras. Perfekt när du "
+"opererar på flera platser som är en del av samma DXCC- eller VUCC-cirkel."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Linked locations"
-msgstr ""
+msgstr "Länkade platser"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
-msgstr ""
+msgstr "Besökarwebbplats"
 
 #: application/views/stationsetup/stationsetup.php:94
 msgid "Station Locations"
-msgstr ""
+msgstr "Stationsplatser"
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
 msgstr ""
+"Stationsplatser definierar operativa platser, som ditt QTH, en väns QTH "
+"eller en portabel station."
 
 #: application/views/stationsetup/stationsetup.php:99
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
 msgstr ""
+"Precis som loggböcker håller en stationsprofil en uppsättning QSOn "
+"tillsammans."
 
 #: application/views/stationsetup/stationsetup.php:100
+#, fuzzy
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
 msgstr ""
+"Endast en station kan vara aktiv åt gången. I tabellen nedan visas detta med "
+"-Aktiv Station- märket."
 
 #: application/views/stationsetup/stationsetup.php:101
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr ""
+"Kolumnen 'Länkad' visar om stationens plats är länkad med den aktiva "
+"loggboken som valts ovan."
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Create a Station Location"
-msgstr ""
+msgstr "Skapa en stationsplats"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show all locations"
-msgstr ""
+msgstr "Visa alla platser"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show only locations from the active logbook"
-msgstr ""
+msgstr "Visa endast platser från den aktiva loggboken"
 
 #: application/views/stationsetup/stationsetup.php:108
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
+"OBS: Du behöver ställa in en aktiv stationsplats. Gå till Anropssignal-"
+">Stationsplats för att välja en."
 
 #: application/views/stationsetup/stationsetup.php:114
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
 msgstr ""
+"På grund av ändringar i Wavelog så behöver du tilldela alla QSO en stations "
+"profil."
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Maintenance"
-msgstr ""
+msgstr "Underhåll"
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Please reassign them at "
-msgstr ""
+msgstr "Var snäll och tilldela dem vid "
 
 #: application/views/stationsetup/stationsetup.php:129
 msgid "Last QSO"
-msgstr ""
+msgstr "Senaste QSO"
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"
-msgstr ""
+msgstr "Länkad"
 
 #: application/views/stationsetup/stationsetup.php:138
 msgid "Favorite"
-msgstr ""
+msgstr "Favorit"
 
 #: application/views/stationsetup/stationsetup.php:185
 msgid "mark/unmark as favorite"
-msgstr ""
+msgstr "markera/avmarkera som favorit"
 
 #: application/views/stationsetup/visitor.php:2
 msgid ""
 "Setting a public slug allows you to share your logbook with anyone via a "
 "custom website address, this slug can contain letters & numbers only."
 msgstr ""
+"Att sätta en offentlig slug gör att du kan dela din loggbok med vem som "
+"helst via en anpassad webbadress, denna slug kan endast innehålla bokstäver "
+"och siffror."
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
-msgstr ""
+msgstr "Sedan ser det ut så här:"
 
 #: application/views/stationsetup/visitor.php:4
 msgid "[your slug]"
-msgstr ""
+msgstr "[din slug]"
 
 #: application/views/stationsetup/visitor.php:10
 msgid "Type in Public Slug choice"
-msgstr ""
+msgstr "Ange val av offentlig slug"
 
 #: application/views/stationsetup/visitor.php:17
 msgid "Visit Public Page"
-msgstr ""
+msgstr "Besök offentlig sida"
 
 #: application/views/statistics/antennaanalytics.php:11
 msgid "Elevation"
-msgstr ""
+msgstr "Elevation"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:61
@@ -14128,7 +14156,7 @@ msgstr "år"
 
 #: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
-msgstr ""
+msgstr "Antal QSOn kontaktade varje år"
 
 #: application/views/statistics/index.php:31
 msgid "Explore the logbook."
@@ -14137,7 +14165,7 @@ msgstr "Utforska loggboken."
 #: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
 msgid "All Years"
-msgstr ""
+msgstr "Alla år"
 
 #: application/views/statistics/index.php:76
 #: application/views/statistics/index.php:117
@@ -14146,57 +14174,57 @@ msgstr "Unika callsigns"
 
 #: application/views/statistics/index.php:120
 msgid "Unique Grids"
-msgstr ""
+msgstr "Unika rutnät"
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
-msgstr ""
+msgstr "Inga EME-QSOn hittades."
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
-msgstr ""
+msgstr "Temanamn"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr ""
+msgstr "Det här är namnet som används för att visa temat i temalistan."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
-msgstr ""
+msgstr "Mappnamn"
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
-msgstr ""
+msgstr "Detta är namnet på mappen där dina CSS-filer placeras under assets/css."
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
 msgid "Theme Mode"
-msgstr ""
+msgstr "Tema Läge"
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
 msgid "Light"
-msgstr ""
+msgstr "Ljus"
 
 #: application/views/themes/add.php:19 application/views/themes/edit.php:19
 msgid "Dark"
-msgstr ""
+msgstr "Mörk"
 
 #: application/views/themes/add.php:21
 msgid "This defines wherever the theme is a light or a dark one."
-msgstr ""
+msgstr "Detta definierar om temat är ljust eller mörkt."
 
 #: application/views/themes/add.php:25 application/views/themes/edit.php:25
 #: application/views/themes/index.php:85
 msgid "Header Logo"
-msgstr ""
+msgstr "Rubrik Logotyp"
 
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
 msgid "Only PNG files with a size ratio of 1:1 are allowed."
-msgstr ""
+msgstr "Endast PNG-filer med storleksförhållandet 1:1 är tillåtna."
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
 #, php-format
@@ -14204,11 +14232,13 @@ msgid ""
 "This is the name of the file which is used as %s small %s Logo in the header "
 "placed in assets/logo."
 msgstr ""
+"Detta är namnet på filen som används som %s liten %s logotyp i headern "
+"placerad i assets/logo."
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
 msgid "Main Logo"
-msgstr ""
+msgstr "Huvudlogotyp"
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
 #, php-format
@@ -14216,24 +14246,28 @@ msgid ""
 "This is the name of the file which is used as %s big %s Logo in the login "
 "screen placed in assets/logo."
 msgstr ""
+"Det här är namnet på filen som används som %s stor %s logotyp på "
+"inloggningsskärmen som finns i assets/logo."
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
-msgstr ""
+msgstr "Lägg till tema"
 
 #: application/views/themes/edit.php:21
 msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
 msgstr ""
+"Detta definierar om temat är ljust eller mörkt. På denna grund väljs "
+"logotypen."
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
-msgstr ""
+msgstr "Uppdatera tema"
 
 #: application/views/themes/index.php:22
 msgid "Themes list"
-msgstr ""
+msgstr "Temalista"
 
 #: application/views/themes/index.php:28
 msgid ""
@@ -14241,18 +14275,22 @@ msgid ""
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
 msgstr ""
+"I den här menyn kan du lägga till och redigera teman i Wavelog. Processen "
+"att lägga till ett tema är inte helt enkel och bör endast göras av en "
+"administratör som är medveten om hur Wavelog fungerar."
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
 msgstr ""
+"Det måste också sägas att denna funktion fortfarande är under utveckling."
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "Processen för att lägga till ett nytt tema"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
-msgstr ""
+msgstr "1. Steget"
 
 #: application/views/themes/index.php:44
 #, php-format
@@ -14260,40 +14298,48 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
+"Skapa en ny mapp i 'assets/css/' och ladda upp en 'bootstrap.min.css'-fil "
+"som innehåller grundläggande stilregler. Vi använder teman från %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
-msgstr ""
+msgstr "2. Steg"
 
 #: application/views/themes/index.php:53
 msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
 msgstr ""
+"Skapa en fil i den här mappen som heter 'overrides.css'. Placera din "
+"anpassade CSS-kod där."
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
-msgstr ""
+msgstr "3. Steget"
 
 #: application/views/themes/index.php:62
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
 msgstr ""
+"För varje nytt tema behöver du två logofiler. En för inloggningsskärmen och "
+"en för rubriken."
 
 #: application/views/themes/index.php:63
 msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 ("
+"t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr ""
+msgstr "Placera de två logofilerna i mappen 'assets/logo/'"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
-msgstr ""
+msgstr "4. Steget"
 
 #: application/views/themes/index.php:73
 #, php-format
@@ -14301,58 +14347,64 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Klicka på 'Lägg till ett tema' och skriv in de nödvändiga uppgifterna. Skriv "
+"in filnamnen för logotyperna %sutan%s filändelsen '.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
-msgstr ""
+msgstr "Mappnamn"
 
 #: application/views/themes/index.php:99
 msgid "Please edit"
-msgstr ""
+msgstr "Vänligen redigera"
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
-msgstr ""
+msgstr "Lägg till ett tema"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
-msgstr ""
+msgstr "Endast nya under valt år"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
-msgstr ""
+msgstr "kontakter plottades"
 
 #: application/views/timeplotter/index.php:3
 msgid "Time Distribution"
-msgstr ""
+msgstr "Tidsfördelning"
 
 #: application/views/timeplotter/index.php:6
 msgid "Callsign(s) worked (max 5)"
-msgstr ""
+msgstr "Anropssignal(er) kontaktade (max 5)"
 
 #: application/views/timeplotter/index.php:10
 msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
+"Timeplotter används för att analysera din loggbok och ta reda på vid vilka "
+"tider du kontaktade vissa CQ-zoner eller DXCC-länder på ett valt band."
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
-msgstr ""
+msgstr "Namn / Beskrivning"
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
-msgstr ""
+msgstr "DXCC Uppslagsdata"
 
 #: application/views/update/index.php:12
 msgid "Distance Data"
-msgstr ""
+msgstr "Avståndsdata"
 
 #: application/views/update/index.php:19
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
 msgstr ""
+"Här kan du uppdatera DXCC-uppslagsdata som används för att visa information "
+"om en anropssignal."
 
 #: application/views/update/index.php:20
 msgid "This data is provided by"
