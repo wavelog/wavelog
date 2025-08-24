@@ -112,7 +112,6 @@ class Dcl extends CI_Controller {
 
 		$qso_id_array = array();
 
-		// Build TQ8 Outputs
 		if ($station_profiles->num_rows() >= 1) {
 
 			foreach ($station_profiles->result() as $station_profile) {
