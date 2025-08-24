@@ -352,7 +352,7 @@ function copyApiKey(apiKey) {
 
 function copyApiUrl() {
    var apiUrlField = $('#apiUrl');
-   navigator.clipboard.writeText("<?php echo base_url(); ?>").then(function() {
+   navigator.clipboard.writeText("<?php echo site_url(); ?>").then(function() {
    });
    apiUrlField.addClass('flash-copy')
       .delay('1000').queue(function() {
@@ -1945,6 +1945,61 @@ $('#sats').change(function(){
 </script>
     <?php } ?>
 
+<?php if ($this->uri->segment(2) == "wapc") { ?>
+<script>
+    $('.tablewapc').DataTable({
+        "pageLength": 25,
+        responsive: false,
+        ordering: false,
+        "scrollY":        "400px",
+        "scrollCollapse": true,
+        "paging":         false,
+        "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            {
+				extend: 'csv',
+				className: 'mb-1 btn btn-primary', // Bootstrap classes
+					init: function(api, node, config) {
+						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+					},
+			}
+        ]
+    });
+
+    $('.tablesummary').DataTable({
+        info: false,
+        searching: false,
+        ordering: false,
+        "paging":         false,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        buttons: [
+            {
+				extend: 'csv',
+				className: 'mb-1 btn btn-primary', // Bootstrap classes
+					init: function(api, node, config) {
+						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+					},
+			}
+        ]
+    });
+
+    // change color of csv-button if dark mode is chosen
+    if (isDarkModeTheme()) {
+        $(".buttons-csv").css("color", "white");
+    }
+ </script>
+<?php } ?>
+
 <?php if ($this->uri->segment(2) == "waja") { ?>
 <script>
     $('.tablewaja').DataTable({
@@ -2555,7 +2610,8 @@ function viewEqsl(picture, callsign) {
         var awardInfoLines = [
             lang_award_info_ln2,
             lang_award_info_ln3,
-            lang_award_info_ln4
+            lang_award_info_ln4,
+            typeof lang_award_info_ln5 !== 'undefined' ? lang_award_info_ln5 : ''
         ];
         var awardInfoContent = "";
         awardInfoLines.forEach(function (line) {

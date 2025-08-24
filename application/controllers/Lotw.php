@@ -320,9 +320,7 @@ class Lotw extends CI_Controller {
 					}
 				}
 
-				$pos = strpos($result, "<!-- .UPL. accepted -->");
-
-				if ($pos === false) {
+				if (!preg_match('/<!-- \.UPL\.\s*accepted -->/', $result)) {
 					// Upload of TQ8 Failed for unknown reason
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					$this->Lotw_model->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
@@ -552,7 +550,7 @@ class Lotw extends CI_Controller {
 				// Present only if the QSLing station specified a single valid grid square value in its station location uploaded to LoTW.
 				$qsl_gridsquare = "";
 				if (isset($record['gridsquare'])) {
-					if (strlen($record['gridsquare']) > strlen($status[2] ?? '') || substr(strtoupper($status[2] ?? ''), 0, 4) != substr(strtoupper($record['gridsquare']), 0, 4)) {
+					if (strlen($record['gridsquare']) >= strlen($status[2] ?? '') || substr(strtoupper($status[2] ?? ''), 0, 4) != substr(strtoupper($record['gridsquare']), 0, 4)) {
 						$qsl_gridsquare = $record['gridsquare'];
 					}
 				}

@@ -306,7 +306,7 @@ if ($dxcc_list->result() > 0) {
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
-				<h5 class="card-header"><?= __("eQSL"); ?></h5>
+				<h5 class="card-header"><?= __("eQSL"); ?> <span class="badge text-bg-warning"><?= sprintf(__("Trouble? Check the %swiki%s."), '<a href="https://github.com/wavelog/wavelog/wiki/eQSL#read-common-pitfalls-with-eqsl" target="_blank">', '</a>'); ?></span></h5>
 				<div class="card-body">
 					<div class="mb-3">
 						<label for="eqslNickname"><?php echo _pgettext("Probably no translation needed","eQSL QTH Nickname"); ?></label> <!-- This does not need Multilanguage Support -->

@@ -36,16 +36,34 @@ class Oqrs extends CI_Controller {
 	public function index($public_slug = NULL) {
 		$this->load->model('oqrs_model');
 		$this->load->model('publicsearch');
+		$this->load->model('stationsetup_model');
 
-       	$slug = $this->security->xss_clean($public_slug);
-		$data['slug'] = $slug;
-		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
-		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
-		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
-		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
-		$data['page_title'] = __("Log Search & OQRS");
-		$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
-		$data['groupedSearch'] = $this->optionslib->get_option('groupedSearch');
+		if ($public_slug === NULL) {
+			show_404(__("Unknown Public Page."));
+		}
+
+		$data['slug'] = $this->security->xss_clean($public_slug);
+        // check if the public slug exists
+        $logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($data['slug']);
+        if ($logbook_id == false) {
+            $data['userid'] = null;
+			$data['oqrs_enabled'] = null;
+			$data['public_search_enabled'] = false;
+			$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+			$data['stations'] = null;
+			$data['page_title'] = __("Log Search & OQRS");
+			$data['global_oqrs_text'] = '';
+			$data['groupedSearch'] = false;
+        } else {
+			$data['userid'] = $this->publicsearch->get_userid_for_slug($data['slug']);
+			$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($data['slug']);
+			$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($data['slug']);
+			$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+			$data['stations'] = $this->oqrs_model->get_oqrs_stations($data['userid']);
+			$data['page_title'] = __("Log Search & OQRS");
+			$data['global_oqrs_text'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'))->row()->option_value ?? '';
+			$data['groupedSearch'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $data['userid'])->row()->option_value;
+		}
 
 		$this->load->view('visitor/layout/header', $data);
 		$this->load->view('oqrs/index');
@@ -82,13 +100,24 @@ class Oqrs extends CI_Controller {
 
 	public function get_qsos_grouped() {
 		$this->load->model('oqrs_model');
-		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE));
+		$this->load->model('publicsearch');
+
+		$slug = $this->input->post('slug', TRUE);
+		$userid = $this->publicsearch->get_userid_for_slug($slug);
+		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
+		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
+		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
+		$data['groupedSearchShowStationName'] = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search_show_station_name','option_key'=>'boolean'), $userid)->row()->option_value;
+
+		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE), $userid);
 		$data['callsign'] = $this->input->post('callsign', TRUE);
+		$data['userid'] = $this->input->post('userid', TRUE);
+		$data['slug'] = $this->input->post('slug', TRUE);
 
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
 		} else {
-			$data['stations'] = $this->oqrs_model->get_oqrs_stations();
+			$data['stations'] = $this->oqrs_model->get_oqrs_stations($userid);
 			$data['page_title'] = __("Log Search & OQRS");
 			$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
 			$data['groupedSearch'] = 'on';
@@ -146,7 +175,7 @@ class Oqrs extends CI_Controller {
 
 		$this->load->model('oqrs_model');
 		$data['result'] = $this->oqrs_model->getOqrsRequests($location_list);
-		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
+		$data['stations'] = $this->oqrs_model->get_oqrs_stations((int)$this->session->userdata('user_id'));
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('oqrs/showrequests');
@@ -173,23 +202,46 @@ class Oqrs extends CI_Controller {
 		$this->oqrs_model->delete_oqrs_line($id);
 	}
 
+	public function reject_oqrs_line() {
+		$id = $this->input->post('id', TRUE);
+		$this->load->model('oqrs_model');
+		$this->oqrs_model->reject_oqrs_line($id);
+	}
+
 	public function search_log() {
 		$this->load->model('oqrs_model');
 		$callsign = $this->input->post('callsign', TRUE);
+		$data['qsoid'] = $this->input->post('qsoid', TRUE);
+		$data['oqrsid'] = $this->input->post('oqrsid', TRUE);
 
         $data['qsos'] = $this->oqrs_model->search_log($callsign);
 
-		$this->load->view('qslprint/qsolist', $data);
+		$this->load->view('oqrs/qsolist', $data);
 	}
 
 	public function search_log_time_date() {
-		$this->load->model('oqrs_model');
+		// Get user-preferred date format
+		if ($this->session->userdata('user_date_format')) {
+			$date_format = $this->session->userdata('user_date_format');
+		} else {
+			$date_format = $this->config->item('qso_date_format');
+		}
+
 		$time = $this->input->post('time', TRUE);
 		$date = $this->input->post('date', TRUE);
 		$mode = $this->input->post('mode', TRUE);
 		$band = $this->input->post('band', TRUE);
+		$data['qsoid'] = $this->input->post('qsoid', TRUE);
+		$data['oqrsid'] = $this->input->post('oqrsid', TRUE);
 
-        $data['qsos'] = $this->oqrs_model->search_log_time_date($time, $date, $band, $mode);
+		// Parse datetime using createFromFormat
+		$datetime_obj = DateTime::createFromFormat("$date_format", "$date");
+
+		$formatted_date = $datetime_obj->format('Y-m-d'); // Format for SQL DATE comparison
+
+		$this->load->model('oqrs_model');
+
+        $data['qsos'] = $this->oqrs_model->search_log_time_date($time, $formatted_date, $band, $mode);
 
 		$this->load->view('oqrs/qsolist', $data);
 	}
@@ -199,9 +251,9 @@ class Oqrs extends CI_Controller {
 			$this->load->model('user_model');
 
 			$email = $this->user_model->get_email_address($id);
-			
+
 			$this->load->model('oqrs_model');
-			
+
 			$sendEmail = $this->oqrs_model->getOqrsEmailSetting($id);
 
 			if($email != "" && $sendEmail == "1") {
@@ -209,6 +261,11 @@ class Oqrs extends CI_Controller {
 				$this->load->library('email');
 
 				if($this->optionslib->get_option('emailProtocol') == "smtp") {
+					if ($this->optionslib->get_option('smtpHost') == '') {
+						log_message('error', 'OQRS request email message failed. Email settings are not configured properly.');
+						return;
+					}
+
 					$config = Array(
 						'protocol' => $this->optionslib->get_option('emailProtocol'),
 						'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
@@ -246,6 +303,13 @@ class Oqrs extends CI_Controller {
 		}
 	}
 
+	public function add_oqrs_to_print_queue() {
+		$this->load->model('oqrs_model');
+		$id = $this->input->post('id', TRUE);
+
+		$this->oqrs_model->add_oqrs_to_print_queue($id);
+	}
+
 	public function mark_oqrs_line_as_done() {
 		$this->load->model('oqrs_model');
 		$id = $this->input->post('id', TRUE);
@@ -254,6 +318,15 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function search() {
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
 		$this->load->model('oqrs_model');
 
 		$searchCriteria = array(
@@ -265,9 +338,36 @@ class Oqrs extends CI_Controller {
 		);
 
 		$qsos = $this->oqrs_model->searchOqrs($searchCriteria);
+		foreach ($qsos as &$qso) {
+			$qso['requesttime'] = date($custom_date_format . " H:i", strtotime($qso['requesttime']));
+			$qso['date'] = date($custom_date_format, strtotime($qso['date']));
+			$qso['time'] = date('H:i', strtotime($qso['time']));
+		}
 
 		header("Content-Type: application/json");
 		print json_encode($qsos);
+	}
+
+	public function status_info() {
+		$this->load->view('oqrs/status_info');
+	}
+
+	public function delete_oqrs_qso_match() {
+		$this->load->model('oqrs_model');
+		$id = $this->input->post('id', TRUE);
+		$qsoid = $this->input->post('qsoid', TRUE);
+		$this->oqrs_model->delete_oqrs_qso_match($id, $qsoid);
+		header('Content-Type: application/json');
+		echo json_encode(array('status' => 'success', 'message' => __("QSO match deleted successfully.")));
+	}
+
+	public function add_qso_match_to_oqrs() {
+		$this->load->model('oqrs_model');
+		$qsoid = $this->input->post('qsoid', TRUE);
+		$oqrsid = $this->input->post('oqrsid', TRUE);
+		$this->oqrs_model->add_qso_match_to_oqrs($qsoid, $oqrsid);
+		header('Content-Type: application/json');
+		echo json_encode(array('status' => 'success', 'message' => __("QSO match added successfully.")));
 	}
 
 }

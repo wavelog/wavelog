@@ -151,12 +151,15 @@ class User extends CI_Controller {
 		$this->load->library('Genfunctions');
 
 		$this->form_validation->set_rules('user_name', 'Username', 'required');
+		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		$this->form_validation->set_rules('user_type', 'Type', 'required');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'required');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|callback_check_email');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|valid_email');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
 		$data['user_add'] = true;
@@ -232,6 +235,11 @@ class User extends CI_Controller {
 				$data['user_sig_to_qso_tab'] = $this->input->post('user_sig_to_qso_tab');
 				$data['user_dok_to_qso_tab'] = $this->input->post('user_dok_to_qso_tab');
 				$data['user_language'] = $this->input->post('user_language');
+				$data['global_oqrs_text'] = $this->input->post('global_oqrs_text') ?? '';
+				$data['oqrs_grouped_search'] = $this->input->post('oqrs_grouped_search') ?? 'off';
+				$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name') ?? 'off';
+				$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching') ?? 'on';
+				$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching') ?? 'on';
 				$this->load->view('user/edit', $data);
 			} else {
 				$this->load->view('user/edit', $data);
@@ -291,8 +299,13 @@ class User extends CI_Controller {
 				$this->input->post('on_air_widget_show_only_most_recent_radio'),
 				$this->input->post('qso_widget_display_qso_time'),
 				$this->input->post('user_dashboard_banner') ?? 'Y',
-				$this->input->post('clubstation') == '1' ? true : false
-				)) {
+				$this->input->post('clubstation') == '1' ? true : false,
+				$this->input->post('global_oqrs_text') ?? '',
+				$this->input->post('oqrs_grouped_search') ?? 'off',
+				$this->input->post('oqrs_grouped_search_show_station_name') ?? 'off',
+				$this->input->post('oqrs_auto_matching') ?? 'on',
+				$this->input->post('oqrs_direct_auto_matching') ?? 'on')
+			) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
 					$data['username_error'] = sprintf(__("Username %s already in use!"), '<b>' . $this->input->post('user_name') . '</b>');
@@ -344,6 +357,11 @@ class User extends CI_Controller {
 			$data['user_quicklog'] = $this->input->post('user_quicklog');
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 			$data['user_language'] = $this->input->post('user_language');
+			$data['global_oqrs_text'] = $this->input->post('global_oqrs_text') ?? '';
+			$data['oqrs_grouped_search'] = $this->input->post('oqrs_grouped_search') ?? 'off';
+			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name') ?? 'off';
+			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching') ?? 'on';
+			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching') ?? 'on';
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer', $footerData);
 		}
@@ -363,6 +381,7 @@ class User extends CI_Controller {
 		$this->load->library('Genfunctions');
 
 		$this->form_validation->set_rules('user_name', 'Username', 'required|xss_clean');
+		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required|xss_clean');
 		if($this->session->userdata('user_type') == 99)
 		{
@@ -372,6 +391,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_lastname', 'Last name', 'required|xss_clean');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|callback_check_email');
+		$this->form_validation->set_rules('user_email', 'EMail', 'required|valid_email');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
 		$data['user_form_action'] = site_url('user/edit')."/".$this->uri->segment(3);
@@ -626,7 +647,7 @@ class User extends CI_Controller {
 			}
 
 			if($this->input->post('user_default_confirmation')) {
-			   $data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '');
+				$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '');
 			} else {
 				$data['user_default_confirmation'] = $q->user_default_confirmation;
 			}
@@ -759,6 +780,51 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('global_oqrs_text')) {
+				$data['global_oqrs_text'] = $this->input->post('global_oqrs_text', false);
+			} else {
+				$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'global_oqrs_text','option_key'=>'text'), $this->uri->segment(3))->result();
+				if (count($qkey_opt) > 0) {
+					$data['global_oqrs_text'] = $qkey_opt[0]->option_value;
+				}
+			}
+
+			if($this->input->post('oqrs_grouped_search')) {
+				$data['oqrs_grouped_search'] = $this->input->post('oqrs_grouped_search', false);
+			} else {
+				$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($qkey_opt) > 0) {
+					$data['oqrs_grouped_search'] = $qkey_opt[0]->option_value;
+				}
+			}
+
+			if($this->input->post('oqrs_grouped_search_show_station_name')) {
+				$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name', false);
+			} else {
+				$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_grouped_search_show_station_name','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($qkey_opt) > 0) {
+					$data['oqrs_grouped_search_show_station_name'] = $qkey_opt[0]->option_value;
+				}
+			}
+
+			if($this->input->post('oqrs_auto_matching')) {
+				$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching', false);
+			} else {
+				$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_auto_matching','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($qkey_opt) > 0) {
+					$data['oqrs_auto_matching'] = $qkey_opt[0]->option_value;
+				}
+			}
+
+			if($this->input->post('oqrs_direct_auto_matching')) {
+				$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', false);
+			} else {
+				$qkey_opt = $this->user_options_model->get_options('oqrs',array('option_name'=>'oqrs_direct_auto_matching','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($qkey_opt) > 0) {
+					$data['oqrs_direct_auto_matching'] = $qkey_opt[0]->option_value;
+				}
+			}
+
 			// [MAP Custom] GET user options //
 			$options_object = $this->user_options_model->get_options('map_custom')->result();
 			if (count($options_object)>0) {
@@ -850,6 +916,13 @@ class User extends CI_Controller {
 						}
 						$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))));
 						$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))));
+
+						$this->user_options_model->set_option('oqrs', 'global_oqrs_text', array('text'=>$this->input->post('global_oqrs_text', true)));
+						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search', array('boolean'=>$this->input->post('oqrs_grouped_search', true)));
+						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>$this->input->post('oqrs_grouped_search_show_station_name', true)));
+						$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)));
+						$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)));
+
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));
 						redirect('user/edit/'.$this->uri->segment(3));
 					} else {
@@ -902,6 +975,11 @@ class User extends CI_Controller {
 			$data['on_air_widget_display_last_seen'] = $this->input->post('on_air_widget_display_last_seen', true);
 			$data['on_air_widget_show_only_most_recent_radio'] = $this->input->post('on_air_widget_show_only_most_recent_radio', true);
 			$data['qso_widget_display_qso_time'] = $this->input->post('qso_widget_display_qso_time', true);
+			$data['global_oqrs_text'] = $this->input->post('global_oqrs_text', true);
+			$data['oqrs_grouped_search'] = $this->input->post('oqrs_grouped_search', true);
+			$data['oqrs_grouped_search_show_station_name'] = $this->input->post('oqrs_grouped_search_show_station_name', true);
+			$data['oqrs_auto_matching'] = $this->input->post('oqrs_auto_matching', true);
+			$data['oqrs_direct_auto_matching'] = $this->input->post('oqrs_direct_auto_matching', true);
 
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
@@ -1215,6 +1293,7 @@ class User extends CI_Controller {
 			$this->load->library('form_validation');
 
 			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -1398,12 +1477,30 @@ class User extends CI_Controller {
 		}
 	}
 
+	function check_username($username) {
+		if (!($this->user_model->authorize(99)) &&  ($this->session->userdata('user_name') != $username) && ($this->user_model->exists($username) > 0)) {
+			$this->form_validation->set_message('check_username', sprintf(__("Couldn't set account to this username. Please try another one than \"%s\"."), $username));
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+
+	function check_email($mail) {
+		if (($this->session->userdata('user_email') != $mail) && ($this->user_model->exists_by_email($mail) > 0)) {
+			$this->form_validation->set_message('check_email', sprintf(__("Couldn't set account to this email. Please try another address than \"%s\"."), $mail));
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+
 	function check_locator($grid = '') {
 		if (empty($grid)) {
 			$grid = $this->input->post('locator', TRUE);
 		}
 		// Allow empty locator
-		if (preg_match('/^$/', $grid)) return true;
+		if (preg_match('/^$/', $grid ?? '')) return true;
 		$this->load->library('Qra');
 		if ($this->qra->validate_grid($grid)) {
 			return true;

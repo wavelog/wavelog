@@ -12,7 +12,7 @@ class SimpleFLE extends CI_Controller {
 		$this->load->model('modes');
 		$this->load->model('bands');
 		$this->load->model('contesting_model');
-	
+
 		$data['contests']=$this->contesting_model->getActivecontests();
 		$data['station_profile'] = $this->stations->all_of_user();			// Used in the view for station location select
 		$data['bands'] = $this->bands->get_all_bands();						// Fetching Bands for SFLE
@@ -84,7 +84,8 @@ class SimpleFLE extends CI_Controller {
 		$qsos = json_decode($qsos, true);
 		$station_id = $qsos[0]['station_id']; // we can trust this value
 
-		$bulk_result = $this->logbook_model->import_bulk($qsos, $station_id);
+		$result = $this->logbook_model->import_bulk($qsos, $station_id);
+		$bulk_result = $result['errormessage'];
 
 		$clean_result = str_replace(['<br><br/>'], "\n", $bulk_result);
 		log_message('debug', "SimpleFLE, save_qsos(); Bulk Result: \n" . $clean_result);
@@ -95,11 +96,11 @@ class SimpleFLE extends CI_Controller {
 		}
 		$this->staticmap_model->remove_static_map_image($station_id);
 
-		if (empty($result)) {
+		if (empty($bulk_result)) {
 			echo "success";
 		} else {
-			echo json_encode($result);
+			echo json_encode($bulk_result);
 		}
 	}
-	
+
 }

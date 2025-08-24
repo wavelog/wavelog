@@ -320,6 +320,7 @@ class Bands extends CI_Model {
 			'sota'		 => $band['sota'] 		== "true" ? '1' : '0',
 			'uscounties' => $band['uscounties'] == "true" ? '1' : '0',
 			'wap' 	 	 => $band['wap'] 		== "true" ? '1' : '0',
+			'wapc' 	 	 => $band['wapc'] 		== "true" ? '1' : '0',
 			'waja' 		 => $band['waja'] 		== "true" ? '1' : '0',
 			'was' 		 => $band['was'] 		== "true" ? '1' : '0',
 			'wwff' 		 => $band['wwff'] 		== "true" ? '1' : '0',
