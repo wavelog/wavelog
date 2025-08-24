@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-23 11:42+0000\n"
-"PO-Revision-Date: 2025-08-24 12:50+0000\n"
+"PO-Revision-Date: 2025-08-24 13:27+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sv/>\n"
@@ -14408,27 +14408,27 @@ msgstr ""
 
 #: application/views/update/index.php:20
 msgid "This data is provided by"
-msgstr ""
+msgstr "Denna data tillhandahålls av"
 
 #: application/views/update/index.php:24
 msgid "You must install php-xml for this to work."
-msgstr ""
+msgstr "Du måste installera php-xml för att detta ska fungera."
 
 #: application/views/update/index.php:27
 msgid "Check for DXCC Data Updates"
-msgstr ""
+msgstr "Kontrollera om det finns DXCC-data uppdateringar"
 
 #: application/views/update/index.php:28
 msgid "Update DXCC Data"
-msgstr ""
+msgstr "Uppdatera DXCC-data"
 
 #: application/views/update/index.php:30
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: application/views/update/index.php:34
 msgid "Apply DXCC Data to Logbook"
-msgstr ""
+msgstr "Tillämpa DXCC-data på loggbok"
 
 #: application/views/update/index.php:36
 msgid ""
@@ -14438,36 +14438,43 @@ msgid ""
 "missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
+"Efter uppdatering så kan Wavelog fylla i saknad anropssignalinformation i "
+"loggboken med den nyförvärvade DXCC-datan.\n"
+"Du kan välja att kontrollera bara de QSOs i loggboken som saknar DXCC-"
+"metadata eller att kontrollera hela loggboken igen\n"
+"och uppdatera all befintlig metadata ifall den har ändrats."
 
 #: application/views/update/index.php:45
 msgid "Check QSOs missing DXCC data"
-msgstr ""
+msgstr "Kontrollera QSOn som saknar DXCC-data"
 
 #: application/views/update/index.php:54 application/views/update/index.php:95
 msgid "Re-check all QSOs in logbook"
-msgstr ""
+msgstr "Kontrollera alla QSOn i loggboken igen"
 
 #: application/views/update/index.php:59
 msgid "Apply Continent Data to Logbook"
-msgstr ""
+msgstr "Updatera kontinentdata i loggboken"
 
 #: application/views/update/index.php:61
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
 msgstr ""
+"Den här funktionen kan användas för att uppdatera QSO-kontinentinformationen "
+"för alla QSOn i Wavelog som saknar den informationen."
 
 #: application/views/update/index.php:68
 msgid "Check QSOs missing continent data"
-msgstr ""
+msgstr "Kontrollera QSOn som saknar kontinentdata"
 
 #: application/views/update/index.php:80
 msgid "Here you can update QSOs with missing distance information."
-msgstr ""
+msgstr "Här kan du uppdatera QSOn som saknar avståndsinformation."
 
 #: application/views/update/index.php:86
 msgid "Update distance data"
-msgstr ""
+msgstr "Uppdatera avståndsdata"
 
 #: application/views/update/index.php:89
 msgid ""
@@ -14475,6 +14482,9 @@ msgid ""
 "QSOs. Depending on the number of QSOs this might take some time to execute. "
 "Please be patient."
 msgstr ""
+"Använd följande knapp för att uppdatera avståndsinformationen för alla dina "
+"QSOn. Beroende på antalet QSOn kan detta ta lite tid att utföra. Var vänlig "
+"och ha tålamod."
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
@@ -14494,7 +14504,7 @@ msgstr "Ja, ta bort den här användaren"
 
 #: application/views/user/edit.php:6
 msgid "Create Clubstation Account"
-msgstr ""
+msgstr "Skapa klubbstationskonto"
 
 #: application/views/user/edit.php:8
 msgid "Create User Account"
@@ -14506,7 +14516,7 @@ msgstr "Redigera användarkonto"
 
 #: application/views/user/edit.php:45
 msgid "General Information"
-msgstr ""
+msgstr "Allmän information"
 
 #: application/views/user/edit.php:68 application/views/user/login.php:59
 #: application/views/user/login.php:73 application/views/user/login.php:74
@@ -14518,7 +14528,7 @@ msgstr "Lösenord"
 
 #: application/views/user/edit.php:74
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "Dela inte detta lösenord med operatörerna!"
 
 #: application/views/user/edit.php:84
 msgid "User Role"
@@ -14526,7 +14536,7 @@ msgstr "Användarroll"
 
 #: application/views/user/edit.php:113
 msgid "Callsign Owner"
-msgstr ""
+msgstr "Anropssignalägare"
 
 #: application/views/user/edit.php:113
 msgid "Personal"
@@ -14542,15 +14552,15 @@ msgstr "Efternamn"
 
 #: application/views/user/edit.php:134
 msgid "Ham Radio"
-msgstr ""
+msgstr "Amatörradio"
 
 #: application/views/user/edit.php:137
 msgid "Special/Club Callsign"
-msgstr ""
+msgstr "Special/Klubb-anropssignal"
 
 #: application/views/user/edit.php:160
 msgid "Wavelog Preferences"
-msgstr ""
+msgstr "Wavelog-inställningar"
 
 #: application/views/user/edit.php:171
 msgid "Stylesheet"
@@ -14558,11 +14568,11 @@ msgstr "Stilmall"
 
 #: application/views/user/edit.php:183
 msgid "Wavelog Language"
-msgstr ""
+msgstr "Wavelog-språk"
 
 #: application/views/user/edit.php:190
 msgid "Choose Wavelog language."
-msgstr ""
+msgstr "Välj Wavelog-språk."
 
 #: application/views/user/edit.php:193
 msgid "Timezone"
@@ -14578,19 +14588,19 @@ msgstr "Välj hur du vill att datum ska visas när du är inloggad på ditt kont
 
 #: application/views/user/edit.php:218
 msgid "Measurement preference"
-msgstr ""
+msgstr "Mätpreferens"
 
 #: application/views/user/edit.php:222
 msgid "Kilometers"
-msgstr ""
+msgstr "Kilometer"
 
 #: application/views/user/edit.php:223
 msgid "Miles"
-msgstr ""
+msgstr "Miles"
 
 #: application/views/user/edit.php:224
 msgid "Nautical miles"
-msgstr ""
+msgstr "Nautiska mil"
 
 #: application/views/user/edit.php:226
 msgid "Choose which unit distances will be shown in"
@@ -14622,17 +14632,19 @@ msgstr "Välj kolumn 5 (bara för logbok)"
 
 #: application/views/user/edit.php:361
 msgid "QSO Logging Options"
-msgstr ""
+msgstr "QSO-loggningsalternativ"
 
 #: application/views/user/edit.php:364
 msgid "Log End Times for QSOs Separately"
-msgstr ""
+msgstr "Logga sluttider för QSOn separat"
 
 #: application/views/user/edit.php:370
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
 msgstr ""
+"Välj ja här om du vill logga QSO start- och sluttider separat. Om det är "
+"inställt på 'Nej' kommer sluttiden att vara densamma som starttiden."
 
 #: application/views/user/edit.php:375
 msgid ""
@@ -14651,7 +14663,7 @@ msgstr ""
 
 #: application/views/user/edit.php:386
 msgid "Location auto lookup."
-msgstr ""
+msgstr "Automatisk platsuppslagning."
 
 #: application/views/user/edit.php:392
 msgid "If set, gridsquare is fetched based on location name."
@@ -14680,7 +14692,7 @@ msgstr "POTA auto lookup gridsquare och namn för park."
 
 #: application/views/user/edit.php:425
 msgid "Number of previous contacts displayed on QSO page."
-msgstr ""
+msgstr "Antalet tidigare kontakter att visa på QSO-sidan."
 
 #: application/views/user/edit.php:442
 msgid "Menu Options"
@@ -14692,48 +14704,54 @@ msgstr "Visa anteckningar i huvudmenyn."
 
 #: application/views/user/edit.php:456
 msgid "Quicklog Field"
-msgstr ""
+msgstr "Snabblogg-fält"
 
 #: application/views/user/edit.php:462
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
 msgstr ""
+"Med den här funktionen kan du logga anropssignaler med hjälp av sökfältet i "
+"rubriken."
 
 #: application/views/user/edit.php:466
 msgid "Quicklog - Action on press Enter"
-msgstr ""
+msgstr "Snabblogg - Åtgärd vid tryck på Enter"
 
 #: application/views/user/edit.php:470
 msgid "Log Callsign"
-msgstr ""
+msgstr "Logga anropssignal"
 
 #: application/views/user/edit.php:472
+#, fuzzy
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
-msgstr ""
+msgstr "Vilken åtgärd ska utföras när Enter trycks i snabbloggfältet?"
 
 #: application/views/user/edit.php:478
+#, fuzzy
 msgid "Station Locations Quickswitch"
-msgstr ""
+msgstr "Snabbväxling av stationsplatser"
 
 #: application/views/user/edit.php:483
 msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
 msgstr ""
+"Visa stationsplatser under Snabbväxling i huvudmenyn. Du kan lägga till "
+"platser genom att lägga till dem som favoriter på stationsinställningssidan."
 
 #: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
-msgstr ""
+msgstr "UTC-tid i menyn"
 
 #: application/views/user/edit.php:492
 msgid "Show the current UTC Time in the menu"
-msgstr ""
+msgstr "Visa aktuell UTC-tid i menyn"
 
 #: application/views/user/edit.php:503
 msgid "Map Settings"
-msgstr ""
+msgstr "Kartinställningar"
 
 #: application/views/user/edit.php:510
 msgid "Icon"
