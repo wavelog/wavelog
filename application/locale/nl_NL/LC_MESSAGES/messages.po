@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-20 19:04+0000\n"
-"PO-Revision-Date: 2025-08-18 20:40+0000\n"
+"POT-Creation-Date: 2025-08-24 15:29+0000\n"
+"PO-Revision-Date: 2025-08-23 15:21+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -231,16 +231,16 @@ msgstr "ADIF importeren gefaald!"
 msgid "Station Profile not valid for User"
 msgstr "Stations profiel niet geldig voor gebruiker"
 
-#: application/controllers/Adif.php:282
+#: application/controllers/Adif.php:283
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF geimporteerd"
 
-#: application/controllers/Adif.php:293
+#: application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "DCL import"
 
-#: application/controllers/Adif.php:351
+#: application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "DCL Data geimporteerd"
 
@@ -3195,36 +3195,31 @@ msgstr "HRDlog: Geen QSOs gevonden om te uploaden voor de stationsroepnaam: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Geen stationprofielen met HRDlog-gegevens gevonden."
 
-#: application/models/Logbook_model.php:1291
+#: application/models/Logbook_model.php:1292
 msgid "Station ID not allowed"
 msgstr "Station-ID niet toegestaan"
 
-#: application/models/Logbook_model.php:1296
+#: application/models/Logbook_model.php:1297
 msgid "No Call given"
 msgstr "Geen roepnaam gegeven"
 
-#: application/models/Logbook_model.php:1366
-#: application/models/Logbook_model.php:1540
+#: application/models/Logbook_model.php:1367
+#: application/models/Logbook_model.php:1541
 msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
-#: application/models/Logbook_model.php:3987
+#: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Verkeerde stationsroepnaam %s bij het importeren van QSO met %s voor %s: "
 "OVERGESLAGEN"
 
-#: application/models/Logbook_model.php:3988
-#, php-format
-msgid "Check %s for hints about errors in ADIF files."
-msgstr "Controleer %s voor hints over fouten in ADIF-bestanden."
-
-#: application/models/Logbook_model.php:4000
+#: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "QSO vanaf"
 
-#: application/models/Logbook_model.php:4000
+#: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3232,63 +3227,63 @@ msgstr ""
 "Je hebt geprobeerd een QSO te importeren zonder een opgegeven CALL. Dit QSO "
 "is niet geïmporteerd. Het is ongeldig"
 
-#: application/models/Logbook_model.php:4299
+#: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4310
+#: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4371
+#: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4391
+#: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslrdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4412
+#: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslsdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4704
+#: application/models/Logbook_model.php:4722
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
-#: application/models/Logbook_model.php:4765
+#: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
-#: application/models/Logbook_model.php:4771
+#: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4776
+#: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
-#: application/models/Logbook_model.php:4779
+#: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
-#: application/models/Logbook_model.php:4782
+#: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
-#: application/models/Logbook_model.php:4785
+#: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-#: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4806
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "onbekend"
 
-#: application/models/Logbook_model.php:5626
+#: application/models/Logbook_model.php:5644
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3999,7 +3994,7 @@ msgstr "Minimum aantal"
 #: application/views/awards/wapc/index.php:168
 #: application/views/awards/was/index.php:201
 #: application/views/awards/wwff/index.php:65
-#: application/views/callstats/index.php:129
+#: application/views/callstats/index.php:128
 #: application/views/clublog/export.php:60
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
@@ -4016,7 +4011,7 @@ msgstr "Niets gevonden!"
 #: application/views/awards/sota/index.php:33
 #: application/views/awards/wwff/index.php:35
 #: application/views/cabrillo/index.php:31
-#: application/views/callstats/index.php:148
+#: application/views/callstats/index.php:147
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:166
@@ -4060,7 +4055,7 @@ msgid "Count"
 msgstr "Tellen"
 
 #: application/views/activators/index.php:101
-#: application/views/callstats/index.php:150
+#: application/views/callstats/index.php:151
 #: application/views/timeline/index.php:203
 #: application/views/timeline/index.php:238
 #: application/views/timeline/index.php:266
@@ -4350,7 +4345,7 @@ msgstr ""
 
 #: application/views/adif/import.php:151
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
-msgstr ""
+msgstr "Markeer QSOs als geüpload (Dit uploadt GEEN QSOs naar deze diensten!)"
 
 #: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -4384,7 +4379,7 @@ msgstr "Markeer geïmporteerde QSOs als geüpload naar DCL logbook"
 
 #: application/views/adif/import.php:207
 msgid "Toggle all checkboxes"
-msgstr ""
+msgstr "Schakel alle selectievakjes in/uit"
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -4536,7 +4531,7 @@ msgstr ""
 "software ook levert gebruiken om die gegevens in Wavelog te herschrijven."
 
 #: application/views/adif/import.php:370
-#: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Informatie"
@@ -4601,27 +4596,31 @@ msgstr ""
 "database worden ingevoerd. Controleer het geïmporteerde ADIF-bestand. Je "
 "kunt een online ADIF-bestandscontrole gebruiken. Bijvoorbeeld:"
 
-#: application/views/adif/import_success.php:17
-msgid "Yay, its imported!"
-msgstr "Jippie, het is geïmporteerd!"
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr ""
 
-#: application/views/adif/import_success.php:18
+#: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "Het ADIF-bestand is geïmporteerd."
 
-#: application/views/adif/import_success.php:22
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr ""
+
+#: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "Duplicaten zijn ingevoegd!"
 
-#: application/views/adif/import_success.php:24
+#: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "Duplicaten werden overgeslagen."
 
-#: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "Wedstrijdlogs geïmporteerd"
 
-#: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4632,20 +4631,25 @@ msgstr ""
 "corrigeren, schakel dan over naar het CBR Import Tabblad van de ADIF Import "
 "pagina."
 
-#: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "Je hebt ten minste 1 QSO geïmporteerd met een contest-ID."
 
-#: application/views/adif/import_success.php:34
+#: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 "We hebben de volgende aantallen QSO's gevonden voor de volgende contest-ID's:"
 
-#: application/views/adif/import_success.php:47
+#: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "Importdetails / mogelijke problemen"
 
-#: application/views/adif/import_success.php:48
+#: application/views/adif/import_success.php:58
+#, php-format
+msgid "Check %s for hints about errors in ADIF files."
+msgstr "Controleer %s voor hints over fouten in ADIF-bestanden."
+
+#: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -4923,6 +4927,8 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"Velden genomen voor deze Award: Propagatiemodus en SAT-Naam (ADIF: "
+"PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:152
@@ -4984,6 +4990,8 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"Velden genomen voor deze Award: Staat (ADIF: STATE), Stations County (ADIF: "
+"CNTY), DXCC (Moet een van 291 (V.S.), 6 (ALASKA) of 110 (HAWAII) zijn)"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -5086,7 +5094,7 @@ msgstr "Je kunt alle informatie en regels vinden op de website van N4BAA: %s"
 
 #: application/views/awards/cq/index.php:24
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
-msgstr ""
+msgstr "Velden genomen voor deze Award: CQ-Zone (ADIF: CQZ)"
 
 #: application/views/awards/cq/index.php:26
 msgid "Awards - CQ WAZ"
@@ -5349,7 +5357,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:11
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr ""
+msgstr "Velden genomen voor deze Award: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:21
 msgid "DOK / SDOK"
@@ -5436,6 +5444,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet een geldige zijn uit de DXCC-ADIF-"
+"Spec-List"
 
 #: application/views/awards/dxcc/index.php:33
 #: application/views/awards/iota/index.php:34
@@ -5537,31 +5547,31 @@ msgstr "Toon DXCC-kaart"
 
 #: application/views/awards/dxcc/index.php:221
 msgid "Legend:"
-msgstr ""
+msgstr "Legenda:"
 
 #: application/views/awards/dxcc/index.php:222
 msgid "(Q)SL-Paper-Card"
-msgstr ""
+msgstr "(Q)SL-papieren-kaart"
 
 #: application/views/awards/dxcc/index.php:223
 msgid "(L)oTW"
-msgstr ""
+msgstr "(L)oTW"
 
 #: application/views/awards/dxcc/index.php:224
 msgid "(e)QSL"
-msgstr ""
+msgstr "(e)QSL"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "QR(Z)-\"confirmation\""
-msgstr ""
+msgstr "QR(Z)-\"bevestiging\""
 
 #: application/views/awards/dxcc/index.php:226
 msgid "(C)lublog"
-msgstr ""
+msgstr "(C)lublog"
 
 #: application/views/awards/dxcc/index.php:227
 msgid "(W)orked"
-msgstr ""
+msgstr "Ge(w)erkt"
 
 #: application/views/awards/dxcc/index.php:233
 msgid "DXCC Name"
@@ -5608,6 +5618,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet USA zijn), Gridsquare (Moet een "
+"van de 488 lokatorvakken bevatten van het Amerikaanse vastenland!), Band "
+"moet 6m zijn."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -5662,6 +5675,9 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet USA zijn), Gridsquare (Moet een "
+"van de 488 lokatorvakken bevatten van het Amerikaanse vastenland!),, "
+"Propagatie-Modus en SAT-Naam"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -5690,18 +5706,24 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet Duitsland zijn), Gridsquare, "
+"Propagatiemodus en SAT-Naam"
 
 #: application/views/awards/gridmaster/index.php:23
 msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet Luxemburg zijn), Gridsquare, "
+"Propagatiemodus en SAT-Naam"
 
 #: application/views/awards/gridmaster/index.php:26
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet Japan zijn), Gridsquare, "
+"Propagatie-Modus en SAT-Naam"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -5743,6 +5765,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet Zwitserland zijn) en STATE (Moet "
+"een geldige kanton afkorting bevatten!)"
 
 #: application/views/awards/helvetia/index.php:115
 msgid "Show Helvetia Map"
@@ -5812,6 +5836,8 @@ msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
+"Velden genomen voor deze Award: IOTA (ADIF: IOTA) moet een geldige IOTA-"
+"referentie bevatten"
 
 #: application/views/awards/iota/index.php:30
 msgid "Deleted IOTA"
@@ -5887,7 +5913,7 @@ msgstr "Je kunt meer informatie vinden op de website van %s."
 
 #: application/views/awards/itu/index.php:24
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "Velden genomen voor deze Award: ITU-Zone (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:26
 msgid "Awards - ITU Zones"
@@ -5928,6 +5954,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Japan) en County (Moet een geldige "
+"referentie bevatten!)"
 
 #: application/views/awards/jcc/index.php:116
 msgid "Show JCC Map"
@@ -5997,6 +6025,7 @@ msgstr ""
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Velden genomen voor deze Award: POTA_REF (moet Park-Referentie bevatten)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -6161,6 +6190,8 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"Velden genomen voor deze Award: Gridsquare en vucc_grids (ADIF: GRIDSQUARE, "
+"VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
@@ -6196,6 +6227,8 @@ msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"Velden genomen voor deze Award: SIG (moet 'WAB' zijn) en SIG_INFO (moet een "
+"geldige WAB-lokatorvak bevatten)"
 
 #: application/views/awards/wab/index.php:110
 msgid "List"
@@ -6221,6 +6254,8 @@ msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
+"Velden genomen voor deze Award: Continent (ADIF-tag 'CONT'). Moet een "
+"geldige continentafkorting bevatten!"
 
 #: application/views/awards/wac/index.php:14
 msgid "Awards - Worked All Continents (WAC)"
@@ -6264,7 +6299,7 @@ msgstr ""
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr ""
+msgstr "Velden voor deze Award: Regio, DXCC"
 
 #: application/views/awards/wae/index.php:162
 msgid "WAE Name"
@@ -6308,6 +6343,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Japan) en STATE (Moet een geldige "
+"prefectuur bevatten!)"
 
 #: application/views/awards/waja/index.php:119
 msgid "Show WAJA Map"
@@ -6370,6 +6407,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet Nederland zijn) en STATE (Moet "
+"een geldige provincie afkorting bevatten!)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
@@ -6411,6 +6450,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet een van China/318, HongKong/321, "
+"Macao/152, Taiwan/386, Pratas Eil./505 of Scarborough Rif/506 zijn) en "
+"geldige Staat (ADIF: DXCC en STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -6467,6 +6509,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
+"Velden genomen voor deze Award: DXCC (Moet een van de V.S., Alaska of Hawaii "
+"zijn) en STATE (Moet een geldige afkorting van een Amerikaanse staat "
+"bevatten!)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -6498,7 +6543,7 @@ msgstr ""
 
 #: application/views/awards/wwff/index.php:11
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr ""
+msgstr "Velden genomen voor deze Award: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:32
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -7133,9 +7178,18 @@ msgstr "Er werden geen contesten in je logboek gevonden."
 msgid "All except SAT"
 msgstr "Alles behalve SAT"
 
-#: application/views/callstats/index.php:149
+#: application/views/callstats/index.php:148
 msgid "#QSOs"
 msgstr "#QSOs"
+
+#: application/views/callstats/index.php:149
+msgid "First QSO"
+msgstr ""
+
+#: application/views/callstats/index.php:150
+#: application/views/stationsetup/stationsetup.php:129
+msgid "Last QSO"
+msgstr "Laatste QSO"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -11732,7 +11786,7 @@ msgstr "Toevoegen aan afdrukwachtrij"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "Geverifeerd QSO"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -11912,7 +11966,7 @@ msgstr "Controleer logboek"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "QSO verificatie"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
@@ -14003,6 +14057,11 @@ msgstr "Naam van de Special Interest Group van het station (bijv. GMA)."
 msgid "Special Interest Group Information"
 msgstr "Informatie over Special Interest Group"
 
+#: application/views/station_profile/edit.php:309
+#, php-format
+msgid "Trouble? Check the %swiki%s."
+msgstr "Problemen? Raadpleeg de %swiki%s."
+
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
 msgstr "Stationslogboeknaam"
@@ -14147,10 +14206,6 @@ msgstr "Onderhoud"
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Please reassign them at "
 msgstr "Wijs ze alsjeblieft opnieuw toe aan "
-
-#: application/views/stationsetup/stationsetup.php:129
-msgid "Last QSO"
-msgstr "Laatste QSO"
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"
@@ -14786,8 +14841,12 @@ msgid "Station Locations Quickswitch"
 msgstr "Snelle wissel van stationslocaties"
 
 #: application/views/user/edit.php:483
-msgid "Show the Station Locations Quickswitch in the main menu"
-msgstr "Toon de stationslocaties Quickswitch in het hoofdmenu"
+msgid ""
+"Show the Station Locations Quickswitch in the main menu. You can add "
+"locations by adding them to favourites at the station setup page."
+msgstr ""
+"Toon de locatiesnelkoppeling in het hoofdmenu. Je kunt locaties toevoegen "
+"door ze toe te voegen aan favorieten op de stationsinstellingenpagina."
 
 #: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
@@ -14935,21 +14994,26 @@ msgstr ""
 
 #: application/views/user/edit.php:713
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "Automatische OQRS verificatie"
 
 #: application/views/user/edit.php:718
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Als dit aanstaat, zal automatische OQRS verificatie plaatsvinden en zal het "
+"systeem proberen binnenkomende verzoeken automatisch met bestaande logs te "
+"matchen."
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Automatische OQRS verificatie voor directe verzoeken"
 
 #: application/views/user/edit.php:727
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"Als dit aanstaat, zal automatische OQRS verificatie voor directe verzoeken "
+"plaatsvinden."
 
 #: application/views/user/edit.php:743
 msgid "Default Values"
@@ -15842,6 +15906,18 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#~ msgid "Yay, its imported!"
+#~ msgstr "Jippie, het is geïmporteerd!"
+
+#~ msgid "Trouble? Check the"
+#~ msgstr "Problemen? Controleer de"
+
+#~ msgid "wiki"
+#~ msgstr "Wiki"
+
+#~ msgid "Show the Station Locations Quickswitch in the main menu"
+#~ msgstr "Toon de stationslocaties Quickswitch in het hoofdmenu"
 
 #~ msgid "Mark QSOs as uploaded"
 #~ msgstr "QSOs als geüpload markeren"

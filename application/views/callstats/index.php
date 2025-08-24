@@ -120,11 +120,10 @@
     }
     ?>
     <?php
-    $vucc_grids = array();
 
     if ($activators_array) {
 
-        $result = write_activators($activators_array, $bandselect, $modeselect, $satselect, $orbit, $propagationselect);
+        $result = write_activators($activators_array, $bandselect, $modeselect, $satselect, $orbit, $propagationselect, $custom_date_format);
     } else {
         echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
@@ -135,7 +134,7 @@
 
 <?php
 
-function write_activators($activators_array, $band, $mode, $sat, $orbit, $propagation)
+function write_activators($activators_array, $band, $mode, $sat, $orbit, $propagation, $custom_date_format)
 {
     if ($band == '') {
         $band = 'All';
@@ -147,16 +146,23 @@ function write_activators($activators_array, $band, $mode, $sat, $orbit, $propag
                         <td>#</td>
                         <td>' . __("Callsign") . '</td>
                         <td>' . __("#QSOs") . '</td>
+                        <td>' . __("First QSO") . '</td>
+                        <td>' . __("Last QSO") . '</td>
                         <td>' . __("Show QSOs") . '</td>
                     </tr>
                 </thead>
                 <tbody>';
 
     $activators = array();
+
     foreach ($activators_array as $line) {
         $call = $line->call;
         $count = $line->count;
-        array_push($activators, array($count, $call));
+		$timestamp = strtotime($line->first_qso);
+		$first_qso = date($custom_date_format, $timestamp);
+		$timestamp = strtotime($line->last_qso);
+		$last_qso = date($custom_date_format, $timestamp);
+        array_push($activators, array($count, $call, $first_qso, $last_qso));
     }
     arsort($activators);
     foreach ($activators as $line) {
@@ -164,6 +170,8 @@ function write_activators($activators_array, $band, $mode, $sat, $orbit, $propag
                 <td>' . $i++ . '</td>
                 <td>' . $line[1] . '</td>
                 <td>' . $line[0] . '</td>
+				<td>' . $line[2] . '</td>
+				<td>' . $line[3] . '</td>
                 <td><a href=javascript:displayCallstatsContacts("' . $line[1] . '","' . $band . '","' . $mode . '","' . $sat . '","' . $orbit . '","' . $propagation .  '")><i class="fas fa-list"></i></a></td>
 			</tr>';
     }

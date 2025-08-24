@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-20 19:04+0000\n"
-"PO-Revision-Date: 2025-08-19 17:48+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"POT-Creation-Date: 2025-08-24 15:29+0000\n"
+"PO-Revision-Date: 2025-08-23 15:21+0000\n"
+"Last-Translator: David Quental <ct1drb72@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -232,16 +232,16 @@ msgstr "Falha na importação do ADIF!"
 msgid "Station Profile not valid for User"
 msgstr "Perfil da estação não é válido para o utilizador"
 
-#: application/controllers/Adif.php:282
+#: application/controllers/Adif.php:283
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF Importado"
 
-#: application/controllers/Adif.php:293
+#: application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "Importação DCL"
 
-#: application/controllers/Adif.php:351
+#: application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "Dados DCL importados"
 
@@ -3209,35 +3209,30 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Não foram encontrados perfis de estação com credenciais do HRDlog."
 
-#: application/models/Logbook_model.php:1291
+#: application/models/Logbook_model.php:1292
 msgid "Station ID not allowed"
 msgstr "Identificação da estação não permitida"
 
-#: application/models/Logbook_model.php:1296
+#: application/models/Logbook_model.php:1297
 msgid "No Call given"
 msgstr "Nenhum indicativo fornecido"
 
-#: application/models/Logbook_model.php:1366
-#: application/models/Logbook_model.php:1540
+#: application/models/Logbook_model.php:1367
+#: application/models/Logbook_model.php:1541
 msgid "DXCC has to be Numeric"
 msgstr "DXCC tem de ser numérico"
 
-#: application/models/Logbook_model.php:3987
+#: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
-#: application/models/Logbook_model.php:3988
-#, php-format
-msgid "Check %s for hints about errors in ADIF files."
-msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
-
-#: application/models/Logbook_model.php:4000
+#: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "Contacto em"
 
-#: application/models/Logbook_model.php:4000
+#: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3245,63 +3240,63 @@ msgstr ""
 "Tentou importar um contacto sem nenhum CALL dado. Este contacto não foi "
 "importado. É inválido"
 
-#: application/models/Logbook_model.php:4299
+#: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4310
+#: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4371
+#: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4391
+#: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4412
+#: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4704
+#: application/models/Logbook_model.php:4722
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:4765
+#: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
-#: application/models/Logbook_model.php:4771
+#: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4776
+#: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
-#: application/models/Logbook_model.php:4779
+#: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
-#: application/models/Logbook_model.php:4782
+#: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
-#: application/models/Logbook_model.php:4785
+#: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4806
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "desconhecido"
 
-#: application/models/Logbook_model.php:5626
+#: application/models/Logbook_model.php:5644
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -4012,7 +4007,7 @@ msgstr "Contagem mínima"
 #: application/views/awards/wapc/index.php:168
 #: application/views/awards/was/index.php:201
 #: application/views/awards/wwff/index.php:65
-#: application/views/callstats/index.php:129
+#: application/views/callstats/index.php:128
 #: application/views/clublog/export.php:60
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
@@ -4029,7 +4024,7 @@ msgstr "Nada encontrado!"
 #: application/views/awards/sota/index.php:33
 #: application/views/awards/wwff/index.php:35
 #: application/views/cabrillo/index.php:31
-#: application/views/callstats/index.php:148
+#: application/views/callstats/index.php:147
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:166
@@ -4073,7 +4068,7 @@ msgid "Count"
 msgstr "Contagem"
 
 #: application/views/activators/index.php:101
-#: application/views/callstats/index.php:150
+#: application/views/callstats/index.php:151
 #: application/views/timeline/index.php:203
 #: application/views/timeline/index.php:238
 #: application/views/timeline/index.php:266
@@ -4552,7 +4547,7 @@ msgstr ""
 "reescrever esses dados no Wavelog."
 
 #: application/views/adif/import.php:370
-#: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Informação"
@@ -4616,27 +4611,31 @@ msgstr ""
 "de dados. Por favor, verifique o ficheiro ADIF importado. Pode usar um "
 "verificador de ficheiros ADIF online. Por exemplo:"
 
-#: application/views/adif/import_success.php:17
-msgid "Yay, its imported!"
-msgstr "Boa, foi importado!"
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr ""
 
-#: application/views/adif/import_success.php:18
+#: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "O ficheiro ADIF foi importado."
 
-#: application/views/adif/import_success.php:22
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr ""
+
+#: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "Foram inseridos duplicados!"
 
-#: application/views/adif/import_success.php:24
+#: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "Os duplicados foram ignorados."
 
-#: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "Logs de concurso importados"
 
-#: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4647,21 +4646,26 @@ msgstr ""
 "corrigir isso, mude para a aba de Importação CBR na página de Importação "
 "ADIF."
 
-#: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "Importou pelo menos 1 contacto contendo um ID de concurso."
 
-#: application/views/adif/import_success.php:34
+#: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 "Encontrámos os seguintes números de contactos para os seguintes IDs de "
 "concurso:"
 
-#: application/views/adif/import_success.php:47
+#: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "Detalhes de importação / possíveis problemas"
 
-#: application/views/adif/import_success.php:48
+#: application/views/adif/import_success.php:58
+#, php-format
+msgid "Check %s for hints about errors in ADIF files."
+msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
+
+#: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -4939,6 +4943,8 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"Campos considerados para este diploma: Modo de Propagação e Nome do SAT "
+"(ADIF: PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:152
@@ -5001,6 +5007,9 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"Campos considerados para este diploma: Estado (ADIF: STATE), Condado da "
+"Estação (ADIF: CNTY), DXCC (Deve ser um dos 291 (E.U.A.), 6 (ALASCA) ou 110 "
+"(HAWAI))"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -5103,7 +5112,7 @@ msgstr "Podes encontrar todas as informações e regras no site do N4BAA: %s"
 
 #: application/views/awards/cq/index.php:24
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
-msgstr ""
+msgstr "Campos considerados para este diploma: Zona CQ (ADIF: CQZ)"
 
 #: application/views/awards/cq/index.php:26
 msgid "Awards - CQ WAZ"
@@ -5365,7 +5374,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:11
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr ""
+msgstr "Campos considerados para este diploma: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:21
 msgid "DOK / SDOK"
@@ -5452,6 +5461,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Precisa de ser um válido da "
+"lista DXCC-ADIF-Spec-List"
 
 #: application/views/awards/dxcc/index.php:33
 #: application/views/awards/iota/index.php:34
@@ -5624,6 +5635,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
+"Campos considerados para este diploma: DXCC (Deve ser EUA), Gridsquare (Deve "
+"conter uma grelha de uma das 488 grelhas do continente!), Banda deve ser 6M."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -5678,6 +5691,9 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Deve ser EUA), Gridsquare (Deve "
+"conter uma grelha de uma dos 488 locators do continente!), Modo de "
+"Propagação e Nome do SAT"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -5706,18 +5722,24 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Deve ser Alemanha), Locator, "
+"Modo de Propagação e Nome SAT"
 
 #: application/views/awards/gridmaster/index.php:23
 msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Deve ser Luxemburgo), Locator, "
+"Modo de Propagação e Nome do SAT"
 
 #: application/views/awards/gridmaster/index.php:26
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Campos considerados para este diploma: DXCC (deve ser Japão), Locator, Modo "
+"de Propagação e Nome do SAT"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -5759,6 +5781,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Deve ser Suíça) e ESTADO (Deve "
+"conter uma abreviatura de estado válida!)"
 
 #: application/views/awards/helvetia/index.php:115
 msgid "Show Helvetia Map"
@@ -5827,6 +5851,8 @@ msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
+"Campos considerados para este diploma: IOTA (ADIF: IOTA) deve conter uma "
+"Referência IOTA válida"
 
 #: application/views/awards/iota/index.php:30
 msgid "Deleted IOTA"
@@ -5902,7 +5928,7 @@ msgstr "Para mais informações, consultar o site Web da %s."
 
 #: application/views/awards/itu/index.php:24
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "Campos considerados para este diploma: Zona ITU (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:26
 msgid "Awards - ITU Zones"
@@ -5943,6 +5969,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Japão) e Condado (Deve conter "
+"uma referência válida!)"
 
 #: application/views/awards/jcc/index.php:116
 msgid "Show JCC Map"
@@ -6012,6 +6040,8 @@ msgstr ""
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Campos considerados para este diploma: POTA_REF (deve conter Referência do "
+"Parque)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -6177,6 +6207,8 @@ msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"Campos considerados para este diploma: Locator e vucc_grids (ADIF: "
+"GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
@@ -6211,6 +6243,8 @@ msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"Campos considerados para este diploma: SIG (Tem de ser 'WAB') e SIG_INFO "
+"(deve conter uma grelha WAB válida)"
 
 #: application/views/awards/wab/index.php:110
 msgid "List"
@@ -6236,6 +6270,8 @@ msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
+"Campos considerados para este diploma: Continente (tag ADIF 'CONT'). Deve "
+"conter uma abreviatura de continente válida!"
 
 #: application/views/awards/wac/index.php:14
 msgid "Awards - Worked All Continents (WAC)"
@@ -6279,7 +6315,7 @@ msgstr ""
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr ""
+msgstr "Campos considerados para este diploma: Região, DXCC"
 
 #: application/views/awards/wae/index.php:162
 msgid "WAE Name"
@@ -6323,6 +6359,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Japão) e ESTADO (Deve conter "
+"uma prefeitura válida!)"
 
 #: application/views/awards/waja/index.php:119
 msgid "Show WAJA Map"
@@ -6388,6 +6426,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Deve ser Países Baixos) e "
+"ESTADO (Deve conter uma abreviatura de estado válida!)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
@@ -6429,6 +6469,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Deve ser um dos seguintes: "
+"China/318, HongKong/321, Macau/152, Taiwan/386, Ilhas Pratas/505 ou Recife "
+"Scarborough/506) e Estado válido (ADIF: DXCC e STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -6486,6 +6529,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
+"Campos considerados para este diploma: DXCC (Deve ser um dos E.U.A., Alasca "
+"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos E.U."
+"A.!)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -6517,7 +6563,7 @@ msgstr ""
 
 #: application/views/awards/wwff/index.php:11
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr ""
+msgstr "Campos considerados para este diploma: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:32
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -7156,9 +7202,18 @@ msgstr "Não foram encontrados concursos no seu log."
 msgid "All except SAT"
 msgstr "Todos exceto satélite"
 
-#: application/views/callstats/index.php:149
+#: application/views/callstats/index.php:148
 msgid "#QSOs"
 msgstr "#QSOs"
+
+#: application/views/callstats/index.php:149
+msgid "First QSO"
+msgstr ""
+
+#: application/views/callstats/index.php:150
+#: application/views/stationsetup/stationsetup.php:129
+msgid "Last QSO"
+msgstr "Último QSO"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -14043,6 +14098,11 @@ msgstr "Nome do Grupo de Interesse Especial da Estação (por exemplo, GMA).."
 msgid "Special Interest Group Information"
 msgstr "Informação do Grupo de Interesse Especial"
 
+#: application/views/station_profile/edit.php:309
+#, php-format
+msgid "Trouble? Check the %swiki%s."
+msgstr "Problemas? Verifique a %swiki%s."
+
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
 msgstr "Nome do logbook da estação"
@@ -14188,10 +14248,6 @@ msgstr "Manutenção"
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Please reassign them at "
 msgstr "Por favor, reatribua-os em "
-
-#: application/views/stationsetup/stationsetup.php:129
-msgid "Last QSO"
-msgstr "Último QSO"
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"
@@ -14825,8 +14881,13 @@ msgid "Station Locations Quickswitch"
 msgstr "Mudança rápida de localizações de estações"
 
 #: application/views/user/edit.php:483
-msgid "Show the Station Locations Quickswitch in the main menu"
-msgstr "Mostrar a troca rápida de localizações de estações no menu principal"
+msgid ""
+"Show the Station Locations Quickswitch in the main menu. You can add "
+"locations by adding them to favourites at the station setup page."
+msgstr ""
+"Mostra a troca rápida de localizações de estações no menu principal. Pode "
+"adicionar localizações ao adicioná-las aos favoritos na página de "
+"configuração da estação."
 
 #: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
@@ -15880,6 +15941,13 @@ msgstr "Submeter pedido"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recebido"
+
+#~ msgid "Yay, its imported!"
+#~ msgstr "Boa, foi importado!"
+
+#~ msgid "Show the Station Locations Quickswitch in the main menu"
+#~ msgstr ""
+#~ "Mostrar a troca rápida de localizações de estações no menu principal"
 
 #~ msgid "ADIF File"
 #~ msgstr "Ficheiro ADIF"

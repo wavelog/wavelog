@@ -15,6 +15,48 @@ class Modes extends CI_Model {
 		return $this->db->get('adif_modes');
 	}
 
+	function get_modes_from_qrgmode($qrgmode = '', $translate_from_ui = false) {
+		// Clean ID
+		$bindings=[];
+		if ($translate_from_ui) {
+			if ($qrgmode == 'digi') {
+				$bindings[] = 'DATA';
+			} elseif ($qrgmode == 'cw') {
+				$bindings[] = 'CW';
+			} elseif ($qrgmode == 'phone') {
+				$bindings[] = 'SSB';
+			} else {
+				$bindings[]='';
+			}
+		} else {
+			$bindings[]=$this->security->xss_clean($qrgmode);
+		}
+
+		$query = $this->db->query('select distinct mode from adif_modes where qrgmode = ?', $bindings);
+		if ($query->num_rows() > 0) {
+			$modes = [];
+			foreach ($query->result() as $row) {
+				$modes[] = "'".$this->security->xss_clean($row->mode)."'";
+			}
+			return '('.implode(',', $modes).')';
+		} else {
+			return "('')";
+		}
+	}
+
+	function get_qrgmode_from_mode($mode = '') {
+		// Clean ID
+		$bindings=[];
+		$bindings[] = ($this->security->xss_clean($mode) ?? '');
+
+		$query = $this->db->query('select qrgmode from adif_modes where mode = ?', $bindings);
+		if ($query->num_rows() > 0) {
+			return $query->row()->QRGMODE;
+		} else {
+			return '';
+		}
+	}
+
 	function mode($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
