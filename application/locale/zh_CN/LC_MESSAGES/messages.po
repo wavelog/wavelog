@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-24 13:27+0000\n"
+"POT-Creation-Date: 2025-08-24 15:29+0000\n"
 "PO-Revision-Date: 2025-08-22 09:26+0000\n"
 "Last-Translator: Tao Xu <angelxutao@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -3939,7 +3939,7 @@ msgstr "最低数量"
 #: application/views/awards/wapc/index.php:168
 #: application/views/awards/was/index.php:201
 #: application/views/awards/wwff/index.php:65
-#: application/views/callstats/index.php:129
+#: application/views/callstats/index.php:128
 #: application/views/clublog/export.php:60
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
@@ -3956,7 +3956,7 @@ msgstr "未找到！"
 #: application/views/awards/sota/index.php:33
 #: application/views/awards/wwff/index.php:35
 #: application/views/cabrillo/index.php:31
-#: application/views/callstats/index.php:148
+#: application/views/callstats/index.php:147
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:166
@@ -4000,7 +4000,7 @@ msgid "Count"
 msgstr "数量"
 
 #: application/views/activators/index.php:101
-#: application/views/callstats/index.php:150
+#: application/views/callstats/index.php:151
 #: application/views/timeline/index.php:203
 #: application/views/timeline/index.php:238
 #: application/views/timeline/index.php:266
@@ -6940,9 +6940,18 @@ msgstr "在日志中未发现任何竞赛。"
 msgid "All except SAT"
 msgstr "除卫星以外"
 
-#: application/views/callstats/index.php:149
+#: application/views/callstats/index.php:148
 msgid "#QSOs"
 msgstr "通联数量"
+
+#: application/views/callstats/index.php:149
+msgid "First QSO"
+msgstr ""
+
+#: application/views/callstats/index.php:150
+#: application/views/stationsetup/stationsetup.php:129
+msgid "Last QSO"
+msgstr "最近通联"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -13693,10 +13702,6 @@ msgstr "维护"
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Please reassign them at "
 msgstr "重新分配 "
-
-#: application/views/stationsetup/stationsetup.php:129
-msgid "Last QSO"
-msgstr "最近通联"
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"

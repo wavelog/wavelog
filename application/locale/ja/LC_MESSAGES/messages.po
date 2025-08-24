@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-24 13:27+0000\n"
+"POT-Creation-Date: 2025-08-24 15:29+0000\n"
 "PO-Revision-Date: 2025-08-24 06:41+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3980,7 +3980,7 @@ msgstr "最小数"
 #: application/views/awards/wapc/index.php:168
 #: application/views/awards/was/index.php:201
 #: application/views/awards/wwff/index.php:65
-#: application/views/callstats/index.php:129
+#: application/views/callstats/index.php:128
 #: application/views/clublog/export.php:60
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
@@ -3997,7 +3997,7 @@ msgstr "何も見つかりません!"
 #: application/views/awards/sota/index.php:33
 #: application/views/awards/wwff/index.php:35
 #: application/views/cabrillo/index.php:31
-#: application/views/callstats/index.php:148
+#: application/views/callstats/index.php:147
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:166
@@ -4041,7 +4041,7 @@ msgid "Count"
 msgstr "カウント"
 
 #: application/views/activators/index.php:101
-#: application/views/callstats/index.php:150
+#: application/views/callstats/index.php:151
 #: application/views/timeline/index.php:203
 #: application/views/timeline/index.php:238
 #: application/views/timeline/index.php:266
@@ -7114,9 +7114,18 @@ msgstr "ログにコンテストが見つかりませんでした。"
 msgid "All except SAT"
 msgstr "SATを除くすべて"
 
-#: application/views/callstats/index.php:149
+#: application/views/callstats/index.php:148
 msgid "#QSOs"
 msgstr "#QSO"
+
+#: application/views/callstats/index.php:149
+msgid "First QSO"
+msgstr ""
+
+#: application/views/callstats/index.php:150
+#: application/views/stationsetup/stationsetup.php:129
+msgid "Last QSO"
+msgstr "最後のQSO"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -14077,10 +14086,6 @@ msgstr "メンテナンス"
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Please reassign them at "
 msgstr "再割り当てしてください "
-
-#: application/views/stationsetup/stationsetup.php:129
-msgid "Last QSO"
-msgstr "最後のQSO"
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"
