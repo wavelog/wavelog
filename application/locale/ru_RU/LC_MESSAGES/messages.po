@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-23 11:42+0000\n"
+"POT-Creation-Date: 2025-08-24 13:27+0000\n"
 "PO-Revision-Date: 2025-08-19 17:14+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -235,16 +235,16 @@ msgstr "Импорт ADIF не удался!"
 msgid "Station Profile not valid for User"
 msgstr "Профиль QTH не соответствует пользователю"
 
-#: application/controllers/Adif.php:282
+#: application/controllers/Adif.php:283
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF импортирован"
 
-#: application/controllers/Adif.php:293
+#: application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "Импорт DCL"
 
-#: application/controllers/Adif.php:351
+#: application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "Данные DCL импортированы"
 
@@ -3214,21 +3214,16 @@ msgstr "Не указан позывной"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC должен быть цифровым"
 
-#: application/models/Logbook_model.php:4004
+#: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:4005
-#, php-format
-msgid "Check %s for hints about errors in ADIF files."
-msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
-
-#: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "начало QSO"
 
-#: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3236,63 +3231,63 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
-#: application/models/Logbook_model.php:4316
+#: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4327
+#: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4408
+#: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4429
+#: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4721
+#: application/models/Logbook_model.php:4722
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:4782
+#: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4793
+#: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:4796
+#: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:4799
+#: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:4802
+#: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4805
+#: application/models/Logbook_model.php:4806
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5643
+#: application/models/Logbook_model.php:5644
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -4542,7 +4537,7 @@ msgstr ""
 "экспортированный из этого ПО, чтобы переписать эти данные в Wavelog."
 
 #: application/views/adif/import.php:370
-#: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Информация"
@@ -4607,27 +4602,31 @@ msgstr ""
 "базу данных. Пожалуйста, проверьте импортированный файл ADIF. Вы можете "
 "использовать онлайн-проверку файлов ADIF, к примеру:"
 
-#: application/views/adif/import_success.php:17
-msgid "Yay, its imported!"
-msgstr "Готово!"
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr ""
 
-#: application/views/adif/import_success.php:18
+#: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "ADIF файл импортирован."
 
-#: application/views/adif/import_success.php:22
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr ""
+
+#: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "Дубликаты добавлены!"
 
-#: application/views/adif/import_success.php:24
+#: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "Дубликаты игнорированы."
 
-#: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "Журналы контестов импортированы"
 
-#: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4638,20 +4637,25 @@ msgstr ""
 "этого программного обеспечения. Если хотите это исправить, переключитесь на "
 "вкладку CBR Import на странице импорта ADIF."
 
-#: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "Вы импортировали, как минимум, 1 QSO с идентификатором контеста."
 
-#: application/views/adif/import_success.php:34
+#: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 "Мы нашли следующие количества QSO для следующих идентификаторов контестов:"
 
-#: application/views/adif/import_success.php:47
+#: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "Детали импорта / возможные проблемы"
 
-#: application/views/adif/import_success.php:48
+#: application/views/adif/import_success.php:58
+#, php-format
+msgid "Check %s for hints about errors in ADIF files."
+msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
+
+#: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -15842,6 +15846,9 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#~ msgid "Yay, its imported!"
+#~ msgstr "Готово!"
 
 #~ msgid "Show the Station Locations Quickswitch in the main menu"
 #~ msgstr "Показать переключатель профилей QTH в главном меню"
