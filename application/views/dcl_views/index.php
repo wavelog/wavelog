@@ -33,13 +33,19 @@
 					<tbody>
 
 						<?php foreach ($dcl_keys as $row) { 
+							usort($row->Callsigns, fn($a, $b) => $a->startDate <=> $b->startDate);
 							foreach ($row->Callsigns as $dcl_call) { 
+								if (($dcl_call->endDate ?? '') == '') {
+									$dcl_call->endDate='-------';
+								} else {
+									$dcl_call->endDate=date($date_format,strtotime($dcl_call->endDate));
+								}
 						?>
 							<tr>
 					      		<td><?php echo $dcl_call->callsign; ?></td>
 								<?php
 									$vf = date($date_format,strtotime($dcl_call->startDate));
-									$vt = date($date_format,strtotime($dcl_call->endDate ?? '2099-12-31'));
+									$vt = $dcl_call->endDate;
 								?>
 								<td><?php echo $vf; ?></td>
 								<td><?php echo $vt; ?></td>

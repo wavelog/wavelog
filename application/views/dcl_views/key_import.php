@@ -24,10 +24,16 @@
 						<th><?= __("Validity"); ?></th>
 						</tr>
 				<?php 
+					usort($dcl_info->DOKs, fn($a, $b) => $a->startDate <=> $b->startDate);
 					foreach ($dcl_info->DOKs as $key => $value) {
+						if (($value->endDate ?? '') == '') {
+							$value->endDate='-------';
+						} else {
+							$value->endDate=date($date_format,strtotime($value->endDate));
+						}
 						echo "<tr>";
 						echo "<td>".$value->dok."</td>";
-						echo "<td>".date($date_format,strtotime($value->startDate)).' - '.(date($date_format,strtotime($value->endDate ?? '20991231')))."</td>";
+						echo "<td>".date($date_format,strtotime($value->startDate)).' - '.$value->endDate."</td>";
 						echo "</tr>";
 					}
 				?>
@@ -40,10 +46,16 @@
 						<th><?= __("Validity"); ?></th>
 						</tr>
 				<?php
+					usort($dcl_info->Callsigns, fn($a, $b) => $a->startDate <=> $b->startDate);
 					foreach ($dcl_info->Callsigns as $key => $value) {
+						if (($value->endDate ?? '') == '') {
+							$value->endDate='-------';
+						} else {
+							$value->endDate=date($date_format,strtotime($value->endDate));
+						}
 						echo "<tr>";
 						echo "<td>".$value->callsign."</td>";
-						echo "<td>".date($date_format,strtotime($value->startDate)).' - '.(date($date_format,strtotime($value->endDate ?? '20991231')))."</td>";
+						echo "<td>".date($date_format,strtotime($value->startDate)).' - '.$value->endDate."</td>";
 						echo "</tr>";
 					}
 					echo "</table>";
