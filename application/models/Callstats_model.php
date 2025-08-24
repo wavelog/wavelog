@@ -25,7 +25,9 @@ class Callstats_model extends CI_Model {
 
 		$sql = "select
 			`col_call` as `call`,
-			COUNT(*) as `count`
+			COUNT(*) as `count`,
+			min(col_time_on) as first_qso,
+			max(col_time_on) as last_qso
 				from " . $this->config->item('table_name') . "
 				left join satellite on ".$this->config->item('table_name').".COL_SAT_NAME = satellite.name
 				where station_id in (" . $location_list . ")";
