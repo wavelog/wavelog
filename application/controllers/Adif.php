@@ -220,11 +220,11 @@ class adif extends CI_Controller {
 					$fdata['upload_data']='';	// free memory
 
 					$this->adif_parser->initialize();
-					$custom_errors = "";
-					$alladif=[];
+					$custom_errors['errormessage'] = "";
+					$alladif = [];
 					$contest_qso_infos = [];
 					while($record = $this->adif_parser->get_record()) {
-						
+
 						//overwrite the contest id if user chose a contest in UI
 						if ($contest != '') {
 							$record['contest_id'] = $contest;
@@ -250,7 +250,7 @@ class adif extends CI_Controller {
 						if(count($record) == 0) {
 							break;
 						};
-						array_push($alladif,$record);
+						array_push($alladif, $record);
 					};
 					$record='';	// free memory
 					try {
@@ -271,11 +271,12 @@ class adif extends CI_Controller {
 					return;
 				}
 			} else {
-				$custom_errors=__("Station Profile not valid for User");
+				$custom_errors['errormessage'] = __("Station Profile not valid for User");
 			}
 
 			log_message("Error","ADIF End");
-			$data['adif_errors'] = $custom_errors;
+			$data['adif_errors'] = $custom_errors['errormessage'];
+			$data['qsocount'] = $custom_errors['qsocount'] ?? 0;
 			$data['skip_dupes'] = $this->input->post('skipDuplicate');
 			$data['imported_contests'] = $contest_qso_infos;
 
