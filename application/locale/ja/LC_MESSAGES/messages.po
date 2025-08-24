@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-24 13:27+0000\n"
-"PO-Revision-Date: 2025-08-22 09:26+0000\n"
+"POT-Creation-Date: 2025-08-22 07:13+0000\n"
+"PO-Revision-Date: 2025-08-24 06:41+0000\n"
 "Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
@@ -229,16 +229,17 @@ msgstr "ADIF インポートに失敗しました!"
 msgid "Station Profile not valid for User"
 msgstr "ユーザーに対して有効なステーションプロファイルではありません"
 
-#: application/controllers/Adif.php:283
+#: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
+#: application/controllers/Adif.php:283
 msgid "ADIF Imported"
 msgstr "ADIFインポート"
 
-#: application/controllers/Adif.php:294
+#: application/controllers/Adif.php:293 application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "DCLインポート"
 
-#: application/controllers/Adif.php:352
+#: application/controllers/Adif.php:351 application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "DCLデータのインポート"
 
@@ -3195,6 +3196,7 @@ msgstr "コールなし"
 msgid "DXCC has to be Numeric"
 msgstr "DXCCは数値でなければなりません"
 
+#: application/models/Logbook_model.php:4004
 #: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3202,10 +3204,19 @@ msgstr ""
 "%s との QSO を %s でインポート中に、誤ったステーションコールサイン %s が検出"
 "されました: スキップされました"
 
+#: application/models/Logbook_model.php:4005
+#: application/views/adif/import_success.php:58
+#, php-format
+msgid "Check %s for hints about errors in ADIF files."
+msgstr ""
+"ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
+
+#: application/models/Logbook_model.php:4017
 #: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "QSOオン"
 
+#: application/models/Logbook_model.php:4017
 #: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3214,63 +3225,76 @@ msgstr ""
 "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
 "されませんでした。無効です"
 
+#: application/models/Logbook_model.php:4316
 #: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
+#: application/models/Logbook_model.php:4327
 #: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
+#: application/models/Logbook_model.php:4388
 #: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
+#: application/models/Logbook_model.php:4408
 #: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate が無効です (YYYYMMDD)"
 
+#: application/models/Logbook_model.php:4429
 #: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4722
+#: application/models/Logbook_model.php:4721
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4722
 msgid "Duplicate for"
 msgstr "複製用"
 
+#: application/models/Logbook_model.php:4782
 #: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
+#: application/models/Logbook_model.php:4788
 #: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
+#: application/models/Logbook_model.php:4793
 #: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
+#: application/models/Logbook_model.php:4796
 #: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
+#: application/models/Logbook_model.php:4799
 #: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "確認中"
 
+#: application/models/Logbook_model.php:4802
 #: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4805
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4806
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:5644
+#: application/models/Logbook_model.php:5643
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3281,6 +3305,7 @@ msgstr "不明"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5644
 msgid "Bearing"
 msgstr "ベアリング"
 
@@ -4515,8 +4540,9 @@ msgstr ""
 "きます。"
 
 #: application/views/adif/import.php:370
-#: application/views/adif/import_success.php:40
+#: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import_success.php:40
 msgid "Information"
 msgstr "情報"
 
@@ -4576,30 +4602,31 @@ msgstr ""
 "インポートしたADIFファイルを確認してください。オンラインのADIFファイルチェッ"
 "カーをご利用いただけます。例："
 
-#: application/views/adif/import_success.php:22
-msgid "Yay, it's imported!"
-msgstr ""
+#: application/views/adif/import_success.php:17
+msgid "Yay, its imported!"
+msgstr "やった、インポートされました！"
 
+#: application/views/adif/import_success.php:18
 #: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "ADIF ファイルがインポートされました。"
 
-#: application/views/adif/import_success.php:25
-msgid "Number of QSOs imported:"
-msgstr ""
-
+#: application/views/adif/import_success.php:22
 #: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "複製が挿入されました！"
 
+#: application/views/adif/import_success.php:24
 #: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "重複データはスキップされました。"
 
+#: application/views/adif/import_success.php:31
 #: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "コンテストログをインポートしました"
 
+#: application/views/adif/import_success.php:33
 #: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
@@ -4610,24 +4637,22 @@ msgstr ""
 "正しくインポートされない場合があります。これを修正するには、ADIFインポート"
 "ページのCBRインポートタブに切り替えてください。"
 
+#: application/views/adif/import_success.php:33
 #: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "コンテスト ID を含む QSO を少なくとも 1 つインポートしました。"
 
+#: application/views/adif/import_success.php:34
 #: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr "次のコンテスト ID に対して、次の数の QSO が見つかりました。"
 
+#: application/views/adif/import_success.php:47
 #: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "インポートの詳細 / 考えられる問題"
 
-#: application/views/adif/import_success.php:58
-#, php-format
-msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
-"ADIF ファイルのエラーに関するヒントを確認するには、%s を参照してください。"
-
+#: application/views/adif/import_success.php:48
 #: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
@@ -8028,8 +8053,8 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
-"現在のステーション位置がログブックとリンクされていません。リンクするに"
-"は、%shere%s をクリックしてください。"
+"現在のステーション位置がログブックとリンクされていません。リンクするには、"
+"%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:157
 #, php-format
@@ -11748,273 +11773,284 @@ msgstr "ログにありませんか?"
 #: application/views/oqrs/showrequests.php:50
 #: application/views/oqrs/status_info.php:10
 msgid "Open request"
-msgstr ""
+msgstr "オープンリクエスト"
 
 #: application/views/oqrs/showrequests.php:3
 #: application/views/oqrs/showrequests.php:51
 #: application/views/oqrs/status_info.php:14
 msgid "Not in log request"
-msgstr ""
+msgstr "ログリクエストに含まれていません"
 
 #: application/views/oqrs/showrequests.php:4
 msgid "Request done"
-msgstr ""
+msgstr "リクエスト完了"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "保留中のリクエスト"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "リクエストは拒否されました"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "リクエスト中にエラーが発生しました"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
-msgstr ""
+msgstr "警告! マークされた OQRS リクエストを削除してもよろしいですか?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
-msgstr ""
+msgstr "警告! マークされた OQRS 要求を拒否してもよろしいですか?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
-msgstr ""
+msgstr "警告! マークされた OQRS リクエストをマークしてもよろしいですか?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
-msgstr ""
+msgstr "警告! マークされた OQRS リクエストをキューに追加してもよろしいですか?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "OQRSステータス情報"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr ""
+msgstr "警告! QSO マッチを削除してもよろしいですか?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
 msgid "Request callsign"
-msgstr ""
+msgstr "コールサインをリクエスト"
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
-msgstr ""
+msgstr "OQRSステータス"
 
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "完了/送信済み"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "保留中"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "拒否"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
-msgstr ""
+msgstr "選択した"
 
 #: application/views/oqrs/showrequests.php:73
 msgid "Mark as done"
-msgstr ""
+msgstr "完了としてマーク"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "拒否する"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
-msgstr ""
+msgstr "リクエスト時間"
 
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
 msgid "QSO Date"
-msgstr ""
+msgstr "QSO日付"
 
 #: application/views/oqrs/showrequests.php:87
 msgid "QSO Time"
-msgstr ""
+msgstr "QSO時間"
 
 #: application/views/oqrs/showrequests.php:94
 msgid "QSL route"
-msgstr ""
+msgstr "QSLルート"
 
 #: application/views/oqrs/showrequests.php:95
 msgid "Check log"
-msgstr ""
+msgstr "ログを確認する"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "QSOマッチ"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "リクエストは現在オープン状態であり、お客様による確認が必要です。"
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"リクエストはログに記録されていないため、ログを確認してリクエストを処理する必"
+"要があります。"
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "リクエストが処理され、QSL が送信されました。"
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "リクエストはまだ処理中です。"
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "リクエストは拒否され、処理されません。"
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Searching for"
-msgstr ""
+msgstr "検索中"
 
 #: application/views/qrbcalc/index.php:3
 msgid "Locator 1"
-msgstr ""
+msgstr "ロケーター1"
 
 #: application/views/qrbcalc/index.php:10
 msgid "Locator 2"
-msgstr ""
+msgstr "ロケーター2"
 
 #: application/views/qrbcalc/index.php:20
 msgid "Calculate"
-msgstr ""
+msgstr "計算する"
 
 #: application/views/qrz/export.php:27
 msgid "The next automatic Upload to QRZ will happen at: "
-msgstr ""
+msgstr "QRZ への次回の自動アップロードは次の時間に行われます: "
 
 #: application/views/qrz/export.php:28
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a QRZ "
 "logbook."
 msgstr ""
+"ここでは、これまで QRZ ログブックにアップロードされていないすべての QSO を確"
+"認できます。"
 
 #: application/views/qrz/export.php:29
 msgid ""
 "You need to set a QRZ Logbook API key in your station profile. Only station "
 "profiles with an API Key set are displayed."
 msgstr ""
+"ステーションプロフィールにQRZログブックAPIキーを設定する必要があります。API"
+"キーが設定されているステーションプロフィールのみが表示されます。"
 
 #: application/views/qrz/export.php:74
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
-msgstr ""
+msgstr "QRZ-QSL からの次回の自動ダウンロードは次の時刻に行われます: "
 
 #: application/views/qrz/export.php:83
 msgid "Download from QRZ Logbook"
-msgstr ""
+msgstr "QRZログブックからダウンロード"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
-msgstr ""
+msgstr "QSOをQRZログブックにエクスポートしてマークする"
 
 #: application/views/qrz/mark_qrz.php:16
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr ""
+msgstr "QSO は QRZ ログブックにエクスポートされたものとしてマークされます。"
 
 #: application/views/qslcard/confirmationresult.php:16
 msgid "QSO date"
-msgstr ""
+msgstr "QSO 日付"
 
 #: application/views/qslcard/confirmationresult.php:20
 msgid "Confirmation date"
-msgstr ""
+msgstr "確認日"
 
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
 msgid "Type"
-msgstr ""
+msgstr "タイプ"
 
 #: application/views/qslcard/confirmationresult.php:54
 msgid "No confirmations found."
-msgstr ""
+msgstr "確認が見つかりません。"
 
 #: application/views/qslcard/confirmations.php:6
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
 msgstr ""
+"表には最大1000行が表示されます。これはパフォーマンス上の理由によるものです。"
 
 #: application/views/qslcard/confirmations.php:11
 msgid "Confirmation type"
-msgstr ""
+msgstr "確認タイプ"
 
 #: application/views/qslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
-msgstr ""
+msgstr "あなたはディスク容量の%sをQSLカード資産の保存に使用しています"
 
 #: application/views/qslcard/index.php:17
 msgid "List View"
-msgstr ""
+msgstr "リストビュー"
 
 #: application/views/qslcard/index.php:18
 msgid "Gallery View"
-msgstr ""
+msgstr "ギャラリービュー"
 
 #: application/views/qslcard/index.php:78
 #: application/views/qslcard/index.php:126
 msgid "Add Qsos"
-msgstr ""
+msgstr "QSOSを追加"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
-msgstr ""
+msgstr "QSLに追加"
 
 #: application/views/qslmanagement/index.php:13
 msgid "Incoming QSL Cards"
-msgstr ""
+msgstr "受信QSLカード"
 
 #: application/views/qslmanagement/index.php:25
 msgid "Report"
-msgstr ""
+msgstr "報告"
 
 #: application/views/qslmanagement/index.php:26
 msgid "Option"
-msgstr ""
+msgstr "オプション"
 
 #: application/views/qslmanagement/index.php:46
 msgid "Outgoing QSL Cards"
-msgstr ""
+msgstr "送信QSLカード"
 
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
-msgstr ""
+msgstr "印刷用にリクエストされたQSLをエクスポートする"
 
 #: application/views/qslprint/index.php:29
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
+"ここでは、要求された QSL を印刷用に CSV または ADIF ファイルとしてエクスポー"
+"トし、必要に応じて送信済みとしてマークすることができます。"
 
 #: application/views/qslprint/index.php:31
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
 msgstr ""
+"リクエストされた QSL とは、「QSL 送信」フィールドに「リクエスト済み」または"
+"「キューに登録済み」の値を持つ QSO のことです。"
 
 #: application/views/qslprint/index.php:32
 #: application/views/qslprint/qslprint.php:32
 msgid "Previous QSL"
-msgstr ""
+msgstr "以前のQSL"
 
 #: application/views/qslprint/index.php:32
 #, php-format
@@ -12022,170 +12058,172 @@ msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
 msgstr ""
+"列%sは、同じバンドとモードで同じ局に過去に送信されたQSLの数を示しています。"
 
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
 msgid "Send Method"
-msgstr ""
+msgstr "送信方法"
 
 #: application/views/qslprint/qslprint.php:33
 msgid "Mark as sent"
-msgstr ""
+msgstr "送信済みとしてマーク"
 
 #: application/views/qslprint/qslprint.php:34
 msgid "Remove"
-msgstr ""
+msgstr "取り除く"
 
 #: application/views/qslprint/qslprint.php:35
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
-msgstr ""
+msgstr "QSOリスト"
 
 #: application/views/qslprint/qslprint.php:71
 msgid "Mark selected QSOs as sent"
-msgstr ""
+msgstr "選択したQSOを送信済みとしてマークする"
 
 #: application/views/qslprint/qslprint.php:72
 msgid "Remove selected QSOs from the queue"
-msgstr ""
+msgstr "選択したQSOをキューから削除する"
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export selected QSOs to ADIF-file"
-msgstr ""
+msgstr "選択したQSOをADIFファイルにエクスポートする"
 
 #: application/views/qslprint/qslprint.php:75
 msgid "Export CSV-file"
-msgstr ""
+msgstr "CSVファイルのエクスポート"
 
 #: application/views/qslprint/qslprint.php:75
 msgid "Export requested QSLs to CSV-file"
-msgstr ""
+msgstr "リクエストされたQSLをCSVファイルにエクスポートする"
 
 #: application/views/qslprint/qslprint.php:77
 msgid "Export ADIF"
-msgstr ""
+msgstr "ADIFをエクスポート"
 
 #: application/views/qslprint/qslprint.php:77
 msgid "Export requested QSLs to ADIF-file"
-msgstr ""
+msgstr "リクエストされたQSLをADIFファイルにエクスポートする"
 
 #: application/views/qslprint/qslprint.php:79
 msgid "Mark QSLs as printed"
-msgstr ""
+msgstr "QSLを印刷どおりにマークする"
 
 #: application/views/qslprint/qslprint.php:79
 msgid "Mark requested QSLs as sent"
-msgstr ""
+msgstr "リクエストされたQSLを送信済みとしてマークする"
 
 #: application/views/qslprint/qslprint.php:83
 msgid "No QSLs to print were found!"
-msgstr ""
+msgstr "印刷する QSL が見つかりません!"
 
 #: application/views/qslprint/qsolist.php:207
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
+"追加のQSOは見つかりませんでした。おそらく既にキューに入っていると思われます。"
 
 #: application/views/qso/award_tabs.php:2
 msgid "Showing summary for DXCC"
-msgstr ""
+msgstr "DXCCの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:3
 msgid "Showing summary for US State"
-msgstr ""
+msgstr "米国の州の概要を表示しています"
 
 #: application/views/qso/award_tabs.php:4
 msgid "Showing summary for CQ zone"
-msgstr ""
+msgstr "CQゾーンの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:5
 msgid "Showing summary for WWFF"
-msgstr ""
+msgstr "WWFFの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:6
 msgid "Showing summary for POTA"
-msgstr ""
+msgstr "POTAの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:7
 msgid "Showing summary for SOTA"
-msgstr ""
+msgstr "SOTAの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:8
 msgid "Showing summary for IOTA"
-msgstr ""
+msgstr "IOTAの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for DOK"
-msgstr ""
+msgstr "DOKの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for satellite QSOs with"
-msgstr ""
+msgstr "衛星QSOの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:11
 msgid "Showing summary for continent"
-msgstr ""
+msgstr "大陸の概要を表示しています"
 
 #: application/views/qso/award_tabs.php:12
 msgid "Showing summary for gridsquare"
-msgstr ""
+msgstr "gridsquareの概要を表示しています"
 
 #: application/views/qso/award_tabs.php:13
 msgid "State input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、状態入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:14
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、SOTA 入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:15
 msgid "POTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、POTA 入力を入力する必要があります。!"
 
 #: application/views/qso/award_tabs.php:16
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、IOTA 入力を入力する必要があります。!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "DOK input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、DOK 入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:18
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、WWFF 入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Propagation mode needs to be 'SAT' to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、伝播モードを「SAT」にする必要があります!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
+msgstr "概要を表示するには、Gridsquare 入力を入力する必要があります!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
-msgstr ""
+msgstr "概要は、最初に入力された POTA についてのみ表示されます。"
 
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
-msgstr ""
+msgstr "概要は、最初に入力したグリッドスクエアに対してのみ表示されます。"
 
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "概要は米国の州についてのみ表示されます。"
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
-msgstr ""
+msgstr "Xに投稿"
 
 #: application/views/qso/components/share_modal.php:6
 msgid "Post on Bluesky"
-msgstr ""
+msgstr "Blueskyに投稿する"
 
 #: application/views/qso/components/share_modal.php:10
 msgid "Toot on Mastodon"
-msgstr ""
+msgstr "マストドンで投稿する"
 
 #: application/views/qso/components/winkeysettings.php:3
 #: application/views/qso/components/winkeysettings.php:19
@@ -12194,7 +12232,7 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:67
 #, php-format
 msgid "Function %d - Name"
-msgstr ""
+msgstr "関数 %d - 名前"
 
 #: application/views/qso/components/winkeysettings.php:10
 #: application/views/qso/components/winkeysettings.php:26
@@ -12203,121 +12241,122 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:74
 #, php-format
 msgid "Function %d - Macro"
-msgstr ""
+msgstr "関数 %d - マクロ"
 
 #: application/views/qso/edit_ajax.php:35
 msgid "Sats"
-msgstr ""
+msgstr "衛星"
 
 #: application/views/qso/edit_ajax.php:53
 msgid "Start Date/Time"
-msgstr ""
+msgstr "開始日時"
 
 #: application/views/qso/edit_ajax.php:58
 msgid "End Date/Time"
-msgstr ""
+msgstr "終了日時"
 
 #: application/views/qso/edit_ajax.php:78
 msgid "RX Frequency"
-msgstr ""
+msgstr "受信周波数"
 
 #: application/views/qso/edit_ajax.php:101
 msgid "RX Band"
-msgstr ""
+msgstr "RXバンド"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:386
 msgid "Give power value in Watts. Include only numbers in the input."
 msgstr ""
+"電力値はワット単位で入力してください。入力には数字のみを入力してください。"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:384
 #: application/views/reg1test/index.php:114
 #: application/views/view_log/qso.php:691
 msgid "Transmit Power (W)"
-msgstr ""
+msgstr "送信電力（W）"
 
 #: application/views/qso/edit_ajax.php:165
 msgid "Used for VUCC MultiGrids"
-msgstr ""
+msgstr "VUCCマルチグリッドに使用"
 
 #: application/views/qso/edit_ajax.php:221 application/views/qso/index.php:498
 msgid "Antenna Path"
-msgstr ""
+msgstr "アンテナパス"
 
 #: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:501
 #: application/views/view_log/qso.php:162
 msgid "Greyline"
-msgstr ""
+msgstr "グレーライン"
 
 #: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:502
 msgid "Other"
-msgstr ""
+msgstr "他の"
 
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:503
 #: application/views/view_log/qso.php:153
 msgid "Short Path"
-msgstr ""
+msgstr "ショートパス"
 
 #: application/views/qso/edit_ajax.php:227 application/views/qso/index.php:504
 #: application/views/view_log/qso.php:156
 msgid "Long Path"
-msgstr ""
+msgstr "ロングパス"
 
 #: application/views/qso/edit_ajax.php:284
 msgid "Sat Name"
-msgstr ""
+msgstr "衛星の名前"
 
 #: application/views/qso/edit_ajax.php:289
 msgid "Sat Mode"
-msgstr ""
+msgstr "衛星モード"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:627
 msgid "Antenna Azimuth (°)"
-msgstr ""
+msgstr "アンテナ方位角（°）"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:629
 msgid "Antenna azimuth in decimal degrees."
-msgstr ""
+msgstr "アンテナの方位角（十進度）。"
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:633
 msgid "Antenna Elevation (°)"
-msgstr ""
+msgstr "アンテナ仰角（°）"
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:635
 msgid "Antenna elevation in decimal degrees."
-msgstr ""
+msgstr "アンテナの仰角（十進度）。"
 
 #: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:518
 #: application/views/station_profile/create.php:103
 #: application/views/station_profile/edit.php:141
 msgid "Station County"
-msgstr ""
+msgstr "ステーション郡"
 
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:293
 #: application/views/qso/index.php:585 application/views/user/edit.php:667
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
 msgid "SIG Info"
-msgstr ""
+msgstr "SIG情報"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:644
 #: application/views/qso/index.php:688
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "注: サードパーティのサービスにエクスポートされます。"
 
 #: application/views/qso/edit_ajax.php:450
 msgid "Sent Method"
-msgstr ""
+msgstr "送信方法"
 
 #: application/views/qso/edit_ajax.php:453
 #: application/views/qso/edit_ajax.php:486 application/views/qso/index.php:665
 #: application/views/qso/index.php:668
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 #: application/views/qso/edit_ajax.php:463
 msgid "Sent Via"
-msgstr ""
+msgstr "送信方法"
 
 #: application/views/qso/edit_ajax.php:477
 #: application/views/qso/edit_ajax.php:518
@@ -12325,19 +12364,19 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:593
 #: application/views/qso/edit_ajax.php:620
 msgid "Verified (Match)"
-msgstr ""
+msgstr "検証済み（一致）"
 
 #: application/views/qso/edit_ajax.php:483
 msgid "Received Method"
-msgstr ""
+msgstr "受信方法"
 
 #: application/views/qso/edit_ajax.php:524 application/views/qso/index.php:685
 msgid "Get the default message for eQSL, for this station."
-msgstr ""
+msgstr "この局の eQSL のデフォルト メッセージを取得します。"
 
 #: application/views/qso/edit_ajax.php:536
 msgid "Note: Not editable. Only displayed here."
-msgstr ""
+msgstr "注: 編集できません。ここにのみ表示されます。"
 
 #: application/views/qso/edit_ajax.php:580
 #: application/views/view_log/partial/log_ajax.php:426
@@ -12345,101 +12384,101 @@ msgstr ""
 #: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:618
 #: src/QSLManager/QSO.php:677
 msgid "Modified"
-msgstr ""
+msgstr "修正済み"
 
 #: application/views/qso/edit_ajax.php:639
 msgid "Change Station Profile"
-msgstr ""
+msgstr "ステーションプロファイルの変更"
 
 #: application/views/qso/edit_ajax.php:679
 msgid "Exchange (R)"
-msgstr ""
+msgstr "交換（R）"
 
 #: application/views/qso/edit_ajax.php:684
 msgid "Exchange (S)"
-msgstr ""
+msgstr "交換（S）"
 
 #: application/views/qso/edit_ajax.php:696
 #: application/views/search/search_result_ajax.php:449
 #: application/views/view_log/partial/log.php:159
 #: application/views/view_log/partial/log_ajax.php:520
 msgid "Delete QSO"
-msgstr ""
+msgstr "QSOを削除"
 
 #: application/views/qso/edit_ajax.php:699
 msgid "Save changes"
-msgstr ""
+msgstr "変更を保存"
 
 #: application/views/qso/index.php:29
 msgid "TimeOff is less than TimeOn"
-msgstr ""
+msgstr "TimeOff が TimeOn より短い"
 
 #: application/views/qso/index.php:30 application/views/qso/index.php:796
 msgid "Previous Contacts"
-msgstr ""
+msgstr "以前の連絡先"
 
 #: application/views/qso/index.php:31
 msgid "times worked before"
-msgstr ""
+msgstr "以前に働いた回数"
 
 #: application/views/qso/index.php:32
 msgid "Not worked before"
-msgstr ""
+msgstr "以前は機能していなかった"
 
 #: application/views/qso/index.php:33
 msgid "more"
-msgstr ""
+msgstr "もっと"
 
 #: application/views/qso/index.php:34
 msgid "less"
-msgstr ""
+msgstr "少ない"
 
 #: application/views/qso/index.php:35
 msgid "DXCC Summary for "
-msgstr ""
+msgstr "DXCC概要 "
 
 #: application/views/qso/index.php:36
 msgid "LoTW User. Last upload was 1 day ago."
-msgstr ""
+msgstr "LoTW ユーザー。最終アップロードは 1 日前です。"
 
 #: application/views/qso/index.php:37
 #, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr ""
+msgstr "LoTWユーザー。最終アップロードは %x 日前。"
 
 #: application/views/qso/index.php:38
 msgid "Invalid value for antenna elevation:"
-msgstr ""
+msgstr "アンテナの仰角の値が無効です:"
 
 #: application/views/qso/index.php:53
 msgid "LIVE"
-msgstr ""
+msgstr "ライブ"
 
 #: application/views/qso/index.php:53
 msgid "POST"
-msgstr ""
+msgstr "投稿"
 
 #: application/views/qso/index.php:66
 #: application/views/statistics/antennaanalytics.php:45
 #: application/views/statistics/antennaanalytics.php:85
 msgid "Sat"
-msgstr ""
+msgstr "衛星"
 
 #: application/views/qso/index.php:81
 msgid "Add Band/Mode to Favs"
-msgstr ""
+msgstr "バンド/モードをお気に入りに追加"
 
 #: application/views/qso/index.php:102
 msgid "Time on"
-msgstr ""
+msgstr "時間"
 
 #: application/views/qso/index.php:114
 msgid "Time off"
-msgstr ""
+msgstr "休暇"
 
 #: application/views/qso/index.php:157
 msgid "Search DXCluster for latest Spot"
-msgstr ""
+msgstr "DXClusterで最新のスポットを検索"
 
 #: application/views/qso/index.php:234 application/views/qso/index.php:524
 #: application/views/station_profile/create.php:153
@@ -12447,7 +12486,7 @@ msgstr ""
 #: application/views/user/edit.php:651 application/views/view_log/qso.php:382
 #: application/views/view_log/qso.php:698
 msgid "IOTA Reference"
-msgstr ""
+msgstr "IOTAリファレンス"
 
 #: application/views/qso/index.php:250 application/views/qso/index.php:541
 #: application/views/station_profile/create.php:171
@@ -12455,107 +12494,107 @@ msgstr ""
 #: application/views/user/edit.php:655 application/views/view_log/qso.php:389
 #: application/views/view_log/qso.php:705
 msgid "SOTA Reference"
-msgstr ""
+msgstr "SOTA リファレンス"
 
 #: application/views/qso/index.php:360 application/views/view_log/qso.php:101
 msgid "Frequency (RX)"
-msgstr ""
+msgstr "周波数（RX）"
 
 #: application/views/qso/index.php:365
 msgid "Band (RX)"
-msgstr ""
+msgstr "バンド（RX）"
 
 #: application/views/qso/index.php:543
 msgid "For example: GM/NS-001."
-msgstr ""
+msgstr "例：GM/NS-001。"
 
 #: application/views/qso/index.php:556
 msgid "For example: DLFF-0069."
-msgstr ""
+msgstr "例: DLFF-0069。"
 
 #: application/views/qso/index.php:569
 msgid "For example: PA-0150. Multiple values allowed."
-msgstr ""
+msgstr "例: PA-0150。複数の値を指定できます。"
 
 #: application/views/qso/index.php:581
 msgid "For example: GMA"
-msgstr ""
+msgstr "例: GMA"
 
 #: application/views/qso/index.php:587
 msgid "For example: DA/NW-357"
-msgstr ""
+msgstr "例: DA/NW-357"
 
 #: application/views/qso/index.php:595
 msgid "For example: Q03"
-msgstr ""
+msgstr "例: Q03"
 
 #: application/views/qso/index.php:602
 msgid "E-mail address of QSO-partner"
-msgstr ""
+msgstr "QSO相手のメールアドレス"
 
 #: application/views/qso/index.php:611 application/views/view_log/qso.php:296
 msgid "Satellite Name"
-msgstr ""
+msgstr "衛星名"
 
 #: application/views/qso/index.php:619 application/views/view_log/qso.php:310
 msgid "Satellite Mode"
-msgstr ""
+msgstr "衛星モード"
 
 #: application/views/qso/index.php:685
 msgid "QSL MSG"
-msgstr ""
+msgstr "QSLメッセージ"
 
 #: application/views/qso/index.php:704
 msgid "Reset to Default"
-msgstr ""
+msgstr "デフォルトにリセット"
 
 #: application/views/qso/index.php:745
 msgid "Winkey"
-msgstr ""
+msgstr "Winkey"
 
 #: application/views/qso/index.php:747
 msgid "Connect"
-msgstr ""
+msgstr "接続する"
 
 #: application/views/qso/index.php:756
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
 #: application/views/qso/index.php:757
 msgid "Tune"
-msgstr ""
+msgstr "チューニング"
 
 #: application/views/qso/index.php:758
 msgid "Stop Tune"
-msgstr ""
+msgstr "チューニングを停止"
 
 #: application/views/qso/index.php:764
 msgid "CW Speed"
-msgstr ""
+msgstr "CW速度"
 
 #: application/views/qso/index.php:769
 msgid "Send"
-msgstr ""
+msgstr "送信"
 
 #: application/views/qso/index.php:779
 msgid "Suggestions"
-msgstr ""
+msgstr "提案"
 
 #: application/views/qso/index.php:786
 msgid "Profile Picture"
-msgstr ""
+msgstr "プロフィール写真"
 
 #: application/views/qso/log_qso.php:9
 msgid "Redirecting to QSO logging page..."
-msgstr ""
+msgstr "QSO ログページにリダイレクトしています..."
 
 #: application/views/qso/log_qso.php:75
 msgid "The data was redirected. You can close this window."
-msgstr ""
+msgstr "データはリダイレクトされました。このウィンドウを閉じてください。"
 
 #: application/views/radio/edit.php:18
 msgid "CAT URL"
-msgstr ""
+msgstr "CAT URL"
 
 #: application/views/radio/edit.php:20
 #, php-format
@@ -12563,29 +12602,33 @@ msgid ""
 "Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
 "(/) and QRG is added automatically. Default is %s"
 msgstr ""
+"DXClusterのスポットをクリックした際に呼び出されるURL。注意：末尾のスラッシュ"
+"（/）とQRGは自動的に追加されます。デフォルトは%sです"
 
 #: application/views/radio/index.php:20
 msgid "Active Radios"
-msgstr ""
+msgstr "アクティブラジオ"
 
 #: application/views/radio/index.php:23
 msgid "Below is a list of active radios that are connected to Wavelog."
-msgstr ""
+msgstr "以下は、Wavelog に接続されているアクティブな無線機のリストです。"
 
 #: application/views/radio/index.php:24
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
 msgstr ""
+"まだ無線を接続していない場合は、API ページを参照して API キーを生成してくださ"
+"い。"
 
 #: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
-msgstr ""
+msgstr "%s の使用方法については、ウィキでご確認いただけます。"
 
 #: application/views/radio/index.php:26
 msgid "radio functions"
-msgstr ""
+msgstr "ラジオ機能"
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
@@ -12593,21 +12636,23 @@ msgstr "お待ちください..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr ""
+msgstr "バンドを選択"
 
 #: application/views/reg1test/index.php:8
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
 msgstr ""
+"50Mhz 未満の帯域は EDI REG1TEST 形式では無効であり、無効なファイルが生成され"
+"ます。"
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr ""
+msgstr "コンテスト内容をREG1TEST EDIログにエクスポートする"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
-msgstr ""
+msgstr "送信済み交換"
 
 #: application/views/reg1test/index.php:50
 msgid ""
@@ -12615,127 +12660,135 @@ msgid ""
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
+"コンテスト中に送信された交換情報です。州、DOK、郡、州、電力、名前など、あらゆ"
+"るタイプの情報を指定できます。最大文字数：6文字。"
 
 #: application/views/reg1test/index.php:55
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
 msgstr ""
+"オペレータが所属する無線クラブのコールサインを記述します。例：クラブにポイン"
+"トが貯まっている場合に使用できます。"
 
 #: application/views/reg1test/index.php:66
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "担当オペレーターのコールサイン"
 
 #: application/views/reg1test/index.php:72
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
 msgstr ""
+"すべての演算子のリスト。セミコロン「;」で区切られます。ここでは担当演算子は必"
+"要ありません。"
 
 #: application/views/reg1test/index.php:75
 msgid "Contest Address 1"
-msgstr ""
+msgstr "コンテストアドレス1"
 
 #: application/views/reg1test/index.php:77
 msgid "Address of the QTH used during the contest."
-msgstr ""
+msgstr "コンテスト中に使用された QTH のアドレス。"
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "コンテスト演説2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "オペレータアドレス1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "担当オペレータの住所。"
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "オペレータアドレス2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "オペレーター住所郵便番号"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "オペレーター住所市"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "オペレーター住所国"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "オペレーターの電話番号"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "送信機器の説明"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
-msgstr ""
+msgstr "使用された機器の簡単な説明。"
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
-msgstr ""
+msgstr "コンテスト中のTX出力（ワット単位）。"
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "受信機器の説明"
 
 #: application/views/reg1test/index.php:121
 msgid "If you used another gear for RX, then describe it here."
-msgstr ""
+msgstr "RX に別のギアを使用した場合は、ここで説明してください。"
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
-msgstr ""
+msgstr "アンテナの説明"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
-msgstr ""
+msgstr "どのようなアンテナが使用されたか。"
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "地上からのアンテナ高（m）"
 
 #: application/views/reg1test/index.php:131
 msgid "Height of the antenna above the ground."
-msgstr ""
+msgstr "地上からのアンテナの高さ。"
 
 #: application/views/reg1test/index.php:134
 msgid "Band multiplicator"
-msgstr ""
+msgstr "バンドマルチプライヤー"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
 msgstr ""
+"バンドマルチプライヤー。通常は1です。コンテスト採点ルールに従って必要な場合に"
+"のみ変更してください。"
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
-msgstr ""
+msgstr "その他ご意見があれば。"
 
 #: application/views/satellite/create.php:23
 msgid "Satellite Display Name"
-msgstr ""
+msgstr "衛星表示名"
 
 #: application/views/satellite/create.php:25
 #: application/views/satellite/edit.php:9
 msgid "Display / cleartext name of the satellite"
-msgstr ""
+msgstr "衛星の表示名/平文名"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:52
 msgid "LoTW Name"
-msgstr ""
+msgstr "LoTW名"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
@@ -12743,258 +12796,262 @@ msgid ""
 "Satellite name as accepted by LoTW. Not necessarily the same as the display "
 "name. Can be set/changed later when added to LoTW."
 msgstr ""
+"LoTWで承認された衛星名。表示名と同じとは限りません。LoTWに追加する際に後から"
+"設定/変更できます。"
 
 #: application/views/satellite/create.php:41
 #: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
-msgstr ""
+msgstr "衛星の軌道を入力してください（LEO、MEO、GEO）"
 
 #: application/views/satellite/create.php:44
 msgid "Satellite mode name"
-msgstr ""
+msgstr "衛星モード名"
 
 #: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
-msgstr ""
+msgstr "衛星モードに入る"
 
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
 #: application/views/satellite/satinfo.php:8
 msgid "Uplink mode"
-msgstr ""
+msgstr "アップリンクモード"
 
 #: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
-msgstr ""
+msgstr "アップリンクに使用する変調を入力してください"
 
 #: application/views/satellite/create.php:56
 #: application/views/satellite/edit.php:53
 #: application/views/satellite/satinfo.php:9
 msgid "Uplink frequency"
-msgstr ""
+msgstr "アップリンク周波数"
 
 #: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
-msgstr ""
+msgstr "アップリンクに使用する周波数（Hz）を入力してください"
 
 #: application/views/satellite/create.php:63
 #: application/views/satellite/edit.php:54
 #: application/views/satellite/satinfo.php:10
 msgid "Downlink mode"
-msgstr ""
+msgstr "ダウンリンクモード"
 
 #: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
-msgstr ""
+msgstr "ダウンリンクに使用する変調を入力してください"
 
 #: application/views/satellite/create.php:68
 #: application/views/satellite/edit.php:55
 #: application/views/satellite/satinfo.php:11
 msgid "Downlink frequency"
-msgstr ""
+msgstr "ダウンリンク周波数"
 
 #: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
-msgstr ""
+msgstr "ダウンリンクに使用する周波数（Hz）を入力してください"
 
 #: application/views/satellite/create.php:73
 #: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
-msgstr ""
+msgstr "LoTWに承認されました"
 
 #: application/views/satellite/create.php:78
 #: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
-msgstr ""
+msgstr "衛星がLoTWに受け入れられる場合にのみ「はい」に設定します"
 
 #: application/views/satellite/edit.php:7
 msgid "Satellite Display Name "
-msgstr ""
+msgstr "衛星表示名 "
 
 #: application/views/satellite/edit.php:42
 msgid "Save satellite"
-msgstr ""
+msgstr "衛星を保存"
 
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
-msgstr ""
+msgstr "衛星モードを追加"
 
 #: application/views/satellite/flightpath.php:51
 msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
 msgstr ""
+"TLE を持つサテライトが見つかりません。CRON またはサテライトページから更新して"
+"ください。更新権限がない場合は、管理者にお問い合わせください！"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
-msgstr ""
+msgstr "衛星を追加する"
 
 #: application/views/satellite/index.php:45
 msgid "Sync Satellites from LoTW"
-msgstr ""
+msgstr "LoTWからの衛星同期"
 
 #: application/views/satellite/index.php:46
 msgid "Update Satellite TLE"
-msgstr ""
+msgstr "衛星TLEの更新"
 
 #: application/views/satellite/index.php:57
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:6
 msgid "Satellite passes"
-msgstr ""
+msgstr "衛星通過"
 
 #: application/views/satellite/pass.php:13
 msgid "Your station"
-msgstr ""
+msgstr "あなたのステーション"
 
 #: application/views/satellite/pass.php:26
 #: application/views/satellite/pass.php:65
 msgid "Min. Satellite Elevation"
-msgstr ""
+msgstr "最小衛星仰角"
 
 #: application/views/satellite/pass.php:30
 #: application/views/satellite/pass.php:69
 msgid "Min. Azimuth"
-msgstr ""
+msgstr "最小方位角"
 
 #: application/views/satellite/pass.php:38
 #: application/views/satellite/pass.php:77
 msgid "Max. Azimuth"
-msgstr ""
+msgstr "最大方位角"
 
 #: application/views/satellite/pass.php:54
 msgid "Min. time"
-msgstr ""
+msgstr "最小時間"
 
 #: application/views/satellite/pass.php:63
 msgid "Sked partner"
-msgstr ""
+msgstr "Sked partner"
 
 #: application/views/satellite/pass.php:91
 msgid "Load predictions"
-msgstr ""
+msgstr "負荷予測"
 
 #: application/views/satellite/pass.php:92
 msgid "Add sked partner"
-msgstr ""
+msgstr "スケジューリングパートナーを追加する"
 
 #: application/views/satellite/pass.php:94
 msgid "Presets"
-msgstr ""
+msgstr "プリセット"
 
 #: application/views/satellite/pass.php:96
 msgid "Save current settings"
-msgstr ""
+msgstr "現在の設定を保存する"
 
 #: application/views/satellite/pass.php:105
 msgid "Save Settings"
-msgstr ""
+msgstr "設定を保存"
 
 #: application/views/satellite/pass.php:109
 msgid "Settings Name"
-msgstr ""
+msgstr "設定名"
 
 #: application/views/satellite/pass.php:110
 msgid "Enter a name"
-msgstr ""
+msgstr "名前を入力してください"
 
 #: application/views/satellite/pass.php:121
 msgid "No TLE information detected. Please update TLE's."
-msgstr ""
+msgstr "TLE情報が検出されませんでした。TLEを更新してください。"
 
 #: application/views/satellite/passtable.php:7
 #: application/views/satellite/skedtable.php:36
 msgid "AOS Time"
-msgstr ""
+msgstr "AOSチーム"
 
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:40
 msgid "LOS Time"
-msgstr ""
+msgstr "LOS時間"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:10
 #: application/views/satellite/skedtable.php:37
 #: application/views/sattimers/index.php:46
 msgid "Duration"
-msgstr ""
+msgstr "間隔"
 
 #: application/views/satellite/passtable.php:10
 msgid "Path"
-msgstr ""
+msgstr "パス"
 
 #: application/views/satellite/passtable.php:11
 msgid "Max Elevation (Azimuth)"
-msgstr ""
+msgstr "最大仰角（方位角）"
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:38
 msgid "AOS Azimuth"
-msgstr ""
+msgstr "AOS方位角"
 
 #: application/views/satellite/passtable.php:13
 #: application/views/satellite/skedtable.php:41
 msgid "LOS Azimuth"
-msgstr ""
+msgstr "方位角"
 
 #: application/views/satellite/passtable.php:55
 #: application/views/satellite/skedtable.php:84
 msgid "Search failed!"
-msgstr ""
+msgstr "検索に失敗しました!"
 
 #: application/views/satellite/passtable.php:56
 msgid "No passes found. Please check the input parameters."
-msgstr ""
+msgstr "パスが見つかりません。入力パラメータを確認してください。"
 
 #: application/views/satellite/passtable.php:73
 #: application/views/satellite/skedtable.php:94
 msgid "min"
-msgstr ""
+msgstr "分"
 
 #: application/views/satellite/satinfo.php:14
 msgid "TLE date"
-msgstr ""
+msgstr "TLE日付"
 
 #: application/views/satellite/skedtable.php:8
 msgid "Sked AOS Time"
-msgstr ""
+msgstr "スケッドAOS時間"
 
 #: application/views/satellite/skedtable.php:9
 msgid "Sked LOS Time"
-msgstr ""
+msgstr "予定LOS時間"
 
 #: application/views/satellite/skedtable.php:34
 msgid "Grid"
-msgstr ""
+msgstr "グリッド"
 
 #: application/views/satellite/skedtable.php:39
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
-msgstr ""
+msgstr "最大高度"
 
 #: application/views/satellite/skedtable.php:85
 msgid "No overlapping passes found. Please check the input parameters."
-msgstr ""
+msgstr "重複するパスが見つかりません。入力パラメータを確認してください。"
 
 #: application/views/satellite/tleinfo.php:6
 #, php-format
 msgid "TLE information for %s (last updated: %s)"
-msgstr ""
+msgstr "TLE 情報: %s (最終更新日時: %s)"
 
 #: application/views/satellite/tleinfo.php:8
 msgid "Delete TLE"
-msgstr ""
+msgstr "TLEを削除"
 
 #: application/views/satellite/tleinfo.php:10
 #, php-format
 msgid "No TLE information found for %s"
-msgstr ""
+msgstr "%s に関する TLE 情報は見つかりませんでした"
 
 #: application/views/satellite/tleinfo.php:11
 msgid "Add TLE"
-msgstr ""
+msgstr "TLEを追加"
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -13002,23 +13059,25 @@ msgid ""
 "This data comes from %s and is calculated for the current stationlocation "
 "grid %s."
 msgstr ""
+"このデータは%sから取得され、現在の駅位置グリッド%sに基づいて計算されていま"
+"す。"
 
 #: application/views/sattimers/index.php:40
 msgid "Time(d)-Out"
-msgstr ""
+msgstr "タイムアウト"
 
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
 #: application/views/statistics/antennaanalytics.php:8
 msgid "Azimuth"
-msgstr ""
+msgstr "方位角"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/ituzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
 msgid "Ready to find a QSO?"
-msgstr ""
+msgstr "QSOを探す準備はできましたか?"
 
 #: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
@@ -13026,7 +13085,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
-msgstr ""
+msgstr "詳細検索"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
@@ -13034,7 +13093,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
 msgid "Incorrect CQ Zones"
-msgstr ""
+msgstr "不正確なCQゾーン"
 
 #: application/views/search/cqzones.php:21
 #: application/views/search/filter.php:29
@@ -13042,7 +13101,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "Incorrect ITU Zones"
-msgstr ""
+msgstr "ITUゾーンが正しくありません"
 
 #: application/views/search/cqzones.php:24
 #: application/views/search/filter.php:32
@@ -13050,159 +13109,165 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:24
 #: application/views/search/main.php:24
 msgid "QSOs unconfirmed on LoTW"
-msgstr ""
+msgstr "LoTWでのQSOは未確認"
 
 #: application/views/search/cqzones.php:31
 #: application/views/search/ituzones.php:31
 msgid "Station location:"
-msgstr ""
+msgstr "ステーションの場所:"
 
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"次の QSO には、この DXCC が通常持つ CQ ゾーンが正しくないことが判明しました "
+"(最大 5000 件の QSO が表示されます)。"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
-msgstr ""
+msgstr "DXCC CQゾーン"
 
 #: application/views/search/cqzones_result.php:51
 #: application/views/search/ituzones_result.php:51
 msgid "No incorrect CQ Zones were found."
-msgstr ""
+msgstr "不正な CQ ゾーンは見つかりませんでした。"
 
 #: application/views/search/filter.php:46
 msgid "Save query"
-msgstr ""
+msgstr "クエリを保存"
 
 #: application/views/search/filter.php:53
 msgid "Stored queries"
-msgstr ""
+msgstr "保存されたクエリ"
 
 #: application/views/search/filter.php:72
 msgid "search filter functions"
-msgstr ""
+msgstr "検索フィルター機能"
 
 #: application/views/search/filter.php:82
 msgid "Search Results"
-msgstr ""
+msgstr "検索結果"
 
 #: application/views/search/ituzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect ITU zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"次の QSO には、この DXCC が通常持つ ITU ゾーンが正しくないことが判明しました "
+"(最大 5000 件の QSO が表示されます)。"
 
 #: application/views/search/ituzones_result.php:14
 msgid "DXCC ITU Zone"
-msgstr ""
+msgstr "DXCC ITUゾーン"
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid ""
 "The search displays QSOs which are unconfirmed on LoTW, but the callsign "
 "worked has uploaded to LoTW after your QSO date."
 msgstr ""
+"検索では、LoTW で未確認の QSO が表示されますが、機能したコールサインは QSO 日"
+"付以降に LoTW にアップロードされています。"
 
 #: application/views/search/lotw_unconfirmed.php:32
 msgid "Station location"
-msgstr ""
+msgstr "ステーションの場所"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr ""
+msgstr "最後のLoTWアップロード"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
-msgstr ""
+msgstr "未処理の LoTW アップロードがある QSO は見つかりませんでした。"
 
 #: application/views/search/main.php:31
 msgid "Callsign / Gridsquare"
-msgstr ""
+msgstr "コールサイン / グリッドスクエア"
 
 #: application/views/search/result.php:2
 #, php-format
 msgid "Results for %s"
-msgstr ""
+msgstr "%s の結果"
 
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr ""
+msgstr "申し訳ありませんが、%sとの過去のQSOは見つかりませんでした"
 
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr ""
+msgstr "%s のコールブック検索"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
-msgstr ""
+msgstr "未実施"
 
 #: application/views/search/search_result_ajax.php:424
 #: application/views/view_log/partial/log.php:142
 #: application/views/view_log/partial/log_ajax.php:495
 msgid "Mark QSL Sent (Bureau)"
-msgstr ""
+msgstr "QSL送信をマーク（ビューロー）"
 
 #: application/views/search/search_result_ajax.php:425
 #: application/views/view_log/partial/log.php:143
 #: application/views/view_log/partial/log_ajax.php:496
 msgid "Mark QSL Sent (Direct)"
-msgstr ""
+msgstr "QSL 送信済み（直接）をマーク"
 
 #: application/views/search/search_result_ajax.php:432
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:506
 #: application/views/view_log/qso.php:801
 msgid "Mark QSL Received (Bureau)"
-msgstr ""
+msgstr "QSL受信をマーク（ビューロー）"
 
 #: application/views/search/search_result_ajax.php:433
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:507
 #: application/views/view_log/qso.php:803
 msgid "Mark QSL Received (Direct)"
-msgstr ""
+msgstr "QSL 受信をマーク（直接）"
 
 #: application/views/search/search_result_ajax.php:434
 #: application/views/view_log/partial/log.php:152
 #: application/views/view_log/partial/log_ajax.php:497
 #: application/views/view_log/qso.php:811
 msgid "Mark QSL Card Requested (Bureau)"
-msgstr ""
+msgstr "QSLカードの申請をマーク（ビューロー）"
 
 #: application/views/search/search_result_ajax.php:435
 #: application/views/view_log/partial/log.php:153
 #: application/views/view_log/partial/log_ajax.php:498
 #: application/views/view_log/qso.php:813
 msgid "Mark QSL Card Requested (Direct)"
-msgstr ""
+msgstr "QSLカードのリクエストをマーク（直接）"
 
 #: application/views/search/search_result_ajax.php:436
 #: application/views/view_log/partial/log.php:154
 #: application/views/view_log/partial/log_ajax.php:499
 #: application/views/view_log/qso.php:815
 msgid "Mark QSL Card Not Required"
-msgstr ""
+msgstr "QSLカードは不要とマークする"
 
 #: application/views/search/search_result_ajax.php:443
 #: application/views/view_log/partial/log_ajax.php:514
 msgid "Lookup on QRZ.com"
-msgstr ""
+msgstr "QRZ.comで検索"
 
 #: application/views/search/search_result_ajax.php:445
 #: application/views/view_log/partial/log_ajax.php:516
 msgid "Lookup on HamQTH"
-msgstr ""
+msgstr "HamQTHで検索"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "クエリ"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr ""
+msgstr "シンプル高速ログエントリ（FLE）"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -13210,6 +13275,9 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
+"「Fast Log Entry」（略して「FLE」）は、QSOを非常に迅速かつ効率的に記録するた"
+"めのシステムです。その構文のおかげで、最小限の入力で多くのQSOを最小限の労力で"
+"記録できます。"
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -13217,6 +13285,9 @@ msgid ""
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
 "a web interface to log QSOs."
 msgstr ""
+"FLEは元々DF3CBによって作成されました。彼は自身のウェブサイトでWindows用のプロ"
+"グラムを提供しています。Simple FLEはOK2CQRによってDF3CBのFLEに基づいて作成さ"
+"れ、QSOを記録するためのWebインターフェースを提供しています。"
 
 #: application/views/simplefle/index.php:16
 #, php-format
@@ -13225,108 +13296,118 @@ msgid ""
 "session and now SimpleFLE is also available in Wavelog. Information about "
 "the syntax and how FLE works can be found %s."
 msgstr ""
+"一般的な使用例として、屋外セッションから紙のログをインポートする必要がある場"
+"合が挙げられます。現在、SimpleFLEはWavelogでも利用可能です。FLEの構文や動作に"
+"関する情報は%sでご確認いただけます。"
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:184
 msgid "Syntax Help"
-msgstr ""
+msgstr "構文ヘルプ"
 
 #: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
-msgstr ""
+msgstr "FLEの構文"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
-msgstr ""
+msgstr "サンプルデータを閉じて読み込む"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr ""
+msgstr "バンドがありません!"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr ""
+msgstr "モードがありません!"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr ""
+msgstr "時間が決まっておりません！"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
-msgstr ""
+msgstr "無効な日付"
 
 #: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
-msgstr ""
+msgstr "ステーションコールが選択されていません"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
-msgstr ""
+msgstr "「演算子」フィールドが空です"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr ""
+msgstr "警告! 本当にすべてをリセットしますか?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
+"警告! 一部の QSO ではバンドやモードが定義されていないため、QSO リストを記録で"
+"きません！"
 
 #: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr ""
+"警告! 一部の QSO には時間が定義されていないため、QSO リストを記録できません!"
 
 #: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
 msgstr ""
+"注意！データフィールドにはサンプルデータが含まれています。最初のログセッショ"
+"ンをクリアしてください！"
 
 #: application/views/simplefle/index.php:35
 msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
+"注意！コンテストは設定しましたが、交換が含まれていないか、コンテストデータを"
+"記録しましたが、コンテストを選択していません。"
 
 #: application/views/simplefle/index.php:36
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
-msgstr ""
+msgstr "これらの QSO をログに追加してセッションをクリアしてもよろしいですか?"
 
 #: application/views/simplefle/index.php:37
 msgid "QSO Logged!"
-msgstr ""
+msgstr "QSOが記録されました!"
 
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
-msgstr ""
+msgstr "QSO はログブックに正常に記録されました。重複はスキップされました。"
 
 #: application/views/simplefle/index.php:40
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr ""
+msgstr "QSOをログブックに保存中にエラーが発生しました。エラー: "
 
 #: application/views/simplefle/index.php:44
 msgid "What is that?"
-msgstr ""
+msgstr "それは何ですか？"
 
 #: application/views/simplefle/index.php:47
 msgid "Current UTC Time"
-msgstr ""
+msgstr "現在のUTC時間"
 
 #: application/views/simplefle/index.php:80
 msgid "If you don't choose a date, today's date will be used."
-msgstr ""
+msgstr "日付を選択しない場合は、今日の日付が使用されます。"
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "入力したQSOをコンテストに追加できます。"
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
-msgstr ""
+msgstr "ステーション名/所在地"
 
 #: application/views/simplefle/index.php:111
 #, php-format
@@ -13334,56 +13415,58 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"新しい拠点から業務を開始する場合、まず新しい「%sStation Location%s」を作成し"
+"てください"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
-msgstr ""
+msgstr "例：OK2CQR"
 
 #: application/views/simplefle/index.php:120
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr ""
+msgstr "これはオペレーターのコールサインです。接頭辞や接尾辞は不要です。"
 
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
-msgstr ""
+msgstr "データを入力"
 
 #: application/views/simplefle/index.php:162
 msgid "Refs"
-msgstr ""
+msgstr "参照"
 
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "審判員は、%sS%sOTA、%sI%sOTA、%sP%sOTA、または%sW%sWFFのいずれかです"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
-msgstr ""
+msgstr "QSOリストを再読み込み"
 
 #: application/views/simplefle/index.php:182
 msgid "Save in Wavelog"
-msgstr ""
+msgstr "Wavelogに保存"
 
 #: application/views/simplefle/index.php:183
 msgid "Clear Logging Session"
-msgstr ""
+msgstr "ログセッションをクリアする"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "オプションはまだありません"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
-msgstr ""
+msgstr "QSO の記録を開始する前に、基本的なルールに注意してください。"
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
-msgstr ""
+msgstr "- 新しい QSO はそれぞれ新しい行に記入する必要があります。"
 
 #: application/views/simplefle/syntax_help.php:3
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
-msgstr ""
+msgstr "- 新しい行ごとに、前回の QSO から変更されたデータのみを書き込みます。"
 
 #: application/views/simplefle/syntax_help.php:4
 msgid ""
@@ -13392,10 +13475,14 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
+"まず、左側のフォームに日付、局のコールサイン、オペレーターのコールサインが記"
+"入されていることを確認してください。主なデータには、バンド（またはMHz単位の"
+"QRG、例：「7.145」）、モード、時刻が含まれます。時刻の次に、最初のQSO、つまり"
+"コールサインを入力します。"
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
-msgstr ""
+msgstr "たとえば、20m SSB で 4W7EST と 21:34 (UTC) に開始された QSO です。"
 
 #: application/views/simplefle/syntax_help.php:10
 msgid ""
@@ -13403,6 +13490,9 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
+"RST情報を指定しない場合、構文では59番（データの場合は599番）が使用されます。"
+"次のQSOは双方とも59番ではなかったため、最初に送信したRSTで情報を提供します。"
+"これは最初のQSOから2分後のことでした。"
 
 #: application/views/simplefle/syntax_help.php:16
 msgid ""
@@ -13410,6 +13500,9 @@ msgid ""
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
+"最初のQSOは21時34分、2回目のQSOは2分後の21時36分でした。ここで変更があったの"
+"は6だけなので、6と記入しました。バンドとモードの情報は変更がなかったため、こ"
+"のデータは省略しています。"
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -13418,26 +13511,30 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
+"2021年5月14日21時40分の次のQSOでは、バンドを40mに変更しましたが、SSBのままで"
+"す。RST情報が指定されていない場合、シンタックスは新しいQSOごとに59を使用しま"
+"す。そのため、2日後の全く同じ時間に行われた別のQSOを追加できます。日付はYYYY-"
+"MM-DD形式で入力してください。"
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
-msgstr ""
+msgstr "追加情報は以下の方法で送信できます。"
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "注記:"
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "オペレーター名:"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "QSL メッセージ (注意! 現在 wavelog には表示されません!):"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
-msgstr ""
+msgstr "コンテスト交換、連載またはその他の交換、あるいはその両方:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -13448,24 +13545,37 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"受信した交換メッセージにはドット「.」を、送信した交換メッセージにはカンマ"
+"「,」をそれぞれ先頭に付けます。最後の2行は同等です。つまり、スペースの有無は"
+"関係なく、順序も関係ありません。送信した交換メッセージは、受信した交換メッ"
+"セージが含まれている場合、またはカンマ「,」のみを使用している場合、次のQSOに"
+"自動的に含まれます。送信した交換メッセージを自動的に増やすには、「,++」を使用"
+"し、最初の送信交換メッセージを指定します。無効にするには、「,+0」を使用しま"
+"す。"
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
+"ここで、最初のQSOは設定されたシリアル番号1を使用し、2番目のQSOはシリアル番号2"
+"を使用します。送信済みの交換を消去したい場合は、「,-」を使用してください。"
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
+"まず、以前の交換をすべて消去し、シリアル番号のみを設定します。そうしないと、"
+"以前の交換「D23」も設定されてしまいます。"
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
+"Wavelog インポートでサポートされている adif フィールドを入力するには、コメン"
+"ト構文を使用できます。"
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
@@ -13473,71 +13583,74 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"すべてのコマンドと必要な構文の完全な概要は、当社のWikiの%sthis article%sに記"
+"載されています。"
 
 #: application/views/station_profile/create.php:55
 #: application/views/station_profile/edit.php:71
 msgid "Location Name"
-msgstr ""
+msgstr "場所名"
 
 #: application/views/station_profile/create.php:56
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "ホームQTH"
 
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "ステーションの場所の短縮名。例: %s"
 
 #: application/views/station_profile/create.php:63
 #: application/views/station_profile/edit.php:79
 msgid "Station callsign. For example: 4W7EST/P"
-msgstr ""
+msgstr "局のコールサイン。例：4W7EST/P"
 
 #: application/views/station_profile/create.php:67
 #: application/views/station_profile/edit.php:83
 msgid "Station Power (W)"
-msgstr ""
+msgstr "ステーション電力（W）"
 
 #: application/views/station_profile/create.php:69
 #: application/views/station_profile/edit.php:85
 msgid "Default station power in Watt. Overwritten by CAT."
 msgstr ""
+"ステーションのデフォルトの電力（ワット単位）。CAT によって上書きされます。"
 
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:116
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr ""
+msgstr "局のDXCCエンティティ。例：ボリビア"
 
 #: application/views/station_profile/create.php:87
 #: application/views/station_profile/edit.php:122
 msgid "Station City"
-msgstr ""
+msgstr "ステーションシティ"
 
 #: application/views/station_profile/create.php:89
 #: application/views/station_profile/edit.php:124
 msgid "Station city. For example: Oslo"
-msgstr ""
+msgstr "ステーションの都市。例：オスロ"
 
 #: application/views/station_profile/create.php:98
 #: application/views/station_profile/edit.php:136
 msgid "Station state. Applies to certain countries only."
-msgstr ""
+msgstr "ステーションの状態。特定の国にのみ適用されます。"
 
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
 msgid "Station County (Only used for specific DXCCs)."
-msgstr ""
+msgstr "ステーション郡 (特定の DXCC にのみ使用されます)。"
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:169
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
-msgstr ""
+msgstr "CQゾーンが分からない場合は %s で検索してください!"
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/create.php:134
@@ -13546,25 +13659,25 @@ msgstr ""
 #: application/views/station_profile/edit.php:186
 #: application/views/station_profile/edit.php:210
 msgid "click here"
-msgstr ""
+msgstr "ここをクリック"
 
 #: application/views/station_profile/create.php:134
 #: application/views/station_profile/edit.php:186
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
-msgstr ""
+msgstr "ITUゾーンが分からない場合は %s で検索してください!"
 
 #: application/views/station_profile/create.php:139
 #: application/views/station_profile/edit.php:198
 #: application/views/station_profile/edit.php:201
 msgid "Station Gridsquare"
-msgstr ""
+msgstr "ステーショングリッドスクエア"
 
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:206
 msgid "Get Gridsquare"
-msgstr ""
+msgstr "Gridsquareを入手"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:210
@@ -13574,6 +13687,8 @@ msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
 "then %s!"
 msgstr ""
+"ステーションのグリッドスクエア。例：HM54AP。グリッドスクエアがわからない場合"
+"は %s !"
 
 #: application/views/station_profile/create.php:149
 #: application/views/station_profile/edit.php:211
@@ -13581,49 +13696,53 @@ msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
 msgstr ""
+"グリッドライン上にいる場合は、複数のグリッド線をカンマで区切って入力してくだ"
+"さい。例：IO77,IO78,IO87,IO88。"
 
 #: application/views/station_profile/create.php:166
 #: application/views/station_profile/edit.php:236
 msgid "Station IOTA reference. For example: EU-005"
-msgstr ""
+msgstr "ステーションIOTA参照。例：EU-005"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
 msgid "IOTA World website"
-msgstr ""
+msgstr "IOTAワールドウェブサイト"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
 #, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr ""
+msgstr "IOTAの参照先は、 %s 。"
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
 msgid "SOTA Maps website"
-msgstr ""
+msgstr "SOTAマップのウェブサイト"
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
 msgstr ""
+"ステーションSOTAリファレンス。SOTAリファレンスは以下で確認できます。 %s 。"
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
 msgid "GMA Map website"
-msgstr ""
+msgstr "GMAマップのウェブサイト"
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
 msgstr ""
+"ステーションWWFFリファレンス。WWFFリファレンスは以下で参照できます。 %s 。"
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
 msgid "POTA Map website"
-msgstr ""
+msgstr "POTAマップウェブサイト"
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
@@ -13632,39 +13751,41 @@ msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
+"ステーションPOTA参照。複数のカンマ区切り値が許可されています。POTA参照は%sで"
+"確認できます。"
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
-msgstr ""
+msgstr "署名名"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr ""
+msgstr "ステーションの特別興味グループ名 (例: GMA)。"
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
-msgstr ""
+msgstr "署名情報"
 
 #: application/views/station_profile/create.php:197
 #: application/views/station_profile/edit.php:299
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
-msgstr ""
+msgstr "ステーションの特別興味グループ情報 (例: DA/NW-357)。"
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:312
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr ""
+msgstr "eQSL QTH ニックネーム"
 
 #: application/views/station_profile/create.php:203
 #: application/views/station_profile/edit.php:314
 msgid "The QTH Nickname which is configured in your eQSL Profile"
-msgstr ""
+msgstr "eQSLプロファイルで設定されているQTHニックネーム"
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:317
 msgid "Default QSLMSG"
-msgstr ""
+msgstr "デフォルトのQSLMSG"
 
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/edit.php:320
@@ -13672,11 +13793,13 @@ msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
 msgstr ""
+"このステーションの場所の各 QSO に対して入力され送信されるデフォルトのメッセー"
+"ジを定義します。"
 
 #: application/views/station_profile/create.php:213
 #: application/views/station_profile/edit.php:360
 msgid "Ignore Clublog Upload"
-msgstr ""
+msgstr "Clublogアップロードを無視"
 
 #: application/views/station_profile/create.php:218
 #: application/views/station_profile/edit.php:365
@@ -13685,205 +13808,205 @@ msgid ""
 "Clublog. If this is deactivated on it's own please check if the Call is "
 "properly configured at Clublog"
 msgstr ""
+"有効にすると、この場所から行われたQSOはClublogにアップロードされません。無効"
+"になっている場合は、Clublogでコールが正しく設定されているかどうかを確認してく"
+"ださい"
 
 #: application/views/station_profile/create.php:221
 #: application/views/station_profile/edit.php:368
 msgid "ClubLog Realtime Upload"
-msgstr ""
+msgstr "ClubLogリアルタイムアップロード"
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:384
 msgid "HRDLog.net Username"
-msgstr ""
+msgstr "HRDLog.net ユーザー名"
 
 #: application/views/station_profile/create.php:232
 #: application/views/station_profile/edit.php:386
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
-msgstr ""
+msgstr "HRDlog.net に登録されているユーザー名 (通常はコールサイン)。"
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:389
 msgid "HRDLog.net API Key"
-msgstr ""
+msgstr "HRDLog.net APIキー"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr ""
+msgstr "%s で API コードを作成してください"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 msgid "HRDLog.net Userprofile page"
-msgstr ""
+msgstr "HRDLog.net ユーザープロフィールページ"
 
 #: application/views/station_profile/create.php:240
 #: application/views/station_profile/edit.php:397
 msgid "HRDLog.net Logbook Realtime Upload"
-msgstr ""
+msgstr "HRDLog.net ログブックのリアルタイムアップロード"
 
 #: application/views/station_profile/create.php:250
 #: application/views/station_profile/edit.php:328
 msgid "Subscription Required"
-msgstr ""
+msgstr "サブスクリプションが必要です"
 
 #: application/views/station_profile/create.php:255
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr ""
+msgstr "QRZ.com ログブック API キー"
 
 #: application/views/station_profile/create.php:258
 msgid "Test API-Key"
-msgstr ""
+msgstr "テストAPIキー"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
-msgstr ""
+msgstr "%s で API キーを確認してください"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 msgid "the QRZ.com Logbook settings page"
-msgstr ""
+msgstr "QRZ.com ログブック設定ページ"
 
 #: application/views/station_profile/create.php:264
 #: application/views/station_profile/edit.php:342
 msgid "QRZ.com Logbook Upload"
-msgstr ""
+msgstr "QRZ.com ログブックアップロード"
 
 #: application/views/station_profile/create.php:267
 #: application/views/station_profile/edit.php:345
 msgid "Realtime"
-msgstr ""
+msgstr "リアルタイム"
 
 #: application/views/station_profile/create.php:275
 #: application/views/station_profile/edit.php:414
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
-msgstr ""
+msgstr "QO-100 DxクラブAPIキー"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
-msgstr ""
+msgstr "%s で API キーを作成してください"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 msgid "QO-100 Dx Club's profile page"
-msgstr ""
+msgstr "QO-100 Dx Clubのプロフィールページ"
 
 #: application/views/station_profile/create.php:280
 #: application/views/station_profile/edit.php:422
 msgid "QO-100 Dx Club Realtime Upload"
-msgstr ""
+msgstr "QO-100 Dxクラブ リアルタイムアップロード"
 
 #: application/views/station_profile/create.php:290
 #: application/views/station_profile/edit.php:440
 msgid "OQRS Enabled"
-msgstr ""
+msgstr "OQRS 有効"
 
 #: application/views/station_profile/create.php:297
 #: application/views/station_profile/edit.php:447
 msgid "OQRS Email alert"
-msgstr ""
+msgstr "OQRS メールアラート"
 
 #: application/views/station_profile/create.php:302
 #: application/views/station_profile/edit.php:452
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
+"管理者およびグローバル オプションで電子メールが設定されていることを確認しま"
+"す。"
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:455
 msgid "OQRS Text"
-msgstr ""
+msgstr "OQRSテキスト"
 
 #: application/views/station_profile/create.php:307
 #: application/views/station_profile/edit.php:457
 msgid "Some info you want to add regarding QSL'ing."
-msgstr ""
+msgstr "QSL に関して追加したい情報。"
 
 #: application/views/station_profile/edit.php:153
 msgid "Zones"
-msgstr ""
+msgstr "ゾーン"
 
 #: application/views/station_profile/edit.php:291
 msgid "Special Interest Group Name"
-msgstr ""
+msgstr "特別関心グループ(SIG)名"
 
 #: application/views/station_profile/edit.php:293
 msgid "Station Special Interest Group Name (e.g. GMA).."
-msgstr ""
+msgstr "ステーションの特別関心グループ(SIG)名（例：GMA）.."
 
 #: application/views/station_profile/edit.php:297
 msgid "Special Interest Group Information"
-msgstr ""
-
-#: application/views/station_profile/edit.php:309
-#, php-format
-msgid "Trouble? Check the %swiki%s."
-msgstr ""
+msgstr "特別関心グループ(SIG)情報"
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
-msgstr ""
+msgstr "ステーションログブック名"
 
 #: application/views/stationsetup/create.php:19
 msgid "You can call a station logbook anything."
-msgstr ""
+msgstr "ステーションログブックは、好きな名前で呼ぶことができます。"
 
 #: application/views/stationsetup/edit.php:18
 msgid "Container name"
-msgstr ""
+msgstr "コンテナ名"
 
 #: application/views/stationsetup/edit.php:20
 msgid "You can call a container anything."
-msgstr ""
+msgstr "コンテナには任意の名前を付けることができます。"
 
 #: application/views/stationsetup/exportmapoptions.php:11
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
-msgstr ""
+msgstr "CQゾーンオーバーレイ"
 
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr ""
+msgstr "グリッドスクエアオーバーレイ"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
 msgid "Night shadow overlay"
-msgstr ""
+msgstr "夜の影の重ね合わせ"
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
-msgstr ""
+msgstr "表示されるQSO数"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
-msgstr ""
+msgstr "エクスポート 地図を表示する"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
-msgstr ""
+msgstr "利用可能なステーションの場所を選択"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr ""
+msgstr "リンクの場所"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:125
 msgid "Profile Name"
-msgstr ""
+msgstr "プロフィール名"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr ""
+msgstr "ステーションの場所のリンクを解除"
 
 #: application/views/stationsetup/stationsetup.php:24
 msgid ""
@@ -13892,191 +14015,211 @@ msgid ""
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
 msgstr ""
+"ステーションログブックを使用すると、ステーションのロケーションをグループ化で"
+"きます。これにより、ログブックエリアからアナリティクスまで、1回のセッションで"
+"すべてのロケーションを確認できます。複数のロケーションで運用しているが、それ"
+"らが同じDXCCまたはVUCCサークルの一部である場合に最適です。"
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Linked locations"
-msgstr ""
+msgstr "リンクされた場所"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
-msgstr ""
+msgstr "訪問者サイト"
 
 #: application/views/stationsetup/stationsetup.php:94
 msgid "Station Locations"
-msgstr ""
+msgstr "ステーションの場所"
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
 msgstr ""
+"ステーションの場所は、自分の QTH、友人の QTH、ポータブル ステーションなどの運"
+"用場所を定義します。"
 
 #: application/views/stationsetup/stationsetup.php:99
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
 msgstr ""
+"ログブックと同様に、ステーション プロファイルには一連の QSO がまとめられてい"
+"ます。"
 
 #: application/views/stationsetup/stationsetup.php:100
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
 msgstr ""
+"一度にアクティブにできるステーションは1つだけです。下の表では、「アクティブス"
+"テーション」バッジで表示されています。"
 
 #: application/views/stationsetup/stationsetup.php:101
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr ""
+"「リンク」列には、ステーションの場所が上で選択したアクティブ ログブックにリン"
+"クされているかどうかが表示されます。"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Create a Station Location"
-msgstr ""
+msgstr "ステーションの場所を作成する"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show all locations"
-msgstr ""
+msgstr "すべての場所を表示"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show only locations from the active logbook"
-msgstr ""
+msgstr "アクティブなログブックの場所のみを表示する"
 
 #: application/views/stationsetup/stationsetup.php:108
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
+"注意：アクティブな局の位置を設定する必要があります。コールサイン > 局の位置か"
+"ら選択してください。"
 
 #: application/views/stationsetup/stationsetup.php:114
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
 msgstr ""
+"Wavelog 内の最近の変更により、QSO をステーション プロファイルに再割り当てする"
+"必要があります。"
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Maintenance"
-msgstr ""
+msgstr "メンテナンス"
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Please reassign them at "
-msgstr ""
+msgstr "再割り当てしてください "
 
 #: application/views/stationsetup/stationsetup.php:129
 msgid "Last QSO"
-msgstr ""
+msgstr "最後のQSO"
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"
-msgstr ""
+msgstr "リンク"
 
 #: application/views/stationsetup/stationsetup.php:138
 msgid "Favorite"
-msgstr ""
+msgstr "お気に入り"
 
 #: application/views/stationsetup/stationsetup.php:185
 msgid "mark/unmark as favorite"
-msgstr ""
+msgstr "お気に入りとしてマーク/マーク解除"
 
 #: application/views/stationsetup/visitor.php:2
 msgid ""
 "Setting a public slug allows you to share your logbook with anyone via a "
 "custom website address, this slug can contain letters & numbers only."
 msgstr ""
+"パブリック スラッグを設定すると、カスタム Web サイト アドレスを介してログブッ"
+"クを他のユーザーと共有できるようになります。このスラッグには文字と数字のみを"
+"含めることができます。"
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
-msgstr ""
+msgstr "後は以下のようになります。"
 
 #: application/views/stationsetup/visitor.php:4
 msgid "[your slug]"
-msgstr ""
+msgstr "[あなたのスラッグ]"
 
 #: application/views/stationsetup/visitor.php:10
 msgid "Type in Public Slug choice"
-msgstr ""
+msgstr "パブリックスラッグの選択肢を入力"
 
 #: application/views/stationsetup/visitor.php:17
 msgid "Visit Public Page"
-msgstr ""
+msgstr "公開ページにアクセス"
 
 #: application/views/statistics/antennaanalytics.php:11
 msgid "Elevation"
-msgstr ""
+msgstr "高さ"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:61
 msgid "Years"
-msgstr ""
+msgstr "年"
 
 #: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
-msgstr ""
+msgstr "年間QSO数"
 
 #: application/views/statistics/index.php:31
 msgid "Explore the logbook."
-msgstr ""
+msgstr "ログブックを調べてください。"
 
 #: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
 msgid "All Years"
-msgstr ""
+msgstr "すべての年"
 
 #: application/views/statistics/index.php:76
 #: application/views/statistics/index.php:117
 msgid "Unique callsigns"
-msgstr ""
+msgstr "ユニークなコールサイン"
 
 #: application/views/statistics/index.php:120
 msgid "Unique Grids"
-msgstr ""
+msgstr "ユニークなグリッド"
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
-msgstr ""
+msgstr "EME QSOは見つかりませんでした。"
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
-msgstr ""
+msgstr "テーマ名"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr ""
+msgstr "これは、テーマ リストでテーマを表示するために使用される名前です。"
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
-msgstr ""
+msgstr "フォルダ名"
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
 msgstr ""
+"これは、assets/css の下に CSS ファイルが配置されるフォルダーの名前です。"
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
 msgid "Theme Mode"
-msgstr ""
+msgstr "テーマモード"
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
 msgid "Light"
-msgstr ""
+msgstr "ライト"
 
 #: application/views/themes/add.php:19 application/views/themes/edit.php:19
 msgid "Dark"
-msgstr ""
+msgstr "暗い"
 
 #: application/views/themes/add.php:21
 msgid "This defines wherever the theme is a light or a dark one."
-msgstr ""
+msgstr "これにより、テーマが明るいか暗いかが定義されます。"
 
 #: application/views/themes/add.php:25 application/views/themes/edit.php:25
 #: application/views/themes/index.php:85
 msgid "Header Logo"
-msgstr ""
+msgstr "ヘッダーロゴ"
 
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
 msgid "Only PNG files with a size ratio of 1:1 are allowed."
-msgstr ""
+msgstr "サイズ比が 1:1 の PNG ファイルのみが許可されます。"
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
 #, php-format
@@ -14084,11 +14227,13 @@ msgid ""
 "This is the name of the file which is used as %s small %s Logo in the header "
 "placed in assets/logo."
 msgstr ""
+"これは、assets/logo ディレクトリに配置されたヘッダーに表示される %s 小さな "
+"%s ロゴとして使用されるファイルの名前です。"
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
 msgid "Main Logo"
-msgstr ""
+msgstr "メインロゴ"
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
 #, php-format
@@ -14096,24 +14241,28 @@ msgid ""
 "This is the name of the file which is used as %s big %s Logo in the login "
 "screen placed in assets/logo."
 msgstr ""
+"これは、ログイン画面に配置された%s big %s ロゴとして使用されるファイルの名前"
+"で、assets/logo ディレクトリ内に格納されています。"
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
-msgstr ""
+msgstr "テーマを追加"
 
 #: application/views/themes/edit.php:21
 msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
 msgstr ""
+"テーマが明るいか暗いかは、この基準に基づいて決定されます。これに基づいてロゴ"
+"が選択されます。"
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
-msgstr ""
+msgstr "テーマを更新"
 
 #: application/views/themes/index.php:22
 msgid "Themes list"
-msgstr ""
+msgstr "テーマリスト"
 
 #: application/views/themes/index.php:28
 msgid ""
@@ -14121,18 +14270,21 @@ msgid ""
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
 msgstr ""
+"このメニューでは、Wavelog にテーマを追加したり編集したりできます。テーマの追"
+"加プロセスはそれほど複雑ではないため、操作方法を理解している管理者のみが行う"
+"必要があります。"
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
-msgstr ""
+msgstr "また、この機能はまだ開発中であると言わざるを得ません。"
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "新しいテーマを追加するプロセス"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
-msgstr ""
+msgstr "1. ステップ"
 
 #: application/views/themes/index.php:44
 #, php-format
@@ -14140,40 +14292,49 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
+"『assets/css/』 ディレクトリに新しいフォルダーを作成し、基本的なスタイルルー"
+"ルを含む 『bootstrap.min.css』 ファイルをアップロードします。%s のテーマを使"
+"用しています"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
-msgstr ""
+msgstr "2. ステップ"
 
 #: application/views/themes/index.php:53
 msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
 msgstr ""
+"このフォルダに「overrides.css」というファイルを作成し、そこにカスタムCSSコー"
+"ドを配置します。"
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
-msgstr ""
+msgstr "3. ステップ"
 
 #: application/views/themes/index.php:62
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
 msgstr ""
+"新しいテーマごとに、2つのロゴファイルが必要です。1つはログイン画面用、もう1つ"
+"はヘッダー用です。"
 
 #: application/views/themes/index.php:63
 msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
+"許可されるのは PNG ファイルのみで、ピクセル比は 1:1 (例: 高さ 1000 ピクセル、"
+"幅 1000 ピクセル) である必要があります。"
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr ""
+msgstr "2つのロゴファイルを「assets/logo/」フォルダに配置します"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
-msgstr ""
+msgstr "4. ステップ"
 
 #: application/views/themes/index.php:73
 #, php-format
@@ -14181,82 +14342,88 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"「テーマを追加」をクリックし、必要なデータを入力してください。ロゴのファイル"
+"名を入力する際は、%swithout%s ファイル拡張子「.png」を省略しないでください"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
-msgstr ""
+msgstr "フォルダ名"
 
 #: application/views/themes/index.php:99
 msgid "Please edit"
-msgstr ""
+msgstr "編集してください"
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
-msgstr ""
+msgstr "テーマを追加する"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
-msgstr ""
+msgstr "選択した年のみの新着"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
-msgstr ""
+msgstr "接触がプロットされた"
 
 #: application/views/timeplotter/index.php:3
 msgid "Time Distribution"
-msgstr ""
+msgstr "時間配分"
 
 #: application/views/timeplotter/index.php:6
 msgid "Callsign(s) worked (max 5)"
-msgstr ""
+msgstr "有効なコールサイン（最大5つ）"
 
 #: application/views/timeplotter/index.php:10
 msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
+"タイムプロッターは、ログブックを分析し、選択したバンドで特定の CQ ゾーンまた"
+"は DXCC 国と交信した時間を確認するために使用されます。"
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
-msgstr ""
+msgstr "名前 / 説明"
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
-msgstr ""
+msgstr "DXCCルックアップデータ"
 
 #: application/views/update/index.php:12
 msgid "Distance Data"
-msgstr ""
+msgstr "距離データ"
 
 #: application/views/update/index.php:19
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
 msgstr ""
+"ここでは、コールサイン情報を表示するために使用される DXCC ルックアップデータ"
+"を更新できます。"
 
 #: application/views/update/index.php:20
 msgid "This data is provided by"
-msgstr ""
+msgstr "このデータは以下から提供されています"
 
 #: application/views/update/index.php:24
 msgid "You must install php-xml for this to work."
-msgstr ""
+msgstr "これを機能させるには、php-xml をインストールする必要があります。"
 
 #: application/views/update/index.php:27
 msgid "Check for DXCC Data Updates"
-msgstr ""
+msgstr "DXCCデータの更新を確認する"
 
 #: application/views/update/index.php:28
 msgid "Update DXCC Data"
-msgstr ""
+msgstr "DXCCデータの更新"
 
 #: application/views/update/index.php:30
 msgid "Status:"
-msgstr ""
+msgstr "状態："
 
 #: application/views/update/index.php:34
 msgid "Apply DXCC Data to Logbook"
-msgstr ""
+msgstr "DXCCデータをログブックに適用する"
 
 #: application/views/update/index.php:36
 msgid ""
@@ -14266,36 +14433,43 @@ msgid ""
 "missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
+"アップデート後、Wavelog は新しく取得した DXCC データを使用して、ログブック内"
+"の欠落しているコールサイン情報を入力できるようになります。\n"
+"\t\t\t\t\t\t\tログブック内のDXCCメタデータが欠落しているQSOだけをチェックする"
+"か、ログブック全体を再チェックするかを選択できます。\n"
+"\t\t\t\t\t\t\t変更があった場合には、既存のメタデータも更新します。"
 
 #: application/views/update/index.php:45
 msgid "Check QSOs missing DXCC data"
-msgstr ""
+msgstr "DXCCデータが欠落しているQSOを確認する"
 
 #: application/views/update/index.php:54 application/views/update/index.php:95
 msgid "Re-check all QSOs in logbook"
-msgstr ""
+msgstr "ログブックのすべてのQSOを再確認する"
 
 #: application/views/update/index.php:59
 msgid "Apply Continent Data to Logbook"
-msgstr ""
+msgstr "大陸データをログブックに適用する"
 
 #: application/views/update/index.php:61
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
 msgstr ""
+"この機能は、Wavelog でその情報が欠落しているすべての QSO の QSO 大陸情報を更"
+"新するために使用できます。"
 
 #: application/views/update/index.php:68
 msgid "Check QSOs missing continent data"
-msgstr ""
+msgstr "大陸データが欠落しているQSOを確認する"
 
 #: application/views/update/index.php:80
 msgid "Here you can update QSOs with missing distance information."
-msgstr ""
+msgstr "ここで、距離情報が不足している QSO を更新できます。"
 
 #: application/views/update/index.php:86
 msgid "Update distance data"
-msgstr ""
+msgstr "距離データを更新する"
 
 #: application/views/update/index.php:89
 msgid ""
@@ -14303,38 +14477,40 @@ msgid ""
 "QSOs. Depending on the number of QSOs this might take some time to execute. "
 "Please be patient."
 msgstr ""
+"以下のボタンをクリックすると、すべてのQSOの距離情報を更新できます。QSO数に"
+"よっては、処理に時間がかかる場合がありますので、しばらくお待ちください。"
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
-msgstr ""
+msgstr "ユーザーアカウントの削除"
 
 #: application/views/user/delete.php:10
 msgid "Are you sure you want to delete the user account"
-msgstr ""
+msgstr "ユーザーアカウントを削除してもよろしいですか"
 
 #: application/views/user/delete.php:14
 msgid "No, do not delete this user"
-msgstr ""
+msgstr "いいえ、このユーザーを削除しません"
 
 #: application/views/user/delete.php:14
 msgid "Yes, delete this user"
-msgstr ""
+msgstr "はい、このユーザーを削除します"
 
 #: application/views/user/edit.php:6
 msgid "Create Clubstation Account"
-msgstr ""
+msgstr "Clubstationアカウントを作成する"
 
 #: application/views/user/edit.php:8
 msgid "Create User Account"
-msgstr ""
+msgstr "ユーザーアカウントを作成する"
 
 #: application/views/user/edit.php:11
 msgid "Edit Account"
-msgstr ""
+msgstr "アカウントを編集"
 
 #: application/views/user/edit.php:45
 msgid "General Information"
-msgstr ""
+msgstr "一般情報"
 
 #: application/views/user/edit.php:68 application/views/user/login.php:59
 #: application/views/user/login.php:73 application/views/user/login.php:74
@@ -14346,19 +14522,19 @@ msgstr "パスワード"
 
 #: application/views/user/edit.php:74
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "このパスワードをオペレーターと共有しないでください!"
 
 #: application/views/user/edit.php:84
 msgid "User Role"
-msgstr ""
+msgstr "ユーザーの役割"
 
 #: application/views/user/edit.php:113
 msgid "Callsign Owner"
-msgstr ""
+msgstr "コールサイン所有者"
 
 #: application/views/user/edit.php:113
 msgid "Personal"
-msgstr ""
+msgstr "個人的"
 
 #: application/views/user/edit.php:116
 msgid "First Name"
@@ -14370,27 +14546,27 @@ msgstr "苗字"
 
 #: application/views/user/edit.php:134
 msgid "Ham Radio"
-msgstr ""
+msgstr "アマチュア無線家"
 
 #: application/views/user/edit.php:137
 msgid "Special/Club Callsign"
-msgstr ""
+msgstr "スペシャル/クラブコールサイン"
 
 #: application/views/user/edit.php:160
 msgid "Wavelog Preferences"
-msgstr ""
+msgstr "Wavelogの設定"
 
 #: application/views/user/edit.php:171
 msgid "Stylesheet"
-msgstr ""
+msgstr "スタイルシート"
 
 #: application/views/user/edit.php:183
 msgid "Wavelog Language"
-msgstr ""
+msgstr "Wavelog言語"
 
 #: application/views/user/edit.php:190
 msgid "Choose Wavelog language."
-msgstr ""
+msgstr "Wavelog 言語を選択してください。"
 
 #: application/views/user/edit.php:193
 msgid "Timezone"
@@ -14398,92 +14574,97 @@ msgstr "タイムゾーン"
 
 #: application/views/user/edit.php:201
 msgid "Date Format"
-msgstr ""
+msgstr "日付形式"
 
 #: application/views/user/edit.php:214
 msgid "Select how you would like dates shown when logged into your account."
-msgstr ""
+msgstr "アカウントにログインしたときに日付をどのように表示するかを選択します。"
 
 #: application/views/user/edit.php:218
 msgid "Measurement preference"
-msgstr ""
+msgstr "測定方法の選択"
 
 #: application/views/user/edit.php:222
 msgid "Kilometers"
-msgstr ""
+msgstr "キロメートル"
 
 #: application/views/user/edit.php:223
 msgid "Miles"
-msgstr ""
+msgstr "マイルズ"
 
 #: application/views/user/edit.php:224
 msgid "Nautical miles"
-msgstr ""
+msgstr "海里"
 
 #: application/views/user/edit.php:226
 msgid "Choose which unit distances will be shown in"
-msgstr ""
+msgstr "表示される距離の単位を選択してください"
 
 #: application/views/user/edit.php:235
 msgid "Logbook fields"
-msgstr ""
+msgstr "ログブックフィールド"
 
 #: application/views/user/edit.php:238
 msgid "Choose column 1"
-msgstr ""
+msgstr "列1を選択"
 
 #: application/views/user/edit.php:261
 msgid "Choose column 2"
-msgstr ""
+msgstr "列2を選択"
 
 #: application/views/user/edit.php:284
 msgid "Choose column 3"
-msgstr ""
+msgstr "列3を選択"
 
 #: application/views/user/edit.php:307
 msgid "Choose column 4"
-msgstr ""
+msgstr "列4を選択"
 
 #: application/views/user/edit.php:330
 msgid "Choose column 5 (only for logbook)"
-msgstr ""
+msgstr "列5を選択（ログブックのみ）"
 
 #: application/views/user/edit.php:361
 msgid "QSO Logging Options"
-msgstr ""
+msgstr "QSOログオプション"
 
 #: application/views/user/edit.php:364
 msgid "Log End Times for QSOs Separately"
-msgstr ""
+msgstr "QSOの終了時間を個別に記録する"
 
 #: application/views/user/edit.php:370
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
 msgstr ""
+"QSOの開始時間と終了時間を別々に記録する場合は、「はい」を選択してください。"
+"「いいえ」を選択した場合、終了時間は開始時間と同じになります。"
 
 #: application/views/user/edit.php:375
 msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
+"ログ QSO セクションに qrz.com/hamqth.com プロフィールから QSO パートナーのプ"
+"ロフィール写真を表示します。"
 
 #: application/views/user/edit.php:381
 msgid ""
 "Please set your qrz.com/hamqth.com credentials in the general config file."
-msgstr ""
+msgstr "一般設定ファイルで qrz.com/hamqth.com の資格情報を設定してください。"
 
 #: application/views/user/edit.php:386
 msgid "Location auto lookup."
-msgstr ""
+msgstr "場所の自動検索。"
 
 #: application/views/user/edit.php:392
 msgid "If set, gridsquare is fetched based on location name."
 msgstr ""
+"設定されている場合、場所の名前に基づいてグリッドスクエアが取得されます。"
 
 #: application/views/user/edit.php:396
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr ""
+msgstr "SOTA は、山頂のグリッド スクエアと名前を自動検索します。"
 
 #: application/views/user/edit.php:402 application/views/user/edit.php:412
 #: application/views/user/edit.php:422
@@ -14491,261 +14672,279 @@ msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
 msgstr ""
+"設定されている場合、名前とグリッドスクエアが API から取得され、場所とロケータ"
+"が入力されます。"
 
 #: application/views/user/edit.php:406
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr ""
+msgstr "参照用の WWFF 自動検索グリッド スクエアと名前。"
 
 #: application/views/user/edit.php:416
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr ""
+msgstr "POTA は公園のグリッドスクエアと名前を自動検索します。"
 
 #: application/views/user/edit.php:425
 msgid "Number of previous contacts displayed on QSO page."
-msgstr ""
+msgstr "QSO ページに表示される以前のコンタクトの数。"
 
 #: application/views/user/edit.php:442
 msgid "Menu Options"
-msgstr ""
+msgstr "メニューオプション"
 
 #: application/views/user/edit.php:445
 msgid "Show notes in the main menu."
-msgstr ""
+msgstr "メインメニューにメモを表示します。"
 
 #: application/views/user/edit.php:456
 msgid "Quicklog Field"
-msgstr ""
+msgstr "クイックログフィールド"
 
 #: application/views/user/edit.php:462
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
 msgstr ""
+"この機能を使用すると、ヘッダーの検索フィールドを使用してコールサインを記録で"
+"きます。"
 
 #: application/views/user/edit.php:466
 msgid "Quicklog - Action on press Enter"
-msgstr ""
+msgstr "クイックログ - Enter キーを押したときのアクション"
 
 #: application/views/user/edit.php:470
 msgid "Log Callsign"
-msgstr ""
+msgstr "コールサインをログに記録"
 
 #: application/views/user/edit.php:472
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
 msgstr ""
+"クイックログ フィールドで Enter キーが押されたときに実行するアクションは何で"
+"すか?"
 
 #: application/views/user/edit.php:478
 msgid "Station Locations Quickswitch"
-msgstr ""
+msgstr "ステーションの場所クイックスイッチ"
 
 #: application/views/user/edit.php:483
 msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
 msgstr ""
+"メインメニューにステーションの場所のクイックスイッチを表示します。ステーショ"
+"ン設定ページでお気に入りに追加することで、場所を追加できます。"
 
 #: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
-msgstr ""
+msgstr "メニュー内のUTC時間"
 
 #: application/views/user/edit.php:492
 msgid "Show the current UTC Time in the menu"
-msgstr ""
+msgstr "メニューに現在のUTC時間を表示する"
 
 #: application/views/user/edit.php:503
 msgid "Map Settings"
-msgstr ""
+msgstr "マップ設定"
 
 #: application/views/user/edit.php:510
 msgid "Icon"
-msgstr ""
+msgstr "アイコン"
 
 #: application/views/user/edit.php:513
 msgid "Not display"
-msgstr ""
+msgstr "表示されない"
 
 #: application/views/user/edit.php:517
 msgid "Not displayed"
-msgstr ""
+msgstr "表示されない"
 
 #: application/views/user/edit.php:526
 msgid "QSO (by default)"
-msgstr ""
+msgstr "QSO（デフォルト）"
 
 #: application/views/user/edit.php:545
 msgid "QSO (confirmed)"
-msgstr ""
+msgstr "QSO（確認済み）"
 
 #: application/views/user/edit.php:546
 msgid "(If 'No', displayed as 'QSO (by default))'"
-msgstr ""
+msgstr "（もし「いいえ」の場合、デフォルトで「QSO」と表示されます）"
 
 #: application/views/user/edit.php:565
 msgid "Show Locator"
-msgstr ""
+msgstr "ロケーターを表示"
 
 #: application/views/user/edit.php:584
 msgid "Previous QSL Type"
-msgstr ""
+msgstr "以前のQSLタイプ"
 
 #: application/views/user/edit.php:588
 msgid "Select the type of QSL to show in the previous QSOs section."
-msgstr ""
+msgstr "以前の QSO セクションに表示する QSL の種類を選択します。"
 
 #: application/views/user/edit.php:604
 msgid "Dashboard Settings"
-msgstr ""
+msgstr "ダッシュボード設定"
 
 #: application/views/user/edit.php:608
 msgid "Select the number of latest QSOs to be displayed on dashboard."
-msgstr ""
+msgstr "ダッシュボードに表示する最新の QSO の数を選択します。"
 
 #: application/views/user/edit.php:615
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
-msgstr ""
+msgstr "ダッシュボードに表示する最新の QSO の数を選択します。"
 
 #: application/views/user/edit.php:619
 msgid "Show Dashboard Map"
-msgstr ""
+msgstr "ダッシュボードマップを表示"
 
 #: application/views/user/edit.php:623
 msgid "Map at right"
-msgstr ""
+msgstr "右の地図"
 
 #: application/views/user/edit.php:626
 msgid "Choose whether to show map on dashboard or not"
-msgstr ""
+msgstr "ダッシュボードにマップを表示するかどうかを選択します"
 
 #: application/views/user/edit.php:630
 msgid "Dashboard Notification Banner"
-msgstr ""
+msgstr "ダッシュボード通知バナー"
 
 #: application/views/user/edit.php:636
 msgid "This allows to disable the global notification banner on the dashboard."
 msgstr ""
+"これにより、ダッシュボード上のグローバル通知バナーを無効にすることができま"
+"す。"
 
 #: application/views/user/edit.php:644
 msgid "Show Reference Fields on QSO Tab"
-msgstr ""
+msgstr "QSOタブに参照フィールドを表示する"
 
 #: application/views/user/edit.php:648
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
-msgstr ""
+msgstr "有効になっている項目は、[全般] タブではなく [QSO] タブに表示されます。"
 
 #: application/views/user/edit.php:686
 msgid "Online QSL request (OQRS) settings"
-msgstr ""
+msgstr "オンラインQSLリクエスト（OQRS）設定"
 
 #: application/views/user/edit.php:690
 msgid "Global text"
-msgstr ""
+msgstr "グローバルテキスト"
 
 #: application/views/user/edit.php:692
 msgid ""
 "This text is an optional text that can be displayed on top of the OQRS page."
 msgstr ""
+"このテキストは、OQRS ページの上部に表示できるオプションのテキストです。"
 
 #: application/views/user/edit.php:695
 msgid "Grouped search"
-msgstr ""
+msgstr "グループ検索"
 
 #: application/views/user/edit.php:697 application/views/user/edit.php:706
 #: application/views/user/edit.php:715 application/views/user/edit.php:724
 msgid "Off"
-msgstr ""
+msgstr "オフ"
 
 #: application/views/user/edit.php:698 application/views/user/edit.php:707
 #: application/views/user/edit.php:716 application/views/user/edit.php:725
 msgid "On"
-msgstr ""
+msgstr "オン"
 
 #: application/views/user/edit.php:700
 msgid ""
 "When this is on, all station locations with OQRS active, will be searched at "
 "once."
 msgstr ""
+"これをオンにすると、OQRS がアクティブなすべてのステーションの場所が一度に検索"
+"されます。"
 
 #: application/views/user/edit.php:704
 msgid "Show station location name in grouped search results"
-msgstr ""
+msgstr "グループ化された検索結果に駅の場所名を表示する"
 
 #: application/views/user/edit.php:709
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
 msgstr ""
+"グループ検索がオンの場合、結果テーブルに駅の場所の名前を表示するかどうかを決"
+"定できます。"
 
 #: application/views/user/edit.php:713
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "自動OQRSマッチング"
 
 #: application/views/user/edit.php:718
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"これがオンの場合、自動 OQRS マッチングが行われ、システムは受信したリクエスト"
+"を既存のログと自動的にマッチングしようとします。"
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "直接リクエストの自動OQRSマッチング"
 
 #: application/views/user/edit.php:727
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"これがオンの場合、直接リクエストに対する自動 OQRS マッチングが行われます。"
 
 #: application/views/user/edit.php:743
 msgid "Default Values"
-msgstr ""
+msgstr "デフォルト値"
 
 #: application/views/user/edit.php:751
 msgid "Settings for Default Band and Confirmation"
-msgstr ""
+msgstr "デフォルトバンドと確認の設定"
 
 #: application/views/user/edit.php:754
 msgid "Default Band"
-msgstr ""
+msgstr "デフォルトバンド"
 
 #: application/views/user/edit.php:764
 msgid "Default QSL-Methods"
-msgstr ""
+msgstr "デフォルトのQSL方法"
 
 #: application/views/user/edit.php:821
 msgid "Third Party Services"
-msgstr ""
+msgstr "サードパーティのサービス"
 
 #: application/views/user/edit.php:832
 msgid "Logbook of The World (LoTW) Username"
-msgstr ""
+msgstr "Logbook of The World (LoTW) ユーザー名"
 
 #: application/views/user/edit.php:838
 msgid "Logbook of The World (LoTW) Password"
-msgstr ""
+msgstr "ログブック・オブ・ザ・ワールド（LoTW）のパスワード"
 
 #: application/views/user/edit.php:842
 msgid "Test Login"
-msgstr ""
+msgstr "テストログイン"
 
 #: application/views/user/edit.php:860
 msgid "eQSL.cc Username"
-msgstr ""
+msgstr "eQSL.cc ユーザー名"
 
 #: application/views/user/edit.php:866
 msgid "eQSL.cc Password"
-msgstr ""
+msgstr "eQSL.cc パスワード"
 
 #: application/views/user/edit.php:883
 msgid "Club Log"
-msgstr ""
+msgstr "Club Log"
 
 #: application/views/user/edit.php:886
 msgid "Club Log Email/Callsign"
-msgstr ""
+msgstr "Club Logのメールアドレス/コールサイン"
 
 #: application/views/user/edit.php:892
 msgid "Club Log Password"
-msgstr ""
+msgstr "Club Log パスワード"
 
 #: application/views/user/edit.php:897
 #, php-format
@@ -14753,43 +14952,49 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Clublogで2FAを有効にしている場合、WavelogでClublogを使用するにはアプリパス"
+"ワードを生成する必要があります。その場合は、%syour clublog settings page%s に"
+"アクセスしてください。"
 
 #: application/views/user/edit.php:914
 msgid "Widgets"
-msgstr ""
+msgstr "ウィジェット"
 
 #: application/views/user/edit.php:922
 msgid "On-Air widget"
-msgstr ""
+msgstr "オンエアウィジェット"
 
 #: application/views/user/edit.php:932
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
 msgstr ""
+"注意: このウィジェットを使用するには、少なくとも 1 つの CAT 無線が構成され動"
+"作している必要があります。"
 
 #: application/views/user/edit.php:936
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "有効にすると、ウィジェットは%sで利用可能になります。"
 
 #: application/views/user/edit.php:941
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "「最終閲覧」時間を表示する"
 
 #: application/views/user/edit.php:947
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
+"この設定は、ウィジェットに「最終確認」時間を表示するかどうかを制御します。"
 
 #: application/views/user/edit.php:950
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "最近更新されたラジオのみを表示する"
 
 #: application/views/user/edit.php:954
 msgid "No, show all radios"
-msgstr ""
+msgstr "いいえ、すべてのラジオを表示"
 
 #: application/views/user/edit.php:956
 msgid ""
@@ -14798,57 +15003,61 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"複数のCATラジオを設定している場合、この設定でウィジェットにユーザーの放送中の"
+"ラジオをすべて表示するか、最新のラジオのみを表示するかを指定します。ラジオが1"
+"台しかない場合、この設定は無効です。"
 
 #: application/views/user/edit.php:966
 msgid "QSOs widget"
-msgstr ""
+msgstr "QSOウィジェット"
 
 #: application/views/user/edit.php:969
 msgid "Display exact QSO time"
-msgstr ""
+msgstr "正確なQSO時間を表示"
 
 #: application/views/user/edit.php:975
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
+"この設定は、QSO ウィジェットに正確な QSO 時間を表示するかどうかを制御します。"
 
 #: application/views/user/edit.php:988
 msgid "Miscellaneous"
-msgstr ""
+msgstr "その他"
 
 #: application/views/user/edit.php:996
 msgid "AMSAT Status Upload"
-msgstr ""
+msgstr "AMSATステータスアップロード"
 
 #: application/views/user/edit.php:999
 msgid "Upload status of SAT QSOs to"
-msgstr ""
+msgstr "SAT QSOのステータスをアップロードする"
 
 #: application/views/user/edit.php:1013
 msgid "Mastodonserver"
-msgstr ""
+msgstr "マストドンサーバー"
 
 #: application/views/user/edit.php:1016
 msgid "URL of Mastodonserver"
-msgstr ""
+msgstr "マストドンサーバーのURL"
 
 #: application/views/user/edit.php:1018
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
-msgstr ""
+msgstr "MastodonサーバーのメインURL、例： %s"
 
 #: application/views/user/edit.php:1027
 msgid "Experimental"
-msgstr ""
+msgstr "実験的"
 
 #: application/views/user/edit.php:1027
 msgid "Winkeyer"
-msgstr ""
+msgstr "Winkeyer"
 
 #: application/views/user/edit.php:1030
 msgid "Winkeyer Features Enabled"
-msgstr ""
+msgstr "Winkeyer機能が有効"
 
 #: application/views/user/edit.php:1036
 #, php-format
@@ -14856,62 +15065,70 @@ msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr ""
+"Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
+"before enabling."
 
 #: application/views/user/edit.php:1047
 msgid "Hams.at"
-msgstr ""
+msgstr "Hams.at"
 
 #: application/views/user/edit.php:1050
 msgid "Private Feed Key"
-msgstr ""
+msgstr "プライベートフィードキー"
 
 #: application/views/user/edit.php:1052
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr ""
+msgstr "プロフィールはこちら %s 。"
 
 #: application/views/user/edit.php:1055
 msgid "Show Workable Passes Only"
-msgstr ""
+msgstr "実行可能なパスのみを表示"
 
 #: application/views/user/edit.php:1061
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
+"有効にすると、hams.atアカウントで設定されたグリッドスクエアに基づいて、有効な"
+"パスのみが表示されます。プライベートフィードキーの設定が必要です。"
 
 #: application/views/user/edit.php:1073
 msgid "Save Account"
-msgstr ""
+msgstr "アカウントを保存"
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
-msgstr ""
+msgstr "パスワードをお忘れですか？"
 
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
 msgid "You can reset your password here."
-msgstr ""
+msgstr "ここでパスワードをリセットできます。"
 
 #: application/views/user/index.php:11
 msgid "User List"
-msgstr ""
+msgstr "ユーザーリスト"
 
 #: application/views/user/index.php:14
 msgid "Wavelog needs at least one user configured in order to operate."
 msgstr ""
+"Wavelog が動作するには、少なくとも 1 人のユーザーが設定されている必要がありま"
+"す。"
 
 #: application/views/user/index.php:15
 msgid ""
 "Users can be assigned roles which give them different permissions, such as "
 "adding QSOs to the logbook and accessing Wavelog APIs."
 msgstr ""
+"ユーザーには、ログブックへの QSO の追加や Wavelog API へのアクセスなど、さま"
+"ざまな権限を与えるロールを割り当てることができます。"
 
 #: application/views/user/index.php:16
 msgid ""
 "The currently logged-in user is displayed at the upper-right of each page."
-msgstr ""
+msgstr "現在ログインしているユーザーは各ページの右上に表示されます。"
 
 #: application/views/user/index.php:17
 msgid ""
@@ -14919,57 +15136,60 @@ msgid ""
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
 msgstr ""
+"パスワードリセットボタンを使用すると、パスワードをリセットするためのリンクを"
+"含むメールをユーザーに送信できます。これを行うには、グローバルオプションの"
+"メール設定が正しく設定されていることを確認してください。"
 
 #: application/views/user/index.php:19
 msgid "Create user"
-msgstr ""
+msgstr "ユーザーを作成"
 
 #: application/views/user/index.php:31 application/views/user/index.php:158
 msgid "Last seen"
-msgstr ""
+msgstr "最後に見た"
 
 #: application/views/user/index.php:69 application/views/user/index.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:31
 msgid "Never"
-msgstr ""
+msgstr "一度もない"
 
 #: application/views/user/index.php:74
 msgid "Account locked"
-msgstr ""
+msgstr "アカウントがロックされました"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
-msgstr ""
+msgstr "ログイン試行回数が多すぎるため、アカウントがロックされました。"
 
 #: application/views/user/index.php:76 application/views/user/index.php:188
 msgid "Locations"
-msgstr ""
+msgstr "場所"
 
 #: application/views/user/index.php:78 application/views/user/index.php:190
 msgid "Logbooks"
-msgstr ""
+msgstr "ログブック"
 
 #: application/views/user/index.php:81 application/views/user/index.php:193
 msgid "Last QSO:"
-msgstr ""
+msgstr "最後のQSO:"
 
 #: application/views/user/index.php:85 application/views/user/index.php:195
 msgid "No QSOs in Log"
-msgstr ""
+msgstr "ログにQSOがありません"
 
 #: application/views/user/index.php:103 application/views/user/index.php:209
 #: application/views/user/modals/admin_impersonate_modal.php:43
 msgid "Impersonate"
-msgstr ""
+msgstr "なりすまし"
 
 #: application/views/user/index.php:110 application/views/user/index.php:219
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
-msgstr ""
+msgstr "その他のアクション"
 
 #: application/views/user/index.php:138
 msgid "Clubstation List"
-msgstr ""
+msgstr "クラブステーションリスト"
 
 #: application/views/user/index.php:141
 msgid ""
@@ -14977,66 +15197,71 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
+"Wavelogのクラブステーションは、クラブや特別なコールサインイベントで複数のオペ"
+"レーターを扱うためのユニークな方法です。クラブステーションは、基本的に通常の"
+"ユーザーアカウントですが、いくつかの特別な機能と制限事項があります。"
 
 #: application/views/user/index.php:143
 msgid "Create Clubstation"
-msgstr ""
+msgstr "クラブステーションを作成する"
 
 #: application/views/user/index.php:156
 msgid "Last Operator"
-msgstr ""
+msgstr "最後のオペレーター"
 
 #: application/views/user/index.php:243
 msgid "No Clubstations configures yet."
-msgstr ""
+msgstr "Clubstationsの設定はまだ行われていません。"
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
-msgstr ""
+msgstr "メンテナンスモード"
 
 #: application/views/user/login.php:56
 msgid "Welcome to the Demo of Wavelog"
-msgstr ""
+msgstr "Wavelogのデモへようこそ"
 
 #: application/views/user/login.php:57
 msgid "This demo will be reset every night at 0200z."
-msgstr ""
+msgstr "このデモは毎晩 0200z にリセットされます。"
 
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Wavelogに関する詳細情報は、%sGithub%s をご覧ください。"
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
-msgstr ""
+msgstr "パスワードをお忘れですか？"
 
 #: application/views/user/login.php:85
 msgid "Keep me logged in"
-msgstr ""
+msgstr "ログイン状態を保つ"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "(with Admin Rights)"
-msgstr ""
+msgstr "（管理者権限あり）"
 
 #: application/views/user/modals/admin_impersonate_modal.php:5
 msgid "Impersonate User"
-msgstr ""
+msgstr "偽装ユーザー"
 
 #: application/views/user/modals/admin_impersonate_modal.php:9
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you can use the switch back button in the header menu."
 msgstr ""
+"他のユーザーになりすまそうとしています。管理者アカウントに戻るには、ヘッダー"
+"メニューの「戻る」ボタンをご利用ください。"
 
 #: application/views/user/modals/admin_impersonate_modal.php:10
 msgid "Do you want to impersonate this user?"
-msgstr ""
+msgstr "このユーザーになりすましますか?"
 
 #: application/views/user/modals/admin_impersonate_modal.php:14
 #: application/views/user/modals/more_actions_modal.php:12
 msgid "Username:"
-msgstr ""
+msgstr "ユーザー名:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:18
 #: application/views/user/modals/more_actions_modal.php:16
@@ -15044,7 +15269,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:103
 #: application/views/user/modals/more_actions_modal.php:152
 msgid "Name:"
-msgstr ""
+msgstr "名前："
 
 #: application/views/user/modals/admin_impersonate_modal.php:22
 #: application/views/user/modals/more_actions_modal.php:20
@@ -15052,7 +15277,7 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:104
 #: application/views/user/modals/more_actions_modal.php:153
 msgid "Callsign:"
-msgstr ""
+msgstr "コールサイン:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:26
 #: application/views/user/modals/more_actions_modal.php:24
@@ -15060,19 +15285,19 @@ msgstr ""
 #: application/views/user/modals/more_actions_modal.php:106
 #: application/views/user/modals/more_actions_modal.php:155
 msgid "E-Mail:"
-msgstr ""
+msgstr "Eメール:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:30
 msgid "Last Seen:"
-msgstr ""
+msgstr "最終閲覧日時:"
 
 #: application/views/user/modals/first_login_wizard.php:5
 msgid "First Login Wizard"
-msgstr ""
+msgstr "最初のログインウィザード"
 
 #: application/views/user/modals/first_login_wizard.php:20
 msgid "Hello and Welcome to Wavelog!"
-msgstr ""
+msgstr "こんにちは、Wavelog へようこそ!"
 
 #: application/views/user/modals/first_login_wizard.php:21
 #, php-format
@@ -15081,54 +15306,58 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
+"QSOsの記録を開始する前に、まず最初のステーション位置を設定する必要がありま"
+"す。ステーション位置とログブックの仕組みについては、当社の%sWiki%sで詳細をご"
+"確認いただけます！"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
 "Please provide some additional information so that Wavelog can create your "
 "first Station:"
 msgstr ""
+"Wavelog が最初のステーションを作成できるように、追加情報を提供してください。"
 
 #: application/views/user/modals/first_login_wizard.php:29
 msgid "Home QTH"
-msgstr ""
+msgstr "ホームQTH"
 
 #: application/views/user/modals/first_login_wizard.php:62
 msgid "Station Zones"
-msgstr ""
+msgstr "ステーションゾーン"
 
 #: application/views/user/modals/first_login_wizard.php:74
 #: application/views/user/modals/first_login_wizard.php:84
 #, php-format
 msgctxt "zone lookup"
 msgid "%sLookup%s"
-msgstr ""
+msgstr "%s検索%s"
 
 #: application/views/user/modals/first_login_wizard.php:102
 msgid "Save and Start Logging"
-msgstr ""
+msgstr "保存してログ記録を開始"
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
-msgstr ""
+msgstr "ユーザーに対して実行するアクションを選択します:"
 
 #: application/views/user/modals/more_actions_modal.php:33
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "ユーザーのロック解除"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "パスワードリセットリンクをメールで送信"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to Clubstation"
-msgstr ""
+msgstr "クラブステーションに変換する"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to User"
-msgstr ""
+msgstr "ユーザーに変換"
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid ""
@@ -15136,60 +15365,69 @@ msgid ""
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
 msgstr ""
+"以下のユーザーのロックを解除しようとしています。このユーザーはログイン試行の"
+"失敗回数が多すぎるためロックされています。ロック解除後、ユーザーは再度ログイ"
+"ンできるようになります。"
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
 #: application/views/user/modals/more_actions_modal.php:151
 msgid "User:"
-msgstr ""
+msgstr "ユーザー："
 
 #: application/views/user/modals/more_actions_modal.php:70
 #: application/views/user/modals/more_actions_modal.php:105
 #: application/views/user/modals/more_actions_modal.php:154
 msgid "Language:"
-msgstr ""
+msgstr "言語："
 
 #: application/views/user/modals/more_actions_modal.php:89
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"パスワードリセットメールをユーザーに送信しました。このダイアログを閉じてくだ"
+"さい。"
 
 #: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"パスワードリセットメールをユーザーに送信できませんでした。グローバルオプショ"
+"ンのメール設定は正しく設定されていますか？"
 
 #: application/views/user/modals/more_actions_modal.php:99
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"ユーザーにパスワードリセットリンクを送信します。ユーザーはメール内のリンクを"
+"クリックしてパスワードをリセットできます。"
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
-msgstr ""
+msgstr "このユーザーにパスワードリセットメールを送信しますか?"
 
 #: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
-msgstr ""
+msgstr "メールを送信する"
 
 #: application/views/user/modals/more_actions_modal.php:126
 msgid "The account was successfully converted. You can now close this dialog."
-msgstr ""
+msgstr "アカウントは正常に変換されました。このダイアログを閉じてください。"
 
 #: application/views/user/modals/more_actions_modal.php:127
 msgid "The account could not be converted. An error has occurred."
-msgstr ""
+msgstr "アカウントを変換できませんでした。エラーが発生しました。"
 
 #: application/views/user/modals/more_actions_modal.php:135
 msgid "Convert this account into a normal user"
-msgstr ""
+msgstr "このアカウントを通常のユーザーに変換する"
 
 #: application/views/user/modals/more_actions_modal.php:137
 msgid "Convert this account into a clubstation"
-msgstr ""
+msgstr "このアカウントをクラブステーションに変換する"
 
 #: application/views/user/modals/more_actions_modal.php:144
 msgid ""
@@ -15197,6 +15435,9 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
+"このクラブステーションを通常のユーザーアカウントに変換しようとしています。"
+"ユーザーは再びログインできるようになり、クラブに割り当てられているすべての権"
+"限が削除されます。慎重にご利用ください！"
 
 #: application/views/user/modals/more_actions_modal.php:146
 msgid ""
@@ -15204,39 +15445,42 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
+"このユーザーアカウントをクラブステーションアカウントに変換しようとしていま"
+"す。ユーザーはログインできなくなり、アカウントはクラブステーションアカウント"
+"に変換されます。注意してご利用ください！"
 
 #: application/views/user/modals/more_actions_modal.php:149
 msgid "Are you sure you want to convert this account?"
-msgstr ""
+msgstr "このアカウントを変換してもよろしいですか?"
 
 #: application/views/user/modals/more_actions_modal.php:159
 msgid "Convert"
-msgstr ""
+msgstr "変換する"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "メインユーザーに戻る"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch back to %s?"
-msgstr ""
+msgstr "%sに戻してもよろしいですか？"
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "レベル"
 
 #: application/views/user/profile.php:39
 msgid "First name"
-msgstr ""
+msgstr "名前"
 
 #: application/views/user/profile.php:44
 msgid "Last name"
-msgstr ""
+msgstr "苗字"
 
 #: application/views/user/profile.php:50
 msgid "Edit profile"
-msgstr ""
+msgstr "プロフィールを編集"
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
@@ -15245,203 +15489,212 @@ msgstr "パスワードを認証する"
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
 msgstr ""
+"バージョンダイアログのテキストが設定されていません。管理メニューに移動して設"
+"定してください。"
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
 msgstr ""
+"JSON データの解析中にエラーが発生したか、github から空の結果が返されました。"
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
-msgstr ""
+msgstr "GitHub からデータを取得するときにエラーが発生しました。"
 
 #: application/views/version_dialog/index.php:75
 msgid "Don't show again"
-msgstr ""
+msgstr "再度表示しない"
 
 #: application/views/view_log/index.php:4
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr ""
+msgstr "このログブックにリンクされている局所在地のすべてのQSOを表示します"
 
 #: application/views/view_log/partial/log_ajax.php:426
 #: application/views/view_log/partial/log_ajax.php:440
 #: src/QSLManager/QSO.php:567 src/QSLManager/QSO.php:622
 #: src/QSLManager/QSO.php:681
 msgid "last sent"
-msgstr ""
+msgstr "最終送信"
 
 #: application/views/view_log/partial/log_ajax.php:531
 msgid "Result"
-msgstr ""
+msgstr "結果"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
-msgstr ""
+msgstr "QSOの詳細"
 
 #: application/views/view_log/qso.php:29
 msgid "QSL Management"
-msgstr ""
+msgstr "QSL管理"
 
 #: application/views/view_log/qso.php:132
 msgid "Total Distance"
-msgstr ""
+msgstr "総距離"
 
 #: application/views/view_log/qso.php:159
 msgid "Other Path"
-msgstr ""
+msgstr "他のパス"
 
 #: application/views/view_log/qso.php:317
 msgid "Antenna Azimuth"
-msgstr ""
+msgstr "アンテナ方位角"
 
 #: application/views/view_log/qso.php:324
 msgid "Antenna Elevation"
-msgstr ""
+msgstr "アンテナの仰角"
 
 #: application/views/view_log/qso.php:493
 msgid "QSL Card has been sent via the bureau"
-msgstr ""
+msgstr "QSLカードは事務局から送られました"
 
 #: application/views/view_log/qso.php:495
 msgid "QSL Card has been sent via direct"
-msgstr ""
+msgstr "QSLカードは直接送信されました"
 
 #: application/views/view_log/qso.php:497
 msgid "QSL Card has been sent electronically"
-msgstr ""
+msgstr "QSLカードは電子的に送信されました"
 
 #: application/views/view_log/qso.php:499
 msgid "QSL Card has been sent via manager"
-msgstr ""
+msgstr "QSLカードはマネージャー経由で送信されました"
 
 #: application/views/view_log/qso.php:501
 msgid "QSL Card has been sent"
-msgstr ""
+msgstr "QSLカードが送られました"
 
 #: application/views/view_log/qso.php:510
 msgid "QSL Card has been received via the bureau"
-msgstr ""
+msgstr "QSLカードは事務局経由で受領されました"
 
 #: application/views/view_log/qso.php:512
 msgid "QSL Card has been received via direct"
-msgstr ""
+msgstr "QSLカードは直接受け取りました"
 
 #: application/views/view_log/qso.php:514
 msgid "QSL Card has been received electronically"
-msgstr ""
+msgstr "QSLカードは電子的に受信されました"
 
 #: application/views/view_log/qso.php:516
 msgid "QSL Card has been received via manager"
-msgstr ""
+msgstr "QSLカードはマネージャー経由で受信されました"
 
 #: application/views/view_log/qso.php:518
 msgid "QSL Card has been received"
-msgstr ""
+msgstr "QSLカードを受け取りました"
 
 #: application/views/view_log/qso.php:527
 msgid "This station uses LoTW."
-msgstr ""
+msgstr "このステーションはLoTWを使用します。"
 
 #: application/views/view_log/qso.php:532
 #: application/views/view_log/qso.php:542
 #: application/views/view_log/qso.php:556
 #: application/views/view_log/qso.php:566
 msgid "This QSO was confirmed on"
-msgstr ""
+msgstr "このQSOは"
 
 #: application/views/view_log/qso.php:537
 msgid "This QSO is confirmed on LoTW."
-msgstr ""
+msgstr "このQSOはLoTWで確認されました。"
 
 #: application/views/view_log/qso.php:551
 msgid "This QSO is confirmed on eQSL."
-msgstr ""
+msgstr "このQSOはeQSLで確認されています。"
 
 #: application/views/view_log/qso.php:561
 msgid "This QSO is confirmed on QRZ.com."
-msgstr ""
+msgstr "このQSOはQRZ.comで確認されています。"
 
 #: application/views/view_log/qso.php:571
 msgid "This QSO is confirmed on Clublog."
-msgstr ""
+msgstr "このQSOはClublogで確認されています。"
 
 #: application/views/view_log/qso.php:584
 msgid "More QSOs"
-msgstr ""
+msgstr "より多くのQSO"
 
 #: application/views/view_log/qso.php:646
 msgid "Share"
-msgstr ""
+msgstr "共有"
 
 #: application/views/view_log/qso.php:652
 msgid "Details"
-msgstr ""
+msgstr "詳細"
 
 #: application/views/view_log/qso.php:779
 msgid "Uploaded QSL Card front image"
-msgstr ""
+msgstr "QSLカードの表面画像をアップロードしました"
 
 #: application/views/view_log/qso.php:784
 msgid "Upload QSL Card image"
-msgstr ""
+msgstr "QSLカードの画像をアップロード"
 
 #: application/views/view_log/qso.php:789
 msgid "Uploaded QSL Card back image"
-msgstr ""
+msgstr "QSLカードの裏面画像をアップロードしました"
 
 #: application/views/view_log/qso.php:805
 msgid "Mark QSL Received (Electronic)"
-msgstr ""
+msgstr "QSL受信をマーク（電子）"
 
 #: application/views/view_log/qso.php:828
 msgid "eQSL picture"
-msgstr ""
+msgstr "eQSL画像"
 
 #: application/views/visitor/layout/footer.php:238
 msgid "Filter Results"
-msgstr ""
+msgstr "結果をフィルタリング"
 
 #: application/views/visitor/layout/footer.php:244
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: application/views/visitor/layout/footer.php:252
 msgid "Clear Filter"
-msgstr ""
+msgstr "フィルターをクリア"
 
 #: application/views/visitor/layout/header.php:74
 msgid "OQRS"
-msgstr ""
+msgstr "OQRS"
 
 #: application/views/visitor/layout/header.php:82
 msgid "Visit Wavelog on Github"
-msgstr ""
+msgstr "GithubのWavelogをご覧ください"
 
 #: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
-msgstr ""
+msgstr "コールサインを入力してください！"
 
 #: application/views/webadif/export.php:22
 msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
 "to QO-100 Dx Club."
 msgstr ""
+"ここでは、これまで QO-100 Dx クラブにアップロードされていないすべての QSO を"
+"表示およびアップロードできます。"
 
 #: application/views/webadif/export.php:33
 msgid ""
 "You need to set a QO-100 Dx Club API key in your station profile. Only "
 "station profiles with an API Key are displayed."
 msgstr ""
+"ステーションプロフィールにQO-100 Dx Club APIキーを設定する必要があります。API"
+"キーが設定されているステーションプロフィールのみが表示されます。"
 
 #: application/views/webadif/export.php:63
 msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
+"現在、QO-100 Dx クラブの API にアップロードする必要がある未処理の QSO はあり"
+"ません。"
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
-msgstr ""
+msgstr "さあ、QO-100 ステーションをオンにしましょう!"
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
@@ -15449,11 +15702,13 @@ msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
 msgstr ""
+"どのログブックも、QO-100 Dx Club の API にデータをエクスポートするように構成"
+"されていません。"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 msgid "QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 DXクラブ"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
@@ -15462,6 +15717,8 @@ msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
 "%s an API key."
 msgstr ""
+"この機能を設定するには、%s と %s のプロフィールページに移動し、%s で API キー"
+"を作成してください。"
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
@@ -15470,48 +15727,70 @@ msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
 "created at the club."
 msgstr ""
+"次に、 %s にアクセスし、クラブで作成したキーを使用してステーションを構成しま"
+"す。"
 
 #: application/views/webadif/export.php:83
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
 msgstr ""
+"ここでは、これまで QO-100 Dx クラブにアップロードされていない QSO をアップ"
+"ロード済みとしてマークできます。"
 
 #: application/views/webadif/export.php:107
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr ""
+msgstr "QSOをQO-100 Dxクラブにエクスポートしたとしてマークする"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
-msgstr ""
+msgstr "QSO は QO-100 Dx クラブにエクスポートされたものとしてマークされます。"
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
-msgstr ""
+msgstr "Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:76
 msgid "Wavelog OQRS Request"
-msgstr ""
+msgstr "Wavelog OQRSリクエスト"
 
 #: application/views/widgets/oqrs.php:79
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
-msgstr ""
+msgstr "%sとの交信（QSO）のためのQSLカードをご請求ください。"
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
-msgstr ""
+msgstr "あなたのコールサイン:"
 
 #: application/views/widgets/oqrs.php:91
 msgid "Submit Request"
-msgstr ""
+msgstr "リクエストを送信"
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
+msgstr "受信"
+
+#: application/views/station_profile/edit.php:309
+msgid "Trouble? Check the"
+msgstr "問題が発生しましたか？ 確認してください"
+
+#: application/views/station_profile/edit.php:309
+msgid "wiki"
+msgstr "週"
+
+#: application/views/station_profile/edit.php:309
+#, php-format
+msgid "Trouble? Check the %swiki%s."
+msgstr "問題が発生しましたか？%swiki%sを確認してください。"
+
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
 msgstr ""
 
-#~ msgid "Yay, its imported!"
-#~ msgstr "やった、インポートされました！"
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr ""
 
 #~ msgid "Mark QSOs as uploaded"
 #~ msgstr "QSOをアップロード済みとしてマークする"

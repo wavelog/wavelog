@@ -26,11 +26,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-24 13:27+0000\n"
-"PO-Revision-Date: 2025-08-22 09:26+0000\n"
-"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"POT-Creation-Date: 2025-08-23 11:42+0000\n"
+"PO-Revision-Date: 2025-08-24 13:45+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -248,16 +248,17 @@ msgstr "ADIF-Import fehlgeschlagen!"
 msgid "Station Profile not valid for User"
 msgstr "Stations-Standort ist für diesen Benutzer nicht gültig"
 
-#: application/controllers/Adif.php:283
+#: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
+#: application/controllers/Adif.php:283
 msgid "ADIF Imported"
 msgstr "ADIF importiert"
 
-#: application/controllers/Adif.php:294
+#: application/controllers/Adif.php:293 application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "DCL Import"
 
-#: application/controllers/Adif.php:352
+#: application/controllers/Adif.php:351 application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "DCL-Daten importiert"
 
@@ -3231,6 +3232,7 @@ msgstr "Kein Rufzeichen angegeben"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC muss numerisch sein"
 
+#: application/models/Logbook_model.php:4004
 #: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3238,10 +3240,18 @@ msgstr ""
 "Falscher Stationscall %s im QSO mit %s für das Stationsprofil %s: Nicht "
 "importiert"
 
+#: application/models/Logbook_model.php:4005
+#: application/views/adif/import_success.php:58
+#, php-format
+msgid "Check %s for hints about errors in ADIF files."
+msgstr "Schaue im %s für Tipps zu möglichen Fehlern in der ADIF-Datei."
+
+#: application/models/Logbook_model.php:4017
 #: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "QSO am"
 
+#: application/models/Logbook_model.php:4017
 #: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3250,63 +3260,76 @@ msgstr ""
 "Du hast versucht, ein QSO ohne angegebenes Rufzeichen zu importieren. Dieses "
 "QSO wurde nicht importiert. Es ist ungültig"
 
+#: application/models/Logbook_model.php:4316
 #: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:4327
 #: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
+#: application/models/Logbook_model.php:4388
 #: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
+#: application/models/Logbook_model.php:4408
 #: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
 
+#: application/models/Logbook_model.php:4429
 #: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4722
+#: application/models/Logbook_model.php:4721
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4722
 msgid "Duplicate for"
 msgstr "Doublette zu"
 
+#: application/models/Logbook_model.php:4782
 #: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
+#: application/models/Logbook_model.php:4788
 #: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4793
 #: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
+#: application/models/Logbook_model.php:4796
 #: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
+#: application/models/Logbook_model.php:4799
 #: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
+#: application/models/Logbook_model.php:4802
 #: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4805
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4806
 msgid "unknown"
 msgstr "unbekannt"
 
-#: application/models/Logbook_model.php:5644
+#: application/models/Logbook_model.php:5643
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3317,6 +3340,7 @@ msgstr "unbekannt"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5644
 msgid "Bearing"
 msgstr "Peilung"
 
@@ -4562,8 +4586,9 @@ msgstr ""
 "ebenfalls bereitstellt, importieren, um diese Daten in Wavelog zu korrigeren."
 
 #: application/views/adif/import.php:370
-#: application/views/adif/import_success.php:40
+#: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import_success.php:40
 msgid "Information"
 msgstr "Information"
 
@@ -4627,30 +4652,31 @@ msgstr ""
 "Datenbank eingefügt werden. Bitte überprüfe die importierte ADIF-Datei. Du "
 "kannst einen Online-ADIF-Datei-Checker verwenden. Zum Beispiel:"
 
-#: application/views/adif/import_success.php:22
-msgid "Yay, it's imported!"
-msgstr ""
+#: application/views/adif/import_success.php:17
+msgid "Yay, its imported!"
+msgstr "Yay, Datei importiert!"
 
+#: application/views/adif/import_success.php:18
 #: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "Die ADIF-Datei wurde importiert."
 
-#: application/views/adif/import_success.php:25
-msgid "Number of QSOs imported:"
-msgstr ""
-
+#: application/views/adif/import_success.php:22
 #: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "Duplikate wurden eingefügt!"
 
+#: application/views/adif/import_success.php:24
 #: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "evtl. vorhandene Duplikate wurden übersprungen."
 
+#: application/views/adif/import_success.php:31
 #: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "Contest Logs importiert"
 
+#: application/views/adif/import_success.php:33
 #: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
@@ -4661,23 +4687,22 @@ msgstr ""
 "richtig aus der ADIF dieser Software importiert. Wenn du das korrigieren "
 "möchtest, wechsle zum CBR-Import-Tab der ADIF-Importseite."
 
+#: application/views/adif/import_success.php:33
 #: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "Du hast mindestens 1 QSO mit einer Contest-ID importiert."
 
+#: application/views/adif/import_success.php:34
 #: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr "Wir haben die folgende QSOs für die folgenden Contest-IDs gefunden:"
 
+#: application/views/adif/import_success.php:47
 #: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "Details zum Import / Mögliche Probleme"
 
-#: application/views/adif/import_success.php:58
-#, php-format
-msgid "Check %s for hints about errors in ADIF files."
-msgstr "Schaue im %s für Tipps zu möglichen Fehlern in der ADIF-Datei."
-
+#: application/views/adif/import_success.php:48
 #: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
@@ -9265,8 +9290,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -11461,8 +11486,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
@@ -13621,9 +13646,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
-"wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
+"im wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -14109,7 +14134,7 @@ msgstr "Informationen für Besondere Interessengruppe (SIG)"
 #: application/views/station_profile/edit.php:309
 #, php-format
 msgid "Trouble? Check the %swiki%s."
-msgstr ""
+msgstr "Probleme? Schau im %sWiki%s nach."
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
@@ -14454,9 +14479,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -15967,8 +15992,13 @@ msgstr "Anfrage senden"
 msgid "Rcvd"
 msgstr "Rcvd"
 
-#~ msgid "Yay, its imported!"
-#~ msgstr "Yay, Datei importiert!"
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr "Yay, es ist importiert!"
+
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr "Anzahl der importierten QSOs:"
 
 #~ msgid "Show the Station Locations Quickswitch in the main menu"
 #~ msgstr "Zeigt den Stationsstandort-Quickswitch im Hauptmenü"
