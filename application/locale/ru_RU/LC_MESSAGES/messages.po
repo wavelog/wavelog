@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-23 11:42+0000\n"
-"PO-Revision-Date: 2025-08-19 17:14+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"PO-Revision-Date: 2025-08-24 12:50+0000\n"
+"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4303,7 +4303,7 @@ msgstr ""
 
 #: application/views/adif/import.php:108
 msgid "Basic Settings"
-msgstr ""
+msgstr "Основные настройки"
 
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
@@ -4355,7 +4355,7 @@ msgstr ""
 
 #: application/views/adif/import.php:151
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
-msgstr ""
+msgstr "Отметить QSO, как загруженные (Это НЕ загружает QSO на эти сервисы!)"
 
 #: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -4389,7 +4389,7 @@ msgstr "Отметить импортированные QSO как загруж�
 
 #: application/views/adif/import.php:207
 msgid "Toggle all checkboxes"
-msgstr ""
+msgstr "Переключить все отметки"
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -4441,7 +4441,7 @@ msgstr "До даты"
 
 #: application/views/adif/import.php:260
 msgid "Export options"
-msgstr ""
+msgstr "Варианты экспорта"
 
 #: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
@@ -4929,6 +4929,8 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"Поля, используемые для этого диплома: PROP_MODE (должно иметь значение SAT) "
+"и SAT_NAME (назваение спутника, к примеру, AO-73)"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:152
@@ -4990,6 +4992,8 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"Поля, используемые для этого диплома: STATE (штат), CNTY (округ), DXCC ("
+"должно быть одним из: 291 (США), 6 (Аляска) или 110 (Гавайи))"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
@@ -5091,7 +5095,7 @@ msgstr "Вы можете найти всю информацию и правил
 
 #: application/views/awards/cq/index.php:24
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
-msgstr ""
+msgstr "Поле, используемое для этого диплома: CQZ (зона CQ)"
 
 #: application/views/awards/cq/index.php:26
 msgid "Awards - CQ WAZ"
@@ -5353,7 +5357,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:11
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr ""
+msgstr "Поле, используемое для этого диплома: DARC_DOK (DOK)"
 
 #: application/views/awards/dok/index.php:21
 msgid "DOK / SDOK"
@@ -5439,6 +5443,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
+"Поле, используемое для этого диплома: DXCC (должно быть действительным из "
+"списка DXCC-ADIF-Spec-List)"
 
 #: application/views/awards/dxcc/index.php:33
 #: application/views/awards/iota/index.php:34
@@ -5540,31 +5546,31 @@ msgstr "Показать карту DXCC"
 
 #: application/views/awards/dxcc/index.php:221
 msgid "Legend:"
-msgstr ""
+msgstr "Легенда:"
 
 #: application/views/awards/dxcc/index.php:222
 msgid "(Q)SL-Paper-Card"
-msgstr ""
+msgstr "Бумажная (Q)SL"
 
 #: application/views/awards/dxcc/index.php:223
 msgid "(L)oTW"
-msgstr ""
+msgstr "(L)oTW"
 
 #: application/views/awards/dxcc/index.php:224
 msgid "(e)QSL"
-msgstr ""
+msgstr "(e)QSL"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "QR(Z)-\"confirmation\""
-msgstr ""
+msgstr "\"подтверждение\"-QR(Z)"
 
 #: application/views/awards/dxcc/index.php:226
 msgid "(C)lublog"
-msgstr ""
+msgstr "(C)lublog"
 
 #: application/views/awards/dxcc/index.php:227
 msgid "(W)orked"
-msgstr ""
+msgstr "(С)работано"
 
 #: application/views/awards/dxcc/index.php:233
 msgid "DXCC Name"
@@ -5613,6 +5619,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должен быть 291 (США)), "
+"GRIDSQUARE (должно содержать квадрат из 488 материковых!), BAND (должен быть "
+"6M)."
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -5666,6 +5675,9 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должен быть 291 (США)), "
+"GRIDSQUARE (должно содержать квадрат из 488 материковых!), PROP_MODE (должно "
+"быть SAT) и SAT_NAME (название спутника)"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -5694,18 +5706,24 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должно быть 81 (Германия)), "
+"GRIDSQUARE, PROP_MODE (должно быть SAT) и SAT_NAME (название спутника)"
 
 #: application/views/awards/gridmaster/index.php:23
 msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должно быть 254 (Люксембург)), "
+"GRIDSQUARE, PROP_MODE (должно быть SAT) и SAT_NAME (название спутника)"
 
 #: application/views/awards/gridmaster/index.php:26
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должно быть 339 (Япония)), "
+"GRIDSQUARE, PROP_MODE (должно быть SAT) и SAT_NAME (название спутника)"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -5747,6 +5765,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должно быть 287 (Швейцария)) и "
+"STATE (должно содержать действительную аббревиатуру штата!)"
 
 #: application/views/awards/helvetia/index.php:115
 msgid "Show Helvetia Map"
@@ -5816,6 +5836,8 @@ msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
+"Поле, используемое для этого диплома: IOTA (должно содержать действительную "
+"референцию IOTA)"
 
 #: application/views/awards/iota/index.php:30
 msgid "Deleted IOTA"
@@ -5892,7 +5914,7 @@ msgstr ""
 
 #: application/views/awards/itu/index.php:24
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "Поле, используемое для этого диплома: ITUZ (зона ITU)"
 
 #: application/views/awards/itu/index.php:26
 msgid "Awards - ITU Zones"
@@ -5932,6 +5954,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должно быть 339 (Япония)) и CNTY "
+"(должен содержать действительное значение!)"
 
 #: application/views/awards/jcc/index.php:116
 msgid "Show JCC Map"
@@ -6000,6 +6024,8 @@ msgstr ""
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Поле, используемое для этого диплома: POTA_REF (должно содержать значение на "
+"референцию POTA)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -6162,7 +6188,7 @@ msgstr "Учитываются только QSO на УКВ диапазонах
 msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
-msgstr ""
+msgstr "Поля, используемые для этого диплома: GRIDSQUARE и VUCC_GRIDS"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
@@ -6197,6 +6223,8 @@ msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"Поля, используемые для этого диплома: SIG (должно быть 'WAB') и SIG_INFO ("
+"должно содержать действительое значение сетки WAB)"
 
 #: application/views/awards/wab/index.php:110
 msgid "List"
@@ -6222,6 +6250,8 @@ msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
+"Поле, используемое для этого диплома: CONT (должно содержать действительную "
+"аббревиатуру континента!)."
 
 #: application/views/awards/wac/index.php:14
 msgid "Awards - Worked All Continents (WAC)"
@@ -6265,7 +6295,7 @@ msgstr ""
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr ""
+msgstr "Поля, используемые для этого диплома: STATE, DXCC"
 
 #: application/views/awards/wae/index.php:162
 msgid "WAE Name"
@@ -6309,6 +6339,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and STATE (Must contain a valid "
 "prefecture!)"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должно быть 339 (Япония)) и "
+"STATE (должно содержать действующую аббревиатуру для префектуры!)"
 
 #: application/views/awards/waja/index.php:119
 msgid "Show WAJA Map"
@@ -6372,6 +6404,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должно быть 263 (Нидерланды)) и "
+"STATE (должно содержать действительную аббревиатуру штата!)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
@@ -6412,6 +6446,9 @@ msgid ""
 "Macao/152, Taiwan/386, Pratas Isl./505 or Scarborough Reef/506) and valid "
 "State (ADIF: DXCC and STATE)"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должно быть одним из 318 (Китай)"
+", 321 (Гонконг), 152 (Макао), 386 (Тайвань), 505 (о. Пратас) или 506 (риф "
+"Скарборо)) и STATE (корректное значение)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -6467,6 +6504,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
+"Поля, используемые для этого диплома: DXCC (должно быть одним из: 291 (США), "
+"6 (Аляска) или 110 (Гавайи) и STATE (должно содержать действительную "
+"аббревиатуру штата США!)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -6499,7 +6539,7 @@ msgstr ""
 
 #: application/views/awards/wwff/index.php:11
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr ""
+msgstr "Поле, используемое для этого диплома: WWFF_REF (референция WWFF)"
 
 #: application/views/awards/wwff/index.php:32
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -14009,7 +14049,7 @@ msgstr "Данные SIG"
 #: application/views/station_profile/edit.php:309
 #, php-format
 msgid "Trouble? Check the %swiki%s."
-msgstr ""
+msgstr "Проблемы? Смотри в %swiki%s."
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
@@ -14790,6 +14830,8 @@ msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
 msgstr ""
+"Отобразить быстрое переключение профилей QTH в главном меню. Для добавления "
+"профиля QTH в списоу, добавьте его в избранное на странице настройки станции."
 
 #: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
