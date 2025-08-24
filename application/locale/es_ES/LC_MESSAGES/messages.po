@@ -16,8 +16,8 @@ msgstr ""
 "POT-Creation-Date: 2025-08-23 11:42+0000\n"
 "PO-Revision-Date: 2025-08-23 15:21+0000\n"
 "Last-Translator: David Quental <ct1drb72@gmail.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/es/>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -237,14 +237,15 @@ msgstr "Perfil de Estación no válida para el Usuario"
 
 #: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
+#: application/controllers/Adif.php:283
 msgid "ADIF Imported"
 msgstr "ADIF Importado"
 
-#: application/controllers/Adif.php:293
+#: application/controllers/Adif.php:293 application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "Importar DCL"
 
-#: application/controllers/Adif.php:351
+#: application/controllers/Adif.php:351 application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "Datos DCL Importados"
 
@@ -3227,21 +3228,25 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC tiene que ser numérico"
 
 #: application/models/Logbook_model.php:4004
+#: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estación incorrecto %s al importar QSO con %s para %s: OMITIDO"
 
 #: application/models/Logbook_model.php:4005
+#: application/views/adif/import_success.php:58
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Revisa %s para obtener pistas sobre errores en archivos ADIF."
 
 #: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "QSO en"
 
 #: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3250,51 +3255,63 @@ msgstr ""
 "importado. Es inválido"
 
 #: application/models/Logbook_model.php:4316
+#: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrfecha es inválida (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4327
+#: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslfecha es inválida (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la fecha de carga de clublog_qso es inválida (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4408
+#: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslrdate no es válida (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4429
+#: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "el lotw_qslsdate es inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4721
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4722
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
 #: application/models/Logbook_model.php:4782
+#: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
 
 #: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmados por LoTW/Clublog/eQSL/Concurso"
 
 #: application/models/Logbook_model.php:4793
+#: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "confirmados por el administrador del premio"
 
 #: application/models/Logbook_model.php:4796
+#: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmados al hacer chequeo cruzadoc on datos de DCL"
 
 #: application/models/Logbook_model.php:4799
+#: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "pendiente de confirmación"
 
 #: application/models/Logbook_model.php:4802
+#: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
@@ -3302,6 +3319,7 @@ msgstr "sin confirmar"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4806
 msgid "unknown"
 msgstr "desconocido"
 
@@ -3316,6 +3334,7 @@ msgstr "desconocido"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5644
 msgid "Bearing"
 msgstr "Dirección"
 
@@ -4557,6 +4576,7 @@ msgstr ""
 #: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import_success.php:40
 msgid "Information"
 msgstr "Información"
 
@@ -4625,22 +4645,27 @@ msgid "Yay, its imported!"
 msgstr "¡Bien, lo hemos importado!"
 
 #: application/views/adif/import_success.php:18
+#: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "El archivo ADIF fue importado."
 
 #: application/views/adif/import_success.php:22
+#: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "¡Se insertaron duplicados!"
 
 #: application/views/adif/import_success.php:24
+#: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "Se omitieron los duplicados."
 
 #: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "Registros de concurso importados"
 
 #: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4652,20 +4677,24 @@ msgstr ""
 "de Importación ADIF."
 
 #: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "Has importado al menos 1 QSO que contiene un ID de concurso."
 
 #: application/views/adif/import_success.php:34
+#: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 "Encontramos los siguientes números de QSOs para los siguientes IDs de "
 "concurso:"
 
 #: application/views/adif/import_success.php:47
+#: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "Detalles de importación / posibles problemas"
 
 #: application/views/adif/import_success.php:48
+#: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -6436,8 +6465,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
-"Campos tomados para este premio: DXCC (Debe ser Países Bajos) y ESTADO (¡"
-"Debe contener una abreviatura de estado válida!)"
+"Campos tomados para este premio: DXCC (Debe ser Países Bajos) y ESTADO "
+"(¡Debe contener una abreviatura de estado válida!)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
@@ -8584,8 +8613,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Ve a tu carpeta application/config y compara config.sample.php con tu config."
-"php"
+"Ve a tu carpeta application/config y compara config.sample.php con tu "
+"config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -14472,8 +14501,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nueva carpeta en 'assets/css/' y sube un archivo 'bootstrap.min."
-"css' que contenga reglas de estilo básicas. Usamos los temas de %s"
+"Crea una nueva carpeta en 'assets/css/' y sube un archivo "
+"'bootstrap.min.css' que contenga reglas de estilo básicas. Usamos los temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14522,8 +14552,8 @@ msgid ""
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
 "Haz clic aquí en 'Agregar un tema' y escribe los datos necesarios. Escribe "
-"los nombres de archivo para los logotipos %ssin%s la extensión de archivo '."
-"png'"
+"los nombres de archivo para los logotipos %ssin%s la extensión de archivo "
+"'.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -15985,6 +16015,14 @@ msgstr "Enviar solicitud"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recibido"
+
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr ""
+
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr ""
 
 #~ msgid "Show the Station Locations Quickswitch in the main menu"
 #~ msgstr ""

@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-08-23 11:42+0000\n"
 "PO-Revision-Date: 2025-08-24 13:27+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,14 +231,15 @@ msgstr "Stationsprofil inte giltigt för användare"
 
 #: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
+#: application/controllers/Adif.php:283
 msgid "ADIF Imported"
 msgstr "ADIF importerad"
 
-#: application/controllers/Adif.php:293
+#: application/controllers/Adif.php:293 application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "DCL-import"
 
-#: application/controllers/Adif.php:351
+#: application/controllers/Adif.php:351 application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "DCL-data importerad"
 
@@ -3196,20 +3197,24 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
 #: application/models/Logbook_model.php:4004
+#: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
 #: application/models/Logbook_model.php:4005
+#: application/views/adif/import_success.php:58
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Kolla %s för tips om fel i ADIF-filer."
 
 #: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "QSO kl"
 
 #: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3218,51 +3223,63 @@ msgstr ""
 "inte. Det är ogiltigt"
 
 #: application/models/Logbook_model.php:4316
+#: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4327
+#: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4408
+#: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4429
+#: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
 #: application/models/Logbook_model.php:4721
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4722
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
 #: application/models/Logbook_model.php:4782
+#: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
 #: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
 #: application/models/Logbook_model.php:4793
+#: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
 #: application/models/Logbook_model.php:4796
+#: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
 #: application/models/Logbook_model.php:4799
+#: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
 #: application/models/Logbook_model.php:4802
+#: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "obekräftad"
 
@@ -3270,6 +3287,7 @@ msgstr "obekräftad"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4806
 msgid "unknown"
 msgstr "Okänd"
 
@@ -3284,6 +3302,7 @@ msgstr "Okänd"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5644
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -4522,6 +4541,7 @@ msgstr ""
 #: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import_success.php:40
 msgid "Information"
 msgstr "Information"
 
@@ -4588,22 +4608,27 @@ msgid "Yay, its imported!"
 msgstr "Jippie, den är importerad!"
 
 #: application/views/adif/import_success.php:18
+#: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "ADIF-filen har importerats."
 
 #: application/views/adif/import_success.php:22
+#: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "Dubbletter har importerats!"
 
 #: application/views/adif/import_success.php:24
+#: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "Dubbletter har hoppats över."
 
 #: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "Tävlingsloggar importerade"
 
 #: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4614,18 +4639,22 @@ msgstr ""
 "det, byt till CBR Import-fliken på ADIF Import-sidan."
 
 #: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "Du importerade minst 1 QSO som innehåller ett tävlings-ID."
 
 #: application/views/adif/import_success.php:34
+#: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr "Vi hittade följande antal QSOn för följande tävlings-ID:n:"
 
 #: application/views/adif/import_success.php:47
+#: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "Importdetaljer / möjliga problem"
 
 #: application/views/adif/import_success.php:48
+#: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -4903,8 +4932,8 @@ msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
-"Fält som använts för detta diplom: Utbrednings-Trafiksätt och SAT-Namn (ADIF:"
-" PROP_MODE=SAT, SAT_NAME='AO-73')"
+"Fält som använts för detta diplom: Utbrednings-Trafiksätt och SAT-Namn "
+"(ADIF: PROP_MODE=SAT, SAT_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:152
@@ -5732,8 +5761,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
-"Fält som använts för detta diplom: DXCC (Måste vara Schweiz) och STATE ("
-"Måste innehålla en giltig delstatsförkortning!)"
+"Fält som använts för detta diplom: DXCC (Måste vara Schweiz) och STATE "
+"(Måste innehålla en giltig delstatsförkortning!)"
 
 #: application/views/awards/helvetia/index.php:115
 msgid "Show Helvetia Map"
@@ -13476,8 +13505,8 @@ msgid ""
 "first QSO, which is essentially the callsign."
 msgstr ""
 "För att börja, se till att du redan har fyllt i formuläret till vänster med "
-"datum, stationsanrop och operatörens anrop. Huvuddata inkluderar bandet ("
-"eller QRG i MHz, t.ex. '7.145'), trafiksätt och tid. Efter tiden anger du "
+"datum, stationsanrop och operatörens anrop. Huvuddata inkluderar bandet "
+"(eller QRG i MHz, t.ex. '7.145'), trafiksätt och tid. Efter tiden anger du "
 "den första QSO, vilket i huvudsak är anropssignalen."
 
 #: application/views/simplefle/syntax_help.php:9
@@ -13515,8 +13544,8 @@ msgstr ""
 "För vårt nästa QSO kl. 21:40 den 14 maj 2021 bytte vi band till 40m men "
 "fortfarande på SSB. Om ingen RST-information ges, kommer syntaxen att "
 "använda 59 för varje nytt QSO. Därför kan vi lägga till ett annat QSO som "
-"ägde rum exakt samma tid två dagar senare. Datumet måste vara i formatet ÅÅÅÅ"
-"-MM-DD."
+"ägde rum exakt samma tid två dagar senare. Datumet måste vara i formatet "
+"ÅÅÅÅ-MM-DD."
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
@@ -13925,7 +13954,8 @@ msgstr "OQRS e-postvarning"
 #: application/views/station_profile/create.php:302
 #: application/views/station_profile/edit.php:452
 msgid "Make sure email is set up under admin and global options."
-msgstr "Se till att e-post är konfigurerad under admin- och globala alternativ."
+msgstr ""
+"Se till att e-post är konfigurerad under admin- och globala alternativ."
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:455
@@ -14197,7 +14227,8 @@ msgstr "Mappnamn"
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
-msgstr "Detta är namnet på mappen där dina CSS-filer placeras under assets/css."
+msgstr ""
+"Detta är namnet på mappen där dina CSS-filer placeras under assets/css."
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
@@ -14330,8 +14361,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 ("
-"t.ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -15711,6 +15742,14 @@ msgstr ""
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
+msgstr ""
+
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr ""
+
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
 msgstr ""
 
 #~ msgid "ADIF File"

@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-23 11:42+0000\n"
+"POT-Creation-Date: 2025-08-24 13:27+0000\n"
 "PO-Revision-Date: 2025-08-22 09:26+0000\n"
 "Last-Translator: Tao Xu <angelxutao@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -242,16 +242,16 @@ msgstr "ADIF 导入失败！"
 msgid "Station Profile not valid for User"
 msgstr "用户台站信息无效"
 
-#: application/controllers/Adif.php:282
+#: application/controllers/Adif.php:283
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF 导入完成"
 
-#: application/controllers/Adif.php:293
+#: application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "导入 DCL"
 
-#: application/controllers/Adif.php:351
+#: application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "DCL 数据导入完成"
 
@@ -3158,83 +3158,78 @@ msgstr "未提供呼号"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC 应该是数字"
 
-#: application/models/Logbook_model.php:4004
+#: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:4005
-#, php-format
-msgid "Check %s for hints about errors in ADIF files."
-msgstr "请查看 ADIF 错误提示 %s。"
-
-#: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，未导入"
 
-#: application/models/Logbook_model.php:4316
+#: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4327
+#: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4408
+#: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4429
+#: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4721
+#: application/models/Logbook_model.php:4722
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4782
+#: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4793
+#: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4796
+#: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4799
+#: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4802
+#: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4805
+#: application/models/Logbook_model.php:4806
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5643
+#: application/models/Logbook_model.php:5644
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -4459,7 +4454,7 @@ msgstr ""
 "Cabrillo文件来在Wavelog中重写该数据。"
 
 #: application/views/adif/import.php:370
-#: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "信息"
@@ -4516,27 +4511,31 @@ msgstr ""
 "有至少一个 ADIF 字段无法解析或插入至数据库，请检查 ADIF 文件。您可以使用在线"
 "的 ADIF 检查工具，例如："
 
-#: application/views/adif/import_success.php:17
-msgid "Yay, its imported!"
-msgstr "导入成功！"
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr ""
 
-#: application/views/adif/import_success.php:18
+#: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "ADIF 文件已成功导入。"
 
-#: application/views/adif/import_success.php:22
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr ""
+
+#: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "已添加重复项！"
 
-#: application/views/adif/import_success.php:24
+#: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "已跳过重复项。"
 
-#: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "导入竞赛日志"
 
-#: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4545,19 +4544,24 @@ msgstr ""
 "有时，根据您的竞赛记录软件，您的通联记录无法从该软件ADIF正确导入。如果您想更"
 "正该问题，请切换到“ADIF导入”页面的“CBP导入”选项卡。"
 
-#: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "你已经导入至少一个包含比赛ID的通联记录。"
 
-#: application/views/adif/import_success.php:34
+#: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr "我们找到了以下竞赛 ID 的以下 QSO 数量："
 
-#: application/views/adif/import_success.php:47
+#: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "导入详情 / 存在错误"
 
-#: application/views/adif/import_success.php:48
+#: application/views/adif/import_success.php:58
+#, php-format
+msgid "Check %s for hints about errors in ADIF files."
+msgstr "请查看 ADIF 错误提示 %s。"
+
+#: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -15285,6 +15289,9 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#~ msgid "Yay, its imported!"
+#~ msgstr "导入成功！"
 
 #~ msgid "Show the Station Locations Quickswitch in the main menu"
 #~ msgstr "在主菜单显示快速切换台址按钮"

@@ -12,8 +12,8 @@ msgstr ""
 "POT-Creation-Date: 2025-08-22 07:13+0000\n"
 "PO-Revision-Date: 2025-08-23 15:21+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -233,14 +233,15 @@ msgstr "Stations profiel niet geldig voor gebruiker"
 
 #: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
+#: application/controllers/Adif.php:283
 msgid "ADIF Imported"
 msgstr "ADIF geimporteerd"
 
-#: application/controllers/Adif.php:293
+#: application/controllers/Adif.php:293 application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "DCL import"
 
-#: application/controllers/Adif.php:351
+#: application/controllers/Adif.php:351 application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "DCL Data geimporteerd"
 
@@ -3209,6 +3210,7 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
 #: application/models/Logbook_model.php:4004
+#: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
@@ -3216,15 +3218,18 @@ msgstr ""
 "OVERGESLAGEN"
 
 #: application/models/Logbook_model.php:4005
+#: application/views/adif/import_success.php:58
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Controleer %s voor hints over fouten in ADIF-bestanden."
 
 #: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "QSO vanaf"
 
 #: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3233,51 +3238,63 @@ msgstr ""
 "is niet geïmporteerd. Het is ongeldig"
 
 #: application/models/Logbook_model.php:4316
+#: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4327
+#: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4408
+#: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslrdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4429
+#: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslsdate is ongeldig (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:4721
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4722
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
 #: application/models/Logbook_model.php:4782
+#: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
 #: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4793
+#: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
 #: application/models/Logbook_model.php:4796
+#: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
 #: application/models/Logbook_model.php:4799
+#: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
 #: application/models/Logbook_model.php:4802
+#: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
@@ -3285,6 +3302,7 @@ msgstr "onbevestigd"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4806
 msgid "unknown"
 msgstr "onbekend"
 
@@ -3299,6 +3317,7 @@ msgstr "onbekend"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5644
 msgid "Bearing"
 msgstr "Koers"
 
@@ -4538,6 +4557,7 @@ msgstr ""
 #: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import_success.php:40
 msgid "Information"
 msgstr "Informatie"
 
@@ -4606,22 +4626,27 @@ msgid "Yay, its imported!"
 msgstr "Jippie, het is geïmporteerd!"
 
 #: application/views/adif/import_success.php:18
+#: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "Het ADIF-bestand is geïmporteerd."
 
 #: application/views/adif/import_success.php:22
+#: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "Duplicaten zijn ingevoegd!"
 
 #: application/views/adif/import_success.php:24
+#: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "Duplicaten werden overgeslagen."
 
 #: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "Wedstrijdlogs geïmporteerd"
 
 #: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4633,19 +4658,23 @@ msgstr ""
 "pagina."
 
 #: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "Je hebt ten minste 1 QSO geïmporteerd met een contest-ID."
 
 #: application/views/adif/import_success.php:34
+#: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 "We hebben de volgende aantallen QSO's gevonden voor de volgende contest-ID's:"
 
 #: application/views/adif/import_success.php:47
+#: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "Importdetails / mogelijke problemen"
 
 #: application/views/adif/import_success.php:48
+#: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -15905,6 +15934,14 @@ msgstr "Wiki"
 #, php-format
 msgid "Trouble? Check the %swiki%s."
 msgstr "Problemen? Raadpleeg de %swiki%s."
+
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr ""
+
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr ""
 
 #~ msgid "Show the Station Locations Quickswitch in the main menu"
 #~ msgstr "Toon de stationslocaties Quickswitch in het hoofdmenu"

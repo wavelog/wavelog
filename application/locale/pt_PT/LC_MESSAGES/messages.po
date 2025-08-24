@@ -234,14 +234,15 @@ msgstr "Perfil da estação não é válido para o utilizador"
 
 #: application/controllers/Adif.php:282
 #: application/views/adif/import_success.php:12
+#: application/controllers/Adif.php:283
 msgid "ADIF Imported"
 msgstr "ADIF Importado"
 
-#: application/controllers/Adif.php:293
+#: application/controllers/Adif.php:293 application/controllers/Adif.php:294
 msgid "DCL Import"
 msgstr "Importação DCL"
 
-#: application/controllers/Adif.php:351
+#: application/controllers/Adif.php:351 application/controllers/Adif.php:352
 msgid "DCL Data Imported"
 msgstr "Dados DCL importados"
 
@@ -3223,21 +3224,25 @@ msgid "DXCC has to be Numeric"
 msgstr "DXCC tem de ser numérico"
 
 #: application/models/Logbook_model.php:4004
+#: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
 #: application/models/Logbook_model.php:4005
+#: application/views/adif/import_success.php:58
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
 #: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid "QSO on"
 msgstr "Contacto em"
 
 #: application/models/Logbook_model.php:4017
+#: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3246,51 +3251,63 @@ msgstr ""
 "importado. É inválido"
 
 #: application/models/Logbook_model.php:4316
+#: application/models/Logbook_model.php:4317
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4327
+#: application/models/Logbook_model.php:4328
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4388
+#: application/models/Logbook_model.php:4389
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4408
+#: application/models/Logbook_model.php:4409
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4429
+#: application/models/Logbook_model.php:4430
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
 #: application/models/Logbook_model.php:4721
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4722
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
 #: application/models/Logbook_model.php:4782
+#: application/models/Logbook_model.php:4783
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
 #: application/models/Logbook_model.php:4788
+#: application/models/Logbook_model.php:4789
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4793
+#: application/models/Logbook_model.php:4794
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
 #: application/models/Logbook_model.php:4796
+#: application/models/Logbook_model.php:4797
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
 #: application/models/Logbook_model.php:4799
+#: application/models/Logbook_model.php:4800
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
 #: application/models/Logbook_model.php:4802
+#: application/models/Logbook_model.php:4803
 msgid "unconfirmed"
 msgstr "não confirmado"
 
@@ -3298,6 +3315,7 @@ msgstr "não confirmado"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4806
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -3312,6 +3330,7 @@ msgstr "desconhecido"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5644
 msgid "Bearing"
 msgstr "Direção"
 
@@ -4554,6 +4573,7 @@ msgstr ""
 #: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:31
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import_success.php:40
 msgid "Information"
 msgstr "Informação"
 
@@ -4621,22 +4641,27 @@ msgid "Yay, its imported!"
 msgstr "Boa, foi importado!"
 
 #: application/views/adif/import_success.php:18
+#: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
 msgstr "O ficheiro ADIF foi importado."
 
 #: application/views/adif/import_success.php:22
+#: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
 msgstr "Foram inseridos duplicados!"
 
 #: application/views/adif/import_success.php:24
+#: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
 msgstr "Os duplicados foram ignorados."
 
 #: application/views/adif/import_success.php:31
+#: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
 msgstr "Logs de concurso importados"
 
 #: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid ""
 "Sometimes, depending on your contest logging software, your exchanges will "
 "not be imported properly from that softwares ADIF. If you like to correct "
@@ -4648,20 +4673,24 @@ msgstr ""
 "ADIF."
 
 #: application/views/adif/import_success.php:33
+#: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
 msgstr "Importou pelo menos 1 contacto contendo um ID de concurso."
 
 #: application/views/adif/import_success.php:34
+#: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
 "Encontrámos os seguintes números de contactos para os seguintes IDs de "
 "concurso:"
 
 #: application/views/adif/import_success.php:47
+#: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
 msgstr "Detalhes de importação / possíveis problemas"
 
 #: application/views/adif/import_success.php:48
+#: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
@@ -6526,8 +6555,8 @@ msgid ""
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
 "Campos considerados para este diploma: DXCC (Deve ser um dos E.U.A., Alasca "
-"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos E.U."
-"A.!)"
+"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos "
+"E.U.A.!)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -11452,8 +11481,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
-"com” (sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” "
+"(sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -14433,8 +14462,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
-"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
+"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14789,8 +14819,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
-"com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
+"HamQTH.com na secção de registo de contacto."
 
 #: application/views/user/edit.php:381
 msgid ""
@@ -15932,6 +15962,14 @@ msgstr "Submeter pedido"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recebido"
+
+#: application/views/adif/import_success.php:22
+msgid "Yay, it's imported!"
+msgstr ""
+
+#: application/views/adif/import_success.php:25
+msgid "Number of QSOs imported:"
+msgstr ""
 
 #~ msgid "Show the Station Locations Quickswitch in the main menu"
 #~ msgstr ""
