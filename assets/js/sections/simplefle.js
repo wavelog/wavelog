@@ -230,6 +230,7 @@ function handleInput() {
 	var prev_stx = "";
 	var prev_stx_string = "";
 	qsoList = [];
+	var timezoneOffsetHours = 0;
 	$("#qsoTable tbody").empty();
 	errors = [];
 	checkMainFieldsErrors();
@@ -237,6 +238,13 @@ function handleInput() {
 	var text = textarea.val().trim();
 	lines = text.split("\n");
 	lines.forEach((row) => {
+		// Solve timezone offset if specified
+		var tzMatch = row.trim().match(/^(?:TIMEZONE|TZOFS)\s+([+-]\d+)/i);
+		if (tzMatch) {
+			timezoneOffsetHours = parseInt(tzMatch[1], 10);
+			return; 
+		}
+
 		var rst_s = null;
 		var rst_r = null;
 		var gridsquare = "";
@@ -418,9 +426,22 @@ function handleInput() {
 			rst_s = getReportByMode(rst_s, mode);
 			rst_r = getReportByMode(rst_r, mode);
 
+			var utcDate = extraQsoDate;
+			var utcTime = qsotime;
+
+			if (timezoneOffsetHours !== 0) {
+				var offsetString = (timezoneOffsetHours >= 0 ? '+' : '-') + ('0' + Math.abs(timezoneOffsetHours)).slice(-2) + ':00';
+				var fullIsoString = extraQsoDate + 'T' + qsotime.slice(0, 2) + ':' + qsotime.slice(2) + ':00' + offsetString;
+
+				var dateObject = new Date(fullIsoString);
+
+				utcDate = dateObject.getUTCFullYear() + '-' + ('0' + (dateObject.getUTCMonth() + 1)).slice(-2) + '-' + ('0' + dateObject.getUTCDate()).slice(-2);
+				
+				utcTime = ('0' + dateObject.getUTCHours()).slice(-2) + ('0' + dateObject.getUTCMinutes()).slice(-2);
+			}
 			qsoList.push([
-				extraQsoDate,
-				qsotime,
+				utcDate,
+				utcTime,
 				callsign,
 				freq,
 				band,
@@ -465,8 +486,8 @@ function handleInput() {
 			}
 
 			const tableRow = $(`<tr>
-			<td>${extraQsoDate}</td>
-			<td>${qsotime}</td>
+			<td>${utcDate}</td>
+			<td>${utcTime}</td>
 			<td>${callsign}</td>
 			<td><span data-bs-toggle="tooltip" data-placement="left" title="${freq}">${band}</span></td>
 			<td>${mode}</td>
