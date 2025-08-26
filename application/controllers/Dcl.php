@@ -42,7 +42,7 @@ class Dcl extends CI_Controller {
 			$this->load->view('dcl_views/key_import',$data);
 			$this->load->view('interface_assets/footer');
 		} else {
-			redirect('https://dings.dcl.darc.de/token?wohin='.base_url().'dcl/key_import');
+			redirect('https://dings.dcl.darc.de/token?wohin='.site_url().'/dcl/key_import');
 		}
 	}
 
