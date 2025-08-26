@@ -82,7 +82,7 @@
             <?= __("Manual Sync"); ?>
 			</button>
 			<span style="margin-left: 10px;" id="lotw-sync-running" class="htmx-indicator"> <?php echo __("running..."); ?></span>
-
+			<br/>
 			<div id="dcl_manual_results"></div>
 		</div>
 	</div>

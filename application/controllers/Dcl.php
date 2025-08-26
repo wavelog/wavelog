@@ -169,6 +169,7 @@ class Dcl extends CI_Controller {
 				curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload, true));
 
 				$result = curl_exec($ch);
+				$adif_to_post=''; // Clean Mem
 				// todo: parse output from DCL (contains a lot of information within $result)
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
