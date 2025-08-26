@@ -199,6 +199,7 @@ class Dcl extends CI_Controller {
 						// $this->Logbook_model->mark_dcl_sent($qso_number);
 					}
 				}
+				$qso_id_array=[];
 			}
 		} else {
 			echo __("No Station Profiles found to upload to DCL");
