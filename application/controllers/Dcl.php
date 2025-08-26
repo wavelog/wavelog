@@ -142,6 +142,7 @@ class Dcl extends CI_Controller {
 
 				// Build File to save
 				$adif_to_post = $this->load->view('adif/data/dcl.php', $data, TRUE);
+				$data['qsos']='';
 				
 				//The URL that accepts the file upload.
 				$url = 'https://dings.dcl.darc.de/api/adiImport'; // todo: change to final URL b4 release
