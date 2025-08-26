@@ -58,7 +58,7 @@
 
 			<?php } else { ?>
 			<div class="alert alert-info" role="alert">
-				<?= __("You need to request some DCL Keys to use this area."); ?>
+				<?= __("You need to request DCL keys to use this function."); ?>
 			</div>
 			<?php } ?>
 
