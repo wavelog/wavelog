@@ -161,6 +161,11 @@ class Dcl extends CI_Controller {
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+				$headers = [
+					'Content-Type: application/json',
+					'Accept: application/json'
+				];
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 				
 				$payload=[];
 				$payload['key']=$key_info['token'];
