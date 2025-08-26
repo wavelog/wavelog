@@ -132,7 +132,7 @@ class Dcl extends CI_Controller {
 				// Nothing to upload
 				if(empty($data['qsos']->result())){
 					if ($this->user_model->authorize(2)) {	// Only be verbose if we have a session
-						echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): No QSOs to upload.<br>";
+						echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): ".__("No QSOs to upload.")."<br>";
 					}
 					continue;
 				}
@@ -172,9 +172,9 @@ class Dcl extends CI_Controller {
 				$adif_to_post=''; // Clean Mem
 				// todo: parse output from DCL (contains a lot of information within $result)
 				if(curl_errno($ch)){
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): ".__("Upload Failed")." - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					if (curl_errno($ch) == 28) {  // break on timeout
-						echo "Timeout reached. Stopping subsequent uploads.<br>";
+						echo __("Timeout reached. Stopping subsequent uploads.")."<br>";
 						break;
 					} else {
 						continue;
@@ -184,15 +184,15 @@ class Dcl extends CI_Controller {
 				$pos = true;
 
 				if ($pos === false) {
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): ".__("Upload Failed")." - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					if (curl_errno($ch) == 28) {  // break on timeout
-						echo "Timeout reached. Stopping subsequent uploads.<br>";
+						echo __("Timeout reached. Stopping subsequent uploads.")."<br>";
 						break;
 					} else {
 						continue;
 					}
 				} else {
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful <br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): ".__("Upload Successful")." ".count($qso_id_array)." QSOs<br>";
 					// Mark QSOs as Sent
 					foreach ($qso_id_array as $qso_number) {
 						// todo: uncomment when ready
@@ -201,7 +201,7 @@ class Dcl extends CI_Controller {
 				}
 			}
 		} else {
-			echo "No Station Profiles found to upload to DCL";
+			echo __("No Station Profiles found to upload to DCL");
 		}
 
 		if ($this->user_model->authorize(2)) {
