@@ -79,6 +79,7 @@ class Dcl extends CI_Controller {
 	public function dcl_upload() {
 		// Called as User: Upload for User (if manual sync isn't disabled
 		// Called from cron / without Session: iterate through stations, check for DCL-Key and upload
+		ini_set('memory_limit', '-1');
 
 		$this->load->model('user_model');
 		$this->load->model('Dcl_model');
