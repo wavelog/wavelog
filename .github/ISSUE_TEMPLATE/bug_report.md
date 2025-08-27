@@ -10,10 +10,10 @@ assignees: ''
 **This is for reporting bugs with the code, if this issue is regarding setting up on your local server please use the discussions area**
 
 **Prerequisites**
-Please update to the latest version of Wavelog and check for the problem again before filing a bug to make sure the bug still exists and has not been resolved in the meantime. Also please releoad the corresponding page(s) bypassing the brower cache (e.g. in Firefox use CTRL + F5).
+Please update to the latest version of Wavelog and check for the problem again before filing a bug to make sure the bug still exists and has not been resolved in the meantime. Also please reload the corresponding page(s) bypassing the brower cache (e.g. in Firefox use CTRL + F5).
 
 **Describe the bug**
-Provide a clear and concise description of the bug so that the erroneous behaviour can be reproduced. Please give as much context as possible.
+Provide a clear and concise description of the bug so that the erroneous behaviour can be reproduced. Please give as much context as possible and add screenshots of the faulty view if possible. If the problem lies within payloads being processed wrongly a screenshot of the browser requests towards Wavelog are very helpful (e.g. use the developer tools of the browser (F12 within Firefox)).
 
 **Version Information**
 We need some information about your versions. You can get all Information in the Admin > Debug Menu
