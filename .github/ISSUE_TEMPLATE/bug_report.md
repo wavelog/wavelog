@@ -13,7 +13,7 @@ assignees: ''
 Please update to the latest version of Wavelog and check for the problem again before filing a bug to make sure the bug still exists and has not been resolved in the meantime. Also please releoad the corresponding page(s) bypassing the brower cache (e.g. in Firefox use CTRL + F5).
 
 **Describe the bug**
-Provide a clear and concise description of the bug. 
+Provide a clear and concise description of the bug so that the erroneous behaviour can be reproduced. Please give as much context as possible.
 
 **Version Information**
 We need some information about your versions. You can get all Information in the Admin > Debug Menu
