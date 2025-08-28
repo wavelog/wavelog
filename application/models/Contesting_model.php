@@ -18,7 +18,7 @@ class Contesting_model extends CI_Model {
 		$qsoarray = explode(',', $this->security->xss_clean($qso));
 
 		$contestid = $qsoarray[2];
-		$date = DateTime::createFromFormat('Y-m-d H:i', $qsoarray[0]);
+		$date = DateTime::createFromFormat('Y-m-d H:i:s', $qsoarray[0]);
 		if ($date == false) $date = DateTime::createFromFormat($date_format.' H:i', $qsoarray[0]);
 		$date = $date->format('Y-m-d H:i:s');
 
