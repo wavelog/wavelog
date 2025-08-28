@@ -3,15 +3,7 @@
 	var lang_contest_reset_session = "<?= __("Are you really sure you want to start a new contest session?"); ?>";
 
 	 // Get Date format
-    var user_date_format = "<?php
-        if($this->session->userdata('user_date_format')) {
-            // If Logged in and session exists
-            echo $this->session->userdata('user_date_format');
-        } else {
-            // Get Default date format from /config/wavelog.php
-            echo $this->config->item('qso_date_format');
-        }
-    ?>";
+    var user_date_format = "<?php echo $date_format; ?>";
 </script>
 
 <div class="container qso_panel contesting">
@@ -108,7 +100,7 @@
                         <div class="row">
                             <div class="mb-3 col-md-2">
                                 <label for="start_date"><?= __("Date"); ?></label>
-                                <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> >
+                                <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date($date_format);}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> >
                             </div>
 
                             <div class="mb-3 col-md-1">
@@ -118,7 +110,7 @@
 
                             <?php if ( $manual_mode == 0 ) { ?>
                               <input class="input_time" type="hidden" id="start_time"  name="start_time"value="<?php echo date('H:i'); ?>" />
-                              <input class="input_date" type="hidden" id="start_date" name="start_date" value="<?php echo date('d-m-Y'); ?>" />
+                              <input class="input_date" type="hidden" id="start_date" name="start_date" value="<?php echo date($date_format); ?>" />
                             <?php } ?>
 
                             <div class="mb-3 col-md-2">
