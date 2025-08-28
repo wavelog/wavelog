@@ -1,6 +1,17 @@
 <script>
     var lang_contestname_warning = "<?= __("You need to start a new session before you can change the contest name!"); ?>";
 	var lang_contest_reset_session = "<?= __("Are you really sure you want to start a new contest session?"); ?>";
+
+	 // Get Date format
+    var user_date_format = "<?php
+        if($this->session->userdata('user_date_format')) {
+            // If Logged in and session exists
+            echo $this->session->userdata('user_date_format');
+        } else {
+            // Get Default date format from /config/wavelog.php
+            echo $this->config->item('qso_date_format');
+        }
+    ?>";
 </script>
 
 <div class="container qso_panel contesting">
