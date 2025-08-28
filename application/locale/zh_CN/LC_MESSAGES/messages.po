@@ -20,11 +20,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-24 15:29+0000\n"
+"POT-Creation-Date: 2025-08-28 12:55+0000\n"
 "PO-Revision-Date: 2025-08-25 05:18+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3173,63 +3173,63 @@ msgid ""
 "It's invalid"
 msgstr "试图导入的 QSO 不存在对方呼号（CALL）。此 QSO 无效，未导入"
 
-#: application/models/Logbook_model.php:4317
+#: application/models/Logbook_model.php:4325
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4328
+#: application/models/Logbook_model.php:4336
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4389
+#: application/models/Logbook_model.php:4397
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4409
+#: application/models/Logbook_model.php:4417
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4430
+#: application/models/Logbook_model.php:4438
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4722
+#: application/models/Logbook_model.php:4730
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4783
+#: application/models/Logbook_model.php:4791
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4789
+#: application/models/Logbook_model.php:4797
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4794
+#: application/models/Logbook_model.php:4802
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4797
+#: application/models/Logbook_model.php:4805
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4800
+#: application/models/Logbook_model.php:4808
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4803
+#: application/models/Logbook_model.php:4811
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4806
+#: application/models/Logbook_model.php:4814
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "未知"
 
-#: application/models/Logbook_model.php:5644
+#: application/models/Logbook_model.php:5652
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -4831,7 +4831,8 @@ msgstr "欲了解更多信息，您可以访问此链接：%s。"
 msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
-msgstr "本奖项所需要的字段：传播模式和卫星名称（ADIF: PROP_MODE=SAT, "
+msgstr ""
+"本奖项所需要的字段：传播模式和卫星名称（ADIF: PROP_MODE=SAT, "
 "SAT_NAME='AO-73'）"
 
 #: application/views/awards/73on73/index.php:32
@@ -5501,8 +5502,9 @@ msgstr "欲了解更多信息，您可以访问此链接：%s。"
 msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Band must be 6M."
-msgstr "本奖项所需要的字段：DXCC（必须是美国）、网格（必须包含488个大陆网格中的一个）"
-"，波段必须是6米。"
+msgstr ""
+"本奖项所需要的字段：DXCC（必须是美国）、网格（必须包含488个大陆网格中的一"
+"个），波段必须是6米。"
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
@@ -5550,8 +5552,9 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be USA), Gridsquare (Must contain a "
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
-msgstr "本奖项所需要的字段：DXCC（必须是美国）、网格（必须包含488个大陆网格中的一个）"
-"、传播模式和卫星名称"
+msgstr ""
+"本奖项所需要的字段：DXCC（必须是美国）、网格（必须包含488个大陆网格中的一"
+"个）、传播模式和卫星名称"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -6047,7 +6050,8 @@ msgstr "达成既定数量的通联网格可申请，可在如下链接查看。
 msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
-msgstr "本奖项所需要的字段：SIG（必须是 'WAB'）和 SIG_INFO（应包含有效的 WAB 网格）"
+msgstr ""
+"本奖项所需要的字段：SIG（必须是 'WAB'）和 SIG_INFO（应包含有效的 WAB 网格）"
 
 #: application/views/awards/wab/index.php:110
 msgid "List"
@@ -6300,7 +6304,8 @@ msgstr "ARRL WAS奖项的所有信息和规则可以在 %s 找到。"
 msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
-msgstr "本奖项所需要的字段：DXCC（必须是美国本土，阿拉斯加或夏威夷）和州（必须包含有"
+msgstr ""
+"本奖项所需要的字段：DXCC（必须是美国本土，阿拉斯加或夏威夷）和州（必须包含有"
 "效的州简称）"
 
 #: application/views/awards/was/index.php:115
