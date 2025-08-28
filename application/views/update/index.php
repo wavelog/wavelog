@@ -7,10 +7,6 @@
 				<li class="nav-item">
 					<a class="nav-link active" id="dxcc-tab" data-bs-toggle="tab" href="#dxcc" role="tab" aria-controls="update" aria-selected="true"><?= __("DXCC Lookup Data"); ?></a>
 				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" id="distance-tab" data-bs-toggle="tab" href="#distanceTab" role="tab" aria-controls="update" aria-selected="false"><?= __("Distance Data"); ?></a>
-				</li>
 			</ul>
 		</div>
 		<div class="card-body">
@@ -77,27 +73,6 @@
 							}
 						</style>
 					<?php } ?>
-				</div>
-				<div class="tab-pane fade" id="distanceTab" role="tabpanel" aria-labelledby="distance-tab">
-					<p class="card-text"><?= __("Here you can update QSOs with missing distance information."); ?></p>
-					<button class="btn btn-primary mb-3 ld-ext-right" 
-						hx-get="<?php echo site_url('update/update_distances');?>"  
-						hx-target="#distance_results"
-						hx-on:htmx:before-request="this.disabled = true; this.classList.add('running');"
-						hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running'); document.getElementById('distance_results').style.display = 'block';">
-						<?= __("Update distance data"); ?>
-						<div class="ld ld-ring ld-spin"></div>
-					</button>
-					<p class="card-text"><?= __("Use the following button to update the distance information for all your QSOs. Depending on the number of QSOs this might take some time to execute. Please be patient."); ?></p>
-					<button class="btn btn-primary mb-3 ld-ext-right"
-						hx-get="<?php echo site_url('update/update_distances/all');?>" 
-						hx-target="#distance_results" 
-						hx-on:htmx:before-request="this.disabled = true; this.classList.add('running');"
-						hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running'); document.getElementById('distance_results').style.display = 'block';">
-						<?= __("Re-check all QSOs in logbook"); ?>
-						<div class="ld ld-ring ld-spin"></div>
-					</button>
-					<div id="distance_results" class="alert alert-secondary mb-3 w-25 w-lg-100" style="display: none;"></div>
 				</div>
 			</div>
 		</div>
