@@ -8,11 +8,18 @@ class Contesting_model extends CI_Model {
 		$this->load->model('Stations');
 		$station_id = $this->Stations->find_active();
 
+		if ($this->session->userdata('user_date_format')) {
+			$date_format = $this->session->userdata('user_date_format');
+		} else {
+			$date_format = $this->config->item('qso_date_format');
+		}
+
+
 		$qsoarray = explode(',', $this->security->xss_clean($qso));
 
 		$contestid = $qsoarray[2];
-		$date = DateTime::createFromFormat('d-m-Y H:i:s', $qsoarray[0]);
-		if ($date == false) $date = DateTime::createFromFormat('d-m-Y H:i', $qsoarray[0]);
+		$date = DateTime::createFromFormat($date_format.' H:i:s', $qsoarray[0]);
+		if ($date == false) $date = DateTime::createFromFormat($date_format.' H:i', $qsoarray[0]);
 		$date = $date->format('Y-m-d H:i:s');
 
 		$sql = "SELECT col_primary_key, date_format(col_time_on, '%d-%m-%Y %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
@@ -239,12 +246,18 @@ class Contesting_model extends CI_Model {
 
 		$contest_session = $this->getSession();
 
+		if ($this->session->userdata('user_date_format')) {
+			$date_format = $this->session->userdata('user_date_format');
+		} else {
+			$date_format = $this->config->item('qso_date_format');
+		}
+
 		if ($contest_session && $contest_session->qso != "") {
 			$qsoarray = explode(',', $contest_session->qso);
 
-			$date = DateTime::createFromFormat('d-m-Y H:i:s', $qsoarray[0]);
-			if ($date == false) $date = DateTime::createFromFormat('d-m-Y H:i', $qsoarray[0]);
-			$date = $date->format('Y-m-d H:i:s');
+			$date = DateTime::createFromFormat($date_format.' H:i:s', $qsoarray[0]);
+			if ($date == false) $date = DateTime::createFromFormat($date_format.' H:i', $qsoarray[0]);
+			$date = $date->format($date_format.' H:i:s');
 
 			$this->db->select('timediff(UTC_TIMESTAMP(),col_time_off) b4, COL_TIME_OFF');
 			$this->db->where('STATION_ID', $station_id);
