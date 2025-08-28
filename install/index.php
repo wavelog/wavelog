@@ -1009,7 +1009,7 @@ if (!file_exists('.lock') && !file_exists('../application/config/config.php') &&
 												];
 
 												usort($timezones, function ($a, $b) {
-													return strcmp($a[1], $b[1]);
+													return floatval($a[1]) <=> floatval($b[1]);
 												});
 
 												// Loop through timezones to generate options
