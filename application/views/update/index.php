@@ -32,7 +32,7 @@
 							<?= __("After updating, Wavelog can fill in missing callsign information in the logbook using the newly-obtained DXCC data.
 							You can choose to check just the QSOs in the logbook that are missing DXCC metadata or to re-check the entire logbook
 							and update existing metadata as well, in case it has changed."); ?>
-							<br/><br/><b><?= __("WARNING"); ?></b>: <?= __("This affects ALL QSOs of ANY User on your instance. The function is deprectated and will be removed in a future Version of Wavelog. As replacement use the Logbook-Advanced!"); ?>
+							<br/><br/><b class="badge text-bg-danger"><?= __("WARNING"); ?></b>: <?= __("This affects ALL QSOs of ANY User on your instance. The function is deprectated and will be removed in a future Version of Wavelog. As replacement use the Logbook-Advanced!"); ?>
 						</p>
 						<button class="btn btn-primary mb-3 ld-ext-right" 
 							hx-get="<?php echo site_url('update/check_missing_dxcc');?>"
@@ -56,7 +56,7 @@
 						<h5><?= __("Apply Continent Data to Logbook"); ?></h5>
 						<p class="card-text">
 							<?= __("This function can be used to update QSO continent information for all QSOs in Wavelog missing that information."); ?>
-							<br/><br/><b><?= __("WARNING"); ?></b>: <?= __("This affects ALL QSOs of ANY User on your instance. The function is deprectated and will be removed in a future Version of Wavelog. As replacement use the Logbook-Advanced!"); ?>
+							<br/><br/><b class="badge text-bg-danger"><?= __("WARNING"); ?></b>: <?= __("This affects ALL QSOs of ANY User on your instance. The function is deprectated and will be removed in a future Version of Wavelog. As replacement use the Logbook-Advanced!"); ?>
 						</p>
 						<button class="btn btn-primary mb-3 ld-ext-right" 
 							hx-get="<?php echo site_url('update/check_missing_continent');?>" 
