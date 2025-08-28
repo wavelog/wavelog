@@ -18,11 +18,11 @@ class Contesting_model extends CI_Model {
 		$qsoarray = explode(',', $this->security->xss_clean($qso));
 
 		$contestid = $qsoarray[2];
-		$date = DateTime::createFromFormat($date_format.' H:i:s', $qsoarray[0]);
+		$date = DateTime::createFromFormat('Y-m-d H:i:s', $qsoarray[0]);
 		if ($date == false) $date = DateTime::createFromFormat($date_format.' H:i', $qsoarray[0]);
 		$date = $date->format('Y-m-d H:i:s');
 
-		$sql = "SELECT col_primary_key, date_format(col_time_on, '%d-%m-%Y %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
+		$sql = "SELECT col_primary_key, col_time_on, col_call, col_band, col_mode,
 			col_submode, col_rst_sent, col_rst_rcvd, coalesce(col_srx, '') col_srx, coalesce(col_srx_string, '') col_srx_string,
 			coalesce(col_stx, '') col_stx, coalesce(col_stx_string, '') col_stx_string, coalesce(col_gridsquare, '') col_gridsquare,
 			coalesce(col_vucc_grids, '') col_vucc_grids FROM " .
@@ -63,12 +63,19 @@ class Contesting_model extends CI_Model {
 		$this->load->model('Stations');
 		$station_id = $this->Stations->find_active();
 
+		if ($this->session->userdata('user_date_format')) {
+			$date_format = $this->session->userdata('user_date_format');
+		} else {
+			$date_format = $this->config->item('qso_date_format');
+		}
+		$qso_date=DateTime::createFromFormat($date_format, $this->input->post('start_date', true));
+
 		$qso = "";
 
 		if ($this->input->post('callsign', true) ?? '' != '') {
-			$qso = $this->input->post('start_date', true) . ' ' . $this->input->post('start_time', true) . ',' . $this->input->post('callsign', true) . ',' . $this->input->post('contestname', true);
+			$qso = $qso_date->format('Y-m-d') . ' ' . $this->input->post('start_time', true) . ',' . $this->input->post('callsign', true) . ',' . $this->input->post('contestname', true);
 		} else {
-			$qso = $this->input->post('start_date', true) . ' ' . $this->input->post('start_time', true) . ',,' . $this->input->post('contestname', true);
+			$qso = $qso_date->format('Y-m-d') . ' ' . $this->input->post('start_time', true) . ',,' . $this->input->post('contestname', true);
 		}
 
 		$settings = array(
