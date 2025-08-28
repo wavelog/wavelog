@@ -22,7 +22,8 @@ class Contesting_model extends CI_Model {
 		if ($date == false) $date = DateTime::createFromFormat($date_format.' H:i', $qsoarray[0]);
 		$date = $date->format('Y-m-d H:i:s');
 
-		$sql = "SELECT col_primary_key, col_time_on, col_call, col_band, col_mode,
+		$sql_date_format=preg_replace('/([a-zA-Z])/', '%$1', $date_format);
+		$sql = "SELECT col_primary_key, date_format(col_time_on,'".$sql_date_format." %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
 			col_submode, col_rst_sent, col_rst_rcvd, coalesce(col_srx, '') col_srx, coalesce(col_srx_string, '') col_srx_string,
 			coalesce(col_stx, '') col_stx, coalesce(col_stx_string, '') col_stx_string, coalesce(col_gridsquare, '') col_gridsquare,
 			coalesce(col_vucc_grids, '') col_vucc_grids FROM " .
@@ -262,9 +263,9 @@ class Contesting_model extends CI_Model {
 		if ($contest_session && $contest_session->qso != "") {
 			$qsoarray = explode(',', $contest_session->qso);
 
-			$date = DateTime::createFromFormat($date_format.' H:i:s', $qsoarray[0]);
-			if ($date == false) $date = DateTime::createFromFormat($date_format.' H:i', $qsoarray[0]);
-			$date = $date->format($date_format.' H:i:s');
+			$date = DateTime::createFromFormat('Y-m-d H:i:s', $qsoarray[0]);				// Date is stored in ISO-Format, so convert it
+			if ($date == false) $date = DateTime::createFromFormat($date_format.' H:i', $qsoarray[0]);	// Failed? Try local-format
+			$date = $date->format('Y-m-d H:i:s');
 
 			$this->db->select('timediff(UTC_TIMESTAMP(),col_time_off) b4, COL_TIME_OFF');
 			$this->db->where('STATION_ID', $station_id);
