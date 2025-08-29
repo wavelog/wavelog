@@ -207,6 +207,7 @@ if ( ! manual ) {
 	});
 } else {
 	getUTCDateStamp($('.input_date'));
+	getUTCTimeStamp($('.input_time'));
 }
 
 // We don't want spaces to be written in callsign
@@ -895,7 +896,11 @@ function getUTCTimeStamp(el) {
 	var now = new Date();
 	var localTime = now.getTime();
 	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$(el).attr('value', ("0" + now.getUTCHours()).slice(-2)+':'+("0" + now.getUTCMinutes()).slice(-2)+':'+("0" + now.getUTCSeconds()).slice(-2));
+	if (manual) {
+		$(el).attr('value', ("0" + now.getUTCHours()).slice(-2)+':'+("0" + now.getUTCMinutes()).slice(-2));
+	} else {
+		$(el).attr('value', ("0" + now.getUTCHours()).slice(-2)+':'+("0" + now.getUTCMinutes()).slice(-2)+':'+("0" + now.getUTCSeconds()).slice(-2));
+	}
 }
 
 function getUTCDateStamp(el) {
