@@ -24,7 +24,8 @@ class Contesting_model extends CI_Model {
 
 		$date = $date->format('Y-m-d H:i:s');
 
-		$sql = "SELECT col_primary_key, date_format(col_time_on, '%d-%m-%Y %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
+				$sql_date_format=preg_replace('/([a-zA-Z])/', '%$1', $date_format);
+		$sql = "SELECT col_primary_key, date_format(col_time_on,'".$sql_date_format." %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
 			col_submode, col_rst_sent, col_rst_rcvd, coalesce(col_srx, '') col_srx, coalesce(col_srx_string, '') col_srx_string,
 			coalesce(col_stx, '') col_stx, coalesce(col_stx_string, '') col_stx_string, coalesce(col_gridsquare, '') col_gridsquare,
 			coalesce(col_vucc_grids, '') col_vucc_grids FROM " .
