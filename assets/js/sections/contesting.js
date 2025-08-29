@@ -709,8 +709,11 @@ function logQso() {
 		}
 
 		var formdata = new FormData(document.getElementById("qso_input"));
+
+		let manual_addon = '?manual=' + qso_manual;
+
 		$.ajax({
-			url: base_url + 'index.php/qso/saveqso',
+			url: base_url + 'index.php/qso/saveqso' + manual_addon,
 			type: 'post',
 			data: formdata,
 			processData: false,

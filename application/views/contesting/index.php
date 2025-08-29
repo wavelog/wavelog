@@ -4,6 +4,7 @@
 
 	 // Get Date format
     var user_date_format = "<?php echo $date_format; ?>";
+	var qso_manual  = "<?php echo $manual_mode; ?>";
 </script>
 
 <div class="container qso_panel contesting">
