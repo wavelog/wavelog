@@ -205,6 +205,8 @@ if ( ! manual ) {
 	$(function ($) {
 		handleDate = setInterval(function() { getUTCDateStamp($('.input_date')); }, 1000);
 	});
+} else {
+	getUTCDateStamp($('.input_date'));
 }
 
 // We don't want spaces to be written in callsign
