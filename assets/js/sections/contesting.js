@@ -205,6 +205,9 @@ if ( ! manual ) {
 	$(function ($) {
 		handleDate = setInterval(function() { getUTCDateStamp($('.input_date')); }, 1000);
 	});
+} else {
+	getUTCDateStamp($('.input_date'));
+	getUTCTimeStamp($('.input_time'));
 }
 
 // We don't want spaces to be written in callsign
@@ -709,8 +712,11 @@ function logQso() {
 		}
 
 		var formdata = new FormData(document.getElementById("qso_input"));
+
+		let manual_addon = '?manual=' + qso_manual;
+
 		$.ajax({
-			url: base_url + 'index.php/qso/saveqso',
+			url: base_url + 'index.php/qso/saveqso' + manual_addon,
 			type: 'post',
 			data: formdata,
 			processData: false,
@@ -890,12 +896,57 @@ function getUTCTimeStamp(el) {
 	var now = new Date();
 	var localTime = now.getTime();
 	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$(el).attr('value', ("0" + now.getUTCHours()).slice(-2)+':'+("0" + now.getUTCMinutes()).slice(-2)+':'+("0" + now.getUTCSeconds()).slice(-2));
+	if (manual) {
+		$(el).attr('value', ("0" + now.getUTCHours()).slice(-2)+':'+("0" + now.getUTCMinutes()).slice(-2));
+	} else {
+		$(el).attr('value', ("0" + now.getUTCHours()).slice(-2)+':'+("0" + now.getUTCMinutes()).slice(-2)+':'+("0" + now.getUTCSeconds()).slice(-2));
+	}
 }
 
 function getUTCDateStamp(el) {
 	var now = new Date();
-	var localTime = now.getTime();
-	var utc = localTime + (now.getTimezoneOffset() * 60000);
-	$(el).attr('value', ("0" + now.getUTCDate()).slice(-2)+'-'+("0" + (now.getUTCMonth()+1)).slice(-2)+'-'+now.getUTCFullYear());
+	var day = ("0" + now.getUTCDate()).slice(-2);
+	var month = ("0" + (now.getUTCMonth() + 1)).slice(-2);
+	var year = now.getUTCFullYear();
+	var short_year = year.toString().slice(-2);
+
+	// Format the date based on user_date_format passed from PHP
+	var formatted_date;
+	switch (user_date_format) {
+		case "d/m/y":
+			formatted_date = day + "/" + month + "/" + short_year;
+			break;
+		case "d/m/Y":
+			formatted_date = day + "/" + month + "/" + year;
+			break;
+		case "m/d/y":
+			formatted_date = month + "/" + day + "/" + short_year;
+			break;
+		case "m/d/Y":
+			formatted_date = month + "/" + day + "/" + year;
+			break;
+		case "d.m.Y":
+			formatted_date = day + "." + month + "." + year;
+			break;
+		case "y/m/d":
+			formatted_date = short_year + "/" + month + "/" + day;
+			break;
+		case "Y-m-d":
+			formatted_date = year + "-" + month + "-" + day;
+			break;
+		case "M d, Y":
+			// Need to get the month name abbreviation
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + year;
+			break;
+		case "M d, y":
+			var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			formatted_date = monthNames[now.getUTCMonth()] + " " + parseInt(day) + ", " + short_year;
+			break;
+		default:
+			// Default to d-m-Y format as shown in the PHP code
+			formatted_date = day + "-" + month + "-" + year;
+	}
+
+	$(el).attr('value', formatted_date);
 }
