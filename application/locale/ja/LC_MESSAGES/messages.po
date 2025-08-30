@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-08-28 12:55+0000\n"
 "PO-Revision-Date: 2025-08-30 12:37+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -325,6 +325,7 @@ msgstr "アワード歴 - %s"
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:302
 #: application/views/qso/index.php:593 application/views/user/edit.php:671
 #: application/views/view_log/qso.php:460
+#: application/views/contesting/index.php:63
 msgid "DOK"
 msgstr "DOK"
 
@@ -770,15 +771,19 @@ msgstr ""
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:8
+#: application/controllers/Contesting.php:57
+#: application/views/contesting/index.php:12
 msgid "Contest Logging"
 msgstr "コンテストログ"
 
 #: application/controllers/Contesting.php:123
 #: application/views/interface_assets/header.php:310
+#: application/controllers/Contesting.php:128
 msgid "Contests"
 msgstr "コンテスト"
 
 #: application/controllers/Contesting.php:137
+#: application/controllers/Contesting.php:142
 msgid "Update Contest"
 msgstr "コンテストの更新"
 
@@ -1374,6 +1379,8 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/contesting/index.php:118
+#: application/views/contesting/index.php:264
 msgid "Mode"
 msgstr "モード"
 
@@ -1403,6 +1410,8 @@ msgstr "モード"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
+#: application/views/contesting/index.php:179
+#: application/views/contesting/index.php:265
 msgid "RST (S)"
 msgstr "RST (S)"
 
@@ -1433,6 +1442,8 @@ msgstr "RST (S)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
+#: application/views/contesting/index.php:203
+#: application/views/contesting/index.php:266
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -1510,6 +1521,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/contesting/index.php:66
 msgid "State"
 msgstr "州"
 
@@ -1555,6 +1567,8 @@ msgstr "州"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
+#: application/views/contesting/index.php:26
+#: application/views/contesting/index.php:271
 msgid "Gridsquare"
 msgstr "グリッドスクエア"
 
@@ -1664,6 +1678,8 @@ msgstr "距離"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/views/contesting/index.php:131
+#: application/views/contesting/index.php:263
 msgid "Band"
 msgstr "バンド"
 
@@ -1686,6 +1702,7 @@ msgstr "バンド"
 #: application/views/user/edit.php:335
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:36
+#: application/views/contesting/index.php:148
 msgid "Frequency"
 msgstr "周波数"
 
@@ -2131,6 +2148,7 @@ msgstr "ハードウェアインターフェース"
 #: application/views/bandmap/list.php:67
 #: application/views/contesting/index.php:153
 #: application/views/qso/index.php:350
+#: application/views/contesting/index.php:157
 msgid "Radio"
 msgstr "無線"
 
@@ -2159,6 +2177,7 @@ msgstr "不明"
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:157
 #: application/views/qso/index.php:354
+#: application/views/contesting/index.php:161
 msgid "last updated"
 msgstr "最終更新日"
 
@@ -4034,6 +4053,7 @@ msgstr "何も見つかりません!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:656
+#: application/views/contesting/index.php:170
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -4137,6 +4157,8 @@ msgstr "ログ内のDOKとDCLのデータが異なります"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/contesting/index.php:103
+#: application/views/contesting/index.php:261
 msgid "Date"
 msgstr "日付"
 
@@ -4170,6 +4192,8 @@ msgstr "日付"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/contesting/index.php:108
+#: application/views/contesting/index.php:261
 msgid "Time"
 msgstr "時間"
 
@@ -4189,6 +4213,7 @@ msgstr "時間"
 #: application/views/view_log/partial/log_ajax.php:200
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
+#: application/views/contesting/index.php:262
 msgid "Call"
 msgstr "電話"
 
@@ -5832,6 +5857,8 @@ msgstr "IOTAマップを表示"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
+#: application/views/contesting/index.php:64
+#: application/views/contesting/index.php:228
 msgid "Name"
 msgstr "名前"
 
@@ -6553,6 +6580,9 @@ msgstr "バンドリスト"
 #: application/views/contesting/index.php:58
 #: application/views/contesting/index.php:155
 #: application/views/qso/index.php:352
+#: application/views/contesting/index.php:24
+#: application/views/contesting/index.php:62
+#: application/views/contesting/index.php:159
 msgid "None"
 msgstr "なし"
 
@@ -6768,6 +6798,7 @@ msgstr "バンドを作る"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/contesting/index.php:93
 msgid "Close"
 msgstr "閉じる"
 
@@ -7474,6 +7505,7 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:150
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:327
 #: application/views/view_log/qso.php:222
+#: application/views/contesting/index.php:233
 msgid "Comment"
 msgstr "コメント"
 
@@ -7642,6 +7674,7 @@ msgstr "作成する"
 #: application/views/contesting/index.php:30
 #: application/views/qso/edit_ajax.php:659
 #: application/views/view_log/qso.php:375
+#: application/views/contesting/index.php:34
 msgid "Contest Name"
 msgstr "コンテスト名"
 
@@ -7662,61 +7695,76 @@ msgid "Are you really sure you want to start a new contest session?"
 msgstr "新しいコンテストセッションを開始してもよろしいですか?"
 
 #: application/views/contesting/index.php:7
+#: application/views/contesting/index.php:11
 msgid "Start new Contest Session"
 msgstr "新しいコンテストセッションを開始する"
 
 #: application/views/contesting/index.php:16
+#: application/views/contesting/index.php:20
 msgid "Exchange Type"
 msgstr "交換の種類"
 
 #: application/views/contesting/index.php:21
+#: application/views/contesting/index.php:25
 msgid "Exchange"
 msgstr "交換"
 
 #: application/views/contesting/index.php:23
+#: application/views/contesting/index.php:27
 msgid "Serial"
 msgstr "シリアル"
 
 #: application/views/contesting/index.php:24
+#: application/views/contesting/index.php:28
 msgid "Serial + Exchange"
 msgstr "シリアル + 交換"
 
 #: application/views/contesting/index.php:25
+#: application/views/contesting/index.php:29
 msgid "Serial + Gridsquare"
 msgstr "シリアル + グリッドスクエア"
 
 #: application/views/contesting/index.php:26
+#: application/views/contesting/index.php:30
 msgid "Serial + Gridsquare + Exchange"
 msgstr "シリアル + グリッドスクエア + 交換"
 
 #: application/views/contesting/index.php:41
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:649 application/views/qso/index.php:391
+#: application/views/contesting/index.php:45
 msgid "Operator Callsign"
 msgstr "オペレーターのコールサイン"
 
 #: application/views/contesting/index.php:46
 #: application/views/contesting/index.php:51
+#: application/views/contesting/index.php:50
+#: application/views/contesting/index.php:55
 msgid "More Settings"
 msgstr "その他の設定"
 
 #: application/views/contesting/index.php:55
+#: application/views/contesting/index.php:59
 msgid "Copy received exchange to"
 msgstr "受け取った交換品のコピー"
 
 #: application/views/contesting/index.php:57
+#: application/views/contesting/index.php:61
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr "交換は、選択したフィールドのルールに一致する場合にのみコピーされます!"
 
 #: application/views/contesting/index.php:61
+#: application/views/contesting/index.php:65
 msgid "Age"
 msgstr "年"
 
 #: application/views/contesting/index.php:63
+#: application/views/contesting/index.php:67
 msgid "RX Power (W)"
 msgstr "受信電力（W）"
 
 #: application/views/contesting/index.php:64
+#: application/views/contesting/index.php:68
 msgid "Locator"
 msgstr "ロケータ"
 
@@ -7724,14 +7772,17 @@ msgstr "ロケータ"
 #: application/views/logbookadvanced/index.php:719
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/qso/edit_ajax.php:177
+#: application/views/contesting/index.php:69
 msgid "QTH"
 msgstr "QTH"
 
 #: application/views/contesting/index.php:70
+#: application/views/contesting/index.php:74
 msgid "Sequence of Exchanges"
 msgstr "交換の順序"
 
 #: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:77
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
@@ -7745,6 +7796,10 @@ msgstr ""
 #: application/views/contesting/index.php:81
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
+#: application/views/contesting/index.php:84
+#: application/views/contesting/index.php:85
+#: application/views/contesting/index.php:86
+#: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Exchange"
 msgstr "交換"
@@ -7755,6 +7810,10 @@ msgstr "交換"
 #: application/views/contesting/index.php:81
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
+#: application/views/contesting/index.php:84
+#: application/views/contesting/index.php:85
+#: application/views/contesting/index.php:86
+#: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Grid"
 msgstr "グリッド"
@@ -7765,6 +7824,10 @@ msgstr "グリッド"
 #: application/views/contesting/index.php:81
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
+#: application/views/contesting/index.php:84
+#: application/views/contesting/index.php:85
+#: application/views/contesting/index.php:86
+#: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Serial"
 msgstr "シリアル"
@@ -7772,52 +7835,67 @@ msgstr "シリアル"
 #: application/views/contesting/index.php:182
 #: application/views/contesting/index.php:265
 #: application/views/qso/edit_ajax.php:674
+#: application/views/contesting/index.php:186
+#: application/views/contesting/index.php:269
 msgid "Serial (S)"
 msgstr "シリアル（S）"
 
 #: application/views/contesting/index.php:187
+#: application/views/contesting/index.php:191
 msgid "Gridsquare (S)"
 msgstr "グリッドスクエア（S）"
 
 #: application/views/contesting/index.php:192
 #: application/views/contesting/index.php:263
+#: application/views/contesting/index.php:196
+#: application/views/contesting/index.php:267
 msgid "Exch (S)"
 msgstr "交換（S）"
 
 #: application/views/contesting/index.php:206
 #: application/views/contesting/index.php:266
 #: application/views/qso/edit_ajax.php:669
+#: application/views/contesting/index.php:210
+#: application/views/contesting/index.php:270
 msgid "Serial (R)"
 msgstr "シリアル（R）"
 
 #: application/views/contesting/index.php:211
+#: application/views/contesting/index.php:215
 msgid "Gridsquare (R)"
 msgstr "グリッドスクエア（R）"
 
 #: application/views/contesting/index.php:216
 #: application/views/contesting/index.php:264
+#: application/views/contesting/index.php:220
+#: application/views/contesting/index.php:268
 msgid "Exch (R)"
 msgstr "交換（R）"
 
 #: application/views/contesting/index.php:234
+#: application/views/contesting/index.php:238
 msgid "Reset QSO"
 msgstr "QSOをリセット"
 
 #: application/views/contesting/index.php:235
 #: application/views/qso/index.php:707
+#: application/views/contesting/index.php:239
 msgid "Save QSO"
 msgstr "QSOを保存"
 
 #: application/views/contesting/index.php:244
+#: application/views/contesting/index.php:248
 msgid "Callsign Suggestions"
 msgstr "コールサインの提案"
 
 #: application/views/contesting/index.php:251
+#: application/views/contesting/index.php:255
 msgid "Contest Logbook"
 msgstr "コンテストログブック"
 
 #: application/views/contesting/index.php:268
 #: application/views/qso/edit_ajax.php:165
+#: application/views/contesting/index.php:272
 msgid "VUCC Gridsquare"
 msgstr "VUCC グリッドスクエア"
 
@@ -8038,8 +8116,8 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
-"現在のステーション位置がログブックとリンクされていません。リンクするに"
-"は、%shere%s をクリックしてください。"
+"現在のステーション位置がログブックとリンクされていません。リンクするには、"
+"%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:157
 #, php-format

@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-08-28 12:55+0000\n"
 "PO-Revision-Date: 2025-08-28 23:08+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -330,6 +330,7 @@ msgstr "Дипломы - %s"
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:302
 #: application/views/qso/index.php:593 application/views/user/edit.php:671
 #: application/views/view_log/qso.php:460
+#: application/views/contesting/index.php:63
 msgid "DOK"
 msgstr "DOK"
 
@@ -775,15 +776,19 @@ msgstr "Календарь контестов недоступен. Попроб
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:8
+#: application/controllers/Contesting.php:57
+#: application/views/contesting/index.php:12
 msgid "Contest Logging"
 msgstr "Журнал контеста"
 
 #: application/controllers/Contesting.php:123
 #: application/views/interface_assets/header.php:310
+#: application/controllers/Contesting.php:128
 msgid "Contests"
 msgstr "Контесты"
 
 #: application/controllers/Contesting.php:137
+#: application/controllers/Contesting.php:142
 msgid "Update Contest"
 msgstr "Обновить контест"
 
@@ -1383,6 +1388,8 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/views/contesting/index.php:118
+#: application/views/contesting/index.php:264
 msgid "Mode"
 msgstr "Вид модуляции"
 
@@ -1412,6 +1419,8 @@ msgstr "Вид модуляции"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
+#: application/views/contesting/index.php:179
+#: application/views/contesting/index.php:265
 msgid "RST (S)"
 msgstr "RST (TX)"
 
@@ -1442,6 +1451,8 @@ msgstr "RST (TX)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
+#: application/views/contesting/index.php:203
+#: application/views/contesting/index.php:266
 msgid "RST (R)"
 msgstr "RST (RX)"
 
@@ -1519,6 +1530,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/contesting/index.php:66
 msgid "State"
 msgstr "Область/штат"
 
@@ -1564,6 +1576,8 @@ msgstr "Область/штат"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
+#: application/views/contesting/index.php:26
+#: application/views/contesting/index.php:271
 msgid "Gridsquare"
 msgstr "QTH локатор"
 
@@ -1673,6 +1687,8 @@ msgstr "Дистанция"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/views/contesting/index.php:131
+#: application/views/contesting/index.php:263
 msgid "Band"
 msgstr "Диапазон"
 
@@ -1695,6 +1711,7 @@ msgstr "Диапазон"
 #: application/views/user/edit.php:335
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:36
+#: application/views/contesting/index.php:148
 msgid "Frequency"
 msgstr "Частота"
 
@@ -2147,6 +2164,7 @@ msgstr "Интерфейсы радиостанций"
 #: application/views/bandmap/list.php:67
 #: application/views/contesting/index.php:153
 #: application/views/qso/index.php:350
+#: application/views/contesting/index.php:157
 msgid "Radio"
 msgstr "Радио"
 
@@ -2175,6 +2193,7 @@ msgstr "НЕИЗВЕСТНО"
 #: application/controllers/Radio.php:98
 #: application/views/contesting/index.php:157
 #: application/views/qso/index.php:354
+#: application/views/contesting/index.php:161
 msgid "last updated"
 msgstr "последнее обновление"
 
@@ -4052,6 +4071,7 @@ msgstr "Не найдено!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:656
+#: application/views/contesting/index.php:170
 msgid "Callsign"
 msgstr "Позывной"
 
@@ -4155,6 +4175,8 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/contesting/index.php:103
+#: application/views/contesting/index.php:261
 msgid "Date"
 msgstr "Дата"
 
@@ -4188,6 +4210,8 @@ msgstr "Дата"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/contesting/index.php:108
+#: application/views/contesting/index.php:261
 msgid "Time"
 msgstr "Время"
 
@@ -4207,6 +4231,7 @@ msgstr "Время"
 #: application/views/view_log/partial/log_ajax.php:200
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
+#: application/views/contesting/index.php:262
 msgid "Call"
 msgstr "Позывной"
 
@@ -5874,6 +5899,8 @@ msgstr "Показать карту IOTA"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:214
 #: application/views/view_log/qso.php:660
+#: application/views/contesting/index.php:64
+#: application/views/contesting/index.php:228
 msgid "Name"
 msgstr "Имя"
 
@@ -6618,6 +6645,9 @@ msgstr "Список активности на диапазоне"
 #: application/views/contesting/index.php:58
 #: application/views/contesting/index.php:155
 #: application/views/qso/index.php:352
+#: application/views/contesting/index.php:24
+#: application/views/contesting/index.php:62
+#: application/views/contesting/index.php:159
 msgid "None"
 msgstr "Нет"
 
@@ -6834,6 +6864,7 @@ msgstr "Лобавить диапазон"
 #: application/views/user/modals/more_actions_modal.php:117
 #: application/views/user/modals/more_actions_modal.php:166
 #: application/views/version_dialog/index.php:79
+#: application/views/contesting/index.php:93
 msgid "Close"
 msgstr "Закрыть"
 
@@ -7553,6 +7584,7 @@ msgstr "Не найдены предстоящие активации. Пров�
 #: application/views/logbookadvanced/useroptions.php:150
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:327
 #: application/views/view_log/qso.php:222
+#: application/views/contesting/index.php:233
 msgid "Comment"
 msgstr "Комментарий"
 
@@ -7724,6 +7756,7 @@ msgstr "Создать"
 #: application/views/contesting/index.php:30
 #: application/views/qso/edit_ajax.php:659
 #: application/views/view_log/qso.php:375
+#: application/views/contesting/index.php:34
 msgid "Contest Name"
 msgstr "Название контеста"
 
@@ -7746,63 +7779,78 @@ msgid "Are you really sure you want to start a new contest session?"
 msgstr "Вы действительно уверены, что хотите начать новую сессию для конкурса?"
 
 #: application/views/contesting/index.php:7
+#: application/views/contesting/index.php:11
 msgid "Start new Contest Session"
 msgstr "Сбросить контест-сессию"
 
 #: application/views/contesting/index.php:16
+#: application/views/contesting/index.php:20
 msgid "Exchange Type"
 msgstr "Тип обмена"
 
 #: application/views/contesting/index.php:21
+#: application/views/contesting/index.php:25
 msgid "Exchange"
 msgstr "Контрольный номер"
 
 #: application/views/contesting/index.php:23
+#: application/views/contesting/index.php:27
 msgid "Serial"
 msgstr "Порядковый номер"
 
 #: application/views/contesting/index.php:24
+#: application/views/contesting/index.php:28
 msgid "Serial + Exchange"
 msgstr "Порядковый номер + контрольный номер"
 
 #: application/views/contesting/index.php:25
+#: application/views/contesting/index.php:29
 msgid "Serial + Gridsquare"
 msgstr "Порядковый номер и квадрат"
 
 #: application/views/contesting/index.php:26
+#: application/views/contesting/index.php:30
 msgid "Serial + Gridsquare + Exchange"
 msgstr "Порядковый номер + Квадрат + Контрольный номер"
 
 #: application/views/contesting/index.php:41
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:649 application/views/qso/index.php:391
+#: application/views/contesting/index.php:45
 msgid "Operator Callsign"
 msgstr "Позывной оператора"
 
 #: application/views/contesting/index.php:46
 #: application/views/contesting/index.php:51
+#: application/views/contesting/index.php:50
+#: application/views/contesting/index.php:55
 msgid "More Settings"
 msgstr "Больше настроек"
 
 #: application/views/contesting/index.php:55
+#: application/views/contesting/index.php:59
 msgid "Copy received exchange to"
 msgstr "Копировать принятый контрольный номер в"
 
 #: application/views/contesting/index.php:57
+#: application/views/contesting/index.php:61
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr ""
 "Контрольный номер копируется только в том случае, если он соответствует "
 "правилам для выбранного поля!"
 
 #: application/views/contesting/index.php:61
+#: application/views/contesting/index.php:65
 msgid "Age"
 msgstr "Возраст"
 
 #: application/views/contesting/index.php:63
+#: application/views/contesting/index.php:67
 msgid "RX Power (W)"
 msgstr "Мощность (Вт)"
 
 #: application/views/contesting/index.php:64
+#: application/views/contesting/index.php:68
 msgid "Locator"
 msgstr "Локатор"
 
@@ -7810,14 +7858,17 @@ msgstr "Локатор"
 #: application/views/logbookadvanced/index.php:719
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/qso/edit_ajax.php:177
+#: application/views/contesting/index.php:69
 msgid "QTH"
 msgstr "QTH"
 
 #: application/views/contesting/index.php:70
+#: application/views/contesting/index.php:74
 msgid "Sequence of Exchanges"
 msgstr "Последовательность контрольных номеров"
 
 #: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:77
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
@@ -7832,6 +7883,10 @@ msgstr ""
 #: application/views/contesting/index.php:81
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
+#: application/views/contesting/index.php:84
+#: application/views/contesting/index.php:85
+#: application/views/contesting/index.php:86
+#: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Exchange"
 msgstr "Контроль"
@@ -7842,6 +7897,10 @@ msgstr "Контроль"
 #: application/views/contesting/index.php:81
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
+#: application/views/contesting/index.php:84
+#: application/views/contesting/index.php:85
+#: application/views/contesting/index.php:86
+#: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Grid"
 msgstr "Квадрат"
@@ -7852,6 +7911,10 @@ msgstr "Квадрат"
 #: application/views/contesting/index.php:81
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
+#: application/views/contesting/index.php:84
+#: application/views/contesting/index.php:85
+#: application/views/contesting/index.php:86
+#: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Serial"
 msgstr "Номер"
@@ -7859,52 +7922,67 @@ msgstr "Номер"
 #: application/views/contesting/index.php:182
 #: application/views/contesting/index.php:265
 #: application/views/qso/edit_ajax.php:674
+#: application/views/contesting/index.php:186
+#: application/views/contesting/index.php:269
 msgid "Serial (S)"
 msgstr "Порядковый номер (TX)"
 
 #: application/views/contesting/index.php:187
+#: application/views/contesting/index.php:191
 msgid "Gridsquare (S)"
 msgstr "Квадрат (TX)"
 
 #: application/views/contesting/index.php:192
 #: application/views/contesting/index.php:263
+#: application/views/contesting/index.php:196
+#: application/views/contesting/index.php:267
 msgid "Exch (S)"
 msgstr "Контрольный номер (TX)"
 
 #: application/views/contesting/index.php:206
 #: application/views/contesting/index.php:266
 #: application/views/qso/edit_ajax.php:669
+#: application/views/contesting/index.php:210
+#: application/views/contesting/index.php:270
 msgid "Serial (R)"
 msgstr "Порядковый номер (RX)"
 
 #: application/views/contesting/index.php:211
+#: application/views/contesting/index.php:215
 msgid "Gridsquare (R)"
 msgstr "Квадрат (RX)"
 
 #: application/views/contesting/index.php:216
 #: application/views/contesting/index.php:264
+#: application/views/contesting/index.php:220
+#: application/views/contesting/index.php:268
 msgid "Exch (R)"
 msgstr "Контрольный номер (RX)"
 
 #: application/views/contesting/index.php:234
+#: application/views/contesting/index.php:238
 msgid "Reset QSO"
 msgstr "Сбросить QSO"
 
 #: application/views/contesting/index.php:235
 #: application/views/qso/index.php:707
+#: application/views/contesting/index.php:239
 msgid "Save QSO"
 msgstr "Сохранить QSO"
 
 #: application/views/contesting/index.php:244
+#: application/views/contesting/index.php:248
 msgid "Callsign Suggestions"
 msgstr "Предложение позывных"
 
 #: application/views/contesting/index.php:251
+#: application/views/contesting/index.php:255
 msgid "Contest Logbook"
 msgstr "Журнал контеста"
 
 #: application/views/contesting/index.php:268
 #: application/views/qso/edit_ajax.php:165
+#: application/views/contesting/index.php:272
 msgid "VUCC Gridsquare"
 msgstr "Квадрат VUCC"
 
@@ -13655,8 +13733,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -14397,8 +14475,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14753,8 +14832,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:381
 msgid ""
