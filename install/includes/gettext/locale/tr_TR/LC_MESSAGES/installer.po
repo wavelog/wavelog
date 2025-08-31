@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:28+0000\n"
-"PO-Revision-Date: 2025-08-25 12:30+0000\n"
+"PO-Revision-Date: 2025-08-31 17:23+0000\n"
 "Last-Translator: Erkin <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "installer/tr/>\n"
@@ -339,7 +339,7 @@ msgstr ""
 
 #: install/index.php:352
 msgid "Your final Wavelog URL"
-msgstr ""
+msgstr "Final Wavelog URL'niz"
 
 #: install/index.php:358
 msgid "Optional: Global Callbook Lookup"
@@ -451,6 +451,9 @@ msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
+"Genellikle localhost kullanılır. İsteğe bağlı olarak [sunucu]:[port] "
+"şeklinde belirtilebilir (varsayılan port: 3306). Docker Compose kurulumu "
+"yapıyorsanız \"wavelog-db\" yazın."
 
 #: install/index.php:444
 msgid "Database Name"
@@ -584,11 +587,11 @@ msgstr "Artık Wavelog'u yükleyebiliriz. Bu işlem birkaç dakika sürebilir."
 
 #: install/index.php:1102
 msgid "Reset"
-msgstr ""
+msgstr "Sıfırlama"
 
 #: install/index.php:1107
 msgid "Installer Reset"
-msgstr ""
+msgstr "Yükleyiciyi Sıfırla"
 
 #: install/index.php:1110
 msgid "Do you really want to reset all data and start from scratch?"
@@ -635,10 +638,13 @@ msgid ""
 "The callsign can not contain any special characters. It's your personal "
 "callsign without any pre- or suffixes."
 msgstr ""
+"Çağrı işareti özel karakterler içeremez. Kişisel çağrı işaretiniz ön veya "
+"son ek olmadan yazın."
 
 #: install/index.php:1479
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
+"Hata: Sunucu Adı/IP, Veritabanı Adı ve Kullanıcı Adı mutlaka girilmelidir."
 
 #: install/index.php:1489
 msgid "Connecting..."
@@ -646,7 +652,7 @@ msgstr "Bağlanıyor..."
 
 #: install/index.php:1513
 msgid "Connection was successful and your database should be compatible."
-msgstr ""
+msgstr "Bağlantı başarılı, veritabanınız uyumlu görünüyor."
 
 #: install/index.php:1517
 msgid ""
@@ -659,15 +665,15 @@ msgstr ""
 #: install/index.php:1517
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
-msgstr ""
+msgstr "Minimum sürüm MySQL için %s, MariaDB için %s."
 
 #: install/index.php:1637
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #: install/index.php:1674
 msgid "At least one field is empty."
-msgstr ""
+msgstr "En az bir alan boş."
 
 #: install/index.php:1693
 msgid ""
@@ -675,18 +681,25 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Lütfen durun. Seçtiğiniz DXCC güncel değil ve artık geçerli değil. Bu konum "
+"için doğru DXCC’yi kontrol edin. Eğer eminseniz, bu uyarıyı yok "
+"sayabilirsiniz."
 
 #: install/index.php:1717
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
+"Görünen o ki, konum doğru formatta değil. AA11AA (6 karakterli grid locator) "
+"gibi olmalı."
 
 #: install/index.php:1731
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
 msgstr ""
+"E-posta adresi dogru görünmüyor. Geçerli bir e-posta adresi oldugundan emin "
+"olun"
 
 #: install/index.php:1758
 msgid "Password should be at least 8 characters long"
@@ -702,43 +715,43 @@ msgstr "Şimdi Yükle"
 
 #: install/index.php:1827
 msgid "Install not possible. Checklist incomplete."
-msgstr ""
+msgstr "Kurulum yapılamıyor. Kontrol listesi eksik."
 
 #: install/index.php:1939
 msgid "PHP Module missing"
-msgstr ""
+msgstr "PHP Modülü eksik"
 
 #: install/index.php:1941
 msgid "The following PHP modules are missing:"
-msgstr ""
+msgstr "Aşağıdaki PHP modülleri eksik:"
 
 #: install/index.php:1942
 msgid "Without this module the Wavelog Installer does not work!"
-msgstr ""
+msgstr "Bu modül olmadan Wavelog Yükleyici çalışmaz!"
 
 #: install/index.php:1943
 msgid "Please install the required modules and restart the webserver."
-msgstr ""
+msgstr "Gerekli modülleri yükleyin ve web sunucusunu yeniden başlatın."
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "Kurulum"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "Lütfen bekleyin..."
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "Config.php dosyasını application/config/ dizinine kopyalayın"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "database.php dosyasını application/config/ dizinine kopyalayın"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "Veritabanı tabloları oluşturuluyor"
 
 #: install/run.php:24
 msgid "Running database migrations"
