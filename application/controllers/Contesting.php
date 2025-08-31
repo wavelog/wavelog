@@ -30,6 +30,11 @@ class Contesting extends CI_Controller {
         } else {
             show_404();
         }
+		if ($this->session->userdata('user_date_format')) {
+			$data['date_format'] = $this->session->userdata('user_date_format');
+		} else {
+			$data['date_format'] = $this->config->item('qso_date_format');
+		}
 
 		$data['my_gridsquare'] = $this->stations->find_gridsquare();
 		$data['radios'] = $this->cat->radios();
