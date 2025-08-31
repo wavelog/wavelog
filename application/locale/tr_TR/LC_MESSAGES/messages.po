@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-30 19:00+0000\n"
-"PO-Revision-Date: 2025-08-25 12:30+0000\n"
+"PO-Revision-Date: 2025-08-31 17:23+0000\n"
 "Last-Translator: Erkin <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,25 +171,25 @@ msgstr "Toplam Konum Belirteci etkinleştirildi"
 #: application/controllers/Gridmap.php:36
 #: application/controllers/Visitor.php:390
 msgid "Fields"
-msgstr ""
+msgstr "Alanlar"
 
 #: application/controllers/Activated_gridmap.php:37
 #: application/controllers/Gridmap.php:37
 #: application/controllers/Visitor.php:391
 msgid "Fields confirmed"
-msgstr ""
+msgstr "Alanlar onaylandı"
 
 #: application/controllers/Activated_gridmap.php:38
 #: application/controllers/Gridmap.php:38
 #: application/controllers/Visitor.php:392
 msgid "Fields not confirmed"
-msgstr ""
+msgstr "Alanlar onaylanmadı"
 
 #: application/controllers/Activated_gridmap.php:39
 #: application/controllers/Gridmap.php:39
 #: application/controllers/Visitor.php:393
 msgid "Total fields worked"
-msgstr ""
+msgstr "Toplam çalışılan alanlar"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -490,7 +490,7 @@ msgstr "POTA"
 
 #: application/controllers/Awards.php:672
 msgid "CQ WAZ (Worked All Zones)"
-msgstr ""
+msgstr "CQ WAZ (Çalışılan Tüm Bölgeler)"
 
 #: application/controllers/Awards.php:733
 #: application/views/accumulate/index.php:54
@@ -509,7 +509,7 @@ msgstr "H26"
 
 #: application/controllers/Awards.php:940
 msgid "IOTA (Island On The Air)"
-msgstr "IOTA (Yayındaki Ada)"
+msgstr "IOTA (Island On The Air)"
 
 #: application/controllers/Awards.php:951
 #: application/controllers/Awards.php:965
@@ -560,7 +560,7 @@ msgstr "Ödüller - SIG - "
 
 #: application/controllers/Awards.php:1374 application/views/bands/index.php:60
 msgid "WAP"
-msgstr ""
+msgstr "WAP"
 
 #: application/controllers/Awards.php:1988
 #: application/views/awards/itu/index.php:20
@@ -575,12 +575,12 @@ msgstr "Tüm Kıtalarda Çalışıldı (WAC)"
 
 #: application/controllers/Awards.php:2195
 msgid "WAE"
-msgstr ""
+msgstr "WAE"
 
 #: application/controllers/Awards.php:2207
 #: application/views/interface_assets/header.php:198
 msgid "73 on 73"
-msgstr ""
+msgstr "73 on 73"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:316
@@ -637,6 +637,8 @@ msgid ""
 "QSO %d not found or more than 1 QSO found that match the criteria of the CBR "
 "file. Skipping as a safety measure."
 msgstr ""
+"QSO %d bulunamadı veya CBR dosyasının kriterlerine uyan birden fazla QSO "
+"bulundu. Güvenlik önlemi olarak atlanıyor."
 
 #: application/controllers/Cabrillo.php:301
 msgid "CBR Data Imported"
@@ -814,7 +816,7 @@ msgstr "hesaplanıyor..."
 
 #: application/controllers/Cron.php:240 application/views/cron/index.php:70
 msgid "healthy"
-msgstr ""
+msgstr "iyi durumda"
 
 #: application/controllers/Cron.php:242 application/views/cron/index.php:72
 msgid "failed"
@@ -826,7 +828,7 @@ msgstr "bekliyor"
 
 #: application/controllers/Cron.php:249 application/views/cron/index.php:79
 msgid "disabled"
-msgstr ""
+msgstr "deaktif"
 
 #: application/controllers/Cron.php:288
 #: application/views/interface_assets/footer.php:39
@@ -848,6 +850,8 @@ msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
+"Son çalıştırma %s dakikadan uzun süre önce gerçekleşmiş.%sGörünüşe göre "
+"Mastercron çalışmıyor!%sHer dakika çalışması gerekiyor ( * * * )."
 
 #: application/controllers/Cron.php:300 application/views/cron/index.php:29
 msgctxt "Master Cron"
@@ -868,7 +872,7 @@ msgstr "Kontrol Paneli"
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:158
 msgid "Days with QSOs"
-msgstr ""
+msgstr "QSO yapılan günler"
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
@@ -892,11 +896,11 @@ msgstr "Taşınma mümkün değil"
 
 #: application/controllers/Debug.php:236
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelog başarıyla güncellendi!"
 
 #: application/controllers/Debug.php:254
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr ""
+msgstr "Selfupdate() kullanılamıyor. Hata Günlüğünü kontrol et."
 
 #: application/controllers/Debug.php:298
 msgid ""
@@ -917,7 +921,7 @@ msgstr ""
 #: application/controllers/Distancerecords.php:86
 #: application/views/interface_assets/header.php:156
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "Uydu Mesafe Kayıtları"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -937,7 +941,7 @@ msgstr "ve bant"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
-msgstr ""
+msgstr "ve propagasyon"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:459
@@ -966,7 +970,7 @@ msgstr "eQSL İçe Aktarma Bilgileri"
 
 #: application/controllers/Eqsl.php:154
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "eQSL Takma Adları İstasyon Profillerinde tanımlanmamış!"
 
 #: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
@@ -974,16 +978,16 @@ msgstr "eQSL QSO Yükleme"
 
 #: application/controllers/Eqsl.php:173
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "eQSL.cc kimlik bilgilerinizi tanımlamadınız!"
 
 #: application/controllers/Eqsl.php:195
 msgid "User/Pass wrong for eQSL"
-msgstr ""
+msgstr "eQSL kullanıcı adı veya şifre yanlış"
 
 #: application/controllers/Eqsl.php:199
 #, php-format
 msgid "No such eQSL QTH Nickname: %s"
-msgstr ""
+msgstr "Belirtilen eQSL QTH Takma Adı bulunamadı: %s"
 
 #: application/controllers/Eqsl.php:437
 msgid "eQSL Tools"
@@ -1753,7 +1757,7 @@ msgstr ""
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:829 application/views/visitor/index.php:328
 msgid "Logbook of the World"
-msgstr ""
+msgstr "LOTW (Logbook of the World)"
 
 #: application/controllers/Lotw.php:150
 msgid "Certificate Imported."
@@ -2324,7 +2328,7 @@ msgstr ""
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #: application/controllers/Search.php:26
 msgid "Search & Filter Logbook"
@@ -3459,17 +3463,17 @@ msgstr ""
 #: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
-msgstr ""
+msgstr "DX Century Club (DXCC)"
 
 #: application/views/accumulate/index.php:55
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
-msgstr ""
+msgstr "Islands On The Air (IOTA)"
 
 #: application/views/accumulate/index.php:56
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
-msgstr ""
+msgstr "Çalışılan TÜm Bölgler (WAZ)"
 
 #: application/views/accumulate/index.php:57
 #: application/views/timeline/index.php:48
@@ -5082,7 +5086,7 @@ msgstr "QSL Kartı"
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:675
 msgid "Reset"
-msgstr ""
+msgstr "Sıfırlama"
 
 #: application/views/awards/cq/index.php:116
 msgid "Show CQ Zone Map"
@@ -5407,7 +5411,7 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:227
 msgid "(W)orked"
-msgstr ""
+msgstr "(W) Çalışıldı"
 
 #: application/views/awards/dxcc/index.php:233
 msgid "DXCC Name"
@@ -9034,6 +9038,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Lütfen durun. Seçtiğiniz DXCC güncel değil ve artık geçerli değil. Bu konum "
+"için doğru DXCC’yi kontrol edin. Eğer eminseniz, bu uyarıyı yok "
+"sayabilirsiniz."
 
 #: application/views/interface_assets/footer.php:801
 #: application/views/logbookadvanced/index.php:636
@@ -9158,7 +9165,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:125
 msgid "Simple Fast Log Entry"
-msgstr ""
+msgstr "Hızlı ve Basit Log Girişi"
 
 #: application/views/interface_assets/header.php:128
 msgid "Live Contest Logging"
@@ -12081,7 +12088,7 @@ msgstr ""
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
-msgstr ""
+msgstr "Lütfen bekleyin..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
