@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-30 19:00+0000\n"
-"PO-Revision-Date: 2025-09-01 11:29+0000\n"
+"PO-Revision-Date: 2025-09-01 23:28+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,7 +128,7 @@ msgstr ""
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 msgid "You're not allowed to do that!"
-msgstr "Bunu yapamazsın!"
+msgstr "Bunu yapmanıza izin verilmiyor!"
 
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:162
@@ -138,7 +138,7 @@ msgstr "Toplu İstatistikler"
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr "Etkinleştirilmiş Konum Belirteci Haritası"
+msgstr "Aktif Grid Konum Haritası"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:1003
@@ -166,7 +166,7 @@ msgstr "Konum Belirteci onaylanmadı"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "Toplam Konum Belirteci etkinleştirildi"
+msgstr "Toplam Aktif Grid Konum"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:36
@@ -196,7 +196,7 @@ msgstr "Toplam çalışılan alanlar"
 #: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:152
 msgid "Gridsquare Activators"
-msgstr "Konum Belirteci Aktivatörleri"
+msgstr "Grid Aktivasyonları"
 
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
@@ -817,7 +817,7 @@ msgstr "hesaplanıyor..."
 
 #: application/controllers/Cron.php:240 application/views/cron/index.php:70
 msgid "healthy"
-msgstr "iyi durumda"
+msgstr "Çalışıyor"
 
 #: application/controllers/Cron.php:242 application/views/cron/index.php:72
 msgid "failed"
@@ -834,7 +834,7 @@ msgstr "deaktif"
 #: application/controllers/Cron.php:288
 #: application/views/interface_assets/footer.php:39
 msgid "OK"
-msgstr "Tamam"
+msgstr "Çalışıyor"
 
 #: application/controllers/Cron.php:292
 #, php-format
@@ -929,7 +929,7 @@ msgstr "Uydu Mesafe Kayıtları"
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:154
 msgid "Distances Worked"
-msgstr "Çalışılan Mesafeler"
+msgstr "QSO Mesafeleri"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
@@ -1013,7 +1013,7 @@ msgstr "Onaylar"
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:148
 msgid "Gridsquare Map"
-msgstr "Konum belirleyici Haritası"
+msgstr "Grid Konum Haritası"
 
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:388
@@ -1981,19 +1981,19 @@ msgstr "Maptile Ayarları kaydedilemedi!"
 #: application/controllers/Options.php:465
 #: application/controllers/Options.php:475
 msgid "Version Info Settings"
-msgstr ""
+msgstr "Sürüm Bilgisi Ayarları"
 
 #: application/controllers/Options.php:481
 msgid "Version Info Header changed to"
-msgstr ""
+msgstr "Sürüm Bilgisi Başlığı şu şekilde değişti"
 
 #: application/controllers/Options.php:485
 msgid "Version Info Mode changed to"
-msgstr ""
+msgstr "Sürüm Bilgisi Modu şu şekilde değişti"
 
 #: application/controllers/Options.php:490
 msgid "Version Info Custom Text saved!"
-msgstr ""
+msgstr "Sürüm Bİlgisi için Özel Metin başaraıyla kadedildi!"
 
 #: application/controllers/Options.php:501
 msgid "Version Info will be shown to all users again"
@@ -2014,7 +2014,7 @@ msgstr "Sürüm Bilgileri hiçbir kullanıcıya gösterilmeyecek"
 #: application/controllers/Visitor.php:476
 #: application/controllers/Widgets.php:68
 msgid "Unknown Public Page."
-msgstr ""
+msgstr "Bilinmeyen Sayfa."
 
 #: application/controllers/Oqrs.php:54 application/controllers/Oqrs.php:63
 #: application/controllers/Oqrs.php:121 application/controllers/Oqrs.php:133
@@ -2032,7 +2032,7 @@ msgstr "OQRS Talepleri"
 
 #: application/controllers/Oqrs.php:361
 msgid "QSO match deleted successfully."
-msgstr ""
+msgstr "Eşleşen QSO'lar başarıyla silindi."
 
 #: application/controllers/Oqrs.php:370
 msgid "QSO match added successfully."
@@ -2052,8 +2052,8 @@ msgstr "Enlem: %s, Boylam: %s"
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] "%s ile %s arasindaki mesafe %s mil."
-msgstr[1] "%s ile %s arasindaki mesafe %s mil."
+msgstr[0] "%s ile %s arasındaki mesafe %s mil."
+msgstr[1] "%s ile %s arasındaki mesafe %s mil."
 
 #: application/controllers/Qrbcalc.php:57
 #, php-format
@@ -2112,7 +2112,7 @@ msgstr "QSL Kart Yönetimi"
 
 #: application/controllers/Qslprint.php:44
 msgid "Print Requested QSLs"
-msgstr ""
+msgstr "Talep edilen QSL kartları yazdır"
 
 #: application/controllers/Qso.php:112
 msgid "Add QSO"
@@ -2124,11 +2124,11 @@ msgstr "Bu URL'ye erişmek için giriş yapmış olmanız gerekiyor."
 
 #: application/controllers/Qso.php:696
 msgid "Call Transfer"
-msgstr ""
+msgstr "Çağrı Transferi"
 
 #: application/controllers/Qso.php:703
 msgid "No callsign provided."
-msgstr ""
+msgstr "Çağrı işareti girilmedi."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:507
@@ -2289,7 +2289,7 @@ msgstr "Kaydedilen Geçiş Ayarları"
 
 #: application/controllers/Satellite.php:372
 msgid "No presets available"
-msgstr ""
+msgstr "Mevcut ön ayar yok"
 
 #: application/controllers/Sattimers.php:41
 #, php-format
@@ -2305,12 +2305,12 @@ msgstr "Hiç istasyon konumunuz yok. Oluşturmak için %s gidin!"
 #: application/views/awards/was/index.php:23
 #: application/views/simplefle/index.php:16
 msgid "here"
-msgstr ""
+msgstr "buradan"
 
 #: application/controllers/Sattimers.php:44
 #: application/views/sattimers/index.php:13
 msgid "Satellite Timers"
-msgstr ""
+msgstr "Uydu Zamanlayıcı"
 
 #: application/controllers/Search.php:17
 #: application/views/continents/index.php:49
@@ -2356,6 +2356,8 @@ msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
 msgstr ""
+"LoTW’de doğrulanmamış QSO’lar, fakat çağrı işareti QSO tarihinden sonra LoTW’"
+"ye yüklenmiş"
 
 #: application/controllers/Staticmap.php:152
 #: application/controllers/Visitor.php:76
@@ -2364,7 +2366,7 @@ msgstr ""
 #: application/controllers/Visitor.php:472
 #: application/controllers/Widgets.php:64
 msgid "Empty Logbook"
-msgstr ""
+msgstr "Logbook'da Henüz Kayıt Yok"
 
 #: application/controllers/Station.php:38
 #: application/controllers/Stationsetup.php:251
@@ -2392,26 +2394,26 @@ msgstr "İstasyon Konumu"
 
 #: application/controllers/Station.php:112
 msgid "Duplicate Station Location:"
-msgstr ""
+msgstr "Yinelenen İstasyon Konumu:"
 
 #: application/controllers/Station.php:221
 #: application/controllers/User.php:1258 application/controllers/User.php:1508
 #, php-format
 msgid "Please check value for grid locator (%s)"
-msgstr ""
+msgstr "Lütfen grid konumu (%s) değerini kontrol edin"
 
 #: application/controllers/Stationsetup.php:60
 #: application/views/interface_assets/header.php:421
 #: application/views/interface_assets/header.php:570
 msgid "Station Setup"
-msgstr ""
+msgstr "İstasyon Kurulumu"
 
 #: application/controllers/Stationsetup.php:75
 #: application/controllers/Stationsetup.php:93
 #: application/controllers/Stationsetup.php:437
 #: application/controllers/Stationsetup.php:451
 msgid "Not allowed"
-msgstr ""
+msgstr "İzin verilmiyor"
 
 #: application/controllers/Stationsetup.php:97
 #: application/controllers/Stationsetup.php:111
@@ -2428,7 +2430,7 @@ msgstr "Hata"
 #: application/controllers/Stationsetup.php:184
 #: application/views/stationsetup/stationsetup.php:25
 msgid "Create Station Logbook"
-msgstr ""
+msgstr "Logbook Oluştur"
 
 #: application/controllers/Stationsetup.php:191
 msgid "Edit container name"
@@ -2436,7 +2438,7 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:206
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Bağlı Lokasyonları Düzenle"
 
 #: application/controllers/Stationsetup.php:215
 msgid "Edit visitor site"
@@ -2487,22 +2489,22 @@ msgstr ""
 #: application/controllers/Stationsetup.php:305
 #: application/views/stationsetup/stationsetup.php:68
 msgid "View Public Page for Logbook: "
-msgstr ""
+msgstr "Logbook Ziyaretçi Sayfasını Görüntüle: "
 
 #: application/controllers/Stationsetup.php:306
 msgid "Are you sure you want to delete the public slug?"
-msgstr ""
+msgstr "Sayfayı silmek istediğinize emin misiniz?"
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:159
 msgid ""
 "Are you sure you want to make the following station the active station: "
-msgstr ""
+msgstr "Aşağıdaki istasyonu aktif istasyon yapmak istediğinizden emin misiniz: "
 
 #: application/controllers/Stationsetup.php:391
 #: application/views/stationsetup/stationsetup.php:159
 msgid "Set Active"
-msgstr ""
+msgstr "Aktif Et"
 
 #: application/controllers/Stationsetup.php:393
 #: application/views/stationsetup/stationsetup.php:161
@@ -2529,7 +2531,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:140
 #: application/views/stationsetup/stationsetup.php:192
 msgid "Empty Log"
-msgstr ""
+msgstr "Logbook'u Sil"
 
 #: application/controllers/Stationsetup.php:409
 #: application/views/stationsetup/stationsetup.php:133
@@ -2544,6 +2546,8 @@ msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
 "within this station profile."
 msgstr ""
+"'%s' istasyon profilini silmek istediğinizden emin misiniz? Bu işlem, bu "
+"istasyon profiline ait tüm QSO’ları silecektir."
 
 #: application/controllers/Stationsetup.php:421
 #: application/views/qso/edit_ajax.php:236
@@ -2556,7 +2560,7 @@ msgstr "Lütfen birini seçin"
 
 #: application/controllers/Stationsetup.php:504
 msgid "Edit Export Map options"
-msgstr ""
+msgstr "Harita Dışa Aktarma Seçeneklerini Düzenle"
 
 #: application/controllers/Statistics.php:26
 #: application/views/interface_assets/header.php:142
@@ -2607,7 +2611,7 @@ msgstr "Zaman Çizelgesi"
 #: application/views/interface_assets/header.php:164
 #: application/views/timeplotter/index.php:9
 msgid "Timeplotter"
-msgstr ""
+msgstr "Zaman Grafiği"
 
 #: application/controllers/Update.php:26
 msgid "Updates"
@@ -2658,67 +2662,67 @@ msgstr ""
 #: application/controllers/Update.php:385
 #: application/controllers/Update.php:374
 msgid "LoTW Users Update complete. Result: "
-msgstr ""
+msgstr "LoTW Kullanıcı Güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:387
 #: application/controllers/Update.php:376
 msgid "LoTW Users Update failed. Result: "
-msgstr ""
+msgstr "LoTW Kullanıcı Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:404
 #: application/controllers/Update.php:393
 msgid "DOK Update complete. Result: "
-msgstr ""
+msgstr "DOK Güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:406
 #: application/controllers/Update.php:395
 msgid "DOK Update failed. Result: "
-msgstr ""
+msgstr "DOK Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:423
 #: application/controllers/Update.php:412
 msgid "SOTA Update complete. Result: "
-msgstr ""
+msgstr "SOTA Güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:425
 #: application/controllers/Update.php:414
 msgid "SOTA Update failed. Result: "
-msgstr ""
+msgstr "SOTA Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:442
 #: application/controllers/Update.php:431
 msgid "WWFF Update complete. Result: "
-msgstr ""
+msgstr "WWFF Güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:444
 #: application/controllers/Update.php:433
 msgid "WWFF Update failed. Result: "
-msgstr ""
+msgstr "WWFF Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:458
 #: application/controllers/Update.php:447
 msgid "POTA Update complete. Result: "
-msgstr ""
+msgstr "POTA Güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:460
 #: application/controllers/Update.php:449
 msgid "POTA Update failed. Result: "
-msgstr ""
+msgstr "POTA güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:473
 #: application/controllers/Update.php:462
 msgid "TLE Update complete. Result: "
-msgstr ""
+msgstr "TLE güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:475
 #: application/controllers/Update.php:464
 msgid "TLE Update failed. Result: "
-msgstr ""
+msgstr "TLE güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:486
 #: application/controllers/Update.php:475
 msgid "LoTW SAT Update"
-msgstr ""
+msgstr "LoTW SAT Güncellemesi"
 
 #: application/controllers/Update.php:498
 #: application/controllers/Update.php:487
@@ -2736,11 +2740,11 @@ msgstr ""
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
-msgstr ""
+msgstr "Kullanıcı kilidi açıldı!"
 
 #: application/controllers/User.php:110
 msgid "Failed to unlock user!"
-msgstr ""
+msgstr "Kullanıcı kilidi açılamadı!"
 
 #: application/controllers/User.php:114
 msgid "User not found!"
@@ -2767,12 +2771,12 @@ msgstr "%s Bu E-posta zaten kullanımda!"
 
 #: application/controllers/User.php:317
 msgid "Invalid Password!"
-msgstr ""
+msgstr "Geçersiz şifre!"
 
 #: application/controllers/User.php:321
 #, php-format
 msgid "User %s added!"
-msgstr ""
+msgstr "%s kullanıcı olarak eklendi!"
 
 #: application/controllers/User.php:325
 msgid "Users"
@@ -2786,7 +2790,7 @@ msgstr "Kullanıcıyı Düzenle"
 #: application/controllers/User.php:926 application/controllers/User.php:929
 #, php-format
 msgid "User %s edited"
-msgstr ""
+msgstr "%s kullanıcısı düzenlendi"
 
 #: application/controllers/User.php:994
 msgid "Profile"
@@ -2800,7 +2804,7 @@ msgstr "Tebrikler! Wavelog başarıyla yüklendi. Artık giriş yapabilirsiniz."
 
 #: application/controllers/User.php:1098
 msgid "This is not allowed!"
-msgstr ""
+msgstr "Bu işleme izin verilmiyor!"
 
 #: application/controllers/User.php:1133 application/controllers/User.php:1144
 msgid "Login failed. Try again."
@@ -2846,7 +2850,7 @@ msgstr "Kullanıcı adı veya şifre yanlış!"
 #: application/controllers/User.php:1222
 #, php-format
 msgid "User %s logged out."
-msgstr ""
+msgstr "%s kullanıcısı çıkış yaptı."
 
 #: application/controllers/User.php:1238
 #: application/views/oqrs/request_grouped.php:16
@@ -2890,6 +2894,8 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
+"İstasyon başarıyla oluşturuldu! Wavelog’a hoş geldiniz! İstasyon kurulumunu "
+"tamamlamak için %sburyaa%s tıklayın."
 
 #: application/controllers/User.php:1269
 msgid "Station setup failed! Please set up your station manually."
@@ -2925,12 +2931,16 @@ msgstr "Şifreyi Sıfırla"
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr ""
+"Hesap bu kullanıcı adıyla ayarlanamadı. Lütfen \"%s\" dışında başka bir "
+"kullanıcı adı deneyin."
 
 #: application/controllers/User.php:1491
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr ""
+"Hesap bu e-posta adresiyle ayarlanamadı. Lütfen \"%s\" dışında başka bir e-"
+"posta adresi deneyin."
 
 #: application/controllers/User.php:1530
 #, php-format
@@ -2938,6 +2948,8 @@ msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
 msgstr ""
+"Şu anda başka bir kullanıcıyı temsil edemezsiniz. config.php dosyanızda %s "
+"değerini %s olarak ayarlamanız gerekiyor!"
 
 #: application/controllers/User.php:1544
 #: application/views/user/modals/admin_impersonate_modal.php:36
@@ -2945,46 +2957,54 @@ msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr ""
+"Şu anda başka bir kullanıcıyı temsil edemezsiniz. Önce config.php "
+"dosyanızdaki encryption_key değerini değiştirin!"
 
 #: application/controllers/User.php:1551
 msgid "Invalid Hash"
-msgstr ""
+msgstr "Geçersiz Hash"
 
 #: application/controllers/User.php:1564
 msgid "The impersonation hash is too old. Please try again."
-msgstr ""
+msgstr "Temsil etme anahtarı çok eski. Lütfen tekrar deneyin."
 
 #: application/controllers/User.php:1571
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr ""
+"Kaynak kullanıcı olarak giriş yapmadığınız sürece başka bir kullanıcıyı "
+"temsil edemezsiniz"
 
 #: application/controllers/User.php:1577
 msgid "There was a problem with your session. Please try again."
-msgstr ""
+msgstr "Oturumunuzda bir sorun oluştu. Lütfen tekrar deneyin."
 
 #: application/controllers/User.php:1584
 msgid "The requested user to impersonate does not exist"
-msgstr ""
+msgstr "Temsil edilmek istenen kullanıcı mevcut değil"
 
 #: application/controllers/User.php:1605
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
+"Kulüp istasyonu için doğru yetki seviyesi belirlenemedi. Tekrar giriş "
+"yaptıktan sonra tekrar deneyin."
 
 #: application/controllers/User.php:1650 application/controllers/User.php:1662
 #: application/controllers/User.php:1668 application/controllers/User.php:1677
 #: application/controllers/User.php:1685
 msgid "Ups.. Something went wrong. Try to log back in."
-msgstr ""
+msgstr "Aboo… Bir şeyler yanlış gitti. Lütfen tekrar giriş yapmayı deneyin."
 
 #: application/controllers/User.php:1691
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr ""
+"Güvenlik anahtarı süresi dolduğu için hızlı geri dönme özelliği devre dışı "
+"bırakıldı. Lütfen tekrar giriş yapın."
 
 #: application/controllers/User.php:1707
 #, php-format
@@ -2992,10 +3012,12 @@ msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
 "personal account!"
 msgstr ""
+"%s hesabından çıkış yaptınız. Hoş geldiniz %s, kişisel hesabınıza tekrar "
+"giriş yaptınız!"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
-msgstr ""
+msgstr "Uydu Gridsquare Haritası"
 
 #: application/controllers/Visitor.php:410
 #: application/views/stationsetup/stationsetup.php:38
@@ -3014,43 +3036,45 @@ msgstr ""
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
-msgstr ""
+msgstr "Bilinmeyen sayfa adı, lütfen bağlantının doğru olduğundan emin olun."
 
 #: application/controllers/Widgets.php:92 application/views/oqrs/index.php:70
 msgid "No stations found that are using Wavelog OQRS."
-msgstr ""
+msgstr "Wavelog OQRS kullanan istasyon bulunamadı."
 
 #: application/controllers/Widgets.php:140
 #: application/controllers/Widgets.php:149
 msgid "User slug not specified"
-msgstr ""
+msgstr "Kullanıcı sayfa adı belirtilmedi"
 
 #: application/controllers/Widgets.php:160
 msgid "User has on-air widget disabled"
-msgstr ""
+msgstr "Kullanıcı on-air widget’ını devre dışı bırakmış"
 
 #: application/controllers/Widgets.php:219
 msgid ""
 "No CAT interfaced radios found. You need to have at least one radio "
 "interface configured."
 msgstr ""
+"CAT arayüzlü telsiz bulunamadı. En az bir telsiz arayüzü yapılandırmanız "
+"gerekiyor."
 
 #: application/controllers/Widgets.php:330
 msgid "User not found by slug"
-msgstr ""
+msgstr "Sayfa Adı ile kullanıcı bulunamadı"
 
 #: application/controllers/Widgets.php:333
 msgid "Multiple users found by slug"
-msgstr ""
+msgstr "Sayfa Adı ile birden fazla kullanıcı bulundu"
 
 #: application/libraries/Callbook.php:93
 msgid "QRZCQ Error"
-msgstr ""
+msgstr "QRZCQ Hatası"
 
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "İl"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
@@ -3061,22 +3085,22 @@ msgstr ""
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Bölge"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Bölüm"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Belediye"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Eyalet"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
@@ -3108,7 +3132,7 @@ msgstr ""
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "Eyalet"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
@@ -3118,7 +3142,7 @@ msgstr ""
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
@@ -3127,56 +3151,60 @@ msgstr ""
 
 #: application/models/Club_model.php:154
 msgid "Invalid Permission Level!"
-msgstr ""
+msgstr "Geçersiz İzin Seviyesi!"
 
 #: application/models/Club_model.php:169
 msgid "Error adding Club Member!"
-msgstr ""
+msgstr "Kulüp Üyesi eklenirken hata oluştu!"
 
 #: application/models/Eqslmethods_model.php:292
 msgid "Your eQSL username and/or password is incorrect."
-msgstr ""
+msgstr "eQSL kullanıcı adı ve/veya şifreniz yanlış."
 
 #: application/models/Eqslmethods_model.php:297
 msgid "Something went wrong with eQSL.cc!"
-msgstr ""
+msgstr "eQSL.cc ile ilgili bir sorun oluştu!"
 
 #: application/models/Eqslmethods_model.php:308
 msgid "QTH Nickname does not exist at eQSL"
-msgstr ""
+msgstr "QTH Takma Adı eQSL’de mevcut değil"
 
 #: application/models/Eqslmethods_model.php:317
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
-msgstr ""
+msgstr "eQSL.cc’de sorunlar yaşanıyor. Lütfen QSO'ları daha sonra dışa aktarın."
 
 #: application/models/Eqslmethods_model.php:322
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr ""
+"QSO'ların birinde hata oluştu. Bunları manuel olarak yüklemeyi "
+"deneyebilirsiniz."
 
 #: application/models/Eqslmethods_model.php:327
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
-msgstr ""
+msgstr "Görünüşe göre eQSL sitesi değişmiş. Lütfen GitHub'da bunu bildir."
 
 #: application/models/Eqslmethods_model.php:333
 msgid ""
 "An uncaught Error occured while uploading QSOs. Perhaps eQSL has hiccups"
 msgstr ""
+"QSO yüklenirken tespit edilmeyen bir hata oluştu. Muhtemelen eQSL’de geçici "
+"bir sorun var"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
 "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: "
-msgstr ""
+msgstr "HRDlog: QSO’lar, bu çağrı işareti için hrdlog.net’e yüklendi: "
 
 #: application/models/Hrdlog_model.php:25
 msgid "HRDlog: No QSOs found to upload for the station callsign: "
-msgstr ""
+msgstr "HRDlog: Bu çağrı işareti için yüklenecek QSO bulunamadı: "
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
-msgstr ""
+msgstr "HRDlog: HRDlog Kimlik Bilgileriyle istasyon profili bulunamadı."
 
 #: application/models/Logbook_model.php:1292
 msgid "Station ID not allowed"
@@ -3194,33 +3222,35 @@ msgstr ""
 #: application/models/Logbook_model.php:4005
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgstr "Yanlış çağrı işareti %s, %s ile %s için QSO içe aktarılırken: ATLANDI"
 
 #: application/models/Logbook_model.php:4018
 msgid "QSO on"
-msgstr ""
+msgstr "Zaman"
 
 #: application/models/Logbook_model.php:4018
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
+"Bir çağrı işareti olmadan bir QSO'yu içe aktarmaya çalıştın. Bu QSO içe "
+"aktarılmadı. Geçersiz"
 
 #: application/models/Logbook_model.php:4325
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslrdate geçersiz (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4336
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslsdate geçersiz (YYYYMMDD)"
 
 #: application/models/Logbook_model.php:4397
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "clublog_qso_upload_date geçersiz (YYYYAAGG)"
 
 #: application/models/Logbook_model.php:4417
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "lotw_qslrdate geçersiz (YYYYAAGG)"
 
 #: application/models/Logbook_model.php:4438
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
@@ -3233,15 +3263,15 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4791
 msgid "QSO could not be matched"
-msgstr ""
+msgstr "QSO eşleştirilemedi"
 
 #: application/models/Logbook_model.php:4797
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
-msgstr ""
+msgstr "LoTW/Clublog/eQSL/Yarışma tarafından onaylandı"
 
 #: application/models/Logbook_model.php:4802
 msgid "confirmed by award manager"
-msgstr ""
+msgstr "Ödül yöneticisi tarafından onaylandı"
 
 #: application/models/Logbook_model.php:4805
 msgid "confirmed by cross-check of DCL data"
@@ -4685,7 +4715,7 @@ msgstr ""
 #: application/views/sattimers/index.php:77
 #: application/views/search/filter.php:72
 msgid "Info"
-msgstr "Bilgiler"
+msgstr "Bilgi"
 
 #: application/views/api/index.php:20
 msgid ""
@@ -4707,7 +4737,7 @@ msgstr ""
 #: application/views/cron/index.php:53
 #: application/views/search/stored_queries.php:8
 msgid "Description"
-msgstr ""
+msgstr "Açıklama"
 
 #: application/views/api/index.php:32
 msgid "Last Used"
@@ -7560,7 +7590,7 @@ msgstr ""
 
 #: application/views/cron/edit.php:36 application/views/cron/index.php:55
 msgid "Intervall"
-msgstr ""
+msgstr "Zaman Aralığı"
 
 #: application/views/cron/edit.php:38
 msgid "Choose a preset from the dropdown"
@@ -7608,13 +7638,15 @@ msgstr ""
 
 #: application/views/cron/index.php:9
 msgid "How it works"
-msgstr ""
+msgstr "Nasıl Çalışıyor"
 
 #: application/views/cron/index.php:15
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
 msgstr ""
+"Cron Yöneticisi, yöneticilerin komut satırı kullanmadan cron işlerini "
+"yönetmesini sağlar."
 
 #: application/views/cron/index.php:19
 msgid ""
@@ -7624,7 +7656,7 @@ msgstr ""
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
 msgid "Status Master-Cron:"
-msgstr ""
+msgstr "Master-Cron Durumu:"
 
 #: application/views/cron/index.php:33
 msgctxt "PHP Version"
@@ -7637,7 +7669,7 @@ msgstr ""
 
 #: application/views/cron/index.php:43
 msgid "Cron List"
-msgstr ""
+msgstr "Cron İşleri Listesi"
 
 #: application/views/cron/index.php:52
 #: application/views/stationsetup/stationsetup.php:124
@@ -7646,11 +7678,11 @@ msgstr ""
 
 #: application/views/cron/index.php:56
 msgid "Last Run"
-msgstr ""
+msgstr "Son Çalıştırılma"
 
 #: application/views/cron/index.php:57
 msgid "Next Run"
-msgstr ""
+msgstr "Sonraki Çalıştırma"
 
 #: application/views/cron/index.php:102
 msgid "Your Mastercron isn't running."
@@ -8971,7 +9003,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:55
 #: application/views/user/index.php:20 application/views/user/index.php:144
 msgid "Refresh List"
-msgstr ""
+msgstr "Listeyi Yenile"
 
 #: application/views/interface_assets/footer.php:56
 msgid "Please Wait ..."
@@ -9431,66 +9463,70 @@ msgstr "Taklit etmeyi durdur ve tekrar %s olarak devam et"
 #: application/views/interface_assets/header.php:516
 #, php-format
 msgid "Switch back to %s"
-msgstr ""
+msgstr "%s olarak devam et"
 
 #: application/views/interface_assets/header.php:520
 msgid "Logout"
-msgstr ""
+msgstr "Oturumu kapat"
 
 #: application/views/interface_assets/header.php:528
 msgid "Select a Location"
-msgstr ""
+msgstr "Konum Seçiniz"
 
 #: application/views/interface_assets/header.php:570
 msgid "You miss station-locations here? Go to stationsetup and fav them"
 msgstr ""
+"Burada istasyon konumlarını göremiyor musunuz? İstasyon kurulumuna gidip "
+"favorilere ekleyin"
 
 #: application/views/interface_assets/header.php:607
 msgid "Extras"
-msgstr ""
+msgstr "Ek Özellikler"
 
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
-msgstr ""
+msgstr "Logbook’unuzu Google Earth için KML formatında dışa aktarın."
 
 #: application/views/labels/create.php:24
 msgid ""
 "Label name used for display purposes, so pick something meaningful, perhaps "
 "the label style."
 msgstr ""
+"Etiket adı, ekranda görüntülenmek için kullanılır. Anlamlı bir isim seçin; "
+"örneğin etiketin stilini kullanabilirsiniz."
 
 #: application/views/labels/create.php:39
 #: application/views/labels/createpaper.php:41
 #: application/views/labels/edit.php:41
 #: application/views/labels/editpaper.php:41
 msgid "Measurement used"
-msgstr ""
+msgstr "Kullanılan Ölçü Birimi"
 
 #: application/views/labels/create.php:42
 #: application/views/labels/createpaper.php:44
 #: application/views/labels/edit.php:44
 #: application/views/labels/editpaper.php:44
 msgid "Millimeters"
-msgstr ""
+msgstr "Milimetre"
 
 #: application/views/labels/create.php:43
 #: application/views/labels/createpaper.php:45
 #: application/views/labels/edit.php:45
 #: application/views/labels/editpaper.php:45
 msgid "Inches"
-msgstr ""
+msgstr "İnç"
 
 #: application/views/labels/create.php:49 application/views/labels/edit.php:51
 msgid "Margin Top"
-msgstr ""
+msgstr "Üst Kenar Boşluğu"
 
 #: application/views/labels/create.php:52 application/views/labels/edit.php:54
 msgid "Top margin of labels"
-msgstr ""
+msgstr "Etiketlerin üst kenarı"
 
 #: application/views/labels/create.php:55 application/views/labels/edit.php:57
 msgid "Margin Left"
-msgstr ""
+msgstr "Sol Kenar Boşluğu"
 
 #: application/views/labels/create.php:58 application/views/labels/edit.php:60
 msgid "Left margin of labels."
@@ -13512,6 +13548,8 @@ msgid ""
 "Setting a public slug allows you to share your logbook with anyone via a "
 "custom website address, this slug can contain letters & numbers only."
 msgstr ""
+"Bir Sayfa Adı belirlemek, logbook’unuzu özel bir web adresi aracılığıyla "
+"herkesle paylaşmanızı sağlar; bu Sayfa Adı yalnızca harf ve rakam içerebilir."
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
@@ -13519,11 +13557,11 @@ msgstr ""
 
 #: application/views/stationsetup/visitor.php:4
 msgid "[your slug]"
-msgstr ""
+msgstr "[sayfa adınız]"
 
 #: application/views/stationsetup/visitor.php:10
 msgid "Type in Public Slug choice"
-msgstr ""
+msgstr "Paylaşılacak Sayfa Adını Girin"
 
 #: application/views/stationsetup/visitor.php:17
 msgid "Visit Public Page"
@@ -14464,7 +14502,7 @@ msgstr ""
 #: application/views/user/index.php:69 application/views/user/index.php:184
 #: application/views/user/modals/admin_impersonate_modal.php:31
 msgid "Never"
-msgstr ""
+msgstr "Asla"
 
 #: application/views/user/index.php:74
 msgid "Account locked"
@@ -14805,7 +14843,7 @@ msgstr ""
 
 #: application/views/view_log/partial/log_ajax.php:531
 msgid "Result"
-msgstr ""
+msgstr "Sonuç"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
