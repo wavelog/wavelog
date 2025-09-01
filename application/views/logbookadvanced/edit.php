@@ -38,6 +38,8 @@
 			<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
 			<option value="rstr"><?= __("RST (R)"); ?></option>
 			<option value="rsts"><?= __("RST (S)"); ?></option>
+			<option value="qslsentmethod"><?= __("QSL Sent Method"); ?></option>
+			<option value="qslreceivedmethod"><?= __("QSL Received Method"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -173,6 +175,14 @@
 			<option value="R"><?= __("Requested"); ?></option>
 			<option value="I"><?= __("Invalid"); ?></option>
 			<option value="V"><?= __("Verified"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQslMethod"  name="qslmethod">
+			<option value=""><?= __("None/Empty"); ?></option>
+			<option value="D"><?= __("Direct"); ?></option>
+			<option value="B"><?= __("Bureau"); ?></option>
+			<option value="E"><?= __("Electronic"); ?></option>
+			<option value="M"><?= __("Manager"); ?></option>
 		</select>
 
 		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">

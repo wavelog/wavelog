@@ -820,6 +820,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "stxstring": $column = 'COL_STX_STRING'; break;
 			case "rstr": $column = 'COL_RST_RCVD'; break;
 			case "rsts": $column = 'COL_RST_SENT'; break;
+			case "qslsentmethod": $column = 'COL_QSL_SENT_VIA'; break;
+			case "qslreceivedmethod": $column = 'COL_QSL_RCVD_VIA'; break;
 			default: return;
 		}
 
@@ -1062,6 +1064,20 @@ class Logbookadvanced_model extends CI_Model {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_REGION = ? " .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_QSL_SENT_VIA') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_QSL_SENT_VIA = ? " .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_QSL_RCVD_VIA') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_QSL_RCVD_VIA = ? " .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
