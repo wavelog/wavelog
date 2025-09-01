@@ -750,7 +750,7 @@ msgstr "Clublog を設定しているユーザーはいません。"
 #: application/views/user/edit.php:807
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
-#: application/views/view_log/qso.php:570
+#: application/views/view_log/qso.php:570 application/views/update/index.php:16
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -2659,66 +2659,82 @@ msgid "Dxcc Prefixes:"
 msgstr "Dxcc プレフィックス:"
 
 #: application/controllers/Update.php:365
+#: application/controllers/Update.php:354
 msgid "SCP Update complete. Result: "
 msgstr "SCP 更新が完了しました。結果: "
 
 #: application/controllers/Update.php:367
+#: application/controllers/Update.php:356
 msgid "SCP Update failed. Result: "
 msgstr "SCP 更新に失敗しました。結果: "
 
 #: application/controllers/Update.php:385
+#: application/controllers/Update.php:374
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTWユーザーのアップデートが完了しました。結果: "
 
 #: application/controllers/Update.php:387
+#: application/controllers/Update.php:376
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTWユーザーの更新に失敗しました。結果: "
 
 #: application/controllers/Update.php:404
+#: application/controllers/Update.php:393
 msgid "DOK Update complete. Result: "
 msgstr "DOK 更新が完了しました。結果: "
 
 #: application/controllers/Update.php:406
+#: application/controllers/Update.php:395
 msgid "DOK Update failed. Result: "
 msgstr "DOK 更新が完了しました。結果: "
 
 #: application/controllers/Update.php:423
+#: application/controllers/Update.php:412
 msgid "SOTA Update complete. Result: "
 msgstr "SOTAアップデートが完了しました。結果: "
 
 #: application/controllers/Update.php:425
+#: application/controllers/Update.php:414
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA アップデートに失敗しました。結果: "
 
 #: application/controllers/Update.php:442
+#: application/controllers/Update.php:431
 msgid "WWFF Update complete. Result: "
 msgstr "WWFFアップデートが完了しました。結果: "
 
 #: application/controllers/Update.php:444
+#: application/controllers/Update.php:433
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF アップデートに失敗しました。結果: "
 
 #: application/controllers/Update.php:458
+#: application/controllers/Update.php:447
 msgid "POTA Update complete. Result: "
 msgstr "POTA 更新が完了しました。結果: "
 
 #: application/controllers/Update.php:460
+#: application/controllers/Update.php:449
 msgid "POTA Update failed. Result: "
 msgstr "POTA 更新に失敗しました。結果: "
 
 #: application/controllers/Update.php:473
+#: application/controllers/Update.php:462
 msgid "TLE Update complete. Result: "
 msgstr "TLEアップデートが完了しました。結果: "
 
 #: application/controllers/Update.php:475
+#: application/controllers/Update.php:464
 msgid "TLE Update failed. Result: "
 msgstr "TLE 更新に失敗しました。結果: "
 
 #: application/controllers/Update.php:486
+#: application/controllers/Update.php:475
 msgid "LoTW SAT Update"
 msgstr "LoTW SATアップデート"
 
 #: application/controllers/Update.php:498
+#: application/controllers/Update.php:487
 msgid "Update of Hams of Note"
 msgstr "注目のハムの最新情報"
 
@@ -14457,7 +14473,7 @@ msgstr "DXCCルックアップデータ"
 msgid "Distance Data"
 msgstr "距離データ"
 
-#: application/views/update/index.php:19
+#: application/views/update/index.php:19 application/views/update/index.php:15
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
@@ -14465,31 +14481,31 @@ msgstr ""
 "ここでは、コールサイン情報を表示するために使用される DXCC ルックアップデータ"
 "を更新できます。"
 
-#: application/views/update/index.php:20
+#: application/views/update/index.php:20 application/views/update/index.php:16
 msgid "This data is provided by"
 msgstr "このデータは以下から提供されています"
 
-#: application/views/update/index.php:24
+#: application/views/update/index.php:24 application/views/update/index.php:20
 msgid "You must install php-xml for this to work."
 msgstr "これを機能させるには、php-xml をインストールする必要があります。"
 
-#: application/views/update/index.php:27
+#: application/views/update/index.php:27 application/views/update/index.php:23
 msgid "Check for DXCC Data Updates"
 msgstr "DXCCデータの更新を確認する"
 
-#: application/views/update/index.php:28
+#: application/views/update/index.php:28 application/views/update/index.php:24
 msgid "Update DXCC Data"
 msgstr "DXCCデータの更新"
 
-#: application/views/update/index.php:30
+#: application/views/update/index.php:30 application/views/update/index.php:26
 msgid "Status:"
 msgstr "状態："
 
-#: application/views/update/index.php:34
+#: application/views/update/index.php:34 application/views/update/index.php:30
 msgid "Apply DXCC Data to Logbook"
 msgstr "DXCCデータをログブックに適用する"
 
-#: application/views/update/index.php:36
+#: application/views/update/index.php:36 application/views/update/index.php:32
 msgid ""
 "After updating, Wavelog can fill in missing callsign information in the "
 "logbook using the newly-obtained DXCC data.\n"
@@ -14503,19 +14519,20 @@ msgstr ""
 "か、ログブック全体を再チェックするかを選択できます。\n"
 "\t\t\t\t\t\t\t変更があった場合には、既存のメタデータも更新します。"
 
-#: application/views/update/index.php:45
+#: application/views/update/index.php:45 application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
 msgstr "DXCCデータが欠落しているQSOを確認する"
 
 #: application/views/update/index.php:54 application/views/update/index.php:95
+#: application/views/update/index.php:51
 msgid "Re-check all QSOs in logbook"
 msgstr "ログブックのすべてのQSOを再確認する"
 
-#: application/views/update/index.php:59
+#: application/views/update/index.php:59 application/views/update/index.php:56
 msgid "Apply Continent Data to Logbook"
 msgstr "大陸データをログブックに適用する"
 
-#: application/views/update/index.php:61
+#: application/views/update/index.php:61 application/views/update/index.php:58
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
@@ -14523,7 +14540,7 @@ msgstr ""
 "この機能は、Wavelog でその情報が欠落しているすべての QSO の QSO 大陸情報を更"
 "新するために使用できます。"
 
-#: application/views/update/index.php:68
+#: application/views/update/index.php:68 application/views/update/index.php:66
 msgid "Check QSOs missing continent data"
 msgstr "大陸データが欠落しているQSOを確認する"
 
@@ -15834,6 +15851,17 @@ msgstr "リクエストを送信"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "受信"
+
+#: application/views/update/index.php:35 application/views/update/index.php:59
+msgid ""
+"This affects ALL QSOs of ANY user on this instance. The function is "
+"deprectated and will be removed in a future version of Wavelog. As "
+"replacement use the Logbook-Advanced!"
+msgstr ""
+
+#: application/views/update/index.php:35 application/views/update/index.php:59
+msgid "WARNING"
+msgstr ""
 
 #~ msgid "Yay, its imported!"
 #~ msgstr "やった、インポートされました！"

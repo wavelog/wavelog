@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2025-08-24 15:29+0000\n"
 "PO-Revision-Date: 2025-08-31 17:23+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -748,7 +748,7 @@ msgstr "Ingen användare har konfigurerat Clublog."
 #: application/views/user/edit.php:807
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
-#: application/views/view_log/qso.php:570
+#: application/views/view_log/qso.php:570 application/views/update/index.php:16
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -2662,66 +2662,82 @@ msgid "Dxcc Prefixes:"
 msgstr "Dxcc-prefix:"
 
 #: application/controllers/Update.php:365
+#: application/controllers/Update.php:354
 msgid "SCP Update complete. Result: "
 msgstr "SCP-uppdatering slutförd. Resultat: "
 
 #: application/controllers/Update.php:367
+#: application/controllers/Update.php:356
 msgid "SCP Update failed. Result: "
 msgstr "SCP-uppdatering misslyckades. Resultat: "
 
 #: application/controllers/Update.php:385
+#: application/controllers/Update.php:374
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW-användaruppdatering slutförd. Resultat: "
 
 #: application/controllers/Update.php:387
+#: application/controllers/Update.php:376
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW-användaruppdatering misslyckades. Resultat: "
 
 #: application/controllers/Update.php:404
+#: application/controllers/Update.php:393
 msgid "DOK Update complete. Result: "
 msgstr "DOK-uppdatering slutförd. Resultat: "
 
 #: application/controllers/Update.php:406
+#: application/controllers/Update.php:395
 msgid "DOK Update failed. Result: "
 msgstr "DOK-uppdatering misslyckades. Resultat: "
 
 #: application/controllers/Update.php:423
+#: application/controllers/Update.php:412
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA-uppdatering slutförd. Resultat: "
 
 #: application/controllers/Update.php:425
+#: application/controllers/Update.php:414
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA-uppdatering misslyckades. Resultat: "
 
 #: application/controllers/Update.php:442
+#: application/controllers/Update.php:431
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF-uppdatering slutförd. Resultat: "
 
 #: application/controllers/Update.php:444
+#: application/controllers/Update.php:433
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF-uppdatering misslyckades. Resultat: "
 
 #: application/controllers/Update.php:458
+#: application/controllers/Update.php:447
 msgid "POTA Update complete. Result: "
 msgstr "POTA-uppdatering slutförd. Resultat: "
 
 #: application/controllers/Update.php:460
+#: application/controllers/Update.php:449
 msgid "POTA Update failed. Result: "
 msgstr "POTA-uppdatering misslyckades. Resultat: "
 
 #: application/controllers/Update.php:473
+#: application/controllers/Update.php:462
 msgid "TLE Update complete. Result: "
 msgstr "TLE-uppdatering slutförd. Resultat: "
 
 #: application/controllers/Update.php:475
+#: application/controllers/Update.php:464
 msgid "TLE Update failed. Result: "
 msgstr "TLE-uppdatering misslyckades. Resultat: "
 
 #: application/controllers/Update.php:486
+#: application/controllers/Update.php:475
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT-uppdatering"
 
 #: application/controllers/Update.php:498
+#: application/controllers/Update.php:487
 msgid "Update of Hams of Note"
 msgstr "Uppdatering av Hams of Note"
 
@@ -14500,7 +14516,7 @@ msgstr "DXCC Uppslagsdata"
 msgid "Distance Data"
 msgstr "Avståndsdata"
 
-#: application/views/update/index.php:19
+#: application/views/update/index.php:19 application/views/update/index.php:15
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
@@ -14508,31 +14524,31 @@ msgstr ""
 "Här kan du uppdatera DXCC-uppslagsdata som används för att visa information "
 "om en anropssignal."
 
-#: application/views/update/index.php:20
+#: application/views/update/index.php:20 application/views/update/index.php:16
 msgid "This data is provided by"
 msgstr "Denna data tillhandahålls av"
 
-#: application/views/update/index.php:24
+#: application/views/update/index.php:24 application/views/update/index.php:20
 msgid "You must install php-xml for this to work."
 msgstr "Du måste installera php-xml för att detta ska fungera."
 
-#: application/views/update/index.php:27
+#: application/views/update/index.php:27 application/views/update/index.php:23
 msgid "Check for DXCC Data Updates"
 msgstr "Kontrollera om det finns DXCC-data uppdateringar"
 
-#: application/views/update/index.php:28
+#: application/views/update/index.php:28 application/views/update/index.php:24
 msgid "Update DXCC Data"
 msgstr "Uppdatera DXCC-data"
 
-#: application/views/update/index.php:30
+#: application/views/update/index.php:30 application/views/update/index.php:26
 msgid "Status:"
 msgstr "Status:"
 
-#: application/views/update/index.php:34
+#: application/views/update/index.php:34 application/views/update/index.php:30
 msgid "Apply DXCC Data to Logbook"
 msgstr "Tillämpa DXCC-data på loggbok"
 
-#: application/views/update/index.php:36
+#: application/views/update/index.php:36 application/views/update/index.php:32
 msgid ""
 "After updating, Wavelog can fill in missing callsign information in the "
 "logbook using the newly-obtained DXCC data.\n"
@@ -14546,19 +14562,20 @@ msgstr ""
 "metadata eller att kontrollera hela loggboken igen\n"
 "och uppdatera all befintlig metadata ifall den har ändrats."
 
-#: application/views/update/index.php:45
+#: application/views/update/index.php:45 application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
 msgstr "Kontrollera QSOs som saknar DXCC-data"
 
 #: application/views/update/index.php:54 application/views/update/index.php:95
+#: application/views/update/index.php:51
 msgid "Re-check all QSOs in logbook"
 msgstr "Kontrollera alla QSOs i loggboken igen"
 
-#: application/views/update/index.php:59
+#: application/views/update/index.php:59 application/views/update/index.php:56
 msgid "Apply Continent Data to Logbook"
 msgstr "Updatera kontinentdata i loggboken"
 
-#: application/views/update/index.php:61
+#: application/views/update/index.php:61 application/views/update/index.php:58
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
@@ -14566,7 +14583,7 @@ msgstr ""
 "Den här funktionen kan användas för att uppdatera QSO-kontinentinformationen "
 "för alla QSOs i Wavelog som saknar den informationen."
 
-#: application/views/update/index.php:68
+#: application/views/update/index.php:68 application/views/update/index.php:66
 msgid "Check QSOs missing continent data"
 msgstr "Kontrollera QSOs som saknar kontinentdata"
 
@@ -15885,6 +15902,17 @@ msgstr "Skicka begäran"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Mottagen"
+
+#: application/views/update/index.php:35 application/views/update/index.php:59
+msgid ""
+"This affects ALL QSOs of ANY user on this instance. The function is "
+"deprectated and will be removed in a future version of Wavelog. As "
+"replacement use the Logbook-Advanced!"
+msgstr ""
+
+#: application/views/update/index.php:35 application/views/update/index.php:59
+msgid "WARNING"
+msgstr ""
 
 #~ msgid "Yay, its imported!"
 #~ msgstr "Jippie, den är importerad!"

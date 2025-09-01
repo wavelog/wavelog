@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-30 19:00+0000\n"
+"POT-Creation-Date: 2025-09-01 08:20+0000\n"
 "PO-Revision-Date: 2025-08-25 05:18+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -129,8 +129,7 @@ msgstr ""
 #: application/controllers/Timeplotter.php:11
 #: application/controllers/Update.php:24 application/controllers/Update.php:318
 #: application/controllers/Update.php:329
-#: application/controllers/Update.php:340
-#: application/controllers/Update.php:351 application/controllers/User.php:14
+#: application/controllers/Update.php:340 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
 #: application/controllers/User.php:372 application/controllers/User.php:373
@@ -765,7 +764,7 @@ msgstr "Kein Benutzer hat Clublog konfiguriert."
 #: application/views/search/search_result_ajax.php:124
 #: application/views/station_profile/edit.php:357
 #: application/views/timeline/index.php:68
-#: application/views/update/index.php:20 application/views/user/edit.php:595
+#: application/views/update/index.php:16 application/views/user/edit.php:595
 #: application/views/user/edit.php:807
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
@@ -2670,67 +2669,67 @@ msgstr "DXCC-Ausnahmen:"
 msgid "Dxcc Prefixes:"
 msgstr "DXCC-Präfixe:"
 
-#: application/controllers/Update.php:365
+#: application/controllers/Update.php:354
 msgid "SCP Update complete. Result: "
 msgstr "SCP-Update abgeschlossen. Ergebnis: "
 
-#: application/controllers/Update.php:367
+#: application/controllers/Update.php:356
 msgid "SCP Update failed. Result: "
 msgstr "SCP-Update fehlgeschlagen. Ergebnis: "
 
-#: application/controllers/Update.php:385
+#: application/controllers/Update.php:374
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW-Benutzer-Update abgeschlossen. Ergebnis: "
 
-#: application/controllers/Update.php:387
+#: application/controllers/Update.php:376
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW-Benutzer-Update fehlgeschlagen. Ergebnis: "
 
-#: application/controllers/Update.php:404
+#: application/controllers/Update.php:393
 msgid "DOK Update complete. Result: "
 msgstr "DOK-Update abgeschlossen. Ergebnis: "
 
-#: application/controllers/Update.php:406
+#: application/controllers/Update.php:395
 msgid "DOK Update failed. Result: "
 msgstr "DOK-Update fehlgeschlagen. Ergebnis: "
 
-#: application/controllers/Update.php:423
+#: application/controllers/Update.php:412
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA-Update abgeschlossen. Ergebnis: "
 
-#: application/controllers/Update.php:425
+#: application/controllers/Update.php:414
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA-Update fehlgeschlagen. Ergebnis: "
 
-#: application/controllers/Update.php:442
+#: application/controllers/Update.php:431
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF-Update abgeschlossen. Ergebnis: "
 
-#: application/controllers/Update.php:444
+#: application/controllers/Update.php:433
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF-Update fehlgeschlagen. Ergebnis: "
 
-#: application/controllers/Update.php:458
+#: application/controllers/Update.php:447
 msgid "POTA Update complete. Result: "
 msgstr "POTA-Update abgeschlossen. Ergebnis: "
 
-#: application/controllers/Update.php:460
+#: application/controllers/Update.php:449
 msgid "POTA Update failed. Result: "
 msgstr "POTA-Update fehlgeschlagen. Ergebnis: "
 
-#: application/controllers/Update.php:473
+#: application/controllers/Update.php:462
 msgid "TLE Update complete. Result: "
 msgstr "TLE-Update abgeschlossen. Ergebnis: "
 
-#: application/controllers/Update.php:475
+#: application/controllers/Update.php:464
 msgid "TLE Update failed. Result: "
 msgstr "TLE-Update fehlgeschlagen. Ergebnis: "
 
-#: application/controllers/Update.php:486
+#: application/controllers/Update.php:475
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT-Aktualisierung"
 
-#: application/controllers/Update.php:498
+#: application/controllers/Update.php:487
 msgid "Update of Hams of Note"
 msgstr "Update von 'Hams of Note'"
 
@@ -14557,11 +14556,7 @@ msgstr "Name / Beschreibung"
 msgid "DXCC Lookup Data"
 msgstr "DXCC Suchdaten"
 
-#: application/views/update/index.php:12
-msgid "Distance Data"
-msgstr "Entfernungsdaten"
-
-#: application/views/update/index.php:19
+#: application/views/update/index.php:15
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
@@ -14569,31 +14564,31 @@ msgstr ""
 "Hier kannst du DXCC Suchdaten aktualisieren, welche zum Anzeigen von "
 "Rufzeicheninformationen verwendet werden."
 
-#: application/views/update/index.php:20
+#: application/views/update/index.php:16
 msgid "This data is provided by"
 msgstr "Diese Daten werden bereitgestellt von"
 
-#: application/views/update/index.php:24
+#: application/views/update/index.php:20
 msgid "You must install php-xml for this to work."
 msgstr "Du musst php-xml installieren, damit dies funktioniert."
 
-#: application/views/update/index.php:27
+#: application/views/update/index.php:23
 msgid "Check for DXCC Data Updates"
 msgstr "Überprüft auf neue DXCC-Daten"
 
-#: application/views/update/index.php:28
+#: application/views/update/index.php:24
 msgid "Update DXCC Data"
 msgstr "DXCC-Daten aktualisieren"
 
-#: application/views/update/index.php:30
+#: application/views/update/index.php:26
 msgid "Status:"
 msgstr "Status:"
 
-#: application/views/update/index.php:34
+#: application/views/update/index.php:30
 msgid "Apply DXCC Data to Logbook"
 msgstr "DXCC-Daten auf das Logbuch anwenden"
 
-#: application/views/update/index.php:36
+#: application/views/update/index.php:32
 msgid ""
 "After updating, Wavelog can fill in missing callsign information in the "
 "logbook using the newly-obtained DXCC data.\n"
@@ -14608,19 +14603,30 @@ msgstr ""
 "und auch bestehende DXCC aktualisiert werden sollen, falls sich etwas "
 "geändert hat."
 
-#: application/views/update/index.php:45
+#: application/views/update/index.php:35 application/views/update/index.php:59
+msgid ""
+"This affects ALL QSOs of ANY user on this instance. The function is "
+"deprectated and will be removed in a future version of Wavelog. As "
+"replacement use the Logbook-Advanced!"
+msgstr ""
+
+#: application/views/update/index.php:35 application/views/update/index.php:59
+msgid "WARNING"
+msgstr ""
+
+#: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
 msgstr "Überprüft QSOs auf fehlende DXCC-Daten"
 
-#: application/views/update/index.php:54 application/views/update/index.php:95
+#: application/views/update/index.php:51
 msgid "Re-check all QSOs in logbook"
 msgstr "Alle QSOs in Logbuch nochmal überprüfen"
 
-#: application/views/update/index.php:59
+#: application/views/update/index.php:56
 msgid "Apply Continent Data to Logbook"
 msgstr "Kontinent-Daten auf Logbuch anwenden"
 
-#: application/views/update/index.php:61
+#: application/views/update/index.php:58
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
@@ -14628,28 +14634,9 @@ msgstr ""
 "Diese Funktion kann verwendet werden, um QSO-Kontinent-Informationen bei "
 "allen QSOs in Wavelog zu aktualisieren, bei denen diese Informationen fehlen."
 
-#: application/views/update/index.php:68
+#: application/views/update/index.php:66
 msgid "Check QSOs missing continent data"
 msgstr "Überprüft QSOs auf fehlende Kontinent-Daten"
-
-#: application/views/update/index.php:80
-msgid "Here you can update QSOs with missing distance information."
-msgstr ""
-"Hier kannst du QSOs mit fehlenden Entfernungsinformationen aktualisieren."
-
-#: application/views/update/index.php:86
-msgid "Update distance data"
-msgstr "Entfernungsdaten aktualisieren"
-
-#: application/views/update/index.php:89
-msgid ""
-"Use the following button to update the distance information for all your "
-"QSOs. Depending on the number of QSOs this might take some time to execute. "
-"Please be patient."
-msgstr ""
-"Verwende die folgende Schaltfläche, um die Entfernungsinformationen für alle "
-"deine QSOs zu aktualisieren. Je nach Anzahl der QSOs kann dies einige Zeit "
-"in Anspruch nehmen. Bitte habe etwas Geduld."
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
@@ -15971,6 +15958,25 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid "Distance Data"
+#~ msgstr "Entfernungsdaten"
+
+#~ msgid "Here you can update QSOs with missing distance information."
+#~ msgstr ""
+#~ "Hier kannst du QSOs mit fehlenden Entfernungsinformationen aktualisieren."
+
+#~ msgid "Update distance data"
+#~ msgstr "Entfernungsdaten aktualisieren"
+
+#~ msgid ""
+#~ "Use the following button to update the distance information for all your "
+#~ "QSOs. Depending on the number of QSOs this might take some time to "
+#~ "execute. Please be patient."
+#~ msgstr ""
+#~ "Verwende die folgende Schaltfläche, um die Entfernungsinformationen für "
+#~ "alle deine QSOs zu aktualisieren. Je nach Anzahl der QSOs kann dies "
+#~ "einige Zeit in Anspruch nehmen. Bitte habe etwas Geduld."
 
 #~ msgid "Yay, its imported!"
 #~ msgstr "Yay, Datei importiert!"
