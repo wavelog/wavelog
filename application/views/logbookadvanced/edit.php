@@ -7,6 +7,7 @@
 				<option value="band"><?= __("Band"); ?></option>
 				<option value="comment"><?= __("Comment"); ?></option>
 				<option value="contest"><?= __("Contest"); ?></option>
+				<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
 				<option value="date"><?= __("Date"); ?></option>
 				<option value="distance"><?= __("Distance"); ?></option>
 				<option value="mode"><?= __("Mode"); ?></option>
@@ -17,7 +18,6 @@
 				<option value="satellite"><?= __("Satellite"); ?></option>
 				<option value="station"><?= __("Station Location"); ?></option>
 				<option value="stationpower"><?= __("Station Power"); ?></option>
-				<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
 			</optgroup>
 
 			<optgroup label="<?= __("Awards"); ?>">
