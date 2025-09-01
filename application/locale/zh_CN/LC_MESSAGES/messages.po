@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-08-30 19:00+0000\n"
+"POT-Creation-Date: 2025-09-01 08:20+0000\n"
 "PO-Revision-Date: 2025-08-25 05:18+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -123,8 +123,7 @@ msgstr ""
 #: application/controllers/Timeplotter.php:11
 #: application/controllers/Update.php:24 application/controllers/Update.php:318
 #: application/controllers/Update.php:329
-#: application/controllers/Update.php:340
-#: application/controllers/Update.php:351 application/controllers/User.php:14
+#: application/controllers/Update.php:340 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
 #: application/controllers/User.php:372 application/controllers/User.php:373
@@ -756,7 +755,7 @@ msgstr "未找到配置 Clublog 的用户。"
 #: application/views/search/search_result_ajax.php:124
 #: application/views/station_profile/edit.php:357
 #: application/views/timeline/index.php:68
-#: application/views/update/index.php:20 application/views/user/edit.php:595
+#: application/views/update/index.php:16 application/views/user/edit.php:595
 #: application/views/user/edit.php:807
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
@@ -2633,67 +2632,67 @@ msgstr "DXCC 例外："
 msgid "Dxcc Prefixes:"
 msgstr "DXCC 前缀："
 
-#: application/controllers/Update.php:365
+#: application/controllers/Update.php:354
 msgid "SCP Update complete. Result: "
 msgstr "SCP 更新已完成。结果为： "
 
-#: application/controllers/Update.php:367
+#: application/controllers/Update.php:356
 msgid "SCP Update failed. Result: "
 msgstr "SCP 更新失败。结果为： "
 
-#: application/controllers/Update.php:385
+#: application/controllers/Update.php:374
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW 用户更新完成。结果为： "
 
-#: application/controllers/Update.php:387
+#: application/controllers/Update.php:376
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW 用户更新失败。结果为： "
 
-#: application/controllers/Update.php:404
+#: application/controllers/Update.php:393
 msgid "DOK Update complete. Result: "
 msgstr "DOK 更新完成。结果为： "
 
-#: application/controllers/Update.php:406
+#: application/controllers/Update.php:395
 msgid "DOK Update failed. Result: "
 msgstr "DOK 更新失败。结果为： "
 
-#: application/controllers/Update.php:423
+#: application/controllers/Update.php:412
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA 更新完成。结果为： "
 
-#: application/controllers/Update.php:425
+#: application/controllers/Update.php:414
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA 更新失败。结果为： "
 
-#: application/controllers/Update.php:442
+#: application/controllers/Update.php:431
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF 更新成功。结果为： "
 
-#: application/controllers/Update.php:444
+#: application/controllers/Update.php:433
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF 更新失败。结果为： "
 
-#: application/controllers/Update.php:458
+#: application/controllers/Update.php:447
 msgid "POTA Update complete. Result: "
 msgstr "POTA 更新完成。结果为： "
 
-#: application/controllers/Update.php:460
+#: application/controllers/Update.php:449
 msgid "POTA Update failed. Result: "
 msgstr "POTA 更新失败。结果为： "
 
-#: application/controllers/Update.php:473
+#: application/controllers/Update.php:462
 msgid "TLE Update complete. Result: "
 msgstr "TLE 更新完成。结果为： "
 
-#: application/controllers/Update.php:475
+#: application/controllers/Update.php:464
 msgid "TLE Update failed. Result: "
 msgstr "TLE 更新失败。结果为： "
 
-#: application/controllers/Update.php:486
+#: application/controllers/Update.php:475
 msgid "LoTW SAT Update"
 msgstr "LoTW 卫星数据更新"
 
-#: application/controllers/Update.php:498
+#: application/controllers/Update.php:487
 msgid "Update of Hams of Note"
 msgstr "Hams of Note 更新"
 
@@ -13985,41 +13984,37 @@ msgstr "名称 / 描述"
 msgid "DXCC Lookup Data"
 msgstr "DXCC 查询数据"
 
-#: application/views/update/index.php:12
-msgid "Distance Data"
-msgstr "距离数据"
-
-#: application/views/update/index.php:19
+#: application/views/update/index.php:15
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
 msgstr "在这里您可以更新 DXCC 查询数据，以便于显示呼号所属国家或地区信息。"
 
-#: application/views/update/index.php:20
+#: application/views/update/index.php:16
 msgid "This data is provided by"
 msgstr "数据提供方"
 
-#: application/views/update/index.php:24
+#: application/views/update/index.php:20
 msgid "You must install php-xml for this to work."
 msgstr "您必须安装 php-xml。"
 
-#: application/views/update/index.php:27
+#: application/views/update/index.php:23
 msgid "Check for DXCC Data Updates"
 msgstr "检查 DXCC 数据更新"
 
-#: application/views/update/index.php:28
+#: application/views/update/index.php:24
 msgid "Update DXCC Data"
 msgstr "更新 DXCC 数据"
 
-#: application/views/update/index.php:30
+#: application/views/update/index.php:26
 msgid "Status:"
 msgstr "状态："
 
-#: application/views/update/index.php:34
+#: application/views/update/index.php:30
 msgid "Apply DXCC Data to Logbook"
 msgstr "向日志应用 DXCC 数据"
 
-#: application/views/update/index.php:36
+#: application/views/update/index.php:32
 msgid ""
 "After updating, Wavelog can fill in missing callsign information in the "
 "logbook using the newly-obtained DXCC data.\n"
@@ -14031,44 +14026,38 @@ msgstr ""
 "\t\t\t\t\t\t\t您可以选择仅检查缺失 DXCC 信息的 QSO。\n"
 "\t\t\t\t\t\t\t或检查全部 QSO 的 DXCC 信息是否有误。"
 
-#: application/views/update/index.php:45
+#: application/views/update/index.php:35 application/views/update/index.php:59
+msgid ""
+"This affects ALL QSOs of ANY user on this instance. The function is "
+"deprectated and will be removed in a future version of Wavelog. As "
+"replacement use the Logbook-Advanced!"
+msgstr ""
+
+#: application/views/update/index.php:35 application/views/update/index.php:59
+msgid "WARNING"
+msgstr ""
+
+#: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
 msgstr "检查缺失 DXCC 数据的 QSO"
 
-#: application/views/update/index.php:54 application/views/update/index.php:95
+#: application/views/update/index.php:51
 msgid "Re-check all QSOs in logbook"
 msgstr "重新检查所有 QSO"
 
-#: application/views/update/index.php:59
+#: application/views/update/index.php:56
 msgid "Apply Continent Data to Logbook"
 msgstr "向日志应用大陆数据"
 
-#: application/views/update/index.php:61
+#: application/views/update/index.php:58
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
 msgstr "此功能可检查并更新缺失大陆信息的 QSO。"
 
-#: application/views/update/index.php:68
+#: application/views/update/index.php:66
 msgid "Check QSOs missing continent data"
 msgstr "检查缺失大陆信息的 QSO"
-
-#: application/views/update/index.php:80
-msgid "Here you can update QSOs with missing distance information."
-msgstr "您可在此更新缺失距离信息的 QSO。"
-
-#: application/views/update/index.php:86
-msgid "Update distance data"
-msgstr "更新距离数据"
-
-#: application/views/update/index.php:89
-msgid ""
-"Use the following button to update the distance information for all your "
-"QSOs. Depending on the number of QSOs this might take some time to execute. "
-"Please be patient."
-msgstr ""
-"使用如下按钮更新全部 QSO 的距离信息，如果 QSO 数量过多这将会花费一些时间，请"
-"耐心等待。"
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
@@ -15307,6 +15296,23 @@ msgstr "提交请求"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "收"
+
+#~ msgid "Distance Data"
+#~ msgstr "距离数据"
+
+#~ msgid "Here you can update QSOs with missing distance information."
+#~ msgstr "您可在此更新缺失距离信息的 QSO。"
+
+#~ msgid "Update distance data"
+#~ msgstr "更新距离数据"
+
+#~ msgid ""
+#~ "Use the following button to update the distance information for all your "
+#~ "QSOs. Depending on the number of QSOs this might take some time to "
+#~ "execute. Please be patient."
+#~ msgstr ""
+#~ "使用如下按钮更新全部 QSO 的距离信息，如果 QSO 数量过多这将会花费一些时间，"
+#~ "请耐心等待。"
 
 #~ msgid "Yay, its imported!"
 #~ msgstr "导入成功！"
