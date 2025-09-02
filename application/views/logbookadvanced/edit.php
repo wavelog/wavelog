@@ -2,43 +2,56 @@
 <form method="post" class="d-flex align-items-center">
 		<select id="editColumn" name="type" class="form-select form-select-sm w-auto me-2">
 			<option value="">-</option>
-			<option value="band"><?= __("Band"); ?></option>
-			<option value="date"><?= __("Date"); ?></option>
-			<option value="comment"><?= __("Comment"); ?></option>
-			<option value="cqz"><?= __("CQ Zone"); ?></option>
-			<option value="dxcc"><?= __("DXCC"); ?></option>
-			<option value="gridsquare"><?= __("Gridsquare"); ?></option>
-			<option value="iota"><?= __("IOTA"); ?></option>
-			<option value="ituz"><?= __("ITU Zone"); ?></option>
-			<option value="mode"><?= __("Mode"); ?></option>
-			<option value="operator"><?= __("Operator"); ?></option>
-			<option value="pota"><?= __("POTA"); ?></option>
-			<option value="propagation"><?= __("Propagation"); ?></option>
-			<option value="qslvia"><?= __("QSL via"); ?></option>
-			<option value="qslmsg"><?= __("QSLMSG"); ?></option>
-			<option value="satellite"><?= __("Satellite"); ?></option>
-			<option value="sota"><?= __("SOTA"); ?></option>
-			<option value="station"><?= __("Station Location"); ?></option>
-			<option value="wwff"><?= __("WWFF"); ?></option>
-			<option value="state"><?= __("State"); ?></option>
-			<option value="contest"><?= __("Contest"); ?></option>
-			<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
-			<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
-			<option value="continent"><?= __("Continent"); ?></option>
-			<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
-			<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
-			<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
-			<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
-			<option value="stationpower"><?= __("Station power"); ?></option>
-			<option value="region"><?= __("Region"); ?></option>
-			<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
-			<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
-			<option value="distance"><?= __("Distance"); ?></option>
-			<option value="dok"><?= __("DOK"); ?></option>
-			<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
-			<option value="rstr"><?= __("RST (R)"); ?></option>
-			<option value="rsts"><?= __("RST (S)"); ?></option>
-		</select>
+
+			<optgroup label="<?= __("QSO details"); ?>">
+				<option value="band"><?= __("Band"); ?></option>
+				<option value="comment"><?= __("Comment"); ?></option>
+				<option value="contest"><?= __("Contest"); ?></option>
+				<option value="stxstring"><?= __("Contest Exch (S)"); ?></option>
+				<option value="date"><?= __("Date"); ?></option>
+				<option value="distance"><?= __("Distance"); ?></option>
+				<option value="mode"><?= __("Mode"); ?></option>
+				<option value="operator"><?= __("Operator"); ?></option>
+				<option value="propagation"><?= __("Propagation"); ?></option>
+				<option value="rstr"><?= __("RST (R)"); ?></option>
+				<option value="rsts"><?= __("RST (S)"); ?></option>
+				<option value="satellite"><?= __("Satellite"); ?></option>
+				<option value="station"><?= __("Station Location"); ?></option>
+				<option value="stationpower"><?= __("Station Power"); ?></option>
+			</optgroup>
+
+			<optgroup label="<?= __("Awards"); ?>">
+				<option value="continent"><?= __("Continent"); ?></option>
+				<option value="cqz"><?= __("CQ Zone"); ?></option>
+				<option value="dok"><?= __("DOK"); ?></option>
+				<option value="dxcc"><?= __("DXCC"); ?></option>
+				<option value="gridsquare"><?= __("Gridsquare"); ?></option>
+				<option value="iota"><?= __("IOTA"); ?></option>
+				<option value="ituz"><?= __("ITU Zone"); ?></option>
+				<option value="pota"><?= __("POTA"); ?></option>
+				<option value="region"><?= __("Region"); ?></option>
+				<option value="sota"><?= __("SOTA"); ?></option>
+				<option value="state"><?= __("State"); ?></option>
+				<option value="wwff"><?= __("WWFF"); ?></option>
+			</optgroup>
+
+			<optgroup label="<?= __("QSL / LoTW / Clublog / eQSL / QRZ"); ?>">
+				<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
+				<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
+				<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
+				<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
+				<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
+				<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
+				<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
+				<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
+				<option value="qslmsg"><?= __("QSLMSG"); ?></option>
+				<option value="qslreceivedmethod"><?= __("QSL Received Method"); ?></option>
+				<option value="qslsentmethod"><?= __("QSL Sent Method"); ?></option>
+				<option value="qslvia"><?= __("QSL via"); ?></option>
+			</optgroup>
+
+			</select>
+
 		<div>&nbsp;</div>
 
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editTextInput" type="text" name="editTextInput" placeholder="" aria-label="editTextInput">
@@ -173,6 +186,14 @@
 			<option value="R"><?= __("Requested"); ?></option>
 			<option value="I"><?= __("Invalid"); ?></option>
 			<option value="V"><?= __("Verified"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQslMethod"  name="qslmethod">
+			<option value=""><?= __("None/Empty"); ?></option>
+			<option value="D"><?= __("Direct"); ?></option>
+			<option value="B"><?= __("Bureau"); ?></option>
+			<option value="E"><?= __("Electronic"); ?></option>
+			<option value="M"><?= __("Manager"); ?></option>
 		</select>
 
 		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">
