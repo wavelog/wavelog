@@ -210,6 +210,9 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'gridsquare') {
 		value = $("#editGridsquareInput").val();
 	}
+	if (column == 'qslsentmethod' || column == 'qslreceivedmethod') {
+		value = $("#editQslMethod").val();
+	}
 
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/saveBatchEditQsos',
@@ -266,6 +269,7 @@ function changeEditType(type) {
 	$('#editDistanceInput').hide();
 	$('#editDokInput').hide();
 	$('#editGridsquareInput').hide();
+	$('#editQslMethod').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -324,6 +328,8 @@ function changeEditType(type) {
 	} else if (type == "distance") {
 		$('#editDistanceInput').show();
 		$('#editDistanceInputLabel').show();
+	} else if (type == "qslsentmethod" || type == "qslreceivedmethod") {
+		$('#editQslMethod').show();
 	}
 }
 
