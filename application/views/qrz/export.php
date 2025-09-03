@@ -11,7 +11,7 @@
 				</li>
 				<?php if (!($this->config->item('disable_manual_qrz'))) { ?>
 				<li class="nav-item">
-					<a class="nav-link" id="mark-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="false"><?= __("Download QSOs"); ?></a>
+					<a class="nav-link" id="mark-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="false"><?= __("Download QSLs"); ?></a>
 				</li>
 				<?php } ?>
 				<li class="nav-item">
@@ -72,7 +72,7 @@
 
 				<form class="form" action="<?php echo site_url('qrz/import_qrz'); ?>" method="post" enctype="multipart/form-data">
             				<?php if (($next_run_down ?? '') != '') { echo "<p>".__("The next automatic Download from QRZ-QSLs will happen at: ").$next_run_down."</p>"; } ?>
-					<p><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("If no startdate is given then all QSOs after last confirmation will be downloaded/updated!"); ?></p>
+					<p><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("If no startdate is given then the QSLs after last confirmation will be downloaded/updated!"); ?></p>
 					<div class="row">
 						<div class="col-md-2">
 							<label for="from"><?= __("From date") . ": " ?></label>
@@ -80,7 +80,7 @@
 						</div>
 					</div>
 					<br>
-					<button type="submit" class="btn btn-sm btn-primary" value="Export"><?= __("Download from QRZ Logbook"); ?></button>
+					<button type="submit" class="btn btn-sm btn-primary" value="Export"><?= __("Download QSLs from QRZ Logbook"); ?></button>
 				</form>
 			</div>
 		<?php } ?>

@@ -16,7 +16,7 @@ class Migration_clublog_recvd extends CI_Migration {
 					'id' => 'clublog_download',
 					'enabled' => '0',
 					'status' => 'pending',
-					'description' => 'Download QSOs from Clublog',
+					'description' => 'Download QSLs from Clublog',
 					'function' => 'index.php/clublog/download',
 					'expression' => '7 00 * * *',
 					'last_run' => null,

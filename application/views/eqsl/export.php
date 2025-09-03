@@ -5,7 +5,7 @@
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo site_url('eqsl/import');?>"><?= __("Download QSOs"); ?></a>
+        <a class="nav-link" href="<?php echo site_url('eqsl/import');?>"><?= __("Download QSLs"); ?></a>
       </li>
 <?php if (!($this->config->item('disable_manual_eqsl'))) { ?>
       <li class="nav-item">
