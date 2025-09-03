@@ -3613,10 +3613,10 @@ class Logbook_model extends CI_Model {
 		}
 
 		if (!empty($logbooks_locations_array)) {
-			$this->db->select('COUNT(DISTINCT COL_COUNTRY) as Countries_Worked,
-            COUNT(DISTINCT IF(COL_QSL_RCVD = "Y", COL_COUNTRY, NULL)) as Countries_Worked_QSL,
-            COUNT(DISTINCT IF(COL_EQSL_QSL_RCVD = "Y", COL_COUNTRY, NULL)) as Countries_Worked_EQSL,
-            COUNT(DISTINCT IF(COL_LOTW_QSL_RCVD = "Y", COL_COUNTRY, NULL)) as Countries_Worked_LOTW');
+			$this->db->select('COUNT(DISTINCT COL_DXCC) as Countries_Worked,
+            COUNT(DISTINCT IF(COL_QSL_RCVD = "Y", COL_DXCC, NULL)) as Countries_Worked_QSL,
+            COUNT(DISTINCT IF(COL_EQSL_QSL_RCVD = "Y", COL_DXCC, NULL)) as Countries_Worked_EQSL,
+            COUNT(DISTINCT IF(COL_LOTW_QSL_RCVD = "Y", COL_DXCC, NULL)) as Countries_Worked_LOTW');
 			$this->db->where_in('station_id', $logbooks_locations_array);
 			$this->db->where('COL_COUNTRY !=', 'Invalid');
 			$this->db->where('COL_DXCC >', '0');
