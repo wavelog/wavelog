@@ -7,10 +7,6 @@
 				<li class="nav-item">
 					<a class="nav-link active" id="dxcc-tab" data-bs-toggle="tab" href="#dxcc" role="tab" aria-controls="update" aria-selected="true"><?= __("DXCC Lookup Data"); ?></a>
 				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" id="distance-tab" data-bs-toggle="tab" href="#distanceTab" role="tab" aria-controls="update" aria-selected="false"><?= __("Distance Data"); ?></a>
-				</li>
 			</ul>
 		</div>
 		<div class="card-body">
@@ -36,6 +32,7 @@
 							<?= __("After updating, Wavelog can fill in missing callsign information in the logbook using the newly-obtained DXCC data.
 							You can choose to check just the QSOs in the logbook that are missing DXCC metadata or to re-check the entire logbook
 							and update existing metadata as well, in case it has changed."); ?>
+							<br/><br/><b class="badge text-bg-danger"><?= __("WARNING"); ?></b>: <?= __("This affects ALL QSOs of ANY user on this instance. The function is deprectated and will be removed in a future version of Wavelog. As replacement use the Logbook-Advanced!"); ?>
 						</p>
 						<button class="btn btn-primary mb-3 ld-ext-right" 
 							hx-get="<?php echo site_url('update/check_missing_dxcc');?>"
@@ -59,6 +56,7 @@
 						<h5><?= __("Apply Continent Data to Logbook"); ?></h5>
 						<p class="card-text">
 							<?= __("This function can be used to update QSO continent information for all QSOs in Wavelog missing that information."); ?>
+							<br/><br/><b class="badge text-bg-danger"><?= __("WARNING"); ?></b>: <?= __("This affects ALL QSOs of ANY user on this instance. The function is deprectated and will be removed in a future version of Wavelog. As replacement use the Logbook-Advanced!"); ?>
 						</p>
 						<button class="btn btn-primary mb-3 ld-ext-right" 
 							hx-get="<?php echo site_url('update/check_missing_continent');?>" 
@@ -75,27 +73,6 @@
 							}
 						</style>
 					<?php } ?>
-				</div>
-				<div class="tab-pane fade" id="distanceTab" role="tabpanel" aria-labelledby="distance-tab">
-					<p class="card-text"><?= __("Here you can update QSOs with missing distance information."); ?></p>
-					<button class="btn btn-primary mb-3 ld-ext-right" 
-						hx-get="<?php echo site_url('update/update_distances');?>"  
-						hx-target="#distance_results"
-						hx-on:htmx:before-request="this.disabled = true; this.classList.add('running');"
-						hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running'); document.getElementById('distance_results').style.display = 'block';">
-						<?= __("Update distance data"); ?>
-						<div class="ld ld-ring ld-spin"></div>
-					</button>
-					<p class="card-text"><?= __("Use the following button to update the distance information for all your QSOs. Depending on the number of QSOs this might take some time to execute. Please be patient."); ?></p>
-					<button class="btn btn-primary mb-3 ld-ext-right"
-						hx-get="<?php echo site_url('update/update_distances/all');?>" 
-						hx-target="#distance_results" 
-						hx-on:htmx:before-request="this.disabled = true; this.classList.add('running');"
-						hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running'); document.getElementById('distance_results').style.display = 'block';">
-						<?= __("Re-check all QSOs in logbook"); ?>
-						<div class="ld ld-ring ld-spin"></div>
-					</button>
-					<div id="distance_results" class="alert alert-secondary mb-3 w-25 w-lg-100" style="display: none;"></div>
 				</div>
 			</div>
 		</div>

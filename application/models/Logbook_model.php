@@ -4141,6 +4141,14 @@ class Logbook_model extends CI_Model {
 				$dxcc = NULL;
 			}
 
+			if (isset($record['cont'])) {
+				$cont=$record['cont'];
+			} elseif (($dxcc[3] ?? '') != '') {
+				$cont=$dxcc[3];
+			} else {
+				$cont='';
+			}
+
 			// Store or find country name
 			// dxcc has higher priority to be consistent with qso create and edit
 			if (isset($dxcc[1])) {
@@ -4510,7 +4518,7 @@ class Logbook_model extends CI_Model {
 				'COL_CNTY_ALT' => (!empty($record['cnty_alt'])) ? $record['cnty_alt'] : '',
 				'COL_COMMENT' => (!empty($record['comment'])) ? $record['comment'] : '',
 				'COL_COMMENT_INTL' => (!empty($record['comment_intl'])) ? $record['comment_intl'] : '',
-				'COL_CONT' => (!empty($record['cont'])) ? $record['cont'] : '',
+				'COL_CONT' => (!empty($cont)) ? $cont : '',
 				'COL_CONTACTED_OP' => (!empty($record['contacted_op'])) ? $record['contacted_op'] : '',
 				'COL_CONTEST_ID' => (!empty($record['contest_id'])) ? $record['contest_id'] : '',
 				'COL_COUNTRY' => $country ?? '',
