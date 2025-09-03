@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-08-30 19:00+0000\n"
 "PO-Revision-Date: 2025-09-03 15:51+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15081,7 +15081,8 @@ msgstr ""
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
-msgstr "JSON verisi çözümlenirken hata oluştu veya GitHub’dan boş sonuç alındı."
+msgstr ""
+"JSON verisi çözümlenirken hata oluştu veya GitHub’dan boş sonuç alındı."
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
@@ -15388,6 +15389,28 @@ msgstr "QSL Alım Yöntemi"
 #: application/views/logbookadvanced/edit.php:49
 msgid "QSL Sent Method"
 msgstr "QSL Gönderim Yöntemi"
+
+#: application/views/clublog/export.php:14
+#: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
+#: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
+#: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
+#: application/views/qrz/export.php:14
+msgid "Download QSLs"
+msgstr ""
+
+#: application/views/clublog/export.php:70 application/views/qrz/export.php:75
+msgid ""
+"If no startdate is given then the QSLs after last confirmation will be "
+"downloaded/updated!"
+msgstr ""
+
+#: application/views/clublog/export.php:78
+msgid "Download QSLs from Clublog"
+msgstr ""
+
+#: application/views/qrz/export.php:83
+msgid "Download QSLs from QRZ Logbook"
+msgstr ""
 
 #~ msgid "Ignore Stationcallsign on import"
 #~ msgstr "İçe aktarmada Stationcallsign'ı yoksay"
