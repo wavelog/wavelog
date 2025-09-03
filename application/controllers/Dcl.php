@@ -76,6 +76,10 @@ class Dcl extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
+	public function dcl_sync() {
+		$this->dcl_upload();
+	}
+
 	public function dcl_upload() {
 		// Called as User: Upload for User (if manual sync isn't disabled
 		// Called from cron / without Session: iterate through stations, check for DCL-Key and upload
