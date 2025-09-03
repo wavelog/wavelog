@@ -11,7 +11,7 @@
 				</li>
 				<?php if (!($this->config->item('disable_manual_clublog'))) { ?>
 				<li class="nav-item">
-					<a class="nav-link" id="mark-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="false"><?= __("Download QSOs"); ?></a>
+					<a class="nav-link" id="mark-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="false"><?= __("Download QSLs"); ?></a>
 				</li>
 				<?php } ?>
 			</ul>
@@ -75,7 +75,7 @@
 						</div>
 					</div>
 					<br>
-					<button type="button" class="btn btn-sm btn-primary ld-ext-right ld-ext-right-import" onclick="importlog();"><i class="fas fa-cloud-download-alt"></i> <?= __("Download from Clublog"); ?><div class="ld ld-ring ld-spin"></div></button>
+					<button type="button" class="btn btn-sm btn-primary ld-ext-right ld-ext-right-import" onclick="importlog();"><i class="fas fa-cloud-download-alt"></i> <?= __("Download QSLs from Clublog"); ?><div class="ld ld-ring ld-spin"></div></button>
 				</form>
 			</div>
 		<?php } ?>
