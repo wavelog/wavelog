@@ -1128,7 +1128,7 @@ $("#callsign").on("focusout", function () {
 
 				/* Find Locator if the field is empty */
 				if ($('#locator').val() == "") {
-					if (result.callsign_geoloc != 'grid') {
+					if (result.callsign_geoloc != 'grid' || result.timesWorked > 0) {
 						$('#locator').val(result.callsign_qra);
 						$('#locator_info').html(result.bearing);
 					}
@@ -1137,7 +1137,7 @@ $("#callsign").on("focusout", function () {
 						document.getElementById("distance").value = result.callsign_distance;
 					}
 
-					if (result.callsign_qra != "" && result.callsign_geoloc != 'grid') {
+					if (result.callsign_qra != "" && (result.callsign_geoloc != 'grid' || result.timesWorked > 0)) {
 						if (result.confirmed) {
 							$('#locator').addClass("confirmedGrid");
 							$('#locator').attr('title', 'Grid was already worked and confirmed in the past');
