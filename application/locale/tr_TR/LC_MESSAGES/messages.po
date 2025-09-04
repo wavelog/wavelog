@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-08-30 19:00+0000\n"
-"PO-Revision-Date: 2025-09-03 21:47+0000\n"
+"PO-Revision-Date: 2025-09-04 07:28+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -14033,82 +14033,89 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Burada 'Tema Ekle'ye tıklayın ve gerekli verileri girin. Logolar için dosya "
+"adlarını '.png' dosya uzantısı %solmadan%s yazın"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
-msgstr ""
+msgstr "Klasör adı"
 
 #: application/views/themes/index.php:99
 msgid "Please edit"
-msgstr ""
+msgstr "Lütfen düzenleyin"
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
-msgstr ""
+msgstr "Tema Ekle"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
-msgstr ""
+msgstr "Yalnızca seçilen yıldaki yeniler"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
-msgstr ""
+msgstr "Görüşmeler çizelgelendi"
 
 #: application/views/timeplotter/index.php:3
 msgid "Time Distribution"
-msgstr ""
+msgstr "Zaman Dağılımı"
 
 #: application/views/timeplotter/index.php:6
 msgid "Callsign(s) worked (max 5)"
-msgstr ""
+msgstr "Çalışılan çağrı işareti(leri) (en fazla 5)"
 
 #: application/views/timeplotter/index.php:10
 msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
+"Timeplotter, log defterinizi analiz etmek ve seçilen bantta hangi zamanlarda "
+"belirli CQ bölgeleri veya DXCC ülkeleriyle görüştüğünüzü bulmak için "
+"kullanılır."
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
-msgstr ""
+msgstr "Ad / Açıklama"
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
-msgstr ""
+msgstr "DXCC Arama Verileri"
 
 #: application/views/update/index.php:12
 msgid "Distance Data"
-msgstr ""
+msgstr "Mesafe Verileri"
 
 #: application/views/update/index.php:19 application/views/update/index.php:15
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
 msgstr ""
+"Burada çağrı işareti bilgilerini görüntülemek için kullanılan DXCC arama "
+"verilerini güncelleyebilirsin."
 
 #: application/views/update/index.php:20 application/views/update/index.php:16
 msgid "This data is provided by"
-msgstr ""
+msgstr "Bu veri şu sağlayıcı tarafından sağlanmaktadır"
 
 #: application/views/update/index.php:24 application/views/update/index.php:20
 msgid "You must install php-xml for this to work."
-msgstr ""
+msgstr "Bunun çalışması için php-xml yüklemelisin."
 
 #: application/views/update/index.php:27 application/views/update/index.php:23
 msgid "Check for DXCC Data Updates"
-msgstr ""
+msgstr "DXCC Veri Güncellemelerini Kontrol Et"
 
 #: application/views/update/index.php:28 application/views/update/index.php:24
 msgid "Update DXCC Data"
-msgstr ""
+msgstr "DXCC Verilerini Güncelle"
 
 #: application/views/update/index.php:30 application/views/update/index.php:26
 msgid "Status:"
-msgstr ""
+msgstr "Durum:"
 
 #: application/views/update/index.php:34 application/views/update/index.php:30
 msgid "Apply DXCC Data to Logbook"
-msgstr ""
+msgstr "DXCC Verilerini Logbook'a Uygula"
 
 #: application/views/update/index.php:36 application/views/update/index.php:32
 msgid ""
@@ -14118,37 +14125,45 @@ msgid ""
 "missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
+"Güncellemeden sonra, Wavelog yeni elde edilen DXCC verilerini kullanarak "
+"logbook'taki eksik çağrı işareti bilgilerini doldurabilir. ,\n"
+"\t\t\t\t\t\t\tLogbook'ta sadece DXCC metadatası eksik olan QSO'ları kontrol "
+"etmeyi veya tüm logbook'u yeniden kontrol etmeyi\n"
+"\t\t\t\t\t\t\tve eğer değiştiyse mevcut metadataları da güncellemeyi "
+"seçebilirsiniz."
 
 #: application/views/update/index.php:45 application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
-msgstr ""
+msgstr "DXCC verisi eksik QSOlari kontrol et"
 
 #: application/views/update/index.php:54 application/views/update/index.php:95
 #: application/views/update/index.php:51
 msgid "Re-check all QSOs in logbook"
-msgstr ""
+msgstr "Logbook'ta olan tüm QSO'ları tekrar kontrol et"
 
 #: application/views/update/index.php:59 application/views/update/index.php:56
 msgid "Apply Continent Data to Logbook"
-msgstr ""
+msgstr "Kıta Verilerini Log Defterine Uygula"
 
 #: application/views/update/index.php:61 application/views/update/index.php:58
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
 msgstr ""
+"Bu işlev, Wavelog’daki tüm QSOlarda eksik olan kıta bilgilerini güncellemek "
+"için kullanılabilir."
 
 #: application/views/update/index.php:68 application/views/update/index.php:66
 msgid "Check QSOs missing continent data"
-msgstr ""
+msgstr "Kıta verisi eksik QSO’ları kontrol et"
 
 #: application/views/update/index.php:80
 msgid "Here you can update QSOs with missing distance information."
-msgstr ""
+msgstr "Burada, eksik mesafe bilgisi olan QSO’ları güncelleyebilirsiniz."
 
 #: application/views/update/index.php:86
 msgid "Update distance data"
-msgstr ""
+msgstr "Mesafe verilerini güncelle"
 
 #: application/views/update/index.php:89
 msgid ""
@@ -14156,38 +14171,41 @@ msgid ""
 "QSOs. Depending on the number of QSOs this might take some time to execute. "
 "Please be patient."
 msgstr ""
+"Tüm QSO’larınızın mesafe bilgilerini güncellemek için aşağıdaki düğmeyi "
+"kullanın. QSO sayısına bağlı olarak bu işlem biraz zaman alabilir. Lütfen "
+"sabırlı olun."
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
-msgstr ""
+msgstr "Kullanıcı Hesabını Sil"
 
 #: application/views/user/delete.php:10
 msgid "Are you sure you want to delete the user account"
-msgstr ""
+msgstr "Kullanıcı hesabını silmek istediğinizden emin misiniz"
 
 #: application/views/user/delete.php:14
 msgid "No, do not delete this user"
-msgstr ""
+msgstr "Hayır, bu kullanıcıyı silme"
 
 #: application/views/user/delete.php:14
 msgid "Yes, delete this user"
-msgstr ""
+msgstr "Evet, bu kullanıcıyı sil"
 
 #: application/views/user/edit.php:6
 msgid "Create Clubstation Account"
-msgstr ""
+msgstr "Kulüp İstasyonu Hesabı Oluştur"
 
 #: application/views/user/edit.php:8
 msgid "Create User Account"
-msgstr ""
+msgstr "Kullanıcı Hesabı Oluştur"
 
 #: application/views/user/edit.php:11
 msgid "Edit Account"
-msgstr ""
+msgstr "Hesabı Düzenle"
 
 #: application/views/user/edit.php:45
 msgid "General Information"
-msgstr ""
+msgstr "Genel Bilgi"
 
 #: application/views/user/edit.php:68 application/views/user/login.php:59
 #: application/views/user/login.php:73 application/views/user/login.php:74
@@ -14199,19 +14217,19 @@ msgstr "Şifre"
 
 #: application/views/user/edit.php:74
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "Bu şifreyi operatörlerle paylaşmayın!"
 
 #: application/views/user/edit.php:84
 msgid "User Role"
-msgstr ""
+msgstr "Kullanıcı Rolü"
 
 #: application/views/user/edit.php:113
 msgid "Callsign Owner"
-msgstr ""
+msgstr "Çağrı İşareti Sahibi"
 
 #: application/views/user/edit.php:113
 msgid "Personal"
-msgstr ""
+msgstr "Kisisel"
 
 #: application/views/user/edit.php:116
 msgid "First Name"
@@ -14223,15 +14241,15 @@ msgstr "Soyadı"
 
 #: application/views/user/edit.php:134
 msgid "Ham Radio"
-msgstr ""
+msgstr "Amatör Telsiz"
 
 #: application/views/user/edit.php:137
 msgid "Special/Club Callsign"
-msgstr ""
+msgstr "Özel/Kulüp Çağrı İşareti"
 
 #: application/views/user/edit.php:160
 msgid "Wavelog Preferences"
-msgstr ""
+msgstr "Wavelog Tercihleri"
 
 #: application/views/user/edit.php:171
 msgid "Stylesheet"
@@ -14239,11 +14257,11 @@ msgstr ""
 
 #: application/views/user/edit.php:183
 msgid "Wavelog Language"
-msgstr ""
+msgstr "Wavelog Dili"
 
 #: application/views/user/edit.php:190
 msgid "Choose Wavelog language."
-msgstr ""
+msgstr "Wavelog dilini seç."
 
 #: application/views/user/edit.php:193
 msgid "Timezone"
@@ -14251,31 +14269,31 @@ msgstr "Saat dilimi"
 
 #: application/views/user/edit.php:201
 msgid "Date Format"
-msgstr ""
+msgstr "Tarih Formatı"
 
 #: application/views/user/edit.php:214
 msgid "Select how you would like dates shown when logged into your account."
-msgstr ""
+msgstr "Hesabınıza giriş yaptığınızda tarihlerin nasıl görüntüleneceğini seçin."
 
 #: application/views/user/edit.php:218
 msgid "Measurement preference"
-msgstr ""
+msgstr "Ölçüm tercihi"
 
 #: application/views/user/edit.php:222
 msgid "Kilometers"
-msgstr ""
+msgstr "Kilometre"
 
 #: application/views/user/edit.php:223
 msgid "Miles"
-msgstr ""
+msgstr "Mil"
 
 #: application/views/user/edit.php:224
 msgid "Nautical miles"
-msgstr ""
+msgstr "Deniz mili"
 
 #: application/views/user/edit.php:226
 msgid "Choose which unit distances will be shown in"
-msgstr ""
+msgstr "Mesafelerin hangi birimde gösterileceğini seçin"
 
 #: application/views/user/edit.php:235
 msgid "Logbook fields"
@@ -14303,40 +14321,47 @@ msgstr "5. sütunu seçin (sadece kayıt defteri için)"
 
 #: application/views/user/edit.php:361
 msgid "QSO Logging Options"
-msgstr ""
+msgstr "QSO Kayıt Seçenekleri"
 
 #: application/views/user/edit.php:364
 msgid "Log End Times for QSOs Separately"
-msgstr ""
+msgstr "QSO’lar için bitiş zamanlarını ayrı kaydet"
 
 #: application/views/user/edit.php:370
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
 msgstr ""
+"QSO başlangıç ve bitiş zamanlarını ayrı kaydetmek istiyorsanız 'Evet'i "
+"seçin. 'Hayır' olarak ayarlanırsa bitiş zamanı başlangıç zamanı ile aynı "
+"olacaktır."
 
 #: application/views/user/edit.php:375
 msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
+"Log QSO bölümünde QSO yapılan kişinin qrz.com/hamqth.com profilinden profil "
+"resmini göster."
 
 #: application/views/user/edit.php:381
 msgid ""
 "Please set your qrz.com/hamqth.com credentials in the general config file."
 msgstr ""
+"Lütfen qrz.com/hamqth.com kimlik bilgilerinizi genel yapılandırma dosyasına "
+"girin."
 
 #: application/views/user/edit.php:386
 msgid "Location auto lookup."
-msgstr ""
+msgstr "Otomatik konum arama."
 
 #: application/views/user/edit.php:392
 msgid "If set, gridsquare is fetched based on location name."
-msgstr ""
+msgstr "Ayarlanmışsa, grid konum adına göre alınır."
 
 #: application/views/user/edit.php:396
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr ""
+msgstr "SOTA otomatik arama grid ve zirve adı."
 
 #: application/views/user/edit.php:402 application/views/user/edit.php:412
 #: application/views/user/edit.php:422
@@ -14344,75 +14369,81 @@ msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
 msgstr ""
+"Eğer ayarlanmışsa, isim ve grid API'den alınır ve konum ve lokator "
+"alanlarına doldurulur."
 
 #: application/views/user/edit.php:406
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr ""
+msgstr "WWFF otomatik arama grid ve isim için referans."
 
 #: application/views/user/edit.php:416
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr ""
+msgstr "POTA otomatik arama gird ve park adı."
 
 #: application/views/user/edit.php:425
 msgid "Number of previous contacts displayed on QSO page."
-msgstr ""
+msgstr "QSO sayfasında görüntülenecek önceki görüşme sayısı."
 
 #: application/views/user/edit.php:442
 msgid "Menu Options"
-msgstr ""
+msgstr "Menü Seçenekleri"
 
 #: application/views/user/edit.php:445
 msgid "Show notes in the main menu."
-msgstr ""
+msgstr "Ana menüde notları göster."
 
 #: application/views/user/edit.php:456
 msgid "Quicklog Field"
-msgstr ""
+msgstr "Hızlılog Alanı"
 
 #: application/views/user/edit.php:462
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
 msgstr ""
+"Bu özellikle, başlıktaki arama alanını kullanarak çağrı işaretlerini "
+"kaydedebilirsiniz."
 
 #: application/views/user/edit.php:466
 msgid "Quicklog - Action on press Enter"
-msgstr ""
+msgstr "Quicklog - Enter tuşuna basıldığında yapılacak işlem"
 
 #: application/views/user/edit.php:470
 msgid "Log Callsign"
-msgstr ""
+msgstr "Çağrı işaretini kaydet"
 
 #: application/views/user/edit.php:472
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
-msgstr ""
+msgstr "Quicklog alanında Enter tuşuna basıldığında hangi işlem yapılsın?"
 
 #: application/views/user/edit.php:478
 msgid "Station Locations Quickswitch"
-msgstr ""
+msgstr "İstasyon Konumları Hızlı Geçiş"
 
 #: application/views/user/edit.php:483
 msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
 msgstr ""
+"Ana menüde İstasyon Konumları Hızlı Geçişi gösterin. Yeni konumları İstasyon "
+"Kurulum sayfasında favorilere ekleyebilirsiniz."
 
 #: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
-msgstr ""
+msgstr "Menüye UTC Saati Ekle"
 
 #: application/views/user/edit.php:492
 msgid "Show the current UTC Time in the menu"
-msgstr ""
+msgstr "Menüde geçerli UTC saatini göster"
 
 #: application/views/user/edit.php:503
 msgid "Map Settings"
-msgstr ""
+msgstr "Harita Ayarları"
 
 #: application/views/user/edit.php:510
 msgid "Icon"
-msgstr ""
+msgstr "Simge"
 
 #: application/views/user/edit.php:513
 msgid "Not display"
@@ -14424,11 +14455,11 @@ msgstr ""
 
 #: application/views/user/edit.php:526
 msgid "QSO (by default)"
-msgstr ""
+msgstr "QSO (varsayılan olarak)"
 
 #: application/views/user/edit.php:545
 msgid "QSO (confirmed)"
-msgstr ""
+msgstr "QSO (onaylandı)"
 
 #: application/views/user/edit.php:546
 msgid "(If 'No', displayed as 'QSO (by default))'"
@@ -14436,31 +14467,31 @@ msgstr ""
 
 #: application/views/user/edit.php:565
 msgid "Show Locator"
-msgstr ""
+msgstr "Locator’ı Göster"
 
 #: application/views/user/edit.php:584
 msgid "Previous QSL Type"
-msgstr ""
+msgstr "Önceki QSL Türü"
 
 #: application/views/user/edit.php:588
 msgid "Select the type of QSL to show in the previous QSOs section."
-msgstr ""
+msgstr "Önceki QSO’lar bölümünde gösterilecek QSL türünü seçin."
 
 #: application/views/user/edit.php:604
 msgid "Dashboard Settings"
-msgstr ""
+msgstr "Panel Ayarları"
 
 #: application/views/user/edit.php:608
 msgid "Select the number of latest QSOs to be displayed on dashboard."
-msgstr ""
+msgstr "Panelde görüntülenecek son QSO sayısını seçin."
 
 #: application/views/user/edit.php:615
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
-msgstr ""
+msgstr "Panelde gösterilecek son QSO sayısını seçin."
 
 #: application/views/user/edit.php:619
 msgid "Show Dashboard Map"
-msgstr ""
+msgstr "Panelde Haritayı Göster"
 
 #: application/views/user/edit.php:623
 msgid "Map at right"
@@ -14468,19 +14499,20 @@ msgstr ""
 
 #: application/views/user/edit.php:626
 msgid "Choose whether to show map on dashboard or not"
-msgstr ""
+msgstr "Haritayı panelde gösterip göstermemeyi seçin"
 
 #: application/views/user/edit.php:630
 msgid "Dashboard Notification Banner"
-msgstr ""
+msgstr "Panel Bildirim Afişi"
 
 #: application/views/user/edit.php:636
 msgid "This allows to disable the global notification banner on the dashboard."
 msgstr ""
+"Bu, panelde herkes için bildirim afişini devre dışı bırakmanıza olanak tanır."
 
 #: application/views/user/edit.php:644
 msgid "Show Reference Fields on QSO Tab"
-msgstr ""
+msgstr "QSO Sekmesinde Referans Alanını Göster"
 
 #: application/views/user/edit.php:648
 msgid ""
