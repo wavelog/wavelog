@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-04 12:14+0000\n"
+"PO-Revision-Date: 2025-09-04 13:35+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -3964,7 +3964,7 @@ msgstr "Her ikisi de"
 #: application/views/activators/index.php:33
 #: application/views/callstats/index.php:92
 msgid "Minimum Count"
-msgstr ""
+msgstr "Minimum Sayı"
 
 #: application/views/activators/index.php:76
 #: application/views/awards/73on73/index.php:66
@@ -4698,7 +4698,7 @@ msgstr "Panoya kopyala"
 
 #: application/views/api/index.php:19
 msgid "The API URL for this Wavelog instance is"
-msgstr ""
+msgstr "API URL"
 
 #: application/views/api/index.php:20 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33 application/views/radio/index.php:26
@@ -4723,10 +4723,12 @@ msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"Kulüp istasyonlarında API Anahtarları kişiseldir ve paylaşılmaz. Kulüp "
+"istasyonu kullanıcıları yalnızca kendi anahtarlarını görebilir."
 
 #: application/views/api/index.php:30
 msgid "API Key"
-msgstr ""
+msgstr "API Anahtarı"
 
 #: application/views/api/index.php:31 application/views/cron/edit.php:30
 #: application/views/cron/index.php:53
@@ -4736,15 +4738,15 @@ msgstr "Açıklama"
 
 #: application/views/api/index.php:32
 msgid "Last Used"
-msgstr ""
+msgstr "Son bağlantı"
 
 #: application/views/api/index.php:34
 msgid "Created By"
-msgstr ""
+msgstr "Oluşturan"
 
 #: application/views/api/index.php:36
 msgid "Permissions"
-msgstr ""
+msgstr "Yetkiler"
 
 #: application/views/api/index.php:37 application/views/cron/index.php:54
 #: application/views/lotw/satupdate.php:7
@@ -4767,36 +4769,36 @@ msgstr "Durum"
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
 #: application/views/user/index.php:160 application/views/webadif/export.php:45
 msgid "Actions"
-msgstr ""
+msgstr "İşlemler"
 
 #: application/views/api/index.php:64
 msgid "Read & Write"
-msgstr ""
+msgstr "Oku & Yaz"
 
 #: application/views/api/index.php:66
 msgid "Read-Only"
-msgstr ""
+msgstr "Salt Okunur"
 
 #: application/views/api/index.php:76
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: application/views/api/index.php:79
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "%s API Anahtarını silmek istediğinizden emin misiniz?"
 
 #: application/views/api/index.php:92
 msgid "You have no API Keys."
-msgstr ""
+msgstr "API Anahtarınız yok."
 
 #: application/views/api/index.php:96
 msgid "Create a read & write key"
-msgstr ""
+msgstr "Okuma ve yazma anahtarı oluştur"
 
 #: application/views/api/index.php:97
 msgid "Create a read-only key"
-msgstr ""
+msgstr "Salt okunur anahtar oluştur"
 
 #: application/views/awards/73on73/index.php:6
 #: application/views/awards/73on73/index.php:14
@@ -4845,7 +4847,7 @@ msgstr ""
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:14
 msgid "Award Info"
-msgstr ""
+msgstr "Ödül Bilgisi"
 
 #: application/views/awards/73on73/index.php:7
 msgid "73 on 73 Award"
@@ -4856,6 +4858,8 @@ msgid ""
 "Paul Stoetzer N8HM is sponsoring an award for contacts made via the AO-73 "
 "(FUNcube-1) amateur radio satellite."
 msgstr ""
+"Paul Stoetzer N8HM, AO-73 (FUNcube-1) amatör telsiz uydusu üzerinden yapılan "
+"görüşmeler için bir ödül sponsorluğu yapmaktadır."
 
 #: application/views/awards/73on73/index.php:9
 #: application/views/awards/helvetia/index.php:23
@@ -4866,20 +4870,22 @@ msgstr ""
 #: application/views/awards/wwff/index.php:10
 #, php-format
 msgid "For more information, please visit: %s."
-msgstr ""
+msgstr "Daha fazla bilgi için lütfen şurayı ziyaret edin: %s."
 
 #: application/views/awards/73on73/index.php:11
 msgid ""
 "Fields taken for this Award: Propagation-Mode and SAT-Name (ADIF: "
 "PROP_MODE=SAT, SAT_NAME='AO-73')"
 msgstr ""
+"Bu Ödül için kullanılan alanlar: Propagasyon Modu ve Uydu Adı (ADIF: "
+"PROP\\_MODE=SAT, SAT\\_NAME='AO-73')"
 
 #: application/views/awards/73on73/index.php:32
 #: application/views/awards/jcc/index.php:152
 #: application/views/awards/waja/index.php:154
 #: application/views/distancerecords/index.php:13
 msgid "Number"
-msgstr ""
+msgstr "Numara"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -4909,6 +4915,10 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
+"Amerika Birleşik Devletleri İlçeleri Ödülü (USA-CA), MARAC (Mobil Amatör "
+"Telsiz Ödülleri Kulübü) tarafından sponsorlanmakta olup, belirli sayıda ABD "
+"ilçesi ile onaylanmış iki yönlü telsiz görüşmeleri için verilir. Kurallar ve "
+"koşulları şuradan bulabilirsiniz %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -4916,10 +4926,15 @@ msgid ""
 "individuals for all county contacts made, regardless of callsigns used, "
 "operating locations, or dates."
 msgstr ""
+"USA-CA, dünya genelindeki tüm lisanslı amatörlere açıktır ve kullanılan "
+"çağrı işaretleri, çalışma konumları veya tarihler ne olursa olsun, yapılan "
+"tüm ilçe görüşmeleri için operatörlere verilir."
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
 msgstr ""
+"Özel USA-CA ödülleri, SWL’ler için de duyulan yakaladıkları sinyaller için "
+"de mevcuttur."
 
 #: application/views/awards/counties/index.php:11
 msgid ""
