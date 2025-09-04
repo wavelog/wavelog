@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-04 07:28+0000\n"
+"PO-Revision-Date: 2025-09-04 12:14+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1908,11 +1908,11 @@ msgstr "Ayarlar kaydedildi"
 #: application/controllers/Options.php:129
 #: application/views/options/sidebar.php:9
 msgid "Hams Of Note"
-msgstr "Hams Of Note"
+msgstr "Tanınmış Amatör Telsizciler"
 
 #: application/controllers/Options.php:144
 msgid "Hams-Of-Note URL changed to "
-msgstr "Hams-Of-Note URL degisti. "
+msgstr "Tanınmış-Amatör-Telsizciler sayfasının URL degisti. "
 
 #: application/controllers/Options.php:180
 msgid "de continent changed to "
@@ -2434,7 +2434,7 @@ msgstr "Logbook Oluştur"
 
 #: application/controllers/Stationsetup.php:191
 msgid "Edit container name"
-msgstr ""
+msgstr "Konteyner adını düzenle"
 
 #: application/controllers/Stationsetup.php:206
 msgid "Edit linked locations"
@@ -2532,7 +2532,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:140
 #: application/views/stationsetup/stationsetup.php:192
 msgid "Empty Log"
-msgstr "Logbook'u Sil"
+msgstr "Logbook'u Sıfırla"
 
 #: application/controllers/Stationsetup.php:409
 #: application/views/stationsetup/stationsetup.php:133
@@ -2587,7 +2587,7 @@ msgstr "Uydu QSO'ları"
 #: application/controllers/Statistics.php:354
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
-msgstr ""
+msgstr "Dünya-Ay-Dünya (EME) İletişimi"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:314
@@ -2648,7 +2648,7 @@ msgstr "DXCC İstisnaları:"
 
 #: application/controllers/Update.php:294
 msgid "Dxcc Prefixes:"
-msgstr ""
+msgstr "Dxcc Prefixleri:"
 
 #: application/controllers/Update.php:354
 msgid "SCP Update complete. Result: "
@@ -2712,7 +2712,7 @@ msgstr "LoTW SAT Güncellemesi"
 
 #: application/controllers/Update.php:487
 msgid "Update of Hams of Note"
-msgstr ""
+msgstr "Tanınmış Amatör Telsizciler Güncellemesi"
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:304
@@ -2721,7 +2721,7 @@ msgstr "Kullanıcı Hesapları"
 
 #: application/controllers/User.php:96
 msgid "Invalid User ID or missing modal!"
-msgstr ""
+msgstr "Geçersiz Kullanıcı ID’si veya eksik bilgi!"
 
 #: application/controllers/User.php:107
 msgid "User unlocked!"
@@ -3007,17 +3007,17 @@ msgstr "Uydu Gridsquare Haritası"
 #: application/controllers/Visitor.php:410
 #: application/views/stationsetup/stationsetup.php:38
 msgid "Public Search"
-msgstr ""
+msgstr "Genel Arama"
 
 #: application/controllers/Visitor.php:443
 msgid "Export Map"
-msgstr ""
+msgstr "Haritayı Dışa Aktar"
 
 #: application/controllers/Webadif.php:95
 #: application/controllers/Webadif.php:142
 #: application/views/interface_assets/header.php:498
 msgid "QO-100 Dx Club Upload"
-msgstr ""
+msgstr "QO-100 Dx Club'a Yükle"
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
@@ -3102,7 +3102,7 @@ msgstr ""
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
@@ -3112,7 +3112,7 @@ msgstr ""
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "Vilayet (Japonya!da)"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
@@ -3132,7 +3132,7 @@ msgstr "DME"
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "Şehir / İl / İlçe (Japonya'da)"
 
 #: application/models/Club_model.php:154
 msgid "Invalid Permission Level!"
@@ -3194,16 +3194,16 @@ msgstr "HRDlog: HRDlog Kimlik Bilgileriyle istasyon profili bulunamadı."
 
 #: application/models/Logbook_model.php:1292
 msgid "Station ID not allowed"
-msgstr ""
+msgstr "İstasyon ID’sine izin verilmiyor"
 
 #: application/models/Logbook_model.php:1297
 msgid "No Call given"
-msgstr ""
+msgstr "Çağrı işareti girilmedi"
 
 #: application/models/Logbook_model.php:1367
 #: application/models/Logbook_model.php:1541
 msgid "DXCC has to be Numeric"
-msgstr ""
+msgstr "DXCC sayısal olmalıdır"
 
 #: application/models/Logbook_model.php:4005
 #, php-format
@@ -3240,7 +3240,7 @@ msgstr "lotw_qslrdate geçersiz (YYYYAAGG)"
 
 #: application/models/Logbook_model.php:4438
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "lotw_qslsdate geçersiz (YYYYAAGG)"
 
 #: application/models/Logbook_model.php:4730
 #: application/views/simplefle/index.php:41
@@ -3261,22 +3261,22 @@ msgstr "Ödül yöneticisi tarafından onaylandı"
 
 #: application/models/Logbook_model.php:4805
 msgid "confirmed by cross-check of DCL data"
-msgstr ""
+msgstr "DCL verileri karşılaştırılarak onaylandı"
 
 #: application/models/Logbook_model.php:4808
 msgid "confirmation pending"
-msgstr ""
+msgstr "onay bekleniyor"
 
 #: application/models/Logbook_model.php:4811
 msgid "unconfirmed"
-msgstr ""
+msgstr "onaylanmamış"
 
 #: application/models/Logbook_model.php:4814
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
-msgstr ""
+msgstr "bilinmeyen"
 
 #: application/models/Logbook_model.php:5652
 #: application/views/activated_gridmap/index.php:110
@@ -3294,19 +3294,19 @@ msgstr ""
 
 #: application/models/Update_model.php:319
 msgid "Newer release available:"
-msgstr ""
+msgstr "Daha yeni sürüm mevcut:"
 
 #: application/models/Update_model.php:323
 msgid "You are running the latest version."
-msgstr ""
+msgstr "En son sürümü çalıştırıyorsun."
 
 #: application/models/Update_model.php:402
 msgid "cURL error:"
-msgstr ""
+msgstr "cURL hatası:"
 
 #: application/models/Update_model.php:437
 msgid "SAT already existing. LoTW status updated."
-msgstr ""
+msgstr "Uydu zaten mevcut. LoTW durumu güncellendi."
 
 #: application/models/Update_model.php:440
 #: application/models/Update_model.php:469
@@ -3318,51 +3318,51 @@ msgstr[1] ""
 
 #: application/models/Update_model.php:443
 msgid "SAT already existing. Updating LoTW status failed."
-msgstr ""
+msgstr "Uydu zaten mevcut. LoTW durumu güncellemesi başarısız oldu."
 
 #: application/models/Update_model.php:446
 msgid "SAT already existing. Ignored."
-msgstr ""
+msgstr "Uydu zaten mevcut. Yoksayıldı."
 
 #: application/models/Update_model.php:453
 msgid "SAT already existing. Display name updated."
-msgstr ""
+msgstr "Uydu zaten mevcut. Görüntülüme adı güncellendi."
 
 #: application/models/Update_model.php:455
 msgid "SAT already existing. Updating display name failed."
-msgstr ""
+msgstr "Uydu zaten mevcut. Görüntüleme adı güncellemesi başarısız oldu."
 
 #: application/models/Update_model.php:465
 msgid "New SAT. Inserted."
-msgstr ""
+msgstr "Yeni Uydu. Eklendi."
 
 #: application/models/Update_model.php:473
 msgid "New SAT. Insert failed."
-msgstr ""
+msgstr "Yeni Uydu. Ekleme başarısız oldu."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
-msgstr ""
+msgstr "Toplam çalışılan DXCC sayısı"
 
 #: application/views/accumulate/index.php:3
 msgid "Accumulated number of States worked"
-msgstr ""
+msgstr "Toplam çalışılan eyalet sayısı"
 
 #: application/views/accumulate/index.php:4
 msgid "Accumulated number of IOTAs worked"
-msgstr ""
+msgstr "Toplam çalışılan IOTA sayısı"
 
 #: application/views/accumulate/index.php:5
 msgid "Accumulated number of CQ Zones worked"
-msgstr ""
+msgstr "Toplam çalışılan CQ Bölgesi sayısı"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr ""
+msgstr "Toplam çalışılan VUCC Grid sayısı"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr ""
+msgstr "Toplam çalışılan WAJA sayısı"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:299
@@ -3379,7 +3379,7 @@ msgstr "Yıl"
 #: application/views/accumulate/index.php:67
 #: application/views/dayswithqso/index.php:15
 msgid "Yearly"
-msgstr ""
+msgstr "Yıllık"
 
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:304
@@ -3390,11 +3390,11 @@ msgstr "Ay"
 #: application/views/accumulate/index.php:11
 #: application/views/accumulate/index.php:73
 msgid "Monthly"
-msgstr ""
+msgstr "Aylık"
 
 #: application/views/accumulate/index.php:12
 msgid "Difference"
-msgstr ""
+msgstr "Fark"
 
 #: application/views/accumulate/index.php:24
 #: application/views/accumulate/index.php:34
@@ -3506,12 +3506,12 @@ msgstr ""
 #: application/views/user/edit.php:757
 #: application/views/visitor/layout/footer.php:172
 msgid "All"
-msgstr ""
+msgstr "Tüm"
 
 #: application/views/accumulate/index.php:50
 #: application/views/timeline/index.php:41
 msgid "Award"
-msgstr ""
+msgstr "Ödül"
 
 #: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
@@ -3531,7 +3531,7 @@ msgstr "Çalışılan TÜm Bölgler (WAZ)"
 #: application/views/accumulate/index.php:57
 #: application/views/timeline/index.php:48
 msgid "VHF / UHF Century Club (VUCC)"
-msgstr ""
+msgstr "VHF / UHF Century Club (VUCC)"
 
 #: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
@@ -3540,7 +3540,7 @@ msgstr ""
 
 #: application/views/accumulate/index.php:62
 msgid "Period"
-msgstr ""
+msgstr "Dönem"
 
 #: application/views/accumulate/index.php:80
 #: application/views/callstats/index.php:65
@@ -3554,13 +3554,13 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:21
 #: application/views/view_log/qso.php:230
 msgid "Propagation"
-msgstr ""
+msgstr "Propagasyon"
 
 #: application/views/accumulate/index.php:84
 #: application/views/distances/index.php:57
 #: application/views/timeline/index.php:83
 msgid "All but SAT"
-msgstr ""
+msgstr "Uydu hariç tümü"
 
 #: application/views/accumulate/index.php:85
 #: application/views/callstats/index.php:69
@@ -3571,7 +3571,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:389
 #: application/views/timeline/index.php:84
 msgid "None/Empty"
-msgstr ""
+msgstr "Yok/Boş"
 
 #: application/views/accumulate/index.php:86
 #: application/views/callstats/index.php:71 application/views/csv/index.php:95
@@ -3585,7 +3585,7 @@ msgstr ""
 #: application/views/view_log/qso.php:233
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr ""
+msgstr "Uçak Yansıması İletişimi"
 
 #: application/views/accumulate/index.php:87
 #: application/views/callstats/index.php:72 application/views/csv/index.php:96
@@ -3599,7 +3599,7 @@ msgstr ""
 #: application/views/view_log/qso.php:236
 msgctxt "Propagation Mode"
 msgid "Aurora"
-msgstr ""
+msgstr "Kutup Işıkları (Aurora) Yansımalı İletişim"
 
 #: application/views/accumulate/index.php:88
 #: application/views/callstats/index.php:73 application/views/csv/index.php:97
@@ -3613,7 +3613,7 @@ msgstr ""
 #: application/views/view_log/qso.php:239
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
-msgstr ""
+msgstr "Aurora-E İletişimi"
 
 #: application/views/accumulate/index.php:89
 #: application/views/callstats/index.php:74 application/views/csv/index.php:98
@@ -3627,7 +3627,7 @@ msgstr ""
 #: application/views/view_log/qso.php:242
 msgctxt "Propagation Mode"
 msgid "Back scatter"
-msgstr ""
+msgstr "Yansımalı (Back scatter) İletişim"
 
 #: application/views/accumulate/index.php:90
 #: application/views/callstats/index.php:75 application/views/csv/index.php:99
@@ -3641,7 +3641,7 @@ msgstr ""
 #: application/views/view_log/qso.php:245
 msgctxt "Propagation Mode"
 msgid "EchoLink"
-msgstr ""
+msgstr "EchoLink"
 
 #: application/views/accumulate/index.php:91
 #: application/views/callstats/index.php:76 application/views/csv/index.php:100
@@ -3655,7 +3655,7 @@ msgstr ""
 #: application/views/view_log/qso.php:248
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr ""
+msgstr "Dünya-Ay-Dünya"
 
 #: application/views/accumulate/index.php:92
 #: application/views/callstats/index.php:77 application/views/csv/index.php:101
@@ -3669,7 +3669,7 @@ msgstr ""
 #: application/views/view_log/qso.php:251
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
-msgstr ""
+msgstr "Geçici E-Tabakası (Sporadic E) Yansıması"
 
 #: application/views/accumulate/index.php:93
 #: application/views/callstats/index.php:78 application/views/csv/index.php:102
@@ -3683,7 +3683,7 @@ msgstr ""
 #: application/views/view_log/qso.php:254
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
-msgstr ""
+msgstr "Manyetik Alan Hizalanmış Düzensizlikler (FAI) İletişimi"
 
 #: application/views/accumulate/index.php:94
 #: application/views/callstats/index.php:79 application/views/csv/index.php:103
@@ -3697,7 +3697,7 @@ msgstr ""
 #: application/views/view_log/qso.php:257
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr ""
+msgstr "F2 Yansıtmalı İletişim"
 
 #: application/views/accumulate/index.php:95
 #: application/views/callstats/index.php:80 application/views/csv/index.php:104
@@ -3711,7 +3711,7 @@ msgstr ""
 #: application/views/view_log/qso.php:260
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr ""
+msgstr "İnternet-destekli"
 
 #: application/views/accumulate/index.php:96
 #: application/views/callstats/index.php:81 application/views/csv/index.php:105
@@ -3725,7 +3725,7 @@ msgstr ""
 #: application/views/view_log/qso.php:263
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "İyonosferik Saçılma (Ionoscatter) İletişimi"
 
 #: application/views/accumulate/index.php:97
 #: application/views/callstats/index.php:82 application/views/csv/index.php:106
@@ -3739,7 +3739,7 @@ msgstr ""
 #: application/views/view_log/qso.php:266
 msgctxt "Propagation Mode"
 msgid "IRLP"
-msgstr ""
+msgstr "İnternet Tabanlı Radyo Bağlantısı (IRLP)"
 
 #: application/views/accumulate/index.php:98
 #: application/views/callstats/index.php:83 application/views/csv/index.php:107
@@ -3753,7 +3753,7 @@ msgstr ""
 #: application/views/view_log/qso.php:269
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
-msgstr ""
+msgstr "Meteor Yansıması İletişimi"
 
 #: application/views/accumulate/index.php:99
 #: application/views/callstats/index.php:84 application/views/csv/index.php:108
@@ -3767,7 +3767,7 @@ msgstr ""
 #: application/views/view_log/qso.php:272
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "Röle/Aktarıcı Üzerinden İletişim"
 
 #: application/views/accumulate/index.php:100
 #: application/views/callstats/index.php:85 application/views/csv/index.php:109
@@ -3781,7 +3781,7 @@ msgstr ""
 #: application/views/view_log/qso.php:275
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
-msgstr ""
+msgstr "Yağmur Yansıması İletişimi"
 
 #: application/views/accumulate/index.php:101
 #: application/views/callstats/index.php:86 application/views/csv/index.php:110
@@ -3809,7 +3809,7 @@ msgstr "Uydu"
 #: application/views/view_log/qso.php:281
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Ekvator Ötesi Yansımalı İletişim"
 
 #: application/views/accumulate/index.php:103
 #: application/views/callstats/index.php:88 application/views/csv/index.php:112
@@ -3823,7 +3823,7 @@ msgstr ""
 #: application/views/view_log/qso.php:284
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
-msgstr ""
+msgstr "Troposfer Kanal İletişimi"
 
 #: application/views/accumulate/index.php:112
 #: application/views/activators/index.php:53
@@ -3859,7 +3859,7 @@ msgstr ""
 #: application/views/timeline/index.php:370
 #: application/views/timeplotter/index.php:59
 msgid "Show"
-msgstr ""
+msgstr "Göster"
 
 #: application/views/activated_gridmap/index.php:20
 #: application/views/awards/dxcc/index.php:132
@@ -3901,14 +3901,14 @@ msgstr "Uydu"
 #: application/views/statistics/antennaanalytics.php:60
 #: application/views/statistics/antennaanalytics.php:98
 msgid "Orbit"
-msgstr ""
+msgstr "Yörünge"
 
 #: application/views/activated_gridmap/index.php:50
 #: application/views/awards/wab/index.php:65
 #: application/views/gridmap/index.php:92
 #: application/views/timeline/index.php:52
 msgid "Confirmation"
-msgstr ""
+msgstr "Onay"
 
 #: application/views/activated_gridmap/index.php:82
 #: application/views/awards/cq/index.php:69
@@ -3928,17 +3928,17 @@ msgstr ""
 #: application/views/awards/was/index.php:68
 #: application/views/gridmap/index.php:125 application/views/user/edit.php:799
 msgid "QRZ.com"
-msgstr ""
+msgstr "QRZ.com"
 
 #: application/views/activated_gridmap/index.php:86
 #: application/views/gridmap/index.php:130
 msgid "Plot"
-msgstr ""
+msgstr "Grafik"
 
 #: application/views/activated_gridmap/index.php:87
 #: application/views/gridmap/index.php:131
 msgid "Clear Markers"
-msgstr ""
+msgstr "İşaretleri Temizle"
 
 #: application/views/activated_gridmap/index.php:102
 #: application/views/awards/ffma/index.php:31
@@ -3946,7 +3946,7 @@ msgstr ""
 #: application/views/gridmap/index.php:148
 #: application/views/logbookadvanced/index.php:10
 msgid "Latitude"
-msgstr ""
+msgstr "Enlem"
 
 #: application/views/activated_gridmap/index.php:104
 #: application/views/awards/ffma/index.php:33
@@ -3954,12 +3954,12 @@ msgstr ""
 #: application/views/gridmap/index.php:150
 #: application/views/logbookadvanced/index.php:11
 msgid "Longitude"
-msgstr ""
+msgstr "Boylam"
 
 #: application/views/activators/index.php:26
 msgctxt "Orbiter LEO or GEO"
 msgid "Both"
-msgstr ""
+msgstr "Her ikisi de"
 
 #: application/views/activators/index.php:33
 #: application/views/callstats/index.php:92
@@ -3996,7 +3996,7 @@ msgstr ""
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
 msgid "Nothing found!"
-msgstr ""
+msgstr "Hiçbir şey bulunamadı!"
 
 #: application/views/activators/index.php:98
 #: application/views/adif/import.php:78 application/views/adif/import.php:234
@@ -4059,50 +4059,50 @@ msgstr ""
 #: application/views/timeline/index.php:328
 #: application/views/timeline/index.php:357
 msgid "Show QSOs"
-msgstr ""
+msgstr "QSO'ları göster"
 
 #: application/views/activators/index.php:102
 msgid "Show Map"
-msgstr ""
+msgstr "Haritayı Göster"
 
 #: application/views/adif/dcl_success.php:12
 msgid "Results of DCL DOK Update"
-msgstr ""
+msgstr "DCL DOK Güncelleme Sonuçları"
 
 #: application/views/adif/dcl_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
-msgstr ""
+msgstr "Oley, güncellendi!"
 
 #: application/views/adif/dcl_success.php:17
 msgid "DCL information for DOKs has been updated."
-msgstr ""
+msgstr "DOK’lar için DCL bilgileri güncellendi."
 
 #: application/views/adif/dcl_success.php:19
 msgid "No QSOs found which could be updated."
-msgstr ""
+msgstr "Güncellenebilecek QSO bulunamadı."
 
 #: application/views/adif/dcl_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs ignored"
-msgstr ""
+msgstr "QSO'lar göz ardı edildi"
 
 #: application/views/adif/dcl_success.php:22
 msgid "QSOs unmatched"
-msgstr ""
+msgstr "Eşleşmeyen QSO’lar"
 
 #: application/views/adif/dcl_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs updated"
-msgstr ""
+msgstr "Güncellenen QSO’lar"
 
 #: application/views/adif/dcl_success.php:25
 msgid "DOK Errors"
-msgstr ""
+msgstr "DOK Hataları"
 
 #: application/views/adif/dcl_success.php:26
 msgid "There is different data for DOK in your log compared to DCL"
-msgstr ""
+msgstr "Logunuzdaki DOK ile DCL’deki DOK farklı"
 
 #: application/views/adif/dcl_success.php:29
 #: application/views/awards/73on73/index.php:33
@@ -4203,15 +4203,15 @@ msgstr "Çağrı"
 
 #: application/views/adif/dcl_success.php:34
 msgid "DOK in Log"
-msgstr ""
+msgstr "Logdaki DOK"
 
 #: application/views/adif/dcl_success.php:35
 msgid "DOK in DCL"
-msgstr ""
+msgstr "DCL’deki DOK"
 
 #: application/views/adif/dcl_success.php:36
 msgid "DCL QSL Status"
-msgstr ""
+msgstr "DCL QSL Durumu"
 
 #: application/views/adif/import.php:24
 msgid "ADIF Export"
@@ -4219,11 +4219,11 @@ msgstr "ADIF Dışa Aktarma"
 
 #: application/views/adif/import.php:36 application/views/adif/import.php:324
 msgid "DARC DCL"
-msgstr ""
+msgstr "DARC DCL"
 
 #: application/views/adif/import.php:45
 msgid "CBR Import"
-msgstr ""
+msgstr "CBR İçe Aktar"
 
 #: application/views/adif/import.php:64 application/views/adif/import.php:371
 #: application/views/api/index.php:22 application/views/dashboard/index.php:172
@@ -4237,11 +4237,11 @@ msgstr "Önemli"
 
 #: application/views/adif/import.php:64
 msgid "Log Files must have the file type *.adi"
-msgstr ""
+msgstr "Log dosyalarının dosya türü \\*.adi olmalıdır"
 
 #: application/views/adif/import.php:65 application/views/view_log/qso.php:771
 msgid "Maximum file upload size is "
-msgstr ""
+msgstr "Maksimum dosya yükleme boyutu şudur. "
 
 #: application/views/adif/import.php:65 application/views/adif/import.php:301
 #: application/views/adif/import.php:340
@@ -4256,7 +4256,7 @@ msgstr ""
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
 msgid "Warning"
-msgstr ""
+msgstr "Uyarı"
 
 #: application/views/adif/import.php:72 application/views/adif/import.php:74
 #: application/views/adif/import.php:226 application/views/adif/import.php:296
@@ -4264,38 +4264,40 @@ msgstr ""
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
 msgid "Select Station Location"
-msgstr ""
+msgstr "İstasyon Konumunu Seç"
 
 #: application/views/adif/import.php:82
 msgid "Choose ADIF File"
-msgstr ""
+msgstr "ADIF Dosyasını Seç"
 
 #: application/views/adif/import.php:88
 msgid "Add QSOs to Contest"
-msgstr ""
+msgstr "Yarışmaya QSO ekle"
 
 #: application/views/adif/import.php:90 application/views/adif/import.php:378
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
-msgstr ""
+msgstr "Yarışma Yok"
 
 #: application/views/adif/import.php:100
 msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
 msgstr ""
+"İçe aktarılan QSO’ların operatör çağrı işaretini yazın. ADIF dosyasındaki "
+"operatör çağrı işaretini kullanmak için boş bırakın."
 
 #: application/views/adif/import.php:108
 msgid "Basic Settings"
-msgstr ""
+msgstr "Temel Ayarlar"
 
 #: application/views/adif/import.php:115
 msgid "Import duplicate QSOs"
-msgstr ""
+msgstr "Yinelenen QSO'ları dahil et"
 
 #: application/views/adif/import.php:117
 msgid "Select if want to import QSOs, even if they already exist."
-msgstr ""
+msgstr "QSO’lar zaten mevcut olsa bile içe aktarmak istiyorsanız seçin."
 
 #: application/views/adif/import.php:122
 msgid "Use DXCC information from ADIF"
@@ -4318,7 +4320,7 @@ msgstr "TEHLİKE"
 
 #: application/views/adif/import.php:132
 msgid "Ignore Station callsign on import"
-msgstr ""
+msgstr "İçe aktarım sırasında istasyon çağrı işaretini yoksay"
 
 #: application/views/adif/import.php:134
 #, php-format
@@ -4326,6 +4328,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Seçili ise, Wavelog ADIF’den seçilen istasyon konumuyla eşleşip "
+"eşleşmediğine bakılmaksızın %s tüm %s QSO’ları içe aktarmaya çalışacaktır."
 
 #: application/views/adif/import.php:141
 msgid ""
@@ -4337,32 +4341,34 @@ msgstr ""
 #: application/views/adif/import.php:151
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
+"QSO’ları yüklenmiş olarak işaretle (İşaretlnen QSO’lar üçüncü taraf "
+"servislere YÜKLEMEZ!)"
 
 #: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
-msgstr ""
+msgstr "İçe aktarılan QSO’ları LoTW’ye yüklenmiş olarak işaretle"
 
 #: application/views/adif/import.php:160 application/views/adif/import.php:168
 #: application/views/adif/import.php:178 application/views/adif/import.php:186
 #: application/views/adif/import.php:196 application/views/adif/import.php:204
 msgid "Select if ADIF being imported does not contain this information."
-msgstr ""
+msgstr "İçe aktarılan ADIF bu bilgiyi içermiyorsa seçin."
 
 #: application/views/adif/import.php:166
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
-msgstr ""
+msgstr "İçe aktarılan QSO’ları eQSL Logbook’a yüklenmiş olarak işaretle"
 
 #: application/views/adif/import.php:176
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
-msgstr ""
+msgstr "İçe aktarılan QSO’ları HRDLog.net Logbook’a yüklenmiş olarak işaretle"
 
 #: application/views/adif/import.php:184
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
-msgstr ""
+msgstr "İçe aktarılan QSO’ları QRZ Logbook’a yüklenmiş olarak işaretle"
 
 #: application/views/adif/import.php:194
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
-msgstr ""
+msgstr "İçe aktarılan QSO’ları Clublog Logbook’a yüklenmiş olarak işaretle"
 
 #: application/views/adif/import.php:202
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
@@ -4370,7 +4376,7 @@ msgstr "İçe aktarılan QSO'ları DCL Logbook'a yüklenmiş olarak işaretleyin
 
 #: application/views/adif/import.php:207
 msgid "Toggle all checkboxes"
-msgstr ""
+msgstr "Tüm onay kutularını değiştir"
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -4399,6 +4405,8 @@ msgid ""
 "If you need more filtering, you can use %sthe Advanced Logbook%s to filter "
 "and export!"
 msgstr ""
+"Daha fazla filtrelemeye ihtiyacınız varsa, filtrelemek ve dışa aktarmak için "
+"%sGelişmiş Günlük Defteri%s'ni kullanabilirsiniz!"
 
 #: application/views/adif/import.php:245 application/views/adif/import.php:303
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
@@ -4420,7 +4428,7 @@ msgstr "Bugüne kadar"
 
 #: application/views/adif/import.php:260
 msgid "Export options"
-msgstr ""
+msgstr "Dışa aktarma seçenekleri"
 
 #: application/views/adif/import.php:267
 msgid "Mark exported QSOs as uploaded to LoTW"
@@ -4432,7 +4440,7 @@ msgstr "LoTW'ye yüklenmeyen QSO'ları dışa aktarın"
 
 #: application/views/adif/import.php:282
 msgid "Export QSOs"
-msgstr ""
+msgstr "QSO'ları dışa aktar"
 
 #: application/views/adif/import.php:287
 msgid "Export Satellite-Only QSOs"
@@ -4453,7 +4461,7 @@ msgstr "Bir tarih aralığı seçilmezse, tüm QSO'lar işaretlenecektir!"
 
 #: application/views/adif/import.php:309
 msgid "Mark QSOs as exported to LoTW"
-msgstr ""
+msgstr "QSO'ları LoTW'ye aktarılmış olarak işaretle"
 
 #: application/views/adif/import.php:324
 #, php-format
@@ -8429,7 +8437,7 @@ msgstr "TLE Güncelle"
 
 #: application/views/debug/index.php:563
 msgid "Hams Of Note update"
-msgstr "Hams Of Note'u Güncelle"
+msgstr "Tanınmış Amatör Telsizciler'i Güncelle"
 
 #: application/views/debug/index.php:572
 msgid "QSO-DB Maintenance"
@@ -9623,7 +9631,7 @@ msgstr "Forum"
 #: application/views/interface_assets/header.php:515
 #, php-format
 msgid "Stop impersonate and switch back to %s"
-msgstr "Taklit etmeyi durdur ve tekrar %s olarak devam et"
+msgstr "Temsil etmeyi durdur ve tekrar %s olarak devam et"
 
 #: application/views/interface_assets/header.php:516
 #, php-format
@@ -11173,7 +11181,7 @@ msgstr ""
 
 #: application/views/options/hon.php:38
 msgid "Provider for Hams Of Note"
-msgstr ""
+msgstr "Tanınmış Amatör Telsizciler için Sağlayıcı"
 
 #: application/views/options/hon.php:39
 #, php-format
@@ -11181,6 +11189,8 @@ msgid ""
 "The URL which provides the Hams Of Note List. See example and how it works "
 "here %s"
 msgstr ""
+"Tanınmış Amatör Telsizciler Listesini sağlayan URL. Örneği ve nasıl "
+"çalıştığını buradan görebilirsiniz %s"
 
 #: application/views/options/hon.php:39
 msgid "Wiki"
@@ -11189,7 +11199,7 @@ msgstr "Wiki"
 #: application/views/options/hon.php:41
 #, php-format
 msgid "URL of the Hams Of Note List. e.g. %s"
-msgstr ""
+msgstr "Tanınmış Amatör Telsizciler Listesinin URL’si. Örn. %s"
 
 #: application/views/options/index.php:13
 msgid ""
