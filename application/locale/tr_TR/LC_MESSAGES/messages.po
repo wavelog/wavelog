@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-04 13:35+0000\n"
+"PO-Revision-Date: 2025-09-04 15:45+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -13665,7 +13665,7 @@ msgstr ""
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
-msgstr ""
+msgstr "# Gösterilen QSO'lar"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
@@ -13673,20 +13673,20 @@ msgstr ""
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
-msgstr ""
+msgstr "Mevcut İstasyon Konumlarını Seç"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr ""
+msgstr "Konumla İlişkilendir"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:125
 msgid "Profile Name"
-msgstr ""
+msgstr "Profil Adı"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr ""
+msgstr "İstasyon Konumunun Bağlantısını Kaldır"
 
 #: application/views/stationsetup/stationsetup.php:24
 msgid ""
@@ -13695,6 +13695,12 @@ msgid ""
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
 msgstr ""
+"İstasyon Log Defterleri, İstasyon Konumlarını gruplamanıza olanak tanır. Bu "
+"özellik, log defteri alanlarından analizlere kadar tüm konumları tek bir "
+"oturumda görmenizi sağlar. Özellikle birden fazla konumda çalıştığınızda, "
+"ancak bu konumlar aynı DXCC veya VUCC Çevresi'ne ait olduğunda oldukça "
+"kullanışlıdır. Bu sayede tüm konumlarınızı daha kolay bir şekilde takip "
+"edebilir ve analiz edebilirsiniz."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
@@ -13702,77 +13708,89 @@ msgstr "Bağlı Lokasyonları Düzenle"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
-msgstr ""
+msgstr "Ziyaretçi Sitesi"
 
 #: application/views/stationsetup/stationsetup.php:94
 msgid "Station Locations"
-msgstr ""
+msgstr "İstasyon Konumları"
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
 msgstr ""
+"İstasyon Konumları, çalışma konumlarını tanımlar; örneğin kendi QTH'niz, bir "
+"arkadaşınızın QTH'si veya taşınabilir bir istasyon."
 
 #: application/views/stationsetup/stationsetup.php:99
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
 msgstr ""
+"Log defterlerine benzer şekilde, bir istasyon profili bir dizi QSO'yu bir "
+"arada tutar."
 
 #: application/views/stationsetup/stationsetup.php:100
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
 msgstr ""
+"Sadece bir istasyon aynı anda aktif olabilir. Aşağıdaki tabloda bu durum, "
+"\"-Aktif İstasyon-\" rozetiyle gösterilmektedir."
 
 #: application/views/stationsetup/stationsetup.php:101
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr ""
+"\"Bağlı\" sütunu, istasyon konumunun yukarıda seçilen Aktif Log Defteri ile "
+"ilişkilendirilip ilişkilendirilmediğini gösterir."
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Create a Station Location"
-msgstr ""
+msgstr "Bir İstasyon Konumu Oluşturun"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show all locations"
-msgstr ""
+msgstr "Tüm konumları göster"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show only locations from the active logbook"
-msgstr ""
+msgstr "Sadece aktif log defterindeki konumları göster"
 
 #: application/views/stationsetup/stationsetup.php:108
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
+"Dikkat: Aktif bir istasyon konumu belirlemeniz gerekmektedir. Birini seçmek "
+"için Çağrı İşareti->İstasyon Konumu bölümüne gidin."
 
 #: application/views/stationsetup/stationsetup.php:114
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
 msgstr ""
+"Wavelog'daki son değişiklikler nedeniyle, QSOs'ları istasyon profillerinize "
+"yeniden atamanız gerekmektedir."
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Maintenance"
-msgstr ""
+msgstr "Bakım"
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Please reassign them at "
-msgstr ""
+msgstr "Lütfen bunları yeniden atayın. "
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"
-msgstr ""
+msgstr "Bağlı"
 
 #: application/views/stationsetup/stationsetup.php:138
 msgid "Favorite"
-msgstr ""
+msgstr "Favori"
 
 #: application/views/stationsetup/stationsetup.php:185
 msgid "mark/unmark as favorite"
-msgstr ""
+msgstr "Favori olarak işaretle / Favori olmaktan çıkar"
 
 #: application/views/stationsetup/visitor.php:2
 msgid ""
@@ -13784,7 +13802,7 @@ msgstr ""
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
-msgstr ""
+msgstr "Sonrasında şu şekilde görünür:"
 
 #: application/views/stationsetup/visitor.php:4
 msgid "[your slug]"
@@ -13796,88 +13814,90 @@ msgstr "Paylaşılacak Sayfa Adını Girin"
 
 #: application/views/stationsetup/visitor.php:17
 msgid "Visit Public Page"
-msgstr ""
+msgstr "Ziyaretçi Sayfasına Git"
 
 #: application/views/statistics/antennaanalytics.php:11
 msgid "Elevation"
-msgstr ""
+msgstr "Yükseklik"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:61
 msgid "Years"
-msgstr ""
+msgstr "Yıl"
 
 #: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
-msgstr ""
+msgstr "Her yıl yapılan QSO sayısı"
 
 #: application/views/statistics/index.php:31
 msgid "Explore the logbook."
-msgstr ""
+msgstr "Log defterini inceleyin."
 
 #: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
 msgid "All Years"
-msgstr ""
+msgstr "Tüm Yıllar"
 
 #: application/views/statistics/index.php:76
 #: application/views/statistics/index.php:117
 msgid "Unique callsigns"
-msgstr ""
+msgstr "Benzersiz çağrı işaretleri"
 
 #: application/views/statistics/index.php:120
 msgid "Unique Grids"
-msgstr ""
+msgstr "Benzersiz Gridler"
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
-msgstr ""
+msgstr "Dünya Ay Dünya (EME) QSO'ları bulunamadı."
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
-msgstr ""
+msgstr "Tema Adı"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr ""
+msgstr "Bu, temalar listesinde temayı görüntülemek için kullanılan isimdir."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
-msgstr ""
+msgstr "Klasör Adı"
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
 msgstr ""
+"Bu, CSS dosyalarınızın assets/css klasörlerinin üstünde yer aldığı klasörün "
+"adıdır."
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
 msgid "Theme Mode"
-msgstr ""
+msgstr "Tema Modu"
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
 msgid "Light"
-msgstr ""
+msgstr "Açık"
 
 #: application/views/themes/add.php:19 application/views/themes/edit.php:19
 msgid "Dark"
-msgstr ""
+msgstr "Koyu"
 
 #: application/views/themes/add.php:21
 msgid "This defines wherever the theme is a light or a dark one."
-msgstr ""
+msgstr "Bu, temanın açık mı yoksa koyu mu olduğunu tanımlar."
 
 #: application/views/themes/add.php:25 application/views/themes/edit.php:25
 #: application/views/themes/index.php:85
 msgid "Header Logo"
-msgstr ""
+msgstr "Başlık Logosu"
 
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
 msgid "Only PNG files with a size ratio of 1:1 are allowed."
-msgstr ""
+msgstr "Sadece 1:1 boyut oranına sahip PNG dosyalarına izin verilir."
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
 #, php-format
@@ -13889,7 +13909,7 @@ msgstr ""
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
 msgid "Main Logo"
-msgstr ""
+msgstr "Ana Logo"
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
 #, php-format
@@ -13900,21 +13920,22 @@ msgstr ""
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
-msgstr ""
+msgstr "Tema ekle"
 
 #: application/views/themes/edit.php:21
 msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
 msgstr ""
+"Bu, temanın açık mı yoksa koyu mu olduğunu tanımlar. Buna göre logo seçilir."
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
-msgstr ""
+msgstr "Temayı güncelle"
 
 #: application/views/themes/index.php:22
 msgid "Themes list"
-msgstr ""
+msgstr "Tema listesi"
 
 #: application/views/themes/index.php:28
 msgid ""
@@ -13922,10 +13943,14 @@ msgid ""
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
 msgstr ""
+"Bu menüde, Wavelog'a tema ekleyebilir ve mevcut temaları "
+"düzenleyebilirsiniz. Tema ekleme işlemi koaly bir işlem değildir ve yalnızca "
+"yaptığı işlemlerden haberdar olan bir yönetici tarafından yapılmalıdır."
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
 msgstr ""
+"Ayrıca, bu özelliğin hâlâ geliştirilme aşamasında olduğunu belirtmek gerekir."
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
@@ -13933,7 +13958,7 @@ msgstr ""
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
-msgstr ""
+msgstr "1. Adım"
 
 #: application/views/themes/index.php:44
 #, php-format
@@ -13944,7 +13969,7 @@ msgstr ""
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
-msgstr ""
+msgstr "2. Adım"
 
 #: application/views/themes/index.php:53
 msgid ""
@@ -13954,27 +13979,31 @@ msgstr ""
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
-msgstr ""
+msgstr "3. Adım"
 
 #: application/views/themes/index.php:62
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
 msgstr ""
+"Her yeni tema için iki logo dosyasına ihtiyacınız vardır. Biri giriş ekranı "
+"için, diğeri ise başlık için."
 
 #: application/views/themes/index.php:63
 msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
+"Yalnızca PNG dosyalarına izin verilir ve bunlar 1:1 piksel oranına sahip "
+"olmalıdır (örneğin, 1000px yükseklik ve 1000px genişlik)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr ""
+msgstr "İki logo dosyasını 'assets/logo/' klasörüne yerleştirin"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
-msgstr ""
+msgstr "4. Adım"
 
 #: application/views/themes/index.php:73
 #, php-format
@@ -14462,20 +14491,22 @@ msgstr ""
 
 #: application/views/user/edit.php:686
 msgid "Online QSL request (OQRS) settings"
-msgstr ""
+msgstr "Çevrimiçi QSL talep (OQRS) ayarları"
 
 #: application/views/user/edit.php:690
 msgid "Global text"
-msgstr ""
+msgstr "Global metin"
 
 #: application/views/user/edit.php:692
 msgid ""
 "This text is an optional text that can be displayed on top of the OQRS page."
 msgstr ""
+"Bu metin, OQRS sayfasının üst kısmında görüntülenebilecek isteğe bağlı bir "
+"metindir."
 
 #: application/views/user/edit.php:695
 msgid "Grouped search"
-msgstr ""
+msgstr "Gruplandırılmış arama"
 
 #: application/views/user/edit.php:697 application/views/user/edit.php:706
 #: application/views/user/edit.php:715 application/views/user/edit.php:724
@@ -14492,86 +14523,95 @@ msgid ""
 "When this is on, all station locations with OQRS active, will be searched at "
 "once."
 msgstr ""
+"Bu özellik açık olduğunda, OQRS aktif olan tüm istasyon konumları aynı anda "
+"aranacaktır."
 
 #: application/views/user/edit.php:704
 msgid "Show station location name in grouped search results"
-msgstr ""
+msgstr "Gruplandırılmış arama sonuçlarında istasyon konumu adını göster"
 
 #: application/views/user/edit.php:709
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
 msgstr ""
+"Gruplandırılmış arama açık olduğunda, istasyon konumu adının sonuçlar "
+"tablosunda gösterilip gösterilmeyeceğine karar verebilirsiniz."
 
 #: application/views/user/edit.php:713
 msgid "Automatic OQRS matching"
-msgstr ""
+msgstr "Otomatik OQRS eşleştirmesi"
 
 #: application/views/user/edit.php:718
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Bu açık olduğunda, otomatik OQRS eşleştirmesi yapılacak ve sistem, gelen "
+"talepleri mevcut loglarla otomatik olarak eşleştirmeye çalışacaktır."
 
 #: application/views/user/edit.php:722
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Gönderim (Direkt) talepler için otomatik OQRS eşleştirmesi"
 
 #: application/views/user/edit.php:727
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"Bu açık olduğunda, direkt gönderim metodu ile gelen talepler için otomatik "
+"OQRS eşleştirmesi yapılacaktır."
 
 #: application/views/user/edit.php:743
 msgid "Default Values"
-msgstr ""
+msgstr "Varsayılan Değerler"
 
 #: application/views/user/edit.php:751
 msgid "Settings for Default Band and Confirmation"
-msgstr ""
+msgstr "Varsayılan Bant ve Onay Ayarları"
 
 #: application/views/user/edit.php:754
 msgid "Default Band"
-msgstr ""
+msgstr "Varsayılan Bant"
 
 #: application/views/user/edit.php:764
 msgid "Default QSL-Methods"
-msgstr ""
+msgstr "Varsayılan QSL Yöntemleri"
 
 #: application/views/user/edit.php:821
 msgid "Third Party Services"
-msgstr ""
+msgstr "Üçüncü Taraf Hizmetler"
 
 #: application/views/user/edit.php:832
 msgid "Logbook of The World (LoTW) Username"
-msgstr ""
+msgstr "Logbook of The World (LoTW) Kullanıcı Adı"
 
 #: application/views/user/edit.php:838
 msgid "Logbook of The World (LoTW) Password"
-msgstr ""
+msgstr "Logbook of The World (LoTW) Şifresi"
 
 #: application/views/user/edit.php:842
 msgid "Test Login"
-msgstr ""
+msgstr "Bağlantıyı Test Et"
 
 #: application/views/user/edit.php:860
 msgid "eQSL.cc Username"
-msgstr ""
+msgstr "eQSL.cc Kullanıcı Adı"
 
 #: application/views/user/edit.php:866
 msgid "eQSL.cc Password"
-msgstr ""
+msgstr "eQSL.cc Şifre"
 
 #: application/views/user/edit.php:883
+#, fuzzy
 msgid "Club Log"
-msgstr ""
+msgstr "Club Log"
 
 #: application/views/user/edit.php:886
 msgid "Club Log Email/Callsign"
-msgstr ""
+msgstr "Club Log E-Mail/Çağrı İşareti"
 
 #: application/views/user/edit.php:892
 msgid "Club Log Password"
-msgstr ""
+msgstr "Club Log Şifre"
 
 #: application/views/user/edit.php:897
 #, php-format
@@ -14579,10 +14619,13 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Eğer Clublog'da 2FA (iki faktörlü kimlik doğrulama) etkinse, Wavelog'da "
+"Clublog'u kullanabilmek için bir Uygulama Şifresi oluşturmanız gerekir. Bunu "
+"yapmak için %sclublog ayarları sayfanızı%s ziyaret edin."
 
 #: application/views/user/edit.php:914
 msgid "Widgets"
-msgstr ""
+msgstr "Araçlar"
 
 #: application/views/user/edit.php:922
 msgid "On-Air widget"
