@@ -42,7 +42,7 @@ class Dcl extends CI_Controller {
 			$this->load->view('dcl_views/key_import',$data);
 			$this->load->view('interface_assets/footer');
 		} else {
-			redirect('https://dings.dcl.darc.de/token?wohin='.site_url().'/dcl/key_import');
+			redirect('https://api.dcl.darc.de/api/v1/get-token?wohin='.site_url().'/dcl/key_import');
 		}
 	}
 
@@ -150,7 +150,7 @@ class Dcl extends CI_Controller {
 				$data['qsos']='';
 				
 				//The URL that accepts the file upload.
-				$url = 'https://dings.dcl.darc.de/api/adiImport'; // todo: change to final URL b4 release
+				$url = 'https://api.dcl.darc.de/api/v1/adif-import'; // todo: change to final URL b4 release
 
 				//Initiate cURL
 				$ch = curl_init();
