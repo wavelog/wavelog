@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-04 15:45+0000\n"
+"PO-Revision-Date: 2025-09-04 16:19+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -10949,11 +10949,11 @@ msgstr ""
 
 #: application/views/mode/index.php:41 application/views/usermode/index.php:39
 msgid "Sub-Mode"
-msgstr ""
+msgstr "Alt mod"
 
 #: application/views/mode/index.php:88
 msgid "Create a Mode"
-msgstr ""
+msgstr "Bir Mod Oluştur"
 
 #: application/views/notes/add.php:6 application/views/notes/add.php:12
 #: application/views/notes/edit.php:13 application/views/notes/main.php:11
@@ -11010,19 +11010,21 @@ msgid ""
 "Please provide your personal call sign. This makes sure that QSOs are logged "
 "and exported with correct operator information."
 msgstr ""
+"Lütfen kişisel çağrı işaretinizi girin. Bu, QSO'ların doğru operatör "
+"bilgisiyle kaydedilmesini ve dışa aktarılmasını sağlar."
 
 #: application/views/operator/index.php:13
 msgid "Your personal Callsign:"
-msgstr ""
+msgstr "Kişisel Çağrı İşaretiniz:"
 
 #: application/views/operator/index.php:16
 msgid "You have to provide your personal callsign."
-msgstr ""
+msgstr "Kendi kişisel çağrı işaretinizi sağlamanız gerekiyor."
 
 #: application/views/options/appearance.php:39
 #: application/views/user/edit.php:171
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: application/views/options/appearance.php:51
 msgid "Global Theme Choice, this is used when users arent logged in."
@@ -11030,11 +11032,11 @@ msgstr ""
 
 #: application/views/options/appearance.php:61
 msgid "Logbook Map"
-msgstr ""
+msgstr "Log Defteri Haritası"
 
 #: application/views/options/appearance.php:66
 msgid "This allows to disable the map in the logbook."
-msgstr ""
+msgstr "Bu, log defterindeki haritayı devre dışı bırakmanıza olanak tanır."
 
 #: application/views/options/appearance.php:70
 msgid "Public Maps"
@@ -11045,6 +11047,8 @@ msgid ""
 "This allows to disable all maps in the public view. This affects the main "
 "map and the gridsquares map."
 msgstr ""
+"Bu, ziyareçi sayfasındaki tüm haritaları devre dışı bırakmanıza olanak "
+"tanır. Bu, ana harita ve grid haritasını etkiler."
 
 #: application/views/options/appearance.php:79
 msgid "Public Github Button"
@@ -11064,11 +11068,11 @@ msgstr ""
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
-msgstr ""
+msgstr "DXClusterCache Sağlayıcısı"
 
 #: application/views/options/dxcluster.php:39
 msgid "DXClusterAPI"
-msgstr ""
+msgstr "DXClusterAPI"
 
 #: application/views/options/dxcluster.php:39
 #, php-format
@@ -11076,11 +11080,13 @@ msgid ""
 "The Provider of the DXCluster-Cache. You can set up your own Cache with %s "
 "or use a public one"
 msgstr ""
+"DXCluster-Cache sağlayıcısı. Kendi Cache'inizi %s ile kurabilir veya halka "
+"açık birini kullanabilirsiniz"
 
 #: application/views/options/dxcluster.php:41
 #, php-format
 msgid "URL of the DXCluster-Cache. e.g. %s"
-msgstr ""
+msgstr "DXCluster-Cache URL'si. örn. %s"
 
 #: application/views/options/dxcluster.php:44
 msgid "Maximum Age of spots taken care of"
@@ -14625,40 +14631,45 @@ msgstr ""
 
 #: application/views/user/edit.php:914
 msgid "Widgets"
-msgstr "Araçlar"
+msgstr "Widget'lar"
 
 #: application/views/user/edit.php:922
+#, fuzzy
 msgid "On-Air widget"
-msgstr ""
+msgstr "On-Air widget"
 
 #: application/views/user/edit.php:932
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
 msgstr ""
+"Not: Bu widget'ı kullanabilmek için en az bir (CAT) telsiz yapılandırılmış "
+"ve çalışıyor olmalıdır."
 
 #: application/views/user/edit.php:936
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "Etkinleştirildiğinde, widget %s adresinde kullanılabilir olacaktır."
 
 #: application/views/user/edit.php:941
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "\"Son görülme\" zamanını göster"
 
 #: application/views/user/edit.php:947
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
+"Bu ayar, \"Son Görülme\" zamanının widget'ta görüntülenip "
+"görüntülenmeyeceğini kontrol eder."
 
 #: application/views/user/edit.php:950
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "Sadece en son güncellenen telsizi görüntüle"
 
 #: application/views/user/edit.php:954
 msgid "No, show all radios"
-msgstr ""
+msgstr "Hayır, tüm telsizleri göster"
 
 #: application/views/user/edit.php:956
 msgid ""
@@ -14667,20 +14678,26 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"Birden fazla (CAT) telsiziniz yapılandırılmışsa, bu ayar widget'ın "
+"kullanıcıya ait tüm açık telsizleri mi yoksa sadece en son güncellenen "
+"telsizi mi görüntüleyeceğini kontrol eder. Eğer yalnızca bir telsiziniz "
+"varsa, bu ayarın bir etkisi olmaz."
 
 #: application/views/user/edit.php:966
 msgid "QSOs widget"
-msgstr ""
+msgstr "QSO'lar Widget'ı"
 
 #: application/views/user/edit.php:969
 msgid "Display exact QSO time"
-msgstr ""
+msgstr "Tam QSO zamanını göster"
 
 #: application/views/user/edit.php:975
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
+"Bu ayar, tam QSO zamanının QSO widget'ında görüntülenip görüntülenmeyeceğini "
+"kontrol eder."
 
 #: application/views/user/edit.php:988
 msgid "Miscellaneous"
@@ -14688,36 +14705,36 @@ msgstr ""
 
 #: application/views/user/edit.php:996
 msgid "AMSAT Status Upload"
-msgstr ""
+msgstr "AMSAT Durum Yükleme"
 
 #: application/views/user/edit.php:999
 msgid "Upload status of SAT QSOs to"
-msgstr ""
+msgstr "Uydu QSO'larının durumunu şuraya yükle"
 
 #: application/views/user/edit.php:1013
 msgid "Mastodonserver"
-msgstr ""
+msgstr "Mastodon Sunucusu"
 
 #: application/views/user/edit.php:1016
 msgid "URL of Mastodonserver"
-msgstr ""
+msgstr "Mastodon sunucusunun URL'si"
 
 #: application/views/user/edit.php:1018
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
-msgstr ""
+msgstr "Mastodon sunucunuzun ana URL'si, örneğin %s"
 
 #: application/views/user/edit.php:1027
 msgid "Experimental"
-msgstr ""
+msgstr "Deneysel"
 
 #: application/views/user/edit.php:1027
 msgid "Winkeyer"
-msgstr ""
+msgstr "Winkeyer"
 
 #: application/views/user/edit.php:1030
 msgid "Winkeyer Features Enabled"
-msgstr ""
+msgstr "Winkeyer Özellikleri Etkinleştirildi"
 
 #: application/views/user/edit.php:1036
 #, php-format
@@ -14725,57 +14742,64 @@ msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr ""
+"Wavelog'da Winkeyer desteği oldukça deneyseldir. Etkinleştirmeden önce %s "
+"adresindeki wiki'yi okuyun."
 
 #: application/views/user/edit.php:1047
 msgid "Hams.at"
-msgstr ""
+msgstr "Hams.at"
 
 #: application/views/user/edit.php:1050
 msgid "Private Feed Key"
-msgstr ""
+msgstr "Özel Feed Anahtarı"
 
 #: application/views/user/edit.php:1052
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr ""
+msgstr "Profilini %s'de gör."
 
 #: application/views/user/edit.php:1055
 msgid "Show Workable Passes Only"
-msgstr ""
+msgstr "Yalnızca Çalışabilir Geçişleri Göster"
 
 #: application/views/user/edit.php:1061
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
+"Etkilendiğinde, hams.at hesabınızdaki grid'e göre yalnızca yapılabilir "
+"geçişleri gösterir. Özel feed anahtarının ayarlanması gerekmektedir."
 
 #: application/views/user/edit.php:1073
 msgid "Save Account"
-msgstr ""
+msgstr "Hesabı Kaydet"
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Şifreni mi unuttun?"
 
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
 msgid "You can reset your password here."
-msgstr ""
+msgstr "Şifrenizi buradan sıfırlayabilirsiniz."
 
 #: application/views/user/index.php:11
 msgid "User List"
-msgstr ""
+msgstr "Kullanıcı Listesi"
 
 #: application/views/user/index.php:14
 msgid "Wavelog needs at least one user configured in order to operate."
 msgstr ""
+"Wavelog'un çalışabilmesi için en az bir kullanıcı yapılandırılmış olmalıdır."
 
 #: application/views/user/index.php:15
 msgid ""
 "Users can be assigned roles which give them different permissions, such as "
 "adding QSOs to the logbook and accessing Wavelog APIs."
 msgstr ""
+"Kullanıcılara, log defterine QSO eklemek ve Wavelog API'lerine erişmek gibi "
+"farklı izinler veren roller atanabilir."
 
 #: application/views/user/index.php:16
 msgid ""
@@ -14788,10 +14812,14 @@ msgid ""
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
 msgstr ""
+"Şifre sıfırlama butonu ile bir kullanıcıya, şifresini sıfırlamak için bir "
+"bağlantı içeren bir e-posta gönderebilirsiniz. Bunu gerçekleştirebilmek "
+"için, genel seçeneklerdeki e-posta ayarlarının doğru bir şekilde "
+"yapılandırıldığından emin olun."
 
 #: application/views/user/index.php:19
 msgid "Create user"
-msgstr ""
+msgstr "Kullanıcı oluştur"
 
 #: application/views/user/index.php:31 application/views/user/index.php:158
 msgid "Last seen"
