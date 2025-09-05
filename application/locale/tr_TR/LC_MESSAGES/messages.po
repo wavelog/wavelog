@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-05 14:22+0000\n"
+"PO-Revision-Date: 2025-09-05 17:21+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -553,11 +553,11 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/view_log/qso.php:425
 #: application/views/view_log/qso.php:726
 msgid "SIG"
-msgstr "SIG"
+msgstr "SIG (Special Interest Group)"
 
 #: application/controllers/Awards.php:1242
 msgid "Awards - SIG - "
-msgstr "Ödüller - SIG - "
+msgstr "Ödüller - SIG (Special Interest Group) - "
 
 #: application/controllers/Awards.php:1374 application/views/bands/index.php:60
 msgid "WAP"
@@ -1993,7 +1993,7 @@ msgstr "Sürüm Bilgisi Modu şu şekilde değişti"
 
 #: application/controllers/Options.php:490
 msgid "Version Info Custom Text saved!"
-msgstr "Sürüm Bİlgisi için Özel Metin başaraıyla kadedildi!"
+msgstr "Sürüm Bilgisi için Özel Metin başaraıyla kadedildi!"
 
 #: application/controllers/Options.php:501
 msgid "Version Info will be shown to all users again"
@@ -3064,7 +3064,7 @@ msgstr "İl"
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr "İl / Eyalet (Çeşitli ülkelerdeki eyalet)"
+msgstr "Şehir / Eyalet (Çeşitli ülkelerdeki eyalet)"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
@@ -4957,10 +4957,10 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"Amerika Birleşik Devletleri İlçeleri Ödülü (USA-CA), MARAC (Mobil Amatör "
+"Amerika Birleşik Devletleri eyaletleri Ödülü (USA-CA), MARAC (Mobil Amatör "
 "Telsiz Ödülleri Kulübü) tarafından sponsorlanmakta olup, belirli sayıda ABD "
-"ilçesi ile onaylanmış iki yönlü telsiz görüşmeleri için verilir. Kurallar ve "
-"koşulları şuradan bulabilirsiniz %s."
+"eyaleti ile onaylanmış iki yönlü telsiz görüşmeleri için verilir. Kurallar "
+"ve koşulları şuradan bulabilirsiniz %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -5547,11 +5547,11 @@ msgstr "(e)QSL"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "QR(Z)-\"confirmation\""
-msgstr ""
+msgstr "QR(Z)-\"onay\""
 
 #: application/views/awards/dxcc/index.php:226
 msgid "(C)lublog"
-msgstr ""
+msgstr "(C)lublog"
 
 #: application/views/awards/dxcc/index.php:227
 msgid "(W)orked"
@@ -5559,7 +5559,7 @@ msgstr "(W) Çalışıldı"
 
 #: application/views/awards/dxcc/index.php:233
 msgid "DXCC Name"
-msgstr ""
+msgstr "DXCC Adı"
 
 #: application/views/awards/dxcc/index.php:234
 #: application/views/awards/iota/index.php:197
@@ -5567,12 +5567,12 @@ msgstr ""
 #: application/views/timeline/index.php:199
 #: application/views/timeline/index.php:297
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: application/views/awards/ffma/index.php:8
 #: application/views/interface_assets/header.php:274
 msgid "Fred Fish Memorial Award"
-msgstr ""
+msgstr "Fred Fish Anma Ödülü"
 
 #: application/views/awards/ffma/index.php:9
 msgid ""
@@ -5580,12 +5580,17 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
+"Fred Fish Anma Ödülü, 48 bitişik ABD eyaletindeki 488 Maidenhead grid "
+"karesinin tamamını 6 Metre bandında çalışan ve teyit eden ilk amatör olan "
+"Fred Fish, W5FF (SK) onuruna oluşturulmuştur."
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
 msgstr ""
+"Bu ödül, W5FF'nin başarısını tekrarlayabilen herhangi bir amatöre "
+"verilecektir."
 
 #: application/views/awards/ffma/index.php:11
 #, php-format
@@ -5651,6 +5656,8 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"Bu Ödül için Dikkate Alınan Alanlar: DXCC (ABD olmalı), Grid Karesi (488 ana "
+"kara grid karesinden birini içermeli!), Propagasyon Modu ve Uydu Adı"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -5875,19 +5882,19 @@ msgstr ""
 #, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr ""
+msgstr "Daha fazla bilgiyi %s web sitesinde bulabilirsiniz."
 
 #: application/views/awards/itu/index.php:24
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "Bu Ödül için Dikkate Alınan Alanlar: ITU-Bölgesi (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:26
 msgid "Awards - ITU Zones"
-msgstr ""
+msgstr "Ödüller - ITU Bölgeleri"
 
 #: application/views/awards/itu/index.php:116
 msgid "Show ITU Zone Map"
-msgstr ""
+msgstr "ITU Bölge Haritasını Göster"
 
 #: application/views/awards/jcc/index.php:16
 msgid "JCC - Japan Century Cities Award"
@@ -5898,6 +5905,9 @@ msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
 msgstr ""
+"Japonya'nın en az 100 farklı şehrindeki amatör istasyonlarla iletişim "
+"kurulması (duyulması) ve bu istasyonlardan QSL kartı alınması koşuluyla "
+"talep edilebilir."
 
 #: application/views/awards/jcc/index.php:18
 msgid ""
@@ -5906,30 +5916,36 @@ msgid ""
 "however names of city may be omitted. An additional sticker will be issued "
 "at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
+"JCC-200, 300, 400, 500, 600, 700 ve 800 ayrı ödüller olarak verilecektir. "
+"QSL kartlarının listesi JCC referans numarası sırasına göre düzenlenmelidir, "
+"ancak şehir isimleri listeye dahil edilmeyebilir. Her 50 şehir için (150, "
+"250, 350, 450, 550, 650, 750 gibi) ek bir sticker verilecektir."
 
 #: application/views/awards/jcc/index.php:20
 msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"Bu Ödül için Dikkate Alınan Alanlar: DXCC (Japonya) ve İlçe (Geçerli bir "
+"referans içermelidir!)"
 
 #: application/views/awards/jcc/index.php:116
 msgid "Show JCC Map"
-msgstr ""
+msgstr "JCC Haritasını Göster"
 
 #: application/views/awards/jcc/index.php:117
 #: application/views/cabrillo/index.php:209 application/views/cfd/index.php:25
 #: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
 #: application/views/kml/index.php:113 application/views/reg1test/index.php:145
 msgid "Export"
-msgstr ""
+msgstr "Dışa aktar"
 
 #: application/views/awards/jcc/index.php:127
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 #: application/views/view_log/partial/log_ajax.php:529
 msgid "Results"
-msgstr ""
+msgstr "Sonuçlar"
 
 #: application/views/awards/jcc/index.php:153
 #: application/views/search/result.php:21
@@ -5941,11 +5957,11 @@ msgstr "Şehir"
 #: application/views/dashboard/index.php:429
 #: application/views/distances/index.php:23
 msgid "SAT"
-msgstr ""
+msgstr "Uydu"
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
-msgstr ""
+msgstr "POTA Ödülleri"
 
 #: application/views/awards/pota/index.php:8
 msgid ""
@@ -5953,6 +5969,9 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
+"Parks on the Air® (POTA), ARRL'nin National Parks on the Air özel etkinliği "
+"sona erdiğinde 2017'nin başlarında başladı. Bir grup gönüllü, bir yıllık "
+"etkinliğin ötesinde eğlenceyi devam ettirmek istedi ve böylece POTA doğdu."
 
 #: application/views/awards/pota/index.php:9
 msgid ""
@@ -5960,6 +5979,9 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
+"POTA, Aktivatörler ve Avcılar ile SOTA'ya benzer şekilde çalışır. Ödüller "
+"için, park sayısı, coğrafi bölgeler ve daha fazlasına dayalı olarak birkaç "
+"kategori bulunmaktadır."
 
 #: application/views/awards/pota/index.php:10
 #, php-format
@@ -5968,10 +5990,13 @@ msgid ""
 "For more information about the available awards and categories, please visit "
 "the %s."
 msgstr ""
+"Mevcut ödüller ve kategoriler hakkında daha fazla bilgi için lütfen %s "
+"adresini ziyaret edin."
 
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Bu Ödül için Dikkate Alınan Alanlar: POTA_REF (Park Referansı içermelidir)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -5985,20 +6010,20 @@ msgstr "POTA Referansı"
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "Şehir"
 
 #: application/views/awards/rac/index.php:4
 #: application/views/awards/wap/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "Fareyi kullanarak bir şehrin üzerine gelin"
 
 #: application/views/awards/rac/index.php:106
 msgid "Show RAC Map"
-msgstr ""
+msgstr "RAC Haritasını Göster"
 
 #: application/views/awards/sig/index.php:7
 msgid "SIG Information"
-msgstr ""
+msgstr "SIG (Special Interest Group) Bilgisi"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -6006,6 +6031,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"SIG (Special Interest Group) veya Özel İlgi Grubu Kategorisi, Wavelog'da "
+"uygulanmayan ödüller için her türlü 'Özel İlgi Grubu Ödülü'nü kullanma "
+"olanağı sağlar."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -6013,6 +6041,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"Bunun nedeni, yaygın ADIF formatının yalnızca belirli ödüller için birkaç "
+"özel alan sağlamasıdır. SIG, özel ilgi grupları için diğer tüm işaretleyici "
+"türlerini kullanmayı ve değerlendirmeyi hala mümkün kılar."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -6021,27 +6052,30 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"QSO işleme sırasında iki alan bulacaksınız: 'SIG', ödül değerlendirmesinde "
+"de görünen özel ilgi grubunun adının kısaltmasını içerir ve 'SIG INFO' ise "
+"gerçek referans(lar)ı içerir. Her iki alan da serbestçe özelleştirilebilir."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Özel İlgi Grubu"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
 #: application/views/distances/index.php:12
 #: application/views/timeplotter/index.php:4
 msgid "Number of QSOs"
-msgstr ""
+msgstr "QSO Sayısı"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr ""
+msgstr "Referans Sayısı"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:30
 msgid "Reference"
-msgstr ""
+msgstr "Referans"
 
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/logbookadvanced/index.php:689
@@ -6057,26 +6091,28 @@ msgstr "Tarih/Saat"
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/awards/sota/index.php:35
 msgid "RST Sent"
-msgstr ""
+msgstr "Gönderilen RST"
 
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:36
 msgid "RST Received"
-msgstr ""
+msgstr "Alınan RST"
 
 #: application/views/awards/sig/qso_list.php:34
 msgid "Export QSOs to ADIF"
-msgstr ""
+msgstr "QSO'ları ADIF'e aktar"
 
 #: application/views/awards/sota/index.php:7
 msgid "SOTA Awards"
-msgstr ""
+msgstr "SOTA Ödülleri"
 
 #: application/views/awards/sota/index.php:8
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
 msgstr ""
+"SOTA (Summits On The Air), amatör telsizcileri dağlık alanlarda taşınabilir "
+"operasyon yapmaya teşvik eden bir ödül programıdır."
 
 #: application/views/awards/sota/index.php:9
 msgid ""
@@ -6088,6 +6124,13 @@ msgid ""
 "trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA "
 "online database."
 msgstr ""
+"Dünya çapında yaklaşık yüz ülkede tamamen faaliyet göstermektedir. Her "
+"ülkenin, kendi Derneği içinde tanınan SOTA zirvelerini tanımlayan kendi "
+"Birliği vardır. Her zirve, aktivatörlere ve avcılara zirvenin yüksekliği ile "
+"ilişkili bir puan kazandırır. Çeşitli puanlar için sertifikalar mevcuttur ve "
+"prestijli 'Dağ Keçisi' ve 'Kulübe Tembelliği' kupalarına yol açar. "
+"Aktivatörler ve Avcılar için bir Onur Listesi, SOTA çevrimiçi veritabanında "
+"tutulmaktadır."
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -6103,25 +6146,27 @@ msgstr ""
 #: application/views/awards/wae/index.php:10
 #, php-format
 msgid "Official information and the rules can be found in this document: %s."
-msgstr ""
+msgstr "Resmi bilgi ve kurallar bu belgede bulunabilir: %s."
 
 #: application/views/awards/vucc/index.php:10
 msgid "Only VHF/UHF bands are relevant."
-msgstr ""
+msgstr "Sadece VHF/UHF bantları geçerlidir."
 
 #: application/views/awards/vucc/index.php:11
 msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"Bu Ödül için Dikkate Alınan Alanlar: Grid karesi ve vucc_grids (ADIF: "
+"GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
-msgstr ""
+msgstr "Çalışılan Gridler"
 
 #: application/views/awards/vucc/index.php:24
 msgid "Grids Confirmed"
-msgstr ""
+msgstr "Onaylanan Grid'ler"
 
 #: application/views/awards/wab/index.php:12
 msgid "WAB - Worked All Britain Award"
@@ -6132,6 +6177,9 @@ msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
+"WAB (Worked All Britain - Britanya'nın Tüm Gridleriyle Haberleşme), lisanslı "
+"amatör telsiz operatörlerini Büyük Britanya'daki tüm girdlerle çalışmaya "
+"teşvik eder."
 
 #: application/views/awards/wab/index.php:14
 msgid ""
@@ -6273,7 +6321,7 @@ msgstr ""
 #: application/views/awards/wap/index.php:3
 msgctxt "The Netherlands Province"
 msgid "Province"
-msgstr "İl"
+msgstr "Şehir"
 
 #: application/views/awards/wap/index.php:20
 msgid "VRZA WAP Award"
@@ -6322,8 +6370,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
-"Bu Ödül için Dikkate Alınan Alanlar: DXCC (Hollanda olmalı) ve İl (Geçerli "
-"bir İl kısaltması içermelidir!)"
+"Bu Ödül için Dikkate Alınan Alanlar: DXCC (Hollanda olmalı) ve Şehir ("
+"Geçerli bir Şehir kısaltması içermelidir!)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
@@ -6332,11 +6380,11 @@ msgstr "WAP Haritasını Göster"
 #: application/views/awards/wap/index.php:152
 #: application/views/awards/wapc/index.php:120
 msgid "Province"
-msgstr "İl"
+msgstr "Şehir"
 
 #: application/views/awards/wapc/index.php:7
 msgid "WAPC - Worked All Provinces of China"
-msgstr "WAPC - Çin'in Tüm İlleri ile Haberleşme"
+msgstr "WAPC - Çin'in Tüm Şehirleri ile Haberleşme"
 
 #: application/views/awards/wapc/index.php:8
 msgid ""
@@ -6392,7 +6440,7 @@ msgid ""
 "101st year, they have redesigned the certificates and the program in hopes "
 "of streamlining and improving the award program."
 msgstr ""
-"ARRL'nin en popüler ödülü, Worked All States (Tüm İllerle Haberleşme) "
+"ARRL'nin en popüler ödülü, Worked All States (Tüm Şehirlerle Haberleşme) "
 "Ödülü'dür. Dünya çapında binlerce amatör telsizciye bu ödül verilmiştir. "
 "ARRL, 101. yılında, ödül programını sadeleştirmek ve geliştirmek umuduyla "
 "sertifikaları ve programı yeniden tasarlamıştır."
@@ -6546,7 +6594,7 @@ msgstr ""
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Tıklayın ve kaydı hazırlayın."
 
 #: application/views/bandmap/list.php:76
 msgid "DXCC-Status"
@@ -6635,7 +6683,7 @@ msgstr "Bir bant aralığı ekle"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr ""
+msgstr "Bant adı (Örn. 20m)"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:65
@@ -6694,7 +6742,7 @@ msgstr "Sinyal"
 
 #: application/views/bands/index.php:58
 msgid "USA County"
-msgstr "ABD İlçesi"
+msgstr "ABD Eyaleti"
 
 #: application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:220
@@ -7185,12 +7233,12 @@ msgstr "QSO düzenle"
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
 msgid "QSO was done by the operator"
-msgstr ""
+msgstr "Kendi yaptığı QSO'yu düzenle"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
 msgid "QSO was done by another operator"
-msgstr ""
+msgstr "Başka operatörün yaptığı QSO'yu düzenle"
 
 #: application/views/club/permissions.php:67
 msgid "Delete a QSO"
@@ -7242,6 +7290,8 @@ msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr ""
+"%s Kulüp istasyonuna yalnızca bu Wavelog Sunucusunda var olan kullanıcıları "
+"ekleyebilirsiniz."
 
 #: application/views/club/permissions.php:168
 msgid ""
@@ -7347,7 +7397,7 @@ msgstr "Logbook Yükle"
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSLs"
-msgstr ""
+msgstr "QSL'leri indir"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
@@ -7412,10 +7462,12 @@ msgid ""
 "If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
+"Eğer bir başlangıç tarihi verilmezse, son teyitten sonraki QSL'ler "
+"indirilecek/güncellenecektir!"
 
 #: application/views/clublog/export.php:78
 msgid "Download QSLs from Clublog"
-msgstr ""
+msgstr "Clublog'dan QSL'leri indir"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -7457,7 +7509,7 @@ msgstr "Yorum"
 #: application/views/components/hamsat/table.php:31
 #: application/views/hamsat/index.php:34
 msgid "Gridsquare(s)"
-msgstr ""
+msgstr "QTH lokator(ları)"
 
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
@@ -7467,7 +7519,7 @@ msgstr ""
 #: application/views/components/hamsat/table.php:134
 msgctxt "Hamsat - Track Satellites"
 msgid "Track"
-msgstr ""
+msgstr "Takip Et"
 
 #: application/views/components/hamsat/table.php:146
 msgid "Sked"
@@ -7475,11 +7527,11 @@ msgstr ""
 
 #: application/views/components/radio_display_table.php:5
 msgid "Radio Status"
-msgstr ""
+msgstr "Telsiz Durumu"
 
 #: application/views/contestcalendar/index.php:16
 msgid "No Contests"
-msgstr ""
+msgstr "Yarışma Yok"
 
 #: application/views/contestcalendar/index.php:21
 #: application/views/logbookadvanced/edit.php:9
@@ -7489,23 +7541,23 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:42
 #: application/views/simplefle/index.php:84
 msgid "Contest"
-msgstr ""
+msgstr "Yarışma"
 
 #: application/views/contestcalendar/index.php:22
 msgid "Start"
-msgstr ""
+msgstr "Başlangıç"
 
 #: application/views/contestcalendar/index.php:23
 msgid "End"
-msgstr ""
+msgstr "Bitiş"
 
 #: application/views/contestcalendar/index.php:24
 msgid "Link"
-msgstr ""
+msgstr "Etkinlik Sayfası"
 
 #: application/views/contestcalendar/index.php:33
 msgid "Show Details"
-msgstr ""
+msgstr "Detayları Göster"
 
 #: application/views/contestcalendar/index.php:45
 #: application/views/dashboard/index.php:339
@@ -7513,15 +7565,15 @@ msgstr ""
 #: application/views/dashboard/index.php:387
 #: application/views/dashboard/index.php:408
 msgid "Today"
-msgstr ""
+msgstr "Bugün"
 
 #: application/views/contestcalendar/index.php:55
 msgid "Weekend"
-msgstr ""
+msgstr "Hafta sonu"
 
 #: application/views/contestcalendar/index.php:66
 msgid "Next Week"
-msgstr ""
+msgstr "Gelecek Hafta"
 
 #: application/views/contesting/add.php:16
 msgid ""
@@ -7534,11 +7586,13 @@ msgid ""
 "Active contests will be shown in the Contest Name drop-down, while inactive "
 "contests will be hidden and cannot be selected."
 msgstr ""
+"Aktif yarışmalar, QSO giriş ekranındaki Yarışma Adı açılır menüsünde "
+"gösterilirken, etkin olmayan yarışmalar gizlenecek ve seçilemeyecektir."
 
 #: application/views/contesting/add.php:26
 #: application/views/contesting/create.php:30
 msgid "ADIF Name"
-msgstr ""
+msgstr "ADIF Adı"
 
 #: application/views/contesting/add.php:27
 #: application/views/contesting/add.php:41
@@ -7552,13 +7606,13 @@ msgstr ""
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
 msgid "Active"
-msgstr ""
+msgstr "Aktif"
 
 #: application/views/contesting/add.php:39
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:49
 msgid "Not Active"
-msgstr ""
+msgstr "Pasif"
 
 #: application/views/contesting/add.php:40
 #: application/views/contesting/add.php:49 application/views/mode/index.php:7
@@ -7576,40 +7630,40 @@ msgstr "Devredışı Bırak"
 
 #: application/views/contesting/add.php:54
 msgid "DANGER!"
-msgstr ""
+msgstr "TEHLİKE!"
 
 #: application/views/contesting/add.php:55
 msgid "Warning! Are you sure you want to delete the following contest: "
-msgstr ""
+msgstr "Uyarı! Aşağıdaki yarışmayı silmek istediğinize emin misiniz: "
 
 #: application/views/contesting/add.php:56
 msgid "Warning! Are you sure you want to activate all contests?"
-msgstr ""
+msgstr "Uyarı! Tüm yarışmaları etkinleştirmek istediğinize emin misiniz?"
 
 #: application/views/contesting/add.php:57
 msgid "Warning! Are you sure you want to deactivate all contests?"
-msgstr ""
+msgstr "Uyarı! Tüm yarışmaları devre dışı bırakmak istediğinize emin misiniz?"
 
 #: application/views/contesting/add.php:73
 #: application/views/contesting/add.php:76
 msgid "Add a Contest"
-msgstr ""
+msgstr "Bir Yarışma Ekle"
 
 #: application/views/contesting/create.php:26
 #: application/views/contesting/edit.php:33
 msgid "Name of the Contest"
-msgstr ""
+msgstr "Yarışmanın Adı"
 
 #: application/views/contesting/create.php:32
 #: application/views/contesting/edit.php:39
 msgid "Name of Contest in ADIF-specification"
-msgstr ""
+msgstr "ADIF dosyasında gösterilecek Yarışma Adı"
 
 #: application/views/contesting/create.php:35
 #: application/views/station_profile/create.php:311
 #: application/views/station_profile/edit.php:59
 msgid "Create"
-msgstr ""
+msgstr "Oluştur"
 
 #: application/views/contesting/edit.php:31
 #: application/views/contesting/index.php:34
@@ -7620,19 +7674,22 @@ msgstr "Yarışma İsmi"
 
 #: application/views/contesting/edit.php:37
 msgid "Contest ADIF Name"
-msgstr ""
+msgstr "ADIF dosyasında gösterilen Yarışma Adı"
 
 #: application/views/contesting/edit.php:52
 msgid "Set to active if to be listed in Contest-list"
 msgstr ""
+"Yarışma listesinde görünmesini istiyorsanız \"Etkin\" olarak işaretleyin"
 
 #: application/views/contesting/index.php:2
 msgid "You need to start a new session before you can change the contest name!"
 msgstr ""
+"Yarışma adını değiştirmek için önce mevcut oturumu sonlandırıp yeni bir "
+"oturum başlatmanız gerekmektedir!"
 
 #: application/views/contesting/index.php:3
 msgid "Are you really sure you want to start a new contest session?"
-msgstr ""
+msgstr "Yeni bir yarışma oturumu başlatmak istediğinize gerçekten emin misiniz?"
 
 #: application/views/contesting/index.php:11
 msgid "Start new Contest Session"
@@ -7643,8 +7700,9 @@ msgid "Exchange Type"
 msgstr "Haberleşme Tipi"
 
 #: application/views/contesting/index.php:25
+#, fuzzy
 msgid "Exchange"
-msgstr ""
+msgstr "Exchange"
 
 #: application/views/contesting/index.php:27
 msgid "Serial"
@@ -7652,26 +7710,26 @@ msgstr "Seri numarası"
 
 #: application/views/contesting/index.php:28
 msgid "Serial + Exchange"
-msgstr ""
+msgstr "Seri + Exchange"
 
 #: application/views/contesting/index.php:29
 msgid "Serial + Gridsquare"
-msgstr ""
+msgstr "Seri + Grid"
 
 #: application/views/contesting/index.php:30
 msgid "Serial + Gridsquare + Exchange"
-msgstr ""
+msgstr "Seri + Grid + Exchange"
 
 #: application/views/contesting/index.php:45
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:649 application/views/qso/index.php:391
 msgid "Operator Callsign"
-msgstr ""
+msgstr "Operatör Çağrı İşareti"
 
 #: application/views/contesting/index.php:50
 #: application/views/contesting/index.php:55
 msgid "More Settings"
-msgstr ""
+msgstr "Daha Fazla Ayar"
 
 #: application/views/contesting/index.php:59
 msgid "Copy received exchange to"
@@ -7680,6 +7738,8 @@ msgstr ""
 #: application/views/contesting/index.php:61
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr ""
+"Exchange bilgisi, yalnızca seçilen alan için kurallarla eşleşiyorsa "
+"kopyalanır!"
 
 #: application/views/contesting/index.php:65
 msgid "Age"
@@ -7687,7 +7747,7 @@ msgstr ""
 
 #: application/views/contesting/index.php:67
 msgid "RX Power (W)"
-msgstr ""
+msgstr "RX Gücü (W)"
 
 #: application/views/contesting/index.php:68
 msgid "Locator"
@@ -7697,8 +7757,9 @@ msgstr "Konum kodu"
 #: application/views/logbookadvanced/index.php:719
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/qso/edit_ajax.php:177
+#, fuzzy
 msgid "QTH"
-msgstr ""
+msgstr "QTH"
 
 #: application/views/contesting/index.php:74
 msgid "Sequence of Exchanges"
@@ -7718,7 +7779,7 @@ msgstr ""
 #: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Exchange"
-msgstr ""
+msgstr "Exchange"
 
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
@@ -7728,7 +7789,7 @@ msgstr ""
 #: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Grid"
-msgstr ""
+msgstr "Grid"
 
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
@@ -7738,17 +7799,17 @@ msgstr ""
 #: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Serial"
-msgstr ""
+msgstr "Seri N."
 
 #: application/views/contesting/index.php:186
 #: application/views/contesting/index.php:269
 #: application/views/qso/edit_ajax.php:674
 msgid "Serial (S)"
-msgstr ""
+msgstr "Seri No (G)"
 
 #: application/views/contesting/index.php:191
 msgid "Gridsquare (S)"
-msgstr ""
+msgstr "Grid (G)"
 
 #: application/views/contesting/index.php:196
 #: application/views/contesting/index.php:267
@@ -7759,11 +7820,11 @@ msgstr "Exch (G)"
 #: application/views/contesting/index.php:270
 #: application/views/qso/edit_ajax.php:669
 msgid "Serial (R)"
-msgstr ""
+msgstr "Seri No (A)"
 
 #: application/views/contesting/index.php:215
 msgid "Gridsquare (R)"
-msgstr ""
+msgstr "Grid (A)"
 
 #: application/views/contesting/index.php:220
 #: application/views/contesting/index.php:268
@@ -7813,7 +7874,7 @@ msgstr ""
 #: application/views/user/edit.php:481 application/views/user/edit.php:490
 #: application/views/user/edit.php:633 application/views/user/edit.php:925
 msgid "Enabled"
-msgstr ""
+msgstr "Etkin"
 
 #: application/views/cron/edit.php:36 application/views/cron/index.php:55
 msgid "Intervall"
@@ -7821,27 +7882,27 @@ msgstr "Zaman Aralığı"
 
 #: application/views/cron/edit.php:38
 msgid "Choose a preset from the dropdown"
-msgstr ""
+msgstr "Açılır menüden bir ön ayar seçin"
 
 #: application/views/cron/edit.php:43
 msgid "Every 5 Minutes"
-msgstr ""
+msgstr "Her 5 Dakikada Bir"
 
 #: application/views/cron/edit.php:44
 msgid "Every 15 Minutes"
-msgstr ""
+msgstr "Her 15 Dakikada Bir"
 
 #: application/views/cron/edit.php:45
 msgid "Every Hour"
-msgstr ""
+msgstr "Her Saat"
 
 #: application/views/cron/edit.php:46
 msgid "Every 2 Hours"
-msgstr ""
+msgstr "Her 2 Saatte Bir"
 
 #: application/views/cron/edit.php:47
 msgid "Every Day at Midnight"
-msgstr ""
+msgstr "Her Gün Gece Yarısı"
 
 #: application/views/cron/edit.php:48
 msgid "Every Monday at 03:00"
@@ -7849,19 +7910,19 @@ msgstr "Her Pazartesi saat 03:00'da"
 
 #: application/views/cron/edit.php:49
 msgid "First Day of Every Month at midnight"
-msgstr ""
+msgstr "Her Ayın İlk Günü Gece Yarısı"
 
 #: application/views/cron/edit.php:50
 msgid "Every 2 Months at 02:00"
-msgstr ""
+msgstr "Her 2 Ayda Bir, Saat 02:00'de"
 
 #: application/views/cron/edit.php:62
 msgid "OR"
-msgstr ""
+msgstr "VEYA"
 
 #: application/views/cron/edit.php:63
 msgid "Enter your own Cron Expression"
-msgstr ""
+msgstr "Özel bir zamanlama girin"
 
 #: application/views/cron/index.php:9
 msgid "How it works"
@@ -7880,6 +7941,8 @@ msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
 msgstr ""
+"Aşağıdaki verilere dayalı cron görevlerini çalıştırmak için tüm eski cron "
+"görevlerini kaldırın ve yeni bir tane oluşturun:"
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
 msgid "Status Master-Cron:"
@@ -7888,11 +7951,11 @@ msgstr "Master-Cron Durumu:"
 #: application/views/cron/index.php:33
 msgctxt "PHP Version"
 msgid "Min. Version is"
-msgstr ""
+msgstr "Min. PHP Sürümü:"
 
 #: application/views/cron/index.php:33
 msgid "PHP Version not supported."
-msgstr ""
+msgstr "PHP sürümü desteklenmiyor."
 
 #: application/views/cron/index.php:43
 msgid "Cron List"
@@ -7901,7 +7964,7 @@ msgstr "Cron İşleri Listesi"
 #: application/views/cron/index.php:52
 #: application/views/stationsetup/stationsetup.php:124
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: application/views/cron/index.php:56
 msgid "Last Run"
@@ -7913,19 +7976,23 @@ msgstr "Sonraki Çalıştırma"
 
 #: application/views/cron/index.php:102
 msgid "Your Mastercron isn't running."
-msgstr ""
+msgstr "Ana cron'unuz (Mastercron) çalışmıyor."
 
 #: application/views/cron/index.php:103
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
 msgstr ""
+"Bu cron yöneticisini kullanmak için yukarıdaki cron'u harici bir cron "
+"servisine veya sunucunuzun cron'una kopyalayın."
 
 #: application/views/cron/index.php:104
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
 msgstr ""
+"Yönetici erişimi olan temel bir linux sunucusunda cron'larınızı düzenlemek "
+"için bu komutu kullanın:"
 
 #: application/views/cron/index.php:111
 #, php-format
@@ -7933,14 +8000,15 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
 "%s"
 msgstr ""
+"PHP sürümünüzü yükseltmeniz gerekiyor. Minimum sürüm %s. Mevcut sürümünüz: %s"
 
 #: application/views/csv/index.php:7
 msgid "Export your logbook for SOTA uploads."
-msgstr ""
+msgstr "SOTA yüklemeleri için logbook'unuzu dışa aktarın."
 
 #: application/views/csv/index.php:11
 msgid "Only QSOs with SOTA information will be exported!"
-msgstr ""
+msgstr "Yalnızca SOTA bilgisi içeren QSO'lar dışa aktarılacaktır!"
 
 #: application/views/csv/index.php:92 application/views/dxatlas/index.php:92
 #: application/views/eqsl/download.php:43
@@ -7951,40 +8019,44 @@ msgstr "Yayın Mode"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
-msgstr ""
+msgstr "RSTG"
 
 #: application/views/dashboard/index.php:6
 msgid "RSTR"
-msgstr ""
+msgstr "RSTA"
 
 #: application/views/dashboard/index.php:111
 msgid ""
 "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
+"PHP sürümünüzü yükseltmeniz gerekiyor. Minimum sürüm 7.4 olmalı. Sizin "
+"Sürümünüz:"
 
 #: application/views/dashboard/index.php:117
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
-msgstr ""
+msgstr "Wavelog'un yeni bir sürümü yayınlandı. Bakınız: %s."
 
 #: application/views/dashboard/index.php:125
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
 msgstr ""
+"Ülke dosyalarını güncellemeniz gerekiyor! Bunu yapmak için %sburaya%s "
+"tıklayın."
 
 #: application/views/dashboard/index.php:133
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr ""
+msgstr "Hiç istasyon konumunuz yok. Bunu yapmak için %sburaya%s tıklayın."
 
 #: application/views/dashboard/index.php:141
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr ""
+msgstr "Hiç istasyon logbook'unuz yok. Bunu yapmak için %sburaya%s tıklayın."
 
 #: application/views/dashboard/index.php:149
 #, php-format
@@ -7993,19 +8065,23 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
+"Aktif İstasyon Konumunuz Logbook'unuza bağlı değil. Bunu yapmak için "
+"%sburaya%s tıklayın."
 
 #: application/views/dashboard/index.php:157
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
 msgstr ""
+"Logbook'unuza bağlı hiç istasyonunuz yok. Bunu yapmak için %sburaya%s "
+"tıklayın."
 
 #: application/views/dashboard/index.php:166
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bugün %d QSO yaptın"
+msgstr[1] "Bugün %d QSO yaptın"
 
 #: application/views/dashboard/index.php:172
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -8020,26 +8096,28 @@ msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr ""
+"Özelleştirilmiş temalarınız var. Lütfen yöneticiden temaları düzenlemesini "
+"isteyin."
 
 #: application/views/dashboard/index.php:193
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
-msgstr ""
+msgstr "%sLoTW sertifikanızın%s süresi dolmuş!"
 
 #: application/views/dashboard/index.php:197
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
-msgstr ""
+msgstr "%sLoTW sertifikanızın%s süresi dolmak üzere!"
 
 #: application/views/dashboard/index.php:274
 #: application/views/qso/index.php:810
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "En fazla %d QSO gösterilir"
+msgstr[1] "En fazla %d QSO gösterilir"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
@@ -8163,7 +8241,7 @@ msgstr "İstenen"
 #: application/views/dashboard/index.php:365
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr ""
+msgstr "LOTW (Logbook of the World)"
 
 #: application/views/dashboard/index.php:428
 msgid "VUCC-Grids"
@@ -9026,7 +9104,7 @@ msgstr "eQSL kartlarını indir"
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
-msgstr ""
+msgstr "Alt mod"
 
 #: application/views/eqsl/analysis.php:41
 msgid "eQSL Received Date"
@@ -9854,19 +9932,19 @@ msgstr "Etiketlerin sol kenarı."
 
 #: application/views/labels/create.php:63 application/views/labels/edit.php:65
 msgid "Labels horizontally"
-msgstr ""
+msgstr "Yatay Etiketler"
 
 #: application/views/labels/create.php:66 application/views/labels/edit.php:68
 msgid "Number of labels horizontally across the page."
-msgstr ""
+msgstr "Sayfa boyunca yatay olarak yerleştirilecek etiket sayısı."
 
 #: application/views/labels/create.php:69 application/views/labels/edit.php:71
 msgid "Labels vertically"
-msgstr ""
+msgstr "Dikey Etiketler"
 
 #: application/views/labels/create.php:72 application/views/labels/edit.php:74
 msgid "Number of labels vertically across the page."
-msgstr ""
+msgstr "Sayfa boyunca dikey olarak yerleştirilecek etiket sayısı."
 
 #: application/views/labels/create.php:77 application/views/labels/edit.php:79
 msgid "Horizontal space"
@@ -9890,16 +9968,16 @@ msgstr "Etiket Genişliği"
 
 #: application/views/labels/create.php:94 application/views/labels/edit.php:96
 msgid "Total width of one label."
-msgstr ""
+msgstr "Bir etiketin toplam genişliği."
 
 #: application/views/labels/create.php:97 application/views/labels/edit.php:99
 msgid "Height of label"
-msgstr ""
+msgstr "Etiketin yüksekliği"
 
 #: application/views/labels/create.php:100
 #: application/views/labels/edit.php:102
 msgid "Total height of one label"
-msgstr ""
+msgstr "Bir etiketin toplam yüksekliği"
 
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:80
@@ -9909,12 +9987,12 @@ msgstr "Yazı Tipi Boyutu"
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
-msgstr ""
+msgstr "Etikette kullanılan yazı tipi boyutu, çok büyük olmamalı."
 
 #: application/views/labels/create.php:111
 #: application/views/labels/edit.php:113
 msgid "QSOs on label"
-msgstr ""
+msgstr "Etiketteki QSO'lar"
 
 #: application/views/labels/create.php:117
 #: application/views/labels/edit.php:118
@@ -9930,52 +10008,53 @@ msgstr "Kağıt Türü Adı"
 #: application/views/labels/editpaper.php:39
 msgid "Paper name used for display purposes, so pick something meaningful."
 msgstr ""
+"Görüntüleme amacıyla kullanılan kağıt adı, bu nedenle anlamlı bir şey seçin."
 
 #: application/views/labels/createpaper.php:51
 #: application/views/labels/editpaper.php:51
 msgid "Width of paper"
-msgstr ""
+msgstr "Kağıdın genişliği"
 
 #: application/views/labels/createpaper.php:54
 #: application/views/labels/editpaper.php:54
 #: application/views/labels/editpaper.php:60
 msgid "Total width of paper."
-msgstr ""
+msgstr "Toplam kağıt genişliği."
 
 #: application/views/labels/createpaper.php:57
 #: application/views/labels/editpaper.php:57
 msgid "Height of paper"
-msgstr ""
+msgstr "Kağıdın yüksekliği"
 
 #: application/views/labels/createpaper.php:60
 msgid "Total height of paper"
-msgstr ""
+msgstr "Toplam kağıt yüksekliği"
 
 #: application/views/labels/createpaper.php:65
 #: application/views/labels/createpaper.php:71
 #: application/views/labels/editpaper.php:65
 #: application/views/labels/editpaper.php:71
 msgid "Orientation of paper"
-msgstr ""
+msgstr "Kağıdın yönü"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
 #: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Landscape"
-msgstr ""
+msgstr "Yatay"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
 #: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Portrait"
-msgstr ""
+msgstr "Dikey"
 
 #: application/views/labels/createpaper.php:75
 #: application/views/labels/editpaper.php:75
 msgid "Save Paper Type"
-msgstr ""
+msgstr "Kağıt Türünü Kaydet"
 
 #: application/views/labels/edit.php:24
 msgid ""
@@ -10030,7 +10109,7 @@ msgstr "Etiket türleri"
 #: application/views/statistics/index.php:70
 #: application/views/statistics/index.php:114
 msgid "QSOs"
-msgstr ""
+msgstr "QSO'lar"
 
 #: application/views/labels/index.php:82
 msgid "Use For Print"
@@ -10042,15 +10121,15 @@ msgstr "Kağıt atanmadı"
 
 #: application/views/labels/index.php:117
 msgid "QSL Card Labels Pending"
-msgstr ""
+msgstr "QSL Kart Etiketleri Beklemede"
 
 #: application/views/labels/index.php:126
 msgid "QSOs Waiting"
-msgstr ""
+msgstr "Gönderim Bekleyen QSO'lar"
 
 #: application/views/labels/index.php:127
 msgid "View QSOs"
-msgstr ""
+msgstr "QSO'ları Görüntüle"
 
 #: application/views/labels/startatform.php:4
 #: application/views/logbookadvanced/startatform.php:3
@@ -10073,7 +10152,7 @@ msgstr ""
 
 #: application/views/labels/startatform.php:28
 msgid "Include TNX message?"
-msgstr ""
+msgstr "Teşekkür mesajı eklensin mi?"
 
 #: application/views/labels/startatform.php:34
 #: application/views/logbookadvanced/startatform.php:33
@@ -12260,7 +12339,7 @@ msgstr ""
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
 msgid "SIG Info"
-msgstr "Sinyal Bİlgisi"
+msgstr "SIG (Special Interest Group) Bİlgisi"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:644
