@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-05 10:22+0000\n"
+"PO-Revision-Date: 2025-09-05 12:30+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -6455,14 +6455,16 @@ msgstr "Notları Yedekle"
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
+"Notlarınızın yedeklemesi başarıyla tamamlandı. Çıktıya buradan "
+"ulaşabilirsiniz"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:56
 msgid "BandMap"
-msgstr ""
+msgstr "Bant Haritası"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:59
 msgid "BandList"
-msgstr ""
+msgstr "Bant Listesi"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:69
 #: application/views/contesting/index.php:24
@@ -6470,7 +6472,7 @@ msgstr ""
 #: application/views/contesting/index.php:159
 #: application/views/qso/index.php:352
 msgid "None"
-msgstr ""
+msgstr "Hiçbiri"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:84
 msgid "Spots de"
@@ -6479,6 +6481,8 @@ msgstr ""
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
 msgstr ""
+"Açılır pencere engellendi! Lütfen bu site için açılır pencereleri kalıcı "
+"olarak etkinleştirin."
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
@@ -6486,32 +6490,32 @@ msgstr ""
 
 #: application/views/bandmap/list.php:76
 msgid "DXCC-Status"
-msgstr ""
+msgstr "DXCC Durumu"
 
 #: application/views/bandmap/list.php:79
 #: application/views/interface_assets/footer.php:45
 msgid "Not worked"
-msgstr ""
+msgstr "QSO Yapılmamış"
 
 #: application/views/bandmap/list.php:82
 msgid "Worked, not Confirmed"
-msgstr ""
+msgstr "Çalışıldı fakat onaylanmadı"
 
 #: application/views/bandmap/list.php:113
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: application/views/bandmap/list.php:114
 msgid "CW"
-msgstr ""
+msgstr "CW"
 
 #: application/views/bandmap/list.php:115
 msgid "Digi"
-msgstr ""
+msgstr "Dijital"
 
 #: application/views/bandmap/list.php:131
 msgid "WAC"
-msgstr ""
+msgstr "WAC (Tüm Kıtalarla Haberleşme)"
 
 #: application/views/bandmap/list.php:132
 msgid "Spotter"
@@ -6523,49 +6527,51 @@ msgstr ""
 #: application/views/oqrs/request_grouped.php:57
 #: application/views/oqrs/status_info.php:5
 msgid "Message"
-msgstr ""
+msgstr "Mesaj"
 
 #: application/views/bandmap/list.php:134
 msgid "Last Worked"
-msgstr ""
+msgstr "Son Çalışılan"
 
 #: application/views/bands/bandedges.php:2
 msgid "Please enter valid numbers for frequency"
-msgstr ""
+msgstr "Lütfen frekans için geçerli sayılar girin"
 
 #: application/views/bands/bandedges.php:3
 msgid "The 'From' frequency must be less than the 'To' frequency."
-msgstr ""
+msgstr "'Başlangıç' frekansı, 'Bitiş' frekansından küçük olmalıdır."
 
 #: application/views/bands/bandedges.php:4
 msgid "The Frequency overlaps with an existing entry."
-msgstr ""
+msgstr "Frekans, mevcut bir QSO girdisi ile çakışıyor."
 
 #: application/views/bands/bandedges.php:5
 msgid "Are you sure you want to delete this band edge?"
-msgstr ""
+msgstr "Bu bant aralığını silmek istediğinize emin misiniz?"
 
 #: application/views/bands/bandedges.php:17
 msgid "Bandedges"
-msgstr ""
+msgstr "Bant Aralıkları"
 
 #: application/views/bands/bandedges.php:22
 msgid ""
 "Using the bandedges list you can control the mode classification in the "
 "cluster."
 msgstr ""
+"Bant aralığı listesini kullanarak, cluster'daki mod sınıflandırmasını "
+"kontrol edebilirsiniz."
 
 #: application/views/bands/bandedges.php:29
 msgid "Frequency from (Hz)"
-msgstr ""
+msgstr "Başlangıç Frekansı (Hz)"
 
 #: application/views/bands/bandedges.php:30
 msgid "Frequency to (Hz)"
-msgstr ""
+msgstr "Bitiş Frekansı (Hz)"
 
 #: application/views/bands/bandedges.php:65
 msgid "Add a bandedge"
-msgstr ""
+msgstr "Bir bant aralığı ekle"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
@@ -7779,7 +7785,7 @@ msgstr ""
 
 #: application/views/cron/edit.php:48
 msgid "Every Monday at 03:00"
-msgstr ""
+msgstr "Her Pazartesi saat 03:00'da"
 
 #: application/views/cron/edit.php:49
 msgid "First Day of Every Month at midnight"
@@ -8105,27 +8111,27 @@ msgstr ""
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
-msgstr ""
+msgstr "Bu gün için gerçekleştirilen QSO sayısı"
 
 #: application/views/dayswithqso/index.php:4
 msgid "Number of QSOs for this month of the year"
-msgstr ""
+msgstr "Bu yıl için gerçekleştirilen QSO sayısı"
 
 #: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
-msgstr ""
+msgstr "Haftanın Günleri"
 
 #: application/views/dayswithqso/index.php:21
 msgid "Months of the year"
-msgstr ""
+msgstr "Yılın Ayları"
 
 #: application/views/dayswithqso/index.php:24
 msgid "Streaks"
-msgstr ""
+msgstr "Seriler"
 
 #: application/views/dayswithqso/index.php:27
 msgid "QSOs of Year"
-msgstr ""
+msgstr "Yıl İçinde Gerçekleştirilen QSO'lar"
 
 #: application/views/dayswithqso/index.php:35
 msgid "Number of days with QSOs each year"
@@ -8133,19 +8139,19 @@ msgstr "Her yıl QSO'lu gün sayısı"
 
 #: application/views/dayswithqso/index.php:51
 msgid "Days"
-msgstr ""
+msgstr "Gün"
 
 #: application/views/dayswithqso/index.php:67
 msgid "QSOs breakdown by day of the week"
-msgstr ""
+msgstr "Haftanın Günlerine Göre QSO Dağılımı"
 
 #: application/views/dayswithqso/index.php:73
 msgid "QSOs breakdown by month of the year"
-msgstr ""
+msgstr "Aylara Göre QSO Dağılımı"
 
 #: application/views/dayswithqso/index.php:87
 msgid "QSOs per Year"
-msgstr ""
+msgstr "Yıllara Göre QSO Sayısı"
 
 #: application/views/dayswithqso/index.php:95
 msgid "Less"
@@ -8165,7 +8171,7 @@ msgstr "Logda kayıtlı en uzun tekrarlanan QSO serisi"
 
 #: application/views/dayswithqso/index.php:112
 msgid "A maximum of the 10 longest streaks are shown!"
-msgstr ""
+msgstr "En uzun 10 günlük seriler gösterilir!"
 
 #: application/views/dayswithqso/index.php:130
 msgid "Streak (continuous days with QSOs)"
@@ -8436,7 +8442,7 @@ msgstr "Git Bilgisi"
 
 #: application/views/debug/index.php:445
 msgid "Branch"
-msgstr ""
+msgstr "Branch"
 
 #: application/views/debug/index.php:456 application/views/debug/index.php:467
 #: application/views/debug/index.php:477
@@ -8445,7 +8451,7 @@ msgstr "yok"
 
 #: application/views/debug/index.php:462
 msgid "Commit"
-msgstr ""
+msgstr "Commit"
 
 #: application/views/debug/index.php:472
 msgid "Tag"
@@ -9643,7 +9649,7 @@ msgstr "Hesap"
 
 #: application/views/interface_assets/header.php:424
 msgid "Band Edges"
-msgstr "Bant Sınırları"
+msgstr "Bant Aralıkları"
 
 #: application/views/interface_assets/header.php:430
 msgid "Switch to Clubstation:"
@@ -9916,19 +9922,21 @@ msgid ""
 "Label name used for display purposes so pick something meaningful perhaps "
 "the label style."
 msgstr ""
+"Görüntüleme amacıyla kullanılan etiket adıdır, bu nedenle anlamlı bir şey "
+"seçin. Örneğin; Etiket stilini yansıtan bir isim."
 
 #: application/views/labels/index.php:2
 #: application/views/logbookadvanced/startatform.php:39
 msgid "Mark QSL as printed"
-msgstr ""
+msgstr "QSL'yi yazdırıldı olarak işaretle"
 
 #: application/views/labels/index.php:3 application/views/labels/index.php:128
 msgid "Print"
-msgstr ""
+msgstr "Yazdır"
 
 #: application/views/labels/index.php:33
 msgid "Create New Label Type"
-msgstr ""
+msgstr "Yeni Etiket Türü Oluştur"
 
 #: application/views/labels/index.php:34
 msgid "Create New Paper Type"
@@ -9952,11 +9960,11 @@ msgstr ""
 
 #: application/views/labels/index.php:46
 msgid "Orientation"
-msgstr ""
+msgstr "Yönlendirme"
 
 #: application/views/labels/index.php:71
 msgid "Label types"
-msgstr ""
+msgstr "Etiket türleri"
 
 #: application/views/labels/index.php:81
 #: application/views/statistics/index.php:70
@@ -9966,11 +9974,11 @@ msgstr ""
 
 #: application/views/labels/index.php:82
 msgid "Use For Print"
-msgstr ""
+msgstr "Baskı İçin Kullan"
 
 #: application/views/labels/index.php:92
 msgid "No paper assigned"
-msgstr ""
+msgstr "Kağıt atanmadı"
 
 #: application/views/labels/index.php:117
 msgid "QSL Card Labels Pending"
@@ -10334,11 +10342,11 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:23
 msgid "Advanced Logbook Help"
-msgstr ""
+msgstr "Gelişmiş Logbook Yardımı"
 
 #: application/views/logbookadvanced/index.php:212
 msgid "From"
-msgstr ""
+msgstr "Gönderen"
 
 #: application/views/logbookadvanced/index.php:216
 msgid "To"
@@ -10348,7 +10356,7 @@ msgstr "to"
 #: application/views/logbookadvanced/index.php:695
 #: application/views/logbookadvanced/useroptions.php:30
 msgid "Dx"
-msgstr ""
+msgstr "Dx"
 
 #: application/views/logbookadvanced/index.php:221
 #: application/views/logbookadvanced/index.php:246
@@ -10365,16 +10373,16 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:403
 #: application/views/logbookadvanced/index.php:520
 msgid "Empty"
-msgstr ""
+msgstr "Boş"
 
 #: application/views/logbookadvanced/index.php:296
 msgctxt "Propagation Mode"
 msgid "None/Empty"
-msgstr ""
+msgstr "Yok/Boş"
 
 #: application/views/logbookadvanced/index.php:411
 msgid "QSL sent"
-msgstr ""
+msgstr "QSL gönderildi"
 
 #: application/views/logbookadvanced/index.php:417
 #: application/views/logbookadvanced/index.php:459
@@ -10440,60 +10448,60 @@ msgstr "Geçersiz (Yok say)"
 
 #: application/views/logbookadvanced/index.php:422
 msgid "QSL received"
-msgstr ""
+msgstr "QSL alındı"
 
 #: application/views/logbookadvanced/index.php:433
 msgid "QSL send. method"
-msgstr ""
+msgstr "QSL gönderim yöntemi"
 
 #: application/views/logbookadvanced/index.php:443
 msgid "QSL recv. method"
-msgstr ""
+msgstr "QSL alma yöntemi"
 
 #: application/views/logbookadvanced/index.php:453
 msgid "LoTW sent"
-msgstr ""
+msgstr "LoTW gönderildi"
 
 #: application/views/logbookadvanced/index.php:464
 msgid "LoTW received"
-msgstr ""
+msgstr "LoTW alındı"
 
 #: application/views/logbookadvanced/index.php:475
 msgid "Clublog sent"
-msgstr ""
+msgstr "Clublog gönderildi"
 
 #: application/views/logbookadvanced/index.php:486
 msgid "Clublog received"
-msgstr ""
+msgstr "Clublog alındı"
 
 #: application/views/logbookadvanced/index.php:497
 msgid "eQSL sent"
-msgstr ""
+msgstr "eQSL gönderildi"
 
 #: application/views/logbookadvanced/index.php:508
 msgid "eQSL received"
-msgstr ""
+msgstr "eQSL alındı"
 
 #: application/views/logbookadvanced/index.php:523
 msgid "QSL Images"
-msgstr ""
+msgstr "QSL Kart Görselleri"
 
 #: application/views/logbookadvanced/index.php:535
 msgid "Warning! Are you sure you want to delete the marked QSO(s)?"
-msgstr ""
+msgstr "Uyarı! İşaretlenen QSO(lar)ı silmek istediğinize emin misiniz?"
 
 #: application/views/logbookadvanced/index.php:536
 msgid " QSO(s) will be deleted"
-msgstr ""
+msgstr " QSO(lar) silinecek"
 
 #: application/views/logbookadvanced/index.php:539
 msgid "With selected: "
-msgstr ""
+msgstr "Seçilen öğelerle: "
 
 #: application/views/logbookadvanced/index.php:540
 #: application/views/qso/edit_ajax.php:697
 msgid "Update from Callbook"
-msgstr ""
+msgstr "Online Çağrı Defterinden Güncelle"
 
 #: application/views/logbookadvanced/index.php:541
 msgid "Queue Bureau"
