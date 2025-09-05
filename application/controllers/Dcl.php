@@ -205,7 +205,7 @@ class Dcl extends CI_Controller {
 					// Mark QSOs as Sent
 					foreach ($qso_id_array as $qso_number) {
 						// todo: uncomment when ready
-						// $this->Logbook_model->mark_dcl_sent($qso_number);
+						$this->Logbook_model->mark_dcl_sent($qso_number);
 					}
 				}
 				$qso_id_array=[];
