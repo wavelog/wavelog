@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-05 06:44+0000\n"
+"PO-Revision-Date: 2025-09-05 09:12+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -2700,11 +2700,11 @@ msgstr "POTA güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:462
 msgid "TLE Update complete. Result: "
-msgstr "TLE güncellemesi tamamlandı. Sonuç: "
+msgstr "Uydu Yörünge Verileri (TLE) güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:464
 msgid "TLE Update failed. Result: "
-msgstr "TLE güncellemesi başarısız oldu. Sonuç: "
+msgstr "Uydu Yörünge Verileri (TLE) güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:475
 msgid "LoTW SAT Update"
@@ -8448,7 +8448,7 @@ msgstr "WWFF dosyasını güncelle"
 
 #: application/views/debug/index.php:558
 msgid "TLE update"
-msgstr "TLE Güncelle"
+msgstr "Uydu Yörünge Verileri (TLE) Güncelle"
 
 #: application/views/debug/index.php:563
 msgid "Hams Of Note update"
@@ -12444,66 +12444,72 @@ msgid ""
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
+"Yarışma sırasında gönderilen bilgi. Eyalet, DOK, İlçe, Eyalet, Güç, İsim "
+"gibi her türlü bilgi olabilir. Maks. uzunluk: 6 karakter."
 
 #: application/views/reg1test/index.php:55
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
 msgstr ""
+"Operatör(ler)in üyesi olduğu telsiz kulübünün çağrı işaretini belirtir. "
+"Örneğin, puanlar kulübe birikiyorsa kullanılabilir."
 
 #: application/views/reg1test/index.php:66
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "Sorumlu operatörün çağrı işareti"
 
 #: application/views/reg1test/index.php:72
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
 msgstr ""
+"Tüm operatörlerin listesi. Noktalı virgül ';' ile ayrılır. Sorumlu "
+"operatörün çağrı işareti bu listeye eklenmez."
 
 #: application/views/reg1test/index.php:75
 msgid "Contest Address 1"
-msgstr ""
+msgstr "Yarışma Adresi 1"
 
 #: application/views/reg1test/index.php:77
 msgid "Address of the QTH used during the contest."
-msgstr ""
+msgstr "Yarışma sırasında kullanılan QTH'nin adresi."
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "Yarışma Adresi 2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "Operatör Adresi 1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "Sorumlu operatörün adresi."
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "Operatör Adresi 2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "Operatör Adresi Posta Kodu"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "Operatör Adresi Şehir"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "Operatör Adresi Ülke"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "Operatör Telefon Numarası"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "Verici Ekipman Açıklaması"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
@@ -12532,40 +12538,42 @@ msgstr "Ne tür bir anten kullanıldı."
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "Antenin Yerden Yüksekliği (m)"
 
 #: application/views/reg1test/index.php:131
 msgid "Height of the antenna above the ground."
-msgstr ""
+msgstr "Antenin yerden yüksekliği."
 
 #: application/views/reg1test/index.php:134
 msgid "Band multiplicator"
-msgstr ""
+msgstr "Band çarpanı"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
 msgstr ""
+"Band çarpanı. Bu genellikle 1'dir. Sadece yarışma puanlama kurallarına göre "
+"gerekliyse değiştirin."
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
-msgstr ""
+msgstr "Diğer açıklamalar."
 
 #: application/views/satellite/create.php:23
 msgid "Satellite Display Name"
-msgstr ""
+msgstr "Uydu Görünen Adı"
 
 #: application/views/satellite/create.php:25
 #: application/views/satellite/edit.php:9
 msgid "Display / cleartext name of the satellite"
-msgstr ""
+msgstr "Uydunun görünen / açık metin adı"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:52
 msgid "LoTW Name"
-msgstr ""
+msgstr "LoTW Adı"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
@@ -12573,258 +12581,264 @@ msgid ""
 "Satellite name as accepted by LoTW. Not necessarily the same as the display "
 "name. Can be set/changed later when added to LoTW."
 msgstr ""
+"LoTW tarafından kabul edilen uydu adı. Görünen adla aynı olması şart "
+"değildir. LoTW'ye eklendiğinde sonradan ayarlanabilir/değiştirilebilir."
 
 #: application/views/satellite/create.php:41
 #: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
-msgstr ""
+msgstr "Uydunun hangi yörüngeye sahip olduğunu girin (LEO, MEO, GEO)"
 
 #: application/views/satellite/create.php:44
 msgid "Satellite mode name"
-msgstr ""
+msgstr "Uydu mod adı"
 
 #: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
-msgstr ""
+msgstr "Uydu modunu girin"
 
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
 #: application/views/satellite/satinfo.php:8
 msgid "Uplink mode"
-msgstr ""
+msgstr "Uplink (TX) modu"
 
 #: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
-msgstr ""
+msgstr "Uplink (TX) için kullanılan modülasyonu girin"
 
 #: application/views/satellite/create.php:56
 #: application/views/satellite/edit.php:53
 #: application/views/satellite/satinfo.php:9
 msgid "Uplink frequency"
-msgstr ""
+msgstr "Uplink (TX) frekansı"
 
 #: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
-msgstr ""
+msgstr "Uplink (TX) için kullanılan frekansı (Hz cinsinden) girin"
 
 #: application/views/satellite/create.php:63
 #: application/views/satellite/edit.php:54
 #: application/views/satellite/satinfo.php:10
 msgid "Downlink mode"
-msgstr ""
+msgstr "Downlink (Alış/RX) modu"
 
 #: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
-msgstr ""
+msgstr "Downlink (RX) için kullanılan modülasyonu girin"
 
 #: application/views/satellite/create.php:68
 #: application/views/satellite/edit.php:55
 #: application/views/satellite/satinfo.php:11
 msgid "Downlink frequency"
-msgstr ""
+msgstr "Downlink (RX) frekansı"
 
 #: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
-msgstr ""
+msgstr "Downlink (RX) için kullanılan frekansı (Hz cinsinden) girin"
 
 #: application/views/satellite/create.php:73
 #: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
-msgstr ""
+msgstr "LoTW tarafından kabul edildi"
 
 #: application/views/satellite/create.php:78
 #: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
-msgstr ""
+msgstr "Sadece uydu LoTW tarafından kabul edilmişse 'Evet' olarak ayarlayın"
 
 #: application/views/satellite/edit.php:7
 msgid "Satellite Display Name "
-msgstr ""
+msgstr "Uydu Görünen Adı "
 
 #: application/views/satellite/edit.php:42
 msgid "Save satellite"
-msgstr ""
+msgstr "Uyduyu kaydet"
 
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
-msgstr ""
+msgstr "Uydu modu ekle"
 
 #: application/views/satellite/flightpath.php:51
 msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
 msgstr ""
+"Uydu Yörünge Verisi (TLE) bulunan uydu bulunamadı. Lütfen CRON veya uydu "
+"sayfası üzerinden güncelleyin. Eğer bunu yapmaya erişiminiz yoksa, "
+"yöneticinize başvurun!"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
-msgstr ""
+msgstr "Bir uydu ekle"
 
 #: application/views/satellite/index.php:45
 msgid "Sync Satellites from LoTW"
-msgstr ""
+msgstr "Uyduları LoTW'dan Eşitle"
 
 #: application/views/satellite/index.php:46
 msgid "Update Satellite TLE"
-msgstr ""
+msgstr "Uydu Yörünge Verileri (TLE) Güncelleme"
 
 #: application/views/satellite/index.php:57
 msgid "TLE"
-msgstr ""
+msgstr "Uydu Yörünge Verileri (TLE)"
 
 #: application/views/satellite/pass.php:6
 msgid "Satellite passes"
-msgstr ""
+msgstr "Uydu geçişleri"
 
 #: application/views/satellite/pass.php:13
 msgid "Your station"
-msgstr ""
+msgstr "İstasyonunuz"
 
 #: application/views/satellite/pass.php:26
 #: application/views/satellite/pass.php:65
 msgid "Min. Satellite Elevation"
-msgstr ""
+msgstr "Minimum Uydu Yüksekliği"
 
 #: application/views/satellite/pass.php:30
 #: application/views/satellite/pass.php:69
 msgid "Min. Azimuth"
-msgstr ""
+msgstr "Min. Azimut"
 
 #: application/views/satellite/pass.php:38
 #: application/views/satellite/pass.php:77
 msgid "Max. Azimuth"
-msgstr ""
+msgstr "Max. Azimut"
 
 #: application/views/satellite/pass.php:54
 msgid "Min. time"
-msgstr ""
+msgstr "Min. süre"
 
 #: application/views/satellite/pass.php:63
 msgid "Sked partner"
-msgstr ""
+msgstr "Planlanmış görüşme ortağı"
 
 #: application/views/satellite/pass.php:91
 msgid "Load predictions"
-msgstr ""
+msgstr "Yörünge tahminlerini yükle"
 
 #: application/views/satellite/pass.php:92
 msgid "Add sked partner"
-msgstr ""
+msgstr "Planlanmış görüşme ortağı ekle"
 
 #: application/views/satellite/pass.php:94
 msgid "Presets"
-msgstr ""
+msgstr "Ön ayarlar"
 
 #: application/views/satellite/pass.php:96
 msgid "Save current settings"
-msgstr ""
+msgstr "Mevcut ayarları kaydet"
 
 #: application/views/satellite/pass.php:105
 msgid "Save Settings"
-msgstr ""
+msgstr "Ayarları Kaydet"
 
 #: application/views/satellite/pass.php:109
 msgid "Settings Name"
-msgstr ""
+msgstr "Ayar Adı"
 
 #: application/views/satellite/pass.php:110
 msgid "Enter a name"
-msgstr ""
+msgstr "Bir isim gir"
 
 #: application/views/satellite/pass.php:121
 msgid "No TLE information detected. Please update TLE's."
 msgstr ""
+"TLE bilgisi algılanamadı. Lütfen uydu yörünge verilerini (TLE) güncelleyin."
 
 #: application/views/satellite/passtable.php:7
 #: application/views/satellite/skedtable.php:36
 msgid "AOS Time"
-msgstr ""
+msgstr "AOS Zamanı (İrtibat Başlangıç Zamanı)"
 
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:40
 msgid "LOS Time"
-msgstr ""
+msgstr "LOS Zamanı (İrtibat Sonu Zamanı)"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:10
 #: application/views/satellite/skedtable.php:37
 #: application/views/sattimers/index.php:46
 msgid "Duration"
-msgstr ""
+msgstr "Süre"
 
 #: application/views/satellite/passtable.php:10
 msgid "Path"
-msgstr ""
+msgstr "Yörünge Güzergahı"
 
 #: application/views/satellite/passtable.php:11
 msgid "Max Elevation (Azimuth)"
-msgstr ""
+msgstr "Maksimum Yükseklik (Azimut)"
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:38
 msgid "AOS Azimuth"
-msgstr ""
+msgstr "AOS Azimut (İrtibat Başlangıç Açısı)"
 
 #: application/views/satellite/passtable.php:13
 #: application/views/satellite/skedtable.php:41
 msgid "LOS Azimuth"
-msgstr ""
+msgstr "LOS Azimut (İrtibat Sonu Açısı)"
 
 #: application/views/satellite/passtable.php:55
 #: application/views/satellite/skedtable.php:84
 msgid "Search failed!"
-msgstr ""
+msgstr "Arama başarısız!"
 
 #: application/views/satellite/passtable.php:56
 msgid "No passes found. Please check the input parameters."
-msgstr ""
+msgstr "Geçiş bulunamadı. Lütfen giriş parametrelerini kontrol edin."
 
 #: application/views/satellite/passtable.php:73
 #: application/views/satellite/skedtable.php:94
 msgid "min"
-msgstr ""
+msgstr "dak."
 
 #: application/views/satellite/satinfo.php:14
 msgid "TLE date"
-msgstr ""
+msgstr "TLE tarihi"
 
 #: application/views/satellite/skedtable.php:8
 msgid "Sked AOS Time"
-msgstr ""
+msgstr "Planlanmış İrtibat Başlangıç Zamanı (Sked AOS)"
 
 #: application/views/satellite/skedtable.php:9
 msgid "Sked LOS Time"
-msgstr ""
+msgstr "Planlanmış İrtibat Sonu Zamanı (Sked LOS)"
 
 #: application/views/satellite/skedtable.php:34
 msgid "Grid"
-msgstr ""
+msgstr "Grid"
 
 #: application/views/satellite/skedtable.php:39
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
-msgstr ""
+msgstr "Max. Yükseklik"
 
 #: application/views/satellite/skedtable.php:85
 msgid "No overlapping passes found. Please check the input parameters."
-msgstr ""
+msgstr "Örtüşen geçiş bulunamadı. Lütfen giriş parametrelerini kontrol edin."
 
 #: application/views/satellite/tleinfo.php:6
 #, php-format
 msgid "TLE information for %s (last updated: %s)"
-msgstr ""
+msgstr "%s için uydu yörünge verileri (TLE) (son güncelleme: %s)"
 
 #: application/views/satellite/tleinfo.php:8
 msgid "Delete TLE"
-msgstr ""
+msgstr "Uydu yörünge verilerini (TLE) sil"
 
 #: application/views/satellite/tleinfo.php:10
 #, php-format
 msgid "No TLE information found for %s"
-msgstr ""
+msgstr "%s için uydu yörünge verisi (TLE) bulunamadı"
 
 #: application/views/satellite/tleinfo.php:11
 msgid "Add TLE"
-msgstr ""
+msgstr "Uydu yörünge verisi (TLE) ekle"
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -12832,23 +12846,25 @@ msgid ""
 "This data comes from %s and is calculated for the current stationlocation "
 "grid %s."
 msgstr ""
+"Bu veriler %s kaynağından gelmekte olup, mevcut istasyon konumunun grid %s "
+"için hesaplanmıştır."
 
 #: application/views/sattimers/index.php:40
 msgid "Time(d)-Out"
-msgstr ""
+msgstr "Geçiş Sonu"
 
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
 #: application/views/statistics/antennaanalytics.php:8
 msgid "Azimuth"
-msgstr ""
+msgstr "Azimut"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/ituzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
 msgid "Ready to find a QSO?"
-msgstr ""
+msgstr "QSO bulmaya hazır mısınız?"
 
 #: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
@@ -12856,7 +12872,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
-msgstr ""
+msgstr "Gelişmiş Arama"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
@@ -12864,7 +12880,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
 msgid "Incorrect CQ Zones"
-msgstr ""
+msgstr "Hatalı CQ Bölgeleri"
 
 #: application/views/search/cqzones.php:21
 #: application/views/search/filter.php:29
@@ -12872,7 +12888,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "Incorrect ITU Zones"
-msgstr ""
+msgstr "Hatalı ITU Bölgeleri"
 
 #: application/views/search/cqzones.php:24
 #: application/views/search/filter.php:32
@@ -12880,94 +12896,100 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:24
 #: application/views/search/main.php:24
 msgid "QSOs unconfirmed on LoTW"
-msgstr ""
+msgstr "LoTW'de doğrulanmamış QSO'lar"
 
 #: application/views/search/cqzones.php:31
 #: application/views/search/ituzones.php:31
 msgid "Station location:"
-msgstr ""
+msgstr "İstasyon konumu:"
 
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Aşağıdaki QSO'larda, bu DXCC'nin normalde sahip olduğu CQ bölgesiyle "
+"uyuşmayan hatalı bir bölge tespit edildi (en fazla 5000 QSO gösterilir):"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
-msgstr ""
+msgstr "DXCC CQ Bölgesi"
 
 #: application/views/search/cqzones_result.php:51
 #: application/views/search/ituzones_result.php:51
 msgid "No incorrect CQ Zones were found."
-msgstr ""
+msgstr "Hatalı CQ Bölgesi bulunamadı."
 
 #: application/views/search/filter.php:46
 msgid "Save query"
-msgstr ""
+msgstr "Sorguyu kaydet"
 
 #: application/views/search/filter.php:53
 msgid "Stored queries"
-msgstr ""
+msgstr "Kayıtlı sorgular"
 
 #: application/views/search/filter.php:72
 msgid "search filter functions"
-msgstr ""
+msgstr "Arama filtreleme işlevleri"
 
 #: application/views/search/filter.php:82
 msgid "Search Results"
-msgstr ""
+msgstr "Arama Sonuçları"
 
 #: application/views/search/ituzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect ITU zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Aşağıdaki QSO'larda, bu DXCC'nin normalde sahip olduğu ITU bölgesiyle "
+"uyuşmayan hatalı bir bölge tespit edildi (en fazla 5000 QSO gösterilir):"
 
 #: application/views/search/ituzones_result.php:14
 msgid "DXCC ITU Zone"
-msgstr ""
+msgstr "DXCC ITU Bölgesi"
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid ""
 "The search displays QSOs which are unconfirmed on LoTW, but the callsign "
 "worked has uploaded to LoTW after your QSO date."
 msgstr ""
+"Arama, LoTW'de doğrulanmamış ancak çağrı işareti sizin QSO tarihinizden "
+"sonra LoTW'ye yüklenmiş olan QSO'ları gösterir."
 
 #: application/views/search/lotw_unconfirmed.php:32
 msgid "Station location"
-msgstr ""
+msgstr "İstasyon Konumu"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr ""
+msgstr "Son LoTW yüklemesi"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
-msgstr ""
+msgstr "LoTW'ye yüklenmemiş QSO bulunamadı."
 
 #: application/views/search/main.php:31
 msgid "Callsign / Gridsquare"
-msgstr ""
+msgstr "Çağrı İşareti / Grid"
 
 #: application/views/search/result.php:2
 #, php-format
 msgid "Results for %s"
-msgstr ""
+msgstr "%s için sonuçlar"
 
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr ""
+msgstr "Üzgünüz, ancak %s ile geçmiş bir QSO bulamadık"
 
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr ""
+msgstr "%s için Çağrı İşareti Rehberi Arama"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
-msgstr ""
+msgstr "QSO Yapılmamış"
 
 #: application/views/search/search_result_ajax.php:424
 #: application/views/view_log/partial/log.php:142
@@ -13019,20 +13041,20 @@ msgstr "QSL Kartı Gerekli Değil Olarak İşaretle"
 #: application/views/search/search_result_ajax.php:443
 #: application/views/view_log/partial/log_ajax.php:514
 msgid "Lookup on QRZ.com"
-msgstr ""
+msgstr "QRZ.com'da ara"
 
 #: application/views/search/search_result_ajax.php:445
 #: application/views/view_log/partial/log_ajax.php:516
 msgid "Lookup on HamQTH"
-msgstr ""
+msgstr "HamQTH'de ara"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "Sorgu"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr ""
+msgstr "Basit Hızlı Log Girişi (FLE)"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -13040,6 +13062,9 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
+"Hızlı Log Girişi (FLE), QSO'ları olabildiğince hızlı ve verimli kaydetmek "
+"için tasarlanmış bir sistemdir. Özel sözdizimi (syntax) sayesinde, çok "
+"sayıda QSO'yu en az girdi ve effortla (çaba/emek) kaydetmenize olanak tanır."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -13047,6 +13072,10 @@ msgid ""
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
 "a web interface to log QSOs."
 msgstr ""
+"Hızlı Log Girişi (FLE) başlangıçta DF3CB tarafından yazılmıştır. Kendisi web "
+"sitesinde Windows için bir program sunmaktadır. Basit FLE, OK2CQR tarafından "
+"DF3CB'nin FLE'si temel alınarak yazılmıştır ve QSO'ları kaydetmek için bir "
+"web arayüzü sağlar."
 
 #: application/views/simplefle/index.php:16
 #, php-format
@@ -13055,108 +13084,120 @@ msgid ""
 "session and now SimpleFLE is also available in Wavelog. Information about "
 "the syntax and how FLE works can be found %s."
 msgstr ""
+"Yaygın bir kullanım senaryosu, açık hava etkinliğinizden kağıt loglarınızı "
+"içe aktarmanız gerektiği durumlardır ve artık SimpleFLE, Wavelog içinde de "
+"mevcuttur. Sözdizimi ve FLE'nin nasıl çalıştığı hakkında bilgiyi %s "
+"adresinde bulabilirsiniz."
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:184
 msgid "Syntax Help"
-msgstr ""
+msgstr "Sözdizimi Yardımı"
 
 #: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
-msgstr ""
+msgstr "Hızlı Log Girişi (FLE) Sözdizimi"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
-msgstr ""
+msgstr "Kapat ve Örnek Verileri Yükle"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr ""
+msgstr "Bant bilgisi eksik!"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr ""
+msgstr "Mod bilgisi eksik!"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr ""
+msgstr "Saat ayarlanmamış!"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
-msgstr ""
+msgstr "Geçersiz tarih"
 
 #: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
-msgstr ""
+msgstr "İstasyon Çağrı İşareti seçilmedi"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
-msgstr ""
+msgstr "'Operatör' Alanı boş"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr ""
+msgstr "Uyarı! Gerçekten her şeyi sıfırlamak istiyor musunuz?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
+"Uyarı! Bazı QSO'larda bant ve/veya mod tanımlı olmadığı için QSO Listesini "
+"kaydedemezsiniz!"
 
 #: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr ""
+"Uyarı! Bazı QSO'larda saat tanımlı olmadığı için QSO Listesini "
+"kaydedemezsiniz!"
 
 #: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
-msgstr ""
+msgstr "Dikkat! Veri Alanı örnek veriler içeriyor. Önce Oturumu Temizleyin!"
 
 #: application/views/simplefle/index.php:35
 msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
+"Dikkat! Ya bir yarışma (contest) seçtiniz ancak bir exchange (değişim "
+"bilgisi) eklemediniz, ya da yarışma verilerini kaydettiniz ancak bir yarışma "
+"seçmediniz."
 
 #: application/views/simplefle/index.php:36
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
 msgstr ""
+"Bu QSO'ları Log'a eklemek ve oturumu temizlemek istediğinizden emin misiniz?"
 
 #: application/views/simplefle/index.php:37
 msgid "QSO Logged!"
-msgstr ""
+msgstr "QSO Kaydedildi!"
 
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
-msgstr ""
+msgstr "QSO, logbook'a başarıyla kaydedildi! Tekrarlananlar (dupes) atlandı."
 
 #: application/views/simplefle/index.php:40
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr ""
+msgstr "QSO logbook'a kaydedilirken bir hata oluştu! Hata: "
 
 #: application/views/simplefle/index.php:44
 msgid "What is that?"
-msgstr ""
+msgstr "Bu nedir?"
 
 #: application/views/simplefle/index.php:47
 msgid "Current UTC Time"
-msgstr ""
+msgstr "Mevcut UTC Zamanı"
 
 #: application/views/simplefle/index.php:80
 msgid "If you don't choose a date, today's date will be used."
-msgstr ""
+msgstr "Eğer bir tarih seçmezseniz, bugünün tarihi kullanılacaktır."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "Girilen QSO'ları bir yarışmaya (contest) ekleyebilirsiniz."
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
-msgstr ""
+msgstr "İstasyon Çağrı İşareti/Konumu"
 
 #: application/views/simplefle/index.php:111
 #, php-format
@@ -13164,51 +13205,54 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Eğer yeni bir konumdan çalıştıysanız, önce yeni bir %sİstasyon Konumu%s "
+"oluşturun"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
-msgstr ""
+msgstr "örn. TA4AQG"
 
 #: application/views/simplefle/index.php:120
 msgid "This is callsign of the operator. Without any pre- or suffixes."
 msgstr ""
+"Bu, operatörün çağrı işaretidir. Herhangi bir ön ek veya son ek içermez."
 
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
-msgstr ""
+msgstr "Veri girin"
 
 #: application/views/simplefle/index.php:162
 msgid "Refs"
-msgstr ""
+msgstr "Referanslar"
 
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "Referanslar; %sS%sOTA, %sI%sOTA, %sP%sOTA veya %sW%sWFF olabilir"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
-msgstr ""
+msgstr "QSO Listesini Yenile"
 
 #: application/views/simplefle/index.php:182
 msgid "Save in Wavelog"
-msgstr ""
+msgstr "Wavelog'a Kaydet"
 
 #: application/views/simplefle/index.php:183
 msgid "Clear Logging Session"
-msgstr ""
+msgstr "Oturumu Temizle"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "Henüz Seçenek Yok"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
-msgstr ""
+msgstr "Bir QSO kaydetmeye başlamadan önce lütfen temel kurallara dikkat edin."
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
-msgstr ""
+msgstr "- Her yeni QSO yeni bir satıra yazılmalıdır."
 
 #: application/views/simplefle/syntax_help.php:3
 msgid ""
@@ -13222,10 +13266,16 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
+"Başlamak için sol taraftaki formu tarih, istasyon çağrı işareti ve "
+"operatörün çağrı işareti ile önceden doldurduğunuzdan emin olun. Ana veriler "
+"band (veya MHz cinsinden QRG, örn. '7.145'), mod ve zamanı içerir. Zamandan "
+"sonra, ilk QSO'ya ait çağrı işaretini girin."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
 msgstr ""
+"Örneğin, 21:34 (UTC)'te TA4DGO ile 20m SSB üzerinde yapılan bir QSO. (Sıra: "
+"Zaman, Çağrı İşareti, Band, Mod)."
 
 #: application/views/simplefle/syntax_help.php:10
 msgid ""
@@ -13233,13 +13283,21 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
+"Eğer herhangi bir Sinyal Raporu (RST) bilgisi sağlamazsanız, sistem "
+"varsayılan olarak 59'u (data modları için 599) kullanacaktır. Sonraki "
+"örnekte QSO'muzun Sinyal Raporu (RST) 59 değildi, bu nedenle önce gönderilen "
+"(karşı operatöre verilen) RST bilgisini giriyoruz."
 
 #: application/views/simplefle/syntax_help.php:16
+#, fuzzy
 msgid ""
 "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We "
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
+"Ilk QSO 21:34'teydi ve ikincisi 2 dakika sonra 21:36'da. Buraya sadece "
+"değişen veri olduğu için 6 yazıyoruz. Band ve mod hakkındaki bilgi "
+"değişmediği için bu veri atlanıyor."
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -13248,26 +13306,33 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
+"Bir sonraki QSO'muz 14 Mayıs 2021 saat 21:40'ta gerçekleşti ve bandı 40m "
+"olarak değiştirdik, mod hala SSB. Eğer RST bilgisi verilmezse, sistem her "
+"yeni QSO için 59'u varsayılan olarak kullanacaktır. Aynı zamanda iki gün "
+"sonra gerçekleşen başka bir QSO daha ekleyebiliriz. Tarih, YYYY-AA-GG "
+"formatında olmalıdır."
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
-msgstr ""
+msgstr "Ek bilgiler aşağıdaki şekilde girilebilir:"
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "Notlar:"
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "Operatör Adı:"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "QSL mesajı (Dikkat! Şu anda wavelog'da görünmez!):"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
 msgstr ""
+"Yarışma (contest) değişimi; seri numaraları veya diğer değişim bilgileri - "
+"veya her ikisi birden:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -13278,24 +13343,40 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"Alınan değişim bilgisi bir nokta '.' ile başlamalı, gönderilen değişim "
+"bilgisi ise bir virgül ',' ile başlamalıdır. Son iki satır eşdeğerdir - yani "
+"boşluklar önemli olmadığı gibi sıra da önemli değildir. Gönderdiğiniz "
+"değişim bilgisi, alınan değişim bilgisi içeriyorsa veya tek bir virgül ',' "
+"kullanıyorsanız, bir sonraki QSO'da otomatik olarak dahil edilecektir. "
+"Gönderilen seri numarasını otomatik artırmak için ',++' kullanın ve bir "
+"başlangıç gönderilen değişim bilgisi verin. Devre dışı bırakmak için ',+0' "
+"kullanın:"
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
+"Burada, ilk QSO belirlenen 1 seri numarasını kullanır ve ikincisi 2 seri "
+"numarasını kullanacaktır. Gönderilen değişim bilgilerinizi temizlemek "
+"isterseniz ',-' kullanın:"
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
+"İlk olarak, önceki tüm değişim bilgileri temizlenir, ardından yalnızca bir "
+"seri numarası ayarlanır. Aksi takdirde önceki 'D23' değişim bilgisi de "
+"ayarlanmış olacaktı."
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
+"Wavelog İçe Aktarımı tarafından desteklenen ADIF alanlarını doldurmak için "
+"yorum sözdizimini kullanabilirsiniz:"
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
@@ -13303,39 +13384,43 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Tüm komutların ve gerekli sözdiziminin tam özeti, Wiki'mizdeki %sbu "
+"makalede%s bulunabilir."
 
 #: application/views/station_profile/create.php:55
 #: application/views/station_profile/edit.php:71
 msgid "Location Name"
-msgstr ""
+msgstr "Konum Adı"
 
 #: application/views/station_profile/create.php:56
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "Ev QTH"
 
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "İstasyon konumu için kısa ad. Örneğin: %s"
 
 #: application/views/station_profile/create.php:63
 #: application/views/station_profile/edit.php:79
 msgid "Station callsign. For example: 4W7EST/P"
-msgstr ""
+msgstr "İstasyon çağrı işareti. Örneğin: TA4AQG/P"
 
 #: application/views/station_profile/create.php:67
 #: application/views/station_profile/edit.php:83
 msgid "Station Power (W)"
-msgstr ""
+msgstr "İstasyon Gücü (W)"
 
 #: application/views/station_profile/create.php:69
 #: application/views/station_profile/edit.php:85
 msgid "Default station power in Watt. Overwritten by CAT."
 msgstr ""
+"Varsayılan istasyon gücü (Watt cinsinden). Eğer CAT bağlantısı aktifse "
+"telsizin gücü dikkate alınır."
 
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:116
@@ -13355,7 +13440,7 @@ msgstr "İstasyon şehri. Örneğin: Denizli"
 #: application/views/station_profile/create.php:98
 #: application/views/station_profile/edit.php:136
 msgid "Station state. Applies to certain countries only."
-msgstr ""
+msgstr "İstasyon eyaleti. Sadece belirli ülkeler için geçerlidir."
 
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
