@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-05 12:30+0000\n"
+"PO-Revision-Date: 2025-09-05 14:22+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -2640,7 +2640,7 @@ msgstr "Güncelleniyor..."
 
 #: application/controllers/Update.php:292
 msgid "Dxcc Entities:"
-msgstr "DXCC Varlıkları:"
+msgstr "DXCC Girişleri:"
 
 #: application/controllers/Update.php:293
 msgid "Dxcc Exceptions:"
@@ -4517,6 +4517,11 @@ msgid ""
 "can provide the Cabrillo file that this software also provides to rewrite "
 "that data in Wavelog."
 msgstr ""
+"Başka bir kayıt yazılımı tarafından sağlanan bir yarışmaya ait ADIF "
+"dosyasını içe aktardıysanız, bazen, ilgili yazılıma bağlı olarak, Exvhange "
+"bilgileriniz o yazılımın ADIF'inden düzgün şekilde içe aktarılamayabilir. "
+"Bunu düzeltmek isterseniz, bu verileri Wavelog'da yeniden yazmak için ilgili "
+"yazılımdan Cabrillo dosyasını alıp yükleyebilirsiniz."
 
 #: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:40
@@ -4531,36 +4536,48 @@ msgid ""
 "from both your already imported ADIF file, as well as the CBR file you are "
 "about to upload to match the QSOs and only correct relevant data."
 msgstr ""
+"Lütfen bu işlevi, Wavelog'daki QSO'lar hakkında herhangi bir değişiklik "
+"yapmadan önce kullanın, çünkü bu işlev, hem zaten içe aktardığınız ADIF "
+"dosyasından hem de yüklemek üzere olduğunuz CBR dosyasından alınan Yarışma "
+"Kimliği, tarih ve saat bilgilerini kullanarak QSO'ları eşleştirir ve "
+"yalnızca ilgili verileri düzeltir."
 
 #: application/views/adif/import.php:376
 msgid "Contest Name, only if Contest ID in CBR is different"
-msgstr ""
+msgstr "Yarışma Adı (sadece CBR'daki Yarışma Kimliği farklıysa yazın)"
 
 #: application/views/adif/import.php:376
 msgid "Optional"
-msgstr ""
+msgstr "İsteğe bağlı"
 
 #: application/views/adif/import.php:386
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
+"Bu yarışmada, seri numarası her iki tarafın exchange bilgisinin HER ZAMAN "
+"bir parçasıdır."
 
 #: application/views/adif/import.php:388
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
+"Eğer siz veya partneriniz seri numaralarını her QSO'da değiş tokuş "
+"etmiyorsanız (yalnızca bazılarında yapıyorsanız), lütfen bu seçeneği "
+"işaretlemeyin."
 
 #: application/views/adif/import.php:389
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
 msgstr ""
+"İşaretlenmezse, bu (örneğin) N1MM+'ın ürettiği varsayılan seri numarasını "
+"siler. İşaretlenirse, gerekirse seri numarasını düzeltir."
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
-msgstr ""
+msgstr "ADIF dosyası doğru şekilde ayrıştırılamadı."
 
 #: application/views/adif/import_failed.php:16
 msgid ""
@@ -4568,30 +4585,33 @@ msgid ""
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
 msgstr ""
+"ADIF alanlarından en az biri ayrıştırılamadı ve/veya veritabanına "
+"eklenemedi. Lütfen içe aktarılan ADIF dosyasını kontrol edin. Çevrimiçi bir "
+"ADIF dosyası denetleyicisi kullanabilirsiniz. Örneğin:"
 
 #: application/views/adif/import_success.php:22
 msgid "Yay, it's imported!"
-msgstr ""
+msgstr "Oley, içe aktarıldı!"
 
 #: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
-msgstr ""
+msgstr "ADIF Dosyası içe aktarıldı."
 
 #: application/views/adif/import_success.php:25
 msgid "Number of QSOs imported:"
-msgstr ""
+msgstr "İçe aktarılan QSO sayısı:"
 
 #: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
-msgstr ""
+msgstr "Tekrarlanan QSO'lar eklendi!"
 
 #: application/views/adif/import_success.php:33
 msgid "Dupes were skipped."
-msgstr ""
+msgstr "Tekrarlanan QSO'lar atlandı."
 
 #: application/views/adif/import_success.php:40
 msgid "Contest logs imported"
-msgstr ""
+msgstr "Yarışma Logunuz İçe Aktarıldı"
 
 #: application/views/adif/import_success.php:42
 msgid ""
@@ -4599,52 +4619,58 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
+"Bazen, kullandığınız yarışma kayıt yazılımına bağlı olarak, exchange "
+"bilgileriniz o yazılımın ADIF dosyasından düzgün şekilde içe "
+"aktarılamayabilir. Bunu düzeltmek isterseniz, ADIF İçe Aktarma sayfasının "
+"CBR İçe Aktarım Sekmesine geçin."
 
 #: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr ""
+msgstr "En az 1 adet yarışma kimliği içeren QSO içe aktardınız."
 
 #: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
-msgstr ""
+msgstr "Aşağıda yarışma kimlikleri için bulunan QSO sayısını görebilirsiniz:"
 
 #: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "İçe aktarma detayları / olası sorunlar"
 
 #: application/views/adif/import_success.php:58
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "ADIF dosyalarındaki hatalarla ilgili %s sayfasını kontrol edin."
 
 #: application/views/adif/import_success.php:59
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"ADIF hatalarınız olabilir, QSO'lar yine de eklendi. Lütfen aşağıdaki "
+"bilgileri kontrol edin:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
 #: application/views/qrz/mark_qrz.php:12
 #: application/views/webadif/mark_webadif.php:12
 msgid "QSOs marked"
-msgstr ""
+msgstr "İşaretlenen QSO'lar"
 
 #: application/views/adif/mark_lotw.php:15
 msgid "Yay, its done!"
-msgstr ""
+msgstr "Oley, bitti!"
 
 #: application/views/adif/mark_lotw.php:16
 msgid "The QSOs are marked as exported to LoTW."
-msgstr ""
+msgstr "QSO'lar LoTW'ye aktarılmış olarak işaretlendi."
 
 #: application/views/api/description.php:15
 msgid "Editing Description for API Key"
-msgstr ""
+msgstr "API Anahtarının Açıklamasını Düzenle"
 
 #: application/views/api/description.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr ""
+msgstr "Bu API'yi ne için kullandığınızı açıklayan basit bir açıklama."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
@@ -4664,12 +4690,12 @@ msgstr ""
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 #: application/views/api/index.php:8
 #: application/views/interface_assets/header.php:506
 msgid "API Keys"
-msgstr ""
+msgstr "API Anahtarları"
 
 #: application/views/api/index.php:11
 msgid ""
@@ -4677,6 +4703,9 @@ msgid ""
 "access Wavelog in a controlled way. Access to the API is managed via API "
 "keys."
 msgstr ""
+"Wavelog API'si (Uygulama Programlama Arayüzü), üçüncü taraf sistemlerin "
+"Wavelog'a kontrollü bir şekilde erişmesini sağlar. API'ye erişim, API "
+"anahtarları sekmesi aracılığıyla yönetilir."
 
 #: application/views/api/index.php:12
 msgid ""
@@ -4685,18 +4714,22 @@ msgid ""
 "Wavelog. Generate a read-only key if the application only needs to obtain "
 "data from Wavelog."
 msgstr ""
+"Kullanmak istediğiniz her bir araç için (örneğin WLgate) bir API anahtarı "
+"oluşturmanız gerekecektir. Eğer uygulamanın Wavelog'a veri göndermesi "
+"gerekiyorsa, okuma-yazma anahtarı oluşturun. Uygulama yalnızca Wavelog'dan "
+"veri alacaksa, salt okunur anahtar oluşturun."
 
 #: application/views/api/index.php:13
 msgid "Links to 3rd-Party-Software which works with Wavelog:"
-msgstr ""
+msgstr "Wavelog ile çalışan 3. Taraf Yazılımlar:"
 
 #: application/views/api/index.php:16
 msgid "More Tools"
-msgstr ""
+msgstr "Daha Fazla Araç"
 
 #: application/views/api/index.php:19
 msgid "API URL"
-msgstr ""
+msgstr "API URL"
 
 #: application/views/api/index.php:19 application/views/api/index.php:54
 #: application/views/cron/index.php:22 application/views/debug/index.php:46
@@ -4724,6 +4757,8 @@ msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
 msgstr ""
+"İlişkili uygulamayı artık kullanmıyorsanız, anahtarı silmek iyi bir "
+"seçenektir."
 
 #: application/views/api/index.php:22
 msgid ""
@@ -4988,7 +5023,7 @@ msgstr ""
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
 msgid "Total"
-msgstr ""
+msgstr "Toplam"
 
 #: application/views/awards/cq/index.php:3
 #: application/views/awards/cq/index.php:151 application/views/csv/index.php:80
@@ -5013,7 +5048,7 @@ msgstr "CQ Alanı"
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "Fareyi kullanarak bölgenin üzerine gelin"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ WAZ (Worked All Zones) Award"
@@ -5026,6 +5061,10 @@ msgid ""
 "magazine first appeared in January 1945 and focuses on awards and the "
 "practical aspects of amateur radio."
 msgstr ""
+"CQ Dergisi, ABD'de bulunuyordu ve dünyadaki en popüler amatör telsiz "
+"dergilerinden biriydi. 2023 sonunda hizmetlerini durdurdular. Dergi ilk "
+"olarak Ocak 1945'te yayınlandı ve ödüllere ve amatör telsizciliğin pratik "
+"yönlerine odaklandılar."
 
 #: application/views/awards/cq/index.php:22
 msgid ""
@@ -5038,7 +5077,7 @@ msgstr ""
 #: application/views/awards/cq/index.php:23
 #, php-format
 msgid "You can find all the information and rules on the Website of N4BAA: %s"
-msgstr ""
+msgstr "Tüm bilgi ve kuralları N4BAA'nın Web Sitesinde bulabilirsiniz: %s"
 
 #: application/views/awards/cq/index.php:24
 msgid "Fields taken for this Award: CQ-Zone (ADIF: CQZ)"
@@ -5174,7 +5213,7 @@ msgstr "Sıfırlama"
 
 #: application/views/awards/cq/index.php:116
 msgid "Show CQ Zone Map"
-msgstr ""
+msgstr "CQ Bölge Haritasını Göster"
 
 #: application/views/awards/cq/index.php:125
 #: application/views/awards/dxcc/index.php:200
@@ -5186,7 +5225,7 @@ msgstr ""
 #: application/views/awards/wap/index.php:125
 #: application/views/awards/was/index.php:125
 msgid "Table"
-msgstr ""
+msgstr "Tablo"
 
 #: application/views/awards/cq/index.php:128
 #: application/views/awards/dok/index.php:129
@@ -5203,7 +5242,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:657
 #: application/views/logbookadvanced/useroptions.php:7
 msgid "Map"
-msgstr ""
+msgstr "Harita"
 
 #: application/views/awards/cq/index.php:168
 #: application/views/awards/dok/index.php:166
@@ -5220,7 +5259,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:136
 #: application/views/awards/was/index.php:171
 msgid "Summary"
-msgstr ""
+msgstr "Özet"
 
 #: application/views/awards/cq/index.php:181
 #: application/views/awards/dok/index.php:179
@@ -5269,6 +5308,11 @@ msgid ""
 "'Deutscher Ortsverband Kenner' (English: 'German Local Association "
 "Identifier')."
 msgstr ""
+"Almanya, Doğu'dan Batı'ya 630 km ve Kuzey'den Güney'e yaklaşık 900 km "
+"boyunca uzanır. 82 milyonluk nüfusunun yaklaşık 70.000'i lisanslı amatör "
+"telsizcidir ve bunların 40.000'den fazlası DARC üyesidir. DOK, yerel "
+"şubelere bir tanımlayıcı sağlayan bir sistemdir ve 'Deutscher Ortsverband "
+"Kenner' (Türkçe: 'Alman Yerel Dernek Tanımlayıcısı') anlamına gelir."
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -5277,10 +5321,14 @@ msgid ""
 "or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK "
 "is a common mistake, often being logged as the letter O."
 msgstr ""
+"DOK, bölge için bir harf ve Friedrichshafen ('Hamradio sergisi' şehri) için "
+"P03 veya DARC genel merkezinin bulunduğu Baunatal için F41 gibi yerel şube "
+"için iki basamaklı bir sayıdan oluşur. Not: DOK'ta sıfır, genellikle O harfi "
+"olarak kaydedilen yaygın bir hatadır."
 
 #: application/views/awards/dok/index.php:10
 msgid "DARC website"
-msgstr ""
+msgstr "DARC İnternet Sayfası"
 
 #: application/views/awards/dok/index.php:10
 #, php-format
@@ -5289,18 +5337,20 @@ msgid ""
 "This information is provided by the %s. Information about the DOK Awards and "
 "its rules can be found %s."
 msgstr ""
+"Bu bilgi %s tarafından sağlanmaktadır. DOK Ödülleri ve kuralları hakkında "
+"bilgi %s adresinde bulunabilir."
 
 #: application/views/awards/dok/index.php:11
 msgid "Fields taken for this Award: DOK (ADIF: DARC_DOK)"
-msgstr ""
+msgstr "Bu Ödül için Dikkate Alınan Alanlar: DOK (ADIF: DARC_DOK)"
 
 #: application/views/awards/dok/index.php:21
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:24
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK + SDOK"
 
 #: application/views/awards/dok/index.php:38
 #: application/views/awards/dxcc/index.php:40
@@ -5314,7 +5364,7 @@ msgstr ""
 #: application/views/awards/wapc/index.php:22
 #: application/views/awards/was/index.php:34
 msgid "Worked / Confirmed"
-msgstr ""
+msgstr "Çalışıldı / Onaylandı"
 
 #: application/views/awards/dok/index.php:81
 #: application/views/awards/helvetia/index.php:77
@@ -5327,15 +5377,15 @@ msgstr ""
 #: application/views/awards/wapc/index.php:69
 #: application/views/awards/was/index.php:77
 msgid "Every band"
-msgstr ""
+msgstr "Her bant"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
-msgstr ""
+msgstr "DXCC Ödülü"
 
 #: application/views/awards/dxcc/index.php:15
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
-msgstr ""
+msgstr "'Çalışılan Ülkeler Nasıl Sayılır, Yeni Bir DX Puanlama Sistemi'"
 
 #: application/views/awards/dxcc/index.php:15
 #, php-format
@@ -5344,17 +5394,20 @@ msgid ""
 "DXCC List is based on an article created in 1935 by Clinton B. DeSoto, "
 "W1CBD, titled %s."
 msgstr ""
+"DXCC, 'DX Century Club' anlamına gelir ve çalışılan ülkeleri temel alan bir "
+"ödüldür. DXCC Listesi, 1935 yılında Clinton B. DeSoto, W1CBD tarafından "
+"oluşturulan %s başlıklı bir makaleye dayanmaktadır."
 
 #: application/views/awards/dxcc/index.php:16
 #: application/views/awards/wac/index.php:11
 msgid "ARRL website"
-msgstr ""
+msgstr "ARRL İnternet Sitesi"
 
 #: application/views/awards/dxcc/index.php:16
 #: application/views/awards/wac/index.php:11
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
-msgstr ""
+msgstr "DXCC Ödülü hakkında tüm bilgileri %s adresinde bulabilirsiniz."
 
 #: application/views/awards/dxcc/index.php:17
 msgid ""
@@ -5364,17 +5417,24 @@ msgid ""
 "will find Deleted DXCC entities also in the lists on Wavelog. Be aware that "
 "these DXCC entities are outdated and no longer valid."
 msgstr ""
+"Önemli Not: Zaman içinde DXCC Listesi kriterleri değişmiştir. Liste, bir "
+"kayıt eklenirken sağladığı kriterleri artık karşılamadığı zaman Silinmiş "
+"Listeye taşınana kadar değişmeden kalır. Silinmiş DXCC kayıtlarını "
+"Wavelog'daki listelerde de bulacaksınız. Bu DXCC kayıtlarının güncel "
+"olmadığını ve artık geçerli olmadığını unutmayın."
 
 #: application/views/awards/dxcc/index.php:18
 msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
 msgstr ""
+"Bu Ödül için Dikkate Alınan Alanlar: DXCC (DXCC-ADIF-Spec-List'teki geçerli "
+"bir giriş olmalıdır)"
 
 #: application/views/awards/dxcc/index.php:33
 #: application/views/awards/iota/index.php:34
 msgid "Include deleted"
-msgstr ""
+msgstr "Silinenleri dahil et"
 
 #: application/views/awards/dxcc/index.php:88
 #: application/views/awards/iota/index.php:88
@@ -5386,7 +5446,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:425
 #: application/views/view_log/qso.php:350
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarktika"
 
 #: application/views/awards/dxcc/index.php:92
 #: application/views/awards/iota/index.php:92
@@ -5398,7 +5458,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:424
 #: application/views/view_log/qso.php:347
 msgid "Africa"
-msgstr ""
+msgstr "Afrika"
 
 #: application/views/awards/dxcc/index.php:96
 #: application/views/awards/iota/index.php:96
@@ -5410,7 +5470,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:426
 #: application/views/view_log/qso.php:353
 msgid "Asia"
-msgstr ""
+msgstr "Asya"
 
 #: application/views/awards/dxcc/index.php:100
 #: application/views/awards/iota/index.php:100
@@ -5422,7 +5482,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:427
 #: application/views/view_log/qso.php:356
 msgid "Europe"
-msgstr ""
+msgstr "Avrupa"
 
 #: application/views/awards/dxcc/index.php:104
 #: application/views/awards/iota/index.php:104
@@ -5434,7 +5494,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:428
 #: application/views/view_log/qso.php:359
 msgid "North America"
-msgstr ""
+msgstr "Kuzey Amerika"
 
 #: application/views/awards/dxcc/index.php:108
 #: application/views/awards/iota/index.php:108
@@ -5446,7 +5506,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:430
 #: application/views/view_log/qso.php:365
 msgid "South America"
-msgstr ""
+msgstr "Güney Amerika"
 
 #: application/views/awards/dxcc/index.php:112
 #: application/views/awards/iota/index.php:112
@@ -5458,16 +5518,16 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:429
 #: application/views/view_log/qso.php:362
 msgid "Oceania"
-msgstr ""
+msgstr "Okyanusya"
 
 #: application/views/awards/dxcc/index.php:121
 #: application/views/awards/iota/index.php:121
 msgid "Every band (w/o SAT)"
-msgstr ""
+msgstr "Her bant (Uydu hariç)"
 
 #: application/views/awards/dxcc/index.php:190
 msgid "Show DXCC Map"
-msgstr ""
+msgstr "DXCC Haritasını Göster"
 
 #: application/views/awards/dxcc/index.php:221
 msgid "Legend:"
@@ -5475,15 +5535,15 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:222
 msgid "(Q)SL-Paper-Card"
-msgstr ""
+msgstr "(Q)SL-Kağıt-Kartı"
 
 #: application/views/awards/dxcc/index.php:223
 msgid "(L)oTW"
-msgstr ""
+msgstr "(L)oTW"
 
 #: application/views/awards/dxcc/index.php:224
 msgid "(e)QSL"
-msgstr ""
+msgstr "(e)QSL"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "QR(Z)-\"confirmation\""
@@ -6630,7 +6690,7 @@ msgstr ""
 
 #: application/views/bands/index.php:56
 msgid "Sig"
-msgstr "İmza"
+msgstr "Sinyal"
 
 #: application/views/bands/index.php:58
 msgid "USA County"
@@ -9120,7 +9180,7 @@ msgstr ""
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr "%s disk alanını eQSL Kart varlıklarını depolamak için kullanıyorsun"
+msgstr "%s disk alanını eQSL Kartlarını depolamak için kullanıyorsun"
 
 #: application/views/eqslcard/index.php:35
 #: application/views/qslcard/index.php:44
@@ -10934,7 +10994,7 @@ msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
-msgstr "TQSL &amp; Çağrı İmzası Sertifikaları Sekmesine gidin"
+msgstr "TQSL'yi açın ve Çağrı İşareti Sertifikaları Sekmesine gidin"
 
 #: application/views/lotw_views/upload_cert.php:24
 msgid "Right click on desired Callsign"
@@ -12179,15 +12239,15 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:629
 msgid "Antenna azimuth in decimal degrees."
-msgstr ""
+msgstr "Ondalık derece cinsinden anten azimutu."
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:633
 msgid "Antenna Elevation (°)"
-msgstr ""
+msgstr "Anten Yüksekliği (°)"
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:635
 msgid "Antenna elevation in decimal degrees."
-msgstr ""
+msgstr "Ondalık derece cinsinden anten yüksekliği."
 
 #: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:518
 #: application/views/station_profile/create.php:103
@@ -12200,17 +12260,17 @@ msgstr ""
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:731
 msgid "SIG Info"
-msgstr ""
+msgstr "Sinyal Bİlgisi"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:644
 #: application/views/qso/index.php:688
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "Not: Üçüncü taraf hizmetlere aktarılır."
 
 #: application/views/qso/edit_ajax.php:450
 msgid "Sent Method"
-msgstr ""
+msgstr "Gönderim Yöntemi"
 
 #: application/views/qso/edit_ajax.php:453
 #: application/views/qso/edit_ajax.php:486 application/views/qso/index.php:665
@@ -12220,7 +12280,7 @@ msgstr "Metod"
 
 #: application/views/qso/edit_ajax.php:463
 msgid "Sent Via"
-msgstr ""
+msgstr "Aracılığıyla gönderildi"
 
 #: application/views/qso/edit_ajax.php:477
 #: application/views/qso/edit_ajax.php:518
@@ -12228,19 +12288,19 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:593
 #: application/views/qso/edit_ajax.php:620
 msgid "Verified (Match)"
-msgstr ""
+msgstr "Doğrulandı (Eşleşme)"
 
 #: application/views/qso/edit_ajax.php:483
 msgid "Received Method"
-msgstr ""
+msgstr "Alınma Yöntemi"
 
 #: application/views/qso/edit_ajax.php:524 application/views/qso/index.php:685
 msgid "Get the default message for eQSL, for this station."
-msgstr ""
+msgstr "Bu istasyon için eQSL varsayılan mesajını al."
 
 #: application/views/qso/edit_ajax.php:536
 msgid "Note: Not editable. Only displayed here."
-msgstr ""
+msgstr "Not: Düzenlenemez. Sadece burada görüntülenir."
 
 #: application/views/qso/edit_ajax.php:580
 #: application/views/view_log/partial/log_ajax.php:426
@@ -12248,19 +12308,19 @@ msgstr ""
 #: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:618
 #: src/QSLManager/QSO.php:677
 msgid "Modified"
-msgstr ""
+msgstr "Değiştirilmiş"
 
 #: application/views/qso/edit_ajax.php:639
 msgid "Change Station Profile"
-msgstr ""
+msgstr "İstasyon Profilini Değiştir"
 
 #: application/views/qso/edit_ajax.php:679
 msgid "Exchange (R)"
-msgstr ""
+msgstr "Exchange (A)"
 
 #: application/views/qso/edit_ajax.php:684
 msgid "Exchange (S)"
-msgstr ""
+msgstr "Exchange (G)"
 
 #: application/views/qso/edit_ajax.php:696
 #: application/views/search/search_result_ajax.php:449
@@ -12271,7 +12331,7 @@ msgstr "QSO'yu sil"
 
 #: application/views/qso/edit_ajax.php:699
 msgid "Save changes"
-msgstr ""
+msgstr "Değişiklikleri kaydet"
 
 #: application/views/qso/index.php:29
 msgid "TimeOff is less than TimeOn"
@@ -12291,11 +12351,11 @@ msgstr ""
 
 #: application/views/qso/index.php:33
 msgid "more"
-msgstr ""
+msgstr "Daha fazla"
 
 #: application/views/qso/index.php:34
 msgid "less"
-msgstr ""
+msgstr "Daha az"
 
 #: application/views/qso/index.php:35
 msgid "DXCC Summary for "
@@ -12303,24 +12363,24 @@ msgstr ""
 
 #: application/views/qso/index.php:36
 msgid "LoTW User. Last upload was 1 day ago."
-msgstr ""
+msgstr "LoTW Kullanıcısı. Son yükleme 1 gün önceydi."
 
 #: application/views/qso/index.php:37
 #, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr ""
+msgstr "LoTW Kullanıcısı. Son yükleme %x gün önce yapıldı."
 
 #: application/views/qso/index.php:38
 msgid "Invalid value for antenna elevation:"
-msgstr ""
+msgstr "Anten yüksekliği için geçersiz değer:"
 
 #: application/views/qso/index.php:53
 msgid "LIVE"
-msgstr ""
+msgstr "CANLI"
 
 #: application/views/qso/index.php:53
 msgid "POST"
-msgstr ""
+msgstr "GEÇMİŞ"
 
 #: application/views/qso/index.php:66
 #: application/views/statistics/antennaanalytics.php:45
@@ -12330,7 +12390,7 @@ msgstr "Uydu"
 
 #: application/views/qso/index.php:81
 msgid "Add Band/Mode to Favs"
-msgstr ""
+msgstr "Band/Modu Favorilere Ekle"
 
 #: application/views/qso/index.php:102
 msgid "Time on"
@@ -12342,7 +12402,7 @@ msgstr ""
 
 #: application/views/qso/index.php:157
 msgid "Search DXCluster for latest Spot"
-msgstr ""
+msgstr "DXCluster'da son Spot'u ara"
 
 #: application/views/qso/index.php:234 application/views/qso/index.php:524
 #: application/views/station_profile/create.php:153
@@ -12394,7 +12454,7 @@ msgstr "Örnek: Q03"
 
 #: application/views/qso/index.php:602
 msgid "E-mail address of QSO-partner"
-msgstr ""
+msgstr "Karşı Operatörün e-posta adresi"
 
 #: application/views/qso/index.php:611 application/views/view_log/qso.php:296
 msgid "Satellite Name"
@@ -12406,39 +12466,39 @@ msgstr "Uydu Modu"
 
 #: application/views/qso/index.php:685
 msgid "QSL MSG"
-msgstr ""
+msgstr "QSL Mesajı"
 
 #: application/views/qso/index.php:704
 msgid "Reset to Default"
-msgstr ""
+msgstr "Varsayılana Sıfırla"
 
 #: application/views/qso/index.php:745
 msgid "Winkey"
-msgstr ""
+msgstr "Winkey"
 
 #: application/views/qso/index.php:747
 msgid "Connect"
-msgstr ""
+msgstr "Bağlan"
 
 #: application/views/qso/index.php:756
 msgid "Stop"
-msgstr ""
+msgstr "Durdur"
 
 #: application/views/qso/index.php:757
 msgid "Tune"
-msgstr ""
+msgstr "Tune"
 
 #: application/views/qso/index.php:758
 msgid "Stop Tune"
-msgstr ""
+msgstr "Tune Yapmayı Durdur"
 
 #: application/views/qso/index.php:764
 msgid "CW Speed"
-msgstr ""
+msgstr "CW Hızı"
 
 #: application/views/qso/index.php:769
 msgid "Send"
-msgstr ""
+msgstr "Gönder"
 
 #: application/views/qso/index.php:779
 msgid "Suggestions"
@@ -12450,15 +12510,15 @@ msgstr "Profil Resmi"
 
 #: application/views/qso/log_qso.php:9
 msgid "Redirecting to QSO logging page..."
-msgstr ""
+msgstr "QSO kayıt sayfasına yönlendiriliyor..."
 
 #: application/views/qso/log_qso.php:75
 msgid "The data was redirected. You can close this window."
-msgstr ""
+msgstr "Veri yönlendirildi. Bu pencereyi kapatabilirsiniz."
 
 #: application/views/radio/edit.php:18
 msgid "CAT URL"
-msgstr ""
+msgstr "CAT URL"
 
 #: application/views/radio/edit.php:20
 #, php-format
@@ -12466,29 +12526,33 @@ msgid ""
 "Called URL when a spot at DXCluster is clicked. Notice: The trailing slash "
 "(/) and QRG is added automatically. Default is %s"
 msgstr ""
+"DXCluster'da bir spot'a tıklandığında çağrılan URL. Not: Son eğik çizgi (/) "
+"ve QRG otomatik olarak eklenir. Varsayılan değer: %s"
 
 #: application/views/radio/index.php:20
 msgid "Active Radios"
-msgstr ""
+msgstr "Aktif Telsizler"
 
 #: application/views/radio/index.php:23
 msgid "Below is a list of active radios that are connected to Wavelog."
-msgstr ""
+msgstr "Aşağıda Wavelog'a bağlı olan aktif telsizlerin listesi bulunmaktadır."
 
 #: application/views/radio/index.php:24
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
 msgstr ""
+"Henüz herhangi bir telsiz bağlamadıysanız, API anahtarları oluşturmak için "
+"API sayfasına bakın."
 
 #: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
-msgstr ""
+msgstr "%s nasıl kullanılacağını wiki'de bulabilirsiniz."
 
 #: application/views/radio/index.php:26
 msgid "radio functions"
-msgstr ""
+msgstr "telsiz fonksiyonları"
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
@@ -12496,21 +12560,23 @@ msgstr "Lütfen bekleyin..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr ""
+msgstr "Bant Seç"
 
 #: application/views/reg1test/index.php:8
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
 msgstr ""
+"50 MHz altındaki bantlar EDI REG1TEST formatı için geçerli değildir ve "
+"geçersiz dosyalar oluşturacaktır."
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr ""
+msgstr "Bir yarışmayı REG1TEST EDI log olarak dışa aktar"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
-msgstr ""
+msgstr "Gönderilen Exchange"
 
 #: application/views/reg1test/index.php:50
 msgid ""
@@ -13340,16 +13406,13 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
-"Başlamak için sol taraftaki formu tarih, istasyon çağrı işareti ve "
-"operatörün çağrı işareti ile önceden doldurduğunuzdan emin olun. Ana veriler "
-"band (veya MHz cinsinden QRG, örn. '7.145'), mod ve zamanı içerir. Zamandan "
-"sonra, ilk QSO'ya ait çağrı işaretini girin."
+"Başlamak için, sol taraftaki formu zaten tarih, istasyon çağrı işareti ve "
+"operatör çağrı işareti ile doldurduğunuzdan emin olun. Ana veriler arasında "
+"bant (veya QRG MHz cinsinden, örneğin ‘7.145’), mod ve zaman bulunur."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
-msgstr ""
-"Örneğin, 21:34 (UTC)'te TA4DGO ile 20m SSB üzerinde yapılan bir QSO. (Sıra: "
-"Zaman, Çağrı İşareti, Band, Mod)."
+msgstr "Örneğin, 21:34'te (UTC) TA4DGO ile 20m SSB’de başlatılan bir QSO."
 
 #: application/views/simplefle/syntax_help.php:10
 msgid ""
@@ -13363,15 +13426,14 @@ msgstr ""
 "(karşı operatöre verilen) RST bilgisini giriyoruz."
 
 #: application/views/simplefle/syntax_help.php:16
-#, fuzzy
 msgid ""
 "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We "
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
-"Ilk QSO 21:34'teydi ve ikincisi 2 dakika sonra 21:36'da. Buraya sadece "
-"değişen veri olduğu için 6 yazıyoruz. Band ve mod hakkındaki bilgi "
-"değişmediği için bu veri atlanıyor."
+"İlk QSO 21:34’teydi, ikinci QSO ise 21:36’da gerçekleşti. Burada değişen tek "
+"bilgi 6’dır, bu yüzden yalnızca bunu yazıyoruz. Bant ve mod hakkında "
+"herhangi bir değişiklik olmadığı için bu veriler atlanır."
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -14429,7 +14491,6 @@ msgid "Wavelog Preferences"
 msgstr "Wavelog Tercihleri"
 
 #: application/views/user/edit.php:171
-#, fuzzy
 msgid "Stylesheet"
 msgstr "Stylesheet"
 
@@ -15047,7 +15108,7 @@ msgstr "Konumlar"
 
 #: application/views/user/index.php:78 application/views/user/index.php:190
 msgid "Logbooks"
-msgstr "Logbook'lar"
+msgstr "Logbook Sayısı"
 
 #: application/views/user/index.php:81 application/views/user/index.php:193
 msgid "Last QSO:"
