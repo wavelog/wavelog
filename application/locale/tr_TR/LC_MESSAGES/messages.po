@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-05 17:21+0000\n"
+"PO-Revision-Date: 2025-09-05 19:31+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -825,11 +825,11 @@ msgstr "başarısız"
 
 #: application/controllers/Cron.php:244 application/views/cron/index.php:74
 msgid "pending"
-msgstr "bekliyor"
+msgstr "Beklemede"
 
 #: application/controllers/Cron.php:249 application/views/cron/index.php:79
 msgid "disabled"
-msgstr "deaktif"
+msgstr "Pasif"
 
 #: application/controllers/Cron.php:288
 #: application/views/interface_assets/footer.php:39
@@ -3290,7 +3290,7 @@ msgstr "bilinmeyen"
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
 msgid "Bearing"
-msgstr ""
+msgstr "Yön"
 
 #: application/models/Update_model.php:319
 msgid "Newer release available:"
@@ -4237,11 +4237,11 @@ msgstr "Önemli"
 
 #: application/views/adif/import.php:64
 msgid "Log Files must have the file type *.adi"
-msgstr "Log dosyalarının dosya türü \\*.adi olmalıdır"
+msgstr "Log dosyalarının, dosya türü .adi olmalıdır"
 
 #: application/views/adif/import.php:65 application/views/view_log/qso.php:771
 msgid "Maximum file upload size is "
-msgstr "Maksimum dosya yükleme boyutu şudur. "
+msgstr "Maksimum dosya yükleme boyutu: "
 
 #: application/views/adif/import.php:65 application/views/adif/import.php:301
 #: application/views/adif/import.php:340
@@ -4272,7 +4272,7 @@ msgstr "ADIF Dosyasını Seç"
 
 #: application/views/adif/import.php:88
 msgid "Add QSOs to Contest"
-msgstr "Yarışmaya QSO ekle"
+msgstr "QSO'ları Yarışmaya Ekle"
 
 #: application/views/adif/import.php:90 application/views/adif/import.php:378
 #: application/views/simplefle/index.php:86
@@ -4335,14 +4335,14 @@ msgstr ""
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
-"İçe aktarma sırasında operatör çağrısı olarak her zaman oturum açmış hesap "
-"çağrı işaretini kullanın"
+"İçe aktarma sırasında operatör çağrı işaretini hesapta kayıtlı olan çağrı "
+"işareti ile değiştir"
 
 #: application/views/adif/import.php:151
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr ""
-"QSO’ları yüklenmiş olarak işaretle (İşaretlnen QSO’lar üçüncü taraf "
-"servislere YÜKLEMEZ!)"
+"QSO’ları yüklenmiş olarak işaretle (İşaretlenen QSO’lar üçüncü taraf "
+"servislere YÜKLENMEZ!)"
 
 #: application/views/adif/import.php:158
 msgid "Mark imported QSOs as uploaded to LoTW"
@@ -4376,7 +4376,7 @@ msgstr "İçe aktarılan QSO'ları DCL Logbook'a yüklenmiş olarak işaretleyin
 
 #: application/views/adif/import.php:207
 msgid "Toggle all checkboxes"
-msgstr "Tüm onay kutularını değiştir"
+msgstr "Tüm onay kutularını işaretle/işaretini kaldır"
 
 #: application/views/adif/import.php:212 application/views/adif/import.php:355
 #: application/views/adif/import.php:393
@@ -4388,15 +4388,15 @@ msgstr "Yükle"
 
 #: application/views/adif/import.php:220
 msgid "Take your logbook file anywhere!"
-msgstr "Seyir defteri dosyanızı her yere götürün!"
+msgstr "Logbook dosyanızı dilediğiniz gibi kullanın!"
 
 #: application/views/adif/import.php:221
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr ""
-"ADIF'leri dışa aktarmak, kişileri LoTW, Awards gibi üçüncü taraf "
-"uygulamalara aktarmanıza veya yalnızca bir yedek tutmanıza olanak tanır."
+"Logbook'unuzu dışarıya aktararak kolayca yedekleyebilir veya diğer "
+"servislere aktarabilirsiniz."
 
 #: application/views/adif/import.php:222
 #, php-format
@@ -4415,7 +4415,7 @@ msgstr ""
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
 msgid "From date"
-msgstr "Tarihten itibaren"
+msgstr "Şu tarihten itibaren"
 
 #: application/views/adif/import.php:249 application/views/adif/import.php:306
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
@@ -4424,7 +4424,7 @@ msgstr "Tarihten itibaren"
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
 msgid "To date"
-msgstr "Bugüne kadar"
+msgstr "Şu tarihe kadar"
 
 #: application/views/adif/import.php:260
 msgid "Export options"
@@ -4518,10 +4518,10 @@ msgid ""
 "that data in Wavelog."
 msgstr ""
 "Başka bir kayıt yazılımı tarafından sağlanan bir yarışmaya ait ADIF "
-"dosyasını içe aktardıysanız, bazen, ilgili yazılıma bağlı olarak, Exvhange "
-"bilgileriniz o yazılımın ADIF'inden düzgün şekilde içe aktarılamayabilir. "
-"Bunu düzeltmek isterseniz, bu verileri Wavelog'da yeniden yazmak için ilgili "
-"yazılımdan Cabrillo dosyasını alıp yükleyebilirsiniz."
+"dosyasını içe aktardıysanız, bazen, ilgili yazılıma bağlı olarak, Exchange "
+"bilgileriniz ilgili yazılımdan aldığınız ADIF'den düzgün şekilde içe "
+"aktarılamayabilir. Bunu düzeltmek isterseniz, bu verileri Wavelog'da yeniden "
+"yazmak için ilgili yazılımdan Cabrillo dosyasını alıp yükleyebilirsiniz."
 
 #: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:40
@@ -4563,7 +4563,7 @@ msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
-"Eğer siz veya partneriniz seri numaralarını her QSO'da değiş tokuş "
+"Eğer siz veya karşı taraf seri numaralarını her QSO'da değiş tokuş "
 "etmiyorsanız (yalnızca bazılarında yapıyorsanız), lütfen bu seçeneği "
 "işaretlemeyin."
 
