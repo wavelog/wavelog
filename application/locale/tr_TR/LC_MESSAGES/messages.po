@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-05 09:12+0000\n"
+"PO-Revision-Date: 2025-09-05 10:02+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -330,7 +330,7 @@ msgstr "Ödüller - %s"
 #: application/views/qso/index.php:593 application/views/user/edit.php:671
 #: application/views/view_log/qso.php:460
 msgid "DOK"
-msgstr "DOK"
+msgstr "DOK (Almanya Bölge İşletme Kodu)"
 
 #: application/controllers/Awards.php:176 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:130 application/views/bands/index.php:50
@@ -2668,11 +2668,11 @@ msgstr "LoTW Kullanıcı Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:393
 msgid "DOK Update complete. Result: "
-msgstr "DOK Güncellemesi tamamlandı. Sonuç: "
+msgstr "DOK (Almanya Bölge İşletme Kodu) Güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:395
 msgid "DOK Update failed. Result: "
-msgstr "DOK Güncellemesi başarısız oldu. Sonuç: "
+msgstr "DOK (Almanya Bölge İşletme Kodu) Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:412
 msgid "SOTA Update complete. Result: "
@@ -3064,7 +3064,7 @@ msgstr "İl"
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "İl / Eyalet (Çeşitli ülkelerdeki eyalet)"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
@@ -3313,8 +3313,8 @@ msgstr "Uydu zaten mevcut. LoTW durumu güncellendi."
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "LoTW durumu %d QSO için güncellendi"
+msgstr[1] "LoTW durumu %d QSO için güncellendi"
 
 #: application/models/Update_model.php:443
 msgid "SAT already existing. Updating LoTW status failed."
@@ -4471,10 +4471,17 @@ msgid ""
 "List). The downloaded ADIF file can be uploaded here in order to update QSOs "
 "with DOK info."
 msgstr ""
+"%s adresine gidin ve teyit edilmiş DOK'lar ile logbook'unuzu dışa aktarın. "
+"Süreci hızlandırmak için yalnızca DL (Almanya) QSO'larını indirmeyi "
+"seçebilirsiniz (örneğin, 'Önek Listesi'ne 'DL' yazın). İndirilen ADIF "
+"dosyasını, QSO'ları DOK bilgileriyle güncellemek için buraya "
+"yükleyebilirsiniz."
 
 #: application/views/adif/import.php:331
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr ""
+"Sadece DCL'de (Almanya QSL Kulübü Onay Veritabanı) teyit edilmiş DOK "
+"QSO'larını İçe Aktar."
 
 #: application/views/adif/import.php:333
 msgid ""
@@ -13445,7 +13452,7 @@ msgstr "İstasyon eyaleti. Sadece belirli ülkeler için geçerlidir."
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
 msgid "Station County (Only used for specific DXCCs)."
-msgstr ""
+msgstr "İstasyon County (Sadece belirli ülkeler için kullanılır)."
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:169
@@ -13734,7 +13741,7 @@ msgstr "OQRS Metin"
 #: application/views/station_profile/create.php:307
 #: application/views/station_profile/edit.php:457
 msgid "Some info you want to add regarding QSL'ing."
-msgstr ""
+msgstr "QSL ile ilgili eklemek istediğiniz bilgiler."
 
 #: application/views/station_profile/edit.php:153
 msgid "Zones"
@@ -13776,17 +13783,17 @@ msgstr "Bir konteyneri istediğiniz gibi adlandırabilirsiniz."
 #: application/views/stationsetup/exportmapoptions.php:11
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
-msgstr ""
+msgstr "CQ Bölgesi katmanı"
 
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr ""
+msgstr "Grid Katmanı"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
 msgid "Night shadow overlay"
-msgstr ""
+msgstr "Gece gölgesi katmanı"
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
@@ -13794,7 +13801,7 @@ msgstr "# Gösterilen QSO'lar"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
-msgstr ""
+msgstr "Dışa Aktarma Haritasını Ziyaret Et"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
@@ -14030,6 +14037,8 @@ msgid ""
 "This is the name of the file which is used as %s small %s Logo in the header "
 "placed in assets/logo."
 msgstr ""
+"Bu, assets/logo dizininde bulunan ve başlıkta %sküçük%s Logo olarak "
+"kullanılan dosyanın adıdır."
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
@@ -14042,6 +14051,8 @@ msgid ""
 "This is the name of the file which is used as %s big %s Logo in the login "
 "screen placed in assets/logo."
 msgstr ""
+"Bu, assets/logo dizininde bulunan ve giriş ekranında %sbüyük%s Logo olarak "
+"kullanılan dosyanın adıdır."
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
@@ -14079,7 +14090,7 @@ msgstr ""
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "Yeni tema ekleme işlemi"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
@@ -14091,6 +14102,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
+"'assets/css/' dizininde yeni bir klasör oluşturun ve temel stil kurallarını "
+"içeren bir 'bootstrap.min.css' dosyası yükleyin. Temaları %s adresinden "
+"kullanıyoruz"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14101,6 +14115,8 @@ msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
 msgstr ""
+"Bu klasörde 'overrides.css' adında bir dosya oluşturun. Özel CSS kodunuzu "
+"buraya yerleştirin."
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
@@ -14346,8 +14362,9 @@ msgid "Wavelog Preferences"
 msgstr "Wavelog Tercihleri"
 
 #: application/views/user/edit.php:171
+#, fuzzy
 msgid "Stylesheet"
-msgstr ""
+msgstr "Stylesheet"
 
 #: application/views/user/edit.php:183
 msgid "Wavelog Language"
@@ -14542,11 +14559,11 @@ msgstr "Simge"
 
 #: application/views/user/edit.php:513
 msgid "Not display"
-msgstr ""
+msgstr "Görüntülenmez"
 
 #: application/views/user/edit.php:517
 msgid "Not displayed"
-msgstr ""
+msgstr "Görüntülenmiyor"
 
 #: application/views/user/edit.php:526
 msgid "QSO (by default)"
@@ -14558,7 +14575,7 @@ msgstr "QSO (onaylandı)"
 
 #: application/views/user/edit.php:546
 msgid "(If 'No', displayed as 'QSO (by default))'"
-msgstr ""
+msgstr "('Hayır' ise, onaylı QSO varsayılan olarak 'QSO' şeklinde görüntülenir)"
 
 #: application/views/user/edit.php:565
 msgid "Show Locator"
@@ -14613,6 +14630,8 @@ msgstr "QSO Sekmesinde Referans Alanını Göster"
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
+"Etkinleştirilen referanslar, Genel sekmesi yerine QSO sekmesinde "
+"gösterilecektir."
 
 #: application/views/user/edit.php:686
 msgid "Online QSL request (OQRS) settings"
@@ -14726,7 +14745,6 @@ msgid "eQSL.cc Password"
 msgstr "eQSL.cc Şifre"
 
 #: application/views/user/edit.php:883
-#, fuzzy
 msgid "Club Log"
 msgstr "Club Log"
 
@@ -14753,7 +14771,6 @@ msgid "Widgets"
 msgstr "Widget'lar"
 
 #: application/views/user/edit.php:922
-#, fuzzy
 msgid "On-Air widget"
 msgstr "On-Air widget"
 
@@ -14820,7 +14837,7 @@ msgstr ""
 
 #: application/views/user/edit.php:988
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Çeşitli Özellikler"
 
 #: application/views/user/edit.php:996
 msgid "AMSAT Status Upload"
@@ -14923,7 +14940,7 @@ msgstr ""
 #: application/views/user/index.php:16
 msgid ""
 "The currently logged-in user is displayed at the upper-right of each page."
-msgstr ""
+msgstr "Her sayfanın sağ üst köşesinde oturum açmış kullanıcı görüntülenir."
 
 #: application/views/user/index.php:17
 msgid ""
@@ -15121,7 +15138,7 @@ msgstr "Ev QTH"
 
 #: application/views/user/modals/first_login_wizard.php:62
 msgid "Station Zones"
-msgstr ""
+msgstr "İstasyon Bölgeleri"
 
 #: application/views/user/modals/first_login_wizard.php:74
 #: application/views/user/modals/first_login_wizard.php:84
@@ -15267,7 +15284,7 @@ msgstr "%s hesabına geri dönmek istediğinize emin misiniz?"
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "Seviye"
 
 #: application/views/user/profile.php:39
 msgid "First name"
@@ -15308,6 +15325,7 @@ msgstr "Tekrar gösterme"
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
 msgstr ""
+"Bu logbook'a bağlı olan istasyon konumlarının, tüm QSO'ları gösteriliyor"
 
 #: application/views/view_log/partial/log_ajax.php:426
 #: application/views/view_log/partial/log_ajax.php:440
@@ -15413,7 +15431,7 @@ msgstr "Bu QSO Clublog'da onaylandı."
 
 #: application/views/view_log/qso.php:584
 msgid "More QSOs"
-msgstr ""
+msgstr "Daha Fazla QSO"
 
 #: application/views/view_log/qso.php:646
 msgid "Share"
@@ -15441,7 +15459,7 @@ msgstr "QSL'i alındı Olarak İşaretle (Elektronik)"
 
 #: application/views/view_log/qso.php:828
 msgid "eQSL picture"
-msgstr ""
+msgstr "eQSL Kartı (eQSL.cc)"
 
 #: application/views/visitor/layout/footer.php:238
 msgid "Filter Results"
@@ -15488,6 +15506,8 @@ msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
+"Şu anda QO-100 Dx Club'un API'sine yüklenmesi gereken bekleyen QSO "
+"bulunmamaktadır."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
@@ -15514,6 +15534,8 @@ msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
 "%s an API key."
 msgstr ""
+"Bu özelliği yapılandırmak için %s adresindeki profil sayfanıza gidin ve bir "
+"API anahtarı %sOluşturun%s."
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
@@ -15522,6 +15544,8 @@ msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
 "created at the club."
 msgstr ""
+"Ardından, %s sayfanıza gidin ve istasyonunuzu oluşturduğunuz API anahtarıyla "
+"yapılandırın."
 
 #: application/views/webadif/export.php:83
 msgid ""
