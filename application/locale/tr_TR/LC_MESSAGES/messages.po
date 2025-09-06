@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-06 10:48+0000\n"
+"PO-Revision-Date: 2025-09-06 11:23+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -5129,14 +5129,17 @@ msgid ""
 "Fields taken for this Award: State (ADIF: STATE), Stations County (ADIF: "
 "CNTY), DXCC (Must be one of 291 (U.S.A.) ,6 (ALASKA) or 110 (HAWAII))"
 msgstr ""
+"Bu Ödül için Dikkate Alınan Alanlar: Eyalet (ADIF: STATE), İstasyon Eyaleti "
+"(ADIF: CNTY), DXCC (291 (ABD), 6 (ALASKA) veya 110 (HAWAII)'dan biri "
+"olmalıdır)"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Worked"
-msgstr ""
+msgstr "Çalışılan Eyaletler"
 
 #: application/views/awards/counties/index.php:23
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "Onaylanan Eyaletler"
 
 #: application/views/awards/counties/index.php:40
 #: application/views/awards/cq/index.php:177
@@ -5223,6 +5226,10 @@ msgid ""
 "Magazine does no longer exists the CQ WAZ Awards is now managed directly by "
 "N4BAA."
 msgstr ""
+"WAZ Ödülü, 'Worked All Zones' (Tüm Bölgelerle Haberleşme) anlamına gelir ve "
+"40 CQ Bölgesi'nin tamamıyla telsiz iletişimi ve ilgili teyitleri gerektirir. "
+"CQ Dergisi artık var olmadığından, CQ WAZ Ödülleri artık doğrudan N4BAA "
+"tarafından yönetilmektedir."
 
 #: application/views/awards/cq/index.php:23
 #, php-format
@@ -5428,7 +5435,6 @@ msgstr "Özet"
 #: application/views/awards/wap/index.php:184
 #: application/views/awards/wapc/index.php:150
 #: application/views/awards/was/index.php:184
-#, fuzzy
 msgid "Total worked"
 msgstr "Toplam çalışılan"
 
@@ -7818,6 +7824,8 @@ msgid ""
 "Using the contest list, you can control which Contests are shown when "
 "logging QSOs in a contest."
 msgstr ""
+"Yarışma listesini kullanarak, bir yarışma sırasında QSO kaydedilirken hangi "
+"yarışmaların gösterileceğini kontrol edebilirsiniz."
 
 #: application/views/contesting/add.php:19
 msgid ""
@@ -7972,7 +7980,7 @@ msgstr "Daha Fazla Ayar"
 
 #: application/views/contesting/index.php:59
 msgid "Copy received exchange to"
-msgstr ""
+msgstr "Alınan exchange bilgisini şuraya kopyala:"
 
 #: application/views/contesting/index.php:61
 msgid "Exchange is only copied if it is matching rules for the selected field!"
@@ -8089,7 +8097,7 @@ msgstr "Yarışma kayıt defteri"
 #: application/views/contesting/index.php:272
 #: application/views/qso/edit_ajax.php:165
 msgid "VUCC Gridsquare"
-msgstr ""
+msgstr "VUCC Grid"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
@@ -12590,18 +12598,19 @@ msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
+"Başka QSO bulunamadı. Bu, muhtemelen zaten kuyrukta oldukları anlamına gelir."
 
 #: application/views/qso/award_tabs.php:2
 msgid "Showing summary for DXCC"
-msgstr ""
+msgstr "DXCC özeti gösteriliyor"
 
 #: application/views/qso/award_tabs.php:3
 msgid "Showing summary for US State"
-msgstr ""
+msgstr "ABD Eyaletleri özeti gösteriliyor"
 
 #: application/views/qso/award_tabs.php:4
 msgid "Showing summary for CQ zone"
-msgstr ""
+msgstr "CQ bölgesi özeti gösteriliyor"
 
 #: application/views/qso/award_tabs.php:5
 msgid "Showing summary for WWFF"
@@ -12633,19 +12642,19 @@ msgstr "Kıta özeti gösteriliyor"
 
 #: application/views/qso/award_tabs.php:12
 msgid "Showing summary for gridsquare"
-msgstr ""
+msgstr "Grid özeti gösteriliyor"
 
 #: application/views/qso/award_tabs.php:13
 msgid "State input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Özet göstermek için QSO'larda eyalet alanının doldurulması gerekiyor!"
 
 #: application/views/qso/award_tabs.php:14
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Özet göstermek için QSO'larda SOTA alanının doldurulması gerekiyor!"
 
 #: application/views/qso/award_tabs.php:15
 msgid "POTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Özet göstermek için QSO'larda POTA alanının doldurulması gerekiyor!"
 
 #: application/views/qso/award_tabs.php:16
 msgid "IOTA input needs to be filled to show a summary!"
@@ -16443,7 +16452,7 @@ msgstr ""
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
-msgstr ""
+msgstr "İçe Aktarma Anahtarı"
 
 #: application/views/dcl_views/key_import.php:14
 msgid ""
@@ -16457,36 +16466,38 @@ msgstr ""
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "DOK Geçmişi"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "Geçerlilik"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "Çağrı Geçmişi"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
 msgstr ""
+"Geçersiz bir DCL Anahtarı alındı. Lütfen DCL giriş bilgilerinizi kontrol "
+"edin ve tekrar deneyin"
 
 #: application/views/interface_assets/header.php:502
 msgid "DCL Export"
-msgstr ""
+msgstr "DCL Dışa Aktar"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "DCL Sent"
-msgstr ""
+msgstr "DCL Gönderildi"
 
 #: application/views/logbookadvanced/edit.php:36
 msgid "DCL Received"
-msgstr ""
+msgstr "DCL Alındı"
 
 #: application/views/view_log/qso.php:581
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "Bu QSO DCL üzerinde onaylandı."
 
 #~ msgid "Download QSOs"
 #~ msgstr "QSO’ları İndir"
