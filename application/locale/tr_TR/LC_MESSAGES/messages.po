@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-06 13:33+0000\n"
+"PO-Revision-Date: 2025-09-06 16:35+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -3355,7 +3355,7 @@ msgstr "lotw_qslsdate geçersiz (YYYYAAGG)"
 #: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4762
 msgid "Duplicate for"
-msgstr ""
+msgstr "İçin yinelenen"
 
 #: application/models/Logbook_model.php:4791
 #: application/models/Logbook_model.php:4880
@@ -4326,7 +4326,7 @@ msgstr "Saat"
 #: application/views/adif/pota_success.php:31
 #: application/views/dcl_views/key_import.php:45
 msgid "Call"
-msgstr "Çağrı"
+msgstr "QSO"
 
 #: application/views/adif/dcl_success.php:34
 msgid "DOK in Log"
@@ -5205,7 +5205,7 @@ msgstr "Fareyi kullanarak bölgenin üzerine gelin"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ WAZ (Worked All Zones) Award"
-msgstr ""
+msgstr "CQ WAZ (Worked All Zones - Tüm Bölgelerle Haberleşme) Ödülü"
 
 #: application/views/awards/cq/index.php:21
 msgid ""
@@ -5691,7 +5691,7 @@ msgstr "DXCC Haritasını Göster"
 
 #: application/views/awards/dxcc/index.php:221
 msgid "Legend:"
-msgstr ""
+msgstr "QSO Teyitleri:"
 
 #: application/views/awards/dxcc/index.php:222
 msgid "(Q)SL-Paper-Card"
@@ -6379,7 +6379,7 @@ msgstr "Liste"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr ""
+msgstr "WAB Karesi"
 
 #: application/views/awards/wac/index.php:9
 msgid ""
@@ -6500,7 +6500,7 @@ msgstr "WAJA Haritasını Göster"
 #: application/views/awards/waja/index.php:155
 #: application/views/timeline/index.php:237
 msgid "Prefecture"
-msgstr ""
+msgstr "Şehir"
 
 #: application/views/awards/wap/index.php:3
 msgctxt "The Netherlands Province"
@@ -6769,7 +6769,7 @@ msgstr "Hiçbiri"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:84
 msgid "Spots de"
-msgstr ""
+msgstr "Spots de"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
@@ -6812,7 +6812,7 @@ msgstr "WAC (Tüm Kıtalarla Haberleşme)"
 
 #: application/views/bandmap/list.php:132
 msgid "Spotter"
-msgstr ""
+msgstr "Spotter"
 
 #: application/views/bandmap/list.php:133
 #: application/views/oqrs/notinlogform.php:28
@@ -7674,7 +7674,7 @@ msgstr "Profil adı"
 #: application/views/oqrs/showrequests.php:91
 #: application/views/qrz/export.php:40 application/views/webadif/export.php:42
 msgid "Station callsign"
-msgstr "İstasyon Çağrı İşareti"
+msgstr "İstasyon Çağrı İşaretiniz"
 
 #: application/views/clublog/export.php:36
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
@@ -7758,7 +7758,7 @@ msgstr "QTH lokator(ları)"
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
 msgid "Workable"
-msgstr ""
+msgstr "Çalışılabilir"
 
 #: application/views/components/hamsat/table.php:134
 msgctxt "Hamsat - Track Satellites"
@@ -7767,7 +7767,7 @@ msgstr "Takip Et"
 
 #: application/views/components/hamsat/table.php:146
 msgid "Sked"
-msgstr ""
+msgstr "Sked (Planlanmış Görüşme)"
 
 #: application/views/components/radio_display_table.php:5
 msgid "Radio Status"
@@ -7990,7 +7990,7 @@ msgstr ""
 
 #: application/views/contesting/index.php:65
 msgid "Age"
-msgstr ""
+msgstr "Age (Süre/Yaş)"
 
 #: application/views/contesting/index.php:67
 msgid "RX Power (W)"
@@ -8009,13 +8009,15 @@ msgstr "QTH"
 
 #: application/views/contesting/index.php:74
 msgid "Sequence of Exchanges"
-msgstr ""
+msgstr "Exchange Bilgisi Sırası"
 
 #: application/views/contesting/index.php:77
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
 msgstr ""
+"Farklı raporları hangi sırayla girmek istediğinizi seçin. Ancak, yalnızca "
+"seçilen exchange türünde bulunan öğeler gösterilir."
 
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
@@ -8102,11 +8104,11 @@ msgstr "VUCC Grid"
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
 msgid "# of QSOs worked"
-msgstr ""
+msgstr "Toplam QSO Sayısı"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
-msgstr ""
+msgstr "Tanımlayıcı"
 
 #: application/views/cron/edit.php:22
 #: application/views/options/appearance.php:56
@@ -8373,7 +8375,7 @@ msgstr "QSO'ların Analizi"
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
-msgstr ""
+msgstr "DXCC'lerin Dağılımı"
 
 #: application/views/dashboard/index.php:330
 #: application/views/visitor/index.php:279
@@ -8724,7 +8726,7 @@ msgstr "Mevcut migration: %s"
 #: application/views/debug/index.php:59
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "Geçiş işlemi %s şeklinde gerçekleştirilmeli"
 
 #: application/views/debug/index.php:64
 msgid "Environment"
@@ -9968,7 +9970,7 @@ msgstr "İstatistikler"
 
 #: application/views/interface_assets/header.php:150
 msgid "Activated Gridsquares"
-msgstr ""
+msgstr "İstasyonumun Aktivasyon Lokasyonları"
 
 #: application/views/interface_assets/header.php:168
 msgid "Callsign Statistics"
@@ -10487,7 +10489,7 @@ msgstr "Teşekkür mesajı eklensin mi?"
 #: application/views/labels/startatform.php:34
 #: application/views/logbookadvanced/startatform.php:33
 msgid "Start printing at?"
-msgstr ""
+msgstr "Etiketin kağıttaki konumu"
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
@@ -10719,7 +10721,7 @@ msgstr "HİÇBİRİ"
 #: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:438
 #: application/views/logbookadvanced/edit.php:219
 msgid "African Italy"
-msgstr ""
+msgstr "Afrikan-İtalya (Özel DXCC Varlığı)"
 
 #: application/views/logbookadvanced/edit.php:214
 #: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:439
@@ -11290,7 +11292,7 @@ msgstr "Sonraki"
 
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
-msgstr ""
+msgstr "QSL Yöneticisi Dahil Edilsin mi?"
 
 #: application/views/logbookadvanced/startatform.php:21
 msgid "Include QSLMSG"
@@ -11545,7 +11547,7 @@ msgstr "ADIF Modu"
 
 #: application/views/mode/create.php:26 application/views/mode/edit.php:35
 msgid "Name of mode in ADIF-specification"
-msgstr ""
+msgstr "ADIF Mod Adı"
 
 #: application/views/mode/create.php:30 application/views/mode/edit.php:39
 msgctxt "Name of sub-mode in ADIF-specification"
@@ -11554,11 +11556,11 @@ msgstr "ADIF Alt-Modu"
 
 #: application/views/mode/create.php:32 application/views/mode/edit.php:41
 msgid "Name of sub-mode in ADIF-specification"
-msgstr ""
+msgstr "ADIF Alt Mod Adı"
 
 #: application/views/mode/create.php:42 application/views/mode/edit.php:53
 msgid "Defines the QRG-segment in bandplan."
-msgstr ""
+msgstr "Bant planındaki QRG kategorisini tanımlar."
 
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:9 application/views/mode/index.php:55
@@ -11769,15 +11771,15 @@ msgstr "30 Dakika"
 
 #: application/views/options/dxcluster.php:50
 msgid "The Age in Minutes of spots, that will be taken care at bandplan/lookup"
-msgstr ""
+msgstr "Spot Maximum Yaşı"
 
 #: application/views/options/dxcluster.php:53
 msgid "Show spots which are spotted from following continent"
-msgstr ""
+msgstr "Aşağıdaki kıtadan spotlanan spotları göster"
 
 #: application/views/options/dxcluster.php:63
 msgid "Only spots by spotters from this continent are shown"
-msgstr ""
+msgstr "Yalnızca bu kıtadan spot yapanların spotları gösterilir"
 
 #: application/views/options/email.php:45
 msgid "Outgoing Protocol"
@@ -11942,13 +11944,15 @@ msgstr ""
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "Harita Maptile Sunucusu Alt Alan Sistemi"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
 msgstr ""
+"Bu sunucudaki alt alan sistemi (URL'deki {s}), yük dengeleme amacıyla "
+"kullanılır."
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
@@ -12202,7 +12206,7 @@ msgstr ""
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:43
 msgid "QSL Route"
-msgstr "QSL Metodu"
+msgstr "QSL Gönderim Metodu"
 
 #: application/views/oqrs/request.php:50
 #: application/views/oqrs/request_grouped.php:53
@@ -12228,15 +12232,15 @@ msgstr "%s için log arama sonucu"
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] "için %d bandda QSO"
-msgstr[1] "için %d bandda QSO"
+msgstr[0] "için %d bandda"
+msgstr[1] "için %d bandda"
 
 #: application/views/oqrs/result.php:33
 #, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] "operatörün logunda %d QSO bulunuyor"
-msgstr[1] "operatörün logunda %d QSO bulunuyor"
+msgstr[0] "operatörün loguna kayıtlı %d QSO bulunuyor"
+msgstr[1] "operatörün loguna kayıtlı %d QSO bulunuyor"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
@@ -12303,12 +12307,12 @@ msgstr "OQRS Durum Bilgisi"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr ""
+msgstr "Uyarı! Bu QSL Kart talebini silmek istediğinize emin misiniz?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
 msgid "Request callsign"
-msgstr ""
+msgstr "Talep Eden Çağrı İşareti"
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
@@ -12331,75 +12335,76 @@ msgstr "Reddedildi"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
-msgstr ""
+msgstr "İşaretle"
 
 #: application/views/oqrs/showrequests.php:73
 msgid "Mark as done"
-msgstr ""
+msgstr "Tamamlandı olarak işaretle"
 
 #: application/views/oqrs/showrequests.php:74
 msgid "Reject"
-msgstr ""
+msgstr "Reddet"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Time of request"
-msgstr ""
+msgstr "Talep Tarihi"
 
 #: application/views/oqrs/showrequests.php:86
 #: application/views/simplefle/index.php:78
 msgid "QSO Date"
-msgstr ""
+msgstr "QSO Tarihi"
 
 #: application/views/oqrs/showrequests.php:87
 msgid "QSO Time"
-msgstr ""
+msgstr "QSO Saati"
 
 #: application/views/oqrs/showrequests.php:94
 msgid "QSL route"
-msgstr ""
+msgstr "Gönderim Yöntemi"
 
 #: application/views/oqrs/showrequests.php:95
 msgid "Check log"
-msgstr ""
+msgstr "QSO'yu Kontrol Et"
 
 #: application/views/oqrs/showrequests.php:96
 msgid "QSO Match"
-msgstr ""
+msgstr "QSO Eşleşmesi"
 
 #: application/views/oqrs/status_info.php:11
 msgid "The request is currently open, and needs to be reviewed by you."
-msgstr ""
+msgstr "İstek bekliyor - incelenmesi gerekiyor."
 
 #: application/views/oqrs/status_info.php:15
 msgid ""
 "The request is not in the log, so you need to check your log and process the "
 "request."
 msgstr ""
+"İstek logda bulunamadı - lütfen logunuzu kontrol edin ve isteği işleme alın."
 
 #: application/views/oqrs/status_info.php:19
 msgid "The request has been processed and the QSL has been sent."
-msgstr ""
+msgstr "İstek tamamlandı - QSL gönderildi."
 
 #: application/views/oqrs/status_info.php:23
 msgid "The request is still being processed."
-msgstr ""
+msgstr "İstek işlemi devam ediyor."
 
 #: application/views/oqrs/status_info.php:27
 msgid "The request has been rejected and will not be processed."
-msgstr ""
+msgstr "İstek reddedildi - işleme alınmayacak."
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Searching for"
-msgstr ""
+msgstr "Aranıyor:"
 
 #: application/views/qrbcalc/index.php:3
 msgid "Locator 1"
-msgstr ""
+msgstr "Konum Belirteci 1"
 
 #: application/views/qrbcalc/index.php:10
 msgid "Locator 2"
-msgstr ""
+msgstr "Konum Belirteci 2"
 
 #: application/views/qrbcalc/index.php:20
 msgid "Calculate"
@@ -12524,11 +12529,13 @@ msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
 msgstr ""
+"İstenen QSL'ler, 'QSL Gönderildi' alanında 'İstendi' veya 'Kuyrukta' değeri "
+"bulunan tüm QSO'lardır."
 
 #: application/views/qslprint/index.php:32
 #: application/views/qslprint/qslprint.php:32
 msgid "Previous QSL"
-msgstr "Önceki QSL"
+msgstr "QSL Talep Sayısı"
 
 #: application/views/qslprint/index.php:32
 #, php-format
@@ -12587,15 +12594,15 @@ msgstr "Talep edilen QSL’leri ADIF dosyasına aktar"
 
 #: application/views/qslprint/qslprint.php:79
 msgid "Mark QSLs as printed"
-msgstr ""
+msgstr "QSL'leri yazdırıldı olarak işaretle"
 
 #: application/views/qslprint/qslprint.php:79
 msgid "Mark requested QSLs as sent"
-msgstr ""
+msgstr "İstenen QSL'leri gönderildi olarak işaretle"
 
 #: application/views/qslprint/qslprint.php:83
 msgid "No QSLs to print were found!"
-msgstr ""
+msgstr "Yazdırılacak QSL bulunamadı!"
 
 #: application/views/qslprint/qsolist.php:207
 msgid ""
@@ -12755,7 +12762,7 @@ msgstr "Yayın Gücü (W)"
 
 #: application/views/qso/edit_ajax.php:165
 msgid "Used for VUCC MultiGrids"
-msgstr ""
+msgstr "VUCC Çoklu Grid'ler için kullanılır"
 
 #: application/views/qso/edit_ajax.php:221 application/views/qso/index.php:498
 msgid "Antenna Path"
@@ -12764,7 +12771,7 @@ msgstr "Anten Yönü"
 #: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:501
 #: application/views/view_log/qso.php:162
 msgid "Greyline"
-msgstr ""
+msgstr "Gri Çizgi (Greyline)"
 
 #: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:502
 msgid "Other"
@@ -12773,12 +12780,12 @@ msgstr "Diğer"
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:503
 #: application/views/view_log/qso.php:153
 msgid "Short Path"
-msgstr ""
+msgstr "Kısa Yol (Short Path)"
 
 #: application/views/qso/edit_ajax.php:227 application/views/qso/index.php:504
 #: application/views/view_log/qso.php:156
 msgid "Long Path"
-msgstr ""
+msgstr "Uzun Yol (Long Path)"
 
 #: application/views/qso/edit_ajax.php:284
 msgid "Sat Name"
@@ -12894,7 +12901,7 @@ msgstr "Değişiklikleri kaydet"
 
 #: application/views/qso/index.php:29
 msgid "TimeOff is less than TimeOn"
-msgstr ""
+msgstr "Bitiş Zamanı, Başlangıç Zamanından önce"
 
 #: application/views/qso/index.php:30 application/views/qso/index.php:796
 msgid "Previous Contacts"
@@ -12918,7 +12925,7 @@ msgstr "Daha az"
 
 #: application/views/qso/index.php:35
 msgid "DXCC Summary for "
-msgstr ""
+msgstr "Şu Çağrı İşareti İçin DXCC Özeti: "
 
 #: application/views/qso/index.php:36
 msgid "LoTW User. Last upload was 1 day ago."
@@ -12953,11 +12960,11 @@ msgstr "Band/Modu Favorilere Ekle"
 
 #: application/views/qso/index.php:102
 msgid "Time on"
-msgstr ""
+msgstr "Başlangıç Zamanı"
 
 #: application/views/qso/index.php:114
 msgid "Time off"
-msgstr ""
+msgstr "Bitiş Zamanı"
 
 #: application/views/qso/index.php:157
 msgid "Search DXCluster for latest Spot"
@@ -16071,7 +16078,7 @@ msgstr "Topam mesafe"
 
 #: application/views/view_log/qso.php:159
 msgid "Other Path"
-msgstr ""
+msgstr "Diğer Yol (Other Path)"
 
 #: application/views/view_log/qso.php:317
 msgid "Antenna Azimuth"
@@ -16368,7 +16375,7 @@ msgstr "ADIF dosyanızdaki POTA Referansı"
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "DCL Anahtar İçe Aktarma"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -16413,7 +16420,7 @@ msgstr "Benim için DCL verilerini çek"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "DCL teyitlerini çekmek için hedef çağrı işaretini seçin."
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -16422,42 +16429,46 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog, DCL'den otomatik rapor indirmek için kullanıcı profilinizdeki DCL "
+"anahtarlarını kullanacaktır. Rapor, seçtiğiniz tarihten itibaren VEYA son "
+"DCL teyidinizden (logunuzdan alınır) günümüze kadar olan tüm teyitleri "
+"içerecektir."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "DCL Eşleşmelerini İçe Aktar"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "Anahtarları Sil"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "Kullanılabilir DCL Anahtarları"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "DCL Anahtarı Talep Et"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "Geçerlilik Başlangıç Tarihi"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "Geçerlilik Bitiş Tarihi"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "Bu işlevi kullanmak için DCL anahtarı talep etmeniz gerekmektedir."
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "DCL ile bir sonraki otomatik eşitleme şu zamanda gerçekleşecek: "
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "DCL Anahtar Yönetimi"
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
@@ -16468,10 +16479,12 @@ msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
 msgstr ""
+"DCL veri alışverişi için bir anahtar talep ettiniz ve işlem başarıyla "
+"tamamlandı. Aşağıdaki veriler içe aktarıldı:"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "Geçerli bir DCL anahtarı alındı"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
