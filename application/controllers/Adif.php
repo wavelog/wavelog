@@ -355,6 +355,74 @@ class adif extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 		}
 	}
+
+	public function pota() {
+		$this->load->model('stations');
+		$data['station_profile'] = $this->stations->all_of_user();
+
+		$data['page_title'] = __("POTA Import");
+		$data['tab'] = "potab";
+
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'adi|ADI|adif|ADIF';
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload()) {
+			$data['error'] = $this->upload->display_errors();
+
+			$data['max_upload'] = ini_get('upload_max_filesize');
+
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('adif/import', $data);
+			$this->load->view('interface_assets/footer');
+		} else {
+			$data = array('upload_data' => $this->upload->data());
+
+			ini_set('memory_limit', '-1');
+			set_time_limit(0);
+
+			$this->load->model('logbook_model');
+
+			if (!$this->load->is_loaded('adif_parser')) {
+				$this->load->library('adif_parser');
+			}
+
+			$this->adif_parser->load_from_file('./uploads/'.$data['upload_data']['file_name']);
+
+			$this->adif_parser->initialize();
+			$error_count = array(0, 0, 0);
+			$custom_errors = "";
+			while($record = $this->adif_parser->get_record())
+			{
+				if(count($record) == 0) {
+					break;
+				};
+
+				$pota_result = $this->logbook_model->update_pota($record);
+				if (!empty($pota_result)) {
+					switch ($pota_result[0]) {
+					case 0:
+						$error_count[0]++;
+						break;
+					case 1:
+						$error_count[1]++;
+						break;
+					case 2:
+						$custom_errors .= $pota_result[1];
+						$error_count[2]++;
+					}
+				}
+			};
+			unlink('./uploads/'.$data['upload_data']['file_name']);
+			$data['pota_error_count'] = $error_count;
+			$data['pota_errors'] = $custom_errors;
+			$data['page_title'] = __("POTA Data Imported");
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('adif/pota_success');
+			$this->load->view('interface_assets/footer');
+		}
+	}
 }
 
 /* End of file adif.php */

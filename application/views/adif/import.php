@@ -36,6 +36,15 @@
                                                                                                                                             } ?>"><?= __("DARC DCL") ?></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link <?php if ($showtab == 'potab') {
+                                            echo 'active';
+                                        } ?>" id="potab-tab" data-bs-toggle="tab" href="#potab" role="tab" aria-controls="potab" aria-selected="<?php if ($showtab == 'potab') {
+                                                                                                                                                echo 'true';
+                                                                                                                                            } else {
+                                                                                                                                                echo 'false';
+                                                                                                                                            } ?>"><?= __("POTA") ?></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link <?php if ($showtab == 'cbr') {
                                             echo 'active';
                                         } ?>" id="cbr-tab" data-bs-toggle="tab" href="#cbr" role="tab" aria-controls="cbr" aria-selected="<?php if ($showtab == 'cbr') {
@@ -351,6 +360,25 @@
                                 <div class="small form-text text-muted"><?= __("If unchecked, information about QSOs which could not be found in Wavelog will be displayed.") ?></div>
                             </div>
                         </div>
+                        <input class="form-control w-auto mb-2 me-sm-2" type="file" name="userfile" size="20" />
+                        <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
+                    </form>
+                </div>
+
+                <div class="tab-pane <?php if ($showtab == 'potab') {
+                                            echo 'active';
+                                        } else {
+                                            echo 'fade';
+                                        } ?>" id="potab" role="tabpanel" aria-labelledby="potab-tab">
+                    <?php if (isset($error) && $showtab == 'potab') { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo $error; ?>
+                        </div>
+                    <?php } ?>
+
+                    <p><span class="badge text-bg-warning"><?= __("Important") ?></span> <?= ("This function can be used to import POTA references from POTA hunter log in ADIF format. It will only import references for existing QSOs. It will not import QSO data itself.") ?></p>
+                    <form class="form" action="<?php echo site_url('adif/pota'); ?>" method="post" enctype="multipart/form-data">
+
                         <input class="form-control w-auto mb-2 me-sm-2" type="file" name="userfile" size="20" />
                         <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
                     </form>
