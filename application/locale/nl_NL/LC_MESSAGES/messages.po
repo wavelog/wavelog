@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-06 10:34+0000\n"
-"PO-Revision-Date: 2025-09-03 21:47+0000\n"
+"PO-Revision-Date: 2025-09-07 04:29+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -249,11 +249,11 @@ msgstr "DCL Data geimporteerd"
 
 #: application/controllers/Adif.php:363
 msgid "POTA Import"
-msgstr ""
+msgstr "POTA importeren"
 
 #: application/controllers/Adif.php:420
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "POTA-gegevens geïmporteerd"
 
 #: application/controllers/Api.php:14
 msgid "API"
@@ -888,7 +888,7 @@ msgstr "Dagen met QSOs"
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "DCL-sleutelimport"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -901,31 +901,31 @@ msgstr ""
 #: application/views/view_log/qso.php:575
 #: application/views/view_log/qso.php:580
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Geen QSOs om te uploaden."
 
 #: application/controllers/Dcl.php:184 application/controllers/Dcl.php:196
 msgid "Upload Failed"
-msgstr ""
+msgstr "Upload mislukt"
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Time-out bereikt. Stoppen met verdere uploads."
 
 #: application/controllers/Dcl.php:204
 msgid "Upload Successful"
-msgstr ""
+msgstr "Upload geslaagd"
 
 #: application/controllers/Dcl.php:214
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "Geen stationprofielen gevonden om naar DCL te uploaden"
 
 #: application/controllers/Dcl.php:232
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Sleutel(s) verwijderd."
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
@@ -3343,11 +3343,11 @@ msgstr "onbekend"
 
 #: application/models/Logbook_model.php:4915
 msgid "POTA reference already in log"
-msgstr ""
+msgstr "POTA-referentie al in logboek"
 
 #: application/models/Logbook_model.php:4918
 msgid "QSO updated"
-msgstr ""
+msgstr "QSO bijgewerkt"
 
 #: application/models/Logbook_model.php:5779
 #: application/views/activated_gridmap/index.php:110
@@ -4756,29 +4756,32 @@ msgstr "De QSO's zijn gemarkeerd als geëxporteerd naar LoTW."
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "Resultaten van POTA-update"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr ""
+msgstr "POTA-referenties voor bestaande QSOs zijn bijgewerkt."
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "Fouten in POTA Update"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
 msgstr ""
+"Er zijn verschillende gegevens voor POTA-referenties in je logboek "
+"vergeleken met geïmporteerde gegevens of QSO-gegevens konden niet worden "
+"gekoppeld"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "POTA REF in logboek"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "POTA REF in ADIF"
 
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:54
@@ -8524,11 +8527,11 @@ msgstr "Importopties"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "Haal DCL-gegevens voor me op"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "Selecteer roepnaam om DCL-bevestigingen op te halen."
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -8537,38 +8540,42 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog gebruikt de DCL-sleutels die in je gebruikersprofiel zijn opgeslagen "
+"om een rapport van DCL voor je te downloaden. Het rapport dat Wavelog "
+"downloadt, bevat alle bevestigingen sinds de gekozen datum, of sinds je "
+"laatste DCL-bevestiging (opgehaald uit je logboek), tot nu toe."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "Importeer DCL-bevestigingen"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "Sleutel(s) verwijderen"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "Beschikbare DCL-sleutels"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "DCL-sleutel aanvragen"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "Geldig vanaf"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "Geldig tot"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "Je moet DCL-sleutels aanvragen om deze functie te gebruiken."
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "De volgende automatische synchronisatie met DCL zal plaatsvinden om: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:143
@@ -8582,38 +8589,42 @@ msgstr "bezig..."
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "DCL-sleutelbeheer"
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
-msgstr ""
+msgstr "Sleutel importeren"
 
 #: application/views/dcl_views/key_import.php:14
 msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
 msgstr ""
+"Je hebt een sleutel voor DCL-gegevensuitwisseling aangevraagd, wat succesvol "
+"was. De volgende gegevens zijn geïmporteerd"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "Geldige DCL-sleutel ontvangen"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "DOK geschiedenis"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "Geldigheid"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "Roepnaam geschiedenis"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
 msgstr ""
+"Ongeldige DCL-sleutel ontvangen. Controleer je DCL-login en probeer het "
+"opnieuw"
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
@@ -10160,7 +10171,7 @@ msgstr "Clublog importeren / exporteren"
 
 #: application/views/interface_assets/header.php:502
 msgid "DCL Export"
-msgstr ""
+msgstr "DCL exporteren"
 
 #: application/views/interface_assets/header.php:514
 #: application/views/logbookadvanced/index.php:680
@@ -10505,11 +10516,11 @@ msgstr "Regio"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "DCL Sent"
-msgstr ""
+msgstr "DCL verzonden"
 
 #: application/views/logbookadvanced/edit.php:36
 msgid "DCL Received"
-msgstr ""
+msgstr "DCL ontvangen"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ"
@@ -13560,6 +13571,8 @@ msgstr "Niet gewerkt"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
+"Locatorvak wordt automatisch gedetecteerd door het callbook en is "
+"waarschijnlijk verkeerd"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -16009,7 +16022,7 @@ msgstr "Dit QSO is bevestigd op Clublog."
 
 #: application/views/view_log/qso.php:581
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "Dit QSO is bevestigd op DCL."
 
 #: application/views/view_log/qso.php:594
 msgid "More QSOs"
