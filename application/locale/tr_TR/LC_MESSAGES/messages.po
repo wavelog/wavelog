@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-06 07:58+0000\n"
+"PO-Revision-Date: 2025-09-06 09:25+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -957,7 +957,7 @@ msgstr "DX Atlas Konum belirleyici Dışa Aktarma"
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:283
 msgid "DX Calendar"
-msgstr "DX Takvimi"
+msgstr "DX Etkinlik Takvimi"
 
 #: application/controllers/Eqsl.php:34
 #: application/views/dashboard/index.php:386
@@ -4073,7 +4073,7 @@ msgstr "Çağrı işareti"
 
 #: application/views/activators/index.php:99
 msgid "Count"
-msgstr ""
+msgstr "Grid Sayısı"
 
 #: application/views/activators/index.php:101
 #: application/views/callstats/index.php:151
@@ -4524,16 +4524,21 @@ msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr ""
+"DCL'deki teyit edilmemiş QSO'ların verileriyle DOK'u da güncellemek "
+"istiyorsanız işareti kaldırın."
 
 #: application/views/adif/import.php:340 application/views/adif/import.php:349
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr ""
+"Mevcut logdaki DOK bilgisinin, DCL'de ki bilgiden farklıysa üzerine yazar."
 
 #: application/views/adif/import.php:342 application/views/adif/import.php:351
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr ""
+"İşaretlenirse, Wavelog mevcut girilmiş DOK'u ,DCL logundaki DOK ile "
+"değiştirir."
 
 #: application/views/adif/import.php:349 application/views/adif/import.php:358
 msgid "Ignore QSOs that cannot be matched."
@@ -4544,6 +4549,8 @@ msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
 msgstr ""
+"İşaretli değilse, Wavelog'da bulunamayan QSO'lar hakkında bilgi "
+"gösterilecektir."
 
 #: application/views/adif/import.php:370
 msgid ""
@@ -4931,7 +4938,7 @@ msgstr "Ödül Bilgisi"
 
 #: application/views/awards/73on73/index.php:7
 msgid "73 on 73 Award"
-msgstr ""
+msgstr "73 on 73 Ödülü"
 
 #: application/views/awards/73on73/index.php:8
 msgid ""
@@ -4974,7 +4981,7 @@ msgstr "Numara"
 #: application/views/statistics/details.php:1
 #: application/views/timeline/details.php:2
 msgid "Filtering on"
-msgstr ""
+msgstr "Filtre:"
 
 #: application/views/awards/counties/details.php:13
 #: application/views/logbookadvanced/index.php:344
@@ -8903,18 +8910,20 @@ msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
 msgstr ""
+"DX Atlas'ta kullanılmak üzere çalışılan / teyit edilmiş gridleri dışa "
+"aktarın."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
-msgstr ""
+msgstr "Yalnızca grid bilgisi olan QSO'lar dışa aktarılacaktır!"
 
 #: application/views/dxcalendar/index.php:9
 msgid "Date from"
-msgstr ""
+msgstr "Başlangıç Tarihi"
 
 #: application/views/dxcalendar/index.php:10
 msgid "Date to"
-msgstr ""
+msgstr "Bitiş Tarihi"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:489
@@ -9007,7 +9016,7 @@ msgstr ""
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr ""
+msgstr "Yeni kulüp üyesi, %s'a merhaba deyin!"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -9320,6 +9329,8 @@ msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
 msgstr ""
+"Yalnızca çalışabilir uydu geçişlerini özel besleme anahtarı olmadan "
+"filtreleyemezsiniz. Lütfen besleme anahtarını %s sayfasında ayarlayın."
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
@@ -9425,7 +9436,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:52
 msgid "No states for this DXCC available"
-msgstr ""
+msgstr "Bu DXCC için eyalet bilgisi bulunmamaktadır"
 
 #: application/views/interface_assets/footer.php:53
 msgid "Compute QRB and QTF"
@@ -9558,7 +9569,7 @@ msgstr "Adet: "
 
 #: application/views/interface_assets/footer.php:803
 msgid "Grids: "
-msgstr ""
+msgstr "Grid: "
 
 #: application/views/interface_assets/footer.php:1111
 #: application/views/logbookadvanced/index.php:13
@@ -9566,7 +9577,7 @@ msgstr ""
 #: application/views/satellite/flightpath.php:11
 msgctxt "Map Options"
 msgid "Gridsquares"
-msgstr ""
+msgstr "Grid"
 
 #: application/views/interface_assets/footer.php:1390
 #, php-format
@@ -9580,7 +9591,7 @@ msgstr "Giris yapmadiniz. Lütfen %sgiris yapin%s"
 #: application/views/interface_assets/footer.php:1752
 #: application/views/interface_assets/footer.php:1755
 msgid "grid square"
-msgstr ""
+msgstr "grid"
 
 #: application/views/interface_assets/footer.php:1611
 #: application/views/interface_assets/footer.php:1755
@@ -9589,7 +9600,7 @@ msgstr "Toplam Sayı"
 
 #: application/views/interface_assets/footer.php:2530
 msgid "QSL Card for "
-msgstr ""
+msgstr "QSL Kartın Alıcısı: "
 
 #: application/views/interface_assets/footer.php:2550
 msgid "Warning! Are you sure you want to delete this QSL card?"
@@ -9602,7 +9613,7 @@ msgstr "eQSL Kartı"
 
 #: application/views/interface_assets/footer.php:2592
 msgid "eQSL Card for "
-msgstr ""
+msgstr "eQSL Kartın Alıcısı: "
 
 #: application/views/interface_assets/footer.php:2791
 #: application/views/interface_assets/footer.php:2830
@@ -9722,7 +9733,7 @@ msgstr "Almanya"
 
 #: application/views/interface_assets/header.php:228
 msgid "DL Gridmaster"
-msgstr ""
+msgstr "DL Gridmaster"
 
 #: application/views/interface_assets/header.php:232
 msgid "Great Britain"
@@ -9738,7 +9749,7 @@ msgstr "Japonya"
 
 #: application/views/interface_assets/header.php:244
 msgid "JA Gridmaster"
-msgstr ""
+msgstr "JA Gridmaster"
 
 #: application/views/interface_assets/header.php:248
 msgid "Luxemburg"
@@ -9746,7 +9757,7 @@ msgstr "Lüksemburg"
 
 #: application/views/interface_assets/header.php:250
 msgid "LX Gridmaster"
-msgstr ""
+msgstr "LX Gridmaster"
 
 #: application/views/interface_assets/header.php:254
 msgid "Switzerland"
@@ -9766,7 +9777,7 @@ msgstr "ABD"
 
 #: application/views/interface_assets/header.php:272
 msgid "US Gridmaster"
-msgstr ""
+msgstr "US Gridmaster"
 
 #: application/views/interface_assets/header.php:289
 msgid "Bandmap"
@@ -10133,7 +10144,7 @@ msgstr "Yükseklik"
 
 #: application/views/labels/index.php:45
 msgid "Used by labels"
-msgstr ""
+msgstr "Etiketlerde kullanım için"
 
 #: application/views/labels/index.php:46
 msgid "Orientation"
@@ -10172,21 +10183,21 @@ msgstr "QSO'ları Görüntüle"
 #: application/views/labels/startatform.php:4
 #: application/views/logbookadvanced/startatform.php:3
 msgid "Include Grid?"
-msgstr ""
+msgstr "Grid Dahil Edilsin mi?"
 
 #: application/views/labels/startatform.php:10
 #: application/views/logbookadvanced/startatform.php:9
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
-msgstr ""
+msgstr "Referans dahil edilsin mi? (SIG, SOTA, POTA, IOTA, WWFF)"
 
 #: application/views/labels/startatform.php:16
 msgid "Include Via (if filled)?"
-msgstr ""
+msgstr "Aracı dahil edilsin mi? (doldurulmuşsa)"
 
 #: application/views/labels/startatform.php:22
 msgid "Include QSLMSG (if filled)?"
-msgstr ""
+msgstr "QSL Mesajı dahil edilsin mi? (doldurulmuşsa)"
 
 #: application/views/labels/startatform.php:28
 msgid "Include TNX message?"
@@ -10199,7 +10210,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/edit.php:1
 msgid "Please choose the column to be edited:"
-msgstr ""
+msgstr "Lütfen düzenlenecek sütunu seçin:"
 
 #: application/views/logbookadvanced/edit.php:6
 msgid "QSO details"
@@ -10207,7 +10218,7 @@ msgstr "QSO ayrıntıları"
 
 #: application/views/logbookadvanced/edit.php:10
 msgid "Contest Exch (S)"
-msgstr ""
+msgstr "Yarışma Exch (G)"
 
 #: application/views/logbookadvanced/edit.php:20
 msgid "Station Power"
@@ -10219,7 +10230,7 @@ msgstr "İstasyon Gücü"
 #: application/views/qso/edit_ajax.php:327 application/views/qso/index.php:434
 #: application/views/view_log/qso.php:475
 msgid "Region"
-msgstr ""
+msgstr "Bölge"
 
 #: application/views/logbookadvanced/edit.php:38
 msgid "QSL / LoTW / Clublog / eQSL / QRZ"
@@ -10227,39 +10238,39 @@ msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "Clublog Received"
-msgstr ""
+msgstr "Clublog Aracılığıyla Onaylandı"
 
 #: application/views/logbookadvanced/edit.php:40
 msgid "Clublog Sent"
-msgstr ""
+msgstr "Clublog'a gönderildi"
 
 #: application/views/logbookadvanced/edit.php:41
 msgid "eQSL Received"
-msgstr ""
+msgstr "eQSL Alındı"
 
 #: application/views/logbookadvanced/edit.php:42
 msgid "eQSL Sent"
-msgstr ""
+msgstr "eQSL Gönderildi"
 
 #: application/views/logbookadvanced/edit.php:43
 msgid "LoTW Received"
-msgstr ""
+msgstr "LoTW Aracılığıyla Alındı"
 
 #: application/views/logbookadvanced/edit.php:44
 msgid "LoTW Sent"
-msgstr ""
+msgstr "LoTW Aracılığıyla Gönderildi"
 
 #: application/views/logbookadvanced/edit.php:45
 msgid "QRZ Received"
-msgstr ""
+msgstr "QRZ Aracılığıyla Alındı"
 
 #: application/views/logbookadvanced/edit.php:46
 msgid "QRZ Sent"
-msgstr ""
+msgstr "QRZ Aracılığıyla Gönderildi"
 
 #: application/views/logbookadvanced/edit.php:47
 msgid "QSLMSG"
-msgstr ""
+msgstr "QSL Mesajı"
 
 #: application/views/logbookadvanced/edit.php:48
 msgid "QSL Received Method"
@@ -10274,21 +10285,21 @@ msgstr "QSL Gönderim Yöntemi"
 #: application/views/logbookadvanced/index.php:722
 #: application/views/logbookadvanced/useroptions.php:66
 msgid "QSL via"
-msgstr ""
+msgstr "QSL Bilgisi"
 
 #: application/views/logbookadvanced/edit.php:103
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:55
 msgid "SAT Mode"
-msgstr ""
+msgstr "Uydu Modu"
 
 #: application/views/logbookadvanced/edit.php:106
 msgid "Band TX"
-msgstr ""
+msgstr "TX Bandı"
 
 #: application/views/logbookadvanced/edit.php:119
 msgid "Band RX"
-msgstr ""
+msgstr "RX Bandı"
 
 #: application/views/logbookadvanced/edit.php:167
 #: application/views/logbookadvanced/edit.php:174
@@ -10297,7 +10308,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:397
 #: application/views/logbookadvanced/index.php:648
 msgid "Invalid"
-msgstr ""
+msgstr "Geçersiz"
 
 #: application/views/logbookadvanced/edit.php:168
 #: application/views/logbookadvanced/edit.php:188
@@ -10306,7 +10317,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:493
 #: application/views/logbookadvanced/index.php:515
 msgid "Verified"
-msgstr ""
+msgstr "Doğrulandı"
 
 #: application/views/logbookadvanced/edit.php:193
 #: application/views/logbookadvanced/index.php:437
@@ -10382,7 +10393,7 @@ msgstr "Yönetici"
 #: application/views/logbookadvanced/edit.php:212
 #: application/views/qso/edit_ajax.php:330 application/views/qso/index.php:437
 msgid "NONE"
-msgstr ""
+msgstr "HİÇBİRİ"
 
 #: application/views/logbookadvanced/edit.php:213
 #: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:438
@@ -10392,88 +10403,95 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:214
 #: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:439
 msgid "Bear Island"
-msgstr ""
+msgstr "Bear Island (Ayı Adası)"
 
 #: application/views/logbookadvanced/edit.php:215
 #: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:440
 msgid "European Turkey"
-msgstr ""
+msgstr "Türkiye'nin Avrupa Yakası"
 
 #: application/views/logbookadvanced/edit.php:216
 #: application/views/qso/edit_ajax.php:334 application/views/qso/index.php:441
 msgid "ITU Vienna"
-msgstr ""
+msgstr "ITU Viyana"
 
 #: application/views/logbookadvanced/edit.php:217
 #: application/views/qso/edit_ajax.php:335 application/views/qso/index.php:442
 msgid "Kosovo"
-msgstr ""
+msgstr "Kosova"
 
 #: application/views/logbookadvanced/edit.php:218
 #: application/views/qso/edit_ajax.php:336 application/views/qso/index.php:443
 msgid "Shetland Islands"
-msgstr ""
+msgstr "Shetland Adaları"
 
 #: application/views/logbookadvanced/edit.php:219
 #: application/views/qso/edit_ajax.php:337 application/views/qso/index.php:444
 msgid "Sicily"
-msgstr ""
+msgstr "Sicilya"
 
 #: application/views/logbookadvanced/edit.php:222
 msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "
 "a gridsquare is set)."
 msgstr ""
+"Mesafe (km cinsinden). Mesafeyi yeniden hesaplamak için boş bırakın. (Sadece "
+"bir grid ayarlandığında çalışır)."
 
 #: application/views/logbookadvanced/help.php:1
 msgid "In the text input searches, you can search in the following way:"
 msgstr ""
+"Metin arama alanlarında, arama yapmak için aşağıdaki yöntemleri "
+"kullanabilirsiniz:"
 
 #: application/views/logbookadvanced/help.php:2
 msgid "* - means search for everything."
-msgstr ""
+msgstr "* - her şeyi aramak anlamına gelir."
 
 #: application/views/logbookadvanced/help.php:3
 msgid "Remove star and leave blank, means to search where column is empty."
-msgstr ""
+msgstr "Yıldızı silin ve boş bırakın, boş olan sütunlar aranacaktır."
 
 #: application/views/logbookadvanced/help.php:4
 msgid "!empty - means to search where column is not empty."
-msgstr ""
+msgstr "!emty - dolu sütunları aramak anlamına gelir."
 
 #: application/views/logbookadvanced/help.php:6
 msgid ""
 "The dupe search checks for duplicate QSOs with the same callsign, mode, "
 "submode, station callsign, band and satellite within 1500 seconds."
 msgstr ""
+"Tekrarlanan QSO araması, aynı çağrı işareti, mod, alt mod, bant ve uydu "
+"bilgilerine sahip olan ve 25 dakika içinde kaydedilmiş yinelenen QSO'ları "
+"tespit eder."
 
 #: application/views/logbookadvanced/help.php:8
 msgid "The invalid search checks for the following conditions:"
-msgstr ""
+msgstr "Geçersiz QSO araması şu koşulları denetler:"
 
 #: application/views/logbookadvanced/help.php:9
 msgid "Mode is blank or set to 0."
-msgstr ""
+msgstr "Mod boş veya 0 olarak ayarlanmış."
 
 #: application/views/logbookadvanced/help.php:10
 msgid "Band is blank."
-msgstr ""
+msgstr "Bant boş."
 
 #: application/views/logbookadvanced/help.php:11
 msgid "Callsign is blank."
-msgstr ""
+msgstr "Çağrı işareti boş."
 
 #: application/views/logbookadvanced/help.php:12
 msgid "Time and date is not set."
-msgstr ""
+msgstr "Saat ve tarih ayarlanmamış."
 
 #: application/views/logbookadvanced/help.php:13
 msgid "Date is set to 1970-01-01."
-msgstr ""
+msgstr "Tarih 1923-10-29 olarak ayarlanmış."
 
 #: application/views/logbookadvanced/help.php:14
 msgid "Continent different from AF, AN, AS, EU, NA, OC or SA."
-msgstr ""
+msgstr "Kıta, AF, AN, AS, EU, NA, OC veya SA'dan farklı."
 
 #: application/views/logbookadvanced/help.php:16
 msgid ""
@@ -10487,35 +10505,38 @@ msgid ""
 "will be exported (all for selected location), unless you have checked one or "
 "more QSOs."
 msgstr ""
+"ADIF dışa aktarımı, arama yaptığınız filtreyi kullanır. Bir veya daha fazla "
+"QSO'yu işaretlemediğiniz sürece, listelenen QSO'lar (seçili konum için tümü) "
+"dışa aktarılacaktır."
 
 #: application/views/logbookadvanced/index.php:16
 #: application/views/logbookadvanced/useroptions.php:202
 #: application/views/stationsetup/exportmapoptions.php:23
 msgctxt "Map Options"
 msgid "Path lines"
-msgstr ""
+msgstr "Yayılım Türü"
 
 #: application/views/logbookadvanced/index.php:17
 msgid "Show Callsigns"
-msgstr ""
+msgstr "Çağrı İşaretlerini Göster"
 
 #: application/views/logbookadvanced/index.php:18
 #: application/views/logbookadvanced/useroptions.php:210
 msgctxt "Map Options"
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ Bölgesi"
 
 #: application/views/logbookadvanced/index.php:19
 #: application/views/logbookadvanced/useroptions.php:214
 msgctxt "Map Options"
 msgid "ITU Zones"
-msgstr ""
+msgstr "ITU Bölgesi"
 
 #: application/views/logbookadvanced/index.php:20
 #: application/views/logbookadvanced/useroptions.php:218
 msgctxt "Map Options"
 msgid "Night Shadow"
-msgstr ""
+msgstr "Gece Gölgesi"
 
 #: application/views/logbookadvanced/index.php:23
 msgid "Advanced Logbook Help"
@@ -10682,59 +10703,59 @@ msgstr "Online Çağrı Defterinden Güncelle"
 
 #: application/views/logbookadvanced/index.php:541
 msgid "Queue Bureau"
-msgstr ""
+msgstr "Büro Kuyruğu"
 
 #: application/views/logbookadvanced/index.php:542
 msgid "Queue Direct"
-msgstr ""
+msgstr "Direkt Kuyruğu"
 
 #: application/views/logbookadvanced/index.php:543
 msgid "Queue Electronic"
-msgstr ""
+msgstr "Elektronik Sırası"
 
 #: application/views/logbookadvanced/index.php:544
 msgid "Sent (Bureau)"
-msgstr ""
+msgstr "Gönderildi (Büro)"
 
 #: application/views/logbookadvanced/index.php:545
 msgid "Sent (Direct)"
-msgstr ""
+msgstr "Gönderildi (Doğrudan)"
 
 #: application/views/logbookadvanced/index.php:546
 msgid "Sent (Electronic)"
-msgstr ""
+msgstr "Gönderildi (Elektronik)"
 
 #: application/views/logbookadvanced/index.php:547
 msgid "Not Sent"
-msgstr ""
+msgstr "Gönderilmedi"
 
 #: application/views/logbookadvanced/index.php:548
 msgid "QSL Not Required"
-msgstr ""
+msgstr "QSL Gerekli Değil"
 
 #: application/views/logbookadvanced/index.php:549
 msgid "Not Received"
-msgstr ""
+msgstr "Alınmadı"
 
 #: application/views/logbookadvanced/index.php:550
 msgid "Received (Bureau)"
-msgstr ""
+msgstr "Alındı (Büro)"
 
 #: application/views/logbookadvanced/index.php:551
 msgid "Received (Direct)"
-msgstr ""
+msgstr "Alındı (Doğrudan)"
 
 #: application/views/logbookadvanced/index.php:552
 msgid "Received (Electronic)"
-msgstr ""
+msgstr "Alındı (Elektronik)"
 
 #: application/views/logbookadvanced/index.php:553
 msgid "Create ADIF"
-msgstr ""
+msgstr "ADIF Oluştur"
 
 #: application/views/logbookadvanced/index.php:554
 msgid "Print Label"
-msgstr ""
+msgstr "Etiketi Yazdır"
 
 #: application/views/logbookadvanced/index.php:555
 msgid "QSL Slideshow"
@@ -10742,15 +10763,15 @@ msgstr "QSL Kart Slayt Gösterisi"
 
 #: application/views/logbookadvanced/index.php:556
 msgid "Fix CQ Zones"
-msgstr ""
+msgstr "CQ Bölgelerini Düzelt"
 
 #: application/views/logbookadvanced/index.php:557
 msgid "Fix ITU Zones"
-msgstr ""
+msgstr "ITU Bölgelerini Düzelt"
 
 #: application/views/logbookadvanced/index.php:563
 msgid "Quicksearch with selected: "
-msgstr ""
+msgstr "Kriterler ile hızlı arama: "
 
 #: application/views/logbookadvanced/index.php:565
 msgid "Search Date"
@@ -10857,7 +10878,7 @@ msgstr "QSL Mesajı (A)"
 #: application/views/logbookadvanced/index.php:794
 #: application/views/logbookadvanced/useroptions.php:162
 msgid "My Refs"
-msgstr "Referanslarım"
+msgstr "Konumum"
 
 #: application/views/logbookadvanced/index.php:803
 msgid "Ant az"
@@ -12322,7 +12343,7 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:221 application/views/qso/index.php:498
 msgid "Antenna Path"
-msgstr ""
+msgstr "Anten Yönü"
 
 #: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:501
 #: application/views/view_log/qso.php:162
