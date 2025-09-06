@@ -22,35 +22,35 @@ class Callbook {
 			case 'qrz':
 				if ($this->ci->config->item('qrz_username') == null || $this->ci->config->item('qrz_password') == null) {
 					$callbook['error'] = 'Lookup not configured. Please review configuration.';
-					return $callbook;
 				}
-				return $this->qrz($this->ci->config->item('qrz_username'), $this->ci->config->item('qrz_password'), $callsign, $this->ci->config->item('use_fullname'));
+				$callbook = $this->qrz($this->ci->config->item('qrz_username'), $this->ci->config->item('qrz_password'), $callsign, $this->ci->config->item('use_fullname'));
 				break;
 			case 'qrzcq':
 				if ($this->ci->config->item('qrzcq_username') == null || $this->ci->config->item('qrzcq_password') == null) {
 					$callbook['error'] = 'Lookup not configured. Please review configuration.';
-					return $callbook;
 				}
-				return $this->qrzcq($this->ci->config->item('qrzcq_username'), $this->ci->config->item('qrzcq_password'), $callsign);
+				$callbook = $this->qrzcq($this->ci->config->item('qrzcq_username'), $this->ci->config->item('qrzcq_password'), $callsign);
 				break;
 			case 'hamqth':
 				if ($this->ci->config->item('hamqth_username') == null || $this->ci->config->item('hamqth_password') == null) {
 					$callbook['error'] = 'Lookup not configured. Please review configuration.';
-					return $callbook;
 				}
-				return $this->hamqth($this->ci->config->item('hamqth_username'), $this->ci->config->item('hamqth_password'), $callsign);
+				$callbook = $this->hamqth($this->ci->config->item('hamqth_username'), $this->ci->config->item('hamqth_password'), $callsign);
 				break;
 			case 'qrzru':
 				if ($this->ci->config->item('qrzru_username') == null || $this->ci->config->item('qrzru_password') == null) {
 					$callbook['error'] = 'Lookup not configured. Please review configuration.';
-					return $callbook;
 				}
-				return $this->qrzru($this->ci->config->item('qrzru_username'), $this->ci->config->item('qrzru_password'), $callsign);
+				$callbook = $this->qrzru($this->ci->config->item('qrzru_username'), $this->ci->config->item('qrzru_password'), $callsign);
 				break;
 			default:
 				$callbook['error'] = 'No callbook defined. Please review configuration.';
-				return $callbook;
 		}
+		// Handle callbook specific fields
+		if (! array_key_exists('geoloc', $callbook)) {
+			$callbook['geoloc'] = '';
+		}
+		return $callbook;
 	}
 
 	function qrz($username, $password, $callsign, $fullname) {
