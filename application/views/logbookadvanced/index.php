@@ -67,6 +67,7 @@
             \"county\":{\"show\":\"true\"},
             \"qth\":{\"show\":\"true\"},
             \"frequency\":{\"show\":\"true\"},
+            \"dcl\":{\"show\":\"true\"},
         }";
     }
     $current_opts = json_decode($options);
@@ -169,6 +170,10 @@
     }
 	if (!isset($current_opts->frequency)) {
         echo "\nvar o_template = { frequency: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+		if (!isset($current_opts->dcl)) {
+        echo "\nvar o_template = { dcl: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -735,6 +740,9 @@ $options = json_decode($options);
 					} ?>
                     <?php if (($options->qrz->show ?? "true") == "true") {
                         echo '<th class="qrz">' . __("QRZ") . '</th>';
+                    } ?>
+					<?php if (($options->dcl->show ?? "true") == "true") {
+                        echo '<th>' . __("DCL") . '</th>';
                     } ?>
                     <?php if (($options->qslmsgs->show ?? "false") == "true") {
                         echo '<th>' . __("QSL Msg (S)") . '</th>';

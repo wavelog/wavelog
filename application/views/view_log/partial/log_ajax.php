@@ -221,6 +221,9 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false  ) { ?>
                         <th><?= __("Clublog"); ?></th>
                     <?php } ?>
+    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false  ) { ?>
+                        <th><?= __("DCL"); ?></th>
+                    <?php } ?>
                 <?php } ?>
                         <th><?= __("Station"); ?></th>
                 <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
@@ -463,6 +466,42 @@ function echoQrbCalcLink($mygrid, $grid, $vucc, $isVisitor = false) {
 					echo "\" data-bs-toggle=\"tooltip\"";
 				} ?> class="clublog-<?php
 					echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
+                    </td>
+                <?php } 
+		 if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false ) { ?>
+                    <td class="dcl">
+                        <span <?php
+				if ($row->COL_DCL_QSL_SENT == "Y") {
+					echo 'title="'.__("Sent").($row->COL_DCL_QSLSDATE != null ? " ".date($custom_date_format, strtotime($row->COL_DCL_QSLSDATE)) : '').'" data-bs-toggle="tooltip"';
+				} elseif ($row->COL_DCL_QSL_SENT == 'M') {
+					echo 'title="'.__("Modified");
+					if ($row->COL_DCL_QSLSDATE != null) {
+						echo "<br />(".__("last sent")." ".date($custom_date_format, strtotime($row->COL_DCL_QSLSDATE)).")";
+					}
+					echo '" data-bs-toggle="tooltip" data-bs-html="true"';
+				} elseif ($row->COL_DCL_QSL_SENT == 'I') {
+					echo 'title="'.__("Invalid (Ignore)").'" data-bs-toggle="tooltip"';
+				}?> class="dcl-<?php
+
+				if ($row->COL_DCL_QSL_SENT == 'Y') {
+					echo 'green';
+				} elseif ($row->COL_DCL_QSL_SENT == 'M') {
+					echo 'yellow';
+				} elseif ($row->COL_DCL_QSL_SENT == 'I') {
+					echo 'grey';
+				} else {
+					echo 'red';
+				} ?>">&#9650;</span>
+                        <span <?php
+				if ($row->COL_DCL_QSL_RCVD == "Y") {
+					echo "title=\"".__("Received");
+					if ($row->COL_DCL_QSLRDATE != null) {
+						$timestamp = strtotime($row->COL_DCL_QSLRDATE);
+						echo " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+					}
+					echo "\" data-bs-toggle=\"tooltip\"";
+				} ?> class="dcl-<?php
+					echo ($row->COL_DCL_QSL_RCVD=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
 

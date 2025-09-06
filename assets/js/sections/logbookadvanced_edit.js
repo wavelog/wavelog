@@ -186,6 +186,9 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'qrzsent' || column == 'qrzreceived') {
 		value = $("#editQrz").val();
 	}
+	if (column == 'dclsent' || column == 'dclreceived') {
+		value = $("#editDcl").val();
+	}
 	if (column == 'eqslsent' || column == 'eqslreceived') {
 		value = $("#editEqsl").val();
 	}
@@ -261,6 +264,7 @@ function changeEditType(type) {
 	$('#editLoTW').hide();
 	$('#editContinent').hide();
 	$('#editQrz').hide();
+	$('#editDcl').hide();
 	$('#saveButton').prop("disabled", false);
 	$('#editEqsl').hide();
 	$('#editRegion').hide();
@@ -309,6 +313,8 @@ function changeEditType(type) {
 		$('#editLoTW').show();
 	} else if (type == "qrzsent" || type == "qrzreceived") {
 		$('#editQrz').show();
+	} else if (type == "dclsent" || type == "dclreceived") {
+		$('#editDcl').show();
 	} else if (type == "eqslsent" || type == "eqslreceived") {
 		$('#editEqsl').show();
 	} else if (type == "continent") {

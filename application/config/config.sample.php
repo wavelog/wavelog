@@ -788,3 +788,12 @@ $config['max_login_attempts'] = 3;
  */
 
  $config['disable_user_stats'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| enable DCL Interface
+| Set this to true if your Users and you want to connect your instance to the German DCL
+|--------------------------------------------------------------------------
+ */
+
+ $config['enable_dcl_interface'] = true;

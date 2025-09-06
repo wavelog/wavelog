@@ -1369,51 +1369,63 @@ class Logbook_model extends CI_Model {
 		}
 
 		if ($this->input->post('qsl_sent')) {
-			$qsl_sent = $this->input->post('qsl_sent');
+			$qsl_sent = $this->input->post('qsl_sent',true);
 		} else {
 			$qsl_sent = 'N';
 		}
 
 		if ($this->input->post('qsl_rcvd')) {
-			$qsl_rcvd = $this->input->post('qsl_rcvd');
+			$qsl_rcvd = $this->input->post('qsl_rcvd',true);
 		} else {
 			$qsl_rcvd = 'N';
 		}
 
 		if ($this->input->post('eqsl_sent')) {
-			$eqsl_sent = $this->input->post('eqsl_sent');
+			$eqsl_sent = $this->input->post('eqsl_sent',true);
 		} else {
 			$eqsl_sent = 'N';
 		}
 
 		if ($this->input->post('eqsl_rcvd')) {
-			$eqsl_rcvd = $this->input->post('eqsl_rcvd');
+			$eqsl_rcvd = $this->input->post('eqsl_rcvd',true);
 		} else {
 			$eqsl_rcvd = 'N';
 		}
 
 		if ($this->input->post('qrz_sent')) {
-			$qrz_sent = $this->input->post('qrz_sent');
+			$qrz_sent = $this->input->post('qrz_sent',true);
 		} else {
 			$qrz_sent = 'N';
 		}
 
 		if ($this->input->post('qrz_rcvd')) {
-			$qrz_rcvd = $this->input->post('qrz_rcvd');
+			$qrz_rcvd = $this->input->post('qrz_rcvd',true);
 		} else {
 			$qrz_rcvd = 'N';
 		}
 
 		if ($this->input->post('clublog_sent')) {
-			$clublog_sent = $this->input->post('clublog_sent');
+			$clublog_sent = $this->input->post('clublog_sent',true);
 		} else {
 			$clublog_sent = 'N';
 		}
 
 		if ($this->input->post('clublog_rcvd')) {
-			$clublog_rcvd = $this->input->post('clublog_rcvd');
+			$clublog_rcvd = $this->input->post('clublog_rcvd',true);
 		} else {
 			$clublog_rcvd = 'N';
+		}
+
+		if ($this->input->post('dcl_sent')) {
+			$dcl_sent = $this->input->post('dcl_sent',true);
+		} else {
+			$dcl_sent = 'N';
+		}
+
+		if ($this->input->post('dcl_rcvd')) {
+			$dcl_rcvd = $this->input->post('dcl_rcvd',true);
+		} else {
+			$dcl_rcvd = 'N';
 		}
 
 		if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
@@ -1517,6 +1529,22 @@ class Logbook_model extends CI_Model {
 			$clublogrdate = $qso->COL_CLUBLOG_QSO_DOWNLOAD_DATE;
 		}
 
+		if ($dcl_sent == 'N' && $qso->COL_CLUBLOG_QSO_UPLOAD_STATUS != $dcl_sent) {
+			$dclsdate = null;
+		} elseif (!$qso->COL_DCL_QSLSDATE || $qso->COL_DCL_QSLSDATE != $dcl_sent) {
+			$dclsdate = date('Y-m-d H:i:s');
+		} else {
+			$dclsdate = $qso->COL_DCL_QSLSDATE;
+		}
+
+		if ($dcl_rcvd == 'N' && $qso->COL_DCL_QSLRDATE != $dcl_rcvd) {
+			$dclrdate = null;
+		} elseif (!$qso->COL_DCL_QSLRDATE || $qso->COL_DCL_QSLRDATE != $dcl_rcvd) {
+			$dclrdate = date('Y-m-d H:i:s');
+		} else {
+			$dclrdate = $qso->COL_DCL_QSLRDATE;
+		}
+
 		if (($this->input->post('distance')) && (is_numeric($this->input->post('distance')))) {
 			$distance = $this->input->post('distance');
 		} else {
@@ -1589,6 +1617,10 @@ class Logbook_model extends CI_Model {
 			'COL_CLUBLOG_QSO_DOWNLOAD_DATE' => $clublogrdate,
 			'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $clublog_rcvd,
 			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => $clublog_sent,
+			'COL_DCL_QSLSDATE' => $dclsdate,
+			'COL_DCL_QSLRDATE' => $dclrdate,
+			'COL_DCL_QSL_RCVD' => $dcl_rcvd,
+			'COL_DCL_QSL_SENT' => $dcl_sent,
 			'COL_IOTA' => $this->input->post('iota_ref'),
 			'COL_SOTA_REF' => strtoupper(trim($this->input->post('sota_ref'))),
 			'COL_WWFF_REF' => strtoupper(trim($this->input->post('wwff_ref'))),
@@ -5507,6 +5539,22 @@ class Logbook_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_dcl_qsos_to_upload($station_id, $from, $till) {
+
+		$sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
+			' left join station_profile on thcv.station_id = station_profile.station_id' .
+			' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
+			' where thcv.station_id = ?' .
+			' and (COL_DCL_QSL_SENT not in ("Y","I") OR COL_DCL_QSL_SENT is null)'.
+			' and COL_TIME_ON>? and COL_TIME_ON<?';
+		$binding[] = $station_id;
+		$binding[] = date('Y-m-d', $from);
+		$binding[] = date('Y-m-d', $till);
+
+		$query = $this->db->query($sql, $binding);
+		return $query;
+	}
+
 	function get_lotw_qsos_to_upload($station_id, $start_date, $end_date) {
 
 		$this->db->select('COL_PRIMARY_KEY,COL_CALL, COL_BAND, COL_BAND_RX, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_FREQ, COL_FREQ_RX, COL_GRIDSQUARE, COL_SAT_NAME, COL_PROP_MODE, COL_LOTW_QSL_SENT, station_id');
@@ -5527,6 +5575,21 @@ class Logbook_model extends CI_Model {
 		$query = $this->db->get($this->config->item('table_name'));
 
 		return $query;
+	}
+
+	function mark_dcl_sent($qso_id) {
+
+		$data = array(
+			'COL_DCL_QSLSDATE' => date("Y-m-d H:i:s"),
+			'COL_DCL_QSL_SENT' => 'Y',
+		);
+
+
+		$this->db->where('COL_PRIMARY_KEY', $qso_id);
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return "Updated";
 	}
 
 	function mark_lotw_sent($qso_id) {

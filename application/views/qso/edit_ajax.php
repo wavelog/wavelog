@@ -427,8 +427,11 @@
                                         <li class="nav-item">
                                             <a class="nav-link" id="qrz-tab" data-bs-toggle="tab" href="#qrz-edit" role="tab" aria-controls="qrz" aria-selected="false"><?= __("QRZ"); ?></a>
                                         </li>
-										<li class="nav-item">
+					<li class="nav-item">
                                             <a class="nav-link" id="clublog-tab" data-bs-toggle="tab" href="#clublog-edit" role="tab" aria-controls="clublog" aria-selected="false"><?= __("Clublog"); ?></a>
+                                        </li>
+					<li class="nav-item">
+                                            <a class="nav-link" id="dcl-tab" data-bs-toggle="tab" href="#dcl-edit" role="tab" aria-controls="dcl" aria-selected="false"><?= __("DCL"); ?></a>
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="qsl_edit_tabs">
@@ -595,7 +598,33 @@
                                                 </div>
                                             </div>
                                         </div>
-										<div class="tab-pane fade" id="clublog-edit" role="tabpanel" aria-labelledby="clublog-tab">
+					<div class="tab-pane fade" id="dcl-edit" role="tabpanel" aria-labelledby="dcl-tab">
+                                            <div class="mt-3 mb-3 row">
+                                                <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="clublog_sent" name="dcl_sent">
+                                                        <option value="N" <?php if ($qso->COL_DCL_QSL_SENT == "N") echo "selected=\"selected\""; ?>><?= __("No"); ?></option>
+                                                        <option value="Y" <?php if ($qso->COL_DCL_QSL_SENT == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
+                                                        <option value="R" <?php if ($qso->COL_DCL_QSL_SENT == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
+                                                        <option value="Q" <?php if ($qso->COL_DCL_QSL_SENT == "Q") echo "selected=\"selected\""; ?>><?= __("Queued"); ?></option>
+                                                        <option value="I" <?php if ($qso->COL_DCL_QSL_SENT == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="sent" class="col-sm-3 col-form-label"><?= __("Received"); ?></label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-select" id="clublog_rcvd" name="dcl_rcvd">
+                                                        <option value="N" <?php if ($qso->COL_DCL_QSL_RCVD == "N") echo "selected=\"selected\""; ?>><?= __("No"); ?></option>
+                                                        <option value="Y" <?php if ($qso->COL_DCL_QSL_RCVD == "Y") echo "selected=\"selected\""; ?>><?= __("Yes"); ?></option>
+                                                        <option value="R" <?php if ($qso->COL_DCL_QSL_RCVD == "R") echo "selected=\"selected\""; ?>><?= __("Requested"); ?></option>
+                                                        <option value="I" <?php if ($qso->COL_DCL_QSL_RCVD == "I") echo "selected=\"selected\""; ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                        <option value="V" <?php if ($qso->COL_DCL_QSL_RCVD == "V") echo "selected=\"selected\""; ?>><?= __("Verified (Match)"); ?></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+					<div class="tab-pane fade" id="clublog-edit" role="tabpanel" aria-labelledby="clublog-tab">
                                             <div class="mt-3 mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                                 <div class="col-sm-9">
@@ -608,7 +637,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="mb-3 row">
                                                 <label for="sent" class="col-sm-3 col-form-label"><?= __("Received"); ?></label>
                                                 <div class="col-sm-9">
