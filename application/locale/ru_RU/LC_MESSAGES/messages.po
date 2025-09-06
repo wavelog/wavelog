@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-03 11:57+0000\n"
-"PO-Revision-Date: 2025-08-24 12:50+0000\n"
+"POT-Creation-Date: 2025-09-03 15:56+0000\n"
+"PO-Revision-Date: 2025-09-01 08:20+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -4445,7 +4445,7 @@ msgstr "Отметить экспортированные QSO как загру�
 
 #: application/views/adif/import.php:275
 msgid "Export QSOs not uploaded to LoTW"
-msgstr "Отметить экспортированные QSO как незагруженные в LoTW"
+msgstr "Экспортировать QSO, незагруженные в LoTW"
 
 #: application/views/adif/import.php:282
 msgid "Export QSOs"
@@ -4605,7 +4605,7 @@ msgstr ""
 
 #: application/views/adif/import_success.php:22
 msgid "Yay, it's imported!"
-msgstr ""
+msgstr "Импорт успешен!"
 
 #: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
@@ -4613,7 +4613,7 @@ msgstr "ADIF файл импортирован."
 
 #: application/views/adif/import_success.php:25
 msgid "Number of QSOs imported:"
-msgstr ""
+msgstr "Количество импортированных QSO:"
 
 #: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
@@ -7191,7 +7191,7 @@ msgstr "#QSO"
 
 #: application/views/callstats/index.php:149
 msgid "First QSO"
-msgstr ""
+msgstr "Первое QSO"
 
 #: application/views/callstats/index.php:150
 #: application/views/stationsetup/stationsetup.php:129
@@ -7447,8 +7447,8 @@ msgstr "Загрузить журнал"
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
-msgid "Download QSOs"
-msgstr "Скачать QSO"
+msgid "Download QSLs"
+msgstr ""
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
@@ -7510,15 +7510,13 @@ msgstr "Следующая автоматическая загрузка QSL и�
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
-"If no startdate is given then all QSOs after last confirmation will be "
+"If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
-"Если дата начала не указана, то все QSO после последнего подтверждения будут "
-"загружены/обновлены!"
 
 #: application/views/clublog/export.php:78
-msgid "Download from Clublog"
-msgstr "Скачать из Clublog"
+msgid "Download QSLs from Clublog"
+msgstr ""
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -12067,8 +12065,8 @@ msgid "The next automatic Download from QRZ-QSLs will happen at: "
 msgstr "Следующее автоматическое скачивание с QRZ QSL произойдет в: "
 
 #: application/views/qrz/export.php:83
-msgid "Download from QRZ Logbook"
-msgstr "Скачать из QRZ Logbook"
+msgid "Download QSLs from QRZ Logbook"
+msgstr ""
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
@@ -15905,6 +15903,22 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#~ msgid "Download QSOs"
+#~ msgstr "Скачать QSO"
+
+#~ msgid ""
+#~ "If no startdate is given then all QSOs after last confirmation will be "
+#~ "downloaded/updated!"
+#~ msgstr ""
+#~ "Если дата начала не указана, то все QSO после последнего подтверждения "
+#~ "будут загружены/обновлены!"
+
+#~ msgid "Download from Clublog"
+#~ msgstr "Скачать из Clublog"
+
+#~ msgid "Download from QRZ Logbook"
+#~ msgstr "Скачать из QRZ Logbook"
 
 #~ msgid "Linked locations"
 #~ msgstr "Привязанные профили QTH"

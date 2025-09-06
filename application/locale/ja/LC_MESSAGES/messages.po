@@ -4,12 +4,13 @@
 #
 # Fabian Berg <fabian.berg@hb9hil.org>, 2025.
 # "S.NAKAO" <hlx.nakao@gmail.com>, 2025.
+# "S.NAKAO(JG3HLX)" <hlx.nakao@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-03 11:57+0000\n"
-"PO-Revision-Date: 2025-08-26 13:25+0000\n"
-"Last-Translator: \"S.NAKAO\" <hlx.nakao@gmail.com>\n"
+"POT-Creation-Date: 2025-09-03 15:56+0000\n"
+"PO-Revision-Date: 2025-09-03 19:33+0000\n"
+"Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ja/>\n"
 "Language: ja\n"
@@ -132,7 +133,7 @@ msgstr "累積統計"
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr "アクティブ化されたグリッドスクエアマップ"
+msgstr "アクティブ化されたグリッドロケーターマップ"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:1003
@@ -144,23 +145,23 @@ msgstr "アクティブ化されたグリッドスクエアマップ"
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "グリッドスクエア"
+msgstr "グリッドロケーター"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
-msgstr "グリッドスクエアが確認されました"
+msgstr "グリッドロケーターが確認されました"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
-msgstr "グリッドスクエアは確認されていません"
+msgstr "グリッドロケーターは確認されていません"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "アクティブ化されたグリッドスクエアの合計"
+msgstr "アクティブ化されたグリッドロケーターの合計"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:36
@@ -190,7 +191,7 @@ msgstr "作業したフィールドの合計"
 #: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:152
 msgid "Gridsquare Activators"
-msgstr "グリッドスクエアアクティベーター"
+msgstr "グリッドロケーターアクティベーター"
 
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
@@ -2380,7 +2381,7 @@ msgstr "ステーションの場所を編集: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 msgid "Station Location"
-msgstr "衛星の場所"
+msgstr "ステーションの場所"
 
 #: application/controllers/Station.php:112
 msgid "Duplicate Station Location:"
@@ -2860,7 +2861,7 @@ msgstr "ITUゾーンステーション"
 #: application/controllers/User.php:1243
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
-msgstr "ステーションの検索"
+msgstr "グリッドロケータ"
 
 #: application/controllers/User.php:1266
 #, php-format
@@ -4210,7 +4211,7 @@ msgstr "ADIFエクスポート"
 
 #: application/views/adif/import.php:36 application/views/adif/import.php:324
 msgid "DARC DCL"
-msgstr "ダルクDCL"
+msgstr "DARC DCL"
 
 #: application/views/adif/import.php:45
 msgid "CBR Import"
@@ -7363,8 +7364,8 @@ msgstr "ログブックをアップロード"
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
-msgid "Download QSOs"
-msgstr "QSOをダウンロード"
+msgid "Download QSLs"
+msgstr "QSLをダウンロード"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
@@ -7427,15 +7428,15 @@ msgstr "Clublog-QSL からの次回の自動ダウンロードは次の時間に
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
-"If no startdate is given then all QSOs after last confirmation will be "
+"If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
-"開始日が指定されていない場合は、最終確認後のすべての QSO がダウンロード/更新"
-"されます！"
+"開始日が指定されていない場合、最終確認後のQSLカードがダウンロード/更新されま"
+"す！"
 
 #: application/views/clublog/export.php:78
-msgid "Download from Clublog"
-msgstr "Clublogからダウンロード"
+msgid "Download QSLs from Clublog"
+msgstr "ClublogからQSLをダウンロードする"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -9674,7 +9675,7 @@ msgstr "日本"
 
 #: application/views/interface_assets/header.php:244
 msgid "JA Gridmaster"
-msgstr "そしてグリッドマスター"
+msgstr "JA Gridmaster"
 
 #: application/views/interface_assets/header.php:248
 msgid "Luxemburg"
@@ -10142,7 +10143,7 @@ msgstr "編集する列を選択してください:"
 
 #: application/views/logbookadvanced/edit.php:6
 msgid "QSO details"
-msgstr ""
+msgstr "QSOの詳細"
 
 #: application/views/logbookadvanced/edit.php:10
 msgid "Contest Exch (S)"
@@ -10150,7 +10151,7 @@ msgstr "コンテスト交換（S）"
 
 #: application/views/logbookadvanced/edit.php:20
 msgid "Station Power"
-msgstr ""
+msgstr "ステーションの出力"
 
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:779
@@ -10162,7 +10163,7 @@ msgstr "地域"
 
 #: application/views/logbookadvanced/edit.php:38
 msgid "QSL / LoTW / Clublog / eQSL / QRZ"
-msgstr ""
+msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "Clublog Received"
@@ -10174,15 +10175,15 @@ msgstr "Clublog送信"
 
 #: application/views/logbookadvanced/edit.php:41
 msgid "eQSL Received"
-msgstr "eQSLを受信"
+msgstr "eQSL受信"
 
 #: application/views/logbookadvanced/edit.php:42
 msgid "eQSL Sent"
-msgstr "eQSLを送信しました"
+msgstr "eQSL送信"
 
 #: application/views/logbookadvanced/edit.php:43
 msgid "LoTW Received"
-msgstr "LoTWを受信"
+msgstr "LoTW受信"
 
 #: application/views/logbookadvanced/edit.php:44
 msgid "LoTW Sent"
@@ -10202,11 +10203,11 @@ msgstr "QSLメッセージ"
 
 #: application/views/logbookadvanced/edit.php:48
 msgid "QSL Received Method"
-msgstr ""
+msgstr "QSL受取方法"
 
 #: application/views/logbookadvanced/edit.php:49
 msgid "QSL Sent Method"
-msgstr ""
+msgstr "QSL送付方法"
 
 #: application/views/logbookadvanced/edit.php:50
 #: application/views/logbookadvanced/index.php:519
@@ -11958,8 +11959,8 @@ msgid "The next automatic Download from QRZ-QSLs will happen at: "
 msgstr "QRZ-QSL からの次回の自動ダウンロードは次の時刻に行われます: "
 
 #: application/views/qrz/export.php:83
-msgid "Download from QRZ Logbook"
-msgstr "QRZログブックからダウンロード"
+msgid "Download QSLs from QRZ Logbook"
+msgstr "QRZログブックからQSLをダウンロードする"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
@@ -13636,7 +13637,7 @@ msgstr "局のDXCCエンティティ。例：ボリビア"
 #: application/views/station_profile/create.php:87
 #: application/views/station_profile/edit.php:122
 msgid "Station City"
-msgstr "ステーションシティ"
+msgstr "ステーションの市"
 
 #: application/views/station_profile/create.php:89
 #: application/views/station_profile/edit.php:124
@@ -13680,7 +13681,7 @@ msgstr "ITUゾーンが分からない場合は %s で検索してください!"
 #: application/views/station_profile/edit.php:198
 #: application/views/station_profile/edit.php:201
 msgid "Station Gridsquare"
-msgstr "ステーショングリッドスクエア"
+msgstr "ステーションのグリッドスクエア"
 
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:206
@@ -13768,7 +13769,7 @@ msgstr "署名名"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
-msgstr "ステーションの特別興味グループ名 (例: GMA)。"
+msgstr "ステーションの専門研究グループ名 (例: GMA)。"
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
@@ -14035,7 +14036,7 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
-msgstr ""
+msgstr "リンクされた場所を編集"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
@@ -14450,10 +14451,13 @@ msgid ""
 "deprectated and will be removed in a future version of Wavelog. As "
 "replacement use the Logbook-Advanced!"
 msgstr ""
+"この変更は、このインスタンス上の全ユーザーの全QSOに影響します。この機能は非推"
+"奨となり、Wavelogの将来のバージョンで削除されます。代替としてLogbook-Advanced"
+"をご利用ください！"
 
 #: application/views/update/index.php:35 application/views/update/index.php:59
 msgid "WARNING"
-msgstr ""
+msgstr "警告"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
@@ -15769,6 +15773,22 @@ msgstr "リクエストを送信"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "受信"
+
+#~ msgid "Download QSOs"
+#~ msgstr "QSOをダウンロード"
+
+#~ msgid ""
+#~ "If no startdate is given then all QSOs after last confirmation will be "
+#~ "downloaded/updated!"
+#~ msgstr ""
+#~ "開始日が指定されていない場合は、最終確認後のすべての QSO がダウンロード/更"
+#~ "新されます！"
+
+#~ msgid "Download from Clublog"
+#~ msgstr "Clublogからダウンロード"
+
+#~ msgid "Download from QRZ Logbook"
+#~ msgstr "QRZログブックからダウンロード"
 
 #~ msgid "Linked locations"
 #~ msgstr "リンクされた場所"

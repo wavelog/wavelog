@@ -8,7 +8,7 @@ $custom_date_format = $this->session->userdata('user_date_format');
     <h5 class="card-title"><?php echo $page_title; ?></h5>
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a class="nav-link active" href="<?php echo site_url('eqsl/import');?>"><?= __("Download QSOs"); ?></a>
+        <a class="nav-link active" href="<?php echo site_url('eqsl/import');?>"><?= __("Download QSLs"); ?></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo site_url('eqsl/Export');?>"><?= __("Upload QSOs"); ?></a>

@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-03 11:57+0000\n"
-"PO-Revision-Date: 2025-08-25 05:18+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"POT-Creation-Date: 2025-09-03 15:56+0000\n"
+"PO-Revision-Date: 2025-09-03 19:33+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -7470,8 +7470,8 @@ msgstr "Logbuch hochladen"
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
-msgid "Download QSOs"
-msgstr "QSOs herunterladen"
+msgid "Download QSLs"
+msgstr "QSLs herunterladen"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
@@ -7534,15 +7534,15 @@ msgstr "Zeitpunkt des nächsten automatischen Downloads von Clublog-QSLs: "
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
-"If no startdate is given then all QSOs after last confirmation will be "
+"If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
-"Falls kein Startdatum angegeben ist, werden alle QSOs nach der letzten "
-"Bestätigung heruntergeladen/aktualisiert!"
+"Wenn kein Startdatum angegeben ist, werden die QSLs seit der letzten "
+"Bestätigung heruntergeladen!"
 
 #: application/views/clublog/export.php:78
-msgid "Download from Clublog"
-msgstr "Download von Clublog"
+msgid "Download QSLs from Clublog"
+msgstr "QSLs von Clublog herunterladen"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -10261,7 +10261,7 @@ msgstr "Bitte wähle die zu bearbeitende Spalte aus:"
 
 #: application/views/logbookadvanced/edit.php:6
 msgid "QSO details"
-msgstr ""
+msgstr "QSO details"
 
 #: application/views/logbookadvanced/edit.php:10
 msgid "Contest Exch (S)"
@@ -10269,7 +10269,7 @@ msgstr "Contest Exch (S)"
 
 #: application/views/logbookadvanced/edit.php:20
 msgid "Station Power"
-msgstr ""
+msgstr "Sendeleistung"
 
 #: application/views/logbookadvanced/edit.php:32
 #: application/views/logbookadvanced/index.php:779
@@ -10281,7 +10281,7 @@ msgstr "Region"
 
 #: application/views/logbookadvanced/edit.php:38
 msgid "QSL / LoTW / Clublog / eQSL / QRZ"
-msgstr ""
+msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "Clublog Received"
@@ -10321,11 +10321,11 @@ msgstr "QSLMSG"
 
 #: application/views/logbookadvanced/edit.php:48
 msgid "QSL Received Method"
-msgstr ""
+msgstr "QSL Empfangsmethode"
 
 #: application/views/logbookadvanced/edit.php:49
 msgid "QSL Sent Method"
-msgstr ""
+msgstr "QSL Sendemethode"
 
 #: application/views/logbookadvanced/edit.php:50
 #: application/views/logbookadvanced/index.php:519
@@ -12103,8 +12103,8 @@ msgstr ""
 "Der nächste automatische Download von QRZ-Bestätigungen ist geplant für: "
 
 #: application/views/qrz/export.php:83
-msgid "Download from QRZ Logbook"
-msgstr "Vom QRZ Logbuch herunterladen"
+msgid "Download QSLs from QRZ Logbook"
+msgstr "QSLs von QRZ herunterladen"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
@@ -14215,7 +14215,7 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
-msgstr ""
+msgstr "Verlinkte Standorte bearbeiten"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
@@ -14634,10 +14634,13 @@ msgid ""
 "deprectated and will be removed in a future version of Wavelog. As "
 "replacement use the Logbook-Advanced!"
 msgstr ""
+"Dies verändert ALLE QSOs eines jeglichen Nutzers auf dieser Instanz. Die "
+"Funktion wird in einer zukünftigen Wavelog-Version wegfallen. Bitte nutze "
+"das Erweiterte Logbuch!"
 
 #: application/views/update/index.php:35 application/views/update/index.php:59
 msgid "WARNING"
-msgstr ""
+msgstr "WARNUNG"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
@@ -15983,6 +15986,22 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid "Download QSOs"
+#~ msgstr "QSOs herunterladen"
+
+#~ msgid ""
+#~ "If no startdate is given then all QSOs after last confirmation will be "
+#~ "downloaded/updated!"
+#~ msgstr ""
+#~ "Falls kein Startdatum angegeben ist, werden alle QSOs nach der letzten "
+#~ "Bestätigung heruntergeladen/aktualisiert!"
+
+#~ msgid "Download from Clublog"
+#~ msgstr "Download von Clublog"
+
+#~ msgid "Download from QRZ Logbook"
+#~ msgstr "Vom QRZ Logbuch herunterladen"
 
 #~ msgid "Linked locations"
 #~ msgstr "Verlinkte Standorte"
