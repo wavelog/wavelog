@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-06 06:03+0000\n"
+"POT-Creation-Date: 2025-09-06 06:41+0000\n"
 "PO-Revision-Date: 2025-09-01 08:20+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -247,6 +247,14 @@ msgstr "Импорт DCL"
 msgid "DCL Data Imported"
 msgstr "Данные DCL импортированы"
 
+#: application/controllers/Adif.php:363
+msgid "POTA Import"
+msgstr ""
+
+#: application/controllers/Adif.php:420
+msgid "POTA Data Imported"
+msgstr ""
+
 #: application/controllers/Api.php:14
 msgid "API"
 msgstr "API"
@@ -471,7 +479,7 @@ msgstr "WWFF"
 
 #: application/controllers/Awards.php:601
 #: application/controllers/Logbook.php:1314
-#: application/views/bands/index.php:54
+#: application/views/adif/import.php:45 application/views/bands/index.php:54
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:208
 #: application/views/logbookadvanced/edit.php:31
@@ -1307,6 +1315,7 @@ msgstr "eQSL"
 #: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:39
 #: application/views/adif/dcl_success.php:33
+#: application/views/adif/pota_success.php:33
 #: application/views/awards/73on73/index.php:36
 #: application/views/awards/cq/index.php:89
 #: application/views/awards/dok/index.php:92
@@ -1600,6 +1609,7 @@ msgstr "Дистанция"
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:10
 #: application/views/adif/dcl_success.php:32
+#: application/views/adif/pota_success.php:32
 #: application/views/awards/cq/index.php:75
 #: application/views/awards/dok/index.php:78
 #: application/views/awards/dxcc/index.php:118
@@ -3257,6 +3267,7 @@ msgid "Duplicate for"
 msgstr "Дубликат для"
 
 #: application/models/Logbook_model.php:4791
+#: application/models/Logbook_model.php:4880
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
@@ -3287,7 +3298,15 @@ msgstr "не подтверждено"
 msgid "unknown"
 msgstr "неизвестно"
 
-#: application/models/Logbook_model.php:5652
+#: application/models/Logbook_model.php:4883
+msgid "POTA reference already in log"
+msgstr ""
+
+#: application/models/Logbook_model.php:4886
+msgid "QSO updated"
+msgstr ""
+
+#: application/models/Logbook_model.php:5716
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3414,7 +3433,7 @@ msgstr "Разница"
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
-#: application/views/adif/import.php:228
+#: application/views/adif/import.php:237
 #: application/views/awards/cq/index.php:78
 #: application/views/awards/cq/index.php:92
 #: application/views/awards/dok/index.php:95
@@ -4009,8 +4028,8 @@ msgid "Nothing found!"
 msgstr "Не найдено!"
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:78 application/views/adif/import.php:234
-#: application/views/adif/import.php:298
+#: application/views/adif/import.php:87 application/views/adif/import.php:243
+#: application/views/adif/import.php:307
 #: application/views/awards/73on73/index.php:35
 #: application/views/awards/pota/index.php:35
 #: application/views/awards/sig/qso_list.php:11
@@ -4080,6 +4099,7 @@ msgid "Results of DCL DOK Update"
 msgstr "Результаты обновления DCL DOK"
 
 #: application/views/adif/dcl_success.php:16
+#: application/views/adif/pota_success.php:16
 #: application/views/cabrillo/cbr_success.php:16
 msgid "Yay, its updated!"
 msgstr "Обновлено!"
@@ -4089,19 +4109,23 @@ msgid "DCL information for DOKs has been updated."
 msgstr "Информация DCL для DOK была обновлена."
 
 #: application/views/adif/dcl_success.php:19
+#: application/views/adif/pota_success.php:19
 msgid "No QSOs found which could be updated."
 msgstr "Не найдено QSO, которые могут быть обновлены."
 
 #: application/views/adif/dcl_success.php:22
+#: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs ignored"
 msgstr "QSO игнорированы"
 
 #: application/views/adif/dcl_success.php:22
+#: application/views/adif/pota_success.php:22
 msgid "QSOs unmatched"
 msgstr "QSO не совпадают"
 
 #: application/views/adif/dcl_success.php:22
+#: application/views/adif/pota_success.php:22
 #: application/views/cabrillo/cbr_success.php:22
 msgid "QSOs updated"
 msgstr "QSO обновлены"
@@ -4115,6 +4139,7 @@ msgid "There is different data for DOK in your log compared to DCL"
 msgstr "Данные DOK в вашем логе отличаются от DCL"
 
 #: application/views/adif/dcl_success.php:29
+#: application/views/adif/pota_success.php:29
 #: application/views/awards/73on73/index.php:33
 #: application/views/awards/pota/index.php:33
 #: application/views/awards/sota/index.php:31
@@ -4160,6 +4185,7 @@ msgid "Date"
 msgstr "Дата"
 
 #: application/views/adif/dcl_success.php:30
+#: application/views/adif/pota_success.php:30
 #: application/views/awards/73on73/index.php:34
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sota/index.php:32
@@ -4193,6 +4219,7 @@ msgid "Time"
 msgstr "Время"
 
 #: application/views/adif/dcl_success.php:31
+#: application/views/adif/pota_success.php:31
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:129
 #: application/views/contesting/index.php:262
@@ -4227,16 +4254,17 @@ msgstr "Статус DCL QSL"
 msgid "ADIF Export"
 msgstr "Экспорт ADIF"
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:324
+#: application/views/adif/import.php:36 application/views/adif/import.php:333
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
-#: application/views/adif/import.php:45
+#: application/views/adif/import.php:54
 msgid "CBR Import"
 msgstr "Импорт CBR"
 
-#: application/views/adif/import.php:64 application/views/adif/import.php:371
-#: application/views/api/index.php:22 application/views/dashboard/index.php:172
+#: application/views/adif/import.php:73 application/views/adif/import.php:379
+#: application/views/adif/import.php:399 application/views/api/index.php:22
+#: application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
@@ -4245,16 +4273,16 @@ msgstr "Импорт CBR"
 msgid "Important"
 msgstr "Важно"
 
-#: application/views/adif/import.php:64
+#: application/views/adif/import.php:73
 msgid "Log Files must have the file type *.adi"
 msgstr "Лог-файлы должны иметь расширение .adi"
 
-#: application/views/adif/import.php:65 application/views/view_log/qso.php:771
+#: application/views/adif/import.php:74 application/views/view_log/qso.php:771
 msgid "Maximum file upload size is "
 msgstr "Максимальный размер загружаемого файла "
 
-#: application/views/adif/import.php:65 application/views/adif/import.php:301
-#: application/views/adif/import.php:340
+#: application/views/adif/import.php:74 application/views/adif/import.php:310
+#: application/views/adif/import.php:349
 #: application/views/clublog/export.php:70
 #: application/views/debug/index.php:193 application/views/debug/index.php:210
 #: application/views/debug/index.php:576 application/views/hrdlog/export.php:25
@@ -4268,28 +4296,28 @@ msgstr "Максимальный размер загружаемого файл�
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: application/views/adif/import.php:72 application/views/adif/import.php:74
-#: application/views/adif/import.php:226 application/views/adif/import.php:296
+#: application/views/adif/import.php:81 application/views/adif/import.php:83
+#: application/views/adif/import.php:235 application/views/adif/import.php:305
 #: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
 msgid "Select Station Location"
 msgstr "Выберите профиль QTH"
 
-#: application/views/adif/import.php:82
+#: application/views/adif/import.php:91
 msgid "Choose ADIF File"
 msgstr "Выберите файл ADIF"
 
-#: application/views/adif/import.php:88
+#: application/views/adif/import.php:97
 msgid "Add QSOs to Contest"
 msgstr "Добавить QSO к контесту"
 
-#: application/views/adif/import.php:90 application/views/adif/import.php:378
+#: application/views/adif/import.php:99 application/views/adif/import.php:406
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "Контест не выбран"
 
-#: application/views/adif/import.php:100
+#: application/views/adif/import.php:109
 msgid ""
 "Type in the operators callsign of the imported QSOs. Leave empty to use the "
 "operator callsign in the ADIF file."
@@ -4297,24 +4325,24 @@ msgstr ""
 "Введите позывной оператора для импортируемых QSO. Оставьте пустым, чтобы "
 "использовать позывной оператора из файла ADIF."
 
-#: application/views/adif/import.php:108
+#: application/views/adif/import.php:117
 msgid "Basic Settings"
 msgstr "Основные настройки"
 
-#: application/views/adif/import.php:115
+#: application/views/adif/import.php:124
 msgid "Import duplicate QSOs"
 msgstr "Импортировать дубликаты QSO"
 
-#: application/views/adif/import.php:117
+#: application/views/adif/import.php:126
 msgid "Select if want to import QSOs, even if they already exist."
 msgstr ""
 "Отметьте, если хотите импортировать QSO, даже если они уже существуют в базе."
 
-#: application/views/adif/import.php:122
+#: application/views/adif/import.php:131
 msgid "Use DXCC information from ADIF"
 msgstr "Использовать информацию о DXCC из ADIF"
 
-#: application/views/adif/import.php:124
+#: application/views/adif/import.php:133
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
@@ -4322,18 +4350,18 @@ msgstr ""
 "Если не отмечено, Wavelog будет пытаться определить информацию о DXCC "
 "автоматически."
 
-#: application/views/adif/import.php:132
+#: application/views/adif/import.php:141
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:565
 #: application/views/interface_assets/footer.php:2549
 msgid "DANGER"
 msgstr "ОПАСНО"
 
-#: application/views/adif/import.php:132
+#: application/views/adif/import.php:141
 msgid "Ignore Station callsign on import"
 msgstr "Игнорировать позывной станции при импорте"
 
-#: application/views/adif/import.php:134
+#: application/views/adif/import.php:143
 #, php-format
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSOs from the ADIF, "
@@ -4342,64 +4370,64 @@ msgstr ""
 "Если выбрано, Wavelog попытается импортировать %sвсе%s QSO из ADIF, "
 "независимо от того, соответствуют ли они выбранной станции (профилю QTH)."
 
-#: application/views/adif/import.php:141
+#: application/views/adif/import.php:150
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
 "Всегда используйте позывной учетной записи, под которой выполнен вход, в "
 "качестве позывного оператора при импорте"
 
-#: application/views/adif/import.php:151
+#: application/views/adif/import.php:160
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
 msgstr "Отметить QSO, как загруженные (Это НЕ загружает QSO на эти сервисы!)"
 
-#: application/views/adif/import.php:158
+#: application/views/adif/import.php:167
 msgid "Mark imported QSOs as uploaded to LoTW"
 msgstr "Отметить импортированные QSO, как загруженные в LoTW"
 
-#: application/views/adif/import.php:160 application/views/adif/import.php:168
-#: application/views/adif/import.php:178 application/views/adif/import.php:186
-#: application/views/adif/import.php:196 application/views/adif/import.php:204
+#: application/views/adif/import.php:169 application/views/adif/import.php:177
+#: application/views/adif/import.php:187 application/views/adif/import.php:195
+#: application/views/adif/import.php:205 application/views/adif/import.php:213
 msgid "Select if ADIF being imported does not contain this information."
 msgstr "Отметьте, если импортируемый ADIF не содержит этой информации."
 
-#: application/views/adif/import.php:166
+#: application/views/adif/import.php:175
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
 msgstr "Отметить импортированные QSO, как загруженные в журнал eQSL"
 
-#: application/views/adif/import.php:176
+#: application/views/adif/import.php:185
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
 msgstr "Отметить импортированные QSO, как загруженные в журнал HRDLog.net"
 
-#: application/views/adif/import.php:184
+#: application/views/adif/import.php:193
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
 msgstr "Отметить импортированные QSO, как загруженные в журнал QRZ"
 
-#: application/views/adif/import.php:194
+#: application/views/adif/import.php:203
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "Отметить импортированные QSO, как загруженные в журнал Clublog"
 
-#: application/views/adif/import.php:202
+#: application/views/adif/import.php:211
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "Отметить импортированные QSO как загруженные в DCL Logbook"
 
-#: application/views/adif/import.php:207
+#: application/views/adif/import.php:216
 msgid "Toggle all checkboxes"
 msgstr "Переключить все отметки"
 
-#: application/views/adif/import.php:212 application/views/adif/import.php:355
-#: application/views/adif/import.php:393
+#: application/views/adif/import.php:221 application/views/adif/import.php:364
+#: application/views/adif/import.php:383 application/views/adif/import.php:421
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Загрузить"
 
-#: application/views/adif/import.php:220
+#: application/views/adif/import.php:229
 msgid "Take your logbook file anywhere!"
 msgstr "Возьми журнал с собой!"
 
-#: application/views/adif/import.php:221
+#: application/views/adif/import.php:230
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4407,7 +4435,7 @@ msgstr ""
 "Экспорт ADIF позволяет импортировать QSO в различные приложения (сервисы), "
 "такие как LoTW, Awards или просто сохранить, как резервную копию."
 
-#: application/views/adif/import.php:222
+#: application/views/adif/import.php:231
 #, php-format
 msgctxt ""
 msgid ""
@@ -4417,7 +4445,7 @@ msgstr ""
 "Если нужно больше возможностей фильтрации, то можно использовать %sthe "
 "Advanced Logbook%s для фильтрации и экспорта!"
 
-#: application/views/adif/import.php:245 application/views/adif/import.php:303
+#: application/views/adif/import.php:254 application/views/adif/import.php:312
 #: application/views/cfd/index.php:15 application/views/clublog/export.php:73
 #: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -4426,7 +4454,7 @@ msgstr ""
 msgid "From date"
 msgstr "Начиная с даты"
 
-#: application/views/adif/import.php:249 application/views/adif/import.php:306
+#: application/views/adif/import.php:258 application/views/adif/import.php:315
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -4435,45 +4463,45 @@ msgstr "Начиная с даты"
 msgid "To date"
 msgstr "До даты"
 
-#: application/views/adif/import.php:260
+#: application/views/adif/import.php:269
 msgid "Export options"
 msgstr "Варианты экспорта"
 
-#: application/views/adif/import.php:267
+#: application/views/adif/import.php:276
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Отметить экспортированные QSO как загруженные в LoTW"
 
-#: application/views/adif/import.php:275
+#: application/views/adif/import.php:284
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Экспортировать QSO, незагруженные в LoTW"
 
-#: application/views/adif/import.php:282
+#: application/views/adif/import.php:291
 msgid "Export QSOs"
 msgstr "Экспортировать QSO"
 
-#: application/views/adif/import.php:287
+#: application/views/adif/import.php:296
 msgid "Export Satellite-Only QSOs"
 msgstr "Экспортировать QSO, проведённые через спутник"
 
-#: application/views/adif/import.php:288
+#: application/views/adif/import.php:297
 msgid "Export All Satellite QSOs"
 msgstr "Экспортировать все QSO, проведённые через спутник"
 
-#: application/views/adif/import.php:290
+#: application/views/adif/import.php:299
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr ""
 "Экспортировать все QSO, проведённые через спутник, подтверждённые на LoTW"
 
-#: application/views/adif/import.php:301 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:310 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "Если диапазон дат не выбран, то будут отмечены все QSO!"
 
-#: application/views/adif/import.php:309
+#: application/views/adif/import.php:318
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Отметить QSO как экспортированные в LoTW"
 
-#: application/views/adif/import.php:324
+#: application/views/adif/import.php:333
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -4486,11 +4514,11 @@ msgstr ""
 "указать 'DL' в списке префиксов). Скачанный ADIF файл может быть загружен "
 "здесь для обновления журнала информацией DOK."
 
-#: application/views/adif/import.php:331
+#: application/views/adif/import.php:340
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Импортировать только данные DOK из QSO, подтверждённых на DCL."
 
-#: application/views/adif/import.php:333
+#: application/views/adif/import.php:342
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -4498,12 +4526,12 @@ msgstr ""
 "Снисите отметку, если вы также хотите обновить данные DOK из QSO, не "
 "подтверждённых на DCL."
 
-#: application/views/adif/import.php:340
+#: application/views/adif/import.php:349
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr ""
 "Перезаписать информацию DOK в логе информацией из DCL (в случае различия)."
 
-#: application/views/adif/import.php:342
+#: application/views/adif/import.php:351
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -4511,11 +4539,11 @@ msgstr ""
 "Если отмеченно, то Wavelog принудительно перезапишет имеющиемя данные DOK "
 "данными из журнала DCL."
 
-#: application/views/adif/import.php:349
+#: application/views/adif/import.php:358
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Игнорировать несовпадающиe QSO."
 
-#: application/views/adif/import.php:351
+#: application/views/adif/import.php:360
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -4523,7 +4551,7 @@ msgstr ""
 "Если отмечено, что будет показана информация о QSO, которые не были найдены "
 "в Wavelog."
 
-#: application/views/adif/import.php:370
+#: application/views/adif/import.php:398
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4537,13 +4565,13 @@ msgstr ""
 "этого ПО. Если хотите это исправить, вы можете использовать файл Cabrillo, "
 "экспортированный из этого ПО, чтобы переписать эти данные в Wavelog."
 
-#: application/views/adif/import.php:370
+#: application/views/adif/import.php:398
 #: application/views/adif/import_success.php:40
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Информация"
 
-#: application/views/adif/import.php:371
+#: application/views/adif/import.php:399
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4556,15 +4584,15 @@ msgstr ""
 "который вы собираетесь загрузить, чтобы сопоставить QSO и исправить только "
 "соответствующие данные."
 
-#: application/views/adif/import.php:376
+#: application/views/adif/import.php:404
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Название контеста, только при отличии ID контеста в CBR"
 
-#: application/views/adif/import.php:376
+#: application/views/adif/import.php:404
 msgid "Optional"
 msgstr "Необязательно"
 
-#: application/views/adif/import.php:386
+#: application/views/adif/import.php:414
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
@@ -4572,7 +4600,7 @@ msgstr ""
 "Порядковый номер QSO ВСЕГДА является частью контрольного номера для обеих "
 "сторон в этом контесте."
 
-#: application/views/adif/import.php:388
+#: application/views/adif/import.php:416
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4580,7 +4608,7 @@ msgstr ""
 "Если вы или ваш партнер только иногда обмениваетесь порядковыми номерами "
 "QSO, пожалуйста, оставьте это поле незаполненным."
 
-#: application/views/adif/import.php:389
+#: application/views/adif/import.php:417
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -4678,6 +4706,46 @@ msgstr "Готово!"
 #: application/views/adif/mark_lotw.php:16
 msgid "The QSOs are marked as exported to LoTW."
 msgstr "QSO были отмечены, как экспортированные в LoTW."
+
+#: application/views/adif/pota_success.php:12
+msgid "Results of POTA Update"
+msgstr ""
+
+#: application/views/adif/pota_success.php:17
+msgid "POTA references for existing QSOs has been updated."
+msgstr ""
+
+#: application/views/adif/pota_success.php:25
+msgid "POTA Update Errors"
+msgstr ""
+
+#: application/views/adif/pota_success.php:26
+msgid ""
+"There is different data for POTA references in your log compared to imported "
+"data or QSO data could not be matched"
+msgstr ""
+
+#: application/views/adif/pota_success.php:34
+msgid "POTA REF in Log"
+msgstr ""
+
+#: application/views/adif/pota_success.php:35
+msgid "POTA REF in ADIF"
+msgstr ""
+
+#: application/views/adif/pota_success.php:36
+#: application/views/api/index.php:37 application/views/cron/index.php:54
+#: application/views/lotw/satupdate.php:7
+#: application/views/lotw_views/index.php:38
+#: application/views/mode/index.php:43
+#: application/views/oqrs/showrequests.php:97
+#: application/views/oqrs/status_info.php:4
+#: application/views/sattimers/index.php:39
+#: application/views/stationsetup/stationsetup.php:34
+#: application/views/timeline/index.php:201
+#: application/views/usermode/index.php:41
+msgid "Status"
+msgstr "Статус"
 
 #: application/views/api/description.php:15
 msgid "Editing Description for API Key"
@@ -4803,19 +4871,6 @@ msgstr "Создано"
 #: application/views/api/index.php:36
 msgid "Permissions"
 msgstr "Разрешения"
-
-#: application/views/api/index.php:37 application/views/cron/index.php:54
-#: application/views/lotw/satupdate.php:7
-#: application/views/lotw_views/index.php:38
-#: application/views/mode/index.php:43
-#: application/views/oqrs/showrequests.php:97
-#: application/views/oqrs/status_info.php:4
-#: application/views/sattimers/index.php:39
-#: application/views/stationsetup/stationsetup.php:34
-#: application/views/timeline/index.php:201
-#: application/views/usermode/index.php:41
-msgid "Status"
-msgstr "Статус"
 
 #: application/views/api/index.php:38
 #: application/views/club/permissions.php:226
