@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-06 13:02+0000\n"
+"PO-Revision-Date: 2025-09-06 13:33+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -6611,7 +6611,7 @@ msgstr "Eyalet"
 
 #: application/views/awards/was/index.php:4
 msgid "Hover over a state"
-msgstr ""
+msgstr "İmleci eyaletin üstüne getirin"
 
 #: application/views/awards/was/index.php:20
 msgid "WAS Award"
@@ -8551,7 +8551,7 @@ msgstr "LOTW (Logbook of the World)"
 
 #: application/views/dashboard/index.php:428
 msgid "VUCC-Grids"
-msgstr ""
+msgstr "VUCC-Gridleri"
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
@@ -8643,12 +8643,12 @@ msgstr "Herhangi bir seri bulunamadı!"
 
 #: application/views/dayswithqso/index.php:152
 msgid "Current streak with QSOs in the log"
-msgstr ""
+msgstr "Mevcut Logdaki En Uzun QSO Serileri"
 
 #: application/views/dayswithqso/index.php:158
 #: application/views/dayswithqso/index.php:180
 msgid "Current streak (continuous days with QSOs)"
-msgstr ""
+msgstr "Güncel seri günü (ard arda QSO'lu gün sayısı)"
 
 #: application/views/dayswithqso/index.php:175
 msgid ""
@@ -9135,7 +9135,7 @@ msgstr "Grid Locator'um"
 
 #: application/views/distancerecords/index.php:21
 msgid "DX Gridsquare"
-msgstr ""
+msgstr "DX Grid Karesi"
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:31
@@ -9150,11 +9150,11 @@ msgstr "QSO’lar haritaya işlendi. En uzak QSO’nuz %s ile gerçekleşti"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
-msgstr ""
+msgstr "Grid Karesinde"
 
 #: application/views/distances/index.php:11
 msgid "the distance was"
-msgstr ""
+msgstr "Mesafe"
 
 #: application/views/distances/index.php:14
 msgid "Callsign(s) worked (max 5 shown)"
@@ -9166,7 +9166,7 @@ msgstr "Bant seçimi"
 
 #: application/views/dxatlas/index.php:3
 msgid "DX Atlas Export"
-msgstr ""
+msgstr "DX Atlas Dışa Aktarımı"
 
 #: application/views/dxatlas/index.php:7
 msgid ""
@@ -9845,7 +9845,6 @@ msgstr "Grid: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:206
 #: application/views/satellite/flightpath.php:11
-#, fuzzy
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Grid Karesi"
@@ -10041,7 +10040,7 @@ msgstr "Hollanda"
 
 #: application/views/interface_assets/header.php:262
 msgid "WAP Worked All Provinces"
-msgstr ""
+msgstr "WAP Tüm Şehirlerle Çalışıldı"
 
 #: application/views/interface_assets/header.php:266
 msgid "USA"
@@ -11225,7 +11224,7 @@ msgstr "3D Harita"
 #: application/views/logbookadvanced/useroptions.php:26
 #: application/views/logbookadvanced/index.php:697
 msgid "De"
-msgstr ""
+msgstr "De"
 
 #: application/views/logbookadvanced/index.php:737
 #: application/views/logbookadvanced/useroptions.php:86
@@ -11390,7 +11389,7 @@ msgstr "Benim için LoTW verilerini çek"
 
 #: application/views/lotw/import.php:48
 msgid "Select callsign to pull LoTW confirmations for."
-msgstr ""
+msgstr "Hangi çağrı işareti için LoTW onaylarını getirmek istiyorsunuz."
 
 #: application/views/lotw/import.php:62
 msgid ""
@@ -11466,12 +11465,12 @@ msgstr "Geçerli"
 #: application/views/lotw_views/index.php:98
 #, php-format
 msgid "Last success: %s"
-msgstr ""
+msgstr "Son başarılı: %s"
 
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last fail: %s"
-msgstr ""
+msgstr "Son başarısız: %s"
 
 #: application/views/lotw_views/index.php:107
 msgid "Not Synced"
@@ -12203,7 +12202,7 @@ msgstr ""
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:43
 msgid "QSL Route"
-msgstr ""
+msgstr "QSL Metodu"
 
 #: application/views/oqrs/request.php:50
 #: application/views/oqrs/request_grouped.php:53
@@ -12229,15 +12228,15 @@ msgstr "%s için log arama sonucu"
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "için %d bandda QSO"
+msgstr[1] "için %d bandda QSO"
 
 #: application/views/oqrs/result.php:33
 #, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] "ve logunda %d QSO bulunuyor"
-msgstr[1] "ve logunda %d QSO bulunuyor"
+msgstr[0] "operatörün logunda %d QSO bulunuyor"
+msgstr[1] "operatörün logunda %d QSO bulunuyor"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
