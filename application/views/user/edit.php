@@ -593,6 +593,7 @@
 												<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?= __("eQSL"); ?></option>
 												<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>><?= __("QRZ"); ?></option>
 												<option value="8" <?php if ($user_previous_qsl_type == 8) { echo " selected =\"selected\""; } ?>><?= __("Clublog"); ?></option>
+												<option value="16" <?php if ($user_previous_qsl_type == 16) { echo " selected =\"selected\""; } ?>><?= __("DCL"); ?></option>
 											</select>
 										</div>
 									</div>
@@ -805,6 +806,14 @@
 											}
 											echo '>'; ?>
 											<label class="form-check-label" for="user_default_confirmation_clublog"><?= __("Clublog"); ?></label>
+										</div>
+										<div class="form-check-inline">
+											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_dcl" id="user_default_confirmation_dcl"';
+											if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'D') !== false) {
+												echo ' checked';
+											}
+											echo '>'; ?>
+											<label class="form-check-label" for="user_default_confirmation_dcl"><?= __("DCL"); ?></label>
 										</div>
 									</div>
 								</div>

@@ -12,6 +12,7 @@ class Genfunctions
 			(($postdata['qrz'] ?? '') != '') || 
 			(($postdata['lotw'] ?? '') != '') || 
 			(($postdata['qsl'] ?? '') != '') ||
+			(($postdata['dcl'] ?? '') != '') ||
 			(($postdata['eqsl'] ?? '') != '') ) {
 			$sql .= ' and (';
 			if (($postdata['qsl'] ?? '') != '') {
@@ -28,6 +29,9 @@ class Genfunctions
 			}
 			if (($postdata['clublog'] ?? '') != '') {
 				array_push($qsl, "COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y'");
+			}
+			if (($postdata['dcl'] ?? '') != '') {
+				array_push($qsl, "COL_DCL_QSL_RCVD = 'Y'");
 			}
 			if (count($qsl) > 0) {
 				$sql .= implode(' or ', $qsl);
@@ -67,6 +71,9 @@ class Genfunctions
 			}
 			if (($postdata['eqsl'] ?? '')!= '' ) {
 				$qsl .= "E";
+			}
+			if (($postdata['dcl'] ?? '')!= '' ) {
+				$qsl .= "D";
 			}
 			if (($postdata['clublog'] ?? '')!= '' ) {
 				$qsl .= "C";
