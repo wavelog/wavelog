@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
 "PO-Revision-Date: 2025-09-05 19:31+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -444,6 +444,7 @@ msgstr " ve "
 #: application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1312
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -465,6 +466,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:295 application/views/user/edit.php:318
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/controllers/Logbook.php:1313
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -486,6 +488,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1314
 msgid "POTA"
 msgstr "POTA"
 
@@ -755,6 +758,7 @@ msgstr "Clublog'u hiçbir kullanıcı yapılandırmadı."
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
+#: application/controllers/Logbook.php:691
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1223,7 +1227,8 @@ msgstr "Kayıt defteri"
 #: application/views/qslprint/qsolist.php:17
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:75
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
-#: application/views/user/edit.php:773
+#: application/views/user/edit.php:773 application/controllers/Logbook.php:679
+#: application/controllers/Logbook.php:694
 msgid "QSL"
 msgstr "QSL"
 
@@ -1261,6 +1266,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:783 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/controllers/Logbook.php:682
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1295,6 +1301,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:791 application/views/user/edit.php:857
+#: application/controllers/Logbook.php:685
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1379,6 +1386,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/controllers/Logbook.php:1307
 msgid "Mode"
 msgstr "Mod"
 
@@ -1408,6 +1416,7 @@ msgstr "Mod"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1308
 msgid "RST (S)"
 msgstr "RST (G)"
 
@@ -1438,6 +1447,7 @@ msgstr "RST (G)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1309
 msgid "RST (R)"
 msgstr "RST (A)"
 
@@ -1459,6 +1469,7 @@ msgstr "RST (A)"
 #: application/views/view_log/qso.php:331
 #: application/views/view_log/qso.php:677
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1310
 msgid "Country"
 msgstr "Ülke"
 
@@ -1487,6 +1498,7 @@ msgstr "Ülke"
 #: application/views/user/edit.php:316 application/views/user/edit.php:340
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1311
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1515,6 +1527,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1315
 msgid "State"
 msgstr "Eyalet"
 
@@ -1560,6 +1573,7 @@ msgstr "Eyalet"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
+#: application/controllers/Logbook.php:1316
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
@@ -1588,6 +1602,7 @@ msgstr "Gridsquare"
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1317
 msgid "Distance"
 msgstr "Mesafe"
 
@@ -1669,6 +1684,7 @@ msgstr "Mesafe"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/controllers/Logbook.php:1318
 msgid "Band"
 msgstr "Bant"
 
@@ -1691,6 +1707,7 @@ msgstr "Bant"
 #: application/views/user/edit.php:335
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1319
 msgid "Frequency"
 msgstr "Frekans"
 
@@ -1715,6 +1732,7 @@ msgstr "Frekans"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:684
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1320
 msgid "Operator"
 msgstr "Operatör"
 
@@ -1743,6 +1761,7 @@ msgstr "Operatör"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:678
+#: application/controllers/Logbook.php:1341
 msgid "Deleted DXCC"
 msgstr "Silinmiş DXCC"
 
@@ -6370,8 +6389,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Netherlands) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
-"Bu Ödül için Dikkate Alınan Alanlar: DXCC (Hollanda olmalı) ve Şehir ("
-"Geçerli bir Şehir kısaltması içermelidir!)"
+"Bu Ödül için Dikkate Alınan Alanlar: DXCC (Hollanda olmalı) ve Şehir "
+"(Geçerli bir Şehir kısaltması içermelidir!)"
 
 #: application/views/awards/wap/index.php:115
 msgid "Show WAP Map"
@@ -7061,7 +7080,7 @@ msgstr ""
 #: application/views/user/edit.php:929 application/views/user/edit.php:945
 #: application/views/user/edit.php:953 application/views/user/edit.php:973
 #: application/views/user/edit.php:1002 application/views/user/edit.php:1034
-#: application/views/user/edit.php:1059
+#: application/views/user/edit.php:1059 application/views/search/result.php:77
 msgid "Yes"
 msgstr "Evet"
 
@@ -7119,6 +7138,7 @@ msgstr "Evet"
 #: application/views/user/edit.php:928 application/views/user/edit.php:944
 #: application/views/user/edit.php:972 application/views/user/edit.php:1003
 #: application/views/user/edit.php:1033 application/views/user/edit.php:1058
+#: application/views/search/result.php:79
 msgid "No"
 msgstr "Hayır"
 
@@ -7689,7 +7709,8 @@ msgstr ""
 
 #: application/views/contesting/index.php:3
 msgid "Are you really sure you want to start a new contest session?"
-msgstr "Yeni bir yarışma oturumu başlatmak istediğinize gerçekten emin misiniz?"
+msgstr ""
+"Yeni bir yarışma oturumu başlatmak istediğinize gerçekten emin misiniz?"
 
 #: application/views/contesting/index.php:11
 msgid "Start new Contest Session"
@@ -10906,6 +10927,7 @@ msgstr "LoTW Kullanıcısı"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:74
+#: application/views/search/result.php:77
 #, fuzzy, php-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
@@ -14073,8 +14095,8 @@ msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
 msgstr ""
-"Sadece bir istasyon aynı anda aktif olabilir. Aşağıdaki tabloda bu durum, "
-"\"-Aktif İstasyon-\" rozetiyle gösterilmektedir."
+"Sadece bir istasyon aynı anda aktif olabilir. Aşağıdaki tabloda bu durum, \"-"
+"Aktif İstasyon-\" rozetiyle gösterilmektedir."
 
 #: application/views/stationsetup/stationsetup.php:101
 msgid ""
@@ -14782,7 +14804,8 @@ msgstr "QSO (onaylandı)"
 
 #: application/views/user/edit.php:546
 msgid "(If 'No', displayed as 'QSO (by default))'"
-msgstr "('Hayır' ise, onaylı QSO varsayılan olarak 'QSO' şeklinde görüntülenir)"
+msgstr ""
+"('Hayır' ise, onaylı QSO varsayılan olarak 'QSO' şeklinde görüntülenir)"
 
 #: application/views/user/edit.php:565
 msgid "Show Locator"
@@ -15794,6 +15817,10 @@ msgstr "Talep Gönder"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Alındı"
+
+#: application/views/search/result.php:58
+msgid "Grid is auto-detected by callbook and probably wrong"
+msgstr ""
 
 #~ msgid "Download QSOs"
 #~ msgstr "QSO’ları İndir"

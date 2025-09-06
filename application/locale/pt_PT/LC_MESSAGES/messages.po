@@ -442,6 +442,7 @@ msgstr " e "
 #: application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1312
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -463,6 +464,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:295 application/views/user/edit.php:318
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/controllers/Logbook.php:1313
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -484,6 +486,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1314
 msgid "POTA"
 msgstr "POTA"
 
@@ -755,6 +758,7 @@ msgstr "Nenhum utilizador configurou o Clublog."
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
+#: application/controllers/Logbook.php:691
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1225,7 +1229,8 @@ msgstr "Logbook"
 #: application/views/qslprint/qsolist.php:17
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:75
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
-#: application/views/user/edit.php:773
+#: application/views/user/edit.php:773 application/controllers/Logbook.php:679
+#: application/controllers/Logbook.php:694
 msgid "QSL"
 msgstr "QSL"
 
@@ -1263,6 +1268,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:783 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/controllers/Logbook.php:682
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1297,6 +1303,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:791 application/views/user/edit.php:857
+#: application/controllers/Logbook.php:685
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1381,6 +1388,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
+#: application/controllers/Logbook.php:1307
 msgid "Mode"
 msgstr "Modo"
 
@@ -1410,6 +1418,7 @@ msgstr "Modo"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1308
 msgid "RST (S)"
 msgstr "RST (E)"
 
@@ -1440,6 +1449,7 @@ msgstr "RST (E)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1309
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -1461,6 +1471,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:331
 #: application/views/view_log/qso.php:677
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1310
 msgid "Country"
 msgstr "País"
 
@@ -1489,6 +1500,7 @@ msgstr "País"
 #: application/views/user/edit.php:316 application/views/user/edit.php:340
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1311
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1517,6 +1529,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1315
 msgid "State"
 msgstr "Estado"
 
@@ -1562,6 +1575,7 @@ msgstr "Estado"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:664
 #: application/views/visitor/index.php:27
+#: application/controllers/Logbook.php:1316
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
@@ -1590,6 +1604,7 @@ msgstr "Gridsquare"
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1317
 msgid "Distance"
 msgstr "Distância"
 
@@ -1671,6 +1686,7 @@ msgstr "Distância"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
+#: application/controllers/Logbook.php:1318
 msgid "Band"
 msgstr "Banda"
 
@@ -1693,6 +1709,7 @@ msgstr "Banda"
 #: application/views/user/edit.php:335
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1319
 msgid "Frequency"
 msgstr "Frequência"
 
@@ -1717,6 +1734,7 @@ msgstr "Frequência"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:684
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1320
 msgid "Operator"
 msgstr "Operador"
 
@@ -1745,6 +1763,7 @@ msgstr "Operador"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:678
+#: application/controllers/Logbook.php:1341
 msgid "Deleted DXCC"
 msgstr "DXCC cancelada"
 
@@ -6531,8 +6550,8 @@ msgid ""
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
 "Campos considerados para este diploma: DXCC (Deve ser um dos E.U.A., Alasca "
-"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos E.U."
-"A.!)"
+"ou Havai) e ESTADO (Deve conter uma abreviatura válida de um estado dos "
+"E.U.A.!)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -7124,7 +7143,7 @@ msgstr ""
 #: application/views/user/edit.php:929 application/views/user/edit.php:945
 #: application/views/user/edit.php:953 application/views/user/edit.php:973
 #: application/views/user/edit.php:1002 application/views/user/edit.php:1034
-#: application/views/user/edit.php:1059
+#: application/views/user/edit.php:1059 application/views/search/result.php:77
 msgid "Yes"
 msgstr "Sim"
 
@@ -7182,6 +7201,7 @@ msgstr "Sim"
 #: application/views/user/edit.php:928 application/views/user/edit.php:944
 #: application/views/user/edit.php:972 application/views/user/edit.php:1003
 #: application/views/user/edit.php:1033 application/views/user/edit.php:1058
+#: application/views/search/result.php:79
 msgid "No"
 msgstr "Não"
 
@@ -10995,11 +11015,14 @@ msgstr "Escolhe um Estado"
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:62
 #: application/views/search/result.php:74
+#: application/views/search/result.php:65
+#: application/views/search/result.php:77
 msgid "LoTW User"
 msgstr "Utilizador do LoTW"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:74
+#: application/views/search/result.php:77
 #, php-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
@@ -11008,6 +11031,7 @@ msgstr[1] "%d dias atrás"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:74
+#: application/views/search/result.php:77
 msgid "last upload"
 msgstr "último envio"
 
@@ -11489,8 +11513,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
-"com” (sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” "
+"(sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -14466,8 +14490,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
-"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
+"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -14814,8 +14839,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
-"com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
+"HamQTH.com na secção de registo de contacto."
 
 #: application/views/user/edit.php:381
 msgid ""
@@ -15957,6 +15982,10 @@ msgstr "Submeter pedido"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Recebido"
+
+#: application/views/search/result.php:58
+msgid "Grid is auto-detected by callbook and probably wrong"
+msgstr ""
 
 #~ msgid "Download QSOs"
 #~ msgstr "Descarregar contactos"

@@ -54,6 +54,9 @@
 		} else {
 			echo " <span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge text-bg-danger\" style=\"padding-left: 0.2em; padding-right: 0.2em;\">".strtoupper($callsign['gridsquare'])."</span>";
 		}
+		if ($callsign['geoloc'] == "grid") {
+			echo " <span data-bs-toggle=\"tooltip\" title=\"Grid auto-detected\" class=\"badge text-bg-danger\">".__("Grid is auto-detected by callbook and probably wrong")."</span>";
+		}
 	?>
 	</td>
 </tr>
