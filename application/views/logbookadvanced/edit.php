@@ -2,7 +2,6 @@
 <form method="post" class="d-flex align-items-center">
 		<select id="editColumn" name="type" class="form-select form-select-sm w-auto me-2">
 			<option value="">-</option>
-
 			<optgroup label="<?= __("QSO details"); ?>">
 				<option value="band"><?= __("Band"); ?></option>
 				<option value="comment"><?= __("Comment"); ?></option>
@@ -33,6 +32,8 @@
 				<option value="sota"><?= __("SOTA"); ?></option>
 				<option value="state"><?= __("State"); ?></option>
 				<option value="wwff"><?= __("WWFF"); ?></option>
+        <option value="dclsent"><?= __("DCL Sent"); ?></option>
+        <option value="dclreceived"><?= __("DCL Received"); ?></option>
 			</optgroup>
 
 			<optgroup label="<?= __("QSL / LoTW / Clublog / eQSL / QRZ"); ?>">
@@ -51,7 +52,6 @@
 			</optgroup>
 
 			</select>
-
 		<div>&nbsp;</div>
 
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editTextInput" type="text" name="editTextInput" placeholder="" aria-label="editTextInput">
@@ -169,6 +169,12 @@
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQrz"  name="qrz">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editDcl"  name="dcl">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
 			<option value="I"><?= __("Invalid"); ?></option>

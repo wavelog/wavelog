@@ -123,6 +123,9 @@ $ci =& get_instance();
 		<?php if($this->session->userdata('user_clublog_name') != ''){ ?>
                     <th><?= __("Clublog"); ?></th>
                 <?php } ?>
+		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false  ) { ?>
+                    <th><?= __("DCL"); ?></th>
+                <?php } ?>
             <?php } ?>
                 <th><?= __("Station"); ?></th>
             <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
@@ -393,6 +396,42 @@ $ci =& get_instance();
                 }
                 echo ' class="clublog-';
                 echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red';
+                echo '">&#9660;</span>';
+                echo '</td>';
+                } ?>
+
+		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'D') !== false  ) {
+                echo '<td style=\'text-align: center\' class="dcl">';
+                echo '<span ';
+                if ($row->COL_DCL_QSL_SENT == "Y") {
+                   echo "title=\"DCL ".__("Sent");
+                   if ($row->COL_DCL_QSLSDATE != null) {
+                     $timestamp = strtotime($row->COL_DCL_QSLSDATE);
+                     echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                   }
+                   echo "\" data-bs-toggle=\"tooltip\"";
+                }
+                echo ' class="dcl-';
+       		if ($row->COL_DCL_QSL_SENT=='Y') {
+			echo "green";
+		} elseif ($row->COL_DCL_QSL_SENT=='M') {
+			echo "yellow";
+		} else {
+			echo "red";
+		}
+                echo '">&#9650;</span>';
+
+                echo '<span ';
+                if ($row->COL_DCL_QSL_RCVD == "Y") {
+                   echo "title=\"DCL ".__("Received");
+                   if ($row->COL_DCL_QSLRDATE != null) {
+                      $timestamp = strtotime($row->COL_DCL_QSLRDATE);
+                      echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                   }
+                   echo "\" data-bs-toggle=\"tooltip\"";
+                }
+                echo ' class="dcl-';
+                echo ($row->COL_DCL_QSL_RCVD=='Y')?'green':'red';
                 echo '">&#9660;</span>';
                 echo '</td>';
                 } ?>

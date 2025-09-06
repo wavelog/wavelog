@@ -811,6 +811,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "qrzreceived": $column = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS'; break;
 			case "eqslsent": $column = 'COL_EQSL_QSL_SENT'; break;
 			case "eqslreceived": $column = 'COL_EQSL_QSL_RCVD'; break;
+			case "dclsent": $column = 'COL_DCL_QSL_SENT'; break;
+			case "dclreceived": $column = 'COL_DCL_QSL_RCVD'; break;
 			case "stationpower": $column = 'COL_TX_PWR'; break;
 			case "clublogsent": $column = 'COL_CLUBLOG_QSO_UPLOAD_STATUS'; break;
 			case "clublogreceived": $column = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS'; break;
@@ -983,6 +985,20 @@ class Logbookadvanced_model extends CI_Model {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_LOTW_QSL_RCVD = ?, " . $this->config->item('table_name').".COL_LOTW_QSLRDATE = now()" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_DCL_QSL_SENT') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_DCL_QSL_SENT = ?, " . $this->config->item('table_name').".COL_DCL_QSLSDATE = now()" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_DCL_QSL_RCVD') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_DCL_QSL_RCVD = ?, " . $this->config->item('table_name').".COL_DCL_QSLRDATE = now()" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
