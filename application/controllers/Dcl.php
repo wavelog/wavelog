@@ -179,6 +179,9 @@ class Dcl extends CI_Controller {
 
 				$result = curl_exec($ch);
 				$adif_to_post=''; // Clean Mem
+
+				$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
 				// todo: parse output from DCL (contains a lot of information within $result)
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): ".__("Upload Failed")." - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
@@ -190,10 +193,10 @@ class Dcl extends CI_Controller {
 					}
 				}
 
-				$pos = true;
+				$pos = ($httpcode == 200);
 
 				if ($pos === false) {
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): ".__("Upload Failed")." - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): ".__("Upload Failed")." - Errorcode: ".$httpcode."<br>";
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo __("Timeout reached. Stopping subsequent uploads.")."<br>";
 						break;
