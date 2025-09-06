@@ -112,16 +112,17 @@ class Qrz {
 			if ($reduced == false) {
 
 				$data['gridsquare'] = $clean_gridsquare;
-				$data['city'] 	= (string)$xml->Callsign->addr2;
-				$data['lat'] 	= (string)$xml->Callsign->lat;
-				$data['long'] 	= (string)$xml->Callsign->lon;
-				$data['dxcc'] 	= (string)$xml->Callsign->dxcc;
-				$data['state'] 	= (string)$xml->Callsign->state;
-				$data['iota'] 	= (string)$xml->Callsign->iota;
+				$data['geoloc'] = (string)$xml->Callsign->geoloc;
+				$data['city'] = (string)$xml->Callsign->addr2;
+				$data['lat'] = (string)$xml->Callsign->lat;
+				$data['long'] = (string)$xml->Callsign->lon;
+				$data['dxcc'] = (string)$xml->Callsign->dxcc;
+				$data['state'] = (string)$xml->Callsign->state;
+				$data['iota'] = (string)$xml->Callsign->iota;
 				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
-				$data['image'] 	= (string)$xml->Callsign->image;
-				$data['ituz'] 	= (string)$xml->Callsign->ituzone;
-				$data['cqz'] 	= (string)$xml->Callsign->cqzone;
+				$data['image'] = (string)$xml->Callsign->image;
+				$data['ituz'] = (string)$xml->Callsign->ituzone;
+				$data['cqz'] = (string)$xml->Callsign->cqzone;
 
 				if ($xml->Callsign->country == "United States") {
 					$data['us_county'] = (string)$xml->Callsign->county;
@@ -132,14 +133,14 @@ class Qrz {
 			} else {
 
 				$data['gridsquare'] = '';
-				$data['city'] 	= '';
-				$data['lat'] 	= '';
-				$data['long'] 	= '';
-				$data['dxcc'] 	= '';
-				$data['state'] 	= '';
-				$data['iota'] 	= '';
+				$data['city'] = '';
+				$data['lat'] = '';
+				$data['long'] = '';
+				$data['dxcc'] = '';
+				$data['state'] = '';
+				$data['iota'] = '';
 				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
-				$data['image'] 	= (string)$xml->Callsign->image;
+				$data['image'] = (string)$xml->Callsign->image;
 				$data['us_county'] = '';
 				$data['ituz'] = '';
 				$data['cqz'] = '';
