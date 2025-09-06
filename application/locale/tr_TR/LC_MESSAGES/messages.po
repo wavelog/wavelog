@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-06 09:34+0000\n"
+"PO-Revision-Date: 2025-09-06 10:35+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -3113,13 +3113,13 @@ msgstr "Eyalet"
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "İdari Bölge"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Bölgesel Birim"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
@@ -3129,7 +3129,7 @@ msgstr "Kanton"
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "ABD Eyaleti"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
@@ -3144,7 +3144,7 @@ msgstr "Eyalet"
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "ABD İlçesi"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
@@ -4988,11 +4988,11 @@ msgstr "Filtre:"
 #: application/views/logbookadvanced/index.php:752
 #: application/views/logbookadvanced/useroptions.php:106
 msgid "County"
-msgstr ""
+msgstr "İdari Bölge"
 
 #: application/views/awards/counties/index.php:7
 msgid "US County Award"
-msgstr ""
+msgstr "US County Ödülü"
 
 #: application/views/awards/counties/index.php:8
 #, php-format
@@ -10841,7 +10841,7 @@ msgstr "Filtreler"
 #: application/views/logbookadvanced/index.php:624
 #: application/views/oqrs/showrequests.php:58
 msgid "# Results"
-msgstr "# Sonuçlar"
+msgstr "Gösterilecek Sonuç:"
 
 #: application/views/logbookadvanced/index.php:645
 msgid "Dupes"
@@ -11005,6 +11005,8 @@ msgid ""
 "Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as "
 "confirmed on LoTW."
 msgstr ""
+"LoTW'de teyit edilmiş QSO'ları işaretlemek için, %s bölümünden LoTW'nin dışa "
+"aktardığınız ADIF dosyasını yükleyin."
 
 #: application/views/lotw/import.php:27
 msgid "Choose file"
@@ -11058,11 +11060,11 @@ msgstr "Sertifika Yükle"
 
 #: application/views/lotw_views/index.php:34
 msgid "QSO Start Date"
-msgstr "QSO Başlama Tarihi"
+msgstr "Defterin Başlangıç Tarihi"
 
 #: application/views/lotw_views/index.php:35
 msgid "QSO End Date"
-msgstr "QSO Sonu Tarihi"
+msgstr "Defterin Bitiş Tarihi"
 
 #: application/views/lotw_views/index.php:36
 msgid "Date Created"
@@ -11083,7 +11085,7 @@ msgstr "Süresi doldu"
 
 #: application/views/lotw_views/index.php:86
 msgid "Expiring"
-msgstr ""
+msgstr "Sona Erme Tarihi"
 
 #: application/views/lotw_views/index.php:88
 msgid "Valid"
@@ -11110,7 +11112,7 @@ msgstr ""
 
 #: application/views/lotw_views/index.php:141
 msgid "The next automatic sync with LoTW will happen at: "
-msgstr ""
+msgstr "LoTW ile bir sonraki otomatik senkronizasyon şu zamanda gerçekleşecek: "
 
 #: application/views/lotw_views/index.php:143
 msgid "Manual Sync"
@@ -11118,7 +11120,7 @@ msgstr "Manuel Senkronizasyon"
 
 #: application/views/lotw_views/index.php:145
 msgid "running..."
-msgstr ""
+msgstr "çalışıyor..."
 
 #: application/views/lotw_views/upload_cert.php:8
 #: application/views/lotw_views/upload_cert.php:33
@@ -11131,7 +11133,7 @@ msgstr ".p12 Dosya Talimatlarını Dışa Aktar"
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Use at least version 2.7 of TQSL"
-msgstr ""
+msgstr "TQSL 2.7 veya daha üst bir sürüm kullanmanız gerekiyor"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
@@ -11143,15 +11145,15 @@ msgstr "İstenen Çağrı İşaretine sağ tıklayın"
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Click 'Save Callsign Certificate File'"
-msgstr ""
+msgstr "'Save Callsign Certificate File' düğmesine tıklayın"
 
 #: application/views/lotw_views/upload_cert.php:26
 msgid "Do not add a password"
-msgstr ""
+msgstr "Parola eklemeyin"
 
 #: application/views/lotw_views/upload_cert.php:27
 msgid "Upload File below"
-msgstr ""
+msgstr "Aldığınız sertifikayı aşağıdan yükleyin"
 
 #: application/views/lotw_views/upload_cert.php:37
 msgid "Upload File"
@@ -11160,7 +11162,7 @@ msgstr "Dosya Yükle"
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
 msgid "ADIF Mode"
-msgstr ""
+msgstr "ADIF Modu"
 
 #: application/views/mode/create.php:26 application/views/mode/edit.php:35
 msgid "Name of mode in ADIF-specification"
@@ -11169,7 +11171,7 @@ msgstr ""
 #: application/views/mode/create.php:30 application/views/mode/edit.php:39
 msgctxt "Name of sub-mode in ADIF-specification"
 msgid "ADIF Sub-Mode"
-msgstr ""
+msgstr "ADIF Alt-Modu"
 
 #: application/views/mode/create.php:32 application/views/mode/edit.php:41
 msgid "Name of sub-mode in ADIF-specification"
@@ -11184,43 +11186,47 @@ msgstr ""
 #: application/views/usermode/index.php:7
 #: application/views/usermode/index.php:51
 msgid "Not active"
-msgstr ""
+msgstr "Aktif Değil"
 
 #: application/views/mode/create.php:51 application/views/mode/edit.php:64
 msgid "Set to active if to be listed in Modes-list"
-msgstr ""
+msgstr "Modlar listesinde görünmesini istiyorsanız \"Aktif\" olarak işaretleyin"
 
 #: application/views/mode/create.php:54 application/views/mode/index.php:2
 msgid "Create mode"
-msgstr ""
+msgstr "Mod oluştur"
 
 #: application/views/mode/edit.php:67
 msgid "Update mode"
-msgstr ""
+msgstr "Mod güncelle"
 
 #: application/views/mode/index.php:3
 msgid "Warning! Are you sure you want to delete the following mode?:"
-msgstr ""
+msgstr "Uyarı! Aşağıdaki modu silmek istediğinize emin misiniz?:"
 
 #: application/views/mode/index.php:4 application/views/usermode/index.php:2
 msgid "Warning! Are you sure you want to activate all modes?"
-msgstr ""
+msgstr "Uyarı! Tüm modları aktifleştirmek istediğinize emin misiniz?"
 
 #: application/views/mode/index.php:5 application/views/usermode/index.php:3
 msgid "Warning! Are you sure you want to deactivate all modes?"
-msgstr ""
+msgstr "Uyarı! Tüm modları devre dışı bırakmak istediğinize emin misiniz?"
 
 #: application/views/mode/index.php:31 application/views/usermode/index.php:29
 msgid ""
 "Using the modes list you can control which modes are shown when creating a "
 "new QSO."
 msgstr ""
+"Modlar listesini kullanarak, yeni bir QSO oluştururken hangi modların "
+"gösterileceğini kontrol edebilirsiniz."
 
 #: application/views/mode/index.php:34 application/views/usermode/index.php:32
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
 msgstr ""
+"Aktif modlar, QSO 'Mod' açılır menüsünde gösterilirken, etkin olmayan modlar "
+"gizlenecek ve seçilemeyecektir."
 
 #: application/views/mode/index.php:41 application/views/usermode/index.php:39
 msgid "Sub-Mode"
@@ -11303,7 +11309,7 @@ msgstr "Tema"
 
 #: application/views/options/appearance.php:51
 msgid "Global Theme Choice, this is used when users arent logged in."
-msgstr ""
+msgstr "Global Tema Seçimi, bu kullanıcılar giriş yapamadığında kullanılır."
 
 #: application/views/options/appearance.php:61
 msgid "Logbook Map"
@@ -11315,7 +11321,7 @@ msgstr "Bu, log defterindeki haritayı devre dışı bırakmanıza olanak tanır
 
 #: application/views/options/appearance.php:70
 msgid "Public Maps"
-msgstr ""
+msgstr "Ziyaretçi Haritası"
 
 #: application/views/options/appearance.php:75
 msgid ""
@@ -11327,19 +11333,21 @@ msgstr ""
 
 #: application/views/options/appearance.php:79
 msgid "Public Github Button"
-msgstr ""
+msgstr "Github Butonu"
 
 #: application/views/options/appearance.php:84
 msgid "This enables the button to Wavelog's Github page in the public view"
 msgstr ""
+"İşaretlenirse, ziyaretçi sayfasında Wavelog'un Github sayfasına yönlendiren "
+"bir buton görünür"
 
 #: application/views/options/appearance.php:88
 msgid "Public Login Button"
-msgstr ""
+msgstr "Ziyaretçi Sayfası Giriş Butonu"
 
 #: application/views/options/appearance.php:93
 msgid "This enables the button to login to Wavelog in the public view"
-msgstr ""
+msgstr "İşaretlenirse ziyaretçi sayfasında giriş butonu görünür"
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
@@ -11365,7 +11373,7 @@ msgstr "DXCluster-Cache URL'si. örn. %s"
 
 #: application/views/options/dxcluster.php:44
 msgid "Maximum Age of spots taken care of"
-msgstr ""
+msgstr "Spot Maks. Süresi"
 
 #: application/views/options/dxcluster.php:46
 msgid "2 Hours"
@@ -11542,13 +11550,15 @@ msgstr "Haritayı sağlayan harita sunucusunun URL'si."
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
-msgstr ""
+msgstr "Koyu Tema Maptiles Sunucusu URL'si - SADECE Statik Harita API"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
 msgstr ""
+"Koyu tema haritasını sunan harita sunucusunun URL'si. Sadece Statik Harita "
+"için kullanılır."
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
@@ -11828,8 +11838,8 @@ msgstr[1] ""
 #, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ve logunda %d QSO bulunuyor"
+msgstr[1] "ve logunda %d QSO bulunuyor"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
@@ -11865,29 +11875,33 @@ msgstr "Talep reddedildi"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "Talep yapılırken bir hata oluştu"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
-msgstr ""
+msgstr "Uyarı! İşaretlenen OQRS istek(ler)ini silmek istediğinize emin misiniz?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
 msgstr ""
+"Uyarı! İşaretlenen OQRS istek(ler)ini reddetmek istediğinize emin misiniz?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
 msgstr ""
+"Uyarı! İşaretlenen OQRS istek(ler)ini işaretlemek istediğinize emin misiniz?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"Uyarı! İşaretlenen OQRS istek(ler)ini kuyruğa eklemek istediğinize emin "
+"misiniz?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "OQRS Durum Bilgisi"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
@@ -11900,22 +11914,22 @@ msgstr ""
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
-msgstr ""
+msgstr "OQRS Durumu"
 
 #: application/views/oqrs/showrequests.php:52
 #: application/views/oqrs/status_info.php:18
 msgid "Done / sent"
-msgstr ""
+msgstr "Bitti / gönderildi"
 
 #: application/views/oqrs/showrequests.php:53
 #: application/views/oqrs/status_info.php:22
 msgid "Pending"
-msgstr ""
+msgstr "Beklemede"
 
 #: application/views/oqrs/showrequests.php:54
 #: application/views/oqrs/status_info.php:26
 msgid "Rejected"
-msgstr ""
+msgstr "Reddedildi"
 
 #: application/views/oqrs/showrequests.php:71
 msgid "With selected"
