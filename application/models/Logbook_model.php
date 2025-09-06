@@ -4840,11 +4840,75 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
+	function update_pota($record) {
+		$this->load->model('logbooks_model');
+		$custom_date_format = $this->session->userdata('user_date_format');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (isset($record['call'])) {
+			$call = strtoupper($record['call']);
+		} else {
+			return array(3, 'Callsign not found');
+		}
+
+		// Join date+time
+		$time_on = date('Y-m-d', strtotime($record['qso_date'])) . " " . date('H:i', strtotime($record['time_on']));
+
+		// Store Band
+		if (isset($record['band'])) {
+			$band = strtolower($record['band']);
+		} else {
+			$band = '';
+		}
+
+		if (isset($record['mode'])) {
+			$mode = $record['mode'];
+		} else {
+			$mode = '';
+		}
+
+		if (isset($record['pota_ref'])) {
+			$pota_ref = $record['pota_ref'];
+		} else {
+			$pota_ref = '';
+		}
+
+		if ($pota_ref != '') {
+			$sql = "SELECT COL_PRIMARY_KEY, COL_POTA_REF FROM ".$this->config->item('table_name')." WHERE COL_CALL = ? AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE) AND UPPER(COL_BAND) = ? AND UPPER(COL_MODE) = ? AND station_id IN ?;";
+			$check = $this->db->query($sql, array($call, $time_on, $time_on, strtoupper($band), strtoupper($mode), $logbooks_locations_array));
+			if ($check->num_rows() != 1) {
+				return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td>" . str_replace('0', 'Ø', $call) . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO could not be matched") . "</td></tr>");
+			} else {
+				if (str_contains(($check->row()->COL_POTA_REF ?? ''), $pota_ref)) {
+					return array(1, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td>" . str_replace('0', 'Ø', $call) . "</td><td>" . $band . "</td><td>" . $mode . "</td><td>".$check->row()->COL_POTA_REF."</td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("POTA reference already in log") . "</td></tr>");
+				} else {
+					$this->set_pota_ref($check->row()->COL_PRIMARY_KEY, $check->row()->COL_POTA_REF, $pota_ref);
+					return array(0, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td>" . str_replace('0', 'Ø', $call) . "</td><td>" . $band . "</td><td>" . $mode . "</td><td>".$check->row()->COL_POTA_REF."</td><td><a href='https://pota.app/#/park/".$pota_ref."' _target='_blank'>".$pota_ref."</a></td><td>" . __("QSO updated") . " (" . $check->row()->COL_POTA_REF . ($check->row()->COL_POTA_REF != '' ? ',' : "") . $pota_ref . ")</td></tr>");
+				}
+			}
+		}
+	}
+
 	function set_dok($key, $dok) {
 		$data = array(
 			'COL_DARC_DOK' => $dok,
 		);
 
+		$this->db->where(array('COL_PRIMARY_KEY' => $key));
+		$this->db->update($this->config->item('table_name'), $data);
+		return;
+	}
+
+	function set_pota_ref($key, $existing_pota, $new_pota) {
+		if ($existing_pota == '') {
+			$data = array(
+				'COL_POTA_REF' => $new_pota,
+			);
+		} else {
+			$data = array(
+				'COL_POTA_REF' => $existing_pota.",".$new_pota,
+			);
+		}
 		$this->db->where(array('COL_PRIMARY_KEY' => $key));
 		$this->db->update($this->config->item('table_name'), $data);
 		return;
