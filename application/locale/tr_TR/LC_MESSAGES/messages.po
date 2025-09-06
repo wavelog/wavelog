@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-03 15:56+0000\n"
-"PO-Revision-Date: 2025-09-06 11:23+0000\n"
+"PO-Revision-Date: 2025-09-06 12:34+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -153,23 +153,23 @@ msgstr "Aktif Grid Konum Haritası"
 #: application/views/visitor/layout/footer.php:12
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "Konum Belirteci"
+msgstr "Grid Karesi"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
-msgstr "Konum Belirteci onaylandı"
+msgstr "Grid karesi onaylandı"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
-msgstr "Konum Belirteci onaylanmadı"
+msgstr "Grid karesi onaylanmadı"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "Toplam Aktif Grid Konum"
+msgstr "Toplam Aktif Grid Karesi"
 
 #: application/controllers/Activated_gridmap.php:36
 #: application/controllers/Gridmap.php:36
@@ -557,17 +557,17 @@ msgstr "Ödüller - "
 #: application/controllers/Awards.php:1004
 #: application/controllers/Awards.php:1036
 msgid "Gridsquares worked"
-msgstr "Konum Belirteci çalışılan"
+msgstr "Çalışılan Grid Karesi"
 
 #: application/controllers/Awards.php:1005
 #: application/controllers/Awards.php:1037
 msgid "Gridsquares confirmed on LoTW"
-msgstr "Konum Belirteci çalışılan LoTW'de onaylandı"
+msgstr "Çalışılan Grid Karesi LoTW'de onaylandı"
 
 #: application/controllers/Awards.php:1006
 #: application/controllers/Awards.php:1038
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Konum Belirteci çalışılan kart QSL ile doğrulandı"
+msgstr "Çalışılan Grid Karesi kart QSL ile doğrulandı"
 
 #: application/controllers/Awards.php:1023
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -1049,7 +1049,7 @@ msgstr "Grid Konum Haritası"
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
-msgstr "Toplam çalışılan konum belirteci sayısı"
+msgstr "Çalışılan toplam Grid Karesi sayısı"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -5828,8 +5828,8 @@ msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
-"Gridmaster Ödülü, aslen ABD'de bulunan 488 grid ile çalışan operatörler için "
-"tasarlanmıştır."
+"Gridmaster Ödülü, aslen ABD'de bulunan 488 Grid Karesi ile çalışan "
+"operatörler için tasarlanmıştır."
 
 #: application/views/awards/gridmaster/index.php:16
 msgid ""
@@ -6316,7 +6316,7 @@ msgid ""
 "confirmed gridsquares on a desired band."
 msgstr ""
 "VHF/UHF Century Club Ödülü, istenen bandta çalışılan ve teyit edilen asgari "
-"sayıda grid için verilir."
+"sayıda Grid Karesi için verilir."
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:10
@@ -9126,6 +9126,8 @@ msgstr "Türkçe"
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
+"Bu sayfa, uydular için grid karelerini baz alarak hesaplanan mesafe "
+"rekorlarını listeler."
 
 #: application/views/distancerecords/index.php:20
 msgid "My Gridsquare"
@@ -9171,7 +9173,7 @@ msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
 msgstr ""
-"DX Atlas'ta kullanılmak üzere çalışılan / teyit edilmiş gridleri dışa "
+"DX Atlas'ta kullanılmak üzere çalışılan / teyit edilmiş grid karelerini dışa "
 "aktarın."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
@@ -9843,9 +9845,10 @@ msgstr "Grid: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:206
 #: application/views/satellite/flightpath.php:11
+#, fuzzy
 msgctxt "Map Options"
 msgid "Gridsquares"
-msgstr "Grid"
+msgstr "Grid Karesi"
 
 #: application/views/interface_assets/footer.php:1390
 #, php-format
@@ -11705,7 +11708,7 @@ msgid ""
 "map and the gridsquares map."
 msgstr ""
 "Bu, ziyareçi sayfasındaki tüm haritaları devre dışı bırakmanıza olanak "
-"tanır. Bu, ana harita ve grid haritasını etkiler."
+"tanır. Bu, ana harita ve grid kare haritasını etkiler."
 
 #: application/views/options/appearance.php:79
 msgid "Public Github Button"
@@ -12658,47 +12661,47 @@ msgstr "Özet göstermek için QSO'larda POTA alanının doldurulması gerekiyor
 
 #: application/views/qso/award_tabs.php:16
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Özet göstermek için QSO'larda IOTA alanının doldurulması gerekiyor!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "DOK input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Özet göstermek için QSO'larda DOK alanının doldurulması gerekiyor!"
 
 #: application/views/qso/award_tabs.php:18
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Özet göstermek için QSO'larda WWFF alanının doldurulması gerekiyor!"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Propagation mode needs to be 'SAT' to show a summary!"
-msgstr ""
+msgstr "Özet göstermek için QSO'larda ‘Uydu’ alanının doldurulması gerekiyor!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Özet göstermek için QSO'larda Grid alanının doldurulması gerekiyor!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
-msgstr ""
+msgstr "Özet yalnızca girilen ilk POTA QSO'ları için gösterilir."
 
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
-msgstr ""
+msgstr "Özet yalnızca girilen ilk Grid QSO'ları için gösterilir."
 
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "Özet yalnızca girilen ilk ABD Eyaletleri QSO'ları için gösterilir."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
-msgstr ""
+msgstr "X'te paylaş"
 
 #: application/views/qso/components/share_modal.php:6
 msgid "Post on Bluesky"
-msgstr ""
+msgstr "Bluesky'de paylaş"
 
 #: application/views/qso/components/share_modal.php:10
 msgid "Toot on Mastodon"
-msgstr ""
+msgstr "Mastodon'da Toot Et"
 
 #: application/views/qso/components/winkeysettings.php:3
 #: application/views/qso/components/winkeysettings.php:19
@@ -12707,7 +12710,7 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:67
 #, php-format
 msgid "Function %d - Name"
-msgstr ""
+msgstr "Fonksiyon %d - Adı"
 
 #: application/views/qso/components/winkeysettings.php:10
 #: application/views/qso/components/winkeysettings.php:26
@@ -12716,27 +12719,27 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:74
 #, php-format
 msgid "Function %d - Macro"
-msgstr ""
+msgstr "Fonksiyon %d - Makro"
 
 #: application/views/qso/edit_ajax.php:35
 msgid "Sats"
-msgstr ""
+msgstr "Uydular"
 
 #: application/views/qso/edit_ajax.php:53
 msgid "Start Date/Time"
-msgstr ""
+msgstr "Başlangıç Tarihi/Saati"
 
 #: application/views/qso/edit_ajax.php:58
 msgid "End Date/Time"
-msgstr ""
+msgstr "Bitiş Tarihi/Saati"
 
 #: application/views/qso/edit_ajax.php:78
 msgid "RX Frequency"
-msgstr ""
+msgstr "RX Frekansı"
 
 #: application/views/qso/edit_ajax.php:101
 msgid "RX Band"
-msgstr ""
+msgstr "RX Bandı"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:386
 msgid "Give power value in Watts. Include only numbers in the input."
@@ -12764,7 +12767,7 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:502
 msgid "Other"
-msgstr ""
+msgstr "Diğer"
 
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:503
 #: application/views/view_log/qso.php:153
@@ -12778,15 +12781,15 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:284
 msgid "Sat Name"
-msgstr ""
+msgstr "Uydu Adı"
 
 #: application/views/qso/edit_ajax.php:289
 msgid "Sat Mode"
-msgstr ""
+msgstr "Uydu Modu"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:627
 msgid "Antenna Azimuth (°)"
-msgstr ""
+msgstr "Anten Yönü (Azimut)(°)"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:629
 msgid "Antenna azimuth in decimal degrees."
@@ -12804,7 +12807,7 @@ msgstr "Ondalık derece cinsinden anten yüksekliği."
 #: application/views/station_profile/create.php:103
 #: application/views/station_profile/edit.php:141
 msgid "Station County"
-msgstr ""
+msgstr "İstasyon İdari Bölgesi"
 
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:293
 #: application/views/qso/index.php:585 application/views/user/edit.php:667
@@ -12898,11 +12901,11 @@ msgstr "Önceki Görüşmeler"
 
 #: application/views/qso/index.php:31
 msgid "times worked before"
-msgstr ""
+msgstr "kez daha önce çalışıldı"
 
 #: application/views/qso/index.php:32
 msgid "Not worked before"
-msgstr ""
+msgstr "Bu istasyon ile ilk QSO'nuz"
 
 #: application/views/qso/index.php:33
 msgid "more"
@@ -13974,6 +13977,8 @@ msgstr "- Her yeni QSO yeni bir satıra yazılmalıdır."
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr ""
+"- Her yeni satırda, bir önceki QSO'ya göre değişen verileri yaz. (Örn. Mod "
+"aynıysa tekrar mod belirtmenize gerek yok)."
 
 #: application/views/simplefle/syntax_help.php:4
 msgid ""
@@ -15312,7 +15317,7 @@ msgstr "Panelde Haritayı Göster"
 
 #: application/views/user/edit.php:623 application/views/user/edit.php:624
 msgid "Map at right"
-msgstr ""
+msgstr "Sağ panelde göster"
 
 #: application/views/user/edit.php:626 application/views/user/edit.php:627
 msgid "Choose whether to show map on dashboard or not"
@@ -16311,50 +16316,53 @@ msgstr "Alındı"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
+"Grid, çağrı defteri tarafından otomatik tespit edilir ve muhtemelen yanlıştır"
 
 #: application/controllers/Adif.php:363
 msgid "POTA Import"
-msgstr ""
+msgstr "POTA İçe Aktarımı"
 
 #: application/controllers/Adif.php:420
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "POTA Verileri İçe Aktarıldı"
 
 #: application/models/Logbook_model.php:4883
 #: application/models/Logbook_model.php:4915
 msgid "POTA reference already in log"
-msgstr ""
+msgstr "POTA referansı zaten logda mevcut"
 
 #: application/models/Logbook_model.php:4886
 #: application/models/Logbook_model.php:4918
 msgid "QSO updated"
-msgstr ""
+msgstr "QSO güncellendi"
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "POTA Güncelleme Sonuçları"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr ""
+msgstr "Mevcut QSO'lar için POTA referansları güncellendi."
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "POTA Güncelleme Hataları"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
 msgstr ""
+"Logunuzdaki POTA referansları, içe aktarılan verilerle karşılaştırıldığında "
+"farklı veriler içeriyor veya QSO verileri eşleştirilemedi"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "Logdaki POTA Referansı"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "ADIF dosyanızdaki POTA Referansı"
 
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
@@ -16372,23 +16380,23 @@ msgstr ""
 #: application/views/view_log/qso.php:575
 #: application/views/view_log/qso.php:580
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Yüklenecek QSO bulunamadı."
 
 #: application/controllers/Dcl.php:184 application/controllers/Dcl.php:196
 msgid "Upload Failed"
-msgstr ""
+msgstr "Yükleme Başarısız"
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Zaman aşımı. Sonraki yüklemeler durduruluyor."
 
 #: application/controllers/Dcl.php:204
 msgid "Upload Successful"
-msgstr ""
+msgstr "Yükleme Başarılı"
 
 #: application/controllers/Dcl.php:214
 msgid "No Station Profiles found to upload to DCL"
