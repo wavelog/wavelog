@@ -489,6 +489,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:11
 #: application/controllers/Logbook.php:1314
+#: application/views/adif/import.php:45
 msgid "POTA"
 msgstr "POTA"
 
@@ -1387,6 +1388,7 @@ msgstr "eQSL"
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
 #: application/controllers/Logbook.php:1307
+#: application/views/adif/pota_success.php:33
 msgid "Mode"
 msgstr "Mod"
 
@@ -1685,6 +1687,7 @@ msgstr "Mesafe"
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
 #: application/controllers/Logbook.php:1318
+#: application/views/adif/pota_success.php:32
 msgid "Band"
 msgstr "Bant"
 
@@ -3267,6 +3270,7 @@ msgid "Duplicate for"
 msgstr ""
 
 #: application/models/Logbook_model.php:4791
+#: application/models/Logbook_model.php:4880
 msgid "QSO could not be matched"
 msgstr "QSO eşleştirilemedi"
 
@@ -4062,6 +4066,8 @@ msgstr "Hiçbir şey bulunamadı!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:656
+#: application/views/adif/import.php:87 application/views/adif/import.php:243
+#: application/views/adif/import.php:307
 msgid "Callsign"
 msgstr "Çağrı işareti"
 
@@ -4165,6 +4171,7 @@ msgstr "Logunuzdaki DOK ile DCL’deki DOK farklı"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/adif/pota_success.php:29
 msgid "Date"
 msgstr "Tarih"
 
@@ -4198,6 +4205,7 @@ msgstr "Tarih"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/adif/pota_success.php:30
 msgid "Time"
 msgstr "Saat"
 
@@ -4217,6 +4225,7 @@ msgstr "Saat"
 #: application/views/view_log/partial/log_ajax.php:200
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
+#: application/views/adif/pota_success.php:31
 msgid "Call"
 msgstr "Çağrı"
 
@@ -4251,6 +4260,8 @@ msgstr "CBR İçe Aktar"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/adif/import.php:73 application/views/adif/import.php:379
+#: application/views/adif/import.php:399
 msgid "Important"
 msgstr "Önemli"
 
@@ -4318,11 +4329,11 @@ msgstr "Yinelenen QSO'ları dahil et"
 msgid "Select if want to import QSOs, even if they already exist."
 msgstr "QSO’lar zaten mevcut olsa bile içe aktarmak istiyorsanız seçin."
 
-#: application/views/adif/import.php:122
+#: application/views/adif/import.php:122 application/views/adif/import.php:131
 msgid "Use DXCC information from ADIF"
 msgstr "ADIF'ten DXCC bilgilerini kullanın"
 
-#: application/views/adif/import.php:124
+#: application/views/adif/import.php:124 application/views/adif/import.php:133
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
@@ -4334,6 +4345,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:565
 #: application/views/interface_assets/footer.php:2549
+#: application/views/adif/import.php:141
 msgid "DANGER"
 msgstr "TEHLİKE"
 
@@ -4350,7 +4362,7 @@ msgstr ""
 "Seçili ise, Wavelog ADIF’den seçilen istasyon konumuyla eşleşip "
 "eşleşmediğine bakılmaksızın %s tüm %s QSO’ları içe aktarmaya çalışacaktır."
 
-#: application/views/adif/import.php:141
+#: application/views/adif/import.php:141 application/views/adif/import.php:150
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
@@ -4389,7 +4401,7 @@ msgstr "İçe aktarılan QSO’ları QRZ Logbook’a yüklenmiş olarak işaretl
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
 msgstr "İçe aktarılan QSO’ları Clublog Logbook’a yüklenmiş olarak işaretle"
 
-#: application/views/adif/import.php:202
+#: application/views/adif/import.php:202 application/views/adif/import.php:211
 msgid "Mark imported QSOs as uploaded to DCL Logbook"
 msgstr "İçe aktarılan QSO'ları DCL Logbook'a yüklenmiş olarak işaretleyin"
 
@@ -4402,14 +4414,16 @@ msgstr "Tüm onay kutularını işaretle/işaretini kaldır"
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
+#: application/views/adif/import.php:221 application/views/adif/import.php:364
+#: application/views/adif/import.php:383 application/views/adif/import.php:421
 msgid "Upload"
 msgstr "Yükle"
 
-#: application/views/adif/import.php:220
+#: application/views/adif/import.php:220 application/views/adif/import.php:229
 msgid "Take your logbook file anywhere!"
 msgstr "Logbook dosyanızı dilediğiniz gibi kullanın!"
 
-#: application/views/adif/import.php:221
+#: application/views/adif/import.php:221 application/views/adif/import.php:230
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
@@ -4433,6 +4447,7 @@ msgstr ""
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
+#: application/views/adif/import.php:254 application/views/adif/import.php:312
 msgid "From date"
 msgstr "Şu tarihten itibaren"
 
@@ -4442,6 +4457,7 @@ msgstr "Şu tarihten itibaren"
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
 #: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
+#: application/views/adif/import.php:258 application/views/adif/import.php:315
 msgid "To date"
 msgstr "Şu tarihe kadar"
 
@@ -4449,11 +4465,11 @@ msgstr "Şu tarihe kadar"
 msgid "Export options"
 msgstr "Dışa aktarma seçenekleri"
 
-#: application/views/adif/import.php:267
+#: application/views/adif/import.php:267 application/views/adif/import.php:276
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Dışa aktarılan QSO'ları LoTW'ye yüklenmiş olarak işaretleyin"
 
-#: application/views/adif/import.php:275
+#: application/views/adif/import.php:275 application/views/adif/import.php:284
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "LoTW'ye yüklenmeyen QSO'ları dışa aktarın"
 
@@ -4461,20 +4477,21 @@ msgstr "LoTW'ye yüklenmeyen QSO'ları dışa aktarın"
 msgid "Export QSOs"
 msgstr "QSO'ları dışa aktar"
 
-#: application/views/adif/import.php:287
+#: application/views/adif/import.php:287 application/views/adif/import.php:296
 msgid "Export Satellite-Only QSOs"
 msgstr "Yalnızca Uydudan Yapılan QSO'ları Dışa Aktarma"
 
-#: application/views/adif/import.php:288
+#: application/views/adif/import.php:288 application/views/adif/import.php:297
 msgid "Export All Satellite QSOs"
 msgstr "Tüm Uydu QSO'larını Dışa Aktar"
 
-#: application/views/adif/import.php:290
+#: application/views/adif/import.php:290 application/views/adif/import.php:299
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "LoTW'de Onaylanan Tüm Uydu QSO'larını Dışa Aktar"
 
 #: application/views/adif/import.php:301 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:96 application/views/webadif/export.php:94
+#: application/views/adif/import.php:310
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr "Bir tarih aralığı seçilmezse, tüm QSO'lar işaretlenecektir!"
 
@@ -4502,27 +4519,27 @@ msgstr ""
 "Sadece DCL'de (Almanya QSL Kulübü Onay Veritabanı) teyit edilmiş DOK "
 "QSO'larını İçe Aktar."
 
-#: application/views/adif/import.php:333
+#: application/views/adif/import.php:333 application/views/adif/import.php:342
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr ""
 
-#: application/views/adif/import.php:340
+#: application/views/adif/import.php:340 application/views/adif/import.php:349
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr ""
 
-#: application/views/adif/import.php:342
+#: application/views/adif/import.php:342 application/views/adif/import.php:351
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr ""
 
-#: application/views/adif/import.php:349
+#: application/views/adif/import.php:349 application/views/adif/import.php:358
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Eşleştirilemeyen QSO'ları dikkate almayın."
 
-#: application/views/adif/import.php:351
+#: application/views/adif/import.php:351 application/views/adif/import.php:360
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -4545,6 +4562,7 @@ msgstr ""
 #: application/views/adif/import.php:370
 #: application/views/adif/import_success.php:40
 #: application/views/lotw_views/index.php:137
+#: application/views/adif/import.php:398
 msgid "Information"
 msgstr "Bilgi"
 
@@ -4819,6 +4837,7 @@ msgstr "Yetkiler"
 #: application/views/stationsetup/stationsetup.php:34
 #: application/views/timeline/index.php:201
 #: application/views/usermode/index.php:41
+#: application/views/adif/pota_success.php:36
 msgid "Status"
 msgstr "Durum"
 
@@ -15820,6 +15839,48 @@ msgstr "Alındı"
 
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
+msgstr ""
+
+#: application/controllers/Adif.php:363
+msgid "POTA Import"
+msgstr ""
+
+#: application/controllers/Adif.php:420
+msgid "POTA Data Imported"
+msgstr ""
+
+#: application/models/Logbook_model.php:4883
+msgid "POTA reference already in log"
+msgstr ""
+
+#: application/models/Logbook_model.php:4886
+msgid "QSO updated"
+msgstr ""
+
+#: application/views/adif/pota_success.php:12
+msgid "Results of POTA Update"
+msgstr ""
+
+#: application/views/adif/pota_success.php:17
+msgid "POTA references for existing QSOs has been updated."
+msgstr ""
+
+#: application/views/adif/pota_success.php:25
+msgid "POTA Update Errors"
+msgstr ""
+
+#: application/views/adif/pota_success.php:26
+msgid ""
+"There is different data for POTA references in your log compared to imported "
+"data or QSO data could not be matched"
+msgstr ""
+
+#: application/views/adif/pota_success.php:34
+msgid "POTA REF in Log"
+msgstr ""
+
+#: application/views/adif/pota_success.php:35
+msgid "POTA REF in ADIF"
 msgstr ""
 
 #~ msgid "Download QSOs"
