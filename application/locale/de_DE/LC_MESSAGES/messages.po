@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-06 10:34+0000\n"
-"PO-Revision-Date: 2025-09-06 16:41+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"PO-Revision-Date: 2025-09-07 05:51+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/de/>\n"
 "Language: de_DE\n"
@@ -8581,6 +8581,10 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog nutzt Deinen DCL-Schlüssel um QSOs und QSLs mit dem DCL zu "
+"synchronisieren. Der von Wavelog beim DCL heruntergeladene Report beinhaltet "
+"automatisch alle Bestätigungen, die seit der letzten DCL-Bestätigung "
+"hinzugekommen sind."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
@@ -8638,6 +8642,8 @@ msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
 msgstr ""
+"Die Schlüsselanforderung beim DCL war erfolgreich. Die folgenden Daten "
+"wurden mit dem Schlüssel vom DCL geliefert"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
@@ -10211,7 +10217,7 @@ msgstr "Clublog Import/Export"
 
 #: application/views/interface_assets/header.php:502
 msgid "DCL Export"
-msgstr ""
+msgstr "DCL Export"
 
 #: application/views/interface_assets/header.php:514
 #: application/views/logbookadvanced/index.php:680
@@ -13617,6 +13623,7 @@ msgstr "Nicht gearbeitet"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
+"Der Locator aus dem Callbook wurde dort errechnet, und ist vermutlich falsch"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
