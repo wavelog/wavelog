@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-06 10:34+0000\n"
-"PO-Revision-Date: 2025-08-26 13:25+0000\n"
+"PO-Revision-Date: 2025-09-06 12:34+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -250,11 +250,11 @@ msgstr "Dados DCL importados"
 
 #: application/controllers/Adif.php:363
 msgid "POTA Import"
-msgstr ""
+msgstr "Importação POTA"
 
 #: application/controllers/Adif.php:420
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "Dados POTA importados"
 
 #: application/controllers/Api.php:14
 msgid "API"
@@ -891,7 +891,7 @@ msgstr "Dias com contactos"
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "Importação de Chave DCL"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -904,31 +904,31 @@ msgstr ""
 #: application/views/view_log/qso.php:575
 #: application/views/view_log/qso.php:580
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Sem contactos para carregar."
 
 #: application/controllers/Dcl.php:184 application/controllers/Dcl.php:196
 msgid "Upload Failed"
-msgstr ""
+msgstr "Carregamento falhou"
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Tempo limite atingido. A para carregamentos subsequentes."
 
 #: application/controllers/Dcl.php:204
 msgid "Upload Successful"
-msgstr ""
+msgstr "Carregamento bem-sucedido"
 
 #: application/controllers/Dcl.php:214
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "Nenhum perfil de estação encontrado para carregar no DCL"
 
 #: application/controllers/Dcl.php:232
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Chave(s) eliminada(s)."
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
@@ -3356,11 +3356,11 @@ msgstr "desconhecido"
 
 #: application/models/Logbook_model.php:4915
 msgid "POTA reference already in log"
-msgstr ""
+msgstr "Referência POTA já no log"
 
 #: application/models/Logbook_model.php:4918
 msgid "QSO updated"
-msgstr ""
+msgstr "QSO atualizado"
 
 #: application/models/Logbook_model.php:5779
 #: application/views/activated_gridmap/index.php:110
@@ -4772,29 +4772,31 @@ msgstr "Os contactos são marcados como exportados para o LoTW."
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "Resultados da atualização do POTA"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr ""
+msgstr "As referências POTA para contactos existentes foram atualizadas."
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "Erros de Atualização POTA"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
 msgstr ""
+"Existem dados diferentes para referências POTA no seu log em comparação com "
+"os dados importados ou os dados do contacto não puderam ser correspondidos"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "Referência POTA no Log"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "Referência POTA no ADIF"
 
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:54
@@ -7574,7 +7576,7 @@ msgstr "Enviar Logbook"
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSLs"
-msgstr ""
+msgstr "Descarregar QSLs"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
@@ -7640,10 +7642,12 @@ msgid ""
 "If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
+"Se não for dada uma startdate, as QSLs após a última confirmação serão "
+"descarregadas/atualizadas!"
 
 #: application/views/clublog/export.php:78
 msgid "Download QSLs from Clublog"
-msgstr ""
+msgstr "Descarregar QSLs do Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -8544,11 +8548,11 @@ msgstr "Opções de Importação"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "Puxa os dados DCL para mim"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "Selecione o indicativo para obter confirmações DCL."
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -8557,6 +8561,10 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"O Wavelog usará as Chaves DCL armazenadas no seu perfil de usuário para "
+"baixar um relatório do DCL para você. O relatório que o Wavelog baixa terá "
+"todas as confirmações desde a data escolhida, ou desde a sua última "
+"confirmação DCL (obtida do seu log), até agora."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
@@ -10513,7 +10521,7 @@ msgstr "Por favor, escolha a coluna a ser editada:"
 
 #: application/views/logbookadvanced/edit.php:5
 msgid "QSO details"
-msgstr ""
+msgstr "Detalhes do contacto"
 
 #: application/views/logbookadvanced/edit.php:9
 msgid "Contest Exch (S)"
@@ -10521,7 +10529,7 @@ msgstr "Troca Concurso (S)"
 
 #: application/views/logbookadvanced/edit.php:19
 msgid "Station Power"
-msgstr ""
+msgstr "Potência da estação"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:787
@@ -10541,7 +10549,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ"
-msgstr ""
+msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
 
 #: application/views/logbookadvanced/edit.php:40
 msgid "Clublog Received"
@@ -10581,11 +10589,11 @@ msgstr "QSLMSG"
 
 #: application/views/logbookadvanced/edit.php:49
 msgid "QSL Received Method"
-msgstr ""
+msgstr "Método de Receção de QSL"
 
 #: application/views/logbookadvanced/edit.php:50
 msgid "QSL Sent Method"
-msgstr ""
+msgstr "Método de envio de QSL"
 
 #: application/views/logbookadvanced/edit.php:51
 #: application/views/logbookadvanced/index.php:524
@@ -12325,7 +12333,7 @@ msgstr "O próximo download automático de QRZ-QSLs acontecerá em: "
 
 #: application/views/qrz/export.php:83
 msgid "Download QSLs from QRZ Logbook"
-msgstr ""
+msgstr "Descarregar QSLs do QRZ Logbook"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
@@ -13593,6 +13601,8 @@ msgstr "Não contactado"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
+"O grid locator é detetado automaticamente pelo logbook e provavelmente está "
+"errado"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -14436,7 +14446,7 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
-msgstr ""
+msgstr "Editar localizações ligadas"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
@@ -14853,10 +14863,13 @@ msgid ""
 "deprectated and will be removed in a future version of Wavelog. As "
 "replacement use the Logbook-Advanced!"
 msgstr ""
+"Isso afeta TODOS os CONTACTOS de QUALQUER utilizador nesta instância. A "
+"função está obsoleta e será removida numa futura versão do Wavelog. Como "
+"substituição, use o Logbook-Advanced!"
 
 #: application/views/update/index.php:35 application/views/update/index.php:59
 msgid "WARNING"
-msgstr ""
+msgstr "AVISO"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
