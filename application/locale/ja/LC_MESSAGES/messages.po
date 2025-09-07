@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-06 10:34+0000\n"
-"PO-Revision-Date: 2025-09-03 19:33+0000\n"
+"PO-Revision-Date: 2025-09-06 11:23+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -248,11 +248,11 @@ msgstr "DCLデータのインポート"
 
 #: application/controllers/Adif.php:363
 msgid "POTA Import"
-msgstr ""
+msgstr "POTAインポート"
 
 #: application/controllers/Adif.php:420
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "POTAデータがインポートされました"
 
 #: application/controllers/Api.php:14
 msgid "API"
@@ -887,7 +887,7 @@ msgstr "QSOのある日数"
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "DCLキーのインポート"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -900,31 +900,31 @@ msgstr ""
 #: application/views/view_log/qso.php:575
 #: application/views/view_log/qso.php:580
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "アップロードする交信記録はありません。"
 
 #: application/controllers/Dcl.php:184 application/controllers/Dcl.php:196
 msgid "Upload Failed"
-msgstr ""
+msgstr "アップロードに失敗しました"
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "タイムアウトになりました。以降のアップロードを停止します。"
 
 #: application/controllers/Dcl.php:204
 msgid "Upload Successful"
-msgstr ""
+msgstr "アップロード成功"
 
 #: application/controllers/Dcl.php:214
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "DCL にアップロードするステーション プロファイルが見つかりません"
 
 #: application/controllers/Dcl.php:232
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "キーが削除されました。"
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
@@ -3331,11 +3331,11 @@ msgstr "不明"
 
 #: application/models/Logbook_model.php:4915
 msgid "POTA reference already in log"
-msgstr ""
+msgstr "POTA 参照。既にログに存在します"
 
 #: application/models/Logbook_model.php:4918
 msgid "QSO updated"
-msgstr ""
+msgstr "QSOが更新されました"
 
 #: application/models/Logbook_model.php:5779
 #: application/views/activated_gridmap/index.php:110
@@ -4736,29 +4736,30 @@ msgstr "QSO は LoTW にエクスポートされたものとしてマークさ�
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "POTA更新の結果"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr ""
+msgstr "既存のQSOに関するPOTAリファレンスが更新されました。"
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "POTA 更新エラー"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
-msgstr ""
+msgstr "ログ内のPOTA参照のデータがインポートされたデータと異なるか、QSOデータが一致し"
+"ませんでした"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "ログ内のPOTA REF"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "ADIFにおけるPOTA参照"
 
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:54
@@ -8458,11 +8459,11 @@ msgstr "インポートオプション"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "DCLデータを取得"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "DCL 確認を取得するコールサインを選択します。"
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -8471,38 +8472,42 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelogは、ユーザープロファイルに保存されているDCLキーを使用して、DCLからレポ"
+"ートをダウンロードします。Wavelogがダウンロードするレポートには、選択した日付"
+"以降、またはログから取得した前回のDCL確認以降、現在までのすべての確認が含まれ"
+"ます。"
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "DCLマッチのインポート"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "削除キー"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "利用可能なDCLキー"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "DCLキーをリクエストする"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "有効期間"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "有効期限"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "この機能を使用するには、DCL キーを要求する必要があります。"
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "DCL との次の自動同期は次の時間に行われます: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:143
@@ -8516,38 +8521,40 @@ msgstr "実行中..."
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "DCL キー管理"
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
-msgstr ""
+msgstr "インポートキー"
 
 #: application/views/dcl_views/key_import.php:14
 msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
-msgstr ""
+msgstr "DCL-"
+"Dataexchangeのキーをリクエストし、リクエストは成功しました。以下のデータがイ"
+"ンポートされました"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "有効なDCLキーを受け取りました"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "DOKの歴史"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "有効"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "通話履歴"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
-msgstr ""
+msgstr "無効なDCLキーを受け取りました。DCLログインを確認して、もう一度お試しください"
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
@@ -10088,7 +10095,7 @@ msgstr "Clublogのインポート/エクスポート"
 
 #: application/views/interface_assets/header.php:502
 msgid "DCL Export"
-msgstr ""
+msgstr "DCLエクスポート"
 
 #: application/views/interface_assets/header.php:514
 #: application/views/logbookadvanced/index.php:680
@@ -10434,11 +10441,11 @@ msgstr "地域"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "DCL Sent"
-msgstr ""
+msgstr "DCL 送信済み"
 
 #: application/views/logbookadvanced/edit.php:36
 msgid "DCL Received"
-msgstr ""
+msgstr "DCL受信"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ"
@@ -13452,7 +13459,7 @@ msgstr "未実施"
 
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
-msgstr ""
+msgstr "グリッドはコールブックで自動検出されるが、おそらく誤っている"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -15860,7 +15867,7 @@ msgstr "このQSOはClublogで確認されています。"
 
 #: application/views/view_log/qso.php:581
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "このQSOはDCLで確認されました。"
 
 #: application/views/view_log/qso.php:594
 msgid "More QSOs"
