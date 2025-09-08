@@ -37,14 +37,14 @@
 			<optgroup label="<?= __("QSL / LoTW / Clublog / eQSL / QRZ / DCL"); ?>">
 				<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
 				<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
+				<option value="dclsent"><?= __("DCL Sent"); ?></option>
+				<option value="dclreceived"><?= __("DCL Received"); ?></option>
 				<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 				<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
 				<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
 				<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
 				<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
 				<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
-				<option value="dclsent"><?= __("DCL Sent"); ?></option>
-				<option value="dclreceived"><?= __("DCL Received"); ?></option>
 				<option value="qslmsg"><?= __("QSLMSG"); ?></option>
 				<option value="qslreceivedmethod"><?= __("QSL Received Method"); ?></option>
 				<option value="qslsentmethod"><?= __("QSL Sent Method"); ?></option>
