@@ -99,7 +99,10 @@ class CI_Controller {
         $languages = $this->config->item('languages');
 
         // Remove current language from available languages
-        unset($languages[$data['language']['folder']]);
+        //if ($data['language']['folder'] !== null) {
+        if ($data['language'] !== null) {
+           unset($languages[$data['language']['folder']]);
+        }
         $data['languages'] = $languages;
 
 		/* 

@@ -3,8 +3,6 @@
 <title>404 Page Not Found</title>
 	<!-- Bootstrap CSS -->
 	<?php
-	$CI =& get_instance();
-	$theme = $CI->optionslib->get_theme();
 	if ($theme) { ?>
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-multiselect.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/bootstrap.min.css">
