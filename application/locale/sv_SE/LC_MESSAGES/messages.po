@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-07 08:30+0000\n"
-"PO-Revision-Date: 2025-09-03 19:33+0000\n"
+"PO-Revision-Date: 2025-09-07 21:38+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -247,11 +247,11 @@ msgstr "DCL-data importerad"
 
 #: application/controllers/Adif.php:363
 msgid "POTA Import"
-msgstr ""
+msgstr "POTA-import"
 
 #: application/controllers/Adif.php:420
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "POTA-data importerad"
 
 #: application/controllers/Api.php:14
 msgid "API"
@@ -883,7 +883,7 @@ msgstr "Dagar med QSOs"
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "DCL-nyckelimport"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -896,31 +896,31 @@ msgstr ""
 #: application/views/view_log/qso.php:575
 #: application/views/view_log/qso.php:580
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Inga QSOs att ladda upp."
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Upload Failed"
-msgstr ""
+msgstr "Uppladdning misslyckades"
 
 #: application/controllers/Dcl.php:188
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Tidsgräns nådd. Stoppar efterföljande uppladdningar."
 
 #: application/controllers/Dcl.php:201
 msgid "Upload Successful"
-msgstr ""
+msgstr "Uppladdning lyckades"
 
 #: application/controllers/Dcl.php:211
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "Inga stationsprofiler hittades att ladda upp till DCL"
 
 #: application/controllers/Dcl.php:229
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Nyckel(nycklar) raderad(e)."
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
@@ -3328,11 +3328,11 @@ msgstr "Okänd"
 
 #: application/models/Logbook_model.php:4915
 msgid "POTA reference already in log"
-msgstr ""
+msgstr "POTA-referens redan i loggen"
 
 #: application/models/Logbook_model.php:4918
 msgid "QSO updated"
-msgstr ""
+msgstr "QSO uppdaterad"
 
 #: application/models/Logbook_model.php:5779
 #: application/views/activated_gridmap/index.php:110
@@ -4736,29 +4736,31 @@ msgstr "QSOs är markerade som exporterade till LoTW."
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "Resultat av POTA-uppdatering"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr ""
+msgstr "POTA-referenser för befintliga QSOs har uppdaterats."
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "POTA-uppdateringsfel"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
 msgstr ""
+"Det finns olika POTA-referenser i din logg jämfört med importerade data "
+"eller så kunde QSO-data inte matchas"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "POTA REF i loggen"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "POTA REF i ADIF"
 
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:54
@@ -8475,11 +8477,11 @@ msgstr "Importinställningar"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "Hämta DCL-data åt mig"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "Välj anropssignal för att hämta DCL-bekräftelser för."
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -8488,38 +8490,42 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog kommer att använda DCL-nycklarna som lagras i din användarprofil för "
+"att ladda ner en rapport från DCL åt dig. Rapporten som Wavelog laddar ner "
+"kommer att innehålla alla bekräftelser sedan valt datum, eller sedan din "
+"senaste DCL-bekräftelse (hämtad från din logg), fram till nu."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "Importera matchande DSL"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "Radera nycklarna"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "Tillgängliga DCL-nycklar"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "Begär DCL-nyckel"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "Giltlig från"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "Giltlig till"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "Du måste begära DCL-nycklar för att använda den här funktionen."
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "Nästa automatiska synkronisering med DCL kommer att ske kl: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:143
@@ -8533,38 +8539,41 @@ msgstr "jobbar..."
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "DCL Nyckelhantering"
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
-msgstr ""
+msgstr "Importera nyckel"
 
 #: application/views/dcl_views/key_import.php:14
 msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
 msgstr ""
+"Du begärde en nyckel för DCL-Dataexchange, vilket lyckades. Följande data "
+"har importerats"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "Mottog en giltig DCL-nyckel"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "DOK-historia"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "Giltighet"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "Anropssignal historik"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
 msgstr ""
+"Ogiltig DCL-nyckel mottagen. Kontrollera din DCL-inloggning och försök igen"
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
@@ -10104,7 +10113,7 @@ msgstr "Clublog Import / Export"
 
 #: application/views/interface_assets/header.php:502
 msgid "DCL Export"
-msgstr ""
+msgstr "DCL-export"
 
 #: application/views/interface_assets/header.php:514
 #: application/views/logbookadvanced/index.php:680
@@ -10447,11 +10456,11 @@ msgstr "Region"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "DCL Sent"
-msgstr ""
+msgstr "DCL skickat"
 
 #: application/views/logbookadvanced/edit.php:36
 msgid "DCL Received"
-msgstr ""
+msgstr "DCL mottaget"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ"
@@ -13477,7 +13486,7 @@ msgstr "Ej kontaktad"
 
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
-msgstr ""
+msgstr "Rutnätsrutan beräknas automatiskt av callbook och är förmodligen fel"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -15896,7 +15905,7 @@ msgstr "Detta QSO är bekräftad på Clublog."
 
 #: application/views/view_log/qso.php:581
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "Detta QSO är bekräftad på DCL."
 
 #: application/views/view_log/qso.php:594
 msgid "More QSOs"

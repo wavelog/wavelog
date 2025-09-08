@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-07 08:30+0000\n"
-"PO-Revision-Date: 2025-08-23 15:21+0000\n"
+"PO-Revision-Date: 2025-09-08 10:40+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
-"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/it/>\n"
+"Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/it/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -248,11 +248,11 @@ msgstr "Dati DCL importati"
 
 #: application/controllers/Adif.php:363
 msgid "POTA Import"
-msgstr ""
+msgstr "Importazione POTA"
 
 #: application/controllers/Adif.php:420
 msgid "POTA Data Imported"
-msgstr ""
+msgstr "Dati POTA importati"
 
 #: application/controllers/Api.php:14
 msgid "API"
@@ -887,7 +887,7 @@ msgstr "Giorni con QSO"
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
 msgid "DCL Key Import"
-msgstr ""
+msgstr "Importazione chiave DCL"
 
 #: application/controllers/Dcl.php:68 application/views/dcl_views/import.php:3
 #: application/views/dcl_views/index.php:3
@@ -900,31 +900,31 @@ msgstr ""
 #: application/views/view_log/qso.php:575
 #: application/views/view_log/qso.php:580
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: application/controllers/Dcl.php:139
 msgid "No QSOs to upload."
-msgstr ""
+msgstr "Nessun QSO da caricare."
 
 #: application/controllers/Dcl.php:186 application/controllers/Dcl.php:198
 msgid "Upload Failed"
-msgstr ""
+msgstr "Caricamento fallito"
 
 #: application/controllers/Dcl.php:188
 msgid "Timeout reached. Stopping subsequent uploads."
-msgstr ""
+msgstr "Timeout raggiunto. Interruzione dei caricamenti successivi."
 
 #: application/controllers/Dcl.php:201
 msgid "Upload Successful"
-msgstr ""
+msgstr "Caricamento riuscito"
 
 #: application/controllers/Dcl.php:211
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "Nessun profilo stazione trovato da caricare su DCL"
 
 #: application/controllers/Dcl.php:229
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Chiave/i eliminata/e."
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
@@ -3347,11 +3347,11 @@ msgstr "sconosciuto"
 
 #: application/models/Logbook_model.php:4915
 msgid "POTA reference already in log"
-msgstr ""
+msgstr "Riferimento POTA già presente nel registro di stazione"
 
 #: application/models/Logbook_model.php:4918
 msgid "QSO updated"
-msgstr ""
+msgstr "QSO aggiornato"
 
 #: application/models/Logbook_model.php:5779
 #: application/views/activated_gridmap/index.php:110
@@ -4686,7 +4686,7 @@ msgstr ""
 
 #: application/views/adif/import_success.php:22
 msgid "Yay, it's imported!"
-msgstr ""
+msgstr "Evviva, è stato importato!"
 
 #: application/views/adif/import_success.php:23
 msgid "The ADIF File has been imported."
@@ -4694,7 +4694,7 @@ msgstr "Il file ADIF è stato importato."
 
 #: application/views/adif/import_success.php:25
 msgid "Number of QSOs imported:"
-msgstr ""
+msgstr "Numero di QSO importati:"
 
 #: application/views/adif/import_success.php:31
 msgid "Dupes were inserted!"
@@ -4761,29 +4761,31 @@ msgstr "I QSO sono contrassegnati come esportati in LoTW."
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "Risultati dell'aggiornamento POTA"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
-msgstr ""
+msgstr "I riferimenti POTA per i QSO esistenti sono stati aggiornati."
 
 #: application/views/adif/pota_success.php:25
 msgid "POTA Update Errors"
-msgstr ""
+msgstr "Errori aggiornamento POTA"
 
 #: application/views/adif/pota_success.php:26
 msgid ""
 "There is different data for POTA references in your log compared to imported "
 "data or QSO data could not be matched"
 msgstr ""
+"Ci sono dati diversi per i riferimenti POTA nel tuo log rispetto ai dati "
+"importati o i dati dei QSO non possono essere abbinati automaticamente"
 
 #: application/views/adif/pota_success.php:34
 msgid "POTA REF in Log"
-msgstr ""
+msgstr "Referenze POTA nel log"
 
 #: application/views/adif/pota_success.php:35
 msgid "POTA REF in ADIF"
-msgstr ""
+msgstr "Referenze POTA in ADIF"
 
 #: application/views/adif/pota_success.php:36
 #: application/views/api/index.php:37 application/views/cron/index.php:54
@@ -7316,7 +7318,7 @@ msgstr "#QSO"
 
 #: application/views/callstats/index.php:149
 msgid "First QSO"
-msgstr ""
+msgstr "Primo QSO"
 
 #: application/views/callstats/index.php:150
 #: application/views/stationsetup/stationsetup.php:129
@@ -7568,7 +7570,7 @@ msgstr "Carica registro di stazione"
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSLs"
-msgstr ""
+msgstr "Scarica QSL"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
@@ -7634,10 +7636,12 @@ msgid ""
 "If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
+"Se non viene fornita una data di inizio, solo le QSL successive all'ultima "
+"conferma verranno scaricate/aggiornate!"
 
 #: application/views/clublog/export.php:78
 msgid "Download QSLs from Clublog"
-msgstr ""
+msgstr "Scarica le QSL da Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -8539,11 +8543,11 @@ msgstr "Importa Opzioni"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "Estrai i dati DCL per me"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "Seleziona il nominativo per ottenere le conferme DCL."
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -8552,38 +8556,42 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog utilizzerà le chiavi DCL memorizzate nel tuo profilo utente per "
+"scaricare un rapporto da DCL per te. Il rapporto scaricato da Wavelog avrà "
+"tutte le conferme dalla data scelta, o dalla tua ultima conferma DCL ("
+"recuperata dal tuo log), fino ad ora."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "Importa corrispondenze DCL"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "Elimina chiavi"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "Chiavi DCL disponibili"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "Richiedi chiave DCL"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "Valido da"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "Valido fino al"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "Devi richiedere le chiavi DCL per utilizzare questa funzione."
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "La prossima sincronizzazione automatica con DCL avverrà alle: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:143
@@ -8597,38 +8605,41 @@ msgstr "In corso..."
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "Gestione delle chiavi DCL"
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
-msgstr ""
+msgstr "Importa chiave"
 
 #: application/views/dcl_views/key_import.php:14
 msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
 msgstr ""
+"Hai richiesto una chiave per DCL-Dataexchange, che è stata ottenuta con "
+"successo. I seguenti dati sono stati importati"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "E' stata ricevuta una chiave DCL valida"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "Storico DOK"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "Validità"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "Storico nominativi"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
 msgstr ""
+"Ricevuta una chiave DCL non valida. Controlla il tuo login DCL e riprova"
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
@@ -10183,7 +10194,7 @@ msgstr "Importazione / Esportazione Clublog"
 
 #: application/views/interface_assets/header.php:502
 msgid "DCL Export"
-msgstr ""
+msgstr "Esportazione DCL"
 
 #: application/views/interface_assets/header.php:514
 #: application/views/logbookadvanced/index.php:680
@@ -10511,7 +10522,7 @@ msgstr "Si prega di scegliere la colonna da modificare:"
 
 #: application/views/logbookadvanced/edit.php:5
 msgid "QSO details"
-msgstr ""
+msgstr "Dettagli QSO"
 
 #: application/views/logbookadvanced/edit.php:9
 msgid "Contest Exch (S)"
@@ -10519,7 +10530,7 @@ msgstr "Exchange inviato in contest"
 
 #: application/views/logbookadvanced/edit.php:19
 msgid "Station Power"
-msgstr ""
+msgstr "Potenza di trasmissione"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:787
@@ -10531,15 +10542,15 @@ msgstr "Regione"
 
 #: application/views/logbookadvanced/edit.php:35
 msgid "DCL Sent"
-msgstr ""
+msgstr "DCL inviato"
 
 #: application/views/logbookadvanced/edit.php:36
 msgid "DCL Received"
-msgstr ""
+msgstr "DCL ricevuto"
 
 #: application/views/logbookadvanced/edit.php:39
 msgid "QSL / LoTW / Clublog / eQSL / QRZ"
-msgstr ""
+msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
 
 #: application/views/logbookadvanced/edit.php:40
 msgid "Clublog Received"
@@ -10579,11 +10590,11 @@ msgstr "QSLMSG"
 
 #: application/views/logbookadvanced/edit.php:49
 msgid "QSL Received Method"
-msgstr ""
+msgstr "Metodo di ricezione QSL"
 
 #: application/views/logbookadvanced/edit.php:50
 msgid "QSL Sent Method"
-msgstr ""
+msgstr "Metodo di invio QSL"
 
 #: application/views/logbookadvanced/edit.php:51
 #: application/views/logbookadvanced/index.php:524
@@ -12319,7 +12330,7 @@ msgstr "Il prossimo download automatico da QRZ-QSLs avverrà alle: "
 
 #: application/views/qrz/export.php:83
 msgid "Download QSLs from QRZ Logbook"
-msgstr ""
+msgstr "Scarica le QSL dal Logbook di QRZ"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
@@ -13587,6 +13598,8 @@ msgstr "Non ha funzionato"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
+"Il locatore e' stato rilevato automaticamente dal callbook e probabilmente "
+"sbagliato"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -14428,7 +14441,7 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
-msgstr ""
+msgstr "Modifica postazioni collegate"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
@@ -14847,10 +14860,13 @@ msgid ""
 "deprectated and will be removed in a future version of Wavelog. As "
 "replacement use the Logbook-Advanced!"
 msgstr ""
+"Questo influisce su TUTTI i QSO di QUALSIASI utente su questa istanza. La "
+"funzione è deprecata e verrà rimossa in una futura versione di Wavelog. In "
+"alternativa, usa la modalita' Logbook-Advanced!"
 
 #: application/views/update/index.php:35 application/views/update/index.php:59
 msgid "WARNING"
-msgstr ""
+msgstr "AVVERTIMENTO"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
@@ -16037,7 +16053,7 @@ msgstr "Questo QSO è confermato su Clublog."
 
 #: application/views/view_log/qso.php:581
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "Questo QSO è confermato su DCL."
 
 #: application/views/view_log/qso.php:594
 msgid "More QSOs"
