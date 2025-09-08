@@ -520,7 +520,6 @@ $options = json_decode($options);
                         <option value="V"><?= __("Verified"); ?></option>
                     </select>
                 </div>
-                <?php if ($this->config->item('enable_dcl_interface') ?? false) { ?>
                 <div <?php if (($options->dcl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="dclSent"><?= __("DCL sent"); ?></label>
                     <select id="dclSent" name="dclSent" class="form-select form-select-sm">
@@ -539,7 +538,6 @@ $options = json_decode($options);
                         <option value="I"><?= __("Invalid (Ignore)"); ?></option>
                     </select>
                 </div>
-                <?php } ?>
                 <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="qslvia"><?= __("QSL via"); ?></label>
                     <input onclick="this.select()" type="search" name="qslvia" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
