@@ -219,6 +219,24 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = $condition;
 			$binding[] = $searchCriteria['eqslReceived'];
 		}
+		if ($searchCriteria['dclSent'] !== '') {
+			$condition = "COL_DCL_QSL_SENT = ?";
+			if ($searchCriteria['dclSent'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_DCL_QSL_SENT IS NULL OR COL_DCL_QSL_SENT = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['dclSent'];
+		}
+		if ($searchCriteria['dclReceived'] !== '') {
+			$condition = "COL_DCL_QSL_RCVD = ?";
+			if ($searchCriteria['dclReceived'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_DCL_QSL_RCVD IS NULL OR COL_DCL_QSL_RCVD = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['dclReceived'];
+		}
 
         if ($searchCriteria['iota'] !== '') {
 			$conditions[] = "COL_IOTA = ?";

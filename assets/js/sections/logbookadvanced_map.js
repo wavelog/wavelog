@@ -536,6 +536,8 @@ function getFormData(form) {
 		clublogReceived: form.clublogReceived.value,
 		eqslSent: form.eqslSent.value,
 		eqslReceived: form.eqslReceived.value,
+		dclSent: form.dclSent.value,
+		dclReceived: form.dclReceived.value,
 		qslvia: $('[name="qslvia"]').val(),
 		sota: form.sota.value,
 		pota: form.pota.value,
