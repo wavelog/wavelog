@@ -32,13 +32,13 @@
 				<option value="sota"><?= __("SOTA"); ?></option>
 				<option value="state"><?= __("State"); ?></option>
 				<option value="wwff"><?= __("WWFF"); ?></option>
-        <option value="dclsent"><?= __("DCL Sent"); ?></option>
-        <option value="dclreceived"><?= __("DCL Received"); ?></option>
 			</optgroup>
 
-			<optgroup label="<?= __("QSL / LoTW / Clublog / eQSL / QRZ"); ?>">
+			<optgroup label="<?= __("QSL / LoTW / Clublog / eQSL / QRZ / DCL"); ?>">
 				<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
 				<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
+				<option value="dclsent"><?= __("DCL Sent"); ?></option>
+				<option value="dclreceived"><?= __("DCL Received"); ?></option>
 				<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 				<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
 				<option value="lotwreceived"><?= __("LoTW Received"); ?></option>

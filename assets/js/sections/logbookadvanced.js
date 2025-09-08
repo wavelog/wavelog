@@ -581,6 +581,8 @@ $(document).ready(function () {
 				clublogReceived: this.clublogReceived.value,
 				eqslSent: this.eqslSent.value,
 				eqslReceived: this.eqslReceived.value,
+				dclSent: this.dclSent.value,
+				dclReceived: this.dclReceived.value,
 				qslvia: $('[name="qslvia"]').val(),
 				sota: this.sota.value,
 				pota: this.pota.value,
