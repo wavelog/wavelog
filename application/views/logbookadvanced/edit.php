@@ -37,8 +37,10 @@
 			<optgroup label="<?= __("QSL / LoTW / Clublog / eQSL / QRZ / DCL"); ?>">
 				<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
 				<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
+				<?php if ($this->config->item('enable_dcl_interface') ?? false) { ?>
 				<option value="dclsent"><?= __("DCL Sent"); ?></option>
 				<option value="dclreceived"><?= __("DCL Received"); ?></option>
+				<?php } ?>
 				<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 				<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
 				<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
