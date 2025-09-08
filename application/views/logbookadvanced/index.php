@@ -520,6 +520,24 @@ $options = json_decode($options);
                         <option value="V"><?= __("Verified"); ?></option>
                     </select>
                 </div>
+                <div <?php if (($options->dcl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                    <label for="dclSent"><?= __("DCL sent"); ?></label>
+                    <select id="dclSent" name="dclSent" class="form-select form-select-sm">
+                        <option value=""><?= __("All"); ?></option>
+                        <option value="Y"><?= __("Yes"); ?></option>
+                        <option value="N"><?= __("No"); ?></option>
+                        <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                    </select>
+                </div>
+                <div <?php if (($options->dcl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                    <label for="dclReceived"><?= __("DCL received"); ?></label>
+                    <select id="dclReceived" name="dclReceived" class="form-select form-select-sm">
+                        <option value=""><?= __("All"); ?></option>
+                        <option value="Y"><?= __("Yes"); ?></option>
+                        <option value="N"><?= __("No"); ?></option>
+                        <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                    </select>
+                </div>
                 <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="qslvia"><?= __("QSL via"); ?></label>
                     <input onclick="this.select()" type="search" name="qslvia" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
