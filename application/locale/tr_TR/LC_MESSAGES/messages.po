@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-07 08:30+0000\n"
-"PO-Revision-Date: 2025-09-06 16:35+0000\n"
+"POT-Creation-Date: 2025-09-08 10:50+0000\n"
+"PO-Revision-Date: 2025-09-08 10:40+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -82,7 +82,7 @@ msgstr ""
 #: application/controllers/Notes.php:10 application/controllers/Options.php:14
 #: application/controllers/Oqrs.php:15 application/controllers/Oqrs.php:165
 #: application/controllers/Qrbcalc.php:13 application/controllers/Qrz.php:200
-#: application/controllers/Qrz.php:285 application/controllers/Qsl.php:12
+#: application/controllers/Qrz.php:287 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:49
 #: application/controllers/Qsl.php:57 application/controllers/Qslprint.php:24
 #: application/controllers/Qslprint.php:147 application/controllers/Qso.php:8
@@ -854,8 +854,8 @@ msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
-"Son çalışma %s saniyeden daha önce gerçekleşti.%sLütfen ana cron'unuzu "
-"kontrol edin! Her dakika (* * * * *) çalışması gerekir."
+"Son çalışma %s saniye önce gerçekleşti.%sLütfen ana cron'unuzu kontrol edin! "
+"Her dakika (* * * * *) çalışması gerekir."
 
 #: application/controllers/Cron.php:295
 #, php-format
@@ -2144,11 +2144,11 @@ msgstr ""
 msgid "QRZ Logbook"
 msgstr "QRZ Logbook"
 
-#: application/controllers/Qrz.php:287
+#: application/controllers/Qrz.php:289
 msgid "QRZ QSL Import"
 msgstr "QRZ QSL İçe Aktarma"
 
-#: application/controllers/Qrz.php:344
+#: application/controllers/Qrz.php:346
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF Bilgisi"
 
@@ -2201,7 +2201,7 @@ msgstr "Telsiz"
 
 #: application/controllers/Radio.php:47
 msgid "Timestamp"
-msgstr "Zaman damgası"
+msgstr "Son Aktiflik"
 
 #: application/controllers/Radio.php:49
 #: application/views/logbookadvanced/index.php:670
@@ -2225,7 +2225,7 @@ msgstr "BİLİNMEYEN"
 #: application/views/contesting/index.php:161
 #: application/views/qso/index.php:354
 msgid "last updated"
-msgstr "son güncelleme"
+msgstr "son kullanılan"
 
 #: application/controllers/Radio.php:106 application/controllers/Radio.php:109
 msgid "Set as default radio"
@@ -12945,11 +12945,11 @@ msgstr ""
 #: application/views/radio/index.php:26 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
-msgstr "%s nasıl kullanılacağını wiki'de bulabilirsiniz."
+msgstr "%s nasıl yapılacağını Wiki sayfasında bulabilirsiniz."
 
 #: application/views/radio/index.php:26
 msgid "radio functions"
-msgstr "telsiz fonksiyonları"
+msgstr "Telsiz bağlantısının"
 
 #: application/views/radio/index.php:31
 msgid "Please wait..."
@@ -14872,7 +14872,7 @@ msgstr "Çağrı İşareti Sahibi"
 
 #: application/views/user/edit.php:113
 msgid "Personal"
-msgstr "Kisisel"
+msgstr "Kişisel Bilgiler"
 
 #: application/views/user/edit.php:116
 msgid "First Name"

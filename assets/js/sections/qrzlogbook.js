@@ -27,7 +27,7 @@ function ExportQrz(station_id) {
 				$(".card-body").append('<div class="alert alert-danger" role="alert">' + data.info + '</div>');
 			}
 
-			if (data.errormessages.length > 0) {
+			if (data.hasOwnProperty("errormessages") && data.errormessages.length > 0) {
 				$("#qrz_export").append(
 					'<div class="errormessages">\n' +
 					'    <div class="card mt-2">\n' +
