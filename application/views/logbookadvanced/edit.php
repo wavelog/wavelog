@@ -32,8 +32,6 @@
 				<option value="sota"><?= __("SOTA"); ?></option>
 				<option value="state"><?= __("State"); ?></option>
 				<option value="wwff"><?= __("WWFF"); ?></option>
-        <option value="dclsent"><?= __("DCL Sent"); ?></option>
-        <option value="dclreceived"><?= __("DCL Received"); ?></option>
 			</optgroup>
 
 			<optgroup label="<?= __("QSL / LoTW / Clublog / eQSL / QRZ"); ?>">
@@ -45,6 +43,8 @@
 				<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
 				<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
 				<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
+				<option value="dclsent"><?= __("DCL Sent"); ?></option>
+				<option value="dclreceived"><?= __("DCL Received"); ?></option>
 				<option value="qslmsg"><?= __("QSLMSG"); ?></option>
 				<option value="qslreceivedmethod"><?= __("QSL Received Method"); ?></option>
 				<option value="qslsentmethod"><?= __("QSL Sent Method"); ?></option>
