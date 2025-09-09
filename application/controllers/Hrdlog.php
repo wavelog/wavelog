@@ -67,8 +67,8 @@ class Hrdlog extends CI_Controller {
 			//check for credential errors before accessing them
 			if($result == false){
 				$data['status'] = 'Credential_Error';
-			    $data['infomessage'] = __("HRD Log upload for this station is disabled or credentials not filled in completely.");
-			    $data['errormessages'] = array(__("HRD Log upload for this station is disabled or credentials not filled in completely."));
+			    $data['infomessage'] = __("HRD Log upload for this station is disabled.");
+			    $data['errormessages'] = array(__("HRD Log upload for this station is disabled."));
 			    echo json_encode($data);
 				return;
 			}
