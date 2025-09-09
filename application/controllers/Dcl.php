@@ -90,7 +90,7 @@ class Dcl extends CI_Controller {
 
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+		$this->cron_model->set_last_run('sync_dcl');
 
 		// Get Station Profile Data
 		$this->load->model('Stations');
