@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-08 12:08+0000\n"
+"POT-Creation-Date: 2025-09-09 14:54+0000\n"
 "PO-Revision-Date: 2025-09-09 02:49+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1075,14 +1075,18 @@ msgstr "Totale locatori collegati"
 msgid "Hamsat - Satellite Roving"
 msgstr "Hamsat - Satellite Roving"
 
-#: application/controllers/Hrdlog.php:74 application/controllers/Hrdlog.php:93
+#: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
+msgid "HRD Log upload for this station is disabled."
+msgstr ""
+
+#: application/controllers/Hrdlog.php:93
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
 msgstr[0] "%d QSO è stato caricato su HRDlog"
 msgstr[1] "%d QSO sono stati caricati su HRDlog"
 
-#: application/controllers/Hrdlog.php:79 application/controllers/Hrdlog.php:98
+#: application/controllers/Hrdlog.php:98
 msgid "No QSOs found to upload."
 msgstr "Nessun QSO da caricare."
 
@@ -3257,24 +3261,19 @@ msgstr "HRDlog: nessun QSO trovato da caricare per il nominativo di stazione: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: nessun profilo di stazione con credenziali HRDlog trovate."
 
-#: application/models/Logbook_model.php:1292
 #: application/models/Logbook_model.php:1294
 msgid "Station ID not allowed"
 msgstr "ID stazione non consentito"
 
-#: application/models/Logbook_model.php:1297
 #: application/models/Logbook_model.php:1299
 msgid "No Call given"
 msgstr "Nessun nominatio fornito"
 
-#: application/models/Logbook_model.php:1367
-#: application/models/Logbook_model.php:1569
 #: application/models/Logbook_model.php:1369
 #: application/models/Logbook_model.php:1571
 msgid "DXCC has to be Numeric"
 msgstr "DXCC deve essere numerico"
 
-#: application/models/Logbook_model.php:4037
 #: application/models/Logbook_model.php:4039
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3282,12 +3281,10 @@ msgstr ""
 "Callsign della stazione errato ( %s) durante l'importazione di QSO con %s "
 "per %s: SALTATO"
 
-#: application/models/Logbook_model.php:4050
 #: application/models/Logbook_model.php:4052
 msgid "QSO on"
 msgstr "QSO alle"
 
-#: application/models/Logbook_model.php:4050
 #: application/models/Logbook_model.php:4052
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3296,88 +3293,72 @@ msgstr ""
 "Hai tentato di importare un QSO senza alcun nominativo di chiamata. Questo "
 "QSO non è stato importato perchè non valido"
 
-#: application/models/Logbook_model.php:4357
 #: application/models/Logbook_model.php:4359
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "La data di ricezione QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4368
 #: application/models/Logbook_model.php:4370
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "La data di invio QSL non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4429
 #: application/models/Logbook_model.php:4431
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "La data di upload Clublog non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4449
 #: application/models/Logbook_model.php:4451
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "La data di ricezione LoTW non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4470
 #: application/models/Logbook_model.php:4472
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "La data di invio LoTW non è valida (AAAAMMGG)"
 
-#: application/models/Logbook_model.php:4762
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4764
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplicata"
 
-#: application/models/Logbook_model.php:4823
-#: application/models/Logbook_model.php:4912
 #: application/models/Logbook_model.php:4825
 #: application/models/Logbook_model.php:4914
 msgid "QSO could not be matched"
 msgstr "Impossibile abbinare QSO"
 
-#: application/models/Logbook_model.php:4829
 #: application/models/Logbook_model.php:4831
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confermato da LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4834
 #: application/models/Logbook_model.php:4836
 msgid "confirmed by award manager"
 msgstr "confermato dal responsabile del premio"
 
-#: application/models/Logbook_model.php:4837
 #: application/models/Logbook_model.php:4839
 msgid "confirmed by cross-check of DCL data"
 msgstr "confermato dal controllo incrociato dei dati DCL"
 
-#: application/models/Logbook_model.php:4840
 #: application/models/Logbook_model.php:4842
 msgid "confirmation pending"
 msgstr "Conferma in sospeso"
 
-#: application/models/Logbook_model.php:4843
 #: application/models/Logbook_model.php:4845
 msgid "unconfirmed"
 msgstr "Non confermato"
 
-#: application/models/Logbook_model.php:4846
+#: application/models/Logbook_model.php:4848
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4848
 msgid "unknown"
 msgstr "sconosciuto"
 
-#: application/models/Logbook_model.php:4915
 #: application/models/Logbook_model.php:4917
 msgid "POTA reference already in log"
 msgstr "Riferimento POTA già presente nel registro di stazione"
 
-#: application/models/Logbook_model.php:4918
 #: application/models/Logbook_model.php:4920
 msgid "QSO updated"
 msgstr "QSO aggiornato"
 
-#: application/models/Logbook_model.php:5779
+#: application/models/Logbook_model.php:5781
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3388,7 +3369,6 @@ msgstr "QSO aggiornato"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5781
 msgid "Bearing"
 msgstr "Direzione"
 
@@ -6660,8 +6640,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
-"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra "
-"U.S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
+"Campi presi in considerazione per questo premio: DXCC (Deve essere uno tra U."
+"S.A., Alaska o Hawaii) e STATE (Deve contenere una valida abbreviazione di "
 "uno stato U.S.A.!)"
 
 #: application/views/awards/was/index.php:115
@@ -14752,9 +14732,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crea una nuova cartella in 'assets/css/' e carica un file "
-"'bootstrap.min.css' che contiene regole di stile di base. Utilizziamo i temi "
-"di %s"
+"Crea una nuova cartella in 'assets/css/' e carica un file 'bootstrap.min."
+"css' che contiene regole di stile di base. Utilizziamo i temi di %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -16256,10 +16235,6 @@ msgstr "Invia richiesta"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ricevuto"
-
-#: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
-msgid "HRD Log upload for this station is disabled."
-msgstr ""
 
 #~ msgid "QSL / LoTW / Clublog / eQSL / QRZ"
 #~ msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
