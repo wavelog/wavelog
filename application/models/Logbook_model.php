@@ -939,7 +939,7 @@ class Logbook_model extends CI_Model {
    */
 	function exists_hrdlog_credentials($station_id) {
 		
-		//checks disabled state AND content of hrdlog_username and hrdlog_code
+		//checks only disabled state
 		$sql = 'select hrdlog_username, hrdlog_code, hrdlogrealtime from station_profile
 		  where station_id = ? and hrdlogrealtime >= 0;';
 
