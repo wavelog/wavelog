@@ -21,10 +21,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-09 14:54+0000\n"
-"PO-Revision-Date: 2025-09-08 10:40+0000\n"
-"Last-Translator: BH3HNI <mmf@live.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
-"org/projects/wavelog/main-translation/zh_Hans/>\n"
+"PO-Revision-Date: 2025-09-09 17:26+0000\n"
+"Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1083,7 +1083,7 @@ msgstr "Hamsat - 卫星追踪"
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
-msgstr ""
+msgstr "本台站的 HRDLOG 上传已禁用。"
 
 #: application/controllers/Hrdlog.php:93
 #, php-format
@@ -7386,11 +7386,11 @@ msgstr "下一次从 Clublog-QSLs 自动下载将在： "
 msgid ""
 "If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
-msgstr ""
+msgstr "如果没有给出开始日期，那么上次确认之后的 QSL 将会被下载/更新！"
 
 #: application/views/clublog/export.php:78
 msgid "Download QSLs from Clublog"
-msgstr ""
+msgstr "从 Clublog 下载 QSL"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
@@ -8263,11 +8263,11 @@ msgstr "导入选项"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "为我拉取 DCL 数据"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "选择呼号以拉取 DCL 确认。"
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -8276,38 +8276,41 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog 将使用存储在您用户配置文件中的 DCL 密钥为您从 DCL 下载报告。Wavelog "
+"下载的报告将包含自选定日期以来或自您上次 DCL "
+"确认（从您的日志中获取）到当前的所有确认。"
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "导入 DCL 匹配"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "删除密钥"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "可用的 DCL 密钥"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "请求 DCL 密钥"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "有效期自"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "有效期至"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "要使用此功能，您需要请求 DCL 密钥。"
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "下一次与 DCL 的自动同步将在： "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:143
@@ -8321,38 +8324,38 @@ msgstr "运行中……"
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "DCL 密钥管理"
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
-msgstr ""
+msgstr "导入密钥"
 
 #: application/views/dcl_views/key_import.php:14
 msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
-msgstr ""
+msgstr "您请求了 DCL 数据交换的密钥，已成功。以下数据已导入"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "获取到有效的 DCL 密钥"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "DOK 历史"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "有效性"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "呼叫记录"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
-msgstr ""
+msgstr "获取到无效的 DCL 密钥。请检查您的 DCL 登录，然后重试"
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
@@ -9854,7 +9857,7 @@ msgstr "Clublog 导入/导出"
 
 #: application/views/interface_assets/header.php:502
 msgid "DCL Export"
-msgstr ""
+msgstr "DCL 导出"
 
 #: application/views/interface_assets/header.php:514
 #: application/views/logbookadvanced/index.php:698
@@ -10170,7 +10173,7 @@ msgstr "请选择需要编辑的列："
 
 #: application/views/logbookadvanced/edit.php:5
 msgid "QSO details"
-msgstr ""
+msgstr "QSO 详情"
 
 #: application/views/logbookadvanced/edit.php:9
 msgid "Contest Exch (S)"
@@ -10178,7 +10181,7 @@ msgstr "比赛互换编号（S）"
 
 #: application/views/logbookadvanced/edit.php:19
 msgid "Station Power"
-msgstr ""
+msgstr "台站功率"
 
 #: application/views/logbookadvanced/edit.php:31
 #: application/views/logbookadvanced/index.php:805
@@ -10190,7 +10193,7 @@ msgstr "区"
 
 #: application/views/logbookadvanced/edit.php:37
 msgid "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
-msgstr ""
+msgstr "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
 
 #: application/views/logbookadvanced/edit.php:38
 msgid "Clublog Received"
@@ -10202,11 +10205,11 @@ msgstr "Clublog 已发送"
 
 #: application/views/logbookadvanced/edit.php:40
 msgid "DCL Sent"
-msgstr ""
+msgstr "DCL 发送"
 
 #: application/views/logbookadvanced/edit.php:41
 msgid "DCL Received"
-msgstr ""
+msgstr "DCL 接收"
 
 #: application/views/logbookadvanced/edit.php:42
 msgid "eQSL Received"
@@ -10238,11 +10241,11 @@ msgstr "QSL信息"
 
 #: application/views/logbookadvanced/edit.php:49
 msgid "QSL Received Method"
-msgstr ""
+msgstr "QSL 接收方式"
 
 #: application/views/logbookadvanced/edit.php:50
 msgid "QSL Sent Method"
-msgstr ""
+msgstr "QSL 发送方式"
 
 #: application/views/logbookadvanced/edit.php:51
 #: application/views/logbookadvanced/index.php:542
@@ -10649,11 +10652,11 @@ msgstr "eQSL 接收"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "DCL sent"
-msgstr ""
+msgstr "DCL 发送"
 
 #: application/views/logbookadvanced/index.php:533
 msgid "DCL received"
-msgstr ""
+msgstr "DCL 接收"
 
 #: application/views/logbookadvanced/index.php:546
 msgid "QSL Images"
@@ -11902,7 +11905,7 @@ msgstr "QRZ-QSL 下次自动同步时间： "
 
 #: application/views/qrz/export.php:83
 msgid "Download QSLs from QRZ Logbook"
-msgstr ""
+msgstr "从 QRZ 日志本下载 QSL"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
@@ -13142,7 +13145,7 @@ msgstr "未通联过"
 
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
-msgstr ""
+msgstr "已自动从呼号簿获取到网格，但可能是错误的"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -13935,7 +13938,7 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
-msgstr ""
+msgstr "编辑绑定的地址"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
@@ -14318,10 +14321,13 @@ msgid ""
 "deprectated and will be removed in a future version of Wavelog. As "
 "replacement use the Logbook-Advanced!"
 msgstr ""
+"这会影响此实例上任何用户的所有 "
+"QSO。该功能已被弃用，并将在Wavelog的未来版本中移除。请使用 Logbook-Advanced "
+"作为替代！"
 
 #: application/views/update/index.php:35 application/views/update/index.php:59
 msgid "WARNING"
-msgstr ""
+msgstr "警告"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
@@ -15440,7 +15446,7 @@ msgstr "此 QSO 已在 Cludlog 上确认。"
 
 #: application/views/view_log/qso.php:581
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "此 QSO 已在 DCL 上确认。"
 
 #: application/views/view_log/qso.php:594
 msgid "More QSOs"
