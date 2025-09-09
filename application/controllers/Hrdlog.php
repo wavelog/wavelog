@@ -60,12 +60,31 @@ class Hrdlog extends CI_Controller {
 		    $postData = $this->input->post();
 
 		    $this->load->model('logbook_model');
+
+			//checks for credentials. Returns "false" if credentials are there, but upload was disabled
 		    $result = $this->logbook_model->exists_hrdlog_credentials($postData['station_id']);
+
+			//check for credential errors before accessing them
+			if($result == false){
+				$data['status'] = 'Credential_Error';
+			    $data['infomessage'] = __("HRD Log upload for this station is disabled or credentials not filled in completely.");
+			    $data['errormessages'] = array(__("HRD Log upload for this station is disabled or credentials not filled in completely."));
+			    echo json_encode($data);
+				return;
+			}
+
+			//read hrd credentials
 		    $hrdlog_username = $result->hrdlog_username;
 		    $hrdlog_code = $result->hrdlog_code;
-		    header('Content-type: application/json');
-		    $result = $this->Hrdlog_model->mass_upload_qsos($postData['station_id'], $hrdlog_username, $hrdlog_code);
-		    if ($result['status'] == 'OK') {
+
+			//set header
+			header('Content-type: application/json');
+		    
+			//perform upload
+			$result = $this->Hrdlog_model->mass_upload_qsos($postData['station_id'], $hrdlog_username, $hrdlog_code);
+		    
+			//return success
+			if ($result['status'] == 'OK') {
 			    $stationinfo = $this->stations->stations_with_hrdlog_code();
 			    $info = $stationinfo->result();
 

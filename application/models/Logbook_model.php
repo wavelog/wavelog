@@ -938,8 +938,10 @@ class Logbook_model extends CI_Model {
    * Function checks if a HRDLog Code and Username exists in the table with the given station id
    */
 	function exists_hrdlog_credentials($station_id) {
+		
+		//checks disabled state AND content of hrdlog_username and hrdlog_code
 		$sql = 'select hrdlog_username, hrdlog_code, hrdlogrealtime from station_profile
-		  where station_id = ? and hrdlogrealtime>=0';
+		  where station_id = ? and hrdlogrealtime >= 0 and COALESCE(hrdlog_username, "") != "" AND COALESCE(hrdlog_code, "") != "";';
 
 		$query = $this->db->query($sql, $station_id);
 
