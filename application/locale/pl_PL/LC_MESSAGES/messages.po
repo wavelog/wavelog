@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-08 12:08+0000\n"
+"POT-Creation-Date: 2025-09-09 14:54+0000\n"
 "PO-Revision-Date: 2025-08-19 17:14+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1077,7 +1077,11 @@ msgstr "Suma zaliczonych lokatorów"
 msgid "Hamsat - Satellite Roving"
 msgstr "Hamsat - \"Wędrówki\" Satelitarne"
 
-#: application/controllers/Hrdlog.php:74
+#: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
+msgid "HRD Log upload for this station is disabled."
+msgstr ""
+
+#: application/controllers/Hrdlog.php:93
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
@@ -1085,7 +1089,7 @@ msgstr[0] "%d łączność jest przesyłana do HRDlog"
 msgstr[1] "%d łączności są przesyłane do HRDlog"
 msgstr[2] "%d łączności jest przesyłane do HRDlog"
 
-#: application/controllers/Hrdlog.php:79
+#: application/controllers/Hrdlog.php:98
 msgid "No QSOs found to upload."
 msgstr "Nie znaleziono QSO do przesłania."
 
@@ -3250,31 +3254,31 @@ msgstr "HRDlog: Nie znaleziono łączności do przesłania dla stacji o znaku: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Nie znaleziono profili stacji z danymi logowania HRDlog."
 
-#: application/models/Logbook_model.php:1292
+#: application/models/Logbook_model.php:1294
 msgid "Station ID not allowed"
 msgstr "Numer identyfikacyjny stacji nie jest dozwolony"
 
-#: application/models/Logbook_model.php:1297
+#: application/models/Logbook_model.php:1299
 msgid "No Call given"
 msgstr "Nie przyznano znaku"
 
-#: application/models/Logbook_model.php:1367
-#: application/models/Logbook_model.php:1569
+#: application/models/Logbook_model.php:1369
+#: application/models/Logbook_model.php:1571
 msgid "DXCC has to be Numeric"
 msgstr "DXCC musi być numeryczne"
 
-#: application/models/Logbook_model.php:4037
+#: application/models/Logbook_model.php:4039
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Nieprawidłowy znak wywoławczy stacji %s podczas importowania QSO z %s dla "
 "%s: POMINIĘTO"
 
-#: application/models/Logbook_model.php:4050
+#: application/models/Logbook_model.php:4052
 msgid "QSO on"
 msgstr "QSO w dniu"
 
-#: application/models/Logbook_model.php:4050
+#: application/models/Logbook_model.php:4052
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3282,72 +3286,72 @@ msgstr ""
 "Spróbowałeś zaimportować QSO bez podanego znaku wywoławczego. To QSO nie "
 "zostało zaimportowane, jest nieprawidłowe"
 
-#: application/models/Logbook_model.php:4357
+#: application/models/Logbook_model.php:4359
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate jest nieprawidłowa (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4368
+#: application/models/Logbook_model.php:4370
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate jest nieprawidłowa (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4429
+#: application/models/Logbook_model.php:4431
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date jest nieprawidłowy (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4449
+#: application/models/Logbook_model.php:4451
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate jest nieprawidłowy (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4470
+#: application/models/Logbook_model.php:4472
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate jest nieprawidłowy (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4762
+#: application/models/Logbook_model.php:4764
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikat dla"
 
-#: application/models/Logbook_model.php:4823
-#: application/models/Logbook_model.php:4912
+#: application/models/Logbook_model.php:4825
+#: application/models/Logbook_model.php:4914
 msgid "QSO could not be matched"
 msgstr "QSO nie mogło zostać dopasowane"
 
-#: application/models/Logbook_model.php:4829
+#: application/models/Logbook_model.php:4831
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potwierdzone przez LoTW/Clublog/eQSL/zawody"
 
-#: application/models/Logbook_model.php:4834
+#: application/models/Logbook_model.php:4836
 msgid "confirmed by award manager"
 msgstr "potwierdzone przez award managera"
 
-#: application/models/Logbook_model.php:4837
+#: application/models/Logbook_model.php:4839
 msgid "confirmed by cross-check of DCL data"
 msgstr "potwierdzone przez weryfikację danych DCL"
 
-#: application/models/Logbook_model.php:4840
+#: application/models/Logbook_model.php:4842
 msgid "confirmation pending"
 msgstr "oczekiwanie na potwierdzenie"
 
-#: application/models/Logbook_model.php:4843
+#: application/models/Logbook_model.php:4845
 msgid "unconfirmed"
 msgstr "niepotwierdzone"
 
-#: application/models/Logbook_model.php:4846
+#: application/models/Logbook_model.php:4848
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "nieznany"
 
-#: application/models/Logbook_model.php:4915
+#: application/models/Logbook_model.php:4917
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:4918
+#: application/models/Logbook_model.php:4920
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:5779
+#: application/models/Logbook_model.php:5781
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
