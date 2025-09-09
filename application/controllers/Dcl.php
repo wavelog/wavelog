@@ -68,7 +68,7 @@ class Dcl extends CI_Controller {
 		$data['page_title'] = __("DCL");
 
 		$this->load->model('cron_model');
-		$data['next_run'] = $this->cron_model->get_next_run("dcl_dcl_upload");
+		$data['next_run'] = $this->cron_model->get_next_run("sync_dcl");
 
 		// Load Views
 		$this->load->view('interface_assets/header', $data);
