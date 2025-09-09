@@ -941,7 +941,7 @@ class Logbook_model extends CI_Model {
 		
 		//checks disabled state AND content of hrdlog_username and hrdlog_code
 		$sql = 'select hrdlog_username, hrdlog_code, hrdlogrealtime from station_profile
-		  where station_id = ? and hrdlogrealtime >= 0 and COALESCE(hrdlog_username, "") != "" AND COALESCE(hrdlog_code, "") != "";';
+		  where station_id = ? and hrdlogrealtime >= 0;';
 
 		$query = $this->db->query($sql, $station_id);
 
