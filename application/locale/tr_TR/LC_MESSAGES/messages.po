@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-09 14:54+0000\n"
-"PO-Revision-Date: 2025-09-08 10:40+0000\n"
+"PO-Revision-Date: 2025-09-09 20:17+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -366,7 +366,7 @@ msgstr "DOK (Almanya Bölge İşletme Kodu)"
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
 msgid "DXCC"
-msgstr "DXCC"
+msgstr "DXCC (Ülke)"
 
 #: application/controllers/Awards.php:252
 msgid "Awards - WAPC"
@@ -1080,7 +1080,7 @@ msgstr "Hamsat - Uydu Gezinti"
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
-msgstr ""
+msgstr "Bu istasyon için HRD Log yüklemesi devre dışı bırakıldı."
 
 #: application/controllers/Hrdlog.php:93
 #, php-format
@@ -10510,7 +10510,7 @@ msgstr "Bölge"
 
 #: application/views/logbookadvanced/edit.php:37
 msgid "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
-msgstr ""
+msgstr "QSL / LoTW / Clublog / eQSL / QRZ / DCL"
 
 #: application/views/logbookadvanced/edit.php:38
 msgid "Clublog Received"
@@ -10831,7 +10831,7 @@ msgstr "Gelişmiş Logbook Yardımı"
 
 #: application/views/logbookadvanced/index.php:217
 msgid "From"
-msgstr "Gönderen"
+msgstr "Başlangıç Tarihi"
 
 #: application/views/logbookadvanced/index.php:221
 msgid "To"
@@ -10841,7 +10841,7 @@ msgstr "to"
 #: application/views/logbookadvanced/index.php:718
 #: application/views/logbookadvanced/useroptions.php:30
 msgid "Dx"
-msgstr "Dx"
+msgstr "Çağrı İşareti (A)"
 
 #: application/views/logbookadvanced/index.php:226
 #: application/views/logbookadvanced/index.php:251
@@ -10975,11 +10975,11 @@ msgstr "eQSL alındı"
 
 #: application/views/logbookadvanced/index.php:524
 msgid "DCL sent"
-msgstr ""
+msgstr "DCL gönderildi"
 
 #: application/views/logbookadvanced/index.php:533
 msgid "DCL received"
-msgstr ""
+msgstr "DCL alındı"
 
 #: application/views/logbookadvanced/index.php:546
 msgid "QSL Images"
@@ -11004,15 +11004,15 @@ msgstr "Online Çağrı Defterinden Güncelle"
 
 #: application/views/logbookadvanced/index.php:564
 msgid "Queue Bureau"
-msgstr "Büro Kuyruğu"
+msgstr "Büro ile Sönderim Sırası"
 
 #: application/views/logbookadvanced/index.php:565
 msgid "Queue Direct"
-msgstr "Direkt Kuyruğu"
+msgstr "Doğrudan Gönderim Kuyruğu"
 
 #: application/views/logbookadvanced/index.php:566
 msgid "Queue Electronic"
-msgstr "Elektronik Sırası"
+msgstr "Elektronik Gönderim Kuyruğu"
 
 #: application/views/logbookadvanced/index.php:567
 msgid "Sent (Bureau)"
@@ -11028,11 +11028,11 @@ msgstr "Gönderildi (Elektronik)"
 
 #: application/views/logbookadvanced/index.php:570
 msgid "Not Sent"
-msgstr "Gönderilmedi"
+msgstr "Alınmadı (Elektronik)"
 
 #: application/views/logbookadvanced/index.php:571
 msgid "QSL Not Required"
-msgstr "QSL Gerekli Değil"
+msgstr "Alınmadı (Doğrudan)"
 
 #: application/views/logbookadvanced/index.php:572
 msgid "Not Received"
