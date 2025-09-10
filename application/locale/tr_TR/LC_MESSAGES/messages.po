@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-08 12:08+0000\n"
-"PO-Revision-Date: 2025-09-10 10:42+0000\n"
+"PO-Revision-Date: 2025-09-10 22:35+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/tr/>\n"
@@ -885,7 +885,7 @@ msgstr "Kontrol Paneli"
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:158
 msgid "Days with QSOs"
-msgstr "QSO yapılan günler"
+msgstr "QSO Yapılan Günler"
 
 #: application/controllers/Dcl.php:33
 #: application/views/dcl_views/key_import.php:3
@@ -4089,7 +4089,7 @@ msgstr "Minimum Sayı"
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
 msgid "Nothing found!"
-msgstr "Hiçbir şey bulunamadı!"
+msgstr "Hiçbir kayıt bulunamadı!"
 
 #: application/views/activators/index.php:98
 #: application/views/adif/import.php:87 application/views/adif/import.php:243
@@ -4405,7 +4405,7 @@ msgstr "QSO’lar zaten mevcut olsa bile içe aktarmak istiyorsanız seçin."
 
 #: application/views/adif/import.php:131
 msgid "Use DXCC information from ADIF"
-msgstr "ADIF'ten DXCC bilgilerini kullanın"
+msgstr "ADIF dosyasındaki DXCC bilgilerini kullanın"
 
 #: application/views/adif/import.php:133
 msgid ""
@@ -4439,8 +4439,7 @@ msgstr ""
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
-"İçe aktarma sırasında operatör çağrı işaretini hesapta kayıtlı olan çağrı "
-"işareti ile değiştir"
+"Operatör çağrı işaretini hesapta kayıtlı olan çağrı işareti ile değiştir"
 
 #: application/views/adif/import.php:160
 msgid "Mark QSOs as uploaded (This does NOT upload QSOs to these services!)"
@@ -8157,15 +8156,15 @@ msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
 msgstr ""
-"Bu cron yöneticisini kullanmak için yukarıdaki cron'u harici bir cron "
-"servisine veya sunucunuzun cron'una kopyalayın."
+"Bu cron yöneticisini kullanmak için yukarıdaki cron komutunu harici bir cron "
+"servisine veya sunucunuzun cron tablosuna kopyalayın."
 
 #: application/views/cron/index.php:104
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
 msgstr ""
-"Yönetici erişimi olan temel bir linux sunucusunda cron'larınızı düzenlemek "
+"Yönetici erişimi olan temel bir linux sunucusunda cron tablosuna erişmek "
 "için bu komutu kullanın:"
 
 #: application/views/cron/index.php:111
@@ -8487,7 +8486,7 @@ msgstr "QSO Takvimi"
 
 #: application/views/dayswithqso/index.php:111
 msgid "Longest streak with QSOs in the log"
-msgstr "Logda kayıtlı en uzun tekrarlanan QSO serisi"
+msgstr "Kayıtlı En Uzun Tekrarlanan QSO Serisi"
 
 #: application/views/dayswithqso/index.php:112
 msgid "A maximum of the 10 longest streaks are shown!"
@@ -8519,7 +8518,7 @@ msgstr "Herhangi bir seri bulunamadı!"
 
 #: application/views/dayswithqso/index.php:152
 msgid "Current streak with QSOs in the log"
-msgstr "Mevcut Logdaki En Uzun QSO Serileri"
+msgstr "Devam Eden QSO Serileri"
 
 #: application/views/dayswithqso/index.php:158
 #: application/views/dayswithqso/index.php:180
@@ -14916,11 +14915,11 @@ msgstr "Kişisel Bilgiler"
 
 #: application/views/user/edit.php:116
 msgid "First Name"
-msgstr "Adı"
+msgstr "Ad"
 
 #: application/views/user/edit.php:123
 msgid "Last Name"
-msgstr "Soyadı"
+msgstr "Soyad"
 
 #: application/views/user/edit.php:134
 msgid "Ham Radio"
@@ -15192,8 +15191,7 @@ msgstr "Panel Bildirim Afişi"
 
 #: application/views/user/edit.php:637
 msgid "This allows to disable the global notification banner on the dashboard."
-msgstr ""
-"Bu, panelde herkes için bildirim afişini devre dışı bırakmanıza olanak tanır."
+msgstr "Bu ayar bildirim afişini devre dışı bırakmanıza olanak tanır."
 
 #: application/views/user/edit.php:645
 msgid "Show Reference Fields on QSO Tab"
