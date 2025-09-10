@@ -4926,6 +4926,7 @@ class Logbook_model extends CI_Model {
 	function set_dok($key, $dok) {
 		$data = array(
 			'COL_DARC_DOK' => $dok,
+			'COL_DCL_QSL_RCVD ' => 'Y',
 		);
 
 		$this->db->where(array('COL_PRIMARY_KEY' => $key));
