@@ -26,6 +26,15 @@
 				</select>
 			</form>
 
+			<div>
+				<?= __("Show Band or Frequency:"); ?>
+  				<select id="frequency_or_band" class="form-select mb-3 me-sm-3" style="width: 20%;">
+					<option value="band" selected><?= __("Band"); ?></option>
+					<option value="frequency"><?= __("Frequency"); ?></option>
+					<option value="both"><?= __("Both"); ?></option>
+				</select>
+			</div>
+
 	    <p class="card-text"><?= __("Here you can export requested QSLs as CSV or ADIF files for printing and, optionally, mark them as sent."); ?></p>
 	    <p class="card-text">
 			<?= __("Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their 'QSL Sent' field."); ?><br>

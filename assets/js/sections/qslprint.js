@@ -332,3 +332,30 @@ function exportSelectedQsos() {
 
 	$('.exportselected').prop("disabled", false);
 }
+
+document.getElementById('frequency_or_band').addEventListener('change', function (event) {
+  //get selected option
+  const selectedValue = event.target.value;
+  
+  //react to the different states
+  if (selectedValue === "band") {
+    bandcols = document.querySelectorAll('.col-band');
+	bandcols.forEach(cell => { cell.style.display = '';});
+	freqcols = document.querySelectorAll('.col-freq');
+	freqcols.forEach(cell => { cell.style.display = 'none';});
+  }
+
+  if (selectedValue === "frequency") {
+    bandcols = document.querySelectorAll('.col-band');
+	bandcols.forEach(cell => { cell.style.display = 'none';});
+	freqcols = document.querySelectorAll('.col-freq');
+	freqcols.forEach(cell => { cell.style.display = '';});
+  }
+
+  if (selectedValue === "both") {
+    bandcols = document.querySelectorAll('.col-band');
+	bandcols.forEach(cell => { cell.style.display = '';});
+	freqcols = document.querySelectorAll('.col-freq');
+	freqcols.forEach(cell => { cell.style.display = '';});
+  }
+});
