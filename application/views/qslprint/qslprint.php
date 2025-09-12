@@ -87,6 +87,11 @@ if ($qsos->result() != NULL) {
 				<button onclick="unmarkallQSOs()" style="margin-left: 5px;" title="<?= __("Unmark every QSO"); ?>" class="btn btn-danger unmarkall"><?= __("Unmark every QSO"); ?></button>
 			</div>
 		</div>
+	</p>
+	
+	<label class="me-2"><?= __("Update QSOs"); ?>:</label>
+	<p>
+		
 		<button onclick="markSelectedQsos();" title="<?= __("Mark selected QSOs as sent"); ?>" class="btn btn-success markallprinted"><?= __("Mark selected QSOs as sent"); ?></button>
 		<button onclick="removeSelectedQsos();" title="<?= __("Remove selected QSOs from the queue"); ?>" class="btn btn-danger removeall"><?= __("Remove selected QSOs from the queue"); ?></button>
 		<button onclick="exportSelectedQsos();" title="<?= __("Export selected QSOs to ADIF-file"); ?>" class="btn btn-primary exportselected"><?= __("Export selected QSOs to ADIF-file"); ?></button>
