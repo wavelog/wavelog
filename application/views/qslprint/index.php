@@ -17,7 +17,7 @@
 	  </div>
 		<div class="card-body">
 			<form class="form" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
-				<?= __("Station Location"); ?>:
+				<label for="station_profile" class="me-2"><?= __("Station Location"); ?>:</label>	
 				<select name="station_profile" class="station_id form-select mb-3 me-sm-3" style="width: 20%;">
 					<option value="All"><?= __("All"); ?></option>
 					<?php foreach ($station_profile->result() as $station) { ?>
@@ -26,8 +26,9 @@
 				</select>
 			</form>
 
+			<!-- Switch Band or Frequency display -->
 			<div>
-				<?= __("Show Band or Frequency:"); ?>
+				<label for="frequency_or_band" class="me-2"><?= __("Show Band or Frequency:"); ?></label>
   				<select id="frequency_or_band" class="form-select mb-3 me-sm-3" style="width: 20%;">
 					<option value="band" selected><?= __("Band"); ?></option>
 					<option value="frequency"><?= __("Frequency"); ?></option>

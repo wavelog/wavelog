@@ -333,35 +333,97 @@ function exportSelectedQsos() {
 	$('.exportselected').prop("disabled", false);
 }
 
-document.getElementById('frequency_or_band').addEventListener('change', function (event) {
-  //get selected option
-  const selectedValue = event.target.value;
+function markMethod(){
+	
+	//grab the dropdown
+	const select = document.getElementById('markqslmethod');
 
-  //switch state according to selected value
-  switch(selectedValue) {
-  case 'band':
-    bandcols = document.querySelectorAll('.col-band');
-	bandcols.forEach(cell => { cell.style.display = '';});
-	freqcols = document.querySelectorAll('.col-freq');
-	freqcols.forEach(cell => { cell.style.display = 'none';});
-    break;
-  case 'frequency':
-    bandcols = document.querySelectorAll('.col-band');
-	bandcols.forEach(cell => { cell.style.display = 'none';});
-	freqcols = document.querySelectorAll('.col-freq');
-	freqcols.forEach(cell => { cell.style.display = '';});
-    break;
-  case 'both':
-	bandcols = document.querySelectorAll('.col-band');
-	bandcols.forEach(cell => { cell.style.display = '';});
-	freqcols = document.querySelectorAll('.col-freq');
-	freqcols.forEach(cell => { cell.style.display = '';});
-	break;
-  default:
-    bandcols = document.querySelectorAll('.col-band');
-	bandcols.forEach(cell => { cell.style.display = '';});
-	freqcols = document.querySelectorAll('.col-freq');
-	freqcols.forEach(cell => { cell.style.display = 'none';});
-    break;
-  }
+	//grab the selected method
+	const methodkey = select.value;  
+	const method = select.options[select.selectedIndex].text;
+
+	//perform function
+	markMethodQSOs(methodkey === "ALL" ? '' : method);
+}
+
+function markMethodQSOs(method) {
+
+	//unmark any QSO that is already marked for cleanup purposes
+	unmarkallQSOs();
+	
+	//grab the table
+	const table = document.getElementById('qslprint_table');
+
+    //loop through each row except the header
+    Array.from(table.tBodies[0].rows).forEach(row => {
+        
+		//get the send-method column
+        const sendMethodCell = row.querySelector('td.send-method');
+
+		//check if it contains the right method (or skip check if method is empty)
+        if (sendMethodCell && (method === "" || sendMethodCell.textContent.trim() === method)) {
+            
+			//find the checkbox in the first cell
+            const checkbox = row.querySelector('td:first-child input[type="checkbox"]');
+            
+			//check that box
+			if (checkbox) {
+                checkbox.checked = true;
+            }
+        }
+    });
+}
+
+function unmarkallQSOs(){
+	
+	//grab the table
+	const table = document.getElementById('qslprint_table');
+
+	//loop through each row except the header
+    Array.from(table.tBodies[0].rows).forEach(row => {
+		
+		//find the checkbox in the first cell
+		const checkbox = row.querySelector('td:first-child input[type="checkbox"]');
+            
+		//check that box
+		if (checkbox) {
+			checkbox.checked = false;
+		}
+    });
+}
+
+function switchbandandfrequencydisplay(mode){
+  	
+	//switch state according to selected value. Default case = band
+	switch(mode) {
+	case 'band':
+		bandcols = document.querySelectorAll('.col-band');
+		bandcols.forEach(cell => { cell.style.display = '';});
+		freqcols = document.querySelectorAll('.col-freq');
+		freqcols.forEach(cell => { cell.style.display = 'none';});
+		break;
+	case 'frequency':
+		bandcols = document.querySelectorAll('.col-band');
+		bandcols.forEach(cell => { cell.style.display = 'none';});
+		freqcols = document.querySelectorAll('.col-freq');
+		freqcols.forEach(cell => { cell.style.display = '';});
+		break;
+	case 'both':
+		bandcols = document.querySelectorAll('.col-band');
+		bandcols.forEach(cell => { cell.style.display = '';});
+		freqcols = document.querySelectorAll('.col-freq');
+		freqcols.forEach(cell => { cell.style.display = '';});
+		break;
+	default:
+		bandcols = document.querySelectorAll('.col-band');
+		bandcols.forEach(cell => { cell.style.display = '';});
+		freqcols = document.querySelectorAll('.col-freq');
+		freqcols.forEach(cell => { cell.style.display = 'none';});
+		break;
+	}
+}
+
+document.getElementById('frequency_or_band').addEventListener('change', function (event) {
+	//switch display options
+	switchbandandfrequencydisplay(event.target.value);
 });
