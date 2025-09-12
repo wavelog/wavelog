@@ -336,26 +336,32 @@ function exportSelectedQsos() {
 document.getElementById('frequency_or_band').addEventListener('change', function (event) {
   //get selected option
   const selectedValue = event.target.value;
-  
-  //react to the different states
-  if (selectedValue === "band") {
+
+  //switch state according to selected value
+  switch(selectedValue) {
+  case 'band':
     bandcols = document.querySelectorAll('.col-band');
 	bandcols.forEach(cell => { cell.style.display = '';});
 	freqcols = document.querySelectorAll('.col-freq');
 	freqcols.forEach(cell => { cell.style.display = 'none';});
-  }
-
-  if (selectedValue === "frequency") {
+    break;
+  case 'frequency':
     bandcols = document.querySelectorAll('.col-band');
 	bandcols.forEach(cell => { cell.style.display = 'none';});
 	freqcols = document.querySelectorAll('.col-freq');
 	freqcols.forEach(cell => { cell.style.display = '';});
-  }
-
-  if (selectedValue === "both") {
-    bandcols = document.querySelectorAll('.col-band');
+    break;
+  case 'both':
+	bandcols = document.querySelectorAll('.col-band');
 	bandcols.forEach(cell => { cell.style.display = '';});
 	freqcols = document.querySelectorAll('.col-freq');
 	freqcols.forEach(cell => { cell.style.display = '';});
+	break;
+  default:
+    bandcols = document.querySelectorAll('.col-band');
+	bandcols.forEach(cell => { cell.style.display = '';});
+	freqcols = document.querySelectorAll('.col-freq');
+	freqcols.forEach(cell => { cell.style.display = 'none';});
+    break;
   }
 });

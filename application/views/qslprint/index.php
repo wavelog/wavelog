@@ -31,7 +31,7 @@
   				<select id="frequency_or_band" class="form-select mb-3 me-sm-3" style="width: 20%;">
 					<option value="band" selected><?= __("Band"); ?></option>
 					<option value="frequency"><?= __("Frequency"); ?></option>
-					<option value="both"><?= __("Both"); ?></option>
+					<option value="both"><?= __("Band & Frequency"); ?></option>
 				</select>
 			</div>
 
