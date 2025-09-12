@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-09 14:54+0000\n"
-"PO-Revision-Date: 2025-09-09 17:26+0000\n"
+"PO-Revision-Date: 2025-09-12 08:43+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.13.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -788,7 +788,7 @@ msgstr "コンテストログ"
 #: application/controllers/Contesting.php:128
 #: application/views/interface_assets/header.php:310
 msgid "Contests"
-msgstr "コンテスト"
+msgstr "コンテスト名"
 
 #: application/controllers/Contesting.php:142
 msgid "Update Contest"
@@ -978,7 +978,7 @@ msgstr "衛星距離記録"
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:154
 msgid "Distances Worked"
-msgstr "移動距離"
+msgstr "通信距離"
 
 #: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
@@ -1803,7 +1803,7 @@ msgstr "DXCCを削除しました"
 
 #: application/controllers/Logbookadvanced.php:34
 msgid "Advanced logbook"
-msgstr "高度なログブック"
+msgstr "ログブックの詳細"
 
 #: application/controllers/Lookup.php:22
 msgid "Quick Lookup"
@@ -1888,7 +1888,7 @@ msgstr "LoTW .TQ8 送信"
 
 #: application/controllers/Lotw.php:1055
 msgid "LoTW .TQ8 Not Sent"
-msgstr "LoTW .TQ8 が送信されませんでした"
+msgstr "LoTW .TQ8 が未送信"
 
 #: application/controllers/Mode.php:25 application/controllers/Usermode.php:23
 #: application/views/interface_assets/header.php:308
@@ -1911,7 +1911,7 @@ msgstr "編集モード"
 #: application/views/qso/index.php:642 application/views/view_log/qso.php:14
 #: application/views/view_log/qso.php:749
 msgid "Notes"
-msgstr "注記"
+msgstr "メモ帳"
 
 #: application/controllers/Notes.php:37
 msgid "Add Notes"
@@ -1920,7 +1920,7 @@ msgstr "メモを追加"
 #: application/controllers/Notes.php:64
 #: application/views/oqrs/showrequests.php:93
 msgid "Note"
-msgstr "注記"
+msgstr "メモ"
 
 #: application/controllers/Notes.php:92 application/views/notes/edit.php:7
 #: application/views/notes/view.php:19
@@ -2127,7 +2127,7 @@ msgstr[0] "%s と %s の間の距離は %s キロメートルです。"
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr "ベアリングは %s 。"
+msgstr "方位は %s 。"
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
@@ -2527,7 +2527,7 @@ msgstr "アクティブなログブックとして設定"
 #: application/views/stationsetup/stationsetup.php:49
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
-msgstr "アクティブログブック"
+msgstr "アクティブなログブック"
 
 #: application/controllers/Stationsetup.php:295
 #: application/views/stationsetup/stationsetup.php:58
@@ -2582,7 +2582,7 @@ msgstr "この局プロファイル内のすべての QSO を削除してもよ�
 #: application/views/stationsetup/stationsetup.php:140
 #: application/views/stationsetup/stationsetup.php:192
 msgid "Empty Log"
-msgstr "空のログ"
+msgstr "ログ削除"
 
 #: application/controllers/Stationsetup.php:409
 #: application/views/stationsetup/stationsetup.php:133
@@ -2637,7 +2637,7 @@ msgstr "衛星QSO"
 #: application/controllers/Statistics.php:354
 #: application/views/interface_assets/header.php:170
 msgid "EME Initials"
-msgstr "EMEイニシャル"
+msgstr "EME Initials"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:314
@@ -2682,7 +2682,7 @@ msgstr "DXCC プレフィックスの準備: "
 
 #: application/controllers/Update.php:275
 msgid "DONE"
-msgstr "終わり"
+msgstr "終了"
 
 #: application/controllers/Update.php:289
 msgid "Updating..."
@@ -3353,7 +3353,7 @@ msgstr "QSOが更新されました"
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
 msgid "Bearing"
-msgstr "ベアリング"
+msgstr "方位"
 
 #: application/models/Update_model.php:319
 msgid "Newer release available:"
@@ -4274,7 +4274,7 @@ msgstr "時間"
 #: application/views/visitor/index.php:156
 #: application/views/widgets/qsos.php:17
 msgid "Call"
-msgstr "電話"
+msgstr "コールサイン"
 
 #: application/views/adif/dcl_success.php:34
 msgid "DOK in Log"
@@ -5156,7 +5156,7 @@ msgstr "CQゾーン/ITUゾーンにマウスを移動します"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ WAZ (Worked All Zones) Award"
-msgstr "CQ WAZ（全ゾーン勤務）アワード"
+msgstr "CQ WAZ（全ゾーン交信）アワード"
 
 #: application/views/awards/cq/index.php:21
 msgid ""
@@ -5215,7 +5215,7 @@ msgstr "確認済み"
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
-msgstr "働いた"
+msgstr "作業した"
 
 #: application/views/awards/cq/index.php:39
 #: application/views/awards/dok/index.php:42
@@ -5491,7 +5491,7 @@ msgstr "DXCCアワード"
 
 #: application/views/awards/dxcc/index.php:15
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
-msgstr "「作業した国を数える方法、新しいDXスコアリングシステム」"
+msgstr "'How to Count Countries Worked, A New DX Scoring System'"
 
 #: application/views/awards/dxcc/index.php:15
 #, php-format
@@ -5513,7 +5513,7 @@ msgstr "ARRLウェブサイト"
 #: application/views/awards/wac/index.php:11
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
-msgstr "DXCCアワードに関するすべての情報は、%sでご確認いただけます。"
+msgstr "WACアワードに関するすべての情報は、%sでご確認いただけます。"
 
 #: application/views/awards/dxcc/index.php:17
 msgid ""
@@ -6009,9 +6009,8 @@ msgstr "JCC - Japan Century Cities Award"
 msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
-msgstr ""
-"日本国内の少なくとも100の異なる都市に所在するアマチュア無線局と交信（受信）"
-"し、QSLカードを受け取ったことを証明できます。"
+msgstr "日本国内の少なくとも100の異なる都市に所在するアマチュア無線局と交信（受信）し"
+"、QSLカードを受領したことに対して申請可能です。"
 
 #: application/views/awards/jcc/index.php:18
 msgid ""
@@ -6083,8 +6082,8 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
-"POTAはSOTAと同様に、アクティベーターとハンターで構成されています。賞には、公"
-"園の数、地理的エリアなどに基づいて複数のカテゴリーがあります。"
+"POTAはSOTAと同様に、アクティベーターとハンターで構成されています。アワードに"
+"は、公園の数、地理的エリアなどに基づいて複数のカテゴリーがあります。"
 
 #: application/views/awards/pota/index.php:10
 #, php-format
@@ -6143,9 +6142,10 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
-"その理由は、一般的なADIFフォーマットでは、特定のアワードに専用のフィールドが"
-"いくつかしか用意されていないためです。SIGは、特別利益団体向けに、他のすべての"
-"種類のマーカーの使用と評価を可能にしています。"
+"その理由は、一般的なADIFフォーマットでは特定のアワード用に割り当てられた専用"
+"フィールドがごくわずかしか用意されていないためです。SIGは、特別利益団体向けの"
+"その他のあらゆる種類のマーカーを使用・評価することを依然として可能にしていま"
+"す。"
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -6206,7 +6206,7 @@ msgstr "QSOをADIFにエクスポートする"
 
 #: application/views/awards/sota/index.php:7
 msgid "SOTA Awards"
-msgstr "WARアワード"
+msgstr "SOTAアワード"
 
 #: application/views/awards/sota/index.php:8
 msgid ""
@@ -6229,9 +6229,9 @@ msgstr ""
 "SOTAは世界約100カ国で完全に運用されています。各国には独自の協会があり、その協"
 "会内で認定されたSOTA山頂を定めています。登頂ごとに、アクティベーターとチェイ"
 "サーは山頂の高度に応じたスコアを獲得します。様々なスコアに応じて認定証が発行"
-"され、栄誉ある「マウンテンゴート」トロフィーと「シャック・スロス」トロフィー"
-"を獲得できます。アクティベーターとチェイサーの功績者名簿は、SOTAオンライン"
-"データベースで管理されています。"
+"され、栄誉ある「Mountain Goat」賞と「Shack "
+"Sloth」賞を獲得できます。アクティベーターとチェイサーの功績者名簿は、SOTAオン"
+"ラインデータベースで管理されています。"
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -6287,9 +6287,8 @@ msgstr ""
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
-msgstr ""
-"下記のリンク先のページに記載されている必要な数のマス目に位置するアマチュア局"
-"と交信したと主張できます。"
+msgstr "下記リンク先のページに記載されている必要数のスクエアに位置するアマチュア局と"
+"交信した場合に申請可能です。"
 
 #: application/views/awards/wab/index.php:16
 msgid ""
@@ -6400,9 +6399,9 @@ msgid ""
 "QSL cards should be arranged in order of WAJA (HAJA) reference number, "
 "however names of prefectures may be omitted."
 msgstr ""
-"日本国内47都道府県にあるアマチュア局と交信（交信を聴取）し、QSLカードを受け"
-"取ったと主張できます。QSLカードのリストはWAJA（HAJA）参照番号順に並べますが、"
-"都道府県名は省略できます。"
+"日本全国47都道府県に所在するアマチュア局と交信（受信）し、QSLカードを受領した"
+"実績に対して申請可能。QSLカードの一覧はWAJA（HAJA）参照番号順に整理すること。"
+"ただし都道府県名は省略可。"
 
 #: application/views/awards/waja/index.php:23
 msgid ""
@@ -6501,9 +6500,8 @@ msgstr ""
 msgid ""
 "The award can be earned through long-term accumulation of contacts or "
 "achieved in a single effort during the annual WAPC Contest."
-msgstr ""
-"このアワードは、長期にわたる人脈の蓄積を通じて獲得することも、毎年開催される "
-"WAPC コンテストでの 1 回の努力で獲得することもできます。"
+msgstr "このアワードは、長期にわたる人脈の蓄積を通じて獲得することも、年次WAPCコンテ"
+"ストにおける単一の努力によって達成することも可能です。"
 
 #: application/views/awards/wapc/index.php:11
 msgid ""
@@ -7253,7 +7251,7 @@ msgstr "最初のQSO"
 #: application/views/callstats/index.php:150
 #: application/views/stationsetup/stationsetup.php:129
 msgid "Last QSO"
-msgstr "最後のQSO"
+msgstr "Last QSO"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -7319,7 +7317,7 @@ msgstr "アクション"
 
 #: application/views/club/permissions.php:33
 msgid "Log QSOs via Web GUI (live and post)"
-msgstr "Web GUI 経由で QSO を記録 (ライブおよび投稿)"
+msgstr "Web GUI 経由で QSO を記録 (交信中および投稿)"
 
 #: application/views/club/permissions.php:41
 msgid "Log QSOs via API"
@@ -7428,7 +7426,7 @@ msgstr "現在、このクラブ ステーションにアクセスできるユ�
 
 #: application/views/club/permissions.php:220
 msgid "Firstname"
-msgstr "ファーストネーム"
+msgstr "氏名"
 
 #: application/views/club/permissions.php:221
 msgid "Lastname"
@@ -7643,7 +7641,7 @@ msgstr "コンテスト"
 
 #: application/views/contestcalendar/index.php:22
 msgid "Start"
-msgstr "始める"
+msgstr "開始"
 
 #: application/views/contestcalendar/index.php:23
 msgid "End"
@@ -7663,7 +7661,7 @@ msgstr "詳細を表示"
 #: application/views/dashboard/index.php:387
 #: application/views/dashboard/index.php:408
 msgid "Today"
-msgstr "今日"
+msgstr "本日"
 
 #: application/views/contestcalendar/index.php:55
 msgid "Weekend"
@@ -8216,7 +8214,7 @@ msgstr ""
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] "過去の連絡先が最大 %d 件表示されています"
+msgstr[0] "前回の交信内容が最大 %d 件表示されています"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
@@ -9869,7 +9867,7 @@ msgstr "概要"
 
 #: application/views/interface_assets/header.php:105
 msgid "Advanced"
-msgstr "高度な"
+msgstr "詳細表示"
 
 #: application/views/interface_assets/header.php:108
 msgid "View QSL Cards"
@@ -9885,23 +9883,23 @@ msgstr "最終確認を表示"
 
 #: application/views/interface_assets/header.php:121
 msgid "Live QSO"
-msgstr "ライブQSO"
+msgstr "交信中"
 
 #: application/views/interface_assets/header.php:123
 msgid "Post QSO"
-msgstr "QSO後"
+msgstr "QSOの投稿"
 
 #: application/views/interface_assets/header.php:125
 msgid "Simple Fast Log Entry"
-msgstr "シンプルで高速なログエントリ"
+msgstr "簡単で高速なログ入力"
 
 #: application/views/interface_assets/header.php:128
 msgid "Live Contest Logging"
-msgstr "ライブコンテストのログ"
+msgstr "コンテスト参加中のログ"
 
 #: application/views/interface_assets/header.php:130
 msgid "Post Contest Logging"
-msgstr "コンテスト後のログ記録"
+msgstr "コンテスト中のログ記録"
 
 #: application/views/interface_assets/header.php:140
 msgid "Analytics"
@@ -9961,7 +9959,7 @@ msgstr "日本"
 
 #: application/views/interface_assets/header.php:244
 msgid "JA Gridmaster"
-msgstr "JA Gridmaster"
+msgstr "JA グリッドマスター"
 
 #: application/views/interface_assets/header.php:248
 msgid "Luxemburg"
@@ -9997,7 +9995,7 @@ msgstr "バンドマップ"
 
 #: application/views/interface_assets/header.php:291
 msgid "SAT Timers"
-msgstr "SATタイマー"
+msgstr "衛星タイマー"
 
 #: application/views/interface_assets/header.php:295
 msgid "Satellite Pass"
@@ -10767,7 +10765,7 @@ msgstr "ナイトシャドウ"
 
 #: application/views/logbookadvanced/index.php:23
 msgid "Advanced Logbook Help"
-msgstr "高度なログブックヘルプ"
+msgstr "ログブックヘルプの詳細"
 
 #: application/views/logbookadvanced/index.php:217
 msgid "From"
@@ -10944,15 +10942,15 @@ msgstr "コールブックからの更新"
 
 #: application/views/logbookadvanced/index.php:564
 msgid "Queue Bureau"
-msgstr "Queue Bureau"
+msgstr "列 ビューロー"
 
 #: application/views/logbookadvanced/index.php:565
 msgid "Queue Direct"
-msgstr "Queue Direct"
+msgstr "列 ダイレクト"
 
 #: application/views/logbookadvanced/index.php:566
 msgid "Queue Electronic"
-msgstr "Queue Electronic"
+msgstr "列 ネット"
 
 #: application/views/logbookadvanced/index.php:567
 msgid "Sent (Bureau)"
@@ -10968,7 +10966,7 @@ msgstr "送信済み（電子）"
 
 #: application/views/logbookadvanced/index.php:570
 msgid "Not Sent"
-msgstr "送信されませんでした"
+msgstr "未送信"
 
 #: application/views/logbookadvanced/index.php:571
 msgid "QSL Not Required"
@@ -10976,7 +10974,7 @@ msgstr "QSLは不要"
 
 #: application/views/logbookadvanced/index.php:572
 msgid "Not Received"
-msgstr "受信されませんでした"
+msgstr "未受信"
 
 #: application/views/logbookadvanced/index.php:573
 msgid "Received (Bureau)"
@@ -11086,7 +11084,7 @@ msgstr "＃ 結果"
 
 #: application/views/logbookadvanced/index.php:668
 msgid "Dupes"
-msgstr "代替品"
+msgstr "複製"
 
 #: application/views/logbookadvanced/index.php:684
 msgid "Globe map"
@@ -11095,7 +11093,7 @@ msgstr "地球地図"
 #: application/views/logbookadvanced/index.php:715
 #: application/views/logbookadvanced/useroptions.php:26
 msgid "De"
-msgstr "の"
+msgstr "De"
 
 #: application/views/logbookadvanced/index.php:760
 #: application/views/logbookadvanced/useroptions.php:86
@@ -11444,7 +11442,7 @@ msgstr "カテゴリ"
 #: application/views/qso/index.php:61 application/views/statistics/index.php:46
 #: application/views/user/edit.php:168
 msgid "General"
-msgstr "一般的な"
+msgstr "一般的"
 
 #: application/views/notes/add.php:37 application/views/notes/edit.php:38
 msgid "Antennas"
@@ -11452,7 +11450,7 @@ msgstr "アンテナ"
 
 #: application/views/notes/add.php:43 application/views/notes/edit.php:44
 msgid "Note Contents"
-msgstr "ノートの内容"
+msgstr "メモの内容"
 
 #: application/views/notes/add.php:47 application/views/notes/edit.php:49
 msgid "Save Note"
@@ -12694,7 +12692,7 @@ msgstr "以前の連絡先"
 
 #: application/views/qso/index.php:31
 msgid "times worked before"
-msgstr "以前に働いた回数"
+msgstr "以前に作業した回数"
 
 #: application/views/qso/index.php:32
 msgid "Not worked before"
@@ -12727,7 +12725,7 @@ msgstr "アンテナの仰角の値が無効です:"
 
 #: application/views/qso/index.php:53
 msgid "LIVE"
-msgstr "ライブ"
+msgstr "交信中"
 
 #: application/views/qso/index.php:53
 msgid "POST"
@@ -13179,7 +13177,7 @@ msgstr "衛星通過"
 
 #: application/views/satellite/pass.php:13
 msgid "Your station"
-msgstr "あなたのステーション"
+msgstr "使用する衛星の情報"
 
 #: application/views/satellite/pass.php:26
 #: application/views/satellite/pass.php:65
@@ -13546,7 +13544,7 @@ msgstr "クエリ"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr "シンプル高速ログエントリ（FLE）"
+msgstr "簡単高速ログ入力（FLE）"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -13670,7 +13668,7 @@ msgstr "QSOをログブックに保存中にエラーが発生しました。エ
 
 #: application/views/simplefle/index.php:44
 msgid "What is that?"
-msgstr "それは何ですか？"
+msgstr "これは何ですか？"
 
 #: application/views/simplefle/index.php:47
 msgid "Current UTC Time"
@@ -13693,9 +13691,8 @@ msgstr "ステーション名/所在地"
 msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
-msgstr ""
-"新しい拠点から業務を開始する場合、まず新しい「%sStation Location%s」を作成し"
-"てください"
+msgstr "新しい拠点から交信を開始する場合、まず新しい「%sStation "
+"Location%s」を作成してください"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
@@ -13703,7 +13700,7 @@ msgstr "例：OK2CQR"
 
 #: application/views/simplefle/index.php:120
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr "これはオペレーターのコールサインです。接頭辞や接尾辞は不要です。"
+msgstr "これはオペレーターのコールサインです。前後に文字は不要です。"
 
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
@@ -13716,7 +13713,7 @@ msgstr "参照"
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr "審判員は、%sS%sOTA、%sI%sOTA、%sP%sOTA、または%sW%sWFFのいずれかです"
+msgstr "審判は、%sS%sOTA、%sI%sOTA、%sP%sOTA、または%sW%sWFFのいずれかです"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
@@ -13754,10 +13751,10 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
-"まず、左側のフォームに日付、局のコールサイン、オペレーターのコールサインが記"
-"入されていることを確認してください。主なデータには、バンド（またはMHz単位の"
-"QRG、例：「7.145」）、モード、時刻が含まれます。時刻の次に、最初のQSO、つまり"
-"コールサインを入力します。"
+"まず、左側のフォームに日付、局コール、オペレーターのコールが記入済みであるこ"
+"とを確認してください。主なデータには、バンド（またはMHz単位のQRG、例：『7.145"
+"』）、モード、時刻が含まれます。時刻の後に、最初のQSO（基本的にコールサイン）"
+"を記入します。"
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -13769,9 +13766,9 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
-"RST情報を指定しない場合、構文では59番（データの場合は599番）が使用されます。"
-"次のQSOは双方とも59番ではなかったため、最初に送信したRSTで情報を提供します。"
-"これは最初のQSOから2分後のことでした。"
+"RST情報を指定しない場合、構文では59（データの場合は599）が使用されます。次のQ"
+"SOは双方とも59ではなかったため、最初に送信したRSTで情報を提供します。これは最"
+"初のQSOから2分後でした。"
 
 #: application/views/simplefle/syntax_help.php:16
 msgid ""
@@ -15276,7 +15273,7 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
-"複数のCATラジオを設定している場合、この設定でウィジェットにユーザーの放送中の"
+"複数のCATラジオを設定している場合、この設定でウィジェットにユーザーの運用中の"
 "ラジオをすべて表示するか、最新のラジオのみを表示するかを指定します。ラジオが1"
 "台しかない場合、この設定は無効です。"
 
@@ -15337,9 +15334,8 @@ msgstr "Winkeyer機能が有効"
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
-msgstr ""
-"Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
-"before enabling."
+msgstr "Wavelogにおけるウィンキーヤーのサポートは、非常に実験的な段階です。有効化する"
+"前に、まず%sのWikiをお読みください。"
 
 #: application/views/user/edit.php:1056
 msgid "Hams.at"
@@ -15444,7 +15440,7 @@ msgstr "ログブック"
 
 #: application/views/user/index.php:81 application/views/user/index.php:193
 msgid "Last QSO:"
-msgstr "最後のQSO:"
+msgstr "Last QSO:"
 
 #: application/views/user/index.php:85 application/views/user/index.php:195
 msgid "No QSOs in Log"
