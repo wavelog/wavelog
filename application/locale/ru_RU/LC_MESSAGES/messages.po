@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-10 12:48+0000\n"
+"POT-Creation-Date: 2025-09-13 09:53+0000\n"
 "PO-Revision-Date: 2025-09-08 10:40+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1280,7 +1280,7 @@ msgstr "Журнал"
 #: application/views/logbookadvanced/index.php:751
 #: application/views/logbookadvanced/useroptions.php:74
 #: application/views/oqrs/qsolist.php:12
-#: application/views/qslprint/qslprint.php:28
+#: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:15
 #: application/views/qslprint/qsolist.php:17
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:75
@@ -1418,7 +1418,7 @@ msgstr "eQSL"
 #: application/views/qslcard/searchresult.php:44
 #: application/views/qslcard/searchresult.php:60
 #: application/views/qslcard/searchresult.php:76
-#: application/views/qslprint/qslprint.php:24
+#: application/views/qslprint/qslprint.php:25
 #: application/views/qslprint/qsolist.php:9
 #: application/views/qso/components/previous_contacts.php:77
 #: application/views/qso/edit_ajax.php:121 application/views/qso/index.php:170
@@ -1459,7 +1459,7 @@ msgstr "Вид модуляции"
 #: application/views/qslcard/searchresult.php:45
 #: application/views/qslcard/searchresult.php:61
 #: application/views/qslcard/searchresult.php:77
-#: application/views/qslprint/qslprint.php:26
+#: application/views/qslprint/qslprint.php:28
 #: application/views/qslprint/qsolist.php:11
 #: application/views/qso/components/previous_contacts.php:78
 #: application/views/qso/edit_ajax.php:143 application/views/qso/index.php:215
@@ -1488,7 +1488,7 @@ msgstr "RST (TX)"
 #: application/views/qslcard/searchresult.php:46
 #: application/views/qslcard/searchresult.php:62
 #: application/views/qslcard/searchresult.php:78
-#: application/views/qslprint/qslprint.php:27
+#: application/views/qslprint/qslprint.php:29
 #: application/views/qslprint/qsolist.php:12
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:148 application/views/qso/index.php:220
@@ -1710,7 +1710,8 @@ msgstr "Дистанция"
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
 #: application/views/qslmanagement/index.php:24
-#: application/views/qslprint/qslprint.php:25
+#: application/views/qslprint/index.php:33
+#: application/views/qslprint/qslprint.php:26
 #: application/views/qslprint/qsolist.php:10
 #: application/views/qso/components/previous_contacts.php:88
 #: application/views/qso/edit_ajax.php:85 application/views/qso/index.php:185
@@ -1747,6 +1748,8 @@ msgstr "Диапазон"
 #: application/views/qslcard/searchresult.php:54
 #: application/views/qslcard/searchresult.php:70
 #: application/views/qslcard/searchresult.php:86
+#: application/views/qslprint/index.php:34
+#: application/views/qslprint/qslprint.php:27
 #: application/views/qso/components/previous_contacts.php:89
 #: application/views/qso/edit_ajax.php:73 application/views/qso/index.php:203
 #: application/views/search/search_result_ajax.php:16
@@ -3571,6 +3574,7 @@ msgstr "Разница"
 #: application/views/oqrs/showrequests.php:49
 #: application/views/oqrs/showrequests.php:64
 #: application/views/qslprint/index.php:22
+#: application/views/qslprint/qslprint.php:81
 #: application/views/search/cqzones.php:33
 #: application/views/search/ituzones.php:33
 #: application/views/search/lotw_unconfirmed.php:34
@@ -4108,7 +4112,7 @@ msgstr "Не найдено!"
 #: application/views/qslcard/index.php:39
 #: application/views/qslcard/searchform.php:3
 #: application/views/qslprint/index.php:24
-#: application/views/qslprint/qslprint.php:21
+#: application/views/qslprint/qslprint.php:22
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:64 application/views/qso/index.php:157
 #: application/views/reg1test/index.php:33
@@ -4217,7 +4221,7 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/public_search/result.php:13
 #: application/views/qslcard/index.php:41
 #: application/views/qslcard/searchresult.php:4
-#: application/views/qslprint/qslprint.php:22
+#: application/views/qslprint/qslprint.php:23
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:97
 #: application/views/qso/index.php:133 application/views/satellite/pass.php:50
 #: application/views/satellite/skedtable.php:7
@@ -4258,7 +4262,7 @@ msgstr "Дата"
 #: application/views/hamsat/index.php:29 application/views/oqrs/qsolist.php:8
 #: application/views/qslcard/index.php:42
 #: application/views/qslcard/searchresult.php:6
-#: application/views/qslprint/qslprint.php:23
+#: application/views/qslprint/qslprint.php:24
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:138
 #: application/views/search/cqzones_result.php:8
 #: application/views/search/ituzones_result.php:8
@@ -7600,7 +7604,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:835
 #: application/views/logbookadvanced/useroptions.php:186
 #: application/views/qrz/export.php:39
-#: application/views/qslprint/qslprint.php:30
+#: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:14
 #: application/views/webadif/export.php:41
 msgid "Profile name"
@@ -10643,7 +10647,7 @@ msgstr "Верифицировано"
 #: application/views/logbookadvanced/index.php:452
 #: application/views/oqrs/qsolist.php:73 application/views/oqrs/qsolist.php:115
 #: application/views/oqrs/showrequests.php:8
-#: application/views/qslprint/qslprint.php:6
+#: application/views/qslprint/qslprint.php:7
 #: application/views/qslprint/qsolist.php:82
 #: application/views/qslprint/qsolist.php:124
 #: application/views/qslprint/qsolist.php:213
@@ -10664,7 +10668,7 @@ msgstr "Напрямую"
 #: application/views/oqrs/request.php:45
 #: application/views/oqrs/request_grouped.php:48
 #: application/views/oqrs/showrequests.php:7
-#: application/views/qslprint/qslprint.php:5
+#: application/views/qslprint/qslprint.php:6
 #: application/views/qslprint/qsolist.php:79
 #: application/views/qslprint/qsolist.php:121
 #: application/views/qslprint/qsolist.php:212
@@ -10683,7 +10687,7 @@ msgstr "Бюро"
 #: application/views/logbookadvanced/index.php:453
 #: application/views/oqrs/qsolist.php:79 application/views/oqrs/qsolist.php:121
 #: application/views/oqrs/showrequests.php:9
-#: application/views/qslprint/qslprint.php:7
+#: application/views/qslprint/qslprint.php:8
 #: application/views/qslprint/qsolist.php:88
 #: application/views/qslprint/qsolist.php:130
 #: application/views/qslprint/qsolist.php:214
@@ -12042,7 +12046,7 @@ msgid "Send not in log request"
 msgstr "Отправить запрос 'не в журнале'"
 
 #: application/views/oqrs/qsolist.php:11
-#: application/views/qslprint/qslprint.php:29
+#: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:13
 #: application/views/qso/edit_ajax.php:41 application/views/qso/index.php:57
 #: application/views/search/cqzones_result.php:16
@@ -12070,7 +12074,7 @@ msgid "Station"
 msgstr "Профиль QTH"
 
 #: application/views/oqrs/qsolist.php:76
-#: application/views/qslprint/qslprint.php:28
+#: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:15
 #: application/views/qslprint/qsolist.php:85
 #: application/views/qso/index.php:678
@@ -12417,7 +12421,15 @@ msgstr "Исходящие QSL карточки"
 msgid "Export Requested QSLs for Printing"
 msgstr "Экспортировать запрошенные QSL для печати"
 
-#: application/views/qslprint/index.php:29
+#: application/views/qslprint/index.php:31
+msgid "Show Band or Frequency:"
+msgstr ""
+
+#: application/views/qslprint/index.php:35
+msgid "Band & Frequency"
+msgstr ""
+
+#: application/views/qslprint/index.php:39
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
@@ -12425,7 +12437,7 @@ msgstr ""
 "Здесь вы можете экспортировать запрошенные QSL в файлы CSV или ADIF для "
 "печати и, при желании, пометить их как отправленные."
 
-#: application/views/qslprint/index.php:31
+#: application/views/qslprint/index.php:41
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
@@ -12433,12 +12445,12 @@ msgstr ""
 "Запрашиваемые QSL - это любые QSO со значением 'Запрошено' или 'В очереди' в "
 "поле 'QSL отправлено'."
 
-#: application/views/qslprint/index.php:32
-#: application/views/qslprint/qslprint.php:32
+#: application/views/qslprint/index.php:42
+#: application/views/qslprint/qslprint.php:34
 msgid "Previous QSL"
 msgstr "Предыдущая QSL"
 
-#: application/views/qslprint/index.php:32
+#: application/views/qslprint/index.php:42
 #, php-format
 msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
@@ -12447,61 +12459,77 @@ msgstr ""
 "Столбец %s показывает, сколько QSL было отправлено этой же станции ранее с "
 "теми же диапазоном и видом модуляции."
 
-#: application/views/qslprint/qslprint.php:31
+#: application/views/qslprint/qslprint.php:33
 #: application/views/qslprint/qsolist.php:16
 msgid "Send Method"
 msgstr "Способ отправки"
 
-#: application/views/qslprint/qslprint.php:33
+#: application/views/qslprint/qslprint.php:35
 msgid "Mark as sent"
 msgstr "Отметить отправленной"
 
-#: application/views/qslprint/qslprint.php:34
+#: application/views/qslprint/qslprint.php:36
 msgid "Remove"
 msgstr "Убрать"
 
-#: application/views/qslprint/qslprint.php:35
+#: application/views/qslprint/qslprint.php:37
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
 msgstr "Список QSO"
 
-#: application/views/qslprint/qslprint.php:71
+#: application/views/qslprint/qslprint.php:78
+msgid "Mark QSOs for a certain QSL Method:"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:86
+msgid "Mark all QSOs for the chosen QSL method"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:87
+msgid "Unmark every QSO"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:92
+msgid "Update QSOs"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:95
 msgid "Mark selected QSOs as sent"
 msgstr "Отметить выбранные QSO как отправленные"
 
-#: application/views/qslprint/qslprint.php:72
+#: application/views/qslprint/qslprint.php:96
 msgid "Remove selected QSOs from the queue"
 msgstr "Убрать выбранные QSO из очереди"
 
-#: application/views/qslprint/qslprint.php:73
+#: application/views/qslprint/qslprint.php:97
 msgid "Export selected QSOs to ADIF-file"
 msgstr "Экспортировать выбранные QSO в файл ADIF"
 
-#: application/views/qslprint/qslprint.php:75
+#: application/views/qslprint/qslprint.php:102
 msgid "Export CSV-file"
 msgstr "Экспортировать в CSV-файл"
 
-#: application/views/qslprint/qslprint.php:75
+#: application/views/qslprint/qslprint.php:102
 msgid "Export requested QSLs to CSV-file"
 msgstr "Экспорт выбранных QSL в CSV-файл"
 
-#: application/views/qslprint/qslprint.php:77
+#: application/views/qslprint/qslprint.php:103
 msgid "Export ADIF"
 msgstr "Экспортировать в ADIF"
 
-#: application/views/qslprint/qslprint.php:77
+#: application/views/qslprint/qslprint.php:103
 msgid "Export requested QSLs to ADIF-file"
 msgstr "Экспорт выбранных QSL в ADIF-файл"
 
-#: application/views/qslprint/qslprint.php:79
+#: application/views/qslprint/qslprint.php:104
 msgid "Mark QSLs as printed"
 msgstr "Отметить, что QSL напечатаны"
 
-#: application/views/qslprint/qslprint.php:79
+#: application/views/qslprint/qslprint.php:104
 msgid "Mark requested QSLs as sent"
 msgstr "Отметить, что запрошенные QSL отправлены"
 
-#: application/views/qslprint/qslprint.php:83
+#: application/views/qslprint/qslprint.php:109
 msgid "No QSLs to print were found!"
 msgstr "QSL для печати не найдены!"
 
