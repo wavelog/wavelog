@@ -97,12 +97,15 @@ function addQsoToPrintQueue(id) {
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(2)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(3)").text()+'</td>';
 					if (freq_or_band === 'band') {
-						line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
+						line += '<td class=\'col-band\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
+						line += '<td class=\'col-freq\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
+
 					} else if (freq_or_band === 'frequency') {
-						line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
+						line += '<td class=\'col-band\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
+						line += '<td class=\'col-freq\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
 					} else {
-						line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
-						line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
+						line += '<td class=\'col-band\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
+						line += '<td class=\'col-freq\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
 					}
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(6)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(7)").text()+'</td>';
