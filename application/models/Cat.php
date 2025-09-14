@@ -27,6 +27,11 @@
 				'timestamp' => $timestamp,
 			);
 
+			// Handle callback URL if provided
+			if (isset($result['cat_url']) && !empty($result['cat_url'])) {
+				$data['cat_url'] = $result['cat_url'];
+			}
+
 			if ( (isset($result['power'])) && ($result['power'] != "NULL") && ($result['power'] != '') && (is_numeric($result['power']))) {
 				$data['power'] = $result['power'];
 			} else {
