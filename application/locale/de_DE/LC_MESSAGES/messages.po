@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-13 19:51+0000\n"
+"POT-Creation-Date: 2025-09-14 05:03+0000\n"
 "PO-Revision-Date: 2025-09-08 16:24+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -4342,7 +4342,7 @@ msgid "CBR Import"
 msgstr "CBR Import"
 
 #: application/views/adif/import.php:73 application/views/adif/import.php:379
-#: application/views/adif/import.php:399 application/views/api/index.php:22
+#: application/views/adif/import.php:400 application/views/api/index.php:22
 #: application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
@@ -4391,7 +4391,7 @@ msgstr "ADIF-Datei auswählen"
 msgid "Add QSOs to Contest"
 msgstr "QSOs zu Contest hinzufügen"
 
-#: application/views/adif/import.php:99 application/views/adif/import.php:406
+#: application/views/adif/import.php:99 application/views/adif/import.php:407
 #: application/views/simplefle/index.php:86
 msgid "No Contest"
 msgstr "Kein Contest"
@@ -4499,7 +4499,7 @@ msgid "Toggle all checkboxes"
 msgstr "Alles auswählen"
 
 #: application/views/adif/import.php:221 application/views/adif/import.php:364
-#: application/views/adif/import.php:383 application/views/adif/import.php:421
+#: application/views/adif/import.php:384 application/views/adif/import.php:422
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
@@ -4638,7 +4638,14 @@ msgstr ""
 "Falls nicht ausgewählt, wird eine Info über QSOs angezeigt, welche in "
 "Wavelog nicht gefunden werden konnten."
 
-#: application/views/adif/import.php:398
+#: application/views/adif/import.php:380
+#, php-format
+msgid ""
+"An example for a tool to export the POTA hunter log in ADIF format is %s "
+"made by AF0G and available on GitHub."
+msgstr ""
+
+#: application/views/adif/import.php:399
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4652,14 +4659,14 @@ msgstr ""
 "das korrigieren möchtest, kannst du die Cabrillo-Datei, die diese Software "
 "ebenfalls bereitstellt, importieren, um diese Daten in Wavelog zu korrigeren."
 
-#: application/views/adif/import.php:398
+#: application/views/adif/import.php:399
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:137
 msgid "Information"
 msgstr "Information"
 
-#: application/views/adif/import.php:399
+#: application/views/adif/import.php:400
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4672,15 +4679,15 @@ msgstr ""
 "auch aus der CBR-Datei, die du hochladen möchtest, verwendet, um die QSOs "
 "abzugleichen und nur relevante Daten zu korrigieren."
 
-#: application/views/adif/import.php:404
+#: application/views/adif/import.php:405
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Contest-Name, nur wenn Contest-ID in der CBR-Datei unterschiedlich ist"
 
-#: application/views/adif/import.php:404
+#: application/views/adif/import.php:405
 msgid "Optional"
 msgstr "Optional"
 
-#: application/views/adif/import.php:414
+#: application/views/adif/import.php:415
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
@@ -4688,7 +4695,7 @@ msgstr ""
 "Eine Seriennummer ist IMMER Teil des Datenaustauschs für beide Parteien in "
 "diesem Wettbewerb."
 
-#: application/views/adif/import.php:416
+#: application/views/adif/import.php:417
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4696,7 +4703,7 @@ msgstr ""
 "Wenn du, oder dein QSO-Partner nur manchmal Seriennummern austauscht, lass "
 "hier bitte unausgewählt."
 
-#: application/views/adif/import.php:417
+#: application/views/adif/import.php:418
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
