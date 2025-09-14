@@ -4812,7 +4812,7 @@ class Logbook_model extends CI_Model {
 
 		if ($darc_dok != '') {
 		$bindings=[];
-			$sql="select COL_PRIMARY_KEY, COL_DARC_DOK from ".$this->config->item('table_name')." 
+			$sql="select COL_PRIMARY_KEY, COL_DARC_DOK, COL_DCL_QSL_RCVD from ".$this->config->item('table_name')." 
 			where col_call=? and col_band=? and col_mode=? and station_id in ? 
 			AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE)";
 			$bindings[]=$call;	
@@ -4829,18 +4829,23 @@ class Logbook_model extends CI_Model {
 					return array(2, $result['message'] = "<tr><td>" . date($custom_date_format, strtotime($record['qso_date'])) . "</td><td>" . date('H:i', strtotime($record['time_on'])) . "</td><td>" . str_replace('0', 'Ø', $call) . "</td><td>" . $band . "</td><td>" . $mode . "</td><td></td><td>" . (preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/' . $darc_dok . '" target="_blank">' . $darc_dok . '</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://' . $darc_dok . '.vfdb.org" target="_blank">' . $darc_dok . '</a>' : $darc_dok)) . "</td><td>" . __("QSO could not be matched") . "</td></tr>");
 				}
 			} else {
+				$dcl_recvd='';
 				$dcl_qsl_status = '';
+				// Ref https://confluence.darc.de/pages/viewpage.action?pageId=21037270 for meaning of cmnoiwx
 				switch ($record['app_dcl_status']) {
 					case 'c':
 						$dcl_qsl_status = __("confirmed by LoTW/Clublog/eQSL/Contest");
+						$dcl_recvd='Y';
 						break;
 					case 'm':
 					case 'n':
 					case 'o':
 						$dcl_qsl_status = __("confirmed by award manager");
+						$dcl_recvd='Y';
 						break;
 					case 'i':
 						$dcl_qsl_status = __("confirmed by cross-check of DCL data");
+						$dcl_recvd='Y';
 						break;
 					case 'w':
 						$dcl_qsl_status = __("confirmation pending");
@@ -4851,11 +4856,12 @@ class Logbook_model extends CI_Model {
 					default:
 						$dcl_qsl_status = __("unknown");
 				}
+				if ((($dcl_recvd ?? 'N') == 'Y') && (($check->row()->COL_DCL_QSL_RCVD ?? 'N') != 'Y')) {	// If DCL confirmed, but local not --> mark DCL as received
+					$this->mark_dcl_rcvd($check->row()->COL_PRIMARY_KEY);
+				}
 				if ($check->row()->COL_DARC_DOK != $darc_dok) {
-					$dcl_cnfm = array('c', 'm', 'n', 'o', 'i');
-					// Ref https://confluence.darc.de/pages/viewpage.action?pageId=21037270
 					if ($onlyConfirmed == '1') {
-						if (in_array($record['app_dcl_status'], $dcl_cnfm)) {
+						if (($dcl_recvd ?? 'N') == 'Y') {
 							if ($check->row()->COL_DARC_DOK == '' || $overwriteDok == '1') {
 								$this->set_dok($check->row()->COL_PRIMARY_KEY, $darc_dok);
 								return array(0, '');
@@ -4930,6 +4936,16 @@ class Logbook_model extends CI_Model {
 	function set_dok($key, $dok) {
 		$data = array(
 			'COL_DARC_DOK' => $dok,
+			'COL_DCL_QSL_RCVD ' => 'Y',
+		);
+
+		$this->db->where(array('COL_PRIMARY_KEY' => $key));
+		$this->db->update($this->config->item('table_name'), $data);
+		return;
+	}
+
+	function mark_dcl_rcvd($key) {
+		$data = array(
 			'COL_DCL_QSL_RCVD ' => 'Y',
 		);
 

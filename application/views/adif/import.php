@@ -377,6 +377,7 @@
                     <?php } ?>
 
                     <p><span class="badge text-bg-warning"><?= __("Important") ?></span> <?= ("This function can be used to import POTA references from POTA hunter log in ADIF format. It will only import references for existing QSOs. It will not import QSO data itself.") ?></p>
+                    <p><?= sprintf(__("An example for a tool to export the POTA hunter log in ADIF format is %s made by AF0G and available on GitHub."), '<a target="_blank" href="https://github.com/adamfast/pota-hunter-log-adif">'.'pota-hunter-log-adif'.'</a>'); ?></p>
                     <form class="form" action="<?php echo site_url('adif/pota'); ?>" method="post" enctype="multipart/form-data">
 
                         <input class="form-control w-auto mb-2 me-sm-2" type="file" name="userfile" size="20" />
