@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-14 05:03+0000\n"
+"POT-Creation-Date: 2025-09-14 10:05+0000\n"
 "PO-Revision-Date: 2025-09-08 10:40+0000\n"
 "Last-Translator: Luca <lucabennati1996@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -819,8 +819,8 @@ msgid "Edit Cronjob"
 msgstr "Editar trabajo de Cron"
 
 #: application/controllers/Cron.php:228 application/controllers/Cron.php:229
-#: application/views/cron/index.php:83 application/views/cron/index.php:85
-#: application/views/cron/index.php:87 application/views/debug/index.php:523
+#: application/views/cron/index.php:96 application/views/cron/index.php:98
+#: application/views/cron/index.php:100 application/views/debug/index.php:523
 #: application/views/debug/index.php:529 application/views/debug/index.php:534
 #: application/views/debug/index.php:539 application/views/debug/index.php:544
 #: application/views/debug/index.php:549 application/views/debug/index.php:554
@@ -832,19 +832,19 @@ msgstr "nunca"
 msgid "calculating..."
 msgstr "a calcular..."
 
-#: application/controllers/Cron.php:240 application/views/cron/index.php:70
+#: application/controllers/Cron.php:240 application/views/cron/index.php:83
 msgid "healthy"
 msgstr "saludable"
 
-#: application/controllers/Cron.php:242 application/views/cron/index.php:72
+#: application/controllers/Cron.php:242 application/views/cron/index.php:85
 msgid "failed"
 msgstr "fallado"
 
-#: application/controllers/Cron.php:244 application/views/cron/index.php:74
+#: application/controllers/Cron.php:244 application/views/cron/index.php:87
 msgid "pending"
 msgstr "pendiente"
 
-#: application/controllers/Cron.php:249 application/views/cron/index.php:79
+#: application/controllers/Cron.php:249 application/views/cron/index.php:92
 msgid "disabled"
 msgstr "deshabilitado"
 
@@ -871,7 +871,7 @@ msgstr ""
 "La última ejecución ocurrió hace más de %s minutos.%s¡Parece que tu "
 "Mastercron no está funcionando!%sDebería ejecutarse cada minuto (* * * * *)."
 
-#: application/controllers/Cron.php:300 application/views/cron/index.php:29
+#: application/controllers/Cron.php:300 application/views/cron/index.php:42
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "No funciona"
@@ -2257,7 +2257,7 @@ msgstr "Predeterminado (haz clic para soltar)"
 #: application/controllers/Stationsetup.php:401
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
 #: application/views/club/permissions.php:248
-#: application/views/contesting/add.php:59 application/views/cron/index.php:58
+#: application/views/contesting/add.php:59 application/views/cron/index.php:71
 #: application/views/interface_assets/footer.php:605
 #: application/views/interface_assets/footer.php:614
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
@@ -4819,7 +4819,7 @@ msgid "POTA REF in ADIF"
 msgstr ""
 
 #: application/views/adif/pota_success.php:36
-#: application/views/api/index.php:37 application/views/cron/index.php:54
+#: application/views/api/index.php:37 application/views/cron/index.php:67
 #: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:38
 #: application/views/mode/index.php:43
@@ -4900,7 +4900,7 @@ msgid "API URL"
 msgstr "URL de la API"
 
 #: application/views/api/index.php:19 application/views/api/index.php:54
-#: application/views/cron/index.php:22 application/views/debug/index.php:46
+#: application/views/cron/index.php:35 application/views/debug/index.php:46
 msgid "Copy to clipboard"
 msgstr "Copiar al portapapeles"
 
@@ -4941,7 +4941,7 @@ msgid "API Key"
 msgstr "Clave API"
 
 #: application/views/api/index.php:31 application/views/cron/edit.php:30
-#: application/views/cron/index.php:53
+#: application/views/cron/index.php:66
 #: application/views/search/stored_queries.php:8
 msgid "Description"
 msgstr "Descripción"
@@ -8096,7 +8096,7 @@ msgstr "Identificador"
 msgid "Enabled"
 msgstr "Activado"
 
-#: application/views/cron/edit.php:36 application/views/cron/index.php:55
+#: application/views/cron/edit.php:36 application/views/cron/index.php:68
 msgid "Intervall"
 msgstr "Intervalo"
 
@@ -8148,7 +8148,12 @@ msgstr "Introduce tu propia expresión Cron"
 msgid "How it works"
 msgstr "Cómo funciona"
 
-#: application/views/cron/index.php:15
+#: application/views/cron/index.php:21
+#, php-format
+msgid "For more information or help, take a look in the %s."
+msgstr ""
+
+#: application/views/cron/index.php:28
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
@@ -8156,7 +8161,7 @@ msgstr ""
 "El Administrador de Cron ayuda al administrador a gestionar trabajos cron "
 "sin necesidad de acceso a la CLI."
 
-#: application/views/cron/index.php:19
+#: application/views/cron/index.php:32
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
@@ -8164,41 +8169,41 @@ msgstr ""
 "Para ejecutar trabajos cron basados en los datos a continuación, elimina "
 "todos los trabajos cron antiguos y crea uno nuevo:"
 
-#: application/views/cron/index.php:29 application/views/cron/index.php:33
+#: application/views/cron/index.php:42 application/views/cron/index.php:46
 msgid "Status Master-Cron:"
 msgstr "Estado Master-Cron:"
 
-#: application/views/cron/index.php:33
+#: application/views/cron/index.php:46
 msgctxt "PHP Version"
 msgid "Min. Version is"
 msgstr "Versión mínima es"
 
-#: application/views/cron/index.php:33
+#: application/views/cron/index.php:46
 msgid "PHP Version not supported."
 msgstr "Versión de PHP no compatible."
 
-#: application/views/cron/index.php:43
+#: application/views/cron/index.php:56
 msgid "Cron List"
 msgstr "Lista de Cron"
 
-#: application/views/cron/index.php:52
+#: application/views/cron/index.php:65
 #: application/views/stationsetup/stationsetup.php:124
 msgid "ID"
 msgstr "ID"
 
-#: application/views/cron/index.php:56
+#: application/views/cron/index.php:69
 msgid "Last Run"
 msgstr "Último Run"
 
-#: application/views/cron/index.php:57
+#: application/views/cron/index.php:70
 msgid "Next Run"
 msgstr "Próximo Run"
 
-#: application/views/cron/index.php:102
+#: application/views/cron/index.php:115
 msgid "Your Mastercron isn't running."
 msgstr "Tu Mastercron no está funcionando."
 
-#: application/views/cron/index.php:103
+#: application/views/cron/index.php:116
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
@@ -8206,7 +8211,7 @@ msgstr ""
 "Copia el cron anterior a un servicio de cron externo o en el cron de tu "
 "servidor para usar este gestor de cron."
 
-#: application/views/cron/index.php:104
+#: application/views/cron/index.php:117
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -8214,7 +8219,7 @@ msgstr ""
 "En un servidor Linux básico con acceso a la terminal, utiliza este comando "
 "para editar tus crons:"
 
-#: application/views/cron/index.php:111
+#: application/views/cron/index.php:124
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
