@@ -655,7 +655,7 @@ class API extends CI_Controller {
 
 		// Handle optional cat_url
 		if (isset($obj['cat_url']) && !empty($obj['cat_url'])) {
-			$cat_url = $this->sanitize_callback_url($obj['cat_url']);
+			$cat_url = $this->sanitize_cat_url($obj['cat_url']);
 			if ($cat_url !== false) {
 				$obj['cat_url'] = $cat_url;
 			}
@@ -1138,7 +1138,7 @@ class API extends CI_Controller {
 	 * @param string $url The URL to sanitize
 	 * @return string|false Returns sanitized URL or false if invalid
 	 */
-	private function sanitize_callback_url($url) {
+	private function sanitize_cat_url($url) {
 		// Basic sanitization
 		$url = trim($url);
 		
