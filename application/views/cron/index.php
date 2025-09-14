@@ -10,6 +10,19 @@
         </div>
         <div class="card-body">
             <div class="row">
+				<div class="alert border-start border border-primary d-flex align-items-start" role="alert">
+					<div class="me-2">
+						<i class="bi bi-info-square-fill"></i>
+					</div>
+					<div>
+						<strong class="d-block"><i class="fas fa-info-circle me-2"></i> Important</strong>
+
+						<div>
+							<?= sprintf(__("For more information or help, take a look in the %s."), '<a target="_blank" class="text-primary fw-bold text-decoration-underline" href="https://github.com/wavelog/wavelog/wiki/Recommended-Cron-Jobs-and-Cronmanager">'.'WIKI'.'</a>'); ?>
+						</div>
+					</div>
+				</div>
+
                 <div class="col-auto">
                     <p class="card-text">
                         <?= __("The Cron Manager assists the administrator in managing cron jobs without requiring CLI access."); ?>
