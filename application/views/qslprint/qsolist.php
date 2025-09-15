@@ -42,7 +42,7 @@ if ($qsos->result() != NULL) {
 		echo '<td style=\'text-align: center\'>'; $timestamp = strtotime($qsl->COL_TIME_ON); echo date('H:i', $timestamp); echo '</td>';
 		echo '<td style=\'text-align: center\'>'; echo $qsl->COL_SUBMODE==null?$qsl->COL_MODE:$qsl->COL_SUBMODE; echo '</td>';
 		echo '<td style=\'text-align: center\'>'; if($qsl->COL_SAT_NAME != null) { echo $qsl->COL_SAT_NAME; } else { echo strtolower($qsl->COL_BAND ?? ""); }; echo '</td>';
-		echo '<td style=\'text-align: center\'>' . $this->frequency->qrg_conversion($qsl->COL_FREQ_RX ?? $qsl->COL_FREQ) . '</td>';
+		echo '<td style=\'text-align: center\'>' . $this->frequency->qrg_conversion($qsl->COL_FREQ ?? '') . ($qsl->COL_FREQ_RX ? ' / '.$this->frequency->qrg_conversion($qsl->COL_FREQ_RX ?? '') : '') .'</td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_SENT . '</td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_RCVD . '</td>';
 		echo '<td style=\'text-align: center\'><span class="badge text-bg-light">' . $qsl->station_callsign . '</span></td>';
