@@ -1,4 +1,5 @@
 <div class="container" id="edit_band_dialog">
+	<b class="badge text-bg-danger"><?= __("WARNING")."</b> ".__("Changes made here are instance-wide and will affect EVERY User. You see this, because you're an instance-admin"); ?></p>
 	<form>
 
 		<input type="hidden" name="id" value="<?php echo $my_band->id; ?>">

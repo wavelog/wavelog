@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-14 10:05+0000\n"
+"POT-Creation-Date: 2025-09-15 07:21+0000\n"
 "PO-Revision-Date: 2025-09-08 10:40+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1281,8 +1281,8 @@ msgstr "Журнал"
 #: application/views/logbookadvanced/useroptions.php:74
 #: application/views/oqrs/qsolist.php:12
 #: application/views/qslprint/qslprint.php:30
-#: application/views/qslprint/qsolist.php:15
-#: application/views/qslprint/qsolist.php:17
+#: application/views/qslprint/qsolist.php:16
+#: application/views/qslprint/qsolist.php:18
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:75
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
 #: application/views/user/edit.php:774
@@ -1312,9 +1312,9 @@ msgstr "QSL"
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
 #: application/views/oqrs/qsolist.php:175
-#: application/views/qslprint/qsolist.php:22
-#: application/views/qslprint/qsolist.php:169
-#: application/views/qslprint/qsolist.php:184
+#: application/views/qslprint/qsolist.php:23
+#: application/views/qslprint/qsolist.php:171
+#: application/views/qslprint/qsolist.php:186
 #: application/views/qso/edit_ajax.php:425
 #: application/views/satellite/index.php:56
 #: application/views/satellite/satinfo.php:13
@@ -1348,9 +1348,9 @@ msgstr "LoTW"
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:144
-#: application/views/qslprint/qsolist.php:19
-#: application/views/qslprint/qsolist.php:140
-#: application/views/qslprint/qsolist.php:153
+#: application/views/qslprint/qsolist.php:20
+#: application/views/qslprint/qsolist.php:142
+#: application/views/qslprint/qsolist.php:155
 #: application/views/qso/edit_ajax.php:422
 #: application/views/search/search_result_ajax.php:263
 #: application/views/search/search_result_ajax.php:276
@@ -1460,7 +1460,7 @@ msgstr "Вид модуляции"
 #: application/views/qslcard/searchresult.php:61
 #: application/views/qslcard/searchresult.php:77
 #: application/views/qslprint/qslprint.php:28
-#: application/views/qslprint/qsolist.php:11
+#: application/views/qslprint/qsolist.php:12
 #: application/views/qso/components/previous_contacts.php:78
 #: application/views/qso/edit_ajax.php:143 application/views/qso/index.php:215
 #: application/views/search/search_result_ajax.php:5
@@ -1489,7 +1489,7 @@ msgstr "RST (TX)"
 #: application/views/qslcard/searchresult.php:62
 #: application/views/qslcard/searchresult.php:78
 #: application/views/qslprint/qslprint.php:29
-#: application/views/qslprint/qsolist.php:12
+#: application/views/qslprint/qsolist.php:13
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:148 application/views/qso/index.php:220
 #: application/views/search/search_result_ajax.php:6
@@ -1681,7 +1681,7 @@ msgstr "Дистанция"
 #: application/views/awards/was/index.php:74
 #: application/views/awards/wwff/index.php:36
 #: application/views/bandmap/index.php:45 application/views/bandmap/list.php:96
-#: application/views/bands/create.php:24 application/views/bands/edit.php:6
+#: application/views/bands/create.php:24 application/views/bands/edit.php:7
 #: application/views/bands/index.php:47 application/views/callstats/index.php:7
 #: application/views/contesting/index.php:131
 #: application/views/contesting/index.php:263
@@ -1750,6 +1750,7 @@ msgstr "Диапазон"
 #: application/views/qslcard/searchresult.php:86
 #: application/views/qslprint/index.php:34
 #: application/views/qslprint/qslprint.php:27
+#: application/views/qslprint/qsolist.php:11
 #: application/views/qso/components/previous_contacts.php:89
 #: application/views/qso/edit_ajax.php:73 application/views/qso/index.php:203
 #: application/views/search/search_result_ajax.php:16
@@ -4828,7 +4829,7 @@ msgid "Simple name to describe what you use this API for."
 msgstr "Простое название, описывающее назначение данного ключа API."
 
 #: application/views/api/description.php:33
-#: application/views/bands/create.php:49 application/views/bands/edit.php:31
+#: application/views/bands/create.php:49 application/views/bands/edit.php:32
 #: application/views/club/permissions.php:204
 #: application/views/club/permissions.php:297
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
@@ -6116,6 +6117,10 @@ msgstr "Город"
 #: application/views/awards/jcc/index.php:188
 #: application/views/dashboard/index.php:429
 #: application/views/distances/index.php:23
+#: application/views/qslprint/qslprint.php:57
+#: application/views/qslprint/qslprint.php:58
+#: application/views/qslprint/qsolist.php:44
+#: application/views/qslprint/qsolist.php:45
 msgid "SAT"
 msgstr "Спутники"
 
@@ -6848,45 +6853,56 @@ msgstr "Частота \"До\" (Гц)"
 msgid "Add a bandedge"
 msgstr "Добавить границу диапазона"
 
-#: application/views/bands/create.php:26 application/views/bands/edit.php:8
+#: application/views/bands/create.php:26 application/views/bands/edit.php:9
 msgid "Name of Band (E.g. 20m)"
 msgstr "Название диапазона (к прмиеру, 20м)"
 
-#: application/views/bands/create.php:29 application/views/bands/edit.php:11
+#: application/views/bands/create.php:29 application/views/bands/edit.php:12
 #: application/views/bands/index.php:65
 msgid "Bandgroup"
 msgstr "Группа диапазонов"
 
-#: application/views/bands/create.php:31 application/views/bands/edit.php:13
+#: application/views/bands/create.php:31 application/views/bands/edit.php:14
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
 msgstr "Название группы диапазонов (к примеру, hf, vhf, uhf, shf)"
 
-#: application/views/bands/create.php:34 application/views/bands/edit.php:16
+#: application/views/bands/create.php:34 application/views/bands/edit.php:17
 #: application/views/bands/index.php:66
 msgid "SSB QRG"
 msgstr "SSB QRG"
 
-#: application/views/bands/create.php:36 application/views/bands/edit.php:18
+#: application/views/bands/create.php:36 application/views/bands/edit.php:19
 msgid "Frequency for SSB QRG in band (must be in Hz)"
 msgstr "Частота SSB QRG в диапазоне (в Гц)"
 
-#: application/views/bands/create.php:39 application/views/bands/edit.php:21
+#: application/views/bands/create.php:39 application/views/bands/edit.php:22
 #: application/views/bands/index.php:67
 msgid "DATA QRG"
 msgstr "DATA QRG"
 
-#: application/views/bands/create.php:41 application/views/bands/edit.php:23
+#: application/views/bands/create.php:41 application/views/bands/edit.php:24
 msgid "Frequency for DATA QRG in band (must be in Hz)"
 msgstr "Частота DATA QRG в диапазоне (в Гц)"
 
-#: application/views/bands/create.php:44 application/views/bands/edit.php:26
+#: application/views/bands/create.php:44 application/views/bands/edit.php:27
 #: application/views/bands/index.php:68
 msgid "CW QRG"
 msgstr "CW QRG"
 
-#: application/views/bands/create.php:46 application/views/bands/edit.php:28
+#: application/views/bands/create.php:46 application/views/bands/edit.php:29
 msgid "Frequency for CW QRG in band (must be in Hz)"
 msgstr "Частота CW QRG в диапазоне (в Гц)"
+
+#: application/views/bands/edit.php:2
+msgid ""
+"Changes made here are instance-wide and will affect EVERY User. You see "
+"this, because you're an instance-admin"
+msgstr ""
+
+#: application/views/bands/edit.php:2 application/views/update/index.php:35
+#: application/views/update/index.php:59
+msgid "WARNING"
+msgstr "ПРЕДУПРЕЖДЕНИЕ"
 
 #: application/views/bands/index.php:38
 msgid ""
@@ -7612,7 +7628,7 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:186
 #: application/views/qrz/export.php:39
 #: application/views/qslprint/qslprint.php:32
-#: application/views/qslprint/qsolist.php:14
+#: application/views/qslprint/qsolist.php:15
 #: application/views/webadif/export.php:41
 msgid "Profile name"
 msgstr "Название профиля"
@@ -8340,9 +8356,9 @@ msgstr "Необходимо"
 #: application/views/dashboard/index.php:412
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
-#: application/views/qslprint/qsolist.php:60
-#: application/views/qslprint/qsolist.php:140
-#: application/views/qslprint/qsolist.php:169
+#: application/views/qslprint/qsolist.php:62
+#: application/views/qslprint/qsolist.php:142
+#: application/views/qslprint/qsolist.php:171
 #: application/views/qso/edit_ajax.php:440
 #: application/views/qso/edit_ajax.php:501
 #: application/views/qso/edit_ajax.php:546
@@ -8377,9 +8393,9 @@ msgstr "Отправлено"
 #: application/views/dashboard/index.php:418
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
-#: application/views/qslprint/qsolist.php:102
-#: application/views/qslprint/qsolist.php:153
-#: application/views/qslprint/qsolist.php:184
+#: application/views/qslprint/qsolist.php:104
+#: application/views/qslprint/qsolist.php:155
+#: application/views/qslprint/qsolist.php:186
 #: application/views/qso/edit_ajax.php:473
 #: application/views/qso/edit_ajax.php:514
 #: application/views/qso/edit_ajax.php:559
@@ -8419,8 +8435,8 @@ msgstr "Принято"
 #: application/views/logbookadvanced/index.php:507
 #: application/views/logbookadvanced/index.php:518
 #: application/views/oqrs/qsolist.php:57 application/views/oqrs/qsolist.php:99
-#: application/views/qslprint/qsolist.php:66
-#: application/views/qslprint/qsolist.php:108
+#: application/views/qslprint/qsolist.php:68
+#: application/views/qslprint/qsolist.php:110
 #: application/views/qso/edit_ajax.php:445
 #: application/views/qso/edit_ajax.php:478
 #: application/views/qso/edit_ajax.php:506
@@ -10660,9 +10676,9 @@ msgstr "Верифицировано"
 #: application/views/oqrs/qsolist.php:73 application/views/oqrs/qsolist.php:115
 #: application/views/oqrs/showrequests.php:8
 #: application/views/qslprint/qslprint.php:7
-#: application/views/qslprint/qsolist.php:82
-#: application/views/qslprint/qsolist.php:124
-#: application/views/qslprint/qsolist.php:213
+#: application/views/qslprint/qsolist.php:84
+#: application/views/qslprint/qsolist.php:126
+#: application/views/qslprint/qsolist.php:215
 #: application/views/qso/edit_ajax.php:457
 #: application/views/qso/edit_ajax.php:490 application/views/qso/index.php:669
 #: application/views/search/search_result_ajax.php:205
@@ -10681,9 +10697,9 @@ msgstr "Напрямую"
 #: application/views/oqrs/request_grouped.php:48
 #: application/views/oqrs/showrequests.php:7
 #: application/views/qslprint/qslprint.php:6
-#: application/views/qslprint/qsolist.php:79
-#: application/views/qslprint/qsolist.php:121
-#: application/views/qslprint/qsolist.php:212
+#: application/views/qslprint/qsolist.php:81
+#: application/views/qslprint/qsolist.php:123
+#: application/views/qslprint/qsolist.php:214
 #: application/views/qso/edit_ajax.php:458
 #: application/views/qso/edit_ajax.php:491 application/views/qso/index.php:670
 #: application/views/search/search_result_ajax.php:202
@@ -10700,9 +10716,9 @@ msgstr "Бюро"
 #: application/views/oqrs/qsolist.php:79 application/views/oqrs/qsolist.php:121
 #: application/views/oqrs/showrequests.php:9
 #: application/views/qslprint/qslprint.php:8
-#: application/views/qslprint/qsolist.php:88
-#: application/views/qslprint/qsolist.php:130
-#: application/views/qslprint/qsolist.php:214
+#: application/views/qslprint/qsolist.php:90
+#: application/views/qslprint/qsolist.php:132
+#: application/views/qslprint/qsolist.php:216
 #: application/views/qso/edit_ajax.php:459
 #: application/views/qso/edit_ajax.php:492 application/views/qso/index.php:671
 #: application/views/search/search_result_ajax.php:211
@@ -10717,7 +10733,7 @@ msgstr "Электронное"
 #: application/views/logbookadvanced/index.php:444
 #: application/views/logbookadvanced/index.php:454
 #: application/views/oqrs/qsolist.php:118
-#: application/views/qslprint/qsolist.php:127
+#: application/views/qslprint/qsolist.php:129
 #: application/views/qso/edit_ajax.php:460
 #: application/views/qso/edit_ajax.php:493 application/views/qso/index.php:672
 #: application/views/search/search_result_ajax.php:250
@@ -10925,8 +10941,8 @@ msgstr "QSL отправлено"
 #: application/views/logbookadvanced/index.php:486
 #: application/views/logbookadvanced/index.php:508
 #: application/views/oqrs/qsolist.php:54 application/views/oqrs/qsolist.php:96
-#: application/views/qslprint/qsolist.php:63
-#: application/views/qslprint/qsolist.php:105
+#: application/views/qslprint/qsolist.php:65
+#: application/views/qslprint/qsolist.php:107
 #: application/views/qso/edit_ajax.php:446
 #: application/views/qso/edit_ajax.php:507
 #: application/views/qso/edit_ajax.php:552
@@ -10954,10 +10970,10 @@ msgstr "В очереди"
 #: application/views/oqrs/qsolist.php:60 application/views/oqrs/qsolist.php:102
 #: application/views/oqrs/qsolist.php:167
 #: application/views/oqrs/qsolist.php:182
-#: application/views/qslprint/qsolist.php:69
-#: application/views/qslprint/qsolist.php:111
-#: application/views/qslprint/qsolist.php:176
-#: application/views/qslprint/qsolist.php:191
+#: application/views/qslprint/qsolist.php:71
+#: application/views/qslprint/qsolist.php:113
+#: application/views/qslprint/qsolist.php:178
+#: application/views/qslprint/qsolist.php:193
 #: application/views/qso/edit_ajax.php:447
 #: application/views/qso/edit_ajax.php:479
 #: application/views/qso/edit_ajax.php:508
@@ -12059,7 +12075,7 @@ msgstr "Отправить запрос 'не в журнале'"
 
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:31
-#: application/views/qslprint/qsolist.php:13
+#: application/views/qslprint/qsolist.php:14
 #: application/views/qso/edit_ajax.php:41 application/views/qso/index.php:57
 #: application/views/search/cqzones_result.php:16
 #: application/views/search/ituzones_result.php:16
@@ -12087,8 +12103,8 @@ msgstr "Профиль QTH"
 
 #: application/views/oqrs/qsolist.php:76
 #: application/views/qslprint/qslprint.php:30
-#: application/views/qslprint/qsolist.php:15
-#: application/views/qslprint/qsolist.php:85
+#: application/views/qslprint/qsolist.php:16
+#: application/views/qslprint/qsolist.php:87
 #: application/views/qso/index.php:678
 #: application/views/search/search_result_ajax.php:208
 #: application/views/view_log/partial/log_ajax.php:310
@@ -12102,7 +12118,7 @@ msgstr "Связей не найдено. Похоже, вы не были ак�
 
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
-#: application/views/qslprint/qsolist.php:198
+#: application/views/qslprint/qsolist.php:200
 msgid "Add to print queue"
 msgstr "Добавить в очередь печати"
 
@@ -12472,7 +12488,7 @@ msgstr ""
 "теми же диапазоном и видом модуляции."
 
 #: application/views/qslprint/qslprint.php:33
-#: application/views/qslprint/qsolist.php:16
+#: application/views/qslprint/qsolist.php:17
 msgid "Send Method"
 msgstr "Способ отправки"
 
@@ -12545,7 +12561,7 @@ msgstr "Отметить, что запрошенные QSL отправлены
 msgid "No QSLs to print were found!"
 msgstr "QSL для печати не найдены!"
 
-#: application/views/qslprint/qsolist.php:207
+#: application/views/qslprint/qsolist.php:209
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
@@ -14885,10 +14901,6 @@ msgstr ""
 "Это влияет на ВСЕ QSO любого пользователя на этом экземпляре. Функция "
 "устарела и будет удалена в будущей версии Wavelog. В качестве замены "
 "используйте \"Расширенный вид журнала\"!"
-
-#: application/views/update/index.php:35 application/views/update/index.php:59
-msgid "WARNING"
-msgstr "ПРЕДУПРЕЖДЕНИЕ"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
