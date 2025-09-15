@@ -653,6 +653,13 @@ class API extends CI_Controller {
 				break;
 		}
 
+		// Handle optional cat_url
+		if (isset($obj['cat_url']) && !empty($obj['cat_url'])) {
+			$cat_url = $this->sanitize_cat_url($obj['cat_url']);
+			if ($cat_url !== false) {
+				$obj['cat_url'] = $cat_url;
+			}
+		}
 
 		// Store Result to Database
 		$this->cat->update($obj, $user_id, $operator);
@@ -1091,6 +1098,30 @@ class API extends CI_Controller {
 		// Return result
 		http_response_code(200);
 		echo json_encode(['status' => 'successful', 'message' => 'Export successful', 'statistics' => $data]);
+	}
+
+	/**
+	 * Sanitize and validate callback URL
+	 * @param string $url The URL to sanitize
+	 * @return string|false Returns sanitized URL or false if invalid
+	 */
+	private function sanitize_cat_url($url) {
+		// Basic sanitization
+		$url = trim($url);
+		
+		// Check if URL is valid and uses http or https
+		if (!filter_var($url, FILTER_VALIDATE_URL) || 
+			(!preg_match('/^https?:\/\//', $url))) {
+			return false;
+		}
+		
+		// Remove trailing slashes
+		$url = rtrim($url, '/');
+		
+		// Additional XSS cleaning
+		$url = $this->security->xss_clean($url);
+		
+		return $url;
 	}
 
 }
