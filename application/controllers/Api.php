@@ -880,16 +880,16 @@ class API extends CI_Controller {
 	function lookup() {
 		// This API provides NO information about previous QSOs. It just derivates DXCC, Lat, Long. It is used by the DXClusterAPI
 		$raw_input = json_decode(file_get_contents("php://input"), true);
-		$user_id='';
+		$user_id = '';
 		$this->load->model('user_model');
 		if (!( $this->user_model->authorize($this->config->item('auth_mode') ))) {				// User not authorized?
-			$no_auth=true;
+			$no_auth = true;
 			$this->load->model('api_model');
 			if (!( ((isset($raw_input['key'])) && ($this->api_model->authorize($raw_input['key']) > 0) ))) {			// Key invalid?
-				$no_auth=true;
+				$no_auth = true;
 			} else {
-				$no_auth=false;
-				$user_id=$this->api_model->key_userid($raw_input['key']);
+				$no_auth = false;
+				$user_id = $this->api_model->key_userid($raw_input['key']);
 			}
 			if ($no_auth) {
 				http_response_code(401);
@@ -897,15 +897,14 @@ class API extends CI_Controller {
 				die();
 			}
 		} else {
-			$user_id=$this->session->userdata('user_id');
+			$user_id = $this->session->userdata('user_id');
 		}
 
 		$this->load->model('stations');
-		$station_ids=$this->stations->all_station_ids_of_user($user_id);
+		$station_ids = $this->stations->all_station_ids_of_user($user_id);
 
 		$lookup_callsign = strtoupper($raw_input['callsign'] ?? '');
 		if ($lookup_callsign ?? '' != '') {
-
 
 			$this->load->model("logbook_model");
 			$date = date("Y-m-d");
@@ -938,44 +937,12 @@ class API extends CI_Controller {
 
 			$callsign_dxcc_lookup = $this->logbook_model->dxcc_lookup($lookup_callsign, $date);
 
-			$last_slash_pos = strrpos($lookup_callsign, '/');
-
-			if(isset($last_slash_pos) && $last_slash_pos > 4) {
-				$suffix_slash = $last_slash_pos === false ? $lookup_callsign : substr($lookup_callsign, $last_slash_pos + 1);
-				switch ($suffix_slash) {
-				case "P":
-					$suffix_slash_item = "Portable";
-					break;
-				case "M":
-					$suffix_slash_item = "Mobile";
-				case "MM":
-					$suffix_slash_item =  "Maritime Mobile";
-					break;
-				default:
-					// If its not one of the above suffix slashes its likely dxcc
-					$ans2 = $this->logbook_model->dxcc_lookup($suffix_slash, $date);
-					$suffix_slash_item = null;
-				}
-
-				$return['suffix_slash'] = $suffix_slash_item;
-			}
-
-			// If the final slash is a DXCC then find it!
-			if (isset($ans2['call'])) {
-				$return['dxcc_id'] = $ans2['adif'];
-				$return['dxcc'] = $ans2['entity'];
-				$return['dxcc_lat'] = $ans2['lat'];
-				$return['dxcc_long'] = $ans2['long'];
-				$return['dxcc_cqz'] = $ans2['cqz'];
-				$return['cont'] = $ans2['cont'];
-			} else {
-				$return['dxcc_id'] = $callsign_dxcc_lookup['adif'] ?? '';
-				$return['dxcc'] = $callsign_dxcc_lookup['entity'] ?? '';
-				$return['dxcc_lat'] = $callsign_dxcc_lookup['lat'] ?? '';
-				$return['dxcc_long'] = $callsign_dxcc_lookup['long'] ?? '';
-				$return['dxcc_cqz'] = $callsign_dxcc_lookup['cqz'] ?? '';
-				$return['cont'] = $callsign_dxcc_lookup['cont'] ?? '';
-			}
+			$return['dxcc_id'] = $callsign_dxcc_lookup['adif'] ?? '';
+			$return['dxcc'] = $callsign_dxcc_lookup['entity'] ?? '';
+			$return['dxcc_lat'] = $callsign_dxcc_lookup['lat'] ?? '';
+			$return['dxcc_long'] = $callsign_dxcc_lookup['long'] ?? '';
+			$return['dxcc_cqz'] = $callsign_dxcc_lookup['cqz'] ?? '';
+			$return['cont'] = $callsign_dxcc_lookup['cont'] ?? '';
 
 			/*
 			 *	Query Data of API-Key-Owner for further informations
