@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-14 10:05+0000\n"
+"POT-Creation-Date: 2025-09-15 07:14+0000\n"
 "PO-Revision-Date: 2025-09-06 12:34+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -1679,7 +1679,7 @@ msgstr "Distância"
 #: application/views/awards/was/index.php:74
 #: application/views/awards/wwff/index.php:36
 #: application/views/bandmap/index.php:45 application/views/bandmap/list.php:96
-#: application/views/bands/create.php:24 application/views/bands/edit.php:6
+#: application/views/bands/create.php:24 application/views/bands/edit.php:7
 #: application/views/bands/index.php:47 application/views/callstats/index.php:7
 #: application/views/contesting/index.php:131
 #: application/views/contesting/index.php:263
@@ -4838,7 +4838,7 @@ msgid "Simple name to describe what you use this API for."
 msgstr "Nome simples para descrever a utilização desta API."
 
 #: application/views/api/description.php:33
-#: application/views/bands/create.php:49 application/views/bands/edit.php:31
+#: application/views/bands/create.php:49 application/views/bands/edit.php:32
 #: application/views/club/permissions.php:204
 #: application/views/club/permissions.php:297
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
@@ -6869,45 +6869,56 @@ msgstr "Frequência para (Hz)"
 msgid "Add a bandedge"
 msgstr "Adiciona um limite de banda"
 
-#: application/views/bands/create.php:26 application/views/bands/edit.php:8
+#: application/views/bands/create.php:26 application/views/bands/edit.php:9
 msgid "Name of Band (E.g. 20m)"
 msgstr "Nome da Banda (Ex.: 20m)"
 
-#: application/views/bands/create.php:29 application/views/bands/edit.php:11
+#: application/views/bands/create.php:29 application/views/bands/edit.php:12
 #: application/views/bands/index.php:65
 msgid "Bandgroup"
 msgstr "Grupo de bandas"
 
-#: application/views/bands/create.php:31 application/views/bands/edit.php:13
+#: application/views/bands/create.php:31 application/views/bands/edit.php:14
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
 msgstr "Nome do grupo de bandas (Ex.: HF, VHF, UHF, SHF)"
 
-#: application/views/bands/create.php:34 application/views/bands/edit.php:16
+#: application/views/bands/create.php:34 application/views/bands/edit.php:17
 #: application/views/bands/index.php:66
 msgid "SSB QRG"
 msgstr "QRG SSB"
 
-#: application/views/bands/create.php:36 application/views/bands/edit.php:18
+#: application/views/bands/create.php:36 application/views/bands/edit.php:19
 msgid "Frequency for SSB QRG in band (must be in Hz)"
 msgstr "Frequência para SSB QRG na banda (deve ser em Hz)"
 
-#: application/views/bands/create.php:39 application/views/bands/edit.php:21
+#: application/views/bands/create.php:39 application/views/bands/edit.php:22
 #: application/views/bands/index.php:67
 msgid "DATA QRG"
 msgstr "DADOS QRG"
 
-#: application/views/bands/create.php:41 application/views/bands/edit.php:23
+#: application/views/bands/create.php:41 application/views/bands/edit.php:24
 msgid "Frequency for DATA QRG in band (must be in Hz)"
 msgstr "Frequência para QRG de DADOS na banda (deve ser em Hz)"
 
-#: application/views/bands/create.php:44 application/views/bands/edit.php:26
+#: application/views/bands/create.php:44 application/views/bands/edit.php:27
 #: application/views/bands/index.php:68
 msgid "CW QRG"
 msgstr "QRG CW"
 
-#: application/views/bands/create.php:46 application/views/bands/edit.php:28
+#: application/views/bands/create.php:46 application/views/bands/edit.php:29
 msgid "Frequency for CW QRG in band (must be in Hz)"
 msgstr "Frequência para QRG CW na banda (deve ser em Hz)"
+
+#: application/views/bands/edit.php:2
+msgid ""
+"Changes made here are instance-wide and will affect EVERY User. You see "
+"this, because you're an instance-admin"
+msgstr ""
+
+#: application/views/bands/edit.php:2 application/views/update/index.php:35
+#: application/views/update/index.php:59
+msgid "WARNING"
+msgstr "AVISO"
 
 #: application/views/bands/index.php:38
 msgid ""
@@ -14926,10 +14937,6 @@ msgstr ""
 "Isso afeta TODOS os CONTACTOS de QUALQUER utilizador nesta instância. A "
 "função está obsoleta e será removida numa futura versão do Wavelog. Como "
 "substituição, use o Logbook-Advanced!"
-
-#: application/views/update/index.php:35 application/views/update/index.php:59
-msgid "WARNING"
-msgstr "AVISO"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
