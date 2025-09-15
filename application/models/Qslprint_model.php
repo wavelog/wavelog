@@ -70,7 +70,7 @@ class Qslprint_model extends CI_Model {
 	function get_qsos_for_print($station_id = 'All') {
 		$binding=[];
 		$binding[]=$this->session->userdata('user_id');
-		$sql="SELECT count(distinct oldlog.col_primary_key) as previous_qsl, log.COL_QSL_SENT, log.COL_PRIMARY_KEY, log.COL_DXCC, log.COL_CALL, log.COL_SAT_NAME, log.COL_SAT_MODE, log.COL_BAND_RX, COALESCE(log.COL_FREQ_RX, log.COL_FREQ) as frequency, log.COL_TIME_ON, log.COL_MODE, log.COL_RST_SENT, log.COL_RST_RCVD, log.COL_QSL_VIA, log.COL_QSL_SENT_VIA, log.COL_SUBMODE, log.COL_BAND, sp.station_id, sp.station_callsign, sp.station_profile_name, o.qsoid
+		$sql="SELECT count(distinct oldlog.col_primary_key) as previous_qsl, log.COL_QSL_SENT, log.COL_PRIMARY_KEY, log.COL_DXCC, log.COL_CALL, log.COL_SAT_NAME, log.COL_SAT_MODE, log.COL_BAND_RX, log.COL_FREQ as frequency, log.COL_FREQ_RX as frequency_rx, log.COL_TIME_ON, log.COL_MODE, log.COL_RST_SENT, log.COL_RST_RCVD, log.COL_QSL_VIA, log.COL_QSL_SENT_VIA, log.COL_SUBMODE, log.COL_BAND, sp.station_id, sp.station_callsign, sp.station_profile_name, o.qsoid
 			FROM ".$this->config->item('table_name')." log
 			INNER JOIN station_profile sp ON sp.`station_id` = log.`station_id`
 			LEFT OUTER JOIN oqrs o ON o.`qsoid` = log.`COL_PRIMARY_KEY`
