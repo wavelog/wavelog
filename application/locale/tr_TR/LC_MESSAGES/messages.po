@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-08 12:08+0000\n"
+"POT-Creation-Date: 2025-09-15 07:21+0000\n"
 "PO-Revision-Date: 2025-09-10 22:35+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -814,14 +814,12 @@ msgid "Edit Cronjob"
 msgstr "Cronjob'u Düzenle"
 
 #: application/controllers/Cron.php:228 application/controllers/Cron.php:229
-#: application/views/cron/index.php:83 application/views/cron/index.php:85
-#: application/views/cron/index.php:87 application/views/debug/index.php:523
+#: application/views/cron/index.php:96 application/views/cron/index.php:98
+#: application/views/cron/index.php:100 application/views/debug/index.php:523
 #: application/views/debug/index.php:529 application/views/debug/index.php:534
 #: application/views/debug/index.php:539 application/views/debug/index.php:544
 #: application/views/debug/index.php:549 application/views/debug/index.php:554
 #: application/views/debug/index.php:559 application/views/debug/index.php:564
-#: application/views/cron/index.php:96 application/views/cron/index.php:98
-#: application/views/cron/index.php:100
 msgid "never"
 msgstr "asla"
 
@@ -829,23 +827,19 @@ msgstr "asla"
 msgid "calculating..."
 msgstr "hesaplanıyor..."
 
-#: application/controllers/Cron.php:240 application/views/cron/index.php:70
-#: application/views/cron/index.php:83
+#: application/controllers/Cron.php:240 application/views/cron/index.php:83
 msgid "healthy"
 msgstr "Çalışıyor"
 
-#: application/controllers/Cron.php:242 application/views/cron/index.php:72
-#: application/views/cron/index.php:85
+#: application/controllers/Cron.php:242 application/views/cron/index.php:85
 msgid "failed"
 msgstr "başarısız"
 
-#: application/controllers/Cron.php:244 application/views/cron/index.php:74
-#: application/views/cron/index.php:87
+#: application/controllers/Cron.php:244 application/views/cron/index.php:87
 msgid "pending"
 msgstr "Beklemede"
 
-#: application/controllers/Cron.php:249 application/views/cron/index.php:79
-#: application/views/cron/index.php:92
+#: application/controllers/Cron.php:249 application/views/cron/index.php:92
 msgid "disabled"
 msgstr "Pasif"
 
@@ -872,8 +866,7 @@ msgstr ""
 "Son çalıştırma %s dakikadan uzun süre önce gerçekleşmiş.%sGörünüşe göre "
 "Mastercron çalışmıyor!%sHer dakika çalışması gerekiyor ( * * * )."
 
-#: application/controllers/Cron.php:300 application/views/cron/index.php:29
-#: application/views/cron/index.php:42
+#: application/controllers/Cron.php:300 application/views/cron/index.php:42
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Çalışmıyor"
@@ -1085,14 +1078,18 @@ msgstr "Çalışılan toplam Grid Karesi sayısı"
 msgid "Hamsat - Satellite Roving"
 msgstr "Hamsat - Uydu Gezinti"
 
-#: application/controllers/Hrdlog.php:74 application/controllers/Hrdlog.php:93
+#: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
+msgid "HRD Log upload for this station is disabled."
+msgstr "Bu istasyon için HRD Log yüklemesi devre dışı bırakıldı."
+
+#: application/controllers/Hrdlog.php:93
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
 msgstr[0] "%d QSO artık HRDlog'a yüklendi"
 msgstr[1] "%d QSO'lar artık HRDlog'a yüklendi"
 
-#: application/controllers/Hrdlog.php:79 application/controllers/Hrdlog.php:98
+#: application/controllers/Hrdlog.php:98
 msgid "No QSOs found to upload."
 msgstr "Yüklenecek QSO bulunamadı."
 
@@ -1279,15 +1276,12 @@ msgstr "Kayıt defteri"
 #: application/views/logbookadvanced/index.php:751
 #: application/views/logbookadvanced/useroptions.php:74
 #: application/views/oqrs/qsolist.php:12
-#: application/views/qslprint/qslprint.php:28
-#: application/views/qslprint/qsolist.php:15
-#: application/views/qslprint/qsolist.php:17
-#: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:75
-#: application/views/timeline/index.php:56 application/views/user/edit.php:591
-#: application/views/user/edit.php:774
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:16
 #: application/views/qslprint/qsolist.php:18
+#: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:75
+#: application/views/timeline/index.php:56 application/views/user/edit.php:591
+#: application/views/user/edit.php:774
 msgid "QSL"
 msgstr "QSL"
 
@@ -1314,9 +1308,9 @@ msgstr "QSL"
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
 #: application/views/oqrs/qsolist.php:175
-#: application/views/qslprint/qsolist.php:22
-#: application/views/qslprint/qsolist.php:169
-#: application/views/qslprint/qsolist.php:184
+#: application/views/qslprint/qsolist.php:23
+#: application/views/qslprint/qsolist.php:171
+#: application/views/qslprint/qsolist.php:186
 #: application/views/qso/edit_ajax.php:425
 #: application/views/satellite/index.php:56
 #: application/views/satellite/satinfo.php:13
@@ -1325,9 +1319,6 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:784 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
-#: application/views/qslprint/qsolist.php:23
-#: application/views/qslprint/qsolist.php:171
-#: application/views/qslprint/qsolist.php:186
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1353,18 +1344,15 @@ msgstr "LoTW"
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:144
-#: application/views/qslprint/qsolist.php:19
-#: application/views/qslprint/qsolist.php:140
-#: application/views/qslprint/qsolist.php:153
+#: application/views/qslprint/qsolist.php:20
+#: application/views/qslprint/qsolist.php:142
+#: application/views/qslprint/qsolist.php:155
 #: application/views/qso/edit_ajax.php:422
 #: application/views/search/search_result_ajax.php:263
 #: application/views/search/search_result_ajax.php:276
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:792 application/views/user/edit.php:866
-#: application/views/qslprint/qsolist.php:20
-#: application/views/qslprint/qsolist.php:142
-#: application/views/qslprint/qsolist.php:155
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1426,7 +1414,7 @@ msgstr "eQSL"
 #: application/views/qslcard/searchresult.php:44
 #: application/views/qslcard/searchresult.php:60
 #: application/views/qslcard/searchresult.php:76
-#: application/views/qslprint/qslprint.php:24
+#: application/views/qslprint/qslprint.php:25
 #: application/views/qslprint/qsolist.php:9
 #: application/views/qso/components/previous_contacts.php:77
 #: application/views/qso/edit_ajax.php:121 application/views/qso/index.php:170
@@ -1450,7 +1438,6 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
-#: application/views/qslprint/qslprint.php:25
 msgid "Mode"
 msgstr "Mod"
 
@@ -1468,8 +1455,8 @@ msgstr "Mod"
 #: application/views/qslcard/searchresult.php:45
 #: application/views/qslcard/searchresult.php:61
 #: application/views/qslcard/searchresult.php:77
-#: application/views/qslprint/qslprint.php:26
-#: application/views/qslprint/qsolist.php:11
+#: application/views/qslprint/qslprint.php:28
+#: application/views/qslprint/qsolist.php:12
 #: application/views/qso/components/previous_contacts.php:78
 #: application/views/qso/edit_ajax.php:143 application/views/qso/index.php:215
 #: application/views/search/search_result_ajax.php:5
@@ -1480,8 +1467,6 @@ msgstr "Mod"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
-#: application/views/qslprint/qslprint.php:28
-#: application/views/qslprint/qsolist.php:12
 msgid "RST (S)"
 msgstr "RST (G)"
 
@@ -1499,8 +1484,8 @@ msgstr "RST (G)"
 #: application/views/qslcard/searchresult.php:46
 #: application/views/qslcard/searchresult.php:62
 #: application/views/qslcard/searchresult.php:78
-#: application/views/qslprint/qslprint.php:27
-#: application/views/qslprint/qsolist.php:12
+#: application/views/qslprint/qslprint.php:29
+#: application/views/qslprint/qsolist.php:13
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:148 application/views/qso/index.php:220
 #: application/views/search/search_result_ajax.php:6
@@ -1512,8 +1497,6 @@ msgstr "RST (G)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
-#: application/views/qslprint/qslprint.php:29
-#: application/views/qslprint/qsolist.php:13
 msgid "RST (R)"
 msgstr "RST (A)"
 
@@ -1694,7 +1677,7 @@ msgstr "Mesafe"
 #: application/views/awards/was/index.php:74
 #: application/views/awards/wwff/index.php:36
 #: application/views/bandmap/index.php:45 application/views/bandmap/list.php:96
-#: application/views/bands/create.php:24 application/views/bands/edit.php:6
+#: application/views/bands/create.php:24 application/views/bands/edit.php:7
 #: application/views/bands/index.php:47 application/views/callstats/index.php:7
 #: application/views/contesting/index.php:131
 #: application/views/contesting/index.php:263
@@ -1723,7 +1706,8 @@ msgstr "Mesafe"
 #: application/views/qslcard/searchresult.php:69
 #: application/views/qslcard/searchresult.php:85
 #: application/views/qslmanagement/index.php:24
-#: application/views/qslprint/qslprint.php:25
+#: application/views/qslprint/index.php:33
+#: application/views/qslprint/qslprint.php:26
 #: application/views/qslprint/qsolist.php:10
 #: application/views/qso/components/previous_contacts.php:88
 #: application/views/qso/edit_ajax.php:85 application/views/qso/index.php:185
@@ -1745,9 +1729,7 @@ msgstr "Mesafe"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:21 application/views/bands/edit.php:7
-#: application/views/qslprint/index.php:33
-#: application/views/qslprint/qslprint.php:26
+#: application/views/widgets/qsos.php:21
 msgid "Band"
 msgstr "Bant"
 
@@ -1762,6 +1744,9 @@ msgstr "Bant"
 #: application/views/qslcard/searchresult.php:54
 #: application/views/qslcard/searchresult.php:70
 #: application/views/qslcard/searchresult.php:86
+#: application/views/qslprint/index.php:34
+#: application/views/qslprint/qslprint.php:27
+#: application/views/qslprint/qsolist.php:11
 #: application/views/qso/components/previous_contacts.php:89
 #: application/views/qso/edit_ajax.php:73 application/views/qso/index.php:203
 #: application/views/search/search_result_ajax.php:16
@@ -1770,9 +1755,6 @@ msgstr "Bant"
 #: application/views/user/edit.php:335
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:36
-#: application/views/qslprint/index.php:34
-#: application/views/qslprint/qslprint.php:27
-#: application/views/qslprint/qsolist.php:11
 msgid "Frequency"
 msgstr "Frekans"
 
@@ -2265,7 +2247,7 @@ msgstr "Varsayılan (atamayı kaldırmak için tıklayın)"
 #: application/controllers/Stationsetup.php:401
 #: application/views/api/index.php:74 application/views/bands/bandedges.php:32
 #: application/views/club/permissions.php:248
-#: application/views/contesting/add.php:59 application/views/cron/index.php:58
+#: application/views/contesting/add.php:59 application/views/cron/index.php:71
 #: application/views/interface_assets/footer.php:605
 #: application/views/interface_assets/footer.php:614
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
@@ -2276,7 +2258,7 @@ msgstr "Varsayılan (atamayı kaldırmak için tıklayın)"
 #: application/views/stationsetup/stationsetup.php:132
 #: application/views/stationsetup/stationsetup.php:170
 #: application/views/themes/index.php:104 application/views/user/index.php:97
-#: application/views/user/index.php:203 application/views/cron/index.php:71
+#: application/views/user/index.php:203
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -3275,35 +3257,28 @@ msgstr "HRDlog: Bu çağrı işareti için yüklenecek QSO bulunamadı: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: HRDlog Kimlik Bilgileriyle istasyon profili bulunamadı."
 
-#: application/models/Logbook_model.php:1292
 #: application/models/Logbook_model.php:1294
 msgid "Station ID not allowed"
 msgstr "İstasyon ID’sine izin verilmiyor"
 
-#: application/models/Logbook_model.php:1297
 #: application/models/Logbook_model.php:1299
 msgid "No Call given"
 msgstr "Çağrı işareti girilmedi"
 
-#: application/models/Logbook_model.php:1367
-#: application/models/Logbook_model.php:1569
 #: application/models/Logbook_model.php:1369
 #: application/models/Logbook_model.php:1571
 msgid "DXCC has to be Numeric"
 msgstr "DXCC sayısal olmalıdır"
 
-#: application/models/Logbook_model.php:4037
 #: application/models/Logbook_model.php:4039
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Yanlış çağrı işareti %s, %s ile %s için QSO içe aktarılırken: ATLANDI"
 
-#: application/models/Logbook_model.php:4050
 #: application/models/Logbook_model.php:4052
 msgid "QSO on"
 msgstr "Zaman"
 
-#: application/models/Logbook_model.php:4050
 #: application/models/Logbook_model.php:4052
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3312,98 +3287,72 @@ msgstr ""
 "Bir çağrı işareti olmadan bir QSO'yu içe aktarmaya çalıştın. Bu QSO içe "
 "aktarılmadı. Geçersiz"
 
-#: application/models/Logbook_model.php:4357
 #: application/models/Logbook_model.php:4359
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4368
 #: application/models/Logbook_model.php:4370
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate geçersiz (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4429
 #: application/models/Logbook_model.php:4431
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date geçersiz (YYYYAAGG)"
 
-#: application/models/Logbook_model.php:4449
 #: application/models/Logbook_model.php:4451
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate geçersiz (YYYYAAGG)"
 
-#: application/models/Logbook_model.php:4470
 #: application/models/Logbook_model.php:4472
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate geçersiz (YYYYAAGG)"
 
-#: application/models/Logbook_model.php:4762
-#: application/views/simplefle/index.php:41
 #: application/models/Logbook_model.php:4764
+#: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "İçin yinelenen"
 
-#: application/models/Logbook_model.php:4823
-#: application/models/Logbook_model.php:4912
-#: application/models/Logbook_model.php:4825
-#: application/models/Logbook_model.php:4914
 #: application/models/Logbook_model.php:4829
 #: application/models/Logbook_model.php:4924
 msgid "QSO could not be matched"
 msgstr "QSO eşleştirilemedi"
 
-#: application/models/Logbook_model.php:4829
-#: application/models/Logbook_model.php:4831
 #: application/models/Logbook_model.php:4837
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/Yarışma tarafından onaylandı"
 
-#: application/models/Logbook_model.php:4834
-#: application/models/Logbook_model.php:4836
 #: application/models/Logbook_model.php:4843
 msgid "confirmed by award manager"
 msgstr "Ödül yöneticisi tarafından onaylandı"
 
-#: application/models/Logbook_model.php:4837
-#: application/models/Logbook_model.php:4839
 #: application/models/Logbook_model.php:4847
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCL verileri karşılaştırılarak onaylandı"
 
-#: application/models/Logbook_model.php:4840
-#: application/models/Logbook_model.php:4842
 #: application/models/Logbook_model.php:4851
 msgid "confirmation pending"
 msgstr "onay bekleniyor"
 
-#: application/models/Logbook_model.php:4843
-#: application/models/Logbook_model.php:4845
 #: application/models/Logbook_model.php:4854
 msgid "unconfirmed"
 msgstr "onaylanmamış"
 
-#: application/models/Logbook_model.php:4846
+#: application/models/Logbook_model.php:4857
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
-#: application/models/Logbook_model.php:4848
-#: application/models/Logbook_model.php:4857
 msgid "unknown"
 msgstr "bilinmeyen"
 
-#: application/models/Logbook_model.php:4915
-#: application/models/Logbook_model.php:4917
 #: application/models/Logbook_model.php:4927
 msgid "POTA reference already in log"
 msgstr "POTA referansı zaten logda mevcut"
 
-#: application/models/Logbook_model.php:4918
-#: application/models/Logbook_model.php:4920
 #: application/models/Logbook_model.php:4930
 msgid "QSO updated"
 msgstr "QSO güncellendi"
 
-#: application/models/Logbook_model.php:5779
+#: application/models/Logbook_model.php:5802
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3414,8 +3363,6 @@ msgstr "QSO güncellendi"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
-#: application/models/Logbook_model.php:5781
-#: application/models/Logbook_model.php:5802
 msgid "Bearing"
 msgstr "Yön"
 
@@ -3618,6 +3565,7 @@ msgstr "Fark"
 #: application/views/oqrs/showrequests.php:49
 #: application/views/oqrs/showrequests.php:64
 #: application/views/qslprint/index.php:22
+#: application/views/qslprint/qslprint.php:81
 #: application/views/search/cqzones.php:33
 #: application/views/search/ituzones.php:33
 #: application/views/search/lotw_unconfirmed.php:34
@@ -3635,7 +3583,6 @@ msgstr "Fark"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:758
 #: application/views/visitor/layout/footer.php:172
-#: application/views/qslprint/qslprint.php:81
 msgid "All"
 msgstr "Tüm"
 
@@ -4156,7 +4103,7 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/qslcard/index.php:39
 #: application/views/qslcard/searchform.php:3
 #: application/views/qslprint/index.php:24
-#: application/views/qslprint/qslprint.php:21
+#: application/views/qslprint/qslprint.php:22
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:64 application/views/qso/index.php:157
 #: application/views/reg1test/index.php:33
@@ -4175,7 +4122,6 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:666
-#: application/views/qslprint/qslprint.php:22
 msgid "Callsign"
 msgstr "Çağrı işareti"
 
@@ -4266,7 +4212,7 @@ msgstr "Logunuzdaki DOK ile DCL’deki DOK farklı"
 #: application/views/public_search/result.php:13
 #: application/views/qslcard/index.php:41
 #: application/views/qslcard/searchresult.php:4
-#: application/views/qslprint/qslprint.php:22
+#: application/views/qslprint/qslprint.php:23
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:97
 #: application/views/qso/index.php:133 application/views/satellite/pass.php:50
 #: application/views/satellite/skedtable.php:7
@@ -4285,7 +4231,6 @@ msgstr "Logunuzdaki DOK ile DCL’deki DOK farklı"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
-#: application/views/qslprint/qslprint.php:23
 msgid "Date"
 msgstr "Tarih"
 
@@ -4308,7 +4253,7 @@ msgstr "Tarih"
 #: application/views/hamsat/index.php:29 application/views/oqrs/qsolist.php:8
 #: application/views/qslcard/index.php:42
 #: application/views/qslcard/searchresult.php:6
-#: application/views/qslprint/qslprint.php:23
+#: application/views/qslprint/qslprint.php:24
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:138
 #: application/views/search/cqzones_result.php:8
 #: application/views/search/ituzones_result.php:8
@@ -4320,7 +4265,6 @@ msgstr "Tarih"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
-#: application/views/qslprint/qslprint.php:24
 msgid "Time"
 msgstr "Saat"
 
@@ -4370,14 +4314,13 @@ msgid "CBR Import"
 msgstr "CBR İçe Aktar"
 
 #: application/views/adif/import.php:73 application/views/adif/import.php:379
-#: application/views/adif/import.php:399 application/views/api/index.php:22
+#: application/views/adif/import.php:400 application/views/api/index.php:22
 #: application/views/dashboard/index.php:172
 #: application/views/dashboard/index.php:193
 #: application/views/dashboard/index.php:197
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
-#: application/views/adif/import.php:400
 msgid "Important"
 msgstr "Önemli"
 
@@ -4420,9 +4363,8 @@ msgstr "ADIF Dosyasını Seç"
 msgid "Add QSOs to Contest"
 msgstr "QSO'ları Yarışmaya Ekle"
 
-#: application/views/adif/import.php:99 application/views/adif/import.php:406
+#: application/views/adif/import.php:99 application/views/adif/import.php:407
 #: application/views/simplefle/index.php:86
-#: application/views/adif/import.php:407
 msgid "No Contest"
 msgstr "Yarışma Yok"
 
@@ -4525,11 +4467,10 @@ msgid "Toggle all checkboxes"
 msgstr "Tüm onay kutularını işaretle/işaretini kaldır"
 
 #: application/views/adif/import.php:221 application/views/adif/import.php:364
-#: application/views/adif/import.php:383 application/views/adif/import.php:421
+#: application/views/adif/import.php:384 application/views/adif/import.php:422
 #: application/views/clublog/export.php:50
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
-#: application/views/adif/import.php:384 application/views/adif/import.php:422
 msgid "Upload"
 msgstr "Yükle"
 
@@ -4665,7 +4606,14 @@ msgstr ""
 "İşaretli değilse, Wavelog'da bulunamayan QSO'lar hakkında bilgi "
 "gösterilecektir."
 
-#: application/views/adif/import.php:398 application/views/adif/import.php:399
+#: application/views/adif/import.php:380
+#, php-format
+msgid ""
+"An example for a tool to export the POTA hunter log in ADIF format is %s "
+"made by AF0G and available on GitHub."
+msgstr ""
+
+#: application/views/adif/import.php:399
 msgid ""
 "If you imported an ADIF file of a contest, provided by another logging "
 "software, sometimes, depending on that software, your exchanges will not be "
@@ -4679,15 +4627,14 @@ msgstr ""
 "aktarılamayabilir. Bunu düzeltmek isterseniz, bu verileri Wavelog'da yeniden "
 "yazmak için ilgili yazılımdan Cabrillo dosyasını alıp yükleyebilirsiniz."
 
-#: application/views/adif/import.php:398
+#: application/views/adif/import.php:399
 #: application/views/adif/import_success.php:40
 #: application/views/dcl_views/index.php:76
 #: application/views/lotw_views/index.php:137
-#: application/views/adif/import.php:399
 msgid "Information"
 msgstr "Bilgi"
 
-#: application/views/adif/import.php:399 application/views/adif/import.php:400
+#: application/views/adif/import.php:400
 msgid ""
 "Please use this function before changing anything about the QSOs in Wavelog, "
 "as this function uses the Contest ID, as well as date and time information "
@@ -4700,15 +4647,15 @@ msgstr ""
 "Kimliği, tarih ve saat bilgilerini kullanarak QSO'ları eşleştirir ve "
 "yalnızca ilgili verileri düzeltir."
 
-#: application/views/adif/import.php:404 application/views/adif/import.php:405
+#: application/views/adif/import.php:405
 msgid "Contest Name, only if Contest ID in CBR is different"
 msgstr "Yarışma Adı (sadece CBR'daki Yarışma Kimliği farklıysa yazın)"
 
-#: application/views/adif/import.php:404 application/views/adif/import.php:405
+#: application/views/adif/import.php:405
 msgid "Optional"
 msgstr "İsteğe bağlı"
 
-#: application/views/adif/import.php:414 application/views/adif/import.php:415
+#: application/views/adif/import.php:415
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
@@ -4716,7 +4663,7 @@ msgstr ""
 "Bu yarışmada, seri numarası her iki tarafın exchange bilgisinin HER ZAMAN "
 "bir parçasıdır."
 
-#: application/views/adif/import.php:416 application/views/adif/import.php:417
+#: application/views/adif/import.php:417
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
@@ -4725,7 +4672,7 @@ msgstr ""
 "etmiyorsanız (yalnızca bazılarında yapıyorsanız), lütfen bu seçeneği "
 "işaretlemeyin."
 
-#: application/views/adif/import.php:417 application/views/adif/import.php:418
+#: application/views/adif/import.php:418
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
@@ -4851,7 +4798,7 @@ msgid "POTA REF in ADIF"
 msgstr "ADIF dosyanızdaki POTA Referansı"
 
 #: application/views/adif/pota_success.php:36
-#: application/views/api/index.php:37 application/views/cron/index.php:54
+#: application/views/api/index.php:37 application/views/cron/index.php:67
 #: application/views/lotw/satupdate.php:7
 #: application/views/lotw_views/index.php:38
 #: application/views/mode/index.php:43
@@ -4860,7 +4807,7 @@ msgstr "ADIF dosyanızdaki POTA Referansı"
 #: application/views/sattimers/index.php:39
 #: application/views/stationsetup/stationsetup.php:34
 #: application/views/timeline/index.php:201
-#: application/views/usermode/index.php:41 application/views/cron/index.php:67
+#: application/views/usermode/index.php:41
 msgid "Status"
 msgstr "Durum"
 
@@ -4873,7 +4820,7 @@ msgid "Simple name to describe what you use this API for."
 msgstr "Bu API'yi ne için kullandığınızı açıklayan basit bir açıklama."
 
 #: application/views/api/description.php:33
-#: application/views/bands/create.php:49 application/views/bands/edit.php:31
+#: application/views/bands/create.php:49 application/views/bands/edit.php:32
 #: application/views/club/permissions.php:204
 #: application/views/club/permissions.php:297
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
@@ -4888,7 +4835,7 @@ msgstr "Bu API'yi ne için kullandığınızı açıklayan basit bir açıklama.
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:115
-#: application/views/simplefle/index.php:22 application/views/bands/edit.php:32
+#: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "Kaydet"
 
@@ -4932,8 +4879,7 @@ msgid "API URL"
 msgstr "API URL"
 
 #: application/views/api/index.php:19 application/views/api/index.php:54
-#: application/views/cron/index.php:22 application/views/debug/index.php:46
-#: application/views/cron/index.php:35
+#: application/views/cron/index.php:35 application/views/debug/index.php:46
 msgid "Copy to clipboard"
 msgstr "Panoya kopyala"
 
@@ -4974,9 +4920,8 @@ msgid "API Key"
 msgstr "API Anahtarı"
 
 #: application/views/api/index.php:31 application/views/cron/edit.php:30
-#: application/views/cron/index.php:53
-#: application/views/search/stored_queries.php:8
 #: application/views/cron/index.php:66
+#: application/views/search/stored_queries.php:8
 msgid "Description"
 msgstr "Açıklama"
 
@@ -6892,50 +6837,56 @@ msgstr "Bitiş Frekansı (Hz)"
 msgid "Add a bandedge"
 msgstr "Bir bant aralığı ekle"
 
-#: application/views/bands/create.php:26 application/views/bands/edit.php:8
-#: application/views/bands/edit.php:9
+#: application/views/bands/create.php:26 application/views/bands/edit.php:9
 msgid "Name of Band (E.g. 20m)"
 msgstr "Bant adı (Örn. 20m)"
 
-#: application/views/bands/create.php:29 application/views/bands/edit.php:11
-#: application/views/bands/index.php:65 application/views/bands/edit.php:12
+#: application/views/bands/create.php:29 application/views/bands/edit.php:12
+#: application/views/bands/index.php:65
 msgid "Bandgroup"
 msgstr "Bant grubu"
 
-#: application/views/bands/create.php:31 application/views/bands/edit.php:13
-#: application/views/bands/edit.php:14
+#: application/views/bands/create.php:31 application/views/bands/edit.php:14
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
 msgstr "Bant grubu adı (Örn. hf, vhf, uhf, shf)"
 
-#: application/views/bands/create.php:34 application/views/bands/edit.php:16
-#: application/views/bands/index.php:66 application/views/bands/edit.php:17
+#: application/views/bands/create.php:34 application/views/bands/edit.php:17
+#: application/views/bands/index.php:66
 msgid "SSB QRG"
 msgstr "SSB Frekansı"
 
-#: application/views/bands/create.php:36 application/views/bands/edit.php:18
-#: application/views/bands/edit.php:19
+#: application/views/bands/create.php:36 application/views/bands/edit.php:19
 msgid "Frequency for SSB QRG in band (must be in Hz)"
 msgstr "Bant içindeki SSB frekansı (Hz cinsinden olmalıdır)"
 
-#: application/views/bands/create.php:39 application/views/bands/edit.php:21
-#: application/views/bands/index.php:67 application/views/bands/edit.php:22
+#: application/views/bands/create.php:39 application/views/bands/edit.php:22
+#: application/views/bands/index.php:67
 msgid "DATA QRG"
 msgstr "DATA Frekansı"
 
-#: application/views/bands/create.php:41 application/views/bands/edit.php:23
-#: application/views/bands/edit.php:24
+#: application/views/bands/create.php:41 application/views/bands/edit.php:24
 msgid "Frequency for DATA QRG in band (must be in Hz)"
 msgstr "Bant içindeki DATA frekansı (Hz cinsinden olmalıdır)"
 
-#: application/views/bands/create.php:44 application/views/bands/edit.php:26
-#: application/views/bands/index.php:68 application/views/bands/edit.php:27
+#: application/views/bands/create.php:44 application/views/bands/edit.php:27
+#: application/views/bands/index.php:68
 msgid "CW QRG"
 msgstr "CW Frekansı"
 
-#: application/views/bands/create.php:46 application/views/bands/edit.php:28
-#: application/views/bands/edit.php:29
+#: application/views/bands/create.php:46 application/views/bands/edit.php:29
 msgid "Frequency for CW QRG in band (must be in Hz)"
 msgstr "Bant içindeki CW frekansı (Hz cinsinden olmalıdır)"
+
+#: application/views/bands/edit.php:2
+msgid ""
+"Changes made here are instance-wide and will affect EVERY User. You see "
+"this, because you're an instance-admin"
+msgstr ""
+
+#: application/views/bands/edit.php:2 application/views/update/index.php:35
+#: application/views/update/index.php:59
+msgid "WARNING"
+msgstr "UYARI"
 
 #: application/views/bands/index.php:38
 msgid ""
@@ -7649,11 +7600,9 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:835
 #: application/views/logbookadvanced/useroptions.php:186
 #: application/views/qrz/export.php:39
-#: application/views/qslprint/qslprint.php:30
-#: application/views/qslprint/qsolist.php:14
-#: application/views/webadif/export.php:41
 #: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qsolist.php:15
+#: application/views/webadif/export.php:41
 msgid "Profile name"
 msgstr "Profil adı"
 
@@ -8107,8 +8056,7 @@ msgstr "Tanımlayıcı"
 msgid "Enabled"
 msgstr "Etkin"
 
-#: application/views/cron/edit.php:36 application/views/cron/index.php:55
-#: application/views/cron/index.php:68
+#: application/views/cron/edit.php:36 application/views/cron/index.php:68
 msgid "Intervall"
 msgstr "Zaman Aralığı"
 
@@ -8160,7 +8108,12 @@ msgstr "Özel bir zamanlama girin"
 msgid "How it works"
 msgstr "Nasıl Çalışıyor"
 
-#: application/views/cron/index.php:15 application/views/cron/index.php:28
+#: application/views/cron/index.php:21
+#, php-format
+msgid "For more information or help, take a look in the %s."
+msgstr ""
+
+#: application/views/cron/index.php:28
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
@@ -8168,7 +8121,7 @@ msgstr ""
 "Cron Yöneticisi, yöneticilerin komut satırı kullanmadan cron işlerini "
 "yönetmesini sağlar."
 
-#: application/views/cron/index.php:19 application/views/cron/index.php:32
+#: application/views/cron/index.php:32
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
@@ -8176,43 +8129,41 @@ msgstr ""
 "Aşağıdaki verilere dayalı cron görevlerini çalıştırmak için tüm eski cron "
 "görevlerini kaldırın ve yeni bir tane oluşturun:"
 
-#: application/views/cron/index.php:29 application/views/cron/index.php:33
 #: application/views/cron/index.php:42 application/views/cron/index.php:46
 msgid "Status Master-Cron:"
 msgstr "Master-Cron Durumu:"
 
-#: application/views/cron/index.php:33 application/views/cron/index.php:46
+#: application/views/cron/index.php:46
 msgctxt "PHP Version"
 msgid "Min. Version is"
 msgstr "Min. PHP Sürümü:"
 
-#: application/views/cron/index.php:33 application/views/cron/index.php:46
+#: application/views/cron/index.php:46
 msgid "PHP Version not supported."
 msgstr "PHP sürümü desteklenmiyor."
 
-#: application/views/cron/index.php:43 application/views/cron/index.php:56
+#: application/views/cron/index.php:56
 msgid "Cron List"
 msgstr "Cron İşleri Listesi"
 
-#: application/views/cron/index.php:52
-#: application/views/stationsetup/stationsetup.php:124
 #: application/views/cron/index.php:65
+#: application/views/stationsetup/stationsetup.php:124
 msgid "ID"
 msgstr "ID"
 
-#: application/views/cron/index.php:56 application/views/cron/index.php:69
+#: application/views/cron/index.php:69
 msgid "Last Run"
 msgstr "Son Çalıştırılma"
 
-#: application/views/cron/index.php:57 application/views/cron/index.php:70
+#: application/views/cron/index.php:70
 msgid "Next Run"
 msgstr "Sonraki Çalıştırma"
 
-#: application/views/cron/index.php:102 application/views/cron/index.php:115
+#: application/views/cron/index.php:115
 msgid "Your Mastercron isn't running."
 msgstr "Ana cron'unuz (Mastercron) çalışmıyor."
 
-#: application/views/cron/index.php:103 application/views/cron/index.php:116
+#: application/views/cron/index.php:116
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
@@ -8220,7 +8171,7 @@ msgstr ""
 "Bu cron yöneticisini kullanmak için yukarıdaki cron komutunu harici bir cron "
 "servisine veya sunucunuzun cron tablosuna kopyalayın."
 
-#: application/views/cron/index.php:104 application/views/cron/index.php:117
+#: application/views/cron/index.php:117
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -8228,7 +8179,7 @@ msgstr ""
 "Yönetici erişimi olan temel bir linux sunucusunda cron tablosuna erişmek "
 "için bu komutu kullanın:"
 
-#: application/views/cron/index.php:111 application/views/cron/index.php:124
+#: application/views/cron/index.php:124
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
@@ -8374,9 +8325,9 @@ msgstr "İstenenler"
 #: application/views/dashboard/index.php:412
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
-#: application/views/qslprint/qsolist.php:60
-#: application/views/qslprint/qsolist.php:140
-#: application/views/qslprint/qsolist.php:169
+#: application/views/qslprint/qsolist.php:62
+#: application/views/qslprint/qsolist.php:142
+#: application/views/qslprint/qsolist.php:171
 #: application/views/qso/edit_ajax.php:440
 #: application/views/qso/edit_ajax.php:501
 #: application/views/qso/edit_ajax.php:546
@@ -8401,9 +8352,7 @@ msgstr "İstenenler"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:554
 #: src/QSLManager/QSO.php:607 src/QSLManager/QSO.php:666
-#: src/QSLManager/QSO.php:731 application/views/qslprint/qsolist.php:62
-#: application/views/qslprint/qsolist.php:142
-#: application/views/qslprint/qsolist.php:171
+#: src/QSLManager/QSO.php:731
 msgid "Sent"
 msgstr "Gönderilen"
 
@@ -8413,9 +8362,9 @@ msgstr "Gönderilen"
 #: application/views/dashboard/index.php:418
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
-#: application/views/qslprint/qsolist.php:102
-#: application/views/qslprint/qsolist.php:153
-#: application/views/qslprint/qsolist.php:184
+#: application/views/qslprint/qsolist.php:104
+#: application/views/qslprint/qsolist.php:155
+#: application/views/qslprint/qsolist.php:186
 #: application/views/qso/edit_ajax.php:473
 #: application/views/qso/edit_ajax.php:514
 #: application/views/qso/edit_ajax.php:559
@@ -8439,9 +8388,7 @@ msgstr "Gönderilen"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:577
 #: src/QSLManager/QSO.php:646 src/QSLManager/QSO.php:705
-#: src/QSLManager/QSO.php:755 application/views/qslprint/qsolist.php:104
-#: application/views/qslprint/qsolist.php:155
-#: application/views/qslprint/qsolist.php:186
+#: src/QSLManager/QSO.php:755
 msgid "Received"
 msgstr "Alınan"
 
@@ -8457,8 +8404,8 @@ msgstr "Alınan"
 #: application/views/logbookadvanced/index.php:507
 #: application/views/logbookadvanced/index.php:518
 #: application/views/oqrs/qsolist.php:57 application/views/oqrs/qsolist.php:99
-#: application/views/qslprint/qsolist.php:66
-#: application/views/qslprint/qsolist.php:108
+#: application/views/qslprint/qsolist.php:68
+#: application/views/qslprint/qsolist.php:110
 #: application/views/qso/edit_ajax.php:445
 #: application/views/qso/edit_ajax.php:478
 #: application/views/qso/edit_ajax.php:506
@@ -8480,8 +8427,7 @@ msgstr "Alınan"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764 application/views/qslprint/qsolist.php:68
-#: application/views/qslprint/qsolist.php:110
+#: src/QSLManager/QSO.php:764
 msgid "Requested"
 msgstr "İstenen"
 
@@ -10694,10 +10640,10 @@ msgstr "Doğrulandı"
 #: application/views/logbookadvanced/index.php:452
 #: application/views/oqrs/qsolist.php:73 application/views/oqrs/qsolist.php:115
 #: application/views/oqrs/showrequests.php:8
-#: application/views/qslprint/qslprint.php:6
-#: application/views/qslprint/qsolist.php:82
-#: application/views/qslprint/qsolist.php:124
-#: application/views/qslprint/qsolist.php:213
+#: application/views/qslprint/qslprint.php:7
+#: application/views/qslprint/qsolist.php:84
+#: application/views/qslprint/qsolist.php:126
+#: application/views/qslprint/qsolist.php:215
 #: application/views/qso/edit_ajax.php:457
 #: application/views/qso/edit_ajax.php:490 application/views/qso/index.php:669
 #: application/views/search/search_result_ajax.php:205
@@ -10705,10 +10651,6 @@ msgstr "Doğrulandı"
 #: application/views/view_log/partial/log_ajax.php:307
 #: application/views/view_log/partial/log_ajax.php:345
 #: src/QSLManager/QSO.php:432 src/QSLManager/QSO.php:475
-#: application/views/qslprint/qslprint.php:7
-#: application/views/qslprint/qsolist.php:84
-#: application/views/qslprint/qsolist.php:126
-#: application/views/qslprint/qsolist.php:215
 msgid "Direct"
 msgstr "Direkt"
 
@@ -10719,10 +10661,10 @@ msgstr "Direkt"
 #: application/views/oqrs/request.php:45
 #: application/views/oqrs/request_grouped.php:48
 #: application/views/oqrs/showrequests.php:7
-#: application/views/qslprint/qslprint.php:5
-#: application/views/qslprint/qsolist.php:79
-#: application/views/qslprint/qsolist.php:121
-#: application/views/qslprint/qsolist.php:212
+#: application/views/qslprint/qslprint.php:6
+#: application/views/qslprint/qsolist.php:81
+#: application/views/qslprint/qsolist.php:123
+#: application/views/qslprint/qsolist.php:214
 #: application/views/qso/edit_ajax.php:458
 #: application/views/qso/edit_ajax.php:491 application/views/qso/index.php:670
 #: application/views/search/search_result_ajax.php:202
@@ -10730,10 +10672,6 @@ msgstr "Direkt"
 #: application/views/view_log/partial/log_ajax.php:304
 #: application/views/view_log/partial/log_ajax.php:342
 #: src/QSLManager/QSO.php:429 src/QSLManager/QSO.php:472
-#: application/views/qslprint/qslprint.php:6
-#: application/views/qslprint/qsolist.php:81
-#: application/views/qslprint/qsolist.php:123
-#: application/views/qslprint/qsolist.php:214
 msgid "Bureau"
 msgstr "Büro"
 
@@ -10742,10 +10680,10 @@ msgstr "Büro"
 #: application/views/logbookadvanced/index.php:453
 #: application/views/oqrs/qsolist.php:79 application/views/oqrs/qsolist.php:121
 #: application/views/oqrs/showrequests.php:9
-#: application/views/qslprint/qslprint.php:7
-#: application/views/qslprint/qsolist.php:88
-#: application/views/qslprint/qsolist.php:130
-#: application/views/qslprint/qsolist.php:214
+#: application/views/qslprint/qslprint.php:8
+#: application/views/qslprint/qsolist.php:90
+#: application/views/qslprint/qsolist.php:132
+#: application/views/qslprint/qsolist.php:216
 #: application/views/qso/edit_ajax.php:459
 #: application/views/qso/edit_ajax.php:492 application/views/qso/index.php:671
 #: application/views/search/search_result_ajax.php:211
@@ -10753,10 +10691,6 @@ msgstr "Büro"
 #: application/views/view_log/partial/log_ajax.php:313
 #: application/views/view_log/partial/log_ajax.php:351
 #: src/QSLManager/QSO.php:438 src/QSLManager/QSO.php:481
-#: application/views/qslprint/qslprint.php:8
-#: application/views/qslprint/qsolist.php:90
-#: application/views/qslprint/qsolist.php:132
-#: application/views/qslprint/qsolist.php:216
 msgid "Electronic"
 msgstr "Elektronik"
 
@@ -10764,12 +10698,11 @@ msgstr "Elektronik"
 #: application/views/logbookadvanced/index.php:444
 #: application/views/logbookadvanced/index.php:454
 #: application/views/oqrs/qsolist.php:118
-#: application/views/qslprint/qsolist.php:127
+#: application/views/qslprint/qsolist.php:129
 #: application/views/qso/edit_ajax.php:460
 #: application/views/qso/edit_ajax.php:493 application/views/qso/index.php:672
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:348
-#: application/views/qslprint/qsolist.php:129
 msgid "Manager"
 msgstr "Yönetici"
 
@@ -10972,8 +10905,8 @@ msgstr "QSL gönderildi"
 #: application/views/logbookadvanced/index.php:486
 #: application/views/logbookadvanced/index.php:508
 #: application/views/oqrs/qsolist.php:54 application/views/oqrs/qsolist.php:96
-#: application/views/qslprint/qsolist.php:63
-#: application/views/qslprint/qsolist.php:105
+#: application/views/qslprint/qsolist.php:65
+#: application/views/qslprint/qsolist.php:107
 #: application/views/qso/edit_ajax.php:446
 #: application/views/qso/edit_ajax.php:507
 #: application/views/qso/edit_ajax.php:552
@@ -10985,8 +10918,6 @@ msgstr "QSL gönderildi"
 #: application/views/view_log/partial/log_ajax.php:285
 #: application/views/view_log/partial/log_ajax.php:323
 #: src/QSLManager/QSO.php:406 src/QSLManager/QSO.php:451
-#: application/views/qslprint/qsolist.php:65
-#: application/views/qslprint/qsolist.php:107
 msgid "Queued"
 msgstr "Sıralanan"
 
@@ -11003,10 +10934,10 @@ msgstr "Sıralanan"
 #: application/views/oqrs/qsolist.php:60 application/views/oqrs/qsolist.php:102
 #: application/views/oqrs/qsolist.php:167
 #: application/views/oqrs/qsolist.php:182
-#: application/views/qslprint/qsolist.php:69
-#: application/views/qslprint/qsolist.php:111
-#: application/views/qslprint/qsolist.php:176
-#: application/views/qslprint/qsolist.php:191
+#: application/views/qslprint/qsolist.php:71
+#: application/views/qslprint/qsolist.php:113
+#: application/views/qslprint/qsolist.php:178
+#: application/views/qslprint/qsolist.php:193
 #: application/views/qso/edit_ajax.php:447
 #: application/views/qso/edit_ajax.php:479
 #: application/views/qso/edit_ajax.php:508
@@ -11034,10 +10965,6 @@ msgstr "Sıralanan"
 #: src/QSLManager/QSO.php:508 src/QSLManager/QSO.php:531
 #: src/QSLManager/QSO.php:629 src/QSLManager/QSO.php:688
 #: src/QSLManager/QSO.php:735 src/QSLManager/QSO.php:760
-#: application/views/qslprint/qsolist.php:71
-#: application/views/qslprint/qsolist.php:113
-#: application/views/qslprint/qsolist.php:178
-#: application/views/qslprint/qsolist.php:193
 msgid "Invalid (Ignore)"
 msgstr "Geçersiz (Yok say)"
 
@@ -12100,8 +12027,8 @@ msgid "Send not in log request"
 msgstr "Log’da Yok Talebini Gönder"
 
 #: application/views/oqrs/qsolist.php:11
-#: application/views/qslprint/qslprint.php:29
-#: application/views/qslprint/qsolist.php:13
+#: application/views/qslprint/qslprint.php:31
+#: application/views/qslprint/qsolist.php:14
 #: application/views/qso/edit_ajax.php:41 application/views/qso/index.php:57
 #: application/views/search/cqzones_result.php:16
 #: application/views/search/ituzones_result.php:16
@@ -12124,21 +12051,17 @@ msgstr "Log’da Yok Talebini Gönder"
 #: application/views/view_log/qso.php:729
 #: application/views/view_log/qso.php:736
 #: application/views/view_log/qso.php:741
-#: application/views/qslprint/qslprint.php:31
-#: application/views/qslprint/qsolist.php:14
 msgid "Station"
 msgstr "İstasyon"
 
 #: application/views/oqrs/qsolist.php:76
-#: application/views/qslprint/qslprint.php:28
-#: application/views/qslprint/qsolist.php:15
-#: application/views/qslprint/qsolist.php:85
+#: application/views/qslprint/qslprint.php:30
+#: application/views/qslprint/qsolist.php:16
+#: application/views/qslprint/qsolist.php:87
 #: application/views/qso/index.php:678
 #: application/views/search/search_result_ajax.php:208
 #: application/views/view_log/partial/log_ajax.php:310
-#: src/QSLManager/QSO.php:435 application/views/qslprint/qslprint.php:30
-#: application/views/qslprint/qsolist.php:16
-#: application/views/qslprint/qsolist.php:87
+#: src/QSLManager/QSO.php:435
 msgid "Via"
 msgstr "QSL Yöneticisi"
 
@@ -12148,7 +12071,6 @@ msgstr "Hiç QSO bulunamadı. Görünüşe göre bu zamanda aktif değildiniz."
 
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
-#: application/views/qslprint/qsolist.php:198
 #: application/views/qslprint/qsolist.php:200
 msgid "Add to print queue"
 msgstr "Yazdırma Sırasına Ekle"
@@ -12479,7 +12401,14 @@ msgstr "Giden QSL Kartlar"
 msgid "Export Requested QSLs for Printing"
 msgstr "Yazdırma için Talep Edilen QSL’leri Dışa Aktar"
 
-#: application/views/qslprint/index.php:29
+#: application/views/qslprint/index.php:31
+msgid "Show Band or Frequency:"
+msgstr ""
+
+#: application/views/qslprint/index.php:35
+msgid "Band & Frequency"
+msgstr ""
+
 #: application/views/qslprint/index.php:39
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
@@ -12488,7 +12417,6 @@ msgstr ""
 "Burada istenen QSL'leri CSV veya ADIF dosyaları olarak dışa aktarabilir ve "
 "isteğe bağlı olarak gönderildi olarak işaretleyebilirsin."
 
-#: application/views/qslprint/index.php:31
 #: application/views/qslprint/index.php:41
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
@@ -12497,14 +12425,11 @@ msgstr ""
 "İstenen QSL'ler, 'QSL Gönderildi' alanında 'İstendi' veya 'Kuyrukta' değeri "
 "bulunan tüm QSO'lardır."
 
-#: application/views/qslprint/index.php:32
-#: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/index.php:42
 #: application/views/qslprint/qslprint.php:34
 msgid "Previous QSL"
 msgstr "QSL Talep Sayısı"
 
-#: application/views/qslprint/index.php:32
 #: application/views/qslprint/index.php:42
 #, php-format
 msgid ""
@@ -12514,80 +12439,80 @@ msgstr ""
 "%s sütunu, aynı bant ve modda daha önce aynı istasyona kaç QSL "
 "gönderildiğini gösterir."
 
-#: application/views/qslprint/qslprint.php:31
-#: application/views/qslprint/qsolist.php:16
 #: application/views/qslprint/qslprint.php:33
 #: application/views/qslprint/qsolist.php:17
 msgid "Send Method"
 msgstr "Gönderim Yöntemi"
 
-#: application/views/qslprint/qslprint.php:33
 #: application/views/qslprint/qslprint.php:35
 msgid "Mark as sent"
 msgstr "Gönderildi olarak işaretle"
 
-#: application/views/qslprint/qslprint.php:34
 #: application/views/qslprint/qslprint.php:36
 msgid "Remove"
 msgstr "Kaldır"
 
-#: application/views/qslprint/qslprint.php:35
-#: application/views/simplefle/index.php:147
 #: application/views/qslprint/qslprint.php:37
+#: application/views/simplefle/index.php:147
 msgid "QSO List"
 msgstr "QSO Listesi"
 
-#: application/views/qslprint/qslprint.php:71
+#: application/views/qslprint/qslprint.php:78
+msgid "Mark QSOs for a certain QSL Method:"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:86
+msgid "Mark all QSOs for the chosen QSL method"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:87
+msgid "Unmark every QSO"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:92
+msgid "Update QSOs"
+msgstr ""
+
 #: application/views/qslprint/qslprint.php:95
 msgid "Mark selected QSOs as sent"
 msgstr "Seçilen QSO'ları gönderildi olarak işaretle"
 
-#: application/views/qslprint/qslprint.php:72
 #: application/views/qslprint/qslprint.php:96
 msgid "Remove selected QSOs from the queue"
 msgstr "Seçili QSO’ları kuyruktan kaldır"
 
-#: application/views/qslprint/qslprint.php:73
 #: application/views/qslprint/qslprint.php:97
 msgid "Export selected QSOs to ADIF-file"
 msgstr "Seçili QSO’ları ADIF dosyasına aktar"
 
-#: application/views/qslprint/qslprint.php:75
 #: application/views/qslprint/qslprint.php:102
 msgid "Export CSV-file"
 msgstr "CSV dosyasını dışa aktar"
 
-#: application/views/qslprint/qslprint.php:75
 #: application/views/qslprint/qslprint.php:102
 msgid "Export requested QSLs to CSV-file"
 msgstr "Talep edilen QSL’leri CSV dosyasına aktar"
 
-#: application/views/qslprint/qslprint.php:77
 #: application/views/qslprint/qslprint.php:103
 msgid "Export ADIF"
 msgstr "ADIF'i dışa aktar"
 
-#: application/views/qslprint/qslprint.php:77
 #: application/views/qslprint/qslprint.php:103
 msgid "Export requested QSLs to ADIF-file"
 msgstr "Talep edilen QSL’leri ADIF dosyasına aktar"
 
-#: application/views/qslprint/qslprint.php:79
 #: application/views/qslprint/qslprint.php:104
 msgid "Mark QSLs as printed"
 msgstr "QSL'leri yazdırıldı olarak işaretle"
 
-#: application/views/qslprint/qslprint.php:79
 #: application/views/qslprint/qslprint.php:104
 msgid "Mark requested QSLs as sent"
 msgstr "İstenen QSL'leri gönderildi olarak işaretle"
 
-#: application/views/qslprint/qslprint.php:83
 #: application/views/qslprint/qslprint.php:109
 msgid "No QSLs to print were found!"
 msgstr "Yazdırılacak QSL bulunamadı!"
 
-#: application/views/qslprint/qsolist.php:207
 #: application/views/qslprint/qsolist.php:209
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
@@ -14940,11 +14865,6 @@ msgstr ""
 "kullanımdan kaldırılmıştır ve Wavelog’un gelecekteki bir sürümünde tamamen "
 "kaldırılacaktır. Yerine Logbook-Advanced özelliğini kullanın!"
 
-#: application/views/update/index.php:35 application/views/update/index.php:59
-#: application/views/bands/edit.php:2
-msgid "WARNING"
-msgstr "UYARI"
-
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
 msgstr "DXCC verisi eksik QSOlari kontrol et"
@@ -16276,52 +16196,6 @@ msgstr "Talep Gönder"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Alındı"
-
-#: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
-msgid "HRD Log upload for this station is disabled."
-msgstr "Bu istasyon için HRD Log yüklemesi devre dışı bırakıldı."
-
-#: application/views/adif/import.php:380
-#, php-format
-msgid ""
-"An example for a tool to export the POTA hunter log in ADIF format is %s "
-"made by AF0G and available on GitHub."
-msgstr ""
-
-#: application/views/bands/edit.php:2
-msgid ""
-"Changes made here are instance-wide and will affect EVERY User. You see "
-"this, because you're an instance-admin"
-msgstr ""
-
-#: application/views/cron/index.php:21
-#, php-format
-msgid "For more information or help, take a look in the %s."
-msgstr ""
-
-#: application/views/qslprint/index.php:31
-msgid "Show Band or Frequency:"
-msgstr ""
-
-#: application/views/qslprint/index.php:35
-msgid "Band & Frequency"
-msgstr ""
-
-#: application/views/qslprint/qslprint.php:78
-msgid "Mark QSOs for a certain QSL Method:"
-msgstr ""
-
-#: application/views/qslprint/qslprint.php:86
-msgid "Mark all QSOs for the chosen QSL method"
-msgstr ""
-
-#: application/views/qslprint/qslprint.php:87
-msgid "Unmark every QSO"
-msgstr ""
-
-#: application/views/qslprint/qslprint.php:92
-msgid "Update QSOs"
-msgstr ""
 
 #~ msgid "QSL / LoTW / Clublog / eQSL / QRZ"
 #~ msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
