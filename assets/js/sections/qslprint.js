@@ -70,9 +70,11 @@ function addQsoToPrintQueue(id) {
 					if (qsoDialogInstance) {
                         qsoDialogInstance.close();
                     }
-                    var callSign = $("#qsolist_"+id).find("td:eq(0)").text();
-                    var formattedCallSign = callSign.replace(/0/g, "Ø").toUpperCase();
-                    var line = '<tr id="qslprint_'+id+'">';
+                    let callSign = $("#qsolist_"+id).find("td:eq(0)").text();
+                    let formattedCallSign = callSign.replace(/0/g, "Ø").toUpperCase();
+                    let line = '<tr id="qslprint_'+id+'">';
+					let freq_or_band = $('#frequency_or_band').val();
+
 					line += '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
                     line += '<td style="text-align: center">';
                     line += '<span class="qso_call">';
@@ -94,13 +96,23 @@ function addQsoToPrintQueue(id) {
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(1)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(2)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(3)").text()+'</td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
+					if (freq_or_band === 'band') {
+						line += '<td class=\'col-band\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
+						line += '<td class=\'col-freq\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
+
+					} else if (freq_or_band === 'frequency') {
+						line += '<td class=\'col-band\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
+						line += '<td class=\'col-freq\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
+					} else {
+						line += '<td class=\'col-band\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
+						line += '<td class=\'col-freq\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
+					}
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(6)").text()+'</td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(9)").text()+'</td>';
-					line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(7)").text()+'</span></td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(8)").text()+'</td>';
+					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(7)").text()+'</td>';
 					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(10)").text()+'</td>';
+					line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(8)").text()+'</span></td>';
+					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(9)").text()+'</td>';
+					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(11)").text()+'</td>';
 					line += '<td style="text-align: center">'+prev_qsl_html+'</td>';
 					line += '<td style=\'text-align: center\'><button onclick="mark_qsl_sent('+id+', \'B\')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></button></td>';
 					line += '<td style=\'text-align: center\'><button onclick="deleteFromQslQueue('+id+')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td></td>';
@@ -332,3 +344,98 @@ function exportSelectedQsos() {
 
 	$('.exportselected').prop("disabled", false);
 }
+
+function markMethod(){
+
+	//grab the dropdown
+	const select = document.getElementById('markqslmethod');
+
+	//grab the selected method
+	const methodkey = select.value;
+	const method = select.options[select.selectedIndex].text;
+
+	//perform function
+	markMethodQSOs(methodkey === "ALL" ? '' : method);
+}
+
+function markMethodQSOs(method) {
+
+	//unmark any QSO that is already marked for cleanup purposes
+	unmarkallQSOs();
+
+	//grab the table
+	const table = document.getElementById('qslprint_table');
+
+    //loop through each row except the header
+    Array.from(table.tBodies[0].rows).forEach(row => {
+
+		//get the send-method column
+        const sendMethodCell = row.querySelector('td.send-method');
+
+		//check if it contains the right method (or skip check if method is empty)
+        if (sendMethodCell && (method === "" || sendMethodCell.textContent.trim() === method)) {
+
+			//find the checkbox in the first cell
+            const checkbox = row.querySelector('td:first-child input[type="checkbox"]');
+
+			//check that box
+			if (checkbox) {
+                checkbox.checked = true;
+            }
+        }
+    });
+}
+
+function unmarkallQSOs(){
+
+	//grab the table
+	const table = document.getElementById('qslprint_table');
+
+	//loop through each row except the header
+    Array.from(table.tBodies[0].rows).forEach(row => {
+
+		//find the checkbox in the first cell
+		const checkbox = row.querySelector('td:first-child input[type="checkbox"]');
+
+		//check that box
+		if (checkbox) {
+			checkbox.checked = false;
+		}
+    });
+}
+
+function switchbandandfrequencydisplay(mode){
+
+	//switch state according to selected value. Default case = band
+	switch(mode) {
+	case 'band':
+		bandcols = document.querySelectorAll('.col-band');
+		bandcols.forEach(cell => { cell.style.display = '';});
+		freqcols = document.querySelectorAll('.col-freq');
+		freqcols.forEach(cell => { cell.style.display = 'none';});
+		break;
+	case 'frequency':
+		bandcols = document.querySelectorAll('.col-band');
+		bandcols.forEach(cell => { cell.style.display = 'none';});
+		freqcols = document.querySelectorAll('.col-freq');
+		freqcols.forEach(cell => { cell.style.display = '';});
+		break;
+	case 'both':
+		bandcols = document.querySelectorAll('.col-band');
+		bandcols.forEach(cell => { cell.style.display = '';});
+		freqcols = document.querySelectorAll('.col-freq');
+		freqcols.forEach(cell => { cell.style.display = '';});
+		break;
+	default:
+		bandcols = document.querySelectorAll('.col-band');
+		bandcols.forEach(cell => { cell.style.display = '';});
+		freqcols = document.querySelectorAll('.col-freq');
+		freqcols.forEach(cell => { cell.style.display = 'none';});
+		break;
+	}
+}
+
+document.getElementById('frequency_or_band').addEventListener('change', function (event) {
+	//switch display options
+	switchbandandfrequencydisplay(event.target.value);
+});
