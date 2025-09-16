@@ -39,7 +39,7 @@
                 <div class="col text-end" id="alert_status">
                     <?php if (version_compare(PHP_VERSION, $min_php_version) >= 0) { ?>
                         <div class="alert alert-<?php echo $mastercron['status_class'] ?? 'danger'; ?> d-inline-block">
-                            <?= __("Status Master-Cron:"); ?><br><?php echo $mastercron['status'] ?? _pgettext("Master Cron", "Not running"); ?>
+                            <?= __("Status Master-Cron:"); ?> <?php if ($mastercron['status'] != 'OK') { echo '<br />'; } ?><?php echo $mastercron['status'] ?? _pgettext("Master Cron", "Not running"); ?>
                         </div>
                     <?php } else { ?>
                         <div class="alert alert-danger d-inline-block">
