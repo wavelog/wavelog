@@ -4,12 +4,14 @@
 #
 # Halil AYYILDIZ <ta2lghalil@gmail.com>, 2024.
 # utkuyalcin <utkyalcn@gmail.com>, 2024.
+# Erkin <ekomeko066@gmail.com>, 2025.
+# "Erkin Mercan (TA4AQG-SP9AQG)" <ekomeko066@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-07-31 16:28+0000\n"
-"PO-Revision-Date: 2024-10-30 21:08+0000\n"
-"Last-Translator: utkuyalcin <utkyalcn@gmail.com>\n"
+"PO-Revision-Date: 2025-09-10 22:35+0000\n"
+"Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
 "installer/tr/>\n"
 "Language: tr_TR\n"
@@ -17,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.13.2\n"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
-msgstr "tespit edilemedi"
+msgstr "tespit edilmedi"
 
 #: install/includes/interface_assets/footer.php:57
 msgid "Albanian"
@@ -29,7 +31,7 @@ msgstr "Arnavutça"
 
 #: install/includes/interface_assets/footer.php:58
 msgid "Armenian"
-msgstr ""
+msgstr "Ermenice"
 
 #: install/includes/interface_assets/footer.php:59
 msgid "Bosnian"
@@ -81,7 +83,7 @@ msgstr "Yunanca"
 
 #: install/includes/interface_assets/footer.php:71
 msgid "Hungarian"
-msgstr ""
+msgstr "Macarca"
 
 #: install/includes/interface_assets/footer.php:72
 msgid "Italian"
@@ -89,7 +91,7 @@ msgstr "İtalyanca"
 
 #: install/includes/interface_assets/footer.php:73
 msgid "Japanese"
-msgstr ""
+msgstr "Japonca"
 
 #: install/includes/interface_assets/footer.php:74
 msgid "Latvian"
@@ -121,11 +123,11 @@ msgstr "Sırpça"
 
 #: install/includes/interface_assets/footer.php:81
 msgid "Slovak"
-msgstr ""
+msgstr "Slovakça"
 
 #: install/includes/interface_assets/footer.php:82
 msgid "Slovenian"
-msgstr ""
+msgstr "Slovence"
 
 #: install/includes/interface_assets/footer.php:83
 msgid "Spanish"
@@ -331,10 +333,14 @@ msgid ""
 "check your web server configuration. This is the base_url in your config."
 "php, which can be edited after the installation."
 msgstr ""
+"Bu, yükleyici çalıştıktan sonra bu Wavelog örneğine erişebileceğiniz "
+"URL'dir. Beklediğiniz sonucu görüntüleyemiyorsanız, web sunucusu "
+"yapılandırmanızı kontrol etmeniz gerekebilir. Bu, kurulumdan sonra "
+"düzenleyebileceğiniz config.php dosyanızdaki base_url'dir."
 
 #: install/index.php:352
 msgid "Your final Wavelog URL"
-msgstr ""
+msgstr "Final Wavelog URL'niz"
 
 #: install/index.php:358
 msgid "Optional: Global Callbook Lookup"
@@ -378,13 +384,15 @@ msgstr "Şifre %s içeremez ve boş bırakılamaz"
 
 #: install/index.php:387
 msgid "Good to know:"
-msgstr ""
+msgstr "Bİlmenizde fayda var:"
 
 #: install/index.php:388
 msgid ""
 "Use your callsign as your username for QRZ.com. The XML API does not support "
 "email addresses."
 msgstr ""
+"QRZ.com kullanıcı adınız olarak çağrı işaretinizi kullanın. XML API e-posta "
+"adreslerini desteklemez."
 
 #: install/index.php:391 install/index.php:396
 msgid "Advanced Settings"
@@ -444,6 +452,9 @@ msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
+"Genellikle localhost kullanılır. İsteğe bağlı olarak [sunucu]:[port] "
+"şeklinde belirtilebilir (varsayılan port: 3306). Docker Compose kurulumu "
+"yapıyorsanız wavelog-db yazın."
 
 #: install/index.php:444
 msgid "Database Name"
@@ -472,22 +483,24 @@ msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
 msgstr ""
+"Artık Wavelog'da ilk kullanıcınızı oluşturabilirsiniz. Tüm alanları doldurun "
+"ve Devam'a tıklayın. Güvenli bir parola kullandığınızdan emin olun."
 
 #: install/index.php:470
 msgid "All fields are required!"
-msgstr ""
+msgstr "Tüm alanların doldurulması zorunludur!"
 
 #: install/index.php:478
 msgid "First Name"
-msgstr "Adı"
+msgstr "Ad"
 
 #: install/index.php:482
 msgid "DXCC"
-msgstr "DXCC"
+msgstr "DXCC (Ülke)"
 
 #: install/index.php:484
 msgid "Please select one"
-msgstr ""
+msgstr "Lütfen birini seçin"
 
 #: install/index.php:485 install/index.php:491 install/index.php:515
 #: install/index.php:527 install/index.php:530 install/index.php:535
@@ -515,7 +528,7 @@ msgstr "Silinmiş DXCC"
 
 #: install/index.php:892
 msgid "Last Name"
-msgstr "Soyadı"
+msgstr "Soyad"
 
 #: install/index.php:896
 msgid "Callsign"
@@ -523,7 +536,7 @@ msgstr "Çağrı işareti"
 
 #: install/index.php:906
 msgid "Gridsquare/Locator"
-msgstr "Konum Belirteci"
+msgstr "Grid/Konum"
 
 #: install/index.php:916
 msgid "City"
@@ -547,7 +560,7 @@ msgstr "Kontrol listesi"
 
 #: install/index.php:1056
 msgid "Pre-Checks"
-msgstr ""
+msgstr "Ön Kontroller"
 
 #: install/index.php:1065
 msgid "Configuration"
@@ -575,23 +588,23 @@ msgstr "Artık Wavelog'u yükleyebiliriz. Bu işlem birkaç dakika sürebilir."
 
 #: install/index.php:1102
 msgid "Reset"
-msgstr ""
+msgstr "Sıfırlama"
 
 #: install/index.php:1107
 msgid "Installer Reset"
-msgstr ""
+msgstr "Yükleyiciyi Sıfırla"
 
 #: install/index.php:1110
 msgid "Do you really want to reset all data and start from scratch?"
-msgstr ""
+msgstr "Gerçekten tüm verileri sıfırlamak ve sıfırdan başlamak istiyor musunuz?"
 
 #: install/index.php:1113
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: install/index.php:1114
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: install/index.php:1124
 msgid "Back"
@@ -606,26 +619,33 @@ msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
 msgstr ""
+"Devam edemezsiniz. Kırmızı işaretli sorunları çözün, web sunucusunu yeniden "
+"başlatın ve bu sayfayı yeniden yükleyin."
 
 #: install/index.php:1330
 msgid "Password can't contain ' / \\ < >"
-msgstr ""
+msgstr "Şifre ' / \\ < > içeremez"
 
 #: install/index.php:1334
 msgid ""
 "The callsign should not contain any pre- or suffixes as it is used as "
 "personal operator callsign."
 msgstr ""
+"Çağrı işareti, kişisel operatör çağrı işareti olarak kullanıldığından "
+"herhangi bir ön ek veya son ek içermemelidir."
 
 #: install/index.php:1346
 msgid ""
 "The callsign can not contain any special characters. It's your personal "
 "callsign without any pre- or suffixes."
 msgstr ""
+"Çağrı işareti özel karakterler içeremez. Kişisel çağrı işaretiniz ön veya "
+"son ek olmadan yazın."
 
 #: install/index.php:1479
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
+"Hata: Sunucu Adı/IP, Veritabanı Adı ve Kullanıcı Adı mutlaka girilmelidir."
 
 #: install/index.php:1489
 msgid "Connecting..."
@@ -633,7 +653,7 @@ msgstr "Bağlanıyor..."
 
 #: install/index.php:1513
 msgid "Connection was successful and your database should be compatible."
-msgstr ""
+msgstr "Bağlantı başarılı, veritabanınız uyumlu görünüyor."
 
 #: install/index.php:1517
 msgid ""
@@ -646,15 +666,15 @@ msgstr ""
 #: install/index.php:1517
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
-msgstr ""
+msgstr "Minimum sürüm MySQL için %s, MariaDB için %s."
 
 #: install/index.php:1637
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #: install/index.php:1674
 msgid "At least one field is empty."
-msgstr ""
+msgstr "En az bir alan boş."
 
 #: install/index.php:1693
 msgid ""
@@ -662,18 +682,25 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Lütfen durun. Seçtiğiniz DXCC güncel değil ve artık geçerli değil. Bu konum "
+"için doğru DXCC’yi kontrol edin. Eğer eminseniz, bu uyarıyı yok "
+"sayabilirsiniz."
 
 #: install/index.php:1717
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
+"Görünen o ki, konum doğru formatta değil. AA11AA (6 karakterli grid locator) "
+"gibi olmalı."
 
 #: install/index.php:1731
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
 msgstr ""
+"E-posta adresi dogru görünmüyor. Geçerli bir e-posta adresi oldugundan emin "
+"olun"
 
 #: install/index.php:1758
 msgid "Password should be at least 8 characters long"
@@ -689,96 +716,98 @@ msgstr "Şimdi Yükle"
 
 #: install/index.php:1827
 msgid "Install not possible. Checklist incomplete."
-msgstr ""
+msgstr "Kurulum yapılamıyor. Kontrol listesi eksik."
 
 #: install/index.php:1939
 msgid "PHP Module missing"
-msgstr ""
+msgstr "PHP Modülü eksik"
 
 #: install/index.php:1941
 msgid "The following PHP modules are missing:"
-msgstr ""
+msgstr "Aşağıdaki PHP modülleri eksik:"
 
 #: install/index.php:1942
 msgid "Without this module the Wavelog Installer does not work!"
-msgstr ""
+msgstr "Bu modül olmadan Wavelog Yükleyici çalışmaz!"
 
 #: install/index.php:1943
 msgid "Please install the required modules and restart the webserver."
-msgstr ""
+msgstr "Gerekli modülleri yükleyin ve web sunucusunu yeniden başlatın."
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "Kurulum"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "Lütfen bekleyin..."
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "Config.php dosyasını application/config/ dizinine kopyalayın"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "database.php dosyasını application/config/ dizinine kopyalayın"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "Veritabanı tabloları oluşturuluyor"
 
 #: install/run.php:24
 msgid "Running database migrations"
-msgstr ""
+msgstr "Veritabanı güncellemeleri uygulanıyor"
 
 #: install/run.php:27
 msgid "Updating DXCC data"
-msgstr ""
+msgstr "DXCC bilgileri güncelleniyor"
 
 #: install/run.php:35
 msgid "Lock the installer"
-msgstr ""
+msgstr "Yükleyiciyi kilitle"
 
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
+"Tüm kurulum adımları tamamlandı. %s saniye içinde kullanıcı girişine "
+"yönlendiriliyor..."
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
-msgstr ""
+msgstr "Tamamlandı. Kullanıcı girişine gidin ->"
 
 #: install/run.php:46 install/run.php:125
 msgid "Show detailled debug log"
-msgstr ""
+msgstr "Ayrıntılı hata ayıklama günlüğünü göster"
 
 #: install/run.php:127
 msgid "Hide detailled debug log"
-msgstr ""
+msgstr "Ayrıntılı hata ayıklama günlüğünü gizle"
 
 #: install/run.php:182
 msgid "Could not create application/config/config.php"
-msgstr ""
+msgstr "application/config/config.php oluşturulamadı"
 
 #: install/run.php:217
 msgid "Could not create application/config/database.php"
-msgstr ""
+msgstr "application/config/database.php dosyası oluşturulamadı"
 
 #: install/run.php:251
 msgid "Could not create database tables"
-msgstr ""
+msgstr "Veritabanı tabloları oluşturulamadı"
 
 #: install/run.php:281
 msgid "Could not run database migrations"
-msgstr ""
+msgstr "Veritabanı geçişleri çalıştırılamadı"
 
 #: install/run.php:309
 msgid "Could not update DXCC data"
-msgstr ""
+msgstr "DXCC verileri güncellenemedi"
 
 #: install/run.php:342
 msgid "Could not create install/.lock file"
-msgstr ""
+msgstr "Install/.lock dosyası oluşturulamadı"
 
 #~ msgid "Directory"
 #~ msgstr "Dizin"

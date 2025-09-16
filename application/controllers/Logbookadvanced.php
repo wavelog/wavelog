@@ -135,6 +135,8 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
 			'eqslSent' => xss_clean($this->input->post('eqslSent')),
 			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
+			'dclSent' => xss_clean($this->input->post('dclSent')),
+			'dclReceived' => xss_clean($this->input->post('dclReceived')),
 			'clublogSent' => xss_clean($this->input->post('clublogSent')),
 			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
 			'qslvia' => xss_clean($this->input->post('qslvia')),
@@ -358,6 +360,8 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => '',
 			'eqslSent' => '',
 			'eqslReceived' => '',
+			'dclSent' => '',
+			'dclReceived' => '',
 			'clublogSent' => '',
 			'clublogReceived' => '',
 			'qslvia' => '*',
@@ -597,6 +601,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['region']['show'] = $this->def_boolean($this->input->post('region'));
 		$json_string['qth']['show'] = $this->def_boolean($this->input->post('qth'));
 		$json_string['frequency']['show'] = $this->def_boolean($this->input->post('frequency'));
+		$json_string['dcl']['show'] = $this->def_boolean($this->input->post('dcl'));
 
 		$obj['column_settings']= json_encode($json_string);
 

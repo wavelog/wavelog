@@ -32,7 +32,7 @@
                                 <tr>
                                     <th scope="col"><?= __("Name")?></th>
                                     <th scope="col"><?= __("Status")?></th>
-                                    <th scope="col"><?= __("Linked locations"); ?></th>
+                                    <th scope="col"><?= __("Edit Linked locations"); ?></th>
                                     <th scope="col"><?= __("Delete")?></th>
                                     <th scope="col"><?= __("Visitor site"); ?></th>
                                     <th scope="col"><?= __("Public Search")?></th>
