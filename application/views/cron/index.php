@@ -18,7 +18,7 @@
 						<strong class="d-block"><i class="fas fa-info-circle me-2"></i> Important</strong>
 
 						<div>
-							<?= sprintf(__("For more information or help, take a look in the %s."), '<a target="_blank" class="text-primary fw-bold text-decoration-underline" href="https://github.com/wavelog/wavelog/wiki/Recommended-Cron-Jobs-and-Cronmanager">'.'WIKI'.'</a>'); ?>
+							<?= sprintf(__("For more information or help, take a look in the %s."), '<a target="_blank" class="text-primary fw-bold text-decoration-underline" href="https://github.com/wavelog/wavelog/wiki/Recommended-Cron-Jobs-and-Cronmanager">'.'Wiki'.'</a>'); ?>
 						</div>
 					</div>
 				</div>
