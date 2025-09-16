@@ -107,94 +107,107 @@ function getDistance($distance) {
 <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
 
 	<?php if (version_compare(PHP_VERSION, '7.4.0') <= 0) { ?>
-		<div class="alert alert-danger" role="alert">
-		<?= __("You need to upgrade your PHP version. Minimum version is 7.4. Your version is") . ' ' . PHP_VERSION . '.';?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<?= __("You need to upgrade your PHP version. Minimum version is 7.4. Your version is") . ' ' . PHP_VERSION . '.';?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 	<?php if(($this->session->userdata('user_type') == 99) && !($this->config->item('disable_version_check') ?? false) && $this->optionslib->get_option('latest_release')) { ?>
 		<?php if (version_compare($this->optionslib->get_option('latest_release'), $this->optionslib->get_option('version'), '>')) { ?>
-			<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
+			<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
 				<?= sprintf(_pgettext("Dashboard Warning", "A new version of Wavelog has been published. See: %s."), "<a href=\"https://github.com/wavelog/wavelog/releases/tag/".$this->optionslib->get_option('latest_release')."\" target=\"_blank\"><u>Release ".$this->optionslib->get_option('latest_release')."</u></a>"); ?>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		<?php } ?>
 	<?php } ?>
 
 	<?php if ($countryCount == 0) { ?>
-		<div class="alert alert-danger mt-3" role="alert">
+		<div class="alert alert-danger mt-3 alert-dismissible fade show" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You need to update country files! Click %shere%s to do it."), '<u><a href="' . site_url('update') . '">', "</a></u>"
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if ($locationCount == 0 && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station locations. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if ($logbookCount == 0 && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if (($linkedCount > 0) && $active_not_linked && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "Your active Station Location isn't linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if ($linkedCount == 0 && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<?= sprintf(
 				_pgettext("Dashboard Warning", "You have no station linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if($dashboard_banner != "false" && $this->session->userdata('clubstation') == 0) { ?>
 	<?php if($todays_qsos >= 1) { ?>
-		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
+		<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
 			<?= sprintf(
 					_ngettext("You have had %d QSO today", "You have had %d QSOs today", intval($todays_qsos)),
 					intval($todays_qsos)
 				); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } else { ?>
-		<div class="alert alert-warning" role="alert" style="margin-top: 1rem;">
-			  <span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> <?= __("You have made no QSOs today; time to turn on the radio!"); ?>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
+			<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> <?= __("You have made no QSOs today; time to turn on the radio!"); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 	<?php } ?>
 
 	<?php if($current_active == 0 && !$is_first_login) { ?>
-		<div class="alert alert-danger" role="alert">
-		  <?= __("Attention: you need to set an active station location."); ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<?= __("Attention: you need to set an active station location."); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if($themesWithoutMode != 0) { ?>
-		<div class="alert alert-danger" role="alert">
-		  	<?= __("You have themes without defined theme mode. Please ask the admin to edit the themes."); ?>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<?= __("You have themes without defined theme mode. Please ask the admin to edit the themes."); ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
 
 	<?php if ($this->session->userdata('user_id')) { ?>
 		<?php
 			if($lotw_cert_expired == true) { ?>
-			<div class="alert alert-danger" role="alert">
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is expired!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		<?php } elseif($lotw_cert_expiring == true) { ?>
-			<div class="alert alert-warning" role="alert">
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
 				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= sprintf(_pgettext("LoTW Warning", "At least one of your %sLoTW certificates%s is about to expire!"), '<u><a href="' . site_url('lotw') . '">', "</a></u>"); ?>
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		<?php } ?>
 	<?php } ?>
