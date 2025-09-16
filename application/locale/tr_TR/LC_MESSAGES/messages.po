@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-09-15 07:21+0000\n"
 "PO-Revision-Date: 2025-09-16 07:23+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1012,6 +1012,7 @@ msgstr "DX Etkinlik Takvimi"
 #: application/views/dashboard/index.php:386
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:399
 msgid "eQSL Cards"
 msgstr "eQSL Kartları"
 
@@ -1319,6 +1320,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:784 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/dashboard/index.php:334
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1353,6 +1355,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:792 application/views/user/edit.php:866
+#: application/views/dashboard/index.php:334
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2164,6 +2167,8 @@ msgstr "QRZ ADIF Bilgisi"
 #: application/views/dashboard/index.php:338
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:334
+#: application/views/dashboard/index.php:351
 msgid "QSL Cards"
 msgstr "QSL Kartları"
 
@@ -3446,6 +3451,7 @@ msgstr "Toplam çalışılan WAJA sayısı"
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:312
 msgid "Year"
 msgstr "Şu Yılı Göster:"
 
@@ -3458,6 +3464,7 @@ msgstr "Yıllık"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:304
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:317
 msgid "Month"
 msgstr "Bu Ayki QSO'lar"
 
@@ -4122,6 +4129,7 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:666
+#: application/views/dashboard/index.php:239
 msgid "Callsign"
 msgstr "Çağrı işareti"
 
@@ -4231,6 +4239,7 @@ msgstr "Logunuzdaki DOK ile DCL’deki DOK farklı"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/dashboard/index.php:234
 msgid "Date"
 msgstr "Tarih"
 
@@ -4265,6 +4274,7 @@ msgstr "Tarih"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/dashboard/index.php:237
 msgid "Time"
 msgstr "Saat"
 
@@ -4321,6 +4331,9 @@ msgstr "CBR İçe Aktar"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/dashboard/index.php:180
+#: application/views/dashboard/index.php:204
+#: application/views/dashboard/index.php:209
 msgid "Important"
 msgstr "Önemli"
 
@@ -5161,6 +5174,7 @@ msgstr "Onaylanan Eyaletler"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:307
 msgid "Total"
 msgstr "Toplam QSO"
 
@@ -5240,6 +5254,8 @@ msgstr "Ödüller - CQ WAZ"
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:334
+#: application/views/dashboard/index.php:452
 msgid "Confirmed"
 msgstr "Onaylanan"
 
@@ -5251,6 +5267,8 @@ msgstr "Onaylanan"
 #: application/views/dashboard/index.php:433
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:330
+#: application/views/dashboard/index.php:446
 msgid "Worked"
 msgstr "Çalışılanlar"
 
@@ -6108,6 +6126,7 @@ msgstr "Şehir"
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
+#: application/views/dashboard/index.php:442
 msgid "SAT"
 msgstr "Uydu"
 
@@ -7746,6 +7765,10 @@ msgstr "Detayları Göster"
 #: application/views/dashboard/index.php:366
 #: application/views/dashboard/index.php:387
 #: application/views/dashboard/index.php:408
+#: application/views/dashboard/index.php:352
+#: application/views/dashboard/index.php:379
+#: application/views/dashboard/index.php:400
+#: application/views/dashboard/index.php:421
 msgid "Today"
 msgstr "Bugün"
 
@@ -8223,12 +8246,14 @@ msgstr ""
 "Sürümünüz:"
 
 #: application/views/dashboard/index.php:117
+#: application/views/dashboard/index.php:118
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
 msgstr "Wavelog'un yeni bir sürümü yayınlandı. Bakınız: %s."
 
 #: application/views/dashboard/index.php:125
+#: application/views/dashboard/index.php:127
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
@@ -8237,18 +8262,21 @@ msgstr ""
 "tıklayın."
 
 #: application/views/dashboard/index.php:133
+#: application/views/dashboard/index.php:136
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
 msgstr "Hiç istasyon konumunuz yok. Bunu yapmak için %sburaya%s tıklayın."
 
 #: application/views/dashboard/index.php:141
+#: application/views/dashboard/index.php:145
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
 msgstr "Hiç istasyon logbook'unuz yok. Bunu yapmak için %sburaya%s tıklayın."
 
 #: application/views/dashboard/index.php:149
+#: application/views/dashboard/index.php:154
 #, php-format
 msgctxt "Dashboard Warning"
 msgid ""
@@ -8259,6 +8287,7 @@ msgstr ""
 "%sburaya%s tıklayın."
 
 #: application/views/dashboard/index.php:157
+#: application/views/dashboard/index.php:163
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
@@ -8267,6 +8296,7 @@ msgstr ""
 "tıklayın."
 
 #: application/views/dashboard/index.php:166
+#: application/views/dashboard/index.php:173
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
@@ -8274,14 +8304,17 @@ msgstr[0] "Bugün %d QSO yaptın"
 msgstr[1] "Bugün %d QSO yaptın"
 
 #: application/views/dashboard/index.php:172
+#: application/views/dashboard/index.php:180
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "Bu gün hiç bir QSO yapmadınız. Telsizi açmanın zamanı geldi!"
 
 #: application/views/dashboard/index.php:179
+#: application/views/dashboard/index.php:188
 msgid "Attention: you need to set an active station location."
 msgstr "Dikkat: aktif bir istasyon konumu ayarlamanız gerekir."
 
 #: application/views/dashboard/index.php:185
+#: application/views/dashboard/index.php:195
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
@@ -8290,12 +8323,14 @@ msgstr ""
 "isteyin."
 
 #: application/views/dashboard/index.php:193
+#: application/views/dashboard/index.php:204
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
 msgstr "%sLoTW sertifikanızın%s süresi dolmuş!"
 
 #: application/views/dashboard/index.php:197
+#: application/views/dashboard/index.php:209
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
@@ -8303,6 +8338,7 @@ msgstr "%sLoTW sertifikanızın%s süresi dolmak üzere!"
 
 #: application/views/dashboard/index.php:274
 #: application/views/qso/index.php:810
+#: application/views/dashboard/index.php:287
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -8311,16 +8347,19 @@ msgstr[1] "En fazla %d QSO gösterilir"
 
 #: application/views/dashboard/index.php:290
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:303
 msgid "QSOs Breakdown"
 msgstr "QSO'ların Analizi"
 
 #: application/views/dashboard/index.php:313
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:326
 msgid "DXCCs Breakdown"
 msgstr "Ülkeler'in (DXCC) Analizi"
 
 #: application/views/dashboard/index.php:330
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:343
 msgid "Needed"
 msgstr "İstenenler"
 
@@ -8357,7 +8396,10 @@ msgstr "İstenenler"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:554
 #: src/QSLManager/QSO.php:607 src/QSLManager/QSO.php:666
-#: src/QSLManager/QSO.php:731
+#: src/QSLManager/QSO.php:731 application/views/dashboard/index.php:356
+#: application/views/dashboard/index.php:383
+#: application/views/dashboard/index.php:404
+#: application/views/dashboard/index.php:425
 msgid "Sent"
 msgstr "Gönderilen"
 
@@ -8393,7 +8435,10 @@ msgstr "Gönderilen"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:577
 #: src/QSLManager/QSO.php:646 src/QSLManager/QSO.php:705
-#: src/QSLManager/QSO.php:755
+#: src/QSLManager/QSO.php:755 application/views/dashboard/index.php:362
+#: application/views/dashboard/index.php:389
+#: application/views/dashboard/index.php:410
+#: application/views/dashboard/index.php:431
 msgid "Received"
 msgstr "Alınan"
 
@@ -8432,16 +8477,18 @@ msgstr "Alınan"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764
+#: src/QSLManager/QSO.php:764 application/views/dashboard/index.php:368
 msgid "Requested"
 msgstr "İstenen"
 
 #: application/views/dashboard/index.php:365
+#: application/views/dashboard/index.php:378
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "LOTW (Logbook of the World)"
 
 #: application/views/dashboard/index.php:428
+#: application/views/dashboard/index.php:441
 msgid "VUCC-Grids"
 msgstr "VUCC-Gridleri"
 
