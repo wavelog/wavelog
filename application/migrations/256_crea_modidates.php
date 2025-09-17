@@ -47,7 +47,7 @@ class Migration_crea_modidates extends CI_Migration {
 		try {
 			$this->db->query($what);
 		} catch (Exception $e) {
-			log_message("error", "Something gone wrong while altering the OQRS table: ".$e." // Executing: ".$this->db->last_query());
+			log_message("error", "Something gone wrong while altering a table: ".$e." // Executing: ".$this->db->last_query());
 		}
 	}
 }
