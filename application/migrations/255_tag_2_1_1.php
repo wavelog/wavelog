@@ -3,16 +3,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-        Tag Wavelog as Version 2.1
+        Tag Wavelog as Version 2.1.1
 */
 
-class Migration_tag_2_1 extends CI_Migration {
+class Migration_tag_2_1_1 extends CI_Migration {
 
     public function up()
     {
         // Tag Wavelog New Version
         $this->db->where('option_name', 'version');
-        $this->db->update('options', array('option_value' => '2.1'));
+        $this->db->update('options', array('option_value' => '2.1.1'));
 
         // Trigger Version Info Dialog
         $this->db->where('option_type', 'version_dialog');
@@ -28,6 +28,6 @@ class Migration_tag_2_1 extends CI_Migration {
     public function down()
     {
         $this->db->where('option_name', 'version');
-        $this->db->update('options', array('option_value' => '2.0.7'));
+        $this->db->update('options', array('option_value' => '2.1'));
     }
 }
