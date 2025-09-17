@@ -22,11 +22,25 @@ class Migration_crea_modidates extends CI_Migration {
 	}
 
 	function add_create_modi($table) {
-			$this->dbtry("ALTER TABLE ".$table." ADD COLUMN `CREATION_DATE` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,  ADD COLUMN `LAST_MODIFIED` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;");
+        	$col_check = $this->db->query("SHOW COLUMNS FROM ".$table." LIKE 'creation_date';")->num_rows() > 0;
+        	if (!$col_check) {
+			$this->dbtry("ALTER TABLE ".$table." ADD COLUMN `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;");
+		}
+        	$col_check = $this->db->query("SHOW COLUMNS FROM ".$table." LIKE 'last_modified';")->num_rows() > 0;
+        	if (!($col_check) && !(($table == 'paper_types') || ($table == 'label_types'))) {
+			$this->dbtry("ALTER TABLE ".$table." ADD COLUMN `last_modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;");
+		}
 	}
 
 	function rm_create_modi($table) {
-			$this->dbtry("ALTER TABLE ".$table." DROP COLUMN IF EXISTS `CREATION_DATE`, DROP COLUMN IF EXISTS `LAST_MODIFIED`;");
+        	$col_check = $this->db->query("SHOW COLUMNS FROM ".$table." LIKE 'creation_date';")->num_rows() > 0;
+        	if ($col_check) {
+			$this->dbtry("ALTER TABLE ".$table." DROP COLUMN `creation_date`;");
+		}
+        	$col_check = $this->db->query("SHOW COLUMNS FROM ".$table." LIKE 'last_modified';")->num_rows() > 0;
+        	if (($col_check) && !(($table == 'paper_types') || ($table == 'label_types'))) {
+			$this->dbtry("ALTER TABLE ".$table." DROP COLUMN `last_modified`;");
+		}
 	}
 
 	function dbtry($what) {
