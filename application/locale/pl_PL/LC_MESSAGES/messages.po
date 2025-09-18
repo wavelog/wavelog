@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 20:17+0000\n"
+"PO-Revision-Date: 2025-09-18 20:49+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -9215,23 +9215,23 @@ msgstr "Dane QSO"
 #: application/views/distances/index.php:9
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr ""
+msgstr "kontakty zostały naniesione.%s Twój najdalszy kontakt odbył się z"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
-msgstr ""
+msgstr "w lokatorze"
 
 #: application/views/distances/index.php:11
 msgid "the distance was"
-msgstr ""
+msgstr "dystans wyniósł"
 
 #: application/views/distances/index.php:14
 msgid "Callsign(s) worked (max 5 shown)"
-msgstr ""
+msgstr "Przepracowane znaki (maks. 5 pokazanych)"
 
 #: application/views/distances/index.php:19
 msgid "Band selection"
-msgstr ""
+msgstr "Wybór pasma"
 
 #: application/views/dxatlas/index.php:3
 msgid "DX Atlas Export"
@@ -9242,6 +9242,8 @@ msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
 msgstr ""
+"Eksportuj swój dziennik łączności do użycia w DX Atlas w celu wyświetlenia "
+"przepracowanych / potwierdzonych siatek lokatorów."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
@@ -9249,20 +9251,20 @@ msgstr "Tylko QSO ze zdefiniowanym lokatorem zostaną wyeksportowane!"
 
 #: application/views/dxcalendar/index.php:9
 msgid "Date from"
-msgstr ""
+msgstr "Data od"
 
 #: application/views/dxcalendar/index.php:10
 msgid "Date to"
-msgstr ""
+msgstr "Data do"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:489
 msgid "QSL Info"
-msgstr ""
+msgstr "Informacja QSL"
 
 #: application/views/dxcalendar/index.php:14
 msgid "Source"
-msgstr ""
+msgstr "Źródło"
 
 #: application/views/email/admin_reset_password.php:3
 #: application/views/email/forgot_password.php:3
@@ -9272,7 +9274,7 @@ msgstr "Reset hasła konta Wavelog"
 #: application/views/email/admin_reset_password.php:5
 #, php-format
 msgid "Hello %s"
-msgstr ""
+msgstr "Witaj %s"
 
 #: application/views/email/admin_reset_password.php:7
 msgid "An admin initiated a password reset for your Wavelog account."
@@ -9288,7 +9290,7 @@ msgstr "Twoja nazwa użytkownika to: %s"
 #: application/views/email/forgot_password.php:11
 #, php-format
 msgid "Click here to reset your password: %s"
-msgstr ""
+msgstr "Kliknij tutaj, aby zresetować hasło: %s"
 
 #: application/views/email/admin_reset_password.php:13
 msgid ""
@@ -9299,11 +9301,17 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Jeśli nie prosiłeś o zresetowanie hasła, po prostu zignoruj tę wiadomość i "
+"skontaktuj się z administratorem swojej instancji Wavelog.\n"
+"\n"
+"Pozdrawiam,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/modified_member.php:3
 #, php-format
 msgid "Your permission level for Clubstation %s has been changed"
-msgstr ""
+msgstr "Twój poziom uprawnień dla stacji klubowej %s został zmieniony"
 
 #: application/views/email/club/modified_member.php:5
 #, php-format
@@ -9313,11 +9321,15 @@ msgid ""
 "Your permission level for Clubstation %s has been changed. You can access "
 "this callsign through your account at %s."
 msgstr ""
+"Drogi %s,\n"
+"\n"
+"Twój poziom uprawnień dla stacji klubowej %s został zmieniony. Możesz "
+"uzyskać dostęp do tego znaku wywoławczego poprzez swoje konto na %s."
 
 #: application/views/email/club/modified_member.php:9
 #, php-format
 msgid "Your new permission level is: %s"
-msgstr ""
+msgstr "Twój nowy poziom uprawnień to: %s"
 
 #: application/views/email/club/modified_member.php:11
 #: application/views/email/club/new_member.php:11
@@ -9328,11 +9340,16 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Zaloguj się i sprawdź!\n"
+"\n"
+"Pozdrawiam,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/club/new_member.php:3
 #, php-format
 msgid "New %s Membership on Wavelog!"
-msgstr ""
+msgstr "Nowe członkostwo %s w Wavelog!"
 
 #: application/views/email/club/new_member.php:5
 #, php-format
@@ -9342,11 +9359,15 @@ msgid ""
 "You have been added to the Clubstation %s. You can now access this callsign "
 "through your account on %s."
 msgstr ""
+"Drogi %s,\n"
+"\n"
+"Zostałeś dodany do stacji klubowej %s. Możesz teraz uzyskać dostęp do tego "
+"znaku wywoławczego poprzez swoje konto na %s."
 
 #: application/views/email/club/new_member.php:9
 #, php-format
 msgid "Your permission level is: %s"
-msgstr ""
+msgstr "Twój poziom uprawnień to: %s"
 
 #: application/views/email/forgot_password.php:5
 msgid ""
@@ -9366,19 +9387,24 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Jeśli nie prosiłeś o to, po prostu zignoruj.\n"
+"\n"
+"Pozdrawiam,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/oqrs_request.php:3
 #, php-format
 msgid "Wavelog OQRS from %s"
-msgstr ""
+msgstr "Wavelog OQRS od %s"
 
 #: application/views/email/oqrs_request.php:6
 msgid "The user entered the following message: "
-msgstr ""
+msgstr "Użytkownik wpisał następującą wiadomość: "
 
 #: application/views/email/oqrs_request.php:11
 msgid "The user did not enter any additional message."
-msgstr ""
+msgstr "Użytkownik nie wpisał żadnej dodatkowej wiadomości."
 
 #: application/views/email/oqrs_request.php:14
 #, php-format
@@ -9387,6 +9413,9 @@ msgid ""
 "\n"
 "You got an OQRS request from %s."
 msgstr ""
+"Cześć,\n"
+"\n"
+"Otrzymałeś żądanie OQRS od %s."
 
 #: application/views/email/oqrs_request.php:20
 msgid ""
@@ -9396,10 +9425,15 @@ msgid ""
 "\n"
 "Wavelog"
 msgstr ""
+"Zaloguj się do swojego konta Wavelog i przetwórz żądanie.\n"
+"\n"
+"Pozdrawiam,\n"
+"\n"
+"Wavelog"
 
 #: application/views/email/testmail.php:3
 msgid "Wavelog Test-Mail"
-msgstr ""
+msgstr "Mail testowy Wavelog"
 
 #: application/views/email/testmail.php:5
 msgid ""
@@ -9448,7 +9482,7 @@ msgstr "Pobierz karty eQSL"
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
-msgstr ""
+msgstr "Podtryb"
 
 #: application/views/eqsl/analysis.php:41
 msgid "eQSL Received Date"
@@ -9456,7 +9490,7 @@ msgstr "Data otrzymania eQSL"
 
 #: application/views/eqsl/analysis.php:42
 msgid "Log Status"
-msgstr ""
+msgstr "Status logu"
 
 #: application/views/eqsl/analysis.php:43 application/views/eqsl/result.php:38
 msgid "eQSL Status"
@@ -9464,19 +9498,21 @@ msgstr "Status eQSL"
 
 #: application/views/eqsl/analysis.php:68
 msgid "There are no QSO confirmations waiting for you at eQSL.cc"
-msgstr ""
+msgstr "Nie ma oczekujących potwierdzeń QSO dla ciebie na eQSL.cc"
 
 #: application/views/eqsl/download.php:31
 msgid ""
 "Below is a table of QSOs that have been confirmed on eQSL but QSL images "
 "have not been downloaded yet."
 msgstr ""
+"Poniżej znajduje się tabela QSO, które zostały potwierdzone na eQSL, ale "
+"obrazy QSL nie zostały jeszcze pobrane."
 
 #: application/views/eqsl/download.php:42
 #: application/views/eqslcard/index.php:34
 #: application/views/view_log/qso.php:544
 msgid "QSL Message"
-msgstr ""
+msgstr "Wiadomość QSL"
 
 #: application/views/eqsl/download.php:44
 msgid "eQSL Receive Date"
@@ -9501,22 +9537,32 @@ msgid ""
 "to call this function several times depending on the amount of outstanding "
 "cards. This may run into a script timeout depending on the PHP configuration."
 msgstr ""
+"Ze względu na ograniczenie szybkości pobierania obrazów eQSL (około 10 "
+"sekund na obraz), wywołanie tej funkcji zajmie dużo czasu! W związku z tym "
+"może być konieczne wielokrotne jej wywołanie w zależności od liczby "
+"oczekujących kart. Może to spowodować przekroczenie limitu czasu skryptu w "
+"zależności od konfiguracji PHP."
 
 #: application/views/eqsl/download.php:93
 msgid ""
 "There are no QSOs whose eQSL card images have not yet been downloaded. Go "
 "log some more QSOs!"
 msgstr ""
+"Nie ma QSO, których obrazy kart eQSL nie zostały jeszcze pobrane. Zaloguj "
+"więcej QSO!"
 
 #: application/views/eqsl/export.php:31
 msgid "Below is a table of QSOs that have not yet been sent to eQSL."
 msgstr ""
+"Poniżej znajduje się tabela QSO, które nie zostały jeszcze wysłane do eQSL."
 
 #: application/views/eqsl/export.php:33
 msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
+"Upewnij się, że pole „eQSL QTH Nickname” jest ustawione w profilu stacji i "
+"że jego wartość odpowiada pseudonimowi QTH ustawionemu w eQSL."
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
@@ -9531,7 +9577,7 @@ msgstr "Poniższe QSO zostały przesłane do eQSL."
 msgid ""
 "There are no QSOs that need to be sent to eQSL at this time. Go log some "
 "more QSOs!"
-msgstr ""
+msgstr "Nie ma QSO, które trzeba obecnie wysłać do eQSL. Zaloguj więcej QSO!"
 
 #: application/views/eqsl/import.php:28
 msgid "The next automatic sync with eQSL will happen at: "
@@ -9543,7 +9589,7 @@ msgstr "Importuj z pliku..."
 
 #: application/views/eqsl/import.php:34
 msgid "Download Inbox"
-msgstr ""
+msgstr "Skrzynka odbiorcza"
 
 #: application/views/eqsl/import.php:34
 #, php-format
@@ -9551,10 +9597,12 @@ msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
 msgstr ""
+"Prześlij wyeksportowany plik ADIF z eQSL ze strony %s, aby oznaczyć QSO jako "
+"potwierdzone w eQSL."
 
 #: application/views/eqsl/import.php:35
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr ""
+msgstr "Wybierz stację (lokalizację), do której należy plik eQSL:"
 
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
@@ -9569,6 +9617,8 @@ msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
 msgstr ""
+"To nie przesyła żadnych QSO. Oznacza jedynie QSO jako wysłane. Jeśli użyjesz "
+"tego przycisku, musisz przesłać je ręcznie na stronie eQSL.cc."
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
@@ -9578,7 +9628,7 @@ msgstr "Oznacz wszystkie QSO jako przesłane do eQSL"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr ""
+msgstr "Użyj tego, jeśli ręcznie przesłałeś wszystkie swoje QSO do eQSL."
 
 #: application/views/eqslcard/index.php:10
 #, php-format
@@ -9607,57 +9657,66 @@ msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
 msgstr ""
+"Nie można filtrować tylko dostępnych przelotów bez klucza prywatnego kanału. "
+"Proszę ustawić klucz kanału w %s."
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
-msgstr ""
+msgstr "twój profil"
 
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
-msgstr ""
+msgstr "Zaznacz QSO"
 
 #: application/views/hrdlog/export.php:22
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "HRDLog logbook."
 msgstr ""
+"Tutaj możesz zobaczyć wszystkie QSO, które nie zostały wcześniej przesłane "
+"do dziennika HRDLog."
 
 #: application/views/hrdlog/export.php:23
 msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
 msgstr ""
+"Musisz ustawić kod API dziennika HRDLog w profilu stacji. Wyświetlane są "
+"tylko profile stacji z ustawionym kluczem API."
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "Kod można uzyskać na stronie %s"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
 msgstr ""
+"Może to chwilę potrwać, ponieważ przesyłanie QSO odbywa się sekwencyjnie."
 
 #: application/views/hrdlog/export.php:60
 msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
+"Nie znaleziono lokalizacji stacji z prawidłowymi ustawieniami HRDlog. "
+"Sprawdź dane logowania HRDlog w ustawieniach lokalizacji stacji!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "Oznacz QSO jako wyeksportowane do dziennika HRDLog"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "Hurra, gotowe!"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "QSO zostały oznaczone jako wyeksportowane do dziennika HRDLog."
 
 #: application/views/interface_assets/footer.php:32
 #: application/views/search/search_result_ajax.php:456
@@ -9702,18 +9761,20 @@ msgstr "Wyczyść"
 #: application/views/qso/edit_ajax.php:568
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
+"Tryb propagacji nie jest obsługiwany przez LoTW. Pola QSL LoTW zostały "
+"wyłączone."
 
 #: application/views/interface_assets/footer.php:52
 msgid "No states for this DXCC available"
-msgstr ""
+msgstr "Dla tego DXCC nie ma dostępnych stanów"
 
 #: application/views/interface_assets/footer.php:53
 msgid "Compute QRB and QTF"
-msgstr ""
+msgstr "Oblicz QRB i QTF"
 
 #: application/views/interface_assets/footer.php:54
 msgid "Error in locators. Please check."
-msgstr ""
+msgstr "Błąd w lokatorach. Proszę sprawdzić."
 
 #: application/views/interface_assets/footer.php:55
 #: application/views/user/index.php:20 application/views/user/index.php:144
@@ -9728,11 +9789,11 @@ msgstr "Proszę czekać..."
 msgctxt ""
 "Word for country states that are deprecated but kept for legacy reasons."
 msgid "deprecated"
-msgstr ""
+msgstr "przestarzałe"
 
 #: application/views/interface_assets/footer.php:58
 msgid "Satellite Information"
-msgstr ""
+msgstr "Informacje o satelicie"
 
 #: application/views/interface_assets/footer.php:139
 #: application/views/interface_assets/header.php:513
@@ -9743,7 +9804,7 @@ msgstr "Informacje o wersji"
 #: application/views/interface_assets/footer.php:193
 #: application/views/interface_assets/footer.php:208
 msgid "Failed to load the modal. Please try again."
-msgstr ""
+msgstr "Nie udało się załadować okna modalnego. Proszę spróbować ponownie."
 
 #: application/views/interface_assets/footer.php:455
 msgid "Description:"
@@ -9780,7 +9841,7 @@ msgstr "Zapisane kwerendy"
 #: application/views/interface_assets/footer.php:500
 #: application/views/interface_assets/footer.php:706
 msgid "You need to make a query before you search!"
-msgstr ""
+msgstr "Musisz wykonać zapytanie przed rozpoczęciem wyszukiwania!"
 
 #: application/views/interface_assets/footer.php:521
 #: application/views/interface_assets/footer.php:658
@@ -9794,27 +9855,27 @@ msgstr "Eksport do ADIF"
 #: application/views/search/ituzones.php:40
 #: application/views/search/main.php:37
 msgid "Open in the Advanced Logbook"
-msgstr ""
+msgstr "Otwórz zaawansowany dziennik"
 
 #: application/views/interface_assets/footer.php:566
 msgid "Warning! Are you sure you want delete this stored query?"
-msgstr ""
+msgstr "Uwaga! Czy na pewno chcesz usunąć to zapisane zapytanie?"
 
 #: application/views/interface_assets/footer.php:580
 msgid "The stored query has been deleted!"
-msgstr ""
+msgstr "Zapisane zapytanie zostało usunięte!"
 
 #: application/views/interface_assets/footer.php:589
 msgid "The stored query could not be deleted. Please try again!"
-msgstr ""
+msgstr "Nie można usunąć zapisanego zapytania. Proszę spróbować ponownie!"
 
 #: application/views/interface_assets/footer.php:615
 msgid "The query description has been updated!"
-msgstr ""
+msgstr "Opis zapytania został zaktualizowany!"
 
 #: application/views/interface_assets/footer.php:619
 msgid "Something went wrong with the save. Please try again!"
-msgstr ""
+msgstr "Coś poszło nie tak podczas zapisywania. Proszę spróbować ponownie!"
 
 #: application/views/interface_assets/footer.php:748
 msgid ""
@@ -9822,6 +9883,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Zatrzymaj się na chwilę. Wybrany DXCC jest nieaktualny i już nieważny. "
+"Sprawdź, który DXCC dla tej konkretnej lokalizacji jest właściwy. Jeśli "
+"jesteś pewien, zignoruj to ostrzeżenie."
 
 #: application/views/interface_assets/footer.php:801
 #: application/views/logbookadvanced/index.php:659
@@ -9830,11 +9894,11 @@ msgstr "Znak wywoławczy: "
 
 #: application/views/interface_assets/footer.php:802
 msgid "Count: "
-msgstr ""
+msgstr "Liczba: "
 
 #: application/views/interface_assets/footer.php:803
 msgid "Grids: "
-msgstr ""
+msgstr "Lokatory: "
 
 #: application/views/interface_assets/footer.php:1111
 #: application/views/logbookadvanced/index.php:13
@@ -9847,7 +9911,7 @@ msgstr "Lokatory"
 #: application/views/interface_assets/footer.php:1390
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
-msgstr ""
+msgstr "Nie jesteś zalogowany. %sZaloguj się%s"
 
 #: application/views/interface_assets/footer.php:1604
 #: application/views/interface_assets/footer.php:1608
@@ -9856,12 +9920,12 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1752
 #: application/views/interface_assets/footer.php:1755
 msgid "grid square"
-msgstr ""
+msgstr "lokator"
 
 #: application/views/interface_assets/footer.php:1611
 #: application/views/interface_assets/footer.php:1755
 msgid "Total count"
-msgstr ""
+msgstr "Całkowita liczba"
 
 #: application/views/interface_assets/footer.php:2530
 msgid "QSL Card for "
@@ -9884,7 +9948,7 @@ msgstr "Karta eQSL dla "
 #: application/views/interface_assets/footer.php:2830
 #: application/views/view_log/qso.php:763
 msgid "QSL image file"
-msgstr ""
+msgstr "Plik obrazu QSL"
 
 #: application/views/interface_assets/footer.php:2810
 msgid "Front QSL Card:"
