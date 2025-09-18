@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 22:05+0000\n"
+"PO-Revision-Date: 2025-09-18 22:11+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -11837,6 +11837,9 @@ msgid ""
 "change any values here unless you are confident in what you are doing. Test "
 "each change on your %sDashboard%s!"
 msgstr ""
+"To modyfikuje źródło mapy w różnych miejscach w Wavelog. Nie zmieniaj "
+"żadnych wartości, jeśli nie masz pewności, co robisz. Przetestuj każdą "
+"zmianę na swoim %sPanelu Użytkownika%s!"
 
 #: application/views/options/maptiles.php:50
 #, php-format
@@ -11844,54 +11847,61 @@ msgid ""
 "You can find a list of tested settings and all default values in the "
 "%sWavelog Wiki%s."
 msgstr ""
+"Listę przetestowanych ustawień oraz wszystkie wartości domyślne znajdziesz w "
+"%sWavelog Wiki%s."
 
 #: application/views/options/maptiles.php:54
 msgid "Maptiles Server URL"
-msgstr ""
+msgstr "Adres URL serwera Maptiles"
 
 #: application/views/options/maptiles.php:56
 msgid "URL of the map server which serves the maptiles."
-msgstr ""
+msgstr "Adres URL serwera map, który dostarcza kafelki mapy."
 
 #: application/views/options/maptiles.php:59
 msgid "Maptiles Server URL for Dark Tiles - ONLY Static Map API"
 msgstr ""
+"URL serwera kafelków mapy dla ciemnych kafelków – TYLKO statyczne API mapy"
 
 #: application/views/options/maptiles.php:61
 msgid ""
 "URL of the map server which serves the dark maptiles. Only used for Static "
 "Map."
 msgstr ""
+"URL serwera map, który dostarcza ciemne kafelki mapy. Używany tylko dla "
+"statycznej mapy."
 
 #: application/views/options/maptiles.php:64
 msgid "Subdomain System of Maptile Server"
-msgstr ""
+msgstr "System subdomen serwera kafelków mapy"
 
 #: application/views/options/maptiles.php:66
 msgid ""
 "System of the subdomains at this server ({s} in the URL). They are used for "
 "loadbalancing."
 msgstr ""
+"System subdomen na tym serwerze ({s} w URL). Służą do równoważenia "
+"obciążenia."
 
 #: application/views/options/maptiles.php:69
 msgid "URL of the Copyright Source"
-msgstr ""
+msgstr "URL źródła praw autorskich"
 
 #: application/views/options/maptiles.php:71
 msgid "Source URL for the copyright tag."
-msgstr ""
+msgstr "Źródło URL dla tagu praw autorskich."
 
 #: application/views/options/maptiles.php:74
 msgid "Name of the Copyright Source"
-msgstr ""
+msgstr "Nazwa źródła praw autorskich"
 
 #: application/views/options/maptiles.php:76
 msgid "Text for the copyright tag."
-msgstr ""
+msgstr "Tekst dla tagu praw autorskich."
 
 #: application/views/options/maptiles.php:81
 msgid "Reset to Defaults"
-msgstr ""
+msgstr "Przywróć domyślne ustawienia"
 
 #: application/views/options/radios.php:38
 msgid "Radio Timeout Warning"
