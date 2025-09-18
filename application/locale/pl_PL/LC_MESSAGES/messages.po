@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 19:26+0000\n"
+"PO-Revision-Date: 2025-09-18 19:35+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -8026,7 +8026,7 @@ msgstr "Wymiana (S)"
 #: application/views/contesting/index.php:270
 #: application/views/qso/edit_ajax.php:697
 msgid "Serial (R)"
-msgstr ""
+msgstr "Numer (R)"
 
 #: application/views/contesting/index.php:215
 msgid "Gridsquare (R)"
@@ -8062,11 +8062,11 @@ msgstr "Lokator VUCC"
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:20
 msgid "# of QSOs worked"
-msgstr ""
+msgstr "# wykonanych QSO"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
-msgstr ""
+msgstr "Identyfikator"
 
 #: application/views/cron/edit.php:22
 #: application/views/options/appearance.php:56
@@ -8080,7 +8080,7 @@ msgstr ""
 #: application/views/user/edit.php:481 application/views/user/edit.php:490
 #: application/views/user/edit.php:634 application/views/user/edit.php:934
 msgid "Enabled"
-msgstr ""
+msgstr "Włączone"
 
 #: application/views/cron/edit.php:36 application/views/cron/index.php:68
 msgid "Intervall"
@@ -8088,7 +8088,7 @@ msgstr "Interwał"
 
 #: application/views/cron/edit.php:38
 msgid "Choose a preset from the dropdown"
-msgstr ""
+msgstr "Wybierz gotowy zestaw z menu rozwijanego"
 
 #: application/views/cron/edit.php:43
 msgid "Every 5 Minutes"
@@ -8128,7 +8128,7 @@ msgstr "LUB"
 
 #: application/views/cron/edit.php:63
 msgid "Enter your own Cron Expression"
-msgstr ""
+msgstr "Wprowadź własne wyrażenie Cron"
 
 #: application/views/cron/index.php:9
 msgid "How it works"
@@ -8137,19 +8137,23 @@ msgstr "Jak to działa"
 #: application/views/cron/index.php:21
 #, php-format
 msgid "For more information or help, take a look in the %s."
-msgstr ""
+msgstr "Aby uzyskać więcej informacji lub pomoc, zajrzyj do %s."
 
 #: application/views/cron/index.php:28
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
 msgstr ""
+"Menedżer Cron pomaga administratorowi w zarządzaniu zadaniami cron bez "
+"konieczności dostępu do CLI."
 
 #: application/views/cron/index.php:32
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
 msgstr ""
+"Aby wykonać zadania cron na podstawie poniższych danych, usuń wszystkie "
+"stare zadania cron i utwórz nowe:"
 
 #: application/views/cron/index.php:42 application/views/cron/index.php:46
 msgid "Status Master-Cron:"
@@ -8166,12 +8170,12 @@ msgstr "Wersja PHP niewspierana."
 
 #: application/views/cron/index.php:56
 msgid "Cron List"
-msgstr ""
+msgstr "Lista Cron"
 
 #: application/views/cron/index.php:65
 #: application/views/stationsetup/stationsetup.php:124
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: application/views/cron/index.php:69
 msgid "Last Run"
@@ -8183,19 +8187,23 @@ msgstr "Następne uruchomienie"
 
 #: application/views/cron/index.php:115
 msgid "Your Mastercron isn't running."
-msgstr ""
+msgstr "Twój Master Cron nie działa."
 
 #: application/views/cron/index.php:116
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
 msgstr ""
+"Skopiuj powyższy cron do zewnętrznej usługi cron lub do crona na serwerze, "
+"aby korzystać z tego Menedżera Cron."
 
 #: application/views/cron/index.php:117
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
 msgstr ""
+"Na podstawowym serwerze Linux z dostępem do powłoki użyj tego polecenia, aby "
+"edytować swoje zadania cron:"
 
 #: application/views/cron/index.php:124
 #, php-format
@@ -8244,19 +8252,19 @@ msgstr "Nowa wersja Waveloga została opublikowana. Sprawdź: %s."
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
-msgstr ""
+msgstr "Musisz zaktualizować pliki krajów! Kliknij %stutaj%s, aby to zrobić."
 
 #: application/views/dashboard/index.php:136
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr ""
+msgstr "Nie masz lokalizacji stacji. Kliknij %stutaj%s, aby to zrobić."
 
 #: application/views/dashboard/index.php:145
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr ""
+msgstr "Nie masz dziennika stacji. Kliknij %stutaj%s, aby to zrobić."
 
 #: application/views/dashboard/index.php:154
 #, php-format
@@ -8265,12 +8273,16 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
+"Twoja aktywna lokalizacja stacji nie jest powiązana z dziennikiem. Kliknij "
+"%stutaj%s, aby to zrobić."
 
 #: application/views/dashboard/index.php:163
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
 msgstr ""
+"Nie masz żadnej stacji powiązanej z twoim dziennikiem. Kliknij %stutaj%s, "
+"aby to zrobić."
 
 #: application/views/dashboard/index.php:173
 #, php-format
