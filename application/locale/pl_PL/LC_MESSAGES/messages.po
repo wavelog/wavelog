@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 15:16+0000\n"
+"PO-Revision-Date: 2025-09-18 19:09+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -5764,6 +5764,11 @@ msgid ""
 "operators worldwide who manage to work all 488 grid squares in the USA via "
 "satellite and can provide QSL confirmations for each contact."
 msgstr ""
+"Nagroda GridMaster to najbardziej prestiżowa nagroda AMSAT, po raz pierwszy "
+"wprowadzona w 2014 roku przez Star Comm Group. Jest dostępna dla wszystkich "
+"krótkofalowców na całym świecie, którzy zdołają nawiązać łączność ze "
+"wszystkimi 488 grid square w USA za pośrednictwem satelity i mogą "
+"przedstawić potwierdzenia QSL dla każdej łączności."
 
 #: application/views/awards/gridmaster/index.php:10
 #, php-format
@@ -5777,6 +5782,14 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
+"Oficjalna informacja od %s: Dwukierunkowa łączność musi zostać nawiązana "
+"przez amatorskiego satelitę z każdym gridsquare. Nie jest wymagany minimalny "
+"raport sygnału. Łączności muszą być wykonane z tej samej lokalizacji lub z "
+"lokalizacji, z których żadna nie znajduje się dalej niż 200 kilometrów od "
+"pozostałych. Oświadczenie wnioskodawcy zawarte we wniosku o nagrodę stanowi "
+"potwierdzenie przestrzegania zasady odległości. Osoby mogą ubiegać się o "
+"wiele nagród GridMaster, jeśli zostały one zdobyte z innej lokalizacji, "
+"znajdującej się w innym okręgu o promieniu 200 kilometrów."
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
@@ -5793,6 +5806,9 @@ msgid ""
 "grid from one of the 488 mainland gridsquares!), Propagation-Mode and SAT-"
 "Name"
 msgstr ""
+"Pola brane pod uwagę przy tej nagrodzie: DXCC (Musi być USA), Gridsquare ("
+"Musi zawierać kratkę z jednej z 488 krat kontynentalnych!), Tryb propagacji "
+"oraz Nazwa satelity (SAT-Name)"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid "Gridmaster Award"
@@ -5803,6 +5819,8 @@ msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Nagroda Gridmaster została pierwotnie zaprojektowana z myślą o nawiązaniu "
+"łączności z 488 gridsquare w USA."
 
 #: application/views/awards/gridmaster/index.php:16
 msgid ""
@@ -5819,6 +5837,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Germany), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Pola brane pod uwagę przy tej nagrodzie: DXCC (Musi być Niemcy), Gridsquare, "
+"Tryb propagacji oraz Nazwa satelity (SAT-Name)"
 
 #: application/views/awards/gridmaster/index.php:23
 msgid ""
@@ -6628,6 +6648,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be one of U.S.A., Alaska or Hawaii) "
 "and STATE (Must contain a valid U.S. state abbreviation!)"
 msgstr ""
+"Pola użyte dla tej nagrody: DXCC (Musi być jednym z: U.S.A., Alaska lub "
+"Hawaje) oraz STATE (Musi zawierać prawidłowy skrót stanu USA!)"
 
 #: application/views/awards/was/index.php:115
 msgid "Show WAS Map"
@@ -6635,7 +6657,7 @@ msgstr "Wyświetl mapę WAS"
 
 #: application/views/awards/wwff/index.php:7
 msgid "WWFF - World Wide Flora and Fauna Award"
-msgstr ""
+msgstr "Nagroda WWFF – World Wide Flora and Fauna Award"
 
 #: application/views/awards/wwff/index.php:8
 msgid ""
@@ -6643,6 +6665,10 @@ msgid ""
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
+"WWFF, World Wide Flora and Fauna in Amateur Radio, zachęca licencjonowanych "
+"operatorów krótkofalarskich do opuszczenia swoich domów i pracy terenowej na "
+"obszarach chronionej flory i fauny (PFF - Protected Flora & Fauna) na całym "
+"świecie."
 
 #: application/views/awards/wwff/index.php:9
 msgid ""
@@ -6650,10 +6676,14 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
+"Na całym świecie w katalogu WWFF zarejestrowano już ponad 26000 obszarów "
+"chronionej flory i fauny (PFF - Protected Flora & Fauna). Łowcy i "
+"Aktywatorzy mogą ubiegać się o ciekawe nagrody, zarówno globalne, jak i "
+"krajowe."
 
 #: application/views/awards/wwff/index.php:11
 msgid "Fields taken for this Award: WWFF (ADIF: WWFF_REF)"
-msgstr ""
+msgstr "Pola użyte dla tej nagrody: WWFF (ADIF: WWFF_REF)"
 
 #: application/views/awards/wwff/index.php:32
 #: application/views/qso/index.php:262 application/views/qso/index.php:554
@@ -6668,11 +6698,13 @@ msgstr "Podmiot WWFF"
 msgid ""
 "The backup of your log completed successfully. The output can be found at"
 msgstr ""
+"Kopia zapasowa Twojego logu została wykonana pomyślnie. Wynik można znaleźć "
+"pod adresem"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr ""
+msgstr "Możesz zautomatyzować ten proces, tworząc zadanie cron."
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -6680,6 +6712,9 @@ msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
+"Coś poszło nie tak podczas procesu tworzenia kopii zapasowej. Sprawdź, czy "
+"folder kopii zapasowej istnieje i czy jest zapisywalny przez użytkownika/"
+"grupę serwera WWW."
 
 #: application/views/backup/main.php:17
 msgid ""
@@ -6692,7 +6727,7 @@ msgstr ""
 #: application/views/backup/main.php:18
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
-msgstr ""
+msgstr "Zaleca się regularne tworzenie kopii zapasowych w celu ochrony danych."
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
@@ -6700,20 +6735,22 @@ msgstr "Kopia zapasowa danych ADIF"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
-msgstr ""
+msgstr "Notatki kopii zapasowej"
 
 #: application/views/backup/notes_view.php:7
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
+"Kopia zapasowa notatek została pomyślnie zakończona. Wynik można znaleźć pod "
+"adresem"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:56
 msgid "BandMap"
-msgstr ""
+msgstr "Mapa pasm"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:59
 msgid "BandList"
-msgstr ""
+msgstr "Lista pasm"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:69
 #: application/views/contesting/index.php:24
@@ -6721,11 +6758,11 @@ msgstr ""
 #: application/views/contesting/index.php:159
 #: application/views/qso/index.php:352
 msgid "None"
-msgstr ""
+msgstr "Brak"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:84
 msgid "Spots de"
-msgstr ""
+msgstr "Spoty z"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
@@ -6735,11 +6772,11 @@ msgstr ""
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Kliknij, aby przygotować logowanie."
 
 #: application/views/bandmap/list.php:76
 msgid "DXCC-Status"
-msgstr ""
+msgstr "Status DXCC"
 
 #: application/views/bandmap/list.php:79
 #: application/views/interface_assets/footer.php:45
@@ -6748,27 +6785,27 @@ msgstr "Niezaliczone"
 
 #: application/views/bandmap/list.php:82
 msgid "Worked, not Confirmed"
-msgstr ""
+msgstr "Pracowano, niepotwierdzone"
 
 #: application/views/bandmap/list.php:113
 msgid "Phone"
-msgstr ""
+msgstr "Fonia"
 
 #: application/views/bandmap/list.php:114
 msgid "CW"
-msgstr ""
+msgstr "CW"
 
 #: application/views/bandmap/list.php:115
 msgid "Digi"
-msgstr ""
+msgstr "Digi"
 
 #: application/views/bandmap/list.php:131
 msgid "WAC"
-msgstr ""
+msgstr "WAC"
 
 #: application/views/bandmap/list.php:132
 msgid "Spotter"
-msgstr ""
+msgstr "Spoter"
 
 #: application/views/bandmap/list.php:133
 #: application/views/oqrs/notinlogform.php:28
@@ -6776,49 +6813,51 @@ msgstr ""
 #: application/views/oqrs/request_grouped.php:57
 #: application/views/oqrs/status_info.php:5
 msgid "Message"
-msgstr ""
+msgstr "Wiadomość"
 
 #: application/views/bandmap/list.php:134
 msgid "Last Worked"
-msgstr ""
+msgstr "Ostatnio pracowano"
 
 #: application/views/bands/bandedges.php:2
 msgid "Please enter valid numbers for frequency"
-msgstr ""
+msgstr "Proszę wprowadzić prawidłową wartości częstotliwości"
 
 #: application/views/bands/bandedges.php:3
 msgid "The 'From' frequency must be less than the 'To' frequency."
-msgstr ""
+msgstr "Częstotliwość „od” musi być mniejsza niż częstotliwość „do”."
 
 #: application/views/bands/bandedges.php:4
 msgid "The Frequency overlaps with an existing entry."
-msgstr ""
+msgstr "Częstotliwość nakłada się na istniejący wpis."
 
 #: application/views/bands/bandedges.php:5
 msgid "Are you sure you want to delete this band edge?"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć tę granicę pasma?"
 
 #: application/views/bands/bandedges.php:17
 msgid "Bandedges"
-msgstr ""
+msgstr "Granice pasma"
 
 #: application/views/bands/bandedges.php:22
 msgid ""
 "Using the bandedges list you can control the mode classification in the "
 "cluster."
 msgstr ""
+"Za pomocą listy granic pasm możesz kontrolować klasyfikację trybów w "
+"klastrze."
 
 #: application/views/bands/bandedges.php:29
 msgid "Frequency from (Hz)"
-msgstr ""
+msgstr "Częstotliwość od (Hz)"
 
 #: application/views/bands/bandedges.php:30
 msgid "Frequency to (Hz)"
-msgstr ""
+msgstr "Częstotliwość do (Hz)"
 
 #: application/views/bands/bandedges.php:65
 msgid "Add a bandedge"
-msgstr ""
+msgstr "Dodaj granicę pasma"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:9
 msgid "Name of Band (E.g. 20m)"
@@ -6865,11 +6904,13 @@ msgid ""
 "Changes made here are instance-wide and will affect EVERY User. You see "
 "this, because you're an instance-admin"
 msgstr ""
+"Zmiany wprowadzone tutaj dotyczą całej instancji i będą miały wpływ na "
+"KAŻDEGO użytkownika. Widzisz to, ponieważ jesteś administratorem instancji"
 
 #: application/views/bands/edit.php:2 application/views/update/index.php:35
 #: application/views/update/index.php:59
 msgid "WARNING"
-msgstr ""
+msgstr "UWAGA"
 
 #: application/views/bands/index.php:38
 msgid ""
@@ -6889,7 +6930,7 @@ msgstr ""
 
 #: application/views/bands/index.php:56
 msgid "Sig"
-msgstr ""
+msgstr "SIG"
 
 #: application/views/bands/index.php:58
 msgid "USA County"
@@ -6898,7 +6939,7 @@ msgstr "Hrabstwo USA"
 #: application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:220
 msgid "WAPC"
-msgstr ""
+msgstr "WAPC"
 
 #: application/views/bands/index.php:62
 #: application/views/interface_assets/header.php:240
@@ -7039,16 +7080,21 @@ msgid ""
 "For foreign stations LOCATION must be 'DX'. This information is required for "
 "IARU-HF and for all ARRL and CQ contests."
 msgstr ""
+"Dla stacji w USA i Kanadzie pole LOCATION musi zawierać skrót sekcji ARRL. "
+"Dla stacji zagranicznych pole LOCATION musi mieć wartość „DX”. Informacja ta "
+"jest wymagana dla zawodów IARU-HF oraz wszystkich zawodów ARRL i CQ."
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
-msgstr ""
+msgstr "Dla zawodów RDXC to pole zawiera numer RDA."
 
 #: application/views/cabrillo/index.php:48
 msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
 msgstr ""
+"Dla zawodów RSGB-IOTA ta informacja zawiera nazwę IOTA (nie kod referencyjny "
+"IOTA)."
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:654
@@ -7061,43 +7107,43 @@ msgstr "Lokalizacja"
 #: application/views/cabrillo/index.php:52
 #: application/views/reg1test/index.php:58
 msgid "Category Operator"
-msgstr ""
+msgstr "Kategoria: Operator"
 
 #: application/views/cabrillo/index.php:60
 msgid "Category Assisted"
-msgstr ""
+msgstr "Kategoria: Wspomagane"
 
 #: application/views/cabrillo/index.php:67
 msgid "Category Band"
-msgstr ""
+msgstr "Kategoria: Pasma"
 
 #: application/views/cabrillo/index.php:93
 msgid "Light/Laser"
-msgstr ""
+msgstr "Światło/Laser"
 
 #: application/views/cabrillo/index.php:94
 msgid "VHF-3-BAND and VHF-FM-ONLY (ARRL VHF Contests only)"
-msgstr ""
+msgstr "VHF-3-BAND i VHF-FM-ONLY (tylko zawody ARRL VHF)"
 
 #: application/views/cabrillo/index.php:98
 msgid "Category Mode"
-msgstr ""
+msgstr "Kategoria: Mode"
 
 #: application/views/cabrillo/index.php:109
 msgid "Category Power"
-msgstr ""
+msgstr "Kategoria: Moc"
 
 #: application/views/cabrillo/index.php:117
 msgid "Category Station"
-msgstr ""
+msgstr "Kategoria: Station"
 
 #: application/views/cabrillo/index.php:133
 msgid "Category Transmitter"
-msgstr ""
+msgstr "Kategoria: Transmitter"
 
 #: application/views/cabrillo/index.php:143
 msgid "Category Time"
-msgstr ""
+msgstr "Kategoria: Time"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -7105,23 +7151,23 @@ msgstr ""
 #: application/views/cabrillo/index.php:148
 #, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d godzin"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
-msgstr ""
+msgstr "Kategoria: Overlay"
 
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
 #: application/views/statistics/index.php:17
 #: application/views/statistics/index.php:73
 msgid "Operators"
-msgstr ""
+msgstr "Operatorzy"
 
 #: application/views/cabrillo/index.php:169
 #: application/views/reg1test/index.php:139
 msgid "Soapbox"
-msgstr ""
+msgstr "Soapbox"
 
 #: application/views/cabrillo/index.php:173
 msgid "Address"
@@ -7153,6 +7199,9 @@ msgid ""
 "postal mail by the contest sponsor. The contest sponsor may or may not honor "
 "this tag."
 msgstr ""
+"Wskaż, czy chcesz otrzymać — jeśli się kwalifikujesz — papierowy certyfikat "
+"wysłany pocztą przez sponsora konkursu. Sponsor konkursu może, ale nie musi, "
+"uwzględnić ten znacznik."
 
 #: application/views/cabrillo/index.php:196
 #: application/views/cabrillo/index.php:204
@@ -7284,7 +7333,7 @@ msgstr "Jeśli lokator był częścią wymiany, zaznacz TAK."
 
 #: application/views/cabrillo/index.php:201
 msgid "Include logged grids?"
-msgstr ""
+msgstr "Uwzględnić zalogowane współrzędne (ang. gridsquare)?"
 
 #: application/views/cabrillo/index.php:215
 #: application/views/reg1test/index.php:150
@@ -7298,21 +7347,21 @@ msgstr "Wszystkie poza satelitarnymi"
 
 #: application/views/callstats/index.php:148
 msgid "#QSOs"
-msgstr ""
+msgstr "#QSO"
 
 #: application/views/callstats/index.php:149
 msgid "First QSO"
-msgstr ""
+msgstr "Pierwsze QSO"
 
 #: application/views/callstats/index.php:150
 #: application/views/stationsetup/stationsetup.php:129
 msgid "Last QSO"
-msgstr ""
+msgstr "Ostatnie QSO"
 
 #: application/views/cfd/index.php:7
 #, php-format
 msgid "Export of CFD-File for DARC-Toplist (See %s)"
-msgstr ""
+msgstr "Eksport pliku CFD dla DARC-Toplist (Zobacz %s)"
 
 #: application/views/club/clubswitch_modal.php:5
 msgid "Switch to a Clubstation"
@@ -7321,12 +7370,12 @@ msgstr "Przełącz na stację klubową"
 #: application/views/club/clubswitch_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch to %s?"
-msgstr ""
+msgstr "Czy na pewno chcesz przełączyć się na %s?"
 
 #: application/views/club/clubswitch_modal.php:14
 #: application/views/user/modals/stop_impersonate_modal.php:13
 msgid "Yes, switch over!"
-msgstr ""
+msgstr "Tak, przełącz!"
 
 #: application/views/club/clubswitch_modal.php:15
 #: application/views/club/permissions.php:205
@@ -7343,11 +7392,11 @@ msgstr "Anuluj"
 #: application/views/club/permissions.php:3
 #, php-format
 msgid "Club Permissions for %s"
-msgstr ""
+msgstr "Uprawnienia klubu dla %s"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
-msgstr ""
+msgstr "Wróć"
 
 #: application/views/club/permissions.php:13
 msgid ""
@@ -7355,41 +7404,44 @@ msgid ""
 "appropriate authorizations. Add users to the table below and set the "
 "appropriate permission."
 msgstr ""
+"Aby użytkownicy mogli logować łączności (QSO) z tym klubem/znakiem "
+"specjalnym, muszą posiadać odpowiednie uprawnienia. Dodaj użytkowników do "
+"poniższej tabeli i ustaw odpowiednie uprawnienia."
 
 #: application/views/club/permissions.php:14
 msgid "See available Permissions"
-msgstr ""
+msgstr "Zobacz dostępne uprawnienia"
 
 #: application/views/club/permissions.php:19
 msgid "Available Permissions"
-msgstr ""
+msgstr "Dostępne uprawnienia"
 
 #: application/views/club/permissions.php:26
 #: application/views/eqsl/download.php:45
 msgid "Action"
-msgstr ""
+msgstr "Akcja"
 
 #: application/views/club/permissions.php:33
 msgid "Log QSOs via Web GUI (live and post)"
-msgstr ""
+msgstr "Logowanie QSO via Web GUI (na żywo oraz po fakcie)"
 
 #: application/views/club/permissions.php:41
 msgid "Log QSOs via API"
-msgstr ""
+msgstr "Logowanie QSO via API"
 
 #: application/views/club/permissions.php:49
 msgid "Edit a QSO"
-msgstr ""
+msgstr "Edycja QSO"
 
 #: application/views/club/permissions.php:54
 #: application/views/club/permissions.php:72
 msgid "QSO was done by the operator"
-msgstr ""
+msgstr "QSO zrobione przez operatora"
 
 #: application/views/club/permissions.php:59
 #: application/views/club/permissions.php:77
 msgid "QSO was done by another operator"
-msgstr ""
+msgstr "QSO zrobione przez innego operatora"
 
 #: application/views/club/permissions.php:67
 msgid "Delete a QSO"
@@ -7398,18 +7450,19 @@ msgstr "Usuń QSO"
 #: application/views/club/permissions.php:85
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
 msgstr ""
+"Zarządzanie ustawieniami stacji (edycja/tworzenie dzienników oraz lokacji)"
 
 #: application/views/club/permissions.php:93
 msgid "Manage Third-Party services"
-msgstr ""
+msgstr "Zarządzanie usługami stron trzecich"
 
 #: application/views/club/permissions.php:101
 msgid "Import QSO per ADIF"
-msgstr ""
+msgstr "Importowanie QSO z pliku ADIF"
 
 #: application/views/club/permissions.php:110
 msgid "Export QSO per ADIF"
-msgstr ""
+msgstr "Eksportowanie QSO do pliku ADIF"
 
 #: application/views/club/permissions.php:118
 msgid "User Management"
@@ -7433,7 +7486,7 @@ msgstr "Użytkownicy z uprawnieniami"
 
 #: application/views/club/permissions.php:161
 msgid "Add new User to Club"
-msgstr ""
+msgstr "Dodawanie nowego użytkownika do Klubu"
 
 #: application/views/club/permissions.php:167
 #, php-format
@@ -7441,28 +7494,34 @@ msgid ""
 "You can only add users to the %s Clubstation if they already exist on this "
 "Wavelog Server."
 msgstr ""
+"Możesz dodawać użytkowników do stacji klubowej %s tylko jeśli istnieją już "
+"na serwerze Wavelog."
 
 #: application/views/club/permissions.php:168
 msgid ""
 "If they don't exist, please ask your Wavelog Administrator to create an "
 "account for them."
 msgstr ""
+"Jeśli nie istnieją, poproś administratora Wavelog o utworzenie dla nich "
+"konta."
 
 #: application/views/club/permissions.php:169
 msgid ""
 "Search for the user by their callsign or first/lastname and select the "
 "permission level."
 msgstr ""
+"Wyszukaj użytkownika po jego znaku wywoławczym lub imieniu/nazwisku i "
+"wybierz poziom uprawnień."
 
 #: application/views/club/permissions.php:175
 msgid "User (Callsign or Name)"
-msgstr ""
+msgstr "Użytkownik (Znak wywoławczy lub Nazwa)"
 
 #: application/views/club/permissions.php:176
 #: application/views/club/permissions.php:225
 #: application/views/club/permissions.php:269
 msgid "Permission"
-msgstr ""
+msgstr "Uprawnienie"
 
 #: application/views/club/permissions.php:183
 msgid "Type at least 2 characters."
@@ -7502,6 +7561,7 @@ msgstr "Administrator Waveloga"
 #: application/views/club/permissions.php:261
 msgid "You can modify the users permission level for this Clubstation."
 msgstr ""
+"Możesz modyfikować poziom uprawnień użytkowników dla tej stacji klubowej."
 
 #: application/views/club/permissions.php:268
 msgid "User Callsign"
@@ -7533,7 +7593,7 @@ msgstr "Rola: %s"
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
 msgid "Upload Logbook"
-msgstr ""
+msgstr "Prześlij dziennik"
 
 #: application/views/clublog/export.php:14
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
@@ -7541,17 +7601,19 @@ msgstr ""
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSLs"
-msgstr ""
+msgstr "Pobierz QSL"
 
 #: application/views/clublog/export.php:24
 msgid "The next automatic Upload to Clublog will happen at: "
-msgstr ""
+msgstr "Następne automatyczne przesłanie do Clublog nastąpi o: "
 
 #: application/views/clublog/export.php:25
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "Clublog logbook."
 msgstr ""
+"Tutaj możesz zobaczyć wszystkie łączności (QSO), które nie zostały wcześniej "
+"przesłane do dziennika Clublog."
 
 #: application/views/clublog/export.php:26
 msgid ""
