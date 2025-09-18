@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 22:11+0000\n"
+"PO-Revision-Date: 2025-09-18 22:32+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -920,7 +920,7 @@ msgstr "Przekroczenie limitu czasu. Wstrzymano dalsze przesyłanie."
 
 #: application/controllers/Dcl.php:201
 msgid "Upload Successful"
-msgstr "Przesyłanie zakończone pomyślnie."
+msgstr "Przesyłanie zakończone pomyślnie"
 
 #: application/controllers/Dcl.php:211
 msgid "No Station Profiles found to upload to DCL"
@@ -2783,7 +2783,7 @@ msgstr "Aktualizacja LoTW SAT"
 
 #: application/controllers/Update.php:487
 msgid "Update of Hams of Note"
-msgstr "Hams of Note aktualizacja zakończona sukcesem."
+msgstr "Aktualizacja Hams of Note"
 
 #: application/controllers/User.php:50
 #: application/views/interface_assets/header.php:304
@@ -3393,7 +3393,7 @@ msgstr "SAT już istnieje. Status LoTW zaktualizowany."
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
-msgstr[0] "Status LoTW dla %d QSO został zaktualizowany"
+msgstr[0] "Status LoTW dla pojedyńczego QSO został zaktualizowany"
 msgstr[1] "Status LoTW dla %d QSO został zaktualizowany"
 msgstr[2] "Status LoTW dla %d QSO został zaktualizowany"
 
@@ -8628,7 +8628,7 @@ msgstr "Ważny do"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr "Użycie tej funkcji wymaga pobrania kluczy DCL"
+msgstr "Użycie tej funkcji wymaga pobrania kluczy DCL."
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
@@ -8680,7 +8680,7 @@ msgstr "Historia znaków"
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
 msgstr ""
 "Otrzymano nieprawidłowy klucz DCL. Należy sprawdzić login DCL i spróbować "
-"ponownie."
+"ponownie"
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
@@ -8953,7 +8953,6 @@ msgid "Git Information"
 msgstr "Informacje Git"
 
 #: application/views/debug/index.php:445
-#, fuzzy
 msgid "Branch"
 msgstr "Branch"
 
@@ -9050,7 +9049,7 @@ msgstr "Konserwacja QSO-DB"
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
-msgstr[0] "Baza danych zawiera %d QSO bez profilu stacji (lokalizacji)"
+msgstr[0] "Baza danych zawiera pojedyncze QSO bez profilu stacji (lokalizacji)"
 msgstr[1] "Baza danych zawiera %d QSO bez profilu stacji (lokalizacji)"
 msgstr[2] "Baza danych zawiera %d QSO bez profilu stacji (lokalizacji)"
 
@@ -11905,45 +11904,48 @@ msgstr "Przywróć domyślne ustawienia"
 
 #: application/views/options/radios.php:38
 msgid "Radio Timeout Warning"
-msgstr ""
+msgstr "Ostrzeżenie o przekroczeniu czasu braku komunikacji z radiostacją"
 
 #: application/views/options/radios.php:39
 msgid ""
 "The Radio Timeout Warning is used on the QSO entry panel to alert you to "
 "radio interface disconnects."
 msgstr ""
+"Ostrzeżenie o przekroczeniu czasu braku komunikacji z radiostacją jest "
+"używane w panelu wprowadzania QSO, aby ostrzec użytkownika o rozłączeniu "
+"interfejsu radiowego."
 
 #: application/views/options/radios.php:41
 msgid "This number is in seconds."
-msgstr ""
+msgstr "Ta wartość jest w sekundach."
 
 #: application/views/options/sidebar.php:5
 msgid "Radios"
-msgstr ""
+msgstr "Radiostacje"
 
 #: application/views/options/version_dialog.php:47
 msgid "Version Info Header"
-msgstr ""
+msgstr "Nagłówek informacyjny wersji"
 
 #: application/views/options/version_dialog.php:49
 msgid "You can change the header of the version info dialog."
-msgstr ""
+msgstr "Można zmienić nagłówek okna dialogowego informacji o wersji."
 
 #: application/views/options/version_dialog.php:53
 msgid "Version Info Mode"
-msgstr ""
+msgstr "Tryb informacji o wersji"
 
 #: application/views/options/version_dialog.php:57
 msgid "Only Release Notes"
-msgstr ""
+msgstr "Tylko informacje o wydaniu"
 
 #: application/views/options/version_dialog.php:60
 msgid "Only Custom Text"
-msgstr ""
+msgstr "Tylko tekst własny"
 
 #: application/views/options/version_dialog.php:63
 msgid "Release Notes and Custom Text"
-msgstr ""
+msgstr "Informacje o wydaniu oraz tekst własny"
 
 #: application/views/options/version_dialog.php:68
 msgid ""
@@ -11951,75 +11953,89 @@ msgid ""
 "the dialog after he read it. Select if you want to show only release notes "
 "(fetched from github), only custom text or both."
 msgstr ""
+"Informacje o wersji są wyświetlane wszystkim użytkownikom. Użytkownik ma "
+"możliwość zamknięcia okna dialogowego po jego przeczytaniu. Wybierz, czy "
+"chcesz wyświetlać tylko informacje o wydaniu (pobrane z GitHub), tylko tekst "
+"własny, czy oba."
 
 #: application/views/options/version_dialog.php:72
 msgid "Version Info Custom Text"
-msgstr ""
+msgstr "Własny tekst informacji o wersji"
 
 #: application/views/options/version_dialog.php:74
 msgid "This is the custom text which is shown in the dialog."
-msgstr ""
+msgstr "To jest własny tekst, który jest wyświetlany w oknie dialogowym."
 
 #: application/views/options/version_dialog.php:84
 msgid "Show/Hide Version Info Dialog for all Users"
 msgstr ""
+"Pokazuj/Ukrywaj okno dialogowe informacji o wersji dla wszystkich "
+"użytkowników"
 
 #: application/views/options/version_dialog.php:97
 msgid "Show for all Users"
-msgstr ""
+msgstr "Pokazuj dla wszystkich użytkowników"
 
 #: application/views/options/version_dialog.php:99
 msgid ""
 "This will show the version dialog automatically to all users on their next "
 "page reload."
 msgstr ""
+"Spowoduje to automatyczne wyświetlenie okna dialogowego z informacjami o "
+"wersji wszystkim użytkownikom przy następnym przeładowaniu strony."
 
 #: application/views/options/version_dialog.php:104
 msgid "Hide for all Users"
-msgstr ""
+msgstr "Ukrywaj dla wszystkich użytkowników"
 
 #: application/views/options/version_dialog.php:106
 msgid ""
 "This will deactivate the automatic popup of the version dialog for all users."
 msgstr ""
+"Spowoduje to dezaktywację automatycznego wyskakiwania okna dialogowego z "
+"informacjami o wersji dla wszystkich użytkowników."
 
 #: application/views/oqrs/index.php:9
 msgid "Request a QSL card"
-msgstr ""
+msgstr "Zażądaj kartę QSL"
 
 #: application/views/oqrs/index.php:27
 msgid "Enter your callsign"
-msgstr ""
+msgstr "Wprowadź twój znak wywoławczy"
 
 #: application/views/oqrs/index.php:27
 msgid "This search will search in all station locations where OQRS is active."
 msgstr ""
+"To wyszukiwanie obejmie wszystkie lokalizacje stacji, w których OQRS jest "
+"aktywne."
 
 #: application/views/oqrs/index.php:54
 msgid "Select station"
-msgstr ""
+msgstr "Wybierz stację"
 
 #: application/views/oqrs/notinlogform.php:2
 msgid ""
 "If you can't find your QSO in the log, please fill out the form below. You "
 "will be contacted after the log has been checked."
 msgstr ""
+"Jeśli nie możesz znaleźć swojego QSO w logu, wypełnij poniższy formularz. "
+"Skontaktujemy się z Tobą po sprawdzeniu logu."
 
 #: application/views/oqrs/notinlogform.php:9
 #: application/views/oqrs/request.php:16
 #: application/views/oqrs/request_grouped.php:9
 msgid "Time (UTC)"
-msgstr ""
+msgstr "Czas (UTC)"
 
 #: application/views/oqrs/notinlogform.php:24
 msgid "Add line"
-msgstr ""
+msgstr "Dodaj linię"
 
 #: application/views/oqrs/notinlogform.php:30
 #: application/views/oqrs/request.php:56
 #: application/views/oqrs/request_grouped.php:59
 msgid "Any extra information we need to know about?"
-msgstr ""
+msgstr "Czy są jakieś dodatkowe informacje, które powinniśmy znać?"
 
 #: application/views/oqrs/notinlogform.php:34
 #: application/views/oqrs/request.php:60
@@ -12029,17 +12045,17 @@ msgstr ""
 #: application/views/user/index.php:29 application/views/user/index.php:154
 #: application/views/user/profile.php:24 application/views/view_log/qso.php:482
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: application/views/oqrs/notinlogform.php:36
 #: application/views/oqrs/request.php:62
 #: application/views/oqrs/request_grouped.php:65
 msgid "Your e-mail address where we can contact you"
-msgstr ""
+msgstr "Twój adres e-mail, pod którym możemy się z Tobą skontaktować"
 
 #: application/views/oqrs/notinlogform.php:40
 msgid "Send not in log request"
-msgstr ""
+msgstr "Wyślij zgłoszenie „brak w logu”"
 
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:31
@@ -12078,21 +12094,22 @@ msgstr "Stacja"
 #: application/views/view_log/partial/log_ajax.php:310
 #: src/QSLManager/QSO.php:435
 msgid "Via"
-msgstr ""
+msgstr "Via"
 
 #: application/views/oqrs/qsolist.php:199
 msgid "No QSOs were found. It seems you were not active at this time."
 msgstr ""
+"Nie znaleziono żadnych QSO. Wygląda na to, że nie byłeś aktywny w tym czasie."
 
 #: application/views/oqrs/qsolist.php:203
 #: application/views/oqrs/showrequests.php:72
 #: application/views/qslprint/qsolist.php:200
 msgid "Add to print queue"
-msgstr ""
+msgstr "Dodaj do kolejki drukowania"
 
 #: application/views/oqrs/qsolist.php:209
 msgid "Match QSO"
-msgstr ""
+msgstr "Dopasuj QSO"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
@@ -12100,109 +12117,112 @@ msgid ""
 "The following QSO(s) were found. Please fill out the date and time and "
 "submit your request."
 msgstr ""
+"Znaleziono następujące QSO. Proszę uzupełnić datę i godzinę oraz przesłać "
+"zgłoszenie."
 
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:43
 msgid "QSL Route"
-msgstr ""
+msgstr "Trasa QSL"
 
 #: application/views/oqrs/request.php:50
 #: application/views/oqrs/request_grouped.php:53
 msgid "Direct (write address in message below)"
-msgstr ""
+msgstr "Direct (wpisz adres w wiadomości poniżej)"
 
 #: application/views/oqrs/request.php:66
 #: application/views/oqrs/request_grouped.php:69
 msgid "Submit request"
-msgstr ""
+msgstr "Wyślij żądanie"
 
 #: application/views/oqrs/request_grouped.php:72
 #: application/views/oqrs/result.php:40
 msgid "No QSOs found in the log."
-msgstr ""
+msgstr "Nie znaleziono QSO w dzienniku."
 
 #: application/views/oqrs/result.php:5
 #, php-format
 msgid "Log search result for %s"
-msgstr ""
+msgstr "Wyniki przeszukiwania dziennika dla %s"
 
 #: application/views/oqrs/result.php:30
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "ma jeden slot pasma"
+msgstr[1] "ma %d sloty pasm"
+msgstr[2] "ma %d slotów pasm"
 
 #: application/views/oqrs/result.php:33
 #, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "i ma jedno QSO w dzienniku"
+msgstr[1] "i ma %d QSO w dzienniku"
+msgstr[2] "i ma %d QSO w dzienniku"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
-msgstr ""
+msgstr "Zażądaj QSL"
 
 #: application/views/oqrs/result.php:44
 msgid "Not in log?"
-msgstr ""
+msgstr "Brak w dzienniku?"
 
 #: application/views/oqrs/showrequests.php:2
 #: application/views/oqrs/showrequests.php:50
 #: application/views/oqrs/status_info.php:10
 msgid "Open request"
-msgstr ""
+msgstr "Otwórz żądanie"
 
 #: application/views/oqrs/showrequests.php:3
 #: application/views/oqrs/showrequests.php:51
 #: application/views/oqrs/status_info.php:14
 msgid "Not in log request"
-msgstr ""
+msgstr "Brak w żądaniu dziennika"
 
 #: application/views/oqrs/showrequests.php:4
 msgid "Request done"
-msgstr ""
+msgstr "Żądanie wykonane"
 
 #: application/views/oqrs/showrequests.php:5
 msgid "Pending request"
-msgstr ""
+msgstr "Oczekujące żądanie"
 
 #: application/views/oqrs/showrequests.php:6
 msgid "Request rejected"
-msgstr ""
+msgstr "Odrzucone żądanie"
 
 #: application/views/oqrs/showrequests.php:10
 msgid "An error ocurred while making the request"
-msgstr ""
+msgstr "Podczas wykonywania żądania wystąpił błąd"
 
 #: application/views/oqrs/showrequests.php:11
 msgid "Warning! Are you sure you want to delete the marked OQRS request(s)?"
-msgstr ""
+msgstr "Uwaga! Czy na pewno chcesz usunąć zaznaczone zgłoszenie(-a) OQRS?"
 
 #: application/views/oqrs/showrequests.php:12
 msgid "Warning! Are you sure you want to reject the marked OQRS request(s)?"
-msgstr ""
+msgstr "Uwaga! Czy na pewno chcesz odrzucić zaznaczone zgłoszenie(-a) OQRS?"
 
 #: application/views/oqrs/showrequests.php:13
 msgid "Warning! Are you sure you want to mark the marked OQRS request(s)?"
-msgstr ""
+msgstr "Uwaga! Czy na pewno chcesz oznaczyć zaznaczone zgłoszenie(-a) OQRS?"
 
 #: application/views/oqrs/showrequests.php:14
 msgid ""
 "Warning! Are you sure you want to add the marked OQRS request(s) to the "
 "queue?"
 msgstr ""
+"Uwaga! Czy na pewno chcesz dodać zaznaczone zgłoszenie(-a) OQRS do kolejki?"
 
 #: application/views/oqrs/showrequests.php:15
 msgid "OQRS Status Information"
-msgstr ""
+msgstr "Informacje o statusie OQRS"
 
 #: application/views/oqrs/showrequests.php:16
 msgid "Warning! Are you sure you want to delete the QSO match?"
-msgstr ""
+msgstr "Uwaga! Czy na pewno chcesz usunąć dopasowanie QSO?"
 
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
