@@ -79,6 +79,7 @@ $cert2 = str_replace("-----END CERTIFICATE-----", "", $cert1);
 
 <?php }
       break;
+   case 5:       // Aland Island
    case 224:     // Finland
       if($station_profile->state != "") { ?>
 <FI_KUNTA:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; ?>
