@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 00:42+0000\n"
+"PO-Revision-Date: 2025-09-18 14:35+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -5825,12 +5825,16 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Luxembourg), Gridsquare, "
 "Propagation-Mode and SAT-Name"
 msgstr ""
+"Pola uwzględnione w tej nagrodzie: DXCC (musi być Luksemburg), Gridsquare, "
+"tryb propagacji oraz nazwa satelity"
 
 #: application/views/awards/gridmaster/index.php:26
 msgid ""
 "Fields taken for this Award: DXCC (Must be Japan), Gridsquare, Propagation-"
 "Mode and SAT-Name"
 msgstr ""
+"Pola uwzględnione w tej nagrodzie: DXCC (musi być Japonia), Gridsquare, tryb "
+"propagacji oraz nazwa satelity"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -5873,6 +5877,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Must be Switzerland) and STATE (Must "
 "contain a valid state abbreviation!)"
 msgstr ""
+"Pola uwzględnione w tej nagrodzie: DXCC (musi być Szwajcaria) oraz STATE ("
+"musi zawierać prawidłowy skrót stanu!)"
 
 #: application/views/awards/helvetia/index.php:115
 msgid "Show Helvetia Map"
@@ -5941,6 +5947,8 @@ msgid ""
 "Fields taken for this Award: IOTA (ADIF: IOTA) must contain valid IOTA-"
 "Reference"
 msgstr ""
+"Pola uwzględnione w tej nagrodzie: IOTA (ADIF: IOTA) musi zawierać "
+"prawidłowy identyfikator IOTA"
 
 #: application/views/awards/iota/index.php:30
 msgid "Deleted IOTA"
@@ -6016,7 +6024,7 @@ msgstr "Więcej informacji można znaleźć na stronie internetowej %s."
 
 #: application/views/awards/itu/index.php:24
 msgid "Fields taken for this Award: ITU-Zone (ADIF: ITUZ)"
-msgstr ""
+msgstr "Pola uwzględnione w tej nagrodzie: ITU-Zone (ADIF: ITUZ)"
 
 #: application/views/awards/itu/index.php:26
 msgid "Awards - ITU Zones"
@@ -6056,6 +6064,8 @@ msgid ""
 "Fields taken for this Award: DXCC (Japan) and County (Must contain a valid "
 "reference!)"
 msgstr ""
+"Pola uwzględnione w tej nagrodzie: DXCC (Japonia) oraz County (musi zawierać "
+"prawidłowy identyfikator!)"
 
 #: application/views/awards/jcc/index.php:116
 msgid "Show JCC Map"
@@ -6101,6 +6111,10 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
+"Parks on the Air® (POTA) rozpoczęło się na początku 2017 roku, kiedy "
+"zakończyło się specjalne wydarzenie ARRL „National Parks on the Air”. Grupa "
+"wolontariuszy chciała kontynuować zabawę po zakończeniu tamtego, rocznego "
+"wydarzenia i tak narodziło się POTA."
 
 #: application/views/awards/pota/index.php:9
 msgid ""
@@ -6108,6 +6122,9 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
+"POTA działa podobnie jak SOTA, z aktywatorami i łowcami. W ramach nagród "
+"istnieje kilka kategorii opartych na liczbie parków, obszarach "
+"geograficznych i innych kryteriach."
 
 #: application/views/awards/pota/index.php:10
 #, php-format
@@ -6116,10 +6133,13 @@ msgid ""
 "For more information about the available awards and categories, please visit "
 "the %s."
 msgstr ""
+"Aby uzyskać więcej informacji o dostępnych nagrodach i kategoriach, odwiedź "
+"%s."
 
 #: application/views/awards/pota/index.php:11
 msgid "Fields taken for this Award: POTA_REF (must contain Park-Reference)"
 msgstr ""
+"Pola uwzględnione w tej nagrodzie: POTA_REF (musi zawierać referencje parku)"
 
 #: application/views/awards/pota/index.php:32
 #: application/views/qso/index.php:274 application/views/qso/index.php:567
@@ -6128,7 +6148,7 @@ msgstr ""
 #: application/views/user/edit.php:664 application/views/view_log/qso.php:403
 #: application/views/view_log/qso.php:729
 msgid "POTA Reference(s)"
-msgstr ""
+msgstr "Referencja(e) POTA"
 
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
@@ -6146,7 +6166,7 @@ msgstr "Wyświetl mapę RAC"
 
 #: application/views/awards/sig/index.php:7
 msgid "SIG Information"
-msgstr ""
+msgstr "Informacja SIG"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
@@ -6154,6 +6174,9 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
+"Kategoria SIG, czyli grupy specjalnych zainteresowań, umożliwia "
+"wykorzystanie dowolnej „nagrody grupy specjalnych zainteresowań” dla nagród, "
+"które nie zostały zaimplementowane w Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -6161,6 +6184,10 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of markers for special interest groups."
 msgstr ""
+"Powodem tego jest fakt, że standardowy format ADIF udostępnia jedynie kilka "
+"dedykowanych pól dla określonych nagród. Kategoria SIG nadal umożliwia "
+"wykorzystanie i ocenę wszystkich innych typów znaczników dla grup "
+"specjalnych zainteresowań."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -6169,11 +6196,15 @@ msgid ""
 "in the award evaluation, and 'SIG INFO,' which contains the actual "
 "reference(s). Both fields are freely customizable."
 msgstr ""
+"W przetwarzaniu QSO znajdziesz dwa pola: „SIG” zawiera skrót nazwy grupy "
+"specjalnych zainteresowań, który jest również widoczny w ocenie nagrody, "
+"oraz „SIG INFO”, które zawiera właściwe referencje. Oba pola można dowolnie "
+"dostosować."
 
 #: application/views/awards/sig/index.php:21
 #: application/views/station_profile/edit.php:288
 msgid "Special Interest Group"
-msgstr ""
+msgstr "Grupa Specjalnych Zainteresowań"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -6184,12 +6215,12 @@ msgstr "Ilość QSO"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr ""
+msgstr "Liczba referencji"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:30
 msgid "Reference"
-msgstr ""
+msgstr "Referencja"
 
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/logbookadvanced/index.php:712
@@ -6225,6 +6256,8 @@ msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
 msgstr ""
+"SOTA (Summits On The Air) to program nagród dla krótkofalowców, który "
+"zachęca do pracy przenośnej w terenach górskich."
 
 #: application/views/awards/sota/index.php:9
 msgid ""
@@ -6236,32 +6269,43 @@ msgid ""
 "trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA "
 "online database."
 msgstr ""
+"Program działa w prawie stu krajach na całym świecie. Każdy kraj posiada "
+"własne stowarzyszenie, które definiuje uznane szczyty SOTA w jego obrębie. "
+"Każdy szczyt przyznaje aktywatorom i łowcom punkty zależne od wysokości "
+"szczytu. Dostępne są certyfikaty za różne progi punktowe, prowadzące do "
+"prestiżowych trofeów „Mountain Goat” i „Shack Sloth”. W internetowej bazie "
+"danych SOTA prowadzona jest lista honorowa dla aktywatorów i łowców."
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
-msgstr ""
+msgstr "VUCC – Nagroda Klubu Stulecia VHF/UHF"
 
 #: application/views/awards/vucc/index.php:8
 msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
 msgstr ""
+"Nagroda Klubu Stulecia VHF/UHF jest przyznawana za osiągnięcie minimalnej "
+"liczby przeprowadzonych i potwierdzonych łączności z kwadratami siatki na "
+"wybranym paśmie."
 
 #: application/views/awards/vucc/index.php:9
 #: application/views/awards/wae/index.php:10
 #, php-format
 msgid "Official information and the rules can be found in this document: %s."
-msgstr ""
+msgstr "Oficjalne informacje oraz zasady można znaleźć w tym dokumencie: %s."
 
 #: application/views/awards/vucc/index.php:10
 msgid "Only VHF/UHF bands are relevant."
-msgstr ""
+msgstr "Tylko pasma VHF/UHF są brane pod uwagę."
 
 #: application/views/awards/vucc/index.php:11
 msgid ""
 "Fields taken for this Award: Gridsquare and vucc_grids (ADIF: GRIDSQUARE, "
 "VUCC_GRIDS)"
 msgstr ""
+"Pola uwzględniane dla tej nagrody: Gridsquare oraz vucc_grids (ADIF: "
+"GRIDSQUARE, VUCC_GRIDS)"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Worked"
@@ -6280,18 +6324,26 @@ msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
+"WAB, Worked All Britain – kwadraty siatki (ang. gridsquares) – zachęca "
+"licencjonowanych operatorów do nawiązywania łączności ze wszystkimi "
+"kwadratami w Wielkiej Brytanii."
 
 #: application/views/awards/wab/index.php:14
 msgid ""
 "May be claimed for having contacted an amateur station located in the "
 "required amount of squares, described on the page linked below."
 msgstr ""
+"Można ubiegać się o nagrodę po nawiązaniu łączności z amatorską stacją "
+"znajdującą się w wymaganej liczbie kwadratów, opisanych na stronie "
+"podlinkowanej poniżej."
 
 #: application/views/awards/wab/index.php:16
 msgid ""
 "Fields taken for this Award: SIG (Has to be 'WAB') and SIG_INFO (should "
 "contain valid WAB-Grid)"
 msgstr ""
+"Pola uwzględniane dla tej nagrody: SIG (musi być 'WAB') oraz SIG_INFO ("
+"powinno zawierać poprawny WAB-Grid)"
 
 #: application/views/awards/wab/index.php:110
 msgid "List"
@@ -6299,7 +6351,7 @@ msgstr "Lista"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr ""
+msgstr "Kwadrat WAB"
 
 #: application/views/awards/wac/index.php:9
 msgid ""
@@ -6307,16 +6359,22 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"Sponsorowana przez Międzynarodową Unię Radioamatorską (IARU), nagroda Worked "
+"All Continents jest przyznawana za nawiązanie i potwierdzenie łączności ze "
+"wszystkimi sześcioma kontynentami. Są to: Ameryka Północna, Ameryka "
+"Południowa, Oceania, Azja, Europa i Afryka."
 
 #: application/views/awards/wac/index.php:12
 msgid ""
 "Fields taken for this Award: Continent (ADIF tag 'CONT'). Must contain a "
 "valid continent-abbreviation!"
 msgstr ""
+"Pola uwzględniane dla tej nagrody: Continent (pole ADIF 'CONT'). Musi "
+"zawierać poprawny skrót kontynentu!"
 
 #: application/views/awards/wac/index.php:14
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "Nagrody – Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:152
 #: application/views/continents/index.php:62
@@ -6332,7 +6390,7 @@ msgstr "Kontynent"
 
 #: application/views/awards/wae/index.php:7
 msgid "WAE Award"
-msgstr ""
+msgstr "Nagroda WAE"
 
 #: application/views/awards/wae/index.php:8
 msgid ""
@@ -6340,6 +6398,10 @@ msgid ""
 "contacts with amateur radio stations in European countries and on islands "
 "listed in the WAE country list on different bands."
 msgstr ""
+"Najstarszy i najbardziej renomowany ze wszystkich certyfikatów DARC jest "
+"przyznawany za łączności z amatorskimi stacjami radiowymi w krajach "
+"europejskich oraz na wyspach wymienionych na liście krajów WAE, na różnych "
+"pasmach."
 
 #: application/views/awards/wae/index.php:9
 msgid ""
@@ -6347,14 +6409,17 @@ msgid ""
 "Digital and Mixed Modes. It is issued in five classes: WAE III, WAE II, WAE "
 "I, WAE TOP and the WAE Trophy."
 msgstr ""
+"WAE jest przyznawana w następujących emisjach: CW, SSB, Phone, RTTY, FT8, "
+"emisje cyfrowe oraz tryb mieszany. Wydawana jest w pięciu klasach: WAE III, "
+"WAE II, WAE I, WAE TOP oraz WAE Trophy."
 
 #: application/views/awards/wae/index.php:11
 msgid "Fields taken for this Award: Region, DXCC"
-msgstr ""
+msgstr "Pola uwzględniane dla tej nagrody: Region, DXCC"
 
 #: application/views/awards/wae/index.php:162
 msgid "WAE Name"
-msgstr ""
+msgstr "Nazwa WAE"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
@@ -6363,7 +6428,7 @@ msgstr "Prefektura"
 
 #: application/views/awards/waja/index.php:4
 msgid "Hover over a prefecture"
-msgstr ""
+msgstr "Najedź kursorem na prefekturę"
 
 #: application/views/awards/waja/index.php:19
 msgid "WAJA - Worked All Japan prefectures Award"
