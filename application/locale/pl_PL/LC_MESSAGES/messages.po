@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 19:09+0000\n"
+"PO-Revision-Date: 2025-09-18 19:26+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -7127,7 +7127,7 @@ msgstr "VHF-3-BAND i VHF-FM-ONLY (tylko zawody ARRL VHF)"
 
 #: application/views/cabrillo/index.php:98
 msgid "Category Mode"
-msgstr "Kategoria: Mode"
+msgstr "Kategoria: Tryb"
 
 #: application/views/cabrillo/index.php:109
 msgid "Category Power"
@@ -7135,15 +7135,15 @@ msgstr "Kategoria: Moc"
 
 #: application/views/cabrillo/index.php:117
 msgid "Category Station"
-msgstr "Kategoria: Station"
+msgstr "Kategoria: Stacja"
 
 #: application/views/cabrillo/index.php:133
 msgid "Category Transmitter"
-msgstr "Kategoria: Transmitter"
+msgstr "Kategoria: Nadajnik"
 
 #: application/views/cabrillo/index.php:143
 msgid "Category Time"
-msgstr "Kategoria: Time"
+msgstr "Kategoria: Czas"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -7155,7 +7155,7 @@ msgstr "%d godzin"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
-msgstr "Kategoria: Overlay"
+msgstr "Kategoria: Nakładka"
 
 #: application/views/cabrillo/index.php:164
 #: application/views/reg1test/index.php:70
@@ -7333,7 +7333,7 @@ msgstr "Jeśli lokator był częścią wymiany, zaznacz TAK."
 
 #: application/views/cabrillo/index.php:201
 msgid "Include logged grids?"
-msgstr "Uwzględnić zalogowane współrzędne (ang. gridsquare)?"
+msgstr "Uwzględnić zalogowane wsp. (ang. gridsquare)?"
 
 #: application/views/cabrillo/index.php:215
 #: application/views/reg1test/index.php:150
@@ -7620,6 +7620,8 @@ msgid ""
 "You need to set a username and password in your user account. You will also "
 "need to enable upload for each station profile ."
 msgstr ""
+"Musisz ustawić nazwę użytkownika i hasło w swoim koncie użytkownika. Musisz "
+"również włączyć przesyłanie dla każdego profilu stacji."
 
 #: application/views/clublog/export.php:34
 #: application/views/hrdlog/export.php:34
@@ -7630,7 +7632,7 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:15
 #: application/views/webadif/export.php:41
 msgid "Profile name"
-msgstr ""
+msgstr "Nazwa profilu"
 
 #: application/views/clublog/export.php:35
 #: application/views/hrdlog/export.php:35
@@ -7642,7 +7644,7 @@ msgstr "Znak wywoławczy stacji"
 #: application/views/clublog/export.php:36
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
 msgid "Edited QSOs not uploaded"
-msgstr ""
+msgstr "Nieprzesłane zedytowane QSO"
 
 #: application/views/clublog/export.php:37
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
@@ -7658,41 +7660,46 @@ msgstr "Łącznie przesłanych QSO"
 
 #: application/views/clublog/export.php:69
 msgid "The next automatic Download from Clublog-QSLs will happen at: "
-msgstr ""
+msgstr "Następne automatyczne pobranie QSL z Clublog nastąpi o: "
 
 #: application/views/clublog/export.php:70 application/views/qrz/export.php:75
 msgid ""
 "If no startdate is given then the QSLs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
+"Jeśli nie podano daty rozpoczęcia, QSL po ostatnim potwierdzeniu zostaną "
+"pobrane/zaktualizowane!"
 
 #: application/views/clublog/export.php:78
 msgid "Download QSLs from Clublog"
-msgstr ""
+msgstr "Pobierz QSL z Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
+#, fuzzy
 msgid "Hamsat - Satellite Rovers"
-msgstr ""
+msgstr "Hamsat - Satellite Rovers"
 
 #: application/views/components/hamsat/table.php:4
 #: application/views/contestcalendar/index.php:11
 #: application/views/dxcalendar/index.php:4
 #: application/views/hamsat/index.php:8
 msgid "This data comes from"
-msgstr ""
+msgstr "Dane pochodzą z"
 
 #: application/views/components/hamsat/table.php:11
 msgid "Show All Passes"
-msgstr ""
+msgstr "Pokazuj wszystkie przeloty"
 
 #: application/views/components/hamsat/table.php:14
 msgid "Private feed key empty. Please set the feed key in your profile."
 msgstr ""
+"Klucz prywatnego kanału jest pusty. Proszę ustaw klucz kanału w swoim "
+"profilu."
 
 #: application/views/components/hamsat/table.php:19
 msgid "No upcoming activations found. Please check back later."
-msgstr ""
+msgstr "Brak nadchodzących aktywacji. Proszę sprawdzić ponownie później."
 
 #: application/views/components/hamsat/table.php:28
 #: application/views/contesting/index.php:233
@@ -7714,20 +7721,21 @@ msgstr "Lokator(y)"
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
 msgid "Workable"
-msgstr ""
+msgstr "Możliwe"
 
 #: application/views/components/hamsat/table.php:134
 msgctxt "Hamsat - Track Satellites"
 msgid "Track"
-msgstr ""
+msgstr "Śledź"
 
 #: application/views/components/hamsat/table.php:146
 msgid "Sked"
-msgstr ""
+msgstr "Sked"
 
 #: application/views/components/radio_display_table.php:5
+#, fuzzy
 msgid "Radio Status"
-msgstr ""
+msgstr "Status radia"
 
 #: application/views/contestcalendar/index.php:16
 msgid "No Contests"
@@ -7780,12 +7788,16 @@ msgid ""
 "Using the contest list, you can control which Contests are shown when "
 "logging QSOs in a contest."
 msgstr ""
+"Korzystając z listy zawodów, możesz kontrolować, które zawody są wyświetlane "
+"podczas logowania QSO w zawodach."
 
 #: application/views/contesting/add.php:19
 msgid ""
 "Active contests will be shown in the Contest Name drop-down, while inactive "
 "contests will be hidden and cannot be selected."
 msgstr ""
+"Aktywne zawody będą widoczne w rozwijanym polu Nazwa zawodów, natomiast "
+"nieaktywne zawody będą ukryte i nie będzie można ich wybrać."
 
 #: application/views/contesting/add.php:26
 #: application/views/contesting/create.php:30
@@ -7804,13 +7816,13 @@ msgstr "Nazwa ADIF"
 #: application/views/usermode/index.php:6
 #: application/views/usermode/index.php:51
 msgid "Active"
-msgstr ""
+msgstr "Aktywne"
 
 #: application/views/contesting/add.php:39
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:49
 msgid "Not Active"
-msgstr ""
+msgstr "Nieaktywne"
 
 #: application/views/contesting/add.php:40
 #: application/views/contesting/add.php:49 application/views/mode/index.php:7
@@ -7876,15 +7888,15 @@ msgstr "Nazwa ADIF zawodów"
 
 #: application/views/contesting/edit.php:52
 msgid "Set to active if to be listed in Contest-list"
-msgstr ""
+msgstr "Ustaw jako aktywne, aby pojawiło się na liście zawodów"
 
 #: application/views/contesting/index.php:2
 msgid "You need to start a new session before you can change the contest name!"
-msgstr ""
+msgstr "Musisz rozpocząć nową sesję, zanim będziesz mógł zmienić nazwę zawodów!"
 
 #: application/views/contesting/index.php:3
 msgid "Are you really sure you want to start a new contest session?"
-msgstr ""
+msgstr "Czy na pewno chcesz rozpocząć nową sesję zawodów?"
 
 #: application/views/contesting/index.php:11
 msgid "Start new Contest Session"
@@ -7896,7 +7908,7 @@ msgstr "Typ wymiany"
 
 #: application/views/contesting/index.php:25
 msgid "Exchange"
-msgstr ""
+msgstr "Wymiana"
 
 #: application/views/contesting/index.php:27
 msgid "Serial"
@@ -7904,15 +7916,15 @@ msgstr "Numeracja"
 
 #: application/views/contesting/index.php:28
 msgid "Serial + Exchange"
-msgstr ""
+msgstr "Numer seryjny + Wymiana"
 
 #: application/views/contesting/index.php:29
 msgid "Serial + Gridsquare"
-msgstr ""
+msgstr "Numer seryjny + Gridsquare"
 
 #: application/views/contesting/index.php:30
 msgid "Serial + Gridsquare + Exchange"
-msgstr ""
+msgstr "Numer seryjny + Gridsquare + Wymiana"
 
 #: application/views/contesting/index.php:45
 #: application/views/operator/index.php:5
@@ -7927,11 +7939,12 @@ msgstr "Więcej ustawień"
 
 #: application/views/contesting/index.php:59
 msgid "Copy received exchange to"
-msgstr ""
+msgstr "Skopiuj otrzymaną wymianę do"
 
 #: application/views/contesting/index.php:61
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr ""
+"Wymiana jest kopiowana tylko wtedy, gdy spełnia zasady dla wybranego pola!"
 
 #: application/views/contesting/index.php:65
 msgid "Age"
@@ -7939,7 +7952,7 @@ msgstr "Wiek"
 
 #: application/views/contesting/index.php:67
 msgid "RX Power (W)"
-msgstr ""
+msgstr "Moc RX (W)"
 
 #: application/views/contesting/index.php:68
 msgid "Locator"
@@ -7954,13 +7967,15 @@ msgstr "QTH"
 
 #: application/views/contesting/index.php:74
 msgid "Sequence of Exchanges"
-msgstr ""
+msgstr "Sekwencja wymian"
 
 #: application/views/contesting/index.php:77
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
 msgstr ""
+"Wybierz, w jakiej kolejności chcesz wpisywać poszczególne raporty. "
+"Wyświetlane są jednak tylko elementy zawarte w wybranym typie wymiany."
 
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
@@ -7970,7 +7985,7 @@ msgstr ""
 #: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Exchange"
-msgstr ""
+msgstr "Wymiana"
 
 #: application/views/contesting/index.php:82
 #: application/views/contesting/index.php:83
@@ -7990,13 +8005,13 @@ msgstr "Lokator"
 #: application/views/contesting/index.php:87
 msgctxt "Keep the translation short!"
 msgid "Serial"
-msgstr ""
+msgstr "Numer"
 
 #: application/views/contesting/index.php:186
 #: application/views/contesting/index.php:269
 #: application/views/qso/edit_ajax.php:702
 msgid "Serial (S)"
-msgstr ""
+msgstr "Numer (S)"
 
 #: application/views/contesting/index.php:191
 msgid "Gridsquare (S)"
