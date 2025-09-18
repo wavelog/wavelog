@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 19:54+0000\n"
+"PO-Revision-Date: 2025-09-18 20:13+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -8679,6 +8679,8 @@ msgstr "Historia znaków"
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
 msgstr ""
+"Otrzymano nieprawidłowy klucz DCL. Należy sprawdzić login DCL i spróbować "
+"ponownie."
 
 #: application/views/dcl_views/upload_cert.php:8
 #: application/views/dcl_views/upload_cert.php:33
@@ -8695,7 +8697,7 @@ msgstr "Pobierz instrukcje pliku .p12"
 #: application/views/dcl_views/upload_cert.php:22
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Use at least version 2.7 of TQSL"
-msgstr ""
+msgstr "Należy korzystać z ostatniej wersji 2.7 TQSL"
 
 #: application/views/dcl_views/upload_cert.php:23
 #: application/views/lotw_views/upload_cert.php:23
@@ -8710,17 +8712,17 @@ msgstr "Naciśnij prawym klawiszem myszny na żądany znak"
 #: application/views/dcl_views/upload_cert.php:25
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Click 'Save Callsign Certificate File'"
-msgstr ""
+msgstr "Naciśnij \"Zapisz plik certyfikatu znaku wywoławczego\""
 
 #: application/views/dcl_views/upload_cert.php:26
 #: application/views/lotw_views/upload_cert.php:26
 msgid "Do not add a password"
-msgstr ""
+msgstr "Nie dodawaj hasła"
 
 #: application/views/dcl_views/upload_cert.php:27
 #: application/views/lotw_views/upload_cert.php:27
 msgid "Upload File below"
-msgstr ""
+msgstr "Prześlij plik poniżej"
 
 #: application/views/dcl_views/upload_cert.php:37
 #: application/views/lotw_views/upload_cert.php:37
@@ -8741,7 +8743,7 @@ msgstr "Najnowsza wersja"
 
 #: application/views/debug/index.php:36
 msgid "Latest Release"
-msgstr ""
+msgstr "Ostatnie wydanie"
 
 #: application/views/debug/index.php:41
 msgid "Language"
@@ -8749,19 +8751,19 @@ msgstr "Język"
 
 #: application/views/debug/index.php:45
 msgid "Base URL"
-msgstr ""
+msgstr "Bazowe URL"
 
 #: application/views/debug/index.php:49
 msgid "Migration"
-msgstr ""
+msgstr "Migracja"
 
 #: application/views/debug/index.php:50
 msgid "There is something wrong with your Migration in Database!"
-msgstr ""
+msgstr "Coś jest nie tak z migracją w bazie danych!"
 
 #: application/views/debug/index.php:55
 msgid "Migration is outdated and locked!"
-msgstr ""
+msgstr "Migracja jest przeterminowana i zablokowana!"
 
 #: application/views/debug/index.php:56
 #, php-format
@@ -8771,25 +8773,29 @@ msgid ""
 "locked due to a previously failed process. Delete the file %s to force the "
 "migration to run again."
 msgstr ""
+"Aktualna migracja nie jest wersją, którą powinna być. Odśwież tę stronę po "
+"%s sekundach. Jeśli to ostrzeżenie nadal się pojawia, migracja "
+"prawdopodobnie została zablokowana z powodu wcześniej nieudanego procesu. "
+"Usuń plik %s, aby wymusić ponowne uruchomienie migracji."
 
 #: application/views/debug/index.php:57
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
-msgstr ""
+msgstr "Sprawdź ten artykuł w wiki %stutaj%s, aby uzyskać więcej informacji."
 
 #: application/views/debug/index.php:58
 #, php-format
 msgid "Current migration is %s"
-msgstr ""
+msgstr "Aktualna migracja jest %s"
 
 #: application/views/debug/index.php:59
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "Migracja powinna być %s"
 
 #: application/views/debug/index.php:64
 msgid "Environment"
-msgstr ""
+msgstr "Środowisko"
 
 #: application/views/debug/index.php:68
 msgid "System Time"
@@ -8801,7 +8807,7 @@ msgstr "Łącznie QSO na tej instancji"
 
 #: application/views/debug/index.php:80
 msgid "Total User"
-msgstr ""
+msgstr "Liczba użytkowników"
 
 #: application/views/debug/index.php:81 application/views/user/index.php:27
 msgid "User"
@@ -8824,7 +8830,7 @@ msgstr "Wersja PHP"
 
 #: application/views/debug/index.php:103
 msgid "Deprecated"
-msgstr ""
+msgstr "Przestarzała"
 
 #: application/views/debug/index.php:110
 msgid "MySQL Version"
@@ -8836,13 +8842,15 @@ msgstr "Wersja Codeigniter"
 
 #: application/views/debug/index.php:122
 msgid "Folder Permissions"
-msgstr ""
+msgstr "Uprawnienia folderów"
 
 #: application/views/debug/index.php:124
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
 msgstr ""
+"To potwierdza, że foldery używane przez Wavelog mają uprawnienia do odczytu "
+"i zapisu przez PHP."
 
 #: application/views/debug/index.php:130 application/views/debug/index.php:141
 #: application/views/debug/index.php:152 application/views/debug/index.php:163
@@ -8854,11 +8862,11 @@ msgstr "Sukces"
 #: application/views/debug/index.php:154 application/views/debug/index.php:165
 #: application/views/debug/index.php:177
 msgid "Failed"
-msgstr ""
+msgstr "Niepowodzenie"
 
 #: application/views/debug/index.php:187
 msgid "Config Maintenance"
-msgstr ""
+msgstr "Konserwacja konfiguracji"
 
 #: application/views/debug/index.php:193
 msgid "Your authentication mode is outdated and possibly unsafe"
@@ -8868,18 +8876,20 @@ msgstr ""
 #: application/views/debug/index.php:195 application/views/debug/index.php:212
 #, php-format
 msgid "Please edit your %s File:"
-msgstr ""
+msgstr "Proszę edytuj swój plik %s:"
 
 #: application/views/debug/index.php:196
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
+"Przejdź do folderu application/config i porównaj plik config.sample.php z "
+"twoim config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
-msgstr ""
+msgstr "Zmień %s na wartość %s (zalecane)"
 
 #: application/views/debug/index.php:203
 msgid "Authentication Mode is set correctly"
@@ -8891,11 +8901,11 @@ msgstr "Ok"
 
 #: application/views/debug/index.php:210
 msgid "You use the default encryption key. You should change it!"
-msgstr ""
+msgstr "Używasz domyślnego klucza szyfrowania. Powinieneś go zmienić!"
 
 #: application/views/debug/index.php:213
 msgid "This will also enable the 'Keep me logged in' feature."
-msgstr ""
+msgstr "To również włączy funkcję „Zapamiętaj mnie”."
 
 #: application/views/debug/index.php:214
 #, php-format
@@ -8903,20 +8913,24 @@ msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
 msgstr ""
+"Zmień wartość %s na nowy klucz szyfrowania inny niż „flossie1234555541”. "
+"Wybierz bezpieczne i długie hasło. (Zalecane)"
 
 #: application/views/debug/index.php:220
 msgid "You do not use the default encryption key"
-msgstr ""
+msgstr "Nie używasz domyślnego klucza szyfrowania.\\"
 
 #: application/views/debug/index.php:227
 msgid "Migrate Userdata"
-msgstr ""
+msgstr "Migruj dane użytkownika"
 
 #: application/views/debug/index.php:229
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
 msgstr ""
+"Tutaj możesz przenieść istniejące karty QSL oraz karty eQSL do nowego "
+"folderu danych użytkownika."
 
 #: application/views/debug/index.php:242
 msgid "Modules"
@@ -8926,42 +8940,45 @@ msgstr "Moduły"
 #: application/views/debug/index.php:270 application/views/debug/index.php:281
 #: application/views/debug/index.php:292 application/views/debug/index.php:303
 msgid "Installed"
-msgstr ""
+msgstr "Zainstalowano"
 
 #: application/views/debug/index.php:250 application/views/debug/index.php:261
 #: application/views/debug/index.php:272 application/views/debug/index.php:283
 #: application/views/debug/index.php:294 application/views/debug/index.php:305
 msgid "Not Installed"
-msgstr ""
+msgstr "Nie zainstalowano"
 
 #: application/views/debug/index.php:441
 msgid "Git Information"
-msgstr ""
+msgstr "Informacje Git"
 
 #: application/views/debug/index.php:445
+#, fuzzy
 msgid "Branch"
-msgstr ""
+msgstr "Branch"
 
 #: application/views/debug/index.php:456 application/views/debug/index.php:467
 #: application/views/debug/index.php:477
 msgid "n/a"
-msgstr ""
+msgstr "n/d"
 
 #: application/views/debug/index.php:462
+#, fuzzy
 msgid "Commit"
-msgstr ""
+msgstr "Commit"
 
 #: application/views/debug/index.php:472
+#, fuzzy
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #: application/views/debug/index.php:482
 msgid "Last Fetch"
-msgstr ""
+msgstr "Ostatnie pobranie"
 
 #: application/views/debug/index.php:494
 msgid "Check for new version"
-msgstr ""
+msgstr "Sprawdź nową wersję"
 
 #: application/views/debug/index.php:495
 msgid "Update now"
@@ -8969,11 +8986,11 @@ msgstr "Aktualizuj"
 
 #: application/views/debug/index.php:513
 msgid "File download date"
-msgstr ""
+msgstr "Data pobrania pliku"
 
 #: application/views/debug/index.php:517
 msgid "File"
-msgstr ""
+msgstr "Plik"
 
 #: application/views/debug/index.php:518
 msgid "Last update"
@@ -8981,7 +8998,7 @@ msgstr "Ostatnia aktualizacja"
 
 #: application/views/debug/index.php:522
 msgid "DXCC update from Club Log"
-msgstr ""
+msgstr "Aktualizacja DXCC z ClubLog"
 
 #: application/views/debug/index.php:524 application/views/debug/index.php:530
 #: application/views/debug/index.php:535 application/views/debug/index.php:540
@@ -8994,89 +9011,90 @@ msgstr "Aktualizuj"
 
 #: application/views/debug/index.php:528
 msgid "DOK file download"
-msgstr ""
+msgstr "Pobieranie pliku DOK"
 
 #: application/views/debug/index.php:533
 msgid "LoTW users download"
-msgstr ""
+msgstr "Pobieranie użytkowników LoTW"
 
 #: application/views/debug/index.php:538
 msgid "POTA file download"
-msgstr ""
+msgstr "Pobieranie pliku POTA"
 
 #: application/views/debug/index.php:543
 msgid "SCP file download"
-msgstr ""
+msgstr "Pobieranie pliku SCP"
 
 #: application/views/debug/index.php:548
 msgid "SOTA file download"
-msgstr ""
+msgstr "Pobieranie pliku SOTA"
 
 #: application/views/debug/index.php:553
 msgid "WWFF file download"
-msgstr ""
+msgstr "Pobieranie pliku WWFF"
 
 #: application/views/debug/index.php:558
 msgid "TLE update"
-msgstr ""
+msgstr "Aktualizacja TLE"
 
 #: application/views/debug/index.php:563
 msgid "Hams Of Note update"
-msgstr ""
+msgstr "Aktualizacja Hams Of Note"
 
 #: application/views/debug/index.php:572
 msgid "QSO-DB Maintenance"
-msgstr ""
+msgstr "Konserwacja QSO-DB"
 
 #: application/views/debug/index.php:576
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Baza danych zawiera %d QSO bez profilu stacji (lokalizacji)"
+msgstr[1] "Baza danych zawiera %d QSO bez profilu stacji (lokalizacji)"
+msgstr[2] "Baza danych zawiera %d QSO bez profilu stacji (lokalizacji)"
 
 #: application/views/debug/index.php:614
 msgid "Please mark QSOs and reassign them to an existing station location:"
-msgstr ""
+msgstr "Proszę zaznaczyć QSO i przypisać je do istniejącej lokalizacji stacji:"
 
 #: application/views/debug/index.php:622
 msgctxt "Stationlocation"
 msgid "Target Location"
-msgstr ""
+msgstr "Docelowa lokalizacja"
 
 #: application/views/debug/index.php:623 application/views/debug/index.php:634
 msgid "Reassign"
-msgstr ""
+msgstr "Przepisz"
 
 #: application/views/debug/index.php:643
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
+"Każde QSO w bazie danych jest przypisane do profilu stacji (lokalizacji)"
 
 #: application/views/debug/index.php:643
 msgid "Everything ok"
-msgstr ""
+msgstr "Wszystko OK"
 
 #: application/views/debug/index.php:668
 msgid "Albanian"
-msgstr ""
+msgstr "Albański"
 
 #: application/views/debug/index.php:669
 msgid "Armenian"
-msgstr ""
+msgstr "Armeński"
 
 #: application/views/debug/index.php:670
 msgid "Bosnian"
-msgstr ""
+msgstr "Bośniacki"
 
 #: application/views/debug/index.php:671
 msgid "Bulgarian"
-msgstr ""
+msgstr "Bułgarski"
 
 #: application/views/debug/index.php:672
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chiński (uproszczony)"
 
 #: application/views/debug/index.php:673
 msgid "Croatian"
