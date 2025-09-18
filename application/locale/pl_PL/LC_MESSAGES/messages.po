@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 22:37+0000\n"
+"PO-Revision-Date: 2025-09-18 23:12+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -12312,145 +12312,155 @@ msgstr "Żądanie zostało odrzucone i nie będzie przetwarzane."
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Searching for"
-msgstr "Wyszukiwanie"
+msgstr "Wyszukiwanie dla"
 
 #: application/views/qrbcalc/index.php:3
 msgid "Locator 1"
-msgstr ""
+msgstr "Lokator 1"
 
 #: application/views/qrbcalc/index.php:10
 msgid "Locator 2"
-msgstr ""
+msgstr "Lokator 2"
 
 #: application/views/qrbcalc/index.php:20
 msgid "Calculate"
-msgstr ""
+msgstr "Oblicz"
 
 #: application/views/qrz/export.php:27
 msgid "The next automatic Upload to QRZ will happen at: "
-msgstr ""
+msgstr "Następne automatyczne przesłanie do QRZ nastąpi o: "
 
 #: application/views/qrz/export.php:28
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a QRZ "
 "logbook."
 msgstr ""
+"Tutaj możesz zobaczyć wszystkie QSO, które nie zostały wcześniej przesłane "
+"do dziennika QRZ."
 
 #: application/views/qrz/export.php:29
 msgid ""
 "You need to set a QRZ Logbook API key in your station profile. Only station "
 "profiles with an API Key set are displayed."
 msgstr ""
+"Należy ustawić klucz API dziennika QRZ w profilu stacji. Wyświetlane są "
+"tylko profile stacji z ustawionym kluczem API."
 
 #: application/views/qrz/export.php:74
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
-msgstr ""
+msgstr "Następne automatyczne przesłanie do QRZ-QSLs nastąpi o: "
 
 #: application/views/qrz/export.php:83
 msgid "Download QSLs from QRZ Logbook"
-msgstr ""
+msgstr "Pobierz QSL z dziennika QRZ"
 
 #: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
-msgstr ""
+msgstr "Oznacz QSO jako wyeksportowane do dziennika QRZ"
 
 #: application/views/qrz/mark_qrz.php:16
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr ""
+msgstr "QSO są oznaczone jako wyeksportowane do dziennika QRZ."
 
 #: application/views/qslcard/confirmationresult.php:16
 msgid "QSO date"
-msgstr ""
+msgstr "Data QSO"
 
 #: application/views/qslcard/confirmationresult.php:20
 msgid "Confirmation date"
-msgstr ""
+msgstr "Data potwierdzenia"
 
 #: application/views/qslcard/confirmationresult.php:21
 #: application/views/user/index.php:30
 msgid "Type"
-msgstr ""
+msgstr "Emisja"
 
 #: application/views/qslcard/confirmationresult.php:54
 msgid "No confirmations found."
-msgstr ""
+msgstr "Nie znaleziono potwierdzeń."
 
 #: application/views/qslcard/confirmations.php:6
 msgid ""
 "A maximum of 1000 rows are shown in the table. This is for performance "
 "reasons."
 msgstr ""
+"W tabeli wyświetlanych jest maksymalnie 1000 wierszy. Jest to podyktowane "
+"względami wydajnościowymi."
 
 #: application/views/qslcard/confirmations.php:11
 msgid "Confirmation type"
-msgstr ""
+msgstr "Typ potwierdzenia"
 
 #: application/views/qslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
-msgstr ""
+msgstr "Używasz %s przestrzeni dyskowej do przechowywania zasobów kart QSL"
 
 #: application/views/qslcard/index.php:17
 msgid "List View"
-msgstr ""
+msgstr "Widok listy"
 
 #: application/views/qslcard/index.php:18
 msgid "Gallery View"
-msgstr ""
+msgstr "Widok galerii"
 
 #: application/views/qslcard/index.php:78
 #: application/views/qslcard/index.php:126
 msgid "Add Qsos"
-msgstr ""
+msgstr "Dodaj QSO"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
-msgstr ""
+msgstr "Dodaj do QSL"
 
 #: application/views/qslmanagement/index.php:13
 msgid "Incoming QSL Cards"
-msgstr ""
+msgstr "Przychodzące karty QSL"
 
 #: application/views/qslmanagement/index.php:25
 msgid "Report"
-msgstr ""
+msgstr "Raport"
 
 #: application/views/qslmanagement/index.php:26
 msgid "Option"
-msgstr ""
+msgstr "Opcje"
 
 #: application/views/qslmanagement/index.php:46
 msgid "Outgoing QSL Cards"
-msgstr ""
+msgstr "Wychodzące karty QSL"
 
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
-msgstr ""
+msgstr "Wyeksportuj żądne QSL do wydruku"
 
 #: application/views/qslprint/index.php:31
 msgid "Show Band or Frequency:"
-msgstr ""
+msgstr "Pokaż pasmo lub częstotliwość:"
 
 #: application/views/qslprint/index.php:35
 msgid "Band & Frequency"
-msgstr ""
+msgstr "Pasmo i częstotliwość"
 
 #: application/views/qslprint/index.php:39
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
+"Tutaj możesz wyeksportować żądane karty QSL jako pliki CSV lub ADIF do "
+"wydruku i opcjonalnie oznaczyć je jako wysłane."
 
 #: application/views/qslprint/index.php:41
 msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
 msgstr ""
+"Żądane karty QSL to wszystkie łączności (QSO) z wartością „Żądana” lub „W "
+"kolejce” w polu „QSL wysłana”."
 
 #: application/views/qslprint/index.php:42
 #: application/views/qslprint/qslprint.php:34
 msgid "Previous QSL"
-msgstr ""
+msgstr "Poprzednia QSL"
 
 #: application/views/qslprint/index.php:42
 #, php-format
@@ -12458,52 +12468,54 @@ msgid ""
 "The column %s shows how many QSLs have been sent to the same station before "
 "on the same band and mode."
 msgstr ""
+"Kolumna %s pokazuje, ile kart QSL zostało wcześniej wysłanych do tej samej "
+"stacji na tym samym paśmie i emisji."
 
 #: application/views/qslprint/qslprint.php:33
 #: application/views/qslprint/qsolist.php:17
 msgid "Send Method"
-msgstr ""
+msgstr "Metoda wysyłania"
 
 #: application/views/qslprint/qslprint.php:35
 msgid "Mark as sent"
-msgstr ""
+msgstr "Oznacz jako wysłane"
 
 #: application/views/qslprint/qslprint.php:36
 msgid "Remove"
-msgstr ""
+msgstr "Usuń"
 
 #: application/views/qslprint/qslprint.php:37
 #: application/views/simplefle/index.php:147
 msgid "QSO List"
-msgstr ""
+msgstr "Lista QSO"
 
 #: application/views/qslprint/qslprint.php:78
 msgid "Mark QSOs for a certain QSL Method:"
-msgstr ""
+msgstr "Oznacz QSO dla danej metody QSL:"
 
 #: application/views/qslprint/qslprint.php:86
 msgid "Mark all QSOs for the chosen QSL method"
-msgstr ""
+msgstr "Oznacz wszystkie QSO dla danej metody QSL"
 
 #: application/views/qslprint/qslprint.php:87
 msgid "Unmark every QSO"
-msgstr ""
+msgstr "Odznacz wszystkie QSO"
 
 #: application/views/qslprint/qslprint.php:92
 msgid "Update QSOs"
-msgstr ""
+msgstr "Zaktualizuj QSO"
 
 #: application/views/qslprint/qslprint.php:95
 msgid "Mark selected QSOs as sent"
-msgstr ""
+msgstr "Oznacz zaznaczone QSO jako wysłane"
 
 #: application/views/qslprint/qslprint.php:96
 msgid "Remove selected QSOs from the queue"
-msgstr ""
+msgstr "Usuń zaznaczone QSO z kolejki"
 
 #: application/views/qslprint/qslprint.php:97
 msgid "Export selected QSOs to ADIF-file"
-msgstr ""
+msgstr "Wyeksportuj zaznaczone QSO do pliku ADIF"
 
 #: application/views/qslprint/qslprint.php:102
 msgid "Export CSV-file"
@@ -12511,7 +12523,7 @@ msgstr "Eksportuj plik CSV"
 
 #: application/views/qslprint/qslprint.php:102
 msgid "Export requested QSLs to CSV-file"
-msgstr ""
+msgstr "Wyeksportuj żądane QSL do pliku CSV"
 
 #: application/views/qslprint/qslprint.php:103
 msgid "Export ADIF"
@@ -12519,125 +12531,127 @@ msgstr "Eksport ADIF"
 
 #: application/views/qslprint/qslprint.php:103
 msgid "Export requested QSLs to ADIF-file"
-msgstr ""
+msgstr "Wyeksportuj żądane QSL do pliku ADIF"
 
 #: application/views/qslprint/qslprint.php:104
 msgid "Mark QSLs as printed"
-msgstr ""
+msgstr "Oznacz QSL jako wydrukowane"
 
 #: application/views/qslprint/qslprint.php:104
 msgid "Mark requested QSLs as sent"
-msgstr ""
+msgstr "Oznacz żądane QSL jako wysłane"
 
 #: application/views/qslprint/qslprint.php:109
 msgid "No QSLs to print were found!"
-msgstr ""
+msgstr "Nie znaleziono QSL do wydruku!"
 
 #: application/views/qslprint/qsolist.php:209
 msgid ""
 "No additional QSOs were found. That means they are probably already in the "
 "queue."
 msgstr ""
+"Nie znaleziono dodatkowych QSO. Oznacza to, że prawdopodobnie są już w "
+"kolejce."
 
 #: application/views/qso/award_tabs.php:2
 msgid "Showing summary for DXCC"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla DXCC"
 
 #: application/views/qso/award_tabs.php:3
 msgid "Showing summary for US State"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla US State"
 
 #: application/views/qso/award_tabs.php:4
 msgid "Showing summary for CQ zone"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla strefy CQ"
 
 #: application/views/qso/award_tabs.php:5
 msgid "Showing summary for WWFF"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla WWFF"
 
 #: application/views/qso/award_tabs.php:6
 msgid "Showing summary for POTA"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla POTA"
 
 #: application/views/qso/award_tabs.php:7
 msgid "Showing summary for SOTA"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla SOTA"
 
 #: application/views/qso/award_tabs.php:8
 msgid "Showing summary for IOTA"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla IOTA"
 
 #: application/views/qso/award_tabs.php:9
 msgid "Showing summary for DOK"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla DOK"
 
 #: application/views/qso/award_tabs.php:10
 msgid "Showing summary for satellite QSOs with"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla łączności satelitarnych z"
 
 #: application/views/qso/award_tabs.php:11
 msgid "Showing summary for continent"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla kontynentu"
 
 #: application/views/qso/award_tabs.php:12
 msgid "Showing summary for gridsquare"
-msgstr ""
+msgstr "Pokazuje podsumowanie dla lokatorów"
 
 #: application/views/qso/award_tabs.php:13
 msgid "State input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Należy wypełnić wartości Stanów, aby wyświetlić podsumowanie!"
 
 #: application/views/qso/award_tabs.php:14
 msgid "SOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Należy wypełnić wartości SOTA, aby wyświetlić podsumowanie!"
 
 #: application/views/qso/award_tabs.php:15
 msgid "POTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Należy wypełnić wartości POTA, aby wyświetlić podsumowanie!"
 
 #: application/views/qso/award_tabs.php:16
 msgid "IOTA input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Należy wypełnić wartości IOTA, aby wyświetlić podsumowanie!"
 
 #: application/views/qso/award_tabs.php:17
 msgid "DOK input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Należy wypełnić wartości DOK, aby wyświetlić podsumowanie!"
 
 #: application/views/qso/award_tabs.php:18
 msgid "WWFF input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Należy wypełnić wartości WWFF, aby wyświetlić podsumowanie!"
 
 #: application/views/qso/award_tabs.php:19
 msgid "Propagation mode needs to be 'SAT' to show a summary!"
-msgstr ""
+msgstr "Tryb propagacji należy ustawić na \"SAT\", aby wyświetlić podsumowanie!"
 
 #: application/views/qso/award_tabs.php:20
 msgid "Gridsquare input needs to be filled to show a summary!"
-msgstr ""
+msgstr "Należy wypełnić wartości Lokatorów, aby wyświetlić podsumowanie!"
 
 #: application/views/qso/award_tabs.php:21
 msgid "Summary only shows for the first POTA entered."
-msgstr ""
+msgstr "Podsumowanie wyświetla tylko pierwszą wprowadzoną POTA."
 
 #: application/views/qso/award_tabs.php:22
 msgid "Summary only shows for the first gridsquare entered."
-msgstr ""
+msgstr "Podsumowanie wyświetla tylko pierwszy wprowadzony lokator."
 
 #: application/views/qso/award_tabs.php:23
 msgid "Summary only shows for US states."
-msgstr ""
+msgstr "Podsumowanie wyświetla tylko stany US."
 
 #: application/views/qso/components/share_modal.php:3
 msgid "Post on X"
-msgstr ""
+msgstr "Opublikuj na X"
 
 #: application/views/qso/components/share_modal.php:6
 msgid "Post on Bluesky"
-msgstr ""
+msgstr "Opublikuj na Bluesky"
 
 #: application/views/qso/components/share_modal.php:10
 msgid "Toot on Mastodon"
-msgstr ""
+msgstr "Opublikuj na Mastodon"
 
 #: application/views/qso/components/winkeysettings.php:3
 #: application/views/qso/components/winkeysettings.php:19
@@ -12646,7 +12660,7 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:67
 #, php-format
 msgid "Function %d - Name"
-msgstr ""
+msgstr "Funkcja %d – Nazwa"
 
 #: application/views/qso/components/winkeysettings.php:10
 #: application/views/qso/components/winkeysettings.php:26
@@ -12655,27 +12669,27 @@ msgstr ""
 #: application/views/qso/components/winkeysettings.php:74
 #, php-format
 msgid "Function %d - Macro"
-msgstr ""
+msgstr "Funkcja %d – Makro"
 
 #: application/views/qso/edit_ajax.php:35
 msgid "Sats"
-msgstr ""
+msgstr "SATs"
 
 #: application/views/qso/edit_ajax.php:53
 msgid "Start Date/Time"
-msgstr ""
+msgstr "Data/Czas rozpoczęcia"
 
 #: application/views/qso/edit_ajax.php:58
 msgid "End Date/Time"
-msgstr ""
+msgstr "Data/Czas zakończenia"
 
 #: application/views/qso/edit_ajax.php:78
 msgid "RX Frequency"
-msgstr ""
+msgstr "Częstotliwość RX"
 
 #: application/views/qso/edit_ajax.php:101
 msgid "RX Band"
-msgstr ""
+msgstr "Pasmo RX"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:386
 msgid "Give power value in Watts. Include only numbers in the input."
@@ -12689,77 +12703,77 @@ msgstr "Moc nadajnika (W)"
 
 #: application/views/qso/edit_ajax.php:165
 msgid "Used for VUCC MultiGrids"
-msgstr ""
+msgstr "Wykorzystywane w VUCC MultiGrids"
 
 #: application/views/qso/edit_ajax.php:221 application/views/qso/index.php:498
 msgid "Antenna Path"
-msgstr ""
+msgstr "Ścieżka antenowa"
 
 #: application/views/qso/edit_ajax.php:224 application/views/qso/index.php:501
 #: application/views/view_log/qso.php:162
 msgid "Greyline"
-msgstr ""
+msgstr "Greyline"
 
 #: application/views/qso/edit_ajax.php:225 application/views/qso/index.php:502
 msgid "Other"
-msgstr ""
+msgstr "Inne"
 
 #: application/views/qso/edit_ajax.php:226 application/views/qso/index.php:503
 #: application/views/view_log/qso.php:153
 msgid "Short Path"
-msgstr ""
+msgstr "Krótka ścieżka"
 
 #: application/views/qso/edit_ajax.php:227 application/views/qso/index.php:504
 #: application/views/view_log/qso.php:156
 msgid "Long Path"
-msgstr ""
+msgstr "Długa ścieżka"
 
 #: application/views/qso/edit_ajax.php:284
 msgid "Sat Name"
-msgstr ""
+msgstr "Nazwa SAT"
 
 #: application/views/qso/edit_ajax.php:289
 msgid "Sat Mode"
-msgstr ""
+msgstr "Tryb SAT"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:627
 msgid "Antenna Azimuth (°)"
-msgstr ""
+msgstr "Azymut anteny (°)"
 
 #: application/views/qso/edit_ajax.php:294 application/views/qso/index.php:629
 msgid "Antenna azimuth in decimal degrees."
-msgstr ""
+msgstr "Azymut anteny w stopniach dziesiętnych."
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:633
 msgid "Antenna Elevation (°)"
-msgstr ""
+msgstr "Elewacja anteny (°)"
 
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:635
 msgid "Antenna elevation in decimal degrees."
-msgstr ""
+msgstr "Elewacja anteny w stopniach dziesiętnych."
 
 #: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:518
 #: application/views/station_profile/create.php:103
 #: application/views/station_profile/edit.php:141
 msgid "Station County"
-msgstr ""
+msgstr "Powiat/Hrabstwo stacji"
 
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:293
 #: application/views/qso/index.php:585 application/views/user/edit.php:668
 #: application/views/view_log/qso.php:441
 #: application/views/view_log/qso.php:741
 msgid "SIG Info"
-msgstr ""
+msgstr "Informacja SIG"
 
 #: application/views/qso/edit_ajax.php:411
 #: application/views/qso/edit_ajax.php:530 application/views/qso/index.php:644
 #: application/views/qso/index.php:688
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "Uwaga: Zostaje wyeksportowane do usług zewnętrznych."
 
 #: application/views/qso/edit_ajax.php:453
 msgid "Sent Method"
-msgstr ""
+msgstr "Metoda wysłania"
 
 #: application/views/qso/edit_ajax.php:456
 #: application/views/qso/edit_ajax.php:489 application/views/qso/index.php:665
@@ -12769,7 +12783,7 @@ msgstr "Sposób"
 
 #: application/views/qso/edit_ajax.php:466
 msgid "Sent Via"
-msgstr ""
+msgstr "Wysłanie Via"
 
 #: application/views/qso/edit_ajax.php:480
 #: application/views/qso/edit_ajax.php:521
@@ -12778,19 +12792,19 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:622
 #: application/views/qso/edit_ajax.php:648
 msgid "Verified (Match)"
-msgstr ""
+msgstr "Zweryfikowano (dopasowanie)"
 
 #: application/views/qso/edit_ajax.php:486
 msgid "Received Method"
-msgstr ""
+msgstr "Metoda otrzymania"
 
 #: application/views/qso/edit_ajax.php:527 application/views/qso/index.php:685
 msgid "Get the default message for eQSL, for this station."
-msgstr ""
+msgstr "Pobierz domyślną wiadomość dla eQSL dla tej stacji."
 
 #: application/views/qso/edit_ajax.php:539
 msgid "Note: Not editable. Only displayed here."
-msgstr ""
+msgstr "Uwaga: Nieedytowalne. Wyświetlane tylko tutaj."
 
 #: application/views/qso/edit_ajax.php:583
 #: application/views/view_log/partial/log_ajax.php:429
@@ -12799,19 +12813,19 @@ msgstr ""
 #: src/QSLManager/QSO.php:563 src/QSLManager/QSO.php:618
 #: src/QSLManager/QSO.php:677
 msgid "Modified"
-msgstr ""
+msgstr "Zmodyfikowano"
 
 #: application/views/qso/edit_ajax.php:667
 msgid "Change Station Profile"
-msgstr ""
+msgstr "Zmień profil stacji"
 
 #: application/views/qso/edit_ajax.php:707
 msgid "Exchange (R)"
-msgstr ""
+msgstr "Wymiana (R)"
 
 #: application/views/qso/edit_ajax.php:712
 msgid "Exchange (S)"
-msgstr ""
+msgstr "Wymiana (S)"
 
 #: application/views/qso/edit_ajax.php:724
 #: application/views/search/search_result_ajax.php:488
@@ -12822,11 +12836,11 @@ msgstr "Usuń QSO"
 
 #: application/views/qso/edit_ajax.php:727
 msgid "Save changes"
-msgstr ""
+msgstr "Zapisz zmiany"
 
 #: application/views/qso/index.php:29
 msgid "TimeOff is less than TimeOn"
-msgstr ""
+msgstr "Czas zakończenia jest wcześniejszy niż czas rozpoczęcia"
 
 #: application/views/qso/index.php:30 application/views/qso/index.php:796
 msgid "Previous Contacts"
@@ -12834,66 +12848,66 @@ msgstr "Poprzednie łączności"
 
 #: application/views/qso/index.php:31
 msgid "times worked before"
-msgstr ""
+msgstr "Liczba wcześniejszych łączności"
 
 #: application/views/qso/index.php:32
 msgid "Not worked before"
-msgstr ""
+msgstr "Nie było wcześniejszych łączności"
 
 #: application/views/qso/index.php:33
 msgid "more"
-msgstr ""
+msgstr "więcej"
 
 #: application/views/qso/index.php:34
 msgid "less"
-msgstr ""
+msgstr "mniej"
 
 #: application/views/qso/index.php:35
 msgid "DXCC Summary for "
-msgstr ""
+msgstr "Podsumowanie DXCC dla "
 
 #: application/views/qso/index.php:36
 msgid "LoTW User. Last upload was 1 day ago."
-msgstr ""
+msgstr "Użytkownik LoTW. Ostatnie przesłanie 1 dzień temu."
 
 #: application/views/qso/index.php:37
 #, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr ""
+msgstr "Użytkownik LoTW. Ostatnie przesłanie %x dni temu."
 
 #: application/views/qso/index.php:38
 msgid "Invalid value for antenna elevation:"
-msgstr ""
+msgstr "Niewłaściwa wartość elewacji anteny:"
 
 #: application/views/qso/index.php:53
 msgid "LIVE"
-msgstr ""
+msgstr "NA ŻYWO"
 
 #: application/views/qso/index.php:53
 msgid "POST"
-msgstr ""
+msgstr "PO"
 
 #: application/views/qso/index.php:66
 #: application/views/statistics/antennaanalytics.php:45
 #: application/views/statistics/antennaanalytics.php:85
 msgid "Sat"
-msgstr ""
+msgstr "SAT"
 
 #: application/views/qso/index.php:81
 msgid "Add Band/Mode to Favs"
-msgstr ""
+msgstr "Dodaj pasmo/emisję do ulubionych"
 
 #: application/views/qso/index.php:102
 msgid "Time on"
-msgstr ""
+msgstr "Czas rozpoczęcia"
 
 #: application/views/qso/index.php:114
 msgid "Time off"
-msgstr ""
+msgstr "Czas zakończenia"
 
 #: application/views/qso/index.php:157
 msgid "Search DXCluster for latest Spot"
-msgstr ""
+msgstr "Przeszukaj ostatni spot w DXCluster"
 
 #: application/views/qso/index.php:234 application/views/qso/index.php:524
 #: application/views/station_profile/create.php:153
@@ -12945,7 +12959,7 @@ msgstr "Na przykład: Q03"
 
 #: application/views/qso/index.php:602
 msgid "E-mail address of QSO-partner"
-msgstr ""
+msgstr "Adres email partnera QSO"
 
 #: application/views/qso/index.php:611 application/views/view_log/qso.php:296
 msgid "Satellite Name"
@@ -12957,35 +12971,35 @@ msgstr "modulacja satelity"
 
 #: application/views/qso/index.php:685
 msgid "QSL MSG"
-msgstr ""
+msgstr "Wiadomość QSL"
 
 #: application/views/qso/index.php:704
 msgid "Reset to Default"
-msgstr ""
+msgstr "Przywróć domyślne ustawienia"
 
 #: application/views/qso/index.php:745
 msgid "Winkey"
-msgstr ""
+msgstr "Winkey"
 
 #: application/views/qso/index.php:747
 msgid "Connect"
-msgstr ""
+msgstr "Połącz"
 
 #: application/views/qso/index.php:756
 msgid "Stop"
-msgstr ""
+msgstr "Zatrzymaj"
 
 #: application/views/qso/index.php:757
 msgid "Tune"
-msgstr ""
+msgstr "Strojenie"
 
 #: application/views/qso/index.php:758
 msgid "Stop Tune"
-msgstr ""
+msgstr "Zatrzymaj strojenie"
 
 #: application/views/qso/index.php:764
 msgid "CW Speed"
-msgstr ""
+msgstr "Prędkość CW"
 
 #: application/views/qso/index.php:769
 msgid "Send"
