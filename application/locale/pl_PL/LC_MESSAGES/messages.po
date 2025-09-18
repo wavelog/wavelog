@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 19:35+0000\n"
+"PO-Revision-Date: 2025-09-18 19:54+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -8305,6 +8305,8 @@ msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr ""
+"Masz motywy bez zdefiniowanego trybu motywu. Poproś administratora o edycję "
+"motywów."
 
 #: application/views/dashboard/index.php:204
 #, php-format
@@ -8324,9 +8326,9 @@ msgstr ""
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Maksymalnie jeden poprzedni kontakt jest pokazywany"
+msgstr[1] "Maksymalnie %d poprzednie kontakty są pokazywane"
+msgstr[2] "Maksymalnie %d poprzednich kontaktów jest pokazywanych"
 
 #: application/views/dashboard/index.php:303
 #: application/views/visitor/index.php:241
@@ -8335,8 +8337,9 @@ msgstr "Rozkład QSO"
 
 #: application/views/dashboard/index.php:326
 #: application/views/visitor/index.php:262
+#, fuzzy
 msgid "DXCCs Breakdown"
-msgstr ""
+msgstr "Rozbicie DXCC"
 
 #: application/views/dashboard/index.php:343
 #: application/views/visitor/index.php:279
@@ -8466,11 +8469,11 @@ msgstr "Lokatory VUCC"
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
-msgstr ""
+msgstr "Liczba QSO dla tego dnia tygodnia"
 
 #: application/views/dayswithqso/index.php:4
 msgid "Number of QSOs for this month of the year"
-msgstr ""
+msgstr "Liczba QSO dla tego miesiąca roku"
 
 #: application/views/dayswithqso/index.php:18
 msgid "Days of the week"
@@ -8478,15 +8481,16 @@ msgstr "Dni tygodnia"
 
 #: application/views/dayswithqso/index.php:21
 msgid "Months of the year"
-msgstr ""
+msgstr "Miesiące roku"
 
 #: application/views/dayswithqso/index.php:24
 msgid "Streaks"
-msgstr ""
+msgstr "Serie"
 
 #: application/views/dayswithqso/index.php:27
+#, fuzzy
 msgid "QSOs of Year"
-msgstr ""
+msgstr "QSO roku"
 
 #: application/views/dayswithqso/index.php:35
 msgid "Number of days with QSOs each year"
@@ -8494,27 +8498,27 @@ msgstr "Liczba dni z QSOs każdego roku"
 
 #: application/views/dayswithqso/index.php:51
 msgid "Days"
-msgstr ""
+msgstr "Dni"
 
 #: application/views/dayswithqso/index.php:67
 msgid "QSOs breakdown by day of the week"
-msgstr ""
+msgstr "Rozbicie QSO według dni tygodnia"
 
 #: application/views/dayswithqso/index.php:73
 msgid "QSOs breakdown by month of the year"
-msgstr ""
+msgstr "Rozbicie QSO według miesięcy roku"
 
 #: application/views/dayswithqso/index.php:87
 msgid "QSOs per Year"
-msgstr ""
+msgstr "QSO na rok"
 
 #: application/views/dayswithqso/index.php:95
 msgid "Less"
-msgstr ""
+msgstr "Mniej"
 
 #: application/views/dayswithqso/index.php:100
 msgid "More"
-msgstr ""
+msgstr "Więcej"
 
 #: application/views/dayswithqso/index.php:102
 msgid "Calendar with QSOs"
@@ -8522,22 +8526,22 @@ msgstr "Kalendarz z QSO"
 
 #: application/views/dayswithqso/index.php:111
 msgid "Longest streak with QSOs in the log"
-msgstr ""
+msgstr "Najdłuższa seria z QSO w dzienniku"
 
 #: application/views/dayswithqso/index.php:112
 msgid "A maximum of the 10 longest streaks are shown!"
-msgstr ""
+msgstr "Maksymalnie 10 najdłuższy serii jest pokazywanych!"
 
 #: application/views/dayswithqso/index.php:130
 msgid "Streak (continuous days with QSOs)"
-msgstr ""
+msgstr "Seria (ciągi dni z QSO)"
 
 #: application/views/dayswithqso/index.php:131
 #: application/views/dayswithqso/index.php:159
 #: application/views/dayswithqso/index.php:181
 #: application/views/lotw/satupdate.php:7
 msgid "Start Date"
-msgstr ""
+msgstr "Data rozpoczęcia"
 
 #: application/views/dayswithqso/index.php:132
 #: application/views/dayswithqso/index.php:160
@@ -8545,31 +8549,33 @@ msgstr ""
 #: application/views/lotw/satupdate.php:7
 #: application/views/timeline/index.php:202
 msgid "End Date"
-msgstr ""
+msgstr "Data zakończenia"
 
 #: application/views/dayswithqso/index.php:148
 msgctxt "Days with QSOs"
 msgid "No streak found!"
-msgstr ""
+msgstr "Nie znaleziono serii!"
 
 #: application/views/dayswithqso/index.php:152
 msgid "Current streak with QSOs in the log"
-msgstr ""
+msgstr "Aktualna seria z QSO w dzienniku"
 
 #: application/views/dayswithqso/index.php:158
 #: application/views/dayswithqso/index.php:180
 msgid "Current streak (continuous days with QSOs)"
-msgstr ""
+msgstr "Aktualna seria (ciąg dni z QSO)"
 
 #: application/views/dayswithqso/index.php:175
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
 msgstr ""
+"Jeśli wykonasz QSO dzisiaj, możesz kontynuować swoją serię... w przeciwnym "
+"razie obecna seria zostanie przerwana!"
 
 #: application/views/dayswithqso/index.php:196
 msgid "No current streak found!"
-msgstr ""
+msgstr "Brak aktualnej serii!"
 
 #: application/views/dcl_views/import.php:12
 #: application/views/lotw/import.php:12
@@ -8578,11 +8584,11 @@ msgstr "Opcje wysyłania"
 
 #: application/views/dcl_views/import.php:25
 msgid "Pull DCL data for me"
-msgstr ""
+msgstr "Pobierz dane DCL"
 
 #: application/views/dcl_views/import.php:36
 msgid "Select callsign to pull DCL confirmations for."
-msgstr ""
+msgstr "Wybierz znak wywoławczy, aby pobrać dla niego potwierdzenia DCL."
 
 #: application/views/dcl_views/import.php:50
 msgid ""
@@ -8591,38 +8597,42 @@ msgid ""
 "confirmations since chosen date, or since your last DCL confirmation "
 "(fetched from your log), up until now."
 msgstr ""
+"Wavelog użyje kluczy DCL zapisanych w profilu użytkownika, aby pobrać raport "
+"z DCL. Raport pobrany przez Wavelog będzie zawierał wszystkie potwierdzenia "
+"od wybranej daty lub od ostatniego potwierdzenia DCL (pobrane z dziennika), "
+"aż do teraz."
 
 #: application/views/dcl_views/import.php:54
 msgid "Import DCL Matches"
-msgstr ""
+msgstr "Importuj dopasowania DCL"
 
 #: application/views/dcl_views/index.php:8
 msgid "Delete Keys"
-msgstr ""
+msgstr "Usuwanie kluczy"
 
 #: application/views/dcl_views/index.php:9
 msgid "Available DCL-Keys"
-msgstr ""
+msgstr "Dostępne klucze DCL"
 
 #: application/views/dcl_views/index.php:9
 msgid "Request DCL Key"
-msgstr ""
+msgstr "Zażądaj klucza DCL"
 
 #: application/views/dcl_views/index.php:28
 msgid "Valid from"
-msgstr ""
+msgstr "Ważny od"
 
 #: application/views/dcl_views/index.php:29
 msgid "Valid till"
-msgstr ""
+msgstr "Ważny do"
 
 #: application/views/dcl_views/index.php:61
 msgid "You need to request DCL keys to use this function."
-msgstr ""
+msgstr "Użycie tej funkcji wymaga pobrania kluczy DCL"
 
 #: application/views/dcl_views/index.php:80
 msgid "The next automatic sync with DCL will happen at: "
-msgstr ""
+msgstr "Następna automatyczna synchronizacja DCL odbędzie się o: "
 
 #: application/views/dcl_views/index.php:82
 #: application/views/lotw_views/index.php:143
@@ -8632,38 +8642,39 @@ msgstr "Ręczna synchronizacja"
 #: application/views/dcl_views/index.php:84
 #: application/views/lotw_views/index.php:145
 msgid "running..."
-msgstr ""
+msgstr "pracuje..."
 
 #: application/views/dcl_views/key_import.php:8
 msgid "DCL Key Management"
-msgstr ""
+msgstr "Zarządzanie kluczami DCL"
 
 #: application/views/dcl_views/key_import.php:13
 msgid "Import Key"
-msgstr ""
+msgstr "Importowanie klucza"
 
 #: application/views/dcl_views/key_import.php:14
 msgid ""
 "You requested a key for DCL-Dataexchange, which was successful. The "
 "following data has been imported"
 msgstr ""
+"Z powodzeniem zażądano klucz dla wymiany DCL. Zaimportowano następujące dane"
 
 #: application/views/dcl_views/key_import.php:19
 msgid "Received a valid DCL-Key"
-msgstr ""
+msgstr "Otrzymano poprawny kluczy DCL"
 
 #: application/views/dcl_views/key_import.php:20
 msgid "DOK History"
-msgstr ""
+msgstr "Historia DOK"
 
 #: application/views/dcl_views/key_import.php:24
 #: application/views/dcl_views/key_import.php:46
 msgid "Validity"
-msgstr ""
+msgstr "Ważność"
 
 #: application/views/dcl_views/key_import.php:42
 msgid "Call History"
-msgstr ""
+msgstr "Historia znaków"
 
 #: application/views/dcl_views/key_import.php:63
 msgid "Received an invalid DCL-Key. Please check your DCL-Login, and try again"
