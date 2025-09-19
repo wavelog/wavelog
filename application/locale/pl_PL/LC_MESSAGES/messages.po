@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-19 01:00+0000\n"
+"PO-Revision-Date: 2025-09-19 01:22+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -14592,24 +14592,24 @@ msgstr "Później to wygląda tak:"
 
 #: application/views/stationsetup/visitor.php:4
 msgid "[your slug]"
-msgstr "[your slug]"
+msgstr "[identyfikator slug]"
 
 #: application/views/stationsetup/visitor.php:10
 msgid "Type in Public Slug choice"
-msgstr ""
+msgstr "Wpisz wybrany identyfikator (slug)"
 
 #: application/views/stationsetup/visitor.php:17
 msgid "Visit Public Page"
-msgstr ""
+msgstr "Odwiedź publiczną stronę"
 
 #: application/views/statistics/antennaanalytics.php:11
 msgid "Elevation"
-msgstr ""
+msgstr "Elewacja"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:61
 msgid "Years"
-msgstr ""
+msgstr "Lata"
 
 #: application/views/statistics/index.php:18
 msgid "Number of QSOs worked each year"
@@ -14617,12 +14617,12 @@ msgstr "Liczba łączności wykonanych w każdym roku"
 
 #: application/views/statistics/index.php:31
 msgid "Explore the logbook."
-msgstr ""
+msgstr "Przeglądanie dziennika."
 
 #: application/views/statistics/index.php:35
 #: application/views/timeline/index.php:111
 msgid "All Years"
-msgstr ""
+msgstr "Wszystkie lata"
 
 #: application/views/statistics/index.php:76
 #: application/views/statistics/index.php:117
@@ -14631,12 +14631,12 @@ msgstr "Unikalne znaki wywoławcze"
 
 #: application/views/statistics/index.php:120
 msgid "Unique Grids"
-msgstr ""
+msgstr "Unikalne lokatory"
 
 #: application/views/statistics/initialresult.php:42
 #: application/views/statistics/initials.php:36
 msgid "No EME QSOs were found."
-msgstr ""
+msgstr "Nie znaleziono łączności EME."
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
@@ -14644,22 +14644,24 @@ msgstr "Nazwa motywu"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr ""
+msgstr "To jest nazwa używana do wyświetlania motywu na liście motywów."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
-msgstr ""
+msgstr "Nazwa folderu"
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
 msgstr ""
+"To jest nazwa folderu, w którym znajdują się pliki CSS, w katalogu assets/"
+"css."
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
 msgid "Theme Mode"
-msgstr ""
+msgstr "Nazwa motywu"
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
 msgid "Light"
@@ -14671,12 +14673,12 @@ msgstr "Ciemny"
 
 #: application/views/themes/add.php:21
 msgid "This defines wherever the theme is a light or a dark one."
-msgstr ""
+msgstr "To określa, czy motyw jest jasny, czy ciemny."
 
 #: application/views/themes/add.php:25 application/views/themes/edit.php:25
 #: application/views/themes/index.php:85
 msgid "Header Logo"
-msgstr ""
+msgstr "Logo nagłówka"
 
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
@@ -14689,11 +14691,13 @@ msgid ""
 "This is the name of the file which is used as %s small %s Logo in the header "
 "placed in assets/logo."
 msgstr ""
+"To jest nazwa pliku używanego jako %s małe %s logo w nagłówku, umieszczonego "
+"w katalogu assets/logo."
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
 msgid "Main Logo"
-msgstr ""
+msgstr "Główne logo"
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
 #, php-format
@@ -14701,6 +14705,8 @@ msgid ""
 "This is the name of the file which is used as %s big %s Logo in the login "
 "screen placed in assets/logo."
 msgstr ""
+"To jest nazwa pliku używanego jako %s duże %s logo na ekranie logowania, "
+"umieszczonego w katalogu assets/logo."
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
@@ -14711,6 +14717,8 @@ msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
 msgstr ""
+"To określa, czy motyw jest jasny, czy ciemny. Na tej podstawie wybierane "
+"jest logo."
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
@@ -14736,11 +14744,11 @@ msgstr "Należy również zaznaczyć, że ta funkcja jest wciąż w fazie rozwoj
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "Proces dodawania nowego motywu"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
-msgstr ""
+msgstr "1. Krok"
 
 #: application/views/themes/index.php:44
 #, php-format
@@ -14748,40 +14756,49 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
+"Utwórz nowy folder w katalogu 'assets/css/' i prześlij plik "
+"'bootstrap.min.css', który zawiera podstawowe reguły stylizacji. Korzystamy "
+"z motywów z %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
-msgstr ""
+msgstr "2. Krok"
 
 #: application/views/themes/index.php:53
 msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
 msgstr ""
+"Utwórz plik o nazwie 'overrides.css' w tym folderze. Umieść w nim swój "
+"własny kod CSS."
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
-msgstr ""
+msgstr "3. Krok"
 
 #: application/views/themes/index.php:62
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
 msgstr ""
+"Dla każdego nowego motywu potrzebne są dwa pliki logo: jedno do ekranu "
+"logowania i jedno do nagłówka."
 
 #: application/views/themes/index.php:63
 msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
+"Dozwolone są tylko pliki PNG i powinny mieć proporcje 1:1 (np. 1000px "
+"wysokości i 1000px szerokości)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr ""
+msgstr "Umieść oba pliki logo w folderze 'assets/logo/'"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
-msgstr ""
+msgstr "4. Krok"
 
 #: application/views/themes/index.php:73
 #, php-format
@@ -14789,10 +14806,12 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Kliknij tutaj „Dodaj motyw” i wpisz wymagane dane. Wprowadź nazwy plików "
+"logo %sbez%s rozszerzenia '.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
-msgstr ""
+msgstr "Nazwa folderu"
 
 #: application/views/themes/index.php:99
 msgid "Please edit"
@@ -14823,6 +14842,8 @@ msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
+"Timeplotter służy do analizy dziennika i określenia, o jakich porach "
+"pracowałeś z określonymi strefami CQ lub krajami DXCC na wybranym paśmie."
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
@@ -14837,6 +14858,8 @@ msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
 msgstr ""
+"Tutaj możesz zaktualizować dane wyszukiwania DXCC, które są używane do "
+"wyświetlania informacji o znakach wywoławczych."
 
 #: application/views/update/index.php:16
 msgid "This data is provided by"
@@ -14870,6 +14893,12 @@ msgid ""
 "missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
+"Po zaktualizowaniu Wavelog może uzupełnić brakujące informacje o znakach "
+"wywoławczych w dzienniku, korzystając z nowo pobranych danych DXCC.\n"
+"\t\t\t\t\t\t\tMożesz wybrać, czy chcesz sprawdzić tylko te łączności (QSO) w "
+"dzienniku, które nie mają metadanych DXCC, czy też ponownie sprawdzić cały "
+"dziennik \n"
+"\t\t\t\t \t\t\toraz zaktualizować istniejące metadane, jeśli uległy zmianie."
 
 #: application/views/update/index.php:35 application/views/update/index.php:59
 msgid ""
@@ -14877,10 +14906,13 @@ msgid ""
 "deprectated and will be removed in a future version of Wavelog. As "
 "replacement use the Logbook-Advanced!"
 msgstr ""
+"To dotyczy WSZYSTKICH łączności (QSO) dowolnego użytkownika w tej instancji. "
+"Funkcja jest przestarzała i zostanie usunięta w przyszłej wersji Wavelog. "
+"Zamiast niej użyj Dziennika Zaawansowanego!"
 
 #: application/views/update/index.php:42
 msgid "Check QSOs missing DXCC data"
-msgstr ""
+msgstr "Sprawdź łączności (QSO) bez danych DXCC"
 
 #: application/views/update/index.php:51
 msgid "Re-check all QSOs in logbook"
@@ -14895,10 +14927,12 @@ msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
 msgstr ""
+"Ta funkcja może zostać użyta do zaktualizowania informacji o kontynencie dla "
+"wszystkich łączności (QSO) w Wavelog, które ich nie zawierają."
 
 #: application/views/update/index.php:66
 msgid "Check QSOs missing continent data"
-msgstr ""
+msgstr "Sprawdź łączności (QSO) bez danych o kontynencie"
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
@@ -14999,6 +15033,8 @@ msgstr "Format daty"
 #: application/views/user/edit.php:214
 msgid "Select how you would like dates shown when logged into your account."
 msgstr ""
+"Wybierz, w jaki sposób mają być wyświetlane daty po zalogowaniu się na swoje "
+"konto."
 
 #: application/views/user/edit.php:218
 msgid "Measurement preference"
@@ -15050,24 +15086,31 @@ msgstr "Opcje logowania QSO"
 
 #: application/views/user/edit.php:364
 msgid "Log End Times for QSOs Separately"
-msgstr ""
+msgstr "Rejestruj osobno czas zakończenia łączności (QSO)"
 
 #: application/views/user/edit.php:370
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
 msgstr ""
+"Wybierz „Tak”, jeśli chcesz rejestrować osobno czas rozpoczęcia i "
+"zakończenia łączności (QSO). Jeśli ustawisz „Nie”, czas zakończenia będzie "
+"taki sam jak czas rozpoczęcia."
 
 #: application/views/user/edit.php:375
 msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
+"Pokazuj zdjęcie profilowe partnera łączności z profilu qrz.com/hamqth.com w "
+"sekcji rejestracji QSO."
 
 #: application/views/user/edit.php:381
 msgid ""
 "Please set your qrz.com/hamqth.com credentials in the general config file."
 msgstr ""
+"Proszę ustawić dane logowania do qrz.com/hamqth.com w ogólnym pliku "
+"konfiguracyjnym."
 
 #: application/views/user/edit.php:386
 msgid "Location auto lookup."
@@ -15075,11 +15118,11 @@ msgstr "Automatyczne wyszukiwanie lokalizacji."
 
 #: application/views/user/edit.php:392
 msgid "If set, gridsquare is fetched based on location name."
-msgstr ""
+msgstr "Jeśli ustawione, lokator jest pobierany na podstawie nazwy lokalizacji."
 
 #: application/views/user/edit.php:396
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr ""
+msgstr "Automatyczne wyszukiwanie lokatora i nazwy dla szczytu SOTA."
 
 #: application/views/user/edit.php:402 application/views/user/edit.php:412
 #: application/views/user/edit.php:422
@@ -15087,44 +15130,48 @@ msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
 msgstr ""
+"Jeśli ustawione, nazwa i lokator są pobierane z API i uzupełniane w polach "
+"lokalizacji oraz lokatora."
 
 #: application/views/user/edit.php:406
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr ""
+msgstr "Automatyczne wyszukiwanie lokatora i nazwy dla referencji WWFF."
 
 #: application/views/user/edit.php:416
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr ""
+msgstr "Automatyczne wyszukiwanie lokatora i nazwy dla parku POTA."
 
 #: application/views/user/edit.php:425
 msgid "Number of previous contacts displayed on QSO page."
-msgstr ""
+msgstr "Liczba poprzednich łączności wyświetlana na stronie QSO."
 
 #: application/views/user/edit.php:442
 msgid "Menu Options"
-msgstr ""
+msgstr "Menu Opcji"
 
 #: application/views/user/edit.php:445
 msgid "Show notes in the main menu."
-msgstr ""
+msgstr "Pokazuj notatki w głównym menu."
 
 #: application/views/user/edit.php:456
 msgid "Quicklog Field"
-msgstr ""
+msgstr "Pole szybkiego logowania"
 
 #: application/views/user/edit.php:462
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
 msgstr ""
+"Dzięki tej funkcji możesz rejestrować znaki wywoławcze, korzystając z pola "
+"wyszukiwania w nagłówku."
 
 #: application/views/user/edit.php:466
 msgid "Quicklog - Action on press Enter"
-msgstr ""
+msgstr "Szybkie logowanie - akcja na wciśnięcie enter"
 
 #: application/views/user/edit.php:470
 msgid "Log Callsign"
-msgstr ""
+msgstr "Logowanie znaku"
 
 #: application/views/user/edit.php:472
 msgid ""
@@ -15135,13 +15182,16 @@ msgstr ""
 
 #: application/views/user/edit.php:478
 msgid "Station Locations Quickswitch"
-msgstr ""
+msgstr "Szybka zmiana lokalizacji stacji"
 
 #: application/views/user/edit.php:483
 msgid ""
 "Show the Station Locations Quickswitch in the main menu. You can add "
 "locations by adding them to favourites at the station setup page."
 msgstr ""
+"Wyświetlaj przełącznik szybkiego wyboru lokalizacji stacji w menu głównym. "
+"Możesz dodać lokalizacje, dodając je do ulubionych na stronie konfiguracji "
+"stacji."
 
 #: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
@@ -15161,11 +15211,11 @@ msgstr "Ikona"
 
 #: application/views/user/edit.php:513
 msgid "Not display"
-msgstr ""
+msgstr "Nie wyświetlaj"
 
 #: application/views/user/edit.php:517
 msgid "Not displayed"
-msgstr ""
+msgstr "Nie wyświetlane"
 
 #: application/views/user/edit.php:526
 msgid "QSO (by default)"
@@ -15177,7 +15227,7 @@ msgstr "QSO (potwierdzone)"
 
 #: application/views/user/edit.php:546
 msgid "(If 'No', displayed as 'QSO (by default))'"
-msgstr ""
+msgstr "(Jeśli „Nie”, wyświetlane jako „QSO (domyślnie)”)"
 
 #: application/views/user/edit.php:565
 msgid "Show Locator"
@@ -15190,6 +15240,8 @@ msgstr "Poprzedni typ QSL"
 #: application/views/user/edit.php:588
 msgid "Select the type of QSL to show in the previous QSOs section."
 msgstr ""
+"Wybierz typ QSL, który ma być wyświetlany w sekcji poprzednich łączności "
+"(QSO)."
 
 #: application/views/user/edit.php:605
 msgid "Dashboard Settings"
@@ -15202,62 +15254,69 @@ msgstr "Wybierz ile ostatnich QSO wyświetlać w dashboardzie."
 #: application/views/user/edit.php:616
 msgid "Choose the number of latest QSOs to be displayed on dashboard."
 msgstr ""
+"Wybierz liczbę ostatnich łączności (QSO), które mają być wyświetlane na "
+"Panelu Użytkownika."
 
 #: application/views/user/edit.php:620
 msgid "Show Dashboard Map"
-msgstr ""
+msgstr "Wyświetlaj mapę na Panelu Użytkownika"
 
 #: application/views/user/edit.php:624
 msgid "Map at right"
-msgstr ""
+msgstr "Mapa po prawej"
 
 #: application/views/user/edit.php:627
 msgid "Choose whether to show map on dashboard or not"
-msgstr ""
+msgstr "Wybierz, czy mapa ma być wyświetlana na Panelu Użytkownika"
 
 #: application/views/user/edit.php:631
 msgid "Dashboard Notification Banner"
-msgstr ""
+msgstr "Wyświetlaj baner powiadomień na Panelu Użytkownika"
 
 #: application/views/user/edit.php:637
 msgid "This allows to disable the global notification banner on the dashboard."
 msgstr ""
+"Ta opcja pozwala wyłączyć globalny baner powiadomień na Panelu Użytkownika."
 
 #: application/views/user/edit.php:645
 msgid "Show Reference Fields on QSO Tab"
-msgstr ""
+msgstr "Wyświetl pola referencji na zakładce QSO"
 
 #: application/views/user/edit.php:649
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
+"Włączone elementy będą wyświetlane na zakładce QSO zamiast na zakładce "
+"Ogólne."
 
 #: application/views/user/edit.php:687
 msgid "Online QSL request (OQRS) settings"
-msgstr ""
+msgstr "Ustawienia żądania QSL online (OQRS)"
 
 #: application/views/user/edit.php:691
 msgid "Global text"
-msgstr ""
+msgstr "Tekst globalny"
 
 #: application/views/user/edit.php:693
 msgid ""
 "This text is an optional text that can be displayed on top of the OQRS page."
 msgstr ""
+"en tekst jest opcjonalnym komunikatem, który może być wyświetlany na górze "
+"strony OQRS."
 
 #: application/views/user/edit.php:696
 msgid "Grouped search"
-msgstr ""
+msgstr "Grupowe wyszukiwanie"
 
 #: application/views/user/edit.php:698 application/views/user/edit.php:707
 #: application/views/user/edit.php:716 application/views/user/edit.php:725
 msgid "Off"
-msgstr ""
+msgstr "Wyłączone"
 
 #: application/views/user/edit.php:699 application/views/user/edit.php:708
 #: application/views/user/edit.php:717 application/views/user/edit.php:726
 msgid "On"
-msgstr ""
+msgstr "Włączone"
 
 #: application/views/user/edit.php:701
 msgid ""
