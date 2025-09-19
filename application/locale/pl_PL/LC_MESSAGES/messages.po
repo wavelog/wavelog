@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-19 00:36+0000\n"
+"PO-Revision-Date: 2025-09-19 01:00+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -14210,39 +14210,43 @@ msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
+"Referencja stacji POTA. Możliwe wiele referencji oddzielonych przecinkiem. "
+"Możesz wyszukać referencje na %s."
 
 #: application/views/station_profile/create.php:189
 msgid "Signature Name"
-msgstr ""
+msgstr "Nazwa SIG"
 
 #: application/views/station_profile/create.php:191
 msgid "Station Special Interest Group Name (e.g. GMA)."
 msgstr ""
+"Nazwa specjalnej grupy zainteresowań (SIG - ang. Special Interest Group np. "
+"GMA)."
 
 #: application/views/station_profile/create.php:195
 msgid "Signature Information"
-msgstr ""
+msgstr "Informacja SIG"
 
 #: application/views/station_profile/create.php:197
 #: application/views/station_profile/edit.php:299
 msgid "Station Special Interest Group Info (e.g. DA/NW-357)."
-msgstr ""
+msgstr "Specjalna grupa zainteresowań stacji (np. DA/NW-357)."
 
 #: application/views/station_profile/create.php:201
 #: application/views/station_profile/edit.php:312
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr ""
+msgstr "Pseudonim QTH eQSL"
 
 #: application/views/station_profile/create.php:203
 #: application/views/station_profile/edit.php:314
 msgid "The QTH Nickname which is configured in your eQSL Profile"
-msgstr ""
+msgstr "Pseudonim QTH, skonfigurowany w profilu eQSL"
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:317
 msgid "Default QSLMSG"
-msgstr ""
+msgstr "Domyślna QSLMSG"
 
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/edit.php:320
@@ -14250,11 +14254,14 @@ msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
 msgstr ""
+"Należy zdefiniować domyślną wiadomość, która będzie automatycznie "
+"uzupełniana i wysyłana przy każdej łączności (QSO) dla tej lokalizacji "
+"stacji."
 
 #: application/views/station_profile/create.php:213
 #: application/views/station_profile/edit.php:360
 msgid "Ignore Clublog Upload"
-msgstr ""
+msgstr "Ignorowanie przesyłania ClubLog"
 
 #: application/views/station_profile/create.php:218
 #: application/views/station_profile/edit.php:365
@@ -14300,173 +14307,175 @@ msgstr "Można utworzyć klucz API na %s"
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 msgid "HRDLog.net Userprofile page"
-msgstr ""
+msgstr "Strona profilu użytkownika HRDLog.net"
 
 #: application/views/station_profile/create.php:240
 #: application/views/station_profile/edit.php:397
 msgid "HRDLog.net Logbook Realtime Upload"
-msgstr ""
+msgstr "Rzeczywisty czas przesłania do HRDLog.net"
 
 #: application/views/station_profile/create.php:250
 #: application/views/station_profile/edit.php:328
 msgid "Subscription Required"
-msgstr ""
+msgstr "Wymagana subskrypcja"
 
 #: application/views/station_profile/create.php:255
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr ""
+msgstr "Klucz API dziennika QRZ.com"
 
 #: application/views/station_profile/create.php:258
 msgid "Test API-Key"
-msgstr ""
+msgstr "Sprawdzenie klucza API"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
-msgstr ""
+msgstr "Znajdź klucz API na %s"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:338
 msgid "the QRZ.com Logbook settings page"
-msgstr ""
+msgstr "strona ustawień dziennika QRZ.com"
 
 #: application/views/station_profile/create.php:264
 #: application/views/station_profile/edit.php:342
 msgid "QRZ.com Logbook Upload"
-msgstr ""
+msgstr "Przesłanie dziennika QRZ.com"
 
 #: application/views/station_profile/create.php:267
 #: application/views/station_profile/edit.php:345
 msgid "Realtime"
-msgstr ""
+msgstr "Czas rzeczywisty"
 
 #: application/views/station_profile/create.php:275
 #: application/views/station_profile/edit.php:414
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
-msgstr ""
+msgstr "Klucz API Qo-100 Dx Club"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
-msgstr ""
+msgstr "Stwórz klucz API na %s"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:419
 msgid "QO-100 Dx Club's profile page"
-msgstr ""
+msgstr "Strona profilowa QO-100 Dx Club"
 
 #: application/views/station_profile/create.php:280
 #: application/views/station_profile/edit.php:422
 msgid "QO-100 Dx Club Realtime Upload"
-msgstr ""
+msgstr "Przesyłanie QO-100 Dx Club w czasie rzeczywistym"
 
 #: application/views/station_profile/create.php:290
 #: application/views/station_profile/edit.php:440
 msgid "OQRS Enabled"
-msgstr ""
+msgstr "Włączono OQRS"
 
 #: application/views/station_profile/create.php:297
 #: application/views/station_profile/edit.php:447
 msgid "OQRS Email alert"
-msgstr ""
+msgstr "Alarm email OQRS"
 
 #: application/views/station_profile/create.php:302
 #: application/views/station_profile/edit.php:452
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
+"Należy upewnić się, że email został ustawiony w administracji oraz w opcjach "
+"globalnych."
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:455
 msgid "OQRS Text"
-msgstr ""
+msgstr "Test OQRS"
 
 #: application/views/station_profile/create.php:307
 #: application/views/station_profile/edit.php:457
 msgid "Some info you want to add regarding QSL'ing."
-msgstr ""
+msgstr "Dodatkowe informacje do dodanie do QSL."
 
 #: application/views/station_profile/edit.php:153
 msgid "Zones"
-msgstr ""
+msgstr "Strefy"
 
 #: application/views/station_profile/edit.php:291
 msgid "Special Interest Group Name"
-msgstr ""
+msgstr "Nazwa specjalnej grupy zainteresowań"
 
 #: application/views/station_profile/edit.php:293
 msgid "Station Special Interest Group Name (e.g. GMA).."
-msgstr ""
+msgstr "Specjalna grupa zainteresowań stacji (np. GMA).."
 
 #: application/views/station_profile/edit.php:297
 msgid "Special Interest Group Information"
-msgstr ""
+msgstr "Informacja Specjalnej Grupy Zainteresowań"
 
 #: application/views/station_profile/edit.php:309
 #, php-format
 msgid "Trouble? Check the %swiki%s."
-msgstr ""
+msgstr "Problemy? Sprawdzenie %swiki%s."
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
-msgstr ""
+msgstr "Nazwa dziennika stacji"
 
 #: application/views/stationsetup/create.php:19
 msgid "You can call a station logbook anything."
-msgstr ""
+msgstr "Można dowolnie nazwać dziennik."
 
 #: application/views/stationsetup/edit.php:18
 msgid "Container name"
-msgstr ""
+msgstr "Nazwa kontenera"
 
 #: application/views/stationsetup/edit.php:20
 msgid "You can call a container anything."
-msgstr ""
+msgstr "Można dowolnie nazwać kontener."
 
 #: application/views/stationsetup/exportmapoptions.php:11
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
-msgstr ""
+msgstr "Nakładka stref CQ"
 
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr ""
+msgstr "Nakładka lokatorów"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
 msgid "Night shadow overlay"
-msgstr ""
+msgstr "Nakładka cienia nocy"
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
-msgstr ""
+msgstr "Pokazywanie # QSO"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
-msgstr ""
+msgstr "Odwiedzenie mapy eksportu"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
-msgstr ""
+msgstr "Wybieranie dostępnych lokalizacji stacji"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr ""
+msgstr "Połączenie lokalizację"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:125
 msgid "Profile Name"
-msgstr ""
+msgstr "Nazwa profilu"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr ""
+msgstr "Rozłączenie lokalizacji"
 
 #: application/views/stationsetup/stationsetup.php:24
 msgid ""
@@ -14475,98 +14484,115 @@ msgid ""
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
 msgstr ""
+"Dzienniki stacji umożliwiają grupowanie lokalizacji stacji, co pozwala na "
+"przegląd wszystkich lokalizacji w ramach jednej sesji — od obszarów "
+"dziennika po analizy. Świetne rozwiązanie, gdy stacja pracuje z wielu "
+"lokalizacji, ale wszystkie należą do tego samego okręgu DXCC lub VUCC."
 
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Edit Linked locations"
-msgstr ""
+msgstr "Edytowanie połączonych lokalizacji"
 
 #: application/views/stationsetup/stationsetup.php:37
 msgid "Visitor site"
-msgstr ""
+msgstr "Strona gości"
 
 #: application/views/stationsetup/stationsetup.php:94
 msgid "Station Locations"
-msgstr ""
+msgstr "Lokalizacje stacji"
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
 msgstr ""
+"Lokalizacji stacji definiują lokalizację, takie jak QTH, QTH przyjaciół lub "
+"stację przenośną."
 
 #: application/views/stationsetup/stationsetup.php:99
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr ""
+msgstr "Podobnie do dzienników, profil grupuje zestawy QSO."
 
 #: application/views/stationsetup/stationsetup.php:100
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
 msgstr ""
+"Tylko jedna stacja może być aktywna w danym momencie. W poniższej tabeli "
+"jest to oznaczone odznaką -Aktywna Stacja-."
 
 #: application/views/stationsetup/stationsetup.php:101
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr ""
+"Kolumna 'Połączone' pokazuje, czy lokalizacja stacji jest powiązana z "
+"aktywnym dziennikiem wybranym powyżej."
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Create a Station Location"
-msgstr ""
+msgstr "Utwórz lokalizację stacji"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show all locations"
-msgstr ""
+msgstr "Pokaż wszystkie lokalizacje stacji"
 
 #: application/views/stationsetup/stationsetup.php:104
 msgid "Show only locations from the active logbook"
-msgstr ""
+msgstr "Pokaż tylko lokalizacje z aktywnego dziennika"
 
 #: application/views/stationsetup/stationsetup.php:108
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
+"Uwaga: należy ustawić aktywną lokalizację stacji. Należy przejść do Znak "
+"Wywoławczy → Lokalizacja Stacji, aby ją wybrać."
 
 #: application/views/stationsetup/stationsetup.php:114
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
 msgstr ""
+"Ze względu na ostatnie zmiany w Wavelog należy ponownie przypisać łączności "
+"(QSO) do profili stacji."
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Maintenance"
-msgstr ""
+msgstr "Konserwacja"
 
 #: application/views/stationsetup/stationsetup.php:116
 msgid "Please reassign them at "
-msgstr ""
+msgstr "Przepisz je na "
 
 #: application/views/stationsetup/stationsetup.php:131
 msgid "Linked"
-msgstr ""
+msgstr "Połączone"
 
 #: application/views/stationsetup/stationsetup.php:138
 msgid "Favorite"
-msgstr ""
+msgstr "Ulubione"
 
 #: application/views/stationsetup/stationsetup.php:185
 msgid "mark/unmark as favorite"
-msgstr ""
+msgstr "oznacz/odznacz jako ulubione"
 
 #: application/views/stationsetup/visitor.php:2
 msgid ""
 "Setting a public slug allows you to share your logbook with anyone via a "
 "custom website address, this slug can contain letters & numbers only."
 msgstr ""
+"Ustawienie publicznego identyfikatora (slug) umożliwia udostępnienie "
+"dziennika każdemu za pomocą niestandardowego adresu strony internetowej; "
+"identyfikator ten może zawierać tylko litery i cyfry."
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
-msgstr ""
+msgstr "Później to wygląda tak:"
 
 #: application/views/stationsetup/visitor.php:4
 msgid "[your slug]"
-msgstr ""
+msgstr "[your slug]"
 
 #: application/views/stationsetup/visitor.php:10
 msgid "Type in Public Slug choice"
@@ -14928,7 +14954,7 @@ msgstr "Właściciel znaku"
 
 #: application/views/user/edit.php:113
 msgid "Personal"
-msgstr ""
+msgstr "Dane personalne"
 
 #: application/views/user/edit.php:116
 msgid "First Name"
@@ -14940,19 +14966,19 @@ msgstr "Nazwisko"
 
 #: application/views/user/edit.php:134
 msgid "Ham Radio"
-msgstr ""
+msgstr "Radiostacja"
 
 #: application/views/user/edit.php:137
 msgid "Special/Club Callsign"
-msgstr ""
+msgstr "Znak klubowy/specjalny"
 
 #: application/views/user/edit.php:160
 msgid "Wavelog Preferences"
-msgstr ""
+msgstr "Preferencje Wavelog"
 
 #: application/views/user/edit.php:171
 msgid "Stylesheet"
-msgstr ""
+msgstr "Arkusz stylów"
 
 #: application/views/user/edit.php:183
 msgid "Wavelog Language"
@@ -14960,11 +14986,11 @@ msgstr "Język Waveloga"
 
 #: application/views/user/edit.php:190
 msgid "Choose Wavelog language."
-msgstr ""
+msgstr "Wybierz język Wavelog."
 
 #: application/views/user/edit.php:193
 msgid "Timezone"
-msgstr ""
+msgstr "Strefa czasowa"
 
 #: application/views/user/edit.php:201
 msgid "Date Format"
@@ -14976,7 +15002,7 @@ msgstr ""
 
 #: application/views/user/edit.php:218
 msgid "Measurement preference"
-msgstr ""
+msgstr "Preferencje jednostek miar"
 
 #: application/views/user/edit.php:222
 msgid "Kilometers"
@@ -15045,7 +15071,7 @@ msgstr ""
 
 #: application/views/user/edit.php:386
 msgid "Location auto lookup."
-msgstr ""
+msgstr "Automatyczne wyszukiwanie lokalizacji."
 
 #: application/views/user/edit.php:392
 msgid "If set, gridsquare is fetched based on location name."
