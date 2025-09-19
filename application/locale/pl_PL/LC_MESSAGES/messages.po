@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-18 23:23+0000\n"
+"PO-Revision-Date: 2025-09-19 00:05+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -13214,13 +13214,13 @@ msgstr "Nazwa wyświetlania satelity"
 #: application/views/satellite/create.php:25
 #: application/views/satellite/edit.php:9
 msgid "Display / cleartext name of the satellite"
-msgstr "Wyświetlana / jawna nazwa satelity"
+msgstr "Wyświetlana / cleartext nazwa satelity"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:52
 msgid "LoTW Name"
-msgstr ""
+msgstr "Nazwa LoTW"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
@@ -13228,282 +13228,290 @@ msgid ""
 "Satellite name as accepted by LoTW. Not necessarily the same as the display "
 "name. Can be set/changed later when added to LoTW."
 msgstr ""
+"Nazwa satelity zgodna z wymaganiami LoTW. Nie musi być taka sama jak nazwa "
+"wyświetlana. Może zostać ustawiona lub zmieniona później po dodaniu do LoTW."
 
 #: application/views/satellite/create.php:41
 #: application/views/satellite/edit.php:25
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
-msgstr ""
+msgstr "Wprowadź, na jakiej orbicie znajduje się satelita (LEO, MEO, GEO)"
 
 #: application/views/satellite/create.php:44
 msgid "Satellite mode name"
-msgstr ""
+msgstr "Nazwa emisji satelitarnej"
 
 #: application/views/satellite/create.php:46
 msgid "Enter satellite mode"
-msgstr ""
+msgstr "Wprowadź emisję satelitarną"
 
 #: application/views/satellite/create.php:51
 #: application/views/satellite/edit.php:52
 #: application/views/satellite/satinfo.php:8
 msgid "Uplink mode"
-msgstr ""
+msgstr "Emisja toru nadawczego"
 
 #: application/views/satellite/create.php:53
 msgid "Enter modulation used for uplink"
-msgstr ""
+msgstr "Wprowadź modulację wykorzystaną w torze nadawczym"
 
 #: application/views/satellite/create.php:56
 #: application/views/satellite/edit.php:53
 #: application/views/satellite/satinfo.php:9
 msgid "Uplink frequency"
-msgstr ""
+msgstr "Częstotliwość toru nadawczego"
 
 #: application/views/satellite/create.php:58
 msgid "Enter frequency (in Hz) used for uplink"
-msgstr ""
+msgstr "Wprowadź częstotliwość (w Hz) wykorzystaną w torze nadawczym"
 
 #: application/views/satellite/create.php:63
 #: application/views/satellite/edit.php:54
 #: application/views/satellite/satinfo.php:10
 msgid "Downlink mode"
-msgstr ""
+msgstr "Emisja toru odbiorczego"
 
 #: application/views/satellite/create.php:65
 msgid "Enter modulation used for downlink"
-msgstr ""
+msgstr "Wprowadź modulację wykorzystaną w torze odbiorczym"
 
 #: application/views/satellite/create.php:68
 #: application/views/satellite/edit.php:55
 #: application/views/satellite/satinfo.php:11
 msgid "Downlink frequency"
-msgstr ""
+msgstr "Częstotliwość toru odbiorczego"
 
 #: application/views/satellite/create.php:70
 msgid "Enter frequency (in Hz) used for downlink"
-msgstr ""
+msgstr "Wprowadź częstotliwość (w Hz) wykorzystaną w torze odbiorczym"
 
 #: application/views/satellite/create.php:73
 #: application/views/satellite/edit.php:28
 msgid "Accepted by LoTW"
-msgstr ""
+msgstr "Zaakceptowane przez LoTW"
 
 #: application/views/satellite/create.php:78
 #: application/views/satellite/edit.php:38
 msgid "Set to yes only if satellite is accepted my LoTW"
 msgstr ""
+"Należy ustawić na „tak” tylko jeśli satelita jest akceptowany przez LoTW"
 
 #: application/views/satellite/edit.php:7
 msgid "Satellite Display Name "
-msgstr ""
+msgstr "Wyświetlana nazwa satelity "
 
 #: application/views/satellite/edit.php:42
 msgid "Save satellite"
-msgstr ""
+msgstr "Zapisz satelitę"
 
 #: application/views/satellite/edit.php:76
 msgid "Add satellite mode"
-msgstr ""
+msgstr "Dodaj emisję satelity"
 
 #: application/views/satellite/flightpath.php:51
 msgid ""
 "No satellites with TLE found. Please update via CRON or satellite page. If "
 "you have no access to do this, ask your admin!"
 msgstr ""
+"Nie znaleziono żadnych satelitów z danymi TLE. Zaktualizuj je za pomocą CRON-"
+"a lub strony satelitów. Jeśli nie masz dostępu do tej operacji, skontaktuj "
+"się z administratorem!"
 
 #: application/views/satellite/index.php:44
 msgid "Add a satellite"
-msgstr ""
+msgstr "Dodaj satelitę"
 
 #: application/views/satellite/index.php:45
 msgid "Sync Satellites from LoTW"
-msgstr ""
+msgstr "Synchronizuj satelity z LoTW"
 
 #: application/views/satellite/index.php:46
 msgid "Update Satellite TLE"
-msgstr ""
+msgstr "Zaktualizuj TLE satelity"
 
 #: application/views/satellite/index.php:57
 msgid "TLE"
-msgstr ""
+msgstr "TLE"
 
 #: application/views/satellite/pass.php:6
 msgid "Satellite passes"
-msgstr ""
+msgstr "Przeloty satelity"
 
 #: application/views/satellite/pass.php:13
 msgid "Your station"
-msgstr ""
+msgstr "Twoja stacja"
 
 #: application/views/satellite/pass.php:26
 #: application/views/satellite/pass.php:65
 msgid "Min. Satellite Elevation"
-msgstr ""
+msgstr "Min. elewacja satelity"
 
 #: application/views/satellite/pass.php:30
 #: application/views/satellite/pass.php:69
 msgid "Min. Azimuth"
-msgstr ""
+msgstr "Min. azymut"
 
 #: application/views/satellite/pass.php:38
 #: application/views/satellite/pass.php:77
 msgid "Max. Azimuth"
-msgstr ""
+msgstr "Maks. azymut"
 
 #: application/views/satellite/pass.php:54
 msgid "Min. time"
-msgstr ""
+msgstr "Min. czas"
 
 #: application/views/satellite/pass.php:63
 msgid "Sked partner"
-msgstr ""
+msgstr "Parter Sked"
 
 #: application/views/satellite/pass.php:91
 msgid "Load predictions"
-msgstr ""
+msgstr "Załaduj predykcję"
 
 #: application/views/satellite/pass.php:92
 msgid "Add sked partner"
-msgstr ""
+msgstr "Dodaj partnera Sked"
 
 #: application/views/satellite/pass.php:94
 msgid "Presets"
-msgstr ""
+msgstr "Presety"
 
 #: application/views/satellite/pass.php:96
 msgid "Save current settings"
-msgstr ""
+msgstr "Zapisz aktualne ustawienia"
 
 #: application/views/satellite/pass.php:105
 msgid "Save Settings"
-msgstr ""
+msgstr "Zapisz ustawienia"
 
 #: application/views/satellite/pass.php:109
 msgid "Settings Name"
-msgstr ""
+msgstr "Nazwa ustawień"
 
 #: application/views/satellite/pass.php:110
 msgid "Enter a name"
-msgstr ""
+msgstr "Wprowadź nazwę"
 
 #: application/views/satellite/pass.php:121
 msgid "No TLE information detected. Please update TLE's."
-msgstr ""
+msgstr "Nie wykryto informacji TLE. Należy zaktualizować TLE."
 
 #: application/views/satellite/passtable.php:7
 #: application/views/satellite/skedtable.php:36
 msgid "AOS Time"
-msgstr ""
+msgstr "Czas AOS"
 
 #: application/views/satellite/passtable.php:8
 #: application/views/satellite/skedtable.php:40
 msgid "LOS Time"
-msgstr ""
+msgstr "Czas LOS"
 
 #: application/views/satellite/passtable.php:9
 #: application/views/satellite/skedtable.php:10
 #: application/views/satellite/skedtable.php:37
 #: application/views/sattimers/index.php:46
 msgid "Duration"
-msgstr ""
+msgstr "Czas trwania"
 
 #: application/views/satellite/passtable.php:10
 msgid "Path"
-msgstr ""
+msgstr "Ścieżka"
 
 #: application/views/satellite/passtable.php:11
 msgid "Max Elevation (Azimuth)"
-msgstr ""
+msgstr "Maks. elewacja (azymut)"
 
 #: application/views/satellite/passtable.php:12
 #: application/views/satellite/skedtable.php:38
 msgid "AOS Azimuth"
-msgstr ""
+msgstr "Azymut AOS"
 
 #: application/views/satellite/passtable.php:13
 #: application/views/satellite/skedtable.php:41
 msgid "LOS Azimuth"
-msgstr ""
+msgstr "Azymut LOS"
 
 #: application/views/satellite/passtable.php:55
 #: application/views/satellite/skedtable.php:84
 msgid "Search failed!"
-msgstr ""
+msgstr "Wyszukiwanie nieudane!"
 
 #: application/views/satellite/passtable.php:56
 msgid "No passes found. Please check the input parameters."
-msgstr ""
+msgstr "Nie znaleziono przelotów. Należy sprawdzić parametry wejściowe."
 
 #: application/views/satellite/passtable.php:73
 #: application/views/satellite/skedtable.php:94
 msgid "min"
-msgstr ""
+msgstr "min"
 
 #: application/views/satellite/satinfo.php:14
 msgid "TLE date"
-msgstr ""
+msgstr "Data TLE"
 
 #: application/views/satellite/skedtable.php:8
 msgid "Sked AOS Time"
-msgstr ""
+msgstr "Czas Skeda AOS"
 
 #: application/views/satellite/skedtable.php:9
 msgid "Sked LOS Time"
-msgstr ""
+msgstr "Czas Skeda LOS"
 
 #: application/views/satellite/skedtable.php:34
 msgid "Grid"
-msgstr ""
+msgstr "Lokator"
 
 #: application/views/satellite/skedtable.php:39
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
-msgstr ""
+msgstr "Maks. elewacja"
 
 #: application/views/satellite/skedtable.php:85
 msgid "No overlapping passes found. Please check the input parameters."
 msgstr ""
+"Nie znaleziono żadnych nakładających się przelotów. Sprawdź parametry "
+"wejściowe."
 
 #: application/views/satellite/tleinfo.php:6
 #, php-format
 msgid "TLE information for %s (last updated: %s)"
-msgstr ""
+msgstr "Informacje TLE dla %s (ostatnia aktualizacja: %s)"
 
 #: application/views/satellite/tleinfo.php:8
 msgid "Delete TLE"
-msgstr ""
+msgstr "Usuń TLE"
 
 #: application/views/satellite/tleinfo.php:10
 #, php-format
 msgid "No TLE information found for %s"
-msgstr ""
+msgstr "Nie znaleziono informacji TLE dla %s"
 
 #: application/views/satellite/tleinfo.php:11
 msgid "Add TLE"
-msgstr ""
+msgstr "Dodaj TLE"
 
 #: application/views/sattimers/index.php:15
 #, php-format
 msgid ""
 "This data comes from %s and is calculated for the current stationlocation "
 "grid %s."
-msgstr ""
+msgstr "Te dane pochodzą z %s i są obliczane dla bieżącego lokatora stacji %s."
 
 #: application/views/sattimers/index.php:40
 msgid "Time(d)-Out"
-msgstr ""
+msgstr "Time(d)-Out"
 
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
 #: application/views/statistics/antennaanalytics.php:8
 msgid "Azimuth"
-msgstr ""
+msgstr "Azymut"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/ituzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
 msgid "Ready to find a QSO?"
-msgstr ""
+msgstr "Gotowość do znalezienia QSO?"
 
 #: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
@@ -13511,7 +13519,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
-msgstr ""
+msgstr "Zaawansowane wyszukiwanie"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
@@ -13519,7 +13527,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
 msgid "Incorrect CQ Zones"
-msgstr ""
+msgstr "Niewłaściwe strefy CQ"
 
 #: application/views/search/cqzones.php:21
 #: application/views/search/filter.php:29
@@ -13527,7 +13535,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "Incorrect ITU Zones"
-msgstr ""
+msgstr "Niewłaściwe strefy ITU"
 
 #: application/views/search/cqzones.php:24
 #: application/views/search/filter.php:32
@@ -13535,71 +13543,79 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:24
 #: application/views/search/main.php:24
 msgid "QSOs unconfirmed on LoTW"
-msgstr ""
+msgstr "QSO niepotwierdzone na LoTW"
 
 #: application/views/search/cqzones.php:31
 #: application/views/search/ituzones.php:31
 msgid "Station location:"
-msgstr ""
+msgstr "Lokalizacja stacji:"
 
 #: application/views/search/cqzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Następujące łączności (QSO) mają niepoprawną strefę CQ, inną niż ta, którą "
+"zwykle przypisuje się temu DXCC (wyświetlanych jest maksymalnie 5000 QSOs):"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
-msgstr ""
+msgstr "Strefa CW DXCC"
 
 #: application/views/search/cqzones_result.php:51
 #: application/views/search/ituzones_result.php:51
 msgid "No incorrect CQ Zones were found."
-msgstr ""
+msgstr "Nie znaleziono niepoprawnych stref CQ."
 
 #: application/views/search/filter.php:46
 msgid "Save query"
-msgstr ""
+msgstr "Zapisz zapytanie"
 
 #: application/views/search/filter.php:53
 msgid "Stored queries"
-msgstr ""
+msgstr "Zapisane zapytania"
 
 #: application/views/search/filter.php:72
 msgid "search filter functions"
-msgstr ""
+msgstr "funkcje filtrów wyszukiwania"
 
 #: application/views/search/filter.php:82
 msgid "Search Results"
-msgstr ""
+msgstr "Wyniki wyszukiwania"
 
 #: application/views/search/ituzones_result.php:3
 msgid ""
 "The following QSOs were found to have an incorrect ITU zone that this DXCC "
 "normally has (a maximum of 5000 QSOs are shown):"
 msgstr ""
+"Następujące łączności (QSO) mają niepoprawną strefę ITU, inną niż ta, którą "
+"zwykle przypisuje się temu DXCC (wyświetlanych jest maksymalnie 5000 QSOs):"
 
 #: application/views/search/ituzones_result.php:14
 msgid "DXCC ITU Zone"
-msgstr ""
+msgstr "Strefa ITU DXCC"
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid ""
 "The search displays QSOs which are unconfirmed on LoTW, but the callsign "
 "worked has uploaded to LoTW after your QSO date."
 msgstr ""
+"Wyszukiwanie wyświetla łączności (QSO), które nie zostały potwierdzone w "
+"LoTW, mimo że znak wywoławczy, z którym nawiązano łączność, przesłał dane do "
+"LoTW po dacie Twojej łączności."
 
 #: application/views/search/lotw_unconfirmed.php:32
 msgid "Station location"
-msgstr ""
+msgstr "Lokalizacja stacji"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr ""
+msgstr "Ostatnie przesłanie do LoTW"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
 msgstr ""
+"Nie znaleziono żadnych łączności (QSO) z oczekującym przesłaniem do LoTW."
 
 #: application/views/search/main.php:31
 msgid "Callsign / Gridsquare"
@@ -13608,17 +13624,18 @@ msgstr "Znak wywoławczy / lokator"
 #: application/views/search/result.php:2
 #, php-format
 msgid "Results for %s"
-msgstr ""
+msgstr "Wyniki dla %s"
 
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
 msgstr ""
+"Niestety, ale nie znaleziono żadnych wcześniejszych łączności (QSO) z %s"
 
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr ""
+msgstr "Wyszukiwanie w Callbook dla %s"
 
 #: application/views/search/result.php:39
 msgid "Not Worked"
@@ -13627,6 +13644,8 @@ msgstr "Niezaliczone"
 #: application/views/search/result.php:58
 msgid "Grid is auto-detected by callbook and probably wrong"
 msgstr ""
+"Lokator został automatycznie wykryty na podstawie Callbook i prawdopodobnie "
+"jest niepoprawny"
 
 #: application/views/search/search_result_ajax.php:463
 #: application/views/view_log/partial/log.php:142
@@ -13678,20 +13697,20 @@ msgstr "Zaznacz QSLjako niewymagane"
 #: application/views/search/search_result_ajax.php:482
 #: application/views/view_log/partial/log_ajax.php:553
 msgid "Lookup on QRZ.com"
-msgstr ""
+msgstr "Wyszukanie na QRZ.com"
 
 #: application/views/search/search_result_ajax.php:484
 #: application/views/view_log/partial/log_ajax.php:555
 msgid "Lookup on HamQTH"
-msgstr ""
+msgstr "Wyszukanie na HamQTH"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "Zapytanie"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr ""
+msgstr "Szybka rejestracja łączności (FLE)"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -13699,6 +13718,11 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
+"„Szybka rejestracja łączności”, czyli z jeżyka angielskiego „FLE” (ang. "
+"Simple Fast Log Entry), to system umożliwiający bardzo szybkie i efektywne "
+"rejestrowanie łączności (QSO). Dzięki swojej składni wymaga minimalnej "
+"ilości danych wejściowych, co pozwala na zapisanie wielu łączności przy "
+"możliwie najmniejszym wysiłku."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -13706,6 +13730,10 @@ msgid ""
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
 "a web interface to log QSOs."
 msgstr ""
+"„Szybka rejestracja łączności” aka FLE została pierwotnie napisany przez "
+"DF3CB. Na swojej stronie internetowej udostępnia program dla systemu "
+"Windows. Prosty FLE został stworzony przez OK2CQR na bazie FLE autorstwa "
+"DF3CB i oferuje interfejs webowy do rejestrowania łączności (QSO)."
 
 #: application/views/simplefle/index.php:16
 #, php-format
@@ -13714,80 +13742,91 @@ msgid ""
 "session and now SimpleFLE is also available in Wavelog. Information about "
 "the syntax and how FLE works can be found %s."
 msgstr ""
+"Typowy przypadek użycia to konieczność zaimportowania dzienników papierowych "
+"z sesji terenowej - obecnie uproszczony FLE jest również dostępny w Wavelog. "
+"Informacje o składni i działaniu FLE można znaleźć na %s."
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:184
 msgid "Syntax Help"
-msgstr ""
+msgstr "Pomoc dot. składni"
 
 #: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
-msgstr ""
+msgstr "Składnia dla FLE"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
-msgstr ""
+msgstr "Zamknij i załaduj przykładowe dane"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr ""
+msgstr "Brakuje pasma!"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr ""
+msgstr "Brakuje emisji!"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr ""
+msgstr "Nie ustawiono czasu!"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
-msgstr ""
+msgstr "Niewłaściwa data"
 
 #: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
-msgstr ""
+msgstr "Nie wybrano znaku stacji"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
-msgstr ""
+msgstr "Pole \"Operator\" jest puste"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr ""
+msgstr "Uwaga! Czy na pewno chcesz wszystko zresetować?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
+"Uwaga! Nie można zarejestrować listy łączności (QSO), ponieważ niektóre "
+"łączności nie mają zdefiniowanego pasma i/lub emisji!"
 
 #: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr ""
+"Uwaga! Nie można zarejestrować listy łączności (QSO), ponieważ niektóre "
+"łączności nie mają zdefiniowanego czasu!"
 
 #: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
 msgstr ""
+"Uwaga! Pole danych zawiera przykładowe dane. Najpierw wyczyść sesję "
+"logowania!"
 
 #: application/views/simplefle/index.php:35
 msgid ""
 "Attention! Either you have set a contest, but included no exchange, or you "
 "have logged contest-data but did not select a contest."
 msgstr ""
+"Uwaga! Wygląda na to, że ustawiono zawody, ale nie podano wymiany, lub "
+"zarejestrowano dane zawodów, nie wybierając zawodów."
 
 #: application/views/simplefle/index.php:36
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
-msgstr ""
+msgstr "Czy na pewno dodać te łączności (QSO) do dziennika i wyczyścić sesję?"
 
 #: application/views/simplefle/index.php:37
 msgid "QSO Logged!"
-msgstr ""
+msgstr "Zalogowano QSO!"
 
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
