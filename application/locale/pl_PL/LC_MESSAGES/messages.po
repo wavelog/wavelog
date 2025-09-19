@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-19 00:05+0000\n"
+"PO-Revision-Date: 2025-09-19 00:36+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -13831,30 +13831,32 @@ msgstr "Zalogowano QSO!"
 #: application/views/simplefle/index.php:38
 msgid "The QSO were successfully logged in the logbook! Dupes were skipped."
 msgstr ""
+"Łączności (QSO) zostały pomyślnie zapisane w dzienniku! Duplikaty zostały "
+"pominięte."
 
 #: application/views/simplefle/index.php:40
 msgid "An error occurred while saving the QSO to the logbook! Error: "
-msgstr ""
+msgstr "Wystąpił błąd podczas zapisywania łączności (QSO) w dzienniku! Błąd: "
 
 #: application/views/simplefle/index.php:44
 msgid "What is that?"
-msgstr ""
+msgstr "Co to jest?"
 
 #: application/views/simplefle/index.php:47
 msgid "Current UTC Time"
-msgstr ""
+msgstr "Aktualny czas UTC"
 
 #: application/views/simplefle/index.php:80
 msgid "If you don't choose a date, today's date will be used."
-msgstr ""
+msgstr "Jeśli nie zostanie wybrana data, dzisiejsza data zostanie wykorzystana."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "Można dodać wprowadzone QSO do zawodów."
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
-msgstr ""
+msgstr "Znak wywoławczy stacji/Lokalizacji"
 
 #: application/views/simplefle/index.php:111
 #, php-format
@@ -13862,56 +13864,62 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Jeśli nie pracowano z nowej lokalizacji, najpierw utwórz nową %sLokalizację "
+"Stacji%s"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
-msgstr ""
+msgstr "np. OK2CQR"
 
 #: application/views/simplefle/index.php:120
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr ""
+msgstr "To jest znak wywoławczy operatora. Bez przedrostków, ani przyrostków."
 
 #: application/views/simplefle/index.php:133
 msgid "Enter the Data"
-msgstr ""
+msgstr "Wprowadź dane"
 
 #: application/views/simplefle/index.php:162
 msgid "Refs"
-msgstr ""
+msgstr "Referencje"
 
 #: application/views/simplefle/index.php:174
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "Odnośniki mogą być typu %sS%sOTA, %sI%sOTA, %sP%sOTA lub %sW%sWFF"
 
 #: application/views/simplefle/index.php:181
 msgid "Reload QSO List"
-msgstr ""
+msgstr "Przeładuj listę QSO"
 
 #: application/views/simplefle/index.php:182
 msgid "Save in Wavelog"
-msgstr ""
+msgstr "Zapisz w Wavelog"
 
 #: application/views/simplefle/index.php:183
 msgid "Clear Logging Session"
-msgstr ""
+msgstr "Wyczyść sesję logowania"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "Brak opcji"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
 msgstr ""
+"Przed rozpoczęciem logowania łączności (QSO), proszę zapoznać się z "
+"podstawowymi zasadami."
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
-msgstr ""
+msgstr "- Każda nowa łączność (QSO) powinna być zapisana w nowej linii."
 
 #: application/views/simplefle/syntax_help.php:3
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr ""
+"- W każdej nowej linii należy wpisywać tylko te dane, które różnią się od "
+"poprzedniej łączności (QSO)."
 
 #: application/views/simplefle/syntax_help.php:4
 msgid ""
@@ -13920,10 +13928,16 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
+"Aby rozpocząć, należy upewnić się, że formularz po lewej stronie został już "
+"wypełniony datą, znakiem stacji oraz znakiem operatora. Główne dane obejmują "
+"pasmo (lub QRG w MHz, np. „7.145”), emisję oraz czas. Po czasie należy podać "
+"pierwszą łączność (QSO), czyli zasadniczo znak wywoławczy."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
 msgstr ""
+"Na przykład, łączność (QSO), która rozpoczęła się o 21:34 (UTC) z 4W7EST na "
+"paśmie 20m emisją SSB."
 
 #: application/views/simplefle/syntax_help.php:10
 msgid ""
@@ -13931,6 +13945,10 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
+"Jeśli nie podane zostaną informacje o raportach RST, składnia domyślnie "
+"użyje 59 (599 dla emisji cyfrowych). Nasza kolejna łączność (QSO) nie była "
+"59 po obu stronach, więc podajemy raporty, zaczynając od wysłanego RST. "
+"Miała miejsce 2 minuty po pierwszej łączności."
 
 #: application/views/simplefle/syntax_help.php:16
 msgid ""
@@ -13938,6 +13956,9 @@ msgid ""
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
+"Pierwsza łączność (QSO) miała miejsce o 21:34, a druga 2 minuty później — o "
+"21:36. Zapisujemy „6”, ponieważ to jedyna zmiana w danych. Informacje o "
+"paśmie i emisji pozostają bez zmian, więc są pomijane."
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -13946,26 +13967,32 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
+"Nasza kolejna łączność (QSO) miała miejsce o 21:40 w dniu 2021-05-14 — "
+"zmieniliśmy pasmo na 40m, ale pozostaliśmy przy emisji SSB. Jeśli nie podano "
+"raportów RST, składnia domyślnie użyje 59 dla każdej nowej łączności. "
+"Dlatego możemy dodać kolejną łączność, która odbyła się dokładnie o tej "
+"samej godzinie dwa dni później. Data musi być w formacie RRRR-MM-DD."
 
 #: application/views/simplefle/syntax_help.php:28
 msgid "Additional informations can be submitted in the following way:"
-msgstr ""
+msgstr "Dodatkowe informacje można przekazać w następujący sposób:"
 
 #: application/views/simplefle/syntax_help.php:29
 msgid "Notes:"
-msgstr ""
+msgstr "Notatki:"
 
 #: application/views/simplefle/syntax_help.php:33
 msgid "Operator Name:"
-msgstr ""
+msgstr "Nazwa operatora:"
 
 #: application/views/simplefle/syntax_help.php:37
 msgid "QSL-message (Caution! Not visible in wavelog currently!):"
-msgstr ""
+msgstr "Wiadomość QSL (Uwaga! Obecnie niewidoczna w Wavelog!):"
 
 #: application/views/simplefle/syntax_help.php:41
 msgid "Contest exchange; serials or other exchange - or even both:"
 msgstr ""
+"Wymiana w zawodach; numery seryjne lub inne dane wymiany — albo nawet oba:"
 
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
@@ -13976,24 +14003,39 @@ msgid ""
 "single comma ','. To automatically increment the sent serial, use ',++' and "
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
+"Odebrana wymiana musi być poprzedzona kropką „.”, a wysłana przecinkiem „,”. "
+"Ostatnie dwie linie są równoważne — spacje nie mają znaczenia, podobnie jak "
+"kolejność. Wymiana, którą wysłałeś, zostanie automatycznie uwzględniona w "
+"następnej łączności (QSO), jeśli zawiera odebraną wymianę lub jeśli użyjesz "
+"pojedynczego przecinka „,”. Aby automatycznie zwiększać numer wysyłanej "
+"wymiany, użyj „,++” i podaj początkową wartość wymiany. Aby dezaktywować, "
+"użyj „,+0”:"
 
 #: application/views/simplefle/syntax_help.php:54
 msgid ""
 "Here, the first qso uses the set serial 1, and the second will use 2 as the "
 "serial. If you want to wipe your sent exchange, use ',-':"
 msgstr ""
+"Tutaj pierwsza łączność (QSO) używa ustawionego numeru seryjnego 1, a druga "
+"automatycznie otrzyma numer 2. Aby wyczyścić wysłaną wymianę, należy użyć "
+"„,-”:"
 
 #: application/views/simplefle/syntax_help.php:59
 msgid ""
 "First, all previous exchange is wiped, then only a serial is set. Otherwise "
 "the previous exchange 'D23' would have been set also."
 msgstr ""
+"Najpierw cała poprzednia wymiana zostaje wyczyszczona, a następnie ustawiany "
+"jest tylko numer seryjny. W przeciwnym razie poprzednia wymiana „D23” "
+"zostałaby również uwzględniona."
 
 #: application/views/simplefle/syntax_help.php:60
 msgid ""
 "You may use the comment syntax, to fill adif-fields supported by the Wavelog-"
 "Import:"
 msgstr ""
+"Można użyć składni komentarza, aby wypełnić pola ADIF obsługiwane przez "
+"import Wavelog:"
 
 #: application/views/simplefle/syntax_help.php:64
 #, php-format
@@ -14001,71 +14043,75 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Pełne podsumowanie wszystkich komend oraz wymaganej składni można znaleźć "
+"%stym artykule%s Wiki."
 
 #: application/views/station_profile/create.php:55
 #: application/views/station_profile/edit.php:71
 msgid "Location Name"
-msgstr ""
+msgstr "Nazwa lokalizacji"
 
 #: application/views/station_profile/create.php:56
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "Domowe QTH"
 
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:73
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "Krótka nazwa lokalizacji stacji. Na przykład: %s"
 
 #: application/views/station_profile/create.php:63
 #: application/views/station_profile/edit.php:79
 msgid "Station callsign. For example: 4W7EST/P"
-msgstr ""
+msgstr "Znak wywoławczy stacji. Na przykład: 4W7EST/P"
 
 #: application/views/station_profile/create.php:67
 #: application/views/station_profile/edit.php:83
 msgid "Station Power (W)"
-msgstr ""
+msgstr "Moc stacji (W)"
 
 #: application/views/station_profile/create.php:69
 #: application/views/station_profile/edit.php:85
 msgid "Default station power in Watt. Overwritten by CAT."
-msgstr ""
+msgstr "Domyślna moc stacji w watach. Nadpisywana przez CAT."
 
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:116
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr ""
+msgstr "Wpis DCXX stacji. Na przykład Boliwia"
 
 #: application/views/station_profile/create.php:87
 #: application/views/station_profile/edit.php:122
 msgid "Station City"
-msgstr ""
+msgstr "Miasto stacji"
 
 #: application/views/station_profile/create.php:89
 #: application/views/station_profile/edit.php:124
 msgid "Station city. For example: Oslo"
-msgstr ""
+msgstr "Miasto stacji. Na przykład: Oslo"
 
 #: application/views/station_profile/create.php:98
 #: application/views/station_profile/edit.php:136
 msgid "Station state. Applies to certain countries only."
 msgstr ""
+"Stan/Województwo/Prowincji/Prefektura stacji. Aplikowane tylko do wybranych "
+"krajów."
 
 #: application/views/station_profile/create.php:105
 #: application/views/station_profile/edit.php:143
 msgid "Station County (Only used for specific DXCCs)."
-msgstr ""
+msgstr "Hrabstwo/Powiat stacji (wykorzystane tylko dla wybranych DXCC)."
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:169
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
-msgstr ""
+msgstr "Jeśli strefa CQ nie jest znana, można %s, aby ją znaleźć!"
 
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/create.php:134
@@ -14074,14 +14120,14 @@ msgstr ""
 #: application/views/station_profile/edit.php:186
 #: application/views/station_profile/edit.php:210
 msgid "click here"
-msgstr ""
+msgstr "Kliknąć tutaj"
 
 #: application/views/station_profile/create.php:134
 #: application/views/station_profile/edit.php:186
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
-msgstr ""
+msgstr "Jeśli strefa ITU nie jest znana, można %s, aby ją znaleźć!"
 
 #: application/views/station_profile/create.php:139
 #: application/views/station_profile/edit.php:198
@@ -14092,7 +14138,7 @@ msgstr "Lokator stacji"
 #: application/views/station_profile/create.php:144
 #: application/views/station_profile/edit.php:206
 msgid "Get Gridsquare"
-msgstr ""
+msgstr "Pobieranie Lokatora"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:210
@@ -14111,49 +14157,51 @@ msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
 msgstr ""
+"Jeśli lokalizacja jest na linii siatki, należy wprowadzić wiele lokatorów "
+"oddzielonych przecinkami. Na przykład: IO77,IO78,IO87,IO88."
 
 #: application/views/station_profile/create.php:166
 #: application/views/station_profile/edit.php:236
 msgid "Station IOTA reference. For example: EU-005"
-msgstr ""
+msgstr "Referencja IOTA stacji. Na przykład: EU-005"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
 msgid "IOTA World website"
-msgstr ""
+msgstr "Strona IOTA World"
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:237
 #, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr ""
+msgstr "Można wyszukać referencje IOTA na %s."
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
 msgid "SOTA Maps website"
-msgstr ""
+msgstr "Strona SOTA Maps"
 
 #: application/views/station_profile/create.php:173
 #: application/views/station_profile/edit.php:252
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
-msgstr ""
+msgstr "Referencja stacji SOTA. Można wyszukać na %s."
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
 msgid "GMA Map website"
-msgstr ""
+msgstr "Strona mapy GMA"
 
 #: application/views/station_profile/create.php:179
 #: application/views/station_profile/edit.php:265
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr ""
+msgstr "Referencja stacji WWFF. Można wyszukać na %s."
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
 msgid "POTA Map website"
-msgstr ""
+msgstr "Strona mapy POTA"
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:278
@@ -14215,34 +14263,39 @@ msgid ""
 "Clublog. If this is deactivated on it's own please check if the Call is "
 "properly configured at Clublog"
 msgstr ""
+"Jeśli ta opcja jest aktywna, łączności (QSO) wykonane z tej lokalizacji nie "
+"będą przesyłane do ClubLog. Jeśli została dezaktywowana samoczynnie, należy "
+"sprawdzić, czy znak wywoławczy został poprawnie skonfigurowany w ClubLog"
 
 #: application/views/station_profile/create.php:221
 #: application/views/station_profile/edit.php:368
 msgid "ClubLog Realtime Upload"
-msgstr ""
+msgstr "Przesyłanie w czasie rzeczywistym ClubLog"
 
 #: application/views/station_profile/create.php:230
 #: application/views/station_profile/edit.php:384
 msgid "HRDLog.net Username"
-msgstr ""
+msgstr "Użytkownik HRDLog.net"
 
 #: application/views/station_profile/create.php:232
 #: application/views/station_profile/edit.php:386
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr ""
+"Nazwa użytkownika, z którą zarejestrowano w HRDlog.net (zazwyczaj znak "
+"wywoławczy użytkownika)."
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:389
 msgid "HRDLog.net API Key"
-msgstr ""
+msgstr "Klucz API HRDLog.net"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr ""
+msgstr "Można utworzyć klucz API na %s"
 
 #: application/views/station_profile/create.php:237
 #: application/views/station_profile/edit.php:394
@@ -14717,27 +14770,27 @@ msgstr ""
 
 #: application/views/themes/index.php:99
 msgid "Please edit"
-msgstr ""
+msgstr "Edycja"
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
-msgstr ""
+msgstr "Dodaj szablon"
 
 #: application/views/timeline/index.php:119
 msgid "Only new in selected year"
-msgstr ""
+msgstr "Tylko nowe w wybranym roku"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
-msgstr ""
+msgstr "wykreślono kontakty"
 
 #: application/views/timeplotter/index.php:3
 msgid "Time Distribution"
-msgstr ""
+msgstr "Rozkład czasu"
 
 #: application/views/timeplotter/index.php:6
 msgid "Callsign(s) worked (max 5)"
-msgstr ""
+msgstr "Wypracowane znaki (maks. 5)"
 
 #: application/views/timeplotter/index.php:10
 msgid ""
@@ -14747,11 +14800,11 @@ msgstr ""
 
 #: application/views/update/hamsofnote.php:7
 msgid "Name / Description"
-msgstr ""
+msgstr "Nazwa / Opis"
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
-msgstr ""
+msgstr "Dane wyszukiwania DXCC"
 
 #: application/views/update/index.php:15
 msgid ""
@@ -14761,7 +14814,7 @@ msgstr ""
 
 #: application/views/update/index.php:16
 msgid "This data is provided by"
-msgstr ""
+msgstr "Dane dostarczone przez"
 
 #: application/views/update/index.php:20
 msgid "You must install php-xml for this to work."
@@ -14769,19 +14822,19 @@ msgstr "Aby to zadziałało, musisz zainstalować php-xml."
 
 #: application/views/update/index.php:23
 msgid "Check for DXCC Data Updates"
-msgstr ""
+msgstr "Sprawdzenie aktualizacji danych DXCC"
 
 #: application/views/update/index.php:24
 msgid "Update DXCC Data"
-msgstr ""
+msgstr "Aktualizacja danych DXCC"
 
 #: application/views/update/index.php:26
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: application/views/update/index.php:30
 msgid "Apply DXCC Data to Logbook"
-msgstr ""
+msgstr "Zastosuj dane DXCC w dzienniku"
 
 #: application/views/update/index.php:32
 msgid ""
@@ -14805,11 +14858,11 @@ msgstr ""
 
 #: application/views/update/index.php:51
 msgid "Re-check all QSOs in logbook"
-msgstr ""
+msgstr "Ponownie sprawdź wszystkie QSO w dzienniku"
 
 #: application/views/update/index.php:56
 msgid "Apply Continent Data to Logbook"
-msgstr ""
+msgstr "Zastosuj dane kontynentów w dzienniku"
 
 #: application/views/update/index.php:58
 msgid ""
@@ -14839,11 +14892,11 @@ msgstr "Tak, usuń tego użytkownika"
 
 #: application/views/user/edit.php:6
 msgid "Create Clubstation Account"
-msgstr ""
+msgstr "Utwórz konto stacji klubowej"
 
 #: application/views/user/edit.php:8
 msgid "Create User Account"
-msgstr ""
+msgstr "Utwórz konto użytkownika"
 
 #: application/views/user/edit.php:11
 msgid "Edit Account"
@@ -14863,7 +14916,7 @@ msgstr "Hasło"
 
 #: application/views/user/edit.php:74
 msgid "Don't share this password with operators!"
-msgstr ""
+msgstr "Nie należy udostępniać tego hasła operatorom!"
 
 #: application/views/user/edit.php:84
 msgid "User Role"
@@ -14871,7 +14924,7 @@ msgstr "Rola"
 
 #: application/views/user/edit.php:113
 msgid "Callsign Owner"
-msgstr ""
+msgstr "Właściciel znaku"
 
 #: application/views/user/edit.php:113
 msgid "Personal"
