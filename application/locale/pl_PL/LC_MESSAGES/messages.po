@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-19 01:33+0000\n"
+"PO-Revision-Date: 2025-09-19 01:48+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -5572,7 +5572,6 @@ msgstr ""
 "w Wavelog. Pamiętaj, że te jednostki DXCC są nieaktualne i nie są już ważne."
 
 #: application/views/awards/dxcc/index.php:18
-#, fuzzy
 msgid ""
 "Fields taken for this Award: DXCC (Needs to be a valid one out of the DXCC-"
 "ADIF-Spec-List"
@@ -7676,7 +7675,6 @@ msgstr "Pobierz QSL z Clublog"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
-#, fuzzy
 msgid "Hamsat - Satellite Rovers"
 msgstr "Hamsat - Satellite Rovers"
 
@@ -7733,9 +7731,8 @@ msgid "Sked"
 msgstr "Sked"
 
 #: application/views/components/radio_display_table.php:5
-#, fuzzy
 msgid "Radio Status"
-msgstr "Status radia"
+msgstr "Status radiostacji"
 
 #: application/views/contestcalendar/index.php:16
 msgid "No Contests"
@@ -8337,9 +8334,8 @@ msgstr "Rozkład QSO"
 
 #: application/views/dashboard/index.php:326
 #: application/views/visitor/index.php:262
-#, fuzzy
 msgid "DXCCs Breakdown"
-msgstr "Rozbicie DXCC"
+msgstr "Szczegóły DXCC"
 
 #: application/views/dashboard/index.php:343
 #: application/views/visitor/index.php:279
@@ -8488,9 +8484,8 @@ msgid "Streaks"
 msgstr "Serie"
 
 #: application/views/dayswithqso/index.php:27
-#, fuzzy
 msgid "QSOs of Year"
-msgstr "QSO roku"
+msgstr "QSO w roku"
 
 #: application/views/dayswithqso/index.php:35
 msgid "Number of days with QSOs each year"
@@ -8962,12 +8957,10 @@ msgid "n/a"
 msgstr "n/d"
 
 #: application/views/debug/index.php:462
-#, fuzzy
 msgid "Commit"
 msgstr "Commit"
 
 #: application/views/debug/index.php:472
-#, fuzzy
 msgid "Tag"
 msgstr "Tag"
 
@@ -13078,7 +13071,7 @@ msgstr ""
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr "Eksportuj zawody do logu EDI REG1TEST."
+msgstr "Eksportuj zawody do logu EDI REG1TEST"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
@@ -15787,48 +15780,49 @@ msgid ""
 "Please provide some additional information so that Wavelog can create your "
 "first Station:"
 msgstr ""
+"Podaj proszę dodatkowe informacje, aby Wavelog mógł utworzyć pierwszą stację:"
 
 #: application/views/user/modals/first_login_wizard.php:29
 msgid "Home QTH"
-msgstr ""
+msgstr "Domowe QTH"
 
 #: application/views/user/modals/first_login_wizard.php:62
 msgid "Station Zones"
-msgstr ""
+msgstr "Strefy stacji"
 
 #: application/views/user/modals/first_login_wizard.php:74
 #: application/views/user/modals/first_login_wizard.php:84
 #, php-format
 msgctxt "zone lookup"
 msgid "%sLookup%s"
-msgstr ""
+msgstr "%sWyszukiwanie%s"
 
 #: application/views/user/modals/first_login_wizard.php:102
 msgid "Save and Start Logging"
-msgstr ""
+msgstr "Zapisz i zacznij logowanie"
 
 #: application/views/user/modals/more_actions_modal.php:9
 msgid "Select an action to perform for the user:"
-msgstr ""
+msgstr "Wybierz akcje do wykonania dla użytkownika:"
 
 #: application/views/user/modals/more_actions_modal.php:33
 #: application/views/user/modals/more_actions_modal.php:62
 #: application/views/user/modals/more_actions_modal.php:75
 msgid "Unlock User"
-msgstr ""
+msgstr "Odblokuj użytkownika"
 
 #: application/views/user/modals/more_actions_modal.php:39
 #: application/views/user/modals/more_actions_modal.php:96
 msgid "Send a Password Reset Link via Email"
-msgstr ""
+msgstr "Wyślij link resetowania hasła via email"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to Clubstation"
-msgstr ""
+msgstr "Skonwertuj na stację klubową"
 
 #: application/views/user/modals/more_actions_modal.php:45
 msgid "Convert to User"
-msgstr ""
+msgstr "Skonwertuj na użytkownika"
 
 #: application/views/user/modals/more_actions_modal.php:65
 msgid ""
@@ -15836,60 +15830,71 @@ msgid ""
 "failed login attempts. After unlocking, the user will be able to log in "
 "again."
 msgstr ""
+"Zaraz odblokujesz poniższego użytkownika. Użytkownik został zablokowany z "
+"powodu zbyt wielu nieudanych prób logowania. Po odblokowaniu użytkownik "
+"będzie mógł ponownie się zalogować."
 
 #: application/views/user/modals/more_actions_modal.php:67
 #: application/views/user/modals/more_actions_modal.php:102
 #: application/views/user/modals/more_actions_modal.php:151
 msgid "User:"
-msgstr ""
+msgstr "Użytkownik:"
 
 #: application/views/user/modals/more_actions_modal.php:70
 #: application/views/user/modals/more_actions_modal.php:105
 #: application/views/user/modals/more_actions_modal.php:154
 msgid "Language:"
-msgstr ""
+msgstr "Język:"
 
 #: application/views/user/modals/more_actions_modal.php:89
 msgid ""
 "Password-reset email sent successfully to user. You can close this dialog "
 "now."
 msgstr ""
+"Email resetowania hasła został pomyślnie wysłany do użytkownika. Możesz "
+"teraz zamknąć to okno dialogowe."
 
 #: application/views/user/modals/more_actions_modal.php:90
 msgid ""
 "Password-reset email could not be sent to user. Are the email settings in "
 "global options configured correctly?"
 msgstr ""
+"Nie udało się wysłać emaila do zresetowania hasła użytkownika. Czy "
+"ustawienia e-mail w opcjach globalnych są poprawnie skonfigurowane?"
 
 #: application/views/user/modals/more_actions_modal.php:99
 msgid ""
 "You are about to send a password reset link to the user. The user will be "
 "able to reset their password by clicking on the link in the email."
 msgstr ""
+"Zaraz wyślesz użytkownikowi link do zresetowania hasła. Użytkownik będzie "
+"mógł zresetować swoje hasło, klikając w link zawarty w wiadomości email."
 
 #: application/views/user/modals/more_actions_modal.php:100
 msgid "Do you want to send the password reset email to this user?"
-msgstr ""
+msgstr "Czy chcesz wysłać użytkownikowi email z linkiem do zresetowania hasła?"
 
 #: application/views/user/modals/more_actions_modal.php:110
 msgid "Send the email"
-msgstr ""
+msgstr "Wyślij email"
 
 #: application/views/user/modals/more_actions_modal.php:126
 msgid "The account was successfully converted. You can now close this dialog."
 msgstr ""
+"Konto zostało pomyślnie przekonwertowane. Możesz teraz zamknąć to okno "
+"dialogowe."
 
 #: application/views/user/modals/more_actions_modal.php:127
 msgid "The account could not be converted. An error has occurred."
-msgstr ""
+msgstr "Nie udało się przekonwertować konta. Wystąpił błąd."
 
 #: application/views/user/modals/more_actions_modal.php:135
 msgid "Convert this account into a normal user"
-msgstr ""
+msgstr "Skonwertuj konto na normalnego użytkownika"
 
 #: application/views/user/modals/more_actions_modal.php:137
 msgid "Convert this account into a clubstation"
-msgstr ""
+msgstr "Skonwertuj konto na stację klubową"
 
 #: application/views/user/modals/more_actions_modal.php:144
 msgid ""
@@ -15897,6 +15902,9 @@ msgid ""
 "user will be able to log in again and all assigned club permissions will be "
 "removed. Use with caution!"
 msgstr ""
+"Zamierzasz przekonwertować tę stację klubową na zwykłe konto użytkownika. "
+"Użytkownik będzie mógł ponownie się zalogować, a wszystkie przypisane "
+"uprawnienia klubowe zostaną usunięte. Używaj ostrożnie!"
 
 #: application/views/user/modals/more_actions_modal.php:146
 msgid ""
@@ -15904,27 +15912,30 @@ msgid ""
 "no longer be able to log in and the account will be converted to a club "
 "station account. Use with caution!"
 msgstr ""
+"Zamierzasz przekonwertować to konto użytkownika na konto stacji klubowej. "
+"Użytkownik nie będzie już mógł się logować, a konto zostanie przekształcone "
+"na konto stacji klubowej. Używaj ostrożnie!"
 
 #: application/views/user/modals/more_actions_modal.php:149
 msgid "Are you sure you want to convert this account?"
-msgstr ""
+msgstr "Czy na pewno chcesz przekonwertować to konto?"
 
 #: application/views/user/modals/more_actions_modal.php:159
 msgid "Convert"
-msgstr ""
+msgstr "Konwertuj"
 
 #: application/views/user/modals/stop_impersonate_modal.php:5
 msgid "Switch back to main user"
-msgstr ""
+msgstr "Przełącz z powrotem na głównego użytkownika"
 
 #: application/views/user/modals/stop_impersonate_modal.php:9
 #, php-format
 msgid "Are you sure you want to switch back to %s?"
-msgstr ""
+msgstr "Czy na pewno chcesz przełączyć się z powrotem na %s?"
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "Poziom"
 
 #: application/views/user/profile.php:39
 msgid "First name"
@@ -15945,10 +15956,13 @@ msgstr "Potwierdź hasło"
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
 msgstr ""
+"Nie ustawiono tekstu okna dialogowego wersji. Przejdź do Menu Administratora "
+"i ustaw go."
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
 msgstr ""
+"Błąd podczas przetwarzania danych JSON lub otrzymano pusty wynik z GitHub."
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
@@ -15962,6 +15976,7 @@ msgstr "Nie wyświetlaj ponownie"
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
 msgstr ""
+"Wyświetlanie wszystkich QSO z lokalizacji stacji powiązanych z tym logiem"
 
 #: application/views/view_log/partial/log_ajax.php:429
 #: application/views/view_log/partial/log_ajax.php:443
@@ -15969,11 +15984,11 @@ msgstr ""
 #: src/QSLManager/QSO.php:567 src/QSLManager/QSO.php:622
 #: src/QSLManager/QSO.php:681
 msgid "last sent"
-msgstr ""
+msgstr "ostatnio przesłano"
 
 #: application/views/view_log/partial/log_ajax.php:570
 msgid "Result"
-msgstr ""
+msgstr "Wynik"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
@@ -15989,7 +16004,7 @@ msgstr "Suma odległości"
 
 #: application/views/view_log/qso.php:159
 msgid "Other Path"
-msgstr ""
+msgstr "Inna ścieżka"
 
 #: application/views/view_log/qso.php:317
 msgid "Antenna Azimuth"
@@ -16053,23 +16068,23 @@ msgstr "Ta łączność została potwierdzona"
 
 #: application/views/view_log/qso.php:537
 msgid "This QSO is confirmed on LoTW."
-msgstr ""
+msgstr "To QSO jest potwierdzone na LoTW."
 
 #: application/views/view_log/qso.php:551
 msgid "This QSO is confirmed on eQSL."
-msgstr ""
+msgstr "To QSO zostało potwierdzone w eQSL."
 
 #: application/views/view_log/qso.php:561
 msgid "This QSO is confirmed on QRZ.com."
-msgstr ""
+msgstr "To QSO zostało potwierdzone w QRZ.com."
 
 #: application/views/view_log/qso.php:571
 msgid "This QSO is confirmed on Clublog."
-msgstr ""
+msgstr "To QSO zostało potwierdzone w ClubLog."
 
 #: application/views/view_log/qso.php:581
 msgid "This QSO is confirmed on DCL."
-msgstr ""
+msgstr "To QSO zostało potwierdzone w DCL."
 
 #: application/views/view_log/qso.php:594
 msgid "More QSOs"
@@ -16077,7 +16092,7 @@ msgstr "Więcej QSO"
 
 #: application/views/view_log/qso.php:656
 msgid "Share"
-msgstr ""
+msgstr "Udostępnij"
 
 #: application/views/view_log/qso.php:662
 msgid "Details"
@@ -16105,7 +16120,7 @@ msgstr "Obraz eQSL"
 
 #: application/views/visitor/layout/footer.php:238
 msgid "Filter Results"
-msgstr ""
+msgstr "Filtruj wyniki"
 
 #: application/views/visitor/layout/footer.php:244
 msgid "CSV"
@@ -16113,7 +16128,7 @@ msgstr "CSV"
 
 #: application/views/visitor/layout/footer.php:252
 msgid "Clear Filter"
-msgstr ""
+msgstr "Wyczyść filtr"
 
 #: application/views/visitor/layout/header.php:74
 msgid "OQRS"
@@ -16132,22 +16147,27 @@ msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
 "to QO-100 Dx Club."
 msgstr ""
+"Tutaj możesz zobaczyć i przesłać wszystkie QSO, które nie zostały wcześniej "
+"przesłane do QO-100 Dx Club."
 
 #: application/views/webadif/export.php:33
 msgid ""
 "You need to set a QO-100 Dx Club API key in your station profile. Only "
 "station profiles with an API Key are displayed."
 msgstr ""
+"Musisz ustawić klucz API QO-100 Dx Club w profilu swojej stacji. Wyświetlane "
+"są tylko profile stacji z ustawionym kluczem API."
 
 #: application/views/webadif/export.php:63
 msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
 msgstr ""
+"Obecnie nie ma żadnych oczekujących QSO do przesłania do API QO-100 Dx Club."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
-msgstr ""
+msgstr "Uruchom swoją stację QO-100!"
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
@@ -16155,11 +16175,13 @@ msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
 msgstr ""
+"Żaden z Twoich logów nie jest skonfigurowany do eksportowania danych do API "
+"QO-100 Dx Club."
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 msgid "QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dx Club"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
@@ -16168,6 +16190,8 @@ msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
 "%s an API key."
 msgstr ""
+"Aby skonfigurować tę funkcję, przejdź do swojej strony profilu na %s i %s "
+"Utwórz %s klucz API."
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
@@ -16176,24 +16200,28 @@ msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
 "created at the club."
 msgstr ""
+"Następnie przejdź do swojego %s i skonfiguruj swoją stację za pomocą klucza "
+"utworzonego w klubie."
 
 #: application/views/webadif/export.php:83
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
 msgstr ""
+"Tutaj możesz oznaczyć jako przesłane swoje QSO, które nie zostały wcześniej "
+"przesłane do QO-100 Dx Club."
 
 #: application/views/webadif/export.php:107
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr ""
+msgstr "Oznacz QSO jako wyeksportowane do QO-100 Dx Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
-msgstr ""
+msgstr "QSO zostały oznaczone jako wyeksportowane do QO-100 Dx Club."
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
-msgstr ""
+msgstr "Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:76
 msgid "Wavelog OQRS Request"
@@ -16214,7 +16242,7 @@ msgstr "Prześlij prośbę"
 
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
-msgstr ""
+msgstr "Rcvd"
 
 #~ msgid "Download QSOs"
 #~ msgstr "Pobierz QSO"
