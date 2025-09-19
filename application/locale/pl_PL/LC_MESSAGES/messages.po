@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-19 01:24+0000\n"
+"PO-Revision-Date: 2025-09-19 01:33+0000\n"
 "Last-Translator: Szymon Porwolik <szporwolik@gmail.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/pl/>\n"
@@ -15347,14 +15347,19 @@ msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
+"Jeśli ta opcja jest włączona, automatyczne dopasowywanie OQRS będzie "
+"aktywne, a system spróbuje automatycznie dopasować przychodzące żądania do "
+"istniejących logów."
 
 #: application/views/user/edit.php:723
 msgid "Automatic OQRS matching for direct requests"
-msgstr ""
+msgstr "Automatyczne dopasowywanie OQRS dla żądań bezpośrednich"
 
 #: application/views/user/edit.php:728
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr ""
+"Jeśli ta opcja jest włączona, automatyczne dopasowywanie OQRS dla żądań "
+"bezpośrednich będzie aktywne."
 
 #: application/views/user/edit.php:744
 msgid "Default Values"
@@ -15362,7 +15367,7 @@ msgstr "Wartości domyślne"
 
 #: application/views/user/edit.php:752
 msgid "Settings for Default Band and Confirmation"
-msgstr ""
+msgstr "Ustawienia domyślnego pasma i potwierdzenia"
 
 #: application/views/user/edit.php:755
 msgid "Default Band"
@@ -15370,7 +15375,7 @@ msgstr "Domyślne pasmo"
 
 #: application/views/user/edit.php:765
 msgid "Default QSL-Methods"
-msgstr ""
+msgstr "Domyślne metody QSL"
 
 #: application/views/user/edit.php:830
 msgid "Third Party Services"
@@ -15386,7 +15391,7 @@ msgstr "Hasło Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:851
 msgid "Test Login"
-msgstr ""
+msgstr "Sprawdź login"
 
 #: application/views/user/edit.php:869
 msgid "eQSL.cc Username"
@@ -15414,43 +15419,50 @@ msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
 "use Clublog in Wavelog. Visit %syour clublog settings page%s to do so."
 msgstr ""
+"Jeśli masz włączone uwierzytelnianie dwuskładnikowe w ClubLog, musisz "
+"wygenerować hasło aplikacji, aby używać ClubLog w Wavelog. Odwiedź %sswoją "
+"stronę ustawień ClubLog%s, aby to zrobić."
 
 #: application/views/user/edit.php:923
 msgid "Widgets"
-msgstr ""
+msgstr "Widżety"
 
 #: application/views/user/edit.php:931
 msgid "On-Air widget"
-msgstr ""
+msgstr "Widżet \"Na żywo\""
 
 #: application/views/user/edit.php:941
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
 msgstr ""
+"Uwaga: Aby używać tego widżetu, musisz mieć skonfigurowane i działające co "
+"najmniej jedną radiostację CAT."
 
 #: application/views/user/edit.php:945
 #, php-format
 msgid "When enabled, widget will be available at %s."
-msgstr ""
+msgstr "Po włączeniu, widżet będzie dostępny pod adresem %s."
 
 #: application/views/user/edit.php:950
 msgid "Display \"Last seen\" time"
-msgstr ""
+msgstr "Wyświetl czas „ostatnio widziany”"
 
 #: application/views/user/edit.php:956
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
 msgstr ""
+"To ustawienie kontroluje, czy czas „ostatnio widziany” będzie wyświetlany w "
+"widżecie."
 
 #: application/views/user/edit.php:959
 msgid "Display only most recently updated radio"
-msgstr ""
+msgstr "Wyświetl tylko ostatnio zaktualizowaną radiostację"
 
 #: application/views/user/edit.php:963
 msgid "No, show all radios"
-msgstr ""
+msgstr "Nie, pokazuj wszystkie radiostacje"
 
 #: application/views/user/edit.php:965
 msgid ""
@@ -15459,20 +15471,26 @@ msgid ""
 "recently updated one. In case you have only one radio, this setting has no "
 "effect."
 msgstr ""
+"Jeśli masz skonfigurowanych wiele radiostacji CAT, to ustawienie kontroluje, "
+"czy widżet ma wyświetlać wszystkie aktywne radiostacje użytkownika, czy "
+"tylko tą, która zostało zaktualizowana jako ostatnia. W przypadku posiadania "
+"tylko jednej radiostacji, to ustawienie nie ma wpływu."
 
 #: application/views/user/edit.php:975
 msgid "QSOs widget"
-msgstr ""
+msgstr "Widżet QSO"
 
 #: application/views/user/edit.php:978
 msgid "Display exact QSO time"
-msgstr ""
+msgstr "Wyświetlaj dokładny czas QSO"
 
 #: application/views/user/edit.php:984
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
 msgstr ""
+"To ustawienie kontroluje, czy dokładny czas QSO ma być wyświetlany w "
+"widżecie QSO."
 
 #: application/views/user/edit.php:997
 msgid "Miscellaneous"
@@ -15480,7 +15498,7 @@ msgstr "Różne"
 
 #: application/views/user/edit.php:1005
 msgid "AMSAT Status Upload"
-msgstr ""
+msgstr "Przesłanie statusu AMSAT"
 
 #: application/views/user/edit.php:1008
 msgid "Upload status of SAT QSOs to"
@@ -15509,7 +15527,7 @@ msgstr "Winkeyer"
 
 #: application/views/user/edit.php:1039
 msgid "Winkeyer Features Enabled"
-msgstr ""
+msgstr "Włącznie funkcje Winkeyer"
 
 #: application/views/user/edit.php:1045
 #, php-format
@@ -15517,6 +15535,8 @@ msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr ""
+"Obsługa Winkeyer w Wavelog jest bardzo eksperymentalna. Przed włączeniem "
+"przeczytaj wiki pod adresem %s."
 
 #: application/views/user/edit.php:1056
 msgid "Hams.at"
@@ -15524,7 +15544,7 @@ msgstr "Hams.at"
 
 #: application/views/user/edit.php:1059
 msgid "Private Feed Key"
-msgstr ""
+msgstr "Prywatny klucz kanału"
 
 #: application/views/user/edit.php:1061
 #, php-format
@@ -15534,13 +15554,16 @@ msgstr "Zobacz swój profil na %s."
 
 #: application/views/user/edit.php:1064
 msgid "Show Workable Passes Only"
-msgstr ""
+msgstr "Pokaż tylko możliwe do przeprowadzenia przeloty"
 
 #: application/views/user/edit.php:1070
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
+"Jeśli włączone, pokazuje tylko możliwe do przeprowadzenia przeloty na "
+"podstawie lokatora ustawionego na Twoim koncie hams.at. Wymaga ustawienia "
+"prywatnego klucza kanału."
 
 #: application/views/user/edit.php:1082
 msgid "Save Account"
@@ -15584,6 +15607,9 @@ msgid ""
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
 msgstr ""
+"Za pomocą przycisku resetowania hasła możesz wysłać użytkownikowi e-mail "
+"zawierający link do zresetowania hasła. Aby to zadziałało, upewnij się, że "
+"ustawienia e-mail w opcjach globalnych są poprawnie skonfigurowane."
 
 #: application/views/user/index.php:19
 msgid "Create user"
@@ -15604,7 +15630,7 @@ msgstr "Konto zablokowane"
 
 #: application/views/user/index.php:74
 msgid "Account was locked due to too many login attempts."
-msgstr ""
+msgstr "Konto zostało zablokowane z powodu zbyt wielu prób logowania."
 
 #: application/views/user/index.php:76 application/views/user/index.php:188
 msgid "Locations"
@@ -15630,7 +15656,7 @@ msgstr "Podszyj się"
 #: application/views/user/index.php:110 application/views/user/index.php:219
 #: application/views/user/modals/more_actions_modal.php:6
 msgid "Other Actions"
-msgstr ""
+msgstr "Inne akcje"
 
 #: application/views/user/index.php:138
 msgid "Clubstation List"
@@ -15642,6 +15668,10 @@ msgid ""
 "events to handle multiple operators. A clubstation is basically a normal "
 "user account with some special features and some restrictions."
 msgstr ""
+"Stacje klubowe w Wavelog to unikalny sposób, w jaki kluby i wydarzenia "
+"specjalne z użyciem znaków okolicznościowych mogą obsługiwać wielu "
+"operatorów. Stacja klubowa to w zasadzie zwykłe konto użytkownika z "
+"dodatkowymi funkcjami i pewnymi ograniczeniami."
 
 #: application/views/user/index.php:143
 msgid "Create Clubstation"
@@ -15711,7 +15741,7 @@ msgstr "Nazwa użytkownika:"
 #: application/views/user/modals/more_actions_modal.php:103
 #: application/views/user/modals/more_actions_modal.php:152
 msgid "Name:"
-msgstr ""
+msgstr "Nazwa:"
 
 #: application/views/user/modals/admin_impersonate_modal.php:22
 #: application/views/user/modals/more_actions_modal.php:20
@@ -15735,7 +15765,7 @@ msgstr "Ostatnio widziany:"
 
 #: application/views/user/modals/first_login_wizard.php:5
 msgid "First Login Wizard"
-msgstr ""
+msgstr "Asystent pierwszego logowania"
 
 #: application/views/user/modals/first_login_wizard.php:20
 msgid "Hello and Welcome to Wavelog!"
@@ -15748,6 +15778,9 @@ msgid ""
 "Location. You can find more information about how Station Locations and "
 "Logbooks work in our %sWiki here%s!"
 msgstr ""
+"Zanim będziesz mógł rozpocząć logowanie QSO, musimy skonfigurować pierwszą "
+"lokalizację stacji. Więcej informacji o tym, jak działają lokalizacje stacji "
+"i dzienniki, znajdziesz w naszym %sWiki tutaj%s!"
 
 #: application/views/user/modals/first_login_wizard.php:22
 msgid ""
