@@ -1122,6 +1122,23 @@ class Lotw extends CI_Controller {
 	}
 
 	/*
+	|	Function: lotw_ru_oblast_map
+	|	Requires: russian oblast map $ru_oblast
+	*/
+	function lotw_ru_oblast_map($ru_oblast) {
+		switch ($ru_oblast):
+			case "YR":
+				return "JA";
+				break;
+			case "YN":
+				return "JN";
+				break;
+			default:
+				return $ru_oblast;
+		endswitch;
+	}
+
+	/*
 	|	Function: mode_map
 	|	Requires: mode as $mode, submode as $submode
 	|
