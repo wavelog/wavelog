@@ -174,6 +174,205 @@ function updateRow(qso) {
 
 function loadQSOTable(rows) {
 	const $table = $('#qsoList');
+	if (!$table.length) return;
+
+	// Safety destroy if an old instance exists
+	if ($.fn.dataTable && $.fn.dataTable.isDataTable($table)) {
+		try {
+			const old = $table.DataTable();
+			if (typeof old.scroller === 'function') {
+				try { old.scroller().destroy(); } catch (e) {}
+			}
+			try { old.off(); old.clear(); old.destroy(); } catch (e) {}
+		} catch (e) {}
+		$table.find('tbody').empty();
+		$table.removeClass('dataTable'); // remove leftover class
+	}
+
+	const langUrl = getDataTablesLanguageUrl();
+
+	const initTable = function(language) {
+		// make sure moment plugin (if used) is set
+		if ($.fn.dataTable && $.fn.dataTable.moment) {
+			$.fn.dataTable.moment(custom_date_format + ' HH:mm');
+		}
+
+		// Build the full data array (array-of-arrays). Keep metadata properties on the array.
+		const allData = [];
+		for (let i = 0; i < rows.length; i++) {
+			const qso = rows[i];
+			const data = [];
+
+			data.push('<div class="form-check"><input class="row-check form-check-input" type="checkbox" /></div>');
+
+			if ((user_options.datetime.show ?? 'true') == "true") {
+				data.push(qso.datetime === '' ? '<span class="bg-danger">Missing date</span>' : qso.qsoDateTime);
+			}
+			if ((user_options.de.show ?? 'true') == "true") {
+				data.push(qso.de.replaceAll('0', 'Ø'));
+			}
+			if ((user_options.dx.show ?? 'true') == "true") {
+				if (qso.dx === '') {
+					data.push('<span class="bg-danger">Missing callsign</span>');
+				} else {
+					let dxHtml = '<span class="qso_call"><a id="edit_qso" href="javascript:displayQso(' + qso.qsoID + ')"><span id="dx">' + qso.dx.replaceAll('0', 'Ø') + '</span></a><span class="qso_icons">';
+					if (qso.callsign != '') {
+						dxHtml += ' <a href="https://lotw.arrl.org/lotwuser/act?act=' + qso.callsign + '" target="_blank"><small id="lotw_info" class="badge bg-success' + qso.lotw_hint + '" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + ' ">L</small></a>';
+					}
+					dxHtml += ' <a target="_blank" href="https://www.qrz.com/db/' + qso.dx + '"><img width="16" height="16" src="' + base_url + 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a>' +
+						' <a target="_blank" href="https://www.hamqth.com/' + qso.dx + '"><img width="16" height="16" src="' + base_url + 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a>' +
+						' <a target="_blank" href="https://clublog.org/logsearch.php?log=' + qso.dx + '&call=' + qso.de + '"><img width="16" height="16" src="' + base_url + 'images/icons/clublog.png" alt="Clublog Log Search"></a>' +
+						'</span></span>';
+					data.push(dxHtml);
+				}
+			}
+
+			// The rest of the user_options fields (kept exactly like your original)
+			if ((user_options.mode.show ?? 'true') == "true") data.push(qso.mode === '' ? '<span class="bg-danger">Missing mode</span>' : qso.mode);
+			if ((user_options.rsts.show ?? 'true') == "true") data.push(qso.rstS);
+			if ((user_options.rstr.show ?? 'true') == "true") data.push(qso.rstR);
+			if ((user_options.band.show ?? 'true') == "true") data.push(qso.band === '' ? '<span class="bg-danger">Missing band</span>' : qso.band);
+			if ((user_options.frequency.show ?? 'true') == "true") data.push(qso.frequency);
+			if ((user_options.gridsquare.show ?? 'true') == "true") data.push(qso.gridsquare);
+			if ((user_options.name.show ?? 'true') == "true") data.push(qso.name);
+			if ((user_options.qth.show ?? 'true') == "true") data.push(qso.qth);
+			if ((user_options.qslvia.show ?? 'true') == "true") data.push(qso.qslVia);
+			if ((user_options.clublog.show ?? 'true') == "true") data.push(qso.clublog);
+			if ((user_options.qsl.show ?? 'true') == "true") data.push(qso.qsl);
+			if ($(".eqslconfirmation")[0] && (user_options.eqsl.show ?? 'true') == "true") data.push(qso.eqsl);
+			if ($(".lotwconfirmation")[0] && (user_options.lotw.show ?? 'true') == "true") data.push(qso.lotw);
+			if ((user_options.qrz.show ?? 'true') == "true") data.push(qso.qrz);
+			if ((user_options.dcl.show ?? 'true') == "true") data.push(qso.dcl);
+			if ((user_options.qslmsgs.show ?? 'true') == "true") data.push(qso.qslMessage);
+			if ((user_options.qslmsgr.show ?? 'true') == "true") data.push(qso.qslMessageR);
+			if ((user_options.dxcc.show ?? 'true') == "true") data.push(qso.dxcc + qso.flag + (qso.end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>'));
+			if ((user_options.state.show ?? 'true') == "true") data.push(qso.state);
+			if ((user_options.county.show ?? 'true') == "true") data.push(qso.county);
+			if ((user_options.cqzone.show ?? 'true') == "true") data.push(qso.cqzone);
+			if ((user_options.ituzone.show ?? 'true') == "true") data.push(qso.ituzone);
+			if ((user_options.iota.show ?? 'true') == "true") data.push(qso.iota);
+			if ((user_options.pota.show ?? 'true') == "true") data.push(qso.pota);
+			if ((user_options.sota.show ?? 'true') == "true") data.push(qso.sota);
+			if ((user_options.dok.show ?? 'true') == "true") data.push(qso.dok);
+			if ((user_options.wwff.show ?? 'true') == "true") data.push(qso.wwff);
+			if ((user_options.sig.show ?? 'true') == "true") data.push(qso.sig);
+			if ((user_options.region.show ?? 'true') == "true") data.push(qso.region);
+			if ((user_options.operator.show ?? 'true') == "true") data.push(qso.operator);
+			if ((user_options.comment.show ?? 'true') == "true") data.push(qso.comment);
+			if ((user_options.propagation.show ?? 'true') == "true") data.push(qso.propagation);
+			if ((user_options.contest.show ?? 'true') == "true") data.push(qso.contest);
+			if ((user_options.myrefs.show ?? 'true') == "true") data.push(qso.deRefs);
+			if ((user_options.continent.show ?? 'true') == "true") data.push(qso.continent);
+			if ((user_options.distance.show ?? 'true') == "true") data.push(qso.distance);
+			if ((user_options.antennaazimuth.show ?? 'true') == "true") data.push(qso.antennaazimuth);
+			if ((user_options.antennaelevation.show ?? 'true') == "true") data.push(qso.antennaelevation);
+			if ((user_options.profilename.show ?? 'true') == "true") data.push(qso.profilename);
+			if ((user_options.stationpower.show ?? 'true') == "true") data.push(qso.stationpower);
+
+			// metadata accessible inside createdRow
+			data.id = 'qsoID-' + qso.qsoID;
+			data._qsoID = qso.qsoID;
+
+			allData.push(data);
+		}
+
+		// cache header index lookups (avoid repeated DOM queries)
+		const distanceIdx = $(".distance-column-sort").index();
+		const azIdx       = $(".antennaazimuth-column-sort").index();
+		const elIdx       = $(".antennaelevation-column-sort").index();
+		const powerIdx    = $(".stationpower-column-sort").index();
+
+		// DataTables init (data provided up-front)
+		const table = $table.DataTable({
+			data: allData,
+			deferRender: true,
+			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
+			scrollCollapse: true,
+			paging: true,          // required for Scroller
+			scroller: true,
+			displayStart: 0,
+			language: language,
+			ordering: true,
+			orderClasses: false,
+			responsive: false,
+			createdRow: function(row, data) {
+				if (data && data.id) $(row).attr('id', data.id);
+				if (data && data._qsoID) $(row).data('qsoID', data._qsoID);
+			},
+			// robust info text so "259 to 250" can't appear
+			infoCallback: function(settings) {
+				const api = new $.fn.dataTable.Api(settings);
+				const info = api.page.info();
+				if (info.recordsDisplay === 0) return 'Showing 0 to 0 of 0 entries';
+				const dispStart = info.start + 1;
+				const dispEnd = Math.min(info.recordsDisplay, info.start + info.length);
+				return 'Showing ' + dispStart + ' to ' + dispEnd + ' of ' + info.recordsDisplay + ' entries';
+			},
+			columnDefs: [
+				{ orderable: false, targets: 0 },
+				{ targets: distanceIdx, type: "numbersort" },
+				{ targets: azIdx, type: "numbersort" },
+				{ targets: elIdx, type: "numbersort" },
+				{ targets: powerIdx, type: "numbersort" },
+			],
+			dom: 'Bfrtip',
+			buttons: [
+						{
+							extend: 'csv',
+							className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
+								init: function(api, node, config) {
+									$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+								},
+						}
+                    ]
+		});
+
+		// Ensure scroller measured and page reset
+		try { if (table.scroller) table.scroller().measure(); } catch (e) {}
+		try { table.page('first').draw(false); } catch (e) { table.draw(false); }
+
+		// Delegate tooltip creation (create on demand)
+		$table.off('mouseenter', '[data-bs-toggle="tooltip"]').on('mouseenter', '[data-bs-toggle="tooltip"]', function () {
+			if (!$(this).data('bs.tooltip')) {
+				$(this).tooltip();
+			}
+		});
+
+		// Delegate checkbox handling (shift-click selection) — no per-row listeners
+		let lastChecked = null;
+		$table.off('click', '.row-check').on('click', '.row-check', function (e) {
+			const checkboxes = $table.find('.row-check').toArray();
+			if (e.shiftKey && lastChecked) {
+				let start = checkboxes.indexOf(this);
+				let end = checkboxes.indexOf(lastChecked);
+				[start, end] = [Math.min(start, end), Math.max(start, end)];
+				for (let i = start; i <= end; i++) {
+					checkboxes[i].checked = lastChecked.checked;
+					$(checkboxes[i]).closest('tr').toggleClass('activeRow', lastChecked.checked);
+				}
+			} else {
+				$(this).closest('tr').toggleClass('activeRow', this.checked);
+			}
+			lastChecked = this;
+		});
+
+		// rebind other UI bits after table init (if function exists)
+		if (typeof rebind_checkbox_trigger === 'function') rebind_checkbox_trigger();
+	};
+
+	// load language then init
+	if (langUrl) {
+		$.getJSON(langUrl)
+			.done(function(language) { initTable(language); })
+			.fail(function() { console.error("Failed to load DataTables language file at " + langUrl); initTable({}); });
+	} else {
+		initTable({});
+	}
+}
+
+
+function loadQSOTable2(rows) {
+	const $table = $('#qsoList');
 
 	// Prevent initializing if already a DataTable
 	if ($.fn.DataTable.isDataTable($table)) {
@@ -191,8 +390,11 @@ function loadQSOTable(rows) {
 			ordering: true,
 			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
 			scrollCollapse: true,
-			paging: false,
 			language: language,
+			deferRender: true,            // delay DOM creation until needed
+			ordering: true,
+			paging: true,
+			scroller: true,
 			createdRow: function (row, data, dataIndex) {
 				$(row).attr('id', data.id);
 			},
