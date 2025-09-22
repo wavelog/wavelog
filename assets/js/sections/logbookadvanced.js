@@ -340,11 +340,13 @@ function loadQSOTable(rows) {
 											}
 										}
 										if (typeof data === 'string' && data.includes('&#9650')) {
-												data = data.replace(/&#9650/g, '');
+												data = data.replace(/&#9650;/g, '');
 										}
 										if (typeof data === 'string' && data.includes('&#9660')) {
-												data = data.replace(/&#9660/g, '');
+												data = data.replace(/&#9660;/g, '');
 										}
+
+										data = data.replace(/ data-bs-toggle="tooltip" data-bs-html="true" class="[^"]*">/g, '');
 										return data;
 									}
 								}
