@@ -15,16 +15,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
-"PO-Revision-Date: 2025-09-08 10:40+0000\n"
-"Last-Translator: Luca <lucabennati1996@gmail.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/es/>\n"
+"PO-Revision-Date: 2025-09-22 07:12+0000\n"
+"Last-Translator: Fabian <fabian@eb1tr.com>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.13.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -924,15 +924,15 @@ msgstr "Se alcanzó el tiempo de espera. Deteniendo cargas posteriores."
 
 #: application/controllers/Dcl.php:201
 msgid "Upload Successful"
-msgstr ""
+msgstr "Subida finalizada"
 
 #: application/controllers/Dcl.php:211
 msgid "No Station Profiles found to upload to DCL"
-msgstr ""
+msgstr "No se encontraron perfiles de estación para actualizar DCL"
 
 #: application/controllers/Dcl.php:229
 msgid "Key(s) Deleted."
-msgstr ""
+msgstr "Llave(s) eliminada(s)."
 
 #: application/controllers/Debug.php:116
 msgid "Debug"
@@ -1085,7 +1085,7 @@ msgstr "Hamsat - Operación de satélites en movimiento"
 
 #: application/controllers/Hrdlog.php:70 application/controllers/Hrdlog.php:71
 msgid "HRD Log upload for this station is disabled."
-msgstr ""
+msgstr "La subida a HRD Log para esta estación está deshabilitada."
 
 #: application/controllers/Hrdlog.php:93
 #, php-format
@@ -3369,11 +3369,11 @@ msgstr "desconocido"
 
 #: application/models/Logbook_model.php:4927
 msgid "POTA reference already in log"
-msgstr ""
+msgstr "La referencia POTA ya se encuentra en el log"
 
 #: application/models/Logbook_model.php:4930
 msgid "QSO updated"
-msgstr ""
+msgstr "QSO actualizado"
 
 #: application/models/Logbook_model.php:5802
 #: application/views/activated_gridmap/index.php:110
@@ -4795,7 +4795,7 @@ msgstr "Los QSOs fueron marcados como exportados a LoTW."
 
 #: application/views/adif/pota_success.php:12
 msgid "Results of POTA Update"
-msgstr ""
+msgstr "Resultados de la actualización de POTA"
 
 #: application/views/adif/pota_success.php:17
 msgid "POTA references for existing QSOs has been updated."
@@ -12563,7 +12563,7 @@ msgstr ""
 
 #: application/views/qslprint/qslprint.php:92
 msgid "Update QSOs"
-msgstr ""
+msgstr "Actualizar QSOs"
 
 #: application/views/qslprint/qslprint.php:95
 msgid "Mark selected QSOs as sent"
@@ -12571,11 +12571,11 @@ msgstr "Marcar QSOs seleccionados como enviados"
 
 #: application/views/qslprint/qslprint.php:96
 msgid "Remove selected QSOs from the queue"
-msgstr "Eliminar las QSOs seleccionadas de la cola"
+msgstr "Eliminar los QSOs seleccionadas de la cola"
 
 #: application/views/qslprint/qslprint.php:97
 msgid "Export selected QSOs to ADIF-file"
-msgstr "Exportar QSOs seleccionados a archivo ADIF"
+msgstr "Exportar los QSOs seleccionados a un archivo ADIF"
 
 #: application/views/qslprint/qslprint.php:102
 msgid "Export CSV-file"
