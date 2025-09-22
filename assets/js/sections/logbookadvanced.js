@@ -323,6 +323,26 @@ function loadQSOTable(rows) {
 								init: function(api, node, config) {
 									$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 								},
+								exportOptions: {
+								columns: ':visible',
+								format: {
+									body: function (data, row, column, node) {
+										// strip HTML tags first (like DataTables does by default)
+										if (typeof data === 'string') {
+											data = data.replace(/<[^>]*>/g, '');
+										}
+										// then replace Ø with 0 in specific columns
+										if (column === 1 || column === 2 || column === 3) {
+											// remove a trailing "L" and trim whitespaces
+											data = data.replace(/\s*L\s*$/, '').trim();
+											if (typeof data === 'string' && data.includes('Ø')) {
+												data = data.replace(/Ø/g, '0');
+											}
+										}
+										return data;
+									}
+								}
+							}
 						}
                     ]
 		});
