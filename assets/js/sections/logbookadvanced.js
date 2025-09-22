@@ -339,6 +339,12 @@ function loadQSOTable(rows) {
 												data = data.replace(/Ø/g, '0');
 											}
 										}
+										if (typeof data === 'string' && data.includes('&#9650')) {
+												data = data.replace(/&#9650/g, '');
+										}
+										if (typeof data === 'string' && data.includes('&#9660')) {
+												data = data.replace(/&#9660/g, '');
+										}
 										return data;
 									}
 								}
