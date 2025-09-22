@@ -566,7 +566,7 @@
                         </tr>
 						<tr>
                             <td><?= __("HAMqsl"); ?></td>
-                            <td><?php echo $hon_update->last_run ?? __("never"); ?></td>
+                            <td><?php echo $hamqsl_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_hamqsl'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                     </table>

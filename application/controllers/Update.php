@@ -451,6 +451,10 @@ class Update extends CI_Controller {
 			} else {
 				$this->session->set_flashdata('error', __("HAMqsl Update failed. Result: ") . "'" . $result . "'");
 			}
+
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
 			redirect('debug');
 		} else {
         	echo $result;
