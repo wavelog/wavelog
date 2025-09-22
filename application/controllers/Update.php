@@ -438,6 +438,25 @@ class Update extends CI_Controller {
 		}
     }
 
+	/*
+     * Pulls the solarxml.php data from hamqsl
+     */
+    public function update_hamqsl() {
+
+        $this->load->model('Update_model');
+        $result = $this->Update_model->hamqsl();
+        if($this->session->userdata('user_type') == '99') {
+			if (substr($result, 0, 4) == 'DONE') {
+				$this->session->set_flashdata('success', __("HAMqsl Update complete. Result: ") . "'" . $result . "'");
+			} else {
+				$this->session->set_flashdata('error', __("HAMqsl Update failed. Result: ") . "'" . $result . "'");
+			}
+			redirect('debug');
+		} else {
+        	echo $result;
+		}
+    }
+
     public function update_pota() {
 
         $this->load->model('Update_model');

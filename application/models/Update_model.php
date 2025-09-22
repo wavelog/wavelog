@@ -177,6 +177,29 @@ class Update_model extends CI_Model {
         }
     }
 
+	function hamqsl(){
+		// This downloads and store hamqsl propagation data XML file
+
+		$contents = file_get_contents('https://www.hamqsl.com/solarxml.php', true);
+
+        if ($contents === FALSE) {
+            return  "Something went wrong with fetching the solarxml.xml file from HAMqsl website.";
+        } else {
+            $file = './updates/solarxml.xml';
+
+            if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
+                $nCount = count(file($file));
+                if ($nCount > 0) {
+                    return  "DONE: solarxml.xml downloaded from HAMqsl website.";
+                } else {
+                    return "FAILED: Empty file received from HAMqsl website.";
+                }
+            } else {
+                return "FAILED: Could not write solarxml.xml file from HAMqsl website.";
+            }
+        }
+	}
+
     function pota() {
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
@@ -498,6 +521,7 @@ class Update_model extends CI_Model {
 		}
 		return;
 	}
+
 
 	function update_hams_of_note() {
 		if (($this->optionslib->get_option('hon_url') ?? '') == '') {
