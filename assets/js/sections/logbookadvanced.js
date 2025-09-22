@@ -324,7 +324,7 @@ function loadQSOTable(rows) {
 									$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 								},
 								exportOptions: {
-								columns: ':visible',
+								columns: ':visible:not(:eq(0))', // export all visible except column 4
 								format: {
 									body: function (data, row, column, node) {
 										// strip HTML tags first (like DataTables does by default)
