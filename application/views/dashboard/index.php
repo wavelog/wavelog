@@ -456,6 +456,76 @@ function getDistance($distance) {
 
     </table>
     <?php } ?>
+
+	<?php if($solar_bandconditions && $solar_solardata){ ?>
+		<!-- Solar Data -->
+		<table class="table table-striped border-top">
+			<tr class="titles">
+				<td colspan="10"><i class="fas fa-sun"></i> <?= __("Solar Data & Propagation"); ?></td>
+			</tr>
+			<tr>
+				<td colspan="10">
+					<table class="table table-sm small text-center table-striped">
+						<tr>
+							<th width="20%">&nbsp;</th>
+							<th width="20%">80m-40m</th>
+							<th width="20%">30m-20m</th>
+							<th width="20%">17m-15m</th>
+							<th width="20%">12m-10m</th>
+						</tr>
+						<tr>
+							<td>Day</td>
+							<td><?= $solar_bandconditions['80m-40m']['day'] ?></td>
+							<td><?= $solar_bandconditions['30m-20m']['day'] ?></td>
+							<td><?= $solar_bandconditions['17m-15m']['day'] ?></td>
+							<td><?= $solar_bandconditions['12m-10m']['day'] ?></td>
+						</tr>
+						<tr>
+							<td>Night</td>
+							<td><?= $solar_bandconditions['80m-40m']['night'] ?></td>
+							<td><?= $solar_bandconditions['30m-20m']['night'] ?></td>
+							<td><?= $solar_bandconditions['17m-15m']['night'] ?></td>
+							<td><?= $solar_bandconditions['12m-10m']['night'] ?></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="10">
+					<table class="table table-sm small text-center table-striped">
+						<tr>
+							<th width="5%">Kp</th>
+							<th width="5%">A</th>
+							<th width="15%">SFI</th>
+							<th width="15%">SW</th>
+							<th width="15%">SS</th>
+							<th width="15%">X</th>
+							<th width="20%">Noise</th>
+							<th width="20%">Aurora</th>
+						</tr>
+						<tr>
+							<td><?= $solar_solardata['kindex'] ?></td>
+							<td><?= $solar_solardata['aindex'] ?></td>
+							<td><?= $solar_solardata['solarflux'] ?></td>
+							<td><?= $solar_solardata['solarwind'] ?></td>
+							<td><?= $solar_solardata['signalnoise'] ?></td>
+							<td><?= $solar_solardata['xray'] ?></td>
+							<td><?= $solar_solardata['sunspots'] ?></td>
+							<td><?= $solar_solardata['aurora'] ?></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="10" class="small">
+					<?= sprintf(__("Data provided by %s."), '<a target="_blank" class="text-primary fw-bold text-decoration-underline" href="https://www.hamqsl.com/">'.'HAMqsl'.'</a>'); ?>
+					<?= sprintf(__("Last update at %s."), $solar_solardata['updated']); ?>
+				</td>
+			</tr>
+		</table>
+
+	<?php } ?>
+
 	</div>
   </div>
 </div>

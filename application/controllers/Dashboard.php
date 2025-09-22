@@ -79,6 +79,14 @@ class Dashboard extends CI_Controller {
 			$data['dashboard_banner'] = 'N';
 		}
 
+		// Check user preferrence to show Solar Data on Dashboard
+		// Default to not show
+		if (($this->session->userdata('user_dashboard_solar') ?? '') != '') {
+			$data['dashboard_solar'] = $this->session->userdata('user_dashboard_solar') ?? 'Y';
+		} else {
+			$data['dashboard_solar'] = 'N';
+		}
+
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		$this->load->model('cat');
@@ -179,6 +187,23 @@ class Dashboard extends CI_Controller {
 
 		$data['total_countries_needed'] = count($dxcc->result()) - $current;
 
+		// Check user preferrence to show Solar Data on Dashboard and load data if yes
+		// Default to not show
+		if($data['dashboard_solar'] == 'true') {
+			$this->load->model('Hamqsl_model');	// Load HAMQSL model
+
+			if (!$this->Hamqsl_model->set_solardata()) {
+				// Problem getting data, set to null
+				$data['solar_bandconditions'] = null;
+				$data['solar_solardata'] = null;
+			} else {
+				// Load data into arrays
+				$data['solar_bandconditions'] = $this->Hamqsl_model->get_bandconditions_array();
+				$data['solar_solardata'] = $this->Hamqsl_model->get_solarinformation_array();
+			}
+		}
+
+		// Load the views
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('dashboard/index');
 		$this->load->view('interface_assets/footer', $footerData);
