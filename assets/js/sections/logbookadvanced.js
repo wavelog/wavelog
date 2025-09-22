@@ -328,6 +328,9 @@ function loadQSOTable(rows) {
 								format: {
 									body: function (data, row, column, node) {
 										// strip HTML tags first (like DataTables does by default)
+										if (typeof data === 'string' && data.includes('<br />')) {
+												data = data.replace(/<br \/>/g, '');
+										}
 										if (typeof data === 'string') {
 											data = data.replace(/<[^>]*>/g, '');
 										}
