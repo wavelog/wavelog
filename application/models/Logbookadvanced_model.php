@@ -825,6 +825,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "lotwreceived": $column = 'COL_LOTW_QSL_RCVD'; break;
 			case "qslmsg": $column = 'COL_QSLMSG'; break;
 			case "continent": $column = 'COL_CONT'; break;
+			case "qslsent": $column = 'COL_QSL_SENT'; break;
+			case "qslreceived": $column = 'COL_QSL_RCVD'; break;
 			case "qrzsent": $column = 'COL_QRZCOM_QSO_UPLOAD_STATUS'; break;
 			case "qrzreceived": $column = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS'; break;
 			case "eqslsent": $column = 'COL_EQSL_QSL_SENT'; break;
