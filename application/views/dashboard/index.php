@@ -461,6 +461,24 @@ function getDistance($distance) {
 		<!-- Solar Data -->
 		<table class="table table-striped border-top">
 			<tr class="titles">
+				<td colspan="10" style="display: flex; justify-content: space-between; align-items: center;">
+					<div>
+						<div><i class="fas fa-sun"></i> <?= __("Solar Data & Propagation"); ?></div>
+						<div class="small fst-italic text-muted">
+							<?= sprintf(__("Last update at %s."), $solar_solardata['updated']); ?>
+						</div>
+					</div>
+					<a class="ms-2 text-body fas fa-info-circle float-end" 
+						data-bs-toggle="tooltip" 
+						data-bs-placement="top" 
+						data-bs-html="true"
+						href="https://www.hamqsl.com/"
+						target="_blank"
+						title="<?= __("Data provided by HAMqsl."); ?>" 
+						style="cursor: pointer;">
+					</a>
+				</td>
+			</tr>
 				<td colspan="10"><i class="fas fa-sun"></i> <?= __("Solar Data & Propagation"); ?></td>
 			</tr>
 			<tr>
