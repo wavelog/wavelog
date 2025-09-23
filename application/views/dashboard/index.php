@@ -468,19 +468,16 @@ function getDistance($distance) {
 							<?= sprintf(__("Last update at %s."), $solar_solardata['updated']); ?>
 						</div>
 					</div>
-					<a class="ms-2 text-body fas fa-info-circle float-end" 
-						data-bs-toggle="tooltip" 
-						data-bs-placement="top" 
+					<a class="ms-2 text-body fas fa-info-circle float-end"
+						data-bs-toggle="tooltip"
+						data-bs-placement="top"
 						data-bs-html="true"
 						href="https://www.hamqsl.com/"
 						target="_blank"
-						title="<?= __("Data provided by HAMqsl."); ?>" 
+						title="<?= __("Data provided by HAMqsl."); ?>"
 						style="cursor: pointer;">
 					</a>
 				</td>
-			</tr>
-				<td colspan="10"><i class="fas fa-sun"></i> <?= __("Solar Data & Propagation"); ?></td>
-			</tr>
 			<tr>
 				<td colspan="10">
 					<table class="table table-sm small text-center table-striped">
@@ -532,12 +529,6 @@ function getDistance($distance) {
 							<td><?= $solar_solardata['aurora'] ?></td>
 						</tr>
 					</table>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="10" class="small">
-					<?= sprintf(__("Data provided by %s."), '<a target="_blank" class="text-primary fw-bold text-decoration-underline" href="https://www.hamqsl.com/">'.'HAMqsl'.'</a>'); ?>
-					<?= sprintf(__("Last update at %s."), $solar_solardata['updated']); ?>
 				</td>
 			</tr>
 		</table>
