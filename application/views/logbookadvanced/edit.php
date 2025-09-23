@@ -45,6 +45,8 @@
 				<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
 				<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
 				<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
+				<option value="qslreceived"><?= __("QSL Received"); ?></option>
+				<option value="qslsent"><?= __("QSL Sent"); ?></option>
 				<option value="qslmsg"><?= __("QSLMSG"); ?></option>
 				<option value="qslreceivedmethod"><?= __("QSL Received Method"); ?></option>
 				<option value="qslsentmethod"><?= __("QSL Sent Method"); ?></option>
@@ -158,6 +160,13 @@
 					echo '<option value="' . $contest['adifname'] . '">' . $contest["name"] . '</option>'."\n";
 				}
 			?>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQsl"  name="qsl">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="R"><?= __("Requested"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editLoTW"  name="lotw">

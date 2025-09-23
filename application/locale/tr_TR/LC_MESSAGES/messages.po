@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-09-16 11:10+0000\n"
 "PO-Revision-Date: 2025-09-22 11:56+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1574,6 +1574,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/logbookadvanced/edit.php:96
 msgid "State"
 msgstr "Eyalet"
 
@@ -3648,6 +3649,8 @@ msgstr "Uydu hariç tümü"
 #: application/views/logbookadvanced/edit.php:206
 #: application/views/logbookadvanced/index.php:394
 #: application/views/timeline/index.php:84
+#: application/views/logbookadvanced/edit.php:207
+#: application/views/logbookadvanced/edit.php:215
 msgid "None/Empty"
 msgstr "Yok/Boş"
 
@@ -5588,6 +5591,7 @@ msgstr "Silinenleri dahil et"
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:266 application/views/qso/index.php:425
 #: application/views/view_log/qso.php:350
+#: application/views/logbookadvanced/edit.php:217
 msgid "Antarctica"
 msgstr "Antarktika"
 
@@ -5600,6 +5604,7 @@ msgstr "Antarktika"
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:265 application/views/qso/index.php:424
 #: application/views/view_log/qso.php:347
+#: application/views/logbookadvanced/edit.php:216
 msgid "Africa"
 msgstr "Afrika"
 
@@ -5612,6 +5617,7 @@ msgstr "Afrika"
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:267 application/views/qso/index.php:426
 #: application/views/view_log/qso.php:353
+#: application/views/logbookadvanced/edit.php:219
 msgid "Asia"
 msgstr "Asya"
 
@@ -5624,6 +5630,7 @@ msgstr "Asya"
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:427
 #: application/views/view_log/qso.php:356
+#: application/views/logbookadvanced/edit.php:220
 msgid "Europe"
 msgstr "Avrupa"
 
@@ -5636,6 +5643,7 @@ msgstr "Avrupa"
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:269 application/views/qso/index.php:428
 #: application/views/view_log/qso.php:359
+#: application/views/logbookadvanced/edit.php:218
 msgid "North America"
 msgstr "Kuzey Amerika"
 
@@ -5648,6 +5656,7 @@ msgstr "Kuzey Amerika"
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:271 application/views/qso/index.php:430
 #: application/views/view_log/qso.php:365
+#: application/views/logbookadvanced/edit.php:221
 msgid "South America"
 msgstr "Güney Amerika"
 
@@ -5660,6 +5669,7 @@ msgstr "Güney Amerika"
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:429
 #: application/views/view_log/qso.php:362
+#: application/views/logbookadvanced/edit.php:222
 msgid "Oceania"
 msgstr "Okyanusya"
 
@@ -7239,6 +7249,12 @@ msgstr ""
 #: application/views/user/edit.php:962 application/views/user/edit.php:982
 #: application/views/user/edit.php:1011 application/views/user/edit.php:1043
 #: application/views/user/edit.php:1068
+#: application/views/logbookadvanced/edit.php:166
+#: application/views/logbookadvanced/edit.php:173
+#: application/views/logbookadvanced/edit.php:181
+#: application/views/logbookadvanced/edit.php:187
+#: application/views/logbookadvanced/edit.php:193
+#: application/views/logbookadvanced/edit.php:199
 msgid "Yes"
 msgstr "Evet"
 
@@ -7301,6 +7317,12 @@ msgstr "Evet"
 #: application/views/user/edit.php:937 application/views/user/edit.php:953
 #: application/views/user/edit.php:981 application/views/user/edit.php:1012
 #: application/views/user/edit.php:1042 application/views/user/edit.php:1067
+#: application/views/logbookadvanced/edit.php:167
+#: application/views/logbookadvanced/edit.php:174
+#: application/views/logbookadvanced/edit.php:182
+#: application/views/logbookadvanced/edit.php:188
+#: application/views/logbookadvanced/edit.php:194
+#: application/views/logbookadvanced/edit.php:200
 msgid "No"
 msgstr "Hayır"
 
@@ -8432,7 +8454,9 @@ msgstr "Alınan"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764
+#: src/QSLManager/QSO.php:764 application/views/logbookadvanced/edit.php:168
+#: application/views/logbookadvanced/edit.php:175
+#: application/views/logbookadvanced/edit.php:201
 msgid "Requested"
 msgstr "İstenen"
 
@@ -10589,14 +10613,17 @@ msgid "QRZ Sent"
 msgstr "QRZ Aracılığıyla Gönderildi"
 
 #: application/views/logbookadvanced/edit.php:48
+#: application/views/logbookadvanced/edit.php:50
 msgid "QSLMSG"
 msgstr "QSL Mesajı"
 
 #: application/views/logbookadvanced/edit.php:49
+#: application/views/logbookadvanced/edit.php:51
 msgid "QSL Received Method"
 msgstr "QSL Alım Yöntemi"
 
 #: application/views/logbookadvanced/edit.php:50
+#: application/views/logbookadvanced/edit.php:52
 msgid "QSL Sent Method"
 msgstr "QSL Gönderim Yöntemi"
 
@@ -10604,20 +10631,24 @@ msgstr "QSL Gönderim Yöntemi"
 #: application/views/logbookadvanced/index.php:542
 #: application/views/logbookadvanced/index.php:745
 #: application/views/logbookadvanced/useroptions.php:66
+#: application/views/logbookadvanced/edit.php:53
 msgid "QSL via"
 msgstr "QSL Bilgisi"
 
 #: application/views/logbookadvanced/edit.php:103
 #: application/views/satellite/edit.php:51
 #: application/views/satellite/index.php:55
+#: application/views/logbookadvanced/edit.php:105
 msgid "SAT Mode"
 msgstr "Uydu Modu"
 
 #: application/views/logbookadvanced/edit.php:106
+#: application/views/logbookadvanced/edit.php:108
 msgid "Band TX"
 msgstr "TX Bandı"
 
 #: application/views/logbookadvanced/edit.php:119
+#: application/views/logbookadvanced/edit.php:121
 msgid "Band RX"
 msgstr "RX Bandı"
 
@@ -10628,6 +10659,12 @@ msgstr "RX Bandı"
 #: application/views/logbookadvanced/edit.php:193
 #: application/views/logbookadvanced/index.php:402
 #: application/views/logbookadvanced/index.php:671
+#: application/views/logbookadvanced/edit.php:169
+#: application/views/logbookadvanced/edit.php:176
+#: application/views/logbookadvanced/edit.php:183
+#: application/views/logbookadvanced/edit.php:189
+#: application/views/logbookadvanced/edit.php:195
+#: application/views/logbookadvanced/edit.php:202
 msgid "Invalid"
 msgstr "Geçersiz QSO'lar"
 
@@ -10637,6 +10674,8 @@ msgstr "Geçersiz QSO'lar"
 #: application/views/logbookadvanced/index.php:476
 #: application/views/logbookadvanced/index.php:498
 #: application/views/logbookadvanced/index.php:520
+#: application/views/logbookadvanced/edit.php:177
+#: application/views/logbookadvanced/edit.php:203
 msgid "Verified"
 msgstr "Doğrulandı"
 
@@ -10656,6 +10695,7 @@ msgstr "Doğrulandı"
 #: application/views/view_log/partial/log_ajax.php:307
 #: application/views/view_log/partial/log_ajax.php:345
 #: src/QSLManager/QSO.php:432 src/QSLManager/QSO.php:475
+#: application/views/logbookadvanced/edit.php:208
 msgid "Direct"
 msgstr "Direkt"
 
@@ -10677,6 +10717,7 @@ msgstr "Direkt"
 #: application/views/view_log/partial/log_ajax.php:304
 #: application/views/view_log/partial/log_ajax.php:342
 #: src/QSLManager/QSO.php:429 src/QSLManager/QSO.php:472
+#: application/views/logbookadvanced/edit.php:209
 msgid "Bureau"
 msgstr "Büro"
 
@@ -10696,6 +10737,7 @@ msgstr "Büro"
 #: application/views/view_log/partial/log_ajax.php:313
 #: application/views/view_log/partial/log_ajax.php:351
 #: src/QSLManager/QSO.php:438 src/QSLManager/QSO.php:481
+#: application/views/logbookadvanced/edit.php:210
 msgid "Electronic"
 msgstr "Elektronik"
 
@@ -10708,50 +10750,60 @@ msgstr "Elektronik"
 #: application/views/qso/edit_ajax.php:493 application/views/qso/index.php:672
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:348
+#: application/views/logbookadvanced/edit.php:211
 msgid "Manager"
 msgstr "Yönetici"
 
 #: application/views/logbookadvanced/edit.php:218
 #: application/views/qso/edit_ajax.php:330 application/views/qso/index.php:437
+#: application/views/logbookadvanced/edit.php:227
 msgid "NONE"
 msgstr "HİÇBİRİ"
 
 #: application/views/logbookadvanced/edit.php:219
 #: application/views/qso/edit_ajax.php:331 application/views/qso/index.php:438
+#: application/views/logbookadvanced/edit.php:228
 msgid "African Italy"
 msgstr "Afrikan-İtalya (Özel DXCC Varlığı)"
 
 #: application/views/logbookadvanced/edit.php:220
 #: application/views/qso/edit_ajax.php:332 application/views/qso/index.php:439
+#: application/views/logbookadvanced/edit.php:229
 msgid "Bear Island"
 msgstr "Bear Island (Ayı Adası)"
 
 #: application/views/logbookadvanced/edit.php:221
 #: application/views/qso/edit_ajax.php:333 application/views/qso/index.php:440
+#: application/views/logbookadvanced/edit.php:230
 msgid "European Turkey"
 msgstr "Türkiye'nin Avrupa Yakası"
 
 #: application/views/logbookadvanced/edit.php:222
 #: application/views/qso/edit_ajax.php:334 application/views/qso/index.php:441
+#: application/views/logbookadvanced/edit.php:231
 msgid "ITU Vienna"
 msgstr "ITU Viyana"
 
 #: application/views/logbookadvanced/edit.php:223
 #: application/views/qso/edit_ajax.php:335 application/views/qso/index.php:442
+#: application/views/logbookadvanced/edit.php:232
 msgid "Kosovo"
 msgstr "Kosova"
 
 #: application/views/logbookadvanced/edit.php:224
 #: application/views/qso/edit_ajax.php:336 application/views/qso/index.php:443
+#: application/views/logbookadvanced/edit.php:233
 msgid "Shetland Islands"
 msgstr "Shetland Adaları"
 
 #: application/views/logbookadvanced/edit.php:225
 #: application/views/qso/edit_ajax.php:337 application/views/qso/index.php:444
+#: application/views/logbookadvanced/edit.php:234
 msgid "Sicily"
 msgstr "Sicilya"
 
 #: application/views/logbookadvanced/edit.php:228
+#: application/views/logbookadvanced/edit.php:237
 msgid ""
 "Distance (in km). Leave blank to recalculate distance. (It will only work if "
 "a gridsquare is set)."
@@ -16201,6 +16253,14 @@ msgstr "Talep Gönder"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Alındı"
+
+#: application/views/logbookadvanced/edit.php:48
+msgid "QSL Received"
+msgstr ""
+
+#: application/views/logbookadvanced/edit.php:49
+msgid "QSL Sent"
+msgstr ""
 
 #~ msgid "QSL / LoTW / Clublog / eQSL / QRZ"
 #~ msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
