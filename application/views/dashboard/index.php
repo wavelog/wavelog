@@ -457,7 +457,7 @@ function getDistance($distance) {
     </table>
     <?php } ?>
 
-	<?php if($solar_bandconditions && $solar_solardata){ ?>
+<?php if ((($solar_bandconditions ?? '') != '') && (($solar_solardata ?? '') != '')){ ?>
 		<!-- Solar Data -->
 		<table class="table table-striped border-top">
 			<tr class="titles">
