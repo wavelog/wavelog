@@ -19,7 +19,15 @@ class Migration_add_cron_hamqsl extends CI_Migration {
 					'next_run' => null
 				)
 			);
-			$this->db->insert_batch('cron', $data);
+
+			// Check if the cron job already exists
+			$this->db->where('id', 'update_update_hamqsl');
+			$query = $this->db->get('cron');
+
+			if ($query->num_rows() == 0) {
+				// Insert the cron job only if it does not exist
+				$this->db->insert_batch('cron', $data);
+			}
 		}
 	}
 
