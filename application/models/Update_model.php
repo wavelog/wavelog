@@ -178,26 +178,34 @@ class Update_model extends CI_Model {
     }
 
 	function hamqsl(){
-		// This downloads and store hamqsl propagation data XML file
+		// This downloads and stores hamqsl propagation data XML file
 
-		$contents = file_get_contents('https://www.hamqsl.com/solarxml.php', true);
+		$url = 'https://www.hamqsl.com/solarxml.php';
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+		$contents = curl_exec($ch);
+		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		curl_close($ch);
 
-        if ($contents === FALSE) {
-            return  "Something went wrong with fetching the solarxml.xml file from HAMqsl website.";
-        } else {
-            $file = './updates/solarxml.xml';
+		if ($contents === FALSE || $http_code != 200) {
+			return "Something went wrong with fetching the solarxml.xml file from HAMqsl website.";
+		} else {
+			$file = './updates/solarxml.xml';
 
-            if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
-                $nCount = count(file($file));
-                if ($nCount > 0) {
-                    return  "DONE: solarxml.xml downloaded from HAMqsl website.";
-                } else {
-                    return "FAILED: Empty file received from HAMqsl website.";
-                }
-            } else {
-                return "FAILED: Could not write solarxml.xml file from HAMqsl website.";
-            }
-        }
+			if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
+				$nCount = count(file($file));
+				if ($nCount > 0) {
+					return  "DONE: solarxml.xml downloaded from HAMqsl website.";
+				} else {
+					return "FAILED: Empty file received from HAMqsl website.";
+				}
+			} else {
+				return "FAILED: Could not write solarxml.xml file from HAMqsl website.";
+			}
+		}
 	}
 
     function pota() {
