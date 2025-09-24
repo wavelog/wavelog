@@ -776,7 +776,7 @@ function changebadge(entityval) {
 			}
 		})
 	} else {
-		$.getJSON(base_url + 'index.php/logbook/jsonlookupdxcc/' + convert_case(entityval) + '/0/' + $("#band").val() + '/' + $("#mode").val(), function (result) {
+		$.getJSON(base_url + 'index.php/logbook/jsonlookupdxcc/' + entityval + '/0/' + $("#band").val() + '/' + $("#mode").val(), function (result) {
 			// Reset CSS values before updating
 			$('#callsign_info').removeClass("lotw_info_orange");
 			$('#callsign_info').removeClass("text-bg-secondary");
