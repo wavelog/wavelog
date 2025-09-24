@@ -180,6 +180,9 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'contest') {
 		value = $("#editContest").val();
 	}
+	if (column == 'qslsent' || column == 'qslreceived') {
+		value = $("#editQsl").val();
+	}
 	if (column == 'lotwsent' || column == 'lotwreceived') {
 		value = $("#editLoTW").val();
 	}
@@ -309,6 +312,8 @@ function changeEditType(type) {
 		$('#editBandRxLabel').show();
 	} else if (type == "contest") {
 		$('#editContest').show();
+	} else if (type == "qslsent" || type == "qslreceived") {
+		$('#editQsl').show();
 	} else if (type == "lotwsent" || type == "lotwreceived") {
 		$('#editLoTW').show();
 	} else if (type == "qrzsent" || type == "qrzreceived") {

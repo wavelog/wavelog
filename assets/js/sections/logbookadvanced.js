@@ -186,13 +186,14 @@ function loadQSOTable(rows) {
 		$.fn.dataTable.moment(custom_date_format + ' HH:mm');
 
 		const table = $table.DataTable({
-			searching: false,
+			searching: true,
 			responsive: false,
 			ordering: true,
 			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
 			scrollCollapse: true,
-			paging: false,
 			language: language,
+			ordering: true,
+			paging: false,
 			createdRow: function (row, data, dataIndex) {
 				$(row).attr('id', data.id);
 			},
@@ -202,7 +203,48 @@ function loadQSOTable(rows) {
 				{ targets: $(".antennaazimuth-column-sort").index(), type: "numbersort" },
 				{ targets: $(".antennaelevation-column-sort").index(), type: "numbersort" },
 				{ targets: $(".stationpower-column-sort").index(), type: "numbersort" },
-			]
+			],
+			dom: 'Bfrtip',
+			buttons: [
+						{
+							extend: 'csv',
+							className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
+								init: function(api, node, config) {
+									$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+								},
+								exportOptions: {
+								columns: ':visible:not(:eq(0))', // export all visible except column 4
+								format: {
+									body: function (data, row, column, node) {
+										// strip HTML tags first (like DataTables does by default)
+										if (typeof data === 'string' && data.includes('<br />')) {
+												data = data.replace(/<br \/>/g, '');
+										}
+										if (typeof data === 'string') {
+											data = data.replace(/<[^>]*>/g, '');
+										}
+										// then replace Ø with 0 in specific columns
+										if (column === 1 || column === 2 || column === 3) {
+											// remove a trailing "L" and trim whitespaces
+											data = data.replace(/\s*L\s*$/, '').trim();
+											if (typeof data === 'string' && data.includes('Ø')) {
+												data = data.replace(/Ø/g, '0');
+											}
+										}
+										if (typeof data === 'string' && data.includes('&#9650')) {
+												data = data.replace(/&#9650;/g, '');
+										}
+										if (typeof data === 'string' && data.includes('&#9660')) {
+												data = data.replace(/&#9660;/g, '');
+										}
+
+										data = data.replace(/ data-bs-toggle="tooltip" data-bs-html="true" class="[^"]*">/g, '');
+										return data;
+									}
+								}
+							}
+						}
+                    ]
 		});
 
 	for (i = 0; i < rows.length; i++) {
