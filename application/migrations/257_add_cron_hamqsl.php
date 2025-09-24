@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Migration_add_cron_hamqsl extends CI_Migration {
 
 	public function up() {
+		// Add cron job for HAMqsl update
 		if ($this->db->table_exists('cron')) {
 
 			// add cron job for HAMqsl update
@@ -32,8 +33,16 @@ class Migration_add_cron_hamqsl extends CI_Migration {
 	}
 
 	public function down() {
+		// Remove cron job for HAMqsl update
+		if ($this->chk4cron('update_update_hamqsl') > 0) {
+			$this->db->query("delete from cron where id = 'update_update_hamqsl';");
+		}
+	}
 
-		$this->dbtry("delete from cron where id = 'update_update_hamqsl';");
-
+	function chk4cron($cronkey) {
+		// Check if a cron job with the given ID exists
+		$query = $this->db->query("select count(id) as cid from cron where id=?",$cronkey);
+		$row = $query->row();
+		return $row->cid ?? 0;
 	}
 }
