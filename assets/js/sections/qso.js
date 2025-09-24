@@ -755,7 +755,7 @@ $(document).on('change', 'input', function () {
 
 function changebadge(entityval) {
 	if ($("#sat_name").val() != "") {
-		$.getJSON(base_url + 'index.php/logbook/jsonlookupdxcc/' + convert_case(entityval) + '/SAT/0/0', function (result) {
+		$.getJSON(base_url + 'index.php/logbook/jsonlookupdxcc/' + entityval + '/SAT/0/0', function (result) {
 
 			$('#callsign_info').removeClass("lotw_info_orange");
 			$('#callsign_info').removeClass("text-bg-secondary");
