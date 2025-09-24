@@ -940,8 +940,13 @@ $("#callsign").on("focusout", function () {
 		let find_callsign = $(this).val().toUpperCase();
 		let callsign = find_callsign;
 		let startDate = $('#start_date').val();
+		// Characters '/' and ',' are not URL safe, so we replace
+		// them with  '_' and '%'.
 		if (startDate.includes('/')) {
 			startDate = startDate.replaceAll('/', '_');
+		}
+		if (startDate.includes(',')) {
+			startDate = startDate.replaceAll(',', '%');
 		}
 		startDate = encodeURIComponent(startDate);
 		const stationProfile = $('#stationProfile').val();
