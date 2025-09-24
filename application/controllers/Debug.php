@@ -112,6 +112,7 @@ class Debug extends CI_Controller
 		$data['wwff_update'] = $this->cron_model->cron('update_update_wwff')->row();
 		$data['tle_update'] = $this->cron_model->cron('update_update_tle')->row();
 		$data['hon_update'] = $this->cron_model->cron('update_update_hamsofnote')->row();
+		$data['hamqsl_update'] = $this->cron_model->cron('update_update_hamqsl')->row();
 
 		$data['page_title'] = __("Debug");
 

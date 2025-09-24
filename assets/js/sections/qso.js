@@ -753,9 +753,9 @@ $(document).on('change', 'input', function () {
 	}
 });
 
-function changebadge(entityname) {
+function changebadge(entityval) {
 	if ($("#sat_name").val() != "") {
-		$.getJSON(base_url + 'index.php/logbook/jsonlookupdxcc/' + convert_case(entityname) + '/SAT/0/0', function (result) {
+		$.getJSON(base_url + 'index.php/logbook/jsonlookupdxcc/' + entityval + '/SAT/0/0', function (result) {
 
 			$('#callsign_info').removeClass("lotw_info_orange");
 			$('#callsign_info').removeClass("text-bg-secondary");
@@ -776,7 +776,7 @@ function changebadge(entityname) {
 			}
 		})
 	} else {
-		$.getJSON(base_url + 'index.php/logbook/jsonlookupdxcc/' + convert_case(entityname) + '/0/' + $("#band").val() + '/' + $("#mode").val(), function (result) {
+		$.getJSON(base_url + 'index.php/logbook/jsonlookupdxcc/' + entityval + '/0/' + $("#band").val() + '/' + $("#mode").val(), function (result) {
 			// Reset CSS values before updating
 			$('#callsign_info').removeClass("lotw_info_orange");
 			$('#callsign_info').removeClass("text-bg-secondary");
@@ -1014,7 +1014,7 @@ $("#callsign").on("focusout", function () {
 						})
 					}
 
-					changebadge(result.dxcc.entity);
+					changebadge(result.dxcc.adif);
 
 				}
 
@@ -2017,7 +2017,8 @@ function convert_case(str) {
 }
 
 $('#dxcc_id').on('change', function () {
-	$.getJSON(base_url + 'index.php/logbook/jsonentity/' + $(this).val(), function (result) {
+	const dxccadif=$(this).val();
+	$.getJSON(base_url + 'index.php/logbook/jsonentity/' + dxccadif, function (result) {
 		if (result.dxcc.name != undefined) {
 
 			$('#country').val(convert_case(result.dxcc.name));
@@ -2029,7 +2030,7 @@ $('#dxcc_id').on('change', function () {
 			$('#callsign_info').attr('title', '');
 			$('#callsign_info').text(convert_case(result.dxcc.name));
 
-			changebadge(result.dxcc.name);
+			changebadge(dxccadif);
 
 			// Set Map to Lat/Long it locator is not empty
 			if ($('#locator').val() == "") {

@@ -206,6 +206,7 @@ class User extends CI_Controller {
 				$data['user_measurement_base'] = $this->input->post('user_measurement_base') ?? 'K';
 				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 				$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
+				$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar') ?? 'Y';
 				$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 				$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 				$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -299,6 +300,7 @@ class User extends CI_Controller {
 				$this->input->post('on_air_widget_show_only_most_recent_radio'),
 				$this->input->post('qso_widget_display_qso_time'),
 				$this->input->post('user_dashboard_banner') ?? 'Y',
+				$this->input->post('user_dashboard_solar') ?? 'Y',
 				$this->input->post('clubstation') == '1' ? true : false,
 				$this->input->post('global_oqrs_text') ?? '',
 				$this->input->post('oqrs_grouped_search') ?? 'off',
@@ -336,6 +338,7 @@ class User extends CI_Controller {
 			$data['user_measurement_base'] = $this->input->post('user_measurement_base');
 			$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 			$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
+			$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar') ?? 'Y';
 			$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 			$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 			$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -714,6 +717,16 @@ class User extends CI_Controller {
 				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dashboard_banner','option_key'=>'boolean'), $this->uri->segment(3))->result();
 				if (count($dkey_opt)>0) {
 					$data['user_dashboard_banner'] = $dkey_opt[0]->option_value;
+				}
+			}
+
+			// Dashboard solar data information widget
+			if($this->input->post('user_dashboard_solar')) {
+				$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dashboard_solar','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($dkey_opt)>0) {
+					$data['user_dashboard_solar'] = $dkey_opt[0]->option_value;
 				}
 			}
 

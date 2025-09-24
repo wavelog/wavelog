@@ -636,6 +636,16 @@
 											</select>
 											<small id="user_dashboard_banner_Help" class="form-text text-muted"><?= __("This allows to disable the global notification banner on the dashboard."); ?></small>
 										</div>
+
+										<div class="mb-3">
+											<label for="user_dashboard_solar"><?= __("Dashboard solar and propagation data"); ?></label>
+											<?php if(!isset($user_dashboard_solar)) { $user_dashboard_solar='N'; }?>
+											<select class="form-select" id="user_dashboard_solar" name="user_dashboard_solar" aria-describedby="user_dashboard_solar_Help" required>
+												<option value='Y' <?php if($user_dashboard_solar == "Y") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
+												<option value='N' <?php if($user_dashboard_solar == "N") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
+											</select>
+											<small id="user_dashboard_solar_Help" class="form-text text-muted"><?= __("This switches the display of the solar and propagation data on the dashboard."); ?></small>
+										</div>
 									</div>
 								</div>
 							</div>

@@ -428,7 +428,7 @@ class Logbook extends CI_Controller {
 			}
 
 			$this->db->where_in('station_id', $logbooks_locations_array);
-			$this->db->where('COL_COUNTRY', urldecode($country));
+			$this->db->where('COL_DXCC', urldecode($country));
 
 			$query = $this->db->get($this->config->item('table_name'), 1, 0);
 			foreach ($query->result() as $workedBeforeRow)
@@ -481,7 +481,7 @@ class Logbook extends CI_Controller {
 			}
 
 			$this->db->where_in('station_id', $logbooks_locations_array);
-			$this->db->where('COL_COUNTRY', urldecode($country));
+			$this->db->where('COL_DXCC', urldecode($country));
 
 			$query = $this->db->get($this->config->item('table_name'), 1, 0);
 			foreach ($query->result() as $workedBeforeRow) {
