@@ -15,8 +15,8 @@ msgstr ""
 "POT-Creation-Date: 2025-09-23 09:28+0000\n"
 "PO-Revision-Date: 2025-09-23 12:36+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -131,6 +131,11 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/User.php:375 application/controllers/User.php:376
+#: application/controllers/User.php:1004 application/controllers/User.php:1023
+#: application/controllers/User.php:1248 application/controllers/User.php:1390
+#: application/controllers/User.php:1608 application/controllers/User.php:1624
+#: application/controllers/User.php:1650
 msgid "You're not allowed to do that!"
 msgstr "Вам нельзя это делать!"
 
@@ -341,7 +346,7 @@ msgstr "Дипломы - %s"
 #: application/views/qso/award_tabs.php:41
 #: application/views/qso/edit_ajax.php:401 application/views/qso/index.php:302
 #: application/views/qso/index.php:593 application/views/user/edit.php:672
-#: application/views/view_log/qso.php:460
+#: application/views/view_log/qso.php:460 application/views/user/edit.php:682
 msgid "DOK"
 msgstr "DOK"
 
@@ -564,7 +569,7 @@ msgstr "Fred Fish Memorial Award (FFMA)"
 #: application/views/qso/edit_ajax.php:392 application/views/qso/index.php:286
 #: application/views/qso/index.php:579 application/views/user/edit.php:668
 #: application/views/view_log/qso.php:425
-#: application/views/view_log/qso.php:736
+#: application/views/view_log/qso.php:736 application/views/user/edit.php:678
 msgid "SIG"
 msgstr "SIG"
 
@@ -768,7 +773,7 @@ msgstr "Ни один пользователь не сконфигурирова
 #: application/views/user/edit.php:808
 #: application/views/view_log/partial/log_ajax.php:222
 #: application/views/view_log/qso.php:565
-#: application/views/view_log/qso.php:570
+#: application/views/view_log/qso.php:570 application/views/user/edit.php:818
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -822,6 +827,7 @@ msgstr "Редактирование задачи"
 #: application/views/debug/index.php:539 application/views/debug/index.php:544
 #: application/views/debug/index.php:549 application/views/debug/index.php:554
 #: application/views/debug/index.php:559 application/views/debug/index.php:564
+#: application/views/debug/index.php:569
 msgid "never"
 msgstr "никогда"
 
@@ -880,6 +886,7 @@ msgstr "Экспорт SOTA в CSV"
 
 #: application/controllers/Dashboard.php:136
 #: application/controllers/Visitor.php:134
+#: application/controllers/Dashboard.php:144
 msgid "Dashboard"
 msgstr "Панель управления"
 
@@ -903,7 +910,7 @@ msgstr "Импорт ключа DCL"
 #: application/views/user/edit.php:596 application/views/user/edit.php:816
 #: application/views/view_log/partial/log_ajax.php:225
 #: application/views/view_log/qso.php:575
-#: application/views/view_log/qso.php:580
+#: application/views/view_log/qso.php:580 application/views/user/edit.php:826
 msgid "DCL"
 msgstr "DCL"
 
@@ -931,35 +938,36 @@ msgstr "Профили QTH с настроенной загрузкой в DCL �
 msgid "Key(s) Deleted."
 msgstr "Ключ(и) удалены."
 
-#: application/controllers/Debug.php:116
+#: application/controllers/Debug.php:116 application/controllers/Debug.php:117
 msgid "Debug"
 msgstr "Отладка"
 
-#: application/controllers/Debug.php:155
+#: application/controllers/Debug.php:155 application/controllers/Debug.php:156
 msgid "Migrate data now"
 msgstr "Переносите данные сейчас"
 
-#: application/controllers/Debug.php:158
+#: application/controllers/Debug.php:158 application/controllers/Debug.php:159
 msgid "Migration already done. Run again?"
 msgstr "Миграция уже выполнена. Запустить снова?"
 
-#: application/controllers/Debug.php:162
+#: application/controllers/Debug.php:162 application/controllers/Debug.php:163
 msgid "No data to migrate"
 msgstr "Нет данных для миграции"
 
 #: application/controllers/Debug.php:166 application/controllers/Debug.php:171
+#: application/controllers/Debug.php:167 application/controllers/Debug.php:172
 msgid "No migration possible"
 msgstr "Миграция невозможна"
 
-#: application/controllers/Debug.php:236
+#: application/controllers/Debug.php:236 application/controllers/Debug.php:237
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog был успешно обновлен!"
 
-#: application/controllers/Debug.php:254
+#: application/controllers/Debug.php:254 application/controllers/Debug.php:255
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate() недоступен. Проверьте журнал ошибок."
 
-#: application/controllers/Debug.php:298
+#: application/controllers/Debug.php:298 application/controllers/Debug.php:299
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
@@ -969,7 +977,7 @@ msgstr ""
 "Если все в порядке, можете удалить папки 'assets/qslcard' и 'images/"
 "eqsl_card_images'."
 
-#: application/controllers/Debug.php:301
+#: application/controllers/Debug.php:301 application/controllers/Debug.php:302
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
 "Не удалось выполнить миграцию файлов. Пожалуйста, проверьте журнал ошибок."
@@ -1285,7 +1293,7 @@ msgstr "Журнал"
 #: application/views/qslprint/qsolist.php:18
 #: application/views/qso/edit_ajax.php:39 application/views/qso/index.php:75
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
-#: application/views/user/edit.php:774
+#: application/views/user/edit.php:774 application/views/user/edit.php:784
 msgid "QSL"
 msgstr "QSL"
 
@@ -1322,7 +1330,7 @@ msgstr "QSL"
 #: application/views/search/search_result_ajax.php:316
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:784 application/views/view_log/qso.php:531
-#: application/views/view_log/qso.php:536
+#: application/views/view_log/qso.php:536 application/views/user/edit.php:794
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1357,6 +1365,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:792 application/views/user/edit.php:866
+#: application/views/user/edit.php:802 application/views/user/edit.php:876
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1441,7 +1450,7 @@ msgstr "eQSL"
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:18
+#: application/views/widgets/qsos.php:18 application/views/debug/index.php:592
 msgid "Mode"
 msgstr "Вид модуляции"
 
@@ -1733,7 +1742,7 @@ msgstr "Дистанция"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:21
+#: application/views/widgets/qsos.php:21 application/views/debug/index.php:593
 msgid "Band"
 msgstr "Диапазон"
 
@@ -1829,6 +1838,7 @@ msgstr "Быстрый поиск"
 #: application/views/lotw/import.php:3 application/views/lotw_views/index.php:9
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:838 application/views/visitor/index.php:328
+#: application/views/user/edit.php:848
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -2471,6 +2481,7 @@ msgstr "Дубликат профиля QTH:"
 
 #: application/controllers/Station.php:221
 #: application/controllers/User.php:1258 application/controllers/User.php:1508
+#: application/controllers/User.php:1271 application/controllers/User.php:1521
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Пожалуйста, проверьте значение QTH локатора (%s)"
@@ -2534,7 +2545,7 @@ msgstr "Ошибка. Ссылка уже используется!"
 #: application/views/station_profile/edit.php:401
 #: application/views/stationsetup/stationsetup.php:79
 #: application/views/user/edit.php:480 application/views/user/edit.php:489
-#: application/views/user/edit.php:635
+#: application/views/user/edit.php:635 application/views/user/edit.php:645
 msgid "Disabled"
 msgstr "Выключено"
 
@@ -2762,26 +2773,32 @@ msgid "WWFF Update failed. Result: "
 msgstr "Обновление WWFF не удалось. Результат: "
 
 #: application/controllers/Update.php:447
+#: application/controllers/Update.php:470
 msgid "POTA Update complete. Result: "
 msgstr "Обновление POTA завершено. Результат: "
 
 #: application/controllers/Update.php:449
+#: application/controllers/Update.php:472
 msgid "POTA Update failed. Result: "
 msgstr "Обновление POTA не удалось. Результат: "
 
 #: application/controllers/Update.php:462
+#: application/controllers/Update.php:485
 msgid "TLE Update complete. Result: "
 msgstr "Обновление TLE завершено. Результат: "
 
 #: application/controllers/Update.php:464
+#: application/controllers/Update.php:487
 msgid "TLE Update failed. Result: "
 msgstr "Обновление TLE не удалось. Результат: "
 
 #: application/controllers/Update.php:475
+#: application/controllers/Update.php:498
 msgid "LoTW SAT Update"
 msgstr "Обновление спутников для LoTW"
 
 #: application/controllers/Update.php:487
+#: application/controllers/Update.php:510
 msgid "Update of Hams of Note"
 msgstr "Обновить \"Заметки о корреспондентах\""
 
@@ -2816,44 +2833,46 @@ msgstr "Недопустимый параметр!"
 msgid "Add User"
 msgstr "Добавить пользователя"
 
-#: application/controllers/User.php:311
+#: application/controllers/User.php:311 application/controllers/User.php:313
 #, php-format
 msgid "Username %s already in use!"
 msgstr "Имя пользователя %s уже используется!"
 
-#: application/controllers/User.php:314
+#: application/controllers/User.php:314 application/controllers/User.php:316
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "Электронная почта %s уже используется!"
 
-#: application/controllers/User.php:317
+#: application/controllers/User.php:317 application/controllers/User.php:319
 msgid "Invalid Password!"
 msgstr "Неверный пароль!"
 
-#: application/controllers/User.php:321
+#: application/controllers/User.php:321 application/controllers/User.php:323
 #, php-format
 msgid "User %s added!"
 msgstr "Пользователь %s добавлен!"
 
-#: application/controllers/User.php:325
+#: application/controllers/User.php:325 application/controllers/User.php:327
 msgid "Users"
 msgstr "Пользователи"
 
 #: application/controllers/User.php:419
 #: application/views/club/permissions.php:253
+#: application/controllers/User.php:422
 msgid "Edit User"
 msgstr "Редактировать пользователя"
 
 #: application/controllers/User.php:926 application/controllers/User.php:929
+#: application/controllers/User.php:939 application/controllers/User.php:942
 #, php-format
 msgid "User %s edited"
 msgstr "Аккаунт пользователя %s отредактирован"
 
-#: application/controllers/User.php:994
+#: application/controllers/User.php:994 application/controllers/User.php:1007
 msgid "Profile"
 msgstr "Профиль"
 
-#: application/controllers/User.php:1059
+#: application/controllers/User.php:1059 application/controllers/User.php:1072
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -2861,11 +2880,12 @@ msgstr ""
 "Поздравляем! Wavelog был успешно установлен. Теперь вы можете войти в "
 "систему в первый раз."
 
-#: application/controllers/User.php:1098
+#: application/controllers/User.php:1098 application/controllers/User.php:1111
 msgid "This is not allowed!"
 msgstr "Это не разрешено!"
 
 #: application/controllers/User.php:1133 application/controllers/User.php:1144
+#: application/controllers/User.php:1146 application/controllers/User.php:1157
 msgid "Login failed. Try again."
 msgstr "Вход не выполнен. Попробуйте снова."
 
@@ -2873,17 +2893,18 @@ msgstr "Вход не выполнен. Попробуйте снова."
 #: application/views/interface_assets/header.php:392
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
+#: application/controllers/User.php:1164
 msgid "Login"
 msgstr "Вход"
 
-#: application/controllers/User.php:1189
+#: application/controllers/User.php:1189 application/controllers/User.php:1202
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "Вы не можете войти в аккаунт коллективной станции напрямую. Используйте "
 "вместо этого свой личный аккаунт."
 
-#: application/controllers/User.php:1192
+#: application/controllers/User.php:1192 application/controllers/User.php:1205
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -2891,7 +2912,7 @@ msgstr ""
 "Ваш аккаунт заблокирован из-за слишком большого количества неудачных попыток "
 "входа. Пожалуйста, сбросьте пароль."
 
-#: application/controllers/User.php:1196
+#: application/controllers/User.php:1196 application/controllers/User.php:1209
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2902,11 +2923,11 @@ msgstr ""
 "администратором. В настоящий момент только администраторы могут войти на "
 "сервер."
 
-#: application/controllers/User.php:1199
+#: application/controllers/User.php:1199 application/controllers/User.php:1212
 msgid "Incorrect username or password!"
 msgstr "Неверные логин или пароль!"
 
-#: application/controllers/User.php:1222
+#: application/controllers/User.php:1222 application/controllers/User.php:1235
 #, php-format
 msgid "User %s logged out."
 msgstr "Пользователь %s вышел."
@@ -2914,6 +2935,7 @@ msgstr "Пользователь %s вышел."
 #: application/controllers/User.php:1238
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
+#: application/controllers/User.php:1251
 msgid "Station Name"
 msgstr "Профиль QTH"
 
@@ -2924,6 +2946,7 @@ msgstr "Профиль QTH"
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:126
 #: application/views/user/modals/first_login_wizard.php:34
+#: application/controllers/User.php:1252 application/views/debug/index.php:594
 msgid "Station Callsign"
 msgstr "Позывной"
 
@@ -2931,23 +2954,25 @@ msgstr "Позывной"
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
+#: application/controllers/User.php:1253
 msgid "Station DXCC"
 msgstr "DXCC станции"
 
-#: application/controllers/User.php:1241
+#: application/controllers/User.php:1241 application/controllers/User.php:1254
 msgid "Station CQ Zone"
 msgstr "Зона CQ"
 
-#: application/controllers/User.php:1242
+#: application/controllers/User.php:1242 application/controllers/User.php:1255
 msgid "Station ITU Zone"
 msgstr "Зона ITU"
 
 #: application/controllers/User.php:1243
 #: application/views/user/modals/first_login_wizard.php:91
+#: application/controllers/User.php:1256
 msgid "Station Locator"
 msgstr "Локатор"
 
-#: application/controllers/User.php:1266
+#: application/controllers/User.php:1266 application/controllers/User.php:1279
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2956,24 +2981,26 @@ msgstr ""
 "Профиль QTH успешно создан! Добро пожаловать в Wavelog! Чтобы завершить "
 "настройку станции, нажмите %sздесь%s."
 
-#: application/controllers/User.php:1269
+#: application/controllers/User.php:1269 application/controllers/User.php:1282
 msgid "Station setup failed! Please set up your station manually."
 msgstr "|Создать профиль QTH не удалось! Пожалуйста, настройте его вручную."
 
-#: application/controllers/User.php:1286
+#: application/controllers/User.php:1286 application/controllers/User.php:1299
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Сброс пароля отключен в демо-версии!"
 
-#: application/controllers/User.php:1300
+#: application/controllers/User.php:1300 application/controllers/User.php:1313
 msgid "Forgot Password"
 msgstr "Восстановить пароль"
 
 #: application/controllers/User.php:1351
 #: application/views/user/modals/more_actions_modal.php:88
+#: application/controllers/User.php:1364
 msgid "Email settings are incorrect."
 msgstr "Настройки емэйл некорректны."
 
 #: application/controllers/User.php:1355 application/controllers/User.php:1360
+#: application/controllers/User.php:1368 application/controllers/User.php:1373
 msgid "Password Reset Processed."
 msgstr "Осуществлён сброс пароля."
 
@@ -2981,10 +3008,11 @@ msgstr "Осуществлён сброс пароля."
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
+#: application/controllers/User.php:1474
 msgid "Reset Password"
 msgstr "Сбросить пароль"
 
-#: application/controllers/User.php:1482
+#: application/controllers/User.php:1482 application/controllers/User.php:1495
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -2992,7 +3020,7 @@ msgstr ""
 "Не удалось создать учетную запись с этим именем пользователя. Пожалуйста, "
 "попробуйте другое, не \"%s\"."
 
-#: application/controllers/User.php:1491
+#: application/controllers/User.php:1491 application/controllers/User.php:1504
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -3000,7 +3028,7 @@ msgstr ""
 "Не удалось создать учетную запись с этим адресом электронной почты. "
 "Пожалуйста, попробуйте другой адрес, не \"%s\"."
 
-#: application/controllers/User.php:1530
+#: application/controllers/User.php:1530 application/controllers/User.php:1543
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3011,6 +3039,7 @@ msgstr ""
 
 #: application/controllers/User.php:1544
 #: application/views/user/modals/admin_impersonate_modal.php:36
+#: application/controllers/User.php:1557
 msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
@@ -3018,15 +3047,15 @@ msgstr ""
 "В настоящее время вы не можете выдавать себя за другого пользователя. "
 "Пожалуйста, сначала измените encryption_key в вашем файле config.php!"
 
-#: application/controllers/User.php:1551
+#: application/controllers/User.php:1551 application/controllers/User.php:1564
 msgid "Invalid Hash"
 msgstr "Неверный хеш"
 
-#: application/controllers/User.php:1564
+#: application/controllers/User.php:1564 application/controllers/User.php:1577
 msgid "The impersonation hash is too old. Please try again."
 msgstr "Хэш имперсонации слишком старый. Пожалуйста, попробуйте снова."
 
-#: application/controllers/User.php:1571
+#: application/controllers/User.php:1571 application/controllers/User.php:1584
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -3034,15 +3063,15 @@ msgstr ""
 "Вы не можете выдавать себя за другого пользователя, если вы не вошли в "
 "систему как исходный пользователь"
 
-#: application/controllers/User.php:1577
+#: application/controllers/User.php:1577 application/controllers/User.php:1590
 msgid "There was a problem with your session. Please try again."
 msgstr "Произошла проблема с вашей сессией. Пожалуйста, попробуйте снова."
 
-#: application/controllers/User.php:1584
+#: application/controllers/User.php:1584 application/controllers/User.php:1597
 msgid "The requested user to impersonate does not exist"
 msgstr "Запрашиваемый для имперсонации пользователь не существует"
 
-#: application/controllers/User.php:1605
+#: application/controllers/User.php:1605 application/controllers/User.php:1618
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -3052,11 +3081,13 @@ msgstr ""
 
 #: application/controllers/User.php:1650 application/controllers/User.php:1662
 #: application/controllers/User.php:1668 application/controllers/User.php:1677
-#: application/controllers/User.php:1685
+#: application/controllers/User.php:1685 application/controllers/User.php:1663
+#: application/controllers/User.php:1675 application/controllers/User.php:1681
+#: application/controllers/User.php:1690 application/controllers/User.php:1698
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Упс.. Что-то пошло не так. Попробуй войти снова."
 
-#: application/controllers/User.php:1691
+#: application/controllers/User.php:1691 application/controllers/User.php:1704
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -3064,7 +3095,7 @@ msgstr ""
 "Возможность быстрого возврата была отключена после истечения срока действия "
 "хэша безопасности. Пожалуйста, войдите снова."
 
-#: application/controllers/User.php:1707
+#: application/controllers/User.php:1707 application/controllers/User.php:1720
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -3376,23 +3407,29 @@ msgid "Bearing"
 msgstr "Направление"
 
 #: application/models/Update_model.php:319
+#: application/models/Update_model.php:351
 msgid "Newer release available:"
 msgstr "Доступна новая версия:"
 
 #: application/models/Update_model.php:323
+#: application/models/Update_model.php:355
 msgid "You are running the latest version."
 msgstr "Вы используете последнюю версию."
 
 #: application/models/Update_model.php:402
+#: application/models/Update_model.php:434
 msgid "cURL error:"
 msgstr "ошибка cURL:"
 
 #: application/models/Update_model.php:437
+#: application/models/Update_model.php:469
 msgid "SAT already existing. LoTW status updated."
 msgstr "Спутник уже существует. Статус LoTW обновлен."
 
 #: application/models/Update_model.php:440
 #: application/models/Update_model.php:469
+#: application/models/Update_model.php:472
+#: application/models/Update_model.php:501
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -3401,26 +3438,32 @@ msgstr[1] "Статус LoTW для %d QSO обновлен"
 msgstr[2] "Статус LoTW для %d QSO обновлен"
 
 #: application/models/Update_model.php:443
+#: application/models/Update_model.php:475
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "Спутник уже существует. Обновление статуса LoTW не удалось."
 
 #: application/models/Update_model.php:446
+#: application/models/Update_model.php:478
 msgid "SAT already existing. Ignored."
 msgstr "Спутник уже существует. Игнорируется."
 
 #: application/models/Update_model.php:453
+#: application/models/Update_model.php:485
 msgid "SAT already existing. Display name updated."
 msgstr "Спутник уже существует. Отображаемое наименование обновлено."
 
 #: application/models/Update_model.php:455
+#: application/models/Update_model.php:487
 msgid "SAT already existing. Updating display name failed."
 msgstr "Спутник уже существует. Не удалось обновить отображаемое наименование."
 
 #: application/models/Update_model.php:465
+#: application/models/Update_model.php:497
 msgid "New SAT. Inserted."
 msgstr "Новый спутник. Добавлен."
 
 #: application/models/Update_model.php:473
+#: application/models/Update_model.php:505
 msgid "New SAT. Insert failed."
 msgstr "Новый спутник. Добавление не удалось."
 
@@ -3593,6 +3636,7 @@ msgstr "Разница"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:758
 #: application/views/visitor/layout/footer.php:172
+#: application/views/user/edit.php:768
 msgid "All"
 msgstr "Все"
 
@@ -4015,6 +4059,7 @@ msgstr "Подтверждение"
 #: application/views/awards/wapc/index.php:56
 #: application/views/awards/was/index.php:68
 #: application/views/gridmap/index.php:125 application/views/user/edit.php:800
+#: application/views/user/edit.php:810
 msgid "QRZ.com"
 msgstr "QRZ.com"
 
@@ -4240,7 +4285,7 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
-#: application/views/widgets/qsos.php:16
+#: application/views/widgets/qsos.php:16 application/views/debug/index.php:589
 msgid "Date"
 msgstr "Дата"
 
@@ -4275,6 +4320,7 @@ msgstr "Дата"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/debug/index.php:590
 msgid "Time"
 msgstr "Время"
 
@@ -4295,7 +4341,8 @@ msgstr "Время"
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:200
 #: application/views/visitor/index.php:156
-#: application/views/widgets/qsos.php:17
+#: application/views/widgets/qsos.php:17 application/views/debug/index.php:591
+#: application/views/debug/index.php:626
 msgid "Call"
 msgstr "Позывной"
 
@@ -4354,6 +4401,7 @@ msgstr "Максимальный размер загружаемого файл�
 #: application/views/view_log/qso.php:781
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/debug/index.php:581
 msgid "Warning"
 msgstr "Предупреждение"
 
@@ -5357,6 +5405,7 @@ msgstr "QSL карточка"
 #: application/views/oqrs/showrequests.php:70
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:676
+#: application/views/user/edit.php:686
 msgid "Reset"
 msgstr "Сброс"
 
@@ -6171,7 +6220,7 @@ msgstr ""
 #: application/views/station_profile/create.php:183
 #: application/views/station_profile/edit.php:276
 #: application/views/user/edit.php:664 application/views/view_log/qso.php:403
-#: application/views/view_log/qso.php:729
+#: application/views/view_log/qso.php:729 application/views/user/edit.php:674
 msgid "POTA Reference(s)"
 msgstr "Сравочник POTA"
 
@@ -6685,7 +6734,7 @@ msgstr "Поле, используемое для этого диплома: WWF
 #: application/views/station_profile/create.php:177
 #: application/views/station_profile/edit.php:263
 #: application/views/user/edit.php:660 application/views/view_log/qso.php:396
-#: application/views/view_log/qso.php:722
+#: application/views/view_log/qso.php:722 application/views/user/edit.php:670
 msgid "WWFF Reference"
 msgstr "Справочник WWFF"
 
@@ -7259,7 +7308,10 @@ msgstr ""
 #: application/views/user/edit.php:938 application/views/user/edit.php:954
 #: application/views/user/edit.php:962 application/views/user/edit.php:982
 #: application/views/user/edit.php:1011 application/views/user/edit.php:1043
-#: application/views/user/edit.php:1068
+#: application/views/user/edit.php:1068 application/views/user/edit.php:948
+#: application/views/user/edit.php:964 application/views/user/edit.php:972
+#: application/views/user/edit.php:992 application/views/user/edit.php:1021
+#: application/views/user/edit.php:1053 application/views/user/edit.php:1078
 msgid "Yes"
 msgstr "Да"
 
@@ -7323,6 +7375,9 @@ msgstr "Да"
 #: application/views/user/edit.php:937 application/views/user/edit.php:953
 #: application/views/user/edit.php:981 application/views/user/edit.php:1012
 #: application/views/user/edit.php:1042 application/views/user/edit.php:1067
+#: application/views/user/edit.php:947 application/views/user/edit.php:963
+#: application/views/user/edit.php:991 application/views/user/edit.php:1022
+#: application/views/user/edit.php:1052 application/views/user/edit.php:1077
 msgid "No"
 msgstr "Нет"
 
@@ -8088,6 +8143,7 @@ msgstr "Идентификатор"
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:481 application/views/user/edit.php:490
 #: application/views/user/edit.php:634 application/views/user/edit.php:934
+#: application/views/user/edit.php:644 application/views/user/edit.php:944
 msgid "Enabled"
 msgstr "Включено"
 
@@ -9017,6 +9073,7 @@ msgstr "Обновление DXCC из Clublog"
 #: application/views/debug/index.php:555 application/views/debug/index.php:560
 #: application/views/debug/index.php:565
 #: application/views/station_profile/edit.php:53
+#: application/views/debug/index.php:570
 msgid "Update"
 msgstr "Обновить"
 
@@ -9052,11 +9109,11 @@ msgstr "Обновление TLE"
 msgid "Hams Of Note update"
 msgstr "Обновление \"Заметок о корреспондентах\""
 
-#: application/views/debug/index.php:572
+#: application/views/debug/index.php:572 application/views/debug/index.php:577
 msgid "QSO-DB Maintenance"
 msgstr "Обслуживание БД QSO"
 
-#: application/views/debug/index.php:576
+#: application/views/debug/index.php:576 application/views/debug/index.php:581
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -9065,141 +9122,142 @@ msgstr[0] "База данных содержит %d QSO без привязан
 msgstr[1] "База данных содержит %d QSO без привязанного профиля QTH"
 msgstr[2] "База данных содержит %d QSO без привязанного профиля QTH"
 
-#: application/views/debug/index.php:614
+#: application/views/debug/index.php:614 application/views/debug/index.php:619
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr "Пожалуйста, отметьте QSO и привяжите их к существующему профилю QTH:"
 
-#: application/views/debug/index.php:622
+#: application/views/debug/index.php:622 application/views/debug/index.php:627
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr "Целевой профиль QTH"
 
 #: application/views/debug/index.php:623 application/views/debug/index.php:634
+#: application/views/debug/index.php:628 application/views/debug/index.php:639
 msgid "Reassign"
 msgstr "Переназначить"
 
-#: application/views/debug/index.php:643
+#: application/views/debug/index.php:643 application/views/debug/index.php:648
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 "Каждое QSO в вашей базе данных привязано к соответствующему профилю QTH"
 
-#: application/views/debug/index.php:643
+#: application/views/debug/index.php:643 application/views/debug/index.php:648
 msgid "Everything ok"
 msgstr "Всё ОК"
 
-#: application/views/debug/index.php:668
+#: application/views/debug/index.php:668 application/views/debug/index.php:673
 msgid "Albanian"
 msgstr "Албанский"
 
-#: application/views/debug/index.php:669
+#: application/views/debug/index.php:669 application/views/debug/index.php:674
 msgid "Armenian"
 msgstr "Армянский"
 
-#: application/views/debug/index.php:670
+#: application/views/debug/index.php:670 application/views/debug/index.php:675
 msgid "Bosnian"
 msgstr "Боснийский"
 
-#: application/views/debug/index.php:671
+#: application/views/debug/index.php:671 application/views/debug/index.php:676
 msgid "Bulgarian"
 msgstr "Болгарский"
 
-#: application/views/debug/index.php:672
+#: application/views/debug/index.php:672 application/views/debug/index.php:677
 msgid "Chinese (Simplified)"
 msgstr "Китайский (упрощённый)"
 
-#: application/views/debug/index.php:673
+#: application/views/debug/index.php:673 application/views/debug/index.php:678
 msgid "Croatian"
 msgstr "Хорватский"
 
-#: application/views/debug/index.php:674
+#: application/views/debug/index.php:674 application/views/debug/index.php:679
 msgid "Czech"
 msgstr "Чешский"
 
-#: application/views/debug/index.php:675
+#: application/views/debug/index.php:675 application/views/debug/index.php:680
 msgid "Dutch"
 msgstr "Голландский"
 
-#: application/views/debug/index.php:676
+#: application/views/debug/index.php:676 application/views/debug/index.php:681
 msgid "English"
 msgstr "Английский"
 
-#: application/views/debug/index.php:677
+#: application/views/debug/index.php:677 application/views/debug/index.php:682
 msgid "Estonian"
 msgstr "Эстонский"
 
-#: application/views/debug/index.php:678
+#: application/views/debug/index.php:678 application/views/debug/index.php:683
 msgid "Finnish"
 msgstr "Финский"
 
-#: application/views/debug/index.php:679
+#: application/views/debug/index.php:679 application/views/debug/index.php:684
 msgid "French"
 msgstr "Французский"
 
-#: application/views/debug/index.php:680
+#: application/views/debug/index.php:680 application/views/debug/index.php:685
 msgid "German"
 msgstr "Немецкий"
 
-#: application/views/debug/index.php:681
+#: application/views/debug/index.php:681 application/views/debug/index.php:686
 msgid "Greek"
 msgstr "Греческий"
 
-#: application/views/debug/index.php:682
+#: application/views/debug/index.php:682 application/views/debug/index.php:687
 msgid "Hungarian"
 msgstr "Венгерский"
 
-#: application/views/debug/index.php:683
+#: application/views/debug/index.php:683 application/views/debug/index.php:688
 msgid "Italian"
 msgstr "Итальянский"
 
-#: application/views/debug/index.php:684
+#: application/views/debug/index.php:684 application/views/debug/index.php:689
 msgid "Japanese"
 msgstr "Японский"
 
-#: application/views/debug/index.php:685
+#: application/views/debug/index.php:685 application/views/debug/index.php:690
 msgid "Latvian"
 msgstr "Латышский"
 
-#: application/views/debug/index.php:686
+#: application/views/debug/index.php:686 application/views/debug/index.php:691
 msgid "Lithuanian"
 msgstr "Литовский"
 
-#: application/views/debug/index.php:687
+#: application/views/debug/index.php:687 application/views/debug/index.php:692
 msgid "Montenegrin"
 msgstr "Черногорский"
 
-#: application/views/debug/index.php:688
+#: application/views/debug/index.php:688 application/views/debug/index.php:693
 msgid "Polish"
 msgstr "Польский"
 
-#: application/views/debug/index.php:689
+#: application/views/debug/index.php:689 application/views/debug/index.php:694
 msgid "Portuguese"
 msgstr "Португальский"
 
-#: application/views/debug/index.php:690
+#: application/views/debug/index.php:690 application/views/debug/index.php:695
 msgid "Russian"
 msgstr "Русский"
 
-#: application/views/debug/index.php:691
+#: application/views/debug/index.php:691 application/views/debug/index.php:696
 msgid "Serbian"
 msgstr "Сербский"
 
-#: application/views/debug/index.php:692
+#: application/views/debug/index.php:692 application/views/debug/index.php:697
 msgid "Slovak"
 msgstr "Словацкий"
 
-#: application/views/debug/index.php:693
+#: application/views/debug/index.php:693 application/views/debug/index.php:698
 msgid "Slovenian"
 msgstr "Словенский"
 
-#: application/views/debug/index.php:694
+#: application/views/debug/index.php:694 application/views/debug/index.php:699
 msgid "Spanish"
 msgstr "Испанский"
 
-#: application/views/debug/index.php:695
+#: application/views/debug/index.php:695 application/views/debug/index.php:700
 msgid "Swedish"
 msgstr "Шведский"
 
-#: application/views/debug/index.php:696
+#: application/views/debug/index.php:696 application/views/debug/index.php:701
 msgid "Turkish"
 msgstr "Турецкий"
 
@@ -12792,7 +12850,7 @@ msgstr "Район (округ)"
 #: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:293
 #: application/views/qso/index.php:585 application/views/user/edit.php:668
 #: application/views/view_log/qso.php:441
-#: application/views/view_log/qso.php:741
+#: application/views/view_log/qso.php:741 application/views/user/edit.php:678
 msgid "SIG Info"
 msgstr "Информация SIG"
 
@@ -12944,7 +13002,7 @@ msgstr "Поиск в DX кластере последнего спота"
 #: application/views/station_profile/create.php:153
 #: application/views/station_profile/edit.php:222
 #: application/views/user/edit.php:652 application/views/view_log/qso.php:382
-#: application/views/view_log/qso.php:708
+#: application/views/view_log/qso.php:708 application/views/user/edit.php:662
 msgid "IOTA Reference"
 msgstr "Справочник IOTA"
 
@@ -12952,7 +13010,7 @@ msgstr "Справочник IOTA"
 #: application/views/station_profile/create.php:171
 #: application/views/station_profile/edit.php:250
 #: application/views/user/edit.php:656 application/views/view_log/qso.php:389
-#: application/views/view_log/qso.php:715
+#: application/views/view_log/qso.php:715 application/views/user/edit.php:666
 msgid "SOTA Reference"
 msgstr "Справочник SOTA"
 
@@ -14023,8 +14081,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -14765,8 +14823,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -15108,8 +15167,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:381
 msgid ""
@@ -15279,47 +15338,51 @@ msgstr "Баннер на экране сводных данных"
 msgid "This allows to disable the global notification banner on the dashboard."
 msgstr "Включение отображения баннера на экране сводных данных."
 
-#: application/views/user/edit.php:645
+#: application/views/user/edit.php:645 application/views/user/edit.php:655
 msgid "Show Reference Fields on QSO Tab"
 msgstr "Отображать поля референций на вкладках QSO"
 
-#: application/views/user/edit.php:649
+#: application/views/user/edit.php:649 application/views/user/edit.php:659
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
 "Включенные элементы будут отображаться на вкладке QSO, а не на вкладке "
 "General."
 
-#: application/views/user/edit.php:687
+#: application/views/user/edit.php:687 application/views/user/edit.php:697
 msgid "Online QSL request (OQRS) settings"
 msgstr "Настройки онлайн-запроса QSL (OQRS)"
 
-#: application/views/user/edit.php:691
+#: application/views/user/edit.php:691 application/views/user/edit.php:701
 msgid "Global text"
 msgstr "Сообщение на странице OQRS"
 
-#: application/views/user/edit.php:693
+#: application/views/user/edit.php:693 application/views/user/edit.php:703
 msgid ""
 "This text is an optional text that can be displayed on top of the OQRS page."
 msgstr ""
 "Необязательный текст, который может быть отображён в верхней части страницы "
 "OQRS."
 
-#: application/views/user/edit.php:696
+#: application/views/user/edit.php:696 application/views/user/edit.php:706
 msgid "Grouped search"
 msgstr "Объединённый поиск"
 
 #: application/views/user/edit.php:698 application/views/user/edit.php:707
 #: application/views/user/edit.php:716 application/views/user/edit.php:725
+#: application/views/user/edit.php:708 application/views/user/edit.php:717
+#: application/views/user/edit.php:726 application/views/user/edit.php:735
 msgid "Off"
 msgstr "Выкл"
 
 #: application/views/user/edit.php:699 application/views/user/edit.php:708
 #: application/views/user/edit.php:717 application/views/user/edit.php:726
+#: application/views/user/edit.php:709 application/views/user/edit.php:718
+#: application/views/user/edit.php:727 application/views/user/edit.php:736
 msgid "On"
 msgstr "Вкл"
 
-#: application/views/user/edit.php:701
+#: application/views/user/edit.php:701 application/views/user/edit.php:711
 msgid ""
 "When this is on, all station locations with OQRS active, will be searched at "
 "once."
@@ -15327,11 +15390,11 @@ msgstr ""
 "Если включено, то поиск будет осуществляться во всех профилях QTH, где "
 "активен OQRS."
 
-#: application/views/user/edit.php:705
+#: application/views/user/edit.php:705 application/views/user/edit.php:715
 msgid "Show station location name in grouped search results"
 msgstr "Показывать название профиля QTH в сгруппированных результатах поиска"
 
-#: application/views/user/edit.php:710
+#: application/views/user/edit.php:710 application/views/user/edit.php:720
 msgid ""
 "If grouped search is ON, you can decide if the name of the station location "
 "shall be shown in the results table."
@@ -15339,11 +15402,11 @@ msgstr ""
 "Если включен групповой поиск, вы можете решить, должно ли название профиля "
 "QTH отображаться в таблице результатов."
 
-#: application/views/user/edit.php:714
+#: application/views/user/edit.php:714 application/views/user/edit.php:724
 msgid "Automatic OQRS matching"
 msgstr "Автоматическая обработка OQRS"
 
-#: application/views/user/edit.php:719
+#: application/views/user/edit.php:719 application/views/user/edit.php:729
 msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
@@ -15352,67 +15415,67 @@ msgstr ""
 "система попытается автоматически сопоставить входящие запросы с "
 "существующими логами."
 
-#: application/views/user/edit.php:723
+#: application/views/user/edit.php:723 application/views/user/edit.php:733
 msgid "Automatic OQRS matching for direct requests"
 msgstr "Автоматическая обработка прямых запросов"
 
-#: application/views/user/edit.php:728
+#: application/views/user/edit.php:728 application/views/user/edit.php:738
 msgid "If this is on, automatic OQRS matching for direct request will happen."
 msgstr "Если это включено, прямые запросы будут автоматически обработаны."
 
-#: application/views/user/edit.php:744
+#: application/views/user/edit.php:744 application/views/user/edit.php:754
 msgid "Default Values"
 msgstr "Значения по умолчанию"
 
-#: application/views/user/edit.php:752
+#: application/views/user/edit.php:752 application/views/user/edit.php:762
 msgid "Settings for Default Band and Confirmation"
 msgstr "Настройки для диапазона и способ подтверждения (QSL) по умолчанию"
 
-#: application/views/user/edit.php:755
+#: application/views/user/edit.php:755 application/views/user/edit.php:765
 msgid "Default Band"
 msgstr "Диапазон по умолчанию"
 
-#: application/views/user/edit.php:765
+#: application/views/user/edit.php:765 application/views/user/edit.php:775
 msgid "Default QSL-Methods"
 msgstr "Способы подтверждения (QSL) по умолчанию"
 
-#: application/views/user/edit.php:830
+#: application/views/user/edit.php:830 application/views/user/edit.php:840
 msgid "Third Party Services"
 msgstr "Сторонние сервисы"
 
-#: application/views/user/edit.php:841
+#: application/views/user/edit.php:841 application/views/user/edit.php:851
 msgid "Logbook of The World (LoTW) Username"
 msgstr "Логин"
 
-#: application/views/user/edit.php:847
+#: application/views/user/edit.php:847 application/views/user/edit.php:857
 msgid "Logbook of The World (LoTW) Password"
 msgstr "Пароль"
 
-#: application/views/user/edit.php:851
+#: application/views/user/edit.php:851 application/views/user/edit.php:861
 msgid "Test Login"
 msgstr "Тестовый вход"
 
-#: application/views/user/edit.php:869
+#: application/views/user/edit.php:869 application/views/user/edit.php:879
 msgid "eQSL.cc Username"
 msgstr "Логин"
 
-#: application/views/user/edit.php:875
+#: application/views/user/edit.php:875 application/views/user/edit.php:885
 msgid "eQSL.cc Password"
 msgstr "Пароль"
 
-#: application/views/user/edit.php:892
+#: application/views/user/edit.php:892 application/views/user/edit.php:902
 msgid "Club Log"
 msgstr "Clublog"
 
-#: application/views/user/edit.php:895
+#: application/views/user/edit.php:895 application/views/user/edit.php:905
 msgid "Club Log Email/Callsign"
 msgstr "Емэйл/позывной"
 
-#: application/views/user/edit.php:901
+#: application/views/user/edit.php:901 application/views/user/edit.php:911
 msgid "Club Log Password"
 msgstr "Пароль"
 
-#: application/views/user/edit.php:906
+#: application/views/user/edit.php:906 application/views/user/edit.php:916
 #, php-format
 msgid ""
 "If you have 2FA enabled at Clublog, you have to generate an App. Password to "
@@ -15422,15 +15485,15 @@ msgstr ""
 "сгенерировать пароль приложения для использования Clublog в Wavelog. "
 "Посетите %sстраницу настроек вашего Clublog%s, чтобы сделать это."
 
-#: application/views/user/edit.php:923
+#: application/views/user/edit.php:923 application/views/user/edit.php:933
 msgid "Widgets"
 msgstr "Виджеты"
 
-#: application/views/user/edit.php:931
+#: application/views/user/edit.php:931 application/views/user/edit.php:941
 msgid "On-Air widget"
 msgstr "Виджет \"В эфире\""
 
-#: application/views/user/edit.php:941
+#: application/views/user/edit.php:941 application/views/user/edit.php:951
 msgid ""
 "Note: In order to use this widget, you need to have at least one CAT radio "
 "configured and working."
@@ -15438,16 +15501,16 @@ msgstr ""
 "Примечание: Чтобы использовать этот виджет, у вас должен быть настроен и "
 "работать, как минимум, один интерфейс радиостанции."
 
-#: application/views/user/edit.php:945
+#: application/views/user/edit.php:945 application/views/user/edit.php:955
 #, php-format
 msgid "When enabled, widget will be available at %s."
 msgstr "После включения виджет будет доступен на %s."
 
-#: application/views/user/edit.php:950
+#: application/views/user/edit.php:950 application/views/user/edit.php:960
 msgid "Display \"Last seen\" time"
 msgstr "Отобразить время \"Последней активности\""
 
-#: application/views/user/edit.php:956
+#: application/views/user/edit.php:956 application/views/user/edit.php:966
 msgid ""
 "This setting control whether the 'Last seen' time is displayed in widget or "
 "not."
@@ -15455,15 +15518,15 @@ msgstr ""
 "Эта настройка управляет отображением времени \"Последней активности\" в "
 "виджете."
 
-#: application/views/user/edit.php:959
+#: application/views/user/edit.php:959 application/views/user/edit.php:969
 msgid "Display only most recently updated radio"
 msgstr "Отображать только недавно обновлённые данные от радиостанции"
 
-#: application/views/user/edit.php:963
+#: application/views/user/edit.php:963 application/views/user/edit.php:973
 msgid "No, show all radios"
 msgstr "Нет, отображать все радиостанции"
 
-#: application/views/user/edit.php:965
+#: application/views/user/edit.php:965 application/views/user/edit.php:975
 msgid ""
 "If you have multiple CAT radios configured, this setting controls whether "
 "the widget should display all on-air radios of the user, or just the most "
@@ -15475,15 +15538,15 @@ msgstr ""
 "пользователя или только последнюю обновленную. Если у вас настроена только "
 "одна радиостанция, эта настройка не имеет эффекта."
 
-#: application/views/user/edit.php:975
+#: application/views/user/edit.php:975 application/views/user/edit.php:985
 msgid "QSOs widget"
 msgstr "QSO виджет"
 
-#: application/views/user/edit.php:978
+#: application/views/user/edit.php:978 application/views/user/edit.php:988
 msgid "Display exact QSO time"
 msgstr "Отображать точное время QSO"
 
-#: application/views/user/edit.php:984
+#: application/views/user/edit.php:984 application/views/user/edit.php:994
 msgid ""
 "This setting control whether exact QSO time should displayed in the QSO "
 "widget or not."
@@ -15491,44 +15554,44 @@ msgstr ""
 "Эта настройка контролирует, следует ли отображать точное время QSO в виджете "
 "QSO или нет."
 
-#: application/views/user/edit.php:997
+#: application/views/user/edit.php:997 application/views/user/edit.php:1007
 msgid "Miscellaneous"
 msgstr "Разное"
 
-#: application/views/user/edit.php:1005
+#: application/views/user/edit.php:1005 application/views/user/edit.php:1015
 msgid "AMSAT Status Upload"
 msgstr "Загрузка статуса AMSAT"
 
-#: application/views/user/edit.php:1008
+#: application/views/user/edit.php:1008 application/views/user/edit.php:1018
 msgid "Upload status of SAT QSOs to"
 msgstr "Загружать статус QSO через спутники в"
 
-#: application/views/user/edit.php:1022
+#: application/views/user/edit.php:1022 application/views/user/edit.php:1032
 msgid "Mastodonserver"
 msgstr "Сервер Mastodon"
 
-#: application/views/user/edit.php:1025
+#: application/views/user/edit.php:1025 application/views/user/edit.php:1035
 msgid "URL of Mastodonserver"
 msgstr "URL профиля пользователя Mastodon"
 
-#: application/views/user/edit.php:1027
+#: application/views/user/edit.php:1027 application/views/user/edit.php:1037
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
 msgstr "Главный URL вашего сервера Mastodon, т.е. %s"
 
-#: application/views/user/edit.php:1036
+#: application/views/user/edit.php:1036 application/views/user/edit.php:1046
 msgid "Experimental"
 msgstr "Экспериментально"
 
-#: application/views/user/edit.php:1036
+#: application/views/user/edit.php:1036 application/views/user/edit.php:1046
 msgid "Winkeyer"
 msgstr "Winkeyer"
 
-#: application/views/user/edit.php:1039
+#: application/views/user/edit.php:1039 application/views/user/edit.php:1049
 msgid "Winkeyer Features Enabled"
 msgstr "Функционал Winkeyer включен"
 
-#: application/views/user/edit.php:1045
+#: application/views/user/edit.php:1045 application/views/user/edit.php:1055
 #, php-format
 msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
@@ -15537,25 +15600,25 @@ msgstr ""
 "Поддержка Winkeyer в Wavelog является очень экспериментальной. Перед "
 "включением сначала прочитайте вики в %s."
 
-#: application/views/user/edit.php:1056
+#: application/views/user/edit.php:1056 application/views/user/edit.php:1066
 msgid "Hams.at"
 msgstr "Hams.at"
 
-#: application/views/user/edit.php:1059
+#: application/views/user/edit.php:1059 application/views/user/edit.php:1069
 msgid "Private Feed Key"
 msgstr "Приватный ключ потока"
 
-#: application/views/user/edit.php:1061
+#: application/views/user/edit.php:1061 application/views/user/edit.php:1071
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
 msgstr "Смотри свой профиль на %s."
 
-#: application/views/user/edit.php:1064
+#: application/views/user/edit.php:1064 application/views/user/edit.php:1074
 msgid "Show Workable Passes Only"
 msgstr "Показывать только пригодные для работы витки"
 
-#: application/views/user/edit.php:1070
+#: application/views/user/edit.php:1070 application/views/user/edit.php:1080
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
@@ -15564,7 +15627,7 @@ msgstr ""
 "квадрате, установленном в вашем аккаунте на hams.at. Требуется указание "
 "приватного ключа потока."
 
-#: application/views/user/edit.php:1082
+#: application/views/user/edit.php:1082 application/views/user/edit.php:1092
 msgid "Save Account"
 msgstr "Сохранить изменения"
 
@@ -16254,6 +16317,40 @@ msgstr "Отправить запрос"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Получено"
+
+#: application/controllers/Update.php:450
+msgid "HAMqsl Update complete. Result: "
+msgstr ""
+
+#: application/controllers/Update.php:452
+msgid "HAMqsl Update failed. Result: "
+msgstr ""
+
+#: application/views/dashboard/index.php:466
+msgid "Solar Data & Propagation"
+msgstr ""
+
+#: application/views/dashboard/index.php:468
+#, php-format
+msgid "Last update at %s."
+msgstr ""
+
+#: application/views/dashboard/index.php:477
+msgid "Data provided by HAMqsl."
+msgstr ""
+
+#: application/views/debug/index.php:568
+msgid "HAMqsl"
+msgstr ""
+
+#: application/views/user/edit.php:641
+msgid "Dashboard solar and propagation data"
+msgstr ""
+
+#: application/views/user/edit.php:647
+msgid ""
+"This switches the display of the solar and propagation data on the dashboard."
+msgstr ""
 
 #~ msgid "QSL / LoTW / Clublog / eQSL / QRZ"
 #~ msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
