@@ -82,9 +82,9 @@ class Dashboard extends CI_Controller {
 		// Check user preferrence to show Solar Data on Dashboard
 		// Default to not show
 		if (($this->session->userdata('user_dashboard_solar') ?? '') != '') {
-			$data['dashboard_solar'] = $this->session->userdata('user_dashboard_solar') ?? 'Y';
+			$data['dashboard_solar'] = $this->session->userdata('user_dashboard_solar') ?? 'N';
 		} else {
-			$data['dashboard_solar'] = 'N';
+			$data['dashboard_solar'] = 'N'; // Default to not show
 		}
 
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
@@ -189,7 +189,7 @@ class Dashboard extends CI_Controller {
 
 		// Check user preferrence to show Solar Data on Dashboard and load data if yes
 		// Default to not show
-		if($data['dashboard_solar'] == 'true') {
+		if($data['dashboard_solar'] == 'Y') {
 			$this->load->model('Hamqsl_model');	// Load HAMQSL model
 
 			if (!$this->Hamqsl_model->set_solardata()) {
