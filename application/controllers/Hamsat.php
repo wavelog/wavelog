@@ -126,11 +126,17 @@ class Hamsat extends CI_Controller {
 			}
 			$decoded_json->data[$i]->mode_class = $modeclass;
 			for($j = 0; $j < count($decoded_json->data[$i]->grids); $j++) {
-				$worked = $this->logbook_model->check_if_grid_worked_in_logbook(substr($decoded_json->data[$i]->grids[$j], 0, 4), null, "SAT");
-				if ($worked->num_rows() != 0) {
+				$worked = $this->logbook_model->check_sat_grid(substr($decoded_json->data[$i]->grids[$j], 0, 4), true);
+				switch ($worked) {
+				case 2:
+					$decoded_json->data[$i]->grids_wkd[$j] = 2;
+					break;
+				case 1:
 					$decoded_json->data[$i]->grids_wkd[$j] = 1;
-				} else {
+					break;
+				default:
 					$decoded_json->data[$i]->grids_wkd[$j] = 0;
+					break;
 				}
 			}
 

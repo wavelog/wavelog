@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-24 11:19+0000\n"
-"PO-Revision-Date: 2025-09-21 07:17+0000\n"
+"POT-Creation-Date: 2025-09-25 14:16+0000\n"
+"PO-Revision-Date: 2025-09-24 18:18+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -2466,7 +2466,7 @@ msgstr "Kontrollera värdet för rutnätslokatorn (%s)"
 #: application/views/interface_assets/header.php:421
 #: application/views/interface_assets/header.php:574
 msgid "Station Setup"
-msgstr "Stationsinställning"
+msgstr "Stationsinställningar"
 
 #: application/controllers/Stationsetup.php:75
 #: application/controllers/Stationsetup.php:93
@@ -2751,11 +2751,11 @@ msgstr "WWFF-uppdatering misslyckades. Resultat: "
 
 #: application/controllers/Update.php:450
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "HAMqsl-uppdatering klar. Resultat: "
 
 #: application/controllers/Update.php:452
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "HAMqsl-uppdatering misslyckades. Resultat: "
 
 #: application/controllers/Update.php:470
 msgid "POTA Update complete. Result: "
@@ -2947,13 +2947,13 @@ msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
-"Station framgångsrikt skapad! Välkommen till Wavelog! För att slutföra din "
-"stationsinställning, klicka %shär%s."
+"Station framgångsrikt skapad! Välkommen till Wavelog! För att slutföra dina "
+"stationsinställningar, klicka %shär%s."
 
 #: application/controllers/User.php:1282
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
-"Stationsinställning misslyckades! Vänligen ställ in din station manuellt."
+"Stationsinställningar misslyckades! Vänligen ställ in din station manuellt."
 
 #: application/controllers/User.php:1299
 msgid "Password Reset is disabled on the Demo!"
@@ -3270,16 +3270,16 @@ msgstr "Ingen anropssignal angiven"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC måste vara numerisk"
 
-#: application/models/Logbook_model.php:4039
+#: application/models/Logbook_model.php:4061
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Fel anropssignal %s vid import av QSO med %s för %s: HOPPADES ÖVER"
 
-#: application/models/Logbook_model.php:4052
+#: application/models/Logbook_model.php:4074
 msgid "QSO on"
 msgstr "QSO kl"
 
-#: application/models/Logbook_model.php:4052
+#: application/models/Logbook_model.php:4074
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3287,72 +3287,72 @@ msgstr ""
 "Du försökte importera ett QSO utan angivet CALL. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:4359
+#: application/models/Logbook_model.php:4381
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:4370
+#: application/models/Logbook_model.php:4392
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:4431
+#: application/models/Logbook_model.php:4453
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:4451
+#: application/models/Logbook_model.php:4473
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:4472
+#: application/models/Logbook_model.php:4494
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:4764
+#: application/models/Logbook_model.php:4786
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
-#: application/models/Logbook_model.php:4829
-#: application/models/Logbook_model.php:4924
+#: application/models/Logbook_model.php:4851
+#: application/models/Logbook_model.php:4946
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
-#: application/models/Logbook_model.php:4837
+#: application/models/Logbook_model.php:4859
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
-#: application/models/Logbook_model.php:4843
+#: application/models/Logbook_model.php:4865
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
-#: application/models/Logbook_model.php:4847
+#: application/models/Logbook_model.php:4869
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
-#: application/models/Logbook_model.php:4851
+#: application/models/Logbook_model.php:4873
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
-#: application/models/Logbook_model.php:4854
+#: application/models/Logbook_model.php:4876
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:4857
+#: application/models/Logbook_model.php:4879
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "Okänd"
 
-#: application/models/Logbook_model.php:4927
+#: application/models/Logbook_model.php:4949
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
-#: application/models/Logbook_model.php:4930
+#: application/models/Logbook_model.php:4952
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:5802
+#: application/models/Logbook_model.php:5824
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -7413,7 +7413,7 @@ msgstr "Radera ett QSO"
 
 #: application/views/club/permissions.php:85
 msgid "Manage Stationsetup (edit/create logbooks and locations)"
-msgstr "Hantera stationsinställningar (redigera/skapa loggböcker och platser)"
+msgstr "Hanterar stationsinställningar (redigera/skapa loggböcker och platser)"
 
 #: application/views/club/permissions.php:93
 msgid "Manage Third-Party services"
@@ -8136,7 +8136,7 @@ msgstr "ID"
 
 #: application/views/cron/index.php:69
 msgid "Last Run"
-msgstr "Senast kontaktad"
+msgstr "Senaste körning"
 
 #: application/views/cron/index.php:70
 msgid "Next Run"
@@ -8423,16 +8423,16 @@ msgstr "VUCC-rutnät"
 
 #: application/views/dashboard/index.php:466
 msgid "Solar Data & Propagation"
-msgstr ""
+msgstr "Soldata och vågutbredning"
 
 #: application/views/dashboard/index.php:468
 #, php-format
 msgid "Last update at %s."
-msgstr ""
+msgstr "Senaste uppdateringen kl. %s."
 
 #: application/views/dashboard/index.php:477
 msgid "Data provided by HAMqsl."
-msgstr ""
+msgstr "Data tillhandahålls av HAMqsl."
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
@@ -9005,7 +9005,7 @@ msgstr "Hams Of Note uppdatering"
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
-msgstr ""
+msgstr "HAMqsl"
 
 #: application/views/debug/index.php:577
 msgid "QSO-DB Maintenance"
@@ -10577,11 +10577,11 @@ msgstr "QRZ skickat"
 
 #: application/views/logbookadvanced/edit.php:48
 msgid "QSL Received"
-msgstr ""
+msgstr "QSL Mottaget"
 
 #: application/views/logbookadvanced/edit.php:49
 msgid "QSL Sent"
-msgstr ""
+msgstr "QSL Skickat"
 
 #: application/views/logbookadvanced/edit.php:50
 msgid "QSLMSG"
@@ -15129,7 +15129,8 @@ msgid ""
 "locations by adding them to favourites at the station setup page."
 msgstr ""
 "Visa stationsplatser under Snabbväxling i huvudmenyn. Du kan lägga till "
-"platser genom att lägga till dem som favoriter på stationsinställningssidan."
+"platser genom att lägga till dem som favoriter på sidan med "
+"stationsinställningar."
 
 #: application/views/user/edit.php:487
 msgid "UTC Time in Menu"
@@ -15215,12 +15216,13 @@ msgstr ""
 
 #: application/views/user/edit.php:641
 msgid "Dashboard solar and propagation data"
-msgstr ""
+msgstr "Instrumentpanel för sol- och vågutbredningsdata"
 
 #: application/views/user/edit.php:647
 msgid ""
 "This switches the display of the solar and propagation data on the dashboard."
 msgstr ""
+"Detta växlar visningen av sol- och vågutbredningsdata på instrumentpanelen."
 
 #: application/views/user/edit.php:655
 msgid "Show Reference Fields on QSO Tab"
