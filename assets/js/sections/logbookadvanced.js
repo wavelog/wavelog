@@ -1,7 +1,8 @@
-var callBookProcessingDialog = null;
-var inCallbookProcessing = false;
-var inCallbookItemProcessing = false;
+let callBookProcessingDialog = null;
+let inCallbookProcessing = false;
+let inCallbookItemProcessing = false;
 let lastChecked = null;
+let silentReset = false;
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -186,14 +187,13 @@ function loadQSOTable(rows) {
 		$.fn.dataTable.moment(custom_date_format + ' HH:mm');
 
 		const table = $table.DataTable({
-			searching: true,
+			searching: false,
 			responsive: false,
 			ordering: true,
 			scrollY: window.innerHeight - $('#searchForm').innerHeight() - 250,
 			scrollCollapse: true,
-			language: language,
-			ordering: true,
 			paging: false,
+			language: language,
 			createdRow: function (row, data, dataIndex) {
 				$(row).attr('id', data.id);
 			},
@@ -1197,6 +1197,7 @@ $(document).ready(function () {
 				case 'date': 		col1 = currentRow.find("td:eq(1)").text(); break;
 			}
 			if (col1.length == 0) return;
+			silentReset = true;
 			$('#searchForm').trigger("reset");
 
 			if (type == 'date') {
@@ -1341,6 +1342,10 @@ $(document).ready(function () {
 	});
 
 	$('#searchForm').on('reset', function(e) {
+		if (silentReset) {
+    	    silentReset = false; // reset flag
+        	return; // skip submit
+    	}
 		setTimeout(function() {
 			$('#searchForm').submit();
 		});
