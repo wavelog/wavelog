@@ -152,10 +152,16 @@ function loadActivationsTable(rows, show_workable_only) {
 		grids = [];
 		for (var j=0; j < activation.grids_wkd.length; j++) {
 			if (!grids.some(str => str.includes(activation.grids[j].substring(0, 4)))) {
-				if (activation.grids_wkd[j] == 1) {
-					grids.push("<a href=\"javascript:displayContacts('"+activation.grids[j].substring(0, 4)+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-success\">"+activation.grids[j].substring(0, 4)+"</span></a>")
-				} else {
-					grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+activation.grids[j].substring(0, 4)+"</span>")
+				switch (activation.grids_wkd[j]) {
+					case 1:
+						grids.push("<a href=\"javascript:displayContacts('"+activation.grids[j].substring(0, 4)+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-warning\">"+activation.grids[j].substring(0, 4)+"</span></a>")
+						break;
+					case 2:
+						grids.push("<a href=\"javascript:displayContacts('"+activation.grids[j].substring(0, 4)+"','SAT','All','All','All','VUCC','');\"><span data-bs-toggle=\"tooltip\" title=\"Confirmed\" class=\"badge bg-success\">"+activation.grids[j].substring(0, 4)+"</span></a>")
+						break;
+					default:
+						grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+activation.grids[j].substring(0, 4)+"</span>")
+						break;
 				}
 			}
 		}
