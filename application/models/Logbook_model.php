@@ -2685,6 +2685,28 @@ class Logbook_model extends CI_Model {
 		return $query->num_rows();
 	}
 
+	function check_sat_grid($grid) {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$sql = "SELECT COALESCE(NULLIF(COL_LOTW_QSL_RCVD, ''), 'N') AS lotw,
+			COALESCE(NULLIF(COL_QSL_RCVD, ''), 'N') as qsl, COUNT(COL_PRIMARY_KEY) AS count
+			FROM ".$this->config->item('table_name')."
+			WHERE COL_PROP_MODE = 'SAT'
+			AND ( SUBSTRING(COL_GRIDSQUARE, 1, 4) = ? OR COL_VUCC_GRIDS LIKE ? )
+			AND station_id in ('".implode("','", $logbooks_locations_array)."')
+			GROUP BY COL_LOTW_QSL_RCVD, COL_QSL_RCVD;";
+		$query = $this->db->query($sql, array($grid, "%".$grid."%"));
+		if ($query->num_rows() > 0) {
+			foreach ($query->result() as $row) {
+				if ($row->count > 0 && ($row->lotw == 'Y' || $row->qsl == 'Y')) {
+					return 2;
+				}
+			}
+			return 1;
+		} else {
+			return 0;
+		}
+	}
 
 	function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null, $cnfm = null) {
 
