@@ -1867,7 +1867,7 @@ $(document).ready(function(){
 		<script src="<?php echo base_url(); ?>assets/js/sections/webadif.js"></script>
 	<?php } ?>
 
-<?php if ($this->uri->segment(2) == "dxcc" || $this->uri->segment(2) == "wae") { ?>
+<?php if ($this->uri->segment(2) == "dxcc" || $this->uri->segment(2) == "wae" || $this->uri->segment(2) == "wpx") { ?>
 <script>
     $('.tabledxcc').DataTable({
         "pageLength": 25,
@@ -1884,7 +1884,7 @@ $(document).ready(function(){
         buttons: [
 			{
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -1907,7 +1907,7 @@ $(document).ready(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -1921,7 +1921,7 @@ $(document).ready(function(){
     }
  </script>
     <?php } ?>
-	<?php if ($this->uri->segment(2) == "wae") { ?>
+	<?php if ($this->uri->segment(2) == "wae" || $this->uri->segment(2) == "wpx") { ?>
 		<script>
 	$('#band2').change(function(){
    var band = $("#band2 option:selected").text();
@@ -1985,7 +1985,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn-sm btn btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -2017,7 +2017,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -2040,7 +2040,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -2072,7 +2072,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
@@ -2095,7 +2095,7 @@ $('#sats').change(function(){
         buttons: [
             {
 				extend: 'csv',
-				className: 'mb-1 btn btn-primary', // Bootstrap classes
+				className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
 					init: function(api, node, config) {
 						$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
 					},
