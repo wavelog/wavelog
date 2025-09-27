@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-27 05:11+0000\n"
-"PO-Revision-Date: 2025-09-23 19:41+0000\n"
+"POT-Creation-Date: 2025-09-25 14:16+0000\n"
+"PO-Revision-Date: 2025-09-26 12:20+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -2758,11 +2758,11 @@ msgstr "WWFF Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:450
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "HAMqsl Güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:452
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "HAMqsl Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:470
 msgid "POTA Update complete. Result: "
@@ -3375,22 +3375,28 @@ msgstr "QSO güncellendi"
 msgid "Bearing"
 msgstr "Yön"
 
+#: application/models/Update_model.php:351
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
 msgstr "Daha yeni sürüm mevcut:"
 
+#: application/models/Update_model.php:355
 #: application/models/Update_model.php:357
 msgid "You are running the latest version."
 msgstr "En son sürümü çalıştırıyorsun."
 
+#: application/models/Update_model.php:434
 #: application/models/Update_model.php:436
 msgid "cURL error:"
 msgstr "cURL hatası:"
 
+#: application/models/Update_model.php:469
 #: application/models/Update_model.php:471
 msgid "SAT already existing. LoTW status updated."
 msgstr "Uydu zaten mevcut. LoTW durumu güncellendi."
 
+#: application/models/Update_model.php:472
+#: application/models/Update_model.php:501
 #: application/models/Update_model.php:474
 #: application/models/Update_model.php:503
 #, php-format
@@ -3399,26 +3405,32 @@ msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTW durumu %d QSO için güncellendi"
 msgstr[1] "LoTW durumu %d QSO için güncellendi"
 
+#: application/models/Update_model.php:475
 #: application/models/Update_model.php:477
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "Uydu zaten mevcut. LoTW durumu güncellemesi başarısız oldu."
 
+#: application/models/Update_model.php:478
 #: application/models/Update_model.php:480
 msgid "SAT already existing. Ignored."
 msgstr "Uydu zaten mevcut. Yoksayıldı."
 
+#: application/models/Update_model.php:485
 #: application/models/Update_model.php:487
 msgid "SAT already existing. Display name updated."
 msgstr "Uydu zaten mevcut. Görüntülüme adı güncellendi."
 
+#: application/models/Update_model.php:487
 #: application/models/Update_model.php:489
 msgid "SAT already existing. Updating display name failed."
 msgstr "Uydu zaten mevcut. Görüntüleme adı güncellemesi başarısız oldu."
 
+#: application/models/Update_model.php:497
 #: application/models/Update_model.php:499
 msgid "New SAT. Inserted."
 msgstr "Yeni Uydu. Eklendi."
 
+#: application/models/Update_model.php:505
 #: application/models/Update_model.php:507
 msgid "New SAT. Insert failed."
 msgstr "Yeni Uydu. Ekleme başarısız oldu."
@@ -8460,16 +8472,16 @@ msgstr "VUCC-Gridleri"
 
 #: application/views/dashboard/index.php:466
 msgid "Solar Data & Propagation"
-msgstr ""
+msgstr "Güneş Verileri ve Yayılımı"
 
 #: application/views/dashboard/index.php:468
 #, php-format
 msgid "Last update at %s."
-msgstr ""
+msgstr "Son güncelleme %s."
 
 #: application/views/dashboard/index.php:477
 msgid "Data provided by HAMqsl."
-msgstr ""
+msgstr "Veriler HAMqsl tarafından sağlanmıştır."
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
@@ -9043,7 +9055,7 @@ msgstr "Tanınmış Amatör Telsizciler'i Güncelle"
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
-msgstr ""
+msgstr "HAMqsl"
 
 #: application/views/debug/index.php:577
 msgid "QSO-DB Maintenance"
@@ -15271,12 +15283,12 @@ msgstr "Bu ayar bildirim afişini devre dışı bırakmanıza olanak tanır."
 
 #: application/views/user/edit.php:641
 msgid "Dashboard solar and propagation data"
-msgstr ""
+msgstr "Güneş ve Yayılım Verileri Paneli"
 
 #: application/views/user/edit.php:647
 msgid ""
 "This switches the display of the solar and propagation data on the dashboard."
-msgstr ""
+msgstr "Bu ayar, güneş ve yayılım verilerinin görüntülenmesini değiştirir."
 
 #: application/views/user/edit.php:655
 msgid "Show Reference Fields on QSO Tab"

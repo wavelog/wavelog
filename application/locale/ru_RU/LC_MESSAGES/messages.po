@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-27 05:11+0000\n"
-"PO-Revision-Date: 2025-09-23 12:36+0000\n"
+"POT-Creation-Date: 2025-09-24 11:19+0000\n"
+"PO-Revision-Date: 2025-09-25 14:17+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -2764,11 +2764,11 @@ msgstr "Обновление WWFF не удалось. Результат: "
 
 #: application/controllers/Update.php:450
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "Обновление HAMqsl завершено. Результат: "
 
 #: application/controllers/Update.php:452
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "Обновление HAMqsl не удалось. Результат: "
 
 #: application/controllers/Update.php:470
 msgid "POTA Update complete. Result: "
@@ -3288,15 +3288,18 @@ msgstr "Не указан позывной"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC должен быть цифровым"
 
+#: application/models/Logbook_model.php:4039
 #: application/models/Logbook_model.php:4061
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
+#: application/models/Logbook_model.php:4052
 #: application/models/Logbook_model.php:4074
 msgid "QSO on"
 msgstr "начало QSO"
 
+#: application/models/Logbook_model.php:4052
 #: application/models/Logbook_model.php:4074
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3305,72 +3308,88 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
+#: application/models/Logbook_model.php:4359
 #: application/models/Logbook_model.php:4381
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4370
 #: application/models/Logbook_model.php:4392
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4431
 #: application/models/Logbook_model.php:4453
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4451
 #: application/models/Logbook_model.php:4473
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
+#: application/models/Logbook_model.php:4472
 #: application/models/Logbook_model.php:4494
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4786
+#: application/models/Logbook_model.php:4764
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4786
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
+#: application/models/Logbook_model.php:4829
+#: application/models/Logbook_model.php:4924
 #: application/models/Logbook_model.php:4851
 #: application/models/Logbook_model.php:4946
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
+#: application/models/Logbook_model.php:4837
 #: application/models/Logbook_model.php:4859
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4843
 #: application/models/Logbook_model.php:4865
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
+#: application/models/Logbook_model.php:4847
 #: application/models/Logbook_model.php:4869
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
+#: application/models/Logbook_model.php:4851
 #: application/models/Logbook_model.php:4873
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
+#: application/models/Logbook_model.php:4854
 #: application/models/Logbook_model.php:4876
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4879
+#: application/models/Logbook_model.php:4857
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4879
 msgid "unknown"
 msgstr "неизвестно"
 
+#: application/models/Logbook_model.php:4927
 #: application/models/Logbook_model.php:4949
 msgid "POTA reference already in log"
 msgstr "Ренференция POTA уже в журнале"
 
+#: application/models/Logbook_model.php:4930
 #: application/models/Logbook_model.php:4952
 msgid "QSO updated"
 msgstr "QSO обновлено"
 
-#: application/models/Logbook_model.php:5824
+#: application/models/Logbook_model.php:5802
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3381,25 +3400,32 @@ msgstr "QSO обновлено"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5824
 msgid "Bearing"
 msgstr "Направление"
 
+#: application/models/Update_model.php:351
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
 msgstr "Доступна новая версия:"
 
+#: application/models/Update_model.php:355
 #: application/models/Update_model.php:357
 msgid "You are running the latest version."
 msgstr "Вы используете последнюю версию."
 
+#: application/models/Update_model.php:434
 #: application/models/Update_model.php:436
 msgid "cURL error:"
 msgstr "ошибка cURL:"
 
+#: application/models/Update_model.php:469
 #: application/models/Update_model.php:471
 msgid "SAT already existing. LoTW status updated."
 msgstr "Спутник уже существует. Статус LoTW обновлен."
 
+#: application/models/Update_model.php:472
+#: application/models/Update_model.php:501
 #: application/models/Update_model.php:474
 #: application/models/Update_model.php:503
 #, php-format
@@ -3409,26 +3435,32 @@ msgstr[0] "Статус LoTW для %d QSO обновлен"
 msgstr[1] "Статус LoTW для %d QSO обновлен"
 msgstr[2] "Статус LoTW для %d QSO обновлен"
 
+#: application/models/Update_model.php:475
 #: application/models/Update_model.php:477
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "Спутник уже существует. Обновление статуса LoTW не удалось."
 
+#: application/models/Update_model.php:478
 #: application/models/Update_model.php:480
 msgid "SAT already existing. Ignored."
 msgstr "Спутник уже существует. Игнорируется."
 
+#: application/models/Update_model.php:485
 #: application/models/Update_model.php:487
 msgid "SAT already existing. Display name updated."
 msgstr "Спутник уже существует. Отображаемое наименование обновлено."
 
+#: application/models/Update_model.php:487
 #: application/models/Update_model.php:489
 msgid "SAT already existing. Updating display name failed."
 msgstr "Спутник уже существует. Не удалось обновить отображаемое наименование."
 
+#: application/models/Update_model.php:497
 #: application/models/Update_model.php:499
 msgid "New SAT. Inserted."
 msgstr "Новый спутник. Добавлен."
 
+#: application/models/Update_model.php:505
 #: application/models/Update_model.php:507
 msgid "New SAT. Insert failed."
 msgstr "Новый спутник. Добавление не удалось."
@@ -8359,7 +8391,7 @@ msgstr "Статистика QSO"
 #: application/views/dashboard/index.php:326
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
-msgstr "Разбивка DXCC"
+msgstr "Статистика по DXCC"
 
 #: application/views/dashboard/index.php:343
 #: application/views/visitor/index.php:279
@@ -8490,16 +8522,16 @@ msgstr "Квадраты VUCC"
 
 #: application/views/dashboard/index.php:466
 msgid "Solar Data & Propagation"
-msgstr ""
+msgstr "Солнечная активность и похождение"
 
 #: application/views/dashboard/index.php:468
 #, php-format
 msgid "Last update at %s."
-msgstr ""
+msgstr "Последнее обновление в %s."
 
 #: application/views/dashboard/index.php:477
 msgid "Data provided by HAMqsl."
-msgstr ""
+msgstr "Данные предоставлены HAMqsl."
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
@@ -9077,7 +9109,7 @@ msgstr "Обновление \"Заметок о корреспондентах\
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
-msgstr ""
+msgstr "HAMqsl"
 
 #: application/views/debug/index.php:577
 msgid "QSO-DB Maintenance"
@@ -14050,8 +14082,8 @@ msgid ""
 "give an initial sent exchange. To deactivate, use ',+0':"
 msgstr ""
 "Принятый контрольный номер должен быть с префиксом точка '.', отправленный "
-"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- т."
-"е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
+"контрольный номер -- с запятой ','. Последние две строки эквивалентны -- "
+"т.е. пробелы не имеют значения, как и порядок. Контрольный номер, который вы "
 "отправили, будет автоматически включен в следующее QSO, если он содержит "
 "принятый контрольный номер, или если вы используете одну запятую ','. Чтобы "
 "автоматически увеличить отправленный порядковый номер, используйте ',++' и "
@@ -14792,8 +14824,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Создайте новую папку в 'assets/css/' и загрузите в нее файл 'bootstrap.min."
-"css', который содержит основные правила стилизации. Мы используем темы из %s"
+"Создайте новую папку в 'assets/css/' и загрузите в нее файл "
+"'bootstrap.min.css', который содержит основные правила стилизации. Мы "
+"используем темы из %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -15135,8 +15168,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Показать изображение корреспондента по QSO из его профиля на qrz.com/hamqth."
-"com в разделе QSO журнала."
+"Показать изображение корреспондента по QSO из его профиля на qrz.com/"
+"hamqth.com в разделе QSO журнала."
 
 #: application/views/user/edit.php:381
 msgid ""
@@ -15308,12 +15341,14 @@ msgstr "Включение отображения баннера на экран
 
 #: application/views/user/edit.php:641
 msgid "Dashboard solar and propagation data"
-msgstr ""
+msgstr "Информация о солнечной активности и прохождении на панели управления"
 
 #: application/views/user/edit.php:647
 msgid ""
 "This switches the display of the solar and propagation data on the dashboard."
 msgstr ""
+"Включение/выключение отображения информации о солнечной активности и "
+"прохождении на панели управления."
 
 #: application/views/user/edit.php:655
 msgid "Show Reference Fields on QSO Tab"
@@ -15384,17 +15419,19 @@ msgid ""
 "If this is on, automatic OQRS matching will happen, and the system will try "
 "to match incoming requests with existing logs automatically."
 msgstr ""
-"Если это включено, будет выполнена автоматическая обработка OQRS, т.е. "
-"система попытается автоматически сопоставить входящие запросы с "
-"существующими логами."
+"Если включено, будет выполнена автоматическая обработка OQRS, т.е. система "
+"попытается автоматически сопоставить входящие запросы с существующими логами."
 
 #: application/views/user/edit.php:733
 msgid "Automatic OQRS matching for direct requests"
-msgstr "Автоматическая обработка прямых запросов"
+msgstr "Автоматическая обработка OQRS для запросов напрямую"
 
 #: application/views/user/edit.php:738
 msgid "If this is on, automatic OQRS matching for direct request will happen."
-msgstr "Если это включено, прямые запросы будут автоматически обработаны."
+msgstr ""
+"Если включено, будет выполнена автоматическая обработка OQRS для заппросов "
+"напрямую, т.е. система попытается автоматически сопоставить входящие запросы "
+"с существующими логами."
 
 #: application/views/user/edit.php:754
 msgid "Default Values"

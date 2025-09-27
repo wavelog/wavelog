@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-27 05:11+0000\n"
-"PO-Revision-Date: 2025-09-24 18:18+0000\n"
+"POT-Creation-Date: 2025-09-25 14:16+0000\n"
+"PO-Revision-Date: 2025-09-27 05:11+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -3366,22 +3366,28 @@ msgstr "QSO uppdaterad"
 msgid "Bearing"
 msgstr "Bäring"
 
+#: application/models/Update_model.php:351
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
 msgstr "Nyare version tillgänglig:"
 
+#: application/models/Update_model.php:355
 #: application/models/Update_model.php:357
 msgid "You are running the latest version."
 msgstr "Du kör den senaste versionen."
 
+#: application/models/Update_model.php:434
 #: application/models/Update_model.php:436
 msgid "cURL error:"
 msgstr "cURL-fel:"
 
+#: application/models/Update_model.php:469
 #: application/models/Update_model.php:471
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT existerar redan. LoTW-status uppdaterad."
 
+#: application/models/Update_model.php:472
+#: application/models/Update_model.php:501
 #: application/models/Update_model.php:474
 #: application/models/Update_model.php:503
 #, php-format
@@ -3390,26 +3396,32 @@ msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTW-status för %d QSO uppdaterad"
 msgstr[1] "LoTW-status för %d QSOs uppdaterad"
 
+#: application/models/Update_model.php:475
 #: application/models/Update_model.php:477
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT existerar redan. Uppdatering av LoTW-status misslyckades."
 
+#: application/models/Update_model.php:478
 #: application/models/Update_model.php:480
 msgid "SAT already existing. Ignored."
 msgstr "SAT existerar redan. Ignorerad."
 
+#: application/models/Update_model.php:485
 #: application/models/Update_model.php:487
 msgid "SAT already existing. Display name updated."
 msgstr "SAT existerar redan. Visningsnamn uppdaterat."
 
+#: application/models/Update_model.php:487
 #: application/models/Update_model.php:489
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT finns redan. Uppdatering av visningsnamn misslyckades."
 
+#: application/models/Update_model.php:497
 #: application/models/Update_model.php:499
 msgid "New SAT. Inserted."
 msgstr "Ny SAT. Tillagd."
 
+#: application/models/Update_model.php:505
 #: application/models/Update_model.php:507
 msgid "New SAT. Insert failed."
 msgstr "Ny SAT. Kunde ej läggas till."
@@ -6560,8 +6572,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -8410,7 +8422,7 @@ msgstr "Mottagen"
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
 #: src/QSLManager/QSO.php:764
 msgid "Requested"
-msgstr "Begärd"
+msgstr "Begärt"
 
 #: application/views/dashboard/index.php:378
 msgctxt "Probably no translation needed as this is a name."
@@ -10414,7 +10426,7 @@ msgstr ""
 #: application/views/labels/index.php:2
 #: application/views/logbookadvanced/startatform.php:39
 msgid "Mark QSL as printed"
-msgstr "Markera QSL som utskriven"
+msgstr "Markera QSL som utskrivet"
 
 #: application/views/labels/index.php:3 application/views/labels/index.php:128
 msgid "Print"
@@ -10488,7 +10500,8 @@ msgstr "Inkludera rutnäts ruta?"
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr ""
-"Inkludera referenser? (SIG, SOTA, POTA, IOTA, WWFF; Om tillgänglig på plats)"
+"Inkludera referenser? (SIG, SOTA, POTA, IOTA, WWFF; Om de är definierade i "
+"stationsplatsen)"
 
 #: application/views/labels/startatform.php:16
 msgid "Include Via (if filled)?"
@@ -12424,7 +12437,7 @@ msgid ""
 "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
 "'QSL Sent' field."
 msgstr ""
-"Begärda QSL är alla QSOs med ett värde av 'Begärd' eller 'I kö' i deras 'QSL "
+"Begärda QSL är alla QSOs med ett värde av 'Begärt' eller 'I kö' i deras 'QSL "
 "skickat'-fält."
 
 #: application/views/qslprint/index.php:42
@@ -12855,7 +12868,7 @@ msgstr "LIVE"
 
 #: application/views/qso/index.php:53
 msgid "POST"
-msgstr "INLÄGG"
+msgstr "EFTER"
 
 #: application/views/qso/index.php:66
 #: application/views/statistics/antennaanalytics.php:45
@@ -13593,7 +13606,7 @@ msgstr "Resultat för %s"
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr "Tyvärr, men vi hittade inga tidigare QSOs med %s"
+msgstr "Tyvärr, vi hittade inga tidigare QSOs med %s"
 
 #: application/views/search/result.php:6
 #, php-format
@@ -13646,7 +13659,7 @@ msgstr "Markera QSL kort Begärt (Byrå)"
 #: application/views/view_log/partial/log_ajax.php:537
 #: application/views/view_log/qso.php:823
 msgid "Mark QSL Card Requested (Direct)"
-msgstr "Markera QSL Kort Begärt (Direkt)"
+msgstr "Markera QSL kort Begärt (Direkt)"
 
 #: application/views/search/search_result_ajax.php:475
 #: application/views/view_log/partial/log.php:154
@@ -14734,8 +14747,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"

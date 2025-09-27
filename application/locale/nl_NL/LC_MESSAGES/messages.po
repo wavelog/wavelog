@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-27 05:11+0000\n"
-"PO-Revision-Date: 2025-09-23 19:41+0000\n"
+"POT-Creation-Date: 2025-09-24 11:19+0000\n"
+"PO-Revision-Date: 2025-09-25 10:27+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/nl/>\n"
@@ -2762,11 +2762,11 @@ msgstr "WWFF-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:450
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "HAMqsl-update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:452
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "HAMqsl-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:470
 msgid "POTA Update complete. Result: "
@@ -3283,6 +3283,7 @@ msgstr "Geen roepnaam gegeven"
 msgid "DXCC has to be Numeric"
 msgstr "DXCC moet numeriek zijn"
 
+#: application/models/Logbook_model.php:4039
 #: application/models/Logbook_model.php:4061
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
@@ -3290,10 +3291,12 @@ msgstr ""
 "Verkeerde stationsroepnaam %s bij het importeren van QSO met %s voor %s: "
 "OVERGESLAGEN"
 
+#: application/models/Logbook_model.php:4052
 #: application/models/Logbook_model.php:4074
 msgid "QSO on"
 msgstr "QSO vanaf"
 
+#: application/models/Logbook_model.php:4052
 #: application/models/Logbook_model.php:4074
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
@@ -3302,72 +3305,88 @@ msgstr ""
 "Je hebt geprobeerd een QSO te importeren zonder een opgegeven CALL. Dit QSO "
 "is niet geïmporteerd. Het is ongeldig"
 
+#: application/models/Logbook_model.php:4359
 #: application/models/Logbook_model.php:4381
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "de qslrdate is ongeldig (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:4370
 #: application/models/Logbook_model.php:4392
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "de qslsdatum is ongeldig (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:4431
 #: application/models/Logbook_model.php:4453
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "de clublog_qso_upload_date is ongeldig (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:4451
 #: application/models/Logbook_model.php:4473
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslrdate is ongeldig (JJJJMMDD)"
 
+#: application/models/Logbook_model.php:4472
 #: application/models/Logbook_model.php:4494
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "de lotw_qslsdate is ongeldig (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:4786
+#: application/models/Logbook_model.php:4764
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4786
 msgid "Duplicate for"
 msgstr "Duplicaat voor"
 
+#: application/models/Logbook_model.php:4829
+#: application/models/Logbook_model.php:4924
 #: application/models/Logbook_model.php:4851
 #: application/models/Logbook_model.php:4946
 msgid "QSO could not be matched"
 msgstr "QSO kon niet worden gekoppeld"
 
+#: application/models/Logbook_model.php:4837
 #: application/models/Logbook_model.php:4859
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bevestigd door LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4843
 #: application/models/Logbook_model.php:4865
 msgid "confirmed by award manager"
 msgstr "Bevestigd door award manager"
 
+#: application/models/Logbook_model.php:4847
 #: application/models/Logbook_model.php:4869
 msgid "confirmed by cross-check of DCL data"
 msgstr "bevestigd door kruiscontrole van DCL-gegevens"
 
+#: application/models/Logbook_model.php:4851
 #: application/models/Logbook_model.php:4873
 msgid "confirmation pending"
 msgstr "bevestiging in afwachting"
 
+#: application/models/Logbook_model.php:4854
 #: application/models/Logbook_model.php:4876
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-#: application/models/Logbook_model.php:4879
+#: application/models/Logbook_model.php:4857
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4879
 msgid "unknown"
 msgstr "onbekend"
 
+#: application/models/Logbook_model.php:4927
 #: application/models/Logbook_model.php:4949
 msgid "POTA reference already in log"
 msgstr "POTA-referentie al in logboek"
 
+#: application/models/Logbook_model.php:4930
 #: application/models/Logbook_model.php:4952
 msgid "QSO updated"
 msgstr "QSO bijgewerkt"
 
-#: application/models/Logbook_model.php:5824
+#: application/models/Logbook_model.php:5802
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3378,25 +3397,32 @@ msgstr "QSO bijgewerkt"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5824
 msgid "Bearing"
 msgstr "Koers"
 
+#: application/models/Update_model.php:351
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
 msgstr "Nieuwere release beschikbaar:"
 
+#: application/models/Update_model.php:355
 #: application/models/Update_model.php:357
 msgid "You are running the latest version."
 msgstr "Je draait de nieuwste versie."
 
+#: application/models/Update_model.php:434
 #: application/models/Update_model.php:436
 msgid "cURL error:"
 msgstr "cURL-fout:"
 
+#: application/models/Update_model.php:469
 #: application/models/Update_model.php:471
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT bestaat al. LoTW-status bijgewerkt."
 
+#: application/models/Update_model.php:472
+#: application/models/Update_model.php:501
 #: application/models/Update_model.php:474
 #: application/models/Update_model.php:503
 #, php-format
@@ -3405,26 +3431,32 @@ msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTW-status voor %d QSO bijgewerkt"
 msgstr[1] "LoTW-status voor %d QSO's bijgewerkt"
 
+#: application/models/Update_model.php:475
 #: application/models/Update_model.php:477
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT bestaat al. Bijwerken van LoTW-status mislukt."
 
+#: application/models/Update_model.php:478
 #: application/models/Update_model.php:480
 msgid "SAT already existing. Ignored."
 msgstr "SAT bestaat al. Genegeerd."
 
+#: application/models/Update_model.php:485
 #: application/models/Update_model.php:487
 msgid "SAT already existing. Display name updated."
 msgstr "SAT bestaat al. Weergavenaam bijgewerkt."
 
+#: application/models/Update_model.php:487
 #: application/models/Update_model.php:489
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT bestaat al. Bijwerken van de weergavenaam is mislukt."
 
+#: application/models/Update_model.php:497
 #: application/models/Update_model.php:499
 msgid "New SAT. Inserted."
 msgstr "Nieuwe SAT. ingevoegd."
 
+#: application/models/Update_model.php:505
 #: application/models/Update_model.php:507
 msgid "New SAT. Insert failed."
 msgstr "Nieuwe SAT. invoegen mislukt."
@@ -8473,16 +8505,16 @@ msgstr "VUCC-Vakken"
 
 #: application/views/dashboard/index.php:466
 msgid "Solar Data & Propagation"
-msgstr ""
+msgstr "Zondata & Propagatie"
 
 #: application/views/dashboard/index.php:468
 #, php-format
 msgid "Last update at %s."
-msgstr ""
+msgstr "Laatste update om %s."
 
 #: application/views/dashboard/index.php:477
 msgid "Data provided by HAMqsl."
-msgstr ""
+msgstr "Gegevens verstrekt door HAMqsl."
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
@@ -9056,7 +9088,7 @@ msgstr "Radioamateurs van belang update"
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
-msgstr ""
+msgstr "HAMqsl"
 
 #: application/views/debug/index.php:577
 msgid "QSO-DB Maintenance"
@@ -15320,12 +15352,14 @@ msgstr ""
 
 #: application/views/user/edit.php:641
 msgid "Dashboard solar and propagation data"
-msgstr ""
+msgstr "Dashboard zon- en propagatiegegevens"
 
 #: application/views/user/edit.php:647
 msgid ""
 "This switches the display of the solar and propagation data on the dashboard."
 msgstr ""
+"Hiermee wissel je tussen de weergave van de zon- en voortplantingsgegevens "
+"op het dashboard."
 
 #: application/views/user/edit.php:655
 msgid "Show Reference Fields on QSO Tab"
