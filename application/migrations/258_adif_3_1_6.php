@@ -62,6 +62,18 @@ class Migration_adif_3_1_6 extends CI_Migration {
 			log_message('info', 'Column "COL_EQSL_AG" already exists, skipping ALTER TABLE.');
 		}
 
+		// Run the querys
+		try {
+			foreach ($qso_fields as $query) {
+				$this->db->query($query);
+			}
+		} catch (Exception $e) {
+			$this->db->trans_rollback();
+			log_message('error', 'Migration failed: ' . $e->getMessage());
+			log_message('error', 'The query was: ' . $query);
+			return false;
+		}
+
 	}
 
 	public function down() {
