@@ -51,6 +51,17 @@ class Migration_adif_3_1_6 extends CI_Migration {
 				$this->db->insert('contest', $contest);
 			}
 		}
+
+		$table_name = $this->config->item('table_name');
+		$qso_fields = [];
+
+		$col_check = $this->db->query("SHOW COLUMNS FROM `$table_name` LIKE 'COL_EQSL_AG';")->num_rows() > 0;
+		if (!$col_check) {
+			$qso_fields[] = "ALTER TABLE `$table_name` ADD COLUMN COL_EQSL_AG VARCHAR(10) DEFAULT NULL AFTER COL_EQSL_STATUS;";
+		} else {
+			log_message('info', 'Column "COL_EQSL_AG" already exists, skipping ALTER TABLE.');
+		}
+
 	}
 
 	public function down() {
@@ -86,6 +97,14 @@ class Migration_adif_3_1_6 extends CI_Migration {
 
 		$this->db->where_in('adifname', $contest_names);
 		$this->db->delete('contest');
+	}
+
+	function dbtry($what) {
+		try {
+			$this->db->query($what);
+		} catch (Exception $e) {
+			log_message("error", "Something gone wrong while altering a table: ".$e." // Executing: ".$this->db->last_query());
+		}
 	}
 
 }
