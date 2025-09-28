@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-27 05:11+0000\n"
+"POT-Creation-Date: 2025-09-27 14:06+0000\n"
 "PO-Revision-Date: 2025-09-22 07:12+0000\n"
 "Last-Translator: Fabian <fabian@eb1tr.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -126,9 +126,9 @@ msgstr ""
 #: application/controllers/User.php:121 application/controllers/User.php:145
 #: application/controllers/User.php:375 application/controllers/User.php:376
 #: application/controllers/User.php:1004 application/controllers/User.php:1023
-#: application/controllers/User.php:1248 application/controllers/User.php:1390
-#: application/controllers/User.php:1608 application/controllers/User.php:1624
-#: application/controllers/User.php:1650
+#: application/controllers/User.php:1255 application/controllers/User.php:1397
+#: application/controllers/User.php:1615 application/controllers/User.php:1631
+#: application/controllers/User.php:1657
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
@@ -2474,7 +2474,7 @@ msgid "Duplicate Station Location:"
 msgstr "Ubicación de estación duplicada:"
 
 #: application/controllers/Station.php:221
-#: application/controllers/User.php:1271 application/controllers/User.php:1521
+#: application/controllers/User.php:1278 application/controllers/User.php:1528
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Por favor, verifica el valor del localizador de cuadrícula (%s)"
@@ -2878,25 +2878,25 @@ msgstr ""
 msgid "This is not allowed!"
 msgstr "¡Esto no está permitido!"
 
-#: application/controllers/User.php:1146 application/controllers/User.php:1157
+#: application/controllers/User.php:1148 application/controllers/User.php:1161
 msgid "Login failed. Try again."
 msgstr "Error de inicio de sesión. Inténtalo de nuevo."
 
-#: application/controllers/User.php:1164
+#: application/controllers/User.php:1169
 #: application/views/interface_assets/header.php:392
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Iniciar Sesión"
 
-#: application/controllers/User.php:1202
+#: application/controllers/User.php:1207
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "No puedes iniciar sesión en una estación de club directamente. Usa tu cuenta "
 "personal en su lugar."
 
-#: application/controllers/User.php:1205
+#: application/controllers/User.php:1210
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -2904,7 +2904,7 @@ msgstr ""
 "Tu cuenta está bloqueada debido a demasiados intentos fallidos de inicio de "
 "sesión. Por favor, restablece tu contraseña."
 
-#: application/controllers/User.php:1209
+#: application/controllers/User.php:1214
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2915,22 +2915,22 @@ msgstr ""
 "administrador. Solo los administradores tienen permiso para iniciar sesión "
 "en este momento."
 
-#: application/controllers/User.php:1212
+#: application/controllers/User.php:1217
 msgid "Incorrect username or password!"
 msgstr "¡Nombre de usuario o contraseña incorrectos!"
 
-#: application/controllers/User.php:1235
+#: application/controllers/User.php:1242
 #, php-format
 msgid "User %s logged out."
 msgstr "El usuario %s cerró sesión."
 
-#: application/controllers/User.php:1251
+#: application/controllers/User.php:1258
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Nombre de la estación"
 
-#: application/controllers/User.php:1252 application/views/debug/index.php:594
+#: application/controllers/User.php:1259 application/views/debug/index.php:594
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:61
 #: application/views/station_profile/edit.php:77
@@ -2940,27 +2940,27 @@ msgstr "Nombre de la estación"
 msgid "Station Callsign"
 msgstr "Indicativo de la Estación"
 
-#: application/controllers/User.php:1253
+#: application/controllers/User.php:1260
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "DXCC de la Estación"
 
-#: application/controllers/User.php:1254
+#: application/controllers/User.php:1261
 msgid "Station CQ Zone"
 msgstr "Zona CQ de la estación"
 
-#: application/controllers/User.php:1255
+#: application/controllers/User.php:1262
 msgid "Station ITU Zone"
 msgstr "Zona ITU de la estación"
 
-#: application/controllers/User.php:1256
+#: application/controllers/User.php:1263
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr "Locator de la estación"
 
-#: application/controllers/User.php:1279
+#: application/controllers/User.php:1286
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2969,38 +2969,38 @@ msgstr ""
 "¡Estación creada con éxito! ¡Bienvenido a Wavelog! Para completar la "
 "configuración de tu estación, haz clic %saquí%s."
 
-#: application/controllers/User.php:1282
+#: application/controllers/User.php:1289
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 "¡La configuración de la estación falló! Por favor, configura tu estación "
 "manualmente."
 
-#: application/controllers/User.php:1299
+#: application/controllers/User.php:1306
 msgid "Password Reset is disabled on the Demo!"
 msgstr ""
 "¡El restablecimiento de contraseña está deshabilitado en la sesión Demo!"
 
-#: application/controllers/User.php:1313
+#: application/controllers/User.php:1320
 msgid "Forgot Password"
 msgstr "Contraseña olvidada"
 
-#: application/controllers/User.php:1364
+#: application/controllers/User.php:1371
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "Las configuraciones del correo electrónico están incorrectas."
 
-#: application/controllers/User.php:1368 application/controllers/User.php:1373
+#: application/controllers/User.php:1375 application/controllers/User.php:1380
 msgid "Password Reset Processed."
 msgstr "Restablecimiento de contraseña hecha."
 
-#: application/controllers/User.php:1474
+#: application/controllers/User.php:1481
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Restablecer Contraseña"
 
-#: application/controllers/User.php:1495
+#: application/controllers/User.php:1502
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -3008,7 +3008,7 @@ msgstr ""
 "No se pudo establecer la cuenta con este nombre de usuario. Por favor, "
 "intenta con otro diferente a \"%s\"."
 
-#: application/controllers/User.php:1504
+#: application/controllers/User.php:1511
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -3016,7 +3016,7 @@ msgstr ""
 "No se pudo configurar la cuenta con este correo electrónico. Por favor, "
 "intenta con otra dirección que no sea \"%s\"."
 
-#: application/controllers/User.php:1543
+#: application/controllers/User.php:1550
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3025,7 +3025,7 @@ msgstr ""
 "Actualmente no puedes suplantar a otro usuario. ¡Necesitas establecer %s a "
 "%s en tu config.php!"
 
-#: application/controllers/User.php:1557
+#: application/controllers/User.php:1564
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -3034,16 +3034,16 @@ msgstr ""
 "Actualmente no puedes suplantar a otro usuario. ¡Por favor, cambia la "
 "encryption_key en tu archivo config.php primero!"
 
-#: application/controllers/User.php:1564
+#: application/controllers/User.php:1571
 msgid "Invalid Hash"
 msgstr "Hash no válido"
 
-#: application/controllers/User.php:1577
+#: application/controllers/User.php:1584
 msgid "The impersonation hash is too old. Please try again."
 msgstr ""
 "El hash de suplantación es demasiado antiguo. Por favor, inténtalo de nuevo."
 
-#: application/controllers/User.php:1584
+#: application/controllers/User.php:1591
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -3051,15 +3051,15 @@ msgstr ""
 "No puedes hacerte pasar por otro usuario mientras no hayas iniciado sesión "
 "como el usuario original"
 
-#: application/controllers/User.php:1590
+#: application/controllers/User.php:1597
 msgid "There was a problem with your session. Please try again."
 msgstr "Hubo un problema con tu sesión. Por favor, inténtalo de nuevo."
 
-#: application/controllers/User.php:1597
+#: application/controllers/User.php:1604
 msgid "The requested user to impersonate does not exist"
 msgstr "El usuario solicitado para suplantar no existe"
 
-#: application/controllers/User.php:1618
+#: application/controllers/User.php:1625
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -3067,13 +3067,13 @@ msgstr ""
 "No se pudo determinar el nivel de permiso correcto para la estación del "
 "club. Intenta de nuevo después de volver a iniciar sesión."
 
-#: application/controllers/User.php:1663 application/controllers/User.php:1675
-#: application/controllers/User.php:1681 application/controllers/User.php:1690
-#: application/controllers/User.php:1698
+#: application/controllers/User.php:1670 application/controllers/User.php:1682
+#: application/controllers/User.php:1688 application/controllers/User.php:1697
+#: application/controllers/User.php:1705
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Ups.. Algo salió mal. Intenta volver a iniciar sesión."
 
-#: application/controllers/User.php:1704
+#: application/controllers/User.php:1711
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -3081,7 +3081,7 @@ msgstr ""
 "La capacidad de regresar rápidamente ha sido desactivada después de que el "
 "hash de seguridad expiró. Por favor, inicia sesión de nuevo."
 
-#: application/controllers/User.php:1720
+#: application/controllers/User.php:1727
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "

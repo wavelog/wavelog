@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-27 05:11+0000\n"
+"POT-Creation-Date: 2025-09-27 14:06+0000\n"
 "PO-Revision-Date: 2025-09-22 07:12+0000\n"
 "Last-Translator: YuanRetro <lijiaxuan1811@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -132,9 +132,9 @@ msgstr ""
 #: application/controllers/User.php:121 application/controllers/User.php:145
 #: application/controllers/User.php:375 application/controllers/User.php:376
 #: application/controllers/User.php:1004 application/controllers/User.php:1023
-#: application/controllers/User.php:1248 application/controllers/User.php:1390
-#: application/controllers/User.php:1608 application/controllers/User.php:1624
-#: application/controllers/User.php:1650
+#: application/controllers/User.php:1255 application/controllers/User.php:1397
+#: application/controllers/User.php:1615 application/controllers/User.php:1631
+#: application/controllers/User.php:1657
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
@@ -2452,7 +2452,7 @@ msgid "Duplicate Station Location:"
 msgstr "台站地址重复："
 
 #: application/controllers/Station.php:221
-#: application/controllers/User.php:1271 application/controllers/User.php:1521
+#: application/controllers/User.php:1278 application/controllers/User.php:1528
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "请检查网格定位的值 ( %s )"
@@ -2848,29 +2848,29 @@ msgstr "恭喜您，Wavelog 已成功安装，您可以登录并开始通联了�
 msgid "This is not allowed!"
 msgstr "这不被允许！"
 
-#: application/controllers/User.php:1146 application/controllers/User.php:1157
+#: application/controllers/User.php:1148 application/controllers/User.php:1161
 msgid "Login failed. Try again."
 msgstr "登录失败，请重试。"
 
-#: application/controllers/User.php:1164
+#: application/controllers/User.php:1169
 #: application/views/interface_assets/header.php:392
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "登录"
 
-#: application/controllers/User.php:1202
+#: application/controllers/User.php:1207
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr "你不能直接登录集体台站。使用你的个人账户登录。"
 
-#: application/controllers/User.php:1205
+#: application/controllers/User.php:1210
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr "由于多次登录失败，你的账号已锁定。请重置你的密码。"
 
-#: application/controllers/User.php:1209
+#: application/controllers/User.php:1214
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2879,22 +2879,22 @@ msgstr ""
 "抱歉，本站正处于维护模式。如果本消息持续显示，请联系本站管理员。当前只允许管"
 "理员登录。"
 
-#: application/controllers/User.php:1212
+#: application/controllers/User.php:1217
 msgid "Incorrect username or password!"
 msgstr "用户名或密码错误！"
 
-#: application/controllers/User.php:1235
+#: application/controllers/User.php:1242
 #, php-format
 msgid "User %s logged out."
 msgstr "用户 '%s' 已登出。"
 
-#: application/controllers/User.php:1251
+#: application/controllers/User.php:1258
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "台站名称"
 
-#: application/controllers/User.php:1252 application/views/debug/index.php:594
+#: application/controllers/User.php:1259 application/views/debug/index.php:594
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:61
 #: application/views/station_profile/edit.php:77
@@ -2904,27 +2904,27 @@ msgstr "台站名称"
 msgid "Station Callsign"
 msgstr "电台呼号"
 
-#: application/controllers/User.php:1253
+#: application/controllers/User.php:1260
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "台站 DXCC"
 
-#: application/controllers/User.php:1254
+#: application/controllers/User.php:1261
 msgid "Station CQ Zone"
 msgstr "电台站 CQ 分区"
 
-#: application/controllers/User.php:1255
+#: application/controllers/User.php:1262
 msgid "Station ITU Zone"
 msgstr "电台站 ITU 分区"
 
-#: application/controllers/User.php:1256
+#: application/controllers/User.php:1263
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr "电梯站位置"
 
-#: application/controllers/User.php:1279
+#: application/controllers/User.php:1286
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2932,47 +2932,47 @@ msgid ""
 msgstr ""
 "电台站创建成功！欢迎来到 Wavelog ！为了完成电台站设置，请 %s点击这里%s 。"
 
-#: application/controllers/User.php:1282
+#: application/controllers/User.php:1289
 msgid "Station setup failed! Please set up your station manually."
 msgstr "电台站设置失败！请手动设置您的电台站。"
 
-#: application/controllers/User.php:1299
+#: application/controllers/User.php:1306
 msgid "Password Reset is disabled on the Demo!"
 msgstr "在测试实例上，密码重置已禁用！"
 
-#: application/controllers/User.php:1313
+#: application/controllers/User.php:1320
 msgid "Forgot Password"
 msgstr "忘记密码"
 
-#: application/controllers/User.php:1364
+#: application/controllers/User.php:1371
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "邮件配置有误。"
 
-#: application/controllers/User.php:1368 application/controllers/User.php:1373
+#: application/controllers/User.php:1375 application/controllers/User.php:1380
 msgid "Password Reset Processed."
 msgstr "密码重置已处理。"
 
-#: application/controllers/User.php:1474
+#: application/controllers/User.php:1481
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "重置密码"
 
-#: application/controllers/User.php:1495
+#: application/controllers/User.php:1502
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr "无法为账户设置给定的用户名。请尝试使用除“%s”以外的用户名。"
 
-#: application/controllers/User.php:1504
+#: application/controllers/User.php:1511
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr "无法为账户设置给定的电子邮件地址。请尝试使用除“%s”以外的地址。"
 
-#: application/controllers/User.php:1543
+#: application/controllers/User.php:1550
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -2980,54 +2980,54 @@ msgid ""
 msgstr ""
 "您当前无权以其他用户身份操作。你需要在你的 config.php 中将 %s 设置为 %s ！"
 
-#: application/controllers/User.php:1557
+#: application/controllers/User.php:1564
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr "无法进行此操作，请在 config.php 里设置 encryption_key！"
 
-#: application/controllers/User.php:1564
+#: application/controllers/User.php:1571
 msgid "Invalid Hash"
 msgstr "Hash 无效"
 
-#: application/controllers/User.php:1577
+#: application/controllers/User.php:1584
 msgid "The impersonation hash is too old. Please try again."
 msgstr "用户 Hash 已过期，请重试。"
 
-#: application/controllers/User.php:1584
+#: application/controllers/User.php:1591
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr "由于您未登录为原用户，故无法切换至另一个用户角色"
 
-#: application/controllers/User.php:1590
+#: application/controllers/User.php:1597
 msgid "There was a problem with your session. Please try again."
 msgstr "会话出现问题，请重试。"
 
-#: application/controllers/User.php:1597
+#: application/controllers/User.php:1604
 msgid "The requested user to impersonate does not exist"
 msgstr "切换的用户不存在"
 
-#: application/controllers/User.php:1618
+#: application/controllers/User.php:1625
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr "无法确认集体台站的正确角色。请重新登录后再试。"
 
-#: application/controllers/User.php:1663 application/controllers/User.php:1675
-#: application/controllers/User.php:1681 application/controllers/User.php:1690
-#: application/controllers/User.php:1698
+#: application/controllers/User.php:1670 application/controllers/User.php:1682
+#: application/controllers/User.php:1688 application/controllers/User.php:1697
+#: application/controllers/User.php:1705
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "呃… 发生了一些问题。请登录后重试。"
 
-#: application/controllers/User.php:1704
+#: application/controllers/User.php:1711
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr "快速返回功能因安全哈希过期而被禁用，请重新登录以继续操作。"
 
-#: application/controllers/User.php:1720
+#: application/controllers/User.php:1727
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
