@@ -188,7 +188,7 @@ if ($wpx_array) {
             echo '<a href=\'javascript:wpxLoadDetails("worked", "' . $band . '")\'>' . $value . '</a>';
             echo '</td>';
         } else {
-            $addsat = '<td style="text-align: center">' . $value . '</td>';
+            $addsat = '<td style="text-align: center"><a href=\'javascript:wpxLoadDetails("worked", "' . $band . '")\'>' . $value . '</a></td>';
         }
     }
 
@@ -209,7 +209,7 @@ if ($wpx_array) {
             echo '<a href=\'javascript:wpxLoadDetails("confirmed", "' . $band . '")\'>' . $value . '</a>';
             echo '</td>';
         } else {
-            $addsat = '<td style="text-align: center">' . $value . '</td>';
+            $addsat = '<td style="text-align: center"><a href=\'javascript:wpxLoadDetails("confirmed", "' . $band . '")\'>' . $value . '</a></td>';
         }
     }
 
