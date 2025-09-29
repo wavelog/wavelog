@@ -37,6 +37,7 @@ class AdifHelper {
 			'EQSL_QSL_RCVD',
 			'EQSL_QSL_SENT',
 			'EQSL_STATUS',
+			'EQSL_AG',
 			'FISTS',
 			'FISTS_CC',
 			'FORCE_INIT',
