@@ -627,7 +627,7 @@ $('#stateDropdown').on('change', function () {
 			case '6':
 			case '110':
 			case '291':
-				$("#stationCntyInputEdit").prop('disabled', false);
+				$("#stationCntyInputQso").prop('disabled', false);
 				selectize_usa_county('#stateDropdown', '#stationCntyInputQso');
 				break;
 			case '15':
