@@ -70,6 +70,7 @@
 <?php } ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/leaflet.geodesic.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/radiohelpers.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/logbookhelpers.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/darkmodehelpers.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrapdialog/js/bootstrap-dialog.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/easyprint.js"></script>
@@ -278,9 +279,11 @@ function stopImpersonate_modal() {
     <script src="<?php echo base_url() ;?>assets/js/jszip.min.js"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") ) { ?>
+<?php if ($this->uri->segment(1) == "notes" ) { ?>
     <!-- Javascript used for Notes Area -->
+	<?php if ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") { ?>
     <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
+	<?php } ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/notes.js"></script>
 <?php } ?>
 
