@@ -3270,31 +3270,39 @@ msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
 #: application/models/Logbook_model.php:4786
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4787
 msgid "Duplicate for"
 msgstr "内容重复"
 
 #: application/models/Logbook_model.php:4851
 #: application/models/Logbook_model.php:4946
+#: application/models/Logbook_model.php:4852
+#: application/models/Logbook_model.php:4947
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
 #: application/models/Logbook_model.php:4859
+#: application/models/Logbook_model.php:4860
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
 #: application/models/Logbook_model.php:4865
+#: application/models/Logbook_model.php:4866
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
 #: application/models/Logbook_model.php:4869
+#: application/models/Logbook_model.php:4870
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
 #: application/models/Logbook_model.php:4873
+#: application/models/Logbook_model.php:4874
 msgid "confirmation pending"
 msgstr "等待确认"
 
 #: application/models/Logbook_model.php:4876
+#: application/models/Logbook_model.php:4877
 msgid "unconfirmed"
 msgstr "未确认"
 
@@ -3302,14 +3310,17 @@ msgstr "未确认"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4880
 msgid "unknown"
 msgstr "未知"
 
 #: application/models/Logbook_model.php:4949
+#: application/models/Logbook_model.php:4950
 msgid "POTA reference already in log"
 msgstr "日志中已存在POTA数据"
 
 #: application/models/Logbook_model.php:4952
+#: application/models/Logbook_model.php:4953
 msgid "QSO updated"
 msgstr "QSO已上传"
 
@@ -3324,6 +3335,7 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5825
 msgid "Bearing"
 msgstr "方位角"
 
@@ -5009,9 +5021,9 @@ msgid ""
 "contacts with specified numbers of U.S. counties under rules and conditions "
 "you can find %s."
 msgstr ""
-"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-"
-"CA）\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有"
-"效通联的行为，具体规则与条件可通过 %s 查阅。"
+"由移动业余无线电奖项俱乐部（MARAC）颁发的\"美国县级行政区通联成就奖（USA-CA）"
+"\"，旨在表彰业余无线电爱好者通过双向通信与指定数量的美国县级行政区建立有效通"
+"联的行为，具体规则与条件可通过 %s 查阅。"
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -6041,8 +6053,8 @@ msgid ""
 "any kind of 'Special Interest Group Award' for awards that are not "
 "implemented in Wavelog."
 msgstr ""
-"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意"
-"的“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
+"SIG 或特别兴趣小组类别（Special Interest Group Category）允许用户使用任意的"
+"“特别兴趣小组奖”来奖励未在当前 Wavelog 实现的奖。"
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -14327,8 +14339,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
-"png'）"
+"在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 "
+"'.png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -16158,8 +16170,8 @@ msgstr "收"
 #~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 #~ "filenames for the logos <b>without</b> the file extension '.png'"
 #~ msgstr ""
-#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 ."
-#~ "png 后缀名</b>）"
+#~ "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带"
+#~ "有 .png 后缀名</b>）"
 
 #, php-format
 #~ msgid ""

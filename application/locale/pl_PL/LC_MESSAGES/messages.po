@@ -17,8 +17,8 @@ msgstr ""
 "POT-Creation-Date: 2025-09-27 14:06+0000\n"
 "PO-Revision-Date: 2025-09-29 06:30+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3331,31 +3331,39 @@ msgstr "lotw_qslsdate jest nieprawidłowy (RRRRMMDD)"
 
 #: application/models/Logbook_model.php:4786
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4787
 msgid "Duplicate for"
 msgstr "Duplikat dla"
 
 #: application/models/Logbook_model.php:4851
 #: application/models/Logbook_model.php:4946
+#: application/models/Logbook_model.php:4852
+#: application/models/Logbook_model.php:4947
 msgid "QSO could not be matched"
 msgstr "QSO nie mogło zostać dopasowane"
 
 #: application/models/Logbook_model.php:4859
+#: application/models/Logbook_model.php:4860
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potwierdzone przez LoTW/ClubLog/eQSL/zawody"
 
 #: application/models/Logbook_model.php:4865
+#: application/models/Logbook_model.php:4866
 msgid "confirmed by award manager"
 msgstr "potwierdzone przez award managera"
 
 #: application/models/Logbook_model.php:4869
+#: application/models/Logbook_model.php:4870
 msgid "confirmed by cross-check of DCL data"
 msgstr "potwierdzone przez weryfikację danych DCL"
 
 #: application/models/Logbook_model.php:4873
+#: application/models/Logbook_model.php:4874
 msgid "confirmation pending"
 msgstr "oczekiwanie na potwierdzenie"
 
 #: application/models/Logbook_model.php:4876
+#: application/models/Logbook_model.php:4877
 msgid "unconfirmed"
 msgstr "niepotwierdzone"
 
@@ -3363,14 +3371,17 @@ msgstr "niepotwierdzone"
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4880
 msgid "unknown"
 msgstr "nieznany"
 
 #: application/models/Logbook_model.php:4949
+#: application/models/Logbook_model.php:4950
 msgid "POTA reference already in log"
 msgstr "Referencja POTA już znajduje się w dzienniku"
 
 #: application/models/Logbook_model.php:4952
+#: application/models/Logbook_model.php:4953
 msgid "QSO updated"
 msgstr "QSO zaktualizowane"
 
@@ -3385,6 +3396,7 @@ msgstr "QSO zaktualizowane"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5825
 msgid "Bearing"
 msgstr "Kierunek"
 
@@ -6606,8 +6618,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Pola brane pod uwagę przy tej nagrodzie: DXCC (musi być jednym z: Chiny/318, "
-"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa "
-"Scarborough/506) oraz ważny stan (ADIF: DXCC i STATE)"
+"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa Scarborough/"
+"506) oraz ważny stan (ADIF: DXCC i STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -8916,8 +8928,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Należy przejść do folderu application/config i porównać plik config.sample."
-"php z plikiem config.php"
+"Należy przejść do folderu application/config i porównać plik "
+"config.sample.php z plikiem config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -13898,7 +13910,8 @@ msgstr "Aktualny czas UTC"
 
 #: application/views/simplefle/index.php:80
 msgid "If you don't choose a date, today's date will be used."
-msgstr "Jeśli nie zostanie wybrana data, zostanie wykorzystana dzisiejsza data."
+msgstr ""
+"Jeśli nie zostanie wybrana data, zostanie wykorzystana dzisiejsza data."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
