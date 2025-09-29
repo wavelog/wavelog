@@ -110,13 +110,4 @@ class Migration_adif_3_1_6 extends CI_Migration {
 		$this->db->where_in('adifname', $contest_names);
 		$this->db->delete('contest');
 	}
-
-	function dbtry($what) {
-		try {
-			$this->db->query($what);
-		} catch (Exception $e) {
-			log_message("error", "Something gone wrong while altering a table: ".$e." // Executing: ".$this->db->last_query());
-		}
-	}
-
 }
