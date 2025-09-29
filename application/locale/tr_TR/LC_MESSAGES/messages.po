@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-25 14:16+0000\n"
-"PO-Revision-Date: 2025-09-23 19:41+0000\n"
+"POT-Creation-Date: 2025-09-29 06:30+0000\n"
+"PO-Revision-Date: 2025-09-26 12:20+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/tr/>\n"
@@ -124,9 +124,9 @@ msgstr ""
 #: application/controllers/User.php:121 application/controllers/User.php:145
 #: application/controllers/User.php:375 application/controllers/User.php:376
 #: application/controllers/User.php:1004 application/controllers/User.php:1023
-#: application/controllers/User.php:1248 application/controllers/User.php:1390
-#: application/controllers/User.php:1608 application/controllers/User.php:1624
-#: application/controllers/User.php:1650
+#: application/controllers/User.php:1255 application/controllers/User.php:1397
+#: application/controllers/User.php:1615 application/controllers/User.php:1631
+#: application/controllers/User.php:1657
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
@@ -2463,7 +2463,7 @@ msgid "Duplicate Station Location:"
 msgstr "Yinelenen İstasyon Konumu:"
 
 #: application/controllers/Station.php:221
-#: application/controllers/User.php:1271 application/controllers/User.php:1521
+#: application/controllers/User.php:1278 application/controllers/User.php:1528
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Lütfen grid konumu (%s) değerini kontrol edin"
@@ -2758,11 +2758,11 @@ msgstr "WWFF Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:450
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "HAMqsl Güncellemesi tamamlandı. Sonuç: "
 
 #: application/controllers/Update.php:452
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "HAMqsl Güncellemesi başarısız oldu. Sonuç: "
 
 #: application/controllers/Update.php:470
 msgid "POTA Update complete. Result: "
@@ -2865,25 +2865,25 @@ msgstr "Tebrikler! Wavelog başarıyla yüklendi. Artık giriş yapabilirsiniz."
 msgid "This is not allowed!"
 msgstr "Bu işleme izin verilmiyor!"
 
-#: application/controllers/User.php:1146 application/controllers/User.php:1157
+#: application/controllers/User.php:1148 application/controllers/User.php:1161
 msgid "Login failed. Try again."
 msgstr "Oturum açma başarısız oldu. Tekrar deneyin."
 
-#: application/controllers/User.php:1164
+#: application/controllers/User.php:1169
 #: application/views/interface_assets/header.php:392
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Giriş"
 
-#: application/controllers/User.php:1202
+#: application/controllers/User.php:1207
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "Bir kulüp istasyonuna doğrudan giriş yapamazsın. Bunun yerine kişisel "
 "hesabını kullan."
 
-#: application/controllers/User.php:1205
+#: application/controllers/User.php:1210
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -2891,7 +2891,7 @@ msgstr ""
 "Hesabınız, çok fazla başarısız giriş denemesi nedeniyle kilitlendi. Lütfen "
 "şifrenizi sıfırlayın."
 
-#: application/controllers/User.php:1209
+#: application/controllers/User.php:1214
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2902,22 +2902,22 @@ msgstr ""
 "yöneticiyle iletişime geçin. Şu anda yalnızca yöneticilerin giriş yapmasına "
 "izin verilmektedir."
 
-#: application/controllers/User.php:1212
+#: application/controllers/User.php:1217
 msgid "Incorrect username or password!"
 msgstr "Kullanıcı adı veya şifre yanlış!"
 
-#: application/controllers/User.php:1235
+#: application/controllers/User.php:1242
 #, php-format
 msgid "User %s logged out."
 msgstr "%s kullanıcısı çıkış yaptı."
 
-#: application/controllers/User.php:1251
+#: application/controllers/User.php:1258
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "İstasyon Adı"
 
-#: application/controllers/User.php:1252 application/views/debug/index.php:594
+#: application/controllers/User.php:1259 application/views/debug/index.php:594
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:61
 #: application/views/station_profile/edit.php:77
@@ -2927,27 +2927,27 @@ msgstr "İstasyon Adı"
 msgid "Station Callsign"
 msgstr "İstasyon Çağrı İşareti"
 
-#: application/controllers/User.php:1253
+#: application/controllers/User.php:1260
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "İstasyon DXCC"
 
-#: application/controllers/User.php:1254
+#: application/controllers/User.php:1261
 msgid "Station CQ Zone"
 msgstr "İstasyon CQ Bölgesi"
 
-#: application/controllers/User.php:1255
+#: application/controllers/User.php:1262
 msgid "Station ITU Zone"
 msgstr "İstasyon ITU Bölgesi"
 
-#: application/controllers/User.php:1256
+#: application/controllers/User.php:1263
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr "Istasyon Locator"
 
-#: application/controllers/User.php:1279
+#: application/controllers/User.php:1286
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2956,36 +2956,36 @@ msgstr ""
 "İstasyon başarıyla oluşturuldu! Wavelog’a hoş geldiniz! İstasyon kurulumunu "
 "tamamlamak için %sburaya%s tıklayın."
 
-#: application/controllers/User.php:1282
+#: application/controllers/User.php:1289
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 "İstasyon kurulumu başarısız oldu! Lütfen istasyonunuzu manuel olarak kurun."
 
-#: application/controllers/User.php:1299
+#: application/controllers/User.php:1306
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Parola Sıfırlama Demo'da devre dışı bırakıldı!"
 
-#: application/controllers/User.php:1313
+#: application/controllers/User.php:1320
 msgid "Forgot Password"
 msgstr "Parolayı Unuttum"
 
-#: application/controllers/User.php:1364
+#: application/controllers/User.php:1371
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "E-posta ayarları yanlış."
 
-#: application/controllers/User.php:1368 application/controllers/User.php:1373
+#: application/controllers/User.php:1375 application/controllers/User.php:1380
 msgid "Password Reset Processed."
 msgstr "Parola Sıfırlama İşlemi Tamamlandı."
 
-#: application/controllers/User.php:1474
+#: application/controllers/User.php:1481
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Şifreyi Sıfırla"
 
-#: application/controllers/User.php:1495
+#: application/controllers/User.php:1502
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -2993,7 +2993,7 @@ msgstr ""
 "Hesap bu kullanıcı adıyla ayarlanamadı. Lütfen \"%s\" dışında başka bir "
 "kullanıcı adı deneyin."
 
-#: application/controllers/User.php:1504
+#: application/controllers/User.php:1511
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -3001,7 +3001,7 @@ msgstr ""
 "Hesap bu e-posta adresiyle ayarlanamadı. Lütfen \"%s\" dışında başka bir e-"
 "posta adresi deneyin."
 
-#: application/controllers/User.php:1543
+#: application/controllers/User.php:1550
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3010,7 +3010,7 @@ msgstr ""
 "Şu anda başka bir kullanıcıyı temsil edemezsiniz. config.php dosyanızda %s "
 "değerini %s olarak ayarlamanız gerekiyor!"
 
-#: application/controllers/User.php:1557
+#: application/controllers/User.php:1564
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -3019,15 +3019,15 @@ msgstr ""
 "Şu anda başka bir kullanıcıyı temsil edemezsiniz. Önce config.php "
 "dosyanızdaki encryption_key değerini değiştirin!"
 
-#: application/controllers/User.php:1564
+#: application/controllers/User.php:1571
 msgid "Invalid Hash"
 msgstr "Geçersiz Hash"
 
-#: application/controllers/User.php:1577
+#: application/controllers/User.php:1584
 msgid "The impersonation hash is too old. Please try again."
 msgstr "Temsil etme anahtarı çok eski. Lütfen tekrar deneyin."
 
-#: application/controllers/User.php:1584
+#: application/controllers/User.php:1591
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -3035,15 +3035,15 @@ msgstr ""
 "Kaynak kullanıcı olarak giriş yapmadığınız sürece başka bir kullanıcıyı "
 "temsil edemezsiniz"
 
-#: application/controllers/User.php:1590
+#: application/controllers/User.php:1597
 msgid "There was a problem with your session. Please try again."
 msgstr "Oturumunuzda bir sorun oluştu. Lütfen tekrar deneyin."
 
-#: application/controllers/User.php:1597
+#: application/controllers/User.php:1604
 msgid "The requested user to impersonate does not exist"
 msgstr "Temsil edilmek istenen kullanıcı mevcut değil"
 
-#: application/controllers/User.php:1618
+#: application/controllers/User.php:1625
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -3051,13 +3051,13 @@ msgstr ""
 "Kulüp istasyonu için doğru yetki seviyesi belirlenemedi. Tekrar giriş "
 "yaptıktan sonra tekrar deneyin."
 
-#: application/controllers/User.php:1663 application/controllers/User.php:1675
-#: application/controllers/User.php:1681 application/controllers/User.php:1690
-#: application/controllers/User.php:1698
+#: application/controllers/User.php:1670 application/controllers/User.php:1682
+#: application/controllers/User.php:1688 application/controllers/User.php:1697
+#: application/controllers/User.php:1705
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Aboo… Bir şeyler yanlış gitti. Lütfen tekrar giriş yapmayı deneyin."
 
-#: application/controllers/User.php:1704
+#: application/controllers/User.php:1711
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -3065,7 +3065,7 @@ msgstr ""
 "Güvenlik anahtarı süresi dolduğu için hızlı geri dönme özelliği devre dışı "
 "bırakıldı. Lütfen tekrar giriş yapın."
 
-#: application/controllers/User.php:1720
+#: application/controllers/User.php:1727
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -3316,52 +3316,52 @@ msgstr "lotw_qslrdate geçersiz (YYYYAAGG)"
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate geçersiz (YYYYAAGG)"
 
-#: application/models/Logbook_model.php:4786
+#: application/models/Logbook_model.php:4787
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "İçin yinelenen"
 
-#: application/models/Logbook_model.php:4851
-#: application/models/Logbook_model.php:4946
+#: application/models/Logbook_model.php:4852
+#: application/models/Logbook_model.php:4947
 msgid "QSO could not be matched"
 msgstr "QSO eşleştirilemedi"
 
-#: application/models/Logbook_model.php:4859
+#: application/models/Logbook_model.php:4860
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/Yarışma tarafından onaylandı"
 
-#: application/models/Logbook_model.php:4865
+#: application/models/Logbook_model.php:4866
 msgid "confirmed by award manager"
 msgstr "Ödül yöneticisi tarafından onaylandı"
 
-#: application/models/Logbook_model.php:4869
+#: application/models/Logbook_model.php:4870
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCL verileri karşılaştırılarak onaylandı"
 
-#: application/models/Logbook_model.php:4873
+#: application/models/Logbook_model.php:4874
 msgid "confirmation pending"
 msgstr "onay bekleniyor"
 
-#: application/models/Logbook_model.php:4876
+#: application/models/Logbook_model.php:4877
 msgid "unconfirmed"
 msgstr "onaylanmamış"
 
-#: application/models/Logbook_model.php:4879
+#: application/models/Logbook_model.php:4880
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "bilinmeyen"
 
-#: application/models/Logbook_model.php:4949
+#: application/models/Logbook_model.php:4950
 msgid "POTA reference already in log"
 msgstr "POTA referansı zaten logda mevcut"
 
-#: application/models/Logbook_model.php:4952
+#: application/models/Logbook_model.php:4953
 msgid "QSO updated"
 msgstr "QSO güncellendi"
 
-#: application/models/Logbook_model.php:5824
+#: application/models/Logbook_model.php:5825
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3375,51 +3375,51 @@ msgstr "QSO güncellendi"
 msgid "Bearing"
 msgstr "Yön"
 
-#: application/models/Update_model.php:351
+#: application/models/Update_model.php:353
 msgid "Newer release available:"
 msgstr "Daha yeni sürüm mevcut:"
 
-#: application/models/Update_model.php:355
+#: application/models/Update_model.php:357
 msgid "You are running the latest version."
 msgstr "En son sürümü çalıştırıyorsun."
 
-#: application/models/Update_model.php:434
+#: application/models/Update_model.php:436
 msgid "cURL error:"
 msgstr "cURL hatası:"
 
-#: application/models/Update_model.php:469
+#: application/models/Update_model.php:471
 msgid "SAT already existing. LoTW status updated."
 msgstr "Uydu zaten mevcut. LoTW durumu güncellendi."
 
-#: application/models/Update_model.php:472
-#: application/models/Update_model.php:501
+#: application/models/Update_model.php:474
+#: application/models/Update_model.php:503
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
 msgstr[0] "LoTW durumu %d QSO için güncellendi"
 msgstr[1] "LoTW durumu %d QSO için güncellendi"
 
-#: application/models/Update_model.php:475
+#: application/models/Update_model.php:477
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "Uydu zaten mevcut. LoTW durumu güncellemesi başarısız oldu."
 
-#: application/models/Update_model.php:478
+#: application/models/Update_model.php:480
 msgid "SAT already existing. Ignored."
 msgstr "Uydu zaten mevcut. Yoksayıldı."
 
-#: application/models/Update_model.php:485
+#: application/models/Update_model.php:487
 msgid "SAT already existing. Display name updated."
 msgstr "Uydu zaten mevcut. Görüntülüme adı güncellendi."
 
-#: application/models/Update_model.php:487
+#: application/models/Update_model.php:489
 msgid "SAT already existing. Updating display name failed."
 msgstr "Uydu zaten mevcut. Görüntüleme adı güncellemesi başarısız oldu."
 
-#: application/models/Update_model.php:497
+#: application/models/Update_model.php:499
 msgid "New SAT. Inserted."
 msgstr "Yeni Uydu. Eklendi."
 
-#: application/models/Update_model.php:505
+#: application/models/Update_model.php:507
 msgid "New SAT. Insert failed."
 msgstr "Yeni Uydu. Ekleme başarısız oldu."
 
@@ -8460,16 +8460,16 @@ msgstr "VUCC-Gridleri"
 
 #: application/views/dashboard/index.php:466
 msgid "Solar Data & Propagation"
-msgstr ""
+msgstr "Güneş Verileri ve Yayılımı"
 
 #: application/views/dashboard/index.php:468
 #, php-format
 msgid "Last update at %s."
-msgstr ""
+msgstr "Son güncelleme %s."
 
 #: application/views/dashboard/index.php:477
 msgid "Data provided by HAMqsl."
-msgstr ""
+msgstr "Veriler HAMqsl tarafından sağlanmıştır."
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
@@ -9043,7 +9043,7 @@ msgstr "Tanınmış Amatör Telsizciler'i Güncelle"
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
-msgstr ""
+msgstr "HAMqsl"
 
 #: application/views/debug/index.php:577
 msgid "QSO-DB Maintenance"
@@ -15271,12 +15271,12 @@ msgstr "Bu ayar bildirim afişini devre dışı bırakmanıza olanak tanır."
 
 #: application/views/user/edit.php:641
 msgid "Dashboard solar and propagation data"
-msgstr ""
+msgstr "Güneş ve Yayılım Verileri Paneli"
 
 #: application/views/user/edit.php:647
 msgid ""
 "This switches the display of the solar and propagation data on the dashboard."
-msgstr ""
+msgstr "Bu ayar, güneş ve yayılım verilerinin görüntülenmesini değiştirir."
 
 #: application/views/user/edit.php:655
 msgid "Show Reference Fields on QSO Tab"

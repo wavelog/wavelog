@@ -1109,6 +1109,8 @@ class User extends CI_Controller {
 				if ($user->clubstation == 1) {
 					log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt with a modified cookie. Attack?");
 					$this->session->set_flashdata('error', __("This is not allowed!"));
+					$this->output->set_header('X-Login-Status: failed');
+					$this->output->_display();
 					redirect('user/login');
 				}
 
@@ -1144,6 +1146,8 @@ class User extends CI_Controller {
 					$this->input->set_cookie('keep_login', '', -3600, '');
 					$this->input->set_cookie('re_login', '', -3600, '');
 					$this->session->set_flashdata('error', __("Login failed. Try again."));
+					$this->set_header('X-Login-Status: failed');
+					$this->output->_display();
 					redirect('user/login');
 				}
 			} catch (Exception $e) {
@@ -1153,8 +1157,9 @@ class User extends CI_Controller {
 				// Delete keep_login cookie
 				$this->input->set_cookie('keep_login', '', -3600, '');
 				$this->input->set_cookie('re_login', '', -3600, '');
-
+				$this->set_header('X-Login-Status: failed');
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
+				$this->output->_display();
 				redirect('user/login');
 			}
 
@@ -1210,6 +1215,8 @@ class User extends CI_Controller {
 					redirect('user/login');
 				} else {
 					$this->session->set_flashdata('error', __("Incorrect username or password!"));
+					$this->output->set_header('X-Login-Status: failed');
+					$this->output->_display();
 					redirect('user/login');
 				}
 			}

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-25 14:16+0000\n"
+"POT-Creation-Date: 2025-09-29 06:30+0000\n"
 "PO-Revision-Date: 2024-12-10 11:09+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -121,9 +121,9 @@ msgstr ""
 #: application/controllers/User.php:121 application/controllers/User.php:145
 #: application/controllers/User.php:375 application/controllers/User.php:376
 #: application/controllers/User.php:1004 application/controllers/User.php:1023
-#: application/controllers/User.php:1248 application/controllers/User.php:1390
-#: application/controllers/User.php:1608 application/controllers/User.php:1624
-#: application/controllers/User.php:1650
+#: application/controllers/User.php:1255 application/controllers/User.php:1397
+#: application/controllers/User.php:1615 application/controllers/User.php:1631
+#: application/controllers/User.php:1657
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
@@ -2461,7 +2461,7 @@ msgid "Duplicate Station Location:"
 msgstr "Napravi duplikat lokacije stanice:"
 
 #: application/controllers/Station.php:221
-#: application/controllers/User.php:1271 application/controllers/User.php:1521
+#: application/controllers/User.php:1278 application/controllers/User.php:1528
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr ""
@@ -2865,29 +2865,29 @@ msgstr ""
 msgid "This is not allowed!"
 msgstr ""
 
-#: application/controllers/User.php:1146 application/controllers/User.php:1157
+#: application/controllers/User.php:1148 application/controllers/User.php:1161
 msgid "Login failed. Try again."
 msgstr "Prijava nije uspela. Pokušajte ponovo."
 
-#: application/controllers/User.php:1164
+#: application/controllers/User.php:1169
 #: application/views/interface_assets/header.php:392
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Prijava"
 
-#: application/controllers/User.php:1202
+#: application/controllers/User.php:1207
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 
-#: application/controllers/User.php:1205
+#: application/controllers/User.php:1210
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
 msgstr ""
 
-#: application/controllers/User.php:1209
+#: application/controllers/User.php:1214
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2898,22 +2898,22 @@ msgstr ""
 "kontaktirate administratora. Trenutno je prijava dozvoljena samo "
 "administratorima."
 
-#: application/controllers/User.php:1212
+#: application/controllers/User.php:1217
 msgid "Incorrect username or password!"
 msgstr "Neispravno korisničko ime ili lozinka!"
 
-#: application/controllers/User.php:1235
+#: application/controllers/User.php:1242
 #, php-format
 msgid "User %s logged out."
 msgstr "Korisnik %s se odjavio."
 
-#: application/controllers/User.php:1251
+#: application/controllers/User.php:1258
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Naziv stanice"
 
-#: application/controllers/User.php:1252 application/views/debug/index.php:594
+#: application/controllers/User.php:1259 application/views/debug/index.php:594
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:61
 #: application/views/station_profile/edit.php:77
@@ -2923,81 +2923,81 @@ msgstr "Naziv stanice"
 msgid "Station Callsign"
 msgstr "Pozivni znak stanice"
 
-#: application/controllers/User.php:1253
+#: application/controllers/User.php:1260
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "DXCC stanice"
 
-#: application/controllers/User.php:1254
+#: application/controllers/User.php:1261
 msgid "Station CQ Zone"
 msgstr ""
 
-#: application/controllers/User.php:1255
+#: application/controllers/User.php:1262
 msgid "Station ITU Zone"
 msgstr ""
 
-#: application/controllers/User.php:1256
+#: application/controllers/User.php:1263
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr ""
 
-#: application/controllers/User.php:1279
+#: application/controllers/User.php:1286
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
 "setup, click %shere%s."
 msgstr ""
 
-#: application/controllers/User.php:1282
+#: application/controllers/User.php:1289
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 
-#: application/controllers/User.php:1299
+#: application/controllers/User.php:1306
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Reset lozinke je onemogućen u Demo verziji!"
 
-#: application/controllers/User.php:1313
+#: application/controllers/User.php:1320
 msgid "Forgot Password"
 msgstr "Zaboravljena lozinka"
 
-#: application/controllers/User.php:1364
+#: application/controllers/User.php:1371
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "Email podešavanja nisu ispravna."
 
-#: application/controllers/User.php:1368 application/controllers/User.php:1373
+#: application/controllers/User.php:1375 application/controllers/User.php:1380
 msgid "Password Reset Processed."
 msgstr "Reset lozinke je obrađen."
 
-#: application/controllers/User.php:1474
+#: application/controllers/User.php:1481
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Reset lozinke"
 
-#: application/controllers/User.php:1495
+#: application/controllers/User.php:1502
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
 msgstr ""
 
-#: application/controllers/User.php:1504
+#: application/controllers/User.php:1511
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
 msgstr ""
 
-#: application/controllers/User.php:1543
+#: application/controllers/User.php:1550
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
 "your config.php!"
 msgstr ""
 
-#: application/controllers/User.php:1557
+#: application/controllers/User.php:1564
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -3006,15 +3006,15 @@ msgstr ""
 "Trenutno ne možete predstavljati drugog korisnika. Molimo prvo promenite "
 "encryption_key u vašoj config.php datoteci!"
 
-#: application/controllers/User.php:1564
+#: application/controllers/User.php:1571
 msgid "Invalid Hash"
 msgstr "Neispravni haš"
 
-#: application/controllers/User.php:1577
+#: application/controllers/User.php:1584
 msgid "The impersonation hash is too old. Please try again."
 msgstr "Haš za predstavljanje je previše star. Molimo pokušajte ponovo."
 
-#: application/controllers/User.php:1584
+#: application/controllers/User.php:1591
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -3022,33 +3022,33 @@ msgstr ""
 "Ne možete predstavljati drugog korisnika dok niste priavljeni kao izvorni "
 "korisnik"
 
-#: application/controllers/User.php:1590
+#: application/controllers/User.php:1597
 msgid "There was a problem with your session. Please try again."
 msgstr "Postojao je problem sa vašom sesijom. Molimo pokušajte ponovo."
 
-#: application/controllers/User.php:1597
+#: application/controllers/User.php:1604
 msgid "The requested user to impersonate does not exist"
 msgstr "Korisnik čije ste predstavljanje pokušali ne postoji"
 
-#: application/controllers/User.php:1618
+#: application/controllers/User.php:1625
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
 msgstr ""
 
-#: application/controllers/User.php:1663 application/controllers/User.php:1675
-#: application/controllers/User.php:1681 application/controllers/User.php:1690
-#: application/controllers/User.php:1698
+#: application/controllers/User.php:1670 application/controllers/User.php:1682
+#: application/controllers/User.php:1688 application/controllers/User.php:1697
+#: application/controllers/User.php:1705
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr ""
 
-#: application/controllers/User.php:1704
+#: application/controllers/User.php:1711
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
 msgstr ""
 
-#: application/controllers/User.php:1720
+#: application/controllers/User.php:1727
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -3297,52 +3297,52 @@ msgstr "datum prijama QSL sa LoTW je neispravan (YYYYMMDD)"
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "datum slanja QSL na LoTW je neispravan (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4786
+#: application/models/Logbook_model.php:4787
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikat za"
 
-#: application/models/Logbook_model.php:4851
-#: application/models/Logbook_model.php:4946
+#: application/models/Logbook_model.php:4852
+#: application/models/Logbook_model.php:4947
 msgid "QSO could not be matched"
 msgstr "QSO se ne poklapa"
 
-#: application/models/Logbook_model.php:4859
+#: application/models/Logbook_model.php:4860
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potvrđeno preko LoTW/Clublog/eQSL/Kontest"
 
-#: application/models/Logbook_model.php:4865
+#: application/models/Logbook_model.php:4866
 msgid "confirmed by award manager"
 msgstr "potvrđeno od strane menadžera za diplome"
 
-#: application/models/Logbook_model.php:4869
+#: application/models/Logbook_model.php:4870
 msgid "confirmed by cross-check of DCL data"
 msgstr "potvrđeno unakrsnom proverom DCL podataka"
 
-#: application/models/Logbook_model.php:4873
+#: application/models/Logbook_model.php:4874
 msgid "confirmation pending"
 msgstr "čeka potvrđivanje"
 
-#: application/models/Logbook_model.php:4876
+#: application/models/Logbook_model.php:4877
 msgid "unconfirmed"
 msgstr "nepotvrđeno"
 
-#: application/models/Logbook_model.php:4879
+#: application/models/Logbook_model.php:4880
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "nepoznato"
 
-#: application/models/Logbook_model.php:4949
+#: application/models/Logbook_model.php:4950
 msgid "POTA reference already in log"
 msgstr ""
 
-#: application/models/Logbook_model.php:4952
+#: application/models/Logbook_model.php:4953
 msgid "QSO updated"
 msgstr ""
 
-#: application/models/Logbook_model.php:5824
+#: application/models/Logbook_model.php:5825
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3356,24 +3356,24 @@ msgstr ""
 msgid "Bearing"
 msgstr "Smer"
 
-#: application/models/Update_model.php:351
+#: application/models/Update_model.php:353
 msgid "Newer release available:"
 msgstr "Novija izdanja su dostupna:"
 
-#: application/models/Update_model.php:355
+#: application/models/Update_model.php:357
 msgid "You are running the latest version."
 msgstr "Koristite poslednju verziju."
 
-#: application/models/Update_model.php:434
+#: application/models/Update_model.php:436
 msgid "cURL error:"
 msgstr ""
 
-#: application/models/Update_model.php:469
+#: application/models/Update_model.php:471
 msgid "SAT already existing. LoTW status updated."
 msgstr ""
 
-#: application/models/Update_model.php:472
-#: application/models/Update_model.php:501
+#: application/models/Update_model.php:474
+#: application/models/Update_model.php:503
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -3381,27 +3381,27 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: application/models/Update_model.php:475
+#: application/models/Update_model.php:477
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr ""
 
-#: application/models/Update_model.php:478
+#: application/models/Update_model.php:480
 msgid "SAT already existing. Ignored."
 msgstr ""
 
-#: application/models/Update_model.php:485
+#: application/models/Update_model.php:487
 msgid "SAT already existing. Display name updated."
 msgstr ""
 
-#: application/models/Update_model.php:487
+#: application/models/Update_model.php:489
 msgid "SAT already existing. Updating display name failed."
 msgstr ""
 
-#: application/models/Update_model.php:497
+#: application/models/Update_model.php:499
 msgid "New SAT. Inserted."
 msgstr ""
 
-#: application/models/Update_model.php:505
+#: application/models/Update_model.php:507
 msgid "New SAT. Insert failed."
 msgstr ""
 

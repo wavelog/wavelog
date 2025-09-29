@@ -938,7 +938,7 @@ class Logbook_model extends CI_Model {
    * Function checks if a HRDLog Code and Username exists in the table with the given station id
    */
 	function exists_hrdlog_credentials($station_id) {
-		
+
 		//checks only disabled state
 		$sql = 'select hrdlog_username, hrdlog_code, hrdlogrealtime from station_profile
 		  where station_id = ? and hrdlogrealtime >= 0;';
@@ -4592,6 +4592,7 @@ class Logbook_model extends CI_Model {
 				'COL_EQSL_QSLRDATE' => (!empty($record['eqsl_qslrdate'])) ? $record['eqsl_qslrdate'] : null,
 				'COL_EQSL_QSLSDATE' => $input_eqsl_qso_upload_date,
 				'COL_EQSL_STATUS' => (!empty($record['eqsl_status'])) ? $record['eqsl_status'] : '',
+				'COL_EQSL_AG' => (!empty($record['eqsl_ag'])) ? $record['eqsl_ag'] : '',
 				'COL_FISTS' => (!empty($record['fists'])) ? $record['fists'] : null,
 				'COL_FISTS_CC' => (!empty($record['fists_cc'])) ? $record['fists_cc'] : null,
 				'COL_FORCE_INIT' => (!empty($record['force_init'])) ? $record['force_init'] : null,
@@ -4834,13 +4835,13 @@ class Logbook_model extends CI_Model {
 
 		if ($darc_dok != '') {
 		$bindings=[];
-			$sql="select COL_PRIMARY_KEY, COL_DARC_DOK, COL_DCL_QSL_RCVD from ".$this->config->item('table_name')." 
-			where col_call=? and col_band=? and col_mode=? and station_id in ? 
+			$sql="select COL_PRIMARY_KEY, COL_DARC_DOK, COL_DCL_QSL_RCVD from ".$this->config->item('table_name')."
+			where col_call=? and col_band=? and col_mode=? and station_id in ?
 			AND COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL -15 MINUTE) AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, '%Y-%m-%d %H:%i' ), INTERVAL +15 MINUTE)";
-			$bindings[]=$call;	
-			$bindings[]=$band;	
-			$bindings[]=$mode;	
-			$bindings[]=$logbooks_locations_array;	
+			$bindings[]=$call;
+			$bindings[]=$band;
+			$bindings[]=$mode;
+			$bindings[]=$logbooks_locations_array;
 			$bindings[]=$time_on;
 			$bindings[]=$time_on;
 			$check = $this->db->query($sql,$bindings);
