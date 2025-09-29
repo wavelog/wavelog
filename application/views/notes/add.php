@@ -33,13 +33,13 @@
         <div class="mb-3">
           <label for="catSelect">
             <?= __("Category"); ?>
-            <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts") . __(" is a special note category used in various places of Wavelog to store information about QSO partners. This notes are private and are not shared with other users nor exported to external services.") ?>">
+            <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts is a special note category used in various places of Wavelog to store information about QSO partners. This notes are private and are not shared with other users nor exported to external services.") ?>">
               <i class="fa fa-question-circle text-info"></i>
             </span>
           </label>
           <select name="category" class="form-select" id="catSelect">
-            <?php foreach (Note::$possible_categories as $cat): ?>
-              <option value="<?= htmlspecialchars($cat) ?>"<?= (set_value('category', 'General') == $cat ? ' selected="selected"' : '') ?>><?= __($cat); ?></option>
+            <?php foreach (Note::get_possible_categories() as $category_key => $category_label): ?>
+              <option value="<?= htmlspecialchars($category_key) ?>"<?= (set_value('category', 'General') == $category_key ? ' selected="selected"' : '') ?>><?= $category_label ?></option>
             <?php endforeach; ?>
           </select>
         </div>

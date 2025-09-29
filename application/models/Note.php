@@ -1,13 +1,21 @@
 <?php
 
 class Note extends CI_Model {
-	// List of possible note categories
-	public static $possible_categories = [
-		'Contacts', // QSO partner notes
-		'General',  // General notes
-		'Antennas', // Antenna-related notes
-		'Satellites' // Satellite-related notes
-	];
+	// Get list of possible note categories with translations
+	public static function get_possible_categories() {
+		return [
+			'Contacts' => __('Contacts'), // QSO partner notes
+			'General' => __('General'),   // General notes
+			'Antennas' => __('Antennas'), // Antenna-related notes
+			'Satellites' => __('Satellites') // Satellite-related notes
+		];
+	}
+	
+	// Get list of possible note category keys (for backwards compatibility)
+	public static function get_possible_category_keys() {
+		return array_keys(self::get_possible_categories());
+	}
+
 	// List all notes for a user or API key
 	function list_all($api_key = null) {
 		// Determine user ID
@@ -20,86 +28,56 @@ class Note extends CI_Model {
 				$user_id = $this->api_model->key_userid($api_key);
 			}
 		}
-		$this->db->where('user_id', $user_id);
-		return $this->db->get('notes');
+		$sql = "SELECT * FROM notes WHERE user_id = ?";
+		return $this->db->query($sql, array($user_id));
 	}
 
 	// Add a new note for the logged-in user
-	function add() {
-		$cat = $this->security->xss_clean($this->input->post('category', TRUE));
-		$title = $this->security->xss_clean($this->input->post('title', TRUE));
+	function add($category, $title, $content, $local_time = null) {
 		$user_id = $this->session->userdata('user_id');
-		// Block duplicate title for any category
 		$check_title = $title;
-		if ($cat === 'Contacts') {
+		if ($category === 'Contacts') {
 			$check_title = strtoupper($title);
 		}
-		$existing = $this->db->get_where('notes', [
-			'cat' => $cat,
-			'user_id' => $user_id,
-			'title' => $check_title
-		])->num_rows();
-		if ($existing > 0 && $cat === 'Contacts') {
+		$sql = "SELECT COUNT(*) as count FROM notes WHERE cat = ? AND user_id = ? AND title = ?";
+		$check_result = $this->db->query($sql, array($category, $user_id, $check_title));
+		if ($check_result->row()->count > 0 && $category === 'Contacts') {
 			show_error('In Contacts category, the titles of the notes need to be unique.');
 			return;
 		}
-		$local_time = $this->input->post('local_time', TRUE);
 		$creation_date_utc = gmdate('Y-m-d H:i:s');
 		if ($local_time) {
-			// Convert browser local time to UTC
 			$dt = new DateTime($local_time, new DateTimeZone(date_default_timezone_get()));
 			$dt->setTimezone(new DateTimeZone('UTC'));
 			$creation_date_utc = $dt->format('Y-m-d H:i:s');
 		}
-		$data = array(
-			'cat' => $cat,
-			'title' => $title,
-			'note' => $this->security->xss_clean($this->input->post('content', TRUE)),
-			'user_id' => $this->session->userdata('user_id'),
-			'creation_date' => $creation_date_utc,
-			'last_modified' => $creation_date_utc
-		);
-		$this->db->insert('notes', $data);
+		$sql = "INSERT INTO notes (cat, title, note, user_id, creation_date, last_modified) VALUES (?, ?, ?, ?, ?, ?)";
+		$this->db->query($sql, array($category, $title, $content, $user_id, $creation_date_utc, $creation_date_utc));
 	}
 
 	// Edit an existing note for the logged-in user
-	function edit() {
-		$cat = $this->security->xss_clean($this->input->post('category', TRUE));
-		$title = $this->security->xss_clean($this->input->post('title', TRUE));
+	function edit($note_id, $category, $title, $content, $local_time = null) {
 		$user_id = $this->session->userdata('user_id');
-		$note_id = $this->security->xss_clean($this->input->post('id', TRUE));
 		$check_title = $title;
-		if ($cat === 'Contacts') {
+		if ($category === 'Contacts') {
 			$check_title = strtoupper($title);
 		}
-		$existing = $this->db->get_where('notes', [
-			'cat' => $cat,
-			'user_id' => $user_id,
-			'title' => $check_title
-		])->result();
-		foreach ($existing as $note) {
-			if ($note->id != $note_id && $cat === 'Contacts') {
+		$check_sql = "SELECT id FROM notes WHERE cat = ? AND user_id = ? AND title = ?";
+		$check_result = $this->db->query($check_sql, array($category, $user_id, $check_title));
+		foreach ($check_result->result() as $note) {
+			if ($note->id != $note_id && $category === 'Contacts') {
 				show_error('In Contacts category, the titles of the notes need to be unique.');
 				return;
 			}
 		}
-		$local_time = $this->input->post('local_time', TRUE);
 		$last_modified_utc = gmdate('Y-m-d H:i:s');
 		if ($local_time) {
-			// Convert browser local time to UTC
 			$dt = new DateTime($local_time, new DateTimeZone(date_default_timezone_get()));
 			$dt->setTimezone(new DateTimeZone('UTC'));
 			$last_modified_utc = $dt->format('Y-m-d H:i:s');
 		}
-		$data = array(
-			'cat' => $cat,
-			'title' => $title,
-			'note' => $this->security->xss_clean($this->input->post('content', TRUE)),
-			'last_modified' => $last_modified_utc
-		);
-		$this->db->where('id', $this->security->xss_clean($this->input->post('id', TRUE)));
-		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->update('notes', $data);
+		$sql = "UPDATE notes SET cat = ?, title = ?, note = ?, last_modified = ? WHERE id = ? AND user_id = ?";
+		$this->db->query($sql, array($category, $title, $content, $last_modified_utc, $note_id, $user_id));
 	}
 
 	// Delete a note by ID for the logged-in user
@@ -108,7 +86,8 @@ class Note extends CI_Model {
 		if (!is_numeric($clean_id)) {
 			show_404();
 		}
-		$this->db->delete('notes', array('id' => $clean_id, 'user_id' => $this->session->userdata('user_id')));
+		$sql = "DELETE FROM notes WHERE id = ? AND user_id = ?";
+		$this->db->query($sql, array($clean_id, $this->session->userdata('user_id')));
 	}
 
 	// View a note by ID for the logged-in user
@@ -117,59 +96,65 @@ class Note extends CI_Model {
 		if (!is_numeric($clean_id)) {
 			show_404();
 		}
-		$this->db->where('id', $clean_id);
-		$this->db->where('user_id', $this->session->userdata('user_id'));
-		return $this->db->get('notes');
+		$sql = "SELECT * FROM notes WHERE id = ? AND user_id = ?";
+		return $this->db->query($sql, array($clean_id, $this->session->userdata('user_id')));
 	}
 
 	// Check if note belongs to a user
 	public function belongs_to_user($note_id, $user_id) {
-		$this->db->where('id', $note_id);
-		$this->db->where('user_id', $user_id);
-		$query = $this->db->get('notes');
-		return $query->num_rows() > 0;
+		$sql = "SELECT COUNT(*) as count FROM notes WHERE id = ? AND user_id = ?";
+		$query = $this->db->query($sql, array($note_id, $user_id));
+		return $query->row()->count > 0;
 	}
 
 	// Search notes by category and/or text for the logged-in user
 	public function search($criteria = []) {
 		$user_id = $this->session->userdata('user_id');
-		$this->db->where('user_id', $user_id);
+		$params = array($user_id);
+		$sql = "SELECT * FROM notes WHERE user_id = ?";
+		
 		// Filter by category
 		if (!empty($criteria['cat'])) {
 			$cats = array_map('trim', explode(',', $criteria['cat']));
 			if (count($cats) > 0) {
-				$this->db->where_in('cat', $cats);
+				$placeholders = str_repeat('?,', count($cats) - 1) . '?';
+				$sql .= " AND cat IN ($placeholders)";
+				$params = array_merge($params, $cats);
 			}
 		}
+		
 		// Filter by search term (title or note)
 		if (!empty($criteria['search'])) {
-			$search = $criteria['search'];
-			$this->db->group_start();
-			$this->db->like('title', $search);
-			$this->db->or_like('note', $search);
-			$this->db->group_end();
+			$search = '%' . $criteria['search'] . '%';
+			$sql .= " AND (title LIKE ? OR note LIKE ?)";
+			$params[] = $search;
+			$params[] = $search;
 		}
-		$query = $this->db->get('notes');
+		
+		$query = $this->db->query($sql, $params);
 		return $query->result();
 	}
 
 	// Count notes by category for the logged-in user
-	public function count_by_category($cat = null) {
+	public function count_by_category($category = null) {
 		$user_id = $this->session->userdata('user_id');
-		$this->db->where('user_id', $user_id);
-		if ($cat !== null) {
-			$this->db->where('cat', $cat);
+		$params = array($user_id);
+		$sql = "SELECT COUNT(*) as count FROM notes WHERE user_id = ?";
+		
+		if ($category !== null) {
+			$sql .= " AND cat = ?";
+			$params[] = $category;
 		}
-		return $this->db->count_all_results('notes');
+		
+		$query = $this->db->query($sql, $params);
+		return $query->row()->count;
 	}
 
 	// Get categories with their respective note counts for the logged-in user
 	public function get_categories_with_counts() {
 		$user_id = $this->session->userdata('user_id');
-		$this->db->select('cat, COUNT(*) as count');
-		$this->db->where('user_id', $user_id);
-		$this->db->group_by('cat');
-		$query = $this->db->get('notes');
+		$sql = "SELECT cat, COUNT(*) as count FROM notes WHERE user_id = ? GROUP BY cat";
+		$query = $this->db->query($sql, array($user_id));
 		$result = [];
 		foreach ($query->result() as $row) {
 			$result[$row->cat] = (int)$row->count;
@@ -179,42 +164,54 @@ class Note extends CI_Model {
 
 	// Count all notes with user_id NULL (system notes)
 	function CountAllNotes() {
-		$this->db->where('user_id =', NULL);
-		$query = $this->db->get('notes');
-		return $query->num_rows();
+		$sql = "SELECT COUNT(*) as count FROM notes WHERE user_id IS NULL";
+		$query = $this->db->query($sql);
+		return $query->row()->count;
 	}
 
 	// Search notes with pagination and sorting for the logged-in user
 	public function search_paginated($criteria = [], $page = 1, $per_page = 25, $sort_col = null, $sort_dir = null) {
 		$user_id = $this->session->userdata('user_id');
-		$this->db->where('user_id', $user_id);
+		$params = array($user_id);
+		$where_clause = "WHERE user_id = ?";
+		
 		// Filter by category
 		if (!empty($criteria['cat'])) {
 			$cats = array_map('trim', explode(',', $criteria['cat']));
 			if (count($cats) > 0) {
-				$this->db->where_in('cat', $cats);
+				$placeholders = str_repeat('?,', count($cats) - 1) . '?';
+				$where_clause .= " AND cat IN ($placeholders)";
+				$params = array_merge($params, $cats);
 			}
 		}
+		
 		// Filter by search term (title or note)
 		if (!empty($criteria['search'])) {
-			$search = $criteria['search'];
-			$this->db->group_start();
-			$this->db->like('title', $search);
-			$this->db->or_like('note', $search);
-			$this->db->group_end();
+			$search = '%' . $criteria['search'] . '%';
+			$where_clause .= " AND (title LIKE ? OR note LIKE ?)";
+			$params[] = $search;
+			$params[] = $search;
 		}
+		
 		// Get total count
-		$total_query = clone $this->db;
-		$total = $total_query->count_all_results('notes', FALSE);
+		$count_sql = "SELECT COUNT(*) as count FROM notes $where_clause";
+		$count_query = $this->db->query($count_sql, $params);
+		$total = $count_query->row()->count;
+		
+		// Build main query with sorting
+		$sql = "SELECT id, cat, title, note, creation_date, last_modified FROM notes $where_clause";
+		
 		// Sorting
-		$columns = ['cat', 'title', 'last_modified'];
+		$columns = ['cat', 'title', 'creation_date', 'last_modified'];
 		if ($sort_col !== null && in_array($sort_col, $columns) && ($sort_dir === 'asc' || $sort_dir === 'desc')) {
-			$this->db->order_by($sort_col, $sort_dir);
+			$sql .= " ORDER BY $sort_col $sort_dir";
 		}
+		
 		// Pagination
 		$offset = ($page - 1) * $per_page;
-		$this->db->limit($per_page, $offset);
-		$query = $this->db->get('notes');
+		$sql .= " LIMIT $per_page OFFSET $offset";
+		
+		$query = $this->db->query($sql, $params);
 		$notes = [];
 		foreach ($query->result() as $row) {
 			$notes[] = [

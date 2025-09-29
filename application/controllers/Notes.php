@@ -2,11 +2,12 @@
 
 // Notes controller: handles all note actions, with security and input validation
 class Notes extends CI_Controller {
-    // AJAX endpoint: check for duplicate note title in category for user
+    // API endpoint: check for duplicate note title in category for user
     // Ensure only authorized users can access Notes controller
     function __construct() {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->library('callbook'); // Used for callsign parsing
         if (!$this->user_model->authorize(2)) {
             $this->session->set_flashdata('error', __("You're not allowed to do that!"));
             redirect('dashboard');
@@ -21,11 +22,11 @@ class Notes extends CI_Controller {
         // Get all notes for logged-in user
         $data['notes'] = $this->note->list_all();
         // Get possible categories
-        $data['categories'] = Note::$possible_categories;
+        $data['categories'] = Note::get_possible_categories();
         // Get note counts per category
         $category_counts = [];
-        foreach ($data['categories'] as $cat) {
-            $category_counts[$cat] = $this->note->count_by_category($cat);
+        foreach (Note::get_possible_category_keys() as $category) {
+            $category_counts[$category] = $this->note->count_by_category($category);
         }
         $data['category_counts'] = $category_counts;
         // Get total notes count
@@ -33,7 +34,7 @@ class Notes extends CI_Controller {
         $data['page_title'] = __("Notes");
         // Render views
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('notes/main', $data);
+        $this->load->view('notes/main');
         $this->load->view('interface_assets/footer');
     }
 
@@ -41,38 +42,38 @@ class Notes extends CI_Controller {
     function add() {
         $this->load->model('note');
         $this->load->library('form_validation');
+
         $suggested_title = null;
         // Validate form fields
-        $this->form_validation->set_rules('title', 'Note Title', 'required|callback_contacts_title_unique');
+        $this->form_validation->set_rules('title', 'Note Title', 'required|callback_contacts_title_unique'); // Custom callback for Contacts category
         $this->form_validation->set_rules('content', 'Content', 'required');
         if ($this->form_validation->run() == FALSE) {
-            // If validation failed and Contacts, get suggested title
-            $cat = $this->input->post('category', TRUE);
-            if ($cat === 'Contacts') {
-                $this->load->helper('callsign');
-                $parsed = parse_callsign($this->input->post('title', TRUE));
-                $suggested_title = strtoupper($parsed['core']);
+            $category = $this->input->post('category', TRUE);
+            if ($category === 'Contacts') {
+                
+                $suggested_title = strtoupper($this->callbook->get_plaincall($this->input->post('title', TRUE)));
             }
             $data['suggested_title'] = $suggested_title;
             $data['page_title'] = __("Add Notes");
             $this->load->view('interface_assets/header', $data);
-            $this->load->view('notes/add', $data);
+            $this->load->view('notes/add');
             $this->load->view('interface_assets/footer');
         } else {
-            // Ensure title is uppercase for Contacts before saving
-            $cat = $this->input->post('category', TRUE);
+            $category = $this->input->post('category', TRUE);
             $title = $this->input->post('title', TRUE);
-            if ($cat === 'Contacts') {
-                $_POST['title'] = strtoupper($title);
+            $content = $this->input->post('content', TRUE);
+            $local_time = $this->input->post('local_time', TRUE);
+            if ($category === 'Contacts') {
+                $title = strtoupper($this->callbook->get_plaincall($title));
             }
-            $this->note->add();
+            $this->note->add($category, $title, $content, $local_time);
             redirect('notes');
         }
     }
 
     // View a single note
     function view($id) {
-        $this->load->model('note'); // Ensure note model is loaded
+        $this->load->model('note');
         $clean_id = $this->security->xss_clean($id);
         // Validate note ID and ownership
         if (!is_numeric($clean_id) || !$this->note->belongs_to_user($clean_id, $this->session->userdata('user_id'))) {
@@ -88,7 +89,7 @@ class Notes extends CI_Controller {
 
     // Edit a note
     function edit($id) {
-        $this->load->model('note'); // Ensure note model is loaded
+        $this->load->model('note');
         $clean_id = $this->security->xss_clean($id);
         // Validate note ID and ownership
         if (!is_numeric($clean_id) || !$this->note->belongs_to_user($clean_id, $this->session->userdata('user_id'))) {
@@ -99,28 +100,28 @@ class Notes extends CI_Controller {
         $this->load->library('form_validation');
         $suggested_title = null;
         // Validate form fields
-        $this->form_validation->set_rules('title', 'Note Title', 'required|callback_contacts_title_unique_edit');
+        $this->form_validation->set_rules('title', 'Note Title', 'required|callback_contacts_title_unique_edit'); // Custom callback for Contacts category
         $this->form_validation->set_rules('content', 'Content', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $cat = $this->input->post('category', TRUE);
-            if ($cat === 'Contacts') {
-                $this->load->helper('callsign');
-                $parsed = parse_callsign($this->input->post('title', TRUE));
-                $suggested_title = strtoupper($parsed['core']);
+            $category = $this->input->post('category', TRUE);
+            if ($category === 'Contacts') {
+                $suggested_title = strtoupper($this->callbook->get_plaincall($this->input->post('title', TRUE)));
             }
             $data['suggested_title'] = $suggested_title;
             $data['page_title'] = __("Edit Note");
             $this->load->view('interface_assets/header', $data);
-            $this->load->view('notes/edit', $data);
+            $this->load->view('notes/edit');
             $this->load->view('interface_assets/footer');
         } else {
-            // Ensure title is uppercase for Contacts before saving
-            $cat = $this->input->post('category', TRUE);
+            $category = $this->input->post('category', TRUE);
             $title = $this->input->post('title', TRUE);
-            if ($cat === 'Contacts') {
-                $_POST['title'] = strtoupper($title);
+            $content = $this->input->post('content', TRUE);
+            $local_time = $this->input->post('local_time', TRUE);
+            $note_id = $this->input->post('id', TRUE);
+            if ($category === 'Contacts') {
+                $title = strtoupper($this->callbook->get_plaincall($title));
             }
-            $this->note->edit();
+            $this->note->edit($note_id, $category, $title, $content, $local_time);
             redirect('notes');
         }
     }
@@ -151,8 +152,8 @@ class Notes extends CI_Controller {
     // Map and sanitize search parameters
     function mapParameters() {
         return array(
-            'cat' => $this->security->xss_clean($this->input->post('cat', TRUE)),
-            'search' => $this->security->xss_clean($this->input->post('search', TRUE))
+            'cat' => $this->input->post('cat', TRUE),
+            'search' => $this->input->post('search', TRUE)
         );
     }
 
@@ -185,19 +186,19 @@ class Notes extends CI_Controller {
         }
         $note = $query->row();
         // Simple duplicate check
-        $cat = $note->cat;
+        $category = $note->cat;
         $new_title = $note->title . ' #' . $timestamp;
         $check_title = $new_title;
-        if ($cat === 'Contacts') {
+        if ($category === 'Contacts') {
             $check_title = strtoupper($new_title);
         }
         $existing = $this->db->get_where('notes', [
-            'cat' => $cat,
+            'cat' => $category,
             'user_id' => $user_id,
             'title' => $check_title
         ])->num_rows();
         if ($existing > 0) {
-            $this->output->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Duplicate note title for this category and user.']));
+            $this->output->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Duplicate note title for this category and user - not allowed for Contacts category.']));
             return;
         }
         // Duplicate note with new title
@@ -216,10 +217,10 @@ class Notes extends CI_Controller {
 	// API endpoint to get note counts per category and total
     public function get_category_counts() {
         $this->load->model('note');
-        $categories = Note::$possible_categories;
+        $categories = Note::get_possible_category_keys();
         $category_counts = [];
-        foreach ($categories as $cat) {
-            $category_counts[$cat] = $this->note->count_by_category($cat);
+        foreach ($categories as $category) {
+            $category_counts[$category] = $this->note->count_by_category($category);
         }
         $all_notes_count = $this->note->count_by_category();
         $response = [
@@ -234,15 +235,15 @@ class Notes extends CI_Controller {
 	// API endpoint to check for duplicate note title in category for user
 	public function check_duplicate() {
         $user_id = $this->session->userdata('user_id');
-        $cat = $this->security->xss_clean($this->input->get('cat', TRUE));
-        $title = $this->security->xss_clean($this->input->get('title', TRUE));
-        $id = $this->security->xss_clean($this->input->get('id', TRUE)); // Optional, for edit
+        $category = $this->input->get('category', TRUE);
+        $title = $this->input->get('title', TRUE);
+        $id = $this->input->get('id', TRUE); // Optional, for edit
         $check_title = $title;
-        if ($cat === 'Contacts') {
+        if ($category === 'Contacts') {
             $check_title = strtoupper($title);
         }
         $where = [
-            'cat' => $cat,
+            'category' => $category,
             'user_id' => $user_id,
             'title' => $check_title
         ];
@@ -263,27 +264,22 @@ class Notes extends CI_Controller {
 
     // Form validation callback for add: unique Contacts note title for user, only core callsign
     public function contacts_title_unique($title) {
-        $cat = $this->input->post('category', TRUE);
-        if ($cat === 'Contacts') {
+        $category = $this->input->post('category', TRUE);
+        if ($category === 'Contacts') {
             $user_id = $this->session->userdata('user_id');
-            $this->load->helper('callsign');
-            $parsed = parse_callsign($title);
-            $core = strtoupper($parsed['core']);
+            $core = strtoupper($this->callbook->get_plaincall($title));
             // Only fail if prefix or suffix is present
-            if ($parsed['prefix'] || $parsed['suffix']) {
+            if (strtoupper($title) <> $core) {
                 $this->form_validation->set_message('contacts_title_unique', 'Contacts note title must be a callsign only, without prefix/suffix. Suggested: ' . $core);
-                $_POST['title'] = $core;
                 return FALSE;
             }
-            // Accept and normalize casing
-            $_POST['title'] = $core;
             $existing = $this->db->get_where('notes', [
                 'cat' => 'Contacts',
                 'user_id' => $user_id,
                 'title' => $core
             ])->num_rows();
             if ($existing > 0) {
-                $this->form_validation->set_message('contacts_title_unique', 'A note with this callsign already exists in your Contacts. Please enter a unique callsign.');
+                $this->form_validation->set_message('contacts_title_unique', __('A note with this callsign already exists in your Contacts. Please enter a unique callsign.'));
                 return FALSE;
             }
             return TRUE;
@@ -292,26 +288,23 @@ class Notes extends CI_Controller {
     }
     // Form validation callback for edit: unique Contacts note title for user (ignore current note), only core callsign
     public function contacts_title_unique_edit($title) {
-        $cat = $this->input->post('category', TRUE);
-        if ($cat === 'Contacts') {
+        $category = $this->input->post('category', TRUE);
+        if ($category === 'Contacts') {
             $user_id = $this->session->userdata('user_id');
             $note_id = $this->input->post('id', TRUE);
-            $this->load->helper('callsign');
-            $parsed = parse_callsign($title);
-            $core = strtoupper($parsed['core']);
+            $core = strtoupper($this->callbook->get_plaincall($title));
             if ($parsed['prefix'] || $parsed['suffix'] || $title !== $core) {
-                $this->form_validation->set_message('contacts_title_unique_edit', 'Contacts note title must be a callsign only, without prefix/suffix. Suggested: ' . $core);
-                $_POST['title'] = $core;
+                $this->form_validation->set_message('contacts_title_unique_edit', __('Contacts note title must be a callsign only, without prefix/suffix. Suggested: ' . $core));
                 return FALSE;
             }
             $query = $this->db->get_where('notes', [
-                'cat' => 'Contacts',
+                'category' => 'Contacts',
                 'user_id' => $user_id,
                 'title' => $core
             ]);
             foreach ($query->result() as $note) {
                 if ($note->id != $note_id) {
-                    $this->form_validation->set_message('contacts_title_unique_edit', 'A note with this callsign already exists in your Contacts. Please enter a unique callsign.');
+                    $this->form_validation->set_message('contacts_title_unique_edit', __('A note with this callsign already exists in your Contacts. Please enter a unique callsign.'));
                     return FALSE;
                 }
             }

@@ -24,15 +24,22 @@
 						<button type="button" class="btn btn-sm btn-outline-secondary btn-light category-btn active" data-category="__all__">
 							<?= __("All Categories"); ?> <span class="badge bg-secondary"><?= $all_notes_count ?></span>
 						</button>
-						<?php foreach ($categories as $cat): ?>
-							<button type="button" class="btn btn-sm btn-outline-secondary btn-light category-btn" data-category="<?= htmlspecialchars($cat) ?>">
-								<?= __(htmlspecialchars($cat)); ?>
-								<?php if ($cat === 'Contacts'): ?>
-									<span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts") . __(" is a special note category used in various parts of Wavelog to store information about QSO partners. These notes are private and are neither shared with other users nor exported to external services.") ?>">
+						<?php 
+						// Decode HTML entities for proper display
+						$decoded_categories = array();
+						foreach ($categories as $key => $value) {
+							$decoded_categories[$key] = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+						}
+						?>
+						<?php foreach ($decoded_categories as $category_key => $category_label): ?>
+							<button type="button" class="btn btn-sm btn-outline-secondary btn-light category-btn" data-category="<?= htmlspecialchars($category_key) ?>">
+								<?= htmlspecialchars($category_label); ?>
+								<?php if ($category_key === 'Contacts'): ?>
+									<span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts is a special note category used in various parts of Wavelog to store information about QSO partners. These notes are private and are neither shared with other users nor exported to external services.") ?>">
 										<i class="fa fa-question-circle"></i>
 									</span>
 								<?php endif; ?>
-								<span class="badge bg-secondary"><?= $category_counts[$cat] ?? 0 ?></span>
+								<span class="badge bg-secondary"><?= $category_counts[$category_key] ?? 0 ?></span>
 							</button>
 						<?php endforeach; ?>
 						<a href="<?php echo site_url('notes/add'); ?>" class="btn btn-sm btn-success">
@@ -43,8 +50,8 @@
 				<div class="col-md-5 col-12">
 					<!-- Search box and reset button -->
 					<div class="input-group">
-						<input type="text" id="notesSearchBox" class="form-control form-control-sm" maxlength="50" placeholder="<?= __('Search notes (min. 3 chars)') ?>">
-						<button class="btn btn-outline-secondary btn-sm btn-light" id="notesSearchReset" type="button" title="<?= __('Reset search') ?>">
+						<input type="text" id="notesSearchBox" class="form-control form-control-sm" maxlength="50" placeholder="<?= __("Search notes (min. 3 chars)") ?>">
+						<button class="btn btn-outline-secondary btn-sm btn-light" id="notesSearchReset" type="button" title="<?= __("Reset search") ?>">
 							<i class="fa fa-times"></i>
 						</button>
 					</div>
@@ -53,26 +60,9 @@
 			<div class="pt-3" id="notesTableContainer">
 				<!-- Notes table -->
 				<script>
-						// On initial page load, convert all data-utc cells to local time and initialize tooltips
-						document.addEventListener('DOMContentLoaded', function() {
-							function utcToLocal(utcString) {
-								if (!utcString) return '';
-								var utcDate = new Date(utcString + ' UTC');
-								if (isNaN(utcDate.getTime())) return utcString;
-								return utcDate.toLocaleString();
-							}
-							document.querySelectorAll('#notesTable td[data-utc]').forEach(function(td) {
-								var utc = td.getAttribute('data-utc');
-								td.textContent = utcToLocal(utc);
-							});
-							// Initialize Bootstrap tooltips for note titles
-							var tooltipTriggerList = [].slice.call(document.querySelectorAll('#notesTable a[data-bs-toggle="tooltip"]'));
-							tooltipTriggerList.forEach(function(el) {
-								new bootstrap.Tooltip(el);
-							});
-						});
-					// Pass browser timezone to JS
+					// Pass data from PHP to JavaScript
 					window.browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+					window.categoryTranslations = <?= json_encode($decoded_categories, JSON_UNESCAPED_UNICODE) ?>;
 				</script>
 				<table id="notesTable" style="width:100%" class="table-sm table table-hover table-striped table-bordered table-condensed text-center">
 					<thead>

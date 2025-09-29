@@ -29,7 +29,7 @@
               <span style="font-size:1em;">
                 <?= __("Category"); ?>: <?= __($row->cat); ?>
                 <?php if ($row->cat == 'Contacts'): ?>
-                  <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts") . __(" is a special note category used in various places of Wavelog to store information about QSO partners. This notes are private and are not shared with other users nor exported to external services.") ?>">
+                  <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts is a special note category used in various places of Wavelog to store information about QSO partners. This notes are private and are not shared with other users nor exported to external services.") ?>">
                     <i class="fa fa-question-circle text-info"></i>
                   </span>
                 <?php endif; ?>

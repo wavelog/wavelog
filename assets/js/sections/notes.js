@@ -75,13 +75,64 @@ if (typeof EasyMDE !== 'undefined') {
 	});
 }
 
-// Category filter for notes list
+// Main notes page logic including subpages
 document.addEventListener('DOMContentLoaded', function() {
+    // Early exit if we're not on a notes page
+    var notesTableBody = document.querySelector('#notesTable tbody');
+    var isNotesMainPage = notesTableBody !== null;
+
+    var base_url = window.base_url || document.body.getAttribute('data-baseurl') || '/';
+    
+    // Constants
+    const NOTES_PER_PAGE = 15;
+    const SEARCH_MIN_LENGTH = 3;
+    const SORT_COLUMN_MAP = ['cat', 'title', 'creation_date', 'last_modified', null];
+    
+    // Cache frequently used DOM elements to avoid repeated queries
+    var domCache = {
+        notesTableBody: notesTableBody,
+        notesTable: document.getElementById('notesTable'),
+        categoryButtons: document.querySelectorAll('.category-btn'),
+        searchBox: document.getElementById('notesSearchBox'),
+        resetBtn: document.getElementById('notesSearchReset'),
+        titleInput: document.getElementById('inputTitle'),
+        catSelect: document.getElementById('catSelect'),
+        saveBtn: document.querySelector('button[type="submit"]'),
+        form: document.getElementById('notes_add'),
+        paginationContainer: document.getElementById('notesPagination')
+    };
+    
+    // Create pagination container if it doesn't exist
+    if (!domCache.paginationContainer) {
+        domCache.paginationContainer = document.createElement('div');
+        domCache.paginationContainer.id = 'notesPagination';
+        domCache.paginationContainer.className = 'd-flex justify-content-center my-3';
+        var notesTableContainer = document.getElementById('notesTableContainer');
+        if (notesTableContainer) {
+            notesTableContainer.appendChild(domCache.paginationContainer);
+        }
+    }
+    
+    // Initialize existing UTC time cells and tooltips on page load
+    // Helper function to initialize table elements after rendering
+    function initializeTableElements() {
+        // Convert UTC times to local time
+        document.querySelectorAll('#notesTable td[data-utc]').forEach(function(td) {
+            var utc = td.getAttribute('data-utc');
+            td.textContent = utcToLocal(utc);
+        });
+        
+        // Initialize Bootstrap tooltips for note titles
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('#notesTable a[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(function(el) {
+            new bootstrap.Tooltip(el);
+        });
+    }
+    
+    // Run initialization for existing table content
+    initializeTableElements();
+    
     // Duplicate Contacts note check for add/edit pages
-    var titleInput = document.getElementById('inputTitle');
-    var catSelect = document.getElementById('catSelect');
-    var saveBtn = document.querySelector('button[type="submit"]');
-    var form = document.getElementById('notes_add');
     var modal;
     function showModal(msg) {
         if (!modal) {
@@ -93,27 +144,21 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.querySelector('.modal-body p').textContent = msg;
         $(modal).modal('show');
     }
+
     // Reload category counters via AJAX
     function reloadCategoryCounters() {
-        fetch(base_url + 'index.php/notes/get_category_counts', {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data && typeof data === 'object') {
-                document.querySelectorAll('.category-btn').forEach(function(btn) {
+        fetch(base_url + 'index.php/notes/get_category_counts', { method: 'POST' })
+            .then(response => response.json())
+            .then(counts => {
+                domCache.categoryButtons.forEach(function(btn) {
                     var cat = btn.getAttribute('data-category');
-                    var badge = btn.querySelector('.badge');
-                    if (cat === '__all__') {
-                        if (badge) badge.textContent = data.all_notes_count ?? 0;
-                    } else {
-                        if (badge) badge.textContent = data.category_counts && data.category_counts[cat] ? data.category_counts[cat] : 0;
+                    var countSpan = btn.querySelector('.badge');
+                    if (countSpan && counts[cat] !== undefined) {
+                        countSpan.textContent = counts[cat];
                     }
                 });
-            }
-        });
-    }
-    // Helper: Convert UTC string to browser local time
+            });
+    }    // Helper: Convert UTC string to browser local time
     function utcToLocal(utcString) {
         if (!utcString) return '';
         // Parse as UTC
@@ -121,12 +166,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isNaN(utcDate.getTime())) return utcString;
         return utcDate.toLocaleString();
     }
-    var base_url = window.base_url || document.body.getAttribute('data-baseurl') || '/';
-    var notesTableBody = document.querySelector('#notesTable tbody');
-    var categoryButtons = document.querySelectorAll('.category-btn');
-    var searchBox = document.getElementById('notesSearchBox');
-    var resetBtn = document.getElementById('notesSearchReset');
 
+    // Get currently active category
     function getActiveCategory() {
         var activeBtn = document.querySelector('.category-btn.active');
         if (activeBtn) {
@@ -136,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return '';
     }
 
+    // Perform search and update table
     function performNotesSearch() {
 			var searchTerm = searchBox ? searchBox.value.trim() : '';
 			var selectedCat = getActiveCategory();
@@ -157,9 +199,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			})
 			.then(data => {
 				var tbody = '';
-				if (data.length === 0) {
-					tbody = '<tr><td colspan="3" class="text-center text-muted">No notes were found.</td></tr>';
-				} else {
+                if (data.length === 0) {
+                    tbody = '<tr><td colspan="5" class="text-center text-muted">No notes were found.</td></tr>';
+                } else {
 					data.forEach(function(note) {
 						tbody += '<tr>' +
 							'<td>' + (note.cat ? note.cat : '') + '</td>' +
@@ -168,48 +210,55 @@ document.addEventListener('DOMContentLoaded', function() {
 						'</tr>';
 					});
 				}
-				notesTableBody.innerHTML = tbody;
+				if (notesTableBody) {
+					notesTableBody.innerHTML = tbody;
+				}
 			})
 			.catch(error => {
-				notesTableBody.innerHTML = '<tr><td colspan="3">Error loading notes: ' + error.message + '</td></tr>';
+				if (notesTableBody) {
+					notesTableBody.innerHTML = '<tr><td colspan="5">Error loading notes: ' + error.message + '</td></tr>';
+				}
 			});
     }
 
     // Sorting logic for notes table
-    var notesTable = document.getElementById('notesTable');
     var sortState = {
         column: 3, // Default to 'Last Modification' column
         direction: 'desc' // Show latest modified at top
     };
-    var columnHeaders = notesTable ? notesTable.querySelectorAll('thead th') : [];
+    var columnHeaders = domCache.notesTable ? domCache.notesTable.querySelectorAll('thead th') : [];
 
-    // Add sorting indicators and click handlers
+    // Add sorting indicators and click handlers (only for supported columns)
     columnHeaders.forEach(function(th, idx) {
         var span = document.createElement('span');
         span.className = 'dt-column-order';
-        span.setAttribute('role', 'button');
-        span.setAttribute('aria-label', th.textContent + ': Activate to sort');
-        span.setAttribute('tabindex', '0');
         th.appendChild(span);
-        th.style.cursor = 'pointer';
-        th.addEventListener('click', function() {
-            // Cycle sort direction: null -> asc -> desc -> null
-            if (sortState.column !== idx) {
-                sortState.column = idx;
-                sortState.direction = 'asc';
-            } else if (sortState.direction === 'asc') {
-                sortState.direction = 'desc';
-            } else if (sortState.direction === 'desc') {
-                sortState.direction = null;
-                sortState.column = null;
-            } else {
-                sortState.direction = 'asc';
-            }
-            updateSortIndicators();
-            performNotesSearch();
-        });
+        if (SORT_COLUMN_MAP[idx]) {
+            span.setAttribute('role', 'button');
+            span.setAttribute('aria-label', th.textContent + ': Activate to sort');
+            span.setAttribute('tabindex', '0');
+            th.style.cursor = 'pointer';
+            th.addEventListener('click', function() {
+                if (sortState.column !== idx) {
+                    sortState.column = idx;
+                    sortState.direction = 'asc';
+                } else if (sortState.direction === 'asc') {
+                    sortState.direction = 'desc';
+                } else if (sortState.direction === 'desc') {
+                    sortState.direction = null;
+                    sortState.column = null;
+                } else {
+                    sortState.direction = 'asc';
+                }
+                updateSortIndicators();
+                performNotesSearch();
+            });
+        } else {
+            th.style.cursor = 'default';
+        }
     });
 
+    //  Update sort indicators in the header
     function updateSortIndicators() {
         columnHeaders.forEach(function(th, idx) {
             var span = th.querySelector('.dt-column-order');
@@ -226,24 +275,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Server-side pagination, sorting, and search integration
-    var notesPerPage = 15;
     var currentPage = 1;
     var totalPages = 1;
     var lastResponseTotal = 0;
-    var lastNotesData = [];
-    var paginationContainer = document.getElementById('notesPagination');
-    if (!paginationContainer) {
-        paginationContainer = document.createElement('div');
-        paginationContainer.id = 'notesPagination';
-        paginationContainer.className = 'd-flex justify-content-center my-3';
-        var notesTableContainer = document.getElementById('notesTableContainer');
-        if (notesTableContainer) {
-            notesTableContainer.appendChild(paginationContainer);
-        }
-    }
+    window.lastNotesData = [];
 
+    // Render pagination controls
     function renderPagination() {
-        paginationContainer.innerHTML = '';
+        if (!domCache.paginationContainer) return;
+        domCache.paginationContainer.innerHTML = '';
         if (totalPages <= 1) return;
         var ul = document.createElement('ul');
         ul.className = 'pagination pagination-sm';
@@ -265,10 +305,47 @@ document.addEventListener('DOMContentLoaded', function() {
             li.appendChild(a);
             ul.appendChild(li);
         }
-        paginationContainer.appendChild(ul);
+        domCache.paginationContainer.appendChild(ul);
     }
 
+    // Simple Markdown to plain text conversion for tooltip preview
+    function markdownToText(md) {
+        // Remove code blocks
+        md = md.replace(/```[\s\S]*?```/g, '');
+        // Remove inline code
+        md = md.replace(/`[^`]*`/g, '');
+        // Remove images
+        md = md.replace(/!\[.*?\]\(.*?\)/g, '');
+        // Remove links but keep text
+        md = md.replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1');
+        // Remove headings
+        md = md.replace(/^#{1,6}\s*/gm, '');
+        // Remove blockquotes
+        md = md.replace(/^>\s?/gm, '');
+        // Remove emphasis
+        md = md.replace(/(\*\*|__)(.*?)\1/g, '$2');
+        md = md.replace(/(\*|_)(.*?)\1/g, '$2');
+        // Remove lists
+        md = md.replace(/^\s*([-*+]|\d+\.)\s+/gm, '');
+        // Remove horizontal rules
+        md = md.replace(/^(-{3,}|\*{3,}|_{3,})$/gm, '');
+        // Remove HTML tags
+        md = md.replace(/<[^>]+>/g, '');
+        // Collapse whitespace
+        md = md.replace(/\s+/g, ' ').trim();
+        return md;
+    }
+
+    // Render notes table with data
     function renderNotesTable(data) {
+        // Helper function to get translated category name
+        function getTranslatedCategory(categoryKey) {
+            if (window.categoryTranslations && window.categoryTranslations[categoryKey]) {
+                return window.categoryTranslations[categoryKey];
+            }
+            return categoryKey || '';
+        }
+        
         var tbody = '';
         if (data.length === 0) {
             tbody = '<tr><td colspan="5" class="text-center text-muted">No notes were found.</td></tr>';
@@ -276,16 +353,12 @@ document.addEventListener('DOMContentLoaded', function() {
             data.forEach(function(note) {
                     // Strip HTML/Markdown and truncate to 100 chars for tooltip
                     var rawContent = note.note ? note.note : '';
-                    // Remove Markdown (basic: *, _, #, >, `, ![...], [...](...), etc.)
-                    var plainContent = rawContent.replace(/(!?\[.*?\]\(.*?\))|[#>*_`]/g, '');
-                    // Remove HTML tags
-                    plainContent = plainContent.replace(/<[^>]+>/g, '');
-                    // Collapse whitespace
-                    plainContent = plainContent.replace(/\s+/g, ' ').trim();
+                    // Use a more robust Markdown-to-text conversion
+                    var plainContent = markdownToText(rawContent);
                     // Truncate to 100 chars
                     var preview = plainContent.length > 100 ? plainContent.substring(0, 100) + '…' : plainContent;
                     tbody += '<tr>' +
-                        '<td class="text-center">' + (note.cat ? note.cat : '') + '</td>' +
+                        '<td class="text-center">' + getTranslatedCategory(note.cat) + '</td>' +
                         '<td class="text-start"><a href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '" title="' + preview.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '" data-bs-toggle="tooltip">' + (note.title ? note.title : '') + '</a></td>' +
                         '<td class="text-center" data-utc="' + (note.creation_date ? note.creation_date : '') + '"></td>' +
                         '<td class="text-center" data-utc="' + (note.last_modified ? note.last_modified : '') + '"></td>' +
@@ -303,17 +376,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     '</tr>';
             });
         }
-        notesTableBody.innerHTML = tbody;
-        // After rendering, convert all UTC times to local
-        document.querySelectorAll('#notesTable td[data-utc]').forEach(function(td) {
-            var utc = td.getAttribute('data-utc');
-            td.textContent = utcToLocal(utc);
-        });
-        // Initialize Bootstrap tooltips for note titles
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('#notesTable a[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.forEach(function(el) {
-            new bootstrap.Tooltip(el);
-        });
+        if (domCache.notesTableBody) {
+            domCache.notesTableBody.innerHTML = tbody;
+            // After rendering, initialize table elements
+            initializeTableElements();
+        }
         updateSortIndicators();
     }
 
@@ -333,13 +400,23 @@ document.addEventListener('DOMContentLoaded', function() {
             duplicateNote(noteId);
         });
     };
+
+    // Actions for delete and duplicate
     function deleteNote(noteId) {
         fetch(base_url + 'index.php/notes/delete/' + noteId, { method: 'POST' })
             .then(() => {
+                // Check if we need to go to previous page after deletion
+                // If we're on the last page and it only has 1 item, go back one page
+                var currentPageItemCount = window.lastNotesData ? window.lastNotesData.length : 0;
+                if (currentPage > 1 && currentPageItemCount === 1) {
+                    currentPage = currentPage - 1;
+                }
                 performNotesSearch();
                 reloadCategoryCounters();
             });
     }
+
+    // Duplicate note via POST with timestamp
     function duplicateNote(noteId) {
         // Get local timestamp
         var now = new Date();
@@ -355,6 +432,8 @@ document.addEventListener('DOMContentLoaded', function() {
             reloadCategoryCounters();
         });
     }
+
+    // Bootstrap modal helper
     function showBootstrapModal(title, message, onConfirm) {
         var modalId = 'confirmModal_' + Math.random().toString(36).substr(2, 9);
         var modalHtml = '<div class="modal fade" id="' + modalId + '" tabindex="-1" role="dialog" data-bs-backdrop="static">' +
@@ -394,17 +473,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Patch performNotesSearch to use server-side pagination and sorting
     performNotesSearch = function() {
-        var searchTerm = searchBox ? searchBox.value.trim() : '';
+        var searchTerm = domCache.searchBox ? domCache.searchBox.value.trim() : '';
         var selectedCat = getActiveCategory();
         var sortColIdx = sortState.column;
         var sortDir = sortState.direction;
-        var sortColMap = ['cat', 'title', 'last_modified'];
-        var sortCol = sortColIdx !== null ? sortColMap[sortColIdx] : null;
+    	var sortCol = (sortColIdx !== null && SORT_COLUMN_MAP[sortColIdx]) ? SORT_COLUMN_MAP[sortColIdx] : null;
         var formData = new FormData();
         formData.append('cat', selectedCat);
-        formData.append('search', searchTerm.length >= 3 ? searchTerm : '');
+        formData.append('search', searchTerm.length >= SEARCH_MIN_LENGTH ? searchTerm : '');
         formData.append('page', currentPage);
-        formData.append('per_page', notesPerPage);
+        formData.append('per_page', NOTES_PER_PAGE);
         formData.append('sort_col', sortCol || '');
         formData.append('sort_dir', sortDir || '');
         fetch(base_url + 'index.php/notes/search', {
@@ -416,46 +494,52 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(resp => {
-            var data = resp.notes || [];
-            lastNotesData = data;
+            var data = (resp && Array.isArray(resp.notes)) ? resp.notes : [];
+            window.lastNotesData = data;
             lastResponseTotal = resp.total || 0;
-            totalPages = Math.max(1, Math.ceil(lastResponseTotal / notesPerPage));
+            totalPages = Math.max(1, Math.ceil(lastResponseTotal / NOTES_PER_PAGE));
             if (currentPage > totalPages) currentPage = totalPages;
             renderNotesTable(data);
             renderPagination();
             reloadCategoryCounters();
         })
         .catch(error => {
-            notesTableBody.innerHTML = '<tr><td colspan="3">Error loading notes: ' + error.message + '</td></tr>';
-            paginationContainer.innerHTML = '';
+            if (domCache.notesTableBody) {
+                domCache.notesTableBody.innerHTML = '<tr><td colspan="5">Error loading notes: ' + error.message + '</td></tr>';
+            }
+            if (domCache.paginationContainer) {
+                domCache.paginationContainer.innerHTML = '';
+            }
         });
     };
 
     // Reset to first page on search, sort, or category change
-    if (categoryButtons && notesTableBody) {
-        categoryButtons.forEach(function(btn) {
+    if (domCache.categoryButtons && domCache.notesTableBody) {
+        domCache.categoryButtons.forEach(function(btn) {
             btn.addEventListener('click', function() {
-                categoryButtons.forEach(function(b) { b.classList.remove('active'); });
+                domCache.categoryButtons.forEach(function(b) { b.classList.remove('active'); });
                 btn.classList.add('active');
                 currentPage = 1;
                 performNotesSearch();
             });
         });
     }
-    if (searchBox) {
-        searchBox.addEventListener('input', function() {
+    if (domCache.searchBox) {
+        domCache.searchBox.addEventListener('input', function() {
             currentPage = 1;
             performNotesSearch();
         });
     }
-    if (resetBtn) {
-        resetBtn.addEventListener('click', function() {
-            if (searchBox) searchBox.value = '';
+    if (domCache.resetBtn) {
+        domCache.resetBtn.addEventListener('click', function() {
+            if (domCache.searchBox) domCache.searchBox.value = '';
             currentPage = 1;
             performNotesSearch();
         });
     }
 
-    // Initial render
-    performNotesSearch();
+    // Initial render - only if we have the necessary elements
+    if (domCache.notesTableBody) {
+        performNotesSearch();
+    }
 });
