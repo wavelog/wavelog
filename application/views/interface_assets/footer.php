@@ -2720,6 +2720,14 @@ function viewEqsl(picture, callsign) {
 			    nl2br: false,
 			    message: html,
 			    onshown: function(dialog) {
+					// Block propagation on the modal body
+					L.DomEvent.disableScrollPropagation(dialog.getModalBody()[0]);
+					L.DomEvent.disableClickPropagation(dialog.getModalBody()[0]);
+
+					// Also block on the DataTables scroll container once it exists
+					dialog.getModalBody().find('.dataTables_scrollBody').each(function() {
+						L.DomEvent.disableScrollPropagation(this);
+					});
 				    $('[data-bs-toggle="tooltip"]').tooltip();
 				    $('.displaycontactstable').DataTable({
 				    "pageLength": 25,

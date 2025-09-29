@@ -1,3 +1,19 @@
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.dropdown').forEach(dd => {
+		dd.addEventListener('hide.bs.dropdown', function (e) {
+			if (e.clickEvent && e.clickEvent.target.closest('.dropdown-menu')) {
+				e.preventDefault(); // stop Bootstrap from closing
+			}
+		});
+	});
+});
+
+$(document).on('submit', 'form', function(e) {
+    if ($(e.target).find('.bootstrap-dialog').length) {
+        e.preventDefault();
+    }
+});
+
 var osmUrl = $('#dxccmapjs').attr("tileUrl");
 
 
