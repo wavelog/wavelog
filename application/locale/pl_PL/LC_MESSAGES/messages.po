@@ -15,10 +15,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-09-27 14:06+0000\n"
-"PO-Revision-Date: 2025-09-23 16:09+0000\n"
+"PO-Revision-Date: 2025-09-29 06:30+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2767,11 +2767,11 @@ msgstr "WWFF aktualizacja zakończona niepowodzeniem. Rezultat: "
 
 #: application/controllers/Update.php:450
 msgid "HAMqsl Update complete. Result: "
-msgstr ""
+msgstr "Aktualizacja HAMqsl zakończona sukcesem. Rezultat: "
 
 #: application/controllers/Update.php:452
 msgid "HAMqsl Update failed. Result: "
-msgstr ""
+msgstr "Aktualizacja HAMqsl zakończona niepowodzeniem. Rezultat: "
 
 #: application/controllers/Update.php:470
 msgid "POTA Update complete. Result: "
@@ -8163,7 +8163,7 @@ msgid ""
 "requiring CLI access."
 msgstr ""
 "Menedżer Cron pomaga administratorowi w zarządzaniu zadaniami cron bez "
-"konieczności dostępu do CLI."
+"konieczności dostępu do linii komend."
 
 #: application/views/cron/index.php:32
 msgid ""
@@ -8488,16 +8488,16 @@ msgstr "Lokatory VUCC"
 
 #: application/views/dashboard/index.php:466
 msgid "Solar Data & Propagation"
-msgstr ""
+msgstr "Dane słoneczne oraz propagacja"
 
 #: application/views/dashboard/index.php:468
 #, php-format
 msgid "Last update at %s."
-msgstr ""
+msgstr "Ostatnie aktualizacja o %s."
 
 #: application/views/dashboard/index.php:477
 msgid "Data provided by HAMqsl."
-msgstr ""
+msgstr "Dane dostarczone przez HAMqsl."
 
 #: application/views/dayswithqso/index.php:3
 msgid "Number of QSOs for this day of the week"
@@ -9073,7 +9073,7 @@ msgstr "Aktualizacja Hams Of Note"
 
 #: application/views/debug/index.php:568
 msgid "HAMqsl"
-msgstr ""
+msgstr "HAMqsl"
 
 #: application/views/debug/index.php:577
 msgid "QSO-DB Maintenance"
@@ -12276,7 +12276,7 @@ msgstr "Uwaga! Czy na pewno usunąć dopasowanie QSO?"
 #: application/views/oqrs/showrequests.php:42
 #: application/views/oqrs/showrequests.php:90
 msgid "Request callsign"
-msgstr "Znak wywoławczy zgłoszenia"
+msgstr "Znak wywoławczy żądania"
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
@@ -13549,7 +13549,7 @@ msgstr "Te dane pochodzą z %s i są obliczane dla bieżącego lokatora stacji %
 
 #: application/views/sattimers/index.php:40
 msgid "Time(d)-Out"
-msgstr "Time(d)-Out"
+msgstr "Wygasł"
 
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
@@ -13768,7 +13768,7 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
-"„Szybka rejestracja łączności”, czyli z jeżyka angielskiego „FLE” (ang. "
+"„Szybka rejestracja łączności”, czyli z języka angielskiego „FLE” (ang. "
 "Simple Fast Log Entry), to system umożliwiający bardzo szybkie i efektywne "
 "rejestrowanie łączności (QSO). Dzięki swojej składni wymaga minimalnej "
 "ilości danych wejściowych, co pozwala na zapisanie wielu łączności przy "
@@ -13898,12 +13898,11 @@ msgstr "Aktualny czas UTC"
 
 #: application/views/simplefle/index.php:80
 msgid "If you don't choose a date, today's date will be used."
-msgstr ""
-"Jeśli nie zostanie wybrana data, dzisiejsza data zostanie wykorzystana."
+msgstr "Jeśli nie zostanie wybrana data, zostanie wykorzystana dzisiejsza data."
 
 #: application/views/simplefle/index.php:92
 msgid "You can add the entered QSOs to a contest."
-msgstr "Można dodać wprowadzone QSO do zawodów."
+msgstr "Można dodawać wprowadzone QSO do zawodów."
 
 #: application/views/simplefle/index.php:99
 msgid "Station Call/Location"
@@ -13915,8 +13914,8 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
-"Jeśli nie pracowano z nowej lokalizacji, najpierw utwórz nową %sLokalizację "
-"Stacji%s"
+"Jeśli nie pracowano z nowej lokalizacji, najpierw należy utworzyć nową "
+"%sLokalizację Stacji%s"
 
 #: application/views/simplefle/index.php:117
 msgid "e.g. OK2CQR"
@@ -15332,12 +15331,14 @@ msgstr ""
 
 #: application/views/user/edit.php:641
 msgid "Dashboard solar and propagation data"
-msgstr ""
+msgstr "Dane słoneczne oraz propagacja na panelu użytkownika"
 
 #: application/views/user/edit.php:647
 msgid ""
 "This switches the display of the solar and propagation data on the dashboard."
 msgstr ""
+"Przełącza widoczność danych słonecznych oraz propagacji na panelu "
+"użytkownika."
 
 #: application/views/user/edit.php:655
 msgid "Show Reference Fields on QSO Tab"
