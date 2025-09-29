@@ -627,38 +627,8 @@ $('#stateDropdown').on('change', function () {
 			case '6':
 			case '110':
 			case '291':
-    				$("#stationCntyInputQso").selectize()[0].selectize.destroy();
-				$("#stationCntyInputQso").prop('disabled', false);
-				$('#stationCntyInputQso').selectize({
-					maxItems: 1,
-					closeAfterSelect: true,
-					loadThrottle: 250,
-					valueField: 'name',
-					labelField: 'name',
-					searchField: 'name',
-					options: [],
-					create: false,
-					load: function (query, callback) {
-						var state = $("#stateDropdown option:selected").text();
-
-						if (!query || state == "") return callback();
-						$.ajax({
-							url: base_url + 'index.php/qso/get_county',
-							type: 'GET',
-							dataType: 'json',
-							data: {
-								query: query,
-								state: state,
-							},
-							error: function () {
-								callback();
-							},
-							success: function (res) {
-								callback(res);
-							}
-						});
-					}
-				});
+				$("#stationCntyInputEdit").prop('disabled', false);
+				selectize_usa_county('#stateDropdown', '#stationCntyInputQso');
 				break;
 			case '15':
 			case '54':
