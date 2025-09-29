@@ -1,7 +1,7 @@
 
 <style>
     #dxccmap {
-	height: calc(100vh - 500px) !important;
+	height: calc(100vh - 300px) !important;
 	max-height: 900px !important;
 }
 </style>
@@ -208,7 +208,6 @@
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade" id="dxccmaptab" role="tabpanel" aria-labelledby="home-tab">
-    <br />
 
     <div id="dxccmap" class="map-leaflet" ></div>
 
