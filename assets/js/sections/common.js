@@ -607,6 +607,7 @@ function qso_save() {
 }
 
 function selectize_usa_county(state_field, county_field) {
+    $(county_field).selectize()[0].selectize.destroy();
     $(county_field).selectize({
         delimiter: ';',
         maxItems: 1,

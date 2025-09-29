@@ -627,6 +627,7 @@ $('#stateDropdown').on('change', function () {
 			case '6':
 			case '110':
 			case '291':
+    				$("#stationCntyInputQso").selectize()[0].selectize.destroy();
 				$("#stationCntyInputQso").prop('disabled', false);
 				$('#stationCntyInputQso').selectize({
 					maxItems: 1,
