@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 });
 
+$(document).on('submit', 'form', function(e) {
+    if ($(e.target).find('.bootstrap-dialog').length) {
+        e.preventDefault();
+    }
+});
+
 var osmUrl = $('#dxccmapjs').attr("tileUrl");
 
 
