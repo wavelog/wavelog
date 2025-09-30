@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			.then(data => {
 				var tbody = '';
                 if (data.length === 0) {
-                    tbody = '<tr><td colspan="5" class="text-center text-muted">No notes were found.</td></tr>';
+                    tbody = '<tr><td colspan="5" class="text-center text-muted">' + lang_notes_not_found + '</td></tr>';
                 } else {
 					data.forEach(function(note) {
 						tbody += '<tr>' +
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			})
 			.catch(error => {
 				if (notesTableBody) {
-					notesTableBody.innerHTML = '<tr><td colspan="5">Error loading notes: ' + error.message + '</td></tr>';
+					notesTableBody.innerHTML = '<tr><td colspan="5">' + lang_notes_error_loading + ': ' + error.message + '</td></tr>';
 				}
 			});
     }
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
         th.appendChild(span);
         if (SORT_COLUMN_MAP[idx]) {
             span.setAttribute('role', 'button');
-            span.setAttribute('aria-label', th.textContent + ': Activate to sort');
+            span.setAttribute('aria-label', th.textContent + ': ' + lang_notes_sort);
             span.setAttribute('tabindex', '0');
             th.style.cursor = 'pointer';
             th.addEventListener('click', function() {
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         var tbody = '';
         if (data.length === 0) {
-            tbody = '<tr><td colspan="5" class="text-center text-muted">No notes were found.</td></tr>';
+            tbody = '<tr><td colspan="5" class="text-center text-muted">' + lang_notes_not_found + '</td></tr>';
         } else {
             data.forEach(function(note) {
                     // Strip HTML/Markdown and truncate to 100 chars for tooltip
@@ -367,10 +367,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                 '<a href="' + base_url + 'index.php/notes/view/' + (note.id ? note.id : '') + '" class="btn btn-info" title="View"><i class="fa fa-eye"></i></a>' +
                                 '<a href="' + base_url + 'index.php/notes/edit/' + (note.id ? note.id : '') + '" class="btn btn-primary" title="Edit"><i class="fa fa-pencil"></i></a>' +
                                 (note.cat === 'Contacts'
-                                    ? '<button type="button" class="btn btn-secondary" title="Duplication is disabled for Contacts notes" disabled data-bs-toggle="tooltip"><i class="fa fa-copy"></i></button>'
-                                    : '<button type="button" class="btn btn-secondary" title="Duplicate" onclick="confirmDuplicateNote(\'' + (note.id ? note.id : '') + '\')"><i class="fa fa-copy"></i></button>'
+                                    ? '<button type="button" class="btn btn-secondary" title="' + lang_notes_duplication_disabled + '" disabled data-bs-toggle="tooltip"><i class="fa fa-copy"></i></button>'
+                                    : '<button type="button" class="btn btn-secondary" title="' + lang_notes_duplicate + '" onclick="confirmDuplicateNote(\'' + (note.id ? note.id : '') + '\')"><i class="fa fa-copy"></i></button>'
                                 ) +
-                                '<button type="button" class="btn btn-danger" title="Delete" onclick="confirmDeleteNote(\'' + (note.id ? note.id : '') + '\')"><i class="fa fa-trash"></i></button>' +
+                                '<button type="button" class="btn btn-danger" title="' + lang_general_word_delete + '" onclick="confirmDeleteNote(\'' + (note.id ? note.id : '') + '\')"><i class="fa fa-trash"></i></button>' +
                             '</div>' +
                         '</td>' +
                     '</tr>';
@@ -386,17 +386,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Modal confirmation for delete and duplicate
     window.confirmDeleteNote = function(noteId) {
-        showBootstrapModal('Delete Note', 'Are you sure you want to delete this note?', function() {
+        showBootstrapModal(lang_notes_delete, lang_notes_delete_confirmation, function() {
             deleteNote(noteId);
         });
     };
     window.confirmDuplicateNote = function(noteId) {
         var note = (window.lastNotesData || []).find(function(n) { return n.id == noteId; });
         if (note && note.cat === 'Contacts') {
-            showBootstrapModal('Duplication Disabled', 'Duplication is disabled for Contacts notes. Only one note per callsign is allowed.', function(){});
+            showBootstrapModal(lang_notes_duplication_disabled_short, lang_notes_duplication_disabled, function(){});
             return;
         }
-        showBootstrapModal('Duplicate Note', 'Do you want to duplicate this note?', function() {
+        showBootstrapModal(lang_notes_duplicate, lang_notes_duplicate_confirmation, function() {
             duplicateNote(noteId);
         });
     };
@@ -442,8 +442,8 @@ document.addEventListener('DOMContentLoaded', function() {
             '<div class="modal-header"><h5 class="modal-title">' + title + '</h5></div>' +
             '<div class="modal-body"><p>' + message + '</p></div>' +
             '<div class="modal-footer justify-content-end">' +
-            '<button type="button" class="btn btn-primary me-2" id="confirmModalBtn_' + modalId + '">Confirm</button>' +
-            '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>' +
+            '<button type="button" class="btn btn-primary me-2" id="confirmModalBtn_' + modalId + '">' + lang_general_word_ok + '</button>' +
+            '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">' + lang_general_word_cancel + '</button>' +
             '</div></div></div></div>';
         var modalDiv = document.createElement('div');
         modalDiv.innerHTML = modalHtml;
@@ -505,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             if (domCache.notesTableBody) {
-                domCache.notesTableBody.innerHTML = '<tr><td colspan="5">Error loading notes: ' + error.message + '</td></tr>';
+                domCache.notesTableBody.innerHTML = '<tr><td colspan="5">' + lang_notes_error_loading + ':' + error.message + '</td></tr>';
             }
             if (domCache.paginationContainer) {
                 domCache.paginationContainer.innerHTML = '';
