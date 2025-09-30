@@ -289,7 +289,7 @@ function qso_edit(id) {
                        case '291':
                           if (state != "") {
                              $("#stationCntyInputEdit").prop('disabled', false);
-                             selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
+                             selectize_usa_county('#stateDropdownEdit', '#stationCntyInputEdit');
                           }
                           $('#location_us_county_edit').show();
                           break;
