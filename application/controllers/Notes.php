@@ -308,7 +308,6 @@ class Notes extends CI_Controller {
                     return FALSE;
                 }
             }
-            $_POST['title'] = $core;
             return TRUE;
         }
         return TRUE;
