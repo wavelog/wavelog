@@ -177,6 +177,40 @@ class Update_model extends CI_Model {
         }
     }
 
+    function hamqsl(){
+	    // This downloads and stores hamqsl propagation data XML file
+	    $this->load->model('cron_model');
+	    $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+
+	    $url = 'https://www.hamqsl.com/solarxml.php';
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, $url);
+	    curl_setopt($ch, CURLOPT_HEADER, false);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+	    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+	    $contents = curl_exec($ch);
+	    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+	    curl_close($ch);
+
+	    if ($contents === FALSE || $http_code != 200) {
+		    return "Something went wrong with fetching the solarxml.xml file from HAMqsl website.";
+	    } else {
+		    $file = './updates/solarxml.xml';
+
+		    if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
+			    $nCount = count(file($file));
+			    if ($nCount > 0) {
+				    return  "DONE: solarxml.xml downloaded from HAMqsl website.";
+			    } else {
+				    return "FAILED: Empty file received from HAMqsl website.";
+			    }
+		    } else {
+			    return "FAILED: Could not write solarxml.xml file from HAMqsl website.";
+		    }
+	    }
+    }
+
     function pota() {
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
@@ -498,6 +532,7 @@ class Update_model extends CI_Model {
 		}
 		return;
 	}
+
 
 	function update_hams_of_note() {
 		if (($this->optionslib->get_option('hon_url') ?? '') == '') {

@@ -1,7 +1,8 @@
-var callBookProcessingDialog = null;
-var inCallbookProcessing = false;
-var inCallbookItemProcessing = false;
+let callBookProcessingDialog = null;
+let inCallbookProcessing = false;
+let inCallbookItemProcessing = false;
 let lastChecked = null;
+let silentReset = false;
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -88,6 +89,9 @@ function updateRow(qso) {
 	}
 	if ((user_options.qrz.show ?? 'true') == "true"){
 		cells.eq(c++).html(qso.qrz);
+	}
+	if ((user_options.dcl.show ?? 'true') == "true"){
+		cells.eq(c++).html(qso.dcl);
 	}
 	if ((user_options.qslmsgs.show ?? 'true') == "true"){
 		cells.eq(c++).text(qso.qslMessage);
@@ -199,7 +203,48 @@ function loadQSOTable(rows) {
 				{ targets: $(".antennaazimuth-column-sort").index(), type: "numbersort" },
 				{ targets: $(".antennaelevation-column-sort").index(), type: "numbersort" },
 				{ targets: $(".stationpower-column-sort").index(), type: "numbersort" },
-			]
+			],
+			dom: 'Bfrtip',
+			buttons: [
+						{
+							extend: 'csv',
+							className: 'mb-1 btn btn-sm btn-primary', // Bootstrap classes
+								init: function(api, node, config) {
+									$(node).removeClass('dt-button').addClass('btn btn-primary'); // Ensure Bootstrap class applies
+								},
+								exportOptions: {
+								columns: ':visible:not(:eq(0))', // export all visible except column 4
+								format: {
+									body: function (data, row, column, node) {
+										// strip HTML tags first (like DataTables does by default)
+										if (typeof data === 'string' && data.includes('<br />')) {
+												data = data.replace(/<br \/>/g, '');
+										}
+										if (typeof data === 'string') {
+											data = data.replace(/<[^>]*>/g, '');
+										}
+										// then replace Ø with 0 in specific columns
+										if (column === 1 || column === 2 || column === 3) {
+											// remove a trailing "L" and trim whitespaces
+											data = data.replace(/\s*L\s*$/, '').trim();
+											if (typeof data === 'string' && data.includes('Ø')) {
+												data = data.replace(/Ø/g, '0');
+											}
+										}
+										if (typeof data === 'string' && data.includes('&#9650')) {
+												data = data.replace(/&#9650;/g, '');
+										}
+										if (typeof data === 'string' && data.includes('&#9660')) {
+												data = data.replace(/&#9660;/g, '');
+										}
+
+										data = data.replace(/ data-bs-toggle="tooltip" data-bs-html="true" class="[^"]*">/g, '');
+										return data;
+									}
+								}
+							}
+						}
+                    ]
 		});
 
 	for (i = 0; i < rows.length; i++) {
@@ -273,6 +318,9 @@ function loadQSOTable(rows) {
 		}
 		if ((user_options.qrz.show ?? 'true') == "true"){
 			data.push(qso.qrz);
+		}
+		if ((user_options.dcl.show ?? 'true') == "true"){
+			data.push(qso.dcl);
 		}
 		if ((user_options.qslmsgs.show ?? 'true') == "true"){
 			data.push(qso.qslMessage);
@@ -575,6 +623,8 @@ $(document).ready(function () {
 				clublogReceived: this.clublogReceived.value,
 				eqslSent: this.eqslSent.value,
 				eqslReceived: this.eqslReceived.value,
+				dclSent: this.dclSent.value,
+				dclReceived: this.dclReceived.value,
 				qslvia: $('[name="qslvia"]').val(),
 				sota: this.sota.value,
 				pota: this.pota.value,
@@ -1147,6 +1197,7 @@ $(document).ready(function () {
 				case 'date': 		col1 = currentRow.find("td:eq(1)").text(); break;
 			}
 			if (col1.length == 0) return;
+			silentReset = true;
 			$('#searchForm').trigger("reset");
 
 			if (type == 'date') {
@@ -1291,6 +1342,10 @@ $(document).ready(function () {
 	});
 
 	$('#searchForm').on('reset', function(e) {
+		if (silentReset) {
+    	    silentReset = false; // reset flag
+        	return; // skip submit
+    	}
 		setTimeout(function() {
 			$('#searchForm').submit();
 		});
@@ -1498,6 +1553,7 @@ function saveOptions() {
 				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
 				qth: $('input[name="qth"]').is(':checked') ? true : false,
 				frequency: $('input[name="frequency"]').is(':checked') ? true : false,
+				dcl: $('input[name="dcl"]').is(':checked') ? true : false,
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);

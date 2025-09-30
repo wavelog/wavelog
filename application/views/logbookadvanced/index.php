@@ -67,6 +67,7 @@
             \"county\":{\"show\":\"true\"},
             \"qth\":{\"show\":\"true\"},
             \"frequency\":{\"show\":\"true\"},
+            \"dcl\":{\"show\":\"true\"},
         }";
     }
     $current_opts = json_decode($options);
@@ -169,6 +170,10 @@
     }
 	if (!isset($current_opts->frequency)) {
         echo "\nvar o_template = { frequency: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+		if (!isset($current_opts->dcl)) {
+        echo "\nvar o_template = { dcl: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -515,6 +520,24 @@ $options = json_decode($options);
                         <option value="V"><?= __("Verified"); ?></option>
                     </select>
                 </div>
+                <div <?php if (($options->dcl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                    <label for="dclSent"><?= __("DCL sent"); ?></label>
+                    <select id="dclSent" name="dclSent" class="form-select form-select-sm">
+                        <option value=""><?= __("All"); ?></option>
+                        <option value="Y"><?= __("Yes"); ?></option>
+                        <option value="N"><?= __("No"); ?></option>
+                        <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                    </select>
+                </div>
+                <div <?php if (($options->dcl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                    <label for="dclReceived"><?= __("DCL received"); ?></label>
+                    <select id="dclReceived" name="dclReceived" class="form-select form-select-sm">
+                        <option value=""><?= __("All"); ?></option>
+                        <option value="Y"><?= __("Yes"); ?></option>
+                        <option value="N"><?= __("No"); ?></option>
+                        <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                    </select>
+                </div>
                 <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                     <label for="qslvia"><?= __("QSL via"); ?></label>
                     <input onclick="this.select()" type="search" name="qslvia" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
@@ -735,6 +758,9 @@ $options = json_decode($options);
 					} ?>
                     <?php if (($options->qrz->show ?? "true") == "true") {
                         echo '<th class="qrz">' . __("QRZ") . '</th>';
+                    } ?>
+					<?php if (($options->dcl->show ?? "true") == "true") {
+                        echo '<th>' . __("DCL") . '</th>';
                     } ?>
                     <?php if (($options->qslmsgs->show ?? "false") == "true") {
                         echo '<th>' . __("QSL Msg (S)") . '</th>';

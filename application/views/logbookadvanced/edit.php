@@ -2,7 +2,6 @@
 <form method="post" class="d-flex align-items-center">
 		<select id="editColumn" name="type" class="form-select form-select-sm w-auto me-2">
 			<option value="">-</option>
-
 			<optgroup label="<?= __("QSO details"); ?>">
 				<option value="band"><?= __("Band"); ?></option>
 				<option value="comment"><?= __("Comment"); ?></option>
@@ -35,15 +34,19 @@
 				<option value="wwff"><?= __("WWFF"); ?></option>
 			</optgroup>
 
-			<optgroup label="<?= __("QSL / LoTW / Clublog / eQSL / QRZ"); ?>">
+			<optgroup label="<?= __("QSL / LoTW / Clublog / eQSL / QRZ / DCL"); ?>">
 				<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
 				<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
+				<option value="dclsent"><?= __("DCL Sent"); ?></option>
+				<option value="dclreceived"><?= __("DCL Received"); ?></option>
 				<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 				<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
 				<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
 				<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
 				<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
 				<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
+				<option value="qslreceived"><?= __("QSL Received"); ?></option>
+				<option value="qslsent"><?= __("QSL Sent"); ?></option>
 				<option value="qslmsg"><?= __("QSLMSG"); ?></option>
 				<option value="qslreceivedmethod"><?= __("QSL Received Method"); ?></option>
 				<option value="qslsentmethod"><?= __("QSL Sent Method"); ?></option>
@@ -51,7 +54,6 @@
 			</optgroup>
 
 			</select>
-
 		<div>&nbsp;</div>
 
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editTextInput" type="text" name="editTextInput" placeholder="" aria-label="editTextInput">
@@ -160,6 +162,13 @@
 			?>
 		</select>
 
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQsl"  name="qsl">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="R"><?= __("Requested"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+		</select>
+
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editLoTW"  name="lotw">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
@@ -169,6 +178,12 @@
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQrz"  name="qrz">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editDcl"  name="dcl">
 			<option value="Y"><?= __("Yes"); ?></option>
 			<option value="N"><?= __("No"); ?></option>
 			<option value="I"><?= __("Invalid"); ?></option>

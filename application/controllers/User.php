@@ -206,6 +206,7 @@ class User extends CI_Controller {
 				$data['user_measurement_base'] = $this->input->post('user_measurement_base') ?? 'K';
 				$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 				$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
+				$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar') ?? 'Y';
 				$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 				$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 				$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -222,7 +223,7 @@ class User extends CI_Controller {
 				$data['user_amsat_status_upload'] = $this->input->post('user_amsat_status_upload');
 				$data['user_mastodon_url'] = $this->input->post('user_mastodon_url');
 				$data['user_default_band'] = $this->input->post('user_default_band');
-				$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '');
+				$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 				$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
 				$data['user_quicklog'] = $this->input->post('user_quicklog');
 				$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
@@ -274,7 +275,7 @@ class User extends CI_Controller {
 				$this->input->post('user_amsat_status_upload'),
 				$this->input->post('user_mastodon_url'),
 				$this->input->post('user_default_band'),
-				($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : ''),
+				($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : ''),
 				$this->input->post('user_qso_end_times'),
 				$this->input->post('user_quicklog'),
 				$this->input->post('user_quicklog_enter'),
@@ -299,6 +300,7 @@ class User extends CI_Controller {
 				$this->input->post('on_air_widget_show_only_most_recent_radio'),
 				$this->input->post('qso_widget_display_qso_time'),
 				$this->input->post('user_dashboard_banner') ?? 'Y',
+				$this->input->post('user_dashboard_solar') ?? 'Y',
 				$this->input->post('clubstation') == '1' ? true : false,
 				$this->input->post('global_oqrs_text') ?? '',
 				$this->input->post('oqrs_grouped_search') ?? 'off',
@@ -336,6 +338,7 @@ class User extends CI_Controller {
 			$data['user_measurement_base'] = $this->input->post('user_measurement_base');
 			$data['user_dashboard_map'] = $this->input->post('user_dashboard_map') ?? 'Y';
 			$data['user_dashboard_banner'] = $this->input->post('user_dashboard_banner') ?? 'Y';
+			$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar') ?? 'Y';
 			$data['user_stylesheet'] = $this->input->post('user_stylesheet');
 			$data['user_qth_lookup'] = $this->input->post('user_qth_lookup');
 			$data['user_sota_lookup'] = $this->input->post('user_sota_lookup');
@@ -352,7 +355,7 @@ class User extends CI_Controller {
 			$data['user_amsat_status_upload'] = $this->input->post('user_amsat_status_upload');
 			$data['user_mastodon_url'] = $this->input->post('user_mastodon_url');
 			$data['user_default_band'] = $this->input->post('user_default_band');
-			$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '');
+			$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 			$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
 			$data['user_quicklog'] = $this->input->post('user_quicklog');
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
@@ -647,7 +650,7 @@ class User extends CI_Controller {
 			}
 
 			if($this->input->post('user_default_confirmation')) {
-				$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '');
+				$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 			} else {
 				$data['user_default_confirmation'] = $q->user_default_confirmation;
 			}
@@ -714,6 +717,16 @@ class User extends CI_Controller {
 				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dashboard_banner','option_key'=>'boolean'), $this->uri->segment(3))->result();
 				if (count($dkey_opt)>0) {
 					$data['user_dashboard_banner'] = $dkey_opt[0]->option_value;
+				}
+			}
+
+			// Dashboard solar data information widget
+			if($this->input->post('user_dashboard_solar')) {
+				$data['user_dashboard_solar'] = $this->input->post('user_dashboard_solar', false);
+			} else {
+				$dkey_opt=$this->user_options_model->get_options('dashboard',array('option_name'=>'show_dashboard_solar','option_key'=>'boolean'), $this->uri->segment(3))->result();
+				if (count($dkey_opt)>0) {
+					$data['user_dashboard_solar'] = $dkey_opt[0]->option_value;
 				}
 			}
 
@@ -959,7 +972,7 @@ class User extends CI_Controller {
 			$data['user_amsat_status_upload'] = $this->input->post('user_amsat_status_upload');
 			$data['user_mastodon_url'] = $this->input->post('user_mastodon_url');
 			$data['user_default_band'] = $this->input->post('user_default_band');
-			$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '');
+			$data['user_default_confirmation'] = ($this->input->post('user_default_confirmation_qsl') !== null ? 'Q' : '').($this->input->post('user_default_confirmation_lotw') !== null ? 'L' : '').($this->input->post('user_default_confirmation_eqsl') !== null ? 'E' : '').($this->input->post('user_default_confirmation_qrz') !== null ? 'Z' : '').($this->input->post('user_default_confirmation_clublog') !== null ? 'C' : '').($this->input->post('user_default_confirmation_dcl') !== null ? 'D' : '');
 			$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
 			$data['user_quicklog'] = $this->input->post('user_quicklog');
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
@@ -1096,6 +1109,8 @@ class User extends CI_Controller {
 				if ($user->clubstation == 1) {
 					log_message('debug', "User ID: [$uid] Login rejected because of a external clubstation login attempt with a modified cookie. Attack?");
 					$this->session->set_flashdata('error', __("This is not allowed!"));
+					$this->output->set_header('X-Login-Status: failed');
+					$this->output->_display();
 					redirect('user/login');
 				}
 
@@ -1131,6 +1146,8 @@ class User extends CI_Controller {
 					$this->input->set_cookie('keep_login', '', -3600, '');
 					$this->input->set_cookie('re_login', '', -3600, '');
 					$this->session->set_flashdata('error', __("Login failed. Try again."));
+					$this->set_header('X-Login-Status: failed');
+					$this->output->_display();
 					redirect('user/login');
 				}
 			} catch (Exception $e) {
@@ -1140,8 +1157,9 @@ class User extends CI_Controller {
 				// Delete keep_login cookie
 				$this->input->set_cookie('keep_login', '', -3600, '');
 				$this->input->set_cookie('re_login', '', -3600, '');
-
+				$this->set_header('X-Login-Status: failed');
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
+				$this->output->_display();
 				redirect('user/login');
 			}
 
@@ -1197,6 +1215,8 @@ class User extends CI_Controller {
 					redirect('user/login');
 				} else {
 					$this->session->set_flashdata('error', __("Incorrect username or password!"));
+					$this->output->set_header('X-Login-Status: failed');
+					$this->output->_display();
 					redirect('user/login');
 				}
 			}

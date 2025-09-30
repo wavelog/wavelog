@@ -13,12 +13,12 @@ class Timeline_model extends CI_Model {
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		switch ($award) {
-		case 'dxcc': $result = $this->get_timeline_dxcc($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew); break;
-		case 'was':  $result = $this->get_timeline_was($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew);  break;
-		case 'iota': $result = $this->get_timeline_iota($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew); break;
-		case 'waz':  $result = $this->get_timeline_waz($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew);  break;
-		case 'vucc':  $result = $this->get_timeline_vucc($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew);  break;
-		case 'waja':  $result = $this->get_timeline_waja($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew);  break;
+			case 'dxcc': $result = $this->get_timeline_dxcc($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew); break;
+			case 'was':  $result = $this->get_timeline_was($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew);  break;
+			case 'iota': $result = $this->get_timeline_iota($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew); break;
+			case 'waz':  $result = $this->get_timeline_waz($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew);  break;
+			case 'vucc':  $result = $this->get_timeline_vucc($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew);  break;
+			case 'waja':  $result = $this->get_timeline_waja($band, $mode, $propmode, $location_list, $qsl, $lotw, $eqsl, $clublog, $year, $qrz, $onlynew);  break;
 		}
 
 		return $result;
@@ -57,7 +57,8 @@ class Timeline_model extends CI_Model {
 		}
 
 		if ($mode != 'All') {
-			$sql .= " and col_mode = ?";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
 			$binding[] = $mode;
 		}
 
@@ -98,7 +99,8 @@ class Timeline_model extends CI_Model {
 
 
 		if ($mode != 'All') {
-			$sql .= " and col_mode = ?";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
 			$binding[] = $mode;
 		}
 
@@ -146,7 +148,8 @@ class Timeline_model extends CI_Model {
 		}
 
 		if ($mode != 'All') {
-			$sql .= " and col_mode = ?";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
 			$binding[] = $mode;
 		}
 
@@ -197,7 +200,8 @@ class Timeline_model extends CI_Model {
 
 
 		if ($mode != 'All') {
-			$sql .= " and col_mode = ?";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
 			$binding[] = $mode;
 		}
 
@@ -244,7 +248,8 @@ class Timeline_model extends CI_Model {
 
 
 		if ($mode != 'All') {
-			$sql .= " and col_mode = ?";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
 			$binding[] = $mode;
 		}
 
@@ -336,6 +341,7 @@ class Timeline_model extends CI_Model {
 
 		if ($mode != 'All') {
 			$this->db->where('col_mode', $mode);
+			$this->db->or_where('col_submode', $mode);
 		}
 
 		$this->db->where_in('station_profile.station_id', $logbooks_locations_array);
@@ -420,7 +426,8 @@ class Timeline_model extends CI_Model {
 		}
 
 		if ($mode != 'All') {
-			$sql .= " and col_mode = ?";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
 			$binding[] = $mode;
 		}
 
@@ -466,7 +473,8 @@ class Timeline_model extends CI_Model {
 		}
 
 		if ($mode != 'All') {
-			$sql .= " and col_mode = ?";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
 			$binding[] = $mode;
 		}
 

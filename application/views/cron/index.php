@@ -10,6 +10,19 @@
         </div>
         <div class="card-body">
             <div class="row">
+				<div class="alert border-start border border-primary d-flex align-items-start" role="alert">
+					<div class="me-2">
+						<i class="bi bi-info-square-fill"></i>
+					</div>
+					<div>
+						<strong class="d-block"><i class="fas fa-info-circle me-2"></i> Important</strong>
+
+						<div>
+							<?= sprintf(__("For more information or help, take a look in the %s."), '<a target="_blank" class="text-primary fw-bold text-decoration-underline" href="https://github.com/wavelog/wavelog/wiki/Recommended-Cron-Jobs-and-Cronmanager">'.'Wiki'.'</a>'); ?>
+						</div>
+					</div>
+				</div>
+
                 <div class="col-auto">
                     <p class="card-text">
                         <?= __("The Cron Manager assists the administrator in managing cron jobs without requiring CLI access."); ?>
@@ -26,7 +39,7 @@
                 <div class="col text-end" id="alert_status">
                     <?php if (version_compare(PHP_VERSION, $min_php_version) >= 0) { ?>
                         <div class="alert alert-<?php echo $mastercron['status_class'] ?? 'danger'; ?> d-inline-block">
-                            <?= __("Status Master-Cron:"); ?><br><?php echo $mastercron['status'] ?? _pgettext("Master Cron", "Not running"); ?>
+                            <?= __("Status Master-Cron:"); ?> <?php if ($mastercron['status'] != 'OK') { echo '<br />'; } ?><?php echo $mastercron['status'] ?? _pgettext("Master Cron", "Not running"); ?>
                         </div>
                     <?php } else { ?>
                         <div class="alert alert-danger d-inline-block">

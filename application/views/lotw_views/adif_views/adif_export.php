@@ -4,7 +4,7 @@ $clean_cert = trim($lotw_cert_info->cert);
 $cert1 = str_replace("-----BEGIN CERTIFICATE-----", "", $clean_cert);
 $cert2 = str_replace("-----END CERTIFICATE-----", "", $cert1);
 ?>
-<TQSL_IDENT:54>TQSL V2.5.4 Lib: V2.5 Config: V11.12 AllowDupes: false
+<TQSL_IDENT:54>TQSL V2.8.1 Lib: V2.6 Config: V11.34 AllowDupes: false
 
 <Rec_Type:5>tCERT
 <CERT_UID:1>1
@@ -27,13 +27,67 @@ $cert2 = str_replace("-----END CERTIFICATE-----", "", $cert1);
 
 <?php if($station_profile->station_iota) { ?><IOTA:<?php echo strlen($station_profile->station_iota); ?>><?php echo $station_profile->station_iota; } ?>
 
-<?php if($station_profile->state != "" && $station_profile->station_country == "CANADA") { ?><CA_PROVINCE:<?php echo strlen($CI->lotw_ca_province_map($station_profile->state)); ?>><?php echo $CI->lotw_ca_province_map($station_profile->state); } ?>
+<?php
+   switch ($lotw_cert_info->cert_dxcc_id) {
+   case 6:       // Alaska
+   case 110:     // Hawaii
+   case 291:     // Cont US
+      if($station_profile->state != "") { ?>
+<US_STATE:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; ?>
 
-<?php if($station_profile->state != "" && $station_profile->station_country == "UNITED STATES OF AMERICA") { ?><US_STATE:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; } ?>
+<?php }
+         if($station_profile->station_cnty != "") { ?>
+<US_COUNTY:<?php echo strlen($station_profile->station_cnty); ?>><?php echo $station_profile->station_cnty; ?>
 
-<?php if($station_profile->state != "" && $station_profile->station_country == "CHINA") { ?><CN_PROVINCE:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; } ?>
+<?php }
+      break;
+   case 1:       // Canada
+      if($station_profile->state != "") { ?>
+<CA_PROVINCE:<?php echo strlen($CI->lotw_ca_province_map($station_profile->state)); ?>><?php echo $CI->lotw_ca_province_map($station_profile->state); ?>
 
-<?php if($station_profile->station_cnty != ""  && $station_profile->station_country == "UNITED STATES OF AMERICA") { ?><US_COUNTY:<?php echo strlen($station_profile->station_cnty); ?>><?php echo $station_profile->station_cnty; } ?>
+      <?php }
+      break;
+   case 15:      // Asiatic Russia
+   case 54:      // European Russia
+   case 61:      // FJL
+   case 125:     // Juan Fernandez
+   case 151:     // Malyj Vysotskij
+      if($station_profile->state != "") { ?>
+<RU_OBLAST:<?php echo strlen($CI->lotw_ru_oblast_map($station_profile->state)); ?>><?php echo $CI->lotw_ru_oblast_map($station_profile->state); ?>
+
+      <?php }
+      break;
+   case 318:     // China
+      if($station_profile->state != "") { ?>
+<CN_PROVINCE:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; ?>
+
+      <?php }
+      break;
+   case 150:     // Australia
+      if($station_profile->state != "") { ?>
+<AU_STATE:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; ?>
+
+      <?php }
+      break;
+   case 339:     // Japan
+      if($station_profile->state != "") { ?>
+<JA_PREFECTURE:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; ?>
+
+<?php }
+      if($station_profile->station_cnty != "") { ?>
+<JA_CITY_GUN_KU:<?php echo strlen($station_profile->station_cnty); ?>><?php echo $station_profile->station_cnty; ?>
+
+<?php }
+      break;
+   case 5:       // Aland Island
+   case 224:     // Finland
+      if($station_profile->state != "") { ?>
+<FI_KUNTA:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; ?>
+
+      <?php }
+      break;
+   }
+?>
 
 <EOR>
 

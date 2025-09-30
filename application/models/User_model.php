@@ -55,6 +55,14 @@ class User_Model extends CI_Model {
 		return $r;
 	}
 
+	// FUNCTION: object get_all_dcl_users
+	// Returns all users with dcl details
+	function get_all_dcl_users() {
+		$sql="SELECT distinct user_id from user_options where option_name='dcl_key' and option_key='key' and option_value is not null";
+		$resu=$this->db->query($sql);
+		return $resu->result();
+	}
+
 	// FUNCTION: object get_by_email($email)
 	// Retrieve a user by email address
 	function get_by_email($email) {
@@ -216,7 +224,7 @@ class User_Model extends CI_Model {
 		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab,
 		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
 		$user_winkey, $on_air_widget_enabled, $on_air_widget_display_last_seen, $on_air_widget_show_only_most_recent_radio,
-		$qso_widget_display_qso_time, $dashboard_banner, $clubstation = 0) {
+		$qso_widget_display_qso_time, $dashboard_banner,$dashboard_solar, $clubstation = 0) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -300,6 +308,7 @@ class User_Model extends CI_Model {
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'qso_tab','dok','show',".(xss_clean($user_dok_to_qso_tab ?? 'off') == "on" ? 1 : 0).");");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'dashboard','show_map','boolean','".xss_clean($dashboard_map ?? 'Y')."');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'dashboard','show_dashboard_banner','boolean','".xss_clean($dashboard_banner ?? 'Y')."');");
+			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'dashboard','show_dashboard_solar','boolean','".xss_clean($dashboard_solar ?? 'Y')."');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'widget','on_air','enabled','".(xss_clean($on_air_widget_enabled ?? 'false'))."');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'widget','on_air','display_last_seen','".(xss_clean($on_air_widget_display_last_seen ?? 'false'))."');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'widget','on_air','display_only_most_recent_radio','".(xss_clean($on_air_widget_show_only_most_recent_radio ?? 'true'))."');");
@@ -347,7 +356,7 @@ class User_Model extends CI_Model {
 					'user_amsat_status_upload' => xss_clean($fields['user_amsat_status_upload']),
 					'user_mastodon_url' => xss_clean($fields['user_mastodon_url']),
 					'user_default_band' => xss_clean($fields['user_default_band']),
-					'user_default_confirmation' => (isset($fields['user_default_confirmation_qsl']) ? 'Q' : '').(isset($fields['user_default_confirmation_lotw']) ? 'L' : '').(isset($fields['user_default_confirmation_eqsl']) ? 'E' : '').(isset($fields['user_default_confirmation_qrz']) ? 'Z' : '').(isset($fields['user_default_confirmation_clublog']) ? 'C' : ''),
+					'user_default_confirmation' => (isset($fields['user_default_confirmation_qsl']) ? 'Q' : '').(isset($fields['user_default_confirmation_lotw']) ? 'L' : '').(isset($fields['user_default_confirmation_eqsl']) ? 'E' : '').(isset($fields['user_default_confirmation_qrz']) ? 'Z' : '').(isset($fields['user_default_confirmation_clublog']) ? 'C' : '').(isset($fields['user_default_confirmation_dcl']) ? 'D' : ''),
 					'user_qso_end_times' => xss_clean($fields['user_qso_end_times']),
 					'user_quicklog' => xss_clean($fields['user_quicklog']),
 					'user_quicklog_enter' => xss_clean($fields['user_quicklog_enter']),
@@ -377,10 +386,12 @@ class User_Model extends CI_Model {
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'qso_tab','last_qso_count','count','".$qso_page_last_qso_count."');");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'dashboard','show_map','boolean','".xss_clean($fields['user_dashboard_map'] ?? 'Y')."');");
 				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'dashboard','show_dashboard_banner','boolean','".xss_clean($fields['user_dashboard_banner'] ?? 'Y')."');");
+				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'dashboard','show_dashboard_solar','boolean','".xss_clean($fields['user_dashboard_solar'] ?? 'N')."');");
 				$this->session->set_userdata('dashboard_last_qso_count', $dashboard_last_qso_count);
 				$this->session->set_userdata('qso_page_last_qso_count', $qso_page_last_qso_count);
 				$this->session->set_userdata('user_dashboard_map',xss_clean($fields['user_dashboard_map'] ?? 'Y'));
 				$this->session->set_userdata('user_dashboard_banner',xss_clean($fields['user_dashboard_banner'] ?? 'Y'));
+				$this->session->set_userdata('user_dashboard_solar',xss_clean($fields['user_dashboard_solar'] ?? 'N'));
 
 				// Check to see if the user is allowed to change user levels
 				if($this->session->userdata('user_type') == 99) {
@@ -539,6 +550,7 @@ class User_Model extends CI_Model {
 			'user_measurement_base' => $u->row()->user_measurement_base,
 			'user_dashboard_map' => ((($this->session->userdata('user_dashboard_map') ?? 'Y') == 'Y') ? $this->user_options_model->get_options('dashboard', array('option_name' => 'show_map', 'option_key' => 'boolean'))->row()->option_value ?? 'Y' : $this->session->userdata('user_dashboard_map')),
 			'user_dashboard_banner' => ((($this->session->userdata('user_dashboard_banner') ?? 'Y') == 'Y') ? $this->user_options_model->get_options('dashboard', array('option_name' => 'show_dashboard_banner', 'option_key' => 'boolean'))->row()->option_value ?? 'Y' : $this->session->userdata('user_dashboard_banner')),
+			'user_dashboard_solar' => ((($this->session->userdata('user_dashboard_solar') ?? 'N') == 'Y') ? $this->session->userdata('user_dashboard_solar') : $this->user_options_model->get_options('dashboard', array('option_name' => 'show_dashboard_solar', 'option_key' => 'boolean'))->row()->option_value ?? 'N'),
 			'user_date_format' => $u->row()->user_date_format,
 			'user_stylesheet' => $u->row()->user_stylesheet,
 			'user_qth_lookup' => isset($u->row()->user_qth_lookup) ? $u->row()->user_qth_lookup : 0,
