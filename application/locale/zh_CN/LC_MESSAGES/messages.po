@@ -465,6 +465,7 @@ msgstr " 并且 "
 #: application/views/user/edit.php:341
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1313
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -486,6 +487,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:295 application/views/user/edit.php:318
 #: application/views/user/edit.php:342
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/controllers/Logbook.php:1314
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -507,6 +509,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:296 application/views/user/edit.php:319
 #: application/views/user/edit.php:343
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1315
 msgid "POTA"
 msgstr "POTA"
 
@@ -775,6 +778,7 @@ msgstr "未找到配置 Clublog 的用户。"
 #: application/views/view_log/qso.php:565
 #: application/views/view_log/qso.php:570
 #: application/views/awards/dxcc/index.php:87
+#: application/controllers/Logbook.php:692
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -1284,6 +1288,8 @@ msgstr "日志簿"
 #: application/views/timeline/index.php:56 application/views/user/edit.php:591
 #: application/views/user/edit.php:784
 #: application/views/awards/dxcc/index.php:71
+#: application/controllers/Logbook.php:680
+#: application/controllers/Logbook.php:695
 msgid "QSL"
 msgstr "QSL"
 
@@ -1322,6 +1328,7 @@ msgstr "QSL"
 #: application/views/user/edit.php:794 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
 #: application/views/awards/dxcc/index.php:75
+#: application/controllers/Logbook.php:683
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1357,6 +1364,7 @@ msgstr "LoTW"
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:802 application/views/user/edit.php:876
 #: application/views/awards/dxcc/index.php:79
+#: application/controllers/Logbook.php:686
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1443,6 +1451,7 @@ msgstr "eQSL"
 #: application/views/view_log/qso.php:108 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:18
 #: application/views/awards/dxcc/index.php:173
+#: application/controllers/Logbook.php:1308
 msgid "Mode"
 msgstr "模式"
 
@@ -1472,6 +1481,7 @@ msgstr "模式"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:113 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1309
 msgid "RST (S)"
 msgstr "我收对方"
 
@@ -1502,6 +1512,7 @@ msgstr "我收对方"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:118
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1310
 msgid "RST (R)"
 msgstr "对方收我"
 
@@ -1523,6 +1534,7 @@ msgstr "对方收我"
 #: application/views/view_log/qso.php:331
 #: application/views/view_log/qso.php:687
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1311
 msgid "Country"
 msgstr "DXCC 实体"
 
@@ -1551,6 +1563,7 @@ msgstr "DXCC 实体"
 #: application/views/user/edit.php:316 application/views/user/edit.php:340
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1312
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1579,6 +1592,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:320 application/views/user/edit.php:344
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1316
 msgid "State"
 msgstr "州"
 
@@ -1624,6 +1638,7 @@ msgstr "州"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:674
 #: application/views/visitor/index.php:27
+#: application/controllers/Logbook.php:1317
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -1652,6 +1667,7 @@ msgstr "网格坐标"
 #: application/views/user/edit.php:346
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1318
 msgid "Distance"
 msgstr "距离"
 
@@ -1736,6 +1752,7 @@ msgstr "距离"
 #: application/views/view_log/qso.php:88 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:21
 #: application/views/awards/dxcc/index.php:127
+#: application/controllers/Logbook.php:1319
 msgid "Band"
 msgstr "频段"
 
@@ -1761,6 +1778,7 @@ msgstr "频段"
 #: application/views/user/edit.php:335
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:95 application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1320
 msgid "Frequency"
 msgstr "频率"
 
@@ -1785,6 +1803,7 @@ msgstr "频率"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:694
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1321
 msgid "Operator"
 msgstr "操作员"
 
@@ -1814,6 +1833,7 @@ msgstr "操作员"
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:688
 #: application/views/awards/dxcc/index.php:38
+#: application/controllers/Logbook.php:1342
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -3348,6 +3368,7 @@ msgstr "QSO已上传"
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
 #: application/models/Logbook_model.php:5825
+#: application/models/Logbook_model.php:5807
 msgid "Bearing"
 msgstr "方位角"
 

@@ -145,7 +145,8 @@ class Logbook extends CI_Controller {
 
 		$return['dxcc'] = $this->dxcheck($callsign,$date);
 
-		$lookupcall = $this->logbook_model->get_plaincall($callsign);
+		$this->load->library('callbook');
+		$lookupcall = $this->callbook->get_plaincall($callsign);
 
 		$callbook = $this->logbook_model->loadCallBook($callsign, $this->config->item('use_fullname'));
 
