@@ -45,7 +45,7 @@
         </div>
         <div class="mb-3">
           <label for="inputTitle"><?= __("Note Contents"); ?></label>
-          <textarea name="content" style="display:none" id="notes"></textarea>
+          <textarea name="content" style="display:none" id="notes"><?php echo set_value('content'); ?></textarea>
         </div>
         <div class="row">
           <div class="col text-end">

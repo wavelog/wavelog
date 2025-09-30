@@ -53,7 +53,7 @@
         </div>
         <div class="mb-3">
           <label for="inputTitle"><?= __("Note Contents"); ?></label>
-          <textarea name="content" style="display:none" id="notes"><?php echo $row->note; ?></textarea>
+          <textarea name="content" style="display:none" id="notes"><?php echo set_value('content', $row->note); ?></textarea>
         </div>
         <input type="hidden" name="id" value="<?php echo $id; ?>" />
         <div class="row">

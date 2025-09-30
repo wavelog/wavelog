@@ -46,6 +46,7 @@
           <div class="col text-end">
             <a href="<?php echo site_url('notes/edit'); ?>/<?php echo $row->id; ?>" class="btn btn-primary btn-sm"><i class="fas fa-pencil-square-o"></i> <?= __("Edit Note"); ?></a>
             <a href="<?php echo site_url('notes/delete'); ?>/<?php echo $row->id; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> <?= __("Delete Note"); ?></a>
+
           </div>
         </div>
       </div>

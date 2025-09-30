@@ -10,7 +10,7 @@ class Note extends CI_Model {
 			'Satellites' => __('Satellites') // Satellite-related notes
 		];
 	}
-	
+
 	// Get list of possible note category keys (for backwards compatibility)
 	public static function get_possible_category_keys() {
 		return array_keys(self::get_possible_categories());
@@ -112,7 +112,7 @@ class Note extends CI_Model {
 		$user_id = $this->session->userdata('user_id');
 		$params = array($user_id);
 		$sql = "SELECT * FROM notes WHERE user_id = ?";
-		
+
 		// Filter by category
 		if (!empty($criteria['cat'])) {
 			$cats = array_map('trim', explode(',', $criteria['cat']));
@@ -122,7 +122,7 @@ class Note extends CI_Model {
 				$params = array_merge($params, $cats);
 			}
 		}
-		
+
 		// Filter by search term (title or note)
 		if (!empty($criteria['search'])) {
 			$search = '%' . $criteria['search'] . '%';
@@ -130,7 +130,7 @@ class Note extends CI_Model {
 			$params[] = $search;
 			$params[] = $search;
 		}
-		
+
 		$query = $this->db->query($sql, $params);
 		return $query->result();
 	}
@@ -140,12 +140,12 @@ class Note extends CI_Model {
 		$user_id = $this->session->userdata('user_id');
 		$params = array($user_id);
 		$sql = "SELECT COUNT(*) as count FROM notes WHERE user_id = ?";
-		
+
 		if ($category !== null) {
 			$sql .= " AND cat = ?";
 			$params[] = $category;
 		}
-		
+
 		$query = $this->db->query($sql, $params);
 		return $query->row()->count;
 	}
@@ -174,7 +174,7 @@ class Note extends CI_Model {
 		$user_id = $this->session->userdata('user_id');
 		$params = array($user_id);
 		$where_clause = "WHERE user_id = ?";
-		
+
 		// Filter by category
 		if (!empty($criteria['cat'])) {
 			$cats = array_map('trim', explode(',', $criteria['cat']));
@@ -184,7 +184,7 @@ class Note extends CI_Model {
 				$params = array_merge($params, $cats);
 			}
 		}
-		
+
 		// Filter by search term (title or note)
 		if (!empty($criteria['search'])) {
 			$search = '%' . $criteria['search'] . '%';
@@ -192,25 +192,25 @@ class Note extends CI_Model {
 			$params[] = $search;
 			$params[] = $search;
 		}
-		
+
 		// Get total count
 		$count_sql = "SELECT COUNT(*) as count FROM notes $where_clause";
 		$count_query = $this->db->query($count_sql, $params);
 		$total = $count_query->row()->count;
-		
+
 		// Build main query with sorting
 		$sql = "SELECT id, cat, title, note, creation_date, last_modified FROM notes $where_clause";
-		
+
 		// Sorting
 		$columns = ['cat', 'title', 'creation_date', 'last_modified'];
 		if ($sort_col !== null && in_array($sort_col, $columns) && ($sort_dir === 'asc' || $sort_dir === 'desc')) {
 			$sql .= " ORDER BY $sort_col $sort_dir";
 		}
-		
+
 		// Pagination
 		$offset = ($page - 1) * $per_page;
 		$sql .= " LIMIT $per_page OFFSET $offset";
-		
+
 		$query = $this->db->query($sql, $params);
 		$notes = [];
 		foreach ($query->result() as $row) {

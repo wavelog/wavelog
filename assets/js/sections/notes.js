@@ -1,93 +1,108 @@
 // Initialize EasyMDE for the notes textarea if on add/edit page
 if (typeof EasyMDE !== 'undefined') {
-	const notes = new EasyMDE({
-		element: document.getElementById('notes'),
-		forceSync: true,
-		spellChecker: false,
-		placeholder: 'Create note...',
-		maxHeight: '350px',
-		toolbar: [
-			{
-				name: "bold",
-				action: EasyMDE.toggleBold,
-				className: "fa fa-bold",
-				title: "bold",
-			},
-			{
-				name: "italic",
-				action: EasyMDE.toggleItalic,
-				className: "fa fa-italic",
-				title: "italic",
-			},
-			{
-				name: "heading",
-				action: EasyMDE.toggleHeadingSmaller,
-				className: "fa fa-header",
-				title: "heading",
-			},
-			"|",
-			{
-				name: "quote",
-				action: EasyMDE.toggleBlockquote,
-				className: "fa fa-quote-left",
-				title: "quote",
-			},
-			{
-				name: "unordered-list",
-				action: EasyMDE.toggleUnorderedList,
-				className: "fa fa-list-ul",
-				title: "unordered list",
-			},
-			{
-				name: "ordered-list",
-				action: EasyMDE.toggleOrderedList,
-				className: "fa fa-list-ol",
-				title: "ordered list",
-			},
-			"|",
-			{
-				name: "link",
-				action: EasyMDE.drawLink,
-				className: "fa fa-link",
-				title: "link"
-			},
-			{
-				name: "image",
-				action: EasyMDE.drawImage,
-				className: "fa fa-image",
-				title: "image"
-			},
-			"|",
-			{
-				name: "preview",
-				action: EasyMDE.togglePreview,
-				className: "fa fa-eye no-disable",
-				title: "preview"
-			},
-			"|",
-			{
-				name: "guide",
-				action: "https://www.markdownguide.org/basic-syntax/", // link
-				className: "fa fa-question-circle",
-				title: "Markdown Guide"
-			}
-		]
-	});
+    const notes = new EasyMDE({
+        element: document.getElementById('notes'),
+        forceSync: true,
+        spellChecker: false,
+        placeholder: 'Create note...',
+        maxHeight: '350px',
+        toolbar: [
+            {
+                name: "bold",
+                action: EasyMDE.toggleBold,
+                className: "fa fa-bold",
+                title: "bold",
+            },
+            {
+                name: "italic",
+                action: EasyMDE.toggleItalic,
+                className: "fa fa-italic",
+                title: "italic",
+            },
+            {
+                name: "heading",
+                action: EasyMDE.toggleHeadingSmaller,
+                className: "fa fa-header",
+                title: "heading",
+            },
+            "|",
+            {
+                name: "quote",
+                action: EasyMDE.toggleBlockquote,
+                className: "fa fa-quote-left",
+                title: "quote",
+            },
+            {
+                name: "unordered-list",
+                action: EasyMDE.toggleUnorderedList,
+                className: "fa fa-list-ul",
+                title: "unordered list",
+            },
+            {
+                name: "ordered-list",
+                action: EasyMDE.toggleOrderedList,
+                className: "fa fa-list-ol",
+                title: "ordered list",
+            },
+            "|",
+            {
+                name: "link",
+                action: EasyMDE.drawLink,
+                className: "fa fa-link",
+                title: "link"
+            },
+            {
+                name: "image",
+                action: EasyMDE.drawImage,
+                className: "fa fa-image",
+                title: "image"
+            },
+            "|",
+            {
+                name: "preview",
+                action: EasyMDE.togglePreview,
+                className: "fa fa-eye no-disable",
+                title: "preview"
+            },
+            "|",
+            {
+                name: "guide",
+                action: "https://www.markdownguide.org/basic-syntax/", // link
+                className: "fa fa-question-circle",
+                title: "Markdown Guide"
+            }
+        ]
+    });
+
+    // Always sync EasyMDE content to textarea before form submit
+    var notesForm = document.getElementById('notes_add');
+    if (notesForm) {
+        notesForm.addEventListener('submit', function(e) {
+            if (notes && notes.codemirror) {
+                notes.codemirror.save(); // forceSync
+            }
+        });
+    }
+    // If validation fails and textarea has value, restore it to EasyMDE
+    var notesTextarea = document.getElementById('notes');
+    if (notesTextarea && notesTextarea.value && notes.value() !== notesTextarea.value) {
+        notes.value(notesTextarea.value);
+    }
 }
 
-// Main notes page logic including subpages
+// Main notes page functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Early exit if we're not on a notes page
     var notesTableBody = document.querySelector('#notesTable tbody');
     var isNotesMainPage = notesTableBody !== null;
 
     var base_url = window.base_url || document.body.getAttribute('data-baseurl') || '/';
-    
+
     // Constants
     const NOTES_PER_PAGE = 15;
     const SEARCH_MIN_LENGTH = 3;
     const SORT_COLUMN_MAP = ['cat', 'title', 'creation_date', 'last_modified', null];
-    
+
     // Cache frequently used DOM elements to avoid repeated queries
     var domCache = {
         notesTableBody: notesTableBody,
@@ -101,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         form: document.getElementById('notes_add'),
         paginationContainer: document.getElementById('notesPagination')
     };
-    
+
     // Create pagination container if it doesn't exist
     if (!domCache.paginationContainer) {
         domCache.paginationContainer = document.createElement('div');
@@ -112,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             notesTableContainer.appendChild(domCache.paginationContainer);
         }
     }
-    
+
     // Initialize existing UTC time cells and tooltips on page load
     // Helper function to initialize table elements after rendering
     function initializeTableElements() {
@@ -121,17 +136,17 @@ document.addEventListener('DOMContentLoaded', function() {
             var utc = td.getAttribute('data-utc');
             td.textContent = utcToLocal(utc);
         });
-        
+
         // Initialize Bootstrap tooltips for note titles
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('#notesTable a[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.forEach(function(el) {
             new bootstrap.Tooltip(el);
         });
     }
-    
+
     // Run initialization for existing table content
     initializeTableElements();
-    
+
     // Duplicate Contacts note check for add/edit pages
     var modal;
     function showModal(msg) {
@@ -345,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return categoryKey || '';
         }
-        
+
         var tbody = '';
         if (data.length === 0) {
             tbody = '<tr><td colspan="5" class="text-center text-muted">' + lang_notes_not_found + '</td></tr>';

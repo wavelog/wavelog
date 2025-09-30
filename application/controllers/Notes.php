@@ -50,7 +50,7 @@ class Notes extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $category = $this->input->post('category', TRUE);
             if ($category === 'Contacts') {
-                
+
                 $suggested_title = strtoupper($this->callbook->get_plaincall($this->input->post('title', TRUE)));
             }
             $data['suggested_title'] = $suggested_title;
@@ -72,7 +72,7 @@ class Notes extends CI_Controller {
     }
 
     // View a single note
-    function view($id) {
+    function view($id = null) {
         $this->load->model('note');
         $clean_id = $this->security->xss_clean($id);
         // Validate note ID and ownership
@@ -88,7 +88,7 @@ class Notes extends CI_Controller {
     }
 
     // Edit a note
-    function edit($id) {
+    function edit($id = null) {
         $this->load->model('note');
         $clean_id = $this->security->xss_clean($id);
         // Validate note ID and ownership
@@ -158,7 +158,7 @@ class Notes extends CI_Controller {
     }
 
     // Delete a note
-    function delete($id) {
+    function delete($id = null) {
 		$this->load->model('note');
 
         $clean_id = $this->security->xss_clean($id);
@@ -171,7 +171,7 @@ class Notes extends CI_Controller {
     }
 
     // Duplicate a note by ID for the logged-in user, appending #[timestamp] to title
-    public function duplicate($id) {
+    public function duplicate($id = null) {
         $this->load->model('note');
         $clean_id = $this->security->xss_clean($id);
         if (!is_numeric($clean_id)) {
@@ -263,7 +263,7 @@ class Notes extends CI_Controller {
     }
 
     // Form validation callback for add: unique Contacts note title for user, only core callsign
-    public function contacts_title_unique($title) {
+    public function contacts_title_unique($title = null) {
         $category = $this->input->post('category', TRUE);
         if ($category === 'Contacts') {
             $user_id = $this->session->userdata('user_id');
@@ -287,18 +287,19 @@ class Notes extends CI_Controller {
         return TRUE;
     }
     // Form validation callback for edit: unique Contacts note title for user (ignore current note), only core callsign
-    public function contacts_title_unique_edit($title) {
+    public function contacts_title_unique_edit($title = null) {
         $category = $this->input->post('category', TRUE);
         if ($category === 'Contacts') {
             $user_id = $this->session->userdata('user_id');
             $note_id = $this->input->post('id', TRUE);
             $core = strtoupper($this->callbook->get_plaincall($title));
-            if ($parsed['prefix'] || $parsed['suffix'] || $title !== $core) {
+			// Only fail if prefix or suffix is present
+            if (strtoupper($title) <> $core) {
                 $this->form_validation->set_message('contacts_title_unique_edit', __('Contacts note title must be a callsign only, without prefix/suffix. Suggested: ' . $core));
                 return FALSE;
             }
             $query = $this->db->get_where('notes', [
-                'category' => 'Contacts',
+                'cat' => 'Contacts',
                 'user_id' => $user_id,
                 'title' => $core
             ]);
