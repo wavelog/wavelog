@@ -20,7 +20,7 @@
       <!-- Show validation errors if any -->
       <?php if (!empty(validation_errors())): ?>
       <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
-      <span class="badge text-bg-info"><?= __("Warning"); ?></span>
+      	<span class="badge text-bg-info"><?= __("Warning"); ?></span>
         <?php echo (validation_errors('<span>', '</span>')); ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
