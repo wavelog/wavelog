@@ -19,9 +19,10 @@
     <div class="card-body">
       <!-- Show validation errors if any -->
       <?php if (!empty(validation_errors())): ?>
-      <div class="alert alert-danger">
-        <a class="btn-close" data-bs-dismiss="alert" title="close">x</a>
-        <ul><?php echo (validation_errors('<li>', '</li>')); ?></ul>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
+      <span class="badge text-bg-info"><?= __("Warning"); ?></span>
+        <?php echo (validation_errors('<span>', '</span>')); ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       <?php endif; ?>
       <!-- Note creation form -->
