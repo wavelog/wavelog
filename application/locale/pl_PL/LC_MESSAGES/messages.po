@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-30 06:37+0000\n"
-"PO-Revision-Date: 2025-09-29 06:30+0000\n"
+"POT-Creation-Date: 2025-10-02 06:52+0000\n"
+"PO-Revision-Date: 2025-10-01 11:48+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
@@ -3309,72 +3309,79 @@ msgstr ""
 "Spróbowałeś zaimportować QSO bez podanego znaku wywoławczego. To QSO nie "
 "zostało zaimportowane, jest nieprawidłowe"
 
-#: application/models/Logbook_model.php:4381
+#: application/models/Logbook_model.php:4123
+#, php-format
+msgid ""
+"QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
+"imported. It's invalid"
+msgstr ""
+
+#: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate jest nieprawidłowa (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4392
+#: application/models/Logbook_model.php:4399
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate jest nieprawidłowa (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4453
+#: application/models/Logbook_model.php:4460
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date jest nieprawidłowy (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4473
+#: application/models/Logbook_model.php:4480
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate jest nieprawidłowy (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4494
+#: application/models/Logbook_model.php:4501
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate jest nieprawidłowy (RRRRMMDD)"
 
-#: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4794
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Duplikat dla"
 
-#: application/models/Logbook_model.php:4852
-#: application/models/Logbook_model.php:4947
+#: application/models/Logbook_model.php:4859
+#: application/models/Logbook_model.php:4954
 msgid "QSO could not be matched"
 msgstr "QSO nie mogło zostać dopasowane"
 
-#: application/models/Logbook_model.php:4860
+#: application/models/Logbook_model.php:4867
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "potwierdzone przez LoTW/ClubLog/eQSL/zawody"
 
-#: application/models/Logbook_model.php:4866
+#: application/models/Logbook_model.php:4873
 msgid "confirmed by award manager"
 msgstr "potwierdzone przez award managera"
 
-#: application/models/Logbook_model.php:4870
+#: application/models/Logbook_model.php:4877
 msgid "confirmed by cross-check of DCL data"
 msgstr "potwierdzone przez weryfikację danych DCL"
 
-#: application/models/Logbook_model.php:4874
+#: application/models/Logbook_model.php:4881
 msgid "confirmation pending"
 msgstr "oczekiwanie na potwierdzenie"
 
-#: application/models/Logbook_model.php:4877
+#: application/models/Logbook_model.php:4884
 msgid "unconfirmed"
 msgstr "niepotwierdzone"
 
-#: application/models/Logbook_model.php:4880
+#: application/models/Logbook_model.php:4887
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "nieznany"
 
-#: application/models/Logbook_model.php:4950
+#: application/models/Logbook_model.php:4957
 msgid "POTA reference already in log"
 msgstr "Referencja POTA już znajduje się w dzienniku"
 
-#: application/models/Logbook_model.php:4953
+#: application/models/Logbook_model.php:4960
 msgid "QSO updated"
 msgstr "QSO zaktualizowane"
 
-#: application/models/Logbook_model.php:5807
+#: application/models/Logbook_model.php:5814
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -4748,8 +4755,8 @@ msgid ""
 msgstr ""
 "Czasami, w zależności od używanego oprogramowania do logowania konkursów, "
 "wymiany nie zostaną poprawnie zaimportowane z pliku ADIF tego "
-"oprogramowania. W przypadku chęci poprawy, należy przejść do zakładki "
-"importu CBR na stronie importu ADIF."
+"oprogramowania. Aby to poprawić, należy przejść do zakładki importu CBR na "
+"stronie importu ADIF."
 
 #: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
@@ -4758,7 +4765,7 @@ msgstr "Zaimportowano co najmniej 1 QSO zawierające identyfikator konkursu."
 #: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
-"Znaleźliśmy następującą liczbę QSO dla podanych identyfikatorów konkursu:"
+"Znaleziono następującą liczbę QSO dla podanych identyfikatorów konkursu:"
 
 #: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
