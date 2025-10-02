@@ -11,10 +11,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-02 18:42+0000\n"
-"PO-Revision-Date: 2025-09-25 10:27+0000\n"
+"PO-Revision-Date: 2025-10-03 19:48+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1941,12 +1941,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Contactnotitie titel moet alleen een roepnaam zijn, zonder voorvoegsel/"
+"achtervoegsel. Voorstel: %s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"Er bestaat al een notitie met deze roepnaam in je contacten. Voer een unieke "
+"roepnaam in."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -3320,6 +3324,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
+"QSO op %s: Je hebt geprobeerd een QSO te importeren zonder een opgegeven "
+"band. Dit QSO is niet geïmporteerd. Het is ongeldig"
 
 #: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3402,7 +3408,7 @@ msgstr "Koers"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Contacten"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3416,7 +3422,7 @@ msgstr "Antennes"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "In de categorie Contacten moeten de titels van de notities uniek zijn."
 
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
@@ -8294,6 +8300,7 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"Je moet je PHP-versie upgraden. De minimale versie is %s. Jouw versie is %s."
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -9865,20 +9872,20 @@ msgstr "Satellietinformatie"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "Fout bij laden van notities"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "Sorteren"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "Duplicatie is uitgeschakeld voor Contactnotities"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicaat"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9887,23 +9894,23 @@ msgstr "Notitie verwijderen"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Dupliceer notitie"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "Deze notitie verwijderen?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "Dupliceer deze notitie?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Dupliceren uitgeschakeld"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "Er zijn geen notities gevonden"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:513
@@ -11692,6 +11699,10 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Contacten is een speciale notitiecategorie die op verschillende plaatsen in "
+"Wavelog wordt gebruikt om informatie over QSO-partners op te slaan. Deze "
+"notities zijn privé en worden niet gedeeld met andere gebruikers of "
+"geëxporteerd naar externe diensten."
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11703,27 +11714,27 @@ msgstr "Notitie opslaan"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "Alle categorieën"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Notities zoeken (min. 3 tekens)"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
-msgstr ""
+msgstr "Zoekopdracht opnieuw instellen"
 
 #: application/views/notes/main.php:72
 msgid "Creation"
-msgstr ""
+msgstr "Gecreëerd"
 
 #: application/views/notes/main.php:73
 msgid "Last Modification"
-msgstr ""
+msgstr "Laatste wijziging"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "Bekijk notitie"
 
 #: application/views/operator/index.php:9
 msgid ""
