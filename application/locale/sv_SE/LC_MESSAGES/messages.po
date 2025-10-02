@@ -128,6 +128,7 @@ msgstr ""
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
 #: application/controllers/Satellite.php:669
 #: application/controllers/Satellite.php:678
+#: application/controllers/Notes.php:11
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -1804,6 +1805,7 @@ msgstr "Operatör"
 #: application/views/view_log/partial/log_ajax.php:31
 #: application/views/view_log/qso.php:335
 #: application/views/view_log/qso.php:688
+#: application/views/interface_assets/footer.php:760
 msgid "Deleted DXCC"
 msgstr "Struket DXCC"
 
@@ -1914,21 +1916,24 @@ msgstr "Redigera Trafiksätt"
 #: application/views/qso/edit_ajax.php:37
 #: application/views/qso/edit_ajax.php:409 application/views/qso/index.php:71
 #: application/views/qso/index.php:642 application/views/view_log/qso.php:14
-#: application/views/view_log/qso.php:749
+#: application/views/view_log/qso.php:749 application/controllers/Notes.php:33
+#: application/views/notes/add.php:5 application/views/notes/edit.php:6
 msgid "Notes"
 msgstr "Anteckningar"
 
-#: application/controllers/Notes.php:37
+#: application/controllers/Notes.php:37 application/controllers/Notes.php:57
 msgid "Add Notes"
 msgstr "Lägg till meddelande"
 
 #: application/controllers/Notes.php:64
 #: application/views/oqrs/showrequests.php:93
+#: application/controllers/Notes.php:83
 msgid "Note"
 msgstr "Meddelande"
 
 #: application/controllers/Notes.php:92 application/views/notes/edit.php:7
-#: application/views/notes/view.php:19
+#: application/views/notes/view.php:19 application/controllers/Notes.php:112
+#: application/views/notes/edit.php:20 application/views/notes/view.php:47
 msgid "Edit Note"
 msgstr "Redigera Meddelande"
 
@@ -2256,6 +2261,8 @@ msgstr "Standard (klicka för att släppa)"
 #: application/views/stationsetup/stationsetup.php:170
 #: application/views/themes/index.php:104 application/views/user/index.php:97
 #: application/views/user/index.php:203
+#: application/views/interface_assets/footer.php:620
+#: application/views/interface_assets/footer.php:629
 msgid "Edit"
 msgstr "Redigera"
 
@@ -2284,6 +2291,11 @@ msgstr "Redigera"
 #: application/views/stationsetup/stationsetup.php:197
 #: application/views/themes/index.php:107 application/views/user/index.php:119
 #: application/views/user/index.php:228 application/views/view_log/qso.php:772
+#: application/views/interface_assets/footer.php:63
+#: application/views/interface_assets/footer.php:2802
+#: application/views/interface_assets/footer.php:2820
+#: application/views/interface_assets/footer.php:2841
+#: application/views/interface_assets/footer.php:2859
 msgid "Delete"
 msgstr "Radera"
 
@@ -2304,7 +2316,7 @@ msgstr "Exportera EDI"
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
 #: application/views/satellite/index.php:40
 #: application/views/statistics/index.php:50
-#: application/views/statistics/index.php:111
+#: application/views/statistics/index.php:111 application/models/Note.php:10
 msgid "Satellites"
 msgstr "Satelliter"
 
@@ -3604,6 +3616,8 @@ msgstr "Skillnad"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:768
 #: application/views/visitor/layout/footer.php:172
+#: application/views/interface_assets/footer.php:1692
+#: application/views/interface_assets/footer.php:1831
 msgid "All"
 msgstr "Alla"
 
@@ -4364,7 +4378,8 @@ msgstr "Maximal filuppladdningsstorlek är "
 #: application/views/stationsetup/stationsetup.php:114
 #: application/views/view_log/qso.php:781
 #: application/views/webadif/export.php:34
-#: application/views/webadif/export.php:94
+#: application/views/webadif/export.php:94 application/views/notes/add.php:23
+#: application/views/notes/edit.php:29
 msgid "Warning"
 msgstr "Varning"
 
@@ -4424,6 +4439,8 @@ msgstr ""
 #: application/views/interface_assets/footer.php:34
 #: application/views/interface_assets/footer.php:565
 #: application/views/interface_assets/footer.php:2549
+#: application/views/interface_assets/footer.php:580
+#: application/views/interface_assets/footer.php:2564
 msgid "DANGER"
 msgstr "FARA"
 
@@ -4852,6 +4869,7 @@ msgstr "Enkelt namn för att beskriva vad du använder detta API till."
 #: application/views/satellite/create.php:82
 #: application/views/satellite/pass.php:115
 #: application/views/simplefle/index.php:22
+#: application/views/interface_assets/footer.php:615
 msgid "Save"
 msgstr "Spara"
 
@@ -4960,6 +4978,7 @@ msgstr "Behörighet"
 #: application/views/logbookadvanced/index.php:644
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
 #: application/views/user/index.php:160 application/views/webadif/export.php:45
+#: application/views/notes/main.php:74
 msgid "Actions"
 msgstr "Åtgärder"
 
@@ -5338,6 +5357,7 @@ msgstr "Visa QSO med QSL-typ"
 #: application/views/interface_assets/footer.php:2528
 #: application/views/qso/edit_ajax.php:419
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2543
 msgid "QSL Card"
 msgstr "QSL-kort"
 
@@ -9643,6 +9663,10 @@ msgstr "QSL-datum"
 #: application/views/interface_assets/footer.php:2845
 #: application/views/qslcard/index.php:77
 #: application/views/view_log/qso.php:773
+#: application/views/interface_assets/footer.php:2803
+#: application/views/interface_assets/footer.php:2821
+#: application/views/interface_assets/footer.php:2842
+#: application/views/interface_assets/footer.php:2860
 msgid "View"
 msgstr "Visa"
 
@@ -9791,54 +9815,70 @@ msgstr "Satellitinformation"
 #: application/views/interface_assets/footer.php:139
 #: application/views/interface_assets/header.php:513
 #: application/views/options/sidebar.php:10
+#: application/views/interface_assets/footer.php:152
 msgid "Version Info"
 msgstr "Versionsinformation"
 
 #: application/views/interface_assets/footer.php:193
 #: application/views/interface_assets/footer.php:208
+#: application/views/interface_assets/footer.php:206
+#: application/views/interface_assets/footer.php:221
 msgid "Failed to load the modal. Please try again."
 msgstr "Det gick inte att ladda modalen. Försök igen."
 
 #: application/views/interface_assets/footer.php:455
+#: application/views/interface_assets/footer.php:470
 msgid "Description:"
 msgstr "Beskrivning:"
 
 #: application/views/interface_assets/footer.php:458
+#: application/views/interface_assets/footer.php:473
 msgid "Query description"
 msgstr "Frågebeskrivning"
 
 #: application/views/interface_assets/footer.php:474
+#: application/views/interface_assets/footer.php:489
 msgid "Your query has been saved!"
 msgstr "Din förfrågan har sparats!"
 
 #: application/views/interface_assets/footer.php:476
 #: application/views/search/filter.php:49
+#: application/views/interface_assets/footer.php:491
 msgid "Edit queries"
 msgstr "Redigera frågor"
 
 #: application/views/interface_assets/footer.php:478
+#: application/views/interface_assets/footer.php:493
 msgid "Stored queries:"
 msgstr "Lagrade frågor:"
 
 #: application/views/interface_assets/footer.php:483
 #: application/views/search/filter.php:63
+#: application/views/interface_assets/footer.php:498
 msgid "Run Query"
 msgstr "Kör fråga"
 
 #: application/views/interface_assets/footer.php:495
 #: application/views/interface_assets/footer.php:631
 #: application/views/interface_assets/footer.php:701
+#: application/views/interface_assets/footer.php:510
+#: application/views/interface_assets/footer.php:646
+#: application/views/interface_assets/footer.php:716
 msgid "Stored Queries"
 msgstr "Lagrade frågor"
 
 #: application/views/interface_assets/footer.php:500
 #: application/views/interface_assets/footer.php:706
+#: application/views/interface_assets/footer.php:515
+#: application/views/interface_assets/footer.php:721
 msgid "You need to make a query before you search!"
 msgstr "Du måste göra en förfrågan innan du söker!"
 
 #: application/views/interface_assets/footer.php:521
 #: application/views/interface_assets/footer.php:658
 #: application/views/search/filter.php:82
+#: application/views/interface_assets/footer.php:536
+#: application/views/interface_assets/footer.php:673
 msgid "Export to ADIF"
 msgstr "Exportera till ADIF"
 
@@ -9847,30 +9887,38 @@ msgstr "Exportera till ADIF"
 #: application/views/search/cqzones.php:40
 #: application/views/search/ituzones.php:40
 #: application/views/search/main.php:37
+#: application/views/interface_assets/footer.php:537
+#: application/views/interface_assets/footer.php:674
 msgid "Open in the Advanced Logbook"
 msgstr "Öppna i den avancerade loggboken"
 
 #: application/views/interface_assets/footer.php:566
+#: application/views/interface_assets/footer.php:581
 msgid "Warning! Are you sure you want delete this stored query?"
 msgstr "Varning! Är du säker på att du vill ta bort denna sparade fråga?"
 
 #: application/views/interface_assets/footer.php:580
+#: application/views/interface_assets/footer.php:595
 msgid "The stored query has been deleted!"
 msgstr "Den sparade frågan har raderats!"
 
 #: application/views/interface_assets/footer.php:589
+#: application/views/interface_assets/footer.php:604
 msgid "The stored query could not be deleted. Please try again!"
 msgstr "Den sparade frågan kunde inte raderas. Försök igen!"
 
 #: application/views/interface_assets/footer.php:615
+#: application/views/interface_assets/footer.php:630
 msgid "The query description has been updated!"
 msgstr "Frågebeskrivningen har uppdaterats!"
 
 #: application/views/interface_assets/footer.php:619
+#: application/views/interface_assets/footer.php:634
 msgid "Something went wrong with the save. Please try again!"
 msgstr "Något gick fel med sparandet. Försök igen!"
 
 #: application/views/interface_assets/footer.php:748
+#: application/views/interface_assets/footer.php:763
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -9882,14 +9930,17 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:801
 #: application/views/logbookadvanced/index.php:659
+#: application/views/interface_assets/footer.php:816
 msgid "Callsign: "
 msgstr "Anropssignal: "
 
 #: application/views/interface_assets/footer.php:802
+#: application/views/interface_assets/footer.php:817
 msgid "Count: "
 msgstr "Antal: "
 
 #: application/views/interface_assets/footer.php:803
+#: application/views/interface_assets/footer.php:818
 msgid "Grids: "
 msgstr "Rutnätsrutor: "
 
@@ -9897,11 +9948,13 @@ msgstr "Rutnätsrutor: "
 #: application/views/logbookadvanced/index.php:13
 #: application/views/logbookadvanced/useroptions.php:210
 #: application/views/satellite/flightpath.php:11
+#: application/views/interface_assets/footer.php:1126
 msgctxt "Map Options"
 msgid "Gridsquares"
 msgstr "Rutnätsrutor"
 
 #: application/views/interface_assets/footer.php:1390
+#: application/views/interface_assets/footer.php:1405
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
 msgstr "Du är inte inloggad. Vänligen %slogga in%s"
@@ -9912,51 +9965,70 @@ msgstr "Du är inte inloggad. Vänligen %slogga in%s"
 #: application/views/interface_assets/footer.php:1748
 #: application/views/interface_assets/footer.php:1752
 #: application/views/interface_assets/footer.php:1755
+#: application/views/interface_assets/footer.php:1619
+#: application/views/interface_assets/footer.php:1623
+#: application/views/interface_assets/footer.php:1626
+#: application/views/interface_assets/footer.php:1763
+#: application/views/interface_assets/footer.php:1767
+#: application/views/interface_assets/footer.php:1770
 msgid "grid square"
 msgstr "rutnätsruta"
 
 #: application/views/interface_assets/footer.php:1611
 #: application/views/interface_assets/footer.php:1755
+#: application/views/interface_assets/footer.php:1626
+#: application/views/interface_assets/footer.php:1770
 msgid "Total count"
 msgstr "Totalt antal"
 
 #: application/views/interface_assets/footer.php:2530
+#: application/views/interface_assets/footer.php:2545
 msgid "QSL Card for "
 msgstr "QSL-kort för "
 
 #: application/views/interface_assets/footer.php:2550
+#: application/views/interface_assets/footer.php:2565
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Varning! Är du säker på att du vill ta bort detta QSL-kort?"
 
 #: application/views/interface_assets/footer.php:2590
 #: application/views/view_log/qso.php:43
+#: application/views/interface_assets/footer.php:2605
 msgid "eQSL Card"
 msgstr "eQSL-kort"
 
 #: application/views/interface_assets/footer.php:2592
+#: application/views/interface_assets/footer.php:2607
 msgid "eQSL Card for "
 msgstr "eQSL-kort för "
 
 #: application/views/interface_assets/footer.php:2799
 #: application/views/interface_assets/footer.php:2838
 #: application/views/view_log/qso.php:763
+#: application/views/interface_assets/footer.php:2814
+#: application/views/interface_assets/footer.php:2853
 msgid "QSL image file"
 msgstr "QSL-bildfil"
 
 #: application/views/interface_assets/footer.php:2818
+#: application/views/interface_assets/footer.php:2833
 msgid "Front QSL Card:"
 msgstr "Framsida QSL-kort:"
 
 #: application/views/interface_assets/footer.php:2856
+#: application/views/interface_assets/footer.php:2871
 msgid "Back QSL Card:"
 msgstr "Baksida QSL-kort:"
 
 #: application/views/interface_assets/footer.php:2867
 #: application/views/interface_assets/footer.php:2892
+#: application/views/interface_assets/footer.php:2882
+#: application/views/interface_assets/footer.php:2907
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Lägg till ytterligare QSOs på ett QSL-kort"
 
 #: application/views/interface_assets/footer.php:2903
+#: application/views/interface_assets/footer.php:2918
 msgid "Something went wrong. Please try again!"
 msgstr "Något gick fel. Försök igen!"
 
@@ -11541,37 +11613,48 @@ msgstr "Skapa ett Trafiksätt"
 
 #: application/views/notes/add.php:6 application/views/notes/add.php:12
 #: application/views/notes/edit.php:13 application/views/notes/main.php:11
-#: application/views/notes/view.php:12
+#: application/views/notes/view.php:12 application/views/notes/add.php:14
+#: application/views/notes/edit.php:15 application/views/notes/main.php:14
+#: application/views/notes/main.php:46 application/views/notes/view.php:15
 msgid "Create Note"
 msgstr "Skapa anteckning"
 
 #: application/views/notes/add.php:29 application/views/notes/edit.php:30
+#: application/views/notes/add.php:31 application/views/notes/edit.php:37
+#: application/views/notes/main.php:71
 msgid "Title"
 msgstr "Titel"
 
 #: application/views/notes/add.php:34 application/views/notes/edit.php:35
+#: application/views/notes/add.php:36 application/views/notes/edit.php:42
+#: application/views/notes/main.php:70 application/views/notes/view.php:30
 msgid "Category"
 msgstr "Kategori"
 
 #: application/views/notes/add.php:36 application/views/notes/edit.php:37
 #: application/views/qso/index.php:61 application/views/statistics/index.php:46
-#: application/views/user/edit.php:168
+#: application/views/user/edit.php:168 application/models/Note.php:8
 msgid "General"
 msgstr "Allmänt"
 
 #: application/views/notes/add.php:37 application/views/notes/edit.php:38
+#: application/models/Note.php:9
 msgid "Antennas"
 msgstr "Antenner"
 
 #: application/views/notes/add.php:43 application/views/notes/edit.php:44
+#: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
 msgstr "Innehåll"
 
 #: application/views/notes/add.php:47 application/views/notes/edit.php:49
+#: application/views/notes/add.php:54 application/views/notes/edit.php:63
 msgid "Save Note"
 msgstr "Spara anteckning"
 
-#: application/views/notes/main.php:22
+#: application/views/notes/main.php:22 application/views/notes/add.php:9
+#: application/views/notes/edit.php:10 application/views/notes/main.php:9
+#: application/views/notes/view.php:10
 msgid "Your Notes"
 msgstr "Dina anteckningar"
 
@@ -11586,6 +11669,8 @@ msgstr ""
 "och det är bättre än papper eftersom du inte kan tappa bort dem!"
 
 #: application/views/notes/view.php:21
+#: application/views/interface_assets/footer.php:65
+#: application/views/notes/view.php:48
 msgid "Delete Note"
 msgstr "Radera anteckning"
 
@@ -16221,6 +16306,103 @@ msgstr "Mottagen"
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
+msgstr ""
+
+#: application/controllers/Notes.php:275 application/controllers/Notes.php:301
+#, php-format
+msgid ""
+"Contacts note title must be a callsign only, without prefix/suffix. "
+"Suggested: %s"
+msgstr ""
+
+#: application/controllers/Notes.php:284 application/controllers/Notes.php:311
+msgid ""
+"A note with this callsign already exists in your Contacts. Please enter a "
+"unique callsign."
+msgstr ""
+
+#: application/models/Note.php:7
+msgid "Contacts"
+msgstr ""
+
+#: application/models/Note.php:45 application/models/Note.php:69
+msgid "In Contacts category, the titles of the notes need to be unique."
+msgstr ""
+
+#: application/views/interface_assets/footer.php:59
+msgid "Error loading notes"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:60
+msgid "Sorting"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:61
+msgid "Duplication is disabled for Contacts notes"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:62
+#: application/views/interface_assets/footer.php:64
+msgid "Duplicate"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:66
+msgid "Duplicate Note"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:67
+msgid "Delete this note?"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:68
+msgid "Duplicate this note?"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:69
+msgid "Duplication Disabled"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:70
+msgid "No notes were found"
+msgstr ""
+
+#: application/views/notes/add.php:37 application/views/notes/edit.php:44
+#: application/views/notes/view.php:32
+msgid ""
+"Contacts is a special note category used in various places of Wavelog to "
+"store information about QSO partners. This notes are private and are not "
+"shared with other users nor exported to external services."
+msgstr ""
+
+#: application/views/notes/main.php:25
+msgid "All Categories"
+msgstr ""
+
+#: application/views/notes/main.php:38
+msgid ""
+"Contacts is a special note category used in various parts of Wavelog to "
+"store information about QSO partners. These notes are private and are "
+"neither shared with other users nor exported to external services."
+msgstr ""
+
+#: application/views/notes/main.php:53
+msgid "Search notes (min. 3 chars)"
+msgstr ""
+
+#: application/views/notes/main.php:54
+msgid "Reset search"
+msgstr ""
+
+#: application/views/notes/main.php:72
+msgid "Creation"
+msgstr ""
+
+#: application/views/notes/main.php:73
+msgid "Last Modification"
+msgstr ""
+
+#: application/views/notes/view.php:20
+msgid "View Note"
 msgstr ""
 
 #~ msgid "QSL / LoTW / Clublog / eQSL / QRZ"
