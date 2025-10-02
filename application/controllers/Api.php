@@ -164,7 +164,6 @@ class API extends CI_Controller {
 		}
 	}
 
-
 	/*
 	*
 	*	Function: QSO
@@ -237,6 +236,24 @@ class API extends CI_Controller {
 		$mystation=$this->stations->profile_clean($obj['station_profile_id']);
 		$mygrid=($mystation->station_gridsquare ?? '');
 
+		//check for optional parameters
+		$boolval_or_false = function (array $arr, $key, $default = false) {
+			return isset($arr[$key]) && is_bool($arr[$key]) 
+				? $arr[$key] 
+				: $default;
+		};
+		
+		$importOptions = [
+			'skipDuplicate' => $boolval_or_false($obj, 'skipDuplicate'),
+			'markClublog' => $boolval_or_false($obj, 'markClublog'),
+			'markLotw' => $boolval_or_false($obj, 'markLotw'),
+			'dxccAdif' => $boolval_or_false($obj, 'dxccAdif'),
+			'markQrz' => $boolval_or_false($obj, 'markQrz'),
+			'markEqsl' => $boolval_or_false($obj, 'markEqsl'),
+			'markHrd' => $boolval_or_false($obj, 'markHrd'),
+			'markDcl' => $boolval_or_false($obj, 'markDcl')
+		];
+
 		if($obj['type'] == "adif" && $obj['string'] != "") {
 			// Load the logbook model for adding QSO records
 			$this->load->model('logbook_model');
@@ -277,7 +294,9 @@ class API extends CI_Controller {
 				};
 				$record='';	// free memory
 				gc_collect_cycles();
-				$result = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, false, false, true, false, true, false);
+				$result = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], $importOptions["skipDuplicate"], $importOptions["markClublog"], 
+					$importOptions["markLotw"], $importOptions["dxccAdif"], $importOptions["markQrz"], $importOptions["markEqsl"], 
+					$importOptions["markHrd"], $importOptions["markDcl"], true, false, true, false);
 				$custom_errors = $result['errormessage'];
 				if ($custom_errors) {
 					$adif_errors++;
