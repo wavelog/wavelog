@@ -295,7 +295,7 @@ class Notes extends CI_Controller {
             $core = strtoupper($this->callbook->get_plaincall($title));
 			// Only fail if prefix or suffix is present
             if (strtoupper($title) <> $core) {
-                $this->form_validation->set_message('contacts_title_unique_edit', __('Contacts note title must be a callsign only, without prefix/suffix. Suggested: ' . $core));
+                $this->form_validation->set_message('contacts_title_unique_edit', sprintf(__("Contacts note title must be a callsign only, without prefix/suffix. Suggested: %s"),$core));
                 return FALSE;
             }
             $query = $this->db->get_where('notes', [
