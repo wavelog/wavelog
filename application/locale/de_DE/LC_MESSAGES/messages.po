@@ -27,10 +27,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-02 18:22+0000\n"
-"PO-Revision-Date: 2025-10-02 11:50+0000\n"
+"PO-Revision-Date: 2025-10-02 18:39+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1957,12 +1957,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Kontakte Notiztitel muss ein Rufzeichen sein, ohne Präfix/Suffix. Vorschlag: "
+"%s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"In deinen Kontakten existiert bereits eine Notiz mit diesem Rufzeichen. "
+"Bitte gib ein einzigartiges Rufzeichen ein."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -3426,7 +3430,7 @@ msgstr "Peilung"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakte"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3440,7 +3444,7 @@ msgstr "Antennen"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "In der Kategorie Kontakte müssen die Titel der Notizen eindeutig sein."
 
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
@@ -8333,6 +8337,8 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"Du musst deine PHP-Version aktualisieren. Mindestversion ist %s. Deine "
+"Version ist %s."
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -9907,20 +9913,20 @@ msgstr "Satelliten-Information"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "Fehler beim Laden der Notizen"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "Sortierung"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "Duplizierung ist für Kontaktnotizen deaktiviert"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9929,23 +9935,23 @@ msgstr "Lösche Notiz"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Dupliziere Notiz"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "Diese Notiz löschen?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "Diese Notiz duplizieren?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Duplizierung deaktiviert"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "Es wurden keine Notizen gefunden"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:513
@@ -11741,6 +11747,10 @@ msgid ""
 "store information about QSO partners. This notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Kontakte sind eine spezielle Notizkategorie, die an verschiedenen Stellen in "
+"Wavelog verwendet wird um Informationen über QSO-Partner zu speichern. Diese "
+"Notizen sind privat und werden nicht mit anderen Nutzern geteilt oder an "
+"externe Dienste exportiert."
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11752,7 +11762,7 @@ msgstr "Speichere Notiz"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "Alle Kategorien"
 
 #: application/views/notes/main.php:38
 msgid ""
