@@ -370,6 +370,11 @@ class Update_model extends CI_Model {
 		$starttime = $mtime;
 
 		$this->update_norad_ids();
+
+		// Clear all TLE so that reentered birds disappear from planner and path prediction
+		$sql = "UPDATE `tle` SET `tle` = NULL WHERE 1;";
+		$this->db->query($sql);
+
 		$url = 'https://www.amsat.org/tle/dailytle.txt';
 		$curl = curl_init($url);
 
