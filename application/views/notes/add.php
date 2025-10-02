@@ -34,7 +34,7 @@
         <div class="mb-3">
           <label for="catSelect">
             <?= __("Category"); ?>
-            <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts is a special note category used in various places of Wavelog to store information about QSO partners. This notes are private and are not shared with other users nor exported to external services.") ?>">
+            <span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts is a special note category used in various places of Wavelog to store information about QSO partners. These notes are private and are not shared with other users nor exported to external services.") ?>">
               <i class="fa fa-question-circle text-info"></i>
             </span>
           </label>

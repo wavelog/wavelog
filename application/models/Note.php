@@ -162,13 +162,6 @@ class Note extends CI_Model {
 		return $result;
 	}
 
-	// Count all notes with user_id NULL (system notes)
-	function CountAllNotes() {
-		$sql = "SELECT COUNT(*) as count FROM notes WHERE user_id IS NULL";
-		$query = $this->db->query($sql);
-		return $query->row()->count;
-	}
-
 	// Search notes with pagination and sorting for the logged-in user
 	public function search_paginated($criteria = [], $page = 1, $per_page = 25, $sort_col = null, $sort_dir = null) {
 		$user_id = $this->session->userdata('user_id');
