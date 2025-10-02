@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-02 06:52+0000\n"
+"POT-Creation-Date: 2025-10-02 13:20+0000\n"
 "PO-Revision-Date: 2025-09-26 12:20+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -8241,11 +8241,11 @@ msgid "RSTR"
 msgstr "RST (A)"
 
 #: application/views/dashboard/index.php:111
+#, php-format
 msgid ""
-"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+"You need to upgrade your PHP version. Minimum version is %s. Your version "
+"is: %s."
 msgstr ""
-"PHP sürümünüzü yükseltmeniz gerekiyor. Minimum sürüm 7.4 olmalı. Sizin "
-"Sürümünüz:"
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -16257,6 +16257,13 @@ msgstr "Talep Gönder"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Alındı"
+
+#~ msgid ""
+#~ "You need to upgrade your PHP version. Minimum version is 7.4. Your "
+#~ "version is"
+#~ msgstr ""
+#~ "PHP sürümünüzü yükseltmeniz gerekiyor. Minimum sürüm 7.4 olmalı. Sizin "
+#~ "Sürümünüz:"
 
 #~ msgid "QSL / LoTW / Clublog / eQSL / QRZ"
 #~ msgstr "QSL / LoTW / Clublog / eQSL / QRZ"

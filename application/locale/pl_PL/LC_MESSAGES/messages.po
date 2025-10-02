@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-02 06:52+0000\n"
-"PO-Revision-Date: 2025-09-29 06:30+0000\n"
+"POT-Creation-Date: 2025-10-02 13:20+0000\n"
+"PO-Revision-Date: 2025-10-01 11:48+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
@@ -4755,8 +4755,8 @@ msgid ""
 msgstr ""
 "Czasami, w zależności od używanego oprogramowania do logowania konkursów, "
 "wymiany nie zostaną poprawnie zaimportowane z pliku ADIF tego "
-"oprogramowania. W przypadku chęci poprawy, należy przejść do zakładki "
-"importu CBR na stronie importu ADIF."
+"oprogramowania. Aby to poprawić, należy przejść do zakładki importu CBR na "
+"stronie importu ADIF."
 
 #: application/views/adif/import_success.php:42
 msgid "You imported at least 1 QSO containing a contest ID."
@@ -4765,7 +4765,7 @@ msgstr "Zaimportowano co najmniej 1 QSO zawierające identyfikator konkursu."
 #: application/views/adif/import_success.php:43
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
-"Znaleźliśmy następującą liczbę QSO dla podanych identyfikatorów konkursu:"
+"Znaleziono następującą liczbę QSO dla podanych identyfikatorów konkursu:"
 
 #: application/views/adif/import_success.php:57
 msgid "Import details / possible problems"
@@ -8268,10 +8268,11 @@ msgid "RSTR"
 msgstr "RSTR"
 
 #: application/views/dashboard/index.php:111
+#, php-format
 msgid ""
-"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+"You need to upgrade your PHP version. Minimum version is %s. Your version "
+"is: %s."
 msgstr ""
-"Należy zaktualizować PHP. Minimalna wersja to 7.4. Zainstalowana wersja to"
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -16323,6 +16324,12 @@ msgstr "Prześlij prośbę"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid ""
+#~ "You need to upgrade your PHP version. Minimum version is 7.4. Your "
+#~ "version is"
+#~ msgstr ""
+#~ "Należy zaktualizować PHP. Minimalna wersja to 7.4. Zainstalowana wersja to"
 
 #~ msgid "Download QSOs"
 #~ msgstr "Pobierz QSO"
