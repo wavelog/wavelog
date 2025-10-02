@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-02 18:42+0000\n"
-"PO-Revision-Date: 2025-10-02 13:20+0000\n"
+"PO-Revision-Date: 2025-10-03 19:48+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
-"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sv/>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1935,12 +1935,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Titeln för kontaktsanteckningen måste vara en anropssignal, utan prefix/"
+"suffix. Föreslag: %s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"En anteckning med denna anropssignal finns redan i dina kontakter. Ange en "
+"unik anropssignal."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -3389,7 +3393,7 @@ msgstr "Bäring"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakter"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3403,7 +3407,7 @@ msgstr "Antenner"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "I kategorin Kontakter måste titlarna på anteckningarna vara unika."
 
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
@@ -8246,6 +8250,7 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"Du måste uppgradera din PHP-version. Minsta version är %s. Din version är %s."
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -9811,20 +9816,20 @@ msgstr "Satellitinformation"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "Fel vid inläsning av anteckningar"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "Sortering"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "Duplicering är inaktiverad för kontaktsanteckningar"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicera"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9833,23 +9838,23 @@ msgstr "Radera anteckning"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Duplicera Anteckning"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "Radera den här anteckningen?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "Duplicera denna anteckning?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Duplicering inaktiverad"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "Inga anteckningar hittades"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:513
@@ -11630,6 +11635,10 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Kontakter är en speciell antecknings kategori som används på olika ställen i "
+"Wavelog för att lagra information om QSO-partners. Dessa anteckningar är "
+"privata och delas inte med andra användare eller exporteras till externa "
+"tjänster."
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11641,27 +11650,27 @@ msgstr "Spara anteckning"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "Alla kategorier"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Sök anteckningar (min. 3 tecken)"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
-msgstr ""
+msgstr "Återställ sökning"
 
 #: application/views/notes/main.php:72
 msgid "Creation"
-msgstr ""
+msgstr "Skapad"
 
 #: application/views/notes/main.php:73
 msgid "Last Modification"
-msgstr ""
+msgstr "Senast ändrad"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "Visa anteckning"
 
 #: application/views/operator/index.php:9
 msgid ""
