@@ -31,6 +31,7 @@ class Satellite_model extends CI_Model {
 		$sql = "select satellite.id, satellite.name as satname, satellite.displayname as displayname, tle.tle
 		from satellite
 		join tle on satellite.id = tle.satelliteid
+		where tle is not NULL
 		order by satellite.name
 		";
 
