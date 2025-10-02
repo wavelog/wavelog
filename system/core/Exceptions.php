@@ -161,6 +161,10 @@ class CI_Exceptions {
 	 */
 	public function show_error($heading, $message, $template = 'error_general', $status_code = 500)
 	{
+		new CI_Controller();
+		$CI =& get_instance();
+		$theme = $CI->optionslib->get_theme();
+
 		$templates_path = config_item('error_views_path');
 		if (empty($templates_path))
 		{
