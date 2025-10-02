@@ -4118,6 +4118,13 @@ class Logbook_model extends CI_Model {
 			}
 		}
 
+		if (($record['band'] ?? '') == '') {
+			log_message("Error", "Trying to import QSO without Band for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
+			$returner['error']=sprintf(__("QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't imported. It's invalid"),$time_on);
+
+			return($returner);
+		}
+
 		if (isset($record['band_rx'])) {
 			$band_rx = strtolower($record['band_rx']);
 		} else {
