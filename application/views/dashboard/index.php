@@ -108,7 +108,7 @@ function getDistance($distance) {
 
 	<?php if (version_compare(PHP_VERSION, '7.4.0') <= 0) { ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			<?= __("You need to upgrade your PHP version. Minimum version is 7.4. Your version is") . ' ' . PHP_VERSION . '.';?>
+			<?= __("You need to upgrade your PHP version. Minimum version is 8.0. Your version is") . ' ' . PHP_VERSION . '.';?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
