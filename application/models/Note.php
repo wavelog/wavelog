@@ -66,7 +66,7 @@ class Note extends CI_Model {
 		$check_result = $this->db->query($check_sql, array($category, $user_id, $check_title));
 		foreach ($check_result->result() as $note) {
 			if ($note->id != $note_id && $category === 'Contacts') {
-				show_error('In Contacts category, the titles of the notes need to be unique.');
+			show_error(__("In Contacts category, the titles of the notes need to be unique."));
 				return;
 			}
 		}
