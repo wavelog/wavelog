@@ -7,7 +7,6 @@ class Notes extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('user_model');
-        $this->load->library('callbook'); // Used for callsign parsing
         if (!$this->user_model->authorize(2)) {
             $this->session->set_flashdata('error', __("You're not allowed to do that!"));
             redirect('dashboard');
@@ -42,6 +41,7 @@ class Notes extends CI_Controller {
     function add() {
         $this->load->model('note');
         $this->load->library('form_validation');
+		$this->load->library('callbook'); // Used for callsign parsing
 
         $suggested_title = null;
         // Validate form fields
@@ -95,6 +95,7 @@ class Notes extends CI_Controller {
         if (!is_numeric($clean_id) || !$this->note->belongs_to_user($clean_id, $this->session->userdata('user_id'))) {
             show_404();
         }
+		$this->load->library('callbook'); // Used for callsign parsing
         $data['id'] = $clean_id;
         $data['note'] = $this->note->view($clean_id);
         $this->load->library('form_validation');
@@ -266,6 +267,7 @@ class Notes extends CI_Controller {
     public function contacts_title_unique($title = null) {
         $category = $this->input->post('category', TRUE);
         if ($category === 'Contacts') {
+			$this->load->library('callbook'); // Used for callsign parsing
             $user_id = $this->session->userdata('user_id');
             $core = strtoupper($this->callbook->get_plaincall($title));
             // Only fail if prefix or suffix is present
@@ -290,6 +292,7 @@ class Notes extends CI_Controller {
     public function contacts_title_unique_edit($title = null) {
         $category = $this->input->post('category', TRUE);
         if ($category === 'Contacts') {
+			$this->load->library('callbook'); // Used for callsign parsing
             $user_id = $this->session->userdata('user_id');
             $note_id = $this->input->post('id', TRUE);
             $core = strtoupper($this->callbook->get_plaincall($title));
