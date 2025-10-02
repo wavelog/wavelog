@@ -126,6 +126,8 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Satellite.php:669
+#: application/controllers/Satellite.php:678
 msgid "You're not allowed to do that!"
 msgstr "Det är inte tillåtet!"
 
@@ -3384,15 +3386,19 @@ msgid "You are running the latest version."
 msgstr "Du kör den senaste versionen."
 
 #: application/models/Update_model.php:436
+#: application/models/Update_model.php:440
 msgid "cURL error:"
 msgstr "cURL-fel:"
 
 #: application/models/Update_model.php:471
+#: application/models/Update_model.php:475
 msgid "SAT already existing. LoTW status updated."
 msgstr "SAT existerar redan. LoTW-status uppdaterad."
 
 #: application/models/Update_model.php:474
 #: application/models/Update_model.php:503
+#: application/models/Update_model.php:478
+#: application/models/Update_model.php:507
 #, php-format
 msgid "LoTW status for %d QSO updated"
 msgid_plural "LoTW status for %d QSOs updated"
@@ -3400,26 +3406,32 @@ msgstr[0] "LoTW-status för %d QSO uppdaterad"
 msgstr[1] "LoTW-status för %d QSOs uppdaterad"
 
 #: application/models/Update_model.php:477
+#: application/models/Update_model.php:481
 msgid "SAT already existing. Updating LoTW status failed."
 msgstr "SAT existerar redan. Uppdatering av LoTW-status misslyckades."
 
 #: application/models/Update_model.php:480
+#: application/models/Update_model.php:484
 msgid "SAT already existing. Ignored."
 msgstr "SAT existerar redan. Ignorerad."
 
 #: application/models/Update_model.php:487
+#: application/models/Update_model.php:491
 msgid "SAT already existing. Display name updated."
 msgstr "SAT existerar redan. Visningsnamn uppdaterat."
 
 #: application/models/Update_model.php:489
+#: application/models/Update_model.php:493
 msgid "SAT already existing. Updating display name failed."
 msgstr "SAT finns redan. Uppdatering av visningsnamn misslyckades."
 
 #: application/models/Update_model.php:499
+#: application/models/Update_model.php:503
 msgid "New SAT. Inserted."
 msgstr "Ny SAT. Tillagd."
 
 #: application/models/Update_model.php:507
+#: application/models/Update_model.php:511
 msgid "New SAT. Insert failed."
 msgstr "Ny SAT. Kunde ej läggas till."
 
