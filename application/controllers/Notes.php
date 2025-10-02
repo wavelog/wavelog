@@ -279,7 +279,7 @@ class Notes extends CI_Controller {
                 'title' => $core
             ])->num_rows();
             if ($existing > 0) {
-                $this->form_validation->set_message('contacts_title_unique', __('A note with this callsign already exists in your Contacts. Please enter a unique callsign.'));
+                $this->form_validation->set_message('contacts_title_unique', __("A note with this callsign already exists in your Contacts. Please enter a unique callsign."));
                 return FALSE;
             }
             return TRUE;
