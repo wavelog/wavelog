@@ -174,7 +174,7 @@ class Notes extends CI_Controller {
     public function duplicate($id = null) {
         $this->load->model('note');
         $clean_id = $this->security->xss_clean($id);
-        if (!is_numeric($clean_id)) {
+        if (!is_numeric($clean_id) || !$this->note->belongs_to_user($clean_id, $this->session->userdata('user_id'))) {
             show_404();
         }
         $timestamp = $this->input->post('timestamp', TRUE);
