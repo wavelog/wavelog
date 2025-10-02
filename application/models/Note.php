@@ -4,7 +4,7 @@ class Note extends CI_Model {
 	// Get list of possible note categories with translations
 	public static function get_possible_categories() {
 		return [
-			'Contacts' => __('Contacts'), // QSO partner notes
+			'Contacts' => __("Contacts"), // QSO partner notes
 			'General' => __('General'),   // General notes
 			'Antennas' => __('Antennas'), // Antenna-related notes
 			'Satellites' => __('Satellites') // Satellite-related notes
