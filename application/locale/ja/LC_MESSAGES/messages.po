@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-09-30 06:37+0000\n"
+"POT-Creation-Date: 2025-10-02 06:52+0000\n"
 "PO-Revision-Date: 2025-09-25 08:31+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -3289,72 +3289,79 @@ msgstr ""
 "コールが指定されていないQSOをインポートしようとしました。このQSOはインポート"
 "されませんでした。無効です"
 
-#: application/models/Logbook_model.php:4381
+#: application/models/Logbook_model.php:4123
+#, php-format
+msgid ""
+"QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
+"imported. It's invalid"
+msgstr ""
+
+#: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4392
+#: application/models/Logbook_model.php:4399
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4453
+#: application/models/Logbook_model.php:4460
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4473
+#: application/models/Logbook_model.php:4480
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4494
+#: application/models/Logbook_model.php:4501
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate が無効です (YYYYMMDD)"
 
-#: application/models/Logbook_model.php:4787
+#: application/models/Logbook_model.php:4794
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "複製用"
 
-#: application/models/Logbook_model.php:4852
-#: application/models/Logbook_model.php:4947
+#: application/models/Logbook_model.php:4859
+#: application/models/Logbook_model.php:4954
 msgid "QSO could not be matched"
 msgstr "QSOが一致しませんでした"
 
-#: application/models/Logbook_model.php:4860
+#: application/models/Logbook_model.php:4867
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "LoTW/Clublog/eQSL/コンテストで確認済み"
 
-#: application/models/Logbook_model.php:4866
+#: application/models/Logbook_model.php:4873
 msgid "confirmed by award manager"
 msgstr "賞の管理者によって確認された"
 
-#: application/models/Logbook_model.php:4870
+#: application/models/Logbook_model.php:4877
 msgid "confirmed by cross-check of DCL data"
 msgstr "DCLデータのクロスチェックによって確認された"
 
-#: application/models/Logbook_model.php:4874
+#: application/models/Logbook_model.php:4881
 msgid "confirmation pending"
 msgstr "確認中"
 
-#: application/models/Logbook_model.php:4877
+#: application/models/Logbook_model.php:4884
 msgid "unconfirmed"
 msgstr "未確認"
 
-#: application/models/Logbook_model.php:4880
+#: application/models/Logbook_model.php:4887
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "不明"
 
-#: application/models/Logbook_model.php:4950
+#: application/models/Logbook_model.php:4957
 msgid "POTA reference already in log"
 msgstr "POTA 参照。既にログに存在します"
 
-#: application/models/Logbook_model.php:4953
+#: application/models/Logbook_model.php:4960
 msgid "QSO updated"
 msgstr "QSOが更新されました"
 
-#: application/models/Logbook_model.php:5807
+#: application/models/Logbook_model.php:5814
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
