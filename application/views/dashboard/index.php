@@ -106,7 +106,7 @@ function getDistance($distance) {
 <div class="container dashboard">
 <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
 
-	<?php if (version_compare(PHP_VERSION, '7.4.0') <= 0) { ?>
+	<?php if (version_compare(PHP_VERSION, '8.0.0') <= 0) { ?>
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
 			<?= __("You need to upgrade your PHP version. Minimum version is 8.0. Your version is") . ' ' . PHP_VERSION . '.';?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
