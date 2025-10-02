@@ -42,7 +42,7 @@ class Note extends CI_Model {
 		$sql = "SELECT COUNT(*) as count FROM notes WHERE cat = ? AND user_id = ? AND title = ?";
 		$check_result = $this->db->query($sql, array($category, $user_id, $check_title));
 		if ($check_result->row()->count > 0 && $category === 'Contacts') {
-			show_error('In Contacts category, the titles of the notes need to be unique.');
+			show_error(__("In Contacts category, the titles of the notes need to be unique."));
 			return;
 		}
 		$creation_date_utc = gmdate('Y-m-d H:i:s');
