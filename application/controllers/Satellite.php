@@ -431,6 +431,9 @@ class Satellite extends CI_Controller {
 
 		$filtered=[];
 		foreach ($sat_tles as $sat_tle) {
+			if ($sat_tle->tle == null) {
+				continue;
+			}
 			try {
 				$temp = preg_split('/\n/', $sat_tle->tle);
 

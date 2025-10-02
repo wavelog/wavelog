@@ -97,7 +97,7 @@
 					echo '</td>';
 					?>
 					<?php echo '<td style="text-align: center; vertical-align: middle;">';
-					if ($sat->updated != null) {
+					if ($sat->tle != null) {
 						echo '<button class="btn btn-sm btn-success" onclick="editTle(' . $sat->id . ');" data-bs-toggle="tooltip" title="Last TLE updated was ' . date($custom_date_format . " H:i", strtotime($sat->updated)) . '">'.__("Yes").'</i></button>';
 					} else {
 						echo '<button class="btn btn-sm btn-danger" onclick="editTle(' . $sat->id . ');">'.__("No").'</button>';
