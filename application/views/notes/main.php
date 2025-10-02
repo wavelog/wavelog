@@ -35,7 +35,7 @@
 							<button type="button" class="btn btn-sm btn-outline-secondary btn-light category-btn" data-category="<?= htmlspecialchars($category_key) ?>">
 								<?= htmlspecialchars($category_label); ?>
 								<?php if ($category_key === 'Contacts'): ?>
-									<span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts is a special note category used in various places of Wavelog to store information about QSO partners. This notes are private and are not shared with other users nor exported to external services.") ?>">
+									<span class="ms-1" data-bs-toggle="tooltip" title="<?= __("Contacts is a special note category used in various places of Wavelog to store information about QSO partners. These notes are private and are not shared with other users nor exported to external services.") ?>">
 										<i class="fa fa-question-circle"></i>
 									</span>
 								<?php endif; ?>
