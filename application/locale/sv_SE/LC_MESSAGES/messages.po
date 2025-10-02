@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-02 06:52+0000\n"
-"PO-Revision-Date: 2025-09-27 05:11+0000\n"
+"POT-Creation-Date: 2025-09-30 06:37+0000\n"
+"PO-Revision-Date: 2025-10-01 23:56+0000\n"
 "Last-Translator: \"Jorgen Dahl, NU1T\" <sm6srw@arrl.net>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sv/>\n"
@@ -3287,79 +3287,88 @@ msgstr ""
 "Du försökte importera ett QSO utan angivet CALL. Detta QSO importerades "
 "inte. Det är ogiltigt"
 
-#: application/models/Logbook_model.php:4123
-#, php-format
-msgid ""
-"QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
-"imported. It's invalid"
-msgstr ""
-
+#: application/models/Logbook_model.php:4381
 #: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:4392
 #: application/models/Logbook_model.php:4399
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:4453
 #: application/models/Logbook_model.php:4460
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:4473
 #: application/models/Logbook_model.php:4480
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslrdate är ogiltigt (ÅÅÅÅMMDD)"
 
+#: application/models/Logbook_model.php:4494
 #: application/models/Logbook_model.php:4501
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate är ogiltigt (ÅÅÅÅMMDD)"
 
-#: application/models/Logbook_model.php:4794
+#: application/models/Logbook_model.php:4787
 #: application/views/simplefle/index.php:41
+#: application/models/Logbook_model.php:4794
 msgid "Duplicate for"
 msgstr "Dubblett för"
 
+#: application/models/Logbook_model.php:4852
+#: application/models/Logbook_model.php:4947
 #: application/models/Logbook_model.php:4859
 #: application/models/Logbook_model.php:4954
 msgid "QSO could not be matched"
 msgstr "QSO kunde inte matchas"
 
+#: application/models/Logbook_model.php:4860
 #: application/models/Logbook_model.php:4867
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bekräftad av LoTW/Clublog/eQSL/Tävling"
 
+#: application/models/Logbook_model.php:4866
 #: application/models/Logbook_model.php:4873
 msgid "confirmed by award manager"
 msgstr "bekräftad av diplomansvarig"
 
+#: application/models/Logbook_model.php:4870
 #: application/models/Logbook_model.php:4877
 msgid "confirmed by cross-check of DCL data"
 msgstr "bekräftat genom korskontroll av DCL-data"
 
+#: application/models/Logbook_model.php:4874
 #: application/models/Logbook_model.php:4881
 msgid "confirmation pending"
 msgstr "bekräftelse väntar"
 
+#: application/models/Logbook_model.php:4877
 #: application/models/Logbook_model.php:4884
 msgid "unconfirmed"
 msgstr "obekräftad"
 
-#: application/models/Logbook_model.php:4887
+#: application/models/Logbook_model.php:4880
 #: application/views/satellite/index.php:82
 #: application/views/satellite/satinfo.php:41
 #: application/views/view_log/qso.php:287
+#: application/models/Logbook_model.php:4887
 msgid "unknown"
 msgstr "Okänd"
 
+#: application/models/Logbook_model.php:4950
 #: application/models/Logbook_model.php:4957
 msgid "POTA reference already in log"
 msgstr "POTA-referens redan i loggen"
 
+#: application/models/Logbook_model.php:4953
 #: application/models/Logbook_model.php:4960
 msgid "QSO updated"
 msgstr "QSO uppdaterad"
 
-#: application/models/Logbook_model.php:5814
+#: application/models/Logbook_model.php:5807
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:39
 #: application/views/awards/gridmaster/index.php:54
@@ -3370,6 +3379,7 @@ msgstr "QSO uppdaterad"
 #: application/views/user/edit.php:302 application/views/user/edit.php:325
 #: application/views/user/edit.php:350
 #: application/views/view_log/partial/log_ajax.php:20
+#: application/models/Logbook_model.php:5814
 msgid "Bearing"
 msgstr "Bäring"
 
@@ -6573,8 +6583,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Fält som använts för detta diplom: DXCC (måste vara ett av Kina/318, "
-"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough "
-"Reef/506) och giltig stat (ADIF: DXCC och STATE)"
+"HongKong/321, Macao/152, Taiwan/386, Pratas Isl./505 eller Scarborough Reef/"
+"506) och giltig stat (ADIF: DXCC och STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -8300,7 +8310,7 @@ msgstr[1] "Max. %d tidigare kontakter visas"
 #: application/views/dashboard/index.php:303
 #: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
-msgstr "QSOs-uppdelning"
+msgstr "QSOs-fördelning"
 
 #: application/views/dashboard/index.php:326
 #: application/views/visitor/index.php:262
@@ -14743,8 +14753,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 (t."
-"ex. 1000px höjd och 1000px bredd)."
+"Endast PNG-filer är tillåtna, och de bör ha ett pixel-förhållande på 1:1 "
+"(t.ex. 1000px höjd och 1000px bredd)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -16201,6 +16211,13 @@ msgstr "Skicka förfrågan"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Mottagen"
+
+#: application/models/Logbook_model.php:4123
+#, php-format
+msgid ""
+"QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
+"imported. It's invalid"
+msgstr ""
 
 #~ msgid "QSL / LoTW / Clublog / eQSL / QRZ"
 #~ msgstr "QSL / LoTW / Clublog / eQSL / QRZ"
