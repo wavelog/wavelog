@@ -26,11 +26,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-02 18:42+0000\n"
-"PO-Revision-Date: 2025-10-02 11:50+0000\n"
+"POT-Creation-Date: 2025-10-02 18:22+0000\n"
+"PO-Revision-Date: 2025-10-02 18:46+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1957,12 +1957,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Kontakte Notiztitel muss ein Rufzeichen sein, ohne Präfix/Suffix. Vorschlag: "
+"%s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"In deinen Kontakten existiert bereits eine Notiz mit diesem Rufzeichen. "
+"Bitte gib ein einzigartiges Rufzeichen ein."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -3426,7 +3430,7 @@ msgstr "Peilung"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakte"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3440,7 +3444,7 @@ msgstr "Antennen"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "In der Kategorie Kontakte müssen die Titel der Notizen eindeutig sein."
 
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
@@ -8333,6 +8337,8 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"Du musst deine PHP-Version aktualisieren. Mindestversion ist %s. Deine "
+"Version ist %s."
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -9675,8 +9681,8 @@ msgstr ""
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
-"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL."
-"cc."
+"Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an "
+"eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -9907,20 +9913,20 @@ msgstr "Satelliten-Information"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "Fehler beim Laden der Notizen"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "Sortierung"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "Duplizierung ist für Kontaktnotizen deaktiviert"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9929,23 +9935,23 @@ msgstr "Lösche Notiz"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Dupliziere Notiz"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "Diese Notiz löschen?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "Diese Notiz duplizieren?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Duplizierung deaktiviert"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "Es wurden keine Notizen gefunden"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:513
@@ -11735,12 +11741,16 @@ msgid "Category"
 msgstr "Kategorie"
 
 #: application/views/notes/add.php:37 application/views/notes/edit.php:44
-#: application/views/notes/main.php:38 application/views/notes/view.php:32
+#: application/views/notes/view.php:32
 msgid ""
 "Contacts is a special note category used in various places of Wavelog to "
-"store information about QSO partners. These notes are private and are not "
+"store information about QSO partners. This notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Kontakte sind eine spezielle Notizkategorie, die an verschiedenen Stellen in "
+"Wavelog verwendet wird um Informationen über QSO-Partner zu speichern. Diese "
+"Notizen sind privat und werden nicht mit anderen Nutzern geteilt oder an "
+"externe Dienste exportiert."
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11752,27 +11762,38 @@ msgstr "Speichere Notiz"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
+msgstr "Alle Kategorien"
+
+#: application/views/notes/main.php:38
+msgid ""
+"Contacts is a special note category used in various parts of Wavelog to "
+"store information about QSO partners. These notes are private and are "
+"neither shared with other users nor exported to external services."
 msgstr ""
+"Kontakte ist eine spezielle Notizkategorie, die in verschiedenen Teilen von "
+"Wavelog verwendet wird um Informationen über QSO-Partner zu speichern. Diese "
+"Notizen sind privat und werden weder mit anderen Benutzern geteilt noch an "
+"externe Dienste exportiert."
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Notizen durchsuchen (mind. 3 Zeichen)"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
-msgstr ""
+msgstr "Suche zurücksetzen"
 
 #: application/views/notes/main.php:72
 msgid "Creation"
-msgstr ""
+msgstr "Erstellung"
 
 #: application/views/notes/main.php:73
 msgid "Last Modification"
-msgstr ""
+msgstr "Letzte Änderung"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "Notiz anzeigen"
 
 #: application/views/operator/index.php:9
 msgid ""
@@ -11928,8 +11949,8 @@ msgstr "E-Mail Adresse"
 msgid ""
 "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
 msgstr ""
-"Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@example."
-"com'"
+"Die E-Mail Adresse von der die Mails versendet werden, z.B. "
+"'wavelog@example.com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
@@ -14119,9 +14140,9 @@ msgid ""
 msgstr ""
 "Um zu beginnen, stelle sicher, dass du die Felder auf der linken Seite "
 "bereits mit Datum, Stationsrufzeichen/-standort und Rufzeichen des Operators "
-"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, z."
-"B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was im "
-"wesentlichen das Rufzeichen ist."
+"ausgefüllt hast. Die wichtigsten Daten umfassen das Band (oder QRG in MHz, "
+"z.B. '7.145'), Mode und Zeit. Nach der Zeit gibst du das erste QSO an, was "
+"im wesentlichen das Rufzeichen ist."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -14948,9 +14969,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
-"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
-"verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
+"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
+"enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -16464,6 +16485,18 @@ msgstr "Anfrage senden"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#: application/views/notes/add.php:37 application/views/notes/edit.php:44
+#: application/views/notes/main.php:38 application/views/notes/view.php:32
+msgid ""
+"Contacts is a special note category used in various places of Wavelog to "
+"store information about QSO partners. These notes are private and are not "
+"shared with other users nor exported to external services."
+msgstr ""
+"Kontakte sind eine spezielle Notizkategorie, die an verschiedenen Stellen in "
+"Wavelog verwendet wird um Informationen über QSO-Partner zu speichern. Diese "
+"Notizen sind privat und werden nicht mit anderen Nutzern geteilt oder an "
+"externe Dienste exportiert."
 
 #~ msgid ""
 #~ "You don't currently have any notes, these are a fantastic way of storing "
