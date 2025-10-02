@@ -433,7 +433,6 @@ class Update_model extends CI_Model {
 		curl_setopt($curl, CURLOPT_FAILONERROR, true);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-		curl_setopt($curl, CURLOPT_BINARYTRANSFER,true);
 		curl_setopt($curl, CURLOPT_TIMEOUT, 10);
 
 		$response = curl_exec($curl);
