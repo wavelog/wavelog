@@ -4118,6 +4118,13 @@ class Logbook_model extends CI_Model {
 			}
 		}
 
+		if (($band ?? '') == '') {
+			log_message("Error", "Trying to import QSO without Band for station_id " . $station_id . ". QSO Date/Time: " . $time_on . " at ".($record['freq'] ?? 'N/A')." Mode: " . ($record['mode'] ?? '') . " Call: " . ($record['call'] ?? ''));
+			$returner['error']=sprintf(__("QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't imported. It's invalid"),$time_on);
+
+			return($returner);
+		}
+
 		if (isset($record['band_rx'])) {
 			$band_rx = strtolower($record['band_rx']);
 		} else {
@@ -5482,24 +5489,6 @@ class Logbook_model extends CI_Model {
 		} else {
 			return 0;
 		}
-	}
-
-	function get_plaincall($callsign) {
-		$split_callsign = explode('/', $callsign);
-		if (count($split_callsign) == 1) {				// case F0ABC --> return cel 0 //
-			$lookupcall = $split_callsign[0];
-		} else if (count($split_callsign) == 3) {			// case EA/F0ABC/P --> return cel 1 //
-			$lookupcall = $split_callsign[1];
-		} else {										// case F0ABC/P --> return cel 0 OR  case EA/FOABC --> retunr 1  (normaly not exist) //
-			if (in_array(strtoupper($split_callsign[1]), array('P', 'M', 'MM', 'QRP', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'))) {
-				$lookupcall = $split_callsign[0];
-			} else if (strlen($split_callsign[1]) > 3) {	// Last Element longer than 3 chars? Take that as call
-				$lookupcall = $split_callsign[1];
-			} else {									// Last Element up to 3 Chars? Take first element as Call
-				$lookupcall = $split_callsign[0];
-			}
-		}
-		return $lookupcall;
 	}
 
 	public function loadCallBook($callsign, $use_fullname = false) {
