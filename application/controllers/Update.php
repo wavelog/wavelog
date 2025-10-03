@@ -394,25 +394,44 @@ class Update extends CI_Controller {
 
 	}
 
-    public function download_lotw_users() {
-        $this->lotw_users();
-    }
+	public function download_lotw_users() {
+		$this->lotw_users();
+	}
 
-    public function lotw_users() {
+	public function lotw_users() {
+		$lockfilename='/tmp/.update_lotw_users_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
 
-        $this->load->model('Update_model');
-        $result = $this->Update_model->lotw_users();
-        if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 7) == 'Records') {
-				$this->session->set_flashdata('success', __("LoTW Users Update complete. Result: ") . "'" . $result . "'");
+
+			$this->load->model('Update_model');
+			$result = $this->Update_model->lotw_users();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 7) == 'Records') {
+					$this->session->set_flashdata('success', __("LoTW Users Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("LoTW Users Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect('debug');
 			} else {
-				$this->session->set_flashdata('error', __("LoTW Users Update failed. Result: ") . "'" . $result . "'");
+				echo $result;
 			}
-			redirect('debug');
 		} else {
-        	echo $result;
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
 		}
-    }
+
+	}
 
     /*
      * Used for autoupdating the DOK file which is used in the QSO entry dialog for autocompletion.
