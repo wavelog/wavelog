@@ -578,21 +578,36 @@ class Update extends CI_Controller {
 		}
 	}
 
-    public function update_pota() {
-
-        $this->load->model('Update_model');
-        $result = $this->Update_model->pota();
-        if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 4) == 'DONE') {
-				$this->session->set_flashdata('success', __("POTA Update complete. Result: ") . "'" . $result . "'");
+	public function update_pota() {
+		$lockfilename='/tmp/.update_pota_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('Update_model');
+			$result = $this->Update_model->pota();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("POTA Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("POTA Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect('debug');
 			} else {
-				$this->session->set_flashdata('error', __("POTA Update failed. Result: ") . "'" . $result . "'");
+				echo $result;
 			}
-			redirect('debug');
 		} else {
-        	echo $result;
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
 		}
-    }
+	}
 
     public function update_tle($returnpath = 'debug') {
         $this->load->model('Update_model');
