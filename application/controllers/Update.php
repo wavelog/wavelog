@@ -640,14 +640,30 @@ class Update extends CI_Controller {
 		}
 	}
 
-    public function update_lotw_sats() {
-       $this->load->model('Update_model');
-       $bodyData['satupdates'] = $this->Update_model->lotw_sats();
-       $data['page_title'] = __("LoTW SAT Update");
-       $this->load->view('interface_assets/header', $data);
-       $this->load->view('lotw/satupdate', $bodyData);
-       $this->load->view('interface_assets/footer');
-    }
+	public function update_lotw_sats() {
+		$lockfilename='/tmp/.update_lotw_sats_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('Update_model');
+			$bodyData['satupdates'] = $this->Update_model->lotw_sats();
+			unlink($lockfilename);
+			$data['page_title'] = __("LoTW SAT Update");
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('lotw/satupdate', $bodyData);
+			$this->load->view('interface_assets/footer');
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+	}
 
 	public function update_hamsofnote() {
 		$this->load->model('cron_model');
