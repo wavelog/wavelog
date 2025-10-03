@@ -666,17 +666,33 @@ class Update extends CI_Controller {
 	}
 
 	public function update_hamsofnote() {
-		$this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-		$this->load->model('Update_model');
-		$bodyData['hamsofnote'] = $this->Update_model->update_hams_of_note();
-		if ($this->session->userdata('user_type') == '99') {
-			$data['page_title'] = __("Update of Hams of Note");
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('update/hamsofnote', $bodyData);
-			$this->load->view('interface_assets/footer');
+		$lockfilename='/tmp/.update_hon_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+			$this->load->model('Update_model');
+			$bodyData['hamsofnote'] = $this->Update_model->update_hams_of_note();
+			unlink($lockfilename);
+			if ($this->session->userdata('user_type') == '99') {
+				$data['page_title'] = __("Update of Hams of Note");
+				$this->load->view('interface_assets/header', $data);
+				$this->load->view('update/hamsofnote', $bodyData);
+				$this->load->view('interface_assets/footer');
+			} else {
+				echo "Hams of note updated. Inserted ".count($bodyData['hamsofnote'])." records.";
+			}
 		} else {
-			echo "Hams of note updated. Inserted ".count($bodyData['hamsofnote'])." records.";
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
 		}
 	}
 
