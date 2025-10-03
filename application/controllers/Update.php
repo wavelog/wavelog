@@ -196,82 +196,100 @@ class Update extends CI_Controller {
 
 	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
 	public function dxcc() {
+		$lockfilename='/tmp/.update_dxcc_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
 
-		if(!$this->load->is_loaded('Paths')) {
-        	$this->load->library('Paths');
-		}
+			if(!$this->load->is_loaded('Paths')) {
+				$this->load->library('Paths');
+			}
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-        $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+			// set the last run in cron table for the correct cron id
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
-        $this->update_status("Downloading file");
+			$this->update_status("Downloading file");
 
-        // give it 10 minutes...
-        set_time_limit(600);
+			// give it 10 minutes...
+			set_time_limit(600);
 
-        // Load Migration data if any.
-        $this->load->library('migration');
-        $this->fix_migrations();
-        $this->migration->latest();
+			// Load Migration data if any.
+			$this->load->library('migration');
+			$this->fix_migrations();
+			$this->migration->latest();
 
-        // Download latest file.
-        $url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
+			// Download latest file.
+			$url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
 
-        $gz = gzopen($url, 'r');
-        if ($gz === FALSE) {
-			$msg = "FAILED: Could not download data from clublog.org. Trying alternative URL.";
-            $this->update_status($msg);
-            log_message('error', $msg);
-
-			$alt_url = "https://github.com/wavelog/dxcc_data/raw/refs/heads/master/cty.xml.gz";
-			$gz = gzopen($alt_url, 'r');
-
+			$gz = gzopen($url, 'r');
 			if ($gz === FALSE) {
-				$msg = "FAILED: Could not download dxcc data. Please check your internet connection.";
+				$msg = "FAILED: Could not download data from clublog.org. Trying alternative URL.";
 				$this->update_status($msg);
 				log_message('error', $msg);
-				exit();
-			} else {
-				$msg = "Downloaded data successfully from alternative URL (github).";
-				$this->update_status($msg);
-				log_message('debug', $msg);
+
+				$alt_url = "https://github.com/wavelog/dxcc_data/raw/refs/heads/master/cty.xml.gz";
+				$gz = gzopen($alt_url, 'r');
+
+				if ($gz === FALSE) {
+					$msg = "FAILED: Could not download dxcc data. Please check your internet connection.";
+					$this->update_status($msg);
+					log_message('error', $msg);
+					exit();
+				} else {
+					$msg = "Downloaded data successfully from alternative URL (github).";
+					$this->update_status($msg);
+					log_message('debug', $msg);
+				}
 			}
-        }
 
-        $data = "";
-        while (!gzeof($gz)) {
-        $data .= gzgetc($gz);
-        }
-        gzclose($gz);
+			$data = "";
+			while (!gzeof($gz)) {
+				$data .= gzgetc($gz);
+			}
+			gzclose($gz);
 
-        if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
-            $this->update_status("FAILED: Could not write to cty.xml file");
-			log_message('error', 'DXCC UPDATE FAILED: Could not write to cty.xml file');
-            exit();
-        }
+			if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
+				$this->update_status("FAILED: Could not write to cty.xml file");
+				log_message('error', 'DXCC UPDATE FAILED: Could not write to cty.xml file');
+				exit();
+			}
 
-        // Clear the tables, ready for new data
-        $this->db->empty_table("dxcc_entities");
-        $this->db->empty_table("dxcc_exceptions");
-        $this->db->empty_table("dxcc_prefixes");
-        $this->update_status();
+			// Clear the tables, ready for new data
+			$this->db->empty_table("dxcc_entities");
+			$this->db->empty_table("dxcc_exceptions");
+			$this->db->empty_table("dxcc_prefixes");
+			$this->update_status();
 
-        // Parse the three sections of the file and update the tables
-        $this->db->trans_start();
-		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
-        $this->dxcc_exceptions($xml_data);
-        $this->dxcc_entities($xml_data);
-        $this->dxcc_prefixes($xml_data);
-		$sql = "update dxcc_entities
-		join dxcc_temp on dxcc_entities.adif = dxcc_temp.adif
-		set dxcc_entities.ituz = dxcc_temp.ituz;";
-		$this->db->query($sql);
-        $this->db->trans_complete();
+			// Parse the three sections of the file and update the tables
+			$this->db->trans_start();
+			$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
+			$this->dxcc_exceptions($xml_data);
+			$this->dxcc_entities($xml_data);
+			$this->dxcc_prefixes($xml_data);
+			$sql = "update dxcc_entities
+				join dxcc_temp on dxcc_entities.adif = dxcc_temp.adif
+				set dxcc_entities.ituz = dxcc_temp.ituz;";
+			$this->db->query($sql);
+			$this->db->trans_complete();
 
-        $this->update_status(__("DONE"));
+			$this->update_status(__("DONE"));
 
-		echo 'success';
+			echo 'success';
+			unlink($lockfilename);
+		} else {
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
+		}
+
 	}
 
 	public function update_status($done=""){
