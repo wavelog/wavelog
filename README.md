@@ -36,6 +36,14 @@ https://demo.wavelog.org
   Username: demo  
   Password: demo
 
+## Now available on Umbrel
+
+<a href="https://apps.umbrel.com/app/wavelog">
+  <img alt="Available on Umbrel" src="https://camo.githubusercontent.com/6b44d8824c964e93e0ef704da65201f921af7b58823ccf7e07b51439bff0fa9f/68747470733a2f2f617070732e756d6272656c2e636f6d2f62616467652d6c696768742e737667">
+</a>
+
+**[Umbrel](https://umbrel.com/umbrelos)** is a personal server OS that lets you easily run self-hosted apps on your own hardware.  
+You can now easily install Wavelog on your Umbrel server from the [Umbrel App Store](https://apps.umbrel.com/app/wavelog).
 
 ## Requirements
 ### Recommended: Classic-LAMP-Stack:
