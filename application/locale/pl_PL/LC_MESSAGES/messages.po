@@ -15,10 +15,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-02 18:42+0000\n"
-"PO-Revision-Date: 2025-10-01 11:48+0000\n"
+"PO-Revision-Date: 2025-10-03 19:48+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1945,12 +1945,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Tytuł notatki Kontakty powinien zawierać wyłącznie znak wywoławczy, bez "
+"dodatkowych prefiksów ani sufiksów. Sugerowany tytuł: %s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"Notatka o takim znaku wywoławczym już istnieje w Kontaktach. Proszę "
+"wprowadzić unikalny znak wywoławczy."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -3327,6 +3331,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
+"QSO z %s: próbowano zaimportować QSO bez podanego pasma. QSO nie zostało "
+"zaimportowane, ponieważ jest ono nieprawidłowe"
 
 #: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3409,7 +3415,7 @@ msgstr "Kierunek"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakty"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3423,7 +3429,7 @@ msgstr "Antenowe"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "W kategorii Kontakty tytuły notatek muszą być unikalne."
 
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
@@ -8305,6 +8311,7 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"Wersja PHP wymaga aktualizacji. Minimalna wersja: %s, obecna wersja: %s."
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -9880,20 +9887,20 @@ msgstr "Informacje o satelicie"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "Błąd podczas ładowania notatek"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "Sortowanie"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "Duplikowanie notatek w kategorii Kontakty jest wyłączone"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikuj"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9902,23 +9909,23 @@ msgstr "Usuń notatkę"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Duplikuj notatkę"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "Skasować tą notatkę?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "Zduplikować tą notatkę?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Duplikowanie wyłączone"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "Nie znaleziono notatek"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:513
@@ -11703,6 +11710,9 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Kontakty to specjalna kategoria notatek w Wavelog, używana do przechowywania "
+"informacji o partnerach QSO. Notatki te są prywatne, nie są udostępniane "
+"innym użytkownikom ani eksportowane do usług zewnętrznych."
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11714,27 +11724,27 @@ msgstr "Zapisz notatkę"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "Wszystkie kategorie"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Wyszukaj notatki (min. 3 znaki)"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
-msgstr ""
+msgstr "Resetuj wyszukiwanie"
 
 #: application/views/notes/main.php:72
 msgid "Creation"
-msgstr ""
+msgstr "Utworzono"
 
 #: application/views/notes/main.php:73
 msgid "Last Modification"
-msgstr ""
+msgstr "Zmodyfikowano"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "Zobacz notatkę"
 
 #: application/views/operator/index.php:9
 msgid ""
