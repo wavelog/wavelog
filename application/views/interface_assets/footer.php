@@ -56,6 +56,19 @@
     var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>";
     var lang_general_states_deprecated = "<?= _pgettext("Word for country states that are deprecated but kept for legacy reasons.", "deprecated"); ?>";
     var lang_gen_hamradio_sat_info = "<?= __("Satellite Information"); ?>";
+    var lang_notes_error_loading = "<?= __("Error loading notes"); ?>";
+    var lang_notes_sort = "<?= __("Sorting"); ?>";
+    var lang_notes_duplication_disabled = "<?= __("Duplication is disabled for Contacts notes"); ?>";
+    var lang_notes_duplicate = "<?= __("Duplicate"); ?>";
+    var lang_general_word_delete = "<?= __("Delete"); ?>";
+    var lang_general_word_duplicate = "<?= __("Duplicate"); ?>";
+    var lang_notes_delete = "<?= __("Delete Note"); ?>";
+    var lang_notes_duplicate = "<?= __("Duplicate Note"); ?>";
+    var lang_notes_delete_confirmation = "<?= __("Delete this note?"); ?>";
+    var lang_notes_duplicate_confirmation = "<?= __("Duplicate this note?"); ?>";
+    var lang_notes_duplication_disabled_short = "<?= __("Duplication Disabled"); ?>";
+    var lang_notes_not_found = "<?= __("No notes were found"); ?>";
+
 </script>
 
 <!-- General JS Files used across Wavelog -->
@@ -278,9 +291,11 @@ function stopImpersonate_modal() {
     <script src="<?php echo base_url() ;?>assets/js/jszip.min.js"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") ) { ?>
+<?php if ($this->uri->segment(1) == "notes" ) { ?>
     <!-- Javascript used for Notes Area -->
+	<?php if ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") { ?>
     <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
+	<?php } ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/notes.js"></script>
 <?php } ?>
 
