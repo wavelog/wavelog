@@ -486,8 +486,9 @@ class Update extends CI_Controller {
 					$this->session->set_flashdata('error', __("SOTA Update failed. Result: ") . "'" . $result . "'");
 				}
 				redirect('debug');
+			} else {
+				echo $result;
 			}
-			echo $result;
 		} else {
 			log_message('debug', 'There is a lockfile for this job. Checking the age...');
 			$lockfile_time = filemtime($lockfilename);
@@ -505,21 +506,38 @@ class Update extends CI_Controller {
     /*
      * Pulls the WWFF directory for autocompletion in QSO dialogs
      */
-    public function update_wwff() {
+	public function update_wwff() {
+		$lockfilename='/tmp/.update_wwff_running';
+		if (!file_exists($lockfilename)) {
+			touch($lockfilename);
 
-        $this->load->model('Update_model');
-        $result = $this->Update_model->wwff();
-        if($this->session->userdata('user_type') == '99') {
-			if (substr($result, 0, 4) == 'DONE') {
-				$this->session->set_flashdata('success', __("WWFF Update complete. Result: ") . "'" . $result . "'");
+			$this->load->model('Update_model');
+			$result = $this->Update_model->wwff();
+			unlink($lockfilename);
+			if($this->session->userdata('user_type') == '99') {
+				if (substr($result, 0, 4) == 'DONE') {
+					$this->session->set_flashdata('success', __("WWFF Update complete. Result: ") . "'" . $result . "'");
+				} else {
+					$this->session->set_flashdata('error', __("WWFF Update failed. Result: ") . "'" . $result . "'");
+				}
+				redirect('debug');
 			} else {
-				$this->session->set_flashdata('error', __("WWFF Update failed. Result: ") . "'" . $result . "'");
+				echo $result;
 			}
-			redirect('debug');
 		} else {
-        	echo $result;
+			log_message('debug', 'There is a lockfile for this job. Checking the age...');
+			$lockfile_time = filemtime($lockfilename);
+			$tdiff = time() - $lockfile_time;
+			if ($tdiff > 120) {
+				unlink($lockfilename);
+				log_message('debug', 'Deleted lockfile because it was older then 120seconds.');
+			} else {
+				log_message('debug', 'Process is currently locked. Further calls are ignored.');
+				echo 'locked - running';
+			}
 		}
-    }
+
+	}
 
 	/*
      * Pulls the solarxml.php data from hamqsl
