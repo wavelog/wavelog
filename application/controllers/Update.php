@@ -8,32 +8,29 @@ class Update extends CI_Controller {
 			lotw_users - imports lotw users
 	*/
 
-    function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo __("Maintenance Mode is active. Try again later.")."\n";
+			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
 
-	public function index()
-	{
-        $this->load->model('user_model');
+	public function index() {
+		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-	    $data['page_title'] = __("Updates");
-	    $this->load->view('interface_assets/header', $data);
-	    $this->load->view('update/index');
-	    $this->load->view('interface_assets/footer');
-
+		$data['page_title'] = __("Updates");
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('update/index');
+		$this->load->view('interface_assets/footer');
 	}
 
 	/*
 	* Load the DXCC entities
 	*/
-	public function dxcc_entities($xml_data = null) {
+	private function dxcc_entities($xml_data = null) {
 		// Ensure the Paths library is loaded
 		if (!$this->load->is_loaded('Paths')) {
 			$this->load->library('Paths');
@@ -98,7 +95,7 @@ class Update extends CI_Controller {
 	/*
      * Load the dxcc prefixes
      */
-	public function dxcc_exceptions($xml_data = null) {
+	private function dxcc_exceptions($xml_data = null) {
 		// Ensure the Paths library is loaded
 		if (!$this->load->is_loaded('Paths')) {
 			$this->load->library('Paths');
@@ -149,7 +146,7 @@ class Update extends CI_Controller {
 	/*
      * Load the dxcc prefixes
      */
-	public function dxcc_prefixes($xml_data = null) {
+	private function dxcc_prefixes($xml_data = null) {
 		// Load the cty file
 		if (!$this->load->is_loaded('Paths')) {
 			$this->load->library('Paths');
