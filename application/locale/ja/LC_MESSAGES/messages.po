@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-02 18:42+0000\n"
-"PO-Revision-Date: 2025-10-02 11:50+0000\n"
+"PO-Revision-Date: 2025-10-03 19:48+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1936,13 +1936,15 @@ msgstr "メモを編集"
 msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
-msgstr ""
+msgstr "連絡先メモのタイトルは、プレフィックスやサフィックスなしでコールサインのみに"
+"する必要があります。推奨: %s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
-msgstr ""
+msgstr "このコールサインのメモは既に連絡先リストに存在します。一意のコールサインを入"
+"力してください。"
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -3391,7 +3393,7 @@ msgstr "方位"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "連絡先"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3405,7 +3407,7 @@ msgstr "アンテナ"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "連絡先カテゴリでは、メモのタイトルは一意である必要があります。"
 
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
@@ -8222,7 +8224,8 @@ msgstr "RSTR"
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
-msgstr ""
+msgstr "PHPのバージョンをアップグレードする必要があります。最低バージョンは %s "
+"。バージョンは次のとおりです: %s 。"
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -9794,20 +9797,20 @@ msgstr "衛星情報"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "メモの読み込み中にエラーが発生しました"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "並べ替え"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "連絡先のメモの複製は無効です"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "重複"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9816,23 +9819,23 @@ msgstr "メモを削除"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "重複したメモ"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "このメモを削除しますか?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "このメモを複製しますか?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "複製無効"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "メモが見つかりませんでした"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:513
@@ -11614,6 +11617,9 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"連絡先は、Wavelogの様々な場所でQSOパートナーに関する情報を保存するために使用"
+"される特別なメモカテゴリです。これらのメモは非公開であり、他のユーザーと共有"
+"されたり、外部サービスにエクスポートされたりすることはありません。"
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11625,27 +11631,27 @@ msgstr "メモを保存"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "すべてのカテゴリー"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "検索ノート（最低3文字）"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
-msgstr ""
+msgstr "検索をリセット"
 
 #: application/views/notes/main.php:72
 msgid "Creation"
-msgstr ""
+msgstr "制作"
 
 #: application/views/notes/main.php:73
 msgid "Last Modification"
-msgstr ""
+msgstr "最終更新日"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "メモを見る"
 
 #: application/views/operator/index.php:9
 msgid ""
