@@ -502,17 +502,20 @@ class Oqrs_model extends CI_Model {
 			$where = "AND $where";
 		}
 
-		$limit = $searchCriteria['oqrsResults'];
 
 		$sql = "
-			SELECT *, DATE_FORMAT(requesttime, \"%Y-%m-%d %H:%i\") as requesttime, DATE_FORMAT(time, \"%H:%i\") as time
-			FROM oqrs
-			INNER JOIN station_profile ON (oqrs.station_id=station_profile.station_id and station_profile.oqrs='1')
-			WHERE station_profile.user_id =  ?
-			$where
-			ORDER BY oqrs.id
-			LIMIT $limit
+		SELECT *, DATE_FORMAT(requesttime, \"%Y-%m-%d %H:%i\") as requesttime, DATE_FORMAT(time, \"%H:%i\") as time
+		FROM oqrs
+		INNER JOIN station_profile ON (oqrs.station_id=station_profile.station_id and station_profile.oqrs='1')
+		WHERE station_profile.user_id =  ?
+		$where
+		ORDER BY oqrs.id
 		";
+
+		if ($searchCriteria['oqrsResults'] !== 'All') {
+			$limit = $searchCriteria['oqrsResults'];
+			$sql .= "LIMIT $limit";
+		}
 
 		$data = $this->db->query($sql, $binding);
 
