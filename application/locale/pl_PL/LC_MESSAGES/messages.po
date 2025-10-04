@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-02 18:42+0000\n"
+"POT-Creation-Date: 2025-10-04 06:05+0000\n"
 "PO-Revision-Date: 2025-10-01 11:48+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -879,7 +879,7 @@ msgstr "Nie działa"
 msgid "SOTA CSV Export"
 msgstr "Eksport CSV SOTA"
 
-#: application/controllers/Dashboard.php:144
+#: application/controllers/Dashboard.php:152
 #: application/controllers/Visitor.php:134
 msgid "Dashboard"
 msgstr "Panel użytkownika"
@@ -1011,7 +1011,7 @@ msgid "DX Calendar"
 msgstr "Kalendarz DX"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:399
+#: application/views/dashboard/index.php:404
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
@@ -1307,7 +1307,7 @@ msgstr "QSL"
 #: application/views/awards/wap/index.php:60
 #: application/views/awards/wapc/index.php:48
 #: application/views/awards/was/index.php:60
-#: application/views/dashboard/index.php:334
+#: application/views/dashboard/index.php:339
 #: application/views/gridmap/index.php:109
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
@@ -1343,7 +1343,7 @@ msgstr "LoTW"
 #: application/views/awards/wap/index.php:64
 #: application/views/awards/wapc/index.php:52
 #: application/views/awards/was/index.php:64
-#: application/views/dashboard/index.php:334
+#: application/views/dashboard/index.php:339
 #: application/views/gridmap/index.php:117
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
@@ -2184,8 +2184,8 @@ msgstr "Import QSL QRZ"
 msgid "QRZ ADIF Information"
 msgstr "Informacje ADIF QRZ"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:334
-#: application/views/dashboard/index.php:351
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:356
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
 msgid "QSL Cards"
@@ -3499,7 +3499,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Łączna liczba zaliczonych WAJA"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:312
+#: application/views/dashboard/index.php:317
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:19
@@ -3516,7 +3516,7 @@ msgid "Yearly"
 msgstr "Rocznie"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:317
+#: application/views/dashboard/index.php:322
 #: application/views/visitor/index.php:255
 msgid "Month"
 msgstr "Miesiąc"
@@ -4149,7 +4149,7 @@ msgstr "Nie znaleziono!"
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:170
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:239
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:244
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:18
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
@@ -4258,7 +4258,7 @@ msgstr "W logu masz inne dane dla DOK w porównaniu do DCL"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:261
-#: application/views/dashboard/index.php:234
+#: application/views/dashboard/index.php:239
 #: application/views/debug/index.php:589
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
@@ -4304,7 +4304,7 @@ msgstr "Data"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:261
-#: application/views/dashboard/index.php:237
+#: application/views/dashboard/index.php:242
 #: application/views/debug/index.php:590
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
@@ -4376,8 +4376,8 @@ msgstr "Import CBR"
 #: application/views/adif/import.php:73 application/views/adif/import.php:379
 #: application/views/adif/import.php:400 application/views/api/index.php:22
 #: application/views/dashboard/index.php:180
-#: application/views/dashboard/index.php:204
 #: application/views/dashboard/index.php:209
+#: application/views/dashboard/index.php:214
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
@@ -5204,7 +5204,7 @@ msgstr "Potwierdzone hrabstwa"
 #: application/views/awards/wap/index.php:180
 #: application/views/awards/wapc/index.php:145
 #: application/views/awards/was/index.php:180
-#: application/views/dashboard/index.php:307
+#: application/views/dashboard/index.php:312
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -5295,8 +5295,8 @@ msgstr "Nagrody - CQ WAZ"
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/wac/index.php:23
 #: application/views/bandmap/list.php:81
-#: application/views/dashboard/index.php:334
-#: application/views/dashboard/index.php:452
+#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:457
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -5307,8 +5307,8 @@ msgstr "Potwierdzone"
 #: application/views/awards/itu/index.php:35
 #: application/views/awards/wac/index.php:23
 #: application/views/bandmap/list.php:80
-#: application/views/dashboard/index.php:330
-#: application/views/dashboard/index.php:446
+#: application/views/dashboard/index.php:335
+#: application/views/dashboard/index.php:451
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
@@ -6174,7 +6174,7 @@ msgid "City"
 msgstr "Miasto"
 
 #: application/views/awards/jcc/index.php:188
-#: application/views/dashboard/index.php:442
+#: application/views/dashboard/index.php:447
 #: application/views/distances/index.php:23
 #: application/views/qslprint/qslprint.php:57
 #: application/views/qslprint/qslprint.php:58
@@ -7829,10 +7829,10 @@ msgid "Show Details"
 msgstr "Wyświetl szczegóły"
 
 #: application/views/contestcalendar/index.php:45
-#: application/views/dashboard/index.php:352
-#: application/views/dashboard/index.php:379
-#: application/views/dashboard/index.php:400
-#: application/views/dashboard/index.php:421
+#: application/views/dashboard/index.php:357
+#: application/views/dashboard/index.php:384
+#: application/views/dashboard/index.php:405
+#: application/views/dashboard/index.php:426
 msgid "Today"
 msgstr "Dzisiaj"
 
@@ -8357,15 +8357,22 @@ msgstr[0] "Dzisiaj zrobiono %d łączność"
 msgstr[1] "Dzisiaj zrobiono %d łączności"
 msgstr[2] "Dzisiaj zrobiono %d łączności"
 
-#: application/views/dashboard/index.php:180
+#: application/views/dashboard/index.php:182
+#, php-format
+msgid ""
+"Don't loose your streak - You have already had at least one QSO for the last "
+"%s consecutive days."
+msgstr ""
+
+#: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "Nie zrobiono dzisiaj żadnej łączności; czas włączyć radio!"
 
-#: application/views/dashboard/index.php:188
+#: application/views/dashboard/index.php:193
 msgid "Attention: you need to set an active station location."
 msgstr "Uwaga: należy ustawić aktywną lokalizacje stacji."
 
-#: application/views/dashboard/index.php:195
+#: application/views/dashboard/index.php:200
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
@@ -8373,20 +8380,20 @@ msgstr ""
 "Masz motywy bez zdefiniowanego trybu motywu. Poproś administratora o edycję "
 "motywów."
 
-#: application/views/dashboard/index.php:204
+#: application/views/dashboard/index.php:209
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
 msgstr "Przynajmniej jeden z twoich %scertyfikatów LoTW%s utracił ważność!"
 
-#: application/views/dashboard/index.php:209
+#: application/views/dashboard/index.php:214
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
 msgstr ""
 "Przynajmniej jeden z twoich %scertyfikatów LoTW%s niedługo straci ważność!"
 
-#: application/views/dashboard/index.php:287
+#: application/views/dashboard/index.php:292
 #: application/views/qso/index.php:810
 #, php-format
 msgid "Max. %d previous contact is shown"
@@ -8395,25 +8402,25 @@ msgstr[0] "Maksymalnie jeden poprzedni kontakt jest pokazywany"
 msgstr[1] "Maksymalnie %d poprzednie kontakty są pokazywane"
 msgstr[2] "Maksymalnie %d poprzednich kontaktów jest pokazywanych"
 
-#: application/views/dashboard/index.php:303
+#: application/views/dashboard/index.php:308
 #: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
 msgstr "Rozbicie łączności"
 
-#: application/views/dashboard/index.php:326
+#: application/views/dashboard/index.php:331
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
 msgstr "Rozbicie DXCC"
 
-#: application/views/dashboard/index.php:343
+#: application/views/dashboard/index.php:348
 #: application/views/visitor/index.php:279
 msgid "Needed"
 msgstr "Wymagane"
 
-#: application/views/dashboard/index.php:356
-#: application/views/dashboard/index.php:383
-#: application/views/dashboard/index.php:404
-#: application/views/dashboard/index.php:425
+#: application/views/dashboard/index.php:361
+#: application/views/dashboard/index.php:388
+#: application/views/dashboard/index.php:409
+#: application/views/dashboard/index.php:430
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:62
@@ -8447,10 +8454,10 @@ msgstr "Wymagane"
 msgid "Sent"
 msgstr "Wysłane"
 
-#: application/views/dashboard/index.php:362
-#: application/views/dashboard/index.php:389
-#: application/views/dashboard/index.php:410
-#: application/views/dashboard/index.php:431
+#: application/views/dashboard/index.php:367
+#: application/views/dashboard/index.php:394
+#: application/views/dashboard/index.php:415
+#: application/views/dashboard/index.php:436
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:104
@@ -8483,7 +8490,7 @@ msgstr "Wysłane"
 msgid "Received"
 msgstr "Odebrane"
 
-#: application/views/dashboard/index.php:368
+#: application/views/dashboard/index.php:373
 #: application/views/logbookadvanced/edit.php:168
 #: application/views/logbookadvanced/edit.php:175
 #: application/views/logbookadvanced/edit.php:201
@@ -8523,25 +8530,25 @@ msgstr "Odebrane"
 msgid "Requested"
 msgstr "Zażądane"
 
-#: application/views/dashboard/index.php:378
+#: application/views/dashboard/index.php:383
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/views/dashboard/index.php:441
+#: application/views/dashboard/index.php:446
 msgid "VUCC-Grids"
 msgstr "Lokatory VUCC"
 
-#: application/views/dashboard/index.php:466
+#: application/views/dashboard/index.php:471
 msgid "Solar Data & Propagation"
 msgstr "Dane słoneczne oraz propagacja"
 
-#: application/views/dashboard/index.php:468
+#: application/views/dashboard/index.php:473
 #, php-format
 msgid "Last update at %s."
 msgstr "Ostatnie aktualizacja o %s."
 
-#: application/views/dashboard/index.php:477
+#: application/views/dashboard/index.php:482
 msgid "Data provided by HAMqsl."
 msgstr "Dane dostarczone przez HAMqsl."
 
