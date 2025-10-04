@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-02 18:42+0000\n"
-"PO-Revision-Date: 2025-10-01 11:48+0000\n"
+"PO-Revision-Date: 2025-10-03 19:48+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/pl/>\n"
@@ -881,6 +881,7 @@ msgstr "Eksport CSV SOTA"
 
 #: application/controllers/Dashboard.php:144
 #: application/controllers/Visitor.php:134
+#: application/controllers/Dashboard.php:152
 msgid "Dashboard"
 msgstr "Panel użytkownika"
 
@@ -1014,6 +1015,7 @@ msgstr "Kalendarz DX"
 #: application/views/dashboard/index.php:399
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:404
 msgid "eQSL Cards"
 msgstr "Karty eQSL"
 
@@ -1323,6 +1325,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:794 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/dashboard/index.php:339
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1357,6 +1360,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:802 application/views/user/edit.php:876
+#: application/views/dashboard/index.php:339
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1945,12 +1949,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Tytuł notatki Kontakty powinien zawierać wyłącznie znak wywoławczy, bez "
+"dodatkowych prefiksów ani sufiksów. Sugerowany tytuł: %s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"Notatka o takim znaku wywoławczym już istnieje w Kontaktach. Proszę "
+"wprowadzić unikalny znak wywoławczy."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -2188,6 +2196,8 @@ msgstr "Informacje ADIF QRZ"
 #: application/views/dashboard/index.php:351
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:356
 msgid "QSL Cards"
 msgstr "Karty QSL"
 
@@ -3327,6 +3337,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
+"QSO z %s: próbowano zaimportować QSO bez podanego pasma. QSO nie zostało "
+"zaimportowane, ponieważ jest ono nieprawidłowe"
 
 #: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3409,7 +3421,7 @@ msgstr "Kierunek"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakty"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3423,7 +3435,7 @@ msgstr "Antenowe"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "W kategorii Kontakty tytuły notatek muszą być unikalne."
 
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
@@ -3506,6 +3518,7 @@ msgstr "Łączna liczba zaliczonych WAJA"
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:317
 msgid "Year"
 msgstr "Rok"
 
@@ -3518,6 +3531,7 @@ msgstr "Rocznie"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:317
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:322
 msgid "Month"
 msgstr "Miesiąc"
 
@@ -4182,6 +4196,7 @@ msgstr "Nie znaleziono!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:666
+#: application/views/dashboard/index.php:244
 msgid "Callsign"
 msgstr "Znak wywoławczy"
 
@@ -4291,6 +4306,7 @@ msgstr "W logu masz inne dane dla DOK w porównaniu do DCL"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/dashboard/index.php:239
 msgid "Date"
 msgstr "Data"
 
@@ -4325,6 +4341,7 @@ msgstr "Data"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/dashboard/index.php:242
 msgid "Time"
 msgstr "Godzina"
 
@@ -4381,6 +4398,7 @@ msgstr "Import CBR"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/dashboard/index.php:214
 msgid "Important"
 msgstr "Ważne"
 
@@ -5219,6 +5237,7 @@ msgstr "Potwierdzone hrabstwa"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:312
 msgid "Total"
 msgstr "Razem"
 
@@ -5300,6 +5319,8 @@ msgstr "Nagrody - CQ WAZ"
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:457
 msgid "Confirmed"
 msgstr "Potwierdzone"
 
@@ -5311,6 +5332,8 @@ msgstr "Potwierdzone"
 #: application/views/dashboard/index.php:446
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:335
+#: application/views/dashboard/index.php:451
 msgid "Worked"
 msgstr "Zaliczone"
 
@@ -6180,6 +6203,7 @@ msgstr "Miasto"
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
+#: application/views/dashboard/index.php:447
 msgid "SAT"
 msgstr "SAT"
 
@@ -6651,8 +6675,8 @@ msgid ""
 "State (ADIF: DXCC and STATE)"
 msgstr ""
 "Pola brane pod uwagę przy tej nagrodzie: DXCC (musi być jednym z: Chiny/318, "
-"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa "
-"Scarborough/506) oraz ważny stan (ADIF: DXCC i STATE)"
+"Hongkong/321, Makau/152, Tajwan/386, Wyspa Pratas/505 lub Rafa Scarborough/"
+"506) oraz ważny stan (ADIF: DXCC i STATE)"
 
 #: application/views/awards/wapc/index.php:119
 msgid "Code"
@@ -7833,6 +7857,10 @@ msgstr "Wyświetl szczegóły"
 #: application/views/dashboard/index.php:379
 #: application/views/dashboard/index.php:400
 #: application/views/dashboard/index.php:421
+#: application/views/dashboard/index.php:357
+#: application/views/dashboard/index.php:384
+#: application/views/dashboard/index.php:405
+#: application/views/dashboard/index.php:426
 msgid "Today"
 msgstr "Dzisiaj"
 
@@ -8305,6 +8333,7 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"Wersja PHP wymaga aktualizacji. Minimalna wersja: %s, obecna wersja: %s."
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -8358,14 +8387,17 @@ msgstr[1] "Dzisiaj zrobiono %d łączności"
 msgstr[2] "Dzisiaj zrobiono %d łączności"
 
 #: application/views/dashboard/index.php:180
+#: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "Nie zrobiono dzisiaj żadnej łączności; czas włączyć radio!"
 
 #: application/views/dashboard/index.php:188
+#: application/views/dashboard/index.php:193
 msgid "Attention: you need to set an active station location."
 msgstr "Uwaga: należy ustawić aktywną lokalizacje stacji."
 
 #: application/views/dashboard/index.php:195
+#: application/views/dashboard/index.php:200
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
@@ -8374,12 +8406,14 @@ msgstr ""
 "motywów."
 
 #: application/views/dashboard/index.php:204
+#: application/views/dashboard/index.php:209
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
 msgstr "Przynajmniej jeden z twoich %scertyfikatów LoTW%s utracił ważność!"
 
 #: application/views/dashboard/index.php:209
+#: application/views/dashboard/index.php:214
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
@@ -8388,6 +8422,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:287
 #: application/views/qso/index.php:810
+#: application/views/dashboard/index.php:292
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -8397,16 +8432,19 @@ msgstr[2] "Maksymalnie %d poprzednich kontaktów jest pokazywanych"
 
 #: application/views/dashboard/index.php:303
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:308
 msgid "QSOs Breakdown"
 msgstr "Rozbicie łączności"
 
 #: application/views/dashboard/index.php:326
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:331
 msgid "DXCCs Breakdown"
 msgstr "Rozbicie DXCC"
 
 #: application/views/dashboard/index.php:343
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:348
 msgid "Needed"
 msgstr "Wymagane"
 
@@ -8443,7 +8481,10 @@ msgstr "Wymagane"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:554
 #: src/QSLManager/QSO.php:607 src/QSLManager/QSO.php:666
-#: src/QSLManager/QSO.php:731
+#: src/QSLManager/QSO.php:731 application/views/dashboard/index.php:361
+#: application/views/dashboard/index.php:388
+#: application/views/dashboard/index.php:409
+#: application/views/dashboard/index.php:430
 msgid "Sent"
 msgstr "Wysłane"
 
@@ -8479,7 +8520,10 @@ msgstr "Wysłane"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:577
 #: src/QSLManager/QSO.php:646 src/QSLManager/QSO.php:705
-#: src/QSLManager/QSO.php:755
+#: src/QSLManager/QSO.php:755 application/views/dashboard/index.php:367
+#: application/views/dashboard/index.php:394
+#: application/views/dashboard/index.php:415
+#: application/views/dashboard/index.php:436
 msgid "Received"
 msgstr "Odebrane"
 
@@ -8519,29 +8563,34 @@ msgstr "Odebrane"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764
+#: src/QSLManager/QSO.php:764 application/views/dashboard/index.php:373
 msgid "Requested"
 msgstr "Zażądane"
 
 #: application/views/dashboard/index.php:378
+#: application/views/dashboard/index.php:383
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:441
+#: application/views/dashboard/index.php:446
 msgid "VUCC-Grids"
 msgstr "Lokatory VUCC"
 
 #: application/views/dashboard/index.php:466
+#: application/views/dashboard/index.php:471
 msgid "Solar Data & Propagation"
 msgstr "Dane słoneczne oraz propagacja"
 
 #: application/views/dashboard/index.php:468
+#: application/views/dashboard/index.php:473
 #, php-format
 msgid "Last update at %s."
 msgstr "Ostatnie aktualizacja o %s."
 
 #: application/views/dashboard/index.php:477
+#: application/views/dashboard/index.php:482
 msgid "Data provided by HAMqsl."
 msgstr "Dane dostarczone przez HAMqsl."
 
@@ -8962,8 +9011,8 @@ msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
-"Należy przejść do folderu application/config i porównać plik config.sample."
-"php z plikiem config.php"
+"Należy przejść do folderu application/config i porównać plik "
+"config.sample.php z plikiem config.php"
 
 #: application/views/debug/index.php:197
 #, php-format
@@ -9880,20 +9929,20 @@ msgstr "Informacje o satelicie"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "Błąd podczas ładowania notatek"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "Sortowanie"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "Duplikowanie notatek w kategorii Kontakty jest wyłączone"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikuj"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9902,23 +9951,23 @@ msgstr "Usuń notatkę"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Duplikuj notatkę"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "Skasować tą notatkę?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "Zduplikować tą notatkę?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Duplikowanie wyłączone"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "Nie znaleziono notatek"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:513
@@ -11703,6 +11752,9 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Kontakty to specjalna kategoria notatek w Wavelog, używana do przechowywania "
+"informacji o partnerach QSO. Notatki te są prywatne, nie są udostępniane "
+"innym użytkownikom ani eksportowane do usług zewnętrznych."
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11714,27 +11766,27 @@ msgstr "Zapisz notatkę"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "Wszystkie kategorie"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Wyszukaj notatki (min. 3 znaki)"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
-msgstr ""
+msgstr "Resetuj wyszukiwanie"
 
 #: application/views/notes/main.php:72
 msgid "Creation"
-msgstr ""
+msgstr "Utworzono"
 
 #: application/views/notes/main.php:73
 msgid "Last Modification"
-msgstr ""
+msgstr "Zmodyfikowano"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "Zobacz notatkę"
 
 #: application/views/operator/index.php:9
 msgid ""
@@ -16409,6 +16461,13 @@ msgstr "Prześlij prośbę"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#: application/views/dashboard/index.php:182
+#, php-format
+msgid ""
+"Don't loose your streak - You have already had at least one QSO for the last "
+"%s consecutive days."
+msgstr ""
 
 #~ msgid ""
 #~ "You don't currently have any notes, these are a fantastic way of storing "
