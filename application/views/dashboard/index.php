@@ -177,7 +177,12 @@ function getDistance($distance) {
 		</div>
 	<?php } else { ?>
 		<div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
-			<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> <?= __("You have made no QSOs today; time to turn on the radio!"); ?>
+			<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> 
+			<?php if (($current_streak ?? 0)>0) { 
+				echo sprintf(__("Don't lose your streak - You have already had at least one QSO for the last %s consecutive days."),$current_streak); 
+			} else {
+				echo __("You have made no QSOs today; time to turn on the radio!"); 
+			} ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	<?php } ?>
