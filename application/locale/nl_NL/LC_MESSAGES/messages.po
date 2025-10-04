@@ -13,8 +13,8 @@ msgstr ""
 "POT-Creation-Date: 2025-10-02 18:42+0000\n"
 "PO-Revision-Date: 2025-10-03 19:48+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -878,6 +878,7 @@ msgstr "SOTA CSV-export"
 
 #: application/controllers/Dashboard.php:144
 #: application/controllers/Visitor.php:134
+#: application/controllers/Dashboard.php:152
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -1011,6 +1012,7 @@ msgstr "DX-kalender"
 #: application/views/dashboard/index.php:399
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:404
 msgid "eQSL Cards"
 msgstr "eQSL-kaarten"
 
@@ -1319,6 +1321,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:794 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/dashboard/index.php:339
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1353,6 +1356,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:802 application/views/user/edit.php:876
+#: application/views/dashboard/index.php:339
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -2184,6 +2188,8 @@ msgstr "QRZ ADIF Informatie"
 #: application/views/dashboard/index.php:351
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:356
 msgid "QSL Cards"
 msgstr "QSL-kaarten"
 
@@ -3504,6 +3510,7 @@ msgstr "Opgeteld aantal WAJA gewerkt"
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:317
 msgid "Year"
 msgstr "Jaar"
 
@@ -3516,6 +3523,7 @@ msgstr "Jaarlijks"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:317
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:322
 msgid "Month"
 msgstr "Maand"
 
@@ -4180,6 +4188,7 @@ msgstr "Niets gevonden!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:666
+#: application/views/dashboard/index.php:244
 msgid "Callsign"
 msgstr "Roepnaam"
 
@@ -4290,6 +4299,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/dashboard/index.php:239
 msgid "Date"
 msgstr "Datum"
 
@@ -4324,6 +4334,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/dashboard/index.php:242
 msgid "Time"
 msgstr "Tijd"
 
@@ -4380,6 +4391,7 @@ msgstr "CBR Importeren"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/dashboard/index.php:214
 msgid "Important"
 msgstr "Belangrijk"
 
@@ -5218,6 +5230,7 @@ msgstr "Counties bevestigd"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:312
 msgid "Total"
 msgstr "Totaal"
 
@@ -5297,6 +5310,8 @@ msgstr "Awards - CQ WAZ"
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:457
 msgid "Confirmed"
 msgstr "Bevestigd"
 
@@ -5308,6 +5323,8 @@ msgstr "Bevestigd"
 #: application/views/dashboard/index.php:446
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:335
+#: application/views/dashboard/index.php:451
 msgid "Worked"
 msgstr "Gewerkt"
 
@@ -6181,6 +6198,7 @@ msgstr "Woonplaats"
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
+#: application/views/dashboard/index.php:447
 msgid "SAT"
 msgstr "SAT"
 
@@ -7824,6 +7842,10 @@ msgstr "Details weergeven"
 #: application/views/dashboard/index.php:379
 #: application/views/dashboard/index.php:400
 #: application/views/dashboard/index.php:421
+#: application/views/dashboard/index.php:357
+#: application/views/dashboard/index.php:384
+#: application/views/dashboard/index.php:405
+#: application/views/dashboard/index.php:426
 msgid "Today"
 msgstr "Vandaag"
 
@@ -8351,14 +8373,17 @@ msgstr[0] "Je hebt vandaag %d QSO gemaakt"
 msgstr[1] "Je hebt vandaag %d QSO's gemaakt"
 
 #: application/views/dashboard/index.php:180
+#: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "Je hebt vandaag nog geen QSOs gemaakt. Tijd om de set aan te zetten!"
 
 #: application/views/dashboard/index.php:188
+#: application/views/dashboard/index.php:193
 msgid "Attention: you need to set an active station location."
 msgstr "Let op: Activeer een stationsprofiel."
 
 #: application/views/dashboard/index.php:195
+#: application/views/dashboard/index.php:200
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
@@ -8367,12 +8392,14 @@ msgstr ""
 "thema's te bewerken."
 
 #: application/views/dashboard/index.php:204
+#: application/views/dashboard/index.php:209
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
 msgstr "Ten minste één van je %sLoTW-certificaten%s is verlopen!"
 
 #: application/views/dashboard/index.php:209
+#: application/views/dashboard/index.php:214
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
@@ -8381,6 +8408,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:287
 #: application/views/qso/index.php:810
+#: application/views/dashboard/index.php:292
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -8389,16 +8417,19 @@ msgstr[1] "Max. %d vorige contacten worden getoond"
 
 #: application/views/dashboard/index.php:303
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:308
 msgid "QSOs Breakdown"
 msgstr "QSOs overzicht"
 
 #: application/views/dashboard/index.php:326
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:331
 msgid "DXCCs Breakdown"
 msgstr "DXCC's overzicht"
 
 #: application/views/dashboard/index.php:343
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:348
 msgid "Needed"
 msgstr "Nodig"
 
@@ -8435,7 +8466,10 @@ msgstr "Nodig"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:554
 #: src/QSLManager/QSO.php:607 src/QSLManager/QSO.php:666
-#: src/QSLManager/QSO.php:731
+#: src/QSLManager/QSO.php:731 application/views/dashboard/index.php:361
+#: application/views/dashboard/index.php:388
+#: application/views/dashboard/index.php:409
+#: application/views/dashboard/index.php:430
 msgid "Sent"
 msgstr "Verzonden"
 
@@ -8471,7 +8505,10 @@ msgstr "Verzonden"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:577
 #: src/QSLManager/QSO.php:646 src/QSLManager/QSO.php:705
-#: src/QSLManager/QSO.php:755
+#: src/QSLManager/QSO.php:755 application/views/dashboard/index.php:367
+#: application/views/dashboard/index.php:394
+#: application/views/dashboard/index.php:415
+#: application/views/dashboard/index.php:436
 msgid "Received"
 msgstr "Ontvangen"
 
@@ -8511,29 +8548,34 @@ msgstr "Ontvangen"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764
+#: src/QSLManager/QSO.php:764 application/views/dashboard/index.php:373
 msgid "Requested"
 msgstr "Aangevraagd"
 
 #: application/views/dashboard/index.php:378
+#: application/views/dashboard/index.php:383
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of The World"
 
 #: application/views/dashboard/index.php:441
+#: application/views/dashboard/index.php:446
 msgid "VUCC-Grids"
 msgstr "VUCC-Vakken"
 
 #: application/views/dashboard/index.php:466
+#: application/views/dashboard/index.php:471
 msgid "Solar Data & Propagation"
 msgstr "Zondata & Propagatie"
 
 #: application/views/dashboard/index.php:468
+#: application/views/dashboard/index.php:473
 #, php-format
 msgid "Last update at %s."
 msgstr "Laatste update om %s."
 
 #: application/views/dashboard/index.php:477
+#: application/views/dashboard/index.php:482
 msgid "Data provided by HAMqsl."
 msgstr "Gegevens verstrekt door HAMqsl."
 
@@ -16414,6 +16456,13 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#: application/views/dashboard/index.php:182
+#, php-format
+msgid ""
+"Don't loose your streak - You have already had at least one QSO for the last "
+"%s consecutive days."
+msgstr ""
 
 #~ msgid ""
 #~ "You don't currently have any notes, these are a fantastic way of storing "

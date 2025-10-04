@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2025-10-02 18:42+0000\n"
 "PO-Revision-Date: 2025-10-03 19:48+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
-"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ja/>\n"
+"Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -876,6 +876,7 @@ msgstr "SOTA CSVエクスポート"
 
 #: application/controllers/Dashboard.php:144
 #: application/controllers/Visitor.php:134
+#: application/controllers/Dashboard.php:152
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
@@ -1008,6 +1009,7 @@ msgstr "DXカレンダー"
 #: application/views/dashboard/index.php:399
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
+#: application/views/dashboard/index.php:404
 msgid "eQSL Cards"
 msgstr "eQSLカード"
 
@@ -1315,6 +1317,7 @@ msgstr "QSL"
 #: application/views/timeline/index.php:60 application/views/user/edit.php:592
 #: application/views/user/edit.php:794 application/views/view_log/qso.php:531
 #: application/views/view_log/qso.php:536
+#: application/views/dashboard/index.php:339
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1349,6 +1352,7 @@ msgstr "LoTW"
 #: application/views/station_profile/edit.php:309
 #: application/views/timeline/index.php:64 application/views/user/edit.php:593
 #: application/views/user/edit.php:802 application/views/user/edit.php:876
+#: application/views/dashboard/index.php:339
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1936,14 +1940,16 @@ msgstr "メモを編集"
 msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
-msgstr "連絡先メモのタイトルは、プレフィックスやサフィックスなしでコールサインのみに"
+msgstr ""
+"連絡先メモのタイトルは、プレフィックスやサフィックスなしでコールサインのみに"
 "する必要があります。推奨: %s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
-msgstr "このコールサインのメモは既に連絡先リストに存在します。一意のコールサインを入"
+msgstr ""
+"このコールサインのメモは既に連絡先リストに存在します。一意のコールサインを入"
 "力してください。"
 
 #: application/controllers/Options.php:23
@@ -2171,6 +2177,8 @@ msgstr "QRZ ADIF情報"
 #: application/views/dashboard/index.php:351
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
+#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:356
 msgid "QSL Cards"
 msgstr "QSLカード"
 
@@ -3488,6 +3496,7 @@ msgstr "WAJAの累計稼働数"
 #: application/views/statistics/index.php:38
 #: application/views/timeline/index.php:107
 #: application/views/visitor/index.php:250
+#: application/views/dashboard/index.php:317
 msgid "Year"
 msgstr "年"
 
@@ -3500,6 +3509,7 @@ msgstr "年間"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:317
 #: application/views/visitor/index.php:255
+#: application/views/dashboard/index.php:322
 msgid "Month"
 msgstr "月"
 
@@ -4164,6 +4174,7 @@ msgstr "何も見つかりません!"
 #: application/views/user/edit.php:137 application/views/user/index.php:28
 #: application/views/user/index.php:153 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:83 application/views/view_log/qso.php:666
+#: application/views/dashboard/index.php:244
 msgid "Callsign"
 msgstr "コールサイン"
 
@@ -4273,6 +4284,7 @@ msgstr "ログ内のDOKとDCLのデータが異なります"
 #: application/views/view_log/partial/log_ajax.php:196
 #: application/views/visitor/index.php:151
 #: application/views/widgets/qsos.php:16
+#: application/views/dashboard/index.php:239
 msgid "Date"
 msgstr "日付"
 
@@ -4307,6 +4319,7 @@ msgstr "日付"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:198
 #: application/views/visitor/index.php:154
+#: application/views/dashboard/index.php:242
 msgid "Time"
 msgstr "時間"
 
@@ -4363,6 +4376,7 @@ msgstr "CBRインポート"
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
+#: application/views/dashboard/index.php:214
 msgid "Important"
 msgstr "重要"
 
@@ -5192,6 +5206,7 @@ msgstr "確認された郡"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:245
+#: application/views/dashboard/index.php:312
 msgid "Total"
 msgstr "合計"
 
@@ -5269,6 +5284,8 @@ msgstr "アワード歴 - CQ WAZ"
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
+#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:457
 msgid "Confirmed"
 msgstr "確認済み"
 
@@ -5280,6 +5297,8 @@ msgstr "確認済み"
 #: application/views/dashboard/index.php:446
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:335
+#: application/views/dashboard/index.php:451
 msgid "Worked"
 msgstr "作業した"
 
@@ -6136,6 +6155,7 @@ msgstr "市"
 #: application/views/qslprint/qslprint.php:58
 #: application/views/qslprint/qsolist.php:44
 #: application/views/qslprint/qsolist.php:45
+#: application/views/dashboard/index.php:447
 msgid "SAT"
 msgstr "衛星"
 
@@ -7754,6 +7774,10 @@ msgstr "詳細を表示"
 #: application/views/dashboard/index.php:379
 #: application/views/dashboard/index.php:400
 #: application/views/dashboard/index.php:421
+#: application/views/dashboard/index.php:357
+#: application/views/dashboard/index.php:384
+#: application/views/dashboard/index.php:405
+#: application/views/dashboard/index.php:426
 msgid "Today"
 msgstr "本日"
 
@@ -8224,8 +8248,9 @@ msgstr "RSTR"
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
-msgstr "PHPのバージョンをアップグレードする必要があります。最低バージョンは %s "
-"。バージョンは次のとおりです: %s 。"
+msgstr ""
+"PHPのバージョンをアップグレードする必要があります。最低バージョンは %s 。バー"
+"ジョンは次のとおりです: %s 。"
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -8264,8 +8289,8 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
-"現在のステーション位置がログブックとリンクされていません。リンクするに"
-"は、%shere%s をクリックしてください。"
+"現在のステーション位置がログブックとリンクされていません。リンクするには、"
+"%shere%s をクリックしてください。"
 
 #: application/views/dashboard/index.php:163
 #, php-format
@@ -8282,14 +8307,17 @@ msgid_plural "You have had %d QSOs today"
 msgstr[0] "本日、%d件のQSOを行いました"
 
 #: application/views/dashboard/index.php:180
+#: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "今日は QSO がありませんでした。無線をオンにしましょう!"
 
 #: application/views/dashboard/index.php:188
+#: application/views/dashboard/index.php:193
 msgid "Attention: you need to set an active station location."
 msgstr "注意: アクティブなステーションの場所を設定する必要があります。"
 
 #: application/views/dashboard/index.php:195
+#: application/views/dashboard/index.php:200
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
@@ -8298,12 +8326,14 @@ msgstr ""
 "てください。"
 
 #: application/views/dashboard/index.php:204
+#: application/views/dashboard/index.php:209
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
 msgstr "あなたの%sLoTW証明書%sのうち少なくとも1つが有効期限切れです！"
 
 #: application/views/dashboard/index.php:209
+#: application/views/dashboard/index.php:214
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
@@ -8312,6 +8342,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:287
 #: application/views/qso/index.php:810
+#: application/views/dashboard/index.php:292
 #, php-format
 msgid "Max. %d previous contact is shown"
 msgid_plural "Max. %d previous contacts are shown"
@@ -8319,16 +8350,19 @@ msgstr[0] "前回の交信内容が最大 %d 件表示されています"
 
 #: application/views/dashboard/index.php:303
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:308
 msgid "QSOs Breakdown"
 msgstr "QSOの内訳"
 
 #: application/views/dashboard/index.php:326
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:331
 msgid "DXCCs Breakdown"
 msgstr "DXCCの内訳"
 
 #: application/views/dashboard/index.php:343
 #: application/views/visitor/index.php:279
+#: application/views/dashboard/index.php:348
 msgid "Needed"
 msgstr "必要"
 
@@ -8365,7 +8399,10 @@ msgstr "必要"
 #: application/views/widgets/qsos.php:19 src/QSLManager/QSO.php:403
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:554
 #: src/QSLManager/QSO.php:607 src/QSLManager/QSO.php:666
-#: src/QSLManager/QSO.php:731
+#: src/QSLManager/QSO.php:731 application/views/dashboard/index.php:361
+#: application/views/dashboard/index.php:388
+#: application/views/dashboard/index.php:409
+#: application/views/dashboard/index.php:430
 msgid "Sent"
 msgstr "送信済み"
 
@@ -8401,7 +8438,10 @@ msgstr "送信済み"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:448
 #: src/QSLManager/QSO.php:527 src/QSLManager/QSO.php:577
 #: src/QSLManager/QSO.php:646 src/QSLManager/QSO.php:705
-#: src/QSLManager/QSO.php:755
+#: src/QSLManager/QSO.php:755 application/views/dashboard/index.php:367
+#: application/views/dashboard/index.php:394
+#: application/views/dashboard/index.php:415
+#: application/views/dashboard/index.php:436
 msgid "Received"
 msgstr "受領"
 
@@ -8441,29 +8481,34 @@ msgstr "受領"
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:409
 #: src/QSLManager/QSO.php:454 src/QSLManager/QSO.php:512
 #: src/QSLManager/QSO.php:535 src/QSLManager/QSO.php:739
-#: src/QSLManager/QSO.php:764
+#: src/QSLManager/QSO.php:764 application/views/dashboard/index.php:373
 msgid "Requested"
 msgstr "リクエスト"
 
 #: application/views/dashboard/index.php:378
+#: application/views/dashboard/index.php:383
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "世界の日誌"
 
 #: application/views/dashboard/index.php:441
+#: application/views/dashboard/index.php:446
 msgid "VUCC-Grids"
 msgstr "VUCCグリッド"
 
 #: application/views/dashboard/index.php:466
+#: application/views/dashboard/index.php:471
 msgid "Solar Data & Propagation"
 msgstr "太陽データと伝搬"
 
 #: application/views/dashboard/index.php:468
+#: application/views/dashboard/index.php:473
 #, php-format
 msgid "Last update at %s."
 msgstr "最終更新日時：%s。"
 
 #: application/views/dashboard/index.php:477
+#: application/views/dashboard/index.php:482
 msgid "Data provided by HAMqsl."
 msgstr "HAMqsl 提供のデータ。"
 
@@ -16257,6 +16302,13 @@ msgstr "リクエストを送信"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "受信"
+
+#: application/views/dashboard/index.php:182
+#, php-format
+msgid ""
+"Don't loose your streak - You have already had at least one QSO for the last "
+"%s consecutive days."
+msgstr ""
 
 #~ msgid ""
 #~ "You don't currently have any notes, these are a fantastic way of storing "
