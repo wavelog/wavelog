@@ -91,6 +91,7 @@ class Dashboard extends CI_Controller {
 
 		$this->load->model('cat');
 		$this->load->model('vucc');
+		$this->load->model('dayswithqso_model');
 
 		$data['radio_status'] = $this->cat->recent_status();
 
@@ -99,6 +100,13 @@ class Dashboard extends CI_Controller {
 		$data['total_qsos'] = $this->logbook_model->total_qsos($logbooks_locations_array);
 		$data['month_qsos'] = $this->logbook_model->month_qsos($logbooks_locations_array);
 		$data['year_qsos'] = $this->logbook_model->year_qsos($logbooks_locations_array);
+
+		$rawstreak=$this->dayswithqso_model->getAlmostCurrentStreak();
+		if (is_array($rawstreak)) {
+			$data['current_streak']=$rawstreak['highstreak'];
+		} else {
+			$data['current_streak']=0;
+		}
 
 		// Load  Countries Breakdown data into array
 		$CountriesBreakdown = $this->logbook_model->total_countries_confirmed($logbooks_locations_array);
