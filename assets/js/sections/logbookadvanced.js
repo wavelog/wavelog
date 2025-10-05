@@ -4,6 +4,17 @@ let inCallbookItemProcessing = false;
 let lastChecked = null;
 let silentReset = false;
 
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.dropdown').forEach(dd => {
+		dd.addEventListener('hide.bs.dropdown', function (e) {
+			if (e.clickEvent && e.clickEvent.target.closest('.dropdown-menu')) {
+				e.preventDefault(); // stop Bootstrap from closing
+			}
+		});
+	});
+});
+
+
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
