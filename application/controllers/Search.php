@@ -162,7 +162,7 @@ class Search extends CI_Controller {
 		$this->db->update('queries', $data);
 	}
 
-	function buildWhere(array $object, string $condition = null): void {
+	function buildWhere(array $object, ?string $condition = null): void {
 		/*
 		 * The $object is one of the following:
 		 * - a group, with 'condition' and 'rules' keys
