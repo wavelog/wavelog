@@ -13,8 +13,8 @@ msgstr ""
 "POT-Creation-Date: 2025-10-04 06:05+0000\n"
 "PO-Revision-Date: 2025-10-05 10:01+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
-"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/nl/>\n"
+"Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/nl/>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,6 +128,9 @@ msgstr ""
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
+#: application/controllers/Update.php:22 application/controllers/Update.php:333
+#: application/controllers/Update.php:344
+#: application/controllers/Update.php:355
 msgid "You're not allowed to do that!"
 msgstr "Je mag dat niet doen!"
 
@@ -735,6 +738,7 @@ msgstr "Onbekend"
 #: application/controllers/Dcl.php:13 application/controllers/Eqsl.php:13
 #: application/controllers/Hrdlog.php:19 application/controllers/Lotw.php:27
 #: application/controllers/Qrz.php:14 application/controllers/Update.php:16
+#: application/controllers/Update.php:15
 msgid "Maintenance Mode is active. Try again later."
 msgstr "Onderhoudsmodus is actief. Probeer het later opnieuw."
 
@@ -2700,19 +2704,21 @@ msgstr "Tijdlijn"
 msgid "Timeplotter"
 msgstr "Tijdplotter"
 
-#: application/controllers/Update.php:26
+#: application/controllers/Update.php:26 application/controllers/Update.php:24
 msgid "Updates"
 msgstr "Updates"
 
-#: application/controllers/Update.php:71
+#: application/controllers/Update.php:71 application/controllers/Update.php:68
 msgid "Preparing DXCC-Entries: "
 msgstr "DXCC-items voorbereiden: "
 
 #: application/controllers/Update.php:136
+#: application/controllers/Update.php:133
 msgid "Preparing DXCC Exceptions: "
 msgstr "DXCC uitzonderingen voorbereiden: "
 
 #: application/controllers/Update.php:187
+#: application/controllers/Update.php:184
 msgid "Preparing DXCC Prefixes: "
 msgstr "DXCC-prefixen voorbereiden: "
 
@@ -2721,90 +2727,112 @@ msgid "DONE"
 msgstr "KLAAR"
 
 #: application/controllers/Update.php:289
+#: application/controllers/Update.php:304
 msgid "Updating..."
 msgstr "Bijwerken..."
 
 #: application/controllers/Update.php:292
+#: application/controllers/Update.php:307
 msgid "Dxcc Entities:"
 msgstr "Dxcc-entiteiten:"
 
 #: application/controllers/Update.php:293
+#: application/controllers/Update.php:308
 msgid "Dxcc Exceptions:"
 msgstr "Dxcc uitzonderingen:"
 
 #: application/controllers/Update.php:294
+#: application/controllers/Update.php:309
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc-prefixen:"
 
 #: application/controllers/Update.php:354
+#: application/controllers/Update.php:373
 msgid "SCP Update complete. Result: "
 msgstr "SCP-update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:356
+#: application/controllers/Update.php:375
 msgid "SCP Update failed. Result: "
 msgstr "SCP-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:374
+#: application/controllers/Update.php:412
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW-gebruikersupdate voltooid. Resultaat: "
 
 #: application/controllers/Update.php:376
+#: application/controllers/Update.php:414
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW-gebruikersupdate mislukt. Resultaat: "
 
 #: application/controllers/Update.php:393
+#: application/controllers/Update.php:449
 msgid "DOK Update complete. Result: "
 msgstr "DOK-update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:395
+#: application/controllers/Update.php:451
 msgid "DOK Update failed. Result: "
 msgstr "DOK-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:412
+#: application/controllers/Update.php:484
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA-update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:414
+#: application/controllers/Update.php:486
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:431
+#: application/controllers/Update.php:519
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF-update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:433
+#: application/controllers/Update.php:521
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:450
+#: application/controllers/Update.php:555
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl-update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:452
+#: application/controllers/Update.php:557
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:470
+#: application/controllers/Update.php:590
 msgid "POTA Update complete. Result: "
 msgstr "POTA-update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:472
+#: application/controllers/Update.php:592
 msgid "POTA Update failed. Result: "
 msgstr "POTA-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:485
+#: application/controllers/Update.php:621
 msgid "TLE Update complete. Result: "
 msgstr "TLE-update voltooid. Resultaat: "
 
 #: application/controllers/Update.php:487
+#: application/controllers/Update.php:623
 msgid "TLE Update failed. Result: "
 msgstr "TLE-update mislukt. Resultaat: "
 
 #: application/controllers/Update.php:498
+#: application/controllers/Update.php:650
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT update"
 
 #: application/controllers/Update.php:510
+#: application/controllers/Update.php:678
 msgid "Update of Hams of Note"
 msgstr "Update van Vermeldenswaardige Radiozendamateurs"
 
