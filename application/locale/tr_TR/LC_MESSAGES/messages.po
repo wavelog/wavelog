@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-04 06:05+0000\n"
+"POT-Creation-Date: 2025-10-05 10:01+0000\n"
 "PO-Revision-Date: 2025-09-26 12:20+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -117,9 +117,9 @@ msgstr ""
 #: application/controllers/Themes.php:17
 #: application/controllers/Timeline.php:10
 #: application/controllers/Timeplotter.php:11
-#: application/controllers/Update.php:24 application/controllers/Update.php:318
-#: application/controllers/Update.php:329
-#: application/controllers/Update.php:340 application/controllers/User.php:14
+#: application/controllers/Update.php:22 application/controllers/Update.php:333
+#: application/controllers/Update.php:344
+#: application/controllers/Update.php:355 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
 #: application/controllers/User.php:375 application/controllers/User.php:376
@@ -736,7 +736,7 @@ msgstr "Bilinmeyen"
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:13 application/controllers/Eqsl.php:13
 #: application/controllers/Hrdlog.php:19 application/controllers/Lotw.php:27
-#: application/controllers/Qrz.php:14 application/controllers/Update.php:16
+#: application/controllers/Qrz.php:14 application/controllers/Update.php:15
 msgid "Maintenance Mode is active. Try again later."
 msgstr "Bakım Modu aktif. Daha sonra tekrar deneyin."
 
@@ -2692,19 +2692,19 @@ msgstr "Zaman Çizelgesi"
 msgid "Timeplotter"
 msgstr "Zaman Grafiği"
 
-#: application/controllers/Update.php:26
+#: application/controllers/Update.php:24
 msgid "Updates"
 msgstr "Güncellemeler"
 
-#: application/controllers/Update.php:71
+#: application/controllers/Update.php:68
 msgid "Preparing DXCC-Entries: "
 msgstr "DXCC Girdileri Hazırlanıyor: "
 
-#: application/controllers/Update.php:136
+#: application/controllers/Update.php:133
 msgid "Preparing DXCC Exceptions: "
 msgstr "DXCC İstisnaları Hazırlanıyor: "
 
-#: application/controllers/Update.php:187
+#: application/controllers/Update.php:184
 msgid "Preparing DXCC Prefixes: "
 msgstr "DXCC Önekleri Hazırlanıyor: "
 
@@ -2712,91 +2712,91 @@ msgstr "DXCC Önekleri Hazırlanıyor: "
 msgid "DONE"
 msgstr "TAMAM"
 
-#: application/controllers/Update.php:289
+#: application/controllers/Update.php:304
 msgid "Updating..."
 msgstr "Güncelleniyor..."
 
-#: application/controllers/Update.php:292
+#: application/controllers/Update.php:307
 msgid "Dxcc Entities:"
 msgstr "DXCC Girişleri:"
 
-#: application/controllers/Update.php:293
+#: application/controllers/Update.php:308
 msgid "Dxcc Exceptions:"
 msgstr "DXCC İstisnaları:"
 
-#: application/controllers/Update.php:294
+#: application/controllers/Update.php:309
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc Prefixleri:"
 
-#: application/controllers/Update.php:354
+#: application/controllers/Update.php:373
 msgid "SCP Update complete. Result: "
 msgstr "SCP güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:356
+#: application/controllers/Update.php:375
 msgid "SCP Update failed. Result: "
 msgstr "SCP güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:374
+#: application/controllers/Update.php:412
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW Kullanıcı Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:376
+#: application/controllers/Update.php:414
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW Kullanıcı Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:393
+#: application/controllers/Update.php:449
 msgid "DOK Update complete. Result: "
 msgstr "DOK (Almanya Bölge İşletme Kodu) Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:395
+#: application/controllers/Update.php:451
 msgid "DOK Update failed. Result: "
 msgstr "DOK (Almanya Bölge İşletme Kodu) Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:412
+#: application/controllers/Update.php:484
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:414
+#: application/controllers/Update.php:486
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:431
+#: application/controllers/Update.php:519
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:433
+#: application/controllers/Update.php:521
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:450
+#: application/controllers/Update.php:555
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:452
+#: application/controllers/Update.php:557
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:470
+#: application/controllers/Update.php:590
 msgid "POTA Update complete. Result: "
 msgstr "POTA Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:472
+#: application/controllers/Update.php:592
 msgid "POTA Update failed. Result: "
 msgstr "POTA güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:485
+#: application/controllers/Update.php:621
 msgid "TLE Update complete. Result: "
 msgstr "Uydu Yörünge Verileri (TLE) güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:487
+#: application/controllers/Update.php:623
 msgid "TLE Update failed. Result: "
 msgstr "Uydu Yörünge Verileri (TLE) güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:498
+#: application/controllers/Update.php:650
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT Güncellemesi"
 
-#: application/controllers/Update.php:510
+#: application/controllers/Update.php:678
 msgid "Update of Hams of Note"
 msgstr "Tanınmış Amatör Telsizciler Güncellemesi"
 
