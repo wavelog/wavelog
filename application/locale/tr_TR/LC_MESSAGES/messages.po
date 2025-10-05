@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-02 18:42+0000\n"
+"POT-Creation-Date: 2025-10-05 10:01+0000\n"
 "PO-Revision-Date: 2025-09-26 12:20+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -117,9 +117,9 @@ msgstr ""
 #: application/controllers/Themes.php:17
 #: application/controllers/Timeline.php:10
 #: application/controllers/Timeplotter.php:11
-#: application/controllers/Update.php:24 application/controllers/Update.php:318
-#: application/controllers/Update.php:329
-#: application/controllers/Update.php:340 application/controllers/User.php:14
+#: application/controllers/Update.php:22 application/controllers/Update.php:333
+#: application/controllers/Update.php:344
+#: application/controllers/Update.php:355 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
 #: application/controllers/User.php:375 application/controllers/User.php:376
@@ -736,7 +736,7 @@ msgstr "Bilinmeyen"
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Dcl.php:13 application/controllers/Eqsl.php:13
 #: application/controllers/Hrdlog.php:19 application/controllers/Lotw.php:27
-#: application/controllers/Qrz.php:14 application/controllers/Update.php:16
+#: application/controllers/Qrz.php:14 application/controllers/Update.php:15
 msgid "Maintenance Mode is active. Try again later."
 msgstr "Bakım Modu aktif. Daha sonra tekrar deneyin."
 
@@ -877,7 +877,7 @@ msgstr "Çalışmıyor"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV Dışa Aktarma"
 
-#: application/controllers/Dashboard.php:144
+#: application/controllers/Dashboard.php:152
 #: application/controllers/Visitor.php:134
 msgid "Dashboard"
 msgstr "Kontrol Paneli"
@@ -1010,7 +1010,7 @@ msgid "DX Calendar"
 msgstr "DX Etkinlik Takvimi"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:399
+#: application/views/dashboard/index.php:404
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:310
 msgid "eQSL Cards"
@@ -1304,7 +1304,7 @@ msgstr "QSL"
 #: application/views/awards/wap/index.php:60
 #: application/views/awards/wapc/index.php:48
 #: application/views/awards/was/index.php:60
-#: application/views/dashboard/index.php:334
+#: application/views/dashboard/index.php:339
 #: application/views/gridmap/index.php:109
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:160
@@ -1340,7 +1340,7 @@ msgstr "LoTW"
 #: application/views/awards/wap/index.php:64
 #: application/views/awards/wapc/index.php:52
 #: application/views/awards/was/index.php:64
-#: application/views/dashboard/index.php:334
+#: application/views/dashboard/index.php:339
 #: application/views/gridmap/index.php:117
 #: application/views/logbookadvanced/useroptions.php:78
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:131
@@ -2173,8 +2173,8 @@ msgstr "QRZ QSL İçe Aktarma"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF Bilgisi"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:334
-#: application/views/dashboard/index.php:351
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:356
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:287
 msgid "QSL Cards"
@@ -2692,19 +2692,19 @@ msgstr "Zaman Çizelgesi"
 msgid "Timeplotter"
 msgstr "Zaman Grafiği"
 
-#: application/controllers/Update.php:26
+#: application/controllers/Update.php:24
 msgid "Updates"
 msgstr "Güncellemeler"
 
-#: application/controllers/Update.php:71
+#: application/controllers/Update.php:68
 msgid "Preparing DXCC-Entries: "
 msgstr "DXCC Girdileri Hazırlanıyor: "
 
-#: application/controllers/Update.php:136
+#: application/controllers/Update.php:133
 msgid "Preparing DXCC Exceptions: "
 msgstr "DXCC İstisnaları Hazırlanıyor: "
 
-#: application/controllers/Update.php:187
+#: application/controllers/Update.php:184
 msgid "Preparing DXCC Prefixes: "
 msgstr "DXCC Önekleri Hazırlanıyor: "
 
@@ -2712,91 +2712,91 @@ msgstr "DXCC Önekleri Hazırlanıyor: "
 msgid "DONE"
 msgstr "TAMAM"
 
-#: application/controllers/Update.php:289
+#: application/controllers/Update.php:304
 msgid "Updating..."
 msgstr "Güncelleniyor..."
 
-#: application/controllers/Update.php:292
+#: application/controllers/Update.php:307
 msgid "Dxcc Entities:"
 msgstr "DXCC Girişleri:"
 
-#: application/controllers/Update.php:293
+#: application/controllers/Update.php:308
 msgid "Dxcc Exceptions:"
 msgstr "DXCC İstisnaları:"
 
-#: application/controllers/Update.php:294
+#: application/controllers/Update.php:309
 msgid "Dxcc Prefixes:"
 msgstr "Dxcc Prefixleri:"
 
-#: application/controllers/Update.php:354
+#: application/controllers/Update.php:373
 msgid "SCP Update complete. Result: "
 msgstr "SCP güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:356
+#: application/controllers/Update.php:375
 msgid "SCP Update failed. Result: "
 msgstr "SCP güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:374
+#: application/controllers/Update.php:412
 msgid "LoTW Users Update complete. Result: "
 msgstr "LoTW Kullanıcı Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:376
+#: application/controllers/Update.php:414
 msgid "LoTW Users Update failed. Result: "
 msgstr "LoTW Kullanıcı Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:393
+#: application/controllers/Update.php:449
 msgid "DOK Update complete. Result: "
 msgstr "DOK (Almanya Bölge İşletme Kodu) Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:395
+#: application/controllers/Update.php:451
 msgid "DOK Update failed. Result: "
 msgstr "DOK (Almanya Bölge İşletme Kodu) Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:412
+#: application/controllers/Update.php:484
 msgid "SOTA Update complete. Result: "
 msgstr "SOTA Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:414
+#: application/controllers/Update.php:486
 msgid "SOTA Update failed. Result: "
 msgstr "SOTA Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:431
+#: application/controllers/Update.php:519
 msgid "WWFF Update complete. Result: "
 msgstr "WWFF Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:433
+#: application/controllers/Update.php:521
 msgid "WWFF Update failed. Result: "
 msgstr "WWFF Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:450
+#: application/controllers/Update.php:555
 msgid "HAMqsl Update complete. Result: "
 msgstr "HAMqsl Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:452
+#: application/controllers/Update.php:557
 msgid "HAMqsl Update failed. Result: "
 msgstr "HAMqsl Güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:470
+#: application/controllers/Update.php:590
 msgid "POTA Update complete. Result: "
 msgstr "POTA Güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:472
+#: application/controllers/Update.php:592
 msgid "POTA Update failed. Result: "
 msgstr "POTA güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:485
+#: application/controllers/Update.php:621
 msgid "TLE Update complete. Result: "
 msgstr "Uydu Yörünge Verileri (TLE) güncellemesi tamamlandı. Sonuç: "
 
-#: application/controllers/Update.php:487
+#: application/controllers/Update.php:623
 msgid "TLE Update failed. Result: "
 msgstr "Uydu Yörünge Verileri (TLE) güncellemesi başarısız oldu. Sonuç: "
 
-#: application/controllers/Update.php:498
+#: application/controllers/Update.php:650
 msgid "LoTW SAT Update"
 msgstr "LoTW SAT Güncellemesi"
 
-#: application/controllers/Update.php:510
+#: application/controllers/Update.php:678
 msgid "Update of Hams of Note"
 msgstr "Tanınmış Amatör Telsizciler Güncellemesi"
 
@@ -3485,7 +3485,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Toplam çalışılan WAJA sayısı"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:312
+#: application/views/dashboard/index.php:317
 #: application/views/dayswithqso/index.php:42
 #: application/views/dayswithqso/index.php:82
 #: application/views/statistics/index.php:19
@@ -3502,7 +3502,7 @@ msgid "Yearly"
 msgstr "Yıllık"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:317
+#: application/views/dashboard/index.php:322
 #: application/views/visitor/index.php:255
 msgid "Month"
 msgstr "Bu Ayki QSO'lar"
@@ -4135,7 +4135,7 @@ msgstr "Hiçbir kayıt bulunamadı!"
 #: application/views/club/permissions.php:222
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:170
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:239
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:244
 #: application/views/dcl_views/index.php:27
 #: application/views/distancerecords/index.php:18
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
@@ -4244,7 +4244,7 @@ msgstr "Logunuzdaki DOK ile DCL’deki DOK farklı"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:261
-#: application/views/dashboard/index.php:234
+#: application/views/dashboard/index.php:239
 #: application/views/debug/index.php:589
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
@@ -4290,7 +4290,7 @@ msgstr "Tarih"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:108
 #: application/views/contesting/index.php:261
-#: application/views/dashboard/index.php:237
+#: application/views/dashboard/index.php:242
 #: application/views/debug/index.php:590
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
@@ -4362,8 +4362,8 @@ msgstr "CBR İçe Aktar"
 #: application/views/adif/import.php:73 application/views/adif/import.php:379
 #: application/views/adif/import.php:400 application/views/api/index.php:22
 #: application/views/dashboard/index.php:180
-#: application/views/dashboard/index.php:204
 #: application/views/dashboard/index.php:209
+#: application/views/dashboard/index.php:214
 #: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 #: application/views/options/maptiles.php:48
@@ -5194,7 +5194,7 @@ msgstr "Onaylanan Eyaletler"
 #: application/views/awards/wap/index.php:180
 #: application/views/awards/wapc/index.php:145
 #: application/views/awards/was/index.php:180
-#: application/views/dashboard/index.php:307
+#: application/views/dashboard/index.php:312
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -5283,8 +5283,8 @@ msgstr "Ödüller - CQ WAZ"
 #: application/views/awards/wab/list.php:6
 #: application/views/awards/wac/index.php:23
 #: application/views/bandmap/list.php:81
-#: application/views/dashboard/index.php:334
-#: application/views/dashboard/index.php:452
+#: application/views/dashboard/index.php:339
+#: application/views/dashboard/index.php:457
 #: application/views/interface_assets/footer.php:43
 #: application/views/search/result.php:32
 #: application/views/visitor/index.php:270
@@ -5295,8 +5295,8 @@ msgstr "Onaylanan"
 #: application/views/awards/itu/index.php:35
 #: application/views/awards/wac/index.php:23
 #: application/views/bandmap/list.php:80
-#: application/views/dashboard/index.php:330
-#: application/views/dashboard/index.php:446
+#: application/views/dashboard/index.php:335
+#: application/views/dashboard/index.php:451
 #: application/views/search/result.php:35
 #: application/views/visitor/index.php:266
 msgid "Worked"
@@ -6156,7 +6156,7 @@ msgid "City"
 msgstr "Şehir"
 
 #: application/views/awards/jcc/index.php:188
-#: application/views/dashboard/index.php:442
+#: application/views/dashboard/index.php:447
 #: application/views/distances/index.php:23
 #: application/views/qslprint/qslprint.php:57
 #: application/views/qslprint/qslprint.php:58
@@ -7798,10 +7798,10 @@ msgid "Show Details"
 msgstr "Detayları Göster"
 
 #: application/views/contestcalendar/index.php:45
-#: application/views/dashboard/index.php:352
-#: application/views/dashboard/index.php:379
-#: application/views/dashboard/index.php:400
-#: application/views/dashboard/index.php:421
+#: application/views/dashboard/index.php:357
+#: application/views/dashboard/index.php:384
+#: application/views/dashboard/index.php:405
+#: application/views/dashboard/index.php:426
 msgid "Today"
 msgstr "Bugün"
 
@@ -8330,15 +8330,22 @@ msgid_plural "You have had %d QSOs today"
 msgstr[0] "Bugün %d QSO yaptın"
 msgstr[1] "Bugün %d QSO yaptın"
 
-#: application/views/dashboard/index.php:180
+#: application/views/dashboard/index.php:182
+#, php-format
+msgid ""
+"Don't loose your streak - You have already had at least one QSO for the last "
+"%s consecutive days."
+msgstr ""
+
+#: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "Bu gün hiç bir QSO yapmadınız. Telsizi açmanın zamanı geldi!"
 
-#: application/views/dashboard/index.php:188
+#: application/views/dashboard/index.php:193
 msgid "Attention: you need to set an active station location."
 msgstr "Dikkat: aktif bir istasyon konumu ayarlamanız gerekir."
 
-#: application/views/dashboard/index.php:195
+#: application/views/dashboard/index.php:200
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
@@ -8346,19 +8353,19 @@ msgstr ""
 "Özelleştirilmiş temalarınız var. Lütfen yöneticiden temaları düzenlemesini "
 "isteyin."
 
-#: application/views/dashboard/index.php:204
+#: application/views/dashboard/index.php:209
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is expired!"
 msgstr "%sLoTW sertifikanızın%s süresi dolmuş!"
 
-#: application/views/dashboard/index.php:209
+#: application/views/dashboard/index.php:214
 #, php-format
 msgctxt "LoTW Warning"
 msgid "At least one of your %sLoTW certificates%s is about to expire!"
 msgstr "%sLoTW sertifikanızın%s süresi dolmak üzere!"
 
-#: application/views/dashboard/index.php:287
+#: application/views/dashboard/index.php:292
 #: application/views/qso/index.php:810
 #, php-format
 msgid "Max. %d previous contact is shown"
@@ -8366,25 +8373,25 @@ msgid_plural "Max. %d previous contacts are shown"
 msgstr[0] "En fazla %d QSO gösterilir"
 msgstr[1] "En fazla %d QSO gösterilir"
 
-#: application/views/dashboard/index.php:303
+#: application/views/dashboard/index.php:308
 #: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
 msgstr "QSO'ların Analizi"
 
-#: application/views/dashboard/index.php:326
+#: application/views/dashboard/index.php:331
 #: application/views/visitor/index.php:262
 msgid "DXCCs Breakdown"
 msgstr "Ülkeler'in (DXCC) Analizi"
 
-#: application/views/dashboard/index.php:343
+#: application/views/dashboard/index.php:348
 #: application/views/visitor/index.php:279
 msgid "Needed"
 msgstr "İstenenler"
 
-#: application/views/dashboard/index.php:356
-#: application/views/dashboard/index.php:383
-#: application/views/dashboard/index.php:404
-#: application/views/dashboard/index.php:425
+#: application/views/dashboard/index.php:361
+#: application/views/dashboard/index.php:388
+#: application/views/dashboard/index.php:409
+#: application/views/dashboard/index.php:430
 #: application/views/oqrs/qsolist.php:51 application/views/oqrs/qsolist.php:131
 #: application/views/oqrs/qsolist.php:160
 #: application/views/qslprint/qsolist.php:62
@@ -8418,10 +8425,10 @@ msgstr "İstenenler"
 msgid "Sent"
 msgstr "Gönderilen"
 
-#: application/views/dashboard/index.php:362
-#: application/views/dashboard/index.php:389
-#: application/views/dashboard/index.php:410
-#: application/views/dashboard/index.php:431
+#: application/views/dashboard/index.php:367
+#: application/views/dashboard/index.php:394
+#: application/views/dashboard/index.php:415
+#: application/views/dashboard/index.php:436
 #: application/views/oqrs/qsolist.php:93 application/views/oqrs/qsolist.php:144
 #: application/views/oqrs/qsolist.php:175
 #: application/views/qslprint/qsolist.php:104
@@ -8454,7 +8461,7 @@ msgstr "Gönderilen"
 msgid "Received"
 msgstr "Alınan"
 
-#: application/views/dashboard/index.php:368
+#: application/views/dashboard/index.php:373
 #: application/views/logbookadvanced/edit.php:168
 #: application/views/logbookadvanced/edit.php:175
 #: application/views/logbookadvanced/edit.php:201
@@ -8494,25 +8501,25 @@ msgstr "Alınan"
 msgid "Requested"
 msgstr "İstenen"
 
-#: application/views/dashboard/index.php:378
+#: application/views/dashboard/index.php:383
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "LOTW (Logbook of the World)"
 
-#: application/views/dashboard/index.php:441
+#: application/views/dashboard/index.php:446
 msgid "VUCC-Grids"
 msgstr "VUCC-Gridleri"
 
-#: application/views/dashboard/index.php:466
+#: application/views/dashboard/index.php:471
 msgid "Solar Data & Propagation"
 msgstr "Güneş Verileri ve Yayılımı"
 
-#: application/views/dashboard/index.php:468
+#: application/views/dashboard/index.php:473
 #, php-format
 msgid "Last update at %s."
 msgstr "Son güncelleme %s."
 
-#: application/views/dashboard/index.php:477
+#: application/views/dashboard/index.php:482
 msgid "Data provided by HAMqsl."
 msgstr "Veriler HAMqsl tarafından sağlanmıştır."
 
