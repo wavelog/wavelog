@@ -4000,7 +4000,7 @@ class Logbook_model extends CI_Model {
 					if ($date_diff >= -300 && $date_diff <= 518400) { // Five minutes grace time to the future and max 6 days back
 						$data = array(
 							'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) . " " . date('H:i:s', strtotime($record['time_on'])),
-							'COL_SAT_NAME' => $record['sat_name'],
+							'COL_SAT_NAME' => $record['sat_name'] ?? '',
 							'COL_BAND' => $record['band'],
 							'COL_BAND_RX' => $record['band_rx'] ?? '',
 							'COL_MODE' => $record['mode'],
