@@ -390,12 +390,12 @@ class Oqrs extends CI_Controller {
 		$this->load->helper('language');
 		$available_languages = $this->config->item('languages');
 		$browser_languages = parse_accept_language($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '');
-		$detected_language_folder = null; // <--- 修正 #1: 变量名，使其更清晰
+		$detected_language_folder = null; 
 
 		foreach ($browser_languages as $browser_lang_code => $priority) {
 			foreach ($available_languages as $app_lang) {
 				if (strcasecmp($browser_lang_code, $app_lang['locale']) === 0) {
-					$detected_language_folder = $app_lang['folder']; // <--- 修正 #2: 获取 'folder' 的值
+					$detected_language_folder = $app_lang['folder']; 
 					break 2; // Found the best match, exit both loops
 				}
 			}
@@ -423,7 +423,7 @@ class Oqrs extends CI_Controller {
 				if ($detected_language_folder !== $current_cookie_value) {
 					$this->input->set_cookie(array(
 						'name'   => $cookie_name,
-						'value'  => $detected_language_folder, // <--- 修正 #3: 使用 'folder' 的值
+						'value'  => $detected_language_folder, 
 						'expire' => 3600 * 24 * 30,
 						'secure' => FALSE,
 					));
@@ -431,7 +431,7 @@ class Oqrs extends CI_Controller {
 				// 	$this->load->helper('url');
 				// 	redirect(current_url());
 				echo '<script type="text/javascript">window.location.reload();</script>';
-					exit; // 立即停止脚本，防止输出页面其他内容
+					exit; 
 				}
 			}
 		}
