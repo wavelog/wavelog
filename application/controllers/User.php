@@ -838,6 +838,15 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('oqrs_use_visitor_browser_language')) {
+				$data['oqrs_use_visitor_browser_language'] = $this->input->post('oqrs_use_visitor_browser_language', false);
+			} else {
+				$qkey_opt = $this->user_options_model->get_options('oqrs', array('option_name' => 'oqrs_use_visitor_browser_language', 'option_key' => 'boolean'), $this->uri->segment(3))->result();
+				if (count($qkey_opt) > 0) {
+					$data['oqrs_use_visitor_browser_language'] = $qkey_opt[0]->option_value;
+				}
+			}
+
 			// [MAP Custom] GET user options //
 			$options_object = $this->user_options_model->get_options('map_custom')->result();
 			if (count($options_object)>0) {
@@ -935,6 +944,7 @@ class User extends CI_Controller {
 						$this->user_options_model->set_option('oqrs', 'oqrs_grouped_search_show_station_name', array('boolean'=>$this->input->post('oqrs_grouped_search_show_station_name', true)));
 						$this->user_options_model->set_option('oqrs', 'oqrs_auto_matching', array('boolean'=>$this->input->post('oqrs_auto_matching', true)));
 						$this->user_options_model->set_option('oqrs', 'oqrs_direct_auto_matching', array('boolean'=>$this->input->post('oqrs_direct_auto_matching', true)));
+						$this->user_options_model->set_option('oqrs', 'oqrs_use_visitor_browser_language', array('boolean'=>$this->input->post('oqrs_use_visitor_browser_language', true)));
 
 						$this->session->set_flashdata('success', sprintf(__("User %s edited"), $this->input->post('user_name', true)));
 						redirect('user/edit/'.$this->uri->segment(3));

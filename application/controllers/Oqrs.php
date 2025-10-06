@@ -34,6 +34,7 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function index($public_slug = NULL) {
+		$this->_initialize_visitor_language($public_slug);
 		$this->load->model('oqrs_model');
 		$this->load->model('publicsearch');
 		$this->load->model('stationsetup_model');
@@ -369,5 +370,41 @@ class Oqrs extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode(array('status' => 'success', 'message' => __("QSO match added successfully.")));
 	}
+	/**
+	 * Initializes the visitor's language based on OQRS user settings and browser headers.
+	 *
+	 * @param string|null $public_slug The public slug from the URL.
+	 */
+	private function _initialize_visitor_language($public_slug = NULL) {
+		$this->load->model('user_model');
+		$this->load->model('user_options_model');
 
+		if ($public_slug ?? '' != '') {
+			$user_id = $this->user_model->get_user_id_from_slug($public_slug);
+
+			if ($user_id) {
+				$lang_setting = $this->user_options_model->get_options('oqrs', array('option_name' => 'oqrs_use_visitor_browser_language', 'option_key' => 'boolean'), $user_id)->row();
+
+				if (($lang_setting->option_value ?? 'on') == 'on') {
+					$this->load->helper('language');
+					$available_languages = $this->config->item('languages');
+					$available_lang_codes = array_column($available_languages, 'folder');
+					$browser_languages = parse_accept_language($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '');
+
+					foreach ($browser_languages as $lang_code => $priority) {
+						if (in_array($lang_code, $available_lang_codes)) {
+							$cookie = array(
+								'name'   => $this->config->item('gettext_cookie', 'gettext'),
+								'value'  => $lang_code,
+								'expire' => 3600,
+								'secure' => FALSE,
+							);
+							$this->input->set_cookie($cookie);
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
 }

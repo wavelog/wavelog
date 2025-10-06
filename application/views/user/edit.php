@@ -737,6 +737,14 @@
 												</select>
 												<small id="oqrs_direct_auto_matching_help" class="form-text text-muted"><?= __("If this is on, automatic OQRS matching for direct request will happen."); ?></small>
 											</div>
+											<div class="mb-3">
+												<label for="oqrs_use_visitor_browser_language"><?= __("Default to visitor's browser language"); ?></label>
+												<select name="oqrs_use_visitor_browser_language" class="form-select" id="oqrs_use_visitor_browser_language">
+													<option value="on" <?php if(($oqrs_use_visitor_browser_language ?? 'on') == "on") { echo "selected=\"selected\""; } ?>><?= __("On"); ?></option>
+													<option value="off" <?php if(($oqrs_use_visitor_browser_language ?? 'on') == "off") { echo "selected=\"selected\""; } ?>><?= __("Off"); ?></option>
+												</select>
+												<small id="oqrs_use_visitor_browser_language_help" class="form-text text-muted"><?= __("If enabled, the OQRS page will automatically try to display in the visitor's browser language."); ?></small>
+											</div>
 										</div>
 									</div>
 							</div>
