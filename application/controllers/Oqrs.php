@@ -382,15 +382,12 @@ class Oqrs extends CI_Controller {
 	 * @param string|null $public_slug The public slug from the URL.
 	 */
 	private function _initialize_visitor_language($public_slug = NULL) {
-		// 获取 gettext cookie 的配置名称
 		$cookie_name = $this->config->item('gettext_cookie', 'gettext');
 
-		// 步骤 1: 检查 Cookie 是否已存在。如果存在，则无需任何操作。
 		if ($this->input->cookie($cookie_name, TRUE)) {
 			return;
 		}
 
-		// 步骤 2: 如果 Cookie 不存在，则开始检测语言
 		if (empty($public_slug)) {
 			return;
 		}
@@ -412,20 +409,17 @@ class Oqrs extends CI_Controller {
 					foreach ($available_languages as $app_lang) {
 						if (strcasecmp($browser_lang_code, $app_lang['locale']) === 0) {
 							
-							// 步骤 3: 使用正确的 'gettext' 值设置 Cookie
 							$cookie = array(
 								'name'   => $cookie_name,
-								'value'  => $app_lang['gettext'], // 使用 'gettext' 字段的值
-								'expire' => 3600 * 24 * 30, // 延长有效期至30天
+								'value'  => $app_lang['gettext'], 
+								'expire' => 3600 * 24 * 30, 
 								'secure' => FALSE,
 							);
 							$this->input->set_cookie($cookie);
 
-							// 步骤 4: 重定向以立即应用语言变更
-							$this->load->helper('url'); // 加载 URL 辅助函数
-							redirect(current_url());    // 重定向到当前页面
+							$this->load->helper('url'); 
+							redirect(current_url());    
 
-							// redirect() 会自动 exit，但为保险起见
 							exit;
 						}
 					}
