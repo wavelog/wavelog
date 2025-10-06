@@ -225,19 +225,19 @@ $options = json_decode($options);
                                 <div class="row">
                                     <div <?php if (($options->datetime->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="dateFrom"><?= __("From") . ": " ?></label>
-                                        <input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto">
+                                        <input name="dateFrom" id="dateFrom" type="date" class="form-control form-control-sm w-auto border border-secondary">
                                     </div>
                                     <div <?php if (($options->datetime->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="dateTo"><?= __("To") . ": " ?></label>
-                                        <input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto">
+                                        <input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto border border-secondary">
                                     </div>
                                     <div <?php if (($options->dx->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="dx"><?= __("Dx"); ?></label>
-                                        <input onclick="this.select()" type="text" name="dx" id="dx" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="dx" id="dx" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                     <div <?php if (($options->dxcc->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="dxcc"><?= __("DXCC"); ?></label>
-                                        <select class="form-select form-select-sm" id="dxcc" name="dxcc">
+                                        <select class="form-select form-select-sm border border-secondary" id="dxcc" name="dxcc">
                                             <option value="">-</option>
                                             <?php
                                             foreach ($dxccarray as $dxcc) {
@@ -258,17 +258,17 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->state->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="state"><?= __("State"); ?></label>
-                                        <input onclick="this.select()" type="text" name="state" id="state" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="state" id="state" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
 								</div>
 								<div class="row">
                                     <div <?php if (($options->gridsquare->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="gridsquare"><?= __("Gridsquare"); ?></label>
-                                        <input onclick="this.select()" type="text" name="gridsquare" id="gridsquare" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="gridsquare" id="gridsquare" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                     <div <?php if (($options->mode->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="mode"><?= __("Mode"); ?></label>
-                                        <select id="mode" name="mode" class="form-select form-select-sm">
+                                        <select id="mode" name="mode" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <?php
                                             foreach ($modes as $modeId => $mode) {
@@ -279,7 +279,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->band->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="band"><?= __("Band"); ?></label>
-                                        <select id="band" name="band" class="form-select form-select-sm">
+                                        <select id="band" name="band" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <?php
                                             foreach ($bands as $band) {
@@ -290,7 +290,7 @@ $options = json_decode($options);
                                     </div>
                                     <div hidden class="sats_dropdown mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="sats"><?= __("Satellite"); ?></label>
-                                        <select class="form-select form-select-sm" id="sats" name="sats">
+                                        <select class="form-select form-select-sm border border-secondary" id="sats" name="sats">
                                             <option value="All"><?= __("All"); ?></option>
                                             <?php foreach ($sats as $sat) {
                                                 echo '<option value="' . htmlentities($sat) . '"' . '>' . htmlentities($sat) . '</option>' . "\n";
@@ -299,7 +299,7 @@ $options = json_decode($options);
                                     </div>
                                     <div hidden class="orbits_dropdown mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="orbits"><?= __("Orbit"); ?></label>
-                                        <select class="form-select form-select-sm" id="orbits" name="orbits">
+                                        <select class="form-select form-select-sm border border-secondary" id="orbits" name="orbits">
                                             <option value="All"><?= __("All"); ?></option>
                                             <?php foreach ($orbits as $orbit) {
                                                 echo '<option value="' . htmlentities($orbit) . '"' . '>' . htmlentities($orbit) . '</option>' . "\n";
@@ -308,7 +308,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->propagation->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="selectPropagation"><?= __("Propagation"); ?></label>
-                                        <select id="selectPropagation" class="form-select form-select-sm" name="propmode">
+                                        <select id="selectPropagation" class="form-select form-select-sm border border-secondary" name="propmode">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="None"><?= _pgettext("Propagation Mode", "None/Empty"); ?></option>
                                             <option value="AS"><?= _pgettext("Propagation Mode", "Aircraft Scatter"); ?></option>
@@ -333,7 +333,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->cqzone->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="cqzone"><?= __("CQ Zone"); ?></label>
-                                        <select id="cqzone" name="cqzone" class="form-select form-select-sm">
+                                        <select id="cqzone" name="cqzone" class="form-select form-select-sm border border-secondary">
                                             <option value="All"><?= __("All"); ?></option>
                                             <option value=""><?= __("Empty"); ?></option>
                                             <?php
@@ -347,7 +347,7 @@ $options = json_decode($options);
 								<div class="row">
                                     <div <?php if (($options->ituzone->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="ituzone"><?= __("ITU Zone"); ?></label>
-                                        <select id="ituzone" name="ituzone" class="form-select form-select-sm">
+                                        <select id="ituzone" name="ituzone" class="form-select form-select-sm border border-secondary">
                                             <option value="All"><?= __("All"); ?></option>
                                             <option value=""><?= __("Empty"); ?></option>
                                             <?php
@@ -359,25 +359,25 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->county->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="county"><?= __("County"); ?></label>
-                                        <input onclick="this.select()" type="text" name="county" id="county" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="county" id="county" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                     <div <?php if (($options->dok->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="dok"><?= __("DOK"); ?></label>
-                                        <input onclick="this.select()" type="text" name="dok" id="dok" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="dok" id="dok" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                     <div <?php if (($options->sota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="sota"><?= __("SOTA"); ?></label>
-                                        <input onclick="this.select()" type="text" name="sota" id="sota" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="sota" id="sota" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                     <div <?php if (($options->pota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="pota"><?= __("POTA"); ?></label>
-                                        <input onclick="this.select()" type="text" name="pota" id="pota" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="pota" id="pota" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
 								</div>
 								<div class="row">
                                     <div <?php if (($options->iota->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="iota"><?= __("IOTA"); ?></label>
-                                        <select class="form-select form-select-sm" id="iota" name="iota">
+                                        <select class="form-select form-select-sm border border-secondary" id="iota" name="iota">
                                             <option value="">-</option>
                                             <?php
                                             foreach ($iotaarray as $iota) {
@@ -389,19 +389,19 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->wwff->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="wwff"><?= __("WWFF"); ?></label>
-                                        <input onclick="this.select()" type="text" name="wwff" id="wwff" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="wwff" id="wwff" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                     <div <?php if (($options->operator->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="operator"><?= __("Operator"); ?></label>
-                                        <input onclick="this.select()" type="text" name="operator" id="operator" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="operator" id="operator" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                     <div <?php if (($options->contest->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="contest"><?= __("Contest"); ?></label>
-                                        <input onclick="this.select()" type="text" name="contest" id="contest" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="contest" id="contest" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                     <div <?php if (($options->continent->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="continent"><?= __("Continent"); ?></label>
-                                        <select id="continent" name="continent" class="form-select form-select-sm">
+                                        <select id="continent" name="continent" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="blank"><?= __("None/Empty"); ?></option>
                                             <option value="af"><?= __("Africa"); ?></option>
@@ -418,7 +418,7 @@ $options = json_decode($options);
 								<div class="row">
                                     <div <?php if (($options->comment->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label class="form-label" for="comment"><?= __("Comment"); ?></label>
-                                        <input onclick="this.select()" type="text" name="comment" id="comment" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="text" name="comment" id="comment" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                 </div>
                             </div>
@@ -435,7 +435,7 @@ $options = json_decode($options);
                                 <div class="row">
                                     <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="qslSent"><?= __("QSL sent"); ?></label>
-                                        <select id="qslSent" name="qslSent" class="form-select form-select-sm">
+                                        <select id="qslSent" name="qslSent" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -446,7 +446,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="qslReceived"><?= __("QSL received"); ?></label>
-                                        <select id="qslReceived" name="qslReceived" class="form-select form-select-sm">
+                                        <select id="qslReceived" name="qslReceived" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -457,7 +457,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="qslSentMethod"><?= __("QSL send. method"); ?></label>
-                                        <select id="qslSentMethod" name="qslSentMethod" class="form-select form-select-sm">
+                                        <select id="qslSentMethod" name="qslSentMethod" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="B"><?= __("Bureau"); ?></option>
                                             <option value="D"><?= __("Direct"); ?></option>
@@ -467,7 +467,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="qslReceivedMethod"><?= __("QSL recv. method"); ?></label>
-                                        <select id="qslReceivedMethod" name="qslReceivedMethod" class="form-select form-select-sm">
+                                        <select id="qslReceivedMethod" name="qslReceivedMethod" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="B"><?= __("Bureau"); ?></option>
                                             <option value="D"><?= __("Direct"); ?></option>
@@ -479,7 +479,7 @@ $options = json_decode($options);
                                 <div class="row">
                                     <div <?php if (($options->lotw->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="lotwSent"><?= __("LoTW sent"); ?></label>
-                                        <select id="lotwSent" name="lotwSent" class="form-select form-select-sm">
+                                        <select id="lotwSent" name="lotwSent" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -490,7 +490,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->lotw->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="lotwReceived"><?= __("LoTW received"); ?></label>
-                                        <select id="lotwReceived" name="lotwReceived" class="form-select form-select-sm">
+                                        <select id="lotwReceived" name="lotwReceived" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -502,7 +502,7 @@ $options = json_decode($options);
 
                                     <div <?php if (($options->clublog->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="clublogSent"><?= __("Clublog sent"); ?></label>
-                                        <select id="clublogSent" name="clublogSent" class="form-select form-select-sm">
+                                        <select id="clublogSent" name="clublogSent" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -513,7 +513,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->clublog->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="clublogReceived"><?= __("Clublog received"); ?></label>
-                                        <select id="clublogReceived" name="clublogReceived" class="form-select form-select-sm">
+                                        <select id="clublogReceived" name="clublogReceived" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -526,7 +526,7 @@ $options = json_decode($options);
                                 <div class="row">
                                     <div <?php if (($options->eqsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="eqslSent"><?= __("eQSL sent"); ?></label>
-                                        <select id="eqslSent" name="eqslSent" class="form-select form-select-sm">
+                                        <select id="eqslSent" name="eqslSent" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -537,7 +537,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->eqsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="eqslReceived"><?= __("eQSL received"); ?></label>
-                                        <select id="eqslReceived" name="eqslReceived" class="form-select form-select-sm">
+                                        <select id="eqslReceived" name="eqslReceived" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -548,7 +548,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->dcl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="dclSent"><?= __("DCL sent"); ?></label>
-                                        <select id="dclSent" name="dclSent" class="form-select form-select-sm">
+                                        <select id="dclSent" name="dclSent" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -557,7 +557,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->dcl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="dclReceived"><?= __("DCL received"); ?></label>
-                                        <select id="dclReceived" name="dclReceived" class="form-select form-select-sm">
+                                        <select id="dclReceived" name="dclReceived" class="form-select form-select-sm border border-secondary">
                                             <option value=""><?= __("All"); ?></option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
@@ -572,7 +572,7 @@ $options = json_decode($options);
                                     </div>
                                     <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="qslimages"><?= __("QSL Images"); ?></label>
-                                        <select class="form-select form-select-sm" id="qslimages" name="qslimages">
+                                        <select class="form-select form-select-sm border border-secondary" id="qslimages" name="qslimages">
                                             <option value="">-</option>
                                             <option value="Y"><?= __("Yes"); ?></option>
                                             <option value="N"><?= __("No"); ?></option>
