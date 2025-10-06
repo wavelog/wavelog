@@ -6,12 +6,19 @@ let silentReset = false;
 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('.dropdown').forEach(dd => {
-		dd.addEventListener('hide.bs.dropdown', function (e) {
-			if (e.clickEvent && e.clickEvent.target.closest('.dropdown-menu')) {
-				e.preventDefault(); // stop Bootstrap from closing
-			}
-		});
-	});
+    dd.addEventListener('hide.bs.dropdown', function (e) {
+      if (e.clickEvent && e.clickEvent.target.closest('.dropdown-menu')) {
+        e.preventDefault();
+      }
+    });
+
+    dd.querySelectorAll('.dropdown-action').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const dropdown = bootstrap.Dropdown.getInstance(dd.querySelector('[data-bs-toggle="dropdown"]'));
+        if (dropdown) dropdown.hide();
+      });
+    });
+  });
 });
 
 

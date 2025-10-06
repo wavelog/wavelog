@@ -596,46 +596,46 @@ $options = json_decode($options);
 								<div class="card-body p-2">
 									<div class="d-grid gap-2">
 										<?php if (($options->datetime->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchDate"><?= __("Search Date"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchDate"><?= __("Search Date"); ?></button>
 										<?php } ?>
 										<?php if (($options->dx->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchCallsign"><?= __("Search Callsign"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchCallsign"><?= __("Search Callsign"); ?></button>
 										<?php } ?>
 										<?php if (($options->dxcc->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchDxcc"><?= __("Search DXCC"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchDxcc"><?= __("Search DXCC"); ?></button>
 										<?php } ?>
 										<?php if (($options->state->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchState"><?= __("Search State"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchState"><?= __("Search State"); ?></button>
 										<?php } ?>
 										<?php if (($options->gridsquare->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchGridsquare"><?= __("Search Gridsquare"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchGridsquare"><?= __("Search Gridsquare"); ?></button>
 										<?php } ?>
 										<?php if (($options->cqzone->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchCqZone"><?= __("Search CQ Zone"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchCqZone"><?= __("Search CQ Zone"); ?></button>
 										<?php } ?>
 										<?php if (($options->ituzone->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchItuZone"><?= __("Search ITU Zone"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchItuZone"><?= __("Search ITU Zone"); ?></button>
 										<?php } ?>
 										<?php if (($options->mode->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchMode"><?= __("Search Mode"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchMode"><?= __("Search Mode"); ?></button>
 										<?php } ?>
 										<?php if (($options->band->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchBand"><?= __("Search Band"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchBand"><?= __("Search Band"); ?></button>
 										<?php } ?>
 										<?php if (($options->iota->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchIota"><?= __("Search IOTA"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchIota"><?= __("Search IOTA"); ?></button>
 										<?php } ?>
 										<?php if (($options->sota->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchSota"><?= __("Search SOTA"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchSota"><?= __("Search SOTA"); ?></button>
 										<?php } ?>
 										<?php if (($options->pota->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchPota"><?= __("Search POTA"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchPota"><?= __("Search POTA"); ?></button>
 										<?php } ?>
 										<?php if (($options->wwff->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchWwff"><?= __("Search WWFF"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchWwff"><?= __("Search WWFF"); ?></button>
 										<?php } ?>
 										<?php if (($options->operator->show ?? "true") == "true") { ?>
-											<button type="button" class="btn btn-sm btn-primary" id="searchOperator"><?= __("Search Operator"); ?></button>
+											<button type="button" class="btn btn-sm btn-primary dropdown-action" id="searchOperator"><?= __("Search Operator"); ?></button>
 										<?php } ?>
 									</div>
 								</div>
@@ -663,24 +663,24 @@ $options = json_decode($options);
 								</div>
 								<div class="card-body p-2">
 									<div class="d-grid gap-2">
-									<button type="button" class="btn btn-sm btn-primary" id="btnUpdateFromCallbook"><?= __("Update from Callbook"); ?></button>
-									<button type="button" class="btn btn-sm btn-primary" id="queueBureau"><?= __("Queue Bureau"); ?></button>
-									<button type="button" class="btn btn-sm btn-primary" id="queueDirect"><?= __("Queue Direct"); ?></button>
-									<button type="button" class="btn btn-sm btn-primary" id="queueElectronic"><?= __("Queue Electronic"); ?></button>
-									<button type="button" class="btn btn-sm btn-success" id="sentBureau"><?= __("Sent (Bureau)"); ?></button>
-									<button type="button" class="btn btn-sm btn-success" id="sentDirect"><?= __("Sent (Direct)"); ?></button>
-									<button type="button" class="btn btn-sm btn-success" id="sentElectronic"><?= __("Sent (Electronic)"); ?></button>
-									<button type="button" class="btn btn-sm btn-danger" id="dontSend"><?= __("Not Sent"); ?></button>
-									<button type="button" class="btn btn-sm btn-danger" id="notRequired"><?= __("QSL Not Required"); ?></button>
-									<button type="button" class="btn btn-sm btn-danger" id="notReceived"><?= __("Not Received"); ?></button>
-									<button type="button" class="btn btn-sm btn-warning" id="receivedBureau"><?= __("Received (Bureau)"); ?></button>
-									<button type="button" class="btn btn-sm btn-warning" id="receivedDirect"><?= __("Received (Direct)"); ?></button>
-									<button type="button" class="btn btn-sm btn-warning" id="receivedElectronic"><?= __("Received (Electronic)"); ?></button>
-									<button type="button" class="btn btn-sm btn-info" id="exportAdif"><?= __("Create ADIF"); ?></button>
-									<button type="button" class="btn btn-sm btn-info" id="printLabel"><?= __("Print Label"); ?></button>
-									<button type="button" class="btn btn-sm btn-info" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
-									<button type="button" class="btn btn-sm btn-success" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button>
-									<button type="button" class="btn btn-sm btn-success" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button>
+									<button type="button" class="btn btn-sm btn-primary dropdown-action" id="btnUpdateFromCallbook"><?= __("Update from Callbook"); ?></button>
+									<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueBureau"><?= __("Queue Bureau"); ?></button>
+									<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueDirect"><?= __("Queue Direct"); ?></button>
+									<button type="button" class="btn btn-sm btn-primary dropdown-action" id="queueElectronic"><?= __("Queue Electronic"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentBureau"><?= __("Sent (Bureau)"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentDirect"><?= __("Sent (Direct)"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="sentElectronic"><?= __("Sent (Electronic)"); ?></button>
+									<button type="button" class="btn btn-sm btn-danger dropdown-action" id="dontSend"><?= __("Not Sent"); ?></button>
+									<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notRequired"><?= __("QSL Not Required"); ?></button>
+									<button type="button" class="btn btn-sm btn-danger dropdown-action" id="notReceived"><?= __("Not Received"); ?></button>
+									<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedBureau"><?= __("Received (Bureau)"); ?></button>
+									<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedDirect"><?= __("Received (Direct)"); ?></button>
+									<button type="button" class="btn btn-sm btn-warning dropdown-action" id="receivedElectronic"><?= __("Received (Electronic)"); ?></button>
+									<button type="button" class="btn btn-sm btn-info dropdown-action" id="exportAdif"><?= __("Create ADIF"); ?></button>
+									<button type="button" class="btn btn-sm btn-info dropdown-action" id="printLabel"><?= __("Print Label"); ?></button>
+									<button type="button" class="btn btn-sm btn-info dropdown-action" id="qslSlideshow"><?= __("QSL Slideshow"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixCqZones"><?= __("Fix CQ Zones"); ?></button>
+									<button type="button" class="btn btn-sm btn-success dropdown-action" id="fixItuZones"><?= __("Fix ITU Zones"); ?></button>
 									</div>
 								</div>
 							</div>
