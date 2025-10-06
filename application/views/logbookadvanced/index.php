@@ -568,7 +568,7 @@ $options = json_decode($options);
                                 <div class="row">
                                     <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="qslvia"><?= __("QSL via"); ?></label>
-                                        <input onclick="this.select()" type="search" name="qslvia" class="form-control form-control-sm" value="*" placeholder="<?= __("Empty"); ?>">
+                                        <input onclick="this.select()" type="search" name="qslvia" class="form-control form-control-sm border border-secondary" value="*" placeholder="<?= __("Empty"); ?>">
                                     </div>
                                     <div <?php if (($options->qsl->show ?? "true") == "false") { echo 'style="display:none"'; } ?> class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                                         <label for="qslimages"><?= __("QSL Images"); ?></label>
