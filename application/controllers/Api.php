@@ -592,6 +592,17 @@ class API extends CI_Controller {
 
 	function radio() {
 		session_write_close();
+
+                if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { // Preflight CORS-Check: Allow posting from web-application as well (key is still needed!)
+                        header('Access-Control-Allow-Origin: *');
+                        header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+                        header('Access-Control-Allow-Headers: Content-Type');
+                        header('Access-Control-Max-Age: 86400');
+                        http_response_code(200);
+                        exit(0);
+                }
+                header('Access-Control-Allow-Origin: *'); // Allow posting from web-application as well (key is still needed!)
+
 		header('Content-type: application/json');
 
 		$this->load->model('api_model');
