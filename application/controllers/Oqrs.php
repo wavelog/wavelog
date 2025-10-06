@@ -371,58 +371,67 @@ class Oqrs extends CI_Controller {
 		echo json_encode(array('status' => 'success', 'message' => __("QSO match added successfully.")));
 	}
 	/**
-	 * Initializes the visitor's language and applies it immediately.
+	 * Initializes the visitor's language and applies it immediately if needed.
 	 *
-	 * This function checks for a language cookie. If not present, it detects the visitor's
-	 * browser language, sets a corresponding language cookie, and then performs a
-	 * redirect to the current URL. The redirect forces the browser to make a new
-	 * request with the new cookie, allowing the Gettext hook to apply the language
-	 * change on the initial visit.
+	 * This function detects the visitor's preferred browser language and compares it
+	 * with the language currently set in their cookie. If the preferred language is
+	 * supported by the application and is different from the current one, it sets
+	 * a new cookie using the application-specific 'folder' name and performs a 
+	 * one-time redirect to apply the change.
 	 *
 	 * @param string|null $public_slug The public slug from the URL.
 	 */
 	private function _initialize_visitor_language($public_slug = NULL) {
-		$cookie_name = $this->config->item('gettext_cookie', 'gettext');
-
-		if ($this->input->cookie($cookie_name, TRUE)) {
-			return;
-		}
-
 		if (empty($public_slug)) {
 			return;
 		}
 
+		// First, determine the best-matching supported language from the browser headers
+		$this->load->helper('language');
+		$available_languages = $this->config->item('languages');
+		$browser_languages = parse_accept_language($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '');
+		$detected_language_folder = null; // <--- 修正 #1: 变量名，使其更清晰
+
+		foreach ($browser_languages as $browser_lang_code => $priority) {
+			foreach ($available_languages as $app_lang) {
+				if (strcasecmp($browser_lang_code, $app_lang['locale']) === 0) {
+					$detected_language_folder = $app_lang['folder']; // <--- 修正 #2: 获取 'folder' 的值
+					break 2; // Found the best match, exit both loops
+				}
+			}
+		}
+
+		// If no supported language was detected in the browser, there's nothing to do.
+		if ($detected_language_folder === null) {
+			return;
+		}
+
+		// Now, check if a language switch is necessary
 		$this->load->model('publicsearch');
 		$this->load->model('user_options_model');
-
 		$user_id = $this->publicsearch->get_userid_for_slug($public_slug);
 
 		if ($user_id) {
+			// Check if the feature is enabled for this user
 			$lang_setting = $this->user_options_model->get_options('oqrs', array('option_name' => 'oqrs_use_visitor_browser_language', 'option_key' => 'boolean'), $user_id)->row();
-
+			
 			if (($lang_setting->option_value ?? 'on') == 'on') {
-				$this->load->helper('language');
-				$available_languages = $this->config->item('languages');
-				$browser_languages = parse_accept_language($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '');
+				$cookie_name = $this->config->item('gettext_cookie', 'gettext');
+				$current_cookie_value = $this->input->cookie($cookie_name, TRUE);
 
-				foreach ($browser_languages as $browser_lang_code => $priority) {
-					foreach ($available_languages as $app_lang) {
-						if (strcasecmp($browser_lang_code, $app_lang['locale']) === 0) {
-							
-							$cookie = array(
-								'name'   => $cookie_name,
-								'value'  => $app_lang['gettext'], 
-								'expire' => 3600 * 24 * 30, 
-								'secure' => FALSE,
-							);
-							$this->input->set_cookie($cookie);
+				// Only set cookie and redirect if the detected language is different from the current one
+				if ($detected_language_folder !== $current_cookie_value) {
+					$this->input->set_cookie(array(
+						'name'   => $cookie_name,
+						'value'  => $detected_language_folder, // <--- 修正 #3: 使用 'folder' 的值
+						'expire' => 3600 * 24 * 30,
+						'secure' => FALSE,
+					));
 
-							$this->load->helper('url'); 
-							redirect(current_url());    
-
-							exit;
-						}
-					}
+				// 	$this->load->helper('url');
+				// 	redirect(current_url());
+				echo '<script type="text/javascript">window.location.reload();</script>';
+					exit; // 立即停止脚本，防止输出页面其他内容
 				}
 			}
 		}
