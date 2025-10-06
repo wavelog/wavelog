@@ -380,7 +380,8 @@ class Oqrs extends CI_Controller {
 		$this->load->model('user_options_model');
 
 		if ($public_slug ?? '' != '') {
-			$user_id = $this->user_model->get_user_id_from_slug($public_slug);
+			$user = $this->user_model->get_by_slug($public_slug)->row();
+			$user_id = $user->user_id ?? null;
 
 			if ($user_id) {
 				$lang_setting = $this->user_options_model->get_options('oqrs', array('option_name' => 'oqrs_use_visitor_browser_language', 'option_key' => 'boolean'), $user_id)->row();
