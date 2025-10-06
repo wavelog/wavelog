@@ -688,7 +688,7 @@ $options = json_decode($options);
                     </div>
 				<?php } ?>
 				<label for="qsoResults" class="me-2" style="white-space: nowrap;"><?= __("# Results"); ?></label>
-				<select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
+				<select id="qsoResults" name="qsoresults" class="form-select form-select-sm w-auto me-2" style="height: calc(1.5em + .5rem + 2px) !important;">
 					<option value="250">250</option>
 					<option value="1000">1000</option>
 					<option value="2500">2500</option>
