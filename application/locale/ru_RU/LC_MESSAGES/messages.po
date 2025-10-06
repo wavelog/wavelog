@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-05 10:01+0000\n"
-"PO-Revision-Date: 2025-09-25 14:17+0000\n"
+"PO-Revision-Date: 2025-10-06 12:38+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1945,12 +1945,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Название заметки о контакте должно содержать только позывной, без префикса/"
+"суффикса. Предложено: %s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"Запись с этим позывным уже существует в ваших контактах. Пожалуйста, введите "
+"уникальный позывной."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -3323,6 +3327,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
+"QSO в %s: Вы пыталсь импортировать QSO без информации о диапазоне. Это QSO "
+"некорректно, импорт отклонён.imported. It's invalid"
 
 #: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3405,7 +3411,7 @@ msgstr "Направление"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Контакты"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3419,7 +3425,7 @@ msgstr "Антенны"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "В категории Контакты заголовки записей должны быть уникальными."
 
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
@@ -8307,6 +8313,8 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"Вам нужно обновить версию PHP. Минимальная версия — %s. Установленная версия "
+"— %s."
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -8364,6 +8372,8 @@ msgid ""
 "Don't loose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
 msgstr ""
+"Не прерывай свой марафон — у тебя уже было как минимум одно QSO в каждый из "
+"%s последних дней подряд."
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -9892,20 +9902,20 @@ msgstr "Информация о спутнике"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "Ошибка загрузки заметок"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "Сортировка"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "Дублирование отключено для заметок о контактах"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "Дубликат"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9914,23 +9924,23 @@ msgstr "Удалить заметку"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Дублировать заметку"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "Удалить эту заметку?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "Дублировать эту заметку?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Дублирование отключено"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "Заметки не найдены"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:513
@@ -11720,6 +11730,10 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Контакты представляют собой специальную категорию заметок, используемую в "
+"различных местах Wavelog для хранения информации о корреспондентах. Эти "
+"заметки являются частными и не передаются другим пользователям, а также не "
+"экспортируются во внешние сервисы."
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11731,27 +11745,27 @@ msgstr "Сохранить заметку"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "Все категории"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Поиск заметок (мин. 3 символа)"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
-msgstr ""
+msgstr "Сбросить поиск"
 
 #: application/views/notes/main.php:72
 msgid "Creation"
-msgstr ""
+msgstr "Создание"
 
 #: application/views/notes/main.php:73
 msgid "Last Modification"
-msgstr ""
+msgstr "Последнее изменение"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "Посмотреть заметку"
 
 #: application/views/operator/index.php:9
 msgid ""
