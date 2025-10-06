@@ -212,53 +212,6 @@ $options = json_decode($options);
                 <input type="hidden" id="dupes" name="dupes" value="">
 				<input type="hidden" id="invalid" name="invalid" value="">
 
-        <div class="quickfilterbody collapse">
-            <div class="mb-2 btn-group">
-                <span class="h6 me-1"><?= __("Quicksearch with selected: "); ?></span>
-				<?php if (($options->datetime->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchDate"><?= __("Search Date"); ?></button><?php
-                                                                                                                                    } ?>
-                <?php if (($options->dx->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchCallsign"><?= __("Search Callsign"); ?></button><?php
-                                                                                                                                    } ?>
-                <?php if (($options->dxcc->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchDxcc"><?= __("Search DXCC"); ?></button><?php
-                                                                                                                            } ?>
-                <?php if (($options->state->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchState"><?= __("Search State"); ?></button><?php
-                                                                                                                                } ?>
-                <?php if (($options->gridsquare->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchGridsquare"><?= __("Search Gridsquare"); ?></button><?php
-                                                                                                                                        } ?>
-                <?php if (($options->cqzone->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchCqZone"><?= __("Search CQ Zone"); ?></button><?php
-                                                                                                                                    } ?>
-                <?php if (($options->ituzone->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchItuZone"><?= __("Search ITU Zone"); ?></button><?php
-                                                                                                                                    } ?>
-                <?php if (($options->mode->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchMode"><?= __("Search Mode"); ?></button><?php
-                                                                                                                            } ?>
-                <?php if (($options->band->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchBand"><?= __("Search Band"); ?></button><?php
-                                                                                                                            } ?>
-                <?php if (($options->iota->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchIota"><?= __("Search IOTA"); ?></button><?php
-                                                                                                                            } ?>
-                <?php if (($options->sota->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchSota"><?= __("Search SOTA"); ?></button><?php
-                                                                                                                            } ?>
-                <?php if (($options->pota->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchPota"><?= __("Search POTA"); ?></button><?php
-                                                                                                                            } ?>
-                <?php if (($options->wwff->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchWwff"><?= __("Search WWFF"); ?></button><?php
-                                                                                                                            } ?>
-                <?php if (($options->operator->show ?? "true") == "true") { ?>
-                    <button type="button" class="btn btn-sm btn-primary me-1" id="searchOperator"><?= __("Search Operator"); ?></button><?php
-                                                                                                                                    } ?>
-            </div>
-        </div>
         <div class="row pt-2">
 			<div class="d-flex flex-wrap btn-group w-auto mx-auto">
 
