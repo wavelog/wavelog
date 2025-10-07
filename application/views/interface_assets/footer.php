@@ -68,6 +68,9 @@
     var lang_notes_duplicate_confirmation = "<?= __("Duplicate this note?"); ?>";
     var lang_notes_duplication_disabled_short = "<?= __("Duplication Disabled"); ?>";
     var lang_notes_not_found = "<?= __("No notes were found"); ?>";
+	var lang_qso_note_add = "<?= __("Add note for this callsign"); ?>";
+	var lang_qso_note_edit = "<?= __("Edit note for this callsign"); ?>";
+	var lang_qso_note_no_callsign = "<?= __("No callsign selected"); ?>";
 
 </script>
 
