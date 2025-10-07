@@ -412,6 +412,8 @@ class Clublog_model extends CI_Model
 
 		if (preg_match('/\bOK\b/', $response)) {
 			$returner['status'] = 'OK';
+		} elseif (preg_match('/\bDupe\b/', $response)) {
+			$returner['status'] = 'OK';
 		} elseif (preg_match('/\bUpdated QSO\b/', $response)) {
 			$returner['status'] = 'OK';
 		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
