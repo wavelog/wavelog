@@ -169,11 +169,8 @@ class Note extends CI_Model {
 			$this->load->library('callbook'); // Used for callsign parsing
 			$check_title = strtoupper($this->callbook->get_plaincall($title));
 		}
-		$query = $this->db->get_where('notes', [
-			'cat' => $category,
-			'user_id' => $user_id,
-			'title' => $check_title
-		]);
+		$sql = "SELECT id FROM notes WHERE cat = ? AND user_id = ? AND title = ? LIMIT 1";
+		$query = $this->db->query($sql, array($category, $user_id, $check_title));
 		if ($query->num_rows() > 0) {
 			return $query->row()->id;
 		}
