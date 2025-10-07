@@ -48,7 +48,7 @@ class Clublog_model extends CI_Model
 						if ($data['qsos']->num_rows() == 1) {	// exactly ONE QSO --> use their realtime.api as demanded by clublog
 							$singlepush=$this->push_qso_to_clublog($clean_username, $clean_password, $station_row->station_callsign, $string, $station_id);
 							if ($singlepush['status'] == 'OK') {
-									$this->mark_qsos_sent($station_row->station_id);
+								$this->mark_qsos_sent($station_row->station_id);
 							} else {
 								log_message("Error", "Singlepush for ".$station_row->station_id." / ".$station_row->station_callsign." faied: ".$singlepush['status']);
 							}
@@ -111,6 +111,10 @@ class Clublog_model extends CI_Model
 									$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed, clublog tells backlog there. Skipping whole account for this cycle. Detailled reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
 									unlink('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
 									break;
+								} else if (preg_match('/No QSOs to upload//', $response)) {	// Means: Already uploaded (but not marked) - perhaps different logtool, who knows.
+									$this->mark_qsos_sent($station_row->station_id);
+									$return =  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
+									log_message('info', 'Clublog No QSOs to upload for ' . $station_row->station_callsign . '. preventive marked.');
 								} else if (preg_match('/checksum duplicate/', $response)) {	// Be safe, if Michael rolls back to 403 on duplicate
 									$return =  "QSOs uploaded (as duplicate!) and Logbook QSOs marked as sent to Clublog";
 									$this->mark_qsos_sent($station_row->station_id);
@@ -406,6 +410,8 @@ class Clublog_model extends CI_Model
 		curl_close($request);
 
 		if (preg_match('/\bOK\b/', $response)) {
+			$returner['status'] = 'OK';
+		} elseif (preg_match('/\bUpdated QSO\b/', $response)) {
 			$returner['status'] = 'OK';
 		} elseif (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
 			log_message("Error","Clublog deactivated for ".$cl_username." because of wrong creds at Realtime-Pusher");
