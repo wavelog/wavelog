@@ -113,7 +113,7 @@ class Clublog_model extends CI_Model
 									log_message('Error', 'Clublog upload for ' . $station_row->station_callsign . ' has become a victim of clublog-Backlog. Skipping full User for this cycle.');
 									unlink('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
 									break;
-								} else if (preg_match('/No QSOs to upload//', $response)) {	// Means: Already uploaded (but not marked) - perhaps different logtool, who knows.
+								} else if (preg_match('/No QSOs to upload/', $response)) {	// Means: Already uploaded (but not marked) - perhaps different logtool, who knows.
 									$this->mark_qsos_sent($station_row->station_id);
 									$return =  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
 									log_message('info', 'Clublog No QSOs to upload for ' . $station_row->station_callsign . '. preventive marked.');
