@@ -46,7 +46,12 @@ class Clublog_model extends CI_Model
 						$string = $this->load->view('adif/data/clublog', $data, TRUE);
 
 						if ($data['qsos']->num_rows() == 1) {	// exactly ONE QSO --> use their realtime.api as demanded by clublog
-							push_qso_to_clublog($clean_username, $clean_password, $station_row->station_callsign, $string, $station_id);
+							$singlepush=push_qso_to_clublog($clean_username, $clean_password, $station_row->station_callsign, $string, $station_id);
+							if ($singlepush['status'] == 'OK') {
+									$this->mark_qsos_sent($station_row->station_id);
+							} else {
+								log_message("Error", "Singlepush for ".$station_row->station_id." / ".$station_row->station_callsign." faied: ".$singlepush['status']);
+							}
 						} else {
 							$ranid = uniqid();
 							if (!write_file('uploads/clublog' . $ranid . $station_row->station_id . '.adi', $string)) {
