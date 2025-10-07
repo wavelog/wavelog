@@ -188,10 +188,16 @@ class Clublog_model extends CI_Model
 				curl_setopt($request, CURLOPT_TIMEOUT, 10);
 				$response = curl_exec($request);
 				$info = curl_getinfo($request);
+                                $c_err=curl_errno($request);
+                                $c_err_string=curl_error($request);
 				curl_close($request);
 
-				if (curl_errno($request)) {
-					$log = curl_error($request)."<br>";
+				if ($c_err) {
+					$log = $c_err_string."<br>";
+					log_message("Error",$c_errstring."/".$c_err);
+					if ($c_err == 7) { // We're victim of the Clublog Firewall
+                                                return 'Impossible to reach Clublog';
+                                        }
 				} elseif (preg_match_all('/Login rejected/', $response)) {
 					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
 					$log = "Wrong Clublog username and password for Callsign: '" . $station_row->station_callsign . "'. 'LOGIN REJECTED'.";
