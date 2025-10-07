@@ -18,7 +18,7 @@ class Clublog_model extends CI_Model
 
 	function uploadUser($userid, $username, $password, $station_id = null) {
 		$clean_username = $this->security->xss_clean($username);
-		$clean_passord = $this->security->xss_clean($password);
+		$clean_password = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$return = "No QSOs to upload";
@@ -45,88 +45,95 @@ class Clublog_model extends CI_Model
 					if ($data['qsos']->num_rows()) {
 						$string = $this->load->view('adif/data/clublog', $data, TRUE);
 
-						$ranid = uniqid();
-
-						if (!write_file('uploads/clublog' . $ranid . $station_row->station_id . '.adi', $string)) {
-							$return = 'Unable to write the file - Make the folder Upload folder has write permissions.';
+						if ($data['qsos']->num_rows() == 1) {	// exactly ONE QSO --> use their realtime.api as demanded by clublog
+							push_qso_to_clublog($clean_username, $clean_password, $station_row->station_callsign, $string, $station_id);
 						} else {
-
-							// initialise the curl request
-							$request = curl_init('https://clublog.org/putlogs.php');
-							$filepath = realpath('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
-
-							// Check if the file actually exists
-							if (!file_exists($filepath)) {
-								$return .=  " Clublog upload for " . $station_row->station_callsign . ' failed. Upload file could not be created.';
-								log_message('error', $return);
-								return $return . "\n";
-							}
-
-							if (function_exists('curl_file_create')) { // php 5.5+
-								$cFile = curl_file_create($filepath);
+							$ranid = uniqid();
+							if (!write_file('uploads/clublog' . $ranid . $station_row->station_id . '.adi', $string)) {
+								$return = 'Unable to write the file - Make the folder Upload folder has write permissions.';
 							} else {
-								$cFile = '@' . $filepath;
-							}
-							$cFile->setPostFilename(basename($filepath));
 
-							// send a file
-							curl_setopt($request, CURLOPT_POST, true);
-							curl_setopt($request, CURLOPT_TIMEOUT, 10);
-							curl_setopt(
-								$request,
-								CURLOPT_POSTFIELDS,
-								array(
-									'email' => $clean_username,
-									'password' => $clean_passord,
-									'callsign' => $station_row->station_callsign,
-									'api' => $this->clublog_identifier,
-									'file' => $cFile
+								// initialise the curl request
+								$request = curl_init('https://clublog.org/putlogs.php');
+								$filepath = realpath('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
+
+								// Check if the file actually exists
+								if (!file_exists($filepath)) {
+									$return .=  " Clublog upload for " . $station_row->station_callsign . ' failed. Upload file could not be created.';
+									log_message('error', $return);
+									return $return . "\n";
+								}
+
+								if (function_exists('curl_file_create')) { // php 5.5+
+									$cFile = curl_file_create($filepath);
+								} else {
+									$cFile = '@' . $filepath;
+								}
+								$cFile->setPostFilename(basename($filepath));
+
+								// send a file
+								curl_setopt($request, CURLOPT_POST, true);
+								curl_setopt($request, CURLOPT_TIMEOUT, 10);
+								curl_setopt(
+									$request,
+									CURLOPT_POSTFIELDS,
+									array(
+										'email' => $clean_username,
+										'password' => $clean_password,
+										'callsign' => $station_row->station_callsign,
+										'api' => $this->clublog_identifier,
+										'file' => $cFile
 									)
 								);
 
-							// output the response
-							curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-							$response = curl_exec($request);
-							$info = curl_getinfo($request);
-							$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
-							if (curl_errno($request)) {
-								$return =  curl_error($request);
-							}
-							curl_close($request);
-
-							// If Clublog Accepts mark the QSOs
-							if (($httpcode == 200) || (preg_match('/\baccepted\b/', $response))) {
-								$return =  "QSOs uploaded and Logbook QSOs marked as sent to Clublog.";
-								$this->mark_qsos_sent($station_row->station_id);
-								$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
-								log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
-							} else if (preg_match('/checksum duplicate/', $response)) {	// Be safe, if Michael rolls back to 403 on duplicate
-								$return =  "QSOs uploaded (as duplicate!) and Logbook QSOs marked as sent to Clublog";
-								$this->mark_qsos_sent($station_row->station_id);
-								$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
-								log_message('info', 'Clublog DUPLICATE upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
-							} else {
-								$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
-								log_message('error', $return);
-								if (substr($response,0,13) == 'Upload denied') {	// Deactivate Upload for Station if Clublog rejects it due to non-configured Call (prevent being blacklisted at Clublog)
-									log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to non-configured Call (prevent being blacklisted at Clublog.');
-									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-									$this->db->query($sql,$station_row->station_id);
-								} else if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
-									log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to wrong credentials (prevent being blacklisted at Clublog.');
-									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-									$this->db->query($sql,$station_row->station_id);
-								} else if ($httpcode == 403) {
-									log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to 403 (prevent being blacklisted at Clublog.');
-									$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
-									$this->db->query($sql,$station_row->station_id);
-								} else {
-									log_message('error', 'Some uncaught exception for station ' . $station_row->station_callsign);
+								// output the response
+								curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+								$response = curl_exec($request);
+								$info = curl_getinfo($request);
+								$httpcode = curl_getinfo($request, CURLINFO_HTTP_CODE);
+								if (curl_errno($request)) {
+									$return =  curl_error($request);
 								}
-							}
+								curl_close($request);
 
-							// Delete the ADIF file used for clublog
-							unlink('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
+								// If Clublog Accepts mark the QSOs
+								if (($httpcode == 200) || (preg_match('/\baccepted\b/', $response))) {
+									$return =  "QSOs uploaded and Logbook QSOs marked as sent to Clublog.";
+									$this->mark_qsos_sent($station_row->station_id);
+									$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
+									log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
+								} else if (preg_match('/too many uploads already queued/', $response)) {	// New Error, Clublog has Backlog, skip for NOW
+									$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed, clublog tells backlog there. Skipping whole account for this cycle. Detailled reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
+									unlink('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
+									break;
+								} else if (preg_match('/checksum duplicate/', $response)) {	// Be safe, if Michael rolls back to 403 on duplicate
+									$return =  "QSOs uploaded (as duplicate!) and Logbook QSOs marked as sent to Clublog";
+									$this->mark_qsos_sent($station_row->station_id);
+									$return .=  " Clublog upload for " . $station_row->station_callsign . ' successfully sent.';
+									log_message('info', 'Clublog DUPLICATE upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
+								} else {
+									$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
+									log_message('error', $return);
+									if (substr($response,0,13) == 'Upload denied') {	// Deactivate Upload for Station if Clublog rejects it due to non-configured Call (prevent being blacklisted at Clublog)
+										log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to non-configured Call (prevent being blacklisted at Clublog.');
+										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+										$this->db->query($sql,$station_row->station_id);
+									} else if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
+										log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to wrong credentials (prevent being blacklisted at Clublog.');
+										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+										$this->db->query($sql,$station_row->station_id);
+									} else if ($httpcode == 403) {
+										log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to 403 (prevent being blacklisted at Clublog.');
+										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+										$this->db->query($sql,$station_row->station_id);
+									} else {
+										log_message('error', 'Some uncaught exception for station ' . $station_row->station_callsign);
+									}
+								}
+
+								// Delete the ADIF file used for clublog
+								unlink('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
+							}
 						}
 					} else {
 						$return =  "Nothing awaiting upload to clublog for " . $station_row->station_callsign;
