@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-05 10:01+0000\n"
+"POT-Creation-Date: 2025-10-07 06:42+0000\n"
 "PO-Revision-Date: 2025-10-03 19:48+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -120,11 +120,11 @@ msgstr ""
 #: application/controllers/Update.php:355 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
-#: application/controllers/User.php:375 application/controllers/User.php:376
-#: application/controllers/User.php:1004 application/controllers/User.php:1023
-#: application/controllers/User.php:1255 application/controllers/User.php:1397
-#: application/controllers/User.php:1615 application/controllers/User.php:1631
-#: application/controllers/User.php:1657
+#: application/controllers/User.php:376 application/controllers/User.php:377
+#: application/controllers/User.php:1007 application/controllers/User.php:1026
+#: application/controllers/User.php:1258 application/controllers/User.php:1400
+#: application/controllers/User.php:1618 application/controllers/User.php:1634
+#: application/controllers/User.php:1660
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
@@ -2482,7 +2482,7 @@ msgid "Duplicate Station Location:"
 msgstr "Duplicaat stationslocatie:"
 
 #: application/controllers/Station.php:221
-#: application/controllers/User.php:1278 application/controllers/User.php:1528
+#: application/controllers/User.php:1281 application/controllers/User.php:1531
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Controleer de waarde voor locatorvak (%s)"
@@ -2833,49 +2833,49 @@ msgstr "Gebruiker niet gevonden!"
 msgid "Invalid Parameter!"
 msgstr "Ongeldige parameter!"
 
-#: application/controllers/User.php:192
+#: application/controllers/User.php:193
 #: application/views/club/permissions.php:155
 msgid "Add User"
 msgstr "Gebruiker toevoegen"
 
-#: application/controllers/User.php:313
+#: application/controllers/User.php:314
 #, php-format
 msgid "Username %s already in use!"
 msgstr "Gebruikersnaam %s is al in gebruik!"
 
-#: application/controllers/User.php:316
+#: application/controllers/User.php:317
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "E-mail %s is al in gebruik!"
 
-#: application/controllers/User.php:319
+#: application/controllers/User.php:320
 msgid "Invalid Password!"
 msgstr "Ongeldig wachtwoord!"
 
-#: application/controllers/User.php:323
+#: application/controllers/User.php:324
 #, php-format
 msgid "User %s added!"
 msgstr "Gebruiker %s toegevoegd!"
 
-#: application/controllers/User.php:327
+#: application/controllers/User.php:328
 msgid "Users"
 msgstr "Gebruikers"
 
-#: application/controllers/User.php:422
+#: application/controllers/User.php:425
 #: application/views/club/permissions.php:253
 msgid "Edit User"
 msgstr "Gebruiker bewerken"
 
-#: application/controllers/User.php:939 application/controllers/User.php:942
+#: application/controllers/User.php:942 application/controllers/User.php:945
 #, php-format
 msgid "User %s edited"
 msgstr "Gebruiker %s bewerkt"
 
-#: application/controllers/User.php:1007
+#: application/controllers/User.php:1010
 msgid "Profile"
 msgstr "Profiel"
 
-#: application/controllers/User.php:1072
+#: application/controllers/User.php:1075
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -2883,29 +2883,29 @@ msgstr ""
 "Gefeliciteerd! Wavelog is succesvol geïnstalleerd. Je kunt nu voor de eerste "
 "keer inloggen."
 
-#: application/controllers/User.php:1111
+#: application/controllers/User.php:1114
 msgid "This is not allowed!"
 msgstr "Dit is niet toegestaan!"
 
-#: application/controllers/User.php:1148 application/controllers/User.php:1161
+#: application/controllers/User.php:1151 application/controllers/User.php:1164
 msgid "Login failed. Try again."
 msgstr "Inloggen mislukt. Probeer het opnieuw."
 
-#: application/controllers/User.php:1169
+#: application/controllers/User.php:1172
 #: application/views/interface_assets/header.php:392
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Inloggen"
 
-#: application/controllers/User.php:1207
+#: application/controllers/User.php:1210
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "Je kunt niet direct inloggen op een clubstation. Gebruik in plaats daarvan "
 "je persoonlijke account."
 
-#: application/controllers/User.php:1210
+#: application/controllers/User.php:1213
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -2913,7 +2913,7 @@ msgstr ""
 "Je account is vergrendeld vanwege te veel mislukte inlogpogingen. Reset je "
 "wachtwoord."
 
-#: application/controllers/User.php:1214
+#: application/controllers/User.php:1217
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2923,22 +2923,22 @@ msgstr ""
 "onverwacht verschijnt of blijft verschijnen, neem dan contact op met een "
 "beheerder. Alleen beheerders mogen momenteel inloggen."
 
-#: application/controllers/User.php:1217
+#: application/controllers/User.php:1220
 msgid "Incorrect username or password!"
 msgstr "Onjuiste gebruikersnaam of wachtwoord!"
 
-#: application/controllers/User.php:1242
+#: application/controllers/User.php:1245
 #, php-format
 msgid "User %s logged out."
 msgstr "Gebruiker %s heeft zich afgemeld."
 
-#: application/controllers/User.php:1258
+#: application/controllers/User.php:1261
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "Stationsnaam"
 
-#: application/controllers/User.php:1259 application/views/debug/index.php:594
+#: application/controllers/User.php:1262 application/views/debug/index.php:594
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:61
 #: application/views/station_profile/edit.php:77
@@ -2948,27 +2948,27 @@ msgstr "Stationsnaam"
 msgid "Station Callsign"
 msgstr "Stationsroepnaam"
 
-#: application/controllers/User.php:1260
+#: application/controllers/User.php:1263
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "Station DXCC"
 
-#: application/controllers/User.php:1261
+#: application/controllers/User.php:1264
 msgid "Station CQ Zone"
 msgstr "Station CQ Zone"
 
-#: application/controllers/User.php:1262
+#: application/controllers/User.php:1265
 msgid "Station ITU Zone"
 msgstr "Station ITU Zone"
 
-#: application/controllers/User.php:1263
+#: application/controllers/User.php:1266
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr "Station Locator"
 
-#: application/controllers/User.php:1286
+#: application/controllers/User.php:1289
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2977,35 +2977,35 @@ msgstr ""
 "Station succesvol aangemaakt! Welkom bij Wavelog! Om je station in te "
 "stellen, klik %shier%s."
 
-#: application/controllers/User.php:1289
+#: application/controllers/User.php:1292
 msgid "Station setup failed! Please set up your station manually."
 msgstr "Station installatie mislukt! Stel je station handmatig in."
 
-#: application/controllers/User.php:1306
+#: application/controllers/User.php:1309
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Wachtwoord resetten is uitgeschakeld in de demo!"
 
-#: application/controllers/User.php:1320
+#: application/controllers/User.php:1323
 msgid "Forgot Password"
 msgstr "Wachtwoord vergeten"
 
-#: application/controllers/User.php:1371
+#: application/controllers/User.php:1374
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "E-mailinstellingen zijn onjuist."
 
-#: application/controllers/User.php:1375 application/controllers/User.php:1380
+#: application/controllers/User.php:1378 application/controllers/User.php:1383
 msgid "Password Reset Processed."
 msgstr "Wachtwoordreset verwerkt."
 
-#: application/controllers/User.php:1481
+#: application/controllers/User.php:1484
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Wachtwoord opnieuw instellen"
 
-#: application/controllers/User.php:1502
+#: application/controllers/User.php:1505
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -3013,7 +3013,7 @@ msgstr ""
 "Kon het account niet instellen op deze gebruikersnaam. Probeer een andere "
 "dan \"%s\"."
 
-#: application/controllers/User.php:1511
+#: application/controllers/User.php:1514
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -3021,7 +3021,7 @@ msgstr ""
 "Kon het account niet instellen op dit e-mailadres. Probeer een ander adres "
 "dan \"%s\"."
 
-#: application/controllers/User.php:1550
+#: application/controllers/User.php:1553
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3030,7 +3030,7 @@ msgstr ""
 "Je kunt momenteel geen andere gebruiker imiteren. Je moet %s instellen op %s "
 "in je config.php!"
 
-#: application/controllers/User.php:1564
+#: application/controllers/User.php:1567
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -3039,15 +3039,15 @@ msgstr ""
 "Je kunt momenteel geen andere gebruiker imiteren. Verander eerst de "
 "encryption_key in je config.php-bestand!"
 
-#: application/controllers/User.php:1571
+#: application/controllers/User.php:1574
 msgid "Invalid Hash"
 msgstr "Ongeldige hash"
 
-#: application/controllers/User.php:1584
+#: application/controllers/User.php:1587
 msgid "The impersonation hash is too old. Please try again."
 msgstr "De nabootsingshash is te oud. Probeer het opnieuw."
 
-#: application/controllers/User.php:1591
+#: application/controllers/User.php:1594
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -3055,15 +3055,15 @@ msgstr ""
 "Je kunt je niet voordoen als een andere gebruiker terwijl je niet bent "
 "ingelogd als de brongebruiker"
 
-#: application/controllers/User.php:1597
+#: application/controllers/User.php:1600
 msgid "There was a problem with your session. Please try again."
 msgstr "Er was een probleem met je sessie. Probeer het opnieuw."
 
-#: application/controllers/User.php:1604
+#: application/controllers/User.php:1607
 msgid "The requested user to impersonate does not exist"
 msgstr "De gevraagde gebruiker om te imiteren bestaat niet"
 
-#: application/controllers/User.php:1625
+#: application/controllers/User.php:1628
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -3071,13 +3071,13 @@ msgstr ""
 "Kon het juiste machtigingsniveau voor het clubstation niet bepalen. Probeer "
 "het opnieuw na opnieuw inloggen."
 
-#: application/controllers/User.php:1670 application/controllers/User.php:1682
-#: application/controllers/User.php:1688 application/controllers/User.php:1697
-#: application/controllers/User.php:1705
+#: application/controllers/User.php:1673 application/controllers/User.php:1685
+#: application/controllers/User.php:1691 application/controllers/User.php:1700
+#: application/controllers/User.php:1708
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Oeps.. Er is iets misgegaan. Probeer opnieuw in te loggen."
 
-#: application/controllers/User.php:1711
+#: application/controllers/User.php:1714
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -3085,7 +3085,7 @@ msgstr ""
 "De mogelijkheid om snel terug te keren is uitgeschakeld nadat de "
 "beveiligingshash is verlopen. Log alstublieft opnieuw in."
 
-#: application/controllers/User.php:1727
+#: application/controllers/User.php:1730
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -15569,8 +15569,8 @@ msgid "Club Log"
 msgstr "Club Log"
 
 #: application/views/user/edit.php:905
-msgid "Club Log Email/Callsign"
-msgstr "Club Log E-mail/roepnaam"
+msgid "Club Log Email"
+msgstr ""
 
 #: application/views/user/edit.php:911
 msgid "Club Log Password"
@@ -16421,6 +16421,9 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#~ msgid "Club Log Email/Callsign"
+#~ msgstr "Club Log E-mail/roepnaam"
 
 #~ msgid ""
 #~ "You don't currently have any notes, these are a fantastic way of storing "
