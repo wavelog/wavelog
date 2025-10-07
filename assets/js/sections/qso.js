@@ -73,6 +73,15 @@ function getUTCDateStamp(el) {
 	$(el).attr('value', formatted_date);
 }
 
+// Note icon state logic
+function setNoteIconState(enabled) {
+	var $icon = $('#note_create_edit');
+	if (enabled) {
+		$icon.removeClass('text-secondary');
+	} else {
+		$icon.addClass('text-secondary');
+	}
+}
 
 $('#stationProfile').on('change', function () {
 	var stationProfile = $('#stationProfile').val();
@@ -399,7 +408,7 @@ function parseUserDate(user_provided_date) {	// creates JS-Date out of user-prov
 			month = parseInt(parts[1], 10) - 1;
 			year = parseInt(parts[2], 10);
 	}
-	if (isNaN(day) || day < 1 || day > 31 || isNaN(month) || month < 0 || month > 11 || isNaN(year)) return null; 
+	if (isNaN(day) || day < 1 || day > 31 || isNaN(month) || month < 0 || month > 11 || isNaN(year)) return null;
 	return new Date(year, month, day);
 }
 
@@ -891,6 +900,7 @@ function reset_fields() {
 	clearTimeout();
 	set_timers();
 	resetTimers(qso_manual);
+	setNoteIconState(false); // Always gray out note icon on reset
 }
 
 $("#callsign").on("focusout", function () {
@@ -920,6 +930,25 @@ $("#callsign").on("focusout", function () {
 		find_callsign = find_callsign.replace(/\//g, "-");
 		find_callsign = find_callsign.replaceAll('Ø', '0');
 		const url = `${base_url}index.php/logbook/json/${find_callsign}/${json_band}/${json_mode}/${stationProfile}/${startDate}/${last_qsos_count}`;
+
+		// Check note existence for this callsign
+		$.get(
+			window.base_url + 'index.php/notes/check_duplicate',
+			{
+				category: 'Contacts',
+				title: callsign
+			},
+			function(data) {
+				if (typeof data === 'string') {
+					try { data = JSON.parse(data); } catch (e) { data = {}; }
+				}
+				if (data && data.exists === true) {
+					setNoteIconState(true);
+				} else {
+					setNoteIconState(false);
+				}
+			}
+		);
 
 		// Replace / in a callsign with - to stop urls breaking
 		lookupCall = $.getJSON(url, async function (result) {
@@ -2173,6 +2202,8 @@ $(document).ready(function () {
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 
+	setNoteIconState(false); /// Grey-out note icon
+
 	// Clear the localStorage for the qrg units, except the quicklogCallsign and a possible backlog
 	clearQrgUnits();
 	set_qrg();
@@ -2399,6 +2430,39 @@ $(document).ready(function () {
 			set_qrg();
 		});
 	}
+
+	// Note create/edit icon click handler
+	$('#note_create_edit').on('click', function() {
+		var callsign = $('#callsign').val().trim();
+		if (!callsign) {
+			alert('Please enter a callsign first.');
+			return;
+		}
+		// AJAX to check if note exists for this callsign in Contacts category
+		$.get(
+			window.base_url + 'index.php/notes/check_duplicate',
+			{
+				category: 'Contacts',
+				title: callsign
+			},
+			function(data) {
+				// Defensive: try to parse if string
+				if (typeof data === 'string') {
+					try { data = JSON.parse(data); } catch (e) { data = {}; }
+				}
+				if (data && data.exists === true && data.id) {
+					window.open(window.base_url + 'index.php/notes/edit/' + data.id, '_blank');
+				} else if (data && data.exists === false) {
+					// Open add with prefilled title and Contacts category
+					var url = window.base_url + 'index.php/notes/add?title=' + encodeURIComponent(callsign) + '&category=Contacts';
+					window.open(url, '_blank');
+				} else {
+					// Unexpected response, show error
+					alert('Could not check note existence. Please try again.');
+				}
+			}
+		);
+	});
 
 	// everything loaded and ready 2 go
 	bc.postMessage('ready');

@@ -2,7 +2,6 @@
 
 // Notes controller: handles all note actions, with security and input validation
 class Notes extends CI_Controller {
-    // API endpoint: check for duplicate note title in category for user
     // Ensure only authorized users can access Notes controller
     function __construct() {
         parent::__construct();
@@ -41,19 +40,34 @@ class Notes extends CI_Controller {
     function add() {
         $this->load->model('note');
         $this->load->library('form_validation');
-		$this->load->library('callbook'); // Used for callsign parsing
+        $this->load->library('callbook'); // Used for callsign parsing
+
+        // Support prefilled title/category from query string
+        $prefill_title = $this->input->get('title', TRUE);
+        $prefill_category = $this->input->get('category', TRUE);
 
         $suggested_title = null;
         // Validate form fields
         $this->form_validation->set_rules('title', 'Note Title', 'required|callback_contacts_title_unique'); // Custom callback for Contacts category
         $this->form_validation->set_rules('content', 'Content', 'required');
         if ($this->form_validation->run() == FALSE) {
+            // Use POST if available, otherwise use prefill from query string
             $category = $this->input->post('category', TRUE);
-            if ($category === 'Contacts') {
-
-                $suggested_title = strtoupper($this->callbook->get_plaincall($this->input->post('title', TRUE)));
+            if (empty($category) && !empty($prefill_category)) {
+                $category = $prefill_category;
             }
+            if ($category === 'Contacts') {
+                $title_input = $this->input->post('title', TRUE);
+                if (empty($title_input) && !empty($prefill_title)) {
+                    $title_input = $prefill_title;
+                }
+                $suggested_title = strtoupper($this->callbook->get_plaincall($title_input));
+            }
+            // Pass prefill values to view
             $data['suggested_title'] = $suggested_title;
+            $data['prefill_title'] = $prefill_title;
+            $data['prefill_category'] = $prefill_category;
+            $data['category'] = $category;
             $data['page_title'] = __("Add Notes");
             $this->load->view('interface_assets/header', $data);
             $this->load->view('notes/add');
@@ -241,26 +255,36 @@ class Notes extends CI_Controller {
         $id = $this->input->get('id', TRUE); // Optional, for edit
         $check_title = $title;
         if ($category === 'Contacts') {
-            $check_title = strtoupper($title);
+            $this->load->library('callbook');
+            $check_title = strtoupper($this->callbook->get_plaincall($title));
         }
         $where = [
-            'category' => $category,
+            'cat' => $category,
             'user_id' => $user_id,
             'title' => $check_title
         ];
         $query = $this->db->get_where('notes', $where);
-        $duplicate = false;
+        $exists = false;
+        $note_id = null;
         if ($id) {
             foreach ($query->result() as $note) {
                 if ($note->id != $id) {
-                    $duplicate = true;
+                    $exists = true;
+                    $note_id = $note->id;
                     break;
                 }
             }
         } else {
-            $duplicate = $query->num_rows() > 0;
+            if ($query->num_rows() > 0) {
+                $exists = true;
+                $note_id = $query->row()->id;
+            }
         }
-        $this->output->set_content_type('application/json')->set_output(json_encode(['duplicate' => $duplicate]));
+        $response = ['exists' => $exists];
+        if ($exists && $note_id) {
+            $response['id'] = $note_id;
+        }
+        $this->output->set_content_type('application/json')->set_output(json_encode($response));
     }
 
     // Form validation callback for add: unique Contacts note title for user, only core callsign
