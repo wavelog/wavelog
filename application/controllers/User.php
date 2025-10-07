@@ -153,6 +153,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_name', 'Username', 'required');
 		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
+		$this->form_validation->set_rules('user_clublog_name', 'Clublog Username', 'valid_email');
 		$this->form_validation->set_rules('user_password', 'Password', 'required');
 		$this->form_validation->set_rules('user_type', 'Type', 'required');
 		$this->form_validation->set_rules('user_callsign', 'Callsign', 'required');
@@ -386,6 +387,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_name', 'Username', 'required|xss_clean');
 		$this->form_validation->set_rules('user_name', 'Username', 'required|callback_check_username');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required|xss_clean');
+		$this->form_validation->set_rules('user_clublog_name', 'Clublog Username', 'valid_email');
 		if($this->session->userdata('user_type') == 99)
 		{
 			$this->form_validation->set_rules('user_type', 'Type', 'required|xss_clean');
@@ -396,6 +398,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('user_locator', 'Locator', 'callback_check_locator');
 		$this->form_validation->set_rules('user_email', 'EMail', 'required|callback_check_email');
 		$this->form_validation->set_rules('user_email', 'EMail', 'required|valid_email');
+		$this->form_validation->set_rules('user_clublog_name', 'Clublog Username', 'valid_email');
 		$this->form_validation->set_rules('user_timezone', 'Timezone', 'required');
 
 		$data['user_form_action'] = site_url('user/edit')."/".$this->uri->segment(3);
