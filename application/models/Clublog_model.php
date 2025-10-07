@@ -49,6 +49,7 @@ class Clublog_model extends CI_Model
 							$singlepush=$this->push_qso_to_clublog($clean_username, $clean_password, $station_row->station_callsign, $string, $station_id);
 							if ($singlepush['status'] == 'OK') {
 								$this->mark_qsos_sent($station_row->station_id);
+								log_message('info', 'Clublog singlepush upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
 							} else {
 								log_message("Error", "Singlepush for ".$station_row->station_id." / ".$station_row->station_callsign." faied: ".$singlepush['status']);
 							}
