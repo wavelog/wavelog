@@ -109,6 +109,7 @@ class Clublog_model extends CI_Model
 									log_message('info', 'Clublog upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
 								} else if (preg_match('/too many uploads already queued/', $response)) {	// New Error, Clublog has Backlog, skip for NOW
 									$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed, clublog tells backlog there. Skipping whole account for this cycle. Detailled reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
+									log_message('Error', 'Clublog upload for ' . $station_row->station_callsign . ' has become a victim of clublog-Backlog. Skipping full User for this cycle.');
 									unlink('uploads/clublog' . $ranid . $station_row->station_id . '.adi');
 									break;
 								} else if (preg_match('/No QSOs to upload//', $response)) {	// Means: Already uploaded (but not marked) - perhaps different logtool, who knows.
@@ -124,15 +125,15 @@ class Clublog_model extends CI_Model
 									$return = 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response.' // HTTP:'.$httpcode.' / '.$return;
 									log_message('error', $return);
 									if (substr($response,0,13) == 'Upload denied') {	// Deactivate Upload for Station if Clublog rejects it due to non-configured Call (prevent being blacklisted at Clublog)
-										log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to non-configured Call (prevent being blacklisted at Clublog.');
+										log_message('Error', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to non-configured Call (prevent being blacklisted at Clublog.');
 										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
 										$this->db->query($sql,$station_row->station_id);
 									} else if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
-										log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to wrong credentials (prevent being blacklisted at Clublog.');
+										log_message('Error', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to wrong credentials (prevent being blacklisted at Clublog.');
 										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
 										$this->db->query($sql,$station_row->station_id);
 									} else if ($httpcode == 403) {
-										log_message('info', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to 403 (prevent being blacklisted at Clublog.');
+										log_message('Error', 'Deactivated upload for station ' . $station_row->station_callsign . ' due to 403 (prevent being blacklisted at Clublog.');
 										$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
 										$this->db->query($sql,$station_row->station_id);
 									} else {
