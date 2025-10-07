@@ -162,6 +162,24 @@ class Note extends CI_Model {
 		return $result;
 	}
 
+	// Return note ID for given category and title (callsign for Contacts), else false
+	public function get_note_id_by_category($user_id, $category, $title) {
+		$check_title = $title;
+		if ($category === 'Contacts') {
+			$this->load->library('callbook'); // Used for callsign parsing
+			$check_title = strtoupper($this->callbook->get_plaincall($title));
+		}
+		$query = $this->db->get_where('notes', [
+			'cat' => $category,
+			'user_id' => $user_id,
+			'title' => $check_title
+		]);
+		if ($query->num_rows() > 0) {
+			return $query->row()->id;
+		}
+		return false;
+	}
+
 	// Search notes with pagination and sorting for the logged-in user
 	public function search_paginated($criteria = [], $page = 1, $per_page = 25, $sort_col = null, $sort_dir = null) {
 		$user_id = $this->session->userdata('user_id');

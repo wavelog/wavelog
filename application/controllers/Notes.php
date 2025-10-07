@@ -253,31 +253,17 @@ class Notes extends CI_Controller {
         $category = $this->input->get('category', TRUE);
         $title = $this->input->get('title', TRUE);
         $id = $this->input->get('id', TRUE); // Optional, for edit
-        $check_title = $title;
-        if ($category === 'Contacts') {
-            $this->load->library('callbook');
-            $check_title = strtoupper($this->callbook->get_plaincall($title));
-        }
-        $where = [
-            'cat' => $category,
-            'user_id' => $user_id,
-            'title' => $check_title
-        ];
-        $query = $this->db->get_where('notes', $where);
         $exists = false;
         $note_id = null;
-        if ($id) {
-            foreach ($query->result() as $note) {
-                if ($note->id != $id) {
-                    $exists = true;
-                    $note_id = $note->id;
-                    break;
-                }
-            }
-        } else {
-            if ($query->num_rows() > 0) {
+        $this->load->model('note');
+        $note_id_found = $this->note->get_note_id_by_category($user_id, $category, $title);
+        if ($note_id_found) {
+            // If editing, ignore current note
+            if ($id && $note_id_found == $id) {
+                $exists = false;
+            } else {
                 $exists = true;
-                $note_id = $query->row()->id;
+                $note_id = $note_id_found;
             }
         }
         $response = ['exists' => $exists];
