@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-05 10:01+0000\n"
+"POT-Creation-Date: 2025-10-07 06:42+0000\n"
 "PO-Revision-Date: 2025-09-26 12:20+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -122,11 +122,11 @@ msgstr ""
 #: application/controllers/Update.php:355 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
-#: application/controllers/User.php:375 application/controllers/User.php:376
-#: application/controllers/User.php:1004 application/controllers/User.php:1023
-#: application/controllers/User.php:1255 application/controllers/User.php:1397
-#: application/controllers/User.php:1615 application/controllers/User.php:1631
-#: application/controllers/User.php:1657
+#: application/controllers/User.php:376 application/controllers/User.php:377
+#: application/controllers/User.php:1007 application/controllers/User.php:1026
+#: application/controllers/User.php:1258 application/controllers/User.php:1400
+#: application/controllers/User.php:1618 application/controllers/User.php:1634
+#: application/controllers/User.php:1660
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
@@ -2475,7 +2475,7 @@ msgid "Duplicate Station Location:"
 msgstr "Yinelenen İstasyon Konumu:"
 
 #: application/controllers/Station.php:221
-#: application/controllers/User.php:1278 application/controllers/User.php:1528
+#: application/controllers/User.php:1281 application/controllers/User.php:1531
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "Lütfen grid konumu (%s) değerini kontrol edin"
@@ -2825,77 +2825,77 @@ msgstr "Kullanıcı bulunamadı!"
 msgid "Invalid Parameter!"
 msgstr "Geçersiz Parametre!"
 
-#: application/controllers/User.php:192
+#: application/controllers/User.php:193
 #: application/views/club/permissions.php:155
 msgid "Add User"
 msgstr "Kullanıcı Ekle"
 
-#: application/controllers/User.php:313
+#: application/controllers/User.php:314
 #, php-format
 msgid "Username %s already in use!"
 msgstr "%s Bu Kullanıcı adı zaten kullanımda!"
 
-#: application/controllers/User.php:316
+#: application/controllers/User.php:317
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "%s Bu E-posta zaten kullanımda!"
 
-#: application/controllers/User.php:319
+#: application/controllers/User.php:320
 msgid "Invalid Password!"
 msgstr "Geçersiz şifre!"
 
-#: application/controllers/User.php:323
+#: application/controllers/User.php:324
 #, php-format
 msgid "User %s added!"
 msgstr "%s kullanıcı olarak eklendi!"
 
-#: application/controllers/User.php:327
+#: application/controllers/User.php:328
 msgid "Users"
 msgstr "Kullanıcılar"
 
-#: application/controllers/User.php:422
+#: application/controllers/User.php:425
 #: application/views/club/permissions.php:253
 msgid "Edit User"
 msgstr "Kullanıcıyı Düzenle"
 
-#: application/controllers/User.php:939 application/controllers/User.php:942
+#: application/controllers/User.php:942 application/controllers/User.php:945
 #, php-format
 msgid "User %s edited"
 msgstr "%s kullanıcısı düzenlendi"
 
-#: application/controllers/User.php:1007
+#: application/controllers/User.php:1010
 msgid "Profile"
 msgstr "Profil"
 
-#: application/controllers/User.php:1072
+#: application/controllers/User.php:1075
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
 msgstr "Tebrikler! Wavelog başarıyla yüklendi. Artık giriş yapabilirsiniz."
 
-#: application/controllers/User.php:1111
+#: application/controllers/User.php:1114
 msgid "This is not allowed!"
 msgstr "Bu işleme izin verilmiyor!"
 
-#: application/controllers/User.php:1148 application/controllers/User.php:1161
+#: application/controllers/User.php:1151 application/controllers/User.php:1164
 msgid "Login failed. Try again."
 msgstr "Oturum açma başarısız oldu. Tekrar deneyin."
 
-#: application/controllers/User.php:1169
+#: application/controllers/User.php:1172
 #: application/views/interface_assets/header.php:392
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Giriş"
 
-#: application/controllers/User.php:1207
+#: application/controllers/User.php:1210
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "Bir kulüp istasyonuna doğrudan giriş yapamazsın. Bunun yerine kişisel "
 "hesabını kullan."
 
-#: application/controllers/User.php:1210
+#: application/controllers/User.php:1213
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -2903,7 +2903,7 @@ msgstr ""
 "Hesabınız, çok fazla başarısız giriş denemesi nedeniyle kilitlendi. Lütfen "
 "şifrenizi sıfırlayın."
 
-#: application/controllers/User.php:1214
+#: application/controllers/User.php:1217
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2914,22 +2914,22 @@ msgstr ""
 "yöneticiyle iletişime geçin. Şu anda yalnızca yöneticilerin giriş yapmasına "
 "izin verilmektedir."
 
-#: application/controllers/User.php:1217
+#: application/controllers/User.php:1220
 msgid "Incorrect username or password!"
 msgstr "Kullanıcı adı veya şifre yanlış!"
 
-#: application/controllers/User.php:1242
+#: application/controllers/User.php:1245
 #, php-format
 msgid "User %s logged out."
 msgstr "%s kullanıcısı çıkış yaptı."
 
-#: application/controllers/User.php:1258
+#: application/controllers/User.php:1261
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "İstasyon Adı"
 
-#: application/controllers/User.php:1259 application/views/debug/index.php:594
+#: application/controllers/User.php:1262 application/views/debug/index.php:594
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:61
 #: application/views/station_profile/edit.php:77
@@ -2939,27 +2939,27 @@ msgstr "İstasyon Adı"
 msgid "Station Callsign"
 msgstr "İstasyon Çağrı İşareti"
 
-#: application/controllers/User.php:1260
+#: application/controllers/User.php:1263
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "İstasyon DXCC"
 
-#: application/controllers/User.php:1261
+#: application/controllers/User.php:1264
 msgid "Station CQ Zone"
 msgstr "İstasyon CQ Bölgesi"
 
-#: application/controllers/User.php:1262
+#: application/controllers/User.php:1265
 msgid "Station ITU Zone"
 msgstr "İstasyon ITU Bölgesi"
 
-#: application/controllers/User.php:1263
+#: application/controllers/User.php:1266
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr "Istasyon Locator"
 
-#: application/controllers/User.php:1286
+#: application/controllers/User.php:1289
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2968,36 +2968,36 @@ msgstr ""
 "İstasyon başarıyla oluşturuldu! Wavelog’a hoş geldiniz! İstasyon kurulumunu "
 "tamamlamak için %sburaya%s tıklayın."
 
-#: application/controllers/User.php:1289
+#: application/controllers/User.php:1292
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 "İstasyon kurulumu başarısız oldu! Lütfen istasyonunuzu manuel olarak kurun."
 
-#: application/controllers/User.php:1306
+#: application/controllers/User.php:1309
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Parola Sıfırlama Demo'da devre dışı bırakıldı!"
 
-#: application/controllers/User.php:1320
+#: application/controllers/User.php:1323
 msgid "Forgot Password"
 msgstr "Parolayı Unuttum"
 
-#: application/controllers/User.php:1371
+#: application/controllers/User.php:1374
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "E-posta ayarları yanlış."
 
-#: application/controllers/User.php:1375 application/controllers/User.php:1380
+#: application/controllers/User.php:1378 application/controllers/User.php:1383
 msgid "Password Reset Processed."
 msgstr "Parola Sıfırlama İşlemi Tamamlandı."
 
-#: application/controllers/User.php:1481
+#: application/controllers/User.php:1484
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Şifreyi Sıfırla"
 
-#: application/controllers/User.php:1502
+#: application/controllers/User.php:1505
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -3005,7 +3005,7 @@ msgstr ""
 "Hesap bu kullanıcı adıyla ayarlanamadı. Lütfen \"%s\" dışında başka bir "
 "kullanıcı adı deneyin."
 
-#: application/controllers/User.php:1511
+#: application/controllers/User.php:1514
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -3013,7 +3013,7 @@ msgstr ""
 "Hesap bu e-posta adresiyle ayarlanamadı. Lütfen \"%s\" dışında başka bir e-"
 "posta adresi deneyin."
 
-#: application/controllers/User.php:1550
+#: application/controllers/User.php:1553
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3022,7 +3022,7 @@ msgstr ""
 "Şu anda başka bir kullanıcıyı temsil edemezsiniz. config.php dosyanızda %s "
 "değerini %s olarak ayarlamanız gerekiyor!"
 
-#: application/controllers/User.php:1564
+#: application/controllers/User.php:1567
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -3031,15 +3031,15 @@ msgstr ""
 "Şu anda başka bir kullanıcıyı temsil edemezsiniz. Önce config.php "
 "dosyanızdaki encryption_key değerini değiştirin!"
 
-#: application/controllers/User.php:1571
+#: application/controllers/User.php:1574
 msgid "Invalid Hash"
 msgstr "Geçersiz Hash"
 
-#: application/controllers/User.php:1584
+#: application/controllers/User.php:1587
 msgid "The impersonation hash is too old. Please try again."
 msgstr "Temsil etme anahtarı çok eski. Lütfen tekrar deneyin."
 
-#: application/controllers/User.php:1591
+#: application/controllers/User.php:1594
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -3047,15 +3047,15 @@ msgstr ""
 "Kaynak kullanıcı olarak giriş yapmadığınız sürece başka bir kullanıcıyı "
 "temsil edemezsiniz"
 
-#: application/controllers/User.php:1597
+#: application/controllers/User.php:1600
 msgid "There was a problem with your session. Please try again."
 msgstr "Oturumunuzda bir sorun oluştu. Lütfen tekrar deneyin."
 
-#: application/controllers/User.php:1604
+#: application/controllers/User.php:1607
 msgid "The requested user to impersonate does not exist"
 msgstr "Temsil edilmek istenen kullanıcı mevcut değil"
 
-#: application/controllers/User.php:1625
+#: application/controllers/User.php:1628
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -3063,13 +3063,13 @@ msgstr ""
 "Kulüp istasyonu için doğru yetki seviyesi belirlenemedi. Tekrar giriş "
 "yaptıktan sonra tekrar deneyin."
 
-#: application/controllers/User.php:1670 application/controllers/User.php:1682
-#: application/controllers/User.php:1688 application/controllers/User.php:1697
-#: application/controllers/User.php:1705
+#: application/controllers/User.php:1673 application/controllers/User.php:1685
+#: application/controllers/User.php:1691 application/controllers/User.php:1700
+#: application/controllers/User.php:1708
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "Aboo… Bir şeyler yanlış gitti. Lütfen tekrar giriş yapmayı deneyin."
 
-#: application/controllers/User.php:1711
+#: application/controllers/User.php:1714
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -3077,7 +3077,7 @@ msgstr ""
 "Güvenlik anahtarı süresi dolduğu için hızlı geri dönme özelliği devre dışı "
 "bırakıldı. Lütfen tekrar giriş yapın."
 
-#: application/controllers/User.php:1727
+#: application/controllers/User.php:1730
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -15505,8 +15505,8 @@ msgid "Club Log"
 msgstr "Club Log"
 
 #: application/views/user/edit.php:905
-msgid "Club Log Email/Callsign"
-msgstr "Club Log E-Mail/Çağrı İşareti"
+msgid "Club Log Email"
+msgstr ""
 
 #: application/views/user/edit.php:911
 msgid "Club Log Password"
@@ -16349,6 +16349,9 @@ msgstr "Talep Gönder"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Alındı"
+
+#~ msgid "Club Log Email/Callsign"
+#~ msgstr "Club Log E-Mail/Çağrı İşareti"
 
 #~ msgid ""
 #~ "You don't currently have any notes, these are a fantastic way of storing "

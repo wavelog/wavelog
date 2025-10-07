@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-05 10:01+0000\n"
+"POT-Creation-Date: 2025-10-07 06:42+0000\n"
 "PO-Revision-Date: 2025-10-04 12:52+0000\n"
 "Last-Translator: \"S.NAKAO(JG3HLX)\" <hlx.nakao@gmail.com>\n"
 "Language-Team: Japanese <https://translate.wavelog.org/projects/wavelog/main-"
@@ -118,11 +118,11 @@ msgstr ""
 #: application/controllers/Update.php:355 application/controllers/User.php:14
 #: application/controllers/User.php:61 application/controllers/User.php:103
 #: application/controllers/User.php:121 application/controllers/User.php:145
-#: application/controllers/User.php:375 application/controllers/User.php:376
-#: application/controllers/User.php:1004 application/controllers/User.php:1023
-#: application/controllers/User.php:1255 application/controllers/User.php:1397
-#: application/controllers/User.php:1615 application/controllers/User.php:1631
-#: application/controllers/User.php:1657
+#: application/controllers/User.php:376 application/controllers/User.php:377
+#: application/controllers/User.php:1007 application/controllers/User.php:1026
+#: application/controllers/User.php:1258 application/controllers/User.php:1400
+#: application/controllers/User.php:1618 application/controllers/User.php:1634
+#: application/controllers/User.php:1660
 #: application/controllers/User_options.php:9
 #: application/controllers/Usermode.php:15
 #: application/controllers/Webadif.php:91 application/models/Club_model.php:52
@@ -2470,7 +2470,7 @@ msgid "Duplicate Station Location:"
 msgstr "重複ステーションの場所:"
 
 #: application/controllers/Station.php:221
-#: application/controllers/User.php:1278 application/controllers/User.php:1528
+#: application/controllers/User.php:1281 application/controllers/User.php:1531
 #, php-format
 msgid "Please check value for grid locator (%s)"
 msgstr "グリッドロケータの値を確認してください（ %s )"
@@ -2818,49 +2818,49 @@ msgstr "ユーザーが見つかりません!"
 msgid "Invalid Parameter!"
 msgstr "無効なパラメータです!"
 
-#: application/controllers/User.php:192
+#: application/controllers/User.php:193
 #: application/views/club/permissions.php:155
 msgid "Add User"
 msgstr "ユーザーを追加"
 
-#: application/controllers/User.php:313
+#: application/controllers/User.php:314
 #, php-format
 msgid "Username %s already in use!"
 msgstr "ユーザー名 %s は すでに使用されています!"
 
-#: application/controllers/User.php:316
+#: application/controllers/User.php:317
 #, php-format
 msgid "E-mail %s already in use!"
 msgstr "Eメール %s は すでに使用されています!"
 
-#: application/controllers/User.php:319
+#: application/controllers/User.php:320
 msgid "Invalid Password!"
 msgstr "パスワードが無効です!"
 
-#: application/controllers/User.php:323
+#: application/controllers/User.php:324
 #, php-format
 msgid "User %s added!"
 msgstr "ユーザー %s が追加されました!"
 
-#: application/controllers/User.php:327
+#: application/controllers/User.php:328
 msgid "Users"
 msgstr "ユーザー"
 
-#: application/controllers/User.php:422
+#: application/controllers/User.php:425
 #: application/views/club/permissions.php:253
 msgid "Edit User"
 msgstr "ユーザーを編集"
 
-#: application/controllers/User.php:939 application/controllers/User.php:942
+#: application/controllers/User.php:942 application/controllers/User.php:945
 #, php-format
 msgid "User %s edited"
 msgstr "ユーザー %s が編集されました"
 
-#: application/controllers/User.php:1007
+#: application/controllers/User.php:1010
 msgid "Profile"
 msgstr "プロフィール"
 
-#: application/controllers/User.php:1072
+#: application/controllers/User.php:1075
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -2868,29 +2868,29 @@ msgstr ""
 "おめでとうございます！Wavelog のインストールに成功しました。これで初回ログイ"
 "ンが可能になります。"
 
-#: application/controllers/User.php:1111
+#: application/controllers/User.php:1114
 msgid "This is not allowed!"
 msgstr "これは許可されていません!"
 
-#: application/controllers/User.php:1148 application/controllers/User.php:1161
+#: application/controllers/User.php:1151 application/controllers/User.php:1164
 msgid "Login failed. Try again."
 msgstr "ログインに失敗しました。もう一度お試しください。"
 
-#: application/controllers/User.php:1169
+#: application/controllers/User.php:1172
 #: application/views/interface_assets/header.php:392
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "ログイン"
 
-#: application/controllers/User.php:1207
+#: application/controllers/User.php:1210
 msgid ""
 "You can't login to a clubstation directly. Use your personal account instead."
 msgstr ""
 "clubstation に直接ログインすることはできません。代わりに個人アカウントをご利"
 "用ください。"
 
-#: application/controllers/User.php:1210
+#: application/controllers/User.php:1213
 msgid ""
 "Your account is locked, due to too many failed login-attempts. Please reset "
 "your password."
@@ -2898,7 +2898,7 @@ msgstr ""
 "アカウントがロックされています。これは、ログイン試行が複数回失敗したためで"
 "す。パスワードを再設定してください。"
 
-#: application/controllers/User.php:1214
+#: application/controllers/User.php:1217
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2908,22 +2908,22 @@ msgstr ""
 "セージが予期せず表示されたり、繰り返し表示されたりする場合は、管理者にお問い"
 "合わせください。現在、ログインできるのは管理者のみです。"
 
-#: application/controllers/User.php:1217
+#: application/controllers/User.php:1220
 msgid "Incorrect username or password!"
 msgstr "ユーザー名またはパスワードが間違っています!"
 
-#: application/controllers/User.php:1242
+#: application/controllers/User.php:1245
 #, php-format
 msgid "User %s logged out."
 msgstr "ユーザー %s がログアウトしました。"
 
-#: application/controllers/User.php:1258
+#: application/controllers/User.php:1261
 #: application/views/oqrs/request_grouped.php:16
 #: application/views/user/modals/first_login_wizard.php:26
 msgid "Station Name"
 msgstr "ステーション名"
 
-#: application/controllers/User.php:1259 application/views/debug/index.php:594
+#: application/controllers/User.php:1262 application/views/debug/index.php:594
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:61
 #: application/views/station_profile/edit.php:77
@@ -2933,27 +2933,27 @@ msgstr "ステーション名"
 msgid "Station Callsign"
 msgstr "ステーションのコールサイン"
 
-#: application/controllers/User.php:1260
+#: application/controllers/User.php:1263
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:100
 #: application/views/user/modals/first_login_wizard.php:42
 msgid "Station DXCC"
 msgstr "DXCC局"
 
-#: application/controllers/User.php:1261
+#: application/controllers/User.php:1264
 msgid "Station CQ Zone"
 msgstr "ステーションCQゾーン"
 
-#: application/controllers/User.php:1262
+#: application/controllers/User.php:1265
 msgid "Station ITU Zone"
 msgstr "ITUゾーンステーション"
 
-#: application/controllers/User.php:1263
+#: application/controllers/User.php:1266
 #: application/views/user/modals/first_login_wizard.php:91
 msgid "Station Locator"
 msgstr "グリッドロケータ"
 
-#: application/controllers/User.php:1286
+#: application/controllers/User.php:1289
 #, php-format
 msgid ""
 "Station created successfully! Welcome to Wavelog! To complete your station "
@@ -2962,37 +2962,37 @@ msgstr ""
 "ステーションが正常に作成されました！Wavelogへようこそ！ステーションの設定を完"
 "了するには、%shere%sをクリックしてください。"
 
-#: application/controllers/User.php:1289
+#: application/controllers/User.php:1292
 msgid "Station setup failed! Please set up your station manually."
 msgstr ""
 "ステーションのセットアップに失敗しました！手動でステーションを設定してくださ"
 "い。"
 
-#: application/controllers/User.php:1306
+#: application/controllers/User.php:1309
 msgid "Password Reset is disabled on the Demo!"
 msgstr "デモではパスワードのリセットが利用できません！"
 
-#: application/controllers/User.php:1320
+#: application/controllers/User.php:1323
 msgid "Forgot Password"
 msgstr "パスワードを忘れた"
 
-#: application/controllers/User.php:1371
+#: application/controllers/User.php:1374
 #: application/views/user/modals/more_actions_modal.php:88
 msgid "Email settings are incorrect."
 msgstr "メール設定が正しくありません。"
 
-#: application/controllers/User.php:1375 application/controllers/User.php:1380
+#: application/controllers/User.php:1378 application/controllers/User.php:1383
 msgid "Password Reset Processed."
 msgstr "パスワードのリセットが完了しました。"
 
-#: application/controllers/User.php:1481
+#: application/controllers/User.php:1484
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "パスワードをリセットする"
 
-#: application/controllers/User.php:1502
+#: application/controllers/User.php:1505
 #, php-format
 msgid ""
 "Couldn't set account to this username. Please try another one than \"%s\"."
@@ -3000,7 +3000,7 @@ msgstr ""
 "このユーザー名でアカウントを設定できませんでした。別のユーザー名（%s 以外）を"
 "お試しください。"
 
-#: application/controllers/User.php:1511
+#: application/controllers/User.php:1514
 #, php-format
 msgid ""
 "Couldn't set account to this email. Please try another address than \"%s\"."
@@ -3008,7 +3008,7 @@ msgstr ""
 "このメールアドレスでアカウントを設定できませんでした。別のアドレス（%s以外）"
 "をお試しください。"
 
-#: application/controllers/User.php:1550
+#: application/controllers/User.php:1553
 #, php-format
 msgid ""
 "You currently can't impersonate another user. You need to set %s to %s in "
@@ -3017,7 +3017,7 @@ msgstr ""
 "現在、他のユーザーを装うことはできません。config.php ファイルで %s を %s に設"
 "定する必要があります！"
 
-#: application/controllers/User.php:1564
+#: application/controllers/User.php:1567
 #: application/views/user/modals/admin_impersonate_modal.php:36
 msgid ""
 "You currently can't impersonate another user. Please change the "
@@ -3026,15 +3026,15 @@ msgstr ""
 "現在、他のユーザーを装うことはできません。まず、config.php ファイルの "
 "encryption_key を変更してください！"
 
-#: application/controllers/User.php:1571
+#: application/controllers/User.php:1574
 msgid "Invalid Hash"
 msgstr "無効なハッシュ"
 
-#: application/controllers/User.php:1584
+#: application/controllers/User.php:1587
 msgid "The impersonation hash is too old. Please try again."
 msgstr "偽装ハッシュが古すぎます。もう一度お試しください。"
 
-#: application/controllers/User.php:1591
+#: application/controllers/User.php:1594
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
@@ -3042,15 +3042,15 @@ msgstr ""
 "ソースユーザーとしてログインしていない状態で、他のユーザーを装うことはできま"
 "せん"
 
-#: application/controllers/User.php:1597
+#: application/controllers/User.php:1600
 msgid "There was a problem with your session. Please try again."
 msgstr "セッションに問題が発生しました。もう一度お試しください。"
 
-#: application/controllers/User.php:1604
+#: application/controllers/User.php:1607
 msgid "The requested user to impersonate does not exist"
 msgstr "偽装を要求されたユーザーは存在しません"
 
-#: application/controllers/User.php:1625
+#: application/controllers/User.php:1628
 msgid ""
 "Could not determine the correct permission level for the clubstation. Try "
 "again after re-login."
@@ -3058,13 +3058,13 @@ msgstr ""
 "クラブステーションの適切な権限レベルを判別できませんでした。再ログインしてか"
 "らもう一度お試しください。"
 
-#: application/controllers/User.php:1670 application/controllers/User.php:1682
-#: application/controllers/User.php:1688 application/controllers/User.php:1697
-#: application/controllers/User.php:1705
+#: application/controllers/User.php:1673 application/controllers/User.php:1685
+#: application/controllers/User.php:1691 application/controllers/User.php:1700
+#: application/controllers/User.php:1708
 msgid "Ups.. Something went wrong. Try to log back in."
 msgstr "おっと… 何か問題が発生しました。もう一度ログインしてみてください。"
 
-#: application/controllers/User.php:1711
+#: application/controllers/User.php:1714
 msgid ""
 "The ability to return quickly has been disabled after the security hash "
 "expired. Please log in again."
@@ -3072,7 +3072,7 @@ msgstr ""
 "セキュリティハッシュの有効期限が切れたため、すぐに復帰する機能は無効になって"
 "います。再度ログインしてください。"
 
-#: application/controllers/User.php:1727
+#: application/controllers/User.php:1730
 #, php-format
 msgid ""
 "You have been logged out of the account %s. Welcome back, %s, to your "
@@ -15432,8 +15432,8 @@ msgid "Club Log"
 msgstr "Club Log"
 
 #: application/views/user/edit.php:905
-msgid "Club Log Email/Callsign"
-msgstr "Club Logのメールアドレス/コールサイン"
+msgid "Club Log Email"
+msgstr ""
 
 #: application/views/user/edit.php:911
 msgid "Club Log Password"
@@ -16269,6 +16269,9 @@ msgstr "リクエストを送信"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "受信"
+
+#~ msgid "Club Log Email/Callsign"
+#~ msgstr "Club Logのメールアドレス/コールサイン"
 
 #~ msgid ""
 #~ "You don't currently have any notes, these are a fantastic way of storing "
