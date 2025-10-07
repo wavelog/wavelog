@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2025-10-07 06:42+0000\n"
-"PO-Revision-Date: 2025-09-26 12:20+0000\n"
+"PO-Revision-Date: 2025-10-08 00:36+0000\n"
 "Last-Translator: \"Erkin Mercan (TA4AQG-SP9AQG)\" <ekomeko066@gmail.com>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/tr/>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1942,12 +1942,16 @@ msgid ""
 "Contacts note title must be a callsign only, without prefix/suffix. "
 "Suggested: %s"
 msgstr ""
+"Bağlantı notu başlığı yalnızca çağrı işaretinden oluşmalıdır, ön ek veya son "
+"ek içermemelidir. Önerilen: %s"
 
 #: application/controllers/Notes.php:284 application/controllers/Notes.php:311
 msgid ""
 "A note with this callsign already exists in your Contacts. Please enter a "
 "unique callsign."
 msgstr ""
+"Bu çağrı işaretiyle bir not zaten Kişilerinizde mevcut. Lütfen benzersiz bir "
+"çağrı işareti girin."
 
 #: application/controllers/Options.php:23
 #: application/controllers/Options.php:33
@@ -3314,6 +3318,8 @@ msgid ""
 "QSO on %s: You tried to import a QSO without any given Band. This QSO wasn't "
 "imported. It's invalid"
 msgstr ""
+"%s üzerindeki QSO: Bant bilgisi olmadan bir QSO içe aktarmayı denediniz. Bu "
+"QSO içe aktarılmadı, geçersiz."
 
 #: application/models/Logbook_model.php:4388
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3396,7 +3402,7 @@ msgstr "Yön"
 
 #: application/models/Note.php:7
 msgid "Contacts"
-msgstr ""
+msgstr "Kişiler"
 
 #: application/models/Note.php:8 application/views/qso/index.php:61
 #: application/views/statistics/index.php:46
@@ -3410,7 +3416,7 @@ msgstr "Antenler"
 
 #: application/models/Note.php:45 application/models/Note.php:69
 msgid "In Contacts category, the titles of the notes need to be unique."
-msgstr ""
+msgstr "Kişiler kategorisinde, notların başlıkları benzersiz olmalıdır."
 
 #: application/models/Update_model.php:353
 msgid "Newer release available:"
@@ -8278,6 +8284,8 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your version "
 "is: %s."
 msgstr ""
+"PHP sürümünüzü yükseltmeniz gerekiyor. %s veya üstü olmalı. Mevcut sürümünüz:"
+" %s"
 
 #: application/views/dashboard/index.php:118
 #, php-format
@@ -8336,6 +8344,7 @@ msgid ""
 "Don't loose your streak - You have already had at least one QSO for the last "
 "%s consecutive days."
 msgstr ""
+"Serinizi bozmayın – Son %s gündür her gün en az bir QSO gerçekleştirdiniz."
 
 #: application/views/dashboard/index.php:184
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -9857,20 +9866,20 @@ msgstr "Uydu Bilgileri"
 
 #: application/views/interface_assets/footer.php:59
 msgid "Error loading notes"
-msgstr ""
+msgstr "Notlar yüklenirken hata oluştu"
 
 #: application/views/interface_assets/footer.php:60
 msgid "Sorting"
-msgstr ""
+msgstr "Sıralama"
 
 #: application/views/interface_assets/footer.php:61
 msgid "Duplication is disabled for Contacts notes"
-msgstr ""
+msgstr "Kişi notları için kopyalama devre dışı bırakılmıştır"
 
 #: application/views/interface_assets/footer.php:62
 #: application/views/interface_assets/footer.php:64
 msgid "Duplicate"
-msgstr ""
+msgstr "Çoğalt"
 
 #: application/views/interface_assets/footer.php:65
 #: application/views/notes/view.php:48
@@ -9879,23 +9888,23 @@ msgstr "Notu sil"
 
 #: application/views/interface_assets/footer.php:66
 msgid "Duplicate Note"
-msgstr ""
+msgstr "Notu Çoğalt"
 
 #: application/views/interface_assets/footer.php:67
 msgid "Delete this note?"
-msgstr ""
+msgstr "Notu silmek istediğinize emin misiniz?"
 
 #: application/views/interface_assets/footer.php:68
 msgid "Duplicate this note?"
-msgstr ""
+msgstr "Bu notu çoğaltmak istiyor musunuz?"
 
 #: application/views/interface_assets/footer.php:69
 msgid "Duplication Disabled"
-msgstr ""
+msgstr "Çoğaltma Devre Dışı"
 
 #: application/views/interface_assets/footer.php:70
 msgid "No notes were found"
-msgstr ""
+msgstr "Hiç not bulunamadı"
 
 #: application/views/interface_assets/footer.php:152
 #: application/views/interface_assets/header.php:513
@@ -11681,6 +11690,9 @@ msgid ""
 "store information about QSO partners. These notes are private and are not "
 "shared with other users nor exported to external services."
 msgstr ""
+"Kişiler, Wavelog’un çeşitli bölümlerinde QSO ortaklarıyla ilgili bilgileri "
+"saklamak için kullanılan özel bir not kategorisidir. Bu notlar gizlidir; "
+"diğer kullanıcılarla paylaşılmaz ve harici servislere aktarılmaz."
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:56
 msgid "Note Contents"
@@ -11692,27 +11704,27 @@ msgstr "Notu kaydet"
 
 #: application/views/notes/main.php:25
 msgid "All Categories"
-msgstr ""
+msgstr "Tüm Kategoriler"
 
 #: application/views/notes/main.php:53
 msgid "Search notes (min. 3 chars)"
-msgstr ""
+msgstr "Not ara (en az 3 karakter)"
 
 #: application/views/notes/main.php:54
 msgid "Reset search"
-msgstr ""
+msgstr "Aramayı sıfırla"
 
 #: application/views/notes/main.php:72
 msgid "Creation"
-msgstr ""
+msgstr "Oluşturma"
 
 #: application/views/notes/main.php:73
 msgid "Last Modification"
-msgstr ""
+msgstr "Son Değişiklik"
 
 #: application/views/notes/view.php:20
 msgid "View Note"
-msgstr ""
+msgstr "Notu Görüntüle"
 
 #: application/views/operator/index.php:9
 msgid ""
@@ -15506,7 +15518,7 @@ msgstr "Club Log"
 
 #: application/views/user/edit.php:905
 msgid "Club Log Email"
-msgstr ""
+msgstr "Club Log E-Posta"
 
 #: application/views/user/edit.php:911
 msgid "Club Log Password"
