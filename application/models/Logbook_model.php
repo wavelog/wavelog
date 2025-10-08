@@ -1256,10 +1256,10 @@ class Logbook_model extends CI_Model {
 			}
 		} else if ($data['COL_SAT_NAME'] == 'CAS-3H') {
 			$sat_name = 'LilacSat-2';
-		} else if (preg_match('/TEV2-[1-9]/', $data['COL_SAT_NAME'])) {
-			$sat_name = str_replace('TEV2-', 'TEVEL2-', $data['COL_SAT_NAME']);
+		} else if (preg_match('/TEV2-[1-9]/', ($data['COL_SAT_NAME'] ?? ''))) {
+			$sat_name = str_replace('TEV2-', 'TEVEL2-', ($data['COL_SAT_NAME'] ?? ''));
 		} else {
-			$sat_name = $data['COL_SAT_NAME'];
+			$sat_name = ($data['COL_SAT_NAME'] ?? '');
 		}
 		$amsat_source_grid = '';
 		if (array_key_exists('COL_MY_GRIDSQUARE', $data)) {
@@ -3994,16 +3994,16 @@ class Logbook_model extends CI_Model {
 				$custom_errors['errormessage'] .= $one_error['error'];
 			} else {	// No Errors / QSO doesn't exist so far
 				array_push($a_qsos, $one_error['raw_qso'] ?? '');
-				if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT' && $amsat_status_upload) {
+				if (isset($record['prop_mode']) && (($record['prop_mode'] ?? '')== 'SAT') && (($record['sat_name'] ?? '') != '') && $amsat_status_upload) {
 					$amsat_qsodate = strtotime(($record['qso_date'] ?? '1970-01-01') . ' ' . ($record['time_on'] ?? '00:00:00'));
 					$date_diff = $today - $amsat_qsodate;
 					if ($date_diff >= -300 && $date_diff <= 518400) { // Five minutes grace time to the future and max 6 days back
 						$data = array(
 							'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) . " " . date('H:i:s', strtotime($record['time_on'])),
-							'COL_SAT_NAME' => $record['sat_name'],
-							'COL_BAND' => $record['band'],
+							'COL_SAT_NAME' => $record['sat_name'] ?? '',
+							'COL_BAND' => $record['band'] ?? '',
 							'COL_BAND_RX' => $record['band_rx'] ?? '',
-							'COL_MODE' => $record['mode'],
+							'COL_MODE' => $record['mode'] ?? '',
 							'COL_STATION_CALLSIGN' => trim($station_profile->station_callsign),
 							'COL_MY_GRIDSQUARE' => $station_profile->station_gridsquare,
 						);
