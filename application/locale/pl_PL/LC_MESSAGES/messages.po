@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-08 19:50+0000\n"
+"POT-Creation-Date: 2025-10-08 20:23+0000\n"
 "PO-Revision-Date: 2025-10-03 19:48+0000\n"
 "Last-Translator: Szymon <sp9spm@cqops.com>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -231,33 +231,33 @@ msgstr "Import ADIF"
 msgid "Unsupported Filetype"
 msgstr "Niewspierany typ pliku"
 
-#: application/controllers/Adif.php:260
+#: application/controllers/Adif.php:265
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "Błąd importu ADIF!"
 
-#: application/controllers/Adif.php:274
+#: application/controllers/Adif.php:279
 msgid "Station Profile not valid for User"
 msgstr "Profil stacji nie jest poprawny dla użytkownika"
 
-#: application/controllers/Adif.php:283
+#: application/controllers/Adif.php:288
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "Zaimportowano ADIF"
 
-#: application/controllers/Adif.php:294
+#: application/controllers/Adif.php:299
 msgid "DCL Import"
 msgstr "Import DCL"
 
-#: application/controllers/Adif.php:352
+#: application/controllers/Adif.php:357
 msgid "DCL Data Imported"
 msgstr "Zaimportowano dane DCL"
 
-#: application/controllers/Adif.php:363
+#: application/controllers/Adif.php:368
 msgid "POTA Import"
 msgstr "Importowanie POTA"
 
-#: application/controllers/Adif.php:420
+#: application/controllers/Adif.php:425
 msgid "POTA Data Imported"
 msgstr "Zaimportowano dane POTA"
 
@@ -4452,9 +4452,8 @@ msgid "Import duplicate QSOs"
 msgstr "Importuj zduplikowane QSO"
 
 #: application/views/adif/import.php:126
-msgid "Select if want to import QSOs, even if they already exist."
+msgid "Select if QSOs shall be imported, even if they already exist."
 msgstr ""
-"Należy zaznaczyć, jeśli QSO mają być zaimportowane, nawet jeśli już istnieją."
 
 #: application/views/adif/import.php:131
 msgid "Use DXCC information from ADIF"
@@ -16426,6 +16425,11 @@ msgstr "Prześlij prośbę"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Rcvd"
+
+#~ msgid "Select if want to import QSOs, even if they already exist."
+#~ msgstr ""
+#~ "Należy zaznaczyć, jeśli QSO mają być zaimportowane, nawet jeśli już "
+#~ "istnieją."
 
 #~ msgid "Club Log Email/Callsign"
 #~ msgstr "Email/znak wywoławczy ClubLog"

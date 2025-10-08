@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-10-08 19:50+0000\n"
+"POT-Creation-Date: 2025-10-08 20:23+0000\n"
 "PO-Revision-Date: 2025-10-05 10:01+0000\n"
 "Last-Translator: Alexander <alexander@pa8s.nl>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -226,33 +226,33 @@ msgstr "ADIF Import"
 msgid "Unsupported Filetype"
 msgstr "Bestandstype niet ondersteund"
 
-#: application/controllers/Adif.php:260
+#: application/controllers/Adif.php:265
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "ADIF importeren gefaald!"
 
-#: application/controllers/Adif.php:274
+#: application/controllers/Adif.php:279
 msgid "Station Profile not valid for User"
 msgstr "Stations profiel niet geldig voor gebruiker"
 
-#: application/controllers/Adif.php:283
+#: application/controllers/Adif.php:288
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF geimporteerd"
 
-#: application/controllers/Adif.php:294
+#: application/controllers/Adif.php:299
 msgid "DCL Import"
 msgstr "DCL import"
 
-#: application/controllers/Adif.php:352
+#: application/controllers/Adif.php:357
 msgid "DCL Data Imported"
 msgstr "DCL Data geimporteerd"
 
-#: application/controllers/Adif.php:363
+#: application/controllers/Adif.php:368
 msgid "POTA Import"
 msgstr "POTA importeren"
 
-#: application/controllers/Adif.php:420
+#: application/controllers/Adif.php:425
 msgid "POTA Data Imported"
 msgstr "POTA-gegevens geïmporteerd"
 
@@ -4445,8 +4445,8 @@ msgid "Import duplicate QSOs"
 msgstr "Dubbele QSOs importeren"
 
 #: application/views/adif/import.php:126
-msgid "Select if want to import QSOs, even if they already exist."
-msgstr "Selecteer of je QSO's wilt importeren, zelfs als ze al bestaan."
+msgid "Select if QSOs shall be imported, even if they already exist."
+msgstr ""
 
 #: application/views/adif/import.php:131
 msgid "Use DXCC information from ADIF"
@@ -16423,6 +16423,9 @@ msgstr "Verzoek indienen"
 #: application/views/widgets/qsos.php:20
 msgid "Rcvd"
 msgstr "Ontvangen"
+
+#~ msgid "Select if want to import QSOs, even if they already exist."
+#~ msgstr "Selecteer of je QSO's wilt importeren, zelfs als ze al bestaan."
 
 #~ msgid "Club Log Email/Callsign"
 #~ msgstr "Club Log E-mail/roepnaam"
