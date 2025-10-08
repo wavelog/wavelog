@@ -123,7 +123,7 @@
 											<input class="form-check-input" type="checkbox" name="skipDuplicate" value="1" id="skipDuplicate">
 											<label class="form-check-label" for="skipDuplicate"><?= __("Import duplicate QSOs") ?></label>
 										</div>
-										<div class="small form-text text-muted"><?= __("Select if want to import QSOs, even if they already exist.") ?></div>
+										<div class="small form-text text-muted"><?= __("Select if QSOs shall be imported, even if they already exist.") ?></div>
 									</div>
 										<div class="col-md-6">
 											<div class="form-check-inline">
