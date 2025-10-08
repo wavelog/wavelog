@@ -15,3 +15,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /index.php?/$1 "[L,QSA,B= ?,BNP]"
 
 RedirectMatch 404 ^/\.git
+RedirectMatch 410 ^/sitemap
