@@ -74,21 +74,29 @@ function getUTCDateStamp(el) {
 }
 
 // Note icon state logic
-function setNoteIconState(state) {
+function setNotesVisibility(state) {
 	var $icon = $('#note_create_edit');
 	$icon.removeClass('text-secondary text-info');
 	$icon.removeAttr('data-bs-original-title');
 	$icon.removeAttr('title');
 	if (state == 2) {
+		// Callsign with existing note
+		$icon.show();
 		$icon.addClass('text-info');
 		$icon.attr('data-bs-original-title', lang_qso_note_edit);
+		$('#callsign-notes').show();
 	} else if (state == 1) {
+		// Callsign, no note yet
+		$icon.show();
 		$icon.attr('data-bs-original-title', lang_qso_note_add);
-		// do nothing - white icon
+		$('#callsign-notes').show();
 	} else {
-		$icon.addClass('text-secondary');
+		// No callsign - hide icon
+		$icon.hide();
 		$icon.attr('data-bs-original-title', lang_qso_note_no_callsign);
+		$('#callsign-notes').hide();
 	}
+
 	// If Bootstrap tooltip is initialized, update it
 	if ($icon.data('bs.tooltip')) {
 		$icon.tooltip('dispose').tooltip();
@@ -912,7 +920,7 @@ function reset_fields() {
 	clearTimeout();
 	set_timers();
 	resetTimers(qso_manual);
-	setNoteIconState(0); // Always gray out note icon on reset
+	setNotesVisibility(0); // Always gray out note icon on reset
 }
 
 // Set note icon state: 0 = gray, 1 = empty, 2 = filled based on callsign
@@ -928,9 +936,9 @@ function get_note_icon(callsign){
 					try { data = JSON.parse(data); } catch (e) { data = {}; }
 				}
 				if (data && data.exists === true) {
-					setNoteIconState(2);
+					setNotesVisibility(2);
 				} else {
-					setNoteIconState(1);
+					setNotesVisibility(1);
 				}
 			}
 		);
@@ -2159,7 +2167,7 @@ function resetDefaultQSOFields() {
 	$('.awardpane').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
 
-	setNoteIconState(0); // Always gray out note icon on reset
+	setNotesVisibility(0); // Always gray out note icon on reset
 }
 
 function closeModal() {
@@ -2222,7 +2230,7 @@ $(document).ready(function () {
 	set_timers();
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 
-	setNoteIconState(0); /// Grey-out note icon
+	setNotesVisibility(0); /// Grey-out note icon
 
 	// Clear the localStorage for the qrg units, except the quicklogCallsign and a possible backlog
 	clearQrgUnits();
@@ -2482,6 +2490,26 @@ $(document).ready(function () {
 		);
 	});
 
+	if (document.getElementById('callsign_note_content')) {
+		if (typeof EasyMDE !== 'undefined') {
+			new EasyMDE({
+				element: document.getElementById('callsign_note_content'),
+				spellChecker: false,
+				toolbar: [
+					"bold", "italic", "heading", "|","preview", "|",
+					"quote", "unordered-list", "ordered-list", "|",
+					"link", "image", "|",
+					"guide"
+			 ],
+				forceSync: true,
+				status: false,
+				maxHeight: '250px',
+				autoDownloadFontAwesome: false,
+			});
+		}
+	}
+
 	// everything loaded and ready 2 go
-	bc.postMessage('ready');
-});
+	   bc.postMessage('ready');
+
+	});

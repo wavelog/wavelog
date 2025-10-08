@@ -302,6 +302,11 @@ function stopImpersonate_modal() {
     <script src="<?php echo base_url() ;?>assets/js/sections/notes.js"></script>
 <?php } ?>
 
+<?php if ($this->uri->segment(1) == "qso" ) { ?>
+    <!-- Javascript used for QSO Notes Area -->
+    <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "view") ) { ?>
     <!-- Javascript used for Notes Area -->
     <script src="<?php echo base_url() ;?>assets/plugins/easymde/easymde.min.js"></script>
