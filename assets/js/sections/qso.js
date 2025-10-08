@@ -2476,8 +2476,7 @@ $(document).ready(function () {
 					var url = window.base_url + 'index.php/notes/add?title=' + encodeURIComponent(callsign) + '&category=Contacts';
 					window.open(url, '_blank');
 				} else {
-					// Unexpected response, show error
-					alert('Could not check note existence. Please try again.');
+					// Unexpected response, do nothing
 				}
 			}
 		);
