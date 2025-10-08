@@ -371,10 +371,6 @@ class Update_model extends CI_Model {
 
 		$this->update_norad_ids();
 
-		// Clear all TLE so that reentered birds disappear from planner and path prediction
-		$sql = "UPDATE `tle` SET `tle` = NULL WHERE 1;";
-		$this->db->query($sql);
-
 		$url = 'https://www.amsat.org/tle/dailytle.txt';
 		$curl = curl_init($url);
 
@@ -383,47 +379,58 @@ class Update_model extends CI_Model {
 
 		$response = curl_exec($curl);
 
-		$count = 0;
+		if ($response) {
 
-		if ($response === false) {
-			return 'Error: ' . curl_error($curl);
-		} else {
-			// Split the response into an array of lines
-			$lines = explode("\n", $response);
+			// Clear all TLE so that reentered birds disappear from planner and path prediction
+			$sql = "UPDATE `tle` SET `tle` = NULL WHERE 1;";
+			$this->db->query($sql);
 
-			$satname = '';
-			$tleline1 = '';
-			$tleline2 = '';
-			// Process each line
-			for ($i = 0; $i < count($lines); $i += 3) {
-				$count++;
-				// Check if there are at least three lines remaining
-				if (isset($lines[$i], $lines[$i + 1], $lines[$i + 2])) {
-					// Get the three lines
-					$satname = substr($lines[$i+1], 2, 5);
-					$tleline1 = $lines[$i + 1];
-					$tleline2 = $lines[$i + 2];
-					$sql = "
-					INSERT INTO tle (satelliteid, tle)
-					SELECT id, ?
-					FROM satellite
-					WHERE norad_id = ?
-					ON DUPLICATE KEY UPDATE
-					tle = VALUES(tle), updated = now()
-				";
-				$this->db->query($sql, array($tleline1 . "\n" . $tleline2, $satname));
+			$count = 0;
+
+			if ($response === false) {
+				return 'Error: ' . curl_error($curl);
+			} else {
+				// Split the response into an array of lines
+				$lines = explode("\n", $response);
+
+				$satname = '';
+				$tleline1 = '';
+				$tleline2 = '';
+				// Process each line
+				for ($i = 0; $i < count($lines); $i += 3) {
+					$count++;
+					// Check if there are at least three lines remaining
+					if (isset($lines[$i], $lines[$i + 1], $lines[$i + 2])) {
+						// Get the three lines
+						$satname = substr($lines[$i+1], 2, 5);
+						$tleline1 = $lines[$i + 1];
+						$tleline2 = $lines[$i + 2];
+						$sql = "
+						INSERT INTO tle (satelliteid, tle)
+						SELECT id, ?
+						FROM satellite
+						WHERE norad_id = ?
+						ON DUPLICATE KEY UPDATE
+						tle = VALUES(tle), updated = now()
+					";
+					$this->db->query($sql, array($tleline1 . "\n" . $tleline2, $satname));
+					}
 				}
 			}
+
+			curl_close($curl);
+
+			$mtime = microtime();
+			$mtime = explode(" ",$mtime);
+			$mtime = $mtime[1] + $mtime[0];
+			$endtime = $mtime;
+			$totaltime = ($endtime - $starttime);
+			return "This page was created in ".$totaltime." seconds <br />Records inserted: " . $count;
+
+		} else {
+			curl_close($curl);
+			return "Error: Received file was empty";
 		}
-
-		curl_close($curl);
-
-		$mtime = microtime();
-		$mtime = explode(" ",$mtime);
-		$mtime = $mtime[1] + $mtime[0];
-		$endtime = $mtime;
-		$totaltime = ($endtime - $starttime);
-		return "This page was created in ".$totaltime." seconds <br />Records inserted: " . $count;
 	}
 
 	 function lotw_sats() {
