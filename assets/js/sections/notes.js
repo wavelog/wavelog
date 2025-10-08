@@ -92,6 +92,18 @@ if (typeof EasyMDE !== 'undefined') {
 
 // Main notes page functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Replace 0 with Ø in inputTitle as user types
+    var inputTitle = document.getElementById('inputTitle');
+    if (inputTitle) {
+        inputTitle.addEventListener('input', function() {
+            var caret = inputTitle.selectionStart;
+            var newValue = inputTitle.value.replace(/0/g, 'Ø');
+            if (inputTitle.value !== newValue) {
+                inputTitle.value = newValue;
+                inputTitle.setSelectionRange(caret, caret);
+            }
+        });
+    }
     // Early exit if we're not on a notes page
     var notesTableBody = document.querySelector('#notesTable tbody');
     var isNotesMainPage = notesTableBody !== null;

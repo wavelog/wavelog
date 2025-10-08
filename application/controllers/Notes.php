@@ -62,6 +62,7 @@ class Notes extends CI_Controller {
                     $title_input = $prefill_title;
                 }
                 $suggested_title = strtoupper($this->callbook->get_plaincall($title_input));
+				$suggested_title = str_replace('0', 'Ø', $suggested_title);
             }
             // Pass prefill values to view
             $data['suggested_title'] = $suggested_title;
@@ -121,6 +122,7 @@ class Notes extends CI_Controller {
             $category = $this->input->post('category', TRUE);
             if ($category === 'Contacts') {
                 $suggested_title = strtoupper($this->callbook->get_plaincall($this->input->post('title', TRUE)));
+				$suggested_title = str_replace('0', 'Ø', $suggested_title);
             }
             $data['suggested_title'] = $suggested_title;
             $data['page_title'] = __("Edit Note");
@@ -282,15 +284,13 @@ class Notes extends CI_Controller {
             $core = strtoupper($this->callbook->get_plaincall($title));
             // Only fail if prefix or suffix is present
             if (strtoupper($title) <> $core) {
+                $core = str_replace('0', 'Ø', $core);
                 $this->form_validation->set_message('contacts_title_unique', sprintf(__("Contacts note title must be a callsign only, without prefix/suffix. Suggested: %s"), $core));
                 return FALSE;
             }
-            $existing = $this->db->get_where('notes', [
-                'cat' => 'Contacts',
-                'user_id' => $user_id,
-                'title' => $core
-            ])->num_rows();
-            if ($existing > 0) {
+			// Check for existing note with the same title
+			$this->load->model('note');
+            if ($this->note->get_note_id_by_category($user_id, 'Contacts', $core) > 0) {
                 $this->form_validation->set_message('contacts_title_unique', __("A note with this callsign already exists in your Contacts. Please enter a unique callsign."));
                 return FALSE;
             }
@@ -308,20 +308,17 @@ class Notes extends CI_Controller {
             $core = strtoupper($this->callbook->get_plaincall($title));
 			// Only fail if prefix or suffix is present
             if (strtoupper($title) <> $core) {
+				$core = str_replace('0', 'Ø', $core);
                 $this->form_validation->set_message('contacts_title_unique_edit', sprintf(__("Contacts note title must be a callsign only, without prefix/suffix. Suggested: %s"),$core));
                 return FALSE;
             }
-            $query = $this->db->get_where('notes', [
-                'cat' => 'Contacts',
-                'user_id' => $user_id,
-                'title' => $core
-            ]);
-            foreach ($query->result() as $note) {
-                if ($note->id != $note_id) {
-                    $this->form_validation->set_message('contacts_title_unique_edit', __("A note with this callsign already exists in your Contacts. Please enter a unique callsign."));
-                    return FALSE;
-                }
-            }
+
+			// Check for existing note with the same title
+			$this->load->model('note');
+            if ($this->note->get_note_id_by_category($user_id, 'Contacts', $core) > 0) {
+                $this->form_validation->set_message('contacts_title_unique_edit', __("A note with this callsign already exists in your Contacts. Please enter a unique callsign."));
+                return FALSE;
+			}
             return TRUE;
         }
         return TRUE;

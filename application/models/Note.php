@@ -16,6 +16,22 @@ class Note extends CI_Model {
 		return array_keys(self::get_possible_categories());
 	}
 
+	// Return note ID for given category and title (callsign for Contacts), else false
+	public function get_note_id_by_category($user_id, $category, $title) {
+		$check_title = $title;
+		if ($category === 'Contacts') {
+			$this->load->library('callbook'); // Used for callsign parsing
+			$check_title = strtoupper($this->callbook->get_plaincall($title));
+			$check_title_slashed = str_replace('0', 'Ø', $check_title);
+		}
+		$sql = "SELECT id FROM notes WHERE cat = ? AND user_id = ? AND (title = ? OR title = ?) LIMIT 1";
+		$query = $this->db->query($sql, array($category, $user_id, $check_title, $check_title_slashed));
+		if ($query->num_rows() > 0) {
+			return $query->row()->id;
+		}
+		return false;
+	}
+
 	// List all notes for a user or API key
 	function list_all($api_key = null) {
 		// Determine user ID
@@ -37,11 +53,11 @@ class Note extends CI_Model {
 		$user_id = $this->session->userdata('user_id');
 		$check_title = $title;
 		if ($category === 'Contacts') {
-			$check_title = strtoupper($title);
+			$check_title = trim(strtoupper($title));
+			$title = str_replace('0', 'Ø', $check_title);
 		}
-		$sql = "SELECT COUNT(*) as count FROM notes WHERE cat = ? AND user_id = ? AND title = ?";
-		$check_result = $this->db->query($sql, array($category, $user_id, $check_title));
-		if ($check_result->row()->count > 0 && $category === 'Contacts') {
+		// Check for existing note with same title in Contacts category
+		if ($this->get_note_id_by_category($user_id, $category, $check_title) && $category === 'Contacts') {
 			show_error(__("In Contacts category, the titles of the notes need to be unique."));
 			return;
 		}
@@ -60,16 +76,15 @@ class Note extends CI_Model {
 		$user_id = $this->session->userdata('user_id');
 		$check_title = $title;
 		if ($category === 'Contacts') {
-			$check_title = strtoupper($title);
+			$check_title = trim(strtoupper($title));
+			$title = str_replace('0', 'Ø', $check_title);
 		}
-		$check_sql = "SELECT id FROM notes WHERE cat = ? AND user_id = ? AND title = ?";
-		$check_result = $this->db->query($check_sql, array($category, $user_id, $check_title));
-		foreach ($check_result->result() as $note) {
-			if ($note->id != $note_id && $category === 'Contacts') {
+		// Check for existing note with same title in Contacts category
+		if ($this->get_note_id_by_category($user_id, $category, $check_title) && $category === 'Contacts') {
 			show_error(__("In Contacts category, the titles of the notes need to be unique."));
-				return;
-			}
+			return;
 		}
+
 		$last_modified_utc = gmdate('Y-m-d H:i:s');
 		if ($local_time) {
 			$dt = new DateTime($local_time, new DateTimeZone(date_default_timezone_get()));
@@ -160,21 +175,6 @@ class Note extends CI_Model {
 			$result[$row->cat] = (int)$row->count;
 		}
 		return $result;
-	}
-
-	// Return note ID for given category and title (callsign for Contacts), else false
-	public function get_note_id_by_category($user_id, $category, $title) {
-		$check_title = $title;
-		if ($category === 'Contacts') {
-			$this->load->library('callbook'); // Used for callsign parsing
-			$check_title = strtoupper($this->callbook->get_plaincall($title));
-		}
-		$sql = "SELECT id FROM notes WHERE cat = ? AND user_id = ? AND title = ? LIMIT 1";
-		$query = $this->db->query($sql, array($category, $user_id, $check_title));
-		if ($query->num_rows() > 0) {
-			return $query->row()->id;
-		}
-		return false;
 	}
 
 	// Search notes with pagination and sorting for the logged-in user
