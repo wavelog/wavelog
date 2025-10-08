@@ -189,7 +189,7 @@ class Clublog_model extends CI_Model
 				$response = curl_exec($request);
 				$info = curl_getinfo($request);
                                 $c_err=curl_errno($request);
-                                $c_err_string=curl_error($request);
+                                $c_errstring=curl_error($request);
 				curl_close($request);
 
 				if ($c_err) {
