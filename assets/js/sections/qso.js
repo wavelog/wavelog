@@ -73,29 +73,91 @@ function getUTCDateStamp(el) {
 	$(el).attr('value', formatted_date);
 }
 
+
+	var saveBtn = document.getElementById('callsign-note-save-btn');
+	function setNoteEditorState(state, noteText, saveBtn) {
+		if (!noteEditor) return;
+		if (state === 'no_callsign') {
+
+		} else if (state === 'no_note') {
+
+		} else if (state === 'has_note') {
+
+		}
+	}
+
+
 // Note icon state logic
-function setNotesVisibility(state) {
+function setNotesVisibility(state, noteText = "") {
 	var $icon = $('#note_create_edit');
 	$icon.removeClass('text-secondary text-info');
-	$icon.removeAttr('data-bs-original-title');
-	$icon.removeAttr('title');
-	if (state == 2) {
-		// Callsign with existing note
-		$icon.show();
-		$icon.addClass('text-info');
-		$icon.attr('data-bs-original-title', lang_qso_note_edit);
-		$('#callsign-notes').show();
-	} else if (state == 1) {
-		// Callsign, no note yet
-		$icon.show();
-		$icon.attr('data-bs-original-title', lang_qso_note_add);
-		$('#callsign-notes').show();
-	} else {
-		// No callsign - hide icon
-		$icon.hide();
-		$icon.attr('data-bs-original-title', lang_qso_note_no_callsign);
-		$('#callsign-notes').hide();
+	$icon.removeAttr('data-bs-original-title title');
+	var $noteCard = $('#callsign-notes');
+	var $saveBtn = $('#callsign-note-save-btn');
+	var $editorElem = $('#callsign_note_content');
+	var noteEditor = $editorElem.data('easymde');
+	var $editBtn = $('#callsign-note-edit-btn');
+
+	// Initialize EasyMDE if not already done
+	if (!noteEditor && typeof EasyMDE !== 'undefined') {
+		noteEditor = new EasyMDE({
+			element: $editorElem[0],
+			spellChecker: false,
+			toolbar: [
+				"bold", "italic", "heading", "|","preview", "|",
+				"quote", "unordered-list", "ordered-list", "|",
+				"link", "image", "|",
+				"guide"
+			],
+			forceSync: true,
+			status: false,
+			maxHeight: '250px',
+			autoDownloadFontAwesome: false,
+			autoRefresh: { delay: 250 },
+		});
+		$editorElem.data('easymde', noteEditor);
 	}
+
+	if (state === 0) {
+		// No callsign
+		$icon.hide().attr('data-bs-original-title', lang_qso_note_no_callsign);
+
+		// Hide note card
+		$noteCard.hide();
+
+	} else if (state === 1) {
+		// Callsign, no note yet
+		$icon.show().attr('data-bs-original-title', lang_qso_note_add);
+
+		// Show note card
+		$noteCard.show();
+
+		// Hide editor toolbar, set value and show preview
+		document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
+		noteEditor.value('No notes found for this callsign - click Edit Note to add notes.');
+		noteEditor.togglePreview();
+		noteEditor.codemirror.setOption('readOnly', true);
+
+	} else if (state === 2) {
+		// Callsign with existing note
+		$icon.show().addClass('text-info').attr('data-bs-original-title', lang_qso_note_edit);
+
+		// Show note card
+		$noteCard.show();
+
+		// Hide editor toolbar, set value and show preview
+		document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
+		noteEditor.value(noteText);
+		noteEditor.togglePreview();
+		noteEditor.codemirror.setOption('readOnly', true);
+	}
+
+	// Show Edit button for states 1 and 2
+    if (state === 1 || state === 2) {
+        $editBtn.removeClass('d-none').show();
+    } else {
+        $editBtn.addClass('d-none').hide();
+    }
 
 	// If Bootstrap tooltip is initialized, update it
 	if ($icon.data('bs.tooltip')) {
@@ -923,7 +985,7 @@ function reset_fields() {
 	setNotesVisibility(0); // Always gray out note icon on reset
 }
 
-// Set note icon state: 0 = gray, 1 = empty, 2 = filled based on callsign
+// Get status of notes for this callsign
 function get_note_icon(callsign){
 		$.get(
 			window.base_url + 'index.php/notes/check_duplicate',
@@ -935,8 +997,23 @@ function get_note_icon(callsign){
 				if (typeof data === 'string') {
 					try { data = JSON.parse(data); } catch (e) { data = {}; }
 				}
-				if (data && data.exists === true) {
-					setNotesVisibility(2);
+				if (data && data.exists === true && data.id) {
+					// Get the note content using the note ID
+					$.get(
+						window.base_url + 'index.php/notes/get/' + data.id,
+						function(noteData) {
+							if (typeof noteData === 'string') {
+								try { noteData = JSON.parse(noteData); } catch (e) { noteData = {}; }
+							}
+							if (noteData && noteData.content) {
+								setNotesVisibility(2, noteData.content);
+							} else {
+								setNotesVisibility(2,'Error');
+							}
+						}
+					).fail(function() {
+						setNotesVisibility(2,'Error');
+					});
 				} else {
 					setNotesVisibility(1);
 				}
@@ -2489,25 +2566,6 @@ $(document).ready(function () {
 			}
 		);
 	});
-
-	if (document.getElementById('callsign_note_content')) {
-		if (typeof EasyMDE !== 'undefined') {
-			new EasyMDE({
-				element: document.getElementById('callsign_note_content'),
-				spellChecker: false,
-				toolbar: [
-					"bold", "italic", "heading", "|","preview", "|",
-					"quote", "unordered-list", "ordered-list", "|",
-					"link", "image", "|",
-					"guide"
-			 ],
-				forceSync: true,
-				status: false,
-				maxHeight: '250px',
-				autoDownloadFontAwesome: false,
-			});
-		}
-	}
 
 	// everything loaded and ready 2 go
 	   bc.postMessage('ready');

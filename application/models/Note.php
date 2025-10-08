@@ -80,7 +80,8 @@ class Note extends CI_Model {
 			$title = str_replace('0', 'Ø', $check_title);
 		}
 		// Check for existing note with same title in Contacts category
-		if ($this->get_note_id_by_category($user_id, $category, $check_title) && $category === 'Contacts') {
+		$existing_id = $this->get_note_id_by_category($user_id, $category, $check_title);
+		if ($existing_id > 0 && $existing_id != $note_id && $category === 'Contacts') {
 			show_error(__("In Contacts category, the titles of the notes need to be unique."));
 			return;
 		}

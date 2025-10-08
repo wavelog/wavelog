@@ -275,6 +275,30 @@ class Notes extends CI_Controller {
         $this->output->set_content_type('application/json')->set_output(json_encode($response));
     }
 
+	// API endpoint to get note details by ID
+    public function get($id = null) {
+        $this->load->model('note');
+        $clean_id = $this->security->xss_clean($id);
+        if (!is_numeric($clean_id) || !$this->note->belongs_to_user($clean_id, $this->session->userdata('user_id'))) {
+            $this->output->set_content_type('application/json')->set_output(json_encode(['error' => _("Not found or not allowed")]));
+            return;
+        }
+        $query = $this->note->view($clean_id);
+        if ($query && $query->num_rows() > 0) {
+            $row = $query->row();
+            $response = [
+                'id' => $row->id,
+                'category' => $row->cat,
+                'user_id' => $row->user_id,
+                'title' => $row->title,
+                'content' => $row->note
+            ];
+            $this->output->set_content_type('application/json')->set_output(json_encode($response));
+        } else {
+            $this->output->set_content_type('application/json')->set_output(json_encode(['error' => _("Not found")]));
+        }
+    }
+
     // Form validation callback for add: unique Contacts note title for user, only core callsign
     public function contacts_title_unique($title = null) {
         $category = $this->input->post('category', TRUE);
@@ -315,7 +339,8 @@ class Notes extends CI_Controller {
 
 			// Check for existing note with the same title
 			$this->load->model('note');
-            if ($this->note->get_note_id_by_category($user_id, 'Contacts', $core) > 0) {
+			$existing_id = $this->note->get_note_id_by_category($user_id, 'Contacts', $core);
+            if ($existing_id > 0 && $existing_id != $note_id) {
                 $this->form_validation->set_message('contacts_title_unique_edit', __("A note with this callsign already exists in your Contacts. Please enter a unique callsign."));
                 return FALSE;
 			}
@@ -323,5 +348,7 @@ class Notes extends CI_Controller {
         }
         return TRUE;
     }
+
+
 
 }

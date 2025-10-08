@@ -720,7 +720,9 @@ switch ($date_format) {
           </h4>
         </div>
 			<div class="card-body">
-                    <textarea id="callsign_note_content" name="callsign_note_content"></textarea>
+                    <textarea id="callsign_note_content" class="form-control" rows="6"></textarea>
+                    <button id="callsign-note-edit-btn" class="btn btn-primary mt-2" style="display:none;"><span><i class="fas fa-pencil-square-o"></i></span> <?= __("Edit Note"); ?></button>
+					<button id="callsign-note-save-btn" class="btn btn-primary mt-2" style="display:none;"><span><i class="fas fa-pencil-square-o btn-sm"></i></span> <?= __("Save Note"); ?></button>
 			</div>
 		</div>
 	<?php } ?>
