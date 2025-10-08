@@ -193,7 +193,7 @@ class Clublog_model extends CI_Model
 				curl_close($request);
 
 				if ($c_err) {
-					$log = $c_err_string."<br>";
+					$log = $c_errstring."<br>";
 					log_message("Error",$c_errstring."/".$c_err);
 					if ($c_err == 7) { // We're victim of the Clublog Firewall
                                                 return 'Impossible to reach Clublog';
