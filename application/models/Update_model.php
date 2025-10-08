@@ -379,7 +379,7 @@ class Update_model extends CI_Model {
 
 		$response = curl_exec($curl);
 
-		if ($response) {
+		if (strlen($response) >= 140) {
 
 			// Clear all TLE so that reentered birds disappear from planner and path prediction
 			$sql = "UPDATE `tle` SET `tle` = NULL WHERE 1;";
