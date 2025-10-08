@@ -3972,7 +3972,7 @@ class Logbook_model extends CI_Model {
 		return '1900-01-01 00:00:00.000';
 	}
 
-	function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
+	function import_bulk($records, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
 		$this->load->model('user_model');
 		$custom_errors['errormessage'] = '';
 		$a_qsos = [];
@@ -4033,14 +4033,14 @@ class Logbook_model extends CI_Model {
 
 
 	/*
-     * $skipDuplicate - used in ADIF import to skip duplicate checking when importing QSOs
+     * $skipDuplicate - used in ADIF import to skip duplicates when importing QSOs
      * $markLoTW - used in ADIF import to mark QSOs as exported to LoTW when importing QSOs
      * $dxccAdif - used in ADIF import to determine if DXCC From ADIF is used, or if Wavelog should try to guess
      * $markQrz - used in ADIF import to mark QSOs as exported to QRZ Logbook when importing QSOs
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
-	function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $station_qslmsg = null) {
+	function import($record, $station_id = "0", $skipDuplicate = true, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false, $markDcl = false, $skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $station_qslmsg = null) {
 		// be sure that station belongs to user
 		$this->load->model('stations');
 		if ($station_id_ok == false) {
@@ -4167,7 +4167,7 @@ class Logbook_model extends CI_Model {
 
 
 		// Check if QSO is already in the database
-		if ($skipDuplicate != NULL) {
+		if (!$skipDuplicate) {
 			$skip = false;
 		} else {
 			if (isset($record['call'])) {
