@@ -180,7 +180,14 @@ class Clublog_model extends CI_Model
 			foreach ($station_profiles->result() as $station_row) {
 				$lastrec = $clublog_last_date ?? $this->clublog_last_qsl_rcvd_date($station_row->station_callsign);
 				$lastrec = str_replace('-', '', $lastrec);
-				$url = 'https://clublog.org/getmatches.php?api=' . $this->clublog_identifier . '&email=' . $clean_username . '&password=' . $clean_password . '&callsign=' . $station_row->station_callsign . '&startyear=' . substr($lastrec, 0, 4) . '&startmonth=' . substr($lastrec, 4, 2) . '&startday=' . substr($lastrec, 6, 2);
+				$url_params=['api' => $this->clublog_identifier,
+					'email' => $clean_username,
+					'password' => $clean_password,
+					'callsign' => trim($station_row->station_callsign),
+					'startyear' => substr($lastrec, 0, 4),
+					'startmonth' => substr($lastrec, 4, 2),
+					'startday' => substr($lastrec, 6, 2)];
+                                $url = 'https://clublog.org/getmatches.php?' . http_build_query($url_params);
 				$request = curl_init($url);
 
 				// recieve a file
