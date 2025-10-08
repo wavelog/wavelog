@@ -51,7 +51,7 @@ class Clublog_model extends CI_Model
 								$this->mark_qsos_sent($station_row->station_id);
 								log_message('info', 'Clublog singlepush upload for ' . $station_row->station_callsign . ' successfully sent and marked.');
 							} else {
-								log_message("Error", "Singlepush for ".$station_row->station_id." / ".$station_row->station_callsign." faied: ".$singlepush['status']);
+								log_message("Error", "Singlepush for ".$station_row->station_id." / ".$station_row->station_callsign." failed: ".$singlepush['status']);
 							}
 						} else {
 							$ranid = uniqid();
