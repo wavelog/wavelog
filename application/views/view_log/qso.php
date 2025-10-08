@@ -82,7 +82,7 @@
                     <tr>
                         <td><?= __("Callsign"); ?></td>
                         <td><b><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></b> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="http://www.eqsl.cc/Member.cfm?<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($row->COL_CALL); ?>&call=<?php echo strtoupper($row->station_callsign); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a>
-                        <?php if (!empty($contacts_note_id)) { ?>
+                        <?php if (!empty($contacts_note_id) && $this->session->userdata('user_show_notes')==1) { ?>
                             <a href="<?php echo base_url(); ?>index.php/notes/view/<?php echo $contacts_note_id; ?>" target="_blank" title="<?= __("View note for this callsign"); ?>" style="margin-left:2px;vertical-align:middle;">
                                 <i class="fa fa-sticky-note text-info" style="font-size:16px;vertical-align:middle;"></i>
                             </a>
