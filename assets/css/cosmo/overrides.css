@@ -31,8 +31,22 @@
 	background-color: #d4edda !important;
 }
 
+.qso_call {
+	float: left;
+	width: 190px;
+}
+
 .qso_icons {
 	float: right;
+}
+
+#qsoList_wrapper th {
+	text-align: left !important;
+	white-space: nowrap;
+}
+#qsoList_wrapper td {
+	text-align: left !important;
+	white-space: nowrap;
 }
 
 TD.qrz {
@@ -95,4 +109,18 @@ path.grid-confirmed {
 path.grid-worked {
 	fill: rgba(172, 40, 40, 0.7) !important;
 	stroke: rgba(248, 96, 129, 0.7) !important;
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
