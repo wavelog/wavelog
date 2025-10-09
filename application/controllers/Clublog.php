@@ -61,6 +61,10 @@ class Clublog extends CI_Controller
 		if (!empty($users)) {
 			foreach ($users as $user) {
 				$r = $this->clublog_model->downloadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
+				if ($r == 'Impossible to reach Clublog') { // Stop Download immediatly, because we're blocked
+					log_message("Error","We're blocked by Clublog. Stopping Download!");
+					break;
+				}
 			}
 		} else {
 			$r = __("No user has configured Clublog.");
