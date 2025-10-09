@@ -176,12 +176,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function reloadCategoryCounters() {
         fetch(base_url + 'index.php/notes/get_category_counts', { method: 'POST' })
             .then(response => response.json())
-            .then(counts => {
+            .then(data => {
                 domCache.categoryButtons.forEach(function(btn) {
                     var cat = btn.getAttribute('data-category');
                     var countSpan = btn.querySelector('.badge');
-                    if (countSpan && counts[cat] !== undefined) {
-                        countSpan.textContent = counts[cat];
+                    if (countSpan) {
+                        if (cat === '__all__') {
+                            // Handle "All Categories" button
+                            countSpan.textContent = data.all_notes_count;
+                        } else if (data.category_counts && data.category_counts[cat] !== undefined) {
+                            // Handle specific category buttons
+                            countSpan.textContent = data.category_counts[cat];
+                        }
                     }
                 });
             });
