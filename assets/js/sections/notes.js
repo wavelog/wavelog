@@ -575,4 +575,29 @@ document.addEventListener('DOMContentLoaded', function() {
     if (domCache.notesTableBody) {
         performNotesSearch();
     }
+
+    // Add stroked zero (Ø) to search box
+    var addStrokedZeroBtn = document.getElementById('notesAddStrokedZero');
+    if (addStrokedZeroBtn) {
+        addStrokedZeroBtn.addEventListener('click', function() {
+            var searchBox = domCache.searchBox;
+            if (searchBox) {
+                var currentValue = searchBox.value;
+                var cursorPos = searchBox.selectionStart;
+
+                // Insert Ø at cursor position
+                var newValue = currentValue.slice(0, cursorPos) + 'Ø' + currentValue.slice(cursorPos);
+                searchBox.value = newValue;
+
+                // Set cursor position after the inserted character
+                searchBox.focus();
+                searchBox.setSelectionRange(cursorPos + 1, cursorPos + 1);
+
+                // Trigger search if minimum length is met
+                if (newValue.length >= SEARCH_MIN_LENGTH) {
+                    performNotesSearch();
+                }
+            }
+        });
+    }
 });
