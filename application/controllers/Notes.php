@@ -299,6 +299,70 @@ class Notes extends CI_Controller {
         }
     }
 
+    // API endpoint to save note (create new or update existing or delete, based on presence of ID and content)
+    public function save($id = null) {
+        $this->load->model('note');
+        $this->load->library('callbook');
+
+        $user_id = $this->session->userdata('user_id');
+        $category = $this->input->post('category', TRUE);
+        $title = $this->input->post('title', TRUE);
+        $content = $this->input->post('content', TRUE);
+
+        // Validate required fields
+        if (empty($category) || empty($title)) {
+            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'Category and title are required']));
+            return;
+        }
+
+        // Clean title for Contacts category
+        if ($category === 'Contacts') {
+            $title = strtoupper($this->callbook->get_plaincall($title));
+            $title = str_replace('0', 'Ø', $title);
+        }
+
+        if ($id !== null) {
+            // Edit existing note
+            $clean_id = $this->security->xss_clean($id);
+            if (!is_numeric($clean_id) || !$this->note->belongs_to_user($clean_id, $user_id)) {
+                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'Note not found or not allowed']));
+                return;
+            }
+
+            // If content is empty, delete the note
+            if (empty(trim($content))) {
+                $this->note->delete($clean_id);
+                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'message' => 'Note deleted', 'deleted' => true]));
+            } else {
+                // Update the note
+                $this->note->edit($clean_id, $category, $title, $content);
+                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'message' => 'Note updated', 'id' => $clean_id]));
+            }
+        } else {
+            // Create new note
+            if (empty(trim($content))) {
+                $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'Cannot create empty note']));
+                return;
+            }
+
+            // Check for duplicate in Contacts category
+            if ($category === 'Contacts') {
+                $existing_id = $this->note->get_note_id_by_category($user_id, $category, $title);
+                if ($existing_id) {
+                    $this->output->set_content_type('application/json')->set_output(json_encode(['success' => false, 'message' => 'A note with this callsign already exists']));
+                    return;
+                }
+            }
+
+            // Create the note
+            $this->note->add($category, $title, $content);
+
+            // Get the new note ID
+            $new_id = $this->note->get_note_id_by_category($user_id, $category, $title);
+            $this->output->set_content_type('application/json')->set_output(json_encode(['success' => true, 'message' => 'Note created', 'id' => $new_id]));
+        }
+    }
+
     // Form validation callback for add: unique Contacts note title for user, only core callsign
     public function contacts_title_unique($title = null) {
         $category = $this->input->post('category', TRUE);

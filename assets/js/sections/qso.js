@@ -20,6 +20,45 @@ function resetTimers(qso_manual) {
 	}
 }
 
+// Show Bootstrap Toast - TBD move to general JS file
+function showToast(title, text, type = 'bg-success text-white', delay = 3000) {
+	/*
+	Examples:
+	showToast('Saved', 'Your data was saved!', 'bg-success text-white', 3000);
+	showToast('Error', 'Failed to connect to server.', 'bg-danger text-white', 5000);
+	showToast('Warning', 'Please check your input.', 'bg-warning text-dark', 4000);
+	showToast('Info', 'System will restart soon.', 'bg-info text-dark', 4000);
+	*/
+
+	const container = document.getElementById('toast-container');
+
+	// Create toast element
+	const toastEl = document.createElement('div');
+	toastEl.className = `toast align-items-center ${type}`;
+	toastEl.setAttribute('role', 'alert');
+	toastEl.setAttribute('aria-live', 'assertive');
+	toastEl.setAttribute('aria-atomic', 'true');
+	toastEl.setAttribute('data-bs-delay', delay);
+
+	// Toast inner HTML
+	toastEl.innerHTML = `
+		<div class="d-flex">
+		<div class="toast-body">
+			<strong>${title}</strong><br>${text}
+		</div>
+		<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+	`;
+
+	// Append and show
+	container.appendChild(toastEl);
+	const bsToast = new bootstrap.Toast(toastEl);
+	bsToast.show();
+
+	// Remove from DOM when hidden
+	toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
+}
+
 function getUTCTimeStamp(el) {
 	var now = new Date();
 	$(el).attr('value', ("0" + now.getUTCHours()).slice(-2) + ':' + ("0" + now.getUTCMinutes()).slice(-2) + ':' + ("0" + now.getUTCSeconds()).slice(-2));
@@ -111,7 +150,7 @@ function setNotesVisibility(state, noteText = "") {
 			],
 			forceSync: true,
 			status: false,
-			maxHeight: '250px',
+			maxHeight: '150px',
 			autoDownloadFontAwesome: false,
 			autoRefresh: { delay: 250 },
 		});
@@ -151,6 +190,10 @@ function setNotesVisibility(state, noteText = "") {
 		noteEditor.togglePreview();
 		noteEditor.codemirror.setOption('readOnly', true);
 	}
+
+	// Hide buttons per default here
+	$saveBtn.addClass('d-none').hide();
+	$editBtn.addClass('d-none').hide();
 
 	// Show Edit button for states 1 and 2
     if (state === 1 || state === 2) {
@@ -1006,6 +1049,7 @@ function get_note_icon(callsign){
 								try { noteData = JSON.parse(noteData); } catch (e) { noteData = {}; }
 							}
 							if (noteData && noteData.content) {
+								$('#callsign-note-id').val(data.id);
 								setNotesVisibility(2, noteData.content);
 							} else {
 								setNotesVisibility(2,'Error');
@@ -2565,6 +2609,110 @@ $(document).ready(function () {
 				}
 			}
 		);
+	});
+
+	// Edit button click handler for inline editing
+	$(document).on('click', '#callsign-note-edit-btn', function() {
+		var $editorElem = $('#callsign_note_content');
+		var noteEditor = $editorElem.data('easymde');
+		var $saveBtn = $('#callsign-note-save-btn');
+		var $editBtn = $('#callsign-note-edit-btn');
+		var noteId = $('#callsign-note-id').val();
+
+		if (noteEditor) {
+			// Switch to edit mode
+			noteEditor.codemirror.setOption('readOnly', false);
+			if (noteEditor.isPreviewActive()) {
+				noteEditor.togglePreview(); // Exit preview mode
+			}
+
+			// If no note exists (state 1), set dynamic timestamp content
+			if (!noteId || noteId === '') {
+				var timestamp = new Date().toLocaleString();
+				noteEditor.value('#' + timestamp + '\n');
+			}
+
+			// Show toolbar and buttons
+			document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = '';
+			$saveBtn.removeClass('d-none').show();
+			$editBtn.addClass('d-none').hide();
+		}
+	});
+
+	// Save button click handler for saving notes
+	$(document).on('click', '#callsign-note-save-btn', function() {
+		var $editorElem = $('#callsign_note_content');
+		var noteEditor = $editorElem.data('easymde');
+		var noteId = $('#callsign-note-id').val();
+		var callsign = $('#callsign').val().trim();
+		var noteContent = noteEditor ? noteEditor.value() : '';
+
+		if (!callsign || callsign.length < 3) {
+			return;
+		}
+
+		var isEdit = noteId && noteId !== '';
+		var url = isEdit ?
+			window.base_url + 'index.php/notes/save/' + noteId :
+			window.base_url + 'index.php/notes/save';
+
+		var postData = {
+			category: 'Contacts',
+			title: callsign,
+			content: noteContent
+		};
+
+		if (isEdit) {
+			postData.id = noteId;
+		}
+
+		$.post(url, postData)
+			.done(function(response) {
+				if (typeof response === 'string') {
+					try { response = JSON.parse(response); } catch (e) { response = {}; }
+				}
+
+				if (response.success || response.status === 'ok') {
+					// Check if note was deleted (empty content)
+					if (response.deleted) {
+						// Clear the note ID since note was deleted
+						$('#callsign-note-id').val('');
+						// Reset to state 1 (callsign, no note)
+						setNotesVisibility(1);
+						// Show success message
+						showToast("Note deleted", "Note deleted successfully");
+					} else {
+						// Success - switch back to preview mode
+						if (noteEditor) {
+							noteEditor.codemirror.setOption('readOnly', true);
+							if (!noteEditor.isPreviewActive()) {
+								noteEditor.togglePreview(); // Switch to preview mode
+							}
+							document.querySelector('.EasyMDEContainer .editor-toolbar').style.display = 'none';
+						}
+						$('#callsign-note-save-btn').addClass('d-none').hide();
+						$('#callsign-note-edit-btn').removeClass('d-none').show();
+
+						// If it was a new note, store the returned ID
+						if (!isEdit && response.id) {
+							$('#callsign-note-id').val(response.id);
+
+							// Show success message briefly
+							showToast("Note created", "Note created successfully");
+						} else {
+							// Show success message briefly
+							showToast("Note saved", "Note saved successfully");
+						}
+
+
+					}
+				} else {
+					alert('Error saving note: ' + (response.message || 'Unknown error'));
+				}
+			})
+			.fail(function() {
+				alert('Failed to save note. Please try again.');
+			});
 	});
 
 	// everything loaded and ready 2 go

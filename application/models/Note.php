@@ -75,6 +75,12 @@ class Note extends CI_Model {
 	function edit($note_id, $category, $title, $content, $local_time = null) {
 		$user_id = $this->session->userdata('user_id');
 		$check_title = $title;
+
+		if($this->belongs_to_user($note_id, $user_id) === false) {
+			show_404();
+			return;
+		}
+
 		if ($category === 'Contacts') {
 			$check_title = trim(strtoupper($title));
 			$title = str_replace('0', 'Ø', $check_title);

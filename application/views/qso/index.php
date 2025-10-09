@@ -721,6 +721,7 @@ switch ($date_format) {
         </div>
 			<div class="card-body">
                     <textarea id="callsign_note_content" class="form-control" rows="6"></textarea>
+                    <input type="hidden" id="callsign-note-id" value="" />
                     <button id="callsign-note-edit-btn" class="btn btn-primary mt-2" style="display:none;"><span><i class="fas fa-pencil-square-o"></i></span> <?= __("Edit Note"); ?></button>
 					<button id="callsign-note-save-btn" class="btn btn-primary mt-2" style="display:none;"><span><i class="fas fa-pencil-square-o btn-sm"></i></span> <?= __("Save Note"); ?></button>
 			</div>
@@ -830,3 +831,6 @@ switch ($date_format) {
 </div>
 
 </div>
+
+<!-- Toast Notification : TBD move to footer -->
+<div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100;"></div>
