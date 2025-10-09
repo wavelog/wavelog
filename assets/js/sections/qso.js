@@ -2582,6 +2582,7 @@ $(document).ready(function () {
 			if (!noteId || noteId === '') {
 				var timestamp = new Date().toLocaleString();
 				noteEditor.value('#' + timestamp + '\n');
+				noteEditor.codemirror.refresh();
 			}
 
 			// Show toolbar and buttons
