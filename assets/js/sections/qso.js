@@ -1027,13 +1027,16 @@ function get_note_status(callsign){
 								$('#callsign-note-id').val(data.id);
 								setNotesVisibility(2, noteData.content);
 							} else {
+								$('#callsign-note-id').val('');
 								setNotesVisibility(2, lang_general_word_error);
 							}
 						}
 					).fail(function() {
+						$('#callsign-note-id').val('');
 						setNotesVisibility(2, lang_general_word_error);
 					});
 				} else {
+					$('#callsign-note-id').val('');
 					setNotesVisibility(1);
 				}
 			}
