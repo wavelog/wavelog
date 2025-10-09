@@ -215,7 +215,7 @@ class Notes extends CI_Controller {
             'title' => $check_title
         ])->num_rows();
         if ($existing > 0) {
-            $this->output->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => 'Duplicate note title for this category and user - not allowed for Contacts category.']));
+            $this->output->set_content_type('application/json')->set_output(json_encode(['status' => 'error', 'message' => __("Duplicate note title for this category and user - not allowed for Contacts category.")]));
             return;
         }
         // Duplicate note with new title
@@ -280,7 +280,7 @@ class Notes extends CI_Controller {
         $this->load->model('note');
         $clean_id = $this->security->xss_clean($id);
         if (!is_numeric($clean_id) || !$this->note->belongs_to_user($clean_id, $this->session->userdata('user_id'))) {
-            $this->output->set_content_type('application/json')->set_output(json_encode(['error' => _("Not found or not allowed")]));
+            $this->output->set_content_type('application/json')->set_output(json_encode(['error' => __("Not found or not allowed")]));
             return;
         }
         $query = $this->note->view($clean_id);
@@ -295,7 +295,7 @@ class Notes extends CI_Controller {
             ];
             $this->output->set_content_type('application/json')->set_output(json_encode($response));
         } else {
-            $this->output->set_content_type('application/json')->set_output(json_encode(['error' => _("Not found")]));
+            $this->output->set_content_type('application/json')->set_output(json_encode(['error' => __("Not found")]));
         }
     }
 
